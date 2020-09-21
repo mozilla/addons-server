@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-21 18:34+0000\n"
+"PO-Revision-Date: 2020-09-21 18:39+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -2604,13 +2604,11 @@ msgstr "In nije ferzje yntsjinje"
 msgid "Cancel and Disable Version"
 msgstr "Annulearje en ferzje útskeakelje"
 
-#, fuzzy
 msgid "Are you sure you wish to cancel and disable version?"
-msgstr "Binne jo wis dat jo dizze ferzje fuortsmite wolle?"
+msgstr "Binne jo wis dat jo dizze ferzje annulearje en útskeakelje wolle?"
 
-#, fuzzy
 msgid "Yes, Cancel"
-msgstr "Annulearje"
+msgstr "Ja, annulearje"
 
 msgid "No, don't cancel"
 msgstr "Nee, net annulearje"
@@ -3506,13 +3504,13 @@ msgstr "Ferzje fuortsmite"
 msgid "Disable Version"
 msgstr "Ferzje útskeakelje"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The latest approved version of this %(promoted_group_name)s addon cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
 msgstr ""
-"De nijste goedkarre ferzje fan dizze Oanrekommandearre útwreiding kin net fuortsmiten of útskeakele wurde, omdat de foarige ferzje net goedkarre is foar oanrekommandaasje. Nim kontakt op mei AMO-"
-"behearders as jo hjir help by nedich hawwe."
+"De nijste goedkarre ferzje fan dizze %(promoted_group_name)s add-on kin net fuortsmiten of útskeakele wurde, omdat de foarige ferzje net goedkard is foar promoasje as %(promoted_group_name)s. Nim "
+"kontakt op mei AMO-behearders as jo hjir help by nedich hawwe."
 
 msgid "Hide Add-on"
 msgstr "Add-on ferstopje"
@@ -5080,9 +5078,8 @@ msgid "Double-click any word to instantly see its definition."
 msgstr "Dûbelklik op elk wurd om daliks de definysje derfan te sjen."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
-msgstr "Guon websites hawwe muoite mei it ôfspyljen fan fideo's op Firefox foar Android. Dizze útwreiding biedt in oplossing."
+msgstr "Guon websites hawwe muoite mei it ôfspyljen fan fideo's op Android. Dizze útwreiding biedt in oplossing."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
@@ -5569,9 +5566,8 @@ msgstr "Fermelde ferzjes dy't hânmjittich beoardiele wurde moatte ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Net fermelde ferzjes dy't hânmjittich beoardiele wurde moatte ({0})"
 
-#, fuzzy
 msgid "Listed version"
-msgstr "Fermelde ferzjes"
+msgstr "Fermelde ferzje"
 
 msgid "Unlisted versions ({0})"
 msgstr "Net-fermelde ferzjes ({0})"
@@ -5648,11 +5644,9 @@ msgstr "Add-on-beoardielingsgids"
 msgid "Security Scanners"
 msgstr "Befeiligingscanners"
 
-#, fuzzy
 msgid "Flagged By Scanners ({0})"
 msgstr "Markearre troch scanner ({0})"
 
-#, fuzzy
 msgid "Flagged for Human Review ({0})"
 msgstr "Markearre foar persoanlike beoardieling ({0})"
 
@@ -5671,7 +5665,6 @@ msgstr "Gids foar beoardielers"
 msgid "Content Review"
 msgstr "Ynhâldsbeoardieling"
 
-#, fuzzy
 msgid "Content Review ({0})"
 msgstr "Ynhâldsbeoardieling ({0})"
 
@@ -6200,9 +6193,8 @@ msgstr "Ferzje %(version)s &middot; %(created)s <span class=\"light\">&middot; %
 msgid "(Confirmed)"
 msgstr "(Befêstige)"
 
-#, fuzzy
 msgid "Pending Rejection on review of new version"
-msgstr "Deadline foar wachtrige foar ôfwizing"
+msgstr "Ofwizing wachtet op beoardieling fan nije ferzje"
 
 msgid "Compatibility:"
 msgstr "Komptabiliteit:"
@@ -6250,33 +6242,26 @@ msgstr "Ofwezen of net beoardield"
 msgid "[status:%s]"
 msgstr "[steat:%s]"
 
-#, fuzzy
 msgid "Other Pending Review"
-msgstr "Oare wachtsjend op beoardieling ({0})"
+msgstr "Oare wachtsjend op beoardieling"
 
-#, fuzzy
 msgid "Flagged By Scanners"
 msgstr "Troch scanners markearre"
 
-#, fuzzy
 msgid "Flagged for Human Review"
 msgstr "Markearre foar persoanlike beoardieling"
 
-#, fuzzy
 msgid "Updates"
-msgstr "Bywurkje"
+msgstr "Fernijingen"
 
-#, fuzzy
 msgid "Rating Reviews"
-msgstr "Wacht op beoardieling"
+msgstr "Wurdearringsbeoardielingen"
 
-#, fuzzy
 msgid "Auto Approved"
-msgstr "Automatysk goedkard ({0})"
+msgstr "Automatysk goedkard"
 
-#, fuzzy
 msgid "Pending Rejection"
-msgstr "Wachtsjend op ôfwizing ({0})"
+msgstr "Wachtsjend op ôfwizing"
 
 msgid "presence of matched rules"
 msgstr "oanwêzichheid fan oerienkommende rigels"
@@ -6917,7 +6902,7 @@ msgstr ""
 "\n"
 "%(author_name)s (%(author_url)s)"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Hello,\n"
 "\n"
@@ -6931,7 +6916,7 @@ msgid ""
 msgstr ""
 "Hallo,\n"
 "\n"
-"Jo ûntfange dit berjocht, omdat jo brûkersaccount %(name)s fan %(site_url)s fuortsmiten is.\n"
+"Jo ûntfange dit berjocht, omdat jo brûkersaccount %(name)s fan %(site_url)s fuortsmiten is. Dit kin automatysk bard wêze as jo koartlyn jo Firefox-account fuortsmiten hawwe.¶\n"
 "\n"
 "As jo dit net dien hawwe of as jo tinke dat ien sûnder tastimming tagong hân hat ta jo account, beäntwurdzje dan dit berjocht. Yn oare gefallen hoege jo neat te dwaan.\n"
 "\n"
