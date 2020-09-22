@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-17 20:15+0000\n"
+"PO-Revision-Date: 2020-09-22 13:12+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -6173,9 +6173,8 @@ msgstr "ვერსია %(version)s &middot; %(created)s <span class=\"light\
 msgid "(Confirmed)"
 msgstr "(დამოწმებული)"
 
-#, fuzzy
 msgid "Pending Rejection on review of new version"
-msgstr "უარყოფის ვადის მომლოდინე"
+msgstr "ახალი ვერსიის განხილვის უარყოფის მომლოდინე"
 
 msgid "Compatibility:"
 msgstr "თავსებადობა:"
@@ -6223,33 +6222,26 @@ msgstr "უარყოფილი ან განუხილველი"
 msgid "[status:%s]"
 msgstr "[მდგომარეობა:%s]"
 
-#, fuzzy
 msgid "Other Pending Review"
-msgstr "სხვა მომლოდინე განხილვა ({0})"
+msgstr "სხვა მომლოდინე განხილვა"
 
-#, fuzzy
 msgid "Flagged By Scanners"
 msgstr "მონიშნულია სკანერების მიერ"
 
-#, fuzzy
 msgid "Flagged for Human Review"
 msgstr "მონიშნულია ადამიანის მონაწილეობით განხილვისთვის"
 
-#, fuzzy
 msgid "Updates"
-msgstr "განახლება"
+msgstr "განახლებები"
 
-#, fuzzy
 msgid "Rating Reviews"
-msgstr "ელოდება განხილვას"
+msgstr "მიმოხილვები შეფასებისთვის"
 
-#, fuzzy
 msgid "Auto Approved"
-msgstr "ავტომატურად მიღებული ({0})"
+msgstr "თვითდამოწმებული"
 
-#, fuzzy
 msgid "Pending Rejection"
-msgstr "უარყოფის მომლოდინე ({0})"
+msgstr "უარყოფის მომლოდინე"
 
 msgid "presence of matched rules"
 msgstr "შესაბამისი წესების არსებობა"
