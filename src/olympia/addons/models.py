@@ -229,6 +229,7 @@ class AddonManager(ManagerBase):
                 'addonapprovalscounter',
                 'reviewerflags',
                 '_current_version__autoapprovalsummary',
+                'promotedaddon',
             )
             .prefetch_related(
                 '_current_version__files'

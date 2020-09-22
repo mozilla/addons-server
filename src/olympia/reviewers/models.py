@@ -99,8 +99,12 @@ class CannedResponse(ModelBase):
 def get_flags(addon, version):
     """Return a list of tuples (indicating which flags should be displayed for
     a particular add-on."""
-    return [(cls, title) for (prop, cls, title) in VIEW_QUEUE_FLAGS
-            if getattr(version, prop, getattr(addon, prop, None))]
+    flags = [(cls, title) for (prop, cls, title) in VIEW_QUEUE_FLAGS
+             if getattr(version, prop, getattr(addon, prop, None))]
+    # add in the promoted group flag and return
+    if promoted := addon.promoted_group(currently_approved=False):
+        flags.append((f'promoted-{promoted.api_name}', promoted.name))
+    return flags
 
 
 def get_flags_for_row(record):

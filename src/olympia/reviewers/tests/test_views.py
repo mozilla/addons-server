@@ -2196,6 +2196,23 @@ class TestAutoApprovedQueue(QueueTest):
         self.expected_addons = self.expected_addons[2:]
         self._test_results()
 
+    def test_flags_promoted(self):
+        self.login_with_permission()
+        addon = addon_factory(name=u'Addôn', version_kw={'version': '77.6'})
+        AutoApprovalSummary.objects.create(
+            version=addon.current_version, verdict=amo.AUTO_APPROVED)
+        AddonApprovalsCounter.objects.create(
+            addon=addon, counter=1, last_human_review=self.days_ago(42))
+        self.make_addon_promoted(addon, STRATEGIC)
+
+        r = self.client.get(self.url)
+
+        rows = pq(r.content)('#addon-queue tr.addon-row')
+        assert rows.length == 1
+        assert rows.attr('data-addon') == str(addon.id)
+        assert rows.find('td').eq(1).text() == 'Addôn 77.6'
+        assert rows.find('.ed-sprite-promoted-strategic').length == 1
+
 
 class TestContentReviewQueue(QueueTest):
 
