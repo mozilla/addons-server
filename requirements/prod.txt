@@ -474,6 +474,6 @@ googleapis-common-protos==1.52.0 \
     --hash=sha256:560716c807117394da12cecb0a54da5a451b5cf9866f1d37e9a5e2329a665351
 wrapt==1.12.1 \
     --hash=sha256:b62ffa81fb85f4332a4f609cab4ac40709470da05643a082ec1eb88e6d9b97d7
-cached-property==1.5.1 \
-    --hash=sha256:3a026f1a54135677e7da5ce819b0c690f156f37976f3e30c5430740725203d7f \
-    --hash=sha256:9217a59f14a5682da7c4b8829deadbfc194ac22e9908ccf7c8820234e80a1504
+cached-property==1.5.2 \
+    --hash=sha256:df4f613cf7ad9a588cc381aaf4a512d26265ecebd5eb9e1ba12f1319eb85a6a0 \
+    --hash=sha256:9fa5755838eecbb2d234c3aa390bd80fbd3ac6b6869109bfc1b499f7bd89a130
