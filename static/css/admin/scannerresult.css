@@ -47,3 +47,25 @@
 .field-authors li {
     max-width: 24em;
 }
+
+.model-scannerqueryresult #result_list td, .model-scannerqueryresult #result_list th {
+  border-bottom: 0;
+  border-top: 1px solid #ddd;
+  vertical-align: top;
+}
+
+.model-scannerqueryresult #result_list .row1, .model-scannerqueryresult #result_list .row2 {
+  background: transparent;
+}
+
+.model-scannerqueryresult #result_list .different-addon {
+  border-top: 2px solid #aaa;
+}
+
+.model-scannerqueryresult #result_list .different-channel td, .model-scannerqueryresult #result_list .different-channel th {
+  border-top: 2px solid #ccc;
+}
+
+.model-scannerqueryresult #result_list .same-addon td.field-formatted_addon {
+  border-top: 1px solid transparent;
+}
