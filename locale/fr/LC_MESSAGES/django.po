@@ -3539,7 +3539,7 @@ msgid "<strong>Important:</strong> Once a version has been deleted, you may not 
 msgstr "<strong>Important :</strong> une fois qu’une version a été supprimée, vous ne pouvez plus envoyer de version portant ce numéro."
 
 msgid "Are you sure you wish to delete this version?"
-msgstr "Êtes-vous sûr de vouloir supprimer cette version ?"
+msgstr ""
 
 msgid "Delete Version"
 msgstr "Supprimer la version"
@@ -6756,7 +6756,7 @@ msgstr "Annuler les changements"
 
 #. {0} is a language name, like 'French'
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr "Êtes-vous certain de vouloir retirer toutes les traductions de <b>{0}</b> ? Cette opération ne pourra pas être annulée."
+msgstr ""
 
 msgid "Delete Locale"
 msgstr "Supprimer la traduction"
