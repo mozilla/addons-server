@@ -500,6 +500,7 @@ INSTALLED_APPS = (
     'django_jinja',
     'puente',
     'rangefilter',
+    'django_jsonfield_backport',
 
     # Django contrib apps
     'django.contrib.admin',

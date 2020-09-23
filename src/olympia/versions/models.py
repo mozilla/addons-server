@@ -17,7 +17,7 @@ from django.utils.translation import ugettext
 import jinja2
 import waffle
 
-from django_extensions.db.fields.json import JSONField
+from django_jsonfield_backport.models import JSONField
 from django_statsd.clients import statsd
 
 import olympia.core.logger
@@ -811,7 +811,7 @@ class VersionPreview(BasePreview, ModelBase):
     version = models.ForeignKey(
         Version, related_name='previews', on_delete=models.CASCADE)
     position = models.IntegerField(default=0)
-    sizes = JSONField(default={})
+    sizes = JSONField(default=dict)
     colors = JSONField(default=None, null=True)
     media_folder = 'version-previews'
 

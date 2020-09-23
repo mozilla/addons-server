@@ -17,7 +17,7 @@ from django.utils.crypto import get_random_string
 from django.utils.encoding import force_bytes, force_text
 from django.utils.functional import cached_property
 
-from django_extensions.db.fields.json import JSONField
+from django_jsonfield_backport.models import JSONField
 from django_statsd.clients import statsd
 
 import olympia.core.logger
@@ -683,8 +683,8 @@ class FileValidation(ModelBase):
 
 class WebextPermission(ModelBase):
     NATIVE_MESSAGING_NAME = u'nativeMessaging'
-    permissions = JSONField(default={})
-    optional_permissions = JSONField(default={})
+    permissions = JSONField(default=dict)
+    optional_permissions = JSONField(default=dict)
     file = models.OneToOneField('File', related_name='_webext_permissions',
                                 on_delete=models.CASCADE)
 
