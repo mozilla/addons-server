@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-23 08:36+0000\n"
+"PO-Revision-Date: 2020-09-23 08:39+0000\n"
 "Last-Translator: Benoit Leseul <benoit.leseul@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -2645,13 +2645,13 @@ msgid "Cancel and Disable Version"
 msgstr "Annuler et désactiver la version"
 
 msgid "Are you sure you wish to cancel and disable version?"
-msgstr ""
+msgstr "Voulez-vous vraiment annuler et désactiver la version ?"
 
 msgid "Yes, Cancel"
-msgstr ""
+msgstr "Oui, annuler"
 
 msgid "No, don't cancel"
-msgstr ""
+msgstr "Non, ne pas annuler"
 
 msgid "Name and Summary:"
 msgstr "Nom et résumé :"
@@ -3541,7 +3541,7 @@ msgid "<strong>Important:</strong> Once a version has been deleted, you may not 
 msgstr "<strong>Important :</strong> une fois qu’une version a été supprimée, vous ne pouvez plus envoyer de version portant ce numéro."
 
 msgid "Are you sure you wish to delete this version?"
-msgstr ""
+msgstr "Voulez-vous vraiment supprimer cette version ?"
 
 msgid "Delete Version"
 msgstr "Supprimer la version"
@@ -6758,7 +6758,7 @@ msgstr "Annuler les changements"
 
 #. {0} is a language name, like 'French'
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr ""
+msgstr "Voulez-vous vraiment retirer toutes les traductions de <b>{0}</b> ? Cette opération ne pourra pas être annulée."
 
 msgid "Delete Locale"
 msgstr "Supprimer la traduction"
