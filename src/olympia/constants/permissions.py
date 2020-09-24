@@ -15,6 +15,9 @@ ANY_ADMIN = AclPermission('Admin', '%')
 # access to anything.
 SUPERPOWERS = AclPermission('*', '*')
 
+# Can access admin-specific tools.
+ADMIN_TOOLS = AclPermission('Admin', 'Tools')
+
 # Can modify editorial content on the site.
 ADMIN_CURATION = AclPermission('Admin', 'Curation')
 # Can edit the properties of any add-on (pseduo-admin).
