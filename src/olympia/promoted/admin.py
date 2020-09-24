@@ -96,7 +96,14 @@ class PromotedAddonAdmin(admin.ModelAdmin):
     addon__name.short_description = 'Addon'
 
     def is_approved(self, obj):
-        return obj.is_addon_currently_promoted
+        apps = obj.approved_applications
+        if not apps:
+            return False
+        elif apps == obj.all_applications:
+            return True
+        else:
+            # return None when there are some apps approved but not all.
+            return None
     is_approved.boolean = True
 
     def primary_hero_shelf(self, obj):

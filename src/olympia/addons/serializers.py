@@ -18,7 +18,7 @@ from olympia.api.serializers import BaseESSerializer
 from olympia.api.utils import is_gate_active
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
-from olympia.constants.applications import APPS_ALL
+from olympia.constants.applications import APPS_ALL, APP_IDS
 from olympia.constants.base import ADDON_TYPE_CHOICES_API
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.constants.promoted import PROMOTED_GROUPS, RECOMMENDED
@@ -306,7 +306,7 @@ class PromotedAddonSerializer(serializers.ModelSerializer):
         )
 
     def get_apps(self, obj):
-        return [app.short for app in obj.applications]
+        return [app.short for app in obj.approved_applications]
 
 
 class AddonSerializer(serializers.ModelSerializer):
@@ -651,9 +651,22 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         ]
 
         promoted = data.get('promoted', None)
-        obj.promoted = PromotedAddon(
-            addon=obj, application_id=promoted['application_id'],
-            group_id=promoted['group_id']) if promoted else None
+        if promoted:
+            obj.promoted = PromotedAddon(
+                addon=obj, application_id=promoted['application_id'],
+                group_id=promoted['group_id'])
+            # set .approved_for_groups cached_property because it's used in
+            # .approved_applications.
+            # if it's missing (stale index) then fake with current apps
+            approved_for_apps = promoted.get(
+                'approved_for_apps', obj.promoted.all_applications)
+            # we can safely regenerate these tuples because
+            # .appproved_applications only cares about the current group
+            obj._current_version.approved_for_groups = (
+                (obj.promoted.group, APP_IDS.get(app_id))
+                for app_id in approved_for_apps)
+        else:
+            obj.promoted = None
 
         ratings = data.get('ratings', {})
         obj.average_rating = ratings.get('average')

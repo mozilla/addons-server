@@ -15,6 +15,7 @@ from django.utils.functional import cached_property
 from django.utils.translation import ugettext
 
 import jinja2
+from olympia.constants.applications import APP_IDS
 import waffle
 
 from django_extensions.db.fields.json import JSONField
@@ -140,6 +141,7 @@ def source_upload_path(instance, filename):
     # At this point we already know that ext is one of VALID_SOURCE_EXTENSIONS
     # because we already checked for that in
     # /src/olympia/devhub/forms.py#WithSourceMixin.clean_source.
+    ext = ''
     for ext in VALID_SOURCE_EXTENSIONS:
         if filename.endswith(ext):
             break
@@ -616,17 +618,20 @@ class Version(OnChangeMixin, ModelBase):
 
         approvals = list(
             PromotedApproval.objects.filter(version_id__in=ids)
-                            .values_list('version_id', 'group_id', named=True))
+                            .values_list(
+                                'version_id', 'group_id', 'application_id',
+                                named=True))
 
-        promoted_dict = {
+        approval_dict = {
             version_id: list(groups)
             for version_id, groups in sorted_groupby(approvals, 'version_id')}
         for version in versions:
             v_id = version.id
             groups = [
-                PROMOTED_GROUPS_BY_ID.get(pro.group_id)
-                for pro in promoted_dict.get(v_id, [])
-                if pro.group_id in PROMOTED_GROUPS_BY_ID]
+                (PROMOTED_GROUPS_BY_ID.get(approval.group_id),
+                 APP_IDS.get(approval.application_id))
+                for approval in approval_dict.get(v_id, [])
+                if approval.group_id in PROMOTED_GROUPS_BY_ID]
             version.approved_for_groups = groups
 
     @classmethod
@@ -782,9 +787,10 @@ class Version(OnChangeMixin, ModelBase):
     def approved_for_groups(self):
         approvals = list(self.promoted_approvals.all())
         return [
-            PROMOTED_GROUPS_BY_ID.get(pro.group_id)
-            for pro in approvals
-            if pro.group_id in PROMOTED_GROUPS_BY_ID
+            (PROMOTED_GROUPS_BY_ID.get(approval.group_id),
+             approval.application)
+            for approval in approvals
+            if approval.group_id in PROMOTED_GROUPS_BY_ID
         ]
 
 

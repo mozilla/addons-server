@@ -181,7 +181,7 @@ class PrimaryHero(ModelBase):
             elif not self.is_external:
                 recommended = (
                     self.promoted_addon.group == RECOMMENDED and
-                    self.promoted_addon.is_addon_currently_promoted)
+                    self.promoted_addon.approved_applications)
                 if not recommended:
                     error_dict['enabled'] = ValidationError(
                         'Only recommended add-ons can be enabled for '
