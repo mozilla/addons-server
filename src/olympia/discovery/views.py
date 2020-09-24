@@ -101,7 +101,7 @@ class DiscoveryItemViewSet(ListModelMixin, GenericViewSet):
             qs = qs.filter(**{
                 'addon__promotedaddon__group_id': RECOMMENDED.id,
                 'addon___current_version__promoted_approvals__group_id':
-                    RECOMMENDED.id})
+                    RECOMMENDED.id}).distinct()
         return qs
 
     def list(self, request, *args, **kwargs):

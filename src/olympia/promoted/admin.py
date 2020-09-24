@@ -22,7 +22,7 @@ class PromotedApprovalInline(admin.TabularInline):
     model = PromotedApproval
     extra = 0
     max_num = 0
-    fields = ('version', 'group_id')
+    fields = ('version', 'group_id', 'application_id')
     can_delete = True
     view_on_site = False
     checks_class = PromotedApprovalInlineChecks
