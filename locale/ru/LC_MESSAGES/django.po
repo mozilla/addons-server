@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-20 18:43+0000\n"
-"Last-Translator: MrSerLoL <super.Suloev@gmail.com>\n"
+"PO-Revision-Date: 2020-09-25 13:55+0000\n"
+"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -1392,9 +1392,8 @@ msgstr "Спонсировано"
 msgid "Verified"
 msgstr "Подтверждено — Уровень 1"
 
-#, fuzzy
 msgid "By Firefox"
-msgstr "Firefox"
+msgstr "От Firefox"
 
 msgid "Spotlight"
 msgstr "Прожектор"
@@ -2632,9 +2631,8 @@ msgstr "Отменить и отключить версию"
 msgid "Are you sure you wish to cancel and disable version?"
 msgstr "Вы уверены что хотите удалить эту версию?"
 
-#, fuzzy
 msgid "Yes, Cancel"
-msgstr "Отменить"
+msgstr "Да, отменить"
 
 msgid "No, don't cancel"
 msgstr "Нет, не отменять"
@@ -5608,9 +5606,8 @@ msgstr "Опубликованные версии, требующие прове
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Скрытые версии, требующие проверки человеком ({0})"
 
-#, fuzzy
 msgid "Listed version"
-msgstr "Опубликованные версии"
+msgstr "Опубликованная версия"
 
 msgid "Unlisted versions ({0})"
 msgstr "Незавершённые версии ({0})"
@@ -6297,9 +6294,8 @@ msgstr "Отмечено сканерами"
 msgid "Flagged for Human Review"
 msgstr "Отмечено для проверки человеком"
 
-#, fuzzy
 msgid "Updates"
-msgstr "Обновить"
+msgstr "Обновления"
 
 #, fuzzy
 msgid "Rating Reviews"
@@ -6758,7 +6754,7 @@ msgstr "Отменить изменения"
 
 #. {0} is a language name, like 'French'
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr "Вы уверены, что хотите удалить все <b>{0}</b> переводов? Это действие не может быть отменено."
+msgstr "Вы уверены, что хотите удалить все <b>{0}</b> переводов? Это действие нельзя отменить."
 
 msgid "Delete Locale"
 msgstr "Удалить локаль"

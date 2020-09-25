@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-08-16 21:16+0000\n"
-"Last-Translator: Valery Ledovskoy <valery@ledovskoy.com>\n"
+"PO-Revision-Date: 2020-09-21 14:49+0000\n"
+"Last-Translator: TrickyFoxy <roman.deev06@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -112,10 +112,10 @@ msgid "Porting a legacy Firefox add-on on MDN"
 msgstr "Портирование устаревшего дополнения Firefox на MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr "Включить подробные примечания к версии (это может быть сделано на следующем шаге)."
+msgstr "Включить подробные примечания к версии (можно сделать на следующем шаге)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr "Если для полного тестирования дополнения необходима учётная запись на веб-сайте, укажите тестовый логин и пароль в примечаниях для проверяющего (это может быть сделано в следующем шаге)."
+msgstr "Если для полного тестирования дополнения необходима учётная запись на веб-сайте, укажите тестовый логин и пароль в примечаниях для проверяющего (можно сделать на следующем шаге)."
 
 msgid "Add-on submission checklist"
 msgstr "Контрольный перечень при представлении дополнения"
