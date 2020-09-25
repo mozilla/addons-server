@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-25 14:40+0000\n"
+"PO-Revision-Date: 2020-09-25 14:51+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -5659,13 +5659,11 @@ msgstr "Guia de revisão de extra"
 msgid "Security Scanners"
 msgstr "Analisadores de segurança"
 
-#, fuzzy
 msgid "Flagged By Scanners ({0})"
 msgstr "Sinalizado por analisadores ({0})"
 
-#, fuzzy
 msgid "Flagged for Human Review ({0})"
-msgstr "Sinalizado para revisão humana ({0})"
+msgstr ""
 
 msgid "Auto-Approved Add-ons"
 msgstr "Extras aprovados automaticamente"
@@ -5682,9 +5680,8 @@ msgstr "Guia de análise"
 msgid "Content Review"
 msgstr "Revisão de conteúdo"
 
-#, fuzzy
 msgid "Content Review ({0})"
-msgstr "Revisão de conteúdo ({0})"
+msgstr ""
 
 msgid "New ({0})"
 msgstr "Novo ({0})"
@@ -6208,9 +6205,8 @@ msgstr "Versão %(version)s &middot; %(created)s <span class=\"light\">&middot; 
 msgid "(Confirmed)"
 msgstr "(Confirmado)"
 
-#, fuzzy
 msgid "Pending Rejection on review of new version"
-msgstr "Prazo limite da rejeição"
+msgstr "Rejeição pendente na revisão da nova versão"
 
 msgid "Compatibility:"
 msgstr "Compatibilidade:"
@@ -6258,33 +6254,26 @@ msgstr "Rejeitado ou não revisto"
 msgid "[status:%s]"
 msgstr "[estado:%s]"
 
-#, fuzzy
 msgid "Other Pending Review"
-msgstr "Outra revisão pendente ({0})"
+msgstr "Outra revisão pendente"
 
-#, fuzzy
 msgid "Flagged By Scanners"
 msgstr "Sinalizado pelos analisadores"
 
-#, fuzzy
 msgid "Flagged for Human Review"
 msgstr "Sinalizado para revisão humana"
 
-#, fuzzy
 msgid "Updates"
-msgstr "Atualizar"
+msgstr "Atualizações"
 
-#, fuzzy
 msgid "Rating Reviews"
-msgstr "A aguardar revisão"
+msgstr "Análises de classificação"
 
-#, fuzzy
 msgid "Auto Approved"
-msgstr "Aprovado automaticamente ({0})"
+msgstr "Aprovado automaticamente"
 
-#, fuzzy
 msgid "Pending Rejection"
-msgstr "Rejeição pendente ({0})"
+msgstr "Rejeição pendente"
 
 msgid "presence of matched rules"
 msgstr "presença de regras correspondentes"
@@ -6926,7 +6915,7 @@ msgstr ""
 "\n"
 "%(author_name)s ( %(author_url)s )"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Hello,\n"
 "\n"
@@ -6940,7 +6929,7 @@ msgid ""
 msgstr ""
 "Olá,\n"
 "\n"
-"Está a receber esta mensagem porque a sua conta de utilizador %(name)s em %(site_url)s foi eliminada.\n"
+"Está a receber esta mensagem porque a sua conta de utilizador %(name)s em %(site_url)s foi eliminada. Isto pode ter sido feito automaticamente caso tenha eliminado a sua conta Firefox recentemente.\n"
 "\n"
 "Se não fez isto ou se acredita que uma pessoa não autorizada acedeu à sua conta, responda a este e-mail. Caso contrário, não é necessário fazer qualquer ação adicional.\n"
 "\n"
