@@ -7,6 +7,7 @@ import requests
 
 from django.conf import settings
 from django.test.utils import override_settings
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.amo.tests import (
@@ -611,6 +612,72 @@ class TestRunYara(UploadTest, TestCase):
         assert not yara_compile_mock.called
         # The task should always return the results.
         assert received_results == self.results
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    @override_switch('yara-read-binary', active=True)
+    def test_run_in_binary_mode(self, incr_mock):
+        self.upload = self.get_upload('webextension_with_image.zip')
+
+        assert len(ScannerResult.objects.all()) == 0
+        # This rule will match for all files in the xpi.
+        rule = ScannerRule.objects.create(
+            name='match_png',
+            scanner=YARA,
+            definition='rule match_png { '
+                       'strings: $png = { 89 50 4E 47 0D 0A 1A 0A } '
+                       'condition: $png at 0 }',
+        )
+
+        received_results = run_yara(self.results, self.upload.pk)
+
+        yara_results = ScannerResult.objects.all()
+        assert len(yara_results) == 1
+        yara_result = yara_results[0]
+        assert yara_result.upload == self.upload
+        assert len(yara_result.results) == 1
+        assert yara_result.results[0] == {
+            'rule': rule.name,
+            'tags': [],
+            'meta': {'filename': 'img.png'},
+        }
+        assert incr_mock.called
+        assert incr_mock.call_count == 3
+        incr_mock.assert_has_calls(
+            [
+                mock.call('devhub.yara.has_matches'),
+                mock.call(f'devhub.yara.rule.{rule.id}.match'),
+                mock.call('devhub.yara.success'),
+            ]
+        )
+        # The task should always return the results.
+        assert received_results == self.results
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    @override_switch('yara-read-binary', active=False)
+    def test_run_in_non_binary_mode_with_binary(self, incr_mock):
+        self.upload = self.get_upload('webextension_with_image.zip')
+
+        assert len(ScannerResult.objects.all()) == 0
+        # This rule will match for all files in the xpi.
+        ScannerRule.objects.create(
+            name='match_png',
+            scanner=YARA,
+            definition='rule match_png { '
+                       'strings: $png = { 89 50 4E 47 0D 0A 1A 0A } '
+                       'condition: $png at 0 }',
+        )
+
+        received_results = run_yara(self.results, self.upload.pk)
+
+        yara_result = ScannerResult.objects.all()[0]
+        # We don't match here, as decoding the bytes leads to missing the rule.
+        assert yara_result.results == []
+
+        # The task should always return the results.
+        assert received_results == self.results
+        assert incr_mock.called
+        assert incr_mock.call_count == 1
+        incr_mock.assert_called_with('devhub.yara.success')
 
 
 class TestRunYaraQueryRule(AMOPaths, TestCase):
