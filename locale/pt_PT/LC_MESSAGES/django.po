@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-25 14:33+0000\n"
+"PO-Revision-Date: 2020-09-25 14:40+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -1395,13 +1395,11 @@ msgstr "Recomendado"
 msgid "Sponsored"
 msgstr "Patrocinado"
 
-#, fuzzy
 msgid "Verified"
-msgstr "Verificado - Nível 1"
+msgstr "Verificado"
 
-#, fuzzy
 msgid "By Firefox"
-msgstr "Firefox"
+msgstr "Por Firefox"
 
 msgid "Spotlight"
 msgstr "Em destaque"
@@ -1921,10 +1919,10 @@ msgstr "O ícone deve ser quadrado (mesma largura e altura)."
 msgid "There was an error uploading your preview."
 msgstr "Ocorreu um erro ao enviar a sua pré-visualização."
 
-#, fuzzy, python-format
+#, python-format
 msgid "The latest approved version of this %s addon cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
-"A última versão aprovada desta extensão Recomendada não pode ser eliminada ou desativada porque a versão anterior não foi aprovada para recomendação. Por favor, contate os Administradores de AMO se "
+"A última versão aprovada desta extensão %s não pode ser eliminada ou desativada porque a versão anterior não foi aprovada para a promoção %s . Por favor, contacte os administradores do AMO se "
 "precisar de ajuda com isto."
 
 #, python-format
@@ -2617,13 +2615,11 @@ msgstr "Submeter uma nova versão"
 msgid "Cancel and Disable Version"
 msgstr "Cancelar e desativar versão"
 
-#, fuzzy
 msgid "Are you sure you wish to cancel and disable version?"
-msgstr "Tem a certeza que deseja eliminar esta versão?"
+msgstr "Tem a certeza que pretende cancelar e desativar esta versão?"
 
-#, fuzzy
 msgid "Yes, Cancel"
-msgstr "Cancelar"
+msgstr "Sim, cancelar"
 
 msgid "No, don't cancel"
 msgstr "Não, não cancelar"
@@ -3522,13 +3518,13 @@ msgstr "Eliminar versão"
 msgid "Disable Version"
 msgstr "Desativar versão"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The latest approved version of this %(promoted_group_name)s addon cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
 msgstr ""
-"A última versão aprovada desta extensão Recomendada não pode ser eliminada ou desativada porque a versão anterior não foi aprovada para recomendação. Por favor, contate os Administradores de AMO se "
-"precisar de ajuda com isto."
+"A última versão aprovada deste extra %(promoted_group_name)s não pode ser eliminada ou desativada porque a versão anterior não foi aprovada para uma promoção %(promoted_group_name)s. Por favor, "
+"contacte os administradores do AMO se precisar de ajuda com isto."
 
 msgid "Hide Add-on"
 msgstr "Ocultar extra"
@@ -5094,13 +5090,12 @@ msgid "Double-click any word to instantly see its definition."
 msgstr "Duplo clique em qualquer palavra para ver a respetiva definição de modo instantâneo."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
-msgstr "Alguns sites têm dificuldade em reproduzir vídeos no Firefox para Android. Esta extensão fornece uma correção."
+msgstr "Alguns sites têm dificuldade em reproduzir vídeos no Android. Existe uma correção."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
-msgstr ""
+msgstr "Remove os parâmetros de monitorização longos e feios dos endereços dos resultados de pesquisa do Google."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -5586,9 +5581,8 @@ msgstr "Versões listadas que precisam de revisão humana ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Versões não listadas que precisam de revisão humana ({0})"
 
-#, fuzzy
 msgid "Listed version"
-msgstr "Versões listadas"
+msgstr "Versão listada"
 
 msgid "Unlisted versions ({0})"
 msgstr "Versões não listadas ({0})"
