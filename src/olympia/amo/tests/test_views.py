@@ -47,7 +47,7 @@ class Test403(TestCase):
         assert self.client.login(email='regular@mozilla.com')
 
     def test_403_no_app(self):
-        response = self.client.get('/en-US/admin/')
+        response = self.client.get('/en-US/admin/', follow=True)
         assert response.status_code == 403
         self.assertTemplateUsed(response, 'amo/403.html')
 
@@ -240,7 +240,7 @@ class TestCommon(TestCase):
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
             ('Reviewer Tools', reverse('reviewers.dashboard')),
-            ('Admin Tools', reverse('zadmin.index')),
+            ('Admin Tools', reverse('admin:index')),
         ]
         check_links(
             expected, pq(response.content)('#aux-nav .tools a'), verify=False)
@@ -266,7 +266,7 @@ class TestCommon(TestCase):
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
             ('Reviewer Tools', reverse('reviewers.dashboard')),
-            ('Admin Tools', reverse('zadmin.index')),
+            ('Admin Tools', reverse('admin:index')),
         ]
         check_links(
             expected, pq(response.content)('#aux-nav .tools a'), verify=False)

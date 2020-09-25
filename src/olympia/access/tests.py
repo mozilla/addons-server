@@ -71,8 +71,9 @@ class ACLTestCase(TestCase):
 
     def test_admin_login_anon(self):
         # Login form for anonymous user on the admin page.
-        url = '/en-US/admin/'
-        self.assertLoginRedirects(self.client.get(url), to=url)
+        url = '/en-US/admin/models/'
+        self.assert3xx(self.client.get(url),
+                       '/admin/models/login/?next=/en-US/admin/models/')
 
 
 class TestHasPerm(TestCase):

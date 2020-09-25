@@ -693,11 +693,6 @@ MINIFY_BUNDLES = {
             'css/zamboni/reviewers.less',
             'css/zamboni/themes_review.less',
         ),
-        'zamboni/admin': (
-            'css/zamboni/admin-django.css',
-            'css/zamboni/admin-mozilla.css',
-            'css/zamboni/admin_features.css',
-        ),
     },
     'js': {
         # JS files common to the entire site, apart from dev-landing.
@@ -925,11 +920,6 @@ MINIFY_BUNDLES = {
             'js/impala/stats/chart.js',
             'js/impala/stats/table.js',
             'js/impala/stats/stats.js',
-        ),
-        'zamboni/admin': (
-            'js/zamboni/admin.js',
-            'js/zamboni/admin_features.js',
-            'js/zamboni/admin_validation.js',
         ),
         # This is included when DEBUG is True.  Bundle in <head>.
         'debug': (
