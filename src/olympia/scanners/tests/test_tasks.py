@@ -613,13 +613,12 @@ class TestRunYara(UploadTest, TestCase):
         # The task should always return the results.
         assert received_results == self.results
 
-    @mock.patch('olympia.scanners.tasks.statsd.incr')
     @override_switch('yara-read-binary', active=True)
-    def test_run_in_binary_mode(self, incr_mock):
+    def test_run_in_binary_mode(self):
         self.upload = self.get_upload('webextension_with_image.zip')
 
         assert len(ScannerResult.objects.all()) == 0
-        # This rule will match for all files in the xpi.
+        # This rule will match for all PNG files in the xpi.
         rule = ScannerRule.objects.create(
             name='match_png',
             scanner=YARA,
@@ -640,25 +639,15 @@ class TestRunYara(UploadTest, TestCase):
             'tags': [],
             'meta': {'filename': 'img.png'},
         }
-        assert incr_mock.called
-        assert incr_mock.call_count == 3
-        incr_mock.assert_has_calls(
-            [
-                mock.call('devhub.yara.has_matches'),
-                mock.call(f'devhub.yara.rule.{rule.id}.match'),
-                mock.call('devhub.yara.success'),
-            ]
-        )
         # The task should always return the results.
         assert received_results == self.results
 
-    @mock.patch('olympia.scanners.tasks.statsd.incr')
     @override_switch('yara-read-binary', active=False)
-    def test_run_in_non_binary_mode_with_binary(self, incr_mock):
+    def test_run_in_non_binary_mode_with_binary(self):
         self.upload = self.get_upload('webextension_with_image.zip')
 
         assert len(ScannerResult.objects.all()) == 0
-        # This rule will match for all files in the xpi.
+        # This rule will match for all PNG files in the xpi.
         ScannerRule.objects.create(
             name='match_png',
             scanner=YARA,
@@ -675,9 +664,6 @@ class TestRunYara(UploadTest, TestCase):
 
         # The task should always return the results.
         assert received_results == self.results
-        assert incr_mock.called
-        assert incr_mock.call_count == 1
-        incr_mock.assert_called_with('devhub.yara.success')
 
 
 class TestRunYaraQueryRule(AMOPaths, TestCase):
