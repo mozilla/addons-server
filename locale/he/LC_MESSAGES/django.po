@@ -3503,9 +3503,8 @@ msgstr[0] "אזהרה אחת"
 msgstr[1] "{0} אזהרות"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3549,9 +3548,8 @@ msgid "Ad blocking and privacy protection. A simple set-up lets you take control
 msgstr "חסימת פרסומות והגנת פרטיות. הגדרה ראשונית פשוטה מאפשרת לך לקחת שליטה על הפרסומות שמופיעות ועל האופן שבו עוקבים אחריך ברשת."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3568,9 +3566,8 @@ msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate �
 msgstr "עצירת המעקב של Facebook. בידוד הזהות שלך ב־Facebook אל תוך ”מגירה” נפרדת שמקשה על Facebook לעקוב אחריך ברחבי הרשת."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
