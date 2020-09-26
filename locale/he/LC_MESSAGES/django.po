@@ -126,17 +126,14 @@ msgstr "ניתן להוסיף הערות רק לגרסאות עדכניות של
 msgid "Ratings"
 msgstr "דירוגים"
 
-#, fuzzy
 msgid "Reviewer Tools (listed)"
-msgstr "כלי הסוקרים"
+msgstr ""
 
-#, fuzzy
 msgid "Reviewer Tools (unlisted)"
-msgstr "כלי הסוקרים"
+msgstr ""
 
-#, fuzzy
 msgid "Reviewer links"
-msgstr "כלי הסוקרים"
+msgstr ""
 
 msgid "- Add-on not on AMO -"
 msgstr "- התוספת לא נמצאת ב־AMO -"
@@ -919,9 +916,8 @@ msgstr ""
 msgid "Block action signoff"
 msgstr ""
 
-#, fuzzy
 msgid "User {user} session(s) reset."
-msgstr "מפתח API של המשתמש {user} אופס."
+msgstr ""
 
 #, fuzzy
 msgid "User {user} throttled for scope \"{0}\""
