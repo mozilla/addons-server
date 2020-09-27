@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-25 13:55+0000\n"
+"PO-Revision-Date: 2020-09-27 14:41+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -1388,9 +1388,8 @@ msgstr "Рекомендуемые"
 msgid "Sponsored"
 msgstr "Спонсировано"
 
-#, fuzzy
 msgid "Verified"
-msgstr "Подтверждено — Уровень 1"
+msgstr "Подтверждено"
 
 msgid "By Firefox"
 msgstr "От Firefox"
@@ -1917,11 +1916,11 @@ msgstr "Значок должен быть квадратным (одинако�
 msgid "There was an error uploading your preview."
 msgstr "Ошибка при загрузке вашего предпросмотра."
 
-#, fuzzy, python-format
+#, python-format
 msgid "The latest approved version of this %s addon cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
-"Последняя утвержденная версия этого Рекомендуемого расширения не может быть удалена или отключена, поскольку предыдущая версия не была утверждена для рекомендации. Пожалуйста, свяжитесь с "
-"администраторами AMO, если вам нужна помощь."
+"Последняя утвержденная версия этого дополнения %s не может быть удалена или отключена, поскольку предыдущая версия не была утверждена для продвижения %s. Пожалуйста, свяжитесь с администраторами "
+"AMO, если вам нужна помощь."
 
 #, python-format
 msgid "Version %s disabled."
@@ -2627,9 +2626,8 @@ msgstr "Отправить новую версию"
 msgid "Cancel and Disable Version"
 msgstr "Отменить и отключить версию"
 
-#, fuzzy
 msgid "Are you sure you wish to cancel and disable version?"
-msgstr "Вы уверены что хотите удалить эту версию?"
+msgstr "Вы уверены, что хотите отменить и отключить эту версию?"
 
 msgid "Yes, Cancel"
 msgstr "Да, отменить"
@@ -3533,13 +3531,13 @@ msgstr "Удалить версию"
 msgid "Disable Version"
 msgstr "Отключить версию"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The latest approved version of this %(promoted_group_name)s addon cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
 msgstr ""
-"Последняя утвержденная версия этого Рекомендуемого расширения не может быть удалена или отключена, поскольку предыдущая версия не была утверждена для рекомендации. Пожалуйста, свяжитесь с "
-"администраторами AMO, если вам нужна помощь."
+"Последняя утвержденная версия этого дополнения %(promoted_group_name)s не может быть удалена или отключена, поскольку предыдущая версия не была утверждена для продвижения %(promoted_group_name)s. "
+"Пожалуйста, свяжитесь с администраторами AMO, если вам нужна помощь."
 
 msgid "Hide Add-on"
 msgstr "Скрыть дополнение"
@@ -5110,9 +5108,8 @@ msgid "Double-click any word to instantly see its definition."
 msgstr "Дважды щёлкните по любому слову, чтобы сразу увидеть его определение."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
-msgstr "Некоторые веб-сайты испытывают затруднения при воспроизведении видео в Firefox для Android. Это расширение исправляет эту проблему."
+msgstr "Некоторые веб-сайты испытывают затруднения при воспроизведении видео на Android. Вот как это исправить."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
@@ -5684,11 +5681,9 @@ msgstr "Руководство по проверке дополнений"
 msgid "Security Scanners"
 msgstr "Сканеры безопасности"
 
-#, fuzzy
 msgid "Flagged By Scanners ({0})"
-msgstr "Отмечено сканером ({0})"
+msgstr ""
 
-#, fuzzy
 msgid "Flagged for Human Review ({0})"
 msgstr "Отмечено для проверки человеком ({0})"
 
@@ -5707,7 +5702,6 @@ msgstr "Руководство по написанию отзывов"
 msgid "Content Review"
 msgstr "Проверка содержимого"
 
-#, fuzzy
 msgid "Content Review ({0})"
 msgstr "Проверка содержимого ({0})"
 
@@ -6232,9 +6226,8 @@ msgstr "Версия %(version)s &middot; %(created)s <span class=\"light\">&mid
 msgid "(Confirmed)"
 msgstr "(Подтверждено)"
 
-#, fuzzy
 msgid "Pending Rejection on review of new version"
-msgstr "Ожидания срока отклонения"
+msgstr "Ожидает отказа при рассмотрении новой версии"
 
 msgid "Compatibility:"
 msgstr "Совместимость:"
