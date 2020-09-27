@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-27 14:41+0000\n"
+"PO-Revision-Date: 2020-09-27 14:42+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -6275,15 +6275,12 @@ msgstr "Отклонено или не проверено"
 msgid "[status:%s]"
 msgstr "[статус:%s]"
 
-#, fuzzy
 msgid "Other Pending Review"
-msgstr "Другие ожидающие проверки ({0})"
+msgstr "Другие ожидающие проверки"
 
-#, fuzzy
 msgid "Flagged By Scanners"
 msgstr "Отмечено сканерами"
 
-#, fuzzy
 msgid "Flagged for Human Review"
 msgstr "Отмечено для проверки человеком"
 
@@ -6294,13 +6291,11 @@ msgstr "Обновления"
 msgid "Rating Reviews"
 msgstr "Ожидает проверки"
 
-#, fuzzy
 msgid "Auto Approved"
-msgstr "Автоматически одобренные ({0})"
+msgstr "Автоматически одобрено"
 
-#, fuzzy
 msgid "Pending Rejection"
-msgstr "Ожидающие отклонения ({0})"
+msgstr "Ожидающие отклонения"
 
 msgid "presence of matched rules"
 msgstr "наличие совпадающих правил"
