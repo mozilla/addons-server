@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-28 07:45+0000\n"
+"PO-Revision-Date: 2020-09-28 08:09+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1887,10 +1887,10 @@ msgstr "Issefk tignit ad tili d amkuẓ (teɣzi tegda tehri)."
 msgid "There was an error uploading your preview."
 msgstr "Taḍra-d tuccḍa di tuzzna n teskant inek."
 
-#, fuzzy, python-format
+#, python-format
 msgid "The latest approved version of this %s addon cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
-"Lqem aneggaru yettwaqeblen i usiɣzef-a yelhan ur izmir ara ad yettwakkes neɣ ad yens acku lqem aqbur ur yettwaqbel ara deg uwelleh. Ma ulac aɣilif, nermes inedbalen AMO ma tesriḍ tallelt ɣef waya."
+"Lqem aneggaru yettwaqeblen i uzegrir-a %s ur izmir ara ad yettwakkes neɣ ad yens acku lqem aqbur ur yettwaqbel ara i usmel %s. Ma ulac aɣilif, nermes inedbalen n AMO ma tesriḍ tallelt ɣef waya."
 
 #, python-format
 msgid "Version %s disabled."
@@ -2572,13 +2572,11 @@ msgstr "Azen lqem amaynut"
 msgid "Cancel and Disable Version"
 msgstr "Sefsex sakin sens lqem"
 
-#, fuzzy
 msgid "Are you sure you wish to cancel and disable version?"
-msgstr "Tebɣiḍ ad tekkseḍ lqem-agi?"
+msgstr "S tidet tebɣiḍ ad tesfesxeḍ rnu ad tekkseḍ lqem-a?"
 
-#, fuzzy
 msgid "Yes, Cancel"
-msgstr "Sefsex"
+msgstr "Ih, sefsex"
 
 msgid "No, don't cancel"
 msgstr ""
@@ -5515,9 +5513,8 @@ msgstr "Ileqman ittwabedren yesran acegger ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Ieqman ur nettwabder ara yesran acegger ({0})"
 
-#, fuzzy
 msgid "Listed version"
-msgstr "Ileqman yettwabedren"
+msgstr "Lqem yettwabedren"
 
 msgid "Unlisted versions ({0})"
 msgstr "Ileqman ur d-yettwabedren ara ({0})"
@@ -5594,13 +5591,11 @@ msgstr "Amnir n ucegger n uzegrir"
 msgid "Security Scanners"
 msgstr "Inafraḍen n tɣellist"
 
-#, fuzzy
 msgid "Flagged By Scanners ({0})"
-msgstr "Yettwacegger s yisniram ({0})"
+msgstr "Yettucreḍ s yinafraḍen ({0})"
 
-#, fuzzy
 msgid "Flagged for Human Review ({0})"
-msgstr "Yettunefk-d i usenqed n umdan ({0})"
+msgstr "Yettucreḍ i ucegger n umdan ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Izegrar yettwaqeblen s wudem awurman"
@@ -5617,9 +5612,8 @@ msgstr "Amnir n ucegger"
 msgid "Content Review"
 msgstr "Acegger n ugbur"
 
-#, fuzzy
 msgid "Content Review ({0})"
-msgstr "Agbur ittwacegger ({0})"
+msgstr "Acegger n ugbur ({0})"
 
 msgid "New ({0})"
 msgstr "Amaynut ({0})"
@@ -6204,9 +6198,8 @@ msgstr "Yettwacreḍ s yisniram"
 msgid "Flagged for Human Review"
 msgstr "Yettwacreḍ i  usenqed n umdan"
 
-#, fuzzy
 msgid "Updates"
-msgstr "Leqqem"
+msgstr "Ileqman"
 
 #, fuzzy
 msgid "Rating Reviews"
