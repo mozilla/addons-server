@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-28 08:09+0000\n"
+"PO-Revision-Date: 2020-09-28 08:11+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -6201,17 +6201,14 @@ msgstr "Yettwacreḍ i  usenqed n umdan"
 msgid "Updates"
 msgstr "Ileqman"
 
-#, fuzzy
 msgid "Rating Reviews"
-msgstr "Acegger yettṛaǧun"
+msgstr "Aktazal n yiceggiren"
 
-#, fuzzy
 msgid "Auto Approved"
-msgstr "Yettwaqbel s wudem awurman ({0})"
+msgstr "Yettwaqbal s wudem awurman"
 
-#, fuzzy
 msgid "Pending Rejection"
-msgstr "Deg uraǧu n tugin ({0})"
+msgstr "Deg uraǧu n tugtin"
 
 msgid "presence of matched rules"
 msgstr "Tiltin n yilugan inmeɣriyen"
