@@ -2,6 +2,7 @@ import json
 import re
 
 from collections import defaultdict
+from datetime import datetime
 
 import yara
 
@@ -356,6 +357,7 @@ class ScannerQueryRule(AbstractScannerRule):
     )
     celery_group_result_id = models.UUIDField(default=None, null=True)
     task_count = models.PositiveIntegerField(default=0)
+    completed = models.DateTimeField(default=None, null=True, blank=True)
 
     class Meta(AbstractScannerRule.Meta):
         db_table = 'scanners_query_rules'
@@ -380,7 +382,12 @@ class ScannerQueryRule(AbstractScannerRule):
             COMPLETED: (RUNNING,),
         }
         if self.state in prereqs[target]:
-            self.update(state=target)
+            props = {
+                'state': target,
+            }
+            if target == COMPLETED:
+                props['completed'] = datetime.now()
+            self.update(**props)
         else:
             raise ImproperScannerQueryRuleStateError()
 

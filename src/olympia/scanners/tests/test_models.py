@@ -3,6 +3,8 @@ import uuid
 
 from django.core.exceptions import ValidationError
 from django.test.utils import override_settings
+
+from freezegun import freeze_time
 from unittest import mock
 
 from olympia.amo.tests import TestCase, addon_factory
@@ -507,7 +509,12 @@ class TestScannerQueryRule(TestScannerRuleMixin, TestCase):
 def test_query_rule_change_state_to_valid(current_state, target_state):
     rule = ScannerQueryRule(name='some_rule', scanner=YARA)
     rule.state = current_state
-    rule.change_state_to(target_state)
+    with freeze_time('2020-04-08 15:16:23.42') as frozen_time:
+        rule.change_state_to(target_state)
+    if target_state == COMPLETED:
+        assert rule.completed == frozen_time()
+    else:
+        assert rule.completed is None
 
 
 @pytest.mark.django_db
@@ -538,3 +545,7 @@ def test_query_rule_change_state_to_invalid(current_state, target_state):
     rule.state = current_state
     with pytest.raises(ImproperScannerQueryRuleStateError):
         rule.change_state_to(target_state)
+    # Manually changing state doesn't affect 'completed' property, and since
+    # changing through change_state_to() failed before it should always be
+    # None in this test.
+    assert rule.completed is None

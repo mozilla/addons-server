@@ -19,6 +19,7 @@ from olympia.addons.models import Addon
 from olympia.amo.urlresolvers import reverse
 from olympia.constants.scanners import (
     ABORTING,
+    COMPLETED,
     CUSTOMS,
     FALSE_POSITIVE,
     INCONCLUSIVE,
@@ -717,8 +718,8 @@ class ScannerRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
 @admin.register(ScannerQueryRule)
 class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
     list_display = (
-        'name', 'scanner', 'run_on_disabled_addons', 'state_with_actions',
-        'completion_rate', 'matched_results_link',
+        'name', 'scanner', 'run_on_disabled_addons', 'created',
+        'state_with_actions', 'completion_rate', 'matched_results_link',
     )
     list_filter = ('state',)
     fields = (
@@ -733,8 +734,8 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
         'definition',
     )
     readonly_fields = (
-        'completion_rate', 'created', 'modified', 'matched_results_link',
-        'state_with_actions',
+        'completion_rate', 'created', 'completed', 'modified',
+        'matched_results_link', 'state_with_actions',
     )
 
     def change_view(self, request, *args, **kwargs):
@@ -838,6 +839,7 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
         return render_to_string(
             'admin/scannerqueryrule_state_with_actions.html', {
                 'obj': obj,
+                'COMPLETED': COMPLETED,
                 'NEW': NEW,
                 'RUNNING': RUNNING,
             }

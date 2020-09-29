@@ -14,4 +14,6 @@
   <button class="button" formaction="{% url 'admin:scanners_scannerqueryrule_handle_run' obj.pk %}">
     {% trans 'Run' %}
   </button>
+{% elif obj.pk and obj.state == COMPLETED and obj.completed %}
+    ({{ obj.completed }})
 {% endif %}
