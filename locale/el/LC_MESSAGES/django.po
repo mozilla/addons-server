@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-17 13:28+0000\n"
+"PO-Revision-Date: 2020-09-29 09:13+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1420,7 +1420,7 @@ msgid "Recommended"
 msgstr "Προτείνεται"
 
 msgid "Sponsored"
-msgstr ""
+msgstr "Χορηγία"
 
 msgid "Verified"
 msgstr "Επαληθεύτηκε"
@@ -1946,11 +1946,11 @@ msgstr "Το εικονίδιο πρέπει να είναι τετράγωνο 
 msgid "There was an error uploading your preview."
 msgstr "Παρουσιάστηκε σφάλμα κατά την αποστολή εικόνας προεπισκόπησης."
 
-#, fuzzy, python-format
+#, python-format
 msgid "The latest approved version of this %s addon cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
-"Η τελευταία εγκεκριμένη έκδοση αυτής της προτεινόμενης επέκτασης δεν μπορεί να διαγραφεί ή να απενεργοποιηθεί επειδή η προηγούμενη έκδοση δεν εγκρίθηκε. Εάν χρειάζεστε βοήθεια σχετικά με αυτό, "
-"επικοινωνήστε με τους διαχειριστές της AMO."
+"Η τελευταία εγκεκριμένη έκδοση του προσθέτου %s δεν μπορεί να διαγραφεί ή να απενεργοποιηθεί επειδή η προηγούμενη έκδοση δεν εγκρίθηκε για προώθηση %s. Παρακαλούμε επικοινωνήστε με τους διαχειριστές"
+" του AMO αν χρειάζεστε βοήθεια."
 
 #, python-format
 msgid "Version %s disabled."
@@ -3546,13 +3546,13 @@ msgstr "Διαγραφή έκδοσης"
 msgid "Disable Version"
 msgstr "Απενεργοποίηση έκδοσης"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The latest approved version of this %(promoted_group_name)s addon cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
 msgstr ""
-"Η τελευταία εγκεκριμένη έκδοση αυτής της προτεινόμενης επέκτασης δεν μπορεί να διαγραφεί ή να απενεργοποιηθεί επειδή η προηγούμενη έκδοση δεν εγκρίθηκε. Εάν χρειάζεστε βοήθεια σχετικά με αυτό, "
-"επικοινωνήστε με τους διαχειριστές της AMO."
+"Η τελευταία εγκεκριμένη έκδοση του προσθέτου %(promoted_group_name)s δεν μπορεί να διαγραφεί ή να απενεργοποιηθεί επειδή η προηγούμενη έκδοση δεν εγκρίθηκε για προώθηση %(promoted_group_name)s. "
+"Παρακαλούμε επικοινωνήστε με τους διαχειριστές του AMO αν χρειάζεστε βοήθεια."
 
 msgid "Hide Add-on"
 msgstr "Απόκρυψη προσθέτου"
@@ -3994,7 +3994,7 @@ msgstr "Αλλαγή διακομιστή μεσολάβησης {start_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server and surf the web through self-defined proxy settings."
-msgstr ""
+msgstr "Αλλάξτε το διακομιστή μεσολάβησής σας και περιηγηθείτε στο διαδίκτυο με τις δικές σας ρυθμίσεις."
 
 #. editorial content for the discovery pane.
 msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4416,7 +4416,7 @@ msgstr "Αφαιρέστε την περιττή μορφοποίηση και �
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
-msgstr ""
+msgstr "Μετατρέψτε μια ολόκληρη ιστοσελίδα στη γλώσσα της προτίμησής σας - με το πάτημα ενός κουμπιού."
 
 #. editorial content for the discovery pane.
 msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4559,7 +4559,7 @@ msgstr "Αυτόματη συμπλήρωση φορμών {start_sub_heading}μ
 
 #. editorial content for the discovery pane.
 msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
-msgstr ""
+msgstr "Συμπληρώστε φόρμες αυτόματα. Αποθηκεύστε τα καταχωρημένα δεδομένα μία φορά και θα συμπληρωθούν αυτόματα την επόμενη φορά."
 
 #. editorial content for the discovery pane.
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5125,7 +5125,7 @@ msgstr "Ορισμένες ιστοσελίδες δυσκολεύονται σ�
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
-msgstr ""
+msgstr "Αφαιρεί τις μεγάλες παραμέτρους καταγραφής από τα URL των αποτελεσμάτων αναζήτησης Google."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
