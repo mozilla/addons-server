@@ -243,30 +243,23 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         with pytest.raises(forms.ValidationError) as exc:
             self.parse(data)
         assert exc.value.message == (
-            u'Unknown "strict_min_version" 76.0 for Firefox')
+            'Unknown "strict_min_version" 76.0 for Firefox')
 
     def test_unknown_strict_max_version(self):
         data = {
             'applications': {
                 'gecko': {
                     'strict_max_version': '76.0',
-                    'id': '@unknown_strict_min_version'
+                    'id': '@unknown_strict_max_version'
                 }
             }
         }
-        apps = self.parse(data)['apps']
-        assert len(apps) == 2
-        app = apps[0]
-        assert app.appdata == amo.FIREFOX
-        assert app.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION
-        assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
+        with pytest.raises(forms.ValidationError) as exc:
+            self.parse(data)
+        assert exc.value.message == (
+            'Unknown "strict_max_version" 76.0 for Firefox')
 
-        app = apps[1]
-        assert app.appdata == amo.ANDROID
-        assert app.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID
-        assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
-
-    def test_strict_min_version_needs_to_be_higher_then_42_if_specified(self):
+    def test_strict_min_version_needs_to_be_higher_than_42_if_specified(self):
         """strict_min_version needs to be higher than 42.0 if specified."""
         data = {
             'applications': {
@@ -717,21 +710,14 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
             'applications': {
                 'gecko': {
                     'strict_max_version': '76.0',
-                    'id': '@unknown_strict_min_version'
+                    'id': '@unknown_strict_max_version'
                 }
             }
         }
-        apps = self.parse(data)['apps']
-        assert len(apps) == 2
-        app = apps[0]
-        assert app.appdata == amo.FIREFOX
-        assert app.min.version == amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX
-        assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
-
-        app = apps[1]
-        assert app.appdata == amo.ANDROID
-        assert app.min.version == amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID
-        assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
+        with pytest.raises(forms.ValidationError) as exc:
+            self.parse(data)
+        assert exc.value.message == (
+            'Unknown "strict_max_version" 76.0 for Firefox')
 
     def test_dont_skip_apps_because_of_strict_version_incompatibility(self):
         # In the parent class this method would bump the min_version to 48.0

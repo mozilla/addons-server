@@ -506,20 +506,22 @@ class ManifestJSONExtractor(object):
             try:
                 min_appver = qs.get(version=strict_min_version)
             except AppVersion.DoesNotExist:
-                # If the specified strict_min_version can't be found, raise an
-                # error, we can't guess an appropriate one.
                 msg = ugettext(
-                    u'Unknown "strict_min_version" {appver} for {app}'.format(
+                    'Unknown "strict_min_version" {appver} for {app}'.format(
                         app=app.pretty, appver=strict_min_version))
                 raise forms.ValidationError(msg)
 
             try:
                 max_appver = qs.get(version=strict_max_version)
             except AppVersion.DoesNotExist:
-                # If the specified strict_max_version can't be found, this is
-                # less of a problem, ignore and replace with '*'.
-                # https://github.com/mozilla/addons-server/issues/7160
-                max_appver = qs.get(version=amo.DEFAULT_WEBEXT_MAX_VERSION)
+                # If the specified strict_max_version can't be found, raise an
+                # error: we used to use '*' instead but this caused more
+                # problems, especially with langpacks that are really specific
+                # to a given Firefox version.
+                msg = ugettext(
+                    'Unknown "strict_max_version" {appver} for {app}'.format(
+                        app=app.pretty, appver=strict_max_version))
+                raise forms.ValidationError(msg)
 
             yield Extractor.App(
                 appdata=app, id=app.id, min=min_appver, max=max_appver)
