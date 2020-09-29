@@ -574,7 +574,8 @@ class TestVersion(TestCase):
             self, sync_object_to_basket_mock):
         addon = Addon.objects.get(id=3615)
         PromotedApproval.objects.create(
-            version=addon.current_version, group_id=RECOMMENDED.id)
+            version=addon.current_version, group_id=RECOMMENDED.id,
+            application_id=amo.FIREFOX.id)
         assert sync_object_to_basket_mock.delay.call_count == 1
         sync_object_to_basket_mock.delay.assert_called_with('addon', addon.pk)
 
@@ -750,9 +751,11 @@ class TestVersion(TestCase):
 
         # give it some promoted approvals
         PromotedApproval.objects.create(
-            version=version, group_id=LINE.id)
+            version=version, group_id=LINE.id,
+            application_id=amo.FIREFOX.id)
         PromotedApproval.objects.create(
-            version=version, group_id=RECOMMENDED.id)
+            version=version, group_id=RECOMMENDED.id,
+            application_id=amo.ANDROID.id)
 
         del version.approved_for_groups
         assert version.approved_for_groups == [LINE, RECOMMENDED]
@@ -770,11 +773,14 @@ class TestVersion(TestCase):
 
         # give them some promoted approvals
         PromotedApproval.objects.create(
-            version=version_a, group_id=LINE.id)
+            version=version_a, group_id=LINE.id,
+            application_id=amo.FIREFOX.id)
         PromotedApproval.objects.create(
-            version=version_a, group_id=RECOMMENDED.id)
+            version=version_a, group_id=RECOMMENDED.id,
+            application_id=amo.FIREFOX.id)
         PromotedApproval.objects.create(
-            version=version_b, group_id=RECOMMENDED.id)
+            version=version_b, group_id=RECOMMENDED.id,
+            application_id=amo.FIREFOX.id)
 
         versions = (
             Version.objects.filter(id__in=(version_a.id, version_b.id))

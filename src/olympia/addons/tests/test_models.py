@@ -31,7 +31,7 @@ from olympia.files.models import File
 from olympia.files.tests.test_models import UploadTest
 from olympia.files.utils import Extractor, parse_addon
 from olympia.git.models import GitExtractionEntry
-from olympia.promoted.models import PromotedAddon, PromotedApproval
+from olympia.promoted.models import PromotedAddon
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.translations.models import (
     Translation, TranslationSequence, delete_translation)
@@ -1566,8 +1566,7 @@ class TestAddonModels(TestCase):
         assert not addon.promoted_group()
 
         # The latest version is approved for the same group.
-        PromotedApproval.objects.create(
-            version=addon.current_version, group_id=SPOTLIGHT.id)
+        promoted.approve_for_version(version=addon.current_version)
         del addon.current_version.approved_for_groups
         assert addon.promoted_group()
         assert addon.promoted_group() == SPOTLIGHT
@@ -1579,8 +1578,7 @@ class TestAddonModels(TestCase):
         assert addon.promoted_group(currently_approved=False)
         assert addon.promoted_group(currently_approved=False) == VERIFIED_ONE
 
-        PromotedApproval.objects.create(
-            version=addon.current_version, group_id=VERIFIED_ONE.id)
+        promoted.approve_for_version(version=addon.current_version)
         del addon.current_version.approved_for_groups
         assert addon.promoted_group() == VERIFIED_ONE
 
@@ -1613,8 +1611,7 @@ class TestAddonModels(TestCase):
         assert addon.promoted is None
 
         # The latest version is approved.
-        PromotedApproval.objects.create(
-            version=addon.current_version, group_id=SPOTLIGHT.id)
+        promoted.approve_for_version(addon.current_version)
         del addon.promoted
         assert addon.promoted == promoted
 
@@ -1625,8 +1622,7 @@ class TestAddonModels(TestCase):
         assert addon.promoted is None
 
         # Add an approval for the new group.
-        PromotedApproval.objects.create(
-            version=addon.current_version, group_id=VERIFIED_ONE.id)
+        promoted.approve_for_version(addon.current_version)
         del addon.current_version.approved_for_groups
         del addon.promoted
         assert addon.promoted == promoted

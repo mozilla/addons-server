@@ -108,13 +108,17 @@ class TestPromotedAddonAdmin(TestCase):
         assert item.addon.current_version == ver3
         approvals = [
             PromotedApproval.objects.create(
-                version=ver1, group_id=RECOMMENDED.id),
+                version=ver1, group_id=RECOMMENDED.id,
+                application_id=amo.FIREFOX.id),
             PromotedApproval.objects.create(
-                version=ver2, group_id=RECOMMENDED.id),
+                version=ver2, group_id=RECOMMENDED.id,
+                application_id=amo.ANDROID.id),
             PromotedApproval.objects.create(
-                version=ver2, group_id=LINE.id),
+                version=ver2, group_id=LINE.id,
+                application_id=amo.FIREFOX.id),
             PromotedApproval.objects.create(
-                version=ver3, group_id=RECOMMENDED.id),
+                version=ver3, group_id=RECOMMENDED.id,
+                application_id=amo.FIREFOX.id),
         ]
         approvals.reverse()  # we order by -version_id so match it.
         item.reload()
@@ -168,7 +172,8 @@ class TestPromotedAddonAdmin(TestCase):
             addon=addon, group_id=RECOMMENDED.id)
         ver1 = addon.current_version
         approval = PromotedApproval.objects.create(
-            version=ver1, group_id=RECOMMENDED.id)
+            version=ver1, group_id=RECOMMENDED.id,
+            application_id=amo.FIREFOX.id)
         detail_url = reverse(self.detail_url_name, args=(item.pk,))
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
@@ -207,7 +212,8 @@ class TestPromotedAddonAdmin(TestCase):
         ver1 = addon.current_version
         approvals = [
             PromotedApproval.objects.create(
-                version=ver1, group_id=RECOMMENDED.id),
+                version=ver1, group_id=RECOMMENDED.id,
+                application_id=amo.FIREFOX.id),
         ]
         approvals.reverse()
         addon.reload()
@@ -245,8 +251,7 @@ class TestPromotedAddonAdmin(TestCase):
 
     def test_can_delete_with_discovery_edit_permission(self):
         addon = addon_factory()
-        item = PromotedAddon.objects.create(addon=addon)
-        PromotedApproval.objects.create(version=addon.current_version)
+        item = self.make_addon_promoted(addon, LINE, approve_version=True)
         delete_url = reverse(
             'admin:discovery_promotedaddon_delete', args=(item.pk,)
         )
@@ -271,8 +276,8 @@ class TestPromotedAddonAdmin(TestCase):
 
     def test_cannot_delete_without_discovery_edit_permission(self):
         addon = addon_factory()
-        item = PromotedAddon.objects.create(addon=addon)
-        PromotedApproval.objects.create(version=addon.current_version)
+        item = self.make_addon_promoted(
+            addon, RECOMMENDED, approve_version=True)
         delete_url = reverse(
             'admin:discovery_promotedaddon_delete', args=(item.pk,)
         )
@@ -331,7 +336,8 @@ class TestPromotedAddonAdmin(TestCase):
         # create an approval that doesn't have a matching PromotedAddon yet
         PromotedApproval.objects.create(
             version=addon.current_version,
-            group_id=LINE.id)
+            group_id=LINE.id,
+            application_id=amo.FIREFOX.id)
         response = self.client.get(add_url, follow=True)
         assert response.status_code == 200
         # this *shouldn't* be in the response - the add page doesn't know what
@@ -447,8 +453,8 @@ class TestPromotedAddonAdmin(TestCase):
 
     def test_can_delete_when_primary_hero_too(self):
         addon = addon_factory()
-        item = PromotedAddon.objects.create(addon=addon)
-        PromotedApproval.objects.create(version=addon.current_version)
+        item = self.make_addon_promoted(
+            addon, RECOMMENDED, approve_version=True)
         shelf = PrimaryHero.objects.create(promoted_addon=item)
         delete_url = reverse(
             'admin:discovery_promotedaddon_delete', args=(item.pk,)

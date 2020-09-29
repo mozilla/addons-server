@@ -39,7 +39,6 @@ from olympia.devhub.models import BlogPost
 from olympia.devhub.views import get_next_version_number
 from olympia.files.models import FileUpload
 from olympia.files.tests.test_models import UploadTest as BaseUploadTest
-from olympia.promoted.models import PromotedApproval
 from olympia.ratings.models import Rating
 from olympia.translations.models import Translation, delete_translation
 from olympia.users.models import IPNetworkUserRestriction, UserProfile
@@ -532,12 +531,10 @@ class TestHome(TestCase):
             '.DevHub-MyAddons-list .DevHub-MyAddons-item').length == 0
 
     def test_my_addons_recommended(self):
-        self.make_addon_promoted(self.addon, RECOMMENDED)
+        self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
         latest_version = self.addon.find_latest_version(
             amo.RELEASE_CHANNEL_LISTED)
         latest_file = latest_version.files.all()[0]
-        PromotedApproval.objects.create(
-            version=latest_version, group_id=RECOMMENDED.id)
         statuses = [
             (amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
                 'Awaiting Review'),

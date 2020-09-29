@@ -20,7 +20,6 @@ from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
 from olympia.constants.promoted import RECOMMENDED
 from olympia.files.models import File
-from olympia.promoted.models import PromotedApproval
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, Version
 
@@ -186,10 +185,8 @@ class TestVersion(TestCase):
     def test_can_disable_or_delete_current_ver_if_previous_recommended(self):
         # If the add-on is recommended you *can* disable or delete the current
         # version if the previous version is approved for recommendation too.
-        self.make_addon_promoted(self.addon, RECOMMENDED)
+        self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
         previous_version = self.version
-        PromotedApproval.objects.create(
-            version=previous_version, group_id=RECOMMENDED.id)
         self.version = version_factory(
             addon=self.addon, recommendation_approved=True)
         self.addon.reload()
@@ -222,9 +219,7 @@ class TestVersion(TestCase):
     def test_can_still_disable_or_delete_old_version_recommended(self):
         # If the add-on is recommended, you can still disable or delete older
         # versions than the current one.
-        self.make_addon_promoted(self.addon, RECOMMENDED)
-        PromotedApproval.objects.create(
-            version=self.version, group_id=RECOMMENDED.id)
+        self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
         version_factory(addon=self.addon, recommendation_approved=True)
         self.addon.reload()
         assert self.version != self.addon.current_version

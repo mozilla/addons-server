@@ -590,13 +590,13 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
 
     @classmethod
     def make_addon_promoted(cls, addon, group, approve_version=False):
-        if approve_version:
-            PromotedApproval.objects.create(
-                version=addon.current_version, group_id=group.id)
-        _, created = PromotedAddon.objects.update_or_create(
+        obj, created = PromotedAddon.objects.update_or_create(
             addon=addon, defaults={'group_id': group.id})
+        if approve_version:
+            obj.approve_for_version(addon.current_version)
         if not created:
             addon.promotedaddon.reload()
+        return obj
 
     def _add_fake_throttling_action(
             self, view_class, verb='post', url=None, user=None,
@@ -723,8 +723,10 @@ def addon_factory(
         addon = Addon.objects.create(type=type_, **kwargs)
 
     # Save 2.
-    if should_be_recommended and 'recommendation_approved' not in version_kw:
-        version_kw['recommendation_approved'] = True
+    if should_be_recommended:
+        PromotedAddon.objects.create(addon=addon, group_id=RECOMMENDED.id)
+        if 'recommendation_approved' not in version_kw:
+            version_kw['recommendation_approved'] = True
     version = version_factory(file_kw, addon=addon, **version_kw)
 
     addon.update_version()
@@ -744,9 +746,6 @@ def addon_factory(
         category = Category.from_static_category(static_category, True)
     if category:
         AddonCategory.objects.create(addon=addon, category=category)
-
-    if should_be_recommended:
-        PromotedAddon.objects.create(addon=addon, group_id=RECOMMENDED.id)
 
     # Put signals back.
     post_save.connect(
@@ -910,7 +909,7 @@ def version_factory(file_kw=None, **kw):
         file_kw = file_kw or {}
         file_factory(version=ver, **file_kw)
     if recommendation_approved:
-        PromotedApproval.objects.create(version=ver, group_id=RECOMMENDED.id)
+        kw['addon'].promotedaddon.approve_for_version(version=ver)
     return ver
 
 

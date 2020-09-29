@@ -21,7 +21,6 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import to_language
 from olympia.constants.promoted import RECOMMENDED
 from olympia.lib.crypto.signing import sign_file
-from olympia.promoted.models import PromotedApproval
 from olympia.reviewers.models import (
     AutoApprovalSummary, ReviewerScore, ReviewerSubscription,
     ViewUnlistedAllList, get_flags, get_flags_for_row)
@@ -637,8 +636,7 @@ class ReviewBase(object):
             # These addons shouldn't be be attempted for auto approval anyway,
             # but double check that the cron job isn't trying to approve it.
             assert not self.user.id == settings.TASK_USER_ID
-            PromotedApproval.objects.update_or_create(
-                version=self.version, group_id=group.id)
+            self.addon.promotedaddon.approve_for_version(self.version)
 
     def clear_all_needs_human_review_flags_in_channel(self):
         """Clear needs_human_review flags on all versions in the same channel.

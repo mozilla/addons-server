@@ -50,6 +50,15 @@ class PromotedAddon(ModelBase):
                 not self.group.pre_review or
                 self.group in self.addon.current_version.approved_for_groups))
 
+    def approve_for_version(self, version):
+        """Create PromotedApproval for current applications in the current
+        promoted group."""
+        for app in self.applications:
+            PromotedApproval.objects.update_or_create(
+                version=version,
+                group_id=self.group_id,
+                application_id=app.id)
+
 
 class PromotedApproval(ModelBase):
     GROUP_CHOICES = [(g.id, g.name) for g in PRE_REVIEW_GROUPS]
@@ -58,11 +67,14 @@ class PromotedApproval(ModelBase):
     version = models.ForeignKey(
         Version, on_delete=models.CASCADE, null=False,
         related_name='promoted_approvals')
+    application_id = models.SmallIntegerField(
+        choices=APPS_CHOICES, null=True, verbose_name='Application',
+        default=None)
 
     class Meta:
         constraints = [
             models.UniqueConstraint(
-                fields=('group_id', 'version'),
+                fields=('group_id', 'version', 'application_id'),
                 name='unique_promoted_version'),
         ]
 
@@ -70,6 +82,10 @@ class PromotedApproval(ModelBase):
         return (
             f'{self.get_group_id_display()} - '
             f'{self.version.addon}: {self.version}')
+
+    @property
+    def application(self):
+        return APP_IDS.get(self.application_id)
 
 
 @receiver(models.signals.post_save, sender=PromotedAddon,

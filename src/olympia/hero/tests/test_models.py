@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError
 from olympia.amo.tests import addon_factory, TestCase
 from olympia.constants.promoted import RECOMMENDED
 from olympia.hero.models import PrimaryHero, SecondaryHero, SecondaryHeroModule
-from olympia.promoted.models import PromotedAddon, PromotedApproval
+from olympia.promoted.models import PromotedAddon
 
 
 class TestPrimaryHero(TestCase):
@@ -34,9 +34,8 @@ class TestPrimaryHero(TestCase):
             ph.clean()
 
         assert not ph.promoted_addon.addon.promoted_group()
-        PromotedApproval.objects.create(
-            version=ph.promoted_addon.addon.current_version,
-            group_id=RECOMMENDED.id)
+        ph.promoted_addon.approve_for_version(
+            ph.promoted_addon.addon.current_version)
         ph.reload()
         assert ph.promoted_addon.addon.promoted_group() == RECOMMENDED
         ph.clean()  # it raises if there's an error
@@ -60,9 +59,8 @@ class TestPrimaryHero(TestCase):
         ph = PrimaryHero.objects.create(
             promoted_addon=PromotedAddon.objects.create(
                 addon=addon_factory(), group_id=RECOMMENDED.id))
-        PromotedApproval.objects.create(
-            version=ph.promoted_addon.addon.current_version,
-            group_id=RECOMMENDED.id)
+        ph.promoted_addon.approve_for_version(
+            ph.promoted_addon.addon.current_version)
         ph.reload()
         assert not ph.enabled
         ph.clean()  # it raises if there's an error
@@ -86,9 +84,8 @@ class TestPrimaryHero(TestCase):
             promoted_addon=PromotedAddon.objects.create(
                 addon=addon_factory(), group_id=RECOMMENDED.id),
             gradient_color='#C60184', image='foo.png')
-        PromotedApproval.objects.create(
-            version=hero.promoted_addon.addon.current_version,
-            group_id=RECOMMENDED.id)
+        hero.promoted_addon.approve_for_version(
+            hero.promoted_addon.addon.current_version)
         hero.reload()
         assert not hero.enabled
         assert not PrimaryHero.objects.filter(enabled=True).exists()

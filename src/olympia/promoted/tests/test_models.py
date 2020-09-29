@@ -1,6 +1,6 @@
 from olympia.amo.tests import addon_factory, TestCase
 from olympia.constants import applications, promoted
-from olympia.promoted.models import PromotedAddon, PromotedApproval
+from olympia.promoted.models import PromotedAddon
 
 
 class TestPromotedAddon(TestCase):
@@ -25,8 +25,7 @@ class TestPromotedAddon(TestCase):
         assert not addon.promotedaddon.is_addon_currently_promoted
 
         # the current version needs to be approved also
-        PromotedApproval.objects.create(
-            version=addon.current_version, group_id=promoted.LINE.id)
+        promoted_addon.approve_for_version(addon.current_version)
         addon.reload()
         assert addon.promotedaddon.is_addon_currently_promoted
 
