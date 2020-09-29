@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-  let result_list = document.querySelector(
+  'use strict';
+
+  const result_list = document.querySelector(
     'body.change-list.model-scannerqueryresult #result_list',
   );
 
@@ -13,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     link: null,
   };
 
-  for (row of result_list.tBodies[0].rows) {
+  for (const row of result_list.tBodies[0].rows) {
     let new_addon = {
       cell: row.querySelector('.field-formatted_addon'),
       link: row.querySelector('.field-formatted_addon a'),
