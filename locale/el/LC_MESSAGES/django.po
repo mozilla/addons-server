@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-29 09:13+0000\n"
+"PO-Revision-Date: 2020-09-29 09:22+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -5119,9 +5119,8 @@ msgid "Double-click any word to instantly see its definition."
 msgstr "Κάντε διπλό κλικ σε οποιαδήποτε λέξη για να δείτε άμεσα τον ορισμό της."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
-msgstr "Ορισμένες ιστοσελίδες δυσκολεύονται στην αναπαραγωγή βίντεο στο Firefox για Android. Αυτή η επέκταση διορθώνει το σφάλμα."
+msgstr "Ορισμένες ιστοσελίδες δυσκολεύονται με την αναπαραγωγή βίντεο στο Firefox για Android. Ορίστε μια διόρθωση."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
@@ -5707,9 +5706,8 @@ msgstr "Οδηγός αξιολόγησης"
 msgid "Content Review"
 msgstr "Αξιολόγηση περιεχομένου"
 
-#, fuzzy
 msgid "Content Review ({0})"
-msgstr "Αξιολόγηση περιεχομένου ({0})"
+msgstr "Έλεγχος περιεχομένου ({0})"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
@@ -6236,9 +6234,8 @@ msgstr "Έκδοση %(version)s &middot; %(created)s <span class=\"light\">&mid
 msgid "(Confirmed)"
 msgstr "(Επιβεβαιώθηκε)"
 
-#, fuzzy
 msgid "Pending Rejection on review of new version"
-msgstr "Εκκρεμούσα προθεσμία απόρριψης"
+msgstr "Εκκρεμούσα απόρριψη στον έλεγχο της νέας έκδοσης"
 
 msgid "Compatibility:"
 msgstr "Συμβατότητα:"
@@ -6286,24 +6283,20 @@ msgstr "Απορρίφθηκε ή δεν αξιολογήθηκε"
 msgid "[status:%s]"
 msgstr "[κατάσταση:%s]"
 
-#, fuzzy
 msgid "Other Pending Review"
-msgstr "Άλλη εκκρεμούσα κριτική ({0})"
+msgstr "Άλλος εκκρεμών έλεγχος"
 
-#, fuzzy
 msgid "Flagged By Scanners"
-msgstr "Εφαρμογές σάρωσης ασφαλείας"
+msgstr "Επισημάνθηκα από σαρωτές"
 
-#, fuzzy
 msgid "Flagged for Human Review"
-msgstr "Επισημάνθηκε για ανθρώπινη αξιολόγηση"
+msgstr "Επισημάνθηκε για χειροκίνητο έλεγχο"
 
 msgid "Updates"
 msgstr "Ενημερώσεις"
 
-#, fuzzy
 msgid "Rating Reviews"
-msgstr "Αναμένεται αξιολόγηση"
+msgstr "Αξιολόγηση βαθμολογίας"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
@@ -6945,7 +6938,7 @@ msgstr ""
 "\n"
 "%(author_name)s ( %(author_url)s )"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Hello,\n"
 "\n"
@@ -6959,13 +6952,13 @@ msgid ""
 msgstr ""
 "Γεια σας,\n"
 "\n"
-"Λαμβάνετε αυτό το μήνυμα επειδή ο λογαριασμός χρήστη %(name)s στο %(site_url)s έχει διαγραφεί.\n"
+"Λαμβάνετε αυτό το μήνυμα επειδή ο λογαριασμός χρήστη %(name)s στο %(site_url)s έχει διαγραφεί. Αυτό μάλλον έγινε αυτόματα αν διαγράψατε πρόσφατα το λογαριασμό Firefox σας.\n"
 "\n"
-"Αν δεν το κάνατε εσείς αυτό ή πιστεύετε ότι ένα μη εξουσιοδοτημένο άτομο έχει πρόσβαση στο λογαριασμό σας, παρακαλούμε απαντήστε σε αυτό email. Διαφορετικά, δεν απαιτείται καμία περαιτέρω ενέργεια.\n"
+"Αν δεν το κάνατε αυτό ή πιστεύετε ότι κάποιος μη εξουσιοδοτημένος τρίτος έχει προσπελάσει το λογαριασμό σας, παρακαλούμε απαντήστε στο παρόν email. Διαφορετικά, δεν απαιτείται καμία περαιτέρω ενέργεια.\n"
 "\n"
 "Με εκτίμηση,\n"
 "\n"
-"Η ομάδα προσθέτων του Firefox"
+"Η ομάδα των Προσθέτων Firefox"
 
 msgctxt "user_list_others"
 msgid "others"
