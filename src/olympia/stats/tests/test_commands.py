@@ -62,11 +62,19 @@ class TestADICommand(FixturesFolderMixin, TransactionTestCase):
         management.call_command('download_counts_from_file',
                                 self.get_tmp_hive_folder(), date=self.date,
                                 stats_source=self.stats_source)
+
         assert DownloadCount.objects.all().count() == 2
-        download_count = DownloadCount.objects.get(addon_id=3615)
-        assert download_count.count == 3
-        assert download_count.date == date(2014, 7, 10)
-        assert download_count.sources == {u'search': 2, u'cb-dl-bob': 1}
+        download_count_1 = DownloadCount.objects.get(addon_id=3615)
+        assert download_count_1.count == 4
+        assert download_count_1.date == date(2014, 7, 10)
+        # In the hive file, 67442 refers to the file for the current version of
+        # this add-on.
+        assert download_count_1.sources == {u'search': 2, u'cb-dl-bob': 1,
+                                            'null': 1}
+
+        download_count_2 = DownloadCount.objects.get(addon_id=7661)
+        assert download_count_2.count == 2
+        assert download_count_2.sources == {'search': 1, 'null': 1}
 
     def test_download_counts_from_file_includes_disabled_addons(self):
         # We only exclude STATUS_NULL add-ons
@@ -78,20 +86,20 @@ class TestADICommand(FixturesFolderMixin, TransactionTestCase):
                                 stats_source=self.stats_source)
 
         assert DownloadCount.objects.all().count() == 3
-        download_count = DownloadCount.objects.get(addon_id=3615)
-        assert download_count.count == 3
-        assert download_count.date == date(2014, 7, 10)
-        assert download_count.sources == {u'search': 2, u'cb-dl-bob': 1}
+        assert DownloadCount.objects.get(addon_id=3615)
+        assert DownloadCount.objects.get(addon_id=7661)
 
         download_count = DownloadCount.objects.get(
-            addon__slug='disabled-addon')
+            addon__slug='disabled-addon'
+        )
         assert download_count.count == 1
         assert download_count.date == date(2014, 7, 10)
         assert download_count.sources == {u'search': 1}
 
         # Make sure we didn't generate any stats for incomplete add-ons
         assert not DownloadCount.objects.filter(
-            addon__slug='incomplete-addon').exists()
+            addon__slug='incomplete-addon'
+        ).exists()
 
     @mock.patch(
         'olympia.stats.management.commands.download_counts_from_file.'
@@ -117,6 +125,9 @@ class TestADICommand(FixturesFolderMixin, TransactionTestCase):
         assert not is_valid_source('ba',
                                    fulls=['foo', 'bar'],
                                    prefixes=['baz', 'cruux'])
+        assert is_valid_source(
+            '\\N', fulls=['foo', 'bar'], prefixes=['baz', 'cruux']
+        )
 
 
 class TestADICommandS3(TransactionTestCase):
@@ -154,8 +165,12 @@ class TestADICommandS3(TransactionTestCase):
 
         management.call_command('download_counts_from_file',
                                 date=self.date, stats_source=self.stats_source)
+
         assert DownloadCount.objects.all().count() == 2
         download_count = DownloadCount.objects.get(addon_id=3615)
-        assert download_count.count == 3
+        assert download_count.count == 4
         assert download_count.date == date(2014, 7, 10)
-        assert download_count.sources == {u'search': 2, u'cb-dl-bob': 1}
+        # In the hive file, 67442 refers to the file for the current version of
+        # this add-on.
+        assert download_count.sources == {u'search': 2, u'cb-dl-bob': 1,
+                                          'null': 1}

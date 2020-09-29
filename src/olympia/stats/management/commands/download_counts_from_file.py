@@ -17,15 +17,18 @@ from . import get_date, get_stats_data
 
 log = olympia.core.logger.getLogger('adi.downloadcounts')
 
+HIVE_NULL = '\\N'
+
 
 def is_valid_source(src, fulls, prefixes):
     """Return True if the source is valid.
 
-    A source is valid if it is in the list of valid full sources or prefixed by
-    a prefix in the list of valid prefix sources.
+    A source is valid if it is either NULL or it is in the list of valid full
+    sources or prefixed by a prefix in the list of valid prefix sources.
+
     NOTE: doesn't actually check for a prefix with prefiex - does `p in ...`
     """
-    return src in fulls or any(p in src for p in prefixes)
+    return src == HIVE_NULL or src in fulls or any(p in src for p in prefixes)
 
 
 class Command(BaseCommand):
@@ -123,9 +126,8 @@ class Command(BaseCommand):
             Addon.unfiltered.exclude(status=amo.STATUS_NULL)
             .values_list('slug', 'id'))
 
-        # Only accept valid sources, which are constants. The source must
-        # either be exactly one of the "full" valid sources, or prefixed by one
-        # of the "prefix" valid sources.
+        # The source must either be exactly one of the "full" valid sources, or
+        # prefixed by one of the "prefix" valid sources, or NULL.
         fulls = amo.DOWNLOAD_SOURCES_FULL
         prefixes = amo.DOWNLOAD_SOURCES_PREFIX
 
@@ -150,7 +152,13 @@ class Command(BaseCommand):
                 continue
 
             if not is_valid_source(src, fulls=fulls, prefixes=prefixes):
+                log.debug('Invalid source: {}.'.format(src))
                 continue
+
+            # This is needed to have a better source than the HIVE_NULL
+            # representation in the frontend.
+            if src == HIVE_NULL:
+                src = None
 
             if id_or_slug.isdigit():
                 # If it's a digit, then it should be a file id.
