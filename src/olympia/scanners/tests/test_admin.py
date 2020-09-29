@@ -52,6 +52,7 @@ from olympia.scanners.admin import (
 from olympia.scanners.models import (
     ScannerQueryResult, ScannerQueryRule, ScannerResult, ScannerRule
 )
+from olympia.versions.models import Version
 
 
 class TestScannerResultAdmin(TestCase):
@@ -205,12 +206,15 @@ class TestScannerResultAdmin(TestCase):
 
         assert self.admin.formatted_results(result) == '<pre>[]</pre>'
 
-    def test_formmatted_created(self):
+    def test_formatted_created(self):
         created = datetime.now()
         result = ScannerResult(created=created)
 
-        assert (self.admin.formatted_created(result) ==
-                created.strftime('%Y-%m-%d %H:%M:%S'))
+        assert self.admin.formatted_created(result) == '-'
+        result.version = Version(created=created)
+
+        assert self.admin.formatted_created(result) == created.strftime(
+            '%Y-%m-%d %H:%M:%S')
 
     def test_formatted_matched_rules_with_files(self):
         version = addon_factory().current_version
@@ -375,7 +379,9 @@ class TestScannerResultAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody > tr').length == 1
-        assert doc('.field-formatted_matched_rules').text() == 'bar, hello'
+        assert doc('.field-formatted_matched_rules').text() == (
+            'bar (yara), hello (yara)'
+        )
 
     def test_exclude_matched_rule_filter(self):
         rule_bar = ScannerRule.objects.create(name='bar', scanner=YARA)
@@ -1362,7 +1368,7 @@ class TestScannerQueryResultAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody > tr').length == 1
-        assert doc('.field-formatted_matched_rules').text() == 'bar'
+        assert doc('.field-formatted_matched_rules').text() == 'bar (yara)'
 
     def test_list_filter_channel(self):
         addon = addon_factory()
@@ -1380,7 +1386,8 @@ class TestScannerQueryResultAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody > tr').length == 1
-        assert doc('.field-guid').text() == unlisted_addon.guid
+        assert doc('.field-formatted_addon a').text().startswith(
+            unlisted_addon.guid)
 
         response = self.client.get(self.list_url, {
             'version__channel__exact': amo.RELEASE_CHANNEL_LISTED,
@@ -1388,7 +1395,7 @@ class TestScannerQueryResultAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody > tr').length == 1
-        assert doc('.field-guid').text() == addon.guid
+        assert doc('.field-formatted_addon a').text().startswith(addon.guid)
 
     def test_list_filter_addon_status(self):
         incomplete_addon = addon_factory(status=amo.STATUS_NULL)
@@ -1404,7 +1411,8 @@ class TestScannerQueryResultAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody > tr').length == 1
-        assert doc('.field-guid').text() == incomplete_addon.guid
+        assert doc('.field-formatted_addon a').text().startswith(
+            incomplete_addon.guid)
 
         response = self.client.get(self.list_url, {
             'version__addon__status__exact': amo.STATUS_DELETED,
@@ -1412,7 +1420,8 @@ class TestScannerQueryResultAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody > tr').length == 1
-        assert doc('.field-guid').text() == deleted_addon.guid
+        assert doc('.field-formatted_addon a').text().startswith(
+            deleted_addon.guid)
 
     def test_list_filter_addon_visibility(self):
         visible_addon = addon_factory()
@@ -1428,7 +1437,8 @@ class TestScannerQueryResultAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody > tr').length == 1
-        assert doc('.field-guid').text() == invisible_addon.guid
+        assert doc('.field-formatted_addon a').text().startswith(
+            invisible_addon.guid)
 
         response = self.client.get(self.list_url, {
             'version__addon__disabled_by_user__exact': '0',
@@ -1436,7 +1446,8 @@ class TestScannerQueryResultAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody > tr').length == 1
-        assert doc('.field-guid').text() == visible_addon.guid
+        assert doc('.field-formatted_addon a').text().startswith(
+            visible_addon.guid)
 
     def test_list_filter_file_status(self):
         addon_disabled_file = addon_factory()
@@ -1454,7 +1465,8 @@ class TestScannerQueryResultAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody > tr').length == 1
-        assert doc('.field-guid').text() == addon_disabled_file.guid
+        assert doc('.field-formatted_addon a').text().startswith(
+            addon_disabled_file.guid)
 
         response = self.client.get(self.list_url, {
             'version__files__status': '4',
@@ -1462,7 +1474,8 @@ class TestScannerQueryResultAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody > tr').length == 1
-        assert doc('.field-guid').text() == addon_approved_file.guid
+        assert doc('.field-formatted_addon a').text().startswith(
+            addon_approved_file.guid)
 
     def test_list_filter_file_is_signed(self):
         signed_addon = addon_factory(file_kw={'is_signed': True})
@@ -1478,7 +1491,8 @@ class TestScannerQueryResultAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody > tr').length == 1
-        assert doc('.field-guid').text() == signed_addon.guid
+        assert doc('.field-formatted_addon a').text().startswith(
+            signed_addon.guid)
 
         response = self.client.get(self.list_url, {
             'version__files__is_signed': '0',
@@ -1486,7 +1500,8 @@ class TestScannerQueryResultAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody > tr').length == 1
-        assert doc('.field-guid').text() == unsigned_addon.guid
+        assert doc('.field-formatted_addon a').text().startswith(
+            unsigned_addon.guid)
 
     def test_change_page(self):
         rule = ScannerQueryRule.objects.create(name='darule', scanner=YARA)

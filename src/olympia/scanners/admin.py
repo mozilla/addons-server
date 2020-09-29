@@ -390,7 +390,9 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
     channel.short_description = 'Channel'
 
     def formatted_created(self, obj):
-        return obj.created.strftime('%Y-%m-%d %H:%M:%S')
+        if obj.version:
+            return obj.version.created.strftime('%Y-%m-%d %H:%M:%S')
+        return '-'
 
     formatted_created.short_description = 'Created'
 
@@ -406,11 +408,12 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
         return format_html(
             ', '.join(
                 [
-                    '<a href="{}">{}</a>'.format(
+                    '<a href="{}">{} ({})</a>'.format(
                         reverse(
                             'admin:%s_%s_change' % info, args=[rule.pk]
                         ),
                         rule.name,
+                        rule.get_scanner_display(),
                     )
                     for rule in obj.matched_rules.all()
                 ]
@@ -678,15 +681,15 @@ class ScannerResultAdmin(AbstractScannerResultAdminMixin, admin.ModelAdmin):
 class ScannerQueryResultAdmin(
         AbstractScannerResultAdminMixin, admin.ModelAdmin):
     raw_id_fields = ('version',)
+    list_display_links = None
     list_display = (
-        'id',
         'formatted_addon',
-        'guid',
+        'channel',
+        'version_number',
+        'formatted_created',
         'authors',
-        'scanner',
         'formatted_matched_rules',
         'matching_filenames',
-        'formatted_created',
     )
     list_filter = (
         ('matched_rules', ScannerRuleListFilter),
@@ -696,6 +699,51 @@ class ScannerQueryResultAdmin(
         ('version__files__status', FileStatusFiler),
         ('version__files__is_signed', FileIsSigned),
     )
+
+    ordering = ('version__addon_id', 'version__channel', 'version__created')
+
+    class Media(AbstractScannerResultAdminMixin.Media):
+        js = (
+            'js/admin/scannerqueryresult.js',
+        )
+
+    def formatted_addon(self, obj):
+        # Custom, simpler implementation to go with add-on grouping: the
+        # version number and version channel are not included - they are
+        # displayed as separate columns.
+        if obj.version:
+            return format_html(
+                '<a href="{}">{}<br>{}</a>',
+                # We use the add-on's ID to support deleted add-ons.
+                urljoin(
+                    settings.EXTERNAL_SITE_URL,
+                    reverse(
+                        'reviewers.review',
+                        args=[
+                            ('listed' if obj.version.channel ==
+                             amo.RELEASE_CHANNEL_LISTED else 'unlisted'),
+                            obj.version.addon.id,
+                        ],
+                    ),
+                ),
+                obj.version.addon.guid,
+                obj.version.addon.name,
+            )
+        return '-'
+
+    formatted_addon.short_description = 'Add-on'
+
+    def channel(self, obj):
+        if obj.version:
+            return obj.version.get_channel_display()
+        return '-'
+
+    def version_number(self, obj):
+        if obj.version:
+            return obj.version.version
+        return '-'
+
+    version_number.short_description = 'Version'
 
     def get_unfiltered_changelist_params(self):
         return {}
