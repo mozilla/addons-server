@@ -6,13 +6,45 @@ from rest_framework.test import APIRequestFactory
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 
-from olympia.addons.views import AddonSearchView
-from olympia.amo.tests import TestCase, reverse_ns
+from olympia import amo
+from olympia.amo.tests import addon_factory, ESTestCase, reverse_ns
+from olympia.constants.promoted import RECOMMENDED
+from olympia.promoted.models import PromotedAddon
 from olympia.shelves.models import Shelf
 from olympia.shelves.serializers import ShelfSerializer
 
 
-class TestShelvesSerializer(TestCase):
+class TestShelvesSerializer(ESTestCase):
+    @classmethod
+    def setUpTestData(cls):
+        super().setUpTestData()
+
+        # Shouldn't be necessary, but just in case.
+        cls.empty_index('default')
+
+        addon_factory(
+            name='test addon test01', type=amo.ADDON_EXTENSION,
+            average_daily_users=46812, weekly_downloads=132, summary=None)
+        addon_factory(
+            name='test addon test02', type=amo.ADDON_STATICTHEME,
+            average_daily_users=18981, weekly_downloads=145, summary=None)
+        addon_ext = addon_factory(
+            name='test addon test03', type=amo.ADDON_EXTENSION,
+            average_daily_users=482, weekly_downloads=506, summary=None)
+        addon_theme = addon_factory(
+            name='test addon test04', type=amo.ADDON_STATICTHEME,
+            average_daily_users=8838, weekly_downloads=358, summary=None)
+
+        PromotedAddon.objects.create(
+            addon=addon_ext, group_id=RECOMMENDED.id
+        ).approve_for_version(version=addon_ext.current_version)
+
+        PromotedAddon.objects.create(
+            addon=addon_theme, group_id=RECOMMENDED.id
+        ).approve_for_version(version=addon_theme.current_version)
+
+        cls.refresh()
+
     def setUp(self):
         self.search_shelf = Shelf.objects.create(
             title='Populâr themes',
@@ -48,15 +80,23 @@ class TestShelvesSerializer(TestCase):
     def test_shelf_serializer_search(self):
         data = self.serialize(instance=self.search_shelf)
         search_url = reverse_ns('addon-search') + self.search_shelf.criteria
-        assert data == {
-            'title': 'Populâr themes',
-            'url': search_url,
-            'endpoint': self.search_shelf.endpoint,
-            'criteria': self.search_shelf.criteria,
-            'footer_text': 'See more populâr themes',
-            'footer_pathname': '',
-            'addons': AddonSearchView(request=self.request).data
-        }
+
+        assert data['title'] == 'Populâr themes'
+        assert data['url'] == search_url
+        assert data['endpoint'] == self.search_shelf.endpoint
+        assert data['criteria'] == self.search_shelf.criteria
+        assert data['footer_text'] == 'See more populâr themes'
+        assert data['footer_pathname'] == ''
+
+        assert len(data['addons']) == 2
+
+        assert data['addons'][0]['name']['en-US'] == 'test addon test02'
+        assert data['addons'][0]['promoted'] is None
+        assert data['addons'][0]['type'] == 'statictheme'
+
+        assert data['addons'][1]['name']['en-US'] == 'test addon test04'
+        assert data['addons'][1]['promoted']['category'] == 'recommended'
+        assert data['addons'][1]['type'] == 'statictheme'
 
     def test_shelf_serializer_collections(self):
         data = self.serialize(instance=self.collections_shelf)
