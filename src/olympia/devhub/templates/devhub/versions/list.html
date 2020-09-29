@@ -125,7 +125,7 @@
               </div>
               <div class="review-entry-empty hidden">
                   <p><strong class="action">$action_label</strong> {{ _('by') }}
-                  <em class="user_name">$user_name</em> <time class="timeago" datetime=$date>$date</time></p>
+                  <em class="user_name">$user_name</em> <time class="timeago" datetime="$date">$date</time></p>
                   <pre>$comments</pre>
               </div>
           </div>
@@ -134,7 +134,7 @@
               <form class="dev-review-reply-form" action="{{ drf_url('version-reviewnotes-list', addon.id, version.id) }}"
                     data-token="{{ token }}" data-history="#{{ version.id }}-review-history" data-no-csrf>
                   <textarea name="comments" placeholder="{{ _('Leave a reply') }}"></textarea>
-                  <button type="submit" class="submit" >{{ _('Reply') }}</button ty>
+                  <button type="submit" class="submit" >{{ _('Reply') }}</button>
               </form>
             </div>
           {% else %}
@@ -284,6 +284,7 @@
         Once a version has been deleted, you may not upload a new
         version with the same version number.
       {% endtrans %}
+      </p>
       <p>{{ _('Are you sure you wish to delete this version?') }}</p>
       {% csrf_token %}
       <div class="modal-actions">

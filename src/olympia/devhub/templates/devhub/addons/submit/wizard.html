@@ -26,7 +26,6 @@
         {% if addon %}
           <input type="hidden" id="theme-name" value="{{ addon.name }}"/>
           {{ addon.name }}
-      </ul>
         {% else %}
           <input type="text" id="theme-name"/>
           <ul class="general-validation-error errorlist validator">
@@ -58,11 +57,7 @@
         {% set property_list_left = ['tab_background_text','bookmark_text', 'toolbar_field_text'] %}
         {% set existing_colors = existing_properties['colors'] or {} %}
         {% for (property, label, tip, val_default) in colors %}
-          {% if property in property_list_left  %}
-            <li class="row left">
-          {% else %}
-            <li class="row">
-          {% endif %}
+        <li class="row{{ 'left' if property in property_list_left else '' }}">
           <label class="row" for="{{ property }}">
             {{ label }}
             <span>

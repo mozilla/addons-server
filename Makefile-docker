@@ -191,6 +191,7 @@ setup-codestyle:
 lint: ## lint the code
 	flake8 src/ services/ tests/
 	$(shell npm $(NPM_ARGS) bin)/prettier --check '**'
+	curlylint src/
 
 lint-codestyle: lint
 

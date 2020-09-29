@@ -23,3 +23,25 @@ pyflakes==2.2.0 \
 entrypoints==0.3 \
     --hash=sha256:589f874b313739ad35be6e0cd7efde2a4e9b6fea91edcc34e58ecbb8dbe56d19 \
     --hash=sha256:c70dd71abe5a8c85e55e12c19bd91ccfeec11a6e99044204511f9ed547d48451
+# attrs is required by curlylint
+attrs==20.2.0 \
+    --hash=sha256:fce7fc47dfc976152e82d53ff92fa0407700c21acd20886a13777a0d20e655dc \
+    --hash=sha256:26b54ddbbb9ee1d34d5d3668dd37d6cf74990ab23c828c2888dccdceee395594
+# parsy is required by curlylint
+parsy==1.3.0 \
+    --hash=sha256:bea54186c3da470944dafe2314b57ac53d0dc2b0a168dc32f644b1b93dc6ca64 \
+    --hash=sha256:bfc941ea5a69e6ac16bd4f7d9f807bbc17e35edd8b95bcd2499a25b059359012
+# click is required by curlylint
+click==7.1.2 \
+    --hash=sha256:dacca89f4bfadd5de3d7489b7c8a566eee0d3676333fbb50030263894c38c0dc \
+    --hash=sha256:d2b5255c7c6349bc1bd1e59e08cd12acbbd63ce649f2588755783aa94dfb6b1a
+# pathspec is required by curlylint
+pathspec==0.8.0 \
+    --hash=sha256:7d91249d21749788d07a2d0f94147accd8f845507400749ea19c1ec9054a12b0 \
+    --hash=sha256:da45173eb3a6f2a5a487efba21f050af2b41948be6ab52b6a1e3ff22bb8b7061
+curlylint==0.12.0 \
+    --hash=sha256:b03a200914a4c315169993c205054b86a49c1934a7d30d2583755a5a0939fed4 \
+    --hash=sha256:e1b09acb26f5d2a3a5f9ee81c541ad76f1311e174e4c08be8e4f7ebd62c20bc0
+toml==0.10.1 \
+    --hash=sha256:bda89d5935c2eac546d648028b9901107a595863cb36bae0c73ac804a9b4ce88 \
+    --hash=sha256:926b612be1e5ce0634a2ca03470f95169cf16f939018233a670519cb4ac58b0f
