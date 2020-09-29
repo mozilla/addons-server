@@ -259,7 +259,7 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         assert exc.value.message == (
             'Unknown "strict_max_version" 76.0 for Firefox')
 
-    def test_strict_min_version_needs_to_be_higher_then_42_if_specified(self):
+    def test_strict_min_version_needs_to_be_higher_than_42_if_specified(self):
         """strict_min_version needs to be higher than 42.0 if specified."""
         data = {
             'applications': {
