@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-17 13:51+0000\n"
+"PO-Revision-Date: 2020-09-29 06:37+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -5005,7 +5005,7 @@ msgstr "某些網站無法在 Android 上正常播放影片，此套件可修正
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
-msgstr ""
+msgstr "移除 Google 搜尋結果網址當中，又臭又長的追蹤參數。"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
