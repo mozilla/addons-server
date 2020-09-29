@@ -1,5 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-  if (!document.body.matches('.change-list.model-scannerqueryresult')) {
+  let result_list = document.querySelector(
+    'body.change-list.model-scannerqueryresult #result_list',
+  );
+
+  if (!result_list) {
     // This is only for the scanners query result change list page.
     return;
   }
