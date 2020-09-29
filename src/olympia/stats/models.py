@@ -1,5 +1,5 @@
 from django.db import models
-from django_jsonfield_backport.models import JSONField
+from django_extensions.db.fields.json import JSONField
 
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import SearchMixin
