@@ -1,20 +1,12 @@
-$(function () {
-  if ($('.primary').attr('data-report') != 'overview') return;
+(function (jQuery, window) {
+  'use strict';
 
-  // set up topcharts (defined in topchart.js)
-  $('.toplist').topChart();
+  // This function is called once we have stats data and we get aggregates for
+  // daily users and weekly downloads.
+  const stats_overview_make_handler = function ({ view }) {
+    const range = normalizeRange(view.range);
 
-  $(window).on('changeview', function (e, view) {
-    $('.two-up').addClass('loading');
-  });
-  // Save some requests by waiting until the graph data is ready.
-  $(window).on('dataready', function (e, data) {
-    // return;
-    var view = _.extend({}, data.view, { group: 'all' }),
-      range = normalizeRange(view.range);
-
-    // get aggregates for Daily Users and Downloads for the given time range.
-    $.when(z.StatsManager.getDataRange(view)).then(function (data) {
+    return function (data) {
       if (data.empty) {
         $('#downloads-in-range, #users-in-range').text(
           gettext('No data available.'),
@@ -28,6 +20,13 @@ $(function () {
           endString = range.end.iso(),
           downloadFormat,
           userFormat;
+
+        // Trim end date by one day if custom range.
+        if (view.range.custom) {
+          const msDay = 24 * 60 * 60 * 1000; // One day in milliseconds.
+          endString = new Date(range.end.getTime() - msDay).iso();
+        }
+
         if (typeof view.range == 'string') {
           (downloadFormat = csv_keys.aggregateLabel.downloads[0]),
             (userFormat = csv_keys.aggregateLabel.usage[0]);
@@ -49,6 +48,37 @@ $(function () {
         }
       }
       $('.two-up').removeClass('loading');
+    };
+  };
+
+  // `$` is passed by jQuery itself when calling `jQuery(stats_overview)`.
+  const stats_overview = function ($) {
+    if ($('.primary').attr('data-report') != 'overview') {
+      return;
+    }
+
+    // set up topcharts (defined in topchart.js)
+    $('.toplist').topChart();
+
+    $(window).on('changeview', function (e, view) {
+      $('.two-up').addClass('loading');
     });
-  });
-});
+
+    // Save some requests by waiting until the graph data is ready.
+    $(window).on('dataready', function (e, data) {
+      const view = _.extend({}, data.view, { group: 'all' });
+
+      // Get aggregates for Daily Users and Downloads for the given time range.
+      $.when(z.StatsManager.getDataRange(view)).then(
+        stats_overview_make_handler({ view }),
+      );
+    });
+  };
+
+  if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+    module.exports.stats_overview = stats_overview;
+    module.exports.stats_overview_make_handler = stats_overview_make_handler;
+  } else {
+    jQuery(stats_overview);
+  }
+})(jQuery, window);
