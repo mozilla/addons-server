@@ -279,6 +279,7 @@ SECRET_KEY = env(
 
 # Templates configuration.
 # List of path patterns for which we should be using Django Template Language.
+# If you add things here, don't forget to also change PUENTE config below.
 JINJA_EXCLUDE_TEMPLATE_PATHS = (
     # All emails should be processed with Django for consistency.
     r'^.*\/emails\/',
@@ -286,6 +287,9 @@ JINJA_EXCLUDE_TEMPLATE_PATHS = (
     # ^admin\/ covers most django admin templates, since their path should
     # follow /admin/<app>/<model>/*
     r'^admin\/',
+
+    # This is a django form widget template.
+    r'^devhub/forms/widgets/compat_app_input_option.html',
 
     # Third-party apps + django.
     r'debug_toolbar',
@@ -551,6 +555,11 @@ PUENTE = {
             ),
             (
                 '**/templates/admin/**.html',
+                'django_babel.extract.extract_django'
+            ),
+            (
+                '**/templates/devhub/forms/widgets/'
+                'compat_app_input_option.html',
                 'django_babel.extract.extract_django'
             ),
 
