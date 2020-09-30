@@ -1,4 +1,5 @@
-from django.conf.urls import include, url
+from django.conf.urls import include
+from django.urls import re_path
 
 from olympia.amo.views import frontend_view
 from olympia.stats.urls import stats_patterns
@@ -11,23 +12,23 @@ ADDON_ID = r"""(?P<addon_id>[^/<>"']+)"""
 
 # These will all start with /addon/<addon_id>/
 detail_patterns = [
-    url(r'^$', frontend_view, name='addons.detail'),
-    url(r'^license/(?P<version>[^/]+)?', frontend_view, name='addons.license'),
+    re_path(r'^$', frontend_view, name='addons.detail'),
+    re_path(r'^license/(?P<version>[^/]+)?', frontend_view, name='addons.license'),
 
-    url(r'^reviews/', include('olympia.ratings.urls')),
-    url(r'^statistics/', include(stats_patterns)),
-    url(r'^versions/', include('olympia.versions.urls')),
+    re_path(r'^reviews/', include('olympia.ratings.urls')),
+    re_path(r'^statistics/', include(stats_patterns)),
+    re_path(r'^versions/', include('olympia.versions.urls')),
 ]
 
 
 urlpatterns = [
     # URLs for a single add-on.
-    url(r'^addon/%s/' % ADDON_ID, include(detail_patterns)),
+    re_path(r'^addon/%s/' % ADDON_ID, include(detail_patterns)),
 
-    url(r'^find-replacement/$', views.find_replacement_addon,
+    re_path(r'^find-replacement/$', views.find_replacement_addon,
         name='addons.find_replacement'),
 
     # frontend block view
-    url(r'^blocked-addon/%s/' % ADDON_ID, frontend_view,
+    re_path(r'^blocked-addon/%s/' % ADDON_ID, frontend_view,
         name='blocklist.block'),
 ]

@@ -1,4 +1,5 @@
-from django.conf.urls import include, url
+from django.conf.urls import include
+from django.urls import re_path
 
 from rest_framework.routers import SimpleRouter
 from .views import AddonAbuseViewSet, UserAbuseViewSet
@@ -11,5 +12,5 @@ reporting.register(r'user', UserAbuseViewSet,
                    basename='abusereportuser')
 
 urlpatterns = [
-    url(r'report/', include(reporting.urls)),
+    re_path(r'report/', include(reporting.urls)),
 ]

@@ -1,4 +1,5 @@
-from django.conf.urls import include, url
+from django.conf.urls import include
+from django.urls import re_path
 
 from rest_framework.routers import SimpleRouter
 
@@ -12,6 +13,6 @@ hero.register('secondary', views.SecondaryHeroShelfViewSet,
               basename='hero-secondary')
 
 urlpatterns = [
-    url(r'', include(hero.urls)),
-    url(r'', views.HeroShelvesView.as_view(), name='hero-shelves')
+    re_path(r'', include(hero.urls)),
+    re_path(r'', views.HeroShelvesView.as_view(), name='hero-shelves')
 ]

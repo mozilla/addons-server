@@ -1,4 +1,5 @@
-from django.conf.urls import include, url
+from django.conf.urls import include
+from django.urls import re_path
 
 from rest_framework.routers import SimpleRouter
 from rest_framework_nested.routers import NestedSimpleRouter
@@ -22,26 +23,26 @@ sub_versions.register(r'reviewnotes', VersionReviewNotesViewSet,
                       basename='version-reviewnotes')
 
 urls = [
-    url(r'', include(addons.urls)),
-    url(r'', include(sub_addons.urls)),
-    url(r'', include(sub_versions.urls)),
-    url(r'^autocomplete/$', AddonAutoCompleteSearchView.as_view(),
+    re_path(r'', include(addons.urls)),
+    re_path(r'', include(sub_addons.urls)),
+    re_path(r'', include(sub_versions.urls)),
+    re_path(r'^autocomplete/$', AddonAutoCompleteSearchView.as_view(),
         name='addon-autocomplete'),
-    url(r'^search/$', AddonSearchView.as_view(), name='addon-search'),
-    url(r'^categories/$', StaticCategoryView.as_view(), name='category-list'),
-    url(r'^language-tools/$', LanguageToolsView.as_view(),
+    re_path(r'^search/$', AddonSearchView.as_view(), name='addon-search'),
+    re_path(r'^categories/$', StaticCategoryView.as_view(), name='category-list'),
+    re_path(r'^language-tools/$', LanguageToolsView.as_view(),
         name='addon-language-tools'),
-    url(r'^replacement-addon/$', ReplacementAddonView.as_view(),
+    re_path(r'^replacement-addon/$', ReplacementAddonView.as_view(),
         name='addon-replacement-addon'),
 
-    url(r'^recommendations/$', AddonRecommendationView.as_view(),
+    re_path(r'^recommendations/$', AddonRecommendationView.as_view(),
         name='addon-recommendations'),
 ]
 
 addons_v3 = urls + [
-    url(r'^compat-override/$', CompatOverrideView.as_view(),
+    re_path(r'^compat-override/$', CompatOverrideView.as_view(),
         name='addon-compat-override'),
-    url(r'^featured/$', AddonFeaturedView.as_view(), name='addon-featured'),
+    re_path(r'^featured/$', AddonFeaturedView.as_view(), name='addon-featured'),
 ]
 
 addons_v4 = urls
