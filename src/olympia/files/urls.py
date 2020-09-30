@@ -6,5 +6,5 @@ from olympia.files import views
 # `src/olympia/urls.py`:
 upload_patterns = [
     re_path(r'^file/(?P<uuid>[0-9a-f]{32})/', views.serve_file_upload,
-        name='files.serve_file_upload'),
+            name='files.serve_file_upload'),
 ]

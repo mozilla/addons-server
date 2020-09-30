@@ -8,7 +8,6 @@ from olympia.bandwagon.views import CollectionAddonViewSet, CollectionViewSet
 
 from . import views
 
-
 accounts = SimpleRouter()
 accounts.register(r'account', views.AccountViewSet, basename='account')
 
@@ -26,16 +25,16 @@ notifications.register(r'notifications', views.AccountNotificationViewSet,
 
 accounts_v4 = [
     re_path(r'^login/start/$',
-        views.LoginStartView.as_view(),
-        name='accounts.login_start'),
+            views.LoginStartView.as_view(),
+            name='accounts.login_start'),
     re_path(r'^session/$', views.SessionView.as_view(),
-        name='accounts.session'),
+            name='accounts.session'),
     re_path(r'', include(accounts.urls)),
     re_path(r'^profile/$', views.ProfileView.as_view(), name='account-profile'),
     re_path(r'^super-create/$', views.AccountSuperCreate.as_view(),
-        name='accounts.super-create'),
+            name='accounts.super-create'),
     re_path(r'^unsubscribe/$', views.AccountNotificationUnsubscribeView.as_view(),
-        name='account-unsubscribe'),
+            name='account-unsubscribe'),
 
     re_path(r'', include(collections.urls)),
     re_path(r'', include(sub_collections.urls)),
@@ -44,11 +43,11 @@ accounts_v4 = [
 
 accounts_v3 = accounts_v4 + [
     re_path(r'^authenticate/$', views.AuthenticateView.as_view(),
-        name='accounts.authenticate'),
+            name='accounts.authenticate'),
 ]
 
 auth_callback_patterns = [
     re_path(r'^authenticate-callback/$', views.AuthenticateView.as_view(),
-        name='accounts.authenticate'),
+            name='accounts.authenticate'),
 
 ]

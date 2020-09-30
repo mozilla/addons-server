@@ -7,7 +7,6 @@ from olympia.amo.urls import api_patterns as amo_api_patterns
 from olympia.addons.api_urls import addons_v3, addons_v4
 from olympia.ratings.api_urls import ratings_v3, ratings_v4
 
-
 v3_api_urls = [
     re_path(r'^abuse/', include('olympia.abuse.urls')),
     re_path(r'^accounts/', include(accounts_v3)),

@@ -5,7 +5,6 @@ from rest_framework.routers import SimpleRouter
 
 from . import views
 
-
 hero = SimpleRouter()
 hero.register('primary', views.PrimaryHeroShelfViewSet,
               basename='hero-primary')

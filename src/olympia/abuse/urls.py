@@ -4,7 +4,6 @@ from django.urls import re_path
 from rest_framework.routers import SimpleRouter
 from .views import AddonAbuseViewSet, UserAbuseViewSet
 
-
 reporting = SimpleRouter()
 reporting.register(r'addon', AddonAbuseViewSet,
                    basename='abusereportaddon')

@@ -5,10 +5,9 @@ from django.views.decorators.cache import never_cache
 from . import views
 from .utils import render_xml
 
-
 services_patterns = [
     re_path(r'^monitor\.json$', never_cache(views.monitor),
-        name='amo.monitor'),
+            name='amo.monitor'),
     re_path(r'^loaded$', never_cache(views.loaded), name='amo.loaded'),
     re_path(r'^403', views.handler403),
     re_path(r'^404', views.handler404),
@@ -17,7 +16,7 @@ services_patterns = [
 
 api_patterns = [
     re_path(r'^site/$', views.SiteStatusView.as_view(),
-        name='amo-site-status'),
+            name='amo-site-status'),
 ]
 
 urlpatterns = [
@@ -26,6 +25,6 @@ urlpatterns = [
     re_path(r'^services/', include(services_patterns)),
     re_path(r'^__version__$', views.version, name='version.json'),
     re_path(r'^opensearch\.xml$', render_xml, {'template': 'amo/opensearch.xml'},
-        name='amo.opensearch'),
+            name='amo.opensearch'),
 
 ]

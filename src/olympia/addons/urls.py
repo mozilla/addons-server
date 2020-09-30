@@ -6,9 +6,7 @@ from olympia.stats.urls import stats_patterns
 
 from . import views
 
-
 ADDON_ID = r"""(?P<addon_id>[^/<>"']+)"""
-
 
 # These will all start with /addon/<addon_id>/
 detail_patterns = [
@@ -20,15 +18,14 @@ detail_patterns = [
     re_path(r'^versions/', include('olympia.versions.urls')),
 ]
 
-
 urlpatterns = [
     # URLs for a single add-on.
     re_path(r'^addon/%s/' % ADDON_ID, include(detail_patterns)),
 
     re_path(r'^find-replacement/$', views.find_replacement_addon,
-        name='addons.find_replacement'),
+            name='addons.find_replacement'),
 
     # frontend block view
     re_path(r'^blocked-addon/%s/' % ADDON_ID, frontend_view,
-        name='blocklist.block'),
+            name='blocklist.block'),
 ]

@@ -11,7 +11,6 @@ from .views import (
     AddonSearchView, AddonVersionViewSet, AddonViewSet, CompatOverrideView,
     LanguageToolsView, ReplacementAddonView, StaticCategoryView)
 
-
 addons = SimpleRouter()
 addons.register(r'addon', AddonViewSet, basename='addon')
 
@@ -27,21 +26,21 @@ urls = [
     re_path(r'', include(sub_addons.urls)),
     re_path(r'', include(sub_versions.urls)),
     re_path(r'^autocomplete/$', AddonAutoCompleteSearchView.as_view(),
-        name='addon-autocomplete'),
+            name='addon-autocomplete'),
     re_path(r'^search/$', AddonSearchView.as_view(), name='addon-search'),
     re_path(r'^categories/$', StaticCategoryView.as_view(), name='category-list'),
     re_path(r'^language-tools/$', LanguageToolsView.as_view(),
-        name='addon-language-tools'),
+            name='addon-language-tools'),
     re_path(r'^replacement-addon/$', ReplacementAddonView.as_view(),
-        name='addon-replacement-addon'),
+            name='addon-replacement-addon'),
 
     re_path(r'^recommendations/$', AddonRecommendationView.as_view(),
-        name='addon-recommendations'),
+            name='addon-recommendations'),
 ]
 
 addons_v3 = urls + [
     re_path(r'^compat-override/$', CompatOverrideView.as_view(),
-        name='addon-compat-override'),
+            name='addon-compat-override'),
     re_path(r'^featured/$', AddonFeaturedView.as_view(), name='addon-featured'),
 ]
 

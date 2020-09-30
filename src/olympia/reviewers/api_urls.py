@@ -9,7 +9,6 @@ from .views import (
     ReviewAddonVersionCompareViewSet, CannedResponseViewSet,
     ReviewAddonVersionDraftCommentViewSet)
 
-
 addons = SimpleRouter()
 addons.register(r'addon', AddonReviewerViewSet, basename='reviewers-addon')
 
@@ -33,5 +32,5 @@ urlpatterns = [
     re_path(r'', include(compare.urls)),
     re_path(r'', include(draft_comments.urls)),
     re_path(r'^canned-responses/$', CannedResponseViewSet.as_view(),
-        name='reviewers-canned-response-list'),
+            name='reviewers-canned-response-list'),
 ]
