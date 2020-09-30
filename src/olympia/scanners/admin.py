@@ -734,8 +734,8 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
         'definition',
     )
     readonly_fields = (
-        'completion_rate', 'created', 'completed', 'modified',
-        'matched_results_link', 'state_with_actions',
+        'completion_rate', 'created', 'modified', 'matched_results_link',
+        'state_with_actions',
     )
 
     def change_view(self, request, *args, **kwargs):
