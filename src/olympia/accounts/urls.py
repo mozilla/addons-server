@@ -4,12 +4,14 @@ from django.urls import re_path
 from rest_framework.routers import SimpleRouter
 from rest_framework_nested.routers import NestedSimpleRouter
 
-from olympia.bandwagon.views import CollectionAddonViewSet, CollectionViewSet
+from olympia.bandwagon.views import CollectionAddonViewSet, \
+    CollectionViewSet
 
 from . import views
 
 accounts = SimpleRouter()
-accounts.register(r'account', views.AccountViewSet, basename='account')
+accounts.register(r'account', views.AccountViewSet,
+                  basename='account')
 
 collections = NestedSimpleRouter(accounts, r'account', lookup='user')
 collections.register(r'collections', CollectionViewSet,
@@ -19,8 +21,10 @@ sub_collections = NestedSimpleRouter(collections, r'collections',
 sub_collections.register('addons', CollectionAddonViewSet,
                          basename='collection-addon')
 
-notifications = NestedSimpleRouter(accounts, r'account', lookup='user')
-notifications.register(r'notifications', views.AccountNotificationViewSet,
+notifications = NestedSimpleRouter(accounts, r'account',
+                                   lookup='user')
+notifications.register(r'notifications',
+                       views.AccountNotificationViewSet,
                        basename='notification')
 
 accounts_v4 = [
@@ -30,10 +34,12 @@ accounts_v4 = [
     re_path(r'^session/$', views.SessionView.as_view(),
             name='accounts.session'),
     re_path(r'', include(accounts.urls)),
-    re_path(r'^profile/$', views.ProfileView.as_view(), name='account-profile'),
+    re_path(r'^profile/$', views.ProfileView.as_view(),
+            name='account-profile'),
     re_path(r'^super-create/$', views.AccountSuperCreate.as_view(),
             name='accounts.super-create'),
-    re_path(r'^unsubscribe/$', views.AccountNotificationUnsubscribeView.as_view(),
+    re_path(r'^unsubscribe/$',
+            views.AccountNotificationUnsubscribeView.as_view(),
             name='account-unsubscribe'),
 
     re_path(r'', include(collections.urls)),
@@ -47,7 +53,8 @@ accounts_v3 = accounts_v4 + [
 ]
 
 auth_callback_patterns = [
-    re_path(r'^authenticate-callback/$', views.AuthenticateView.as_view(),
+    re_path(r'^authenticate-callback/$',
+            views.AuthenticateView.as_view(),
             name='accounts.authenticate'),
 
 ]

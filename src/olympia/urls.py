@@ -12,13 +12,11 @@ from olympia.files.urls import upload_patterns
 from olympia.versions import views as version_views
 from olympia.versions.urls import download_patterns
 
-
 admin.autodiscover()
 
 handler403 = 'olympia.amo.views.handler403'
 handler404 = 'olympia.amo.views.handler404'
 handler500 = 'olympia.amo.views.handler500'
-
 
 urlpatterns = [
     # Legacy Discovery pane is first for undetectable efficiency wins.
@@ -58,7 +56,8 @@ urlpatterns = [
 
     # Redirect everything under editors/ (old reviewer urls) to reviewers/.
     re_path(r'^editors/(.*)',
-        lambda r, path: redirect('/reviewers/%s' % path, permanent=True)),
+            lambda r, path: redirect('/reviewers/%s' % path,
+                                     permanent=True)),
 
     # AMO admin (not django admin).
     re_path(r'^admin/', include('olympia.zadmin.urls')),
@@ -67,7 +66,8 @@ urlpatterns = [
     re_path(r'', include('olympia.pages.urls')),
 
     # App versions.
-    re_path(r'pages/appversions/', include('olympia.applications.urls')),
+    re_path(r'pages/appversions/',
+            include('olympia.applications.urls')),
 
     # Services
     re_path(r'', include('olympia.amo.urls')),
@@ -79,28 +79,33 @@ urlpatterns = [
     re_path(r'^api/', include('olympia.api.urls')),
 
     # Redirect for all global stats URLs.
-    re_path(r'^statistics/', lambda r: redirect('/'), name='statistics.dashboard'),
+    re_path(r'^statistics/', lambda r: redirect('/'),
+            name='statistics.dashboard'),
 
     # Redirect patterns.
     re_path(r'^bookmarks/?$',
-        lambda r: redirect('browse.extensions', 'bookmarks', permanent=True)),
+            lambda r: redirect('browse.extensions', 'bookmarks',
+                               permanent=True)),
 
     re_path(r'^pages/about$',
-        lambda r: redirect('pages.about', permanent=True)),
+            lambda r: redirect('pages.about', permanent=True)),
 
     re_path(r'^addons/versions/(\d+)/?$',
-        lambda r, id: redirect('addons.versions', id, permanent=True)),
+            lambda r, id: redirect('addons.versions', id,
+                                   permanent=True)),
 
     # Legacy redirect. Requires a view to get extra data not provided in URL.
     re_path(r'^versions/updateInfo/(?P<version_id>\d+)',
-        version_views.update_info_redirect),
+            version_views.update_info_redirect),
 
     re_path(r'^search-engines.*$',
-        lambda r: redirect(urlparams(reverse('search.search'), atype=4),
-                           permanent=True)),
+            lambda r: redirect(
+                urlparams(reverse('search.search'), atype=4),
+                permanent=True)),
 
     re_path(r'^addons/contribute/(\d+)/?$',
-        lambda r, id: redirect('addons.contribute', id, permanent=True)),
+            lambda r, id: redirect('addons.contribute', id,
+                                   permanent=True)),
 ]
 
 if settings.DEBUG:
@@ -111,7 +116,7 @@ if settings.DEBUG:
 
     urlpatterns.extend([
         re_path(r'^%s/(?P<path>.*)$' % media_url,
-            serve_static,
-            {'document_root': settings.MEDIA_ROOT}),
+                serve_static,
+                {'document_root': settings.MEDIA_ROOT}),
         re_path(r'__debug__/', include(debug_toolbar.urls)),
     ])
