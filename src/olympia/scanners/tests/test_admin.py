@@ -1057,8 +1057,18 @@ class TestScannerQueryRuleAdmin(AMOPaths, TestCase):
         assert button.attrib['formaction'] == url
 
     def test_no_button_for_completed_rule_query(self):
-        ScannerQueryRule.objects.create(
-            name='bar', scanner=YARA, state=COMPLETED)
+        rule = ScannerQueryRule.objects.create(
+            name='bar', scanner=YARA, state=COMPLETED,
+            completed=datetime(2020, 9, 29, 14, 0, 1))
+        response = self.client.get(self.list_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        field = doc('.field-state_with_actions')
+        assert field
+        assert field.text() == 'Completed (Sept. 29, 2020, 2 p.m.)'
+        assert not field.find('button')
+
+        rule.update(completed=None)  # If somehow None (unknown finished time)
         response = self.client.get(self.list_url)
         assert response.status_code == 200
         doc = pq(response.content)
