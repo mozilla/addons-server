@@ -56,8 +56,7 @@ urlpatterns = [
 
     # Redirect everything under editors/ (old reviewer urls) to reviewers/.
     re_path(r'^editors/(.*)',
-            lambda r, path: redirect('/reviewers/%s' % path,
-                                     permanent=True)),
+            lambda r, path: redirect('/reviewers/%s' % path, permanent=True)),
 
     # AMO admin (not django admin).
     re_path(r'^admin/', include('olympia.zadmin.urls')),
@@ -66,8 +65,7 @@ urlpatterns = [
     re_path(r'', include('olympia.pages.urls')),
 
     # App versions.
-    re_path(r'pages/appversions/',
-            include('olympia.applications.urls')),
+    re_path(r'pages/appversions/', include('olympia.applications.urls')),
 
     # Services
     re_path(r'', include('olympia.amo.urls')),
@@ -91,21 +89,18 @@ urlpatterns = [
             lambda r: redirect('pages.about', permanent=True)),
 
     re_path(r'^addons/versions/(\d+)/?$',
-            lambda r, id: redirect('addons.versions', id,
-                                   permanent=True)),
+            lambda r, id: redirect('addons.versions', id, permanent=True)),
 
     # Legacy redirect. Requires a view to get extra data not provided in URL.
     re_path(r'^versions/updateInfo/(?P<version_id>\d+)',
             version_views.update_info_redirect),
 
     re_path(r'^search-engines.*$',
-            lambda r: redirect(
-                urlparams(reverse('search.search'), atype=4),
-                permanent=True)),
+            lambda r: redirect(urlparams(reverse('search.search'), atype=4),
+                               permanent=True)),
 
     re_path(r'^addons/contribute/(\d+)/?$',
-            lambda r, id: redirect('addons.contribute', id,
-                                   permanent=True)),
+            lambda r, id: redirect('addons.contribute', id, permanent=True)),
 ]
 
 if settings.DEBUG:
