@@ -1042,10 +1042,10 @@ class ReviewBase(object):
                     'auto_approval_disabled_until_next_approval': True
                 }
             )
-            # The reviewer should be automatically subscribed to any new listed
-            # versions posted.
+            # The reviewer should be automatically subscribed to any new
+            # versions posted to the same channel.
             ReviewerSubscription.objects.get_or_create(
-                user=self.user, addon=self.addon)
+                user=self.user, addon=self.addon, channel=version.channel)
         else:
             # An immediate one might require the add-on status to change.
             self.addon.update_status()

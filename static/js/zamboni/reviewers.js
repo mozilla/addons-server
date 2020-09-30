@@ -219,9 +219,26 @@ function initExtraReviewActions() {
       var checked = !$input.prop('checked'); // It's already changed.
       var apiUrl;
       if (checked) {
-        apiUrl = $input.data('api-url-unsubscribe');
+        apiUrl = $input.data('api-url-unsubscribe-listed');
       } else {
-        apiUrl = $input.data('api-url-subscribe');
+        apiUrl = $input.data('api-url-subscribe-listed');
+      }
+      callReviewersAPI(apiUrl, 'post', null, function () {
+        $input.prop('disabled', false);
+        $input.prop('checked', !checked);
+      });
+    }),
+  );
+
+  $('#notify_new_unlisted_versions').click(
+    _pd(function () {
+      var $input = $(this).prop('disabled', true); // Prevent double-send.
+      var checked = !$input.prop('checked'); // It's already changed.
+      var apiUrl;
+      if (checked) {
+        apiUrl = $input.data('api-url-unsubscribe-unlisted');
+      } else {
+        apiUrl = $input.data('api-url-subscribe-unlisted');
       }
       callReviewersAPI(apiUrl, 'post', null, function () {
         $input.prop('disabled', false);

@@ -383,6 +383,7 @@ class PerformanceGraph(RawSQLModel):
 class ReviewerSubscription(ModelBase):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
+    channel = models.IntegerField(choices=amo.RELEASE_CHANNEL_CHOICES)
 
     class Meta:
         db_table = 'editor_subscriptions'
@@ -390,14 +391,24 @@ class ReviewerSubscription(ModelBase):
     def send_notification(self, version):
         user_log.info('Sending addon update notice to %s for %s' %
                       (self.user.email, self.addon.pk))
+
+        if version.channel == amo.RELEASE_CHANNEL_LISTED:
+            listing_url = absolutify(reverse('addons.detail',
+                                             args=[self.addon.pk],
+                                             add_prefix=False))
+        else:
+            # If the submission went to the unlisted channel,
+            # do not link to the listing.
+            listing_url = None
         context = {
             'name': self.addon.name,
-            'url': absolutify(reverse('addons.detail', args=[self.addon.pk],
-                                      add_prefix=False)),
+            'url': listing_url,
             'number': version.version,
-            'review': absolutify(reverse('reviewers.review',
-                                         args=[self.addon.pk],
-                                         add_prefix=False)),
+            'review': absolutify(reverse(
+                'reviewers.review',
+                kwargs={'addon_id': self.addon.pk,
+                        'channel': amo.CHANNEL_CHOICES_API[version.channel]},
+                add_prefix=False)),
             'SITE_URL': settings.SITE_URL,
         }
         # Not being localised because we don't know the reviewer's locale.
@@ -410,9 +421,6 @@ class ReviewerSubscription(ModelBase):
 
 
 def send_notifications(sender=None, instance=None, signal=None, **kw):
-    if instance.channel != amo.RELEASE_CHANNEL_LISTED:
-        return
-
     subscribers = instance.addon.reviewersubscription_set.all()
 
     if not subscribers:
@@ -420,10 +428,18 @@ def send_notifications(sender=None, instance=None, signal=None, **kw):
 
     for subscriber in subscribers:
         user = subscriber.user
-        is_reviewer = (
-            user and not user.deleted and user.email and
-            acl.is_user_any_kind_of_reviewer(user, allow_viewers=True))
-        if is_reviewer:
+        is_active_user = user and not user.deleted and user.email
+        is_reviewer_and_listed_submission = (
+            acl.is_user_any_kind_of_reviewer(user, allow_viewers=True) and
+            instance.channel == amo.RELEASE_CHANNEL_LISTED)
+        is_unlisted_reviewer_and_unlisted_submission = (
+            acl.action_allowed_user(user,
+                                    amo.permissions.ADDONS_REVIEW_UNLISTED) and
+            instance.channel == amo.RELEASE_CHANNEL_UNLISTED)
+        if is_active_user and (
+            is_reviewer_and_listed_submission or
+            is_unlisted_reviewer_and_unlisted_submission
+        ):
             subscriber.send_notification(instance)
 
 
