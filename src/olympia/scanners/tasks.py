@@ -40,6 +40,17 @@ from .models import (
 log = olympia.core.logger.getLogger('z.scanners.task')
 
 
+def make_adapter_with_retry():
+    adapter = HTTPAdapter(
+        max_retries=Retry(
+            total=1,
+            method_whitelist=["POST"],
+            status_forcelist=[500, 502, 503, 504],
+        )
+    )
+    return adapter
+
+
 def run_scanner(results, upload_pk, scanner, api_url, api_key):
     """
     Run a scanner on a FileUpload via RPC and store the results.
@@ -101,11 +112,16 @@ def _run_scanner_for_url(scanner_result, url, scanner, api_url, api_key):
     to the given scanner_result. The caller is responsible for saving the
     scanner_result to the database.
     """
-    json_payload = {
-        'api_key': api_key,
-        'download_url': url,
-    }
-    response = requests.post(url=api_url,
+    with requests.Session() as http:
+        adapter = make_adapter_with_retry()
+        http.mount("http://", adapter)
+        http.mount("https://", adapter)
+
+        json_payload = {
+            'api_key': api_key,
+            'download_url': url,
+        }
+        response = http.post(url=api_url,
                              json=json_payload,
                              timeout=settings.SCANNER_TIMEOUT)
 
@@ -446,13 +462,7 @@ def call_mad_api(all_results, upload_pk):
 
         with statsd.timer('devhub.mad'):
             with requests.Session() as http:
-                adapter = HTTPAdapter(
-                    max_retries=Retry(
-                        total=1,
-                        method_whitelist=['POST'],
-                        status_forcelist=[500, 502, 503, 504],
-                    )
-                )
+                adapter = make_adapter_with_retry()
                 http.mount("http://", adapter)
                 http.mount("https://", adapter)
 
