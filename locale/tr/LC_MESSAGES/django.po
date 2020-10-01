@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-10-01 21:20+0000\n"
+"PO-Revision-Date: 2020-10-01 21:28+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -4962,24 +4962,24 @@ msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} Android video yard�
 
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
-msgstr ""
+msgstr "Bazı siteler Firefox'un Android sürümünde video oynatmakta zorluk çekiyor. Bu eklenti bir düzeltme sağlar."
 
 #. editorial content for the discovery pane.
 msgid "Select, sort, and run your downloads faster."
-msgstr ""
+msgstr "İndirmelerinizi daha hızlı seçin, sıralayın ve çalıştırın."
 
 #. editorial content for the discovery pane.
 msgid "Get weather updates right in the browser."
-msgstr ""
+msgstr "Hava durumu güncellemelerini doğrudan tarayıcıdan alın."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr ""
+msgstr "Tek tıklamayla çerezleri, gezinti geçmişini ve önbelleğe alınmış dosyaları silin."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Remove tracking elements from web links."
-msgstr ""
+msgstr "Web bağlantılarındaki takip öğelerini kaldırın."
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
@@ -4998,7 +4998,7 @@ msgstr "Sekme grupları oluşturun ve özelleştirin."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
-msgstr ""
+msgstr "Görseller ve stil dahil olmak üzere tüm web sayfasını tek bir HTML dosyası olarak kaydedin."
 
 #. editorial content for the discovery pane.
 msgid "Automatically replace derogatory words across the web."
@@ -5006,7 +5006,7 @@ msgstr "Web'deki aşağılayıcı kelimeleri otomatik olarak değiştirin."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr ""
+msgstr "Video, açılır pencereler, banner'lar ve daha fazlası dahil tüm reklamları engelleyin."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5016,7 +5016,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Skip over sponsored portions of YouTube videos."
-msgstr ""
+msgstr "YouTube videolarının sponsorlu kısımlarını atlayın."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5030,7 +5030,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
-msgstr ""
+msgstr "Bazı web siteleri Android'de video oynatmakta zorluk çekiyor. İşte bir düzeltme."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
@@ -5042,7 +5042,7 @@ msgstr "Eklentiler, Firefox'ta çalışan uygulamalardır."
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
-msgstr ""
+msgstr "Daha hızlı, daha güvenli ve daha eğlenceli gezintiler için Firefox’a yeni özellikler kazandırırlar."
 
 #. editorial content for the secondary hero shelves.
 # 95%
@@ -5085,7 +5085,7 @@ msgstr ""
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
-msgstr ""
+msgstr "Yüklenen dosya ayrıştırılamadı, <%s> öğresi boş veya eksik"
 
 msgid "OpenSearch: XML Security error."
 msgstr "OpenSearch: XML Güvenlik hatası."
@@ -5100,7 +5100,7 @@ msgid "Unsupported archive type."
 msgstr "Desteklenmeyen arşiv türü."
 
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
-msgstr ""
+msgstr "Arşivde geçersiz dosya adı. Lütfen tüm dosya adlarının utf-8 veya latin1 olarak kodlanmış olduğundan emin olun."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -5449,7 +5449,7 @@ msgid "Is in a promoted addon group that requires pre-review"
 msgstr ""
 
 msgid "Delayed because it's the first listed version"
-msgstr ""
+msgstr "Listelenen ilk sürüm olduğu için ertelendi"
 
 msgid "Version string and guid match a blocklist Block"
 msgstr ""
@@ -5583,7 +5583,7 @@ msgid "Comment"
 msgstr "Yorum"
 
 msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr ""
+msgstr "Bu sürüm hakkında yorum yapın. Geliştirici bunu göremez."
 
 msgid "Pre-Review Add-ons"
 msgstr ""
@@ -5637,7 +5637,7 @@ msgid "Theme Review Guide"
 msgstr "Tema İnceleme Rehberi"
 
 msgid "User Ratings Moderation"
-msgstr ""
+msgstr "Kullanıcı Puanları Denetimi"
 
 msgid "Ratings Awaiting Moderation ({0})"
 msgstr ""
@@ -5667,7 +5667,7 @@ msgid "An unknown error occurred"
 msgstr "Bilinmeyen bir hata oluştu"
 
 msgid "Self-reviews are not allowed."
-msgstr ""
+msgstr "Kendi kendine incelemeye izin verilmez."
 
 msgid "Review successfully processed."
 msgstr "İnceleme başarıyla işlendi."
@@ -5700,7 +5700,7 @@ msgid "Add-on ID"
 msgstr "Eklenti ID'si"
 
 msgid "Internal AMO ID"
-msgstr ""
+msgstr "Dahili AMO Kimliği"
 
 msgid "Support Website"
 msgstr "Destek web sitesi"
@@ -5795,7 +5795,7 @@ msgid "More details."
 msgstr "Daha fazla ayrıntı."
 
 msgid "No events found for this period."
-msgstr ""
+msgstr "Bu dönem için etkinlik bulunamadı."
 
 msgid "Log details"
 msgstr "Günlük detayları"
@@ -5835,7 +5835,7 @@ msgid "Your Reviews"
 msgstr "İncelemeleriniz"
 
 msgid "By {user_name}"
-msgstr ""
+msgstr "{user_name} tarafından"
 
 msgid "Total Reviews"
 msgstr "Toplam inceleme"
@@ -6001,7 +6001,7 @@ msgid "Block add-on"
 msgstr "Eklentiyi engelle"
 
 msgid "Update add-on block"
-msgstr ""
+msgstr "Eklenti engelini güncelle"
 
 msgid "Disable Listed Auto-Approval"
 msgstr "Listelenmiş otomatik onaylamayı devre dışı bırak"
@@ -6185,10 +6185,10 @@ msgid "Weight:"
 msgstr "Ağırlık:"
 
 msgid "Flagged by scanners"
-msgstr ""
+msgstr "Tarayıcılar tarafından işaretlendi"
 
 msgid "Flagged for human review"
-msgstr ""
+msgstr "Gerçek kişi tarafından incelenmek üzere işaretlendi"
 
 # 88%
 # 100%
@@ -6260,19 +6260,19 @@ msgid "file signature"
 msgstr "dosya imzası"
 
 msgid "This is the exact name of the rule used by a scanner."
-msgstr ""
+msgstr "Bu, bir tarayıcı tarafından kullanılan kuralın tam adıdır."
 
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr ""
+msgstr "İşaretlenmediğinde, tarayıcı sonuçları bu kurala bağlı olmayacak ve eylem yürütülmeyecektir."
 
 msgid "Yara rules should have a definition"
-msgstr ""
+msgstr "Yara kurallarının bir tanımı olmalı"
 
 msgid "The name of the rule in the definition should match the name of the scanner rule"
-msgstr ""
+msgstr "Tanımdaki kuralın adı, tarayıcı kuralının adıyla eşleşmelidir"
 
 msgid "Only one Yara rule is allowed in the definition"
-msgstr ""
+msgstr "Tanımda yalnızca bir Yara kuralına izin verilir"
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
@@ -6327,11 +6327,11 @@ msgid "You do not own this addon."
 msgstr "Bu eklenti size ait değil."
 
 msgid "Missing \"upload\" key in multipart file data."
-msgstr ""
+msgstr "Çok parçalı dosya verilerinde \"yükleme\" anahtarı eksik."
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
-msgstr ""
+msgstr "%s durumundaki bir eklentiye sürüm ekleyemezsiniz."
 
 msgid "Version does not match the manifest file."
 msgstr "Sürüm, manifest dosyasıyla eşleşmiyor."
@@ -6368,7 +6368,7 @@ msgid "by Medium"
 msgstr ""
 
 msgid "by Content"
-msgstr ""
+msgstr "İçeriğe göre"
 
 msgid "by Campaign"
 msgstr ""
@@ -6391,7 +6391,7 @@ msgid "by Platform"
 msgstr "Platforma göre"
 
 msgid "by Country"
-msgstr ""
+msgstr "Ülkeye göre"
 
 msgid "close"
 msgstr "kapat"
@@ -6471,7 +6471,7 @@ msgid "No data available."
 msgstr "Veri yok."
 
 msgid "This dashboard is <b>private</b>."
-msgstr ""
+msgstr "Bu pano <b>gizli</b>."
 
 msgid "Application usage by Date"
 msgstr "Tarihe göre uygulama kullanımı"
@@ -6669,7 +6669,7 @@ msgstr "Yeni diller"
 
 #. {0} is a language name, like 'French'
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
-msgstr ""
+msgstr "<b>{0}</b> dilinde kaydedilmemiş değişiklikleriniz var. Dili değiştirmeden önce değişikliklerinizi kaydetmek ister misiniz?"
 
 msgid "Discard Changes"
 msgstr "Değişiklikleri iptal et"
@@ -6700,7 +6700,7 @@ msgstr "Seçilen kullanıcıları engelle"
 
 #, python-format
 msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr ""
+msgstr "\"%(users)s\" kullanıcıları oturumlarını sıfırladılar."
 
 # 78%
 # 100%
@@ -6709,7 +6709,7 @@ msgstr "Oturumu sıfırla"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
-msgstr ""
+msgstr "\"%(users)s\" kullanıcıları API anahtarlarını sıfırladılar."
 
 msgid "Reset API Key"
 msgstr "API anahtarını sıfırla"
