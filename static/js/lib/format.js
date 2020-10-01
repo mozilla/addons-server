@@ -20,6 +20,7 @@ var format = (function () {
     });
   };
 })();
+
 function template(s) {
   if (!s) {
     throw 'Template string is empty!';
@@ -27,4 +28,9 @@ function template(s) {
   return function (args) {
     return format(s, args);
   };
+}
+
+if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+  module.exports.format = format;
+  module.exports.template = template;
 }
