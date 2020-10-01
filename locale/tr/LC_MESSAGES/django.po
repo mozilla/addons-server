@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-10-01 21:13+0000\n"
+"PO-Revision-Date: 2020-10-01 21:20+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -3502,7 +3502,7 @@ msgstr[1] "{0} uyarı"
 
 #. editorial content for the discovery pane.
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} sinsi takipçileri durdurun"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3534,7 +3534,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Perform reverse image searches from an array of engines."
-msgstr ""
+msgstr "Çeşitli arama motorlarında ters görsel aramaları yapın."
 
 #. editorial content for the discovery pane.
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3543,7 +3543,7 @@ msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} reklam engelleme ve
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "Reklam engelleme ve gizlilik koruması. Basit bir kurulumla reklamları ve internette nasıl izlendiğinizi kontrol altına alın."
 
 #. editorial content for the discovery pane.
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3561,7 +3561,7 @@ msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} Facebook'un sizi iz
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
-msgstr ""
+msgstr "Facebook'un takibini durdurun. Facebook'un sizi web'de izlemesini önlemek için Facebook kimliğinizi ayrı bir \"kapsayıcıya\" ayırın."
 
 #. editorial content for the discovery pane.
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3799,7 +3799,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} görünmez takipçileri engelleyin"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3818,16 +3818,16 @@ msgstr "İz bırakmayın. Seçtiğiniz siteler için Firefox'un çerezler ve yer
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
-msgstr ""
+msgstr "Aynı şeyi tekrar tekrar yazmaya gerek yok. İstediğiniz zaman yapıştırmak için sık yazdığınız metinleri kaydedin."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} e-posta reklamlarını engelleyin"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Get more screen space by removing ads from your web-based inbox."
-msgstr ""
+msgstr "Web tabanlı e-posta kutunuzdaki reklamları kaldırarak daha fazla ekran alanı elde edin."
 
 #. editorial content for the discovery pane.
 msgid "Find your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3848,7 +3848,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Refresh tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} sekmelerinizi tazeleyin"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3865,12 +3865,12 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} takipçileri durdurun"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Gain an additional layer of tracking protection as you browse the web."
-msgstr ""
+msgstr "Web'de gezinirken ek bir izlenme koruması katmanına kavuşun."
 
 #. editorial content for the discovery pane.
 msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3883,7 +3883,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} YouTube deneyiminizi geliştirin"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3892,11 +3892,11 @@ msgstr "YouTube videolarını varsayılan olarak en yüksek kalitede oynatın, e
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} takipçileri takip edin"
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
-msgstr ""
+msgstr "Takipçileri zleyicileri takip edin. Sizi kimin izlediğine tek tıkla göz atın."
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3904,7 +3904,7 @@ msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} vekil sunucunuzu de
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server and surf the web through self-defined proxy settings."
-msgstr ""
+msgstr "Proxy sunucunuzu değiştirin ve kendi tanımladığınız proxy ayarlarıyla web'de gezinin."
 
 #. editorial content for the discovery pane.
 msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3916,12 +3916,12 @@ msgstr "Video hızını ve daha fazlasını ayarlayarak izleme deneyiminizi geli
 
 #. editorial content for the discovery pane.
 msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name} ile {end_sub_heading} güvenli bir şekilde gezinin"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
-msgstr ""
+msgstr "HTTPS'yi destekleyen sitelere şifrelenmiş güvenlik ekleyin. Güvenli bir şekilde gezinin."
 
 #. editorial content for the discovery pane.
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3986,7 +3986,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
-msgstr ""
+msgstr "Tüm açık sekmelerinizi kolayca yönetmek için onları listeye dönüştürün."
 
 #. editorial content for the discovery pane.
 msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3995,7 +3995,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
-msgstr ""
+msgstr "Etkili indirme yönetimi. Durum çubuğu, indirme geçmişi sayfası ve daha fazlasıyla indirmelerinizin durumunu kontrol edin."
 
 #. editorial content for the discovery pane.
 msgid "Capture web content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4096,7 +4096,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Right-click and drag links you want open in new tabs."
-msgstr ""
+msgstr "Yeni sekmede açmak istediğiniz bağlantıları sağ tıklayıp sürükleyin."
 
 #. editorial content for the discovery pane.
 msgid "Retrieve tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4560,7 +4560,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "For those moments when you need to fire lasers out of a cat."
-msgstr ""
+msgstr "Olur da bir kediden lazer ateşlemeniz gerekirse."
 
 #. editorial content for the discovery pane.
 msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4860,7 +4860,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} resimleri kolayca kaydedin"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4890,7 +4890,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} dikkat dağıtıcı web sitelerini engelleyin"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4916,7 +4916,7 @@ msgstr "Tarayıcınızın görünümünü değiştirin. Firefox'un istediğiniz 
 
 #. editorial content for the discovery pane.
 msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} not tutun"
 
 #. editorial content for the discovery pane.
 msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
@@ -4928,15 +4928,15 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
-msgstr ""
+msgstr "Google, Yahoo ve DuckDuckGo'da sesli aramayı etkinleştirmek için konuşma tanımayı kullanın."
 
 #. editorial content for the discovery pane.
 msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} ürün fiyatlarını izleyin"
 
 #. editorial content for the discovery pane.
 msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr ""
+msgstr "Ürünleri takip edin ve Amazon, Best Buy, eBay, Home Depot ve Walmart'ta ilgilendiğiniz ürünlerin fiyatları düşünce bildirim alın."
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4958,7 +4958,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} Android video yardımı"
 
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
