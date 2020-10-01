@@ -1306,6 +1306,17 @@ class ContributionsTestsMixin(object):
             'URL domain must be one of [%s], or a subdomain.' %
             ', '.join(amo.VALID_CONTRIBUTION_DOMAINS))
 
+    def test_contributions_url_not_valid_github_sponsors_path(self):
+        assert 'github.com' in amo.VALID_CONTRIBUTION_DOMAINS
+        data = self.get_dict(
+            default_locale='en-US', contributions='https://github.com/random/')
+        response = self.client.post(self.details_edit_url, data)
+        assert response.status_code == 200
+        self.assertFormError(
+            response, 'form', 'contributions',
+            'URL path for GitHub Sponsors must contain /sponsors/.'
+        )
+
     def test_contributions_url_valid_domain(self):
         assert 'paypal.me' in amo.VALID_CONTRIBUTION_DOMAINS
         data = self.get_dict(
@@ -1326,6 +1337,18 @@ class ContributionsTestsMixin(object):
         self.assertNoFormErrors(response)
         assert self.addon.reload().contributions == (
             'http://sub.paypal.me/random/?path')
+
+    def test_contributions_url_valid_github_sponsors_path(self):
+        assert 'github.com' in amo.VALID_CONTRIBUTION_DOMAINS
+        data = self.get_dict(
+            default_locale='en-US',
+            contributions='https://github.com/sponsors/random/'
+        )
+        response = self.client.post(self.details_edit_url, data)
+        assert response.status_code == 200
+        self.assertNoFormErrors(response)
+        assert self.addon.reload().contributions == (
+            'https://github.com/sponsors/random/')
 
 
 class BaseTestEditAdditionalDetails(BaseTestEdit):
