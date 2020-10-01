@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-10-01 20:59+0000\n"
+"PO-Revision-Date: 2020-10-01 21:13+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -3401,7 +3401,7 @@ msgid "Listing visibility"
 msgstr "Görünürlük"
 
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
-msgstr ""
+msgstr "{label_open}Görünür:{label_close} {site_url} üzerindeki herkese görünür, arama sonuçlarına ve ürün sayfalarına dahil edilir."
 
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
@@ -3556,7 +3556,7 @@ msgstr "Bir sürü açık sekmeniz mi var? Bunları bir kenar çubuğunda düzen
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} Facebook'un sizi izlemesini durdurun"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3596,7 +3596,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
-msgstr ""
+msgstr "Web'de ilginç bir resim gördünüz ve hakkında daha fazla bilgi edinmek mi istiyorsunuz? Bu görsel arama aracını deneyin."
 
 #. editorial content for the discovery pane.
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3609,7 +3609,7 @@ msgstr "Videoları kolayca indirin. YouTube, Facebook, Vimeo, Twitch, Dailymotio
 
 #. editorial content for the discovery pane.
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Emoji oyununuzu {start_sub_heading}{addon_name} ile{end_sub_heading} geliştirin"
 
 #. editorial content for the discovery pane.
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
@@ -3643,11 +3643,11 @@ msgstr "Sinema modu, reklam engelleme, otomatik oynatma kontrolü ve daha fazlas
 
 #. editorial content for the discovery pane.
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} görselleri kolayca bulun"
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr ""
+msgstr "İstediğiniz metni seçip hızlıca bir resim araması yapmak için sağ tıklayın."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3747,7 +3747,7 @@ msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} videoları optimize
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Darken the page around video players for a focused viewing experience."
-msgstr ""
+msgstr "Odaklanmış bir görünüm için video oynatıcıların etrafını karartın."
 
 #. editorial content for the discovery pane.
 msgid "Search in good conscience {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3756,7 +3756,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #, python-format
 msgid "Ecosia uses 80% of its search profits to fund tree-planting programs around the world. Put Ecosia right into Firefox search"
-msgstr ""
+msgstr "Ecosia, arama kârının %80'iyle dünya çapında ağaç dikme programlarına kaynak sağlıyor. Ecosia'yı Firefox aramasına yerleştirin"
 
 #. editorial content for the discovery pane.
 msgid "Find missing web content  {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3764,11 +3764,11 @@ msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading}  kayıp web içeri�
 
 #. editorial content for the discovery pane.
 msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
-msgstr ""
+msgstr "Aradığınız sayfaya ulaşılamıyor mu? Arşivlenmiş veya önbelleğe alınmış bir sürümünü arayın."
 
 #. editorial content for the discovery pane.
 msgid "Find missing web content {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} kayıp web içeriklerini bulun"
 
 #. editorial content for the discovery pane.
 msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3781,7 +3781,7 @@ msgstr "Bir resmin üzerine gelerek onu büyütün."
 
 #. editorial content for the discovery pane.
 msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} çerezleri yok edin"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
