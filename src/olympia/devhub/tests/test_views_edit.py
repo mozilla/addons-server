@@ -1341,11 +1341,15 @@ class ContributionsTestsMixin(object):
     def test_contributions_url_valid_github_sponsors_path(self):
         assert 'github.com' in amo.VALID_CONTRIBUTION_DOMAINS
         data = self.get_dict(
-            default_locale='en-US', contributions='https://github.com/sponsors/random/')
+            default_locale='en-US',
+            contributions='https://github.com/sponsors/random/'
+        )
         response = self.client.post(self.details_edit_url, data)
         assert response.status_code == 200
         self.assertNoFormErrors(response)
-        assert self.addon.reload().contributions == 'https://github.com/sponsors/random/'
+        assert self.addon.reload().contributions == (
+            'https://github.com/sponsors/random/')
+
 
 class BaseTestEditAdditionalDetails(BaseTestEdit):
     __test__ = False

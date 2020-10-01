@@ -345,15 +345,16 @@ class AdditionalDetailsForm(AddonFormBase):
             parsed_url = urlsplit(self.cleaned_data['contributions'])
             hostname = parsed_url.hostname
             path = parsed_url.path
-            
+
             if not hostname.endswith(amo.VALID_CONTRIBUTION_DOMAINS):
                 raise forms.ValidationError(ugettext(
                     'URL domain must be one of [%s], or a subdomain.'
                 ) % ', '.join(amo.VALID_CONTRIBUTION_DOMAINS))
-            elif hostname == 'github.com' and not path.startswith('/sponsors/'):
-                # Issue 15497, validate path for GitHub Sponsor
+            elif (hostname == 'github.com' and
+                    not path.startswith('/sponsors/')):
+                # Issue 15497, validate path for GitHub Sponsors
                 raise forms.ValidationError(ugettext(
-                    'URL path for GitHub Sponsor must contain /sponsors/.'
+                    'URL path for GitHub Sponsors must contain /sponsors/.'
                 ))
 
         return self.cleaned_data['contributions']
