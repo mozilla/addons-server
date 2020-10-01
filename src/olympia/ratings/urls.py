@@ -1,9 +1,10 @@
-from django.conf.urls import url
+from django.urls import re_path
 
 from olympia.amo.views import frontend_view
 
 
 urlpatterns = [
-    url(r'^$', frontend_view, name='addons.ratings.list'),
-    url(r'^(?P<review_id>\d+)/$', frontend_view, name='addons.ratings.detail'),
+    re_path(r'^$', frontend_view, name='addons.ratings.list'),
+    re_path(r'^(?P<review_id>\d+)/$', frontend_view,
+            name='addons.ratings.detail'),
 ]

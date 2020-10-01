@@ -1,9 +1,10 @@
-from django.conf.urls import url
+from django.urls import re_path
 
 from . import views
 
 
 urlpatterns = [
-    url(r'^$', views.appversions, name='apps.appversions'),
-    url(r'^format:rss$', views.AppversionsFeed(), name='apps.appversions.rss'),
+    re_path(r'^$', views.appversions, name='apps.appversions'),
+    re_path(r'^format:rss$', views.AppversionsFeed(),
+            name='apps.appversions.rss'),
 ]

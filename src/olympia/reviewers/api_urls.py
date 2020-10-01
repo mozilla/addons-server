@@ -1,4 +1,5 @@
-from django.conf.urls import include, url
+from django.conf.urls import include
+from django.urls import re_path
 
 from rest_framework.routers import SimpleRouter
 from rest_framework_nested.routers import NestedSimpleRouter
@@ -27,10 +28,10 @@ draft_comments.register(
     basename='reviewers-versions-draft-comment')
 
 urlpatterns = [
-    url(r'', include(addons.urls)),
-    url(r'', include(versions.urls)),
-    url(r'', include(compare.urls)),
-    url(r'', include(draft_comments.urls)),
-    url(r'^canned-responses/$', CannedResponseViewSet.as_view(),
-        name='reviewers-canned-response-list'),
+    re_path(r'', include(addons.urls)),
+    re_path(r'', include(versions.urls)),
+    re_path(r'', include(compare.urls)),
+    re_path(r'', include(draft_comments.urls)),
+    re_path(r'^canned-responses/$', CannedResponseViewSet.as_view(),
+            name='reviewers-canned-response-list'),
 ]

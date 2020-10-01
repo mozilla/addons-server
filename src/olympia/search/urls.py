@@ -1,8 +1,8 @@
-from django.conf.urls import url
+from django.urls import re_path
 
 from olympia.amo.views import frontend_view
 
 
 urlpatterns = [
-    url(r'^(?:es)?$', frontend_view, name='search.search'),
+    re_path(r'^(?:es)?$', frontend_view, name='search.search'),
 ]

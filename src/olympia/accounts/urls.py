@@ -1,4 +1,5 @@
-from django.conf.urls import include, url
+from django.conf.urls import include
+from django.urls import re_path
 
 from rest_framework.routers import SimpleRouter
 from rest_framework_nested.routers import NestedSimpleRouter
@@ -24,30 +25,32 @@ notifications.register(r'notifications', views.AccountNotificationViewSet,
                        basename='notification')
 
 accounts_v4 = [
-    url(r'^login/start/$',
-        views.LoginStartView.as_view(),
-        name='accounts.login_start'),
-    url(r'^session/$', views.SessionView.as_view(),
-        name='accounts.session'),
-    url(r'', include(accounts.urls)),
-    url(r'^profile/$', views.ProfileView.as_view(), name='account-profile'),
-    url(r'^super-create/$', views.AccountSuperCreate.as_view(),
-        name='accounts.super-create'),
-    url(r'^unsubscribe/$', views.AccountNotificationUnsubscribeView.as_view(),
-        name='account-unsubscribe'),
+    re_path(r'^login/start/$',
+            views.LoginStartView.as_view(),
+            name='accounts.login_start'),
+    re_path(r'^session/$', views.SessionView.as_view(),
+            name='accounts.session'),
+    re_path(r'', include(accounts.urls)),
+    re_path(r'^profile/$', views.ProfileView.as_view(),
+            name='account-profile'),
+    re_path(r'^super-create/$', views.AccountSuperCreate.as_view(),
+            name='accounts.super-create'),
+    re_path(r'^unsubscribe/$',
+            views.AccountNotificationUnsubscribeView.as_view(),
+            name='account-unsubscribe'),
 
-    url(r'', include(collections.urls)),
-    url(r'', include(sub_collections.urls)),
-    url(r'', include(notifications.urls)),
+    re_path(r'', include(collections.urls)),
+    re_path(r'', include(sub_collections.urls)),
+    re_path(r'', include(notifications.urls)),
 ]
 
 accounts_v3 = accounts_v4 + [
-    url(r'^authenticate/$', views.AuthenticateView.as_view(),
-        name='accounts.authenticate'),
+    re_path(r'^authenticate/$', views.AuthenticateView.as_view(),
+            name='accounts.authenticate'),
 ]
 
 auth_callback_patterns = [
-    url(r'^authenticate-callback/$', views.AuthenticateView.as_view(),
-        name='accounts.authenticate'),
+    re_path(r'^authenticate-callback/$', views.AuthenticateView.as_view(),
+            name='accounts.authenticate'),
 
 ]

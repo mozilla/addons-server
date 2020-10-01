@@ -1,4 +1,5 @@
-from django.conf.urls import include, url
+from django.conf.urls import include
+from django.urls import re_path
 
 from rest_framework.routers import SimpleRouter
 
@@ -10,5 +11,5 @@ block.register('block', views.BlockViewSet,
                basename='blocklist-block')
 
 urlpatterns = [
-    url(r'', include(block.urls)),
+    re_path(r'', include(block.urls)),
 ]
