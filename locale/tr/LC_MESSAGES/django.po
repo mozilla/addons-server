@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-10-01 20:52+0000\n"
+"PO-Revision-Date: 2020-10-01 20:59+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -2125,6 +2125,8 @@ msgstr ""
 #, python-format
 msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Uyumluluğu güncelle</a> <a href=\"%(version_url)s\" class=\"button\">Yeni sürüm yükle</a> veya <a href=\"#\" "
+"class=\"close\">görmezden gel</a>"
 
 msgid "View and update application compatibility ranges"
 msgstr "Uygulama uygunluğu sınırlarına bak ve güncelle"
@@ -2307,6 +2309,8 @@ msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
 "characters and a minimum length of 2 characters for each."
 msgstr ""
+"Özet, eklentinizin ne yaptığını açık ve öz bir şekilde açıklamalıdır. Hem ad hem de özet, ürün sayfanızda ve arama sonuçlarınızda görünür. Maksimum toplam uzunluk 70 karakter ve her biri için "
+"minimum 2 karakterdir."
 
 msgid "Summary"
 msgstr "Özet"
@@ -2435,7 +2439,7 @@ msgid "32x32px"
 msgstr "32x32 piksel"
 
 msgid "Used in listings of add-ons, like search results."
-msgstr ""
+msgstr "Arama sonuçları gibi eklenti listelerinde kullanılır."
 
 #. The size of the icon
 msgid "64x64px"
@@ -2476,13 +2480,13 @@ msgid "Add a Screenshot..."
 msgstr "Ekran görüntüsü ekle..."
 
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
-msgstr ""
+msgstr "PNG ve JPG desteklenir, PNG önerilir. Ekran görüntüleri için maksimum ve önerilen boyut 2400x1800 pikseldir."
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "Minimum boyut 1000x750 piksel ve 4:3 oranında olması gereklidir."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr ""
+msgstr "Ürün sayfanızda ekran görüntülerinin bulunması, yüklenme şansını büyük ölçüde artırır."
 
 msgid "Continue"
 msgstr "Devam Et"
@@ -2512,7 +2516,7 @@ msgid "More information on Creative Commons licenses"
 msgstr "Creative Commons lisansları hakkında daha fazla bilgi"
 
 msgid "Your add-on is currently set to \"Invisible\"."
-msgstr ""
+msgstr "Eklentiniz şu anda \"Görünmez\" olarak ayarlanmış."
 
 msgid "While in this state, \"On your own\" is the only distribution method available."
 msgstr ""
@@ -2773,16 +2777,16 @@ msgstr ""
 
 #, python-format
 msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
-msgstr ""
+msgstr "Lütfen <a %(a_attrs)s>kaynak kodu gönderim politikasını</a> inceleyin."
 
 msgid "Do you use any of the following?"
 msgstr "Aşağıdakilerden herhangi birini kullanıyor musunuz?"
 
 msgid "Code generators or minifiers"
-msgstr ""
+msgstr "Kod üreteçleri veya küçültücüleri"
 
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
-msgstr ""
+msgstr "Birden çok dosyayı tek bir dosyada birleştiren araçlar, örneğin <span class=\"tech-emphasis\">webpack</span>"
 
 msgid "Web template engines, both for HTML and CSS"
 msgstr "Hem HTML hem de CSS için web şablonu motorları"
@@ -2798,7 +2802,7 @@ msgstr "Gönderiniz için kaynak kodu gerekiyor."
 
 #, python-format
 msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
-msgstr ""
+msgstr "Kaynak kodu, aşağıdakileri içeren <a %(a_attrs)s>politika gereksinimlerini</a> karşılamalıdır:"
 
 msgid "Step-by-step build instructions to create an exact copy of the add-on code."
 msgstr ""
@@ -2934,10 +2938,10 @@ msgstr ""
 
 #, python-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr ""
+msgstr "<strong>%(name)s%(name)s</strong> kullanıcısı için API kimlik bilgileri oluşturmak için lütfen aşağıdaki onayla düğmesini tıklayın."
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr ""
+msgstr "E-posta adresinize bir onay bağlantısı gönderilecektir. Onayladıktan sonra API anahtarlarınızı bu sayfada bulabilirsiniz."
 
 msgid "You don't have any API credentials."
 msgstr "Hiçbir API kimlik bilginiz yok."
