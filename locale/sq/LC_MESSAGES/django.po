@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-10-01 09:41+0000\n"
+"PO-Revision-Date: 2020-10-01 09:47+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -1380,10 +1380,10 @@ msgid "Recommended"
 msgstr "E rekomanduar"
 
 msgid "Sponsored"
-msgstr ""
+msgstr "E sponsorizuar"
 
 msgid "Verified"
-msgstr ""
+msgstr "E verifikuar"
 
 msgid "By Firefox"
 msgstr "Nga Firefox-i"
@@ -1392,7 +1392,7 @@ msgid "Spotlight"
 msgstr ""
 
 msgid "Strategic"
-msgstr ""
+msgstr "Strategjike"
 
 msgid "Add-on"
 msgstr "Shtesë"
@@ -1572,7 +1572,7 @@ msgid "No action"
 msgstr "Pa veprim"
 
 msgid "Flag for human review"
-msgstr "I vini shenjë për shqyrtim nga njeriu"
+msgstr "I vini shenjë për shqyrtim nga dikush"
 
 msgid "Delay auto-approval"
 msgstr "Vonoji vetëmiratimin"
@@ -2606,7 +2606,7 @@ msgid "Yes, Cancel"
 msgstr "Po, Anuloje"
 
 msgid "No, don't cancel"
-msgstr ""
+msgstr "Jo. mos e anulo"
 
 msgid "Name and Summary:"
 msgstr "Emër dhe Përmbledhje:"
@@ -5084,7 +5084,7 @@ msgstr "Disa sajte kanë vështirësi të luajnë video nën Android. Ky zgjerim
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
-msgstr ""
+msgstr "Heq prej URL-je përfundimesh kërkimi në Google ato parametra të gjatë dhe të shpifur gjurmimi."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -5563,10 +5563,10 @@ msgid "Last Updated"
 msgstr "Përditësuar Së Fundi Më"
 
 msgid "Listed versions needing human review ({0})"
-msgstr "Versione në listë që lypin shqyrtim nga njeriu ({0})"
+msgstr "Versione në listë që lypin shqyrtim nga dikush ({0})"
 
 msgid "Unlisted versions needing human review ({0})"
-msgstr "Versione të pashfaqura që lypin shqyrtim nga njeriu ({0})"
+msgstr "Versione të pashfaqura që lypin shqyrtim nga dikush ({0})"
 
 msgid "Listed version"
 msgstr "Version publike"
@@ -5650,7 +5650,7 @@ msgid "Flagged By Scanners ({0})"
 msgstr "Me shenjë Prej Skanuesish ({0})"
 
 msgid "Flagged for Human Review ({0})"
-msgstr ""
+msgstr "Me shenjë për Shqyrtim nga Dikush ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Shtesa të Vetëmiratuara"
@@ -6153,7 +6153,7 @@ msgid "{num} versions flagged by scanners on other pages."
 msgstr "{num} versione me shenjë vënë nga skanues, në faqe të tjera."
 
 msgid "{num} versions flagged for human review on other pages."
-msgstr "{num} versione me shenjë vënë për shqyrtim njeriu, në faqe të tjera."
+msgstr "{num} versione me shenjë vënë për shqyrtim nga dikush, në faqe të tjera."
 
 msgid "{num} versions pending rejection on other pages."
 msgstr "{num} versione me hedhje poshtë pezull, në faqe të tjera."
@@ -6219,7 +6219,7 @@ msgid "Flagged by scanners"
 msgstr "Me shenjë nga skanues"
 
 msgid "Flagged for human review"
-msgstr "Me shenjë për shqyrtim nga njeriu"
+msgstr "Me shenjë për shqyrtim nga dikush"
 
 msgid "Download"
 msgstr "Shkarkim"
@@ -6901,7 +6901,7 @@ msgstr ""
 "\n"
 "%(author_name)s ( %(author_url)s )"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Hello,\n"
 "\n"
@@ -6915,13 +6915,13 @@ msgid ""
 msgstr ""
 "Tungjatjeta,\n"
 "\n"
-"Po e merrni këtë mesazh ngaqë llogaria juaj e përdoruesit %(name)s te %(site_url)s është fshirë.\n"
+"Këtë mesazh po e merrni ngaqë llogaria juaj e përdoruesit %(name)s te %(site_url)s është fshirë. Kjo mund të jetë bërë automatikisht, nëse fshitë tani afër Llogarinë tuaj Firefox.\n"
 "\n"
 "Nëse s’e bëtë ju ose besoni se një person i paautorizuar ka hyrje në llogarinë tuaj, ju lutemi, përgjigjuni këtij email-i. Përndryshe, s’ka veprim tjetër për t’u bërë.\n"
 "\n"
-"Regards,\n"
+"Të fala,\n"
 "\n"
-"The Firefox Add-ons Team"
+"Ekipi i Shtesave të Firefox-it"
 
 msgctxt "user_list_others"
 msgid "others"
