@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-28 14:10+0000\n"
+"PO-Revision-Date: 2020-10-01 20:52+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -1390,10 +1390,10 @@ msgid "Recommended"
 msgstr "Önerilen"
 
 msgid "Sponsored"
-msgstr ""
+msgstr "Sponsorlu"
 
 msgid "Verified"
-msgstr ""
+msgstr "Doğrulandı"
 
 msgid "By Firefox"
 msgstr "Firefox’tan"
@@ -1402,7 +1402,7 @@ msgid "Spotlight"
 msgstr ""
 
 msgid "Strategic"
-msgstr ""
+msgstr "Stratejik"
 
 msgid "Add-on"
 msgstr "Eklenti"
@@ -1583,7 +1583,7 @@ msgid "No action"
 msgstr "Eylem yok"
 
 msgid "Flag for human review"
-msgstr ""
+msgstr "İnsan incelemesi için işaretle"
 
 msgid "Delay auto-approval"
 msgstr "Otomatik onaylamayı geciktir"
@@ -1598,7 +1598,7 @@ msgid "False positive"
 msgstr "Yanlış alarm"
 
 msgid "Inconclusive"
-msgstr ""
+msgstr "Sonuçsuz"
 
 # 100%
 msgid "New"
@@ -1760,13 +1760,13 @@ msgid "Need to select at least one application."
 msgstr "En az bir uygulamanın seçilmesi gerekiyor."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr ""
+msgstr "Yakın zamanda çok fazla yükleme yaptınız. Lütfen bir süre sonra tekrar deneyin."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr ""
+msgstr "{version} sürümü, bu eklenti için {block_link} ile eşleşiyor. Ek bilgi için {amo_admins} ile iletişime geçebilirsiniz."
 
 msgid "a blocklist entry"
-msgstr ""
+msgstr "bir engelleme listesi kaydı"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "{version} sürümü daha önce yüklenip silinmiş."
@@ -1807,7 +1807,7 @@ msgid "Invalid or corrupt add-on file."
 msgstr "Geçersiz ya da bozulmuş eklenti dosyası."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
-msgstr ""
+msgstr "Yüklenen dosyada geliştirici API anahtarınız tespit edildi. Hesabınızı korumak amacıyla anahtar silinecek."
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr "Gönderilen dosyada bir ortak yazarın geliştirici API'si anahtarı bulundu. Eklentinizi korumak için bu anahtar iptal edilecektir."
