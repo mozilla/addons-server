@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-10-01 08:19+0000\n"
+"PO-Revision-Date: 2020-10-01 08:27+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -5038,7 +5038,7 @@ msgstr "Kra n yismal ur ssawaḍen ara ad d-ɣren tividyutin di Firefox i Androi
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
-msgstr ""
+msgstr "Ittekkes yir iɣewwaren-nni n uḍfar ɣezzifen seg URL n yigmaḍ n unadi deg Google."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
