@@ -144,9 +144,6 @@ describe(__filename, () => {
       };
 
       beforeEach(() => {
-        const date = new Date(2019, 10 - 1, 14);
-        dateMock.advanceTo(date);
-
         document.body.innerHTML = createMinimalHTML();
       });
 
