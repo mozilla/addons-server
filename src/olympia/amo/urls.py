@@ -5,6 +5,7 @@ from django.views.decorators.cache import never_cache
 from . import views
 from .utils import render_xml
 
+
 services_patterns = [
     re_path(r'^monitor\.json$', never_cache(views.monitor),
             name='amo.monitor'),

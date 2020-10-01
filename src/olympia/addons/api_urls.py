@@ -11,6 +11,7 @@ from .views import (
     AddonSearchView, AddonVersionViewSet, AddonViewSet, CompatOverrideView,
     LanguageToolsView, ReplacementAddonView, StaticCategoryView)
 
+
 addons = SimpleRouter()
 addons.register(r'addon', AddonViewSet, basename='addon')
 

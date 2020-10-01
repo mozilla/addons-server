@@ -3,6 +3,7 @@ from django.urls import re_path
 
 from olympia.amo.views import frontend_view
 
+
 USER_ID = r"""(?P<user_id>[^/<>"']+)"""
 
 # These will all start with /user/<user_id>/

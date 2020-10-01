@@ -6,6 +6,7 @@ from olympia.stats.urls import stats_patterns
 
 from . import views
 
+
 ADDON_ID = r"""(?P<addon_id>[^/<>"']+)"""
 
 # These will all start with /addon/<addon_id>/

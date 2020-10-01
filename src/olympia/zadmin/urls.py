@@ -5,6 +5,7 @@ from django.shortcuts import redirect
 
 from . import views
 
+
 urlpatterns = [
     # AMO stuff.
     re_path(r'^$', lambda r: redirect('admin:index')),

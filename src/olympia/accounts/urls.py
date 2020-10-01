@@ -8,6 +8,7 @@ from olympia.bandwagon.views import CollectionAddonViewSet, CollectionViewSet
 
 from . import views
 
+
 accounts = SimpleRouter()
 accounts.register(r'account', views.AccountViewSet, basename='account')
 

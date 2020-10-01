@@ -5,6 +5,7 @@ from rest_framework.routers import SimpleRouter
 
 from olympia.shelves.views import ShelfViewSet
 
+
 router = SimpleRouter()
 router.register('', ShelfViewSet, basename='shelves')
 

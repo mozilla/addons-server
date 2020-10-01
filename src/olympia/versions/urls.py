@@ -5,6 +5,7 @@ from olympia.amo.views import frontend_view
 
 from . import views
 
+
 urlpatterns = [
     re_path(r'^$', frontend_view, name='addons.versions'),
     re_path(r'^(?P<version_num>[^/]+)/updateinfo/$', views.update_info,

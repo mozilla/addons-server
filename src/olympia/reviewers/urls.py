@@ -4,6 +4,7 @@ from django.shortcuts import redirect
 from olympia.addons.urls import ADDON_ID
 from olympia.reviewers import views
 
+
 # All URLs under /reviewers/
 urlpatterns = (
     re_path(r'^$', views.dashboard, name='reviewers.dashboard'),

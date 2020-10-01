@@ -9,6 +9,7 @@ from .views import (
     ReviewAddonVersionCompareViewSet, CannedResponseViewSet,
     ReviewAddonVersionDraftCommentViewSet)
 
+
 addons = SimpleRouter()
 addons.register(r'addon', AddonReviewerViewSet, basename='reviewers-addon')
 

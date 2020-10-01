@@ -3,6 +3,7 @@ from django.urls import re_path
 
 from .views import ScannerResultView
 
+
 urlpatterns = (
     [re_path(r'^results/$', ScannerResultView.as_view(),
              name='scanner-results')]

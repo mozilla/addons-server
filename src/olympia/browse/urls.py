@@ -2,6 +2,7 @@ from django.urls import re_path
 
 from olympia.amo.views import frontend_view
 
+
 urlpatterns = [
     re_path(r'^language-tools/(?P<category>[^/]+)?$', frontend_view,
             name='browse.language-tools'),

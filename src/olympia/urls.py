@@ -12,6 +12,7 @@ from olympia.files.urls import upload_patterns
 from olympia.versions import views as version_views
 from olympia.versions.urls import download_patterns
 
+
 admin.autodiscover()
 
 handler403 = 'olympia.amo.views.handler403'

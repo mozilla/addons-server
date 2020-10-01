@@ -2,6 +2,7 @@ from django.urls import re_path
 
 from . import views
 
+
 group_re = r'(?P<group>' + '|'.join(views.SERIES_GROUPS) + ')'
 group_date_re = r'(?P<group>' + '|'.join(views.SERIES_GROUPS_DATE) + ')'
 range_re = r'(?P<start>\d{8})-(?P<end>\d{8})'

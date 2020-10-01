@@ -5,6 +5,7 @@ from django.views.generic.base import TemplateView
 
 from olympia.amo.urlresolvers import reverse
 
+
 urlpatterns = [
     re_path(r'^about$',
             TemplateView.as_view(template_name='pages/about.lhtml'),

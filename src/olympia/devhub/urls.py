@@ -9,6 +9,7 @@ from olympia.lib.misc.urlconf_decorator import decorate
 
 from . import views
 
+
 # These will all start with /addon/<addon_id>/
 detail_patterns = [
     # Redirect to the edit page from the base.
