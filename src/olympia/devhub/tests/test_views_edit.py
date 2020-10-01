@@ -1314,7 +1314,7 @@ class ContributionsTestsMixin(object):
         assert response.status_code == 200
         self.assertFormError(
             response, 'form', 'contributions',
-            'URL path for GitHub Sponsor must contain /sponsors/.'
+            'URL path for GitHub Sponsors must contain /sponsors/.'
         )
 
     def test_contributions_url_valid_domain(self):
