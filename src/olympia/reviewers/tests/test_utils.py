@@ -1451,6 +1451,10 @@ class TestReviewHelper(TestReviewHelperBase):
 
         assert self.addon.needs_admin_code_review
         assert self.check_log_count(amo.LOG.REQUEST_ADMIN_REVIEW_CODE.id) == 1
+        # Make sure we used an activity log that has the special `sanitize`
+        # property so that comments aren't shown to the developer (a generic
+        # message is shown instead)
+        assert getattr(amo.LOG.REQUEST_ADMIN_REVIEW_CODE, 'sanitize', '')
 
     def test_auto_approved_admin_code_review(self):
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
@@ -1471,6 +1475,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.addon.needs_admin_content_review
         assert self.check_log_count(
             amo.LOG.REQUEST_ADMIN_REVIEW_CONTENT.id) == 1
+        assert getattr(amo.LOG.REQUEST_ADMIN_REVIEW_CONTENT, 'sanitize', '')
 
     def test_auto_approved_admin_theme_review(self):
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED,
@@ -1481,6 +1486,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
         assert self.addon.needs_admin_theme_review
         assert self.check_log_count(amo.LOG.REQUEST_ADMIN_REVIEW_THEME.id) == 1
+        assert getattr(amo.LOG.REQUEST_ADMIN_REVIEW_THEME, 'sanitize', '')
 
     def test_nomination_to_super_review_and_escalate(self):
         self.setup_data(amo.STATUS_NOMINATED)

@@ -197,16 +197,19 @@ class REQUEST_INFORMATION(_LOG):
     reviewer_review_action = True
 
 
+# Obsolete now that we've split the requests for admin review into separate
+# actions for code/theme/content, but kept for compatibility with old history,
+# and also to re-use the `sanitize` property.
 class REQUEST_SUPER_REVIEW(_LOG):
     id = 45
     format = _(u'{addon} {version} super review requested.')
     short = _(u'Super review requested')
     keep = True
     review_queue = True
-    sanitize = _(u'The addon has been flagged for Admin Review.  It\'s still '
-                 u'in our review queue, but it will need to be checked by one '
-                 u'of our admin reviewers. The review might take longer than '
-                 u'usual.')
+    sanitize = _("The addon has been flagged for Admin Review.  It's still "
+                 "in our review queue, but it will need to be checked by one "
+                 "of our admin reviewers. The review might take longer than "
+                 "usual.")
     reviewer_review_action = True
 
 
@@ -628,6 +631,7 @@ class REQUEST_ADMIN_REVIEW_CODE(_LOG):
     keep = True
     review_queue = True
     reviewer_review_action = True
+    sanitize = REQUEST_SUPER_REVIEW.sanitize
 
 
 class REQUEST_ADMIN_REVIEW_CONTENT(_LOG):
@@ -637,6 +641,7 @@ class REQUEST_ADMIN_REVIEW_CONTENT(_LOG):
     keep = True
     review_queue = True
     reviewer_review_action = True
+    sanitize = REQUEST_SUPER_REVIEW.sanitize
 
 
 class REQUEST_ADMIN_REVIEW_THEME(_LOG):
@@ -646,6 +651,7 @@ class REQUEST_ADMIN_REVIEW_THEME(_LOG):
     keep = True
     review_queue = True
     reviewer_review_action = True
+    sanitize = REQUEST_SUPER_REVIEW.sanitize
 
 
 class CREATE_STATICTHEME_FROM_PERSONA(_LOG):
