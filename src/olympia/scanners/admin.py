@@ -684,13 +684,15 @@ class ScannerQueryResultAdmin(
     raw_id_fields = ('version',)
     list_display_links = None
     list_display = (
-        'formatted_addon',
-        'channel',
+        'addon_name',
+        'guid',
+        'formatted_channel',
         'version_number',
         'formatted_created',
         'authors',
         'formatted_matched_rules',
         'matching_filenames',
+        'download'
     )
     list_filter = (
         ('matched_rules', ScannerRuleListFilter),
@@ -708,13 +710,20 @@ class ScannerQueryResultAdmin(
             'js/admin/scannerqueryresult.js',
         )
 
-    def formatted_addon(self, obj):
+    def addon_name(self, obj):
         # Custom, simpler implementation to go with add-on grouping: the
         # version number and version channel are not included - they are
         # displayed as separate columns.
         if obj.version:
+            return obj.version.addon.name
+        return '-'
+
+    addon_name.short_description = 'Add-on'
+
+    def formatted_channel(self, obj):
+        if obj.version:
             return format_html(
-                '<a href="{}">{}<br>{}</a>',
+                '<a href="{}">{}</a>',
                 # We use the add-on's ID to support deleted add-ons.
                 urljoin(
                     settings.EXTERNAL_SITE_URL,
@@ -727,16 +736,8 @@ class ScannerQueryResultAdmin(
                         ],
                     ),
                 ),
-                obj.version.addon.guid,
-                obj.version.addon.name,
+                obj.version.get_channel_display(),
             )
-        return '-'
-
-    formatted_addon.short_description = 'Add-on'
-
-    def channel(self, obj):
-        if obj.version:
-            return obj.version.get_channel_display()
         return '-'
 
     def version_number(self, obj):
@@ -752,6 +753,14 @@ class ScannerQueryResultAdmin(
     def matching_filenames(self, obj):
         return self.formatted_matched_rules_with_files(
             obj, template_name='formatted_matching_files')
+
+    def download(self, obj):
+        if obj.version and obj.version.current_file:
+            return format_html(
+                '<a href="{}">{}</a>',
+                obj.version.current_file.get_absolute_url(),
+                obj.version.current_file.pk)
+        return '-'
 
     def has_actions_permission(self, request):
         return acl.action_allowed(
