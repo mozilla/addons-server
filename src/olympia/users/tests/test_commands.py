@@ -11,7 +11,7 @@ from olympia.addons.models import Addon
 from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.users.management.commands.createsuperuser import (
     Command as CreateSuperUser)
-from olympia.users.models import UserProfile
+from olympia.users.models import UserProfile, UserRestrictionHistory
 
 
 @patch('olympia.users.management.commands.createsuperuser.input')
@@ -152,6 +152,65 @@ class TestClearOldUserData(TestCase):
         assert not old_banned_user.fxa_id
         assert old_banned_user.modified == old_date
         assert old_banned_user.banned
+
+    def test_user_restriction_history_cleared_too(self):
+        recent_date = self.days_ago(2)
+        old_date = self.days_ago((365 * 7) + 1)
+
+        # old enough but not deleted
+        recent_not_deleted = user_factory(
+            last_login_ip='127.0.0.1', fxa_id='12345')
+        recent_not_deleted.update(modified=recent_date)
+        urh0 = UserRestrictionHistory.objects.create(
+            user=recent_not_deleted, restriction=0,
+            ip_address='127.1.2.3', last_login_ip='127.4.5.6')
+
+        # Deleted but new
+        new_user = user_factory(
+            last_login_ip='127.0.0.1', deleted=True, fxa_id='67890')
+        urh1 = UserRestrictionHistory.objects.create(
+            user=new_user, restriction=1,
+            ip_address='127.1.2.3', last_login_ip='127.4.5.6')
+
+        # Deleted and recent: last_login_ip, email, fxa_id must be cleared.
+        recent_deleted_user = user_factory(
+            last_login_ip='127.0.0.1', deleted=True, fxa_id='abcde')
+        recent_deleted_user.update(modified=recent_date)
+        urh2 = UserRestrictionHistory.objects.create(
+            user=recent_deleted_user, restriction=2,
+            ip_address='128.1.2.3', last_login_ip='128.4.5.6')
+
+        old_banned_user = user_factory(
+            last_login_ip='127.0.0.1', deleted=True, fxa_id='abcde',
+            banned=recent_date)
+        old_banned_user.update(modified=old_date)
+        urh3 = UserRestrictionHistory.objects.create(
+            user=old_banned_user, restriction=3,
+            ip_address='129.1.2.3', last_login_ip='129.4.5.6')
+        urh4 = UserRestrictionHistory.objects.create(
+            user=old_banned_user, restriction=4,
+            ip_address='130.1.2.3', last_login_ip='130.4.5.6')
+
+        call_command('clear_old_user_data')
+
+        # these shouldn't have been touched because the users weren't cleared
+        urh0.reload()
+        assert urh0.ip_address != ''
+        assert urh0.last_login_ip != ''
+        urh1.reload()
+        assert urh1.ip_address != ''
+        assert urh1.last_login_ip != ''
+
+        # these should have been cleared because the userprofiles were cleared
+        urh2.reload()
+        assert urh2.ip_address == ''
+        assert urh2.last_login_ip == ''
+        urh3.reload()
+        assert urh3.ip_address == ''
+        assert urh3.last_login_ip == ''
+        urh4.reload()
+        assert urh4.ip_address == ''
+        assert urh4.last_login_ip == ''
 
     def test_addon_devs(self):
         old_date = self.days_ago((365 * 7) + 1)

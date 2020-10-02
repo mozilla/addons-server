@@ -7,7 +7,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.addons.models import Addon, AddonUser
 from olympia.addons.tasks import delete_addons
-from olympia.users.models import UserProfile
+from olympia.users.models import UserProfile, UserRestrictionHistory
 
 
 log = olympia.core.logger.getLogger('z.users')
@@ -35,6 +35,8 @@ class Command(BaseCommand):
             banned=None)
         users = list(
             UserProfile.objects.filter(seven_year_q | one_day_q, deleted=True))
+        user_restrictions = UserRestrictionHistory.objects.filter(
+            user__in=users)
 
         addonuser_qs = AddonUser.objects.filter(user__in=users)
         addons_qs = (
@@ -47,6 +49,8 @@ class Command(BaseCommand):
         log.info('Clearing %s for %d users', profile_clear.keys(), len(users))
         for user in users:
             user.update(**profile_clear, _signal=False)
+
+        user_restrictions.update(ip_address='', last_login_ip='')
 
         if addon_ids:
             delete_addons.delay(addon_ids, with_deleted=True)
