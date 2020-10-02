@@ -8,7 +8,7 @@ from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 
 import waffle
-from django_extensions.db.fields.json import JSONField
+from django_jsonfield_backport.models import JSONField
 from multidb import get_replica
 
 from olympia import amo
@@ -230,7 +230,7 @@ class BlocklistSubmission(ModelBase):
         choices=ACTIONS.items(), default=ACTION_ADDCHANGE)
 
     input_guids = models.TextField()
-    to_block = JSONField(default=[])
+    to_block = JSONField(default=list)
     min_version = models.CharField(
         max_length=255, blank=False, default=Block.MIN)
     max_version = models.CharField(
@@ -510,7 +510,7 @@ class BlocklistSubmission(ModelBase):
     def get_submissions_from_guid(cls, guid, excludes=SIGNOFF_STATES_FINISHED):
         return (
             cls.objects.exclude(signoff_state__in=excludes)
-                       .filter(to_block__contains=f'"{guid}"'))
+                       .filter(to_block__contains={'guid': guid}))
 
 
 class LegacyImport(ModelBase):
@@ -531,7 +531,7 @@ class LegacyImport(ModelBase):
     legacy_id = models.CharField(
         unique=True, max_length=255, null=False, default='',
         db_column='kinto_id')
-    record = JSONField(default={})
+    record = JSONField(default=dict)
     outcome = models.SmallIntegerField(
         default=OUTCOME_INCOMPLETE, choices=OUTCOMES.items())
     timestamp = models.BigIntegerField()

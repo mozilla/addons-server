@@ -10,7 +10,7 @@ from django.db.models import Q, Sum
 from django.template import loader
 from django.utils.translation import ugettext, ugettext_lazy as _
 
-from django_extensions.db.fields.json import JSONField
+from django_jsonfield_backport.models import JSONField
 
 import olympia.core.logger
 
@@ -867,7 +867,7 @@ class AutoApprovalSummary(ModelBase):
         choices=amo.AUTO_APPROVAL_VERDICT_CHOICES,
         default=amo.NOT_AUTO_APPROVED)
     weight = models.IntegerField(default=0)
-    weight_info = JSONField(default={}, null=True)
+    weight_info = JSONField(default=dict, null=True)
     confirmed = models.NullBooleanField(default=None)
 
     class Meta:

@@ -1802,7 +1802,7 @@ class TestAddonModels(TestCase):
 
         del addon.blocklistsubmission
         submission.update(input_guids='not-a-guid')
-        submission.update(to_block=["not-a-guid"])
+        submission.update(to_block=[{'guid': 'not-a-guid'}])
         assert addon.blocklistsubmission is None
 
         del addon.blocklistsubmission
