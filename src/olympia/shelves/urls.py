@@ -3,11 +3,11 @@ from django.urls import re_path
 
 from rest_framework.routers import SimpleRouter
 
-from olympia.shelves.views import ShelfViewSet
+from olympia.shelves import views
 
 
 router = SimpleRouter()
-router.register('', ShelfViewSet, basename='shelves')
+router.register('', views.ShelfViewSet, basename='shelves')
 
 urlpatterns = [
     re_path(r'', include(router.urls)),
