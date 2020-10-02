@@ -36,28 +36,49 @@ class PromotedAddon(ModelBase):
         return PROMOTED_GROUPS_BY_ID.get(self.group_id, NOT_PROMOTED)
 
     @property
-    def applications(self):
+    def all_applications(self):
         application = APP_IDS.get(self.application_id)
         return [application] if application else [app for app in APP_USAGE]
 
     @property
-    def is_addon_currently_promoted(self):
-        """Is the current_version of the addon approved for promotion within
-        the *current* promoted group."""
-        return bool(
-            self.group != NOT_PROMOTED.id and
-            self.addon.current_version and (
-                not self.group.pre_review or
-                self.group in self.addon.current_version.approved_for_groups))
+    def approved_applications(self):
+        """The applications that the current promoted group is approved for."""
+        group = self.group
+        all_apps = self.all_applications
+        if group == NOT_PROMOTED or not self.addon.current_version:
+            return []
+        if not group.pre_review:
+            return all_apps
+        return [
+            app
+            for group_, app in self.addon.current_version.approved_for_groups
+            if group_ == group and app in all_apps]
 
     def approve_for_version(self, version):
         """Create PromotedApproval for current applications in the current
         promoted group."""
-        for app in self.applications:
+        for app in self.all_applications:
             PromotedApproval.objects.update_or_create(
                 version=version,
                 group_id=self.group_id,
                 application_id=app.id)
+
+
+class PromotedTheme(PromotedAddon):
+    """A wrapper around PromotedAddon to use for themes in the featured
+    collection."""
+
+    class Meta(PromotedAddon.Meta):
+        proxy = True
+
+    @property
+    def approved_applications(self):
+        if self.group == NOT_PROMOTED or not self.addon.current_version:
+            return []
+        return self.all_applications
+
+    def save(self, *args, **kwargs):
+        raise NotImplementedError
 
 
 class PromotedApproval(ModelBase):

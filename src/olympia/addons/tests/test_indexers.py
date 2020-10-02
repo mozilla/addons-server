@@ -464,12 +464,16 @@ class TestAddonIndexer(TestCase):
         assert extracted['promoted']
         assert extracted['promoted']['application_id'] is None
         assert extracted['promoted']['group_id'] == RECOMMENDED.id
+        assert extracted['promoted']['approved_for_apps'] == [
+            amo.FIREFOX.id, amo.ANDROID.id]
         assert extracted['is_recommended'] is True
 
         # Specific application.
         self.addon.promotedaddon.update(application_id=amo.FIREFOX.id)
         extracted = self._extract()
         assert extracted['promoted']['application_id'] is amo.FIREFOX.id
+        assert extracted['promoted']['approved_for_apps'] == [
+            amo.FIREFOX.id]
         assert extracted['is_recommended'] is True
 
         # Promoted theme.
@@ -481,6 +485,8 @@ class TestAddonIndexer(TestCase):
         assert extracted['promoted']
         assert extracted['promoted']['application_id'] is None
         assert extracted['promoted']['group_id'] == RECOMMENDED.id
+        assert extracted['promoted']['approved_for_apps'] == [
+            amo.FIREFOX.id, amo.ANDROID.id]
         assert extracted['is_recommended'] is True
 
     @mock.patch('olympia.addons.indexers.create_chunked_tasks_signatures')

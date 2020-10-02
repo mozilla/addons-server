@@ -758,7 +758,8 @@ class TestVersion(TestCase):
             application_id=amo.ANDROID.id)
 
         del version.approved_for_groups
-        assert version.approved_for_groups == [LINE, RECOMMENDED]
+        assert version.approved_for_groups == [
+            (LINE, amo.FIREFOX), (RECOMMENDED, amo.ANDROID)]
 
     def test_transform_promoted(self):
         version_a = addon_factory().current_version
@@ -781,14 +782,19 @@ class TestVersion(TestCase):
         PromotedApproval.objects.create(
             version=version_b, group_id=RECOMMENDED.id,
             application_id=amo.FIREFOX.id)
+        PromotedApproval.objects.create(
+            version=version_b, group_id=RECOMMENDED.id,
+            application_id=amo.ANDROID.id)
 
         versions = (
             Version.objects.filter(id__in=(version_a.id, version_b.id))
                            .transform(Version.transformer_promoted))
         list(versions)  # to evaluate the queryset
         with self.assertNumQueries(0):
-            assert versions[1].approved_for_groups == [RECOMMENDED, LINE]
-            assert versions[0].approved_for_groups == [RECOMMENDED]
+            assert versions[1].approved_for_groups == [
+                (RECOMMENDED, amo.FIREFOX), (LINE, amo.FIREFOX)]
+            assert versions[0].approved_for_groups == [
+                (RECOMMENDED, amo.FIREFOX), (RECOMMENDED, amo.ANDROID)]
 
 
 @pytest.mark.parametrize("addon_status,file_status,is_unreviewed", [

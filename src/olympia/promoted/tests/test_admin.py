@@ -122,7 +122,7 @@ class TestPromotedAddonAdmin(TestCase):
         ]
         approvals.reverse()  # we order by -version_id so match it.
         item.reload()
-        assert item.is_addon_currently_promoted
+        assert item.approved_applications
         detail_url = reverse(self.detail_url_name, args=(item.pk,))
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
@@ -150,7 +150,7 @@ class TestPromotedAddonAdmin(TestCase):
         assert PromotedApproval.objects.count() == 4  # same
         # now it's not promoted because the current_version isn't approved for
         # LINE group
-        assert not item.is_addon_currently_promoted
+        assert not item.approved_applications
 
         # Try to delete one of the approvals
         response = self.client.post(
@@ -217,7 +217,7 @@ class TestPromotedAddonAdmin(TestCase):
         ]
         approvals.reverse()
         addon.reload()
-        assert item.is_addon_currently_promoted
+        assert item.approved_applications
         detail_url = reverse(self.detail_url_name, args=(item.pk,))
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
@@ -322,7 +322,7 @@ class TestPromotedAddonAdmin(TestCase):
         assert item.addon == addon
         assert item.group == RECOMMENDED
         assert item.application_id is None
-        assert item.applications == [amo.FIREFOX, amo.ANDROID]
+        assert item.all_applications == [amo.FIREFOX, amo.ANDROID]
         assert PromotedApproval.objects.count() == 0  # we didn't create any
         assert not addon.promoted_group()
 

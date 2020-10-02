@@ -624,6 +624,8 @@ class Addon(OnChangeMixin, ModelBase):
             if send_delete_email:
                 email_to = [settings.DELETION_EMAIL]
                 subject, email_msg = self._prepare_deletion_email(msg, reason)
+            else:
+                email_to, subject, email_msg = [], '', ''
             # If the add-on was disabled by Mozilla, add the guid to
             #  DeniedGuids to prevent resubmission after deletion.
             if self.status == amo.STATUS_DISABLED:
@@ -1044,6 +1046,7 @@ class Addon(OnChangeMixin, ModelBase):
 
         versions = self.versions.filter(channel=amo.RELEASE_CHANNEL_LISTED)
         status = None
+        reason = ''
         if not versions.exists():
             status = amo.STATUS_NULL
             reason = 'no listed versions'
@@ -1294,16 +1297,14 @@ class Addon(OnChangeMixin, ModelBase):
                     collection_id=settings.COLLECTION_FEATURED_THEMES_ID,
                     addon=self).exists())
 
-    def promoted_group(self, *, application=None, currently_approved=True):
-        """Is the addon currently promoted for the specified application?
+    def promoted_group(self, *, currently_approved=True):
+        """Is the addon currently promoted for the current applications?
 
         Returns the group constant, or NOT_PROMOTED (which is falsey)
         otherwise.
 
-        `application` is the App class; if application=None (default) then all
-        applications are considered;
         `currently_approved=True` means only returns True if
-        self.current_version is approved for the current promotion.
+        self.current_version is approved for the current promotion & apps.
         If currently_approved=False then promotions where there isn't approval
         are returned too.
         """
@@ -1313,9 +1314,8 @@ class Addon(OnChangeMixin, ModelBase):
             promoted = self.promotedaddon
         except PromotedAddon.DoesNotExist:
             return NOT_PROMOTED
-        app_match = not application or application in promoted.applications
-        is_promoted = app_match and (
-            not currently_approved or promoted.is_addon_currently_promoted)
+        is_promoted = (
+            not currently_approved or promoted.approved_applications)
         return promoted.group if is_promoted else NOT_PROMOTED
 
     @cached_property
@@ -1324,11 +1324,10 @@ class Addon(OnChangeMixin, ModelBase):
         if promoted_group:
             return self.promotedaddon
         else:
-            from olympia.promoted.models import PromotedAddon
+            from olympia.promoted.models import PromotedTheme
 
             if self._is_recommended_theme():
-                return PromotedAddon(addon=self, application_id=None,
-                                     group_id=RECOMMENDED.id)
+                return PromotedTheme(addon=self, group_id=RECOMMENDED.id)
         return None
 
     @cached_property

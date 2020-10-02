@@ -1584,13 +1584,17 @@ class TestAddonModels(TestCase):
 
         # Application specific group membership should work too
         # if no app is specifed in the PromotedAddon everything should match
-        assert addon.promoted_group()
-        assert addon.promoted_group(application=amo.FIREFOX)
+        assert addon.promoted_group() == VERIFIED_ONE
         # update to mobile app
         promoted.update(application_id=amo.ANDROID.id)
         assert addon.promoted_group()
-        assert not addon.promoted_group(application=amo.FIREFOX)
-        assert addon.promoted_group(application=amo.ANDROID)
+        # but if there's no approval for Android it's not promoted
+        addon.current_version.promoted_approvals.filter(
+            application_id=amo.ANDROID.id).delete()
+        del addon.current_version.approved_for_groups
+        assert not addon.promoted_group()
+        promoted.update(application_id=amo.FIREFOX.id)
+        assert addon.promoted_group() == VERIFIED_ONE
 
         # check it doesn't error if there's no current_version
         addon.current_version.all_files[0].update(status=amo.STATUS_DISABLED)
@@ -1637,16 +1641,17 @@ class TestAddonModels(TestCase):
         featured_collection.add_addon(addon)
         del addon.promoted
         # it's in the collection, so is now promoted.
-        promoted = addon.promoted
-        assert promoted
-        assert promoted.addon == addon
-        assert promoted.group_id == RECOMMENDED.id
-        assert promoted.application_id is None
+        assert addon.promoted
+        assert addon.promoted.addon == addon
+        assert addon.promoted.group_id == RECOMMENDED.id
+        assert addon.promoted.application_id is None
         # This PromotedAddon instance is not a saved one.
-        assert promoted.id is None
+        assert addon.promoted.id is None
 
         featured_collection.remove_addon(addon)
         del addon.promoted
+        addon = Addon.objects.get(id=addon.id)
+        # assert not addon.promotedaddon
         # but not when it's removed.
         assert addon.promoted is None
 

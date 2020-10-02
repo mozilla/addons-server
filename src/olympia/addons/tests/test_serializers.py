@@ -477,8 +477,9 @@ class AddonSerializerOutputTestMixin(object):
         assert promoted['category'] == RECOMMENDED.api_name
         assert promoted['apps'] == [app.short for app in amo.APP_USAGE]
 
-        # With a specific application.
-        self.addon.promotedaddon.update(application_id=amo.FIREFOX.id)
+        # With a specific application approved.
+        self.addon.current_version.promoted_approvals.filter(
+            application_id=amo.ANDROID.id).delete()
         result = self.serialize()
         assert result['promoted']['apps'] == [amo.FIREFOX.short]
 
