@@ -1278,7 +1278,7 @@ class TestScannerQueryResultAdmin(TestCase):
         response = self.client.get(self.list_url)
         assert response.status_code == 200
         html = pq(response.content)
-        assert html('.field-formatted_addon').length == 1
+        assert html('.field-addon_name').length == 1
         authors = html('.field-authors a')
         assert authors.length == 3
         authors_links = list((a.text, a.attrib['href']) for a in
@@ -1396,8 +1396,7 @@ class TestScannerQueryResultAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody > tr').length == 1
-        assert doc('.field-formatted_addon a').text().startswith(
-            unlisted_addon.guid)
+        assert doc('.field-guid').text() == unlisted_addon.guid
 
         response = self.client.get(self.list_url, {
             'version__channel__exact': amo.RELEASE_CHANNEL_LISTED,
@@ -1405,7 +1404,7 @@ class TestScannerQueryResultAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody > tr').length == 1
-        assert doc('.field-formatted_addon a').text().startswith(addon.guid)
+        assert doc('.field-guid').text() == addon.guid
 
     def test_list_filter_addon_status(self):
         incomplete_addon = addon_factory(status=amo.STATUS_NULL)
@@ -1421,8 +1420,7 @@ class TestScannerQueryResultAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody > tr').length == 1
-        assert doc('.field-formatted_addon a').text().startswith(
-            incomplete_addon.guid)
+        assert doc('.field-guid').text() == incomplete_addon.guid
 
         response = self.client.get(self.list_url, {
             'version__addon__status__exact': amo.STATUS_DELETED,
@@ -1430,8 +1428,7 @@ class TestScannerQueryResultAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody > tr').length == 1
-        assert doc('.field-formatted_addon a').text().startswith(
-            deleted_addon.guid)
+        assert doc('.field-guid').text() == deleted_addon.guid
 
     def test_list_filter_addon_visibility(self):
         visible_addon = addon_factory()
@@ -1447,8 +1444,7 @@ class TestScannerQueryResultAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody > tr').length == 1
-        assert doc('.field-formatted_addon a').text().startswith(
-            invisible_addon.guid)
+        assert doc('.field-guid').text() == invisible_addon.guid
 
         response = self.client.get(self.list_url, {
             'version__addon__disabled_by_user__exact': '0',
@@ -1456,8 +1452,7 @@ class TestScannerQueryResultAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody > tr').length == 1
-        assert doc('.field-formatted_addon a').text().startswith(
-            visible_addon.guid)
+        assert doc('.field-guid').text() == visible_addon.guid
 
     def test_list_filter_file_status(self):
         addon_disabled_file = addon_factory()
@@ -1475,8 +1470,7 @@ class TestScannerQueryResultAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody > tr').length == 1
-        assert doc('.field-formatted_addon a').text().startswith(
-            addon_disabled_file.guid)
+        assert doc('.field-guid').text() == addon_disabled_file.guid
 
         response = self.client.get(self.list_url, {
             'version__files__status': '4',
@@ -1484,8 +1478,7 @@ class TestScannerQueryResultAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody > tr').length == 1
-        assert doc('.field-formatted_addon a').text().startswith(
-            addon_approved_file.guid)
+        assert doc('.field-guid').text() == addon_approved_file.guid
 
     def test_list_filter_file_is_signed(self):
         signed_addon = addon_factory(file_kw={'is_signed': True})
@@ -1501,8 +1494,7 @@ class TestScannerQueryResultAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody > tr').length == 1
-        assert doc('.field-formatted_addon a').text().startswith(
-            signed_addon.guid)
+        assert doc('.field-guid').text() == signed_addon.guid
 
         response = self.client.get(self.list_url, {
             'version__files__is_signed': '0',
@@ -1510,8 +1502,7 @@ class TestScannerQueryResultAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody > tr').length == 1
-        assert doc('.field-formatted_addon a').text().startswith(
-            unsigned_addon.guid)
+        assert doc('.field-guid').text() == unsigned_addon.guid
 
     def test_change_page(self):
         rule = ScannerQueryRule.objects.create(name='darule', scanner=YARA)

@@ -16,6 +16,7 @@
 
 #changelist .field-guid {
   min-width: 250px;
+  font-family: monospace;
 }
 
 .field-result_actions .button {
