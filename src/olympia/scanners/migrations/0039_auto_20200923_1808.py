@@ -7,7 +7,7 @@ import django_jsonfield_backport.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('scanners', '0037_auto_20200717_1233'),
+        ('scanners', '0038_scannerqueryrule_completed'),
     ]
 
     operations = [
