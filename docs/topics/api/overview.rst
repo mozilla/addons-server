@@ -378,6 +378,8 @@ v4 API changelog
 * 2020-09-17: dropped ``recommended=true`` filter from addons api - use ``promoted=recommended`` filter instead.  https://github.com/mozilla/addons-server/issues/15467
 * 2020-09-17: added ``?promoted=badged`` search filter to addons api. https://github.com/mozilla/addons-server/issues/15468
 * 2020-10-08: added channel-specific reviewer submission subscriptions endpoints. https://github.com/mozilla/addons-server/issues/15605
+* 2020-10-15: moved hero shelves documentation to /shelves from /hero.
+* 2020-10-15: added /shelves/sponsored/ endpoint https://github.com/mozilla/addons-server/issues/15617
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/

@@ -1,15 +1,20 @@
 import json
+from unittest import mock
 
 from django.conf import settings
+from django.utils.encoding import force_text
 
 from olympia import amo
-from olympia.amo.tests import addon_factory, ESTestCase, reverse_ns
-from olympia.constants.promoted import RECOMMENDED
+from olympia.amo.tests import (
+    addon_factory, APITestClient, ESTestCase, reverse_ns)
+from olympia.constants.promoted import RECOMMENDED, VERIFIED_ONE, VERIFIED_TWO
 from olympia.promoted.models import PromotedAddon
 from olympia.shelves.models import Shelf, ShelfManagement
 
 
 class TestShelfViewSet(ESTestCase):
+    client_class = APITestClient
+
     @classmethod
     def setUpTestData(cls):
         super().setUpTestData()
@@ -121,3 +126,127 @@ class TestShelfViewSet(ESTestCase):
         assert result['results'][1]['addons'][0]['promoted']['category'] == (
             'recommended')
         assert result['results'][1]['addons'][0]['type'] == 'extension'
+
+
+class TestSponsoredShelfViewSet(ESTestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        super().setUp()
+        self.url = reverse_ns('sponsored-shelf-list')
+
+        self.sponsored_ext = addon_factory(
+            name='test addon test01', type=amo.ADDON_EXTENSION)
+        self.make_addon_promoted(
+            self.sponsored_ext, VERIFIED_ONE, approve_version=True)
+        self.sponsored_theme = addon_factory(
+            name='test addon test02', type=amo.ADDON_STATICTHEME)
+        self.make_addon_promoted(
+            self.sponsored_theme, VERIFIED_ONE, approve_version=True)
+        self.verified_ext = addon_factory(
+            name='test addon test03', type=amo.ADDON_EXTENSION)
+        self.make_addon_promoted(
+            self.verified_ext, VERIFIED_TWO, approve_version=True)
+        self.not_promoted = addon_factory(name='test addon test04')
+        self.refresh()
+
+    def tearDown(self):
+        super().tearDown()
+        self.empty_index('default')
+        self.refresh()
+
+    def perform_search(self, *, url=None, data=None, expected_status=200,
+                       expected_queries=0, page_size=6, **headers):
+        url = url or self.url
+        with self.assertNumQueries(expected_queries):
+            response = self.client.get(url, data, **headers)
+        assert response.status_code == expected_status, response.content
+        data = json.loads(force_text(response.content))
+        assert data['next'] is None
+        assert data['previous'] is None
+        assert data['page_size'] == page_size
+        assert data['page_count'] == 1
+        assert data['impression_url'] == reverse_ns(
+            'sponsored-shelf-impression')
+        assert data['impression_data'] is None
+        return data
+
+    def test_no_adzerk_addons(self):
+        with mock.patch('olympia.shelves.views.get_addons_from_adzerk') as get:
+            get.return_value = {}
+            data = self.perform_search()
+            get.assert_called_with(6)
+        assert data['count'] == 0
+        assert len(data['results']) == 0
+
+    def test_basic(self):
+        with mock.patch('olympia.shelves.views.get_addons_from_adzerk') as get:
+            get.return_value = {
+                str(self.sponsored_ext.id): {
+                    'addon_id': str(self.sponsored_ext.id),
+                    'impression': '123456',
+                    'click': 'abcdef'},
+                str(self.sponsored_theme.id): {
+                    'addon_id': str(self.sponsored_theme.id),
+                    'impression': '012345',
+                    'click': 'bcdefg'},
+            }
+            data = self.perform_search()
+            get.assert_called_with(6), get.call_args
+        assert data['count'] == 2
+        assert len(data['results']) == 2
+        assert {itm['id'] for itm in data['results']} == {
+            self.sponsored_ext.pk, self.sponsored_theme.pk}
+
+    def test_adzerk_returns_none_sponsored(self):
+        with mock.patch('olympia.shelves.views.get_addons_from_adzerk') as get:
+            get.return_value = {
+                str(self.sponsored_ext.id): {
+                    'addon_id': str(self.sponsored_ext.id),
+                    'impression': '123456',
+                    'click': 'abcdef'},
+                str(self.sponsored_theme.id): {
+                    'addon_id': str(self.sponsored_theme.id),
+                    'impression': '012345',
+                    'click': 'bcdefg'},
+                str(self.verified_ext.id): {
+                    'addon_id': str(self.verified_ext.id),
+                    'impression': '55656',
+                    'click': 'efef'},
+                str(self.not_promoted.id): {
+                    'addon_id': str(self.not_promoted.id),
+                    'impression': '735754',
+                    'click': 'jydh'},
+                '0': {
+                    'addon_id': '0',
+                    'impression': '',
+                    'click': ''},
+            }
+            data = self.perform_search()
+            get.assert_called_with(6)
+        # non sponsored are ignored
+        assert data['count'] == 2
+        assert len(data['results']) == 2
+        assert {itm['id'] for itm in data['results']} == {
+            self.sponsored_ext.pk, self.sponsored_theme.pk}
+
+    def test_page_size(self):
+        with mock.patch('olympia.shelves.views.get_addons_from_adzerk') as get:
+            get.return_value = {}
+            data = self.perform_search(
+                url=self.url + '?page_size=4', page_size=4)
+            get.assert_called_with(4)
+        assert data['count'] == 0
+        assert len(data['results']) == 0
+
+    def test_impression_endpoint(self):
+        url = reverse_ns('sponsored-shelf-impression')
+        with self.assertNumQueries(0):
+            response = self.client.post(url)
+        assert response.status_code == 200
+
+    def test_click_endpoint(self):
+        url = reverse_ns('sponsored-shelf-click')
+        with self.assertNumQueries(0):
+            response = self.client.post(url)
+        assert response.status_code == 200

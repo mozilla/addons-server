@@ -41,8 +41,8 @@ using the API.
    categories
    collections
    discovery
-   hero
    ratings
    reviewers
    scanners
+   shelves
    signing

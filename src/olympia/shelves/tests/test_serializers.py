@@ -7,11 +7,14 @@ from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 
 from olympia import amo
+from olympia.addons.tests.test_serializers import TestESAddonSerializerOutput
 from olympia.amo.tests import addon_factory, ESTestCase, reverse_ns
 from olympia.constants.promoted import RECOMMENDED
 from olympia.promoted.models import PromotedAddon
-from olympia.shelves.models import Shelf
-from olympia.shelves.serializers import ShelfSerializer
+
+from ..models import Shelf
+from ..serializers import ESSponsoredAddonSerializer, ShelfSerializer
+from ..views import SponsoredShelfViewSet
 
 
 class TestShelvesSerializer(ESTestCase):
@@ -112,3 +115,35 @@ class TestShelvesSerializer(ESTestCase):
             'footer_pathname': '',
             'addons': None
         }
+
+
+class TestESSponsoredAddonSerializer(TestESAddonSerializerOutput):
+    serializer_class = ESSponsoredAddonSerializer
+    view_class = SponsoredShelfViewSet
+
+    def tearDown(self):
+        super().tearDown()
+        self.empty_index('default')
+        self.refresh()
+
+    def get_request(self, path, data=None, **extra):
+        api_version = 'v5'  # choose v5 to ignore 'l10n_flat_input_output' gate
+        request = APIRequestFactory().get(
+            f'/api/{api_version}{path}', data, **extra)
+        request.versioning_scheme = (
+            api_settings.DEFAULT_VERSIONING_CLASS()
+        )
+        request.version = api_version
+        return request
+
+    def test_no_score_in_v3(self):
+        # The endpoint isn't available under api/v3 so the serializer fails to
+        # resolve the click url.
+        pass
+
+    def test_click_url_and_data(self):
+        self.addon = addon_factory()
+        result = self.serialize()
+        assert result['click_url'] == (
+            'http://testserver/api/v5/shelves/sponsored/click/')
+        assert result['click_data'] is None  # currently just a empty repr
