@@ -92,7 +92,7 @@ class TestRunScanner(UploadTest, TestCase):
     @override_settings(SCANNER_TIMEOUT=123)
     @mock.patch('olympia.scanners.tasks.SCANNERS', MOCK_SCANNERS)
     @mock.patch('olympia.scanners.tasks.statsd.incr')
-    @mock.patch('olympia.scanners.tasks.requests.post')
+    @mock.patch.object(requests.Session, 'post')
     def test_run_with_mocks(self, requests_mock, incr_mock):
         rule = ScannerRule.objects.create(name='r', scanner=self.FAKE_SCANNER)
         scanner_data = {'matchedRules': [rule.name]}
@@ -135,7 +135,7 @@ class TestRunScanner(UploadTest, TestCase):
         assert returned_results == self.results
 
     @mock.patch('olympia.scanners.tasks.SCANNERS', MOCK_SCANNERS)
-    @mock.patch('olympia.scanners.tasks.requests.post')
+    @mock.patch.object(requests.Session, 'post')
     def test_handles_scanner_errors_with_mocks(self, requests_mock):
         self.create_switch('ignore-exceptions-in-scanner-tasks', active=True)
         scanner_data = {'error': 'some error'}
@@ -155,7 +155,7 @@ class TestRunScanner(UploadTest, TestCase):
         assert returned_results == self.results
 
     @mock.patch('olympia.scanners.tasks.SCANNERS', MOCK_SCANNERS)
-    @mock.patch('olympia.scanners.tasks.requests.post')
+    @mock.patch.object(requests.Session, 'post')
     def test_throws_errors_with_mocks(self, requests_mock):
         scanner_data = {'error': 'some error'}
         requests_mock.return_value = self.create_response(data=scanner_data)
@@ -194,7 +194,7 @@ class TestRunScanner(UploadTest, TestCase):
 
     @mock.patch('olympia.scanners.tasks.SCANNERS', MOCK_SCANNERS)
     @mock.patch('olympia.scanners.tasks.statsd.timer')
-    @mock.patch('olympia.scanners.tasks.requests.post')
+    @mock.patch.object(requests.Session, 'post')
     def test_calls_statsd_timer(self, requests_mock, timer_mock):
         requests_mock.return_value = self.create_response()
 
@@ -212,7 +212,7 @@ class TestRunScanner(UploadTest, TestCase):
         assert returned_results == self.results
 
     @mock.patch('olympia.scanners.tasks.SCANNERS', MOCK_SCANNERS)
-    @mock.patch('olympia.scanners.tasks.requests.post')
+    @mock.patch.object(requests.Session, 'post')
     def test_handles_http_errors_with_mock(self, requests_mock):
         self.create_switch('ignore-exceptions-in-scanner-tasks', active=True)
         requests_mock.return_value = self.create_response(
