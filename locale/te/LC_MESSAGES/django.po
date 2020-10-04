@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-10-04 06:22+0000\n"
+"PO-Revision-Date: 2020-10-04 06:31+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -3031,8 +3031,8 @@ msgstr "ఈ అనువర్తనాన్ని తీసివేయండ�
 #. the application name.
 msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ఈ పొడగింత కోసం <b>ఒక</ b> {1} వర్గం ఎంచుకోండి:"
+msgstr[1] "ఈ పొడగింత కోసం <b>{0} వరకూ</ b> {1} వర్గాలు ఎంచుకోండి:"
 
 msgid "End-User License Agreement"
 msgstr "అంతిమ-వాడుకరి లైసెన్సు ఒప్పందపత్రం"
@@ -3111,7 +3111,7 @@ msgid "WebExtensions API"
 msgstr "WebExtensions API"
 
 msgid "Web-Ext: build & test extensions"
-msgstr ""
+msgstr "Web-Ext: పొడగింతలను నిర్మించండి, పరీక్షించండి"
 
 msgid "Promote"
 msgstr "దోహదం చేయు"
@@ -3138,7 +3138,7 @@ msgid "Write Some Code"
 msgstr "కొంత కోడ్ను వ్రాయండి"
 
 msgid "Help make add-ons better by contributing your coding skills."
-msgstr ""
+msgstr "మీ కోడింగ్ నైపుణ్యాలను అందించడం ద్వారా పొడగింతలను మెరుగుపరచడంలో తోడ్పడండి."
 
 msgid "Get started"
 msgstr "మొదలుపెట్టండి"
@@ -3162,7 +3162,7 @@ msgid "Learn more about the developer community"
 msgstr ""
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
-msgstr ""
+msgstr "కోడ్ సమీక్ష తర్వాత ఈ సైట్లో కనబడతాయి. స్వయంచాలక తాజాకరణలు ఈ సైటు ద్వారా నిర్వహించబడతాయి."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
