@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-10-04 06:31+0000\n"
+"PO-Revision-Date: 2020-10-04 06:53+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -4994,10 +4994,10 @@ msgid "OpenSearch: XML Parse Error."
 msgstr ""
 
 msgid "Could not parse uploaded file."
-msgstr ""
+msgstr "ఎక్కించిన దస్త్రాన్ని అన్వయించుకోలేకపోయాం."
 
 msgid "Unsupported archive type."
-msgstr ""
+msgstr "తోడ్పాటులేని ఆర్కయివు రకం."
 
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
@@ -5082,7 +5082,7 @@ msgid "Write like you are telling a friend about your experience with the add-on
 msgstr ""
 
 msgid "Keep reviews concise and easy to understand."
-msgstr ""
+msgstr "సమీక్షలను టూకీగా, తేలిగకా అర్థమయ్యేలా రాయండి."
 
 msgid "Give specific and helpful details. For example:"
 msgstr "ప్రత్యేక, ఉపయోగపడే వివరాలు ఇవ్వండి. ఉదాహరణకు:"
