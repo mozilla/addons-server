@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-22 13:13+0000\n"
+"PO-Revision-Date: 2020-10-05 13:41+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3641,7 +3641,7 @@ msgstr "ჩამოტვირთეთ ვიდეოები მარტ�
 
 #. editorial content for the discovery pane.
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "გაამრავალფეროვნეთ თქვენ ხელთ არსებული სიცილაკები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "გაამრავალფეროვნეთ თქვენს ხელთ არსებული სიცილაკები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
@@ -4001,7 +4001,7 @@ msgstr "მოინახულეთ საიტები ვინაობ�
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr "ისარგებლეთ სანიშნების გამოსახვით. მიიღეთ წვდომა თქვენ რჩეულ საიტებზე, ბოლო დახურულ ჩანართებზე და ა. შ. — ყველაფერი ლამაზად დალაგებული ფილების სახით."
+msgstr "ისარგებლეთ სანიშნების გამოსახვით. მიიღეთ წვდომა თქვენს რჩეულ საიტებზე, ბოლო დახურულ ჩანართებზე და ა. შ. — ყველაფერი ლამაზად დალაგებული ფილების სახით."
 
 #. editorial content for the discovery pane.
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5632,7 +5632,7 @@ msgid "Flagged By Scanners ({0})"
 msgstr "მონიშნული სკანერების მიერ ({0})"
 
 msgid "Flagged for Human Review ({0})"
-msgstr "მონიშნული ადამიანის მიერ განხილვისთვის ({0})"
+msgstr "მონიშნული, ადამიანის მიერ განხილვისთვის ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "ავტომატურად მიღებული დამატებები"
