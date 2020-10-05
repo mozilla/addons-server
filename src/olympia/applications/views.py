@@ -77,12 +77,16 @@ class AppVersionView(APIView):
     permission_classes = [GroupPermission(amo.permissions.APPVERSIONS_CREATE)]
 
     def put(self, request, *args, **kwargs):
-        # For each request, we'll try to create up to 3 versions, one for the
-        # parameter in the URL, one for the corresponding "release" version if
-        # it's different (if 79.0a1 is passed, the base would be 79.0. If 79.0
-        # is passed, then we'd skip that one as they are the same) and a last
-        # one for the corresponding max version with a star (if 79.0 or 79.0a1
-        # is passed, then this would be 79.*)
+        # For each request, we'll try to create up to 3 versions for each app,
+        # one for the parameter in the URL, one for the corresponding "release"
+        # version if it's different (if 79.0a1 is passed, the base would be
+        # 79.0. If 79.0 is passed, then we'd skip that one as they are the
+        # same) and a last one for the corresponding max version with a star
+        # (if 79.0 or 79.0a1 is passed, then this would be 79.*)
+        # We validate the app parameter, but always try to create the versions
+        # for both Firefox and Firefox for Android anyway, because at the
+        # extension manifest level there is no difference so for validation
+        # purposes we want to keep both in sync.
         application = amo.APPS.get(kwargs.get('application'))
         if not application:
             raise ParseError('Invalid application parameter')
@@ -93,6 +97,23 @@ class AppVersionView(APIView):
         release_version = '%d.%d' % (
             version_data['major'], version_data['minor1'] or 0)
         star_version = '%d.*' % version_data['major']
+        created_firefox = self.create_versions_for_app(
+            application=amo.FIREFOX,
+            requested_version=requested_version,
+            release_version=release_version,
+            star_version=star_version)
+        created_android = self.create_versions_for_app(
+            application=amo.ANDROID,
+            requested_version=requested_version,
+            release_version=release_version,
+            star_version=star_version)
+        created = created_firefox or created_android
+        status_code = HTTP_201_CREATED if created else HTTP_202_ACCEPTED
+        return Response(status=status_code)
+
+    def create_versions_for_app(
+            self, *, application, requested_version, release_version,
+            star_version):
         _, created_requested = AppVersion.objects.get_or_create(
             application=application.id, version=requested_version)
         if requested_version != release_version:
@@ -105,6 +126,4 @@ class AppVersionView(APIView):
                 application=application.id, version=star_version)
         else:
             created_star = False
-        created = created_requested or created_release or created_star
-        status_code = HTTP_201_CREATED if created else HTTP_202_ACCEPTED
-        return Response(status=status_code)
+        return created_requested or created_release or created_star

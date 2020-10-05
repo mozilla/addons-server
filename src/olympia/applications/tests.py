@@ -86,11 +86,15 @@ class TestAppVersionsAPI(APIKeyAuthTestMixin, TestCase):
     def test_release(self):
         response = self.put(self.url)
         assert response.status_code == 201
-        assert AppVersion.objects.count() == 2
+        assert AppVersion.objects.count() == 4
         assert AppVersion.objects.filter(
             application=amo.FIREFOX.id, version='42.0').exists()
         assert AppVersion.objects.filter(
             application=amo.FIREFOX.id, version='42.*').exists()
+        assert AppVersion.objects.filter(
+            application=amo.ANDROID.id, version='42.0').exists()
+        assert AppVersion.objects.filter(
+            application=amo.ANDROID.id, version='42.*').exists()
 
     def test_release_android(self):
         self.url = reverse_ns(
@@ -98,11 +102,15 @@ class TestAppVersionsAPI(APIKeyAuthTestMixin, TestCase):
             kwargs={'application': 'android', 'version': '84.0'})
         response = self.put(self.url)
         assert response.status_code == 201
-        assert AppVersion.objects.count() == 2
+        assert AppVersion.objects.count() == 4
         assert AppVersion.objects.filter(
             application=amo.ANDROID.id, version='84.0').exists()
         assert AppVersion.objects.filter(
             application=amo.ANDROID.id, version='84.*').exists()
+        assert AppVersion.objects.filter(
+            application=amo.FIREFOX.id, version='84.0').exists()
+        assert AppVersion.objects.filter(
+            application=amo.FIREFOX.id, version='84.*').exists()
 
     def test_alpha(self):
         self.url = reverse_ns(
@@ -110,83 +118,134 @@ class TestAppVersionsAPI(APIKeyAuthTestMixin, TestCase):
             kwargs={'application': 'firefox', 'version': '42.0a1'})
         response = self.put(self.url)
         assert response.status_code == 201
-        assert AppVersion.objects.count() == 3
+        assert AppVersion.objects.count() == 6
         assert AppVersion.objects.filter(
             application=amo.FIREFOX.id, version='42.0').exists()
         assert AppVersion.objects.filter(
             application=amo.FIREFOX.id, version='42.0a1').exists()
         assert AppVersion.objects.filter(
             application=amo.FIREFOX.id, version='42.*').exists()
+        assert AppVersion.objects.filter(
+            application=amo.ANDROID.id, version='42.0').exists()
+        assert AppVersion.objects.filter(
+            application=amo.ANDROID.id, version='42.0a1').exists()
+        assert AppVersion.objects.filter(
+            application=amo.ANDROID.id, version='42.*').exists()
 
-    def test_alpha_already_exists(self):
+    def test_alpha_already_exists_for_one_app(self):
         AppVersion.objects.create(application=amo.FIREFOX.id, version='42.0a1')
         self.url = reverse_ns(
             'appversions',
             kwargs={'application': 'firefox', 'version': '42.0a1'})
         response = self.put(self.url)
         assert response.status_code == 201
-        assert AppVersion.objects.count() == 3
+        assert AppVersion.objects.count() == 6
         assert AppVersion.objects.filter(
             application=amo.FIREFOX.id, version='42.0').exists()
         assert AppVersion.objects.filter(
             application=amo.FIREFOX.id, version='42.0a1').exists()
         assert AppVersion.objects.filter(
             application=amo.FIREFOX.id, version='42.*').exists()
+        assert AppVersion.objects.filter(
+            application=amo.ANDROID.id, version='42.0').exists()
+        assert AppVersion.objects.filter(
+            application=amo.ANDROID.id, version='42.0a1').exists()
+        assert AppVersion.objects.filter(
+            application=amo.ANDROID.id, version='42.*').exists()
 
-    def test_alpha_release_already_exists(self):
+    def test_alpha_release_already_exists_for_one_app(self):
         AppVersion.objects.create(application=amo.FIREFOX.id, version='42.0')
         self.url = reverse_ns(
             'appversions',
             kwargs={'application': 'firefox', 'version': '42.0a1'})
         response = self.put(self.url)
         assert response.status_code == 201
-        assert AppVersion.objects.count() == 3
+        assert AppVersion.objects.count() == 6
         assert AppVersion.objects.filter(
             application=amo.FIREFOX.id, version='42.0').exists()
         assert AppVersion.objects.filter(
             application=amo.FIREFOX.id, version='42.0a1').exists()
         assert AppVersion.objects.filter(
             application=amo.FIREFOX.id, version='42.*').exists()
+        assert AppVersion.objects.filter(
+            application=amo.ANDROID.id, version='42.0').exists()
+        assert AppVersion.objects.filter(
+            application=amo.ANDROID.id, version='42.0a1').exists()
+        assert AppVersion.objects.filter(
+            application=amo.ANDROID.id, version='42.*').exists()
 
-    def test_alpha_star_already_exists(self):
+    def test_alpha_star_already_exists_for_one_app(self):
         AppVersion.objects.create(application=amo.FIREFOX.id, version='42.*')
         self.url = reverse_ns(
             'appversions',
             kwargs={'application': 'firefox', 'version': '42.0a1'})
         response = self.put(self.url)
         assert response.status_code == 201
-        assert AppVersion.objects.count() == 3
+        assert AppVersion.objects.count() == 6
         assert AppVersion.objects.filter(
             application=amo.FIREFOX.id, version='42.0').exists()
         assert AppVersion.objects.filter(
             application=amo.FIREFOX.id, version='42.0a1').exists()
         assert AppVersion.objects.filter(
             application=amo.FIREFOX.id, version='42.*').exists()
+        assert AppVersion.objects.filter(
+            application=amo.ANDROID.id, version='42.0').exists()
+        assert AppVersion.objects.filter(
+            application=amo.ANDROID.id, version='42.0a1').exists()
+        assert AppVersion.objects.filter(
+            application=amo.ANDROID.id, version='42.*').exists()
 
-    def test_everything_already_exists(self):
+    def test_everything_already_exists_for_one_app(self):
         AppVersion.objects.create(application=amo.FIREFOX.id, version='42.0')
         AppVersion.objects.create(application=amo.FIREFOX.id, version='42.*')
         response = self.put(self.url)
-        assert response.status_code == 202
-        assert AppVersion.objects.count() == 2
+        assert response.status_code == 201  # We created some Android stuff.
+        assert AppVersion.objects.count() == 4
         assert AppVersion.objects.filter(
             application=amo.FIREFOX.id, version='42.0').exists()
         assert AppVersion.objects.filter(
             application=amo.FIREFOX.id, version='42.*').exists()
+        assert AppVersion.objects.filter(
+            application=amo.ANDROID.id, version='42.0').exists()
+        assert AppVersion.objects.filter(
+            application=amo.ANDROID.id, version='42.*').exists()
 
-    def test_alpha_and_star_when_minor_is_not_0(self):
+    def test_alpha_and_star_when_minor_is_not_0_for_one_app(self):
         self.url = reverse_ns(
             'appversions',
             kwargs={'application': 'firefox', 'version': '42.1a2'})
         response = self.put(self.url)
         assert response.status_code == 201
-        assert AppVersion.objects.count() == 3
+        assert AppVersion.objects.count() == 6
         assert AppVersion.objects.filter(
             application=amo.FIREFOX.id, version='42.1').exists()
         assert AppVersion.objects.filter(
             application=amo.FIREFOX.id, version='42.1a2').exists()
         assert AppVersion.objects.filter(
             application=amo.FIREFOX.id, version='42.*').exists()
+        assert AppVersion.objects.filter(
+            application=amo.ANDROID.id, version='42.1').exists()
+        assert AppVersion.objects.filter(
+            application=amo.ANDROID.id, version='42.1a2').exists()
+        assert AppVersion.objects.filter(
+            application=amo.ANDROID.id, version='42.*').exists()
+
+    def test_everything_already_exists(self):
+        AppVersion.objects.create(application=amo.FIREFOX.id, version='42.0')
+        AppVersion.objects.create(application=amo.FIREFOX.id, version='42.*')
+        AppVersion.objects.create(application=amo.ANDROID.id, version='42.0')
+        AppVersion.objects.create(application=amo.ANDROID.id, version='42.*')
+        response = self.put(self.url)
+        assert response.status_code == 202  # Nothing to create at all.
+        assert AppVersion.objects.count() == 4
+        assert AppVersion.objects.filter(
+            application=amo.FIREFOX.id, version='42.0').exists()
+        assert AppVersion.objects.filter(
+            application=amo.FIREFOX.id, version='42.*').exists()
+        assert AppVersion.objects.filter(
+            application=amo.ANDROID.id, version='42.0').exists()
+        assert AppVersion.objects.filter(
+            application=amo.ANDROID.id, version='42.*').exists()
 
 
 class TestCommands(TestCase):
