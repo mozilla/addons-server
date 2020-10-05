@@ -257,6 +257,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
         if self.read_dev_agreement is None:
             return False
+        last_agreement_change_config = None
         try:
             last_agreement_change_config = get_config(
                 'last_dev_agreement_change_date')
@@ -554,8 +555,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         send_delete_email = self.should_send_delete_email()
         self._delete_related_content(addon_msg=addon_msg)
         log.info(f'User ({self}: <{self.email}>) is being anonymized.')
-        if send_delete_email:
-            email = self._prepare_delete_email()
+        email = self._prepare_delete_email() if send_delete_email else None
         self.anonymize_users((self, ))
         self.deleted = True
         self.save()
@@ -703,9 +703,8 @@ class IPNetworkUserRestriction(GetErrorMessageMixin, ModelBase):
         """
         try:
             remote_addr = ipaddress.ip_address(request.META.get('REMOTE_ADDR'))
-            if request.user:
-                user_last_login_ip = ipaddress.ip_address(
-                    request.user.last_login_ip)
+            user_last_login_ip = ipaddress.ip_address(
+                request.user.last_login_ip) if request.user else None
         except ValueError:
             # If we don't have a valid ip address, let's deny
             return False
