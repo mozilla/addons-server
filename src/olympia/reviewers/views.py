@@ -1224,11 +1224,23 @@ class AddonReviewerViewSet(GenericViewSet):
     @drf_action(
         detail=True,
         methods=['post'], permission_classes=[AllowAnyKindOfReviewer])
+    def subscribe(self, request, **kwargs):
+        return self.subscribe_listed(request, **kwargs)
+
+    @drf_action(
+        detail=True,
+        methods=['post'], permission_classes=[AllowAnyKindOfReviewer])
     def subscribe_listed(self, request, **kwargs):
         addon = get_object_or_404(Addon, pk=kwargs['pk'])
         ReviewerSubscription.objects.get_or_create(
             user=request.user, addon=addon, channel=amo.RELEASE_CHANNEL_LISTED)
         return Response(status=status.HTTP_202_ACCEPTED)
+
+    @drf_action(
+        detail=True,
+        methods=['post'], permission_classes=[AllowAnyKindOfReviewer])
+    def unsubscribe(self, request, **kwargs):
+        return self.unsubscribe_listed(request, **kwargs)
 
     @drf_action(
         detail=True,

@@ -6164,6 +6164,15 @@ class TestAddonReviewerViewSet(TestCase):
         assert response.status_code == 202
         assert ReviewerSubscription.objects.count() == 1
 
+    def test_subscribe(self):
+        self.grant_permission(self.user, 'Addons:Review')
+        self.client.login_api(self.user)
+        subscribe_url = reverse_ns(
+            'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
+        response = self.client.post(subscribe_url)
+        assert response.status_code == 202
+        assert ReviewerSubscription.objects.count() == 1
+
     def test_subscribe_listed(self):
         self.grant_permission(self.user, 'Addons:Review')
         self.client.login_api(self.user)
@@ -6210,6 +6219,18 @@ class TestAddonReviewerViewSet(TestCase):
         self.grant_permission(self.user, 'Addons:ReviewUnlisted')
         self.client.login_api(self.user)
         response = self.client.post(self.unsubscribe_url_unlisted)
+        assert response.status_code == 202
+        assert ReviewerSubscription.objects.count() == 0
+
+    def test_unsubscribe(self):
+        ReviewerSubscription.objects.create(
+            user=self.user, addon=self.addon,
+            channel=amo.RELEASE_CHANNEL_LISTED)
+        self.grant_permission(self.user, 'Addons:Review')
+        self.client.login_api(self.user)
+        unsubscribe_url = reverse_ns(
+            'reviewers-addon-unsubscribe', kwargs={'pk': self.addon.pk})
+        response = self.client.post(unsubscribe_url)
         assert response.status_code == 202
         assert ReviewerSubscription.objects.count() == 0
 

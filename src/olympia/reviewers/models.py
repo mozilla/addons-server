@@ -383,7 +383,8 @@ class PerformanceGraph(RawSQLModel):
 class ReviewerSubscription(ModelBase):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
-    channel = models.IntegerField(choices=amo.RELEASE_CHANNEL_CHOICES)
+    channel = models.PositiveSmallIntegerField(
+        choices=amo.RELEASE_CHANNEL_CHOICES)
 
     class Meta:
         db_table = 'editor_subscriptions'

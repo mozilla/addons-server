@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='reviewersubscription',
             name='channel',
-            field=models.IntegerField(choices=[(1, 'Unlisted'), (2, 'Listed')], default=2),
+            field=models.PositiveSmallIntegerField(choices=[(1, 'Unlisted'), (2, 'Listed')], default=2),
             preserve_default=False,
         ),
     ]
