@@ -907,7 +907,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
             ActivityLog.create(
                 amo.LOG.REJECT_VERSION_DELAYED,
                 addon, version, details={'comments': 'fôo'}, user=self.user)
-        more_recent_version = version_factory(addon=addon)
+        more_recent_version = version_factory(addon=addon, version='43.0')
         VersionReviewerFlags.objects.create(
             version=more_recent_version,
             pending_rejection=datetime.now() + timedelta(days=3))
