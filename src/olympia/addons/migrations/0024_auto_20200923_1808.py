@@ -4,6 +4,11 @@ from django.db import migrations
 import django_jsonfield_backport.models
 
 
+def fix_empty_string_json(apps, schema_editor):
+    Preview = apps.get_model('addons', 'Preview')
+    Preview.objects.filter(sizes='').update(sizes='{}')
+
+
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -11,6 +16,7 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        migrations.RunPython(fix_empty_string_json),
         migrations.AlterField(
             model_name='preview',
             name='sizes',
