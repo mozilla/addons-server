@@ -22,7 +22,7 @@ sent when a new version is submitted on a particular add-on.
     .. note::
         Requires authentication and the current user to have any
         reviewer-related permission.
-    .. note:
+    .. note::
         ``.../subscribe/`` uses the listed channel implicitly.
         This endpoint is deprecated, use the explicit channel endpoints.
 
@@ -41,7 +41,7 @@ sent when a new version is submitted on a particular add-on.
     .. note::
         Requires authentication and the current user to have any
         reviewer-related permission.
-    .. note:
+    .. note::
         ``.../unsubscribe/`` uses the listed channel implicitly.
         This endpoint is deprecated, use the explicit channel endpoints.
 
