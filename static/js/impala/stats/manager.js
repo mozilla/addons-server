@@ -5,7 +5,7 @@ z.StatsManager = (function () {
 
   // The version of the stats localStorage we are using.
   // If you increment this number, you cache-bust everyone!
-  var STATS_VERSION = '2020-09-11';
+  var STATS_VERSION = '2020-10-08';
   var PRECISION = 2;
 
   var $primary = $('.primary');
