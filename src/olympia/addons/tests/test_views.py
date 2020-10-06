@@ -2025,6 +2025,13 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
         assert {itm['id'] for itm in data['results']} == {
             not_promoted.pk, sponsored.pk}
 
+        sponsored_result, not_result = (
+            (data['results'][0], data['results'][1])
+            if data['results'][0]['id'] == sponsored.id else
+            (data['results'][1], data['results'][0]))
+        assert sponsored_result['promoted']['category'] == 'sponsored'
+        assert not_result['promoted'] is None
+
 
 class TestAddonFeaturedView(ESTestCase):
     client_class = APITestClient
