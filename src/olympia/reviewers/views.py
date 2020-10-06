@@ -916,8 +916,14 @@ def review(request, addon, channel=None):
         num_pages=num_pages,
         pager=pager,
         reports=reports,
-        subscribed=ReviewerSubscription.objects.filter(
-            user=request.user, addon=addon).exists(),
+        subscribed_listed=ReviewerSubscription.objects.filter(
+            user=request.user,
+            addon=addon,
+            channel=amo.RELEASE_CHANNEL_LISTED).exists(),
+        subscribed_unlisted=ReviewerSubscription.objects.filter(
+            user=request.user,
+            addon=addon,
+            channel=amo.RELEASE_CHANNEL_UNLISTED).exists(),
         unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED),
         user_changes_log=user_changes_log,
         user_ratings=user_ratings,
@@ -1219,18 +1225,54 @@ class AddonReviewerViewSet(GenericViewSet):
         detail=True,
         methods=['post'], permission_classes=[AllowAnyKindOfReviewer])
     def subscribe(self, request, **kwargs):
+        return self.subscribe_listed(request, **kwargs)
+
+    @drf_action(
+        detail=True,
+        methods=['post'], permission_classes=[AllowAnyKindOfReviewer])
+    def subscribe_listed(self, request, **kwargs):
         addon = get_object_or_404(Addon, pk=kwargs['pk'])
         ReviewerSubscription.objects.get_or_create(
-            user=request.user, addon=addon)
+            user=request.user, addon=addon, channel=amo.RELEASE_CHANNEL_LISTED)
         return Response(status=status.HTTP_202_ACCEPTED)
 
     @drf_action(
         detail=True,
         methods=['post'], permission_classes=[AllowAnyKindOfReviewer])
     def unsubscribe(self, request, **kwargs):
+        return self.unsubscribe_listed(request, **kwargs)
+
+    @drf_action(
+        detail=True,
+        methods=['post'], permission_classes=[AllowAnyKindOfReviewer])
+    def unsubscribe_listed(self, request, **kwargs):
         addon = get_object_or_404(Addon, pk=kwargs['pk'])
         ReviewerSubscription.objects.filter(
-            user=request.user, addon=addon).delete()
+            user=request.user,
+            addon=addon,
+            channel=amo.RELEASE_CHANNEL_LISTED).delete()
+        return Response(status=status.HTTP_202_ACCEPTED)
+
+    @drf_action(
+        detail=True,
+        methods=['post'], permission_classes=[AllowReviewerUnlisted])
+    def subscribe_unlisted(self, request, **kwargs):
+        addon = get_object_or_404(Addon, pk=kwargs['pk'])
+        ReviewerSubscription.objects.get_or_create(
+            user=request.user,
+            addon=addon,
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        return Response(status=status.HTTP_202_ACCEPTED)
+
+    @drf_action(
+        detail=True,
+        methods=['post'], permission_classes=[AllowReviewerUnlisted])
+    def unsubscribe_unlisted(self, request, **kwargs):
+        addon = get_object_or_404(Addon, pk=kwargs['pk'])
+        ReviewerSubscription.objects.filter(
+            user=request.user,
+            addon=addon,
+            channel=amo.RELEASE_CHANNEL_UNLISTED).delete()
         return Response(status=status.HTTP_202_ACCEPTED)
 
     @drf_action(

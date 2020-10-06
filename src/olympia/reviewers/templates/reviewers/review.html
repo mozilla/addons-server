@@ -225,11 +225,20 @@
       {% if not addon.is_deleted %}
       <li>
         <input type="checkbox" id="notify_new_listed_versions"
-               data-api-url-subscribe="{{ drf_url('reviewers-addon-subscribe', addon.pk) }}"
-               data-api-url-unsubscribe="{{ drf_url('reviewers-addon-unsubscribe', addon.pk) }}"
-               {% if subscribed %}checked="checked"{% endif %} autocomplete="off" />
+               data-api-url-subscribe-listed="{{ drf_url('reviewers-addon-subscribe-listed', addon.pk) }}"
+               data-api-url-unsubscribe-listed="{{ drf_url('reviewers-addon-unsubscribe-listed', addon.pk) }}"
+               {% if subscribed_listed %}checked="checked"{% endif %} autocomplete="off" />
           <label for="notify_new_listed_versions">{{ _('Notify me about new listed versions') }}</label>
       </li>
+      {% if action_allowed(amo.permissions.ADDONS_REVIEW_UNLISTED) %}
+      <li>
+        <input type="checkbox" id="notify_new_unlisted_versions"
+          data-api-url-subscribe-unlisted="{{ drf_url('reviewers-addon-subscribe-unlisted', addon.pk) }}"
+          data-api-url-unsubscribe-unlisted="{{ drf_url('reviewers-addon-unsubscribe-unlisted', addon.pk) }}"
+          {% if subscribed_unlisted %}checked="checked"{% endif %} autocomplete="off" />
+          <label for="notify_new_unlisted_versions">{{ _('Notify me about new unlisted versions') }}</label>
+      </li>
+        {% endif %}
       {% endif %}
     </ul>
 

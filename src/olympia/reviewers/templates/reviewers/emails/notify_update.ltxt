@@ -14,4 +14,4 @@ Thanks!
 Mozilla Add-ons
 {{ SITE_URL }}
 
-This is a notification sent to you because you requested a follow up email regarding new listed version uploads for {{ name }}. To unsubscribe, visit the review link above and uncheck the "Notify me about new listed versions" checkbox.
+This is a notification sent to you because you requested a follow up email regarding new version uploads for {{ name }}. To unsubscribe, visit the review link above and uncheck the respective "Notify me about new listed/unlisted versions" checkbox.

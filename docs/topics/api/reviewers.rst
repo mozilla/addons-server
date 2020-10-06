@@ -17,26 +17,38 @@ Subscribe
 ---------
 
 This endpoint allows you to subscribe the current user to the notification
-sent when a new listed version is submitted on a particular add-on.
+sent when a new version is submitted on a particular add-on.
 
     .. note::
         Requires authentication and the current user to have any
         reviewer-related permission.
+    .. note::
+        ``.../subscribe/`` uses the listed channel implicitly.
+        This endpoint is deprecated, use the explicit channel endpoints.
 
 .. http:post:: /api/v4/reviewers/addon/(int:addon_id)/subscribe/
+.. http:post:: /api/v4/reviewers/addon/(int:addon_id)/subscribe_listed/
+.. http:post:: /api/v4/reviewers/addon/(int:addon_id)/subscribe_unlisted/
+
 
 -----------
 Unsubscribe
 -----------
 
 This endpoint allows you to unsubscribe the current user to the notification
-sent when a new listed version is submitted on a particular add-on.
+sent when a new version is submitted on a particular add-on.
 
     .. note::
         Requires authentication and the current user to have any
         reviewer-related permission.
+    .. note::
+        ``.../unsubscribe/`` uses the listed channel implicitly.
+        This endpoint is deprecated, use the explicit channel endpoints.
 
 .. http:post:: /api/v4/reviewers/addon/(int:addon_id)/unsubscribe/
+.. http:post:: /api/v4/reviewers/addon/(int:addon_id)/unsubscribe_listed/
+.. http:post:: /api/v4/reviewers/addon/(int:addon_id)/unsubscribe_unlisted/
+
 
 -------
 Disable

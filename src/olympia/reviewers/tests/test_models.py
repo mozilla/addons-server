@@ -397,9 +397,11 @@ class TestReviewerSubscription(TestCase):
         GroupUser.objects.create(
             group=self.reviewer_group, user=self.user_two)
         ReviewerSubscription.objects.create(
-            addon=self.addon, user=self.user_one)
+            addon=self.addon, user=self.user_one,
+            channel=amo.RELEASE_CHANNEL_LISTED)
         ReviewerSubscription.objects.create(
-            addon=self.addon, user=self.user_two)
+            addon=self.addon, user=self.user_two,
+            channel=amo.RELEASE_CHANNEL_LISTED)
 
     def test_email(self):
         es = ReviewerSubscription.objects.get(user=self.user_one)
@@ -422,9 +424,26 @@ class TestReviewerSubscription(TestCase):
         send_notifications(Version, self.version)
         assert len(mail.outbox) == 2
 
-    def test_dont_send_notifications_unlisted(self):
+    def test_send_notifications_unlisted(self):
+        self.reviewer_group = Group.objects.create(
+            name='Reviewers: Unlisted', rules='Addons:ReviewUnlisted')
+        GroupUser.objects.create(
+            group=self.reviewer_group, user=self.user_one)
+        version_uploaded.send(sender=Version, instance=self.version)
+        assert len(mail.outbox) == 2
+        assert mail.outbox[0].to == [u'del@icio.us']
+        assert mail.outbox[0].subject == (
+            'Mozilla Add-ons: Delicious Bookmarks Updated')
+
+    def test_unlisted_subscription_listed_reviewer(self):
+        ReviewerSubscription.objects.create(
+            addon=self.addon, user=self.user_one,
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         version_uploaded.send(sender=Version, instance=self.version)
+
+        # No email should be sent since the reviewer does not have access
+        # to unlisted.
         assert len(mail.outbox) == 0
 
     def test_signal_edit(self):

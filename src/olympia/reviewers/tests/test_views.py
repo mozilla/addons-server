@@ -3738,19 +3738,32 @@ class TestReview(ReviewBase):
         assert admin.length == 1
 
     def test_extra_actions_subscribe_checked_state(self):
+        self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
         self.login_as_reviewer()
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        subscribe_input = doc('#notify_new_listed_versions')[0]
-        assert 'checked' not in subscribe_input.attrib
+        subscribe_listed_input = doc('#notify_new_listed_versions')[0]
+        assert 'checked' not in subscribe_listed_input.attrib
+        subscribe_unlisted_input = doc('#notify_new_unlisted_versions')[0]
+        assert 'checked' not in subscribe_unlisted_input.attrib
 
         ReviewerSubscription.objects.create(
-            addon=self.addon, user=self.reviewer)
+            addon=self.addon, user=self.reviewer,
+            channel=amo.RELEASE_CHANNEL_LISTED)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
         subscribe_input = doc('#notify_new_listed_versions')[0]
+        assert subscribe_input.attrib['checked'] == 'checked'
+
+        ReviewerSubscription.objects.create(
+            addon=self.addon, user=self.reviewer,
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        subscribe_input = doc('#notify_new_unlisted_versions')[0]
         assert subscribe_input.attrib['checked'] == 'checked'
 
     def test_extra_actions_token(self):
@@ -6085,10 +6098,16 @@ class TestAddonReviewerViewSet(TestCase):
         super(TestAddonReviewerViewSet, self).setUp()
         self.user = user_factory()
         self.addon = addon_factory()
-        self.subscribe_url = reverse_ns(
-            'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
-        self.unsubscribe_url = reverse_ns(
-            'reviewers-addon-unsubscribe', kwargs={'pk': self.addon.pk})
+        self.subscribe_url_listed = reverse_ns(
+            'reviewers-addon-subscribe-listed', kwargs={'pk': self.addon.pk})
+        self.unsubscribe_url_listed = reverse_ns(
+            'reviewers-addon-unsubscribe-listed',
+            kwargs={'pk': self.addon.pk})
+        self.subscribe_url_unlisted = reverse_ns(
+            'reviewers-addon-subscribe-unlisted', kwargs={'pk': self.addon.pk})
+        self.unsubscribe_url_unlisted = reverse_ns(
+            'reviewers-addon-unsubscribe-unlisted',
+            kwargs={'pk': self.addon.pk})
         self.enable_url = reverse_ns(
             'reviewers-addon-enable', kwargs={'pk': self.addon.pk})
         self.disable_url = reverse_ns(
@@ -6104,76 +6123,134 @@ class TestAddonReviewerViewSet(TestCase):
             kwargs={'pk': self.addon.pk})
 
     def test_subscribe_not_logged_in(self):
-        response = self.client.post(self.subscribe_url)
+        response = self.client.post(self.subscribe_url_listed)
+        assert response.status_code == 401
+        response = self.client.post(self.subscribe_url_unlisted)
         assert response.status_code == 401
 
     def test_subscribe_no_rights(self):
         self.client.login_api(self.user)
-        response = self.client.post(self.subscribe_url)
+        response = self.client.post(self.subscribe_url_listed)
+        assert response.status_code == 403
+        response = self.client.post(self.subscribe_url_unlisted)
         assert response.status_code == 403
 
     def test_subscribe_addon_does_not_exist(self):
         self.grant_permission(self.user, 'Addons:Review')
         self.client.login_api(self.user)
-        self.subscribe_url = reverse_ns(
-            'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk + 42})
-        response = self.client.post(self.subscribe_url)
+        self.subscribe_url_listed = reverse_ns(
+            'reviewers-addon-subscribe-listed',
+            kwargs={'pk': self.addon.pk + 42})
+        response = self.client.post(self.subscribe_url_listed)
         assert response.status_code == 404
 
-    def test_subscribe_already_subscribed(self):
+    def test_subscribe_already_subscribed_listed(self):
         ReviewerSubscription.objects.create(
-            user=self.user, addon=self.addon)
+            user=self.user, addon=self.addon,
+            channel=amo.RELEASE_CHANNEL_LISTED)
         self.grant_permission(self.user, 'Addons:Review')
         self.client.login_api(self.user)
-        self.subscribe_url = reverse_ns(
-            'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
-        response = self.client.post(self.subscribe_url)
+        response = self.client.post(self.subscribe_url_listed)
+        assert response.status_code == 202
+        assert ReviewerSubscription.objects.count() == 1
+
+    def test_subscribe_already_subscribed_unlisted(self):
+        ReviewerSubscription.objects.create(
+            user=self.user, addon=self.addon,
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.grant_permission(self.user, 'Addons:ReviewUnlisted')
+        self.client.login_api(self.user)
+        response = self.client.post(self.subscribe_url_unlisted)
         assert response.status_code == 202
         assert ReviewerSubscription.objects.count() == 1
 
     def test_subscribe(self):
         self.grant_permission(self.user, 'Addons:Review')
         self.client.login_api(self.user)
-        self.subscribe_url = reverse_ns(
+        subscribe_url = reverse_ns(
             'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
-        response = self.client.post(self.subscribe_url)
+        response = self.client.post(subscribe_url)
+        assert response.status_code == 202
+        assert ReviewerSubscription.objects.count() == 1
+
+    def test_subscribe_listed(self):
+        self.grant_permission(self.user, 'Addons:Review')
+        self.client.login_api(self.user)
+        response = self.client.post(self.subscribe_url_listed)
+        assert response.status_code == 202
+        assert ReviewerSubscription.objects.count() == 1
+
+    def test_subscribe_unlisted(self):
+        self.grant_permission(self.user, 'Addons:ReviewUnlisted')
+        self.client.login_api(self.user)
+        response = self.client.post(self.subscribe_url_unlisted)
         assert response.status_code == 202
         assert ReviewerSubscription.objects.count() == 1
 
     def test_unsubscribe_not_logged_in(self):
-        response = self.client.post(self.unsubscribe_url)
+        response = self.client.post(self.unsubscribe_url_listed)
+        assert response.status_code == 401
+        response = self.client.post(self.unsubscribe_url_unlisted)
         assert response.status_code == 401
 
     def test_unsubscribe_no_rights(self):
         self.client.login_api(self.user)
-        response = self.client.post(self.unsubscribe_url)
+        response = self.client.post(self.unsubscribe_url_listed)
+        assert response.status_code == 403
+        response = self.client.post(self.unsubscribe_url_unlisted)
         assert response.status_code == 403
 
     def test_unsubscribe_addon_does_not_exist(self):
         self.grant_permission(self.user, 'Addons:Review')
         self.client.login_api(self.user)
         self.unsubscribe_url = reverse_ns(
-            'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk + 42})
+            'reviewers-addon-subscribe-listed',
+            kwargs={'pk': self.addon.pk + 42})
         response = self.client.post(self.unsubscribe_url)
         assert response.status_code == 404
 
     def test_unsubscribe_not_subscribed(self):
         self.grant_permission(self.user, 'Addons:Review')
         self.client.login_api(self.user)
-        self.subscribe_url = reverse_ns(
-            'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
-        response = self.client.post(self.unsubscribe_url)
+        response = self.client.post(self.unsubscribe_url_listed)
+        assert response.status_code == 202
+        assert ReviewerSubscription.objects.count() == 0
+
+        self.grant_permission(self.user, 'Addons:ReviewUnlisted')
+        self.client.login_api(self.user)
+        response = self.client.post(self.unsubscribe_url_unlisted)
         assert response.status_code == 202
         assert ReviewerSubscription.objects.count() == 0
 
     def test_unsubscribe(self):
         ReviewerSubscription.objects.create(
-            user=self.user, addon=self.addon)
+            user=self.user, addon=self.addon,
+            channel=amo.RELEASE_CHANNEL_LISTED)
         self.grant_permission(self.user, 'Addons:Review')
         self.client.login_api(self.user)
-        self.subscribe_url = reverse_ns(
-            'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
-        response = self.client.post(self.unsubscribe_url)
+        unsubscribe_url = reverse_ns(
+            'reviewers-addon-unsubscribe', kwargs={'pk': self.addon.pk})
+        response = self.client.post(unsubscribe_url)
+        assert response.status_code == 202
+        assert ReviewerSubscription.objects.count() == 0
+
+    def test_unsubscribe_listed(self):
+        ReviewerSubscription.objects.create(
+            user=self.user, addon=self.addon,
+            channel=amo.RELEASE_CHANNEL_LISTED)
+        self.grant_permission(self.user, 'Addons:Review')
+        self.client.login_api(self.user)
+        response = self.client.post(self.unsubscribe_url_listed)
+        assert response.status_code == 202
+        assert ReviewerSubscription.objects.count() == 0
+
+    def test_unsubscribe_unlisted(self):
+        ReviewerSubscription.objects.create(
+            user=self.user, addon=self.addon,
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.grant_permission(self.user, 'Addons:ReviewUnlisted')
+        self.client.login_api(self.user)
+        response = self.client.post(self.unsubscribe_url_unlisted)
         assert response.status_code == 202
         assert ReviewerSubscription.objects.count() == 0
 
@@ -6181,16 +6258,17 @@ class TestAddonReviewerViewSet(TestCase):
         another_user = user_factory()
         another_addon = addon_factory()
         ReviewerSubscription.objects.create(
-            user=self.user, addon=self.addon)
+            user=self.user, addon=self.addon,
+            channel=amo.RELEASE_CHANNEL_LISTED)
         ReviewerSubscription.objects.create(
-            user=self.user, addon=another_addon)
+            user=self.user, addon=another_addon,
+            channel=amo.RELEASE_CHANNEL_LISTED)
         ReviewerSubscription.objects.create(
-            user=another_user, addon=self.addon)
+            user=another_user, addon=self.addon,
+            channel=amo.RELEASE_CHANNEL_LISTED)
         self.grant_permission(self.user, 'Addons:Review')
         self.client.login_api(self.user)
-        self.subscribe_url = reverse_ns(
-            'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
-        response = self.client.post(self.unsubscribe_url)
+        response = self.client.post(self.unsubscribe_url_listed)
         assert response.status_code == 202
         assert ReviewerSubscription.objects.count() == 2
         assert not ReviewerSubscription.objects.filter(

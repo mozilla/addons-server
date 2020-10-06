@@ -1691,7 +1691,8 @@ class TestReviewHelper(TestReviewHelperBase):
         # The reviewer should have been automatically subscribed to new listed
         # versions.
         assert ReviewerSubscription.objects.filter(
-            addon=self.addon, user=self.request.user).exists()
+            addon=self.addon, user=self.request.user,
+            channel=version.channel).exists()
 
     def test_reject_multiple_versions_except_latest(self):
         old_version = self.version
@@ -1815,7 +1816,8 @@ class TestReviewHelper(TestReviewHelperBase):
         # Pre-subscribe the user to new listed versions of this add-on, it
         # shouldn't matter.
         ReviewerSubscription.objects.create(
-            addon=self.addon, user=self.request.user)
+            addon=self.addon, user=self.request.user,
+            channel=self.version.channel)
 
         in_the_future = datetime.now() + timedelta(days=14)
 
@@ -1873,7 +1875,8 @@ class TestReviewHelper(TestReviewHelperBase):
         # The reviewer was already subscribed to new listed versions for this
         # addon, nothing has changed.
         assert ReviewerSubscription.objects.filter(
-            addon=self.addon, user=self.request.user).exists()
+            addon=self.addon, user=self.request.user,
+            channel=self.version.channel).exists()
 
     def test_reject_multiple_versions_unlisted(self):
         old_version = self.version
