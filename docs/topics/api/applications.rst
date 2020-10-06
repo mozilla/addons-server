@@ -21,6 +21,11 @@ and maximum versions. The minimum version will use the major number and minor
 version from the requested version, and the maximum version will use the major
 version and ``*``.
 
+.. note::
+
+  Regardless of what application is passed in the URL, this endpoint will
+  always create versions for both Firefox and Firefox For Android.
+
 Versions that already exist will be skipped.
 
 Examples:
