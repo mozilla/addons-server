@@ -404,6 +404,7 @@ class AddonAutoCompleteSearchView(AddonSearchView):
         # excludes a specific set of fields - because we know that autocomplete
         # only needs to return very few things.
         included_fields = (
+            'current_version',
             'icon_type',  # Needed for icon_url.
             'id',  # Needed for... id
             'modified',  # Needed for icon_url.

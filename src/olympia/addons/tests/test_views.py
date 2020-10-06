@@ -1950,7 +1950,7 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
         qset = view.get_queryset()
 
         includes = set((
-            'default_locale', 'icon_type', 'id', 'modified',
+            'current_version', 'default_locale', 'icon_type', 'id', 'modified',
             'name_translations', 'promoted', 'slug', 'type'))
 
         assert set(qset.to_dict()['_source']['includes']) == includes
@@ -2007,6 +2007,30 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
             data = self.perform_search(self.url, {'q': 'my', 'sort': 'users'})
             assert {itm['id'] for itm in data['results']} == {
                 addon.pk, addon2.pk}
+
+    def test_promoted(self):
+        not_promoted = addon_factory(name='not promoted')
+        sponsored = addon_factory(name='is promoted')
+        self.make_addon_promoted(sponsored, VERIFIED_ONE, approve_version=True)
+        addon_factory(name='something')
+
+        self.refresh()
+
+        data = self.perform_search(self.url, {'q': 'promoted'})  # No db query.
+        assert 'count' not in data
+        assert 'next' not in data
+        assert 'prev' not in data
+        assert len(data['results']) == 2
+
+        assert {itm['id'] for itm in data['results']} == {
+            not_promoted.pk, sponsored.pk}
+
+        sponsored_result, not_result = (
+            (data['results'][0], data['results'][1])
+            if data['results'][0]['id'] == sponsored.id else
+            (data['results'][1], data['results'][0]))
+        assert sponsored_result['promoted']['category'] == 'sponsored'
+        assert not_result['promoted'] is None
 
 
 class TestAddonFeaturedView(ESTestCase):

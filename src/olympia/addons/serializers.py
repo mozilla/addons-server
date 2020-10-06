@@ -565,10 +565,11 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
                     min=AppVersion(version=compat_dict.get('min_human', '')),
                     max=AppVersion(version=compat_dict.get('max_human', '')))
             version._compatible_apps = compatible_apps
-            version_serializer = self.fields['current_version']
-            version_serializer._attach_translations(
-                version, data, version_serializer.translated_fields)
-            if 'license' in data:
+            version_serializer = self.fields.get('current_version') or None
+            if version_serializer:
+                version_serializer._attach_translations(
+                    version, data, version_serializer.translated_fields)
+            if 'license' in data and version_serializer:
                 license_serializer = version_serializer.fields['license']
                 version.license = License(id=data['license']['id'])
                 license_serializer._attach_fields(
