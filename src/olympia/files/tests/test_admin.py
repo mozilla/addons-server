@@ -1,12 +1,7 @@
-from django.conf import settings
 from django.utils.encoding import force_text
-from django.utils.http import urlquote
 
-from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.templatetags.jinja_helpers import user_media_url
-from olympia.amo.utils import urlparams
 
 
 class TestFileAdmin(TestCase):
