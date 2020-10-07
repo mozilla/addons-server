@@ -752,7 +752,8 @@ def get_locale_from_lang(lang):
 class HttpResponseXSendFile(HttpResponse):
 
     def __init__(self, request, path, content=None, status=None,
-                 content_type='application/octet-stream', etag=None):
+                 content_type='application/octet-stream', etag=None,
+                 attachment=False):
         super(HttpResponseXSendFile, self).__init__('', status=status,
                                                     content_type=content_type)
         # We normalize the path because if it contains dots, nginx will flag
@@ -760,6 +761,8 @@ class HttpResponseXSendFile(HttpResponse):
         self[settings.XSENDFILE_HEADER] = os.path.normpath(path)
         if etag:
             self['ETag'] = quote_etag(etag)
+        if attachment:
+            self['Content-Disposition'] = 'attachment'
 
     def __iter__(self):
         return iter([])

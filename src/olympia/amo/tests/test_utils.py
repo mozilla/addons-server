@@ -249,13 +249,21 @@ def test_extract_colors_from_image():
 class TestHttpResponseXSendFile(TestCase):
     def test_normalizes_path(self):
         path = '/some/../path/'
-        resp = HttpResponseXSendFile(request=None, path=path)
-        assert resp[settings.XSENDFILE_HEADER] == os.path.normpath(path)
+        response = HttpResponseXSendFile(request=None, path=path)
+        assert response[settings.XSENDFILE_HEADER] == os.path.normpath(path)
+        assert not response.has_header('Content-Disposition')
 
     def test_adds_etag_header(self):
         etag = '123'
-        resp = HttpResponseXSendFile(request=None, path='/', etag=etag)
-        assert resp['ETag'] == quote_etag(etag)
+        response = HttpResponseXSendFile(request=None, path='/', etag=etag)
+        assert response.has_header('ETag')
+        assert response['ETag'] == quote_etag(etag)
+
+    def test_adds_content_disposition_header(self):
+        response = HttpResponseXSendFile(
+            request=None, path='/', attachment=True)
+        assert response.has_header('Content-Disposition')
+        assert response['Content-Disposition'] == 'attachment'
 
 
 def test_images_are_small():

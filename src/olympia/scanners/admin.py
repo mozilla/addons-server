@@ -758,7 +758,7 @@ class ScannerQueryResultAdmin(
         if obj.version and obj.version.current_file:
             return format_html(
                 '<a href="{}">{}</a>',
-                obj.version.current_file.get_absolute_url(),
+                obj.version.current_file.get_absolute_url(attachment=True),
                 obj.version.current_file.pk)
         return '-'
 

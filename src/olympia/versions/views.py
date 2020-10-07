@@ -96,16 +96,24 @@ def download_file(request, file_id, type=None, file_=None, addon=None):
                       file_id=file_id, user_id=request.user.pk))
         raise http.Http404()  # Not owner or admin.
 
+    attachment = bool(type == 'attachment')
     if use_cdn:
-        attachment = bool(type == 'attachment')
+        # When using the CDN URL, we do a redirect, so we can't set
+        # Content-Disposition: attachment for attachments. To work around this,
+        # if attachment=True, get_file_cdn_url() changes the path to something
+        # we recognize in the nginx config.
         loc = urlparams(file_.get_file_cdn_url(attachment=attachment),
                         filehash=file_.hash)
         response = http.HttpResponseRedirect(loc)
         response['X-Target-Digest'] = file_.hash
     else:
+        # Here we're returning a X-Accel-Redirect, we can set
+        # Content-Disposition: attachment ourselves in HttpResponseXSendFile:
+        # nginx won't override it if present.
         response = HttpResponseXSendFile(
             request, file_.current_file_path,
-            content_type='application/x-xpinstall')
+            content_type='application/x-xpinstall',
+            attachment=attachment)
     response['Access-Control-Allow-Origin'] = '*'
     return response
 
