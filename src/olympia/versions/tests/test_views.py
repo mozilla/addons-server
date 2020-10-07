@@ -127,12 +127,19 @@ class TestDownloadsBase(TestCase):
         assert response['X-Target-Digest'] == file_.hash
         assert response['Access-Control-Allow-Origin'] == '*'
 
-    def assert_served_internally(self, response, guarded=True):
+    def assert_served_internally(
+            self, response, guarded=True, attachment=False):
         assert response.status_code == 200
         file_path = (self.file.guarded_file_path if guarded else
                      self.file.file_path)
         assert response[settings.XSENDFILE_HEADER] == file_path
         assert response['Access-Control-Allow-Origin'] == '*'
+
+        if attachment:
+            assert response.has_header('Content-Disposition')
+            assert response['Content-Disposition'] == 'attachment'
+        else:
+            assert not response.has_header('Content-Disposition')
 
     def assert_served_locally(self, response, file_=None, attachment=False):
         path = user_media_url('addons')
@@ -168,6 +175,10 @@ class TestDownloadsUnlistedVersions(TestDownloadsBase):
     def test_download_for_unlisted_addon_owner(self):
         """File downloading is allowed for addon owners."""
         self.assert_served_internally(self.client.get(self.file_url), False)
+        url = reverse('downloads.file', args=[self.file.id, 'attachment'])
+        self.assert_served_internally(
+            self.client.get(url), False, attachment=True)
+
         assert self.client.get(self.latest_url).status_code == 404
 
     @mock.patch.object(acl, 'is_reviewer', lambda request, addon: True)
@@ -186,6 +197,10 @@ class TestDownloadsUnlistedVersions(TestDownloadsBase):
     def test_download_for_unlisted_addon_unlisted_reviewer(self):
         """File downloading is allowed for unlisted reviewers."""
         self.assert_served_internally(self.client.get(self.file_url), False)
+        url = reverse('downloads.file', args=[self.file.id, 'attachment'])
+        self.assert_served_internally(
+            self.client.get(url), False, attachment=True)
+
         assert self.client.get(self.latest_url).status_code == 404
 
 
@@ -213,6 +228,10 @@ class TestDownloadsUnlistedAddonDeleted(TestDownloadsUnlistedVersions):
         """File downloading is allowed for unlisted reviewers, using guarded
         file path since the addon is deleted."""
         self.assert_served_internally(self.client.get(self.file_url), True)
+        url = reverse('downloads.file', args=[self.file.id, 'attachment'])
+        self.assert_served_internally(
+            self.client.get(url), True, attachment=True)
+
         assert self.client.get(self.latest_url).status_code == 404
 
 
@@ -283,35 +302,56 @@ class TestDisabledFileDownloads(TestDownloadsBase):
         assert self.client.login(email='g@gmail.com')
         self.assert_served_internally(self.client.get(self.file_url))
 
+        url = reverse('downloads.file', args=[self.file.id, 'attachment'])
+        self.assert_served_internally(self.client.get(url), attachment=True)
+
     def test_file_disabled_ok_for_reviewer(self):
         self.file.update(status=amo.STATUS_DISABLED)
         self.client.login(email='reviewer@mozilla.com')
         self.assert_served_internally(self.client.get(self.file_url))
+
+        url = reverse('downloads.file', args=[self.file.id, 'attachment'])
+        self.assert_served_internally(self.client.get(url), attachment=True)
 
     def test_file_disabled_ok_for_admin(self):
         self.file.update(status=amo.STATUS_DISABLED)
         self.client.login(email='admin@mozilla.com')
         self.assert_served_internally(self.client.get(self.file_url))
 
+        url = reverse('downloads.file', args=[self.file.id, 'attachment'])
+        self.assert_served_internally(self.client.get(url), attachment=True)
+
     def test_admin_disabled_ok_for_author(self):
         self.addon.update(status=amo.STATUS_DISABLED)
         assert self.client.login(email='g@gmail.com')
         self.assert_served_internally(self.client.get(self.file_url))
+
+        url = reverse('downloads.file', args=[self.file.id, 'attachment'])
+        self.assert_served_internally(self.client.get(url), attachment=True)
 
     def test_admin_disabled_ok_for_admin(self):
         self.addon.update(status=amo.STATUS_DISABLED)
         self.client.login(email='admin@mozilla.com')
         self.assert_served_internally(self.client.get(self.file_url))
 
+        url = reverse('downloads.file', args=[self.file.id, 'attachment'])
+        self.assert_served_internally(self.client.get(url), attachment=True)
+
     def test_user_disabled_ok_for_author(self):
         self.addon.update(disabled_by_user=True)
         assert self.client.login(email='g@gmail.com')
         self.assert_served_internally(self.client.get(self.file_url))
 
+        url = reverse('downloads.file', args=[self.file.id, 'attachment'])
+        self.assert_served_internally(self.client.get(url), attachment=True)
+
     def test_user_disabled_ok_for_admin(self):
         self.addon.update(disabled_by_user=True)
         self.client.login(email='admin@mozilla.com')
         self.assert_served_internally(self.client.get(self.file_url))
+
+        url = reverse('downloads.file', args=[self.file.id, 'attachment'])
+        self.assert_served_internally(self.client.get(url), attachment=True)
 
 
 class TestUnlistedDisabledFileDownloads(TestDisabledFileDownloads):
