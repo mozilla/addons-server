@@ -3306,7 +3306,7 @@ class TestReview(ReviewBase):
 
         file_ = self.version.all_files[0]
         expected = [
-            ('All Platforms', file_.get_absolute_url()),
+            ('All Platforms', file_.get_absolute_url(attachment=True)),
             ('Validation', reverse(
                 'devhub.file_validation', args=[self.addon.slug, file_.id])),
             ('Contents', None),

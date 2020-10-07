@@ -1298,6 +1298,9 @@ class TestScannerQueryResultAdmin(TestCase):
             ','.join(str(author.pk) for author in addon.authors.all())
         )
         assert expected_querystring in link_to_addons[1]
+        download_link = addon.current_version.current_file.get_absolute_url(
+            attachment=True)
+        assert html('.field-download a')[0].attrib['href'] == download_link
 
     def test_list_view_no_query_permissions(self):
         rule = ScannerQueryRule.objects.create(name='rule', scanner=YARA)
