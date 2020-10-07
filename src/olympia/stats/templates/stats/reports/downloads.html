@@ -1,22 +1,3 @@
 {% extends 'stats/report.html' %}
 
 {% set title = _('Downloaded by Date') %}
-
-{% block stats_note_link %}
-{% if not bigquery_download_stats %}
-<a href="#" id="stats-note-link">{{ _('How are downloads counted?') }}</a>
-{% endif %}
-{% endblock %}
-
-{% block stats_note %}
-{% if not bigquery_download_stats %}
-  {% trans %}
-    <h2>How are downloads counted?</h2>
-    <p>
-      Download counts are updated every evening and only include original add-on
-      downloads, not updates. Downloads can be broken down by the specific source
-      referring the download.
-    </p>
-  {% endtrans %}
-{% endif %}
-{% endblock %}

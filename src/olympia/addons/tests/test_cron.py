@@ -444,11 +444,6 @@ class TestUpdateAddonHotness(TestCase):
 
 
 class TestUpdateAddonWeeklyDownloads(TestCase):
-    def setUp(self):
-        super().setUp()
-
-        self.create_switch('use-bigquery-for-download-stats-cron')
-
     @mock.patch('olympia.addons.cron.create_chunked_tasks_signatures')
     @mock.patch(
         'olympia.addons.cron.get_addons_and_weekly_downloads_from_bigquery'

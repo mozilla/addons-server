@@ -1052,7 +1052,6 @@ CELERY_TASK_SOFT_TIME_LIMIT = 60 * 30
 CELERY_IMPORTS = (
     'olympia.lib.crypto.tasks',
     'olympia.lib.es.management.commands.reindex',
-    'olympia.stats.management.commands.index_stats',
 )
 
 CELERY_TASK_QUEUES = (
@@ -1069,7 +1068,6 @@ CELERY_TASK_QUEUES = (
     Queue('ratings', routing_key='ratings'),
     Queue('reviewers', routing_key='reviewers'),
     Queue('search', routing_key='search'),
-    Queue('stats', routing_key='stats'),
     Queue('tags', routing_key='tags'),
     Queue('users', routing_key='users'),
     Queue('zadmin', routing_key='zadmin'),
@@ -1223,9 +1221,6 @@ CELERY_TASK_ROUTES = {
     'olympia.ratings.tasks.addon_bayesian_rating': {'queue': 'ratings'},
     'olympia.ratings.tasks.addon_rating_aggregates': {'queue': 'ratings'},
     'olympia.ratings.tasks.update_denorm': {'queue': 'ratings'},
-
-    # Stats
-    'olympia.stats.tasks.index_download_counts': {'queue': 'stats'},
 
     # Tags
     'olympia.tags.tasks.update_all_tag_stats': {'queue': 'tags'},
@@ -1520,7 +1515,6 @@ ES_HOSTS = [os.environ.get('ELASTICSEARCH_LOCATION', '127.0.0.1:9200')]
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ES_INDEXES = {
     'default': 'addons',
-    'stats_download_counts': 'addons_stats_download_counts',
 }
 
 ES_TIMEOUT = 30
@@ -1856,8 +1850,6 @@ CRON_JOBS = {
 
     'update_blog_posts': 'olympia.devhub.cron',
 
-    'index_latest_stats': 'olympia.stats.cron',
-
     'update_user_ratings': 'olympia.users.cron',
 }
 
@@ -1884,9 +1876,6 @@ FXA_SQS_AWS_QUEUE_URL = (
     'https://sqs.us-east-1.amazonaws.com/927034868273/'
     'amo-account-change-dev')
 FXA_SQS_AWS_WAIT_TIME = 20  # Seconds.
-
-AWS_STATS_S3_BUCKET = env('AWS_STATS_S3_BUCKET', default=None)
-AWS_STATS_S3_PREFIX = env('AWS_STATS_S3_PREFIX', default='amo_stats')
 
 BASKET_URL = env('BASKET_URL', default='https://basket.allizom.org')
 BASKET_API_KEY = env('BASKET_API_KEY', default=None)

@@ -3,37 +3,7 @@
 {% set title = _('Download sources by Date') %}
 
 {% block stats_note_link %}
-  {% with link_text=_('About tracking external sources...') %}
-    {% if bigquery_download_stats %}
-    <a href="{{ settings.EXTENSION_WORKSHOP_URL }}/documentation/manage/monitoring-extension-usage-statistics/" target="_blank" rel="noopener noreferrer">{{ link_text }}</a>
-    {% else %}
-    <a href="#" id="stats-note-link">{{ link_text }}</a>
-    {% endif %}
-  {% endwith %}
-{% endblock %}
-
-{% block stats_note %}
-{% if not bigquery_download_stats %}
-  {% trans slug=addon.slug, id=addon.id %}
-    <h2>Tracking external sources</h2>
-    <p>
-      If you link to your add-on's details page or directly to its file from an
-      external site, such as your blog or website, you can append a parameter to be
-      tracked as an additional download source on this page. For example, the
-      following links would appear as sourced by your blog:
-    </p>
-    <dl>
-      <dt>Add-on Details Page</dt>
-      <dd>https://addons.mozilla.org/addon/{{ slug }}?src=<b>external-blog</b></dd>
-      <dt>Direct File Link</dt>
-      <dd>https://addons.mozilla.org/downloads/latest/{{ id }}/addon-{{ id }}-latest.xpi?src=<b>external-blog</b></dd>
-    </dl>
-    <p>
-      Only src parameters that begin with "external-" will be tracked, up to 61
-      additional characters. Any text after "external-" can be used to describe the
-      source, such as "external-blog", "external-sidebar", "external-campaign225",
-      etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ % +</code>
-    </p>
-  {% endtrans %}
-{% endif %}
+  <a href="{{ settings.EXTENSION_WORKSHOP_URL }}/documentation/manage/monitoring-extension-usage-statistics/" target="_blank" rel="noopener noreferrer">
+    {{ _('About tracking external sources...') }}
+  </a>
 {% endblock %}

@@ -57,7 +57,6 @@ from olympia.lib.es.utils import timestamp_index
 from olympia.promoted.models import (
     PromotedAddon, PromotedApproval, update_es_for_promoted,
     update_es_for_promoted_approval)
-from olympia.stats.indexers import DownloadCountIndexer
 from olympia.tags.models import Tag
 from olympia.translations.models import Translation
 from olympia.versions.models import ApplicationsVersions, License, Version
@@ -127,16 +126,12 @@ def setup_es_test_data(es):
     # indexing things in tests.
     AddonIndexer.create_new_index(
         actual_indices['default'])
-    DownloadCountIndexer.create_new_index(
-        actual_indices['stats_download_counts'])
 
     # Alias it to the name the code is going to use (which is suffixed by
     # pytest to avoid clashing with the real thing).
     actions = [
         {'add': {'index': actual_indices['default'],
                  'alias': settings.ES_INDEXES['default']}},
-        {'add': {'index': actual_indices['stats_download_counts'],
-                 'alias': settings.ES_INDEXES['stats_download_counts']}},
     ]
 
     es.indices.update_aliases({'actions': actions})

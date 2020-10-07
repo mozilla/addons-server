@@ -175,17 +175,6 @@ class TestIndexCommand(ESTestCase):
         self.check_results(self.expected)
         self._test_reindexation(wipe=True)
 
-    def test_stats_download_counts(self):
-        old_indices = self.get_indices_aliases()
-        stdout = io.StringIO()
-        management.call_command(
-            'reindex', key='stats_download_counts', stdout=stdout)
-        stdout.seek(0)
-        buf = stdout.read()
-        new_indices = self.get_indices_aliases()
-        assert len(new_indices)
-        assert old_indices != new_indices, (buf, old_indices, new_indices)
-
     @mock.patch.object(reindex, 'gather_index_data_tasks')
     def _test_workflow(self, key, gather_index_data_tasks_mock):
         command = reindex.Command()
@@ -244,10 +233,3 @@ class TestIndexCommand(ESTestCase):
         for addons.
         """
         self._test_workflow('default')
-
-    def test_create_workflow_stats_download_counts(self):
-        """
-        Test tasks returned by create_workflow() as used by reindex command,
-        for stats_download_counts.
-        """
-        self._test_workflow('stats_download_counts')
