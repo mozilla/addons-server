@@ -75,5 +75,4 @@ def get_addons_from_adzerk(count):
     results_dict = (
         process_adzerk_results(response, placeholders) if response else {})
     log.debug(f'{results_dict=}')
-    # results_dict['16'] = list(results_dict.values())[0]  # TESTING HACK
     return results_dict
