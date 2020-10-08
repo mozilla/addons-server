@@ -243,8 +243,10 @@ elasticsearch==6.8.1 \
 elasticsearch-dsl==6.4.0 \
     --hash=sha256:f60aea7fd756ac1fbe7ce114bbf4949aefbf495dfe8896640e787c67344f12f6 \
     --hash=sha256:26416f4dd46ceca43d62ef74970d9de4bdd6f4b0f163316f0b432c9e61a08bec # pyup: <6
-email-reply-parser==0.5.9 \
-    --hash=sha256:f92aa6fd7314c2c8833f2928c0fd6d2e26f94c04eb1de409e75c59f1ac42eef8
+email-reply-parser==0.5.12 \
+    --hash=sha256:d051cfa8f54046f7399553aae57f17f62bf1652f83e3e9970fd109c0f24a880c \
+    --hash=sha256:3499c02284679e020acf8aa30ef9e43c62f9ab5ccee0a35bfac85a0c1fa685fd \
+    --hash=sha256:9dbf3eca69990932234f09e7f50aa73756574fc1f88e88c324fec1a741ee6a74
 feedparser==6.0.1 \
     --hash=sha256:c9b436334258e718e224c5ef8a78088557e0d0382506360f702de10667ffde32 \
     --hash=sha256:6ca88edcaa43f428345968df903a87f020843eda5e28d7ea24a612158d61e74c
