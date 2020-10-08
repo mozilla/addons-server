@@ -24,6 +24,7 @@ def call_adzerk_server(placeholders):
          "siteId": site_id,
          "adTypes": [5]} for ph in placeholders]
 
+    json_response = {}
     try:
         log.info('Calling adzerk')
         with statsd.timer('services.adzerk'):
@@ -33,16 +34,16 @@ def call_adzerk_server(placeholders):
                 timeout=settings.ADZERK_TIMEOUT)
         if response.status_code != 200:
             raise requests.exceptions.RequestException()
+        json_response = response.json()
     except requests.exceptions.RequestException as e:
         log.exception('Calling adzerk failed: %s', e)
         statsd.incr('services.adzerk.fail')
-        return None
+    except ValueError as e:
+        log.exception('Decoding adzerk response failed: %s', e)
+        statsd.incr('services.adzerk.fail')
     else:
         statsd.incr('services.adzerk.success')
-    try:
-        return response.json()
-    except ValueError:
-        return {}
+    return json_response
 
 
 def process_adzerk_result(decision):

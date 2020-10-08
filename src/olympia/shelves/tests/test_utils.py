@@ -36,7 +36,8 @@ def test_get_addons_from_adzerk_full():
     }
 
 
-def test_call_adzerk_server():
+@mock.patch('olympia.shelves.utils.statsd.incr')
+def test_call_adzerk_server(statsd_mock):
     responses.add(
         responses.POST,
         settings.ADZERK_URL,
@@ -66,16 +67,29 @@ def test_call_adzerk_server():
     assert 'div0' in results['decisions']
     assert 'div1' in results['decisions']
     # we're using a real response that only contains two divs
+    statsd_mock.assert_called_with('services.adzerk.success')
 
 
-def test_call_adzerk_server_empty_response():
+@mock.patch('olympia.shelves.utils.statsd.incr')
+def test_call_adzerk_server_empty_response(statsd_mock):
+    placeholders = ['div1', 'div2', 'div3']
+
+    responses.add(
+        responses.POST,
+        settings.ADZERK_URL)
+    results = call_adzerk_server(placeholders)
+    assert results == {}
+    statsd_mock.assert_called_with('services.adzerk.fail')
+
+    statsd_mock.reset_mock()
     responses.add(
         responses.POST,
         settings.ADZERK_URL,
+        status=500,
         json={})
-    placeholders = ['div1', 'div2', 'div3']
     results = call_adzerk_server(placeholders)
     assert results == {}
+    statsd_mock.assert_called_with('services.adzerk.fail')
 
 
 def test_process_adzerk_results():
