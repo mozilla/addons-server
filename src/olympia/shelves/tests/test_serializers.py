@@ -7,11 +7,16 @@ from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 
 from olympia import amo
+from olympia.addons.models import Addon
+from olympia.addons.tests.test_serializers import (
+    AddonSerializerOutputTestMixin)
 from olympia.amo.tests import addon_factory, ESTestCase, reverse_ns
 from olympia.constants.promoted import RECOMMENDED
 from olympia.promoted.models import PromotedAddon
-from olympia.shelves.models import Shelf
-from olympia.shelves.serializers import ShelfSerializer
+
+from ..models import Shelf
+from ..serializers import ESSponsoredAddonSerializer, ShelfSerializer
+from ..views import SponsoredShelfViewSet
 
 
 class TestShelvesSerializer(ESTestCase):
@@ -112,3 +117,65 @@ class TestShelvesSerializer(ESTestCase):
             'footer_pathname': '',
             'addons': None
         }
+
+
+class TestESSponsoredAddonSerializer(AddonSerializerOutputTestMixin,
+                                     ESTestCase):
+    serializer_class = ESSponsoredAddonSerializer
+    view_class = SponsoredShelfViewSet
+
+    def tearDown(self):
+        super().tearDown()
+        self.empty_index('default')
+        self.refresh()
+
+    def search(self):
+        self.reindex(Addon)
+
+        view = self.view_class()
+        view.request = self.request
+        qs = view.get_queryset()
+
+        # We don't even filter - there should only be one addon in the index
+        # at this point
+        return qs.execute()[0]
+
+    def serialize(self):
+        view = self.view_class(action='list')
+        view.request = self.request
+        self.serializer = self.serializer_class(context={
+            'request': self.request,
+            'view': view,
+        })
+
+        obj = self.search()
+
+        with self.assertNumQueries(0):
+            result = self.serializer.to_representation(obj)
+        return result
+
+    def _test_author(self, author, data):
+        """Override because the ES serializer doesn't include picture_url."""
+        assert data == {
+            'id': author.pk,
+            'name': author.name,
+            'url': author.get_absolute_url(),
+            'username': author.username,
+        }
+
+    def get_request(self, path, data=None, **extra):
+        api_version = 'v5'  # choose v5 to ignore 'l10n_flat_input_output' gate
+        request = APIRequestFactory().get(
+            f'/api/{api_version}{path}', data, **extra)
+        request.versioning_scheme = (
+            api_settings.DEFAULT_VERSIONING_CLASS()
+        )
+        request.version = api_version
+        return request
+
+    def test_click_url_and_data(self):
+        self.addon = addon_factory()
+        result = self.serialize()
+        assert result['click_url'] == (
+            'http://testserver/api/v5/shelves/sponsored/click/')
+        assert result['click_data'] is None  # currently just a empty repr

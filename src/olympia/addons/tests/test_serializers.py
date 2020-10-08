@@ -37,7 +37,12 @@ class AddonSerializerOutputTestMixin(object):
 
     def setUp(self):
         super(AddonSerializerOutputTestMixin, self).setUp()
-        self.request = APIRequestFactory().get('/')
+        self.request = self.get_request('/')
+
+    def get_request(self, path, data=None, **extra):
+        request = APIRequestFactory().get(path, data, **extra)
+        request.version = None
+        return request
 
     def _test_author(self, author, data):
         assert data == {
@@ -296,7 +301,7 @@ class AddonSerializerOutputTestMixin(object):
             contributions=u'https://paypal.me/fôobar',
             homepage='http://support.example.com/',
             support_url=u'https://support.example.org/support/my-âddon/')
-        self.request = APIRequestFactory().get('/', {'wrap_outgoing_links': 1})
+        self.request = self.get_request('/', {'wrap_outgoing_links': 1})
         result = self.serialize()
         utm_string = '&'.join(
             f'{key}={value}'
@@ -311,7 +316,7 @@ class AddonSerializerOutputTestMixin(object):
         }
 
         # Try a single translation.
-        self.request = APIRequestFactory().get('/', {
+        self.request = self.get_request('/', {
             'lang': 'en-US', 'wrap_outgoing_links': 1})
         result = self.serialize()
         assert result['contributions_url'] == get_outgoing_url(
@@ -323,7 +328,7 @@ class AddonSerializerOutputTestMixin(object):
             'en-US': get_outgoing_url(str(self.addon.support_url)),
         }
         # And again, but with v3 style flat strings
-        gates = {None: ('l10n_flat_input_output',)}
+        gates = {self.request.version: ('l10n_flat_input_output',)}
         with override_settings(DRF_API_GATES=gates):
             result = self.serialize()
         assert result['contributions_url'] == get_outgoing_url(
@@ -375,7 +380,7 @@ class AddonSerializerOutputTestMixin(object):
         assert 'is_source_public' not in result
 
         # It's only present in v3
-        gates = {None: ('is-source-public-shim',)}
+        gates = {self.request.version: ('is-source-public-shim',)}
         with override_settings(DRF_API_GATES=gates):
             result = self.serialize()
             assert result['is_source_public'] is False
@@ -460,7 +465,7 @@ class AddonSerializerOutputTestMixin(object):
         assert 'is_featured' not in result
 
         # It's only present in v3
-        gates = {None: ('is-featured-addon-shim',)}
+        gates = {self.request.version: ('is-featured-addon-shim',)}
         with override_settings(DRF_API_GATES=gates):
             result = self.serialize()
             assert result['is_featured'] is True
@@ -517,7 +522,7 @@ class AddonSerializerOutputTestMixin(object):
         # Try a single translation. The locale activation is normally done by
         # LocaleAndAppURLMiddleware, but since we're directly calling the
         # serializer we need to do it ourselves.
-        self.request = APIRequestFactory().get('/', {'lang': 'fr'})
+        self.request = self.get_request('/', {'lang': 'fr'})
         with override('fr'):
             result = self.serialize()
         assert result['description'] == {'fr': translated_descriptions['fr']}
@@ -525,7 +530,7 @@ class AddonSerializerOutputTestMixin(object):
 
         # And again, but with v3 style flat strings
         with override('fr'):
-            gates = {None: ('l10n_flat_input_output',)}
+            gates = {self.request.version: ('l10n_flat_input_output',)}
             with override_settings(DRF_API_GATES=gates):
                 result = self.serialize()
         assert result['description'] == translated_descriptions['fr']
@@ -639,7 +644,7 @@ class AddonSerializerOutputTestMixin(object):
             self.addon.created.replace(microsecond=0).isoformat() + 'Z')
 
         # And to make sure it's not present in v3
-        gates = {None: ('del-addons-created-field',)}
+        gates = {self.request.version: ('del-addons-created-field',)}
         with override_settings(DRF_API_GATES=gates):
             result = self.serialize()
             assert 'created' not in result
@@ -696,7 +701,7 @@ class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
             min_app_version='58.0', max_app_version='58.*')
         not_public_version_for_58.update(created=self.days_ago(1))
 
-        self.request = APIRequestFactory().get('/?app=firefox&appversion=58.0')
+        self.request = self.get_request('/?app=firefox&appversion=58.0')
         self.action = 'retrieve'
 
         result = self.serialize()
@@ -719,7 +724,7 @@ class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
             addon=self.addon,
             file_kw={'strict_compatibility': True},
             min_app_version='59.0', max_app_version='59.*')
-        self.request = APIRequestFactory().get('/?app=firefox&appversion=58.0')
+        self.request = self.get_request('/?app=firefox&appversion=58.0')
         self.action = 'retrieve'
 
         result = self.serialize()
@@ -772,7 +777,7 @@ class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
             min_app_version='59.0', max_app_version='59.*')
         # The parameters are going to be ignored, since we're not dealing with
         # the detail API.
-        self.request = APIRequestFactory().get('/?app=firefox&appversion=58.0')
+        self.request = self.get_request('/?app=firefox&appversion=58.0')
         self.action = 'list'
 
         result = self.serialize()
@@ -798,7 +803,7 @@ class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
             file_kw={'strict_compatibility': True},
             min_app_version='59.0', max_app_version='59.*')
         # The parameters are going to be ignored since it's not a langpack.
-        self.request = APIRequestFactory().get('/?app=firefox&appversion=58.0')
+        self.request = self.get_request('/?app=firefox&appversion=58.0')
         self.action = 'retrieve'
 
         result = self.serialize()
@@ -848,7 +853,7 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
     def serialize(self):
         self.serializer = self.serializer_class(context={
             'request': self.request,
-            'view': AddonSearchView(action='list')
+            'view': AddonSearchView(action='list'),
         })
 
         obj = self.search()

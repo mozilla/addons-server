@@ -5,8 +5,10 @@ from rest_framework.reverse import reverse as drf_reverse
 
 from django.conf import settings
 
+from olympia.addons.serializers import ESAddonSerializer
 from olympia.addons.views import AddonSearchView
-from olympia.shelves.models import Shelf
+
+from .models import Shelf
 
 
 class ShelfSerializer(serializers.ModelSerializer):
@@ -46,3 +48,19 @@ class ShelfSerializer(serializers.ModelSerializer):
             return AddonSearchView(request=request).data
         else:
             return None
+
+
+class ESSponsoredAddonSerializer(ESAddonSerializer):
+    click_url = serializers.SerializerMethodField()
+    click_data = serializers.SerializerMethodField()
+
+    class Meta(ESAddonSerializer.Meta):
+        fields = ESAddonSerializer.Meta.fields + ('click_url', 'click_data')
+
+    def get_click_url(self, obj):
+        return drf_reverse(
+            'sponsored-shelf-click',
+            request=self.context.get('request'))
+
+    def get_click_data(self, obj):
+        return None

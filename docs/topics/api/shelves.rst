@@ -1,6 +1,6 @@
-============
-Hero Shelves
-============
+=======
+Shelves
+=======
 
 .. note::
 
@@ -80,3 +80,25 @@ small number of shelves - and likely only one - this endpoint is not paginated.
     :>json object|null results[].modules[].cta: The optional call to action link and text to be displayed with the item.
     :>json string results[].modules[].cta.url: The url the call to action would link to.
     :>json string results[].modules[].cta.text: The call to action text.
+
+
+---------------
+Sponsored Shelf
+---------------
+
+.. _sponsored-shelf:
+
+This endpoint returns the addons that should be shown on the sponsored shelf.
+Current implementation relies on Adzerk to determine which addons are returned and in which order.
+
+
+.. http:get:: /api/v4/shelves/sponsored/
+
+    :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
+    :query int page_size: specify how many addons should be returned.  Defaults to 6.  Note: fewer addons could be returned if there are fewer than specifed sponsored addons currently, or the Adzerk service is unavailable.
+    :query string wrap_outgoing_links: If this parameter is present, wrap outgoing links through ``outgoing.prod.mozaws.net`` (See :ref:`Outgoing Links <api-overview-outgoing>`)
+    :>json array results: The array containing the addon results for this query.  The object is a :ref:`add-on <addon-detail-object>` as returned by :ref:`add-on search endpoint <addon-search>` with extra fields of ``click_url`` and ``click_data``
+    :>json string results[].click_url: the url to ping if the sponsored addon's detail page is navigated to.
+    :>json string results[].click_data: the data payload to send to ``click_url`` that identifies the sponsored placement clicked on.
+    :>json string impression_url: the url to ping when the contents of this sponsored shelf is rendered on screen to the user.
+    :>json string impression_data: the data payload to send to ``impression_url`` that identifies the sponsored placements displayed.
