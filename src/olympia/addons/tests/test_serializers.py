@@ -832,7 +832,6 @@ class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
 
 class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
     serializer_class = ESAddonSerializer
-    view_class = AddonSearchView
 
     def tearDown(self):
         super(TestESAddonSerializerOutput, self).tearDown()
@@ -842,7 +841,7 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
     def search(self):
         self.reindex(Addon)
 
-        view = self.view_class()
+        view = AddonSearchView()
         view.request = self.request
         qs = view.get_queryset()
 
@@ -852,11 +851,9 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
         return qs.execute()[0]
 
     def serialize(self):
-        view = self.view_class(action='list')
-        view.request = self.request
         self.serializer = self.serializer_class(context={
             'request': self.request,
-            'view': view,
+            'view': AddonSearchView(action='list'),
         })
 
         obj = self.search()
