@@ -117,7 +117,7 @@ class TestShelvesSerializer(ESTestCase):
         }
 
 
-class TestESSponsoredAddonSerializer(TestESAddonSerializerOutput):
+class TestSponsoredAddonSerializer(TestESAddonSerializerOutput):
     serializer_class = ESSponsoredAddonSerializer
     view_class = SponsoredShelfViewSet
 
