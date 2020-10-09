@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-23 16:39+0000\n"
+"PO-Revision-Date: 2020-09-26 21:14+0000\n"
 "Last-Translator: Jungmin Ahn <jminahn@uw.edu>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -1389,7 +1389,7 @@ msgid "Sponsored"
 msgstr ""
 
 msgid "Verified"
-msgstr ""
+msgstr "확인됨"
 
 #, fuzzy
 msgid "By Firefox"
@@ -1399,7 +1399,7 @@ msgid "Spotlight"
 msgstr ""
 
 msgid "Strategic"
-msgstr ""
+msgstr "전략적"
 
 msgid "Add-on"
 msgstr "부가 기능"
@@ -1599,25 +1599,25 @@ msgid "False positive"
 msgstr ""
 
 msgid "Inconclusive"
-msgstr ""
+msgstr "불확실"
 
 msgid "New"
 msgstr "새로 만들기"
 
 msgid "Running"
-msgstr ""
+msgstr "실행중"
 
 msgid "Aborted"
-msgstr ""
+msgstr "중단됨"
 
 msgid "Aborting"
-msgstr ""
+msgstr "중단중"
 
 msgid "Completed"
 msgstr "완료"
 
 msgid "Scheduled"
-msgstr ""
+msgstr "예약됨"
 
 msgid "Core"
 msgstr "코어"
@@ -2179,7 +2179,7 @@ msgid_plural "<b>{0}</b> themes"
 msgstr[0] "<b>{0}</b> 테마"
 
 msgid "Edit Product Page"
-msgstr ""
+msgstr "제품 페이지 편집"
 
 msgid "None"
 msgstr "없음"
@@ -2204,7 +2204,7 @@ msgid "Click on the Accept button below to confirm you want to be added as an au
 msgstr ""
 
 msgid "Decline"
-msgstr ""
+msgstr "거절"
 
 msgid "Manage Authors & License"
 msgstr "제작자 및 라이선스 관리"
@@ -2777,7 +2777,7 @@ msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
 msgstr ""
 
 msgid "Do you use any of the following?"
-msgstr ""
+msgstr "다음 중 하나라도 사용합니까?"
 
 msgid "Code generators or minifiers"
 msgstr ""
@@ -2786,7 +2786,7 @@ msgid "Tools that combine multiple files into a single file, such as <span class
 msgstr ""
 
 msgid "Web template engines, both for HTML and CSS"
-msgstr ""
+msgstr "HTML 및 CSS 용 웹 템플릿 엔진"
 
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
 msgstr ""
@@ -2884,7 +2884,7 @@ msgid "Select a header image for your theme"
 msgstr "테마의 상단 이미지를 선택하세요."
 
 msgid "Recommended height: 200 pixels"
-msgstr ""
+msgstr "권장 높이: 200 픽셀"
 
 msgid "6.9MB max"
 msgstr "최대 6.9MB"
@@ -3178,7 +3178,7 @@ msgid "For end users"
 msgstr ""
 
 msgid "Matrix"
-msgstr ""
+msgstr "매트릭스"
 
 # The title for a user if they are a developer
 #, fuzzy
