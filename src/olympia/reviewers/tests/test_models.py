@@ -422,7 +422,7 @@ class TestReviewerSubscription(TestCase):
             user=self.listed_reviewer)
         subscription.send_notification(self.listed_version)
         assert len(mail.outbox) == 1
-        assert mail.outbox[0].to == [u'listed@reviewer']
+        assert mail.outbox[0].to == ['listed@reviewer']
         assert mail.outbox[0].subject == (
             'Mozilla Add-ons: SubscribingTest Updated')
 
@@ -438,7 +438,7 @@ class TestReviewerSubscription(TestCase):
         send_notifications(sender=Version, instance=self.listed_version)
         assert len(mail.outbox) == 2
         emails = sorted([o.to for o in mail.outbox])
-        assert emails == [[u'listed2@reviewer'], [u'listed@reviewer']]
+        assert emails == [['listed2@reviewer'], ['listed@reviewer']]
 
     def test_notifications_setting_persists(self):
         send_notifications(Version, self.listed_version)
@@ -456,14 +456,14 @@ class TestReviewerSubscription(TestCase):
     def test_listed_subscription(self):
         version_uploaded.send(sender=Version, instance=self.listed_version)
         assert len(mail.outbox) == 1
-        assert mail.outbox[0].to == [u'listed@reviewer']
+        assert mail.outbox[0].to == ['listed@reviewer']
         assert mail.outbox[0].subject == (
             'Mozilla Add-ons: SubscribingTest Updated')
 
     def test_unlisted_subscription(self):
         version_uploaded.send(sender=Version, instance=self.unlisted_version)
         assert len(mail.outbox) == 1
-        assert mail.outbox[0].to == [u'unlisted@reviewer']
+        assert mail.outbox[0].to == ['unlisted@reviewer']
         assert mail.outbox[0].subject == (
             'Mozilla Add-ons: SubscribingTest Updated')
 
@@ -476,7 +476,7 @@ class TestReviewerSubscription(TestCase):
         # to unlisted.
         assert len(mail.outbox) == 1
         # Only unlisted@reviewer
-        assert mail.outbox[0].to != [u'listed@reviewer']
+        assert mail.outbox[0].to != ['listed@reviewer']
 
     def test_admin_reviewer_listed_subscription(self):
         ReviewerSubscription.objects.create(
@@ -485,13 +485,13 @@ class TestReviewerSubscription(TestCase):
         version_uploaded.send(sender=Version, instance=self.listed_version)
         assert len(mail.outbox) == 2
         emails = sorted([o.to for o in mail.outbox])
-        assert emails == [[u'admin@reviewer'], [u'listed@reviewer']]
+        assert emails == [['admin@reviewer'], ['listed@reviewer']]
 
         mail.outbox = []
         version_uploaded.send(sender=Version, instance=self.unlisted_version)
         assert len(mail.outbox) == 1
         # Only unlisted@reviewer
-        assert mail.outbox[0].to != [u'admin@®reviewer']
+        assert mail.outbox[0].to != ['admin@®reviewer']
 
     def test_admin_reviewer_unlisted_subscription(self):
         ReviewerSubscription.objects.create(
@@ -500,13 +500,13 @@ class TestReviewerSubscription(TestCase):
         version_uploaded.send(sender=Version, instance=self.unlisted_version)
         assert len(mail.outbox) == 2
         emails = sorted([o.to for o in mail.outbox])
-        assert emails == [[u'admin@reviewer'], [u'unlisted@reviewer']]
+        assert emails == [['admin@reviewer'], ['unlisted@reviewer']]
 
         mail.outbox = []
         version_uploaded.send(sender=Version, instance=self.listed_version)
         assert len(mail.outbox) == 1
         # Only listed@reviewer
-        assert mail.outbox[0].to != [u'admin@®reviewer']
+        assert mail.outbox[0].to != ['admin@®reviewer']
 
     def test_admin_reviewer_both_subscriptions(self):
         ReviewerSubscription.objects.create(
@@ -519,8 +519,8 @@ class TestReviewerSubscription(TestCase):
         version_uploaded.send(sender=Version, instance=self.unlisted_version)
         assert len(mail.outbox) == 4
         emails = sorted([o.to for o in mail.outbox])
-        assert emails == [[u'admin@reviewer'], [u'admin@reviewer'],
-                          [u'listed@reviewer'], [u'unlisted@reviewer']]
+        assert emails == [['admin@reviewer'], ['admin@reviewer'],
+                          ['listed@reviewer'], ['unlisted@reviewer']]
 
     def test_signal_edit(self):
         self.listed_version.save()
