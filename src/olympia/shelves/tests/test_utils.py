@@ -154,6 +154,7 @@ def test_process_adzerk_results():
                     },
                 }],
             },
+            'foo6': None,
         }
     }
     results = process_adzerk_results(response, placeholders)

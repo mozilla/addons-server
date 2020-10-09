@@ -59,7 +59,7 @@ def process_adzerk_result(decision):
 
 def process_adzerk_results(response, placeholders):
     response_decisions = response.get('decisions', {})
-    decisions = [response_decisions.get(ph, {}) for ph in placeholders]
+    decisions = [(response_decisions.get(ph) or {}) for ph in placeholders]
     results_dict = {}
     for decision in decisions:
         result = process_adzerk_result(decision)
