@@ -7,7 +7,6 @@ from django.utils.encoding import force_bytes, force_text
 
 import olympia.core.logger
 
-from olympia import amo
 from olympia.users.models import UserProfile
 
 
@@ -52,16 +51,3 @@ def get_task_user():
     cron jobs or long running tasks.
     """
     return UserProfile.objects.get(pk=settings.TASK_USER_ID)
-
-
-def system_addon_submission_allowed(user, parsed_addon_data):
-    guid = parsed_addon_data.get('guid') or ''
-    return (
-        not guid.lower().endswith(amo.SYSTEM_ADDON_GUIDS) or
-        user.email.endswith(u'@mozilla.com'))
-
-
-def mozilla_signed_extension_submission_allowed(user, parsed_addon_data):
-    return (
-        not parsed_addon_data.get('is_mozilla_signed_extension') or
-        user.email.endswith(u'@mozilla.com'))

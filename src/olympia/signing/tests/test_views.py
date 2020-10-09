@@ -262,7 +262,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
     def test_mozilla_signed_allowed(self):
         guid = '@webextension-guid'
-        self.user.update(email='redpanda@mozilla.com')
+        self.grant_permission(self.user, 'SystemAddon:Submit')
         qs = Addon.unfiltered.filter(guid=guid)
         assert not qs.exists()
         response = self.request(
@@ -281,9 +281,8 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
         assert latest_version.all_files[0].is_mozilla_signed_extension
 
-    def test_mozilla_signed_not_allowed_not_mozilla(self):
+    def test_mozilla_signed_not_allowed(self):
         guid = '@webextension-guid'
-        self.user.update(email='yellowpanda@notzilla.com')
         qs = Addon.unfiltered.filter(guid=guid)
         assert not qs.exists()
         response = self.request(
@@ -297,7 +296,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
     def test_system_addon_allowed(self):
         guid = 'systemaddon@mozilla.org'
-        self.user.update(email='redpanda@mozilla.com')
+        self.grant_permission(self.user, 'SystemAddon:Submit')
         qs = Addon.unfiltered.filter(guid=guid)
         assert not qs.exists()
         response = self.request(
@@ -315,9 +314,8 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert latest_version
         assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
 
-    def test_system_addon_not_allowed_not_mozilla(self):
+    def test_system_addon_not_allowed(self):
         guid = 'systemaddon@mozilla.com'
-        self.user.update(email='yellowpanda@notzilla.com')
         qs = Addon.unfiltered.filter(guid=guid)
         assert not qs.exists()
         response = self.request(

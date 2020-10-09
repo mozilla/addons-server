@@ -78,6 +78,13 @@ ABUSEREPORTS_EDIT = AclPermission('AbuseReports', 'Edit')
 # Can submit language packs. #11788 and #11793
 LANGPACK_SUBMIT = AclPermission('LanguagePack', 'Submit')
 
+# Can submit add-ons signed with Mozilla internal certificate, or add-ons with
+# a guid ending with reserved suffixes like @mozilla.com
+SYSTEM_ADDON_SUBMIT = AclPermission('SystemAddon', 'Submit')
+
+# Can automatically bypass trademark checks
+TRADEMARK_BYPASS = AclPermission('Trademark', 'Bypass')
+
 # Can create AppVersion instances
 APPVERSIONS_CREATE = AclPermission('AppVersions', 'Create')
 

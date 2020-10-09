@@ -653,7 +653,7 @@ class TestParseXpi(TestCase):
         assert parsed['is_experiment']
 
     def test_match_mozilla_signed_extension(self):
-        self.user.update(email='foo@mozilla.com')
+        self.grant_permission(self.user, 'SystemAddon:Submit')
         parsed = self.parse(filename='webextension_signed_already.xpi')
         assert parsed['is_mozilla_signed_extension']
 

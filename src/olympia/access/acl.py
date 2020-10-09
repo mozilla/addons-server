@@ -46,7 +46,8 @@ def action_allowed_user(user, permission):
 
 
 def experiments_submission_allowed(user, parsed_addon_data):
-    """Experiments can only be submitted by the people with the right group.
+    """Experiments can only be submitted by the people with the right
+    permission.
 
     See bug 1220097.
     """
@@ -56,7 +57,8 @@ def experiments_submission_allowed(user, parsed_addon_data):
 
 
 def langpack_submission_allowed(user, parsed_addon_data):
-    """Language packs can only be submitted by people in the right group.
+    """Language packs can only be submitted by people with the right
+    permission.
 
     See https://github.com/mozilla/addons-server/issues/11788 and
     https://github.com/mozilla/addons-server/issues/11793
@@ -64,6 +66,25 @@ def langpack_submission_allowed(user, parsed_addon_data):
     return (
         not parsed_addon_data.get('type') == amo.ADDON_LPAPP or
         action_allowed_user(user, amo.permissions.LANGPACK_SUBMIT))
+
+
+def system_addon_submission_allowed(user, parsed_addon_data):
+    """Add-ons with a guid ending with reserved suffixes can only be submitted
+    by people with the right permission.
+    """
+    guid = parsed_addon_data.get('guid') or ''
+    return (
+        not guid.lower().endswith(amo.SYSTEM_ADDON_GUIDS) or
+        action_allowed_user(user, amo.permissions.SYSTEM_ADDON_SUBMIT))
+
+
+def mozilla_signed_extension_submission_allowed(user, parsed_addon_data):
+    """Add-ons already signed with mozilla internal certificate can only be
+    submitted by people with the right permission.
+    """
+    return (
+        not parsed_addon_data.get('is_mozilla_signed_extension') or
+        action_allowed_user(user, amo.permissions.SYSTEM_ADDON_SUBMIT))
 
 
 def check_ownership(request, obj, require_owner=False, require_author=False,

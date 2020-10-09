@@ -6,14 +6,16 @@ from django.contrib.auth.models import AnonymousUser
 from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
-from olympia.amo.tests import addon_factory, TestCase, req_factory_factory
+from olympia.amo.tests import (
+    addon_factory, TestCase, req_factory_factory, user_factory)
 from olympia.users.models import UserProfile
 
 from .acl import (
     action_allowed, check_addon_ownership, check_addons_reviewer,
     check_ownership, check_static_theme_reviewer,
     check_unlisted_addons_reviewer,
-    is_reviewer, is_user_any_kind_of_reviewer, match_rules)
+    is_reviewer, is_user_any_kind_of_reviewer, match_rules,
+    system_addon_submission_allowed)
 
 
 pytestmark = pytest.mark.django_db
@@ -258,3 +260,30 @@ class TestCheckReviewer(TestCase):
         assert not is_reviewer(request, self.addon)
         assert not is_reviewer(
             request, self.addon, allow_content_reviewers=False)
+
+
+system_guids = pytest.mark.parametrize('guid', [
+    'foø@mozilla.org', 'baa@shield.mozilla.org', 'moo@pioneer.mozilla.org',
+    'blâh@mozilla.com', 'foø@Mozilla.Org', 'addon@shield.moZilla.com',
+    'baa@ShielD.MozillA.OrG', 'moo@PIONEER.mozilla.org', 'blâh@MOZILLA.COM',
+    'flop@search.mozilla.org', 'user@mozillaonline.com',
+    'tester@MoZiLlAoNlInE.CoM'
+])
+
+
+@system_guids
+@pytest.mark.django_db
+def test_system_addon_submission_allowed_mozilla_allowed(guid):
+    user = user_factory()
+    group = Group.objects.create(name='Blah', rules='SystemAddon:Submit')
+    GroupUser.objects.create(group=group, user=user)
+    data = {'guid': guid}
+    assert system_addon_submission_allowed(user, data)
+
+
+@system_guids
+@pytest.mark.django_db
+def test_system_addon_submission_allowed_not_mozilla_not_allowed(guid):
+    user = user_factory()
+    data = {'guid': guid}
+    assert not system_addon_submission_allowed(user, data)

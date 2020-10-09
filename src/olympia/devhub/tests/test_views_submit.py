@@ -700,7 +700,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert Addon.objects.count() == 0
         path = os.path.join(
             settings.ROOT,
-            'src/olympia/devhub/tests/addons/valid_webextension.xpi')
+            'src/olympia/files/fixtures/files/webextension.xpi')
         self.upload = self.get_upload(abspath=path)
         response = self.post()
         addon = Addon.objects.get()
@@ -714,7 +714,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert Addon.objects.count() == 0
         path = os.path.join(
             settings.ROOT,
-            'src/olympia/devhub/tests/addons/valid_webextension.xpi')
+            'src/olympia/files/fixtures/files/webextension.xpi')
         self.upload = self.get_upload(abspath=path)
         response = self.post(listed=False)
         addon = Addon.objects.get()

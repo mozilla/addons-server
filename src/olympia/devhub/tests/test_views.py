@@ -1380,7 +1380,8 @@ class TestUploadDetail(BaseUploadTest):
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_system_addon_allowed(self, mock_validator):
-        user_factory(email='redpanda@mozilla.com')
+        user = user_factory(email='redpanda@mozilla.com')
+        self.grant_permission(user, 'SystemAddon:Submit')
         assert self.client.login(email='redpanda@mozilla.com')
         mock_validator.return_value = json.dumps(self.validation_ok())
         self.upload_file(
@@ -1392,9 +1393,9 @@ class TestUploadDetail(BaseUploadTest):
         assert data['validation']['messages'] == []
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
-    def test_system_addon_not_allowed_not_mozilla(self, mock_validator):
-        user_factory(email='bluepanda@notzilla.com')
-        assert self.client.login(email='bluepanda@notzilla.com')
+    def test_system_addon_not_allowed_not_allowed(self, mock_validator):
+        user_factory(email='redpanda@mozilla.com')
+        assert self.client.login(email='redpanda@mozilla.com')
         mock_validator.return_value = json.dumps(self.validation_ok())
         self.upload_file(
             '../../../files/fixtures/files/mozilla_guid.xpi')
@@ -1414,8 +1415,9 @@ class TestUploadDetail(BaseUploadTest):
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     @mock.patch('olympia.files.utils.get_signer_organizational_unit_name')
     def test_mozilla_signed_allowed(self, mock_get_signature, mock_validator):
-        user_factory(email='redpanda@mozilla.com')
+        user = user_factory(email='redpanda@mozilla.com')
         assert self.client.login(email='redpanda@mozilla.com')
+        self.grant_permission(user, 'SystemAddon:Submit')
         mock_validator.return_value = json.dumps(self.validation_ok())
         mock_get_signature.return_value = "Mozilla Extensions"
         self.upload_file(
@@ -1427,9 +1429,9 @@ class TestUploadDetail(BaseUploadTest):
         assert data['validation']['messages'] == []
 
     @mock.patch('olympia.files.utils.get_signer_organizational_unit_name')
-    def test_mozilla_signed_not_allowed_not_mozilla(self, mock_get_signature):
-        user_factory(email='bluepanda@notzilla.com')
-        assert self.client.login(email='bluepanda@notzilla.com')
+    def test_mozilla_signed_not_allowed_not_allowed(self, mock_get_signature):
+        user_factory(email='redpanda@mozilla.com')
+        assert self.client.login(email='redpanda@mozilla.com')
         mock_get_signature.return_value = 'Mozilla Extensions'
         self.upload_file(
             '../../../files/fixtures/files/webextension_signed_already.xpi')
@@ -1453,7 +1455,8 @@ class TestUploadDetail(BaseUploadTest):
         We also don't call amo-validator on them but we issue a warning
         about being legacy add-ons.
         """
-        user_factory(email='verypinkpanda@mozilla.com')
+        user = user_factory(email='verypinkpanda@mozilla.com')
+        self.grant_permission(user, 'SystemAddon:Submit')
         assert self.client.login(email='verypinkpanda@mozilla.com')
         self.upload_file(os.path.join(
             settings.ROOT, 'src', 'olympia', 'files', 'fixtures', 'files',

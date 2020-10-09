@@ -5,6 +5,7 @@ from django.conf import settings
 from django.utils.translation import ugettext
 
 from olympia import amo
+from olympia.access.acl import action_allowed_user
 from olympia.amo.utils import normalize_string
 from olympia.discovery.utils import call_recommendation_server
 from olympia.translations.fields import LocaleErrorMessage
@@ -16,8 +17,8 @@ def generate_addon_guid():
 
 def verify_mozilla_trademark(name, user, form=None):
     skip_trademark_check = (
-        user and user.is_authenticated and user.email and
-        user.email.endswith(amo.ALLOWED_TRADEMARK_SUBMITTING_EMAILS))
+        user and user.is_authenticated and action_allowed_user(
+            user, amo.permissions.TRADEMARK_BYPASS))
 
     def _check(name):
         name = normalize_string(name, strip_punctuation=True).lower()

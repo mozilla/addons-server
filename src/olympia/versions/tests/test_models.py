@@ -848,6 +848,7 @@ class TestVersionFromUpload(UploadTest, TestCase):
         self.addon.update(guid='guid@xpi')
         self.selected_app = amo.FIREFOX.id
         self.dummy_parsed_data = {'version': '0.1'}
+        self.fake_user = mock.Mock(groups_list=[])
 
 
 class TestExtensionVersionFromUpload(TestVersionFromUpload):
@@ -950,7 +951,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert version.license_id is None
 
     def test_app_versions(self):
-        parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
+        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload, self.addon, [self.selected_app],
             amo.RELEASE_CHANNEL_LISTED,
@@ -967,7 +968,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         self.filename = 'duplicate_target_applications.xpi'
         self.addon.update(guid='duplicatetargetapps@xpi')
         self.upload = self.get_upload(self.filename)
-        parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
+        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload, self.addon, [self.selected_app],
             amo.RELEASE_CHANNEL_LISTED, parsed_data=parsed_data)
@@ -979,7 +980,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert app.max.version == '3.6.*'
 
     def test_compatible_apps_is_pre_generated(self):
-        parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
+        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
         # We mock File.from_upload() to prevent it from accessing
         # version.compatible_apps early - we want to test that the cache has
         # been generated regardless.
@@ -1004,7 +1005,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert app.max.version == '3.6.*'
 
     def test_version_number(self):
-        parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
+        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload, self.addon, [self.selected_app],
             amo.RELEASE_CHANNEL_LISTED,
@@ -1012,7 +1013,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert version.version == '0.1'
 
     def test_file_platform(self):
-        parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
+        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload, self.addon, [self.selected_app],
             amo.RELEASE_CHANNEL_LISTED,
@@ -1022,7 +1023,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert files[0].platform == amo.PLATFORM_ALL.id
 
     def test_file_name(self):
-        parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
+        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload, self.addon, [self.selected_app],
             amo.RELEASE_CHANNEL_LISTED,
@@ -1035,7 +1036,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
 
     def test_creates_platform_files(self):
         # We are creating files for 'all' platforms every time, #8752
-        parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
+        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload, self.addon, [self.selected_app],
             amo.RELEASE_CHANNEL_LISTED,
@@ -1046,7 +1047,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
 
     def test_desktop_creates_all_platform_files(self):
         # We are creating files for 'all' platforms every time, #8752
-        parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
+        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload,
             self.addon,
@@ -1060,7 +1061,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
 
     def test_android_creates_all_platform_files(self):
         # We are creating files for 'all' platforms every time, #8752
-        parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
+        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload,
             self.addon,
@@ -1077,7 +1078,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert storage.exists(path)
         with storage.open(path) as file_:
             uploaded_hash = hashlib.sha256(file_.read()).hexdigest()
-        parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
+        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload, self.addon, [amo.FIREFOX.id, amo.ANDROID.id],
             amo.RELEASE_CHANNEL_LISTED,
@@ -1131,7 +1132,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
 
     @mock.patch('olympia.amo.tasks.sync_object_to_basket')
     def test_from_upload_unlisted(self, sync_object_to_basket_mock):
-        parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
+        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload,
             self.addon,
@@ -1151,7 +1152,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
     @mock.patch('olympia.amo.tasks.sync_object_to_basket')
     def test_from_upload_listed_not_synced_with_basket(
             self, sync_object_to_basket_mock):
-        parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
+        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload,
             self.addon,
@@ -1347,7 +1348,7 @@ class TestSearchVersionFromUpload(TestVersionFromUpload):
         self.now = datetime.now().strftime('%Y%m%d')
 
     def test_version_number(self):
-        parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
+        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload, self.addon, [self.selected_app],
             amo.RELEASE_CHANNEL_LISTED,
@@ -1355,7 +1356,7 @@ class TestSearchVersionFromUpload(TestVersionFromUpload):
         assert version.version == self.now
 
     def test_file_name(self):
-        parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
+        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload, self.addon, [self.selected_app],
             amo.RELEASE_CHANNEL_LISTED,
@@ -1365,7 +1366,7 @@ class TestSearchVersionFromUpload(TestVersionFromUpload):
             u'delicious_bookmarks-%s.xml' % self.now)
 
     def test_file_platform_is_always_all(self):
-        parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
+        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload, self.addon, [self.selected_app],
             amo.RELEASE_CHANNEL_LISTED,
@@ -1401,7 +1402,7 @@ class TestPermissionsFromUpload(TestVersionFromUpload):
         self.current = self.addon.current_version
 
     def test_permissions_includes_devtools(self):
-        parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
+        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload,
             self.addon,

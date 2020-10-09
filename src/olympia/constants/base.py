@@ -405,9 +405,6 @@ SYSTEM_ADDON_GUIDS = (
 MOZILLA_TRADEMARK_SYMBOLS = (
     'mozilla', 'firefox')
 
-ALLOWED_TRADEMARK_SUBMITTING_EMAILS = (
-    '@mozilla.com', '@mozilla.org')
-
 # If you add/remove any sources, update the docs: /api/download_sources.html
 # Note there are some additional sources here for historical/backwards compat.
 DOWNLOAD_SOURCES_FULL = (
