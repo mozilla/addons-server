@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2> {{ _('Force login') }} </h2>
+    {% if request.user.is_authenticated %}
+        <p> {{ _('You are currently authenticated as {0}')|format_html(request.user.email) }}
+    {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        <label for="id_email">{{ _('Email:') }}</label> <input type="email" name="email" id="id_email" />
+        <input type="submit" value="{{ _('OK') }}" />
+    </form>
+{% endblock %}
