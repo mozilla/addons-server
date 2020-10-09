@@ -891,6 +891,9 @@ def review(request, addon, channel=None):
     )
 
     ctx = context(
+        # Used for reviewer subscription check, don't use global `is_reviewer`
+        # since that actually is `is_user_any_kind_of_reviewer`.
+        acl_is_reviewer=acl.is_reviewer(request, addon),
         actions=actions,
         actions_comments=actions_comments,
         actions_delayable=actions_delayable,

@@ -427,16 +427,26 @@ def send_notifications(sender=None, instance=None, signal=None, **kw):
     if not subscribers:
         return
 
+    listed_perms = [
+        amo.permissions.ADDONS_REVIEW,
+        amo.permissions.ADDONS_CONTENT_REVIEW,
+        amo.permissions.ADDONS_RECOMMENDED_REVIEW,
+        amo.permissions.STATIC_THEMES_REVIEW,
+        amo.permissions.REVIEWER_TOOLS_VIEW
+    ]
+
     for subscriber in subscribers:
         user = subscriber.user
         is_active_user = user and not user.deleted and user.email
         is_reviewer_and_listed_submission = (
-            acl.is_user_any_kind_of_reviewer(user, allow_viewers=True) and
-            instance.channel == amo.RELEASE_CHANNEL_LISTED)
+            subscriber.channel == amo.RELEASE_CHANNEL_LISTED and
+            instance.channel == amo.RELEASE_CHANNEL_LISTED and
+            any(acl.action_allowed_user(user, perm) for perm in listed_perms))
         is_unlisted_reviewer_and_unlisted_submission = (
+            subscriber.channel == amo.RELEASE_CHANNEL_UNLISTED and
+            instance.channel == amo.RELEASE_CHANNEL_UNLISTED and
             acl.action_allowed_user(user,
-                                    amo.permissions.ADDONS_REVIEW_UNLISTED) and
-            instance.channel == amo.RELEASE_CHANNEL_UNLISTED)
+                                    amo.permissions.ADDONS_REVIEW_UNLISTED))
         if is_active_user and (
             is_reviewer_and_listed_submission or
             is_unlisted_reviewer_and_unlisted_submission
