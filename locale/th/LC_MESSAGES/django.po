@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-08-19 15:03+0000\n"
+"PO-Revision-Date: 2020-08-19 14:54+0000\n"
 "Last-Translator: Googleโครม! <tamisun32646@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -465,7 +465,7 @@ msgid "This add-on already belongs to the collection"
 msgstr "ส่วนเสริมนี้เป็นของชุดสะสมอยู่แล้ว"
 
 msgid "Signoff State"
-msgstr ""
+msgstr "สถานะลงชื่อออก"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
@@ -1264,7 +1264,7 @@ msgid "Download Firefox themes with animals and natural landscapes. This categor
 msgstr ""
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr ""
+msgstr "ดาวน์โหลดชุดตกแต่ง Firefox ที่มีความน่าสนใจ มีความคิดสร้างสรรค์ และไม่เหมือนใคร"
 
 msgid "Scenery"
 msgstr "ทิวทัศน์"
