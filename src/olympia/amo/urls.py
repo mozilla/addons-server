@@ -1,5 +1,4 @@
-from django.conf.urls import include
-from django.urls import re_path
+from django.urls import re_path, include
 from django.views.decorators.cache import never_cache
 
 from . import views
