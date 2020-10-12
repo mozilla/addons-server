@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-10-12 22:33+0000\n"
+"PO-Revision-Date: 2020-10-12 22:40+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -539,7 +539,7 @@ msgid "Save"
 msgstr "Tiyak"
 
 msgid "Save and add more"
-msgstr "Tiyak chuqa' Titz'aqatisäx ch'aqa'"
+msgstr "Tiyak chuqa' titz'aqatisäx ch'aqa'"
 
 msgid "Delete"
 msgstr "Tiyuj"
@@ -557,10 +557,10 @@ msgstr "Kib'e pa Taq Nutaqoj"
 
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "Titz'aqatisäx %(name)s"
 
 msgid "Add-on GUIDs (one per line)"
-msgstr ""
+msgstr "Titz'aqatisäx GUIDs (jujun pa cholaj)"
 
 #, fuzzy
 msgid "Submit"
