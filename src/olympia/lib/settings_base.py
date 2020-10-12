@@ -1836,6 +1836,7 @@ FXA_OAUTH_HOST = 'https://oauth.accounts.firefox.com/v1'
 FXA_PROFILE_HOST = 'https://profile.accounts.firefox.com/v1'
 DEFAULT_FXA_CONFIG_NAME = 'default'
 ALLOWED_FXA_CONFIGS = ['default']
+USE_FAKE_FXA_AUTH = False  # Should only be True for local development envs.
 
 # List all jobs that should be callable with cron here.
 # syntax is: job_and_method_name: full.package.path

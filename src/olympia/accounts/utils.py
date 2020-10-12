@@ -14,6 +14,8 @@ import boto3
 
 from olympia.accounts.tasks import (
     delete_user_event, primary_email_change_event)
+from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import use_fake_fxa
 from olympia.core.logger import getLogger
 
 
@@ -71,8 +73,12 @@ def fxa_login_url(config, state, next_path=None, action=None,
         if id_token:
             query['prompt'] = 'none'
             query['id_token_hint'] = id_token
-    return '{host}/authorization?{query}'.format(
-        host=settings.FXA_OAUTH_HOST, query=urlencode(query))
+    if use_fake_fxa():
+        base_url = reverse('fake-fxa-authorization')
+    else:
+        base_url = '{host}/authorization'.format(host=settings.FXA_OAUTH_HOST)
+    return '{base_url}?{query}'.format(
+        base_url=base_url, query=urlencode(query))
 
 
 def default_fxa_register_url(request):

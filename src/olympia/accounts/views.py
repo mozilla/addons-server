@@ -46,7 +46,7 @@ from olympia.access import acl
 from olympia.access.models import GroupUser
 from olympia.amo import messages
 from olympia.amo.decorators import use_primary_db
-from olympia.amo.utils import fetch_subscribed_newsletters
+from olympia.amo.utils import fetch_subscribed_newsletters, use_fake_fxa
 from olympia.api.authentication import (
     JWTKeyAuthentication, UnsubscribeTokenAuthentication,
     WebTokenAuthentication)
@@ -261,8 +261,19 @@ def with_user(format):
                         response, request.user)
                 return response
             try:
-                identity, id_token = verify.fxa_identify(
-                    data['code'], config=fxa_config)
+                if use_fake_fxa() and 'fake_fxa_email' in data:
+                    # Bypassing real authentication, we take the email provided
+                    # and generate a random fxa id.
+                    identity = {
+                        'email': data['fake_fxa_email'],
+                        'uid': 'fake_fxa_id-%s' % force_text(
+                            binascii.b2a_hex(os.urandom(16))
+                        )
+                    }
+                    id_token = identity['email']
+                else:
+                    identity, id_token = verify.fxa_identify(
+                        data['code'], config=fxa_config)
             except verify.IdentificationError:
                 log.info('Profile not found. Code: {}'.format(data['code']))
                 return render_error(

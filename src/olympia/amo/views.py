@@ -7,7 +7,7 @@ from django import http
 from django.conf import settings
 from django.core.exceptions import ViewDoesNotExist
 from django.db.transaction import non_atomic_requests
-from django.http import HttpResponse, JsonResponse
+from django.http import Http404, HttpResponse, JsonResponse
 from django.views.decorators.cache import never_cache
 
 from django_statsd.clients import statsd
@@ -16,7 +16,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from olympia import amo
-from olympia.amo.utils import render
+from olympia.amo.utils import render, use_fake_fxa
 from olympia.api.exceptions import base_500_data
 from olympia.api.serializers import SiteStatusSerializer
 
@@ -150,6 +150,13 @@ def frontend_view(*args, **kwargs):
 # determine whether it's a frontend view (that requires a different host prefix
 # on admin instances) or not.
 frontend_view.is_frontend_view = True
+
+
+def fake_fxa_authorization(request):
+    """Fake authentication page to bypass FxA in local development envs."""
+    if not use_fake_fxa():
+        raise Http404()
+    return render(request, 'amo/fake_fxa_authorization.html')
 
 
 class SiteStatusView(APIView):
