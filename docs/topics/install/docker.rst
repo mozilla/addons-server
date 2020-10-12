@@ -104,20 +104,6 @@ and restart the Docker containers::
     export OLYMPIA_SITE_URL=http://[YOUR_HOSTNAME}
     docker-compose up -d
 
-Logging in
-~~~~~~~~~~
-
-You can create users, log in, submit add-ons to the development environement by
-going to `http://olympia.test` (or a different URL if you have set it up above)
-and following the relevant links just like you would on the normal website.
-
-For convenience, a special URL is available to bypass authentication locally:
-http://olympia.test/en-US/admin/local_auth_workaround/
-
-When logging through that method, Firefox Accounts is bypassed, and you will
-automatically be logged in with the chosen email (creating the user if it did
-not already exist in your database).
-
 
 Running common commands
 ~~~~~~~~~~~~~~~~~~~~~~~

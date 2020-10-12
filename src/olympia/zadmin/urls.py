@@ -9,8 +9,6 @@ from . import views
 urlpatterns = [
     # AMO stuff.
     re_path(r'^$', lambda r: redirect('admin:index')),
-    re_path(r'^local_auth_workaround/$', views.local_auth_workaround,
-            name='zadmin.local_auth_workaround'),
     re_path(r'^addon/recalc-hash/(?P<file_id>\d+)/', views.recalc_hash,
             name='zadmin.recalc_hash'),
 
