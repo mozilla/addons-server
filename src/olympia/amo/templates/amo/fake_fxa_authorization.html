@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2> {{ _('Register or Log in') }} </h2>
+  <form method="get" action="{{ url('auth:accounts.authenticate') }}">
+      {% for key, value in request.GET.items() %}
+        <input type="hidden" name="{{ key }}" value="{{ value }}" />
+      {% endfor %}
+      <input type="hidden" name="code" value="fakecode" />
+      <label for="id_email">{{ _('Email:') }}</label> <input type="email" name="fake_fxa_email" id="id_email" />
+      <input type="submit" value="{{ _('OK') }}" />
+  </form>
+{% endblock %}

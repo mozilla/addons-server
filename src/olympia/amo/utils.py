@@ -1032,6 +1032,12 @@ def extract_colors_from_image(path):
     return colors
 
 
+def use_fake_fxa():
+    """Return whether or not to use a fake FxA server for authentication.
+    Should always return False in production"""
+    return settings.DEBUG and settings.USE_FAKE_FXA_AUTH
+
+
 class AMOJSONEncoder(JSONEncoder):
     def default(self, obj):
         if isinstance(obj, Translation):

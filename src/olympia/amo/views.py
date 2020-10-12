@@ -16,7 +16,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from olympia import amo
-from olympia.amo.utils import render
+from olympia.amo.utils import render, use_fake_fxa
 from olympia.api.exceptions import base_500_data
 from olympia.api.serializers import SiteStatusSerializer
 
@@ -150,6 +150,13 @@ def frontend_view(*args, **kwargs):
 # determine whether it's a frontend view (that requires a different host prefix
 # on admin instances) or not.
 frontend_view.is_frontend_view = True
+
+
+def fake_fxa_authorization(request):
+    """Fake authentication page to bypass FxA in local development envs."""
+    if not use_fake_fxa():
+        raise ViewDoesNotExist()
+    return render(request, 'amo/fake_fxa_authorization.html')
 
 
 class SiteStatusView(APIView):

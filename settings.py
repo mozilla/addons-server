@@ -127,6 +127,11 @@ FXA_OAUTH_HOST = 'https://oauth-stable.dev.lcip.org/v1'
 FXA_PROFILE_HOST = 'https://stable.dev.lcip.org/profile/v1'
 ALLOWED_FXA_CONFIGS = ['default', 'amo', 'local']
 
+# When USE_FAKE_FXA_AUTH and settings.DEBUG are both True, we serve a fake
+# authentication page, bypassing FxA. To disable this behavior, set
+# USE_FAKE_FXA = False in your local settings.
+USE_FAKE_FXA_AUTH = True
+
 # CSP report endpoint which returns a 204 from addons-nginx in local dev.
 CSP_REPORT_URI = '/csp-report'
 RESTRICTED_DOWNLOAD_CSP['REPORT_URI'] = CSP_REPORT_URI

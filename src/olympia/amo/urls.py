@@ -3,7 +3,7 @@ from django.urls import re_path
 from django.views.decorators.cache import never_cache
 
 from . import views
-from .utils import render_xml
+from .utils import render_xml, use_fake_fxa
 
 
 services_patterns = [
@@ -28,5 +28,10 @@ urlpatterns = [
     re_path(r'^opensearch\.xml$', render_xml,
             {'template': 'amo/opensearch.xml'},
             name='amo.opensearch'),
-
 ]
+
+if use_fake_fxa():
+    urlpatterns += [
+        re_path(r'^fake-fxa-authorization/$', views.fake_fxa_authorization,
+                name='fake-fxa-authorization')
+    ]
