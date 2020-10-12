@@ -386,98 +386,176 @@ class TestReviewerSubscription(TestCase):
 
     def setUp(self):
         super(TestReviewerSubscription, self).setUp()
-        self.addon = Addon.objects.get(pk=3615)
-        self.version = self.addon.current_version
-        self.user_one = UserProfile.objects.get(pk=55021)
-        self.user_two = UserProfile.objects.get(pk=999)
-        self.reviewer_group = Group.objects.create(
-            name='Reviewers: Legacy', rules='Addons:Review')
+        self.addon = addon_factory(name='SubscribingTest')
+        self.listed_version = version_factory(addon=self.addon)
+        self.unlisted_version = version_factory(
+            addon=self.addon,
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+
+        self.listed_reviewer = user_factory(email='listed@reviewer')
+        self.listed_reviewer_group = Group.objects.create(
+            name='Listed Reviewers', rules='Addons:Review')
         GroupUser.objects.create(
-            group=self.reviewer_group, user=self.user_one)
-        GroupUser.objects.create(
-            group=self.reviewer_group, user=self.user_two)
+            group=self.listed_reviewer_group, user=self.listed_reviewer)
         ReviewerSubscription.objects.create(
-            addon=self.addon, user=self.user_one,
-            channel=amo.RELEASE_CHANNEL_LISTED)
-        ReviewerSubscription.objects.create(
-            addon=self.addon, user=self.user_two,
+            addon=self.addon, user=self.listed_reviewer,
             channel=amo.RELEASE_CHANNEL_LISTED)
 
-    def test_email(self):
-        es = ReviewerSubscription.objects.get(user=self.user_one)
-        es.send_notification(self.version)
+        self.unlisted_reviewer = user_factory(email='unlisted@reviewer')
+        self.unlisted_reviewer_group = Group.objects.create(
+            name='Unlisted Reviewers', rules='Addons:ReviewUnlisted')
+        GroupUser.objects.create(
+            group=self.unlisted_reviewer_group, user=self.unlisted_reviewer)
+        ReviewerSubscription.objects.create(
+            addon=self.addon, user=self.unlisted_reviewer,
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+
+        self.admin_reviewer = user_factory(email='admin@reviewer')
+        GroupUser.objects.create(
+            group=self.listed_reviewer_group, user=self.admin_reviewer)
+        GroupUser.objects.create(
+            group=self.unlisted_reviewer_group, user=self.admin_reviewer)
+        # Don't subscribe admin to updates yet, will be done in tests.
+
+    def test_send_notification(self):
+        subscription = ReviewerSubscription.objects.get(
+            user=self.listed_reviewer)
+        subscription.send_notification(self.listed_version)
         assert len(mail.outbox) == 1
-        assert mail.outbox[0].to == [u'del@icio.us']
+        assert mail.outbox[0].to == ['listed@reviewer']
         assert mail.outbox[0].subject == (
-            'Mozilla Add-ons: Delicious Bookmarks Updated')
+            'Mozilla Add-ons: SubscribingTest Updated')
 
-    def test_notifications(self):
-        send_notifications(sender=Version, instance=self.version)
+    def test_send_notifications(self):
+        another_listed_reviewer = user_factory(email='listed2@reviewer')
+        GroupUser.objects.create(
+            group=self.listed_reviewer_group,
+            user=another_listed_reviewer)
+        ReviewerSubscription.objects.create(
+            addon=self.addon, user=another_listed_reviewer,
+            channel=amo.RELEASE_CHANNEL_LISTED)
+
+        send_notifications(sender=Version, instance=self.listed_version)
         assert len(mail.outbox) == 2
         emails = sorted([o.to for o in mail.outbox])
-        assert emails == [[u'del@icio.us'], [u'regular@mozilla.com']]
+        assert emails == [['listed2@reviewer'], ['listed@reviewer']]
 
     def test_notifications_setting_persists(self):
-        send_notifications(Version, self.version)
+        send_notifications(Version, self.listed_version)
         assert ReviewerSubscription.objects.count() == 2
         mail.outbox = []
-        send_notifications(Version, self.version)
-        assert len(mail.outbox) == 2
+        send_notifications(Version, self.listed_version)
+        assert len(mail.outbox) == 1
+        mail.outbox = []
+        send_notifications(Version, self.unlisted_version)
+        assert ReviewerSubscription.objects.count() == 2
+        mail.outbox = []
+        send_notifications(Version, self.unlisted_version)
+        assert len(mail.outbox) == 1
 
-    def test_send_notifications_unlisted(self):
-        self.reviewer_group = Group.objects.create(
-            name='Reviewers: Unlisted', rules='Addons:ReviewUnlisted')
-        GroupUser.objects.create(
-            group=self.reviewer_group, user=self.user_one)
-        version_uploaded.send(sender=Version, instance=self.version)
-        assert len(mail.outbox) == 2
-        assert mail.outbox[0].to == [u'del@icio.us']
+    def test_listed_subscription(self):
+        version_uploaded.send(sender=Version, instance=self.listed_version)
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == ['listed@reviewer']
         assert mail.outbox[0].subject == (
-            'Mozilla Add-ons: Delicious Bookmarks Updated')
+            'Mozilla Add-ons: SubscribingTest Updated')
+
+    def test_unlisted_subscription(self):
+        version_uploaded.send(sender=Version, instance=self.unlisted_version)
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == ['unlisted@reviewer']
+        assert mail.outbox[0].subject == (
+            'Mozilla Add-ons: SubscribingTest Updated')
 
     def test_unlisted_subscription_listed_reviewer(self):
         ReviewerSubscription.objects.create(
-            addon=self.addon, user=self.user_one,
+            addon=self.addon, user=self.listed_reviewer,
             channel=amo.RELEASE_CHANNEL_UNLISTED)
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        version_uploaded.send(sender=Version, instance=self.version)
-
+        version_uploaded.send(sender=Version, instance=self.unlisted_version)
         # No email should be sent since the reviewer does not have access
         # to unlisted.
-        assert len(mail.outbox) == 0
+        assert len(mail.outbox) == 1
+        # Only unlisted@reviewer
+        assert mail.outbox[0].to != ['listed@reviewer']
+
+    def test_admin_reviewer_listed_subscription(self):
+        ReviewerSubscription.objects.create(
+            addon=self.addon, user=self.admin_reviewer,
+            channel=amo.RELEASE_CHANNEL_LISTED)
+        version_uploaded.send(sender=Version, instance=self.listed_version)
+        assert len(mail.outbox) == 2
+        emails = sorted([o.to for o in mail.outbox])
+        assert emails == [['admin@reviewer'], ['listed@reviewer']]
+
+        mail.outbox = []
+        version_uploaded.send(sender=Version, instance=self.unlisted_version)
+        assert len(mail.outbox) == 1
+        # Only unlisted@reviewer
+        assert mail.outbox[0].to != ['admin@®reviewer']
+
+    def test_admin_reviewer_unlisted_subscription(self):
+        ReviewerSubscription.objects.create(
+            addon=self.addon, user=self.admin_reviewer,
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        version_uploaded.send(sender=Version, instance=self.unlisted_version)
+        assert len(mail.outbox) == 2
+        emails = sorted([o.to for o in mail.outbox])
+        assert emails == [['admin@reviewer'], ['unlisted@reviewer']]
+
+        mail.outbox = []
+        version_uploaded.send(sender=Version, instance=self.listed_version)
+        assert len(mail.outbox) == 1
+        # Only listed@reviewer
+        assert mail.outbox[0].to != ['admin@®reviewer']
+
+    def test_admin_reviewer_both_subscriptions(self):
+        ReviewerSubscription.objects.create(
+            addon=self.addon, user=self.admin_reviewer,
+            channel=amo.RELEASE_CHANNEL_LISTED)
+        ReviewerSubscription.objects.create(
+            addon=self.addon, user=self.admin_reviewer,
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        version_uploaded.send(sender=Version, instance=self.listed_version)
+        version_uploaded.send(sender=Version, instance=self.unlisted_version)
+        assert len(mail.outbox) == 4
+        emails = sorted([o.to for o in mail.outbox])
+        assert emails == [['admin@reviewer'], ['admin@reviewer'],
+                          ['listed@reviewer'], ['unlisted@reviewer']]
 
     def test_signal_edit(self):
-        self.version.save()
+        self.listed_version.save()
+        self.unlisted_version.save()
         assert len(mail.outbox) == 0
 
     def test_signal_create(self):
-        version = Version.objects.create(addon=self.addon)
+        version = version_factory(addon=self.addon)
         version_uploaded.send(sender=Version, instance=version)
-        assert len(mail.outbox) == 2
+        assert len(mail.outbox) == 1
         assert mail.outbox[0].subject == (
-            'Mozilla Add-ons: Delicious Bookmarks Updated')
+            'Mozilla Add-ons: SubscribingTest Updated')
 
     def test_signal_create_twice(self):
-        version = Version.objects.create(addon=self.addon)
+        version = version_factory(addon=self.addon)
         version_uploaded.send(sender=Version, instance=version)
         mail.outbox = []
-        version = Version.objects.create(addon=self.addon)
+        version = version_factory(addon=self.addon)
         version_uploaded.send(sender=Version, instance=version)
-        assert len(mail.outbox) == 2
+        assert len(mail.outbox) == 1
 
     def test_no_email_for_ex_reviewers(self):
-        self.user_one.delete()
+        self.listed_reviewer.delete()
         mail.outbox = []  # deleting the user sends an email for the addon
         # Remove user_one from reviewers.
         GroupUser.objects.get(
-            group=self.reviewer_group, user=self.user_one).delete()
-        send_notifications(sender=Version, instance=self.version)
-        assert len(mail.outbox) == 1  # Only notification for user_two remains.
+            group=self.listed_reviewer_group,
+            user=self.listed_reviewer).delete()
+        send_notifications(sender=Version, instance=self.listed_version)
+        assert len(mail.outbox) == 0
 
     def test_no_email_address_for_reviewer(self):
-        self.user_one.update(email=None)
-        send_notifications(sender=Version, instance=self.version)
-        assert len(mail.outbox) == 1  # Only notification for user_two remains.
+        self.listed_reviewer.update(email=None)
+        send_notifications(sender=Version, instance=self.listed_version)
+        assert len(mail.outbox) == 0
 
 
 class TestReviewerScore(TestCase):
