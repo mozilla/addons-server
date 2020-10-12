@@ -1,8 +1,12 @@
 import json
+from datetime import timedelta
 from unittest import mock
 
 from django.conf import settings
+from django.core.signing import TimestampSigner
 from django.utils.encoding import force_text
+
+from freezegun import freeze_time
 
 from olympia import amo
 from olympia.amo.tests import (
@@ -168,7 +172,6 @@ class TestSponsoredShelfViewSet(ESTestCase):
         assert data['page_count'] == 1
         assert data['impression_url'] == reverse_ns(
             'sponsored-shelf-impression')
-        assert data['impression_data'] is None
         return data
 
     def test_no_adzerk_addons(self):
@@ -178,8 +181,11 @@ class TestSponsoredShelfViewSet(ESTestCase):
             get.assert_called_with(6)
         assert data['count'] == 0
         assert len(data['results']) == 0
+        assert data['impression_data'] is None
 
+    @freeze_time('2020-01-01')
     def test_basic(self):
+        signer = TimestampSigner()
         with mock.patch('olympia.shelves.views.get_addons_from_adzerk') as get:
             get.return_value = {
                 str(self.sponsored_ext.id): {
@@ -195,10 +201,13 @@ class TestSponsoredShelfViewSet(ESTestCase):
             get.assert_called_with(6), get.call_args
         assert data['count'] == 2
         assert len(data['results']) == 2
+        assert data['impression_data'] == signer.sign('123456,012345')
         assert {itm['id'] for itm in data['results']} == {
             self.sponsored_ext.pk, self.sponsored_theme.pk}
 
+    @freeze_time('2020-01-01')
     def test_adzerk_returns_none_sponsored(self):
+        signer = TimestampSigner()
         with mock.patch('olympia.shelves.views.get_addons_from_adzerk') as get:
             get.return_value = {
                 str(self.sponsored_ext.id): {
@@ -227,6 +236,7 @@ class TestSponsoredShelfViewSet(ESTestCase):
         # non sponsored are ignored
         assert data['count'] == 2
         assert len(data['results']) == 2
+        assert data['impression_data'] == signer.sign('123456,012345')
         assert {itm['id'] for itm in data['results']} == {
             self.sponsored_ext.pk, self.sponsored_theme.pk}
 
@@ -238,15 +248,42 @@ class TestSponsoredShelfViewSet(ESTestCase):
             get.assert_called_with(4)
         assert data['count'] == 0
         assert len(data['results']) == 0
+        assert data['impression_data'] is None
 
-    def test_impression_endpoint(self):
+    @mock.patch('olympia.shelves.views.send_impression_pings')
+    def test_impression_endpoint(self, send_mock):
         url = reverse_ns('sponsored-shelf-impression')
-        with self.assertNumQueries(0):
-            response = self.client.post(url)
-        assert response.status_code == 200
+        # no data
+        response = self.client.post(url)
+        assert response.status_code == 400
+        send_mock.assert_not_called()
+
+        # bad data
+        response = self.client.post(url, {'impression_data': 'dfdfd:3434'})
+        assert response.status_code == 400
+        send_mock.assert_not_called()
+
+        # good data
+        signer = TimestampSigner()
+        impressions = ['assfsf', 'fwafsf']
+        data = signer.sign(','.join(impressions))
+        response = self.client.post(url, {'impression_data': data})
+        assert response.status_code == 202
+        send_mock.assert_called_with(impressions)
+        assert response.content == b''
+
+        # good data but stale
+        send_mock.reset_mock()
+        with freeze_time('2020-01-01') as freezer:
+            data = signer.sign(','.join(impressions))
+            freezer.tick(delta=timedelta(seconds=61))
+            response = self.client.post(url, {'impression_data': data})
+            assert response.status_code == 400
+            send_mock.assert_not_called()
 
     def test_click_endpoint(self):
         url = reverse_ns('sponsored-shelf-click')
         with self.assertNumQueries(0):
             response = self.client.post(url)
         assert response.status_code == 200
+        assert response.content == b''

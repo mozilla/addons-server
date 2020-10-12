@@ -101,4 +101,19 @@ Current implementation relies on Adzerk to determine which addons are returned a
     :>json string results[].click_url: the url to ping if the sponsored addon's detail page is navigated to.
     :>json string results[].click_data: the data payload to send to ``click_url`` that identifies the sponsored placement clicked on.
     :>json string impression_url: the url to ping when the contents of this sponsored shelf is rendered on screen to the user.
-    :>json string impression_data: the data payload to send to ``impression_url`` that identifies the sponsored placements displayed.
+    :>json string impression_data: the signed data payload to send to ``impression_url`` that identifies the sponsored placements displayed.
+
+
+---------------------------
+Sponsored Shelf Impressions
+---------------------------
+
+.. _sponsored-shelf-impression:
+
+When the sponsored shelf is displayed for the user this endpoint can be used to record the impressions.
+The current implemenation forwards these impression pings to Adzerk.
+
+
+.. http:post:: /api/v4/shelves/sponsored/impression/
+
+    :form string impression_data: the signed data payload that was sent in the :ref:`sponsored shelf <sponsored-shelf>` response.
