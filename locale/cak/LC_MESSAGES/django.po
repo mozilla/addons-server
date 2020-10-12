@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-10-12 22:24+0000\n"
+"PO-Revision-Date: 2020-10-12 22:33+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -2474,7 +2474,7 @@ msgid "Upload a Custom Icon..."
 msgstr "Tijotob'äx jun Ichinan Wachib'äl..."
 
 msgid "PNG and JPG supported."
-msgstr ""
+msgstr "Yek'ul PNG chuqa' JPG."
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
 msgstr ""
@@ -2644,7 +2644,7 @@ msgid "Yes, Cancel"
 msgstr "Tiq'at"
 
 msgid "No, don't cancel"
-msgstr ""
+msgstr "Mani, man tiq'at"
 
 msgid "Name and Summary:"
 msgstr "B'i'aj chuqa' B'anikil:"
@@ -3186,7 +3186,7 @@ msgid "Connect with us"
 msgstr ""
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #, fuzzy
 msgid "For developers"
@@ -3196,7 +3196,7 @@ msgid "For end users"
 msgstr ""
 
 msgid "Matrix"
-msgstr ""
+msgstr "Matrix"
 
 #, fuzzy
 msgid "Add-on Developers Mailing List"
@@ -3222,10 +3222,12 @@ msgid "Sign Up"
 msgstr "Titz'apïx Molojri'ïl"
 
 msgid "Thanks!"
-msgstr ""
+msgstr "¡Matyox!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr ""
+"We man ajikib'an ta rutz'ib'axik ab'i' pa jun rutzijol ko'öl na'oj pa ruwi' ri Mozilla rik'in jub'a' k'o chi nab'än. Tab'ana' utzil tanik'oj ri ataqob'al o ri ruchayub'al itzel taq taqoya'l richin "
+"jun rutzijol jun taqoya'l."
 
 msgid "Resources"
 msgstr "Taq Tob'äl"
@@ -3244,7 +3246,7 @@ msgid "\"Get The Add-on\" button"
 msgstr "\"Tik'ul ri Tz'aqat\" pitz'b'äl"
 
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "Kinuk'samaj Chilab'en taq K'amal"
 
 msgid "Contribute"
 msgstr "Kato'on"
@@ -3277,7 +3279,7 @@ msgid "See how"
 msgstr "Tatz'eta' Kwi' Rub'eyal"
 
 msgid "Get involved"
-msgstr ""
+msgstr "Kato'on"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
@@ -5216,7 +5218,7 @@ msgid "Could not parse uploaded file."
 msgstr "Man niq'ax ta ri runa'oj ri yakb'äl xjotob'äx."
 
 msgid "Unsupported archive type."
-msgstr ""
+msgstr "Man nikoch'otäj ta ri ruwäch chi yakb'äl."
 
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "Man okel ta rub'i' yakb'äl. Tatz'eta' chi ronojel ri kib'i' yakb'äl nuk'un rik'in utf-8 or latin1."
@@ -6070,7 +6072,7 @@ msgid "Reviewer's Guide"
 msgstr "Kik'amöl Nik'onela'"
 
 msgid "{addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "{addon} – Taq tz'aqat richin Firefox"
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
@@ -6223,10 +6225,10 @@ msgid "No reviews found for this period."
 msgstr "Majun nik'oxïk xe'ilitäj pa re q'ijul re'."
 
 msgid "Origin:"
-msgstr ""
+msgstr "Ruxe'el:"
 
 msgid "Method:"
-msgstr ""
+msgstr "B'eyal:"
 
 #, fuzzy
 msgid "Source:"
@@ -6456,7 +6458,7 @@ msgid "Abort"
 msgstr ""
 
 msgid "Run"
-msgstr ""
+msgstr "Tib'anatäj"
 
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
 msgstr ""
