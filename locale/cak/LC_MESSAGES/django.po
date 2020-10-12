@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-10-12 22:52+0000\n"
+"PO-Revision-Date: 2020-10-12 23:09+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -3918,9 +3918,8 @@ msgstr "Ke'asik'ij ePub taq yakb'äl {start_sub_heading}rik'in {addon_name}{end_
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr "Ütz ke'atz'eta' ePub taq yakb'äl pa Firefox—tanimirisaj rupalem ri taq tz'ib', kinimilem taq ruxaq chuqa' ch'aqa' chik."
+msgstr "Ke'asik'ij ePub taq yakb'äl pa Firefox—tanimirisaj rupalem ri taq tz'ib', kinimilem taq ruxaq chuqa' ch'aqa' chik."
 
 #. editorial content for the discovery pane.
 msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3928,18 +3927,16 @@ msgstr "Tawutzilaj awetamab'l pa YouTube {start_sub_heading}rik'in {addon_name}{
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
-msgstr "Ke'atzija' taq silowäch achi'el e k'o wi rik'in jeb'ël ruwachinik, ke'achupu' ri taq retal tz'ib'anïk chuqa' ch'aqa' chik."
+msgstr "Ke'atzija' YouTube taq silowäch achi'el e k'o wi rik'in jeb'ël ruwachinik, ke'achupu' ri taq retal tz'ib'anïk chuqa' ch'aqa' chik."
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ke'awojqaj ri ojqanela' {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
-msgstr "Tawila' achike nojqan awichin rik'in xa jun pitz'oj."
+msgstr "Ke'oqäx ojqanela'. Tawila' achike nojqan awichin rik'in xa jun pitz'oj."
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4233,18 +4230,16 @@ msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ke'awutzilaj Rub'anikil ri Wikipedia {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Applies a fresh, modern appearance to Wikipedia."
-msgstr "Taya' ch'u'ül chuqa' k'ak'a' ruwa ri Wikipedia."
+msgstr "Taya' ch'u'ül k'ak'a' ruwa ri Wikipedia."
 
 #. editorial content for the discovery pane.
 msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Anin kasamäj {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Use mouse gestures to get to things done quicker."
-msgstr "Ke'awokisaj ri taq ruwa ch'oy richin nab'än ronojel—aninäq."
+msgstr "Ke'awokisaj ri taq ruwa ch'oy richin nab'än ronojel aninäq."
 
 #. editorial content for the discovery pane.
 msgid "Disguise the page {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4398,7 +4393,6 @@ msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ke'ak'ama' taq ximonel {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Instantly display all links from a web page in new tabs."
 msgstr "Anin ke'ak'utu' ronojel ri taq ruximonel ajk'amaya'l ruxaq pa k'ak'a' taq ruwi'."
 
@@ -5153,9 +5147,8 @@ msgid "They add features to Firefox to make browsing faster, safer, or just plai
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "See all extensions"
-msgstr "Kekanöx ronojel ri taq k'amal"
+msgstr "Ketz'et ronojel ri taq k'amal"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
@@ -5170,9 +5163,8 @@ msgid "Media enhancers for Firefox"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Explore extensions"
-msgstr "Taq k'amal"
+msgstr "Kekanöx taq k'amal"
 
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
