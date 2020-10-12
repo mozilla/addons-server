@@ -7,7 +7,7 @@ from django import http
 from django.conf import settings
 from django.core.exceptions import ViewDoesNotExist
 from django.db.transaction import non_atomic_requests
-from django.http import HttpResponse, JsonResponse
+from django.http import Http404, HttpResponse, JsonResponse
 from django.views.decorators.cache import never_cache
 
 from django_statsd.clients import statsd
@@ -155,7 +155,7 @@ frontend_view.is_frontend_view = True
 def fake_fxa_authorization(request):
     """Fake authentication page to bypass FxA in local development envs."""
     if not use_fake_fxa():
-        raise ViewDoesNotExist()
+        raise Http404()
     return render(request, 'amo/fake_fxa_authorization.html')
 
 

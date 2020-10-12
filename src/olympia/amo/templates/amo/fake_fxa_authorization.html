@@ -2,7 +2,7 @@
 
 {% block content %}
   <h2> {{ _('Register or Log in') }} </h2>
-  <form method="get" action="{{ url('auth:accounts.authenticate') }}">
+  <form id="fake_fxa_authorization" method="get" action="{{ url('auth:accounts.authenticate') }}">
       {% for key, value in request.GET.items() %}
         <input type="hidden" name="{{ key }}" value="{{ value }}" />
       {% endfor %}
