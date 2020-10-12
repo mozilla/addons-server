@@ -43,11 +43,17 @@ class GenerateAddonsSerializer(serializers.Serializer):
     count = serializers.IntegerField(default=10)
 
     def __init__(self):
-        self.fxa_email = os.environ.get(
-            'UITEST_FXA_EMAIL', 'uitest-%s@restmail.net' % uuid.uuid4())
-        self.fxa_password = os.environ.get(
-            'UITEST_FXA_PASSWORD', 'uitester')
-        self.fxa_id = self._create_fxa_user()
+        self.fxa_email = os.environ.get('UITEST_FXA_EMAIL')
+        self.fxa_password = os.environ.get('UITEST_FXA_PASSWORD', 'uitester')
+        if self.fxa_email:
+            self.fxa_id = self._create_fxa_user()
+        else:
+            # If UITEST_FXA_EMAIL was empty/absent, skip creating the fxa
+            # account: we won't need to log in with that user through FxA.
+            log.info('UITEST_FXA_EMAIL is empty, skipping FxA user creation')
+            # We still need those to be set for the content to be created.
+            self.fxa_id = None
+            self.fxa_email = 'uitest-%s@restmail.net' % uuid.uuid4()
         self.user = self._create_addon_user()
 
     def _create_fxa_user(self):
