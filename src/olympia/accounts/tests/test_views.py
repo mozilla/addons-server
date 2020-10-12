@@ -159,6 +159,15 @@ class TestLoginStartView(TestCase):
         assert views.LoginStartView.ALLOWED_FXA_CONFIGS == (
             ['default', 'amo', 'local'])
 
+    @override_settings(DEBUG=True, USE_FAKE_FXA_AUTH=True)
+    def test_redirect_url_fake_fxa_auth(self):
+        response = self.client.get(reverse_ns('accounts.login_start'))
+        assert response.status_code == 302
+        url = urlparse(response['location'])
+        assert url.path == reverse('fake-fxa-authorization')
+        query = parse_qs(url.query)
+        assert query['state']
+
 
 class TestLoginUserAndRegisterUser(TestCase):
 
@@ -722,6 +731,25 @@ class TestWithUser(TestCase):
         self.user = user_factory()
         addon_factory(users=[self.user])
         self._test_should_continue_without_redirect_for_two_factor_auth()
+
+    @override_settings(DEBUG=True, USE_FAKE_FXA_AUTH=True)
+    def test_fake_fxa_auth(self):
+        self.user = user_factory()
+        self.find_user.return_value = self.user
+        self.request.data = {
+            'code': 'foo',
+            'fake_fxa_email': self.user.email,
+            'state': 'some-blob:{next_path}'.format(
+                next_path=force_text(base64.urlsafe_b64encode(b'/a/path/?'))),
+        }
+        args, kwargs = self.fn(self.request)
+        assert args == (self, self.request)
+        assert kwargs['user'] == self.user
+        assert kwargs['identity']['email'] == self.user.email
+        assert kwargs['identity']['uid'].startswith('fake_fxa_id-')
+        assert len(kwargs['identity']['uid']) == 44  # 32 random chars + prefix
+        assert kwargs['next_path'] == '/a/path/?'
+        assert self.fxa_identify.call_count == 0
 
 
 @override_settings(FXA_CONFIG={
