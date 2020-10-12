@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-10-12 23:09+0000\n"
+"PO-Revision-Date: 2020-10-12 23:12+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5376,13 +5376,11 @@ msgstr ""
 "Ronojel, mani. We ri ejqalem man rojqan ta ronojel ri taq retal nik'oxïk etzijon kan, yatikïr napïtz pa \"Tiya' rutzijol re ejqalem re'\" richin nisol rij. We jun ejqalem k'o rusujunik ri man okel "
 "ta chik ruma xa jun chik ruwäch ri atz'aqat, yojtikïr niqana'ojij niqayüj el."
 
-#, fuzzy
 msgid "User"
-msgstr "Rub'i' okisanel"
+msgstr "Okisanel"
 
-#, fuzzy
 msgid "IP Address"
-msgstr "Rochochib'al taqoya'l"
+msgstr "IP Ochochib'äl"
 
 msgid "Spam or otherwise non-review content"
 msgstr "Man ruk'amon ta ri eltzijol o jun chik rupam"
@@ -5549,7 +5547,6 @@ msgstr ""
 msgid "Auto-approval delayed indefinitely"
 msgstr ""
 
-#, fuzzy
 msgid "Is locked by a reviewer"
 msgstr "Q'aton ruma jun nik'onel."
 
@@ -5609,9 +5606,8 @@ msgid_plural "{0} days"
 msgstr[0] "{0} q'ij"
 msgstr[1] "{0} taq q'ij"
 
-#, fuzzy
 msgid "ID"
-msgstr "CIDR"
+msgstr "ID"
 
 msgid "Last Review"
 msgstr "Ruk'isib'äl nik'oxïk"
@@ -5623,9 +5619,8 @@ msgstr "Ralal"
 msgid "Pending Rejection Deadline"
 msgstr "Ruk'isib'äl Q'ijul richin Nik'utuüx Etamab'äl"
 
-#, fuzzy
 msgid "Last Updated"
-msgstr "Ruk'isib'äl k'exoj:"
+msgstr "Ruk'isib'äl K'exoj"
 
 #, fuzzy
 msgid "Listed versions needing human review ({0})"
@@ -5635,13 +5630,11 @@ msgstr "Runik'oxik Rajil ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Runik'oxik Rajil ({0})"
 
-#, fuzzy
 msgid "Listed version"
 msgstr "Cholajin ruwäch"
 
-#, fuzzy
 msgid "Unlisted versions ({0})"
-msgstr "Cholajin ruwäch"
+msgstr "Cholajin taq ruwäch ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Re re' ütz xtutz'ët, xtujüx chuqa' xtrelesaj rutzijol ri ruwäch. Xkeruk'ül ri taq na'oj ri b'anonel."
@@ -5664,9 +5657,8 @@ msgstr "Ri ruk'isib'äl ruwäch re tz'aqat re' ri elesan rutzijol ruyonil ütz x
 msgid "Reject Multiple Versions"
 msgstr "Kexutüx K'ïy taq Ruwäch"
 
-#, fuzzy
 msgid "This will reject the selected versions. The comments will be sent to the developer."
-msgstr "Re re' xkeruyüj ri aj winäq taq ruwäch echa'on. Xkeruk'ül ri taq na'oj ri b'anonel."
+msgstr "Re re' xkeruyüj ri taq ruwäch echa'on. Xkeruk'ül ri taq na'oj ri b'anonel."
 
 #, fuzzy
 msgid "Block Multiple Versions"
@@ -5835,9 +5827,8 @@ msgstr "Wachel"
 msgid "Visible"
 msgstr "Tz'etel"
 
-#, fuzzy
 msgid "Weekly Downloads"
-msgstr "Taq qasanïk"
+msgstr "Wuqq'ijul taq Qasanïk"
 
 msgid "Average Daily Users"
 msgstr "Kipajik Okisanela' Q'ij Q'ij"
