@@ -114,6 +114,6 @@ When the sponsored shelf is displayed for the user this endpoint can be used to 
 The current implemenation forwards these impression pings to Adzerk.
 
 
-.. http:post:: /api/v4/shelves/sponsored/
+.. http:post:: /api/v4/shelves/sponsored/impression/
 
-    :query string impression_data: the signed data payload that was sent in the :ref:`sponsored shelf <sponsored-shelf>` response.
+    :form string impression_data: the signed data payload that was sent in the :ref:`sponsored shelf <sponsored-shelf>` response.
