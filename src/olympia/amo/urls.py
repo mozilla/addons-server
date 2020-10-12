@@ -3,7 +3,7 @@ from django.urls import re_path
 from django.views.decorators.cache import never_cache
 
 from . import views
-from .utils import render_xml, use_fake_fxa
+from .utils import render_xml
 
 
 services_patterns = [
