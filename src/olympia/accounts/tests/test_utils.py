@@ -17,6 +17,7 @@ from waffle.testutils import override_switch
 from olympia.accounts import utils
 from olympia.accounts.utils import process_fxa_event
 from olympia.amo.tests import TestCase, user_factory
+from olympia.amo.urlresolvers import reverse
 from olympia.users.models import UserProfile
 
 
@@ -206,6 +207,29 @@ def test_redirect_for_login(default_fxa_login_url):
     response = utils.redirect_for_login(request)
     default_fxa_login_url.assert_called_with(request)
     assert response['location'] == login_url
+
+
+@override_settings(DEBUG=True, USE_FAKE_FXA_AUTH=True)
+def test_fxa_login_url_when_faking_fxa_auth():
+    path = '/en-US/addons/abp/?source=ddg'
+    request = RequestFactory().get(path)
+    request.session = {'fxa_state': 'myfxastate'}
+    raw_url = utils.fxa_login_url(
+        config=FXA_CONFIG['default'], state=request.session['fxa_state'],
+        next_path=path, action='signin')
+    url = urlparse(raw_url)
+    assert url.scheme == ''
+    assert url.netloc == ''
+    assert url.path == reverse('fake-fxa-authorization')
+    query = parse_qs(url.query)
+    next_path = urlsafe_b64encode(path.encode('utf-8')).rstrip(b'=')
+    assert query == {
+        'action': ['signin'],
+        'client_id': ['foo'],
+        'scope': ['profile openid'],
+        'state': ['myfxastate:{next_path}'.format(
+            next_path=force_text(next_path))],
+    }
 
 
 class TestProcessSqsQueue(TestCase):
