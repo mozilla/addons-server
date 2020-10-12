@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-10-12 22:40+0000\n"
+"PO-Revision-Date: 2020-10-12 22:52+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -520,9 +520,8 @@ msgstr ""
 msgid "Delete Multiple %(name)s"
 msgstr "Kexutüx K'ïy taq Ruwäch"
 
-#, fuzzy
 msgid "Home"
-msgstr "Ruxaq tikirib'äl"
+msgstr "Tikirib'äl"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
@@ -573,7 +572,6 @@ msgstr "%(count)s Tz'aqat GUIDs"
 msgid "Edit Block"
 msgstr "Tinuk' Peraj"
 
-#, fuzzy
 msgid "versions"
 msgstr "Taq ruwäch"
 
@@ -1003,9 +1001,8 @@ msgstr "Rajaw"
 msgid "Developer"
 msgstr "B'anonel"
 
-#, fuzzy
 msgid "(Deleted)"
-msgstr "Xyuj"
+msgstr "(Xyuj)"
 
 msgid "Extension"
 msgstr "K'amal"
@@ -1403,9 +1400,8 @@ msgstr "Android"
 msgid "Not Promoted"
 msgstr "To'ïk"
 
-#, fuzzy
 msgid "Recommended"
-msgstr "Xtz'ijöx"
+msgstr "Xchilab'ëx"
 
 msgid "Sponsored"
 msgstr ""
@@ -1413,9 +1409,8 @@ msgstr ""
 msgid "Verified"
 msgstr "Xjikib'äx"
 
-#, fuzzy
 msgid "By Firefox"
-msgstr "Firefox"
+msgstr "Ruma Firefox"
 
 msgid "Spotlight"
 msgstr "Spotlight"
@@ -1621,7 +1616,6 @@ msgstr "Me qitzij ütz"
 msgid "Inconclusive"
 msgstr ""
 
-#, fuzzy
 msgid "New"
 msgstr "K'ak'a'"
 
@@ -1634,9 +1628,8 @@ msgstr ""
 msgid "Aborting"
 msgstr ""
 
-#, fuzzy
 msgid "Completed"
-msgstr "Man tz'aqät ta"
+msgstr "Xtz'aqatisäx"
 
 msgid "Scheduled"
 msgstr ""
@@ -1900,9 +1893,8 @@ msgstr "Man xk'ul ta peyonïk."
 msgid "An author has been added to your add-on"
 msgstr "Jun b'anel xutz'aqatisaj ri atz'aqat"
 
-#, fuzzy
 msgid "Author invitation for {addon_name}"
-msgstr "Taq ruto'ik {addon}."
+msgstr "Rupeyonik b'anel richin {addon_name}"
 
 msgid "A confirmation email has been sent to {email}"
 msgstr "Jun jikib'anel taqoya'l xtaq pa {email}"
@@ -3209,7 +3201,6 @@ msgstr "Kib'anik K'amal"
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
 
-#, fuzzy
 msgid "Email Address"
 msgstr "Rochochib'al taqoya'l"
 
@@ -3217,7 +3208,6 @@ msgstr "Rochochib'al taqoya'l"
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
 msgstr ""
 
-#, fuzzy
 msgid "Sign Up"
 msgstr "Titz'apïx Molojri'ïl"
 
@@ -3232,9 +3222,8 @@ msgstr ""
 msgid "Resources"
 msgstr "Taq Tob'äl"
 
-#, fuzzy
 msgid "WebExtensions API"
-msgstr "WebExtension"
+msgstr "WebExtensionsWebExtensions API"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: okisan & tojtob'en taq k'amal"
@@ -3322,9 +3311,8 @@ msgstr "Majun Wachib'äl"
 msgid "User Photo"
 msgstr "Ruwachib'al Okisanel"
 
-#, fuzzy
 msgid "Profile"
-msgstr "Ruwäch Nub'i'"
+msgstr "Ruwäch b'i'aj"
 
 #, fuzzy
 msgid "Submit or Manage Extensions"
@@ -3437,9 +3425,8 @@ msgstr "Titzolïx tzij"
 msgid "Listing visibility"
 msgstr "Kitz'etik cholb'äl"
 
-#, fuzzy
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
-msgstr "{label_open} tz'etel:{label_close} Tz'etl chi ke konojel pa {site_url} chuqa' pa ri nilitäj toq k'o nikanöx chuqa' pa cholajin taq ruxaq."
+msgstr "{label_open} tz'etel:{label_close} Tz'etl chi ke konojel pa {site_url} chuqa' pa ri nilitäj toq k'o nikanöx chuqa' pa ruxaq tikojil."
 
 #, fuzzy
 msgid ""
