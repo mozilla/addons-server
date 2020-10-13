@@ -233,8 +233,8 @@ Outgoing Links
 If the ``wrap_outgoing_links`` query parameter is present, any external links
 returned for properties such as ``support_url`` or ``homepage`` will be wrapped
 through ``outgoing.prod.mozaws.net``. Fields supporting some HTML, such as
-add-on ``description``, always do this regardless of whether or not the query
-parameter is present.
+add-on ``description`` or ``summary``, always do this regardless of whether or
+not the query parameter is present.
 
 ~~~~~~~~~~~~
 Cross Origin
