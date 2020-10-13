@@ -1,7 +1,6 @@
 from django.template import loader
 
 import jinja2
-import waffle
 
 from django_jinja import library
 
@@ -16,8 +15,5 @@ def report_menu(context, request, report, obj):
         tpl = loader.get_template('stats/addon_report_menu.html')
         ctx = {
             'addon': obj,
-            'bigquery_download_stats': waffle.flag_is_active(
-                request, 'bigquery-download-stats'
-            ),
         }
         return jinja2.Markup(tpl.render(ctx))

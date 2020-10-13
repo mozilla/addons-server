@@ -10,12 +10,6 @@ z.StatsManager = (function () {
 
   var $primary = $('.primary');
 
-  // Make sure to use a different session cache when users have the waffle
-  // flag enabled or disabled.
-  if ($primary.data('bigquery-download-stats') === 'True') {
-    STATS_VERSION += '-preview';
-  }
-
   var useFenixBuildIDs = $primary.data('use-fenix-build-ids') === 'True';
 
   var storage = z.Storage('stats'),

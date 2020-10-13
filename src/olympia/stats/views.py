@@ -26,7 +26,6 @@ from olympia.core.languages import ALL_LANGUAGES
 from olympia.stats.decorators import addon_view_stats
 from olympia.stats.forms import DateForm
 
-from .models import DownloadCount
 from .utils import get_updates_series, get_download_series
 
 
@@ -136,15 +135,9 @@ def overview_series(request, addon, group, start, end, format):
     start_date, end_date = date_range
     check_stats_permission(request, addon)
 
-    if waffle.flag_is_active(request, 'bigquery-download-stats'):
-        downloads = get_download_series(
-            addon=addon, start_date=start_date, end_date=end_date
-        )
-    else:
-        downloads = get_series(
-            DownloadCount, addon=addon.id, date__range=date_range
-        )
-
+    downloads = get_download_series(
+        addon=addon, start_date=start_date, end_date=end_date
+    )
     updates = get_updates_series(
         addon=addon, start_date=start_date, end_date=end_date
     )
@@ -196,14 +189,9 @@ def downloads_series(request, addon, group, start, end, format):
     start_date, end_date = date_range
     check_stats_permission(request, addon)
 
-    if waffle.flag_is_active(request, 'bigquery-download-stats'):
-        series = get_download_series(
-            addon=addon, start_date=start_date, end_date=end_date
-        )
-    else:
-        series = get_series(
-            DownloadCount, addon=addon.id, date__range=date_range
-        )
+    series = get_download_series(
+        addon=addon, start_date=start_date, end_date=end_date
+    )
 
     if format == 'csv':
         return render_csv(request, addon, series, ['date', 'count'])
@@ -221,25 +209,13 @@ def download_breakdown_series(
     start_date, end_date = date_range
     check_stats_permission(request, addon)
 
-    if waffle.flag_is_active(request, 'bigquery-download-stats'):
-        series = get_download_series(
-            addon=addon,
-            start_date=start_date,
-            end_date=end_date,
-            source=source,
-        )
-        series = rename_unknown_values(series)
-    else:
-        # Legacy stats only have download stats "by source".
-        if source != 'sources':
-            raise http.Http404
-
-        series = get_series(
-            DownloadCount,
-            addon=addon.id,
-            date__range=date_range,
-            source=source
-        )
+    series = get_download_series(
+        addon=addon,
+        start_date=start_date,
+        end_date=end_date,
+        source=source,
+    )
+    series = rename_unknown_values(series)
 
     if format == 'csv':
         series, fields = csv_fields(series)
@@ -389,9 +365,6 @@ def stats_report(request, addon, report):
             'report': report,
             'stats_base_url': stats_base_url,
             'view': view,
-            'bigquery_download_stats': waffle.flag_is_active(
-                request, 'bigquery-download-stats'
-            ),
             'use_fenix_build_ids': (
                 waffle.switch_is_active('use-fenix-build-ids')
             ),

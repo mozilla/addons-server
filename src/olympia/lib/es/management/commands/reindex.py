@@ -15,7 +15,6 @@ from olympia.amo.search import get_es
 from olympia.lib.es.utils import (
     flag_reindexing_amo, is_reindexing_amo, timestamp_index,
     unflag_reindexing_amo)
-from olympia.stats.indexers import DownloadCountIndexer
 
 
 logger = olympia.core.logger.getLogger('z.elasticsearch')
@@ -32,7 +31,6 @@ def get_indexer(alias):
         # The keys are the index alias names, the values the indexer classes.
         # The 'default' in ES_INDEXES is actually named 'addons'
         settings.ES_INDEXES['default']: AddonIndexer,
-        settings.ES_INDEXES['stats_download_counts']: DownloadCountIndexer,
     }
     return modules[alias]
 
