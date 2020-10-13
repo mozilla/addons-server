@@ -117,37 +117,6 @@ class VersionView(APIView):
             return
         super().check_throttles(request)
 
-    # When DRF 3.12 is released, we can remove the custom check_permissions()
-    # and permission_denied() as it will contain the fix for
-    # https://github.com/encode/django-rest-framework/issues/7038
-    def check_permissions(self, request):
-        """
-        Check if the request should be permitted.
-        Raises an appropriate exception if the request is not permitted.
-
-        (Lifted from DRF, but also passing the code argument down to the
-        permission_denied() call if that property existed on the failed
-        permission class)
-        """
-        for permission in self.get_permissions():
-            if not permission.has_permission(request, self):
-                self.permission_denied(
-                    request, message=getattr(permission, 'message', None),
-                    code=getattr(permission, 'code', None),
-                )
-
-    def permission_denied(self, request, message=None, code=None):
-        """
-        If request is not permitted, determine what kind of exception to raise.
-
-        (Lifted from DRF, but also passing the optional code argument to
-        the PermissionDenied exception)
-        """
-        if request.authenticators and not request.successful_authenticator:
-            raise exceptions.NotAuthenticated()
-        raise exceptions.PermissionDenied(
-            detail=message, code=code)
-
     def post(self, request, *args, **kwargs):
         version_string = request.data.get('version', None)
 
