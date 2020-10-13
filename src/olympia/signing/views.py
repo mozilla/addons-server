@@ -3,7 +3,6 @@ import functools
 from django import forms
 from django.utils.translation import ugettext
 
-from rest_framework import exceptions
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
