@@ -1,4 +1,4 @@
-from django.urls import re_path, include
+from django.urls import include, re_path
 from django.shortcuts import redirect
 
 from olympia.addons.urls import ADDON_ID

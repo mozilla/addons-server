@@ -1,4 +1,4 @@
-from django.urls import re_path, include
+from django.urls import include, re_path
 
 from olympia.accounts.urls import (
     accounts_v3, accounts_v4, auth_callback_patterns)

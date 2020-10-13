@@ -1,4 +1,4 @@
-from django.urls import re_path, include
+from django.urls import include, re_path
 
 from olympia.amo.views import frontend_view
 from olympia.stats.urls import stats_patterns

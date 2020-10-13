@@ -1,4 +1,4 @@
-from django.urls import re_path, include
+from django.urls import include, re_path
 
 from rest_framework.routers import SimpleRouter
 from .views import AddonAbuseViewSet, UserAbuseViewSet
