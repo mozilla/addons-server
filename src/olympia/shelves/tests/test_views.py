@@ -242,8 +242,10 @@ class TestSponsoredShelfViewSet(ESTestCase):
         assert data['count'] == 2
         assert len(data['results']) == 2
         assert data['impression_data'] == signer.sign('123456,012345')
-        assert {itm['id'] for itm in data['results']} == {
-            self.sponsored_ext.pk, self.sponsored_theme.pk}
+        assert {(itm['id'], itm['click_data']) for itm in data['results']} == {
+            (self.sponsored_ext.pk, signer.sign('abcdef')),
+            (self.sponsored_theme.pk, signer.sign('bcdefg')),
+        }
 
     def test_order(self):
         self.populate_es(False)
@@ -281,18 +283,18 @@ class TestSponsoredShelfViewSet(ESTestCase):
         assert len(data['results']) == 0
         assert data['impression_data'] is None
 
-    @mock.patch('olympia.shelves.views.send_impression_pings')
-    def test_impression_endpoint(self, send_mock):
+    @mock.patch('olympia.shelves.utils.ping_adzerk_server')
+    def test_impression_endpoint(self, ping_mock):
         url = reverse_ns('sponsored-shelf-impression')
         # no data
         response = self.client.post(url)
-        assert response.status_code == 400
-        send_mock.assert_not_called()
+        assert response.status_code == 400, response.content
+        ping_mock.assert_not_called()
 
         # bad data
         response = self.client.post(url, {'impression_data': 'dfdfd:3434'})
         assert response.status_code == 400
-        send_mock.assert_not_called()
+        ping_mock.assert_not_called()
 
         # good data
         signer = TimestampSigner()
@@ -300,21 +302,49 @@ class TestSponsoredShelfViewSet(ESTestCase):
         data = signer.sign(','.join(impressions))
         response = self.client.post(url, {'impression_data': data})
         assert response.status_code == 202
-        send_mock.assert_called_with(impressions)
+        ping_mock.assert_has_calls([
+            mock.call(
+                f'https://e-10521.adzerk.net/i.gif?{im}', type='impression')
+            for im in impressions])
         assert response.content == b''
 
         # good data but stale
-        send_mock.reset_mock()
+        ping_mock.reset_mock()
         with freeze_time('2020-01-01') as freezer:
             data = signer.sign(','.join(impressions))
             freezer.tick(delta=timedelta(seconds=61))
             response = self.client.post(url, {'impression_data': data})
             assert response.status_code == 400
-            send_mock.assert_not_called()
+            ping_mock.assert_not_called()
 
-    def test_click_endpoint(self):
+    @mock.patch('olympia.shelves.utils.ping_adzerk_server')
+    def test_click_endpoint(self, ping_mock):
         url = reverse_ns('sponsored-shelf-click')
-        with self.assertNumQueries(0):
-            response = self.client.post(url)
-        assert response.status_code == 200
+        # no data
+        response = self.client.post(url)
+        assert response.status_code == 400
+        ping_mock.assert_not_called()
+
+        # bad data
+        response = self.client.post(url, {'click_data': 'dfdfd:3434'})
+        assert response.status_code == 400
+        ping_mock.assert_not_called()
+
+        # good data
+        signer = TimestampSigner()
+        click = 'sdwwdw'
+        data = signer.sign(click)
+        response = self.client.post(url, {'click_data': data})
+        assert response.status_code == 202
+        ping_mock.assert_called_with(
+            f'https://e-10521.adzerk.net/r?{click}&noredirect', type='click')
         assert response.content == b''
+
+        # good data but stale
+        ping_mock.reset_mock()
+        with freeze_time('2020-01-01') as freezer:
+            data = signer.sign(click)
+            freezer.tick(delta=timedelta(minutes=61))
+            response = self.client.post(url, {'click_data': data})
+            assert response.status_code == 400
+            ping_mock.assert_not_called()

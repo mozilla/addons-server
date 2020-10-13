@@ -6,6 +6,8 @@ from rest_framework.test import APIRequestFactory
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 
+from freezegun import freeze_time
+
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.addons.tests.test_serializers import (
@@ -140,9 +142,10 @@ class TestESSponsoredAddonSerializer(AddonSerializerOutputTestMixin,
         # at this point
         return qs.execute()[0]
 
-    def serialize(self):
+    def serialize(self, adzerk_results=None):
         view = self.view_class(action='list')
         view.request = self.request
+        view.adzerk_results = adzerk_results or {}
         self.serializer = self.serializer_class(context={
             'request': self.request,
             'view': view,
@@ -173,9 +176,16 @@ class TestESSponsoredAddonSerializer(AddonSerializerOutputTestMixin,
         request.version = api_version
         return request
 
+    @freeze_time('2020-01-01')
     def test_click_url_and_data(self):
         self.addon = addon_factory()
-        result = self.serialize()
+        adzerk_results = {
+            str(self.addon.id): {
+                'click': 'foobar'
+            }
+        }
+        result = self.serialize(adzerk_results)
         assert result['click_url'] == (
             'http://testserver/api/v5/shelves/sponsored/click/')
-        assert result['click_data'] is None  # currently just a empty repr
+        assert result['click_data'] == (
+            'foobar:1imRQe:mJEcjX6cM3cvkSbb2qMMPPHWC8o')

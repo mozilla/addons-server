@@ -1,9 +1,10 @@
 from urllib import parse
 
+from django.conf import settings
+from django.core.signing import TimestampSigner
+
 from rest_framework import serializers
 from rest_framework.reverse import reverse as drf_reverse
-
-from django.conf import settings
 
 from olympia.addons.serializers import ESAddonSerializer
 from olympia.addons.views import AddonSearchView
@@ -53,6 +54,7 @@ class ShelfSerializer(serializers.ModelSerializer):
 class ESSponsoredAddonSerializer(ESAddonSerializer):
     click_url = serializers.SerializerMethodField()
     click_data = serializers.SerializerMethodField()
+    _signer = TimestampSigner()
 
     class Meta(ESAddonSerializer.Meta):
         fields = ESAddonSerializer.Meta.fields + ('click_url', 'click_data')
@@ -63,4 +65,6 @@ class ESSponsoredAddonSerializer(ESAddonSerializer):
             request=self.context.get('request'))
 
     def get_click_data(self, obj):
-        return None
+        view = self.context['view']
+        click_data = view.adzerk_results.get(str(obj.id), {}).get('click')
+        return self._signer.sign(click_data) if click_data else None

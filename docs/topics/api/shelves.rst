@@ -99,7 +99,7 @@ Current implementation relies on Adzerk to determine which addons are returned a
     :query string wrap_outgoing_links: If this parameter is present, wrap outgoing links through ``outgoing.prod.mozaws.net`` (See :ref:`Outgoing Links <api-overview-outgoing>`)
     :>json array results: The array containing the addon results for this query.  The object is a :ref:`add-on <addon-detail-object>` as returned by :ref:`add-on search endpoint <addon-search>` with extra fields of ``click_url`` and ``click_data``
     :>json string results[].click_url: the url to ping if the sponsored addon's detail page is navigated to.
-    :>json string results[].click_data: the data payload to send to ``click_url`` that identifies the sponsored placement clicked on.
+    :>json string results[].click_data: the signed data payload to send to ``click_url`` that identifies the sponsored placement clicked on.
     :>json string impression_url: the url to ping when the contents of this sponsored shelf is rendered on screen to the user.
     :>json string impression_data: the signed data payload to send to ``impression_url`` that identifies the sponsored placements displayed.
 
@@ -117,3 +117,18 @@ The current implemenation forwards these impression pings to Adzerk.
 .. http:post:: /api/v4/shelves/sponsored/impression/
 
     :form string impression_data: the signed data payload that was sent in the :ref:`sponsored shelf <sponsored-shelf>` response.
+
+
+---------------------
+Sponsored Shelf Click
+---------------------
+
+.. _sponsored-shelf-click:
+
+When an item on the sponsored shelf is clicked on by the user, to navigate to the detail page, this endpoint should be used to record the click.
+The current implemenation forwards these clicks to Adzerk.
+
+
+.. http:post:: /api/v4/shelves/sponsored/click/
+
+    :form string click_data: the signed data payload that was sent in addon data in the :ref:`sponsored shelf <sponsored-shelf>` response.

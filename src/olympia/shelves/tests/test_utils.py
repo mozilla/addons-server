@@ -18,8 +18,9 @@ from ..utils import (
     filter_adzerk_results_to_es_results_qs,
     get_addons_from_adzerk,
     get_signed_impression_blob_from_results,
-    get_impression_data_from_signed_blob,
+    unsign_signed_blob,
     process_adzerk_results,
+    send_click_ping,
     send_impression_pings)
 
 
@@ -237,8 +238,27 @@ def test_send_impression_pings(incr_mock):
         responses.GET,
         settings.ADZERK_IMPRESSION_URL + 'e=eyJ2IjoNtSz8')
 
-    send_impression_pings(impressions)
+    signer = TimestampSigner()
+    send_impression_pings(signer.sign(','.join(impressions)))
     incr_mock.assert_called_with('services.adzerk.impression.success')
+    assert responses.calls[0].request.url == (
+        settings.ADZERK_IMPRESSION_URL + 'e=eyJ2IjLtg&Bug')
+    assert responses.calls[1].request.url == (
+        settings.ADZERK_IMPRESSION_URL + 'e=eyJ2IjoNtSz8')
+
+
+@mock.patch('olympia.shelves.utils.statsd.incr')
+def test_send_click_ping(incr_mock):
+    click = 'e%3DeyJ2IjLtg%26Bug'
+    responses.add(
+        responses.GET,
+        settings.ADZERK_CLICK_URL + 'e=eyJ2IjLtg&Bug')
+
+    signer = TimestampSigner()
+    send_click_ping(signer.sign(click))
+    incr_mock.assert_called_with('services.adzerk.click.success')
+    assert responses.calls[0].request.url == (
+        settings.ADZERK_CLICK_URL + 'e=eyJ2IjLtg&Bug&noredirect')
 
 
 def test_filter_adzerk_results_to_es_results_qs():
@@ -278,18 +298,18 @@ def test_get_signed_impression_blob_from_results():
     assert blob == '123456,012345:1imRQe:bYOCLk1ZS18trP34EnE8Ph5ykFI'
 
 
-def test_get_impression_data_from_signed_blob():
+def test_unsign_signed_blob():
     blob = '123456,012345:1imRQe:bYOCLk1ZS18trP34EnE8Ph5ykFI'
     with freeze_time('2020-01-01') as freezer:
         # bad
         with TestCase.assertRaises(None, APIException):
-            get_impression_data_from_signed_blob('.' + blob)
+            unsign_signed_blob('.' + blob, 1)
 
         # good
-        impressions = get_impression_data_from_signed_blob(blob)
+        impressions = unsign_signed_blob(blob, 1).split(',')
         assert impressions == ['123456', '012345']
 
         # good, but now stale
         freezer.tick(delta=timedelta(seconds=61))
         with TestCase.assertRaises(None, APIException):
-            get_impression_data_from_signed_blob(blob)
+            unsign_signed_blob(blob, 60)
