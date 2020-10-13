@@ -4913,7 +4913,6 @@ class TestReview(ReviewBase):
         self.version = version_factory(addon=self.addon, version='3.0')
         self.make_addon_unlisted(self.addon)
         self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
-        self.grant_permission(self.reviewer, 'Admin:Tools')
         self.grant_permission(self.reviewer, 'Reviews:Admin')
         self.grant_permission(self.reviewer, 'Blocklist:Create')
 

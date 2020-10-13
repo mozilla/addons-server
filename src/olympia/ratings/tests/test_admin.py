@@ -42,7 +42,6 @@ class TestRatingAdmin(TestCase):
         Rating.objects.create(
             addon=addon, user=user, body=u'Réply', reply_to=self.rating)
 
-        self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Ratings:Moderate')
 
         self.client.login(email=user.email)
@@ -92,7 +91,6 @@ class TestRatingAdmin(TestCase):
         Rating.objects.create(
             addon=addon, user=user, body=u'Réply', reply_to=self.rating)
 
-        self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Ratings:Moderate')
 
         self.client.login(email=user.email)
@@ -109,8 +107,7 @@ class TestRatingAdmin(TestCase):
         assert doc('#result_list tbody tr').length == 4
 
     def test_can_not_access_detail_without_ratings_moderate_permission(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
         self.client.login(email=user.email)
         response = self.client.get(self.detail_url, follow=True)
@@ -118,8 +115,7 @@ class TestRatingAdmin(TestCase):
 
     def test_can_not_delete_without_admin_advanced_permission(self):
         assert Rating.objects.count() == 1
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Ratings:Moderate')  # Not enough!
         self.client.login(email=user.email)
         response = self.client.get(self.delete_url, follow=True)
@@ -133,8 +129,7 @@ class TestRatingAdmin(TestCase):
 
     def test_can_delete_with_admin_advanced_permission(self):
         assert Rating.objects.count() == 1
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Admin:Advanced')
         self.grant_permission(user, 'Ratings:Moderate')
         self.client.login(email=user.email)

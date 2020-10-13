@@ -14,8 +14,7 @@ class TestCollectionAdmin(TestCase):
         self.list_url = reverse('admin:bandwagon_collection_changelist')
 
     def test_can_see_bandwagon_module_in_admin_with_collections_edit(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Collections:Edit')
         self.client.login(email=user.email)
         response = self.client.get(self.admin_home_url, follow=True)
@@ -25,8 +24,7 @@ class TestCollectionAdmin(TestCase):
         assert modules == ['Bandwagon']
 
     def test_can_see_bandwagon_module_in_admin_with_admin_curation(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Admin:Curation')
         self.client.login(email=user.email)
         response = self.client.get(self.admin_home_url, follow=True)
@@ -37,8 +35,7 @@ class TestCollectionAdmin(TestCase):
         assert modules == ['Addons', 'Bandwagon']
 
     def test_can_not_see_bandwagon_module_in_admin_without_permissions(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.client.login(email=user.email)
         response = self.client.get(self.admin_home_url, follow=True)
         assert response.status_code == 200
@@ -48,8 +45,7 @@ class TestCollectionAdmin(TestCase):
 
     def test_can_list_with_collections_edit_permission(self):
         collection = Collection.objects.create(slug='floob')
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Collections:Edit')
         self.client.login(email=user.email)
         response = self.client.get(self.list_url, follow=True)
@@ -58,8 +54,7 @@ class TestCollectionAdmin(TestCase):
 
     def test_can_list_with_admin_curation_permission(self):
         collection = Collection.objects.create(slug='floob')
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Admin:Curation')
         self.client.login(email=user.email)
         response = self.client.get(self.list_url, follow=True)
@@ -68,8 +63,7 @@ class TestCollectionAdmin(TestCase):
 
     def test_cant_list_without_special_permission(self):
         collection = Collection.objects.create(slug='floob')
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.client.login(email=user.email)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 403
@@ -84,8 +78,7 @@ class TestCollectionAdmin(TestCase):
         self.detail_url = reverse(
             'admin:bandwagon_collection_change', args=(collection.pk,)
         )
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Collections:Edit')
         self.client.login(email=user.email)
         response = self.client.get(self.detail_url, follow=True)
@@ -120,8 +113,7 @@ class TestCollectionAdmin(TestCase):
 
     def test_can_not_list_without_collections_edit_permission(self):
         collection = Collection.objects.create(slug='floob')
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.client.login(email=user.email)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 403
@@ -132,8 +124,7 @@ class TestCollectionAdmin(TestCase):
         self.detail_url = reverse(
             'admin:bandwagon_collection_change', args=(collection.pk,)
         )
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.client.login(email=user.email)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 403
@@ -161,8 +152,7 @@ class TestCollectionAdmin(TestCase):
         self.detail_url = reverse(
             'admin:bandwagon_collection_change', args=(collection.pk,)
         )
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Admin:Curation')
         self.client.login(email=user.email)
         response = self.client.get(self.detail_url, follow=True)
@@ -280,8 +270,7 @@ class TestCollectionAdmin(TestCase):
         self.delete_url = reverse(
             'admin:bandwagon_collection_delete', args=(collection.pk,)
         )
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Collections:Edit')
         self.client.login(email=user.email)
         response = self.client.get(self.delete_url, follow=True)
@@ -296,8 +285,7 @@ class TestCollectionAdmin(TestCase):
         self.delete_url = reverse(
             'admin:bandwagon_collection_delete', args=(collection.pk,)
         )
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Admin:Curation')
         self.client.login(email=user.email)
         response = self.client.get(self.delete_url, follow=True)
@@ -322,8 +310,7 @@ class TestCollectionAdmin(TestCase):
         self.delete_url = reverse(
             'admin:bandwagon_collection_delete', args=(collection.pk,)
         )
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Admin:Advanced')
         self.client.login(email=user.email)
         response = self.client.post(

@@ -12,7 +12,7 @@ class TestGitExtractionEntryAdmin(TestCase):
     def setUp(self):
         super().setUp()
 
-        self.user = user_factory()
+        self.user = user_factory(email='someone@mozilla.com')
         self.grant_permission(self.user, 'Admin:GitExtractionEdit')
         self.client.login(email=self.user.email)
         self.list_url = reverse('admin:git_gitextractionentry_changelist')
@@ -46,7 +46,7 @@ class TestGitExtractionEntryAdmin(TestCase):
         assert html('.actions option[value="delete_selected"]').length == 1
 
     def test_list_view_is_restricted(self):
-        user = user_factory()
+        user = user_factory(email='nobody@mozilla.com')
         self.grant_permission(user, 'Admin:Curation')
         self.client.login(email=user.email)
         response = self.client.get(self.list_url)

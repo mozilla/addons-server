@@ -44,11 +44,10 @@ class TestUserAdmin(TestCase):
         )
 
     def test_search_for_multiple_users(self):
-        user = user_factory()
-        another_user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Users:Edit')
         self.client.login(email=user.email)
+        another_user = user_factory()
         response = self.client.get(
             self.list_url,
             {'q': '%s,%s,foobaa' % (self.user.pk, another_user.pk)},
@@ -60,11 +59,10 @@ class TestUserAdmin(TestCase):
 
     def test_search_for_multiple_user_ids(self):
         """Test the optimization when just searching for matching ids."""
-        user = user_factory()
-        another_user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Users:Edit')
         self.client.login(email=user.email)
+        another_user = user_factory()
         with CaptureQueriesContext(connection) as queries:
             response = self.client.get(
                 self.list_url,
@@ -80,8 +78,7 @@ class TestUserAdmin(TestCase):
         assert str(another_user.pk) in doc('#result_list').text()
 
     def test_can_not_edit_without_users_edit_permission(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
         self.client.login(email=user.email)
         response = self.client.get(self.detail_url, follow=True)
@@ -94,8 +91,7 @@ class TestUserAdmin(TestCase):
 
     def test_can_edit_with_users_edit_permission(self):
         old_username = self.user.username
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Users:Edit')
         self.client.login(email=user.email)
         core.set_user(user)
@@ -114,10 +110,9 @@ class TestUserAdmin(TestCase):
     @mock.patch.object(UserProfile, '_delete_related_content')
     def test_can_not_delete_with_users_edit_permission(
             self, _delete_related_content_mock):
-        user = user_factory()
-        assert not user.deleted
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Users:Edit')
+        assert not user.deleted
         self.client.login(email=user.email)
         response = self.client.get(self.delete_url, follow=True)
         assert response.status_code == 403
@@ -132,10 +127,9 @@ class TestUserAdmin(TestCase):
     @mock.patch.object(UserProfile, '_delete_related_content')
     def test_can_delete_with_admin_advanced_permission(
             self, _delete_related_content_mock):
-        user = user_factory()
-        assert not self.user.deleted
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Admin:Advanced')
+        assert not self.user.deleted
         self.client.login(email=user.email)
         core.set_user(user)
         response = self.client.get(self.delete_url, follow=True)
@@ -183,10 +177,9 @@ class TestUserAdmin(TestCase):
         ]
 
         # Now test as normal.
-        user = user_factory()
-        assert not self.user.deleted
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Admin:Advanced')
+        assert not self.user.deleted
         self.client.login(email=user.email)
         core.set_user(user)
         response = self.client.get(self.delete_url, follow=True)
@@ -248,8 +241,7 @@ class TestUserAdmin(TestCase):
 
     def test_ban_button_in_change_view(self):
         ban_url = reverse('admin:users_userprofile_ban', args=(self.user.pk, ))
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Users:Edit')
         self.client.login(email=user.email)
         response = self.client.get(self.detail_url, follow=True)
@@ -323,8 +315,7 @@ class TestUserAdmin(TestCase):
     def test_reset_api_key_button_in_change_view(self):
         reset_api_key_url = reverse(
             'admin:users_userprofile_reset_api_key', args=(self.user.pk, ))
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Users:Edit')
         self.client.login(email=user.email)
         response = self.client.get(self.detail_url, follow=True)
@@ -334,8 +325,7 @@ class TestUserAdmin(TestCase):
     def test_session_button_in_change_view(self):
         reset_session_url = reverse(
             'admin:users_userprofile_reset_session', args=(self.user.pk, ))
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Users:Edit')
         self.client.login(email=user.email)
         response = self.client.get(self.detail_url, follow=True)
@@ -345,8 +335,7 @@ class TestUserAdmin(TestCase):
     def test_delete_picture_button_in_change_view(self):
         delete_picture_url = reverse('admin:users_userprofile_delete_picture',
                                      args=(self.user.pk, ))
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Users:Edit')
         self.client.login(email=user.email)
         response = self.client.get(self.detail_url, follow=True)
@@ -357,8 +346,7 @@ class TestUserAdmin(TestCase):
         ban_url = reverse('admin:users_userprofile_ban', args=(self.user.pk, ))
         wrong_ban_url = reverse(
             'admin:users_userprofile_ban', args=(self.user.pk + 42, ))
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.client.login(email=user.email)
         core.set_user(user)
         response = self.client.post(ban_url, follow=True)
@@ -391,8 +379,7 @@ class TestUserAdmin(TestCase):
             'admin:users_userprofile_reset_api_key', args=(self.user.pk, ))
         wrong_reset_api_key_url = reverse(
             'admin:users_userprofile_reset_api_key', args=(self.user.pk + 9, ))
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.client.login(email=user.email)
         core.set_user(user)
         response = self.client.post(reset_api_key_url, follow=True)
@@ -426,8 +413,7 @@ class TestUserAdmin(TestCase):
             'admin:users_userprofile_reset_session', args=(self.user.pk, ))
         wrong_reset_session_url = reverse(
             'admin:users_userprofile_reset_session', args=(self.user.pk + 9, ))
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.client.login(email=user.email)
         response = self.client.post(reset_session_url, follow=True)
         assert response.status_code == 403
@@ -456,8 +442,7 @@ class TestUserAdmin(TestCase):
         wrong_delete_picture_url = reverse(
             'admin:users_userprofile_delete_picture',
             args=(self.user.pk + 42, ))
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.client.login(email=user.email)
         core.set_user(user)
         response = self.client.post(delete_picture_url, follow=True)
@@ -673,8 +658,7 @@ class TestUserAdmin(TestCase):
         detail_url_final = reverse(
             'admin:users_userprofile_change', args=(lookup_user.pk,)
         )
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
         self.client.login(email=user.email)
         response = self.client.get(detail_url_by_email, follow=False)
@@ -683,8 +667,7 @@ class TestUserAdmin(TestCase):
 
 class TestEmailUserRestrictionAdmin(TestCase):
     def setUp(self):
-        self.user = user_factory()
-        self.grant_permission(self.user, 'Admin:Tools')
+        self.user = user_factory(email='someone@mozilla.com')
         self.grant_permission(self.user, 'Admin:Advanced')
 
         self.client.login(email=self.user.email)
@@ -698,8 +681,7 @@ class TestEmailUserRestrictionAdmin(TestCase):
 
 class TestIPNetworkUserRestrictionAdmin(TestCase):
     def setUp(self):
-        self.user = user_factory()
-        self.grant_permission(self.user, 'Admin:Tools')
+        self.user = user_factory(email='someone@mozilla.com')
         self.grant_permission(self.user, 'Admin:Advanced')
 
         self.client.login(email=self.user.email)
@@ -714,8 +696,7 @@ class TestIPNetworkUserRestrictionAdmin(TestCase):
 
 class TestUserRestrictionHistoryAdmin(TestCase):
     def setUp(self):
-        self.user = user_factory()
-        self.grant_permission(self.user, 'Admin:Tools')
+        self.user = user_factory(email='someone@mozilla.com')
         self.grant_permission(self.user, 'Admin:Advanced')
 
         self.client.login(email=self.user.email)

@@ -45,13 +45,14 @@ class TestHomeAndIndex(TestCase):
 
         # Redirected when logged in without enough permissions.
         user = user_factory(username='staffperson', email='staffperson@m.c')
-        self.client.login(email='staffperson@m.c')
+        self.client.login(email=user.email)
         response = self.client.get(url)
         self.assert3xx(response, '/admin/models/login/?'
                                  'next=/en-US/admin/models/')
 
         # Can access with a "is_staff" user.
-        self.grant_permission(user, 'Admin:Something')
+        user.update(email='someone@mozilla.com')
+        self.client.login(email=user.email)
         response = self.client.get(url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -77,12 +78,12 @@ class TestHomeAndIndex(TestCase):
 
         # But if logged in and not enough permissions return a 403.
         user = user_factory(username='staffperson', email='staffperson@m.c')
-        self.client.login(email='staffperson@m.c')
+        self.client.login(email=user.email)
         response = self.client.get(url)
         assert response.status_code == 403
 
         # But can access with a "is_staff" user.
-        self.grant_permission(user, 'Admin:Tools')
+        user.update(email='someone@mozilla.com')
         response = self.client.get(url)
         self.assert3xx(response, '/en-US/admin/models/')
 
@@ -98,9 +99,8 @@ class TestHomeAndIndex(TestCase):
         self.assert3xx(response, '/en-US/admin/models/addon/')
 
         # Same with an "is_staff" user.
-        user = user_factory(username='staffperson', email='staffperson@m.c')
-        self.client.login(email='staffperson@m.c')
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
+        self.client.login(email=user.email)
         response = self.client.get(url)
         self.assert3xx(response, '/en-US/admin/models/addon/')
 
@@ -172,7 +172,7 @@ class TestPerms(TestCase):
 
     def test_unprivileged_user(self):
         # Unprivileged user.
-        assert self.client.login(email='regular@mozilla.com')
+        assert self.client.login(email='clouserw@gmail.com')
         self.assert_status('admin:index', 403, follow=True)
         # Anonymous users should get a login redirect.
         self.client.logout()
