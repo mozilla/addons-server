@@ -119,13 +119,13 @@ The current implemenation forwards these impression pings to Adzerk.
     :form string impression_data: the signed data payload that was sent in the :ref:`sponsored shelf <sponsored-shelf>` response.
 
 
----------------------------
-Sponsored Shelf Clicks
----------------------------
+---------------------
+Sponsored Shelf Click
+---------------------
 
 .. _sponsored-shelf-click:
 
-When and item on then sponsored shelf is clicked on by the user to navigate to the detail page this endpoint should be used to record the click.
+When an item on the sponsored shelf is clicked on by the user, to navigate to the detail page, this endpoint should be used to record the click.
 The current implemenation forwards these clicks to Adzerk.
 
 
