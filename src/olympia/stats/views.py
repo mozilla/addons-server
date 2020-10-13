@@ -5,8 +5,6 @@ import itertools
 
 from datetime import timedelta
 
-import waffle
-
 from dateutil.parser import parse
 from django import http
 from django.core.exceptions import PermissionDenied
@@ -365,9 +363,6 @@ def stats_report(request, addon, report):
             'report': report,
             'stats_base_url': stats_base_url,
             'view': view,
-            'use_fenix_build_ids': (
-                waffle.switch_is_active('use-fenix-build-ids')
-            ),
         }
     )
 

@@ -10,8 +10,6 @@ z.StatsManager = (function () {
 
   var $primary = $('.primary');
 
-  var useFenixBuildIDs = $primary.data('use-fenix-build-ids') === 'True';
-
   var storage = z.Storage('stats'),
     storageCache = z.SessionStorage('statscache'),
     dataStore = {},
@@ -532,17 +530,9 @@ z.StatsManager = (function () {
       key = parts[0];
     parts = parts.slice(1);
 
-    // Fenix app versions are build IDs so we need a prefix for end users.
-    var versionPrefix =
-      metric === 'apps' &&
-      key === '{aa3c5121-dab2-40e2-81ca-7ea25febc110}' &&
-      useFenixBuildIDs
-        ? 'Build #'
-        : '';
-
     if (metric in csv_keys) {
       if (key in csv_keys[metric]) {
-        return csv_keys[metric][key] + ' ' + versionPrefix + parts.join(' ');
+        return csv_keys[metric][key] + ' ' + parts.join(' ');
       }
     }
     return field;
