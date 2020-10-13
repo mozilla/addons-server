@@ -46,6 +46,11 @@ class SponsoredShelfViewSet(viewsets.ViewSetMixin, AddonSearchView):
         response.data['impression_url'] = self.reverse_action('impression')
         response.data['impression_data'] = (
             get_signed_impression_blob_from_results(self.adzerk_results))
+        # reorder results to match adzerk order
+        order = list(self.adzerk_results.keys())
+        response.data['results'] = sorted(
+            response.data.get('results', ()),
+            key=lambda result: order.index(str(result.get('id'))))
         return response
 
     def filter_queryset(self, qs):

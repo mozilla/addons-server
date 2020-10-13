@@ -139,6 +139,7 @@ class TestSponsoredShelfViewSet(ESTestCase):
         super().setUp()
         self.url = reverse_ns('sponsored-shelf-list')
 
+    def populate_es(self, refresh=True):
         self.sponsored_ext = addon_factory(
             name='test addon test01', type=amo.ADDON_EXTENSION)
         self.make_addon_promoted(
@@ -152,7 +153,8 @@ class TestSponsoredShelfViewSet(ESTestCase):
         self.make_addon_promoted(
             self.verified_ext, VERIFIED_TWO, approve_version=True)
         self.not_promoted = addon_factory(name='test addon test04')
-        self.refresh()
+        if refresh:
+            self.refresh()
 
     def tearDown(self):
         super().tearDown()
@@ -175,6 +177,7 @@ class TestSponsoredShelfViewSet(ESTestCase):
         return data
 
     def test_no_adzerk_addons(self):
+        self.populate_es()
         with mock.patch('olympia.shelves.views.get_addons_from_adzerk') as get:
             get.return_value = {}
             data = self.perform_search()
@@ -185,6 +188,7 @@ class TestSponsoredShelfViewSet(ESTestCase):
 
     @freeze_time('2020-01-01')
     def test_basic(self):
+        self.populate_es()
         signer = TimestampSigner()
         with mock.patch('olympia.shelves.views.get_addons_from_adzerk') as get:
             get.return_value = {
@@ -207,6 +211,7 @@ class TestSponsoredShelfViewSet(ESTestCase):
 
     @freeze_time('2020-01-01')
     def test_adzerk_returns_none_sponsored(self):
+        self.populate_es()
         signer = TimestampSigner()
         with mock.patch('olympia.shelves.views.get_addons_from_adzerk') as get:
             get.return_value = {
@@ -239,6 +244,32 @@ class TestSponsoredShelfViewSet(ESTestCase):
         assert data['impression_data'] == signer.sign('123456,012345')
         assert {itm['id'] for itm in data['results']} == {
             self.sponsored_ext.pk, self.sponsored_theme.pk}
+
+    def test_order(self):
+        self.populate_es(False)
+        another_ext = addon_factory(
+            name='test addon test01', type=amo.ADDON_EXTENSION)
+        self.make_addon_promoted(
+            another_ext, VERIFIED_ONE, approve_version=True)
+        self.refresh()
+        adzerk_results = {
+            str(another_ext.id): {},
+            str(self.sponsored_ext.id): {},
+            str(self.sponsored_theme.id): {},
+        }
+        with mock.patch('olympia.shelves.views.get_addons_from_adzerk') as get:
+            get.return_value = adzerk_results
+            data = self.perform_search()
+        assert data['count'] == 3 == len(data['results'])
+        assert {itm['id'] for itm in data['results']} == {
+            another_ext.pk, self.sponsored_ext.pk, self.sponsored_theme.pk}
+
+        with mock.patch('olympia.shelves.views.get_addons_from_adzerk') as get:
+            get.return_value = dict(reversed(adzerk_results.items()))
+            data = self.perform_search()
+        assert data['count'] == 3 == len(data['results'])
+        assert {itm['id'] for itm in data['results']} == {
+            self.sponsored_theme.pk, self.sponsored_ext.pk, another_ext.pk}
 
     def test_page_size(self):
         with mock.patch('olympia.shelves.views.get_addons_from_adzerk') as get:
