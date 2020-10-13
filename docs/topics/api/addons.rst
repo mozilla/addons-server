@@ -151,7 +151,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json string created: The date the add-on was created.
     :>json object current_version: Object holding the current :ref:`version <version-detail-object>` of the add-on. For performance reasons the ``license`` field omits the ``text`` property from both the search and detail endpoints.
     :>json string default_locale: The add-on default locale for translations.
-    :>json string|object|null description: The add-on description (See :ref:`translated fields <api-overview-translations>`).
+    :>json string|object|null description: The add-on description (See :ref:`translated fields <api-overview-translations>`). This field might contain some HTML tags.
     :>json string|object|null developer comments: Additional information about the add-on provided by the developer. (See :ref:`translated fields <api-overview-translations>`).
     :>json string edit_url: The URL to the developer edit page for the add-on.
     :>json string guid: The add-on `extension identifier <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#id>`_.
@@ -186,7 +186,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json string review_url: The URL to the reviewer review page for the add-on.
     :>json string slug: The add-on slug.
     :>json string status: The :ref:`add-on status <addon-detail-status>`.
-    :>json string|object|null summary: The add-on summary (See :ref:`translated fields <api-overview-translations>`).
+    :>json string|object|null summary: The add-on summary (See :ref:`translated fields <api-overview-translations>`). This field supports "linkification" and therefore might contain HTML hyperlinks.
     :>json string|object|null support_email: The add-on support email (See :ref:`translated fields <api-overview-translations>`).
     :>json string|object|null support_url: The add-on support URL (See :ref:`translated fields <api-overview-translations>`).
     :>json array tags: List containing the text of the tags set on the add-on.
