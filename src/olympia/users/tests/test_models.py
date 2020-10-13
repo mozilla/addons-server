@@ -330,7 +330,7 @@ class TestUserProfile(TestCase):
         assert not storage.exists(user.picture_path_original)
 
     def test_groups_list(self):
-        user = UserProfile.objects.get(email='jbalogh@mozilla.com')
+        user = UserProfile.objects.get(pk=55021)
         group1 = Group.objects.create(name='un')
         group2 = Group.objects.create(name='deux')
         GroupUser.objects.create(user=user, group=group1)
@@ -338,10 +338,15 @@ class TestUserProfile(TestCase):
         assert user.groups_list == list(user.groups.all())
         assert len(user.groups_list) == 2
 
-        # Remove the user from the groups, groups_list should not have changed
-        # since it's a cached property.
+        # Remove the user from one of the groups, groups_list should not have
+        # changed since it's a cached property.
         GroupUser.objects.filter(group=group1).delete()
         assert len(user.groups_list) == 2
+
+        # Delete the cached property, it should be updated.
+        del user.groups_list
+        assert len(user.groups_list) == 1
+        assert user.groups_list == [group2]
 
     def test_welcome_name(self):
         u1 = UserProfile.objects.create(username='sc')
@@ -401,7 +406,7 @@ class TestUserProfile(TestCase):
         assert not user.has_anonymous_display_name
 
     def test_superuser(self):
-        user = UserProfile.objects.get(username='jbalogh')
+        user = UserProfile.objects.get(pk=9946)
         assert not user.is_staff
         assert not user.is_superuser
 
@@ -410,6 +415,10 @@ class TestUserProfile(TestCase):
         #  creating a GroupUser instance).
         group = Group.objects.filter(rules='*:*').get()
         GroupUser.objects.create(group=group, user=user)
+        assert not user.is_staff
+        assert user.is_superuser
+
+        user.update(email='employee@mozilla.com')
         assert user.is_staff
         assert user.is_superuser
 
@@ -421,18 +430,24 @@ class TestUserProfile(TestCase):
     def test_staff_only(self):
         group = Group.objects.create(
             name='Admins of Something', rules='Admin:Something')
-        user = UserProfile.objects.get(username='jbalogh')
+        user = UserProfile.objects.get(pk=9946)
         assert not user.is_staff
         assert not user.is_superuser
 
+        # Even as part of an Admin:* group, the user is still not considered
+        # 'staff'.
         GroupUser.objects.create(group=group, user=user)
-        # User now has access to an Admin permission, so is_staff is True.
+        assert not user.is_staff
+        assert not user.is_superuser
+
+        # Now that they have a mozilla.com email, they are.
+        user.update(email='employee@mozilla.com')
         assert user.is_staff
         assert not user.is_superuser
 
-    def test_remove_admin_powers(self):
+    def test_give_and_then_remove_admin_powers(self):
         group = Group.objects.create(name='Admins', rules='*:*')
-        user = UserProfile.objects.get(username='jbalogh')
+        user = UserProfile.objects.get(pk=9946)
         relation = GroupUser.objects.create(group=group, user=user)
         relation.delete()
         assert not user.is_staff
@@ -1111,7 +1126,7 @@ class TestUserManager(TestCase):
         )
         assert user.pk is not None
         Group.objects.get(name="Admins") in user.groups.all()
-        assert user.is_staff
+        assert not user.is_staff  # Not a mozilla.com email...
         assert user.is_superuser
 
 

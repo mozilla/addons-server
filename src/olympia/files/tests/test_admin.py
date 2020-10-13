@@ -11,8 +11,7 @@ class TestFileAdmin(TestCase):
     def test_can_list_files_with_admin_advanced_permission(self):
         addon = addon_factory()
         file_ = addon.current_version.all_files[0]
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Admin:Advanced')
         self.client.login(email=user.email)
         response = self.client.get(self.list_url, follow=True)
@@ -25,8 +24,7 @@ class TestFileAdmin(TestCase):
         detail_url = reverse(
             'admin:files_file_change', args=(file_.pk,)
         )
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Admin:Advanced')
         self.client.login(email=user.email)
         response = self.client.get(detail_url, follow=True)
@@ -52,8 +50,7 @@ class TestFileAdmin(TestCase):
         assert file_.is_webextension
 
     def test_can_not_list_without_admin_advanced_permission(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.client.login(email=user.email)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 403
@@ -70,8 +67,7 @@ class TestFileAdmin(TestCase):
         detail_url = reverse(
             'admin:files_file_change', args=(file_.pk,)
         )
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Admin:Advanced')
         self.client.login(email=user.email)
         response = self.client.get(detail_url, follow=True)

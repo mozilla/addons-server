@@ -44,7 +44,7 @@ class Test403(TestCase):
 
     def setUp(self):
         super(Test403, self).setUp()
-        assert self.client.login(email='regular@mozilla.com')
+        assert self.client.login(email='clouserw@gmail.com')
 
     def test_403_no_app(self):
         response = self.client.get('/en-US/admin/', follow=True)
@@ -152,8 +152,8 @@ class TestCommon(TestCase):
 
     def test_tools_regular_user(self):
         self.login('regular')
-        r = self.client.get(self.url, follow=True)
-        assert not r.context['request'].user.is_developer
+        response = self.client.get(self.url, follow=True)
+        assert not response.context['request'].user.is_developer
 
         expected = [
             ('Tools', '#'),
@@ -162,18 +162,19 @@ class TestCommon(TestCase):
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
         ]
-        check_links(expected, pq(r.content)('#aux-nav .tools a'), verify=False)
+        check_links(
+            expected, pq(response.content)('#aux-nav .tools a'), verify=False)
 
     def test_tools_developer(self):
         # Make them a developer.
         user = self.login('regular', get=True)
         AddonUser.objects.create(user=user, addon=Addon.objects.all()[0])
 
-        group = Group.objects.create(name='Staff', rules='Admin:Tools')
+        group = Group.objects.create(name='Staff', rules='Admin:Advanced')
         GroupUser.objects.create(group=group, user=user)
 
-        r = self.client.get(self.url, follow=True)
-        assert r.context['request'].user.is_developer
+        response = self.client.get(self.url, follow=True)
+        assert response.context['request'].user.is_developer
 
         expected = [
             ('Tools', '#'),
@@ -183,12 +184,13 @@ class TestCommon(TestCase):
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
         ]
-        check_links(expected, pq(r.content)('#aux-nav .tools a'), verify=False)
+        check_links(
+            expected, pq(response.content)('#aux-nav .tools a'), verify=False)
 
     def test_tools_reviewer(self):
         self.login('reviewer')
-        r = self.client.get(self.url, follow=True)
-        request = r.context['request']
+        response = self.client.get(self.url, follow=True)
+        request = response.context['request']
         assert not request.user.is_developer
         assert acl.action_allowed(request, amo.permissions.ADDONS_REVIEW)
 
@@ -200,15 +202,16 @@ class TestCommon(TestCase):
             ('Manage API Keys', reverse('devhub.api_key')),
             ('Reviewer Tools', reverse('reviewers.dashboard')),
         ]
-        check_links(expected, pq(r.content)('#aux-nav .tools a'), verify=False)
+        check_links(
+            expected, pq(response.content)('#aux-nav .tools a'), verify=False)
 
     def test_tools_developer_and_reviewer(self):
         # Make them a developer.
         user = self.login('reviewer', get=True)
         AddonUser.objects.create(user=user, addon=Addon.objects.all()[0])
 
-        r = self.client.get(self.url, follow=True)
-        request = r.context['request']
+        response = self.client.get(self.url, follow=True)
+        request = response.context['request']
         assert request.user.is_developer
         assert acl.action_allowed(request, amo.permissions.ADDONS_REVIEW)
 
@@ -221,7 +224,8 @@ class TestCommon(TestCase):
             ('Manage API Keys', reverse('devhub.api_key')),
             ('Reviewer Tools', reverse('reviewers.dashboard')),
         ]
-        check_links(expected, pq(r.content)('#aux-nav .tools a'), verify=False)
+        check_links(
+            expected, pq(response.content)('#aux-nav .tools a'), verify=False)
 
     def test_tools_admin(self):
         self.login('admin')

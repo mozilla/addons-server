@@ -77,8 +77,7 @@ class TestAddonAdmin(TestCase):
         self.list_url = reverse('admin:addons_addon_changelist')
 
     def test_can_see_addon_module_in_admin_with_addons_edit(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
         self.client.login(email=user.email)
         response = self.client.get(self.admin_home_url, follow=True)
@@ -88,8 +87,7 @@ class TestAddonAdmin(TestCase):
         assert modules == ['Addons']
 
     def test_can_not_see_addon_module_in_admin_without_permissions(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.client.login(email=user.email)
         response = self.client.get(self.admin_home_url, follow=True)
         assert response.status_code == 200
@@ -99,8 +97,7 @@ class TestAddonAdmin(TestCase):
 
     def test_can_list_with_addons_edit_permission(self):
         addon = addon_factory()
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
         self.client.login(email=user.email)
         response = self.client.get(self.list_url, follow=True)
@@ -110,8 +107,7 @@ class TestAddonAdmin(TestCase):
     def test_list_show_link_to_reviewer_tools_listed(self):
         addon = addon_factory()
         version_factory(addon=addon, channel=amo.RELEASE_CHANNEL_LISTED)
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
         self.client.login(email=user.email)
         response = self.client.get(self.list_url, follow=True)
@@ -121,8 +117,7 @@ class TestAddonAdmin(TestCase):
     def test_list_show_link_to_reviewer_tools_unlisted(self):
         version_kw = {'channel': amo.RELEASE_CHANNEL_UNLISTED}
         addon_factory(guid='@foo', version_kw=version_kw)
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
         self.client.login(email=user.email)
         response = self.client.get(self.list_url, follow=True)
@@ -133,8 +128,7 @@ class TestAddonAdmin(TestCase):
         addon = addon_factory()
         version_factory(addon=addon, channel=amo.RELEASE_CHANNEL_LISTED)
         version_factory(addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
         self.client.login(email=user.email)
         response = self.client.get(self.list_url, follow=True)
@@ -146,8 +140,7 @@ class TestAddonAdmin(TestCase):
         self.detail_url = reverse(
             'admin:addons_addon_change', args=(addon.pk,)
         )
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
         self.client.login(email=user.email)
         response = self.client.get(self.detail_url, follow=True)
@@ -178,8 +171,7 @@ class TestAddonAdmin(TestCase):
         addon = addon_factory(guid='@foo')
         version_factory(addon=addon, channel=amo.RELEASE_CHANNEL_LISTED)
         detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
         self.client.login(email=user.email)
         response = self.client.get(detail_url, follow=True)
@@ -190,8 +182,7 @@ class TestAddonAdmin(TestCase):
         version_kw = {'channel': amo.RELEASE_CHANNEL_UNLISTED}
         addon = addon_factory(guid='@foo', version_kw=version_kw)
         detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
         self.client.login(email=user.email)
         response = self.client.get(detail_url, follow=True)
@@ -203,8 +194,7 @@ class TestAddonAdmin(TestCase):
         version_factory(addon=addon, channel=amo.RELEASE_CHANNEL_LISTED)
         version_factory(addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
         detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
         self.client.login(email=user.email)
         response = self.client.get(detail_url, follow=True)
@@ -220,8 +210,7 @@ class TestAddonAdmin(TestCase):
 
     def test_can_not_list_without_addons_edit_permission(self):
         addon = addon_factory()
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.client.login(email=user.email)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 403
@@ -232,8 +221,7 @@ class TestAddonAdmin(TestCase):
         self.detail_url = reverse(
             'admin:addons_addon_change', args=(addon.pk,)
         )
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.client.login(email=user.email)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 403
@@ -266,8 +254,7 @@ class TestAddonAdmin(TestCase):
         detail_url_final = reverse(
             'admin:addons_addon_change', args=(addon.pk,)
         )
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
         self.client.login(email=user.email)
         response = self.client.get(detail_url_by_slug, follow=False)
@@ -281,8 +268,7 @@ class TestAddonAdmin(TestCase):
         detail_url_final = reverse(
             'admin:addons_addon_change', args=(addon.pk,)
         )
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
         self.client.login(email=user.email)
         response = self.client.get(detail_url_by_guid, follow=True)
@@ -294,8 +280,7 @@ class TestAddonAdmin(TestCase):
         self.detail_url = reverse(
             'admin:addons_addon_change', args=(addon.pk,)
         )
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
         self.client.login(email=user.email)
         response = self.client.get(self.detail_url, follow=True)
@@ -343,8 +328,7 @@ class TestAddonAdmin(TestCase):
         self.detail_url = reverse(
             'admin:addons_addon_change', args=(addon.pk,)
         )
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
         self.grant_permission(user, 'Admin:Advanced')
         self.client.login(email=user.email)
@@ -373,8 +357,7 @@ class TestAddonAdmin(TestCase):
         self.detail_url = reverse(
             'admin:addons_addon_change', args=(addon.pk,)
         )
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
         self.client.login(email=user.email)
         response = self.client.get(self.detail_url, follow=True)
@@ -405,8 +388,7 @@ class TestAddonAdmin(TestCase):
         self.detail_url = reverse(
             'admin:addons_addon_change', args=(addon.pk,)
         )
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
         self.grant_permission(user, 'Admin:Advanced')
         self.client.login(email=user.email)
@@ -455,8 +437,7 @@ class TestAddonAdmin(TestCase):
         self.detail_url = reverse(
             'admin:addons_addon_change', args=(addon.pk,)
         )
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
         self.grant_permission(user, 'Admin:Advanced')
         post_data = self._get_full_post_data(addon, addon.addonuser_set.get())
@@ -481,8 +462,7 @@ class TestAddonAdmin(TestCase):
         self.detail_url = reverse(
             'admin:addons_addon_change', args=(addon.pk,)
         )
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
         self.grant_permission(user, 'Admin:Advanced')
 
@@ -505,10 +485,9 @@ class TestAddonAdmin(TestCase):
 
     def test_query_count(self):
         addon = addon_factory(guid='@foo', users=[user_factory()])
-        user = user_factory()
         self.detail_url = reverse(
             'admin:addons_addon_change', args=(addon.pk,))
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
         self.grant_permission(user, 'Admin:Advanced')
         self.client.login(email=user.email)
@@ -530,10 +509,9 @@ class TestAddonAdmin(TestCase):
         addon = addon_factory(users=[user_factory()])
         first_file = addon.current_version.all_files[0]
         [version_factory(addon=addon) for i in range(0, 30)]
-        user = user_factory()
         self.detail_url = reverse(
             'admin:addons_addon_change', args=(addon.pk,))
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
         self.grant_permission(user, 'Admin:Advanced')
         self.client.login(email=user.email)
@@ -562,8 +540,7 @@ class TestReplacementAddonList(TestCase):
             ['guid', 'path', 'guid_slug', '_url'])
 
     def test_can_see_replacementaddon_module_in_admin_with_addons_edit(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
         self.client.login(email=user.email)
         url = reverse('admin:index')
@@ -577,7 +554,7 @@ class TestReplacementAddonList(TestCase):
         assert self.list_url in response.content.decode('utf-8')
 
     def test_can_see_replacementaddon_module_in_admin_with_admin_curate(self):
-        user = user_factory()
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Admin:Curation')
         self.client.login(email=user.email)
         url = reverse('admin:index')
@@ -593,8 +570,7 @@ class TestReplacementAddonList(TestCase):
     def test_can_list_with_addons_edit_permission(self):
         ReplacementAddon.objects.create(
             guid='@bar', path='/addon/bar-replacement/')
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
         self.client.login(email=user.email)
         response = self.client.get(self.list_url, follow=True)
@@ -607,8 +583,7 @@ class TestReplacementAddonList(TestCase):
         self.detail_url = reverse(
             'admin:addons_replacementaddon_change', args=(replacement.pk,)
         )
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
         self.client.login(email=user.email)
         response = self.client.get(self.detail_url, follow=True)
@@ -624,8 +599,7 @@ class TestReplacementAddonList(TestCase):
         self.delete_url = reverse(
             'admin:addons_replacementaddon_delete', args=(replacement.pk,)
         )
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
         self.client.login(email=user.email)
         response = self.client.get(self.delete_url, follow=True)
@@ -641,7 +615,7 @@ class TestReplacementAddonList(TestCase):
         self.detail_url = reverse(
             'admin:addons_replacementaddon_change', args=(replacement.pk,)
         )
-        user = user_factory()
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Admin:Curation')
         self.client.login(email=user.email)
         response = self.client.get(self.detail_url, follow=True)
@@ -661,7 +635,7 @@ class TestReplacementAddonList(TestCase):
         self.delete_url = reverse(
             'admin:addons_replacementaddon_delete', args=(replacement.pk,)
         )
-        user = user_factory()
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Admin:Curation')
         self.client.login(email=user.email)
         response = self.client.get(self.delete_url, follow=True)
@@ -672,7 +646,7 @@ class TestReplacementAddonList(TestCase):
         assert not ReplacementAddon.objects.filter(pk=replacement.pk).exists()
 
     def test_can_list_with_admin_curation_permission(self):
-        user = user_factory()
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Admin:Curation')
         self.client.login(email=user.email)
         # '@foofoo&foo' isn't a valid guid, because &, but testing urlencoding.
