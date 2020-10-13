@@ -352,7 +352,8 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
 
     def test_moz_signed_extension_no_strict_compat(self):
         addon = amo.tests.addon_factory()
-        user = amo.tests.user_factory(email='foo@mozilla.com')
+        user = amo.tests.user_factory()
+        self.grant_permission(user, 'SystemAddon:Submit')
         file_obj = addon.current_version.all_files[0]
         file_obj.update(is_mozilla_signed_extension=True)
         fixture = (
@@ -366,7 +367,8 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
 
     def test_moz_signed_extension_reuse_strict_compat(self):
         addon = amo.tests.addon_factory()
-        user = amo.tests.user_factory(email='foo@mozilla.com')
+        user = amo.tests.user_factory()
+        self.grant_permission(user, 'SystemAddon:Submit')
         file_obj = addon.current_version.all_files[0]
         file_obj.update(is_mozilla_signed_extension=True)
         fixture = (

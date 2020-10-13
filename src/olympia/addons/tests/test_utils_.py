@@ -14,34 +14,35 @@ from olympia.addons.utils import (
     TAAR_LITE_FALLBACK_REASON_INVALID,
     verify_mozilla_trademark)
 from olympia.amo.tests import TestCase, addon_factory, user_factory
+from olympia.users.models import Group, GroupUser
 
 
 @pytest.mark.django_db
-@pytest.mark.parametrize('name, allowed, email', (
-    ('Fancy new Add-on', True, 'foo@bar.com'),
+@pytest.mark.parametrize('name, allowed, give_permission', (
+    ('Fancy new Add-on', True, False),
     # We allow the 'for ...' postfix to be used
-    ('Fancy new Add-on for Firefox', True, 'foo@bar.com'),
-    ('Fancy new Add-on for Mozilla', True, 'foo@bar.com'),
+    ('Fancy new Add-on for Firefox', True, False),
+    ('Fancy new Add-on for Mozilla', True, False),
     # But only the postfix
-    ('Fancy new Add-on for Firefox Browser', False, 'foo@bar.com'),
-    ('For Firefox fancy new add-on', False, 'foo@bar.com'),
-    # But users with @mozilla.com or @mozilla.org email addresses
-    # are allowed
-    ('Firefox makes everything better', False, 'bar@baz.com'),
-    ('Firefox makes everything better', True, 'foo@mozilla.com'),
-    ('Firefox makes everything better', True, 'foo@mozilla.org'),
-    ('Mozilla makes everything better', True, 'foo@mozilla.com'),
-    ('Mozilla makes everything better', True, 'foo@mozilla.org'),
+    ('Fancy new Add-on for Firefox Browser', False, False),
+    ('For Firefox fancy new add-on', False, False),
+    # But users with the TRADEMARK_BYPASS permission are allowed
+    ('Firefox makes everything better', False, False),
+    ('Firefox makes everything better', True, True),
+    ('Mozilla makes everything better', True, True),
     # A few more test-cases...
-    ('Firefox add-on for Firefox', False, 'foo@bar.com'),
-    ('Firefox add-on for Firefox', True, 'foo@mozilla.com'),
-    ('Foobarfor Firefox', False, 'foo@bar.com'),
-    ('Better Privacy for Firefox!', True, 'foo@bar.com'),
-    ('Firefox awesome for Mozilla', False, 'foo@bar.com'),
-    ('Firefox awesome for Mozilla', True, 'foo@mozilla.org'),
+    ('Firefox add-on for Firefox', False, False),
+    ('Firefox add-on for Firefox', True, True),
+    ('Foobarfor Firefox', False, False),
+    ('Better Privacy for Firefox!', True, False),
+    ('Firefox awesome for Mozilla', False, False),
+    ('Firefox awesome for Mozilla', True, True),
 ))
-def test_verify_mozilla_trademark(name, allowed, email):
-    user = user_factory(email=email)
+def test_verify_mozilla_trademark(name, allowed, give_permission):
+    user = user_factory()
+    if give_permission:
+        group = Group.objects.create(name=name, rules='Trademark:Bypass')
+        GroupUser.objects.create(group=group, user=user)
 
     if not allowed:
         with pytest.raises(ValidationError) as exc:

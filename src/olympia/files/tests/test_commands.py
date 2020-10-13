@@ -39,7 +39,7 @@ class TestExtractOptionalPermissions(UploadTest):
 
     def test_extract(self):
         upload = self.get_upload('webextension_no_id.xpi')
-        parsed_data = parse_addon(upload, user=mock.Mock())
+        parsed_data = parse_addon(upload, user=mock.Mock(groups_list=[]))
 
         # Remove the optional permissions from the parsed data so they aren't
         # added.
