@@ -138,9 +138,6 @@ class PrimaryHeroImage(ModelBase):
 class PrimaryHero(ModelBase):
     select_image = models.ForeignKey(
         PrimaryHeroImage, null=True, on_delete=models.SET_NULL)
-    image = WidgetCharField(
-        choices=DirImageChoices(path=FEATURED_IMAGE_PATH), max_length=255,
-        widget=ImageChoiceWidget, blank=True)
     gradient_color = WidgetCharField(
         choices=GRADIENT_COLORS.items(), max_length=7,
         widget=GradientChoiceWidget, blank=True)
@@ -158,7 +155,9 @@ class PrimaryHero(ModelBase):
 
     @property
     def image_url(self):
-        return f'{FEATURED_IMAGE_URL}{self.image}' if self.image else None
+        return (
+            f'{self.select_image.custom_image.url}'
+            if self.select_image else None)
 
     @property
     def gradient(self):
