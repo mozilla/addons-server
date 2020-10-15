@@ -1,5 +1,7 @@
+from django.conf import settings
 from django.db import models
 from django.dispatch import receiver
+from urllib.parse import urljoin
 
 from olympia.addons.models import Addon
 from olympia.amo.models import ModelBase
@@ -127,3 +129,47 @@ def update_es_for_promoted(sender, instance, **kw):
 def update_es_for_promoted_approval(sender, instance, **kw):
     update_es_for_promoted(
         sender=sender, instance=instance.version, **kw)
+
+
+class PromotedSubscription(ModelBase):
+    promoted_addon = models.OneToOneField(
+        PromotedAddon,
+        on_delete=models.CASCADE,
+        null=False,
+    )
+    link_visited_at = models.DateTimeField(
+        null=True,
+        help_text=(
+            "This date is set when the developer has visited the onboarding "
+            "page.",
+        ),
+    )
+    stripe_session_id = models.CharField(
+        default=None, null=True, max_length=100
+    )
+    payment_cancelled_at = models.DateTimeField(
+        null=True,
+        help_text=(
+            "This date is set when the developer has cancelled the payment "
+            "process."
+        ),
+    )
+    paid_at = models.DateTimeField(
+        null=True,
+        help_text=(
+            "This date is set when the developer successfully completed the"
+            " Stripe Checkout process."
+        ),
+    )
+
+    def __str__(self):
+        return f'Subscription for {self.promoted_addon}'
+
+    def get_onboarding_url(self):
+        if not self.id:
+            return None
+        return urljoin(
+            settings.EXTERNAL_SITE_URL,
+            # TODO: replace with `reverse()` once we have a route/view.
+            f'/{self.promoted_addon.addon.slug}/onboarding'
+        )
