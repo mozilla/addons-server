@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-10-01 09:02+0000\n"
+"PO-Revision-Date: 2020-10-15 15:21+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -5032,9 +5032,8 @@ msgid "Double-click any word to instantly see its definition."
 msgstr "Sit snat n tikkal ɣef wawal tebɣiḍ din din ad teẓreḍ tabadut-is."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
-msgstr "Kra n yismal ur ssawaḍen ara ad d-ɣren tividyutin di Firefox i Android. Asiɣzef-agi ad d-yefk tifrat."
+msgstr "Kra n yismal ur ssawaḍen ara ad d-ɣren tividyutin deg Android. Dagi i tella tifrat."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
