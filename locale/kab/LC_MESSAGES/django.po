@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-10-15 15:33+0000\n"
+"PO-Revision-Date: 2020-10-15 15:35+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -6188,13 +6188,11 @@ msgstr "[addad:%s]"
 msgid "Other Pending Review"
 msgstr "Isenqaden-nniḍen yettṛaǧun"
 
-#, fuzzy
 msgid "Flagged By Scanners"
-msgstr "Yettwacreḍ s yisniram"
+msgstr "Yettwacreḍ s yinafraḍen"
 
-#, fuzzy
 msgid "Flagged for Human Review"
-msgstr "Yettwacreḍ i  usenqed n umdan"
+msgstr "Yettwacreḍ i usenqed n umdan"
 
 msgid "Updates"
 msgstr "Ileqman"
