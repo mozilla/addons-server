@@ -5,6 +5,7 @@ from unittest.mock import Mock, patch
 
 from django.test.client import RequestFactory
 from django.utils import translation
+from django.utils.http import urlsafe_base64_encode
 
 from elasticsearch_dsl import Search
 from freezegun import freeze_time
@@ -14,8 +15,8 @@ from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.promoted import (
-    PROMOTED_API_NAME_TO_IDS, RECOMMENDED, LINE, STRATEGIC, VERIFIED_ONE,
-    VERIFIED_TWO)
+    BADGED_GROUPS, PROMOTED_API_NAME_TO_IDS, RECOMMENDED, LINE, STRATEGIC,
+    VERIFIED_ONE, VERIFIED_TWO)
 from olympia.search.filters import (
     ReviewedContentFilter, SearchParameterFilter, SearchQueryFilter,
     SortingFilter)
@@ -600,6 +601,32 @@ class TestSearchParameterFilter(FilterTestsBase):
         assert (
             {'terms': {'type': [amo.ADDON_STATICTHEME, amo.ADDON_EXTENSION]}}
             in filter_)
+
+    def test_basic_guid_search(self):
+        qs = self._filter(data={'guid': '@foobar'})
+        assert 'must' not in qs['query']['bool']
+        assert 'must_not' not in qs['query']['bool']
+        filter_ = qs['query']['bool']['filter']
+        assert {'terms': {'guid': ['@foobar']}} in filter_
+
+        qs = self._filter(
+            data={'guid': '@foobar,{28568f6a-0604-4654-a001-e7bf57a35af7}'})
+        assert 'must' not in qs['query']['bool']
+        assert 'must_not' not in qs['query']['bool']
+        filter_ = qs['query']['bool']['filter']
+        assert {'terms': {'guid': [
+            '@foobar', '{28568f6a-0604-4654-a001-e7bf57a35af7}']}} in filter_
+
+    def test_return_to_amo(self):
+        self.create_switch('return-to-amo', active=True)
+        param = 'rta:{}'.format(urlsafe_base64_encode('@foobar'.encode()))
+        qs = self._filter(data={'guid': param})
+        assert 'must' not in qs['query']['bool']
+        assert 'must_not' not in qs['query']['bool']
+        filter_ = qs['query']['bool']['filter']
+        assert {'terms': {'guid': ['@foobar']}} in filter_
+        assert {'terms': {'promoted.group_id': [
+            group.id for group in BADGED_GROUPS]}} in filter_
 
     def test_search_by_app_invalid(self):
         with self.assertRaises(serializers.ValidationError) as context:

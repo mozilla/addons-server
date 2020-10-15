@@ -1025,9 +1025,8 @@ class TestAddonSearchView(ESTestCase):
             key.endswith('.raw') for key in source_keys
         )
 
-    def perform_search(self, url, data=None, expected_status=200,
-                       expected_queries=0, **headers):
-        with self.assertNumQueries(expected_queries):
+    def perform_search(self, url, data=None, expected_status=200, **headers):
+        with self.assertNumQueries(0):
             response = self.client.get(url, data, **headers)
         assert response.status_code == expected_status, response.content
         data = json.loads(force_text(response.content))
@@ -1635,8 +1634,8 @@ class TestAddonSearchView(ESTestCase):
 
     def test_filter_by_guid_return_to_amo(self):
         addon = addon_factory(slug='my-addon', name=u'My Addôn',
-                              guid='random@guid', popularity=999)
-        DiscoveryItem.objects.create(addon=addon)
+                              guid='random@guid', popularity=999,
+                              recommended=True)
         addon_factory()
         self.reindex(Addon)
 
@@ -1645,8 +1644,7 @@ class TestAddonSearchView(ESTestCase):
         param = 'rta:%s' % force_text(
             urlsafe_base64_encode(force_bytes(addon.guid)))
 
-        data = self.perform_search(
-            self.url, {'guid': param}, expected_queries=1)
+        data = self.perform_search(self.url, {'guid': param})
         assert data['count'] == 1
         assert len(data['results']) == 1
 
@@ -1665,9 +1663,9 @@ class TestAddonSearchView(ESTestCase):
         param = 'rta:%s' % force_text(
             urlsafe_base64_encode(force_bytes(addon.guid)))
 
-        data = self.perform_search(
-            self.url, {'guid': param}, expected_status=400, expected_queries=1)
-        assert data == [u'Invalid Return To AMO guid (not a curated add-on)']
+        data = self.perform_search(self.url, {'guid': param})
+        assert data['count'] == 0
+        assert data['results'] == []
 
     def test_filter_by_guid_return_to_amo_wrong_format(self):
         # We need to keep force_text because urlsafe_base64_encode only starts
@@ -1677,7 +1675,7 @@ class TestAddonSearchView(ESTestCase):
         data = self.perform_search(
             self.url, {'guid': param}, expected_status=400)
         assert data == [
-            u'Invalid Return To AMO guid (not in base64url format?)']
+            'Invalid Return To AMO guid (not in base64url format?)']
 
     def test_filter_by_guid_return_to_amo_garbage(self):
         # 'garbage' does decode using base64, but would lead to an
@@ -1686,14 +1684,14 @@ class TestAddonSearchView(ESTestCase):
         data = self.perform_search(
             self.url, {'guid': param}, expected_status=400)
         assert data == [
-            u'Invalid Return To AMO guid (not in base64url format?)']
+            'Invalid Return To AMO guid (not in base64url format?)']
 
         # Empty param is just as bad.
         param = 'rta:'
         data = self.perform_search(
             self.url, {'guid': param}, expected_status=400)
         assert data == [
-            u'Invalid Return To AMO guid (not in base64url format?)']
+            'Invalid Return To AMO guid (not in base64url format?)']
 
     def test_filter_by_guid_return_to_amo_feature_disabled(self):
         self.create_switch('return-to-amo', active=False)
@@ -1710,7 +1708,7 @@ class TestAddonSearchView(ESTestCase):
 
         data = self.perform_search(
             self.url, {'guid': param}, expected_status=400)
-        assert data == [u'Return To AMO is currently disabled']
+        assert data == ['Return To AMO is currently disabled']
 
     def test_find_addon_default_non_en_us(self):
         with self.activate('en-GB'):
@@ -1861,9 +1859,8 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
         self.empty_index('default')
         self.refresh()
 
-    def perform_search(self, url, data=None, expected_status=200,
-                       expected_queries=0, **headers):
-        with self.assertNumQueries(expected_queries):
+    def perform_search(self, url, data=None, expected_status=200, **headers):
+        with self.assertNumQueries(0):
             response = self.client.get(url, data, **headers)
         assert response.status_code == expected_status
         data = json.loads(force_text(response.content))
@@ -2518,9 +2515,8 @@ class TestAddonRecommendationView(ESTestCase):
         self.empty_index('default')
         self.refresh()
 
-    def perform_search(self, url, data=None, expected_status=200,
-                       expected_queries=0, **headers):
-        with self.assertNumQueries(expected_queries):
+    def perform_search(self, url, data=None, expected_status=200, **headers):
+        with self.assertNumQueries(0):
             response = self.client.get(url, data, **headers)
         assert response.status_code == expected_status, response.content
         data = json.loads(force_text(response.content))

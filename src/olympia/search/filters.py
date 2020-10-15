@@ -15,7 +15,7 @@ from olympia import amo
 from olympia.api.utils import is_gate_active
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.constants.promoted import (
-    PROMOTED_API_NAME_TO_IDS, PROMOTED_GROUPS)
+    BADGED_API_NAME, PROMOTED_API_NAME_TO_IDS, PROMOTED_GROUPS)
 from olympia.discovery.models import DiscoveryItem
 from olympia.versions.compare import version_int
 
@@ -105,8 +105,10 @@ class AddonQueryMultiParam(object):
             self.reverse_dict.get(value.lower()) if self.reverse_dict else
             value)
 
-    def get_es_query(self):
-        return [Q(self.operator, **{self.es_field: self.get_values()})]
+    def get_es_query(self, values=None):
+        if values is None:
+            values = self.get_values()
+        return [Q(self.operator, **{self.es_field: values})]
 
 
 class AddonAppQueryParam(AddonQueryParam):
@@ -181,16 +183,16 @@ class AddonGuidQueryParam(AddonQueryMultiParam):
     query_param = 'guid'
     es_field = 'guid'
 
-    def get_values(self):
+    def get_es_query(self):
         value = self.query_data.get(self.query_param, '')
 
-        # Hack for Firefox 'return to AMO' feature (which, sadly, does not use
-        # a specific API but rather encodes the guid and adds a prefix to it,
-        # only in the search API): if the guid param matches this format, and
-        # the feature is enabled through a setting, then we decode it and
-        # check it against DiscoItems, which contains the list of add-ons
-        # susceptible to appear in disco pane, acting as a list of "safe"
-        # add-ons we can enable that feature for.
+        # Firefox 'return to AMO' feature sadly does not use a specific API but
+        # rather encodes the guid and adds a prefix to it, then passing that
+        # string as a guid to the search API. If the guid parameter matches
+        # this format, and the feature is enabled through a switch, then we
+        # decode it and later check it against badged promoted add-ons, which
+        # have to be pre-reviewed, so they should always be safe add-ons we can
+        # enable that feature for.
         # We raise ValueError if anything goes wrong, they are eventually
         # turned into 400 responses and this acts as a kill-switch for the
         # feature in Firefox.
@@ -212,20 +214,19 @@ class AddonGuidQueryParam(AddonQueryMultiParam):
                         'Invalid Return To AMO guid (not in base64url format?)'
                     )
                 )
-
-            # Unfortunately we have to check against the database here. We only
-            # need to check that a DiscoveryItem exists, if somehow the add-on
-            # is not public, it will get filtered out later by
-            # ReviewedContentFilter.
-            if not DiscoveryItem.objects.filter(addon__guid=value).exists():
-                raise ValueError(
-                    ugettext(
-                        'Invalid Return To AMO guid (not a curated add-on)'
-                    )
-                )
-            return [value] if value else []
+            # Filter on the now decoded guid param as normal, then add promoted
+            # filter on top to only return "safe" add-ons for return to AMO.
+            # We don't care about the app param - we just want to ensure the
+            # add-ons are "safe".
+            filters = super().get_es_query([value])
+            filters.extend(
+                AddonPromotedQueryParam({
+                    AddonPromotedQueryParam.query_param: BADGED_API_NAME
+                }).get_es_query()
+            )
+            return filters
         else:
-            return super().get_values()
+            return super().get_es_query()
 
     def is_valid(self, value):
         return isinstance(value, str)

@@ -122,9 +122,10 @@ PROMOTED_GROUPS = [
 
 PRE_REVIEW_GROUPS = [group for group in PROMOTED_GROUPS if group.pre_review]
 BADGED_GROUPS = [group for group in PROMOTED_GROUPS if group.badged]
+BADGED_API_NAME = 'badged'  # Special alias for all badged groups
 
 PROMOTED_GROUPS_BY_ID = {p.id: p for p in PROMOTED_GROUPS}
 PROMOTED_API_NAME_TO_IDS = {
     # we can replace this ugly syntax with dict | in 3.9 - see pep-0584
     **{p.api_name: [p.id] for p in PROMOTED_GROUPS if p},
-    **{'badged': list({p.id for p in BADGED_GROUPS})}}
+    **{BADGED_API_NAME: list({p.id for p in BADGED_GROUPS})}}
