@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-10-15 15:45+0000\n"
+"PO-Revision-Date: 2020-10-15 18:43+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -6136,9 +6136,8 @@ msgstr "Lqem %(version)s &middot; %(created)s <span class=\"light\">&middot; %(v
 msgid "(Confirmed)"
 msgstr "(Yentem)"
 
-#, fuzzy
 msgid "Pending Rejection on review of new version"
-msgstr "Deg uraǧu n tenzagt n tugin."
+msgstr "Nettṛaǧu tegtin ɣef usenqed n lqem amaynut"
 
 msgid "Compatibility:"
 msgstr "Amṣada:"
