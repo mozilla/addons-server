@@ -118,3 +118,5 @@ FXA_SQS_AWS_QUEUE_URL = (
 VAMO_URL = 'https://versioncheck-dev.allizom.org'
 
 REMOTE_SETTINGS_IS_TEST_SERVER = True
+
+ADZERK_SITE_ID = env('ADZERK_SITE_ID', default=1131244)

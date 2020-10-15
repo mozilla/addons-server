@@ -1928,7 +1928,7 @@ BIGQUERY_AMO_DATASET = 'amo_dev'
 
 ADZERK_TIMEOUT = 5  # seconds
 ADZERK_NETWORK_ID = env('ADZERK_NETWORK_ID', default=10521)
-ADZERK_SITE_ID = env('ADZERK_SITE_ID', default=1131244)
+ADZERK_SITE_ID = env('ADZERK_SITE_ID', default=1133496)
 ADZERK_URL = f'https://e-{ADZERK_NETWORK_ID}.adzerk.net/api/v2'
 ADZERK_IMPRESSION_URL = f'https://e-{ADZERK_NETWORK_ID}.adzerk.net/i.gif?'
 ADZERK_IMPRESSION_TIMEOUT = 60  # seconds
