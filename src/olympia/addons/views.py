@@ -513,14 +513,15 @@ class LanguageToolsView(ListAPIView):
         """
         # app parameter is mandatory when calling this API.
         try:
-            application = AddonAppQueryParam(self.request).get_value()
+            application = AddonAppQueryParam(self.request.GET).get_value()
         except ValueError:
             raise exceptions.ParseError('Invalid or missing app parameter.')
 
         # appversion parameter is optional.
         if AddonAppVersionQueryParam.query_param in self.request.GET:
             try:
-                value = AddonAppVersionQueryParam(self.request).get_values()
+                value = AddonAppVersionQueryParam(
+                    self.request.GET).get_values()
                 appversions = {
                     'min': value[1],
                     'max': value[2]
@@ -537,7 +538,7 @@ class LanguageToolsView(ListAPIView):
         if AddonTypeQueryParam.query_param in self.request.GET or appversions:
             try:
                 addon_types = tuple(
-                    AddonTypeQueryParam(self.request).get_values())
+                    AddonTypeQueryParam(self.request.GET).get_values())
             except ValueError:
                 raise exceptions.ParseError(
                     'Invalid or missing type parameter while appversion '
@@ -548,7 +549,7 @@ class LanguageToolsView(ListAPIView):
         # author is optional. It's a string representing the username(s) we're
         # filtering on.
         if AddonAuthorQueryParam.query_param in self.request.GET:
-            authors = AddonAuthorQueryParam(self.request).get_values()
+            authors = AddonAuthorQueryParam(self.request.GET).get_values()
         else:
             authors = None
 

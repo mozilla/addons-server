@@ -28,11 +28,11 @@ class AddonQueryParam(object):
     valid_values = None
     es_field = None
 
-    def __init__(self, request):
-        self.request = request
+    def __init__(self, query_data):
+        self.query_data = query_data
 
     def get_value(self):
-        value = self.request.GET.get(self.query_param, '')
+        value = self.query_data.get(self.query_param, '')
         try:
             # Try the int first.
             value = int(value)
@@ -49,11 +49,11 @@ class AddonQueryParam(object):
         return value in self.valid_values
 
     def get_value_from_reverse_dict(self):
-        value = self.request.GET.get(self.query_param, '')
+        value = self.query_data.get(self.query_param, '')
         return self.reverse_dict.get(value.lower())
 
     def get_object_from_reverse_dict(self):
-        value = self.request.GET.get(self.query_param, '')
+        value = self.query_data.get(self.query_param, '')
         value = self.reverse_dict.get(value.lower())
         if value is None:
             raise ValueError(
@@ -77,8 +77,8 @@ class AddonQueryMultiParam(object):
     valid_values = None  # if None then all values are valid
     es_field = None
 
-    def __init__(self, request):
-        self.request = request
+    def __init__(self, query_data):
+        self.query_data = query_data
 
     def process_value(self, value):
         try:
@@ -94,7 +94,7 @@ class AddonQueryMultiParam(object):
         )
 
     def get_values(self):
-        values = str(self.request.GET.get(self.query_param, '')).split(',')
+        values = str(self.query_data.get(self.query_param, '')).split(',')
         return [self.process_value(value) for value in values]
 
     def is_valid(self, value):
@@ -127,8 +127,8 @@ class AddonAppVersionQueryParam(AddonQueryParam):
     # to work.
 
     def get_values(self):
-        appversion = self.request.GET.get(self.query_param)
-        app = AddonAppQueryParam(self.request).get_value()
+        appversion = self.query_data.get(self.query_param)
+        app = AddonAppQueryParam(self.query_data).get_value()
 
         if appversion and app:
             # Get a min version less than X.0, and a max greater than X.0a
@@ -182,7 +182,7 @@ class AddonGuidQueryParam(AddonQueryMultiParam):
     es_field = 'guid'
 
     def get_values(self):
-        value = self.request.GET.get(self.query_param, '')
+        value = self.query_data.get(self.query_param, '')
 
         # Hack for Firefox 'return to AMO' feature (which, sadly, does not use
         # a specific API but rather encodes the guid and adds a prefix to it,
@@ -272,8 +272,8 @@ class AddonCategoryQueryParam(AddonQueryParam):
         # dict in the categories constants and use that as the reverse dict,
         # and make sure to use get_value_from_object_from_reverse_dict().
         try:
-            app = AddonAppQueryParam(self.request).get_value()
-            types = AddonTypeQueryParam(self.request).get_values()
+            app = AddonAppQueryParam(self.query_data).get_value()
+            types = AddonTypeQueryParam(self.query_data).get_values()
             self.reverse_dict = [CATEGORIES[app][type_] for type_ in types]
         except KeyError:
             raise ValueError(ugettext(
@@ -291,7 +291,7 @@ class AddonCategoryQueryParam(AddonQueryParam):
         return self.get_value_from_object_from_reverse_dict()
 
     def get_object_from_reverse_dict(self):
-        query_value = self.request.GET.get(self.query_param, '').lower()
+        query_value = self.query_data.get(self.query_param, '').lower()
         values = []
         for reverse_dict in self.reverse_dict:
             value = reverse_dict.get(query_value)
@@ -360,8 +360,8 @@ class AddonPromotedQueryParam(AddonQueryMultiParam):
 
     def get_app(self):
         return (
-            AddonAppQueryParam(self.request).get_value()
-            if AddonAppQueryParam.query_param in self.request.GET
+            AddonAppQueryParam(self.query_data).get_value()
+            if AddonAppQueryParam.query_param in self.query_data
             else None)
 
     def get_es_query(self):
@@ -397,7 +397,7 @@ class AddonColorQueryParam(AddonQueryParam):
         return colorgram.colorgram.hsl(*rgb)
 
     def get_value(self):
-        color = self.request.GET.get(self.query_param, '')
+        color = self.query_data.get(self.query_param, '')
         return self.convert_to_hsl(color.upper().lstrip('#'))
 
     def get_es_query(self):
@@ -852,7 +852,7 @@ class SearchParameterFilter(BaseFilterBackend):
                 # present in the request, otherwise don't, to avoid raising
                 # exceptions because of missing params in complex filters.
                 if param_class.query_param in request.GET:
-                    clauses.extend(param_class(request).get_es_query())
+                    clauses.extend(param_class(request.GET).get_es_query())
             except ValueError as exc:
                 raise serializers.ValidationError(*exc.args)
         return clauses
