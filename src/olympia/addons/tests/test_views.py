@@ -28,7 +28,6 @@ from olympia.bandwagon.models import CollectionAddon
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.constants.promoted import (
     LINE, SPOTLIGHT, STRATEGIC, RECOMMENDED, VERIFIED_ONE, VERIFIED_TWO)
-from olympia.discovery.models import DiscoveryItem
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion
 

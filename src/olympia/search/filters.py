@@ -16,7 +16,6 @@ from olympia.api.utils import is_gate_active
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.constants.promoted import (
     BADGED_API_NAME, PROMOTED_API_NAME_TO_IDS, PROMOTED_GROUPS)
-from olympia.discovery.models import DiscoveryItem
 from olympia.versions.compare import version_int
 
 
