@@ -88,7 +88,33 @@
           {# XXX future feature: 'Localizations' ... #}
           <tr class="meta-rating">
             <th>{{ _('Rating') }}</th>
-            <td>{{ reviews_link(addon) }}</td>
+            <td>
+              <p class="addon-rating">
+                {% with num=addon.total_ratings %}
+                  {% if num %}
+                  {{ addon.average_rating|float|stars }}
+                  {% with count='<span itemprop="count">{0}</span>'|format_html(num|numberfmt) %}
+                    {# Using num=count so we don't change an L10n string. #}
+                    {% if not addon.is_disabled or action_allowed(amo.permissions.RATINGS_MODERATE) %}
+                      {% set review_url = url('addons.ratings.list', addon.slug) %}
+                      {% if addon.is_disabled %}
+                        {% set review_url = 'admin/models/ratings/rating/'|urlparams(addon=addon.pk) %}
+                      {% endif %}
+                      <a href="{{ review_url|absolutify }}"><strong>{{
+                        ngettext('{num} review', '{num} reviews', num)|format_html(num=count)
+                      }}</strong></a>
+                    {% else %}
+                      <strong>{{
+                        ngettext('{num} review', '{num} reviews', num)|format_html(num=count)
+                      }}</strong
+                    {% endif %}
+                  {% endwith %}
+                  {% else %}
+                    <strong>{{ _('Not yet rated') }}</strong>
+                  {% endif %}
+                {% endwith %}
+              </p>
+            </td>
           </tr>
           <tr class="meta-stats">
             <th>{{ _('Weekly Downloads') }}</th>
