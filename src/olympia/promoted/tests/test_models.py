@@ -8,8 +8,8 @@ class TestPromotedAddon(TestCase):
 
     def test_basic(self):
         promoted_addon = PromotedAddon.objects.create(
-            addon=addon_factory(), group_id=promoted.VERIFIED_ONE.id)
-        assert promoted_addon.group == promoted.VERIFIED_ONE
+            addon=addon_factory(), group_id=promoted.SPONSORED.id)
+        assert promoted_addon.group == promoted.SPONSORED
         assert promoted_addon.application_id is None
         assert promoted_addon.all_applications == [
             applications.FIREFOX, applications.ANDROID]
@@ -32,11 +32,11 @@ class TestPromotedAddon(TestCase):
             applications.FIREFOX, applications.ANDROID]
 
         # but not if it's for a different type of promotion
-        promoted_addon.update(group_id=promoted.VERIFIED_ONE.id)
+        promoted_addon.update(group_id=promoted.SPONSORED.id)
         assert addon.promotedaddon.approved_applications == []
         # unless that group has an approval too
         PromotedApproval.objects.create(
-            version=addon.current_version, group_id=promoted.VERIFIED_ONE.id,
+            version=addon.current_version, group_id=promoted.SPONSORED.id,
             application_id=applications.FIREFOX.id)
         addon.reload()
         assert addon.promotedaddon.approved_applications == [
@@ -53,7 +53,7 @@ class TestPromotedAddon(TestCase):
         assert PromotedSubscription.objects.count() == 0
 
         promoted_addon = PromotedAddon.objects.create(
-            addon=addon_factory(), group_id=promoted.VERIFIED_ONE.id
+            addon=addon_factory(), group_id=promoted.SPONSORED.id
         )
 
         assert PromotedSubscription.objects.count() == 1
@@ -82,7 +82,7 @@ class TestPromotedSubscription(TestCase):
 
     def test_get_onboarding_url(self):
         promoted_addon = PromotedAddon.objects.create(
-            addon=addon_factory(), group_id=promoted.VERIFIED_ONE.id
+            addon=addon_factory(), group_id=promoted.SPONSORED.id
         )
         sub = PromotedSubscription.objects.filter(
             promoted_addon=promoted_addon

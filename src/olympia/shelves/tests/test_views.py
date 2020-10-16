@@ -11,7 +11,7 @@ from freezegun import freeze_time
 from olympia import amo
 from olympia.amo.tests import (
     addon_factory, APITestClient, ESTestCase, reverse_ns)
-from olympia.constants.promoted import RECOMMENDED, VERIFIED_ONE, VERIFIED_TWO
+from olympia.constants.promoted import RECOMMENDED, SPONSORED, VERIFIED
 from olympia.promoted.models import PromotedAddon
 from olympia.shelves.models import Shelf, ShelfManagement
 
@@ -143,15 +143,15 @@ class TestSponsoredShelfViewSet(ESTestCase):
         self.sponsored_ext = addon_factory(
             name='test addon test01', type=amo.ADDON_EXTENSION)
         self.make_addon_promoted(
-            self.sponsored_ext, VERIFIED_ONE, approve_version=True)
+            self.sponsored_ext, SPONSORED, approve_version=True)
         self.sponsored_theme = addon_factory(
             name='test addon test02', type=amo.ADDON_STATICTHEME)
         self.make_addon_promoted(
-            self.sponsored_theme, VERIFIED_ONE, approve_version=True)
+            self.sponsored_theme, SPONSORED, approve_version=True)
         self.verified_ext = addon_factory(
             name='test addon test03', type=amo.ADDON_EXTENSION)
         self.make_addon_promoted(
-            self.verified_ext, VERIFIED_TWO, approve_version=True)
+            self.verified_ext, VERIFIED, approve_version=True)
         self.not_promoted = addon_factory(name='test addon test04')
         if refresh:
             self.refresh()
@@ -247,7 +247,7 @@ class TestSponsoredShelfViewSet(ESTestCase):
         another_ext = addon_factory(
             name='test addon test01', type=amo.ADDON_EXTENSION)
         self.make_addon_promoted(
-            another_ext, VERIFIED_ONE, approve_version=True)
+            another_ext, SPONSORED, approve_version=True)
         self.refresh()
         adzerk_results = {
             str(another_ext.id): {},

@@ -27,7 +27,8 @@ from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.bandwagon.models import CollectionAddon
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.constants.promoted import (
-    LINE, SPOTLIGHT, STRATEGIC, RECOMMENDED, VERIFIED_ONE, VERIFIED_TWO)
+    LINE, SPOTLIGHT, STRATEGIC, RECOMMENDED, SPONSORED, VERIFIED)
+from olympia.discovery.models import DiscoveryItem
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion
 
@@ -1282,7 +1283,7 @@ class TestAddonSearchView(ESTestCase):
         # addon2 was for Firefox only
 
         # test with other other promotions
-        for promo in (VERIFIED_ONE, VERIFIED_TWO, LINE, SPOTLIGHT, STRATEGIC):
+        for promo in (SPONSORED, VERIFIED, LINE, SPOTLIGHT, STRATEGIC):
             self.make_addon_promoted(addon, promo, approve_version=True)
             self.reindex(Addon)
             data = self.perform_search(
@@ -2007,7 +2008,7 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
     def test_promoted(self):
         not_promoted = addon_factory(name='not promoted')
         sponsored = addon_factory(name='is promoted')
-        self.make_addon_promoted(sponsored, VERIFIED_ONE, approve_version=True)
+        self.make_addon_promoted(sponsored, SPONSORED, approve_version=True)
         addon_factory(name='something')
 
         self.refresh()

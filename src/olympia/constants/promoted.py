@@ -60,7 +60,7 @@ RECOMMENDED = PromotedClass(
     can_primary_hero=True,
 )
 
-VERIFIED_ONE = PromotedClass(
+SPONSORED = PromotedClass(
     id=2,
     name=_('Sponsored'),
     api_name='sponsored',
@@ -73,7 +73,7 @@ VERIFIED_ONE = PromotedClass(
     can_primary_hero=True,
 )
 
-VERIFIED_TWO = PromotedClass(
+VERIFIED = PromotedClass(
     id=3,
     name=_('Verified'),
     api_name='verified',
@@ -119,8 +119,8 @@ STRATEGIC = PromotedClass(
 PROMOTED_GROUPS = [
     NOT_PROMOTED,
     RECOMMENDED,
-    VERIFIED_ONE,
-    VERIFIED_TWO,
+    SPONSORED,
+    VERIFIED,
     LINE,
     SPOTLIGHT,
     STRATEGIC,
@@ -136,4 +136,4 @@ PROMOTED_API_NAME_TO_IDS = {
     **{p.api_name: [p.id] for p in PROMOTED_GROUPS if p},
     **{BADGED_API_NAME: list({p.id for p in BADGED_GROUPS})}}
 
-PROMOTED_GROUPS_FOR_SUBSCRIPTION = [VERIFIED_ONE, VERIFIED_TWO]
+PROMOTED_GROUPS_FOR_SUBSCRIPTION = [SPONSORED, VERIFIED]

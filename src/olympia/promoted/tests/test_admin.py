@@ -4,7 +4,7 @@ from olympia.amo.tests import (
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.amo.urlresolvers import django_reverse, reverse
 from olympia.constants.promoted import (
-    LINE, RECOMMENDED, VERIFIED_TWO, VERIFIED_ONE)
+    LINE, RECOMMENDED, VERIFIED, SPONSORED)
 from olympia.hero.models import PrimaryHero, PrimaryHeroImage
 from olympia.promoted.models import PromotedAddon, PromotedApproval
 
@@ -507,7 +507,7 @@ class TestPromotedAddonAdmin(TestCase):
     def test_show_subscription_when_group_is_verified(self):
         addon = addon_factory()
         item = PromotedAddon.objects.create(
-            addon=addon, group_id=VERIFIED_TWO.id
+            addon=addon, group_id=VERIFIED.id
         )
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Discovery:Edit')
@@ -527,7 +527,7 @@ class TestPromotedAddonAdmin(TestCase):
     def test_show_subscription_when_group_is_sponsored(self):
         addon = addon_factory()
         item = PromotedAddon.objects.create(
-            addon=addon, group_id=VERIFIED_ONE.id
+            addon=addon, group_id=SPONSORED.id
         )
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Discovery:Edit')

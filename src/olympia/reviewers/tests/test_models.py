@@ -15,7 +15,7 @@ from olympia.amo.tests import (
     TestCase, addon_factory, file_factory, user_factory, version_factory)
 from olympia.blocklist.models import Block
 from olympia.constants.promoted import (
-    LINE, NOT_PROMOTED, RECOMMENDED, STRATEGIC, VERIFIED_ONE)
+    LINE, NOT_PROMOTED, RECOMMENDED, STRATEGIC, SPONSORED)
 from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.promoted.models import PromotedAddon
 from olympia.ratings.models import Rating
@@ -172,7 +172,7 @@ class TestExtensionQueueWithAwaitingReview(TestQueue):
         addon = self.new_addon()
         assert self.Queue.objects.get().flags == []
 
-        self.make_addon_promoted(addon, VERIFIED_ONE)
+        self.make_addon_promoted(addon, SPONSORED)
         assert self.Queue.objects.get().flags == [
             ('promoted-sponsored', 'Sponsored')]
 
