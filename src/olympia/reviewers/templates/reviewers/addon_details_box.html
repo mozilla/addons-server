@@ -95,11 +95,8 @@
                   {{ addon.average_rating|float|stars }}
                   {% with count='<span itemprop="count">{0}</span>'|format_html(num|numberfmt) %}
                     {# Using num=count so we don't change an L10n string. #}
-                    {% if not addon.is_disabled or action_allowed(amo.permissions.RATINGS_MODERATE) %}
-                      {% set review_url = url('addons.ratings.list', addon.slug) %}
-                      {% if addon.is_disabled %}
-                        {% set review_url = 'admin/models/ratings/rating/'|urlparams(addon=addon.pk) %}
-                      {% endif %}
+                    {% if action_allowed(amo.permissions.RATINGS_MODERATE) %}
+                      {% set review_url = 'admin/models/ratings/rating/'|urlparams(addon=addon.pk) %}
                       <a href="{{ review_url|absolutify }}"><strong>{{
                         ngettext('{num} review', '{num} reviews', num)|format_html(num=count)
                       }}</strong></a>
