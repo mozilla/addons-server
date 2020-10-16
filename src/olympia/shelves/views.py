@@ -17,8 +17,11 @@ from .utils import (
     get_addons_from_adzerk,
     get_signed_impression_blob_from_results,
     filter_adzerk_results_to_es_results_qs,
-    send_click_ping,
+    send_event_ping,
     send_impression_pings)
+
+
+VALID_EVENT_TYPES = ('click', 'conversion')
 
 
 class ShelfViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
@@ -81,9 +84,25 @@ class SponsoredShelfViewSet(viewsets.ViewSetMixin, AddonSearchView):
     def click(self, request):
         signed_click = request.data.get('click_data', '')
         try:
-            send_click_ping(signed_click)
+            send_event_ping(signed_click, 'click')
         except APIException as e:
             return Response(
                 f'Bad click_data: {e}',
+                status=status.HTTP_400_BAD_REQUEST)
+        return Response(status=status.HTTP_202_ACCEPTED)
+
+    @action(detail=False, methods=['post'])
+    def event(self, request):
+        signed_data = request.data.get('data', '')
+        data_type = request.data.get('type')
+        if data_type not in VALID_EVENT_TYPES:
+            return Response(
+                f'Bad type: {data_type}',
+                status=status.HTTP_400_BAD_REQUEST)
+        try:
+            send_event_ping(signed_data, data_type)
+        except APIException as e:
+            return Response(
+                f'Bad data for {data_type}: {e}',
                 status=status.HTTP_400_BAD_REQUEST)
         return Response(status=status.HTTP_202_ACCEPTED)

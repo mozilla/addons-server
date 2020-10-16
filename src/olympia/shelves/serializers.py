@@ -54,10 +54,12 @@ class ShelfSerializer(serializers.ModelSerializer):
 class ESSponsoredAddonSerializer(ESAddonSerializer):
     click_url = serializers.SerializerMethodField()
     click_data = serializers.SerializerMethodField()
+    events = serializers.SerializerMethodField()
     _signer = TimestampSigner()
 
     class Meta(ESAddonSerializer.Meta):
-        fields = ESAddonSerializer.Meta.fields + ('click_url', 'click_data')
+        fields = ESAddonSerializer.Meta.fields + (
+            'click_url', 'click_data', 'events')
 
     def get_click_url(self, obj):
         return drf_reverse(
@@ -68,3 +70,13 @@ class ESSponsoredAddonSerializer(ESAddonSerializer):
         view = self.context['view']
         click_data = view.adzerk_results.get(str(obj.id), {}).get('click')
         return self._signer.sign(click_data) if click_data else None
+
+    def get_events(self, obj):
+        view = self.context['view']
+        event_data = view.adzerk_results.get(str(obj.id), {})
+        events = {
+            type_: self._signer.sign(data)
+            for type_, data in event_data.items()
+            if type_ != 'impression'  # we handle impression events seperately.
+        }
+        return events or None

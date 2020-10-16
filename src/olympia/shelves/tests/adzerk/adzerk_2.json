@@ -25,7 +25,10 @@
             }],
             "height": 250,
             "width": 300,
-            "events": []
+            "events": [{
+                "id": 2,
+                "url": "https://e-1234.adzerk.net/e.gif?jefoijef3ddfijdf"
+            }]
         },
         "div1": {
             "adId": 20682923,
@@ -49,7 +52,10 @@
             }],
             "height": 250,
             "width": 300,
-            "events": []
+            "events": [{
+                "id": 2,
+                "url": "https://e-1234.adzerk.net/e.gif?e=e3jfiojef&f=dfef"
+            }]
         }
     }
 }

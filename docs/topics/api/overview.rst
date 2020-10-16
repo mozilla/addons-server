@@ -382,6 +382,7 @@ v4 API changelog
 * 2020-10-15: added /shelves/sponsored/ endpoint https://github.com/mozilla/addons-server/issues/15617
 * 2020-10-15: added /shelves/sponsored/impression and /shelves/sponsored/click endpoints https://github.com/mozilla/addons-server/issues/15618 and https://github.com/mozilla/addons-server/issues/15619
 * 2020-10-22: added ``promoted`` to primary hero shelf addon object. https://github.com/mozilla/addons-server/issues/15741
+* 2020-10-22: added /shelves/sponsored/event eventpoint for conversions, and to replace click endpoint https://github.com/mozilla/addons-server/issues/15718
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/

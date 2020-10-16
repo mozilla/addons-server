@@ -20,7 +20,7 @@ from ..utils import (
     get_signed_impression_blob_from_results,
     unsign_signed_blob,
     process_adzerk_results,
-    send_click_ping,
+    send_event_ping,
     send_impression_pings)
 
 
@@ -39,13 +39,15 @@ def test_get_addons_from_adzerk_full():
     results = get_addons_from_adzerk(4)
     assert results == {
         '415198': {
-            'impression': 'e%3DeyJ2IjLtgBug',
-            'click': 'e%3DeyJ2IjoiMS42IiwiYXLCA',
-            'addon_id': '415198'},
+            'impression': r'i.gif%3Fe%3DeyJ2IjLtgBug',
+            'click': r'r%3Fe%3DeyJ2IjoiMS42IiwiYXLCA%26noredirect',
+            'conversion': r'e.gif%3Fjefoijef3ddfijdf',
+        },
         '566314': {
-            'impression': 'e%3DeyJ2IjoNtSz8',
-            'click': 'e%3DeyJ2IjoiMS42IiwiYU5Hw',
-            'addon_id': '566314'},
+            'impression': r'i.gif%3Fe%3DeyJ2IjoNtSz8',
+            'click': r'r%3Fe%3DeyJ2IjoiMS42IiwiYU5Hw%26noredirect',
+            'conversion': r'e.gif%3Fe%3De3jfiojef%26f%3Ddfef',
+        },
     }
 
 
@@ -120,6 +122,10 @@ def test_process_adzerk_results():
                         }
                     },
                 }],
+                "events": [{
+                    "id": 2,
+                    "url": "https://e-9999.adzerk.net/e.gif?e=454545"
+                }]
             },
             'foo2': {
                 "clickUrl": "https://e-9999.adzerk.net/r?e=different",
@@ -131,6 +137,10 @@ def test_process_adzerk_results():
                         }
                     },
                 }],
+                "events": [{
+                    "id": 2,
+                    "url": "https://e-9999.adzerk.net/e.gif?e=787878"
+                }]
             },
             'foo3': {
                 "clickUrl": "https://e-9999.adzerk.net/r?e=eyJ2IjoiMS42IiwiA",
@@ -142,6 +152,7 @@ def test_process_adzerk_results():
                         }
                     },
                 }],
+                "events": []
             },
             # no foo4
             'extrafoo': {
@@ -165,6 +176,10 @@ def test_process_adzerk_results():
                         }
                     },
                 }],
+                "events": [{
+                    "id": 2,
+                    "url": ""
+                }]
             },
             'foo6': None,
         }
@@ -172,14 +187,14 @@ def test_process_adzerk_results():
     results = process_adzerk_results(response, placeholders)
     assert results == {
         '1234': {
-            'impression': 'e%3DeyJ2I%26jLg',
-            'click': 'e%3DeyJ2IjoiMS42I%26iwiA',
-            'addon_id': '1234',
+            'impression': r'i.gif%3Fe%3DeyJ2I%26jLg',
+            'click': r'r%3Fe%3DeyJ2IjoiMS42I%26iwiA%26noredirect',
+            'conversion': r'e.gif%3Fe%3D454545'
         },
         '1': {
-            'impression': 'e%3Dthesfsg',
-            'click': 'e%3Dey44545',
-            'addon_id': '1',
+            'impression': r'i.gif%3Fe%3Dthesfsg',
+            'click': r'r%3Fe%3Dey44545%26noredirect',
+            'conversion': '',
         }
     }
 
@@ -195,12 +210,14 @@ def test_get_addons_from_adzerk(call_server_mock, process_mock):
                 "divName": 'div0',
                 "networkId": network_id,
                 "siteId": site_id,
-                "adTypes": [5]},
+                "adTypes": [5],
+                "eventIds": [2]},
             {
                 "divName": 'div1',
                 "networkId": network_id,
                 "siteId": site_id,
-                "adTypes": [5]},
+                "adTypes": [5],
+                "eventIds": [2]},
         ]}
 
     call_server_mock.return_value = None
@@ -217,7 +234,8 @@ def test_get_addons_from_adzerk(call_server_mock, process_mock):
             "divName": 'div2',
             "networkId": network_id,
             "siteId": site_id,
-            "adTypes": [5]},
+            "adTypes": [5],
+            "eventIds": [2]},
     )
     call_server_mock.assert_called_with(
         settings.ADZERK_URL, data)
@@ -228,37 +246,37 @@ def test_get_addons_from_adzerk(call_server_mock, process_mock):
 @mock.patch('olympia.shelves.utils.statsd.incr')
 def test_send_impression_pings(incr_mock):
     impressions = [
-        'e%3DeyJ2IjLtg%26Bug',
-        'e%3DeyJ2IjoNtSz8',
+        r'i.gif%3Fe%3DeyJ2IjLtg%26Bug',
+        r'i.gif%3Fe%3DeyJ2IjoNtSz8',
     ]
     responses.add(
         responses.GET,
-        settings.ADZERK_IMPRESSION_URL + 'e=eyJ2IjLtg&Bug')
+        settings.ADZERK_EVENT_URL + 'i.gif?e=eyJ2IjLtg&Bug')
     responses.add(
         responses.GET,
-        settings.ADZERK_IMPRESSION_URL + 'e=eyJ2IjoNtSz8')
+        settings.ADZERK_EVENT_URL + 'i.gif?e=eyJ2IjoNtSz8')
 
     signer = TimestampSigner()
     send_impression_pings(signer.sign(','.join(impressions)))
     incr_mock.assert_called_with('services.adzerk.impression.success')
     assert responses.calls[0].request.url == (
-        settings.ADZERK_IMPRESSION_URL + 'e=eyJ2IjLtg&Bug')
+        settings.ADZERK_EVENT_URL + 'i.gif?e=eyJ2IjLtg&Bug')
     assert responses.calls[1].request.url == (
-        settings.ADZERK_IMPRESSION_URL + 'e=eyJ2IjoNtSz8')
+        settings.ADZERK_EVENT_URL + 'i.gif?e=eyJ2IjoNtSz8')
 
 
 @mock.patch('olympia.shelves.utils.statsd.incr')
-def test_send_click_ping(incr_mock):
-    click = 'e%3DeyJ2IjLtg%26Bug'
+def test_send_event_ping(incr_mock):
+    click = r'r%3Fe%3DeyJ2IjLtg%26Bug'
     responses.add(
         responses.GET,
-        settings.ADZERK_CLICK_URL + 'e=eyJ2IjLtg&Bug')
+        settings.ADZERK_EVENT_URL + 'r?e=eyJ2IjLtg&Bug')
 
     signer = TimestampSigner()
-    send_click_ping(signer.sign(click))
-    incr_mock.assert_called_with('services.adzerk.click.success')
+    send_event_ping(signer.sign(click), 'foo')
+    incr_mock.assert_called_with('services.adzerk.foo.success')
     assert responses.calls[0].request.url == (
-        settings.ADZERK_CLICK_URL + 'e=eyJ2IjLtg&Bug&noredirect')
+        settings.ADZERK_EVENT_URL + 'r?e=eyJ2IjLtg&Bug')
 
 
 def test_filter_adzerk_results_to_es_results_qs():
