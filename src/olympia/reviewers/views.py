@@ -894,6 +894,7 @@ def review(request, addon, channel=None):
         # Used for reviewer subscription check, don't use global `is_reviewer`
         # since that actually is `is_user_any_kind_of_reviewer`.
         acl_is_reviewer=acl.is_reviewer(request, addon),
+        acl_is_review_moderator = acl.action_allowed(request, amo.permissions.RATINGS_MODERATE),
         actions=actions,
         actions_comments=actions_comments,
         actions_delayable=actions_delayable,
