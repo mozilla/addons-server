@@ -14,8 +14,10 @@ from olympia.amo.tests import (
     addon_factory,
     AMOPaths,
     TestCase,
+    user_factory,
     version_factory,
 )
+from olympia.blocklist.models import Block
 from olympia.constants.scanners import (
     ABORTED,
     ABORTING,
@@ -804,6 +806,7 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         assert len(yara_results) == 1
         yara_result = yara_results[0]
         assert yara_result.version == self.version
+        assert not yara_result.was_blocked
         assert len(yara_result.results) == 2
         assert yara_result.results[0] == {
             'rule': self.rule.name,
@@ -817,6 +820,37 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         }
         self.rule.reload()
         assert self.rule.state == RUNNING  # Not touched by this task.
+
+    def test_run_on_chunk_was_blocked(self):
+        self.rule.update(state=RUNNING)  # Pretend we started running the rule.
+        Block.objects.create(
+            guid=self.version.addon.guid, updated_by=user_factory()
+        )
+        run_yara_query_rule_on_versions_chunk([self.version.pk], self.rule.pk)
+
+        yara_results = ScannerQueryResult.objects.all()
+        assert len(yara_results) == 1
+        yara_result = yara_results[0]
+        assert yara_result.version == self.version
+        assert yara_result.was_blocked
+
+    def test_run_on_chunk_not_blocked(self):
+        self.rule.update(state=RUNNING)  # Pretend we started running the rule.
+        self.version.update(version='2.0')
+        Block.objects.create(
+            guid=self.version.addon.guid, updated_by=user_factory(),
+            max_version='1.0',
+        )
+        Block.objects.create(
+            guid='@differentguid', updated_by=user_factory(),
+        )
+        run_yara_query_rule_on_versions_chunk([self.version.pk], self.rule.pk)
+
+        yara_results = ScannerQueryResult.objects.all()
+        assert len(yara_results) == 1
+        yara_result = yara_results[0]
+        assert yara_result.version == self.version
+        assert not yara_result.was_blocked
 
     def test_run_on_chunk_fallback_file_path(self):
         # Make sure it still works when a file has been disabled but the path

@@ -416,6 +416,7 @@ class ScannerQueryResult(AbstractScannerResult):
     matched_rules = models.ManyToManyField(
         'ScannerQueryRule', through='ScannerQueryMatch', related_name='results'
     )
+    was_blocked = models.NullBooleanField(default=None)
 
     class Meta(AbstractScannerResult.Meta):
         db_table = 'scanners_query_results'

@@ -689,6 +689,7 @@ class ScannerQueryResultAdmin(
         'formatted_channel',
         'version_number',
         'formatted_created',
+        'was_blocked',
         'authors',
         'formatted_matched_rules',
         'matching_filenames',
@@ -701,6 +702,7 @@ class ScannerQueryResultAdmin(
         ('version__addon__disabled_by_user', AddonVisibilityFilter),
         ('version__files__status', FileStatusFiler),
         ('version__files__is_signed', FileIsSigned),
+        ('was_blocked', admin.BooleanFieldListFilter)
     )
 
     ordering = ('version__addon_id', 'version__channel', 'version__created')
