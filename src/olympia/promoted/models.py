@@ -141,7 +141,7 @@ class PromotedSubscription(ModelBase):
         null=True,
         help_text=(
             "This date is set when the developer has visited the onboarding "
-            "page.",
+            "page."
         ),
     )
     stripe_session_id = models.CharField(
@@ -158,7 +158,7 @@ class PromotedSubscription(ModelBase):
         null=True,
         help_text=(
             "This date is set when the developer successfully completed the"
-            " Stripe Checkout process."
+            " payment process."
         ),
     )
 
