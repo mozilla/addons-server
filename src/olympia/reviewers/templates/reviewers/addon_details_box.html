@@ -96,7 +96,7 @@
                   {% with count='<span itemprop="count">{0}</span>'|format_html(num|numberfmt) %}
                     {# Using num=count so we don't change an L10n string. #}
                     {% if action_allowed(amo.permissions.RATINGS_MODERATE) %}
-                      {% set review_url = 'admin/models/ratings/rating/'|urlparams(addon=addon.pk) %}
+                      {% set review_url = url('admin:ratings_rating_changelist')|urlparams(addon=addon.pk) %}
                       <a href="{{ review_url|absolutify }}"><strong>{{
                         ngettext('{num} review', '{num} reviews', num)|format_html(num=count)
                       }}</strong></a>
