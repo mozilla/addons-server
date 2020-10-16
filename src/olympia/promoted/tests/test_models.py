@@ -1,6 +1,7 @@
 from olympia.amo.tests import addon_factory, TestCase
 from olympia.constants import applications, promoted
-from olympia.promoted.models import PromotedAddon, PromotedApproval
+from olympia.promoted.models import (
+    PromotedAddon, PromotedApproval, PromotedSubscription)
 
 
 class TestPromotedAddon(TestCase):
@@ -47,3 +48,17 @@ class TestPromotedAddon(TestCase):
         promoted_addon.update(group_id=promoted.STRATEGIC.id)
         assert addon.promotedaddon.approved_applications == [
             applications.FIREFOX, applications.ANDROID]
+
+
+class TestPromotedSubscription(TestCase):
+    def test_get_onboarding_url(self):
+        promoted_addon = PromotedAddon.objects.create(
+            addon=addon_factory(), group_id=promoted.VERIFIED_ONE.id
+        )
+        sub = PromotedSubscription(promoted_addon=promoted_addon)
+
+        assert sub.get_onboarding_url() is None
+
+        sub.save()
+
+        assert 'onboarding' in sub.get_onboarding_url()

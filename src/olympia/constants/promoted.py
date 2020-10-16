@@ -134,3 +134,5 @@ PROMOTED_API_NAME_TO_IDS = {
     # we can replace this ugly syntax with dict | in 3.9 - see pep-0584
     **{p.api_name: [p.id] for p in PROMOTED_GROUPS if p},
     **{'badged': list({p.id for p in BADGED_GROUPS})}}
+
+PROMOTED_GROUPS_FOR_SUBSCRIPTION = [VERIFIED_ONE, VERIFIED_TWO]
