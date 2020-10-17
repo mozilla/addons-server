@@ -42,6 +42,7 @@ from olympia.scanners.models import ScannerResult
 from olympia.users.utils import get_task_user
 
 from .compare import version_int
+from .fields import VersionStringField
 
 
 log = olympia.core.logger.getLogger('z.versions')
@@ -169,7 +170,7 @@ class Version(OnChangeMixin, ModelBase):
     release_notes = PurifiedField(db_column='releasenotes', short=False)
     approval_notes = models.TextField(
         db_column='approvalnotes', default='', null=True, blank=True)
-    version = models.CharField(max_length=255, default='0.1')
+    version = VersionStringField(max_length=255, default='0.1')
 
     nomination = models.DateTimeField(null=True)
     reviewed = models.DateTimeField(null=True)
