@@ -1,7 +1,4 @@
 import re
-from functools import total_ordering
-
-from django.utils.encoding import force_text
 
 
 BIGINT_POSITIVE_MAX = 2 ** 63 - 1
@@ -42,17 +39,13 @@ def version_dict(version, asterisk_value=MAX_VERSION_PART):
     return vdict
 
 
-@total_ordering
-class VersionString():
-    string = ''
-    full_dict = {}
+class VersionString(str):
 
-    def __init__(self, string):
-        self.string = force_text(string)
-        vdict = version_dict(self.string, ASTERISK)
-        self.full_dict = self._fill_vdict(vdict)
-
-    def _fill_vdict(self, vdict):
+    @property
+    def full_vdict(self):
+        if hasattr(self, '_full_vdict'):
+            return self._full_vdict
+        vdict = version_dict(self, ASTERISK)
         last_part_value = None
         for part in NUMBERS:
             part_value = vdict[part]
@@ -67,7 +60,8 @@ class VersionString():
                 last_part_value = part_value
         for part in LETTERS:
             vdict[part] = vdict[part] or ''
-        return vdict
+        self._full_vdict = vdict
+        return self._full_vdict
 
     @classmethod
     def _cmp_part(cls, part_a, part_b):
@@ -78,8 +72,12 @@ class VersionString():
         return 0 if part_a == part_b else 1 if part_a > part_b else -1
 
     def __eq__(self, other):
-        for part, value in self.full_dict.items():
-            cmp = self._cmp_part(value, other.full_dict[part])
+        if other is None:
+            return False
+        if not isinstance(other, self.__class__):
+            other = self.__class__(other)
+        for part, value in self.full_vdict.items():
+            cmp = self._cmp_part(value, other.full_vdict[part])
             if cmp == 0:
                 continue
             else:
@@ -87,8 +85,10 @@ class VersionString():
         return True
 
     def __gt__(self, other):
-        for part, value in self.full_dict.items():
-            other_value = other.full_dict[part]
+        if not isinstance(other, self.__class__):
+            other = self.__class__(other)
+        for part, value in self.full_vdict.items():
+            other_value = other.full_vdict[part]
             if part in LETTERS:
                 cmp = self._cmp_part(value or 'z', other_value or 'z')
             else:
@@ -99,25 +99,35 @@ class VersionString():
                 return cmp == 1
         return False
 
-    def __str__(self):
-        return self.string
+    def __ge__(self, other):
+        return self.__gt__(other) or self.__eq__(other)
+
+    def __lt__(self, other):
+        return not self.__ge__(other)
+
+    def __le__(self, other):
+        return not self.__gt__(other)
+
+    def app_version_int(self):
+        """This is used for converting an app version's version string into a
+        single number for comparison.  To maintain compatibility the minor
+        parts are limited to 99 making it unsuitable for comparing addon
+        version strings.
+        """
+        vdict = dict(self.full_vdict)
+        for part in NUMBERS:
+            max_num = MAX_VERSION_PART if part == 'major' else 99
+            number = vdict[part]
+            vdict[part] = (
+                max_num if number == ASTERISK else min(number, max_num))
+        vdict['alpha'] = {'a': 0, 'b': 1}.get(vdict['alpha'], 2)
+        vdict['pre'] = 0 if vdict['pre'] else 1
+
+        vint = '%d%02d%02d%02d%d%02d%d%02d' % (
+            vdict['major'], vdict['minor1'], vdict['minor2'], vdict['minor3'],
+            vdict['alpha'], vdict['alpha_ver'], vdict['pre'], vdict['pre_ver'])
+        return min(int(vint), BIGINT_POSITIVE_MAX)
 
 
 def version_int(version):
-    """This is used for converting an app version's version string into a
-    single number for comparison.  To maintain compatibility the minor parts
-    are limited to 99 making it unsuitable for comparing addon version strings.
-    """
-    vstr = VersionString(version)
-    vdict = dict(vstr.full_dict)
-    for part in NUMBERS:
-        max_num = MAX_VERSION_PART if part == 'major' else 99
-        number = vdict[part]
-        vdict[part] = max_num if number == ASTERISK else min(number, max_num)
-    vdict['alpha'] = {'a': 0, 'b': 1}.get(vdict['alpha'], 2)
-    vdict['pre'] = 0 if vdict['pre'] else 1
-
-    vint = '%d%02d%02d%02d%d%02d%d%02d' % (
-        vdict['major'], vdict['minor1'], vdict['minor2'], vdict['minor3'],
-        vdict['alpha'], vdict['alpha_ver'], vdict['pre'], vdict['pre_ver'])
-    return min(int(vint), BIGINT_POSITIVE_MAX)
+    return VersionString(version).app_version_int()

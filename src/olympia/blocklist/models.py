@@ -19,6 +19,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import chunked
 from olympia.users.models import UserProfile
 from olympia.versions.compare import VersionString
+from olympia.versions.fields import VersionStringField
 from olympia.versions.models import Version
 
 from .utils import (
@@ -27,12 +28,12 @@ from .utils import (
 
 
 class Block(ModelBase):
-    MIN = '0'
-    MAX = '*'
+    MIN = VersionString('0')
+    MAX = VersionString('*')
 
     guid = models.CharField(max_length=255, unique=True, null=False)
-    min_version = models.CharField(max_length=255, blank=False, default=MIN)
-    max_version = models.CharField(max_length=255, blank=False, default=MAX)
+    min_version = VersionStringField(max_length=255, blank=True, default=MIN)
+    max_version = VersionStringField(max_length=255, blank=True, default=MAX)
     url = models.CharField(max_length=255, blank=True)
     reason = models.TextField(blank=True)
     updated_by = models.ForeignKey(
@@ -108,14 +109,6 @@ class Block(ModelBase):
         for block in blocks:
             block.addon_versions = all_addon_versions[block.guid]
 
-    @cached_property
-    def min_version_vstring(self):
-        return VersionString(self.min_version)
-
-    @cached_property
-    def max_version_vstring(self):
-        return VersionString(self.max_version)
-
     def clean(self):
         if self.id:
             # We're only concerned with edits - self.guid isn't set at this
@@ -126,15 +119,14 @@ class Block(ModelBase):
                 raise ValidationError({'min_version': _('Invalid version')})
             if self.max_version not in choices + [self.MAX]:
                 raise ValidationError({'max_version': _('Invalid version')})
-        if self.min_version_vstring > self.max_version_vstring:
+        if self.min_version > self.max_version:
             raise ValidationError(
                 _('Min version can not be greater than Max version'))
 
     def is_version_blocked(self, version):
-        version_vstr = VersionString(version)
         return (
-            version_vstr >= self.min_version_vstring and
-            version_vstr <= self.max_version_vstring)
+            self.min_version <= version and
+            self.max_version >= version)
 
     def review_listed_link(self):
         has_listed = any(
@@ -282,9 +274,7 @@ class BlocklistSubmission(ModelBase):
         return changes
 
     def clean(self):
-        min_vstr = VersionString(self.min_version)
-        max_vstr = VersionString(self.max_version)
-        if min_vstr > max_vstr:
+        if VersionString(self.min_version) > self.max_version:
             raise ValidationError(
                 _('Min version can not be greater than Max version'))
 

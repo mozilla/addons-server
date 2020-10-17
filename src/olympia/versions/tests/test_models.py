@@ -34,7 +34,7 @@ from olympia.promoted.models import PromotedApproval
 from olympia.reviewers.models import AutoApprovalSummary
 from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
-from olympia.versions.compare import version_int
+from olympia.versions.compare import version_int, VersionString
 from olympia.versions.models import (
     ApplicationsVersions, Version, VersionPreview, VersionReviewerFlags,
     source_upload_path)
@@ -795,6 +795,34 @@ class TestVersion(TestCase):
                 (RECOMMENDED, amo.FIREFOX), (LINE, amo.FIREFOX)]
             assert versions[0].approved_for_groups == [
                 (RECOMMENDED, amo.FIREFOX), (RECOMMENDED, amo.ANDROID)]
+
+    def test_version_string(self):
+        addon = Addon.objects.get(id=3615)
+        version = addon.current_version
+        assert isinstance(version.version, VersionString)
+        assert version.version == '2.1.072'
+        assert version.version == '2.1.72.0'  # VersionString magic
+        assert version.version > '2.1.072pre'
+        # works after an update
+        version.update(version=VersionString('2.00123'))
+        assert isinstance(version.version, VersionString)
+        assert version.version == '2.00123'
+        assert version.version == '2.123.0.0'
+        assert version.version > '2.00123a4'
+        # updating a flat string still works
+        version.update(version='3.3')
+        assert isinstance(version.version, VersionString)
+        assert version.version == '3.03.0'
+        version = version.reload()
+        assert isinstance(version.version, VersionString)
+        assert version.version == '3.03.0'
+        # and directly assigning to the field and saving too
+        version.version = '5.1b4'
+        assert isinstance(version.version, VersionString)
+        version.save()
+        assert isinstance(version.version, VersionString)
+        version = version.reload()
+        assert version.version == '5.1b4'
 
 
 @pytest.mark.parametrize("addon_status,file_status,is_unreviewed", [
