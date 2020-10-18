@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-10-18 22:32+0000\n"
+"PO-Revision-Date: 2020-10-18 22:38+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -469,7 +469,7 @@ msgid "This name cannot be used."
 msgstr "Bu isim kullanılamaz."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
-msgstr ""
+msgstr "Özel URL harflerden, sayılardan, alt çizgilerden veya kısa çizgilerden oluşmalıdır."
 
 msgid "This custom URL cannot be used."
 msgstr "Bu özel URL kullanılamaz."
@@ -576,7 +576,7 @@ msgid "versions"
 msgstr "sürümler"
 
 msgid "Included in legacy blocklist."
-msgstr ""
+msgstr "Eski engelleme listesine dahil edildi."
 
 msgid "{addon} was created."
 msgstr "{addon} oluşturuldu."
@@ -1076,7 +1076,7 @@ msgid "Bookmarks"
 msgstr "Yer İmleri"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr ""
+msgstr "Yer imlerini parola ile koruyacak, kopyaları arayacak, bozuk yer imlerini bulacak ve daha fazlasını yapacak eklentileri indirin."
 
 msgid "Download Management"
 msgstr "İndirme Yönetimi"
@@ -1088,7 +1088,7 @@ msgid "Feeds, News & Blogging"
 msgstr "Akışlar, Haberler ve Blog'lar"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
-msgstr ""
+msgstr "Karmaşıklığı azaltan Firefox eklentilerini indirin. Sosyal medya, blog ve RSS'leri takip edin; göz yorgunluğunu azaltın ve çok daha fazlasını yapın."
 
 msgid "Games & Entertainment"
 msgstr "Oyunlar ve Eğlence"
@@ -2207,7 +2207,7 @@ msgid "You have been invited to become an author of {addon_name}."
 msgstr "{addon_name} eklentisinin yazarı olmaya davet edildiniz."
 
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
-msgstr ""
+msgstr "Daveti kabul etmeniz size eklentiyi düzenleme erişimi verir ve adınızı web sitesindeki yazarlar listesinde gösterebilir."
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr ""
