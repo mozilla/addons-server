@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-10-01 21:28+0000\n"
+"PO-Revision-Date: 2020-10-18 22:32+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -4020,7 +4020,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
-msgstr ""
+msgstr "Sekmeleri kapatmak, sayfalarda gezinmek ve daha fazlası için fare hareketlerini kullanın."
 
 #. editorial content for the discovery pane.
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4046,7 +4046,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
-msgstr ""
+msgstr "Varsayılan olarak tüm açılır pencereleri engelleyin, ardından hangilerini açmak istediğinize karar verin."
 
 #. editorial content for the discovery pane.
 msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4543,7 +4543,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Configure new tab pages to display custom background colors and images."
-msgstr ""
+msgstr "Yeni sekme sayfalarında özel arka plan renkleri ve resimler kullanın."
 
 #. editorial content for the discovery pane.
 msgid "Cat lovers rejoice {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4920,7 +4920,7 @@ msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} not tutun"
 
 #. editorial content for the discovery pane.
 msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
-msgstr ""
+msgstr "Kişisel notlarınızı web'de istediğiniz yerde saklayın. Web sayfalarına not eklemek için kenar çubuğunu kullanabilirsiniz."
 
 #. editorial content for the discovery pane.
 msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4945,7 +4945,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
-msgstr ""
+msgstr "İnterneti kendi göz zevkinize göre uyarlamak için web'i karartın veya kendi renk düzeninizi seçin."
 
 #. editorial content for the discovery pane.
 msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4954,7 +4954,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Get a more advanced search page on Firefox for Android."
-msgstr ""
+msgstr "Android için Firefox'ta daha gelişmiş bir arama sayfası edinin."
 
 #. editorial content for the discovery pane.
 msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5011,7 +5011,7 @@ msgstr "Video, açılır pencereler, banner'lar ve daha fazlası dahil tüm rekl
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Watch streaming media with friends and family anywhere."
-msgstr ""
+msgstr "Arkadaşlarınız ve ailenizle istediğiniz yerde canlı medya izleyin."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5026,7 +5026,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Double-click any word to instantly see its definition."
-msgstr ""
+msgstr "İstediğiniz kelimeye çift tıklayarak tanımını görün."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -5156,7 +5156,7 @@ msgstr "Beklenmeyen hata."
 
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
-msgstr ""
+msgstr "Bu tür (%s), AMO'daki eklentinizin türüyle (%s) eşleşmiyor"
 
 msgid "Review Guidelines"
 msgstr "İnceleme Yönergesi"
@@ -5464,7 +5464,7 @@ msgid "You can't submit an empty comment."
 msgstr "Boş bir yorum gönderemezsiniz."
 
 msgid "You can't submit a line number without associating it to a filename."
-msgstr ""
+msgstr "Bir satır numarasını bir dosya adıyla ilişkilendirmeden gönderemezsiniz."
 
 msgid "Type"
 msgstr "Türü"
@@ -5524,10 +5524,10 @@ msgid "Unlisted versions ({0})"
 msgstr "Listelenmeyen sürümler ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr ""
+msgstr "Bu, mevcut sürümü onaylayacak, imzalayacak ve yayınlayacaktır. Yorumlar geliştiriciye gönderilecek."
 
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr ""
+msgstr "Bu, mevcut sürümü reddedecek ve kuyruktan kaldıracaktır. Yorumlar geliştiriciye gönderilecek."
 
 msgid "Approve Content"
 msgstr "İçeriği onayla"
@@ -5901,7 +5901,7 @@ msgid "Process Reviews"
 msgstr "İncelemeleri işle"
 
 msgid "Moderation actions:"
-msgstr ""
+msgstr "Denetleme eylemleri:"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
@@ -6818,6 +6818,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"Aşağıdaki yazar %(addon_name)s ( %(addon_url)s ) eklentinize eklendi:\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6841,6 +6844,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"Aşağıdaki yazarın %(addon_name)s ( %(addon_url)s ) eklentinizdeki rolü değiştirildi:\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6848,6 +6854,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s )"
 msgstr ""
+"Aşağıdaki yazar %(addon_name)s ( %(addon_url)s ) eklentisinden kaldırıldı:\n"
+"\n"
+"%(author_name)s ( %(author_url)s )"
 
 #, python-format
 msgid ""
