@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-10-19 10:21+0000\n"
+"PO-Revision-Date: 2020-10-19 10:30+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4169,7 +4169,7 @@ msgstr "Μάθετε που πηγαίνετε στο διαδίκτυο {start_
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
-msgstr ""
+msgstr "Μάθετε πού πηγαίνετε στο διαδίκτυο. Βρείτε τη χώρα των ιστοσελίδων που επισκέπτεστε. Γίνετε ένας ενημερωμένος ταξιδιώτης του διαδικτύου."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4331,7 +4331,7 @@ msgstr "Άμεσες μεταφράσεις {start_sub_heading}με το {addon_
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations by highlighting text and clicking the button that pops up."
-msgstr ""
+msgstr "Άμεση μετάφραση επιλέγοντας κείμενο και κάνοντας κλικ στο κουμπί που εμφανίζεται."
 
 #. editorial content for the discovery pane.
 msgid "No more redirects {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4432,7 +4432,7 @@ msgstr "Παράλειψη ανακατευθύνσεων & ιχνηλατών {
 
 #. editorial content for the discovery pane.
 msgid "Strip away redirect pages and URL tracking parameters from web links. Works automatically."
-msgstr ""
+msgstr "Αφαιρέστε τις σελίδες ανακατεύθυνσης και τις παραμέτρους παρακολούθησης URL από συνδέσμους. Λειτουργεί αυτόματα."
 
 #. editorial content for the discovery pane.
 msgid "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4465,7 +4465,7 @@ msgstr "Κάντε σημειώσεις {start_sub_heading}με το {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Create general and website-specific notes to review later."
-msgstr ""
+msgstr "Δημιουργήστε γενικές, αλλά και ειδικές για κάθε ιστοσελίδα, σημειώσεις για ανασκόπηση αργότερα."
 
 #. editorial content for the discovery pane.
 msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4474,7 +4474,7 @@ msgstr "Κύλιση όπως στο τηλέφωνο {start_sub_heading}με τ
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
-msgstr ""
+msgstr "Δυνατότητες κύλισης τηλεφώνου στον υπολογιστή σας. Δυνατότητες, όπως επιλογή και απόθεση, με το ποντίκι."
 
 #. editorial content for the discovery pane.
 msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4535,7 +4535,7 @@ msgstr "Διαγραφή ιστορικού περιήγησης {start_sub_head
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr ""
+msgstr "Διαγράψτε το ιστορικό περιήγησής σας. Καθορίστε έναν αριθμό ημερών που θα διατηρείται το ιστορικό του προγράμματος περιήγησης σας πριν την αυτόματη διαγραφή."
 
 #. editorial content for the discovery pane.
 msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4576,7 +4576,7 @@ msgstr "Σταματήστε την κατάληψη καρτελών {start_sub
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr ""
+msgstr "Δώστε ένα τέλος στην παραβίαση των καρτελών. Εμποδίστε την κατάληψη καρτελών και τη φόρτωση ανεπιθύμητου περιεχομένου από συνδέσμους που κάνατε κλικ."
 
 #. editorial content for the discovery pane.
 msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4600,7 +4600,7 @@ msgstr "Εύρεση βίντεο {start_sub_heading}με το {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Highlight text from any website and right-click to search YouTube for related media."
-msgstr ""
+msgstr "Επισημάνετε κείμενο σε οποιαδήποτε ιστοσελίδα και κάντε δεξί κλικ για αναζήτηση στο YouTube για σχετικά πολυμέσα."
 
 #. editorial content for the discovery pane.
 msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4625,7 +4625,7 @@ msgstr "Απολαύστε μια παράξενη εκπαίδευση {start_s
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
-msgstr ""
+msgstr "Απολαύστε μια διαφορετική εκπαίδευση. Φόρτωση τυχαίου άρθρου από τη Βικιπαίδεια, κάθε φορά που ανοίγετε μια νέα καρτέλα."
 
 #. editorial content for the discovery pane.
 msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4633,7 +4633,7 @@ msgstr "Αλλαγή νέας καρτέλας {start_sub_heading}με το {add
 
 #. editorial content for the discovery pane.
 msgid "Configure new tab pages to display custom background colors and images."
-msgstr ""
+msgstr "Διαμορφώστε τις νέες καρτέλες σελίδων για εμφάνιση προσαρμοσμένων χρωμάτων και εικόνων φόντου."
 
 #. editorial content for the discovery pane.
 msgid "Cat lovers rejoice {start_sub_heading}with {addon_name}{end_sub_heading}"
