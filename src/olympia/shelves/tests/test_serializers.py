@@ -61,7 +61,7 @@ class TestShelvesSerializer(ESTestCase):
             title='Holidây themes',
             endpoint='search',
             criteria=(
-                '?category=holiday&sort=recommended%2Cusers' + \
+                '?category=holiday&sort=recommended%2Cusers' +
                 '&type=statictheme&app=firefox'),
             footer_text='See more holidây themes')
 
