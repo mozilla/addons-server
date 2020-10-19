@@ -17,10 +17,16 @@ class ExternalAddonSerializer(AddonSerializer):
         model = Addon
 
 
+class HeroAddonSerializer(DiscoveryAddonSerializer):
+    class Meta:
+        fields = DiscoveryAddonSerializer.Meta.fields + ('promoted',)
+        model = Addon
+
+
 class PrimaryHeroShelfSerializer(serializers.ModelSerializer):
     description = serializers.SerializerMethodField()
     featured_image = serializers.CharField(source='image_url')
-    addon = DiscoveryAddonSerializer(source='promoted_addon.addon')
+    addon = HeroAddonSerializer(source='promoted_addon.addon')
     external = ExternalAddonSerializer(source='promoted_addon.addon')
 
     class Meta:
