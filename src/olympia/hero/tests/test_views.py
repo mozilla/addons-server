@@ -1,5 +1,6 @@
 import json
 
+from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import addon_factory, TestCase, reverse_ns
 from olympia.amo.tests.test_helpers import get_uploaded_file
@@ -135,6 +136,74 @@ class TestPrimaryHeroShelfViewSet(TestCase):
         response = self.client.get(self.url + '?all=true')
         assert response.status_code == 200
         assert len(response.json()['results']) == 3
+
+    def test_public_filtering(self):
+        ph = PrimaryHero.objects.create(
+            promoted_addon=PromotedAddon.objects.create(
+                addon=addon_factory()),
+            select_image=self.phi_a,
+            gradient_color='#989898',
+            enabled=True)
+        PrimaryHero.objects.create(
+            promoted_addon=PromotedAddon.objects.create(
+                addon=addon_factory(status=amo.STATUS_DELETED)),
+            select_image=self.phi_b,
+            gradient_color='#989898',
+            enabled=True)
+        PrimaryHero.objects.create(
+            promoted_addon=PromotedAddon.objects.create(
+                addon=addon_factory(disabled_by_user=True)),
+            select_image=self.phi_c,
+            gradient_color='#989898',
+            enabled=True)
+        PrimaryHero.objects.create(
+            promoted_addon=PromotedAddon.objects.create(
+                addon=addon_factory(status=amo.STATUS_NOMINATED)),
+            select_image=self.phi_d,
+            gradient_color='#989898',
+            enabled=True)
+        # external addons don't have to be public
+        external = PrimaryHero.objects.create(
+            promoted_addon=PromotedAddon.objects.create(
+                addon=addon_factory(status=amo.STATUS_NULL)),
+            select_image=self.phi_a,
+            gradient_color='#989898',
+            enabled=True,
+            is_external=True)
+        # but we still filter out deleted and disabled
+        PrimaryHero.objects.create(
+            promoted_addon=PromotedAddon.objects.create(
+                addon=addon_factory(status=amo.STATUS_DELETED)),
+            select_image=self.phi_b,
+            gradient_color='#989898',
+            enabled=True,
+            is_external=True)
+        PrimaryHero.objects.create(
+            promoted_addon=PromotedAddon.objects.create(
+                addon=addon_factory(status=amo.STATUS_DISABLED)),
+            select_image=self.phi_c,
+            gradient_color='#989898',
+            enabled=True,
+            is_external=True)
+        PrimaryHero.objects.create(
+            promoted_addon=PromotedAddon.objects.create(
+                addon=addon_factory(disabled_by_user=True)),
+            select_image=self.phi_d,
+            gradient_color='#989898',
+            enabled=True,
+            is_external=True)
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert len(response.json()['results']) == 2
+        assert response.json()['results'][0]['addon']['id'] == (
+            ph.promoted_addon.addon.id)
+        assert response.json()['results'][1]['external']['id'] == (
+            external.promoted_addon.addon.id)
+
+        response = self.client.get(self.url + '?all=true')
+        assert response.status_code == 200
+        assert len(response.json()['results']) == 8
 
     def test_raw_param(self):
         PrimaryHero.objects.create(
