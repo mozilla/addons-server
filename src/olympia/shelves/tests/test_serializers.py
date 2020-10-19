@@ -51,11 +51,25 @@ class TestShelvesSerializer(ESTestCase):
         cls.refresh()
 
     def setUp(self):
-        self.search_shelf = Shelf.objects.create(
+        self.search_pop_thm = Shelf.objects.create(
             title='Populâr themes',
             endpoint='search',
             criteria='?sort=users&type=statictheme',
             footer_text='See more populâr themes')
+
+        self.search_hol_thm = Shelf.objects.create(
+            title='Holidây themes',
+            endpoint='search',
+            criteria=(
+                '?category=holiday&sort=recommended%2Cusers' + \
+                '&type=statictheme&app=firefox'),
+            footer_text='See more holidây themes')
+
+        self.search_rec_thm = Shelf.objects.create(
+            title='Recommended themes',
+            endpoint='search',
+            criteria='?promoted=recommended&sort=random&type=statictheme',
+            footer_text='See more recommended themes')
 
         self.collections_shelf = Shelf.objects.create(
             title='Enhanced privacy extensions',
@@ -79,29 +93,61 @@ class TestShelvesSerializer(ESTestCase):
     def serialize(self, instance, **extra_context):
         if instance.endpoint == 'search':
             self.request.query_params = dict(parse.parse_qsl(
-                self.search_shelf.criteria))
+                instance.criteria))
         return self.get_serializer(instance, **extra_context).data
 
     def test_shelf_serializer_search(self):
-        data = self.serialize(instance=self.search_shelf)
-        search_url = reverse_ns('addon-search') + self.search_shelf.criteria
+        pop_thm_data = self.serialize(instance=self.search_pop_thm)
+        hol_thm_data = self.serialize(instance=self.search_hol_thm)
+        rec_thm_data = self.serialize(instance=self.search_rec_thm)
 
-        assert data['title'] == 'Populâr themes'
-        assert data['url'] == search_url
-        assert data['endpoint'] == self.search_shelf.endpoint
-        assert data['criteria'] == self.search_shelf.criteria
-        assert data['footer_text'] == 'See more populâr themes'
-        assert data['footer_pathname'] == ''
+        pop_url = reverse_ns('addon-search') + self.search_pop_thm.criteria
+        hol_url = reverse_ns('addon-search') + self.search_hol_thm.criteria
+        rec_url = reverse_ns('addon-search') + self.search_rec_thm.criteria
 
-        assert len(data['addons']) == 2
+        assert pop_thm_data['title'] == 'Populâr themes'
+        assert pop_thm_data['url'] == pop_url
+        assert pop_thm_data['endpoint'] == self.search_pop_thm.endpoint
+        assert pop_thm_data['criteria'] == self.search_pop_thm.criteria
+        assert pop_thm_data['footer_text'] == 'See more populâr themes'
+        assert pop_thm_data['footer_pathname'] == ''
 
-        assert data['addons'][0]['name']['en-US'] == 'test addon test02'
-        assert data['addons'][0]['promoted'] is None
-        assert data['addons'][0]['type'] == 'statictheme'
+        assert len(pop_thm_data['addons']) == 2
 
-        assert data['addons'][1]['name']['en-US'] == 'test addon test04'
-        assert data['addons'][1]['promoted']['category'] == 'recommended'
-        assert data['addons'][1]['type'] == 'statictheme'
+        assert pop_thm_data['addons'][0]['name']['en-US'] == (
+            'test addon test02')
+        assert pop_thm_data['addons'][0]['promoted'] is None
+        assert pop_thm_data['addons'][0]['type'] == 'statictheme'
+
+        assert pop_thm_data['addons'][1]['name']['en-US'] == (
+            'test addon test04')
+        assert pop_thm_data['addons'][1]['promoted']['category'] == (
+            'recommended')
+        assert pop_thm_data['addons'][1]['type'] == 'statictheme'
+
+        assert hol_thm_data['title'] == 'Holidây themes'
+        assert hol_thm_data['url'] == hol_url
+        assert hol_thm_data['endpoint'] == self.search_hol_thm.endpoint
+        assert hol_thm_data['criteria'] == self.search_hol_thm.criteria
+        assert hol_thm_data['footer_text'] == 'See more holidây themes'
+        assert hol_thm_data['footer_pathname'] == ''
+
+        assert len(hol_thm_data['addons']) == 0
+
+        assert rec_thm_data['title'] == 'Recommended themes'
+        assert rec_thm_data['url'] == rec_url
+        assert rec_thm_data['endpoint'] == self.search_rec_thm.endpoint
+        assert rec_thm_data['criteria'] == self.search_rec_thm.criteria
+        assert rec_thm_data['footer_text'] == 'See more recommended themes'
+        assert rec_thm_data['footer_pathname'] == ''
+
+        assert len(rec_thm_data['addons']) == 1
+
+        assert rec_thm_data['addons'][0]['name']['en-US'] == (
+            'test addon test04')
+        assert rec_thm_data['addons'][0]['promoted']['category'] == (
+            'recommended')
+        assert rec_thm_data['addons'][0]['type'] == 'statictheme'
 
     def test_shelf_serializer_collections(self):
         data = self.serialize(instance=self.collections_shelf)

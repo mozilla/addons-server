@@ -45,7 +45,10 @@ class ShelfSerializer(serializers.ModelSerializer):
             request = self.context.get('request', None)
             request.GET = request.GET.copy()
             request.GET.update(params)
-            return AddonSearchView(request=request).data
+            addons = AddonSearchView(request=request).data
+            for key in request.GET.dict():
+                del request.GET[key]
+            return addons
         else:
             return None
 
