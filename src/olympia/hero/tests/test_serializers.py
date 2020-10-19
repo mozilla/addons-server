@@ -1,14 +1,14 @@
 from olympia import amo
 from olympia.amo.tests import addon_factory, TestCase
 from olympia.amo.tests.test_helpers import get_uploaded_file
-from olympia.discovery.serializers import DiscoveryAddonSerializer
+from olympia.constants.promoted import RECOMMENDED
 from olympia.promoted.models import PromotedAddon
 
 from ..models import (
     GRADIENT_START_COLOR, PrimaryHero, PrimaryHeroImage, SecondaryHero,
     SecondaryHeroModule)
 from ..serializers import (
-    ExternalAddonSerializer, PrimaryHeroShelfSerializer,
+    ExternalAddonSerializer, HeroAddonSerializer, PrimaryHeroShelfSerializer,
     SecondaryHeroShelfSerializer)
 
 
@@ -20,9 +20,9 @@ class TestPrimaryHeroShelfSerializer(TestCase):
             'http://testserver/user-media/hero-featured-image/transparent.jpg')
 
     def test_basic(self):
-        addon = addon_factory()
+        addon = addon_factory(recommended=True)
         hero = PrimaryHero.objects.create(
-            promoted_addon=PromotedAddon.objects.create(addon=addon),
+            promoted_addon=addon.promotedaddon,
             description='Déscription',
             select_image=self.phi,
             gradient_color='#008787')
@@ -34,7 +34,11 @@ class TestPrimaryHeroShelfSerializer(TestCase):
                 'start': GRADIENT_START_COLOR[1],
                 'end': 'color-green-70'
             },
-            'addon': DiscoveryAddonSerializer(instance=addon).data,
+            'addon': HeroAddonSerializer(instance=addon).data,
+        }
+        assert data['addon']['promoted'] == {
+            'apps': [amo.FIREFOX.short, amo.ANDROID.short],
+            'category': RECOMMENDED.api_name,
         }
 
     def test_description(self):
