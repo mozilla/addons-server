@@ -17,10 +17,11 @@ from rest_framework import serializers
 
 import olympia.core.logger
 
-from olympia.amo.tests import user_factory, addon_factory, copy_file_to_temp
 from olympia import amo
+from olympia.access.models import Group, GroupUser
 from olympia.addons.models import AddonUser, Preview, Addon
 from olympia.addons.utils import generate_addon_guid
+from olympia.amo.tests import user_factory, addon_factory, copy_file_to_temp
 from olympia.amo.utils import days_ago
 from olympia.constants.applications import APPS, FIREFOX
 from olympia.constants.base import (
@@ -409,6 +410,11 @@ class GenerateAddonsSerializer(serializers.Serializer):
         user, _ = UserProfile.objects.get_or_create(
             pk=settings.TASK_USER_ID,
             defaults={'email': 'admin@mozilla.com', 'username': 'admin'})
+        # Groups should have been created by loaddata initial.json at this
+        # point, we need our user to be part of a group allowed to submit
+        # extensions signed by Mozilla. Let's use Admins (pk=1) as a shortcut.
+        GroupUser.objects.get_or_create(
+            user=user, group=Group.objects.get(pk=1))
 
         # generate a proper uploaded file that simulates what django requires
         # as request.POST
