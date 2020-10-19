@@ -48,8 +48,7 @@ class TestPromotedAddonAdmin(TestCase):
         }
 
     def test_can_see_in_admin_with_discovery_edit(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Discovery:Edit')
         self.client.login(email=user.email)
         url = reverse('admin:index')
@@ -64,8 +63,7 @@ class TestPromotedAddonAdmin(TestCase):
 
     def test_can_list_with_discovery_edit_permission(self):
         PromotedAddon.objects.create(addon=addon_factory(name='FooBâr'))
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Discovery:Edit')
         self.client.login(email=user.email)
 
@@ -124,8 +122,7 @@ class TestPromotedAddonAdmin(TestCase):
         item.reload()
         assert item.approved_applications
         detail_url = reverse(self.detail_url_name, args=(item.pk,))
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Discovery:Edit')
         self.client.login(email=user.email)
         response = self.client.get(detail_url, follow=True)
@@ -175,8 +172,7 @@ class TestPromotedAddonAdmin(TestCase):
             version=ver1, group_id=RECOMMENDED.id,
             application_id=amo.FIREFOX.id)
         detail_url = reverse(self.detail_url_name, args=(item.pk,))
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Discovery:Edit')
         self.client.login(email=user.email)
 
@@ -219,8 +215,7 @@ class TestPromotedAddonAdmin(TestCase):
         addon.reload()
         assert item.approved_applications
         detail_url = reverse(self.detail_url_name, args=(item.pk,))
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.client.login(email=user.email)
         # can't access
         response = self.client.get(detail_url, follow=True)
@@ -255,8 +250,7 @@ class TestPromotedAddonAdmin(TestCase):
         delete_url = reverse(
             'admin:discovery_promotedaddon_delete', args=(item.pk,)
         )
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Discovery:Edit')
         self.client.login(email=user.email)
         # Can access delete confirmation page.
@@ -281,8 +275,7 @@ class TestPromotedAddonAdmin(TestCase):
         delete_url = reverse(
             'admin:discovery_promotedaddon_delete', args=(item.pk,)
         )
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.client.login(email=user.email)
         # Can't access delete confirmation page.
         response = self.client.get(delete_url, follow=True)
@@ -300,8 +293,7 @@ class TestPromotedAddonAdmin(TestCase):
     def test_can_add_with_discovery_edit_permission(self):
         addon = addon_factory()
         add_url = reverse('admin:discovery_promotedaddon_add')
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Discovery:Edit')
         self.client.login(email=user.email)
         response = self.client.get(add_url, follow=True)
@@ -329,8 +321,7 @@ class TestPromotedAddonAdmin(TestCase):
     def test_can_add_when_existing_approval(self):
         addon = addon_factory(name='unattached')
         add_url = reverse('admin:discovery_promotedaddon_add')
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Discovery:Edit')
         self.client.login(email=user.email)
         # create an approval that doesn't have a matching PromotedAddon yet
@@ -360,8 +351,7 @@ class TestPromotedAddonAdmin(TestCase):
     def test_cannot_add_without_discovery_edit_permission(self):
         addon = addon_factory()
         add_url = reverse('admin:discovery_promotedaddon_add')
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.client.login(email=user.email)
         response = self.client.get(add_url, follow=True)
         assert response.status_code == 403
@@ -384,8 +374,7 @@ class TestPromotedAddonAdmin(TestCase):
         self.detail_url = reverse(
             self.detail_url_name, args=(item.pk,)
         )
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Discovery:Edit')
         self.client.login(email=user.email)
         response = self.client.get(self.detail_url, follow=True)
@@ -420,8 +409,7 @@ class TestPromotedAddonAdmin(TestCase):
         self.detail_url = reverse(
             self.detail_url_name, args=(item.pk,)
         )
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Discovery:Edit')
         self.client.login(email=user.email)
         response = self.client.get(self.detail_url, follow=True)
@@ -459,8 +447,7 @@ class TestPromotedAddonAdmin(TestCase):
         delete_url = reverse(
             'admin:discovery_promotedaddon_delete', args=(item.pk,)
         )
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Discovery:Edit')
         self.client.login(email=user.email)
         # Can access delete confirmation page.

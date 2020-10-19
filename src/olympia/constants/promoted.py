@@ -17,6 +17,7 @@ _PromotedSuperClass = namedtuple(
         'admin_review',
         'badged',
         'autograph_signing_states',
+        'can_primary_hero',
     ],
     defaults=(
         # "Since fields with a default value must come after any fields without
@@ -27,6 +28,7 @@ _PromotedSuperClass = namedtuple(
         False,  # admin_review
         False,  # badged
         {},  # autograph_signing_states - should be a dict of App.short: state
+        False,  # can_primary_hero - can be added to a primary hero shelf
     )
 )
 
@@ -55,6 +57,7 @@ RECOMMENDED = PromotedClass(
     autograph_signing_states={
         applications.FIREFOX.short: 'recommended',
         applications.ANDROID.short: 'recommended-android'},
+    can_primary_hero=True,
 )
 
 VERIFIED_ONE = PromotedClass(
@@ -67,6 +70,7 @@ VERIFIED_ONE = PromotedClass(
     autograph_signing_states={
         applications.FIREFOX.short: 'verified',
         applications.ANDROID.short: 'verified'},
+    can_primary_hero=True,
 )
 
 VERIFIED_TWO = PromotedClass(
@@ -92,6 +96,7 @@ LINE = PromotedClass(
     autograph_signing_states={
         applications.FIREFOX.short: 'line',
         applications.ANDROID.short: 'line'},
+    can_primary_hero=True,
 )
 
 SPOTLIGHT = PromotedClass(
@@ -101,6 +106,7 @@ SPOTLIGHT = PromotedClass(
     warning=False,
     pre_review=True,
     admin_review=True,
+    can_primary_hero=True,
 )
 
 STRATEGIC = PromotedClass(
@@ -129,3 +135,5 @@ PROMOTED_API_NAME_TO_IDS = {
     # we can replace this ugly syntax with dict | in 3.9 - see pep-0584
     **{p.api_name: [p.id] for p in PROMOTED_GROUPS if p},
     **{BADGED_API_NAME: list({p.id for p in BADGED_GROUPS})}}
+
+PROMOTED_GROUPS_FOR_SUBSCRIPTION = [VERIFIED_ONE, VERIFIED_TWO]

@@ -30,8 +30,7 @@ class TestBlockAdmin(TestCase):
             'admin:blocklist_blocklistsubmission_add')
 
     def test_can_see_addon_module_in_admin_with_review_admin(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
         response = self.client.get(self.admin_home_url, follow=True)
@@ -41,8 +40,7 @@ class TestBlockAdmin(TestCase):
         assert modules == ['Blocklist']
 
     def test_can_not_see_addon_module_in_admin_without_permissions(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.client.login(email=user.email)
         response = self.client.get(self.admin_home_url, follow=True)
         assert response.status_code == 200
@@ -53,8 +51,7 @@ class TestBlockAdmin(TestCase):
     def test_can_list(self):
         addon = addon_factory()
         Block.objects.create(guid=addon.guid, updated_by=user_factory())
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
         response = self.client.get(self.list_url, follow=True)
@@ -64,16 +61,14 @@ class TestBlockAdmin(TestCase):
     def test_can_not_list_without_permission(self):
         addon = addon_factory()
         Block.objects.create(guid=addon.guid, updated_by=user_factory())
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.client.login(email=user.email)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 403
         assert addon.guid not in response.content.decode('utf-8')
 
     def test_add(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
 
@@ -113,8 +108,7 @@ class TestBlockAdmin(TestCase):
         )
 
     def test_add_restrictions(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
 
@@ -161,8 +155,7 @@ class TestBlockAdmin(TestCase):
                 response, self.submission_url, status_code=307)
 
     def test_add_from_addon_pk_view(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
 
@@ -229,8 +222,7 @@ class TestBlockAdmin(TestCase):
     def test_guid_redirects(self):
         block = Block.objects.create(
             guid='foo@baa', updated_by=user_factory())
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
 
@@ -251,8 +243,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             'admin:blocklist_blocklistsubmission_changelist')
 
     def test_add_single(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
 
@@ -337,8 +328,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
 
     @override_switch('blocklist_legacy_submit', active=False)
     def test_legacy_id_property_readonly(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
 
@@ -376,8 +366,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
     @mock.patch('olympia.blocklist.models.legacy_publish_blocks')
     def test_legacy_id_enabled_with_legacy_submit_waffle_on(self, publish_mock,
                                                             delete_mock):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
 
@@ -433,8 +422,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
     def _test_add_multiple_submit(self, addon_adu):
         """addon_adu is important because whether dual signoff is needed is
         based on what the average_daily_users is."""
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
 
@@ -643,8 +631,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
 
     @override_switch('blocklist_admin_dualsignoff_disabled', active=True)
     def test_add_and_edit_with_different_min_max_versions(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
 
@@ -811,8 +798,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
 
     @mock.patch('olympia.blocklist.admin.GUID_FULL_LOAD_LIMIT', 1)
     def test_add_multiple_bulk_so_fake_block_objects(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
 
@@ -866,8 +852,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert 'Review Unlisted' not in content
 
     def test_legacy_regex_warning(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
 
@@ -914,8 +899,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             '.regexlegacywarning').text()
 
     def test_review_links(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
         post_kwargs = {
@@ -974,8 +958,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert b'Review Unlisted' in response.content
 
     def test_can_not_set_min_version_above_max_version(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
 
@@ -1005,8 +988,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert Block.objects.count() == 1
 
     def test_can_not_add_without_create_permission(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         # The signoff permission shouldn't be sufficient
         self.grant_permission(user, 'Blocklist:Signoff')
         self.client.login(email=user.email)
@@ -1076,8 +1058,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
              'average_daily_users': block.addon.average_daily_users},
         ]
 
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, permission)
         self.client.login(email=user.email)
 
@@ -1100,8 +1081,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
     def test_can_not_list_without_permission(self):
         BlocklistSubmission.objects.create(
             updated_by=user_factory(display_name='Bób'))
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.client.login(email=user.email)
 
         response = self.client.get(self.submission_list_url, follow=True)
@@ -1121,8 +1101,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
              'id': None,
              'average_daily_users': addon.average_daily_users}]
 
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
         multi_url = reverse(
@@ -1185,8 +1164,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
              'id': None,
              'average_daily_users': addon.average_daily_users}]
 
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Signoff')
         self.client.login(email=user.email)
         multi_url = reverse(
@@ -1243,8 +1221,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
              'id': None,
              'average_daily_users': addon.average_daily_users}]
 
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Signoff')
         self.client.login(email=user.email)
         multi_url = reverse(
@@ -1347,8 +1324,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
              'id': None,
              'average_daily_users': addon.average_daily_users}]
 
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Signoff')
         self.client.login(email=user.email)
         multi_url = reverse(
@@ -1413,8 +1389,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
              'id': None,
              'average_daily_users': addon.average_daily_users}]
 
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
         multi_url = reverse(
@@ -1448,8 +1423,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
              'id': None,
              'average_daily_users': addon.average_daily_users}]
 
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
         change_url = reverse(
@@ -1520,8 +1494,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert block.average_daily_users_snapshot == addon.average_daily_users
         addon.update(average_daily_users=1234)
 
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
         multi_view_url = reverse(
@@ -1542,8 +1515,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             response.content.decode('utf-8'))
 
     def test_list_filters(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Signoff')
         self.client.login(email=user.email)
         addon_factory(guid='pending1@')
@@ -1614,7 +1586,6 @@ class TestBlockAdminEdit(TestCase):
             'admin:blocklist_blocklistsubmission_add')
 
     def _test_edit(self, user, signoff_state):
-        self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
 
@@ -1681,7 +1652,7 @@ class TestBlockAdminEdit(TestCase):
         assert 'Included in legacy blocklist' not in content
 
     def test_edit_low_adu(self):
-        user = user_factory()
+        user = user_factory(email='someone@mozilla.com')
         self.addon.update(
             average_daily_users=(
                 settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD))
@@ -1689,7 +1660,7 @@ class TestBlockAdminEdit(TestCase):
         self._test_post_edit_logging(user)
 
     def test_edit_high_adu(self):
-        user = user_factory()
+        user = user_factory(email='someone@mozilla.com')
         self.addon.update(
             average_daily_users=(
                 settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD + 1))
@@ -1703,7 +1674,7 @@ class TestBlockAdminEdit(TestCase):
         self._test_post_edit_logging(user)
 
     def test_edit_high_adu_only_metadata(self):
-        user = user_factory()
+        user = user_factory(email='someone@mozilla.com')
         self.addon.update(
             average_daily_users=(
                 settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD + 1))
@@ -1712,8 +1683,7 @@ class TestBlockAdminEdit(TestCase):
         self._test_post_edit_logging(user)
 
     def test_invalid_versions_not_accepted(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
 
@@ -1783,8 +1753,7 @@ class TestBlockAdminEdit(TestCase):
         assert b'444.4a' not in response.content
 
     def test_can_not_edit_without_permission(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.client.login(email=user.email)
 
         response = self.client.get(self.change_url, follow=True)
@@ -1806,8 +1775,7 @@ class TestBlockAdminEdit(TestCase):
         assert Block.objects.count() == 1
 
     def test_cannot_edit_when_guid_in_blocklistsubmission_change(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
         blocksubm = BlocklistSubmission.objects.create(
@@ -1847,8 +1815,7 @@ class TestBlockAdminEdit(TestCase):
         assert self.block.max_version == '*'  # not changed
 
     def test_cannot_edit_when_guid_in_blocklistsubmission_delete(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
         blocksubm = BlocklistSubmission.objects.create(
@@ -1887,8 +1854,7 @@ class TestBlockAdminEdit(TestCase):
         assert self.block.max_version == '*'  # not changed
 
     def test_imported_regex_block(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
         self.block.update(legacy_id='*foo@baa')
@@ -1904,8 +1870,7 @@ class TestBlockAdminEdit(TestCase):
 
     @override_switch('blocklist_legacy_submit', active=False)
     def test_cannot_edit_when_imported_block(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
         self.block.update(legacy_id='123456')
@@ -1937,8 +1902,7 @@ class TestBlockAdminEdit(TestCase):
     @override_switch('blocklist_legacy_submit', active=True)
     @mock.patch('olympia.blocklist.models.legacy_publish_blocks')
     def test_can_edit_imported_block_if_legacy_submit_waffle_on(self, pub_mck):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
         self.block.update(legacy_id='123456')
@@ -1977,8 +1941,7 @@ class TestBlockAdminEdit(TestCase):
 
     @override_switch('blocklist_legacy_submit', active=False)
     def test_legacy_id_property_is_readonly(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
         self.block.update(legacy_id='')
@@ -2010,8 +1973,7 @@ class TestBlockAdminEdit(TestCase):
     @mock.patch('olympia.blocklist.models.legacy_delete_blocks')
     def test_legacy_id_is_enabled_with_legacy_submit_waffle_on(self, del_mock):
         del_mock.side_effect = lambda blocks: blocks[0].update(legacy_id='')
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
         self.block.update(legacy_id='3467635')
@@ -2048,8 +2010,7 @@ class TestBlockAdminDelete(TestCase):
             'admin:blocklist_blocklistsubmission_add')
 
     def test_delete_input(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
 
@@ -2091,8 +2052,7 @@ class TestBlockAdminDelete(TestCase):
     def _test_delete_multiple_submit(self, addon_adu):
         """addon_adu is important because whether dual signoff is needed is
         based on what the average_daily_users is."""
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
 
@@ -2233,8 +2193,7 @@ class TestBlockAdminDelete(TestCase):
              'id': block.id,
              'average_daily_users': block.addon.average_daily_users}]
 
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
         multi_url = reverse(
@@ -2256,8 +2215,7 @@ class TestBlockAdminDelete(TestCase):
         django_delete_url = reverse(
             'admin:blocklist_block_delete', args=(block.pk,))
 
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
         assert Block.objects.count() == 1
@@ -2282,8 +2240,7 @@ class TestBlockAdminDelete(TestCase):
             updated_by=user_factory())
         django_delete_url = reverse(
             'admin:blocklist_block_delete', args=(block.pk,))
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.client.login(email=user.email)
         assert Block.objects.count() == 1
 

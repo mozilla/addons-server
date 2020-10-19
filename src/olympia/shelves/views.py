@@ -15,9 +15,9 @@ from .models import Shelf
 from .serializers import ESSponsoredAddonSerializer, ShelfSerializer
 from .utils import (
     get_addons_from_adzerk,
-    get_impression_data_from_signed_blob,
     get_signed_impression_blob_from_results,
     filter_adzerk_results_to_es_results_qs,
+    send_click_ping,
     send_impression_pings)
 
 
@@ -70,8 +70,7 @@ class SponsoredShelfViewSet(viewsets.ViewSetMixin, AddonSearchView):
     def impression(self, request):
         signed_impressions = request.data.get('impression_data', '')
         try:
-            send_impression_pings(
-                get_impression_data_from_signed_blob(signed_impressions))
+            send_impression_pings(signed_impressions)
         except APIException as e:
             return Response(
                 f'Bad impression_data: {e}',
@@ -80,4 +79,11 @@ class SponsoredShelfViewSet(viewsets.ViewSetMixin, AddonSearchView):
 
     @action(detail=False, methods=['post'])
     def click(self, request):
-        return Response()
+        signed_click = request.data.get('click_data', '')
+        try:
+            send_click_ping(signed_click)
+        except APIException as e:
+            return Response(
+                f'Bad click_data: {e}',
+                status=status.HTTP_400_BAD_REQUEST)
+        return Response(status=status.HTTP_202_ACCEPTED)

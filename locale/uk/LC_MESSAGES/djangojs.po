@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-08-04 23:21+0000\n"
+"PO-Revision-Date: 2020-10-13 16:43+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
@@ -22,7 +22,7 @@ msgstr[1] "{0} зірки"
 msgstr[2] "{0} зірок"
 
 msgid "There was a problem contacting the server."
-msgstr "Виникла проблема при спробі зв'язатись із сервером."
+msgstr "Виникла проблема під час спроби зв'язатися з сервером."
 
 msgid "Select a file..."
 msgstr "Виберіть файл..."
@@ -151,13 +151,13 @@ msgid "This theme is incompatible with your version of {0}"
 msgstr "Ця тема несумісна з вашою версією {0}"
 
 msgid "Flagged for review"
-msgstr "Відмічено для розгляду"
+msgstr "Позначено для перевірки"
 
 msgid "Your input is required"
 msgstr "Потрібна ваша думка"
 
 msgid "Marked for deletion"
-msgstr "Відмічено для вилучення"
+msgstr "Позначено для вилучення"
 
 msgid "Updating results&hellip;"
 msgstr "Оновлення результатів&hellip;"

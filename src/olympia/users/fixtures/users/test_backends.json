@@ -43,26 +43,6 @@
         }
     },
     {
-        "pk": 5349055,
-        "model": "users.userprofile",
-        "fields": {
-            "display_collections": false,
-            "occupation": "",
-            "location": "",
-            "picture_type": "",
-            "averagerating": null,
-            "homepage": "",
-            "email": "testo@example.com",
-            "biography": null,
-            "deleted": false,
-            "username": "barry",
-            "display_name": "barry \u0627\u0644\u062a\u0637\u0628",
-            "created": "2010-07-03 23:03:11",
-            "notes": "",
-            "modified": "2010-07-23 00:37:10"
-        }
-    },
-    {
         "pk": 1,
         "model": "access.group",
         "fields": {
@@ -77,7 +57,7 @@
         "model": "access.groupuser",
         "fields": {
             "group": 1,
-            "user": 5349055
+            "user": 4043307
         }
     },
     {

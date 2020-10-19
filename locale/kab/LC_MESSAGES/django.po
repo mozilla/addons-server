@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-10-01 09:02+0000\n"
-"Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
+"PO-Revision-Date: 2020-10-16 11:08+0000\n"
+"Last-Translator: KAHINA <kahinamessaoudi03@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
@@ -3460,12 +3460,13 @@ msgstr "Kkes lqem"
 msgid "Disable Version"
 msgstr "Sens lqem"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The latest approved version of this %(promoted_group_name)s addon cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
 msgstr ""
-"Lqem aneggaru yettwaqeblen i usiɣzef-a yelhan ur izmir ara ad yettwakkes neɣ ad yens acku lqem aqbur ur yettwaqbel ara deg uwelleh. Ma ulac aɣilif, nermes inedbalen AMO ma tesriḍ tallelt ɣef waya."
+"Lqem aneggaru yettwaqeblen n uzegrir-a %(promoted_group_name)s ur izmir ara ad yettwakkes neɣ ad yens acku lqem aqbur ur yettwaqbel ara i usmel %(promoted_group_name)s. Ma ulac aɣilif, nermes "
+"inedbalen n AMO ma tesriḍ tallelt ɣef waya."
 
 msgid "Hide Add-on"
 msgstr "Ffer lqem"
@@ -5032,9 +5033,8 @@ msgid "Double-click any word to instantly see its definition."
 msgstr "Sit snat n tikkal ɣef wawal tebɣiḍ din din ad teẓreḍ tabadut-is."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
-msgstr "Kra n yismal ur ssawaḍen ara ad d-ɣren tividyutin di Firefox i Android. Asiɣzef-agi ad d-yefk tifrat."
+msgstr "Kra n yismal ur ssawaḍen ara ad d-ɣren tividyutin deg Android. Dagi i tella tifrat."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
@@ -6136,9 +6136,8 @@ msgstr "Lqem %(version)s &middot; %(created)s <span class=\"light\">&middot; %(v
 msgid "(Confirmed)"
 msgstr "(Yentem)"
 
-#, fuzzy
 msgid "Pending Rejection on review of new version"
-msgstr "Deg uraǧu n tenzagt n tugin."
+msgstr "Nettṛaǧu tegtin ɣef usenqed n lqem amaynut"
 
 msgid "Compatibility:"
 msgstr "Amṣada:"
@@ -6186,17 +6185,14 @@ msgstr "Yettwagi neɣ ur ittucegger ara"
 msgid "[status:%s]"
 msgstr "[addad:%s]"
 
-#, fuzzy
 msgid "Other Pending Review"
-msgstr "Izegrar-nniḍen deg umecwaṛ n ucegger ({0})"
+msgstr "Isenqaden-nniḍen yettṛaǧun"
 
-#, fuzzy
 msgid "Flagged By Scanners"
-msgstr "Yettwacreḍ s yisniram"
+msgstr "Yettwacreḍ s yinafraḍen"
 
-#, fuzzy
 msgid "Flagged for Human Review"
-msgstr "Yettwacreḍ i  usenqed n umdan"
+msgstr "Yettwacreḍ i usenqed n umdan"
 
 msgid "Updates"
 msgstr "Ileqman"
@@ -6349,7 +6345,7 @@ msgid "by Content"
 msgstr "s ugburen"
 
 msgid "by Campaign"
-msgstr ""
+msgstr "s uberreḥ"
 
 msgid "Daily Users"
 msgstr "Iseqdacen n yal ass"

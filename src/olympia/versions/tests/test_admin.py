@@ -12,8 +12,7 @@ class TestVersionAdmin(TestCase):
         detail_url = reverse(
             'admin:versions_version_change', args=(version.pk,)
         )
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Admin:Advanced')
         self.client.login(email=user.email)
         response = self.client.get(detail_url, follow=True)
@@ -28,8 +27,7 @@ class TestVersionAdmin(TestCase):
         detail_url = reverse(
             'admin:versions_version_change', args=(version.pk,)
         )
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
+        user = user_factory(email='someone@mozilla.com')
         self.client.login(email=user.email)
         response = self.client.get(detail_url, follow=True)
         assert response.status_code == 403

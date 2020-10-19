@@ -380,6 +380,8 @@ v4 API changelog
 * 2020-10-08: added channel-specific reviewer submission subscriptions endpoints. https://github.com/mozilla/addons-server/issues/15605
 * 2020-10-15: moved hero shelves documentation to /shelves from /hero.
 * 2020-10-15: added /shelves/sponsored/ endpoint https://github.com/mozilla/addons-server/issues/15617
+* 2020-10-15: added /shelves/sponsored/impression and /shelves/sponsored/click endpoints https://github.com/mozilla/addons-server/issues/15618 and https://github.com/mozilla/addons-server/issues/15619
+* 2020-10-22: added ``promoted`` to primary hero shelf addon object. https://github.com/mozilla/addons-server/issues/15741
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/

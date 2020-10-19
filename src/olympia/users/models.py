@@ -223,12 +223,21 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     @property
     def is_staff(self):
-        """Property indicating whether the user should be able to log in to
-        the django admin tools. Does not guarantee that the user will then
-        be able to do anything, as each module can have its own permission
-        checks. (see has_module_perms() and has_perm())"""
-        from olympia.access import acl
-        return acl.action_allowed_user(self, amo.permissions.ANY_ADMIN)
+        """Property indicating whether the user is considered to be a Mozilla
+        Employee.
+
+        Django admin uses this to allow logging in, though it doesn't give
+        access to the individual admin pages: each module has their own
+        permission checks (see has_module_perms() and has_perm() below). In
+        addition we also force users to use the VPN to access the admin.
+
+        It's also used by waffle Flag `staff` property, which allows a feature
+        behind a flag to be enabled just for users for which this property
+        returns True. This shouldn't be used as a replacement to a permission
+        check, but only for progressive rollouts of features that are intended
+        to eventually be enabled globally.
+        """
+        return self.email and self.email.endswith('@mozilla.com')
 
     def has_perm(self, perm, obj=None):
         """Determine what the user can do in the django admin tools.

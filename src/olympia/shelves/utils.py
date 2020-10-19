@@ -93,11 +93,23 @@ def get_addons_from_adzerk(count):
     return results_dict
 
 
-def send_impression_pings(impressions):
+def send_impression_pings(signed_impressions):
+    impressions = unsign_signed_blob(
+        signed_impressions,
+        settings.ADZERK_IMPRESSION_TIMEOUT).split(',')
     base_url = settings.ADZERK_IMPRESSION_URL
     urls = [f'{base_url}{unquote(impression)}' for impression in impressions]
     for url in urls:
         ping_adzerk_server(url, type='impression')
+
+
+def send_click_ping(signed_click):
+    click = unsign_signed_blob(
+        signed_click,
+        settings.ADZERK_CLICK_TIMEOUT)
+    base_url = settings.ADZERK_CLICK_URL
+    url = f'{base_url}{unquote(click)}&noredirect'
+    ping_adzerk_server(url, type='click')
 
 
 def filter_adzerk_results_to_es_results_qs(results, es_results_qs):
@@ -117,10 +129,9 @@ def get_signed_impression_blob_from_results(adzerk_results):
     return signer.sign(','.join(impressions))
 
 
-def get_impression_data_from_signed_blob(blob):
+def unsign_signed_blob(blob, timeout):
     signer = TimestampSigner()
     try:
-        return signer.unsign(
-            blob, settings.ADZERK_IMPRESSION_TIMEOUT).split(',')
+        return signer.unsign(blob, timeout)
     except (BadSignature, SignatureExpired) as e:
         raise APIException(e)

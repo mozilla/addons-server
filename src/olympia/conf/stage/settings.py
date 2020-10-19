@@ -122,3 +122,5 @@ EXTENSION_WORKSHOP_URL = env(
 REMOTE_SETTINGS_API_URL = 'https://settings.stage.mozaws.net/v1/'
 REMOTE_SETTINGS_WRITER_URL = 'https://settings-writer.stage.mozaws.net/v1/'
 REMOTE_SETTINGS_WRITER_BUCKET = 'staging'
+
+ADZERK_SITE_ID = env('ADZERK_SITE_ID', default=1133495)

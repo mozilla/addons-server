@@ -9,7 +9,7 @@ from django.forms.widgets import RadioSelect
 from django.utils.safestring import mark_safe
 
 from olympia.amo.models import LongNameIndex, ModelBase
-from olympia.constants.promoted import RECOMMENDED
+from olympia.constants.promoted import PROMOTED_GROUPS
 from olympia.promoted.models import PromotedAddon
 
 
@@ -138,9 +138,6 @@ class PrimaryHeroImage(ModelBase):
 class PrimaryHero(ModelBase):
     select_image = models.ForeignKey(
         PrimaryHeroImage, null=True, on_delete=models.SET_NULL)
-    image = WidgetCharField(
-        choices=DirImageChoices(path=FEATURED_IMAGE_PATH), max_length=255,
-        widget=ImageChoiceWidget, blank=True)
     gradient_color = WidgetCharField(
         choices=GRADIENT_COLORS.items(), max_length=7,
         widget=GradientChoiceWidget, blank=True)
@@ -158,7 +155,9 @@ class PrimaryHero(ModelBase):
 
     @property
     def image_url(self):
-        return f'{FEATURED_IMAGE_URL}{self.image}' if self.image else None
+        return (
+            f'{self.select_image.custom_image.url}'
+            if self.select_image else None)
 
     @property
     def gradient(self):
@@ -179,13 +178,16 @@ class PrimaryHero(ModelBase):
                     'External primary shelves need a homepage defined in '
                     'addon details.')
             elif not self.is_external:
-                recommended = (
-                    self.promoted_addon.group == RECOMMENDED and
+                can_add_to_primary = (
+                    self.promoted_addon.group.can_primary_hero and
                     self.promoted_addon.approved_applications)
-                if not recommended:
+                if not can_add_to_primary:
+                    can_hero_groups = ', '.join(
+                        str(promo.name) for promo in PROMOTED_GROUPS
+                        if promo.can_primary_hero)
                     error_dict['enabled'] = ValidationError(
-                        'Only recommended add-ons can be enabled for '
-                        'non-external primary shelves.')
+                        'Only add-ons that are %s can be enabled for '
+                        'non-external primary shelves.' % can_hero_groups)
         else:
             if list(PrimaryHero.objects.filter(enabled=True)) == [self]:
                 error_dict['enabled'] = ValidationError(

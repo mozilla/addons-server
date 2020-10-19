@@ -1,19 +1,25 @@
 from django.core.exceptions import ValidationError
 
 from olympia.amo.tests import addon_factory, TestCase
-from olympia.constants.promoted import RECOMMENDED
-from olympia.hero.models import PrimaryHero, SecondaryHero, SecondaryHeroModule
+from olympia.amo.tests.test_helpers import get_uploaded_file
+from olympia.constants.promoted import RECOMMENDED, SPOTLIGHT, VERIFIED_TWO
+from olympia.hero.models import (
+    PrimaryHero, PrimaryHeroImage, SecondaryHero, SecondaryHeroModule)
 from olympia.promoted.models import PromotedAddon
 
 
 class TestPrimaryHero(TestCase):
+    def setUp(self):
+        uploaded_photo = get_uploaded_file('transparent.png')
+        self.phi = PrimaryHeroImage.objects.create(custom_image=uploaded_photo)
+
     def test_image_url(self):
         ph = PrimaryHero.objects.create(
             promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
-            image='foo.png')
+            select_image=self.phi)
         assert ph.image_url == (
-            'http://testserver/static/img/hero/featured/foo.png')
-        ph.update(image='')
+            'http://testserver/user-media/hero-featured-image/transparent.jpg')
+        ph.update(select_image=None)
         assert ph.image_url is None
 
     def test_gradiant(self):
@@ -22,11 +28,11 @@ class TestPrimaryHero(TestCase):
             gradient_color='#C60084')
         assert ph.gradient == {'start': 'color-ink-80', 'end': 'color-pink-70'}
 
-    def test_clean_requires_recommended(self):
+    def test_clean_requires_approved_can_primary_hero_group(self):
         ph = PrimaryHero.objects.create(
             promoted_addon=PromotedAddon.objects.create(
                 addon=addon_factory(), group_id=RECOMMENDED.id),
-            gradient_color='#C60184', image='foo.png')
+            gradient_color='#C60184', select_image=self.phi)
         assert not ph.enabled
         ph.clean()  # it raises if there's an error
         ph.enabled = True
@@ -37,13 +43,37 @@ class TestPrimaryHero(TestCase):
         ph.promoted_addon.approve_for_version(
             ph.promoted_addon.addon.current_version)
         ph.reload()
+        ph.enabled = True
         assert ph.promoted_addon.addon.promoted_group() == RECOMMENDED
+        ph.clean()  # it raises if there's an error
+
+        # change to a different group
+        ph.promoted_addon.update(group_id=VERIFIED_TWO.id)
+        ph.promoted_addon.approve_for_version(
+            ph.promoted_addon.addon.current_version)
+        ph.reload()
+        ph.enabled = True
+        assert ph.promoted_addon.addon.promoted_group() == VERIFIED_TWO
+        with self.assertRaises(ValidationError) as context:
+            # VERIFIED isn't a group that can be added as a primary hero
+            ph.clean()
+        assert context.exception.messages == [
+            'Only add-ons that are Recommended, Sponsored, By Firefox, '
+            'Spotlight can be enabled for non-external primary shelves.']
+
+        # change to a different group that *can* be added as a primary hero
+        ph.promoted_addon.update(group_id=SPOTLIGHT.id)
+        ph.promoted_addon.approve_for_version(
+            ph.promoted_addon.addon.current_version)
+        ph.reload()
+        ph.enabled = True
+        assert ph.promoted_addon.addon.promoted_group() == SPOTLIGHT
         ph.clean()  # it raises if there's an error
 
     def test_clean_external_requires_homepage(self):
         ph = PrimaryHero.objects.create(
             promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
-            is_external=True, gradient_color='#C60184', image='foo.png')
+            is_external=True, gradient_color='#C60184', select_image=self.phi)
         assert not ph.enabled
         ph.clean()  # it raises if there's an error
         ph.enabled = True
@@ -68,22 +98,22 @@ class TestPrimaryHero(TestCase):
         with self.assertRaises(ValidationError) as ve:
             ph.clean()
         assert 'gradient_color' in ve.exception.error_dict
-        assert 'image' not in ve.exception.error_dict
+        assert 'select_image' not in ve.exception.error_dict
 
-        ph.update(image='foo.png')
+        ph.update(select_image=self.phi)
         with self.assertRaises(ValidationError) as ve:
             ph.clean()
         assert 'gradient_color' in ve.exception.error_dict
-        assert 'image' not in ve.exception.error_dict
+        assert 'select_image' not in ve.exception.error_dict
 
-        ph.update(image='', gradient_color='#123456')
+        ph.update(select_image=None, gradient_color='#123456')
         ph.clean()  # it raises if there's an error
 
     def test_clean_only_enabled(self):
         hero = PrimaryHero.objects.create(
             promoted_addon=PromotedAddon.objects.create(
                 addon=addon_factory(), group_id=RECOMMENDED.id),
-            gradient_color='#C60184', image='foo.png')
+            gradient_color='#C60184', select_image=self.phi)
         hero.promoted_addon.approve_for_version(
             hero.promoted_addon.addon.current_version)
         hero.reload()

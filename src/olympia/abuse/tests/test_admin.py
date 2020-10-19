@@ -32,8 +32,7 @@ class TestAbuse(TestCase):
             id=cls.addon1.name_id, locale='fr', localized_string='Elu')
         cls.addon2 = addon_factory(guid='@guid2', name='Two')
         cls.addon3 = addon_factory(guid='@guid3', name='Three')
-        cls.user = user_factory()
-        grant_permission(cls.user, 'Admin:Tools', 'Admin Group')
+        cls.user = user_factory(email='someone@mozilla.com')
         grant_permission(cls.user, 'AbuseReports:Edit', 'Abuse Report Triage')
         # Create a few abuse reports.
         cls.report1 = AbuseReport.objects.create(
@@ -62,10 +61,8 @@ class TestAbuse(TestCase):
         self.list_url = reverse('admin:abuse_abusereport_changelist')
 
     def test_list_no_permission(self):
-        user_without_abusereports_edit = user_factory()
-        grant_permission(
-            user_without_abusereports_edit, 'Admin:Tools', 'Admin Group')
-        self.client.login(email=user_without_abusereports_edit.email)
+        user = user_factory(email='nobody@mozilla.com')
+        self.client.login(email=user.email)
         response = self.client.get(self.list_url)
         assert response.status_code == 403
 
