@@ -201,7 +201,7 @@ class TestESSponsoredAddonSerializer(AddonSerializerOutputTestMixin,
             }
         }
         result = self.serialize(adzerk_results)
-        assert result['events'] == {
+        assert result['event_data'] == {
             'click': 'foobar:1imRQe:mJEcjX6cM3cvkSbb2qMMPPHWC8o',
             'conversion': 'hyhyhy:1imRQe:NQyj05lumKmHaj5Zj4yF69Q9bS4',
         }

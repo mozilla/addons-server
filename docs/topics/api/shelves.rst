@@ -98,9 +98,9 @@ Current implementation relies on Adzerk to determine which addons are returned a
     :query int page_size: specify how many addons should be returned.  Defaults to 6.  Note: fewer addons could be returned if there are fewer than specifed sponsored addons currently, or the Adzerk service is unavailable.
     :query string wrap_outgoing_links: If this parameter is present, wrap outgoing links through ``outgoing.prod.mozaws.net`` (See :ref:`Outgoing Links <api-overview-outgoing>`)
     :>json array results: The array containing the addon results for this query.  The object is a :ref:`add-on <addon-detail-object>` as returned by :ref:`add-on search endpoint <addon-search>` with an extra field of ``events``
-    :>json object results[].events: contains data that for different events that can be recorded.
-    :>json string results[].events.click: the signed data payload to send to the :ref:`event endpoint <sponsored-shelf-event>` that identifies the sponsored placement clicked on.
-    :>json string results[].events.conversion: the signed data payload to send to the :ref:`event endpoint <sponsored-shelf-event>` that identifies the conversion (install) event for the sponsored addon placement.
+    :>json object results[].event_data: contains data that for different events that can be recorded.
+    :>json string results[].event_data.click: the signed data payload to send to the :ref:`event endpoint <sponsored-shelf-event>` that identifies the sponsored placement clicked on.
+    :>json string results[].event_data.conversion: the signed data payload to send to the :ref:`event endpoint <sponsored-shelf-event>` that identifies the conversion (install) event for the sponsored addon placement.
     :>json string impression_url: the url to ping when the contents of this sponsored shelf is rendered on screen to the user.
     :>json string impression_data: the signed data payload to send to ``impression_url`` that identifies all of the sponsored placements displayed.
 
