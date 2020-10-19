@@ -183,12 +183,10 @@ def dashboard(request):
         ),
         ))
         sections[ugettext('Security Scanners')] = [(
-            ugettext('Flagged By Scanners ({0})').format(
-                queue_counts['scanners']),
+            ugettext('Flagged By Scanners'),
             reverse('reviewers.queue_scanners'),
         ), (
-            ugettext('Flagged for Human Review ({0})').format(
-                queue_counts['mad']),
+            ugettext('Flagged for Human Review'),
             reverse('reviewers.queue_mad'),
         )]
 
@@ -527,10 +525,6 @@ def fetch_queue_counts(admin_reviewer):
         'content_review': construct_count_queryset_from_queryset(
             Addon.objects.get_content_review_queue(
                 admin_reviewer=admin_reviewer)),
-        'mad': construct_count_queryset_from_queryset(
-            Addon.objects.get_mad_queue(admin_reviewer=admin_reviewer)),
-        'scanners': construct_count_queryset_from_queryset(
-            Addon.objects.get_scanners_queue(admin_reviewer=admin_reviewer)),
         'pending_rejection': construct_count_queryset_from_queryset(
             Addon.objects.get_pending_rejection_queue(
                 admin_reviewer=admin_reviewer)),
