@@ -97,11 +97,12 @@ Current implementation relies on Adzerk to determine which addons are returned a
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :query int page_size: specify how many addons should be returned.  Defaults to 6.  Note: fewer addons could be returned if there are fewer than specifed sponsored addons currently, or the Adzerk service is unavailable.
     :query string wrap_outgoing_links: If this parameter is present, wrap outgoing links through ``outgoing.prod.mozaws.net`` (See :ref:`Outgoing Links <api-overview-outgoing>`)
-    :>json array results: The array containing the addon results for this query.  The object is a :ref:`add-on <addon-detail-object>` as returned by :ref:`add-on search endpoint <addon-search>` with extra fields of ``click_url`` and ``click_data``
-    :>json string results[].click_url: the url to ping if the sponsored addon's detail page is navigated to.
-    :>json string results[].click_data: the signed data payload to send to ``click_url`` that identifies the sponsored placement clicked on.
+    :>json array results: The array containing the addon results for this query.  The object is a :ref:`add-on <addon-detail-object>` as returned by :ref:`add-on search endpoint <addon-search>` with an extra field of ``events``
+    :>json object results[].event_data: contains data that for different events that can be recorded.
+    :>json string results[].event_data.click: the signed data payload to send to the :ref:`event endpoint <sponsored-shelf-event>` that identifies the sponsored placement clicked on.
+    :>json string results[].event_data.conversion: the signed data payload to send to the :ref:`event endpoint <sponsored-shelf-event>` that identifies the conversion (install) event for the sponsored addon placement.
     :>json string impression_url: the url to ping when the contents of this sponsored shelf is rendered on screen to the user.
-    :>json string impression_data: the signed data payload to send to ``impression_url`` that identifies the sponsored placements displayed.
+    :>json string impression_data: the signed data payload to send to ``impression_url`` that identifies all of the sponsored placements displayed.
 
 
 ---------------------------
@@ -119,16 +120,17 @@ The current implemenation forwards these impression pings to Adzerk.
     :form string impression_data: the signed data payload that was sent in the :ref:`sponsored shelf <sponsored-shelf>` response.
 
 
----------------------
-Sponsored Shelf Click
----------------------
+----------------------
+Sponsored Shelf Events
+----------------------
 
-.. _sponsored-shelf-click:
+.. _sponsored-shelf-event:
 
-When an item on the sponsored shelf is clicked on by the user, to navigate to the detail page, this endpoint should be used to record the click.
-The current implemenation forwards these clicks to Adzerk.
+When an item on the sponsored shelf is clicked on by the user, to navigate to the detail page, or the addon is subsequently installed from the detail page, this endpoint should be used to record that event.
+The current implemenation forwards these events to Adzerk.
 
 
-.. http:post:: /api/v4/shelves/sponsored/click/
+.. http:post:: /api/v4/shelves/sponsored/event/
 
-    :form string click_data: the signed data payload that was sent in addon data in the :ref:`sponsored shelf <sponsored-shelf>` response.
+    :form string data: the signed data payload that was sent in addon data in the :ref:`sponsored shelf <sponsored-shelf>` response.
+    :form string type: the type of event.  Supported types are ``click`` and ``conversion``.

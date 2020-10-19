@@ -1,4 +1,4 @@
-from urllib.parse import quote, unquote, urlparse
+from urllib.parse import quote, unquote, urlsplit, urlunsplit
 
 from django.conf import settings
 from django.core.signing import BadSignature, SignatureExpired, TimestampSigner
@@ -54,13 +54,20 @@ def ping_adzerk_server(url, type='impression'):
         statsd.incr(f'services.adzerk.{type}.success')
 
 
+def path_and_query(url, extra_query_params=()):
+    split = urlsplit(url)
+    query = '&'.join((split.query, *extra_query_params))
+    return quote(urlunsplit(('', '', split.path.lstrip('/'), query, '')))
+
+
 def process_adzerk_result(decision):
     contents = (decision.get('contents') or [{}])[0]
-    return {
-        'impression': quote(urlparse(decision.get('impressionUrl', '')).query),
-        'click': quote(urlparse(decision.get('clickUrl', '')).query),
-        'addon_id':
-            contents.get('data', {}).get('customData', {}).get('id', None)
+    events = (decision.get('events') or [{}])[0]
+    addon_id = str(contents.get('data', {}).get('customData', {}).get('id'))
+    return addon_id, {
+        'impression': path_and_query(decision.get('impressionUrl', '')),
+        'click': path_and_query(decision.get('clickUrl', ''), ('noredirect',)),
+        'conversion': path_and_query(events.get('url', '')),
     }
 
 
@@ -69,8 +76,7 @@ def process_adzerk_results(response, placeholders):
     decisions = [(response_decisions.get(ph) or {}) for ph in placeholders]
     results_dict = {}
     for decision in decisions:
-        result = process_adzerk_result(decision)
-        addon_id = str(result['addon_id'])
+        addon_id, result = process_adzerk_result(decision)
         if addon_id in results_dict or not addon_id.isdigit():
             continue  # no duplicates or weird/missing ids
         results_dict[addon_id] = result
@@ -82,10 +88,13 @@ def get_addons_from_adzerk(count):
     site_id = settings.ADZERK_SITE_ID
     network_id = settings.ADZERK_NETWORK_ID
     placements = [
-        {"divName": ph,
-         "networkId": network_id,
-         "siteId": site_id,
-         "adTypes": [5]} for ph in placeholders]
+        {
+            "divName": ph,
+            "networkId": network_id,
+            "siteId": site_id,
+            "adTypes": [5],
+            "eventIds": [2],
+        } for ph in placeholders]
     url = settings.ADZERK_URL
     response = call_adzerk_server(url, {'placements': placements})
     results_dict = (
@@ -97,19 +106,19 @@ def send_impression_pings(signed_impressions):
     impressions = unsign_signed_blob(
         signed_impressions,
         settings.ADZERK_IMPRESSION_TIMEOUT).split(',')
-    base_url = settings.ADZERK_IMPRESSION_URL
+    base_url = settings.ADZERK_EVENT_URL
     urls = [f'{base_url}{unquote(impression)}' for impression in impressions]
     for url in urls:
         ping_adzerk_server(url, type='impression')
 
 
-def send_click_ping(signed_click):
-    click = unsign_signed_blob(
-        signed_click,
-        settings.ADZERK_CLICK_TIMEOUT)
-    base_url = settings.ADZERK_CLICK_URL
-    url = f'{base_url}{unquote(click)}&noredirect'
-    ping_adzerk_server(url, type='click')
+def send_event_ping(signed_event, type):
+    event = unsign_signed_blob(
+        signed_event,
+        settings.ADZERK_EVENT_TIMEOUT)
+    base_url = settings.ADZERK_EVENT_URL
+    url = f'{base_url}{unquote(event)}'
+    ping_adzerk_server(url, type=type)
 
 
 def filter_adzerk_results_to_es_results_qs(results, es_results_qs):

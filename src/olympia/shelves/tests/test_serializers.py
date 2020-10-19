@@ -189,3 +189,19 @@ class TestESSponsoredAddonSerializer(AddonSerializerOutputTestMixin,
             'http://testserver/api/v5/shelves/sponsored/click/')
         assert result['click_data'] == (
             'foobar:1imRQe:mJEcjX6cM3cvkSbb2qMMPPHWC8o')
+
+    @freeze_time('2020-01-01')
+    def test_events(self):
+        self.addon = addon_factory()
+        adzerk_results = {
+            str(self.addon.id): {
+                'click': 'foobar',
+                'impression': 'impressive',
+                'conversion': 'hyhyhy',
+            }
+        }
+        result = self.serialize(adzerk_results)
+        assert result['event_data'] == {
+            'click': 'foobar:1imRQe:mJEcjX6cM3cvkSbb2qMMPPHWC8o',
+            'conversion': 'hyhyhy:1imRQe:NQyj05lumKmHaj5Zj4yF69Q9bS4',
+        }

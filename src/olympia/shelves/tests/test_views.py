@@ -193,13 +193,13 @@ class TestSponsoredShelfViewSet(ESTestCase):
         with mock.patch('olympia.shelves.views.get_addons_from_adzerk') as get:
             get.return_value = {
                 str(self.sponsored_ext.id): {
-                    'addon_id': str(self.sponsored_ext.id),
                     'impression': '123456',
-                    'click': 'abcdef'},
+                    'click': 'abcdef',
+                    'conversion': 'ddfdfdf'},
                 str(self.sponsored_theme.id): {
-                    'addon_id': str(self.sponsored_theme.id),
                     'impression': '012345',
-                    'click': 'bcdefg'},
+                    'click': 'bcdefg',
+                    'conversion': 'eeer'},
             }
             data = self.perform_search()
             get.assert_called_with(6), get.call_args
@@ -216,23 +216,18 @@ class TestSponsoredShelfViewSet(ESTestCase):
         with mock.patch('olympia.shelves.views.get_addons_from_adzerk') as get:
             get.return_value = {
                 str(self.sponsored_ext.id): {
-                    'addon_id': str(self.sponsored_ext.id),
                     'impression': '123456',
                     'click': 'abcdef'},
                 str(self.sponsored_theme.id): {
-                    'addon_id': str(self.sponsored_theme.id),
                     'impression': '012345',
                     'click': 'bcdefg'},
                 str(self.verified_ext.id): {
-                    'addon_id': str(self.verified_ext.id),
                     'impression': '55656',
                     'click': 'efef'},
                 str(self.not_promoted.id): {
-                    'addon_id': str(self.not_promoted.id),
                     'impression': '735754',
                     'click': 'jydh'},
                 '0': {
-                    'addon_id': '0',
                     'impression': '',
                     'click': ''},
             }
@@ -298,13 +293,13 @@ class TestSponsoredShelfViewSet(ESTestCase):
 
         # good data
         signer = TimestampSigner()
-        impressions = ['assfsf', 'fwafsf']
+        impressions = ['i.gif?e=assfsf', 'i.gif?e=fwafsf']
         data = signer.sign(','.join(impressions))
         response = self.client.post(url, {'impression_data': data})
         assert response.status_code == 202
         ping_mock.assert_has_calls([
             mock.call(
-                f'https://e-10521.adzerk.net/i.gif?{im}', type='impression')
+                f'https://e-10521.adzerk.net/{im}', type='impression')
             for im in impressions])
         assert response.content == b''
 
@@ -326,7 +321,7 @@ class TestSponsoredShelfViewSet(ESTestCase):
         ping_mock.assert_not_called()
 
         # bad data
-        response = self.client.post(url, {'click_data': 'dfdfd:3434'})
+        response = self.client.post(url, {'click_data': 'r?dfdfd:3434'})
         assert response.status_code == 400
         ping_mock.assert_not_called()
 
@@ -335,16 +330,55 @@ class TestSponsoredShelfViewSet(ESTestCase):
         click = 'sdwwdw'
         data = signer.sign(click)
         response = self.client.post(url, {'click_data': data})
-        assert response.status_code == 202
+        assert response.status_code == 202, response.content
         ping_mock.assert_called_with(
-            f'https://e-10521.adzerk.net/r?{click}&noredirect', type='click')
+            f'https://e-10521.adzerk.net/{click}', type='click')
         assert response.content == b''
 
         # good data but stale
         ping_mock.reset_mock()
         with freeze_time('2020-01-01') as freezer:
             data = signer.sign(click)
-            freezer.tick(delta=timedelta(minutes=61))
+            freezer.tick(delta=timedelta(days=1, minutes=1))
             response = self.client.post(url, {'click_data': data})
+            assert response.status_code == 400
+            ping_mock.assert_not_called()
+
+    @mock.patch('olympia.shelves.utils.ping_adzerk_server')
+    def test_event_endpoint(self, ping_mock):
+        url = reverse_ns('sponsored-shelf-event')
+        # no data
+        response = self.client.post(url)
+        assert response.status_code == 400
+        ping_mock.assert_not_called()
+
+        # bad data
+        response = self.client.post(
+            url, {'type': 'conversion', 'data': 'r?dfdfd:3434'})
+        assert response.status_code == 400
+        ping_mock.assert_not_called()
+
+        # good data
+        signer = TimestampSigner()
+        raw_data = 'sdwwdw'
+        data = signer.sign(raw_data)
+        response = self.client.post(url, {'type': 'conversion', 'data': data})
+        assert response.status_code == 202, response.content
+        ping_mock.assert_called_with(
+            f'https://e-10521.adzerk.net/{raw_data}', type='conversion')
+        assert response.content == b''
+
+        # good data but bad type
+        ping_mock.reset_mock()
+        response = self.client.post(url, {'type': 'foo', 'data': data})
+        assert response.status_code == 400
+        ping_mock.assert_not_called()
+
+        # good data but stale
+        with freeze_time('2020-01-01') as freezer:
+            data = signer.sign(raw_data)
+            freezer.tick(delta=timedelta(days=1, minutes=1))
+            response = self.client.post(
+                url, {'type': 'conversion', 'data': raw_data})
             assert response.status_code == 400
             ping_mock.assert_not_called()
