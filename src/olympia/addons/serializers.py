@@ -653,14 +653,12 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
 
         promoted = data.get('promoted', None)
         if promoted:
-            obj.promoted = PromotedAddon(
-                addon=obj, application_id=promoted['application_id'],
-                group_id=promoted['group_id'])
             # set .approved_for_groups cached_property because it's used in
             # .approved_applications.
-            # if it's missing (stale index) then fake with current apps
-            approved_for_apps = promoted.get(
-                'approved_for_apps', obj.promoted.all_applications)
+            approved_for_apps = promoted.get('approved_for_apps')
+            obj.promoted = PromotedAddon(
+                addon=obj, approved_application_ids=approved_for_apps,
+                group_id=promoted['group_id'])
             # we can safely regenerate these tuples because
             # .appproved_applications only cares about the current group
             obj._current_version.approved_for_groups = (

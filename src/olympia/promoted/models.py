@@ -31,6 +31,13 @@ class PromotedAddon(ModelBase):
         choices=APPLICATION_CHOICES, null=True, verbose_name='Application',
         blank=True)
 
+    def __init__(self, *args, **kwargs):
+        if 'approved_application_ids' in kwargs:
+            apps = kwargs.pop('approved_application_ids')
+            kwargs['application_id'] = (
+                self._get_application_id_from_applications(apps))
+        super().__init__(*args, **kwargs)
+
     def __str__(self):
         return f'{self.get_group_id_display()} - {self.addon}'
 
@@ -56,6 +63,12 @@ class PromotedAddon(ModelBase):
             app
             for group_, app in self.addon.current_version.approved_for_groups
             if group_ == group and app in all_apps]
+
+    def _get_application_id_from_applications(self, apps):
+        """Return the application_id the instance would have for the specified
+        app ids."""
+        # i.e. app(id) if single app; 0 for all apps if many; or none otherwise
+        return apps[0] if len(apps) == 1 else 0 if apps else None
 
     def approve_for_version(self, version):
         """Create PromotedApproval for current applications in the current

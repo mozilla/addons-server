@@ -940,11 +940,9 @@ class TestSearchParameterFilter(FilterTestsBase):
                 data={'promoted': api_name, 'app': 'firefox'})
             filter_ = qs['query']['bool']['filter']
             assert {'terms': {'promoted.group_id': ids}} in filter_
-            app_filter = filter_[-1]['bool']['should']
-            assert {'term': {'promoted.application_id': amo.FIREFOX.id}} in (
-                app_filter)
-            assert {'bool': {'must_not': [{'exists': {
-                'field': 'promoted.application_id'}}]}} in app_filter
+            assert (
+                {'term': {'promoted.approved_for_apps': amo.FIREFOX.id}} in
+                filter_)
 
         # test multiple param values
         qs = self._filter(

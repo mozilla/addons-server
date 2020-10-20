@@ -1241,45 +1241,84 @@ class TestAddonSearchView(ESTestCase):
         av_max, _ = AppVersion.objects.get_or_create(
             application=amo.ANDROID.id, version='60.0.0')
 
-        addon = addon_factory(name='Recomménded Addôn')
+        addon = addon_factory(name='Recomménded Addôn', recommended=True)
         ApplicationsVersions.objects.get_or_create(
             application=amo.ANDROID.id, version=addon.current_version,
             min=av_min, max=av_max)
-        self.make_addon_promoted(addon, RECOMMENDED, approve_version=True)
+        assert addon.promoted_group() == RECOMMENDED
+        assert addon.promotedaddon.application_id is None  # i.e. all
+        assert addon.promotedaddon.approved_applications == [
+            amo.FIREFOX, amo.ANDROID]
 
-        addon2 = addon_factory(name='Fírefox Addôn')
+        addon2 = addon_factory(name='Fírefox Addôn', recommended=True)
         ApplicationsVersions.objects.get_or_create(
             application=amo.ANDROID.id, version=addon2.current_version,
             min=av_min, max=av_max)
-        self.make_addon_promoted(addon2, RECOMMENDED, approve_version=True)
+        # This case is approved for all apps, but now only set for Firefox
         addon2.promotedaddon.update(application_id=amo.FIREFOX.id)
+        assert addon2.promoted_group() == RECOMMENDED
+        assert addon2.promotedaddon.application_id is amo.FIREFOX.id
+        assert addon2.promotedaddon.approved_applications == [
+            amo.FIREFOX]
 
         addon3 = addon_factory(slug='other-addon', name=u'Other Addôn')
         ApplicationsVersions.objects.get_or_create(
             application=amo.ANDROID.id, version=addon3.current_version,
             min=av_min, max=av_max)
+
+        # This is the opposite of addon2 -
+        # originally approved just for Firefox but now set for all apps.
+        addon4 = addon_factory(name='Fírefox Addôn with Android')
+        ApplicationsVersions.objects.get_or_create(
+            application=amo.ANDROID.id, version=addon4.current_version,
+            min=av_min, max=av_max)
+        self.make_addon_promoted(addon4, RECOMMENDED)
+        addon4.promotedaddon.update(application_id=amo.FIREFOX.id)
+        addon4.promotedaddon.approve_for_version(addon4.current_version)
+        addon4.promotedaddon.update(application_id=None)
+        assert addon4.promoted_group() == RECOMMENDED
+        assert addon4.promotedaddon.application_id is None  # i.e. all
+        assert addon4.promotedaddon.approved_applications == [
+            amo.FIREFOX]
+
+        # And repeat with Android rather than Firefox
+        addon5 = addon_factory(name='Andróid Addôn')
+        ApplicationsVersions.objects.get_or_create(
+            application=amo.ANDROID.id, version=addon5.current_version,
+            min=av_min, max=av_max)
+        self.make_addon_promoted(addon5, RECOMMENDED)
+        addon5.promotedaddon.update(application_id=amo.ANDROID.id)
+        addon5.promotedaddon.approve_for_version(addon5.current_version)
+        addon5.promotedaddon.update(application_id=None)
+        assert addon5.promoted_group() == RECOMMENDED
+        assert addon5.promotedaddon.application_id is None  # i.e. all
+        assert addon5.promotedaddon.approved_applications == [
+            amo.ANDROID]
+
         self.reindex(Addon)
 
         data = self.perform_search(
             self.url, {'promoted': 'recommended'})
-        assert data['count'] == 2
-        assert len(data['results']) == 2
-        assert {res['id'] for res in data['results']} == {addon.pk, addon2.pk}
+        assert data['count'] == 4
+        assert len(data['results']) == 4
+        assert {res['id'] for res in data['results']} == {
+            addon.pk, addon2.pk, addon4.pk, addon5.pk}
 
         # And with app filtering too
         data = self.perform_search(
             self.url, {'promoted': 'recommended', 'app': 'firefox'})
-        assert data['count'] == 2
-        assert len(data['results']) == 2
-        assert {res['id'] for res in data['results']} == {addon.pk, addon2.pk}
+        assert data['count'] == 3
+        assert len(data['results']) == 3
+        assert {res['id'] for res in data['results']} == {
+            addon.pk, addon2.pk, addon4.pk}
 
         # That will filter out for a different app
         data = self.perform_search(
             self.url, {'promoted': 'recommended', 'app': 'android'})
-        assert data['count'] == 1
-        assert len(data['results']) == 1
-        assert data['results'][0]['id'] == addon.pk
-        # addon2 was for Firefox only
+        assert data['count'] == 2
+        assert len(data['results']) == 2
+        assert {res['id'] for res in data['results']} == {
+            addon.pk, addon5.pk}
 
         # test with other other promotions
         for promo in (SPONSORED, VERIFIED, LINE, SPOTLIGHT, STRATEGIC):

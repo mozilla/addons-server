@@ -273,7 +273,7 @@ class AddonIndexer(BaseSearchIndexer):
                         'type': 'object',
                         'properties': {
                             'group_id': {'type': 'byte'},
-                            'application_id': {'type': 'byte'}
+                            'approved_for_apps': {'type': 'byte'},
                         }
                     },
                     'ratings': {
@@ -436,7 +436,6 @@ class AddonIndexer(BaseSearchIndexer):
                             for preview in obj.current_previews]
 
         data['promoted'] = {
-            'application_id': obj.promoted.application_id,
             'group_id': obj.promoted.group_id,
             # store the app approvals because .approved_applications needs it.
             'approved_for_apps': [
