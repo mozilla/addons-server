@@ -7,9 +7,10 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.core import validators
 from django.forms.models import modelformset_factory
-from django.http.response import (Http404, HttpResponseForbidden,
+from django.http.response import (HttpResponseForbidden,
                                   HttpResponseNotAllowed,
                                   HttpResponseRedirect)
+from django.shortcuts import get_object_or_404
 from django.urls import resolve
 from django.utils.encoding import force_text
 from django.utils.html import format_html
@@ -271,11 +272,11 @@ class AddonAdmin(admin.ModelAdmin):
                 obj.slug, form.cleaned_data['status']))
 
     def git_extract_action(self, request, qs):
-        addons = []
+        addon_ids = []
         for addon in qs:
             GitExtractionEntry.objects.create(addon=addon)
-            addons.append(force_text(addon))
-        kw = {'addons': u', '.join(addons)}
+            addon_ids.append(force_text(addon))
+        kw = {'addons': ', '.join(addon_ids)}
         self.message_user(
             request, ugettext('Git extraction triggered for '
                               '"%(addons)s".' % kw))
@@ -285,15 +286,12 @@ class AddonAdmin(admin.ModelAdmin):
         if request.method != 'POST':
             return HttpResponseNotAllowed(['POST'])
 
-        obj = self.get_object(request, unquote(object_id))
-        if obj is None:
-            raise Http404()
-
         if not acl.action_allowed(request, amo.permissions.ADDONS_EDIT):
             return HttpResponseForbidden()
 
-        self.git_extract_action(
-            request, Addon.objects.filter(pk=obj.pk))
+        obj = get_object_or_404(Addon, id=object_id)
+
+        self.git_extract_action(request, (obj,))
 
         return HttpResponseRedirect(
             reverse('admin:addons_addon_change', args=(obj.pk, )))
