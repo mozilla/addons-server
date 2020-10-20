@@ -18,7 +18,7 @@ from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import chunked
 from olympia.users.models import UserProfile
-from olympia.versions.compare import addon_version_int
+from olympia.versions.compare import VersionString
 from olympia.versions.models import Version
 
 from .utils import (
@@ -109,12 +109,12 @@ class Block(ModelBase):
             block.addon_versions = all_addon_versions[block.guid]
 
     @cached_property
-    def min_version_vint(self):
-        return addon_version_int(self.min_version)
+    def min_version_vstring(self):
+        return VersionString(self.min_version)
 
     @cached_property
-    def max_version_vint(self):
-        return addon_version_int(self.max_version)
+    def max_version_vstring(self):
+        return VersionString(self.max_version)
 
     def clean(self):
         if self.id:
@@ -126,15 +126,15 @@ class Block(ModelBase):
                 raise ValidationError({'min_version': _('Invalid version')})
             if self.max_version not in choices + [self.MAX]:
                 raise ValidationError({'max_version': _('Invalid version')})
-        if self.min_version_vint > self.max_version_vint:
+        if self.min_version_vstring > self.max_version_vstring:
             raise ValidationError(
                 _('Min version can not be greater than Max version'))
 
     def is_version_blocked(self, version):
-        version_vint = addon_version_int(version)
+        version_vstr = VersionString(version)
         return (
-            version_vint >= self.min_version_vint and
-            version_vint <= self.max_version_vint)
+            version_vstr >= self.min_version_vstring and
+            version_vstr <= self.max_version_vstring)
 
     def review_listed_link(self):
         has_listed = any(
@@ -282,9 +282,9 @@ class BlocklistSubmission(ModelBase):
         return changes
 
     def clean(self):
-        min_vint = addon_version_int(self.min_version)
-        max_vint = addon_version_int(self.max_version)
-        if min_vint > max_vint:
+        min_vstr = VersionString(self.min_version)
+        max_vstr = VersionString(self.max_version)
+        if min_vstr > max_vstr:
             raise ValidationError(
                 _('Min version can not be greater than Max version'))
 

@@ -1,4 +1,5 @@
 import re
+from functools import total_ordering
 
 from django.utils.encoding import force_text
 
@@ -19,12 +20,11 @@ version_re = re.compile(r"""(?P<major>\d+|\*)      # major (x in x.y)
 
 LETTERS = ['alpha', 'pre']
 NUMBERS = ['major', 'minor1', 'minor2', 'minor3', 'alpha_ver', 'pre_ver']
+ASTERISK = '*'
 
 
-def version_dict(version, asterisk_value=MAX_VERSION_PART,
-                 major_asterisk_value=None):
+def version_dict(version, asterisk_value=MAX_VERSION_PART):
     """Turn a version string into a dict with major/minor/... info."""
-    major_asterisk_value = major_asterisk_value or asterisk_value
     match = version_re.match(version or '')
 
     if match:
@@ -32,9 +32,8 @@ def version_dict(version, asterisk_value=MAX_VERSION_PART,
         for letter in LETTERS:
             vdict[letter] = vdict[letter] if vdict[letter] else None
         for num in NUMBERS:
-            if vdict[num] == '*':
-                vdict[num] = (
-                    major_asterisk_value if num == 'major' else asterisk_value)
+            if vdict[num] == ASTERISK:
+                vdict[num] = asterisk_value
             else:
                 vdict[num] = int(vdict[num]) if vdict[num] else None
     else:
@@ -43,16 +42,65 @@ def version_dict(version, asterisk_value=MAX_VERSION_PART,
     return vdict
 
 
-def _get_version_dict(version_string, max_number_minor, max_number_major):
-    vdict = version_dict(
-        force_text(version_string), asterisk_value=max_number_minor,
-        major_asterisk_value=max_number_major)
-    for num in NUMBERS:
-        max_num = max_number_major if num == 'major' else max_number_minor
-        vdict[num] = min(vdict[num] or 0, max_num)
-    vdict['alpha'] = {'a': 0, 'b': 1}.get(vdict['alpha'], 2)
-    vdict['pre'] = 0 if vdict['pre'] else 1
-    return vdict
+@total_ordering
+class VersionString():
+    string = ''
+    full_dict = {}
+
+    def __init__(self, string):
+        self.string = force_text(string)
+        vdict = version_dict(self.string, ASTERISK)
+        self.full_dict = self._fill_vdict(vdict)
+
+    def _fill_vdict(self, vdict):
+        last_part_value = None
+        for part in NUMBERS:
+            part_value = vdict[part]
+            # reset last_part_value once we get to the alpha/pre parts
+            if part in ('alpha_ver', 'pre_ver'):
+                last_part_value = None
+            if part_value is None:
+                # if the part was missing it's 0, unless the last part was *;
+                # then it inherits the * and is max value.
+                vdict[part] = ASTERISK if last_part_value == ASTERISK else 0
+            else:
+                last_part_value = part_value
+        for part in LETTERS:
+            vdict[part] = vdict[part] or ''
+        return vdict
+
+    @classmethod
+    def _cmp_part(cls, part_a, part_b):
+        if part_a == ASTERISK and part_b != ASTERISK:
+            return 1
+        elif part_b == ASTERISK and part_a != ASTERISK:
+            return -1
+        return 0 if part_a == part_b else 1 if part_a > part_b else -1
+
+    def __eq__(self, other):
+        for part, value in self.full_dict.items():
+            cmp = self._cmp_part(value, other.full_dict[part])
+            if cmp == 0:
+                continue
+            else:
+                return False
+        return True
+
+    def __gt__(self, other):
+        for part, value in self.full_dict.items():
+            other_value = other.full_dict[part]
+            if part in LETTERS:
+                cmp = self._cmp_part(value or 'z', other_value or 'z')
+            else:
+                cmp = self._cmp_part(value, other_value)
+            if cmp == 0:
+                continue
+            else:
+                return cmp == 1
+        return False
+
+    def __str__(self):
+        return self.string
 
 
 def version_int(version):
@@ -60,28 +108,16 @@ def version_int(version):
     single number for comparison.  To maintain compatibility the minor parts
     are limited to 99 making it unsuitable for comparing addon version strings.
     """
-    vdict = _get_version_dict(
-        version, max_number_minor=99, max_number_major=MAX_VERSION_PART)
+    vstr = VersionString(version)
+    vdict = dict(vstr.full_dict)
+    for part in NUMBERS:
+        max_num = MAX_VERSION_PART if part == 'major' else 99
+        number = vdict[part]
+        vdict[part] = max_num if number == ASTERISK else min(number, max_num)
+    vdict['alpha'] = {'a': 0, 'b': 1}.get(vdict['alpha'], 2)
+    vdict['pre'] = 0 if vdict['pre'] else 1
 
     vint = '%d%02d%02d%02d%d%02d%d%02d' % (
         vdict['major'], vdict['minor1'], vdict['minor2'], vdict['minor3'],
         vdict['alpha'], vdict['alpha_ver'], vdict['pre'], vdict['pre_ver'])
     return min(int(vint), BIGINT_POSITIVE_MAX)
-
-
-def addon_version_int(version):
-    """Suitable for comparing addon version strings that are Chrome compatible
-    plus the limited a, b, pre suffixes we support for app versions.  Returns
-    a very large integer (that's too big to store as a BIGINT in mysql).
-    """
-    vdict = _get_version_dict(
-        version, max_number_minor=MAX_VERSION_PART,
-        max_number_major=MAX_VERSION_PART)
-
-    # use hex numbers to simplify the conversion.
-    # alpha and pre can only be 0,1,2 so will always be a single digit; pre_var
-    # is parsed as single digit by version_dict.
-    hex_string = ('%x' '%04x' '%04x' '%04x' '%x' '%04x' '%x' '%x') % (
-        vdict['major'], vdict['minor1'], vdict['minor2'], vdict['minor3'],
-        vdict['alpha'], vdict['alpha_ver'], vdict['pre'], vdict['pre_ver'])
-    return int(hex_string, base=16)

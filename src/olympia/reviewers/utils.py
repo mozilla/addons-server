@@ -26,7 +26,7 @@ from olympia.reviewers.models import (
     ViewUnlistedAllList, get_flags, get_flags_for_row)
 from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
-from olympia.versions.compare import addon_version_int
+from olympia.versions.compare import VersionString
 from olympia.versions.models import VersionReviewerFlags
 
 import jinja2
@@ -1148,14 +1148,14 @@ class ReviewUnlisted(ReviewBase):
         log.info(u'Sending email for %s' % (self.addon))
 
     def block_multiple_versions(self):
-        min_version = ('0', 0)
-        max_version = ('*', 0)
+        min_version = ('0', None)
+        max_version = ('*', None)
         for version in self.data['versions']:
-            version_int = addon_version_int(version.version)
-            if not min_version[1] or version_int < min_version[1]:
-                min_version = (version, version_int)
-            if not max_version[1] or version_int > max_version[1]:
-                max_version = (version, version_int)
+            version_str = VersionString(version.version)
+            if not min_version[1] or version_str < min_version[1]:
+                min_version = (version, version_str)
+            if not max_version[1] or version_str > max_version[1]:
+                max_version = (version, version_str)
 
         params = f'?min={min_version[0].pk}&max={max_version[0].pk}'
         self.redirect_url = (
