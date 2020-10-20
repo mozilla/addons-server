@@ -133,3 +133,19 @@ class TestPromotedSubscription(TestCase):
         sub.update(payment_cancelled_at=datetime.datetime.now())
 
         assert sub.stripe_checkout_cancelled
+
+    def test_addon_already_approved(self):
+        addon = addon_factory()
+        promoted_addon = PromotedAddon.objects.create(
+            addon=addon, group_id=promoted.SPONSORED.id
+        )
+        sub = PromotedSubscription.objects.filter(
+            promoted_addon=promoted_addon
+        ).get()
+
+        assert not sub.addon_already_promoted
+
+        promoted_addon.approve_for_version(addon.current_version)
+        sub.reload()
+
+        assert sub.addon_already_promoted

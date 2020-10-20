@@ -76,9 +76,8 @@ class TestOnboardingSubscription(OnboardingSubscriptionTestCase):
         ]
 
         # Get the page.
-        queries = 31
+        queries = 36
         with self.assertNumQueries(queries):
-            # 31 queries:
             # - 3 users + groups
             # - 2 savepoints (test)
             # - 3 addon and its translations
@@ -184,6 +183,23 @@ class TestOnboardingSubscription(OnboardingSubscriptionTestCase):
         response = self.client.get(self.url)
 
         assert response.status_code == 500
+
+    @mock.patch("olympia.devhub.views.retrieve_stripe_checkout_session")
+    def test_shows_confirmation_after_payment_already_approved(
+        self, retrieve_mock
+    ):
+        stripe_session_id = "session id"
+        retrieve_mock.return_value = mock.MagicMock(id=stripe_session_id)
+        self.subscription.update(
+            stripe_session_id=stripe_session_id,
+            payment_completed_at=datetime.datetime.now(),
+        )
+        self.promoted_addon.approve_for_version(self.addon.current_version)
+
+        response = self.client.get(self.url)
+
+        assert b"You're done!" in response.content
+        retrieve_mock.assert_called_with(self.subscription)
 
 
 class TestOnboardingSubscriptionSuccess(OnboardingSubscriptionTestCase):

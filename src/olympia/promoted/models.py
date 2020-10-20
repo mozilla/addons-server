@@ -208,3 +208,7 @@ class PromotedSubscription(ModelBase):
     @property
     def stripe_checkout_cancelled(self):
         return bool(self.payment_cancelled_at)
+
+    @property
+    def addon_already_promoted(self):
+        return bool(self.promoted_addon.approved_applications)

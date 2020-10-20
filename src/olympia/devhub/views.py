@@ -1852,7 +1852,7 @@ def get_promoted_subscription_or_404(addon):
         )
         raise http.Http404()
 
-    qs = PromotedSubscription.objects.select_related('promoted_addon')
+    qs = PromotedSubscription.objects.select_related('promoted_addon__addon')
     return get_object_or_404(qs, promoted_addon__addon=addon)
 
 
@@ -1906,6 +1906,7 @@ def onboarding_subscription(request, addon_id, addon):
         "stripe_checkout_completed": sub.stripe_checkout_completed,
         "stripe_checkout_cancelled": sub.stripe_checkout_cancelled,
         "promoted_group": sub.promoted_addon.group,
+        "already_promoted": sub.addon_already_promoted,
     }
     return render(request, "devhub/addons/onboarding_subscription.html", data)
 
