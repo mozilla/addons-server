@@ -462,7 +462,6 @@ class TestAddonIndexer(TestCase):
         self.addon = addon_factory(recommended=True)
         extracted = self._extract()
         assert extracted['promoted']
-        assert extracted['promoted']['application_id'] is None
         assert extracted['promoted']['group_id'] == RECOMMENDED.id
         assert extracted['promoted']['approved_for_apps'] == [
             amo.FIREFOX.id, amo.ANDROID.id]
@@ -471,7 +470,6 @@ class TestAddonIndexer(TestCase):
         # Specific application.
         self.addon.promotedaddon.update(application_id=amo.FIREFOX.id)
         extracted = self._extract()
-        assert extracted['promoted']['application_id'] is amo.FIREFOX.id
         assert extracted['promoted']['approved_for_apps'] == [
             amo.FIREFOX.id]
         assert extracted['is_recommended'] is True
@@ -483,7 +481,6 @@ class TestAddonIndexer(TestCase):
         featured_collection.add_addon(self.addon)
         extracted = self._extract()
         assert extracted['promoted']
-        assert extracted['promoted']['application_id'] is None
         assert extracted['promoted']['group_id'] == RECOMMENDED.id
         assert extracted['promoted']['approved_for_apps'] == [
             amo.FIREFOX.id, amo.ANDROID.id]
