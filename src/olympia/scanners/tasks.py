@@ -373,8 +373,8 @@ def run_yara_query_rule_on_versions_chunk(version_pks, query_rule_pk):
         return
     for version_pk in version_pks:
         try:
-            version = Version.unfiltered.all().no_transforms().get(
-                pk=version_pk)
+            version = Version.unfiltered.all().select_related(
+                'addon__addonguid').no_transforms().get(pk=version_pk)
             _run_yara_query_rule_on_version(version, rule)
         except Exception:
             log.exception(
@@ -400,8 +400,9 @@ def _run_yara_query_rule_on_version(version, rule):
     # a match, there would be too many things to save otherwise and we don't
     # really care about non-matches.
     if scanner_result.results:
+        scanner_result.was_blocked = version.is_blocked
         scanner_result.save()
-    # FIXME: run_action ?
+
     return scanner_result
 
 

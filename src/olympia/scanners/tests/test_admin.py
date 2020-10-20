@@ -1359,6 +1359,11 @@ class TestScannerQueryResultAdmin(TestCase):
             ('All', '?'),
             ('Yes', '?version__files__is_signed__exact=1'),
             ('No', '?version__files__is_signed__exact=0'),
+
+            ('All', '?'),
+            ('Yes', '?was_blocked__exact=1'),
+            ('No', '?was_blocked__exact=0'),
+            ('Unknown', '?was_blocked__isnull=True'),
         ]
         filters = [
             (x.text, x.attrib['href']) for x in doc('#changelist-filter a')
@@ -1506,6 +1511,47 @@ class TestScannerQueryResultAdmin(TestCase):
         doc = pq(response.content)
         assert doc('#result_list tbody > tr').length == 1
         assert doc('.field-guid').text() == unsigned_addon.guid
+
+    def test_list_filter_was_blocked(self):
+        was_blocked_addon = addon_factory()
+        was_blocked_unknown_addon = addon_factory()
+        was_blocked_false_addon = addon_factory()
+        ScannerQueryResult.objects.create(
+            scanner=YARA, version=was_blocked_addon.current_version,
+            was_blocked=True
+        )
+        ScannerQueryResult.objects.create(
+            scanner=YARA, version=was_blocked_unknown_addon.current_version,
+            was_blocked=None
+        )
+        ScannerQueryResult.objects.create(
+            scanner=YARA, version=was_blocked_false_addon.current_version,
+            was_blocked=False
+        )
+
+        response = self.client.get(self.list_url, {
+            'was_blocked__exact': '1',
+        })
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 1
+        assert doc('.field-guid').text() == was_blocked_addon.guid
+
+        response = self.client.get(self.list_url, {
+            'was_blocked__exact': '0',
+        })
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 1
+        assert doc('.field-guid').text() == was_blocked_false_addon.guid
+
+        response = self.client.get(self.list_url, {
+            'was_blocked__isnull': 'True',
+        })
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 1
+        assert doc('.field-guid').text() == was_blocked_unknown_addon.guid
 
     def test_change_page(self):
         rule = ScannerQueryRule.objects.create(name='darule', scanner=YARA)
