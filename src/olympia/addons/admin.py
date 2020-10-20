@@ -1,5 +1,5 @@
 import functools
-from urllib.parse import unquote, urlencode, urljoin
+from urllib.parse import urlencode, urljoin
 
 from django import http, forms
 from django.conf import settings
