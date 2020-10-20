@@ -1,4 +1,5 @@
-from django.urls import include, re_path
+from django.conf.urls import include
+from django.urls import re_path
 from django.shortcuts import redirect
 
 from olympia.addons.urls import ADDON_ID
@@ -24,6 +25,14 @@ detail_patterns = [
             name='devhub.addons.invitation'),
     re_path(r'^edit_(?P<section>[^/]+)(?:/(?P<editable>[^/]+))?$',
             views.addons_section, name='devhub.addons.section'),
+    re_path(r'^onboarding-subscription$', views.onboarding_subscription,
+            name='devhub.addons.onboarding_subscription'),
+    re_path(r'^onboarding-subscription/success$',
+            views.onboarding_subscription_success,
+            name='devhub.addons.onboarding_subscription_success'),
+    re_path(r'^onboarding-subscription/cancel$',
+            views.onboarding_subscription_cancel,
+            name='devhub.addons.onboarding_subscription_cancel'),
 
     re_path(r'^upload_preview$', views.upload_image,
             {'upload_type': 'preview'},

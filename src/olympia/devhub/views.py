@@ -45,6 +45,11 @@ from olympia.devhub.utils import (
     UploadRestrictionChecker, wizard_unsupported_properties)
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import parse_addon
+from olympia.promoted.models import PromotedSubscription
+from olympia.promoted.utils import (
+    create_or_retrieve_stripe_checkout_session,
+    retrieve_stripe_checkout_session,
+)
 from olympia.reviewers.forms import PublicWhiteboardForm
 from olympia.reviewers.models import Whiteboard
 from olympia.reviewers.templatetags.code_manager import code_manager_url
@@ -1837,3 +1842,101 @@ def logout(request):
     logout_user(request, response)
 
     return response
+
+
+def get_promoted_subscription_or_404(addon):
+    if not waffle.switch_is_active('enable-subscription'):
+        log.info(
+            'cannot retrieve a promoted subscription because waffle switch '
+            'is disabled.'
+        )
+        raise http.Http404()
+
+    qs = PromotedSubscription.objects.select_related('promoted_addon')
+    return get_object_or_404(qs, promoted_addon__addon=addon)
+
+
+@dev_required
+@csp_update(
+    SCRIPT_SRC="https://js.stripe.com",
+    CONNECT_SRC="https://api.stripe.com",
+    FRAME_SRC=["https://js.stripe.com", "https://hooks.stripe.com"],
+)
+def onboarding_subscription(request, addon_id, addon):
+    sub = get_promoted_subscription_or_404(addon=addon)
+
+    fields_to_update = {}
+    if addon.has_author(request.user) and not sub.link_visited_at:
+        fields_to_update['link_visited_at'] = datetime.datetime.now()
+
+    session = create_or_retrieve_stripe_checkout_session(
+        sub, customer_email=request.user.email
+    )
+    if sub.stripe_session_id != session.id:
+        fields_to_update['stripe_session_id'] = session.id
+
+    if len(fields_to_update) > 0:
+        sub.update(**fields_to_update)
+
+    data = {
+        "addon": addon,
+        "stripe_session_id": sub.stripe_session_id,
+        "stripe_api_public_key": settings.STRIPE_API_PUBLIC_KEY,
+        "stripe_checkout_completed": sub.stripe_checkout_completed,
+        "stripe_checkout_cancelled": sub.stripe_checkout_cancelled,
+        "promoted_group": sub.promoted_addon.group,
+    }
+    return render(request, "devhub/addons/onboarding_subscription.html", data)
+
+
+@dev_required
+def onboarding_subscription_success(request, addon_id, addon):
+    sub = get_promoted_subscription_or_404(addon=addon)
+
+    try:
+        session = retrieve_stripe_checkout_session(sub)
+    except Exception:
+        log.exception("error while retrieving the stripe checkout session")
+        raise http.Http404()
+
+    if session.payment_status == "paid" and not sub.paid_at:
+        # When the user has completed the Stripe Checkout process, we record
+        # this event.
+        #
+        # We reset `payment_cancelled_at` because it does not matter if the
+        # user has cancelled or not in the past (this simply means the user
+        # opened the Checkout page and didn't subscribe), mainly because as of
+        # now, the user has finally subscribed.
+        #
+        # Note: "cancellation" of an active subscription is not supported yet.
+        sub.update(payment_cancelled_at=None, paid_at=datetime.datetime.now())
+        # TODO: if the current version has been reviewed, bump its version and
+        # publish it so that it becomes promoted automatically.
+
+    return redirect(
+        reverse("devhub.addons.onboarding_subscription", args=[addon.id])
+    )
+
+
+@dev_required
+def onboarding_subscription_cancel(request, addon_id, addon):
+    sub = get_promoted_subscription_or_404(addon=addon)
+
+    try:
+        retrieve_stripe_checkout_session(sub)
+    except Exception:
+        log.exception("error while retrieving the stripe checkout session")
+        raise http.Http404()
+
+    if not sub.stripe_checkout_completed:
+        # We record this date only when the user has cancelled the Stripe
+        # Checkout process on the Checkout page (i.e. the user has not
+        # subscribed yet).
+        #
+        # If the user has completed the checkout process, then we prevent this
+        # date to be changed.
+        sub.update(payment_cancelled_at=datetime.datetime.now())
+
+    return redirect(
+        reverse("devhub.addons.onboarding_subscription", args=[addon.id])
+    )

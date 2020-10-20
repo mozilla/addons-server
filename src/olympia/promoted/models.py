@@ -5,6 +5,7 @@ from urllib.parse import urljoin
 
 from olympia.addons.models import Addon
 from olympia.amo.models import ModelBase
+from olympia.amo.urlresolvers import reverse
 from olympia.constants.applications import APP_IDS, APPS_CHOICES, APP_USAGE
 from olympia.constants.promoted import (
     NOT_PROMOTED, PRE_REVIEW_GROUPS, PROMOTED_GROUPS, PROMOTED_GROUPS_BY_ID,
@@ -177,11 +178,20 @@ class PromotedSubscription(ModelBase):
     def __str__(self):
         return f'Subscription for {self.promoted_addon}'
 
-    def get_onboarding_url(self):
+    def get_onboarding_url(self, absolute=True):
         if not self.id:
             return None
-        return urljoin(
-            settings.EXTERNAL_SITE_URL,
-            # TODO: replace with `reverse()` once we have a route/view.
-            f'/{self.promoted_addon.addon.slug}/onboarding'
-        )
+
+        url = reverse('devhub.addons.onboarding_subscription',
+                      args=[self.promoted_addon.addon.slug])
+        if absolute:
+            url = urljoin(settings.EXTERNAL_SITE_URL, url)
+        return url
+
+    @property
+    def stripe_checkout_completed(self):
+        return bool(self.paid_at)
+
+    @property
+    def stripe_checkout_cancelled(self):
+        return bool(self.payment_cancelled_at)
