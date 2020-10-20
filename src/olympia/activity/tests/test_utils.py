@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import copy
+import datetime
 import json
 import os
 
@@ -241,6 +242,11 @@ class TestAddEmailToActivityLog(TestCase):
         parser.email['To'][0]['EmailAddress'] = 'reviewreply+1234@foo.bar'
         with self.assertRaises(ActivityEmailUUIDError):
             assert not add_email_to_activity_log(parser)
+
+    def test_banned_user(self):
+        self.profile.addonuser_set.create(addon=self.addon)
+        self.profile.update(banned=datetime.datetime.now())
+        assert not add_email_to_activity_log(self.parser)
 
 
 class TestLogAndNotify(TestCase):
