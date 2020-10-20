@@ -2,7 +2,6 @@ import pytest
 
 from unittest import mock
 
-from django.conf import settings
 from django.test.utils import override_settings
 
 from olympia.amo.templatetags.jinja_helpers import absolutify
