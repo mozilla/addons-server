@@ -8,8 +8,8 @@ class TestPromotedAddon(TestCase):
 
     def test_basic(self):
         promoted_addon = PromotedAddon.objects.create(
-            addon=addon_factory(), group_id=promoted.VERIFIED_ONE.id)
-        assert promoted_addon.group == promoted.VERIFIED_ONE
+            addon=addon_factory(), group_id=promoted.SPONSORED.id)
+        assert promoted_addon.group == promoted.SPONSORED
         assert promoted_addon.application_id is None
         assert promoted_addon.all_applications == [
             applications.FIREFOX, applications.ANDROID]
@@ -32,11 +32,11 @@ class TestPromotedAddon(TestCase):
             applications.FIREFOX, applications.ANDROID]
 
         # but not if it's for a different type of promotion
-        promoted_addon.update(group_id=promoted.VERIFIED_ONE.id)
+        promoted_addon.update(group_id=promoted.SPONSORED.id)
         assert addon.promotedaddon.approved_applications == []
         # unless that group has an approval too
         PromotedApproval.objects.create(
-            version=addon.current_version, group_id=promoted.VERIFIED_ONE.id,
+            version=addon.current_version, group_id=promoted.SPONSORED.id,
             application_id=applications.FIREFOX.id)
         addon.reload()
         assert addon.promotedaddon.approved_applications == [
@@ -49,16 +49,43 @@ class TestPromotedAddon(TestCase):
         assert addon.promotedaddon.approved_applications == [
             applications.FIREFOX, applications.ANDROID]
 
+    def test_creates_a_subscription_when_group_should_have_one(self):
+        assert PromotedSubscription.objects.count() == 0
+
+        promoted_addon = PromotedAddon.objects.create(
+            addon=addon_factory(), group_id=promoted.SPONSORED.id
+        )
+
+        assert PromotedSubscription.objects.count() == 1
+        assert (PromotedSubscription.objects.all()[0].promoted_addon ==
+                promoted_addon)
+
+        # Do not create a subscription twice.
+        promoted_addon.save()
+        assert PromotedSubscription.objects.count() == 1
+
+    def test_no_subscription_created_when_group_should_not_have_one(self):
+        assert PromotedSubscription.objects.count() == 0
+
+        PromotedAddon.objects.create(
+            addon=addon_factory(), group_id=promoted.LINE.id
+        )
+
+        assert PromotedSubscription.objects.count() == 0
+
 
 class TestPromotedSubscription(TestCase):
-    def test_get_onboarding_url(self):
-        promoted_addon = PromotedAddon.objects.create(
-            addon=addon_factory(), group_id=promoted.VERIFIED_ONE.id
-        )
-        sub = PromotedSubscription(promoted_addon=promoted_addon)
+    def test_get_onboarding_url_with_new_object(self):
+        sub = PromotedSubscription()
 
         assert sub.get_onboarding_url() is None
 
-        sub.save()
+    def test_get_onboarding_url(self):
+        promoted_addon = PromotedAddon.objects.create(
+            addon=addon_factory(), group_id=promoted.SPONSORED.id
+        )
+        sub = PromotedSubscription.objects.filter(
+            promoted_addon=promoted_addon
+        ).get()
 
         assert 'onboarding' in sub.get_onboarding_url()

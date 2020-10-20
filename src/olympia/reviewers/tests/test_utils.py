@@ -21,7 +21,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import send_mail
 from olympia.blocklist.models import Block, BlocklistSubmission
 from olympia.constants.promoted import (
-    LINE, RECOMMENDED, SPOTLIGHT, STRATEGIC, VERIFIED_ONE)
+    LINE, RECOMMENDED, SPOTLIGHT, STRATEGIC, SPONSORED)
 from olympia.files.models import File
 from olympia.lib.crypto.tests.test_signing import (
     _get_recommendation_data, _get_signature_details)
@@ -466,7 +466,7 @@ class TestReviewHelper(TestReviewHelperBase):
             file_status=amo.STATUS_AWAITING_REVIEW).keys()) == expected
 
         # only for groups that are admin_review though
-        self.make_addon_promoted(self.addon, VERIFIED_ONE)
+        self.make_addon_promoted(self.addon, SPONSORED)
         expected = ['public', 'reject', 'reject_multiple_versions',
                     'reply', 'super', 'comment']
         assert list(self.get_review_actions(

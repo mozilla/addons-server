@@ -25,7 +25,7 @@ from olympia.bandwagon.models import Collection
 from olympia.blocklist.models import Block, BlocklistSubmission
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.promoted import (
-    NOT_PROMOTED, RECOMMENDED, SPOTLIGHT, VERIFIED_ONE)
+    NOT_PROMOTED, RECOMMENDED, SPOTLIGHT, SPONSORED)
 from olympia.devhub.models import RssKey
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadTest
@@ -1573,18 +1573,18 @@ class TestAddonModels(TestCase):
 
         # if the group has changes the approval for the current version isn't
         # valid
-        promoted.update(group_id=VERIFIED_ONE.id)
+        promoted.update(group_id=SPONSORED.id)
         assert not addon.promoted_group()
         assert addon.promoted_group(currently_approved=False)
-        assert addon.promoted_group(currently_approved=False) == VERIFIED_ONE
+        assert addon.promoted_group(currently_approved=False) == SPONSORED
 
         promoted.approve_for_version(version=addon.current_version)
         del addon.current_version.approved_for_groups
-        assert addon.promoted_group() == VERIFIED_ONE
+        assert addon.promoted_group() == SPONSORED
 
         # Application specific group membership should work too
         # if no app is specifed in the PromotedAddon everything should match
-        assert addon.promoted_group() == VERIFIED_ONE
+        assert addon.promoted_group() == SPONSORED
         # update to mobile app
         promoted.update(application_id=amo.ANDROID.id)
         assert addon.promoted_group()
@@ -1594,7 +1594,7 @@ class TestAddonModels(TestCase):
         del addon.current_version.approved_for_groups
         assert not addon.promoted_group()
         promoted.update(application_id=amo.FIREFOX.id)
-        assert addon.promoted_group() == VERIFIED_ONE
+        assert addon.promoted_group() == SPONSORED
 
         # check it doesn't error if there's no current_version
         addon.current_version.all_files[0].update(status=amo.STATUS_DISABLED)
@@ -1621,7 +1621,7 @@ class TestAddonModels(TestCase):
 
         # If the group changes the approval for the current version isn't
         # valid.
-        promoted.update(group_id=VERIFIED_ONE.id)
+        promoted.update(group_id=SPONSORED.id)
         del addon.promoted
         assert addon.promoted is None
 

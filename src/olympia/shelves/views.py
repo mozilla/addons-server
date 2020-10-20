@@ -8,7 +8,7 @@ from rest_framework.response import Response
 
 from olympia.addons.views import AddonSearchView
 from olympia.api.pagination import ESPageNumberPagination
-from olympia.constants.promoted import VERIFIED_ONE
+from olympia.constants.promoted import SPONSORED
 from olympia.search.filters import ReviewedContentFilter
 
 from .models import Shelf
@@ -63,7 +63,7 @@ class SponsoredShelfViewSet(viewsets.ViewSetMixin, AddonSearchView):
         ids = list(self.adzerk_results.keys())
         results_qs = qs.query(query.Bool(must=[
             Q('terms', id=ids),
-            Q('term', **{'promoted.group_id': VERIFIED_ONE.id})]))
+            Q('term', **{'promoted.group_id': SPONSORED.id})]))
         results_qs.execute()  # To cache the results.
         filter_adzerk_results_to_es_results_qs(
             self.adzerk_results, results_qs)

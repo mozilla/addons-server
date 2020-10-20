@@ -16,7 +16,7 @@ from olympia.amo.tests import TestCase
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.promoted import (
     BADGED_GROUPS, PROMOTED_API_NAME_TO_IDS, RECOMMENDED, LINE, STRATEGIC,
-    VERIFIED_ONE, VERIFIED_TWO)
+    SPONSORED, VERIFIED)
 from olympia.search.filters import (
     ReviewedContentFilter, SearchParameterFilter, SearchQueryFilter,
     SortingFilter)
@@ -962,7 +962,7 @@ class TestSearchParameterFilter(FilterTestsBase):
         assert [
             {'terms': {'promoted.group_id': [
                 # recommended shouldn't be there twice
-                RECOMMENDED.id, VERIFIED_ONE.id, VERIFIED_TWO.id, LINE.id,
+                RECOMMENDED.id, SPONSORED.id, VERIFIED.id, LINE.id,
                 STRATEGIC.id]}}
         ] == filter_
 

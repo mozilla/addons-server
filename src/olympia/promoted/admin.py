@@ -1,13 +1,15 @@
 from django.contrib import admin
 from django.db.models import Prefetch
 from django.forms.models import modelformset_factory
+from django.utils.html import format_html
 
 from olympia.addons.models import Addon
+from olympia.constants.promoted import PROMOTED_GROUPS_FOR_SUBSCRIPTION
 from olympia.hero.admin import PrimaryHeroInline
 from olympia.versions.models import Version
 
 from .forms import AdminBasePromotedApprovalFormSet
-from .models import PromotedApproval
+from .models import PromotedApproval, PromotedSubscription
 
 
 class PromotedApprovalInlineChecks(admin.checks.InlineModelAdminChecks):
@@ -16,6 +18,37 @@ class PromotedApprovalInlineChecks(admin.checks.InlineModelAdminChecks):
         Addon, Version) so we have to bypass this check.
         """
         return []
+
+
+class PromotedSubscriptionInline(admin.StackedInline):
+    model = PromotedSubscription
+    view_on_site = False
+    fields = (
+        'onboarding_url',
+        'link_visited_at',
+        'payment_cancelled_at',
+        'paid_at',
+    )
+    readonly_fields = (
+        'onboarding_url',
+        'link_visited_at',
+        'payment_cancelled_at',
+        'paid_at',
+    )
+
+    def has_add_permission(self, request, obj=None):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+    def onboarding_url(self, obj):
+        return format_html("<pre>{}</pre>", obj.get_onboarding_url())
+
+    onboarding_url.short_description = "Onboarding URL"
 
 
 class PromotedApprovalInline(admin.TabularInline):
@@ -66,6 +99,12 @@ class PromotedAddonAdmin(admin.ModelAdmin):
     fields = ('addon', 'group_id', 'application_id')
     list_filter = ('group_id', 'application_id')
     inlines = (PromotedApprovalInline, PrimaryHeroInline)
+
+    def get_inline_instances(self, request, obj=None):
+        inlines = self.inlines
+        if obj and obj.group in PROMOTED_GROUPS_FOR_SUBSCRIPTION:
+            inlines = inlines + (PromotedSubscriptionInline,)
+        return [inline(self.model, self.admin_site) for inline in inlines]
 
     @classmethod
     def _transformer(self, objs):

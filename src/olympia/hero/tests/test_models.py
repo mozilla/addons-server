@@ -2,7 +2,7 @@ from django.core.exceptions import ValidationError
 
 from olympia.amo.tests import addon_factory, TestCase
 from olympia.amo.tests.test_helpers import get_uploaded_file
-from olympia.constants.promoted import RECOMMENDED, SPOTLIGHT, VERIFIED_TWO
+from olympia.constants.promoted import RECOMMENDED, SPOTLIGHT, VERIFIED
 from olympia.hero.models import (
     PrimaryHero, PrimaryHeroImage, SecondaryHero, SecondaryHeroModule)
 from olympia.promoted.models import PromotedAddon
@@ -48,12 +48,12 @@ class TestPrimaryHero(TestCase):
         ph.clean()  # it raises if there's an error
 
         # change to a different group
-        ph.promoted_addon.update(group_id=VERIFIED_TWO.id)
+        ph.promoted_addon.update(group_id=VERIFIED.id)
         ph.promoted_addon.approve_for_version(
             ph.promoted_addon.addon.current_version)
         ph.reload()
         ph.enabled = True
-        assert ph.promoted_addon.addon.promoted_group() == VERIFIED_TWO
+        assert ph.promoted_addon.addon.promoted_group() == VERIFIED
         with self.assertRaises(ValidationError) as context:
             # VERIFIED isn't a group that can be added as a primary hero
             ph.clean()

@@ -7,7 +7,8 @@ from olympia.addons.models import Addon
 from olympia.amo.models import ModelBase
 from olympia.constants.applications import APP_IDS, APPS_CHOICES, APP_USAGE
 from olympia.constants.promoted import (
-    NOT_PROMOTED, PRE_REVIEW_GROUPS, PROMOTED_GROUPS, PROMOTED_GROUPS_BY_ID)
+    NOT_PROMOTED, PRE_REVIEW_GROUPS, PROMOTED_GROUPS, PROMOTED_GROUPS_BY_ID,
+    PROMOTED_GROUPS_FOR_SUBSCRIPTION)
 from olympia.versions.models import Version
 
 
@@ -64,6 +65,17 @@ class PromotedAddon(ModelBase):
                 version=version,
                 group_id=self.group_id,
                 application_id=app.id)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        if (
+            self.group in PROMOTED_GROUPS_FOR_SUBSCRIPTION and
+            not PromotedSubscription.objects.filter(
+                promoted_addon=self
+            ).exists()
+        ):
+            PromotedSubscription.objects.create(promoted_addon=self)
 
 
 class PromotedTheme(PromotedAddon):
