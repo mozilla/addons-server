@@ -154,7 +154,7 @@ class TestOnboardingSubscription(OnboardingSubscriptionTestCase):
 
         response = self.client.get(self.url)
 
-        assert b"You're done!" in response.content
+        assert b"You're almost done!" in response.content
 
 
 class TestOnboardingSubscriptionSuccess(OnboardingSubscriptionTestCase):
