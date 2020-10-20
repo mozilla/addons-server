@@ -1,11 +1,18 @@
+import functools
 from urllib.parse import urlencode, urljoin
 
 from django import http, forms
 from django.conf import settings
+from django.conf.urls import url
 from django.contrib import admin
 from django.core import validators
 from django.forms.models import modelformset_factory
+from django.http.response import (HttpResponseForbidden,
+                                  HttpResponseNotAllowed,
+                                  HttpResponseRedirect)
+from django.shortcuts import get_object_or_404
 from django.urls import resolve
+from django.utils.encoding import force_text
 from django.utils.html import format_html
 from django.utils.translation import ugettext, ugettext_lazy as _
 
@@ -16,6 +23,7 @@ from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.urlresolvers import reverse
 from olympia.files.models import File
+from olympia.git.models import GitExtractionEntry
 from olympia.ratings.models import Rating
 from olympia.versions.models import Version
 from olympia.zadmin.admin import related_content_link
@@ -166,9 +174,24 @@ class AddonAdmin(admin.ModelAdmin):
         ('Dictionaries and Language Packs', {
             'fields': ('target_locale',),
         }))
+    actions = ['git_extract_action']
 
     def queryset(self, request):
         return models.Addon.unfiltered
+
+    def get_urls(self):
+        def wrap(view):
+            def wrapper(*args, **kwargs):
+                return self.admin_site.admin_view(view)(*args, **kwargs)
+            return functools.update_wrapper(wrapper, view)
+
+        urlpatterns = super(AddonAdmin, self).get_urls()
+        custom_urlpatterns = [
+            url(r'^(?P<object_id>.+)/git_extract/$',
+                wrap(self.git_extract_view),
+                name='addons_git_extract'),
+        ]
+        return custom_urlpatterns + urlpatterns
 
     def total_ratings_link(self, obj):
         return related_content_link(
@@ -247,6 +270,31 @@ class AddonAdmin(admin.ModelAdmin):
                 amo.LOG.CHANGE_STATUS, obj, form.cleaned_data['status'])
             log.info('Addon "%s" status changed to: %s' % (
                 obj.slug, form.cleaned_data['status']))
+
+    def git_extract_action(self, request, qs):
+        addon_ids = []
+        for addon in qs:
+            GitExtractionEntry.objects.create(addon=addon)
+            addon_ids.append(force_text(addon))
+        kw = {'addons': ', '.join(addon_ids)}
+        self.message_user(
+            request, ugettext('Git extraction triggered for '
+                              '"%(addons)s".' % kw))
+    git_extract_action.short_description = "Git-Extract"
+
+    def git_extract_view(self, request, object_id, extra_context=None):
+        if request.method != 'POST':
+            return HttpResponseNotAllowed(['POST'])
+
+        if not acl.action_allowed(request, amo.permissions.ADDONS_EDIT):
+            return HttpResponseForbidden()
+
+        obj = get_object_or_404(Addon, id=object_id)
+
+        self.git_extract_action(request, (obj,))
+
+        return HttpResponseRedirect(
+            reverse('admin:addons_addon_change', args=(obj.pk, )))
 
 
 class FrozenAddonAdmin(admin.ModelAdmin):

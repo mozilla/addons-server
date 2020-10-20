@@ -20,3 +20,18 @@
 
   {{ block.super }}
 {% endblock %}
+
+{% block submit_buttons_bottom %}
+    {{ block.super }}
+    <div class="submit-row">
+        <div class="align-left">
+            {% comment %}
+              Add custom buttons for the actions we want on the change form.
+              They have to be *after* the other submit buttons, otherwise they
+              could become the default submit button of the page
+            {% endcomment %}
+            <input formaction="{% url 'admin:addons_git_extract' original.pk %}"
+                   type="submit" value="{% trans 'Git-Extract' %}" />
+        </div>
+    </div>
+{% endblock %}
