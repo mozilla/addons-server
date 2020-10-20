@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.db.transaction import non_atomic_requests
 from django.utils.decorators import classonlymethod
 
@@ -5,6 +6,8 @@ from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
+
+from olympia import amo
 
 from .models import PrimaryHero, SecondaryHero
 from .serializers import (
@@ -15,9 +18,13 @@ class ShelfViewSet(ListModelMixin, GenericViewSet):
     pagination_class = None
     format_kwarg = None
 
+    @property
+    def is_all(self):
+        return self.request.GET.get('all', '').lower() == 'true'
+
     def get_queryset(self):
         qs = super().get_queryset()
-        if not self.request.GET.get('all', '').lower() == 'true':
+        if not self.is_all:
             qs = qs.filter(enabled=True)
         return qs
 
@@ -44,6 +51,14 @@ class PrimaryHeroShelfViewSet(ShelfViewSet):
 
     def get_queryset(self):
         qs = super().get_queryset()
+        if not self.is_all:
+            qs = qs.filter(
+                Q(promoted_addon__addon__status=amo.STATUS_APPROVED) |
+                Q(is_external=True,
+                  promoted_addon__addon__status__in=(
+                      amo.VALID_ADDON_STATUSES + (amo.STATUS_NULL,))),
+                promoted_addon__addon__disabled_by_user=False
+            )
         qs = (qs.select_related('promoted_addon', 'select_image')
                 .prefetch_related(
                     'promoted_addon__addon___current_version__previews'))
