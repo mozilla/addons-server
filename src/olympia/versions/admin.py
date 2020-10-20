@@ -1,6 +1,11 @@
 from django.contrib import admin
 
-from .models import License, Version
+from .models import License, Version, VersionReviewerFlags
+
+
+class VersionReviewerFlagsInline(admin.StackedInline):
+    model = VersionReviewerFlags
+    fields = ('needs_human_review_by_mad',)
 
 
 class LicenseAdmin(admin.ModelAdmin):
@@ -28,9 +33,10 @@ class VersionAdmin(admin.ModelAdmin):
                 'release_notes', 'approval_notes', 'license', 'source')
         }),
         ('Flags', {
-            'fields': ('deleted',)
+            'fields': ('deleted', 'needs_human_review')
         }),
     )
+    inlines = (VersionReviewerFlagsInline,)
 
 
 admin.site.register(License, LicenseAdmin)

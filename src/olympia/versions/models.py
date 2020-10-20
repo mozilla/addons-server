@@ -184,9 +184,7 @@ class Version(OnChangeMixin, ModelBase):
 
     git_hash = models.CharField(max_length=40, blank=True)
 
-    # FIXME: Convert needs_human_review into a BooleanField(default=False) in
-    # future push following the one where the field was introduced.
-    needs_human_review = models.NullBooleanField(default=None)
+    needs_human_review = models.BooleanField(default=False)
 
     # The order of those managers is very important: please read the lengthy
     # comment above the Addon managers declaration/instantiation.
