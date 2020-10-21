@@ -6,7 +6,7 @@ from django.utils.translation import override
 from rest_framework.test import APIRequestFactory
 
 from olympia import amo
-from olympia.accounts.tests.test_serializers import TestBaseUserSerializer
+from olympia.accounts.tests.test_serializers import BaseTestUserMixin
 from olympia.addons.models import (
     Addon, AddonCategory, AddonUser, Category, Preview, ReplacementAddon)
 from olympia.addons.serializers import (
@@ -1299,8 +1299,12 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
         assert result['name'] == translated_name['fr']
 
 
-class TestAddonDeveloperSerializer(TestBaseUserSerializer):
+class TestAddonDeveloperSerializer(TestCase, BaseTestUserMixin):
     serializer_class = AddonDeveloperSerializer
+
+    def setUp(self):
+        self.request = APIRequestFactory().get('/')
+        self.user = user_factory()
 
     def test_picture(self):
         serialized = self.serialize()

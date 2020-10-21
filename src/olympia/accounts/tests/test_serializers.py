@@ -18,13 +18,7 @@ from olympia.users.notifications import NOTIFICATIONS_BY_SHORT
 from olympia.zadmin.models import Config, set_config
 
 
-class TestBaseUserSerializer(TestCase):
-    serializer_class = BaseUserSerializer
-
-    def setUp(self):
-        self.request = APIRequestFactory().get('/')
-        self.user = user_factory()
-
+class BaseTestUserMixin(object):
     def serialize(self):
         # Manually reload the user first to clear any cached properties.
         self.user = UserProfile.objects.get(pk=self.user.pk)
@@ -61,6 +55,14 @@ class TestBaseUserSerializer(TestCase):
     def test_username(self):
         serialized = self.serialize()
         assert serialized['username'] == self.user.username
+
+
+class TestBaseUserSerializer(TestCase, BaseTestUserMixin):
+    serializer_class = BaseUserSerializer
+
+    def setUp(self):
+        self.request = APIRequestFactory().get('/')
+        self.user = user_factory()
 
 
 class TestPublicUserProfileSerializer(TestCase):
