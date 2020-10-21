@@ -4,7 +4,7 @@ from olympia.amo.tests import (
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.amo.urlresolvers import django_reverse, reverse
 from olympia.constants.promoted import (
-    LINE, RECOMMENDED, VERIFIED, SPONSORED)
+    LINE, RECOMMENDED, VERIFIED, SPONSORED, NOT_PROMOTED)
 from olympia.hero.models import PrimaryHero, PrimaryHeroImage
 from olympia.promoted.models import PromotedAddon, PromotedApproval
 
@@ -539,3 +539,24 @@ class TestPromotedAddonAdmin(TestCase):
 
         assert response.status_code == 200
         assert b'Promoted subscriptions' in response.content
+
+    def test_updates_not_promoted_to_verified(self):
+        item = PromotedAddon.objects.create(
+            addon=addon_factory(), group_id=NOT_PROMOTED.id
+        )
+        detail_url = reverse(self.detail_url_name, args=(item.pk,))
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Discovery:Edit')
+        self.client.login(email=user.email)
+
+        response = self.client.post(
+            detail_url,
+            dict(
+                self._get_approval_form(item, []),
+                **self._get_heroform(''),
+                **{'group_id': VERIFIED.id},  # change group
+            ),
+            follow=True,
+        )
+
+        assert response.status_code == 200
