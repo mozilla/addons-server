@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-10-21 09:14+0000\n"
+"PO-Revision-Date: 2020-10-21 09:20+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -5073,7 +5073,7 @@ msgstr "Αφαίρεση στοιχείων καταγραφής από διαδ
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
-msgstr ""
+msgstr "Λάβετε φακέλους σελιδοδεικτών με αυτόματες ροές RSS."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5551,7 +5551,7 @@ msgid "You can't submit an empty comment."
 msgstr "Δεν μπορείτε να υποβάλετε κενό σχόλιο."
 
 msgid "You can't submit a line number without associating it to a filename."
-msgstr ""
+msgstr "Δεν μπορείτε να υποβάλετε έναν αριθμό γραμμής χωρίς συσχετισμό με όνομα αρχείου."
 
 msgid "Type"
 msgstr "Τύπος"
@@ -6308,13 +6308,13 @@ msgid "Pending Rejection"
 msgstr "Εκκρεμεί απόρριψη"
 
 msgid "presence of matched rules"
-msgstr ""
+msgstr "παρουσία ισχυόντων κανόνων"
 
 msgid "result state"
 msgstr "κατάσταση αποτελέσματος"
 
 msgid "all but results matching only this rule"
-msgstr ""
+msgstr "όλα εκτός από αποτελέσματα με αυτόν τον κανόνα μόνο"
 
 msgid "presence of a version"
 msgstr "παρουσία μιας έκδοσης"
