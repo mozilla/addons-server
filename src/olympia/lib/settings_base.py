@@ -1933,3 +1933,11 @@ ADZERK_URL = f'https://e-{ADZERK_NETWORK_ID}.adzerk.net/api/v2'
 ADZERK_IMPRESSION_TIMEOUT = 60  # seconds
 ADZERK_EVENT_URL = f'https://e-{ADZERK_NETWORK_ID}.adzerk.net/'
 ADZERK_EVENT_TIMEOUT = 60 * 60 * 24  # seconds
+
+# Subscription
+STRIPE_API_SECRET_KEY = env('STRIPE_API_SECRET_KEY', default=None)
+STRIPE_API_PUBLIC_KEY = env('STRIPE_API_PUBLIC_KEY', default=None)
+STRIPE_API_VERIFIED_PRICE_ID = env('STRIPE_API_VERIFIED_PRICE_ID',
+                                   default=None)
+STRIPE_API_SPONSORED_PRICE_ID = env('STRIPE_API_SPONSORED_PRICE_ID',
+                                    default=None)

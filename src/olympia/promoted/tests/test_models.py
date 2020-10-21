@@ -1,4 +1,9 @@
+import datetime
+
+from django.test.utils import override_settings
+
 from olympia.amo.tests import addon_factory, TestCase
+from olympia.amo.urlresolvers import reverse
 from olympia.constants import applications, promoted
 from olympia.promoted.models import (
     PromotedAddon, PromotedApproval, PromotedSubscription)
@@ -80,6 +85,19 @@ class TestPromotedSubscription(TestCase):
 
         assert sub.get_onboarding_url() is None
 
+    def test_get_relative_onboarding_url(self):
+        promoted_addon = PromotedAddon.objects.create(
+            addon=addon_factory(), group_id=promoted.SPONSORED.id
+        )
+        sub = PromotedSubscription.objects.filter(
+            promoted_addon=promoted_addon
+        ).get()
+
+        assert sub.get_onboarding_url(absolute=False) == reverse(
+            "devhub.addons.onboarding_subscription",
+            args=[sub.promoted_addon.addon.slug],
+        )
+
     def test_get_onboarding_url(self):
         promoted_addon = PromotedAddon.objects.create(
             addon=addon_factory(), group_id=promoted.SPONSORED.id
@@ -88,4 +106,30 @@ class TestPromotedSubscription(TestCase):
             promoted_addon=promoted_addon
         ).get()
 
-        assert 'onboarding' in sub.get_onboarding_url()
+        external_site_url = "http://example.org"
+        with override_settings(EXTERNAL_SITE_URL=external_site_url):
+            assert sub.get_onboarding_url() == "{}{}".format(
+                external_site_url,
+                reverse(
+                    "devhub.addons.onboarding_subscription",
+                    args=[sub.promoted_addon.addon.slug],
+                ),
+            )
+
+    def test_stripe_checkout_completed(self):
+        sub = PromotedSubscription()
+
+        assert not sub.stripe_checkout_completed
+
+        sub.update(paid_at=datetime.datetime.now())
+
+        assert sub.stripe_checkout_completed
+
+    def test_stripe_checkout_cancelled(self):
+        sub = PromotedSubscription()
+
+        assert not sub.stripe_checkout_cancelled
+
+        sub.update(payment_cancelled_at=datetime.datetime.now())
+
+        assert sub.stripe_checkout_cancelled

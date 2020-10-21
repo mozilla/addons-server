@@ -1,0 +1,79 @@
+{% extends "devhub/base_impala.html" %}
+
+{% set title = _('Set Up Payment') %}
+
+{% block js %}
+{{ super() }}
+<script src="https://js.stripe.com/v3/"></script>
+<script src="{{ static('js/devhub/stripe.js') }}"></script>
+{% endblock %}
+
+{% block title %}
+{{ dev_page_title(title, addon) }}
+{% endblock %}
+
+{% block content %}
+<section class="primary full">
+  <div id="onboard-addon" class="devhub-form">
+    <h2>{{ _('Set Up Payment') }}</h2>
+
+    {% if stripe_checkout_completed %}
+    <p>
+      {% trans %}
+      You're almost done!
+      {% endtrans %}
+    </p>
+    <p>
+      {% if promoted_group == amo.promoted.SPONSORED %}
+        {% trans addon_name=addon.name %}
+        Please upload a new version of your add-on <em>{{ addon_name }}</em>.
+        Once that version passes review, your add-on will be published as
+        Sponsored and should become available shortly. If you have any
+        questions, don't hesitate to contact us.
+        {% endtrans %}
+      {% else %}
+        {% trans addon_name=addon.name %}
+        Please upload a new version of your add-on <em>{{ addon_name }}</em>.
+        Once that version passes review, your add-on will be published as
+        Verified and should become available shortly. If you have any
+        questions, don't hesitate to contact us.
+        {% endtrans %}
+      {% endif %}
+    </p>
+    {% else %}
+    {% if stripe_checkout_cancelled %}
+    <div class="notification-box error">
+      <p>
+        {% trans %}
+        There was an error while setting up payment for your add-on. If you're
+        experiencing problems with this process, please contact us at
+        <a href="mailto:amo-admins@mozilla.com">amo-admins@mozilla.com</a>.
+        {% endtrans %}
+      </p>
+    </div>
+    {% endif %}
+    <p>
+      {% trans %}
+      Thank you for joining the Promoted Add-ons Program!
+      {% endtrans %}
+    </p>
+    <p>
+      {% trans addon_name=addon.name %}
+      Your add-on <em>{{ addon_name }}</em> will be included in the program
+      once payment is set up through the Stripe system. Click on the button
+      below to continue:
+      {% endtrans %}
+    </p>
+    <p>
+      <button
+        id="checkout-button"
+        data-sessionid="{{ stripe_session_id }}"
+        data-publickey="{{ stripe_api_public_key }}"
+      >
+        {{ _('Continue to Stripe Checkout') }}
+      </button>
+    </p>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}
