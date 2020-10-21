@@ -1,3 +1,5 @@
+import datetime
+
 from django.test.utils import override_settings
 
 from olympia.amo.tests import addon_factory, TestCase
@@ -113,3 +115,21 @@ class TestPromotedSubscription(TestCase):
                     args=[sub.promoted_addon.addon.slug],
                 ),
             )
+
+    def test_stripe_checkout_completed(self):
+        sub = PromotedSubscription()
+
+        assert not sub.stripe_checkout_completed
+
+        sub.update(paid_at=datetime.datetime.now())
+
+        assert sub.stripe_checkout_completed
+
+    def test_stripe_checkout_cancelled(self):
+        sub = PromotedSubscription()
+
+        assert not sub.stripe_checkout_cancelled
+
+        sub.update(payment_cancelled_at=datetime.datetime.now())
+
+        assert sub.stripe_checkout_cancelled

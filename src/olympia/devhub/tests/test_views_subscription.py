@@ -9,7 +9,7 @@ from olympia.constants.promoted import VERIFIED
 from olympia.promoted.models import PromotedAddon, PromotedSubscription
 
 
-@override_switch("enable-subscription", active=True)
+@override_switch("enable-subscriptions-for-promoted-addons", active=True)
 class OnboardingSubscriptionTestCase(TestCase):
     def setUp(self):
         super().setUp()
@@ -29,7 +29,7 @@ class OnboardingSubscriptionTestCase(TestCase):
 class TestOnboardingSubscription(OnboardingSubscriptionTestCase):
     url_name = "devhub.addons.onboarding_subscription"
 
-    @override_switch("enable-subscription", active=False)
+    @override_switch("enable-subscriptions-for-promoted-addons", active=False)
     def test_returns_404_when_switch_is_disabled(self):
         assert self.client.get(self.url).status_code == 404
 
@@ -39,11 +39,9 @@ class TestOnboardingSubscription(OnboardingSubscriptionTestCase):
         url = reverse(self.url_name, args=[addon.slug])
         assert self.client.get(url).status_code == 404
 
-    @mock.patch(
-        "olympia.devhub.views.create_or_retrieve_stripe_checkout_session"
-    )
-    def test_get_for_the_first_time(self, create_or_retrieve_mock):
-        create_or_retrieve_mock.return_value = mock.MagicMock(id="session-id")
+    @mock.patch("olympia.devhub.views.create_stripe_checkout_session")
+    def test_get_for_the_first_time(self, create_mock):
+        create_mock.return_value = mock.MagicMock(id="session-id")
 
         assert not self.subscription.link_visited_at
         assert not self.subscription.stripe_session_id
@@ -52,7 +50,7 @@ class TestOnboardingSubscription(OnboardingSubscriptionTestCase):
         self.subscription.refresh_from_db()
 
         assert response.status_code == 200
-        create_or_retrieve_mock.assert_called_with(
+        create_mock.assert_called_with(
             self.subscription, customer_email=self.user.email
         )
         assert self.subscription.link_visited_at is not None
@@ -65,17 +63,21 @@ class TestOnboardingSubscription(OnboardingSubscriptionTestCase):
         assert not response.context["stripe_checkout_completed"]
         assert not response.context["stripe_checkout_cancelled"]
         assert response.context["promoted_group"] == self.promoted_addon.group
-        assert (b'Thank you for joining the Promoted Add-ons Program!' in
-                response.content)
+        assert (
+            b"Thank you for joining the Promoted Add-ons Program!"
+            in response.content
+        )
 
-    @mock.patch(
-        "olympia.devhub.views.create_or_retrieve_stripe_checkout_session"
-    )
-    def test_get(self, create_or_retrieve_mock):
-        create_or_retrieve_mock.return_value = mock.MagicMock(id="session-id")
+    @mock.patch("olympia.devhub.views.create_stripe_checkout_session")
+    def test_get(self, create_mock):
+        create_mock.side_effect = [
+            mock.MagicMock(id="session-id-1"),
+            mock.MagicMock(id="session-id-2"),
+        ]
 
         # Get the page.
-        with self.assertNumQueries(31):
+        queries = 31
+        with self.assertNumQueries(queries):
             # 31 queries:
             # - 3 users + groups
             # - 2 savepoints (test)
@@ -97,29 +99,25 @@ class TestOnboardingSubscription(OnboardingSubscriptionTestCase):
 
         link_visited_at = self.subscription.link_visited_at
         assert link_visited_at
-        stripe_session_id = self.subscription.stripe_session_id
-        assert stripe_session_id
+        assert self.subscription.stripe_session_id == "session-id-1"
 
         # Get the page, again.
-        with self.assertNumQueries(29):
-            # - No UPDATE
+        with self.assertNumQueries(queries - 1):
             # - waffle switch is cached
             response = self.client.get(self.url)
         self.subscription.refresh_from_db()
 
         assert response.status_code == 200
         assert self.subscription.link_visited_at == link_visited_at
-        assert self.subscription.stripe_session_id == stripe_session_id
+        assert self.subscription.stripe_session_id == "session-id-2"
 
-    @mock.patch(
-        "olympia.devhub.views.create_or_retrieve_stripe_checkout_session"
-    )
-    def test_shows_page_with_admin(self, create_or_retrieve_mock):
+    @mock.patch("olympia.devhub.views.create_stripe_checkout_session")
+    def test_shows_page_with_admin(self, create_mock):
         admin = user_factory()
-        self.grant_permission(admin, '*:*')
+        self.grant_permission(admin, "*:*")
         self.client.logout()
         self.client.login(email=admin.email)
-        create_or_retrieve_mock.return_value = mock.MagicMock(id="session-id")
+        create_mock.return_value = mock.MagicMock(id="session-id")
 
         assert not self.subscription.link_visited_at
 
@@ -131,36 +129,63 @@ class TestOnboardingSubscription(OnboardingSubscriptionTestCase):
         # the user is an admin).
         assert not self.subscription.link_visited_at
 
-    @mock.patch(
-        "olympia.devhub.views.create_or_retrieve_stripe_checkout_session"
-    )
+    @mock.patch("olympia.devhub.views.create_stripe_checkout_session")
     def test_shows_error_message_when_payment_was_previously_cancelled(
-        self, create_or_retrieve_mock
+        self, create_mock
     ):
-        create_or_retrieve_mock.return_value = mock.MagicMock(id="session-id")
+        create_mock.return_value = mock.MagicMock(id="session-id")
         self.subscription.update(payment_cancelled_at=datetime.datetime.now())
 
         response = self.client.get(self.url)
 
-        assert (b'There was an error while setting up payment for your add-on.'
-                in response.content)
+        assert (
+            b"There was an error while setting up payment for your add-on."
+            in response.content
+        )
+        create_mock.assert_called_with(
+            self.subscription, customer_email=self.user.email
+        )
 
-    @mock.patch(
-        "olympia.devhub.views.create_or_retrieve_stripe_checkout_session"
-    )
-    def test_shows_confirmation_after_payment(self, create_or_retrieve_mock):
-        create_or_retrieve_mock.return_value = mock.MagicMock(id="session-id")
-        self.subscription.update(paid_at=datetime.datetime.now())
+    @mock.patch("olympia.devhub.views.retrieve_stripe_checkout_session")
+    def test_shows_confirmation_after_payment(self, retrieve_mock):
+        stripe_session_id = "some session id"
+        retrieve_mock.return_value = mock.MagicMock(id=stripe_session_id)
+        self.subscription.update(
+            stripe_session_id=stripe_session_id,
+            paid_at=datetime.datetime.now(),
+        )
 
         response = self.client.get(self.url)
 
         assert b"You're almost done!" in response.content
+        retrieve_mock.assert_called_with(self.subscription)
+
+    @mock.patch("olympia.devhub.views.retrieve_stripe_checkout_session")
+    def test_get_returns_500_when_retrieve_has_failed(self, retrieve_mock):
+        stripe_session_id = "some session id"
+        self.subscription.update(
+            stripe_session_id=stripe_session_id,
+            paid_at=datetime.datetime.now(),
+        )
+        retrieve_mock.side_effect = Exception("stripe error")
+
+        response = self.client.get(self.url)
+
+        assert response.status_code == 500
+
+    @mock.patch("olympia.devhub.views.create_stripe_checkout_session")
+    def test_get_returns_500_when_create_has_failed(self, create_mock):
+        create_mock.side_effect = Exception("stripe error")
+
+        response = self.client.get(self.url)
+
+        assert response.status_code == 500
 
 
 class TestOnboardingSubscriptionSuccess(OnboardingSubscriptionTestCase):
     url_name = "devhub.addons.onboarding_subscription_success"
 
-    @override_switch("enable-subscription", active=False)
+    @override_switch("enable-subscriptions-for-promoted-addons", active=False)
     def test_returns_404_when_switch_is_disabled(self):
         assert self.client.get(self.url).status_code == 404
 
@@ -187,7 +212,7 @@ class TestOnboardingSubscriptionSuccess(OnboardingSubscriptionTestCase):
         response = self.client.get(self.url)
 
         assert response.status_code == 302
-        assert response['Location'].endswith('/onboarding-subscription')
+        assert response["Location"].endswith("/onboarding-subscription")
 
     @mock.patch("olympia.devhub.views.retrieve_stripe_checkout_session")
     def test_get_records_payment_once(self, retrieve_mock):
@@ -229,7 +254,7 @@ class TestOnboardingSubscriptionSuccess(OnboardingSubscriptionTestCase):
 class TestOnboardingSubscriptionCancel(OnboardingSubscriptionTestCase):
     url_name = "devhub.addons.onboarding_subscription_cancel"
 
-    @override_switch("enable-subscription", active=False)
+    @override_switch("enable-subscriptions-for-promoted-addons", active=False)
     def test_returns_404_when_switch_is_disabled(self):
         assert self.client.get(self.url).status_code == 404
 
@@ -254,11 +279,13 @@ class TestOnboardingSubscriptionCancel(OnboardingSubscriptionTestCase):
         response = self.client.get(self.url)
 
         assert response.status_code == 302
-        assert response['Location'].endswith('/onboarding-subscription')
+        assert response["Location"].endswith("/onboarding-subscription")
 
     @mock.patch("olympia.devhub.views.retrieve_stripe_checkout_session")
     def test_get_sets_payment_cancelled_date(self, retrieve_mock):
-        retrieve_mock.return_value = mock.MagicMock(id="session-id")
+        stripe_session_id = "some session id"
+        self.subscription.update(stripe_session_id=stripe_session_id)
+        retrieve_mock.return_value = mock.MagicMock(id=stripe_session_id)
 
         assert not self.subscription.payment_cancelled_at
 

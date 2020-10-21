@@ -7,7 +7,7 @@ def create_waffle_switch(apps, schema_editor):
     Switch = apps.get_model("waffle", "Switch")
 
     Switch.objects.create(
-        name="enable-subscription",
+        name="enable-subscriptions-for-promoted-addons",
         active=False,
         note="Enable the subscription feature for promoted add-ons.",
     )

@@ -47,7 +47,7 @@ from olympia.files.models import File, FileUpload
 from olympia.files.utils import parse_addon
 from olympia.promoted.models import PromotedSubscription
 from olympia.promoted.utils import (
-    create_or_retrieve_stripe_checkout_session,
+    create_stripe_checkout_session,
     retrieve_stripe_checkout_session,
 )
 from olympia.reviewers.forms import PublicWhiteboardForm
@@ -1845,7 +1845,7 @@ def logout(request):
 
 
 def get_promoted_subscription_or_404(addon):
-    if not waffle.switch_is_active('enable-subscription'):
+    if not waffle.switch_is_active('enable-subscriptions-for-promoted-addons'):
         log.info(
             'cannot retrieve a promoted subscription because waffle switch '
             'is disabled.'
@@ -1869,9 +1869,30 @@ def onboarding_subscription(request, addon_id, addon):
     if addon.has_author(request.user) and not sub.link_visited_at:
         fields_to_update['link_visited_at'] = datetime.datetime.now()
 
-    session = create_or_retrieve_stripe_checkout_session(
-        sub, customer_email=request.user.email
-    )
+    try:
+        if sub.stripe_checkout_completed:
+            session = retrieve_stripe_checkout_session(sub)
+            log.debug(
+                'retrieved a stripe checkout session for PromotedSubscription'
+                ' %s.',
+                sub.pk
+            )
+        else:
+            session = create_stripe_checkout_session(
+                sub, customer_email=request.user.email
+            )
+            log.debug(
+                'created a stripe checkout session for PromotedSubscription'
+                ' %s.',
+                sub.pk
+            )
+    except Exception:
+        log.exception(
+            'could not retrieve or create a Stripe Checkout session for '
+            'PromotedSubscription {}.'.format(sub.pk)
+        )
+        return http.HttpResponseServerError()
+
     if sub.stripe_session_id != session.id:
         fields_to_update['stripe_session_id'] = session.id
 
@@ -1896,7 +1917,11 @@ def onboarding_subscription_success(request, addon_id, addon):
     try:
         session = retrieve_stripe_checkout_session(sub)
     except Exception:
-        log.exception("error while retrieving the stripe checkout session")
+        log.exception(
+            "error while trying to retrieve a stripe checkout session for "
+            "PromotedSubscription %s (success).",
+            sub.pk
+        )
         raise http.Http404()
 
     if session.payment_status == "paid" and not sub.paid_at:
@@ -1910,8 +1935,7 @@ def onboarding_subscription_success(request, addon_id, addon):
         #
         # Note: "cancellation" of an active subscription is not supported yet.
         sub.update(payment_cancelled_at=None, paid_at=datetime.datetime.now())
-        # TODO: if the current version has been reviewed, bump its version and
-        # publish it so that it becomes promoted automatically.
+        log.info('PromotedSubscription %s has been paid.', sub.pk)
 
     return redirect(
         reverse("devhub.addons.onboarding_subscription", args=[addon.id])
@@ -1925,7 +1949,11 @@ def onboarding_subscription_cancel(request, addon_id, addon):
     try:
         retrieve_stripe_checkout_session(sub)
     except Exception:
-        log.exception("error while retrieving the stripe checkout session")
+        log.exception(
+            "error while trying to retrieve a stripe checkout session for "
+            "PromotedSubscription %s (cancel).",
+            sub.pk
+        )
         raise http.Http404()
 
     if not sub.stripe_checkout_completed:
@@ -1936,6 +1964,7 @@ def onboarding_subscription_cancel(request, addon_id, addon):
         # If the user has completed the checkout process, then we prevent this
         # date to be changed.
         sub.update(payment_cancelled_at=datetime.datetime.now())
+        log.info('PromotedSubscription %s has been cancelled.', sub.pk)
 
     return redirect(
         reverse("devhub.addons.onboarding_subscription", args=[addon.id])
