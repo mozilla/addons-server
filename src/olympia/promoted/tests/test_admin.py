@@ -522,7 +522,7 @@ class TestPromotedAddonAdmin(TestCase):
         assert b'Onboarding URL' in response.content
         assert b'Link visited at' in response.content
         assert b'Payment cancelled at' in response.content
-        assert b'Paid at' in response.content
+        assert b'Payment completed at' in response.content
 
     def test_show_subscription_when_group_is_sponsored(self):
         addon = addon_factory()

@@ -176,15 +176,15 @@ class PromotedSubscription(ModelBase):
     payment_cancelled_at = models.DateTimeField(
         null=True,
         help_text=(
-            "This date is set when the developer has cancelled the payment "
-            "process."
+            "This date is set when the developer has cancelled the initial "
+            "payment process."
         ),
     )
-    paid_at = models.DateTimeField(
+    payment_completed_at = models.DateTimeField(
         null=True,
         help_text=(
-            "This date is set when the developer successfully completed the"
-            " payment process."
+            "This date is set when the developer has successfully completed "
+            "the initial payment process."
         ),
     )
 
@@ -203,7 +203,7 @@ class PromotedSubscription(ModelBase):
 
     @property
     def stripe_checkout_completed(self):
-        return bool(self.paid_at)
+        return bool(self.payment_completed_at)
 
     @property
     def stripe_checkout_cancelled(self):

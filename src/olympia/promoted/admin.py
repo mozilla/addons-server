@@ -27,13 +27,13 @@ class PromotedSubscriptionInline(admin.StackedInline):
         'onboarding_url',
         'link_visited_at',
         'payment_cancelled_at',
-        'paid_at',
+        'payment_completed_at',
     )
     readonly_fields = (
         'onboarding_url',
         'link_visited_at',
         'payment_cancelled_at',
-        'paid_at',
+        'payment_completed_at',
     )
 
     def has_add_permission(self, request, obj=None):

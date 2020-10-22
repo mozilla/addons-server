@@ -1924,7 +1924,7 @@ def onboarding_subscription_success(request, addon_id, addon):
         )
         raise http.Http404()
 
-    if session.payment_status == "paid" and not sub.paid_at:
+    if session.payment_status == "paid" and not sub.payment_completed_at:
         # When the user has completed the Stripe Checkout process, we record
         # this event.
         #
@@ -1934,8 +1934,11 @@ def onboarding_subscription_success(request, addon_id, addon):
         # now, the user has finally subscribed.
         #
         # Note: "cancellation" of an active subscription is not supported yet.
-        sub.update(payment_cancelled_at=None, paid_at=datetime.datetime.now())
-        log.info('PromotedSubscription %s has been paid.', sub.pk)
+        sub.update(
+            payment_cancelled_at=None,
+            payment_completed_at=datetime.datetime.now(),
+        )
+        log.info('PromotedSubscription %s has been completed.', sub.pk)
 
     return redirect(
         reverse("devhub.addons.onboarding_subscription", args=[addon.id])
