@@ -8,8 +8,7 @@ from olympia.amo.models import ModelBase
 from olympia.amo.urlresolvers import reverse
 from olympia.constants.applications import APP_IDS, APPS_CHOICES, APP_USAGE
 from olympia.constants.promoted import (
-    NOT_PROMOTED, PRE_REVIEW_GROUPS, PROMOTED_GROUPS, PROMOTED_GROUPS_BY_ID,
-    PROMOTED_GROUPS_FOR_SUBSCRIPTION)
+    NOT_PROMOTED, PRE_REVIEW_GROUPS, PROMOTED_GROUPS, PROMOTED_GROUPS_BY_ID)
 from olympia.versions.models import Version
 
 
@@ -80,16 +79,26 @@ class PromotedAddon(ModelBase):
                 group_id=self.group_id,
                 application_id=app.id)
 
+    def approve_for_addon(self):
+        """This sets up the addon as approved for the current promoted group.
+
+        The current version will be signed for approval, and if there's special
+        signing needed for that group the version will be resigned."""
+        from olympia.lib.crypto.tasks import sign_addons
+
+        self.approve_for_version(self.addon.current_version)
+        if self.group.autograph_signing_states:
+            sign_addons([self.addon.id], send_emails=False)
+
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 
-        if (
-            self.group in PROMOTED_GROUPS_FOR_SUBSCRIPTION and
-            not PromotedSubscription.objects.filter(
-                promoted_addon=self
-            ).exists()
-        ):
-            PromotedSubscription.objects.create(promoted_addon=self)
+        if self.group.subscription:
+            if not hasattr(self, 'promotedsubscription'):
+                PromotedSubscription.objects.create(promoted_addon=self)
+        elif (self.group.immediate_approval and
+              self.approved_applications != self.all_applications):
+            self.approve_for_addon()
 
 
 class PromotedTheme(PromotedAddon):

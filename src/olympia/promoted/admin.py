@@ -4,7 +4,6 @@ from django.forms.models import modelformset_factory
 from django.utils.html import format_html
 
 from olympia.addons.models import Addon
-from olympia.constants.promoted import PROMOTED_GROUPS_FOR_SUBSCRIPTION
 from olympia.hero.admin import PrimaryHeroInline
 from olympia.versions.models import Version
 
@@ -102,8 +101,7 @@ class PromotedAddonAdmin(admin.ModelAdmin):
 
     def get_inline_instances(self, request, obj=None):
         inlines = self.inlines
-        if (obj and obj.group in PROMOTED_GROUPS_FOR_SUBSCRIPTION and
-                request.method != "POST"):
+        if obj and obj.group.subscription and request.method != "POST":
             inlines = inlines + (PromotedSubscriptionInline,)
         return [inline(self.model, self.admin_site) for inline in inlines]
 

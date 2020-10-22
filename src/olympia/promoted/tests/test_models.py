@@ -1,7 +1,9 @@
 import datetime
+from unittest import mock
 
 from django.test.utils import override_settings
 
+from olympia import amo
 from olympia.amo.tests import addon_factory, TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.constants import applications, promoted
@@ -77,6 +79,66 @@ class TestPromotedAddon(TestCase):
         )
 
         assert PromotedSubscription.objects.count() == 0
+
+    def test_auto_approves_addon_when_saved_for_immediate_approval(self):
+        # empty case with no group set
+        promo = PromotedAddon.objects.create(
+            addon=addon_factory(), application_id=amo.FIREFOX.id)
+        assert promo.group == promoted.NOT_PROMOTED
+        assert promo.approved_applications == []
+        assert not PromotedApproval.objects.exists()
+
+        # first test with a group.immediate_approval == False
+        promo.group_id = promoted.RECOMMENDED.id
+        promo.save()
+        promo.addon.reload()
+        assert promo.approved_applications == []
+        assert not PromotedApproval.objects.exists()
+        promo.addon.promoted_group() == promoted.NOT_PROMOTED
+
+        # then with a group thats immediate_approval == True
+        promo.group_id = promoted.SPOTLIGHT.id
+        promo.save()
+        promo.addon.reload()
+        assert promo.approved_applications == [amo.FIREFOX]
+        assert PromotedApproval.objects.count() == 1
+        promo.addon.promoted_group() == promoted.SPOTLIGHT
+
+        # test the edge case where the application was changed afterwards
+        promo.application_id = 0
+        promo.save()
+        promo.addon.reload()
+        assert promo.approved_applications == [amo.FIREFOX, amo.ANDROID]
+        assert PromotedApproval.objects.count() == 2
+
+    @mock.patch('olympia.lib.crypto.tasks.sign_file')
+    def test_approve_for_addon(self, mock_sign_file):
+        promo = PromotedAddon.objects.create(
+            addon=addon_factory(version_kw={'version': '0.123a'}),
+            group_id=promoted.SPOTLIGHT.id)
+        file_ = promo.addon.current_version.all_files[0]
+        file_.update(filename='webextension.xpi')
+        with amo.tests.copy_file(
+                'src/olympia/files/fixtures/files/webextension.xpi',
+                file_.file_path):
+            # SPOTLIGHT doesnt have special signing states so won't be resigned
+            promo.addon.reload()
+            promo.addon.promoted_group() == promoted.NOT_PROMOTED
+            promo.approve_for_addon()
+            promo.addon.reload()
+            promo.addon.promoted_group() == promoted.SPOTLIGHT
+            assert promo.addon.current_version.version == '0.123a'
+            mock_sign_file.assert_not_called()
+
+            # VERIFIED does though.
+            promo.update(group_id=promoted.VERIFIED.id)
+            promo.addon.reload()
+            promo.addon.promoted_group() == promoted.NOT_PROMOTED
+            promo.approve_for_addon()
+            promo.addon.reload()
+            promo.addon.promoted_group() == promoted.VERIFIED
+            assert promo.addon.current_version.version == '0.123a.1-signed'
+            mock_sign_file.assert_called_with(file_)
 
 
 class TestPromotedSubscription(TestCase):

@@ -270,6 +270,21 @@ class TestOnboardingSubscriptionSuccess(OnboardingSubscriptionTestCase):
 
         assert not self.subscription.payment_cancelled_at
 
+    @mock.patch("olympia.devhub.views.retrieve_stripe_checkout_session")
+    def test_current_version_is_approved_after_success(self, retrieve_mock):
+        retrieve_mock.return_value = mock.MagicMock(
+            id="session-id", payment_status="paid"
+        )
+
+        assert not self.subscription.promoted_addon.addon.promoted_group()
+        with mock.patch('olympia.lib.crypto.tasks.sign_addons') as sign_mock:
+            self.client.get(self.url)
+            sign_mock.assert_called()
+        self.subscription.refresh_from_db()
+        assert (
+            self.subscription.promoted_addon.addon.promoted_group() == VERIFIED
+        )
+
 
 class TestOnboardingSubscriptionCancel(OnboardingSubscriptionTestCase):
     url_name = "devhub.addons.onboarding_subscription_cancel"
