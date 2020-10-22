@@ -121,7 +121,7 @@ class TestPromotedSubscription(TestCase):
 
         assert not sub.stripe_checkout_completed
 
-        sub.update(paid_at=datetime.datetime.now())
+        sub.update(payment_completed_at=datetime.datetime.now())
 
         assert sub.stripe_checkout_completed
 

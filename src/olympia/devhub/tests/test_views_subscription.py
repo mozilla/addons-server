@@ -152,7 +152,7 @@ class TestOnboardingSubscription(OnboardingSubscriptionTestCase):
         retrieve_mock.return_value = mock.MagicMock(id=stripe_session_id)
         self.subscription.update(
             stripe_session_id=stripe_session_id,
-            paid_at=datetime.datetime.now(),
+            payment_completed_at=datetime.datetime.now(),
         )
 
         response = self.client.get(self.url)
@@ -165,7 +165,7 @@ class TestOnboardingSubscription(OnboardingSubscriptionTestCase):
         stripe_session_id = "some session id"
         self.subscription.update(
             stripe_session_id=stripe_session_id,
-            paid_at=datetime.datetime.now(),
+            payment_completed_at=datetime.datetime.now(),
         )
         retrieve_mock.side_effect = Exception("stripe error")
 
@@ -220,19 +220,19 @@ class TestOnboardingSubscriptionSuccess(OnboardingSubscriptionTestCase):
             id="session-id", payment_status="paid"
         )
 
-        assert not self.subscription.paid_at
+        assert not self.subscription.payment_completed_at
 
         self.client.get(self.url)
         self.subscription.refresh_from_db()
 
-        paid_at = self.subscription.paid_at
-        assert paid_at is not None
+        payment_completed_at = self.subscription.payment_completed_at
+        assert payment_completed_at is not None
 
         self.client.get(self.url)
         self.subscription.refresh_from_db()
 
         # Make sure we don't update this date again.
-        assert self.subscription.paid_at == paid_at
+        assert self.subscription.payment_completed_at == payment_completed_at
         assert not self.subscription.payment_cancelled_at
 
     @mock.patch("olympia.devhub.views.retrieve_stripe_checkout_session")
@@ -300,7 +300,7 @@ class TestOnboardingSubscriptionCancel(OnboardingSubscriptionTestCase):
     ):
         retrieve_mock.return_value = mock.MagicMock(id="session-id")
 
-        self.subscription.update(paid_at=datetime.datetime.now())
+        self.subscription.update(payment_completed_at=datetime.datetime.now())
         assert not self.subscription.payment_cancelled_at
 
         self.client.get(self.url)
