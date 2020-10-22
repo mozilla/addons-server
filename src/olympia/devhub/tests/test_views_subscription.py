@@ -142,6 +142,8 @@ class TestOnboardingSubscription(OnboardingSubscriptionTestCase):
             b"There was an error while setting up payment for your add-on."
             in response.content
         )
+        assert b"Continue to Stripe Checkout" in response.content
+        assert b"Manage add-on" not in response.content
         create_mock.assert_called_with(
             self.subscription, customer_email=self.user.email
         )
@@ -158,6 +160,8 @@ class TestOnboardingSubscription(OnboardingSubscriptionTestCase):
         response = self.client.get(self.url)
 
         assert b"You're almost done!" in response.content
+        assert b"Continue to Stripe Checkout" not in response.content
+        assert b"Manage add-on" in response.content
         retrieve_mock.assert_called_with(self.subscription)
 
     @mock.patch("olympia.devhub.views.retrieve_stripe_checkout_session")

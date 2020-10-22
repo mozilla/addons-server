@@ -40,6 +40,11 @@
         {% endtrans %}
       {% endif %}
     </p>
+    <p>
+      <a class="button" href="{{ addon.get_dev_url() }}">
+        {{ _('Manage add-on') }}
+      </a>
+    </p>
     {% else %}
     {% if stripe_checkout_cancelled %}
     <div class="notification-box error">
