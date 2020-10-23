@@ -158,7 +158,7 @@ class TestOnboardingSubscription(OnboardingSubscriptionTestCase):
 
         response = self.client.get(self.url)
 
-        assert b"You're almost done!" in response.content
+        assert b"You're done!" in response.content
         assert b"Continue to Stripe Checkout" not in response.content
         assert b"Manage add-on" in response.content
         retrieve_mock.assert_called_with(self.subscription)
