@@ -54,6 +54,18 @@ class TestVersionString():
         assert VersionString('99999999.99b1') > VersionString('99999998.99b1')
         assert VersionString('*') > VersionString('99999998.99b1')
 
+    def test_bool(self):
+        # bool(VersionString(x)) should behave like bool(x)
+        assert bool(VersionString('')) is False
+        assert bool(VersionString('0')) is True
+        assert bool(VersionString(0)) is True
+        assert bool(VersionString('false')) is True
+        assert bool(VersionString('False')) is True
+        assert bool(VersionString('something')) is True
+        assert bool(VersionString('3.6.*')) is True
+        assert bool(VersionString('3.6')) is True
+        assert bool(VersionString('*')) is True
+
 
 def test_version_dict():
     assert version_dict('5.0.*') == (

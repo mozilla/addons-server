@@ -305,6 +305,30 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         assert app.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID
         assert app.max.version == amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID
 
+    def test_strict_min_version_100(self):
+        firefox_min_version = self.create_appversion('firefox', '100.0')
+        firefox_max_version = self.create_appversion('firefox', '100.*')
+        android_min_version = self.create_appversion('android', '100.0')
+        android_max_version = self.create_appversion('android', '100.*')
+
+        data = {
+            'applications': {
+                'gecko': {
+                    'strict_min_version': '>=100.0',
+                    'strict_max_version': '=100.*',
+                    'id': '@radioactive'
+                }
+            }
+        }
+        apps = self.parse(data)['apps']
+        assert len(apps) == 2
+        assert apps[0].appdata == amo.FIREFOX
+        assert apps[0].min == firefox_min_version
+        assert apps[0].max == firefox_max_version
+        assert apps[1].appdata == amo.ANDROID
+        assert apps[1].min == android_min_version
+        assert apps[1].max == android_max_version
+
     def test_apps_use_default_versions_if_none_provided(self):
         """Use the default min and max versions if none provided."""
         data = {'applications': {'gecko': {'id': 'some-id'}}}

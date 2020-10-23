@@ -99,6 +99,11 @@ class VersionString():
                 return cmp == 1
         return False
 
+    def __bool__(self):
+        # Make boolean comparison use the string - to support returning False
+        # when the string is empty.
+        return bool(self.string)
+
     def __str__(self):
         return self.string
 
