@@ -303,6 +303,7 @@ def with_user(format):
                     # automatically logged in FxA with the existing token, and
                     # should be prompted to create the second factor before
                     # coming back to AMO.
+                    log.info('Redirecting user %s to enforce 2FA', user)
                     return HttpResponseRedirect(
                         fxa_login_url(
                             config=fxa_config,
