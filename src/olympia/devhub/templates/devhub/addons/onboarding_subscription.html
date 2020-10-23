@@ -19,61 +19,43 @@
 
     {% if stripe_checkout_completed %}
     <p>
-      {% if already_promoted %}
-        {% trans %}
-        You're done!
-        {% endtrans %}
-      {% else %}
-        {% trans %}
-        You're almost done!
-        {% endtrans %}
-      {% endif %}
+      {% trans %}
+      You're done!
+      {% endtrans %}
     </p>
-    <p>
-      {% if already_promoted %}
-        {% trans %}
-          There is no further action needed, thank you.
+      {% if not already_promoted %}
+      <p>
+        {% trans addon_name=addon.name group_name=promoted_group.name %}
+        The latest approved version of your add-on <em>{{ addon_name }}</em>
+        will be re-signed and published as {{ group_name }}, and should become
+        available shortly. If you have any questions, don't hesitate to contact
+        us.
         {% endtrans %}
-      {% else %}
-        {% if promoted_group == amo.promoted.SPONSORED %}
-          {% trans addon_name=addon.name %}
-          Please upload a new version of your add-on <em>{{ addon_name }}</em>.
-          Once that version passes review, your add-on will be published as
-          Sponsored and should become available shortly. If you have any
-          questions, don't hesitate to contact us.
-          {% endtrans %}
-        {% else %}
-          {% trans addon_name=addon.name %}
-          Please upload a new version of your add-on <em>{{ addon_name }}</em>.
-          Once that version passes review, your add-on will be published as
-          Verified and should become available shortly. If you have any
-          questions, don't hesitate to contact us.
-          {% endtrans %}
-        {% endif %}
+      </p>
       {% endif %}
-    </p>
     <p>
       <a class="button" href="{{ addon.get_dev_url() }}">
         {{ _('Manage add-on') }}
       </a>
     </p>
     {% else %}
-    {% if stripe_checkout_cancelled %}
-    <div class="notification-box error">
-      <p>
+      {% if stripe_checkout_cancelled %}
+      <div class="notification-box error">
+        <p>
+          {% trans %}
+          There was an error while setting up payment for your add-on. If you're
+          experiencing problems with this process, please contact us at
+          <a href="mailto:amo-admins@mozilla.com">amo-admins@mozilla.com</a>.
+          {% endtrans %}
+        </p>
+      </div>
+      {% else %}
+        <p>
         {% trans %}
-        There was an error while setting up payment for your add-on. If you're
-        experiencing problems with this process, please contact us at
-        <a href="mailto:amo-admins@mozilla.com">amo-admins@mozilla.com</a>.
+        Thank you for joining the Promoted Add-ons Program!
         {% endtrans %}
       </p>
-    </div>
-    {% endif %}
-    <p>
-      {% trans %}
-      Thank you for joining the Promoted Add-ons Program!
-      {% endtrans %}
-    </p>
+      {% endif %}
     <p>
       {% trans addon_name=addon.name %}
       Your add-on <em>{{ addon_name }}</em> will be included in the program
