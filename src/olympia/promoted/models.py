@@ -93,7 +93,7 @@ class PromotedAddon(ModelBase):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 
-        if self.group.subscription:
+        if self.group.require_subscription:
             if not hasattr(self, 'promotedsubscription'):
                 PromotedSubscription.objects.create(promoted_addon=self)
         elif (self.group.immediate_approval and

@@ -101,7 +101,7 @@ class PromotedAddonAdmin(admin.ModelAdmin):
 
     def get_inline_instances(self, request, obj=None):
         inlines = self.inlines
-        if obj and obj.group.subscription and request.method != "POST":
+        if obj and obj.group.require_subscription and request.method != "POST":
             inlines = inlines + (PromotedSubscriptionInline,)
         return [inline(self.model, self.admin_site) for inline in inlines]
 
