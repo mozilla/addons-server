@@ -195,8 +195,11 @@ class PromotedSubscription(ModelBase):
         if not self.id:
             return None
 
-        url = reverse('devhub.addons.onboarding_subscription',
-                      args=[self.promoted_addon.addon.slug])
+        url = reverse(
+            'devhub.addons.onboarding_subscription',
+            args=[self.promoted_addon.addon.slug],
+            add_prefix=False
+        )
         if absolute:
             url = urljoin(settings.EXTERNAL_SITE_URL, url)
         return url
