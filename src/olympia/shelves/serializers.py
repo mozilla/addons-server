@@ -43,11 +43,11 @@ class ShelfSerializer(serializers.ModelSerializer):
             criteria = obj.criteria.strip('?')
             params = dict(parse.parse_qsl(criteria))
             request = self.context.get('request', None)
+            tmp = request.GET
             request.GET = request.GET.copy()
             request.GET.update(params)
             addons = AddonSearchView(request=request).data
-            for key in request.GET.dict():
-                del request.GET[key]
+            request.GET = tmp
             return addons
         else:
             return None
