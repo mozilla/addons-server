@@ -29,6 +29,7 @@ from olympia.access import acl
 from olympia.accounts.utils import redirect_for_login, _is_safe_url
 from olympia.accounts.views import API_TOKEN_COOKIE, logout_user
 from olympia.activity.models import ActivityLog, VersionLog
+from olympia.activity.utils import log_and_notify
 from olympia.addons.models import (
     Addon, AddonReviewerFlags, AddonUser, AddonUserPendingConfirmation)
 from olympia.addons.views import BaseFilter
@@ -1052,8 +1053,10 @@ def version_edit(request, addon_id, addon, version_id):
                 AddonReviewerFlags.objects.update_or_create(
                     addon=addon, defaults={'needs_admin_code_review': True})
 
-                ActivityLog.create(amo.LOG.SOURCE_CODE_UPLOADED,
-                                   addon, version, request.user)
+                # Add Activity Log, notifying staff, relevant reviewers and
+                # other authors of the add-on.
+                log_and_notify(
+                    amo.LOG.SOURCE_CODE_UPLOADED, None, request.user, version)
 
         messages.success(request, ugettext('Changes successfully saved.'))
         return redirect('devhub.versions.edit', addon.slug, version_id)

@@ -2,6 +2,7 @@
 import datetime
 import zipfile
 
+from django.core import mail
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
 
@@ -12,15 +13,16 @@ from pyquery import PyQuery as pq
 from olympia import amo
 from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import ActivityLog
+from olympia.activity.utils import ACTIVITY_MAIL_GROUP
 from olympia.addons.models import Addon, AddonReviewerFlags
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
-    TestCase, formset, initial, reverse_ns, version_factory)
+    TestCase, formset, initial, reverse_ns, version_factory, user_factory)
 from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
 from olympia.constants.promoted import RECOMMENDED
 from olympia.files.models import File
-from olympia.users.models import UserProfile
+from olympia.users.models import Group, UserProfile
 from olympia.versions.models import ApplicationsVersions, Version
 
 
@@ -675,7 +677,8 @@ class TestVersionEditBase(TestVersionEditMixin, TestCase):
 
     def setUp(self):
         super(TestVersionEditBase, self).setUp()
-        self.client.login(email='del@icio.us')
+        self.user = UserProfile.objects.get(email='del@icio.us')
+        self.client.login(email=self.user.email)
         self.addon = self.get_addon()
         self.version = self.get_version()
         self.url = reverse('devhub.versions.edit',
@@ -787,8 +790,45 @@ class TestVersionEditDetails(TestVersionEditBase):
         assert version.addon.needs_admin_code_review
 
         # Check that the corresponding automatic activity log has been created.
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.SOURCE_CODE_UPLOADED.id).exists()
         log = ActivityLog.objects.get(action=amo.LOG.SOURCE_CODE_UPLOADED.id)
-        assert log
+        assert log.user == self.user
+        assert log.details is None
+        assert log.arguments == [self.addon, self.version]
+
+    def test_email_is_sent_to_relevant_people_for_source_code_upload(self):
+        # Have a reviewer review a version.
+        reviewer = user_factory()
+        self.grant_permission(reviewer, 'Addons:Review')
+        ActivityLog.create(
+            amo.LOG.REJECT_VERSION_DELAYED, self.addon, self.version,
+            user=reviewer)
+
+        # Add an extra developer to the add-on
+        extra_author = user_factory()
+        self.addon.authors.add(extra_author)
+
+        # Add someone in group meant to receive a copy of all activity emails.
+        group, _ = Group.objects.get_or_create(name=ACTIVITY_MAIL_GROUP)
+        staff_user = user_factory()
+        staff_user.groups.add(group)
+
+        # Have the developer upload source file for the version reviewed.
+        self.test_should_accept_zip_source_file()
+
+        # Check that an email has been sent to relevant people.
+        assert len(mail.outbox) == 3
+        for message in mail.outbox:
+            assert message.subject == (
+                'Mozilla Add-ons: Delicious Bookmarks 2.1.072')
+            assert 'Source code uploaded' in message.body
+
+        # Check each message was sent separately to who we are meant to notify.
+        assert mail.outbox[0].to != mail.outbox[1].to != mail.outbox[2].to
+        assert set(
+            mail.outbox[0].to + mail.outbox[1].to + mail.outbox[2].to) == set(
+            [reviewer.email, extra_author.email, staff_user.email])
 
     def test_should_not_accept_exe_source_file(self):
         with temp.NamedTemporaryFile(
