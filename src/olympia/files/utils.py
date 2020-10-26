@@ -43,7 +43,7 @@ from olympia.applications.models import AppVersion
 from olympia.lib.crypto.signing import get_signer_organizational_unit_name
 from olympia.lib import unicodehelper
 
-from olympia.versions.compare import version_int as vint
+from olympia.versions.compare import VersionString
 
 
 log = olympia.core.logger.getLogger('z.files.utils')
@@ -177,18 +177,19 @@ def get_appversions(app, min_version, max_version):
 
 
 def get_simple_version(version_string):
-    """Extract the version number without the ><= requirements.
+    """Extract the version number without the ><= requirements, returning a
+    VersionString instance.
 
     This simply extracts the version number without the ><= requirement so
     it will not be accurate for version requirements that are not >=, <= or
     = to a version.
 
     >>> get_simple_version('>=33.0a1')
-    '33.0a1'
+    VersionString('33.0a1')
     """
     if not version_string:
-        return ''
-    return re.sub('[<=>]', '', version_string)
+        version_string = ''
+    return VersionString(re.sub('[<=>]', '', version_string))
 
 
 class RDFExtractor(object):
@@ -464,9 +465,8 @@ class ManifestJSONExtractor(object):
             )
 
         doesnt_support_no_id = (
-            self.strict_min_version and
-            (vint(self.strict_min_version) <
-                vint(amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID))
+            self.strict_min_version and self.strict_min_version <
+            VersionString(amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID)
         )
 
         if self.guid is None and doesnt_support_no_id:
@@ -477,26 +477,30 @@ class ManifestJSONExtractor(object):
         # If a minimum strict version is specified, it needs to be higher
         # than the version when Firefox started supporting WebExtensions.
         unsupported_no_matter_what = (
-            self.strict_min_version and vint(self.strict_min_version) <
-            vint(amo.DEFAULT_WEBEXT_MIN_VERSION))
+            self.strict_min_version and
+            self.strict_min_version <
+            VersionString(amo.DEFAULT_WEBEXT_MIN_VERSION))
         if unsupported_no_matter_what:
             msg = ugettext('Lowest supported "strict_min_version" is 42.0.')
             raise forms.ValidationError(msg)
 
         for app, default_min_version in apps:
             if self.guid is None and not self.strict_min_version:
-                strict_min_version = max(amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
-                                         default_min_version)
+                strict_min_version = max(
+                    VersionString(amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID),
+                    VersionString(default_min_version))
             else:
                 # strict_min_version for this app shouldn't be lower than the
                 # default min version for this app.
                 strict_min_version = max(
-                    self.strict_min_version, default_min_version)
+                    self.strict_min_version,
+                    VersionString(default_min_version))
 
             strict_max_version = (
-                self.strict_max_version or amo.DEFAULT_WEBEXT_MAX_VERSION)
+                self.strict_max_version or
+                VersionString(amo.DEFAULT_WEBEXT_MAX_VERSION))
 
-            if vint(strict_max_version) < vint(strict_min_version):
+            if strict_max_version < strict_min_version:
                 strict_max_version = strict_min_version
 
             qs = AppVersion.objects.filter(application=app.id)
