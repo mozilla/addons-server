@@ -80,18 +80,16 @@ If you have `Users:Edit` permission you will see these extra fields for all user
     The following are some commonly tested permissions; see https://github.com/mozilla/addons-server/blob/master/src/olympia/constants/permissions.py
     for the full list.
 
-    ==================  ==========================================================
-                 Value  Description
-    ==================  ==========================================================
-     `AdminTools:View`  Can access the website admin interface index page.  Inner
-                        pages may require other/additional permissions.
-         `Addons:Edit`  Allows viewing and editing of any add-ons details in
-                        developer tools.
-       `Addons:Review`  Can access the add-on reviewer tools to approve/reject
-                        add-on submissions.
-     `Personas:Review`  Can access the theme reviewer tools to approve/reject
-                        theme submissions.
-    ==================  ==========================================================
+    =====================  =======================================================
+                    Value  Description
+    =====================  =======================================================
+            `Addons:Edit`  Allows viewing and editing of any add-ons details in
+                           developer tools.
+          `Addons:Review`  Can access the add-on reviewer tools to approve/reject
+                           add-on submissions.
+     `Addons:ThemeReview`  Can access the theme reviewer tools to approve/reject
+                           theme submissions.
+    =====================  =======================================================
 
 
 -------
