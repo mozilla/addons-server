@@ -26,7 +26,7 @@
       {% if not already_promoted %}
       <p>
         {% trans addon_name=addon.name, group_name=promoted_group.name %}
-        The latest approved version of your add-on <em>{{ addon_name }}</em>
+        The latest approved version of your add-on <strong>{{ addon_name }}</strong>
         will be re-signed and published as {{ group_name }}, and should become
         available shortly. If you have any questions, don't hesitate to contact
         us.
@@ -44,7 +44,8 @@
         <p>
           {% trans %}
           There was an error while setting up payment for your add-on. If you're
-          experiencing problems with this process, please contact us at
+          experiencing problems with this process or you've changed your mind,
+          please contact us at
           <a href="mailto:amo-admins@mozilla.com">amo-admins@mozilla.com</a>.
           {% endtrans %}
         </p>
@@ -58,9 +59,9 @@
       {% endif %}
     <p>
       {% trans addon_name=addon.name %}
-      Your add-on <em>{{ addon_name }}</em> will be included in the program
-      once payment is set up through the Stripe system. Click on the button
-      below to continue:
+      Your add-on <strong>{{ addon_name }}</strong> will be included in the
+      program once payment is set up through the Stripe system. Click on the
+      button below to continue:
       {% endtrans %}
     </p>
     <p>

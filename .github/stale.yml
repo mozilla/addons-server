@@ -14,7 +14,6 @@ onlyLabels: []
 exemptLabels:
   - "contrib: maybe good first bug"
   - "contrib: good first bug"
-  - "contrib: welcome"
   - "component: security"
   - "state: blocked"
   - "state: blocked by upstream"
