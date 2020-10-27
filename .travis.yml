@@ -70,8 +70,8 @@ before_install:
 install:
   - nvm current
   - nvm deactivate
-  - nvm install 8
-  - nvm use 8
+  - nvm install 10
+  - nvm use 10
   - pip install --upgrade pip wheel setuptools tox==3.2.1 tox-travis==0.10
   - ./scripts/travis-install-libgit2.sh
 

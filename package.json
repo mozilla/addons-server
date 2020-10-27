@@ -3,28 +3,28 @@
   "version": "0.0.17",
   "private": true,
   "engines": {
-    "node": ">= 8.10"
+    "node": ">= 10.13"
   },
   "scripts": {
     "potools": "potools"
   },
   "dependencies": {
-    "addons-linter": "1.23.0",
-    "clean-css": "4.1.9",
-    "clean-css-cli": "4.1.11",
+    "addons-linter": "2.10.0",
+    "clean-css": "4.2.3",
+    "clean-css-cli": "4.3.0",
     "jqmodal": "1.4.2",
-    "jquery": "3.3.1",
+    "jquery": "3.4.1",
     "jquery.browser": "0.1.0",
     "jquery.cookie": "1.4.1",
-    "@claviska/jquery-minicolors": "2.3.2",
+    "@claviska/jquery-minicolors": "2.3.4",
     "jquery-pjax": "2.0.1",
     "jquery-ui": "1.12.1",
-    "jszip": "3.1.4",
-    "less": "3.8.1",
+    "jszip": "3.3.0",
+    "less": "3.11.1",
     "source-map": "0.7.3",
-    "timeago": "1.6.2",
-    "uglify-js": "3.4.9",
-    "underscore": "1.9.1"
+    "timeago": "1.6.7",
+    "uglify-js": "3.8.1",
+    "underscore": "1.10.2"
   },
   "devDependencies": {
     "potools": "0.3.0"
