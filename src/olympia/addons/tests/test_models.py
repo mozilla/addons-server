@@ -25,7 +25,7 @@ from olympia.bandwagon.models import Collection
 from olympia.blocklist.models import Block, BlocklistSubmission
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.promoted import (
-    NOT_PROMOTED, RECOMMENDED, SPOTLIGHT, SPONSORED)
+    LINE, NOT_PROMOTED, RECOMMENDED, SPONSORED)
 from olympia.devhub.models import RssKey
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadTest
@@ -1560,7 +1560,7 @@ class TestAddonModels(TestCase):
 
         # It's promoted but nothing has been approved
         promoted = PromotedAddon.objects.create(
-            addon=addon, group_id=SPOTLIGHT.id)
+            addon=addon, group_id=LINE.id)
         assert addon.promoted_group(currently_approved=False)
         assert addon.promoted_group() == NOT_PROMOTED
         assert not addon.promoted_group()
@@ -1569,7 +1569,7 @@ class TestAddonModels(TestCase):
         promoted.approve_for_version(version=addon.current_version)
         del addon.current_version.approved_for_groups
         assert addon.promoted_group()
-        assert addon.promoted_group() == SPOTLIGHT
+        assert addon.promoted_group() == LINE
 
         # if the group has changes the approval for the current version isn't
         # valid
@@ -1611,7 +1611,7 @@ class TestAddonModels(TestCase):
 
         # It's promoted but nothing has been approved.
         promoted = PromotedAddon.objects.create(
-            addon=addon, group_id=SPOTLIGHT.id)
+            addon=addon, group_id=LINE.id)
         assert addon.promoted is None
 
         # The latest version is approved.

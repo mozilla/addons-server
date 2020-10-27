@@ -18,6 +18,8 @@ _PromotedSuperClass = namedtuple(
         'badged',
         'autograph_signing_states',
         'can_primary_hero',
+        'require_subscription',
+        'immediate_approval',
     ],
     defaults=(
         # "Since fields with a default value must come after any fields without
@@ -29,6 +31,8 @@ _PromotedSuperClass = namedtuple(
         False,  # badged
         {},  # autograph_signing_states - should be a dict of App.short: state
         False,  # can_primary_hero - can be added to a primary hero shelf
+        False,  # require_subscription
+        False,  # immediate_approval - will addon be auto-approved once added
     )
 )
 
@@ -71,6 +75,7 @@ SPONSORED = PromotedClass(
         applications.FIREFOX.short: 'verified',
         applications.ANDROID.short: 'verified'},
     can_primary_hero=True,
+    require_subscription=True,
 )
 
 VERIFIED = PromotedClass(
@@ -83,6 +88,7 @@ VERIFIED = PromotedClass(
     autograph_signing_states={
         applications.FIREFOX.short: 'verified',
         applications.ANDROID.short: 'verified'},
+    require_subscription=True,
 )
 
 LINE = PromotedClass(
@@ -107,6 +113,7 @@ SPOTLIGHT = PromotedClass(
     pre_review=True,
     admin_review=True,
     can_primary_hero=True,
+    immediate_approval=True,
 )
 
 STRATEGIC = PromotedClass(
@@ -135,5 +142,3 @@ PROMOTED_API_NAME_TO_IDS = {
     # we can replace this ugly syntax with dict | in 3.9 - see pep-0584
     **{p.api_name: [p.id] for p in PROMOTED_GROUPS if p},
     **{BADGED_API_NAME: list({p.id for p in BADGED_GROUPS})}}
-
-PROMOTED_GROUPS_FOR_SUBSCRIPTION = [SPONSORED, VERIFIED]

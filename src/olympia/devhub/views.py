@@ -1943,6 +1943,8 @@ def onboarding_subscription_success(request, addon_id, addon):
             payment_completed_at=datetime.datetime.now(),
         )
         log.info('PromotedSubscription %s has been completed.', sub.pk)
+        if not sub.addon_already_promoted:
+            sub.promoted_addon.approve_for_addon()
 
     return redirect(
         reverse("devhub.addons.onboarding_subscription", args=[addon.id])

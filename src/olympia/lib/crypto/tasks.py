@@ -66,17 +66,20 @@ def get_new_version_number(version):
 
 
 @task
-def sign_addons(addon_ids, force=False, **kw):
+def sign_addons(addon_ids, force=False, send_emails=True, **kw):
     """Used to sign all the versions of an addon.
 
     This is used in the 'process_addons --task resign_addons_for_cose'
     management command.
 
+    This is also used to resign some promoted addons after they've been added
+    to a group (or paid).
+
     It also bumps the version number of the file and the Version, so the
     Firefox extension update mechanism picks this new signed version and
     installs it.
     """
-    log.info(u'[{0}] Signing addons.'.format(len(addon_ids)))
+    log.info('[{0}] Signing addons.'.format(len(addon_ids)))
 
     mail_subject, mail_message = MAIL_COSE_SUBJECT, MAIL_COSE_MESSAGE
 
@@ -98,7 +101,7 @@ def sign_addons(addon_ids, force=False, **kw):
 
         if not to_sign:
             log.info(
-                u'Not signing addon {0}, version {1} (no files)'
+                'Not signing addon {0}, version {1} (no files)'
                 .format(version.addon, version))
         log.info(
             u'Signing addon {0}, version {1}'
@@ -111,11 +114,11 @@ def sign_addons(addon_ids, force=False, **kw):
         # to be sure.
         for file_obj in to_sign:
             if not os.path.isfile(file_obj.file_path):
-                log.info(u'File {0} does not exist, skip'.format(file_obj.pk))
+                log.info('File {0} does not exist, skip'.format(file_obj.pk))
                 continue
 
             # Save the original file, before bumping the version.
-            backup_path = u'{0}.backup_signature'.format(file_obj.file_path)
+            backup_path = '{0}.backup_signature'.format(file_obj.file_path)
             shutil.copy(file_obj.file_path, backup_path)
 
             try:
@@ -128,7 +131,7 @@ def sign_addons(addon_ids, force=False, **kw):
                 else:  # We didn't sign, so revert the version bump.
                     shutil.move(backup_path, file_obj.file_path)
             except Exception:
-                log.error(u'Failed signing file {0}'.format(file_obj.pk),
+                log.error('Failed signing file {0}'.format(file_obj.pk),
                           exc_info=True)
                 # Revert the version bump, restore the backup.
                 shutil.move(backup_path, file_obj.file_path)
@@ -137,7 +140,7 @@ def sign_addons(addon_ids, force=False, **kw):
         if signed_at_least_a_file:
             version.update(version=bumped_version_number)
             addon = version.addon
-            if addon.pk not in addons_emailed:
+            if send_emails and addon.pk not in addons_emailed:
                 # Send a mail to the owners/devs warning them we've
                 # automatically signed their addon.
                 qs = (AddonUser.objects
