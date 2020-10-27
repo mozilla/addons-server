@@ -401,3 +401,14 @@ class TestHeroShelvesView(TestCase):
                 break
 
         assert found_ids == addon_ids
+
+    def test_no_valid_shelves(self):
+        PrimaryHero.objects.create(
+            promoted_addon=PromotedAddon.objects.create(
+                addon=addon_factory()),
+            enabled=False)
+        # No SecondaryHero at all
+        response = self.client.get(
+            self.url, {'lang': 'en-US', 'wrap_outgoing_links': ''})
+        assert response.json()['primary'] is None
+        assert response.json()['secondary'] is None

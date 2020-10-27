@@ -28,9 +28,10 @@ class ShelfViewSet(ListModelMixin, GenericViewSet):
             qs = qs.filter(enabled=True)
         return qs
 
-    def get_one_random(self):
+    def get_one_random_data(self):
         qs = self.filter_queryset(self.get_queryset()).order_by('?')
-        return self.get_serializer(instance=qs.first())
+        shelf = qs.first()
+        return self.get_serializer(instance=shelf).data if shelf else None
 
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
@@ -79,9 +80,9 @@ class HeroShelvesView(APIView):
     def get(self, request, format=None):
         output = {
             'primary': PrimaryHeroShelfViewSet(
-                request=request).get_one_random().data,
+                request=request).get_one_random_data(),
             'secondary': SecondaryHeroShelfViewSet(
-                request=request).get_one_random().data,
+                request=request).get_one_random_data(),
         }
         return Response(output)
 
