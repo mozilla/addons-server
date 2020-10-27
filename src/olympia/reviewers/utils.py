@@ -26,7 +26,6 @@ from olympia.reviewers.models import (
     ViewUnlistedAllList, get_flags, get_flags_for_row)
 from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
-from olympia.versions.compare import VersionString
 from olympia.versions.models import VersionReviewerFlags
 
 import jinja2
@@ -1151,7 +1150,7 @@ class ReviewUnlisted(ReviewBase):
         min_version = ('0', None)
         max_version = ('*', None)
         for version in self.data['versions']:
-            version_str = VersionString(version.version)
+            version_str = version.version
             if not min_version[1] or version_str < min_version[1]:
                 min_version = (version, version_str)
             if not max_version[1] or version_str > max_version[1]:

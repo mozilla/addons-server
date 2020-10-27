@@ -37,6 +37,14 @@ class TestVersionString():
         assert VersionString('*') != VersionString('65535.65535.65535.65535')
         assert VersionString('*') != VersionString('65535.0.0.0')
         assert VersionString('3.6a5pre9') != VersionString('3.6')
+        # edge cases with falsey values
+        assert VersionString('0') != ''
+        assert VersionString('') != '0'
+        assert VersionString('0') is not None
+        assert VersionString('') is not None
+        none = None
+        assert VersionString('0') != none
+        assert VersionString('') != none
 
     def test_comparison(self):
         assert VersionString('3.6.*') > VersionString('3.6.8')
@@ -65,6 +73,38 @@ class TestVersionString():
         assert bool(VersionString('3.6.*')) is True
         assert bool(VersionString('3.6')) is True
         assert bool(VersionString('*')) is True
+
+    def test_parts(self):
+        assert tuple(VersionString('3.6a5pre9').parts) == (
+            ('major', 3),
+            ('minor1', 6),
+            ('minor2', 0),
+            ('minor3', 0),
+            ('alpha', 'a'),
+            ('alpha_ver', 5),
+            ('pre', 'pre'),
+            ('pre_ver', 9),
+        )
+        assert tuple(VersionString('3.6.*').parts) == (
+            ('major', 3),
+            ('minor1', 6),
+            ('minor2', '*'),
+            ('minor3', '*'),
+            ('alpha', ''),
+            ('alpha_ver', 0),
+            ('pre', ''),
+            ('pre_ver', 0),
+        )
+
+    def test_part_indexing(self):
+        vs = VersionString('32.6pre9')
+        assert vs['major'] == 32
+        assert vs['minor3'] == 0
+        assert vs['alpha'] == ''
+        assert vs['pre'] == 'pre'
+        assert vs['pre_ver'] == 9
+        assert vs[0] == '3'  # normal string indexing still works
+        assert vs[3:5] == '6p'
 
 
 def test_version_dict():
