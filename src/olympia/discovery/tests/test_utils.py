@@ -237,26 +237,17 @@ def test_get_disco_recommendations_overrides(call_recommendation_server):
 @pytest.mark.django_db
 def test_replace_extensions():
     source = [
-        DiscoveryItem(addon=addon_factory(), custom_addon_name=u'replacê me'),
-        DiscoveryItem(
-            addon=addon_factory(), custom_addon_name=u'replace me tøø'),
-        DiscoveryItem(
-            addon=addon_factory(type=amo.ADDON_STATICTHEME),
-            custom_addon_name=u'ŋot me'),
-        DiscoveryItem(
-            addon=addon_factory(type=amo.ADDON_STATICTHEME),
-            custom_addon_name=u'ŋor me'),
-        DiscoveryItem(addon=addon_factory(), custom_addon_name=u'probably me'),
-        DiscoveryItem(
-            addon=addon_factory(type=amo.ADDON_STATICTHEME),
-            custom_addon_name=u'safê')
+        DiscoveryItem(addon=addon_factory()),  # replaced
+        DiscoveryItem(addon=addon_factory()),  # also replaced
+        DiscoveryItem(addon=addon_factory(type=amo.ADDON_STATICTHEME)),  # not
+        DiscoveryItem(addon=addon_factory(type=amo.ADDON_STATICTHEME)),  # nope
+        DiscoveryItem(addon=addon_factory()),  # possibly replaced
+        DiscoveryItem(addon=addon_factory(type=amo.ADDON_STATICTHEME))  # nope
     ]
     # Just 2 replacements
     replacements = [
-        DiscoveryItem(
-            addon=addon_factory(), custom_addon_name=u'just for you'),
-        DiscoveryItem(
-            addon=addon_factory(), custom_addon_name=u'and this øne'),
+        DiscoveryItem(addon=addon_factory()),
+        DiscoveryItem(addon=addon_factory()),
     ]
     result = replace_extensions(source, replacements)
     assert result == [
@@ -269,10 +260,8 @@ def test_replace_extensions():
     ], result
 
     # Add a few more so all extensions are replaced, with one spare.
-    replacements.append(DiscoveryItem(
-        addon=addon_factory(), custom_addon_name=u'extra ône'))
-    replacements.append(DiscoveryItem(
-        addon=addon_factory(), custom_addon_name=u'extra tôo'))
+    replacements.append(DiscoveryItem(addon=addon_factory()))
+    replacements.append(DiscoveryItem(addon=addon_factory()))
     result = replace_extensions(source, replacements)
     assert result == [
         replacements[0],

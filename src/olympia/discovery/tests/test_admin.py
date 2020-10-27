@@ -99,7 +99,7 @@ class TestDiscoveryAdmin(TestCase):
         assert u'Âbsent' not in response.content.decode('utf-8')
 
     def test_can_edit_with_discovery_edit_permission(self):
-        addon = addon_factory(name=u'BarFöo')
+        addon = addon_factory(name='BarFöo')
         item = DiscoveryItem.objects.create(addon=addon)
         self.detail_url = reverse(
             'admin:discovery_discoveryitem_change', args=(item.pk,)
@@ -110,30 +110,24 @@ class TestDiscoveryAdmin(TestCase):
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
         content = response.content.decode('utf-8')
-        assert u'BarFöo' in content
+        assert 'BarFöo' in content
         assert DiscoveryItem._meta.get_field('addon').help_text in content
 
         response = self.client.post(
             self.detail_url,
             {
                 'addon': str(addon.pk),
-                'custom_addon_name': u'Xäxâxàxaxaxa !',
-                'custom_heading': u'This heading is totally custom.',
-                'custom_description': u'This description is as well!',
+                'custom_description': 'This description is as well!',
             },
             follow=True)
         assert response.status_code == 200
         item.reload()
         assert DiscoveryItem.objects.count() == 1
         assert item.addon == addon
-        assert item.custom_addon_name == u'Xäxâxàxaxaxa !'
-        assert item.custom_heading == u'This heading is totally custom.'
-        assert item.custom_description == u'This description is as well!'
+        assert item.custom_description == 'This description is as well!'
 
     def test_translations_interpolation(self):
-        addon = addon_factory(
-            name='{bar}', users=[user_factory(display_name='{foo}')]
-        )
+        addon = addon_factory(name='{bar}', summary='{foo}')
         item = DiscoveryItem.objects.create(addon=addon)
         self.detail_url = reverse(
             'admin:discovery_discoveryitem_change', args=(item.pk,)
@@ -148,26 +142,14 @@ class TestDiscoveryAdmin(TestCase):
         assert '{bar}' in previews_content
         assert '{foo}' in previews_content
 
-        item.update(custom_addon_name='{abc}')
+        item.update(custom_description='{ghi}')
         self.client.login(email=user.email)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)
         previews_content = doc('.field-previews').text()
-        assert '{bar}' in previews_content  # in description
-        assert '{foo}' in previews_content  # in heading
-        assert '{abc}' in previews_content  # in heading
-
-        item.update(custom_heading='{def}', custom_description='{ghi}')
-        self.client.login(email=user.email)
-        response = self.client.get(self.detail_url, follow=True)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        previews_content = doc('.field-previews').text()
-        assert '{bar}' not in previews_content  # overridden
+        assert '{bar}' in previews_content
         assert '{foo}' not in previews_content  # overridden
-        assert '{abc}' not in previews_content  # overridden
-        assert '{def}' in previews_content
         assert '{ghi}' in previews_content
 
     def test_can_change_addon_with_discovery_edit_permission(self):
@@ -285,18 +267,14 @@ class TestDiscoveryAdmin(TestCase):
             self.add_url,
             {
                 'addon': str(addon.pk),
-                'custom_addon_name': u'Xäxâxàxaxaxa !',
-                'custom_heading': u'This heading is totally custom.',
-                'custom_description': u'This description is as well!',
+                'custom_description': 'This description is as well!',
             },
             follow=True)
         assert response.status_code == 200
         assert DiscoveryItem.objects.count() == 1
         item = DiscoveryItem.objects.get()
         assert item.addon == addon
-        assert item.custom_addon_name == u'Xäxâxàxaxaxa !'
-        assert item.custom_heading == u'This heading is totally custom.'
-        assert item.custom_description == u'This description is as well!'
+        assert item.custom_description == 'This description is as well!'
 
     def test_can_not_add_without_discovery_edit_permission(self):
         addon = addon_factory(name=u'BarFöo')
@@ -313,7 +291,7 @@ class TestDiscoveryAdmin(TestCase):
         assert DiscoveryItem.objects.count() == 0
 
     def test_can_not_edit_without_discovery_edit_permission(self):
-        addon = addon_factory(name=u'BarFöo')
+        addon = addon_factory(name='BarFöo')
         item = DiscoveryItem.objects.create(addon=addon)
         self.detail_url = reverse(
             'admin:discovery_discoveryitem_change', args=(item.pk,)
@@ -326,17 +304,13 @@ class TestDiscoveryAdmin(TestCase):
         response = self.client.post(
             self.detail_url, {
                 'addon': str(addon.pk),
-                'custom_addon_name': u'Noooooô !',
-                'custom_heading': u'I should not be able to do this.',
-                'custom_description': u'This is wrong.',
+                'custom_description': 'This is wrong.',
             }, follow=True)
         assert response.status_code == 403
         item.reload()
         assert DiscoveryItem.objects.count() == 1
         assert item.addon == addon
-        assert item.custom_addon_name == u''
-        assert item.custom_heading == u''
-        assert item.custom_description == u''
+        assert item.custom_description == ''
 
     def test_can_not_delete_without_discovery_edit_permission(self):
         item = DiscoveryItem.objects.create(addon=addon_factory())

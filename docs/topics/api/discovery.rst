@@ -38,8 +38,6 @@ Firefox (about:addons).
     :query string telemetry-client-id: Optional sha256 hash of the telemetry client ID to be passed to the TAAR service to enable recommendations. Must be the hex value of a sha256 hash, otherwise it will be ignored.
     :>json int count: The number of results for this query.
     :>json array results: The array containing the results for this query.
-    :>json string results[].heading: The heading for this item. May contain some HTML tags.
-    :>json string|null results[].description: The description for this item, if any. May contain some HTML tags.
     :>json string|null results[].description_text: The description for this item, if any. Text-only, content might slightly differ from ``description`` because of that.
     :>json boolean results[].is_recommendation: If this item was from the recommendation service, rather than static curated content.
     :>json object results[].addon: The :ref:`add-on <addon-detail-object>` for this item. Only a subset of fields are present: ``id``, ``authors``, ``average_daily_users``, ``current_version`` (with only the ``id``, ``compatibility``, ``is_strict_compatibility_enabled`` and ``files`` fields present), ``guid``, ``icon_url``, ``name``, ``ratings``, ``previews``, ``slug``, ``theme_data``, ``type`` and ``url``.
@@ -61,5 +59,4 @@ of appropriate add-ons to recommended.
     :query boolean recommended: Filter to only add-ons recommended by Mozilla.  Only ``recommended=true`` is supported.
     :>json array results: The array containing the results for this query. There is no pagination, all results are returned.
     :>json object results[].addon: A :ref:`add-on <addon-detail-object>` object for this item, but only containing one field: ``guid``.
-    :>json string|null results[].custom_heading: The custom heading for this item, if any.
     :>json string|null results[].custom_description: The custom description for this item, if any.

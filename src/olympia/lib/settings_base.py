@@ -1710,12 +1710,14 @@ DRF_API_GATES = {
         'autocomplete-sort-param',
         'is-source-public-shim',
         'is-featured-addon-shim',
+        'disco-heading-and-description-shim',
     ),
     'v4': (
         'l10n_flat_input_output',
         'addons-search-_score-field',
         'ratings-can_reply',
         'ratings-score-filter',
+        'disco-heading-and-description-shim',
     ),
     'v5': (
         'addons-search-_score-field',
