@@ -95,15 +95,12 @@
                   {{ addon.average_rating|float|stars }}
                   {% with count='<span itemprop="count">{0}</span>'|format_html(num|numberfmt) %}
                     {# Using num=count so we don't change an L10n string. #}
+                    {% set review_url_text = ngettext('{num} review', '{num} reviews', num)|format_html(num=count) %}
                     {% if acl_is_review_moderator %}
                       {% set review_url = url('admin:ratings_rating_changelist')|urlparams(addon=addon.pk) %}
-                      <a href="{{ review_url|absolutify }}"><strong>{{
-                        ngettext('{num} review', '{num} reviews', num)|format_html(num=count)
-                      }}</strong></a>
+                      <a href="{{ review_url|absolutify }}"><strong>{{ review_url_text }}</strong></a>
                     {% else %}
-                      <strong>{{
-                        ngettext('{num} review', '{num} reviews', num)|format_html(num=count)
-                      }}</strong>
+                      <strong>{{ review_url_text }}</strong>
                     {% endif %}
                   {% endwith %}
                   {% else %}

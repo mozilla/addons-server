@@ -5175,6 +5175,26 @@ class TestReview(ReviewBase):
                 user.name, created_at
             )
         )
+        # Addon details box contains the rating but link is absent
+        assert doc('.addon-rating')
+        assert not doc('.addon-rating a')
+
+    def test_review_moderator_addon_rating_present(self):
+        user = user_factory()
+        Rating.objects.create(
+            body=u'Lôrem ipsum dolor', rating=3, ip_address='10.5.6.7',
+            addon=self.addon, user=user)
+
+        self.grant_permission(self.reviewer, 'Ratings:Moderate')
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('.addon-rating a')
+        rating_url = '{}?addon={}'.format(reverse_ns(
+            'admin:ratings_rating_changelist'
+        ), self.addon.pk)
+        assert doc('.addon-rating a').attr["href"] == rating_url
 
     def test_user_ratings_unlisted_addon(self):
         user = UserProfile.objects.get(email='reviewer@mozilla.com')
