@@ -22,7 +22,10 @@ class PromotedApprovalInlineChecks(admin.checks.InlineModelAdminChecks):
 class PromotedSubscriptionInline(admin.StackedInline):
     model = PromotedSubscription
     view_on_site = False
+    extra = 0  # No extra form should be added...
+    max_num = 1  # ...and we expect up to one form.
     fields = (
+        'onboarding_rate',
         'onboarding_url',
         'link_visited_at',
         'payment_cancelled_at',
@@ -35,10 +38,14 @@ class PromotedSubscriptionInline(admin.StackedInline):
         'payment_completed_at',
     )
 
-    def has_add_permission(self, request, obj=None):
-        return False
+    def get_readonly_fields(self, request, obj=None):
+        readonly_fields = self.readonly_fields
+        if (obj and hasattr(obj, 'promotedsubscription') and
+                obj.promotedsubscription.stripe_checkout_completed):
+            readonly_fields = ('onboarding_rate',) + readonly_fields
+        return readonly_fields
 
-    def has_change_permission(self, request, obj=None):
+    def has_add_permission(self, request, obj=None):
         return False
 
     def has_delete_permission(self, request, obj=None):
@@ -97,13 +104,8 @@ class PromotedAddonAdmin(admin.ModelAdmin):
     raw_id_fields = ('addon',)
     fields = ('addon', 'group_id', 'application_id')
     list_filter = ('group_id', 'application_id')
-    inlines = (PromotedApprovalInline, PrimaryHeroInline)
-
-    def get_inline_instances(self, request, obj=None):
-        inlines = self.inlines
-        if obj and obj.group.require_subscription and request.method != "POST":
-            inlines = inlines + (PromotedSubscriptionInline,)
-        return [inline(self.model, self.admin_site) for inline in inlines]
+    inlines = (PromotedApprovalInline, PrimaryHeroInline,
+               PromotedSubscriptionInline)
 
     @classmethod
     def _transformer(self, objs):
