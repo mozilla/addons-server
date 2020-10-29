@@ -23,9 +23,9 @@ commands:
           name: Build docker image and push to repo
           command: |
             docker version
+            docker login -u "${DOCKERHUB_USER}" -p "${DOCKERHUB_PASS}"
             docker build -t app:build -f << parameters.dockerfile >> --label git.commit="$CIRCLE_SHA1" .
             docker tag app:build "${DOCKERHUB_REPO}":<< parameters.image_tag >>
-            docker login -u "${DOCKERHUB_USER}" -p "${DOCKERHUB_PASS}"
             docker push "${DOCKERHUB_REPO}":<< parameters.image_tag >>
 jobs:
   build:
