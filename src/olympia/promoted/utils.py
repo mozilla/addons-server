@@ -14,6 +14,8 @@ def create_stripe_checkout_session(subscription, customer_email):
 
     This function might raise if the promoted group isn't supported or the API
     call has failed."""
+    stripe.api_key = settings.STRIPE_API_SECRET_KEY
+
     price_id = {
         SPONSORED.id: settings.STRIPE_API_SPONSORED_PRICE_ID,
         VERIFIED.id: settings.STRIPE_API_VERIFIED_PRICE_ID,
@@ -26,7 +28,30 @@ def create_stripe_checkout_session(subscription, customer_email):
             )
         )
 
-    stripe.api_key = settings.STRIPE_API_SECRET_KEY
+    if subscription.onboarding_rate:
+        # When we have a custom onboarding rate, we have to retrieve the Stripe
+        # Product associated with the default Stripe Price first, so that we
+        # can pass the Product ID to Stripe with a custom amount.
+        price = stripe.Price.retrieve(price_id)
+
+        line_item = {
+            "price_data": {
+                "product": price.get("product"),
+                "currency": price.get("currency"),
+                "recurring": {
+                    "interval": price.get("recurring", {}).get("interval"),
+                    "interval_count": price.get("recurring", {}).get(
+                        "interval_count"
+                    ),
+                },
+                "unit_amount": subscription.onboarding_rate,
+            },
+            "quantity": 1,
+        }
+    else:
+        # The default price will be used for this subscription.
+        line_item = {"price": price_id, "quantity": 1}
+
     return stripe.checkout.Session.create(
         payment_method_types=["card"],
         mode="subscription",
@@ -42,7 +67,7 @@ def create_stripe_checkout_session(subscription, customer_email):
                 args=[subscription.promoted_addon.addon_id],
             )
         ),
-        line_items=[{"price": price_id, "quantity": 1}],
+        line_items=[line_item],
         customer_email=customer_email,
     )
 
