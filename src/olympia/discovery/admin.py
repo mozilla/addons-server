@@ -80,7 +80,7 @@ class DiscoveryItemAdmin(admin.ModelAdmin):
             'all': ('css/admin/discovery.css',)
         }
     list_display = ('__str__',
-                    'custom_addon_name', 'custom_heading', 'position',
+                    'position',
                     'position_china',
                     )
     list_filter = (PositionFilter, PositionChinaFilter)
@@ -115,16 +115,13 @@ class DiscoveryItemAdmin(admin.ModelAdmin):
             db_field, request, **kwargs)
 
     def build_preview(self, obj, locale):
-        # FIXME: when disco in Firefox itself lands, change this preview to
-        # match the one Firefox uses.
-        # https://github.com/mozilla/addons-server/issues/11272
         return format_html(
-            u'<div class="discovery-preview" data-locale="{}">'
-            u'<h2 class="heading">{}</h2>'
-            u'<div class="editorial-description">{}</div></div>',
+            '<div class="discovery-preview" data-locale="{}">'
+            '<h2 class="heading">{}</h2>'
+            '<div class="editorial-description">{}</div></div>',
             locale,
-            mark_safe(obj.heading),
-            mark_safe(obj.description))
+            obj.addon.name,
+            mark_safe(obj.description_text))
 
     def previews(self, obj):
         translations = []

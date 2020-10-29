@@ -1,7 +1,11 @@
+from django.utils.html import format_html
+from django.utils.translation import ugettext
+
 from rest_framework import serializers
 
 from olympia.addons.models import Addon
 from olympia.addons.serializers import AddonSerializer, VersionSerializer
+from olympia.api.utils import is_gate_active
 from olympia.discovery.models import DiscoveryItem
 from olympia.versions.models import Version
 
@@ -16,9 +20,9 @@ class DiscoveryEditorialContentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = DiscoveryItem
-        # We only need fields that require a translation, that's custom_heading
-        # and custom_description, plus a guid to identify the add-on.
-        fields = ('addon', 'custom_heading', 'custom_description')
+        # We only need fields that require a translation, that's
+        # custom_description, plus a guid to identify the add-on.
+        fields = ('addon', 'custom_description')
 
     def get_addon(self, obj):
         return {
@@ -48,8 +52,8 @@ class DiscoveryAddonSerializer(AddonSerializer):
 
 
 class DiscoverySerializer(serializers.ModelSerializer):
-    heading = serializers.CharField()
-    description = serializers.CharField()
+    heading = serializers.SerializerMethodField()
+    description = serializers.SerializerMethodField()
     description_text = serializers.CharField()
     addon = DiscoveryAddonSerializer()
     is_recommendation = serializers.SerializerMethodField()
@@ -70,3 +74,24 @@ class DiscoverySerializer(serializers.ModelSerializer):
             position_field = 'position'
         position_value = getattr(obj, position_field)
         return position_value is None or position_value < 1
+
+    def get_heading(self, obj):
+        return format_html(
+            '{0} <span>{1} <a href="{2}">{3}</a></span>',
+            obj.addon.name,
+            ugettext('by'),
+            obj.addon.get_absolute_url(),
+            ', '.join(author.name for author in obj.addon.listed_authors)
+        )
+
+    def get_description(self, obj):
+        return format_html('<blockquote>{}</blockquote>', obj.description_text)
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        request = self.context.get('request', None)
+        if request and not is_gate_active(
+                request, 'disco-heading-and-description-shim'):
+            data.pop('heading', None)
+            data.pop('description', None)
+        return data

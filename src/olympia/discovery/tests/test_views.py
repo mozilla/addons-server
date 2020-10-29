@@ -45,7 +45,7 @@ class DiscoveryTestMixin(object):
         assert result_file['url'] == file_.get_absolute_url()
         assert result_file['permissions'] == file_.permissions
 
-    def _check_disco_addon(self, result, item, flat_name=False):
+    def _check_disco_addon(self, result, item, flat_name=False, heading=False):
         addon = item.addon
         assert result['addon']['id'] == item.addon_id == addon.pk
         if flat_name:
@@ -58,9 +58,16 @@ class DiscoveryTestMixin(object):
         assert (result['addon']['current_version']['files'][0]['id'] ==
                 addon.current_version.all_files[0].pk)
 
-        assert result['heading'] == item.heading
-        assert result['description'] == item.description
         assert result['description_text'] == item.description_text
+        if heading:
+            assert result['heading'] == (
+                f'{addon.name} <span>by <a href="{addon.get_absolute_url()}">'
+                f'{self.addon_user.name}</a></span>')
+            assert result['description'] == (
+                f'<blockquote>{result["description_text"]}</blockquote>')
+        else:
+            assert 'heading' not in result
+            assert 'description' not in result
 
         # https://github.com/mozilla/addons-server/issues/11817
         assert 'heading_text' not in result
@@ -140,6 +147,25 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
             assert result['is_recommendation'] is False
             self._check_disco_addon(
                 result, discopane_items[i], flat_name=True)
+
+    @override_settings(DRF_API_GATES={
+        'v5': ('disco-heading-and-description-shim',)})
+    def test_list_html_heading_and_description(self):
+        self.addon_user = user_factory()
+        for addon in self.addons:
+            addon.addonuser_set.create(user=self.addon_user)
+        response = self.client.get(self.url, {'lang': 'en-US'})
+        assert response.data
+
+        discopane_items = DiscoveryItem.objects.all().filter(
+            position__gt=0).order_by('position')
+        assert response.data['count'] == len(discopane_items)
+        assert response.data['results']
+
+        for i, result in enumerate(response.data['results']):
+            assert result['is_recommendation'] is False
+            self._check_disco_addon(
+                result, discopane_items[i], heading=True)
 
     def test_list_unicode_locale(self):
         """Test that disco pane API still works in a locale with non-ascii
@@ -347,16 +373,13 @@ class TestDiscoveryItemViewSet(TestCase):
     def setUp(self):
         self.items = [
             DiscoveryItem.objects.create(
-                addon=addon_factory(),
-                custom_addon_name=u'Fôoooo'),
+                addon=addon_factory(summary='This is the addon summary')),
             DiscoveryItem.objects.create(
                 addon=addon_factory(),
-                custom_heading=u'My Custöm Headîng',
-                custom_description=u''),
+                custom_description=''),
             DiscoveryItem.objects.create(
                 addon=addon_factory(),
-                custom_heading=u'Änother custom heading',
-                custom_description=u'This time with a custom description')
+                custom_description='This time with a custom description')
         ]
         self.url = reverse_ns('discovery-editorial-list')
 
@@ -371,17 +394,14 @@ class TestDiscoveryItemViewSet(TestCase):
         assert 'results' in response.data
 
         result = response.data['results'][0]
-        assert result['custom_heading'] == u''
-        assert result['custom_description'] == u''
+        assert result['custom_description'] == ''
         assert result['addon'] == {'guid': self.items[0].addon.guid}
 
         result = response.data['results'][1]
-        assert result['custom_heading'] == u'My Custöm Headîng'
-        assert result['custom_description'] == u''
+        assert result['custom_description'] == ''
         assert result['addon'] == {'guid': self.items[1].addon.guid}
 
         result = response.data['results'][2]
-        assert result['custom_heading'] == u'Änother custom heading'
         assert result['custom_description'] == (
             u'This time with a custom description')
         assert result['addon'] == {'guid': self.items[2].addon.guid}

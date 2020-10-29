@@ -12,13 +12,10 @@ from olympia.amo.tests import TestCase
 
 disco_fake_data = {
     'results': [{
-        'custom_heading': 'sïïïck custom heading',
         'custom_description': 'greât custom description'
     }, {
-        'custom_heading': None,
         'custom_description': 'custom description is custom '
     }, {
-        'custom_heading': '{start_sub_heading}{addon_name}{end_sub_heading}',
         'custom_description': ''
     }]}
 
@@ -63,15 +60,11 @@ secondary_hero_fake_data = {
     }]}
 
 expected_content = """{# L10n: editorial content for the discovery pane. #}
-{% trans %}sïïïck custom heading{% endtrans %}
-{# L10n: editorial content for the discovery pane. #}
 {% trans %}greât custom description{% endtrans %}
 
 {# L10n: editorial content for the discovery pane. #}
 {% trans %}custom description is custom {% endtrans %}
 
-{# L10n: editorial content for the discovery pane. #}
-{% trans %}{start_sub_heading}{addon_name}{end_sub_heading}{% endtrans %}
 
 {# L10n: editorial content for the primary hero shelves. #}
 {% trans %}greât primary custom description{% endtrans %}

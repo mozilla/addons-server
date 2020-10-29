@@ -69,7 +69,7 @@ class BaseAPIParser():
 class DiscoItemAPIParser(BaseAPIParser):
     api = settings.DISCOVERY_EDITORIAL_CONTENT_API
     l10n_comment = 'editorial content for the discovery pane.'
-    fields = ('custom_heading', 'custom_description')
+    fields = ('custom_description',)
 
 
 class PrimaryHeroShelfAPIParser(BaseAPIParser):
