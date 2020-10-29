@@ -113,9 +113,9 @@ def call_signing(file_obj):
             auth=hawk_auth)
 
     if response.status_code != requests.codes.CREATED:
-        msg = u'Posting to add-on signing failed: {0} {1}'.format(
-            response.reason, response.text)
-        log.error(msg)
+        msg = f'Posting to add-on signing failed ({response.status_code})'
+        log.error(
+            msg, extra={'reason': response.reason, 'text': response.text})
         raise SigningError(msg)
 
     # Save the returned file in our storage.
