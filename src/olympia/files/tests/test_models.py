@@ -1077,23 +1077,26 @@ class TestFileUpload(UploadTest):
         """Test to ensure we raise an explicit exception when a .crx file isn't
         a true crx (doesn't have to be caught, showing a 500 error is fine)."""
         data = b'Cr42\x02\x00\x00\x00&\x01\x00\x00\x00\x01\x00\x00'
-        with self.assertRaises(InvalidOrUnsupportedCrx):
+        with self.assertRaises(InvalidOrUnsupportedCrx) as exc:
             FileUpload.from_post([data], filename='test.crx', size=1234)
+        assert str(exc.exception) == 'CRX file does not start with Cr24'
 
     def test_webextension_crx_version_unsupported(self):
         """Test to ensure we only support crx versions 2 and 3 and raise an
         explicit exception otherwise (doesn't have to be caught, showing a 500
         error is fine)."""
         data = b'Cr24\x04\x00\x00\x00&\x01\x00\x00\x00\x01\x00\x00'
-        with self.assertRaises(InvalidOrUnsupportedCrx):
+        with self.assertRaises(InvalidOrUnsupportedCrx) as exc:
             FileUpload.from_post([data], filename='test.crx', size=1234)
+        assert str(exc.exception) == 'Unsupported CRX version'
 
     def test_webextension_crx_version_cant_unpack(self):
         """Test to ensure we raise an explicit exception when we can't unpack
         a crx (doesn't have to be caught, showing a 500 error is fine)."""
         data = b'Cr24\x02\x00\x00\x00&\x00\x00\x00\x01\x00\x00'
-        with self.assertRaises(InvalidOrUnsupportedCrx):
+        with self.assertRaises(InvalidOrUnsupportedCrx) as exc:
             FileUpload.from_post([data], filename='test.crx', size=1234)
+        assert str(exc.exception) == 'Invalid or corrupt CRX file'
 
     def test_extension_zip(self):
         upload = self.get_upload('recurse.zip')
