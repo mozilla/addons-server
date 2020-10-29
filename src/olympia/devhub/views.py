@@ -1902,6 +1902,16 @@ def onboarding_subscription(request, addon_id, addon):
     if len(fields_to_update) > 0:
         sub.update(**fields_to_update)
 
+    existing_version_pending = addon.versions.filter(
+        channel=amo.RELEASE_CHANNEL_LISTED,
+        files__status=amo.STATUS_AWAITING_REVIEW).exists()
+    # we get what the new version string would be after resigning
+    new_version_number = sub.promoted_addon.get_resigned_version_number()
+    # But if we try and it's been resigned already it will end in -1(or higher)
+    # so return the current version number instead.
+    if new_version_number and not new_version_number.endswith('-signed'):
+        new_version_number = addon.current_version.version
+
     data = {
         "addon": addon,
         "stripe_session_id": sub.stripe_session_id,
@@ -1910,6 +1920,8 @@ def onboarding_subscription(request, addon_id, addon):
         "stripe_checkout_cancelled": sub.stripe_checkout_cancelled,
         "promoted_group": sub.promoted_addon.group,
         "already_promoted": sub.addon_already_promoted,
+        "new_version_number": new_version_number,
+        "existing_version_pending": existing_version_pending,
     }
     return render(request, "devhub/addons/onboarding_subscription.html", data)
 
@@ -1947,7 +1959,7 @@ def onboarding_subscription_success(request, addon_id, addon):
             sub.promoted_addon.approve_for_addon()
 
     return redirect(
-        reverse("devhub.addons.onboarding_subscription", args=[addon.id])
+        reverse("devhub.addons.onboarding_subscription", args=[addon.slug])
     )
 
 

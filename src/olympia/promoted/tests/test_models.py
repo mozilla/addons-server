@@ -140,6 +140,29 @@ class TestPromotedAddon(TestCase):
             assert promo.addon.current_version.version == '0.123a.1-signed'
             mock_sign_file.assert_called_with(file_)
 
+    def test_get_resigned_version_number(self):
+        addon = addon_factory(
+            version_kw={'version': '0.123a'},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        promo = PromotedAddon.objects.create(
+            addon=addon, group_id=promoted.VERIFIED.id)
+        assert addon.current_version is not None
+        assert promo.get_resigned_version_number() is None
+
+        addon.current_version.current_file.update(status=amo.STATUS_APPROVED)
+        assert promo.get_resigned_version_number() == '0.123a.1-signed'
+
+        addon.current_version.update(version='123.4.1-signed')
+        assert promo.get_resigned_version_number() == '123.4.1-signed-2'
+
+        addon.current_version.update(version='123.4.1-signed-2')
+        assert promo.get_resigned_version_number() == '123.4.1-signed-3'
+
+        addon.current_version.delete()
+        addon.reload()
+        assert addon.current_version is None
+        assert promo.get_resigned_version_number() is None
+
 
 class TestPromotedSubscription(TestCase):
     def test_get_onboarding_url_with_new_object(self):

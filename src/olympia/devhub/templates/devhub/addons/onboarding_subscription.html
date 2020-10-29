@@ -18,19 +18,30 @@
     <h2>{{ _('Set Up Payment') }}</h2>
 
     {% if stripe_checkout_completed %}
-    <p>
-      {% trans %}
-      You're done!
-      {% endtrans %}
-    </p>
-      {% if not already_promoted %}
+      {% if already_promoted %}
       <p>
-        {% trans addon_name=addon.name, group_name=promoted_group.name %}
-        The latest approved version of your add-on <strong>{{ addon_name }}</strong>
-        will be re-signed and published as {{ group_name }}, and should become
-        available shortly. If you have any questions, don't hesitate to contact
-        us.
+        {% trans %}
+        You're done!
         {% endtrans %}
+      </p>
+      {% else %}
+      <p>
+        {% if new_version_number %}
+          {% trans addon_name=addon.name, group_name=promoted_group.name %}
+          You're done! A new version <strong>{{ new_version_number }}</strong> of your add-on
+          <strong>{{ addon_name }}</strong> will be published as {{ group_name }}
+          and should become available shortly.
+          {% endtrans %}
+          {% if existing_version_pending %}
+            {{ _('A newer version of your add-on is currently pending review.') }}
+          {% endif %}
+          {{ _('If you have any questions, don’t hesitate to contact us.') }}
+        {% else %}
+          {% trans %}
+          Your payment has been recorded, but there are currently no published versions of your add-on.
+          Please upload a new public version in order to complete this process.
+          {% endtrans %}
+        {% endif %}
       </p>
       {% endif %}
     <p>
