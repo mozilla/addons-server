@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-17 13:59+0000\n"
-"Last-Translator: 你我皆凡人 <eloli@foxmail.com>\n"
+"PO-Revision-Date: 2020-10-29 07:16+0000\n"
+"Last-Translator: xcffl <xcffl@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -3826,7 +3826,7 @@ msgstr "阅读 ePub 电子书 {start_sub_heading}就用 {addon_name}{end_sub_hea
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr "在 Firefox 中阅览 ePub 文件—支持增加字体大小、调整页面尺寸等功能。"
+msgstr "在 Firefox 中阅览 ePub 文件—支持放大文字、调整页面尺寸等功能。"
 
 #. editorial content for the discovery pane.
 msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
