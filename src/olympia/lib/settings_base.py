@@ -1717,7 +1717,6 @@ DRF_API_GATES = {
         'addons-search-_score-field',
         'ratings-can_reply',
         'ratings-score-filter',
-        'disco-heading-and-description-shim',
     ),
     'v5': (
         'addons-search-_score-field',
