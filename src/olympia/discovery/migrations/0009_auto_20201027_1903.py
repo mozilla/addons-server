@@ -6,14 +6,10 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('discovery', '0007_auto_20200811_1319'),
+        ('discovery', '0008_remove_discoveryitem_recommendable'),
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='discoveryitem',
-            name='recommendable',
-        ),
         migrations.AlterField(
             model_name='discoveryitem',
             name='custom_addon_name',
