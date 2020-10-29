@@ -31,7 +31,7 @@ from olympia.files.models import (
     File, FileUpload, FileValidation, WebextPermission,
     nfd_str, track_file_status_change)
 from olympia.files.utils import (
-    Extractor, check_xpi_info, parse_addon, parse_xpi)
+    Extractor, check_xpi_info, parse_addon, parse_xpi, InvalidOrUnsupportedCrx)
 from olympia.versions.models import Version
 
 
@@ -1064,6 +1064,36 @@ class TestFileUpload(UploadTest):
         upload = self.get_upload('https-everywhere.crx')
         assert upload.path.endswith('.xpi')
         storage.delete(upload.path)
+
+    def test_webextension_crx_version_3(self):
+        """Test to ensure we accept CRX uploads (version 3), but convert them
+        into XPI files ASAP to keep things simple.
+        """
+        upload = self.get_upload('webextension_crx3.crx')
+        assert upload.path.endswith('.xpi')
+        storage.delete(upload.path)
+
+    def test_webextension_crx_not_a_crx(self):
+        """Test to ensure we raise an explicit exception when a .crx file isn't
+        a true crx (doesn't have to be caught, showing a 500 error is fine)."""
+        data = b'Cr42\x02\x00\x00\x00&\x01\x00\x00\x00\x01\x00\x00'
+        with self.assertRaises(InvalidOrUnsupportedCrx):
+            FileUpload.from_post([data], filename='test.crx', size=1234)
+
+    def test_webextension_crx_version_unsupported(self):
+        """Test to ensure we only support crx versions 2 and 3 and raise an
+        explicit exception otherwise (doesn't have to be caught, showing a 500
+        error is fine)."""
+        data = b'Cr24\x04\x00\x00\x00&\x01\x00\x00\x00\x01\x00\x00'
+        with self.assertRaises(InvalidOrUnsupportedCrx):
+            FileUpload.from_post([data], filename='test.crx', size=1234)
+
+    def test_webextension_crx_version_cant_unpack(self):
+        """Test to ensure we raise an explicit exception when we can't unpack
+        a crx (doesn't have to be caught, showing a 500 error is fine)."""
+        data = b'Cr24\x02\x00\x00\x00&\x00\x00\x00\x01\x00\x00'
+        with self.assertRaises(InvalidOrUnsupportedCrx):
+            FileUpload.from_post([data], filename='test.crx', size=1234)
 
     def test_extension_zip(self):
         upload = self.get_upload('recurse.zip')
