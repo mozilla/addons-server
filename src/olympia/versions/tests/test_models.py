@@ -36,8 +36,8 @@ from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
 from olympia.versions.compare import version_int, VersionString
 from olympia.versions.models import (
-    ApplicationsVersions, Version, VersionPreview, VersionReviewerFlags,
-    source_upload_path)
+    ApplicationsVersions, License, Version, VersionPreview,
+    VersionReviewerFlags, source_upload_path)
 from olympia.scanners.models import ScannerResult
 
 
@@ -823,6 +823,13 @@ class TestVersion(TestCase):
         assert isinstance(version.version, VersionString)
         version = version.reload()
         assert version.version == '5.1b4'
+
+    def test_version_kept_when_license_deleted(self):
+        license = License.objects.create(name="MyLicense")
+        self.version.update(license=license)
+        license.delete()
+        assert not License.objects.filter(pk=license.pk).exists()
+        assert Version.objects.filter(pk=self.version.pk).exists()
 
 
 @pytest.mark.parametrize("addon_status,file_status,is_unreviewed", [
