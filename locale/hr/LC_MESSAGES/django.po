@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-21 14:03+0000\n"
+"PO-Revision-Date: 2020-10-30 15:22+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -1384,7 +1384,7 @@ msgid "Recommended"
 msgstr "Preporučeno"
 
 msgid "Sponsored"
-msgstr ""
+msgstr "Sponzorirano"
 
 msgid "Verified"
 msgstr "Provjereno"
@@ -1393,10 +1393,10 @@ msgid "By Firefox"
 msgstr "Od Firefoxa"
 
 msgid "Spotlight"
-msgstr ""
+msgstr "Istaknuto"
 
 msgid "Strategic"
-msgstr ""
+msgstr "Strateško"
 
 msgid "Add-on"
 msgstr "Dodatak"
@@ -1762,7 +1762,7 @@ msgid "Version {version} matches {block_link} for this add-on. You can contact {
 msgstr ""
 
 msgid "a blocklist entry"
-msgstr ""
+msgstr "blokiran unos"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Verzija {version} je već prije bila prenesena i izbrisana."
@@ -3149,7 +3149,7 @@ msgid "Connect with us"
 msgstr ""
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 msgid "For developers"
 msgstr "Za programere"
@@ -3174,14 +3174,14 @@ msgstr "Adresa e-pošte"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr ""
+msgstr "Slažem se da Mozilla upravlja mojim podacima kao što je objašnjeno u %(link_open)sNapomeni uz privatnost%(link_close)s."
 
 # 80%
 msgid "Sign Up"
 msgstr "Registracija"
 
 msgid "Thanks!"
-msgstr ""
+msgstr "Hvala!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr "Ako još nisi potvrdio/la prijavu na neki Mozillin bilten, možda ćeš to morati uraditi. Potraži našu e-poruku u svojoj ulaznoj pošti ili filtru za neželjenu poštu."
@@ -4251,7 +4251,7 @@ msgstr "WhatsApp na webu {start_sub_heading}pomoću {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr "WhatsApp na webu. Pristupi WhatsApp-u s ploče alatne trake za dobivanje obavijesti o nepročitanim poruka."
+msgstr "WhatsApp na webu. Pristupi WhatsApp-u s ploče alatne trake za dobivanje obavijesti o nepročitanim porukama."
 
 #. editorial content for the discovery pane.
 msgid "Translate to/from German {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5150,10 +5150,10 @@ msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr ""
 
 msgid "Review Guidelines"
-msgstr ""
+msgstr "Pregledaj smjernice"
 
 msgid "Sections"
-msgstr ""
+msgstr "Odjeljci"
 
 msgid "Some tips for writing a great review"
 msgstr ""
@@ -5908,7 +5908,7 @@ msgid "Reviewer's Guide"
 msgstr "Vodič za recenzente"
 
 msgid "{addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "{addon} – Dodaci za Firefox"
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
@@ -5940,7 +5940,7 @@ msgid "Insert canned response..."
 msgstr "Umetni pripremljeni odgovor …"
 
 msgid "Files:"
-msgstr ""
+msgstr "Datoteke:"
 
 msgid "Tested on:"
 msgstr "Testirano:"
@@ -6049,7 +6049,7 @@ msgid "No reviews found for this period."
 msgstr "Nisu nađene revizije za ovaj period."
 
 msgid "Origin:"
-msgstr ""
+msgstr "Izvor:"
 
 msgid "Method:"
 msgstr "Metoda:"
@@ -6073,7 +6073,7 @@ msgid "Contents"
 msgstr "Sadržaj"
 
 msgid "Compare this version to the last reviewed version"
-msgstr ""
+msgstr "Usporedi ovu verziju sa zadnjom pregledanom verzijom"
 
 msgid "Compare"
 msgstr "Usporedi"
@@ -6260,10 +6260,10 @@ msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr ""
 
 msgid "Abort"
-msgstr ""
+msgstr "Prekini"
 
 msgid "Run"
-msgstr ""
+msgstr "Pokreni"
 
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
 msgstr ""
