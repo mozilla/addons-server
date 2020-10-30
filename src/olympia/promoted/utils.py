@@ -89,3 +89,10 @@ def create_stripe_customer_portal(customer_id, addon):
             reverse("devhub.addons.edit", args=[addon.slug])
         ),
     )
+
+
+def create_stripe_webhook_event(payload, sig_header):
+    """This function returns a Stripe Webhook Event object or raises errors."""
+    stripe.api_key = settings.STRIPE_API_SECRET_KEY
+    webhook_secret = settings.STRIPE_API_WEBHOOK_SECRET
+    return stripe.Webhook.construct_event(payload, sig_header, webhook_secret)
