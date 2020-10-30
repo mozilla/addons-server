@@ -19,8 +19,9 @@ from olympia.access.models import Group, GroupUser
 from olympia.activity.models import (
     MAX_TOKEN_USE_COUNT, ActivityLog, ActivityLogToken)
 from olympia.activity.utils import (
-    ACTIVITY_MAIL_GROUP, ActivityEmailEncodingError, ActivityEmailParser,
-    ActivityEmailTokenError, ActivityEmailUUIDError, add_email_to_activity_log,
+    ACTIVITY_MAIL_GROUP, ActivityEmailEncodingError, ActivityEmailError,
+    ActivityEmailParser, ActivityEmailTokenError, ActivityEmailUUIDError,
+    add_email_to_activity_log,
     add_email_to_activity_log_wrapper, log_and_notify,
     notify_about_activity_log, NOTIFICATIONS_FROM_EMAIL, send_activity_mail)
 from olympia.amo.templatetags.jinja_helpers import absolutify
@@ -246,7 +247,8 @@ class TestAddEmailToActivityLog(TestCase):
     def test_banned_user(self):
         self.profile.addonuser_set.create(addon=self.addon)
         self.profile.update(banned=datetime.datetime.now())
-        assert not add_email_to_activity_log(self.parser)
+        with self.assertRaises(ActivityEmailError):
+            assert not add_email_to_activity_log(self.parser)
 
 
 class TestLogAndNotify(TestCase):

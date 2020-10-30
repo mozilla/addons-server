@@ -184,6 +184,8 @@ def add_email_to_activity_log(parser):
     else:
         log.info('Ignored email reply from banned user %s for version %s.'
                  % (user.id, version.id))
+        raise ActivityEmailError('Your account is not allowed to send '
+                                 'replies.')
 
 
 def action_from_user(user, version):
