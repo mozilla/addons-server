@@ -166,7 +166,7 @@ class Version(OnChangeMixin, ModelBase):
     addon = models.ForeignKey(
         'addons.Addon', related_name='versions', on_delete=models.CASCADE)
     license = models.ForeignKey(
-        'License', null=True, blank=True, on_delete=models.CASCADE)
+        'License', null=True, blank=True, on_delete=models.SET_NULL)
     release_notes = PurifiedField(db_column='releasenotes', short=False)
     approval_notes = models.TextField(
         db_column='approvalnotes', default='', null=True, blank=True)
