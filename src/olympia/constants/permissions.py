@@ -182,6 +182,7 @@ DJANGO_PERMISSIONS_MAPPING.update({
 
     'promoted.view_promotedapproval': DISCOVERY_EDIT,
     'promoted.delete_promotedapproval': DISCOVERY_EDIT,
+    'promoted.change_promotedsubscription': DISCOVERY_EDIT,
 
     'reviewers.delete_reviewerscore': ADMIN_ADVANCED,
 

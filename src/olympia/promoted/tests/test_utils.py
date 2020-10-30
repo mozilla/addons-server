@@ -81,3 +81,71 @@ def test_create_stripe_checkout_session_with_invalid_group_id():
         create_stripe_checkout_session(
             subscription=sub, customer_email="doesnotmatter@example.org"
         )
+
+
+@override_settings(STRIPE_API_SPONSORED_PRICE_ID="sponsored-price-id")
+def test_create_stripe_checkout_session_with_custom_rate():
+    addon = addon_factory()
+    promoted_addon = PromotedAddon.objects.create(
+        addon=addon, group_id=SPONSORED.id
+    )
+    sub = PromotedSubscription.objects.filter(
+        promoted_addon=promoted_addon
+    ).get()
+    # Set a custom onboarding rate, in cents.
+    onboarding_rate = 1234
+    sub.update(onboarding_rate=onboarding_rate)
+    customer_email = "some-email@example.org"
+    fake_session = "fake session"
+    fake_product = {
+        "product": "some-product-id",
+        "currency": "some-currency",
+        "recurring": {"interval": "month", "interval_count": 1},
+    }
+
+    with mock.patch(
+        "olympia.promoted.utils.stripe.checkout.Session.create"
+    ) as stripe_create, mock.patch(
+        "olympia.promoted.utils.stripe.Price.retrieve"
+    ) as stripe_retrieve:
+        stripe_create.return_value = fake_session
+        stripe_retrieve.return_value = fake_product
+
+        session = create_stripe_checkout_session(
+            subscription=sub, customer_email=customer_email
+        )
+
+        assert session == fake_session
+        stripe_create.assert_called_once_with(
+            payment_method_types=["card"],
+            mode="subscription",
+            cancel_url=absolutify(
+                reverse(
+                    "devhub.addons.onboarding_subscription_cancel",
+                    args=[addon.id],
+                )
+            ),
+            success_url=absolutify(
+                reverse(
+                    "devhub.addons.onboarding_subscription_success",
+                    args=[addon.id],
+                )
+            ),
+            line_items=[
+                {
+                    "price_data": {
+                        "product": fake_product["product"],
+                        "currency": fake_product["currency"],
+                        "recurring": {
+                            "interval": fake_product["recurring"]["interval"],
+                            "interval_count": fake_product["recurring"][
+                                "interval_count"
+                            ],
+                        },
+                        "unit_amount": onboarding_rate,
+                    },
+                    "quantity": 1,
+                }
+            ],
+            customer_email=customer_email,
+        )

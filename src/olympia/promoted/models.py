@@ -196,6 +196,16 @@ class PromotedSubscription(ModelBase):
             "the initial payment process."
         ),
     )
+    onboarding_rate = models.PositiveIntegerField(
+        default=None,
+        blank=True,
+        null=True,
+        help_text=(
+            "If set, this rate will be used to charge the developer for this"
+            " subscription. The value should be a non-negative integer in"
+            " cents."
+        ),
+    )
 
     def __str__(self):
         return f'Subscription for {self.promoted_addon}'
