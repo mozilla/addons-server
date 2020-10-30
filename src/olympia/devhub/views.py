@@ -50,6 +50,7 @@ from olympia.promoted.models import PromotedSubscription
 from olympia.promoted.utils import (
     create_stripe_checkout_session,
     retrieve_stripe_checkout_session,
+    create_stripe_customer_portal,
 )
 from olympia.reviewers.forms import PublicWhiteboardForm
 from olympia.reviewers.models import Whiteboard
@@ -1978,3 +1979,33 @@ def onboarding_subscription_cancel(request, addon_id, addon):
     return redirect(
         reverse("devhub.addons.onboarding_subscription", args=[addon.id])
     )
+
+
+@dev_required
+@post_required
+def subscription_customer_portal(request, addon_id, addon):
+    sub = get_promoted_subscription_or_404(addon=addon)
+
+    try:
+        session = retrieve_stripe_checkout_session(sub)
+    except Exception:
+        log.exception(
+            "error while trying to retrieve a stripe checkout session for "
+            "PromotedSubscription %s (customer_portal).",
+            sub.pk
+        )
+        raise http.Http404()
+
+    try:
+        portal = create_stripe_customer_portal(
+            customer_id=session['customer'], addon=addon
+        )
+    except Exception:
+        log.exception(
+            'error while creating a stripe customer portal for '
+            'PromotedSubscription %s.',
+            sub.pk
+        )
+        return http.HttpResponseServerError()
+
+    return redirect(portal['url'])

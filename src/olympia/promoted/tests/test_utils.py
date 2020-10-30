@@ -11,6 +11,7 @@ from olympia.constants.promoted import SPONSORED, RECOMMENDED
 from olympia.promoted.models import PromotedSubscription, PromotedAddon
 from olympia.promoted.utils import (
     create_stripe_checkout_session,
+    create_stripe_customer_portal,
     retrieve_stripe_checkout_session,
 )
 
@@ -148,4 +149,24 @@ def test_create_stripe_checkout_session_with_custom_rate():
                 }
             ],
             customer_email=customer_email,
+        )
+
+
+def test_create_stripe_customer_portal():
+    addon = addon_factory()
+    customer_id = "some-customer-id"
+    fake_portal = "fake-return-value"
+
+    with mock.patch(
+        "olympia.promoted.utils.stripe.billing_portal.Session.create"
+    ) as create_portal_mock:
+        create_portal_mock.return_value = fake_portal
+
+        create_stripe_customer_portal(customer_id=customer_id, addon=addon)
+
+        create_portal_mock.assert_called_once_with(
+            customer=customer_id,
+            return_url=absolutify(
+                reverse("devhub.addons.edit", args=[addon.slug])
+            ),
         )

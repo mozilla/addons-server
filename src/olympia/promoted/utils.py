@@ -77,3 +77,15 @@ def retrieve_stripe_checkout_session(subscription):
     error when the session does not exist or the API call has failed."""
     stripe.api_key = settings.STRIPE_API_SECRET_KEY
     return stripe.checkout.Session.retrieve(subscription.stripe_session_id)
+
+
+def create_stripe_customer_portal(customer_id, addon):
+    """This function creates a Stripe Customer Portal object or raises an error
+    when the session does not exist or the API call has failed."""
+    stripe.api_key = settings.STRIPE_API_SECRET_KEY
+    return stripe.billing_portal.Session.create(
+        customer=customer_id,
+        return_url=absolutify(
+            reverse("devhub.addons.edit", args=[addon.slug])
+        ),
+    )
