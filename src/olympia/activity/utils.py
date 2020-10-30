@@ -155,30 +155,37 @@ def add_email_to_activity_log(parser):
 
     version = token.version
     user = token.user
-    if token.is_valid():
-        log_type = action_from_user(user, version)
+    if user.banned is None:
+        if token.is_valid():
+            log_type = action_from_user(user, version)
 
-        if log_type:
-            note = log_and_notify(log_type, parser.reply, user, version)
-            log.info('A new note has been created (from %s using tokenid %s).'
-                     % (user.id, uuid))
-            token.increment_use()
-            return note
+            if log_type:
+                note = log_and_notify(log_type, parser.reply, user, version)
+                log.info('A new note has been created (from %s using '
+                         'tokenid %s).' % (user.id, uuid))
+                token.increment_use()
+                return note
+            else:
+                log.error('%s did not have perms to reply to email thread %s.'
+                          % (user.email, version.id))
+                raise ActivityEmailTokenError(
+                    'You don\'t have permission to reply to this add-on. You '
+                    'have to be a listed developer currently, or an AMO '
+                    'reviewer.')
         else:
-            log.error('%s did not have perms to reply to email thread %s.'
-                      % (user.email, version.id))
+            log.warning('%s tried to use an invalid activity email token for '
+                        'version %s.', user.email, version.id)
+            reason = ('it\'s for an old version of the addon'
+                      if not token.is_expired() else
+                      'there have been too many replies')
             raise ActivityEmailTokenError(
-                'You don\'t have permission to reply to this add-on. You '
-                'have to be a listed developer currently, or an AMO reviewer.')
+                'You can\'t reply to this email as the reply token is no '
+                'longer valid because %s.' % reason)
     else:
-        log.warning('%s tried to use an invalid activity email token for '
-                    'version %s.', user.email, version.id)
-        reason = ('it\'s for an old version of the addon'
-                  if not token.is_expired() else
-                  'there have been too many replies')
-        raise ActivityEmailTokenError(
-            'You can\'t reply to this email as the reply token is no longer'
-            'valid because %s.' % reason)
+        log.info('Ignored email reply from banned user %s for version %s.'
+                 % (user.id, version.id))
+        raise ActivityEmailError('Your account is not allowed to send '
+                                 'replies.')
 
 
 def action_from_user(user, version):
