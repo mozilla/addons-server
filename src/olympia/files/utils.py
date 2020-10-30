@@ -1172,9 +1172,15 @@ def update_version_number(file_obj, new_version_number):
     shutil.move(updated, file_obj.file_path)
 
 
+class InvalidOrUnsupportedCrx(Exception):
+    pass
+
+
 def write_crx_as_xpi(chunks, target):
     """Extract and strip the header from the CRX, convert it to a regular ZIP
-    archive, then write it to `target`. Read more about the CRX file format:
+    archive, then write it to `target`, returning the sha256 hash hex digest.
+
+    Read more about the CRX file format:
     https://developer.chrome.com/extensions/crx
     """
     # First we open the uploaded CRX so we can see how much we need
@@ -1185,28 +1191,50 @@ def write_crx_as_xpi(chunks, target):
 
         tmp.seek(0)
 
-        header = tmp.read(16)
-        header_info = struct.unpack('4cHxII', header)
-        public_key_length = header_info[5]
-        signature_length = header_info[6]
+        # Where we have to start to find the zip depends on the version of the
+        # crx format. First let's confirm it's a crx by looking at the first
+        # 4 bytes (32 bits)
+        if tmp.read(4) != b'Cr24':
+            raise InvalidOrUnsupportedCrx('CRX file does not start with Cr24')
 
-        # This is how far forward we need to seek to extract only a
-        # ZIP file from this CRX.
-        start_position = 16 + public_key_length + signature_length
+        try:
+            # Then read the version, which is in the next 4 bytes
+            version = struct.unpack('<I', tmp.read(4))[0]
 
-        hash = hashlib.sha256()
+            # Then find out where we need to start from to find the zip inside.
+            if version == 2:
+                header_info = struct.unpack('<II', tmp.read(8))
+                public_key_length = header_info[0]
+                signature_length = header_info[1]
+                # Start position is where we are so far (4 + 4 + 8 = 16) + the
+                # two length values we extracted.
+                start_position = 16 + public_key_length + signature_length
+            elif version == 3:
+                # Start position is where we are so far (4 + 4 + 4 = 12) + the
+                # single header length value we extracted.
+                header_length = struct.unpack('<I', tmp.read(4))[0]
+                start_position = 12 + header_length
+            else:
+                raise InvalidOrUnsupportedCrx('Unsupported CRX version')
+        except struct.error:
+            raise InvalidOrUnsupportedCrx('Invalid or corrupt CRX file')
+
+        # We can start reading the zip to write it where it needs to live on
+        # the filesystem and then return the hash to the caller. If we somehow
+        # don't end up with a valid xpi file, validation will raise an error
+        # later.
         tmp.seek(start_position)
-
+        hash_value = hashlib.sha256()
         # Now we open the Django storage and write our real XPI file.
         with storage.open(target, 'wb') as file_destination:
-            bytes = tmp.read(65536)
+            data = tmp.read(65536)
             # Keep reading bytes and writing them to the XPI.
-            while bytes:
-                hash.update(bytes)
-                file_destination.write(bytes)
-                bytes = tmp.read(65536)
+            while data:
+                hash_value.update(data)
+                file_destination.write(data)
+                data = tmp.read(65536)
 
-    return hash
+    return hash_value
 
 
 def _update_version_in_json_manifest(content, new_version_number):
