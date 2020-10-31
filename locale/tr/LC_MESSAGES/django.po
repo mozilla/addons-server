@@ -3338,9 +3338,8 @@ msgstr ""
 msgid "Source code"
 msgstr "Kaynak kodu"
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr "Eklentiniz bilinen kütüphaneler dışında ikili veya karmaşık kodlar içeriyorsa gözden geçirilmesi için kaynaklarını yüklemelisiniz."
+msgstr ""
 
 msgid "File {file_id} ({platform})"
 msgstr "Dosya {file_id} ({platform})"
