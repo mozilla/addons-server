@@ -2425,7 +2425,7 @@ class TestAddonFromUpload(UploadTest):
                                   parsed_data=parsed_data)
         assert addon.name == 'search tool'
         assert addon.guid is None
-        assert addon.type == amo.ADDON_SEARCH
+        assert addon.type == amo._ADDON_SEARCH
         assert addon.status == amo.STATUS_NULL
         assert addon.homepage is None
         assert addon.description is None

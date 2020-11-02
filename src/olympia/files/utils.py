@@ -640,7 +640,7 @@ def parse_search(fileorpath, addon=None):
         raise forms.ValidationError(ugettext('Could not parse uploaded file.'))
 
     return {'guid': None,
-            'type': amo.ADDON_SEARCH,
+            'type': amo._ADDON_SEARCH,
             'name': data['name'],
             'is_restart_required': False,
             'is_webextension': False,

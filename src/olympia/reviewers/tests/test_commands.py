@@ -106,14 +106,6 @@ class AutoApproveTestsMixin(object):
         dictionary_version.update(
             created=self.days_ago(4), nomination=self.days_ago(4))
 
-        # search engine plugins are considered now
-        search_addon = addon_factory(name='Search', type=amo.ADDON_SEARCH)
-        search_addon_version = version_factory(
-            addon=search_addon, file_kw={
-                'status': amo.STATUS_AWAITING_REVIEW,
-                'is_webextension': True},
-            created=self.days_ago(5), nomination=self.days_ago(5))
-
         # Some recommended add-ons - one nominated and one update.
         # They should be considered by fetch_candidates(), so that they get a
         # weight assigned etc - they will not be auto-approved but that's

@@ -77,7 +77,7 @@ tasks = {
             # created before the 5th of April
             Q(status=amo.STATUS_APPROVED,
               _current_version__created__lt=datetime(2019, 4, 5)) &
-            ~Q(type=amo.ADDON_SEARCH)
+            ~Q(type=amo._ADDON_SEARCH)
         ]
     },
     'recreate_previews': {
@@ -130,7 +130,7 @@ tasks = {
         # deletes
         'method': delete_addons,
         'qs': [
-            Q(type=amo.ADDON_SEARCH)
+            Q(type=amo._ADDON_SEARCH)
         ],
         'allowed_kwargs': ('with_deleted',),
     }

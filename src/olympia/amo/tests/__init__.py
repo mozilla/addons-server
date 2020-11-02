@@ -708,7 +708,7 @@ def addon_factory(
     if 'summary' not in kw:
         # Assign a dummy summary if none was specified in keyword args.
         kwargs['summary'] = u'Summary for %s' % name
-    if type_ not in [amo.ADDON_SEARCH]:
+    if type_ not in [amo._ADDON_SEARCH]:
         # Search engines don't need guids
         kwargs['guid'] = kw.pop('guid', '{%s}' % str(uuid.uuid4()))
     kwargs.update(kw)

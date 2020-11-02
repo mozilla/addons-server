@@ -1204,7 +1204,7 @@ class TestAddonSearchView(ESTestCase):
         theme = addon_factory(slug='my-theme', name=u'My Thème',
                               type=amo.ADDON_STATICTHEME)
         addon_factory(slug='my-search', name=u'My Seárch',
-                      type=amo.ADDON_SEARCH)
+                      type=amo._ADDON_SEARCH)
         self.refresh()
 
         data = self.perform_search(self.url, {'type': 'extension'})

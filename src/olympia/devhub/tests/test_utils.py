@@ -138,7 +138,7 @@ class TestAddonsLinterListed(UploadTest, TestCase):
             'version': '20140103',
         }
 
-        addon = addon_factory(type=amo.ADDON_SEARCH,
+        addon = addon_factory(type=amo._ADDON_SEARCH,
                               version_kw={'version': '20140101'})
         assert addon.guid is None
         self.check_upload(self.file_upload)
@@ -151,7 +151,7 @@ class TestAddonsLinterListed(UploadTest, TestCase):
             'version': '20140103',
         }
 
-        addon = addon_factory(type=amo.ADDON_SEARCH,
+        addon = addon_factory(type=amo._ADDON_SEARCH,
                               version_kw={'version': '20140101'})
         version = version_factory(addon=addon, version='20140102')
         self.check_file(version.files.get())

@@ -1177,9 +1177,6 @@ class Addon(OnChangeMixin, ModelBase):
 
         return addon_dict
 
-    def show_adu(self):
-        return self.type != amo.ADDON_SEARCH
-
     @property
     def contribution_url(self, lang=settings.LANGUAGE_CODE,
                          app=settings.DEFAULT_APP):

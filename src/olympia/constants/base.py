@@ -103,7 +103,7 @@ ADDON_ANY = 0
 ADDON_EXTENSION = 1
 _ADDON_THEME = 2
 ADDON_DICT = 3
-ADDON_SEARCH = 4
+_ADDON_SEARCH = 4
 ADDON_LPAPP = 5
 ADDON_LPADDON = 6
 ADDON_PLUGIN = 7
@@ -113,7 +113,7 @@ ADDON_STATICTHEME = 10
 _ADDON_WEBAPP = 11  # Deprecated.  Marketplace cruft.
 
 # Addon type groupings.
-GROUP_TYPE_ADDON = [ADDON_EXTENSION, ADDON_DICT, ADDON_SEARCH, ADDON_LPAPP,
+GROUP_TYPE_ADDON = [ADDON_EXTENSION, ADDON_DICT, _ADDON_SEARCH, ADDON_LPAPP,
                     ADDON_LPADDON, ADDON_PLUGIN, ADDON_API]
 GROUP_TYPE_THEME = [ADDON_STATICTHEME]
 
@@ -122,7 +122,7 @@ ADDON_TYPE = {
     ADDON_EXTENSION: _(u'Extension'),
     _ADDON_THEME: _(u'Deprecated Complete Theme'),
     ADDON_DICT: _(u'Dictionary'),
-    ADDON_SEARCH: _(u'Search Engine'),
+    _ADDON_SEARCH: _(u'Search Engine'),
     ADDON_LPAPP: _(u'Language Pack (Application)'),
     ADDON_LPADDON: _(u'Language Pack (Add-on)'),
     ADDON_PLUGIN: _(u'Plugin'),
@@ -135,7 +135,7 @@ ADDON_TYPES = {
     ADDON_EXTENSION: _(u'Extensions'),
     _ADDON_THEME: _(u'Deprecated Complete Themes'),
     ADDON_DICT: _(u'Dictionaries'),
-    ADDON_SEARCH: _(u'Search Tools'),
+    _ADDON_SEARCH: _(u'Search Tools'),
     ADDON_LPAPP: _(u'Language Packs (Application)'),
     ADDON_LPADDON: _(u'Language Packs (Add-on)'),
     ADDON_PLUGIN: _(u'Plugins'),
@@ -149,7 +149,7 @@ ADDON_SEARCH_TYPES = [
     ADDON_EXTENSION,
     _ADDON_THEME,
     ADDON_DICT,
-    ADDON_SEARCH,
+    _ADDON_SEARCH,
     ADDON_LPAPP,
     _ADDON_PERSONA,
     ADDON_STATICTHEME,
@@ -160,7 +160,7 @@ ADDON_SLUGS = {
     ADDON_EXTENSION: 'extensions',
     ADDON_DICT: 'language-tools',
     ADDON_LPAPP: 'language-tools',
-    ADDON_SEARCH: 'search-tools',
+    _ADDON_SEARCH: 'search-tools',
     ADDON_STATICTHEME: 'themes',
 }
 
@@ -169,7 +169,7 @@ ADDON_SLUGS_UPDATE = {
     ADDON_EXTENSION: 'extension',
     _ADDON_THEME: 'theme',
     ADDON_DICT: 'extension',
-    ADDON_SEARCH: 'search',
+    _ADDON_SEARCH: 'search',
     ADDON_LPAPP: 'item',
     ADDON_LPADDON: 'extension',
     _ADDON_PERSONA: 'background-theme',
@@ -184,7 +184,7 @@ ADDON_SEARCH_SLUGS = {
     'extension': ADDON_EXTENSION,
     'theme': _ADDON_THEME,
     'dictionary': ADDON_DICT,
-    'search': ADDON_SEARCH,
+    'search': _ADDON_SEARCH,
     'language': ADDON_LPAPP,
     'persona': _ADDON_PERSONA,
     'statictheme': ADDON_STATICTHEME,
@@ -194,7 +194,7 @@ ADDON_TYPE_CHOICES_API = {
     ADDON_EXTENSION: 'extension',
     _ADDON_THEME: 'theme',
     ADDON_DICT: 'dictionary',
-    ADDON_SEARCH: 'search',
+    _ADDON_SEARCH: 'search',
     ADDON_LPAPP: 'language',
     _ADDON_PERSONA: 'persona',
     ADDON_STATICTHEME: 'statictheme',
@@ -270,7 +270,7 @@ VALID_ADDON_FILE_EXTENSIONS = ('.crx', '.xpi', '.xml', '.zip')
 
 # These types don't maintain app compatibility in the db.  Instead, we look at
 # APP.types and APP_TYPE_SUPPORT to figure out where they are compatible.
-NO_COMPAT = (ADDON_SEARCH, ADDON_DICT)
+NO_COMPAT = (_ADDON_SEARCH, ADDON_DICT)
 HAS_COMPAT = {t: t not in NO_COMPAT for t in ADDON_TYPES}
 
 # Collections.

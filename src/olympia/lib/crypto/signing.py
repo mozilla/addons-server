@@ -145,7 +145,7 @@ def sign_file(file_obj):
     """
     from olympia.git.utils import create_git_extraction_entry
 
-    if (file_obj.version.addon.type == amo.ADDON_SEARCH and
+    if (file_obj.version.addon.type == amo._ADDON_SEARCH and
             file_obj.version.is_webextension is False):
         # Those aren't meant to be signed, we shouldn't be here.
         return file_obj

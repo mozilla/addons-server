@@ -33,7 +33,7 @@ def create_search_ext(name, version_str, addon_status, file_status,
                       channel):
     addon, created_ = Addon.objects.get_or_create(
         name__localized_string=name,
-        defaults={'type': amo.ADDON_SEARCH, 'name': name})
+        defaults={'type': amo._ADDON_SEARCH, 'name': name})
     version, created_ = Version.objects.get_or_create(
         addon=addon, version=version_str, defaults={'channel': channel})
     File.objects.create(version=version, filename=u"%s.xpi" % name,
@@ -83,7 +83,7 @@ class TestQueue(TestCase):
         self.new_search_ext('Search Tool', '0.1')
         row = self.Queue.objects.get()
         assert row.addon_name == u'Search Tool'
-        assert row.addon_type_id == amo.ADDON_SEARCH
+        assert row.addon_type_id == amo._ADDON_SEARCH
 
     def test_count_all(self):
         # Create two new addons and give each another version.
@@ -581,7 +581,6 @@ class TestReviewerScore(TestCase):
             amo.ADDON_ANY: None,
             amo.ADDON_EXTENSION: 'ADDON',
             amo.ADDON_DICT: 'DICT',
-            amo.ADDON_SEARCH: 'SEARCH',
             amo.ADDON_LPAPP: 'LP',
             amo.ADDON_LPADDON: 'LP',
             amo.ADDON_PLUGIN: 'ADDON',

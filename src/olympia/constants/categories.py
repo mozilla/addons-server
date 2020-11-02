@@ -9,7 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from olympia.constants.applications import ANDROID, FIREFOX
 from olympia.constants.base import (
-    ADDON_DICT, ADDON_EXTENSION, ADDON_LPAPP, ADDON_SEARCH,
+    ADDON_DICT, ADDON_EXTENSION, ADDON_LPAPP, _ADDON_SEARCH,
     ADDON_SLUGS, ADDON_STATICTHEME, _ADDON_THEME, _ADDON_PERSONA)
 
 
@@ -386,7 +386,7 @@ CATEGORIES_NO_APP = {
     ADDON_DICT: {
         'general': StaticCategory(name=_(u'General'))
     },
-    ADDON_SEARCH: {
+    _ADDON_SEARCH: {
         'bookmarks': StaticCategory(name=_(u'Bookmarks')),
         'business': StaticCategory(name=_(u'Business')),
         'dictionaries-encyclopedias': StaticCategory(

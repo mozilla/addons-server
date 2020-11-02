@@ -1454,7 +1454,7 @@ class TestParseSearch(TestCase, amo.tests.AMOPaths):
             'is_webextension': False,
             'version': datetime.now().strftime('%Y%m%d'),
             'summary': u'Search Engine for Firefox',
-            'type': amo.ADDON_SEARCH
+            'type': amo._ADDON_SEARCH
         }
 
     @mock.patch('olympia.files.utils.extract_search')

@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from .base import (
     ADDON_DICT, ADDON_EXTENSION, ADDON_LPAPP, ADDON_PLUGIN,
-    ADDON_SEARCH, ADDON_STATICTHEME)
+    ADDON_STATICTHEME)
 
 from olympia.versions.compare import version_int as vint
 
@@ -22,7 +22,7 @@ class FIREFOX(App):
     short = 'firefox'
     pretty = _(u'Firefox')
     browser = True
-    types = [ADDON_EXTENSION, ADDON_DICT, ADDON_SEARCH, ADDON_LPAPP,
+    types = [ADDON_EXTENSION, ADDON_DICT, ADDON_LPAPP,
              ADDON_PLUGIN, ADDON_STATICTHEME]
     guid = '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}'
     min_display_version = 3.0
@@ -59,7 +59,7 @@ class SEAMONKEY(App):
     shortername = 'sm'
     pretty = _(u'SeaMonkey')
     browser = True
-    types = [ADDON_EXTENSION, ADDON_DICT, ADDON_SEARCH,
+    types = [ADDON_EXTENSION, ADDON_DICT,
              ADDON_LPAPP, ADDON_PLUGIN]
     guid = '{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}'
     min_display_version = 1.0
@@ -94,7 +94,7 @@ class MOBILE(App):
     shortername = 'fn'
     pretty = _(u'Mobile')
     browser = True
-    types = [ADDON_EXTENSION, ADDON_DICT, ADDON_SEARCH, ADDON_LPAPP]
+    types = [ADDON_EXTENSION, ADDON_DICT, ADDON_LPAPP]
     guid = '{a23983c0-fd0e-11dc-95ff-0800200c9a66}'
     min_display_version = 0.1
     user_agent_string = 'Fennec'
@@ -108,7 +108,7 @@ class ANDROID(App):
     shortername = 'an'
     pretty = _(u'Firefox for Android')
     browser = True
-    types = [ADDON_EXTENSION, ADDON_DICT, ADDON_SEARCH, ADDON_LPAPP]
+    types = [ADDON_EXTENSION, ADDON_DICT, ADDON_LPAPP]
     guid = '{aa3c5121-dab2-40e2-81ca-7ea25febc110}'
     min_display_version = 11.0
     user_agent_string = 'Fennec'
@@ -142,7 +142,7 @@ class MOZILLA(App):
     shortername = 'mz'
     pretty = _(u'Mozilla')
     browser = True
-    types = [ADDON_EXTENSION, ADDON_DICT, ADDON_SEARCH,
+    types = [ADDON_EXTENSION, ADDON_DICT,
              ADDON_LPAPP, ADDON_PLUGIN]
     guid = '{86c18b42-e466-45a9-ae7a-9b95ba6f5640}'
     platforms = 'desktop'  # DESKTOP_PLATFORMS (set in constants.platforms)

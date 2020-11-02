@@ -1631,16 +1631,6 @@ class TestExtensionQueue(QueueTest):
         self.grant_permission(self.user, 'Addons:ThemeReview')
         self._test_results()
 
-    def test_search_plugins_filtered_out(self):
-        self.addons['Nominated Two'].update(type=amo.ADDON_SEARCH)
-        self.addons['Pending Two'].update(type=amo.ADDON_SEARCH)
-
-        # search extensions are filtered out from the queue since auto_approve
-        # is taking care of them.
-        self.expected_addons = [
-            self.addons['Nominated One'], self.addons['Pending One']]
-        self._test_results()
-
     def test_pending_rejection_filtered_out(self):
         VersionReviewerFlags.objects.create(
             version=self.addons['Nominated Two'].current_version,
@@ -2316,9 +2306,6 @@ class TestContentReviewQueue(QueueTest):
         addon_factory(
             name=u'Langpack 1', created=self.days_ago(4),
             type=amo.ADDON_LPAPP)
-        addon_factory(
-            name=u'search plugin 1', created=self.days_ago(4),
-            type=amo.ADDON_SEARCH)
 
         # Addons with no last_content_review date, ordered by
         # their creation date, older first.
@@ -2720,7 +2707,7 @@ class BaseTestQueueSearch(SearchTest):
                     'version': '0.1',
                 },
                 'status': amo.STATUS_NOMINATED,
-                'type': amo.ADDON_SEARCH,
+                'type': amo._ADDON_SEARCH,
             }),
             ('Bieber Dictionary', {
                 'file_kw': {
@@ -3977,14 +3964,6 @@ class TestReview(ReviewBase):
         assert doc('#disable_auto_approval')
         assert doc('#enable_auto_approval')
 
-        # And search plugins
-        self.addon.update(type=amo.ADDON_SEARCH)
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('#disable_auto_approval')
-        assert doc('#enable_auto_approval')
-
         # Both of them should be absent on static themes, which are not
         # auto-approved.
         self.addon.update(type=amo.ADDON_STATICTHEME)
@@ -4050,7 +4029,7 @@ class TestReview(ReviewBase):
 
     def test_public_search(self):
         self.version.files.update(status=amo.STATUS_APPROVED)
-        self.addon.update(type=amo.ADDON_SEARCH)
+        self.addon.update(type=amo._ADDON_SEARCH)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -5650,7 +5629,7 @@ class TestReviewPending(ReviewBase):
         # sign_file() is *not* mocked here. We shouldn't need to, it should
         # just avoid signing search plugins silently.
         self.version.files.all().update(is_webextension=False)
-        self.addon.update(type=amo.ADDON_SEARCH)
+        self.addon.update(type=amo._ADDON_SEARCH)
         response = self.client.post(self.url, self.pending_dict())
         self.assert3xx(response, reverse('reviewers.queue_extension'))
         assert self.get_addon().status == amo.STATUS_APPROVED

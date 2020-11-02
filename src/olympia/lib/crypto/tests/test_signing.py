@@ -186,7 +186,7 @@ class TestSigning(TestCase):
         assert not signing.is_signed(self.file_.file_path)
 
     def test_dont_sign_search_plugins(self):
-        self.addon.update(type=amo.ADDON_SEARCH)
+        self.addon.update(type=amo._ADDON_SEARCH)
         self.file_.update(is_webextension=False)
         signing.sign_file(self.file_)
         self.assert_not_signed()

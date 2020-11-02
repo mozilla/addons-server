@@ -1379,7 +1379,7 @@ class TestSearchVersionFromUpload(TestVersionFromUpload):
     def setUp(self):
         super(TestSearchVersionFromUpload, self).setUp()
         self.addon.versions.all().delete()
-        self.addon.update(type=amo.ADDON_SEARCH)
+        self.addon.update(type=amo._ADDON_SEARCH)
         self.now = datetime.now().strftime('%Y%m%d')
 
     def test_version_number(self):
