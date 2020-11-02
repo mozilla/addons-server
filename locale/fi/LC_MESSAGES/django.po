@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-11-02 12:12+0000\n"
+"PO-Revision-Date: 2020-11-02 12:23+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -3582,7 +3582,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Block invisible trackers and spying ads that follow you around the web."
-msgstr ""
+msgstr "Estä näkymättömät seuraimet ja vakoilevat mainokset, jotka seuraavat sinua verkossa."
 
 #. editorial content for the discovery pane.
 msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3600,7 +3600,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Highlight any text, right-click, and translate instantly."
-msgstr ""
+msgstr "Korosta mikä tahansa teksti, napsauta hiiren kakkospainiketta ja käännä heti."
 
 #. editorial content for the discovery pane.
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3680,7 +3680,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
+msgstr "Lataa videoita vaivatta. Toimii YouTuben, Facebookin, Vimeon, Twitchin, Dailymotionin, Periscopen ja satojen muiden videosivustojen kanssa."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3714,7 +3714,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr ""
+msgstr "Nauti lukuisista uusista YouTube-ominaisuuksista, kuten cinema-tilasta, mainosestosta, automaattisesta toistosta ja niin edelleen."
 
 #. editorial content for the discovery pane.
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3919,7 +3919,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
-msgstr ""
+msgstr "Vältä viekkaita seuraimia ja rajoituksia. Hämää muokkaamalla selaimesi ja käyttöjärjestelmän tunnistetietoja."
 
 #. editorial content for the discovery pane.
 msgid "Refresh tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4494,7 +4494,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
-msgstr ""
+msgstr "Säästä kaistaa suoratoistamalla vain ääni YouTube-videoista."
 
 #. editorial content for the discovery pane.
 msgid "Transform text into images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4970,7 +4970,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
-msgstr ""
+msgstr "Estä häiritsevät sivustot. Listaa ne sivustot, jotka haluat laajennuksen estävän. Välitöntä kurinpitoa!"
 
 #. editorial content for the discovery pane.
 msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5054,7 +5054,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Remove tracking elements from web links."
-msgstr ""
+msgstr "Poista seurantaelementit linkeistä."
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
@@ -5073,7 +5073,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
-msgstr ""
+msgstr "Tallenna koko verkkosivu — mukaan lukien kuvat ja tyylit — yhtenä HTML-tiedostona."
 
 #. editorial content for the discovery pane.
 msgid "Automatically replace derogatory words across the web."
@@ -5117,30 +5117,28 @@ msgstr "Laajennukset ovat kuin sovelluksia Firefoxille."
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
-msgstr ""
+msgstr "Ne lisäävät ominaisuuksia Firefoxiin tehden selaamisesta aiempaa nopeampaa, älykkäämpää tai yksinkertaisesti vain hauskempaa."
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "See all extensions"
-msgstr "Selaa kaikkia lisäosia"
+msgstr "Selaa kaikkia laajennuksia"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
-msgstr ""
+msgstr "Välilehtien järjestely ja työkalut"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
-msgstr ""
+msgstr "Yksityisyyttä selainlaajennusten ohessa"
 
 #. editorial content for the secondary hero shelves.
 msgid "Media enhancers for Firefox"
-msgstr ""
+msgstr "Paranna Firefoxin mediatoiminnallisuuksia"
 
 #. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Explore extensions"
-msgstr "Laajennukset"
+msgstr "Selaa laajennuksia"
 
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
