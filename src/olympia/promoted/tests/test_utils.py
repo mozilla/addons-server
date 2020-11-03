@@ -162,8 +162,11 @@ def test_create_stripe_customer_portal():
     ) as create_portal_mock:
         create_portal_mock.return_value = fake_portal
 
-        create_stripe_customer_portal(customer_id=customer_id, addon=addon)
+        portal = create_stripe_customer_portal(
+            customer_id=customer_id, addon=addon
+        )
 
+        assert portal == fake_portal
         create_portal_mock.assert_called_once_with(
             customer=customer_id,
             return_url=absolutify(

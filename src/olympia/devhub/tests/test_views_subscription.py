@@ -368,7 +368,7 @@ class TestSubscriptionCustomerPortal(SubscriptionTestCase):
     def test_returns_404_when_switch_is_disabled(self):
         assert self.client.post(self.url).status_code == 404
 
-    def test_allows_post_requests(self):
+    def test_rejects_get_requests(self):
         assert self.client.get(self.url).status_code == 405
 
     def test_returns_404_when_subscription_is_not_found(self):
