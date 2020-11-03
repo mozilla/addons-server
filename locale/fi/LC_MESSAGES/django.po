@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-11-03 07:26+0000\n"
+"PO-Revision-Date: 2020-11-03 07:43+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -488,9 +488,8 @@ msgstr ""
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr ""
 
-#, fuzzy
 msgid "Invalid version"
-msgstr "Virheellinen versioalue."
+msgstr "Virheellinen versio"
 
 msgid "Min version can not be greater than Max version"
 msgstr ""
@@ -515,9 +514,8 @@ msgstr ""
 msgid "Delete Multiple %(name)s"
 msgstr "Löydä lisäosia"
 
-#, fuzzy
 msgid "Home"
-msgstr "Verkkosivusto"
+msgstr "Koti"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
@@ -554,7 +552,7 @@ msgstr "Näytä kaikki versiot"
 
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "Lisää %(name)s"
 
 msgid "Add-on GUIDs (one per line)"
 msgstr ""
@@ -770,7 +768,7 @@ msgid "Deleted: {1}."
 msgstr "Poistettu: {1}."
 
 msgid "User {user} edited, reason: {1}"
-msgstr ""
+msgstr "Käyttäjä {user} muokkasi, syy: {1}"
 
 msgid "User {user} anonymized."
 msgstr ""
@@ -2138,7 +2136,7 @@ msgid "Activity"
 msgstr ""
 
 msgid "Subscribe to this feed"
-msgstr ""
+msgstr "Tilaa tämä syöte"
 
 #, python-format
 msgid ""
@@ -2339,7 +2337,7 @@ msgid "Summary"
 msgstr "Yhteenveto"
 
 msgid "Add-on URL"
-msgstr ""
+msgstr "Lisäosan URL"
 
 msgid "Choose a short, unique URL slug for your add-on."
 msgstr ""
@@ -2494,7 +2492,7 @@ msgid "Please provide at least one screen shot of your add-on:"
 msgstr "Aseta ainakin yksi kuvakaappaus lisäosastasi:"
 
 msgid "Please provide a caption for this screenshot:"
-msgstr ""
+msgstr "Anna tekstiselite tälle kuvakaappaukselle:"
 
 msgid "Add a Screenshot..."
 msgstr "Lisää kuvakaappaus..."
@@ -2601,9 +2599,8 @@ msgstr "Lähetä uusi versio tästä lisäosasta"
 msgid "New Version"
 msgstr "Uusi versio"
 
-#, fuzzy
 msgid "Daily statistics on downloads and users"
-msgstr "Päivittäiset tilastot latauksista ja käyttäjistä."
+msgstr "Päivittäiset tilastot latauksista ja käyttäjistä"
 
 msgid "Statistics"
 msgstr "Tilastot"
@@ -2617,9 +2614,8 @@ msgstr "Näytä viimeisimmät muutokset"
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr ""
 
-#, fuzzy
 msgid "This add-on doesn't have any versions."
-msgstr "Tällä lisäosalla ei ole vielä yhtään käyttäjäarviota."
+msgstr "Tällä lisäosalla ei ole versioita."
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
