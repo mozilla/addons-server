@@ -88,7 +88,27 @@
           {# XXX future feature: 'Localizations' ... #}
           <tr class="meta-rating">
             <th>{{ _('Rating') }}</th>
-            <td>{{ reviews_link(addon) }}</td>
+            <td>
+              <p class="addon-rating">
+                {% with num=addon.total_ratings %}
+                  {% if num %}
+                  {{ addon.average_rating|float|stars }}
+                  {% with count='<span itemprop="count">{0}</span>'|format_html(num|numberfmt) %}
+                    {# Using num=count so we don't change an L10n string. #}
+                    {% set review_url_text = ngettext('{num} review', '{num} reviews', num)|format_html(num=count) %}
+                    {% if acl_is_review_moderator %}
+                      {% set review_url = url('admin:ratings_rating_changelist')|urlparams(addon=addon.pk) %}
+                      <a href="{{ review_url|absolutify }}"><strong>{{ review_url_text }}</strong></a>
+                    {% else %}
+                      <strong>{{ review_url_text }}</strong>
+                    {% endif %}
+                  {% endwith %}
+                  {% else %}
+                    <strong>{{ _('Not yet rated') }}</strong>
+                  {% endif %}
+                {% endwith %}
+              </p>
+            </td>
           </tr>
           <tr class="meta-stats">
             <th>{{ _('Weekly Downloads') }}</th>
