@@ -144,19 +144,19 @@ class TestSQLModel(TestCase):
             Summary.objects.all().get()
 
     def test_slice1(self):
-        qs = Summary.objects.all()[0:1]
+        qs = Summary.objects.all().order_by('category')[0:1]
         assert [c.category for c in qs] == ['apparel']
 
     def test_slice2(self):
-        qs = Summary.objects.all()[1:2]
+        qs = Summary.objects.all().order_by('category')[1:2]
         assert [c.category for c in qs] == ['safety']
 
     def test_slice3(self):
-        qs = Summary.objects.all()[:2]
+        qs = Summary.objects.all().order_by('category')[:2]
         assert sorted([c.category for c in qs]) == ['apparel', 'safety']
 
     def test_slice4(self):
-        qs = Summary.objects.all()[0:]
+        qs = Summary.objects.all().order_by('category')[0:]
         assert sorted([c.category for c in qs]) == ['apparel', 'safety']
 
     def test_slice5(self):
@@ -199,8 +199,8 @@ class TestSQLModel(TestCase):
         assert c.category == 'apparel'
 
     def test_filter_raw_in(self):
-        qs = Summary.objects.all().filter_raw('category IN',
-                                              ['apparel', 'safety'])
+        qs = Summary.objects.all().order_by('category').filter_raw(
+            'category IN', ['apparel', 'safety'])
         assert [c.category for c in qs] == ['apparel', 'safety']
 
     def test_filter_raw_non_ascii(self):

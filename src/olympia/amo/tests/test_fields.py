@@ -81,7 +81,10 @@ class TestPositiveAutoField(TestCase):
                 table_schema=DATABASE();
             """ % table_name)
             (column_type, column_key, extra), = cursor.fetchall()
-            assert column_type == 'int(10) unsigned'
+            assert (
+                column_type == 'int(10) unsigned' or
+                column_type == 'int unsigned'
+            )
             assert column_key == 'PRI'
             assert extra == 'auto_increment'
 
