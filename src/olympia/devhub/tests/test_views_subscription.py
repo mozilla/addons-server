@@ -3,7 +3,9 @@ import datetime
 from unittest import mock
 from waffle.testutils import override_switch
 
-from olympia.amo.tests import TestCase, addon_factory, user_factory
+from olympia import amo
+from olympia.amo.tests import (
+    TestCase, addon_factory, user_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
 from olympia.constants.promoted import VERIFIED
 from olympia.promoted.models import PromotedAddon, PromotedSubscription
@@ -76,7 +78,7 @@ class TestOnboardingSubscription(OnboardingSubscriptionTestCase):
         ]
 
         # Get the page.
-        queries = 36
+        queries = 37
         with self.assertNumQueries(queries):
             # - 3 users + groups
             # - 2 savepoints (test)
@@ -91,6 +93,7 @@ class TestOnboardingSubscription(OnboardingSubscriptionTestCase):
             # - 1 promoted subscription
             # - 1 promoted add-on
             # - 1 UPDATE promoted subscription
+            # - 1 check for pending versions
             # - 1 addons_collections
             # - 1 config (site notice)
             response = self.client.get(self.url)
@@ -162,6 +165,40 @@ class TestOnboardingSubscription(OnboardingSubscriptionTestCase):
         assert b"Continue to Stripe Checkout" not in response.content
         assert b"Manage add-on" in response.content
         retrieve_mock.assert_called_with(self.subscription)
+
+    @mock.patch("olympia.devhub.views.retrieve_stripe_checkout_session")
+    def test_shows_confirmation_with_new_version_number(self, retrieve_mock):
+        self.addon.current_version.update(version='12.3')
+        stripe_session_id = "some session id"
+        retrieve_mock.return_value = mock.MagicMock(id=stripe_session_id)
+        self.subscription.update(
+            stripe_session_id=stripe_session_id,
+            payment_completed_at=datetime.datetime.now(),
+        )
+
+        response = self.client.get(self.url)
+        assert b"You're done!" in response.content
+        assert b"<strong>12.3.1-signed</strong>" in response.content
+        assert b'will be published as Verified' in response.content
+
+        # add a pending version we'll highlight too
+        version_factory(
+            addon=self.addon, file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        response = self.client.get(self.url)
+        assert b'currently pending review' in response.content
+
+        # simulate when a version has just been resigned - show the current
+        # version number
+        self.addon.current_version.update(version='66.3.1-signed')
+        response = self.client.get(self.url)
+        assert b'<strong>66.3.1-signed</strong>' in response.content
+
+        # if there's no approved versions, inform the developer too
+        self.addon.current_version.current_file.update(
+            status=amo.STATUS_AWAITING_REVIEW)
+        response = self.client.get(self.url)
+        assert b"You're done!" not in response.content
+        assert b'currently no published versions' in response.content
 
     @mock.patch("olympia.devhub.views.retrieve_stripe_checkout_session")
     def test_get_returns_500_when_retrieve_has_failed(self, retrieve_mock):
