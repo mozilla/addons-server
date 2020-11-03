@@ -27,13 +27,21 @@ from .utils import (
     legacy_publish_blocks, save_guids_to_blocks, splitlines)
 
 
+def no_asterisk(value):
+    if '*' in value:
+        raise ValidationError(
+            _('%(value)s contains *'), params={'value': value})
+
+
 class Block(ModelBase):
     MIN = VersionString('0')
     MAX = VersionString('*')
 
     guid = models.CharField(max_length=255, unique=True, null=False)
-    min_version = VersionStringField(max_length=255, blank=False, default=MIN)
-    max_version = VersionStringField(max_length=255, blank=False, default=MAX)
+    min_version = VersionStringField(
+        max_length=255, blank=False, default=MIN, validators=(no_asterisk,))
+    max_version = VersionStringField(
+        max_length=255, blank=False, default=MAX)
     url = models.CharField(max_length=255, blank=True)
     reason = models.TextField(blank=True)
     updated_by = models.ForeignKey(
@@ -224,7 +232,8 @@ class BlocklistSubmission(ModelBase):
     input_guids = models.TextField()
     to_block = JSONField(default=list)
     min_version = VersionStringField(
-        max_length=255, blank=False, default=Block.MIN)
+        max_length=255, blank=False, default=Block.MIN,
+        validators=(no_asterisk,))
     max_version = VersionStringField(
         max_length=255, blank=False, default=Block.MAX)
     url = models.CharField(max_length=255, blank=True)
