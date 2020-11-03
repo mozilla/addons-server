@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-11-03 09:32+0000\n"
+"PO-Revision-Date: 2020-11-03 10:33+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -205,7 +205,7 @@ msgid "Admin Tools"
 msgstr "Ylläpitotyökalut"
 
 msgid "Positive integer"
-msgstr ""
+msgstr "Positiivinen kokonaisluku"
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
@@ -230,7 +230,7 @@ msgid "Must contain at least one printable character."
 msgstr ""
 
 msgid "Ensure this field contains at least one letter or number character."
-msgstr ""
+msgstr "Varmista, että tässä kentässä on vähintään yksi kirjain tai numeromerkki."
 
 msgid "Not allowed"
 msgstr "Ei sallittu"
@@ -320,10 +320,10 @@ msgid "Maintenance in progress"
 msgstr "Ylläpitotoimet ovat meneillään"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
-msgstr ""
+msgstr "Tämä toiminto on väliaikaisesti poissa käytöstä, koska teemme tähän verkkosivuston osaan päivityksiä. Napsauta selaimen Takaisin-painiketta ja yritä myöhemmin uudelleen."
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
-msgstr ""
+msgstr "Jotkin toiminnot ovat väliaikaisesti poissa käytöstä suorittaessamme verkkosivun huoltoa. Yritä uudelleen vähän myöhemmin."
 
 msgid "Are you human?"
 msgstr "Oletko ihminen?"
