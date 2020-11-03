@@ -18,4 +18,4 @@ This endpoint receives `event notifications
     .. note::
         Requests are signed by Stripe and verified by the server.
 
-.. http:get:: /api/v4/promoted/stripe-webhook
+.. http:post:: /api/v4/promoted/stripe-webhook

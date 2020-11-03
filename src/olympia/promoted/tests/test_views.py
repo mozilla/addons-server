@@ -53,7 +53,7 @@ class TestStripeWebhook(TestCase):
             HTTP_STRIPE_SIGNATURE=sig_header,
         )
 
-        assert response.status_code == 200
+        assert response.status_code == 202
         create_mock.assert_called_once_with(
             payload=payload, sig_header=sig_header
         )
