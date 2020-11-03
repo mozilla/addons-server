@@ -34,7 +34,7 @@
       <li class="stripe-customer-portal">
         <form method="POST" action="{{ url('devhub.addons.subscription_customer_portal', addon.slug) }}">
           {% csrf_token %}
-          <button class="link" type="submit">{{ _('Manage billing on Stripe') }}</button>
+          <button class="link" type="submit">{{ _('Manage Billing on Stripe') }}</button>
         </form>
       </li>
       {% endif %}
