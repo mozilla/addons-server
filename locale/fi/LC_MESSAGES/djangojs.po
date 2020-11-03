@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-02-11 18:53+0000\n"
-"Last-Translator: Lasse Liehu <lasse.liehu@iki.fi>\n"
+"PO-Revision-Date: 2020-11-03 07:22+0000\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -114,7 +114,7 @@ msgstr ""
 "vaiheessa)."
 
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "Lisäosan lähettämisen tarkistuslista"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr ""
@@ -591,19 +591,19 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Collections Created, last {0} days"
-msgstr ""
+msgstr "Kokoelmia luotu, viimeiset {0} päivää"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Collections Created from {0} to {1}"
-msgstr ""
+msgstr "Kokoelmia luotu ajanjaksolla {0} - {1}"
 
 #. L10n: {0} is an integer.
 msgid "Subscribers, last {0} days"
-msgstr ""
+msgstr "Tilaajat, viimeiset {0} päivää"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Subscribers from {0} to {1}"
-msgstr ""
+msgstr "Tilaajat ajanjaksolla {0} - {1}"
 
 #. L10n: {0} is an integer.
 msgid "Ratings, last {0} days"
