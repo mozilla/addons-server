@@ -12,6 +12,7 @@ from olympia.promoted.models import PromotedSubscription, PromotedAddon
 from olympia.promoted.utils import (
     create_stripe_checkout_session,
     create_stripe_customer_portal,
+    create_stripe_webhook_event,
     retrieve_stripe_checkout_session,
 )
 
@@ -172,4 +173,25 @@ def test_create_stripe_customer_portal():
             return_url=absolutify(
                 reverse("devhub.addons.edit", args=[addon.slug])
             ),
+        )
+
+
+@override_settings(STRIPE_API_WEBHOOK_SECRET="webhook-secret")
+def test_create_stripe_webhook_event():
+    fake_event = "fake-event"
+    payload = "some payload"
+    sig_header = "some sig_header"
+
+    with mock.patch(
+        "olympia.promoted.utils.stripe.Webhook.construct_event"
+    ) as stripe_construct_event:
+        stripe_construct_event.return_value = fake_event
+
+        event = create_stripe_webhook_event(
+            payload=payload, sig_header=sig_header
+        )
+
+        assert event == fake_event
+        stripe_construct_event.assert_called_once_with(
+            payload, sig_header, "webhook-secret",
         )

@@ -41,6 +41,7 @@ using the API.
    categories
    collections
    discovery
+   promoted
    ratings
    reviewers
    scanners
