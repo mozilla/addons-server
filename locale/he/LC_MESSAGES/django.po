@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-04 14:09+0000\n"
+"PO-Revision-Date: 2020-11-04 14:11+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -5258,7 +5258,7 @@ msgid "Undelete"
 msgstr "ביטול מחיקה"
 
 msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
+msgstr "ביצועי סוקר – תוספות עבור Firefox"
 
 msgid "Add-on Reviewer Performance"
 msgstr "ביצועי סוקר התוספות"
@@ -5315,7 +5315,7 @@ msgid "Back to review"
 msgstr "חזרה לסקירה"
 
 msgid "Content Review – Add-ons for Firefox"
-msgstr ""
+msgstr "סקירת תוכן – תוספות עבור Firefox"
 
 # 75%
 # 100%
