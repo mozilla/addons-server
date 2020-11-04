@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-04 11:48+0000\n"
+"PO-Revision-Date: 2020-11-04 11:51+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -318,13 +318,13 @@ msgstr ""
 "kunt ons ook helpen dit op te lossen door <a href=\"https://github.com/mozilla/addons/issues/new\">een issue te melden</a> met de details van hoe u op deze pagina belandde. </p>"
 
 msgid "Register or Log in"
-msgstr ""
+msgstr "Registreren of aanmelden"
 
 msgid "Email:"
 msgstr "E-mailadres:"
 
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 msgid "No results found"
 msgstr "Geen resultaten gevonden"
@@ -518,7 +518,7 @@ msgstr "Bij te werken blokkeringen zijn verschillend, omdat de minimum- of maxim
 
 #, python-format
 msgid "%(value)s contains *"
-msgstr ""
+msgstr "%(value)s bevat *"
 
 msgid "Invalid version"
 msgstr "Ongeldige versie"
@@ -2231,17 +2231,17 @@ msgid "Set Up Payment"
 msgstr "Betaling instellen"
 
 msgid "You're done!"
-msgstr ""
+msgstr "U bent klaar!"
 
 #, python-format
 msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
 msgstr ""
 
 msgid "A newer version of your add-on is currently pending review."
-msgstr ""
+msgstr "Een nieuwere versie van uw add-on wacht momenteel op beoordeling."
 
 msgid "If you have any questions, don’t hesitate to contact us."
-msgstr ""
+msgstr "Als u vragen hebt, neem dan gerust contact met ons op."
 
 msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
 msgstr ""
