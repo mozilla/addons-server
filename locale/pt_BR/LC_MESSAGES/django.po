@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-04 21:50+0000\n"
+"PO-Revision-Date: 2020-11-04 23:43+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -2261,13 +2261,13 @@ msgstr "Pronto!"
 
 #, python-format
 msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
-msgstr ""
+msgstr "Pronto! A nova versão <strong>%(new_version_number)s</strong> de sua extensão <strong>%(addon_name)s</strong> será publicada como %(group_name)s se deve estar disponível em breve."
 
 msgid "A newer version of your add-on is currently pending review."
 msgstr "Uma versão mais nova de sua extensão está com revisão pendente."
 
 msgid "If you have any questions, don’t hesitate to contact us."
-msgstr ""
+msgstr "Se tiver alguma dúvida, não hesite em entrar em contato conosco."
 
 msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
 msgstr ""
