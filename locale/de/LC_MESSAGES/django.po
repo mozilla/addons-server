@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-04 13:41+0000\n"
+"PO-Revision-Date: 2020-11-04 13:43+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -4498,7 +4498,7 @@ msgstr "Verwalten Sie Ihre Zeit besser mit einer Browser-Uhr, die Arbeitsinterva
 
 #. editorial content for the primary hero shelves.
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
-msgstr ""
+msgstr "Keine Lust mehr auf den Dialog „Video pausiert. Wiedergabe fortsetzen?“? Hören Sie auf YouTube ununterbrochen Ihre Lieblingsmusik."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
