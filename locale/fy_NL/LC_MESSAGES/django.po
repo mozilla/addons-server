@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-04 16:21+0000\n"
+"PO-Revision-Date: 2020-11-04 16:25+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -320,9 +320,8 @@ msgstr ""
 msgid "Register or Log in"
 msgstr "Registrearje of oanmelde"
 
-#, fuzzy
 msgid "Email:"
-msgstr "E-mailadres"
+msgstr "E-mailadres:"
 
 msgid "OK"
 msgstr "OK"
@@ -2229,9 +2228,8 @@ msgstr "Klik hjirûnder op de knop Akseptearje om te befêstigjen dat jo tafoege
 msgid "Decline"
 msgstr "Wegerje"
 
-#, fuzzy
 msgid "Set Up Payment"
-msgstr "Fereasket betelling"
+msgstr "Betelling ynstelle"
 
 msgid "You're done!"
 msgstr "Jo binne klear!"
@@ -2250,9 +2248,8 @@ msgstr "As jo fragen hawwe, nim dan gerêst kontakt mei ús op."
 msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
 msgstr "Jo betelling is registrearre, mar der binne op dit stuit gjin publisearre ferzjes fan jo add-on. Laad in nije iepenbiere ferzje op om dit proses te foltôgjen."
 
-#, fuzzy
 msgid "Manage add-on"
-msgstr "Taalpakket (add-on)"
+msgstr "Add-on beheare"
 
 msgid ""
 "There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a href=\"mailto:amo-"
@@ -4466,18 +4463,16 @@ msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Guon websites hawwe muoite mei it ôfspyljen fan fideo's op Android. Dizze útwreiding biedt in oplossing."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "Foar dy mominten wêrop jo lasers fan in kat út sjitte moatte."
+msgstr "Foar dy mominten wêrop jo lasers fan de eagen fan in kat út sjitte moatte."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
 msgstr "Smyt die lange en mâle trackingparameters út de URL’s fan sykresultaten fan Google."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Get weather updates directly from Firefox."
-msgstr "Untfang waarupdates streekrjocht yn de browser."
+msgstr "Untfang waarupdates streekrjocht fan Firefox út."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
@@ -4485,7 +4480,7 @@ msgstr "Behear jo tiid better mei in browserklok dy't wurkyntervallen yn kaart b
 
 #. editorial content for the primary hero shelves.
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
-msgstr ""
+msgstr "Wurch fan dat dialoochfinster ‘Video gepauzeerd. Doorgaan met kijken?’ Harkje ûnûnderbrutsen nei jo favorite muzyk op YouTube."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4532,9 +4527,8 @@ msgstr "Leechste stipe ‘strict_min_version’ is 42.0."
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr "Unbekende ‘strict_min_version’ {appver} foar {app}"
 
-#, fuzzy
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
-msgstr "Unbekende ‘strict_min_version’ {appver} foar {app}"
+msgstr "Unbekende ‘strict_max_version’ {appver} foar {app}"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
@@ -5427,9 +5421,8 @@ msgstr "Mear aksjes"
 msgid "Notify me about new listed versions"
 msgstr "My berjochtsje oer nije ferzjes yn de list"
 
-#, fuzzy
 msgid "Notify me about new unlisted versions"
-msgstr "My berjochtsje oer nije ferzjes yn de list"
+msgstr "My berjochtsje oer nije ferzjes net yn de list"
 
 msgid "Allow resubmission"
 msgstr "Opnij yntsjinjen tastean"
