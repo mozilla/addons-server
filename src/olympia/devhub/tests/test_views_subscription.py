@@ -262,9 +262,11 @@ class TestOnboardingSubscriptionSuccess(SubscriptionTestCase):
 
     @mock.patch("olympia.devhub.views.retrieve_stripe_checkout_session")
     def test_get_redirects_to_main_page(self, retrieve_mock):
-        retrieve_mock.return_value = mock.MagicMock(
-            id="session-id", payment_status="unpaid"
-        )
+        retrieve_mock.return_value = {
+            'id': 'session-id',
+            'payment_status': 'unpaid',
+            'subscription': None,
+        }
 
         response = self.client.get(self.url)
 
@@ -273,9 +275,12 @@ class TestOnboardingSubscriptionSuccess(SubscriptionTestCase):
 
     @mock.patch("olympia.devhub.views.retrieve_stripe_checkout_session")
     def test_get_records_payment_once(self, retrieve_mock):
-        retrieve_mock.return_value = mock.MagicMock(
-            id="session-id", payment_status="paid"
-        )
+        stripe_subscription_id = 'some-subscription-id'
+        retrieve_mock.return_value = {
+            'id': 'session-id',
+            'payment_status': 'paid',
+            'subscription': stripe_subscription_id,
+        }
 
         assert not self.subscription.payment_completed_at
 
@@ -284,6 +289,9 @@ class TestOnboardingSubscriptionSuccess(SubscriptionTestCase):
 
         payment_completed_at = self.subscription.payment_completed_at
         assert payment_completed_at is not None
+        assert (
+            self.subscription.stripe_subscription_id == stripe_subscription_id
+        )
 
         self.client.get(self.url)
         self.subscription.refresh_from_db()
@@ -291,14 +299,19 @@ class TestOnboardingSubscriptionSuccess(SubscriptionTestCase):
         # Make sure we don't update this date again.
         assert self.subscription.payment_completed_at == payment_completed_at
         assert not self.subscription.payment_cancelled_at
+        assert (
+            self.subscription.stripe_subscription_id == stripe_subscription_id
+        )
 
     @mock.patch("olympia.devhub.views.retrieve_stripe_checkout_session")
     def test_get_resets_payment_cancelled_date_after_success(
         self, retrieve_mock
     ):
-        retrieve_mock.return_value = mock.MagicMock(
-            id="session-id", payment_status="paid"
-        )
+        retrieve_mock.return_value = {
+            'id': 'session-id',
+            'payment_status': 'paid',
+            'subscription': 'some-subscription-id',
+        }
 
         self.subscription.update(payment_cancelled_at=datetime.datetime.now())
 
@@ -309,9 +322,11 @@ class TestOnboardingSubscriptionSuccess(SubscriptionTestCase):
 
     @mock.patch("olympia.devhub.views.retrieve_stripe_checkout_session")
     def test_current_version_is_approved_after_success(self, retrieve_mock):
-        retrieve_mock.return_value = mock.MagicMock(
-            id="session-id", payment_status="paid"
-        )
+        retrieve_mock.return_value = {
+            'id': 'session-id',
+            'payment_status': 'paid',
+            'subscription': 'some-subscription-id',
+        }
 
         assert not self.subscription.promoted_addon.addon.promoted_group()
         with mock.patch("olympia.lib.crypto.tasks.sign_addons") as sign_mock:
@@ -324,9 +339,11 @@ class TestOnboardingSubscriptionSuccess(SubscriptionTestCase):
 
     @mock.patch("olympia.devhub.views.retrieve_stripe_checkout_session")
     def test_version_isnt_resigned_if_already_approved(self, retrieve_mock):
-        retrieve_mock.return_value = mock.MagicMock(
-            id="session-id", payment_status="paid"
-        )
+        retrieve_mock.return_value = {
+            'id': 'session-id',
+            'payment_status': 'paid',
+            'subscription': 'some-subscription-id',
+        }
 
         promo = self.subscription.promoted_addon
         promo.approve_for_version(promo.addon.current_version)

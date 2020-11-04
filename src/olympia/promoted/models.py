@@ -195,6 +195,9 @@ class PromotedSubscription(ModelBase):
     stripe_session_id = models.CharField(
         default=None, null=True, max_length=100
     )
+    stripe_subscription_id = models.CharField(
+        default=None, null=True, max_length=100
+    )
     payment_cancelled_at = models.DateTimeField(
         null=True,
         help_text=(
