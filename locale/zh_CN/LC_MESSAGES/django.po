@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-04 13:01+0000\n"
+"PO-Revision-Date: 2020-11-04 13:21+0000\n"
 "Last-Translator: 你我皆凡人 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -302,14 +302,14 @@ msgid ""
 msgstr "<h1>糟糕！出错了。</h1> <p>我们将尽快修复这个问题。</p> <p> 您可以尝试刷新页面或返回<a href=\"%(home)s\">附加组件首页</a>。 您也可以通过<a href=\"https://github.com/mozilla/addons/issues/new\">提交 Issue</a> 并详细说明如何进入此页面，来帮助我们修复它。</p>"
 
 msgid "Register or Log in"
-msgstr ""
+msgstr "注册或登录"
 
 #, fuzzy
 msgid "Email:"
 msgstr "电子邮件"
 
 msgid "OK"
-msgstr ""
+msgstr "确定"
 
 msgid "No results found"
 msgstr "找不到结果"
@@ -1664,7 +1664,7 @@ msgid "URL domain must be one of [%s], or a subdomain."
 msgstr "网址域名必须是 [%s] 之一，或其子域。"
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr ""
+msgstr "GitHub 的赞助（Sponsor） URL 路径须包含 /sponsors/。"
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -2184,7 +2184,7 @@ msgid "Set Up Payment"
 msgstr "设置付款"
 
 msgid "You're done!"
-msgstr ""
+msgstr "完成了！"
 
 #, python-format
 msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
@@ -2208,14 +2208,14 @@ msgid ""
 msgstr ""
 
 msgid "Thank you for joining the Promoted Add-ons Program!"
-msgstr ""
+msgstr "感谢您加入“附加组件推广计划”！"
 
 #, python-format
 msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the program once payment is set up through the Stripe system. Click on the button below to continue:"
-msgstr ""
+msgstr "通过 Stripe 系统完成付款后，您的附加组件 <strong>%(addon_name)s</strong> 即可加入该推广计划。点击下方按钮继续："
 
 msgid "Continue to Stripe Checkout"
-msgstr ""
+msgstr "继续前往 Stripe 支付"
 
 msgid "Manage Authors & License"
 msgstr "管理作者和许可协议"
@@ -3093,7 +3093,7 @@ msgid "View All"
 msgstr "查看全部"
 
 msgid "Manage Billing on Stripe"
-msgstr ""
+msgstr "管理 Stripe 上的账单"
 
 msgid "Listed Review Page"
 msgstr "上架审核页面"
