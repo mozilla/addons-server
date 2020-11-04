@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-04 19:32+0000\n"
+"PO-Revision-Date: 2020-11-04 19:33+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -1698,7 +1698,7 @@ msgid "URL domain must be one of [%s], or a subdomain."
 msgstr "Домен в URL повинен бути одним із [%s], або субдоменом."
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr ""
+msgstr "Шлях URL-адреси для спонсорів GitHub повинен містити /sponsors/."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -2229,7 +2229,7 @@ msgid "Set Up Payment"
 msgstr "Налаштування платежу"
 
 msgid "You're done!"
-msgstr ""
+msgstr "Ви завершили!"
 
 #, python-format
 msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
