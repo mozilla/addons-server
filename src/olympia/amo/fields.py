@@ -8,7 +8,7 @@ from django.db import models
 from django.forms import fields
 from django.utils.translation import ugettext_lazy as _
 
-from nobot.fields import HumanCaptchaField, HumanCaptchaWidget
+from nobot.fields import HumanCaptchaField
 
 
 class PositiveAutoField(models.AutoField):
