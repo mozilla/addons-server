@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-04 13:30+0000\n"
+"PO-Revision-Date: 2020-11-04 13:50+0000\n"
 "Last-Translator: 你我皆凡人 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -133,7 +133,7 @@ msgstr "审核员链接"
 
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
-msgstr ""
+msgstr "触发了“%(addons)s”的 Git 提取。"
 
 msgid "- Add-on not on AMO -"
 msgstr "- 附加组件不在 AMO -"
@@ -161,7 +161,7 @@ msgid "My Themes"
 msgstr "我的主题"
 
 msgid "Git-Extract"
-msgstr ""
+msgstr "Git 提取（Extract）"
 
 msgid "Tools"
 msgstr "工具"
@@ -496,7 +496,7 @@ msgstr "由于最低或最高版本变动，要更新的屏蔽内容不同。"
 
 #, python-format
 msgid "%(value)s contains *"
-msgstr ""
+msgstr "%(value)s 包含 *"
 
 msgid "Invalid version"
 msgstr "版本无效"
@@ -2187,16 +2187,16 @@ msgstr "完成了！"
 
 #, python-format
 msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
-msgstr ""
+msgstr "完成了！附加组件 <strong>%(addon_name)s</strong> 的新版本 <strong>%(new_version_number)s</strong> 将作为 %(group_name)s 发布，很快就会上架。"
 
 msgid "A newer version of your add-on is currently pending review."
-msgstr ""
+msgstr "您附加组件的新版本目前正在等待审核。"
 
 msgid "If you have any questions, don’t hesitate to contact us."
-msgstr ""
+msgstr "如有任何疑问，请随时与我们联系。"
 
 msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
-msgstr ""
+msgstr "已收到您的付款，但暂无附加组件的发布版本。请上传新的公开版本以完成此过程。"
 
 msgid "Manage add-on"
 msgstr "管理附加组件"
@@ -2204,7 +2204,7 @@ msgstr "管理附加组件"
 msgid ""
 "There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a href=\"mailto:amo-"
 "admins@mozilla.com\">amo-admins@mozilla.com</a>."
-msgstr ""
+msgstr "进行附加组件的付款时出错。若您在此过程遇到问题或已改变主意，请通过 <a href=\"mailto:amo-admins@mozilla.com\">amo-admins@mozilla.com</a> 与我们联系。"
 
 msgid "Thank you for joining the Promoted Add-ons Program!"
 msgstr "感谢您加入“附加组件推广计划”！"
