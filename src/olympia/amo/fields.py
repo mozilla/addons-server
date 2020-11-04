@@ -49,19 +49,12 @@ class HttpHttpsOnlyURLField(fields.URLField):
         ]
 
 
-class ReCaptchaWidget(HumanCaptchaWidget):
-    """Added to workaround to nobot0.5 not supporting django2.1"""
-    def render(self, name, value, attrs=None, renderer=None):
-        return super(ReCaptchaWidget, self).render(name, value, attrs=attrs)
-
-
 class ReCaptchaField(HumanCaptchaField):
     # Sub-class so we can translate the strings.
     default_error_messages = {
         'captcha_invalid': _('Incorrect, please try again.'),
         'captcha_error': _('Error verifying input, please try again.'),
     }
-    widget_class = ReCaptchaWidget
 
 
 def validate_cidr(value):
