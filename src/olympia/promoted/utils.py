@@ -126,3 +126,10 @@ def create_stripe_webhook_event(payload, sig_header):
     stripe.api_key = settings.STRIPE_API_SECRET_KEY
     webhook_secret = settings.STRIPE_API_WEBHOOK_SECRET
     return stripe.Webhook.construct_event(payload, sig_header, webhook_secret)
+
+
+def retrieve_stripe_subscription_for_invoice(invoice_id):
+    """This function returns a Stripe Subscription object or raises errors."""
+    stripe.api_key = settings.STRIPE_API_SECRET_KEY
+    invoice = stripe.Invoice.retrieve(invoice_id)
+    return stripe.Subscription.retrieve(invoice["subscription"])

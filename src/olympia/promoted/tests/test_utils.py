@@ -21,6 +21,7 @@ from olympia.promoted.utils import (
     create_stripe_webhook_event,
     retrieve_stripe_checkout_session,
     retrieve_stripe_subscription,
+    retrieve_stripe_subscription_for_invoice,
 )
 
 
@@ -438,3 +439,24 @@ def test_retrieve_stripe_subscription():
 
         assert stripe_sub == fake_subscription
         stripe_retrieve.assert_called_once_with(stripe_subscription_id)
+
+
+def test_retrieve_stripe_subscription_for_invoice():
+    invoice_id = "invoice-id"
+    subscription_id = "subscription-id"
+    fake_invoice = {"subscription": subscription_id}
+    fake_subscription = "fake-stripe-subscription"
+
+    with mock.patch(
+        "olympia.promoted.utils.stripe.Invoice.retrieve"
+    ) as invoice_mock, mock.patch(
+        "olympia.promoted.utils.stripe.Subscription.retrieve"
+    ) as subscription_mock:
+        invoice_mock.return_value = fake_invoice
+        subscription_mock.return_value = fake_subscription
+
+        sub = retrieve_stripe_subscription_for_invoice(invoice_id=invoice_id)
+
+        assert sub == fake_subscription
+        invoice_mock.assert_called_once_with(invoice_id)
+        subscription_mock.assert_called_once_with(subscription_id)
