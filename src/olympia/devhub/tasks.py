@@ -11,6 +11,8 @@ from decimal import Decimal
 from functools import wraps
 from zipfile import BadZipFile
 
+import waffle
+
 from django.conf import settings
 from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
@@ -440,6 +442,9 @@ def run_addons_linter(path, channel):
 
     if channel == amo.RELEASE_CHANNEL_UNLISTED:
         args.append('--self-hosted')
+
+    if waffle.switch_is_active('disable-linter-xpi-autoclose'):
+        args.append('--disable-xpi-autoclose')
 
     if not os.path.exists(path):
         raise ValueError(
