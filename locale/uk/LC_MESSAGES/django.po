@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-04 22:22+0000\n"
+"PO-Revision-Date: 2020-11-04 22:26+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -2255,14 +2255,14 @@ msgstr ""
 "admins@mozilla.com\">amo-admins@mozilla.com</a>."
 
 msgid "Thank you for joining the Promoted Add-ons Program!"
-msgstr ""
+msgstr "Дякуємо, що приєдналися до програми рекламованих додатків!"
 
 #, python-format
 msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the program once payment is set up through the Stripe system. Click on the button below to continue:"
-msgstr ""
+msgstr "Ваш додаток <strong>%(addon_name)s</strong> буде включено до програми після налаштування оплати через систему Stripe. Натисніть на кнопку внизу, щоб продовжити:"
 
 msgid "Continue to Stripe Checkout"
-msgstr ""
+msgstr "Продовжити Stripe Checkout"
 
 msgid "Manage Authors & License"
 msgstr "Керування авторами і ліцензією"
@@ -3181,7 +3181,7 @@ msgid "View All"
 msgstr "Продивитися все"
 
 msgid "Manage Billing on Stripe"
-msgstr ""
+msgstr "Керувати виставленням рахунків у Stripe"
 
 msgid "Listed Review Page"
 msgstr "Сторінка перевірки опублікованих"
@@ -4467,11 +4467,11 @@ msgstr "Отримуйте оновлення погоди безпосеред�
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
-msgstr ""
+msgstr "Керувати своїм часом краще за допомогою годинника браузера, який визначає графіки робочих інтервалів."
 
 #. editorial content for the primary hero shelves.
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
-msgstr ""
+msgstr "Набридла поява вікна \"Відео зупинено. Продовжити перегляд?\" Слухайте улюблену музику безперервно на YouTube."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
