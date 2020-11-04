@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-04 11:51+0000\n"
+"PO-Revision-Date: 2020-11-04 11:56+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -136,7 +136,7 @@ msgstr "Koppelingen voor beoordelaars"
 
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
-msgstr ""
+msgstr "Git-extractie geactiveerd voor ‘%(addons)s’."
 
 msgid "- Add-on not on AMO -"
 msgstr "- Add-on niet op AMO -"
@@ -164,7 +164,7 @@ msgid "My Themes"
 msgstr "Mijn thema’s"
 
 msgid "Git-Extract"
-msgstr ""
+msgstr "Git-extract"
 
 msgid "Tools"
 msgstr "Hulpmiddelen"
@@ -1698,7 +1698,7 @@ msgid "URL domain must be one of [%s], or a subdomain."
 msgstr "Domein van URL moet er een zijn van [%s], of een subdomein."
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr ""
+msgstr "URL-pad voor GitHub-sponsors moet /sponsors/ bevatten."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -2236,6 +2236,7 @@ msgstr "U bent klaar!"
 #, python-format
 msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
 msgstr ""
+"U bent klaar! Een nieuwe versie <strong>%(new_version_number)s</strong> van uw add-on <strong>%(addon_name)s</strong> wordt gepubliceerd als %(group_name)s en zou binnenkort beschikbaar moeten zijn."
 
 msgid "A newer version of your add-on is currently pending review."
 msgstr "Een nieuwere versie van uw add-on wacht momenteel op beoordeling."
@@ -2244,7 +2245,7 @@ msgid "If you have any questions, don’t hesitate to contact us."
 msgstr "Als u vragen hebt, neem dan gerust contact met ons op."
 
 msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
-msgstr ""
+msgstr "Uw betaling is geregistreerd, maar er zijn momenteel geen gepubliceerde versies van uw add-on. Upload een nieuwe openbare versie om dit proces te voltooien."
 
 msgid "Manage add-on"
 msgstr "Add-on beheren"
@@ -2253,16 +2254,18 @@ msgid ""
 "There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a href=\"mailto:amo-"
 "admins@mozilla.com\">amo-admins@mozilla.com</a>."
 msgstr ""
+"Er is een fout opgetreden bij het instellen van de betaling voor uw add-on. Als u problemen met dit proces ondervindt of van gedachten bent veranderd, neem dan contact met ons op via <a "
+"href=\"mailto:amo-admins@mozilla.com\">amo-admins@mozilla.com</a>."
 
 msgid "Thank you for joining the Promoted Add-ons Program!"
-msgstr ""
+msgstr "Bedankt voor uw deelname aan het Promoted Add-ons-programma!"
 
 #, python-format
 msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the program once payment is set up through the Stripe system. Click on the button below to continue:"
-msgstr ""
+msgstr "Uw add-on <strong>%(addon_name)s</strong> wordt in het programma opgenomen zodra de betaling via het Stripe-systeem is ingesteld. Klik op onderstaande knop om verder te gaan:"
 
 msgid "Continue to Stripe Checkout"
-msgstr ""
+msgstr "Doorgaan naar Stripe Checkout"
 
 msgid "Manage Authors & License"
 msgstr "Schrijvers en licentie beheren"
@@ -3177,7 +3180,7 @@ msgid "View All"
 msgstr "Alles bekijken"
 
 msgid "Manage Billing on Stripe"
-msgstr ""
+msgstr "Facturering op Stripe beheren"
 
 msgid "Listed Review Page"
 msgstr "Pagina voor vermelde beoordelingen"
@@ -4472,11 +4475,11 @@ msgstr "Ontvang weersupdates rechtstreeks vanuit Firefox."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
-msgstr ""
+msgstr "Beheer uw tijd beter met een browserklok die de werkintervallen in kaart brengt."
 
 #. editorial content for the primary hero shelves.
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
-msgstr ""
+msgstr "Bent u dat dialoogvenster ‘Video gepauzeerd. Doorgaan met kijken?’ beu? Luister zonder onderbreking naar uw favoriete muziek op YouTube."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
