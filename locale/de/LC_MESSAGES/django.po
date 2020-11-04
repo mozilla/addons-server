@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-04 12:09+0000\n"
+"PO-Revision-Date: 2020-11-04 12:10+0000\n"
 "Last-Translator: Philipp Fischbeck <pfischbeck@googlemail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -316,13 +316,13 @@ msgstr ""
 "Seite gelangt sind.</p>"
 
 msgid "Register or Log in"
-msgstr ""
+msgstr "Registrieren oder anmelden"
 
 msgid "Email:"
 msgstr "E-Mail:"
 
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 msgid "No results found"
 msgstr "Keine Ergebnisse gefunden"
@@ -517,7 +517,7 @@ msgstr "Zu aktualisierende Sperren unterscheiden sich, weil sich Min- oder Max-V
 
 #, python-format
 msgid "%(value)s contains *"
-msgstr ""
+msgstr "%(value)s enthält *"
 
 msgid "Invalid version"
 msgstr "Ungültige Version"
