@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-04 18:48+0000\n"
+"PO-Revision-Date: 2020-11-04 19:19+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -2236,10 +2236,10 @@ msgid "You're done! A new version <strong>%(new_version_number)s</strong> of you
 msgstr ""
 
 msgid "A newer version of your add-on is currently pending review."
-msgstr ""
+msgstr "Një version më i ri i shtesës tuaj është aktualisht në pritje të shqyrtimit."
 
 msgid "If you have any questions, don’t hesitate to contact us."
-msgstr ""
+msgstr "Nëse keni pyetje, mos ngurroni të lidheni me ne."
 
 msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
 msgstr ""
@@ -2254,14 +2254,14 @@ msgid ""
 msgstr ""
 
 msgid "Thank you for joining the Promoted Add-ons Program!"
-msgstr ""
+msgstr "Faleminderit që merrni pjesë te Programi Shtesa të Promovuara!"
 
 #, python-format
 msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the program once payment is set up through the Stripe system. Click on the button below to continue:"
-msgstr ""
+msgstr "Shtesa juaj <strong>%(addon_name)s</strong> do të përfshihet te programi sapo të jetë ujdisur pagesa juaj përmes sistemit Stripe. Klikoni mbi butonin më poshtë, që të vazhdohet:"
 
 msgid "Continue to Stripe Checkout"
-msgstr ""
+msgstr "Vazhdoni te Përfundimi i Blerjes me Stripe"
 
 msgid "Manage Authors & License"
 msgstr "Administroni Autorë & Licenca"
@@ -3174,7 +3174,7 @@ msgid "View All"
 msgstr "Shihini Krejt"
 
 msgid "Manage Billing on Stripe"
-msgstr ""
+msgstr "Administroni Faturim në Stripe"
 
 msgid "Listed Review Page"
 msgstr "Faqe Shqyrtimesh të Shfaqura"
@@ -4479,7 +4479,7 @@ msgstr "Merrni përditësime rreth motit drejt e te shfletuesi."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
-msgstr ""
+msgstr "Administroni më mirë kohën tuaj me një sahat shfletuesi që shfaq intervale kohorë."
 
 #. editorial content for the primary hero shelves.
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
