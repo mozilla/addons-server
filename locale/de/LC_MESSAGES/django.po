@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-04 12:10+0000\n"
-"Last-Translator: Philipp Fischbeck <pfischbeck@googlemail.com>\n"
+"PO-Revision-Date: 2020-11-04 13:41+0000\n"
+"Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -133,7 +133,7 @@ msgstr "Links für Kontrolleure"
 
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
-msgstr ""
+msgstr "Git-Extraktion ausgelöst für „%(addons)s“."
 
 msgid "- Add-on not on AMO -"
 msgstr "– Add-on nicht auf AMO –"
@@ -161,7 +161,7 @@ msgid "My Themes"
 msgstr "Meine Themes"
 
 msgid "Git-Extract"
-msgstr ""
+msgstr "Git-Extrakt"
 
 msgid "Tools"
 msgstr "Werkzeuge"
@@ -1713,7 +1713,7 @@ msgid "URL domain must be one of [%s], or a subdomain."
 msgstr "URL-Domain muss zu [%s] gehören oder eine Subdomain sein."
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr ""
+msgstr "Der URL-Pfad für GitHub-Sponsoren muss /sponsors/ enthalten."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -2244,20 +2244,21 @@ msgid "Set Up Payment"
 msgstr "Zahlung einrichten"
 
 msgid "You're done!"
-msgstr ""
+msgstr "Geschafft!"
 
 #, python-format
 msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
 msgstr ""
+"Sie sind fertig! Eine neue Version <strong>%(new_version_number)s</strong> Ihres Add-ons <strong>%(addon_name)s</strong> wird als %(group_name)s veröffentlicht und sollte in Kürze verfügbar sein."
 
 msgid "A newer version of your add-on is currently pending review."
-msgstr ""
+msgstr "Eine neuere Version Ihres Add-ons wartet derzeit auf die Überprüfung."
 
 msgid "If you have any questions, don’t hesitate to contact us."
-msgstr ""
+msgstr "Wenn Sie Fragen haben, melden Sie sich bitte bei uns."
 
 msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
-msgstr ""
+msgstr "Ihre Zahlung wurde erfasst, es gibt jedoch derzeit keine veröffentlichten Versionen Ihres Add-ons. Bitte laden Sie eine neue öffentliche Version hoch, um diesen Vorgang abzuschließen."
 
 msgid "Manage add-on"
 msgstr "Add-on verwalten"
@@ -2266,16 +2267,20 @@ msgid ""
 "There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a href=\"mailto:amo-"
 "admins@mozilla.com\">amo-admins@mozilla.com</a>."
 msgstr ""
+"Beim Einrichten der Zahlung für Ihr Add-on ist ein Fehler aufgetreten. Wenn Sie Probleme mit diesem Prozess haben oder Ihre Meinung geändert haben, kontaktieren Sie uns bitte unter <a "
+"href=\"mailto:amo-admins@mozilla.com\">amo-admins@mozilla.com</a>."
 
 msgid "Thank you for joining the Promoted Add-ons Program!"
-msgstr ""
+msgstr "Danke, dass Sie sich dem Programm für beworbene Add-ons angeschlossen haben!"
 
 #, python-format
 msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the program once payment is set up through the Stripe system. Click on the button below to continue:"
 msgstr ""
+"Ihr Add-on <strong>%%(addon_name)s</strong> wird in das Programm aufgenommen, sobald die Zahlung über das Stripe-System eingerichtet wurde. Klicken Sie auf die folgende Schaltfläche, um "
+"fortzufahren:"
 
 msgid "Continue to Stripe Checkout"
-msgstr ""
+msgstr "Weiter zur Stripe-Zahlung"
 
 msgid "Manage Authors & License"
 msgstr "Autoren und Lizenz verwalten"
@@ -3194,7 +3199,7 @@ msgid "View All"
 msgstr "Alle anzeigen"
 
 msgid "Manage Billing on Stripe"
-msgstr ""
+msgstr "Abrechnung auf Stripe verwalten"
 
 msgid "Listed Review Page"
 msgstr "Überprüfungsseite für gelistete Add-ons"
@@ -4489,7 +4494,7 @@ msgstr "Holen Sie sich Wetter-Updates direkt von Firefox."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
-msgstr ""
+msgstr "Verwalten Sie Ihre Zeit besser mit einer Browser-Uhr, die Arbeitsintervalle aufzeichnet."
 
 #. editorial content for the primary hero shelves.
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
@@ -5433,9 +5438,8 @@ msgstr "Weitere Aktionen"
 msgid "Notify me about new listed versions"
 msgstr "Mich über neue gelistete Versionen benachrichtigen"
 
-#, fuzzy
 msgid "Notify me about new unlisted versions"
-msgstr "Mich über neue gelistete Versionen benachrichtigen"
+msgstr "Mich über neue ungelistete Versionen benachrichtigen"
 
 msgid "Allow resubmission"
 msgstr "Wiedervorlage zulassen"
