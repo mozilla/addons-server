@@ -1169,3 +1169,11 @@ class TestValidationTask(TestCase):
         assert TestValidationTask.fake_task_has_been_called
         assert results != returned_results
         assert 'fake_task_results' in returned_results
+
+
+class TestForwardLinterResults(TestCase):
+
+    def test_returns_received_results(self):
+        results = {'errors': 1}
+        returned_results = tasks.forward_linter_results(results, 123)
+        assert results == returned_results
