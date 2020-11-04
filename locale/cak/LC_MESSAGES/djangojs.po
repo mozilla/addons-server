@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-17 12:59+0000\n"
+"POT-Creation-Date: 2020-11-04 11:02+0000\n"
 "PO-Revision-Date: 2019-11-15 22:28+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -654,19 +654,6 @@ msgstr "Q'ijul"
 msgid "Other"
 msgstr "Juley chik"
 
-msgid "Select an application first"
-msgstr "Nab'ey ticha' jun chokoy"
-
-msgid "Set {0} add-on to a max version of {1} and email the author."
-msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "Tib'an runuk'ulem {0} tz'aqat rik'in jun nïm ruwäch {1} chuqa' titaq jun rutaqoya'l ri b'anel."
-msgstr[1] "Tib'an kinuk'ulem {0} taq tz'aqat rik'in jun nïm ruwäch {1} chuqa' titaq jun kitaqoya'l ri b'anel."
-
-msgid "Email author of {2} add-on which failed validation."
-msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Titaq taqoya'l chi re ri rub'anel {2} tz'aqat ri xsach rik'in ri jikib'anem."
-msgstr[1] "Titaq taqoya'l chi ke ri rub'anel {2} taq tz'aqat ri xesach rik'in ri jikib'anem."
-
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
 msgstr "Ütz chuqa' Tiyak"
@@ -718,6 +705,9 @@ msgstr[1] "{files} taq yakb'äl"
 
 msgid "Image changes being processed"
 msgstr "Yesamajïx ri taq jaloj pa ri wachib'äl"
+
+msgid "Select an application first"
+msgstr "Nab'ey ticha' jun chokoy"
 
 msgid "No results found."
 msgstr "Majun achike xilitäj."

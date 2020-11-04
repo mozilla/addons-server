@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-17 12:59+0000\n"
+"POT-Creation-Date: 2020-11-04 11:02+0000\n"
 "PO-Revision-Date: 2020-09-12 09:09+0000\n"
 "Last-Translator: Enderman123 <xuyaoshi72@qq.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -627,17 +627,6 @@ msgstr "日期"
 msgid "Other"
 msgstr "其他"
 
-msgid "Select an application first"
-msgstr "首先选择一个应用程序"
-
-msgid "Set {0} add-on to a max version of {1} and email the author."
-msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "将 {0} 个附加组件的最大版本号设置为 {1} 并用电子邮件通知作者。"
-
-msgid "Email author of {2} add-on which failed validation."
-msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "邮件通知 {2} 个未通过验证的附加组件作者。"
-
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
 msgstr "同意并安装"
@@ -688,6 +677,9 @@ msgstr[0] "{files} 个文件"
 
 msgid "Image changes being processed"
 msgstr "正在处理图像更改"
+
+msgid "Select an application first"
+msgstr "首先选择一个应用程序"
 
 msgid "No results found."
 msgstr "找不到结果。"

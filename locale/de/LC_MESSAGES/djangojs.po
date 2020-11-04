@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-17 12:59+0000\n"
+"POT-Creation-Date: 2020-11-04 11:02+0000\n"
 "PO-Revision-Date: 2020-08-04 17:42+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -646,19 +646,6 @@ msgstr "Datum"
 msgid "Other"
 msgstr "Andere"
 
-msgid "Select an application first"
-msgstr "Wählen Sie zuerst eine Anwendung aus"
-
-msgid "Set {0} add-on to a max version of {1} and email the author."
-msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "{0} Add-on auf eine Max-Version von {1} setzen und Autor per E-Mail benachrichtigen."
-msgstr[1] "{0} Add-ons auf eine Max-Version von {1} setzen und Autoren per E-Mail benachrichtigen."
-
-msgid "Email author of {2} add-on which failed validation."
-msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Autor von {2} Add-on, dessen Validierung fehlgeschlagen ist, per E-Mail benachrichtigen."
-msgstr[1] "Autoren von {2} Add-ons, deren Validierung fehlgeschlagen ist, per E-Mail benachrichtigen."
-
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
 msgstr "Akzeptieren und installieren"
@@ -710,6 +697,9 @@ msgstr[1] "{files} Dateien"
 
 msgid "Image changes being processed"
 msgstr "Grafikänderungen werden angewendet"
+
+msgid "Select an application first"
+msgstr "Wählen Sie zuerst eine Anwendung aus"
 
 msgid "No results found."
 msgstr "Keine Ergebnisse gefunden."

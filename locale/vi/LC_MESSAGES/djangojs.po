@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-17 12:59+0000\n"
+"POT-Creation-Date: 2020-11-04 11:02+0000\n"
 "PO-Revision-Date: 2020-07-09 14:45+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -638,17 +638,6 @@ msgstr "Ngày tháng"
 msgid "Other"
 msgstr "Khác"
 
-msgid "Select an application first"
-msgstr "Chọn một ứng dụng trước tiên"
-
-msgid "Set {0} add-on to a max version of {1} and email the author."
-msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "Đặt {0} tiện ích mở rộng thành phiên bản tối đa của {1} và gửi email cho các tác giả."
-
-msgid "Email author of {2} add-on which failed validation."
-msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Tác giả email của {2} tiện ích mở rộng xác thực thất bại."
-
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
 msgstr "Chấp nhận và cài đặt"
@@ -699,6 +688,9 @@ msgstr[0] "{files} tập tin"
 
 msgid "Image changes being processed"
 msgstr "Thay đổi hình ảnh đang được xử lý"
+
+msgid "Select an application first"
+msgstr "Chọn một ứng dụng trước tiên"
 
 msgid "No results found."
 msgstr "Không tìm thấy kết quả."

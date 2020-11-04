@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-17 12:59+0000\n"
+"POT-Creation-Date: 2020-11-04 11:02+0000\n"
 "PO-Revision-Date: 2016-04-01 10:09+0000\n"
 "Last-Translator: galleteroion1 <galleteroion1@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -643,20 +643,6 @@ msgstr ""
 msgid "Other"
 msgstr "Bestelakoa"
 
-msgid "Select an application first"
-msgstr "Hautatu aplikazioa lehenik"
-
-#, fuzzy
-msgid "Set {0} add-on to a max version of {1} and email the author."
-msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "Ezarri {0} gehigarriari {1} bertsio maximoa eta bidali mezu elektronikoa egileari."
-msgstr[1] "Ezarri {0} gehigarriei {1} bertsio maximoa eta bidali mezu elektronikoa egileei."
-
-msgid "Email author of {2} add-on which failed validation."
-msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] ""
-msgstr[1] ""
-
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
 msgstr "Onartu eta instalatu"
@@ -710,6 +696,9 @@ msgstr[1] "{files} fitxategi"
 
 msgid "Image changes being processed"
 msgstr "Irudi-aldaketak prozesatzen ari dira"
+
+msgid "Select an application first"
+msgstr "Hautatu aplikazioa lehenik"
 
 msgid "No results found."
 msgstr ""

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-17 12:59+0000\n"
+"POT-Creation-Date: 2020-11-04 11:02+0000\n"
 "PO-Revision-Date: 2020-08-07 13:16+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -669,23 +669,6 @@ msgstr "Datum"
 msgid "Other"
 msgstr "Druhe"
 
-msgid "Select an application first"
-msgstr "Wubjerće najprjedy nałoženje"
-
-msgid "Set {0} add-on to a max version of {1} and email the author."
-msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "{0} přidatk na maksimalnu wersiju {1} stajić a awtorej e-mejlku pósłać"
-msgstr[1] "{0} přidatkaj na maksimalnu wersiju {1} stajić a awtorej e-mejlku pósłać"
-msgstr[2] "{0} přidatki na maksimalnu wersiju {1} stajić a awtorej e-mejlku pósłać"
-msgstr[3] "{0} přidatkow na maksimalnu wersiju {1} stajić a awtorej e-mejlku pósłać"
-
-msgid "Email author of {2} add-on which failed validation."
-msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Awtorej {2} přidatka e-mejlku pósłać, kotrehož přepruwowanje je so nimokuliło."
-msgstr[1] "Awtorej {2} přidatkow e-mejlku pósłać, kotrejuž přepruwowanje je so nimokuliło."
-msgstr[2] "Awtorej {2} přidatkow e-mejlku pósłać, kotrychž přepruwowanje je so nimokuliło."
-msgstr[3] "Awtorej {2} přidatkow e-mejlku pósłać, kotrychž přepruwowanje je so nimokuliło."
-
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
 msgstr "Akceptować a instalować"
@@ -739,6 +722,9 @@ msgstr[3] "{files} datajow"
 
 msgid "Image changes being processed"
 msgstr "Wobrazowe změny so předźěłuja"
+
+msgid "Select an application first"
+msgstr "Wubjerće najprjedy nałoženje"
 
 msgid "No results found."
 msgstr "Žane wusědki namakane."

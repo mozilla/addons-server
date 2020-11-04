@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-17 12:59+0000\n"
+"POT-Creation-Date: 2020-11-04 11:02+0000\n"
 "PO-Revision-Date: 2018-08-10 17:55+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -675,21 +675,6 @@ msgstr "Data"
 msgid "Other"
 msgstr "Inny"
 
-msgid "Select an application first"
-msgstr "Wybierz najpierw program"
-
-msgid "Set {0} add-on to a max version of {1} and email the author."
-msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "Ustaw {0} dodatek na najwyższą wersję programu {1} i powiadom autora."
-msgstr[1] "Ustaw {0} dodatki na najwyższą wersję programu {1} i powiadom autorów."
-msgstr[2] "Ustaw {0} dodatków na najwyższą wersję programu {1} i powiadom autorów."
-
-msgid "Email author of {2} add-on which failed validation."
-msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Poinformuj mailowo autora {2} dodatku, który nie przeszedł weryfikacji."
-msgstr[1] "Poinformuj mailowo autora {2} dodatków, które nie przeszły weryfikacji."
-msgstr[2] "Poinformuj mailowo autora {2} dodatków, które nie przeszły weryfikacji."
-
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
 msgstr "Akceptuję, zainstaluj"
@@ -742,6 +727,9 @@ msgstr[2] "{files} plików"
 
 msgid "Image changes being processed"
 msgstr "Przetwarzanie zmian obrazu…"
+
+msgid "Select an application first"
+msgstr "Wybierz najpierw program"
 
 msgid "No results found."
 msgstr "Nic nie znaleziono."

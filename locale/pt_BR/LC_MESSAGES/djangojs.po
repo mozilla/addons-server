@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-17 12:59+0000\n"
+"POT-Creation-Date: 2020-11-04 11:02+0000\n"
 "PO-Revision-Date: 2020-08-17 10:30+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -643,19 +643,6 @@ msgstr "Data"
 msgid "Other"
 msgstr "Outro"
 
-msgid "Select an application first"
-msgstr "Selecione uma aplicação antes"
-
-msgid "Set {0} add-on to a max version of {1} and email the author."
-msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "Definir a versão máxima da extensão {0} para {1} e notificar o autor."
-msgstr[1] "Definir a versão máxima das extensões {0} para {1} e notificar os autores."
-
-msgid "Email author of {2} add-on which failed validation."
-msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Enviar um e-mail ao autor da extensão {2} que falhou na validação."
-msgstr[1] "Enviar e-mail aos autores das extensões {2} que falharam na validação."
-
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
 msgstr "Aceitar e Instalar"
@@ -707,6 +694,9 @@ msgstr[1] "{files} arquivos"
 
 msgid "Image changes being processed"
 msgstr "Processando alterações na imagem"
+
+msgid "Select an application first"
+msgstr "Selecione uma aplicação antes"
 
 msgid "No results found."
 msgstr "Nenhum resultado encontrado."

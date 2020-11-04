@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-17 12:59+0000\n"
+"POT-Creation-Date: 2020-11-04 11:02+0000\n"
 "PO-Revision-Date: 2020-06-22 21:19+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -649,19 +649,6 @@ msgstr "Dato"
 msgid "Other"
 msgstr "Anna"
 
-msgid "Select an application first"
-msgstr "Vel ein applikasjon først"
-
-msgid "Set {0} add-on to a max version of {1} and email the author."
-msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "Set tillegget {0} til maksversjon på {1} og send e-post til utviklaren."
-msgstr[1] "Set tillegga {0} til maksversjon på {1} og send e-post til utviklaren."
-
-msgid "Email author of {2} add-on which failed validation."
-msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Send e-post til utviklaren av tillegget {2} som feila validering."
-msgstr[1] "Send e-post til utviklarane av tillegga {2} som feila validering."
-
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
 msgstr "Godta og installer"
@@ -713,6 +700,9 @@ msgstr[1] "{files} filer"
 
 msgid "Image changes being processed"
 msgstr "Endringar i bildet vert behandla"
+
+msgid "Select an application first"
+msgstr "Vel ein applikasjon først"
 
 msgid "No results found."
 msgstr "Resultatlaust."

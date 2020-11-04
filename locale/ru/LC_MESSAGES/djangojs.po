@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-17 12:59+0000\n"
+"POT-Creation-Date: 2020-11-04 11:02+0000\n"
 "PO-Revision-Date: 2020-09-21 14:49+0000\n"
 "Last-Translator: TrickyFoxy <roman.deev06@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -656,21 +656,6 @@ msgstr "Дата"
 msgid "Other"
 msgstr "Другое"
 
-msgid "Select an application first"
-msgstr "Сначала выберите приложение"
-
-msgid "Set {0} add-on to a max version of {1} and email the author."
-msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "Установить для {0} дополнения максимальную версию {1} и отправить письмо автору."
-msgstr[1] "Установить для {0} дополнений максимальную версию {1} и отправить письмо авторам."
-msgstr[2] "Установить для {0} дополнений максимальную версию {1} и отправить письмо авторам."
-
-msgid "Email author of {2} add-on which failed validation."
-msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Написать автору {2} дополнения, которое не прошло валидацию."
-msgstr[1] "Написать авторам {2} дополнений, которые не прошли валидацию."
-msgstr[2] "Написать авторам {2} дополнений, которые не прошли валидацию."
-
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
 msgstr "Принять и установить"
@@ -723,6 +708,9 @@ msgstr[2] "{files} файлов"
 
 msgid "Image changes being processed"
 msgstr "Обработка изменений изображения"
+
+msgid "Select an application first"
+msgstr "Сначала выберите приложение"
 
 msgid "No results found."
 msgstr "Результаты не найдены."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-17 12:59+0000\n"
+"POT-Creation-Date: 2020-11-04 11:02+0000\n"
 "PO-Revision-Date: 2020-08-26 08:27+0000\n"
 "Last-Translator: Benoit Leseul <benoit.leseul@gmail.com>\n"
 "Language-Team: français <>\n"
@@ -650,19 +650,6 @@ msgstr "Date"
 msgid "Other"
 msgstr "Autre"
 
-msgid "Select an application first"
-msgstr "Sélectionnez d’abord une application"
-
-msgid "Set {0} add-on to a max version of {1} and email the author."
-msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "Définir pour le module {0} une version maximale de {1} et envoyer un courriel à l’auteur."
-msgstr[1] "Définir pour les modules {0} une version maximale de {1} et envoyer un courriel aux auteurs."
-
-msgid "Email author of {2} add-on which failed validation."
-msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Envoyer un courriel à l’auteur du module complémentaire dont la validation a échoué."
-msgstr[1] "Envoyer des courriels aux auteurs des {2} modules dont la vérification a échoué."
-
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
 msgstr "Accepter et installer"
@@ -714,6 +701,9 @@ msgstr[1] "{files} fichiers"
 
 msgid "Image changes being processed"
 msgstr "Changements d’images en cours"
+
+msgid "Select an application first"
+msgstr "Sélectionnez d’abord une application"
 
 msgid "No results found."
 msgstr "Aucun résultat trouvé."

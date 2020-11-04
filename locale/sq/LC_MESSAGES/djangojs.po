@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-17 12:59+0000\n"
+"POT-Creation-Date: 2020-11-04 11:02+0000\n"
 "PO-Revision-Date: 2020-08-16 09:49+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <besnik@programeshqip.org>\n"
@@ -647,19 +647,6 @@ msgstr "Datë"
 msgid "Other"
 msgstr "Tjetër"
 
-msgid "Select an application first"
-msgstr "Përzgjidhni së pari një aplikacion"
-
-msgid "Set {0} add-on to a max version of {1} and email the author."
-msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "Caktoji {0} shtese versionin maksimal {1} dhe dërgoji email autorit."
-msgstr[1] "Caktoji {0} shtesave versionin maksimal {1} dhe dërgoji email autorëve."
-
-msgid "Email author of {2} add-on which failed validation."
-msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Dërgojini email autorit të {2} shtese që nuk e kaloi vleftësimin."
-msgstr[1] "Dërgojini email autorit të {2} shtesave që nuk e kaluan vleftësimin."
-
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
 msgstr "Pranoje dhe Instaloje"
@@ -711,6 +698,9 @@ msgstr[1] "{files} kartela"
 
 msgid "Image changes being processed"
 msgstr "Po përpunohen ndryshimet e figurës"
+
+msgid "Select an application first"
+msgstr "Përzgjidhni së pari një aplikacion"
 
 msgid "No results found."
 msgstr "S’u gjetën përfundime."

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-17 12:59+0000\n"
+"POT-Creation-Date: 2020-11-04 11:02+0000\n"
 "PO-Revision-Date: 2020-08-04 22:24+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: \n"
@@ -643,19 +643,6 @@ msgstr "Data"
 msgid "Other"
 msgstr "Outro"
 
-msgid "Select an application first"
-msgstr "Primeiro selecione uma aplicação"
-
-msgid "Set {0} add-on to a max version of {1} and email the author."
-msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "Definir {0} extra para a versão máxima de {1} e enviar um email ao autor."
-msgstr[1] "Definir {0} extras para a versão máxima de {1} e enviar um email aos autores."
-
-msgid "Email author of {2} add-on which failed validation."
-msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Enviar email ao autor do extra {2} que falhou a validação."
-msgstr[1] "Enviar email aos autores dos extras {2} que falharam a validação."
-
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
 msgstr "Aceitar e instalar"
@@ -707,6 +694,9 @@ msgstr[1] "{files} ficheiros"
 
 msgid "Image changes being processed"
 msgstr "Alterações de imagens em processamento"
+
+msgid "Select an application first"
+msgstr "Primeiro selecione uma aplicação"
 
 msgid "No results found."
 msgstr "Nenhum resultado encontrado."

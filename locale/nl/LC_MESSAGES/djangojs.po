@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-17 12:59+0000\n"
+"POT-Creation-Date: 2020-11-04 11:02+0000\n"
 "PO-Revision-Date: 2020-08-05 07:54+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -648,19 +648,6 @@ msgstr "Datum"
 msgid "Other"
 msgstr "Overig"
 
-msgid "Select an application first"
-msgstr "Selecteer eerst een toepassing"
-
-msgid "Set {0} add-on to a max version of {1} and email the author."
-msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "{0} add-on instellen op een maximumversie van {1} en een e-mailbericht naar de schrijver sturen."
-msgstr[1] "{0} add-ons instellen op een maximumversie van {1} en een e-mailbericht naar de schrijvers sturen."
-
-msgid "Email author of {2} add-on which failed validation."
-msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "E-mailbericht versturen naar schrijver van {2} add-on die de validatie niet heeft doorstaan."
-msgstr[1] "E-mailbericht versturen naar schrijvers van {2} add-ons die de validatie niet hebben doorstaan."
-
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
 msgstr "Accepteren en installeren"
@@ -712,6 +699,9 @@ msgstr[1] "{files} bestanden"
 
 msgid "Image changes being processed"
 msgstr "Afbeeldingswijzigingen worden verwerkt"
+
+msgid "Select an application first"
+msgstr "Selecteer eerst een toepassing"
 
 msgid "No results found."
 msgstr "Geen resultaten."

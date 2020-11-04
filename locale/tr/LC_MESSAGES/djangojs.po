@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-17 12:59+0000\n"
+"POT-Creation-Date: 2020-11-04 11:02+0000\n"
 "PO-Revision-Date: 2020-05-30 13:24+0000\n"
 "Last-Translator: Buğra ÖNEN <bugraonen@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -642,19 +642,6 @@ msgstr "Tarih"
 msgid "Other"
 msgstr "Diğer"
 
-msgid "Select an application first"
-msgstr "Önce bir uygulama seçin"
-
-msgid "Set {0} add-on to a max version of {1} and email the author."
-msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "{0} eklentinin maksimum sürümünü {1} olarak ayarla ve geliştiricilere e-posta gönder."
-msgstr[1] "{0} eklentinin maksimum sürümünü {1} olarak ayarla ve geliştiricilere e-posta gönder."
-
-msgid "Email author of {2} add-on which failed validation."
-msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Doğrulamayı geçemeyen {2} eklentisinin yazarına e-posta gönder."
-msgstr[1] "Doğrulamayı geçemeyen {2} eklentisinin yazarlarına e-posta gönder."
-
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
 msgstr "Kabul et ve kur"
@@ -706,6 +693,9 @@ msgstr[1] "{files} dosya"
 
 msgid "Image changes being processed"
 msgstr "Resim değişiklikleri işleniyor"
+
+msgid "Select an application first"
+msgstr "Önce bir uygulama seçin"
 
 msgid "No results found."
 msgstr "Sonuç bulunamadı."

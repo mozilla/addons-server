@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-17 12:59+0000\n"
+"POT-Creation-Date: 2020-11-04 11:02+0000\n"
 "PO-Revision-Date: 2020-04-23 15:23+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -665,21 +665,6 @@ msgstr "Datum"
 msgid "Other"
 msgstr "Jiné"
 
-msgid "Select an application first"
-msgstr "Prvně zvolte aplikaci"
-
-msgid "Set {0} add-on to a max version of {1} and email the author."
-msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "Nastavit u {0} doplňku podporu pro maximální verzi aplikace {1} a poslat e-mail autorovi."
-msgstr[1] "Nastavit u {0} doplňků podporu pro maximální verzi aplikace {1} a poslat e-mail autorům."
-msgstr[2] "Nastavit u {0} doplňků podporu pro maximální verzi aplikace {1} a poslat e-mail autorům."
-
-msgid "Email author of {2} add-on which failed validation."
-msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Poslat e-mail autorovi {2} doplňku, u kterého selhala kontrola."
-msgstr[1] "Poslat e-mail autorům {2} doplňků, u kterých selhala kontrola."
-msgstr[2] "Poslat e-mail autorům {2} doplňků, u kterých selhala kontrola."
-
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
 msgstr "Souhlasím a instalovat"
@@ -732,6 +717,9 @@ msgstr[2] "{files} souborů"
 
 msgid "Image changes being processed"
 msgstr "Jsou prováděny změny obrázku"
+
+msgid "Select an application first"
+msgstr "Prvně zvolte aplikaci"
 
 msgid "No results found."
 msgstr "Nenalezeny žádné výsledky."
