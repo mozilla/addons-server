@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-17 12:59+0000\n"
+"POT-Creation-Date: 2020-11-04 11:02+0000\n"
 "PO-Revision-Date: 2020-09-08 19:57+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -131,6 +131,10 @@ msgstr "Unelte pentru recenzenți (nelistate)"
 msgid "Reviewer links"
 msgstr "Linkuri pentru recenzenți"
 
+#, python-format
+msgid "Git extraction triggered for \"%(addons)s\"."
+msgstr ""
+
 msgid "- Add-on not on AMO -"
 msgstr "- Supliment inexistent în AMO -"
 
@@ -154,6 +158,9 @@ msgstr "Suplimentele mele"
 
 msgid "My Themes"
 msgstr "Temele mele"
+
+msgid "Git-Extract"
+msgstr ""
 
 msgid "Tools"
 msgstr "Instrumente"
@@ -305,6 +312,16 @@ msgid ""
 msgstr ""
 "<h1>Ups! A apărut o eroare.</h1> <p>O vom rezolva în curând.</p> <p> Poți încerca să reîmprospătezi pagina sau să te întorci la <a href=\"%(home)s\">Pagina de start pentru suplimente</a>. Ne poți "
 "ajuta să rezolvăm eroarea prin <a href=\"https://github.com/mozilla/addons/issues/new\">raportarea unei probleme</a> cu detaliile modului în care ai ajuns pe această pagină. </p>"
+
+msgid "Register or Log in"
+msgstr ""
+
+#, fuzzy
+msgid "Email:"
+msgstr "E-mail"
+
+msgid "OK"
+msgstr ""
 
 msgid "No results found"
 msgstr "Nu s-a găsit niciun rezultat"
@@ -495,6 +512,10 @@ msgstr "Suplimentul cu GUID %(guid)s nu există"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr "Blocajele de actualizat sunt diferite deoarece versiunea Min sau Max a fost modificată."
+
+#, python-format
+msgid "%(value)s contains *"
+msgstr ""
 
 msgid "Invalid version"
 msgstr "Versiune nevalidă"
@@ -1690,6 +1711,9 @@ msgstr "Categoria de diverse nu poate fi combinată cu categorii suplimentare."
 msgid "URL domain must be one of [%s], or a subdomain."
 msgstr "Domeniul URL trebuie să fie unul dintre domeniile [%s] sau un subdomeniu."
 
+msgid "URL path for GitHub Sponsors must contain /sponsors/."
+msgstr ""
+
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "Înainte de a schimba limba implicită, trebuie să ai un nume, un rezumat și o descriere în limba respectivă. Îți lipsește %s."
@@ -2221,6 +2245,45 @@ msgstr "Dă clic pe butonul de acceptare de mai jos pentru confirmarea că vrei 
 
 msgid "Decline"
 msgstr "Refuză"
+
+#, fuzzy
+msgid "Set Up Payment"
+msgstr "Necesită plată"
+
+msgid "You're done!"
+msgstr ""
+
+#, python-format
+msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
+msgstr ""
+
+msgid "A newer version of your add-on is currently pending review."
+msgstr ""
+
+msgid "If you have any questions, don’t hesitate to contact us."
+msgstr ""
+
+msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
+msgstr ""
+
+#, fuzzy
+msgid "Manage add-on"
+msgstr "Pachet lingvistic (supliment)"
+
+msgid ""
+"There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a href=\"mailto:amo-admins@mozilla."
+"com\">amo-admins@mozilla.com</a>."
+msgstr ""
+
+msgid "Thank you for joining the Promoted Add-ons Program!"
+msgstr ""
+
+#, python-format
+msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the program once payment is set up through the Stripe system. Click on the button below to continue:"
+msgstr ""
+
+msgid "Continue to Stripe Checkout"
+msgstr ""
 
 msgid "Manage Authors & License"
 msgstr "Gestionează autorii și licența"
@@ -3146,6 +3209,9 @@ msgstr "Încarcă o versiune nouă"
 msgid "View All"
 msgstr "Vezi toate"
 
+msgid "Manage Billing on Stripe"
+msgstr ""
+
 msgid "Listed Review Page"
 msgstr "Pagină de recenzii listate"
 
@@ -3581,17 +3647,9 @@ msgstr[1] "{0} avertismente"
 msgstr[2] "{0} de avertismente"
 
 #. editorial content for the discovery pane.
-msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blochează elementele de urmărire insidioase {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Block invisible trackers and spying ads that follow you around the web."
 msgstr "Blochează elementele de urmărire invizibile și reclamele spionătoare care te urmăresc pe web."
-
-#. editorial content for the discovery pane.
-msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Personalizează paginile din filele noi {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3599,17 +3657,9 @@ msgid "Enjoy a beautiful new page with customizable backgrounds, local weather i
 msgstr "Bucură-te de o pagină nouă frumoasă, cu fundaluri personalizate, informații meteo locale și multe altele."
 
 #. editorial content for the discovery pane.
-msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tradu cu ușurință {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Highlight any text, right-click, and translate instantly."
 msgstr "Evidențiază orice text, dă clic dreapta și tradu instant."
-
-#. editorial content for the discovery pane.
-msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Caută imagini {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3617,17 +3667,9 @@ msgid "Perform reverse image searches from an array of engines."
 msgstr "Efectuezi căutări inverse de imagini dintr-o gamă de motoare de căutare."
 
 #. editorial content for the discovery pane.
-msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blocarea reclamelor și protecția datelor cu caracter personal {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
 msgstr "Blocator de reclame și protecție pentru viața privată. O configurare simplă îți permite să preiei controlul asupra reclamelor pe care le vezi și cum ești urmărit pe internet."
-
-#. editorial content for the discovery pane.
-msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Reinventează filele {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3635,17 +3677,9 @@ msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "Ai o mulțime de file deschise? Organizează-le într-o bară laterală ordonată."
 
 #. editorial content for the discovery pane.
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Oprește urmărirea Facebook {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
 msgstr "Oprește urmărirea practicată de Facebook. Izolează-ți identitatea Facebook într-un „container” separat, ceea ce face mai greu pentru Facebook să-ți urmărească mișcările de pe web."
-
-#. editorial content for the discovery pane.
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Simplifică căutările {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3653,25 +3687,13 @@ msgid "Simplify search by highlighting text on any web page to search the phrase
 msgstr "Simplifică căutarea evidențiind textul pe orice pagină web pentru a căuta expresia într-o gamă de motoare de căutare."
 
 #. editorial content for the discovery pane.
-msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Actualizare meteo instant {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Instant weather updates from around the world."
 msgstr "Actualizări meteo instant de pe tot globul."
 
 #. editorial content for the discovery pane.
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Personalizare de file {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Choose the page you see every time you open a new tab."
 msgstr "Alege pagina pe care o vezi de fiecare dată când deschizi o filă nouă."
-
-#. editorial content for the discovery pane.
-msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Căutare inversă imagini {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3679,33 +3701,17 @@ msgid "See an interesting picture on the web and want to learn more about it? Tr
 msgstr "Vezi o imagine interesantă pe web și vrei să afli mai multe despre ea? Încearcă această unealtă de căutat imagini."
 
 #. editorial content for the discovery pane.
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Descarcă videoclipuri {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
 msgstr "Descarcă videoclipuri cu ușurință. Funcționează cu YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope și sute de alte site-uri video."
-
-#. editorial content for the discovery pane.
-msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Diversifică emojiurile folosite {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
 msgstr "Excelează în jocul emojiurilor. Zeci de emojiuri pentru orice ocazie—mereu la un clic distanță."
 
 #. editorial content for the discovery pane.
-msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gestionează parolele {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
 msgstr "Gestionarea parolelor simplificată. Sincronizează-ți toate datele de autentificare pe mai multe dispozitive cu o parolă care le stăpânește pe toate."
-
-#. editorial content for the discovery pane.
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blochează reclamele {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3713,73 +3719,37 @@ msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of co
 msgstr "Un blocker de reclame de mărime redusă și eficient. uBlock Origin aplică mii de filtre pentru conținut fără să devoreze prea multă memorie."
 
 #. editorial content for the discovery pane.
-msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Îmbunătățește videoclipurile {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Bucură-te de o suită de funcționalități YouTube noi, precum modul cinema, blocarea reclamelor, comanda de redare automată și multe altele."
-
-#. editorial content for the discovery pane.
-msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Cauți ușor imagini {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
 msgstr "Evidențiază orice text și dă clic dreapta ca să efectuezi rapid o căutare de imagini."
 
 #. editorial content for the discovery pane.
-msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bucură-te de marcaje vizuale {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
 msgstr "Bucură-te de marcajele vizuale. Accesează-ți site-urile favorite dintr-un aranjament în dale."
-
-#. editorial content for the discovery pane.
-msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Accesează banca de cunoștințe {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
 msgstr "Adaugă automat date Britannica în rezultatele tale de căutare."
 
 #. editorial content for the discovery pane.
-msgid "Remove YouTube Ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Elimină reclamele YouTube {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
 msgstr "Blochează reclamele iritante și adnotările din YouTube."
-
-#. editorial content for the discovery pane.
-msgid "Read anywhere {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Citește oriunde {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
 msgstr "Trimite articole de știri, istorisiri, postări pe bloguri și multe altele pe dispozitivul tău Kindle."
 
 #. editorial content for the discovery pane.
-msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Codează filele pe culori {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
 msgstr "Organizează-ți filele grupându-le pe culori în baza modelelor URL."
 
 #. editorial content for the discovery pane.
-msgid "Prevent cryptocurrency mining {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Împiedică forarea de criptomonede {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
 msgstr "Oprește site-urile web rău intenționate să-ți utilizeze resursele calculatorului ca să mineze după criptomonede."
-
-#. editorial content for the discovery pane.
-msgid "Automatic grammar checks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verificare gramaticală automată {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3787,33 +3757,17 @@ msgid "Get grammar help anywhere you write on the web—social media, email, doc
 msgstr "Obții ajutor gramatical oriunde scrii pe web—rețele de socializare, e-mail, documente și multe altele."
 
 #. editorial content for the discovery pane.
-msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Vezi ora peste tot în lume {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Display current worldwide times in Firefox's status bar."
 msgstr "Afișează ora exactă din orice țară în bara de stare din Firefox."
-
-#. editorial content for the discovery pane.
-msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Traduceri ușoare {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
 msgstr "Traduceri facile. Evidențiază text pe orice pagină web—sau selectează toată pagina—pentru traducere instantanee."
 
 #. editorial content for the discovery pane.
-msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Acces la înțelepciunea academică {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Tap academic wisdom. Access 10+ million research papers for free."
 msgstr "Accesează cunoașterea academică. Accesează peste 10 milioane de lucrări de cercetare, gratuit."
-
-#. editorial content for the discovery pane.
-msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Personalizează gesturile din mouse {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3821,17 +3775,9 @@ msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configu
 msgstr "Personalizează gesturile din mouse. Descoperă un mod nou de navigare cu peste 50 de configurații."
 
 #. editorial content for the discovery pane.
-msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Optimizează videoclipuri {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Darken the page around video players for a focused viewing experience."
 msgstr "Întunecă pagina în jurul playerelor video pentru o experiență de vizualizare focalizată."
-
-#. editorial content for the discovery pane.
-msgid "Search in good conscience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Caută cu conștiința împăcată {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #, python-format
@@ -3839,20 +3785,8 @@ msgid "Ecosia uses 80% of its search profits to fund tree-planting programs arou
 msgstr "Ecosia investește 80% din profiturile sale ca să finanțeze programe de plantat copaci peste tot în lume. Include Ecosia printre motoarele de căutare din Firefox"
 
 #. editorial content for the discovery pane.
-msgid "Find missing web content  {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Caută conținut web lipsă  {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
 msgstr "Pagina pe care o cauți este indisponibilă? Caută o versiune arhivată/în cache."
-
-#. editorial content for the discovery pane.
-msgid "Find missing web content {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Caută conținut web lipsă {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Mărește imaginile {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3860,17 +3794,9 @@ msgid "Hover over an image to magnify it."
 msgstr "Treci cu mouse-ul peste o imagine pentru mărire."
 
 #. editorial content for the discovery pane.
-msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Fă cookie-urile să dispară {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Automatically erase cookies after you close a tab."
 msgstr "Șterge automat cookie-urile după ce închizi o filă."
-
-#. editorial content for the discovery pane.
-msgid "Adjust page size view {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Reglează mărimea paginii vizualizate {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3878,17 +3804,9 @@ msgid "A simple way to adjust the size of any page's text—or even enlarge the 
 msgstr "Un mod simplu de ajustare a mărimii textului de pe orice pagină—sau chiar pentru mărirea paginii."
 
 #. editorial content for the discovery pane.
-msgid "Block invisible trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blochează elementele de urmărire invizibile {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Stop trackers in their tracks and learn more about them."
 msgstr "Oprești instant elementele de urmărire și afli mai multe despre ele."
-
-#. editorial content for the discovery pane.
-msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Lasă o urmă digitală curată {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3901,25 +3819,13 @@ msgid "No need to write the same thing over and over. Save frequently-entered te
 msgstr "Nu este nevoie să scrii același lucru iar și iar. Salvează textele introduse frecvent și lipeștele în orice moment."
 
 #. editorial content for the discovery pane.
-msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blochează reclamele din e-mail {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Get more screen space by removing ads from your web-based inbox."
 msgstr "Fă-ți spațiu pe ecran eliminând reclamele din căsuța poștală web."
 
 #. editorial content for the discovery pane.
-msgid "Find your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Cauți file {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Manage your open tabs in a tidy sidebar."
 msgstr "Gestionează-ți filele deschise într-o bară laterală ordonată."
-
-#. editorial content for the discovery pane.
-msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Evită elementele de urmărire insidioase și restricțiile {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3927,25 +3833,13 @@ msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloak
 msgstr "Evită elementele de urmărire insidioase și restricțiile. Disimulează-ți navigarea prin mascarea identității browserului și a sistemului de operare."
 
 #. editorial content for the discovery pane.
-msgid "Refresh tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Reîmprospătează filele {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Automatically reload tabs based on time intervals you set."
 msgstr "Reîncarcă automat filele în baza intervalelor de timp setate de tine."
 
 #. editorial content for the discovery pane.
-msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Separă-ți identitățile online {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
 msgstr "Separă-ți viețile online. Distinge în privat variatele tale identități online —muncă, personală etc.— folosind file codate pe culori care îți divizează urmele digitale de cookie-uri."
-
-#. editorial content for the discovery pane.
-msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blochează elementele de urmărire {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3953,17 +3847,9 @@ msgid "Gain an additional layer of tracking protection as you browse the web."
 msgstr "Obține un strat suplimentar de protecție împotriva urmăririi în timp ce navighezi pe web."
 
 #. editorial content for the discovery pane.
-msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Citește fișiere ePub {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
 msgstr "Citește fișiere ePub direct în Firefox—poți mări fonturile, dimensiunile paginilor și multe altele."
-
-#. editorial content for the discovery pane.
-msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ridică nivelul experienței YouTube {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3971,32 +3857,16 @@ msgid "Play YouTube videos by default in the highest quality, turn off annotatio
 msgstr "Redai videoclipuri YouTube implicit la cea mai mare calitate, dezactivezi adnotările și multe altele."
 
 #. editorial content for the discovery pane.
-msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Urmărește elementele de urmărire {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
 msgstr "Urmărește elementele de urmărire. Vezi dintr-un singur clic cine te urmărește."
-
-#. editorial content for the discovery pane.
-msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Schimbă-ți serverul proxy {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server and surf the web through self-defined proxy settings."
 msgstr "Îți schimbi serverul de proxy și navighezi pe web prin setări de proxy definite de tine."
 
 #. editorial content for the discovery pane.
-msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Controlează redarea video {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Enhance your viewing experience by adjusting video speed and more."
 msgstr "Îmbunătățește-ți experiența de vizualizare prin reglarea vitezei de redare și multe altele."
-
-#. editorial content for the discovery pane.
-msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Navighează în siguranță {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4004,24 +3874,12 @@ msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
 msgstr "Adaugă securitate criptată pe orice site care are suport HTTPS. Navighează securizat."
 
 #. editorial content for the discovery pane.
-msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Fă cumpărături și economisește {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
 msgstr "Obții cele mai bune cupoane aplicate automat coșului de cumpărături la finalizarea cumpărăturilor."
 
 #. editorial content for the discovery pane.
-msgid "Improve Reddit {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Îmbunătățește Reddit {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Change the way you surf Reddit by using tags and more."
 msgstr "Schimbă-ți modul în care navighezi pe Reddit folosind etichete și multe altele."
-
-#. editorial content for the discovery pane.
-msgid "Capture the web {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Fă capturi pe web {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
@@ -4032,16 +3890,8 @@ msgid "A superior Windows-only downloader tool."
 msgstr "O unealtă superioară de descărcare numai pentru Windows."
 
 #. editorial content for the discovery pane.
-msgid "Know your trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Identifică elementele de urmărire {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Find out who's tracking you and where they may be sharing your information."
 msgstr "Află cine te urmărește și unde ar putea să îți partajeze informațiile."
-
-#. editorial content for the discovery pane.
-msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Navighează în anonimat {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
@@ -4052,16 +3902,8 @@ msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs,
 msgstr "Bucură-te de marcaje vizuale. Accesezi site-uri favorite, file închise recent și multe altele—toate dintr-un aranjament superb tip dale."
 
 #. editorial content for the discovery pane.
-msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Setează-ți pagina de start {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
 msgstr "Desemnează o pagină de start personalizată pentru noile tale file."
-
-#. editorial content for the discovery pane.
-msgid "List your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Listează-ți filele {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4069,33 +3911,17 @@ msgid "Convert all your open tabs into a list to easily manage them and speed up
 msgstr "Convertește-ți toate filele deschise într-o listă ca să le gestionezi ușor și să faci Firefox mai rapid."
 
 #. editorial content for the discovery pane.
-msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gestionare robustă a descărcărilor {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
 msgstr "Gestionare robustă a descărcărilor. Verifici starea descărcărilor cu o bară de stare, pagina cu istoricul descărcărilor și multe altele."
-
-#. editorial content for the discovery pane.
-msgid "Capture web content {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Fă capturi de conținut web {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
 msgstr "Salvează informații de pe internet în OneNote ca să le poți edita, adnota și multe altele."
 
 #. editorial content for the discovery pane.
-msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Protecție împotriva urmăririi căutărilor {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Stop ad trackers when you click Google and Yandex search returns."
 msgstr "Oprește elementele de urmărire din reclame când dai clic pe rezultatele căutărilor în Google și Yandex."
-
-#. editorial content for the discovery pane.
-msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Navigare dinamică {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4103,25 +3929,13 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Folosește gesturile din mouse pentru închiderea filelor, navigarea prin pagini și multe altele."
 
 #. editorial content for the discovery pane.
-msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Adaugă imagini la rezultatele căutărilor {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "Bucură-te de imagini miniaturale ale site-urilor web alături de rezultatele căutărilor tale."
 
 #. editorial content for the discovery pane.
-msgid "Ease eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Redu oboseala ochilor {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
 msgstr "Redu efortul ochilor prin scăderea luminozității de afișare."
-
-#. editorial content for the discovery pane.
-msgid "Stop pop-ups {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blochează pop-up-urile {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4129,49 +3943,25 @@ msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "Blochează implicit toate pop-up-urile, apoi decizi pe care ai vrea să le deschizi."
 
 #. editorial content for the discovery pane.
-msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Personalizează site-urile web preferate {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr "Personalizezi aspectul oricărui site web. Schimbi culori, fundaluri de pagini și multe altele."
-
-#. editorial content for the discovery pane.
-msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Personalizează fila nouă {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
 msgstr "Îți personalizezi pagina de filă nouă ca să afișeze un număr preferat de dale, o imagine de fundal și multe altele."
 
 #. editorial content for the discovery pane.
-msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gestionează-ți parolele {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
 msgstr "Stochează parolele în siguranță și accesează-le pe mai multe dispozitive."
-
-#. editorial content for the discovery pane.
-msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Vezi pe unde mergi pe web {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
 msgstr "Află pe unde mergi pe web. Obține locația țării site-urilor web pe care intri. Fii un internaut informat."
 
 #. editorial content for the discovery pane.
-msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Îmbunătățește experiența de lectură {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Enhance your reading experience. Make the text you're reading more appealing by removing the clutter around it."
 msgstr "Îmbunătățește-ți experiența de lectură. Fă mai atrăgător textul citit prin eliminarea elementelor inutile din jur."
-
-#. editorial content for the discovery pane.
-msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Deschide mai multe linkuri {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4179,64 +3969,32 @@ msgid "Right-click and drag links you want open in new tabs."
 msgstr "Dă clic dreapta și trage linkuri pe care vrei să le deschizi în file noi."
 
 #. editorial content for the discovery pane.
-msgid "Retrieve tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Recuperează filele {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
 msgstr "Accesează file închise recent prin clic dreapta pe pictograma din bara ta de unelte."
-
-#. editorial content for the discovery pane.
-msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Încurajează productivitatea {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
 msgstr "Inspiră productivitate. Modifică-ți pagina de filă nouă ca să afișeze un fundal frumos, setează-ți sarcinile zilnice și multe altele."
 
 #. editorial content for the discovery pane.
-msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sporește productivitatea {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Block time-wasting sites so you can focus on the task at hand."
 msgstr "Blochează site-urile care-ți consumă inutil timpul ca să te poți concentra pe ce ai de făcut."
-
-#. editorial content for the discovery pane.
-msgid "Refresh Tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Reîmprospătează filele {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals."
 msgstr "Reîncarcă automat filele la anumite intervale de timp."
 
 #. editorial content for the discovery pane.
-msgid "Fix your favorites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Repară favoritele {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Find and resolve broken bookmarks, duplicates, and more."
 msgstr "Caută și repară marcaje defecte, dubluri și multe altele."
-
-#. editorial content for the discovery pane.
-msgid "Stress less {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Redu efortul {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get things done with a helpful to-do list that syncs across devices."
 msgstr "Fii mai eficace cu o listă utilă de sarcini care vine sincronizată pe dispozitive."
 
 #. editorial content for the discovery pane.
-msgid "Shop Smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Cumpără mai inteligent {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Track historical pricing, find competing products, know the seller's ratings, and more."
 msgstr "Urmărești istoricul prețurilor, găsești produse concurente, afli evaluările vânzătorului și multe altele."
-
-#. editorial content for the discovery pane.
-msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Fă YouTube{start_sub_heading} pe stilul tău cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4244,136 +4002,68 @@ msgid "Make it your YouTube. Play videos in a pop-out window, only see ads withi
 msgstr "Personalizează YouTube. Redai videoclipurile într-o fereastră contextuală, vezi reclame numai în canalele la care te-ai abonat, faci capturi de ecrane cu videoclipuri și atât de multe altele."
 
 #. editorial content for the discovery pane.
-msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Explorează traficul site-ului web {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Get in-depth engagement and traffic information for any website."
 msgstr "Obține informații aprofundate despre implicare și trafic pentru orice site web."
-
-#. editorial content for the discovery pane.
-msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Schimbă stilul Wikipedia {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Applies a fresh, modern appearance to Wikipedia."
 msgstr "Dă paginilor de Wikipedia un aspect proaspăt și modern."
 
 #. editorial content for the discovery pane.
-msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Lucrează mai repede {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Use mouse gestures to get to things done quicker."
 msgstr "Folosește gesturile din mouse pentru rapiditate."
-
-#. editorial content for the discovery pane.
-msgid "Disguise the page {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Aplică o mască pe pagina {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
 msgstr "Ascunde porțiuni din site-ul web pe care îl vizualizezi."
 
 #. editorial content for the discovery pane.
-msgid "Download pictures {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Descarcă imagini {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Download images you find on the web."
 msgstr "Descarcă imagini găsite pe web."
-
-#. editorial content for the discovery pane.
-msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Autocenzurează {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Restrict access to inappropriate or undesired content with a filter."
 msgstr "Restricționezi accesul la conținut necorespunzător sau nedorit cu ajutorul unui filtru."
 
 #. editorial content for the discovery pane.
-msgid "Improve new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Îmbunătățește filele noi {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Open a new tab to the right of your current tab, not at the end of the row."
 msgstr "Deschizi o filă nouă în dreapta celei actuale, dar nu la sfârșitul șirului de file."
-
-#. editorial content for the discovery pane.
-msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Învinge spamul {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
 msgstr "Învinge spamul. Folosește adrese de e-mail temporare inteligente pentru a-ți păstra anonimatul și a evita spamul."
 
 #. editorial content for the discovery pane.
-msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Modifică protecția confidențialității {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "A direct path to customizing the built-in privacy settings in Firefox."
 msgstr "Personalizezi ușor setările încorporate de confidențialitate din Firefox."
-
-#. editorial content for the discovery pane.
-msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Obține traduceri instantanee {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations by highlighting text and clicking the button that pops up."
 msgstr "Obții traduceri instant prin evidențierea textului și clic pe butonul contextual."
 
 #. editorial content for the discovery pane.
-msgid "No more redirects {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Împiedică redirecționările {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Go straight to the website you want to access without being redirected in between."
 msgstr "Mergi direct la site-ul web pe care vrei să intri fără să fii redirecționat."
-
-#. editorial content for the discovery pane.
-msgid "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "WhatsApp pe web {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
 msgstr "WhatsApp pe web. Accesează WhatsApp din panoul barei de unelte din Firefox ca să primești notificări în insignă pentru conversații necitite."
 
 #. editorial content for the discovery pane.
-msgid "Translate to/from German {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tradu în/din germană {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Get expert German translations between English, French, Spanish, and other languages."
 msgstr "Obții traduceri experte în germană din engleză, franceză, spaniolă și alte limbi."
-
-#. editorial content for the discovery pane.
-msgid "Create a website block list {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Creează o listă de site-uri web blocate {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
 msgstr "Restricționează accesul Firefox la site-uri web definite de tine. O unealtă grozavă pentru exercitarea autodisciplinei online."
 
 #. editorial content for the discovery pane.
-msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Lucrează mai inteligent {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Manage your productivity by working in set time intervals."
 msgstr "Gestionează-ți productivitatea lucrând în intervale de timp definite."
 
 #. editorial content for the discovery pane.
-msgid "Easy reading {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Citește mai ușor {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Check your favorite RSS feeds all in a single page."
 msgstr "Verifică-ți toate fluxurile RSS preferate pe o singură pagină."
-
-#. editorial content for the discovery pane.
-msgid "Reduce eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Redu efortul ocular {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4381,24 +4071,12 @@ msgid "Enable night mode for a better viewing experience."
 msgstr "Activează modul de noapte pentru o mai bună experiență vizuală."
 
 #. editorial content for the discovery pane.
-msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Caută imagini {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Reverse image search by leveraging the power of multiple search providers."
 msgstr "Căutare inversă cu imagini beneficiind de puterea mai multor motoare de căutare."
 
 #. editorial content for the discovery pane.
-msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Selectează ușor locațiile marcajelor {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "A more efficient way to save bookmarks if you use multiple bookmark folders."
 msgstr "Un mod mai bun de a salva marcaje dacă folosești mai multe dosare de marcaje."
-
-#. editorial content for the discovery pane.
-msgid "Zero formatting {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Formatare zero {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
@@ -4409,40 +4087,20 @@ msgid "Convert an entire webpage to your preferred language—with the click of 
 msgstr "Convertește o întreagă pagină web în limba ta preferată—cu un simplu clic pe un buton."
 
 #. editorial content for the discovery pane.
-msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Extrage linkuri {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Instantly display all links from a web page in new tabs."
 msgstr "Afișează instant în file noi toate linkurile de pe o pagină web."
-
-#. editorial content for the discovery pane.
-msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sari peste redirecționări și elementele de urmărire {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Strip away redirect pages and URL tracking parameters from web links. Works automatically."
 msgstr "Elimină paginile de redirecționare și parametrii de urmărire URL din linkuri. Funcționează automat."
 
 #. editorial content for the discovery pane.
-msgid "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Oprește elementele de urmărire a căutărilor {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Prevent search engines from knowing what search results you click on."
 msgstr "Împiedică motoarele de căutare să identifice pe ce rezultate ale căutării dai clic."
 
 #. editorial content for the discovery pane.
-msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Descarcă videoclipuri YouTube {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Download YouTube videos and/or audio."
 msgstr "Descarcă clipuri video și/sau audio de pe YouTube."
-
-#. editorial content for the discovery pane.
-msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Adună material de lectură {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4450,16 +4108,8 @@ msgid "An advanced reader for aggregating all of your RSS/Atom/RDF sources."
 msgstr "Un lector avansat pentru agregarea tuturor surselor tale RSS/Atom/RDF."
 
 #. editorial content for the discovery pane.
-msgid "Jot it down {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ia notițe {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Create general and website-specific notes to review later."
 msgstr "Creează note generale și specifice site-urilor web de revăzut mai târziu."
-
-#. editorial content for the discovery pane.
-msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Derulare ca pe telefon {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4467,25 +4117,13 @@ msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mou
 msgstr "Derulare ca pe telefon pentru desktop. Are mișcarea de mouse tip „apucare și tragere”."
 
 #. editorial content for the discovery pane.
-msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Șterge date {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Clear your browser cache with a click or keystroke."
 msgstr "Golește cache-ul browserului cu un clic sau o tastă."
 
 #. editorial content for the discovery pane.
-msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Evidențiază textele {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Highlight text on web pages to save and access later."
 msgstr "Evidențiază text pe paginile web de salvat și accesat mai târziu."
-
-#. editorial content for the discovery pane.
-msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bucură-te de muzică de pe tot globul {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4493,25 +4131,13 @@ msgid "Enjoy music from 30,000+ radio stations from all over the globe."
 msgstr "Bucură-te de muzică de la peste 30.000 de posturi radio de pe întreg globul."
 
 #. editorial content for the discovery pane.
-msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Urmărește videoclipuri {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
 msgstr "Economisește lățime de bandă prin difuzare audio numai din videoclipurile de pe YouTube."
 
 #. editorial content for the discovery pane.
-msgid "Transform text into images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Transformă texte în imagini {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Turn words into beautiful headlines and image overlay text."
 msgstr "Transformă cuvintele în titluri frumoase și texte suprapuse pe imagini."
-
-#. editorial content for the discovery pane.
-msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Navighează în siguranță {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4519,49 +4145,25 @@ msgid "Automatically navigate to the secure version of a website if it's availab
 msgstr "Navighează automat spre versiunea securizată a unui site web dacă este disponibilă."
 
 #. editorial content for the discovery pane.
-msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Șterge-ți istoricul de navigare {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
 msgstr "Șterge-ți istoricul de navigare. Specifică un număr personalizat de zile pentru păstrarea istoricului în browser înainte de ștergerea lui automată."
-
-#. editorial content for the discovery pane.
-msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Elimină reclamele la căutare {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
 msgstr "Oprește apariția reclamelor în rezultatele căutărilor."
 
 #. editorial content for the discovery pane.
-msgid "Manage passwords safely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gestionează în siguranță parolele {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
 msgstr "Stochează parolele în siguranță și te autentifici automat pe site-urile cunoscute."
-
-#. editorial content for the discovery pane.
-msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Completează automat formulare {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
 msgstr "Completezi automat formulare. Salvează datele introduse o dată și data următoare vor fi completate automat."
 
 #. editorial content for the discovery pane.
-msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Navighează în mod privat {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Search privately with just a click."
 msgstr "Căutare privată numai dintr-un clic."
-
-#. editorial content for the discovery pane.
-msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Împiedică deturnarea filelor {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4569,32 +4171,16 @@ msgid "Put an end to tab hijacking. Don't let clicked links take control of your
 msgstr "Pune capăt deturnării filelor. Nu lăsa linkurile pe care dai clic să preia controlul asupra filei actuale și să încarce conținut nedorit."
 
 #. editorial content for the discovery pane.
-msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Acces facil la Wikipedia {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
 msgstr "Fă simplu o căutare pe Wikipedia pur și simplu evidențiind text pe orice pagină web și dând apoi clic dreapta."
-
-#. editorial content for the discovery pane.
-msgid "Discover site-specific content {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Descoperă conținuturi specifice site-urilor {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find what you're looking for within a specific domain."
 msgstr "Găsești ceea ce cauți într-un domeniu specific."
 
 #. editorial content for the discovery pane.
-msgid "Find videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Cauți videoclipuri {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Highlight text from any website and right-click to search YouTube for related media."
 msgstr "Evidențiază text pe orice site web și dă clic dreapta ca să cauți materiale asociate pe YouTube."
-
-#. editorial content for the discovery pane.
-msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Câștigă avantaje pe Amazon {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
@@ -4603,50 +4189,25 @@ msgstr ""
 "e pe Amazon."
 
 #. editorial content for the discovery pane.
-msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Control absolut asupra filelor {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr "Bucură-te de controlul absolut asupra filelor—închidere de file duplicat, fuzionare de ferestre, copiere de titluri de file și multe altele."
-
-#. editorial content for the discovery pane.
-msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bucură-te de o educație neobișnuită {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
 msgstr "Bucură-te de o educație ciudată. Încarcă un articol aleatoriu de pe Wikipedia ori de câte ori deschizi o nouă filă."
 
 #. editorial content for the discovery pane.
-msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Modifică-ți fila nouă {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Configure new tab pages to display custom background colors and images."
 msgstr "Configurează paginile de filă nouă ca să afișeze culori și imagini personalizate în fundal."
-
-#. editorial content for the discovery pane.
-msgid "Cat lovers rejoice {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bucurii pentru iubitorii de pisici {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
 msgstr "Afișează un pisoi adorabil la orice filă nouă. Scarpină-l după ureche și vezi ce se întâmplă."
 
 #. editorial content for the discovery pane.
-msgid "Decrease productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Redu productivitatea {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "For those moments when you need to fire lasers out of a cat."
 msgstr "Pentru acele momente când simți nevoia să tragi cu laserul dintr-o pisică."
-
-#. editorial content for the discovery pane.
-msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Caută Firefox {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
@@ -4657,40 +4218,20 @@ msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
 msgstr "Ai o mulțime de file deschise? Scapă de căutat și derulat prin ele cu ajutorul comenzilor rapide din tastatură."
 
 #. editorial content for the discovery pane.
-msgid "Prevent redirects & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Împiedică redirecționările și elementele de urmărire {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
 msgstr "Oprește redirecționările ca să poți accesa ce site vrei - mai repede."
-
-#. editorial content for the discovery pane.
-msgid "Reveal typed passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Afișează parolele tastate {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Adds show/hide ability to all password fields."
 msgstr "Capacitate de afișare/ascundere a reclamelor pentru toate câmpurile de parole."
 
 #. editorial content for the discovery pane.
-msgid "Reduce distractions {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Redu distragerea atenției {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Focus on what you're watching by dimming everything but the video player."
 msgstr "Concentrează-te pe ce vizualizezi prin estomparea întregului ecran în afară de fereastra video."
 
 #. editorial content for the discovery pane.
-msgid "Manage bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gestionează marcajele {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Modify your bookmarks through an easily accessible panel."
 msgstr "Modifică-ți marcajele dintr-un panou ușor accesibil."
-
-#. editorial content for the discovery pane.
-msgid "Keep passwords safe {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ține parolele în siguranță {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
@@ -4701,24 +4242,12 @@ msgid "A simple ad blocker focused on displaying just the content you want."
 msgstr "Un supliment simplu de blocare a reclamelor, focalizat pe a afișa numai conținutul pe care vrei să îl vezi."
 
 #. editorial content for the discovery pane.
-msgid "Track Amazon Pricing History {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Urmărește istoricul de prețuri pe Amazon {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make informed shopping decisions."
 msgstr "Urmărește istoricul prețurilor de pe Amazon. Ia decizii informate de cumpărare."
 
 #. editorial content for the discovery pane.
-msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Cumpără cu încredere {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Shop with confidence. This extension provides an extra check to ensure you're shopping on a site that's been vetted for reliability."
 msgstr "Fă cumpărături cu încredere. Această extensie oferă o verificare suplimentară pentru asigurarea că faci cumpărături pe un site care a fost votat ca fiind de încredere."
-
-#. editorial content for the discovery pane.
-msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Urmărește productivitatea {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
@@ -4731,17 +4260,9 @@ msgstr ""
 "colaborare în timp real în echipă."
 
 #. editorial content for the discovery pane.
-msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Navighează în siguranță {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Only allow web content to run from sites you trust. Surf securely."
 msgstr "Permiți rularea conținutului web numai de pe site-urile în care ai încredere. Navighezi în siguranță."
-
-#. editorial content for the discovery pane.
-msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gestionează cookie-urile {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4749,16 +4270,8 @@ msgid "Take full control of the cookies you've accumulated while browsing."
 msgstr "Preia complet controlul asupra cookie-urilor acumulate în timpul navigării."
 
 #. editorial content for the discovery pane.
-msgid "Forget history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Uită istoricul {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
 msgstr "Șterge automat istoricul din browser pentru site-uri web selectate de tine."
-
-#. editorial content for the discovery pane.
-msgid "Safeguard Bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Protejează marcajele {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4766,33 +4279,17 @@ msgid "Password-protect your personal bookmarks."
 msgstr "Protejează cu parolă marcajele tale personale."
 
 #. editorial content for the discovery pane.
-msgid "Prevent IP address leaks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Împiedică vizualizarea adresei IP {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
 msgstr "Folosești VPN? Adresa ta IP poate fi vizibilă. Evită această situație prin dezactivarea WebRTC."
-
-#. editorial content for the discovery pane.
-msgid "Close annoying overlays {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Închide suprapunerile iritante {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Close annoying pop-ups with a simple click."
 msgstr "Închide ferestrele contextuale sâcâitoare dintr-un simplu clic."
 
 #. editorial content for the discovery pane.
-msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Investighează orice imagine {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Ai găsit o imagine interesantă pe web? Folosește TinEye ca să descoperi de unde provine."
-
-#. editorial content for the discovery pane.
-msgid "Streamline things {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Eficientizează lucrurile {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
@@ -4803,25 +4300,13 @@ msgid "Harness the ability to download video and/or audio in multiple formats."
 msgstr "Bucură-te de posibilitatea de a descărca clipuri video și/sau audio în mai multe formate."
 
 #. editorial content for the discovery pane.
-msgid "Location awareness {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Determinarea poziției {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
 msgstr "Află unde este localizat geografic serverul oricărui site web. Fii un călător pe web informat."
 
 #. editorial content for the discovery pane.
-msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Repară probleme audio {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
 msgstr "Repară sonorul supărător. Volum sonor prea mic pe un site web? Sau prea mare? SoundFixer te poate ajuta."
-
-#. editorial content for the discovery pane.
-msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Editează înainte de tipărire {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4829,16 +4314,8 @@ msgid "Edit a web page before printing. Make sweeping visual changes—remove ad
 msgstr "Editezi o pagină web înainte de tipărire. Fă modificări vizuale extraordinare — elimină reclamele sau conținutul neinteresant — pe orice pagină web pe care vrei să o tipărești."
 
 #. editorial content for the discovery pane.
-msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Urmărește istoricul de prețuri pe Amazon {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
 msgstr "Urmărește istoricul prețurilor de pe Amazon. Ia decizii inteligente de cumpărare primind alerte pentru modificări de prețuri la produsele de pe Amazon de care ești interesat(ă)."
-
-#. editorial content for the discovery pane.
-msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pune stăpânire pe reglajele audio {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4846,49 +4323,25 @@ msgid "Adjust browser audio settings with extreme clarity."
 msgstr "Ajustează setările audio ale browserului la o calitate extremă de claritate."
 
 #. editorial content for the discovery pane.
-msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Protecția confidențialității {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Defend yourself against the sneakiest trackers."
 msgstr "Apără-te de cele mai insidioase elemente de urmărire."
-
-#. editorial content for the discovery pane.
-msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Acoperă-ți urmele {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
 msgstr "Faci căutări cu un nivel sporit de blocare a elementelor de urmărire, criptare inteligentă și alte beneficii de protecție a vieții private."
 
 #. editorial content for the discovery pane.
-msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Simplifică filele {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
 msgstr "Simplifică filele. Organizează-ți filele deschise într-o bară laterală verticală."
-
-#. editorial content for the discovery pane.
-msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gestionare avansată a cookie-urilor {start_sub_heading}cu{addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete unwanted cookies. Offers white and blacklist support."
 msgstr "Șterge automat cookie-urile nedorite. Oferă suport tip listă albă și listă neagră."
 
 #. editorial content for the discovery pane.
-msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Vezi imaginea de ansamblu {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "With a simple click of the mouse you can watch videos in full screen glory."
 msgstr "Cu un clic de mouse poți vedea videoclipuri pe ecran complet."
-
-#. editorial content for the discovery pane.
-msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Salvează memorie {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4896,28 +4349,12 @@ msgid "Stop wasting valuable memory space with inactive tabs."
 msgstr "Nu mai irosi spațiul valoros de memorie cu file inactive."
 
 #. editorial content for the discovery pane.
-msgid "Save web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Salvează pagini web {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Save complete pages—or just portions—as a single HTML file."
 msgstr "Salvează pagini complete—sau numai părți din ele—într-un singur fișier HTML."
 
 #. editorial content for the discovery pane.
-msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Redu chestiile inutile {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
 msgstr "Treci rapid prin brambureala acordurilor TOS tipice. Această extensie inteligentă te ajută să înțelegi rapid pentru ce anume ți se cere consimțământul."
-
-#. editorial content for the discovery pane.
-msgid "Grammar & spell check automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Corector ortografic și gramatical automat {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "A better reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "O experiență mai bună de lectură {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4925,17 +4362,9 @@ msgid "Read with more clarity and ease. Remove the clutter around text on web pa
 msgstr "Citește mai clar și mai ușor. Elimină aglomerația din jurul textelor pe paginile web."
 
 #. editorial content for the discovery pane.
-msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blochează reclame și multe altele {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Block ads and get enhanced protection against malware and ad tracking."
 msgstr "Blochezi reclame și obții o protecție sporită împotriva softurilor malițioase și a urmăririi prin reclame."
-
-#. editorial content for the discovery pane.
-msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Descarcă mai ușor multimedia {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4943,17 +4372,9 @@ msgid "Enjoy multi-threading download support. Automatically detect different ty
 msgstr "Bucură-te de suport multifilar la descărcare. Detectează automat diferite tipuri de multimedia disponibile pentru descărcare."
 
 #. editorial content for the discovery pane.
-msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Salvează imagini ușor {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save images easily—just grab them from your current tab."
 msgstr "Salvezi ușor imagini —pur și simplu le iei din fila actuală."
-
-#. editorial content for the discovery pane.
-msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Măsoară paginile web {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
@@ -4964,17 +4385,9 @@ msgid "Enjoy the benefits of strong password management."
 msgstr "Bucură-te de beneficiile unei gestionări puternice a parolelor."
 
 #. editorial content for the discovery pane.
-msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pagini optimizate vizual {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
 msgstr "Personalizează tente de clar/obscur pentru a optimiza vizual paginile."
-
-#. editorial content for the discovery pane.
-msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blochează site-urile ce distrag atenția {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4982,16 +4395,8 @@ msgid "Block distracting websites. Simply list the sites you want the extension 
 msgstr "Blochezi site-urile web care îți distrag atenția. Pur și simplu enumeri site-urile pe care vrei să le blocheze extensia. Disciplină instant!"
 
 #. editorial content for the discovery pane.
-msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Reanimează pagini moarte {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Find archived, dead, or otherwise disappeared web pages."
 msgstr "Caută pagini web arhivate, moarte sau dispărute altminteri."
-
-#. editorial content for the discovery pane.
-msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Schimbă aspectul Firefox {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4999,32 +4404,16 @@ msgid "Change your browser's appearance. Easily design your own visual themes to
 msgstr "Schimbă-ți aspectul browserului. Îți creezi ușor propriile teme vizuale și dai Firefox-ului un aspect pe gustul tău."
 
 #. editorial content for the discovery pane.
-msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Păstrează notele {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
 msgstr "Păstrează note personale oriunde pe net. Pur și simplu folosești o bară laterală ca să atașezi note la anumite pagini web."
-
-#. editorial content for the discovery pane.
-msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Căutare prin comandă vocală {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
 msgstr "Folosește recunoașterea vocală ca să activezi căutările vocale pe Google, Yahoo și DuckDuckGo."
 
 #. editorial content for the discovery pane.
-msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Urmărește prețurile produselor {start_sub_heading}cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
 msgstr "Urmărești produse și primești notificări când scad prețurile la articolele de care ești interesat(ă) pe Amazon, Best Buy, eBay, Home Depot și Walmart."
-
-#. editorial content for the discovery pane.
-msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Navighează pe web cu o temă întunecată {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5032,17 +4421,9 @@ msgid "Turn the web dark or select a custom color scheme to visually tailor the 
 msgstr "Navighează pe web cu o temă întunecată sau selectează o paletă de culori personalizată pentru a plia vizual Internetul pe gustul tău."
 
 #. editorial content for the discovery pane.
-msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Îmbunătățirea căutărilor pe Android {start_sub_heading} cu {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Get a more advanced search page on Firefox for Android."
 msgstr "Obține o pagină de căutare mai avansată în Firefox pentru Android."
-
-#. editorial content for the discovery pane.
-msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Asistență video pe Android {start_sub_heading} cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
@@ -5118,7 +4499,25 @@ msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Unele site-uri întâmpină dificultăți la redarea videoclipurilor în Firefox pentru Android. Această extensie oferă o remediere."
 
 #. editorial content for the primary hero shelves.
+#, fuzzy
+msgid "For those moments you need to fire lasers out of cat eyes."
+msgstr "Pentru acele momente când simți nevoia să tragi cu laserul dintr-o pisică."
+
+#. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+#, fuzzy
+msgid "Get weather updates directly from Firefox."
+msgstr "Obține actualizări meteo direct în browser."
+
+#. editorial content for the primary hero shelves.
+msgid "Manage your time better with a browser clock that charts work intervals."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -5164,6 +4563,10 @@ msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "Cea mai veche versiune suportată „strict_min_version” este 42.0."
 
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
+msgstr "„strict_min_version\" {appver} necunoscută pentru {app}"
+
+#, fuzzy
+msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr "„strict_min_version\" {appver} necunoscută pentru {app}"
 
 #, python-format
@@ -5691,12 +5094,12 @@ msgid "Security Scanners"
 msgstr "Scanere de securitate"
 
 #, fuzzy
-msgid "Flagged By Scanners ({0})"
-msgstr "Marcat de scanere ({0})"
+msgid "Flagged By Scanners"
+msgstr "Marcate de scanere"
 
 #, fuzzy
-msgid "Flagged for Human Review ({0})"
-msgstr "Marcat pentru recenzare de către o persoană ({0})"
+msgid "Flagged for Human Review"
+msgstr "Marcate pentru recenzie umană"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Suplimente aprobate automat"
@@ -6073,6 +5476,10 @@ msgstr "Mai multe acțiuni"
 msgid "Notify me about new listed versions"
 msgstr "Notifică-mă pentru versiuni noi listate"
 
+#, fuzzy
+msgid "Notify me about new unlisted versions"
+msgstr "Notifică-mă pentru versiuni noi listate"
+
 msgid "Allow resubmission"
 msgstr "Permite retransmiterea"
 
@@ -6300,14 +5707,6 @@ msgid "Other Pending Review"
 msgstr "O altă recenzie în așteptare ({0})"
 
 #, fuzzy
-msgid "Flagged By Scanners"
-msgstr "Marcate de scanere"
-
-#, fuzzy
-msgid "Flagged for Human Review"
-msgstr "Marcate pentru recenzie umană"
-
-#, fuzzy
 msgid "Updates"
 msgstr "Actualizează"
 
@@ -6403,9 +5802,6 @@ msgstr "Întoarcerea pe AMO este dezactivată acum"
 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr "Retur nevalid către GUID AMO (nu este în format base64url?)"
-
-msgid "Invalid Return To AMO guid (not a curated add-on)"
-msgstr "Retur nevalid către GUID AMO (nu este un supliment gestionat)"
 
 #, python-format
 msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
@@ -6580,16 +5976,6 @@ msgstr "Țările utilizatorilor după dată"
 msgid "Downloaded by Date"
 msgstr "Descărcări după dată"
 
-msgid "How are downloads counted?"
-msgstr "Cum sunt contorizate descărcările?"
-
-msgid ""
-"<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
-"referring the download. </p>"
-msgstr ""
-"<h2>Cum se numără descărcările?</h2> <p> Numărul descărcărilor este actualizat în fiecare seară și include numai descărcările suplimentului inițial, nu și cele ale actualizărilor. Descărcările pot "
-"fi defalcate după sursa specifică aferentă descărcării. </p>"
-
 msgid "User languages by Date"
 msgstr "Limbile utilizatorilor în funcție de dată"
 
@@ -6628,21 +6014,6 @@ msgstr "Vezi mai multe platforme&hellip;"
 
 msgid "Download sources by Date"
 msgstr "Surse de descărcare după dată"
-
-#, python-format
-msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
-"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
-"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
-"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
-"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
-msgstr ""
-"<h2>Urmărirea surselor externe</h2> <p> Dacă faci un link pe un site extern, cum ar fi pe blogul sau pe site-ul tău, către pagina cu detaliile suplimentului sau direct către fișierul suplimentului, "
-"poți atașa un parametru care să fie urmărit ca sursă suplimentară de descărcări pe această pagină. De exemplu, următoarele linkuri ar apărea ca avându-și sursa pe blogul tău: <dl> <dt>Add-on "
-"Details Page</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest."
-"xpi?src=<b>external-blog</b></dd> </dl> <p> Vor fi monitorizați numai parametrii src care încep cu „external-\", cu până la 61 de caractere suplimentare. Orice text care vine după „external-\" "
-"poate fi utilizat ca descriere a sursei, cum ar fi „external-blog\", „external-sidebar\", „external-campaign225\" etc. Sunt permise următoarele caractere, care prezintă siguranță URL: <code>a-z A-Z "
-"- . _ ~ %% +</code>"
 
 msgid "Add-on Status by Date"
 msgstr "Starea suplimentului în funcție de dată"

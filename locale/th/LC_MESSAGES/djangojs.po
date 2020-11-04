@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-17 12:59+0000\n"
+"POT-Creation-Date: 2020-11-04 11:02+0000\n"
 "PO-Revision-Date: 2019-11-03 12:07+0000\n"
 "Last-Translator: aefgh39622 <aefgh39622@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -636,17 +636,6 @@ msgstr "วันที่"
 msgid "Other"
 msgstr "อื่น ๆ"
 
-msgid "Select an application first"
-msgstr "เลือกแอปพลิเคชันก่อน"
-
-msgid "Set {0} add-on to a max version of {1} and email the author."
-msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "ตั้งรุ่นสูงสุดของ {0} ส่วนเสริมให้เป็น {1} และส่งอีเมลถึงผู้สร้าง"
-
-msgid "Email author of {2} add-on which failed validation."
-msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "ส่งอีเมลถึงผู้สร้าง {2} ส่วนเสริมที่ไม่ผ่านการตรวจสอบความถูกต้อง"
-
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
 msgstr "ยอมรับและติดตั้ง"
@@ -697,6 +686,9 @@ msgstr[0] "{files} ไฟล์"
 
 msgid "Image changes being processed"
 msgstr "ภาพที่เปลี่ยนกำลังดำเนินการอยู่"
+
+msgid "Select an application first"
+msgstr "เลือกแอปพลิเคชันก่อน"
 
 msgid "No results found."
 msgstr "ไม่พบผลลัพธ์"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-17 12:59+0000\n"
+"POT-Creation-Date: 2020-11-04 11:02+0000\n"
 "PO-Revision-Date: 2020-08-07 13:48+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -669,23 +669,6 @@ msgstr "Datum"
 msgid "Other"
 msgstr "Druge"
 
-msgid "Select an application first"
-msgstr "Wubjeŕśo nejpjerwjej nałoženje"
-
-msgid "Set {0} add-on to a max version of {1} and email the author."
-msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "{0} dodank na maksimalnu wersiju {1} stajiś a awtoroju mejlku pósłaś"
-msgstr[1] "{0} dodanka na maksimalnu wersiju {1} stajiś a awtoroju mejlku pósłaś"
-msgstr[2] "{0} dodanki na maksimalnu wersiju {1} stajiś a awtoroju mejlku pósłaś"
-msgstr[3] "{0} dodankow na maksimalnu wersiju {1} stajiś a awtoroju mejlku pósłaś"
-
-msgid "Email author of {2} add-on which failed validation."
-msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Awtoroju {2} dodanka mejlku pósłaś, kótaregož pśeglědowanje njejo se raźiło."
-msgstr[1] "Awtoroju {2} dodankowu mejlku pósłaś, kótarejuž pśeglědowanje njejo se raźiło."
-msgstr[2] "Awtoroju {2} dodankow mejlku pósłaś, kótarychž pśeglědowanje njejo se raźiło."
-msgstr[3] "Awtoroju {2} dodankow mejlku pósłaś, kótarychž pśeglědowanje njejo se raźiło."
-
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
 msgstr "Akceptěrowaś a instalěrowaś"
@@ -739,6 +722,9 @@ msgstr[3] "{files} datajow"
 
 msgid "Image changes being processed"
 msgstr "Wobrazowe změny se pśeźěłuju"
+
+msgid "Select an application first"
+msgstr "Wubjeŕśo nejpjerwjej nałoženje"
 
 msgid "No results found."
 msgstr "Žedne wusědki namakane."

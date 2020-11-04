@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-17 12:59+0000\n"
+"POT-Creation-Date: 2020-11-04 11:02+0000\n"
 "PO-Revision-Date: 2019-08-22 14:59+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -655,21 +655,6 @@ msgstr "Dată"
 msgid "Other"
 msgstr "Altele"
 
-msgid "Select an application first"
-msgstr "Selectează o aplicație mai întâi"
-
-msgid "Set {0} add-on to a max version of {1} and email the author."
-msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "Setează {0} supliment la o versiune maximă de {1} și trimite e-mail autorului."
-msgstr[1] "Setează {0} suplimente la o versiune maximă de {1} și trimite e-mail autorului."
-msgstr[2] "Setează {0} de suplimente la o versiune maximă de {1} și trimite e-mail autorului."
-
-msgid "Email author of {2} add-on which failed validation."
-msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Trimite un mesaj pe e-mail autorului suplimentului care nu a trecut validarea."
-msgstr[1] "Trimite un mesaj pe e-mail autorilor celor {2} suplimente care nu au trecut validarea."
-msgstr[2] "Trimite un mesaj pe e-mail autorilor celor {2} de suplimente care nu au trecut validarea."
-
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
 msgstr "Acceptă și instalează"
@@ -722,6 +707,9 @@ msgstr[2] "{files} de fișiere"
 
 msgid "Image changes being processed"
 msgstr "Se procesează schimbările imaginii"
+
+msgid "Select an application first"
+msgstr "Selectează o aplicație mai întâi"
 
 msgid "No results found."
 msgstr "Nu s-au găsit rezultate."

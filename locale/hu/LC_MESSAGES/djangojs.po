@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-17 12:59+0000\n"
+"POT-Creation-Date: 2020-11-04 11:02+0000\n"
 "PO-Revision-Date: 2020-08-05 19:40+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -645,19 +645,6 @@ msgstr "Dátum"
 msgid "Other"
 msgstr "Egyéb"
 
-msgid "Select an application first"
-msgstr "Először válasszon ki alkalmazást"
-
-msgid "Set {0} add-on to a max version of {1} and email the author."
-msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "{0} kiegészítő beállítása {1} legmagasabb verzióra, és levélküldés a szerzőnek."
-msgstr[1] "{0} kiegészítők beállítása {1} legmagasabb verzióra, és levélküldés a szerzőknek."
-
-msgid "Email author of {2} add-on which failed validation."
-msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "E-mail küldése a(z) {2} kiegészítő szerzőjének, amely nem mentek át az ellenőrzésen."
-msgstr[1] "E-mail küldése a(z) {2} kiegészítők szerzőjének, amelyek nem mentek át az ellenőrzésen."
-
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
 msgstr "Elfogadás és telepítés"
@@ -709,6 +696,9 @@ msgstr[1] "{files} fájl"
 
 msgid "Image changes being processed"
 msgstr "A kép módosítása folyamatban van"
+
+msgid "Select an application first"
+msgstr "Először válasszon ki alkalmazást"
 
 msgid "No results found."
 msgstr "Nincs találat."

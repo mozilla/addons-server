@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-17 12:59+0000\n"
+"POT-Creation-Date: 2020-11-04 11:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -819,7 +819,7 @@ msgstr ""
 msgid "<b>{0}</b> average in last {1} days"
 msgstr ""
 
-#: static/js/impala/stats/overview.js:20
+#: static/js/impala/stats/overview.js:12
 msgid "No data available."
 msgstr ""
 
@@ -830,23 +830,6 @@ msgstr ""
 #: static/js/impala/stats/topchart.js:101
 msgid "Other"
 msgstr ""
-
-#: static/js/zamboni/admin_validation.js:25 static/js/zamboni/devhub.js:1236
-#: static/js/zamboni/reviewers.js:458
-msgid "Select an application first"
-msgstr ""
-
-#: static/js/zamboni/admin_validation.js:62
-msgid "Set {0} add-on to a max version of {1} and email the author."
-msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] ""
-msgstr[1] ""
-
-#: static/js/zamboni/admin_validation.js:68
-msgid "Email author of {2} add-on which failed validation."
-msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] ""
-msgstr[1] ""
 
 #. L10n: {0} is an app name like Firefox.
 #: static/js/zamboni/buttons.js:72
@@ -918,6 +901,10 @@ msgstr[1] ""
 msgid "Image changes being processed"
 msgstr ""
 
+#: static/js/zamboni/devhub.js:1236 static/js/zamboni/reviewers.js:475
+msgid "Select an application first"
+msgstr ""
+
 #: static/js/zamboni/devhub_search.js:10
 msgid "No results found."
 msgstr ""
@@ -952,39 +939,39 @@ msgstr ""
 msgid "{name} was viewing this page first."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:375
+#: static/js/zamboni/reviewers.js:392
 msgid "{name} was viewing this add-on first."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:388 static/js/zamboni/reviewers.js:414
+#: static/js/zamboni/reviewers.js:405 static/js/zamboni/reviewers.js:431
 msgid "Loading&hellip;"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:393
+#: static/js/zamboni/reviewers.js:410
 msgid "Version Notes"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:400
+#: static/js/zamboni/reviewers.js:417
 msgid "Notes for Reviewers"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:407
+#: static/js/zamboni/reviewers.js:424
 msgid "No version notes found"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:419
+#: static/js/zamboni/reviewers.js:436
 msgid "Review Text"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:426
+#: static/js/zamboni/reviewers.js:443
 msgid "Review notes found"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:497
+#: static/js/zamboni/reviewers.js:514
 msgid "Average Reviews"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:551
+#: static/js/zamboni/reviewers.js:568
 msgid "Number of Reviews"
 msgstr ""
 

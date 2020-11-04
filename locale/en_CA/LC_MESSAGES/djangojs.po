@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-17 12:59+0000\n"
+"POT-Creation-Date: 2020-11-04 11:02+0000\n"
 "PO-Revision-Date: 2020-08-04 18:35+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -643,19 +643,6 @@ msgstr "Date"
 msgid "Other"
 msgstr "Other"
 
-msgid "Select an application first"
-msgstr "Select an application first"
-
-msgid "Set {0} add-on to a max version of {1} and email the author."
-msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "Set {0} add-on to a max version of {1} and email the author."
-msgstr[1] "Set {0} add-ons to a max version of {1} and email the authors."
-
-msgid "Email author of {2} add-on which failed validation."
-msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Email author of {2} add-on which failed validation."
-msgstr[1] "Email authors of {2} add-ons which failed validation."
-
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
 msgstr "Accept and Install"
@@ -707,6 +694,9 @@ msgstr[1] "{files} files"
 
 msgid "Image changes being processed"
 msgstr "Image changes being processed"
+
+msgid "Select an application first"
+msgstr "Select an application first"
 
 msgid "No results found."
 msgstr "No results found."

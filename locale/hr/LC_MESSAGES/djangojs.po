@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-17 12:59+0000\n"
+"POT-Creation-Date: 2020-11-04 11:02+0000\n"
 "PO-Revision-Date: 2020-08-04 20:33+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
@@ -658,21 +658,6 @@ msgstr "Datum"
 msgid "Other"
 msgstr "Ostali"
 
-msgid "Select an application first"
-msgstr "Najprije odaberite aplikaciju"
-
-msgid "Set {0} add-on to a max version of {1} and email the author."
-msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "Namjesti {0} dodatak na maksimalnu verziju od {1} i pošalji email autoru."
-msgstr[1] "Namjesti {0} dodatak na maksimalnu verziju od {1} i pošalji email autorima."
-msgstr[2] "Namjesti {0} dodatak na maksimalnu verziju od {1} i pošalji email autorima."
-
-msgid "Email author of {2} add-on which failed validation."
-msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Pošalji email autoru od {2} dodatka koji nije prošao validaciju."
-msgstr[1] "Pošalji email autorima od {2} dodatka koji nije prošao validaciju."
-msgstr[2] "Pošalji email autorima od {2} dodataka koji nisu prošli validaciju."
-
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
 msgstr "Prihvati i instaliraj"
@@ -725,6 +710,9 @@ msgstr[2] "{files} datoteka"
 
 msgid "Image changes being processed"
 msgstr "Obrađuju se izmjene na slici"
+
+msgid "Select an application first"
+msgstr "Najprije odaberite aplikaciju"
 
 msgid "No results found."
 msgstr "Nema rezultata."

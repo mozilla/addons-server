@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-17 12:59+0000\n"
+"POT-Creation-Date: 2020-11-04 11:02+0000\n"
 "PO-Revision-Date: 2020-08-18 09:28+0000\n"
 "Last-Translator: KAHINA <kahinamessaoudi03@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -643,19 +643,6 @@ msgstr "Azemz"
 msgid "Other"
 msgstr "Ayen-nniḍen"
 
-msgid "Select an application first"
-msgstr "Fren asnas seg tazwara"
-
-msgid "Set {0} add-on to a max version of {1} and email the author."
-msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "Sbadu {0} n uzegrir ɣer lqem afellay n {1} sakin azen imayl i umeskar."
-msgstr[1] "Sbadu {0} n yizegrar ɣer lqem afellay n {1} sakin azen imayl i umeskar."
-
-msgid "Email author of {2} add-on which failed validation."
-msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Azen imayl i umeskar ɣef {2} n uzegrir yeccḍen deg usentem."
-msgstr[1] "Azen imayl i umeskar ɣef {2} n izegrar yeccḍen deg usentem."
-
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
 msgstr "Qbel udiɣ sebded"
@@ -707,6 +694,9 @@ msgstr[1] "{files} ifuyla"
 
 msgid "Image changes being processed"
 msgstr "Asnifel n tugniwin itteddu"
+
+msgid "Select an application first"
+msgstr "Fren asnas seg tazwara"
 
 msgid "No results found."
 msgstr "Ulac igmaḍ yettwafen."

@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-17 12:59+0000\n"
+"POT-Creation-Date: 2020-11-04 11:02+0000\n"
 "PO-Revision-Date: 2020-06-22 21:19+0000\n"
 "Last-Translator: rrock9312 <rrock9312@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -116,7 +116,9 @@ msgstr "登録を完了する前に以下の点について確認してくださ
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
-msgstr "コンパイルされたバイナリや、最小化、難読化されたスクリプト (既知のライブラリを除く) がアドオンに含まれる場合、審査用に別途元のソースを提出する必要があります。そうした場合は必ずソースコードアップロードフォームを使い、審査が即座に却下されないようにしてください。"
+msgstr ""
+"コンパイルされたバイナリや、最小化、難読化されたスクリプト (既知のライブラリを除く) がアドオンに含まれる場合、審査用に別途元のソースを提出する必要があります。そうした場合は必ずソースコードアップロー"
+"ドフォームを使い、審査が即座に却下されないようにしてください。"
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "アドオンの検証中にこれらの問題が見つかり、審査が却下されました:"
@@ -634,17 +636,6 @@ msgstr "日付"
 msgid "Other"
 msgstr "その他"
 
-msgid "Select an application first"
-msgstr "まずアプリケーションを選択してください"
-
-msgid "Set {0} add-on to a max version of {1} and email the author."
-msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "{0} 個のアドオンの最高対応バージョンを {1} へ更新し、作者へメールを送ります。"
-
-msgid "Email author of {2} add-on which failed validation."
-msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "検証をパスしなかった {2} 個のアドオンの作者へメールを送ります。"
-
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
 msgstr "同意してインストール"
@@ -695,6 +686,9 @@ msgstr[0] "{files} 個のファイル"
 
 msgid "Image changes being processed"
 msgstr "画像の変換処理を行っています"
+
+msgid "Select an application first"
+msgstr "まずアプリケーションを選択してください"
 
 msgid "No results found."
 msgstr "結果が見つかりませんでした。"

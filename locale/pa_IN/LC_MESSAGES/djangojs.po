@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-17 12:59+0000\n"
+"POT-Creation-Date: 2020-11-04 11:02+0000\n"
 "PO-Revision-Date: 2020-06-03 17:38+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -651,19 +651,6 @@ msgstr "ਤਾਰੀਖ"
 msgid "Other"
 msgstr "ਹੋਰ"
 
-msgid "Select an application first"
-msgstr "ਪਹਿਲਾਂ ਐਪਲੀਕੇਸ਼ਨ ਚੁੁਣੋ"
-
-msgid "Set {0} add-on to a max version of {1} and email the author."
-msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "{0} ਐਡ-ਆਨ ਨੂੰ {1} ਦੇ ਮੈਕਸ ਵਰਜਨ ਤੇ ਸੈੱਟ ਕਰੋ ਅਤੇ ਲੇਖਕ ਨੂੰ ਈਮੇਲ ਕਰੋ।"
-msgstr[1] "{0} ਐਡ-ਆਨਾਂ ਨੂੰ {1} ਦੇ ਮੈਕਸ ਵਰਜਨ ਤੇ ਸੈੱਟ ਕਰੋ ਅਤੇ ਲੇਖਕਾਂ ਨੂੰ ਈਮੇਲ ਕਰੋ।"
-
-msgid "Email author of {2} add-on which failed validation."
-msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "ਪ੍ਰਮਾਣਿਕਤਾ ਵਿੱਚ ਫ਼ੇਲ੍ਹ ਹੋਏ {2} ਐਡ-ਆਨ ਦੇ ਲੇਖਕ ਨੂੰ ਈਮੇਲ ਕਰੋ।"
-msgstr[1] "ਪ੍ਰਮਾਣਿਕਤਾ ਵਿੱਚ ਫ਼ੇਲ੍ਹ ਹੋਏ {2} ਐਡ-ਆਨਾਂ ਦੇ ਲੇਖਕਾਂ ਨੂੰ ਈਮੇਲ ਕਰੋ।"
-
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
 msgstr "ਮੰਨੋ ਅਤੇ ਇੰਸਟਾਲ ਕਰੋ"
@@ -715,6 +702,9 @@ msgstr[1] "{files} ਫਾਈਲਾਂ"
 
 msgid "Image changes being processed"
 msgstr "ਚਿੱਤਰ ਬਦਲਾਓ ਕਾਰਵਾਈ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ"
+
+msgid "Select an application first"
+msgstr "ਪਹਿਲਾਂ ਐਪਲੀਕੇਸ਼ਨ ਚੁੁਣੋ"
 
 msgid "No results found."
 msgstr "ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਮਿਲਿਆ।"

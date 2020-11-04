@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-17 12:59+0000\n"
+"POT-Creation-Date: 2020-11-04 11:02+0000\n"
 "PO-Revision-Date: 2020-10-13 16:43+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -655,21 +655,6 @@ msgstr "Дата"
 msgid "Other"
 msgstr "Інше"
 
-msgid "Select an application first"
-msgstr "Спочатку виберіть програму"
-
-msgid "Set {0} add-on to a max version of {1} and email the author."
-msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "Встановити {0} додатку максимальну версію {1} та надіслати лист автору."
-msgstr[1] "Встановити {0} додаткам максимальну версію {1} та надіслати лист автору."
-msgstr[2] "Встановити {0} додаткам максимальну версію {1} та надіслати лист автору."
-
-msgid "Email author of {2} add-on which failed validation."
-msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Надіслати лист автору {2} додатка, який не пройшов перевірку."
-msgstr[1] "Надіслати лист авторам {2} додатків, які не пройшли перевірку."
-msgstr[2] "Надіслати лист авторам {2} додатків, які не пройшли перевірку."
-
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
 msgstr "Прийняти та встановити"
@@ -722,6 +707,9 @@ msgstr[2] "{files} файлів"
 
 msgid "Image changes being processed"
 msgstr "Обробка змін зображень"
+
+msgid "Select an application first"
+msgstr "Спочатку виберіть програму"
 
 msgid "No results found."
 msgstr "Не знайдено результатів."
