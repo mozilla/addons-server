@@ -417,10 +417,6 @@ class ReviewHelper(object):
         )
         version_is_blocked = self.version and self.version.is_blocked
 
-        promoted_subscription_okay = (
-            not promoted_group or
-            self.addon.promotedaddon.check_subscription_for_approval())
-
         # Special logic for availability of reject multiple action:
         if version_is_unlisted:
             can_reject_multiple = is_appropriate_reviewer
@@ -454,8 +450,7 @@ class ReviewHelper(object):
                 addon_is_reviewable and
                 version_is_unreviewed and
                 is_appropriate_reviewer and
-                not version_is_blocked and
-                promoted_subscription_okay
+                not version_is_blocked
             )
         }
         actions['reject'] = {
@@ -637,7 +632,6 @@ class ReviewBase(object):
     def set_promoted(self):
         group = self.addon.promoted_group(currently_approved=False)
         if group and group.pre_review:
-            assert self.addon.promotedaddon.check_subscription_for_approval()
             # These addons shouldn't be be attempted for auto approval anyway,
             # but double check that the cron job isn't trying to approve it.
             assert not self.user.id == settings.TASK_USER_ID
@@ -1050,9 +1044,7 @@ class ReviewBase(object):
             # The reviewer should be automatically subscribed to any new
             # versions posted to the same channel.
             ReviewerSubscription.objects.get_or_create(
-                user=self.user,
-                addon=self.addon,
-                channel=latest_version.channel)
+                user=self.user, addon=self.addon, channel=version.channel)
         else:
             # An immediate one might require the add-on status to change.
             self.addon.update_status()

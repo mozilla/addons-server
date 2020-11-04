@@ -1567,6 +1567,7 @@ class TestAddonModels(TestCase):
 
         # The latest version is approved for the same group.
         promoted.approve_for_version(version=addon.current_version)
+        del addon.current_version.approved_for_groups
         assert addon.promoted_group()
         assert addon.promoted_group() == LINE
 
@@ -1578,6 +1579,7 @@ class TestAddonModels(TestCase):
         assert addon.promoted_group(currently_approved=False) == SPONSORED
 
         promoted.approve_for_version(version=addon.current_version)
+        del addon.current_version.approved_for_groups
         assert addon.promoted_group() == SPONSORED
 
         # Application specific group membership should work too
@@ -1625,6 +1627,7 @@ class TestAddonModels(TestCase):
 
         # Add an approval for the new group.
         promoted.approve_for_version(addon.current_version)
+        del addon.current_version.approved_for_groups
         del addon.promoted
         assert addon.promoted == promoted
 

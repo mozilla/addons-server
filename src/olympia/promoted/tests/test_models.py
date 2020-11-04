@@ -163,66 +163,6 @@ class TestPromotedAddon(TestCase):
         assert addon.current_version is None
         assert promo.get_resigned_version_number() is None
 
-    def test_check_subscription_for_approval(self):
-        promo = PromotedAddon.objects.create(
-            addon=addon_factory(), group_id=promoted.RECOMMENDED.id)
-        PromotedSubscription.objects.create(promoted_addon=promo)
-
-        # checking the group doesn't require subscription
-        assert not promo.group.require_subscription
-        assert hasattr(promo, 'promotedsubscription')
-        assert not promo.promotedsubscription.stripe_checkout_completed
-        assert not promo.promotedsubscription.addon_already_promoted
-        assert promo.check_subscription_for_approval()
-
-        # and when it does
-        promo.update(group_id=promoted.VERIFIED.id)
-        assert promo.group.require_subscription
-        assert hasattr(promo, 'promotedsubscription')
-        assert not promo.promotedsubscription.stripe_checkout_completed
-        assert not promo.promotedsubscription.addon_already_promoted
-        assert not promo.check_subscription_for_approval()
-
-        # when there isn't a subscription (existing promo before subscriptions)
-        promo.promotedsubscription.delete()
-        promo = PromotedAddon.objects.get(id=promo.id)
-        assert promo.group.require_subscription
-        assert not hasattr(promo, 'promotedsubscription')
-        assert promo.check_subscription_for_approval()
-
-        # and when there is
-        PromotedSubscription.objects.create(promoted_addon=promo)
-        assert promo.group.require_subscription
-        assert hasattr(promo, 'promotedsubscription')
-        assert not promo.promotedsubscription.stripe_checkout_completed
-        assert not promo.promotedsubscription.addon_already_promoted
-        assert not promo.check_subscription_for_approval()
-
-        # when there's a subscription that's been paid
-        promo.promotedsubscription.update(
-            payment_completed_at=datetime.datetime.now())
-        assert promo.group.require_subscription
-        assert hasattr(promo, 'promotedsubscription')
-        assert promo.promotedsubscription.stripe_checkout_completed
-        assert not promo.promotedsubscription.addon_already_promoted
-        assert promo.check_subscription_for_approval()
-
-        # and when it's not been paid
-        promo.promotedsubscription.update(payment_completed_at=None)
-        assert promo.group.require_subscription
-        assert hasattr(promo, 'promotedsubscription')
-        assert not promo.promotedsubscription.stripe_checkout_completed
-        assert not promo.promotedsubscription.addon_already_promoted
-        assert not promo.check_subscription_for_approval()
-
-        # when there's an existing version approved (existing promo)
-        promo.approve_for_version(promo.addon.current_version)
-        assert promo.group.require_subscription
-        assert hasattr(promo, 'promotedsubscription')
-        assert not promo.promotedsubscription.stripe_checkout_completed
-        assert promo.promotedsubscription.addon_already_promoted
-        assert promo.check_subscription_for_approval()
-
 
 class TestPromotedSubscription(TestCase):
     def test_get_onboarding_url_with_new_object(self):
