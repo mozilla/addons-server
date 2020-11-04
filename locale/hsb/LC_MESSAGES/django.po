@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-04 14:42+0000\n"
+"PO-Revision-Date: 2020-11-04 14:49+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -134,7 +134,7 @@ msgstr "Wotkazy za přepruwowarjow"
 
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
-msgstr ""
+msgstr "Git-ekstrakcija je so za „%(addons)s“ wuwabiła."
 
 msgid "- Add-on not on AMO -"
 msgstr "- Přidatk na AMO njeje -"
@@ -2233,7 +2233,7 @@ msgid "A newer version of your add-on is currently pending review."
 msgstr "Nowša wersija wašeho přidatka tuchwilu na přepruwowanje čaka."
 
 msgid "If you have any questions, don’t hesitate to contact us."
-msgstr ""
+msgstr "Jeli maće prašenja, stajće so z nami do zwiska."
 
 msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
 msgstr ""
@@ -2254,7 +2254,7 @@ msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the progr
 msgstr ""
 
 msgid "Continue to Stripe Checkout"
-msgstr ""
+msgstr "Dale k płaćenju Stripe"
 
 msgid "Manage Authors & License"
 msgstr "Awtorow a licencu rjadować"
@@ -3177,7 +3177,7 @@ msgid "View All"
 msgstr "Wšě pokazać"
 
 msgid "Manage Billing on Stripe"
-msgstr ""
+msgstr "Wotličenje na Stripe rjadować"
 
 msgid "Listed Review Page"
 msgstr "Přepruwowanska strona za nalistowane přidatki"
@@ -4472,7 +4472,7 @@ msgstr "Wobstarajće sej wjedrowe aktualizacije direktnje z Firefox."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
-msgstr ""
+msgstr "Rjadujće swój čas lěpje z časnikom wobhladowaka, kotryž dźěłowe interwale grafisce předstaja."
 
 #. editorial content for the primary hero shelves.
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
