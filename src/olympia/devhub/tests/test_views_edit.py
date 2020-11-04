@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import datetime
 import json
 import os
 from unittest import mock
@@ -20,7 +21,9 @@ from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import image_size
 from olympia.constants.categories import CATEGORIES_BY_ID
+from olympia.constants.promoted import VERIFIED
 from olympia.devhub.forms import DescribeForm
+from olympia.promoted.models import PromotedAddon
 from olympia.tags.models import AddonTag, Tag
 from olympia.users.models import UserProfile
 from olympia.versions.models import VersionPreview
@@ -725,6 +728,34 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
         assert addon.privacy_policy == u'My polïcy!'
         assert addon.description_id
         assert addon.description == u'Sométhing descriptive.'
+
+    def test_no_manage_billing_when_no_subscription(self):
+        response = self.client.get(self.url)
+
+        assert pq(response.content)('.stripe-customer-portal').length == 0
+
+    def test_no_manage_billing_when_subscription_process_not_completed(self):
+        PromotedAddon.objects.create(
+            addon=self.get_addon(), group_id=VERIFIED.id
+        )
+
+        response = self.client.get(self.url)
+
+        assert pq(response.content)('.stripe-customer-portal').length == 0
+
+    def test_show_manage_billing_when_subscription_process_completed(self):
+        promoted = PromotedAddon.objects.create(
+            addon=self.get_addon(), group_id=VERIFIED.id
+        )
+        promoted.promotedsubscription.update(
+            payment_completed_at=datetime.datetime.now()
+        )
+        assert self.get_addon().promoted_subscription
+        assert self.get_addon().promoted_subscription.stripe_checkout_completed
+
+        response = self.client.get(self.url)
+
+        assert pq(response.content)('.stripe-customer-portal').length == 1
 
 
 class TestEditDescribeUnlisted(BaseTestEditDescribe, L10nTestsMixin):

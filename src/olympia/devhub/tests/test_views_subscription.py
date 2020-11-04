@@ -12,7 +12,7 @@ from olympia.promoted.models import PromotedAddon, PromotedSubscription
 
 
 @override_switch("enable-subscriptions-for-promoted-addons", active=True)
-class OnboardingSubscriptionTestCase(TestCase):
+class SubscriptionTestCase(TestCase):
     def setUp(self):
         super().setUp()
 
@@ -28,7 +28,7 @@ class OnboardingSubscriptionTestCase(TestCase):
         self.client.login(email=self.user.email)
 
 
-class TestOnboardingSubscription(OnboardingSubscriptionTestCase):
+class TestOnboardingSubscription(SubscriptionTestCase):
     url_name = "devhub.addons.onboarding_subscription"
 
     @override_switch("enable-subscriptions-for-promoted-addons", active=False)
@@ -239,7 +239,7 @@ class TestOnboardingSubscription(OnboardingSubscriptionTestCase):
         retrieve_mock.assert_called_with(self.subscription)
 
 
-class TestOnboardingSubscriptionSuccess(OnboardingSubscriptionTestCase):
+class TestOnboardingSubscriptionSuccess(SubscriptionTestCase):
     url_name = "devhub.addons.onboarding_subscription_success"
 
     @override_switch("enable-subscriptions-for-promoted-addons", active=False)
@@ -314,7 +314,7 @@ class TestOnboardingSubscriptionSuccess(OnboardingSubscriptionTestCase):
         )
 
         assert not self.subscription.promoted_addon.addon.promoted_group()
-        with mock.patch('olympia.lib.crypto.tasks.sign_addons') as sign_mock:
+        with mock.patch("olympia.lib.crypto.tasks.sign_addons") as sign_mock:
             self.client.get(self.url)
             sign_mock.assert_called()
         self.subscription.refresh_from_db()
@@ -331,7 +331,7 @@ class TestOnboardingSubscriptionSuccess(OnboardingSubscriptionTestCase):
         promo = self.subscription.promoted_addon
         promo.approve_for_version(promo.addon.current_version)
         assert promo.addon.promoted_group() == VERIFIED  # approved already
-        with mock.patch('olympia.lib.crypto.tasks.sign_addons') as sign_mock:
+        with mock.patch("olympia.lib.crypto.tasks.sign_addons") as sign_mock:
             self.client.get(self.url)
             sign_mock.assert_not_called()  # no resigning needed
         self.subscription.refresh_from_db()
@@ -339,7 +339,7 @@ class TestOnboardingSubscriptionSuccess(OnboardingSubscriptionTestCase):
         assert promo.addon.promoted_group() == VERIFIED  # still approved
 
 
-class TestOnboardingSubscriptionCancel(OnboardingSubscriptionTestCase):
+class TestOnboardingSubscriptionCancel(SubscriptionTestCase):
     url_name = "devhub.addons.onboarding_subscription_cancel"
 
     @override_switch("enable-subscriptions-for-promoted-addons", active=False)
@@ -395,3 +395,61 @@ class TestOnboardingSubscriptionCancel(OnboardingSubscriptionTestCase):
         self.subscription.refresh_from_db()
 
         assert not self.subscription.payment_cancelled_at
+
+
+@override_switch("enable-subscriptions-for-promoted-addons", active=True)
+class TestSubscriptionCustomerPortal(SubscriptionTestCase):
+    url_name = "devhub.addons.subscription_customer_portal"
+
+    @override_switch("enable-subscriptions-for-promoted-addons", active=False)
+    def test_returns_404_when_switch_is_disabled(self):
+        assert self.client.post(self.url).status_code == 404
+
+    def test_rejects_get_requests(self):
+        assert self.client.get(self.url).status_code == 405
+
+    def test_returns_404_when_subscription_is_not_found(self):
+        # Create an add-on without a subscription.
+        addon = addon_factory(users=[self.user])
+        url = reverse(self.url_name, args=[addon.slug])
+
+        assert self.client.post(url).status_code == 404
+
+    @mock.patch("olympia.devhub.views.retrieve_stripe_checkout_session")
+    def test_get_returns_404_when_session_not_found(self, retrieve_mock):
+        retrieve_mock.side_effect = Exception("stripe error")
+
+        response = self.client.post(self.url)
+
+        assert response.status_code == 404
+
+    @mock.patch("olympia.devhub.views.retrieve_stripe_checkout_session")
+    @mock.patch("olympia.devhub.views.create_stripe_customer_portal")
+    def test_redirects_to_stripe_customer_portal(
+        self, create_mock, retrieve_mock
+    ):
+        customer_id = "some-customer-id"
+        portal_url = "https://stripe-portal.example.org"
+        retrieve_mock.return_value = {"customer": customer_id}
+        create_mock.return_value = {"url": portal_url}
+
+        response = self.client.post(self.url)
+
+        assert response.status_code == 302
+        assert response["Location"] == portal_url
+        retrieve_mock.assert_called_once_with(self.subscription)
+        create_mock.assert_called_once_with(
+            customer_id=customer_id, addon=self.addon
+        )
+
+    @mock.patch("olympia.devhub.views.retrieve_stripe_checkout_session")
+    @mock.patch("olympia.devhub.views.create_stripe_customer_portal")
+    def test_get_returns_500_when_create_has_failed(
+        self, create_mock, retrieve_mock
+    ):
+        retrieve_mock.return_value = {"customer": "customer-id"}
+        create_mock.side_effect = Exception("stripe error")
+
+        response = self.client.post(self.url)
+
+        assert response.status_code == 500

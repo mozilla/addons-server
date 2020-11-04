@@ -29,6 +29,15 @@
         <li {% if url in request.path|urlencode %}class="selected"{% endif %}>
           <a href="{{ url }}">{{ title }}</a></li>
       {% endfor %}
+
+      {% if addon.promoted_subscription and addon.promoted_subscription.stripe_checkout_completed %}
+      <li class="stripe-customer-portal">
+        <form method="POST" action="{{ url('devhub.addons.subscription_customer_portal', addon.slug) }}">
+          {% csrf_token %}
+          <button class="link" type="submit">{{ _('Manage Billing on Stripe') }}</button>
+        </form>
+      </li>
+      {% endif %}
     </ul>
     <ul class="refinements">
       {% if show_listed_fields %}

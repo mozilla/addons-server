@@ -32,6 +32,9 @@ detail_patterns = [
     re_path(r'^onboarding-subscription/cancel$',
             views.onboarding_subscription_cancel,
             name='devhub.addons.onboarding_subscription_cancel'),
+    re_path(r'^subscription/customer-portal$',
+            views.subscription_customer_portal,
+            name='devhub.addons.subscription_customer_portal'),
 
     re_path(r'^upload_preview$', views.upload_image,
             {'upload_type': 'preview'},
