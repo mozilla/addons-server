@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-04 13:21+0000\n"
+"PO-Revision-Date: 2020-11-04 13:30+0000\n"
 "Last-Translator: 你我皆凡人 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -304,9 +304,8 @@ msgstr "<h1>糟糕！出错了。</h1> <p>我们将尽快修复这个问题。</
 msgid "Register or Log in"
 msgstr "注册或登录"
 
-#, fuzzy
 msgid "Email:"
-msgstr "电子邮件"
+msgstr "邮箱："
 
 msgid "OK"
 msgstr "确定"
@@ -4359,9 +4358,8 @@ msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "某些网站无法在 Android 上正常播放视频，此扩展可修正此问题。"
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "请问您今天要来点能发射激光的喵星人吗？"
+msgstr "请问您今天要来只会发射激光的喵星人吗？"
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
@@ -4377,7 +4375,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
-msgstr ""
+msgstr "是否厌倦了“视频已暂停，要继续观看吗？”的提示？让您在 YouTube 上畅听喜欢的音乐。"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
