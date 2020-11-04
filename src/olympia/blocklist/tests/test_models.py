@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.test.utils import override_settings
 
 from waffle.testutils import override_switch
@@ -57,6 +58,21 @@ class TestBlock(TestCase):
         # except when legacy submissions are enabled to keep it in-sync.
         with override_switch('blocklist_legacy_submit', active=True):
             assert not block.is_readonly
+
+    def test_no_asterisk_in_min_version(self):
+        non_user_writeable_fields = (
+            'legacy_id', 'average_daily_users_snapshot', 'guid')
+        block = Block(
+            min_version='123.4', max_version='*', updated_by=user_factory())
+        block.full_clean(exclude=non_user_writeable_fields)
+        block.min_version = '*'
+        with self.assertRaises(ValidationError):
+            block.full_clean(exclude=non_user_writeable_fields)
+        block.min_version = '0'
+        block.full_clean(exclude=non_user_writeable_fields)
+        block.min_version = '123.*'
+        with self.assertRaises(ValidationError):
+            block.full_clean(exclude=non_user_writeable_fields)
 
 
 class TestBlocklistSubmission(TestCase):
@@ -169,3 +185,18 @@ class TestBlocklistSubmission(TestCase):
         submission.update(min_version='999')
         # if min_version is the same then it's only the metadata (reason)
         assert not submission.has_version_changes()
+
+    def test_no_asterisk_in_min_version(self):
+        non_user_writeable_fields = (
+            'updated_by', 'signoff_by', 'to_block')
+        submission = BlocklistSubmission(
+            min_version='123.4', max_version='*', input_guids='df@')
+        submission.full_clean(exclude=non_user_writeable_fields)
+        submission.min_version = '*'
+        with self.assertRaises(ValidationError):
+            submission.full_clean(exclude=non_user_writeable_fields)
+        submission.min_version = '0'
+        submission.full_clean(exclude=non_user_writeable_fields)
+        submission.min_version = '123.*'
+        with self.assertRaises(ValidationError):
+            submission.full_clean(exclude=non_user_writeable_fields)
