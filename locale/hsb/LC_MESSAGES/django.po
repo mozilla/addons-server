@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-04 14:49+0000\n"
+"PO-Revision-Date: 2020-11-04 17:02+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -2227,7 +2227,7 @@ msgstr "Sće hotowy!"
 
 #, python-format
 msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
-msgstr ""
+msgstr "Sće hotowy! Nowa wersija <strong>%(new_version_number)s</strong> wašeho přidatka <strong>%(addon_name)s</strong>  so jako %(group_name)s wozjewi a dyrbjała bórze k dispoziciji być."
 
 msgid "A newer version of your add-on is currently pending review."
 msgstr "Nowša wersija wašeho přidatka tuchwilu na přepruwowanje čaka."
