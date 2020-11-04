@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-04 11:33+0000\n"
+"PO-Revision-Date: 2020-11-04 11:35+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -2275,7 +2275,7 @@ msgid "You're done! A new version <strong>%(new_version_number)s</strong> of you
 msgstr ""
 
 msgid "A newer version of your add-on is currently pending review."
-msgstr ""
+msgstr "Αυτή τη στιγμή, εκκρεμεί έλεγχος για μια νεότερη έκδοση του προσθέτου σας."
 
 msgid "If you have any questions, don’t hesitate to contact us."
 msgstr ""
