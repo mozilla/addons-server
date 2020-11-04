@@ -140,7 +140,7 @@ msgstr "Посилання редактора"
 
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
-msgstr "Видобуток Git спрацьовує для \"%(addons)s\"."
+msgstr ""
 
 msgid "- Add-on not on AMO -"
 msgstr "- Додаток не на AMO -"
