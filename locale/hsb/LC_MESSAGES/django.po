@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-04 13:14+0000\n"
+"PO-Revision-Date: 2020-11-04 14:42+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -161,7 +161,7 @@ msgid "My Themes"
 msgstr "Moje drasty"
 
 msgid "Git-Extract"
-msgstr ""
+msgstr "Git-ekstrakt"
 
 msgid "Tools"
 msgstr "Nastroje"
@@ -311,13 +311,13 @@ msgstr ""
 " pomhać to rozrisać, hdyž <a href=\"https://github.com/mozilla/addons/issues/new\">zmylkowu rozprawu pisaće</a>, z podrobnosćemi, kak sće so k tutej stronje dóstał.</p>"
 
 msgid "Register or Log in"
-msgstr ""
+msgstr "Registrować abo přizjewić"
 
 msgid "Email:"
 msgstr "E-mejlowa adresa:"
 
 msgid "OK"
-msgstr ""
+msgstr "W porjadku"
 
 msgid "No results found"
 msgstr "Žane wuslědki namakane"
@@ -505,7 +505,7 @@ msgstr "Blokjowanja, kotrež maja so aktualizować, su rozdźělne, dokelž mini
 
 #, python-format
 msgid "%(value)s contains *"
-msgstr ""
+msgstr "%(value)s * wobsahuje"
 
 msgid "Invalid version"
 msgstr "Njepłaćiwa wersija"
@@ -1692,7 +1692,7 @@ msgid "URL domain must be one of [%s], or a subdomain."
 msgstr "URL-domena dyrbi jedna z [%s] abo poddomena być."
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr ""
+msgstr "URL-šćežka za sponsorow GitHub dyrbi /sponsors/ wobsahować."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -2223,14 +2223,14 @@ msgid "Set Up Payment"
 msgstr "Płaćenje trěbne"
 
 msgid "You're done!"
-msgstr ""
+msgstr "Sće hotowy!"
 
 #, python-format
 msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
 msgstr ""
 
 msgid "A newer version of your add-on is currently pending review."
-msgstr ""
+msgstr "Nowša wersija wašeho přidatka tuchwilu na přepruwowanje čaka."
 
 msgid "If you have any questions, don’t hesitate to contact us."
 msgstr ""
@@ -2238,9 +2238,8 @@ msgstr ""
 msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
 msgstr ""
 
-#, fuzzy
 msgid "Manage add-on"
-msgstr "Rěčny pakćik (přidatk)"
+msgstr "Přidatk rjadować"
 
 msgid ""
 "There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a href=\"mailto:amo-"
@@ -4460,18 +4459,16 @@ msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Někotre sydła maja ćežkosće, wideja na Android wothrawać. Tu je rozrisanje."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "Za wokomiki, hdyž dyrbiće lasery z kóčki wutřělić."
+msgstr "Za wokomiki, hdyž dyrbiće lasery z kočich wóčkow wutřělić."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
 msgstr "Wotstronja te dołhe a hrozne slědowanske parametry z URL wuslědkow pytanja Google."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Get weather updates directly from Firefox."
-msgstr "Wobstarajće sej wjedrowe aktualizacije direktnje we wobhladowaku."
+msgstr "Wobstarajće sej wjedrowe aktualizacije direktnje z Firefox."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
@@ -4525,9 +4522,8 @@ msgstr "Najniša podpěrana wersija \"strict_min_version\" je 42.0."
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr "Njeznata \"strict_min_version\" {appver} za {app}"
 
-#, fuzzy
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
-msgstr "Njeznata \"strict_min_version\" {appver} za {app}"
+msgstr "Njeznata \"strict_max_version\" {appver} za {app}"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
@@ -5428,9 +5424,8 @@ msgstr "Dalše akcije"
 msgid "Notify me about new listed versions"
 msgstr "Wo nowych nalistowanych wersijach informować"
 
-#, fuzzy
 msgid "Notify me about new unlisted versions"
-msgstr "Wo nowych nalistowanych wersijach informować"
+msgstr "Wo nowych njenalistowanych wersijach informować"
 
 msgid "Allow resubmission"
 msgstr "Zasozapodaće dowolić"
