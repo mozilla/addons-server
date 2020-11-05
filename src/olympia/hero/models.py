@@ -23,11 +23,8 @@ GRADIENT_COLORS = {
     '#722291': 'color-purple-70',
     '#592ACB': 'color-violet-70',
 }
-FEATURED_IMAGE_PATH = os.path.join(
-    settings.ROOT, 'static', 'img', 'hero', 'featured')
 MODULE_ICON_PATH = os.path.join(
     settings.ROOT, 'static', 'img', 'hero', 'icons')
-FEATURED_IMAGE_URL = f'{settings.STATIC_URL}img/hero/featured/'
 MODULE_ICON_URL = f'{settings.STATIC_URL}img/hero/icons/'
 HERO_PREVIEW_URL = f'{settings.MEDIA_URL}hero-featured-image/thumbs/'
 
@@ -45,10 +42,10 @@ class GradientChoiceWidget(RadioSelect):
             index=index, subindex=subindex, attrs=attrs)
 
 
-class ImageChoiceWidget(RadioSelect):
+class IconChoiceWidget(RadioSelect):
     option_template_name = 'hero/image_option.html'
     option_inherits_attrs = True
-    image_url_base = FEATURED_IMAGE_URL
+    image_url_base = MODULE_ICON_URL
 
     def create_option(self, name, value, label, selected, index,
                       subindex=None, attrs=None):
@@ -56,10 +53,6 @@ class ImageChoiceWidget(RadioSelect):
         return super().create_option(
             name=name, value=value, label=label, selected=selected,
             index=index, subindex=subindex, attrs=attrs)
-
-
-class IconChoiceWidget(ImageChoiceWidget):
-    image_url_base = MODULE_ICON_URL
 
 
 class DirImageChoices:
