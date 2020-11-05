@@ -10,6 +10,8 @@ class VersionReviewerFlagsInline(admin.StackedInline):
     can_delete = False
     view_on_site = False
 
+    fields = ('pending_rejection',)
+
 
 class LicenseAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'builtin', 'url')

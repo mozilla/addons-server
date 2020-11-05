@@ -801,7 +801,7 @@ class VersionReviewerFlags(ModelBase):
     needs_human_review_by_mad = models.BooleanField(
         default=False, db_index=True)
     pending_rejection = models.DateTimeField(
-        default=None, null=True, db_index=True)
+        default=None, null=True, blank=True, db_index=True)
 
 
 def generate_static_theme_preview(theme_data, version_pk):
