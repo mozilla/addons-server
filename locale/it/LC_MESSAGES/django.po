@@ -4524,18 +4524,16 @@ msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Questa estensione risolve i problemi riscontrati con alcuni siti nel riprodurre i video su Firefox per Android."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "Per quei momenti nei quali hai bisogno di un gatto che spara raggi laser."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
 msgstr "Rimuove i parametri di tracciamento dagli URL nei risultati di ricerca di Google."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Get weather updates directly from Firefox."
-msgstr "Ricevi aggiornamenti meteo direttamente nel browser."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
@@ -4590,9 +4588,8 @@ msgstr "La versione meno recente compatibile, “strict_min_version”, è la 42
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr "“strict_min_version” {appver} sconosciuta per {app}"
 
-#, fuzzy
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
-msgstr "“strict_min_version” {appver} sconosciuta per {app}"
+msgstr ""
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
@@ -5493,9 +5490,8 @@ msgstr "Altre azioni"
 msgid "Notify me about new listed versions"
 msgstr "Avvisami riguardo alle nuove versioni elencate"
 
-#, fuzzy
 msgid "Notify me about new unlisted versions"
-msgstr "Avvisami riguardo alle nuove versioni elencate"
+msgstr ""
 
 msgid "Allow resubmission"
 msgstr "Consenti nuovo caricamento"
