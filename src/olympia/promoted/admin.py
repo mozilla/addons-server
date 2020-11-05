@@ -26,6 +26,7 @@ class PromotedSubscriptionInline(admin.StackedInline):
     max_num = 1  # ...and we expect up to one form.
     fields = (
         'onboarding_rate',
+        'onboarding_period',
         'onboarding_url',
         'link_visited_at',
         'payment_cancelled_at',
@@ -40,9 +41,11 @@ class PromotedSubscriptionInline(admin.StackedInline):
 
     def get_readonly_fields(self, request, obj=None):
         readonly_fields = self.readonly_fields
+        onboarding_fields = ('onboarding_rate', 'onboarding_period')
+
         if (obj and hasattr(obj, 'promotedsubscription') and
                 obj.promotedsubscription.stripe_checkout_completed):
-            readonly_fields = ('onboarding_rate',) + readonly_fields
+            readonly_fields = onboarding_fields + readonly_fields
         return readonly_fields
 
     def has_add_permission(self, request, obj=None):
