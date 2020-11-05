@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-05 12:17+0000\n"
+"PO-Revision-Date: 2020-11-05 12:33+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -166,7 +166,7 @@ msgid "My Themes"
 msgstr "Meus temas"
 
 msgid "Git-Extract"
-msgstr ""
+msgstr "Git-Extract"
 
 msgid "Tools"
 msgstr "Ferramentas"
@@ -319,9 +319,8 @@ msgstr ""
 msgid "Register or Log in"
 msgstr "Cadastre-se ou entre"
 
-#, fuzzy
 msgid "Email:"
-msgstr "E-mail"
+msgstr "E-mail:"
 
 msgid "OK"
 msgstr "OK"
@@ -517,7 +516,7 @@ msgstr "Os bloqueios a ser atualizados são diferentes porque a versão Mínima 
 
 #, python-format
 msgid "%(value)s contains *"
-msgstr ""
+msgstr "%(value)s contém *"
 
 msgid "Invalid version"
 msgstr "Versão inválida"
@@ -2252,9 +2251,8 @@ msgstr "Clique no botão 'Aceitar' abaixo para confirmar que você quer ser adic
 msgid "Decline"
 msgstr "Recusar"
 
-#, fuzzy
 msgid "Set Up Payment"
-msgstr "Requer pagamento"
+msgstr "Preparar pagamento"
 
 msgid "You're done!"
 msgstr "Pronto!"
@@ -2272,9 +2270,8 @@ msgstr "Se tiver alguma dúvida, não hesite em entrar em contato conosco."
 msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
 msgstr "Seu pagamento foi registrado, mas no momento não há versões publicadas de sua extensão. Envie uma nova versão pública para concluir este processo."
 
-#, fuzzy
 msgid "Manage add-on"
-msgstr "Pacote de idioma (extensão)"
+msgstr "Gerenciar extensão"
 
 msgid ""
 "There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a href=\"mailto:amo-"
@@ -2291,7 +2288,7 @@ msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the progr
 msgstr "Sua extensão <strong>%(addon_name)s</strong> será incluída no programa assim que o pagamento for concluído através do sistema Stripe. Clique no botão abaixo para continuar:"
 
 msgid "Continue to Stripe Checkout"
-msgstr ""
+msgstr "Prosseguir para pagamento no Stripe"
 
 msgid "Manage Authors & License"
 msgstr "Gerenciar autores e licença"
@@ -3224,7 +3221,7 @@ msgid "View All"
 msgstr "Ver todos"
 
 msgid "Manage Billing on Stripe"
-msgstr ""
+msgstr "Gerenciar faturamento no Stripe"
 
 msgid "Listed Review Page"
 msgstr "Página de revisões listadas"
@@ -4515,26 +4512,24 @@ msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Alguns sites têm dificuldade para reproduzir vídeos no Android. Aqui está uma correção."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "Para aqueles momentos em que você precisa ver um gato atirando lasers."
+msgstr "Para aqueles momentos em que você precisa disparar lasers com olhos de gato."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
 msgstr "Remove aqueles parâmetros de rastreamento longos e desagradáveis das URLs de resultados de pesquisas do Google."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Get weather updates directly from Firefox."
-msgstr "Receba novidades sobre o clima diretamente no navegador."
+msgstr "Receba novidades sobre o clima diretamente no Firefox."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
-msgstr ""
+msgstr "Gerencie melhor seu tempo com um relógio de navegador que registra os intervalos de trabalho."
 
 #. editorial content for the primary hero shelves.
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
-msgstr ""
+msgstr "Cansado de ver a mensagem \"Vídeo pausado. Continuar assistindo?\" aparecer? Ouça suas músicas preferidas sem interrupções no YouTube."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
