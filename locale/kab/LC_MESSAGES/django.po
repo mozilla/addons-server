@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-05 05:21+0000\n"
+"PO-Revision-Date: 2020-11-05 05:29+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -2195,9 +2195,8 @@ msgstr "Tekki ɣef tqeffalt Qbel ddaw-a akkend ad tesnetmeḍ ayen tebɣiḍ ad 
 msgid "Decline"
 msgstr "Agi"
 
-#, fuzzy
 msgid "Set Up Payment"
-msgstr "Yesra asellek"
+msgstr "Sebded lexlaṣ"
 
 msgid "You're done!"
 msgstr ""
@@ -4416,18 +4415,16 @@ msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Kra n yismal ur ssawaḍen ara ad d-ɣren tividyutin deg Android. Dagi i tella tifrat."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "Ticki d ayen teɛyiḍ nezzeh, tbeqquḍ times n lazer s umcic."
+msgstr "I tegnatin-nni, ilaq ad tsuffɣeḍ times n lazer seg wallen n umcic."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
 msgstr "Ittekkes yir iɣewwaren-nni n uḍfar ɣezzifen seg URL n yigmaḍ n unadi deg Google."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Get weather updates directly from Firefox."
-msgstr "Awi-d ileqman n tegnawt srid seg yiminig."
+msgstr "Awi-d ileqman n tegnawt srid seg Firefox."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
@@ -4481,7 +4478,6 @@ msgstr "Azal adday yettusefraken i \"strict_min_version\" d 42.0."
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr "\"strict_min_version\" {appver} arussin i {app}"
 
-#, fuzzy
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr "\"strict_min_version\" {appver} arussin i {app}"
 
@@ -5365,9 +5361,8 @@ msgstr "Ugar n tigawin"
 msgid "Notify me about new listed versions"
 msgstr "Lɣu-yi-d ɣef yileqman imaynuten i d-yettwabedren"
 
-#, fuzzy
 msgid "Notify me about new unlisted versions"
-msgstr "Lɣu-yi-d ɣef yileqman imaynuten i d-yettwabedren"
+msgstr "Lɣu-yi-d ɣef yileqman imaynuten ur d-nettwabder ara"
 
 msgid "Allow resubmission"
 msgstr "Sireg allus n tuzzna"
