@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-05 05:29+0000\n"
+"PO-Revision-Date: 2020-11-05 05:52+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -317,7 +317,7 @@ msgid "Email:"
 msgstr "Imayl:"
 
 msgid "OK"
-msgstr ""
+msgstr "IH"
 
 msgid "No results found"
 msgstr "Ulac igmad yettwafen"
@@ -506,7 +506,7 @@ msgstr "Iḥedren ara yettwaleqmen mgaraden acku lqem n Min neɣ n Max ibeddel."
 
 #, python-format
 msgid "%(value)s contains *"
-msgstr ""
+msgstr "%(value)s deg-s*"
 
 msgid "Invalid version"
 msgstr "Lqem armeɣtu"
