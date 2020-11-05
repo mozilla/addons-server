@@ -231,7 +231,9 @@ class TestSponsoredShelfViewSet(ESTestCase):
                     'impression': '',
                     'click': ''},
             }
-            data = self.perform_search()
+            with mock.patch('django_statsd.clients.statsd.incr') as incr_mock:
+                data = self.perform_search()
+            incr_mock.assert_any_call('services.adzerk.elasticsearch_miss', 3)
             get.assert_called_with(6)
         # non sponsored are ignored
         assert data['count'] == 2
