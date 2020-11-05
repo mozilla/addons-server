@@ -14,6 +14,7 @@ from olympia.promoted.utils import (
     create_stripe_customer_portal,
     create_stripe_webhook_event,
     retrieve_stripe_checkout_session,
+    retrieve_stripe_subscription,
 )
 
 
@@ -195,3 +196,19 @@ def test_create_stripe_webhook_event():
         stripe_construct_event.assert_called_once_with(
             payload, sig_header, "webhook-secret",
         )
+
+
+def test_retrieve_stripe_subscription():
+    stripe_subscription_id = "some stripe subscription id"
+    sub = PromotedSubscription(stripe_subscription_id=stripe_subscription_id)
+    fake_subscription = "fake-stripe-subscription"
+
+    with mock.patch(
+        "olympia.promoted.utils.stripe.Subscription.retrieve"
+    ) as stripe_retrieve:
+        stripe_retrieve.return_value = fake_subscription
+
+        stripe_sub = retrieve_stripe_subscription(subscription=sub)
+
+        assert stripe_sub == fake_subscription
+        stripe_retrieve.assert_called_once_with(stripe_subscription_id)

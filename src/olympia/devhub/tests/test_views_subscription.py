@@ -432,15 +432,15 @@ class TestSubscriptionCustomerPortal(SubscriptionTestCase):
 
         assert self.client.post(url).status_code == 404
 
-    @mock.patch("olympia.devhub.views.retrieve_stripe_checkout_session")
-    def test_get_returns_404_when_session_not_found(self, retrieve_mock):
+    @mock.patch("olympia.devhub.views.retrieve_stripe_subscription")
+    def test_get_returns_404_when_subscription_not_found(self, retrieve_mock):
         retrieve_mock.side_effect = Exception("stripe error")
 
         response = self.client.post(self.url)
 
         assert response.status_code == 404
 
-    @mock.patch("olympia.devhub.views.retrieve_stripe_checkout_session")
+    @mock.patch("olympia.devhub.views.retrieve_stripe_subscription")
     @mock.patch("olympia.devhub.views.create_stripe_customer_portal")
     def test_redirects_to_stripe_customer_portal(
         self, create_mock, retrieve_mock
@@ -459,7 +459,7 @@ class TestSubscriptionCustomerPortal(SubscriptionTestCase):
             customer_id=customer_id, addon=self.addon
         )
 
-    @mock.patch("olympia.devhub.views.retrieve_stripe_checkout_session")
+    @mock.patch("olympia.devhub.views.retrieve_stripe_subscription")
     @mock.patch("olympia.devhub.views.create_stripe_customer_portal")
     def test_get_returns_500_when_create_has_failed(
         self, create_mock, retrieve_mock

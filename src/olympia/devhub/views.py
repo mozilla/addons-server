@@ -49,8 +49,9 @@ from olympia.files.utils import parse_addon
 from olympia.promoted.models import PromotedSubscription
 from olympia.promoted.utils import (
     create_stripe_checkout_session,
-    retrieve_stripe_checkout_session,
     create_stripe_customer_portal,
+    retrieve_stripe_checkout_session,
+    retrieve_stripe_subscription,
 )
 from olympia.reviewers.forms import PublicWhiteboardForm
 from olympia.reviewers.models import Whiteboard
@@ -2000,10 +2001,10 @@ def subscription_customer_portal(request, addon_id, addon):
     sub = get_promoted_subscription_or_404(addon=addon)
 
     try:
-        session = retrieve_stripe_checkout_session(sub)
+        stripe_sub = retrieve_stripe_subscription(sub)
     except Exception:
         log.exception(
-            "error while trying to retrieve a stripe checkout session for "
+            "error while trying to retrieve a stripe subscription for "
             "PromotedSubscription %s (customer_portal).",
             sub.pk
         )
@@ -2011,7 +2012,7 @@ def subscription_customer_portal(request, addon_id, addon):
 
     try:
         portal = create_stripe_customer_portal(
-            customer_id=session['customer'], addon=addon
+            customer_id=stripe_sub['customer'], addon=addon
         )
     except Exception:
         log.exception(
