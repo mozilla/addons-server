@@ -1941,7 +1941,7 @@ def onboarding_subscription_success(request, addon_id, addon):
         )
         raise http.Http404()
 
-    if session.payment_status == "paid" and not sub.payment_completed_at:
+    if session['payment_status'] == "paid" and not sub.payment_completed_at:
         # When the user has completed the Stripe Checkout process, we record
         # this event.
         #
@@ -1954,6 +1954,7 @@ def onboarding_subscription_success(request, addon_id, addon):
         sub.update(
             payment_cancelled_at=None,
             payment_completed_at=datetime.datetime.now(),
+            stripe_subscription_id=session['subscription'],
         )
         log.info('PromotedSubscription %s has been completed.', sub.pk)
         if not sub.addon_already_promoted:
