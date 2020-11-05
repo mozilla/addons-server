@@ -16,6 +16,7 @@ from unittest import mock
 import pytest
 
 from PIL import Image
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.addons.models import Addon, AddonUser, Preview
@@ -497,6 +498,53 @@ class TestRunAddonsLinter(UploadTest, ValidatorTestCase):
             assert result['success']
             assert not result['warnings']
             assert not result['errors']
+
+    class FakePopen:
+        """This is a fake implementation that is used to simulate the linter
+        execution and record the arguments used to execute it."""
+        args = None
+
+        def __init__(self, args, stdout, stderr, shell):
+            self.stdout = stdout
+            self.set_args(args)
+
+        def wait(self):
+            # Write something to stdout to simulate the linter execution.
+            self.stdout.write(
+                b'{"errors": [], "notices": [], "warnings": [],'
+                b'"metadata": {}, "summary": {"notices": 0, "warnings": 0,'
+                b' "errors": 0}}'
+            )
+
+        @classmethod
+        def set_args(cls, args):
+            cls.args = args
+
+        @classmethod
+        def get_args(cls):
+            return cls.args
+
+    @override_switch("disable-linter-xpi-autoclose", active=True)
+    @mock.patch("olympia.devhub.tasks.subprocess")
+    def test_xpi_autoclose_is_disabled(self, subprocess_mock):
+        subprocess_mock.Popen = self.FakePopen
+
+        tasks.run_addons_linter(
+            path=self.valid_path, channel=amo.RELEASE_CHANNEL_LISTED
+        )
+
+        assert '--disable-xpi-autoclose' in self.FakePopen.get_args()
+
+    @override_switch("disable-linter-xpi-autoclose", active=False)
+    @mock.patch("olympia.devhub.tasks.subprocess")
+    def test_xpi_autoclose_is_enabled(self, subprocess_mock):
+        subprocess_mock.Popen = self.FakePopen
+
+        tasks.run_addons_linter(
+            path=self.valid_path, channel=amo.RELEASE_CHANNEL_LISTED
+        )
+
+        assert '--disable-xpi-autoclose' not in self.FakePopen.get_args()
 
 
 class TestValidateFilePath(ValidatorTestCase):
