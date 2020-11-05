@@ -163,7 +163,7 @@ class TestPromotedAddon(TestCase):
         assert addon.current_version is None
         assert promo.get_resigned_version_number() is None
 
-    def test_check_subscription_for_approval(self):
+    def test_has_pending_subscription(self):
         promo = PromotedAddon.objects.create(
             addon=addon_factory(), group_id=promoted.RECOMMENDED.id)
         PromotedSubscription.objects.create(promoted_addon=promo)
@@ -173,7 +173,7 @@ class TestPromotedAddon(TestCase):
         assert hasattr(promo, 'promotedsubscription')
         assert not promo.promotedsubscription.stripe_checkout_completed
         assert not promo.promotedsubscription.addon_already_promoted
-        assert promo.check_subscription_for_approval()
+        assert not promo.has_pending_subscription
 
         # and when it does
         promo.update(group_id=promoted.VERIFIED.id)
@@ -181,14 +181,14 @@ class TestPromotedAddon(TestCase):
         assert hasattr(promo, 'promotedsubscription')
         assert not promo.promotedsubscription.stripe_checkout_completed
         assert not promo.promotedsubscription.addon_already_promoted
-        assert not promo.check_subscription_for_approval()
+        assert promo.has_pending_subscription
 
         # when there isn't a subscription (existing promo before subscriptions)
         promo.promotedsubscription.delete()
         promo = PromotedAddon.objects.get(id=promo.id)
         assert promo.group.require_subscription
         assert not hasattr(promo, 'promotedsubscription')
-        assert promo.check_subscription_for_approval()
+        assert not promo.has_pending_subscription
 
         # and when there is
         PromotedSubscription.objects.create(promoted_addon=promo)
@@ -196,7 +196,7 @@ class TestPromotedAddon(TestCase):
         assert hasattr(promo, 'promotedsubscription')
         assert not promo.promotedsubscription.stripe_checkout_completed
         assert not promo.promotedsubscription.addon_already_promoted
-        assert not promo.check_subscription_for_approval()
+        assert promo.has_pending_subscription
 
         # when there's a subscription that's been paid
         promo.promotedsubscription.update(
@@ -205,7 +205,7 @@ class TestPromotedAddon(TestCase):
         assert hasattr(promo, 'promotedsubscription')
         assert promo.promotedsubscription.stripe_checkout_completed
         assert not promo.promotedsubscription.addon_already_promoted
-        assert promo.check_subscription_for_approval()
+        assert not promo.has_pending_subscription
 
         # and when it's not been paid
         promo.promotedsubscription.update(payment_completed_at=None)
@@ -213,7 +213,7 @@ class TestPromotedAddon(TestCase):
         assert hasattr(promo, 'promotedsubscription')
         assert not promo.promotedsubscription.stripe_checkout_completed
         assert not promo.promotedsubscription.addon_already_promoted
-        assert not promo.check_subscription_for_approval()
+        assert promo.has_pending_subscription
 
         # when there's an existing version approved (existing promo)
         promo.approve_for_version(promo.addon.current_version)
@@ -221,7 +221,7 @@ class TestPromotedAddon(TestCase):
         assert hasattr(promo, 'promotedsubscription')
         assert not promo.promotedsubscription.stripe_checkout_completed
         assert promo.promotedsubscription.addon_already_promoted
-        assert promo.check_subscription_for_approval()
+        assert not promo.has_pending_subscription
 
 
 class TestPromotedSubscription(TestCase):
