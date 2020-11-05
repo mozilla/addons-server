@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-04 23:43+0000\n"
+"PO-Revision-Date: 2020-11-05 12:12+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -2270,7 +2270,7 @@ msgid "If you have any questions, don’t hesitate to contact us."
 msgstr "Se tiver alguma dúvida, não hesite em entrar em contato conosco."
 
 msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
-msgstr ""
+msgstr "Seu pagamento foi registrado, mas no momento não há versões publicadas de sua extensão. Envie uma nova versão pública para concluir este processo."
 
 #, fuzzy
 msgid "Manage add-on"
