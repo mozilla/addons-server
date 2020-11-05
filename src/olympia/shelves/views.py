@@ -1,11 +1,13 @@
 from django.db.transaction import non_atomic_requests
 
+from django_statsd.clients import statsd
 from elasticsearch_dsl import Q, query
 from rest_framework import mixins, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.exceptions import APIException
 from rest_framework.response import Response
 
+import olympia.core.logger
 from olympia.addons.views import AddonSearchView
 from olympia.api.pagination import ESPageNumberPagination
 from olympia.constants.promoted import SPONSORED
@@ -20,6 +22,8 @@ from .utils import (
     send_event_ping,
     send_impression_pings)
 
+
+log = olympia.core.logger.getLogger('z.shelves')
 
 VALID_EVENT_TYPES = ('click', 'conversion')
 
@@ -65,8 +69,14 @@ class SponsoredShelfViewSet(viewsets.ViewSetMixin, AddonSearchView):
             Q('terms', id=ids),
             Q('term', **{'promoted.group_id': SPONSORED.id})]))
         results_qs.execute()  # To cache the results.
-        filter_adzerk_results_to_es_results_qs(
+        extras = filter_adzerk_results_to_es_results_qs(
             self.adzerk_results, results_qs)
+        if extras:
+            for id_ in extras:
+                log.error(
+                    'Addon id [%s] returned from Adzerk, but not a valid '
+                    'Sponsored add-on', id_)
+            statsd.incr('services.adzerk.elasticsearch_miss', len(extras))
         return results_qs
 
     @action(detail=False, methods=['post'])

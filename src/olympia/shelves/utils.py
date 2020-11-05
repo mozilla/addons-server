@@ -123,9 +123,12 @@ def send_event_ping(signed_event, type):
 
 def filter_adzerk_results_to_es_results_qs(results, es_results_qs):
     results_ids = [str(hit.id) for hit in es_results_qs]
+    extra_ids = []
     for key in tuple(results.keys()):
         if key not in results_ids:
             results.pop(key)
+            extra_ids.append(key)
+    return extra_ids
 
 
 def get_signed_impression_blob_from_results(adzerk_results):

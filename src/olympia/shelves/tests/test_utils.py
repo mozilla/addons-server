@@ -291,11 +291,12 @@ def test_filter_adzerk_results_to_es_results_qs():
         hit(66),
         hit(33),
     ]
-    filter_adzerk_results_to_es_results_qs(results, es_results)
+    extras = filter_adzerk_results_to_es_results_qs(results, es_results)
     assert results == {
         '99': {},
         '33': {}
     }
+    assert extras == ['123']
 
 
 @freeze_time('2020-01-01')

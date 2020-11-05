@@ -213,6 +213,9 @@ class TestSponsoredShelfViewSet(ESTestCase):
     def test_adzerk_returns_none_sponsored(self):
         self.populate_es()
         signer = TimestampSigner()
+        log_msg = (
+            'Addon id [%s] returned from Adzerk, but not a valid Sponsored '
+            'add-on')
         with mock.patch('olympia.shelves.views.get_addons_from_adzerk') as get:
             get.return_value = {
                 str(self.sponsored_ext.id): {
@@ -231,7 +234,15 @@ class TestSponsoredShelfViewSet(ESTestCase):
                     'impression': '',
                     'click': ''},
             }
-            data = self.perform_search()
+            with mock.patch('django_statsd.clients.statsd.incr') as incr_mock:
+                with mock.patch('olympia.shelves.views.log.error') as log_mock:
+                    data = self.perform_search()
+            incr_mock.assert_any_call('services.adzerk.elasticsearch_miss', 3)
+            log_mock.assert_has_calls((
+                mock.call(log_msg, str(self.verified_ext.id)),
+                mock.call(log_msg, str(self.not_promoted.id)),
+                mock.call(log_msg, '0'),
+            ))
             get.assert_called_with(6)
         # non sponsored are ignored
         assert data['count'] == 2
