@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-05 13:43+0000\n"
+"PO-Revision-Date: 2020-11-05 13:44+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -4418,9 +4418,8 @@ msgid "Removes those long and ugly tracking parameters from Google search result
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Get weather updates directly from Firefox."
-msgstr "Hava durumu güncellemelerini doğrudan tarayıcıdan alın."
+msgstr "Hava durumunu doğrudan Firefox'tan öğrenin."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
@@ -5379,9 +5378,8 @@ msgstr "Diğer eylemler"
 msgid "Notify me about new listed versions"
 msgstr "Yeni listelenen sürümler hakkında beni bilgilendir"
 
-#, fuzzy
 msgid "Notify me about new unlisted versions"
-msgstr "Yeni listelenen sürümler hakkında beni bilgilendir"
+msgstr "Listelenmeyen yeni sürümler hakkında beni bilgilendir"
 
 msgid "Allow resubmission"
 msgstr "Tekrar gönderime izin ver"
