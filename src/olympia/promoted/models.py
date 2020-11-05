@@ -78,6 +78,21 @@ class PromotedAddon(ModelBase):
                 version=version,
                 group_id=self.group_id,
                 application_id=app.id)
+        try:
+            del version.approved_for_groups
+        except AttributeError:
+            pass
+
+    @property
+    def has_pending_subscription(self):
+        """Checks if there is a subscription needed for this promotion, and if
+        so, if it has been completed.  Returns True if there is outstanding
+        payment needed."""
+        return (
+            self.group.require_subscription and
+            (subscr := getattr(self, 'promotedsubscription', None)) and
+            not subscr.stripe_checkout_completed and
+            not subscr.addon_already_promoted)
 
     def approve_for_addon(self):
         """This sets up the addon as approved for the current promoted group.
