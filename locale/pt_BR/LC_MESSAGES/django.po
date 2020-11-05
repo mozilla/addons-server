@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-05 12:33+0000\n"
+"PO-Revision-Date: 2020-11-05 12:36+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4576,9 +4576,8 @@ msgstr "A versão de \"strict_min_version\" mais antiga suportada é 42.0."
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr "Desconhecido \"strict_min_version\" {appver} para {app}"
 
-#, fuzzy
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
-msgstr "Desconhecido \"strict_min_version\" {appver} para {app}"
+msgstr "Desconhecido \"strict_max_version\" {appver} de {app}"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
@@ -5486,9 +5485,8 @@ msgstr "Mais ações"
 msgid "Notify me about new listed versions"
 msgstr "Notificar sobre novas versões"
 
-#, fuzzy
 msgid "Notify me about new unlisted versions"
-msgstr "Notificar sobre novas versões"
+msgstr "Notifique-me sobre novas versões não listadas"
 
 msgid "Allow resubmission"
 msgstr "Permitir reenvio"
