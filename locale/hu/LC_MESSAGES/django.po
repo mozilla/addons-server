@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-04 12:26+0000\n"
+"PO-Revision-Date: 2020-11-06 10:33+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1710,7 +1710,7 @@ msgid "URL domain must be one of [%s], or a subdomain."
 msgstr "Az URL domain a következők egyike kell legyen: [%s], vagy egy aldomain."
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr ""
+msgstr "A GitHub-szponzorok URL-címének tartalmaznia kell a következőt: /sponsors/."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -2248,10 +2248,10 @@ msgstr "Kész is van!"
 
 #, python-format
 msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
-msgstr ""
+msgstr "Kész! A(z) <strong>%(addon_name)s</strong> kiegészítője <strong>%(new_version_number)s</strong> verziója %(group_name)s néven lesz közzétéve, és hamarosan elérhetővé válik."
 
 msgid "A newer version of your add-on is currently pending review."
-msgstr ""
+msgstr "A kiegészítője újabb verziója jelenleg felülvizsgálatra vár."
 
 msgid "If you have any questions, don’t hesitate to contact us."
 msgstr ""
