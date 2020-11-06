@@ -38,7 +38,7 @@ def test_retrieve_stripe_checkout_session():
 @override_settings(
     STRIPE_API_SPONSORED_YEARLY_PRICE_ID="yearly-sponsored-price-id"
 )
-def test_create_stripe_checkout_sessio_for_verified():
+def test_create_stripe_checkout_session_for_sponsored():
     addon = addon_factory()
     promoted_addon = PromotedAddon.objects.create(
         addon=addon, group_id=SPONSORED.id
@@ -81,7 +81,7 @@ def test_create_stripe_checkout_sessio_for_verified():
 @override_settings(
     STRIPE_API_VERIFIED_MONTHLY_PRICE_ID="monthly-verified-price-id"
 )
-def test_create_stripe_checkout_sessio_for_sponsored():
+def test_create_stripe_checkout_session_for_verified():
     addon = addon_factory()
     promoted_addon = PromotedAddon.objects.create(
         addon=addon, group_id=VERIFIED.id
