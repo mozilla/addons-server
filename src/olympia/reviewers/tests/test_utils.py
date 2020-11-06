@@ -503,7 +503,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
         # finish the checkout
         self.addon.promotedaddon.promotedsubscription.update(
-            payment_completed_at=datetime.now())
+            checkout_completed_at=datetime.now())
         expected = ['public'] + expected
         assert list(self.get_review_actions(
             addon_status=amo.STATUS_APPROVED,
@@ -512,7 +512,7 @@ class TestReviewHelper(TestReviewHelperBase):
         # and check the case where the addon is already fully promoted but
         # hasn't paid yet (trial participant)
         self.addon.promotedaddon.promotedsubscription.update(
-            payment_completed_at=None)
+            checkout_completed_at=None)
         assert (
             not self.addon.promotedaddon.promotedsubscription
             .stripe_checkout_completed)
@@ -2038,7 +2038,7 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_nominated_to_approved_promoted_has_subscription(self):
         self.make_addon_promoted(self.addon, VERIFIED)
         subscription = self.addon.promotedaddon.promotedsubscription
-        subscription.update(payment_completed_at=datetime.now())
+        subscription.update(checkout_completed_at=datetime.now())
 
         assert not self.addon.promoted_group()
         assert subscription.stripe_checkout_completed
@@ -2078,7 +2078,7 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_approved_update_promoted_has_subscription(self):
         self.make_addon_promoted(self.addon, VERIFIED)
         subscription = self.addon.promotedaddon.promotedsubscription
-        subscription.update(payment_completed_at=datetime.now())
+        subscription.update(checkout_completed_at=datetime.now())
 
         assert not self.addon.promoted_group()
         assert subscription.stripe_checkout_completed

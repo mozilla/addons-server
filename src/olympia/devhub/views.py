@@ -1942,19 +1942,19 @@ def onboarding_subscription_success(request, addon_id, addon):
         )
         raise http.Http404()
 
-    if session['payment_status'] == "paid" and not sub.payment_completed_at:
+    if session['payment_status'] == "paid" and not sub.checkout_completed_at:
         # When the user has completed the Stripe Checkout process, we record
         # this event.
         #
-        # We reset `payment_cancelled_at` because it does not matter if the
+        # We reset `checkout_cancelled_at` because it does not matter if the
         # user has cancelled or not in the past (this simply means the user
         # opened the Checkout page and didn't subscribe), mainly because as of
         # now, the user has finally subscribed.
         #
         # Note: "cancellation" of an active subscription is not supported yet.
         sub.update(
-            payment_cancelled_at=None,
-            payment_completed_at=datetime.datetime.now(),
+            checkout_cancelled_at=None,
+            checkout_completed_at=datetime.datetime.now(),
             stripe_subscription_id=session['subscription'],
         )
         log.info('PromotedSubscription %s has been completed.', sub.pk)
@@ -1987,7 +1987,7 @@ def onboarding_subscription_cancel(request, addon_id, addon):
         #
         # If the user has completed the checkout process, then we prevent this
         # date to be changed.
-        sub.update(payment_cancelled_at=datetime.datetime.now())
+        sub.update(checkout_cancelled_at=datetime.datetime.now())
         log.info('PromotedSubscription %s has been cancelled.', sub.pk)
 
     return redirect(

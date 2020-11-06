@@ -748,7 +748,7 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
             addon=self.get_addon(), group_id=VERIFIED.id
         )
         promoted.promotedsubscription.update(
-            payment_completed_at=datetime.datetime.now()
+            checkout_completed_at=datetime.datetime.now()
         )
         assert self.get_addon().promoted_subscription
         assert self.get_addon().promoted_subscription.stripe_checkout_completed

@@ -216,14 +216,14 @@ class PromotedSubscription(ModelBase):
     stripe_subscription_id = models.CharField(
         default=None, null=True, max_length=100
     )
-    payment_cancelled_at = models.DateTimeField(
+    checkout_cancelled_at = models.DateTimeField(
         null=True,
         help_text=(
             "This date is set when the developer has cancelled the initial "
             "payment process."
         ),
     )
-    payment_completed_at = models.DateTimeField(
+    checkout_completed_at = models.DateTimeField(
         null=True,
         help_text=(
             "This date is set when the developer has successfully completed "
@@ -271,11 +271,11 @@ class PromotedSubscription(ModelBase):
 
     @property
     def stripe_checkout_completed(self):
-        return bool(self.payment_completed_at)
+        return bool(self.checkout_completed_at)
 
     @property
     def stripe_checkout_cancelled(self):
-        return bool(self.payment_cancelled_at)
+        return bool(self.checkout_cancelled_at)
 
     @property
     def addon_already_promoted(self):
