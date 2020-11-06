@@ -208,6 +208,8 @@ class PromotedSubscription(ModelBase):
             "page."
         ),
     )
+    # This field should only be used for the Stripe Checkout process, use
+    # `stripe_subscription_id` when interacting with the API.
     stripe_session_id = models.CharField(
         default=None, null=True, max_length=100
     )

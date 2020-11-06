@@ -96,9 +96,17 @@ def create_stripe_checkout_session(subscription, customer_email):
 
 def retrieve_stripe_checkout_session(subscription):
     """This function returns a Stripe Checkout Session object or raises an
-    error when the session does not exist or the API call has failed."""
+    error when the session does not exist or the API call has failed.
+
+    This function should only be used during the Checkout process."""
     stripe.api_key = settings.STRIPE_API_SECRET_KEY
     return stripe.checkout.Session.retrieve(subscription.stripe_session_id)
+
+
+def retrieve_stripe_subscription(subscription):
+    """This function returns a Stripe Subscription object or raises errors."""
+    stripe.api_key = settings.STRIPE_API_SECRET_KEY
+    return stripe.Subscription.retrieve(subscription.stripe_subscription_id)
 
 
 def create_stripe_customer_portal(customer_id, addon):
