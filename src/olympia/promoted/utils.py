@@ -4,7 +4,33 @@ from django.conf import settings
 
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
-from olympia.constants.promoted import SPONSORED, VERIFIED
+from olympia.constants.promoted import (
+    BILLING_PERIOD_MONTHLY,
+    BILLING_PERIOD_YEARLY,
+    SPONSORED,
+    VERIFIED,
+)
+
+
+def get_stripe_price_id_for_subscription(subscription):
+    if subscription.onboarding_period == BILLING_PERIOD_YEARLY:
+        price_id_by_group_id = {
+            SPONSORED.id: settings.STRIPE_API_SPONSORED_YEARLY_PRICE_ID,
+            VERIFIED.id: settings.STRIPE_API_VERIFIED_YEARLY_PRICE_ID,
+        }
+    elif subscription.onboarding_period == BILLING_PERIOD_MONTHLY:
+        price_id_by_group_id = {
+            SPONSORED.id: settings.STRIPE_API_SPONSORED_MONTHLY_PRICE_ID,
+            VERIFIED.id: settings.STRIPE_API_VERIFIED_MONTHLY_PRICE_ID,
+        }
+    else:
+        # Default billing rate/period configuration for each promoted group.
+        price_id_by_group_id = {
+            SPONSORED.id: settings.STRIPE_API_SPONSORED_YEARLY_PRICE_ID,
+            VERIFIED.id: settings.STRIPE_API_VERIFIED_MONTHLY_PRICE_ID,
+        }
+
+    return price_id_by_group_id.get(subscription.promoted_addon.group_id)
 
 
 def create_stripe_checkout_session(subscription, customer_email):
@@ -16,11 +42,7 @@ def create_stripe_checkout_session(subscription, customer_email):
     call has failed."""
     stripe.api_key = settings.STRIPE_API_SECRET_KEY
 
-    price_id = {
-        SPONSORED.id: settings.STRIPE_API_SPONSORED_PRICE_ID,
-        VERIFIED.id: settings.STRIPE_API_VERIFIED_PRICE_ID,
-    }.get(subscription.promoted_addon.group_id)
-
+    price_id = get_stripe_price_id_for_subscription(subscription)
     if not price_id:
         raise ValueError(
             "No price ID for promoted group ID: {}.".format(

@@ -59,6 +59,7 @@ class TestPromotedAddonAdmin(TestCase):
             "promotedsubscription-MIN_NUM_FORMS": "0",
             "promotedsubscription-MAX_NUM_FORMS": "1",
             "promotedsubscription-0-onboarding_rate": "",
+            "promotedsubscription-0-onboarding_period": "",
             "promotedsubscription-0-id": "",
             "promotedsubscription-0-promoted_addon": item_id,
         }
@@ -601,3 +602,25 @@ class TestPromotedAddonAdmin(TestCase):
         doc = pq(response.content)
         assert doc('.field-onboarding_rate').length == 1
         assert doc('.field-onboarding_rate .readonly').length == 1
+
+    def test_cannot_update_onboarding_period_when_payment_completed(self):
+        item = PromotedAddon.objects.create(
+            addon=addon_factory(), group_id=SPONSORED.id,
+        )
+        # Pretend the subscription is active.
+        item.promotedsubscription.update(
+            payment_completed_at=datetime.datetime.now()
+        )
+        assert item.promotedsubscription.stripe_checkout_completed
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Discovery:Edit')
+        self.client.login(email=user.email)
+
+        response = self.client.get(
+            reverse(self.detail_url_name, args=(item.pk,))
+        )
+
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('.field-onboarding_period').length == 1
+        assert doc('.field-onboarding_period .readonly').length == 1

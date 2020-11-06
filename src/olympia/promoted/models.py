@@ -8,7 +8,8 @@ from olympia.amo.models import ModelBase
 from olympia.amo.urlresolvers import reverse
 from olympia.constants.applications import APP_IDS, APPS_CHOICES, APP_USAGE
 from olympia.constants.promoted import (
-    NOT_PROMOTED, PRE_REVIEW_GROUPS, PROMOTED_GROUPS, PROMOTED_GROUPS_BY_ID)
+    NOT_PROMOTED, PRE_REVIEW_GROUPS, PROMOTED_GROUPS, PROMOTED_GROUPS_BY_ID,
+    BILLING_PERIODS)
 from olympia.versions.models import Version
 
 
@@ -234,7 +235,19 @@ class PromotedSubscription(ModelBase):
         help_text=(
             "If set, this rate will be used to charge the developer for this"
             " subscription. The value should be a non-negative integer in"
-            " cents."
+            " cents. The default rate configured in Stripe for the promoted"
+            " group will be used otherwise."
+        ),
+    )
+    onboarding_period = models.CharField(
+        choices=BILLING_PERIODS,
+        max_length=10,
+        blank=True,
+        null=True,
+        help_text=(
+            "If set, this billing period will be used for this subscription."
+            " The default period configured in Stripe for the promoted group"
+            "will be used otherwise."
         ),
     )
 

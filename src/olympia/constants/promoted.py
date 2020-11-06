@@ -142,3 +142,10 @@ PROMOTED_API_NAME_TO_IDS = {
     # we can replace this ugly syntax with dict | in 3.9 - see pep-0584
     **{p.api_name: [p.id] for p in PROMOTED_GROUPS if p},
     **{BADGED_API_NAME: list({p.id for p in BADGED_GROUPS})}}
+
+BILLING_PERIOD_MONTHLY = 'monthly'
+BILLING_PERIOD_YEARLY = 'yearly'
+BILLING_PERIODS = (
+    (BILLING_PERIOD_MONTHLY, "Monthly"),
+    (BILLING_PERIOD_YEARLY, "Yearly"),
+)
