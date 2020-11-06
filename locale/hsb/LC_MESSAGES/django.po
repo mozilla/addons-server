@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-06 16:59+0000\n"
+"PO-Revision-Date: 2020-11-06 17:15+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4478,7 +4478,7 @@ msgstr "Rjadujće swój čas lěpje z časnikom wobhladowaka, kotryž dźěłowe
 
 #. editorial content for the primary hero shelves.
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
-msgstr ""
+msgstr "Sće dialoga „Widejo zastajene. Chceće sej jo dale wobhladować?“ syty? Poskajće na swoju najlubšu hudźbu přez přetorhnjenja na YouTube."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
