@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-09-21 13:22+0000\n"
-"Last-Translator: Michele Rodaro <michele.rodaro@mozillaitalia.org>\n"
+"PO-Revision-Date: 2020-11-05 16:04+0000\n"
+"Last-Translator: Jenny <leanintocuriosity@gmx.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -165,7 +165,7 @@ msgid "My Themes"
 msgstr "I miei temi"
 
 msgid "Git-Extract"
-msgstr ""
+msgstr "Git-Extract"
 
 msgid "Tools"
 msgstr "Strumenti"
@@ -323,7 +323,7 @@ msgid "Register or Log in"
 msgstr ""
 
 msgid "Email:"
-msgstr ""
+msgstr "Email:"
 
 msgid "OK"
 msgstr ""
@@ -520,7 +520,7 @@ msgstr "I blocchi da aggiornare sono diversi perché è cambiata la versione min
 
 #, python-format
 msgid "%(value)s contains *"
-msgstr ""
+msgstr "%(value)s contiene *"
 
 msgid "Invalid version"
 msgstr "Versione non valida"
@@ -1736,7 +1736,7 @@ msgid "URL domain must be one of [%s], or a subdomain."
 msgstr "L’URL deve fare riferimento ai domini [%s] o loro sottodomini."
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr ""
+msgstr "Il percorso dell’URL per gli sponsor GitHub deve contenere /sponsors/."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -2270,7 +2270,7 @@ msgid "Decline"
 msgstr "Declina"
 
 msgid "Set Up Payment"
-msgstr ""
+msgstr "Imposta pagamento"
 
 msgid "You're done!"
 msgstr ""
@@ -2283,13 +2283,13 @@ msgid "A newer version of your add-on is currently pending review."
 msgstr ""
 
 msgid "If you have any questions, don’t hesitate to contact us."
-msgstr ""
+msgstr "Se hai altre domande, non esitare a contattarci."
 
 msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
 msgstr ""
 
 msgid "Manage add-on"
-msgstr ""
+msgstr "Gestione componente aggiuntivo"
 
 msgid ""
 "There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a href=\"mailto:amo-"
@@ -4525,7 +4525,7 @@ msgstr "Questa estensione risolve i problemi riscontrati con alcuni siti nel rip
 
 #. editorial content for the primary hero shelves.
 msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr ""
+msgstr "Per quei momenti nei quali hai bisogno di un gatto che spara raggi laser dagli occhi."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
@@ -4533,7 +4533,7 @@ msgstr "Rimuove i parametri di tracciamento dagli URL nei risultati di ricerca d
 
 #. editorial content for the primary hero shelves.
 msgid "Get weather updates directly from Firefox."
-msgstr ""
+msgstr "Ricevi aggiornamenti meteo direttamente in Firefox."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
@@ -5491,7 +5491,7 @@ msgid "Notify me about new listed versions"
 msgstr "Avvisami riguardo alle nuove versioni elencate"
 
 msgid "Notify me about new unlisted versions"
-msgstr ""
+msgstr "Avvisami riguardo alle nuove versioni non elencate"
 
 msgid "Allow resubmission"
 msgstr "Consenti nuovo caricamento"
