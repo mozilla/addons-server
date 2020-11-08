@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-04 11:35+0000\n"
+"PO-Revision-Date: 2020-11-08 08:38+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4208,7 +4208,7 @@ msgstr "Διαμορφώστε τις νέες καρτέλες σελίδων �
 
 #. editorial content for the discovery pane.
 msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
-msgstr ""
+msgstr "Γνωρίστε ένα αξιολάτρευτο γατάκι με κάθε νέα καρτέλα. Δώστε ένα χάδι πίσω από το αυτί του και δείτε τι θα συμβεί."
 
 #. editorial content for the discovery pane.
 msgid "For those moments when you need to fire lasers out of a cat."
@@ -4270,7 +4270,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Take full control of the cookies you've accumulated while browsing."
-msgstr ""
+msgstr "Πάρτε τον πλήρη έλεγχο των cookies που συγκεντρώνετε κατά την περιήγηση."
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
@@ -4362,7 +4362,7 @@ msgstr "Περικοπή περιττών συμφωνιών για όρους �
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
-msgstr ""
+msgstr "Διαβάστε με περισσότερη ευκολία και ευκρίνεια. Καταργήστε τα περιττά στοιχεία των ιστοσελίδων γύρω από το κείμενο."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4408,7 +4408,7 @@ msgstr "Αλλάξτε την εμφάνιση του προγράμματος �
 
 #. editorial content for the discovery pane.
 msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
-msgstr ""
+msgstr "Κρατήστε προσωπικές σημειώσεις οπουδήποτε στο διαδίκτυο. Απλώς χρησιμοποιήστε την πλευρική γραμμή για να επισυνάψετε σημειώσεις σε συγκεκριμένες ιστοσελίδες."
 
 #. editorial content for the discovery pane.
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
@@ -4421,7 +4421,7 @@ msgstr "Παρακολούθηση προϊόντων που σας ενδιαφ
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
-msgstr ""
+msgstr "Κάντε εναλλαγή σε σκούρο θέμα ή επιλέξτε ένα προσαρμοσμένο σύνολο χρωμάτων για να προσαρμόσετε το διαδίκτυο σύμφωνα με τα γούστα σας."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
