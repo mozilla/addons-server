@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-05 15:47+0000\n"
+"PO-Revision-Date: 2020-11-05 16:03+0000\n"
 "Last-Translator: Jenny <leanintocuriosity@gmx.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -4541,7 +4541,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
-msgstr ""
+msgstr "Stanco di quella finestra di dialogo “Video in pausa. Stai ancora guardando?” Ascolta la tua musica preferita su YouTube ininterrottamente."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
