@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-08 11:51+0000\n"
+"PO-Revision-Date: 2020-11-08 12:00+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -2257,7 +2257,7 @@ msgid "If you have any questions, don’t hesitate to contact us."
 msgstr "Ha bármi kérdése van, forduljon hozzánk bizalommal."
 
 msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
-msgstr ""
+msgstr "Fizetését rögzítettük, de a kiegészítőnek jelenleg nincsenek közzétett verziói. A folyamat befejezéséhez töltsön fel egy új nyilvános verziót."
 
 msgid "Manage add-on"
 msgstr "Kiegészítő kezelése"
@@ -2270,7 +2270,7 @@ msgstr ""
 "admins@mozilla.com</a> címen."
 
 msgid "Thank you for joining the Promoted Add-ons Program!"
-msgstr ""
+msgstr "Köszönjük, hogy csatlakozott a Támogatot kiegészítők programhoz!"
 
 #, python-format
 msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the program once payment is set up through the Stripe system. Click on the button below to continue:"
@@ -4488,11 +4488,11 @@ msgstr "Kapjon időjárási információkat közvetlenül a Firefoxból."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
-msgstr ""
+msgstr "Ossza be jobban az idejét a egy böngészőórával, amely összeszámolja a munka időtartamát."
 
 #. editorial content for the primary hero shelves.
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
-msgstr ""
+msgstr "Unja a „Videó szüneteltetve. Folytatja a nézését?” párbeszédablakot? Hallgassa kedvenc zenéit megszakítás nélkül a YouTube-on."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
