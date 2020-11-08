@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-08 14:42+0000\n"
+"PO-Revision-Date: 2020-11-08 14:45+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -3854,7 +3854,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
-msgstr ""
+msgstr "Käytä salattua yhteyttä millä tahansa HTTPS:ää tukevalla sivustolla. Selaa turvallisesti."
 
 #. editorial content for the discovery pane.
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
@@ -3914,7 +3914,7 @@ msgstr "Käytä hiirieleitä sulkeaksesi välilehtiä, liikkuaksesi sivuilla jne
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr ""
+msgstr "Lisää sivustojen esikatselukuvat hakutulosten viereen."
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
