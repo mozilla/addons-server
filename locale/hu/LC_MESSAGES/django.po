@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-06 10:33+0000\n"
+"PO-Revision-Date: 2020-11-08 11:51+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -141,7 +141,7 @@ msgstr "Szerkesztői hivatkozások"
 
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
-msgstr ""
+msgstr "A(z) „%(addons)s” gitből kinyerése elindult."
 
 msgid "- Add-on not on AMO -"
 msgstr "- A kiegészítő nincs az AMO-n -"
@@ -2254,7 +2254,7 @@ msgid "A newer version of your add-on is currently pending review."
 msgstr "A kiegészítője újabb verziója jelenleg felülvizsgálatra vár."
 
 msgid "If you have any questions, don’t hesitate to contact us."
-msgstr ""
+msgstr "Ha bármi kérdése van, forduljon hozzánk bizalommal."
 
 msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
 msgstr ""
@@ -2266,16 +2266,18 @@ msgid ""
 "There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a href=\"mailto:amo-"
 "admins@mozilla.com\">amo-admins@mozilla.com</a>."
 msgstr ""
+"Hiba történt a kiegészítőért való fizetés beállításakor. Ha problémákat tapasztal e folyamatban, vagy meggondolta magát, lépjen velünk kapcsolatba az <a href=\"mailto:amo-admins@mozilla.com\">amo-"
+"admins@mozilla.com</a> címen."
 
 msgid "Thank you for joining the Promoted Add-ons Program!"
 msgstr ""
 
 #, python-format
 msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the program once payment is set up through the Stripe system. Click on the button below to continue:"
-msgstr ""
+msgstr "A(z) <strong>%(addon_name)s</strong> kiegészítője bekerül a programba, amint a Stripe-on keresztüli fizetés kész. A folytatáshoz kattintson az alábbi gombra:"
 
 msgid "Continue to Stripe Checkout"
-msgstr ""
+msgstr "Tovább a Stripe-fizetéshez"
 
 msgid "Manage Authors & License"
 msgstr "Szerzők és licencek kezelése"
@@ -3190,7 +3192,7 @@ msgid "View All"
 msgstr "Mutassa mindet"
 
 msgid "Manage Billing on Stripe"
-msgstr ""
+msgstr "Stripe-számlázás kezelése"
 
 msgid "Listed Review Page"
 msgstr "Listázott értékelés oldal"
