@@ -22,7 +22,9 @@ import olympia.core.logger
 
 from olympia import amo
 from olympia.access import acl
+from olympia.addons.models import AddonRegionalRestrictions
 from olympia.amo.urlresolvers import get_outgoing_url
+from olympia.api.exceptions import UnavailableForLegalReasons
 from olympia.api.pagination import ESPageNumberPagination
 from olympia.api.permissions import (
     AllowAddonAuthor, AllowReadOnlyIfPublic, AllowRelatedObjectPermissions,
@@ -207,6 +209,10 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
         `is_disabled_by_mozilla` to the exception being thrown so that clients
         can tell the difference between a 401/403 returned because an add-on
         has been disabled by their developer or something else.
+
+        On top of this, can also raise a 451 if the add-on is not available
+        because of regional restrictions - no additional detail is available
+        in that case.
         """
         try:
             super(AddonViewSet, self).check_object_permissions(request, obj)
@@ -224,6 +230,13 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
                 'is_disabled_by_mozilla': obj.status == amo.STATUS_DISABLED,
             }
             raise exc
+        region_code = (
+            self.request and self.request.META.get(
+                'HTTP_X_COUNTRY_CODE', None))
+        if region_code and AddonRegionalRestrictions.objects.filter(
+                addon=obj,
+                excluded_regions__contains=region_code.upper()).exists():
+            raise UnavailableForLegalReasons()
 
     @action(detail=True)
     def eula_policy(self, request, pk=None):

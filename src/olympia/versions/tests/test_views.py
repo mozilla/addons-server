@@ -14,7 +14,7 @@ from pyquery import PyQuery
 from olympia import amo
 from olympia.access import acl
 from olympia.access.models import Group, GroupUser
-from olympia.addons.models import Addon
+from olympia.addons.models import Addon, AddonRegionalRestrictions
 from olympia.amo.templatetags.jinja_helpers import user_media_url
 from olympia.amo.tests import TestCase, addon_factory
 from olympia.amo.urlresolvers import reverse
@@ -147,10 +147,13 @@ class TestDownloadsBase(TestCase):
             path += '_attachments/'
         self.assert_served_by_host(response, path, file_)
 
-    def assert_served_by_cdn(self, response, file_=None):
+    def assert_served_by_redirecting_to_cdn(
+            self, response, file_=None, attachment=False):
         assert response.url.startswith(settings.MEDIA_URL)
         assert response.url.startswith('http')
-        self.assert_served_by_host(response, user_media_url('addons'), file_)
+        assert response['Vary'] == 'X-Country-Code'
+        self.assert_served_locally(
+            response, file_=file_, attachment=attachment)
 
 
 class TestDownloadsUnlistedVersions(TestDownloadsBase):
@@ -168,6 +171,12 @@ class TestDownloadsUnlistedVersions(TestDownloadsBase):
         assert self.client.get(self.file_url).status_code == 404
         assert self.client.get(self.latest_url).status_code == 404
 
+        # Even if georestricted, the 404 will be raised anyway.
+        AddonRegionalRestrictions.objects.create(
+            addon=self.addon, excluded_regions=['FR', 'US'])
+        assert self.client.get(
+            self.file_url, HTTP_X_COUNTRY_CODE='fr').status_code == 404
+
     @mock.patch.object(acl, 'is_reviewer', lambda request, addon: False)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
     @mock.patch.object(acl, 'check_addon_ownership',
@@ -179,6 +188,14 @@ class TestDownloadsUnlistedVersions(TestDownloadsBase):
         self.assert_served_internally(
             self.client.get(url), False, attachment=True)
 
+        # Even allowed to bypass georestrictions.
+        AddonRegionalRestrictions.objects.create(
+            addon=self.addon, excluded_regions=['FR', 'US'])
+        self.assert_served_internally(
+            self.client.get(url, HTTP_X_COUNTRY_CODE='fr'),
+            False, attachment=True)
+
+        # Latest shouldn't work as it's only for latest public listed version.
         assert self.client.get(self.latest_url).status_code == 404
 
     @mock.patch.object(acl, 'is_reviewer', lambda request, addon: True)
@@ -201,6 +218,14 @@ class TestDownloadsUnlistedVersions(TestDownloadsBase):
         self.assert_served_internally(
             self.client.get(url), False, attachment=True)
 
+        # Even allowed to bypass georestrictions.
+        AddonRegionalRestrictions.objects.create(
+            addon=self.addon, excluded_regions=['FR', 'US'])
+        self.assert_served_internally(
+            self.client.get(url, HTTP_X_COUNTRY_CODE='fr'),
+            False, attachment=True)
+
+        # Latest shouldn't work as it's only for latest public listed version.
         assert self.client.get(self.latest_url).status_code == 404
 
 
@@ -220,6 +245,12 @@ class TestDownloadsUnlistedAddonDeleted(TestDownloadsUnlistedVersions):
         assert self.client.get(self.file_url).status_code == 404
         assert self.client.get(self.latest_url).status_code == 404
 
+        # Even if georestricted, the 404 will be raised anyway.
+        AddonRegionalRestrictions.objects.create(
+            addon=self.addon, excluded_regions=['FR', 'US'])
+        assert self.client.get(
+            self.file_url, HTTP_X_COUNTRY_CODE='fr').status_code == 404
+
     @mock.patch.object(acl, 'is_reviewer', lambda request, addon: False)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: True)
     @mock.patch.object(acl, 'check_addon_ownership',
@@ -232,6 +263,14 @@ class TestDownloadsUnlistedAddonDeleted(TestDownloadsUnlistedVersions):
         self.assert_served_internally(
             self.client.get(url), True, attachment=True)
 
+        # Even allowed to bypass georestrictions.
+        AddonRegionalRestrictions.objects.create(
+            addon=self.addon, excluded_regions=['FR', 'US'])
+        self.assert_served_internally(
+            self.client.get(url, HTTP_X_COUNTRY_CODE='fr'),
+            True, attachment=True)
+
+        # Latest shouldn't work as it's only for latest public listed version.
         assert self.client.get(self.latest_url).status_code == 404
 
 
@@ -244,38 +283,55 @@ class TestDownloads(TestDownloadsBase):
     def test_public(self):
         assert self.addon.status == amo.STATUS_APPROVED
         assert self.file.status == amo.STATUS_APPROVED
-        self.assert_served_by_cdn(self.client.get(self.file_url))
+        self.assert_served_by_redirecting_to_cdn(
+            self.client.get(self.file_url))
 
     def test_public_addon_unreviewed_file(self):
         self.file.status = amo.STATUS_AWAITING_REVIEW
         self.file.save()
-        self.assert_served_locally(self.client.get(self.file_url))
+        self.assert_served_by_redirecting_to_cdn(
+            self.client.get(self.file_url))
 
     def test_unreviewed_addon(self):
         self.addon.status = amo.STATUS_NULL
         self.addon.save()
-        self.assert_served_locally(self.client.get(self.file_url))
+        self.assert_served_by_redirecting_to_cdn(
+            self.client.get(self.file_url))
 
     def test_type_attachment(self):
-        self.assert_served_by_cdn(self.client.get(self.file_url))
+        self.assert_served_by_redirecting_to_cdn(
+            self.client.get(self.file_url))
         url = reverse('downloads.file', args=[self.file.id, 'attachment'])
-        self.assert_served_locally(self.client.get(url), attachment=True)
+        self.assert_served_by_redirecting_to_cdn(
+            self.client.get(url), attachment=True)
 
     def test_trailing_filename(self):
         url = self.file_url + self.file.filename
-        self.assert_served_by_cdn(self.client.get(url))
+        self.assert_served_by_redirecting_to_cdn(self.client.get(url))
 
     def test_null_datestatuschanged(self):
         self.file.update(datestatuschanged=None)
-        self.assert_served_locally(self.client.get(self.file_url))
+        self.assert_served_by_redirecting_to_cdn(
+            self.client.get(self.file_url))
 
     def test_unicode_url(self):
         self.file.update(filename=u'图像浏览器-0.5-fx.xpi')
-        self.assert_served_by_cdn(self.client.get(self.file_url))
+        self.assert_served_by_redirecting_to_cdn(
+            self.client.get(self.file_url))
 
     def test_deleted(self):
         self.addon.delete()
         assert self.client.get(self.file_url).status_code == 404
+
+    def test_georestricted(self):
+        AddonRegionalRestrictions.objects.create(
+            addon=self.addon, excluded_regions=['FR', 'US'])
+        self.assert_served_by_redirecting_to_cdn(
+            self.client.get(self.file_url, HTTP_X_COUNTRY_CODE='uk'))
+
+        response = self.client.get(self.file_url, HTTP_X_COUNTRY_CODE='fr')
+        assert response.status_code == 451
+        assert response['Vary'] == 'X-Country-Code'
 
 
 class TestDisabledFileDownloads(TestDownloadsBase):
@@ -407,18 +463,19 @@ class TestDownloadsLatest(TestDownloadsBase):
 
     def test_success(self):
         assert self.addon.current_version
-        self.assert_served_by_cdn(self.client.get(self.latest_url))
+        self.assert_served_by_redirecting_to_cdn(
+            self.client.get(self.latest_url))
 
     def test_platform(self):
         # We still match PLATFORM_ALL.
         url = reverse('downloads.latest',
                       kwargs={'addon_id': self.addon.slug, 'platform': 5})
-        self.assert_served_by_cdn(self.client.get(url))
+        self.assert_served_by_redirecting_to_cdn(self.client.get(url))
 
         # And now we match the platform in the url.
         self.file.platform = self.platform
         self.file.save()
-        self.assert_served_by_cdn(self.client.get(url))
+        self.assert_served_by_redirecting_to_cdn(self.client.get(url))
 
         # But we can't match platform=3.
         url = reverse('downloads.latest',

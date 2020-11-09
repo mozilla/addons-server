@@ -116,9 +116,9 @@ class Test500(TestCase):
 
     def test_500_api(self):
         # Simulate an early API 500 not caught by DRF
-        from olympia.api.middleware import IdentifyAPIRequestMiddleware
+        from olympia.api.middleware import APIRequestMiddleware
         request = RequestFactory().get('/api/v4/addons/addon/lol/')
-        IdentifyAPIRequestMiddleware().process_exception(request, Exception())
+        APIRequestMiddleware().process_exception(request, Exception())
         response = handler500(request)
         assert response.status_code == 500
         assert response['Content-Type'] == 'application/json'
