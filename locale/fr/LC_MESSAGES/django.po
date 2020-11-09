@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-09 09:22+0000\n"
-"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
+"PO-Revision-Date: 2020-11-08 20:36+0000\n"
+"Last-Translator: Madeline <mason.j.levens@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -525,7 +525,7 @@ msgstr "Les blocages à mettre à jour sont différents car la version Min ou Ma
 
 #, python-format
 msgid "%(value)s contains *"
-msgstr ""
+msgstr "%(value)s contient *"
 
 msgid "Invalid version"
 msgstr "Version invalide"
@@ -5702,7 +5702,7 @@ msgid "Rating Reviews"
 msgstr ""
 
 msgid "Auto Approved"
-msgstr ""
+msgstr "Approuvé automatiquement"
 
 msgid "Pending Rejection"
 msgstr ""
