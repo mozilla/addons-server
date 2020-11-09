@@ -3,13 +3,14 @@ import os
 from django import http
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, redirect
+from django.utils.cache import patch_vary_headers
 
 import olympia.core.logger
 
 from olympia import amo
 from olympia.access import acl
 from olympia.addons.decorators import addon_view_factory
-from olympia.addons.models import Addon
+from olympia.addons.models import Addon, AddonRegionalRestrictions
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseXSendFile, render, urlparams
 from olympia.files.models import File
@@ -98,14 +99,24 @@ def download_file(request, file_id, type=None, file_=None, addon=None):
 
     attachment = bool(type == 'attachment')
     if use_cdn:
-        # When using the CDN URL, we do a redirect, so we can't set
-        # Content-Disposition: attachment for attachments. To work around this,
-        # if attachment=True, get_file_cdn_url() changes the path to something
-        # we recognize in the nginx config.
-        loc = urlparams(file_.get_file_cdn_url(attachment=attachment),
-                        filehash=file_.hash)
-        response = http.HttpResponseRedirect(loc)
-        response['X-Target-Digest'] = file_.hash
+        # When serving the file for the general public through the CDN, we need
+        # to obey regional restrictions
+        region_code = request.META.get('HTTP_X_COUNTRY_CODE', None)
+        if region_code and AddonRegionalRestrictions.objects.filter(
+                addon=addon,
+                excluded_regions__contains=region_code.upper()).exists():
+            response = http.HttpResponse(status=451)
+        else:
+            # When using the CDN URL, we do a redirect, so we can't set
+            # Content-Disposition: attachment for attachments. To work around
+            # this, if attachment=True, get_file_cdn_url() changes the path to
+            # something we recognize in the nginx config.
+            loc = urlparams(file_.get_file_cdn_url(attachment=attachment),
+                            filehash=file_.hash)
+            response = http.HttpResponseRedirect(loc)
+            response['X-Target-Digest'] = file_.hash
+        # Always add a Vary header to deal with caching in different regions.
+        patch_vary_headers(response, ['X-Country-Code'])
     else:
         # Here we're returning a X-Accel-Redirect, we can set
         # Content-Disposition: attachment ourselves in HttpResponseXSendFile:
