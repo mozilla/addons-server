@@ -70,7 +70,7 @@ def on_stripe_charge_failed(event):
         )
         return
     except Exception:
-        log.error(
+        log.exception(
             'error while trying to retrieve a subscription for "%s"'
             " event with event_id=%s and charge_id=%s.",
             event_type,
