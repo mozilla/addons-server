@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-05-30 13:24+0000\n"
-"Last-Translator: Buğra ÖNEN <bugraonen@hotmail.com>\n"
+"PO-Revision-Date: 2020-11-09 11:58+0000\n"
+"Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -319,7 +319,7 @@ msgid "Dependencies"
 msgstr "Bağımlılıklar"
 
 msgid "Upsell"
-msgstr ""
+msgstr "Upsell"
 
 msgid "Meet the Developer"
 msgstr "Geliştiriciyle tanışın"
@@ -343,37 +343,37 @@ msgid "Category Landing Featured Carousel"
 msgstr ""
 
 msgid "Category Landing Top Rated"
-msgstr ""
+msgstr "Category Landing Top Rated"
 
 msgid "Category Landing Most Popular"
-msgstr ""
+msgstr "Category Landing Most Popular"
 
 msgid "Category Landing Recently Added"
-msgstr ""
+msgstr "Category Landing Recently Added"
 
 msgid "Browse Listing Featured Sort"
-msgstr ""
+msgstr "Browse Listing Featured Sort"
 
 msgid "Browse Listing Users Sort"
-msgstr ""
+msgstr "Browse Listing Users Sort"
 
 msgid "Browse Listing Rating Sort"
-msgstr ""
+msgstr "Browse Listing Rating Sort"
 
 msgid "Browse Listing Created Sort"
-msgstr ""
+msgstr "Browse Listing Created Sort"
 
 msgid "Browse Listing Name Sort"
-msgstr ""
+msgstr "Browse Listing Name Sort"
 
 msgid "Browse Listing Popular Sort"
-msgstr ""
+msgstr "Browse Listing Popular Sort"
 
 msgid "Browse Listing Updated Sort"
-msgstr ""
+msgstr "Browse Listing Updated Sort"
 
 msgid "Browse Listing Up and Coming Sort"
-msgstr ""
+msgstr "Browse Listing Up and Coming Sort"
 
 msgid "Total Amount Contributed"
 msgstr "Toplam Katkı Miktarı"

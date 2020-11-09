@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-05 13:44+0000\n"
+"PO-Revision-Date: 2020-11-09 12:02+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -458,6 +458,8 @@ msgstr "Geçerli Uygulama Sürümleri"
 
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr ""
+"Mozilla Eklentileri'ne gönderilen eklentlerin aşağıdaki uygulamalardan en az birini destekleyen bir manifest dosyası olmalıdır. Bu uygulamalar için yalnızca aşağıda listelenen sürümlere izin "
+"verilir."
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
@@ -474,6 +476,8 @@ msgid ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified "
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr ""
+"Desteklenen uygulamanız manifest dosyası gerektirmese bile %(amo_manifests_mdn_link_open)sburada%(amo_manifests_mdn_link_close)s belirtildiği şekilde gerekli özelliklere sahip bir dosya "
+"eklemelisiniz."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Bu özel adres zaten koleksiyonlarınızdan biri tarafından kullanılıyor."
@@ -513,7 +517,7 @@ msgid "Addon with GUID %(guid)s does not exist"
 msgstr ""
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr ""
+msgstr "Minimum veya maksimum sürüm değiştiği için güncellenecek engeller farklıdır."
 
 #, python-format
 msgid "%(value)s contains *"
@@ -532,7 +536,7 @@ msgid "Review Unlisted"
 msgstr ""
 
 msgid "This block was imported from a regex based legacy Block."
-msgstr ""
+msgstr "Bu engel, regex temelli eski engelden içe aktarıldı."
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
 msgstr ""
@@ -590,7 +594,7 @@ msgid "%(count)s Add-on GUIDs"
 msgstr "%(count)s Eklenti GUID'si"
 
 msgid "Edit Block"
-msgstr ""
+msgstr "Engeli düzenle"
 
 msgid "versions"
 msgstr "sürümler"
@@ -828,7 +832,7 @@ msgstr "{file} imzalandı."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "{1} GUID değerine sahip {0} eklenti kimliği silindi"
 
 msgid "{addon} migrated from preliminary."
 msgstr "{addon} ön elemeden geçirildi."
@@ -918,13 +922,13 @@ msgid "User {user} api key reset."
 msgstr "Kullanıcı {user} api anahtarı sıfırlandı."
 
 msgid "Block for {0} added to Blocklist."
-msgstr ""
+msgstr "Engelleme listesine {0} engeli eklendi."
 
 msgid "Block added"
 msgstr "Engelleme eklendi"
 
 msgid "Block for {0} edited in Blocklist."
-msgstr ""
+msgstr "Engelleme listesinde {0} düzenlendi."
 
 msgid "Block edited"
 msgstr "Engelleme düzenlendi"
@@ -936,10 +940,10 @@ msgid "Block deleted"
 msgstr "Engelleme silindi"
 
 msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
+msgstr "{addon} için GUID, DeniedGuid'e eklendi."
 
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr ""
+msgstr "{addon} için GUID, DeniedGuid'den kaldırıldı."
 
 msgid "Block {1} action for {0} signed off."
 msgstr ""
@@ -951,7 +955,7 @@ msgid "User {user} session(s) reset."
 msgstr "{user} oturumları sıfırlandı."
 
 msgid "User {user} throttled for scope \"{0}\""
-msgstr ""
+msgstr "{user} kullanıcısı \"{0}\" kapsamı için kısıtladı"
 
 msgid "{addon} {version} content reject scheduled."
 msgstr "{addon} {version} içerik reddi zamanlandı."
@@ -1419,7 +1423,7 @@ msgid "By Firefox"
 msgstr "Firefox’tan"
 
 msgid "Spotlight"
-msgstr ""
+msgstr "Öne çıkanlar"
 
 msgid "Strategic"
 msgstr "Stratejik"
@@ -3369,7 +3373,7 @@ msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
 msgstr "Eklentileri ve temaları göndermek veya yönetmek için Geliştirici Merkezi'nde oturum açın."
 
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr ""
+msgstr "Geliştirici hesabı açın veya Geliştirici Merkezi'ne giriş yapın"
 
 msgid "Manage Version {0}"
 msgstr "{0} sürümünü yönet"
@@ -6100,7 +6104,7 @@ msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into
 msgstr ""
 
 msgid "You can only enter one, either IP Address or Network."
-msgstr ""
+msgstr "IP Adresi veya Ağ olmak üzere yalnızca bir tane girebilirsiniz."
 
 msgid "No user with that email."
 msgstr "Bu e-posta ile kayıtlı kullanıcı yok."
@@ -6160,7 +6164,7 @@ msgid "someone writes a review of my add-on"
 msgstr "eklentimle ilgili inceleme yazıldığında"
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
-msgstr ""
+msgstr "eklenti geliştiricilerini ilgilendiren haber ve etkinlikleri size ulaştıralım (about:addons bülteni dahil)"
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "eklentimin uyumluluğu yükseltilemediğinde"
