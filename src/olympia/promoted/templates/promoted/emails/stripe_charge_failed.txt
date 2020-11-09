@@ -1,0 +1,11 @@
+{% block content %}
+Hello,
+
+We received a notification from Stripe about a payment failure for the following add-on: {{ addon_url }}
+
+The promoted subscription/add-on is available at: {{ admin_url }}
+
+The Stripe subscription is available at: {{ stripe_sub_url }}
+
+Yours.
+{% endblock %}

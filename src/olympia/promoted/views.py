@@ -7,6 +7,7 @@ from rest_framework.status import HTTP_202_ACCEPTED, HTTP_400_BAD_REQUEST
 
 import olympia.core.logger
 
+from .tasks import on_stripe_charge_failed
 from .utils import create_stripe_webhook_event
 
 
@@ -30,6 +31,12 @@ def stripe_webhook(request):
         log.exception("received stripe event with invalid payload")
         return Response(status=HTTP_400_BAD_REQUEST)
 
-    log.info('Received stripe event type: "%s".', event.type)
+    if event.type == "charge.failed":
+        on_stripe_charge_failed.delay(event=event)
+    else:
+        # This would only happen if a Stripe admin updates the configured
+        # webhook to send new events (because we have to select the events we
+        # want in the Stripe settings).
+        log.info('received unhandled stripe event type: "%s".', event.type)
 
     return Response(status=HTTP_202_ACCEPTED)
