@@ -85,7 +85,7 @@ def on_stripe_charge_failed(event):
     stripe_sub_url = "https://dashboard.stripe.com"
     if not stripe_sub["livemode"]:
         stripe_sub_url = stripe_sub_url + "/test"
-    stripe_sub_url = stripe_sub_url + f"/subscriptions/{subscription_id}"
+    stripe_sub_url = f"{stripe_sub_url}/subscriptions/{subscription_id}"
 
     subject = f"Stripe payment failure detected for add-on: {addon.name}"
     template = loader.get_template("promoted/emails/stripe_charge_failed.txt")
