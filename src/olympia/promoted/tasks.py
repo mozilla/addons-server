@@ -1,12 +1,16 @@
+import datetime
+
 import olympia.core.logger
 
 from django.conf import settings
 from django.template import loader
 
 from olympia.amo.celery import task
+from olympia.amo.decorators import use_primary_db
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import send_mail
+from olympia.constants.promoted import NOT_PROMOTED
 
 from .models import PromotedSubscription
 from .utils import retrieve_stripe_subscription_for_invoice
@@ -105,4 +109,67 @@ def on_stripe_charge_failed(event):
         template.render(context),
         from_email=settings.ADDONS_EMAIL,
         recipient_list=[settings.VERIFIED_ADDONS_EMAIL],
+    )
+
+
+@task
+@use_primary_db
+def on_stripe_customer_subscription_deleted(event):
+    event_id = event.get("id")
+    event_type = event.get("type")
+
+    if event_type != "customer.subscription.deleted":
+        log.error(
+            'invalid event "%s" received (event_id=%s).', event_type, event_id
+        )
+        return
+
+    # This event should contain a `subscription` object.
+    subscription = event.get("data", {}).get("object")
+    if not subscription:
+        log.error("no subscription object in event (event_id=%s).", event_id)
+        return
+
+    subscription_id = subscription["id"]
+    log.info(
+        'received "%s" event with subscription_id=%s.',
+        event_type,
+        subscription_id,
+    )
+
+    try:
+        sub = PromotedSubscription.objects.get(
+            stripe_subscription_id=subscription_id
+        )
+    except PromotedSubscription.DoesNotExist:
+        log.exception(
+            'received a "%s" event (event_id=%s) for a non-existent'
+            " promoted subscription (subscription_id=%s).",
+            event_type,
+            event_id,
+            subscription_id,
+        )
+        return
+
+    if sub.cancelled_at:
+        log.info(
+            "PromotedSubscription %s already cancelled, ignoring event"
+            " (event_id=%s).",
+            sub.id,
+            event_id,
+        )
+        return
+
+    sub.update(
+        cancelled_at=datetime.datetime.fromtimestamp(
+            subscription["canceled_at"]
+        )
+    )
+    log.info("PromotedSubscription %s has been marked as cancelled.", sub.id)
+
+    # TODO: this should trigger resigning somehow, see:
+    # https://github.com/mozilla/addons-server/issues/15921
+    sub.promoted_addon.update(group_id=NOT_PROMOTED.id)
+    log.info(
+        "PromotedAddon %s is not promoted anymore.", sub.promoted_addon.id
     )

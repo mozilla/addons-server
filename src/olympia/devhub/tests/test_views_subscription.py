@@ -57,6 +57,16 @@ class TestOnboardingSubscription(SubscriptionTestCase):
 
         assert response.status_code == 403
 
+    def test_returns_404_when_subscription_has_been_cancelled(self):
+        self.subscription.update(
+            checkout_completed_at=datetime.datetime.now(),
+            cancelled_at=datetime.datetime.now()
+        )
+
+        response = self.client.get(self.url)
+
+        assert response.status_code == 404
+
     @mock.patch("olympia.devhub.views.create_stripe_checkout_session")
     def test_get_for_the_first_time(self, create_mock):
         create_mock.return_value = mock.MagicMock(id="session-id")
@@ -286,6 +296,16 @@ class TestOnboardingSubscriptionSuccess(SubscriptionTestCase):
 
         assert response.status_code == 403
 
+    def test_returns_404_when_subscription_has_been_cancelled(self):
+        self.subscription.update(
+            checkout_completed_at=datetime.datetime.now(),
+            cancelled_at=datetime.datetime.now()
+        )
+
+        response = self.client.get(self.url)
+
+        assert response.status_code == 404
+
     @mock.patch("olympia.devhub.views.retrieve_stripe_checkout_session")
     def test_get_redirects_to_main_page(self, retrieve_mock):
         retrieve_mock.return_value = {
@@ -411,6 +431,16 @@ class TestOnboardingSubscriptionCancel(SubscriptionTestCase):
 
         assert response.status_code == 403
 
+    def test_returns_404_when_subscription_has_been_cancelled(self):
+        self.subscription.update(
+            checkout_completed_at=datetime.datetime.now(),
+            cancelled_at=datetime.datetime.now()
+        )
+
+        response = self.client.get(self.url)
+
+        assert response.status_code == 404
+
     @mock.patch("olympia.devhub.views.retrieve_stripe_checkout_session")
     def test_get_redirects_to_main_page(self, retrieve_mock):
         retrieve_mock.return_value = mock.MagicMock(id="session-id")
@@ -481,6 +511,16 @@ class TestSubscriptionCustomerPortal(SubscriptionTestCase):
         response = self.client.post(self.url)
 
         assert response.status_code == 403
+
+    def test_returns_404_when_subscription_has_been_cancelled(self):
+        self.subscription.update(
+            checkout_completed_at=datetime.datetime.now(),
+            cancelled_at=datetime.datetime.now()
+        )
+
+        response = self.client.post(self.url)
+
+        assert response.status_code == 404
 
     @mock.patch("olympia.devhub.views.retrieve_stripe_subscription")
     @mock.patch("olympia.devhub.views.create_stripe_customer_portal")

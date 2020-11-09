@@ -305,3 +305,16 @@ class TestPromotedSubscription(TestCase):
         sub.reload()
 
         assert sub.addon_already_promoted
+
+    def test_is_active(self):
+        sub = PromotedSubscription()
+
+        assert sub.is_active is None
+
+        sub.update(checkout_completed_at=datetime.datetime.now())
+
+        assert sub.is_active
+
+        sub.update(cancelled_at=datetime.datetime.now())
+
+        assert sub.is_active is False

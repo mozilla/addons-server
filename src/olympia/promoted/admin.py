@@ -31,12 +31,14 @@ class PromotedSubscriptionInline(admin.StackedInline):
         'link_visited_at',
         'checkout_cancelled_at',
         'checkout_completed_at',
+        'cancelled_at',
     )
     readonly_fields = (
         'onboarding_url',
         'link_visited_at',
         'checkout_cancelled_at',
         'checkout_completed_at',
+        'cancelled_at',
     )
 
     def get_readonly_fields(self, request, obj=None):

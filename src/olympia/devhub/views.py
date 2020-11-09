@@ -1858,7 +1858,12 @@ def get_promoted_subscription_or_404(addon):
         raise http.Http404()
 
     qs = PromotedSubscription.objects.select_related('promoted_addon__addon')
-    return get_object_or_404(qs, promoted_addon__addon=addon)
+    subscription = get_object_or_404(qs, promoted_addon__addon=addon)
+
+    if subscription.is_active is False:
+        raise http.Http404()
+
+    return subscription
 
 
 @dev_required(owner_for_get=True)

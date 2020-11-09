@@ -757,6 +757,19 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
 
         assert pq(response.content)('.stripe-customer-portal').length == 1
 
+    def test_no_manage_billing_when_subscription_has_been_cancelled(self):
+        promoted = PromotedAddon.objects.create(
+            addon=self.get_addon(), group_id=VERIFIED.id
+        )
+        promoted.promotedsubscription.update(
+            checkout_completed_at=datetime.datetime.now(),
+            cancelled_at=datetime.datetime.now()
+        )
+
+        response = self.client.get(self.url)
+
+        assert pq(response.content)('.stripe-customer-portal').length == 0
+
 
 class TestEditDescribeUnlisted(BaseTestEditDescribe, L10nTestsMixin):
     listed = False
