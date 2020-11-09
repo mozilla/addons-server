@@ -30,7 +30,6 @@ from olympia.amo.storage_utils import copy_stored_file, move_stored_file
 from olympia.amo.templatetags.jinja_helpers import (
     user_media_path, user_media_url)
 from olympia.amo.urlresolvers import reverse
-from olympia.applications.models import AppVersion
 from olympia.files.utils import get_sha256, write_crx_as_xpi
 
 
