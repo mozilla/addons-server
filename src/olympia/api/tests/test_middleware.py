@@ -4,28 +4,51 @@ from gzip import GzipFile
 from unittest import mock
 
 from django.conf import settings
+from django.http import HttpResponse
 
 from olympia.amo.tests import TestCase, addon_factory, reverse_ns
 from olympia.api.middleware import (
-    GZipMiddlewareForAPIOnly, IdentifyAPIRequestMiddleware)
+    GZipMiddlewareForAPIOnly, APIRequestMiddleware)
 
 
-class TestIdentifyAPIRequestMiddleware(TestCase):
+class TestAPIRequestMiddleware(TestCase):
     def test_api_identified(self):
         request = mock.Mock()
         request.path_info = '/api/v3/lol/'
-        IdentifyAPIRequestMiddleware().process_request(request)
+        APIRequestMiddleware().process_request(request)
         assert request.is_api
+
+    def test_vary_applied(self):
+        request = mock.Mock()
+        request.is_api = True
+        response = HttpResponse()
+        APIRequestMiddleware().process_response(request, response)
+        assert response['Vary'] == 'X-Country-Code'
+
+        response['Vary'] = 'Foo, Bar'
+        APIRequestMiddleware().process_response(request, response)
+        assert response['Vary'] == 'Foo, Bar, X-Country-Code'
+
+    def test_vary_not_applied_outside_api(self):
+        request = mock.Mock()
+        request.is_api = False
+        response = HttpResponse()
+        APIRequestMiddleware().process_response(request, response)
+        assert not response.has_header('Vary')
+
+        response['Vary'] = 'Foo, Bar'
+        APIRequestMiddleware().process_response(request, response)
+        assert response['Vary'] == 'Foo, Bar'
 
     def test_disabled_for_the_rest(self):
         """Test that we don't tag the request as API on "regular" pages."""
         request = mock.Mock()
         request.path_info = '/'
-        IdentifyAPIRequestMiddleware().process_request(request)
+        APIRequestMiddleware().process_request(request)
         assert not request.is_api
 
         request.path = '/en-US/firefox/'
-        IdentifyAPIRequestMiddleware().process_request(request)
+        APIRequestMiddleware().process_request(request)
         assert not request.is_api
 
 

@@ -463,7 +463,8 @@ class TestDownloadsLatest(TestDownloadsBase):
 
     def test_success(self):
         assert self.addon.current_version
-        self.assert_served_by_redirecting_to_cdn(self.client.get(self.latest_url))
+        self.assert_served_by_redirecting_to_cdn(
+            self.client.get(self.latest_url))
 
     def test_platform(self):
         # We still match PLATFORM_ALL.
