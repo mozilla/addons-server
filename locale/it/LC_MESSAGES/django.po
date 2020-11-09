@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-05 16:03+0000\n"
-"Last-Translator: Jenny <leanintocuriosity@gmx.com>\n"
+"PO-Revision-Date: 2020-11-05 08:46+0000\n"
+"Last-Translator: massic80 <massic80@gmail.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -320,13 +320,13 @@ msgstr ""
 "pagina.</p>"
 
 msgid "Register or Log in"
-msgstr ""
+msgstr "Accedi o registrati"
 
 msgid "Email:"
 msgstr "Email:"
 
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 msgid "No results found"
 msgstr "Nessun risultato trovato"
@@ -2273,7 +2273,7 @@ msgid "Set Up Payment"
 msgstr "Imposta pagamento"
 
 msgid "You're done!"
-msgstr ""
+msgstr "Hai finito!"
 
 #, python-format
 msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
