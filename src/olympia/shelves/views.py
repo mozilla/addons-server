@@ -10,7 +10,7 @@ from rest_framework.response import Response
 import olympia.core.logger
 from olympia.addons.views import AddonSearchView
 from olympia.api.pagination import ESPageNumberPagination
-from olympia.constants.promoted import SPONSORED
+from olympia.constants.promoted import PROMOTED_GROUPS
 from olympia.search.filters import ReviewedContentFilter
 
 from .models import Shelf
@@ -65,17 +65,23 @@ class SponsoredShelfViewSet(viewsets.ViewSetMixin, AddonSearchView):
         count = self.paginator.get_page_size(self.request)
         self.adzerk_results = get_addons_from_adzerk(count)
         ids = list(self.adzerk_results.keys())
+        group_ids_to_allow = [
+            group.id for group in PROMOTED_GROUPS
+            if group.can_be_selected_by_adzerk]
         results_qs = qs.query(query.Bool(must=[
             Q('terms', id=ids),
-            Q('term', **{'promoted.group_id': SPONSORED.id})]))
+            Q('terms', **{'promoted.group_id': group_ids_to_allow})]))
         results_qs.execute()  # To cache the results.
         extras = filter_adzerk_results_to_es_results_qs(
             self.adzerk_results, results_qs)
         if extras:
+            group_names = '; '.join(
+                str(group.name) for group in PROMOTED_GROUPS
+                if group.can_be_selected_by_adzerk)
             for id_ in extras:
                 log.error(
-                    'Addon id [%s] returned from Adzerk, but not a valid '
-                    'Sponsored add-on', id_)
+                    'Addon id [%s] returned from Adzerk, but not in a valid '
+                    'Promoted group [%s]', id_, group_names)
             statsd.incr('services.adzerk.elasticsearch_miss', len(extras))
         return results_qs
 

@@ -152,6 +152,10 @@ class TestSponsoredShelfViewSet(ESTestCase):
             name='test addon test03', type=amo.ADDON_EXTENSION)
         self.make_addon_promoted(
             self.verified_ext, VERIFIED, approve_version=True)
+        self.recommended_ext = addon_factory(
+            name='test addon test04', type=amo.ADDON_EXTENSION)
+        self.make_addon_promoted(
+            self.recommended_ext, RECOMMENDED, approve_version=True)
         self.not_promoted = addon_factory(name='test addon test04')
         if refresh:
             self.refresh()
@@ -214,8 +218,9 @@ class TestSponsoredShelfViewSet(ESTestCase):
         self.populate_es()
         signer = TimestampSigner()
         log_msg = (
-            'Addon id [%s] returned from Adzerk, but not a valid Sponsored '
-            'add-on')
+            'Addon id [%s] returned from Adzerk, but not in a valid Promoted '
+            'group [%s]')
+        log_groups = 'Sponsored; Verified; By Firefox'
         with mock.patch('olympia.shelves.views.get_addons_from_adzerk') as get:
             get.return_value = {
                 str(self.sponsored_ext.id): {
@@ -227,6 +232,9 @@ class TestSponsoredShelfViewSet(ESTestCase):
                 str(self.verified_ext.id): {
                     'impression': '55656',
                     'click': 'efef'},
+                str(self.recommended_ext.id): {
+                    'impression': '9494',
+                    'click': '4839'},
                 str(self.not_promoted.id): {
                     'impression': '735754',
                     'click': 'jydh'},
@@ -239,18 +247,19 @@ class TestSponsoredShelfViewSet(ESTestCase):
                     data = self.perform_search()
             incr_mock.assert_any_call('services.adzerk.elasticsearch_miss', 3)
             log_mock.assert_has_calls((
-                mock.call(log_msg, str(self.verified_ext.id)),
-                mock.call(log_msg, str(self.not_promoted.id)),
-                mock.call(log_msg, '0'),
+                mock.call(log_msg, str(self.recommended_ext.id), log_groups),
+                mock.call(log_msg, str(self.not_promoted.id), log_groups),
+                mock.call(log_msg, '0', log_groups),
             ))
             get.assert_called_with(6)
-        # non sponsored are ignored
-        assert data['count'] == 2
-        assert len(data['results']) == 2
-        assert data['impression_data'] == signer.sign('123456,012345')
+        # non .can_be_returned_from_azerk are ignored
+        assert data['count'] == 3
+        assert len(data['results']) == 3
+        assert data['impression_data'] == signer.sign('123456,012345,55656')
         assert {(itm['id'], itm['click_data']) for itm in data['results']} == {
             (self.sponsored_ext.pk, signer.sign('abcdef')),
             (self.sponsored_theme.pk, signer.sign('bcdefg')),
+            (self.verified_ext.pk, signer.sign('efef')),
         }
 
     def test_order(self):
