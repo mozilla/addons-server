@@ -104,5 +104,5 @@ def on_stripe_charge_failed(event):
         subject,
         template.render(context),
         from_email=settings.ADDONS_EMAIL,
-        recipient_list=["amo-admins@mozilla.com"],
+        recipient_list=[settings.VERIFIED_ADDONS_EMAIL],
     )

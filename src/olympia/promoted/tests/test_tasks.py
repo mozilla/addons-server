@@ -1,6 +1,7 @@
 from unittest import mock
 
 from django.core import mail
+from django.test.utils import override_settings
 
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
@@ -93,6 +94,7 @@ class TestOnStripeChargeFailed(TestCase):
         retrieve_sub_mock.assert_called_once_with(invoice_id=invoice_id)
         assert len(mail.outbox) == 0
 
+    @override_settings(VERIFIED_ADDONS_EMAIL="verified@example.com")
     @mock.patch(
         "olympia.promoted.tasks.retrieve_stripe_subscription_for_invoice"
     )
@@ -118,7 +120,7 @@ class TestOnStripeChargeFailed(TestCase):
             email.subject ==
             f"Stripe payment failure detected for add-on: {self.addon.name}"
         )
-        assert email.to == ["amo-admins@mozilla.com"]
+        assert email.to == ["verified@example.com"]
         assert (
             f"following add-on: {absolutify(self.addon.get_detail_url())}"
             in email.body

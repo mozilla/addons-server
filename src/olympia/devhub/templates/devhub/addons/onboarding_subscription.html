@@ -53,11 +53,11 @@
       {% if stripe_checkout_cancelled %}
       <div class="notification-box error">
         <p>
-          {% trans %}
+          {% trans email=settings.VERIFIED_ADDONS_EMAIL %}
           There was an error while setting up payment for your add-on. If you're
           experiencing problems with this process or you've changed your mind,
           please contact us at
-          <a href="mailto:amo-admins@mozilla.com">amo-admins@mozilla.com</a>.
+          <a href="mailto:{{ email }}">{{ email }}</a>.
           {% endtrans %}
         </p>
       </div>
