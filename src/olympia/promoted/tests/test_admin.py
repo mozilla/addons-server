@@ -609,7 +609,7 @@ class TestPromotedAddonAdmin(TestCase):
         )
         # Pretend the subscription is active.
         item.promotedsubscription.update(
-            payment_completed_at=datetime.datetime.now()
+            checkout_completed_at=datetime.datetime.now()
         )
         assert item.promotedsubscription.stripe_checkout_completed
         user = user_factory(email='someone@mozilla.com')
