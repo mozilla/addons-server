@@ -200,7 +200,7 @@ class TestPromotedAddon(TestCase):
 
         # when there's a subscription that's been paid
         promo.promotedsubscription.update(
-            payment_completed_at=datetime.datetime.now())
+            checkout_completed_at=datetime.datetime.now())
         assert promo.group.require_subscription
         assert hasattr(promo, 'promotedsubscription')
         assert promo.promotedsubscription.stripe_checkout_completed
@@ -208,7 +208,7 @@ class TestPromotedAddon(TestCase):
         assert not promo.has_pending_subscription
 
         # and when it's not been paid
-        promo.promotedsubscription.update(payment_completed_at=None)
+        promo.promotedsubscription.update(checkout_completed_at=None)
         assert promo.group.require_subscription
         assert hasattr(promo, 'promotedsubscription')
         assert not promo.promotedsubscription.stripe_checkout_completed
@@ -270,7 +270,7 @@ class TestPromotedSubscription(TestCase):
 
         assert not sub.stripe_checkout_completed
 
-        sub.update(payment_completed_at=datetime.datetime.now())
+        sub.update(checkout_completed_at=datetime.datetime.now())
 
         assert sub.stripe_checkout_completed
 
@@ -279,7 +279,7 @@ class TestPromotedSubscription(TestCase):
 
         assert not sub.stripe_checkout_cancelled
 
-        sub.update(payment_cancelled_at=datetime.datetime.now())
+        sub.update(checkout_cancelled_at=datetime.datetime.now())
 
         assert sub.stripe_checkout_cancelled
 
