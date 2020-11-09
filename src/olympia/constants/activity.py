@@ -753,6 +753,14 @@ class REJECT_VERSION_DELAYED(_LOG):
     reviewer_review_action = True
 
 
+class VERSION_RESIGNED(_LOG):
+    # takes add-on, version, VersionString
+    id = 166
+    format = _('{addon} {version} re-signed (previously {0}).')
+    short = _('Version re-signed')
+    review_queue = True
+
+
 LOGS = [x for x in vars().values()
         if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.

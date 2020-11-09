@@ -3,8 +3,9 @@ from unittest import mock
 
 from django.test.utils import override_settings
 
-from olympia import amo
-from olympia.amo.tests import addon_factory, TestCase
+from olympia import amo, core
+from olympia.activity.models import ActivityLog
+from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.constants import applications, promoted
 from olympia.promoted.models import (
@@ -113,6 +114,7 @@ class TestPromotedAddon(TestCase):
 
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_approve_for_addon(self, mock_sign_file):
+        core.set_user(user_factory())
         promo = PromotedAddon.objects.create(
             addon=addon_factory(version_kw={'version': '0.123a'}),
             group_id=promoted.SPOTLIGHT.id)
@@ -139,6 +141,11 @@ class TestPromotedAddon(TestCase):
             promo.addon.promoted_group() == promoted.VERIFIED
             assert promo.addon.current_version.version == '0.123a.1-signed'
             mock_sign_file.assert_called_with(file_)
+            assert ActivityLog.objects.for_addons((promo.addon,)).filter(
+                action=amo.LOG.VERSION_RESIGNED.id).exists()
+            alog = str(ActivityLog.objects.filter(
+                action=amo.LOG.VERSION_RESIGNED.id).get())
+            assert '0.123a.1-signed</a> re-signed (previously 0.123a)' in alog
 
     def test_get_resigned_version_number(self):
         addon = addon_factory(
