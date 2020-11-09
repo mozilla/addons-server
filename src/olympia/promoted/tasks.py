@@ -45,7 +45,7 @@ def on_stripe_charge_failed(event):
 
     try:
         # Retrieve the `PromotedSubscription` for the current `charge` object.
-        # We need to retreive the Stripe Subscription first (via the Stripe
+        # We need to retrieve the Stripe Subscription first (via the Stripe
         # Invoice because a Stripe Charge isn't directly linked to a
         # Subscription).
         stripe_sub = retrieve_stripe_subscription_for_invoice(
