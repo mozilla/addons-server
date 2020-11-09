@@ -5,12 +5,10 @@ from .models import License, Version, VersionReviewerFlags
 
 class VersionReviewerFlagsInline(admin.StackedInline):
     model = VersionReviewerFlags
-    fields = ('needs_human_review_by_mad',)
+    fields = ('pending_rejection', 'needs_human_review_by_mad')
     verbose_name_plural = "Version Reviewer Flags"
     can_delete = False
     view_on_site = False
-
-    fields = ('pending_rejection',)
 
 
 class LicenseAdmin(admin.ModelAdmin):
