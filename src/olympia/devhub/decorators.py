@@ -13,7 +13,7 @@ from olympia.constants import permissions
 
 
 def dev_required(owner_for_post=False, allow_reviewers_for_read=False,
-                 submitting=False, qs=Addon.objects.all):
+                 submitting=False, qs=Addon.objects.all, owner_for_get=False):
     """Requires user to be add-on owner or admin.
 
     When allow_reviewers is True, reviewers can view the page.
@@ -34,8 +34,9 @@ def dev_required(owner_for_post=False, allow_reviewers_for_read=False,
                     return fun()
                 # On read-only requests, ignore disabled so developers can
                 # still view their add-on.
-                if acl.check_addon_ownership(request, addon, dev=True,
-                                             ignore_disabled=True):
+                if acl.check_addon_ownership(
+                    request, addon, dev=not owner_for_get, ignore_disabled=True
+                ):
                     # Redirect to the submit flow if they're not done.
                     if (not submitting and
                             addon.should_redirect_to_submit_flow()):

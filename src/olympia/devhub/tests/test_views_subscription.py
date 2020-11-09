@@ -21,7 +21,11 @@ class SubscriptionTestCase(TestCase):
         super().setUp()
 
         self.user = user_factory()
+        self.dev_user = user_factory()
         self.addon = addon_factory(users=[self.user])
+        self.addon.addonuser_set.create(
+            user=self.dev_user, role=amo.AUTHOR_ROLE_DEV
+        )
         self.promoted_addon = PromotedAddon.objects.create(
             addon=self.addon, group_id=VERIFIED.id
         )
@@ -44,6 +48,14 @@ class TestOnboardingSubscription(SubscriptionTestCase):
         addon = addon_factory(users=[self.user])
         url = reverse(self.url_name, args=[addon.slug])
         assert self.client.get(url).status_code == 404
+
+    def test_returns_403_for_non_owners(self):
+        self.client.logout()
+        self.client.login(email=self.dev_user.email)
+
+        response = self.client.get(self.url)
+
+        assert response.status_code == 403
 
     @mock.patch("olympia.devhub.views.create_stripe_checkout_session")
     def test_get_for_the_first_time(self, create_mock):
@@ -266,6 +278,14 @@ class TestOnboardingSubscriptionSuccess(SubscriptionTestCase):
 
         assert response.status_code == 404
 
+    def test_returns_403_for_non_owners(self):
+        self.client.logout()
+        self.client.login(email=self.dev_user.email)
+
+        response = self.client.get(self.url)
+
+        assert response.status_code == 403
+
     @mock.patch("olympia.devhub.views.retrieve_stripe_checkout_session")
     def test_get_redirects_to_main_page(self, retrieve_mock):
         retrieve_mock.return_value = {
@@ -383,6 +403,14 @@ class TestOnboardingSubscriptionCancel(SubscriptionTestCase):
 
         assert response.status_code == 404
 
+    def test_returns_403_for_non_owners(self):
+        self.client.logout()
+        self.client.login(email=self.dev_user.email)
+
+        response = self.client.get(self.url)
+
+        assert response.status_code == 403
+
     @mock.patch("olympia.devhub.views.retrieve_stripe_checkout_session")
     def test_get_redirects_to_main_page(self, retrieve_mock):
         retrieve_mock.return_value = mock.MagicMock(id="session-id")
@@ -445,6 +473,14 @@ class TestSubscriptionCustomerPortal(SubscriptionTestCase):
         response = self.client.post(self.url)
 
         assert response.status_code == 404
+
+    def test_returns_403_for_non_owners(self):
+        self.client.logout()
+        self.client.login(email=self.dev_user.email)
+
+        response = self.client.post(self.url)
+
+        assert response.status_code == 403
 
     @mock.patch("olympia.devhub.views.retrieve_stripe_subscription")
     @mock.patch("olympia.devhub.views.create_stripe_customer_portal")

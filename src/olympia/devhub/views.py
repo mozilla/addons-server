@@ -1861,7 +1861,7 @@ def get_promoted_subscription_or_404(addon):
     return get_object_or_404(qs, promoted_addon__addon=addon)
 
 
-@dev_required
+@dev_required(owner_for_get=True)
 @csp_update(
     SCRIPT_SRC="https://js.stripe.com",
     CONNECT_SRC="https://api.stripe.com",
@@ -1928,7 +1928,7 @@ def onboarding_subscription(request, addon_id, addon):
     return render(request, "devhub/addons/onboarding_subscription.html", data)
 
 
-@dev_required
+@dev_required(owner_for_get=True)
 def onboarding_subscription_success(request, addon_id, addon):
     sub = get_promoted_subscription_or_404(addon=addon)
 
@@ -1966,7 +1966,7 @@ def onboarding_subscription_success(request, addon_id, addon):
     )
 
 
-@dev_required
+@dev_required(owner_for_get=True)
 def onboarding_subscription_cancel(request, addon_id, addon):
     sub = get_promoted_subscription_or_404(addon=addon)
 
@@ -1995,7 +1995,7 @@ def onboarding_subscription_cancel(request, addon_id, addon):
     )
 
 
-@dev_required
+@dev_required(owner_for_post=True)
 @post_required
 def subscription_customer_portal(request, addon_id, addon):
     sub = get_promoted_subscription_or_404(addon=addon)
