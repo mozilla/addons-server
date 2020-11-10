@@ -5,6 +5,7 @@ import shutil
 import olympia.core.logger
 
 from olympia import amo
+from olympia.activity.models import ActivityLog
 from olympia.addons.models import AddonUser
 from olympia.amo.celery import task
 from olympia.files.utils import update_version_number
@@ -138,8 +139,11 @@ def sign_addons(addon_ids, force=False, send_emails=True, **kw):
 
         # Now update the Version model, if we signed at least one file.
         if signed_at_least_a_file:
+            previous_version_str = str(version.version)
             version.update(version=bumped_version_number)
             addon = version.addon
+            ActivityLog.create(
+                amo.LOG.VERSION_RESIGNED, addon, version, previous_version_str)
             if send_emails and addon.pk not in addons_emailed:
                 # Send a mail to the owners/devs warning them we've
                 # automatically signed their addon.
