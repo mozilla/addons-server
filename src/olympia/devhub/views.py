@@ -1903,21 +1903,19 @@ def onboarding_subscription(request, addon_id, addon):
         )
         return http.HttpResponseServerError()
 
-    if sub.stripe_session_id != session.id:
-        fields_to_update['stripe_session_id'] = session.id
+    if sub.stripe_session_id != session['id']:
+        fields_to_update['stripe_session_id'] = session['id']
 
     if len(fields_to_update) > 0:
         sub.update(**fields_to_update)
 
-    existing_version_pending = addon.versions.filter(
+    new_version_number = request.session.get('resigned_version_string')
+    already_promoted = (
+        not new_version_number and sub.promoted_addon.has_approvals)
+
+    existing_version_pending = new_version_number and addon.versions.filter(
         channel=amo.RELEASE_CHANNEL_LISTED,
         files__status=amo.STATUS_AWAITING_REVIEW).exists()
-    # we get what the new version string would be after resigning
-    new_version_number = sub.promoted_addon.get_resigned_version_number()
-    # But if we try and it's been resigned already it will end in -1(or higher)
-    # so return the current version number instead.
-    if new_version_number and not new_version_number.endswith('-signed'):
-        new_version_number = addon.current_version.version
 
     data = {
         "addon": addon,
@@ -1926,7 +1924,7 @@ def onboarding_subscription(request, addon_id, addon):
         "stripe_checkout_completed": sub.stripe_checkout_completed,
         "stripe_checkout_cancelled": sub.stripe_checkout_cancelled,
         "promoted_group": sub.promoted_addon.group,
-        "already_promoted": sub.addon_already_promoted,
+        "already_promoted": already_promoted,
         "new_version_number": new_version_number,
         "existing_version_pending": existing_version_pending,
     }
@@ -1963,7 +1961,10 @@ def onboarding_subscription_success(request, addon_id, addon):
             stripe_subscription_id=session['subscription'],
         )
         log.info('PromotedSubscription %s has been completed.', sub.pk)
-        if not sub.addon_already_promoted:
+        if not sub.promoted_addon.has_approvals:
+            # we get what the new version string would be after resigning
+            request.session['resigned_version_string'] = (
+                sub.promoted_addon.get_resigned_version_number())
             sub.promoted_addon.approve_for_addon()
 
     return redirect(
