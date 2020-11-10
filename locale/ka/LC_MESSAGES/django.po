@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-10 12:56+0000\n"
+"PO-Revision-Date: 2020-11-10 13:11+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2261,7 +2261,7 @@ msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the progr
 msgstr "თქვენი დამატება <strong>%(addon_name)s</strong> მოხვდება ამ პროგრამაში, როგორც კი გადახდა გაიმართება Stripe-სისტემით. დაწკაპეთ ქვემოთ, რომ განაგრძოთ:"
 
 msgid "Continue to Stripe Checkout"
-msgstr ""
+msgstr "განაგრძეთ Stripe-ზე შეძენა"
 
 msgid "Manage Authors & License"
 msgstr "ავტორებისა და ლიცენზიის მართვა"
@@ -3174,7 +3174,7 @@ msgid "View All"
 msgstr "ყველას ნახვა"
 
 msgid "Manage Billing on Stripe"
-msgstr ""
+msgstr "ანგარიშსწორების მართვა Stripe-ზე"
 
 msgid "Listed Review Page"
 msgstr "გამოქვეყნებულის განსახილველი გვერდი"
