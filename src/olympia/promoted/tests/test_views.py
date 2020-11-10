@@ -68,3 +68,16 @@ class TestStripeWebhook(TestCase):
 
         assert response.status_code == 202
         task_mock.assert_called_once_with(event=fake_event)
+
+    @mock.patch(
+        "olympia.promoted.views.on_stripe_customer_subscription_deleted.delay"
+    )
+    @mock.patch("olympia.promoted.views.create_stripe_webhook_event")
+    def test_customer_subscription_deleted(self, create_mock, task_mock):
+        fake_event = mock.MagicMock(type="customer.subscription.deleted")
+        create_mock.return_value = fake_event
+
+        response = self.client.post(self.url)
+
+        assert response.status_code == 202
+        task_mock.assert_called_once_with(event=fake_event)

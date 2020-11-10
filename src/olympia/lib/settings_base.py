@@ -1130,6 +1130,9 @@ CELERY_TASK_ROUTES = {
     'olympia.devhub.tasks.validate_upload': {'queue': 'devhub'},
     'olympia.files.tasks.repack_fileupload': {'queue': 'devhub'},
     'olympia.promoted.tasks.on_stripe_charge_failed': {'queue': 'devhub'},
+    'olympia.promoted.tasks.on_stripe_customer_subscription_deleted': {
+        'queue': 'devhub'
+    },
     'olympia.scanners.tasks.run_customs': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_wat': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_yara': {'queue': 'devhub'},

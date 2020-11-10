@@ -178,7 +178,7 @@ class TestPromotedAddon(TestCase):
         # checking the group doesn't require subscription
         assert not promo.group.require_subscription
         assert hasattr(promo, 'promotedsubscription')
-        assert not promo.promotedsubscription.stripe_checkout_completed
+        assert not promo.promotedsubscription.is_active
         assert not promo.promotedsubscription.addon_already_promoted
         assert not promo.has_pending_subscription
 
@@ -186,7 +186,7 @@ class TestPromotedAddon(TestCase):
         promo.update(group_id=promoted.VERIFIED.id)
         assert promo.group.require_subscription
         assert hasattr(promo, 'promotedsubscription')
-        assert not promo.promotedsubscription.stripe_checkout_completed
+        assert not promo.promotedsubscription.is_active
         assert not promo.promotedsubscription.addon_already_promoted
         assert promo.has_pending_subscription
 
@@ -201,7 +201,7 @@ class TestPromotedAddon(TestCase):
         PromotedSubscription.objects.create(promoted_addon=promo)
         assert promo.group.require_subscription
         assert hasattr(promo, 'promotedsubscription')
-        assert not promo.promotedsubscription.stripe_checkout_completed
+        assert not promo.promotedsubscription.is_active
         assert not promo.promotedsubscription.addon_already_promoted
         assert promo.has_pending_subscription
 
@@ -210,7 +210,7 @@ class TestPromotedAddon(TestCase):
             checkout_completed_at=datetime.datetime.now())
         assert promo.group.require_subscription
         assert hasattr(promo, 'promotedsubscription')
-        assert promo.promotedsubscription.stripe_checkout_completed
+        assert promo.promotedsubscription.is_active
         assert not promo.promotedsubscription.addon_already_promoted
         assert not promo.has_pending_subscription
 
@@ -218,7 +218,7 @@ class TestPromotedAddon(TestCase):
         promo.promotedsubscription.update(checkout_completed_at=None)
         assert promo.group.require_subscription
         assert hasattr(promo, 'promotedsubscription')
-        assert not promo.promotedsubscription.stripe_checkout_completed
+        assert not promo.promotedsubscription.is_active
         assert not promo.promotedsubscription.addon_already_promoted
         assert promo.has_pending_subscription
 
@@ -226,7 +226,7 @@ class TestPromotedAddon(TestCase):
         promo.approve_for_version(promo.addon.current_version)
         assert promo.group.require_subscription
         assert hasattr(promo, 'promotedsubscription')
-        assert not promo.promotedsubscription.stripe_checkout_completed
+        assert not promo.promotedsubscription.is_active
         assert promo.promotedsubscription.addon_already_promoted
         assert not promo.has_pending_subscription
 
@@ -305,3 +305,16 @@ class TestPromotedSubscription(TestCase):
         sub.reload()
 
         assert sub.addon_already_promoted
+
+    def test_is_active(self):
+        sub = PromotedSubscription()
+
+        assert sub.is_active is None
+
+        sub.update(checkout_completed_at=datetime.datetime.now())
+
+        assert sub.is_active
+
+        sub.update(cancelled_at=datetime.datetime.now())
+
+        assert sub.is_active is False

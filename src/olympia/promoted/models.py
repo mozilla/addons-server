@@ -92,7 +92,7 @@ class PromotedAddon(ModelBase):
         return (
             self.group.require_subscription and
             (subscr := getattr(self, 'promotedsubscription', None)) and
-            not subscr.stripe_checkout_completed and
+            not subscr.is_active and
             not subscr.addon_already_promoted)
 
     def approve_for_addon(self):
@@ -230,6 +230,10 @@ class PromotedSubscription(ModelBase):
             "the initial payment process."
         ),
     )
+    cancelled_at = models.DateTimeField(
+        null=True,
+        help_text="This date is set when the subscription has been cancelled.",
+    )
     onboarding_rate = models.PositiveIntegerField(
         default=None,
         blank=True,
@@ -276,6 +280,14 @@ class PromotedSubscription(ModelBase):
     @property
     def stripe_checkout_cancelled(self):
         return bool(self.checkout_cancelled_at)
+
+    @property
+    def is_active(self):
+        """A subscription can only be active when it has started so we return a
+        boolean value only in this case. None is returned otheriwse."""
+        if self.stripe_checkout_completed:
+            return not self.cancelled_at
+        return None
 
     @property
     def addon_already_promoted(self):
