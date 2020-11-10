@@ -153,8 +153,8 @@ def on_stripe_customer_subscription_deleted(event):
 
     if sub.cancelled_at:
         log.info(
-            "PromotedSubscription %s already cancelled, ignoring event"
-            " (event_id=%s).",
+            "PromotedSubscription %s already cancelled, ignoring event "
+            "(event_id=%s).",
             sub.id,
             event_id,
         )
