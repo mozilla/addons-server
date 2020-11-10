@@ -257,7 +257,7 @@ class AddonAndVersionViewSetDetailMixin(object):
         # Regional restrictions should be processed after other permission
         # handling, so something that would return a 401/403/404 without
         # region restrictions would still do that.
-        response = self.client.get(self.url)
+        response = self.client.get(self.url, HTTP_X_COUNTRY_CODE='fr')
         assert response.status_code == 401
         # Response is short enough that it won't be compressed, so it doesn't
         # depend on Accept-Encoding.
@@ -280,7 +280,7 @@ class AddonAndVersionViewSetDetailMixin(object):
         # Regional restrictions should be processed after other permission
         # handling, so something that would return a 401/403/404 without
         # region restrictions would still do that.
-        response = self.client.get(self.url)
+        response = self.client.get(self.url, HTTP_X_COUNTRY_CODE='fr')
         assert response.status_code == 403
         # Response is short enough that it won't be compressed, so it doesn't
         # depend on Accept-Encoding.
@@ -392,7 +392,7 @@ class AddonAndVersionViewSetDetailMixin(object):
         # Regional restrictions should be processed after other permission
         # handling, so something that would return a 401/403/404 without
         # region restrictions would still do that.
-        response = self.client.get(self.url)
+        response = self.client.get(self.url, HTTP_X_COUNTRY_CODE='fr')
         assert response.status_code == 404
         # Response is short enough that it won't be compressed, so it doesn't
         # depend on Accept-Encoding.
