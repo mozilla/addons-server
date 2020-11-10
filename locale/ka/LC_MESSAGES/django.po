@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-10 12:53+0000\n"
+"PO-Revision-Date: 2020-11-10 12:56+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -134,7 +134,7 @@ msgstr "მიმომხილველის ბმულები"
 
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
-msgstr ""
+msgstr "Git-ამოღების დაწყება დამატებისთვის „%(addons)s“."
 
 msgid "- Add-on not on AMO -"
 msgstr "- დამატება არაა განთავსებული AMO საიტზე -"
@@ -161,7 +161,7 @@ msgid "My Themes"
 msgstr "ჩემი თემები"
 
 msgid "Git-Extract"
-msgstr ""
+msgstr "Git-Extract"
 
 msgid "Tools"
 msgstr "ხელსაწყოები"
@@ -310,13 +310,13 @@ msgstr ""
 "მოგვარებაში, <a href=\"https://github.com/mozilla/addons/issues/new\">ხარვეზის მოხსენებით</a> დაწვრილებით, თუ როგორ მოხვდით ამ გვერდზე. </p>"
 
 msgid "Register or Log in"
-msgstr ""
+msgstr "შექმენით ან შედით ანგარიშზე"
 
 msgid "Email:"
 msgstr "ელფოსტა:"
 
 msgid "OK"
-msgstr ""
+msgstr "კარგი"
 
 msgid "No results found"
 msgstr "შედეგები ვერ მოიძებნა."
@@ -4463,7 +4463,7 @@ msgstr "განაგეთ თქვენი დრო უკეთ ბრ�
 
 #. editorial content for the primary hero shelves.
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
-msgstr ""
+msgstr "დაგღალათ „ვიდეო შეჩერებულია. გსურთ განაგრძოთ?“ შეტყობინებებმა? მოუსმინეთ სასურველ მუსიკას შეუჩერებლად YouTube-ზე."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
