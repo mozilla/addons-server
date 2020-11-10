@@ -680,8 +680,13 @@ class AddonGitRepository(object):
         # reguar unittests and full-tree diffs.
         generate_unmodified_fake_diff = (
             not patch.delta.is_binary and
-            pathspec is not None and
-            patch.delta.status == pygit2.GIT_DELTA_UNMODIFIED
+            pathspec is not None and (
+                patch.delta.status == pygit2.GIT_DELTA_UNMODIFIED or (
+                    # See: https://github.com/mozilla/addons-server/issues/15966
+                    patch.delta.status == pygit2.GIT_DELTA_MODIFIED and
+                    len(hunks) == 0
+                )
+            )
         )
 
         if generate_unmodified_fake_diff:
