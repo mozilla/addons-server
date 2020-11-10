@@ -44,6 +44,7 @@ There are some common API responses that you can expect to receive at times.
     :statuscode 401: Authentication is required or failed.
     :statuscode 403: You are not permitted to perform this action.
     :statuscode 404: The requested resource could not be found.
+    :statuscode 451: The requested resource is not available for legal reasons.
     :statuscode 500: An unknown error occurred.
     :statuscode 503: The site is in maintenance mode at this current time and
         the operation can not be performed.
