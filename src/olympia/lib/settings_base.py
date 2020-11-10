@@ -103,6 +103,7 @@ ADDONS_LINTER_BIN = env(
 
 DELETION_EMAIL = 'amo-notifications+deletion@mozilla.org'
 THEMES_EMAIL = 'theme-reviews@mozilla.org'
+VERIFIED_ADDONS_EMAIL = 'verified-addons@mozilla.com'
 
 DRF_API_VERSIONS = ['auth', 'v3', 'v4', 'v5']
 DRF_API_REGEX = r'^/?api/(?:auth|v3|v4|v5)/'
