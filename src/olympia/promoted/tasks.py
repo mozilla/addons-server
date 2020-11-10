@@ -75,8 +75,8 @@ def on_stripe_charge_failed(event):
         return
     except Exception:
         log.exception(
-            'error while trying to retrieve a subscription for "%s"'
-            " event with event_id=%s and charge_id=%s.",
+            'error while trying to retrieve a subscription for "%s" '
+            "event with event_id=%s and charge_id=%s.",
             event_type,
             event_id,
             charge_id,
@@ -143,8 +143,8 @@ def on_stripe_customer_subscription_deleted(event):
         )
     except PromotedSubscription.DoesNotExist:
         log.exception(
-            'received a "%s" event (event_id=%s) for a non-existent'
-            " promoted subscription (subscription_id=%s).",
+            'received a "%s" event (event_id=%s) for a non-existent '
+            "promoted subscription (subscription_id=%s).",
             event_type,
             event_id,
             subscription_id,
@@ -171,5 +171,9 @@ def on_stripe_customer_subscription_deleted(event):
     # https://github.com/mozilla/addons-server/issues/15921
     sub.promoted_addon.update(group_id=NOT_PROMOTED.id)
     log.info(
-        "PromotedAddon %s is not promoted anymore.", sub.promoted_addon.id
+        "Addon %s is not promoted anymore (PromotedAddon=%s and "
+        "PromotedSubscription=%s).",
+        sub.promoted_addon.addon_id,
+        sub.promoted_addon.id,
+        sub.id,
     )
