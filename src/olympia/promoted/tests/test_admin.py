@@ -526,6 +526,7 @@ class TestPromotedAddonAdmin(TestCase):
 
         assert response.status_code == 200
         assert b'Onboarding URL' not in response.content
+        assert b'Stripe information' not in response.content
 
     def test_shows_subscription_when_group_is_verified(self):
         item = PromotedAddon.objects.create(
@@ -556,6 +557,31 @@ class TestPromotedAddonAdmin(TestCase):
 
         assert response.status_code == 200
         assert b'Onboarding URL' in response.content
+        assert b'Stripe information' in response.content
+        assert b'View subscription on Stripe' not in response.content
+
+    def test_shows_link_to_stripe_subscription(self):
+        item = PromotedAddon.objects.create(
+            addon=addon_factory(), group_id=SPONSORED.id
+        )
+        stripe_subscription_id = 'some-id'
+        item.promotedsubscription.update(
+            stripe_subscription_id=stripe_subscription_id
+        )
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Discovery:Edit')
+        self.client.login(email=user.email)
+
+        response = self.client.get(
+            reverse(self.detail_url_name, args=(item.pk,))
+        )
+
+        assert response.status_code == 200
+        content = response.content.decode('utf-8')
+        assert 'Onboarding URL' in content
+        assert 'Stripe information' in content
+        assert 'View subscription on Stripe' in content
+        assert f'/subscriptions/{stripe_subscription_id}' in content
 
     def test_updates_not_promoted_to_verified(self):
         item = PromotedAddon.objects.create(

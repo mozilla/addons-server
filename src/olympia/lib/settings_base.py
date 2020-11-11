@@ -1941,6 +1941,7 @@ ADZERK_EVENT_URL = f'https://e-{ADZERK_NETWORK_ID}.adzerk.net/'
 ADZERK_EVENT_TIMEOUT = 60 * 60 * 24  # seconds
 
 # Subscription
+STRIPE_DASHBOARD_URL = 'https://dashboard.stripe.com'
 STRIPE_API_SECRET_KEY = env('STRIPE_API_SECRET_KEY', default=None)
 STRIPE_API_PUBLIC_KEY = env('STRIPE_API_PUBLIC_KEY', default=None)
 STRIPE_API_WEBHOOK_SECRET = env('STRIPE_API_WEBHOOK_SECRET', default=None)
