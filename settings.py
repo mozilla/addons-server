@@ -80,7 +80,7 @@ INTERNAL_SITE_URL = 'http://nginx'
 EXTERNAL_SITE_URL = SITE_URL
 
 CODE_MANAGER_URL = (
-    os.environ.get('CODE_MANAGER_URL') or 'http://localhost:3000')
+    os.environ.get('CODE_MANAGER_URL') or 'http://olympia.test:5000')
 
 ALLOWED_HOSTS = ALLOWED_HOSTS + [SERVICES_DOMAIN, 'nginx']
 
