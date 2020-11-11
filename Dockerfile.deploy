@@ -20,6 +20,9 @@ RUN APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=DontWarn \
     && APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=DontWarn \
     apt-key add /etc/pki/gpg/mysql.gpg.key
 COPY docker/*.list /etc/apt/sources.list.d/
+ADD docker/debian-buster-nodesource-repo /etc/apt/sources.list.d/nodesource.list
+ADD docker/debian-buster-backports-repo /etc/apt/sources.list.d/buster-backports.list
+ADD docker/debian-buster-mysql-repo /etc/apt/sources.list.d/buster-mysql.list
 
 # IMPORTANT: When editing this list below, make sure to also update
 # `Dockerfile.deploy`.
