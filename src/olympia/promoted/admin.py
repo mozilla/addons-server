@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib import admin
 from django.db.models import Prefetch
 from django.forms.models import modelformset_factory
@@ -32,6 +33,7 @@ class PromotedSubscriptionInline(admin.StackedInline):
         'checkout_cancelled_at',
         'checkout_completed_at',
         'cancelled_at',
+        'stripe_information',
     )
     readonly_fields = (
         'onboarding_url',
@@ -39,6 +41,7 @@ class PromotedSubscriptionInline(admin.StackedInline):
         'checkout_cancelled_at',
         'checkout_completed_at',
         'cancelled_at',
+        'stripe_information',
     )
 
     def get_readonly_fields(self, request, obj=None):
@@ -60,6 +63,23 @@ class PromotedSubscriptionInline(admin.StackedInline):
         return format_html("<pre>{}</pre>", obj.get_onboarding_url())
 
     onboarding_url.short_description = "Onboarding URL"
+
+    def stripe_information(self, obj):
+        if not obj or (obj and not obj.stripe_subscription_id):
+            return '-'
+
+        stripe_sub_url = '/'.join([
+            settings.STRIPE_DASHBOARD_URL,
+            'subscriptions',
+            obj.stripe_subscription_id
+        ])
+
+        return format_html(
+            '<a href="{}">View subscription on Stripe</a>',
+            stripe_sub_url
+        )
+
+    stripe_information.short_description = "Stripe information"
 
 
 class PromotedApprovalInline(admin.TabularInline):

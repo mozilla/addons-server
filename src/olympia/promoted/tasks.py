@@ -86,7 +86,7 @@ def on_stripe_charge_failed(event):
     addon = sub.promoted_addon.addon
 
     # Create the Stripe URL pointing to the Stripe subscription.
-    stripe_sub_url = "https://dashboard.stripe.com"
+    stripe_sub_url = settings.STRIPE_DASHBOARD_URL
     if not stripe_sub["livemode"]:
         stripe_sub_url = stripe_sub_url + "/test"
     stripe_sub_url = f"{stripe_sub_url}/subscriptions/{subscription_id}"
