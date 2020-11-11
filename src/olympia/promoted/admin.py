@@ -65,7 +65,7 @@ class PromotedSubscriptionInline(admin.StackedInline):
     onboarding_url.short_description = "Onboarding URL"
 
     def stripe_information(self, obj):
-        if not obj or (obj and not obj.stripe_subscription_id):
+        if not obj or not obj.stripe_subscription_id:
             return '-'
 
         stripe_sub_url = '/'.join([
