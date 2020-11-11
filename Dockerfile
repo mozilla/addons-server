@@ -11,32 +11,27 @@ ARG USER_ID=1000
 # but rather use the `user` option in docker-compose.yml instead
 USER root
 
-# Add support for https apt repos and gpg signed repos
+# Allow scripts to detect we're running in our own container
+RUN touch /addons-server-docker-container
+
+# Add nodesource repository and requirements
+ADD docker/nodesource.gpg.key /etc/pki/gpg/GPG-KEY-nodesource
 RUN apt-get update && apt-get install -y \
         apt-transport-https              \
         gnupg2                           \
     && rm -rf /var/lib/apt/lists/*
-# Add keys and repos for node and mysql
-COPY docker/*.gpg.key /etc/pki/gpg/
-RUN APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=DontWarn \
-    apt-key add /etc/pki/gpg/nodesource.gpg.key \
-    && APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=DontWarn \
-    apt-key add /etc/pki/gpg/mysql.gpg.key
-COPY docker/*.list /etc/apt/sources.list.d/
+RUN cat /etc/pki/gpg/GPG-KEY-nodesource | apt-key add -
+ADD docker/debian-buster-nodesource-repo /etc/apt/sources.list.d/nodesource.list
+ADD docker/debian-buster-backports-repo /etc/apt/sources.list.d/buster-backports.list
 
 # IMPORTANT: When editing this list below, make sure to also update
 # `Dockerfile.deploy`.
-# Allow scripts to detect we're running in our own container and install
-# packages.
-RUN touch /addons-server-docker-container \
-    && apt-get update && apt-get -t buster install -y \
+RUN apt-get update && apt-get -t buster install -y \
         # General (dev-) dependencies
         bash-completion \
         build-essential \
         curl \
-        libcap-dev \
         libjpeg-dev \
-        libpcre3-dev \
         libsasl2-dev \
         libxml2-dev \
         libxslt-dev \
@@ -48,9 +43,9 @@ RUN touch /addons-server-docker-container \
         nodejs \
         # Git, because we're using git-checkout dependencies
         git \
-        # Dependencies for mysql-python (from mysql apt repo, not debian)
-        mysql-client \
-        libmysqlclient-dev \
+        # Dependencies for mysql-python
+        default-mysql-client \
+        default-libmysqlclient-dev \
         swig \
         gettext \
         # Use rsvg-convert to render our static theme previews
@@ -60,13 +55,16 @@ RUN touch /addons-server-docker-container \
         # Use libmaxmind for speedy geoip lookups
         libmaxminddb0                    \
         libmaxminddb-dev                 \
-    && apt-get -t buster-backports install -y \
-        libgit2-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # IMPORTANT: When editing one of these lists below, make sure to also update
 # `Dockerfile.deploy`.
 ADD docker/etc/mime.types /etc/mime.types
+
+# Install a recent libgit2-dev version...
+RUN apt-get update && apt-get -t buster-backports install -y \
+        libgit2-dev \
+    && rm -rf /var/lib/apt/lists/*
 
 # Compile required locale
 RUN localedef -i en_US -f UTF-8 en_US.UTF-8
