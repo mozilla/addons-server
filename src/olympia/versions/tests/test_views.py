@@ -332,6 +332,9 @@ class TestDownloads(TestDownloadsBase):
         response = self.client.get(self.file_url, HTTP_X_COUNTRY_CODE='fr')
         assert response.status_code == 451
         assert response['Vary'] == 'X-Country-Code'
+        assert response['Link'] == (
+            '<https://www.mozilla.org/about/policy/transparency/>; '
+            'rel="blocked-by"')
 
 
 class TestDisabledFileDownloads(TestDownloadsBase):

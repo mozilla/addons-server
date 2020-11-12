@@ -106,6 +106,8 @@ def download_file(request, file_id, type=None, file_=None, addon=None):
                 addon=addon,
                 excluded_regions__contains=region_code.upper()).exists():
             response = http.HttpResponse(status=451)
+            url = 'https://www.mozilla.org/about/policy/transparency/'
+            response['Link'] = f'<{url}>; rel="blocked-by"'
         else:
             # When using the CDN URL, we do a redirect, so we can't set
             # Content-Disposition: attachment for attachments. To work around

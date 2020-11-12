@@ -65,6 +65,9 @@ def custom_exception_handler(exc, context=None):
             not (isinstance(exc, exceptions.PermissionDenied) and
                  code_or_codes == 'permission_denied_restriction')):
             set_rollback()
+        if isinstance(exc, UnavailableForLegalReasons):
+            url = 'https://www.mozilla.org/about/policy/transparency/'
+            headers['Link'] = f'<{url}>; rel="blocked-by"'
         return Response(data, status=exc.status_code, headers=headers)
     else:
         # Not a DRF exception, we want to return an APIfied 500 error while
