@@ -520,7 +520,7 @@ class AddonGitRepository(object):
                     tree_entry=tree_entry,
                     path=tree_entry.name)
 
-    def get_raw_diff(self, commit, parent=None, include_unmodifed=False):
+    def get_raw_diff(self, commit, parent=None, include_unmodified=False):
         """Return the raw diff object.
 
         This is cached as we'll be calling it multiple times, e.g
@@ -533,11 +533,11 @@ class AddonGitRepository(object):
             pygit2.GIT_DIFF_NORMAL | pygit2.GIT_DIFF_IGNORE_WHITESPACE_CHANGE
         )
 
-        if include_unmodifed:
+        if include_unmodified:
             flags |= pygit2.GIT_DIFF_INCLUDE_UNMODIFIED
 
         try:
-            return diff_cache[(commit, parent, include_unmodifed)]
+            return diff_cache[(commit, parent, include_unmodified)]
         except KeyError:
             if parent is None:
                 retval = self.get_root_tree(commit).diff_to_tree(
@@ -555,7 +555,7 @@ class AddonGitRepository(object):
                     flags=flags,
                     interhunk_lines=0)
 
-            diff_cache[(commit, parent, include_unmodifed)] = retval
+            diff_cache[(commit, parent, include_unmodified)] = retval
             self._diff_cache = diff_cache
 
         return retval
@@ -570,7 +570,7 @@ class AddonGitRepository(object):
                          for them.
         """
         diff = self.get_raw_diff(
-            commit, parent=parent, include_unmodifed=pathspec is not None)
+            commit, parent=parent, include_unmodified=pathspec is not None)
 
         changes = []
 
@@ -606,7 +606,7 @@ class AddonGitRepository(object):
         possible - so they might have wrong values.
         """
         diff = self.get_raw_diff(
-            commit, parent=parent, include_unmodifed=pathspec is not None)
+            commit, parent=parent, include_unmodified=pathspec is not None)
 
         deltas = []
 
