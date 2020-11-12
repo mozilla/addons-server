@@ -967,6 +967,41 @@ def test_get_diff_eol_changes():
 
 
 @pytest.mark.django_db
+def test_get_diff_whitespace_changes_only():
+    file_kw = {'filename': 'webextension_no_id.xpi'}
+    addon = addon_factory(file_kw=file_kw)
+
+    original_version = addon.current_version
+    AddonGitRepository.extract_and_commit_from_version(original_version)
+
+    parent_version = version_factory(addon=addon, file_kw=file_kw)
+    repo = AddonGitRepository.extract_and_commit_from_version(parent_version)
+    apply_changes(repo, parent_version, '# beastify\r', 'README.md')
+
+    version = version_factory(addon=addon, file_kw=file_kw)
+    repo = AddonGitRepository.extract_and_commit_from_version(version)
+    apply_changes(repo, version, '# beastify\r\n', 'README.md')
+
+    changes = repo.get_diff(
+        commit=version.git_hash,
+        parent=parent_version.git_hash,
+        pathspec=['README.md']
+    )
+
+    # The file has been modified, so as far as git is concerned there should be
+    # one change.
+    assert len(changes) == 1
+    assert changes[0]['mode'] == 'M'
+
+    # If the entire file has whitespace changes only, there should be no hunks,
+    # which is problematic because it would result in an empty content and we
+    # don't want that so we handle this special case.
+    # See: https://github.com/mozilla/addons-server/issues/15966
+    assert changes[0]['hunks']
+    assert changes[0]['hunks'][0]['changes'][0]['content'] == b'# beastify\r'
+
+
+@pytest.mark.django_db
 def test_get_diff_newline_both_no_newline():
     addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
 
