@@ -132,6 +132,11 @@ class PromotedAddonAdmin(admin.ModelAdmin):
     inlines = (PromotedApprovalInline, PrimaryHeroInline,
                PromotedSubscriptionInline)
 
+    class Media:
+        js = (
+            'js/admin/promotedaddon.js',
+        )
+
     @classmethod
     def _transformer(self, objs):
         Version.transformer_promoted(
