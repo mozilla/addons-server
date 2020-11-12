@@ -35,6 +35,15 @@ LIMIT = 20
 class Command(BaseCommand):
     help = 'Extract add-on versions into Git repositories'
 
+    def add_arguments(self, parser):
+        parser.add_argument(
+            '--limit',
+            type=int,
+            help=(
+                'The number of entries to process when the command is invoked.'
+            )
+        )
+
     @use_primary_db
     def handle(self, *args, **options):
         if not waffle.switch_is_active(SWITCH_NAME):
