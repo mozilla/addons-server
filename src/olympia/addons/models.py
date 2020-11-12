@@ -1744,6 +1744,16 @@ class AddonReviewerFlags(ModelBase):
         default=None)
 
 
+class AddonRegionalRestrictions(ModelBase):
+    addon = models.OneToOneField(
+        Addon, primary_key=True, on_delete=models.CASCADE,
+        related_name='regional_restrictions')
+    excluded_regions = JSONField(default=list)
+
+    def __str__(self):
+        return '%s: %d' % (self.addon, len(self.excluded_regions))
+
+
 class MigratedLWT(OnChangeMixin, ModelBase):
     lightweight_theme_id = models.PositiveIntegerField()
     getpersonas_id = models.PositiveIntegerField()

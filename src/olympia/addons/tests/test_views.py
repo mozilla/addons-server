@@ -15,7 +15,8 @@ from rest_framework.test import APIRequestFactory
 from waffle import switch_is_active
 
 from olympia import amo
-from olympia.addons.models import Addon, AddonUser, Category, ReplacementAddon
+from olympia.addons.models import (
+    Addon, AddonRegionalRestrictions, AddonUser, Category, ReplacementAddon)
 from olympia.addons.utils import generate_addon_guid
 from olympia.addons.views import (
     DEFAULT_FIND_REPLACEMENT_PATH, FIND_REPLACEMENT_SRC,
@@ -251,6 +252,17 @@ class AddonAndVersionViewSetDetailMixin(object):
         assert data['is_disabled_by_developer'] is False
         assert data['is_disabled_by_mozilla'] is False
 
+        AddonRegionalRestrictions.objects.filter(
+            addon=self.addon).update(excluded_regions=['AB', 'CD', 'FR'])
+        # Regional restrictions should be processed after other permission
+        # handling, so something that would return a 401/403/404 without
+        # region restrictions would still do that.
+        response = self.client.get(self.url, HTTP_X_COUNTRY_CODE='fr')
+        assert response.status_code == 401
+        # Response is short enough that it won't be compressed, so it doesn't
+        # depend on Accept-Encoding.
+        assert response['Vary'] == 'Origin, X-Country-Code'
+
     def test_get_not_listed_no_rights(self):
         user = UserProfile.objects.create(username='simpleuser')
         self.make_addon_unlisted(self.addon)
@@ -262,6 +274,17 @@ class AddonAndVersionViewSetDetailMixin(object):
             'You do not have permission to perform this action.')
         assert data['is_disabled_by_developer'] is False
         assert data['is_disabled_by_mozilla'] is False
+
+        AddonRegionalRestrictions.objects.filter(
+            addon=self.addon).update(excluded_regions=['AB', 'CD', 'FR'])
+        # Regional restrictions should be processed after other permission
+        # handling, so something that would return a 401/403/404 without
+        # region restrictions would still do that.
+        response = self.client.get(self.url, HTTP_X_COUNTRY_CODE='fr')
+        assert response.status_code == 403
+        # Response is short enough that it won't be compressed, so it doesn't
+        # depend on Accept-Encoding.
+        assert response['Vary'] == 'Origin, X-Country-Code'
 
     def test_get_not_listed_simple_reviewer(self):
         user = UserProfile.objects.create(username='reviewer')
@@ -364,6 +387,44 @@ class AddonAndVersionViewSetDetailMixin(object):
         assert 'is_disabled_by_developer' not in data
         assert 'is_disabled_by_mozilla' not in data
 
+        AddonRegionalRestrictions.objects.filter(
+            addon=self.addon).update(excluded_regions=['AB', 'CD', 'FR'])
+        # Regional restrictions should be processed after other permission
+        # handling, so something that would return a 401/403/404 without
+        # region restrictions would still do that.
+        response = self.client.get(self.url, HTTP_X_COUNTRY_CODE='fr')
+        assert response.status_code == 404
+        # Response is short enough that it won't be compressed, so it doesn't
+        # depend on Accept-Encoding.
+        assert response['Vary'] == 'Origin, X-Country-Code'
+
+    def test_addon_regional_restrictions(self):
+        response = self.client.get(
+            self.url, {'lang': 'en-US'}, HTTP_X_COUNTRY_CODE='fr')
+        assert response.status_code == 200
+        assert response['Vary'] == 'Origin, Accept-Encoding, X-Country-Code'
+
+        AddonRegionalRestrictions.objects.create(
+            addon=self.addon, excluded_regions=['AB', 'CD'])
+        response = self.client.get(
+            self.url, {'lang': 'en-US'}, HTTP_X_COUNTRY_CODE='fr')
+        assert response.status_code == 200
+        assert response['Vary'] == 'Origin, Accept-Encoding, X-Country-Code'
+
+        AddonRegionalRestrictions.objects.filter(
+            addon=self.addon).update(excluded_regions=['AB', 'CD', 'FR'])
+        response = self.client.get(
+            self.url, data={'lang': 'en-US'}, HTTP_X_COUNTRY_CODE='fr')
+        assert response.status_code == 451
+        # Response is short enough that it won't be compressed, so it doesn't
+        # depend on Accept-Encoding.
+        assert response['Vary'] == 'Origin, X-Country-Code'
+        assert response['Link'] == (
+            '<https://www.mozilla.org/about/policy/transparency/>; '
+            'rel="blocked-by"')
+        data = response.json()
+        assert data == {'detail': 'Unavailable for legal reasons.'}
+
 
 class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
     client_class = APITestClient
@@ -374,10 +435,13 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
             guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
         self._set_tested_url(self.addon.pk)
 
-    def _test_url(self, **kwargs):
-        response = self.client.get(self.url, data=kwargs)
+    def _test_url(self, extra=None, **kwargs):
+        if extra is None:
+            extra = {}
+        response = self.client.get(self.url, data=kwargs, **extra)
         assert response.status_code == 200
         result = json.loads(force_text(response.content))
+        assert response['Vary'] == 'Origin, Accept-Encoding, X-Country-Code'
         assert result['id'] == self.addon.pk
         assert result['name'] == {'en-US': u'My Addôn'}
         assert result['slug'] == self.addon.slug
@@ -407,6 +471,10 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
             # - 1 for promoted addon
             # - 1 for tags
             self._test_url(lang='en-US')
+
+        with self.assertNumQueries(16):
+            # One additional query for region exclusions test
+            self._test_url(lang='en-US', extra={'HTTP_X_COUNTRY_CODE': 'fr'})
 
     def test_detail_url_with_reviewers_in_the_url(self):
         self.addon.update(slug='something-reviewers')
@@ -546,6 +614,7 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
     def _test_url(self):
         response = self.client.get(self.url)
         assert response.status_code == 200
+        assert response['Vary'] == 'Origin, Accept-Encoding, X-Country-Code'
         result = json.loads(force_text(response.content))
         assert result['id'] == self.version.pk
         assert result['version'] == self.version.version

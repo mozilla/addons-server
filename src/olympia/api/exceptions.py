@@ -4,11 +4,18 @@ from django.conf import settings
 from django.core.exceptions import PermissionDenied
 from django.core.signals import got_request_exception
 from django.http import Http404
+from django.utils.translation import ugettext_lazy as _
 
 from rest_framework import exceptions
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import set_rollback
+
+
+class UnavailableForLegalReasons(exceptions.APIException):
+    status_code = status.HTTP_451_UNAVAILABLE_FOR_LEGAL_REASONS
+    default_detail = _('Unavailable for legal reasons.')
+    default_code = 'unavailable_for_legal_reasons'
 
 
 def custom_exception_handler(exc, context=None):
@@ -58,6 +65,9 @@ def custom_exception_handler(exc, context=None):
             not (isinstance(exc, exceptions.PermissionDenied) and
                  code_or_codes == 'permission_denied_restriction')):
             set_rollback()
+        if isinstance(exc, UnavailableForLegalReasons):
+            url = 'https://www.mozilla.org/about/policy/transparency/'
+            headers['Link'] = f'<{url}>; rel="blocked-by"'
         return Response(data, status=exc.status_code, headers=headers)
     else:
         # Not a DRF exception, we want to return an APIfied 500 error while
