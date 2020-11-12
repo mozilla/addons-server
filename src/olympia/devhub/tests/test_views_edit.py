@@ -757,6 +757,26 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
 
         assert pq(response.content)('.stripe-customer-portal').length == 1
 
+    def test_no_manage_billing_when_user_is_not_owner(self):
+        promoted = PromotedAddon.objects.create(
+            addon=self.get_addon(), group_id=VERIFIED.id
+        )
+        promoted.promotedsubscription.update(
+            checkout_completed_at=datetime.datetime.now()
+        )
+        assert self.get_addon().promoted_subscription
+        assert self.get_addon().promoted_subscription.stripe_checkout_completed
+        user_dev = UserProfile.objects.get(pk=999)
+        self.get_addon().addonuser_set.create(
+            user=user_dev, role=amo.AUTHOR_ROLE_DEV
+        )
+        self.client.logout()
+        self.client.login(email=user_dev.email)
+
+        response = self.client.get(self.url)
+
+        assert pq(response.content)('.stripe-customer-portal').length == 0
+
     def test_no_manage_billing_when_subscription_has_been_cancelled(self):
         promoted = PromotedAddon.objects.create(
             addon=self.get_addon(), group_id=VERIFIED.id
