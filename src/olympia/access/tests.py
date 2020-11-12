@@ -166,6 +166,22 @@ class TestHasPerm(TestCase):
         group_user.delete()
         assert self.user.groups_list == []
 
+    def test_owner_of_a_different_addon(self):
+        user_dev = user_factory()
+        addon_factory(users=[user_dev])
+        # At this point, `user_dev` is an owner of `addon_for_user_dev`.
+
+        # Let's add `user_dev` as a developer of `self.addon`.
+        self.addon.addonuser_set.create(
+            user=user_dev, role=amo.AUTHOR_ROLE_DEV
+        )
+        # Now, let's make sure `user_dev` is not an owner.
+        self.request = self.fake_request_with_user(user_dev)
+
+        assert not check_addon_ownership(self.request, self.addon)
+        # `user_dev` is a developer of `self.addon`.
+        assert check_addon_ownership(self.request, self.addon, dev=True)
+
 
 class TestCheckReviewer(TestCase):
     fixtures = ['base/addon_3615']

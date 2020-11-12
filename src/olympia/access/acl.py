@@ -144,8 +144,10 @@ def check_addon_ownership(request, addon, dev=False, admin=True,
     roles = (amo.AUTHOR_ROLE_OWNER,)
     if dev:
         roles += (amo.AUTHOR_ROLE_DEV,)
-    return addon.authors.filter(pk=request.user.pk,
-                                addonuser__role__in=roles).exists()
+
+    return addon.addonuser_set.filter(
+        user=request.user, role__in=roles
+    ).exists()
 
 
 def check_addons_reviewer(request, allow_content_reviewers=True):
