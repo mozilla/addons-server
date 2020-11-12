@@ -11,6 +11,7 @@ from olympia.amo.celery import task
 from olympia.files.utils import update_version_number
 from olympia.lib.crypto.signing import sign_file
 from olympia.addons.models import Addon
+from olympia.users.utils import get_task_user
 from olympia.versions.models import Version
 
 
@@ -93,6 +94,7 @@ def sign_addons(addon_ids, force=False, send_emails=True, **kw):
     qset = Version.objects.filter(id__in=current_versions)
 
     addons_emailed = set()
+    task_user = get_task_user()
 
     for version in qset:
         # We only sign files that have been reviewed
@@ -143,7 +145,11 @@ def sign_addons(addon_ids, force=False, send_emails=True, **kw):
             version.update(version=bumped_version_number)
             addon = version.addon
             ActivityLog.create(
-                amo.LOG.VERSION_RESIGNED, addon, version, previous_version_str)
+                amo.LOG.VERSION_RESIGNED,
+                addon,
+                version,
+                previous_version_str,
+                user=task_user)
             if send_emails and addon.pk not in addons_emailed:
                 # Send a mail to the owners/devs warning them we've
                 # automatically signed their addon.

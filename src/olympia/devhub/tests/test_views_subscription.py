@@ -321,6 +321,8 @@ class TestOnboardingSubscriptionSuccess(SubscriptionTestCase):
 
     @mock.patch("olympia.devhub.views.retrieve_stripe_checkout_session")
     def test_get_records_payment_once(self, retrieve_mock):
+        self.subscription.promoted_addon.approve_for_version(
+            self.subscription.promoted_addon.addon.current_version)
         stripe_subscription_id = "some-subscription-id"
         retrieve_mock.return_value = {
             "id": "session-id",
@@ -358,6 +360,8 @@ class TestOnboardingSubscriptionSuccess(SubscriptionTestCase):
             "payment_status": "paid",
             "subscription": "some-subscription-id",
         }
+        self.subscription.promoted_addon.approve_for_version(
+            self.subscription.promoted_addon.addon.current_version)
 
         self.subscription.update(checkout_cancelled_at=datetime.datetime.now())
 
