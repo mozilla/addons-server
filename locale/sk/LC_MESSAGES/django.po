@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-06-04 21:34+0000\n"
+"PO-Revision-Date: 2020-11-12 22:41+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -66,7 +66,7 @@ msgid "By %(filter_title)s"
 msgstr ""
 
 msgid "All"
-msgstr ""
+msgstr "Všetko"
 
 msgid "No links are allowed."
 msgstr "Odkazy nie sú povolené."
@@ -107,7 +107,7 @@ msgstr "Potrebujete pomoc?"
 
 #, python-format
 msgid "Notification [%s] does not exist"
-msgstr ""
+msgstr "Upozornenie [%s] neexistuje"
 
 msgid "Review"
 msgstr "Recenzia"
@@ -205,7 +205,7 @@ msgid "Admin Tools"
 msgstr "Nástroje správcu"
 
 msgid "Positive integer"
-msgstr ""
+msgstr "Kladné celé číslo"
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
