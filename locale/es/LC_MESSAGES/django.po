@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-04 12:01+0000\n"
+"PO-Revision-Date: 2020-11-12 13:33+0000\n"
 "Last-Translator: Paulina Rodriguez <pauli.rodriguez.c@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -142,7 +142,7 @@ msgstr "Enlaces del revisor"
 
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
-msgstr ""
+msgstr "Extracción de Git activada para \"%(addons)s\"."
 
 msgid "- Add-on not on AMO -"
 msgstr "- Complemento no disponible en AMO -"
@@ -170,7 +170,7 @@ msgid "My Themes"
 msgstr "Mis temas"
 
 msgid "Git-Extract"
-msgstr ""
+msgstr "Git-Extract"
 
 msgid "Tools"
 msgstr "Herramientas"
@@ -563,7 +563,7 @@ msgstr "Los GUID de complemento %(count)s ya están bloqueados para %(v_min)s%(v
 
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
-msgstr ""
+msgstr "No se encontraron %(count)s GUIDs Add-on "
 
 msgid "The following block(s) were imported from a regex based legacy Block."
 msgstr ""
@@ -951,7 +951,7 @@ msgid "Block deleted"
 msgstr "Complemento borrado."
 
 msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
+msgstr "GUID para {addon} añadido a DeniedGuid."
 
 #, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
@@ -1820,7 +1820,7 @@ msgid "Version {version} matches {block_link} for this add-on. You can contact {
 msgstr ""
 
 msgid "a blocklist entry"
-msgstr ""
+msgstr "una entrada de lista de bloqueo"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "La versión {version} fue cargada anteriormente y eliminada."
@@ -2628,10 +2628,10 @@ msgid "More information on Creative Commons licenses"
 msgstr "Más información sobre las licencias de Creative Commons"
 
 msgid "Your add-on is currently set to \"Invisible\"."
-msgstr ""
+msgstr "Tu complemento está actualmente configurado en \"Invisible\"."
 
 msgid "While in this state, \"On your own\" is the only distribution method available."
-msgstr ""
+msgstr "Mientras esté en este estado, \"Por cuenta propia\" es el único método de distribución disponible."
 
 msgid "General Tests"
 msgstr "Pruebas generales"
@@ -2739,7 +2739,7 @@ msgid "Yes, Cancel"
 msgstr "Cancelar"
 
 msgid "No, don't cancel"
-msgstr ""
+msgstr "No, no cancelar"
 
 msgid "Name and Summary:"
 msgstr "Nombre y descripción:"
@@ -4594,7 +4594,7 @@ msgstr "Privacidad más allá de las extensiones del navegador"
 
 #. editorial content for the secondary hero shelves.
 msgid "Media enhancers for Firefox"
-msgstr ""
+msgstr "Mejoradores de medios para Firefox"
 
 #. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
@@ -5752,7 +5752,7 @@ msgid "The developer has provided source code."
 msgstr "El desarrollador ha proporcionado el código fuente."
 
 msgid "Scanners score:"
-msgstr ""
+msgstr "Puntuación de escáneres:"
 
 msgid "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
 msgstr ""
