@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-08 08:38+0000\n"
+"PO-Revision-Date: 2020-11-13 16:33+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -2272,16 +2272,16 @@ msgstr "Τελειώσατε!"
 
 #, python-format
 msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
-msgstr ""
+msgstr "Τελειώσατε! Μια νέα έκδοση <strong>%(new_version_number)s</strong> του πρόσθετου σας <strong>%(addon_name)s</strong> θα δημοσιευθεί ως %(group_name)s και θα είναι διαθέσιμη σύντομα."
 
 msgid "A newer version of your add-on is currently pending review."
 msgstr "Αυτή τη στιγμή, εκκρεμεί έλεγχος για μια νεότερη έκδοση του προσθέτου σας."
 
 msgid "If you have any questions, don’t hesitate to contact us."
-msgstr ""
+msgstr "Αν έχετε απορίες, μην διστάσετε να επικοινωνήσετε μαζί μας."
 
 msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
-msgstr ""
+msgstr "Η πληρωμή σας έχει καταχωρηθεί, αλλά προς το παρόν δεν υπάρχουν δημοσιευμένες εκδόσεις του προσθέτου σας. Ανεβάστε μια νέα έκδοση για να ολοκληρωθεί η διαδικασία."
 
 msgid "Manage add-on"
 msgstr "Διαχείριση προσθέτου"
@@ -2292,14 +2292,14 @@ msgid ""
 msgstr ""
 
 msgid "Thank you for joining the Promoted Add-ons Program!"
-msgstr ""
+msgstr "Σας ευχαριστούμε για τη συμμετοχή σας στο Πρόγραμμα προωθημένων προσθέτων!"
 
 #, python-format
 msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the program once payment is set up through the Stripe system. Click on the button below to continue:"
-msgstr ""
+msgstr "Το πρόσθετό σας <strong>%(addon_name)s</strong> θα συμπεριληφθεί στο πρόγραμμα μόλις η γίνει πληρωμή μέσω του συστήματος Stripe. Κάντε κλικ στο παρακάτω κουμπί για να συνεχίσετε:"
 
 msgid "Continue to Stripe Checkout"
-msgstr ""
+msgstr "Συνέχεια στο Stripe Checkout"
 
 msgid "Manage Authors & License"
 msgstr "Διαχείριση προγραμματιστών & άδειας χρήσης"
@@ -3215,7 +3215,7 @@ msgid "View All"
 msgstr "Προβολή όλων"
 
 msgid "Manage Billing on Stripe"
-msgstr ""
+msgstr "Διαχείριση χρέωσης στο Stripe"
 
 msgid "Listed Review Page"
 msgstr "Σελίδα καταχωρημένης κριτικής"
