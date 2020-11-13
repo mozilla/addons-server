@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-13 21:33+0000\n"
+"PO-Revision-Date: 2020-11-13 21:35+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4263,6 +4263,7 @@ msgstr "Εποπτεία παραγωγικότητας. Μετρήστε το �
 #. editorial content for the discovery pane.
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
 msgstr ""
+"Αποθηκεύστε αγαπημένο περιεχόμενο στο διαδίκτυο. Βρείτε περιεχόμενο, όπως άρθρα, βίντεο, εικόνες και πολλά άλλα, για αποθήκευση και χρήση σε ατομικά έργα ή ομαδικές εργασίες σε πραγματικό χρόνο."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
