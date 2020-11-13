@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-04 23:26+0000\n"
+"PO-Revision-Date: 2020-11-13 16:30+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -315,9 +315,8 @@ msgstr ""
 msgid "Register or Log in"
 msgstr "Crear conto o aperir session"
 
-#, fuzzy
 msgid "Email:"
-msgstr "Email"
+msgstr "Email:"
 
 msgid "OK"
 msgstr "OK"
@@ -2235,9 +2234,8 @@ msgstr ""
 msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
 msgstr ""
 
-#, fuzzy
 msgid "Manage add-on"
-msgstr "Pacchetto de lingua (Additivo)"
+msgstr "Gerer additivo"
 
 msgid ""
 "There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a href=\"mailto:amo-"
