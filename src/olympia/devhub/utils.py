@@ -30,15 +30,12 @@ from . import tasks
 log = olympia.core.logger.getLogger('z.devhub')
 
 
-def process_validation(validation, is_compatibility=False, file_hash=None,
+def process_validation(validation, file_hash=None,
                        channel=amo.RELEASE_CHANNEL_LISTED):
     """Process validation results into the format expected by the web
     frontend, including transforming certain fields into HTML,  mangling
     compatibility messages, and limiting the number of messages displayed."""
     validation = fix_addons_linter_output(validation, channel=channel)
-
-    if is_compatibility:
-        mangle_compatibility_messages(validation)
 
     # Set an ending tier if we don't have one (which probably means
     # we're dealing with mock validation results or the addons-linter).
@@ -53,19 +50,6 @@ def process_validation(validation, is_compatibility=False, file_hash=None,
     htmlify_validation(validation)
 
     return validation
-
-
-def mangle_compatibility_messages(validation):
-    """Mangle compatibility messages so that the message type matches the
-    compatibility type, and alter totals as appropriate."""
-
-    compat = validation['compatibility_summary']
-    for k in ('errors', 'warnings', 'notices'):
-        validation[k] = compat[k]
-
-    for msg in validation['messages']:
-        if msg['compatibility_type']:
-            msg['type'] = msg['compatibility_type']
 
 
 def limit_validation_results(validation):

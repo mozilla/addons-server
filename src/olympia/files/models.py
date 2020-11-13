@@ -30,7 +30,6 @@ from olympia.amo.storage_utils import copy_stored_file, move_stored_file
 from olympia.amo.templatetags.jinja_helpers import (
     user_media_path, user_media_url)
 from olympia.amo.urlresolvers import reverse
-from olympia.applications.models import AppVersion
 from olympia.files.utils import get_sha256, write_crx_as_xpi
 
 
@@ -481,11 +480,6 @@ class FileUpload(ModelBase):
     valid = models.BooleanField(default=False)
     validation = models.TextField(null=True)
     automated_signing = models.BooleanField(default=False)
-    compat_with_app = models.PositiveIntegerField(
-        choices=amo.APPS_CHOICES, db_column="compat_with_app_id", null=True)
-    compat_with_appver = models.ForeignKey(
-        AppVersion, null=True, related_name='uploads_compat_for_appver',
-        on_delete=models.CASCADE)
     # Not all FileUploads will have a version and addon but it will be set
     # if the file was uploaded using the new API.
     version = models.CharField(max_length=255, null=True)
@@ -500,10 +494,6 @@ class FileUpload(ModelBase):
 
     class Meta(ModelBase.Meta):
         db_table = 'file_uploads'
-        indexes = [
-            models.Index(fields=('compat_with_app',),
-                         name='file_uploads_afe99c5e'),
-        ]
         constraints = [
             models.UniqueConstraint(fields=('uuid',), name='uuid'),
         ]
@@ -608,11 +598,9 @@ class FileUpload(ModelBase):
             from olympia.devhub.utils import process_validation
 
             validation = self.load_validation()
-            is_compatibility = self.compat_with_app is not None
 
             return process_validation(
                 validation,
-                is_compatibility=is_compatibility,
                 file_hash=self.hash)
 
     @property

@@ -988,14 +988,6 @@ class TestFileUpload(UploadTest):
         assert 'truncated' in validation['messages'][0]['message']
         assert validation['messages'][0]['type'] == 'warning'
 
-        upload = FileUpload(validation=json.dumps(data),
-                            compat_with_app=1)
-        validation = upload.processed_validation
-
-        assert len(validation['messages']) == 11
-        assert 'truncated' in validation['messages'][0]['message']
-        assert validation['messages'][0]['type'] == 'error'
-
     @override_settings(VALIDATOR_MESSAGE_LIMIT=10)
     def test_limit_validator_errors(self):
         data = {
