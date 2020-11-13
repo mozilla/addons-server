@@ -438,7 +438,6 @@ def test_extract_and_commit_from_version_support_custom_note():
 @pytest.mark.parametrize('filename', [
     'webextension_no_id.xpi',
     'webextension_no_id.zip',
-    'search.xml',
 ])
 def test_extract_and_commit_from_version_valid_extensions(settings, filename):
     addon = addon_factory(file_kw={'filename': filename})
@@ -471,7 +470,6 @@ def test_extract_and_commit_from_version_valid_extensions(settings, filename):
 @pytest.mark.parametrize('filename, expected', [
     ('webextension_no_id.xpi', {'README.md', 'manifest.json'}),
     ('webextension_no_id.zip', {'README.md', 'manifest.json'}),
-    ('search.xml', {'search.xml'}),
     ('notify-link-clicks-i18n.xpi', {
         'README.md', '_locales/de/messages.json', '_locales/en/messages.json',
         '_locales/ja/messages.json', '_locales/nb_NO/messages.json',
@@ -1234,7 +1232,7 @@ def test_get_raw_diff_cache_unmodified_file():
         (MagicMock(type=_blob_type), 'foo.py', 'text', 'text/x-python'),
         (MagicMock(type=_blob_type), 'image.jpg', 'image', 'image/jpeg'),
         (MagicMock(type=_blob_type), 'image.png', 'image', 'image/png'),
-        (MagicMock(type=_blob_type), 'search.xml', 'text', 'application/xml'),
+        (MagicMock(type=_blob_type), 'foo.xml', 'text', 'application/xml'),
         (MagicMock(type=_blob_type), 'js_containing_png_data.js', 'text',
                                      'text/javascript'),
         (MagicMock(type=_blob_type), 'foo.json', 'text', 'application/json'),

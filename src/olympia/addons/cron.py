@@ -97,12 +97,11 @@ def update_addon_appsupport():
     # Find all the add-ons that need their app support details updated.
     newish = (Q(last_updated__gte=F('appsupport__created')) |
               Q(appsupport__created__isnull=True))
-    # Search providers don't list supported apps.
-    has_app = Q(versions__apps__isnull=False) | Q(type=amo.ADDON_SEARCH)
-    has_file = Q(versions__files__status__in=amo.VALID_FILE_STATUSES)
-    good = Q(has_app, has_file)
+    has_app_and_file = Q(
+        versions__apps__isnull=False,
+        versions__files__status__in=amo.VALID_FILE_STATUSES)
     ids = (Addon.objects.valid().distinct()
-           .filter(newish, good).values_list('id', flat=True))
+           .filter(newish, has_app_and_file).values_list('id', flat=True))
 
     task_log.info('Updating appsupport for %d new-ish addons.' % len(ids))
     ts = [update_appsupport.subtask(args=[chunk])

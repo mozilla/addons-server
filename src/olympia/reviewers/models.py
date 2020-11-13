@@ -23,6 +23,7 @@ from olympia.amo.models import ModelBase
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import cache_ns_key, send_mail
+from olympia.constants.base import _ADDON_SEARCH
 from olympia.constants.promoted import (
     NOT_PROMOTED, PROMOTED_GROUPS_BY_ID, RECOMMENDED, PRE_REVIEW_GROUPS)
 from olympia.files.models import FileValidation
@@ -246,8 +247,7 @@ class CombinedReviewQueueMixin:
 class ExtensionQueueMixin:
     def base_query(self):
         query = super().base_query()
-        types = _int_join(
-            set(amo.GROUP_TYPE_ADDON) - {amo.ADDON_SEARCH})
+        types = _int_join(set(amo.GROUP_TYPE_ADDON))
         flags_table = 'addons_addonreviewerflags'
         promoted_groups = _int_join(
             group.id for group in PRE_REVIEW_GROUPS)
@@ -534,7 +534,7 @@ class ReviewerScore(ModelBase):
                 reviewed_score_name = 'REVIEWED_DICT_FULL'
             elif addon.type in [amo.ADDON_LPAPP, amo.ADDON_LPADDON]:
                 reviewed_score_name = 'REVIEWED_LP_FULL'
-            elif addon.type == amo.ADDON_SEARCH:
+            elif addon.type == _ADDON_SEARCH:
                 reviewed_score_name = 'REVIEWED_SEARCH_FULL'
             elif weight > amo.POST_REVIEW_WEIGHT_HIGHEST_RISK:
                 reviewed_score_name = 'REVIEWED_EXTENSION_HIGHEST_RISK'
@@ -561,7 +561,7 @@ class ReviewerScore(ModelBase):
                 reviewed_score_name = 'REVIEWED_LP_%s' % queue
             elif addon.type == amo.ADDON_STATICTHEME:
                 reviewed_score_name = 'REVIEWED_STATICTHEME'
-            elif addon.type == amo.ADDON_SEARCH and queue:
+            elif addon.type == _ADDON_SEARCH and queue:
                 reviewed_score_name = 'REVIEWED_SEARCH_%s' % queue
 
         if reviewed_score_name:

@@ -258,7 +258,7 @@ class TestDashboard(HubTest):
 
 
 class TestUpdateCompatibility(TestCase):
-    fixtures = ['base/users', 'base/addon_4594_a9', 'base/addon_3615']
+    fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
         super(TestUpdateCompatibility, self).setUp()
@@ -275,12 +275,13 @@ class TestUpdateCompatibility(TestCase):
             application=amo.APPS[name].id, version=version)
 
     def test_no_compat(self):
+        addon = Addon.objects.get(pk=3615)
+        addon.update(type=amo.ADDON_DICT)
         self.client.logout()
         assert self.client.login(email='admin@mozilla.com')
         response = self.client.get(self.url)
         doc = pq(response.content)
-        assert not doc('.item[data-addonid="4594"] li.compat')
-        addon = Addon.objects.get(pk=4594)
+        assert not doc('.item[data-addonid="3615"] li.compat')
         response = self.client.get(
             reverse('devhub.ajax.compat.update',
                     args=[addon.slug, addon.current_version.id]))
@@ -1156,8 +1157,8 @@ class TestUpload(BaseUploadTest):
         msg = validation['messages'][0]
         assert msg['type'] == u'error'
         assert msg['message'] == (
-            u'Unsupported file type, please upload a supported file '
-            '(.crx, .xpi, .xml, .zip).')
+            'Unsupported file type, please upload a supported file '
+            '(.crx, .xpi, .zip).')
         assert not msg['description']
 
     def test_redirect(self):

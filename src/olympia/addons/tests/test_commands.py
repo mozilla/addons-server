@@ -469,7 +469,6 @@ class TestResignAddonsForCose(TestCase):
 
         # Search add-ons won't get re-signed, same with deleted and disabled
         # versions. Also, only public addons are being resigned
-        addon_factory(type=amo.ADDON_SEARCH, file_kw=file_kw)
         addon_factory(status=amo.STATUS_DISABLED, file_kw=file_kw)
         addon_factory(status=amo.STATUS_AWAITING_REVIEW, file_kw=file_kw)
         addon_factory(status=amo.STATUS_NULL, file_kw=file_kw)
@@ -530,40 +529,6 @@ class TestDeleteObsoleteAddons(TestCase):
         assert Addon.objects.count() == 3
         assert Addon.objects.get(id=self.extension.id)
         assert Addon.objects.get(id=self.static_theme.id)
-        assert Addon.objects.get(id=self.dictionary.id)
-
-
-class TestDeleteOpenSearchAddons(TestCase):
-    def setUp(self):
-        # Some add-ons that shouldn't be deleted
-        self.extension = addon_factory()
-        self.dictionary = addon_factory(type=amo.ADDON_DICT)
-
-        # And some opensearch plugins
-        addon_factory(type=amo.ADDON_SEARCH)
-        addon_factory(type=amo.ADDON_SEARCH)
-
-        assert Addon.objects.count() == 4
-        assert Addon.unfiltered.count() == 4
-
-    def test_basic(self):
-        call_command(
-            'process_addons', task='disable_opensearch_addons')
-
-        assert Addon.objects.count() == 2
-        # They have only been disabled and not hard deleted
-        assert Addon.unfiltered.count() == 4
-        assert Addon.objects.get(id=self.extension.id)
-        assert Addon.objects.get(id=self.dictionary.id)
-
-    def test_hard(self):
-        call_command(
-            'process_addons', task='disable_opensearch_addons',
-            with_deleted=True)
-
-        assert Addon.objects.count() == 2
-        assert Addon.unfiltered.count() == 2
-        assert Addon.objects.get(id=self.extension.id)
         assert Addon.objects.get(id=self.dictionary.id)
 
 

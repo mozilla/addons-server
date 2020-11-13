@@ -66,9 +66,8 @@ class TestViewExtensionQueueTable(TestCase):
 
     def test_addon_type_id(self):
         row = Mock()
-        row.addon_type_id = amo.ADDON_SEARCH
-        assert str(self.table.render_addon_type_id(row)) == (
-            u'Search Engine')
+        row.addon_type_id = amo.ADDON_EXTENSION
+        assert str(self.table.render_addon_type_id(row)) == 'Extension'
 
     def test_waiting_time_in_days(self):
         row = Mock()

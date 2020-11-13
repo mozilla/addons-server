@@ -15,8 +15,6 @@ import tempfile
 import zipfile
 import fcntl
 
-from datetime import datetime
-
 from django import forms
 from django.conf import settings
 from django.core.files.storage import (
@@ -27,11 +25,6 @@ from django.utils.jslex import JsLexer
 from django.utils.translation import ugettext
 
 import rdflib
-
-from xml.parsers.expat import ExpatError
-
-from defusedxml import minidom
-from defusedxml.common import DefusedXmlException
 
 import olympia.core.logger
 
@@ -604,50 +597,6 @@ class SigningCertificateInformation(object):
         return {'is_mozilla_signed_extension': self.is_mozilla_signed_ou}
 
 
-def extract_search(content):
-    def _text(tag):
-        try:
-            return dom.getElementsByTagName(tag)[0].childNodes[0].wholeText
-        except (IndexError, AttributeError):
-            raise forms.ValidationError(
-                ugettext('Could not parse uploaded file, missing or empty '
-                         '<%s> element') % tag)
-
-    # Only catch basic errors, we don't accept any new uploads and validation
-    # has happened on upload in the past.
-    try:
-        dom = minidom.parse(content)
-    except DefusedXmlException:
-        raise forms.ValidationError(
-            ugettext('OpenSearch: XML Security error.'))
-    except ExpatError:
-        raise forms.ValidationError(ugettext('OpenSearch: XML Parse Error.'))
-
-    return {
-        'name': _text('ShortName'),
-        'description': _text('Description')
-    }
-
-
-def parse_search(fileorpath, addon=None):
-    try:
-        f = get_file(fileorpath)
-        data = extract_search(f)
-    except forms.ValidationError:
-        raise
-    except Exception:
-        log.error('OpenSearch parse error', exc_info=True)
-        raise forms.ValidationError(ugettext('Could not parse uploaded file.'))
-
-    return {'guid': None,
-            'type': amo.ADDON_SEARCH,
-            'name': data['name'],
-            'is_restart_required': False,
-            'is_webextension': False,
-            'summary': data['description'],
-            'version': datetime.now().strftime('%Y%m%d')}
-
-
 class FSyncMixin(object):
     """Mixin that implements fsync for file extractions.
 
@@ -859,8 +808,8 @@ def extract_zip(source, remove=False, force_fsync=False, tempdir=None):
 def extract_extension_to_dest(source, dest=None, force_fsync=False):
     """Extract `source` to `dest`.
 
-    `source` can be an extension or extension source, can be a zip, tar
-    (gzip, bzip) or a search provider (.xml file).
+    `source` is the path to an extension or extension source, which can be a
+    zip or a compressed tar (gzip, bzip)
 
     Note that this doesn't verify the contents of `source` except for
     that it requires something valid to be extracted.
@@ -889,10 +838,8 @@ def extract_extension_to_dest(source, dest=None, force_fsync=False):
                 if not force_fsync else FSyncedTarFile)
             with tarfile_class.open(source) as archive:
                 archive.extractall(target)
-        elif source.endswith(u'.xml'):
-            shutil.copy(source, target)
-            if force_fsync:
-                FSyncMixin()._fsync_file(target)
+        else:
+            raise FileNotFoundError  # Unsupported file, shouldn't be reached
     except (zipfile.BadZipFile, tarfile.ReadError, IOError,
             forms.ValidationError) as e:
         if tempdir is not None:
@@ -1112,9 +1059,7 @@ def parse_addon(pkg, addon=None, user=None, minimal=False):
     it should always contain at least guid, type, version and is_webextension.
     """
     name = getattr(pkg, 'name', pkg)
-    if name.endswith('.xml'):
-        parsed = parse_search(pkg, addon)
-    elif name.endswith(amo.VALID_ADDON_FILE_EXTENSIONS):
+    if name.endswith(amo.VALID_ADDON_FILE_EXTENSIONS):
         parsed = parse_xpi(pkg, addon, minimal=minimal, user=user)
     else:
         valid_extensions_string = u'(%s)' % u', '.join(

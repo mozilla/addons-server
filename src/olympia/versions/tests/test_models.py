@@ -1373,44 +1373,6 @@ class TestExtensionVersionFromUploadTransactional(
         create_entry_mock.assert_not_called()
 
 
-class TestSearchVersionFromUpload(TestVersionFromUpload):
-    filename = 'search.xml'
-
-    def setUp(self):
-        super(TestSearchVersionFromUpload, self).setUp()
-        self.addon.versions.all().delete()
-        self.addon.update(type=amo.ADDON_SEARCH)
-        self.now = datetime.now().strftime('%Y%m%d')
-
-    def test_version_number(self):
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
-        version = Version.from_upload(
-            self.upload, self.addon, [self.selected_app],
-            amo.RELEASE_CHANNEL_LISTED,
-            parsed_data=parsed_data)
-        assert version.version == self.now
-
-    def test_file_name(self):
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
-        version = Version.from_upload(
-            self.upload, self.addon, [self.selected_app],
-            amo.RELEASE_CHANNEL_LISTED,
-            parsed_data=parsed_data)
-        files = version.all_files
-        assert files[0].filename == (
-            u'delicious_bookmarks-%s.xml' % self.now)
-
-    def test_file_platform_is_always_all(self):
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
-        version = Version.from_upload(
-            self.upload, self.addon, [self.selected_app],
-            amo.RELEASE_CHANNEL_LISTED,
-            parsed_data=parsed_data)
-        files = version.all_files
-        assert len(files) == 1
-        assert files[0].platform == amo.PLATFORM_ALL.id
-
-
 class TestStatusFromUpload(TestVersionFromUpload):
     filename = 'extension.xpi'
 

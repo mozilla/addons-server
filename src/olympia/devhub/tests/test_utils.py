@@ -130,32 +130,6 @@ class TestAddonsLinterListed(UploadTest, TestCase):
                 'validation-task:files.FileUpload:{0}:False'.format(
                     self.file_upload.pk))
 
-    @mock.patch('olympia.devhub.utils.parse_addon')
-    def test_search_plugin(self, parse_addon):
-        """Test that search plugins are handled correctly (new upload)."""
-        parse_addon.return_value = {
-            'guid': None,
-            'version': '20140103',
-        }
-
-        addon = addon_factory(type=amo.ADDON_SEARCH,
-                              version_kw={'version': '20140101'})
-        assert addon.guid is None
-        self.check_upload(self.file_upload)
-
-    @mock.patch('olympia.devhub.utils.parse_addon')
-    def test_search_plugin_file(self, parse_addon):
-        """Test that search plugins are handled correctly (existing file)."""
-        parse_addon.return_value = {
-            'guid': None,
-            'version': '20140103',
-        }
-
-        addon = addon_factory(type=amo.ADDON_SEARCH,
-                              version_kw={'version': '20140101'})
-        version = version_factory(addon=addon, version='20140102')
-        self.check_file(version.files.get())
-
 
 class TestLimitAddonsLinterResults(TestCase):
     """Test that higher priority messages are truncated last."""

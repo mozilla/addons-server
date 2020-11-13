@@ -735,31 +735,6 @@ class TestLegacyAddonRestrictions(UploadTest, ValidatorTestCase):
         assert upload.processed_validation['messages'] == []
         assert upload.valid
 
-    def test_submit_search_plugin(self):
-        file_ = get_addon_file('searchgeek-20090701.xml')
-        upload = self.get_upload(abspath=file_, with_validation=False)
-        tasks.validate(upload, listed=True)
-
-        upload.refresh_from_db()
-
-        assert not upload.valid
-        assert upload.processed_validation['errors'] == 1
-        assert upload.processed_validation['messages'] == [{
-            'compatibility_type': None,
-            'description': [],
-            'id': ['validation', 'messages', 'opensearch_unsupported'],
-            'message': (
-                'Open Search add-ons are <a '
-                'href="https://blog.mozilla.org/addons/2019/10/15/'
-                'search-engine-add-ons-to-be-removed-from-addons-mozilla-org/"'
-                ' rel="nofollow">no longer supported on AMO</a>. You can '
-                'create a <a href="https://developer.mozilla.org/docs/Mozilla'
-                '/Add-ons/WebExtensions/manifest.json/'
-                'chrome_settings_overrides" rel="nofollow">search extension '
-                'instead</a>.'),
-            'tier': 1,
-            'type': 'error'}]
-
 
 @mock.patch('olympia.devhub.tasks.send_html_mail_jinja')
 def test_send_welcome_email(send_html_mail_jinja_mock):

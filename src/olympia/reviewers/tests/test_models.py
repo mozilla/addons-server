@@ -10,13 +10,13 @@ from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import (
-    Addon, AddonApprovalsCounter, AddonReviewerFlags, AddonUser)
+    AddonApprovalsCounter, AddonReviewerFlags, AddonUser)
 from olympia.amo.tests import (
     TestCase, addon_factory, file_factory, user_factory, version_factory)
 from olympia.blocklist.models import Block
 from olympia.constants.promoted import (
     LINE, NOT_PROMOTED, RECOMMENDED, STRATEGIC, SPONSORED)
-from olympia.files.models import File, FileValidation, WebextPermission
+from olympia.files.models import FileValidation, WebextPermission
 from olympia.promoted.models import PromotedAddon
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import (
@@ -27,24 +27,6 @@ from olympia.reviewers.models import (
     set_reviewing_cache)
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version, version_uploaded
-
-
-def create_search_ext(name, version_str, addon_status, file_status,
-                      channel):
-    addon, created_ = Addon.objects.get_or_create(
-        name__localized_string=name,
-        defaults={'type': amo.ADDON_SEARCH, 'name': name})
-    version, created_ = Version.objects.get_or_create(
-        addon=addon, version=version_str, defaults={'channel': channel})
-    File.objects.create(version=version, filename=u"%s.xpi" % name,
-                        platform=amo.PLATFORM_ALL.id, status=file_status)
-    if file_status == amo.STATUS_AWAITING_REVIEW:
-        AddonReviewerFlags.objects.update_or_create(
-            addon=addon, auto_approval_disabled=True)
-    # Update status *after* there are files:
-    addon = Addon.objects.get(pk=addon.id)
-    addon.update(status=addon_status)
-    return addon
 
 
 class TestQueue(TestCase):
@@ -79,12 +61,6 @@ class TestQueue(TestCase):
         assert sorted(q.addon_name for q in self.Queue.objects.all()) == (
             ['Unreviewed'])
 
-    def test_search_extensions(self):
-        self.new_search_ext('Search Tool', '0.1')
-        row = self.Queue.objects.get()
-        assert row.addon_name == u'Search Tool'
-        assert row.addon_type_id == amo.ADDON_SEARCH
-
     def test_count_all(self):
         # Create two new addons and give each another version.
         version_factory(addon=self.new_addon(), version=u'2.0',
@@ -111,11 +87,6 @@ class TestExtensionQueueWithAwaitingReview(TestQueue):
             file_kw={'status': amo.STATUS_AWAITING_REVIEW,
                      'is_restart_required': False})
         return addon
-
-    def new_search_ext(self, name, version, **kw):
-        return create_search_ext(
-            name, version, amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW,
-            channel=self.channel, **kw)
 
     def test_waiting_time(self):
         self.new_addon()
@@ -221,12 +192,6 @@ class TestExtensionQueueWithNominated(TestQueue):
             file_kw={'status': file_status})
         return addon
 
-    def new_search_ext(self, name, version, **kw):
-        return create_search_ext(name, version,
-                                 amo.STATUS_NOMINATED,
-                                 amo.STATUS_AWAITING_REVIEW,
-                                 channel=self.channel, **kw)
-
     def test_waiting_time(self):
         self.new_addon()
         Version.objects.update(nomination=datetime.utcnow())
@@ -256,13 +221,6 @@ class TestRecommendedQueue(TestQueue):
                 'channel': self.channel,
                 'recommendation_approved': False},
             file_kw={'status': file_status})
-        return addon
-
-    def new_search_ext(self, name, version, **kw):
-        addon = create_search_ext(
-            name, version, amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
-            channel=self.channel, **kw)
-        self.make_addon_promoted(addon, RECOMMENDED)
         return addon
 
     def test_new_submissions_and_updates_present(self):
@@ -581,7 +539,6 @@ class TestReviewerScore(TestCase):
             amo.ADDON_ANY: None,
             amo.ADDON_EXTENSION: 'ADDON',
             amo.ADDON_DICT: 'DICT',
-            amo.ADDON_SEARCH: 'SEARCH',
             amo.ADDON_LPAPP: 'LP',
             amo.ADDON_LPADDON: 'LP',
             amo.ADDON_PLUGIN: 'ADDON',
@@ -727,44 +684,44 @@ class TestReviewerScore(TestCase):
         assert score.version == self.addon.current_version
 
     def test_award_points_langpack_post_review(self):
-        search_provider = amo.tests.addon_factory(
+        langpack = amo.tests.addon_factory(
             status=amo.STATUS_APPROVED, type=amo.ADDON_LPAPP)
         self.version = version_factory(
-            addon=search_provider, version='1.1', file_kw={
+            addon=langpack, version='1.1', file_kw={
                 'status': amo.STATUS_APPROVED,
                 'is_webextension': True})
         AutoApprovalSummary.objects.create(
-            version=search_provider.current_version,
+            version=langpack.current_version,
             verdict=amo.AUTO_APPROVED,
             weight=101)
         ReviewerScore.award_points(
-            self.user, search_provider, search_provider.status,
-            version=search_provider.current_version,
+            self.user, langpack, langpack.status,
+            version=langpack.current_version,
             post_review=True, content_review=False)
         score = ReviewerScore.objects.get(user=self.user)
         assert score.score == amo.REVIEWED_SCORES[
             amo.REVIEWED_LP_FULL]
-        assert score.version == search_provider.current_version
+        assert score.version == langpack.current_version
 
     def test_award_points_langpack_disabled_auto_approval(self):
-        search_provider = amo.tests.addon_factory(
+        langpack = amo.tests.addon_factory(
             status=amo.STATUS_NOMINATED, type=amo.ADDON_LPAPP)
         self.version = version_factory(
-            addon=search_provider, version='1.1', file_kw={
+            addon=langpack, version='1.1', file_kw={
                 'status': amo.STATUS_AWAITING_REVIEW,
                 'is_webextension': True})
         AutoApprovalSummary.objects.create(
-            version=search_provider.current_version,
+            version=langpack.current_version,
             verdict=amo.NOT_AUTO_APPROVED,
             weight=101)
         ReviewerScore.award_points(
-            self.user, search_provider, search_provider.status,
-            version=search_provider.current_version,
+            self.user, langpack, langpack.status,
+            version=langpack.current_version,
             post_review=False, content_review=False)
         score = ReviewerScore.objects.get(user=self.user)
         assert score.score == amo.REVIEWED_SCORES[
             amo.REVIEWED_LP_FULL]
-        assert score.version == search_provider.current_version
+        assert score.version == langpack.current_version
 
     def test_award_points_dict_post_review(self):
         dictionary = amo.tests.addon_factory(

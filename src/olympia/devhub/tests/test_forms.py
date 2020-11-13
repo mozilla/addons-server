@@ -868,9 +868,9 @@ class TestIconForm(TestCase):
 class TestCategoryForm(TestCase):
 
     def test_no_possible_categories(self):
-        Category.objects.create(type=amo.ADDON_SEARCH,
+        Category.objects.create(type=amo.ADDON_DICT,
                                 application=amo.FIREFOX.id)
-        addon = addon_factory(type=amo.ADDON_SEARCH)
+        addon = addon_factory(type=amo.ADDON_DICT)
         request = req_factory_factory('/')
         form = forms.CategoryFormSet(addon=addon, request=request)
         apps = [f.app for f in form.forms]

@@ -790,9 +790,6 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
         'README.md', 'beasts', 'button', 'content_scripts', 'manifest.json',
         'popup'
     ]),
-    ('search.xml', [
-        'search.xml',
-    ])
 ])
 def test_extract_extension_to_dest(filename, expected_files):
     extension_file = 'src/olympia/files/fixtures/files/{fname}'.format(
@@ -809,7 +806,7 @@ def test_extract_extension_to_dest(filename, expected_files):
 
 @pytest.mark.parametrize('filename', [
     'webextension_no_id.xpi', 'webextension_no_id.zip',
-    'webextension_no_id.tar.bz2', 'webextension_no_id.tar.gz', 'search.xml',
+    'webextension_no_id.tar.bz2', 'webextension_no_id.tar.gz',
 ])
 def test_extract_extension_to_dest_call_fsync(filename):
     extension_file = 'src/olympia/files/fixtures/files/{fname}'.format(
@@ -1091,16 +1088,6 @@ class TestXMLVulnerabilities(TestCase):
 
     This doesn't replicate all defusedxml tests.
     """
-
-    def test_quadratic_xml(self):
-        quadratic_xml = os.path.join(
-            os.path.dirname(__file__), '..', 'fixtures', 'files',
-            'quadratic.xml')
-
-        with pytest.raises(forms.ValidationError) as exc:
-            utils.extract_search(quadratic_xml)
-
-        assert exc.value.message == u'OpenSearch: XML Security error.'
 
     def test_general_entity_expansion_is_disabled(self):
         zip_file = utils.SafeZip(os.path.join(
