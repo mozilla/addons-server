@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-13 17:04+0000\n"
+"PO-Revision-Date: 2020-11-13 21:33+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4198,7 +4198,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "Απολαύστε τον απόλυτο έλεγχο καρτελών — κλείστε τις διπλές καρτέλες, συγχωνεύστε παράθυρα, αντιγράψτε τον τίτλο της καρτέλας και άλλα."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
@@ -4258,7 +4258,7 @@ msgstr "Κάντε τις αγορές σας με αυτοπεποίθηση. �
 
 #. editorial content for the discovery pane.
 msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr ""
+msgstr "Εποπτεία παραγωγικότητας. Μετρήστε το χρόνο που ξοδεύετε στον υπολογιστή ή σε συγκεκριμένες εφαρμογές, όπως τα Trello, JIRA, Basecamp, GitHub και πολλά άλλα."
 
 #. editorial content for the discovery pane.
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
@@ -4267,7 +4267,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Only allow web content to run from sites you trust. Surf securely."
-msgstr ""
+msgstr "Επιτρέψτε την εκτέλεση περιεχομένου ιστού, μόνο από τις σελίδες που εμπιστεύεστε. Σερφάρετε με ασφάλεια."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4316,7 +4316,7 @@ msgstr "Διόρθωση ενοχλητικού ήχου. Είναι πολύ χ
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
-msgstr ""
+msgstr "Επεξεργασία ιστοσελίδας πριν την εκτύπωση. Πραγματοποιήστε οπτικές αλλαγές — καταργήστε τις διαφημίσεις ή το ανεπιθύμητο περιεχόμενο — από οποιαδήποτε ιστοσελίδα θέλετε να εκτυπώσετε."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
