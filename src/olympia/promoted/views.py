@@ -9,6 +9,7 @@ import olympia.core.logger
 
 from .tasks import (
     on_stripe_charge_failed,
+    on_stripe_charge_succeeded,
     on_stripe_customer_subscription_deleted,
 )
 from .utils import create_stripe_webhook_event
@@ -21,6 +22,7 @@ log = olympia.core.logger.getLogger("z.promoted")
 # that type.
 ON_STRIPE_EVENT_TASKS = {
     "charge.failed": on_stripe_charge_failed,
+    "charge.succeeded": on_stripe_charge_succeeded,
     "customer.subscription.deleted": on_stripe_customer_subscription_deleted,
 }
 

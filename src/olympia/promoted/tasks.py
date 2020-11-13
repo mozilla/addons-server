@@ -177,3 +177,47 @@ def on_stripe_customer_subscription_deleted(event):
         sub.promoted_addon.id,
         sub.id,
     )
+
+
+@task
+def on_stripe_charge_succeeded(event):
+    event_id = event.get("id")
+    event_type = event.get("type")
+
+    if event_type != "charge.succeeded":
+        log.error(
+            'invalid event "%s" received (event_id=%s).', event_type, event_id
+        )
+        return
+
+    # This event should contain a `charge` object.
+    charge = event.get("data", {}).get("object")
+    if not charge:
+        log.error("no charge object in event (event_id=%s).", event_id)
+        return
+
+    charge_id = charge["id"]
+    log.info('received "%s" event with charge_id=%s.', event_type, charge_id)
+
+    # Create the Stripe URL pointing to the Stripe payment.
+    stripe_payment_url = settings.STRIPE_DASHBOARD_URL
+    if not charge.get("livemode"):
+        stripe_payment_url = stripe_payment_url + "/test"
+    stripe_payment_url = (
+        f"{stripe_payment_url}/payments/{charge.get('payment_intent')}"
+    )
+
+    subject = "Stripe payment succeeded"
+    template = loader.get_template(
+        "promoted/emails/stripe_charge_succeeded.txt"
+    )
+    context = {
+        "stripe_payment_url": stripe_payment_url,
+    }
+
+    send_mail(
+        subject,
+        template.render(context),
+        from_email=settings.ADDONS_EMAIL,
+        recipient_list=[settings.VERIFIED_ADDONS_EMAIL],
+    )

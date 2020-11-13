@@ -1,0 +1,7 @@
+{% block content %}
+Hello,
+
+We received a notification from Stripe about a successful payment, see: {{ stripe_payment_url }}
+
+Yours.
+{% endblock %}
