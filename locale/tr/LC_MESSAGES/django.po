@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-09 12:02+0000\n"
+"PO-Revision-Date: 2020-11-13 13:21+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -3091,7 +3091,7 @@ msgid "Your add-on was disabled by a site administrator and is no longer shown i
 msgstr "Eklentiniz bir site yöneticisi tarafından devre dışı bırakıldı ve artık galerimizde gösterilmiyor. Herhangi bir sorunuz varsa lütfen amo-admins@mozilla.com adresine e-posta gönderin."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr ""
+msgstr "Eklentiniz arama sonuçlarına dahil edilmeyecek ve eklenti sayfasında eklentiyi devre dışı bıraktığınız belirtilecektir. Bu durumda yeni sürüm gönderimleri kabul edilmeyecektir."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
@@ -3115,10 +3115,10 @@ msgid "This is the version of your add-on that will be installed if someone clic
 msgstr "Bu, birisi eklentinizin addons.mozilla.org'daki Yükle düğmesini tıklarsa yüklenecek olan sürümüdür"
 
 msgid "Next Listed Version:"
-msgstr ""
+msgstr "Sonraki listelenmiş sürüm:"
 
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
-msgstr ""
+msgstr "Bu en yeni yüklenen sürüm, ancak henüz sitede yayımlanmıyor"
 
 msgid "Queues are not reviewed strictly in order"
 msgstr "Kuyruklar sırayla incelenmeyebilir"
@@ -3131,13 +3131,13 @@ msgid "%(position)s of %(total)s"
 msgstr "%(total)s içinde %(position)s."
 
 msgid "Signed for self-distribution. Updates are handled by you."
-msgstr ""
+msgstr "Kendi kendine dağıtım için imzalandı. Güncellemeler sizin tarafınızdan yapılacak."
 
 msgid "Latest Version:"
 msgstr "Son sürüm:"
 
 msgid "This is the newest uploaded unlisted version"
-msgstr ""
+msgstr "Bu, yüklenen en yeni listelenmemiş sürüm"
 
 msgid "Upload New Version"
 msgstr "Yeni sürüm yükle"
@@ -3224,7 +3224,7 @@ msgid "Visit the Extension Workshop"
 msgstr "Eklenti atölyesine git"
 
 msgid "Connect with us"
-msgstr ""
+msgstr "Bizimle iletişime geçin"
 
 msgid "Twitter"
 msgstr "Twitter"
