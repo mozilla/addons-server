@@ -17,7 +17,7 @@ def call_adzerk_server(url, json_data=None):
     """Call adzerk server to get sponsored addon results."""
     json_response = {}
     try:
-        log.info('Calling adzerk')
+        log.debug('Calling adzerk')
         with statsd.timer('services.adzerk'):
             response = requests.post(
                 url,
@@ -40,7 +40,7 @@ def call_adzerk_server(url, json_data=None):
 def ping_adzerk_server(url, type='impression'):
     """Ping adzerk server for impression/clicks"""
     try:
-        log.info('Calling adzerk')
+        log.debug('Calling adzerk')
         with statsd.timer('services.adzerk'):
             response = requests.get(
                 url,
