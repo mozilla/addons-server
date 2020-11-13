@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-13 16:39+0000\n"
+"PO-Revision-Date: 2020-11-13 17:04+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -133,7 +133,7 @@ msgstr "Σύνδεσμοι ελεγκτή"
 
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
-msgstr ""
+msgstr "Ενεργοποιήθηκε εξαγωγή Git για το \"%(addons)s\"."
 
 msgid "- Add-on not on AMO -"
 msgstr "- Το πρόσθετο δεν είναι στο AMO -"
@@ -161,7 +161,7 @@ msgid "My Themes"
 msgstr "Τα θέματά μου"
 
 msgid "Git-Extract"
-msgstr ""
+msgstr "Git-Extract"
 
 msgid "Tools"
 msgstr "Εργαλεία"
@@ -2290,6 +2290,8 @@ msgid ""
 "There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a href=\"mailto:amo-"
 "admins@mozilla.com\">amo-admins@mozilla.com</a>."
 msgstr ""
+"Προέκυψε σφάλμα κατά την ολοκλήρωση της πληρωμής για το πρόσθετό σας. Αν αντιμετωπίζετε προβλήματα με αυτή τη διαδικασία ή αν αλλάξατε γνώμη, παρακαλούμε επικοινωνήστε μαζί μας στο <a "
+"href=\"mailto:amo-admins@mozilla.com\">amo-admins@mozilla.com</a>."
 
 msgid "Thank you for joining the Promoted Add-ons Program!"
 msgstr "Σας ευχαριστούμε για τη συμμετοχή σας στο Πρόγραμμα προωθημένων προσθέτων!"
@@ -4381,7 +4383,7 @@ msgstr "Εύκολη αποθήκευση εικόνων — απλά \"αρπά
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr ""
+msgstr "Μέτρηση ιστοσελίδων. Εμφανίστε έναν ψηφιακό χάρακα σε οποιαδήποτε σελίδα για να ελέγξετε το ύψος, το πλάτος και τη στοίχιση των στοιχείων της σελίδας."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy the benefits of strong password management."
