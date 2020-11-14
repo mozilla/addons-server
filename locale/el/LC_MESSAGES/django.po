@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-14 10:44+0000\n"
+"PO-Revision-Date: 2020-11-14 11:04+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4728,6 +4728,8 @@ msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
 msgstr ""
+"Κριτικάρετε ένα πρόσθετο για κάτι που προορίζεται να κάνει. Για παράδειγμα, μην αφήνετε αρνητική κριτική για ένα πρόσθετο που εμφανίζει διαφημίσεις ή απαιτεί συλλογή δεδομένων, όταν αυτός είναι ο "
+"σκοπός του προσθέτου, ή όταν το πρόσθετο απαιτεί συλλογή δεδομένων για να λειτουργήσει."
 
 msgid "How can I report a problematic review?"
 msgstr "Πώς μπορώ να αναφέρω μια προβληματική αξιολόγηση;"
@@ -4744,7 +4746,7 @@ msgstr "Είμαι δημιουργός προσθέτων, μπορώ να απ
 
 #, python-format
 msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
-msgstr ""
+msgstr "Ναι, οι δημιουργοί προσθέτων μπορούν να δώσουν μόνο μια απάντηση σε μια κριτική. Μπορείτε να δημιουργήσετε ένα θέμα συζήτησης στο <a href=\"%(forum_url)s\">φόρουμ</a> μας για περαιτέρω συζήτηση."
 
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
 msgstr "Είμαι δημιουργός προσθέτου, μπορώ να διαγράψω μη ευνοϊκές κριτικές ή βαθμολογίες;"
@@ -5014,7 +5016,7 @@ msgid "This will approve, sign, and publish this version. The comments will be s
 msgstr "Αυτό θα εγκρίνει, υπογράψει και δημοσιεύσει αυτή την έκδοση. Τα σχόλια θα αποσταλούν στον προγραμματιστή."
 
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr ""
+msgstr "Αυτή η έκδοση θα απορριφθεί και θα αφαιρεθεί από την ουρά. Τα σχόλια θα αποσταλούν στον προγραμματιστή."
 
 msgid "Approve Content"
 msgstr "Έγκριση περιεχομένου"
@@ -5038,7 +5040,7 @@ msgid "Block Multiple Versions"
 msgstr "Φραγή πολλαπλών εκδόσεων"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr ""
+msgstr "Οι επιλεγμένες εγκεκριμένες εκδόσεις θα απενεργοποιηθούν σιωπηλά και θα ανοίξει η σελίδα διαχείρισης δημιουργίας μπλοκ."
 
 msgid "Confirm Multiple Versions"
 msgstr "Επιβεβαίωση πολλαπλών εκδόσεων"
