@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-14 11:10+0000\n"
+"PO-Revision-Date: 2020-11-14 11:21+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -5148,7 +5148,7 @@ msgid "Update message of the day"
 msgstr "Ενημέρωση του μηνύματος της ημέρας"
 
 msgid "Add-ons Pending Rejection ({0})"
-msgstr ""
+msgstr "Πρόσθετα με εκκρεμούσα απόρριψη ({0})"
 
 msgid "An unknown error occurred"
 msgstr "Προέκυψε άγνωστο σφάλμα"
@@ -5453,7 +5453,7 @@ msgid "The whiteboard is the place to exchange information relevant to this addo
 msgstr ""
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr ""
+msgstr "Ο ιδιωτικός πίνακας χρησιμοποιείται για ανταλλαγή πληροφοριών μεταξύ ελεγκτών ανεξαρτήτως της έκδοσης. Παρακαλούμε να είστε αντικειμενικοί. Είναι ορατός μόνο στους ελεγκτές."
 
 msgid "Update whiteboards"
 msgstr "Ενημέρωση πινάκων"
@@ -5601,7 +5601,7 @@ msgid "{num} versions flagged by scanners on other pages."
 msgstr ""
 
 msgid "{num} versions flagged for human review on other pages."
-msgstr ""
+msgstr "{num} εκδόσεις επισημάνθηκαν για έλεγχο από άνθρωπο σε άλλες σελίδες."
 
 msgid "{num} versions pending rejection on other pages."
 msgstr "{num} εκδόσεις με εκκρεμούσα απόρριψη σε άλλες σελίδες."
@@ -5765,7 +5765,7 @@ msgid "Run"
 msgstr "Εκτέλεση"
 
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
+msgstr "Χρήσιμο όταν το αποτέλεσμα του σαρωτή είναι αληθές, αλλά το πρόσθετο δεν είναι κακόβουλο"
 
 msgid "Revert report"
 msgstr "Ανάκληση αναφοράς"
