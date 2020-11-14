@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-14 10:59+0000\n"
+"PO-Revision-Date: 2020-11-14 15:13+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -311,9 +311,8 @@ msgstr ""
 msgid "Register or Log in"
 msgstr "Register or Log in"
 
-#, fuzzy
 msgid "Email:"
-msgstr "Email"
+msgstr "Email:"
 
 msgid "OK"
 msgstr "OK"
@@ -2193,9 +2192,8 @@ msgstr "Click on the Accept button below to confirm you want to be added as an a
 msgid "Decline"
 msgstr "Decline"
 
-#, fuzzy
 msgid "Set Up Payment"
-msgstr "Requires Payment"
+msgstr "Set Up Payment"
 
 msgid "You're done!"
 msgstr "You're done!"
@@ -2213,9 +2211,8 @@ msgstr "If you have any questions, don’t hesitate to contact us."
 msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
 msgstr "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
 
-#, fuzzy
 msgid "Manage add-on"
-msgstr "Language Pack (Add-on)"
+msgstr "Manage add-on"
 
 msgid ""
 "There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a href=\"mailto:amo-"
@@ -4431,18 +4428,16 @@ msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Some web sites have difficulty playing videos on Android. Here's a fix."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "For those moments when you need to fire lasers out of a cat."
+msgstr "For those moments you need to fire lasers out of a cat's eyes."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
 msgstr "Removes those long and ugly tracking parameters from Google search result URLs."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Get weather updates directly from Firefox."
-msgstr "Get weather updates right in the browser."
+msgstr "Get weather updates directly from Firefox."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
@@ -4496,9 +4491,8 @@ msgstr "Lowest supported \"strict_min_version\" is 42.0."
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr "Unknown \"strict_min_version\" {appver} for {app}"
 
-#, fuzzy
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
-msgstr "Unknown \"strict_min_version\" {appver} for {app}"
+msgstr "Unknown \"strict_max_version\" {appver} for {app}"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
@@ -5388,9 +5382,8 @@ msgstr "More Actions"
 msgid "Notify me about new listed versions"
 msgstr "Notify me about new listed versions"
 
-#, fuzzy
 msgid "Notify me about new unlisted versions"
-msgstr "Notify me about new listed versions"
+msgstr "Notify me about new unlisted versions"
 
 msgid "Allow resubmission"
 msgstr "Allow resubmission"
