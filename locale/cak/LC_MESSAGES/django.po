@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-11 22:55+0000\n"
+"PO-Revision-Date: 2020-11-14 22:11+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -2255,11 +2255,11 @@ msgid "Set Up Payment"
 msgstr "K'o chi Nitoj"
 
 msgid "You're done!"
-msgstr ""
+msgstr "¡Xk'achoj!"
 
 #, python-format
 msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
-msgstr ""
+msgstr "¡Xk'achoj! Jun k'ak'a' ruwa"
 
 msgid "A newer version of your add-on is currently pending review."
 msgstr ""
