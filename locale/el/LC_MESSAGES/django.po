@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-14 09:45+0000\n"
+"PO-Revision-Date: 2020-11-14 09:59+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4193,7 +4193,7 @@ msgstr "Επισημάνετε κείμενο σε οποιαδήποτε ιστ
 
 #. editorial content for the discovery pane.
 msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
-msgstr ""
+msgstr "Αποκτήστε το πλεονέκτημα στο Amazon. Όταν κοιτάζετε σελίδες προϊόντων σε άλλα διαδικτυακά καταστήματα, μπορείτε να δείτε το ίδιο προϊόν στο Amazon, αν υπάρχει."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4375,7 +4375,7 @@ msgstr "Φραγή διαφημίσεων και ενισχυμένη προστ
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
-msgstr ""
+msgstr "Απολαύστε την υποστήριξη λήψεων με πολλαπλά thread. Αυτόματη ανίχνευση διαφορετικών τύπων πολυμέσων που διατίθενται για λήψη."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4517,7 +4517,7 @@ msgstr "Λάβετε ενημερώσεις καιρού απευθείας απ
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
-msgstr ""
+msgstr "Διαχειριστείτε καλύτερα το χρόνο σας με ένα ρολόι που χαρτογραφεί τα διαστήματα εργασίας."
 
 #. editorial content for the primary hero shelves.
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
@@ -4933,7 +4933,7 @@ msgid "Has auto-approval disabled/delayed flag set"
 msgstr ""
 
 msgid "Is in a promoted addon group that requires pre-review"
-msgstr ""
+msgstr "Είναι σε ομάδα προωθημένων προσθέτων που απαιτεί προεπισκόπηση"
 
 msgid "Delayed because it's the first listed version"
 msgstr "Καθυστέρησε επειδή είναι η πρώτη καταχωρημένη έκδοση"
