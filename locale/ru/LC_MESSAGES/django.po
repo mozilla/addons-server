@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-15 16:23+0000\n"
+"PO-Revision-Date: 2020-11-15 16:25+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -139,7 +139,7 @@ msgstr "Ссылки проверяющего"
 
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
-msgstr ""
+msgstr "Для \"%(addons)s\" запущено извлечение Git."
 
 msgid "- Add-on not on AMO -"
 msgstr "- Дополнение не на AMO -"
@@ -167,7 +167,7 @@ msgid "My Themes"
 msgstr "Мои темы"
 
 msgid "Git-Extract"
-msgstr ""
+msgstr "Git-Extract"
 
 msgid "Tools"
 msgstr "Инструменты"
@@ -2247,10 +2247,10 @@ msgid "You're done! A new version <strong>%(new_version_number)s</strong> of you
 msgstr ""
 
 msgid "A newer version of your add-on is currently pending review."
-msgstr ""
+msgstr "Новая версия вашего дополнения ожидает рассмотрения."
 
 msgid "If you have any questions, don’t hesitate to contact us."
-msgstr ""
+msgstr "Если у вас есть вопросы, не стесняйтесь обращаться к нам."
 
 msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
 msgstr ""
@@ -4512,7 +4512,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
-msgstr ""
+msgstr "Устали от постоянного появления \"Видео приостановлено. Продолжить просмотр?\"? Слушайте любимую музыку на YouTube без перерыва."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
