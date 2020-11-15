@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-09-07 22:22+0000\n"
+"PO-Revision-Date: 2020-11-15 17:49+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
 "Language: el\n"
@@ -705,7 +705,7 @@ msgid "No results found."
 msgstr "Δεν βρέθηκαν αποτελέσματα."
 
 msgid "Loading..."
-msgstr "Γίνεται φόρτωση..."
+msgstr "Φόρτωση..."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
