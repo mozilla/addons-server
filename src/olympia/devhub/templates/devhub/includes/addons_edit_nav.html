@@ -30,7 +30,7 @@
           <a href="{{ url }}">{{ title }}</a></li>
       {% endfor %}
 
-      {% if addon.promoted_subscription and addon.promoted_subscription.is_active %}
+      {% if check_addon_ownership(request, addon) and addon.promoted_subscription and addon.promoted_subscription.is_active %}
       <li class="stripe-customer-portal">
         <form method="POST" action="{{ url('devhub.addons.subscription_customer_portal', addon.slug) }}">
           {% csrf_token %}
