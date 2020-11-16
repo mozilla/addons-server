@@ -2,6 +2,7 @@ import random
 from contextlib import contextmanager
 from datetime import timedelta
 
+from django.conf import settings
 from django.core.management import call_command
 from django.core.management.base import CommandError
 
@@ -106,6 +107,7 @@ def count_subtask_calls(original_function):
 @freeze_time('2019-04-01')
 @pytest.mark.django_db
 def test_process_addons_limit_addons():
+    user_factory(id=settings.TASK_USER_ID)
     addon_ids = [
         addon_factory(status=amo.STATUS_APPROVED).id for _ in range(5)
     ]
@@ -448,6 +450,7 @@ class TestResignAddonsForCose(TestCase):
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_basic(self, sign_file_mock):
         file_kw = {'is_webextension': True, 'filename': 'webextension.xpi'}
+        user_factory(id=settings.TASK_USER_ID)
 
         with freeze_time('2019-04-01'):
             addon_with_history = addon_factory(file_kw=file_kw)

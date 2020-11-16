@@ -1,6 +1,7 @@
 import datetime
 from unittest import mock
 
+from django.conf import settings
 from django.test.utils import override_settings
 
 from olympia import amo, core
@@ -115,6 +116,7 @@ class TestPromotedAddon(TestCase):
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_approve_for_addon(self, mock_sign_file):
         core.set_user(user_factory())
+        task_user = user_factory(id=settings.TASK_USER_ID)
         promo = PromotedAddon.objects.create(
             addon=addon_factory(version_kw={'version': '0.123a'}),
             group_id=promoted.SPOTLIGHT.id)
@@ -143,9 +145,11 @@ class TestPromotedAddon(TestCase):
             mock_sign_file.assert_called_with(file_)
             assert ActivityLog.objects.for_addons((promo.addon,)).filter(
                 action=amo.LOG.VERSION_RESIGNED.id).exists()
-            alog = str(ActivityLog.objects.filter(
-                action=amo.LOG.VERSION_RESIGNED.id).get())
-            assert '0.123a.1-signed</a> re-signed (previously 0.123a)' in alog
+            alog = ActivityLog.objects.filter(
+                action=amo.LOG.VERSION_RESIGNED.id).get()
+            assert alog.user == task_user
+            assert '0.123a.1-signed</a> re-signed (previously 0.123a)' in (
+                str(alog))
 
     def test_get_resigned_version_number(self):
         addon = addon_factory(
