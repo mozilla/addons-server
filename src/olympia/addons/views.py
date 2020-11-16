@@ -22,13 +22,12 @@ import olympia.core.logger
 
 from olympia import amo
 from olympia.access import acl
-from olympia.addons.models import AddonRegionalRestrictions
 from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.api.exceptions import UnavailableForLegalReasons
 from olympia.api.pagination import ESPageNumberPagination
 from olympia.api.permissions import (
     AllowAddonAuthor, AllowReadOnlyIfPublic, AllowRelatedObjectPermissions,
-    AllowReviewer, AllowReviewerUnlisted, AnyOf, GroupPermission)
+    AllowReviewer, AllowReviewerUnlisted, AnyOf, GeoAvailable, GroupPermission)
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.search.filters import (
     AddonAppQueryParam, AddonAppVersionQueryParam, AddonAuthorQueryParam,
@@ -149,6 +148,7 @@ def find_replacement_addon(request):
 
 class AddonViewSet(RetrieveModelMixin, GenericViewSet):
     permission_classes = [
+        GeoAvailable,
         AnyOf(AllowReadOnlyIfPublic, AllowAddonAuthor,
               AllowReviewer, AllowReviewerUnlisted),
     ]
@@ -209,13 +209,11 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
         `is_disabled_by_mozilla` to the exception being thrown so that clients
         can tell the difference between a 401/403 returned because an add-on
         has been disabled by their developer or something else.
-
-        On top of this, can also raise a 451 if the add-on is not available
-        because of regional restrictions - no additional detail is available
-        in that case.
         """
         try:
             super(AddonViewSet, self).check_object_permissions(request, obj)
+        except UnavailableForLegalReasons as exec_451:
+            raise exec_451
         except exceptions.APIException as exc:
             # Override exc.detail with a dict so that it's returned as-is in
             # the response. The base implementation for exc.get_codes() does
@@ -230,13 +228,6 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
                 'is_disabled_by_mozilla': obj.status == amo.STATUS_DISABLED,
             }
             raise exc
-        region_code = (
-            self.request and self.request.META.get(
-                'HTTP_X_COUNTRY_CODE', None))
-        if region_code and AddonRegionalRestrictions.objects.filter(
-                addon=obj,
-                excluded_regions__contains=region_code.upper()).exists():
-            raise UnavailableForLegalReasons()
 
     @action(detail=True)
     def eula_policy(self, request, pk=None):
