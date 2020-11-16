@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-05 09:52+0000\n"
+"PO-Revision-Date: 2020-11-16 09:12+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -317,9 +317,8 @@ msgstr ""
 msgid "Register or Log in"
 msgstr "Regjistrohuni ose Hyni"
 
-#, fuzzy
 msgid "Email:"
-msgstr "Email"
+msgstr "Email:"
 
 msgid "OK"
 msgstr "OK"
@@ -2224,9 +2223,8 @@ msgstr "Klikoni mbi butonin Pranoje, që të ripohoni se doni të shtoheni si nj
 msgid "Decline"
 msgstr "Hidhe poshtë"
 
-#, fuzzy
 msgid "Set Up Payment"
-msgstr "Lyp Pagesë"
+msgstr "Rregulloni Pagesë"
 
 msgid "You're done!"
 msgstr "Kaq qe!"
@@ -2245,9 +2243,8 @@ msgstr "Nëse keni pyetje, mos ngurroni të lidheni me ne."
 msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
 msgstr "Pagesa juaj u regjistrua, por aktualisht s’ka versione të botuara të shtesës tuaj. Ju lutemi, që të mund të plotësohet ky proces, ngarkoni një version të ri publik."
 
-#, fuzzy
 msgid "Manage add-on"
-msgstr "Paketë Gjuhësore (Shtesë)"
+msgstr "Administroni shtesë"
 
 msgid ""
 "There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a href=\"mailto:amo-"
@@ -4467,18 +4464,16 @@ msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Disa sajte kanë vështirësi të luajnë video nën Android. Ky zgjerim sjell zgjidhje."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "Për ato çaste kur nuk rrini dot pa ngacmuar macen me lazer."
+msgstr "Për ato çaste kur s’rrini dot pa drejtuar lazerin te sytë e maces."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
 msgstr "Heq prej URL-je përfundimesh kërkimi në Google ato parametra të gjatë dhe të shpifur gjurmimi."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Get weather updates directly from Firefox."
-msgstr "Merrni përditësime rreth motit drejt e te shfletuesi."
+msgstr "Merrni përditësime rreth motit drejt e te Firefox-i."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
@@ -4533,9 +4528,8 @@ msgstr "Versioni më u ulët që mbulojmë është \"strict_min_version\" 42.0."
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr "\"strict_min_version\" {appver} i panjohur për {app}"
 
-#, fuzzy
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
-msgstr "\"strict_min_version\" {appver} i panjohur për {app}"
+msgstr "\"strict_max_version\" {appver} i panjohur për {app}"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
@@ -5425,9 +5419,8 @@ msgstr "Më Tepër Veprime"
 msgid "Notify me about new listed versions"
 msgstr "Njoftomë rreth versionesh të rinj të shfaqur"
 
-#, fuzzy
 msgid "Notify me about new unlisted versions"
-msgstr "Njoftomë rreth versionesh të rinj të shfaqur"
+msgstr "Njoftomë rreth versionesh të rinj të pashfaqur"
 
 msgid "Allow resubmission"
 msgstr "Lejo riparashtrim"
