@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-16 14:43+0000\n"
+"PO-Revision-Date: 2020-11-16 14:46+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4943,7 +4943,7 @@ msgid "Delayed because it's the first listed version"
 msgstr "Καθυστέρησε επειδή είναι η πρώτη καταχωρημένη έκδοση"
 
 msgid "Version string and guid match a blocklist Block"
-msgstr ""
+msgstr "Η συμβολοσειρά και το GUID της έκδοσης βρέθηκαν σε αποκλεισμό της λίστας αποκλεισμού"
 
 msgid "Risk breakdown not available."
 msgstr "Δεν είναι διαθέσιμη η ανάλυση κινδύνου."
@@ -5129,7 +5129,7 @@ msgid "User Ratings Moderation"
 msgstr "Συντονισμός κριτικών χρηστών"
 
 msgid "Ratings Awaiting Moderation ({0})"
-msgstr ""
+msgstr "Αξιολογήσεις εν αναμονή εποπτείας ({0})"
 
 msgid "Moderated Review Log"
 msgstr "Αρχείο καταγραφής συντονισμένων ελέγχων"
@@ -5336,7 +5336,7 @@ msgid "Monthly Performance"
 msgstr "Μηνιαία επίδοση"
 
 msgid "All-time Point Breakdown by Type"
-msgstr ""
+msgstr "Ανάλυση από την αρχή κατά τύπο"
 
 # Χωρίς τόνο λόγω του text-transform: uppercase
 msgid "Add-ons"
