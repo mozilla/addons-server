@@ -1909,7 +1909,7 @@ def onboarding_subscription(request, addon_id, addon):
     if len(fields_to_update) > 0:
         sub.update(**fields_to_update)
 
-    new_version_number = request.session.get('resigned_version_string')
+    new_version_number = request.session.pop('resigned_version_string', None)
     already_promoted = (
         not new_version_number and sub.promoted_addon.has_approvals)
 

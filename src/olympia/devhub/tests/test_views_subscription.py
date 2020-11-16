@@ -371,6 +371,14 @@ class TestOnboardingSubscriptionSuccess(SubscriptionTestCase):
         assert b'123.1-signed' in response.content
         assert b"currently pending review" not in response.content
 
+        # the message is gone the second time
+        response = self.client.get(
+            reverse(
+                TestOnboardingSubscription.url_name, args=[self.addon.slug]),
+            follow=True)
+        assert b"You're done" in response.content
+        assert b'123.1-signed' not in response.content
+
     @mock.patch("olympia.devhub.views.retrieve_stripe_checkout_session")
     def test_current_version_is_approved_pending_version(self, retrieve_mock):
         """Same as test_current_version_is_approved_after_success but when
@@ -398,6 +406,14 @@ class TestOnboardingSubscriptionSuccess(SubscriptionTestCase):
         )
         assert b'123.1-signed' in response.content
         assert b"currently pending review" in response.content
+
+        # the message is gone the second time
+        response = self.client.get(
+            reverse(
+                TestOnboardingSubscription.url_name, args=[self.addon.slug]),
+            follow=True)
+        assert b"You're done" in response.content
+        assert b'123.1-signed' not in response.content
 
     @mock.patch("olympia.devhub.views.retrieve_stripe_checkout_session")
     def test_version_isnt_resigned_if_already_approved(self, retrieve_mock):
