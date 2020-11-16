@@ -65,6 +65,10 @@ class PromotedAddon(ModelBase):
             for group_, app in self.addon.current_version.approved_for_groups
             if group_ == group and app in all_apps]
 
+    @property
+    def has_approvals(self):
+        return bool(self.approved_applications)
+
     def _get_application_id_from_applications(self, apps):
         """Return the application_id the instance would have for the specified
         app ids."""
@@ -93,7 +97,7 @@ class PromotedAddon(ModelBase):
             self.group.require_subscription and
             (subscr := getattr(self, 'promotedsubscription', None)) and
             not subscr.is_active and
-            not subscr.addon_already_promoted)
+            not self.has_approvals)
 
     def approve_for_addon(self):
         """This sets up the addon as approved for the current promoted group.
@@ -288,7 +292,3 @@ class PromotedSubscription(ModelBase):
         if self.stripe_checkout_completed:
             return not self.cancelled_at
         return None
-
-    @property
-    def addon_already_promoted(self):
-        return bool(self.promoted_addon.approved_applications)

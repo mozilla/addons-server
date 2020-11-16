@@ -179,7 +179,7 @@ class TestPromotedAddon(TestCase):
         assert not promo.group.require_subscription
         assert hasattr(promo, 'promotedsubscription')
         assert not promo.promotedsubscription.is_active
-        assert not promo.promotedsubscription.addon_already_promoted
+        assert not promo.has_approvals
         assert not promo.has_pending_subscription
 
         # and when it does
@@ -187,7 +187,7 @@ class TestPromotedAddon(TestCase):
         assert promo.group.require_subscription
         assert hasattr(promo, 'promotedsubscription')
         assert not promo.promotedsubscription.is_active
-        assert not promo.promotedsubscription.addon_already_promoted
+        assert not promo.has_approvals
         assert promo.has_pending_subscription
 
         # when there isn't a subscription (existing promo before subscriptions)
@@ -202,7 +202,7 @@ class TestPromotedAddon(TestCase):
         assert promo.group.require_subscription
         assert hasattr(promo, 'promotedsubscription')
         assert not promo.promotedsubscription.is_active
-        assert not promo.promotedsubscription.addon_already_promoted
+        assert not promo.has_approvals
         assert promo.has_pending_subscription
 
         # when there's a subscription that's been paid
@@ -211,7 +211,7 @@ class TestPromotedAddon(TestCase):
         assert promo.group.require_subscription
         assert hasattr(promo, 'promotedsubscription')
         assert promo.promotedsubscription.is_active
-        assert not promo.promotedsubscription.addon_already_promoted
+        assert not promo.has_approvals
         assert not promo.has_pending_subscription
 
         # and when it's not been paid
@@ -219,7 +219,7 @@ class TestPromotedAddon(TestCase):
         assert promo.group.require_subscription
         assert hasattr(promo, 'promotedsubscription')
         assert not promo.promotedsubscription.is_active
-        assert not promo.promotedsubscription.addon_already_promoted
+        assert not promo.has_approvals
         assert promo.has_pending_subscription
 
         # when there's an existing version approved (existing promo)
@@ -227,8 +227,21 @@ class TestPromotedAddon(TestCase):
         assert promo.group.require_subscription
         assert hasattr(promo, 'promotedsubscription')
         assert not promo.promotedsubscription.is_active
-        assert promo.promotedsubscription.addon_already_promoted
+        assert promo.has_approvals
         assert not promo.has_pending_subscription
+
+    def test_has_approvals(self):
+        addon = addon_factory()
+        promoted_addon = PromotedAddon.objects.create(
+            addon=addon, group_id=promoted.SPONSORED.id
+        )
+
+        assert not promoted_addon.has_approvals
+
+        promoted_addon.approve_for_version(addon.current_version)
+        promoted_addon.reload()
+
+        assert promoted_addon.has_approvals
 
 
 class TestPromotedSubscription(TestCase):
@@ -289,22 +302,6 @@ class TestPromotedSubscription(TestCase):
         sub.update(checkout_cancelled_at=datetime.datetime.now())
 
         assert sub.stripe_checkout_cancelled
-
-    def test_addon_already_approved(self):
-        addon = addon_factory()
-        promoted_addon = PromotedAddon.objects.create(
-            addon=addon, group_id=promoted.SPONSORED.id
-        )
-        sub = PromotedSubscription.objects.filter(
-            promoted_addon=promoted_addon
-        ).get()
-
-        assert not sub.addon_already_promoted
-
-        promoted_addon.approve_for_version(addon.current_version)
-        sub.reload()
-
-        assert sub.addon_already_promoted
 
     def test_is_active(self):
         sub = PromotedSubscription()
