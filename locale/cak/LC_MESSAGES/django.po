@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-14 22:11+0000\n"
+"PO-Revision-Date: 2020-11-17 00:15+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -165,7 +165,7 @@ msgid "My Themes"
 msgstr "Taq Nuwachinel"
 
 msgid "Git-Extract"
-msgstr ""
+msgstr "Git-Extract"
 
 msgid "Tools"
 msgstr "Taq samajib'äl"
@@ -491,7 +491,7 @@ msgid "This add-on already belongs to the collection"
 msgstr "Re tz'aqat re' k'o chi pa ri mol"
 
 msgid "Signoff State"
-msgstr ""
+msgstr "Rub'anikil Rutz'apixik Molojri'ïl"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
