@@ -10,7 +10,8 @@ from django.contrib.messages.storage import (
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
 from olympia.addons.admin import AddonAdmin, ReplacementAddonAdmin
-from olympia.addons.models import Addon, ReplacementAddon
+from olympia.addons.models import (
+    Addon, AddonRegionalRestrictions, ReplacementAddon)
 from olympia.amo.tests import (
     TestCase, addon_factory, collection_factory, user_factory, version_factory)
 from olympia.amo.urlresolvers import django_reverse, reverse
@@ -726,3 +727,86 @@ class TestReplacementAddonList(TestCase):
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
         assert 'slugymcslugface' in response.content.decode('utf-8')
+
+
+class TestAddonRegionalRestrictionsAdmin(TestCase):
+    def setUp(self):
+        self.list_url = reverse(
+            'admin:addons_addonregionalrestrictions_changelist')
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, '*:*')
+        self.client.login(email=user.email)
+
+    def test_can_see_module_in_admin(self):
+        url = reverse('admin:index')
+        response = self.client.get(url)
+        assert response.status_code == 200
+
+        # Use django's reverse, since that's what the admin will use. Using our
+        # own would fail the assertion because of the locale that gets added.
+        self.list_url = django_reverse(
+            'admin:addons_addonregionalrestrictions_changelist')
+        assert self.list_url in response.content.decode('utf-8')
+
+    def test_can_list(self):
+        AddonRegionalRestrictions.objects.create(
+            addon=addon_factory(name='éléphant'), excluded_regions=['fr-FR'])
+        response = self.client.get(self.list_url, follow=True)
+        assert response.status_code == 200
+        assert b'fr-FR' in response.content
+        assert 'éléphant' in response.content.decode('utf-8')
+
+    def test_can_add(self):
+        addon = addon_factory()
+        self.add_url = reverse('admin:addons_addonregionalrestrictions_add')
+
+        response = self.client.get(self.add_url, follow=True)
+        assert response.status_code == 200
+        assert pq(response.content)('#id_addon')  # addon input is editable
+
+        response = self.client.post(
+            self.add_url, {
+                'excluded_regions': '["de", "pt-BR"]',
+                'addon': addon.id},
+            follow=True)
+        assert response.status_code == 200
+        restriction = AddonRegionalRestrictions.objects.get(addon=addon)
+        assert restriction.excluded_regions == ["de", "pt-BR"]
+
+    def test_can_edit(self):
+        addon = addon_factory()
+        restriction = AddonRegionalRestrictions.objects.create(
+            addon=addon, excluded_regions=['fr-FR'])
+        self.detail_url = reverse(
+            'admin:addons_addonregionalrestrictions_change',
+            args=(restriction.pk,)
+        )
+        response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        assert b'fr-FR' in response.content
+        assert not pq(response.content)('#id_addon')  # addon is readonly
+
+        response = self.client.post(
+            self.detail_url, {
+                'excluded_regions': '["de", "pt-BR"]',
+                # try to change the addon too
+                'addon': addon_factory().id},
+            follow=True)
+        assert response.status_code == 200
+        restriction.reload()
+        assert restriction.excluded_regions == ["de", "pt-BR"]
+        assert restriction.addon == addon   # didn't change
+
+    def test_can_delete(self):
+        restriction = AddonRegionalRestrictions.objects.create(
+            addon=addon_factory(), excluded_regions=['fr-FR'])
+        self.delete_url = reverse(
+            'admin:addons_addonregionalrestrictions_delete',
+            args=(restriction.pk,)
+        )
+        response = self.client.get(self.delete_url, follow=True)
+        assert response.status_code == 200
+        response = self.client.post(
+            self.delete_url, data={'post': 'yes'}, follow=True)
+        assert response.status_code == 200
+        assert not AddonRegionalRestrictions.objects.exists()

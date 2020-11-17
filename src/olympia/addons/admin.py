@@ -228,6 +228,7 @@ class AddonAdmin(admin.ModelAdmin):
     def change_view(self, request, object_id, form_url='', extra_context=None):
         lookup_field = Addon.get_lookup_field(object_id)
         if lookup_field != 'pk':
+            addon = None
             try:
                 if lookup_field == 'slug':
                     addon = self.queryset(request).all().get(slug=object_id)
@@ -236,7 +237,7 @@ class AddonAdmin(admin.ModelAdmin):
             except Addon.DoesNotExist:
                 raise http.Http404
             # Don't get in an infinite loop if addon.slug.isdigit().
-            if addon.id and addon.id != object_id:
+            if addon and addon.id and addon.id != object_id:
                 url = request.path.replace(object_id, str(addon.id), 1)
                 if request.GET:
                     url += '?' + request.GET.urlencode()
@@ -358,6 +359,21 @@ class ReplacementAddonAdmin(admin.ModelAdmin):
                 acl.action_allowed(request, amo.permissions.ADDONS_EDIT) or
                 super(ReplacementAddonAdmin, self).has_change_permission(
                     request, obj=obj))
+
+
+@admin.register(models.AddonRegionalRestrictions)
+class AddonRegionalRestrictionsAdmin(admin.ModelAdmin):
+    list_display = ('addon__name', 'excluded_regions')
+    fields = ('created', 'modified', 'addon', 'excluded_regions')
+    raw_id_fields = ('addon',)
+    readonly_fields = ('created', 'modified')
+
+    def get_readonly_fields(self, request, obj=None):
+        return self.readonly_fields + (('addon',) if obj else ())
+
+    def addon__name(self, obj):
+        return str(obj.addon)
+    addon__name.short_description = 'Addon'
 
 
 admin.site.register(models.DeniedGuid)
