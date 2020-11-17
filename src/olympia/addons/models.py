@@ -10,7 +10,7 @@ from datetime import datetime
 from urllib.parse import urlsplit
 
 from django.conf import settings
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.db import models, transaction
 from django.db.models import F, Max, Q, signals as dbsignals
 from django.dispatch import receiver
@@ -1744,6 +1744,14 @@ class AddonReviewerFlags(ModelBase):
         default=None)
 
 
+def uppercase_items_json_validator(value):
+    """Validate the (JSON) field contains only upper case items."""
+    if any(not str(item).isupper() for item in value):
+        raise ValidationError(
+            _('%(value)s contains non-uppercase values'),
+            params={'value': value})
+
+
 class AddonRegionalRestrictions(ModelBase):
     addon = models.OneToOneField(
         Addon, primary_key=True, on_delete=models.CASCADE,
@@ -1753,7 +1761,10 @@ class AddonRegionalRestrictions(ModelBase):
                   'automatically for you. If you have access to the add-on '
                   'admin page, you can use the magnifying glass to see '
                   'all available add-ons.')
-    excluded_regions = JSONField(default=list)
+    excluded_regions = JSONField(
+        default=list, validators=(uppercase_items_json_validator,),
+        help_text='JSON style list of ISO 3166-1 alpha-2 country (region) '
+                  'codes. Codes must be uppercase. E.g. `["CN"]`')
 
     class Meta:
         verbose_name_plural = 'Addon Regional Restrictions'

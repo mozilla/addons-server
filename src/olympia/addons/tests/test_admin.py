@@ -750,10 +750,10 @@ class TestAddonRegionalRestrictionsAdmin(TestCase):
 
     def test_can_list(self):
         AddonRegionalRestrictions.objects.create(
-            addon=addon_factory(name='éléphant'), excluded_regions=['fr-FR'])
+            addon=addon_factory(name='éléphant'), excluded_regions=['FR'])
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
-        assert b'fr-FR' in response.content
+        assert b'FR' in response.content
         assert 'éléphant' in response.content.decode('utf-8')
 
     def test_can_add(self):
@@ -766,40 +766,40 @@ class TestAddonRegionalRestrictionsAdmin(TestCase):
 
         response = self.client.post(
             self.add_url, {
-                'excluded_regions': '["de", "pt-BR"]',
+                'excluded_regions': '["DE", "BR"]',
                 'addon': addon.id},
             follow=True)
         assert response.status_code == 200
         restriction = AddonRegionalRestrictions.objects.get(addon=addon)
-        assert restriction.excluded_regions == ["de", "pt-BR"]
+        assert restriction.excluded_regions == ["DE", "BR"]
 
     def test_can_edit(self):
         addon = addon_factory()
         restriction = AddonRegionalRestrictions.objects.create(
-            addon=addon, excluded_regions=['fr-FR'])
+            addon=addon, excluded_regions=['FR'])
         self.detail_url = reverse(
             'admin:addons_addonregionalrestrictions_change',
             args=(restriction.pk,)
         )
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
-        assert b'fr-FR' in response.content
+        assert b'FR' in response.content
         assert not pq(response.content)('#id_addon')  # addon is readonly
 
         response = self.client.post(
             self.detail_url, {
-                'excluded_regions': '["de", "pt-BR"]',
+                'excluded_regions': '["DE", "BR"]',
                 # try to change the addon too
                 'addon': addon_factory().id},
             follow=True)
         assert response.status_code == 200
         restriction.reload()
-        assert restriction.excluded_regions == ["de", "pt-BR"]
+        assert restriction.excluded_regions == ["DE", "BR"]
         assert restriction.addon == addon   # didn't change
 
     def test_can_delete(self):
         restriction = AddonRegionalRestrictions.objects.create(
-            addon=addon_factory(), excluded_regions=['fr-FR'])
+            addon=addon_factory(), excluded_regions=['FR'])
         self.delete_url = reverse(
             'admin:addons_addonregionalrestrictions_delete',
             args=(restriction.pk,)
