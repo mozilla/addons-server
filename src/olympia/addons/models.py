@@ -1747,8 +1747,16 @@ class AddonReviewerFlags(ModelBase):
 class AddonRegionalRestrictions(ModelBase):
     addon = models.OneToOneField(
         Addon, primary_key=True, on_delete=models.CASCADE,
-        related_name='regional_restrictions')
+        related_name='regional_restrictions',
+        help_text='Add-on id this item will point to (If you do not know the '
+                  'id, paste the slug instead and it will be transformed '
+                  'automatically for you. If you have access to the add-on '
+                  'admin page, you can use the magnifying glass to see '
+                  'all available add-ons.')
     excluded_regions = JSONField(default=list)
+
+    class Meta:
+        verbose_name_plural = 'Addon Regional Restrictions'
 
     def __str__(self):
         return '%s: %d' % (self.addon, len(self.excluded_regions))
