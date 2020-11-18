@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-04 13:33+0000\n"
+"PO-Revision-Date: 2020-11-18 02:23+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -1680,7 +1680,7 @@ msgid "URL domain must be one of [%s], or a subdomain."
 msgstr "網址當中的網域名稱，必需是 [ %s ] 當中其中一個，或是其子網域。"
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr ""
+msgstr "GitHub 贊助者的網址路徑必須包含 /sponsors/。"
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -2200,20 +2200,20 @@ msgid "Set Up Payment"
 msgstr "設定付款"
 
 msgid "You're done!"
-msgstr ""
+msgstr "完成了！"
 
 #, python-format
 msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
-msgstr ""
+msgstr "完成了！您的 <strong>%(addon_name)s</strong> 附加元件新版本 <strong>%(new_version_number)s</strong> 將以 %(group_name)s 發布，很快就能公開。"
 
 msgid "A newer version of your add-on is currently pending review."
-msgstr ""
+msgstr "您的附加元件有新版本正在等待審核。"
 
 msgid "If you have any questions, don’t hesitate to contact us."
-msgstr ""
+msgstr "若有任何疑問，歡迎隨時連絡我們。"
 
 msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
-msgstr ""
+msgstr "已收到您的款項，但您的附加元件沒有公開發布的版本。請上傳新的公開版本。"
 
 msgid "Manage add-on"
 msgstr "管理附加元件"
@@ -2221,17 +2221,17 @@ msgstr "管理附加元件"
 msgid ""
 "There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a href=\"mailto:amo-"
 "admins@mozilla.com\">amo-admins@mozilla.com</a>."
-msgstr ""
+msgstr "為您的附加元件設定付款方式時發生錯誤。若您遇到任何問題或改變心意，請來信到 <a href=\"mailto:amo-admins@mozilla.com\">amo-admins@mozilla.com</a> 聯絡我們。"
 
 msgid "Thank you for joining the Promoted Add-ons Program!"
-msgstr ""
+msgstr "感謝您加入 Promoted Add-ons Program！"
 
 #, python-format
 msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the program once payment is set up through the Stripe system. Click on the button below to continue:"
-msgstr ""
+msgstr "到 Stripe 設定付款方式後，您的附加元件 <strong>%(addon_name)s</strong> 即可自動進入本計畫。請點擊下方的按鈕繼續："
 
 msgid "Continue to Stripe Checkout"
-msgstr ""
+msgstr "繼續前往 Stripe Checkout"
 
 msgid "Manage Authors & License"
 msgstr "管理作者與授權條款"
@@ -3116,7 +3116,7 @@ msgid "View All"
 msgstr "檢視全部"
 
 msgid "Manage Billing on Stripe"
-msgstr ""
+msgstr "到 Stripe 管理帳務資訊"
 
 msgid "Listed Review Page"
 msgstr "公開上架元件審核頁面"
