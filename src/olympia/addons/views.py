@@ -27,7 +27,8 @@ from olympia.api.exceptions import UnavailableForLegalReasons
 from olympia.api.pagination import ESPageNumberPagination
 from olympia.api.permissions import (
     AllowAddonAuthor, AllowReadOnlyIfPublic, AllowRelatedObjectPermissions,
-    AllowReviewer, AllowReviewerUnlisted, AnyOf, GeoAvailable, GroupPermission)
+    AllowReviewer, AllowReviewerUnlisted, AnyOf, GroupPermission,
+    RegionalRestriction)
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.search.filters import (
     AddonAppQueryParam, AddonAppVersionQueryParam, AddonAuthorQueryParam,
@@ -148,10 +149,10 @@ def find_replacement_addon(request):
 
 class AddonViewSet(RetrieveModelMixin, GenericViewSet):
     permission_classes = [
-        GeoAvailable,
         AnyOf(AllowReadOnlyIfPublic, AllowAddonAuthor,
               AllowReviewer, AllowReviewerUnlisted),
     ]
+    georestriction_classes = [RegionalRestriction]
     serializer_class = AddonSerializer
     serializer_class_with_unlisted_data = AddonSerializerWithUnlistedData
     lookup_value_regex = '[^/]+'  # Allow '.' for email-like guids.
@@ -229,6 +230,10 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
             }
             raise exc
 
+    def get_permissions(self):
+        return super().get_permissions() + [
+            perm() for perm in self.georestriction_classes]
+
     @action(detail=True)
     def eula_policy(self, request, pk=None):
         obj = self.get_object()
@@ -240,22 +245,31 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
 class AddonChildMixin(object):
     """Mixin containing method to retrieve the parent add-on object."""
 
-    def get_addon_object(self, permission_classes=None, lookup='addon_pk'):
+    def get_addon_object(self, permission_classes=None,
+                         georestriction_classes=None, lookup='addon_pk'):
         """Return the parent Addon object using the URL parameter passed
         to the view.
 
         `permission_classes` can be use passed to change which permission
         classes the parent viewset will be used when loading the Addon object,
-        otherwise AddonViewSet.permission_classes will be used."""
+        otherwise AddonViewSet.permission_classes will be used.
+
+        `georestriction_classes` can be use passed to change which regional
+        restriction classes the parent viewset will be used when loading the
+        Addon object, otherwise AddonViewSet.georestriction_classes will be
+        used."""
         if hasattr(self, 'addon_object'):
             return self.addon_object
 
         if permission_classes is None:
             permission_classes = AddonViewSet.permission_classes
+        if georestriction_classes is None:
+            georestriction_classes = AddonViewSet.georestriction_classes
 
         self.addon_object = AddonViewSet(
             request=self.request,
             permission_classes=permission_classes,
+            georestriction_classes=georestriction_classes,
             kwargs={'pk': self.kwargs[lookup]},
             action='retrieve_from_related').get_object()
         return self.addon_object

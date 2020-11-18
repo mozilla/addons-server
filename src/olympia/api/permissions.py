@@ -303,10 +303,10 @@ class PreventActionPermission(BasePermission):
         return self
 
 
-class GeoAvailable(BasePermission):
+class RegionalRestriction(BasePermission):
     """
     Raises a 451 if the add-on is not available because of regional
-    restrictions - no additional detail is available in that case.
+    restrictions.
     """
     def has_permission(self, request, view):
         return True
