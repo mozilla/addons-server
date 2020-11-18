@@ -771,7 +771,6 @@ class TestAddonRegionalRestrictionsAdmin(TestCase):
                 'addon': addon.id},
             follow=True)
         assert response.status_code == 200
-        # print(response.content)
         restriction = AddonRegionalRestrictions.objects.get(addon=addon)
         assert restriction.excluded_regions == ["DE", "BR"]
         assert len(mail.outbox) == 1
