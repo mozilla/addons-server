@@ -6,6 +6,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.contrib.messages.storage import (
     default_storage as default_messages_storage)
+from django.core import mail
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
@@ -757,7 +758,7 @@ class TestAddonRegionalRestrictionsAdmin(TestCase):
         assert 'éléphant' in response.content.decode('utf-8')
 
     def test_can_add(self):
-        addon = addon_factory()
+        addon = addon_factory(name='Thíng')
         self.add_url = reverse('admin:addons_addonregionalrestrictions_add')
 
         response = self.client.get(self.add_url, follow=True)
@@ -766,40 +767,55 @@ class TestAddonRegionalRestrictionsAdmin(TestCase):
 
         response = self.client.post(
             self.add_url, {
-                'excluded_regions': '["de", "pt-BR"]',
+                'excluded_regions': '["DE", "BR"]',
                 'addon': addon.id},
             follow=True)
         assert response.status_code == 200
+        # print(response.content)
         restriction = AddonRegionalRestrictions.objects.get(addon=addon)
-        assert restriction.excluded_regions == ["de", "pt-BR"]
+        assert restriction.excluded_regions == ["DE", "BR"]
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].subject == (
+            'Regional Restriction added for Add-on')
+        assert mail.outbox[0].body == (
+            f'Regional restriction for addon "Thíng" '
+            f"[{restriction.addon.id}] added: ['DE', 'BR']")
+        assert mail.outbox[0].to == ['amo-admins@mozilla.com']
 
     def test_can_edit(self):
-        addon = addon_factory()
+        addon = addon_factory(name='Thíng')
         restriction = AddonRegionalRestrictions.objects.create(
-            addon=addon, excluded_regions=['fr-FR'])
+            addon=addon, excluded_regions=['FR'])
         self.detail_url = reverse(
             'admin:addons_addonregionalrestrictions_change',
             args=(restriction.pk,)
         )
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
-        assert b'fr-FR' in response.content
+        assert b'FR' in response.content
         assert not pq(response.content)('#id_addon')  # addon is readonly
 
         response = self.client.post(
             self.detail_url, {
-                'excluded_regions': '["de", "pt-BR"]',
+                'excluded_regions': '["DE", "BR"]',
                 # try to change the addon too
                 'addon': addon_factory().id},
             follow=True)
         assert response.status_code == 200
         restriction.reload()
-        assert restriction.excluded_regions == ["de", "pt-BR"]
+        assert restriction.excluded_regions == ["DE", "BR"]
         assert restriction.addon == addon   # didn't change
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].subject == (
+            'Regional Restriction changed for Add-on')
+        assert mail.outbox[0].body == (
+            f'Regional restriction for addon "Thíng" '
+            f"[{restriction.addon.id}] changed: ['DE', 'BR']")
+        assert mail.outbox[0].to == ['amo-admins@mozilla.com']
 
     def test_can_delete(self):
         restriction = AddonRegionalRestrictions.objects.create(
-            addon=addon_factory(), excluded_regions=['fr-FR'])
+            addon=addon_factory(name='Thíng'), excluded_regions=['FR'])
         self.delete_url = reverse(
             'admin:addons_addonregionalrestrictions_delete',
             args=(restriction.pk,)
@@ -810,3 +826,10 @@ class TestAddonRegionalRestrictionsAdmin(TestCase):
             self.delete_url, data={'post': 'yes'}, follow=True)
         assert response.status_code == 200
         assert not AddonRegionalRestrictions.objects.exists()
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].subject == (
+            'Regional Restriction deleted for Add-on')
+        assert mail.outbox[0].body == (
+            f'Regional restriction for addon "Thíng" '
+            f"[{restriction.addon.id}] deleted: ['FR']")
+        assert mail.outbox[0].to == ['amo-admins@mozilla.com']

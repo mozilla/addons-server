@@ -22,6 +22,7 @@ from olympia.access import acl
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import send_mail
 from olympia.files.models import File
 from olympia.git.models import GitExtractionEntry
 from olympia.ratings.models import Rating
@@ -374,6 +375,23 @@ class AddonRegionalRestrictionsAdmin(admin.ModelAdmin):
     def addon__name(self, obj):
         return str(obj.addon)
     addon__name.short_description = 'Addon'
+
+    def _send_mail(self, obj, action):
+        message = (
+            f'Regional restriction for addon "{obj.addon.name}" '
+            f'[{obj.addon.id}] {action}: {obj.excluded_regions}')
+        send_mail(
+            f'Regional Restriction {action} for Add-on',
+            message,
+            recipient_list=('amo-admins@mozilla.com',))
+
+    def delete_model(self, request, obj):
+        self._send_mail(obj, 'deleted')
+        super().delete_model(request, obj)
+
+    def save_model(self, request, obj, form, change):
+        super().save_model(request, obj, form, change)
+        self._send_mail(obj, 'changed' if change else 'added')
 
 
 admin.site.register(models.DeniedGuid)
