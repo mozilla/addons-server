@@ -39,7 +39,8 @@ class VersionReviewNotesViewSet(AddonChildMixin, ListModelMixin,
 
     def get_addon_object(self):
         return super(VersionReviewNotesViewSet, self).get_addon_object(
-            permission_classes=self.permission_classes)
+            permission_classes=self.permission_classes,
+            georestriction_classes=[])
 
     def get_version_object(self):
         if not hasattr(self, 'version_object'):

@@ -1,8 +1,10 @@
 from rest_framework.exceptions import MethodNotAllowed
 from rest_framework.permissions import SAFE_METHODS, BasePermission
 
-from olympia.amo import permissions
 from olympia.access import acl
+from olympia.addons.models import AddonRegionalRestrictions
+from olympia.amo import permissions
+from olympia.api.exceptions import UnavailableForLegalReasons
 
 
 # Most of these classes come from zamboni, check out
@@ -298,4 +300,26 @@ class PreventActionPermission(BasePermission):
         """
         ignore DRF's nonsensical need to call this object.
         """
+        return self
+
+
+class RegionalRestriction(BasePermission):
+    """
+    Raises a 451 if the add-on is not available because of regional
+    restrictions.
+    """
+    def has_permission(self, request, view):
+        return True
+
+    def has_object_permission(self, request, view, obj):
+        region_code = (
+            request and request.META.get(
+                'HTTP_X_COUNTRY_CODE', None))
+        if region_code and AddonRegionalRestrictions.objects.filter(
+                addon=obj,
+                excluded_regions__contains=region_code.upper()).exists():
+            raise UnavailableForLegalReasons()
+        return True
+
+    def __call__(self, *a):
         return self

@@ -10,7 +10,7 @@ from olympia.activity.models import ActivityLog, ActivityLogToken
 from olympia.activity.tests.test_serializers import LogMixin
 from olympia.activity.tests.test_utils import sample_message_content
 from olympia.activity.views import EmailCreationPermission, inbound_email
-from olympia.addons.models import AddonUser
+from olympia.addons.models import AddonUser, AddonRegionalRestrictions
 from olympia.addons.utils import generate_addon_guid
 from olympia.amo.tests import (
     APITestClient, TestCase, addon_factory, req_factory_factory, reverse_ns,
@@ -136,6 +136,30 @@ class ReviewNotesViewSetDetailMixin(LogMixin):
         self._set_tested_url(version_pk=self.version.pk + 27)
         response = self.client.get(self.url)
         assert response.status_code == 404
+
+    def test_developer_geo_restricted(self):
+        AddonRegionalRestrictions.objects.create(
+            addon=self.addon, excluded_regions=['AB', 'CD'])
+        self._login_developer()
+        response = self.client.get(self.url, HTTP_X_COUNTRY_CODE='fr')
+        assert response.status_code == 200
+
+        AddonRegionalRestrictions.objects.filter(
+            addon=self.addon).update(excluded_regions=['AB', 'CD', 'FR'])
+        response = self.client.get(self.url, HTTP_X_COUNTRY_CODE='fr')
+        assert response.status_code == 200
+
+    def test_reviewer_geo_restricted(self):
+        AddonRegionalRestrictions.objects.create(
+            addon=self.addon, excluded_regions=['AB', 'CD'])
+        self._login_reviewer()
+        response = self.client.get(self.url, HTTP_X_COUNTRY_CODE='fr')
+        assert response.status_code == 200
+
+        AddonRegionalRestrictions.objects.filter(
+            addon=self.addon).update(excluded_regions=['AB', 'CD', 'FR'])
+        response = self.client.get(self.url, HTTP_X_COUNTRY_CODE='fr')
+        assert response.status_code == 200
 
 
 class TestReviewNotesViewSetDetail(ReviewNotesViewSetDetailMixin, TestCase):
