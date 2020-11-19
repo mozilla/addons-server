@@ -13,7 +13,8 @@ from olympia import amo, core
 from olympia.activity.models import ActivityLog, AddonLog
 from olympia.addons import models as addons_models
 from olympia.addons.models import (
-    Addon, AddonApprovalsCounter, AddonCategory, AddonReviewerFlags, AddonUser,
+    Addon, AddonApprovalsCounter, AddonCategory, AddonRegionalRestrictions,
+    AddonReviewerFlags, AddonUser,
     AppSupport, Category, DeniedGuid, DeniedSlug, FrozenAddon, MigratedLWT,
     Preview, AddonGUID, track_addon_status_change)
 from olympia.amo.templatetags.jinja_helpers import absolutify
@@ -2898,3 +2899,14 @@ class TestAddonGUID(TestCase):
 
         addon_guid = AddonGUID.objects.get(addon=addon)
         assert addon_guid.hashed_guid == expected_hashed_guid
+
+
+class TestAddonRegionalRestrictions(TestCase):
+    def test_clean(self):
+        arr = AddonRegionalRestrictions.objects.create(addon=addon_factory())
+        arr.excluded_regions = ['fr']
+        arr.clean()
+        assert arr.excluded_regions == ['FR']
+        arr.excluded_regions = ['FR', 'BR', 'cn']
+        arr.clean()
+        assert arr.excluded_regions == ['FR', 'BR', 'CN']

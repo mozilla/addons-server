@@ -767,7 +767,7 @@ class TestAddonRegionalRestrictionsAdmin(TestCase):
 
         response = self.client.post(
             self.add_url, {
-                'excluded_regions': '["DE", "BR"]',
+                'excluded_regions': '["DE", "br"]',  # should get uppercased
                 'addon': addon.id},
             follow=True)
         assert response.status_code == 200
@@ -796,7 +796,7 @@ class TestAddonRegionalRestrictionsAdmin(TestCase):
 
         response = self.client.post(
             self.detail_url, {
-                'excluded_regions': '["DE", "BR"]',
+                'excluded_regions': '["de", "BR"]',    # should get uppercased
                 # try to change the addon too
                 'addon': addon_factory().id},
             follow=True)
