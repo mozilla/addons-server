@@ -4,7 +4,6 @@ from rest_framework.permissions import SAFE_METHODS, BasePermission
 from olympia.access import acl
 from olympia.addons.models import AddonRegionalRestrictions
 from olympia.amo import permissions
-from olympia.api.exceptions import UnavailableForLegalReasons
 
 
 # Most of these classes come from zamboni, check out
@@ -313,13 +312,10 @@ class RegionalRestriction(BasePermission):
 
     def has_object_permission(self, request, view, obj):
         region_code = (
-            request and request.META.get(
-                'HTTP_X_COUNTRY_CODE', None))
-        if region_code and AddonRegionalRestrictions.objects.filter(
-                addon=obj,
-                excluded_regions__contains=region_code.upper()).exists():
-            raise UnavailableForLegalReasons()
-        return True
+            request and request.META.get('HTTP_X_COUNTRY_CODE', None)) or ''
+        qs = AddonRegionalRestrictions.objects.filter(
+            addon=obj, excluded_regions__contains=region_code.upper())
+        return not (region_code and qs.exists())
 
     def __call__(self, *a):
         return self
