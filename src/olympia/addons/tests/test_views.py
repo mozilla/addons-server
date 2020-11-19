@@ -425,6 +425,14 @@ class AddonAndVersionViewSetDetailMixin(object):
         data = response.json()
         assert data == {'detail': 'Unavailable for legal reasons.'}
 
+        # But admins can still access:
+        user = user_factory()
+        self.grant_permission(user, 'Addons:Edit')
+        self.client.login_api(user)
+        response = self.client.get(
+            self.url, data={'lang': 'en-US'}, HTTP_X_COUNTRY_CODE='fr')
+        assert response.status_code == 200
+
 
 class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
     client_class = APITestClient

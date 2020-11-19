@@ -152,7 +152,9 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
         AnyOf(AllowReadOnlyIfPublic, AllowAddonAuthor,
               AllowReviewer, AllowReviewerUnlisted),
     ]
-    georestriction_classes = [RegionalRestriction]
+    georestriction_classes = [
+        RegionalRestriction |
+        GroupPermission(amo.permissions.ADDONS_EDIT)]
     serializer_class = AddonSerializer
     serializer_class_with_unlisted_data = AddonSerializerWithUnlistedData
     lookup_value_regex = '[^/]+'  # Allow '.' for email-like guids.
@@ -201,6 +203,13 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
         self.instance = super(AddonViewSet, self).get_object()
         return self.instance
 
+    def check_permissions(self, request):
+        for restriction in self.get_georestrictions():
+            if not restriction.has_permission(request, self):
+                raise UnavailableForLegalReasons()
+
+        super().check_permissions(request)
+
     def check_object_permissions(self, request, obj):
         """
         Check if the request should be permitted for a given object.
@@ -211,10 +220,12 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
         can tell the difference between a 401/403 returned because an add-on
         has been disabled by their developer or something else.
         """
+        for restriction in self.get_georestrictions():
+            if not restriction.has_object_permission(request, self, obj):
+                raise UnavailableForLegalReasons()
+
         try:
             super(AddonViewSet, self).check_object_permissions(request, obj)
-        except UnavailableForLegalReasons as exec_451:
-            raise exec_451
         except exceptions.APIException as exc:
             # Override exc.detail with a dict so that it's returned as-is in
             # the response. The base implementation for exc.get_codes() does
@@ -230,9 +241,8 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
             }
             raise exc
 
-    def get_permissions(self):
-        return super().get_permissions() + [
-            perm() for perm in self.georestriction_classes]
+    def get_georestrictions(self):
+        return [perm() for perm in self.georestriction_classes]
 
     @action(detail=True)
     def eula_policy(self, request, pk=None):
