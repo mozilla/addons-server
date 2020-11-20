@@ -507,6 +507,7 @@ INSTALLED_APPS = (
     'puente',
     'rangefilter',
     'django_jsonfield_backport',
+    'nobot',
 
     # Django contrib apps
     'django.contrib.admin',

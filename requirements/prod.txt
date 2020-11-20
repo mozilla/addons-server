@@ -354,9 +354,9 @@ newrelic==5.22.1.152 \
     --hash=sha256:1d1023c13b71c428fe28f5b68c80f7e1112c4ef361265e2045bfde35144dbdf7 \
     --hash=sha256:5ec2e6fa77b8918c910b36d962864e01db2c01248aafa64e28bbae4d55c4ce0b \
     --hash=sha256:0cedc2df0b54c5fd451a5c6baefb11eb9fb3aa817f6fa0708e407f3917874358
-nobot==0.5 \
-    --hash=sha256:fa0582d81f562cd5b61e241005feb3f51548fe3fc165aed292952ff78676e28a \
-    --hash=sha256:0a1c43a74f1c55f06cf2eb98cb472762dbdd7df5eb693d438c9fb42cfcfe79e5
+nobot==0.7 \
+    --hash=sha256:a724b877bbb6ad2c9614a6461c86125ab950c4e8a9ce27355d39703409dedb6a \
+    --hash=sha256:12c0ad7d62ad0eb65456ba88e796a5dcb21b13d940f71f4bcb28d4f84cb0106a
 # pbr is required by mock
 pbr==5.5.1 \
     --hash=sha256:b236cde0ac9a6aedd5e3c34517b423cd4fd97ef723849da6b0d2231142d89c00 \
