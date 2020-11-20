@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-13 16:30+0000\n"
+"PO-Revision-Date: 2020-11-20 18:29+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2214,9 +2214,8 @@ msgstr "Clicca sur le button Acceptar infra pro confirmar que tu desira esser ad
 msgid "Decline"
 msgstr "Refusar"
 
-#, fuzzy
 msgid "Set Up Payment"
-msgstr "Il necesse un pagamento"
+msgstr "Preparar pagamento"
 
 msgid "You're done!"
 msgstr "Tu ha finite!"
@@ -4429,18 +4428,16 @@ msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Alcun sitos ha difficultate a reproducer videos sur Firefox pro Android. Iste extension forni un remedio."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "Pro ille momentos que tu necessita tirar radios laser per un catto."
+msgstr "Pro ille momentos que tu necessita un catto que tira radios laser ex oculos."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
 msgstr "Remove ille longe e fede parametros de traciamento del URL resultato del recerca de Google."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Get weather updates directly from Firefox."
-msgstr "Informationes meteorologic  justo in le navigator."
+msgstr "Recipe informationes meteorologic  justo de Firefox."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
@@ -4494,9 +4491,8 @@ msgstr "Le version compatibile minus recente, “strict_min_version”, es le 42
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr "“strict_min_version” {appver} incognite pro {app}"
 
-#, fuzzy
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
-msgstr "“strict_min_version” {appver} incognite pro {app}"
+msgstr "“strict_max_version” {appver} incognite pro {app}"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
@@ -5386,9 +5382,8 @@ msgstr "Altere actiones"
 msgid "Notify me about new listed versions"
 msgstr "Notifica me circa nove versiones in le lista de presentation"
 
-#, fuzzy
 msgid "Notify me about new unlisted versions"
-msgstr "Notifica me circa nove versiones in le lista de presentation"
+msgstr "Notifica me circa nove versiones non in le lista de presentation"
 
 msgid "Allow resubmission"
 msgstr "Consentir reinvio"
