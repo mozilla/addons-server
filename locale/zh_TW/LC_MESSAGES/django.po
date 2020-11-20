@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-19 03:55+0000\n"
+"PO-Revision-Date: 2020-11-20 03:11+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -2204,7 +2204,7 @@ msgstr "完成了！"
 
 #, python-format
 msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
-msgstr "完成了！您的 <strong>%(addon_name)s</strong> 附加元件新版本 <strong>%(new_version_number)s</strong> 將以 %(group_name)s 發布，很快就能公開。"
+msgstr "完成了！您的 <strong>%(addon_name)s</strong> 附加元件新版本 <strong>%(new_version_number)s</strong> 將於%(group_name)s群組發布，很快就會上架。"
 
 msgid "A newer version of your add-on is currently pending review."
 msgstr "您的附加元件有新版本正在等待審核。"
