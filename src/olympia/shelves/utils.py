@@ -71,9 +71,9 @@ def process_adzerk_result(decision):
     }
 
 
-def process_adzerk_results(response, placeholders):
+def process_adzerk_results(response):
     response_decisions = response.get('decisions', {})
-    decisions = [(response_decisions.get(ph) or {}) for ph in placeholders]
+    decisions = response_decisions.get('multi', [])
     results_dict = {}
     for decision in decisions:
         addon_id, result = process_adzerk_result(decision)
@@ -84,21 +84,20 @@ def process_adzerk_results(response, placeholders):
 
 
 def get_addons_from_adzerk(count):
-    placeholders = [f'div{i}' for i in range(count)]
     site_id = settings.ADZERK_SITE_ID
     network_id = settings.ADZERK_NETWORK_ID
-    placements = [
-        {
-            "divName": ph,
-            "networkId": network_id,
-            "siteId": site_id,
-            "adTypes": [5],
-            "eventIds": [2],
-        } for ph in placeholders]
+    placements = [{
+        "divName": "multi",
+        "networkId": network_id,
+        "siteId": site_id,
+        "adTypes": [5],
+        "eventIds": [2],
+        "count": count,
+    }]
     url = settings.ADZERK_URL
     response = call_adzerk_server(url, {'placements': placements})
     results_dict = (
-        process_adzerk_results(response, placeholders) if response else {})
+        process_adzerk_results(response) if response else {})
     return results_dict
 
 

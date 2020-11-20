@@ -3,59 +3,61 @@
         "key": "ue1-ef2c16a5ae7e445085075a3ef40c11a0"
     },
     "decisions": {
-        "div0": {
-            "adId": 20683143,
-            "creativeId": 18023678,
-            "flightId": 12435798,
-            "campaignId": 1693466,
-            "priorityId": 204498,
-            "clickUrl": "https://e-10521.adzerk.net/r?e=eyJ2IjoiMS42IiwiYXLCA",
-            "impressionUrl": "https://e-10521.adzerk.net/i.gif?e=eyJ2IjLtgBug",
-            "contents": [{
-                "type": "raw",
-                "data": {
-                    "height": 250,
-                    "width": 300,
-                    "customData": {
-                        "id": "415198"
-                    }
-                },
-                "body": ";",
-                "customTemplate": ";"
-            }],
-            "height": 250,
-            "width": 300,
-            "events": [{
-                "id": 2,
-                "url": "https://e-1234.adzerk.net/e.gif?jefoijef3ddfijdf"
-            }]
-        },
-        "div1": {
-            "adId": 20682923,
-            "creativeId": 18023458,
-            "flightId": 12435798,
-            "campaignId": 1693466,
-            "priorityId": 204498,
-            "clickUrl": "https://e-10521.adzerk.net/r?e=eyJ2IjoiMS42IiwiYU5Hw",
-            "impressionUrl": "https://e-10521.adzerk.net/i.gif?e=eyJ2IjoNtSz8",
-            "contents": [{
-                "type": "raw",
-                "data": {
-                    "height": 250,
-                    "width": 300,
-                    "customData": {
-                        "id": "566314"
-                    }
-                },
-                "body": ";",
-                "customTemplate": ";"
-            }],
-            "height": 250,
-            "width": 300,
-            "events": [{
-                "id": 2,
-                "url": "https://e-1234.adzerk.net/e.gif?e=e3jfiojef&f=dfef"
-            }]
-        }
+        "multi": [
+            {
+                "adId": 20683143,
+                "creativeId": 18023678,
+                "flightId": 12435798,
+                "campaignId": 1693466,
+                "priorityId": 204498,
+                "clickUrl": "https://e-10521.adzerk.net/r?e=eyJ2IjoiMS42IiwiYXLCA",
+                "impressionUrl": "https://e-10521.adzerk.net/i.gif?e=eyJ2IjLtgBug",
+                "contents": [{
+                    "type": "raw",
+                    "data": {
+                        "height": 250,
+                        "width": 300,
+                        "customData": {
+                            "id": "415198"
+                        }
+                    },
+                    "body": ";",
+                    "customTemplate": ";"
+                }],
+                "height": 250,
+                "width": 300,
+                "events": [{
+                    "id": 2,
+                    "url": "https://e-1234.adzerk.net/e.gif?jefoijef3ddfijdf"
+                }]
+            },
+            {
+                "adId": 20682923,
+                "creativeId": 18023458,
+                "flightId": 12435798,
+                "campaignId": 1693466,
+                "priorityId": 204498,
+                "clickUrl": "https://e-10521.adzerk.net/r?e=eyJ2IjoiMS42IiwiYU5Hw",
+                "impressionUrl": "https://e-10521.adzerk.net/i.gif?e=eyJ2IjoNtSz8",
+                "contents": [{
+                    "type": "raw",
+                    "data": {
+                        "height": 250,
+                        "width": 300,
+                        "customData": {
+                            "id": "566314"
+                        }
+                    },
+                    "body": ";",
+                    "customTemplate": ";"
+                }],
+                "height": 250,
+                "width": 300,
+                "events": [{
+                    "id": 2,
+                    "url": "https://e-1234.adzerk.net/e.gif?e=e3jfiojef&f=dfef"
+                }]
+            }
+        ]
     }
 }
