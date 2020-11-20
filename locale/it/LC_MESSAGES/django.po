@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-10 10:24+0000\n"
-"Last-Translator: massic80 <massic80@gmail.com>\n"
+"PO-Revision-Date: 2020-11-14 14:34+0000\n"
+"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -137,7 +137,7 @@ msgstr "Link per i revisori"
 
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
-msgstr ""
+msgstr "Avviata l’estrazione Git per “%(addons)s”."
 
 msgid "- Add-on not on AMO -"
 msgstr "- Componenti aggiuntivi esterni -"
@@ -2280,7 +2280,7 @@ msgid "You're done! A new version <strong>%(new_version_number)s</strong> of you
 msgstr "Hai finito! La nuova versione <strong>%(new_version_number)s</strong> del componente aggiuntivo <strong>%(addon_name)s</strong> verrà pubblicata come %(group_name)s e sarà presto disponibile."
 
 msgid "A newer version of your add-on is currently pending review."
-msgstr ""
+msgstr "Una nuova versione del componente aggiuntivo è in attesa di revisione."
 
 msgid "If you have any questions, don’t hesitate to contact us."
 msgstr "Se hai altre domande, non esitare a contattarci."
@@ -4541,7 +4541,7 @@ msgstr "Ricevi aggiornamenti meteo direttamente in Firefox."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
-msgstr ""
+msgstr "Gestisci meglio il tuo tempo con un orologio sul browser che traccia gli intervalli di lavoro."
 
 #. editorial content for the primary hero shelves.
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
