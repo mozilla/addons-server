@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-07 13:44+0000\n"
+"PO-Revision-Date: 2020-11-21 13:18+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -4928,9 +4928,8 @@ msgstr ""
 msgid "Pending Rejection Deadline"
 msgstr ""
 
-#, fuzzy
 msgid "Last Updated"
-msgstr "Senest opdateret:"
+msgstr "Senest opdateret"
 
 #, fuzzy
 msgid "Listed versions needing human review ({0})"
