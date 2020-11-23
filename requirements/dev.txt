@@ -6,8 +6,8 @@ ipdb==0.13.4 \
 ipython==7.19.0 \
     --hash=sha256:c987e8178ced651532b3b1ff9965925bfd445c279239697052561a9ab806d28f \
     --hash=sha256:cbb2ef3d5961d44e6a963b9817d4ea4e1fa2eb589c371a470fed14d8d40cbd6a
-watchdog[watchmedo]==0.10.3 \
-    --hash=sha256:4214e1379d128b0588021880ccaf40317ee156d4603ac388b9adcf29165e0c04
+watchdog[watchmedo]==0.10.4 \
+    --hash=sha256:e38bffc89b15bafe2a131f0e1c74924cf07dcec020c2e0a26cccd208831fcd43
 # Dependencies for IPython
 parso==0.8.0 \
     --hash=sha256:dc6c57ae210fc89b1de8fb0e7dc273fd6e40ebbe23c79b6e3c2b7dcbeb38c513 \
