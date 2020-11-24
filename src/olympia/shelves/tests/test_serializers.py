@@ -5,6 +5,8 @@ from rest_framework.test import APIRequestFactory
 
 from freezegun import freeze_time
 
+from django.conf import settings
+
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.addons.tests.test_serializers import (
@@ -14,6 +16,7 @@ from olympia.amo.tests import (
 from olympia.bandwagon.models import CollectionAddon
 from olympia.constants.promoted import RECOMMENDED
 from olympia.promoted.models import PromotedAddon
+from olympia.users.models import UserProfile
 
 from ..models import Shelf
 from ..serializers import ESSponsoredAddonSerializer, ShelfSerializer
@@ -43,7 +46,8 @@ class TestShelvesSerializer(ESTestCase):
             average_daily_users=8838, weekly_downloads=358, summary=None,
             recommended=True)
 
-        collection = collection_factory(slug='privacy-matters')
+        user = UserProfile.objects.create(pk=settings.TASK_USER_ID)
+        collection = collection_factory(author=user, slug='privacy-matters')
         addon = addon_factory(name='test addon privacy01')
         CollectionAddon.objects.create(addon=addon, collection=collection)
 
@@ -55,6 +59,12 @@ class TestShelvesSerializer(ESTestCase):
             endpoint='search',
             criteria='?sort=users&type=statictheme',
             footer_text='See more populâr themes')
+
+        self.search_rec_thm = Shelf.objects.create(
+            title='Recommended themes',
+            endpoint='search',
+            criteria='?promoted=recommended&sort=random&type=statictheme',
+            footer_text='See more recommended themes')
 
         self.collections_shelf = Shelf.objects.create(
             title='Enhanced privacy extensions',
@@ -87,7 +97,7 @@ class TestShelvesSerializer(ESTestCase):
             return reverse_ns('addon-search') + instance.criteria
         elif instance.endpoint == 'collections':
             return reverse_ns('collection-addon-list', kwargs={
-                'user_pk': self.request.user.pk,
+                'user_pk': str(settings.TASK_USER_ID),
                 'collection_slug': self.collections_shelf.criteria})
         else:
             return None
@@ -101,26 +111,36 @@ class TestShelvesSerializer(ESTestCase):
         assert data['footer_pathname'] == ''
 
     def test_url_and_addons_search(self):
-        data = self.serialize(self.search_pop_thm)
-        assert data['url'] == self._get_url(self.search_pop_thm)
+        pop_data = self.serialize(self.search_pop_thm)
+        assert pop_data['url'] == self._get_url(self.search_pop_thm)
 
-        assert len(data['addons']) == 2
-        assert data['addons'][0]['name']['en-US'] == (
+        assert len(pop_data['addons']) == 2
+        assert pop_data['addons'][0]['name']['en-US'] == (
             'test addon test02')
-        assert data['addons'][0]['promoted'] is None
-        assert data['addons'][0]['type'] == 'statictheme'
+        assert pop_data['addons'][0]['promoted'] is None
+        assert pop_data['addons'][0]['type'] == 'statictheme'
 
-        assert data['addons'][1]['name']['en-US'] == (
+        assert pop_data['addons'][1]['name']['en-US'] == (
             'test addon test04')
-        assert data['addons'][1]['promoted']['category'] == (
+        assert pop_data['addons'][1]['promoted']['category'] == (
             'recommended')
-        assert data['addons'][1]['type'] == 'statictheme'
+        assert pop_data['addons'][1]['type'] == 'statictheme'
+
+        # Test 'Recommended Themes' shelf - should include 1 addon
+        rec_data = self.serialize(self.search_rec_thm)
+        assert rec_data['url'] == self._get_url(self.search_rec_thm)
+
+        assert len(rec_data['addons']) == 1
+        assert rec_data['addons'][0]['name']['en-US'] == (
+            'test addon test04')
+        assert rec_data['addons'][0]['promoted']['category'] == (
+            'recommended')
+        assert rec_data['addons'][0]['type'] == 'statictheme'
 
     def test_url_and_addons_collections(self):
         data = self.serialize(self.collections_shelf)
-        assert data['url'] == self._get_url(self.collections_shelf)
-        print(data)
-        # assert len(data['addons']) == 1
+        assert data['addons'][0]['addon']['name']['en-US'] == (
+            'test addon privacy01')
 
 
 class TestESSponsoredAddonSerializer(AddonSerializerOutputTestMixin,

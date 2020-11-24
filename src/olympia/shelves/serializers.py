@@ -33,7 +33,7 @@ class ShelfSerializer(serializers.ModelSerializer):
                 'collection-addon-list',
                 request=self.context.get('request'),
                 kwargs={
-                    'user_pk': settings.TASK_USER_ID,
+                    'user_pk': str(settings.TASK_USER_ID),
                     'collection_slug': obj.criteria})
         else:
             url = None
