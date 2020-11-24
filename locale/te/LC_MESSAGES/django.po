@@ -2194,9 +2194,8 @@ msgstr ""
 msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
 msgstr ""
 
-#, fuzzy
 msgid "Manage add-on"
-msgstr "భాషా ప్యాక్ (పొడిగింత)"
+msgstr ""
 
 msgid ""
 "There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a href=\"mailto:amo-"
