@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-24 12:41+0000\n"
+"PO-Revision-Date: 2020-11-24 12:51+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -299,18 +299,19 @@ msgstr ""
 msgid "Oops"
 msgstr "申し訳ありません"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
-msgstr "<h1>申し訳ありません。エラーが発生しました。</h1> <p>すぐに問題の修正に取り掛かります。</p> <p>ページを再読み込みするか、<a href=\"%(home)s\">アドオンのホームページ</a> に戻ってください。</p>"
+msgstr ""
+"<h1>申し訳ありません。エラーが発生しました。</h1> <p>すぐに問題の修正に取り掛かります。</p> <p>ページを再読み込みするか、<a href=\"%(home)s\">アドオンのホームページ</a> に戻ってください。このページが表示されるまでの詳しい経緯を含めて <a "
+"href=\"https://github.com/mozilla/addons/issues/new\">問題を報告</a> することにより、エラーの修正に協力していただくこともできます。</p>"
 
 msgid "Register or Log in"
 msgstr ""
 
-#, fuzzy
 msgid "Email:"
-msgstr "メールアドレス"
+msgstr "メールアドレス:"
 
 msgid "OK"
 msgstr ""
@@ -914,20 +915,17 @@ msgstr "ブロックリストで編集した {0} 件をブロックします。"
 msgid "Block edited"
 msgstr "ブロックを編集しました"
 
-#, fuzzy
 msgid "Block for {0} deleted from Blocklist."
-msgstr "{addon} のバージョン {0}が削除されました。"
+msgstr "ブロックリストから削除された {0} 件をブロックします。"
 
-#, fuzzy
 msgid "Block deleted"
-msgstr "アドオンは削除されました。"
+msgstr "ブロックを削除しました"
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr "{addon} の GUID を DeniedGuid に追加しました。"
 
-#, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "{addon} が {collection} から削除されました。"
+msgstr "{addon} の GUID を DeniedGuid から削除しました。"
 
 msgid "Block {1} action for {0} signed off."
 msgstr "{0} 回のログオフ操作 {1} 件をブロックします。"
@@ -935,25 +933,21 @@ msgstr "{0} 回のログオフ操作 {1} 件をブロックします。"
 msgid "Block action signoff"
 msgstr "ログオフ操作をブロック"
 
-#, fuzzy
 msgid "User {user} session(s) reset."
-msgstr "ユーザー {user} の API キーをリセットしました。"
+msgstr "ユーザー {user} のセッションをリセットしました。"
 
 #, fuzzy
 msgid "User {user} throttled for scope \"{0}\""
 msgstr "ユーザー {user} が編集されました。理由: {1}"
 
-#, fuzzy
 msgid "{addon} {version} content reject scheduled."
-msgstr "{addon} {version} のコンテンツが却下されました。"
+msgstr "{addon} {version} のコンテンツ却下が予定されています。"
 
-#, fuzzy
 msgid "Content reject scheduled"
-msgstr "コンテンツが却下されました"
+msgstr "コンテンツ却下が予定されました"
 
-#, fuzzy
 msgid "{addon} {version} reject scheduled."
-msgstr "{addon} {version} の審査が却下されました。"
+msgstr "{addon} {version} の却下が予定されました。"
 
 #, fuzzy
 msgid "Rejection scheduled"
