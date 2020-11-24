@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-06-22 21:19+0000\n"
-"Last-Translator: rrock9312 <rrock9312@gmail.com>\n"
+"PO-Revision-Date: 2020-11-24 12:39+0000\n"
+"Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -112,13 +112,10 @@ msgstr "アドオン登録チェックリスト"
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "登録を完了する前に以下の点について確認してください。これは審査手続き中の遅延や誤解を最小限にするために役立ちます。"
 
-#, fuzzy
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
-msgstr ""
-"コンパイルされたバイナリや、最小化、難読化されたスクリプト (既知のライブラリを除く) がアドオンに含まれる場合、審査用に別途元のソースを提出する必要があります。そうした場合は必ずソースコードアップロー"
-"ドフォームを使い、審査が即座に却下されないようにしてください。"
+msgstr "最小化、結合、難読化されたスクリプト (既知のライブラリを除く) がアドオンに含まれる場合、審査用に別途元のソースを提出する必要があります。その場合は必ずソースコードアップロード用のフォームを用い、審査が即座に却下されないようにしてください。"
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "アドオンの検証中にこれらの問題が見つかり、審査が却下されました:"
@@ -482,34 +479,28 @@ msgid "Download Sources from {0} to {1}"
 msgstr "{0} から {1} までのダウンロード参照元"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Mediums, last {0} days"
-msgstr "最近 {0} 日間のダウンロード回数"
+msgstr "最近 {0} 日間のダウンロード媒体"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Mediums from {0} to {1}"
-msgstr "{0} から {1} までのダウンロード回数"
+msgstr "{0} から {1} までのダウンロード媒体"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Contents, last {0} days"
-msgstr "最近 {0} 日間のダウンロード参照元"
+msgstr "最近 {0} 日間のダウンロードコンテンツ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Contents from {0} to {1}"
-msgstr "{0} から {1} までのダウンロード回数"
+msgstr "{0} から {1} までのダウンロードコンテンツ"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Campaigns, last {0} days"
-msgstr "最近 {0} 日間のダウンロード回数"
+msgstr "最近 {0} 日間のダウンロードキャンペーン"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Campaigns from {0} to {1}"
-msgstr "{0} から {1} までのダウンロード回数"
+msgstr "{0} から {1} までのダウンロードキャンペーン"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
