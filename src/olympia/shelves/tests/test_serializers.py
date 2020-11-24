@@ -139,6 +139,7 @@ class TestShelvesSerializer(ESTestCase):
 
     def test_url_and_addons_collections(self):
         data = self.serialize(self.collections_shelf)
+        assert data['url'] == self._get_url(self.collections_shelf)
         assert data['addons'][0]['addon']['name']['en-US'] == (
             'test addon privacy01')
 
