@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-24 12:51+0000\n"
+"PO-Revision-Date: 2020-11-24 12:57+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -949,9 +949,8 @@ msgstr "コンテンツ却下が予定されました"
 msgid "{addon} {version} reject scheduled."
 msgstr "{addon} {version} の却下が予定されました。"
 
-#, fuzzy
 msgid "Rejection scheduled"
-msgstr "情報請求期限"
+msgstr "却下が予定されました"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1002,16 +1001,14 @@ msgstr "オーナー"
 msgid "Developer"
 msgstr "開発者"
 
-#, fuzzy
 msgid "(Deleted)"
-msgstr "削除済み"
+msgstr "(削除済み)"
 
 msgid "Extension"
 msgstr "拡張機能"
 
-#, fuzzy
 msgid "Deprecated Complete Theme"
-msgstr "完全テーマの更新審査"
+msgstr "非推奨の完全テーマ"
 
 msgid "Dictionary"
 msgstr "スペルチェック辞書"
@@ -1038,9 +1035,8 @@ msgstr "テーマ (静的)"
 msgid "Extensions"
 msgstr "拡張機能"
 
-#, fuzzy
 msgid "Deprecated Complete Themes"
-msgstr "完全テーマ"
+msgstr "非推奨の完全テーマ"
 
 # Plural in this context means many of the add-on type
 msgid "Dictionaries"
@@ -1384,13 +1380,11 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Not Promoted"
-msgstr "宣伝"
+msgstr "宣伝されていません"
 
-#, fuzzy
 msgid "Recommended"
-msgstr "おすすめ ({0})"
+msgstr "おすすめ"
 
 msgid "Sponsored"
 msgstr ""
@@ -1582,16 +1576,14 @@ msgstr "低画質、引き延ばしもしくは空白の画像"
 msgid "Header image alignment problem"
 msgstr "ヘッダー画像の整列問題"
 
-#, fuzzy
 msgid "No action"
-msgstr "その他のアクション"
+msgstr "アクションなし"
 
 msgid "Flag for human review"
 msgstr ""
 
-#, fuzzy
 msgid "Delay auto-approval"
-msgstr "自動承認を無効化"
+msgstr "自動承認を遅らせる"
 
 msgid "Delay auto-approval indefinitely"
 msgstr ""
@@ -1605,9 +1597,8 @@ msgstr "偽陽性"
 msgid "Inconclusive"
 msgstr "結果不確定"
 
-#, fuzzy
 msgid "New"
-msgstr "次へ"
+msgstr "新着"
 
 msgid "Running"
 msgstr "実行中"
@@ -1618,9 +1609,8 @@ msgstr "中止しました"
 msgid "Aborting"
 msgstr "中止しています"
 
-#, fuzzy
 msgid "Completed"
-msgstr "未完成"
+msgstr "完成"
 
 msgid "Scheduled"
 msgstr "スケジュール済み"
@@ -2225,9 +2215,8 @@ msgstr ""
 msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
 msgstr ""
 
-#, fuzzy
 msgid "Manage add-on"
-msgstr "言語パック (アドオン)"
+msgstr "アドオンの管理"
 
 msgid ""
 "There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a href=\"mailto:amo-"
@@ -3165,9 +3154,8 @@ msgid "Whether you’re new to extension development, polishing up or porting an
 msgstr ""
 
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Visit the Extension Workshop"
-msgstr "拡張機能ワークショップ"
+msgstr "拡張機能ワークショップを訪れる"
 
 msgid "Connect with us"
 msgstr ""
@@ -3194,17 +3182,15 @@ msgstr "拡張機能開発者ニュースレター"
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
 
-#, fuzzy
 msgid "Email Address"
-msgstr "IP アドレス"
+msgstr "メールアドレス"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
 msgstr ""
 
-#, fuzzy
 msgid "Sign Up"
-msgstr "ログアウト"
+msgstr "アカウント登録"
 
 msgid "Thanks!"
 msgstr ""
@@ -3215,9 +3201,8 @@ msgstr ""
 msgid "Resources"
 msgstr "資料"
 
-#, fuzzy
 msgid "WebExtensions API"
-msgstr "WebExtension"
+msgstr "WebExtensions API"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: 拡張機能を開発、テスト"
@@ -3267,9 +3252,8 @@ msgstr ""
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
 
-#, fuzzy
 msgid "Learn more about the developer community"
-msgstr "ソースコードのレビューポリシーについての詳細をお読みください。"
+msgstr "開発者コミュニティについての詳細"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "コード審査を通った後、当サイトに掲載されます。自動更新は当サイトによって処理されます。"
@@ -3308,13 +3292,11 @@ msgstr "写真なし"
 msgid "User Photo"
 msgstr "ユーザー写真"
 
-#, fuzzy
 msgid "Profile"
-msgstr "自分のプロファイル"
+msgstr "プロファイル"
 
-#, fuzzy
 msgid "Submit or Manage Extensions"
-msgstr "新しいバージョンを登録"
+msgstr "拡張機能を登録または管理"
 
 msgid "Customize Firefox"
 msgstr "Firefox をカスタマイズ"
@@ -5420,9 +5402,8 @@ msgstr "アドオンを強制有効化"
 msgid "View Blocklist Submission"
 msgstr "すべての登録アイテムを表示"
 
-#, fuzzy
 msgid "Block add-on"
-msgstr "アドオンのページへ戻る"
+msgstr "アドオンをブロック"
 
 msgid "Update add-on block"
 msgstr ""
@@ -5505,9 +5486,8 @@ msgstr "メソッド:"
 msgid "Source:"
 msgstr "ソース:"
 
-#, fuzzy
 msgid "Source URL:"
-msgstr "ソース:"
+msgstr "ソース URL:"
 
 msgid "Dismiss this announcement"
 msgstr "このお知らせを削除"
@@ -5515,9 +5495,8 @@ msgstr "このお知らせを削除"
 msgid "Files in this version:"
 msgstr "このバージョンのファイル:"
 
-#, fuzzy
 msgid "Browse all files in this version"
-msgstr "このバージョンのファイル:"
+msgstr "このバージョンのすべてのファイルを見る"
 
 msgid "Contents"
 msgstr "内容"
@@ -5531,9 +5510,8 @@ msgstr "比較"
 msgid "Permissions:"
 msgstr "許可設定:"
 
-#, fuzzy
 msgid "Optional permissions:"
-msgstr "許可設定:"
+msgstr "任意の許可設定:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
