@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-24 05:04+0000\n"
+"PO-Revision-Date: 2020-11-24 05:32+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -4576,7 +4576,7 @@ msgid "Inappropriate language/dialog"
 msgstr "అనుచిత భాష/సంభాషణ"
 
 msgid "Misplaced bug report or support request"
-msgstr ""
+msgstr "తప్పు స్థానంలో ఉంచిన దోష నివేదిక లేక తోడ్పాటు అభ్యర్థన"
 
 msgid "Other (please specify)"
 msgstr "ఇతర (దయచేసి పేర్కొనండి)"
@@ -4607,7 +4607,7 @@ msgid "Invalid flag [%s] - must be one of [%s]"
 msgstr "చెల్లని ఫ్లాగు [%s] - తప్పనిసరిగా [%s] లో ఒకటిగా ఉండాలి"
 
 msgid "This rating can't be flagged because it has no review text."
-msgstr ""
+msgstr "ఈ రేటింగ్ ఫ్లాగ్ చేయబడదు ఎందుకంటే దీనికి సమీక్ష పాఠ్యం లేదు."
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
 msgstr "\"ఇతరాలు\"ను కారణంగా ఎంచుకున్నప్పుడు చిన్న వివరణ తప్పనిసరిగా ఇవ్వాలి."
@@ -4659,7 +4659,7 @@ msgid "Search by add-on name / author email"
 msgstr "పొడగింత పేరు / రచయిత ఈమెయిలు ద్వారా వెతకండి"
 
 msgid "Needs Admin Code Review"
-msgstr ""
+msgstr "నిర్వాహక కోడు సమీక్ష అవసరం"
 
 msgid "yes"
 msgstr "అవును"
@@ -4923,13 +4923,13 @@ msgid "Theme Review Guide"
 msgstr "అలంకారపు సమీక్ష గైడు"
 
 msgid "User Ratings Moderation"
-msgstr ""
+msgstr "వాడుకరి రేటింగుల మితత్వం"
 
 msgid "Ratings Awaiting Moderation ({0})"
 msgstr ""
 
 msgid "Moderated Review Log"
-msgstr ""
+msgstr "మితత్వ సమీక్షల చిట్టా"
 
 msgid "Moderation Guide"
 msgstr "మోడరేషన్ గైడు"
@@ -5260,7 +5260,7 @@ msgid "More Actions"
 msgstr "మరిన్ని చర్యలు"
 
 msgid "Notify me about new listed versions"
-msgstr ""
+msgstr "కొత్తగా చూపించబడిన వెర్షన్ల గురించి నాకు తెలియజేయి"
 
 #, fuzzy
 msgid "Notify me about new unlisted versions"
@@ -5727,7 +5727,7 @@ msgid "Custom..."
 msgstr "అభిమతం..."
 
 msgid "Loading the latest data&hellip;"
-msgstr ""
+msgstr "తాజా డేటాను తెస్తోంది&hellip;"
 
 msgid "No data available."
 msgstr "డేటా అందుబాటులో లేదు."
