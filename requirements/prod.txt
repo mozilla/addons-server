@@ -245,8 +245,8 @@ dockerflow==2020.10.0 \
 drf-nested-routers==0.92.1 \
     --hash=sha256:52be428b046078ed21e9137167035cc2eb8daad036900fd2235ce026306e143a \
     --hash=sha256:e043fc937f94ac462a92d2d9fc9a7e55710a67164b558442adfe9634fc519c3b
-easy-thumbnails==2.7 \
-    --hash=sha256:e4e7a0dd4001f56bfd4058428f2c91eafe27d33ef3b8b33ac4e013b159b9ff91
+easy-thumbnails==2.7.1 \
+    --hash=sha256:f862949208d9066cd3d84ffcf9c2dbe9c7344ea6152b741e440f861eca46855c
 # elasticsearch is required by elasticsearch-dsl
 elasticsearch==6.8.1 \
     --hash=sha256:540d633afcc0a32972e4b489c4559c9a96e294850853238f7a18b1cbd267c2ed \
