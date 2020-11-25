@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-25 12:20+0000\n"
+"PO-Revision-Date: 2020-11-25 12:29+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -1226,7 +1226,7 @@ msgid "Animals"
 msgstr "Hayvanlar"
 
 msgid "Compact"
-msgstr ""
+msgstr "Kompakt"
 
 msgid "Large"
 msgstr "Büyük"
@@ -1259,7 +1259,7 @@ msgid "Causes"
 msgstr "Gayeler"
 
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
-msgstr ""
+msgstr "Niş ilgi alanları ve konular için Firefox temalarını indirin. Bu kategori spor temalarını, tatilleri, hayır işlerini, milliyetleri ve çok daha fazlasını içerir."
 
 msgid "Fashion"
 msgstr "Moda"
@@ -1447,7 +1447,7 @@ msgid "Development Practices"
 msgstr ""
 
 msgid "No Reputation"
-msgstr ""
+msgstr "İtibar yok"
 
 msgid "Good (1)"
 msgstr "İyi (1)"
@@ -1514,10 +1514,10 @@ msgid "Updated Complete Theme Review"
 msgstr "Güncellenmiş Tam Tema İncelemesi"
 
 msgid "Moderated Add-on Review"
-msgstr ""
+msgstr "Denetlenen Eklenti İncelemesi"
 
 msgid "Add-on Review Moderation Reverted"
-msgstr ""
+msgstr "Eklenti İnceleme Denetimi Geri Alındı"
 
 msgid "Add-on Content Review"
 msgstr "Eklenti İçeriği İncelemesi"
@@ -1722,7 +1722,7 @@ msgid "An author can only be present once."
 msgstr "Bir yazar sadece bir kez görünebilir."
 
 msgid "The account needs a display name before it can be added as an author."
-msgstr ""
+msgstr "Bir yazar olarak eklenebilmesi için hesabın görünen bir adı olması gerekir."
 
 msgid "Must have at least one owner."
 msgstr "En az bir sahibi olmalı."
@@ -1906,7 +1906,7 @@ msgid "An author has been added to your add-on"
 msgstr "Eklentinize bir yazar eklendi"
 
 msgid "Author invitation for {addon_name}"
-msgstr ""
+msgstr "{addon_name} için yazar davetiyesi"
 
 msgid "A confirmation email has been sent to {email}"
 msgstr "{email} adresine onay e-postası gönderildi"
@@ -2277,7 +2277,7 @@ msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the progr
 msgstr ""
 
 msgid "Continue to Stripe Checkout"
-msgstr ""
+msgstr "Stripe Checkout'a devam et"
 
 msgid "Manage Authors & License"
 msgstr "Yazarları ve lisansı yönet"
@@ -2760,9 +2760,11 @@ msgid ""
 "If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
 "%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
 msgstr ""
+"Kaynak kodu gönderdiyseniz ancak talimatları eklemediyseniz bunları burada belirtmelisiniz. %(policy_requirements_open)sİlke gereksinimlerine%(policy_requirements_close)s göre eklenti kodunun tam "
+"bir kopyasını oluşturmak için adım adım oluşturma talimatlarını girin."
 
 msgid "These notes will only be visible to you and our reviewers."
-msgstr ""
+msgstr "Bu notlar yalnızca siz ve inceleyicilerimiz tarafından görülebilir."
 
 msgid "Submit Version"
 msgstr "Sürümü gönder"
@@ -2804,7 +2806,7 @@ msgid "You’re done! This version will be available on our site shortly."
 msgstr "Hepsi bu kadar! Bu sürüm sitemizde kısa süre içerisinde kullanılabilir olacak."
 
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr ""
+msgstr "Teşekkürler! Bu sürüm incelenmek üzere gönderildi. İnceleme tamamlandığında veya inceleyicimizin herhangi bir sorusu olursa size bilgi vereceğiz."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr ""
@@ -2816,7 +2818,7 @@ msgid "Manage Listing"
 msgstr "Listelemeyi yönet"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
-msgstr ""
+msgstr "Eğer sürümünüz küçültülme, birleştirilme vs. şekilde makine tarafından oluşturulmuş kod içeriyorsa, sürüm notları veya kaynak kodu eklemek için bu sürümü düzenleyebilirsiniz."
 
 msgid "Edit version {0}"
 msgstr "{0} sürümünü düzenle"
@@ -2837,7 +2839,7 @@ msgid "Do You Need to Submit Source Code?"
 msgstr "Kaynak kodu göndermeniz mi gerekiyor?"
 
 msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
-msgstr ""
+msgstr "Kaynak kodu göndermeniz gerekebilir. Bunu yapmazsanız, eklentiniz siteden kaldırılabilir!"
 
 #, python-format
 msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
@@ -2943,7 +2945,7 @@ msgid "Theme name"
 msgstr "Tema adı"
 
 msgid "Select a header image for your theme"
-msgstr ""
+msgstr "Temanız için üstbilgi resmi seçin"
 
 msgid "Recommended height: 200 pixels"
 msgstr "Önerilen yükseklik: 200 piksel"
@@ -3149,7 +3151,7 @@ msgid "Manage Billing on Stripe"
 msgstr ""
 
 msgid "Listed Review Page"
-msgstr ""
+msgstr "Listelenen İnceleme Sayfası"
 
 msgid "Unlisted Review Page"
 msgstr ""
@@ -3170,7 +3172,7 @@ msgid "License"
 msgstr "Lisans"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Lütfen kaynak kodunuzda verdiğiniz haklara uygun bir lisans seçin. Yalnızca listelenen eklentiler için geçerlidir."
 
 #. %s is a list of HTML tags.
 #, python-format
@@ -3208,7 +3210,7 @@ msgid "If your add-on contains minified, concatenated or otherwise machine-gener
 msgstr ""
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
-msgstr ""
+msgstr "Lütfen eklenti dosyasının son halinin nasıl yeniden üretileceğine ilişkin talimatları bir README dosyasına veya bu sürümün inceleyici notlarına ekleyin."
 
 msgid "Read more about the source code review policy."
 msgstr "Kaynak kodu inceleme politikasıyla ilgili daha fazla bilgi edinin."
@@ -3391,16 +3393,16 @@ msgstr "Sürüm Notları"
 msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
 "updating."
-msgstr ""
+msgstr "Bu sürümdeki değişiklikler, yeni özellikler, bilinen hatalar ve bu dağıtıma/sürüme özgü diğer yararlı bilgiler. Bu bilgiler güncelleme sırasında Eklenti Yöneticisinde de gösterilir."
 
 msgid "Approval Status"
 msgstr "Onay durumu"
 
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "İnceleyicilere Yönelik Notlar"
 
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
-msgstr ""
+msgstr "İsteğe bağlı olarak, bu eklentiyi inceleyen kişiye yararlı olabilecek tüm bilgileri (test hesabı bilgileri vb.) girin."
 
 msgid "Source code"
 msgstr "Kaynak kodu"
@@ -4969,7 +4971,7 @@ msgid "Reviewer reply"
 msgstr "İnceleyenin yanıtı"
 
 msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr ""
+msgstr "Bu işlem, geliştiriciye bir mesaj gönderecektir. Geliştirici cevap verdiğinde size bildirilecektir."
 
 msgid "Request super-review"
 msgstr "Süper inceleme iste"
@@ -5315,7 +5317,7 @@ msgid "All reviews have been moderated. Good work!"
 msgstr "Tüm incelemeler denetlendi. İyi iş!"
 
 msgid "There are currently no add-ons of this type to review."
-msgstr ""
+msgstr "Şu an için incelenecek bu tür hiçbir eklenti yok."
 
 msgid "Helpful Links:"
 msgstr "İşe Yarar Bağlantılar:"
@@ -5471,7 +5473,7 @@ msgid "Hide Comments"
 msgstr "Yorumları gizle"
 
 msgid "No reviews found for this period."
-msgstr ""
+msgstr "Bu dönem için hiçbir inceleme bulunamadı."
 
 msgid "Origin:"
 msgstr "Köken:"
@@ -5498,7 +5500,7 @@ msgid "Contents"
 msgstr "İçindekiler"
 
 msgid "Compare this version to the last reviewed version"
-msgstr ""
+msgstr "Bu sürümü incelenen son sürümle karşılaştır"
 
 msgid "Compare"
 msgstr "Karşılaştır"
@@ -5536,7 +5538,7 @@ msgid "No points awarded yet."
 msgstr "Henüz hiç puan alınmadı."
 
 msgid "Top Reviewers (past 7 days)"
-msgstr ""
+msgstr "En iyi inceleyiciler (son 7 gün)"
 
 msgid "No top reviewers yet."
 msgstr ""
@@ -5794,10 +5796,10 @@ msgid "Custom Date Range"
 msgstr "Özel Tarih Aralığı"
 
 msgid "From"
-msgstr ""
+msgstr "Başlangıç"
 
 msgid "To"
-msgstr ""
+msgstr "Bitiş"
 
 msgid "Export"
 msgstr "Dışa aktar"
@@ -5939,6 +5941,8 @@ msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
+"<h2>Günlük kullanıcılar nedir?</h2> <p> Bu siteden indirilen eklentiler, güncellemeleri günde bir kez kontrol eder. Bu güncelleme pinglerinin toplam sayısına \"etkin günlük kullanıcılar\" denir. "
+"Günlük kullanıcılar eklenti sürümü, işletim sistemi, eklenti durumu, uygulama ve yerel ayarlara göre ayrılabilir. </p>"
 
 msgid "Application versions by Date"
 msgstr "Tarihe göre uygulama sürümleri"
@@ -6158,7 +6162,7 @@ msgid "new add-ons or Firefox features are available"
 msgstr "yeni eklentiler veya Firefox özellikleri mevcut"
 
 msgid "my add-on's compatibility is upgraded successfully"
-msgstr ""
+msgstr "eklentimin uyumluluğu başarıyla yükseltildiğinde"
 
 msgid "someone writes a review of my add-on"
 msgstr "eklentimle ilgili inceleme yazıldığında"
