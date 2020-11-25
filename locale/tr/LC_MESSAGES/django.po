@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-13 13:21+0000\n"
+"PO-Revision-Date: 2020-11-25 12:20+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -133,7 +133,7 @@ msgid "Reviewer Tools (unlisted)"
 msgstr "İnceleme Araçları (listelenmemiş)"
 
 msgid "Reviewer links"
-msgstr ""
+msgstr "İnceleyici bağlantıları"
 
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
@@ -759,10 +759,10 @@ msgid "{user} approved {rating} for {addon}."
 msgstr "{user}, {addon} için {rating} değerlendirmesini onayladı."
 
 msgid "Review {rating} for {addon} deleted."
-msgstr ""
+msgstr "{addon} için {rating} incelemesi silindi."
 
 msgid "{user} deleted {rating} for {addon}."
-msgstr ""
+msgstr "{user}, {addon} için {rating} değerlendirmesini sildi."
 
 msgid "Application max version for {version} updated."
 msgstr "{version} için maksimum uygulama sürümü güncellendi."
@@ -844,7 +844,7 @@ msgid "Developer Reply"
 msgstr "Geliştiricinin yanıtı"
 
 msgid "Reply by reviewer on {addon} {version}."
-msgstr ""
+msgstr "{addon} {version} için inceleyici yanıtı."
 
 msgid "Reviewer Reply"
 msgstr "İnceleyenin yanıtı"
