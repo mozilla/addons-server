@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2019-11-15 22:28+0000\n"
+"PO-Revision-Date: 2020-11-27 22:19+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -111,8 +111,8 @@ msgstr "Ruk'wan ruch'utitzijol ruwäch (re re' tikirel nib'an pa ri jun chik xak
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
-"We ri atz'aqat nrajo' jun rub'i' taqoya'l pa jun ruxaq k'amaya'l richin nitojtob'ëx ütz, tatz'aqatisaj jun tojtob'enel okisaxel chuqa' ewan tzij pa ri Ch'utitzijol richin ri Nik'onel (re re' "
-"tikirel nib'an pa ri jun chik xak)."
+"We ri atz'aqat nrajo' jun rub'i' taqoya'l pa jun ruxaq k'amaya'l richin nitojtob'ëx ütz, tatz'aqatisaj jun tojtob'enel okisaxel chuqa' ewan tzij pa ri Ch'utitzijol richin ri Nik'onel (re re' tikirel"
+" nib'an pa ri jun chik xak)."
 
 msgid "Add-on submission checklist"
 msgstr "Rucholb'al kijikib'anem kitaqik taq tz'aqat"
@@ -450,14 +450,12 @@ msgid "Applications from {0} to {1}"
 msgstr "Taq chokoy pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Countries, last {0} days"
-msgstr "Taq to'onïk, ri ruk'sib'äl {0} q'ij"
+msgstr "Taq amaq', ri ruk'sib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Countries from {0} to {1}"
-msgstr "Taq to'onïk pa {0} k'a {1}"
+msgstr "Taq amaq' pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
@@ -500,24 +498,20 @@ msgid "Download Sources from {0} to {1}"
 msgstr "Kiqasaxik Xe'el pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Mediums, last {0} days"
-msgstr "Taq qasanïk, ri ruk'isib'äl {0} q'ij"
+msgstr "Loman Taq Qasanïk, ruk'isib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Mediums from {0} to {1}"
-msgstr "Taq qasanïk pa {0} k'a {1}"
+msgstr "Loman Taq Qasanïk pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Contents, last {0} days"
-msgstr "Kiqasaxïk Taq Xe'el, ri ruk'isib'äl {0} q'ij"
+msgstr "Kiqasaxïk Taq Rupam, ruk'isib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Contents from {0} to {1}"
-msgstr "Taq qasanïk pa {0} k'a {1}"
+msgstr "Kiqasaxik Taq Rupam pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
 #, fuzzy
