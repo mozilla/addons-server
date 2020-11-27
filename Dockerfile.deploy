@@ -31,7 +31,6 @@ RUN touch /addons-server-docker-container \
         bash-completion \
         build-essential \
         curl \
-        libcap-dev \
         libjpeg-dev \
         libpcre3-dev \
         libsasl2-dev \
@@ -41,7 +40,6 @@ RUN touch /addons-server-docker-container \
         zlib1g-dev \
         libffi-dev \
         libssl-dev \
-        libpcre3-dev \
         nodejs \
         # Git, because we're using git-checkout dependencies
         git \
@@ -86,11 +84,6 @@ RUN pip3 install --no-cache-dir --exists-action=w --no-deps -r requirements/syst
 # Link /usr/bin/uwsgi to /usr/local/bin/uwsgi, as that was the
 # previous location of the binary when installed by apt-get.
 RUN ln -s /usr/local/bin/uwsgi /usr/bin/uwsgi
-
-# Install uwsgi statsd exporter to collect metrics from uwsgi when deployed
-WORKDIR /usr/lib/uwsgi/plugins
-RUN uwsgi --build-plugin https://github.com/Datadog/uwsgi-dogstatsd && \
-    rm -rf uwsgi-dogstatsd
 
 # Link /usr/sbin/uwsgi and /usr/bin/uwsgi to deal with migration from Centos -> Debian
 RUN ln -s /usr/bin/uwsgi /usr/sbin/uwsgi
