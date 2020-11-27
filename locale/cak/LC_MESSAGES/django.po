@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-17 00:15+0000\n"
+"PO-Revision-Date: 2020-11-27 22:30+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -51,9 +51,8 @@ msgstr "Xya' ketal chi ri taq %d rutzijol samaj echa'on e ütz."
 msgid "The %d selected reports have been marked as suspicious."
 msgstr "Ri %d rutzijol xcha' xya' ketal achi'el e ya'öl k'ayewal. "
 
-#, fuzzy
 msgid "Mark selected abuse reports as suspicious"
-msgstr "Rutzijol k'ayewal o ruk'utuxik to'ïk pa jun itzel k'ojlib'äl"
+msgstr "Tiya' ketal achi'el etz'ilanel ri rutzijol cha'on taq k'ayewal"
 
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Tatz'eta' chi re k'ojlib'äl re' man nik'o ta chi re ri {max_length} taq tz'ib'."
@@ -124,17 +123,14 @@ msgstr "Xa xe tikirel yetz'aqatisäx ch'utitzijol pa ri ruk'isib'äl taq kiwäch
 msgid "Ratings"
 msgstr "Kejqalem"
 
-#, fuzzy
 msgid "Reviewer Tools (listed)"
-msgstr "Taq Rusamajib'al Nik'onel"
+msgstr "Taq Rusamajib'al Nik'onel (xcholajïx)"
 
-#, fuzzy
 msgid "Reviewer Tools (unlisted)"
-msgstr "Taq Rusamajib'al Nik'onel"
+msgstr "Taq Rusamajib'al Nik'onel (man xcholajïx ta)"
 
-#, fuzzy
 msgid "Reviewer links"
-msgstr "Taq Rusamajib'al Nik'onel"
+msgstr "Kiximöy Nik'onel"
 
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."

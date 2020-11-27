@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-27 22:19+0000\n"
+"PO-Revision-Date: 2020-11-27 22:23+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -514,14 +514,12 @@ msgid "Download Contents from {0} to {1}"
 msgstr "Kiqasaxik Taq Rupam pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Campaigns, last {0} days"
-msgstr "Taq qasanïk, ri ruk'isib'äl {0} q'ij"
+msgstr "Keqasäx taq Samajinem, ruk'isib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Campaigns from {0} to {1}"
-msgstr "Taq qasanïk pa {0} k'a {1}"
+msgstr "Keqasäx taq Samajinem pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
