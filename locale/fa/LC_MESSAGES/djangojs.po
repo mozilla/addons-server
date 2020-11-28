@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-07-17 11:45+0000\n"
+"PO-Revision-Date: 2020-11-28 07:08+0000\n"
 "Last-Translator: abtin <abtin@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fa\n"
@@ -18,17 +18,16 @@ msgstr ""
 msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] "{0} ستاره"
-msgstr[1] "{0} ستاره"
+msgstr[1] "{0} ستاره ها"
 
 msgid "There was a problem contacting the server."
-msgstr "اشکالی در تماس با سرویس دهنده به وجود آمده است."
+msgstr "اشکالی در تماس با سرویس‌دهنده به‌وجود آمده است."
 
 msgid "Select a file..."
 msgstr "یک فایل را انتخاب کنید..."
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
-msgstr "افزودنی‌های شما باید با .xpi، .jar، یا .xml پایان یابند"
+msgstr "افزودنی‌های شما باید با zip, .xpi, .crx. یا xml. پایان یابند."
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, fuzzy, python-format
@@ -57,17 +56,17 @@ msgstr[1] "افزونه شما با {0} خطا، نتوانست اعتبارسن
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&hellip; و {0} دیگر"
+msgstr[1] "&hellip; و {0} دیگر"
 
 msgid "See full validation report"
-msgstr "مشاهده گزارش کامل اعتبارسنچی"
+msgstr "مشاهده گزارش کامل اعتبارسنجی"
 
 msgid "Validating {0}"
 msgstr "در حال اعتبار سنجی {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "افزونه شما از حداکثر حجم {0} تجاوز می‌کند."
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr "یک پاسخ خالی از سرور دریافت شد، وضعیت: {0}"
@@ -79,7 +78,7 @@ msgid "Finished validating {0}"
 msgstr "اعتبار سنجی {0} پایان یافت"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
+msgstr "زمان اعتبارسنجی افزونه شما به پایان رسیده است و به‌صورت دستی بررسی می‌شود."
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
@@ -88,8 +87,8 @@ msgstr[1] "افزونه شما بدون خطا و با {0} اخطار، اعتب
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] "افزونه شما بدون خطا و با {0} پیام، اعتبار سنجی شد."
+msgstr[0] "افزونه شما بدون خطا و با {0} پیام، اعتبارسنجی شد."
+msgstr[1] "افزونه شما بدون خطا و با {0} پیام، اعتبارسنجی شد."
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "افزونه شما بدون خطا یا اخطار، اعتبار سنجی شد."
@@ -98,7 +97,7 @@ msgid "Your submission will be automatically signed."
 msgstr ""
 
 msgid "WebExtension upgrade"
-msgstr ""
+msgstr "WebExtension ارتقا یافت"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
