@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-15 16:25+0000\n"
+"PO-Revision-Date: 2020-11-28 14:57+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -318,9 +318,8 @@ msgstr ""
 msgid "Register or Log in"
 msgstr "Зарегистрироваться или войти"
 
-#, fuzzy
 msgid "Email:"
-msgstr "Адрес эл. почты"
+msgstr "Электронная почта:"
 
 msgid "OK"
 msgstr "OK"
@@ -2235,9 +2234,8 @@ msgstr "Нажмите кнопку «Принять» ниже, чтобы по
 msgid "Decline"
 msgstr "Отклонить"
 
-#, fuzzy
 msgid "Set Up Payment"
-msgstr "Требуется оплата"
+msgstr "Настройка платежей"
 
 msgid "You're done!"
 msgstr "Вы закончили!"
@@ -2255,9 +2253,8 @@ msgstr "Если у вас есть вопросы, не стесняйтесь 
 msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
 msgstr ""
 
-#, fuzzy
 msgid "Manage add-on"
-msgstr "Локализация (дополнение)"
+msgstr "Управление дополнением"
 
 msgid ""
 "There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a href=\"mailto:amo-"
@@ -4493,18 +4490,16 @@ msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Некоторые веб-сайты испытывают затруднения при воспроизведении видео на Android. Вот как это исправить."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "Для тех моментов, когда вам нужно сжечь что-нибудь лазерами из глаз кота."
+msgstr "В такие моменты нужно стрелять лазерами из кошачьих глаз."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
 msgstr "Удаляет длинные параметры отслеживания из URL-адресов результатов поиска Google."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Get weather updates directly from Firefox."
-msgstr "Смотрите прогноз погоды прямо в браузере."
+msgstr "Смотрите прогноз погоды прямо в Firefox."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
@@ -4559,9 +4554,8 @@ msgstr "Минимальная поддерживаемая \"strict_min_version
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr "Неизвестная \"strict_min_version\" {appver} для {app}"
 
-#, fuzzy
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
-msgstr "Неизвестная \"strict_min_version\" {appver} для {app}"
+msgstr "Неизвестная \"strict_max_version\" {appver} для {app}"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
@@ -5457,9 +5451,8 @@ msgstr "Другие действия"
 msgid "Notify me about new listed versions"
 msgstr "Уведомлять меня о новых опубликованных версиях"
 
-#, fuzzy
 msgid "Notify me about new unlisted versions"
-msgstr "Уведомлять меня о новых опубликованных версиях"
+msgstr "Уведомлять меня о новых неопубликованных версиях"
 
 msgid "Allow resubmission"
 msgstr "Разрешить повторную отправку"
