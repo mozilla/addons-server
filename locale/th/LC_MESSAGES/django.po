@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-06 19:02+0000\n"
+"PO-Revision-Date: 2020-11-29 10:35+0000\n"
 "Last-Translator: aefgh39622@gmail.com <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -1013,9 +1013,8 @@ msgstr "เจ้าของ"
 msgid "Developer"
 msgstr "นักพัฒนา"
 
-#, fuzzy
 msgid "(Deleted)"
-msgstr "ลบแล้ว"
+msgstr "(ลบแล้ว)"
 
 msgid "Extension"
 msgstr "ส่วนขยาย"
@@ -4900,16 +4899,14 @@ msgstr ""
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Approve Content"
-msgstr "อนุมัติ / ปฏิเสธ"
+msgstr "อนุมัติเนื้อหา"
 
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Confirm Approval"
-msgstr "กำลังรอการอนุมัติ"
+msgstr "ยืนยันการอนุมัติ"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr ""
