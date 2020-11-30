@@ -32,7 +32,6 @@ RUN touch /addons-server-docker-container \
         build-essential \
         curl \
         libjpeg-dev \
-        libpcre3-dev \
         libsasl2-dev \
         libxml2-dev \
         libxslt-dev \
