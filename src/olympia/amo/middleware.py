@@ -15,7 +15,6 @@ from django.http import (
     HttpResponsePermanentRedirect, HttpResponseRedirect,
     JsonResponse)
 from django.middleware import common
-from django.middleware.cache import CacheMiddleware
 from django.utils.cache import patch_cache_control, patch_vary_headers
 from django.utils.deprecation import MiddlewareMixin
 from django.utils.encoding import force_text, iri_to_uri
