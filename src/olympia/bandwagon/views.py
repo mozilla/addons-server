@@ -1,12 +1,13 @@
 from django.conf import settings
+from django.utils.decorators import method_decorator
 
 from rest_framework import serializers
 from rest_framework.viewsets import ModelViewSet
 
-
 from olympia import amo
 from olympia.accounts.views import AccountViewSet
 from olympia.addons.models import Addon
+from olympia.amo.utils import cache_page_if_anonymous
 from olympia.api.filters import OrderingAliasFilter
 from olympia.api.permissions import (
     AllOf, AllowReadOnlyIfPublic, AnyOf, PreventActionPermission)
@@ -110,6 +111,12 @@ class CollectionAddonViewSet(ModelViewSet):
                               'added': 'created'}
     ordering = ('-addon__weekly_downloads',)
 
+    # This endpoint can be quite slow so it's cached for one hour for all
+    # anonymous users.
+    @method_decorator(cache_page_if_anonymous(60 * 60 * 1))
+    def list(self, *args, **kwargs):
+        return super().list(*args, **kwargs)
+
     def get_collection(self):
         if not hasattr(self, 'collection'):
             # We're re-using CollectionViewSet and making sure its get_object()
@@ -129,7 +136,7 @@ class CollectionAddonViewSet(ModelViewSet):
         # if the lookup is not a number, its probably the slug instead.
         if lookup_value and not str(lookup_value).isdigit():
             self.lookup_field = '%s__slug' % self.lookup_field
-        return super(CollectionAddonViewSet, self).get_object()
+        return super().get_object()
 
     def get_queryset(self):
         qs = (

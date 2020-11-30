@@ -925,6 +925,50 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
             result['addon']['id'] for result in response.data['results']}
         assert all_addons_ids == result_ids
 
+    def test_no_caching_authenticated(self):
+        self.client.login_api(self.user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert len(response.data['results']) == 3
+
+        # We should get an updated response with only 2 add-ons are we're
+        # authenticated.
+        self.collection.addons.remove(self.addon_a)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert len(response.data['results']) == 2
+
+    def test_caching_anonymous(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert len(response.data['results']) == 3
+
+        # We should get a cached response with 3 add-ons are we're anonymous.
+        self.collection.addons.remove(self.addon_a)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert len(response.data['results']) == 3
+
+        # Any URL parameter added creates a separate cache key as well, so we
+        # see the updated results with a new URL.
+        response = self.client.get(self.url, {'foo': 'bar'})
+        assert len(response.data['results']) == 2
+
+        # Different collection should of course be cached separately.
+        new_collection = collection_factory(author=self.user)
+        new_collection.add_addon(self.addon_a)
+        url = reverse_ns(
+            'collection-addon-list', kwargs={
+                'user_pk': self.user.pk,
+                'collection_slug': new_collection.slug})
+        response = self.client.get(url)
+        assert len(response.data['results']) == 1
+
+        # Old response remains cached.
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert len(response.data['results']) == 3
+
 
 class TestCollectionAddonViewSetDetail(CollectionAddonViewSetMixin, TestCase):
     client_class = APITestClient
