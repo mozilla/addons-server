@@ -44,7 +44,7 @@ class ShelfSerializer(serializers.ModelSerializer):
         if obj.endpoint == 'search':
             criteria = obj.criteria.strip('?')
             params = dict(parse.parse_qsl(criteria))
-            request = self.context.get('request', None)
+            request = self.context.get('request')
             tmp = request.GET
             request.GET = request.GET.copy()
             request.GET.update(params)
@@ -52,7 +52,7 @@ class ShelfSerializer(serializers.ModelSerializer):
             request.GET = tmp
             return addons
         elif obj.endpoint == 'collections':
-            request = self.context.get('request', None)
+            request = self.context.get('request')
             kwargs = {
                 'user_pk': str(settings.TASK_USER_ID),
                 'collection_slug': obj.criteria}

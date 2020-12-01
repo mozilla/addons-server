@@ -81,16 +81,16 @@ class TestShelvesSerializer(ESTestCase):
         self.request.version = api_version
         self.request.user = user_factory()
 
-    def serialize(self, instance, **extra_context):
+    def serialize(self, instance, **context):
         self.request.query_params = dict(parse.parse_qsl(
             instance.criteria))
-        extra_context['request'] = self.request
+        context['request'] = self.request
         if instance.endpoint == 'collections':
-            extra_context['action'] = 'list'
-            extra_context['kwargs'] = {
+            context['action'] = 'list'
+            context['kwargs'] = {
                 'user_pk': self.request.user.pk,
                 'collection_slug': instance.criteria}
-        return ShelfSerializer(instance, context=extra_context).data
+        return ShelfSerializer(instance, context=context).data
 
     def _get_url(self, instance):
         if instance.endpoint == 'search':
