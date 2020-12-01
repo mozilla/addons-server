@@ -287,4 +287,3 @@ class TestOnStripeChargeSucceeded(PromotedAddonTestCase):
             f"//dashboard.stripe.com/test/payments/{payment_intent}"
             in email.body
         )
-
