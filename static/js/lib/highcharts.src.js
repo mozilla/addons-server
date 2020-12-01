@@ -8338,28 +8338,28 @@
         // we can get the position of the neighbour label. #808.
         if (tickPositions.length) {
           // #1300
-          each(tickPositions.slice(1).concat([tickPositions[0]]), function (
-            pos,
-            i,
-          ) {
-            // Reorganize the indices
-            i = i === tickPositions.length - 1 ? 0 : i + 1;
+          each(
+            tickPositions.slice(1).concat([tickPositions[0]]),
+            function (pos, i) {
+              // Reorganize the indices
+              i = i === tickPositions.length - 1 ? 0 : i + 1;
 
-            // linked axes need an extra check to find out if
-            if (!isLinked || (pos >= axis.min && pos <= axis.max)) {
-              if (!ticks[pos]) {
-                ticks[pos] = new Tick(axis, pos);
+              // linked axes need an extra check to find out if
+              if (!isLinked || (pos >= axis.min && pos <= axis.max)) {
+                if (!ticks[pos]) {
+                  ticks[pos] = new Tick(axis, pos);
+                }
+
+                // render new ticks in old position
+                if (slideInTicks && ticks[pos].isNew) {
+                  ticks[pos].render(i, true);
+                }
+
+                ticks[pos].isActive = true;
+                ticks[pos].render(i);
               }
-
-              // render new ticks in old position
-              if (slideInTicks && ticks[pos].isNew) {
-                ticks[pos].render(i, true);
-              }
-
-              ticks[pos].isActive = true;
-              ticks[pos].render(i);
-            }
-          });
+            },
+          );
         }
 
         // alternate grid color
