@@ -17,7 +17,6 @@ from olympia.addons.models import (
     AddonReviewerFlags, AddonUser,
     AppSupport, Category, DeniedGuid, DeniedSlug, FrozenAddon, MigratedLWT,
     Preview, AddonGUID, track_addon_status_change)
-from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
     TestCase, addon_factory, user_factory, version_factory)
 from olympia.amo.tests.test_models import BasePreviewMixin
@@ -305,7 +304,6 @@ class TestAddonModels(TestCase):
                 'base/addon_5299_gcal',
                 'base/addon_3615',
                 'base/addon_3723_listed',
-                'base/addon_4594_a9',
                 'base/addon_4664_twitterbar',
                 'addons/invalid_latest_version',
                 'addons/denied']
@@ -553,18 +551,6 @@ class TestAddonModels(TestCase):
             pending_rejection__isnull=False,
         ).exists()
 
-    def _delete_url(self):
-        """Test deleting addon has URL in the email."""
-        a = Addon.objects.get(pk=4594)
-        url = a.get_url_path()
-        a.delete('bye')
-        assert absolutify(url) in mail.outbox[0].body
-
-    def test_delete_url(self):
-        count = Addon.unfiltered.count()
-        self._delete_url()
-        assert count == Addon.unfiltered.count()
-
     def test_delete_reason(self):
         """Test deleting with a reason gives the reason in the mail."""
         reason = u'trêason'
@@ -596,15 +582,6 @@ class TestAddonModels(TestCase):
         a.delete('oh looky here')
         assert len(mail.outbox) == 1
         assert count == Addon.unfiltered.count()
-
-    def test_delete_searchengine(self):
-        """
-        Test deleting searchengines (which have no guids) should not barf up
-        the deletion machine.
-        """
-        a = Addon.objects.get(pk=4594)
-        a.delete('bye')
-        assert len(mail.outbox) == 1
 
     def test_delete_send_delete_email_false(self):
         addon_a = addon_factory()
@@ -686,10 +663,6 @@ class TestAddonModels(TestCase):
         assert a.incompatible_latest_apps() == [
             (amo.FIREFOX, AppVersion.objects.get(version_int=4000000200100))
         ]
-
-        # Check a search engine addon.
-        a = Addon.objects.get(pk=4594)
-        assert a.incompatible_latest_apps() == []
 
     def test_incompatible_asterix(self):
         av = ApplicationsVersions.objects.get(pk=47881)
@@ -2369,16 +2342,6 @@ class TestAddonFromUpload(UploadTest):
         deleted1.update(status=amo.STATUS_APPROVED, guid=None)
         deleted2.update(status=amo.STATUS_APPROVED, guid=None)
 
-        # Now upload a new add-on which isn't an extension, and has no GUID.
-        # This fails if we try to reclaim the GUID from deleted add-ons: the
-        # GUID is None, so it'll try to get the add-on that has a GUID which is
-        # None, but many are returned. So make sure we're not trying to reclaim
-        # the GUID.
-        self.upload = self.get_upload('search.xml')
-        parsed_data = parse_addon(self.upload, user=self.user)
-        Addon.from_upload(
-            self.upload, [self.selected_app], parsed_data=parsed_data)
-
     def test_xpi_attributes(self):
         self.upload = self.get_upload('extension.xpi')
         parsed_data = parse_addon(self.upload, user=self.user)
@@ -2416,30 +2379,6 @@ class TestAddonFromUpload(UploadTest):
         assert sorted([file_.platform for file_ in version.all_files]) == (
             [amo.PLATFORM_ALL.id])
 
-    def test_search_attributes(self):
-        self.upload = self.get_upload('search.xml')
-        parsed_data = parse_addon(self.upload, user=self.user)
-        addon = Addon.from_upload(self.upload, [self.selected_app],
-                                  parsed_data=parsed_data)
-        assert addon.name == 'search tool'
-        assert addon.guid is None
-        assert addon.type == amo.ADDON_SEARCH
-        assert addon.status == amo.STATUS_NULL
-        assert addon.homepage is None
-        assert addon.description is None
-        assert addon.slug == 'search-tool'
-        assert addon.summary == 'Search Engine for Firefox'
-
-    def test_search_version(self):
-        self.upload = self.get_upload('search.xml')
-        parsed_data = parse_addon(self.upload, user=self.user)
-        addon = Addon.from_upload(
-            self.upload, [self.selected_app], parsed_data=parsed_data)
-        version = addon.versions.get()
-        assert version.version == datetime.now().strftime('%Y%m%d')
-        assert version.files.get().platform == amo.PLATFORM_ALL.id
-        assert version.files.get().status == amo.STATUS_AWAITING_REVIEW
-
     def test_no_homepage(self):
         addon = Addon.from_upload(
             self.get_upload('extension-no-homepage.xpi'),
@@ -2450,13 +2389,13 @@ class TestAddonFromUpload(UploadTest):
     def test_default_locale(self):
         # Make sure default_locale follows the active translation.
         addon = Addon.from_upload(
-            self.get_upload('search.xml'),
+            self.get_upload('extension.xpi'),
             [self.selected_app], parsed_data=self.dummy_parsed_data)
         assert addon.default_locale == 'en-US'
 
         translation.activate('es')
         addon = Addon.from_upload(
-            self.get_upload('search.xml'),
+            self.get_upload('extension.xpi'),
             [self.selected_app], parsed_data=self.dummy_parsed_data)
         assert addon.default_locale == 'es'
 

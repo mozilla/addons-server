@@ -96,10 +96,8 @@ class VersionManager(ManagerBase):
         qs = (
             self
             .filter(
-                files__status=amo.STATUS_AWAITING_REVIEW)
-            .filter(
-                Q(files__is_webextension=True) |
-                Q(addon__type=amo.ADDON_SEARCH)
+                files__status=amo.STATUS_AWAITING_REVIEW,
+                files__is_webextension=True
             )
             .filter(
                 # For listed, add-on can't be incomplete, deleted or disabled.
@@ -110,8 +108,7 @@ class VersionManager(ManagerBase):
                         amo.STATUS_NOMINATED, amo.STATUS_APPROVED),
                     addon__disabled_by_user=False,
                     addon__type__in=(
-                        amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT,
-                        amo.ADDON_SEARCH),
+                        amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT),
                 ) |
                 # For unlisted, add-on can't be deleted or disabled.
                 Q(

@@ -72,25 +72,6 @@ class TestRunScanner(UploadTest, TestCase):
         response.json.return_value = data if data else {}
         return response
 
-    @mock.patch('olympia.scanners.tasks.SCANNERS', MOCK_SCANNERS)
-    def test_skip_non_webextensions(self):
-        upload = self.get_upload('search.xml')
-        results = {
-            **amo.VALIDATOR_SKELETON_RESULTS,
-            'metadata': {'is_webextension': False},
-        }
-
-        returned_results = run_scanner(
-            results,
-            upload.pk,
-            scanner=self.FAKE_SCANNER,
-            api_url=self.API_URL,
-            api_key=self.API_KEY,
-        )
-
-        assert len(ScannerResult.objects.all()) == 0
-        assert returned_results == results
-
     @override_settings(SCANNER_TIMEOUT=123)
     @mock.patch('olympia.scanners.tasks.SCANNERS', MOCK_SCANNERS)
     @mock.patch('olympia.scanners.tasks.statsd.incr')
@@ -320,20 +301,6 @@ class TestRunYara(UploadTest, TestCase):
             **amo.VALIDATOR_SKELETON_RESULTS,
             'metadata': {'is_webextension': True},
         }
-
-    @mock.patch('yara.compile')
-    def test_skip_non_webextensions_with_mocks(self, yara_compile_mock):
-        upload = self.get_upload('search.xml')
-        results = {
-            **amo.VALIDATOR_SKELETON_RESULTS,
-            'metadata': {'is_webextension': False},
-        }
-
-        received_results = run_yara(results, upload.pk)
-
-        assert not yara_compile_mock.called
-        # The task should always return the results.
-        assert received_results == results
 
     @mock.patch('olympia.scanners.tasks.statsd.incr')
     def test_run(self, incr_mock):
@@ -910,18 +877,6 @@ class TestCallMadApi(UploadTest, TestCase):
         response = mock.Mock(status_code=status_code)
         response.json.return_value = data if data else {}
         return response
-
-    def test_skip_non_webextensions(self):
-        upload = self.get_upload('search.xml')
-        results = {
-            **amo.VALIDATOR_SKELETON_RESULTS,
-            'metadata': {'is_webextension': False},
-        }
-
-        returned_results = call_mad_api([results], upload.pk)
-
-        assert len(ScannerResult.objects.all()) == self.default_results_count
-        assert returned_results == results
 
     @mock.patch('olympia.scanners.tasks.uuid.uuid4')
     @mock.patch('olympia.scanners.tasks.statsd.timer')

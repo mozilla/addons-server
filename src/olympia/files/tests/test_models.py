@@ -6,8 +6,6 @@ import tempfile
 import zipfile
 import shutil
 
-from datetime import datetime
-
 from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -657,13 +655,6 @@ class TestParseXpi(TestCase):
         parsed = self.parse(filename='webextension_signed_already.xpi')
         assert parsed['is_mozilla_signed_extension']
 
-    def test_xml_for_extension(self):
-        addon = Addon.objects.create(guid='guid@xpi', type=1)
-        with self.assertRaises(forms.ValidationError) as e:
-            self.parse(addon, filename='search.xml')
-        assert e.exception.messages[0] == (
-            'The type (4) does not match the type of your add-on on AMO (1)')
-
     def test_bad_zipfile(self):
         with self.assertRaises(forms.ValidationError) as e:
             # This file doesn't exist, it will raise an IOError that should
@@ -1305,13 +1296,6 @@ class TestFileFromUpload(UploadTest):
         assert file_.filename.endswith('.xpi')
         assert not file_.is_restart_required
 
-    def test_search_extension(self):
-        upload = self.upload('search.xml')
-        file_ = File.from_upload(
-            upload, self.version, self.platform, parsed_data={})
-        assert file_.filename.endswith('.xml')
-        assert not file_.is_restart_required
-
     def test_experiment(self):
         upload = self.upload('experiment_inside_webextension')
         file_ = File.from_upload(
@@ -1423,50 +1407,12 @@ class TestZip(TestCase, amo.tests.AMOPaths):
         assert os.path.isdir(os.path.join(dest, 'chrome'))
 
 
-class TestParseSearch(TestCase, amo.tests.AMOPaths):
-
-    def parse(self, filename='search.xml'):
-        with open(self.file_fixture_path(filename)) as fobj:
-            return parse_addon(fobj, user=user_factory())
-
-    def extract(self):
-        # This is the expected return value from extract_search.
-        return {'url': {u'type': u'text/html', u'template':
-                        u'http://www.yyy.com?q={searchTerms}'},
-                'xmlns': u'http://a9.com/-/spec/opensearch/1.1/',
-                'name': u'search tool',
-                'description': u'Search Engine for Firefox'}
-
-    def test_basics(self):
-        # This test breaks if the day changes. Have fun with that!
-        assert self.parse() == {
-            'guid': None,
-            'name': u'search tool',
-            'is_restart_required': False,
-            'is_webextension': False,
-            'version': datetime.now().strftime('%Y%m%d'),
-            'summary': u'Search Engine for Firefox',
-            'type': amo.ADDON_SEARCH
-        }
-
-    @mock.patch('olympia.files.utils.extract_search')
-    def test_extract_search_error(self, extract_mock):
-        extract_mock.side_effect = Exception
-        with self.assertRaises(forms.ValidationError) as e:
-            self.parse()
-        assert e.exception.messages[0].startswith('Could not parse ')
-
-
 @mock.patch('olympia.files.utils.parse_xpi')
-@mock.patch('olympia.files.utils.parse_search')
-def test_parse_addon(search_mock, xpi_mock):
+def test_parse_addon(xpi_mock):
     user = mock.Mock()
 
     parse_addon('file.xpi', None, user=user)
     xpi_mock.assert_called_with('file.xpi', None, minimal=False, user=user)
-
-    parse_addon('file.xml', None, user=user)
-    search_mock.assert_called_with('file.xml', None)
 
 
 def test_parse_xpi():

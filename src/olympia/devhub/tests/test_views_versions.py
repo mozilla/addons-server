@@ -867,37 +867,6 @@ class TestVersionEditDetails(TestVersionEditBase):
         assert not version.addon.needs_admin_code_review
 
 
-class TestVersionEditSearchEngine(TestVersionEditMixin, TestCase):
-    # https://bugzilla.mozilla.org/show_bug.cgi?id=605941
-    fixtures = ['base/users', 'base/addon_4594_a9.json']
-
-    def setUp(self):
-        super(TestVersionEditSearchEngine, self).setUp()
-        self.client.login(email='admin@mozilla.com')
-        self.url = reverse('devhub.versions.edit',
-                           args=['a4594', 42352])
-
-    def test_search_engine_edit(self):
-        dd = self.formset(prefix="files", release_notes='xx',
-                          approval_notes='yy')
-
-        response = self.client.post(self.url, dd)
-        assert response.status_code == 302
-        version = Addon.objects.get(id=4594).current_version
-        assert str(version.release_notes) == 'xx'
-        assert str(version.approval_notes) == 'yy'
-
-    def test_no_compat(self):
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert not doc("#id_form-TOTAL_FORMS")
-
-    def test_no_upload(self):
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert not doc('a.add-file')
-
-
 class TestVersionEditStaticTheme(TestVersionEditBase):
     def setUp(self):
         super(TestVersionEditStaticTheme, self).setUp()

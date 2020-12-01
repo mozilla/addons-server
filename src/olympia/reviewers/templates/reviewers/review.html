@@ -281,7 +281,7 @@
         {% endif %}
         </li>
 
-        {% if addon.type in (amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT, amo.ADDON_SEARCH) %}
+        {% if addon.type in (amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT) %}
           <li {% if addon.auto_approval_disabled %}class="hidden"{% endif %}>
             <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
                     data-api-method="patch"

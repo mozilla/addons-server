@@ -76,8 +76,7 @@ tasks = {
             # Only resign public add-ons where the latest version has been
             # created before the 5th of April
             Q(status=amo.STATUS_APPROVED,
-              _current_version__created__lt=datetime(2019, 4, 5)) &
-            ~Q(type=amo.ADDON_SEARCH)
+              _current_version__created__lt=datetime(2019, 4, 5))
         ]
     },
     'recreate_previews': {
@@ -125,15 +124,6 @@ tasks = {
         ],
         'allowed_kwargs': ('with_deleted',),
     },
-    'disable_opensearch_addons': {
-        # We're re-using the `delete_addons` method but don't allow for hard
-        # deletes
-        'method': delete_addons,
-        'qs': [
-            Q(type=amo.ADDON_SEARCH)
-        ],
-        'allowed_kwargs': ('with_deleted',),
-    }
 }
 
 

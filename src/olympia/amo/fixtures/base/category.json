@@ -70,18 +70,5 @@
             "type": 1,
             "slug": "search-tools"
         }
-    },
-    {
-        "pk": 81,
-        "model": "addons.category",
-        "fields": {
-            "count": 1,
-            "weight": -1,
-            "created": "2007-03-05 13:09:27",
-            "modified": "2010-02-23 19:17:31",
-            "application": 1,
-            "type": 4,
-            "slug": "dictionaries-encyclopedias"
-        }
     }
 ]

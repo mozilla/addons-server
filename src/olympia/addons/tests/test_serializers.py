@@ -587,7 +587,7 @@ class AddonSerializerOutputTestMixin(object):
 
         # Test with some compatibility info but that should be ignored because
         # its type is in NO_COMPAT.
-        self.addon.update(type=amo.ADDON_SEARCH)
+        self.addon.update(type=amo.ADDON_DICT)
         result_version = self.serialize()['current_version']
         assert result_version['compatibility'] == {
             'android': {'max': '65535', 'min': '11.0'},

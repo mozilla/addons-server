@@ -16,26 +16,6 @@ class TestRepackFileUpload(UploadTest, TestCase):
     @mock.patch('olympia.files.tasks.get_sha256')
     @mock.patch('olympia.files.tasks.shutil')
     @mock.patch.object(SafeZip, 'extract_to_dest')
-    def test_not_repacking_non_xpi_files_with_mocks(
-            self, extract_to_dest_mock, shutil_mock, get_sha256_mock,
-            move_stored_file_mock):
-        """Test we're not repacking non-xpi files"""
-        upload = self.get_upload('search.xml')
-        old_hash = upload.hash
-        assert old_hash.startswith('sha256:')
-        fake_results = {'errors': 0}
-        repack_fileupload(fake_results, upload.pk)
-        assert not extract_to_dest_mock.called
-        assert not shutil_mock.make_archive.called
-        assert not get_sha256_mock.called
-        assert not move_stored_file_mock.called
-        upload.reload()
-        assert upload.hash == old_hash  # Hasn't changed.
-
-    @mock.patch('olympia.files.tasks.move_stored_file')
-    @mock.patch('olympia.files.tasks.get_sha256')
-    @mock.patch('olympia.files.tasks.shutil')
-    @mock.patch.object(SafeZip, 'extract_to_dest')
     def test_repacking_xpi_files_with_mocks(
             self, extract_to_dest_mock, shutil_mock, get_sha256_mock,
             move_stored_file_mock):

@@ -1631,16 +1631,6 @@ class TestExtensionQueue(QueueTest):
         self.grant_permission(self.user, 'Addons:ThemeReview')
         self._test_results()
 
-    def test_search_plugins_filtered_out(self):
-        self.addons['Nominated Two'].update(type=amo.ADDON_SEARCH)
-        self.addons['Pending Two'].update(type=amo.ADDON_SEARCH)
-
-        # search extensions are filtered out from the queue since auto_approve
-        # is taking care of them.
-        self.expected_addons = [
-            self.addons['Nominated One'], self.addons['Pending One']]
-        self._test_results()
-
     def test_pending_rejection_filtered_out(self):
         VersionReviewerFlags.objects.create(
             version=self.addons['Nominated Two'].current_version,
@@ -2316,9 +2306,6 @@ class TestContentReviewQueue(QueueTest):
         addon_factory(
             name=u'Langpack 1', created=self.days_ago(4),
             type=amo.ADDON_LPAPP)
-        addon_factory(
-            name=u'search plugin 1', created=self.days_ago(4),
-            type=amo.ADDON_SEARCH)
 
         # Addons with no last_content_review date, ordered by
         # their creation date, older first.
@@ -2710,18 +2697,6 @@ class BaseTestQueueSearch(SearchTest):
                 'status': amo.STATUS_NOMINATED,
                 'type': amo.ADDON_LPAPP,
             }),
-            ('Justin Bieber Search Bar', {
-                'file_kw': {
-                    'status': amo.STATUS_AWAITING_REVIEW,
-                },
-                'version_kw': {
-                    'created': self.days_ago(6),
-                    'nomination': self.days_ago(6),
-                    'version': '0.1',
-                },
-                'status': amo.STATUS_NOMINATED,
-                'type': amo.ADDON_SEARCH,
-            }),
             ('Bieber Dictionary', {
                 'file_kw': {
                     'status': amo.STATUS_AWAITING_REVIEW,
@@ -2931,8 +2906,7 @@ class TestQueueSearch(BaseTestQueueSearch):
         self.url = reverse('reviewers.queue_extension')
 
     def test_search_by_addon_type(self):
-        self.generate_files(['Not Needing Admin Review', 'Bieber Lang',
-                             'Justin Bieber Search Bar'])
+        self.generate_files(['Not Needing Admin Review', 'Bieber Lang'])
         response = self.search(addon_type_ids=[amo.ADDON_LPAPP])
         assert response.status_code == 200
         assert self.named_addons(response) == ['Bieber Lang']
@@ -3977,14 +3951,6 @@ class TestReview(ReviewBase):
         assert doc('#disable_auto_approval')
         assert doc('#enable_auto_approval')
 
-        # And search plugins
-        self.addon.update(type=amo.ADDON_SEARCH)
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('#disable_auto_approval')
-        assert doc('#enable_auto_approval')
-
         # Both of them should be absent on static themes, which are not
         # auto-approved.
         self.addon.update(type=amo.ADDON_STATICTHEME)
@@ -4047,14 +4013,6 @@ class TestReview(ReviewBase):
         assert validation.find('a').eq(2).text() == "Contents"
 
         assert validation.find('a').length == 3
-
-    def test_public_search(self):
-        self.version.files.update(status=amo.STATUS_APPROVED)
-        self.addon.update(type=amo.ADDON_SEARCH)
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('#versions-history .files ul .file-info').length == 1
 
     def test_version_deletion(self):
         """
@@ -5664,19 +5622,6 @@ class TestReviewPending(ReviewBase):
         assert list(statuses) == [amo.STATUS_APPROVED, amo.STATUS_APPROVED]
 
         assert mock_sign.called
-
-    @override_settings(ENABLE_ADDON_SIGNING=True)
-    def test_pending_to_public_search(self):
-        # sign_file() is *not* mocked here. We shouldn't need to, it should
-        # just avoid signing search plugins silently.
-        self.version.files.all().update(is_webextension=False)
-        self.addon.update(type=amo.ADDON_SEARCH)
-        response = self.client.post(self.url, self.pending_dict())
-        self.assert3xx(response, reverse('reviewers.queue_extension'))
-        assert self.get_addon().status == amo.STATUS_APPROVED
-        statuses = (self.version.files.values_list('status', flat=True)
-                    .order_by('status'))
-        assert list(statuses) == [amo.STATUS_APPROVED, amo.STATUS_APPROVED]
 
     def test_display_only_unreviewed_files(self):
         """Only the currently unreviewed files are displayed."""

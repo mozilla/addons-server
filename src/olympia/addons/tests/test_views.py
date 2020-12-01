@@ -1277,12 +1277,16 @@ class TestAddonSearchView(ESTestCase):
         assert len(data['results']) == 0
 
     def test_filter_by_type(self):
-        addon = addon_factory(slug='my-addon', name=u'My Addôn')
-        theme = addon_factory(slug='my-theme', name=u'My Thème',
+        addon = addon_factory(slug='my-addon', name='My Addôn')
+        theme = addon_factory(slug='my-theme', name='My Thème',
                               type=amo.ADDON_STATICTHEME)
-        addon_factory(slug='my-search', name=u'My Seárch',
-                      type=amo.ADDON_SEARCH)
+        addon_factory(slug='my-dict', name='My Dîct',
+                      type=amo.ADDON_DICT)
         self.refresh()
+
+        data = self.perform_search(self.url)
+        assert data['count'] == 3
+        assert len(data['results']) == 3
 
         data = self.perform_search(self.url, {'type': 'extension'})
         assert data['count'] == 1
