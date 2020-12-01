@@ -84,7 +84,7 @@ class TranslationSerializerField(fields.Field):
 
     def __init__(self, *args, **kwargs):
         self.min_length = kwargs.pop('min_length', None)
-        super(TranslationSerializerField, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     @property
     def flat(self):
@@ -92,10 +92,16 @@ class TranslationSerializerField(fields.Field):
         return is_gate_active(request, 'l10n_flat_input_output')
 
     def fetch_all_translations(self, obj, source, field):
-        translations = field.__class__.objects.filter(
-            id=field.id, localized_string__isnull=False)
-        return {to_language(trans.locale): str(trans)
-                for trans in translations} if translations else None
+        # this property is set by amo.utils.attach_trans_dict
+        if trans_dict := getattr(obj, 'translations', None):
+            translations = trans_dict.get(field.id, [])
+            return {to_language(locale): value
+                    for (locale, value) in translations}
+        else:
+            translations = field.__class__.objects.filter(
+                id=field.id, localized_string__isnull=False)
+            return {to_language(trans.locale): str(trans)
+                    for trans in translations}
 
     def fetch_single_translation(self, obj, source, field, requested_language):
         return {to_language(field.locale): str(field)} if field else None

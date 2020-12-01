@@ -10,7 +10,7 @@ from olympia import amo
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import (
     Addon, AppSupport, DeniedGuid, Preview, attach_tags,
-    attach_translations)
+    attach_translations_dict)
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import LocalFileStorage, extract_colors_from_image
@@ -105,7 +105,7 @@ def delete_preview_files(id, **kw):
 @use_primary_db
 def index_addons(ids, **kw):
     log.info('Indexing addons %s-%s. [%s]' % (ids[0], ids[-1], len(ids)))
-    transforms = (attach_tags, attach_translations)
+    transforms = (attach_tags, attach_translations_dict)
     index_objects(ids, Addon, AddonIndexer.extract_document,
                   kw.pop('index', None), transforms, Addon.unfiltered)
 

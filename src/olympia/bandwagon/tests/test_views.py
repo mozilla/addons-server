@@ -240,7 +240,8 @@ class TestCollectionViewSetDetail(TestCase):
         self.collection.add_addon(addon_factory())
         self.collection.add_addon(addon_factory())
         self.collection.add_addon(addon_factory())
-        response = self.client.get(self.url + '?with_addons')
+        with self.assertNumQueries(30):
+            response = self.client.get(self.url + '?with_addons')
         assert len(response.data['addons']) == 4
         patched_drf_setting = dict(settings.REST_FRAMEWORK)
         patched_drf_setting['PAGE_SIZE'] = 3
@@ -968,6 +969,36 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert len(response.data['results']) == 3
+
+    def test_basic(self):
+        with self.assertNumQueries(26):
+            # 1 start savepoint
+            # 2 get user
+            # 3 get collections of user
+            # 4 get collection object
+            # 5 get user (again)
+            # 6 collection addon count
+            # 7 collectionaddons
+            # 8 addons
+            # 9 l10n for addons
+            # 10 addon categories
+            # 11 addons current versions
+            # 12 addons current versions release notes l10n
+            # 13 applicationversions
+            # 14 addons current_version files
+            # 15 addons addon_users (authors)
+            # 16 previews
+            # 17 promoted addons
+            # 18 user tags
+            # 19 collectionaddons notes for addons
+            # 20 promoted approvals for versions
+            # 21 licenses for versions
+            # 22 l10n for licenses
+            # 23 l10n for user tags
+            # 24 l10n for addons in all locales
+            # 25 l10n for licenses in all locales
+            # 26 end savepoint
+            super().test_basic()
 
 
 class TestCollectionAddonViewSetDetail(CollectionAddonViewSetMixin, TestCase):
