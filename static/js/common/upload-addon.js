@@ -309,62 +309,61 @@
         upload_progress_inside.animate({ width: '100%' }, animateArgs);
       });
 
-      $upload_field.on('upload_onreadystatechange', function (
-        e,
-        file,
-        xhr,
-        aborted,
-      ) {
-        var errors = [],
-          $form = $upload_field.closest('form'),
-          json = {},
-          errOb;
-        if (
-          xhr.readyState == 4 &&
-          xhr.responseText &&
-          (xhr.status == 200 || xhr.status == 304 || xhr.status == 400)
-        ) {
-          errOb = parseErrorsFromJson(xhr.responseText, xhr.status);
-          errors = errOb.errors;
-          json = errOb.json;
-
+      $upload_field.on(
+        'upload_onreadystatechange',
+        function (e, file, xhr, aborted) {
+          var errors = [],
+            $form = $upload_field.closest('form'),
+            json = {},
+            errOb;
           if (
-            json &&
-            json.upload &&
-            (!json.validation ||
-              !_.some(_.pluck(json.validation.messages, 'fatal')))
+            xhr.readyState == 4 &&
+            xhr.responseText &&
+            (xhr.status == 200 || xhr.status == 304 || xhr.status == 400)
           ) {
-            $form.find('input#id_upload').val(json.upload);
-          }
-          if (errors.length > 0) {
-            $upload_field.trigger('upload_errors', [file, errors, json]);
-          } else {
-            $upload_field.trigger('upload_success', [file, json]);
-            $upload_field.trigger('upload_progress', [file, 100]);
-          }
-          $upload_field.trigger('upload_finished', [file]);
-        } else if (xhr.readyState == 4 && !aborted) {
-          if (xhr.status == 413) {
-            errors.push(
-              format(gettext('Your add-on exceeds the maximum size of {0}.'), [
-                fileSizeFormat(settings.maxSize),
-              ]),
-            );
-          } else {
-            // L10n: first argument is an HTTP status code
-            errors.push(
-              format(
-                gettext(
-                  'Received an empty response from the server; status: {0}',
-                ),
-                [xhr.status],
-              ),
-            );
-          }
+            errOb = parseErrorsFromJson(xhr.responseText, xhr.status);
+            errors = errOb.errors;
+            json = errOb.json;
 
-          $upload_field.trigger('upload_errors', [file, errors]);
-        }
-      });
+            if (
+              json &&
+              json.upload &&
+              (!json.validation ||
+                !_.some(_.pluck(json.validation.messages, 'fatal')))
+            ) {
+              $form.find('input#id_upload').val(json.upload);
+            }
+            if (errors.length > 0) {
+              $upload_field.trigger('upload_errors', [file, errors, json]);
+            } else {
+              $upload_field.trigger('upload_success', [file, json]);
+              $upload_field.trigger('upload_progress', [file, 100]);
+            }
+            $upload_field.trigger('upload_finished', [file]);
+          } else if (xhr.readyState == 4 && !aborted) {
+            if (xhr.status == 413) {
+              errors.push(
+                format(
+                  gettext('Your add-on exceeds the maximum size of {0}.'),
+                  [fileSizeFormat(settings.maxSize)],
+                ),
+              );
+            } else {
+              // L10n: first argument is an HTTP status code
+              errors.push(
+                format(
+                  gettext(
+                    'Received an empty response from the server; status: {0}',
+                  ),
+                  [xhr.status],
+                ),
+              );
+            }
+
+            $upload_field.trigger('upload_errors', [file, errors]);
+          }
+        },
+      );
 
       $('#id_admin_override_validation')
         .addClass('addon-upload-failure-dependant')
