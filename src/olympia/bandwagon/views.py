@@ -165,7 +165,7 @@ class CollectionAddonViewSet(ModelViewSet):
         qs = (
             CollectionAddon.objects
             .filter(collection=self.get_collection())
-            .prefetch_related('addon__promotedaddon', 'addon__addon_tags')
+            .prefetch_related('addon__promotedaddon')
             .transform(self._transformer)
         )
 
