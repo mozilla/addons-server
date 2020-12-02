@@ -243,7 +243,7 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
         'result_actions',
     )
 
-    ordering = ('-created',)
+    ordering = ('-pk',)
 
     class Media:
         css = {'all': ('css/admin/scannerresult.css',)}
