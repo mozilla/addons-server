@@ -527,12 +527,16 @@ class FileUpload(ModelBase):
         # Filename we'll expose (but not use for storage).
         self.name = force_text('{0}_{1}'.format(self.uuid.hex, filename))
 
-        # Final path on our filesystem. Will always end in .xpi no matter what
-        # is uploaded. CRX files are converted beforehand. If somehow this is
-        # not a valid archive parse_addon() will eventually complain at
-        # validation time.
+        # Final path on our filesystem. If it had a valid extension we change
+        # it to .xpi (CRX files are converted before validation, so they will
+        # be treated as normal .xpi for validation). If somehow this is
+        # not a valid archive or the extension is invalid parse_addon() will
+        # eventually complain at validation time or before even reaching the
+        # linter.
+        if ext in amo.VALID_ADDON_FILE_EXTENSIONS:
+            ext = '.xpi'
         self.path = os.path.join(
-            user_media_path('addons'), 'temp', uuid.uuid4().hex, '.xpi')
+            user_media_path('addons'), 'temp', uuid.uuid4().hex, ext)
 
         log.info('UPLOAD: %r (%s bytes) to %r' % (self.name, size, self.path),
                  extra={'email': (self.user.email

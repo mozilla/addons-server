@@ -29,7 +29,7 @@ from olympia.files.models import (
     File, FileUpload, FileValidation, WebextPermission,
     nfd_str, track_file_status_change)
 from olympia.files.utils import (
-    Extractor, check_xpi_info, parse_addon, parse_xpi, InvalidOrUnsupportedCrx)
+    Extractor, check_xpi_info, parse_addon, parse_xpi)
 from olympia.versions.models import Version
 
 
