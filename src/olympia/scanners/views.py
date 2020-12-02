@@ -88,7 +88,7 @@ class ScannerResultView(ListAPIView):
         elif label == LABEL_BAD:
             queryset = bad_results
 
-        return queryset.order_by('-created')
+        return queryset.order_by('-pk')
 
     def get(self, request, format=None):
         label = self.request.query_params.get('label', None)
