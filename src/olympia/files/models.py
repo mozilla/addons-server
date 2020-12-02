@@ -30,7 +30,8 @@ from olympia.amo.storage_utils import copy_stored_file, move_stored_file
 from olympia.amo.templatetags.jinja_helpers import (
     user_media_path, user_media_url)
 from olympia.amo.urlresolvers import reverse
-from olympia.files.utils import get_sha256, write_crx_as_xpi
+from olympia.files.utils import (
+    get_sha256, InvalidOrUnsupportedCrx, write_crx_as_xpi)
 
 
 log = olympia.core.logger.getLogger('z.files')
@@ -509,47 +510,50 @@ class FileUpload(ModelBase):
             self.access_token = self.generate_access_token()
         super(FileUpload, self).save(*args, **kw)
 
+    def write_data_to_path(self, chunks):
+        hash_obj = hashlib.sha256()
+        with storage.open(self.path, 'wb') as file_destination:
+            for chunk in chunks:
+                hash_obj.update(chunk)
+                file_destination.write(chunk)
+        return hash_obj
+
     def add_file(self, chunks, filename, size):
         if not self.uuid:
             self.uuid = self._meta.get_field('uuid')._create_uuid()
 
-        filename = force_text(u'{0}_{1}'.format(self.uuid.hex, filename))
-        loc = os.path.join(user_media_path('addons'), 'temp', uuid.uuid4().hex)
-        base, ext = os.path.splitext(filename)
-        is_crx = False
+        _base, ext = os.path.splitext(filename)
+        was_crx = ext == '.crx'
+        # Filename we'll expose (but not use for storage).
+        self.name = force_text('{0}_{1}'.format(self.uuid.hex, filename))
 
-        # Change a ZIP to an XPI, to maintain backward compatibility
-        # with older versions of Firefox and to keep the rest of the XPI code
-        # path as consistent as possible for ZIP uploads.
-        # See: https://github.com/mozilla/addons-server/pull/2785
-        if ext == '.zip':
-            ext = '.xpi'
-
-        # If the extension is a CRX, we need to do some actual work to it
-        # before we just convert it to an XPI. We strip the header from the
-        # CRX, then it's good; see more about the CRX file format here:
-        # https://developer.chrome.com/extensions/crx
-        if ext == '.crx':
-            ext = '.xpi'
-            is_crx = True
-
+        # Final path on our filesystem. If it had a valid extension we change
+        # it to .xpi (CRX files are converted before validation, so they will
+        # be treated as normal .xpi for validation). If somehow this is
+        # not a valid archive or the extension is invalid parse_addon() will
+        # eventually complain at validation time or before even reaching the
+        # linter.
         if ext in amo.VALID_ADDON_FILE_EXTENSIONS:
-            loc += ext
+            ext = '.xpi'
+        self.path = os.path.join(
+            user_media_path('addons'), 'temp', uuid.uuid4().hex, ext)
 
-        log.info('UPLOAD: %r (%s bytes) to %r' % (filename, size, loc),
+        log.info('UPLOAD: %r (%s bytes) to %r' % (self.name, size, self.path),
                  extra={'email': (self.user.email
                                   if self.user and self.user.email else '')})
-        if is_crx:
-            hash_func = write_crx_as_xpi(chunks, loc)
-        else:
-            hash_func = hashlib.sha256()
-            with storage.open(loc, 'wb') as file_destination:
-                for chunk in chunks:
-                    hash_func.update(chunk)
-                    file_destination.write(chunk)
-        self.path = loc
-        self.name = filename
-        self.hash = 'sha256:%s' % hash_func.hexdigest()
+
+        hash_obj = None
+        if was_crx:
+            try:
+                hash_obj = write_crx_as_xpi(chunks, self.path)
+            except InvalidOrUnsupportedCrx:
+                # We couldn't convert the crx file. Write it to the filesystem
+                # normally, the validation process should reject this with a
+                # proper error later.
+                pass
+        if hash_obj is None:
+            hash_obj = self.write_data_to_path(chunks)
+        self.hash = 'sha256:%s' % hash_obj.hexdigest()
         self.save()
 
     def generate_access_token(self):

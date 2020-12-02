@@ -12,6 +12,8 @@ from unittest import mock
 
 from django import forms
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
+from django.core.files.uploadedfile import SimpleUploadedFile
 from django.forms import ValidationError
 from django.test.utils import override_settings
 
@@ -1242,3 +1244,67 @@ class TestArchiveMemberValidator(TestCase):
                 'filename',
                 settings.FILE_UNZIP_SIZE_LIMIT + 100
             )
+
+
+class TestWriteCrxAsXpi(TestCase):
+    def setUp(self):
+        self.tempdir = tempfile.mkdtemp(dir=settings.TMP_PATH)
+        self.target = os.path.join(self.tempdir, 'target')
+        self.prefix = 'src/olympia/files/fixtures/files'
+
+    def tearDown(self):
+        storage.delete(self.target)
+        storage.delete(self.tempdir)
+
+    # Note: those tests are also performed in test_models.py using
+    # FileUpload.from_post() to ensure the relevant exception is caught if they
+    # are raised and the add-on is then fully processed correctly. These just
+    # test the underlying function that does the conversion from crx to xpi.
+
+    def test_webextension_crx(self):
+        path = os.path.join(self.prefix, 'webextension.crx')
+        with open(path, 'rb') as source:
+            utils.write_crx_as_xpi(source, self.target)
+        assert zipfile.is_zipfile(self.target)
+
+    def test_webextension_crx_large(self):
+        path = os.path.join(self.prefix, 'https-everywhere.crx')
+        with open(path, 'rb') as source:
+            utils.write_crx_as_xpi(source, self.target)
+        assert zipfile.is_zipfile(self.target)
+
+    def test_webextension_crx_version_3(self):
+        path = os.path.join(self.prefix, 'webextension_crx3.crx')
+        with open(path, 'rb') as source:
+            utils.write_crx_as_xpi(source, self.target)
+        assert zipfile.is_zipfile(self.target)
+
+    def test_webextension_crx_not_a_crx(self):
+        file_ = SimpleUploadedFile(
+            'foo.crx', b'Cr42\x02\x00\x00\x00&\x01\x00\x00\x00\x01\x00\x00')
+        with self.assertRaises(utils.InvalidOrUnsupportedCrx) as exc:
+            utils.write_crx_as_xpi(file_, self.target)
+        assert str(exc.exception) == 'CRX file does not start with Cr24'
+        # It's the caller responsability to move the original file there, as if
+        # it was a regular zip, since we couldn't convert it.
+        assert not storage.exists(self.target)
+
+    def test_webextension_crx_version_unsupported(self):
+        file_ = SimpleUploadedFile(
+            'foo.crx', b'Cr24\x04\x00\x00\x00&\x01\x00\x00\x00\x01\x00\x00')
+        with self.assertRaises(utils.InvalidOrUnsupportedCrx) as exc:
+            utils.write_crx_as_xpi(file_, self.target)
+        assert str(exc.exception) == 'Unsupported CRX version'
+        # It's the caller responsability to move the original file there, as if
+        # it was a regular zip, since we couldn't convert it.
+        assert not storage.exists(self.target)
+
+    def test_webextension_crx_version_cant_unpack(self):
+        file_ = SimpleUploadedFile(
+            'foo.crx', b'Cr24\x02\x00\x00\x00&\x00\x00\x00\x01\x00\x00')
+        with self.assertRaises(utils.InvalidOrUnsupportedCrx) as exc:
+            utils.write_crx_as_xpi(file_, self.target)
+        assert str(exc.exception) == 'Invalid or corrupt CRX file'
+        # It's the caller responsability to move the original file there, as if
+        # it was a regular zip, since we couldn't convert it.
+        assert not storage.exists(self.target)
