@@ -506,6 +506,6 @@ cached-property==1.5.2 \
 django-jsonfield-backport==1.0.2 \
     --hash=sha256:5574505967f6d7ada8c9269a5f873cfdca9812dc9502eee2b7a86be5c3798c76 \
     --hash=sha256:0286dcc1c112389d52096f269eed83a77364ea2b349fe1777f5e4464c3c36fa9
-stripe==2.55.0 \
-    --hash=sha256:833313d28dcceca71128ee915c2dacbbf235c909e0a01b0f94ee5037e1c46109 \
-    --hash=sha256:2eebf023595e8aa9d65d8b46ccc3c716185bb9625d0e39d3956282fd7525848d
+stripe==2.55.1 \
+    --hash=sha256:fd98ae43b105e75cb4f1d23ba3d0c16b45e3957d432002398a2f75d083d606ce \
+    --hash=sha256:6b70e2cf87cfbe0cb891b725b690495bc3d34ab0d82545a5989ecd3b5fa83e2a
