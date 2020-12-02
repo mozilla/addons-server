@@ -1030,6 +1030,11 @@ class TestFileUpload(UploadTest):
         """
         upload = self.get_upload(filename='webextension_no_id.zip')
         assert upload.path.endswith('.xpi')
+        assert zipfile.is_zipfile(upload.path)
+        assert upload.hash == (
+            'sha256:'
+            '7978b06704f4f80152f16a3ce7fe4e2590f950a99cefed15f9a8caa90fbafa23'
+        )
         storage.delete(upload.path)
 
     def test_webextension_crx(self):
@@ -1038,6 +1043,11 @@ class TestFileUpload(UploadTest):
         """
         upload = self.get_upload('webextension.crx')
         assert upload.path.endswith('.xpi')
+        assert zipfile.is_zipfile(upload.path)
+        assert upload.hash == (
+            'sha256:'
+            '6eec73112c9912e4ef63973d38ea490ccc18fa6f3cf4357fb3052a748f799f9a'
+        )
         storage.delete(upload.path)
 
     def test_webextension_crx_large(self):
@@ -1046,6 +1056,11 @@ class TestFileUpload(UploadTest):
         """
         upload = self.get_upload('https-everywhere.crx')
         assert upload.path.endswith('.xpi')
+        assert zipfile.is_zipfile(upload.path)
+        assert upload.hash == (
+            'sha256:'
+            '82b71db5e6378ae888b2bcbb92fc8a24f417ef079e909db7fa51b253b13b3409'
+        )
         storage.delete(upload.path)
 
     def test_webextension_crx_version_3(self):
@@ -1054,36 +1069,47 @@ class TestFileUpload(UploadTest):
         """
         upload = self.get_upload('webextension_crx3.crx')
         assert upload.path.endswith('.xpi')
+        assert zipfile.is_zipfile(upload.path)
+        assert upload.hash == (
+            'sha256:'
+            '8640cdcbd5e85403b0a08f1c42b9dff362ceca6a92bf61f424c9764189c58950'
+        )
         storage.delete(upload.path)
 
     def test_webextension_crx_not_a_crx(self):
         """Test to ensure we raise an explicit exception when a .crx file isn't
         a true crx (doesn't have to be caught, showing a 500 error is fine)."""
         data = b'Cr42\x02\x00\x00\x00&\x01\x00\x00\x00\x01\x00\x00'
-        with self.assertRaises(InvalidOrUnsupportedCrx) as exc:
-            FileUpload.from_post([data], filename='test.crx', size=1234)
-        assert str(exc.exception) == 'CRX file does not start with Cr24'
+        upload = FileUpload.from_post([data], filename='test.crx', size=1234)
+        # We couldn't convert it as it's an invalid or unsupported crx, so
+        # re storing the file as-is.
+        assert upload.hash == 'sha256:%s' % hashlib.sha256(data).hexdigest()
+        storage.delete(upload.path)
 
     def test_webextension_crx_version_unsupported(self):
         """Test to ensure we only support crx versions 2 and 3 and raise an
         explicit exception otherwise (doesn't have to be caught, showing a 500
         error is fine)."""
         data = b'Cr24\x04\x00\x00\x00&\x01\x00\x00\x00\x01\x00\x00'
-        with self.assertRaises(InvalidOrUnsupportedCrx) as exc:
-            FileUpload.from_post([data], filename='test.crx', size=1234)
-        assert str(exc.exception) == 'Unsupported CRX version'
+        upload = FileUpload.from_post([data], filename='test.crx', size=1234)
+        # We couldn't convert it as it's an invalid or unsupported crx, so
+        # re storing the file as-is.
+        assert upload.hash == 'sha256:%s' % hashlib.sha256(data).hexdigest()
+        storage.delete(upload.path)
 
     def test_webextension_crx_version_cant_unpack(self):
         """Test to ensure we raise an explicit exception when we can't unpack
         a crx (doesn't have to be caught, showing a 500 error is fine)."""
         data = b'Cr24\x02\x00\x00\x00&\x00\x00\x00\x01\x00\x00'
-        with self.assertRaises(InvalidOrUnsupportedCrx) as exc:
-            FileUpload.from_post([data], filename='test.crx', size=1234)
-        assert str(exc.exception) == 'Invalid or corrupt CRX file'
+        upload = FileUpload.from_post([data], filename='test.crx', size=1234)
+        # We're storing the file as-is.
+        assert upload.hash == 'sha256:%s' % hashlib.sha256(data).hexdigest()
+        storage.delete(upload.path)
 
     def test_extension_zip(self):
         upload = self.get_upload('recurse.zip')
         assert upload.path.endswith('.xpi')
+        assert zipfile.is_zipfile(upload.path)
         storage.delete(upload.path)
 
     def test_generate_access_token_on_save(self):
