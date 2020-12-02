@@ -15,6 +15,7 @@ from olympia.constants.promoted import VERIFIED, NOT_PROMOTED
 from olympia.promoted.models import PromotedAddon
 from olympia.promoted.tasks import (
     on_stripe_charge_failed,
+    on_stripe_charge_succeeded,
     on_stripe_customer_subscription_deleted,
 )
 
@@ -175,7 +176,7 @@ class TestOnStripeCustomerSubscriptionDeleted(PromotedAddonTestCase):
     EVENT_TYPE = "customer.subscription.deleted"
 
     def test_ignores_invalid_event_type(self):
-        event = self.create_stripe_event(event_type="not-charge-failed")
+        event = self.create_stripe_event(event_type="not-subscription-deleted")
 
         on_stripe_customer_subscription_deleted(event=event)
 
@@ -207,8 +208,7 @@ class TestOnStripeCustomerSubscriptionDeleted(PromotedAddonTestCase):
         subscription_id = "stripe-sub-id"
         cancelled_at = datetime.datetime(2020, 11, 1)
         self.promoted_addon.promotedsubscription.update(
-            stripe_subscription_id=subscription_id,
-            cancelled_at=cancelled_at
+            stripe_subscription_id=subscription_id, cancelled_at=cancelled_at
         )
         fake_subscription = {"id": subscription_id}
         event = self.create_stripe_event(data={"object": fake_subscription})
@@ -240,3 +240,50 @@ class TestOnStripeCustomerSubscriptionDeleted(PromotedAddonTestCase):
             cancelled_at
         )
         assert self.promoted_addon.group_id == NOT_PROMOTED.id
+
+
+class TestOnStripeChargeSucceeded(PromotedAddonTestCase):
+    EVENT_TYPE = "charge.succeeded"
+
+    def test_ignores_invalid_event_type(self):
+        event = self.create_stripe_event(event_type="not-charge-succeeded")
+
+        on_stripe_charge_succeeded(event=event)
+
+        assert len(mail.outbox) == 0
+
+    def test_ignores_events_without_data(self):
+        event = self.create_stripe_event(data={})
+
+        on_stripe_charge_succeeded(event=event)
+
+        assert len(mail.outbox) == 0
+
+    def test_ignores_events_without_data_object(self):
+        event = self.create_stripe_event(data={"object": None})
+
+        on_stripe_charge_succeeded(event=event)
+
+        assert len(mail.outbox) == 0
+
+    @override_settings(VERIFIED_ADDONS_EMAIL="verified@example.com")
+    def test_sends_email(self):
+        payment_intent = "payment-intent"
+        fake_charge = {
+            "id": "charge-id",
+            "payment_intent": payment_intent,
+        }
+        event = self.create_stripe_event(data={"object": fake_charge})
+
+        on_stripe_charge_succeeded(event=event)
+
+        assert len(mail.outbox) == 1
+        email = mail.outbox[0]
+        assert (
+            email.subject == "Stripe payment succeeded"
+        )
+        assert email.to == ["verified@example.com"]
+        assert (
+            f"//dashboard.stripe.com/test/payments/{payment_intent}"
+            in email.body
+        )
