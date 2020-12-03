@@ -660,6 +660,21 @@ class Version(OnChangeMixin, ModelBase):
             v_id = version.id
             version.all_activity = al_dict.get(v_id, [])
 
+    @classmethod
+    def transformer_license(cls, versions):
+        """Attach all the licenses to the versions."""
+        if not versions:
+            return
+
+        license_ids = {ver.license_id for ver in versions}
+        licenses = (License.objects.filter(id__in=license_ids))
+        license_dict = {lic.id: lic for lic in licenses}
+
+        for version in versions:
+            license = license_dict.get(version.license_id)
+            if license:
+                version.license = license
+
     def disable_old_files(self):
         """
         Disable files from versions older than the current one in the same

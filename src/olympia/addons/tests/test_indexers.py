@@ -7,7 +7,7 @@ from django.conf import settings
 from olympia import amo
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import (
-    Addon, Preview, attach_tags, attach_translations)
+    Addon, Preview, attach_tags, attach_translations_dict)
 from olympia.amo.models import SearchMixin
 from olympia.amo.tests import addon_factory, ESTestCase, TestCase, file_factory
 from olympia.bandwagon.models import Collection
@@ -36,7 +36,7 @@ class TestAddonIndexer(TestCase):
 
     def setUp(self):
         super(TestAddonIndexer, self).setUp()
-        self.transforms = (attach_tags, attach_translations)
+        self.transforms = (attach_tags, attach_translations_dict)
         self.indexer = AddonIndexer()
         self.addon = Addon.objects.get(pk=3615)
 

@@ -240,7 +240,9 @@ class TestCollectionViewSetDetail(TestCase):
         self.collection.add_addon(addon_factory())
         self.collection.add_addon(addon_factory())
         self.collection.add_addon(addon_factory())
-        response = self.client.get(self.url + '?with_addons')
+        # see TestCollectionAddonViewSetList.test_basic for the query breakdown
+        with self.assertNumQueries(29):
+            response = self.client.get(self.url + '?with_addons')
         assert len(response.data['addons']) == 4
         patched_drf_setting = dict(settings.REST_FRAMEWORK)
         patched_drf_setting['PAGE_SIZE'] = 3
@@ -968,6 +970,69 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert len(response.data['results']) == 3
+
+    def test_basic(self):
+        with self.assertNumQueries(25):
+            # 1 start savepoint
+            # 2 get user
+            # 3 get collections of user
+            # 4 get collection object
+            # 5 get user (again)
+            # 6 collection addon count
+            # 7 collectionaddons
+            # 8 addons
+            # 9 l10n for addons
+            # 10 addon categories
+            # 11 addons current versions
+            # 12 addons current versions release notes l10n
+            # 13 applicationversions
+            # 14 addons current_version files
+            # 15 addons addon_users (authors)
+            # 16 previews
+            # 17 promoted addons
+            # 18 collectionaddons notes for addons
+            # 19 promoted approvals for versions
+            # 20 licenses for versions
+            # 21 l10n for licenses
+            # 22 user tags
+            # 23 l10n for addons in all locales
+            # 24 l10n for licenses in all locales
+            # 25 end savepoint
+            super().test_basic()
+
+    def test_transforms(self):
+        ca_a = CollectionAddon.objects.get(
+            collection=self.collection, addon=self.addon_a)
+        ca_a.comments = {'en-US': 'Nótes!'}
+        ca_a.save()
+        ca_c = CollectionAddon.objects.get(
+            collection=self.collection, addon=self.addon_c)
+        ca_c.comments = {'en-US': 'Super', 'fr': 'Supúrb'}
+        ca_c.save()
+
+        response = self.send(self.url + '?sort=name')
+        self.check_response(response)
+        results = response.json()['results']
+        # collection notes l10n
+        assert results[0]['notes'] == {'en-US': 'Nótes!'}
+        assert results[1]['notes'] is None  # we didn't set notes for addon_b
+        assert results[2]['notes'] == {'en-US': 'Super', 'fr': 'Supúrb'}
+
+        # addon l10n
+        assert results[0]['addon']['name'] == {
+            'en-US': 'anteater', 'de': 'Ameisenbär'}
+        assert results[1]['addon']['name'] == {
+            'en-US': 'baboon', 'de': 'Pavian'}
+        assert results[2]['addon']['name'] == {
+            'en-US': 'cheetah', 'de': 'Gepard'}
+
+        # license l10n
+        assert results[0]['addon']['current_version']['license']['name'] == {
+            'en-US': 'My License', 'fr': 'Mä Licence'}
+        assert results[1]['addon']['current_version']['license']['name'] == {
+            'en-US': 'My License', 'fr': 'Mä Licence'}
+        assert results[2]['addon']['current_version']['license']['name'] == {
+            'en-US': 'My License', 'fr': 'Mä Licence'}
 
 
 class TestCollectionAddonViewSetDetail(CollectionAddonViewSetMixin, TestCase):

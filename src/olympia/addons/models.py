@@ -1711,13 +1711,15 @@ def watch_addon_name_changes(sender=None, instance=None, **kw):
         sync_object_to_basket.delay('addon', instance.pk)
 
 
-def attach_translations(addons):
+def attach_translations_dict(addons):
     """Put all translations into a translations dict."""
     attach_trans_dict(Addon, addons)
 
 
 def attach_tags(addons):
     addon_dict = {addon.id: addon for addon in addons}
+    for addon in addons:
+        addon.tag_list = []  # make sure all the addons have the property set
     qs = (Tag.objects.not_denied().filter(addons__in=addon_dict)
           .values_list('addons__id', 'tag_text'))
     for addon, tags in sorted_groupby(qs, lambda x: x[0]):
