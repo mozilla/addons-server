@@ -76,7 +76,7 @@
         }),
         ui_details = $('<div>', {
           class: 'upload-details',
-          text: gettext('Your add-on should end with .zip, .xpi, .crx or .xml'),
+          text: gettext('Your add-on should end with .zip, .xpi, or .crx'),
         });
 
       $upload_field.prop('disabled', false);
