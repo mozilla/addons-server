@@ -689,7 +689,9 @@ def addon_factory(
     if slug is None:
         slug = name.replace(' ', '-').lower()[:30]
 
-    should_be_recommended = kw.pop('recommended', False)
+    promoted_group = kw.pop('promoted', None)
+    if kw.pop('recommended', False):
+        promoted_group = RECOMMENDED
 
     kwargs = {
         # Set artificially the status to STATUS_APPROVED for now, the real
@@ -716,8 +718,8 @@ def addon_factory(
         addon = Addon.objects.create(type=type_, **kwargs)
 
     # Save 2.
-    if should_be_recommended:
-        PromotedAddon.objects.create(addon=addon, group_id=RECOMMENDED.id)
+    if promoted_group:
+        PromotedAddon.objects.create(addon=addon, group_id=promoted_group.id)
         if 'recommendation_approved' not in version_kw:
             version_kw['recommendation_approved'] = True
     version = version_factory(file_kw, addon=addon, **version_kw)
