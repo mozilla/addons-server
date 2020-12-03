@@ -52,7 +52,12 @@ class TestBlockViewSet(TestCase):
 
         url += '?lang=de-DE'
         response = self.client.get(url)
-        assert response.json()['addon_name'] == {'en-CA': 'English name'}
+        assert response.json()['addon_name'] == {
+            'en-CA': 'English name',
+            'de-DE': None,
+            '_default': 'en-CA',
+        }
+        assert list(response.json()['addon_name'])[0] == 'en-CA'
 
         overridden_api_gates = {
             'v5': ('l10n_flat_input_output',)}

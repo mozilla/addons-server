@@ -533,8 +533,8 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
 
     def test_with_lang(self):
         self.addon.name = {
-            'en-US': u'My Addôn, mine',
-            'fr': u'Mon Addôn, le mien',
+            'en-US': 'My Addôn, mine',
+            'fr': 'Mon Addôn, le mien',
         }
         self.addon.save()
 
@@ -542,19 +542,24 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         assert response.status_code == 200
         result = json.loads(force_text(response.content))
         assert result['id'] == self.addon.pk
-        assert result['name'] == {'en-US': u'My Addôn, mine'}
+        assert result['name'] == {'en-US': 'My Addôn, mine'}
 
         response = self.client.get(self.url, {'lang': 'fr'})
         assert response.status_code == 200
         result = json.loads(force_text(response.content))
         assert result['id'] == self.addon.pk
-        assert result['name'] == {'fr': u'Mon Addôn, le mien'}
+        assert result['name'] == {'fr': 'Mon Addôn, le mien'}
 
         response = self.client.get(self.url, {'lang': 'de'})
         assert response.status_code == 200
         result = json.loads(force_text(response.content))
         assert result['id'] == self.addon.pk
-        assert result['name'] == {'en-US': u'My Addôn, mine'}
+        assert result['name'] == {
+            'en-US': 'My Addôn, mine',
+            'de': None,
+            '_default': 'en-US',
+        }
+        assert list(result['name'])[0] == 'en-US'
 
         overridden_api_gates = {
             'v5': ('l10n_flat_input_output',)}
@@ -2032,11 +2037,21 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
         # Search in a different language than the one used for the name: we
         # should fall back to default_locale and find the translation.
         data = self.perform_search(self.url, {'q': 'foobar', 'lang': 'fr'})
-        assert data['results'][0]['name'] == {'pt-BR': 'foobar'}
+        assert data['results'][0]['name'] == {
+            'pt-BR': 'foobar',
+            'fr': None,
+            '_default': 'pt-BR',
+        }
+        assert list(data['results'][0]['name'])[0] == 'pt-BR'
 
         # Same deal in en-US.
         data = self.perform_search(self.url, {'q': 'foobar', 'lang': 'en-US'})
-        assert data['results'][0]['name'] == {'pt-BR': 'foobar'}
+        assert data['results'][0]['name'] == {
+            'pt-BR': 'foobar',
+            'en-US': None,
+            '_default': 'pt-BR',
+        }
+        assert list(data['results'][0]['name'])[0] == 'pt-BR'
 
         # And repeat with v3-style flat output when lang is specified:
         overridden_api_gates = {
