@@ -19,6 +19,7 @@ from olympia import amo
 from olympia.amo.utils import render, use_fake_fxa
 from olympia.api.exceptions import base_500_data
 from olympia.api.serializers import SiteStatusSerializer
+from olympia.users.models import UserProfile
 
 from . import monitors
 
@@ -156,7 +157,12 @@ def fake_fxa_authorization(request):
     """Fake authentication page to bypass FxA in local development envs."""
     if not use_fake_fxa():
         raise Http404()
-    return render(request, 'amo/fake_fxa_authorization.html')
+    interesting_accounts = UserProfile.objects.exclude(
+        groups=None).exclude(deleted=True)[:25]
+    return render(
+        request,
+        'amo/fake_fxa_authorization.html',
+        {'interesting_accounts': interesting_accounts})
 
 
 class SiteStatusView(APIView):
