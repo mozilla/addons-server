@@ -6,11 +6,12 @@ from rest_framework.viewsets import ModelViewSet
 
 from olympia import amo
 from olympia.accounts.views import AccountViewSet
-from olympia.addons.models import Addon
-from olympia.amo.utils import cache_page_if_anonymous
+from olympia.addons.models import Addon, attach_tags
+from olympia.amo.utils import attach_trans_dict, cache_page_if_anonymous
 from olympia.api.filters import OrderingAliasFilter
 from olympia.api.permissions import (
     AllOf, AllowReadOnlyIfPublic, AnyOf, PreventActionPermission)
+from olympia.versions.models import License, Version
 from olympia.translations.query import order_by_translation
 
 from .models import Collection, CollectionAddon
@@ -138,11 +139,38 @@ class CollectionAddonViewSet(ModelViewSet):
             self.lookup_field = '%s__slug' % self.lookup_field
         return super().get_object()
 
+    @classmethod
+    def _transformer(self, objs):
+        current_versions = [
+            obj.addon._current_version for obj in objs
+            if obj.addon._current_version
+        ]
+        addons = [obj.addon for obj in objs]
+        Version.transformer_promoted(current_versions)
+        Version.transformer_license(current_versions)
+        attach_tags(addons)
+
+    @classmethod
+    def _locales_transformer(self, objs):
+        current_versions = [
+            obj.addon._current_version for obj in objs
+            if obj.addon._current_version
+        ]
+        addons = [obj.addon for obj in objs]
+        attach_trans_dict(CollectionAddon, objs)
+        attach_trans_dict(Addon, addons)
+        attach_trans_dict(License, [ver.license for ver in current_versions])
+
     def get_queryset(self):
         qs = (
             CollectionAddon.objects
             .filter(collection=self.get_collection())
-            .prefetch_related('addon'))
+            .prefetch_related('addon__promotedaddon')
+            .transform(self._transformer)
+        )
+
+        if 'lang' not in self.request.GET:
+            qs = qs.transform(self._locales_transformer)
 
         filter_param = self.request.GET.get('filter')
         # We only filter list action.
