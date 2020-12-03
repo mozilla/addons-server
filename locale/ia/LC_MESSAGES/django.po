@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-11-21 11:40+0000\n"
-"Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
+"PO-Revision-Date: 2020-12-03 15:32+0000\n"
+"Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
 "MIME-Version: 1.0\n"
@@ -134,7 +134,7 @@ msgstr "Ligamines de revisores"
 
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
-msgstr ""
+msgstr "Discatenate extraction Git pro \"%(addons)s\"."
 
 msgid "- Add-on not on AMO -"
 msgstr "- Additivos externe -"
@@ -161,7 +161,7 @@ msgid "My Themes"
 msgstr "Mi themas"
 
 msgid "Git-Extract"
-msgstr ""
+msgstr "Git-Extract"
 
 msgid "Tools"
 msgstr "Instrumentos"
@@ -510,7 +510,7 @@ msgstr "Le blocadas a actualisar es differente perque le version minime o maxime
 
 #, python-format
 msgid "%(value)s contains *"
-msgstr ""
+msgstr "%(value)s contine *"
 
 msgid "Invalid version"
 msgstr "Version non valide."
@@ -1689,7 +1689,7 @@ msgid "URL domain must be one of [%s], or a subdomain."
 msgstr "Le dominio del URL debe esser un del [%s], o un sub-dominio."
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr ""
+msgstr "Le percurso del ’URL per le sponsors de GitHub debe continer /sponsors/."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -2225,10 +2225,10 @@ msgid "You're done! A new version <strong>%(new_version_number)s</strong> of you
 msgstr ""
 
 msgid "A newer version of your add-on is currently pending review."
-msgstr ""
+msgstr "Un nove version del additivo attende actualmente revision."
 
 msgid "If you have any questions, don’t hesitate to contact us."
-msgstr ""
+msgstr "Si tu ha ulle questiones, non hesitar continger nos."
 
 msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
 msgstr ""
