@@ -85,11 +85,6 @@ class TestShelvesSerializer(ESTestCase):
         self.request.query_params = dict(parse.parse_qsl(
             instance.criteria))
         context['request'] = self.request
-        if instance.endpoint == 'collections':
-            context['action'] = 'list'
-            context['kwargs'] = {
-                'user_pk': self.request.user.pk,
-                'collection_slug': instance.criteria}
         return ShelfSerializer(instance, context=context).data
 
     def _get_url(self, instance):
