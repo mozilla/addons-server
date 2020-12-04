@@ -1,6 +1,5 @@
 <div><strong>{{ _('Files in this version:') }}</strong></div>
 <ul>
-{% set latest_version_in_channel=addon.find_latest_version(channel=version.channel) %}
 {% for file in distinct_files %}
 <li class="file-info">
   <span class="light">
@@ -17,7 +16,7 @@
       >
         {{ _('Contents') }}
     </a>
-    {% if base_version and version == latest_version_in_channel %}
+    {% if base_version and version == latest_not_disabled_version %}
     &middot;
     <a
       class="compare"

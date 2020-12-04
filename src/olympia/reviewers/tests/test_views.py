@@ -3340,7 +3340,76 @@ class TestReview(ReviewBase):
             # Add versions 1.0 to 1.9
             version_factory(
                 addon=addon, version=f'1.{i}', created=self.days_ago(365 - i))
-        response = self.client.get(self.url)
+        with self.assertNumQueries(60):
+            # FIXME: 60 is obviously still too high, but it's a starting point.
+            # Potential further optimizations:
+            # - Remove trivial... and not so trivial duplicates
+            # - Group similar queries
+            # - Try to do counts of things on different page in a single query
+            # - Remove useless things like user add-ons and collection
+            # - Make some joins
+            #
+            # 1. user
+            # 2. savepoint
+            # 3. groups
+            # 4. add-on by slug
+            # 5. add-on translations
+            # 6. categories
+            # 7. current version
+            # 8. version translations
+            # 9. applications versions
+            # 10. files
+            # 11. authors
+            # 12. previews
+            # 13. autoapprovalsummary for current version
+            # 14. promoted info for the add-on
+            # 15. latest version
+            # 16. latest version translations
+            # 17. latest version (repeated)
+            # 18. latest version translations (repeated)
+            # 19. addon reviewer flags
+            # 20. version reviewer flags
+            # 21. version reviewer flags (repeated)
+            # 22. files
+            # 23. autoapprovalsummary (repeated)
+            # 24. addonreusedguid
+            # 25. blocklist
+            # 26. canned responses
+            # 27. abuse reports count against user or addon
+            # 28. low ratings count
+            # 29. base version for comparison
+            # 30. translations for base version
+            # 31. applications versions for base version
+            # 32. files for base version
+            # 33. count of all versions in channel
+            # 34. paginated list of versions in channel
+            # 35. scanner results for paginated list of versions
+            # 36. translations for  paginated list of versions
+            # 37. applications versions for  paginated list of versions
+            # 38. files for  paginated list of versions
+            # 39. activity log for  paginated list of versions
+            # 40. ready for auto-approval info for  paginated list of versions
+            # 41. versionreviewer flags exists to find out if pending rejection
+            # 42. count versions needing human review on other pages
+            # 43. count versions needing human review by mad on other pages
+            # 44. count versions pending rejection on other pages
+            # 45. whiteboard
+            # 46. reviewer subscriptions for listed
+            # 47. reviewer subscriptions for unlisted
+            # 48. config for motd
+            # 49. my favorite collection for the current user
+            # 50. add-on list for the current user
+            # 51. config for site notice
+            # 52. translations for... (?)
+            # 53. specific log activity about the add-on
+            # 54. reusedguid (repeated)
+            # 55. select all versions in channel for versions dropdown widget
+            # 56. select files for those versions
+            # 57. select files waiting for review for particular version
+            # 58. select users by role for this add-on (?)
+            # 59. select categories (repeated)
+            # 60. savepoint
+            response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
         table = doc('#versions-history .review-files')

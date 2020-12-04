@@ -73,6 +73,7 @@ from olympia.reviewers.utils import (
     AutoApprovedTable, ContentReviewTable, MadReviewTable,
     PendingRejectionTable, ReviewHelper, ScannersReviewTable,
     ViewUnlistedAllListTable, view_table_factory)
+from olympia.scanners.models import ScannerResult
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version, VersionReviewerFlags
 from olympia.zadmin.models import get_config, set_config
@@ -690,6 +691,7 @@ def review(request, addon, channel=None):
     # available depending on user permissions and add-on/version state.
 
     version = addon.find_latest_version(channel=channel, exclude=())
+    latest_not_disabled_version = addon.find_latest_version(channel=channel)
 
     if not settings.ALLOW_SELF_REVIEWS and addon.has_author(request.user):
         amo.messages.warning(
@@ -707,9 +709,17 @@ def review(request, addon, channel=None):
              .filter(channel=channel)
              .select_related('autoapprovalsummary')
              .select_related('reviewerflags')
+        # Prefetch scanner results, but we only care about pk, scanner and
+        # score, not the results themselves.
+             .prefetch_related(Prefetch(
+                 'scannerresults', queryset=ScannerResult.objects.only(
+                     'pk', 'scanner', 'score')))
         # Add activity transformer to prefetch all related activity logs on
         # top of the regular transformers.
              .transform(Version.transformer_activity)
+        # Add auto_approvable transformer to prefetch information about whether
+        # each version is auto-approvable or not.
+             .transform(Version.transformer_auto_approvable)
     )
 
     form_helper = ReviewHelper(
@@ -907,6 +917,7 @@ def review(request, addon, channel=None):
         form=form,
         has_versions_pending_rejection=has_versions_pending_rejection,
         is_admin=is_admin,
+        latest_not_disabled_version=latest_not_disabled_version,
         latest_version_is_unreviewed_and_not_pending_rejection=(
             version and version.channel == amo.RELEASE_CHANNEL_LISTED and
             version.is_unreviewed and not version.pending_rejection),

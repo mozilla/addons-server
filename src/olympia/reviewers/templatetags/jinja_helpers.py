@@ -153,6 +153,7 @@ def all_distinct_files(context, version):
         distinct_files=hashes_to_file.values(),
         amo=context.get('amo'),
         addon=context.get('addon'),
+        latest_not_disabled_version=context.get('latest_not_disabled_version'),
         # This allows the template to call waffle.flag().
         request=context.get('request'),
         base_version=context.get('base_version'),
