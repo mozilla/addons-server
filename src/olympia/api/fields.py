@@ -103,8 +103,22 @@ class TranslationSerializerField(fields.Field):
             return {to_language(trans.locale): str(trans)
                     for trans in translations}
 
+    def _format_single_translation_response(self, value, lang, requested_lang):
+        if not value or not lang:
+            return None
+        if lang == requested_lang:
+            return {lang: value}
+        else:
+            return {
+                lang: value,
+                requested_lang: None,
+                '_default': lang}
+
     def fetch_single_translation(self, obj, source, field, requested_language):
-        return {to_language(field.locale): str(field)} if field else None
+        return self._format_single_translation_response(
+            str(field) if field else field,
+            to_language(field.locale),
+            to_language(requested_language))
 
     def get_attribute(self, obj):
         source = self.source or self.field_name
@@ -237,7 +251,10 @@ class ESTranslationSerializerField(TranslationSerializerField):
             if default_locale in translations:
                 locale = default_locale
                 value = translations.get(default_locale)
-        return {locale: value} if locale and value else None
+        return self._format_single_translation_response(
+            value,
+            locale,
+            requested_language)
 
 
 class SplitField(fields.Field):

@@ -165,6 +165,9 @@ request, then only the most relevant translation (the specified language or the
 fallback, depending on whether a translation is available in the requested
 language) will be returned.
 
+
+.. _api-overview-translations-v3:
+
 ^^^^^^^^^^^^^^^^^^^^
 Default API behavior
 ^^^^^^^^^^^^^^^^^^^^
@@ -183,18 +186,36 @@ If only a string is supplied, it will only be used to translate the field in
 the current language.
 
 
+.. _api-overview-translations-v5:
+
 ^^^^^^^^^^^^^^^
 v5 API behavior
 ^^^^^^^^^^^^^^^
 
-In the experimental :ref:`v5 API <api-experimental-v5>` the response, if the ``lang`` parameter is passed,
-is an object containing only that translation.
+In the experimental :ref:`v5 API <api-experimental-v5>` the response is always an object.
+If the ``lang`` parameter is passed then only the translation for the requested language is returned,
+and the other translations are omitted from the response.
+For example, for a request ``?lang=en-US``:
 
 .. code-block:: json
 
     {
         "name": {
             "en-US": "Games"
+        }
+    }
+
+If, however, a request is made with a ``lang`` parameter for a language that doesn't exist for that object
+then a fallback translation is returned, the requested language is included with a value of ``null``, and the language of the fallback is indicated.
+For example, for a request ``?lang=de``:
+
+.. code-block:: json
+
+    {
+        "name": {
+            "en-US": "Games",
+            "de": null,
+            "_default": "en-US"
         }
     }
 
@@ -206,7 +227,7 @@ For example, if there were existing translations of::
 
 "name": {"en-US": "Games", "fr": "Jeux","kn": "ಆಟಗಳು"}
 
-and the following request was made:
+and the following data was submitted in a request:
 
 .. code-block:: json
 
@@ -402,3 +423,7 @@ These are `v5` specific changes - `v4` changes apply also.
   See :ref:`translations<api-overview-translations>` for details on the change to responses containing localisations.
   https://github.com/mozilla/addons-server/issues/9467
 * 2019-05-09: renamed the experimental `v4dev` api to `v5` and made the `v5` API generally available (on AMO production also)
+* 2020-12-19: changed the structure of the translated fields in a response when a single language is requested but it's missing.
+  The requested locale is returned as ``none``, with the default_locale code under the ``_default`` key.
+  See :ref:`v5 API translation behavior<api-overview-translations-v5>` for specification and examples.
+  https://github.com/mozilla/addons-server/issues/16069
