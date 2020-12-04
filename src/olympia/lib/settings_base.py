@@ -960,9 +960,6 @@ PYLIBMC_MIN_COMPRESS_LEN = 0  # disabled
 # External tools.
 JAVA_BIN = '/usr/bin/java'
 
-# File paths
-ADDON_ICONS_DEFAULT_PATH = os.path.join(ROOT, 'static', 'img', 'addon-icons')
-
 # URL paths
 # paths for images, e.g. mozcdn.com/amo or '/static'
 VAMO_URL = 'https://versioncheck.addons.mozilla.org'

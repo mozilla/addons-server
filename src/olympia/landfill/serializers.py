@@ -3,7 +3,6 @@
 import collections
 import mimetypes
 import os
-import random
 import uuid
 
 from django.conf import settings
@@ -27,7 +26,6 @@ from olympia.constants.applications import APPS, FIREFOX
 from olympia.constants.base import (
     ADDON_EXTENSION, ADDON_STATICTHEME
 )
-from olympia.devhub.forms import icons
 from olympia.landfill.collection import generate_collection
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
@@ -179,7 +177,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
         'ui-tester2'. It has a version number.
 
         """
-        default_icons = [x[0] for x in icons() if x[0].startswith('icon/')]
         addon = addon_factory(
             status=amo.STATUS_APPROVED,
             type=ADDON_EXTENSION,
@@ -191,7 +188,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 'is_webextension': True
             },
             guid=generate_addon_guid(),
-            icon_type=random.choice(default_icons),
             name=u'Ui-Addon',
             recommended=True,
             slug='ui-test-2',
@@ -233,7 +229,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
         It is an Android addon.
 
         """
-        default_icons = [x[0] for x in icons() if x[0].startswith('icon/')]
         addon = addon_factory(
             status=amo.STATUS_APPROVED,
             type=ADDON_EXTENSION,
@@ -245,7 +240,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 'is_webextension': True
             },
             guid=generate_addon_guid(),
-            icon_type=random.choice(default_icons),
             name=u'Ui-Addon-Android',
             recommended=True,
             slug='ui-test-addon-android',
@@ -280,7 +274,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
         'ui-tester2'. It has a version number.
 
         """
-        default_icons = [x[0] for x in icons() if x[0].startswith('icon/')]
         try:
             addon = Addon.objects.get(guid='@webextension-guid')
         except Addon.DoesNotExist:
@@ -291,7 +284,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 average_rating=5,
                 description=u'My Addon description',
                 guid='@webextension-guid',
-                icon_type=random.choice(default_icons),
                 name=u'Ui-Addon-Install',
                 recommended=True,
                 slug='ui-test-install',

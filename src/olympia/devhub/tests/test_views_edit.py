@@ -850,16 +850,12 @@ class TestEditMedia(BaseTestEdit):
 
         labels = doc('#icons_default li a~label')
 
-        assert labels.length == 18
+        assert labels.length == 1
 
         # First one is the default icon
         assert labels[0].get('for') == 'id_icon_type_0_0'
         assert labels[0].find('input').get('name') == 'icon_type'
         assert labels[0].find('input').get('value') == ''
-
-        assert labels[1].get('for') == 'id_icon_type_1_1'
-        assert labels[1].find('input').get('name') == 'icon_type'
-        assert labels[1].find('input').get('value') == 'icon/alerts'
 
         # Make sure we're rendering our <input> fields for custom icon
         # upload correctly.
