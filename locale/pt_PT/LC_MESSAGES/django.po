@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-12-04 23:33+0000\n"
+"PO-Revision-Date: 2020-12-04 23:37+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -2265,14 +2265,14 @@ msgstr ""
 "admins@mozilla.com</a>."
 
 msgid "Thank you for joining the Promoted Add-ons Program!"
-msgstr ""
+msgstr "Obrigado por aderir ao programa de extras promovidos!"
 
 #, python-format
 msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the program once payment is set up through the Stripe system. Click on the button below to continue:"
-msgstr ""
+msgstr "O seu extra <strong>%(addon_name)s</strong> será incluído no programa assim que o pagamento for configurado através do sistema Stripe. Clique no botão abaixo para continuar:"
 
 msgid "Continue to Stripe Checkout"
-msgstr ""
+msgstr "Continuar para a finalização das compras via Stripe"
 
 msgid "Manage Authors & License"
 msgstr "Gerir autores e licença"
@@ -3191,7 +3191,7 @@ msgid "View All"
 msgstr "Ver todas"
 
 msgid "Manage Billing on Stripe"
-msgstr ""
+msgstr "Gerir a faturação no Stripe"
 
 msgid "Listed Review Page"
 msgstr "Página de revisões listadas"
@@ -4487,11 +4487,11 @@ msgstr "Obtenha atualizações meteorológicas diretamente a partir do Firefox."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
-msgstr ""
+msgstr "Faça uma gestão mais eficiente do seu tempo com um relógio de navegador que regista os intervalos de trabalho."
 
 #. editorial content for the primary hero shelves.
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
-msgstr ""
+msgstr "Cansado de ver a janela \"Vídeo pausado. Continuar a ver?\"? Ouça as suas músicas favoritas no YouTube, sem interrupções."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
