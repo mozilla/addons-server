@@ -675,6 +675,19 @@ class Version(OnChangeMixin, ModelBase):
             if license:
                 version.license = license
 
+    @classmethod
+    def transformer_auto_approvable(cls, versions):
+        """Attach  auto-approvability information to the versions."""
+        ids = set(v.id for v in versions)
+        if not ids:
+            return
+
+        auto_approvable = Version.objects.auto_approvable().filter(
+            pk__in=ids).values_list('pk', flat=True)
+
+        for version in versions:
+            version.is_ready_for_auto_approval = version.pk in auto_approvable
+
     def disable_old_files(self):
         """
         Disable files from versions older than the current one in the same
@@ -713,7 +726,7 @@ class Version(OnChangeMixin, ModelBase):
         """A File is unreviewed if its status is amo.STATUS_AWAITING_REVIEW."""
         return self.files.filter(status=amo.STATUS_AWAITING_REVIEW)
 
-    @property
+    @cached_property
     def is_ready_for_auto_approval(self):
         """Return whether or not this version could be *considered* for
         auto-approval.
@@ -786,10 +799,13 @@ class Version(OnChangeMixin, ModelBase):
         try:
             # We use the score of the MAD scanner because it is the 'ensemble'
             # score (i.e. score computed using all other scanner scores).
-            score = ScannerResult.objects.filter(
-                version=self, scanner=MAD
-            ).get().score
-        except ScannerResult.DoesNotExist:
+            # We iterate on all .scannerresults instead of doing .filter()
+            # because there shouldn't be many results, and chances are the
+            # caller (normally reviewer tools review page) will have prefetched
+            # all scanner results.
+            score = [result.score for result in self.scannerresults.all()
+                     if result.scanner == MAD][0]
+        except IndexError:
             score = None
         return ('{:0.0f}%'.format(score * 100) if score and score >= 0 else
                 'n/a')
