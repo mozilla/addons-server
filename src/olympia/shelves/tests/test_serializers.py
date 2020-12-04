@@ -6,13 +6,14 @@ from rest_framework.test import APIRequestFactory
 from freezegun import freeze_time
 
 from django.conf import settings
+from django.contrib.auth.models import AnonymousUser
 
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.addons.tests.test_serializers import (
     AddonSerializerOutputTestMixin)
 from olympia.amo.tests import (
-    addon_factory, collection_factory, ESTestCase, reverse_ns, user_factory)
+    addon_factory, collection_factory, ESTestCase, reverse_ns)
 from olympia.bandwagon.models import CollectionAddon
 from olympia.constants.promoted import RECOMMENDED
 from olympia.promoted.models import PromotedAddon
@@ -37,14 +38,20 @@ class TestShelvesSerializer(ESTestCase):
         addon_factory(
             name='test addon test02', type=amo.ADDON_STATICTHEME,
             average_daily_users=18981, weekly_downloads=145, summary=None)
-        addon_factory(
+        addon_ext = addon_factory(
             name='test addon test03', type=amo.ADDON_EXTENSION,
-            average_daily_users=482, weekly_downloads=506, summary=None,
-            recommended=True)
-        addon_factory(
+            average_daily_users=482, weekly_downloads=506, summary=None)
+        addon_theme = addon_factory(
             name='test addon test04', type=amo.ADDON_STATICTHEME,
-            average_daily_users=8838, weekly_downloads=358, summary=None,
-            recommended=True)
+            average_daily_users=8838, weekly_downloads=358, summary=None)
+
+        PromotedAddon.objects.create(
+            addon=addon_ext, group_id=RECOMMENDED.id
+        ).approve_for_version(version=addon_ext.current_version)
+
+        PromotedAddon.objects.create(
+            addon=addon_theme, group_id=RECOMMENDED.id
+        ).approve_for_version(version=addon_theme.current_version)
 
         user = UserProfile.objects.create(pk=settings.TASK_USER_ID)
         collection = collection_factory(author=user, slug='privacy-matters')
@@ -79,7 +86,7 @@ class TestShelvesSerializer(ESTestCase):
             api_settings.DEFAULT_VERSIONING_CLASS()
         )
         self.request.version = api_version
-        self.request.user = user_factory()
+        self.request.user = AnonymousUser()
 
     def serialize(self, instance, **context):
         self.request.query_params = dict(parse.parse_qsl(
