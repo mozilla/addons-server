@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-12-04 23:14+0000\n"
+"PO-Revision-Date: 2020-12-04 23:33+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -137,7 +137,7 @@ msgstr "Ligações de revisão"
 
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
-msgstr ""
+msgstr "Extração via Git acionada para \"%(addons)s\"."
 
 msgid "- Add-on not on AMO -"
 msgstr "- Extra não no AMO -"
@@ -165,7 +165,7 @@ msgid "My Themes"
 msgstr "Os meus temas"
 
 msgid "Git-Extract"
-msgstr ""
+msgstr "Extração via Git"
 
 msgid "Tools"
 msgstr "Ferramentas"
@@ -321,7 +321,7 @@ msgid "Email:"
 msgstr "E-mail:"
 
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 msgid "No results found"
 msgstr "Não foram encontrados resultados"
@@ -515,7 +515,7 @@ msgstr "Os bloqueios para serem atualizados são diferentes porque as versões M
 
 #, python-format
 msgid "%(value)s contains *"
-msgstr ""
+msgstr "%(value)s contém *"
 
 msgid "Invalid version"
 msgstr "Versão inválida"
@@ -1707,7 +1707,7 @@ msgid "URL domain must be one of [%s], or a subdomain."
 msgstr "O domínio URL tem de ser um de [%s], ou um subdomínio."
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr ""
+msgstr "O caminho do endereço para os patrocinadores do GitHub deve conter /sponsors/."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -2261,6 +2261,8 @@ msgid ""
 "There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a href=\"mailto:amo-"
 "admins@mozilla.com\">amo-admins@mozilla.com</a>."
 msgstr ""
+"Ocorreu um erro ao configurar o pagamento para o seu extra. Se está a ter problemas com este processo ou mudou de ideias, entre em contacto connosco em <a href=\"mailto:amo-admins@mozilla.com\">amo-"
+"admins@mozilla.com</a>."
 
 msgid "Thank you for joining the Promoted Add-ons Program!"
 msgstr ""
