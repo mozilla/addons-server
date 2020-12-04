@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-11-04 11:02+0000\n"
-"PO-Revision-Date: 2020-12-04 23:12+0000\n"
+"PO-Revision-Date: 2020-12-04 23:14+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -4472,18 +4472,16 @@ msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Alguns sites têm dificuldade em reproduzir vídeos no Android. Existe uma correção."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "Para aqueles momentos quando precisa de disparar lasers a partir de um gato."
+msgstr "Para aqueles momentos em precisa de disparar lasers dos olhos do gato."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
 msgstr "Remove os parâmetros de monitorização longos e feios dos endereços dos resultados de pesquisa do Google."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Get weather updates directly from Firefox."
-msgstr "Receba atualizações meteorológicas diretamente no navegador."
+msgstr "Obtenha atualizações meteorológicas diretamente a partir do Firefox."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
@@ -4538,9 +4536,8 @@ msgstr "\"strict_min_version\" mais baixa suportada é 42.0."
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr "\"strict_min_version\" {appver} para {app} desconhecida"
 
-#, fuzzy
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
-msgstr "\"strict_min_version\" {appver} para {app} desconhecida"
+msgstr "\"strict_max_version\" {appver} para {app} desconhecida"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
@@ -5433,9 +5430,8 @@ msgstr "Mais ações"
 msgid "Notify me about new listed versions"
 msgstr "Notificar-me acerca de novas versões listadas"
 
-#, fuzzy
 msgid "Notify me about new unlisted versions"
-msgstr "Notificar-me acerca de novas versões listadas"
+msgstr "Notificar-me sobre novas versões não-listadas"
 
 msgid "Allow resubmission"
 msgstr "Permitir ressubmissão"
