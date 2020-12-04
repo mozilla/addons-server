@@ -675,21 +675,18 @@ class Version(OnChangeMixin, ModelBase):
             if license:
                 version.license = license
 
+    @classmethod
     def transformer_auto_approvable(cls, versions):
         """Attach  auto-approvability information to the versions."""
         ids = set(v.id for v in versions)
         if not ids:
             return
 
-        auto_approvable = dict(
-            Version.objects.auto_approvable()
-                   .annotate(
-                       is_ready_for_auto_approval=Value(True, BooleanField()))
-                   .values_list('pk', 'is_ready_for_auto_approval')
-        )
+        auto_approvable = Version.objects.auto_approvable().filter(
+            pk__in=ids).values_list('pk', flat=True)
+
         for version in versions:
-            version.is_ready_for_auto_approval = auto_approvable.get(
-                version.pk, False)
+            version.is_ready_for_auto_approval = version.pk in auto_approvable
 
     def disable_old_files(self):
         """
