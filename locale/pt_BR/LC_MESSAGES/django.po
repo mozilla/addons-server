@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-12-07 11:15+0000\n"
+"PO-Revision-Date: 2020-12-07 11:16+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -2282,13 +2282,11 @@ msgstr "Seu pagamento foi registrado, mas no momento não há versões publicada
 msgid "Manage add-on"
 msgstr "Gerenciar extensão"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a "
 "href=\"mailto:%(email)s\">%(email)s</a>."
-msgstr ""
-"Houve um erro ao preparar o pagamento da sua extensão. Se você está tendo problemas com este processo, ou mudou de ideia, entre em contato conosco em <a href=\"mailto:amo-admins@mozilla.com\">amo-"
-"admins@mozilla.com</a>."
+msgstr "Houve um erro ao preparar o pagamento de sua extensão. Se você está tendo problemas com este processo, ou mudou de ideia, entre em contato conosco em <a href=\"mailto:%(email)s\">%(email)s</a>."
 
 msgid "Thank you for joining the Promoted Add-ons Program!"
 msgstr "Obrigado por aderir ao programa de extensões promovidas!"
