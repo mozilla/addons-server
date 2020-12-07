@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-09-12 09:09+0000\n"
-"Last-Translator: Enderman123 <xuyaoshi72@qq.com>\n"
+"PO-Revision-Date: 2020-12-07 13:06+0000\n"
+"Last-Translator: 你我皆凡人 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -25,9 +25,8 @@ msgstr "连接服务器时发生错误。"
 msgid "Select a file..."
 msgstr "选择文件..."
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi or .crx"
-msgstr "您的附加组件应以 .zip、.xpi、.crx 或 .xml 结尾"
+msgstr "您的附加组件应以 .zip、.xpi、.jar 或 .crx 结尾"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
