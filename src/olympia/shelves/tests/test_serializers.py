@@ -15,8 +15,6 @@ from olympia.addons.tests.test_serializers import (
 from olympia.amo.tests import (
     addon_factory, collection_factory, ESTestCase, reverse_ns)
 from olympia.bandwagon.models import CollectionAddon
-from olympia.constants.promoted import RECOMMENDED
-from olympia.promoted.models import PromotedAddon
 from olympia.users.models import UserProfile
 
 from ..models import Shelf
@@ -38,20 +36,14 @@ class TestShelvesSerializer(ESTestCase):
         addon_factory(
             name='test addon test02', type=amo.ADDON_STATICTHEME,
             average_daily_users=18981, weekly_downloads=145, summary=None)
-        addon_ext = addon_factory(
+        addon_factory(
             name='test addon test03', type=amo.ADDON_EXTENSION,
-            average_daily_users=482, weekly_downloads=506, summary=None)
-        addon_theme = addon_factory(
+            average_daily_users=482, weekly_downloads=506, summary=None,
+            recommended=True)
+        addon_factory(
             name='test addon test04', type=amo.ADDON_STATICTHEME,
-            average_daily_users=8838, weekly_downloads=358, summary=None)
-
-        PromotedAddon.objects.create(
-            addon=addon_ext, group_id=RECOMMENDED.id
-        ).approve_for_version(version=addon_ext.current_version)
-
-        PromotedAddon.objects.create(
-            addon=addon_theme, group_id=RECOMMENDED.id
-        ).approve_for_version(version=addon_theme.current_version)
+            average_daily_users=8838, weekly_downloads=358, summary=None,
+            recommended=True)
 
         user = UserProfile.objects.create(pk=settings.TASK_USER_ID)
         collection = collection_factory(author=user, slug='privacy-matters')
