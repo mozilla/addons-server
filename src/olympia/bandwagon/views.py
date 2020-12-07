@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.conf import settings
 from django.utils.decorators import method_decorator
 
@@ -115,8 +116,21 @@ class CollectionAddonViewSet(ModelViewSet):
     # This endpoint can be quite slow so it's cached for one hour for all
     # anonymous users.
     @method_decorator(cache_page_if_anonymous(60 * 60 * 1))
-    def list(self, *args, **kwargs):
-        return super().list(*args, **kwargs)
+    def list(self, request, *args, **kwargs):
+        # Swap DRF's Response with a HttpResponse so that it's smaller in size
+        # when pickling (data attribute is lost, we only keep the rendered
+        # content), which matters because by default, memcached doesn't
+        # accept values over 1 MB.
+        # Note that this needs to happen before cache_page_if_anonymous() has
+        # seen the response, because it attaches the callback that caches the
+        # response to it. That's why we manually call finalize_response() and
+        # render() here.
+        response = super().list(*args, *kwargs)
+        response = self.finalize_response(request, response, *args, **kwargs)
+        response.render()
+        return HttpResponse(
+            response.content, status=response.status_code,
+            content_type='application/json')
 
     def get_collection(self):
         if not hasattr(self, 'collection'):

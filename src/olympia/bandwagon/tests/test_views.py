@@ -4,6 +4,7 @@ import json
 import django.test
 
 from django.conf import settings
+from django.http import HttpResponse
 from django.test.utils import override_settings
 
 from rest_framework.fields import empty
@@ -780,7 +781,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
 
     def check_response(self, response):
         assert response.status_code == 200, self.url
-        assert len(response.data['results']) == 3
+        assert len(response.json()['results']) == 3
 
     def test_404(self):
         # Invalid user.
@@ -797,11 +798,11 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         assert response.status_code == 404
 
     def check_result_order(self, response, first, second, third):
-        results = response.data['results']
+        results = response.json()['results']
         assert results[0]['addon']['id'] == first.id
         assert results[1]['addon']['id'] == second.id
         assert results[2]['addon']['id'] == third.id
-        assert len(response.data['results']) == 3
+        assert len(results) == 3
 
     def test_sorting(self):
         self.addon_a.update(weekly_downloads=500)
@@ -900,7 +901,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         response = self.client.get(self.url + '?sort=popularity,name')
 
         assert response.status_code == 400
-        assert response.data == [
+        assert response.json() == [
             'You can only specify one "sort" argument. Multiple orderings '
             'are not supported']
 
@@ -908,53 +909,82 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         response = self.send(self.url)
         assert response.status_code == 200
         # Normal
-        assert len(response.data['results']) == 3
+        assert len(response.json()['results']) == 3
 
         response = self.send(self.url + '?filter=all')
         assert response.status_code == 200
         # Now there should be 2 extra
-        assert len(response.data['results']) == 5
+        assert len(response.json()['results']) == 5
 
         response = self.send(self.url + '?filter=all_with_deleted')
         assert response.status_code == 200
         # And one more still - with_deleted gets you with_hidden too.
-        assert len(response.data['results']) == 6
+        assert len(response.json()['results']) == 6
         all_addons_ids = {
             self.addon_a.id, self.addon_b.id, self.addon_c.id,
             self.addon_disabled.id, self.addon_deleted.id,
             self.addon_pending.id}
         result_ids = {
-            result['addon']['id'] for result in response.data['results']}
+            result['addon']['id'] for result in response.json()['results']}
         assert all_addons_ids == result_ids
 
     def test_no_caching_authenticated(self):
         self.client.login_api(self.user)
-        response = self.client.get(self.url)
+        # Passing authentication makes an extra query.
+        with self.assertNumQueries(26):
+            response = self.client.get(self.url)
+        assert isinstance(response, HttpResponse)
+        assert response['Content-Type'] == 'application/json'
         assert response.status_code == 200
-        assert len(response.data['results']) == 3
+        assert len(response.json()['results']) == 3
 
         # We should get an updated response with only 2 add-ons are we're
         # authenticated.
         self.collection.addons.remove(self.addon_a)
-        response = self.client.get(self.url)
+        with self.assertNumQueries(26):
+            response = self.client.get(self.url)
+        assert isinstance(response, HttpResponse)
+        assert response['Content-Type'] == 'application/json'
         assert response.status_code == 200
-        assert len(response.data['results']) == 2
+        assert len(response.json()['results']) == 2
 
     def test_caching_anonymous(self):
-        response = self.client.get(self.url)
+        # Force first add-on to have an enormous description (large enough
+        # that the response being an HttpResponse and not a DRF Response would
+        # matter, but not too large so that it makes pickling even an
+        # HttpResponse over 1MB)
+        self.addon_a.description = 'Desc' * 131072
+        self.addon_a.save()
+
+        # See test_basic() below for the queries breakdown. What matters here
+        # is that when we're being served a cached response we aren't doing
+        # any queries besides the 2 savepoints.
+        with self.assertNumQueries(25):
+            response = self.client.get(self.url)
+        # For this API we're returning a HttpResponse directly, not a Response,
+        # to improve pickled size to help caching.
+        assert isinstance(response, HttpResponse)
+        assert response['Content-Type'] == 'application/json'
         assert response.status_code == 200
-        assert len(response.data['results']) == 3
+        assert len(response.json()['results']) == 3
 
         # We should get a cached response with 3 add-ons are we're anonymous.
         self.collection.addons.remove(self.addon_a)
-        response = self.client.get(self.url)
+        with self.assertNumQueries(2):
+            response = self.client.get(self.url)
+        assert isinstance(response, HttpResponse)
+        assert response['Content-Type'] == 'application/json'
         assert response.status_code == 200
-        assert len(response.data['results']) == 3
+        assert len(response.json()['results']) == 3
 
         # Any URL parameter added creates a separate cache key as well, so we
         # see the updated results with a new URL.
-        response = self.client.get(self.url, {'foo': 'bar'})
-        assert len(response.data['results']) == 2
+        with self.assertNumQueries(25):
+            response = self.client.get(self.url, {'foo': 'bar'})
+        assert isinstance(response, HttpResponse)
+        assert response['Content-Type'] == 'application/json'
+        assert response.status_code == 200
+        assert len(response.json()['results']) == 2
 
         # Different collection should of course be cached separately.
         new_collection = collection_factory(author=self.user)
@@ -963,13 +993,20 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
             'collection-addon-list', kwargs={
                 'user_pk': self.user.pk,
                 'collection_slug': new_collection.slug})
-        response = self.client.get(url)
-        assert len(response.data['results']) == 1
+        with self.assertNumQueries(25):
+            response = self.client.get(url)
+        assert isinstance(response, HttpResponse)
+        assert response['Content-Type'] == 'application/json'
+        assert response.status_code == 200
+        assert len(response.json()['results']) == 1
 
         # Old response remains cached.
-        response = self.client.get(self.url)
+        with self.assertNumQueries(2):
+            response = self.client.get(self.url)
+        assert isinstance(response, HttpResponse)
+        assert response['Content-Type'] == 'application/json'
         assert response.status_code == 200
-        assert len(response.data['results']) == 3
+        assert len(response.json()['results']) == 3
 
     def test_basic(self):
         with self.assertNumQueries(25):
