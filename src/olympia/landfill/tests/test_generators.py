@@ -66,7 +66,7 @@ class ThemeGeneratorTests(_BaseAddonGeneratorMixin, TestCase):
 class CreateGeneratorTests(TestCase):
 
     def test_create_addon(self):
-        addon = create_addon('foo', 'icon/default', APPS['android'])
+        addon = create_addon('foo', APPS['android'])
         assert Addon.objects.last().name == addon.name
         assert amo.STATUS_APPROVED == addon.status
         assert Version.objects.last() == addon._current_version

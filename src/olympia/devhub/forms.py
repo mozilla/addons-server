@@ -7,13 +7,11 @@ from urllib.parse import urlsplit
 
 from django import forms
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
 from django.core.validators import MinLengthValidator
 from django.db.models import Q
 from django.forms.formsets import BaseFormSet, formset_factory
 from django.forms.models import BaseModelFormSet, modelformset_factory
 from django.forms.widgets import RadioSelect
-from django.utils.encoding import force_text
 from django.utils.html import escape, format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext, ugettext_lazy as _, ungettext
@@ -277,23 +275,12 @@ CategoryFormSet = formset_factory(form=CategoryForm,
                                   formset=BaseCategoryFormSet, extra=0)
 
 
-def icons():
-    """
-    Generates a list of tuples for the default icons for add-ons,
-    in the format (pseudo-mime-type, description).
-    """
-    icons = [('image/jpeg', 'jpeg'), ('image/png', 'png'), ('', 'default')]
-    dirs, files = storage.listdir(settings.ADDON_ICONS_DEFAULT_PATH)
-    for fname in files:
-        if b'32' in fname and b'default' not in fname:
-            icon_name = force_text(fname.split(b'-')[0])
-            icons.append(('icon/%s' % icon_name, icon_name))
-    return sorted(icons)
+ICON_TYPES = [('', 'default'), ('image/jpeg', 'jpeg'), ('image/png', 'png')]
 
 
 class AddonFormMedia(AddonFormBase):
     icon_type = forms.CharField(widget=IconTypeSelect(
-        choices=[]), required=False)
+        choices=ICON_TYPES), required=False)
     icon_upload_hash = forms.CharField(required=False)
 
     class Meta:
@@ -301,11 +288,14 @@ class AddonFormMedia(AddonFormBase):
         fields = ('icon_upload_hash', 'icon_type')
 
     def __init__(self, *args, **kwargs):
-        super(AddonFormMedia, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
+        addon = kwargs.get('instance')
 
-        # Add icons here so we only read the directory when
-        # AddonFormMedia is actually being used.
-        self.fields['icon_type'].widget.choices = icons()
+        # If there an existing icon_type set, add it to the list
+        if addon and addon.icon_type and addon.icon_type.startswith('icon/'):
+            icon_name = addon.icon_type.split('/')[1]
+            self.fields['icon_type'].widget.choices = ICON_TYPES + [
+                (addon.icon_type, icon_name)]
 
     def save(self, addon, commit=True):
         if self.cleaned_data['icon_upload_hash']:
@@ -320,7 +310,7 @@ class AddonFormMedia(AddonFormBase):
                 upload_path, destination, amo.ADDON_ICON_SIZES,
                 set_modified_on=addon.serializable_reference())
 
-        return super(AddonFormMedia, self).save(commit)
+        return super().save(commit)
 
 
 class AdditionalDetailsForm(AddonFormBase):

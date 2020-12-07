@@ -11,7 +11,6 @@ from olympia.amo.utils import slugify
 from olympia.constants.applications import APPS
 from olympia.constants.base import (
     ADDON_EXTENSION, ADDON_STATICTHEME, STATUS_APPROVED)
-from olympia.devhub.forms import icons
 
 from .categories import generate_categories
 from .collection import generate_collection
@@ -41,7 +40,7 @@ def _yield_name_and_cat(num, app=None, type=None):
         yield (addon_name, cat)
 
 
-def create_addon(name, icon_type, application, **extra_kwargs):
+def create_addon(name, application, **extra_kwargs):
     """Create an addon with the given `name` and his version."""
     kwargs = {
         'status': STATUS_APPROVED,
@@ -52,7 +51,6 @@ def create_addon(name, icon_type, application, **extra_kwargs):
         'weekly_downloads': random.randint(200, 2000),
         'created': datetime.now(),
         'last_updated': datetime.now(),
-        'icon_type': icon_type,
         'type': ADDON_EXTENSION,
     }
     kwargs.update(extra_kwargs)
@@ -75,12 +73,9 @@ def generate_addons(num, owner, app_name, addon_type=ADDON_EXTENSION):
     featured_categories = collections.defaultdict(int)
     user = generate_user(owner)
     app = APPS[app_name]
-    default_icons = [x[0] for x in icons() if x[0].startswith('icon/')]
     for name, category in _yield_name_and_cat(
             num, app=app, type=addon_type):
-        # Use one of the default icons at random.
-        icon_type = random.choice(default_icons)
-        addon = create_addon(name=name, icon_type=icon_type,
+        addon = create_addon(name=name,
                              application=app, type=addon_type)
         generate_addon_user_and_category(addon, user, category)
         generate_addon_preview(addon)
