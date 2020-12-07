@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-04 11:02+0000\n"
+"POT-Creation-Date: 2020-12-07 10:50+0000\n"
 "PO-Revision-Date: 2020-08-08 15:19+0000\n"
 "Last-Translator: Francesco Lodolo <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
@@ -26,7 +26,8 @@ msgstr "Si è verificato un problema con la connessione al server."
 msgid "Select a file..."
 msgstr "Selezionare un file…"
 
-msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
+#, fuzzy
+msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "Il componente aggiuntivo deve avere estensione .zip, .xpi, .crx, o .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.

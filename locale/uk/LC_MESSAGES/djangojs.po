@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-04 11:02+0000\n"
+"POT-Creation-Date: 2020-12-07 10:50+0000\n"
 "PO-Revision-Date: 2020-10-13 16:43+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,7 +27,8 @@ msgstr "Виникла проблема під час спроби зв'язат
 msgid "Select a file..."
 msgstr "Виберіть файл..."
 
-msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
+#, fuzzy
+msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "Розширення вашого додатка повинно бути .zip, .xpi, .crx або .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-04 11:02+0000\n"
+"POT-Creation-Date: 2020-12-07 10:50+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -429,6 +429,9 @@ msgstr "Arquivo inválido."
 #, fuzzy
 msgid "Email address not found."
 msgstr "Endereço de email"
+
+msgid "Unavailable for legal reasons."
+msgstr ""
 
 msgid "The field must have a length of at least {num} characters."
 msgstr ""
@@ -1021,6 +1024,14 @@ msgstr "{addon} {version} rejeitado."
 #, fuzzy
 msgid "Rejection scheduled"
 msgstr "Solicitada mais informação"
+
+#, fuzzy
+msgid "{addon} {version} re-signed (previously {0})."
+msgstr "Solicitada análise a {addon} {version}."
+
+#, fuzzy
+msgid "Version re-signed"
+msgstr "Versão %s desativada."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2361,9 +2372,10 @@ msgstr ""
 msgid "Manage add-on"
 msgstr "Pacote de idioma (extra)"
 
+#, python-format
 msgid ""
-"There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a href=\"mailto:amo-admins@mozilla."
-"com\">amo-admins@mozilla.com</a>."
+"There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a href=\"mailto:%(email)s\">"
+"%(email)s</a>."
 msgstr ""
 
 msgid "Thank you for joining the Promoted Add-ons Program!"
@@ -4705,19 +4717,6 @@ msgstr ""
 
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr ""
-
-#, fuzzy, python-format
-msgid "Could not parse uploaded file, missing or empty <%s> element"
-msgstr "Não foi possível interpretar o ficheiro enviado."
-
-msgid "OpenSearch: XML Security error."
-msgstr ""
-
-msgid "OpenSearch: XML Parse Error."
-msgstr ""
-
-msgid "Could not parse uploaded file."
-msgstr "Não foi possível interpretar o ficheiro enviado."
 
 msgid "Unsupported archive type."
 msgstr ""

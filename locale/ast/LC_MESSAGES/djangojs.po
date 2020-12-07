@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-04 11:02+0000\n"
+"POT-Creation-Date: 2020-12-07 10:50+0000\n"
 "PO-Revision-Date: 2020-06-09 20:40+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,7 +27,7 @@ msgstr "Hebo un problema contautando col sirvidor."
 msgid "Select a file..."
 msgstr "Esbillar un ficheru..."
 
-msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
+msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr ""
 
 #. L10n: {0} is the percent of the file that has been uploaded.

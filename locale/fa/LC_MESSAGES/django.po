@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-04 11:02+0000\n"
+"POT-Creation-Date: 2020-12-07 10:50+0000\n"
 "PO-Revision-Date: 2020-07-17 11:46+0000\n"
 "Last-Translator: abtin <abtin@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -425,6 +425,9 @@ msgstr ""
 #, fuzzy
 msgid "Email address not found."
 msgstr "آدرس پست الکترونیکی"
+
+msgid "Unavailable for legal reasons."
+msgstr ""
 
 msgid "The field must have a length of at least {num} characters."
 msgstr ""
@@ -992,6 +995,13 @@ msgstr ""
 
 msgid "Rejection scheduled"
 msgstr ""
+
+msgid "{addon} {version} re-signed (previously {0})."
+msgstr ""
+
+#, fuzzy
+msgid "Version re-signed"
+msgstr "نسخه"
 
 msgid "Firefox"
 msgstr "فایرفاکس"
@@ -2317,9 +2327,10 @@ msgstr ""
 msgid "Manage add-on"
 msgstr "افزودنی‌های بیشتر"
 
+#, python-format
 msgid ""
-"There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a href=\"mailto:amo-admins@mozilla."
-"com\">amo-admins@mozilla.com</a>."
+"There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a href=\"mailto:%(email)s\">"
+"%(email)s</a>."
 msgstr ""
 
 msgid "Thank you for joining the Promoted Add-ons Program!"
@@ -4579,19 +4590,6 @@ msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr ""
 
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
-msgstr ""
-
-#, python-format
-msgid "Could not parse uploaded file, missing or empty <%s> element"
-msgstr ""
-
-msgid "OpenSearch: XML Security error."
-msgstr ""
-
-msgid "OpenSearch: XML Parse Error."
-msgstr ""
-
-msgid "Could not parse uploaded file."
 msgstr ""
 
 msgid "Unsupported archive type."

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-04 11:02+0000\n"
+"POT-Creation-Date: 2020-12-07 10:50+0000\n"
 "PO-Revision-Date: 2017-09-28 10:22+0000\n"
 "Last-Translator: Shahriar Shanto <shahriar083@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,8 @@ msgstr "সার্ভারের সঙ্গে যোগাযোগ কর
 msgid "Select a file..."
 msgstr "ফাইল নির্বাচন করুন..."
 
-msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
+#, fuzzy
+msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "আপনার অ্যাড অন .zip, .xpi, .crx, অথবা .xml দিয়ে শেষ হতে হবে"
 
 #. L10n: {0} is the percent of the file that has been uploaded.

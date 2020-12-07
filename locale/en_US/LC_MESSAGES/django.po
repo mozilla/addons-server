@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-04 11:02+0000\n"
+"POT-Creation-Date: 2020-12-07 10:50+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -444,6 +444,9 @@ msgstr "Invalid archive."
 #, fuzzy
 msgid "Email address not found."
 msgstr "Email Address"
+
+msgid "Unavailable for legal reasons."
+msgstr "Unavailable for legal reasons."
 
 msgid "The field must have a length of at least {num} characters."
 msgstr "The field must have a length of at least {num} characters."
@@ -1038,6 +1041,14 @@ msgstr "{addon} {version} rejected."
 #, fuzzy
 msgid "Rejection scheduled"
 msgstr "More Information Requested"
+
+#, fuzzy
+msgid "{addon} {version} re-signed (previously {0})."
+msgstr "{addon} {version} review requested."
+
+#, fuzzy
+msgid "Version re-signed"
+msgstr "Version %s re-enabled."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2407,9 +2418,10 @@ msgstr "Your payment has been recorded, but there are currently no published ver
 msgid "Manage add-on"
 msgstr "Language Pack (Add-on)"
 
+#, fuzzy, python-format
 msgid ""
-"There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a href=\"mailto:amo-admins@mozilla."
-"com\">amo-admins@mozilla.com</a>."
+"There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a href=\"mailto:%(email)s\">"
+"%(email)s</a>."
 msgstr ""
 "There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a href=\"mailto:amo-admins@mozilla."
 "com\">amo-admins@mozilla.com</a>."
@@ -4892,19 +4904,6 @@ msgstr "Unknown \"strict_min_version\" {appver} for {app}"
 #, fuzzy
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr "Unknown \"strict_min_version\" {appver} for {app}"
-
-#, fuzzy, python-format
-msgid "Could not parse uploaded file, missing or empty <%s> element"
-msgstr "Could not parse uploaded file."
-
-msgid "OpenSearch: XML Security error."
-msgstr "OpenSearch: XML Security error."
-
-msgid "OpenSearch: XML Parse Error."
-msgstr "OpenSearch: XML Parse Error."
-
-msgid "Could not parse uploaded file."
-msgstr "Could not parse uploaded file."
 
 msgid "Unsupported archive type."
 msgstr "Unsupported archive type."
