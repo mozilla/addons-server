@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-12-07 13:07+0000\n"
+"PO-Revision-Date: 2020-12-07 13:16+0000\n"
 "Last-Translator: 你我皆凡人 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -411,7 +411,7 @@ msgid "Email address not found."
 msgstr "未找到电子邮件地址。"
 
 msgid "Unavailable for legal reasons."
-msgstr ""
+msgstr "因法律原因不可用"
 
 msgid "The field must have a length of at least {num} characters."
 msgstr "该字段至少有 {num} 个字符。"
@@ -943,13 +943,11 @@ msgstr "已计划驳回 {addon} {version}。"
 msgid "Rejection scheduled"
 msgstr "已计划驳回"
 
-#, fuzzy
 msgid "{addon} {version} re-signed (previously {0})."
-msgstr "{addon} {version} 已申请审核。"
+msgstr "{addon} {version} 已重新签名（先前为 {0}）。"
 
-#, fuzzy
 msgid "Version re-signed"
-msgstr "版本 %s 已重新启用。"
+msgstr "已重新签名版本"
 
 msgid "Firefox"
 msgstr "Firefox"
