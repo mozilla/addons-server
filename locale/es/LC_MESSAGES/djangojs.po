@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-04 11:02+0000\n"
+"POT-Creation-Date: 2020-12-07 10:50+0000\n"
 "PO-Revision-Date: 2020-11-04 11:59+0000\n"
 "Last-Translator: Paulina Rodriguez <pauli.rodriguez.c@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,8 @@ msgstr "Ha habido un problema al contactar con el servidor."
 msgid "Select a file..."
 msgstr "Seleccionar un archivo..."
 
-msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
+#, fuzzy
+msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "Tu complemento debería terminar con .zip, .xpi, .crx, .jar o .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
@@ -123,8 +124,8 @@ msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Los binarios compilados, así como los scripts minificados u ofuscados (excluyendo bibliotecas conocidas) deben ser enviados por separado para su revisión. Asegúrate de que utilizas el campo de subir"
-" código fuente para evitar que tu envío sea rechazado."
+"Los binarios compilados, así como los scripts minificados u ofuscados (excluyendo bibliotecas conocidas) deben ser enviados por separado para su revisión. Asegúrate de que utilizas el campo de "
+"subir código fuente para evitar que tu envío sea rechazado."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "El proceso de validación encontró estos problemas que pueden llevar a rechazos:"

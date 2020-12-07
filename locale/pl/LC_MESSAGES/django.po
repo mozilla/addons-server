@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-04 11:02+0000\n"
+"POT-Creation-Date: 2020-12-07 10:50+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -439,6 +439,9 @@ msgstr "Niewłaściwe archiwum."
 #, fuzzy
 msgid "Email address not found."
 msgstr "Adres e-mail"
+
+msgid "Unavailable for legal reasons."
+msgstr ""
 
 msgid "The field must have a length of at least {num} characters."
 msgstr "Pole musi mieć długość co najmniej {num} znaków."
@@ -992,6 +995,14 @@ msgstr "Dodatek {addon} {version} został odrzucony."
 #, fuzzy
 msgid "Rejection scheduled"
 msgstr "Termin prośby o informacje"
+
+#, fuzzy
+msgid "{addon} {version} re-signed (previously {0})."
+msgstr "Poproszono o sprawdzenie dodatku {addon} {version}."
+
+#, fuzzy
+msgid "Version re-signed"
+msgstr "Wersja %s została ponownie włączona."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2320,9 +2331,10 @@ msgstr ""
 msgid "Manage add-on"
 msgstr "Pakiet językowy (dodatek)"
 
+#, python-format
 msgid ""
-"There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a href=\"mailto:amo-admins@mozilla."
-"com\">amo-admins@mozilla.com</a>."
+"There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a href=\"mailto:%(email)s\">"
+"%(email)s</a>."
 msgstr ""
 
 msgid "Thank you for joining the Promoted Add-ons Program!"
@@ -4655,19 +4667,6 @@ msgstr ""
 
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr ""
-
-#, python-format
-msgid "Could not parse uploaded file, missing or empty <%s> element"
-msgstr "Nie można przetworzyć przesłanego pliku, brak elementu <%s> lub jest on pusty"
-
-msgid "OpenSearch: XML Security error."
-msgstr ""
-
-msgid "OpenSearch: XML Parse Error."
-msgstr ""
-
-msgid "Could not parse uploaded file."
-msgstr "Nie można przetworzyć przesłanego pliku."
 
 msgid "Unsupported archive type."
 msgstr ""

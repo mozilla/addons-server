@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-04 11:02+0000\n"
+"POT-Creation-Date: 2020-12-07 10:50+0000\n"
 "PO-Revision-Date: 2020-08-22 08:02+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -429,6 +429,9 @@ msgstr "Token atau hash tidak valid."
 
 msgid "Email address not found."
 msgstr "Alamat surel tidak ditemukan."
+
+msgid "Unavailable for legal reasons."
+msgstr ""
 
 msgid "The field must have a length of at least {num} characters."
 msgstr "Bidang harus memiliki panjang sekurangnya {num} karakter."
@@ -966,6 +969,14 @@ msgstr "{addon} {version} ditolak."
 
 msgid "Rejection scheduled"
 msgstr "Penolakan dijadwalkan"
+
+#, fuzzy
+msgid "{addon} {version} re-signed (previously {0})."
+msgstr "{addon} {version} ulasan dimintakan."
+
+#, fuzzy
+msgid "Version re-signed"
+msgstr "Versi %s dihidupkan lagi."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2253,9 +2264,10 @@ msgstr ""
 msgid "Manage add-on"
 msgstr "Paket Bahasa (Pengaya)"
 
+#, python-format
 msgid ""
-"There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a href=\"mailto:amo-admins@mozilla."
-"com\">amo-admins@mozilla.com</a>."
+"There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a href=\"mailto:%(email)s\">"
+"%(email)s</a>."
 msgstr ""
 
 msgid "Thank you for joining the Promoted Add-ons Program!"
@@ -4535,19 +4547,6 @@ msgstr ""
 
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr ""
-
-#, python-format
-msgid "Could not parse uploaded file, missing or empty <%s> element"
-msgstr "Tidak dapat mengurai berkas yang diunggah, kurang atau tak ada elemen <%s>"
-
-msgid "OpenSearch: XML Security error."
-msgstr "OpenSearch: Galat keamanan XML."
-
-msgid "OpenSearch: XML Parse Error."
-msgstr "OpenSearch: Galat urai XML."
-
-msgid "Could not parse uploaded file."
-msgstr "Tidak dapat mengurai berkas yang diunggah."
 
 msgid "Unsupported archive type."
 msgstr "Jenis arsip tidak didukung."

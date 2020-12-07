@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-04 11:02+0000\n"
+"POT-Creation-Date: 2020-12-07 10:50+0000\n"
 "PO-Revision-Date: 2020-10-01 10:48+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -427,6 +427,9 @@ msgstr "Neplatný token nebo hash."
 
 msgid "Email address not found."
 msgstr "E-mailová adresa nebyla nalezena."
+
+msgid "Unavailable for legal reasons."
+msgstr ""
 
 msgid "The field must have a length of at least {num} characters."
 msgstr "Délka hodnoty v poli musí být alespoň {num} znaků."
@@ -962,6 +965,14 @@ msgstr "{addon} {version} zamítnut."
 #, fuzzy
 msgid "Rejection scheduled"
 msgstr "Lhůta pro doplnění informací"
+
+#, fuzzy
+msgid "{addon} {version} re-signed (previously {0})."
+msgstr "{addon} {version} - vyžádána kontrola."
+
+#, fuzzy
+msgid "Version re-signed"
+msgstr "Verze %s znovu povolena."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2262,9 +2273,10 @@ msgstr ""
 msgid "Manage add-on"
 msgstr "Jazykový balíček (doplněk)"
 
+#, python-format
 msgid ""
-"There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a href=\"mailto:amo-admins@mozilla."
-"com\">amo-admins@mozilla.com</a>."
+"There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a href=\"mailto:%(email)s\">"
+"%(email)s</a>."
 msgstr ""
 
 msgid "Thank you for joining the Promoted Add-ons Program!"
@@ -4530,19 +4542,6 @@ msgstr "Neznámá hodnota \"strict_min_version\" {appver} pro {app}"
 #, fuzzy
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr "Neznámá hodnota \"strict_min_version\" {appver} pro {app}"
-
-#, python-format
-msgid "Could not parse uploaded file, missing or empty <%s> element"
-msgstr "Nepodařilo se zpracovat nahrávaný soubor, element <%s> chybí nebo je prázdný"
-
-msgid "OpenSearch: XML Security error."
-msgstr "OpenSearch: Chyba zabezpečení souboru XML."
-
-msgid "OpenSearch: XML Parse Error."
-msgstr "OpenSearch: Chyba při zpracování souboru XML."
-
-msgid "Could not parse uploaded file."
-msgstr "Nepodařilo se zpracovat nahrávaný soubor."
 
 msgid "Unsupported archive type."
 msgstr "Nepodporovaný typ archivu."
