@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-08-04 17:42+0000\n"
+"PO-Revision-Date: 2020-12-07 11:42+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -26,9 +26,8 @@ msgstr "Beim Kontaktieren des Servers ist ein Fehler aufgetreten."
 msgid "Select a file..."
 msgstr "Wählen Sie eine Datei aus…"
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi or .crx"
-msgstr "Ihr Add-on sollte eine der Dateiendungen .zip, .xpi, .crx oder .xml haben"
+msgstr "Ihr Add-on sollte eine der Dateiendungen .zip, .xpi oder .crx haben"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -126,8 +125,8 @@ msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Von minifizierten, verkürzten oder anderweitig maschinengenerierten Skripten (außer bekannten Bibliotheken) müssen die Quelltexte getrennt zur Überprüfung eingereicht werden. Verwenden Sie "
-"unbedingt das Feld zum Hochladen von Quelltext, damit Ihre Einreichung nicht abgelehnt wird."
+"Von minifizierten, verkürzten oder anderweitig maschinengenerierten Skripten (außer bekannten Bibliotheken) müssen die Quelltexte getrennt zur Überprüfung eingereicht werden. Verwenden Sie unbedingt"
+" das Feld zum Hochladen von Quelltext, damit Ihre Einreichung nicht abgelehnt wird."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Der Validierungsprozess stellte folgende Probleme fest, die zur Ablehnung führen könnten:"
