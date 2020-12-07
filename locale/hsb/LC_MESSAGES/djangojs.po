@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-08-07 13:16+0000\n"
+"PO-Revision-Date: 2020-12-07 12:00+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -29,9 +29,8 @@ msgstr "Při kontaktowanju serwera je problem wustupił."
 msgid "Select a file..."
 msgstr "Wubjerće dataju..."
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi or .crx"
-msgstr "Waš přidatk dyrbi datajowu kóncowku .zip, .xpi, .crx abo .xml měć"
+msgstr "Waš přidatk dyrbjał datajowu kóncowku .zip, .xpi abo .crx měć"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -133,8 +132,8 @@ msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Minifikowane, zwjazane abo hinak přez mašiny wutworjene skripty (nimo znatych bibliotekow) dyrbja so separatnje za přepruwowanje zapodać. Wužiwajće na kóždy pad polo za nahrawanje žórłoweho koda, "
-"zo njeby so waše zapodaće wotpokazało."
+"Minifikowane, zwjazane abo hinak přez mašiny wutworjene skripty (nimo znatych bibliotekow) dyrbja so separatnje za přepruwowanje zapodać. Wužiwajće na kóždy pad polo za nahrawanje žórłoweho koda, zo"
+" njeby so waše zapodaće wotpokazało."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Přepruwowanski proces je slědowace problemy namakał, kotrež móhli k wotpokazanjam wjesć:"
