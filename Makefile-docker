@@ -189,6 +189,7 @@ setup-codestyle:
 
 .PHONY: lint
 lint: ## lint the code
+	black --check src/ services/ tests/
 	flake8 src/ services/ tests/
 	$(shell npm $(NPM_ARGS) bin)/prettier --check '**'
 	curlylint src/
@@ -255,6 +256,7 @@ watch_js_tests: ## Run+watch the JavaScript test suite (requires compiled/compre
 .PHONY: format
 format: ## Autoformat our codebase.
 	$(shell npm $(NPM_ARGS) bin)/prettier --write '**'
+	black src/ services/ tests/
 
 .PHONY: help_submake
 help_submake:
