@@ -10,10 +10,12 @@ from freezegun import freeze_time
 
 from olympia import amo
 from olympia.amo.tests import (
-    addon_factory, APITestClient, ESTestCase, reverse_ns)
+    addon_factory, APITestClient, collection_factory, ESTestCase, reverse_ns)
+from olympia.bandwagon.models import CollectionAddon
 from olympia.constants.promoted import RECOMMENDED, SPONSORED, VERIFIED
 from olympia.promoted.models import PromotedAddon
 from olympia.shelves.models import Shelf, ShelfManagement
+from olympia.users.models import UserProfile
 
 
 class TestShelfViewSet(ESTestCase):
@@ -46,6 +48,11 @@ class TestShelfViewSet(ESTestCase):
         PromotedAddon.objects.create(
             addon=addon_theme, group_id=RECOMMENDED.id
         ).approve_for_version(version=addon_theme.current_version)
+
+        user = UserProfile.objects.create(pk=settings.TASK_USER_ID)
+        collection = collection_factory(author=user, slug='privacy-matters')
+        addon = addon_factory(name='test addon privacy01')
+        CollectionAddon.objects.create(addon=addon, collection=collection)
 
         cls.refresh()
 
@@ -100,7 +107,7 @@ class TestShelfViewSet(ESTestCase):
         self.hpshelf_b.update(enabled=True)
         # don't enable shelf_c
 
-        with self.assertNumQueries(4):
+        with self.assertNumQueries(26):
             response = self.client.get(self.url)
         assert response.status_code == 200
 
@@ -115,7 +122,8 @@ class TestShelfViewSet(ESTestCase):
         assert result['results'][0]['footer_text'] == (
             'See more enhanced privacy extensions')
         assert result['results'][0]['footer_pathname'] == ''
-        assert result['results'][0]['addons'] is None
+        assert result['results'][0]['addons'][0]['addon']['name']['en-US'] == (
+            'test addon privacy01')
 
         assert result['results'][1]['title'] == 'Recommended extensions'
         assert result['results'][1]['url'] == self.search_url

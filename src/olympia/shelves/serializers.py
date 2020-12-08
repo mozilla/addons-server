@@ -8,6 +8,7 @@ from rest_framework.reverse import reverse as drf_reverse
 
 from olympia.addons.serializers import ESAddonSerializer
 from olympia.addons.views import AddonSearchView
+from olympia.bandwagon.views import CollectionAddonViewSet
 
 from .models import Shelf
 
@@ -32,7 +33,7 @@ class ShelfSerializer(serializers.ModelSerializer):
                 'collection-addon-list',
                 request=self.context.get('request'),
                 kwargs={
-                    'user_pk': settings.TASK_USER_ID,
+                    'user_pk': str(settings.TASK_USER_ID),
                     'collection_slug': obj.criteria})
         else:
             url = None
@@ -43,13 +44,20 @@ class ShelfSerializer(serializers.ModelSerializer):
         if obj.endpoint == 'search':
             criteria = obj.criteria.strip('?')
             params = dict(parse.parse_qsl(criteria))
-            request = self.context.get('request', None)
+            request = self.context.get('request')
             tmp = request.GET
             request.GET = request.GET.copy()
             request.GET.update(params)
             addons = AddonSearchView(request=request).data
             request.GET = tmp
             return addons
+        elif obj.endpoint == 'collections':
+            request = self.context.get('request')
+            kwargs = {
+                'user_pk': str(settings.TASK_USER_ID),
+                'collection_slug': obj.criteria}
+            return CollectionAddonViewSet(request=request, action='list',
+                                          kwargs=kwargs).data
         else:
             return None
 

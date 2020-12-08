@@ -3,16 +3,19 @@ from urllib import parse
 from rest_framework.settings import api_settings
 from rest_framework.test import APIRequestFactory
 
+from freezegun import freeze_time
+
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
-
-from freezegun import freeze_time
 
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.addons.tests.test_serializers import (
     AddonSerializerOutputTestMixin)
-from olympia.amo.tests import addon_factory, ESTestCase, reverse_ns
+from olympia.amo.tests import (
+    addon_factory, collection_factory, ESTestCase, reverse_ns)
+from olympia.bandwagon.models import CollectionAddon
+from olympia.users.models import UserProfile
 
 from ..models import Shelf
 from ..serializers import ESSponsoredAddonSerializer, ShelfSerializer
@@ -42,6 +45,11 @@ class TestShelvesSerializer(ESTestCase):
             average_daily_users=8838, weekly_downloads=358, summary=None,
             recommended=True)
 
+        user = UserProfile.objects.create(pk=settings.TASK_USER_ID)
+        collection = collection_factory(author=user, slug='privacy-matters')
+        addon = addon_factory(name='test addon privacy01')
+        CollectionAddon.objects.create(addon=addon, collection=collection)
+
         cls.refresh()
 
     def setUp(self):
@@ -50,14 +58,6 @@ class TestShelvesSerializer(ESTestCase):
             endpoint='search',
             criteria='?sort=users&type=statictheme',
             footer_text='See more populâr themes')
-
-        self.search_hol_thm = Shelf.objects.create(
-            title='Holidây themes',
-            endpoint='search',
-            criteria=(
-                '?category=holiday&sort=recommended%2Cusers' +
-                '&type=statictheme&app=firefox'),
-            footer_text='See more holidây themes')
 
         self.search_rec_thm = Shelf.objects.create(
             title='Recommended themes',
@@ -80,83 +80,62 @@ class TestShelvesSerializer(ESTestCase):
         self.request.version = api_version
         self.request.user = AnonymousUser()
 
-    def get_serializer(self, instance, **extra_context):
-        extra_context['request'] = self.request
-        return ShelfSerializer(instance=instance, context=extra_context)
+    def serialize(self, instance, **context):
+        self.request.query_params = dict(parse.parse_qsl(
+            instance.criteria))
+        context['request'] = self.request
+        return ShelfSerializer(instance, context=context).data
 
-    def serialize(self, instance, **extra_context):
+    def _get_url(self, instance):
         if instance.endpoint == 'search':
-            self.request.query_params = dict(parse.parse_qsl(
-                instance.criteria))
-        return self.get_serializer(instance, **extra_context).data
+            return reverse_ns('addon-search') + instance.criteria
+        elif instance.endpoint == 'collections':
+            return reverse_ns('collection-addon-list', kwargs={
+                'user_pk': str(settings.TASK_USER_ID),
+                'collection_slug': self.collections_shelf.criteria})
+        else:
+            return None
 
-    def test_shelf_serializer_search(self):
-        pop_thm_data = self.serialize(instance=self.search_pop_thm)
-        hol_thm_data = self.serialize(instance=self.search_hol_thm)
-        rec_thm_data = self.serialize(instance=self.search_rec_thm)
+    def test_basic(self):
+        data = self.serialize(self.search_pop_thm)
+        assert data['title'] == 'Populâr themes'
+        assert data['endpoint'] == 'search'
+        assert data['criteria'] == '?sort=users&type=statictheme'
+        assert data['footer_text'] == 'See more populâr themes'
+        assert data['footer_pathname'] == ''
 
-        pop_url = reverse_ns('addon-search') + self.search_pop_thm.criteria
-        hol_url = reverse_ns('addon-search') + self.search_hol_thm.criteria
-        rec_url = reverse_ns('addon-search') + self.search_rec_thm.criteria
+    def test_url_and_addons_search(self):
+        pop_data = self.serialize(self.search_pop_thm)
+        assert pop_data['url'] == self._get_url(self.search_pop_thm)
 
-        assert pop_thm_data['title'] == 'Populâr themes'
-        assert pop_thm_data['url'] == pop_url
-        assert pop_thm_data['endpoint'] == self.search_pop_thm.endpoint
-        assert pop_thm_data['criteria'] == self.search_pop_thm.criteria
-        assert pop_thm_data['footer_text'] == 'See more populâr themes'
-        assert pop_thm_data['footer_pathname'] == ''
-
-        assert len(pop_thm_data['addons']) == 2
-
-        assert pop_thm_data['addons'][0]['name']['en-US'] == (
+        assert len(pop_data['addons']) == 2
+        assert pop_data['addons'][0]['name']['en-US'] == (
             'test addon test02')
-        assert pop_thm_data['addons'][0]['promoted'] is None
-        assert pop_thm_data['addons'][0]['type'] == 'statictheme'
+        assert pop_data['addons'][0]['promoted'] is None
+        assert pop_data['addons'][0]['type'] == 'statictheme'
 
-        assert pop_thm_data['addons'][1]['name']['en-US'] == (
+        assert pop_data['addons'][1]['name']['en-US'] == (
             'test addon test04')
-        assert pop_thm_data['addons'][1]['promoted']['category'] == (
+        assert pop_data['addons'][1]['promoted']['category'] == (
             'recommended')
-        assert pop_thm_data['addons'][1]['type'] == 'statictheme'
+        assert pop_data['addons'][1]['type'] == 'statictheme'
 
-        assert hol_thm_data['title'] == 'Holidây themes'
-        assert hol_thm_data['url'] == hol_url
-        assert hol_thm_data['endpoint'] == self.search_hol_thm.endpoint
-        assert hol_thm_data['criteria'] == self.search_hol_thm.criteria
-        assert hol_thm_data['footer_text'] == 'See more holidây themes'
-        assert hol_thm_data['footer_pathname'] == ''
+        # Test 'Recommended Themes' shelf - should include 1 addon
+        rec_data = self.serialize(self.search_rec_thm)
+        assert rec_data['url'] == self._get_url(self.search_rec_thm)
 
-        assert len(hol_thm_data['addons']) == 0
-
-        assert rec_thm_data['title'] == 'Recommended themes'
-        assert rec_thm_data['url'] == rec_url
-        assert rec_thm_data['endpoint'] == self.search_rec_thm.endpoint
-        assert rec_thm_data['criteria'] == self.search_rec_thm.criteria
-        assert rec_thm_data['footer_text'] == 'See more recommended themes'
-        assert rec_thm_data['footer_pathname'] == ''
-
-        assert len(rec_thm_data['addons']) == 1
-
-        assert rec_thm_data['addons'][0]['name']['en-US'] == (
+        assert len(rec_data['addons']) == 1
+        assert rec_data['addons'][0]['name']['en-US'] == (
             'test addon test04')
-        assert rec_thm_data['addons'][0]['promoted']['category'] == (
+        assert rec_data['addons'][0]['promoted']['category'] == (
             'recommended')
-        assert rec_thm_data['addons'][0]['type'] == 'statictheme'
+        assert rec_data['addons'][0]['type'] == 'statictheme'
 
-    def test_shelf_serializer_collections(self):
-        data = self.serialize(instance=self.collections_shelf)
-        collections_url = reverse_ns('collection-addon-list', kwargs={
-            'user_pk': settings.TASK_USER_ID,
-            'collection_slug': self.collections_shelf.criteria})
-        assert data == {
-            'title': 'Enhanced privacy extensions',
-            'url': collections_url,
-            'endpoint': self.collections_shelf.endpoint,
-            'criteria': self.collections_shelf.criteria,
-            'footer_text': 'See more enhanced privacy extensions',
-            'footer_pathname': '',
-            'addons': None
-        }
+    def test_url_and_addons_collections(self):
+        data = self.serialize(self.collections_shelf)
+        assert data['url'] == self._get_url(self.collections_shelf)
+        assert data['addons'][0]['addon']['name']['en-US'] == (
+            'test addon privacy01')
 
 
 class TestESSponsoredAddonSerializer(AddonSerializerOutputTestMixin,

@@ -200,3 +200,10 @@ class CollectionAddonViewSet(ModelViewSet):
         elif not include_all_with_deleted:
             qs = qs.exclude(addon__status=amo.STATUS_DELETED)
         return qs
+
+    @property
+    def data(self):
+        self.initial(self.request)
+        queryset = self.filter_queryset(self.get_queryset())
+        serializer = self.get_serializer(queryset, many=True)
+        return serializer.data
