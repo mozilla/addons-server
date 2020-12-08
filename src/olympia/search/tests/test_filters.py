@@ -191,7 +191,7 @@ class TestQueryFilter(FilterTestsBase):
         }
         assert functions[2] == {
             'filter': {
-                'terms': {'promoted.group_id': [RECOMMENDED.id]}},
+                'terms': {'promoted.group_id': [RECOMMENDED.id, LINE.id]}},
             'weight': 5.0}
         return qs
 

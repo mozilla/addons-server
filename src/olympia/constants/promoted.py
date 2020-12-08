@@ -99,6 +99,7 @@ LINE = PromotedClass(
     id=4,
     name=_('By Firefox'),
     api_name='line',
+    search_ranking_bump=5.0,
     warning=False,
     pre_review=True,
     admin_review=True,
