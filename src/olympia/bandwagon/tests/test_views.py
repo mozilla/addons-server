@@ -227,7 +227,7 @@ class TestCollectionViewSetDetail(TestCase):
         assert response.status_code == 404
 
     def test_with_addons(self):
-        addon = addon_factory()
+        addon = addon_factory(homepage='http://homepage.example.com')
         self.collection.add_addon(addon)
         response = self.client.get(self.url + '?with_addons')
         assert response.status_code == 200
@@ -236,6 +236,12 @@ class TestCollectionViewSetDetail(TestCase):
         assert addon_data['id'] == addon.id
         assert isinstance(addon_data['name'], dict)
         assert addon_data['name'] == {'en-US': str(addon.name)}
+        assert addon_data['homepage'] == {
+            'url': {
+                'en-US': 'http://homepage.example.com'},
+            'outgoing': {
+                'en-US': get_outgoing_url('http://homepage.example.com')}
+        }
 
         # Now test the limit of addons returned
         self.collection.add_addon(addon_factory())
@@ -251,6 +257,7 @@ class TestCollectionViewSetDetail(TestCase):
             response = self.client.get(self.url + '?with_addons')
             assert len(response.data['addons']) == 3
 
+    @override_settings(DRF_API_GATES={'v5': ('wrap-outgoing-parameter',)})
     def test_with_addons_and_wrap_outgoing_links_and_lang(self):
         addon = addon_factory(
             support_url='http://support.example.com',
@@ -272,7 +279,7 @@ class TestCollectionViewSetDetail(TestCase):
             'en-US': get_outgoing_url(str(addon.support_url))}
 
         overridden_api_gates = {
-            'v5': ('l10n_flat_input_output',)}
+            'v5': ('l10n_flat_input_output', 'wrap-outgoing-parameter')}
         with override_settings(DRF_API_GATES=overridden_api_gates):
             response = self.client.get(
                 self.url + '?with_addons&lang=en-US&wrap_outgoing_links')

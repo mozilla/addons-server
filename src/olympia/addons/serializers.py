@@ -10,9 +10,12 @@ from olympia import amo
 from olympia.accounts.serializers import (
     BaseUserSerializer, UserProfileBasketSyncSerializer)
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.urlresolvers import get_outgoing_url, reverse
+from olympia.amo.urlresolvers import reverse
 from olympia.api.fields import (
-    ESTranslationSerializerField, ReverseChoiceField,
+    ESTranslationSerializerField,
+    OutgoingTranslationField,
+    OutgoingURLField,
+    ReverseChoiceField,
     TranslationSerializerField)
 from olympia.api.serializers import BaseESSerializer
 from olympia.api.utils import is_gate_active
@@ -309,17 +312,30 @@ class PromotedAddonSerializer(serializers.ModelSerializer):
         return [app.short for app in obj.approved_applications]
 
 
+class ContributionSerializerField(OutgoingURLField):
+    def to_representation(self, value):
+        if not value:
+            # don't add anything when it's not set.
+            return value
+        parts = urlsplit(value)
+        query = QueryDict(parts.query, mutable=True)
+        query.update(amo.CONTRIBUTE_UTM_PARAMS)
+        return super().to_representation(urlunsplit(
+            (parts.scheme, parts.netloc, parts.path, query.urlencode(),
+             parts.fragment)))
+
+
 class AddonSerializer(serializers.ModelSerializer):
     authors = AddonDeveloperSerializer(many=True, source='listed_authors')
     categories = serializers.SerializerMethodField()
-    contributions_url = serializers.SerializerMethodField()
+    contributions_url = ContributionSerializerField(source='contributions')
     current_version = CurrentVersionSerializer()
     description = TranslationSerializerField()
     developer_comments = TranslationSerializerField()
     edit_url = serializers.SerializerMethodField()
     has_eula = serializers.SerializerMethodField()
     has_privacy_policy = serializers.SerializerMethodField()
-    homepage = TranslationSerializerField()
+    homepage = OutgoingTranslationField()
     icon_url = serializers.SerializerMethodField()
     icons = serializers.SerializerMethodField()
     is_source_public = serializers.SerializerMethodField()
@@ -333,7 +349,7 @@ class AddonSerializer(serializers.ModelSerializer):
     status = ReverseChoiceField(choices=list(amo.STATUS_CHOICES_API.items()))
     summary = TranslationSerializerField()
     support_email = TranslationSerializerField()
-    support_url = TranslationSerializerField()
+    support_url = OutgoingTranslationField()
     tags = serializers.SerializerMethodField()
     type = ReverseChoiceField(choices=list(amo.ADDON_TYPE_CHOICES_API.items()))
     url = serializers.SerializerMethodField()
@@ -385,27 +401,12 @@ class AddonSerializer(serializers.ModelSerializer):
         data = super(AddonSerializer, self).to_representation(obj)
         request = self.context.get('request', None)
 
-        if ('request' in self.context and
-                'wrap_outgoing_links' in self.context['request'].GET):
-            for key in ('homepage', 'support_url', 'contributions_url'):
-                if key in data:
-                    data[key] = self.outgoingify(data[key])
         if request and is_gate_active(request, 'del-addons-created-field'):
             data.pop('created', None)
         if request and not is_gate_active(request, 'is-source-public-shim'):
             data.pop('is_source_public', None)
         if request and not is_gate_active(request, 'is-featured-addon-shim'):
             data.pop('is_featured', None)
-        return data
-
-    def outgoingify(self, data):
-        if data:
-            if isinstance(data, str):
-                return get_outgoing_url(data)
-            elif isinstance(data, dict):
-                return {key: get_outgoing_url(value) if value else None
-                        for key, value in data.items()}
-        # None or empty string... don't bother.
         return data
 
     def get_categories(self, obj):
@@ -437,17 +438,6 @@ class AddonSerializer(serializers.ModelSerializer):
         # get_url_path() which does an extra check on current_version that is
         # annoying in subclasses which don't want to load that version.
         return absolutify(obj.get_detail_url())
-
-    def get_contributions_url(self, obj):
-        if not obj.contributions:
-            # don't add anything when it's not set.
-            return obj.contributions
-        parts = urlsplit(obj.contributions)
-        query = QueryDict(parts.query, mutable=True)
-        query.update(amo.CONTRIBUTE_UTM_PARAMS)
-        return urlunsplit(
-            (parts.scheme, parts.netloc, parts.path, query.urlencode(),
-             parts.fragment))
 
     def get_edit_url(self, obj):
         return absolutify(obj.get_dev_url())

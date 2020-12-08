@@ -5,6 +5,7 @@ from django.utils.translation import get_language, ugettext_lazy as _
 
 from rest_framework import fields, serializers
 
+from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.amo.utils import to_language
 from olympia.api.utils import is_gate_active
 from olympia.translations.models import Translation
@@ -334,3 +335,46 @@ class SlugOrPrimaryKeyRelatedField(serializers.RelatedField):
                 msg = (_('Invalid pk or slug "%s" - object does not exist.') %
                        smart_text(data))
                 raise ValidationError(msg)
+
+
+class OutgoingSerializerMixin():
+    """
+    URL fields, but wrapped with our outgoing server.
+    """
+    def to_representation(self, value):
+        data = super().to_representation(value)
+        request = self.context.get('request', None)
+
+        if request and is_gate_active(request, 'wrap-outgoing-parameter'):
+            if data and 'wrap_outgoing_links' in request.GET:
+                if isinstance(data, str):
+                    return get_outgoing_url(data)
+                elif isinstance(data, dict):
+                    return {key: get_outgoing_url(value) if value else None
+                            for key, value in data.items()}
+            # None or empty string... don't bother.
+            return data
+
+        if not data:
+            return None
+        if isinstance(data, dict):
+            outgoing = {
+                key: get_outgoing_url(value) if value else None
+                for key, value in data.items()}
+        else:
+            outgoing = get_outgoing_url(str(data))
+        return {'url': data, 'outgoing': outgoing}
+
+
+class OutgoingURLField(OutgoingSerializerMixin, serializers.URLField):
+    pass
+
+
+class OutgoingTranslationField(OutgoingSerializerMixin,
+                               TranslationSerializerField):
+    pass
+
+
+class OutgoingESTranslationField(OutgoingSerializerMixin,
+                                 ESTranslationSerializerField):
+    pass

@@ -136,7 +136,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :query string app: Used in conjunction with ``appversion`` below to alter ``current_version`` behaviour. Need to be a valid :ref:`add-on application <addon-detail-application>`.
     :query string appversion: Make ``current_version`` return the latest public version of the add-on compatible with the given application version, if possible, otherwise fall back on the generic implementation. Pass the full version as a string, e.g. ``46.0``. Only valid when the ``app`` parameter is also present. Currently only compatible with language packs through the add-on detail API, ignored for other types of add-ons and APIs.
     :query string lang: Activate translations in the specific language for that query. (See :ref:`Translated Fields <api-overview-translations>`)
-    :query string wrap_outgoing_links: If this parameter is present, wrap outgoing links through ``outgoing.prod.mozaws.net`` (See :ref:`Outgoing Links <api-overview-outgoing>`)
+    :query string wrap_outgoing_links: (v3/v4 only) If this parameter is present, wrap outgoing links through ``outgoing.prod.mozaws.net`` (See :ref:`Outgoing Links <api-overview-outgoing>`)
     :>json int id: The add-on id on AMO.
     :>json array authors: Array holding information about the authors for the add-on.
     :>json int authors[].id: The id for an author.
@@ -147,7 +147,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json int average_daily_users: The average number of users for the add-on (updated daily).
     :>json object categories: Object holding the categories the add-on belongs to.
     :>json array categories[app_name]: Array holding the :ref:`category slugs <category-list>` the add-on belongs to for a given :ref:`add-on application <addon-detail-application>`. (Combine with the add-on ``type`` to determine the name of the category).
-    :>json string contributions_url: URL to the (external) webpage where the addon's authors collect monetary contributions, if set. Can be an empty value.
+    :>json string|object|null contributions_url: URL to the (external) webpage where the addon's authors collect monetary contributions, if set. Can be an empty value.  (See :ref:`Outgoing Links <api-overview-outgoing>`)
     :>json string created: The date the add-on was created.
     :>json object current_version: Object holding the current :ref:`version <version-detail-object>` of the add-on. For performance reasons the ``license`` field omits the ``text`` property from both the search and detail endpoints.
     :>json string default_locale: The add-on default locale for translations.
@@ -157,7 +157,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json string guid: The add-on `extension identifier <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#id>`_.
     :>json boolean has_eula: The add-on has an End-User License Agreement that the user needs to agree with before installing (See :ref:`add-on EULA and privacy policy <addon-eula-policy>`).
     :>json boolean has_privacy_policy: The add-on has a Privacy Policy (See :ref:`add-on EULA and privacy policy <addon-eula-policy>`).
-    :>json string|object|null homepage: The add-on homepage (See :ref:`translated fields <api-overview-translations>`).
+    :>json string|object|null homepage: The add-on homepage (See :ref:`translated fields <api-overview-translations>` and :ref:`Outgoing Links <api-overview-outgoing>`).
     :>json string icon_url: The URL to icon for the add-on (including a cachebusting query string).
     :>json object icons: An object holding the URLs to an add-ons icon including a cachebusting query string as values and their size as properties. Currently exposes 32, 64, 128 pixels wide icons.
     :>json boolean is_disabled: Whether the add-on is disabled or not.
@@ -188,7 +188,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json string status: The :ref:`add-on status <addon-detail-status>`.
     :>json string|object|null summary: The add-on summary (See :ref:`translated fields <api-overview-translations>`). This field supports "linkification" and therefore might contain HTML hyperlinks.
     :>json string|object|null support_email: The add-on support email (See :ref:`translated fields <api-overview-translations>`).
-    :>json string|object|null support_url: The add-on support URL (See :ref:`translated fields <api-overview-translations>`).
+    :>json string|object|null support_url: The add-on support URL (See :ref:`translated fields <api-overview-translations>` and :ref:`Outgoing Links <api-overview-outgoing>`).
     :>json array tags: List containing the text of the tags set on the add-on.
     :>json string type: The :ref:`add-on type <addon-detail-type>`.
     :>json string url: The (absolute) add-on detail URL.

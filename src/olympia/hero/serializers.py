@@ -5,7 +5,7 @@ from rest_framework import serializers
 from olympia.addons.models import Addon
 from olympia.addons.serializers import AddonSerializer
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.urlresolvers import get_outgoing_url
+from olympia.api.fields import OutgoingURLField
 from olympia.discovery.serializers import DiscoveryAddonSerializer
 
 from .models import PrimaryHero, SecondaryHero, SecondaryHeroModule
@@ -48,27 +48,38 @@ class PrimaryHeroShelfSerializer(serializers.ModelSerializer):
             return str(obj.promoted_addon.addon.summary or '')
 
 
-class CTAMixin():
+class AbsoluteOutgoingURLField(OutgoingURLField):
+    def to_representation(self, obj):
+        return super().to_representation(absolutify(obj) if obj else obj)
 
-    def get_cta(self, obj):
+
+class CTAField(serializers.Serializer):
+    cta_url = AbsoluteOutgoingURLField()
+    cta_text = serializers.CharField()
+
+    def to_representation(self, obj):
         if obj.cta_url and obj.cta_text:
-            url = absolutify(obj.cta_url)
-            should_wrap = (
-                'request' in self.context and
-                'wrap_outgoing_links' in self.context['request'].GET)
-            return {
-                'url': get_outgoing_url(url) if should_wrap else url,
-                'text': ugettext(obj.cta_text),
-            }
+            data = super().to_representation(obj)
+            if isinstance(data.get('cta_url'), dict):
+                return {
+                    'url': data.get('cta_url', {}).get('url'),
+                    'outgoing': data.get('cta_url', {}).get('outgoing'),
+                    'text': data.get('cta_text'),
+                }
+            else:
+                # when 'wrap-outgoing-parameter' is on cta_url is a flat string
+                return {
+                    'url': data.get('cta_url'),
+                    'text': data.get('cta_text'),
+                }
         else:
             return None
 
 
-class SecondaryHeroShelfModuleSerializer(CTAMixin,
-                                         serializers.ModelSerializer):
+class SecondaryHeroShelfModuleSerializer(serializers.ModelSerializer):
     icon = serializers.CharField(source='icon_url')
     description = serializers.SerializerMethodField()
-    cta = serializers.SerializerMethodField()
+    cta = CTAField(source='*')
 
     class Meta:
         model = SecondaryHeroModule
@@ -78,10 +89,10 @@ class SecondaryHeroShelfModuleSerializer(CTAMixin,
         return ugettext(obj.description)
 
 
-class SecondaryHeroShelfSerializer(CTAMixin, serializers.ModelSerializer):
+class SecondaryHeroShelfSerializer(serializers.ModelSerializer):
     headline = serializers.SerializerMethodField()
     description = serializers.SerializerMethodField()
-    cta = serializers.SerializerMethodField()
+    cta = CTAField(source='*')
     modules = SecondaryHeroShelfModuleSerializer(many=True)
 
     class Meta:

@@ -22,7 +22,7 @@ and a single, randomly selected secondary hero shelf.
 .. http:get:: /api/v4/hero/
 
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
-    :query string wrap_outgoing_links: If this parameter is present, wrap outgoing links through ``outgoing.prod.mozaws.net`` (See :ref:`Outgoing Links <api-overview-outgoing>`)
+    :query string wrap_outgoing_links: (v3/v4 only) If this parameter is present, wrap outgoing links through ``outgoing.prod.mozaws.net`` (See :ref:`Outgoing Links <api-overview-outgoing>`)
     :>json object primary: A :ref:`primary hero shelf <primary-hero-shelf>`.
     :>json object secondary: A :ref:`secondary hero shelf <secondary-hero-shelf>`.
 
@@ -42,7 +42,7 @@ small number of shelves this endpoint is not paginated.
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :query boolean all: return all shelves - both enabled and disabled.  To be used internally to generate .po files containing the strings defined by the content team.
     :query string raw: If this parameter is present, don't localise description or fall-back to addon metadata.  To be used internally to generate .po files containing the strings defined by the content team.
-    :query string wrap_outgoing_links: If this parameter is present, wrap outgoing links through ``outgoing.prod.mozaws.net`` (See :ref:`Outgoing Links <api-overview-outgoing>`)
+    :query string wrap_outgoing_links: (v3/v4 only) If this parameter is present, wrap outgoing links through ``outgoing.prod.mozaws.net`` (See :ref:`Outgoing Links <api-overview-outgoing>`)
     :>json array results: The array containing the results for this query.
     :>json object results[].gradient: The background colors used for the gradient.
     :>json string results[].gradient.start: The starting color name for gradient - typically top or left. The name is from the `photon color variables <https://github.com/FirefoxUX/photon-colors/blob/master/photon-colors.scss>`_.
@@ -67,18 +67,18 @@ small number of shelves - and likely only one - this endpoint is not paginated.
 
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :query boolean all: return all shelves - both enabled and disabled.  To be used internally to generate .po files containing the strings defined by the content team.
-    :query string wrap_outgoing_links: If this parameter is present, wrap outgoing links through ``outgoing.prod.mozaws.net`` (See :ref:`Outgoing Links <api-overview-outgoing>`)
+    :query string wrap_outgoing_links: (v3/v4 only) If this parameter is present, wrap outgoing links through ``outgoing.prod.mozaws.net`` (See :ref:`Outgoing Links <api-overview-outgoing>`)
     :>json array results: The array containing the results for this query.
     :>json string results[].headline: The headline for this item.
     :>json string results[].description: The description for this item.
     :>json object|null results[].cta: The optional call to action link and text to be displayed with the item.
-    :>json string results[].cta.url: The url the call to action would link to.
+    :>json string|object|null results[].cta.url: The url the call to action would link to. (See :ref:`Outgoing Links <api-overview-outgoing>`)
     :>json string results[].cta.text: The call to action text.
     :>json array results[].modules: The modules for this shelf.  Should always be 3.
     :>json string results[].modules[].icon: The icon used to illustrate the item.
     :>json string results[].modules[].description: The description for this item.
     :>json object|null results[].modules[].cta: The optional call to action link and text to be displayed with the item.
-    :>json string results[].modules[].cta.url: The url the call to action would link to.
+    :>json string|object|null results[].modules[].cta.url: The url the call to action would link to. (See :ref:`Outgoing Links <api-overview-outgoing>`)
     :>json string results[].modules[].cta.text: The call to action text.
 
 
@@ -96,7 +96,7 @@ Current implementation relies on Adzerk to determine which addons are returned a
 
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :query int page_size: specify how many addons should be returned.  Defaults to 6.  Note: fewer addons could be returned if there are fewer than specifed sponsored addons currently, or the Adzerk service is unavailable.
-    :query string wrap_outgoing_links: If this parameter is present, wrap outgoing links through ``outgoing.prod.mozaws.net`` (See :ref:`Outgoing Links <api-overview-outgoing>`)
+    :query string wrap_outgoing_links: (v3/v4 only) If this parameter is present, wrap outgoing links through ``outgoing.prod.mozaws.net`` (See :ref:`Outgoing Links <api-overview-outgoing>`)
     :>json array results: The array containing the addon results for this query.  The object is a :ref:`add-on <addon-detail-object>` as returned by :ref:`add-on search endpoint <addon-search>` with an extra field of ``events``
     :>json object results[].event_data: contains data that for different events that can be recorded.
     :>json string results[].event_data.click: the signed data payload to send to the :ref:`event endpoint <sponsored-shelf-event>` that identifies the sponsored placement clicked on.

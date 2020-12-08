@@ -1,5 +1,3 @@
-from rest_framework.test import APIRequestFactory
-
 from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.blocklist.models import Block
@@ -24,7 +22,10 @@ class TestBlockSerializer(TestCase):
             'min_version': '45',
             'max_version': '*',
             'reason': 'something happened',
-            'url': 'https://goo.gol',
+            'url': {
+                'url': 'https://goo.gol',
+                'outgoing': get_outgoing_url('https://goo.gol'),
+            },
             'created': self.block.created.isoformat()[:-7] + 'Z',
             'modified': self.block.modified.isoformat()[:-7] + 'Z',
         }
@@ -34,15 +35,3 @@ class TestBlockSerializer(TestCase):
         serializer = BlockSerializer(instance=self.block)
         assert serializer.data['addon_name'] == {
             'en-US': 'Addón náme'}
-
-    def test_wrap_outgoing_links(self):
-        request = APIRequestFactory().get('/', {'wrap_outgoing_links': 1})
-        serializer = BlockSerializer(
-            instance=self.block, context={'request': request})
-
-        assert serializer.data['url'] == get_outgoing_url(self.block.url)
-
-        self.block.update(url='')
-        serializer = BlockSerializer(
-            instance=self.block, context={'request': request})
-        assert serializer.data['url'] == ''

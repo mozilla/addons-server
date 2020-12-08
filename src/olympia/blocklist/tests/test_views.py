@@ -14,43 +14,48 @@ class TestBlockViewSet(TestCase):
             reason='something happened',
             url='https://goo.gol',
             updated_by=user_factory())
+        self.url = reverse_ns(
+            'blocklist-block-detail',
+            api_version='v5',
+            args=(str(self.block.guid),)
+        )
 
     def test_get_pk(self):
-        url = reverse_ns('blocklist-block-detail', args=(str(self.block.id),))
-        response = self.client.get(url)
+        self.url = reverse_ns(
+            'blocklist-block-detail',
+            api_version='v5',
+            args=(str(self.block.id),)
+        )
+        response = self.client.get(self.url)
         assert response.status_code == 200
         assert response.json() == BlockSerializer(instance=self.block).data
 
     def test_get_guid(self):
-        url = reverse_ns('blocklist-block-detail', args=(self.block.guid,))
-        response = self.client.get(url)
+        response = self.client.get(self.url)
         assert response.status_code == 200
         assert response.json() == BlockSerializer(instance=self.block).data
 
-    def test_wrap_outgoing_links(self):
-        url = reverse_ns('blocklist-block-detail', args=(self.block.guid,))
-        response = self.client.get(url + '?wrap_outgoing_links')
+    def test_url(self):
+        response = self.client.get(self.url)
         assert response.status_code == 200
-        assert response.json()['url'] == get_outgoing_url(self.block.url)
+        assert response.json()['url'] == {
+            'url': self.block.url,
+            'outgoing': get_outgoing_url(self.block.url)}
 
     def test_addon_name(self):
-        url = reverse_ns(
-            'blocklist-block-detail',
-            args=(self.block.guid,),
-            api_version='v5')
         addon = addon_factory(
             guid=self.block.guid,
             name='English name',
             default_locale='en-CA')
         addon.name = {'fr': 'Lé name Francois'}
         addon.save()
-        response = self.client.get(url)
+        response = self.client.get(self.url)
         assert response.status_code == 200
         assert response.json()['addon_name'] == {
             'en-CA': 'English name',
             'fr': 'Lé name Francois'}
 
-        url += '?lang=de-DE'
+        url = self.url + '?lang=de-DE'
         response = self.client.get(url)
         assert response.json()['addon_name'] == {
             'en-CA': 'English name',

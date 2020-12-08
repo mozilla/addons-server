@@ -1,5 +1,7 @@
 import json
 
+from django.test.utils import override_settings
+
 from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import addon_factory, TestCase, reverse_ns
@@ -86,14 +88,17 @@ class TestPrimaryHeroShelfViewSet(TestCase):
                 PrimaryHeroShelfSerializer(instance=hero_a).data,
                 PrimaryHeroShelfSerializer(instance=hero_b).data,
                 PrimaryHeroShelfSerializer(instance=hero_external).data]}
+        results = response.json()['results']
         # double check the different serializer representations
-        assert response.json()['results'][0]['addon']['url'] == (
+        assert results[0]['addon']['url'] == (
             absolutify(hero_a.promoted_addon.addon.get_detail_url()))
-        assert response.json()['results'][2]['external']['homepage'] == {
-            'en-US': 'https://mozilla.org/'
-        }
+        assert results[2]['external']['homepage']['url'] == {
+            'en-US': 'https://mozilla.org/'}
+        assert 'outgoing.' in (
+            results[2]['external']['homepage']['outgoing']['en-US'])
 
-    def test_outgoing_wrapper(self):
+    @override_settings(DRF_API_GATES={'v5': ('wrap-outgoing-parameter',)})
+    def test_outgoing_wrapper_gate(self):
         PrimaryHero.objects.create(
             promoted_addon=PromotedAddon.objects.create(
                 addon=addon_factory(homepage='https://mozilla.org/')),
@@ -285,7 +290,8 @@ class TestSecondaryHeroShelfViewSet(TestCase):
                 SecondaryHeroShelfSerializer(instance=hero_a).data,
                 SecondaryHeroShelfSerializer(instance=hero_b).data]}
 
-    def test_outgoing_wrapper(self):
+    @override_settings(DRF_API_GATES={'v5': ('wrap-outgoing-parameter',)})
+    def test_outgoing_wrapper_gate(self):
         hero = SecondaryHero.objects.create(
             headline='%^*',
             description='',

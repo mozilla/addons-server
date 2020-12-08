@@ -1716,12 +1716,14 @@ DRF_API_GATES = {
         'is-source-public-shim',
         'is-featured-addon-shim',
         'disco-heading-and-description-shim',
+        'wrap-outgoing-parameter',
     ),
     'v4': (
         'l10n_flat_input_output',
         'addons-search-_score-field',
         'ratings-can_reply',
         'ratings-score-filter',
+        'wrap-outgoing-parameter',
     ),
     'v5': (
         'addons-search-_score-field',

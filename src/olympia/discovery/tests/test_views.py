@@ -234,20 +234,6 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
             assert result['is_recommendation'] is False
             self._check_disco_addon(result, discopane_items[i])
 
-    def test_with_wrap_outgoing_links(self):
-        response = self.client.get(
-            self.url, {'lang': 'en-US', 'wrap_outgoing_links': 'true'})
-        assert response.data
-
-        discopane_items = DiscoveryItem.objects.all().filter(
-            position__gt=0).order_by('position')
-        assert response.data['count'] == len(discopane_items)
-        assert response.data['results']
-
-        for i, result in enumerate(response.data['results']):
-            assert result['is_recommendation'] is False
-            self._check_disco_addon(result, discopane_items[i])
-
 
 @override_switch('disco-recommendations', active=True)
 class TestDiscoveryRecommendations(DiscoveryTestMixin, TestCase):
