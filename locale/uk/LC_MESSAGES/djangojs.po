@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-12-08 12:51+0000\n"
+"PO-Revision-Date: 2020-12-08 12:59+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
@@ -78,7 +78,7 @@ msgid "Unexpected server error while validating."
 msgstr "Під час засвідчення сталася неочікувана помилка сервера."
 
 msgid "Finished validating {0}"
-msgstr "Завершена перевірка {0}"
+msgstr "Завершено перевірку {0}"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "Час очікування затвердження вашого додатка завершився, він буде розглянутий вручну."
@@ -269,10 +269,10 @@ msgid "User Signups"
 msgstr "Реєстрації користувачів"
 
 msgid "Subscribers"
-msgstr "Користувачі"
+msgstr "Підписники"
 
 msgid "Ratings"
-msgstr "Рейтинги"
+msgstr "Оцінки"
 
 msgid "Sales"
 msgstr "Продажі"
@@ -657,7 +657,7 @@ msgstr "Інше"
 
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
-msgstr "Прийняти та встановити"
+msgstr "Погодитись і встановити"
 
 msgid "Add to {0}"
 msgstr "Додати до {0}"
