@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-10-13 16:43+0000\n"
+"PO-Revision-Date: 2020-12-08 12:51+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
@@ -27,9 +27,8 @@ msgstr "Виникла проблема під час спроби зв'язат
 msgid "Select a file..."
 msgstr "Виберіть файл..."
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi or .crx"
-msgstr "Розширення вашого додатка повинно бути .zip, .xpi, .crx або .xml"
+msgstr "Розширення вашого додатка повинно бути .zip, .xpi or .crx"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
