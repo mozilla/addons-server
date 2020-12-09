@@ -32,8 +32,11 @@ class ActivityFeedRSS(Feed):
         else:  # We are showing all the add-ons
             addons = key.user.addons.all()
 
-        return (ActivityLog.objects.for_addons(addons)
-                           .exclude(action__in=amo.LOG_HIDE_DEVELOPER))[:20]
+        return (
+            ActivityLog.objects.for_addons(addons).exclude(
+                action__in=amo.LOG_HIDE_DEVELOPER
+            )
+        )[:20]
 
     def item_title(self, item):
         return clean_html(item.to_string(), True)

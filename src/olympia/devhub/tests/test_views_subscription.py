@@ -23,9 +23,7 @@ class SubscriptionTestCase(TestCase):
         self.user = user_factory()
         self.dev_user = user_factory()
         self.addon = addon_factory(users=[self.user])
-        self.addon.addonuser_set.create(
-            user=self.dev_user, role=amo.AUTHOR_ROLE_DEV
-        )
+        self.addon.addonuser_set.create(user=self.dev_user, role=amo.AUTHOR_ROLE_DEV)
         self.promoted_addon = PromotedAddon.objects.create(
             addon=self.addon, group_id=VERIFIED.id
         )
@@ -60,7 +58,7 @@ class TestOnboardingSubscription(SubscriptionTestCase):
     def test_returns_404_when_subscription_has_been_cancelled(self):
         self.subscription.update(
             checkout_completed_at=datetime.datetime.now(),
-            cancelled_at=datetime.datetime.now()
+            cancelled_at=datetime.datetime.now(),
         )
 
         response = self.client.get(self.url)
@@ -84,16 +82,14 @@ class TestOnboardingSubscription(SubscriptionTestCase):
         assert self.subscription.link_visited_at is not None
         assert self.subscription.stripe_session_id == "session-id"
         assert (
-            response.context["stripe_session_id"] ==
-            self.subscription.stripe_session_id
+            response.context["stripe_session_id"] == self.subscription.stripe_session_id
         )
         assert response.context["addon"] == self.addon
         assert not response.context["stripe_checkout_completed"]
         assert not response.context["stripe_checkout_cancelled"]
         assert response.context["promoted_group"] == self.promoted_addon.group
         assert (
-            b"Thank you for joining the Promoted Add-ons Program!"
-            in response.content
+            b"Thank you for joining the Promoted Add-ons Program!" in response.content
         )
 
     @mock.patch("olympia.devhub.views.create_stripe_checkout_session")
@@ -234,9 +230,7 @@ class TestOnboardingSubscription(SubscriptionTestCase):
         assert response.status_code == 500
 
     @mock.patch("olympia.devhub.views.retrieve_stripe_checkout_session")
-    def test_shows_confirmation_after_payment_already_approved(
-        self, retrieve_mock
-    ):
+    def test_shows_confirmation_after_payment_already_approved(self, retrieve_mock):
         stripe_session_id = "session id"
         retrieve_mock.return_value = dict(id=stripe_session_id)
         self.subscription.update(
@@ -283,7 +277,7 @@ class TestOnboardingSubscriptionSuccess(SubscriptionTestCase):
     def test_returns_404_when_subscription_has_been_cancelled(self):
         self.subscription.update(
             checkout_completed_at=datetime.datetime.now(),
-            cancelled_at=datetime.datetime.now()
+            cancelled_at=datetime.datetime.now(),
         )
 
         response = self.client.get(self.url)
@@ -306,7 +300,8 @@ class TestOnboardingSubscriptionSuccess(SubscriptionTestCase):
     @mock.patch("olympia.devhub.views.retrieve_stripe_checkout_session")
     def test_get_records_payment_once(self, retrieve_mock):
         self.subscription.promoted_addon.approve_for_version(
-            self.subscription.promoted_addon.addon.current_version)
+            self.subscription.promoted_addon.addon.current_version
+        )
         stripe_subscription_id = "some-subscription-id"
         retrieve_mock.return_value = {
             "id": "session-id",
@@ -321,9 +316,7 @@ class TestOnboardingSubscriptionSuccess(SubscriptionTestCase):
 
         checkout_completed_at = self.subscription.checkout_completed_at
         assert checkout_completed_at is not None
-        assert (
-            self.subscription.stripe_subscription_id == stripe_subscription_id
-        )
+        assert self.subscription.stripe_subscription_id == stripe_subscription_id
 
         self.client.get(self.url)
         self.subscription.refresh_from_db()
@@ -331,21 +324,18 @@ class TestOnboardingSubscriptionSuccess(SubscriptionTestCase):
         # Make sure we don't update this date again.
         assert self.subscription.checkout_completed_at == checkout_completed_at
         assert not self.subscription.checkout_cancelled_at
-        assert (
-            self.subscription.stripe_subscription_id == stripe_subscription_id
-        )
+        assert self.subscription.stripe_subscription_id == stripe_subscription_id
 
     @mock.patch("olympia.devhub.views.retrieve_stripe_checkout_session")
-    def test_get_resets_payment_cancelled_date_after_success(
-        self, retrieve_mock
-    ):
+    def test_get_resets_payment_cancelled_date_after_success(self, retrieve_mock):
         retrieve_mock.return_value = {
             "id": "session-id",
             "payment_status": "paid",
             "subscription": "some-subscription-id",
         }
         self.subscription.promoted_addon.approve_for_version(
-            self.subscription.promoted_addon.addon.current_version)
+            self.subscription.promoted_addon.addon.current_version
+        )
 
         self.subscription.update(checkout_cancelled_at=datetime.datetime.now())
 
@@ -362,24 +352,21 @@ class TestOnboardingSubscriptionSuccess(SubscriptionTestCase):
             "subscription": "some-subscription-id",
         }
 
-        self.subscription.promoted_addon.addon.current_version.update(
-            version='123')
+        self.subscription.promoted_addon.addon.current_version.update(version='123')
         assert not self.subscription.promoted_addon.addon.promoted_group()
         with mock.patch("olympia.lib.crypto.tasks.sign_addons") as sign_mock:
             response = self.client.get(self.url, follow=True)
             sign_mock.assert_called()
         self.subscription.refresh_from_db()
-        assert (
-            self.subscription.promoted_addon.addon.promoted_group() == VERIFIED
-        )
+        assert self.subscription.promoted_addon.addon.promoted_group() == VERIFIED
         assert b'123.1-signed' in response.content
         assert b"currently pending review" not in response.content
 
         # the message is gone the second time
         response = self.client.get(
-            reverse(
-                TestOnboardingSubscription.url_name, args=[self.addon.slug]),
-            follow=True)
+            reverse(TestOnboardingSubscription.url_name, args=[self.addon.slug]),
+            follow=True,
+        )
         assert b"You're done" in response.content
         assert b'123.1-signed' not in response.content
 
@@ -393,8 +380,7 @@ class TestOnboardingSubscriptionSuccess(SubscriptionTestCase):
             "subscription": "some-subscription-id",
         }
 
-        self.subscription.promoted_addon.addon.current_version.update(
-            version='123')
+        self.subscription.promoted_addon.addon.current_version.update(version='123')
         # add a pending version we'll highlight too
         version_factory(
             addon=self.addon, file_kw={"status": amo.STATUS_AWAITING_REVIEW}
@@ -405,17 +391,15 @@ class TestOnboardingSubscriptionSuccess(SubscriptionTestCase):
             response = self.client.get(self.url, follow=True)
             sign_mock.assert_called()
         self.subscription.refresh_from_db()
-        assert (
-            self.subscription.promoted_addon.addon.promoted_group() == VERIFIED
-        )
+        assert self.subscription.promoted_addon.addon.promoted_group() == VERIFIED
         assert b'123.1-signed' in response.content
         assert b"currently pending review" in response.content
 
         # the message is gone the second time
         response = self.client.get(
-            reverse(
-                TestOnboardingSubscription.url_name, args=[self.addon.slug]),
-            follow=True)
+            reverse(TestOnboardingSubscription.url_name, args=[self.addon.slug]),
+            follow=True,
+        )
         assert b"You're done" in response.content
         assert b'123.1-signed' not in response.content
 
@@ -470,7 +454,7 @@ class TestOnboardingSubscriptionCancel(SubscriptionTestCase):
     def test_returns_404_when_subscription_has_been_cancelled(self):
         self.subscription.update(
             checkout_completed_at=datetime.datetime.now(),
-            cancelled_at=datetime.datetime.now()
+            cancelled_at=datetime.datetime.now(),
         )
 
         response = self.client.get(self.url)
@@ -551,7 +535,7 @@ class TestSubscriptionCustomerPortal(SubscriptionTestCase):
     def test_returns_404_when_subscription_has_been_cancelled(self):
         self.subscription.update(
             checkout_completed_at=datetime.datetime.now(),
-            cancelled_at=datetime.datetime.now()
+            cancelled_at=datetime.datetime.now(),
         )
 
         response = self.client.post(self.url)
@@ -560,9 +544,7 @@ class TestSubscriptionCustomerPortal(SubscriptionTestCase):
 
     @mock.patch("olympia.devhub.views.retrieve_stripe_subscription")
     @mock.patch("olympia.devhub.views.create_stripe_customer_portal")
-    def test_redirects_to_stripe_customer_portal(
-        self, create_mock, retrieve_mock
-    ):
+    def test_redirects_to_stripe_customer_portal(self, create_mock, retrieve_mock):
         customer_id = "some-customer-id"
         portal_url = "https://stripe-portal.example.org"
         retrieve_mock.return_value = {"customer": customer_id}
@@ -573,15 +555,11 @@ class TestSubscriptionCustomerPortal(SubscriptionTestCase):
         assert response.status_code == 302
         assert response["Location"] == portal_url
         retrieve_mock.assert_called_once_with(self.subscription)
-        create_mock.assert_called_once_with(
-            customer_id=customer_id, addon=self.addon
-        )
+        create_mock.assert_called_once_with(customer_id=customer_id, addon=self.addon)
 
     @mock.patch("olympia.devhub.views.retrieve_stripe_subscription")
     @mock.patch("olympia.devhub.views.create_stripe_customer_portal")
-    def test_get_returns_500_when_create_has_failed(
-        self, create_mock, retrieve_mock
-    ):
+    def test_get_returns_500_when_create_has_failed(self, create_mock, retrieve_mock):
         retrieve_mock.return_value = {"customer": "customer-id"}
         create_mock.side_effect = Exception("stripe error")
 

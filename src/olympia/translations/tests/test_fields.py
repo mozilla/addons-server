@@ -20,14 +20,17 @@ def test_translated_field_supports_migration():
         'charfield': TranslatedField(),
     }
 
-    migration = type(str('Migration'), (migrations.Migration,), {
-        'operations': [
-            migrations.CreateModel(
-                name='MyModel', fields=tuple(fields.items()),
-                bases=(models.Model,)
-            ),
-        ],
-    })
+    migration = type(
+        str('Migration'),
+        (migrations.Migration,),
+        {
+            'operations': [
+                migrations.CreateModel(
+                    name='MyModel', fields=tuple(fields.items()), bases=(models.Model,)
+                ),
+            ],
+        },
+    )
     writer = MigrationWriter(migration)
     output = writer.as_string()
 

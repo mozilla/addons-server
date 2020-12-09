@@ -40,8 +40,7 @@ def file_review_status(addon, file):
         # unreviewed.  Especially for versions.
         else:
             return ugettext(u'Rejected or Unreviewed')
-    return file.STATUS_CHOICES.get(
-        file.status, ugettext('[status:%s]') % file.status)
+    return file.STATUS_CHOICES.get(file.status, ugettext('[status:%s]') % file.status)
 
 
 @library.global_function
@@ -63,55 +62,58 @@ def queue_tabnav(context):
 
     if listed:
         tabnav = []
-        if acl.action_allowed(
-                request, amo.permissions.ADDONS_RECOMMENDED_REVIEW):
-            tabnav.append(
-                ('recommended', 'queue_recommended', ugettext('Recommended'))
-            )
+        if acl.action_allowed(request, amo.permissions.ADDONS_RECOMMENDED_REVIEW):
+            tabnav.append(('recommended', 'queue_recommended', ugettext('Recommended')))
         if acl.action_allowed(request, amo.permissions.ADDONS_REVIEW):
             tabnav.append(
-                ('extension', 'queue_extension',
-                 '🛠️ ' + ugettext('Other Pending Review'))
+                (
+                    'extension',
+                    'queue_extension',
+                    '🛠️ ' + ugettext('Other Pending Review'),
+                )
             )
             tabnav.append(
                 ('scanners', 'queue_scanners', ugettext('Flagged By Scanners'))
             )
-            tabnav.append(
-                ('mad', 'queue_mad', ugettext('Flagged for Human Review'))
-            )
+            tabnav.append(('mad', 'queue_mad', ugettext('Flagged for Human Review')))
         if acl.action_allowed(request, amo.permissions.STATIC_THEMES_REVIEW):
-            tabnav.extend((
-                ('theme_nominated', 'queue_theme_nominated',
-                 '🎨 ' + ugettext('New')),
-                ('theme_pending', 'queue_theme_pending',
-                 '🎨 ' + ugettext('Updates')),
-            ))
-        if acl.action_allowed(request, amo.permissions.RATINGS_MODERATE):
-            tabnav.append(
-                ('moderated', 'queue_moderated', ugettext('Rating Reviews'))
+            tabnav.extend(
+                (
+                    (
+                        'theme_nominated',
+                        'queue_theme_nominated',
+                        '🎨 ' + ugettext('New'),
+                    ),
+                    (
+                        'theme_pending',
+                        'queue_theme_pending',
+                        '🎨 ' + ugettext('Updates'),
+                    ),
+                )
             )
+        if acl.action_allowed(request, amo.permissions.RATINGS_MODERATE):
+            tabnav.append(('moderated', 'queue_moderated', ugettext('Rating Reviews')))
 
         if acl.action_allowed(request, amo.permissions.ADDONS_REVIEW):
             tabnav.append(
-                ('auto_approved', 'queue_auto_approved',
-                    ugettext('Auto Approved'))
+                ('auto_approved', 'queue_auto_approved', ugettext('Auto Approved'))
             )
 
         if acl.action_allowed(request, amo.permissions.ADDONS_CONTENT_REVIEW):
             tabnav.append(
-                ('content_review', 'queue_content_review',
-                    ugettext('Content Review'))
+                ('content_review', 'queue_content_review', ugettext('Content Review'))
             )
 
         if acl.action_allowed(request, amo.permissions.REVIEWS_ADMIN):
             tabnav.append(
-                ('pending_rejection', 'queue_pending_rejection',
-                    ugettext('Pending Rejection'))
+                (
+                    'pending_rejection',
+                    'queue_pending_rejection',
+                    ugettext('Pending Rejection'),
+                )
             )
     else:
-        tabnav = [
-            ('all', 'unlisted_queue_all', ugettext('All Unlisted Add-ons'))
-        ]
+        tabnav = [('all', 'unlisted_queue_all', ugettext('All Unlisted Add-ons'))]
 
     return tabnav
 
@@ -122,13 +124,16 @@ def queue_tabnav(context):
 def reviewers_score_bar(context, types=None, addon_type=None):
     user = context.get('user')
 
-    return new_context(dict(
-        request=context.get('request'),
-        amo=amo, settings=settings,
-        points=ReviewerScore.get_recent(user, addon_type=addon_type),
-        total=ReviewerScore.get_total(user),
-        **ReviewerScore.get_leaderboards(user, types=types,
-                                         addon_type=addon_type)))
+    return new_context(
+        dict(
+            request=context.get('request'),
+            amo=amo,
+            settings=settings,
+            points=ReviewerScore.get_recent(user, addon_type=addon_type),
+            total=ReviewerScore.get_total(user),
+            **ReviewerScore.get_leaderboards(user, types=types, addon_type=addon_type),
+        )
+    )
 
 
 @library.global_function
@@ -146,33 +151,42 @@ def all_distinct_files(context, version):
             hashes_to_file[file_.original_hash][1] += ' / ' + display_name
         else:
             hashes_to_file[file_.original_hash] = [file_, display_name]
-    return new_context(dict(
-        # This allows the template to call static().
-        BUILD_ID_IMG=context.get('BUILD_ID_IMG'),
-        # We don't need the hashes in the template.
-        distinct_files=hashes_to_file.values(),
-        amo=context.get('amo'),
-        addon=context.get('addon'),
-        latest_not_disabled_version=context.get('latest_not_disabled_version'),
-        # This allows the template to call waffle.flag().
-        request=context.get('request'),
-        base_version=context.get('base_version'),
-        version=version))
+    return new_context(
+        dict(
+            # This allows the template to call static().
+            BUILD_ID_IMG=context.get('BUILD_ID_IMG'),
+            # We don't need the hashes in the template.
+            distinct_files=hashes_to_file.values(),
+            amo=context.get('amo'),
+            addon=context.get('addon'),
+            latest_not_disabled_version=context.get('latest_not_disabled_version'),
+            # This allows the template to call waffle.flag().
+            request=context.get('request'),
+            base_version=context.get('base_version'),
+            version=version,
+        )
+    )
 
 
 @library.global_function
 def get_position(addon):
     if addon.status in amo.VALID_ADDON_STATUSES:
         # Look at all add-on versions which have files awaiting review.
-        qs = Version.objects.filter(addon__disabled_by_user=False,
-                                    files__status=amo.STATUS_AWAITING_REVIEW,
-                                    addon__status=addon.status)
+        qs = Version.objects.filter(
+            addon__disabled_by_user=False,
+            files__status=amo.STATUS_AWAITING_REVIEW,
+            addon__status=addon.status,
+        )
         if addon.type == amo.ADDON_STATICTHEME:
             qs = qs.filter(addon__type=amo.ADDON_STATICTHEME)
         else:
             qs = qs.exclude(addon__type=amo.ADDON_STATICTHEME)
-        qs = (qs.order_by('nomination', 'created').distinct()
-              .no_transforms().values_list('addon_id', flat=True))
+        qs = (
+            qs.order_by('nomination', 'created')
+            .distinct()
+            .no_transforms()
+            .values_list('addon_id', flat=True)
+        )
         position = 0
         for idx, addon_id in enumerate(qs, start=1):
             if addon_id == addon.id:
@@ -192,10 +206,8 @@ def is_expired_lock(context, lock):
 
 
 @library.global_function
-def code_manager_url(
-        page, addon_id, version_id, base_version_id=None):
-    return code_manager.code_manager_url(
-        page, addon_id, version_id, base_version_id)
+def code_manager_url(page, addon_id, version_id, base_version_id=None):
+    return code_manager.code_manager_url(page, addon_id, version_id, base_version_id)
 
 
 @library.global_function

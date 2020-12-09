@@ -10,7 +10,12 @@ from freezegun import freeze_time
 
 from olympia import amo
 from olympia.amo.tests import (
-    addon_factory, APITestClient, collection_factory, ESTestCase, reverse_ns)
+    addon_factory,
+    APITestClient,
+    collection_factory,
+    ESTestCase,
+    reverse_ns,
+)
 from olympia.bandwagon.models import CollectionAddon
 from olympia.constants.promoted import RECOMMENDED, SPONSORED, VERIFIED
 from olympia.promoted.models import PromotedAddon
@@ -29,17 +34,33 @@ class TestShelfViewSet(ESTestCase):
         cls.empty_index('default')
 
         addon_factory(
-            name='test addon test01', type=amo.ADDON_EXTENSION,
-            average_daily_users=46812, weekly_downloads=132, summary=None)
+            name='test addon test01',
+            type=amo.ADDON_EXTENSION,
+            average_daily_users=46812,
+            weekly_downloads=132,
+            summary=None,
+        )
         addon_factory(
-            name='test addon test02', type=amo.ADDON_STATICTHEME,
-            average_daily_users=18981, weekly_downloads=145, summary=None)
+            name='test addon test02',
+            type=amo.ADDON_STATICTHEME,
+            average_daily_users=18981,
+            weekly_downloads=145,
+            summary=None,
+        )
         addon_ext = addon_factory(
-            name='test addon test03', type=amo.ADDON_EXTENSION,
-            average_daily_users=482, weekly_downloads=506, summary=None)
+            name='test addon test03',
+            type=amo.ADDON_EXTENSION,
+            average_daily_users=482,
+            weekly_downloads=506,
+            summary=None,
+        )
         addon_theme = addon_factory(
-            name='test addon test04', type=amo.ADDON_STATICTHEME,
-            average_daily_users=8838, weekly_downloads=358, summary=None)
+            name='test addon test04',
+            type=amo.ADDON_STATICTHEME,
+            average_daily_users=8838,
+            weekly_downloads=358,
+            summary=None,
+        )
 
         PromotedAddon.objects.create(
             addon=addon_ext, group_id=RECOMMENDED.id
@@ -63,33 +84,34 @@ class TestShelfViewSet(ESTestCase):
             title='Recommended extensions',
             endpoint='search',
             criteria='?promoted=recommended&sort=random&type=extension',
-            footer_text='See more recommended extensions')
+            footer_text='See more recommended extensions',
+        )
         shelf_b = Shelf.objects.create(
             title='Enhanced privacy extensions',
             endpoint='collections',
             criteria='privacy-matters',
-            footer_text='See more enhanced privacy extensions')
+            footer_text='See more enhanced privacy extensions',
+        )
         shelf_c = Shelf.objects.create(
             title='Popular themes',
             endpoint='search',
             criteria='?sort=users&type=statictheme',
-            footer_text='See more popular themes')
+            footer_text='See more popular themes',
+        )
 
-        self.hpshelf_a = ShelfManagement.objects.create(
-            shelf=shelf_a,
-            position=3)
-        self.hpshelf_b = ShelfManagement.objects.create(
-            shelf=shelf_b,
-            position=2)
-        ShelfManagement.objects.create(
-            shelf=shelf_c,
-            position=1)
+        self.hpshelf_a = ShelfManagement.objects.create(shelf=shelf_a, position=3)
+        self.hpshelf_b = ShelfManagement.objects.create(shelf=shelf_b, position=2)
+        ShelfManagement.objects.create(shelf=shelf_c, position=1)
 
         self.search_url = reverse_ns('addon-search') + shelf_a.criteria
 
-        self.collections_url = reverse_ns('collection-addon-list', kwargs={
-            'user_pk': settings.TASK_USER_ID,
-            'collection_slug': shelf_b.criteria})
+        self.collections_url = reverse_ns(
+            'collection-addon-list',
+            kwargs={
+                'user_pk': settings.TASK_USER_ID,
+                'collection_slug': shelf_b.criteria,
+            },
+        )
 
     def test_no_enabled_shelves_empty_view(self):
         response = self.client.get(self.url)
@@ -100,7 +122,8 @@ class TestShelfViewSet(ESTestCase):
             'page_count': 1,
             'page_size': 25,
             'previous': None,
-            'results': []}
+            'results': [],
+        }
 
     def test_only_enabled_shelves_in_view(self):
         self.hpshelf_a.update(enabled=True)
@@ -120,23 +143,29 @@ class TestShelfViewSet(ESTestCase):
         assert result['results'][0]['endpoint'] == 'collections'
         assert result['results'][0]['criteria'] == 'privacy-matters'
         assert result['results'][0]['footer_text'] == (
-            'See more enhanced privacy extensions')
+            'See more enhanced privacy extensions'
+        )
         assert result['results'][0]['footer_pathname'] == ''
         assert result['results'][0]['addons'][0]['addon']['name']['en-US'] == (
-            'test addon privacy01')
+            'test addon privacy01'
+        )
 
         assert result['results'][1]['title'] == 'Recommended extensions'
         assert result['results'][1]['url'] == self.search_url
         assert result['results'][1]['endpoint'] == 'search'
         assert result['results'][1]['criteria'] == (
-            '?promoted=recommended&sort=random&type=extension')
+            '?promoted=recommended&sort=random&type=extension'
+        )
         assert result['results'][1]['footer_text'] == (
-            'See more recommended extensions')
+            'See more recommended extensions'
+        )
         assert result['results'][1]['footer_pathname'] == ''
         assert result['results'][1]['addons'][0]['name']['en-US'] == (
-            'test addon test03')
+            'test addon test03'
+        )
         assert result['results'][1]['addons'][0]['promoted']['category'] == (
-            'recommended')
+            'recommended'
+        )
         assert result['results'][1]['addons'][0]['type'] == 'extension'
 
 
@@ -149,21 +178,23 @@ class TestSponsoredShelfViewSet(ESTestCase):
 
     def populate_es(self, refresh=True):
         self.sponsored_ext = addon_factory(
-            name='test addon test01', type=amo.ADDON_EXTENSION)
-        self.make_addon_promoted(
-            self.sponsored_ext, SPONSORED, approve_version=True)
+            name='test addon test01', type=amo.ADDON_EXTENSION
+        )
+        self.make_addon_promoted(self.sponsored_ext, SPONSORED, approve_version=True)
         self.sponsored_theme = addon_factory(
-            name='test addon test02', type=amo.ADDON_STATICTHEME)
-        self.make_addon_promoted(
-            self.sponsored_theme, SPONSORED, approve_version=True)
+            name='test addon test02', type=amo.ADDON_STATICTHEME
+        )
+        self.make_addon_promoted(self.sponsored_theme, SPONSORED, approve_version=True)
         self.verified_ext = addon_factory(
-            name='test addon test03', type=amo.ADDON_EXTENSION)
-        self.make_addon_promoted(
-            self.verified_ext, VERIFIED, approve_version=True)
+            name='test addon test03', type=amo.ADDON_EXTENSION
+        )
+        self.make_addon_promoted(self.verified_ext, VERIFIED, approve_version=True)
         self.recommended_ext = addon_factory(
-            name='test addon test04', type=amo.ADDON_EXTENSION)
+            name='test addon test04', type=amo.ADDON_EXTENSION
+        )
         self.make_addon_promoted(
-            self.recommended_ext, RECOMMENDED, approve_version=True)
+            self.recommended_ext, RECOMMENDED, approve_version=True
+        )
         self.not_promoted = addon_factory(name='test addon test04')
         if refresh:
             self.refresh()
@@ -173,8 +204,16 @@ class TestSponsoredShelfViewSet(ESTestCase):
         self.empty_index('default')
         self.refresh()
 
-    def perform_search(self, *, url=None, data=None, expected_status=200,
-                       expected_queries=0, page_size=6, **headers):
+    def perform_search(
+        self,
+        *,
+        url=None,
+        data=None,
+        expected_status=200,
+        expected_queries=0,
+        page_size=6,
+        **headers,
+    ):
         url = url or self.url
         with self.assertNumQueries(expected_queries):
             response = self.client.get(url, data, **headers)
@@ -184,8 +223,7 @@ class TestSponsoredShelfViewSet(ESTestCase):
         assert data['previous'] is None
         assert data['page_size'] == page_size
         assert data['page_count'] == 1
-        assert data['impression_url'] == reverse_ns(
-            'sponsored-shelf-impression')
+        assert data['impression_url'] == reverse_ns('sponsored-shelf-impression')
         return data
 
     def test_no_adzerk_addons(self):
@@ -207,11 +245,13 @@ class TestSponsoredShelfViewSet(ESTestCase):
                 str(self.sponsored_ext.id): {
                     'impression': '123456',
                     'click': 'abcdef',
-                    'conversion': 'ddfdfdf'},
+                    'conversion': 'ddfdfdf',
+                },
                 str(self.sponsored_theme.id): {
                     'impression': '012345',
                     'click': 'bcdefg',
-                    'conversion': 'eeer'},
+                    'conversion': 'eeer',
+                },
             }
             data = self.perform_search()
             get.assert_called_with(6), get.call_args
@@ -219,7 +259,9 @@ class TestSponsoredShelfViewSet(ESTestCase):
         assert len(data['results']) == 2
         assert data['impression_data'] == signer.sign('123456,012345')
         assert {itm['id'] for itm in data['results']} == {
-            self.sponsored_ext.pk, self.sponsored_theme.pk}
+            self.sponsored_ext.pk,
+            self.sponsored_theme.pk,
+        }
 
     @freeze_time('2020-01-01')
     def test_adzerk_returns_none_sponsored(self):
@@ -227,38 +269,32 @@ class TestSponsoredShelfViewSet(ESTestCase):
         signer = TimestampSigner()
         log_msg = (
             'Addon id [%s] returned from Adzerk, but not in a valid Promoted '
-            'group [%s]')
+            'group [%s]'
+        )
         log_groups = 'Sponsored; Verified; By Firefox'
         with mock.patch('olympia.shelves.views.get_addons_from_adzerk') as get:
             get.return_value = {
-                str(self.sponsored_ext.id): {
-                    'impression': '123456',
-                    'click': 'abcdef'},
+                str(self.sponsored_ext.id): {'impression': '123456', 'click': 'abcdef'},
                 str(self.sponsored_theme.id): {
                     'impression': '012345',
-                    'click': 'bcdefg'},
-                str(self.verified_ext.id): {
-                    'impression': '55656',
-                    'click': 'efef'},
-                str(self.recommended_ext.id): {
-                    'impression': '9494',
-                    'click': '4839'},
-                str(self.not_promoted.id): {
-                    'impression': '735754',
-                    'click': 'jydh'},
-                '0': {
-                    'impression': '',
-                    'click': ''},
+                    'click': 'bcdefg',
+                },
+                str(self.verified_ext.id): {'impression': '55656', 'click': 'efef'},
+                str(self.recommended_ext.id): {'impression': '9494', 'click': '4839'},
+                str(self.not_promoted.id): {'impression': '735754', 'click': 'jydh'},
+                '0': {'impression': '', 'click': ''},
             }
             with mock.patch('django_statsd.clients.statsd.incr') as incr_mock:
                 with mock.patch('olympia.shelves.views.log.error') as log_mock:
                     data = self.perform_search()
             incr_mock.assert_any_call('services.adzerk.elasticsearch_miss', 3)
-            log_mock.assert_has_calls((
-                mock.call(log_msg, str(self.recommended_ext.id), log_groups),
-                mock.call(log_msg, str(self.not_promoted.id), log_groups),
-                mock.call(log_msg, '0', log_groups),
-            ))
+            log_mock.assert_has_calls(
+                (
+                    mock.call(log_msg, str(self.recommended_ext.id), log_groups),
+                    mock.call(log_msg, str(self.not_promoted.id), log_groups),
+                    mock.call(log_msg, '0', log_groups),
+                )
+            )
             get.assert_called_with(6)
         # non .can_be_returned_from_azerk are ignored
         assert data['count'] == 3
@@ -272,10 +308,8 @@ class TestSponsoredShelfViewSet(ESTestCase):
 
     def test_order(self):
         self.populate_es(False)
-        another_ext = addon_factory(
-            name='test addon test01', type=amo.ADDON_EXTENSION)
-        self.make_addon_promoted(
-            another_ext, SPONSORED, approve_version=True)
+        another_ext = addon_factory(name='test addon test01', type=amo.ADDON_EXTENSION)
+        self.make_addon_promoted(another_ext, SPONSORED, approve_version=True)
         self.refresh()
         adzerk_results = {
             str(another_ext.id): {},
@@ -287,20 +321,25 @@ class TestSponsoredShelfViewSet(ESTestCase):
             data = self.perform_search()
         assert data['count'] == 3 == len(data['results'])
         assert {itm['id'] for itm in data['results']} == {
-            another_ext.pk, self.sponsored_ext.pk, self.sponsored_theme.pk}
+            another_ext.pk,
+            self.sponsored_ext.pk,
+            self.sponsored_theme.pk,
+        }
 
         with mock.patch('olympia.shelves.views.get_addons_from_adzerk') as get:
             get.return_value = dict(reversed(adzerk_results.items()))
             data = self.perform_search()
         assert data['count'] == 3 == len(data['results'])
         assert {itm['id'] for itm in data['results']} == {
-            self.sponsored_theme.pk, self.sponsored_ext.pk, another_ext.pk}
+            self.sponsored_theme.pk,
+            self.sponsored_ext.pk,
+            another_ext.pk,
+        }
 
     def test_page_size(self):
         with mock.patch('olympia.shelves.views.get_addons_from_adzerk') as get:
             get.return_value = {}
-            data = self.perform_search(
-                url=self.url + '?page_size=4', page_size=4)
+            data = self.perform_search(url=self.url + '?page_size=4', page_size=4)
             get.assert_called_with(4)
         assert data['count'] == 0
         assert len(data['results']) == 0
@@ -325,10 +364,12 @@ class TestSponsoredShelfViewSet(ESTestCase):
         data = signer.sign(','.join(impressions))
         response = self.client.post(url, {'impression_data': data})
         assert response.status_code == 202
-        ping_mock.assert_has_calls([
-            mock.call(
-                f'https://e-10521.adzerk.net/{im}', type='impression')
-            for im in impressions])
+        ping_mock.assert_has_calls(
+            [
+                mock.call(f'https://e-10521.adzerk.net/{im}', type='impression')
+                for im in impressions
+            ]
+        )
         assert response.content == b''
 
         # good data but stale
@@ -360,7 +401,8 @@ class TestSponsoredShelfViewSet(ESTestCase):
         response = self.client.post(url, {'click_data': data})
         assert response.status_code == 202, response.content
         ping_mock.assert_called_with(
-            f'https://e-10521.adzerk.net/{click}', type='click')
+            f'https://e-10521.adzerk.net/{click}', type='click'
+        )
         assert response.content == b''
 
         # good data but stale
@@ -381,8 +423,7 @@ class TestSponsoredShelfViewSet(ESTestCase):
         ping_mock.assert_not_called()
 
         # bad data
-        response = self.client.post(
-            url, {'type': 'conversion', 'data': 'r?dfdfd:3434'})
+        response = self.client.post(url, {'type': 'conversion', 'data': 'r?dfdfd:3434'})
         assert response.status_code == 400
         ping_mock.assert_not_called()
 
@@ -393,7 +434,8 @@ class TestSponsoredShelfViewSet(ESTestCase):
         response = self.client.post(url, {'type': 'conversion', 'data': data})
         assert response.status_code == 202, response.content
         ping_mock.assert_called_with(
-            f'https://e-10521.adzerk.net/{raw_data}', type='conversion')
+            f'https://e-10521.adzerk.net/{raw_data}', type='conversion'
+        )
         assert response.content == b''
 
         # good data but bad type
@@ -406,7 +448,6 @@ class TestSponsoredShelfViewSet(ESTestCase):
         with freeze_time('2020-01-01') as freezer:
             data = signer.sign(raw_data)
             freezer.tick(delta=timedelta(days=1, minutes=1))
-            response = self.client.post(
-                url, {'type': 'conversion', 'data': raw_data})
+            response = self.client.post(url, {'type': 'conversion', 'data': raw_data})
             assert response.status_code == 400
             ping_mock.assert_not_called()

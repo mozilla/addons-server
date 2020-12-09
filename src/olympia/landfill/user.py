@@ -17,5 +17,6 @@ def generate_user(email):
     """Generate a UserProfile given the `email` provided."""
     username = slugify(email)
     user, _ = UserProfile.objects.get_or_create(
-        email=email, defaults={'username': username})
+        email=email, defaults={'username': username}
+    )
     return user

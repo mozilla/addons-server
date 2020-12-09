@@ -4,7 +4,7 @@ from olympia.shelves.forms import ShelfForm
 
 
 class ShelfAdmin(admin.ModelAdmin):
-    list_display = ('title', )
+    list_display = ('title',)
     actions = ['delete_selected']
     form = ShelfForm
 

@@ -8,7 +8,6 @@ from olympia.amo.urlresolvers import reverse
 
 
 class TagManager(ManagerBase):
-
     def not_denied(self):
         """Get allowed tags only"""
         return self.filter(denied=False)
@@ -20,7 +19,8 @@ class Tag(ModelBase):
     denied = models.BooleanField(default=False)
     restricted = models.BooleanField(default=False)
     addons = models.ManyToManyField(
-        'addons.Addon', through='AddonTag', related_name='tags')
+        'addons.Addon', through='AddonTag', related_name='tags'
+    )
     num_addons = models.IntegerField(default=0)
 
     objects = TagManager()
@@ -29,12 +29,11 @@ class Tag(ModelBase):
         db_table = 'tags'
         ordering = ('tag_text',)
         indexes = [
-            models.Index(fields=('denied', 'num_addons'),
-                         name='tag_blacklisted_num_addons_idx')
+            models.Index(
+                fields=('denied', 'num_addons'), name='tag_blacklisted_num_addons_idx'
+            )
         ]
-        constraints = [
-            models.UniqueConstraint(fields=('tag_text',), name='tag_text')
-        ]
+        constraints = [models.UniqueConstraint(fields=('tag_text',), name='tag_text')]
 
     def __str__(self):
         return self.tag_text
@@ -75,9 +74,9 @@ class Tag(ModelBase):
 class AddonTag(ModelBase):
     id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey(
-        'addons.Addon', related_name='addon_tags', on_delete=models.CASCADE)
-    tag = models.ForeignKey(
-        Tag, related_name='addon_tags', on_delete=models.CASCADE)
+        'addons.Addon', related_name='addon_tags', on_delete=models.CASCADE
+    )
+    tag = models.ForeignKey(Tag, related_name='addon_tags', on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'users_tags_addons'
@@ -92,6 +91,7 @@ class AddonTag(ModelBase):
 
 def update_tag_stat_signal(sender, instance, **kw):
     from .tasks import update_tag_stat
+
     if not kw.get('raw'):
         try:
             update_tag_stat.delay(instance.tag.pk)
@@ -99,7 +99,9 @@ def update_tag_stat_signal(sender, instance, **kw):
             pass
 
 
-models.signals.post_save.connect(update_tag_stat_signal, sender=AddonTag,
-                                 dispatch_uid='update_tag_stat')
-models.signals.post_delete.connect(update_tag_stat_signal, sender=AddonTag,
-                                   dispatch_uid='delete_tag_stat')
+models.signals.post_save.connect(
+    update_tag_stat_signal, sender=AddonTag, dispatch_uid='update_tag_stat'
+)
+models.signals.post_delete.connect(
+    update_tag_stat_signal, sender=AddonTag, dispatch_uid='delete_tag_stat'
+)

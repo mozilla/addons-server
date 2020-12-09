@@ -16,23 +16,21 @@ def test_make_key():
         assert make_key(u'é@øel', with_locale=False) == u'é@øel'
 
     with translation.override('en-US'):
-        assert (
-            make_key(u'é@øel', normalize=True) ==
-            '2798e65bbe384320c9da7930e93e63fb')
+        assert make_key(u'é@øel', normalize=True) == '2798e65bbe384320c9da7930e93e63fb'
 
     assert (
-        make_key(u'é@øel', with_locale=False, normalize=True) ==
-        'a83feada27737072d4ec741640368f07')
+        make_key(u'é@øel', with_locale=False, normalize=True)
+        == 'a83feada27737072d4ec741640368f07'
+    )
 
     with translation.override('fr'):
-        assert (
-            make_key(u'é@øel', normalize=True) ==
-            'bc5208e905c8dfcc521e4196e16cfa1a')
+        assert make_key(u'é@øel', normalize=True) == 'bc5208e905c8dfcc521e4196e16cfa1a'
 
 
 def test_memoize_key():
     assert memoize_key('foo', ['a', 'b'], {'c': 'e'}) == (
-        'memoize:foo:9666a2a48c17dc1c308fb327c2a6e3a8')
+        'memoize:foo:9666a2a48c17dc1c308fb327c2a6e3a8'
+    )
 
 
 def test_memoize():

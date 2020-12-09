@@ -40,15 +40,13 @@ class TestHomeAndIndex(TestCase):
         # Redirected because no permissions if not logged in.
         self.client.logout()
         response = self.client.get(url)
-        self.assert3xx(response, '/admin/models/login/?'
-                                 'next=/en-US/admin/models/')
+        self.assert3xx(response, '/admin/models/login/?' 'next=/en-US/admin/models/')
 
         # Redirected when logged in without enough permissions.
         user = user_factory(username='staffperson', email='staffperson@m.c')
         self.client.login(email=user.email)
         response = self.client.get(url)
-        self.assert3xx(response, '/admin/models/login/?'
-                                 'next=/en-US/admin/models/')
+        self.assert3xx(response, '/admin/models/login/?' 'next=/en-US/admin/models/')
 
         # Can access with a "is_staff" user.
         user.update(email='someone@mozilla.com')
@@ -117,13 +115,16 @@ class TestRecalculateHash(TestCase):
         super().setUp()
         self.client.login(email='admin@mozilla.com')
 
-    @mock.patch.object(File, 'file_path',
-                       amo.tests.AMOPaths().file_fixture_path(
-                           'delicious_bookmarks-2.1.106-fx.xpi'))
+    @mock.patch.object(
+        File,
+        'file_path',
+        amo.tests.AMOPaths().file_fixture_path('delicious_bookmarks-2.1.106-fx.xpi'),
+    )
     def test_regenerate_hash(self):
         version = Version.objects.create(addon_id=3615)
         file = File.objects.create(
-            filename='delicious_bookmarks-2.1.106-fx.xpi', version=version)
+            filename='delicious_bookmarks-2.1.106-fx.xpi', version=version
+        )
 
         r = self.client.post(reverse('zadmin.recalc_hash', args=[file.id]))
         assert json.loads(r.content)[u'success'] == 1
@@ -133,14 +134,17 @@ class TestRecalculateHash(TestCase):
         assert file.size, 'File size should not be zero'
         assert file.hash, 'File hash should not be empty'
 
-    @mock.patch.object(File, 'file_path',
-                       amo.tests.AMOPaths().file_fixture_path(
-                           'delicious_bookmarks-2.1.106-fx.xpi'))
+    @mock.patch.object(
+        File,
+        'file_path',
+        amo.tests.AMOPaths().file_fixture_path('delicious_bookmarks-2.1.106-fx.xpi'),
+    )
     def test_regenerate_hash_get(self):
         """ Don't allow GET """
         version = Version.objects.create(addon_id=3615)
         file = File.objects.create(
-            filename='delicious_bookmarks-2.1.106-fx.xpi', version=version)
+            filename='delicious_bookmarks-2.1.106-fx.xpi', version=version
+        )
 
         r = self.client.get(reverse('zadmin.recalc_hash', args=[file.id]))
         assert r.status_code == 405  # GET out of here
@@ -154,8 +158,10 @@ class TestPerms(TestCase):
     def assert_status(self, view, status, follow=False, **kw):
         """Check that requesting the named view returns the expected status."""
 
-        assert self.client.get(
-            reverse(view, kwargs=kw), follow=follow).status_code == status
+        assert (
+            self.client.get(reverse(view, kwargs=kw), follow=follow).status_code
+            == status
+        )
 
     def test_admin_user(self):
         # Admin should see views with Django's perm decorator and our own.
@@ -178,4 +184,5 @@ class TestPerms(TestCase):
         self.client.logout()
         self.assert3xx(
             self.client.get(reverse('admin:index')),
-            '/admin/models/login/?next=/en-US/admin/models/')
+            '/admin/models/login/?next=/en-US/admin/models/',
+        )

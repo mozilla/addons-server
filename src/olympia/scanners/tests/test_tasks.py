@@ -109,9 +109,7 @@ class TestRunScanner(UploadTest, TestCase):
         incr_mock.assert_has_calls(
             [
                 mock.call('devhub.{}.has_matches'.format(scanner_name)),
-                mock.call(
-                    'devhub.{}.rule.{}.match'.format(scanner_name, rule.id)
-                ),
+                mock.call('devhub.{}.rule.{}.match'.format(scanner_name, rule.id)),
                 mock.call('devhub.{}.success'.format(scanner_name)),
             ]
         )
@@ -592,8 +590,8 @@ class TestRunYara(UploadTest, TestCase):
             name='match_png',
             scanner=YARA,
             definition='rule match_png { '
-                       'strings: $png = { 89 50 4E 47 0D 0A 1A 0A } '
-                       'condition: $png at 0 }',
+            'strings: $png = { 89 50 4E 47 0D 0A 1A 0A } '
+            'condition: $png at 0 }',
         )
 
         received_results = run_yara(self.results, self.upload.pk)
@@ -621,8 +619,8 @@ class TestRunYara(UploadTest, TestCase):
             name='match_png',
             scanner=YARA,
             definition='rule match_png { '
-                       'strings: $png = { 89 50 4E 47 0D 0A 1A 0A } '
-                       'condition: $png at 0 }',
+            'strings: $png = { 89 50 4E 47 0D 0A 1A 0A } '
+            'condition: $png at 0 }',
         )
 
         received_results = run_yara(self.results, self.upload.pk)
@@ -639,9 +637,7 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
     def setUp(self):
         super().setUp()
 
-        self.version = addon_factory(
-            file_kw={'is_webextension': True}
-        ).current_version
+        self.version = addon_factory(file_kw={'is_webextension': True}).current_version
         self.xpi_copy_over(self.version.all_files[0], 'webextension.xpi')
 
         # This rule will match for all files in the xpi.
@@ -686,9 +682,7 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
             # Listed webextension versions of an add-on that has multiple
             # versions.
             other_addon_previous_current_version,
-            version_factory(
-                addon=other_addon, file_kw={'is_webextension': True}
-            ),
+            version_factory(addon=other_addon, file_kw={'is_webextension': True}),
         ]
         # Ignored versions:
         # Listed Webextension version belonging to mozilla disabled add-on.
@@ -790,9 +784,7 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
 
     def test_run_on_chunk_was_blocked(self):
         self.rule.update(state=RUNNING)  # Pretend we started running the rule.
-        Block.objects.create(
-            guid=self.version.addon.guid, updated_by=user_factory()
-        )
+        Block.objects.create(guid=self.version.addon.guid, updated_by=user_factory())
         run_yara_query_rule_on_versions_chunk([self.version.pk], self.rule.pk)
 
         yara_results = ScannerQueryResult.objects.all()
@@ -805,11 +797,13 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         self.rule.update(state=RUNNING)  # Pretend we started running the rule.
         self.version.update(version='2.0')
         Block.objects.create(
-            guid=self.version.addon.guid, updated_by=user_factory(),
+            guid=self.version.addon.guid,
+            updated_by=user_factory(),
             max_version='1.0',
         )
         Block.objects.create(
-            guid='@differentguid', updated_by=user_factory(),
+            guid='@differentguid',
+            updated_by=user_factory(),
         )
         run_yara_query_rule_on_versions_chunk([self.version.pk], self.rule.pk)
 
@@ -882,8 +876,7 @@ class TestCallMadApi(UploadTest, TestCase):
     @mock.patch('olympia.scanners.tasks.statsd.timer')
     @mock.patch('olympia.scanners.tasks.statsd.incr')
     @mock.patch.object(requests.Session, 'post')
-    def test_call_with_mocks(self, requests_mock, incr_mock, timer_mock,
-                             uuid4_mock):
+    def test_call_with_mocks(self, requests_mock, incr_mock, timer_mock, uuid4_mock):
         model_version = 'x.y.z'
         ml_results = {
             'ensemble': 0.56,
@@ -907,9 +900,7 @@ class TestCallMadApi(UploadTest, TestCase):
             timeout=settings.MAD_API_TIMEOUT,
             headers={'x-request-id': requestId},
         )
-        assert (
-            len(ScannerResult.objects.all()) == self.default_results_count + 1
-        )
+        assert len(ScannerResult.objects.all()) == self.default_results_count + 1
         mad_result = ScannerResult.objects.latest()
         assert mad_result.upload == self.upload
         assert mad_result.scanner == MAD

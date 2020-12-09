@@ -38,11 +38,14 @@ def get_fxa_token(code, config):
     """
     log.info('Getting token [{code}]'.format(code=code))
     with statsd.timer('accounts.fxa.identify.token'):
-        response = requests.post(settings.FXA_OAUTH_HOST + '/token', data={
-            'code': code,
-            'client_id': config['client_id'],
-            'client_secret': config['client_secret'],
-        })
+        response = requests.post(
+            settings.FXA_OAUTH_HOST + '/token',
+            data={
+                'code': code,
+                'client_id': config['client_id'],
+                'client_secret': config['client_secret'],
+            },
+        )
     if response.status_code == 200:
         data = response.json()
         if data.get('access_token'):
@@ -51,13 +54,17 @@ def get_fxa_token(code, config):
         else:
             log.info('No token returned [{code}]'.format(code=code))
             raise IdentificationError(
-                'No access token returned for {code}'.format(code=code))
+                'No access token returned for {code}'.format(code=code)
+            )
     else:
         log.info(
             'Token returned non-200 status {status} {body} [{code}]'.format(
-                code=code, status=response.status_code, body=response.content))
+                code=code, status=response.status_code, body=response.content
+            )
+        )
         raise IdentificationError(
-            'Could not get access token for {code}'.format(code=code))
+            'Could not get access token for {code}'.format(code=code)
+        )
 
 
 def get_fxa_profile(token, config):
@@ -65,9 +72,10 @@ def get_fxa_profile(token, config):
     corresponding user."""
     with statsd.timer('accounts.fxa.identify.profile'):
         response = requests.get(
-            settings.FXA_PROFILE_HOST + '/profile', headers={
+            settings.FXA_PROFILE_HOST + '/profile',
+            headers={
                 'Authorization': 'Bearer {token}'.format(token=token),
-            }
+            },
         )
     if response.status_code == 200:
         profile = response.json()
@@ -75,10 +83,15 @@ def get_fxa_profile(token, config):
             return profile
         else:
             log.info('Incomplete profile {profile}'.format(profile=profile))
-            raise IdentificationError('Profile incomplete for {token}'.format(
-                token=token))
+            raise IdentificationError(
+                'Profile incomplete for {token}'.format(token=token)
+            )
     else:
-        log.info('Profile returned non-200 status {status} {body}'.format(
-            status=response.status_code, body=response.content))
-        raise IdentificationError('Could not find profile for {token}'.format(
-            token=token))
+        log.info(
+            'Profile returned non-200 status {status} {body}'.format(
+                status=response.status_code, body=response.content
+            )
+        )
+        raise IdentificationError(
+            'Could not find profile for {token}'.format(token=token)
+        )

@@ -26,15 +26,13 @@ log = logger.getLogger('z.versions.utils')
 def get_next_version_number(addon):
     if not addon:
         return '1.0'
-    last_version = (
-        Version.unfiltered.filter(addon=addon).order_by('id').last())
+    last_version = Version.unfiltered.filter(addon=addon).order_by('id').last()
     version_dict = compare.version_dict(last_version.version)
 
     version_counter = 1
     while True:
         next_version = '%s.0' % (version_dict['major'] + version_counter)
-        if not Version.unfiltered.filter(addon=addon,
-                                         version=next_version).exists():
+        if not Version.unfiltered.filter(addon=addon, version=next_version).exists():
             return next_version
         else:
             version_counter += 1
@@ -43,8 +41,11 @@ def get_next_version_number(addon):
 def write_svg_to_png(svg_content, out):
     # when settings.DEBUG is on (i.e. locally) don't delete the svgs.
     tmp_args = {
-        'dir': settings.TMP_PATH, 'mode': 'wb', 'suffix': '.svg',
-        'delete': not settings.DEBUG}
+        'dir': settings.TMP_PATH,
+        'mode': 'wb',
+        'suffix': '.svg',
+        'delete': not settings.DEBUG,
+    }
     with tempfile.NamedTemporaryFile(**tmp_args) as temporary_svg:
         temporary_svg.write(svg_content)
         temporary_svg.flush()
@@ -54,7 +55,8 @@ def write_svg_to_png(svg_content, out):
                 os.makedirs(os.path.dirname(out))
             command = [
                 settings.RSVG_CONVERT_BIN,
-                '--output', out,
+                '--output',
+                out,
                 temporary_svg.name,
             ]
             subprocess.check_call(command)
@@ -79,7 +81,9 @@ def encode_header(header_blob, file_ext):
                 (width, height) = header_image.size
                 img_format = header_image.format.lower()
         src = 'data:image/%s;base64,%s' % (
-            img_format, force_text(b64encode(header_blob)))
+            img_format,
+            force_text(b64encode(header_blob)),
+        )
     except (IOError, ValueError, TypeError, lxml.etree.XMLSyntaxError) as err:
         log.info(err)
         return (None, 0, 0)
@@ -87,7 +91,6 @@ def encode_header(header_blob, file_ext):
 
 
 class AdditionalBackground(object):
-
     @classmethod
     def split_alignment(cls, alignment):
         alignments = alignment.split()

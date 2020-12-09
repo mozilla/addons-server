@@ -33,8 +33,12 @@ from olympia.files.utils import SafeZip
 from olympia.versions.models import Version
 
 from .models import (
-    ImproperScannerQueryRuleStateError, ScannerQueryResult, ScannerQueryRule,
-    ScannerResult, ScannerRule)
+    ImproperScannerQueryRuleStateError,
+    ScannerQueryResult,
+    ScannerQueryRule,
+    ScannerResult,
+    ScannerRule,
+)
 
 
 log = olympia.core.logger.getLogger('z.scanners.task')
@@ -61,12 +65,14 @@ def run_scanner(results, upload_pk, scanner, api_url, api_key):
     - `upload_pk` is the FileUpload ID.
     """
     scanner_name = SCANNERS.get(scanner)
-    log.info('Starting scanner "%s" task for FileUpload %s.', scanner_name,
-             upload_pk)
+    log.info('Starting scanner "%s" task for FileUpload %s.', scanner_name, upload_pk)
 
     if not results['metadata']['is_webextension']:
-        log.info('Not running scanner "%s" for FileUpload %s, it is not a '
-                 'webextension.', scanner_name, upload_pk)
+        log.info(
+            'Not running scanner "%s" for FileUpload %s, it is not a ' 'webextension.',
+            scanner_name,
+            upload_pk,
+        )
         return results
 
     upload = FileUpload.objects.get(pk=upload_pk)
@@ -79,8 +85,12 @@ def run_scanner(results, upload_pk, scanner, api_url, api_key):
 
         with statsd.timer('devhub.{}'.format(scanner_name)):
             _run_scanner_for_url(
-                scanner_result, upload.get_authenticated_download_url(),
-                scanner, api_url, api_key)
+                scanner_result,
+                upload.get_authenticated_download_url(),
+                scanner,
+                api_url,
+                api_key,
+            )
 
         scanner_result.save()
 
@@ -88,18 +98,16 @@ def run_scanner(results, upload_pk, scanner, api_url, api_key):
             statsd.incr('devhub.{}.has_matches'.format(scanner_name))
             for scanner_rule in scanner_result.matched_rules.all():
                 statsd.incr(
-                    'devhub.{}.rule.{}.match'.format(
-                        scanner_name, scanner_rule.id
-                    )
+                    'devhub.{}.rule.{}.match'.format(scanner_name, scanner_rule.id)
                 )
 
         statsd.incr('devhub.{}.success'.format(scanner_name))
-        log.info('Ending scanner "%s" task for FileUpload %s.', scanner_name,
-                 upload_pk)
+        log.info('Ending scanner "%s" task for FileUpload %s.', scanner_name, upload_pk)
     except Exception as exc:
         statsd.incr('devhub.{}.failure'.format(scanner_name))
-        log.exception('Error in scanner "%s" task for FileUpload %s.',
-                      scanner_name, upload_pk)
+        log.exception(
+            'Error in scanner "%s" task for FileUpload %s.', scanner_name, upload_pk
+        )
         if not waffle.switch_is_active('ignore-exceptions-in-scanner-tasks'):
             raise exc
 
@@ -121,9 +129,9 @@ def _run_scanner_for_url(scanner_result, url, scanner, api_url, api_key):
             'api_key': api_key,
             'download_url': url,
         }
-        response = http.post(url=api_url,
-                             json=json_payload,
-                             timeout=settings.SCANNER_TIMEOUT)
+        response = http.post(
+            url=api_url, json=json_payload, timeout=settings.SCANNER_TIMEOUT
+        )
 
     try:
         data = response.json()
@@ -205,8 +213,10 @@ def _run_yara(results, upload_pk):
     log.info('Starting yara task for FileUpload %s.', upload_pk)
 
     if not results['metadata']['is_webextension']:
-        log.info('Not running yara for FileUpload %s, it is not a '
-                 'webextension.', upload_pk)
+        log.info(
+            'Not running yara for FileUpload %s, it is not a ' 'webextension.',
+            upload_pk,
+        )
         return results
 
     try:
@@ -218,16 +228,15 @@ def _run_yara(results, upload_pk):
         if scanner_result.has_matches:
             statsd.incr('devhub.yara.has_matches')
             for scanner_rule in scanner_result.matched_rules.all():
-                statsd.incr(
-                    'devhub.yara.rule.{}.match'.format(scanner_rule.id)
-                )
+                statsd.incr('devhub.yara.rule.{}.match'.format(scanner_rule.id))
 
         statsd.incr('devhub.yara.success')
         log.info('Ending scanner "yara" task for FileUpload %s.', upload_pk)
     except Exception as exc:
         statsd.incr('devhub.yara.failure')
-        log.exception('Error in scanner "yara" task for FileUpload %s.',
-                      upload_pk, exc_info=True)
+        log.exception(
+            'Error in scanner "yara" task for FileUpload %s.', upload_pk, exc_info=True
+        )
         if not waffle.switch_is_active('ignore-exceptions-in-scanner-tasks'):
             raise exc
 
@@ -261,25 +270,19 @@ def _run_yara_for_path(scanner_result, path, definition=None):
             if not zip_info.is_dir():
                 file_content = zip_file.read(zip_info)
                 if not waffle.switch_is_active('yara-read-binary'):
-                    file_content = file_content.decode(
-                        errors='ignore'
-                    )
+                    file_content = file_content.decode(errors='ignore')
                 filename = zip_info.filename
                 # Fill externals variable for this file.
                 externals['is_json_file'] = filename.endswith('.json')
                 externals['is_manifest_file'] = filename == 'manifest.json'
-                externals['is_locale_file'] = (
-                    filename.startswith('_locales/') and
-                    filename.endswith('/messages.json')
-                )
-                for match in rules.match(
-                        data=file_content, externals=externals):
+                externals['is_locale_file'] = filename.startswith(
+                    '_locales/'
+                ) and filename.endswith('/messages.json')
+                for match in rules.match(data=file_content, externals=externals):
                     # Also add the filename to the meta dict in results.
                     meta = {**match.meta, 'filename': filename}
                     scanner_result.add_yara_result(
-                        rule=match.rule,
-                        tags=match.tags,
-                        meta=meta
+                        rule=match.rule, tags=match.tags, meta=meta
                     )
         zip_file.close()
 
@@ -299,9 +302,13 @@ def mark_yara_query_rule_as_completed_or_aborted(query_rule_pk):
             log.info('Marking Yara Query Rule %s as aborted', rule.pk)
             rule.change_state_to(ABORTED)
     except ImproperScannerQueryRuleStateError:
-        log.error('Not marking rule as completed or aborted for rule %s in '
-                  'mark_yara_query_rule_as_completed_or_aborted, its state is '
-                  '%s', rule.pk, rule.get_state_display())
+        log.error(
+            'Not marking rule as completed or aborted for rule %s in '
+            'mark_yara_query_rule_as_completed_or_aborted, its state is '
+            '%s',
+            rule.pk,
+            rule.get_state_display(),
+        )
 
 
 @task
@@ -318,13 +325,18 @@ def run_yara_query_rule(query_rule_pk):
     try:
         rule.change_state_to(RUNNING)
     except ImproperScannerQueryRuleStateError:
-        log.error('Not proceeding with run_yara_query_rule on rule %s because '
-                  'its state is %s', rule.pk, rule.get_state_display())
+        log.error(
+            'Not proceeding with run_yara_query_rule on rule %s because '
+            'its state is %s',
+            rule.pk,
+            rule.get_state_display(),
+        )
         return
     log.info('Fetching versions for run_yara_query_rule on rule %s', rule.pk)
     # Build a huge list of all pks we're going to run the tasks on.
     qs = Version.unfiltered.filter(
-        addon__type=amo.ADDON_EXTENSION, files__is_webextension=True,
+        addon__type=amo.ADDON_EXTENSION,
+        files__is_webextension=True,
     )
     if not rule.run_on_disabled_addons:
         qs = qs.exclude(addon__status=amo.STATUS_DISABLED)
@@ -333,22 +345,26 @@ def run_yara_query_rule(query_rule_pk):
     # time, chained to a task that marks the query as completed.
     chunk_size = 250
     chunked_tasks = create_chunked_tasks_signatures(
-        run_yara_query_rule_on_versions_chunk, list(qs), chunk_size,
-        task_args=(query_rule_pk,))
+        run_yara_query_rule_on_versions_chunk,
+        list(qs),
+        chunk_size,
+        task_args=(query_rule_pk,),
+    )
     # Force the group id to be generated for those tasks, and store it in the
     # result backend.
     group_result = chunked_tasks.freeze()
     group_result.save()
     rule.update(
-        task_count=len(chunked_tasks),
-        celery_group_result_id=uuid.UUID(group_result.id)
+        task_count=len(chunked_tasks), celery_group_result_id=uuid.UUID(group_result.id)
     )
-    workflow = (
-        chunked_tasks |
-        mark_yara_query_rule_as_completed_or_aborted.si(query_rule_pk)
+    workflow = chunked_tasks | mark_yara_query_rule_as_completed_or_aborted.si(
+        query_rule_pk
     )
-    log.info('Running workflow of %s tasks for run_yara_query_rule on rule %s',
-             len(chunked_tasks), rule.pk)
+    log.info(
+        'Running workflow of %s tasks for run_yara_query_rule on rule %s',
+        len(chunked_tasks),
+        rule.pk,
+    )
     # Fire it up.
     workflow.apply_async()
 
@@ -363,23 +379,35 @@ def run_yara_query_rule_on_versions_chunk(version_pks, query_rule_pk):
     """
     log.info(
         'Running Yara Query Rule %s on versions %s-%s.',
-        query_rule_pk, version_pks[0], version_pks[-1])
+        query_rule_pk,
+        version_pks[0],
+        version_pks[-1],
+    )
     rule = ScannerQueryRule.objects.get(pk=query_rule_pk)
     if rule.state != RUNNING:
         log.info(
             'Not doing anything for Yara Query Rule %s on versions %s-%s '
-            'since rule state is %s.', query_rule_pk, version_pks[0],
-            version_pks[-1], rule.get_state_display())
+            'since rule state is %s.',
+            query_rule_pk,
+            version_pks[0],
+            version_pks[-1],
+            rule.get_state_display(),
+        )
         return
     for version_pk in version_pks:
         try:
-            version = Version.unfiltered.all().select_related(
-                'addon__addonguid').no_transforms().get(pk=version_pk)
+            version = (
+                Version.unfiltered.all()
+                .select_related('addon__addonguid')
+                .no_transforms()
+                .get(pk=version_pk)
+            )
             _run_yara_query_rule_on_version(version, rule)
         except Exception:
             log.exception(
                 'Error in run_yara_query_rule_on_version task for Version %s.',
-                version_pk)
+                version_pk,
+            )
 
 
 def _run_yara_query_rule_on_version(version, rule):
@@ -390,12 +418,12 @@ def _run_yara_query_rule_on_version(version, rule):
     scanner_result = ScannerQueryResult(version=version, scanner=YARA)
     try:
         _run_yara_for_path(
-            scanner_result, file_.current_file_path,
-            definition=rule.definition)
+            scanner_result, file_.current_file_path, definition=rule.definition
+        )
     except FileNotFoundError:
         _run_yara_for_path(
-            scanner_result, file_.fallback_file_path,
-            definition=rule.definition)
+            scanner_result, file_.fallback_file_path, definition=rule.definition
+        )
     # Unlike ScannerResult, we only want to save ScannerQueryResult if there is
     # a match, there would be too many things to save otherwise and we don't
     # really care about non-matches.
@@ -434,13 +462,15 @@ def call_mad_api(all_results, upload_pk):
         return results
 
     request_id = uuid.uuid4().hex
-    log.info('Starting scanner "mad" task for FileUpload %s, request_id=%s.',
-             upload_pk, request_id)
+    log.info(
+        'Starting scanner "mad" task for FileUpload %s, request_id=%s.',
+        upload_pk,
+        request_id,
+    )
 
     if not results['metadata']['is_webextension']:
         log.info(
-            'Not calling scanner "mad" for FileUpload %s, it is not '
-            'a webextension.',
+            'Not calling scanner "mad" for FileUpload %s, it is not ' 'a webextension.',
             upload_pk,
         )
         return results
@@ -454,9 +484,8 @@ def call_mad_api(all_results, upload_pk):
         scanMapKeys = customs_results.results.get('scanMap', {}).keys()
         if len(scanMapKeys) < 2:
             log.info(
-                'Not calling scanner "mad" for FileUpload %s, scanMap is too '
-                'small.',
-                upload_pk
+                'Not calling scanner "mad" for FileUpload %s, scanMap is too ' 'small.',
+                upload_pk,
             )
             statsd.incr('devhub.mad.skip')
             return results
@@ -467,9 +496,7 @@ def call_mad_api(all_results, upload_pk):
                 http.mount("http://", adapter)
                 http.mount("https://", adapter)
 
-                json_payload = {
-                    'scanners': {'customs': customs_results.results}
-                }
+                json_payload = {'scanners': {'customs': customs_results.results}}
                 response = http.post(
                     url=settings.MAD_API_URL,
                     json=json_payload,
@@ -498,9 +525,7 @@ def call_mad_api(all_results, upload_pk):
         customs_data = data.get('scanners', {}).get('customs', {})
         customs_score = customs_data.get('score', default_score)
         customs_model_version = customs_data.get('model_version')
-        customs_results.update(
-            score=customs_score, model_version=customs_model_version
-        )
+        customs_results.update(score=customs_score, model_version=customs_model_version)
 
         statsd.incr('devhub.mad.success')
         log.info('Ending scanner "mad" task for FileUpload %s.', upload_pk)
@@ -508,8 +533,6 @@ def call_mad_api(all_results, upload_pk):
         statsd.incr('devhub.mad.failure')
         # We log the exception but we do not raise to avoid perturbing the
         # submission flow.
-        log.exception(
-            'Error in scanner "mad" task for FileUpload %s.', upload_pk
-        )
+        log.exception('Error in scanner "mad" task for FileUpload %s.', upload_pk)
 
     return results

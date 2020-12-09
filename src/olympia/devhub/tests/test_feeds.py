@@ -34,8 +34,7 @@ class TestActivity(HubTest):
             ActivityLog.create(amo.LOG.CREATE_ADDON, addon)
 
     def log_updates(self, num, version_string='1'):
-        version = Version.objects.create(version=version_string,
-                                         addon=self.addon)
+        version = Version.objects.create(version=version_string, addon=self.addon)
 
         for i in range(num):
             ActivityLog.create(amo.LOG.ADD_VERSION, self.addon, version)
@@ -47,8 +46,7 @@ class TestActivity(HubTest):
     def log_collection(self, num, prefix='foo'):
         for i in range(num):
             collection = Collection.objects.create(name='%s %d' % (prefix, i))
-            ActivityLog.create(amo.LOG.ADD_TO_COLLECTION, self.addon,
-                               collection)
+            ActivityLog.create(amo.LOG.ADD_TO_COLLECTION, self.addon, collection)
 
     def log_tag(self, num, prefix='foo'):
         for i in range(num):
@@ -81,7 +79,8 @@ class TestActivity(HubTest):
         doc = pq(response.content)
         assert len(doc('li.item')) == 4
         assert doc('.subscribe-feed').attr('href')[:-32] == (
-            reverse('devhub.feed_all') + '?privaterss=')
+            reverse('devhub.feed_all') + '?privaterss='
+        )
 
     def test_items(self):
         self.log_creates(10)
@@ -90,8 +89,7 @@ class TestActivity(HubTest):
 
     def test_filter_persistence(self):
         doc = self.get_pq(action='status')
-        assert '?action=status' in (doc('ul.refinements').eq(0)('a').eq(1)
-                                    .attr('href'))
+        assert '?action=status' in (doc('ul.refinements').eq(0)('a').eq(1).attr('href'))
 
     def test_filter_updates(self):
         self.log_creates(10)
@@ -205,7 +203,8 @@ class TestActivity(HubTest):
         assert res['content-type'] == 'application/rss+xml; charset=utf-8'
         assert len(pq(res.content)('item')) == 5
         assert '<title>Recent Changes for %s</title>' % self.addon in (
-            force_text(res.content))
+            force_text(res.content)
+        )
 
     def test_rss_unlisted_addon(self):
         """Unlisted addon logs appear in the rss feed."""
@@ -224,8 +223,7 @@ class TestActivity(HubTest):
         assert response.status_code == 302
 
     def test_xss_addon(self):
-        self.addon.name = ("<script>alert('Buy more Diet Mountain Dew.')"
-                           '</script>')
+        self.addon.name = "<script>alert('Buy more Diet Mountain Dew.')" '</script>'
         self.addon.save()
         self.log_creates(1)
         doc = self.get_pq()
@@ -234,8 +232,7 @@ class TestActivity(HubTest):
         assert '&lt;script&gt;' in str(doc), 'XSS FTL'
 
     def test_xss_unlisted_addon(self):
-        self.addon.name = ("<script>alert('Buy more Diet Mountain Dew.')"
-                           '</script>')
+        self.addon.name = "<script>alert('Buy more Diet Mountain Dew.')" '</script>'
         self.addon.save()
         self.make_addon_unlisted(self.addon)
         self.log_creates(1)

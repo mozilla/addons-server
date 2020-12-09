@@ -20,9 +20,8 @@ def call_adzerk_server(url, json_data=None):
         log.debug('Calling adzerk')
         with statsd.timer('services.adzerk'):
             response = requests.post(
-                url,
-                json=json_data,
-                timeout=settings.ADZERK_TIMEOUT)
+                url, json=json_data, timeout=settings.ADZERK_TIMEOUT
+            )
         if response.status_code != 200:
             raise requests.exceptions.RequestException()
         json_response = response.json()
@@ -42,9 +41,7 @@ def ping_adzerk_server(url, type='impression'):
     try:
         log.debug('Calling adzerk')
         with statsd.timer('services.adzerk'):
-            response = requests.get(
-                url,
-                timeout=settings.ADZERK_TIMEOUT)
+            response = requests.get(url, timeout=settings.ADZERK_TIMEOUT)
         if response.status_code != 200:
             raise requests.exceptions.RequestException()
     except requests.exceptions.RequestException as e:
@@ -86,25 +83,26 @@ def process_adzerk_results(response):
 def get_addons_from_adzerk(count):
     site_id = settings.ADZERK_SITE_ID
     network_id = settings.ADZERK_NETWORK_ID
-    placements = [{
-        "divName": "multi",
-        "networkId": network_id,
-        "siteId": site_id,
-        "adTypes": [5],
-        "eventIds": [2],
-        "count": count,
-    }]
+    placements = [
+        {
+            "divName": "multi",
+            "networkId": network_id,
+            "siteId": site_id,
+            "adTypes": [5],
+            "eventIds": [2],
+            "count": count,
+        }
+    ]
     url = settings.ADZERK_URL
     response = call_adzerk_server(url, {'placements': placements})
-    results_dict = (
-        process_adzerk_results(response) if response else {})
+    results_dict = process_adzerk_results(response) if response else {}
     return results_dict
 
 
 def send_impression_pings(signed_impressions):
     impressions = unsign_signed_blob(
-        signed_impressions,
-        settings.ADZERK_IMPRESSION_TIMEOUT).split(',')
+        signed_impressions, settings.ADZERK_IMPRESSION_TIMEOUT
+    ).split(',')
     base_url = settings.ADZERK_EVENT_URL
     urls = [f'{base_url}{unquote(impression)}' for impression in impressions]
     for url in urls:
@@ -112,9 +110,7 @@ def send_impression_pings(signed_impressions):
 
 
 def send_event_ping(signed_event, type):
-    event = unsign_signed_blob(
-        signed_event,
-        settings.ADZERK_EVENT_TIMEOUT)
+    event = unsign_signed_blob(signed_event, settings.ADZERK_EVENT_TIMEOUT)
     base_url = settings.ADZERK_EVENT_URL
     url = f'{base_url}{unquote(event)}'
     ping_adzerk_server(url, type=type)
@@ -132,8 +128,10 @@ def filter_adzerk_results_to_es_results_qs(results, es_results_qs):
 
 def get_signed_impression_blob_from_results(adzerk_results):
     impressions = [
-        result.get('impression') for result in adzerk_results.values()
-        if result.get('impression')]
+        result.get('impression')
+        for result in adzerk_results.values()
+        if result.get('impression')
+    ]
     if not impressions:
         return None
     signer = TimestampSigner()

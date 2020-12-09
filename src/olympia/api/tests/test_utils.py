@@ -18,8 +18,7 @@ def test_is_gate_active():
     assert is_gate_active(request, 'foo')
 
 
-@override_settings(DRF_API_GATES={
-    'v1': None, 'v2': {'foo'}, 'v3': {'baa'}})
+@override_settings(DRF_API_GATES={'v1': None, 'v2': {'foo'}, 'v3': {'baa'}})
 def test_is_gate_active_explicit_upgrades():
     # Test that we're not implicitly upgrading feature gates
     request = factory.get('/')

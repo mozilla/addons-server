@@ -17,22 +17,26 @@ def generate_addon_guid():
 
 def verify_mozilla_trademark(name, user, form=None):
     skip_trademark_check = (
-        user and user.is_authenticated and action_allowed_user(
-            user, amo.permissions.TRADEMARK_BYPASS))
+        user
+        and user.is_authenticated
+        and action_allowed_user(user, amo.permissions.TRADEMARK_BYPASS)
+    )
 
     def _check(name):
         name = normalize_string(name, strip_punctuation=True).lower()
 
         for symbol in amo.MOZILLA_TRADEMARK_SYMBOLS:
-            violates_trademark = (
-                name.count(symbol) > 1 or (
-                    name.count(symbol) >= 1 and not
-                    name.endswith(' for {}'.format(symbol))))
+            violates_trademark = name.count(symbol) > 1 or (
+                name.count(symbol) >= 1 and not name.endswith(' for {}'.format(symbol))
+            )
 
             if violates_trademark:
-                raise forms.ValidationError(ugettext(
-                    u'Add-on names cannot contain the Mozilla or '
-                    u'Firefox trademarks.'))
+                raise forms.ValidationError(
+                    ugettext(
+                        u'Add-on names cannot contain the Mozilla or '
+                        u'Firefox trademarks.'
+                    )
+                )
 
     if not skip_trademark_check:
         if not isinstance(name, dict):
@@ -45,7 +49,8 @@ def verify_mozilla_trademark(name, user, form=None):
                     if form is not None:
                         for message in exc.messages:
                             error_message = LocaleErrorMessage(
-                                message=message, locale=locale)
+                                message=message, locale=locale
+                            )
                             form.add_error('name', error_message)
                     else:
                         raise
@@ -54,9 +59,10 @@ def verify_mozilla_trademark(name, user, form=None):
 
 TAAR_LITE_FALLBACKS = [
     'enhancerforyoutube@maximerf.addons.mozilla.org',  # /enhancer-for-youtube/
-    '{2e5ff8c8-32fe-46d0-9fc8-6b8986621f3c}',          # /search_by_image/
-    'uBlock0@raymondhill.net',                         # /ublock-origin/
-    'newtaboverride@agenedia.com']                     # /new-tab-override/
+    '{2e5ff8c8-32fe-46d0-9fc8-6b8986621f3c}',  # /search_by_image/
+    'uBlock0@raymondhill.net',  # /ublock-origin/
+    'newtaboverride@agenedia.com',
+]  # /new-tab-override/
 
 TAAR_LITE_OUTCOME_REAL_SUCCESS = 'recommended'
 TAAR_LITE_OUTCOME_REAL_FAIL = 'recommended_fallback'
@@ -71,12 +77,17 @@ def get_addon_recommendations(guid_param, taar_enable):
     fail_reason = None
     if taar_enable:
         guids = call_recommendation_server(
-            settings.TAAR_LITE_RECOMMENDATION_ENGINE_URL, guid_param, {})
-        outcome = (TAAR_LITE_OUTCOME_REAL_SUCCESS if guids
-                   else TAAR_LITE_OUTCOME_REAL_FAIL)
+            settings.TAAR_LITE_RECOMMENDATION_ENGINE_URL, guid_param, {}
+        )
+        outcome = (
+            TAAR_LITE_OUTCOME_REAL_SUCCESS if guids else TAAR_LITE_OUTCOME_REAL_FAIL
+        )
         if not guids:
-            fail_reason = (TAAR_LITE_FALLBACK_REASON_EMPTY if guids == []
-                           else TAAR_LITE_FALLBACK_REASON_TIMEOUT)
+            fail_reason = (
+                TAAR_LITE_FALLBACK_REASON_EMPTY
+                if guids == []
+                else TAAR_LITE_FALLBACK_REASON_TIMEOUT
+            )
     else:
         outcome = TAAR_LITE_OUTCOME_CURATED
     if not guids:
@@ -90,5 +101,7 @@ def is_outcome_recommended(outcome):
 
 def get_addon_recommendations_invalid():
     return (
-        TAAR_LITE_FALLBACKS, TAAR_LITE_OUTCOME_REAL_FAIL,
-        TAAR_LITE_FALLBACK_REASON_INVALID)
+        TAAR_LITE_FALLBACKS,
+        TAAR_LITE_OUTCOME_REAL_FAIL,
+        TAAR_LITE_FALLBACK_REASON_INVALID,
+    )

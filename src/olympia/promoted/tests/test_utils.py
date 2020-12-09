@@ -37,17 +37,11 @@ def test_retrieve_stripe_checkout_session():
         stripe_retrieve.assert_called_once_with(stripe_session_id)
 
 
-@override_settings(
-    STRIPE_API_SPONSORED_YEARLY_PRICE_ID="yearly-sponsored-price-id"
-)
+@override_settings(STRIPE_API_SPONSORED_YEARLY_PRICE_ID="yearly-sponsored-price-id")
 def test_create_stripe_checkout_session_for_sponsored():
     addon = addon_factory()
-    promoted_addon = PromotedAddon.objects.create(
-        addon=addon, group_id=SPONSORED.id
-    )
-    sub = PromotedSubscription.objects.filter(
-        promoted_addon=promoted_addon
-    ).get()
+    promoted_addon = PromotedAddon.objects.create(addon=addon, group_id=SPONSORED.id)
+    sub = PromotedSubscription.objects.filter(promoted_addon=promoted_addon).get()
     customer_email = "some-email@example.org"
     fake_session = "fake session"
 
@@ -80,17 +74,11 @@ def test_create_stripe_checkout_session_for_sponsored():
         )
 
 
-@override_settings(
-    STRIPE_API_VERIFIED_MONTHLY_PRICE_ID="monthly-verified-price-id"
-)
+@override_settings(STRIPE_API_VERIFIED_MONTHLY_PRICE_ID="monthly-verified-price-id")
 def test_create_stripe_checkout_session_for_verified():
     addon = addon_factory()
-    promoted_addon = PromotedAddon.objects.create(
-        addon=addon, group_id=VERIFIED.id
-    )
-    sub = PromotedSubscription.objects.filter(
-        promoted_addon=promoted_addon
-    ).get()
+    promoted_addon = PromotedAddon.objects.create(addon=addon, group_id=VERIFIED.id)
+    sub = PromotedSubscription.objects.filter(promoted_addon=promoted_addon).get()
     customer_email = "some-email@example.org"
     fake_session = "fake session"
 
@@ -138,17 +126,11 @@ def test_create_stripe_checkout_session_with_invalid_group_id():
         )
 
 
-@override_settings(
-    STRIPE_API_SPONSORED_YEARLY_PRICE_ID="yearly-sponsored-price-id"
-)
+@override_settings(STRIPE_API_SPONSORED_YEARLY_PRICE_ID="yearly-sponsored-price-id")
 def test_create_stripe_checkout_session_with_custom_rate():
     addon = addon_factory()
-    promoted_addon = PromotedAddon.objects.create(
-        addon=addon, group_id=SPONSORED.id
-    )
-    sub = PromotedSubscription.objects.filter(
-        promoted_addon=promoted_addon
-    ).get()
+    promoted_addon = PromotedAddon.objects.create(addon=addon, group_id=SPONSORED.id)
+    sub = PromotedSubscription.objects.filter(promoted_addon=promoted_addon).get()
     # Set a custom onboarding rate, in cents.
     onboarding_rate = 1234
     sub.update(onboarding_rate=onboarding_rate)
@@ -208,20 +190,12 @@ def test_create_stripe_checkout_session_with_custom_rate():
         )
 
 
-@override_settings(
-    STRIPE_API_SPONSORED_YEARLY_PRICE_ID="yearly-sponsored-price-id"
-)
-@override_settings(
-    STRIPE_API_SPONSORED_MONTHLY_PRICE_ID="monthly-sponsored-price-id"
-)
+@override_settings(STRIPE_API_SPONSORED_YEARLY_PRICE_ID="yearly-sponsored-price-id")
+@override_settings(STRIPE_API_SPONSORED_MONTHLY_PRICE_ID="monthly-sponsored-price-id")
 def test_create_stripe_checkout_session_for_sponsored_with_custom_period():
     addon = addon_factory()
-    promoted_addon = PromotedAddon.objects.create(
-        addon=addon, group_id=SPONSORED.id
-    )
-    sub = PromotedSubscription.objects.filter(
-        promoted_addon=promoted_addon
-    ).get()
+    promoted_addon = PromotedAddon.objects.create(addon=addon, group_id=SPONSORED.id)
+    sub = PromotedSubscription.objects.filter(promoted_addon=promoted_addon).get()
     # Set a custom billing period.
     sub.update(onboarding_period=BILLING_PERIOD_MONTHLY)
     customer_email = "some-email@example.org"
@@ -252,27 +226,17 @@ def test_create_stripe_checkout_session_for_sponsored_with_custom_period():
                     args=[addon.id],
                 )
             ),
-            line_items=[
-                {"price": "monthly-sponsored-price-id", "quantity": 1}
-            ],
+            line_items=[{"price": "monthly-sponsored-price-id", "quantity": 1}],
             customer_email=customer_email,
         )
 
 
-@override_settings(
-    STRIPE_API_VERIFIED_YEARLY_PRICE_ID="yearly-verified-price-id"
-)
-@override_settings(
-    STRIPE_API_VERIFIED_MONTHLY_PRICE_ID="monthly-verified-price-id"
-)
+@override_settings(STRIPE_API_VERIFIED_YEARLY_PRICE_ID="yearly-verified-price-id")
+@override_settings(STRIPE_API_VERIFIED_MONTHLY_PRICE_ID="monthly-verified-price-id")
 def test_create_stripe_checkout_session_for_verified_with_custom_period():
     addon = addon_factory()
-    promoted_addon = PromotedAddon.objects.create(
-        addon=addon, group_id=VERIFIED.id
-    )
-    sub = PromotedSubscription.objects.filter(
-        promoted_addon=promoted_addon
-    ).get()
+    promoted_addon = PromotedAddon.objects.create(addon=addon, group_id=VERIFIED.id)
+    sub = PromotedSubscription.objects.filter(promoted_addon=promoted_addon).get()
     # Set a custom billing period.
     sub.update(onboarding_period=BILLING_PERIOD_YEARLY)
     customer_email = "some-email@example.org"
@@ -308,17 +272,11 @@ def test_create_stripe_checkout_session_for_verified_with_custom_period():
         )
 
 
-@override_settings(
-    STRIPE_API_SPONSORED_MONTHLY_PRICE_ID="monthlty-sponsored-price-id"
-)
+@override_settings(STRIPE_API_SPONSORED_MONTHLY_PRICE_ID="monthlty-sponsored-price-id")
 def test_create_stripe_checkout_session_with_custom_rate_and_period():
     addon = addon_factory()
-    promoted_addon = PromotedAddon.objects.create(
-        addon=addon, group_id=SPONSORED.id
-    )
-    sub = PromotedSubscription.objects.filter(
-        promoted_addon=promoted_addon
-    ).get()
+    promoted_addon = PromotedAddon.objects.create(addon=addon, group_id=SPONSORED.id)
+    sub = PromotedSubscription.objects.filter(promoted_addon=promoted_addon).get()
     # Set a custom onboarding rate (in cents) and a custom onboarding period.
     onboarding_rate = 1234
     sub.update(
@@ -391,16 +349,12 @@ def test_create_stripe_customer_portal():
     ) as create_portal_mock:
         create_portal_mock.return_value = fake_portal
 
-        portal = create_stripe_customer_portal(
-            customer_id=customer_id, addon=addon
-        )
+        portal = create_stripe_customer_portal(customer_id=customer_id, addon=addon)
 
         assert portal == fake_portal
         create_portal_mock.assert_called_once_with(
             customer=customer_id,
-            return_url=absolutify(
-                reverse("devhub.addons.edit", args=[addon.slug])
-            ),
+            return_url=absolutify(reverse("devhub.addons.edit", args=[addon.slug])),
         )
 
 
@@ -415,13 +369,13 @@ def test_create_stripe_webhook_event():
     ) as stripe_construct_event:
         stripe_construct_event.return_value = fake_event
 
-        event = create_stripe_webhook_event(
-            payload=payload, sig_header=sig_header
-        )
+        event = create_stripe_webhook_event(payload=payload, sig_header=sig_header)
 
         assert event == fake_event
         stripe_construct_event.assert_called_once_with(
-            payload, sig_header, "webhook-secret",
+            payload,
+            sig_header,
+            "webhook-secret",
         )
 
 

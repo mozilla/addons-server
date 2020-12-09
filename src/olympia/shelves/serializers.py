@@ -19,14 +19,19 @@ class ShelfSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Shelf
-        fields = ['title', 'url', 'endpoint', 'criteria', 'footer_text',
-                  'footer_pathname', 'addons']
+        fields = [
+            'title',
+            'url',
+            'endpoint',
+            'criteria',
+            'footer_text',
+            'footer_pathname',
+            'addons',
+        ]
 
     def get_url(self, obj):
         if obj.endpoint == 'search':
-            api = drf_reverse(
-                'addon-search',
-                request=self.context.get('request'))
+            api = drf_reverse('addon-search', request=self.context.get('request'))
             url = api + obj.criteria
         elif obj.endpoint == 'collections':
             url = drf_reverse(
@@ -34,7 +39,9 @@ class ShelfSerializer(serializers.ModelSerializer):
                 request=self.context.get('request'),
                 kwargs={
                     'user_pk': str(settings.TASK_USER_ID),
-                    'collection_slug': obj.criteria})
+                    'collection_slug': obj.criteria,
+                },
+            )
         else:
             url = None
 
@@ -55,9 +62,11 @@ class ShelfSerializer(serializers.ModelSerializer):
             request = self.context.get('request')
             kwargs = {
                 'user_pk': str(settings.TASK_USER_ID),
-                'collection_slug': obj.criteria}
-            return CollectionAddonViewSet(request=request, action='list',
-                                          kwargs=kwargs).data
+                'collection_slug': obj.criteria,
+            }
+            return CollectionAddonViewSet(
+                request=request, action='list', kwargs=kwargs
+            ).data
         else:
             return None
 
@@ -70,12 +79,13 @@ class ESSponsoredAddonSerializer(ESAddonSerializer):
 
     class Meta(ESAddonSerializer.Meta):
         fields = ESAddonSerializer.Meta.fields + (
-            'click_url', 'click_data', 'event_data')
+            'click_url',
+            'click_data',
+            'event_data',
+        )
 
     def get_click_url(self, obj):
-        return drf_reverse(
-            'sponsored-shelf-click',
-            request=self.context.get('request'))
+        return drf_reverse('sponsored-shelf-click', request=self.context.get('request'))
 
     def get_click_data(self, obj):
         view = self.context['view']

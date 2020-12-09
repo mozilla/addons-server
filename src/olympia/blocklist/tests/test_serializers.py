@@ -13,7 +13,8 @@ class TestBlockSerializer(TestCase):
             min_version='45',
             reason='something happened',
             url='https://goo.gol',
-            updated_by=user_factory())
+            updated_by=user_factory(),
+        )
 
     def test_basic_no_addon(self):
         serializer = BlockSerializer(instance=self.block)
@@ -32,17 +33,14 @@ class TestBlockSerializer(TestCase):
     def test_with_addon(self):
         addon_factory(guid=self.block.guid, name='Addón náme')
         serializer = BlockSerializer(instance=self.block)
-        assert serializer.data['addon_name'] == {
-            'en-US': 'Addón náme'}
+        assert serializer.data['addon_name'] == {'en-US': 'Addón náme'}
 
     def test_wrap_outgoing_links(self):
         request = APIRequestFactory().get('/', {'wrap_outgoing_links': 1})
-        serializer = BlockSerializer(
-            instance=self.block, context={'request': request})
+        serializer = BlockSerializer(instance=self.block, context={'request': request})
 
         assert serializer.data['url'] == get_outgoing_url(self.block.url)
 
         self.block.update(url='')
-        serializer = BlockSerializer(
-            instance=self.block, context={'request': request})
+        serializer = BlockSerializer(instance=self.block, context={'request': request})
         assert serializer.data['url'] == ''

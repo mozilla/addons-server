@@ -5,8 +5,7 @@ from .views import ScannerResultView
 
 
 urlpatterns = (
-    [re_path(r'^results/$', ScannerResultView.as_view(),
-             name='scanner-results')]
+    [re_path(r'^results/$', ScannerResultView.as_view(), name='scanner-results')]
     if settings.INTERNAL_ROUTES_ALLOWED
     else []
 )

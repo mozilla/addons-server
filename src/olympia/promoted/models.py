@@ -8,8 +8,12 @@ from olympia.amo.models import ModelBase
 from olympia.amo.urlresolvers import reverse
 from olympia.constants.applications import APP_IDS, APPS_CHOICES, APP_USAGE
 from olympia.constants.promoted import (
-    NOT_PROMOTED, PRE_REVIEW_GROUPS, PROMOTED_GROUPS, PROMOTED_GROUPS_BY_ID,
-    BILLING_PERIODS)
+    NOT_PROMOTED,
+    PRE_REVIEW_GROUPS,
+    PROMOTED_GROUPS,
+    PROMOTED_GROUPS_BY_ID,
+    BILLING_PERIODS,
+)
 from olympia.versions.models import Version
 
 
@@ -17,26 +21,31 @@ class PromotedAddon(ModelBase):
     GROUP_CHOICES = [(group.id, group.name) for group in PROMOTED_GROUPS]
     APPLICATION_CHOICES = ((None, 'All Applications'),) + APPS_CHOICES
     group_id = models.SmallIntegerField(
-        choices=GROUP_CHOICES, default=NOT_PROMOTED.id, verbose_name='Group',
+        choices=GROUP_CHOICES,
+        default=NOT_PROMOTED.id,
+        verbose_name='Group',
         help_text='Can be set to Not Promoted to disable promotion without '
-                  'deleting it.  Note: changing the group does *not* change '
-                  'approvals of versions.')
+        'deleting it.  Note: changing the group does *not* change '
+        'approvals of versions.',
+    )
     addon = models.OneToOneField(
-        Addon, on_delete=models.CASCADE, null=False,
+        Addon,
+        on_delete=models.CASCADE,
+        null=False,
         help_text='Add-on id this item will point to (If you do not know the '
-                  'id, paste the slug instead and it will be transformed '
-                  'automatically for you. If you have access to the add-on '
-                  'admin page, you can use the magnifying glass to see '
-                  'all available add-ons.')
+        'id, paste the slug instead and it will be transformed '
+        'automatically for you. If you have access to the add-on '
+        'admin page, you can use the magnifying glass to see '
+        'all available add-ons.',
+    )
     application_id = models.SmallIntegerField(
-        choices=APPLICATION_CHOICES, null=True, verbose_name='Application',
-        blank=True)
+        choices=APPLICATION_CHOICES, null=True, verbose_name='Application', blank=True
+    )
 
     def __init__(self, *args, **kwargs):
         if 'approved_application_ids' in kwargs:
             apps = kwargs.pop('approved_application_ids')
-            kwargs['application_id'] = (
-                self._get_application_id_from_applications(apps))
+            kwargs['application_id'] = self._get_application_id_from_applications(apps)
         super().__init__(*args, **kwargs)
 
     def __str__(self):
@@ -63,7 +72,8 @@ class PromotedAddon(ModelBase):
         return [
             app
             for group_, app in self.addon.current_version.approved_for_groups
-            if group_ == group and app in all_apps]
+            if group_ == group and app in all_apps
+        ]
 
     @property
     def has_approvals(self):
@@ -80,9 +90,8 @@ class PromotedAddon(ModelBase):
         promoted group."""
         for app in self.all_applications:
             PromotedApproval.objects.update_or_create(
-                version=version,
-                group_id=self.group_id,
-                application_id=app.id)
+                version=version, group_id=self.group_id, application_id=app.id
+            )
         try:
             del version.approved_for_groups
         except AttributeError:
@@ -94,10 +103,11 @@ class PromotedAddon(ModelBase):
         so, if it has been completed.  Returns True if there is outstanding
         payment needed."""
         return (
-            self.group.require_subscription and
-            (subscr := getattr(self, 'promotedsubscription', None)) and
-            not subscr.is_active and
-            not self.has_approvals)
+            self.group.require_subscription
+            and (subscr := getattr(self, 'promotedsubscription', None))
+            and not subscr.is_active
+            and not self.has_approvals
+        )
 
     def approve_for_addon(self):
         """This sets up the addon as approved for the current promoted group.
@@ -129,8 +139,10 @@ class PromotedAddon(ModelBase):
         if self.group.require_subscription:
             if not hasattr(self, 'promotedsubscription'):
                 PromotedSubscription.objects.create(promoted_addon=self)
-        elif (self.group.immediate_approval and
-              self.approved_applications != self.all_applications):
+        elif (
+            self.group.immediate_approval
+            and self.approved_applications != self.all_applications
+        ):
             self.approve_for_addon()
 
 
@@ -154,33 +166,36 @@ class PromotedTheme(PromotedAddon):
 class PromotedApproval(ModelBase):
     GROUP_CHOICES = [(g.id, g.name) for g in PRE_REVIEW_GROUPS]
     group_id = models.SmallIntegerField(
-        choices=GROUP_CHOICES, null=True, verbose_name='Group')
+        choices=GROUP_CHOICES, null=True, verbose_name='Group'
+    )
     version = models.ForeignKey(
-        Version, on_delete=models.CASCADE, null=False,
-        related_name='promoted_approvals')
+        Version, on_delete=models.CASCADE, null=False, related_name='promoted_approvals'
+    )
     application_id = models.SmallIntegerField(
-        choices=APPS_CHOICES, null=True, verbose_name='Application',
-        default=None)
+        choices=APPS_CHOICES, null=True, verbose_name='Application', default=None
+    )
 
     class Meta:
         constraints = [
             models.UniqueConstraint(
                 fields=('group_id', 'version', 'application_id'),
-                name='unique_promoted_version'),
+                name='unique_promoted_version',
+            ),
         ]
 
     def __str__(self):
         return (
-            f'{self.get_group_id_display()} - '
-            f'{self.version.addon}: {self.version}')
+            f'{self.get_group_id_display()} - ' f'{self.version.addon}: {self.version}'
+        )
 
     @property
     def application(self):
         return APP_IDS.get(self.application_id)
 
 
-@receiver(models.signals.post_save, sender=PromotedAddon,
-          dispatch_uid='addons.search.index')
+@receiver(
+    models.signals.post_save, sender=PromotedAddon, dispatch_uid='addons.search.index'
+)
 def update_es_for_promoted(sender, instance, **kw):
     from olympia.addons.models import update_search_index
     from olympia.amo.tasks import sync_object_to_basket
@@ -192,11 +207,13 @@ def update_es_for_promoted(sender, instance, **kw):
     sync_object_to_basket.delay('addon', instance.addon.pk)
 
 
-@receiver(models.signals.post_save, sender=PromotedApproval,
-          dispatch_uid='addons.search.index')
+@receiver(
+    models.signals.post_save,
+    sender=PromotedApproval,
+    dispatch_uid='addons.search.index',
+)
 def update_es_for_promoted_approval(sender, instance, **kw):
-    update_es_for_promoted(
-        sender=sender, instance=instance.version, **kw)
+    update_es_for_promoted(sender=sender, instance=instance.version, **kw)
 
 
 class PromotedSubscription(ModelBase):
@@ -208,18 +225,13 @@ class PromotedSubscription(ModelBase):
     link_visited_at = models.DateTimeField(
         null=True,
         help_text=(
-            "This date is set when the developer has visited the onboarding "
-            "page."
+            "This date is set when the developer has visited the onboarding " "page."
         ),
     )
     # This field should only be used for the Stripe Checkout process, use
     # `stripe_subscription_id` when interacting with the API.
-    stripe_session_id = models.CharField(
-        default=None, null=True, max_length=100
-    )
-    stripe_subscription_id = models.CharField(
-        default=None, null=True, max_length=100
-    )
+    stripe_session_id = models.CharField(default=None, null=True, max_length=100)
+    stripe_subscription_id = models.CharField(default=None, null=True, max_length=100)
     checkout_cancelled_at = models.DateTimeField(
         null=True,
         help_text=(
@@ -271,7 +283,7 @@ class PromotedSubscription(ModelBase):
         url = reverse(
             'devhub.addons.onboarding_subscription',
             args=[self.promoted_addon.addon.slug],
-            add_prefix=False
+            add_prefix=False,
         )
         if absolute:
             url = urljoin(settings.EXTERNAL_SITE_URL, url)

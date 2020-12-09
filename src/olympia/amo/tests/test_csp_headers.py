@@ -13,7 +13,6 @@ def test_default_settings_no_report_only():
 
 @override_settings(CSP_REPORT_ONLY=False)
 class TestCSPHeaders(TestCase):
-
     def test_for_specific_csp_settings(self):
         """Test that required settings are provided as headers."""
         response = self.client.get('/en-US/developers/')
@@ -113,8 +112,10 @@ class TestCSPHeaders(TestCase):
         assert analytics_host in base_settings.CSP_CONNECT_SRC
         # See https://github.com/mozilla/addons-server/issues/14427
         assert analytics_host not in base_settings.CSP_IMG_SRC
-        assert 'https://www.google-analytics.com/analytics.js' in \
-            base_settings.CSP_SCRIPT_SRC
+        assert (
+            'https://www.google-analytics.com/analytics.js'
+            in base_settings.CSP_SCRIPT_SRC
+        )
 
     def test_csp_settings_not_overriden_for_prod(self):
         """Checks sites/prod/settings.py doesn't have CSP_* settings.
@@ -128,7 +129,8 @@ class TestCSPHeaders(TestCase):
 
         """
         path = os.path.join(
-            settings.ROOT, 'src', 'olympia', 'conf', 'prod', 'settings.py')
+            settings.ROOT, 'src', 'olympia', 'conf', 'prod', 'settings.py'
+        )
 
         with open(path) as f:
             data = f.read()

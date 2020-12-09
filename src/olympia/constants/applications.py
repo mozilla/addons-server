@@ -3,8 +3,12 @@ import re
 from django.utils.translation import ugettext_lazy as _
 
 from .base import (
-    ADDON_DICT, ADDON_EXTENSION, ADDON_LPAPP, ADDON_PLUGIN,
-    ADDON_STATICTHEME)
+    ADDON_DICT,
+    ADDON_EXTENSION,
+    ADDON_LPAPP,
+    ADDON_PLUGIN,
+    ADDON_STATICTHEME,
+)
 
 from olympia.versions.compare import version_int as vint
 
@@ -22,8 +26,7 @@ class FIREFOX(App):
     short = 'firefox'
     pretty = _(u'Firefox')
     browser = True
-    types = [ADDON_EXTENSION, ADDON_DICT, ADDON_LPAPP,
-             ADDON_PLUGIN, ADDON_STATICTHEME]
+    types = [ADDON_EXTENSION, ADDON_DICT, ADDON_LPAPP, ADDON_PLUGIN, ADDON_STATICTHEME]
     guid = '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}'
     min_display_version = 3.0
     # These versions were relabeled and should not be displayed.
@@ -34,8 +37,7 @@ class FIREFOX(App):
     @classmethod
     def matches_user_agent(cls, user_agent):
         matches = cls.user_agent_string in user_agent
-        if ('Android' in user_agent or 'Mobile' in user_agent or
-                'Tablet' in user_agent):
+        if 'Android' in user_agent or 'Mobile' in user_agent or 'Tablet' in user_agent:
             matches = False
         return matches
 
@@ -71,6 +73,7 @@ class SEAMONKEY(App):
 class SUNBIRD(App):
     """This application is retired and should not be used on the site.  It
     remains as there are still some sunbird add-ons in the db."""
+
     id = 52
     short = 'sunbird'
     shortername = 'sb'
@@ -88,6 +91,7 @@ class MOBILE(App):
     """Old Firefox for Mobile.
 
     Not supported anymore, should not be added to APPS."""
+
     id = 60
     short = 'mobile'
     shortername = 'fn'
@@ -113,11 +117,13 @@ class ANDROID(App):
     user_agent_string = 'Fennec'
     # Mobile and Android have the same user agent. The only way to distinguish
     # is by the version number.
-    user_agent_re = [re.compile(r'Fennec/([\d.]+)'),
-                     re.compile(r'Android; Mobile; rv:([\d.]+)'),
-                     re.compile(r'Android; Tablet; rv:([\d.]+)'),
-                     re.compile(r'Mobile; rv:([\d.]+)'),
-                     re.compile(r'Tablet; rv:([\d.]+)')]
+    user_agent_re = [
+        re.compile(r'Fennec/([\d.]+)'),
+        re.compile(r'Android; Mobile; rv:([\d.]+)'),
+        re.compile(r'Android; Tablet; rv:([\d.]+)'),
+        re.compile(r'Mobile; rv:([\d.]+)'),
+        re.compile(r'Tablet; rv:([\d.]+)'),
+    ]
     platforms = 'mobile'
     latest_version = None
 
@@ -136,6 +142,7 @@ class MOZILLA(App):
     Stats and other modules may reference this for history.
     This should NOT be added to APPS.
     """
+
     id = 2
     short = 'mz'
     shortername = 'mz'
@@ -148,6 +155,7 @@ class MOZILLA(App):
 
 class UNKNOWN_APP(App):
     """Placeholder for unknown applications."""
+
     pretty = _(u'Unknown')
 
 

@@ -16,20 +16,20 @@ log = olympia.core.logger.getLogger('z.amo.blocklist')
 def add_version_log_for_blocked_versions(obj, al):
     from olympia.activity.models import VersionLog
 
-    VersionLog.objects.bulk_create([
-        VersionLog(activity_log=al, version_id=version.id)
-        for version in obj.addon_versions
-        if obj.is_version_blocked(version.version)
-    ])
+    VersionLog.objects.bulk_create(
+        [
+            VersionLog(activity_log=al, version_id=version.id)
+            for version in obj.addon_versions
+            if obj.is_version_blocked(version.version)
+        ]
+    )
 
 
 def block_activity_log_save(obj, change, submission_obj=None):
-    action = (
-        amo.LOG.BLOCKLIST_BLOCK_EDITED if change else
-        amo.LOG.BLOCKLIST_BLOCK_ADDED)
+    action = amo.LOG.BLOCKLIST_BLOCK_EDITED if change else amo.LOG.BLOCKLIST_BLOCK_ADDED
     legacy_inclusion = getattr(
-        submission_obj if submission_obj else obj,
-        'in_legacy_blocklist')
+        submission_obj if submission_obj else obj, 'in_legacy_blocklist'
+    )
     details = {
         'guid': obj.guid,
         'min_version': obj.min_version,
@@ -41,17 +41,12 @@ def block_activity_log_save(obj, change, submission_obj=None):
     }
     if submission_obj:
         details['signoff_state'] = submission_obj.SIGNOFF_STATES.get(
-            submission_obj.signoff_state)
+            submission_obj.signoff_state
+        )
         if submission_obj.signoff_by:
             details['signoff_by'] = submission_obj.signoff_by.id
     addon = obj.addon
-    al = log_create(
-        action,
-        addon,
-        obj.guid,
-        obj,
-        details=details,
-        user=obj.updated_by)
+    al = log_create(action, addon, obj.guid, obj, details=details, user=obj.updated_by)
     if submission_obj and submission_obj.signoff_by:
         log_create(
             amo.LOG.BLOCKLIST_SIGNOFF,
@@ -59,7 +54,8 @@ def block_activity_log_save(obj, change, submission_obj=None):
             obj.guid,
             action.action_class,
             obj,
-            user=submission_obj.signoff_by)
+            user=submission_obj.signoff_by,
+        )
 
     add_version_log_for_blocked_versions(obj, al)
 
@@ -77,25 +73,27 @@ def block_activity_log_delete(obj, *, submission_obj=None, delete_user=None):
     }
     if submission_obj:
         details['signoff_state'] = submission_obj.SIGNOFF_STATES.get(
-            submission_obj.signoff_state)
+            submission_obj.signoff_state
+        )
         if submission_obj.signoff_by:
             details['signoff_by'] = submission_obj.signoff_by.id
     addon = obj.addon
     args = (
-        [amo.LOG.BLOCKLIST_BLOCK_DELETED] +
-        ([addon] if addon else []) +
-        [obj.guid, obj])
+        [amo.LOG.BLOCKLIST_BLOCK_DELETED] + ([addon] if addon else []) + [obj.guid, obj]
+    )
     al = log_create(
         *args,
         details=details,
-        user=submission_obj.updated_by if submission_obj else delete_user)
+        user=submission_obj.updated_by if submission_obj else delete_user,
+    )
     if addon:
         add_version_log_for_blocked_versions(obj, al)
     if submission_obj and submission_obj.signoff_by:
         args = (
-            [amo.LOG.BLOCKLIST_SIGNOFF] +
-            ([addon] if addon else []) +
-            [obj.guid, amo.LOG.BLOCKLIST_BLOCK_DELETED.action_class, obj])
+            [amo.LOG.BLOCKLIST_SIGNOFF]
+            + ([addon] if addon else [])
+            + [obj.guid, amo.LOG.BLOCKLIST_BLOCK_DELETED.action_class, obj]
+        )
         log_create(*args, user=submission_obj.signoff_by)
 
 
@@ -112,7 +110,8 @@ def legacy_publish_blocks(blocks):
         if block.is_imported_from_legacy_regex:
             log.info(
                 f'Block [{block.guid}] was imported from a regex guid so '
-                'can\'t be safely updated.  Skipping.')
+                'can\'t be safely updated.  Skipping.'
+            )
             continue
         data = {
             'guid': block.guid,
@@ -122,11 +121,13 @@ def legacy_publish_blocks(blocks):
                 'name': str(block.reason).partition('.')[0],  # required
             },
             'enabled': True,
-            'versionRange': [{
-                'severity': 3,  # Always high severity now.
-                'minVersion': block.min_version,
-                'maxVersion': block.max_version,
-            }],
+            'versionRange': [
+                {
+                    'severity': 3,  # Always high severity now.
+                    'minVersion': block.min_version,
+                    'maxVersion': block.max_version,
+                }
+            ],
         }
         if needs_creating:
             record = server.publish_record(data)
@@ -145,7 +146,8 @@ def legacy_delete_blocks(blocks):
             if block.is_imported_from_legacy_regex:
                 log.info(
                     f'Block [{block.guid}] was imported from a regex guid so '
-                    'can\'t be safely deleted.  Skipping.')
+                    'can\'t be safely deleted.  Skipping.'
+                )
             else:
                 server.delete_record(block.legacy_id)
             block.update(legacy_id='')
@@ -165,11 +167,16 @@ IS_MULTIPLE_ID_SUB_REGEX = r"\([\\\w .{}@-]+\)"
 # The outer set of parens enclosing the entire list of IDs is optional.
 IS_MULTIPLE_IDS = re.compile(
     # Start with literal ^ then an optional `(``
-    r"^\^\(?" +
+    r"^\^\(?"
+    +
     # Then at least one ID in parens ().
-    IS_MULTIPLE_ID_SUB_REGEX +
+    IS_MULTIPLE_ID_SUB_REGEX
+    +
     # Followed by any number of IDs in () separated by pipes.
-    r"(?:\|" + IS_MULTIPLE_ID_SUB_REGEX + r")*" +
+    r"(?:\|"
+    + IS_MULTIPLE_ID_SUB_REGEX
+    + r")*"
+    +
     # Finally, we need to end with a literal sequence )$
     #  (the leading `)` is optional like at the start)
     r"\)?\$$"
@@ -210,12 +217,18 @@ def disable_addon_for_block(block):
         addon=block.addon,
         version=None,
         review_type='pending',
-        user=block.updated_by)
-    review.set_data({'versions': [
-        ver for ver in block.addon_versions
-        # We don't need to reject versions from older deleted instances
-        if ver.addon == block.addon and block.is_version_blocked(ver.version)]
-    })
+        user=block.updated_by,
+    )
+    review.set_data(
+        {
+            'versions': [
+                ver
+                for ver in block.addon_versions
+                # We don't need to reject versions from older deleted instances
+                if ver.addon == block.addon and block.is_version_blocked(ver.version)
+            ]
+        }
+    )
     review.reject_multiple_versions()
 
     for version in review.data['versions']:
@@ -230,8 +243,7 @@ def disable_addon_for_block(block):
 def save_guids_to_blocks(guids, submission, *, fields_to_set):
     from .models import Block
 
-    common_args = {
-        field: getattr(submission, field) for field in fields_to_set}
+    common_args = {field: getattr(submission, field) for field in fields_to_set}
     modified_datetime = datetime.now()
 
     blocks = Block.get_blocks_from_guids(guids)
@@ -247,9 +259,8 @@ def save_guids_to_blocks(guids, submission, *, fields_to_set):
         if submission.id:
             block.submission.add(submission)
         block_activity_log_save(
-            block,
-            change=change,
-            submission_obj=submission if submission.id else None)
+            block, change=change, submission_obj=submission if submission.id else None
+        )
         disable_addon_for_block(block)
 
     return blocks

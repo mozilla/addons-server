@@ -20,144 +20,169 @@ class TestShelfForm(TestCase):
             responses.GET,
             reverse_ns('addon-search', api_version='v4') + self.criteria_sea,
             status=200,
-            json={'count': 103})
+            json={'count': 103},
+        )
         responses.add(
             responses.GET,
-            reverse_ns('collection-addon-list', api_version='v4', kwargs={
-                'user_pk': settings.TASK_USER_ID,
-                'collection_slug': self.criteria_col}),
+            reverse_ns(
+                'collection-addon-list',
+                api_version='v4',
+                kwargs={
+                    'user_pk': settings.TASK_USER_ID,
+                    'collection_slug': self.criteria_col,
+                },
+            ),
             status=200,
-            json={'count': 1})
+            json={'count': 1},
+        )
         responses.add(
             responses.GET,
             reverse_ns('addon-search', api_version='v4') + self.criteria_404,
             status=404,
-            json={"detail": "Not found."}),
+            json={"detail": "Not found."},
+        ),
         responses.add(
             responses.GET,
-            reverse_ns('collection-addon-list', api_version='v4', kwargs={
-                'user_pk': settings.TASK_USER_ID,
-                'collection_slug': self.criteria_col_404}),
+            reverse_ns(
+                'collection-addon-list',
+                api_version='v4',
+                kwargs={
+                    'user_pk': settings.TASK_USER_ID,
+                    'collection_slug': self.criteria_col_404,
+                },
+            ),
             status=404,
-            json={"detail": "Not found."}),
+            json={"detail": "Not found."},
+        ),
         responses.add(
             responses.GET,
-            reverse_ns('addon-search', api_version='v4') +
-            self.criteria_not_200,
+            reverse_ns('addon-search', api_version='v4') + self.criteria_not_200,
             status=400,
-            json=['Invalid \"sort\" parameter.'])
+            json=['Invalid \"sort\" parameter.'],
+        )
         responses.add(
             responses.GET,
             reverse_ns('addon-search', api_version='v4') + self.criteria_empty,
             status=200,
-            json={'count': 0})
+            json={'count': 0},
+        )
 
     def test_clean_search(self):
-        form = ShelfForm({
-            'title': 'Recommended extensions',
-            'endpoint': 'search',
-            'criteria': self.criteria_sea})
+        form = ShelfForm(
+            {
+                'title': 'Recommended extensions',
+                'endpoint': 'search',
+                'criteria': self.criteria_sea,
+            }
+        )
         assert form.is_valid(), form.errors
         assert form.cleaned_data['criteria'] == (
-            '?promoted=recommended&sort=random&type=extension')
+            '?promoted=recommended&sort=random&type=extension'
+        )
 
     def test_clean_collections(self):
-        form = ShelfForm({
-            'title': 'Password managers (Collections)',
-            'endpoint': 'collections',
-            'criteria': self.criteria_col})
+        form = ShelfForm(
+            {
+                'title': 'Password managers (Collections)',
+                'endpoint': 'collections',
+                'criteria': self.criteria_col,
+            }
+        )
         assert form.is_valid(), form.errors
         assert form.cleaned_data['criteria'] == 'password-managers'
 
     def test_clean_form_is_missing_title_field(self):
-        form = ShelfForm({
-            'title': '',
-            'endpoint': 'search',
-            'criteria': self.criteria_sea})
+        form = ShelfForm(
+            {'title': '', 'endpoint': 'search', 'criteria': self.criteria_sea}
+        )
         assert not form.is_valid()
         assert form.errors == {'title': ['This field is required.']}
 
     def test_clean_form_is_missing_endpoint_field(self):
-        form = ShelfForm({
-            'title': 'Recommended extensions',
-            'endpoint': '',
-            'criteria': self.criteria_sea})
+        form = ShelfForm(
+            {
+                'title': 'Recommended extensions',
+                'endpoint': '',
+                'criteria': self.criteria_sea,
+            }
+        )
         assert not form.is_valid()
         assert form.errors == {'endpoint': ['This field is required.']}
 
     def test_clean_form_is_missing_criteria_field(self):
-        form = ShelfForm({
-            'title': 'Recommended extensions',
-            'endpoint': 'search',
-            'criteria': ''})
+        form = ShelfForm(
+            {'title': 'Recommended extensions', 'endpoint': 'search', 'criteria': ''}
+        )
         assert not form.is_valid()
         assert form.errors == {'criteria': ['This field is required.']}
 
     def test_clean_search_criteria_does_not_start_with_qmark(self):
-        form = ShelfForm({
-            'title': 'Recommended extensions',
-            'endpoint': 'search',
-            'criteria': '..?recommended-true'})
+        form = ShelfForm(
+            {
+                'title': 'Recommended extensions',
+                'endpoint': 'search',
+                'criteria': '..?recommended-true',
+            }
+        )
         assert not form.is_valid()
         with self.assertRaises(ValidationError) as exc:
             form.clean()
-        assert exc.exception.message == (
-            'Check criteria field.')
+        assert exc.exception.message == ('Check criteria field.')
 
     def test_clean_search_criteria_has_multiple_qmark(self):
-        form = ShelfForm({
-            'title': 'Recommended extensions',
-            'endpoint': 'search',
-            'criteria': '??recommended-true'})
+        form = ShelfForm(
+            {
+                'title': 'Recommended extensions',
+                'endpoint': 'search',
+                'criteria': '??recommended-true',
+            }
+        )
         assert not form.is_valid()
         with self.assertRaises(ValidationError) as exc:
             form.clean()
-        assert exc.exception.message == (
-            'Check criteria field.')
+        assert exc.exception.message == ('Check criteria field.')
 
     def test_clean_form_throws_error_for_NoReverseMatch(self):
-        form = ShelfForm({
-            'title': 'New collection',
-            'endpoint': 'collections',
-            'criteria': '/'})
+        form = ShelfForm(
+            {'title': 'New collection', 'endpoint': 'collections', 'criteria': '/'}
+        )
         assert not form.is_valid()
         with self.assertRaises(ValidationError) as exc:
             form.clean()
-        assert exc.exception.message == (
-            'No data found - check criteria parameters.')
+        assert exc.exception.message == ('No data found - check criteria parameters.')
 
     def test_clean_col_returns_404(self):
         data = {
             'title': 'Password manager (Collections)',
             'endpoint': 'collections',
-            'criteria': self.criteria_col_404}
+            'criteria': self.criteria_col_404,
+        }
         form = ShelfForm(data)
         assert not form.is_valid()
         with self.assertRaises(ValidationError) as exc:
             form.clean()
-        assert exc.exception.message == (
-            'Check criteria - No data found')
+        assert exc.exception.message == ('Check criteria - No data found')
 
     def test_clean_returns_not_200(self):
         data = {
             'title': 'Popular themes',
             'endpoint': 'search',
-            'criteria': self.criteria_not_200}
+            'criteria': self.criteria_not_200,
+        }
         form = ShelfForm(data)
         assert not form.is_valid()
         with self.assertRaises(ValidationError) as exc:
             form.clean()
-        assert exc.exception.message == (
-            'Check criteria - Invalid \"sort\" parameter.')
+        assert exc.exception.message == ('Check criteria - Invalid \"sort\" parameter.')
 
     def test_clean_returns_empty(self):
         data = {
             'title': 'Popular themes',
             'endpoint': 'search',
-            'criteria': self.criteria_empty}
+            'criteria': self.criteria_empty,
+        }
         form = ShelfForm(data)
         assert not form.is_valid()
         with self.assertRaises(ValidationError) as exc:
             form.clean()
-        assert exc.exception.message == (
-            'Check criteria parameters - e.g., "type"')
+        assert exc.exception.message == ('Check criteria parameters - e.g., "type"')

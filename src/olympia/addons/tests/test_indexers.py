@@ -6,8 +6,7 @@ from django.conf import settings
 
 from olympia import amo
 from olympia.addons.indexers import AddonIndexer
-from olympia.addons.models import (
-    Addon, Preview, attach_tags, attach_translations_dict)
+from olympia.addons.models import Addon, Preview, attach_tags, attach_translations_dict
 from olympia.amo.models import SearchMixin
 from olympia.amo.tests import addon_factory, ESTestCase, TestCase, file_factory
 from olympia.bandwagon.models import Collection
@@ -27,10 +26,24 @@ class TestAddonIndexer(TestCase):
     # This only contains the fields for which we use the value directly,
     # see expected_fields() for the rest.
     simple_fields = [
-        'average_daily_users', 'bayesian_rating', 'contributions', 'created',
-        'default_locale', 'guid', 'hotness', 'icon_hash', 'icon_type', 'id',
-        'is_disabled', 'is_experimental', 'last_updated',
-        'modified', 'requires_payment', 'slug', 'status', 'type',
+        'average_daily_users',
+        'bayesian_rating',
+        'contributions',
+        'created',
+        'default_locale',
+        'guid',
+        'hotness',
+        'icon_hash',
+        'icon_type',
+        'id',
+        'is_disabled',
+        'is_experimental',
+        'last_updated',
+        'modified',
+        'requires_payment',
+        'slug',
+        'status',
+        'type',
         'weekly_downloads',
     ]
 
@@ -53,10 +66,22 @@ class TestAddonIndexer(TestCase):
         # exist on the model, or it has a different name, or the value we need
         # to store in ES differs from the one in the db.
         complex_fields = [
-            'app', 'boost', 'category', 'colors', 'current_version',
-            'description', 'has_eula', 'has_privacy_policy', 'is_recommended',
+            'app',
+            'boost',
+            'category',
+            'colors',
+            'current_version',
+            'description',
+            'has_eula',
+            'has_privacy_policy',
+            'is_recommended',
             'listed_authors',
-            'name', 'platforms', 'previews', 'promoted', 'ratings', 'summary',
+            'name',
+            'platforms',
+            'previews',
+            'promoted',
+            'ratings',
+            'summary',
             'tags',
         ]
 
@@ -67,26 +92,43 @@ class TestAddonIndexer(TestCase):
         # For each translated field that needs to be indexed, we store one
         # version for each language we have an analyzer for.
         _indexed_translated_fields = ('name', 'description', 'summary')
-        analyzer_fields = list(chain.from_iterable(
-            [['%s_l10n_%s' % (field, lang) for lang, analyzer
-              in SEARCH_LANGUAGE_TO_ANALYZER.items()]
-             for field in _indexed_translated_fields]))
+        analyzer_fields = list(
+            chain.from_iterable(
+                [
+                    [
+                        '%s_l10n_%s' % (field, lang)
+                        for lang, analyzer in SEARCH_LANGUAGE_TO_ANALYZER.items()
+                    ]
+                    for field in _indexed_translated_fields
+                ]
+            )
+        )
 
         # It'd be annoying to hardcode `analyzer_fields`, so we generate it,
         # but to make sure the test is correct we still do a simple check of
         # the length to make sure we properly flattened the list.
-        assert len(analyzer_fields) == (len(SEARCH_LANGUAGE_TO_ANALYZER) *
-                                        len(_indexed_translated_fields))
+        assert len(analyzer_fields) == (
+            len(SEARCH_LANGUAGE_TO_ANALYZER) * len(_indexed_translated_fields)
+        )
 
         # Each translated field that we want to return to the API.
         raw_translated_fields = [
-            '%s_translations' % field for field in
-            ['name', 'description', 'developer_comments', 'homepage',
-             'summary', 'support_email', 'support_url']]
+            '%s_translations' % field
+            for field in [
+                'name',
+                'description',
+                'developer_comments',
+                'homepage',
+                'summary',
+                'support_email',
+                'support_url',
+            ]
+        ]
 
         # Return a list with the base fields and the dynamic ones added.
-        fields = (cls.simple_fields + complex_fields + analyzer_fields +
-                  raw_translated_fields)
+        fields = (
+            cls.simple_fields + complex_fields + analyzer_fields + raw_translated_fields
+        )
         if include_nullable:
             fields += nullable_fields
         return fields
@@ -111,17 +153,33 @@ class TestAddonIndexer(TestCase):
         assert mapping_properties['current_version']['properties']
         version_mapping = mapping_properties['current_version']['properties']
         expected_version_keys = (
-            'id', 'compatible_apps', 'files', 'license',
-            'release_notes_translations', 'reviewed', 'version')
+            'id',
+            'compatible_apps',
+            'files',
+            'license',
+            'release_notes_translations',
+            'reviewed',
+            'version',
+        )
         assert set(version_mapping.keys()) == set(expected_version_keys)
 
         # Make sure files mapping is set inside current_version.
         files_mapping = version_mapping['files']['properties']
         expected_file_keys = (
-            'id', 'created', 'filename', 'hash', 'is_webextension',
-            'is_restart_required', 'is_mozilla_signed_extension', 'platform',
-            'size', 'status', 'strict_compatibility',
-            'permissions', 'optional_permissions')
+            'id',
+            'created',
+            'filename',
+            'hash',
+            'is_webextension',
+            'is_restart_required',
+            'is_mozilla_signed_extension',
+            'platform',
+            'size',
+            'status',
+            'strict_compatibility',
+            'permissions',
+            'optional_permissions',
+        )
         assert set(files_mapping.keys()) == set(expected_file_keys)
 
     def test_index_setting_boolean(self):
@@ -138,20 +196,24 @@ class TestAddonIndexer(TestCase):
         assert all(
             isinstance(prop['index'], bool)
             for prop in mapping_properties.values()
-            if 'index' in prop)
+            if 'index' in prop
+        )
 
         # Make sure our version_mapping is setup correctly too.
         props = mapping_properties['current_version']['properties']
 
         assert all(
             isinstance(prop['index'], bool)
-            for prop in props.values() if 'index' in prop)
+            for prop in props.values()
+            if 'index' in prop
+        )
 
         # As well as for current_version.files
         assert all(
             isinstance(prop['index'], bool)
             for prop in props['files']['properties'].values()
-            if 'index' in prop)
+            if 'index' in prop
+        )
 
     def _extract(self):
         qs = Addon.unfiltered.filter(id__in=[self.addon.pk])
@@ -167,19 +229,25 @@ class TestAddonIndexer(TestCase):
         # Make sure the method does not return fields we did not expect to be
         # present, or omitted fields we want.
         assert set(extracted.keys()) == set(
-            self.expected_fields(include_nullable=False))
+            self.expected_fields(include_nullable=False)
+        )
 
         # Check base fields values. Other tests below check the dynamic ones.
         for field_name in self.simple_fields:
             assert extracted[field_name] == getattr(self.addon, field_name)
 
         assert extracted['app'] == [FIREFOX.id]
-        assert extracted['boost'] == self.addon.average_daily_users ** .2 * 4
+        assert extracted['boost'] == self.addon.average_daily_users ** 0.2 * 4
         assert extracted['category'] == [1, 22, 71]  # From fixture.
         assert extracted['current_version']
         assert extracted['listed_authors'] == [
-            {'name': u'55021 التطب', 'id': 55021, 'username': '55021',
-             'is_public': True}]
+            {
+                'name': u'55021 التطب',
+                'id': 55021,
+                'username': '55021',
+                'is_public': True,
+            }
+        ]
         assert extracted['platforms'] == [PLATFORM_ALL.id]
         assert extracted['ratings'] == {
             'average': self.addon.average_rating,
@@ -215,17 +283,19 @@ class TestAddonIndexer(TestCase):
         # Make the version a webextension and add a bunch of things to it to
         # test different scenarios.
         version.all_files[0].update(is_webextension=True)
-        file_factory(
-            version=version, platform=PLATFORM_MAC.id, is_webextension=True)
+        file_factory(version=version, platform=PLATFORM_MAC.id, is_webextension=True)
         del version.all_files
         version.license = License.objects.create(
-            name=u'My licensé',
-            url='http://example.com/',
-            builtin=0)
-        [WebextPermission.objects.create(
-            file=file_, permissions=permissions,
-            optional_permissions=optional_permissions
-        ) for file_ in version.all_files]
+            name=u'My licensé', url='http://example.com/', builtin=0
+        )
+        [
+            WebextPermission.objects.create(
+                file=file_,
+                permissions=permissions,
+                optional_permissions=optional_permissions,
+            )
+            for file_ in version.all_files
+        ]
         version.save()
 
         # Now we can run the extraction and start testing.
@@ -247,12 +317,15 @@ class TestAddonIndexer(TestCase):
             'builtin': 0,
             'id': version.license.pk,
             'name_translations': [{'lang': u'en-US', 'string': u'My licensé'}],
-            'url': u'http://example.com/'
+            'url': u'http://example.com/',
         }
         assert extracted['current_version']['release_notes_translations'] == [
             {'lang': 'en-US', 'string': u'Fix for an important bug'},
-            {'lang': 'fr', 'string': u"Quelque chose en fran\xe7ais."
-                                     u"\n\nQuelque chose d'autre."},
+            {
+                'lang': 'fr',
+                'string': u"Quelque chose en fran\xe7ais."
+                u"\n\nQuelque chose d'autre.",
+            },
         ]
         assert extracted['current_version']['reviewed'] == version.reviewed
         assert extracted['current_version']['version'] == version.version
@@ -263,28 +336,23 @@ class TestAddonIndexer(TestCase):
             assert extracted_file['filename'] == file_.filename
             assert extracted_file['hash'] == file_.hash
             assert extracted_file['is_webextension'] == file_.is_webextension
-            assert extracted_file['is_restart_required'] == (
-                file_.is_restart_required)
+            assert extracted_file['is_restart_required'] == (file_.is_restart_required)
             assert extracted_file['is_mozilla_signed_extension'] == (
-                file_.is_mozilla_signed_extension)
+                file_.is_mozilla_signed_extension
+            )
             assert extracted_file['platform'] == file_.platform
             assert extracted_file['size'] == file_.size
             assert extracted_file['status'] == file_.status
-            assert (
-                extracted_file['permissions'] ==
-                permissions)
-            assert (
-                extracted_file['optional_permissions'] ==
-                optional_permissions)
+            assert extracted_file['permissions'] == permissions
+            assert extracted_file['optional_permissions'] == optional_permissions
 
-        assert set(extracted['platforms']) == set([PLATFORM_MAC.id,
-                                                   PLATFORM_ALL.id])
+        assert set(extracted['platforms']) == set([PLATFORM_MAC.id, PLATFORM_ALL.id])
 
     def test_version_compatibility_with_strict_compatibility_enabled(self):
         version = self.addon.current_version
         file_factory(
-            version=version, platform=PLATFORM_MAC.id,
-            strict_compatibility=True)
+            version=version, platform=PLATFORM_MAC.id, strict_compatibility=True
+        )
         extracted = self._extract()
 
         assert extracted['current_version']['compatible_apps'] == {
@@ -320,24 +388,17 @@ class TestAddonIndexer(TestCase):
         assert extracted['description_translations'] == [
             {'lang': 'en-US', 'string': translations_description['en-US']},
             {'lang': 'es', 'string': translations_description['es']},
-            {'lang': 'it', 'string': '&lt;script&gt;alert(42)&lt;/script&gt;'}
+            {'lang': 'it', 'string': '&lt;script&gt;alert(42)&lt;/script&gt;'},
         ]
         assert extracted['name_l10n_en-us'] == translations_name['en-US']
         assert extracted['name_l10n_en-gb'] == ''
         assert extracted['name_l10n_es'] == translations_name['es']
         assert extracted['name_l10n_it'] == ''
-        assert (
-            extracted['description_l10n_en-us'] ==
-            translations_description['en-US']
-        )
-        assert (
-            extracted['description_l10n_es'] ==
-            translations_description['es']
-        )
+        assert extracted['description_l10n_en-us'] == translations_description['en-US']
+        assert extracted['description_l10n_es'] == translations_description['es']
         assert extracted['description_l10n_fr'] == ''
         assert (
-            extracted['description_l10n_it'] ==
-            '&lt;script&gt;alert(42)&lt;/script&gt;'
+            extracted['description_l10n_it'] == '&lt;script&gt;alert(42)&lt;/script&gt;'
         )
         assert extracted['summary_l10n_en-us'] == ''
         # The non-l10n fields are fallbacks in the addon's default locale, they
@@ -359,8 +420,7 @@ class TestAddonIndexer(TestCase):
 
             self.addon = Addon.objects.create(**kwargs)
             self.addon.name = {'es': 'Banana Bonkers espanole'}
-            self.addon.description = {
-                'es': 'Deje que su navegador coma sus plátanos'}
+            self.addon.description = {'es': 'Deje que su navegador coma sus plátanos'}
             self.addon.summary = {'es': 'resumen banana'}
             self.addon.save()
 
@@ -372,28 +432,26 @@ class TestAddonIndexer(TestCase):
         ]
         assert extracted['description_translations'] == [
             {'lang': 'en-GB', 'string': 'Let your browser eat your bananas'},
-            {
-                'lang': 'es',
-                'string': 'Deje que su navegador coma sus plátanos'
-            },
+            {'lang': 'es', 'string': 'Deje que su navegador coma sus plátanos'},
         ]
         assert extracted['name_l10n_en-gb'] == 'Banana Bonkers'
         assert extracted['name_l10n_en-us'] == ''
         assert extracted['name_l10n_es'] == 'Banana Bonkers espanole'
         assert (
-            extracted['description_l10n_en-gb'] ==
-            'Let your browser eat your bananas'
+            extracted['description_l10n_en-gb'] == 'Let your browser eat your bananas'
         )
         assert (
-            extracted['description_l10n_es'] ==
-            'Deje que su navegador coma sus plátanos'
+            extracted['description_l10n_es']
+            == 'Deje que su navegador coma sus plátanos'
         )
 
     def test_extract_previews(self):
         second_preview = Preview.objects.create(
-            addon=self.addon, position=2,
+            addon=self.addon,
+            position=2,
             caption={'en-US': u'My câption', 'fr': u'Mön tîtré'},
-            sizes={'thumbnail': [199, 99], 'image': [567, 780]})
+            sizes={'thumbnail': [199, 99], 'image': [567, 780]},
+        )
         first_preview = Preview.objects.create(addon=self.addon, position=1)
         first_preview.reload()
         second_preview.reload()
@@ -408,9 +466,13 @@ class TestAddonIndexer(TestCase):
         assert extracted['previews'][1]['modified'] == second_preview.modified
         assert extracted['previews'][1]['caption_translations'] == [
             {'lang': 'en-US', 'string': u'My câption'},
-            {'lang': 'fr', 'string': u'Mön tîtré'}]
-        assert extracted['previews'][1]['sizes'] == second_preview.sizes == {
-            'thumbnail': [199, 99], 'image': [567, 780]}
+            {'lang': 'fr', 'string': u'Mön tîtré'},
+        ]
+        assert (
+            extracted['previews'][1]['sizes']
+            == second_preview.sizes
+            == {'thumbnail': [199, 99], 'image': [567, 780]}
+        )
 
         # Only raw translations dict should exist, since we don't need the
         # to search against preview captions.
@@ -422,23 +484,33 @@ class TestAddonIndexer(TestCase):
         current_preview = VersionPreview.objects.create(
             version=self.addon.current_version,
             colors=[{'h': 1, 's': 2, 'l': 3, 'ratio': 0.9}],
-            sizes={'thumbnail': [56, 78], 'image': [91, 234]}, position=1)
+            sizes={'thumbnail': [56, 78], 'image': [91, 234]},
+            position=1,
+        )
         second_preview = VersionPreview.objects.create(
             version=self.addon.current_version,
-            sizes={'thumbnail': [12, 34], 'image': [56, 78]}, position=2)
+            sizes={'thumbnail': [12, 34], 'image': [56, 78]},
+            position=2,
+        )
         extracted = self._extract()
         assert extracted['previews']
         assert len(extracted['previews']) == 2
         assert 'caption_translations' not in extracted['previews'][0]
         assert extracted['previews'][0]['id'] == current_preview.pk
         assert extracted['previews'][0]['modified'] == current_preview.modified
-        assert extracted['previews'][0]['sizes'] == current_preview.sizes == {
-            'thumbnail': [56, 78], 'image': [91, 234]}
+        assert (
+            extracted['previews'][0]['sizes']
+            == current_preview.sizes
+            == {'thumbnail': [56, 78], 'image': [91, 234]}
+        )
         assert 'caption_translations' not in extracted['previews'][1]
         assert extracted['previews'][1]['id'] == second_preview.pk
         assert extracted['previews'][1]['modified'] == second_preview.modified
-        assert extracted['previews'][1]['sizes'] == second_preview.sizes == {
-            'thumbnail': [12, 34], 'image': [56, 78]}
+        assert (
+            extracted['previews'][1]['sizes']
+            == second_preview.sizes
+            == {'thumbnail': [12, 34], 'image': [56, 78]}
+        )
 
         # Make sure we extract colors from the first preview.
         assert extracted['colors'] == [{'h': 1, 's': 2, 'l': 3, 'ratio': 0.9}]
@@ -464,26 +536,30 @@ class TestAddonIndexer(TestCase):
         assert extracted['promoted']
         assert extracted['promoted']['group_id'] == RECOMMENDED.id
         assert extracted['promoted']['approved_for_apps'] == [
-            amo.FIREFOX.id, amo.ANDROID.id]
+            amo.FIREFOX.id,
+            amo.ANDROID.id,
+        ]
         assert extracted['is_recommended'] is True
 
         # Specific application.
         self.addon.promotedaddon.update(application_id=amo.FIREFOX.id)
         extracted = self._extract()
-        assert extracted['promoted']['approved_for_apps'] == [
-            amo.FIREFOX.id]
+        assert extracted['promoted']['approved_for_apps'] == [amo.FIREFOX.id]
         assert extracted['is_recommended'] is True
 
         # Promoted theme.
         self.addon = addon_factory(type=amo.ADDON_STATICTHEME)
         featured_collection, _ = Collection.objects.get_or_create(
-            id=settings.COLLECTION_FEATURED_THEMES_ID)
+            id=settings.COLLECTION_FEATURED_THEMES_ID
+        )
         featured_collection.add_addon(self.addon)
         extracted = self._extract()
         assert extracted['promoted']
         assert extracted['promoted']['group_id'] == RECOMMENDED.id
         assert extracted['promoted']['approved_for_apps'] == [
-            amo.FIREFOX.id, amo.ANDROID.id]
+            amo.FIREFOX.id,
+            amo.ANDROID.id,
+        ]
         assert extracted['is_recommended'] is True
 
     @mock.patch('olympia.addons.indexers.create_chunked_tasks_signatures')
@@ -495,12 +571,15 @@ class TestAddonIndexer(TestCase):
             addon_factory(status=amo.STATUS_DELETED).pk,
             addon_factory(
                 status=amo.STATUS_NULL,
-                version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED}).pk,
+                version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+            ).pk,
         ]
         rval = AddonIndexer.reindex_tasks_group('addons')
         assert create_chunked_tasks_signatures_mock.call_count == 1
         assert create_chunked_tasks_signatures_mock.call_args[0] == (
-            index_addons, expected_ids, 150
+            index_addons,
+            expected_ids,
+            150,
         )
         assert rval == create_chunked_tasks_signatures_mock.return_value
 
@@ -519,8 +598,9 @@ class TestAddonIndexerWithES(ESTestCase):
         indexer = AddonIndexer()
         doc_name = indexer.get_doctype_name()
         real_index_name = self.get_index_name(SearchMixin.ES_ALIAS_KEY)
-        mappings = self.es.indices.get_mapping(
-            indexer.get_index_alias())[real_index_name]['mappings']
+        mappings = self.es.indices.get_mapping(indexer.get_index_alias())[
+            real_index_name
+        ]['mappings']
 
         actual_properties = mappings[doc_name]['properties']
         indexer_properties = indexer.get_mapping()[doc_name]['properties']

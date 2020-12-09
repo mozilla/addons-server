@@ -9,8 +9,7 @@ from unittest.mock import ANY, patch
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.tests import addon_factory, TestCase, user_factory
-from olympia.users.management.commands.createsuperuser import (
-    Command as CreateSuperUser)
+from olympia.users.management.commands.createsuperuser import Command as CreateSuperUser
 from olympia.users.models import UserProfile, UserRestrictionHistory
 
 
@@ -56,7 +55,8 @@ class TestCreateSuperUser(TestCase):
             email='me@mozilla.org',
             add_to_supercreate_group=True,
             fxa_id=fxa_id,
-            stdout=out)
+            stdout=out,
+        )
 
         user = UserProfile.objects.get(username='myusername')
         assert user.email == 'me@mozilla.org'
@@ -80,33 +80,33 @@ class TestClearOldUserData(TestCase):
         old_date = self.days_ago((365 * 7) + 1)
 
         # old enough but not deleted
-        recent_not_deleted = user_factory(
-            last_login_ip='127.0.0.1', fxa_id='12345')
+        recent_not_deleted = user_factory(last_login_ip='127.0.0.1', fxa_id='12345')
         recent_not_deleted.update(modified=recent_date)
 
         # Deleted but new
-        new_user = user_factory(
-            last_login_ip='127.0.0.1', deleted=True, fxa_id='67890')
+        new_user = user_factory(last_login_ip='127.0.0.1', deleted=True, fxa_id='67890')
 
         # Deleted and recent: last_login_ip, email, fxa_id must be cleared.
         recent_deleted_user = user_factory(
-            last_login_ip='127.0.0.1', deleted=True, fxa_id='abcde')
+            last_login_ip='127.0.0.1', deleted=True, fxa_id='abcde'
+        )
         recent_deleted_user.update(modified=recent_date)
 
         # Deleted and recent but with some cleared data already null.
         recent_deleted_user_part = user_factory(
-            last_login_ip='127.0.0.1', deleted=True, fxa_id=None)
+            last_login_ip='127.0.0.1', deleted=True, fxa_id=None
+        )
         recent_deleted_user_part.update(modified=recent_date)
 
         # recent and banned
         recent_banned_user = user_factory(
-            last_login_ip='127.0.0.1', deleted=True, fxa_id='abcde',
-            banned=recent_date)
+            last_login_ip='127.0.0.1', deleted=True, fxa_id='abcde', banned=recent_date
+        )
         recent_banned_user.update(modified=recent_date)
 
         old_banned_user = user_factory(
-            last_login_ip='127.0.0.1', deleted=True, fxa_id='abcde',
-            banned=recent_date)
+            last_login_ip='127.0.0.1', deleted=True, fxa_id='abcde', banned=recent_date
+        )
         old_banned_user.update(modified=old_date)
 
         call_command('clear_old_user_data')
@@ -158,38 +158,52 @@ class TestClearOldUserData(TestCase):
         old_date = self.days_ago((365 * 7) + 1)
 
         # old enough but not deleted
-        recent_not_deleted = user_factory(
-            last_login_ip='127.0.0.1', fxa_id='12345')
+        recent_not_deleted = user_factory(last_login_ip='127.0.0.1', fxa_id='12345')
         recent_not_deleted.update(modified=recent_date)
         urh0 = UserRestrictionHistory.objects.create(
-            user=recent_not_deleted, restriction=0,
-            ip_address='127.1.2.3', last_login_ip='127.4.5.6')
+            user=recent_not_deleted,
+            restriction=0,
+            ip_address='127.1.2.3',
+            last_login_ip='127.4.5.6',
+        )
 
         # Deleted but new
-        new_user = user_factory(
-            last_login_ip='127.0.0.1', deleted=True, fxa_id='67890')
+        new_user = user_factory(last_login_ip='127.0.0.1', deleted=True, fxa_id='67890')
         urh1 = UserRestrictionHistory.objects.create(
-            user=new_user, restriction=1,
-            ip_address='127.1.2.3', last_login_ip='127.4.5.6')
+            user=new_user,
+            restriction=1,
+            ip_address='127.1.2.3',
+            last_login_ip='127.4.5.6',
+        )
 
         # Deleted and recent: last_login_ip, email, fxa_id must be cleared.
         recent_deleted_user = user_factory(
-            last_login_ip='127.0.0.1', deleted=True, fxa_id='abcde')
+            last_login_ip='127.0.0.1', deleted=True, fxa_id='abcde'
+        )
         recent_deleted_user.update(modified=recent_date)
         urh2 = UserRestrictionHistory.objects.create(
-            user=recent_deleted_user, restriction=2,
-            ip_address='128.1.2.3', last_login_ip='128.4.5.6')
+            user=recent_deleted_user,
+            restriction=2,
+            ip_address='128.1.2.3',
+            last_login_ip='128.4.5.6',
+        )
 
         old_banned_user = user_factory(
-            last_login_ip='127.0.0.1', deleted=True, fxa_id='abcde',
-            banned=recent_date)
+            last_login_ip='127.0.0.1', deleted=True, fxa_id='abcde', banned=recent_date
+        )
         old_banned_user.update(modified=old_date)
         urh3 = UserRestrictionHistory.objects.create(
-            user=old_banned_user, restriction=3,
-            ip_address='129.1.2.3', last_login_ip='129.4.5.6')
+            user=old_banned_user,
+            restriction=3,
+            ip_address='129.1.2.3',
+            last_login_ip='129.4.5.6',
+        )
         urh4 = UserRestrictionHistory.objects.create(
-            user=old_banned_user, restriction=4,
-            ip_address='130.1.2.3', last_login_ip='130.4.5.6')
+            user=old_banned_user,
+            restriction=4,
+            ip_address='130.1.2.3',
+            last_login_ip='130.4.5.6',
+        )
 
         call_command('clear_old_user_data')
 
@@ -216,47 +230,51 @@ class TestClearOldUserData(TestCase):
         old_date = self.days_ago((365 * 7) + 1)
 
         # Old but not deleted
-        old_not_deleted = user_factory(
-            last_login_ip='127.0.0.1', fxa_id='12345')
+        old_not_deleted = user_factory(last_login_ip='127.0.0.1', fxa_id='12345')
         old_not_deleted.update(modified=old_date)
         old_not_deleted_addon = addon_factory(
-            users=[old_not_deleted], status=amo.STATUS_DELETED)
+            users=[old_not_deleted], status=amo.STATUS_DELETED
+        )
 
         # Deleted but not old enough
         recent_user = user_factory(
-            last_login_ip='127.0.0.1', deleted=True, fxa_id='67890')
+            last_login_ip='127.0.0.1', deleted=True, fxa_id='67890'
+        )
         recent_user.update(modified=self.days_ago(365))
         recent_user_addon = addon_factory(
-            users=[recent_user], status=amo.STATUS_DELETED)
+            users=[recent_user], status=amo.STATUS_DELETED
+        )
 
         old_user = user_factory(deleted=True, fxa_id='dfdf')
         old_user.update(modified=old_date)
-        old_user_addon = addon_factory(
-            users=[old_user], status=amo.STATUS_DELETED)
+        old_user_addon = addon_factory(users=[old_user], status=amo.STATUS_DELETED)
         # Include an add-on that old_user _was_ an owner of, but now isn't.
         # Even if the addon is now deleted it shouldn't be hard-deleted with
         # old_user.
-        no_longer_owner_addon = addon_factory(
-            users=[old_user, old_not_deleted])
+        no_longer_owner_addon = addon_factory(users=[old_user, old_not_deleted])
         no_longer_owner_addon.addonuser_set.get(user=old_user).delete()
         assert old_user not in list(no_longer_owner_addon.authors.all())
         assert UserProfile.objects.filter(
-            addons=no_longer_owner_addon, id=old_user.id).exists()
+            addons=no_longer_owner_addon, id=old_user.id
+        ).exists()
         no_longer_owner_addon.delete()
 
         # Old, has addons, but already has other data cleared
         old_data_cleared = user_factory(
-            deleted=True, last_login_ip='', email=None, fxa_id=None)
+            deleted=True, last_login_ip='', email=None, fxa_id=None
+        )
         old_data_cleared.update(modified=old_date)
         old_data_cleared_addon = addon_factory(
-            users=[old_data_cleared], status=amo.STATUS_DELETED)
+            users=[old_data_cleared], status=amo.STATUS_DELETED
+        )
 
         old_banned_user = user_factory(
-            last_login_ip='127.0.0.1', deleted=True, fxa_id='abcde',
-            banned=old_date)
+            last_login_ip='127.0.0.1', deleted=True, fxa_id='abcde', banned=old_date
+        )
         old_banned_user.update(modified=old_date)
         old_banned_user_addon = addon_factory(
-            users=[old_banned_user], status=amo.STATUS_DISABLED)
+            users=[old_banned_user], status=amo.STATUS_DISABLED
+        )
 
         call_command('clear_old_user_data')
 
@@ -284,8 +302,7 @@ class TestClearOldUserData(TestCase):
         assert not Addon.unfiltered.filter(id=old_user_addon.id).exists()
         assert no_longer_owner_addon.reload()
 
-        assert not Addon.unfiltered.filter(
-            id=old_data_cleared_addon.id).exists()
+        assert not Addon.unfiltered.filter(id=old_data_cleared_addon.id).exists()
 
         old_banned_user.reload()
         assert old_banned_user.last_login_ip == ''
@@ -294,15 +311,12 @@ class TestClearOldUserData(TestCase):
         assert not old_banned_user.fxa_id
         assert old_banned_user.modified == old_date
         assert old_banned_user.banned
-        assert not Addon.unfiltered.filter(
-            id=old_banned_user_addon.id).exists()
+        assert not Addon.unfiltered.filter(id=old_banned_user_addon.id).exists()
 
         # But check that no_longer_owner_addon is deleted eventually
         old_not_deleted.update(deleted=True)
         call_command('clear_old_user_data')
         old_not_deleted.reload()
         assert not old_not_deleted.email
-        assert not Addon.unfiltered.filter(
-            id=old_not_deleted_addon.id).exists()
-        assert not Addon.unfiltered.filter(
-            id=no_longer_owner_addon.id).exists()
+        assert not Addon.unfiltered.filter(id=old_not_deleted_addon.id).exists()
+        assert not Addon.unfiltered.filter(id=no_longer_owner_addon.id).exists()

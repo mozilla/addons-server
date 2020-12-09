@@ -20,20 +20,18 @@ class TestExtractOptionalPermissions(UploadTest):
         versions = {
             amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
             amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
-            amo.DEFAULT_WEBEXT_MAX_VERSION
+            amo.DEFAULT_WEBEXT_MAX_VERSION,
         }
         for version in versions:
-            AppVersion.objects.create(application=amo.FIREFOX.id,
-                                      version=version)
-            AppVersion.objects.create(application=amo.ANDROID.id,
-                                      version=version)
+            AppVersion.objects.create(application=amo.FIREFOX.id, version=version)
+            AppVersion.objects.create(application=amo.ANDROID.id, version=version)
 
     def setUp(self):
         super(TestExtractOptionalPermissions, self).setUp()
         self.platform = amo.PLATFORM_ALL.id
-        self.addon = Addon.objects.create(guid='guid@webext',
-                                          type=amo.ADDON_EXTENSION,
-                                          name='xxx')
+        self.addon = Addon.objects.create(
+            guid='guid@webext', type=amo.ADDON_EXTENSION, name='xxx'
+        )
         self.version = Version.objects.create(addon=self.addon)
         UserProfile.objects.create(pk=settings.TASK_USER_ID)
 
@@ -44,8 +42,9 @@ class TestExtractOptionalPermissions(UploadTest):
         # Remove the optional permissions from the parsed data so they aren't
         # added.
         pdata_optional_permissions = parsed_data.pop('optional_permissions')
-        file_ = File.from_upload(upload, self.version, self.platform,
-                                 parsed_data=parsed_data)
+        file_ = File.from_upload(
+            upload, self.version, self.platform, parsed_data=parsed_data
+        )
         assert file_.optional_permissions == []
 
         call_command('extract_optional_permissions')

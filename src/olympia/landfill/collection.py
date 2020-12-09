@@ -21,8 +21,9 @@ def create_collection(application, **kwargs):
     data.update(kwargs)
     c = Collection(**data)
     c.slug = slugify(data['name'])
-    c.created = c.modified = datetime(2014, 10, 27, random.randint(0, 23),
-                                      random.randint(0, 59))
+    c.created = c.modified = datetime(
+        2014, 10, 27, random.randint(0, 23), random.randint(0, 59)
+    )
     c.save()
     return c
 

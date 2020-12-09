@@ -4,6 +4,7 @@ from .views import AppVersionView
 
 
 urlpatterns = [
-    path('<str:application>/<str:version>/', AppVersionView.as_view(),
-         name='appversions'),
+    path(
+        '<str:application>/<str:version>/', AppVersionView.as_view(), name='appversions'
+    ),
 ]

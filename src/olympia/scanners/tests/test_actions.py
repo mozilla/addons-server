@@ -198,9 +198,7 @@ class TestRunAction(TestCase):
     def test_flags_for_human_review_by_mad_when_score_is_too_low(self):
         version = version_factory(addon=addon_factory())
         results = {'scanners': {'customs': {'score': 0.001}}}
-        ScannerResult.objects.create(
-            version=version, scanner=MAD, results=results
-        )
+        ScannerResult.objects.create(version=version, scanner=MAD, results=results)
 
         ScannerResult.run_action(version)
 
@@ -209,9 +207,7 @@ class TestRunAction(TestCase):
     def test_flags_for_human_review_by_mad_when_score_is_too_high(self):
         version = version_factory(addon=addon_factory())
         results = {'scanners': {'customs': {'score': 0.99}}}
-        ScannerResult.objects.create(
-            version=version, scanner=MAD, results=results
-        )
+        ScannerResult.objects.create(version=version, scanner=MAD, results=results)
 
         ScannerResult.run_action(version)
 
@@ -219,14 +215,8 @@ class TestRunAction(TestCase):
 
     def test_flags_for_human_review_by_mad_when_models_disagree(self):
         version = version_factory(addon=addon_factory())
-        results = {
-            'scanners': {
-                'customs': {'result_details': {'models_agree': False}}
-            }
-        }
-        ScannerResult.objects.create(
-            version=version, scanner=MAD, results=results
-        )
+        results = {'scanners': {'customs': {'result_details': {'models_agree': False}}}}
+        ScannerResult.objects.create(version=version, scanner=MAD, results=results)
 
         ScannerResult.run_action(version)
 
@@ -235,9 +225,7 @@ class TestRunAction(TestCase):
     def test_does_not_flag_for_human_review_by_mad_when_score_is_okay(self):
         version = version_factory(addon=addon_factory())
         results = {'scanners': {'customs': {'score': 0.2}}}
-        ScannerResult.objects.create(
-            version=version, scanner=MAD, results=results
-        )
+        ScannerResult.objects.create(version=version, scanner=MAD, results=results)
 
         ScannerResult.run_action(version)
 

@@ -13,7 +13,13 @@ from .models import PrimaryHero, SecondaryHero, SecondaryHeroModule
 
 class ExternalAddonSerializer(AddonSerializer):
     class Meta:
-        fields = ('id', 'guid', 'homepage', 'name', 'type',)
+        fields = (
+            'id',
+            'guid',
+            'homepage',
+            'name',
+            'type',
+        )
         model = Addon
 
 
@@ -31,8 +37,7 @@ class PrimaryHeroShelfSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PrimaryHero
-        fields = ('addon', 'description', 'external', 'featured_image',
-                  'gradient')
+        fields = ('addon', 'description', 'external', 'featured_image', 'gradient')
 
     def to_representation(self, instance):
         rep = super().to_representation(instance)
@@ -48,14 +53,14 @@ class PrimaryHeroShelfSerializer(serializers.ModelSerializer):
             return str(obj.promoted_addon.addon.summary or '')
 
 
-class CTAMixin():
-
+class CTAMixin:
     def get_cta(self, obj):
         if obj.cta_url and obj.cta_text:
             url = absolutify(obj.cta_url)
             should_wrap = (
-                'request' in self.context and
-                'wrap_outgoing_links' in self.context['request'].GET)
+                'request' in self.context
+                and 'wrap_outgoing_links' in self.context['request'].GET
+            )
             return {
                 'url': get_outgoing_url(url) if should_wrap else url,
                 'text': ugettext(obj.cta_text),
@@ -64,8 +69,7 @@ class CTAMixin():
             return None
 
 
-class SecondaryHeroShelfModuleSerializer(CTAMixin,
-                                         serializers.ModelSerializer):
+class SecondaryHeroShelfModuleSerializer(CTAMixin, serializers.ModelSerializer):
     icon = serializers.CharField(source='icon_url')
     description = serializers.SerializerMethodField()
     cta = serializers.SerializerMethodField()

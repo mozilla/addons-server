@@ -25,9 +25,7 @@ def on_stripe_charge_failed(event):
     event_type = event.get("type")
 
     if event_type != "charge.failed":
-        log.error(
-            'invalid event "%s" received (event_id=%s).', event_type, event_id
-        )
+        log.error('invalid event "%s" received (event_id=%s).', event_type, event_id)
         return
 
     # This event should contain a `charge` object.
@@ -42,9 +40,7 @@ def on_stripe_charge_failed(event):
     # It is possible that a `charge` object isn't bound to an invoice, e.g.,
     # when a Stripe admin manually attempts to charge a customer.
     if not charge["invoice"]:
-        log.error(
-            '"charge.failed" events without an invoice are not supported'
-        )
+        log.error('"charge.failed" events without an invoice are not supported')
         return
 
     try:
@@ -61,9 +57,7 @@ def on_stripe_charge_failed(event):
             subscription_id,
         )
 
-        sub = PromotedSubscription.objects.get(
-            stripe_subscription_id=subscription_id
-        )
+        sub = PromotedSubscription.objects.get(stripe_subscription_id=subscription_id)
     except PromotedSubscription.DoesNotExist:
         log.error(
             'received a "%s" event (event_id=%s) for a non-existent'
@@ -119,9 +113,7 @@ def on_stripe_customer_subscription_deleted(event):
     event_type = event.get("type")
 
     if event_type != "customer.subscription.deleted":
-        log.error(
-            'invalid event "%s" received (event_id=%s).', event_type, event_id
-        )
+        log.error('invalid event "%s" received (event_id=%s).', event_type, event_id)
         return
 
     # This event should contain a `subscription` object.
@@ -138,9 +130,7 @@ def on_stripe_customer_subscription_deleted(event):
     )
 
     try:
-        sub = PromotedSubscription.objects.get(
-            stripe_subscription_id=subscription_id
-        )
+        sub = PromotedSubscription.objects.get(stripe_subscription_id=subscription_id)
     except PromotedSubscription.DoesNotExist:
         log.exception(
             'received a "%s" event (event_id=%s) for a non-existent '
@@ -161,9 +151,7 @@ def on_stripe_customer_subscription_deleted(event):
         return
 
     sub.update(
-        cancelled_at=datetime.datetime.fromtimestamp(
-            subscription["canceled_at"]
-        )
+        cancelled_at=datetime.datetime.fromtimestamp(subscription["canceled_at"])
     )
     log.info("PromotedSubscription %s has been marked as cancelled.", sub.id)
 
@@ -185,9 +173,7 @@ def on_stripe_charge_succeeded(event):
     event_type = event.get("type")
 
     if event_type != "charge.succeeded":
-        log.error(
-            'invalid event "%s" received (event_id=%s).', event_type, event_id
-        )
+        log.error('invalid event "%s" received (event_id=%s).', event_type, event_id)
         return
 
     # This event should contain a `charge` object.
@@ -203,14 +189,10 @@ def on_stripe_charge_succeeded(event):
     stripe_payment_url = settings.STRIPE_DASHBOARD_URL
     if not charge.get("livemode"):
         stripe_payment_url = stripe_payment_url + "/test"
-    stripe_payment_url = (
-        f"{stripe_payment_url}/payments/{charge.get('payment_intent')}"
-    )
+    stripe_payment_url = f"{stripe_payment_url}/payments/{charge.get('payment_intent')}"
 
     subject = "Stripe payment succeeded"
-    template = loader.get_template(
-        "promoted/emails/stripe_charge_succeeded.txt"
-    )
+    template = loader.get_template("promoted/emails/stripe_charge_succeeded.txt")
     context = {
         "stripe_payment_url": stripe_payment_url,
     }
