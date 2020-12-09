@@ -29,10 +29,11 @@ defuse_stdlib()
 import lxml  # noqa isort:skip
 import lxml.etree  # noqa isort:skip
 from rdflib.plugins.parsers import rdfxml  # noqa isort:skip
-from xml.sax.handler import (
+from xml.sax.handler import (  # noqa isort:skip
     feature_external_ges,
     feature_external_pes,
-)  # noqa isort:skip
+)
+
 
 from olympia.lib import safe_lxml_etree  # noqa isort:skip
 

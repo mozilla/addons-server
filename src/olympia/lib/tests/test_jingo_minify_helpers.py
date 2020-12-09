@@ -205,8 +205,8 @@ def test_css_helper(getmtime, time):
         == '<link rel="stylesheet" media="all" href="http://testserver/static/css/test.css?build=1" />\n'  # noqa
         '<link rel="stylesheet" media="all" href="http://example.com/test.css?build=1" />\n'  # noqa
         '<link rel="stylesheet" media="all" href="//example.com/test.css?build=1" />\n'  # noqa
-        '<link rel="stylesheet" media="all" href="https://example.com/test.css?build=1" />'
-    )  # noqa
+        '<link rel="stylesheet" media="all" href="https://example.com/test.css?build=1" />'  # noqa
+    )
 
     template = from_string('{{ css("common_bundle", debug=False) }}')
     rendered = template.render()

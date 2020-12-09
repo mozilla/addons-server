@@ -10,11 +10,10 @@ from olympia.addons.models import Addon
 def owner_or_unlisted_reviewer(request, addon):
     return (
         acl.check_unlisted_addons_reviewer(request)
-        or
         # We don't want "admins" here, because it includes anyone with the
         # "Addons:Edit" perm, we only want those with
         # "Addons:ReviewUnlisted" perm (which is checked above).
-        acl.check_addon_ownership(request, addon, admin=False, dev=True)
+        or acl.check_addon_ownership(request, addon, admin=False, dev=True)
     )
 
 

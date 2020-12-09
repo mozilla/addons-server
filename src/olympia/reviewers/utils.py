@@ -497,11 +497,10 @@ class ReviewHelper(object):
             'minimal': False,
             'available': (
                 not self.content_review
-                and
                 # We specifically don't let the individual reject action be
                 # available for unlisted review. `reject_latest_version` isn't
                 # currently implemented for unlisted.
-                addon_is_valid_and_version_is_listed
+                and addon_is_valid_and_version_is_listed
                 and version_is_unreviewed
                 and is_appropriate_reviewer
             ),

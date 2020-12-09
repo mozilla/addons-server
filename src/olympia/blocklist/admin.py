@@ -729,9 +729,8 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
         if obj_id:
             obj = (
                 self.get_object(request, obj_id)
-                or
                 # if we can't find the obj_id maybe it's a guid instead
-                self.get_object(request, obj_id, 'guid')
+                or self.get_object(request, obj_id, 'guid')
             )
             if obj and str(obj_id) != str(obj.id):
                 # we found it from the guid if the obj_id != obj.id so redirect

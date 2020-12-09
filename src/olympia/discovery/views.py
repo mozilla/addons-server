@@ -100,7 +100,7 @@ class DiscoveryItemViewSet(ListModelMixin, GenericViewSet):
             qs = qs.filter(
                 **{
                     'addon__promotedaddon__group_id': RECOMMENDED.id,
-                    'addon___current_version__promoted_approvals__group_id': RECOMMENDED.id,
+                    'addon___current_version__promoted_approvals__group_id': RECOMMENDED.id,  # noqa
                 }
             ).distinct()
         return qs

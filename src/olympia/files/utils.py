@@ -1002,16 +1002,13 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
             raise forms.ValidationError(msg % (guid, addon.guid))
         if (
             not addon
-            and
             # Non-deleted add-ons.
-            (
+            and (
                 Addon.objects.filter(guid=guid).exists()
-                or
                 # DeniedGuid objects for deletions for Mozilla disabled add-ons
-                DeniedGuid.objects.filter(guid=guid).exists()
-                or
+                or DeniedGuid.objects.filter(guid=guid).exists()
                 # Deleted add-ons that don't belong to the uploader.
-                deleted_guid_clashes.exists()
+                or deleted_guid_clashes.exists()
             )
         ):
             raise forms.ValidationError(ugettext('Duplicate add-on ID found.'))

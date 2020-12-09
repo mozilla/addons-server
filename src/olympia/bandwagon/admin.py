@@ -69,9 +69,8 @@ class CollectionAdmin(admin.ModelAdmin):
         should_allow_curators = (
             # Changelist, allowed for convenience, should be harmless.
             obj is None
-            or
             # Mozilla collection or their own.
-            obj.author
+            or obj.author
             and obj.author.pk in (settings.TASK_USER_ID, user.pk)
         )
 

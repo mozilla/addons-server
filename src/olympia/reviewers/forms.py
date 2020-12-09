@@ -155,10 +155,9 @@ class QueueSearchForm(forms.Form):
             fuzzy_q = u'%' + data['text_query'] + u'%'
             qs = qs.filter_raw(
                 Q('addon_name LIKE', fuzzy_q)
-                |
                 # Search translated add-on names / support emails in
                 # the reviewer's locale:
-                Q('ad_name_local.localized_string LIKE', fuzzy_q)
+                | Q('ad_name_local.localized_string LIKE', fuzzy_q)
                 | Q('supportemail_default.localized_string LIKE', fuzzy_q)
                 | Q('supportemail_local.localized_string LIKE', fuzzy_q)
                 | Q(
@@ -270,10 +269,9 @@ class AllAddonSearchForm(forms.Form):
             qs = qs.filter_raw(
                 Q('addon_name LIKE', fuzzy_q)
                 | Q('guid LIKE', fuzzy_q)
-                |
                 # Search translated add-on names / support emails in
                 # the reviewer's locale:
-                Q('ad_name_local.localized_string LIKE', fuzzy_q)
+                | Q('ad_name_local.localized_string LIKE', fuzzy_q)
                 | Q('supportemail_default.localized_string LIKE', fuzzy_q)
                 | Q('supportemail_local.localized_string LIKE', fuzzy_q)
                 | Q(

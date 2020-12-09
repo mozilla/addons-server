@@ -168,18 +168,15 @@ IS_MULTIPLE_ID_SUB_REGEX = r"\([\\\w .{}@-]+\)"
 IS_MULTIPLE_IDS = re.compile(
     # Start with literal ^ then an optional `(``
     r"^\^\(?"
-    +
     # Then at least one ID in parens ().
-    IS_MULTIPLE_ID_SUB_REGEX
-    +
+    + IS_MULTIPLE_ID_SUB_REGEX
     # Followed by any number of IDs in () separated by pipes.
-    r"(?:\|"
+    + r"(?:\|"
     + IS_MULTIPLE_ID_SUB_REGEX
     + r")*"
-    +
     # Finally, we need to end with a literal sequence )$
     #  (the leading `)` is optional like at the start)
-    r"\)?\$$"
+    + r"\)?\$$"
 )
 # Check for a backslash followed by anything other than a literal . or curlies
 REGEX_ESCAPE_SEQS = re.compile(r"\\[^.{}]")

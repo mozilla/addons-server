@@ -5582,11 +5582,13 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('.user_ratings')
-        assert doc(
-            '.user_ratings'
-        ).text() == u'%s on %s [10.5.6.7]\n' u'Rated 3 out of 5 stars\nLôrem ipsum dolor' % (
-            user.name,
-            created_at,
+        assert doc('.user_ratings').text() == (
+            u'%s on %s [10.5.6.7]\n'
+            u'Rated 3 out of 5 stars\nLôrem ipsum dolor'
+            % (
+                user.name,
+                created_at,
+            )
         )
         # Addon details box contains the rating but link is absent
         assert doc('.addon-rating')

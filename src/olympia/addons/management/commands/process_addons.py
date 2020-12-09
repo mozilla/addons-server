@@ -46,9 +46,8 @@ def get_recalc_needed_filters():
             authors__abuse_reports__state__in=valid_abuse_report_states,
             authors__abuse_reports__created__gte=summary_modified,
         )
-        |
         # And check ratings that have a rating of 3 or less
-        Q(
+        | Q(
             _current_version__ratings__deleted=False,
             _current_version__ratings__created__gte=summary_modified,
             _current_version__ratings__rating__lte=3,
