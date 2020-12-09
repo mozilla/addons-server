@@ -50,9 +50,9 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     readonly_fields = ('id', 'created', 'modified', 'picture_img',
                        'banned', 'deleted', 'is_public',
                        'last_login', 'last_login_ip', 'known_ip_adresses',
-                       'last_known_activity_time', 'ratings_created',
-                       'collections_created', 'addons_created', 'activity',
-                       'abuse_reports_by_this_user',
+                       'last_known_activity_time', 'ratings_authorship',
+                       'collections_authorship', 'addons_authorship',
+                       'activity', 'abuse_reports_by_this_user',
                        'abuse_reports_for_this_user',
                        'has_active_api_key',
                        'restriction_history_for_this_user')
@@ -67,8 +67,8 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
             'fields': ('display_collections', 'deleted', 'is_public'),
         }),
         ('Content', {
-            'fields': ('addons_created', 'collections_created',
-                       'ratings_created')
+            'fields': ('addons_authorship', 'collections_authorship',
+                       'ratings_authorship')
         }),
         ('Abuse Reports', {
             'fields': ('abuse_reports_by_this_user',
@@ -287,18 +287,28 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         return obj.api_keys.filter(is_active=True).exists()
     has_active_api_key.boolean = True
 
-    def collections_created(self, obj):
+    def collections_authorship(self, obj):
         return related_content_link(obj, Collection, 'author')
-    collections_created.short_description = _('Collections')
+    collections_authorship.short_description = _('Collections')
 
-    def addons_created(self, obj):
-        return related_content_link(obj, Addon, 'authors',
-                                    related_manager='unfiltered')
-    addons_created.short_description = _('Addons')
+    def addons_authorship(self, obj):
+        non_deleted_authorship_count = Addon.unfiltered.filter(
+            addonuser__user=obj).exclude(
+            addonuser__role=amo.AUTHOR_ROLE_DELETED).count()
+        deleted_authorship_count = Addon.unfiltered.filter(
+            addonuser__user=obj,
+            addonuser__role=amo.AUTHOR_ROLE_DELETED).count()
+        return related_content_link(
+            obj, Addon, 'authors',
+            text=format_html('{} (active role), {} (deleted role)',
+                             non_deleted_authorship_count,
+                             deleted_authorship_count),
+        )
+    addons_authorship.short_description = _('Addons')
 
-    def ratings_created(self, obj):
+    def ratings_authorship(self, obj):
         return related_content_link(obj, Rating, 'user')
-    ratings_created.short_description = _('Ratings')
+    ratings_authorship.short_description = _('Ratings')
 
     def activity(self, obj):
         return related_content_link(obj, ActivityLog, 'user')

@@ -560,6 +560,11 @@ class TestUserAdmin(TestCase):
         addon_factory(users=[self.user], status=amo.STATUS_DELETED)
         addon_factory(users=[self.user],
                       version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
+        # This next add-on shouldn't be counted.
+        addon_where_user_has_deleted_role = addon_factory(
+            users=[self.user, another_user])
+        addon_where_user_has_deleted_role.addonuser_set.filter(
+            user=self.user).update(role=amo.AUTHOR_ROLE_DELETED)
         url, text = self._call_related_content_method('addons_created')
         expected_url = (
             reverse('admin:addons_addon_changelist') +
