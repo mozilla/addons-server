@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-11-24 05:32+0000\n"
+"PO-Revision-Date: 2020-12-09 07:36+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -4326,9 +4326,8 @@ msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "పిల్లి నుండి లేజర్ కిరణాలను సంధించాల్సివచ్చే ఆ ప్రత్యేకమైన క్షణాలకోసం."
+msgstr "పిల్లి కళ్ళ నుండి లేజర్ కిరణాలను సంధించాల్సివచ్చే ఆ ప్రత్యేక క్షణాలకోసం."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
@@ -5258,9 +5257,8 @@ msgstr "మరిన్ని చర్యలు"
 msgid "Notify me about new listed versions"
 msgstr "కొత్తగా చూపించబడిన వెర్షన్ల గురించి నాకు తెలియజేయి"
 
-#, fuzzy
 msgid "Notify me about new unlisted versions"
-msgstr "ఇది కొత్తగా ఎక్కించిన, జాబితాచేయబడని వెర్షను"
+msgstr "కొత్తగా జాబితాచేయబడని వెర్షన్ల గురించి నాకు తెలియజేయి"
 
 msgid "Allow resubmission"
 msgstr ""
