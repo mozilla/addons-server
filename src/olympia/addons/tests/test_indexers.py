@@ -459,7 +459,7 @@ class TestAddonIndexer(TestCase):
         assert extracted['is_recommended'] is False
 
         # Promoted extension.
-        self.addon = addon_factory(recommended=True)
+        self.addon = addon_factory(promoted=RECOMMENDED)
         extracted = self._extract()
         assert extracted['promoted']
         assert extracted['promoted']['group_id'] == RECOMMENDED.id

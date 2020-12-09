@@ -20,7 +20,7 @@ class TestPrimaryHeroShelfSerializer(TestCase):
             'http://testserver/user-media/hero-featured-image/transparent.jpg')
 
     def test_basic(self):
-        addon = addon_factory(recommended=True)
+        addon = addon_factory(promoted=RECOMMENDED)
         hero = PrimaryHero.objects.create(
             promoted_addon=addon.promotedaddon,
             description='Déscription',

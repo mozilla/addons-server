@@ -1311,7 +1311,7 @@ class TestAddonSearchView(ESTestCase):
 
     def test_filter_by_featured_no_app_no_lang(self):
         addon = addon_factory(
-            slug='my-addon', name=u'Featured Addôn', recommended=True)
+            slug='my-addon', name=u'Featured Addôn', promoted=RECOMMENDED)
         addon_factory(slug='other-addon', name=u'Other Addôn')
         assert addon.promoted_group() == RECOMMENDED
         self.reindex(Addon)
@@ -1327,7 +1327,7 @@ class TestAddonSearchView(ESTestCase):
         av_max, _ = AppVersion.objects.get_or_create(
             application=amo.ANDROID.id, version='60.0.0')
 
-        addon = addon_factory(name='Recomménded Addôn', recommended=True)
+        addon = addon_factory(name='Recomménded Addôn', promoted=RECOMMENDED)
         ApplicationsVersions.objects.get_or_create(
             application=amo.ANDROID.id, version=addon.current_version,
             min=av_min, max=av_max)
@@ -1336,7 +1336,7 @@ class TestAddonSearchView(ESTestCase):
         assert addon.promotedaddon.approved_applications == [
             amo.FIREFOX, amo.ANDROID]
 
-        addon2 = addon_factory(name='Fírefox Addôn', recommended=True)
+        addon2 = addon_factory(name='Fírefox Addôn', promoted=RECOMMENDED)
         ApplicationsVersions.objects.get_or_create(
             application=amo.ANDROID.id, version=addon2.current_version,
             min=av_min, max=av_max)
@@ -1759,7 +1759,7 @@ class TestAddonSearchView(ESTestCase):
     def test_filter_by_guid_return_to_amo(self):
         addon = addon_factory(slug='my-addon', name=u'My Addôn',
                               guid='random@guid', popularity=999,
-                              recommended=True)
+                              promoted=RECOMMENDED)
         addon_factory()
         self.reindex(Addon)
 
@@ -2180,8 +2180,8 @@ class TestAddonFeaturedView(ESTestCase):
         self.refresh()
 
     def test_basic(self):
-        addon1 = addon_factory(recommended=True)
-        addon2 = addon_factory(recommended=True)
+        addon1 = addon_factory(promoted=RECOMMENDED)
+        addon2 = addon_factory(promoted=RECOMMENDED)
         assert addon1.promoted_group() == RECOMMENDED
         assert addon2.promoted_group() == RECOMMENDED
         addon_factory()  # not recommended so shouldn't show up
@@ -2198,7 +2198,7 @@ class TestAddonFeaturedView(ESTestCase):
 
     def test_page_size(self):
         for _ in range(0, 15):
-            addon_factory(recommended=True)
+            addon_factory(promoted=RECOMMENDED)
 
         self.refresh()
 

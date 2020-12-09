@@ -51,7 +51,6 @@ from olympia.addons.tasks import unindex_addons
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES
-from olympia.constants.promoted import RECOMMENDED
 from olympia.files.models import File
 from olympia.lib.es.utils import timestamp_index
 from olympia.promoted.models import (
@@ -690,8 +689,6 @@ def addon_factory(
         slug = name.replace(' ', '-').lower()[:30]
 
     promoted_group = kw.pop('promoted', None)
-    if kw.pop('recommended', False):
-        promoted_group = RECOMMENDED
 
     kwargs = {
         # Set artificially the status to STATUS_APPROVED for now, the real
@@ -720,8 +717,8 @@ def addon_factory(
     # Save 2.
     if promoted_group:
         PromotedAddon.objects.create(addon=addon, group_id=promoted_group.id)
-        if 'recommendation_approved' not in version_kw:
-            version_kw['recommendation_approved'] = True
+        if 'promotion_approved' not in version_kw:
+            version_kw['promotion_approved'] = True
     version = version_factory(file_kw, addon=addon, **version_kw)
 
     addon.update_version()
@@ -888,7 +885,7 @@ def version_factory(file_kw=None, **kw):
             license_kw = {'builtin': 99}
             license_kw.update(kw.get('license_kw', {}))
             kw['license'] = license_factory(**license_kw)
-    recommendation_approved = kw.pop('recommendation_approved', False)
+    promotion_approved = kw.pop('promotion_approved', False)
     ver = Version.objects.create(version=version_str, **kw)
     ver.created = ver.last_updated = _get_created(kw.pop('created', 'now'))
     ver.save()
@@ -903,7 +900,7 @@ def version_factory(file_kw=None, **kw):
     if file_kw is not False:
         file_kw = file_kw or {}
         file_factory(version=ver, **file_kw)
-    if recommendation_approved:
+    if promotion_approved:
         kw['addon'].promotedaddon.approve_for_version(version=ver)
     return ver
 
