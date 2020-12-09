@@ -8,8 +8,7 @@ from django.utils.translation import ugettext
 import jwt
 
 from rest_framework import exceptions
-from rest_framework.authentication import (
-    BaseAuthentication, get_authorization_header)
+from rest_framework.authentication import BaseAuthentication, get_authorization_header
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 import olympia.core.logger
@@ -34,6 +33,7 @@ class WebTokenAuthentication(BaseAuthentication):
 
         Authorization: Bearer eyJhbGciOiAiSFMyNTYiLCAidHlwIj
     """
+
     www_authenticate_realm = 'api'
     auth_header_prefix = 'Bearer'
     salt = 'olympia.api.auth'
@@ -45,27 +45,32 @@ class WebTokenAuthentication(BaseAuthentication):
         authentication scheme should return `403 Permission Denied` responses.
         """
         return '{0} realm="{1}"'.format(
-            self.auth_header_prefix.lower(), self.www_authenticate_realm)
+            self.auth_header_prefix.lower(), self.www_authenticate_realm
+        )
 
     def get_token_value(self, request):
         auth_header = get_authorization_header(request).split()
         expected_header_prefix = self.auth_header_prefix.lower()
 
         if not auth_header or (
-                smart_text(auth_header[0].lower()) != expected_header_prefix):
+            smart_text(auth_header[0].lower()) != expected_header_prefix
+        ):
             return None
 
         if len(auth_header) == 1:
             msg = {
-                'detail': ugettext('Invalid Authorization header. '
-                                   'No credentials provided.'),
-                'code': 'ERROR_INVALID_HEADER'
+                'detail': ugettext(
+                    'Invalid Authorization header. ' 'No credentials provided.'
+                ),
+                'code': 'ERROR_INVALID_HEADER',
             }
             raise exceptions.AuthenticationFailed(msg)
         elif len(auth_header) > 2:
             msg = {
-                'detail': ugettext('Invalid Authorization header. Credentials '
-                                   'string should not contain spaces.'),
+                'detail': ugettext(
+                    'Invalid Authorization header. Credentials '
+                    'string should not contain spaces.'
+                ),
                 'code': 'ERROR_INVALID_HEADER',
             }
             raise exceptions.AuthenticationFailed(msg)
@@ -90,8 +95,10 @@ class WebTokenAuthentication(BaseAuthentication):
     def authenticate_token(self, token):
         try:
             payload = signing.loads(
-                force_text(token), salt=self.salt,
-                max_age=settings.SESSION_COOKIE_AGE or None)
+                force_text(token),
+                salt=self.salt,
+                max_age=settings.SESSION_COOKIE_AGE or None,
+            )
         except signing.SignatureExpired:
             msg = {
                 'detail': ugettext('Signature has expired.'),
@@ -101,7 +108,7 @@ class WebTokenAuthentication(BaseAuthentication):
         except signing.BadSignature:
             msg = {
                 'detail': ugettext('Error decoding signature.'),
-                'code': 'ERROR_DECODING_SIGNATURE'
+                'code': 'ERROR_DECODING_SIGNATURE',
             }
             raise exceptions.AuthenticationFailed(msg)
 
@@ -123,8 +130,7 @@ class WebTokenAuthentication(BaseAuthentication):
             log.info('No user_id in token payload {}'.format(payload))
             raise exceptions.AuthenticationFailed()
         try:
-            user = UserProfile.objects.filter(deleted=False).get(
-                pk=payload['user_id'])
+            user = UserProfile.objects.filter(deleted=False).get(pk=payload['user_id'])
         except UserProfile.DoesNotExist:
             log.info('User not found from token payload {}'.format(payload))
             raise exceptions.AuthenticationFailed()
@@ -133,8 +139,10 @@ class WebTokenAuthentication(BaseAuthentication):
         session_auth_hash = user.get_session_auth_hash()
         payload_auth_hash = payload.get('auth_hash', '')
         if not constant_time_compare(payload_auth_hash, session_auth_hash):
-            log.info('User tried to authenticate with invalid auth hash in'
-                     'payload {}'.format(payload))
+            log.info(
+                'User tried to authenticate with invalid auth hash in'
+                'payload {}'.format(payload)
+            )
             raise exceptions.AuthenticationFailed()
 
         # Set user in thread like UserAndAddrMiddleware does.
@@ -178,8 +186,11 @@ class JWTKeyAuthentication(JSONWebTokenAuthentication):
         except Exception as exc:
             try:
                 # Log all exceptions
-                log.info('JWTKeyAuthentication failed; '
-                         'it raised %s (%s)', exc.__class__.__name__, exc)
+                log.info(
+                    'JWTKeyAuthentication failed; ' 'it raised %s (%s)',
+                    exc.__class__.__name__,
+                    exc,
+                )
                 # Re-raise to deal with them properly.
                 raise exc
             except TypeError:
@@ -210,8 +221,10 @@ class JWTKeyAuthentication(JSONWebTokenAuthentication):
         requests.
         """
         if 'orig_iat' in payload:
-            msg = ("API key based tokens are not refreshable, don't include "
-                   "`orig_iat` in their payload.")
+            msg = (
+                "API key based tokens are not refreshable, don't include "
+                "`orig_iat` in their payload."
+            )
             raise exceptions.AuthenticationFailed(msg)
         try:
             api_key = APIKey.get_jwt_key(key=payload['iss'])
@@ -244,12 +257,13 @@ class JWTKeyAuthentication(JSONWebTokenAuthentication):
             return None
 
         if len(auth) == 1:
-            msg = ugettext('Invalid Authorization header. '
-                           'No credentials provided.')
+            msg = ugettext('Invalid Authorization header. ' 'No credentials provided.')
             raise exceptions.AuthenticationFailed(msg)
         elif len(auth) > 2:
-            msg = ugettext('Invalid Authorization header. Credentials string '
-                           'should not contain spaces.')
+            msg = ugettext(
+                'Invalid Authorization header. Credentials string '
+                'should not contain spaces.'
+            )
             raise exceptions.AuthenticationFailed(msg)
 
         return auth[1]
@@ -265,12 +279,11 @@ class UnsubscribeTokenAuthentication(BaseAuthentication):
     def authenticate(self, request):
         try:
             email = UnsubscribeCode.parse(
-                request.data.get('token'), request.data.get('hash'))
+                request.data.get('token'), request.data.get('hash')
+            )
             user = UserProfile.objects.get(email=email)
         except ValueError:
-            raise exceptions.AuthenticationFailed(
-                ugettext('Invalid token or hash.'))
+            raise exceptions.AuthenticationFailed(ugettext('Invalid token or hash.'))
         except UserProfile.DoesNotExist:
-            raise exceptions.AuthenticationFailed(
-                ugettext('Email address not found.'))
+            raise exceptions.AuthenticationFailed(ugettext('Email address not found.'))
         return (user, None)

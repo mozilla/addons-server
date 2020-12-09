@@ -23,8 +23,7 @@ GRADIENT_COLORS = {
     '#722291': 'color-purple-70',
     '#592ACB': 'color-violet-70',
 }
-MODULE_ICON_PATH = os.path.join(
-    settings.ROOT, 'static', 'img', 'hero', 'icons')
+MODULE_ICON_PATH = os.path.join(settings.ROOT, 'static', 'img', 'hero', 'icons')
 MODULE_ICON_URL = f'{settings.STATIC_URL}img/hero/icons/'
 HERO_PREVIEW_URL = f'{settings.MEDIA_URL}hero-featured-image/thumbs/'
 
@@ -33,13 +32,20 @@ class GradientChoiceWidget(RadioSelect):
     option_template_name = 'hero/gradient_option.html'
     option_inherits_attrs = True
 
-    def create_option(self, name, value, label, selected, index,
-                      subindex=None, attrs=None):
+    def create_option(
+        self, name, value, label, selected, index, subindex=None, attrs=None
+    ):
         attrs['gradient_end_color'] = value
         attrs['gradient_start_color'] = GRADIENT_START_COLOR[0]
         return super().create_option(
-            name=name, value=value, label=label, selected=selected,
-            index=index, subindex=subindex, attrs=attrs)
+            name=name,
+            value=value,
+            label=label,
+            selected=selected,
+            index=index,
+            subindex=subindex,
+            attrs=attrs,
+        )
 
 
 class IconChoiceWidget(RadioSelect):
@@ -47,12 +53,19 @@ class IconChoiceWidget(RadioSelect):
     option_inherits_attrs = True
     image_url_base = MODULE_ICON_URL
 
-    def create_option(self, name, value, label, selected, index,
-                      subindex=None, attrs=None):
+    def create_option(
+        self, name, value, label, selected, index, subindex=None, attrs=None
+    ):
         attrs['image_url'] = f'{self.image_url_base}{value}'
         return super().create_option(
-            name=name, value=value, label=label, selected=selected,
-            index=index, subindex=subindex, attrs=attrs)
+            name=name,
+            value=value,
+            label=label,
+            selected=selected,
+            index=index,
+            subindex=subindex,
+            attrs=attrs,
+        )
 
 
 class DirImageChoices:
@@ -92,8 +105,8 @@ def hero_image_directory(instance, filename):
 
 class PrimaryHeroImage(ModelBase):
     custom_image = models.ImageField(
-        upload_to=hero_image_directory,
-        blank=False, verbose_name='custom image path')
+        upload_to=hero_image_directory, blank=False, verbose_name='custom image path'
+    )
 
     def __str__(self):
         return f'{self.custom_image}'
@@ -110,11 +123,12 @@ class PrimaryHeroImage(ModelBase):
 
     def preview_image(self):
         if self.custom_image:
-            return mark_safe('<img class="prmhero-preview" src="{}" />'.format(
-                self.preview_url)
+            return mark_safe(
+                '<img class="prmhero-preview" src="{}" />'.format(self.preview_url)
             )
         else:
             return None
+
     preview_image.short_description = "Image"
     preview_image.allow_tags = True
 
@@ -130,17 +144,23 @@ class PrimaryHeroImage(ModelBase):
 
 class PrimaryHero(ModelBase):
     select_image = models.ForeignKey(
-        PrimaryHeroImage, null=True, on_delete=models.SET_NULL)
+        PrimaryHeroImage, null=True, on_delete=models.SET_NULL
+    )
     gradient_color = WidgetCharField(
-        choices=GRADIENT_COLORS.items(), max_length=7,
-        widget=GradientChoiceWidget, blank=True)
+        choices=GRADIENT_COLORS.items(),
+        max_length=7,
+        widget=GradientChoiceWidget,
+        blank=True,
+    )
     description = models.TextField(
         blank=True,
         help_text='Text used to describe an add-on. Should not contain any '
-                  'HTML or special tags. Will be translated.')
+        'HTML or special tags. Will be translated.',
+    )
     enabled = models.BooleanField(db_index=True, default=False)
     promoted_addon = models.OneToOneField(
-        PromotedAddon, on_delete=models.CASCADE, null=False)
+        PromotedAddon, on_delete=models.CASCADE, null=False
+    )
     is_external = models.BooleanField(default=False)
 
     def __str__(self):
@@ -148,15 +168,14 @@ class PrimaryHero(ModelBase):
 
     @property
     def image_url(self):
-        return (
-            f'{self.select_image.custom_image.url}'
-            if self.select_image else None)
+        return f'{self.select_image.custom_image.url}' if self.select_image else None
 
     @property
     def gradient(self):
         return {
             'start': GRADIENT_START_COLOR[1],
-            'end': GRADIENT_COLORS.get(self.gradient_color)}
+            'end': GRADIENT_COLORS.get(self.gradient_color),
+        }
 
     def clean(self):
         super().clean()
@@ -164,39 +183,47 @@ class PrimaryHero(ModelBase):
         if self.enabled:
             if not self.gradient_color:
                 error_dict['gradient_color'] = ValidationError(
-                    'Gradient color is required for enabled shelves')
+                    'Gradient color is required for enabled shelves'
+                )
 
             if self.is_external and not self.promoted_addon.addon.homepage:
                 error_dict['is_external'] = ValidationError(
                     'External primary shelves need a homepage defined in '
-                    'addon details.')
+                    'addon details.'
+                )
             elif not self.is_external:
                 can_add_to_primary = (
-                    self.promoted_addon.group.can_primary_hero and
-                    self.promoted_addon.approved_applications)
+                    self.promoted_addon.group.can_primary_hero
+                    and self.promoted_addon.approved_applications
+                )
                 if not can_add_to_primary:
                     can_hero_groups = ', '.join(
-                        str(promo.name) for promo in PROMOTED_GROUPS
-                        if promo.can_primary_hero)
+                        str(promo.name)
+                        for promo in PROMOTED_GROUPS
+                        if promo.can_primary_hero
+                    )
                     error_dict['enabled'] = ValidationError(
                         'Only add-ons that are %s can be enabled for '
-                        'non-external primary shelves.' % can_hero_groups)
+                        'non-external primary shelves.' % can_hero_groups
+                    )
         else:
             if list(PrimaryHero.objects.filter(enabled=True)) == [self]:
                 error_dict['enabled'] = ValidationError(
-                    'You can\'t disable the only enabled primary shelf.')
+                    'You can\'t disable the only enabled primary shelf.'
+                )
         if error_dict:
             raise ValidationError(error_dict)
 
 
-class CTACheckMixin():
+class CTACheckMixin:
     def clean(self):
         super().clean()
         both_or_neither = not (bool(self.cta_text) ^ bool(self.cta_url))
         if getattr(self, 'enabled', True) and not both_or_neither:
             raise ValidationError(
                 'Both the call to action URL and text must be defined, or '
-                'neither, for enabled shelves.')
+                'neither, for enabled shelves.'
+            )
 
 
 class SecondaryHero(CTACheckMixin, ModelBase):
@@ -208,8 +235,9 @@ class SecondaryHero(CTACheckMixin, ModelBase):
 
     class Meta(ModelBase.Meta):
         indexes = [
-            LongNameIndex(fields=('enabled',),
-                          name='hero_secondaryhero_enabled_1a9ea03c'),
+            LongNameIndex(
+                fields=('enabled',), name='hero_secondaryhero_enabled_1a9ea03c'
+            ),
         ]
 
     def __str__(self):
@@ -220,19 +248,22 @@ class SecondaryHero(CTACheckMixin, ModelBase):
         if not self.enabled:
             if list(SecondaryHero.objects.filter(enabled=True)) == [self]:
                 raise ValidationError(
-                    'You can\'t disable the only enabled secondary shelf.')
+                    'You can\'t disable the only enabled secondary shelf.'
+                )
 
 
 class SecondaryHeroModule(CTACheckMixin, ModelBase):
     icon = WidgetCharField(
         choices=DirImageChoices(path=MODULE_ICON_PATH),
-        max_length=255, widget=IconChoiceWidget, blank_text='Not selected')
+        max_length=255,
+        widget=IconChoiceWidget,
+        blank_text='Not selected',
+    )
     description = models.CharField(max_length=50, blank=False)
     cta_url = models.CharField(max_length=255, blank=True)
     cta_text = models.CharField(max_length=20, blank=True)
     shelf = models.ForeignKey(
-        SecondaryHero, on_delete=models.CASCADE,
-        related_name='modules'
+        SecondaryHero, on_delete=models.CASCADE, related_name='modules'
     )
 
     def __str__(self):

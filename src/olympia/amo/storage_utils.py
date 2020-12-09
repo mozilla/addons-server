@@ -13,8 +13,9 @@ from django.utils.encoding import force_text
 DEFAULT_CHUNK_SIZE = 64 * 2 ** 10  # 64kB
 
 
-def walk_storage(path, topdown=True, onerror=None, followlinks=False,
-                 storage=default_storage):
+def walk_storage(
+    path, topdown=True, onerror=None, followlinks=False, storage=default_storage
+):
     """
     Generate the file names in a stored directory tree by walking the tree
     top-down.
@@ -45,8 +46,9 @@ def walk_storage(path, topdown=True, onerror=None, followlinks=False,
         roots[:] = new_roots
 
 
-def copy_stored_file(src_path, dest_path, storage=default_storage,
-                     chunk_size=DEFAULT_CHUNK_SIZE):
+def copy_stored_file(
+    src_path, dest_path, storage=default_storage, chunk_size=DEFAULT_CHUNK_SIZE
+):
     """
     Copy one storage path to another storage path.
 
@@ -64,8 +66,9 @@ def copy_stored_file(src_path, dest_path, storage=default_storage,
                     break
 
 
-def move_stored_file(src_path, dest_path, storage=default_storage,
-                     chunk_size=DEFAULT_CHUNK_SIZE):
+def move_stored_file(
+    src_path, dest_path, storage=default_storage, chunk_size=DEFAULT_CHUNK_SIZE
+):
     """
     Move a storage path to another storage path.
 
@@ -73,8 +76,7 @@ def move_stored_file(src_path, dest_path, storage=default_storage,
     This attempts to be compatible with a wide range of storage backends
     rather than attempt to be optimized for each individual one.
     """
-    copy_stored_file(src_path, dest_path, storage=storage,
-                     chunk_size=chunk_size)
+    copy_stored_file(src_path, dest_path, storage=storage, chunk_size=chunk_size)
     storage.delete(src_path)
 
 

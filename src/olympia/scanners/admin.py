@@ -34,8 +34,11 @@ from olympia.constants.scanners import (
 )
 
 from .models import (
-    ImproperScannerQueryRuleStateError, ScannerQueryResult, ScannerQueryRule,
-    ScannerResult, ScannerRule
+    ImproperScannerQueryRuleStateError,
+    ScannerQueryResult,
+    ScannerQueryRule,
+    ScannerResult,
+    ScannerRule,
 )
 from .tasks import run_yara_query_rule
 
@@ -48,8 +51,7 @@ def _is_safe_url(url, request):
         urlparse(settings.EXTERNAL_SITE_URL).netloc,
     )
     require_https = request.is_secure() if request else False
-    return is_safe_url(url, allowed_hosts=allowed_hosts,
-                       require_https=require_https)
+    return is_safe_url(url, allowed_hosts=allowed_hosts, require_https=require_https)
 
 
 class PresenceFilter(SimpleListFilter):
@@ -57,9 +59,7 @@ class PresenceFilter(SimpleListFilter):
         for lookup, title in self.lookup_choices:
             yield {
                 'selected': self.value() == lookup,
-                'query_string': cl.get_query_string(
-                    {self.parameter_name: lookup}, []
-                ),
+                'query_string': cl.get_query_string({self.parameter_name: lookup}, []),
                 'display': title,
             }
 
@@ -93,9 +93,7 @@ class StateFilter(SimpleListFilter):
             )
             yield {
                 'selected': selected,
-                'query_string': cl.get_query_string(
-                    {self.parameter_name: lookup}, []
-                ),
+                'query_string': cl.get_query_string({self.parameter_name: lookup}, []),
                 'display': title,
             }
 
@@ -126,21 +124,19 @@ class ExcludeMatchedRuleFilter(SimpleListFilter):
     def lookups(self, request, model_admin):
         return [(None, 'No excluded rule')] + [
             (rule.pk, f'{rule.name} ({rule.get_scanner_display()})')
-            for rule in ScannerRule.objects.only(
-                'pk', 'scanner', 'name'
-            ).order_by('scanner', 'name')
+            for rule in ScannerRule.objects.only('pk', 'scanner', 'name').order_by(
+                'scanner', 'name'
+            )
         ]
 
     def choices(self, cl):
         for lookup, title in self.lookup_choices:
-            selected = (lookup is None
-                        if self.value() is None
-                        else self.value() == str(lookup))
+            selected = (
+                lookup is None if self.value() is None else self.value() == str(lookup)
+            )
             yield {
                 'selected': selected,
-                'query_string': cl.get_query_string(
-                    {self.parameter_name: lookup}, []
-                ),
+                'query_string': cl.get_query_string({self.parameter_name: lookup}, []),
                 'display': title,
             }
 
@@ -150,7 +146,8 @@ class ExcludeMatchedRuleFilter(SimpleListFilter):
         # We want to exclude results that *only* matched the given rule, so
         # we know they'll have exactly one matched rule.
         return queryset.annotate(num_matches=Count('matched_rules')).exclude(
-            matched_rules=self.value(), num_matches=1)
+            matched_rules=self.value(), num_matches=1
+        )
 
 
 class WithVersionFilter(PresenceFilter):
@@ -187,13 +184,15 @@ class AddonVisibilityFilter(admin.BooleanFieldListFilter):
         # We're doing a lookup on disabled_by_user: if it's True then the
         # add-on listing is "invisible", and False it's "visible".
         for lookup, title in (
-                (None, _('All')),
-                ('1', _('Invisible')),
-                ('0', _('Visible'))):
+            (None, _('All')),
+            ('1', _('Invisible')),
+            ('0', _('Visible')),
+        ):
             yield {
                 'selected': self.lookup_val == lookup and not self.lookup_val2,
                 'query_string': changelist.get_query_string(
-                    {self.lookup_kwarg: lookup}, [self.lookup_kwarg2]),
+                    {self.lookup_kwarg: lookup}, [self.lookup_kwarg2]
+                ),
                 'display': title,
             }
 
@@ -291,8 +290,7 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
 
     # Custom actions
     def has_actions_permission(self, request):
-        return acl.action_allowed(
-            request, amo.permissions.ADMIN_SCANNERS_RESULTS_EDIT)
+        return acl.action_allowed(request, amo.permissions.ADMIN_SCANNERS_RESULTS_EDIT)
 
     def get_list_display(self, request):
         fields = super().get_list_display(request)
@@ -328,8 +326,11 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
                     reverse(
                         'reviewers.review',
                         args=[
-                            ('listed' if obj.version.channel ==
-                             amo.RELEASE_CHANNEL_LISTED else 'unlisted'),
+                            (
+                                'listed'
+                                if obj.version.channel == amo.RELEASE_CHANNEL_LISTED
+                                else 'unlisted'
+                            ),
                             obj.version.addon.id,
                         ],
                     ),
@@ -354,9 +355,7 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
                 (
                     urljoin(
                         settings.EXTERNAL_SITE_URL,
-                        reverse(
-                            'admin:users_userprofile_change', args=(author.pk,)
-                        ),
+                        reverse('admin:users_userprofile_change', args=(author.pk,)),
                     ),
                     author.email,
                 )
@@ -410,9 +409,7 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
             ', '.join(
                 [
                     '<a href="{}">{} ({})</a>'.format(
-                        reverse(
-                            'admin:%s_%s_change' % info, args=[rule.pk]
-                        ),
+                        reverse('admin:%s_%s_change' % info, args=[rule.pk]),
                         rule.name,
                         rule.get_scanner_display(),
                     )
@@ -424,7 +421,8 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
     formatted_matched_rules.short_description = 'Matched rules'
 
     def formatted_matched_rules_with_files(
-            self, obj, template_name='formatted_matched_rules_with_files'):
+        self, obj, template_name='formatted_matched_rules_with_files'
+    ):
         files_by_matched_rules = obj.get_files_by_matched_rules()
         rule_model = self.model.matched_rules.rel.model
         info = rule_model._meta.app_label, rule_model._meta.model_name
@@ -433,8 +431,7 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
             {
                 'rule_change_urlname': 'admin:%s_%s_change' % info,
                 'external_site_url': settings.EXTERNAL_SITE_URL,
-                'file_id': (obj.version.all_files[0].id if obj.version else
-                            None),
+                'file_id': (obj.version.all_files[0].id if obj.version else None),
                 'matched_rules': [
                     {
                         'pk': rule.pk,
@@ -523,10 +520,8 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
             [
                 # Default label added to all issues
                 'false positive report'
-            ] + [
-                'rule: {}'.format(rule.name)
-                for rule in result.matched_rules.all()
             ]
+            + ['rule: {}'.format(rule.name) for rule in result.matched_rules.all()]
         )
 
         return redirect(
@@ -538,7 +533,8 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
 
     def handle_revert(self, request, pk, *args, **kwargs):
         is_admin = acl.action_allowed(
-            request, amo.permissions.ADMIN_SCANNERS_RESULTS_EDIT)
+            request, amo.permissions.ADMIN_SCANNERS_RESULTS_EDIT
+        )
         if not is_admin or request.method != "POST":
             raise Http404
 
@@ -585,19 +581,16 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
     def result_actions(self, obj):
         info = self.model._meta.app_label, self.model._meta.model_name
         return render_to_string(
-            'admin/scannerresult_actions.html', {
+            'admin/scannerresult_actions.html',
+            {
                 'handlefalsepositive_urlname': (
                     'admin:%s_%s_handlefalsepositive' % info
                 ),
-                'handletruepositive_urlname': (
-                    'admin:%s_%s_handletruepositive' % info
-                ),
-                'handleinconclusive_urlname': (
-                    'admin:%s_%s_handleinconclusive' % info
-                ),
+                'handletruepositive_urlname': ('admin:%s_%s_handletruepositive' % info),
+                'handleinconclusive_urlname': ('admin:%s_%s_handleinconclusive' % info),
                 'handlerevert_urlname': 'admin:%s_%s_handlerevert' % info,
                 'obj': obj,
-            }
+            },
         )
 
     result_actions.short_description = 'Actions'
@@ -656,13 +649,13 @@ class AbstractScannerRuleAdminMixin(admin.ModelAdmin):
         }
         result_admin = admin.site._registry[ResultModel]
         params.update(result_admin.get_unfiltered_changelist_params())
-        return format_html(
-            '<a href="{}?{}">{}</a>', url, urlencode(params), count)
+        return format_html('<a href="{}?{}">{}</a>', url, urlencode(params), count)
 
     matched_results_link.short_description = 'Matched Results'
 
     def formatted_definition(self, obj):
         return format_html('<pre>{}</pre>', obj.definition)
+
     formatted_definition.short_description = 'Definition'
 
 
@@ -679,8 +672,7 @@ class ScannerResultAdmin(AbstractScannerResultAdminMixin, admin.ModelAdmin):
 
 
 @admin.register(ScannerQueryResult)
-class ScannerQueryResultAdmin(
-        AbstractScannerResultAdminMixin, admin.ModelAdmin):
+class ScannerQueryResultAdmin(AbstractScannerResultAdminMixin, admin.ModelAdmin):
     raw_id_fields = ('version',)
     list_display_links = None
     list_display = (
@@ -693,7 +685,7 @@ class ScannerQueryResultAdmin(
         'authors',
         'formatted_matched_rules',
         'matching_filenames',
-        'download'
+        'download',
     )
     list_filter = (
         ('matched_rules', ScannerRuleListFilter),
@@ -702,15 +694,13 @@ class ScannerQueryResultAdmin(
         ('version__addon__disabled_by_user', AddonVisibilityFilter),
         ('version__files__status', FileStatusFiler),
         ('version__files__is_signed', FileIsSigned),
-        ('was_blocked', admin.BooleanFieldListFilter)
+        ('was_blocked', admin.BooleanFieldListFilter),
     )
 
     ordering = ('version__addon_id', 'version__channel', 'version__created')
 
     class Media(AbstractScannerResultAdminMixin.Media):
-        js = (
-            'js/admin/scannerqueryresult.js',
-        )
+        js = ('js/admin/scannerqueryresult.js',)
 
     def addon_name(self, obj):
         # Custom, simpler implementation to go with add-on grouping: the
@@ -732,8 +722,11 @@ class ScannerQueryResultAdmin(
                     reverse(
                         'reviewers.review',
                         args=[
-                            ('listed' if obj.version.channel ==
-                             amo.RELEASE_CHANNEL_LISTED else 'unlisted'),
+                            (
+                                'listed'
+                                if obj.version.channel == amo.RELEASE_CHANNEL_LISTED
+                                else 'unlisted'
+                            ),
                             obj.version.addon.id,
                         ],
                     ),
@@ -754,19 +747,20 @@ class ScannerQueryResultAdmin(
 
     def matching_filenames(self, obj):
         return self.formatted_matched_rules_with_files(
-            obj, template_name='formatted_matching_files')
+            obj, template_name='formatted_matching_files'
+        )
 
     def download(self, obj):
         if obj.version and obj.version.current_file:
             return format_html(
                 '<a href="{}">{}</a>',
                 obj.version.current_file.get_absolute_url(attachment=True),
-                obj.version.current_file.pk)
+                obj.version.current_file.pk,
+            )
         return '-'
 
     def has_actions_permission(self, request):
-        return acl.action_allowed(
-            request, amo.permissions.ADMIN_SCANNERS_QUERY_EDIT)
+        return acl.action_allowed(request, amo.permissions.ADMIN_SCANNERS_QUERY_EDIT)
 
 
 @admin.register(ScannerRule)
@@ -777,8 +771,13 @@ class ScannerRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
 @admin.register(ScannerQueryRule)
 class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
     list_display = (
-        'name', 'scanner', 'run_on_disabled_addons', 'created',
-        'state_with_actions', 'completion_rate', 'matched_results_link',
+        'name',
+        'scanner',
+        'run_on_disabled_addons',
+        'created',
+        'state_with_actions',
+        'completion_rate',
+        'matched_results_link',
     )
     list_filter = ('state',)
     fields = (
@@ -793,23 +792,24 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
         'definition',
     )
     readonly_fields = (
-        'completion_rate', 'created', 'modified', 'matched_results_link',
+        'completion_rate',
+        'created',
+        'modified',
+        'matched_results_link',
         'state_with_actions',
     )
 
     def change_view(self, request, *args, **kwargs):
         kwargs['extra_context'] = kwargs.get('extra_context') or {}
-        kwargs['extra_context']['hide_action_buttons'] = (
-            not acl.action_allowed(
-                request, amo.permissions.ADMIN_SCANNERS_QUERY_EDIT)
+        kwargs['extra_context']['hide_action_buttons'] = not acl.action_allowed(
+            request, amo.permissions.ADMIN_SCANNERS_QUERY_EDIT
         )
         return super().change_view(request, *args, **kwargs)
 
     def changelist_view(self, request, *args, **kwargs):
         kwargs['extra_context'] = kwargs.get('extra_context') or {}
-        kwargs['extra_context']['hide_action_buttons'] = (
-            not acl.action_allowed(
-                request, amo.permissions.ADMIN_SCANNERS_QUERY_EDIT)
+        kwargs['extra_context']['hide_action_buttons'] = not acl.action_allowed(
+            request, amo.permissions.ADMIN_SCANNERS_QUERY_EDIT
         )
         return super().changelist_view(request, *args, **kwargs)
 
@@ -820,7 +820,8 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
 
     def handle_run(self, request, pk, *args, **kwargs):
         is_admin = acl.action_allowed(
-            request, amo.permissions.ADMIN_SCANNERS_QUERY_EDIT)
+            request, amo.permissions.ADMIN_SCANNERS_QUERY_EDIT
+        )
         if not is_admin or request.method != 'POST':
             raise Http404
 
@@ -844,14 +845,16 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
                 messages.ERROR,
                 'Scanner Query Rule {} could not be queued for execution '
                 'because it was in "{}"" state.'.format(
-                    rule.pk, rule.get_state_display()),
+                    rule.pk, rule.get_state_display()
+                ),
             )
 
         return redirect('admin:scanners_scannerqueryrule_changelist')
 
     def handle_abort(self, request, pk, *args, **kwargs):
         is_admin = acl.action_allowed(
-            request, amo.permissions.ADMIN_SCANNERS_QUERY_EDIT)
+            request, amo.permissions.ADMIN_SCANNERS_QUERY_EDIT
+        )
         if not is_admin or request.method != 'POST':
             raise Http404
 
@@ -896,12 +899,14 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
 
     def state_with_actions(self, obj):
         return render_to_string(
-            'admin/scannerqueryrule_state_with_actions.html', {
+            'admin/scannerqueryrule_state_with_actions.html',
+            {
                 'obj': obj,
                 'COMPLETED': COMPLETED,
                 'NEW': NEW,
                 'RUNNING': RUNNING,
-            }
+            },
         )
+
     state_with_actions.short_description = 'State'
     state_with_actions.allow_tags = True

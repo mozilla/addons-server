@@ -40,9 +40,13 @@ class AdminBaseFileFormSet(BaseModelFormSet):
         for form in self.initial_forms:
             if 'status' in form.changed_data:
                 admin_log.info(
-                    'Addon "%s" file (ID:%d) status changed to: %s' % (
-                        self.instance.slug, form.instance.id,
-                        form.cleaned_data['status']))
+                    'Addon "%s" file (ID:%d) status changed to: %s'
+                    % (
+                        self.instance.slug,
+                        form.instance.id,
+                        form.cleaned_data['status'],
+                    )
+                )
         return objs
 
     def save_new_objects(self, commit=True):

@@ -48,8 +48,9 @@ def memcache():
 
             memcache_results.append((ip, port, result))
         if not using_twemproxy and len(memcache_results) < 2:
-            status = ('2+ memcache servers are required.'
-                      '%s available') % len(memcache_results)
+            status = ('2+ memcache servers are required.' '%s available') % len(
+                memcache_results
+            )
             monitor_log.warning(status)
 
     if not memcache_results:
@@ -70,8 +71,7 @@ def libraries():
         msg = "Failed to create a jpeg image: %s" % e
         libraries_results.append(('PIL+JPEG', False, msg))
 
-    missing_libs = [
-        lib for lib, success, _ in libraries_results if not success]
+    missing_libs = [lib for lib, success, _ in libraries_results if not success]
     if missing_libs:
         status = 'missing libs: %s' % ",".join(missing_libs)
     return status, libraries_results
@@ -101,10 +101,12 @@ def path():
         user_media_path('guarded_addons'),
         user_media_path('addon_icons'),
         user_media_path('previews'),
-        user_media_path('userpics'),)
+        user_media_path('userpics'),
+    )
     read_only = [os.path.join(settings.ROOT, 'locale')]
-    filepaths = [(path, os.R_OK | os.W_OK, 'We want read + write')
-                 for path in read_and_write]
+    filepaths = [
+        (path, os.R_OK | os.W_OK, 'We want read + write') for path in read_and_write
+    ]
     filepaths += [(path, os.R_OK, 'We want read') for path in read_only]
     filepath_results = []
     filepath_status = True
@@ -154,11 +156,13 @@ def signer():
         try:
             response = requests.get(
                 '{host}/__heartbeat__'.format(host=autograph_url),
-                timeout=settings.SIGNING_SERVER_MONITORING_TIMEOUT)
+                timeout=settings.SIGNING_SERVER_MONITORING_TIMEOUT,
+            )
             if response.status_code != 200:
                 status = (
                     'Failed to chat with signing service. '
-                    'Invalid HTTP response code.')
+                    'Invalid HTTP response code.'
+                )
                 monitor_log.critical(status)
                 signer_results = False
             else:

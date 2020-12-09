@@ -30,9 +30,7 @@ AMO_STATS_DOWNLOAD_VIEW = 'amo_stats_installs'
 
 
 def make_fully_qualified_view_name(view):
-    return '.'.join(
-        [settings.BIGQUERY_PROJECT, settings.BIGQUERY_AMO_DATASET, view]
-    )
+    return '.'.join([settings.BIGQUERY_PROJECT, settings.BIGQUERY_AMO_DATASET, view])
 
 
 def get_amo_stats_dau_view_name():
@@ -66,18 +64,14 @@ def rows_to_series(rows, count_column, filter_by=None):
             if filter_by == AMO_TO_BQ_DAU_COLUMN_MAPPING['apps']:
                 item['data'] = {
                     ANDROID.guid: {
-                        d['key']: d['value']
-                        for d in row.get('dau_by_fenix_build', [])
+                        d['key']: d['value'] for d in row.get('dau_by_fenix_build', [])
                     },
                     FIREFOX.guid: {
-                        d['key']: d['value']
-                        for d in row.get('dau_by_app_version', [])
+                        d['key']: d['value'] for d in row.get('dau_by_app_version', [])
                     },
                 }
             else:
-                item['data'] = {
-                    d['key']: d['value'] for d in row.get(filter_by, [])
-                }
+                item['data'] = {d['key']: d['value'] for d in row.get(filter_by, [])}
 
         yield item
 
@@ -104,9 +98,7 @@ LIMIT 365"""
             query,
             job_config=bigquery.QueryJobConfig(
                 query_parameters=[
-                    bigquery.ScalarQueryParameter(
-                        'addon_id', 'STRING', addon.guid
-                    ),
+                    bigquery.ScalarQueryParameter('addon_id', 'STRING', addon.guid),
                     bigquery.ScalarQueryParameter(
                         'submission_date_start', 'DATE', start_date
                     ),
@@ -136,9 +128,7 @@ AND submission_date BETWEEN @submission_date_start AND @submission_date_end
 ORDER BY submission_date DESC
 LIMIT 365"""
 
-    statsd_timer = (
-        f'stats.get_download_series.bigquery.{source or "no_source"}'
-    )
+    statsd_timer = f'stats.get_download_series.bigquery.{source or "no_source"}'
     with statsd.timer(statsd_timer):
         rows = client.query(
             query,
@@ -159,9 +149,7 @@ LIMIT 365"""
             ),
         ).result()
 
-    return rows_to_series(
-        rows, count_column='total_downloads', filter_by=filter_by
-    )
+    return rows_to_series(rows, count_column='total_downloads', filter_by=filter_by)
 
 
 def get_addons_and_average_daily_users_from_bigquery():
@@ -179,7 +167,8 @@ GROUP BY addon_id"""
 
     return [
         (row['addon_id'], row['count'])
-        for row in rows if row['addon_id'] and row['count']
+        for row in rows
+        if row['addon_id'] and row['count']
     ]
 
 
@@ -226,17 +215,13 @@ USING
 """
     query_parameters = [
         bigquery.ScalarQueryParameter('one_week_date', 'DATE', one_week_date),
-        bigquery.ScalarQueryParameter(
-            'four_weeks_date', 'DATE', four_weeks_date
-        ),
+        bigquery.ScalarQueryParameter('four_weeks_date', 'DATE', four_weeks_date),
     ]
 
     if exclude and len(exclude) > 0:
         query = f'{query} WHERE addon_id NOT IN UNNEST(@excluded_addon_ids)'
         query_parameters.append(
-            bigquery.ArrayQueryParameter(
-                'excluded_addon_ids', 'STRING', exclude
-            )
+            bigquery.ArrayQueryParameter('excluded_addon_ids', 'STRING', exclude)
         )
 
     rows = client.query(
@@ -249,7 +234,8 @@ USING
             'avg_this_week': row['avg_this_week'],
             'avg_three_weeks_before': row['avg_three_weeks_before'],
         }
-        for row in rows if row['addon_id']
+        for row in rows
+        if row['addon_id']
     }
 
 
@@ -268,5 +254,6 @@ GROUP BY hashed_addon_id"""
 
     return [
         (row['hashed_addon_id'], row['count'])
-        for row in rows if row['hashed_addon_id'] and row['count']
+        for row in rows
+        if row['hashed_addon_id'] and row['count']
     ]

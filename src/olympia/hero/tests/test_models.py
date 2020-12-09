@@ -4,7 +4,11 @@ from olympia.amo.tests import addon_factory, TestCase
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.constants.promoted import RECOMMENDED, SPOTLIGHT, VERIFIED
 from olympia.hero.models import (
-    PrimaryHero, PrimaryHeroImage, SecondaryHero, SecondaryHeroModule)
+    PrimaryHero,
+    PrimaryHeroImage,
+    SecondaryHero,
+    SecondaryHeroModule,
+)
 from olympia.promoted.models import PromotedAddon
 
 
@@ -16,23 +20,29 @@ class TestPrimaryHero(TestCase):
     def test_image_url(self):
         ph = PrimaryHero.objects.create(
             promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
-            select_image=self.phi)
+            select_image=self.phi,
+        )
         assert ph.image_url == (
-            'http://testserver/user-media/hero-featured-image/transparent.jpg')
+            'http://testserver/user-media/hero-featured-image/transparent.jpg'
+        )
         ph.update(select_image=None)
         assert ph.image_url is None
 
     def test_gradiant(self):
         ph = PrimaryHero.objects.create(
             promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
-            gradient_color='#C60084')
+            gradient_color='#C60084',
+        )
         assert ph.gradient == {'start': 'color-ink-80', 'end': 'color-pink-70'}
 
     def test_clean_requires_approved_can_primary_hero_group(self):
         ph = PrimaryHero.objects.create(
             promoted_addon=PromotedAddon.objects.create(
-                addon=addon_factory(), group_id=RECOMMENDED.id),
-            gradient_color='#C60184', select_image=self.phi)
+                addon=addon_factory(), group_id=RECOMMENDED.id
+            ),
+            gradient_color='#C60184',
+            select_image=self.phi,
+        )
         assert not ph.enabled
         ph.clean()  # it raises if there's an error
         ph.enabled = True
@@ -40,8 +50,7 @@ class TestPrimaryHero(TestCase):
             ph.clean()
 
         assert not ph.promoted_addon.addon.promoted_group()
-        ph.promoted_addon.approve_for_version(
-            ph.promoted_addon.addon.current_version)
+        ph.promoted_addon.approve_for_version(ph.promoted_addon.addon.current_version)
         ph.reload()
         ph.enabled = True
         assert ph.promoted_addon.addon.promoted_group() == RECOMMENDED
@@ -49,8 +58,7 @@ class TestPrimaryHero(TestCase):
 
         # change to a different group
         ph.promoted_addon.update(group_id=VERIFIED.id)
-        ph.promoted_addon.approve_for_version(
-            ph.promoted_addon.addon.current_version)
+        ph.promoted_addon.approve_for_version(ph.promoted_addon.addon.current_version)
         ph.reload()
         ph.enabled = True
         assert ph.promoted_addon.addon.promoted_group() == VERIFIED
@@ -59,12 +67,12 @@ class TestPrimaryHero(TestCase):
             ph.clean()
         assert context.exception.messages == [
             'Only add-ons that are Recommended, Sponsored, By Firefox, '
-            'Spotlight can be enabled for non-external primary shelves.']
+            'Spotlight can be enabled for non-external primary shelves.'
+        ]
 
         # change to a different group that *can* be added as a primary hero
         ph.promoted_addon.update(group_id=SPOTLIGHT.id)
-        ph.promoted_addon.approve_for_version(
-            ph.promoted_addon.addon.current_version)
+        ph.promoted_addon.approve_for_version(ph.promoted_addon.addon.current_version)
         ph.reload()
         ph.enabled = True
         assert ph.promoted_addon.addon.promoted_group() == SPOTLIGHT
@@ -73,7 +81,10 @@ class TestPrimaryHero(TestCase):
     def test_clean_external_requires_homepage(self):
         ph = PrimaryHero.objects.create(
             promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
-            is_external=True, gradient_color='#C60184', select_image=self.phi)
+            is_external=True,
+            gradient_color='#C60184',
+            select_image=self.phi,
+        )
         assert not ph.enabled
         ph.clean()  # it raises if there's an error
         ph.enabled = True
@@ -88,9 +99,10 @@ class TestPrimaryHero(TestCase):
         # Currently, gradient is required and image isn't.
         ph = PrimaryHero.objects.create(
             promoted_addon=PromotedAddon.objects.create(
-                addon=addon_factory(), group_id=RECOMMENDED.id))
-        ph.promoted_addon.approve_for_version(
-            ph.promoted_addon.addon.current_version)
+                addon=addon_factory(), group_id=RECOMMENDED.id
+            )
+        )
+        ph.promoted_addon.approve_for_version(ph.promoted_addon.addon.current_version)
         ph.reload()
         assert not ph.enabled
         ph.clean()  # it raises if there's an error
@@ -112,10 +124,14 @@ class TestPrimaryHero(TestCase):
     def test_clean_only_enabled(self):
         hero = PrimaryHero.objects.create(
             promoted_addon=PromotedAddon.objects.create(
-                addon=addon_factory(), group_id=RECOMMENDED.id),
-            gradient_color='#C60184', select_image=self.phi)
+                addon=addon_factory(), group_id=RECOMMENDED.id
+            ),
+            gradient_color='#C60184',
+            select_image=self.phi,
+        )
         hero.promoted_addon.approve_for_version(
-            hero.promoted_addon.addon.current_version)
+            hero.promoted_addon.addon.current_version
+        )
         hero.reload()
         assert not hero.enabled
         assert not PrimaryHero.objects.filter(enabled=True).exists()
@@ -136,15 +152,16 @@ class TestPrimaryHero(TestCase):
         # But if there's another shelf enabled, then it's fine to disable.
         PrimaryHero.objects.create(
             promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
-            enabled=True)
+            enabled=True,
+        )
         hero.clean()
 
 
 class TestSecondaryHero(TestCase):
-
     def test_str(self):
         sh = SecondaryHero.objects.create(
-            headline='Its a héadline!', description='description')
+            headline='Its a héadline!', description='description'
+        )
         assert str(sh) == 'Its a héadline!'
 
     def test_clean_cta(self):
@@ -179,7 +196,8 @@ class TestSecondaryHero(TestCase):
 
     def test_clean_only_enabled(self):
         hero = SecondaryHero.objects.create(
-            headline='Its a héadline!', description='description')
+            headline='Its a héadline!', description='description'
+        )
         assert not hero.enabled
         assert not SecondaryHero.objects.filter(enabled=True).exists()
         # It should still validate even if there are no other enabled shelves,
@@ -198,22 +216,20 @@ class TestSecondaryHero(TestCase):
 
         # But if there's another shelf enabled, then it's fine to disable.
         SecondaryHero.objects.create(
-            headline='Its a héadline!', description='description',
-            enabled=True)
+            headline='Its a héadline!', description='description', enabled=True
+        )
         hero.clean()
 
 
 class TestSecondaryHeroModule(TestCase):
-
     def test_str(self):
         shm = SecondaryHeroModule.objects.create(
-            description='descríption',
-            shelf=SecondaryHero.objects.create())
+            description='descríption', shelf=SecondaryHero.objects.create()
+        )
         assert str(shm) == 'descríption'
 
     def test_clean_cta(self):
-        ph = SecondaryHeroModule.objects.create(
-            shelf=SecondaryHero.objects.create())
+        ph = SecondaryHeroModule.objects.create(shelf=SecondaryHero.objects.create())
 
         # neither cta_url or cta_text are set, and that's okay.
         ph.clean()  # it raises if there's an error.
@@ -236,7 +252,6 @@ class TestSecondaryHeroModule(TestCase):
 
     def test_icon_url(self):
         ph = SecondaryHeroModule.objects.create(
-            shelf=SecondaryHero.objects.create(),
-            icon='foo.svg')
-        assert ph.icon_url == (
-            'http://testserver/static/img/hero/icons/foo.svg')
+            shelf=SecondaryHero.objects.create(), icon='foo.svg'
+        )
+        assert ph.icon_url == ('http://testserver/static/img/hero/icons/foo.svg')

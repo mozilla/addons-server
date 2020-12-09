@@ -13,31 +13,35 @@ from celery.result import AsyncResult
 
 from olympia import amo
 from olympia.amo.storage_utils import copy_stored_file
-from olympia.amo.tests import (
-    addon_factory, TestCase, user_factory, version_factory)
+from olympia.amo.tests import addon_factory, TestCase, user_factory, version_factory
 from olympia.applications.models import AppVersion
 from olympia.devhub import tasks, utils
 from olympia.files.tasks import repack_fileupload
 from olympia.files.tests.test_models import UploadTest
 from olympia.scanners.tasks import run_customs, run_wat, run_yara, call_mad_api
 from olympia.users.models import (
-    EmailUserRestriction, IPNetworkUserRestriction, UserRestrictionHistory)
+    EmailUserRestriction,
+    IPNetworkUserRestriction,
+    UserRestrictionHistory,
+)
 
 
 class TestAddonsLinterListed(UploadTest, TestCase):
-
     def setUp(self):
         # Create File objects for version 1.0 and 1.1.
         self.addon = addon_factory(
-            guid='test-desktop@nowhere', slug='test-amo-addon',
+            guid='test-desktop@nowhere',
+            slug='test-amo-addon',
             version_kw={'version': '1.0'},
-            file_kw={'filename': 'webextension.xpi'})
+            file_kw={'filename': 'webextension.xpi'},
+        )
         self.version = self.addon.current_version
         self.file = self.version.current_file
 
         # Create a FileUpload object for an XPI containing version 1.1.
         self.file_upload = self.get_upload(
-            abspath=self.file.current_file_path, with_validation=False)
+            abspath=self.file.current_file_path, with_validation=False
+        )
 
         self.mock_chain = self.patch('olympia.devhub.utils.chain')
 
@@ -52,8 +56,7 @@ class TestAddonsLinterListed(UploadTest, TestCase):
         # Run validator.
         utils.Validator(file_upload, listed=listed)
 
-        channel = (amo.RELEASE_CHANNEL_LISTED if listed
-                   else amo.RELEASE_CHANNEL_UNLISTED)
+        channel = amo.RELEASE_CHANNEL_LISTED if listed else amo.RELEASE_CHANNEL_UNLISTED
 
         # Make sure we setup the correct validation task.
         self.mock_chain.assert_called_once_with(
@@ -63,11 +66,9 @@ class TestAddonsLinterListed(UploadTest, TestCase):
             tasks.check_for_api_keys_in_file.s(file_upload.pk),
             chord(
                 [tasks.forward_linter_results.s(file_upload.pk)],
-                call_mad_api.s(file_upload.pk)
+                call_mad_api.s(file_upload.pk),
             ),
-            tasks.handle_upload_validation_result.s(file_upload.pk,
-                                                    channel,
-                                                    False)
+            tasks.handle_upload_validation_result.s(file_upload.pk, channel, False),
         )
 
     def check_file(self, file_):
@@ -112,23 +113,24 @@ class TestAddonsLinterListed(UploadTest, TestCase):
         upload."""
         get_task_mock.return_value.delay.return_value = mock.Mock(task_id='42')
 
-        assert isinstance(
-            tasks.validate(self.file_upload, listed=True), mock.Mock)
+        assert isinstance(tasks.validate(self.file_upload, listed=True), mock.Mock)
         assert get_task_mock.return_value.delay.call_count == 1
 
-        assert isinstance(
-            tasks.validate(self.file_upload, listed=True), AsyncResult)
+        assert isinstance(tasks.validate(self.file_upload, listed=True), AsyncResult)
         assert get_task_mock.return_value.delay.call_count == 1
 
     def test_cache_key(self):
         """Tests that the correct cache key is generated for a given object."""
 
-        assert (utils.Validator(self.file).cache_key ==
-                'validation-task:files.File:{0}:None'.format(self.file.pk))
+        assert utils.Validator(
+            self.file
+        ).cache_key == 'validation-task:files.File:{0}:None'.format(self.file.pk)
 
-        assert (utils.Validator(self.file_upload, listed=False).cache_key ==
-                'validation-task:files.FileUpload:{0}:False'.format(
-                    self.file_upload.pk))
+        assert utils.Validator(
+            self.file_upload, listed=False
+        ).cache_key == 'validation-task:files.FileUpload:{0}:False'.format(
+            self.file_upload.pk
+        )
 
 
 class TestLimitAddonsLinterResults(TestCase):
@@ -153,8 +155,7 @@ class TestLimitAddonsLinterResults(TestCase):
 
     @override_settings(VALIDATOR_MESSAGE_LIMIT=2)
     def test_errors_are_first(self):
-        validation = self.make_validation(
-            ['error', 'warning', 'notice', 'error'])
+        validation = self.make_validation(['error', 'warning', 'notice', 'error'])
         utils.limit_validation_results(validation)
         limited = validation['messages']
         assert len(limited) == 3
@@ -164,15 +165,10 @@ class TestLimitAddonsLinterResults(TestCase):
 
 
 class TestFixAddonsLinterOutput(TestCase):
-
     def test_fix_output(self):
         original_output = {
             'count': 4,
-            'summary': {
-                'errors': 0,
-                'notices': 0,
-                'warnings': 4
-            },
+            'summary': {'errors': 0, 'notices': 0, 'warnings': 4},
             'metadata': {
                 'manifestVersion': 2,
                 'name': 'My Dogs New Tab',
@@ -180,9 +176,7 @@ class TestFixAddonsLinterOutput(TestCase):
                 'version': '2.13.15',
                 'architecture': 'extension',
                 'emptyFiles': [],
-                'jsLibs': {
-                    'lib/vendor/jquery.js': 'jquery.2.1.4.jquery.js'
-                }
+                'jsLibs': {'lib/vendor/jquery.js': 'jquery.2.1.4.jquery.js'},
             },
             'errors': [],
             'notices': [],
@@ -192,20 +186,20 @@ class TestFixAddonsLinterOutput(TestCase):
                     'code': 'MANIFEST_PERMISSIONS',
                     'message': '/permissions: Unknown permissions ...',
                     'description': 'See https://mzl.la/1R1n1t0 ...',
-                    'file': 'manifest.json'
+                    'file': 'manifest.json',
                 },
                 {
                     '_type': 'warning',
                     'code': 'MANIFEST_PERMISSIONS',
                     'message': '/permissions: Unknown permissions ...',
                     'description': 'See https://mzl.la/1R1n1t0 ....',
-                    'file': 'manifest.json'
+                    'file': 'manifest.json',
                 },
                 {
                     '_type': 'warning',
                     'code': 'MANIFEST_CSP',
                     'message': '\'content_security_policy\' is ...',
-                    'description': 'A custom content_security_policy ...'
+                    'description': 'A custom content_security_policy ...',
                 },
                 {
                     '_type': 'warning',
@@ -214,13 +208,14 @@ class TestFixAddonsLinterOutput(TestCase):
                     'description': 'document.write will fail in...',
                     'column': 13,
                     'file': 'lib/vendor/knockout.js',
-                    'line': 5449
-                }
-            ]
+                    'line': 5449,
+                },
+            ],
         }
 
         fixed = utils.fix_addons_linter_output(
-            original_output, amo.RELEASE_CHANNEL_LISTED)
+            original_output, amo.RELEASE_CHANNEL_LISTED
+        )
 
         assert fixed['success']
         assert fixed['warnings'] == 4
@@ -245,10 +240,11 @@ class TestFixAddonsLinterOutput(TestCase):
 
 @pytest.mark.django_db
 @pytest.mark.parametrize(
-    'zip_file', (
+    'zip_file',
+    (
         'src/olympia/devhub/tests/addons/static_theme.zip',
         'src/olympia/devhub/tests/addons/static_theme_deprecated.zip',
-    )
+    ),
 )
 def test_extract_theme_properties(zip_file):
     versions = {
@@ -261,23 +257,16 @@ def test_extract_theme_properties(zip_file):
         AppVersion.objects.create(application=amo.ANDROID.id, version=version)
 
     addon = addon_factory(type=amo.ADDON_STATICTHEME)
-    result = utils.extract_theme_properties(
-        addon, addon.current_version.channel)
+    result = utils.extract_theme_properties(addon, addon.current_version.channel)
     assert result == {}  # There's no file, but it be should safely handled.
 
     # Add the zip in the right place
     zip_file = os.path.join(settings.ROOT, zip_file)
     copy_stored_file(zip_file, addon.current_version.all_files[0].file_path)
-    result = utils.extract_theme_properties(
-        addon, addon.current_version.channel)
+    result = utils.extract_theme_properties(addon, addon.current_version.channel)
     assert result == {
-        "colors": {
-            "frame": "#adb09f",
-            "tab_background_text": "#000"
-        },
-        "images": {
-            "theme_frame": "weta.png"
-        }
+        "colors": {"frame": "#adb09f", "tab_background_text": "#000"},
+        "images": {"theme_frame": "weta.png"},
     }
 
 
@@ -298,8 +287,7 @@ def test_wizard_unsupported_properties():
         },
     }
     fields = ['foo', 'baa']
-    properties = utils.wizard_unsupported_properties(
-        data, fields)
+    properties = utils.wizard_unsupported_properties(data, fields)
     assert properties == ['extrathing', 'extracolor', 'additionalBackground']
 
 
@@ -316,7 +304,8 @@ class TestUploadRestrictionChecker(TestCase):
         assert checker.is_submission_allowed()
         assert incr_mock.call_count == 1
         assert incr_mock.call_args_list[0][0] == (
-            'devhub.is_submission_allowed.success',)
+            'devhub.is_submission_allowed.success',
+        )
         assert not UserRestrictionHistory.objects.exists()
 
     def test_is_submission_allowed_hasnt_read_agreement(self, incr_mock):
@@ -331,26 +320,26 @@ class TestUploadRestrictionChecker(TestCase):
         )
         assert incr_mock.call_count == 2
         assert incr_mock.call_args_list[0][0] == (
-            'devhub.is_submission_allowed.DeveloperAgreementRestriction'
-            '.failure',)
+            'devhub.is_submission_allowed.DeveloperAgreementRestriction' '.failure',
+        )
         assert incr_mock.call_args_list[1][0] == (
-            'devhub.is_submission_allowed.failure',)
+            'devhub.is_submission_allowed.failure',
+        )
         assert UserRestrictionHistory.objects.count() == 1
         history = UserRestrictionHistory.objects.get()
-        assert history.get_restriction_display() == (
-            'DeveloperAgreementRestriction')
+        assert history.get_restriction_display() == ('DeveloperAgreementRestriction')
         assert history.user == self.request.user
         assert history.last_login_ip == self.request.user.last_login_ip
         assert history.ip_address == '10.0.0.1'
 
-    def test_is_submission_allowed_bypassing_read_dev_agreement(
-            self, incr_mock):
+    def test_is_submission_allowed_bypassing_read_dev_agreement(self, incr_mock):
         self.request.user.update(read_dev_agreement=None)
         checker = utils.UploadRestrictionChecker(self.request)
         assert checker.is_submission_allowed(check_dev_agreement=False)
         assert incr_mock.call_count == 1
         assert incr_mock.call_args_list[0][0] == (
-            'devhub.is_submission_allowed.success',)
+            'devhub.is_submission_allowed.success',
+        )
         assert not UserRestrictionHistory.objects.exists()
 
     def test_user_is_allowed_to_bypass_restrictions(self, incr_mock):
@@ -371,9 +360,11 @@ class TestUploadRestrictionChecker(TestCase):
         )
         assert incr_mock.call_count == 2
         assert incr_mock.call_args_list[0][0] == (
-            'devhub.is_submission_allowed.IPNetworkUserRestriction.failure',)
+            'devhub.is_submission_allowed.IPNetworkUserRestriction.failure',
+        )
         assert incr_mock.call_args_list[1][0] == (
-            'devhub.is_submission_allowed.failure',)
+            'devhub.is_submission_allowed.failure',
+        )
         assert UserRestrictionHistory.objects.count() == 1
         history = UserRestrictionHistory.objects.get()
         assert history.get_restriction_display() == 'IPNetworkUserRestriction'
@@ -382,8 +373,7 @@ class TestUploadRestrictionChecker(TestCase):
         assert history.ip_address == '10.0.0.1'
 
     def test_is_submission_allowed_email_restricted(self, incr_mock):
-        EmailUserRestriction.objects.create(
-            email_pattern=self.request.user.email)
+        EmailUserRestriction.objects.create(email_pattern=self.request.user.email)
         checker = utils.UploadRestrictionChecker(self.request)
         assert not checker.is_submission_allowed()
         assert checker.get_error_message() == (
@@ -392,9 +382,11 @@ class TestUploadRestrictionChecker(TestCase):
         )
         assert incr_mock.call_count == 2
         assert incr_mock.call_args_list[0][0] == (
-            'devhub.is_submission_allowed.EmailUserRestriction.failure',)
+            'devhub.is_submission_allowed.EmailUserRestriction.failure',
+        )
         assert incr_mock.call_args_list[1][0] == (
-            'devhub.is_submission_allowed.failure',)
+            'devhub.is_submission_allowed.failure',
+        )
         assert UserRestrictionHistory.objects.count() == 1
         history = UserRestrictionHistory.objects.get()
         assert history.get_restriction_display() == 'EmailUserRestriction'
@@ -416,8 +408,8 @@ def test_process_validation_ending_tier_is_preserved():
             "contains_binary_extension": True,
             "version": "1.0",
             "name": "gK0Bes Bot",
-            "id": "gkobes@gkobes"
-        }
+            "id": "gkobes@gkobes",
+        },
     }
     data = utils.process_validation(results)
     assert not data['errors']
@@ -425,12 +417,10 @@ def test_process_validation_ending_tier_is_preserved():
 
 
 class TestValidator(UploadTest, TestCase):
-
     @mock.patch('olympia.devhub.utils.chain')
     def test_appends_final_task_for_file_uploads(self, mock_chain):
         final_task = mock.Mock()
-        file_upload = self.get_upload('webextension.xpi',
-                                      with_validation=False)
+        file_upload = self.get_upload('webextension.xpi', with_validation=False)
         channel = amo.RELEASE_CHANNEL_LISTED
 
         utils.Validator(file_upload, listed=True, final_task=final_task)
@@ -442,11 +432,9 @@ class TestValidator(UploadTest, TestCase):
             tasks.check_for_api_keys_in_file.s(file_upload.pk),
             chord(
                 [tasks.forward_linter_results.s(file_upload.pk)],
-                call_mad_api.s(file_upload.pk)
+                call_mad_api.s(file_upload.pk),
             ),
-            tasks.handle_upload_validation_result.s(file_upload.pk,
-                                                    channel,
-                                                    False),
+            tasks.handle_upload_validation_result.s(file_upload.pk, channel, False),
             final_task,
         )
 
@@ -467,8 +455,7 @@ class TestValidator(UploadTest, TestCase):
     @mock.patch('olympia.devhub.utils.chain')
     def test_adds_run_yara_when_enabled(self, mock_chain):
         self.create_switch('enable-yara', active=True)
-        file_upload = self.get_upload('webextension.xpi',
-                                      with_validation=False)
+        file_upload = self.get_upload('webextension.xpi', with_validation=False)
         channel = amo.RELEASE_CHANNEL_LISTED
 
         utils.Validator(file_upload, listed=True)
@@ -483,18 +470,15 @@ class TestValidator(UploadTest, TestCase):
                     tasks.forward_linter_results.s(file_upload.pk),
                     run_yara.s(file_upload.pk),
                 ],
-                call_mad_api.s(file_upload.pk)
+                call_mad_api.s(file_upload.pk),
             ),
-            tasks.handle_upload_validation_result.s(file_upload.pk,
-                                                    channel,
-                                                    False)
+            tasks.handle_upload_validation_result.s(file_upload.pk, channel, False),
         )
 
     @mock.patch('olympia.devhub.utils.chain')
     def test_does_not_add_run_yara_when_disabled(self, mock_chain):
         self.create_switch('enable-yara', active=False)
-        file_upload = self.get_upload('webextension.xpi',
-                                      with_validation=False)
+        file_upload = self.get_upload('webextension.xpi', with_validation=False)
         channel = amo.RELEASE_CHANNEL_LISTED
 
         utils.Validator(file_upload, listed=True)
@@ -508,16 +492,13 @@ class TestValidator(UploadTest, TestCase):
                 [tasks.forward_linter_results.s(file_upload.pk)],
                 call_mad_api.s(file_upload.pk),
             ),
-            tasks.handle_upload_validation_result.s(file_upload.pk,
-                                                    channel,
-                                                    False)
+            tasks.handle_upload_validation_result.s(file_upload.pk, channel, False),
         )
 
     @mock.patch('olympia.devhub.utils.chain')
     def test_adds_run_customs_when_enabled(self, mock_chain):
         self.create_switch('enable-customs', active=True)
-        file_upload = self.get_upload('webextension.xpi',
-                                      with_validation=False)
+        file_upload = self.get_upload('webextension.xpi', with_validation=False)
         channel = amo.RELEASE_CHANNEL_LISTED
 
         utils.Validator(file_upload, listed=True)
@@ -534,16 +515,13 @@ class TestValidator(UploadTest, TestCase):
                 ],
                 call_mad_api.s(file_upload.pk),
             ),
-            tasks.handle_upload_validation_result.s(file_upload.pk,
-                                                    channel,
-                                                    False)
+            tasks.handle_upload_validation_result.s(file_upload.pk, channel, False),
         )
 
     @mock.patch('olympia.devhub.utils.chain')
     def test_does_not_add_run_customs_when_disabled(self, mock_chain):
         self.create_switch('enable-customs', active=False)
-        file_upload = self.get_upload('webextension.xpi',
-                                      with_validation=False)
+        file_upload = self.get_upload('webextension.xpi', with_validation=False)
         channel = amo.RELEASE_CHANNEL_LISTED
 
         utils.Validator(file_upload, listed=True)
@@ -557,16 +535,13 @@ class TestValidator(UploadTest, TestCase):
                 [tasks.forward_linter_results.s(file_upload.pk)],
                 call_mad_api.s(file_upload.pk),
             ),
-            tasks.handle_upload_validation_result.s(file_upload.pk,
-                                                    channel,
-                                                    False)
+            tasks.handle_upload_validation_result.s(file_upload.pk, channel, False),
         )
 
     @mock.patch('olympia.devhub.utils.chain')
     def test_adds_run_wat_when_enabled(self, mock_chain):
         self.create_switch('enable-wat', active=True)
-        file_upload = self.get_upload('webextension.xpi',
-                                      with_validation=False)
+        file_upload = self.get_upload('webextension.xpi', with_validation=False)
         channel = amo.RELEASE_CHANNEL_LISTED
 
         utils.Validator(file_upload, listed=True)
@@ -583,16 +558,13 @@ class TestValidator(UploadTest, TestCase):
                 ],
                 call_mad_api.s(file_upload.pk),
             ),
-            tasks.handle_upload_validation_result.s(file_upload.pk,
-                                                    channel,
-                                                    False)
+            tasks.handle_upload_validation_result.s(file_upload.pk, channel, False),
         )
 
     @mock.patch('olympia.devhub.utils.chain')
     def test_does_not_add_run_wat_when_disabled(self, mock_chain):
         self.create_switch('enable-wat', active=False)
-        file_upload = self.get_upload('webextension.xpi',
-                                      with_validation=False)
+        file_upload = self.get_upload('webextension.xpi', with_validation=False)
         channel = amo.RELEASE_CHANNEL_LISTED
 
         utils.Validator(file_upload, listed=True)
@@ -606,17 +578,14 @@ class TestValidator(UploadTest, TestCase):
                 [tasks.forward_linter_results.s(file_upload.pk)],
                 call_mad_api.s(file_upload.pk),
             ),
-            tasks.handle_upload_validation_result.s(file_upload.pk,
-                                                    channel,
-                                                    False)
+            tasks.handle_upload_validation_result.s(file_upload.pk, channel, False),
         )
 
     @mock.patch('olympia.devhub.utils.chain')
     def test_adds_yara_and_customs(self, mock_chain):
         self.create_switch('enable-customs', active=True)
         self.create_switch('enable-yara', active=True)
-        file_upload = self.get_upload('webextension.xpi',
-                                      with_validation=False)
+        file_upload = self.get_upload('webextension.xpi', with_validation=False)
         channel = amo.RELEASE_CHANNEL_LISTED
 
         utils.Validator(file_upload, listed=True)
@@ -634,9 +603,7 @@ class TestValidator(UploadTest, TestCase):
                 ],
                 call_mad_api.s(file_upload.pk),
             ),
-            tasks.handle_upload_validation_result.s(file_upload.pk,
-                                                    channel,
-                                                    False)
+            tasks.handle_upload_validation_result.s(file_upload.pk, channel, False),
         )
 
     @mock.patch('olympia.devhub.utils.chain')
@@ -644,8 +611,7 @@ class TestValidator(UploadTest, TestCase):
         self.create_switch('enable-customs', active=True)
         self.create_switch('enable-wat', active=True)
         self.create_switch('enable-yara', active=True)
-        file_upload = self.get_upload('webextension.xpi',
-                                      with_validation=False)
+        file_upload = self.get_upload('webextension.xpi', with_validation=False)
         channel = amo.RELEASE_CHANNEL_LISTED
 
         utils.Validator(file_upload, listed=True)
@@ -664,18 +630,14 @@ class TestValidator(UploadTest, TestCase):
                 ],
                 call_mad_api.s(file_upload.pk),
             ),
-            tasks.handle_upload_validation_result.s(file_upload.pk,
-                                                    channel,
-                                                    False)
+            tasks.handle_upload_validation_result.s(file_upload.pk, channel, False),
         )
 
     def test_create_file_upload_tasks(self):
         self.create_switch('enable-customs', active=True)
         self.create_switch('enable-wat', active=True)
         self.create_switch('enable-yara', active=True)
-        file_upload = self.get_upload(
-            'webextension.xpi', with_validation=False
-        )
+        file_upload = self.get_upload('webextension.xpi', with_validation=False)
         channel = amo.RELEASE_CHANNEL_LISTED
         validator = utils.Validator(file_upload, listed=True)
 
@@ -705,9 +667,6 @@ class TestValidator(UploadTest, TestCase):
             'olympia.scanners.tasks.run_wat',
         ]
         assert len(scanners_chord.tasks) == len(expected_parallel_tasks)
-        assert (expected_parallel_tasks == [task.name for task in
-                                            scanners_chord.tasks])
+        assert expected_parallel_tasks == [task.name for task in scanners_chord.tasks]
         # Callback
-        assert (
-            scanners_chord.body.name == 'olympia.scanners.tasks.call_mad_api'
-        )
+        assert scanners_chord.body.name == 'olympia.scanners.tasks.call_mad_api'

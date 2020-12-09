@@ -4,20 +4,29 @@ from olympia import amo
 from olympia.files.utils import RDFExtractor, SafeZip, get_file
 
 
-def insert_validation_message(results, type_='error', message='', msg_id='',
-                              compatibility_type=None, description=None):
+def insert_validation_message(
+    results,
+    type_='error',
+    message='',
+    msg_id='',
+    compatibility_type=None,
+    description=None,
+):
 
     if description is None:
         description = []
 
-    results['messages'].insert(0, {
-        'tier': 1,
-        'type': type_,
-        'id': ['validation', 'messages', msg_id],
-        'message': message,
-        'description': description,
-        'compatibility_type': compatibility_type,
-    })
+    results['messages'].insert(
+        0,
+        {
+            'tier': 1,
+            'type': type_,
+            'id': ['validation', 'messages', msg_id],
+            'message': message,
+            'description': description,
+            'compatibility_type': compatibility_type,
+        },
+    )
     # Need to increment 'errors' or 'warnings' count, so add an extra 's' after
     # the type_ to increment the right entry.
     results['{}s'.format(type_)] += 1
@@ -32,13 +41,13 @@ def annotate_legacy_addon_restrictions(path, results, parsed_data, error=True):
     # We can be broad here. Search plugins are not validated through this
     # path and as of right now (Jan 2019) there aren't any legacy type
     # add-ons allowed to submit anymore.
-    msg = ugettext(
-        u'Legacy extensions are no longer supported in Firefox.')
+    msg = ugettext(u'Legacy extensions are no longer supported in Firefox.')
 
     description = ugettext(
         u'Add-ons for Thunderbird and SeaMonkey are now listed and '
         u'maintained on addons.thunderbird.net. You can use the same '
-        u'account to update your add-ons on the new site.')
+        u'account to update your add-ons on the new site.'
+    )
 
     # `parsed_data` only contains the most minimal amount of data because
     # we aren't in the right context. Let's explicitly fetch the add-ons
@@ -56,9 +65,12 @@ def annotate_legacy_addon_restrictions(path, results, parsed_data, error=True):
     description = description if targets_thunderbird_or_seamonkey else []
 
     insert_validation_message(
-        results, type_='error' if error else 'warning',
-        message=msg, description=description,
-        msg_id='legacy_addons_unsupported')
+        results,
+        type_='error' if error else 'warning',
+        message=msg,
+        description=description,
+        msg_id='legacy_addons_unsupported',
+    )
 
 
 def annotate_search_plugin_restriction(results, file_path, channel):
@@ -79,16 +91,20 @@ def annotate_search_plugin_restriction(results, file_path, channel):
     msg = ugettext(
         u'Open Search add-ons are {blog_link_open}no longer supported on AMO'
         u'{blog_link_close}. You can create a {doc_link_open}search extension '
-        u'instead{doc_link_close}.').format(
-            blog_link_open=(
-                '<a href="https://blog.mozilla.org/addons/2019/10/15/'
-                'search-engine-add-ons-to-be-removed-from-addons-mozilla-org/'
-                '">'),
-            blog_link_close='</a>',
-            doc_link_open=(
-                '<a href="https://developer.mozilla.org/docs/Mozilla/Add-ons/'
-                'WebExtensions/manifest.json/chrome_settings_overrides">'),
-            doc_link_close='</a>')
+        u'instead{doc_link_close}.'
+    ).format(
+        blog_link_open=(
+            '<a href="https://blog.mozilla.org/addons/2019/10/15/'
+            'search-engine-add-ons-to-be-removed-from-addons-mozilla-org/'
+            '">'
+        ),
+        blog_link_close='</a>',
+        doc_link_open=(
+            '<a href="https://developer.mozilla.org/docs/Mozilla/Add-ons/'
+            'WebExtensions/manifest.json/chrome_settings_overrides">'
+        ),
+        doc_link_close='</a>',
+    )
 
     insert_validation_message(
         results, type_='error', message=msg, msg_id='opensearch_unsupported'

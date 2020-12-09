@@ -20,7 +20,6 @@ from olympia.versions.models import ApplicationsVersions, Version
 
 
 class VersionCheckMixin(object):
-
     def get_update_instance(self, data):
         instance = update.Update(data)
         instance.cursor = connection.cursor()
@@ -142,8 +141,10 @@ class TestLookup(VersionCheckMixin, TestCase):
         assert instance.is_valid()
         instance.data['version_int'] = args[1]
         instance.get_update()
-        return (instance.data['row'].get('version_id'),
-                instance.data['row'].get('file_id'))
+        return (
+            instance.data['row'].get('version_id'),
+            instance.data['row'].get('file_id'),
+        )
 
     def change_status(self, version, status):
         version = Version.objects.get(pk=version)
@@ -161,7 +162,8 @@ class TestLookup(VersionCheckMixin, TestCase):
         add-on is returned.
         """
         version, file = self.get_update_instance(
-            '', '3000000001100', self.app, self.platform)
+            '', '3000000001100', self.app, self.platform
+        )
         assert version == self.version_1_0_2
 
     def test_new_client(self):
@@ -170,7 +172,8 @@ class TestLookup(VersionCheckMixin, TestCase):
         add-on is returned.
         """
         version, file = self.get_update_instance(
-            '', self.version_int, self.app, self.platform)
+            '', self.version_int, self.app, self.platform
+        )
         assert version == self.version_1_2_2
 
     def test_min_client(self):
@@ -185,7 +188,8 @@ class TestLookup(VersionCheckMixin, TestCase):
             appversion.save()
 
         version, file = self.get_update_instance(
-            '', '3070000005000', self.app, self.platform)  # 3.7a5pre
+            '', '3070000005000', self.app, self.platform
+        )  # 3.7a5pre
         assert version == self.version_1_1_3
 
     def test_new_client_ordering(self):
@@ -206,7 +210,8 @@ class TestLookup(VersionCheckMixin, TestCase):
         application_version.save()
 
         version, file = self.get_update_instance(
-            '', self.version_int, self.app, self.platform)
+            '', self.version_int, self.app, self.platform
+        )
         assert version == self.version_1_2_2
 
     def test_public(self):
@@ -217,7 +222,8 @@ class TestLookup(VersionCheckMixin, TestCase):
         self.addon.reload()
         assert self.addon.status == amo.STATUS_APPROVED
         version, file = self.get_update_instance(
-            '1.2', self.version_int, self.app, self.platform)
+            '1.2', self.version_int, self.app, self.platform
+        )
         assert version == self.version_1_2_1
 
     def test_no_unlisted(self):
@@ -225,11 +231,13 @@ class TestLookup(VersionCheckMixin, TestCase):
         Unlisted versions are always ignored, never served as updates.
         """
         Version.objects.get(pk=self.version_1_2_2).update(
-            channel=amo.RELEASE_CHANNEL_UNLISTED)
+            channel=amo.RELEASE_CHANNEL_UNLISTED
+        )
         self.addon.reload()
         assert self.addon.status == amo.STATUS_APPROVED
         version, file = self.get_update_instance(
-            '1.2', self.version_int, self.app, self.platform)
+            '1.2', self.version_int, self.app, self.platform
+        )
         assert version == self.version_1_2_1
 
     def test_can_downgrade(self):
@@ -241,7 +249,8 @@ class TestLookup(VersionCheckMixin, TestCase):
         for v in Version.objects.filter(pk__gte=self.version_1_2_1):
             v.delete()
         version, file = self.get_update_instance(
-            '1.2', self.version_int, self.app, self.platform)
+            '1.2', self.version_int, self.app, self.platform
+        )
 
         assert version == self.version_1_1_3
 
@@ -257,7 +266,8 @@ class TestLookup(VersionCheckMixin, TestCase):
         self.change_version(self.version_1_2_0, '1.2beta')
 
         version, file = self.get_update_instance(
-            '1.2', self.version_int, self.app, self.platform)
+            '1.2', self.version_int, self.app, self.platform
+        )
 
         assert version == self.version_1_2_1
 
@@ -272,7 +282,8 @@ class TestLookup(VersionCheckMixin, TestCase):
         Version.objects.get(pk=self.version_1_2_0).files.all().delete()
 
         version, file = self.get_update_instance(
-            '1.2beta', self.version_int, self.app, self.platform)
+            '1.2beta', self.version_int, self.app, self.platform
+        )
         dest = Version.objects.get(pk=self.version_1_2_2)
         assert dest.addon.status == amo.STATUS_APPROVED
         assert dest.files.all()[0].status == amo.STATUS_APPROVED
@@ -286,7 +297,8 @@ class TestLookup(VersionCheckMixin, TestCase):
         self.change_status(self.version_1_2_2, amo.STATUS_NULL)
         self.addon.update(status=amo.STATUS_NULL)
         version, file = self.get_update_instance(
-            '1.2.1', self.version_int, self.app, self.platform)
+            '1.2.1', self.version_int, self.app, self.platform
+        )
         assert version == self.version_1_2_1
 
     def test_platform_does_not_exist(self):
@@ -297,7 +309,8 @@ class TestLookup(VersionCheckMixin, TestCase):
             file.save()
 
         version, file = self.get_update_instance(
-            '1.2', self.version_int, self.app, self.platform)
+            '1.2', self.version_int, self.app, self.platform
+        )
         assert version == self.version_1_2_1
 
     def test_platform_exists(self):
@@ -308,7 +321,8 @@ class TestLookup(VersionCheckMixin, TestCase):
             file.save()
 
         version, file = self.get_update_instance(
-            '1.2', self.version_int, self.app, amo.PLATFORM_LINUX)
+            '1.2', self.version_int, self.app, amo.PLATFORM_LINUX
+        )
         assert version == self.version_1_2_2
 
     def test_file_for_platform(self):
@@ -318,17 +332,23 @@ class TestLookup(VersionCheckMixin, TestCase):
         file_one.platform = amo.PLATFORM_LINUX.id
         file_one.save()
 
-        file_two = File(version=version, filename='foo', hash='bar',
-                        platform=amo.PLATFORM_WIN.id,
-                        status=amo.STATUS_APPROVED)
+        file_two = File(
+            version=version,
+            filename='foo',
+            hash='bar',
+            platform=amo.PLATFORM_WIN.id,
+            status=amo.STATUS_APPROVED,
+        )
         file_two.save()
         version, file = self.get_update_instance(
-            '1.2', self.version_int, self.app, amo.PLATFORM_LINUX)
+            '1.2', self.version_int, self.app, amo.PLATFORM_LINUX
+        )
         assert version == self.version_1_2_2
         assert file == file_one.pk
 
         version, file = self.get_update_instance(
-            '1.2', self.version_int, self.app, amo.PLATFORM_WIN)
+            '1.2', self.version_int, self.app, amo.PLATFORM_WIN
+        )
         assert version == self.version_1_2_2
         assert file == file_two.pk
 
@@ -337,6 +357,7 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
     """
     Test default to compatible with all the various combinations of input.
     """
+
     fixtures = ['addons/default-to-compat']
 
     def setUp(self):
@@ -356,7 +377,9 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
         self.ver_1_3 = 1268884
 
         self.expected = {
-            '3.0-strict': None, '3.0-normal': None, '3.0-ignore': None,
+            '3.0-strict': None,
+            '3.0-normal': None,
+            '3.0-ignore': None,
             '4.0-strict': self.ver_1_0,
             '4.0-normal': self.ver_1_0,
             '4.0-ignore': self.ver_1_0,
@@ -380,13 +403,15 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
                 file.update(**kw)
 
     def get_update_instance(self, **kw):
-        instance = super(TestDefaultToCompat, self).get_update_instance({
-            'reqVersion': 1,
-            'id': self.addon.guid,
-            'version': kw.get('item_version', '1.0'),
-            'appID': self.app.guid,
-            'appVersion': kw.get('app_version', '3.0'),
-        })
+        instance = super(TestDefaultToCompat, self).get_update_instance(
+            {
+                'reqVersion': 1,
+                'id': self.addon.guid,
+                'version': kw.get('item_version', '1.0'),
+                'appID': self.app.guid,
+                'appVersion': kw.get('app_version', '3.0'),
+            }
+        )
         assert instance.is_valid()
         instance.compat_mode = kw.get('compat_mode', 'strict')
         instance.get_update()
@@ -403,9 +428,8 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
         for version in versions:
             for mode in modes:
                 assert (
-                    self.get_update_instance(
-                        app_version=version, compat_mode=mode) ==
-                    expected['-'.join([version, mode])]
+                    self.get_update_instance(app_version=version, compat_mode=mode)
+                    == expected['-'.join([version, mode])]
                 )
 
     def test_baseline(self):
@@ -415,17 +439,21 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
     def test_binary_components(self):
         # Tests add-on with binary_components flag.
         self.update_files(binary_components=True)
-        self.expected.update({
-            '8.0-normal': None,
-        })
+        self.expected.update(
+            {
+                '8.0-normal': None,
+            }
+        )
         self.check(self.expected)
 
     def test_strict_opt_in(self):
         # Tests add-on with opt-in strict compatibility
         self.update_files(strict_compatibility=True)
-        self.expected.update({
-            '8.0-normal': None,
-        })
+        self.expected.update(
+            {
+                '8.0-normal': None,
+            }
+        )
         self.check(self.expected)
 
     def test_min_max_version(self):
@@ -434,17 +462,19 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
         av.min_id = 233  # Firefox 3.0.
         av.max_id = 268  # Firefox 3.5.
         av.save()
-        self.expected.update({
-            '3.0-strict': self.ver_1_3,
-            '3.0-ignore': self.ver_1_3,
-            '4.0-ignore': self.ver_1_3,
-            '5.0-ignore': self.ver_1_3,
-            '6.0-strict': self.ver_1_2,
-            '6.0-normal': self.ver_1_2,
-            '7.0-strict': self.ver_1_2,
-            '7.0-normal': self.ver_1_2,
-            '8.0-normal': self.ver_1_2,
-        })
+        self.expected.update(
+            {
+                '3.0-strict': self.ver_1_3,
+                '3.0-ignore': self.ver_1_3,
+                '4.0-ignore': self.ver_1_3,
+                '5.0-ignore': self.ver_1_3,
+                '6.0-strict': self.ver_1_2,
+                '6.0-normal': self.ver_1_2,
+                '7.0-strict': self.ver_1_2,
+                '7.0-normal': self.ver_1_2,
+                '8.0-normal': self.ver_1_2,
+            }
+        )
         self.check(self.expected)
 
 
@@ -483,9 +513,7 @@ class TestResponse(VersionCheckMixin, TestCase):
 
         data['appOS'] = self.mac.api_name
         instance = self.get_update_instance(data)
-        assert (
-            json.loads(instance.get_output()) ==
-            instance.get_no_updates_output())
+        assert json.loads(instance.get_output()) == instance.get_no_updates_output()
 
     def test_different_platform(self):
         file = File.objects.get(pk=67442)
@@ -554,8 +582,7 @@ class TestResponse(VersionCheckMixin, TestCase):
         # way lies pain with broken tests later.
         instance = self.get_update_instance(self.data)
         headers = dict(instance.get_headers(1))
-        last_modified = datetime(
-            *utils.parsedate_tz(headers['Last-Modified'])[:7])
+        last_modified = datetime(*utils.parsedate_tz(headers['Last-Modified'])[:7])
         expires = datetime(*utils.parsedate_tz(headers['Expires'])[:7])
         assert (expires - last_modified).seconds == 3600
 
@@ -565,7 +592,8 @@ class TestResponse(VersionCheckMixin, TestCase):
             'http://testserver/user-media/addons/3615/'
             'delicious_bookmarks-2.1.072-fx.xpi?'
             'filehash=sha256%3A3808b13ef8341378b9c8305ca648200954ee7dcd8dc'
-            'e09fef55f2673458bc31f')
+            'e09fef55f2673458bc31f'
+        )
 
     def test_url(self):
         instance = self.get_update_instance(self.data)
@@ -611,17 +639,13 @@ class TestResponse(VersionCheckMixin, TestCase):
     def test_no_updates_at_all(self):
         self.addon_one.versions.all().delete()
         instance = self.get_update_instance(self.data)
-        assert (
-            json.loads(instance.get_output()) ==
-            instance.get_no_updates_output())
+        assert json.loads(instance.get_output()) == instance.get_no_updates_output()
 
     def test_no_updates_my_fx(self):
         data = self.data.copy()
         data['appVersion'] = '5.0.1'
         instance = self.get_update_instance(data)
-        assert (
-            json.loads(instance.get_output()) ==
-            instance.get_no_updates_output())
+        assert json.loads(instance.get_output()) == instance.get_no_updates_output()
 
     def test_application(self):
         # Basic test making sure application() is returning the output of
@@ -630,14 +654,10 @@ class TestResponse(VersionCheckMixin, TestCase):
         # settings_test.py, we wouldn't see results because the data wouldn't
         # exist with the cursor the update service is using, which is different
         # from the one used by django tests.
-        environ = {
-            'QUERY_STRING': ''
-        }
+        environ = {'QUERY_STRING': ''}
         self.start_response_call_count = 0
 
-        expected_headers = [
-            ('FakeHeader', 'FakeHeaderValue')
-        ]
+        expected_headers = [('FakeHeader', 'FakeHeaderValue')]
 
         expected_output = b'{"fake": "output"}'
 
@@ -660,6 +680,7 @@ class TestResponse(VersionCheckMixin, TestCase):
     @mock.patch('services.update.Update')
     def test_exception_handling(self, UpdateMock, log_mock):
         """Test ensuring exceptions are raised and logged properly."""
+
         class CustomException(Exception):
             pass
 
@@ -676,8 +697,7 @@ class TestResponse(VersionCheckMixin, TestCase):
 
         # The log should be present.
         assert log_mock.exception.call_count == 1
-        log_mock.exception.assert_called_with(
-            update_instance.get_output.side_effect)
+        log_mock.exception.assert_called_with(update_instance.get_output.side_effect)
 
 
 # This test needs to be a TransactionTestCase because we want to test the

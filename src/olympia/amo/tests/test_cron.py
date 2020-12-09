@@ -71,9 +71,7 @@ class TestGC(TestCase):
         # upload = None, version is not None --> KEPT
         ScannerResult.objects.create(scanner=YARA, version=version)
         # upload is not None, version is not None --> KEPT
-        ScannerResult.objects.create(scanner=YARA,
-                                     upload=new_upload,
-                                     version=version)
+        ScannerResult.objects.create(scanner=YARA, upload=new_upload, version=version)
 
         assert ScannerResult.objects.count() == 5
 
@@ -96,10 +94,8 @@ class TestGC(TestCase):
         to_keep = [
             Addon.objects.create(),
             Addon.objects.create(status=amo.STATUS_NULL),
-            addon_factory(
-                created=in_the_past, version_kw={'deleted': True}),
-            addon_factory(
-                created=in_the_past, status=amo.STATUS_NULL),
+            addon_factory(created=in_the_past, version_kw={'deleted': True}),
+            addon_factory(created=in_the_past, status=amo.STATUS_NULL),
         ]
 
         gc()

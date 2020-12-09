@@ -43,13 +43,27 @@ def order_by_translation(qs, fieldname, model=None):
     qs.query.__class__ = TranslationQuery
     qs.query.fallback_model = model
     t1 = qs.query.join(
-        Join(field.remote_field.model._meta.db_table, model._meta.db_table,
-             None, LOUTER, field, True),
-        reuse=set())
+        Join(
+            field.remote_field.model._meta.db_table,
+            model._meta.db_table,
+            None,
+            LOUTER,
+            field,
+            True,
+        ),
+        reuse=set(),
+    )
     t2 = qs.query.join(
-        Join(field.remote_field.model._meta.db_table, model._meta.db_table,
-             None, LOUTER, field, True),
-        reuse=set())
+        Join(
+            field.remote_field.model._meta.db_table,
+            model._meta.db_table,
+            None,
+            LOUTER,
+            field,
+            True,
+        ),
+        reuse=set(),
+    )
 
     qs.query.translation_aliases = {field: (t1, t2)}
 
@@ -57,9 +71,11 @@ def order_by_translation(qs, fieldname, model=None):
     name = 'translated_%s' % field.column
     ifnull = 'IFNULL(%s, %s)' % (f1, f2)
     prefix = '-' if desc else ''
-    return qs.extra(select={name: ifnull},
-                    where=['(%s IS NOT NULL OR %s IS NOT NULL)' % (f1, f2)],
-                    order_by=[prefix + name])
+    return qs.extra(
+        select={name: ifnull},
+        where=['(%s IS NOT NULL OR %s IS NOT NULL)' % (f1, f2)],
+        order_by=[prefix + name],
+    )
 
 
 class TranslationQuery(models.sql.query.Query):
@@ -87,8 +103,7 @@ class SQLCompiler(compiler.SQLCompiler):
         # Temporarily remove translation tables from query.tables so Django
         # doesn't create joins against them.
         # self.query.tables was removed in django2.0+
-        old_tables = (
-            list(self.query.tables) if hasattr(self.query, 'tables') else None)
+        old_tables = list(self.query.tables) if hasattr(self.query, 'tables') else None
         old_map = OrderedDict(self.query.alias_map)
         for table in itertools.chain(*self.query.translation_aliases.values()):
             if table in self.query.alias_map:
@@ -130,17 +145,23 @@ class SQLCompiler(compiler.SQLCompiler):
         join = alias_map[alias]
         lhs_col, rhs_col = join.join_cols[0]
         alias_str = (
-            '' if join.table_alias == join.table_name
-            else ' %s' % join.table_alias)
+            '' if join.table_alias == join.table_name else ' %s' % join.table_alias
+        )
 
         if isinstance(fallback, models.Field):
-            fallback_str = '%s.%s' % (qn(model._meta.db_table),
-                                      qn(fallback.column))
+            fallback_str = '%s.%s' % (qn(model._meta.db_table), qn(fallback.column))
         else:
             fallback_str = '%s'
 
-        return ('%s %s%s ON (%s.%s = %s.%s AND %s.%s = %s)' %
-                (join.join_type, qn(join.table_name), alias_str,
-                 qn(join.parent_alias), qn2(lhs_col), qn(join.table_alias),
-                 qn2(rhs_col), qn(join.table_alias), qn('locale'),
-                 fallback_str))
+        return '%s %s%s ON (%s.%s = %s.%s AND %s.%s = %s)' % (
+            join.join_type,
+            qn(join.table_name),
+            alias_str,
+            qn(join.parent_alias),
+            qn2(lhs_col),
+            qn(join.table_alias),
+            qn2(rhs_col),
+            qn(join.table_alias),
+            qn('locale'),
+            fallback_str,
+        )

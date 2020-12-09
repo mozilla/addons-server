@@ -73,9 +73,7 @@ class AbstractScannerResult(ModelBase):
 
     def add_yara_result(self, rule, tags=None, meta=None):
         """This method is used to store a Yara result."""
-        self.results.append(
-            {'rule': rule, 'tags': tags or [], 'meta': meta or {}}
-        )
+        self.results.append({'rule': rule, 'tags': tags or [], 'meta': meta or {}})
 
     def extract_rule_names(self):
         """This method parses the raw results and returns the (matched) rule
@@ -152,21 +150,18 @@ class AbstractScannerResult(ModelBase):
             )
 
             if (
-                customs_score <= 0.01 or
-                customs_score >= 0.99 or
-                not customs_models_agree
+                customs_score <= 0.01
+                or customs_score >= 0.99
+                or not customs_models_agree
             ):
-                log.info('Flagging version %s for human review by MAD.',
-                         version.pk)
+                log.info('Flagging version %s for human review by MAD.', version.pk)
                 _flag_for_human_review_by_scanner(version, MAD)
         except cls.DoesNotExist:
             log.info('No MAD scanner result for version %s.', version.pk)
             pass
 
         rule_model = cls.matched_rules.rel.model
-        result_query_name = cls._meta.get_field(
-            'matched_rules'
-        ).related_query_name()
+        result_query_name = cls._meta.get_field('matched_rules').related_query_name()
 
         rule = (
             rule_model.objects.filter(
@@ -193,9 +188,7 @@ class AbstractScannerResult(ModelBase):
             NO_ACTION: _no_action,
             FLAG_FOR_HUMAN_REVIEW: _flag_for_human_review,
             DELAY_AUTO_APPROVAL: _delay_auto_approval,
-            DELAY_AUTO_APPROVAL_INDEFINITELY: (
-                _delay_auto_approval_indefinitely
-            ),
+            DELAY_AUTO_APPROVAL_INDEFINITELY: (_delay_auto_approval_indefinitely),
         }
 
         action_function = ACTION_FUNCTIONS.get(action_id, None)
@@ -204,9 +197,7 @@ class AbstractScannerResult(ModelBase):
             raise Exception("no implementation for action %s" % action_id)
 
         # We have a valid action to execute, so let's do it!
-        log.info(
-            'Starting action "%s" for version %s.', action_name, version.pk
-        )
+        log.info('Starting action "%s" for version %s.', action_name, version.pk)
         action_function(version)
         log.info('Ending action "%s" for version %s.', action_name, version.pk)
 
@@ -270,17 +261,11 @@ class AbstractScannerRule(ModelBase):
 
         if len(re.findall(r'rule\s+.+?\s+{', self.definition)) > 1:
             raise ValidationError(
-                {
-                    'definition': _(
-                        'Only one Yara rule is allowed in the definition'
-                    )
-                }
+                {'definition': _('Only one Yara rule is allowed in the definition')}
             )
 
         try:
-            yara.compile(
-                source=self.definition, externals=self.get_yara_externals()
-            )
+            yara.compile(source=self.definition, externals=self.get_yara_externals())
         except yara.SyntaxError as syntaxError:
             raise ValidationError(
                 {
@@ -290,11 +275,7 @@ class AbstractScannerRule(ModelBase):
             )
         except Exception:
             raise ValidationError(
-                {
-                    'definition': _(
-                        'An error occurred when compiling the definition'
-                    )
-                }
+                {'definition': _('An error occurred when compiling the definition')}
             )
 
 
@@ -325,8 +306,7 @@ class ScannerResult(AbstractScannerResult):
         constraints = [
             models.UniqueConstraint(
                 fields=('upload', 'scanner', 'version'),
-                name='scanners_results_upload_id_scanner_'
-                'version_id_ad9eb8a6_uniq',
+                name='scanners_results_upload_id_scanner_' 'version_id_ad9eb8a6_uniq',
             )
         ]
 
@@ -351,8 +331,7 @@ class ScannerQueryRule(AbstractScannerRule):
     run_on_disabled_addons = models.BooleanField(
         default=False,
         help_text=_(
-            'Run this rule on add-ons that have been '
-            'force-disabled as well.'
+            'Run this rule on add-ons that have been ' 'force-disabled as well.'
         ),
     )
     celery_group_result_id = models.UUIDField(default=None, null=True)
@@ -395,9 +374,7 @@ class ScannerQueryRule(AbstractScannerRule):
         if self.celery_group_result_id is not None:
             from olympia.amo.celery import app as celery_app
 
-            result = celery_app.GroupResult.restore(
-                str(self.celery_group_result_id)
-            )
+            result = celery_app.GroupResult.restore(str(self.celery_group_result_id))
             if result:
                 return result.completed_count()
         return None

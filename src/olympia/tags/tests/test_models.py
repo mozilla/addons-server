@@ -4,7 +4,6 @@ from olympia.tags.models import AddonTag, Tag
 
 
 class TestTagManager(TestCase):
-
     def test_not_denied(self):
         """Make sure Tag Manager filters right for not denied tags."""
         tag1 = Tag(tag_text='abc', denied=False)
@@ -18,9 +17,7 @@ class TestTagManager(TestCase):
 
 
 class TestCount(TestCase):
-    fixtures = ['base/addon_3615',
-                'base/addon_5369',
-                'tags/tags.json']
+    fixtures = ['base/addon_3615', 'base/addon_5369', 'tags/tags.json']
     exempt_from_fixture_bundling = True
 
     def setUp(self):

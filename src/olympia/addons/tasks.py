@@ -9,16 +9,20 @@ import olympia.core
 from olympia import amo
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import (
-    Addon, AppSupport, DeniedGuid, Preview, attach_tags,
-    attach_translations_dict)
+    Addon,
+    AppSupport,
+    DeniedGuid,
+    Preview,
+    attach_tags,
+    attach_translations_dict,
+)
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import LocalFileStorage, extract_colors_from_image
 from olympia.files.utils import get_filepath, parse_addon
 from olympia.lib.es.utils import index_objects
 from olympia.tags.models import Tag
-from olympia.versions.models import (
-    generate_static_theme_preview, VersionPreview)
+from olympia.versions.models import generate_static_theme_preview, VersionPreview
 
 
 log = olympia.core.logger.getLogger('z.task')
@@ -36,8 +40,9 @@ def update_last_updated(addon_id):
     try:
         addon = Addon.objects.get(pk=addon_id)
     except Addon.DoesNotExist:
-        log.info('[1@None] Updating last updated for %s failed, no addon found'
-                 % addon_id)
+        log.info(
+            '[1@None] Updating last updated for %s failed, no addon found' % addon_id
+        )
         return
 
     log.info('[1@None] Updating last updated for %s.' % addon_id)
@@ -68,8 +73,7 @@ def update_appsupport(ids, **kw):
             else:
                 min_, max_ = appver.min.version_int, appver.max.version_int
 
-            support.append(AppSupport(addon=addon, app=app.id,
-                                      min=min_, max=max_))
+            support.append(AppSupport(addon=addon, app=app.id, min=min_, max=max_))
 
     if not support:
         return
@@ -106,8 +110,14 @@ def delete_preview_files(id, **kw):
 def index_addons(ids, **kw):
     log.info('Indexing addons %s-%s. [%s]' % (ids[0], ids[-1], len(ids)))
     transforms = (attach_tags, attach_translations_dict)
-    index_objects(ids, Addon, AddonIndexer.extract_document,
-                  kw.pop('index', None), transforms, Addon.unfiltered)
+    index_objects(
+        ids,
+        Addon,
+        AddonIndexer.extract_document,
+        kw.pop('index', None),
+        transforms,
+        Addon.unfiltered,
+    )
 
 
 @task
@@ -130,32 +140,46 @@ def find_inconsistencies_between_es_and_db(ids, **kw):
     length = len(ids)
     log.info(
         'Searching for inconsistencies between db and es %d-%d [%d].',
-        ids[0], ids[-1], length)
+        ids[0],
+        ids[-1],
+        length,
+    )
     db_addons = Addon.unfiltered.in_bulk(ids)
-    es_addons = Search(
-        doc_type=AddonIndexer.get_doctype_name(),
-        index=AddonIndexer.get_index_alias(),
-        using=amo.search.get_es()).filter('ids', values=ids)[:length].execute()
+    es_addons = (
+        Search(
+            doc_type=AddonIndexer.get_doctype_name(),
+            index=AddonIndexer.get_index_alias(),
+            using=amo.search.get_es(),
+        )
+        .filter('ids', values=ids)[:length]
+        .execute()
+    )
     es_addons = es_addons
     db_len = len(db_addons)
     es_len = len(es_addons)
     if db_len != es_len:
-        log.info('Inconsistency found: %d in db vs %d in es.',
-                 db_len, es_len)
+        log.info('Inconsistency found: %d in db vs %d in es.', db_len, es_len)
     for result in es_addons.hits.hits:
         pk = result['_source']['id']
         db_modified = db_addons[pk].modified.isoformat()
         es_modified = result['_source']['modified']
         if db_modified != es_modified:
-            log.info('Inconsistency found for addon %d: '
-                     'modified is %s in db vs %s in es.',
-                     pk, db_modified, es_modified)
+            log.info(
+                'Inconsistency found for addon %d: '
+                'modified is %s in db vs %s in es.',
+                pk,
+                db_modified,
+                es_modified,
+            )
         db_status = db_addons[pk].status
         es_status = result['_source']['status']
         if db_status != es_status:
-            log.info('Inconsistency found for addon %d: '
-                     'status is %s in db vs %s in es.',
-                     pk, db_status, es_status)
+            log.info(
+                'Inconsistency found for addon %d: ' 'status is %s in db vs %s in es.',
+                pk,
+                db_status,
+                es_status,
+            )
 
 
 @task
@@ -163,8 +187,8 @@ def find_inconsistencies_between_es_and_db(ids, **kw):
 def add_dynamic_theme_tag(ids, **kw):
     """Add dynamic theme tag to addons with the specified ids."""
     log.info(
-        'Adding  dynamic theme tag to addons %d-%d [%d].',
-        ids[0], ids[-1], len(ids))
+        'Adding  dynamic theme tag to addons %d-%d [%d].', ids[0], ids[-1], len(ids)
+    )
 
     addons = Addon.objects.filter(id__in=ids)
     for addon in addons:
@@ -178,8 +202,7 @@ def add_dynamic_theme_tag(ids, **kw):
 @use_primary_db
 def extract_colors_from_static_themes(ids, **kw):
     """Extract and store colors from existing static themes."""
-    log.info('Extracting static themes colors %d-%d [%d].', ids[0], ids[-1],
-             len(ids))
+    log.info('Extracting static themes colors %d-%d [%d].', ids[0], ids[-1], len(ids))
     addons = Addon.objects.filter(id__in=ids)
     extracted = []
     for addon in addons:
@@ -195,9 +218,10 @@ def extract_colors_from_static_themes(ids, **kw):
 @task
 @use_primary_db
 def recreate_theme_previews(addon_ids, **kw):
-    log.info('[%s@%s] Recreating previews for themes starting at id: %s...'
-             % (len(addon_ids), recreate_theme_previews.rate_limit,
-                addon_ids[0]))
+    log.info(
+        '[%s@%s] Recreating previews for themes starting at id: %s...'
+        % (len(addon_ids), recreate_theme_previews.rate_limit, addon_ids[0])
+    )
     addons = Addon.objects.filter(pk__in=addon_ids).no_transforms()
     only_missing = kw.get('only_missing', False)
 
@@ -207,8 +231,11 @@ def recreate_theme_previews(addon_ids, **kw):
             continue
         try:
             if only_missing:
-                with_size = (VersionPreview.objects.filter(version=version)
-                             .exclude(sizes={}).count())
+                with_size = (
+                    VersionPreview.objects.filter(version=version)
+                    .exclude(sizes={})
+                    .count()
+                )
                 if with_size == len(amo.THEME_PREVIEW_SIZES):
                     continue
             log.info('Recreating previews for theme: %s' % addon.id)
@@ -235,19 +262,24 @@ def delete_addons(addon_ids, with_deleted=False, **kw):
     STATUS_DELETED.  *Addon.delete() only does a hard-delete where the Addon
     has no versions or files - and has never had any versions or files.
     """
-    log.info('[%s@%s] %sDeleting addons starting at id: %s...'
-             % ('Hard ' if with_deleted else '', len(addon_ids),
-                delete_addons.rate_limit, addon_ids[0]))
+    log.info(
+        '[%s@%s] %sDeleting addons starting at id: %s...'
+        % (
+            'Hard ' if with_deleted else '',
+            len(addon_ids),
+            delete_addons.rate_limit,
+            addon_ids[0],
+        )
+    )
     addons = Addon.unfiltered.filter(pk__in=addon_ids).no_transforms()
     if with_deleted:
         with transaction.atomic():
             # Stop any of these guids from being reused
-            addon_guids = list(
-                addons.exclude(guid=None).values_list('guid', flat=True))
+            addon_guids = list(addons.exclude(guid=None).values_list('guid', flat=True))
             denied = [
-                DeniedGuid(
-                    guid=guid, comments='Hard deleted with delete_addons task')
-                for guid in addon_guids]
+                DeniedGuid(guid=guid, comments='Hard deleted with delete_addons task')
+                for guid in addon_guids
+            ]
             DeniedGuid.objects.bulk_create(denied, ignore_conflicts=True)
             # Call QuerySet.delete rather than Addon.delete.
             addons.delete()
@@ -273,8 +305,11 @@ def update_addon_hotness(averages):
 
         # See: https://github.com/mozilla/addons-server/issues/15525
         if not average:
-            log.error('Averages not found for addon with id=%s and GUID=%s.',
-                      addon.id, addon.guid)
+            log.error(
+                'Averages not found for addon with id=%s and GUID=%s.',
+                addon.id,
+                addon.guid,
+            )
             continue
 
         this = average['avg_this_week']
@@ -302,8 +337,12 @@ def update_addon_weekly_downloads(data):
         except Addon.DoesNotExist:
             # The processing input comes from metrics which might be out of
             # date in regards to currently existing add-ons.
-            log.info('Got a weekly_downloads update (%s) but the add-on '
-                     'doesn\'t exist (hashed_guid=%s).', count, hashed_guid)
+            log.info(
+                'Got a weekly_downloads update (%s) but the add-on '
+                'doesn\'t exist (hashed_guid=%s).',
+                count,
+                hashed_guid,
+            )
             continue
 
         addon.update(weekly_downloads=int(float(count)))

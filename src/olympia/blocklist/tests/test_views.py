@@ -13,7 +13,8 @@ class TestBlockViewSet(TestCase):
             min_version='45',
             reason='something happened',
             url='https://goo.gol',
-            updated_by=user_factory())
+            updated_by=user_factory(),
+        )
 
     def test_get_pk(self):
         url = reverse_ns('blocklist-block-detail', args=(str(self.block.id),))
@@ -35,20 +36,19 @@ class TestBlockViewSet(TestCase):
 
     def test_addon_name(self):
         url = reverse_ns(
-            'blocklist-block-detail',
-            args=(self.block.guid,),
-            api_version='v5')
+            'blocklist-block-detail', args=(self.block.guid,), api_version='v5'
+        )
         addon = addon_factory(
-            guid=self.block.guid,
-            name='English name',
-            default_locale='en-CA')
+            guid=self.block.guid, name='English name', default_locale='en-CA'
+        )
         addon.name = {'fr': 'Lé name Francois'}
         addon.save()
         response = self.client.get(url)
         assert response.status_code == 200
         assert response.json()['addon_name'] == {
             'en-CA': 'English name',
-            'fr': 'Lé name Francois'}
+            'fr': 'Lé name Francois',
+        }
 
         url += '?lang=de-DE'
         response = self.client.get(url)
@@ -59,8 +59,7 @@ class TestBlockViewSet(TestCase):
         }
         assert list(response.json()['addon_name'])[0] == 'en-CA'
 
-        overridden_api_gates = {
-            'v5': ('l10n_flat_input_output',)}
+        overridden_api_gates = {'v5': ('l10n_flat_input_output',)}
         with override_settings(DRF_API_GATES=overridden_api_gates):
             response = self.client.get(url)
         assert response.json()['addon_name'] == 'English name'

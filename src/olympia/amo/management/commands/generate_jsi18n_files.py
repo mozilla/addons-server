@@ -18,7 +18,8 @@ class Command(BaseCommand):
         fake_request.method = 'GET'
         for lang in settings.AMO_LANGUAGES:
             filename = os.path.join(
-                settings.STATICFILES_DIRS[0], 'js', 'i18n', '%s.js' % lang)
+                settings.STATICFILES_DIRS[0], 'js', 'i18n', '%s.js' % lang
+            )
             with translation.override(lang):
                 response = JavaScriptCatalog.as_view()(fake_request)
                 with open(filename, 'w') as f:

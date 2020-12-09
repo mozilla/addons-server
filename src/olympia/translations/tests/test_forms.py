@@ -18,7 +18,6 @@ class DummyForm(forms.TranslationFormMixin, ModelForm):
 
 
 class TestTranslationFormMixin(TestCase):
-
     def test_default_locale(self):
         obj = TranslatedModel()
         obj.get_fallback = lambda: 'pl'
@@ -37,13 +36,11 @@ class TestTranslationFormMixin(TestCase):
         expected = (
             '<ul class="errorlist">'
             '<li data-lang="en-us">This field is required.</li>'
-            '</ul>')
+            '</ul>'
+        )
         assert form.errors['name'].as_ul() == expected
         # default_locale is a normal field so data-lang is absent.
-        expected = (
-            '<ul class="errorlist">'
-            '<li>This field is required.</li>'
-            '</ul>')
+        expected = '<ul class="errorlist">' '<li>This field is required.</li>' '</ul>'
         assert form.errors['default_locale'].as_ul() == expected
 
         # When there are multiple errors, they should all be shown.
@@ -53,13 +50,15 @@ class TestTranslationFormMixin(TestCase):
             '<ul class="errorlist">'
             '<li data-lang="en-us">This field is required.</li>'
             '<li>Error message about name</li>'
-            '</ul>')
+            '</ul>'
+        )
         assert form.errors['name'].as_ul() == expected
         expected = (
             '<ul class="errorlist">'
             '<li>This field is required.</li>'
             '<li>Error message about default_locale</li>'
-            '</ul>')
+            '</ul>'
+        )
         assert form.errors['default_locale'].as_ul() == expected
 
     @pytest.mark.needs_locales_compilation
@@ -81,13 +80,11 @@ class TestTranslationFormMixin(TestCase):
             expected = (
                 u'<ul class="errorlist">'
                 u'<li data-lang="en-us">Champ nécessaire.</li>'
-                u'</ul>')
+                u'</ul>'
+            )
             assert form.errors['name'].as_ul() == expected
             # default_locale is a normal field so data-lang is absent.
-            expected = (
-                u'<ul class="errorlist">'
-                u'<li>Champ nécessaire.</li>'
-                u'</ul>')
+            expected = u'<ul class="errorlist">' u'<li>Champ nécessaire.</li>' u'</ul>'
             assert form.errors['default_locale'].as_ul() == expected
 
             # When there are multiple errors, they should all be shown.
@@ -97,11 +94,13 @@ class TestTranslationFormMixin(TestCase):
                 u'<ul class="errorlist">'
                 u'<li data-lang="en-us">Champ nécessaire.</li>'
                 u'<li>Errör about name</li>'
-                u'</ul>')
+                u'</ul>'
+            )
             assert form.errors['name'].as_ul() == expected
             expected = (
                 u'<ul class="errorlist">'
                 u'<li>Champ nécessaire.</li>'
                 u'<li>Errôr about default_locale</li>'
-                u'</ul>')
+                u'</ul>'
+            )
             assert form.errors['default_locale'].as_ul() == expected

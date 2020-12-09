@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 from olympia.versions.compare import (
-    MAX_VERSION_PART, version_dict, version_int, VersionString)
+    MAX_VERSION_PART,
+    version_dict,
+    version_int,
+    VersionString,
+)
 
 
 def test_version_int():
@@ -27,7 +31,7 @@ def test_version_int_compare():
     assert version_int('5.*') > version_int('5.0.*')
 
 
-class TestVersionString():
+class TestVersionString:
     def test_equality(self):
         assert VersionString('3.6.0.0') == VersionString('3.6')
         assert VersionString('3.6.*.0') != VersionString('3.6.*')
@@ -109,34 +113,43 @@ class TestVersionString():
 
 def test_version_dict():
     assert version_dict('5.0.*') == (
-        {'major': 5,
-         'minor1': 0,
-         'minor2': 65535,
-         'minor3': None,
-         'alpha': None,
-         'alpha_ver': None,
-         'pre': None,
-         'pre_ver': None})
+        {
+            'major': 5,
+            'minor1': 0,
+            'minor2': 65535,
+            'minor3': None,
+            'alpha': None,
+            'alpha_ver': None,
+            'pre': None,
+            'pre_ver': None,
+        }
+    )
 
     assert version_dict('5.0.*', asterisk_value=1234) == (
-        {'major': 5,
-         'minor1': 0,
-         'minor2': 1234,
-         'minor3': None,
-         'alpha': None,
-         'alpha_ver': None,
-         'pre': None,
-         'pre_ver': None})
+        {
+            'major': 5,
+            'minor1': 0,
+            'minor2': 1234,
+            'minor3': None,
+            'alpha': None,
+            'alpha_ver': None,
+            'pre': None,
+            'pre_ver': None,
+        }
+    )
 
     assert version_dict('*.0.*', asterisk_value='@') == (
-        {'major': '@',
-         'minor1': 0,
-         'minor2': '@',
-         'minor3': None,
-         'alpha': None,
-         'alpha_ver': None,
-         'pre': None,
-         'pre_ver': None})
+        {
+            'major': '@',
+            'minor1': 0,
+            'minor2': '@',
+            'minor3': None,
+            'alpha': None,
+            'alpha_ver': None,
+            'pre': None,
+            'pre_ver': None,
+        }
+    )
 
 
 def test_version_int_unicode():

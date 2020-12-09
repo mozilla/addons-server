@@ -16,6 +16,7 @@ class DiscoveryEditorialContentSerializer(serializers.ModelSerializer):
     generating the .po files containing all editorial content to be translated
     or for internal consumption by the TAAR team.
     """
+
     addon = serializers.SerializerMethodField()
 
     class Meta:
@@ -36,8 +37,12 @@ class DiscoveryEditorialContentSerializer(serializers.ModelSerializer):
 
 class DiscoveryVersionSerializer(VersionSerializer):
     class Meta:
-        fields = ('id', 'compatibility', 'is_strict_compatibility_enabled',
-                  'files',)
+        fields = (
+            'id',
+            'compatibility',
+            'is_strict_compatibility_enabled',
+            'files',
+        )
         model = Version
 
 
@@ -45,9 +50,20 @@ class DiscoveryAddonSerializer(AddonSerializer):
     current_version = DiscoveryVersionSerializer()
 
     class Meta:
-        fields = ('id', 'authors', 'average_daily_users', 'current_version',
-                  'guid', 'icon_url', 'name', 'previews', 'ratings', 'slug',
-                  'type', 'url',)
+        fields = (
+            'id',
+            'authors',
+            'average_daily_users',
+            'current_version',
+            'guid',
+            'icon_url',
+            'name',
+            'previews',
+            'ratings',
+            'slug',
+            'type',
+            'url',
+        )
         model = Addon
 
 
@@ -59,8 +75,13 @@ class DiscoverySerializer(serializers.ModelSerializer):
     is_recommendation = serializers.SerializerMethodField()
 
     class Meta:
-        fields = ('heading', 'description', 'description_text',
-                  'addon', 'is_recommendation')
+        fields = (
+            'heading',
+            'description',
+            'description_text',
+            'addon',
+            'is_recommendation',
+        )
         model = DiscoveryItem
 
     def get_is_recommendation(self, obj):
@@ -81,7 +102,7 @@ class DiscoverySerializer(serializers.ModelSerializer):
             obj.addon.name,
             ugettext('by'),
             obj.addon.get_absolute_url(),
-            ', '.join(author.name for author in obj.addon.listed_authors)
+            ', '.join(author.name for author in obj.addon.listed_authors),
         )
 
     def get_description(self, obj):
@@ -91,7 +112,8 @@ class DiscoverySerializer(serializers.ModelSerializer):
         data = super().to_representation(instance)
         request = self.context.get('request', None)
         if request and not is_gate_active(
-                request, 'disco-heading-and-description-shim'):
+            request, 'disco-heading-and-description-shim'
+        ):
             data.pop('heading', None)
             data.pop('description', None)
         return data

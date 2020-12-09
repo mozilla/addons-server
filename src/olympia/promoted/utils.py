@@ -62,9 +62,7 @@ def create_stripe_checkout_session(subscription, customer_email):
                 "currency": price.get("currency"),
                 "recurring": {
                     "interval": price.get("recurring", {}).get("interval"),
-                    "interval_count": price.get("recurring", {}).get(
-                        "interval_count"
-                    ),
+                    "interval_count": price.get("recurring", {}).get("interval_count"),
                 },
                 "unit_amount": subscription.onboarding_rate,
             },
@@ -115,9 +113,7 @@ def create_stripe_customer_portal(customer_id, addon):
     stripe.api_key = settings.STRIPE_API_SECRET_KEY
     return stripe.billing_portal.Session.create(
         customer=customer_id,
-        return_url=absolutify(
-            reverse("devhub.addons.edit", args=[addon.slug])
-        ),
+        return_url=absolutify(reverse("devhub.addons.edit", args=[addon.slug])),
     )
 
 

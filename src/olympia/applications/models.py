@@ -8,8 +8,9 @@ from olympia.versions import compare
 
 class AppVersion(ModelBase):
     id = PositiveAutoField(primary_key=True)
-    application = models.PositiveIntegerField(choices=APPS_CHOICES,
-                                              db_column='application_id')
+    application = models.PositiveIntegerField(
+        choices=APPS_CHOICES, db_column='application_id'
+    )
     version = models.CharField(max_length=255, default='')
     version_int = models.BigIntegerField(editable=False)
 
@@ -17,14 +18,14 @@ class AppVersion(ModelBase):
         db_table = 'appversions'
         ordering = ['-version_int']
         indexes = [
-            models.Index(fields=('application',),
-                         name='application_id'),
+            models.Index(fields=('application',), name='application_id'),
             models.Index(fields=('version',), name='version'),
             models.Index(fields=('version_int',), name='version_int_idx'),
         ]
         constraints = [
-            models.UniqueConstraint(fields=('application', 'version'),
-                                    name='application_id_2'),
+            models.UniqueConstraint(
+                fields=('application', 'version'), name='application_id_2'
+            ),
         ]
 
     def save(self, *args, **kw):

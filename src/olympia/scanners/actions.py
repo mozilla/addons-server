@@ -22,7 +22,8 @@ def _delay_auto_approval(version):
     in_twenty_four_hours = datetime.now() + timedelta(hours=24)
     AddonReviewerFlags.objects.update_or_create(
         addon=version.addon,
-        defaults={'auto_approval_delayed_until': in_twenty_four_hours})
+        defaults={'auto_approval_delayed_until': in_twenty_four_hours},
+    )
 
 
 def _delay_auto_approval_indefinitely(version):
@@ -32,8 +33,8 @@ def _delay_auto_approval_indefinitely(version):
 
     _flag_for_human_review(version)
     AddonReviewerFlags.objects.update_or_create(
-        addon=version.addon,
-        defaults={'auto_approval_delayed_until': datetime.max})
+        addon=version.addon, defaults={'auto_approval_delayed_until': datetime.max}
+    )
 
 
 def _flag_for_human_review_by_scanner(version, scanner):

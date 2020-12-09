@@ -92,9 +92,7 @@ class TestGitExtraction(TestCase):
 
         self.command.handle(None, limit=2)
 
-        self.command.extract_addon.assert_has_calls(
-            [mock.call(e4), mock.call(e3)]
-        )
+        self.command.extract_addon.assert_has_calls([mock.call(e4), mock.call(e3)])
         assert self.command.extract_addon.call_count == 2
 
     def test_handle_entries_with_same_created_date(self):
@@ -124,9 +122,7 @@ class TestGitExtraction(TestCase):
     def test_extract_addon_aborts_when_addon_is_already_being_extracted(
         self, chain_mock
     ):
-        entry = GitExtractionEntry.objects.create(
-            addon=self.addon, in_progress=True
-        )
+        entry = GitExtractionEntry.objects.create(addon=self.addon, in_progress=True)
 
         self.command.extract_addon(entry)
 
@@ -167,9 +163,7 @@ class TestGitExtraction(TestCase):
     @mock.patch('olympia.git.management.commands.git_extraction.chain')
     def test_extract_addon_with_multiple_versions(self, chain_mock):
         version1 = self.addon.current_version
-        version2 = version_factory(
-            addon=self.addon, file_kw={'is_webextension': True}
-        )
+        version2 = version_factory(addon=self.addon, file_kw={'is_webextension': True})
         version_deleted = version_factory(
             addon=self.addon, deleted=True, file_kw={'is_webextension': True}
         )
@@ -190,9 +184,7 @@ class TestGitExtraction(TestCase):
     @mock.patch('olympia.git.management.commands.git_extraction.chain')
     def test_extract_addon_continues_git_extraction(self, chain_mock):
         version1 = self.addon.current_version
-        version2 = version_factory(
-            addon=self.addon, file_kw={'is_webextension': True}
-        )
+        version2 = version_factory(addon=self.addon, file_kw={'is_webextension': True})
         version_factory(addon=self.addon, file_kw={'is_webextension': True})
         entry = GitExtractionEntry.objects.create(addon=self.addon)
 
@@ -206,9 +198,7 @@ class TestGitExtraction(TestCase):
         )
 
     @mock.patch('olympia.git.management.commands.git_extraction.chain')
-    def test_extract_addon_remove_entry_immediately_when_no_version(
-        self, chain_mock
-    ):
+    def test_extract_addon_remove_entry_immediately_when_no_version(self, chain_mock):
         self.addon.current_version.update(git_hash='some hash')
         entry = GitExtractionEntry.objects.create(addon=self.addon)
 

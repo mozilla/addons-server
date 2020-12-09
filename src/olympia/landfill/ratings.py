@@ -12,7 +12,11 @@ def generate_ratings(addon, num):
         username = 'testuser-{s}'.format(s=get_random_string())
         email = '{username}@example.com'.format(username=username)
         user, _created = UserProfile.objects.get_or_create(
-            username=email, email=email, defaults={'display_name': email})
+            username=email, email=email, defaults={'display_name': email}
+        )
         Rating.objects.create(
-            addon=addon, user=user, rating=random.randrange(0, 6),
-            body='Test Review {n}'.format(n=n))
+            addon=addon,
+            user=user,
+            rating=random.randrange(0, 6),
+            body='Test Review {n}'.format(n=n),
+        )

@@ -30,10 +30,9 @@ class Command(BaseCommand):
         qs = (
             # Base queryset with auto-approvable versions. Default ordering
             # is reset to make the GROUP BY work.
-            Version.objects
-                   .auto_approvable()
-                   .exclude(**exclude_kwargs)
-                   .order_by()
+            Version.objects.auto_approvable()
+            .exclude(**exclude_kwargs)
+            .order_by()
         )
         # Get only the latest version for each add-on from the auto-approvable
         # versions.
@@ -41,8 +40,7 @@ class Command(BaseCommand):
         # Now that we have the pks of the latest versions waiting for approval
         # for each add-on, we can use that in a subquery and apply the filter
         # to only care about versions that have been waiting long enough.
-        maximum_created = datetime.now() - timedelta(
-            hours=self.WAITING_PERIOD_HOURS)
+        maximum_created = datetime.now() - timedelta(hours=self.WAITING_PERIOD_HOURS)
         return Version.objects.filter(
             pk__in=latest_per_addon.values('latest_pk'),
             created__lt=maximum_created,

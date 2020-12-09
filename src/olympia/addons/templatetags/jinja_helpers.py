@@ -6,9 +6,14 @@ from django_jinja import library
 @library.global_function
 @library.render_with('addons/impala/listing/sorter.html')
 @jinja2.contextfunction
-def impala_addon_listing_header(context, url_base, sort_opts=None,
-                                selected=None, extra_sort_opts=None,
-                                search_filter=None):
+def impala_addon_listing_header(
+    context,
+    url_base,
+    sort_opts=None,
+    selected=None,
+    extra_sort_opts=None,
+    search_filter=None,
+):
     if sort_opts is None:
         sort_opts = {}
     if extra_sort_opts is None:

@@ -58,8 +58,5 @@ class TestGitExtractionEntryAdmin(TestCase):
 
         formatted_addon = self.admin.formatted_addon(entry)
 
-        assert (
-            reverse('admin:addons_addon_change', args=(addon.pk,))
-            in formatted_addon
-        )
+        assert reverse('admin:addons_addon_change', args=(addon.pk,)) in formatted_addon
         assert str(addon) in formatted_addon

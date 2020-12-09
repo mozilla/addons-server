@@ -24,9 +24,7 @@ from .serializers import ScannerResultSerializer
 class ScannerResultView(ListAPIView):
     authentication_classes = [JWTKeyAuthentication, WebTokenAuthentication]
 
-    permission_classes = [
-        GroupPermission(amo.permissions.ADMIN_SCANNERS_RESULTS_VIEW)
-    ]
+    permission_classes = [GroupPermission(amo.permissions.ADMIN_SCANNERS_RESULTS_VIEW)]
 
     serializer_class = ScannerResultSerializer
 
@@ -36,8 +34,7 @@ class ScannerResultView(ListAPIView):
             (
                 key
                 for key in SCANNERS
-                if SCANNERS.get(key) ==
-                self.request.query_params.get('scanner')
+                if SCANNERS.get(key) == self.request.query_params.get('scanner')
             ),
             None,
         )
@@ -63,7 +60,8 @@ class ScannerResultView(ListAPIView):
                         amo.LOG.CONFIRM_AUTO_APPROVED.id,
                         amo.LOG.APPROVE_VERSION.id,
                     )
-                ) & ~Q(
+                )
+                & ~Q(
                     version__versionlog__activity_log__user_id=settings.TASK_USER_ID  # noqa
                 )
             )
@@ -104,6 +102,4 @@ class ScannerResultView(ListAPIView):
     @classmethod
     def as_view(cls, **initkwargs):
         """The API is read-only so we can turn off atomic requests."""
-        return non_atomic_requests(
-            super(ScannerResultView, cls).as_view(**initkwargs)
-        )
+        return non_atomic_requests(super(ScannerResultView, cls).as_view(**initkwargs))

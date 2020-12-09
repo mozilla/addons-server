@@ -11,13 +11,12 @@ class Command(BaseCommand):
     """Based on django_extension's reset_db command but simplifed and with
     support for all character sets defined in settings."""
 
-    help = ('Creates the database for this project.')
+    help = 'Creates the database for this project.'
 
     def add_arguments(self, parser):
         super(Command, self).add_arguments(parser)
         parser.add_argument(
-            '--force', action='store_true',
-            help='Drops any existing database first.'
+            '--force', action='store_true', help='Drops any existing database first.'
         )
 
     def handle(self, *args, **options):
@@ -47,7 +46,9 @@ class Command(BaseCommand):
 
         character_set = db_info.get('OPTIONS').get('charset', 'utf8mb4')
         create_query = 'CREATE DATABASE `%s` CHARACTER SET %s' % (
-            database_name, character_set)
+            database_name,
+            character_set,
+        )
         if drop_query:
             logging.info('Executing... "' + drop_query + '"')
             connection.query(drop_query)

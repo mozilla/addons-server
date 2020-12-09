@@ -21,9 +21,7 @@ class TestFileAdmin(TestCase):
     def test_can_edit_with_admin_advanced_permission(self):
         addon = addon_factory()
         file_ = addon.current_version.all_files[0]
-        detail_url = reverse(
-            'admin:files_file_change', args=(file_.pk,)
-        )
+        detail_url = reverse('admin:files_file_change', args=(file_.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Admin:Advanced')
         self.client.login(email=user.email)
@@ -64,9 +62,7 @@ class TestFileAdmin(TestCase):
     def test_detail_view_has_download_link(self):
         addon = addon_factory()
         file_ = addon.current_version.all_files[0]
-        detail_url = reverse(
-            'admin:files_file_change', args=(file_.pk,)
-        )
+        detail_url = reverse('admin:files_file_change', args=(file_.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Admin:Advanced')
         self.client.login(email=user.email)

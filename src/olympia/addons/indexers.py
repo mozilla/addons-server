@@ -18,6 +18,7 @@ log = olympia.core.logger.getLogger('z.es')
 class AddonIndexer(BaseSearchIndexer):
     """Fields we don't need to expose in the results, only used for filtering
     or sorting."""
+
     hidden_fields = (
         '*.raw',
         'boost',
@@ -52,16 +53,20 @@ class AddonIndexer(BaseSearchIndexer):
                     # for instance.
                     'tokenizer': 'standard',
                     'filter': [
-                        'standard', 'custom_word_delimiter', 'lowercase',
-                        'stop', 'custom_dictionary_decompounder', 'unique',
-                    ]
+                        'standard',
+                        'custom_word_delimiter',
+                        'lowercase',
+                        'stop',
+                        'custom_dictionary_decompounder',
+                        'unique',
+                    ],
                 },
                 'trigram': {
                     # Analyzer that splits the text into trigrams.
                     'tokenizer': 'ngram_tokenizer',
                     'filter': [
                         'lowercase',
-                    ]
+                    ],
                 },
             },
             'tokenizer': {
@@ -69,7 +74,7 @@ class AddonIndexer(BaseSearchIndexer):
                     'type': 'ngram',
                     'min_gram': 3,
                     'max_gram': 3,
-                    'token_chars': ['letter', 'digit']
+                    'token_chars': ['letter', 'digit'],
                 }
             },
             'normalizer': {
@@ -89,7 +94,7 @@ class AddonIndexer(BaseSearchIndexer):
                     # and Foo Bar. (preserve_original: True makes us index both
                     # the original and the split version.)
                     'type': 'word_delimiter',
-                    'preserve_original': True
+                    'preserve_original': True,
                 },
                 'custom_dictionary_decompounder': {
                     # This filter is also useful for add-on names that have
@@ -100,32 +105,110 @@ class AddonIndexer(BaseSearchIndexer):
                     # helping users looking for 'tab password' find that addon.
                     'type': 'dictionary_decompounder',
                     'word_list': [
-                        'all', 'auto', 'ball', 'bar', 'block', 'blog',
-                        'bookmark', 'browser', 'bug', 'button', 'cat', 'chat',
-                        'click', 'clip', 'close', 'color', 'context', 'cookie',
-                        'cool', 'css', 'delete', 'dictionary', 'down',
-                        'download', 'easy', 'edit', 'fill', 'fire', 'firefox',
-                        'fix', 'flag', 'flash', 'fly', 'forecast', 'fox',
-                        'foxy', 'google', 'grab', 'grease', 'html', 'http',
-                        'image', 'input', 'inspect', 'inspector', 'iris', 'js',
-                        'key', 'keys', 'lang', 'link', 'mail', 'manager',
-                        'map', 'mega', 'menu', 'menus', 'monkey', 'name',
-                        'net', 'new', 'open', 'password', 'persona', 'privacy',
-                        'query', 'screen', 'scroll', 'search', 'secure',
-                        'select', 'smart', 'spring', 'status', 'style',
-                        'super', 'sync', 'tab', 'text', 'think', 'this',
-                        'time', 'title', 'translate', 'tree', 'undo', 'upload',
-                        'url', 'user', 'video', 'window', 'with', 'word',
+                        'all',
+                        'auto',
+                        'ball',
+                        'bar',
+                        'block',
+                        'blog',
+                        'bookmark',
+                        'browser',
+                        'bug',
+                        'button',
+                        'cat',
+                        'chat',
+                        'click',
+                        'clip',
+                        'close',
+                        'color',
+                        'context',
+                        'cookie',
+                        'cool',
+                        'css',
+                        'delete',
+                        'dictionary',
+                        'down',
+                        'download',
+                        'easy',
+                        'edit',
+                        'fill',
+                        'fire',
+                        'firefox',
+                        'fix',
+                        'flag',
+                        'flash',
+                        'fly',
+                        'forecast',
+                        'fox',
+                        'foxy',
+                        'google',
+                        'grab',
+                        'grease',
+                        'html',
+                        'http',
+                        'image',
+                        'input',
+                        'inspect',
+                        'inspector',
+                        'iris',
+                        'js',
+                        'key',
+                        'keys',
+                        'lang',
+                        'link',
+                        'mail',
+                        'manager',
+                        'map',
+                        'mega',
+                        'menu',
+                        'menus',
+                        'monkey',
+                        'name',
+                        'net',
+                        'new',
+                        'open',
+                        'password',
+                        'persona',
+                        'privacy',
+                        'query',
+                        'screen',
+                        'scroll',
+                        'search',
+                        'secure',
+                        'select',
+                        'smart',
+                        'spring',
+                        'status',
+                        'style',
+                        'super',
+                        'sync',
+                        'tab',
+                        'text',
+                        'think',
+                        'this',
+                        'time',
+                        'title',
+                        'translate',
+                        'tree',
+                        'undo',
+                        'upload',
+                        'url',
+                        'user',
+                        'video',
+                        'window',
+                        'with',
+                        'word',
                         'zilla',
-                    ]
+                    ],
                 },
-            }
+            },
         }
     }
 
     @classmethod
     def get_model(cls):
         from olympia.addons.models import Addon
+
         return Addon
 
     @classmethod
@@ -147,8 +230,9 @@ class AddonIndexer(BaseSearchIndexer):
         version_mapping = {
             'type': 'object',
             'properties': {
-                'compatible_apps': {'properties': {app.id: appver_mapping
-                                                   for app in amo.APP_USAGE}},
+                'compatible_apps': {
+                    'properties': {app.id: appver_mapping for app in amo.APP_USAGE}
+                },
                 # Keep '<version>.id' indexed to be able to run exists queries
                 # on it.
                 'id': {'type': 'long'},
@@ -159,23 +243,17 @@ class AddonIndexer(BaseSearchIndexer):
                         'id': {'type': 'long', 'index': False},
                         'created': {'type': 'date', 'index': False},
                         'hash': {'type': 'keyword', 'index': False},
-                        'filename': {
-                            'type': 'keyword', 'index': False},
+                        'filename': {'type': 'keyword', 'index': False},
                         'is_webextension': {'type': 'boolean'},
                         'is_mozilla_signed_extension': {'type': 'boolean'},
-                        'is_restart_required': {
-                            'type': 'boolean', 'index': False},
-                        'platform': {
-                            'type': 'byte', 'index': False},
+                        'is_restart_required': {'type': 'boolean', 'index': False},
+                        'platform': {'type': 'byte', 'index': False},
                         'size': {'type': 'long', 'index': False},
-                        'strict_compatibility': {
-                            'type': 'boolean', 'index': False},
+                        'strict_compatibility': {'type': 'boolean', 'index': False},
                         'status': {'type': 'byte'},
-                        'permissions': {
-                            'type': 'keyword', 'index': False},
-                        'optional_permissions': {
-                            'type': 'keyword', 'index': False},
-                    }
+                        'permissions': {'type': 'keyword', 'index': False},
+                        'optional_permissions': {'type': 'keyword', 'index': False},
+                    },
                 },
                 'license': {
                     'type': 'object',
@@ -183,19 +261,17 @@ class AddonIndexer(BaseSearchIndexer):
                         'id': {'type': 'long', 'index': False},
                         'builtin': {'type': 'boolean', 'index': False},
                         'name_translations': cls.get_translations_definition(),
-                        'url': {'type': 'text', 'index': False}
+                        'url': {'type': 'text', 'index': False},
                     },
                 },
-                'release_notes_translations':
-                    cls.get_translations_definition(),
+                'release_notes_translations': cls.get_translations_definition(),
                 'version': {'type': 'keyword', 'index': False},
-            }
+            },
         }
         mapping = {
             doc_name: {
                 'properties': {
                     'id': {'type': 'long'},
-
                     'app': {'type': 'byte'},
                     'average_daily_users': {'type': 'long'},
                     'bayesian_rating': {'type': 'double'},
@@ -248,22 +324,20 @@ class AddonIndexer(BaseSearchIndexer):
                             'trigrams': {
                                 'type': 'text',
                                 'analyzer': 'trigram',
-                            }
-                        }
+                            },
+                        },
                     },
                     'platforms': {'type': 'byte'},
                     'previews': {
                         'type': 'object',
                         'properties': {
                             'id': {'type': 'long', 'index': False},
-                            'caption_translations':
-                                cls.get_translations_definition(),
+                            'caption_translations': cls.get_translations_definition(),
                             'modified': {'type': 'date', 'index': False},
                             'sizes': {
                                 'type': 'object',
                                 'properties': {
-                                    'thumbnail': {'type': 'short',
-                                                  'index': False},
+                                    'thumbnail': {'type': 'short', 'index': False},
                                     'image': {'type': 'short', 'index': False},
                                 },
                             },
@@ -274,14 +348,14 @@ class AddonIndexer(BaseSearchIndexer):
                         'properties': {
                             'group_id': {'type': 'byte'},
                             'approved_for_apps': {'type': 'byte'},
-                        }
+                        },
                     },
                     'ratings': {
                         'type': 'object',
                         'properties': {
                             'count': {'type': 'short', 'index': False},
-                            'average': {'type': 'float', 'index': False}
-                        }
+                            'average': {'type': 'float', 'index': False},
+                        },
                     },
                     'slug': {'type': 'keyword'},
                     'requires_payment': {'type': 'boolean', 'index': False},
@@ -297,16 +371,23 @@ class AddonIndexer(BaseSearchIndexer):
         # Add fields that we expect to return all translations without being
         # analyzed/indexed.
         cls.attach_translation_mappings(
-            mapping, ('description', 'developer_comments', 'homepage', 'name',
-                      'summary', 'support_email', 'support_url'))
+            mapping,
+            (
+                'description',
+                'developer_comments',
+                'homepage',
+                'name',
+                'summary',
+                'support_email',
+                'support_url',
+            ),
+        )
 
         # Add language-specific analyzers for localized fields that are
         # analyzed/indexed.
-        cls.attach_language_specific_analyzers(
-            mapping, ('description', 'summary'))
+        cls.attach_language_specific_analyzers(mapping, ('description', 'summary'))
 
-        cls.attach_language_specific_analyzers_with_raw_variant(
-            mapping, ('name',))
+        cls.attach_language_specific_analyzers_with_raw_variant(mapping, ('name',))
 
         return mapping
 
@@ -314,33 +395,43 @@ class AddonIndexer(BaseSearchIndexer):
     def extract_version(cls, obj, version_obj):
         from olympia.versions.models import License, Version
 
-        data = {
-            'id': version_obj.pk,
-            'compatible_apps': cls.extract_compatibility_info(
-                obj, version_obj),
-            'files': [{
-                'id': file_.id,
-                'created': file_.created,
-                'filename': file_.filename,
-                'hash': file_.hash,
-                'is_webextension': file_.is_webextension,
-                'is_mozilla_signed_extension': (
-                    file_.is_mozilla_signed_extension),
-                'is_restart_required': file_.is_restart_required,
-                'platform': file_.platform,
-                'size': file_.size,
-                'status': file_.status,
-                'strict_compatibility': file_.strict_compatibility,
-                'permissions': file_.permissions,
-                'optional_permissions': file_.optional_permissions,
-            } for file_ in version_obj.all_files],
-            'reviewed': version_obj.reviewed,
-            'version': version_obj.version,
-        } if version_obj else None
+        data = (
+            {
+                'id': version_obj.pk,
+                'compatible_apps': cls.extract_compatibility_info(obj, version_obj),
+                'files': [
+                    {
+                        'id': file_.id,
+                        'created': file_.created,
+                        'filename': file_.filename,
+                        'hash': file_.hash,
+                        'is_webextension': file_.is_webextension,
+                        'is_mozilla_signed_extension': (
+                            file_.is_mozilla_signed_extension
+                        ),
+                        'is_restart_required': file_.is_restart_required,
+                        'platform': file_.platform,
+                        'size': file_.size,
+                        'status': file_.status,
+                        'strict_compatibility': file_.strict_compatibility,
+                        'permissions': file_.permissions,
+                        'optional_permissions': file_.optional_permissions,
+                    }
+                    for file_ in version_obj.all_files
+                ],
+                'reviewed': version_obj.reviewed,
+                'version': version_obj.version,
+            }
+            if version_obj
+            else None
+        )
         if data and version_obj:
             attach_trans_dict(Version, [version_obj])
-            data.update(cls.extract_field_api_translations(
-                version_obj, 'release_notes', db_field='release_notes_id'))
+            data.update(
+                cls.extract_field_api_translations(
+                    version_obj, 'release_notes', db_field='release_notes_id'
+                )
+            )
             if version_obj.license:
                 data['license'] = {
                     'id': version_obj.license.id,
@@ -348,8 +439,9 @@ class AddonIndexer(BaseSearchIndexer):
                     'url': version_obj.license.url,
                 }
                 attach_trans_dict(License, [version_obj.license])
-                data['license'].update(cls.extract_field_api_translations(
-                    version_obj.license, 'name'))
+                data['license'].update(
+                    cls.extract_field_api_translations(version_obj.license, 'name')
+                )
         return data
 
     @classmethod
@@ -361,8 +453,7 @@ class AddonIndexer(BaseSearchIndexer):
             if appver:
                 min_, max_ = appver.min.version_int, appver.max.version_int
                 min_human, max_human = appver.min.version, appver.max.version
-                if not version_obj.files.filter(
-                        strict_compatibility=True).exists():
+                if not version_obj.files.filter(strict_compatibility=True).exists():
                     # The files attached to this version are not using strict
                     # compatibility, so the max version essentially needs to be
                     # ignored - let's fake a super high one. We leave max_human
@@ -373,12 +464,16 @@ class AddonIndexer(BaseSearchIndexer):
                 # want to reindex every time a new version of the app is
                 # released, so we directly index a super high version as the
                 # max.
-                min_human, max_human = amo.D2C_MIN_VERSIONS.get(
-                    app.id, '1.0'), amo.FAKE_MAX_VERSION,
+                min_human, max_human = (
+                    amo.D2C_MIN_VERSIONS.get(app.id, '1.0'),
+                    amo.FAKE_MAX_VERSION,
+                )
                 min_, max_ = version_int(min_human), version_int(max_human)
             compatible_apps[app.id] = {
-                'min': min_, 'min_human': min_human,
-                'max': max_, 'max_human': max_human,
+                'min': min_,
+                'min_human': min_human,
+                'max': max_,
+                'max_human': max_human,
             }
         return compatible_apps
 
@@ -387,19 +482,32 @@ class AddonIndexer(BaseSearchIndexer):
         """Extract indexable attributes from an add-on."""
         from olympia.addons.models import Preview
 
-        attrs = ('id', 'average_daily_users', 'bayesian_rating',
-                 'contributions', 'created',
-                 'default_locale', 'guid', 'hotness', 'icon_hash', 'icon_type',
-                 'is_disabled', 'is_experimental',
-                 'last_updated',
-                 'modified', 'requires_payment', 'slug',
-                 'status', 'type', 'weekly_downloads')
+        attrs = (
+            'id',
+            'average_daily_users',
+            'bayesian_rating',
+            'contributions',
+            'created',
+            'default_locale',
+            'guid',
+            'hotness',
+            'icon_hash',
+            'icon_type',
+            'is_disabled',
+            'is_experimental',
+            'last_updated',
+            'modified',
+            'requires_payment',
+            'slug',
+            'status',
+            'type',
+            'weekly_downloads',
+        )
         data = {attr: getattr(obj, attr) for attr in attrs}
 
         data['colors'] = None
         if obj.current_version:
-            data['platforms'] = [p.id for p in
-                                 obj.current_version.supported_platforms]
+            data['platforms'] = [p.id for p in obj.current_version.supported_platforms]
 
         # Extract dominant colors from static themes.
         if obj.type == amo.ADDON_STATICTHEME:
@@ -409,19 +517,25 @@ class AddonIndexer(BaseSearchIndexer):
 
         data['app'] = [app.id for app in obj.compatible_apps.keys()]
         # Boost by the number of users on a logarithmic scale.
-        data['boost'] = float(data['average_daily_users'] ** .2)
+        data['boost'] = float(data['average_daily_users'] ** 0.2)
         # Quadruple the boost if the add-on is public.
-        if (obj.status == amo.STATUS_APPROVED and not obj.is_experimental and
-                'boost' in data):
+        if (
+            obj.status == amo.STATUS_APPROVED
+            and not obj.is_experimental
+            and 'boost' in data
+        ):
             data['boost'] = float(max(data['boost'], 1) * 4)
         # We can use all_categories because the indexing code goes through the
         # transformer that sets it.
         data['category'] = [cat.id for cat in obj.all_categories]
-        data['current_version'] = cls.extract_version(
-            obj, obj.current_version)
+        data['current_version'] = cls.extract_version(obj, obj.current_version)
         data['listed_authors'] = [
-            {'name': a.name, 'id': a.id, 'username': a.username,
-             'is_public': a.is_public}
+            {
+                'name': a.name,
+                'id': a.id,
+                'username': a.username,
+                'is_public': a.is_public,
+            }
             for a in obj.listed_authors
         ]
 
@@ -429,18 +543,25 @@ class AddonIndexer(BaseSearchIndexer):
         data['has_privacy_policy'] = bool(obj.privacy_policy)
 
         data['is_recommended'] = bool(
-            obj.promoted and obj.promoted.group == RECOMMENDED)
+            obj.promoted and obj.promoted.group == RECOMMENDED
+        )
 
-        data['previews'] = [{'id': preview.id, 'modified': preview.modified,
-                             'sizes': preview.sizes}
-                            for preview in obj.current_previews]
+        data['previews'] = [
+            {'id': preview.id, 'modified': preview.modified, 'sizes': preview.sizes}
+            for preview in obj.current_previews
+        ]
 
-        data['promoted'] = {
-            'group_id': obj.promoted.group_id,
-            # store the app approvals because .approved_applications needs it.
-            'approved_for_apps': [
-                app.id for app in obj.promoted.approved_applications],
-        } if obj.promoted else None
+        data['promoted'] = (
+            {
+                'group_id': obj.promoted.group_id,
+                # store the app approvals because .approved_applications needs it.
+                'approved_for_apps': [
+                    app.id for app in obj.promoted.approved_applications
+                ],
+            }
+            if obj.promoted
+            else None
+        )
 
         data['ratings'] = {
             'average': obj.average_rating,
@@ -455,14 +576,14 @@ class AddonIndexer(BaseSearchIndexer):
         # First, deal with the 3 fields that need everything:
         for field in ('description', 'name', 'summary'):
             data.update(cls.extract_field_api_translations(obj, field))
-            data.update(cls.extract_field_search_translation(
-                obj, field, obj.default_locale))
+            data.update(
+                cls.extract_field_search_translation(obj, field, obj.default_locale)
+            )
             data.update(cls.extract_field_analyzed_translations(obj, field))
 
         # Then add fields that only need to be returned to the API without
         # contributing to search relevancy.
-        for field in ('developer_comments', 'homepage', 'support_email',
-                      'support_url'):
+        for field in ('developer_comments', 'homepage', 'support_email', 'support_url'):
             data.update(cls.extract_field_api_translations(obj, field))
         if obj.type != amo.ADDON_STATICTHEME:
             # Also do that for preview captions, which are set on each preview
@@ -470,7 +591,8 @@ class AddonIndexer(BaseSearchIndexer):
             attach_trans_dict(Preview, obj.current_previews)
             for i, preview in enumerate(obj.current_previews):
                 data['previews'][i].update(
-                    cls.extract_field_api_translations(preview, 'caption'))
+                    cls.extract_field_api_translations(preview, 'caption')
+                )
 
         return data
 
@@ -505,8 +627,6 @@ class AddonIndexer(BaseSearchIndexer):
         """
         from olympia.addons.tasks import index_addons
 
-        ids = cls.get_model().unfiltered.values_list(
-            'id', flat=True).order_by('id')
+        ids = cls.get_model().unfiltered.values_list('id', flat=True).order_by('id')
         chunk_size = 150
-        return create_chunked_tasks_signatures(
-            index_addons, list(ids), chunk_size)
+        return create_chunked_tasks_signatures(index_addons, list(ids), chunk_size)

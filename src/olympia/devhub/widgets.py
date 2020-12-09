@@ -26,33 +26,41 @@ class IconTypeSelect(forms.RadioSelect):
             option_value = option['value']
 
             option['widget'] = self.create_option(
-                name=name, value=option['value'], label=option['label'],
+                name=name,
+                value=option['value'],
+                label=option['label'],
                 selected=option_value == value,
                 index=option['index'],
-                attrs=option['attrs'])
+                attrs=option['attrs'],
+            )
 
             if option_value.split('/')[0] == 'icon' or option_value == '':
                 icon_name = option['label']
 
-                original_widget = self._render(
-                    self.option_template_name, option)
+                original_widget = self._render(self.option_template_name, option)
                 if not original_widget.startswith('<label for='):
                     # django2.2+ already wraps widget in a label
                     original_widget = format_html(
                         '<label for="{label_id}">{widget}</label>',
                         label_id=option['widget']['attrs']['id'],
-                        widget=original_widget)
-                output.append(format_html(
-                    self.base_html,
-                    active='active' if option_value == value else '',
-                    static=settings.STATIC_URL,
-                    icon_name=icon_name,
-                    original_widget=original_widget,
-                ))
+                        widget=original_widget,
+                    )
+                output.append(
+                    format_html(
+                        self.base_html,
+                        active='active' if option_value == value else '',
+                        static=settings.STATIC_URL,
+                        icon_name=icon_name,
+                        original_widget=original_widget,
+                    )
+                )
             else:
-                output.append(format_html(
-                    '<li class="hide">{widget}</li>',
-                    widget=self._render(self.option_template_name, option)))
+                output.append(
+                    format_html(
+                        '<li class="hide">{widget}</li>',
+                        widget=self._render(self.option_template_name, option),
+                    )
+                )
 
         return mark_safe(u'\n'.join(output))
 
@@ -74,8 +82,7 @@ class CategoriesSelectMultiple(forms.CheckboxSelectMultiple):
         miscs = Category.objects.filter(misc=True).values_list('id', flat=True)
         for c in self.choices:
             if c[0] in miscs:
-                msg = ugettext(
-                    'My add-on doesn\'t fit into any of the categories')
+                msg = ugettext('My add-on doesn\'t fit into any of the categories')
                 other = (c[0], msg)
             else:
                 choices.append(c)
@@ -96,19 +103,21 @@ class CategoriesSelectMultiple(forms.CheckboxSelectMultiple):
 
             for i, (option_value, option_label) in group:
                 if has_id:
-                    final_attrs = dict(final_attrs,
-                                       id='%s_%s' % (attrs['id'], i))
+                    final_attrs = dict(final_attrs, id='%s_%s' % (attrs['id'], i))
                     label_for = u' for="%s"' % final_attrs['id']
                 else:
                     label_for = ''
 
                 cb = forms.CheckboxInput(
-                    final_attrs, check_test=lambda value: value in str_values)
+                    final_attrs, check_test=lambda value: value in str_values
+                )
                 option_value = force_text(option_value)
                 rendered_cb = cb.render(name, option_value)
                 option_label = conditional_escape(force_text(option_label))
-                output.append(u'<li><label%s>%s %s</label></li>' % (
-                    label_for, rendered_cb, option_label))
+                output.append(
+                    u'<li><label%s>%s %s</label></li>'
+                    % (label_for, rendered_cb, option_label)
+                )
 
             output.append(u'</ul>')
 

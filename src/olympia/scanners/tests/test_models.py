@@ -25,8 +25,11 @@ from olympia.constants.scanners import (
 )
 from olympia.files.models import FileUpload
 from olympia.scanners.models import (
-    ImproperScannerQueryRuleStateError, ScannerQueryResult, ScannerQueryRule,
-    ScannerResult, ScannerRule
+    ImproperScannerQueryRuleStateError,
+    ScannerQueryResult,
+    ScannerQueryRule,
+    ScannerResult,
+    ScannerRule,
 )
 
 
@@ -50,8 +53,11 @@ class TestScannerResultMixin:
         return self.model.objects.create(scanner=MAD)
 
     def create_fake_yara_match(
-        self, rule='some-yara-rule', tags=None, description='some description',
-        filename='some/file.js'
+        self,
+        rule='some-yara-rule',
+        tags=None,
+        description='some description',
+        filename='some/file.js',
     ):
         return FakeYaraMatch(
             rule=rule,
@@ -59,7 +65,7 @@ class TestScannerResultMixin:
             meta={
                 'description': description,
                 'filename': filename,
-            }
+            },
         )
 
     def create_yara_result(self):
@@ -69,9 +75,7 @@ class TestScannerResultMixin:
         result = self.create_yara_result()
         match = self.create_fake_yara_match()
 
-        result.add_yara_result(
-            rule=match.rule, tags=match.tags, meta=match.meta
-        )
+        result.add_yara_result(rule=match.rule, tags=match.tags, meta=match.meta)
 
         assert result.results == [
             {'rule': match.rule, 'tags': match.tags, 'meta': match.meta}
@@ -114,9 +118,7 @@ class TestScannerResultMixin:
 
         for rule in [rule1, rule2]:
             match = self.create_fake_yara_match(rule=rule)
-            result.add_yara_result(
-                rule=match.rule, tags=match.tags, meta=match.meta
-            )
+            result.add_yara_result(rule=match.rule, tags=match.tags, meta=match.meta)
 
         assert result.extract_rule_names() == [rule1, rule2]
 
@@ -127,15 +129,11 @@ class TestScannerResultMixin:
 
         for rule in [rule1, rule2, rule1, rule2]:
             match = self.create_fake_yara_match(rule=rule)
-            result.add_yara_result(
-                rule=match.rule, tags=match.tags, meta=match.meta
-            )
+            result.add_yara_result(rule=match.rule, tags=match.tags, meta=match.meta)
 
         assert result.extract_rule_names() == [rule1, rule2]
 
-    def test_extract_rule_names_returns_empty_list_for_unsupported_scanner(
-        self
-    ):
+    def test_extract_rule_names_returns_empty_list_for_unsupported_scanner(self):
         result = self.create_wat_result()
         assert result.extract_rule_names() == []
 
@@ -222,20 +220,14 @@ class TestScannerResultMixin:
         rule1 = 'rule-1'
         file1 = 'file/1.js'
         match1 = self.create_fake_yara_match(rule=rule1, filename=file1)
-        result.add_yara_result(
-            rule=match1.rule, tags=match1.tags, meta=match1.meta
-        )
+        result.add_yara_result(rule=match1.rule, tags=match1.tags, meta=match1.meta)
         rule2 = 'rule-2'
         file2 = 'file/2.js'
         match2 = self.create_fake_yara_match(rule=rule2, filename=file2)
-        result.add_yara_result(
-            rule=match2.rule, tags=match2.tags, meta=match2.meta
-        )
+        result.add_yara_result(rule=match2.rule, tags=match2.tags, meta=match2.meta)
         # rule1 with file2
         match3 = self.create_fake_yara_match(rule=rule1, filename=file2)
-        result.add_yara_result(
-            rule=match3.rule, tags=match3.tags, meta=match3.meta
-        )
+        result.add_yara_result(rule=match3.rule, tags=match3.tags, meta=match3.meta)
         assert result.get_files_by_matched_rules() == {
             rule1: [file1, file2],
             rule2: [file2],
@@ -337,9 +329,7 @@ class TestScannerResult(TestScannerResultMixin, TestCase):
     def test_create_different_entries_for_a_single_upload(self):
         upload = self.create_file_upload()
 
-        customs_result = self.model.objects.create(
-            upload=upload, scanner=CUSTOMS
-        )
+        customs_result = self.model.objects.create(upload=upload, scanner=CUSTOMS)
         wat_result = self.model.objects.create(upload=upload, scanner=WAT)
 
         assert customs_result.scanner == CUSTOMS
@@ -371,9 +361,7 @@ class TestScannerRuleMixin:
             rule.clean()
 
     def test_clean_raises_for_yara_rule_without_same_rule_name(self):
-        rule = self.model(
-            name='some_rule', scanner=YARA, definition='rule x {}'
-        )
+        rule = self.model(name='some_rule', scanner=YARA, definition='rule x {}')
 
         with pytest.raises(ValidationError, match=r'should match the name of'):
             rule.clean()
@@ -419,7 +407,7 @@ class TestScannerRuleMixin:
         rule = self.model(
             name='some_rule',
             scanner=YARA,
-            definition='rule some_rule { condition: true }'
+            definition='rule some_rule { condition: true }',
         )
         yara_compile_mock.side_effect = Exception()
 
@@ -449,8 +437,7 @@ class TestScannerQueryRule(TestScannerRuleMixin, TestCase):
     @mock.patch('olympia.amo.celery.app.GroupResult.restore')
     def test_completed_task_count(self, restore_mock):
         restore_mock.return_value.completed_count.return_value = 42
-        rule = ScannerQueryRule(
-            state=RUNNING, celery_group_result_id=str(uuid.uuid4()))
+        rule = ScannerQueryRule(state=RUNNING, celery_group_result_id=str(uuid.uuid4()))
         assert rule._get_completed_tasks_count() == 42
 
         restore_mock.return_value = None
@@ -497,15 +484,18 @@ class TestScannerQueryRule(TestScannerRuleMixin, TestCase):
 
 
 @pytest.mark.django_db
-@pytest.mark.parametrize('current_state,target_state', [
-    (NEW, SCHEDULED),
-    (SCHEDULED, RUNNING),
-    (NEW, ABORTING),  # Technically not exposed through the admin yet.
-    (SCHEDULED, ABORTING),  # Technically not exposed through the admin yet.
-    (RUNNING, ABORTING),
-    (ABORTING, ABORTED),
-    (RUNNING, COMPLETED),
-])
+@pytest.mark.parametrize(
+    'current_state,target_state',
+    [
+        (NEW, SCHEDULED),
+        (SCHEDULED, RUNNING),
+        (NEW, ABORTING),  # Technically not exposed through the admin yet.
+        (SCHEDULED, ABORTING),  # Technically not exposed through the admin yet.
+        (RUNNING, ABORTING),
+        (ABORTING, ABORTED),
+        (RUNNING, COMPLETED),
+    ],
+)
 def test_query_rule_change_state_to_valid(current_state, target_state):
     rule = ScannerQueryRule(name='some_rule', scanner=YARA)
     rule.state = current_state
@@ -518,28 +508,31 @@ def test_query_rule_change_state_to_valid(current_state, target_state):
 
 
 @pytest.mark.django_db
-@pytest.mark.parametrize('current_state,target_state', [
-    (NEW, RUNNING),  # Should go through SCHEDULED first to work.
-    (NEW, ABORTED),  # Should go through ABORTING first to work.
-    (NEW, COMPLETED),  # Should go through RUNNING first to work.
-    (SCHEDULED, NEW),  # Can't reset to NEW.
-    (SCHEDULED, ABORTED),   # Should go through ABORTING first to work.
-    (SCHEDULED, COMPLETED),   # Should go through RUNNING first to work.
-    (RUNNING, NEW),  # Can't reset to NEW.
-    (RUNNING, ABORTED),  # Should go through ABORTING first to work.
-    (RUNNING, SCHEDULED),  # Can't reset to SCHEDULED
-    (ABORTING, NEW),  # Can't reset to NEW.
-    (ABORTING, RUNNING),    # Can't reset to RUNNING
-    (ABORTING, SCHEDULED),  # Can't reset to SCHEDULED
-    (ABORTED, NEW),  # Can't reset to NEW.
-    (ABORTED, RUNNING),  # Can't reset to RUNNING.
-    (ABORTED, SCHEDULED),  # Can't reset to SCHEDULED
-    (COMPLETED, NEW),  # Can't reset to... anything, it's completed!
-    (COMPLETED, RUNNING),  # As above.
-    (COMPLETED, ABORTED),  # As above.
-    (COMPLETED, ABORTING),  # As above.
-    (COMPLETED, SCHEDULED),  # As above.
-])
+@pytest.mark.parametrize(
+    'current_state,target_state',
+    [
+        (NEW, RUNNING),  # Should go through SCHEDULED first to work.
+        (NEW, ABORTED),  # Should go through ABORTING first to work.
+        (NEW, COMPLETED),  # Should go through RUNNING first to work.
+        (SCHEDULED, NEW),  # Can't reset to NEW.
+        (SCHEDULED, ABORTED),  # Should go through ABORTING first to work.
+        (SCHEDULED, COMPLETED),  # Should go through RUNNING first to work.
+        (RUNNING, NEW),  # Can't reset to NEW.
+        (RUNNING, ABORTED),  # Should go through ABORTING first to work.
+        (RUNNING, SCHEDULED),  # Can't reset to SCHEDULED
+        (ABORTING, NEW),  # Can't reset to NEW.
+        (ABORTING, RUNNING),  # Can't reset to RUNNING
+        (ABORTING, SCHEDULED),  # Can't reset to SCHEDULED
+        (ABORTED, NEW),  # Can't reset to NEW.
+        (ABORTED, RUNNING),  # Can't reset to RUNNING.
+        (ABORTED, SCHEDULED),  # Can't reset to SCHEDULED
+        (COMPLETED, NEW),  # Can't reset to... anything, it's completed!
+        (COMPLETED, RUNNING),  # As above.
+        (COMPLETED, ABORTED),  # As above.
+        (COMPLETED, ABORTING),  # As above.
+        (COMPLETED, SCHEDULED),  # As above.
+    ],
+)
 def test_query_rule_change_state_to_invalid(current_state, target_state):
     rule = ScannerQueryRule(name='some_rule', scanner=YARA)
     rule.state = current_state
