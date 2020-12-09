@@ -6,7 +6,6 @@ from django.conf import settings
 from django.conf.urls import url
 from django.contrib import admin
 from django.core import validators
-from django.db.models import F, Prefetch
 from django.forms.models import modelformset_factory
 from django.http.response import (HttpResponseForbidden,
                                   HttpResponseNotAllowed,
@@ -27,7 +26,6 @@ from olympia.amo.utils import send_mail
 from olympia.files.models import File
 from olympia.git.models import GitExtractionEntry
 from olympia.ratings.models import Rating
-from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 from olympia.zadmin.admin import related_content_link
 
