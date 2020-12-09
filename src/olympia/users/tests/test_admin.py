@@ -541,18 +541,18 @@ class TestUserAdmin(TestCase):
         link = pq(result)('a')[0]
         return link.attrib['href'], link.text
 
-    def test_collections_created(self):
+    def test_collections_authorship(self):
         Collection.objects.create()
         Collection.objects.create(author=self.user)
         Collection.objects.create(author=self.user, listed=False)
-        url, text = self._call_related_content_method('collections_created')
+        url, text = self._call_related_content_method('collections_authorship')
         expected_url = (
             reverse('admin:bandwagon_collection_changelist') +
             '?author=%d' % self.user.pk)
         assert url == expected_url
         assert text == '2'
 
-    def test_addons_created(self):
+    def test_addons_authorship(self):
         addon_factory()
         another_user = user_factory()
         addon_factory(users=[self.user, another_user])
@@ -565,14 +565,14 @@ class TestUserAdmin(TestCase):
             users=[self.user, another_user])
         addon_where_user_has_deleted_role.addonuser_set.filter(
             user=self.user).update(role=amo.AUTHOR_ROLE_DELETED)
-        url, text = self._call_related_content_method('addons_created')
+        url, text = self._call_related_content_method('addons_authorship')
         expected_url = (
             reverse('admin:addons_addon_changelist') +
             '?authors=%d' % self.user.pk)
         assert url == expected_url
-        assert text == '4'
+        assert text == '4 (active role), 1 (deleted role)'
 
-    def test_ratings_created(self):
+    def test_ratings_authorship(self):
         Rating.objects.create(addon=addon_factory(), user=self.user)
         dummy_addon = addon_factory()
         Rating.objects.create(
@@ -584,7 +584,7 @@ class TestUserAdmin(TestCase):
         Rating.objects.create(
             addon=dummy_addon,
             user=user_factory(), ip_address='255.255.0.0')
-        url, text = self._call_related_content_method('ratings_created')
+        url, text = self._call_related_content_method('ratings_authorship')
         expected_url = (
             reverse('admin:ratings_rating_changelist') +
             '?user=%d' % self.user.pk)

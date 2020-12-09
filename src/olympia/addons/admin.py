@@ -263,10 +263,9 @@ class AddonAdmin(admin.ModelAdmin):
         if lookup_field != 'pk':
             addon = None
             try:
-                if lookup_field == 'slug':
-                    addon = self.queryset(request).all().get(slug=object_id)
-                elif lookup_field == 'guid':
-                    addon = self.queryset(request).get(guid=object_id)
+                if lookup_field in ('slug', 'guid'):
+                    addon = self.get_queryset(request).get(
+                        **{lookup_field: object_id})
             except Addon.DoesNotExist:
                 raise http.Http404
             # Don't get in an infinite loop if addon.slug.isdigit().
