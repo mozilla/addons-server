@@ -537,14 +537,14 @@ class TestDashboard(TestCase):
         # Create a lot of add-ons to test the queue counts.
         # Recommended extensions
         addon_factory(
-            recommended=True,
+            promoted=RECOMMENDED,
             status=amo.STATUS_NOMINATED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW})
         version_factory(
             addon=addon_factory(
-                recommended=True,
-                version_kw={'recommendation_approved': False}),
-            recommendation_approved=True,
+                promoted=RECOMMENDED,
+                version_kw={'promotion_approved': False}),
+            promotion_approved=True,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW})
         # Nominated and pending themes, not being counted
         # as per https://github.com/mozilla/addons-server/issues/11796

@@ -215,11 +215,11 @@ class TestRecommendedQueue(TestQueue):
                   file_status=amo.STATUS_AWAITING_REVIEW):
         addon = addon_factory(
             name=name, status=addon_status,
-            recommended=True,
+            promoted=RECOMMENDED,
             version_kw={
                 'version': version,
                 'channel': self.channel,
-                'recommendation_approved': False},
+                'promotion_approved': False},
             file_kw={'status': file_status})
         return addon
 

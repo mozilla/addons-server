@@ -190,7 +190,7 @@ class TestVersion(TestCase):
         self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
         previous_version = self.version
         self.version = version_factory(
-            addon=self.addon, recommendation_approved=True)
+            addon=self.addon, promotion_approved=True)
         self.addon.reload()
         assert self.version == self.addon.current_version
         assert previous_version != self.version
@@ -222,7 +222,7 @@ class TestVersion(TestCase):
         # If the add-on is recommended, you can still disable or delete older
         # versions than the current one.
         self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
-        version_factory(addon=self.addon, recommendation_approved=True)
+        version_factory(addon=self.addon, promotion_approved=True)
         self.addon.reload()
         assert self.version != self.addon.current_version
 

@@ -15,6 +15,7 @@ from olympia.addons.tests.test_serializers import (
 from olympia.amo.tests import (
     addon_factory, collection_factory, ESTestCase, reverse_ns)
 from olympia.bandwagon.models import CollectionAddon
+from olympia.constants.promoted import RECOMMENDED
 from olympia.users.models import UserProfile
 
 from ..models import Shelf
@@ -39,11 +40,11 @@ class TestShelvesSerializer(ESTestCase):
         addon_factory(
             name='test addon test03', type=amo.ADDON_EXTENSION,
             average_daily_users=482, weekly_downloads=506, summary=None,
-            recommended=True)
+            promoted=RECOMMENDED)
         addon_factory(
             name='test addon test04', type=amo.ADDON_STATICTHEME,
             average_daily_users=8838, weekly_downloads=358, summary=None,
-            recommended=True)
+            promoted=RECOMMENDED)
 
         user = UserProfile.objects.create(pk=settings.TASK_USER_ID)
         collection = collection_factory(author=user, slug='privacy-matters')

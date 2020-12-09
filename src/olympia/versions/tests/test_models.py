@@ -811,7 +811,7 @@ class TestVersion(TestCase):
         assert not addon.current_version.can_be_disabled_and_deleted()
 
         previous_version = addon.current_version
-        version_factory(addon=addon, recommendation_approved=True)
+        version_factory(addon=addon, promotion_approved=True)
         addon = addon.reload()
         assert previous_version != addon.current_version
         assert addon.current_version.promoted_approvals.filter(
@@ -833,7 +833,7 @@ class TestVersion(TestCase):
         version_a = previous_version.reload()
         version_b = addon.current_version
         version_c = version_factory(addon=addon)
-        version_d = version_factory(addon=addon, recommendation_approved=True)
+        version_d = version_factory(addon=addon, promotion_approved=True)
         version_c.is_user_disabled = True  # disabled version_c
         addon = addon.reload()
         version_b = version_b.reload()
