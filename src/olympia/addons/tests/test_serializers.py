@@ -262,7 +262,8 @@ class AddonSerializerOutputTestMixin(object):
             self.addon.contributions + '?' + utm_string
         )
         assert result['contributions_url']['outgoing'] == (
-            get_outgoing_url(self.addon.contributions + '?' + utm_string))
+            get_outgoing_url(self.addon.contributions + '?' + utm_string)
+        )
         assert result['edit_url'] == absolutify(self.addon.get_dev_url())
         assert result['default_locale'] == self.addon.default_locale
         assert result['description'] == {'en-US': self.addon.description}
@@ -272,7 +273,8 @@ class AddonSerializerOutputTestMixin(object):
         assert result['has_privacy_policy'] is False
         assert result['homepage']['url'] == {'en-US': str(self.addon.homepage)}
         assert result['homepage']['outgoing'] == {
-            'en-US': get_outgoing_url(str(self.addon.homepage))}
+            'en-US': get_outgoing_url(str(self.addon.homepage))
+        }
         assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
         assert result['icons'] == {
             '32': absolutify(self.addon.get_icon_url(32)),
@@ -331,10 +333,10 @@ class AddonSerializerOutputTestMixin(object):
         assert result['status'] == 'public'
         assert result['summary'] == {'en-US': self.addon.summary}
         assert result['support_email'] == {'en-US': self.addon.support_email}
-        assert result['support_url']['url'] == {
-            'en-US': str(self.addon.support_url)}
+        assert result['support_url']['url'] == {'en-US': str(self.addon.support_url)}
         assert result['support_url']['outgoing'] == {
-            'en-US': get_outgoing_url(str(self.addon.support_url))}
+            'en-US': get_outgoing_url(str(self.addon.support_url))
+        }
         assert set(result['tags']) == {'some_tag', 'some_other_tag'}
         assert result['type'] == 'extension'
         assert result['url'] == self.addon.get_absolute_url()
@@ -348,7 +350,7 @@ class AddonSerializerOutputTestMixin(object):
         self.addon = addon_factory(
             contributions='https://paypal.me/fôobar',
             homepage='http://support.example.com/',
-            support_url='https://support.example.org/support/my-âddon/'
+            support_url='https://support.example.org/support/my-âddon/',
         )
         utm_string = '&'.join(
             f'{key}={value}' for key, value in amo.CONTRIBUTE_UTM_PARAMS.items()
@@ -360,7 +362,8 @@ class AddonSerializerOutputTestMixin(object):
         assert result['homepage'] == {'en-US': str(self.addon.homepage)}
         assert result['support_url'] == {'en-US': str(self.addon.support_url)}
         assert result['contributions_url'] == (
-            self.addon.contributions + '?' + utm_string)
+            self.addon.contributions + '?' + utm_string
+        )
 
         # then with wrap_outgoing_links param:
         self.request = self.get_request('/', {'wrap_outgoing_links': 1})
@@ -392,7 +395,10 @@ class AddonSerializerOutputTestMixin(object):
         # And again, but with v3 style flat strings
         gates = {
             self.request.version: (
-                'wrap-outgoing-parameter', 'l10n_flat_input_output',)}
+                'wrap-outgoing-parameter',
+                'l10n_flat_input_output',
+            )
+        }
         with override_settings(DRF_API_GATES=gates):
             result = self.serialize()
         assert result['contributions_url'] == get_outgoing_url(
@@ -584,7 +590,8 @@ class AddonSerializerOutputTestMixin(object):
         assert result['homepage']['url'] == translated_homepages
         assert result['homepage']['outgoing'] == {
             locale: get_outgoing_url(url)
-            for locale, url in translated_homepages.items()}
+            for locale, url in translated_homepages.items()
+        }
 
         # Try a single translation. The locale activation is normally done by
         # LocaleAndAppURLMiddleware, but since we're directly calling the
@@ -595,7 +602,8 @@ class AddonSerializerOutputTestMixin(object):
         assert result['description'] == {'fr': translated_descriptions['fr']}
         assert result['homepage']['url'] == {'fr': translated_homepages['fr']}
         assert result['homepage']['outgoing'] == {
-            'fr': get_outgoing_url(translated_homepages['fr'])}
+            'fr': get_outgoing_url(translated_homepages['fr'])
+        }
 
         # And again, but with v3 style flat strings
         with override('fr'):
@@ -605,7 +613,8 @@ class AddonSerializerOutputTestMixin(object):
         assert result['description'] == translated_descriptions['fr']
         assert result['homepage']['url'] == translated_homepages['fr']
         assert result['homepage']['outgoing'] == (
-            get_outgoing_url(translated_homepages['fr']))
+            get_outgoing_url(translated_homepages['fr'])
+        )
 
     def test_webextension(self):
         self.addon = addon_factory(file_kw={'is_webextension': True})

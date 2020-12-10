@@ -12,7 +12,8 @@ from .fields import (
     ESTranslationSerializerField,
     OutgoingESTranslationField,
     OutgoingTranslationField,
-    TranslationSerializerField)
+    TranslationSerializerField,
+)
 
 
 class BaseESSerializer(serializers.ModelSerializer):

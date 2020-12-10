@@ -348,10 +348,11 @@ class SlugOrPrimaryKeyRelatedField(serializers.RelatedField):
                 raise ValidationError(msg)
 
 
-class OutgoingSerializerMixin():
+class OutgoingSerializerMixin:
     """
     URL fields, but wrapped with our outgoing server.
     """
+
     def to_representation(self, value):
         data = super().to_representation(value)
         request = self.context.get('request', None)
@@ -361,8 +362,10 @@ class OutgoingSerializerMixin():
                 if isinstance(data, str):
                     return get_outgoing_url(data)
                 elif isinstance(data, dict):
-                    return {key: get_outgoing_url(value) if value else None
-                            for key, value in data.items()}
+                    return {
+                        key: get_outgoing_url(value) if value else None
+                        for key, value in data.items()
+                    }
             # None or empty string... don't bother.
             return data
 
@@ -371,7 +374,8 @@ class OutgoingSerializerMixin():
         if isinstance(data, dict):
             outgoing = {
                 key: get_outgoing_url(value) if value else None
-                for key, value in data.items()}
+                for key, value in data.items()
+            }
         else:
             outgoing = get_outgoing_url(str(data))
         return {'url': data, 'outgoing': outgoing}
@@ -381,11 +385,9 @@ class OutgoingURLField(OutgoingSerializerMixin, serializers.URLField):
     pass
 
 
-class OutgoingTranslationField(OutgoingSerializerMixin,
-                               TranslationSerializerField):
+class OutgoingTranslationField(OutgoingSerializerMixin, TranslationSerializerField):
     pass
 
 
-class OutgoingESTranslationField(OutgoingSerializerMixin,
-                                 ESTranslationSerializerField):
+class OutgoingESTranslationField(OutgoingSerializerMixin, ESTranslationSerializerField):
     pass

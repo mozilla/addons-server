@@ -88,7 +88,7 @@ class TestPrimaryHeroShelfSerializer(TestCase):
             'guid': addon.guid,
             'homepage': {
                 'url': {'en-US': str(addon.homepage)},
-                'outgoing': {'en-US': get_outgoing_url(str(addon.homepage))}
+                'outgoing': {'en-US': get_outgoing_url(str(addon.homepage))},
             },
             'name': {'en-US': str(addon.name)},
             'type': 'extension',

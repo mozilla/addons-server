@@ -246,10 +246,8 @@ class TestCollectionViewSetDetail(TestCase):
         assert isinstance(addon_data['name'], dict)
         assert addon_data['name'] == {'en-US': str(addon.name)}
         assert addon_data['homepage'] == {
-            'url': {
-                'en-US': 'http://homepage.example.com'},
-            'outgoing': {
-                'en-US': get_outgoing_url('http://homepage.example.com')}
+            'url': {'en-US': 'http://homepage.example.com'},
+            'outgoing': {'en-US': get_outgoing_url('http://homepage.example.com')},
         }
 
         # Now test the limit of addons returned

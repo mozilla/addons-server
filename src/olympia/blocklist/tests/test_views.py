@@ -23,9 +23,7 @@ class TestBlockViewSet(TestCase):
 
     def test_get_pk(self):
         self.url = reverse_ns(
-            'blocklist-block-detail',
-            api_version='v5',
-            args=(str(self.block.id),)
+            'blocklist-block-detail', api_version='v5', args=(str(self.block.id),)
         )
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -41,7 +39,8 @@ class TestBlockViewSet(TestCase):
         assert response.status_code == 200
         assert response.json()['url'] == {
             'url': self.block.url,
-            'outgoing': get_outgoing_url(self.block.url)}
+            'outgoing': get_outgoing_url(self.block.url),
+        }
 
     def test_addon_name(self):
         addon = addon_factory(

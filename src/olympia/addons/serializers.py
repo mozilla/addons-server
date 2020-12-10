@@ -360,9 +360,17 @@ class ContributionSerializerField(OutgoingURLField):
         parts = urlsplit(value)
         query = QueryDict(parts.query, mutable=True)
         query.update(amo.CONTRIBUTE_UTM_PARAMS)
-        return super().to_representation(urlunsplit(
-            (parts.scheme, parts.netloc, parts.path, query.urlencode(),
-             parts.fragment)))
+        return super().to_representation(
+            urlunsplit(
+                (
+                    parts.scheme,
+                    parts.netloc,
+                    parts.path,
+                    query.urlencode(),
+                    parts.fragment,
+                )
+            )
+        )
 
 
 class AddonSerializer(serializers.ModelSerializer):

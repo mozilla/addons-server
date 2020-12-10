@@ -96,9 +96,7 @@ class TestPrimaryHeroShelfViewSet(TestCase):
         assert results[2]['external']['homepage']['url'] == {
             'en-US': 'https://mozilla.org/'
         }
-        assert 'outgoing.' in (
-            results[2]['external']['homepage']['outgoing']['en-US']
-        )
+        assert 'outgoing.' in (results[2]['external']['homepage']['outgoing']['en-US'])
 
     @override_settings(DRF_API_GATES={'v5': ('wrap-outgoing-parameter',)})
     def test_outgoing_wrapper_gate(self):
