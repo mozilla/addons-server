@@ -112,6 +112,7 @@ install_python_test_dependencies:
 install_python_dev_dependencies: install_python_test_dependencies setup-codestyle
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/dev.txt
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/docs.txt
+	# pep 517 mode (the default) breaks editable install in our project. https://github.com/mozilla/addons-server/issues/16144
 	$(PIP_COMMAND) install --no-use-pep517 -e .
 
 .PHONY: install_node_dependencies
