@@ -3348,7 +3348,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert doc('.is_promoted')
         assert doc('.is_promoted').text() == (
-            'This is a Recommended add-on. ' 'You don\'t have permission to review it.'
+            'This is a Recommended add-on. You don\'t have permission to review it.'
         )
 
         self.grant_permission(self.reviewer, 'Addons:RecommendedReview')
@@ -3381,7 +3381,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert doc('.is_promoted')
         assert doc('.is_promoted').text() == (
-            'This is a Spotlight add-on. ' 'You don\'t have permission to review it.'
+            'This is a Spotlight add-on. You don\'t have permission to review it.'
         )
 
         self.grant_permission(self.reviewer, 'Reviews:Admin')

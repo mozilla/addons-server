@@ -874,7 +874,7 @@ class TestAdditionalDetailsForm(TestCase):
             data=data, request=self.request, instance=self.addon
         )
         assert form.errors['tags'][0] == (
-            '"i_am_a_restricted_tag", "sdk" are reserved tags and' ' cannot be used.'
+            '"i_am_a_restricted_tag", "sdk" are reserved tags and cannot be used.'
         )
 
     @mock.patch('olympia.access.acl.action_allowed')

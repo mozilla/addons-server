@@ -699,7 +699,7 @@ def _validate_archive_member_name_and_size(filename, filesize):
 
     if filesize > settings.FILE_UNZIP_SIZE_LIMIT:
         log.error(
-            'Extraction error, file too big for file (%s): ' '%s' % (filename, filesize)
+            'Extraction error, file too big for file (%s): %s' % (filename, filesize)
         )
         # L10n: {0} is the name of the invalid file.
         msg = ugettext('File exceeding size limit in archive: {0}')
@@ -1046,9 +1046,7 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
     if not addon and not acl.system_addon_submission_allowed(user, xpi_info):
         guids = ' or '.join('"' + guid + '"' for guid in amo.SYSTEM_ADDON_GUIDS)
         raise forms.ValidationError(
-            ugettext(
-                'You cannot submit an add-on using an ID ending with ' '%s' % guids
-            )
+            ugettext('You cannot submit an add-on using an ID ending with %s' % guids)
         )
 
     if not acl.mozilla_signed_extension_submission_allowed(user, xpi_info):
@@ -1102,7 +1100,7 @@ def parse_addon(pkg, addon=None, user=None, minimal=False):
         # FIXME: do the checks depending on user here.
         if addon and addon.type != parsed['type']:
             msg = ugettext(
-                'The type (%s) does not match the type of your add-on on ' 'AMO (%s)'
+                'The type (%s) does not match the type of your add-on on AMO (%s)'
             )
             raise forms.ValidationError(msg % (parsed['type'], addon.type))
     return parsed

@@ -188,7 +188,7 @@ class TestEmailBouncing(TestCase):
         assert len(mail.outbox) == 1
         out = mail.outbox[0]
         assert (
-            'This email address is not meant to receive emails ' 'directly.'
+            'This email address is not meant to receive emails directly.'
         ) in out.body
         assert out.subject == 'Re: This is the subject of a test message.'
         assert out.to == ['sender@example.com']

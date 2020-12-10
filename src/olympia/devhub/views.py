@@ -1062,7 +1062,7 @@ def upload_image(request, addon_id, addon, upload_type):
                 # L10n: {0} is an image width (in pixels), {1} is a height.
                 errors.append(
                     ugettext(
-                        'Image must be at least {0} pixels wide and {1} ' 'pixels tall.'
+                        'Image must be at least {0} pixels wide and {1} pixels tall.'
                     ).format(min_size[0], min_size[1])
                 )
             if actual_ratio != required_ratio:
@@ -2002,9 +2002,9 @@ def get_promoted_subscription_or_404(addon):
 
 @dev_required(owner_for_get=True)
 @csp_update(
-    SCRIPT_SRC="https://js.stripe.com",
-    CONNECT_SRC="https://api.stripe.com",
-    FRAME_SRC=["https://js.stripe.com", "https://hooks.stripe.com"],
+    SCRIPT_SRC='https://js.stripe.com',
+    CONNECT_SRC='https://api.stripe.com',
+    FRAME_SRC=['https://js.stripe.com', 'https://hooks.stripe.com'],
 )
 def onboarding_subscription(request, addon_id, addon):
     sub = get_promoted_subscription_or_404(addon=addon)
@@ -2017,7 +2017,7 @@ def onboarding_subscription(request, addon_id, addon):
         if sub.stripe_checkout_completed:
             session = retrieve_stripe_checkout_session(sub)
             log.debug(
-                'retrieved a stripe checkout session for PromotedSubscription' ' %s.',
+                'retrieved a stripe checkout session for PromotedSubscription %s.',
                 sub.pk,
             )
         else:
@@ -2025,7 +2025,7 @@ def onboarding_subscription(request, addon_id, addon):
                 sub, customer_email=request.user.email
             )
             log.debug(
-                'created a stripe checkout session for PromotedSubscription' ' %s.',
+                'created a stripe checkout session for PromotedSubscription %s.',
                 sub.pk,
             )
     except Exception:
@@ -2052,17 +2052,17 @@ def onboarding_subscription(request, addon_id, addon):
     )
 
     data = {
-        "addon": addon,
-        "stripe_session_id": sub.stripe_session_id,
-        "stripe_api_public_key": settings.STRIPE_API_PUBLIC_KEY,
-        "stripe_checkout_completed": sub.stripe_checkout_completed,
-        "stripe_checkout_cancelled": sub.stripe_checkout_cancelled,
-        "promoted_group": sub.promoted_addon.group,
-        "already_promoted": already_promoted,
-        "new_version_number": new_version_number,
-        "existing_version_pending": existing_version_pending,
+        'addon': addon,
+        'stripe_session_id': sub.stripe_session_id,
+        'stripe_api_public_key': settings.STRIPE_API_PUBLIC_KEY,
+        'stripe_checkout_completed': sub.stripe_checkout_completed,
+        'stripe_checkout_cancelled': sub.stripe_checkout_cancelled,
+        'promoted_group': sub.promoted_addon.group,
+        'already_promoted': already_promoted,
+        'new_version_number': new_version_number,
+        'existing_version_pending': existing_version_pending,
     }
-    return render(request, "devhub/addons/onboarding_subscription.html", data)
+    return render(request, 'devhub/addons/onboarding_subscription.html', data)
 
 
 @dev_required(owner_for_get=True)
@@ -2073,13 +2073,13 @@ def onboarding_subscription_success(request, addon_id, addon):
         session = retrieve_stripe_checkout_session(sub)
     except Exception:
         log.exception(
-            "error while trying to retrieve a stripe checkout session for "
-            "PromotedSubscription %s (success).",
+            'error while trying to retrieve a stripe checkout session for '
+            'PromotedSubscription %s (success).',
             sub.pk,
         )
         raise http.Http404()
 
-    if session['payment_status'] == "paid" and not sub.checkout_completed_at:
+    if session['payment_status'] == 'paid' and not sub.checkout_completed_at:
         # When the user has completed the Stripe Checkout process, we record
         # this event.
         #
@@ -2102,7 +2102,7 @@ def onboarding_subscription_success(request, addon_id, addon):
             ] = sub.promoted_addon.get_resigned_version_number()
             sub.promoted_addon.approve_for_addon()
 
-    return redirect(reverse("devhub.addons.onboarding_subscription", args=[addon.slug]))
+    return redirect(reverse('devhub.addons.onboarding_subscription', args=[addon.slug]))
 
 
 @dev_required(owner_for_get=True)
@@ -2113,8 +2113,8 @@ def onboarding_subscription_cancel(request, addon_id, addon):
         retrieve_stripe_checkout_session(sub)
     except Exception:
         log.exception(
-            "error while trying to retrieve a stripe checkout session for "
-            "PromotedSubscription %s (cancel).",
+            'error while trying to retrieve a stripe checkout session for '
+            'PromotedSubscription %s (cancel).',
             sub.pk,
         )
         raise http.Http404()
@@ -2129,7 +2129,7 @@ def onboarding_subscription_cancel(request, addon_id, addon):
         sub.update(checkout_cancelled_at=datetime.datetime.now())
         log.info('PromotedSubscription %s has been cancelled.', sub.pk)
 
-    return redirect(reverse("devhub.addons.onboarding_subscription", args=[addon.id]))
+    return redirect(reverse('devhub.addons.onboarding_subscription', args=[addon.id]))
 
 
 @dev_required(owner_for_post=True)
@@ -2141,8 +2141,8 @@ def subscription_customer_portal(request, addon_id, addon):
         stripe_sub = retrieve_stripe_subscription(sub)
     except Exception:
         log.exception(
-            "error while trying to retrieve a stripe subscription for "
-            "PromotedSubscription %s (customer_portal).",
+            'error while trying to retrieve a stripe subscription for '
+            'PromotedSubscription %s (customer_portal).',
             sub.pk,
         )
         raise http.Http404()

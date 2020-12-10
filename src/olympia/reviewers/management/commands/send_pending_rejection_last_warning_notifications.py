@@ -95,7 +95,7 @@ class Command(BaseCommand):
             'delayed_rejection_days': self.EXPIRING_PERIOD_DAYS,
         }
         template = 'reject_multiple_versions_with_delay'
-        subject = 'Mozilla Add-ons: %s%s will be disabled on ' 'addons.mozilla.org'
+        subject = 'Mozilla Add-ons: %s%s will be disabled on addons.mozilla.org'
         # This re-sends the notification sent when the versions were scheduled
         # for rejection, but with the new delay in the body of the email now
         # that the notification is about to expire.

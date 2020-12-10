@@ -89,7 +89,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
     def test_get_absolute_url(self):
         file_ = File.objects.get(id=67442)
         url = file_.get_absolute_url()
-        expected = '/firefox/downloads/file/67442/' 'delicious_bookmarks-2.1.072-fx.xpi'
+        expected = '/firefox/downloads/file/67442/delicious_bookmarks-2.1.072-fx.xpi'
         assert url.endswith(expected), url
 
     def test_get_url_path(self):
@@ -199,7 +199,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         file_ = File.objects.get(id=74797)
         actual = file_.latest_xpi_url()
         assert actual == (
-            '/firefox/downloads/latest/cooliris/platform:3/' 'addon-5579-latest.xpi'
+            '/firefox/downloads/latest/cooliris/platform:3/addon-5579-latest.xpi'
         )
 
         actual = file_.latest_xpi_url(attachment=True)
@@ -216,7 +216,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
 
         actual = file_.latest_xpi_url(attachment=True)
         assert actual == (
-            '/firefox/downloads/latest/a3615/type:attachment/' 'addon-3615-latest.xpi'
+            '/firefox/downloads/latest/a3615/type:attachment/addon-3615-latest.xpi'
         )
 
     def test_generate_filename(self):
@@ -1062,7 +1062,7 @@ class TestFileUpload(UploadTest):
         assert upload.path.endswith('.xpi')
         assert zipfile.is_zipfile(upload.path)
         assert upload.hash == (
-            'sha256:' '7978b06704f4f80152f16a3ce7fe4e2590f950a99cefed15f9a8caa90fbafa23'
+            'sha256:7978b06704f4f80152f16a3ce7fe4e2590f950a99cefed15f9a8caa90fbafa23'
         )
         storage.delete(upload.path)
 
@@ -1074,7 +1074,7 @@ class TestFileUpload(UploadTest):
         assert upload.path.endswith('.xpi')
         assert zipfile.is_zipfile(upload.path)
         assert upload.hash == (
-            'sha256:' '6eec73112c9912e4ef63973d38ea490ccc18fa6f3cf4357fb3052a748f799f9a'
+            'sha256:6eec73112c9912e4ef63973d38ea490ccc18fa6f3cf4357fb3052a748f799f9a'
         )
         storage.delete(upload.path)
 
@@ -1086,7 +1086,7 @@ class TestFileUpload(UploadTest):
         assert upload.path.endswith('.xpi')
         assert zipfile.is_zipfile(upload.path)
         assert upload.hash == (
-            'sha256:' '82b71db5e6378ae888b2bcbb92fc8a24f417ef079e909db7fa51b253b13b3409'
+            'sha256:82b71db5e6378ae888b2bcbb92fc8a24f417ef079e909db7fa51b253b13b3409'
         )
         storage.delete(upload.path)
 
@@ -1098,7 +1098,7 @@ class TestFileUpload(UploadTest):
         assert upload.path.endswith('.xpi')
         assert zipfile.is_zipfile(upload.path)
         assert upload.hash == (
-            'sha256:' '8640cdcbd5e85403b0a08f1c42b9dff362ceca6a92bf61f424c9764189c58950'
+            'sha256:8640cdcbd5e85403b0a08f1c42b9dff362ceca6a92bf61f424c9764189c58950'
         )
         storage.delete(upload.path)
 

@@ -697,7 +697,7 @@ class LinkifiedTranslationTest(TestCase):
         s = u'<script>some naughty xss</script> <b>bold</b>'
         x = LinkifiedTranslation(localized_string=s)
         assert x.__html__() == (
-            '&lt;script&gt;some naughty xss&lt;/script&gt; ' '&lt;b&gt;bold&lt;/b&gt;'
+            '&lt;script&gt;some naughty xss&lt;/script&gt; &lt;b&gt;bold&lt;/b&gt;'
         )
 
 
@@ -706,7 +706,7 @@ class NoLinksNoMarkupTranslationTest(TestCase):
         s = u'<script>some naughty xss</script> <b>bold</b>'
         x = NoLinksNoMarkupTranslation(localized_string=s)
         assert x.__html__() == (
-            '&lt;script&gt;some naughty xss&lt;/script&gt; ' '&lt;b&gt;bold&lt;/b&gt;'
+            '&lt;script&gt;some naughty xss&lt;/script&gt; &lt;b&gt;bold&lt;/b&gt;'
         )
 
     def test_links_stripped(self):

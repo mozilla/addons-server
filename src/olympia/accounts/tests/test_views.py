@@ -1723,7 +1723,7 @@ class TestAccountSuperCreate(APIKeyAuthTestMixin, TestCase):
         assert res.status_code == 422, res.content
         assert res.data['errors'] == {
             'group': [
-                'Could not find a permissions group with the exact rules ' 'needed.'
+                'Could not find a permissions group with the exact rules needed.'
             ],
         }
 

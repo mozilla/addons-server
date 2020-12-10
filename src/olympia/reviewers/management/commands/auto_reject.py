@@ -61,7 +61,7 @@ class Command(BaseCommand):
         """Reject specific versions for an addon."""
         if self.dry_run:
             log.info(
-                'Would reject versions %s from add-on %s but this is a ' 'dry run.',
+                'Would reject versions %s from add-on %s but this is a dry run.',
                 versions,
                 addon,
             )

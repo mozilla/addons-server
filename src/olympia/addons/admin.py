@@ -362,7 +362,7 @@ class AddonAdmin(admin.ModelAdmin):
             addon_ids.append(force_text(addon))
         kw = {'addons': ', '.join(addon_ids)}
         self.message_user(
-            request, ugettext('Git extraction triggered for ' '"%(addons)s".' % kw)
+            request, ugettext('Git extraction triggered for "%(addons)s".' % kw)
         )
 
     git_extract_action.short_description = "Git-Extract"

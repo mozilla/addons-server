@@ -542,9 +542,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         Rating.objects.filter(user__in=users).delete(user_responsible=core.get_user())
         # And then delete the users.
         for user in users:
-            log.info(
-                f'User ({user}: <{user.email}>) is being ' 'anonymized and banned.'
-            )
+            log.info(f'User ({user}: <{user.email}>) is being anonymized and banned.')
             user.banned = user.modified = datetime.now()
             user.deleted = True
         cls.anonymize_users(users)

@@ -53,7 +53,7 @@ class AbuseReport(ModelBase):
         (
             'SETTINGS',
             3,
-            'Changes search / homepage / new tab page ' 'without informing user',
+            'Changes search / homepage / new tab page without informing user',
         ),
         # `4` was previously 'New tab takeover' but has been merged into the
         # previous one. We avoid re-using the value.

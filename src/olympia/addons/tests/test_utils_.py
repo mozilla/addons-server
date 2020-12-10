@@ -56,7 +56,7 @@ def test_verify_mozilla_trademark(name, allowed, give_permission):
         with pytest.raises(ValidationError) as exc:
             verify_mozilla_trademark(name, user)
         assert exc.value.message == (
-            'Add-on names cannot contain the Mozilla or Firefox ' 'trademarks.'
+            'Add-on names cannot contain the Mozilla or Firefox trademarks.'
         )
     else:
         verify_mozilla_trademark(name, user)

@@ -231,7 +231,7 @@ class CollectionAddon(ModelBase):
 
     ordering = models.PositiveIntegerField(
         default=0,
-        help_text='Add-ons are displayed in ascending order ' 'based on this field.',
+        help_text='Add-ons are displayed in ascending order based on this field.',
     )
 
     class Meta(ModelBase.Meta):

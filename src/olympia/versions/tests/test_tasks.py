@@ -416,7 +416,7 @@ def check_render_additional(svg_content, inner_svg_width, colors):
     image_tag = '<image width="%s" height="%s"' % (image_width, image_height)
     assert image_tag in svg_content, svg_content
     rect_tag = (
-        '<rect width="100%" height="100%" fill="url(#AdditionalBackground1)">' '</rect>'
+        '<rect width="100%" height="100%" fill="url(#AdditionalBackground1)"></rect>'
     )
     assert rect_tag in svg_content, svg_content
     # and image content is included and was encoded

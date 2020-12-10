@@ -59,7 +59,7 @@ class BaseAPIParser:
         return ''.join(output)
 
     def build_output_for_single_value(self, value):
-        output = '{# L10n: %s #}\n' '{%% trans %%}%s{%% endtrans %%}\n' % (
+        output = '{# L10n: %s #}\n{%% trans %%}%s{%% endtrans %%}\n' % (
             self.l10n_comment,
             value,
         )

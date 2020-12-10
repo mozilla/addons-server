@@ -14,7 +14,7 @@ class TestMonitor(TestCase):
     def test_memcache(self, mock_socket):
         mocked_caches = {
             'default': {
-                'BACKEND': 'django.core.cache.backends.memcached' '.MemcachedCache',
+                'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
                 'LOCATION': '127.0.0.1:6666',
             }
         }

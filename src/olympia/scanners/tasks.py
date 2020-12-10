@@ -69,7 +69,7 @@ def run_scanner(results, upload_pk, scanner, api_url, api_key):
 
     if not results['metadata']['is_webextension']:
         log.info(
-            'Not running scanner "%s" for FileUpload %s, it is not a ' 'webextension.',
+            'Not running scanner "%s" for FileUpload %s, it is not a webextension.',
             scanner_name,
             upload_pk,
         )
@@ -214,7 +214,7 @@ def _run_yara(results, upload_pk):
 
     if not results['metadata']['is_webextension']:
         log.info(
-            'Not running yara for FileUpload %s, it is not a ' 'webextension.',
+            'Not running yara for FileUpload %s, it is not a webextension.',
             upload_pk,
         )
         return results
@@ -470,7 +470,7 @@ def call_mad_api(all_results, upload_pk):
 
     if not results['metadata']['is_webextension']:
         log.info(
-            'Not calling scanner "mad" for FileUpload %s, it is not ' 'a webextension.',
+            'Not calling scanner "mad" for FileUpload %s, it is not a webextension.',
             upload_pk,
         )
         return results
@@ -484,7 +484,7 @@ def call_mad_api(all_results, upload_pk):
         scanMapKeys = customs_results.results.get('scanMap', {}).keys()
         if len(scanMapKeys) < 2:
             log.info(
-                'Not calling scanner "mad" for FileUpload %s, scanMap is too ' 'small.',
+                'Not calling scanner "mad" for FileUpload %s, scanMap is too small.',
                 upload_pk,
             )
             statsd.incr('devhub.mad.skip')

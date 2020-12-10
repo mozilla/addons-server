@@ -202,13 +202,13 @@ class BaseTestEditDescribe(BaseTestEdit):
         data = self.get_dict(name='()+([#')
         response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
-        error = 'Ensure this field contains at least one letter or number' ' character.'
+        error = 'Ensure this field contains at least one letter or number character.'
         self.assertFormError(response, 'form', 'name', error)
 
         data = self.get_dict(name='±↡∋⌚')
         response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
-        error = 'Ensure this field contains at least one letter or number' ' character.'
+        error = 'Ensure this field contains at least one letter or number character.'
         self.assertFormError(response, 'form', 'name', error)
 
         # 'ø' is not a symbol, it's actually a letter, so it should be valid.
@@ -243,20 +243,20 @@ class BaseTestEditDescribe(BaseTestEdit):
             response,
             'form',
             'name',
-            'Ensure this value has at most 50 ' 'characters (it has 140).',
+            'Ensure this value has at most 50 characters (it has 140).',
         )
 
     def test_edit_summary_symbols_only(self):
         data = self.get_dict(summary='()+([#')
         response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
-        error = 'Ensure this field contains at least one letter or number' ' character.'
+        error = 'Ensure this field contains at least one letter or number character.'
         self.assertFormError(response, 'form', 'summary', error)
 
         data = self.get_dict(summary='±↡∋⌚')
         response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
-        error = 'Ensure this field contains at least one letter or number' ' character.'
+        error = 'Ensure this field contains at least one letter or number character.'
         self.assertFormError(response, 'form', 'summary', error)
 
         # 'ø' is not a symbol, it's actually a letter, so it should be valid.
@@ -274,7 +274,7 @@ class BaseTestEditDescribe(BaseTestEdit):
             response,
             'form',
             'summary',
-            'Ensure this value has at most 250 ' 'characters (it has 251).',
+            'Ensure this value has at most 250 characters (it has 251).',
         )
 
     def test_nav_links(self):
@@ -618,7 +618,7 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
             self.describe_edit_url, formset(self.cat_initial, initial_count=1)
         )
         assert response.context['cat_form'].errors[0]['categories'] == (
-            ['Select a valid choice. 100 is not one of the available ' 'choices.']
+            ['Select a valid choice. 100 is not one of the available choices.']
         )
 
     def test_nav_links_admin(self):

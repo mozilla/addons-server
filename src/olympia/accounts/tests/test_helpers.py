@@ -15,7 +15,7 @@ def test_login_link():
 
 
 @mock.patch(
-    'olympia.accounts.templatetags.jinja_helpers.utils.' 'default_fxa_register_url',
+    'olympia.accounts.templatetags.jinja_helpers.utils.default_fxa_register_url',
     lambda c: 'http://auth.ca',
 )
 def test_register_link():

@@ -319,7 +319,7 @@ class TestCommands(TestCase):
         )
 
     @mock.patch(
-        'olympia.applications.management.commands.import_prod_versions' '.PyQuery',
+        'olympia.applications.management.commands.import_prod_versions.PyQuery',
         spec=True,
     )
     def test_import_prod_versions(self, pyquery_mock):

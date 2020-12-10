@@ -1137,16 +1137,14 @@ class ReviewBase(object):
             )
             if pending_rejection_deadline:
                 template = 'reject_multiple_versions_with_delay'
-                subject = (
-                    'Mozilla Add-ons: %s%s will be disabled on ' 'addons.mozilla.org'
-                )
+                subject = 'Mozilla Add-ons: %s%s will be disabled on addons.mozilla.org'
             elif (
                 self.addon.status != amo.STATUS_APPROVED
                 and channel == amo.RELEASE_CHANNEL_LISTED
             ):
                 template = 'reject_multiple_versions_disabled_addon'
                 subject = (
-                    'Mozilla Add-ons: %s%s has been disabled on ' 'addons.mozilla.org'
+                    'Mozilla Add-ons: %s%s has been disabled on addons.mozilla.org'
                 )
             else:
                 template = 'reject_multiple_versions'

@@ -306,7 +306,7 @@ class ScannerResult(AbstractScannerResult):
         constraints = [
             models.UniqueConstraint(
                 fields=('upload', 'scanner', 'version'),
-                name='scanners_results_upload_id_scanner_' 'version_id_ad9eb8a6_uniq',
+                name='scanners_results_upload_id_scanner_version_id_ad9eb8a6_uniq',
             )
         ]
 
@@ -330,9 +330,7 @@ class ScannerQueryRule(AbstractScannerRule):
     )
     run_on_disabled_addons = models.BooleanField(
         default=False,
-        help_text=_(
-            'Run this rule on add-ons that have been ' 'force-disabled as well.'
-        ),
+        help_text=_('Run this rule on add-ons that have been force-disabled as well.'),
     )
     celery_group_result_id = models.UUIDField(default=None, null=True)
     task_count = models.PositiveIntegerField(default=0)

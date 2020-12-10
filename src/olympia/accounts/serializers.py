@@ -254,7 +254,7 @@ class AccountSuperCreateSerializer(serializers.Serializer):
                     u'permissions {} {} (count: {})'.format(group, rule, count)
                 )
                 raise serializers.ValidationError(
-                    'Could not find a permissions group with the exact ' 'rules needed.'
+                    'Could not find a permissions group with the exact rules needed.'
                 )
             group = qs.get()
         return group

@@ -96,9 +96,7 @@ class Command(BaseCommand):
         parser.add_argument(
             '--force',
             action='store_true',
-            help=(
-                'Bypass the database flag that says ' 'another indexation is ongoing'
-            ),
+            help=('Bypass the database flag that says another indexation is ongoing'),
             default=False,
         ),
         parser.add_argument(
@@ -120,7 +118,7 @@ class Command(BaseCommand):
         parser.add_argument(
             '--noinput',
             action='store_true',
-            help=('Do not ask for confirmation before wiping. ' 'Default: False'),
+            help=('Do not ask for confirmation before wiping. Default: False'),
             default=False,
         ),
 
@@ -137,9 +135,7 @@ class Command(BaseCommand):
         force = kwargs['force']
 
         if is_reindexing_amo() and not force:
-            raise CommandError(
-                'Indexation already occurring - use --force to ' 'bypass'
-            )
+            raise CommandError('Indexation already occurring - use --force to bypass')
 
         alias = settings.ES_INDEXES.get(kwargs['key'], None)
         if alias is None:

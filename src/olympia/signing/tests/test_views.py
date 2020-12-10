@@ -186,7 +186,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         )
         assert response.status_code == 409
         assert response.data['error'] == (
-            'Version already exists. ' 'Latest version is: 2.1.072.'
+            'Version already exists. Latest version is: 2.1.072.'
         )
 
     @mock.patch('olympia.devhub.views.Version.from_upload')
@@ -235,7 +235,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         response = self.request('PUT', self.url(self.guid, '3.0'))
         assert response.status_code == 409
         assert response.data['error'] == (
-            'Version already exists. ' 'Latest version is: 3.0.'
+            'Version already exists. Latest version is: 3.0.'
         )
 
     def test_version_failed_review(self):
@@ -249,7 +249,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         response = self.request('PUT', self.url(self.guid, '3.0'))
         assert response.status_code == 409
         assert response.data['error'] == (
-            'Version already exists. ' 'Latest version is: 3.0.'
+            'Version already exists. Latest version is: 3.0.'
         )
 
         # Verify that you can check the status after upload (#953).
@@ -339,7 +339,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             'PUT',
             guid=guid,
             version='0.0.1',
-            filename='src/olympia/files/fixtures/files/' 'mozilla_guid.xpi',
+            filename='src/olympia/files/fixtures/files/mozilla_guid.xpi',
         )
         assert response.status_code == 201
         assert qs.exists()
@@ -358,7 +358,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             'PUT',
             guid=guid,
             version='0.1',
-            filename='src/olympia/files/fixtures/files/' 'mozilla_guid.xpi',
+            filename='src/olympia/files/fixtures/files/mozilla_guid.xpi',
         )
         assert response.status_code == 400
         assert response.data['error'] == (
@@ -381,7 +381,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             'PUT',
             guid=guid,
             version='0.0.1',
-            filename='src/olympia/files/fixtures/files/' 'mozilla_guid.xpi',
+            filename='src/olympia/files/fixtures/files/mozilla_guid.xpi',
         )
         assert response.status_code == 202
         addon = Addon.unfiltered.filter(guid=guid).get()
