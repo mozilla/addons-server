@@ -3,7 +3,7 @@ from django.db import models
 from .compare import VersionString
 
 
-class VersionStringFieldDescriptor():
+class VersionStringFieldDescriptor:
     def __init__(self, field):
         self.field = field
 
@@ -21,8 +21,9 @@ class VersionStringField(models.CharField):
     empty_values = [None, '']
 
     def __init__(self, *args, **kwargs):
-        if ((default := kwargs.get('default')) and
-                not isinstance(default, VersionString)):
+        if (default := kwargs.get('default')) and not isinstance(
+            default, VersionString
+        ):
             kwargs['default'] = VersionString(default)
         super().__init__(*args, **kwargs)
 

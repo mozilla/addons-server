@@ -9,10 +9,8 @@ from olympia.amo.tests import TestCase, addon_factory, user_factory
 
 class LogMixin(object):
     def log(self, comments, action, created=None):
-        version = self.addon.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED)
-        details = {'comments': comments,
-                   'version': version.version}
+        version = self.addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
+        details = {'comments': comments, 'version': version.version}
         kwargs = {'user': self.user, 'details': details}
         al = ActivityLog.create(action, self.addon, version, **kwargs)
         if created:
@@ -96,19 +94,21 @@ class TestReviewNotesSerializerOutput(TestCase, LogMixin):
         self.entry = self.log(u'ßäď ŞŤųƒƒ', amo.LOG.REQUEST_ADMIN_REVIEW_CODE)
         result = self.serialize()
 
-        assert result['action_label'] == (
-            amo.LOG.REQUEST_ADMIN_REVIEW_CODE.short)
+        assert result['action_label'] == (amo.LOG.REQUEST_ADMIN_REVIEW_CODE.short)
         # Comments should be the santized text rather than the actual content.
         assert result['comments'] == amo.LOG.REQUEST_ADMIN_REVIEW_CODE.sanitize
         assert result['comments'].startswith(
-            'The addon has been flagged for Admin Review.')
+            'The addon has been flagged for Admin Review.'
+        )
 
     def test_log_entry_without_details(self):
         # Create a log but without a details property.
         self.entry = ActivityLog.create(
-            amo.LOG.APPROVAL_NOTES_CHANGED, self.addon,
+            amo.LOG.APPROVAL_NOTES_CHANGED,
+            self.addon,
             self.addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED),
-            user=self.user)
+            user=self.user,
+        )
         result = self.serialize()
         # Should output an empty string.
         assert result['comments'] == ''

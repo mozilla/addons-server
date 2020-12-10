@@ -15,12 +15,17 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         qs = AutoApprovalSummary.objects.filter(
-            confirmed=False, verdict=amo.AUTO_APPROVED)
+            confirmed=False, verdict=amo.AUTO_APPROVED
+        )
         for summary in qs:
             log.info('Recalculating weight for %s', summary)
             old_weight = summary.weight
             summary.calculate_weight()
             if summary.weight != old_weight:
-                log.info('Saving weight change (from %d to %d) for %s',
-                         old_weight, summary.weight, summary)
+                log.info(
+                    'Saving weight change (from %d to %d) for %s',
+                    old_weight,
+                    summary.weight,
+                    summary,
+                )
                 summary.save()

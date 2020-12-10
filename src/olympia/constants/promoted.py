@@ -6,7 +6,8 @@ from olympia.constants import applications
 
 
 _PromotedSuperClass = namedtuple(
-    '_PromotedSuperClass', [
+    '_PromotedSuperClass',
+    [
         # Be careful when adding to this list to adjust defaults too.
         'id',
         'name',
@@ -35,7 +36,7 @@ _PromotedSuperClass = namedtuple(
         False,  # can_be_selected_by_adzerk
         False,  # require_subscription
         False,  # immediate_approval - will addon be auto-approved once added
-    )
+    ),
 )
 
 
@@ -62,7 +63,8 @@ RECOMMENDED = PromotedClass(
     badged=True,
     autograph_signing_states={
         applications.FIREFOX.short: 'recommended',
-        applications.ANDROID.short: 'recommended-android'},
+        applications.ANDROID.short: 'recommended-android',
+    },
     can_primary_hero=True,
 )
 
@@ -75,7 +77,8 @@ SPONSORED = PromotedClass(
     badged=True,
     autograph_signing_states={
         applications.FIREFOX.short: 'verified',
-        applications.ANDROID.short: 'verified'},
+        applications.ANDROID.short: 'verified',
+    },
     can_primary_hero=True,
     can_be_selected_by_adzerk=True,
     require_subscription=True,
@@ -90,7 +93,8 @@ VERIFIED = PromotedClass(
     badged=True,
     autograph_signing_states={
         applications.FIREFOX.short: 'verified',
-        applications.ANDROID.short: 'verified'},
+        applications.ANDROID.short: 'verified',
+    },
     can_be_selected_by_adzerk=True,
     require_subscription=True,
 )
@@ -106,7 +110,8 @@ LINE = PromotedClass(
     badged=True,
     autograph_signing_states={
         applications.FIREFOX.short: 'line',
-        applications.ANDROID.short: 'line'},
+        applications.ANDROID.short: 'line',
+    },
     can_primary_hero=True,
     can_be_selected_by_adzerk=True,
 )
@@ -147,7 +152,8 @@ PROMOTED_GROUPS_BY_ID = {p.id: p for p in PROMOTED_GROUPS}
 PROMOTED_API_NAME_TO_IDS = {
     # we can replace this ugly syntax with dict | in 3.9 - see pep-0584
     **{p.api_name: [p.id] for p in PROMOTED_GROUPS if p},
-    **{BADGED_API_NAME: list({p.id for p in BADGED_GROUPS})}}
+    **{BADGED_API_NAME: list({p.id for p in BADGED_GROUPS})},
+}
 
 BILLING_PERIOD_MONTHLY = 'monthly'
 BILLING_PERIOD_YEARLY = 'yearly'

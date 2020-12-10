@@ -29,7 +29,7 @@ def decode(data):
     # Detect standard unicode BOMs.
     for bom, encoding in UNICODE_BOMS:
         if data.startswith(bom):
-            return data[len(bom):].decode(encoding, errors='ignore')
+            return data[len(bom) :].decode(encoding, errors='ignore')
 
     # Try straight UTF-8.
     try:

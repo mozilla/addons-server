@@ -10,9 +10,7 @@ CDN_HOST = 'https://addons-dev-cdn.allizom.org'
 CSP_CONNECT_SRC += (CDN_HOST,)
 CSP_FONT_SRC += (CDN_HOST,)
 CSP_IMG_SRC += (CDN_HOST,)
-CSP_SCRIPT_SRC += (
-    CDN_HOST,
-)
+CSP_SCRIPT_SRC += (CDN_HOST,)
 CSP_STYLE_SRC += (CDN_HOST,)
 
 ENGAGE_ROBOTS = False
@@ -32,22 +30,19 @@ API_THROTTLING = False
 DOMAIN = env('DOMAIN', default='addons-dev.allizom.org')
 SERVER_EMAIL = 'zdev@addons.mozilla.org'
 SITE_URL = 'https://' + DOMAIN
-INTERNAL_SITE_URL = env('INTERNAL_SITE_URL',
-                        default='https://addons-dev.allizom.org')
-EXTERNAL_SITE_URL = env('EXTERNAL_SITE_URL',
-                        default='https://addons-dev.allizom.org')
-SERVICES_URL = env('SERVICES_URL',
-                   default='https://services.addons-dev.allizom.org')
-CODE_MANAGER_URL = env('CODE_MANAGER_URL',
-                       default='https://code.addons-dev.allizom.org')
+INTERNAL_SITE_URL = env('INTERNAL_SITE_URL', default='https://addons-dev.allizom.org')
+EXTERNAL_SITE_URL = env('EXTERNAL_SITE_URL', default='https://addons-dev.allizom.org')
+SERVICES_URL = env('SERVICES_URL', default='https://services.addons-dev.allizom.org')
+CODE_MANAGER_URL = env(
+    'CODE_MANAGER_URL', default='https://code.addons-dev.allizom.org'
+)
 STATIC_URL = '%s/static/' % CDN_HOST
 MEDIA_URL = '%s/user-media/' % CDN_HOST
 
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 
 # Domain emails should be sent to.
-INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN',
-                           default='addons-dev.allizom.org')
+INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN', default='addons-dev.allizom.org')
 
 DATABASES = {
     'default': get_db_config('DATABASES_DEFAULT_URL'),
@@ -61,7 +56,9 @@ REPLICA_DATABASES = ['replica']
 CACHES = {}
 CACHES['default'] = env.cache('CACHES_DEFAULT')
 CACHES['default']['TIMEOUT'] = 500
-CACHES['default']['BACKEND'] = 'django.core.cache.backends.memcached.MemcachedCache'  # noqa
+CACHES['default'][
+    'BACKEND'
+] = 'django.core.cache.backends.memcached.MemcachedCache'  # noqa
 CACHES['default']['KEY_PREFIX'] = CACHE_KEY_PREFIX
 
 # Celery

@@ -23,6 +23,5 @@ def recalc_hash(request, file_id):
     file.save()
 
     log.info('Recalculated hash for file ID %d' % file.id)
-    messages.success(request,
-                     'File hash and size recalculated for file %d.' % file.id)
+    messages.success(request, 'File hash and size recalculated for file %d.' % file.id)
     return {'success': 1}

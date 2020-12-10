@@ -21,8 +21,7 @@ import olympia.core.logger
 
 from olympia import amo
 from olympia.versions.models import Version
-from olympia.files.utils import (
-    id_to_path, extract_extension_to_dest, get_all_files)
+from olympia.files.utils import id_to_path, extract_extension_to_dest, get_all_files
 
 from .models import GitExtractionEntry
 
@@ -34,7 +33,7 @@ TreeEntryWrapper = namedtuple('Entry', 'tree_entry, path, blob')
 
 BRANCHES = {
     amo.RELEASE_CHANNEL_LISTED: 'listed',
-    amo.RELEASE_CHANNEL_UNLISTED: 'unlisted'
+    amo.RELEASE_CHANNEL_UNLISTED: 'unlisted',
 }
 
 # Constants from libgit2 includes/git2/diff.h
@@ -110,12 +109,18 @@ def get_mime_type_for_blob(tree_or_blob, name):
     known_type_cagegories = ('image', 'text')
     default_type_category = 'binary'
     # If mimetype has an explicit category, use it.
-    type_category = MIMETYPE_CATEGORY_MAPPING.get(
-        mimetype, mimetype.split('/')[0]
-    ) if mimetype else default_type_category
+    type_category = (
+        MIMETYPE_CATEGORY_MAPPING.get(mimetype, mimetype.split('/')[0])
+        if mimetype
+        else default_type_category
+    )
 
-    return (mimetype, default_type_category if type_category not in
-            known_type_cagegories else type_category)
+    return (
+        mimetype,
+        default_type_category
+        if type_category not in known_type_cagegories
+        else type_category,
+    )
 
 
 class TemporaryWorktree(object):
@@ -163,6 +168,7 @@ class AddonGitRepository(object):
 
     def __init__(self, addon_or_id, package_type='addon'):
         from olympia.addons.models import Addon
+
         assert package_type in ('addon',)
 
         # Always enforce the search path being set to our ROOT
@@ -177,9 +183,8 @@ class AddonGitRepository(object):
         # https://github.com/libgit2/libgit2/issues/2122
         git_home = settings.ROOT
         pygit2.option(
-            pygit2.GIT_OPT_SET_SEARCH_PATH,
-            pygit2.GIT_CONFIG_LEVEL_GLOBAL,
-            git_home)
+            pygit2.GIT_OPT_SET_SEARCH_PATH, pygit2.GIT_CONFIG_LEVEL_GLOBAL, git_home
+        )
 
         # This will cause .keep file existence checks to be skipped when
         # accessing packfiles, which can help performance with remote
@@ -191,14 +196,12 @@ class AddonGitRepository(object):
         pygit2.option(pygit2.GIT_OPT_ENABLE_FSYNC_GITDIR, True)
 
         self.addon_id = (
-            addon_or_id.pk
-            if isinstance(addon_or_id, Addon)
-            else addon_or_id)
+            addon_or_id.pk if isinstance(addon_or_id, Addon) else addon_or_id
+        )
 
         self.git_repository_path = os.path.join(
-            settings.GIT_FILE_STORAGE_PATH,
-            id_to_path(self.addon_id),
-            package_type)
+            settings.GIT_FILE_STORAGE_PATH, id_to_path(self.addon_id), package_type
+        )
 
     @property
     def is_extracted(self):
@@ -207,8 +210,7 @@ class AddonGitRepository(object):
     @property
     def is_recent(self):
         git_description_path = os.path.join(
-            self.git_repository_path,
-            self.GIT_DESCRIPTION
+            self.git_repository_path, self.GIT_DESCRIPTION
         )
         if not self.is_extracted or not os.path.exists(git_description_path):
             return False
@@ -230,8 +232,8 @@ class AddonGitRepository(object):
         if not self.is_extracted:
             os.makedirs(self.git_repository_path)
             git_repository = pygit2.init_repository(
-                path=self.git_repository_path,
-                bare=False)
+                path=self.git_repository_path, bare=False
+            )
             # Write first commit to 'master' to act as HEAD
             tree = git_repository.TreeBuilder().write()
             git_repository.create_commit(
@@ -240,10 +242,10 @@ class AddonGitRepository(object):
                 self.get_author(),  # commiter, using addons-robot
                 'Initializing repository',  # message
                 tree,  # tree
-                [])  # parents
+                [],
+            )  # parents
 
-            log.info('Initialized git repository "%s"',
-                     self.git_repository_path)
+            log.info('Initialized git repository "%s"', self.git_repository_path)
         else:
             git_repository = pygit2.Repository(self.git_repository_path)
 
@@ -266,9 +268,7 @@ class AddonGitRepository(object):
             return
         # Reset the git hash of each version of the add-on related to this git
         # repository.
-        Version.unfiltered.filter(addon_id=self.addon_id).update(
-            git_hash=''
-        )
+        Version.unfiltered.filter(addon_id=self.addon_id).update(git_hash='')
         shutil.rmtree(self.git_repository_path)
 
     @classmethod
@@ -354,9 +354,12 @@ class AddonGitRepository(object):
                         version_id=version.id,
                         addon=repr(version.addon),
                         file_obj=repr(file_obj),
-                        note=note)),
+                        note=note,
+                    )
+                ),
                 author=author,
-                branch=branch)
+                branch=branch,
+            )
 
             # Set the latest git hash on the related version.
             version.update(git_hash=commit.hex)
@@ -384,7 +387,8 @@ class AddonGitRepository(object):
 
         if branch is None:
             branch = self.git_repository.create_branch(
-                name, self.git_repository.head.peel())
+                name, self.git_repository.head.peel()
+            )
 
         return branch
 
@@ -401,12 +405,14 @@ class AddonGitRepository(object):
                     extract_extension_to_dest(
                         source=file_obj.current_file_path,
                         dest=worktree.extraction_target_path,
-                        force_fsync=True)
+                        force_fsync=True,
+                    )
                 except FileNotFoundError:
                     extract_extension_to_dest(
                         source=file_obj.fallback_file_path,
                         dest=worktree.extraction_target_path,
-                        force_fsync=True)
+                        force_fsync=True,
+                    )
 
             # Stage changes, `TemporaryWorktree` always cleans the whole
             # directory so we can simply add all changes and have the correct
@@ -414,10 +420,7 @@ class AddonGitRepository(object):
 
             # Fetch all files and strip the absolute path but keep the
             # `extracted/` prefix
-            files = get_all_files(
-                worktree.extraction_target_path,
-                worktree.path,
-                '')
+            files = get_all_files(worktree.extraction_target_path, worktree.path, '')
 
             # Make sure the index is up to date
             worktree.repo.index.read()
@@ -441,7 +444,7 @@ class AddonGitRepository(object):
                     renamed = '{}.{}'.format(filename, uuid.uuid4().hex[:8])
                     shutil.move(
                         os.path.join(worktree.path, filename),
-                        os.path.join(worktree.path, renamed)
+                        os.path.join(worktree.path, renamed),
                     )
 
             # Add all changes to the index (git add --all ...)
@@ -466,7 +469,7 @@ class AddonGitRepository(object):
                 # We use `lookup_reference` to fetch the most up-to-date
                 # reference to the branch in order to avoid an error described
                 # in: https://github.com/mozilla/addons-server/issues/13932
-                [self.git_repository.lookup_reference(branch.name).target]
+                [self.git_repository.lookup_reference(branch.name).target],
             )
 
             # Fetch the commit object
@@ -479,9 +482,7 @@ class AddonGitRepository(object):
             # We use `lookup_reference` to fetch the most up-to-date reference
             # to the branch in order to avoid an error described in:
             # https://github.com/mozilla/addons-server/issues/13932
-            self.git_repository.lookup_reference(branch.name).set_target(
-                commit.hex
-            )
+            self.git_repository.lookup_reference(branch.name).set_target(commit.hex)
 
         return commit
 
@@ -506,19 +507,18 @@ class AddonGitRepository(object):
 
             if isinstance(tree_or_blob, pygit2.Tree):
                 yield TreeEntryWrapper(
-                    blob=None,
-                    tree_entry=tree_entry,
-                    path=tree_entry.name)
+                    blob=None, tree_entry=tree_entry, path=tree_entry.name
+                )
                 for child in self.iter_tree(tree_or_blob):
                     yield TreeEntryWrapper(
                         blob=child.blob,
                         tree_entry=child.tree_entry,
-                        path=os.path.join(tree_entry.name, child.path))
+                        path=os.path.join(tree_entry.name, child.path),
+                    )
             else:
                 yield TreeEntryWrapper(
-                    blob=tree_or_blob,
-                    tree_entry=tree_entry,
-                    path=tree_entry.name)
+                    blob=tree_or_blob, tree_entry=tree_entry, path=tree_entry.name
+                )
 
     def get_raw_diff(self, commit, parent=None, include_unmodified=False):
         """Return the raw diff object.
@@ -529,9 +529,7 @@ class AddonGitRepository(object):
         """
         diff_cache = getattr(self, '_diff_cache', {})
 
-        flags = (
-            pygit2.GIT_DIFF_NORMAL | pygit2.GIT_DIFF_IGNORE_WHITESPACE_CHANGE
-        )
+        flags = pygit2.GIT_DIFF_NORMAL | pygit2.GIT_DIFF_IGNORE_WHITESPACE_CHANGE
 
         if include_unmodified:
             flags |= pygit2.GIT_DIFF_INCLUDE_UNMODIFIED
@@ -545,7 +543,8 @@ class AddonGitRepository(object):
                     context_lines=sys.maxsize,
                     interhunk_lines=0,
                     flags=flags,
-                    swap=True)
+                    swap=True,
+                )
             else:
                 retval = self.git_repository.diff(
                     self.get_root_tree(parent),
@@ -553,7 +552,8 @@ class AddonGitRepository(object):
                     # We always show the whole file by default
                     context_lines=sys.maxsize,
                     flags=flags,
-                    interhunk_lines=0)
+                    interhunk_lines=0,
+                )
 
             diff_cache[(commit, parent, include_unmodified)] = retval
             self._diff_cache = diff_cache
@@ -570,7 +570,8 @@ class AddonGitRepository(object):
                          for them.
         """
         diff = self.get_raw_diff(
-            commit, parent=parent, include_unmodified=pathspec is not None)
+            commit, parent=parent, include_unmodified=pathspec is not None
+        )
 
         changes = []
 
@@ -582,11 +583,9 @@ class AddonGitRepository(object):
                 continue
 
             if parent is None:
-                changes.append(self._render_patch(
-                    patch, commit, commit, pathspec))
+                changes.append(self._render_patch(patch, commit, commit, pathspec))
             else:
-                changes.append(self._render_patch(
-                    patch, commit, parent, pathspec))
+                changes.append(self._render_patch(patch, commit, parent, pathspec))
         return changes
 
     def get_deltas(self, commit, parent, pathspec=None):
@@ -606,7 +605,8 @@ class AddonGitRepository(object):
         possible - so they might have wrong values.
         """
         diff = self.get_raw_diff(
-            commit, parent=parent, include_unmodified=pathspec is not None)
+            commit, parent=parent, include_unmodified=pathspec is not None
+        )
 
         deltas = []
 
@@ -614,13 +614,15 @@ class AddonGitRepository(object):
             if pathspec and delta.old_file.path not in pathspec:
                 continue
 
-            deltas.append({
-                'path': delta.new_file.path,
-                'mode': delta.status_char(),
-                'old_path': delta.old_file.path,
-                'parent': commit if parent is None else parent,
-                'hash': commit,
-            })
+            deltas.append(
+                {
+                    'path': delta.new_file.path,
+                    'mode': delta.status_char(),
+                    'old_path': delta.old_file.path,
+                    'parent': commit if parent is None else parent,
+                    'hash': commit,
+                }
+            )
 
         return deltas
 
@@ -652,22 +654,26 @@ class AddonGitRepository(object):
                 elif origin == GIT_DIFF_LINE_DEL_EOFNL:
                     new_ending_new_line = False
 
-                changes.append({
-                    'content': line.content.rstrip('\r\n'),
-                    'type': GIT_DIFF_LINE_MAPPING[origin],
-                    # Can be `-1` for additions
-                    'old_line_number': line.old_lineno,
-                    'new_line_number': line.new_lineno,
-                })
+                changes.append(
+                    {
+                        'content': line.content.rstrip('\r\n'),
+                        'type': GIT_DIFF_LINE_MAPPING[origin],
+                        # Can be `-1` for additions
+                        'old_line_number': line.old_lineno,
+                        'new_line_number': line.new_lineno,
+                    }
+                )
 
-            hunks.append({
-                'header': hunk.header.rstrip('\r\n'),
-                'old_start': hunk.old_start,
-                'new_start': hunk.new_start,
-                'old_lines': hunk.old_lines,
-                'new_lines': hunk.new_lines,
-                'changes': changes
-            })
+            hunks.append(
+                {
+                    'header': hunk.header.rstrip('\r\n'),
+                    'old_start': hunk.old_start,
+                    'new_start': hunk.new_start,
+                    'old_lines': hunk.old_lines,
+                    'new_lines': hunk.new_lines,
+                    'changes': changes,
+                }
+            )
 
         # We are exposing unchanged files fully to the frontend client
         # so that it can show them for an better review experience.
@@ -679,13 +685,15 @@ class AddonGitRepository(object):
         # a diff view for an file. That way we increase performance for
         # reguar unittests and full-tree diffs.
         generate_unmodified_fake_diff = (
-            not patch.delta.is_binary and
-            pathspec is not None and (
-                patch.delta.status == pygit2.GIT_DELTA_UNMODIFIED or (
+            not patch.delta.is_binary
+            and pathspec is not None
+            and (
+                patch.delta.status == pygit2.GIT_DELTA_UNMODIFIED
+                or (
                     # See:
                     # https://github.com/mozilla/addons-server/issues/15966
-                    patch.delta.status == pygit2.GIT_DELTA_MODIFIED and
-                    len(hunks) == 0
+                    patch.delta.status == pygit2.GIT_DELTA_MODIFIED
+                    and len(hunks) == 0
                 )
             )
         )
@@ -695,7 +703,8 @@ class AddonGitRepository(object):
             blob_or_tree = tree[patch.delta.new_file.path]
             actual_blob = self.git_repository[blob_or_tree.oid]
             mime_category = get_mime_type_for_blob(
-                blob_or_tree.type, patch.delta.new_file.path)[1]
+                blob_or_tree.type, patch.delta.new_file.path
+            )[1]
 
             if mime_category == 'text':
                 data = actual_blob.data
@@ -709,14 +718,16 @@ class AddonGitRepository(object):
                     for lineno, line in enumerate(data.split(b'\n'), start=1)
                 ]
 
-                hunks.append({
-                    'header': '@@ -0 +0 @@',
-                    'old_start': 0,
-                    'new_start': 0,
-                    'old_lines': changes[-1]['old_line_number'],
-                    'new_lines': changes[-1]['new_line_number'],
-                    'changes': changes
-                })
+                hunks.append(
+                    {
+                        'header': '@@ -0 +0 @@',
+                        'old_start': 0,
+                        'new_start': 0,
+                        'old_lines': changes[-1]['old_line_number'],
+                        'new_lines': changes[-1]['new_line_number'],
+                        'changes': changes,
+                    }
+                )
 
         entry = {
             'path': patch.delta.new_file.path,
@@ -738,19 +749,20 @@ class AddonGitRepository(object):
 
 def skip_git_extraction(version):
     return (
-        version.addon.type != amo.ADDON_EXTENSION or
-        not version.all_files[0].is_webextension
+        version.addon.type != amo.ADDON_EXTENSION
+        or not version.all_files[0].is_webextension
     )
 
 
 def create_git_extraction_entry(version):
     if skip_git_extraction(version):
-        log.debug('Skipping git extraction of add-on "%s" not a '
-                  'web-extension.', version.addon.id)
+        log.debug(
+            'Skipping git extraction of add-on "%s" not a web-extension.',
+            version.addon.id,
+        )
         return
 
-    log.info('Adding add-on "%s" to the git extraction queue.',
-             version.addon.id)
+    log.info('Adding add-on "%s" to the git extraction queue.', version.addon.id)
     GitExtractionEntry.objects.create(addon=version.addon)
 
 
@@ -763,21 +775,20 @@ def extract_version_to_git(version_id):
     if skip_git_extraction(version):
         # We log a warning message because this should not happen (as the CRON
         # task should not select non-webextension versions).
-        log.warning('Skipping git extraction of add-on "%s": not a '
-                    'web-extension.', version.addon.id)
+        log.warning(
+            'Skipping git extraction of add-on "%s": not a web-extension.',
+            version.addon.id,
+        )
         return
 
     log.info('Extracting version "%s" into git backend', version_id)
 
     try:
         with statsd.timer('git.extraction.version'):
-            repo = AddonGitRepository.extract_and_commit_from_version(
-                version=version
-            )
+            repo = AddonGitRepository.extract_and_commit_from_version(version=version)
         statsd.incr('git.extraction.version.success')
     except Exception as exc:
         statsd.incr('git.extraction.version.failure')
         raise exc
 
-    log.info('Extracted version "%s" into "%s".', version_id,
-             repo.git_repository_path)
+    log.info('Extracted version "%s" into "%s".', version_id, repo.git_repository_path)

@@ -37,14 +37,12 @@ def monitor(request):
         with statsd.timer('monitor.%s' % check) as timer:
             status, result = getattr(monitors, check)()
         # state is a string. If it is empty, that means everything is fine.
-        status_summary[check] = {'state': not status,
-                                 'status': status}
+        status_summary[check] = {'state': not status, 'status': status}
         results['%s_results' % check] = result
         results['%s_timer' % check] = timer.ms
 
     # If anything broke, send HTTP 500.
-    status_code = 200 if all(a['state']
-                             for a in status_summary.values()) else 500
+    status_code = 200 if all(a['state'] for a in status_summary.values()) else 500
 
     return http.HttpResponse(json.dumps(status_summary), status=status_code)
 
@@ -52,7 +50,7 @@ def monitor(request):
 @non_atomic_requests
 def robots(request):
     """Generate a robots.txt"""
-    _service = (request.META['SERVER_NAME'] == settings.SERVICES_DOMAIN)
+    _service = request.META['SERVER_NAME'] == settings.SERVICES_DOMAIN
     if _service or not settings.ENGAGE_ROBOTS:
         template = "User-agent: *\nDisallow: /"
     else:
@@ -80,8 +78,7 @@ def handler403(request, exception=None, **kwargs):
 def handler404(request, exception=None, **kwargs):
     if getattr(request, 'is_api', False):
         # It's a v3+ api request
-        return JsonResponse(
-            {'detail': str(NotFound.default_detail)}, status=404)
+        return JsonResponse({'detail': str(NotFound.default_detail)}, status=404)
     # X_IS_MOBILE_AGENTS is set by nginx as an env variable when it detects
     # a mobile User Agent or when the mamo cookie is present.
     if request.META.get('X_IS_MOBILE_AGENTS') == '1':
@@ -98,15 +95,15 @@ def handler500(request, **kwargs):
         # the rare case where the exception is caused by a middleware or django
         # itself, it might not, so we need to handle it here.
         return HttpResponse(
-            json.dumps(base_500_data()),
-            content_type='application/json',
-            status=500)
+            json.dumps(base_500_data()), content_type='application/json', status=500
+        )
     return render(request, 'amo/500.html', status=500)
 
 
 @non_atomic_requests
 def csrf_failure(request, reason=''):
     from django.middleware.csrf import REASON_NO_REFERER, REASON_NO_CSRF_COOKIE
+
     ctx = {
         'reason': reason,
         'no_referer': reason == REASON_NO_REFERER,
@@ -117,8 +114,9 @@ def csrf_failure(request, reason=''):
 
 @non_atomic_requests
 def loaded(request):
-    return http.HttpResponse('%s' % request.META['wsgi.loaded'],
-                             content_type='text/plain')
+    return http.HttpResponse(
+        '%s' % request.META['wsgi.loaded'], content_type='text/plain'
+    )
 
 
 @non_atomic_requests
@@ -128,9 +126,11 @@ def version(request):
     with open(path, 'r') as f:
         contents = json.loads(f.read())
     contents['python'] = '{major}.{minor}'.format(
-        major=py_info.major, minor=py_info.minor)
+        major=py_info.major, minor=py_info.minor
+    )
     contents['django'] = '{major}.{minor}'.format(
-        major=django.VERSION[0], minor=django.VERSION[1])
+        major=django.VERSION[0], minor=django.VERSION[1]
+    )
     return HttpResponse(json.dumps(contents), content_type='application/json')
 
 
@@ -157,12 +157,14 @@ def fake_fxa_authorization(request):
     """Fake authentication page to bypass FxA in local development envs."""
     if not use_fake_fxa():
         raise Http404()
-    interesting_accounts = UserProfile.objects.exclude(
-        groups=None).exclude(deleted=True)[:25]
+    interesting_accounts = UserProfile.objects.exclude(groups=None).exclude(
+        deleted=True
+    )[:25]
     return render(
         request,
         'amo/fake_fxa_authorization.html',
-        {'interesting_accounts': interesting_accounts})
+        {'interesting_accounts': interesting_accounts},
+    )
 
 
 class SiteStatusView(APIView):

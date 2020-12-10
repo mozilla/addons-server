@@ -18,24 +18,27 @@ class KeyboardInterruptError(Exception):
 
 class Command(BaseCommand):
     """Download and save all AMO add-ons public data."""
+
     SEARCH_API_URL = 'https://addons.mozilla.org/api/v4/addons/search/'
 
     def add_arguments(self, parser):
         parser.add_argument(
-            '--max', metavar='max', type=int,
-            help='max amount of pages to fetch.'
+            '--max', metavar='max', type=int, help='max amount of pages to fetch.'
         )
         parser.add_argument(
-            '--guid', metavar='guid', type=str,
-            help='specific guid(s) to fetch.'
+            '--guid', metavar='guid', type=str, help='specific guid(s) to fetch.'
         )
         parser.add_argument(
-            '--type', metavar='type', type=str,
-            help='only consider this specific add-on type'
+            '--type',
+            metavar='type',
+            type=str,
+            help='only consider this specific add-on type',
         )
         parser.add_argument(
-            '--query', metavar='type', type=str,
-            help='only consider add-ons matching this query'
+            '--query',
+            metavar='type',
+            type=str,
+            help='only consider add-ons matching this query',
         )
 
     def handle(self, *args, **options):
@@ -52,9 +55,7 @@ class Command(BaseCommand):
     def _get_addons_from_page(self, page, params=None):
         data = []
         print('fetching %s' % page)
-        query_params = {
-            'page': page
-        }
+        query_params = {'page': page}
         if params:
             query_params.update(params)
         response = requests.get(self.SEARCH_API_URL, params=query_params)
@@ -79,9 +80,9 @@ class Command(BaseCommand):
                 'size': files[0]['size'],
                 'is_webextension': files[0]['is_webextension'],
                 'is_mozilla_signed_extension': (
-                    files[0]['is_mozilla_signed_extension']),
-                'strict_compatibility': (
-                    version['is_strict_compatibility_enabled'])
+                    files[0]['is_mozilla_signed_extension']
+                ),
+                'strict_compatibility': (version['is_strict_compatibility_enabled']),
             }
         except (KeyError, IndexError):
             file_kw = {}
@@ -96,8 +97,10 @@ class Command(BaseCommand):
             print('Skipping %s (slug already exists)' % addon_data['slug'])
             return
 
-        if addon_data['guid'] and Addon.objects.filter(
-                guid=addon_data['guid']).exists():
+        if (
+            addon_data['guid']
+            and Addon.objects.filter(guid=addon_data['guid']).exists()
+        ):
             print('Skipping %s (guid already exists)' % addon_data['guid'])
             return
 
@@ -122,8 +125,8 @@ class Command(BaseCommand):
             print('Category %s' % category, 'not found')
         else:
             category = Category.from_static_category(
-                CATEGORIES[amo.FIREFOX.id][addon_type][category],
-                True)
+                CATEGORIES[amo.FIREFOX.id][addon_type][category], True
+            )
 
         print('Creating add-on %s' % addon_data['slug'])
 
@@ -169,7 +172,7 @@ class Command(BaseCommand):
         pages = range(1, self.get_max_pages(params) + 1)
 
         if options.get('max'):
-            pages = pages[:options.get('max')]
+            pages = pages[: options.get('max')]
 
         print('Fetching pages from 1 to %s' % max(pages))
         for page in pages:

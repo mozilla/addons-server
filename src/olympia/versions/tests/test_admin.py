@@ -5,13 +5,10 @@ from olympia.amo.urlresolvers import reverse
 
 
 class TestVersionAdmin(TestCase):
-
     def test_authorized_user_has_access(self):
         addon = addon_factory()
         version = addon.current_version
-        detail_url = reverse(
-            'admin:versions_version_change', args=(version.pk,)
-        )
+        detail_url = reverse('admin:versions_version_change', args=(version.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Admin:Advanced')
         self.client.login(email=user.email)
@@ -24,9 +21,7 @@ class TestVersionAdmin(TestCase):
     def test_unauthorized_user_has_no_access(self):
         addon = addon_factory()
         version = addon.current_version
-        detail_url = reverse(
-            'admin:versions_version_change', args=(version.pk,)
-        )
+        detail_url = reverse('admin:versions_version_change', args=(version.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.client.login(email=user.email)
         response = self.client.get(detail_url, follow=True)

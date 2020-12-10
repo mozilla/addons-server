@@ -10,8 +10,7 @@ from ..models import Block, BlocklistSubmission
 
 class TestBlock(TestCase):
     def test_is_version_blocked(self):
-        block = Block.objects.create(
-            guid='anyguid@', updated_by=user_factory())
+        block = Block.objects.create(guid='anyguid@', updated_by=user_factory())
         # default is 0 to *
         assert block.is_version_blocked('0')
         assert block.is_version_blocked(str(MAX_VERSION_PART + 1))
@@ -61,9 +60,11 @@ class TestBlock(TestCase):
 
     def test_no_asterisk_in_min_version(self):
         non_user_writeable_fields = (
-            'legacy_id', 'average_daily_users_snapshot', 'guid')
-        block = Block(
-            min_version='123.4', max_version='*', updated_by=user_factory())
+            'legacy_id',
+            'average_daily_users_snapshot',
+            'guid',
+        )
+        block = Block(min_version='123.4', max_version='*', updated_by=user_factory())
         block.full_clean(exclude=non_user_writeable_fields)
         block.min_version = '*'
         with self.assertRaises(ValidationError):
@@ -95,9 +96,7 @@ class TestBlocklistSubmission(TestCase):
         assert not block.is_submission_ready
 
         # If different users update and signoff, it's permitted.
-        block.update(
-            updated_by=submitter,
-            signoff_by=signoffer)
+        block.update(updated_by=submitter, signoff_by=signoffer)
         assert block.is_submission_ready
 
         # But not if submitter is also the sign off user.
@@ -111,47 +110,51 @@ class TestBlocklistSubmission(TestCase):
     def test_get_submissions_from_guid(self):
         addon = addon_factory(guid='guid@')
         block_subm = BlocklistSubmission.objects.create(
-            input_guids='guid@\n{sdsd-dssd}')
+            input_guids='guid@\n{sdsd-dssd}'
+        )
         # add another one which shouldn't match
         BlocklistSubmission.objects.create(input_guids='gguid@\n{4545-986}')
-        assert block_subm.to_block == [{
-            'id': None,
-            'guid': 'guid@',
-            'average_daily_users': addon.average_daily_users}]
+        assert block_subm.to_block == [
+            {
+                'id': None,
+                'guid': 'guid@',
+                'average_daily_users': addon.average_daily_users,
+            }
+        ]
 
         # The guid is in a BlocklistSubmission
-        assert (
-            list(BlocklistSubmission.get_submissions_from_guid('guid@')) ==
-            [block_subm])
+        assert list(BlocklistSubmission.get_submissions_from_guid('guid@')) == [
+            block_subm
+        ]
 
         # But by default we ignored "finished" BlocklistSubmissions
         block_subm.update(signoff_state=BlocklistSubmission.SIGNOFF_PUBLISHED)
-        assert (
-            list(BlocklistSubmission.get_submissions_from_guid('guid@')) == [])
+        assert list(BlocklistSubmission.get_submissions_from_guid('guid@')) == []
 
         # Except when we override the states to exclude
-        assert (
-            list(BlocklistSubmission.get_submissions_from_guid(
-                'guid@', excludes=())) ==
-            [block_subm])
+        assert list(
+            BlocklistSubmission.get_submissions_from_guid('guid@', excludes=())
+        ) == [block_subm]
 
         # And check that a guid that doesn't exist in any submissions is empty
-        assert (
-            list(BlocklistSubmission.get_submissions_from_guid('ggguid@')) ==
-            [])
+        assert list(BlocklistSubmission.get_submissions_from_guid('ggguid@')) == []
 
     def test_all_adu_safe(self):
         Block.objects.create(
             addon=addon_factory(guid='zero@adu', average_daily_users=0),
-            updated_by=user_factory())
+            updated_by=user_factory(),
+        )
         Block.objects.create(
             addon=addon_factory(guid='normal@adu', average_daily_users=500),
-            updated_by=user_factory())
+            updated_by=user_factory(),
+        )
         Block.objects.create(
             addon=addon_factory(guid='high@adu', average_daily_users=999_999),
-            updated_by=user_factory())
+            updated_by=user_factory(),
+        )
         submission = BlocklistSubmission.objects.create(
-            input_guids='zero@adu\nnormal@adu', min_version=99)
+            input_guids='zero@adu\nnormal@adu', min_version=99
+        )
 
         submission.to_block = submission._serialize_blocks()
         # 0 adu is safe when we have unlisted adu
@@ -169,10 +172,9 @@ class TestBlocklistSubmission(TestCase):
 
     def test_has_version_changes(self):
         block = Block.objects.create(
-            addon=addon_factory(guid='guid@'),
-            updated_by=user_factory())
-        submission = BlocklistSubmission.objects.create(
-            input_guids='guid@')
+            addon=addon_factory(guid='guid@'), updated_by=user_factory()
+        )
+        submission = BlocklistSubmission.objects.create(input_guids='guid@')
 
         submission.to_block = submission._serialize_blocks()
         # no changes to anything
@@ -187,10 +189,10 @@ class TestBlocklistSubmission(TestCase):
         assert not submission.has_version_changes()
 
     def test_no_asterisk_in_min_version(self):
-        non_user_writeable_fields = (
-            'updated_by', 'signoff_by', 'to_block')
+        non_user_writeable_fields = ('updated_by', 'signoff_by', 'to_block')
         submission = BlocklistSubmission(
-            min_version='123.4', max_version='*', input_guids='df@')
+            min_version='123.4', max_version='*', input_guids='df@'
+        )
         submission.full_clean(exclude=non_user_writeable_fields)
         submission.min_version = '*'
         with self.assertRaises(ValidationError):

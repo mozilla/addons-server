@@ -40,9 +40,7 @@ class RemoteSettings(object):
     @property
     def headers(self):
         b64 = b64encode(f'{self.username}:{self.password}'.encode()).decode()
-        return {
-            'Content-Type': 'application/json',
-            'Authorization': f'Basic {b64}'}
+        return {'Content-Type': 'application/json', 'Authorization': f'Basic {b64}'}
 
     def setup_test_server_auth(self):
         # check if the user already exists in remote setting's accounts
@@ -51,31 +49,32 @@ class RemoteSettings(object):
         user_id = response.json().get('user', {}).get('id')
         if user_id != f'account:{self.username}':
             # lets create it
-            log.info(
-                'Creating remote settings test account for %s' % self.username)
+            log.info('Creating remote settings test account for %s' % self.username)
             response = requests.put(
                 f'{host}accounts/{self.username}',
                 json={'data': {'password': self.password}},
-                headers={'Content-Type': 'application/json'})
+                headers={'Content-Type': 'application/json'},
+            )
             if response.status_code != 201:
                 log.error(
                     'Creating remote settings test account for %s failed. [%s]'
                     % (self.username, response.content),
-                    stack_info=True)
+                    stack_info=True,
+                )
                 raise ConnectionError('Remote settings account not created')
 
     def setup_test_server_collection(self):
         # check if the bucket exists
-        bucket_url = (
-            f'{settings.REMOTE_SETTINGS_WRITER_URL}buckets/{self.bucket}')
+        bucket_url = f'{settings.REMOTE_SETTINGS_WRITER_URL}buckets/{self.bucket}'
         headers = self.headers
         response = requests.get(bucket_url, headers=headers)
         data = {'permissions': {'read': ["system.Everyone"]}}
         if response.status_code == 403:
             # lets create them
             log.info(
-                'Creating remote settings bucket %s and collection %s' %
-                (self.bucket, self.collection))
+                'Creating remote settings bucket %s and collection %s'
+                % (self.bucket, self.collection)
+            )
             response = requests.put(bucket_url, json=data, headers=headers)
         # and the collection
         collection_url = f'{bucket_url}/collections/{self.collection}'
@@ -84,9 +83,10 @@ class RemoteSettings(object):
             response = requests.put(collection_url, json=data, headers=headers)
             if response.status_code != 201:
                 log.error(
-                    'Creating collection %s/%s failed: %s' %
-                    (self.bucket, self.collection, response.content),
-                    stack_info=True)
+                    'Creating collection %s/%s failed: %s'
+                    % (self.bucket, self.collection, response.content),
+                    stack_info=True,
+                )
                 raise ConnectionError('Remote settings collection not created')
 
     def publish_record(self, data, legacy_id=None):
@@ -97,24 +97,22 @@ class RemoteSettings(object):
 
         add_url = (
             f'{settings.REMOTE_SETTINGS_WRITER_URL}buckets/{self.bucket}/'
-            f'collections/{self.collection}/records')
+            f'collections/{self.collection}/records'
+        )
         json_data = {'data': data}
         if not legacy_id:
             log.info('Creating record for [%s]' % data.get('guid'))
-            response = requests.post(
-                add_url, json=json_data, headers=self.headers)
+            response = requests.post(add_url, json=json_data, headers=self.headers)
         else:
-            log.info(
-                'Updating record [%s] for [%s]' %
-                (legacy_id, data.get('guid')))
+            log.info('Updating record [%s] for [%s]' % (legacy_id, data.get('guid')))
             update_url = f'{add_url}/{legacy_id}'
-            response = requests.put(
-                update_url, json=json_data, headers=self.headers)
+            response = requests.put(update_url, json=json_data, headers=self.headers)
         if response.status_code not in (200, 201):
             log.error(
-                'Creating record for [%s] failed: %s' %
-                (data.get('guid'), response.content),
-                stack_info=True)
+                'Creating record for [%s] failed: %s'
+                % (data.get('guid'), response.content),
+                stack_info=True,
+            )
             raise ConnectionError('Remote settings record not created/updated')
         self._changes = True
         return response.json().get('data', {})
@@ -129,8 +127,7 @@ class RemoteSettings(object):
         if not legacy_id:
             log.info('Creating record')
         else:
-            log.info(
-                'Updating record [%s]' % legacy_id)
+            log.info('Updating record [%s]' % legacy_id)
 
         headers = self.headers
         del headers['Content-Type']
@@ -138,18 +135,17 @@ class RemoteSettings(object):
         legacy_id = legacy_id or uuid.uuid4()
         attach_url = (
             f'{settings.REMOTE_SETTINGS_WRITER_URL}buckets/{self.bucket}/'
-            f'collections/{self.collection}/records/{legacy_id}/attachment')
+            f'collections/{self.collection}/records/{legacy_id}/attachment'
+        )
         files = [('attachment', attachment)]
         response = requests.post(
-            attach_url,
-            data=json_data,
-            headers=headers,
-            files=files)
+            attach_url, data=json_data, headers=headers, files=files
+        )
         if response.status_code not in (200, 201):
             log.error(
-                'Creating record for [%s] failed: %s' %
-                (legacy_id, response.content),
-                stack_info=True)
+                'Creating record for [%s] failed: %s' % (legacy_id, response.content),
+                stack_info=True,
+            )
             raise ConnectionError('Remote settings record not created/updated')
         self._changes = True
         return response.json().get('data', {})
@@ -158,16 +154,17 @@ class RemoteSettings(object):
         self.setup()
         url = (
             f'{settings.REMOTE_SETTINGS_WRITER_URL}buckets/{self.bucket}/'
-            f'collections/{self.collection}/records/{legacy_id}')
-        requests.delete(
-            url, headers=self.headers)
+            f'collections/{self.collection}/records/{legacy_id}'
+        )
+        requests.delete(url, headers=self.headers)
         self._changes = True
 
     def delete_all_records(self):
         self.setup()
         url = (
             f'{settings.REMOTE_SETTINGS_WRITER_URL}buckets/{self.bucket}/'
-            f'collections/{self.collection}/records')
+            f'collections/{self.collection}/records'
+        )
         requests.delete(url, headers=self.headers)
         self._changes = True
 
@@ -177,8 +174,8 @@ class RemoteSettings(object):
         self.setup()
         url = (
             f'{settings.REMOTE_SETTINGS_WRITER_URL}buckets/{self.bucket}/'
-            f'collections/{self.collection}')
+            f'collections/{self.collection}'
+        )
         status = 'to-review' if self.sign_off_needed else 'to-sign'
-        requests.patch(
-            url, json={'data': {'status': status}}, headers=self.headers)
+        requests.patch(url, json={'data': {'status': status}}, headers=self.headers)
         self._changes = False

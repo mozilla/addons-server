@@ -1,0 +1,23 @@
+[tool.black]
+line-length = 88
+target-version = ['py38']
+skip-string-normalization = true
+exclude = '''
+(
+ /(
+   docs
+   | node_modules
+   | build*.py
+   | media
+   | storage
+   | logs
+   | site-static
+   | static
+   | \.git
+   | \.npm
+   | \.tox
+  )/
+  | src/.*/migrations/.*\.py
+  | src/olympia/translations/tests/testapp/migrations/.*\.py
+)
+'''

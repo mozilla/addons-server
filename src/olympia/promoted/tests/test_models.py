@@ -10,18 +10,23 @@ from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.constants import applications, promoted
 from olympia.promoted.models import (
-    PromotedAddon, PromotedApproval, PromotedSubscription)
+    PromotedAddon,
+    PromotedApproval,
+    PromotedSubscription,
+)
 
 
 class TestPromotedAddon(TestCase):
-
     def test_basic(self):
         promoted_addon = PromotedAddon.objects.create(
-            addon=addon_factory(), group_id=promoted.SPONSORED.id)
+            addon=addon_factory(), group_id=promoted.SPONSORED.id
+        )
         assert promoted_addon.group == promoted.SPONSORED
         assert promoted_addon.application_id is None
         assert promoted_addon.all_applications == [
-            applications.FIREFOX, applications.ANDROID]
+            applications.FIREFOX,
+            applications.ANDROID,
+        ]
 
         promoted_addon.update(application_id=applications.FIREFOX.id)
         assert promoted_addon.all_applications == [applications.FIREFOX]
@@ -29,7 +34,8 @@ class TestPromotedAddon(TestCase):
     def test_is_approved_applications(self):
         addon = addon_factory()
         promoted_addon = PromotedAddon.objects.create(
-            addon=addon, group_id=promoted.LINE.id)
+            addon=addon, group_id=promoted.LINE.id
+        )
         assert addon.promotedaddon
         # Just having the PromotedAddon instance isn't enough
         assert addon.promotedaddon.approved_applications == []
@@ -38,25 +44,30 @@ class TestPromotedAddon(TestCase):
         promoted_addon.approve_for_version(addon.current_version)
         addon.reload()
         assert addon.promotedaddon.approved_applications == [
-            applications.FIREFOX, applications.ANDROID]
+            applications.FIREFOX,
+            applications.ANDROID,
+        ]
 
         # but not if it's for a different type of promotion
         promoted_addon.update(group_id=promoted.SPONSORED.id)
         assert addon.promotedaddon.approved_applications == []
         # unless that group has an approval too
         PromotedApproval.objects.create(
-            version=addon.current_version, group_id=promoted.SPONSORED.id,
-            application_id=applications.FIREFOX.id)
+            version=addon.current_version,
+            group_id=promoted.SPONSORED.id,
+            application_id=applications.FIREFOX.id,
+        )
         addon.reload()
-        assert addon.promotedaddon.approved_applications == [
-            applications.FIREFOX]
+        assert addon.promotedaddon.approved_applications == [applications.FIREFOX]
 
         # for promoted groups that don't require pre-review though, there isn't
         # a per version approval, so a current_version is sufficient and all
         # applications are seen as approved.
         promoted_addon.update(group_id=promoted.STRATEGIC.id)
         assert addon.promotedaddon.approved_applications == [
-            applications.FIREFOX, applications.ANDROID]
+            applications.FIREFOX,
+            applications.ANDROID,
+        ]
 
     def test_creates_a_subscription_when_group_should_have_one(self):
         assert PromotedSubscription.objects.count() == 0
@@ -66,8 +77,7 @@ class TestPromotedAddon(TestCase):
         )
 
         assert PromotedSubscription.objects.count() == 1
-        assert (PromotedSubscription.objects.all()[0].promoted_addon ==
-                promoted_addon)
+        assert PromotedSubscription.objects.all()[0].promoted_addon == promoted_addon
 
         # Do not create a subscription twice.
         promoted_addon.save()
@@ -76,16 +86,15 @@ class TestPromotedAddon(TestCase):
     def test_no_subscription_created_when_group_should_not_have_one(self):
         assert PromotedSubscription.objects.count() == 0
 
-        PromotedAddon.objects.create(
-            addon=addon_factory(), group_id=promoted.LINE.id
-        )
+        PromotedAddon.objects.create(addon=addon_factory(), group_id=promoted.LINE.id)
 
         assert PromotedSubscription.objects.count() == 0
 
     def test_auto_approves_addon_when_saved_for_immediate_approval(self):
         # empty case with no group set
         promo = PromotedAddon.objects.create(
-            addon=addon_factory(), application_id=amo.FIREFOX.id)
+            addon=addon_factory(), application_id=amo.FIREFOX.id
+        )
         assert promo.group == promoted.NOT_PROMOTED
         assert promo.approved_applications == []
         assert not PromotedApproval.objects.exists()
@@ -119,12 +128,13 @@ class TestPromotedAddon(TestCase):
         task_user = user_factory(id=settings.TASK_USER_ID)
         promo = PromotedAddon.objects.create(
             addon=addon_factory(version_kw={'version': '0.123a'}),
-            group_id=promoted.SPOTLIGHT.id)
+            group_id=promoted.SPOTLIGHT.id,
+        )
         file_ = promo.addon.current_version.all_files[0]
         file_.update(filename='webextension.xpi')
         with amo.tests.copy_file(
-                'src/olympia/files/fixtures/files/webextension.xpi',
-                file_.file_path):
+            'src/olympia/files/fixtures/files/webextension.xpi', file_.file_path
+        ):
             # SPOTLIGHT doesnt have special signing states so won't be resigned
             promo.addon.reload()
             promo.addon.promoted_group() == promoted.NOT_PROMOTED
@@ -143,20 +153,21 @@ class TestPromotedAddon(TestCase):
             promo.addon.promoted_group() == promoted.VERIFIED
             assert promo.addon.current_version.version == '0.123a.1-signed'
             mock_sign_file.assert_called_with(file_)
-            assert ActivityLog.objects.for_addons((promo.addon,)).filter(
-                action=amo.LOG.VERSION_RESIGNED.id).exists()
-            alog = ActivityLog.objects.filter(
-                action=amo.LOG.VERSION_RESIGNED.id).get()
+            assert (
+                ActivityLog.objects.for_addons((promo.addon,))
+                .filter(action=amo.LOG.VERSION_RESIGNED.id)
+                .exists()
+            )
+            alog = ActivityLog.objects.filter(action=amo.LOG.VERSION_RESIGNED.id).get()
             assert alog.user == task_user
-            assert '0.123a.1-signed</a> re-signed (previously 0.123a)' in (
-                str(alog))
+            assert '0.123a.1-signed</a> re-signed (previously 0.123a)' in (str(alog))
 
     def test_get_resigned_version_number(self):
         addon = addon_factory(
             version_kw={'version': '0.123a'},
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
-        promo = PromotedAddon.objects.create(
-            addon=addon, group_id=promoted.VERIFIED.id)
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        promo = PromotedAddon.objects.create(addon=addon, group_id=promoted.VERIFIED.id)
         assert addon.current_version is not None
         assert promo.get_resigned_version_number() is None
 
@@ -176,7 +187,8 @@ class TestPromotedAddon(TestCase):
 
     def test_has_pending_subscription(self):
         promo = PromotedAddon.objects.create(
-            addon=addon_factory(), group_id=promoted.RECOMMENDED.id)
+            addon=addon_factory(), group_id=promoted.RECOMMENDED.id
+        )
         PromotedSubscription.objects.create(promoted_addon=promo)
 
         # checking the group doesn't require subscription
@@ -210,8 +222,7 @@ class TestPromotedAddon(TestCase):
         assert promo.has_pending_subscription
 
         # when there's a subscription that's been paid
-        promo.promotedsubscription.update(
-            checkout_completed_at=datetime.datetime.now())
+        promo.promotedsubscription.update(checkout_completed_at=datetime.datetime.now())
         assert promo.group.require_subscription
         assert hasattr(promo, 'promotedsubscription')
         assert promo.promotedsubscription.is_active
@@ -258,23 +269,19 @@ class TestPromotedSubscription(TestCase):
         promoted_addon = PromotedAddon.objects.create(
             addon=addon_factory(), group_id=promoted.SPONSORED.id
         )
-        sub = PromotedSubscription.objects.filter(
-            promoted_addon=promoted_addon
-        ).get()
+        sub = PromotedSubscription.objects.filter(promoted_addon=promoted_addon).get()
 
         assert sub.get_onboarding_url(absolute=False) == reverse(
             "devhub.addons.onboarding_subscription",
             args=[sub.promoted_addon.addon.slug],
-            add_prefix=False
+            add_prefix=False,
         )
 
     def test_get_onboarding_url(self):
         promoted_addon = PromotedAddon.objects.create(
             addon=addon_factory(), group_id=promoted.SPONSORED.id
         )
-        sub = PromotedSubscription.objects.filter(
-            promoted_addon=promoted_addon
-        ).get()
+        sub = PromotedSubscription.objects.filter(promoted_addon=promoted_addon).get()
 
         external_site_url = "http://example.org"
         with override_settings(EXTERNAL_SITE_URL=external_site_url):
@@ -284,7 +291,7 @@ class TestPromotedSubscription(TestCase):
                 reverse(
                     "devhub.addons.onboarding_subscription",
                     args=[sub.promoted_addon.addon.slug],
-                    add_prefix=False
+                    add_prefix=False,
                 ),
             )
             assert "en-US" not in url

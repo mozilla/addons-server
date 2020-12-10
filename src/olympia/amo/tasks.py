@@ -23,16 +23,34 @@ log = olympia.core.logger.getLogger('z.task')
 
 
 @task
-def send_email(recipient, subject, message, from_email=None,
-               html_message=None, attachments=None, real_email=False,
-               cc=None, headers=None, max_retries=3, reply_to=None,
-               **kwargs):
+def send_email(
+    recipient,
+    subject,
+    message,
+    from_email=None,
+    html_message=None,
+    attachments=None,
+    real_email=False,
+    cc=None,
+    headers=None,
+    max_retries=3,
+    reply_to=None,
+    **kwargs,
+):
     backend = EmailMultiAlternatives if html_message else EmailMessage
     connection = get_email_backend(real_email)
 
-    result = backend(subject, message, from_email, to=recipient, cc=cc,
-                     connection=connection, headers=headers,
-                     attachments=attachments, reply_to=reply_to)
+    result = backend(
+        subject,
+        message,
+        from_email,
+        to=recipient,
+        cc=cc,
+        connection=connection,
+        headers=headers,
+        attachments=attachments,
+        reply_to=reply_to,
+    )
 
     if html_message:
         result.attach_alternative(html_message, 'text/html')
@@ -53,24 +71,24 @@ def set_modified_on_object(app_label, model_name, pk, **kw):
         log.info('Setting modified on object: %s, %s' % (model_name, pk))
         obj.update(modified=datetime.datetime.now(), **kw)
     except Exception as e:
-        log.error('Failed to set modified on: %s, %s - %s' %
-                  (model_name, pk, e))
+        log.error('Failed to set modified on: %s, %s - %s' % (model_name, pk, e))
 
 
 @task
 def delete_logs(items, **kw):
     from olympia.activity.models import ActivityLog
+
     log.info('[%s@%s] Deleting logs' % (len(items), delete_logs.rate_limit))
-    ActivityLog.objects.filter(pk__in=items).exclude(
-        action__in=amo.LOG_KEEP).delete()
+    ActivityLog.objects.filter(pk__in=items).exclude(action__in=amo.LOG_KEEP).delete()
 
 
 @task
 def delete_anonymous_collections(items, **kw):
-    log.info('[%s@%s] Deleting anonymous collections' %
-             (len(items), delete_anonymous_collections.rate_limit))
-    Collection.objects.filter(type=amo.COLLECTION_ANONYMOUS,
-                              pk__in=items).delete()
+    log.info(
+        '[%s@%s] Deleting anonymous collections'
+        % (len(items), delete_anonymous_collections.rate_limit)
+    )
+    Collection.objects.filter(type=amo.COLLECTION_ANONYMOUS, pk__in=items).delete()
 
 
 @task
@@ -82,7 +100,10 @@ def sync_object_to_basket(model_name, pk):
     if not switch_is_active('basket-amo-sync'):
         log.info(
             'Not synchronizing %s %s with basket because "basket-amo-sync" '
-            'switch is off.', model_name, pk)
+            'switch is off.',
+            model_name,
+            pk,
+        )
         return
     else:
         log.info('Synchronizing %s %s with basket.', model_name, pk)
@@ -100,7 +121,8 @@ def sync_object_to_basket(model_name, pk):
     serializer_class = serializers.get(model_name)
     if not serializer_class:
         raise ImproperlyConfigured(
-            'No serializer found to synchronise that model name with basket')
+            'No serializer found to synchronise that model name with basket'
+        )
     model = serializer_class.Meta.model
     manager = getattr(model, 'unfiltered', model.objects)
     try:
@@ -108,7 +130,9 @@ def sync_object_to_basket(model_name, pk):
     except model.DoesNotExist:
         log.exception(
             'Not synchronizing %s %s with basket because it does not exist',
-            model_name, pk)
+            model_name,
+            pk,
+        )
         return
     locale_to_use = getattr(obj, 'default_locale', settings.LANGUAGE_CODE)
     with translation.override(locale_to_use):
@@ -117,7 +141,10 @@ def sync_object_to_basket(model_name, pk):
 
     basket_endpoint = f'{settings.BASKET_URL}/amo-sync/{model_name}/'
     response = requests.post(
-        basket_endpoint, json=data, timeout=settings.BASKET_TIMEOUT,
-        headers={'x-api-key': settings.BASKET_API_KEY or ''})
+        basket_endpoint,
+        json=data,
+        timeout=settings.BASKET_TIMEOUT,
+        headers={'x-api-key': settings.BASKET_API_KEY or ''},
+    )
     # Explicitly raise for errors so that we see them in Sentry.
     response.raise_for_status()

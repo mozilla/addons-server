@@ -27,7 +27,8 @@ def generate_mlbf(stats, blocked, not_blocked):
 
     error_rates = sorted((len(blocked), len(not_blocked)))
     cascade.set_crlite_error_rates(
-        include_len=error_rates[0], exclude_len=error_rates[1])
+        include_len=error_rates[0], exclude_len=error_rates[1]
+    )
 
     stats['mlbf_blocked_count'] = len(blocked)
     stats['mlbf_notblocked_count'] = len(not_blocked)
@@ -39,8 +40,8 @@ def generate_mlbf(stats, blocked, not_blocked):
     stats['mlbf_bits'] = cascade.bitCount()
 
     log.info(
-        f'Filter cascade layers: {cascade.layerCount()}, '
-        f'bit: {cascade.bitCount()}')
+        f'Filter cascade layers: {cascade.layerCount()}, ' f'bit: {cascade.bitCount()}'
+    )
 
     cascade.verify(include=blocked, exclude=not_blocked)
     return cascade
@@ -53,30 +54,33 @@ def fetch_blocked_from_db():
     blocks = Block.objects.all()
     blocks_guids = [block.guid for block in blocks]
 
-    file_qs = File.objects.filter(
-        version__addon__addonguid__guid__in=blocks_guids,
-        is_signed=True,
-        is_webextension=True,
-    ).order_by('version_id').values(
-        'version__addon__addonguid__guid',
-        'version__version',
-        'version_id')
+    file_qs = (
+        File.objects.filter(
+            version__addon__addonguid__guid__in=blocks_guids,
+            is_signed=True,
+            is_webextension=True,
+        )
+        .order_by('version_id')
+        .values('version__addon__addonguid__guid', 'version__version', 'version_id')
+    )
     addons_versions = defaultdict(list)
     for file_ in file_qs:
         addon_key = file_['version__addon__addonguid__guid']
         addons_versions[addon_key].append(
-            (file_['version__version'], file_['version_id']))
+            (file_['version__version'], file_['version_id'])
+        )
 
     all_versions = {}
     # collect all the blocked versions
     for block in blocks:
         is_all_versions = (
-            block.min_version == Block.MIN and
-            block.max_version == Block.MAX)
+            block.min_version == Block.MIN and block.max_version == Block.MAX
+        )
         versions = {
             version_id: (block.guid, version)
             for version, version_id in addons_versions[block.guid]
-            if is_all_versions or block.is_version_blocked(version)}
+            if is_all_versions or block.is_version_blocked(version)
+        }
         all_versions.update(versions)
     return all_versions
 
@@ -84,12 +88,13 @@ def fetch_blocked_from_db():
 def fetch_all_versions_from_db(excluding_version_ids=None):
     from olympia.versions.models import Version
 
-    qs = (Version.unfiltered.exclude(id__in=excluding_version_ids or ())
-                 .values_list('addon__addonguid__guid', 'version'))
+    qs = Version.unfiltered.exclude(id__in=excluding_version_ids or ()).values_list(
+        'addon__addonguid__guid', 'version'
+    )
     return list(qs)
 
 
-class MLBF():
+class MLBF:
     KEY_FORMAT = '{guid}:{version}'
 
     def __init__(self, id_):
@@ -101,12 +106,12 @@ class MLBF():
         """Returns a set"""
         return {
             cls.KEY_FORMAT.format(guid=guid, version=version)
-            for (guid, version) in input_list}
+            for (guid, version) in input_list
+        }
 
     @property
     def _blocked_path(self):
-        return os.path.join(
-            settings.MLBF_STORAGE_PATH, self.id, 'blocked.json')
+        return os.path.join(settings.MLBF_STORAGE_PATH, self.id, 'blocked.json')
 
     @cached_property
     def blocked_items(self):
@@ -120,8 +125,7 @@ class MLBF():
 
     @property
     def _not_blocked_path(self):
-        return os.path.join(
-            settings.MLBF_STORAGE_PATH, self.id, 'notblocked.json')
+        return os.path.join(settings.MLBF_STORAGE_PATH, self.id, 'notblocked.json')
 
     @cached_property
     def not_blocked_items(self):
@@ -135,13 +139,11 @@ class MLBF():
 
     @property
     def filter_path(self):
-        return os.path.join(
-            settings.MLBF_STORAGE_PATH, self.id, 'filter')
+        return os.path.join(settings.MLBF_STORAGE_PATH, self.id, 'filter')
 
     @property
     def _stash_path(self):
-        return os.path.join(
-            settings.MLBF_STORAGE_PATH, self.id, 'stash.json')
+        return os.path.join(settings.MLBF_STORAGE_PATH, self.id, 'stash.json')
 
     @cached_property
     def stash_json(self):
@@ -155,9 +157,8 @@ class MLBF():
         self.write_not_blocked_items()
 
         bloomfilter = generate_mlbf(
-            stats=stats,
-            blocked=self.blocked_items,
-            not_blocked=self.not_blocked_items)
+            stats=stats, blocked=self.blocked_items, not_blocked=self.not_blocked_items
+        )
 
         # write bloomfilter
         mlbf_path = self.filter_path
@@ -182,7 +183,8 @@ class MLBF():
 
         # compare previous with current blocks
         extras, deletes = self.generate_diffs(
-            previous_mlbf.blocked_items, self.blocked_items)
+            previous_mlbf.blocked_items, self.blocked_items
+        )
         self.stash_json = {
             'blocked': list(extras),
             'unblocked': list(deletes),
@@ -197,7 +199,8 @@ class MLBF():
         try:
             # compare base with current blocks
             extras, deletes = self.generate_diffs(
-                previous_bloom_filter.blocked_items, self.blocked_items)
+                previous_bloom_filter.blocked_items, self.blocked_items
+            )
             return (len(extras) + len(deletes)) > BASE_REPLACE_THRESHOLD
         except FileNotFoundError:
             # when previous_base_mlfb._blocked_path doesn't exist
@@ -207,7 +210,8 @@ class MLBF():
         try:
             # compare base with current blocks
             extras, deletes = self.generate_diffs(
-                previous_bloom_filter.blocked_items, self.blocked_items)
+                previous_bloom_filter.blocked_items, self.blocked_items
+            )
             return len(extras) + len(deletes)
         except FileNotFoundError:
             # when previous_bloom_filter._blocked_path doesn't exist
@@ -223,7 +227,6 @@ class MLBF():
 
 
 class StoredMLBF(MLBF):
-
     @cached_property
     def blocked_items(self):
         with storage.open(self._blocked_path, 'r') as json_file:
@@ -236,7 +239,6 @@ class StoredMLBF(MLBF):
 
 
 class DatabaseMLBF(MLBF):
-
     @cached_property
     def blocked_items(self):
         blocked_ids_to_versions = fetch_blocked_from_db()
@@ -253,6 +255,6 @@ class DatabaseMLBF(MLBF):
         # edge case where the version string occurs twice for an addon so we
         # ensure not_blocked_items doesn't contain any blocked_items.
         return list(
-            self.hash_filter_inputs(
-                fetch_all_versions_from_db(self._version_excludes)) -
-            set(self.blocked_items))
+            self.hash_filter_inputs(fetch_all_versions_from_db(self._version_excludes))
+            - set(self.blocked_items)
+        )

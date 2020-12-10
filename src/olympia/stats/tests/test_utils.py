@@ -62,9 +62,7 @@ class TestRowsToSeriesForUsageStats(BigQueryTestMixin, TestCase):
         dau = 456
         submission_date = date(2020, 5, 24)
         rows = [
-            self.create_fake_bigquery_row(
-                dau=dau, submission_date=submission_date
-            ),
+            self.create_fake_bigquery_row(dau=dau, submission_date=submission_date),
             self.create_fake_bigquery_row(),
             self.create_fake_bigquery_row(),
         ]
@@ -104,9 +102,7 @@ class TestRowsToSeriesForUsageStats(BigQueryTestMixin, TestCase):
         data = [{'key': 'k1', 'value': 123}, {'key': 'k2', 'value': 678}]
         rows = [self.create_fake_bigquery_row(column_with_data=data)]
 
-        series = list(
-            rows_to_series(rows, count_column='dau', filter_by=filter_by)
-        )
+        series = list(rows_to_series(rows, count_column='dau', filter_by=filter_by))
 
         assert 'data' in series[0]
         assert series[0]['data'] == {'k1': 123, 'k2': 678}
@@ -125,9 +121,7 @@ class TestRowsToSeriesForUsageStats(BigQueryTestMixin, TestCase):
             )
         ]
 
-        series = list(
-            rows_to_series(rows, count_column='dau', filter_by=filter_by)
-        )
+        series = list(rows_to_series(rows, count_column='dau', filter_by=filter_by))
 
         assert 'data' in series[0]
         assert series[0]['data'] == {
@@ -149,9 +143,7 @@ class TestRowsToSeriesForUsageStats(BigQueryTestMixin, TestCase):
             )
         ]
 
-        series = list(
-            rows_to_series(rows, count_column='dau', filter_by=filter_by)
-        )
+        series = list(rows_to_series(rows, count_column='dau', filter_by=filter_by))
 
         assert 'data' in series[0]
         assert series[0]['data'] == {
@@ -232,13 +224,9 @@ AND submission_date BETWEEN @submission_date_start AND @submission_date_end
 ORDER BY submission_date DESC
 LIMIT 365"""
 
-        get_updates_series(
-            addon=self.addon, start_date=start_date, end_date=end_date
-        )
+        get_updates_series(addon=self.addon, start_date=start_date, end_date=end_date)
 
-        client.query.assert_called_once_with(
-            expected_query, job_config=mock.ANY
-        )
+        client.query.assert_called_once_with(expected_query, job_config=mock.ANY)
         parameters = self.get_job_config_named_parameters(client.query)
         assert parameters == [
             {
@@ -285,18 +273,12 @@ LIMIT 365"""
                 source=source,
             )
 
-            client.query.assert_called_with(
-                expected_query, job_config=mock.ANY
-            )
-            timer_mock.assert_called_with(
-                f'stats.get_updates_series.bigquery.{source}'
-            )
+            client.query.assert_called_with(expected_query, job_config=mock.ANY)
+            timer_mock.assert_called_with(f'stats.get_updates_series.bigquery.{source}')
 
 
 @override_settings(BIGQUERY_PROJECT='project', BIGQUERY_AMO_DATASET='dataset')
-class TestGetAddonsAndAverageDailyUsersFromBigQuery(
-    BigQueryTestMixin, TestCase
-):
+class TestGetAddonsAndAverageDailyUsersFromBigQuery(BigQueryTestMixin, TestCase):
     @mock.patch('google.cloud.bigquery.Client')
     def test_create_client(self, bigquery_client_mock):
         client = self.create_mock_client()
@@ -428,13 +410,9 @@ USING
         guids = ['guid-1', 'guid-2']
         expected_query = f'{self.expected_base_query} WHERE addon_id NOT IN UNNEST(@excluded_addon_ids)'  # noqa
 
-        get_averages_by_addon_from_bigquery(
-            today=date(2020, 5, 31), exclude=guids
-        )
+        get_averages_by_addon_from_bigquery(today=date(2020, 5, 31), exclude=guids)
 
-        client.query.assert_called_once_with(
-            expected_query, job_config=mock.ANY
-        )
+        client.query.assert_called_once_with(expected_query, job_config=mock.ANY)
         parameters = self.get_job_config_named_parameters(client.query)
         assert parameters == [
             {
@@ -452,9 +430,7 @@ USING
                     'type': 'ARRAY',
                     'arrayType': {'type': 'STRING'},
                 },
-                'parameterValue': {
-                    'arrayValues': [{'value': guid} for guid in guids]
-                },
+                'parameterValue': {'arrayValues': [{'value': guid} for guid in guids]},
                 'name': 'excluded_addon_ids',
             },
         ]
@@ -488,9 +464,7 @@ USING
         client = self.create_mock_client(results=results)
         bigquery_client_mock.from_service_account_json.return_value = client
 
-        returned_results = get_averages_by_addon_from_bigquery(
-            today=date(2020, 5, 6)
-        )
+        returned_results = get_averages_by_addon_from_bigquery(today=date(2020, 5, 6))
 
         assert returned_results == {
             'guid': {'avg_this_week': 123, 'avg_three_weeks_before': 456},
@@ -537,13 +511,9 @@ AND submission_date BETWEEN @submission_date_start AND @submission_date_end
 ORDER BY submission_date DESC
 LIMIT 365"""
 
-        get_download_series(
-            addon=self.addon, start_date=start_date, end_date=end_date
-        )
+        get_download_series(addon=self.addon, start_date=start_date, end_date=end_date)
 
-        client.query.assert_called_once_with(
-            expected_query, job_config=mock.ANY
-        )
+        client.query.assert_called_once_with(expected_query, job_config=mock.ANY)
         parameters = self.get_job_config_named_parameters(client.query)
         assert parameters == [
             {
@@ -590,18 +560,14 @@ LIMIT 365"""
                 source=source,
             )
 
-            client.query.assert_called_with(
-                expected_query, job_config=mock.ANY
-            )
+            client.query.assert_called_with(expected_query, job_config=mock.ANY)
             timer_mock.assert_called_with(
                 f'stats.get_download_series.bigquery.{source}'
             )
 
 
 @override_settings(BIGQUERY_PROJECT='project', BIGQUERY_AMO_DATASET='dataset')
-class TestGetAddonsAndWeeklyDownloadsFromBigQuery(
-    BigQueryTestMixin, TestCase
-):
+class TestGetAddonsAndWeeklyDownloadsFromBigQuery(BigQueryTestMixin, TestCase):
     @mock.patch('google.cloud.bigquery.Client')
     def test_create_client(self, bigquery_client_mock):
         client = self.create_mock_client()

@@ -5,35 +5,39 @@ from olympia.constants.promoted import RECOMMENDED
 from olympia.promoted.models import PromotedAddon
 
 from ..models import (
-    GRADIENT_START_COLOR, PrimaryHero, PrimaryHeroImage, SecondaryHero,
-    SecondaryHeroModule)
+    GRADIENT_START_COLOR,
+    PrimaryHero,
+    PrimaryHeroImage,
+    SecondaryHero,
+    SecondaryHeroModule,
+)
 from ..serializers import (
-    ExternalAddonSerializer, HeroAddonSerializer, PrimaryHeroShelfSerializer,
-    SecondaryHeroShelfSerializer)
+    ExternalAddonSerializer,
+    HeroAddonSerializer,
+    PrimaryHeroShelfSerializer,
+    SecondaryHeroShelfSerializer,
+)
 
 
 class TestPrimaryHeroShelfSerializer(TestCase):
     def setUp(self):
         uploaded_photo = get_uploaded_file('transparent.png')
         self.phi = PrimaryHeroImage.objects.create(custom_image=uploaded_photo)
-        self.image = (
-            'http://testserver/user-media/hero-featured-image/transparent.jpg')
+        self.image = 'http://testserver/user-media/hero-featured-image/transparent.jpg'
 
     def test_basic(self):
-        addon = addon_factory(recommended=True)
+        addon = addon_factory(promoted=RECOMMENDED)
         hero = PrimaryHero.objects.create(
             promoted_addon=addon.promotedaddon,
             description='Déscription',
             select_image=self.phi,
-            gradient_color='#008787')
+            gradient_color='#008787',
+        )
         data = PrimaryHeroShelfSerializer(instance=hero).data
         assert data == {
             'featured_image': self.image,
             'description': 'Déscription',
-            'gradient': {
-                'start': GRADIENT_START_COLOR[1],
-                'end': 'color-green-70'
-            },
+            'gradient': {'start': GRADIENT_START_COLOR[1], 'end': 'color-green-70'},
             'addon': HeroAddonSerializer(instance=addon).data,
         }
         assert data['addon']['promoted'] == {
@@ -42,11 +46,11 @@ class TestPrimaryHeroShelfSerializer(TestCase):
         }
 
     def test_description(self):
-        addon = addon_factory(
-            type=amo.ADDON_STATICTHEME, summary=None)
+        addon = addon_factory(type=amo.ADDON_STATICTHEME, summary=None)
         hero = PrimaryHero.objects.create(
             promoted_addon=PromotedAddon.objects.create(addon=addon),
-            description='hero description',)
+            description='hero description',
+        )
         data = PrimaryHeroShelfSerializer(instance=hero).data
         assert data['description'] == 'hero description'
 
@@ -62,20 +66,20 @@ class TestPrimaryHeroShelfSerializer(TestCase):
 
     def test_external_addon(self):
         addon = addon_factory(
-            summary='Summary', homepage='https://foo.baa', version_kw={
-                'channel': amo.RELEASE_CHANNEL_UNLISTED})
+            summary='Summary',
+            homepage='https://foo.baa',
+            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+        )
         hero = PrimaryHero.objects.create(
             promoted_addon=PromotedAddon.objects.create(addon=addon),
             select_image=self.phi,
             gradient_color='#008787',
-            is_external=True)
+            is_external=True,
+        )
         assert PrimaryHeroShelfSerializer(instance=hero).data == {
             'featured_image': self.image,
             'description': 'Summary',
-            'gradient': {
-                'start': GRADIENT_START_COLOR[1],
-                'end': 'color-green-70'
-            },
+            'gradient': {'start': GRADIENT_START_COLOR[1], 'end': 'color-green-70'},
             'external': ExternalAddonSerializer(instance=addon).data,
         }
         assert ExternalAddonSerializer(instance=addon).data == {
@@ -90,7 +94,8 @@ class TestPrimaryHeroShelfSerializer(TestCase):
 class TestSecondaryHeroShelfSerializer(TestCase):
     def test_basic(self):
         hero = SecondaryHero.objects.create(
-            headline='Its a héadline!', description='description')
+            headline='Its a héadline!', description='description'
+        )
         data = SecondaryHeroShelfSerializer(instance=hero).data
         assert data == {
             'headline': 'Its a héadline!',
@@ -114,12 +119,12 @@ class TestSecondaryHeroShelfSerializer(TestCase):
         hero = SecondaryHero.objects.create()
         promos = [
             SecondaryHeroModule.objects.create(
-                description='It does things!', shelf=hero, icon='a.svg'),
+                description='It does things!', shelf=hero, icon='a.svg'
+            ),
             SecondaryHeroModule.objects.create(
-                shelf=hero, cta_url='/extensions/', cta_text='Go here',
-                icon='b.svg'),
-            SecondaryHeroModule.objects.create(
-                shelf=hero, icon='c.svg'),
+                shelf=hero, cta_url='/extensions/', cta_text='Go here', icon='b.svg'
+            ),
+            SecondaryHeroModule.objects.create(shelf=hero, icon='c.svg'),
         ]
         data = SecondaryHeroShelfSerializer(instance=hero).data
         assert data == {

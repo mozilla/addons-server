@@ -7,106 +7,127 @@ from filtercascade import FilterCascade
 
 from olympia import amo
 from olympia.addons.models import GUID_REUSE_FORMAT
-from olympia.amo.tests import (
-    addon_factory, TestCase, user_factory, version_factory)
+from olympia.amo.tests import addon_factory, TestCase, user_factory, version_factory
 from olympia.files.models import File
 
 from ..mlbf import (
     fetch_all_versions_from_db,
     fetch_blocked_from_db,
     generate_mlbf,
-    MLBF)
+    MLBF,
+)
 from ..models import Block
 
 
 class TestMLBF(TestCase):
-
     def setup_data(self):
         user = user_factory()
         for idx in range(0, 5):
             addon_factory()
         # one version, 0 - *
         Block.objects.create(
-            addon=addon_factory(
-                file_kw={'is_signed': True, 'is_webextension': True}),
-            updated_by=user)
+            addon=addon_factory(file_kw={'is_signed': True, 'is_webextension': True}),
+            updated_by=user,
+        )
         # one version, 0 - 9999
         Block.objects.create(
-            addon=addon_factory(
-                file_kw={'is_signed': True, 'is_webextension': True}),
+            addon=addon_factory(file_kw={'is_signed': True, 'is_webextension': True}),
             updated_by=user,
-            max_version='9999')
+            max_version='9999',
+        )
         # one version, 0 - *, unlisted
         Block.objects.create(
             addon=addon_factory(
                 version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
-                file_kw={'is_signed': True, 'is_webextension': True}),
-            updated_by=user)
+                file_kw={'is_signed': True, 'is_webextension': True},
+            ),
+            updated_by=user,
+        )
         # five versions, but only two within block (123.40, 123.5)
         self.five_ver_block = Block.objects.create(
             addon=addon_factory(
                 version_kw={'version': '123.40'},
-                file_kw={'is_signed': True, 'is_webextension': True}),
-            updated_by=user, max_version='123.45')
+                file_kw={'is_signed': True, 'is_webextension': True},
+            ),
+            updated_by=user,
+            max_version='123.45',
+        )
         self.five_ver_123_40 = self.five_ver_block.addon.current_version
         self.five_ver_123_5 = version_factory(
-            addon=self.five_ver_block.addon, version='123.5', deleted=True,
-            file_kw={'is_signed': True, 'is_webextension': True})
+            addon=self.five_ver_block.addon,
+            version='123.5',
+            deleted=True,
+            file_kw={'is_signed': True, 'is_webextension': True},
+        )
         self.five_ver_123_45_1 = version_factory(
-            addon=self.five_ver_block.addon, version='123.45.1',
-            file_kw={'is_signed': True, 'is_webextension': True})
+            addon=self.five_ver_block.addon,
+            version='123.45.1',
+            file_kw={'is_signed': True, 'is_webextension': True},
+        )
         # these two would be included if they were signed and webextensions
         self.not_signed_version = version_factory(
-            addon=self.five_ver_block.addon, version='123.5.1',
-            file_kw={'is_signed': False, 'is_webextension': True})
+            addon=self.five_ver_block.addon,
+            version='123.5.1',
+            file_kw={'is_signed': False, 'is_webextension': True},
+        )
         self.not_webext_version = version_factory(
-            addon=self.five_ver_block.addon, version='123.5.2',
-            file_kw={'is_signed': True, 'is_webextension': False})
+            addon=self.five_ver_block.addon,
+            version='123.5.2',
+            file_kw={'is_signed': True, 'is_webextension': False},
+        )
         # no matching versions (edge cases)
         self.over = Block.objects.create(
             addon=addon_factory(
                 version_kw={'version': '0.1'},
-                file_kw={'is_signed': True, 'is_webextension': True}),
+                file_kw={'is_signed': True, 'is_webextension': True},
+            ),
             updated_by=user,
-            max_version='0')
+            max_version='0',
+        )
         self.under = Block.objects.create(
-            addon=addon_factory(
-                file_kw={'is_signed': True, 'is_webextension': True}),
+            addon=addon_factory(file_kw={'is_signed': True, 'is_webextension': True}),
             updated_by=user,
-            min_version='9999')
+            min_version='9999',
+        )
 
         # A blocked addon has been uploaded and deleted before
         reused_2_1_addon = addon_factory(
             # this a previous, superceeded, addon that should be included
             status=amo.STATUS_DELETED,  # they should all be deleted
             version_kw={'version': '2.1'},
-            file_kw={'is_signed': True, 'is_webextension': True})
+            file_kw={'is_signed': True, 'is_webextension': True},
+        )
         self.addon_deleted_before_2_1_ver = reused_2_1_addon.versions.all()[0]
         reused_2_5_addon = addon_factory(
             # And this is an earlier addon that should also be included
             status=amo.STATUS_DELETED,  # they should all be deleted
             version_kw={'version': '2.5'},
-            file_kw={'is_signed': True, 'is_webextension': True})
+            file_kw={'is_signed': True, 'is_webextension': True},
+        )
         self.addon_deleted_before_2_5_ver = reused_2_5_addon.versions.all()[0]
         current_addon = addon_factory(
             version_kw={'version': '2'},
-            file_kw={'is_signed': True, 'is_webextension': True})
+            file_kw={'is_signed': True, 'is_webextension': True},
+        )
         self.addon_deleted_before_unblocked_ver = current_addon.current_version
         self.addon_deleted_before_unsigned_ver = version_factory(
-            addon=current_addon, version='2.1',
+            addon=current_addon,
+            version='2.1',
             # not signed, but shouldn't override the signed 2.1 version
-            file_kw={'is_signed': False, 'is_webextension': True})
+            file_kw={'is_signed': False, 'is_webextension': True},
+        )
         version_factory(
-            addon=current_addon, version='3.0',
-            file_kw={'is_signed': True, 'is_webextension': True})
-        reused_2_1_addon.update(
-            guid=GUID_REUSE_FORMAT.format(current_addon.id))
-        reused_2_5_addon.update(
-            guid=GUID_REUSE_FORMAT.format(reused_2_1_addon.id))
+            addon=current_addon,
+            version='3.0',
+            file_kw={'is_signed': True, 'is_webextension': True},
+        )
+        reused_2_1_addon.update(guid=GUID_REUSE_FORMAT.format(current_addon.id))
+        reused_2_5_addon.update(guid=GUID_REUSE_FORMAT.format(reused_2_1_addon.id))
         reused_2_1_addon.addonguid.update(guid=current_addon.guid)
         reused_2_5_addon.addonguid.update(guid=current_addon.guid)
         self.addon_deleted_before_block = Block.objects.create(
-            guid=current_addon.guid, min_version='2.0.1', updated_by=user)
+            guid=current_addon.guid, min_version='2.0.1', updated_by=user
+        )
 
     def test_fetch_all_versions_from_db(self):
         self.setup_data()
@@ -118,15 +139,13 @@ class TestMLBF(TestCase):
         assert (self.five_ver_block.guid, '123.5.1') in all_versions
         assert (self.five_ver_block.guid, '123.5.2') in all_versions
         over_tuple = (self.over.guid, self.over.addon.current_version.version)
-        under_tuple = (
-            self.under.guid, self.under.addon.current_version.version)
+        under_tuple = (self.under.guid, self.under.addon.current_version.version)
         assert over_tuple in all_versions
         assert under_tuple in all_versions
 
         assert (self.addon_deleted_before_block.guid, '2') in all_versions
         # this is fine; test_hash_filter_inputs removes duplicates.
-        assert all_versions.count(
-            (self.addon_deleted_before_block.guid, '2.1')) == 2
+        assert all_versions.count((self.addon_deleted_before_block.guid, '2.1')) == 2
         assert (self.addon_deleted_before_block.guid, '2.5') in all_versions
         assert (self.addon_deleted_before_block.guid, '3.0') in all_versions
 
@@ -140,8 +159,7 @@ class TestMLBF(TestCase):
         assert (self.five_ver_block.guid, '123.5.1') in all_versions
         assert (self.five_ver_block.guid, '123.5.2') in all_versions
         over_tuple = (self.over.guid, self.over.addon.current_version.version)
-        under_tuple = (
-            self.under.guid, self.under.addon.current_version.version)
+        under_tuple = (self.under.guid, self.under.addon.current_version.version)
         assert over_tuple in all_versions
         assert under_tuple in all_versions
 
@@ -158,15 +176,13 @@ class TestMLBF(TestCase):
         assert (self.five_ver_block.guid, '123.5.1') not in blocked_guids
         assert (self.five_ver_block.guid, '123.5.2') not in blocked_guids
         over_tuple = (self.over.guid, self.over.addon.current_version.version)
-        under_tuple = (
-            self.under.guid, self.under.addon.current_version.version)
+        under_tuple = (self.under.guid, self.under.addon.current_version.version)
         assert over_tuple not in blocked_guids
         assert under_tuple not in blocked_guids
         assert (self.addon_deleted_before_block.guid, '2.1') in blocked_guids
         assert (self.addon_deleted_before_block.guid, '2.5') in blocked_guids
         assert (self.addon_deleted_before_block.guid, '3.0') in blocked_guids
-        assert (
-            (self.addon_deleted_before_block.guid, '2.0') not in blocked_guids)
+        assert (self.addon_deleted_before_block.guid, '2.0') not in blocked_guids
 
         # And check the keys, the ids used to filter out the versions
         assert self.five_ver_123_40.id in blocked_versions
@@ -177,16 +193,13 @@ class TestMLBF(TestCase):
         assert self.over.addon.current_version.id not in blocked_versions
         assert self.under.addon.current_version.id not in blocked_versions
 
-        assert self.addon_deleted_before_unblocked_ver.id not in (
-            blocked_versions)
-        assert self.addon_deleted_before_unsigned_ver.id not in (
-            blocked_versions)
+        assert self.addon_deleted_before_unblocked_ver.id not in (blocked_versions)
+        assert self.addon_deleted_before_unsigned_ver.id not in (blocked_versions)
         assert self.addon_deleted_before_block.addon.current_version.id in (
-            blocked_versions)
-        assert self.addon_deleted_before_2_1_ver.id in (
-            blocked_versions)
-        assert self.addon_deleted_before_2_5_ver.id in (
-            blocked_versions)
+            blocked_versions
+        )
+        assert self.addon_deleted_before_2_1_ver.id in (blocked_versions)
+        assert self.addon_deleted_before_2_5_ver.id in (blocked_versions)
 
         # doublecheck if the versions were signed & webextensions they'd be in.
         self.not_signed_version.all_files[0].update(is_signed=True)
@@ -203,10 +216,10 @@ class TestMLBF(TestCase):
         version_factory(
             addon=self.five_ver_block.addon,
             version=self.five_ver_123_40.version,  # copying the same identifer
-            file_kw={'is_signed': True, 'is_webextension': True})
+            file_kw={'is_signed': True, 'is_webextension': True},
+        )
         self.five_ver_block.addon.reload()
-        assert self.five_ver_block.addon.versions.filter(
-            version='123.40').count() == 2
+        assert self.five_ver_block.addon.versions.filter(version='123.40').count() == 2
         blocked_guids = fetch_blocked_from_db().values()
         assert len(MLBF.hash_filter_inputs(blocked_guids)) == 8
 
@@ -230,18 +243,28 @@ class TestMLBF(TestCase):
         stats = {}
         key_format = MLBF.KEY_FORMAT
         blocked = [
-            ('guid1@', '1.0'), ('@guid2', '1.0'), ('@guid2', '1.1'),
+            ('guid1@', '1.0'),
+            ('@guid2', '1.0'),
+            ('@guid2', '1.1'),
             ('guid3@', '0.01b1'),
             # throw in a dupe at the end - should be removed along the way
-            ('guid3@', '0.01b1')]
+            ('guid3@', '0.01b1'),
+        ]
         not_blocked = [
-            ('guid10@', '1.0'), ('@guid20', '1.0'), ('@guid20', '1.1'),
-            ('guid30@', '0.01b1'), ('guid100@', '1.0'), ('@guid200', '1.0'),
-            ('@guid200', '1.1'), ('guid300@', '0.01b1')]
+            ('guid10@', '1.0'),
+            ('@guid20', '1.0'),
+            ('@guid20', '1.1'),
+            ('guid30@', '0.01b1'),
+            ('guid100@', '1.0'),
+            ('@guid200', '1.0'),
+            ('@guid200', '1.1'),
+            ('guid300@', '0.01b1'),
+        ]
         bfilter = generate_mlbf(
             stats,
             blocked=MLBF.hash_filter_inputs(blocked),
-            not_blocked=MLBF.hash_filter_inputs(not_blocked))
+            not_blocked=MLBF.hash_filter_inputs(not_blocked),
+        )
         for entry in blocked:
             key = key_format.format(guid=entry[0], version=entry[1])
             assert key in bfilter
@@ -262,7 +285,8 @@ class TestMLBF(TestCase):
         bfilter = generate_mlbf(
             {},
             blocked=MLBF.hash_filter_inputs(blocked),
-            not_blocked=MLBF.hash_filter_inputs(not_blocked))
+            not_blocked=MLBF.hash_filter_inputs(not_blocked),
+        )
         for entry in blocked:
             key = key_format.format(guid=entry[0], version=entry[1])
             assert key in bfilter
@@ -298,19 +322,28 @@ class TestMLBF(TestCase):
         # collision in layer 1 of the bloomfilter, leading to a second layer
         # being generated.  When this happens the bitCount and size is larger.
         expected_size, expected_bit_count = (
-            (203, 1384) if bfilter.layerCount() == 1 else (393, 2824))
+            (203, 1384) if bfilter.layerCount() == 1 else (393, 2824)
+        )
         assert os.stat(mlbf.filter_path).st_size == expected_size, (
-            blocked_guids, all_addons)
-        assert bfilter.bitCount() == expected_bit_count, (
-            blocked_guids, all_addons)
+            blocked_guids,
+            all_addons,
+        )
+        assert bfilter.bitCount() == expected_bit_count, (blocked_guids, all_addons)
 
     def test_generate_diffs(self):
         old_versions = [
-            ('guid1@', '1.0'), ('@guid2', '1.0'), ('@guid2', '1.1'),
-            ('guid3@', '0.01b1')]
+            ('guid1@', '1.0'),
+            ('@guid2', '1.0'),
+            ('@guid2', '1.1'),
+            ('guid3@', '0.01b1'),
+        ]
         new_versions = [
-            ('guid1@', '1.0'), ('guid3@', '0.01b1'), ('@guid2', '1.1'),
-            ('new_guid@', '0.01b1'), ('new_guid@', '24')]
+            ('guid1@', '1.0'),
+            ('guid3@', '0.01b1'),
+            ('@guid2', '1.1'),
+            ('new_guid@', '0.01b1'),
+            ('new_guid@', '24'),
+        ]
         extras, deletes = MLBF.generate_diffs(old_versions, new_versions)
         assert extras == {('new_guid@', '0.01b1'), ('new_guid@', '24')}
         assert deletes == {('@guid2', '1.0')}
@@ -331,15 +364,18 @@ class TestMLBF(TestCase):
             addon=addon_factory(
                 guid='fooo@baaaa',
                 version_kw={'version': '999'},
-                file_kw={'is_signed': True, 'is_webextension': True}),
-            updated_by=user_factory())
+                file_kw={'is_signed': True, 'is_webextension': True},
+            ),
+            updated_by=user_factory(),
+        )
         self.five_ver_123_5.delete(hard=True)
         newer_mlbf = MLBF.generate_from_db('new_one_change')
         newer_mlbf.generate_and_write_filter()
         newer_mlbf.generate_and_write_stash(new_mlbf)
         full_stash = {
             'blocked': ['fooo@baaaa:999'],
-            'unblocked': [f'{self.five_ver_block.guid}:123.5']}
+            'unblocked': [f'{self.five_ver_block.guid}:123.5'],
+        }
         with open(newer_mlbf._stash_path) as stash_file:
             assert json.load(stash_file) == full_stash
         assert newer_mlbf.stash_json == full_stash
@@ -348,10 +384,10 @@ class TestMLBF(TestCase):
         self.setup_data()
         base_mlbf = MLBF.generate_from_db('base')
         # should handle the files not existing
-        assert base_mlbf.should_reset_base_filter(
-            MLBF.load_from_storage('no_files'))
+        assert base_mlbf.should_reset_base_filter(MLBF.load_from_storage('no_files'))
         assert base_mlbf.blocks_changed_since_previous(
-            MLBF.load_from_storage('no_files'))
+            MLBF.load_from_storage('no_files')
+        )
         base_mlbf.generate_and_write_filter()
 
         no_change_mlbf = MLBF.generate_from_db('no_change')
@@ -364,8 +400,10 @@ class TestMLBF(TestCase):
             addon=addon_factory(
                 guid='fooo@baaaa',
                 version_kw={'version': '999'},
-                file_kw={'is_signed': True, 'is_webextension': True}),
-            updated_by=user_factory())
+                file_kw={'is_signed': True, 'is_webextension': True},
+            ),
+            updated_by=user_factory(),
+        )
         self.five_ver_123_5.delete(hard=True)
         small_change_mlbf = MLBF.generate_from_db('small_change')
         small_change_mlbf.generate_and_write_filter()
@@ -376,10 +414,9 @@ class TestMLBF(TestCase):
         assert small_change_mlbf.blocks_changed_since_previous(base_mlbf)
         # double check what the differences were
         diffs = MLBF.generate_diffs(
-            previous=base_mlbf.blocked_items,
-            current=small_change_mlbf.blocked_items)
-        assert diffs == (
-            {'fooo@baaaa:999'}, {f'{self.five_ver_block.guid}:123.5'})
+            previous=base_mlbf.blocked_items, current=small_change_mlbf.blocked_items
+        )
+        assert diffs == ({'fooo@baaaa:999'}, {f'{self.five_ver_block.guid}:123.5'})
 
         # so lower the threshold
         to_patch = 'olympia.blocklist.mlbf.BASE_REPLACE_THRESHOLD'

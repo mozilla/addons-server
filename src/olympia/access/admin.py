@@ -14,9 +14,11 @@ class GroupUserInline(admin.TabularInline):
         if obj.pk:
             return format_html(
                 '<a href="{}">Admin User Profile</a>',
-                reverse('admin:users_userprofile_change', args=(obj.user.pk,)))
+                reverse('admin:users_userprofile_change', args=(obj.user.pk,)),
+            )
         else:
             return ''
+
     user_profile_link.short_description = 'User Profile'
 
 

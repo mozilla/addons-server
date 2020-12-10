@@ -27,8 +27,7 @@ class ManualOrderTest(TestCase):
         in that order."""
 
         semi_arbitrary_order = [40, 5299, 3615]
-        addons = amo_models.manual_order(
-            Addon.objects.all(), semi_arbitrary_order)
+        addons = amo_models.manual_order(Addon.objects.all(), semi_arbitrary_order)
         assert semi_arbitrary_order == [addon.id for addon in addons]
 
 
@@ -69,8 +68,7 @@ class TestModelBase(TestCase):
 
     def test_change_called_on_new_instance_save(self):
         for create_addon in (Addon, Addon.objects.create):
-            addon = create_addon(disabled_by_user=False,
-                                 type=amo.ADDON_EXTENSION)
+            addon = create_addon(disabled_by_user=False, type=amo.ADDON_EXTENSION)
             addon.disabled_by_user = True
             addon.save()
             assert self.cb.called
@@ -102,12 +100,10 @@ class TestModelBase(TestCase):
         assert kw['sender'] == Addon
 
     def test_change_is_not_recursive(self):
-
         class fn:
             called = False
 
-        def callback(old_attr=None, new_attr=None, instance=None,
-                     sender=None, **kw):
+        def callback(old_attr=None, new_attr=None, instance=None, sender=None, **kw):
             fn.called = True
             # Both save and update should be protected:
             instance.update(disabled_by_user=True)
@@ -157,7 +153,8 @@ class TestModelBase(TestCase):
     def test_get_url_path(self):
         addon = Addon.objects.get(pk=3615)
         assert addon.get_url_path() == reverse(
-            'addons.detail', args=[addon.slug], add_prefix=True)
+            'addons.detail', args=[addon.slug], add_prefix=True
+        )
 
     def test_get_absolute_url_with_frontend_view(self):
         addon = Addon.objects.get(pk=3615)
@@ -167,13 +164,13 @@ class TestModelBase(TestCase):
             assert addon.get_absolute_url() == settings.SITE_URL + relative
         with override_settings(EXTERNAL_SITE_URL='https://example.com'):
             # When an external site url has been set
-            assert addon.get_absolute_url() == (
-                'https://example.com' + relative)
+            assert addon.get_absolute_url() == ('https://example.com' + relative)
 
     def test_get_absolute_url_with_django_view(self):
         file = Addon.objects.get(pk=3615).current_version.all_files[0]
         relative = os.path.join(
-            reverse('downloads.file', args=[file.id]), file.filename)
+            reverse('downloads.file', args=[file.id]), file.filename
+        )
         with override_settings(EXTERNAL_SITE_URL=settings.SITE_URL):
             # The normal case
             assert file.get_absolute_url() == settings.SITE_URL + relative
@@ -183,27 +180,26 @@ class TestModelBase(TestCase):
 
     def test_get_admin_url_path(self):
         addon = Addon.objects.get(pk=3615)
-        expected_url_path = reverse(
-            'admin:addons_addon_change', args=(addon.pk,))
+        expected_url_path = reverse('admin:addons_addon_change', args=(addon.pk,))
         assert addon.get_admin_url_path() == expected_url_path
 
     def test_get_admin_absolute_url(self):
         addon = Addon.objects.get(pk=3615)
-        expected_url_path = reverse(
-            'admin:addons_addon_change', args=(addon.pk,))
+        expected_url_path = reverse('admin:addons_addon_change', args=(addon.pk,))
         with override_settings(EXTERNAL_SITE_URL=settings.SITE_URL):
             # The normal case
             assert addon.get_admin_absolute_url() == (
-                settings.SITE_URL + expected_url_path)
+                settings.SITE_URL + expected_url_path
+            )
         with override_settings(EXTERNAL_SITE_URL='https://example.com'):
             # When an external site url has been set, it shouldn't matter since
             # admin must not live there.
             assert addon.get_admin_absolute_url() == (
-                settings.SITE_URL + expected_url_path)
+                settings.SITE_URL + expected_url_path
+            )
 
 
 class BasePreviewMixin(object):
-
     def get_object(self):
         raise NotImplementedError
 
@@ -262,11 +258,10 @@ class BaseQuerysetTestCase(TestCase):
             # No database hit yet, everything is still lazy.
             qs = amo_models.BaseQuerySet(Config)
             qs = qs.exclude(value='').order_by('key')[1:3]
+            qs = qs.transform(lambda items: seen_by_first_transform.extend(list(items)))
             qs = qs.transform(
-                lambda items: seen_by_first_transform.extend(list(items)))
-            qs = qs.transform(
-                lambda items: seen_by_second_transform.extend(
-                    list(reversed(items))))
+                lambda items: seen_by_second_transform.extend(list(reversed(items)))
+            )
         with self.assertNumQueries(1):
             assert list(qs) == [first, second]
         # Check that each transform function was hit correctly, once.
@@ -290,27 +285,22 @@ class TestFilterableManyToManyField(TestCase):
         assert Singer.objects.count() == 4
         assert list(self.bob.songs.all()) == [self.twinkle_twinkle]
         assert list(self.sue.songs.all()) == [self.humpty_dumpty]
-        assert list(self.joe.songs.all()) == [
-            self.twinkle_twinkle, self.humpty_dumpty]
-        assert list(self.twinkle_twinkle.performers.all()) == [
-            self.bob, self.joe]
-        assert list(self.humpty_dumpty.performers.all()) == [
-            self.sue, self.joe]
+        assert list(self.joe.songs.all()) == [self.twinkle_twinkle, self.humpty_dumpty]
+        assert list(self.twinkle_twinkle.performers.all()) == [self.bob, self.joe]
+        assert list(self.humpty_dumpty.performers.all()) == [self.sue, self.joe]
 
     def test_through_filtered_out(self):
         twinkle_joe_collab = Singer.objects.get(
-            song=self.twinkle_twinkle, artist=self.joe)
+            song=self.twinkle_twinkle, artist=self.joe
+        )
         twinkle_joe_collab.credited = False
         twinkle_joe_collab.save()
         # the relation still exists
         assert Singer.objects.count() == 4
 
         # but now doesn't show up in the field querysets - on the Song side
-        assert list(self.joe.songs.all()) == [
-            self.humpty_dumpty]
+        assert list(self.joe.songs.all()) == [self.humpty_dumpty]
         # and the reverse too
-        assert list(self.twinkle_twinkle.performers.all()) == [
-            self.bob]
+        assert list(self.twinkle_twinkle.performers.all()) == [self.bob]
         # But Joe is still on the other song
-        assert list(self.humpty_dumpty.performers.all()) == [
-            self.sue, self.joe]
+        assert list(self.humpty_dumpty.performers.all()) == [self.sue, self.joe]

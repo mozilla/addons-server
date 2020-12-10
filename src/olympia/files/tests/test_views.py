@@ -17,8 +17,7 @@ class TestServeFileUpload(UploadTest, TestCase):
         super(TestServeFileUpload, self).setUp()
 
         self.upload = self.get_upload('webextension.xpi')
-        self.url = reverse('files.serve_file_upload',
-                           args=[self.upload.uuid.hex])
+        self.url = reverse('files.serve_file_upload', args=[self.upload.uuid.hex])
 
     def test_returns_error_when_no_access_token(self):
         resp = self.client.get(self.url)

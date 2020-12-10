@@ -11,7 +11,7 @@ log = olympia.core.logger.getLogger('z.amo.blocklist')
 
 
 class Command(BaseCommand):
-    help = ('Create Blocks for provided guids to add them to the v3 blocklist')
+    help = 'Create Blocks for provided guids to add them to the v3 blocklist'
 
     def add_arguments(self, parser):
         """Handle command arguments."""
@@ -22,7 +22,8 @@ class Command(BaseCommand):
         parser.add_argument(
             '--guids-input',
             help='Path to file with one guid per line that should be blocked',
-            required=True)
+            required=True,
+        )
 
     def handle(self, *args, **options):
         with open(options.get('guids_input'), 'r') as guid_file:
@@ -39,7 +40,6 @@ class Command(BaseCommand):
 
         for guids_chunk in chunked(guids, 100):
             blocks = save_guids_to_blocks(
-                guids_chunk, submission, fields_to_set=block_args.keys())
-            print(
-                f'Added/Updated {len(blocks)} blocks from {len(guids_chunk)} '
-                'guids')
+                guids_chunk, submission, fields_to_set=block_args.keys()
+            )
+            print(f'Added/Updated {len(blocks)} blocks from {len(guids_chunk)} guids')

@@ -8,7 +8,6 @@ from olympia.landfill.collection import generate_collection
 
 
 class CollectionsTests(TestCase):
-
     def setUp(self):
         super(CollectionsTests, self).setUp()
         self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)

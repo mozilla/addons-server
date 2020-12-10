@@ -63,9 +63,7 @@ class StatsTestCase(TestCase):
         self.get_download_series_patcher = mock.patch(
             'olympia.stats.views.get_download_series'
         )
-        self.get_download_series_mock = (
-            self.get_download_series_patcher.start()
-        )
+        self.get_download_series_mock = self.get_download_series_patcher.start()
         self.get_download_series_mock.return_value = []
 
     def tearDown(self):
@@ -147,9 +145,7 @@ class TestListedAddons(StatsTestCase):
     def setUp(self):
         super().setUp()
 
-        self.someuser = UserProfile.objects.get(
-            email='nobodyspecial@mozilla.com'
-        )
+        self.someuser = UserProfile.objects.get(email='nobodyspecial@mozilla.com')
         AddonUser.objects.create(user=self.someuser, addon=self.addon_4)
 
     def test_private_stats_for_listed_addon(self):
@@ -249,9 +245,7 @@ class TestCacheControl(StatsTestCase):
 class TestLayout(StatsTestCase):
     def test_no_public_stats(self):
         self.login_as_visitor()
-        response = self.client.get(
-            reverse('stats.downloads', args=[self.addon_4.slug])
-        )
+        response = self.client.get(reverse('stats.downloads', args=[self.addon_4.slug]))
         assert response.status_code == 403
 
 
@@ -352,17 +346,13 @@ class TestCsvAndJsonViews(StatsTestCase):
             json.loads(force_text(response.content)),
             [
                 {
-                    "data": {
-                        "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": {"4.0": 1500}
-                    },
+                    "data": {"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": {"4.0": 1500}},
                     "count": 1500,
                     "date": "2009-06-02",
                     "end": "2009-06-02",
                 },
                 {
-                    "data": {
-                        "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": {"4.0": 1000}
-                    },
+                    "data": {"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": {"4.0": 1000}},
                     "count": 1000,
                     "date": "2009-06-01",
                     "end": "2009-06-01",
@@ -489,9 +479,7 @@ class TestCsvAndJsonViews(StatsTestCase):
             },
         ]
 
-        response = self.get_view_response(
-            'stats.os_series', group='day', format='json'
-        )
+        response = self.get_view_response('stats.os_series', group='day', format='json')
 
         assert response.status_code == 200
         self.assertListEqual(
@@ -528,9 +516,7 @@ class TestCsvAndJsonViews(StatsTestCase):
             },
         ]
 
-        response = self.get_view_response(
-            'stats.os_series', group='day', format='csv'
-        )
+        response = self.get_view_response('stats.os_series', group='day', format='csv')
 
         assert response.status_code == 200
         self.csv_eq(
@@ -631,7 +617,7 @@ class TestCsvAndJsonViews(StatsTestCase):
             [
                 {"date": "2009-06-02", "end": "2009-06-02", "count": 1500},
                 {"date": "2009-06-01", "end": "2009-06-01", "count": 1000},
-            ]
+            ],
         )
 
     def test_downloads_csv(self):
@@ -696,7 +682,7 @@ class TestCsvAndJsonViews(StatsTestCase):
                     "count": 1000,
                     "data": {"api": 550, "search": 450},
                 },
-            ]
+            ],
         )
 
     def test_download_by_source_csv(self):
@@ -1162,6 +1148,4 @@ class TestRenderCSV(TestCase):
             fields=fields,
         )
 
-        assert '\r\n'.join([',a', '1,2', '0,4']) in force_text(
-            response.content
-        )
+        assert '\r\n'.join([',a', '1,2', '0,4']) in force_text(response.content)

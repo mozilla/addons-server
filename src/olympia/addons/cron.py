@@ -11,7 +11,8 @@ from olympia.addons.tasks import (
     update_addon_average_daily_users as _update_addon_average_daily_users,
     update_addon_hotness as _update_addon_hotness,
     update_addon_weekly_downloads as _update_addon_weekly_downloads,
-    update_appsupport)
+    update_appsupport,
+)
 from olympia.amo.celery import create_chunked_tasks_signatures
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import chunked
@@ -19,7 +20,8 @@ from olympia.files.models import File
 from olympia.stats.utils import (
     get_addons_and_average_daily_users_from_bigquery,
     get_addons_and_weekly_downloads_from_bigquery,
-    get_averages_by_addon_from_bigquery)
+    get_averages_by_addon_from_bigquery,
+)
 
 
 log = olympia.core.logger.getLogger('z.cron')
@@ -32,8 +34,7 @@ def update_addon_average_daily_users(chunk_size=250):
         # In order to reset the `average_daily_users` values of add-ons that
         # don't exist in BigQuery, we prepare a set of `(guid, 0)` for most
         # add-ons.
-        Addon.unfiltered
-        .filter(type__in=amo.ADDON_TYPES_WITH_STATS)
+        Addon.unfiltered.filter(type__in=amo.ADDON_TYPES_WITH_STATS)
         .exclude(guid__isnull=True)
         .exclude(guid__exact='')
         .exclude(average_daily_users=0)
@@ -47,8 +48,7 @@ def update_addon_average_daily_users(chunk_size=250):
     counts.update(get_addons_and_average_daily_users_from_bigquery())
     counts = list(counts.items())
 
-    log.info('Preparing update of `average_daily_users` for %s add-ons.',
-             len(counts))
+    log.info('Preparing update of `average_daily_users` for %s add-ons.', len(counts))
 
     create_chunked_tasks_signatures(
         _update_addon_average_daily_users, counts, chunk_size
@@ -88,24 +88,28 @@ def addon_last_updated():
     _change_last_updated(next)
 
     # Get anything that didn't match above.
-    other = (Addon.objects.filter(last_updated__isnull=True)
-             .values_list('id', 'created'))
+    other = Addon.objects.filter(last_updated__isnull=True).values_list('id', 'created')
     _change_last_updated(dict(other))
 
 
 def update_addon_appsupport():
     # Find all the add-ons that need their app support details updated.
-    newish = (Q(last_updated__gte=F('appsupport__created')) |
-              Q(appsupport__created__isnull=True))
+    newish = Q(last_updated__gte=F('appsupport__created')) | Q(
+        appsupport__created__isnull=True
+    )
     has_app_and_file = Q(
         versions__apps__isnull=False,
-        versions__files__status__in=amo.VALID_FILE_STATUSES)
-    ids = (Addon.objects.valid().distinct()
-           .filter(newish, has_app_and_file).values_list('id', flat=True))
+        versions__files__status__in=amo.VALID_FILE_STATUSES,
+    )
+    ids = (
+        Addon.objects.valid()
+        .distinct()
+        .filter(newish, has_app_and_file)
+        .values_list('id', flat=True)
+    )
 
     task_log.info('Updating appsupport for %d new-ish addons.' % len(ids))
-    ts = [update_appsupport.subtask(args=[chunk])
-          for chunk in chunked(ids, 20)]
+    ts = [update_appsupport.subtask(args=[chunk]) for chunk in chunked(ids, 20)]
     group(ts).apply_async()
 
 
@@ -117,10 +121,11 @@ def hide_disabled_files():
 
     See also unhide_disabled_files().
     """
-    ids = (File.objects.filter(
-        Q(version__addon__status=amo.STATUS_DISABLED) |
-        Q(version__addon__disabled_by_user=True) |
-        Q(status=amo.STATUS_DISABLED)).values_list('id', flat=True))
+    ids = File.objects.filter(
+        Q(version__addon__status=amo.STATUS_DISABLED)
+        | Q(version__addon__disabled_by_user=True)
+        | Q(status=amo.STATUS_DISABLED)
+    ).values_list('id', flat=True)
     for chunk in chunked(ids, 300):
         qs = File.objects.select_related('version').filter(id__in=chunk)
         for file_ in qs:
@@ -137,10 +142,11 @@ def unhide_disabled_files():
 
     See also hide_disabled_files().
     """
-    ids = (File.objects.exclude(
-        Q(version__addon__status=amo.STATUS_DISABLED) |
-        Q(version__addon__disabled_by_user=True) |
-        Q(status=amo.STATUS_DISABLED)).values_list('id', flat=True))
+    ids = File.objects.exclude(
+        Q(version__addon__status=amo.STATUS_DISABLED)
+        | Q(version__addon__disabled_by_user=True)
+        | Q(status=amo.STATUS_DISABLED)
+    ).values_list('id', flat=True)
     for chunk in chunked(ids, 300):
         qs = File.objects.select_related('version').filter(id__in=chunk)
         for file_ in qs:
@@ -172,17 +178,14 @@ def update_addon_hotness(chunk_size=300):
         .values_list('guid', flat=True)
     )
     averages = {
-        guid: {'avg_this_week': 1, 'avg_three_weeks_before': 1}
-        for guid in amo_guids
+        guid: {'avg_this_week': 1, 'avg_three_weeks_before': 1} for guid in amo_guids
     }
     log.info('Found %s add-on GUIDs in AMO DB.', len(averages))
 
     bq_averages = get_averages_by_addon_from_bigquery(
         today=date.today(), exclude=frozen_guids
     )
-    log.info(
-        'Found %s add-on GUIDs with averages in BigQuery.', len(bq_averages)
-    )
+    log.info('Found %s add-on GUIDs with averages in BigQuery.', len(bq_averages))
 
     averages.update(bq_averages)
     log.info('Preparing update of `hotness` for %s add-ons.', len(averages))
@@ -200,8 +203,7 @@ def update_addon_weekly_downloads(chunk_size=250):
         # In order to reset the `weekly_downloads` values of add-ons that
         # don't exist in BigQuery, we prepare a set of `(hashed_guid, 0)`
         # for most add-ons.
-        Addon.objects
-        .filter(type__in=amo.ADDON_TYPES_WITH_STATS)
+        Addon.objects.filter(type__in=amo.ADDON_TYPES_WITH_STATS)
         .exclude(guid__isnull=True)
         .exclude(guid__exact='')
         .exclude(weekly_downloads=0)
@@ -212,8 +214,7 @@ def update_addon_weekly_downloads(chunk_size=250):
     counts.update(get_addons_and_weekly_downloads_from_bigquery())
     counts = list(counts.items())
 
-    log.info('Preparing update of `weekly_downloads` for %s add-ons.',
-             len(counts))
+    log.info('Preparing update of `weekly_downloads` for %s add-ons.', len(counts))
 
     create_chunked_tasks_signatures(
         _update_addon_weekly_downloads, counts, chunk_size

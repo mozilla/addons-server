@@ -20,6 +20,7 @@ class BaseESSerializer(serializers.ModelSerializer):
     the parent model serializer (e.g., AddonSerializer).
 
     """
+
     # In base classes add the field names we want converted to Python
     # datetime from the Elasticsearch datetime strings.
     datetime_fields = ()
@@ -85,13 +86,11 @@ class BaseESSerializer(serializers.ModelSerializer):
         """Deserialize ES translation fields."""
         for field_name in field_names:
             if field_name in self.fields:
-                self.fields[field_name].attach_translations(
-                    obj, data, field_name)
+                self.fields[field_name].attach_translations(obj, data, field_name)
         return obj
 
 
 class SiteStatusSerializer(serializers.BaseSerializer):
-
     def to_representation(self, obj):
         return {
             'read_only': settings.READ_ONLY,

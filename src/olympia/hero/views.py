@@ -10,8 +10,7 @@ from rest_framework.viewsets import GenericViewSet
 from olympia import amo
 
 from .models import PrimaryHero, SecondaryHero
-from .serializers import (
-    PrimaryHeroShelfSerializer, SecondaryHeroShelfSerializer)
+from .serializers import PrimaryHeroShelfSerializer, SecondaryHeroShelfSerializer
 
 
 class ShelfViewSet(ListModelMixin, GenericViewSet):
@@ -54,15 +53,18 @@ class PrimaryHeroShelfViewSet(ShelfViewSet):
         qs = super().get_queryset()
         if not self.is_all:
             qs = qs.filter(
-                Q(promoted_addon__addon__status=amo.STATUS_APPROVED) |
-                Q(is_external=True,
-                  promoted_addon__addon__status__in=(
-                      amo.VALID_ADDON_STATUSES + (amo.STATUS_NULL,))),
-                promoted_addon__addon__disabled_by_user=False
+                Q(promoted_addon__addon__status=amo.STATUS_APPROVED)
+                | Q(
+                    is_external=True,
+                    promoted_addon__addon__status__in=(
+                        amo.VALID_ADDON_STATUSES + (amo.STATUS_NULL,)
+                    ),
+                ),
+                promoted_addon__addon__disabled_by_user=False,
             )
-        qs = (qs.select_related('promoted_addon', 'select_image')
-                .prefetch_related(
-                    'promoted_addon__addon___current_version__previews'))
+        qs = qs.select_related('promoted_addon', 'select_image').prefetch_related(
+            'promoted_addon__addon___current_version__previews'
+        )
         return qs
 
 
@@ -79,10 +81,10 @@ class SecondaryHeroShelfViewSet(ShelfViewSet):
 class HeroShelvesView(APIView):
     def get(self, request, format=None):
         output = {
-            'primary': PrimaryHeroShelfViewSet(
-                request=request).get_one_random_data(),
+            'primary': PrimaryHeroShelfViewSet(request=request).get_one_random_data(),
             'secondary': SecondaryHeroShelfViewSet(
-                request=request).get_one_random_data(),
+                request=request
+            ).get_one_random_data(),
         }
         return Response(output)
 

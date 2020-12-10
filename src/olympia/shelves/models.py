@@ -10,16 +10,20 @@ ENDPOINT_CHOICES = tuple((ty, ty) for ty in ENDPOINTS)
 class Shelf(ModelBase):
     title = models.CharField(max_length=200)
     endpoint = models.CharField(
-        max_length=200, choices=ENDPOINT_CHOICES, db_column='shelf_type')
+        max_length=200, choices=ENDPOINT_CHOICES, db_column='shelf_type'
+    )
     criteria = models.CharField(
         max_length=200,
-        help_text='e.g., ?promoted=recommended&sort=random&type=extension')
+        help_text='e.g., ?promoted=recommended&sort=random&type=extension',
+    )
     footer_text = models.CharField(
-        max_length=200, blank=True,
-        help_text='e.g., See more recommended extensions')
+        max_length=200, blank=True, help_text='e.g., See more recommended extensions'
+    )
     footer_pathname = models.CharField(
-        max_length=255, blank=True,
-        help_text='e.g., collections/4757633/privacy-matters')
+        max_length=255,
+        blank=True,
+        help_text='e.g., collections/4757633/privacy-matters',
+    )
 
     class Meta:
         verbose_name_plural = 'shelves'
@@ -39,6 +43,5 @@ class ShelfManagement(ModelBase):
     class Meta:
         verbose_name_plural = 'homepage shelves'
         constraints = [
-            models.UniqueConstraint(fields=('enabled', 'position'),
-                                    name='position_id')
+            models.UniqueConstraint(fields=('enabled', 'position'), name='position_id')
         ]

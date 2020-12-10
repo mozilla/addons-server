@@ -18,31 +18,36 @@ class TestUpdateUserRatings(TestCase):
         version_deleted = addon_deleted.current_version
         addon_deleted.delete()
 
-        addon_user_disabled = addon_factory(users=[developer_a],
-                                            disabled_by_user=True)
+        addon_user_disabled = addon_factory(users=[developer_a], disabled_by_user=True)
 
         Rating.objects.create(
-            rating=4, addon=addon1, version=addon1.current_version,
-            user=user_factory())
+            rating=4, addon=addon1, version=addon1.current_version, user=user_factory()
+        )
         Rating.objects.create(
-            rating=5, addon=addon1, version=addon1.current_version,
-            user=user_factory())
+            rating=5, addon=addon1, version=addon1.current_version, user=user_factory()
+        )
         Rating.objects.create(
-            rating=3, addon=addon2, version=addon2.current_version,
-            user=user_factory())
+            rating=3, addon=addon2, version=addon2.current_version, user=user_factory()
+        )
         Rating.objects.create(  # Should be ignored, addon is deleted.
-            rating=5, addon=addon_deleted,
-            version=version_deleted, user=user_factory())
+            rating=5, addon=addon_deleted, version=version_deleted, user=user_factory()
+        )
         Rating.objects.create(  # Should be ignored, rating is 0
-            rating=0, addon=addon3, version=addon3.current_version,
-            user=user_factory())
+            rating=0, addon=addon3, version=addon3.current_version, user=user_factory()
+        )
         Rating.objects.create(  # Should be ignored, rating is deleted.
-            rating=3, addon=addon2, version=addon2.current_version,
-            user=user_factory(), deleted=True)
+            rating=3,
+            addon=addon2,
+            version=addon2.current_version,
+            user=user_factory(),
+            deleted=True,
+        )
         Rating.objects.create(  # Should be ignored, add-on is user-disabled
-            rating=1, addon=addon_user_disabled,
+            rating=1,
+            addon=addon_user_disabled,
             version=addon_user_disabled.current_version,
-            user=user_factory())
+            user=user_factory(),
+        )
 
         update_user_ratings()
 

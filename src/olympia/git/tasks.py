@@ -21,9 +21,7 @@ log = olympia.core.logger.getLogger('z.git.task')
 @use_primary_db
 def remove_git_extraction_entry(addon_pk):
     log.info('Removing add-on "%s" from the git extraction queue.', addon_pk)
-    GitExtractionEntry.objects.filter(
-        addon_id=addon_pk, in_progress=True
-    ).delete()
+    GitExtractionEntry.objects.filter(addon_id=addon_pk, in_progress=True).delete()
 
 
 @task
@@ -34,9 +32,9 @@ def continue_git_extraction(addon_pk):
         'still versions to git-extract.',
         addon_pk,
     )
-    GitExtractionEntry.objects.filter(
-        addon_id=addon_pk, in_progress=True
-    ).update(in_progress=False)
+    GitExtractionEntry.objects.filter(addon_id=addon_pk, in_progress=True).update(
+        in_progress=False
+    )
 
 
 @task
@@ -87,9 +85,7 @@ def on_extraction_error(request, exc, traceback, addon_pk):
             log.info('Deleted git repository for add-on "%s".', addon_pk)
             # Create a new git extraction entry.
             GitExtractionEntry.objects.create(addon_id=addon_pk)
-            log.info(
-                'Added add-on "%s" to the git extraction queue.', addon_pk
-            )
+            log.info('Added add-on "%s" to the git extraction queue.', addon_pk)
 
     remove_git_extraction_entry(addon_pk)
 

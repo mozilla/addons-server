@@ -46,14 +46,46 @@ class RatingTypeFilter(admin.SimpleListFilter):
 
 
 class RatingAdmin(admin.ModelAdmin):
-    raw_id_fields = ('addon', 'version', 'user', 'reply_to',)
-    readonly_fields = ('addon', 'addon_link', 'version', 'user', 'reply_to',
-                       'ip_address', 'body', 'rating', 'deleted',
-                       'ip_address_link', 'user_link')
-    fields = ('addon_link', 'version', 'body', 'rating', 'ip_address_link',
-              'user_link', 'deleted')
-    list_display = ('id', 'addon', 'created', 'user', 'ip_address', 'rating',
-                    'is_reply', 'flag', 'deleted', 'truncated_body',)
+    raw_id_fields = (
+        'addon',
+        'version',
+        'user',
+        'reply_to',
+    )
+    readonly_fields = (
+        'addon',
+        'addon_link',
+        'version',
+        'user',
+        'reply_to',
+        'ip_address',
+        'body',
+        'rating',
+        'deleted',
+        'ip_address_link',
+        'user_link',
+    )
+    fields = (
+        'addon_link',
+        'version',
+        'body',
+        'rating',
+        'ip_address_link',
+        'user_link',
+        'deleted',
+    )
+    list_display = (
+        'id',
+        'addon',
+        'created',
+        'user',
+        'ip_address',
+        'rating',
+        'is_reply',
+        'flag',
+        'deleted',
+        'truncated_body',
+    )
     list_filter = ('deleted', RatingTypeFilter, 'rating')
     actions = ('delete_selected',)
     list_select_related = ('user',)  # For addon/reply_to see get_queryset()
@@ -61,8 +93,7 @@ class RatingAdmin(admin.ModelAdmin):
     def get_queryset(self, request):
         base_qs = Rating.unfiltered.all()
         return base_qs.prefetch_related(
-            Prefetch(
-                'addon', queryset=Addon.unfiltered.all().only_translations()),
+            Prefetch('addon', queryset=Addon.unfiltered.all().only_translations()),
             Prefetch('reply_to', queryset=base_qs),
         )
 
@@ -74,22 +105,29 @@ class RatingAdmin(admin.ModelAdmin):
 
     def is_reply(self, obj):
         return bool(obj.reply_to)
+
     is_reply.boolean = True
     is_reply.admin_order_field = 'reply_to'
 
     def addon_link(self, obj):
         return related_single_content_link(obj, 'addon')
+
     addon_link.short_description = _(u'Add-on')
 
     def user_link(self, obj):
         return related_single_content_link(obj, 'user')
+
     user_link.short_description = _(u'User')
 
     def ip_address_link(self, obj):
         return format_html(
             '<a href="{}?{}={}">{}</a>',
             reverse('admin:ratings_rating_changelist'),
-            'ip_address', obj.ip_address, obj.ip_address)
+            'ip_address',
+            obj.ip_address,
+            obj.ip_address,
+        )
+
     ip_address_link.short_description = _(u'IP Address')
 
 

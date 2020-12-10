@@ -2,7 +2,11 @@ from django.db import models
 
 from olympia.amo.models import ManagerBase, ModelBase
 from olympia.translations.fields import (
-    LinkifiedField, PurifiedField, TranslatedField, save_signal)
+    LinkifiedField,
+    PurifiedField,
+    TranslatedField,
+    save_signal,
+)
 
 
 class TranslatedModel(ModelBase):
@@ -13,27 +17,34 @@ class TranslatedModel(ModelBase):
 
     translated_through_fk = models.ForeignKey(
         'TranslatedModelLinkedAsForeignKey',
-        null=True, default=None, on_delete=models.CASCADE)
+        null=True,
+        default=None,
+        on_delete=models.CASCADE,
+    )
     objects = ManagerBase()
 
 
-models.signals.pre_save.connect(save_signal, sender=TranslatedModel,
-                                dispatch_uid='testapp_translatedmodel')
+models.signals.pre_save.connect(
+    save_signal, sender=TranslatedModel, dispatch_uid='testapp_translatedmodel'
+)
 
 
 class UntranslatedModel(ModelBase):
     """Make sure nothing is broken when a model doesn't have translations."""
+
     number = models.IntegerField()
 
 
 class FancyModel(ModelBase):
     """Mix it up with purified and linkified fields."""
+
     purified = PurifiedField()
     linkified = LinkifiedField()
 
 
-models.signals.pre_save.connect(save_signal, sender=FancyModel,
-                                dispatch_uid='testapp_fancymodel')
+models.signals.pre_save.connect(
+    save_signal, sender=FancyModel, dispatch_uid='testapp_fancymodel'
+)
 
 
 class TranslatedModelWithDefaultNull(ModelBase):
@@ -47,22 +58,27 @@ class TranslatedModelLinkedAsForeignKey(ModelBase):
 
 
 models.signals.pre_save.connect(
-    save_signal, sender=TranslatedModelLinkedAsForeignKey,
-    dispatch_uid='testapp_translatedmodellinkedasforeignkey_translations')
+    save_signal,
+    sender=TranslatedModelLinkedAsForeignKey,
+    dispatch_uid='testapp_translatedmodellinkedasforeignkey_translations',
+)
 
 
 models.signals.pre_save.connect(
     save_signal,
     sender=TranslatedModelWithDefaultNull,
-    dispatch_uid='testapp_translatedmodelwithdefaultnull')
+    dispatch_uid='testapp_translatedmodelwithdefaultnull',
+)
 
 
 class ContainsManyToManyToTranslatedModel(ModelBase):
     things = models.ManyToManyField(
-        TranslatedModel, through='ContainsTranslatedThrough')
+        TranslatedModel, through='ContainsTranslatedThrough'
+    )
 
 
 class ContainsTranslatedThrough(ModelBase):
     container = models.ForeignKey(
-        ContainsManyToManyToTranslatedModel, on_delete=models.CASCADE)
+        ContainsManyToManyToTranslatedModel, on_delete=models.CASCADE
+    )
     target = models.ForeignKey(TranslatedModel, on_delete=models.CASCADE)

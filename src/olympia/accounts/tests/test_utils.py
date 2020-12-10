@@ -69,7 +69,8 @@ def test_default_fxa_login_url_with_state():
     raw_url = utils.default_fxa_login_url(request)
     url = urlparse(raw_url)
     base = '{scheme}://{netloc}{path}'.format(
-        scheme=url.scheme, netloc=url.netloc, path=url.path)
+        scheme=url.scheme, netloc=url.netloc, path=url.path
+    )
     assert base == 'https://accounts.firefox.com/oauth/authorization'
     query = parse_qs(url.query)
     next_path = urlsafe_b64encode(force_bytes(path)).rstrip(b'=')
@@ -77,8 +78,7 @@ def test_default_fxa_login_url_with_state():
         'action': ['signin'],
         'client_id': ['foo'],
         'scope': ['profile openid'],
-        'state': ['myfxastate:{next_path}'.format(
-            next_path=force_text(next_path))],
+        'state': ['myfxastate:{next_path}'.format(next_path=force_text(next_path))],
     }
 
 
@@ -91,7 +91,8 @@ def test_default_fxa_register_url_with_state():
     raw_url = utils.default_fxa_register_url(request)
     url = urlparse(raw_url)
     base = '{scheme}://{netloc}{path}'.format(
-        scheme=url.scheme, netloc=url.netloc, path=url.path)
+        scheme=url.scheme, netloc=url.netloc, path=url.path
+    )
     assert base == 'https://accounts.firefox.com/oauth/authorization'
     query = parse_qs(url.query)
     next_path = urlsafe_b64encode(force_bytes(path)).rstrip(b'=')
@@ -99,8 +100,7 @@ def test_default_fxa_register_url_with_state():
         'action': ['signup'],
         'client_id': ['foo'],
         'scope': ['profile openid'],
-        'state': ['myfxastate:{next_path}'.format(
-            next_path=force_text(next_path))],
+        'state': ['myfxastate:{next_path}'.format(next_path=force_text(next_path))],
     }
 
 
@@ -113,12 +113,16 @@ def test_fxa_login_url_without_requiring_two_factor_auth():
 
     raw_url = utils.fxa_login_url(
         config=FXA_CONFIG['default'],
-        state=request.session['fxa_state'], next_path=path, action='signin',
-        force_two_factor=False)
+        state=request.session['fxa_state'],
+        next_path=path,
+        action='signin',
+        force_two_factor=False,
+    )
 
     url = urlparse(raw_url)
     base = '{scheme}://{netloc}{path}'.format(
-        scheme=url.scheme, netloc=url.netloc, path=url.path)
+        scheme=url.scheme, netloc=url.netloc, path=url.path
+    )
     assert base == 'https://accounts.firefox.com/oauth/authorization'
     query = parse_qs(url.query)
     next_path = urlsafe_b64encode(path.encode('utf-8')).rstrip(b'=')
@@ -126,8 +130,7 @@ def test_fxa_login_url_without_requiring_two_factor_auth():
         'action': ['signin'],
         'client_id': ['foo'],
         'scope': ['profile openid'],
-        'state': ['myfxastate:{next_path}'.format(
-            next_path=force_text(next_path))],
+        'state': ['myfxastate:{next_path}'.format(next_path=force_text(next_path))],
     }
 
 
@@ -140,12 +143,16 @@ def test_fxa_login_url_requiring_two_factor_auth():
 
     raw_url = utils.fxa_login_url(
         config=FXA_CONFIG['default'],
-        state=request.session['fxa_state'], next_path=path, action='signin',
-        force_two_factor=True)
+        state=request.session['fxa_state'],
+        next_path=path,
+        action='signin',
+        force_two_factor=True,
+    )
 
     url = urlparse(raw_url)
     base = '{scheme}://{netloc}{path}'.format(
-        scheme=url.scheme, netloc=url.netloc, path=url.path)
+        scheme=url.scheme, netloc=url.netloc, path=url.path
+    )
     assert base == 'https://accounts.firefox.com/oauth/authorization'
     query = parse_qs(url.query)
     next_path = urlsafe_b64encode(path.encode('utf-8')).rstrip(b'=')
@@ -154,8 +161,7 @@ def test_fxa_login_url_requiring_two_factor_auth():
         'action': ['signin'],
         'client_id': ['foo'],
         'scope': ['profile openid'],
-        'state': ['myfxastate:{next_path}'.format(
-            next_path=force_text(next_path))],
+        'state': ['myfxastate:{next_path}'.format(next_path=force_text(next_path))],
     }
 
 
@@ -168,12 +174,17 @@ def test_fxa_login_url_requiring_two_factor_auth_passing_token():
 
     raw_url = utils.fxa_login_url(
         config=FXA_CONFIG['default'],
-        state=request.session['fxa_state'], next_path=path, action='signin',
-        force_two_factor=True, id_token='YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXo=')
+        state=request.session['fxa_state'],
+        next_path=path,
+        action='signin',
+        force_two_factor=True,
+        id_token='YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXo=',
+    )
 
     url = urlparse(raw_url)
     base = '{scheme}://{netloc}{path}'.format(
-        scheme=url.scheme, netloc=url.netloc, path=url.path)
+        scheme=url.scheme, netloc=url.netloc, path=url.path
+    )
     assert base == 'https://accounts.firefox.com/oauth/authorization'
     query = parse_qs(url.query)
     next_path = urlsafe_b64encode(path.encode('utf-8')).rstrip(b'=')
@@ -184,8 +195,7 @@ def test_fxa_login_url_requiring_two_factor_auth_passing_token():
         'id_token_hint': ['YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXo='],
         'prompt': ['none'],
         'scope': ['profile openid'],
-        'state': ['myfxastate:{next_path}'.format(
-            next_path=force_text(next_path))],
+        'state': ['myfxastate:{next_path}'.format(next_path=force_text(next_path))],
     }
 
 
@@ -215,8 +225,11 @@ def test_fxa_login_url_when_faking_fxa_auth():
     request = RequestFactory().get(path)
     request.session = {'fxa_state': 'myfxastate'}
     raw_url = utils.fxa_login_url(
-        config=FXA_CONFIG['default'], state=request.session['fxa_state'],
-        next_path=path, action='signin')
+        config=FXA_CONFIG['default'],
+        state=request.session['fxa_state'],
+        next_path=path,
+        action='signin',
+    )
     url = urlparse(raw_url)
     assert url.scheme == ''
     assert url.netloc == ''
@@ -227,46 +240,47 @@ def test_fxa_login_url_when_faking_fxa_auth():
         'action': ['signin'],
         'client_id': ['foo'],
         'scope': ['profile openid'],
-        'state': ['myfxastate:{next_path}'.format(
-            next_path=force_text(next_path))],
+        'state': ['myfxastate:{next_path}'.format(next_path=force_text(next_path))],
     }
 
 
 class TestProcessSqsQueue(TestCase):
-
     @mock.patch('boto3._get_default_session')
     @mock.patch('olympia.accounts.utils.process_fxa_event')
     @mock.patch('boto3.client')
     def test_process_sqs_queue(self, client, process_fxa_event, get_session):
         messages = [
-            {'Body': 'foo', 'ReceiptHandle': '$$$'}, {'Body': 'bar'}, None,
-            {'Body': 'thisonetoo'}]
+            {'Body': 'foo', 'ReceiptHandle': '$$$'},
+            {'Body': 'bar'},
+            None,
+            {'Body': 'thisonetoo'},
+        ]
         sqs = mock.MagicMock(
-            **{'receive_message.side_effect': [{'Messages': messages}]})
+            **{'receive_message.side_effect': [{'Messages': messages}]}
+        )
         session_mock = mock.MagicMock(
-            **{'get_available_regions.side_effect': ['nowh-ere']})
+            **{'get_available_regions.side_effect': ['nowh-ere']}
+        )
         get_session.return_value = session_mock
         delete_mock = mock.MagicMock()
         sqs.delete_message = delete_mock
         client.return_value = sqs
 
         with self.assertRaises(StopIteration):
-            utils.process_sqs_queue(
-                queue_url='https://sqs.nowh-ere.aws.com/123456789/')
+            utils.process_sqs_queue(queue_url='https://sqs.nowh-ere.aws.com/123456789/')
 
         client.assert_called()
-        client.assert_called_with(
-            'sqs', region_name='nowh-ere'
-        )
+        client.assert_called_with('sqs', region_name='nowh-ere')
         process_fxa_event.assert_called()
         # The 'None' in messages would cause an exception, but it should be
         # handled, and the remaining message(s) still processed.
         process_fxa_event.assert_has_calls(
-            [mock.call('foo'), mock.call('bar'), mock.call('thisonetoo')])
+            [mock.call('foo'), mock.call('bar'), mock.call('thisonetoo')]
+        )
         delete_mock.assert_called_once()  # Receipt handle is present in foo.
         delete_mock.assert_called_with(
-            QueueUrl='https://sqs.nowh-ere.aws.com/123456789/',
-            ReceiptHandle='$$$')
+            QueueUrl='https://sqs.nowh-ere.aws.com/123456789/', ReceiptHandle='$$$'
+        )
 
     @mock.patch('olympia.accounts.utils.primary_email_change_event.delay')
     @mock.patch('olympia.accounts.utils.delete_user_event.delay')
@@ -275,15 +289,37 @@ class TestProcessSqsQueue(TestCase):
         process_fxa_event(json.dumps({'Message': ''}))
         process_fxa_event(json.dumps({'Message': 'ddfdfd'}))
         # No timestamps
-        process_fxa_event(json.dumps({'Message': json.dumps(
-            {'email': 'foo@baa', 'event': 'primaryEmailChanged',
-             'uid': '999'})}))
-        process_fxa_event(json.dumps({'Message': json.dumps(
-            {'event': 'delete', 'uid': '999'})}))
+        process_fxa_event(
+            json.dumps(
+                {
+                    'Message': json.dumps(
+                        {
+                            'email': 'foo@baa',
+                            'event': 'primaryEmailChanged',
+                            'uid': '999',
+                        }
+                    )
+                }
+            )
+        )
+        process_fxa_event(
+            json.dumps({'Message': json.dumps({'event': 'delete', 'uid': '999'})})
+        )
         # Not a supported event type
-        process_fxa_event(json.dumps({'Message': json.dumps(
-            {'email': 'foo@baa', 'event': 'not-an-event', 'uid': '999',
-             'ts': totimestamp(datetime.now())})}))
+        process_fxa_event(
+            json.dumps(
+                {
+                    'Message': json.dumps(
+                        {
+                            'email': 'foo@baa',
+                            'event': 'not-an-event',
+                            'uid': '999',
+                            'ts': totimestamp(datetime.now()),
+                        }
+                    )
+                }
+            )
+        )
         delete_mock.assert_not_called()
         email_mock.assert_not_called()
 
@@ -297,23 +333,32 @@ class TestProcessFxAEventEmail(TestCase):
 
     def setUp(self):
         self.email_changed_date = self.days_ago(42)
-        self.body = json.dumps({'Message': json.dumps(
-            {'email': 'new-email@example.com', 'event': 'primaryEmailChanged',
-             'uid': self.fxa_id,
-             'ts': totimestamp(self.email_changed_date)})})
+        self.body = json.dumps(
+            {
+                'Message': json.dumps(
+                    {
+                        'email': 'new-email@example.com',
+                        'event': 'primaryEmailChanged',
+                        'uid': self.fxa_id,
+                        'ts': totimestamp(self.email_changed_date),
+                    }
+                )
+            }
+        )
 
     def test_success_integration(self):
-        user = user_factory(email='old-email@example.com',
-                            fxa_id=self.fxa_id)
+        user = user_factory(email='old-email@example.com', fxa_id=self.fxa_id)
         process_fxa_event(self.body)
         user.reload()
         assert user.email == 'new-email@example.com'
         assert user.email_changed == self.email_changed_date
 
     def test_success_integration_previously_changed_once(self):
-        user = user_factory(email='old-email@example.com',
-                            fxa_id=self.fxa_id,
-                            email_changed=datetime(2017, 10, 11))
+        user = user_factory(
+            email='old-email@example.com',
+            fxa_id=self.fxa_id,
+            email_changed=datetime(2017, 10, 11),
+        )
         process_fxa_event(self.body)
         user.reload()
         assert user.email == 'new-email@example.com'
@@ -324,9 +369,8 @@ class TestProcessFxAEventEmail(TestCase):
         process_fxa_event(self.body)
         primary_email_change_event.assert_called()
         primary_email_change_event.assert_called_with(
-            self.fxa_id,
-            totimestamp(self.email_changed_date),
-            'new-email@example.com')
+            self.fxa_id, totimestamp(self.email_changed_date), 'new-email@example.com'
+        )
 
 
 class TestProcessFxAEventDelete(TestCase):
@@ -334,10 +378,17 @@ class TestProcessFxAEventDelete(TestCase):
 
     def setUp(self):
         self.email_changed_date = self.days_ago(42)
-        self.body = json.dumps({'Message': json.dumps(
-            {'event': 'delete',
-             'uid': self.fxa_id,
-             'ts': totimestamp(self.email_changed_date)})})
+        self.body = json.dumps(
+            {
+                'Message': json.dumps(
+                    {
+                        'event': 'delete',
+                        'uid': self.fxa_id,
+                        'ts': totimestamp(self.email_changed_date),
+                    }
+                )
+            }
+        )
 
     @override_switch('fxa-account-delete', active=True)
     def test_success_integration(self):
@@ -353,5 +404,5 @@ class TestProcessFxAEventDelete(TestCase):
         process_fxa_event(self.body)
         delete_user_event_mock.assert_called()
         delete_user_event_mock.assert_called_with(
-            self.fxa_id,
-            totimestamp(self.email_changed_date))
+            self.fxa_id, totimestamp(self.email_changed_date)
+        )

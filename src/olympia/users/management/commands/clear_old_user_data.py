@@ -16,7 +16,8 @@ log = olympia.core.logger.getLogger('z.users')
 class Command(BaseCommand):
     help = (
         'Clear user data on addon developers deleted more than 7 years ago, '
-        'and non addon-developers after 24 hours')
+        'and non addon-developers after 24 hours'
+    )
 
     def handle(self, *args, **options):
         profile_clear = {
@@ -29,20 +30,15 @@ class Command(BaseCommand):
 
         seven_year_q = Q(modified__lt=seven_years_ago)
         one_day_q = Q(
-            ~Q(**profile_clear),
-            addons=None,
-            modified__lt=one_day_ago,
-            banned=None)
-        users = list(
-            UserProfile.objects.filter(seven_year_q | one_day_q, deleted=True))
-        user_restrictions = UserRestrictionHistory.objects.filter(
-            user__in=users)
+            ~Q(**profile_clear), addons=None, modified__lt=one_day_ago, banned=None
+        )
+        users = list(UserProfile.objects.filter(seven_year_q | one_day_q, deleted=True))
+        user_restrictions = UserRestrictionHistory.objects.filter(user__in=users)
 
         addonuser_qs = AddonUser.objects.filter(user__in=users)
-        addons_qs = (
-            Addon.unfiltered.filter(
-                status__in=(amo.STATUS_DELETED, amo.STATUS_DISABLED),
-                addonuser__in=addonuser_qs)
+        addons_qs = Addon.unfiltered.filter(
+            status__in=(amo.STATUS_DELETED, amo.STATUS_DISABLED),
+            addonuser__in=addonuser_qs,
         )
         addon_ids = list(addons_qs.values_list('id', flat=True))
 

@@ -22,7 +22,10 @@ from olympia.accounts.serializers import BaseUserSerializer
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.addons.serializers import (
-    FileSerializer, MinimalVersionSerializer, SimpleAddonSerializer)
+    FileSerializer,
+    MinimalVersionSerializer,
+    SimpleAddonSerializer,
+)
 from olympia.addons.models import AddonReviewerFlags
 from olympia.api.fields import ReverseChoiceField, SplitField
 from olympia.users.models import UserProfile
@@ -55,16 +58,14 @@ class FileEntriesMixin(object):
         if isinstance(self.instance, Version):
             return self.instance
 
-        if self.parent is not None and isinstance(
-                self.parent.instance, Version):
+        if self.parent is not None and isinstance(self.parent.instance, Version):
             return self.parent.instance
 
         version = self.context.get('version', None)
         if isinstance(version, Version):
             return version
 
-        raise RuntimeError(
-            'This serialzer should not be created without a Version')
+        raise RuntimeError('This serialzer should not be created without a Version')
 
     @cached_property
     def repo(self):
@@ -79,11 +80,9 @@ class FileEntriesMixin(object):
         """Return the pygit2 repository instance, preselect correct channel."""
         # Caching the commit to avoid calling revparse_single many times.
         try:
-            return self.git_repo.revparse_single(
-                self._get_version().git_hash)
+            return self.git_repo.revparse_single(self._get_version().git_hash)
         except pygit2.InvalidSpecError:
-            raise NotFound(
-                'Couldn\'t find the requested version in git-repository')
+            raise NotFound('Couldn\'t find the requested version in git-repository')
 
     @cached_property
     def tree(self):
@@ -141,10 +140,10 @@ class FileEntriesMixin(object):
         # Normalize the key as we want to avoid that we exceed max
         # key lengh because of selected_file.
         cache_key = make_key(
-            f'reviewers:fileentriesserializer:hashes'
-            f':{commit.hex}:{selected_file}',
+            f'reviewers:fileentriesserializer:hashes' f':{commit.hex}:{selected_file}',
             with_locale=False,
-            normalize=True)
+            normalize=True,
+        )
 
         def _calculate_hash():
             if blob is None:
@@ -174,7 +173,8 @@ class FileEntriesMixin(object):
                 blob = entry_wrapper.blob
 
                 mimetype, entry_mime_category = get_mime_type_for_blob(
-                    tree_or_blob=entry.type, name=entry.name)
+                    tree_or_blob=entry.type, name=entry.name
+                )
 
                 result[path] = {
                     'depth': path.count(os.sep),
@@ -193,7 +193,8 @@ class FileEntriesMixin(object):
             # Store information about this commit for 24h which should be
             # enough to cover regular review-times but not overflow our
             # cache
-            60 * 60 * 24)
+            60 * 60 * 24,
+        )
 
         # Fetch and set the sha hash for the currently selected file.
         sha256 = self._get_hash_for_selected_file()
@@ -205,17 +206,14 @@ class FileEntriesMixin(object):
 class FileEntriesDiffMixin(FileEntriesMixin):
     def _get_entries(self):
         """Overwrite `FileEntriesMixin._get_entries to inject
-            added/removed/changed information."""
+        added/removed/changed information."""
         commit = self._get_version().git_hash
         parent = self.context['parent_version'].git_hash
 
         # Initial commits have both set to the same version
         parent = parent if parent != commit else None
 
-        deltas = self.repo.get_deltas(
-            commit=commit,
-            parent=parent,
-            pathspec=None)
+        deltas = self.repo.get_deltas(commit=commit, parent=parent, pathspec=None)
 
         entries = super()._get_entries()
 
@@ -253,11 +251,7 @@ class FileEntriesDiffMixin(FileEntriesMixin):
             for index, parent in enumerate(pathlib.Path(path).parents):
                 parent = str(parent)
 
-                if (
-                    path_deleted is True and
-                    parent != '.' and
-                    parent not in entries
-                ):
+                if path_deleted is True and parent != '.' and parent not in entries:
                     # The parent directory of this deleted file does not
                     # exist. This could happen if no other files were
                     # modified within the directory.
@@ -288,10 +282,18 @@ class FileInfoSerializer(serializers.ModelSerializer, FileEntriesMixin):
     filename = serializers.SerializerMethodField()
 
     class Meta:
-        fields = ('id', 'content', 'selected_file', 'download_url',
-                  'uses_unknown_minified_code', 'mimetype', 'sha256', 'size',
-                  'mime_category', 'filename'
-                  )
+        fields = (
+            'id',
+            'content',
+            'selected_file',
+            'download_url',
+            'uses_unknown_minified_code',
+            'mimetype',
+            'sha256',
+            'size',
+            'mime_category',
+            'filename',
+        )
         model = File
 
     def get_selected_file(self, obj):
@@ -320,7 +322,8 @@ class FileInfoSerializer(serializers.ModelSerializer, FileEntriesMixin):
         blob, name = self._get_blob_for_selected_file()
         if blob is not None:
             mimetype, mime_category = get_mime_type_for_blob(
-                tree_or_blob='blob', name=name)
+                tree_or_blob='blob', name=name
+            )
 
             # Only return the raw data if we detect a file that contains text
             # data that actually can be rendered.
@@ -351,28 +354,28 @@ class FileInfoSerializer(serializers.ModelSerializer, FileEntriesMixin):
         selected_file = self._get_selected_file()
         blob, name = self._get_blob_for_selected_file()
         if blob is not None:
-            return absolutify(reverse(
-                'reviewers.download_git_file',
-                kwargs={
-                    'version_id': self._get_version().pk,
-                    'filename': selected_file
-                }
-            ))
+            return absolutify(
+                reverse(
+                    'reviewers.download_git_file',
+                    kwargs={
+                        'version_id': self._get_version().pk,
+                        'filename': selected_file,
+                    },
+                )
+            )
 
         return None
 
 
 class MinimalVersionSerializerWithChannel(MinimalVersionSerializer):
-    channel = ReverseChoiceField(
-        choices=list(amo.CHANNEL_CHOICES_API.items()))
+    channel = ReverseChoiceField(choices=list(amo.CHANNEL_CHOICES_API.items()))
 
     class Meta:
         model = Version
         fields = ('id', 'channel', 'version')
 
 
-class AddonBrowseVersionSerializerFileOnly(
-        MinimalVersionSerializerWithChannel):
+class AddonBrowseVersionSerializerFileOnly(MinimalVersionSerializerWithChannel):
     file = FileInfoSerializer(source='current_file')
 
     class Meta:
@@ -381,7 +384,8 @@ class AddonBrowseVersionSerializerFileOnly(
 
 
 class AddonBrowseVersionSerializer(
-        AddonBrowseVersionSerializerFileOnly, FileEntriesMixin):
+    AddonBrowseVersionSerializerFileOnly, FileEntriesMixin
+):
     validation_url_json = serializers.SerializerMethodField()
     validation_url = serializers.SerializerMethodField()
     has_been_validated = serializers.SerializerMethodField()
@@ -391,9 +395,16 @@ class AddonBrowseVersionSerializer(
     class Meta:
         model = Version
         fields = (
-            'id', 'channel', 'reviewed', 'version',
-            'addon', 'file', 'has_been_validated', 'validation_url',
-            'validation_url_json', 'file_entries'
+            'id',
+            'channel',
+            'reviewed',
+            'version',
+            'addon',
+            'file',
+            'has_been_validated',
+            'validation_url',
+            'validation_url_json',
+            'file_entries',
         )
 
     def get_file_entries(self, obj):
@@ -407,22 +418,25 @@ class AddonBrowseVersionSerializer(
         return result
 
     def _trim_entry(self, entry):
-        return {key: entry[key] for key in (
-                'depth', 'filename', 'mime_category', 'path', 'status'
-                ) if key in entry}
+        return {
+            key: entry[key]
+            for key in ('depth', 'filename', 'mime_category', 'path', 'status')
+            if key in entry
+        }
 
     def get_validation_url_json(self, obj):
-        return absolutify(drf_reverse(
-            'reviewers-addon-json-file-validation',
-            request=self.context.get('request'),
-            args=[
-                obj.addon.pk, obj.current_file.id
-            ]))
+        return absolutify(
+            drf_reverse(
+                'reviewers-addon-json-file-validation',
+                request=self.context.get('request'),
+                args=[obj.addon.pk, obj.current_file.id],
+            )
+        )
 
     def get_validation_url(self, obj):
-        return absolutify(reverse('devhub.file_validation', args=[
-            obj.addon.pk, obj.current_file.id
-        ]))
+        return absolutify(
+            reverse('devhub.file_validation', args=[obj.addon.pk, obj.current_file.id])
+        )
 
     def get_has_been_validated(self, obj):
         return obj.current_file.has_been_validated
@@ -446,10 +460,19 @@ class FileInfoDiffSerializer(FileInfoSerializer, FileEntriesDiffMixin):
     base_file = serializers.SerializerMethodField()
 
     class Meta:
-        fields = ('id', 'diff', 'selected_file', 'download_url',
-                  'uses_unknown_minified_code', 'base_file',
-                  'sha256', 'size', 'mimetype', 'mime_category', 'filename'
-                  )
+        fields = (
+            'id',
+            'diff',
+            'selected_file',
+            'download_url',
+            'uses_unknown_minified_code',
+            'base_file',
+            'sha256',
+            'size',
+            'mimetype',
+            'mime_category',
+            'filename',
+        )
         model = File
 
     def get_diff(self, obj):
@@ -460,9 +483,8 @@ class FileInfoDiffSerializer(FileInfoSerializer, FileEntriesDiffMixin):
         parent = parent if parent != commit else None
 
         diff = self.repo.get_diff(
-            commit=commit,
-            parent=parent,
-            pathspec=[self._get_selected_file()])
+            commit=commit, parent=parent, pathspec=[self._get_selected_file()]
+        )
 
         # Because we're always specifying `pathspec` with the currently
         # selected file we can inline the diff because there will always be
@@ -493,8 +515,7 @@ class FileInfoDiffSerializer(FileInfoSerializer, FileEntriesDiffMixin):
         return MinimalBaseFileSerializer(instance=base_file).data
 
 
-class AddonCompareVersionSerializerFileOnly(
-        AddonBrowseVersionSerializer):
+class AddonCompareVersionSerializerFileOnly(AddonBrowseVersionSerializer):
     file = FileInfoDiffSerializer(source='current_file')
 
     class Meta:
@@ -503,8 +524,8 @@ class AddonCompareVersionSerializerFileOnly(
 
 
 class AddonCompareVersionSerializer(
-        AddonCompareVersionSerializerFileOnly, FileEntriesDiffMixin):
-
+    AddonCompareVersionSerializerFileOnly, FileEntriesDiffMixin
+):
     class Meta(AddonBrowseVersionSerializer.Meta):
         pass
 
@@ -525,22 +546,30 @@ class CannedResponseSerializer(serializers.ModelSerializer):
 class DraftCommentSerializer(serializers.ModelSerializer):
     user = SplitField(
         serializers.PrimaryKeyRelatedField(queryset=UserProfile.objects.all()),
-        BaseUserSerializer())
+        BaseUserSerializer(),
+    )
     version_id = serializers.PrimaryKeyRelatedField(
-        queryset=Version.unfiltered.all(), source='version')
+        queryset=Version.unfiltered.all(), source='version'
+    )
     canned_response = SplitField(
         serializers.PrimaryKeyRelatedField(
-            queryset=CannedResponse.objects.all(),
-            required=False),
+            queryset=CannedResponse.objects.all(), required=False
+        ),
         CannedResponseSerializer(),
         allow_null=True,
-        required=False)
+        required=False,
+    )
 
     class Meta:
         model = DraftComment
         fields = (
-            'id', 'filename', 'lineno', 'comment',
-            'version_id', 'user', 'canned_response'
+            'id',
+            'filename',
+            'lineno',
+            'comment',
+            'version_id',
+            'user',
+            'canned_response',
         )
 
     def get_or_default(self, key, data, default=''):
@@ -564,21 +593,29 @@ class DraftCommentSerializer(serializers.ModelSerializer):
 
         if comment and canned_response:
             raise serializers.ValidationError(
-                {'comment': ugettext(
-                    'You can\'t submit a comment if `canned_response` is '
-                    'defined.')})
+                {
+                    'comment': ugettext(
+                        'You can\'t submit a comment if `canned_response` is '
+                        'defined.'
+                    )
+                }
+            )
 
         if not canned_response and not comment:
             raise serializers.ValidationError(
-                {'comment': ugettext(
-                    'You can\'t submit an empty comment.')})
+                {'comment': ugettext('You can\'t submit an empty comment.')}
+            )
 
         lineno = self.get_or_default('lineno', data)
         filename = self.get_or_default('filename', data)
 
         if lineno and not filename:
             raise serializers.ValidationError(
-                {'comment': ugettext(
-                    'You can\'t submit a line number without associating '
-                    'it to a filename.')})
+                {
+                    'comment': ugettext(
+                        'You can\'t submit a line number without associating '
+                        'it to a filename.'
+                    )
+                }
+            )
         return data

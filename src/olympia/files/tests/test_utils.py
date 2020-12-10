@@ -44,8 +44,7 @@ class AppVersionsMixin(object):
 
     @classmethod
     def create_appversion(cls, name, version):
-        return AppVersion.objects.create(application=amo.APPS[name].id,
-                                         version=version)
+        return AppVersion.objects.create(application=amo.APPS[name].id, version=version)
 
     @classmethod
     def create_webext_default_versions(cls):
@@ -53,26 +52,20 @@ class AppVersionsMixin(object):
         cls.create_appversion('firefox', amo.DEFAULT_WEBEXT_MIN_VERSION)
         cls.create_appversion('firefox', amo.DEFAULT_WEBEXT_MAX_VERSION)
         cls.create_appversion('firefox', amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID)
-        cls.create_appversion(
-            'android', amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID)
-        cls.create_appversion(
-            'android', amo.DEFAULT_WEBEXT_MAX_VERSION)
-        cls.create_appversion(
-            'firefox', amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX)
-        cls.create_appversion(
-            'android', amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID)
+        cls.create_appversion('android', amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID)
+        cls.create_appversion('android', amo.DEFAULT_WEBEXT_MAX_VERSION)
+        cls.create_appversion('firefox', amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX)
+        cls.create_appversion('android', amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID)
 
 
 class TestExtractor(AppVersionsMixin, TestCase):
-
     def test_no_manifest(self):
         fake_zip = utils.make_xpi({'dummy': 'dummy'})
 
         with self.assertRaises(utils.NoManifestFound) as exc:
             utils.Extractor.parse(fake_zip)
         assert isinstance(exc.exception, forms.ValidationError)
-        assert exc.exception.message == (
-            'No install.rdf or manifest.json found')
+        assert exc.exception.message == ('No install.rdf or manifest.json found')
 
     @mock.patch('olympia.files.utils.ManifestJSONExtractor')
     @mock.patch('olympia.files.utils.RDFExtractor')
@@ -103,8 +96,9 @@ class TestExtractor(AppVersionsMixin, TestCase):
 
     @mock.patch('olympia.files.utils.ManifestJSONExtractor')
     @mock.patch('olympia.files.utils.RDFExtractor')
-    def test_prefers_manifest_to_install_rdf(self, rdf_extractor,
-                                             manifest_json_extractor):
+    def test_prefers_manifest_to_install_rdf(
+        self, rdf_extractor, manifest_json_extractor
+    ):
         fake_zip = utils.make_xpi({'install.rdf': '', 'manifest.json': ''})
         utils.Extractor.parse(fake_zip)
         assert not rdf_extractor.called
@@ -113,8 +107,7 @@ class TestExtractor(AppVersionsMixin, TestCase):
     @mock.patch('olympia.files.utils.os.path.getsize')
     def test_static_theme_max_size(self, getsize_mock):
         getsize_mock.return_value = settings.MAX_STATICTHEME_SIZE
-        manifest = utils.ManifestJSONExtractor(
-            '/fake_path', '{"theme": {}}').parse()
+        manifest = utils.ManifestJSONExtractor('/fake_path', '{"theme": {}}').parse()
 
         # Calling to check it doesn't raise.
         assert utils.check_xpi_info(manifest, xpi_file=mock.Mock())
@@ -124,34 +117,36 @@ class TestExtractor(AppVersionsMixin, TestCase):
         with pytest.raises(forms.ValidationError) as exc:
             utils.check_xpi_info(manifest, xpi_file=mock.Mock())
 
-        assert (
-            exc.value.message ==
-            u'Maximum size for WebExtension themes is 7.0 MB.')
+        assert exc.value.message == u'Maximum size for WebExtension themes is 7.0 MB.'
 
         # dpuble check only static themes are limited
-        manifest = utils.ManifestJSONExtractor(
-            '/fake_path', '{}').parse()
+        manifest = utils.ManifestJSONExtractor('/fake_path', '{}').parse()
         assert utils.check_xpi_info(manifest, xpi_file=mock.Mock())
 
 
 class TestRDFExtractor(TestCase):
     def setUp(self):
         self.firefox_versions = [
-            AppVersion.objects.create(application=amo.APPS['firefox'].id,
-                                      version='38.0a1'),
-            AppVersion.objects.create(application=amo.APPS['firefox'].id,
-                                      version='43.0'),
+            AppVersion.objects.create(
+                application=amo.APPS['firefox'].id, version='38.0a1'
+            ),
+            AppVersion.objects.create(
+                application=amo.APPS['firefox'].id, version='43.0'
+            ),
         ]
         self.thunderbird_versions = [
-            AppVersion.objects.create(application=amo.APPS['android'].id,
-                                      version='42.0'),
-            AppVersion.objects.create(application=amo.APPS['android'].id,
-                                      version='45.0'),
+            AppVersion.objects.create(
+                application=amo.APPS['android'].id, version='42.0'
+            ),
+            AppVersion.objects.create(
+                application=amo.APPS['android'].id, version='45.0'
+            ),
         ]
 
     def test_apps_disallow_thunderbird_and_seamonkey(self):
-        zip_file = utils.SafeZip(get_addon_file(
-            'valid_firefox_and_thunderbird_addon.xpi'))
+        zip_file = utils.SafeZip(
+            get_addon_file('valid_firefox_and_thunderbird_addon.xpi')
+        )
         extracted = utils.RDFExtractor(zip_file).parse()
         apps = extracted['apps']
         assert len(apps) == 1
@@ -162,8 +157,7 @@ class TestRDFExtractor(TestCase):
 
 class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
     def parse(self, base_data):
-        return utils.ManifestJSONExtractor(
-            '/fake_path', json.dumps(base_data)).parse()
+        return utils.ManifestJSONExtractor('/fake_path', json.dumps(base_data)).parse()
 
     def test_instanciate_without_data(self):
         """Without data, we load the data from the file path."""
@@ -175,17 +169,19 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
 
     def test_guid_from_applications(self):
         """Use applications>gecko>id for the guid."""
-        assert self.parse(
-            {'applications': {
-                'gecko': {
-                    'id': 'some-id'}}})['guid'] == 'some-id'
+        assert (
+            self.parse({'applications': {'gecko': {'id': 'some-id'}}})['guid']
+            == 'some-id'
+        )
 
     def test_guid_from_browser_specific_settings(self):
         """Use applications>gecko>id for the guid."""
-        assert self.parse(
-            {'browser_specific_settings': {
-                'gecko': {
-                    'id': 'some-id'}}})['guid'] == 'some-id'
+        assert (
+            self.parse({'browser_specific_settings': {'gecko': {'id': 'some-id'}}})[
+                'guid'
+            ]
+            == 'some-id'
+        )
 
     def test_name_for_guid_if_no_id(self):
         """Don't use the name for the guid if there is no id."""
@@ -210,56 +206,52 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
     def test_homepage(self):
         """Use homepage_url for the homepage."""
         assert (
-            self.parse({'homepage_url': 'http://my-addon.org'})['homepage'] ==
-            'http://my-addon.org')
+            self.parse({'homepage_url': 'http://my-addon.org'})['homepage']
+            == 'http://my-addon.org'
+        )
 
     def test_summary(self):
         """Use description for the summary."""
-        assert (
-            self.parse({'description': 'An addon.'})['summary'] == 'An addon.')
+        assert self.parse({'description': 'An addon.'})['summary'] == 'An addon.'
 
     def test_invalid_strict_min_version(self):
         data = {
             'applications': {
                 'gecko': {
                     'strict_min_version': 'A',
-                    'id': '@invalid_strict_min_version'
+                    'id': '@invalid_strict_min_version',
                 }
             }
         }
         with pytest.raises(forms.ValidationError) as exc:
             self.parse(data)
-        assert (
-            exc.value.message ==
-            'Lowest supported "strict_min_version" is 42.0.')
+        assert exc.value.message == 'Lowest supported "strict_min_version" is 42.0.'
 
     def test_unknown_strict_min_version(self):
         data = {
             'applications': {
                 'gecko': {
                     'strict_min_version': '76.0',
-                    'id': '@unknown_strict_min_version'
+                    'id': '@unknown_strict_min_version',
                 }
             }
         }
         with pytest.raises(forms.ValidationError) as exc:
             self.parse(data)
-        assert exc.value.message == (
-            'Unknown "strict_min_version" 76.0 for Firefox')
+        assert exc.value.message == ('Unknown "strict_min_version" 76.0 for Firefox')
 
     def test_unknown_strict_max_version(self):
         data = {
             'applications': {
                 'gecko': {
                     'strict_max_version': '76.0',
-                    'id': '@unknown_strict_max_version'
+                    'id': '@unknown_strict_max_version',
                 }
             }
         }
         with pytest.raises(forms.ValidationError) as exc:
             self.parse(data)
-        assert exc.value.message == (
-            'Unknown "strict_max_version" 76.0 for Firefox')
+        assert exc.value.message == ('Unknown "strict_max_version" 76.0 for Firefox')
 
     def test_strict_min_version_needs_to_be_higher_than_42_if_specified(self):
         """strict_min_version needs to be higher than 42.0 if specified."""
@@ -267,15 +259,13 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
             'applications': {
                 'gecko': {
                     'strict_min_version': '36.0',
-                    'id': '@too_old_strict_min_version'
+                    'id': '@too_old_strict_min_version',
                 }
             }
         }
         with pytest.raises(forms.ValidationError) as exc:
             self.parse(data)
-        assert (
-            exc.value.message ==
-            'Lowest supported "strict_min_version" is 42.0.')
+        assert exc.value.message == 'Lowest supported "strict_min_version" is 42.0.'
 
     def test_apps_use_provided_versions(self):
         """Use the min and max versions if provided."""
@@ -287,7 +277,7 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
                 'gecko': {
                     'strict_min_version': '>=47.0',
                     'strict_max_version': '=47.*',
-                    'id': '@random'
+                    'id': '@random',
                 }
             }
         }
@@ -318,7 +308,7 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
                 'gecko': {
                     'strict_min_version': '>=100.0',
                     'strict_max_version': '=100.*',
-                    'id': '@radioactive'
+                    'id': '@radioactive',
                 }
             }
         }
@@ -352,22 +342,19 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         assert len(apps) == 2
         app = apps[0]
         assert app.appdata == amo.FIREFOX
-        assert app.min.version == (
-            amo.DEFAULT_WEBEXT_MIN_VERSION_BROWSER_SPECIFIC)
+        assert app.min.version == (amo.DEFAULT_WEBEXT_MIN_VERSION_BROWSER_SPECIFIC)
         assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
         app = apps[1]
         assert app.appdata == amo.ANDROID
-        assert app.min.version == (
-            amo.DEFAULT_WEBEXT_MIN_VERSION_BROWSER_SPECIFIC)
+        assert app.min.version == (amo.DEFAULT_WEBEXT_MIN_VERSION_BROWSER_SPECIFIC)
         assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
     def test_is_webextension(self):
         assert self.parse({})['is_webextension']
 
     def test_allow_static_theme_waffle(self):
-        manifest = utils.ManifestJSONExtractor(
-            '/fake_path', '{"theme": {}}').parse()
+        manifest = utils.ManifestJSONExtractor('/fake_path', '{"theme": {}}').parse()
 
         utils.check_xpi_info(manifest)
 
@@ -383,8 +370,8 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         file_obj = addon.current_version.all_files[0]
         file_obj.update(is_mozilla_signed_extension=True)
         fixture = (
-            'src/olympia/files/fixtures/files/'
-            'legacy-addon-already-signed-0.1.0.xpi')
+            'src/olympia/files/fixtures/files/legacy-addon-already-signed-0.1.0.xpi'
+        )
 
         with amo.tests.copy_file(fixture, file_obj.file_path):
             parsed = utils.parse_xpi(file_obj.file_path, user=user)
@@ -399,7 +386,8 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         file_obj.update(is_mozilla_signed_extension=True)
         fixture = (
             'src/olympia/files/fixtures/files/'
-            'legacy-addon-already-signed-strict-compat-0.1.0.xpi')
+            'legacy-addon-already-signed-strict-compat-0.1.0.xpi'
+        )
 
         with amo.tests.copy_file(fixture, file_obj.file_path):
             parsed = utils.parse_xpi(file_obj.file_path, user=user)
@@ -414,8 +402,7 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
 
         addon = amo.tests.addon_factory()
         file_obj = addon.current_version.all_files[0]
-        fixture = (
-            'src/olympia/files/fixtures/files/notify-link-clicks-i18n.xpi')
+        fixture = 'src/olympia/files/fixtures/files/notify-link-clicks-i18n.xpi'
 
         with amo.tests.copy_file(fixture, file_obj.file_path):
             with pytest.raises(forms.ValidationError) as exc:
@@ -430,8 +417,7 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
 
         addon = amo.tests.addon_factory()
         file_obj = addon.current_version.all_files[0]
-        fixture = (
-            'src/olympia/files/fixtures/files/notify-link-clicks-i18n.xpi')
+        fixture = 'src/olympia/files/fixtures/files/notify-link-clicks-i18n.xpi'
 
         with amo.tests.copy_file(fixture, file_obj.file_path):
             utils.parse_xpi(file_obj.file_path)
@@ -478,9 +464,7 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         with pytest.raises(forms.ValidationError) as exc:
             self.parse(data)['apps']
 
-        assert (
-            exc.value.message ==
-            'Add-on ID is required for Firefox 47 and below.')
+        assert exc.value.message == 'Add-on ID is required for Firefox 47 and below.'
 
     def test_comments_are_allowed(self):
         json_string = """
@@ -495,8 +479,7 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
             "description": "A plain text description"
         }
         """
-        manifest = utils.ManifestJSONExtractor(
-            '/fake_path', json_string).parse()
+        manifest = utils.ManifestJSONExtractor('/fake_path', json_string).parse()
 
         assert manifest['is_webextension'] is True
         assert manifest.get('name') == 'My Extension'
@@ -510,10 +493,7 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         # value with the known min version that started supporting that.
         data = {
             'browser_specific_settings': {
-                'gecko': {
-                    'strict_min_version': '42.0',
-                    'id': '@random'
-                }
+                'gecko': {'strict_min_version': '42.0', 'id': '@random'}
             }
         }
 
@@ -521,11 +501,9 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         assert len(apps) == 2
 
         assert apps[0].appdata == amo.FIREFOX
-        assert apps[0].min.version == (
-            amo.DEFAULT_WEBEXT_MIN_VERSION_BROWSER_SPECIFIC)
+        assert apps[0].min.version == (amo.DEFAULT_WEBEXT_MIN_VERSION_BROWSER_SPECIFIC)
         assert apps[1].appdata == amo.ANDROID
-        assert apps[1].min.version == (
-            amo.DEFAULT_WEBEXT_MIN_VERSION_BROWSER_SPECIFIC)
+        assert apps[1].min.version == (amo.DEFAULT_WEBEXT_MIN_VERSION_BROWSER_SPECIFIC)
 
     def test_devtools_page(self):
         json_string = """
@@ -542,8 +520,7 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
                     "devtools_page": "devtools/my-page.html"
                 }
                 """
-        parsed_data = utils.ManifestJSONExtractor(
-            '/fake_path', json_string).parse()
+        parsed_data = utils.ManifestJSONExtractor('/fake_path', json_string).parse()
 
         assert parsed_data['devtools_page'] == "devtools/my-page.html"
 
@@ -560,14 +537,15 @@ class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
                 'gecko': {
                     'strict_min_version': '>=60.0',
                     'strict_max_version': '=60.*',
-                    'id': '@langp'
+                    'id': '@langp',
                 }
             },
-            'langpack_id': 'foo'
+            'langpack_id': 'foo',
         }
 
         parsed_data = utils.ManifestJSONExtractor(
-            '/fake_path', json.dumps(data)).parse()
+            '/fake_path', json.dumps(data)
+        ).parse()
         assert parsed_data['type'] == amo.ADDON_LPAPP
         assert parsed_data['strict_compatibility'] is True
         assert parsed_data['is_webextension'] is True
@@ -579,17 +557,11 @@ class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
         assert apps[0].max.version == '60.*'
 
     def test_parse_langpack_not_targeting_versions_explicitly(self):
-        data = {
-            'applications': {
-                'gecko': {
-                    'id': '@langp'
-                }
-            },
-            'langpack_id': 'foo'
-        }
+        data = {'applications': {'gecko': {'id': '@langp'}}, 'langpack_id': 'foo'}
 
         parsed_data = utils.ManifestJSONExtractor(
-            '/fake_path', json.dumps(data)).parse()
+            '/fake_path', json.dumps(data)
+        ).parse()
         assert parsed_data['type'] == amo.ADDON_LPAPP
         assert parsed_data['strict_compatibility'] is True
         assert parsed_data['is_webextension'] is True
@@ -605,16 +577,13 @@ class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
     def test_parse_dictionary(self):
         self.create_appversion('firefox', '61.0')
         data = {
-            'applications': {
-                'gecko': {
-                    'id': '@dict'
-                }
-            },
-            'dictionaries': {'en-US': '/path/to/en-US.dic'}
+            'applications': {'gecko': {'id': '@dict'}},
+            'dictionaries': {'en-US': '/path/to/en-US.dic'},
         }
 
         parsed_data = utils.ManifestJSONExtractor(
-            '/fake_path', json.dumps(data)).parse()
+            '/fake_path', json.dumps(data)
+        ).parse()
         assert parsed_data['type'] == amo.ADDON_DICT
         assert parsed_data['strict_compatibility'] is False
         assert parsed_data['is_webextension'] is True
@@ -627,9 +596,7 @@ class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
         assert apps[0].max.version == '*'
 
     def test_parse_broken_dictionary(self):
-        data = {
-            'dictionaries': {}
-        }
+        data = {'dictionaries': {}}
         with self.assertRaises(forms.ValidationError):
             utils.ManifestJSONExtractor('/fake_path', json.dumps(data)).parse()
 
@@ -643,13 +610,14 @@ class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
                 'gecko': {
                     'strict_min_version': '>=60.0',
                     'strict_max_version': '=60.*',
-                    'id': '@langp'
+                    'id': '@langp',
                 }
             },
-            'langpack_id': 'foo'
+            'langpack_id': 'foo',
         }
         parsed_data = utils.ManifestJSONExtractor(
-            '/fake_path.xpi', json.dumps(data)).parse()
+            '/fake_path.xpi', json.dumps(data)
+        ).parse()
 
         with self.assertRaises(ValidationError):
             # Regular users aren't allowed to submit langpacks.
@@ -665,8 +633,7 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
     def parse(self, base_data):
         if 'theme' not in base_data.keys():
             base_data.update(theme={})
-        return super(
-            TestManifestJSONExtractorStaticTheme, self).parse(base_data)
+        return super(TestManifestJSONExtractorStaticTheme, self).parse(base_data)
 
     def test_type(self):
         assert self.parse({})['type'] == amo.ADDON_STATICTHEME
@@ -679,13 +646,11 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
         apps = self.parse(data)['apps']
         assert len(apps) == 2
         assert apps[0].appdata == amo.FIREFOX
-        assert apps[0].min.version == (
-            amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX)
+        assert apps[0].min.version == (amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX)
         assert apps[0].max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
         assert apps[1].appdata == amo.ANDROID
-        assert apps[1].min.version == (
-            amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID)
+        assert apps[1].min.version == (amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID)
         assert apps[1].max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
     def test_apps_use_default_versions_if_none_provided(self):
@@ -694,13 +659,11 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
         apps = self.parse(data)['apps']
         assert len(apps) == 2
         assert apps[0].appdata == amo.FIREFOX
-        assert apps[0].min.version == (
-            amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX)
+        assert apps[0].min.version == (amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX)
         assert apps[0].max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
         assert apps[1].appdata == amo.ANDROID
-        assert apps[1].min.version == (
-            amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID)
+        assert apps[1].min.version == (amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID)
         assert apps[1].max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
     def test_apps_use_provided_versions(self):
@@ -715,7 +678,7 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
                 'gecko': {
                     'strict_min_version': '>=66.0',
                     'strict_max_version': '=66.*',
-                    'id': '@random'
+                    'id': '@random',
                 }
             }
         }
@@ -738,14 +701,13 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
             'applications': {
                 'gecko': {
                     'strict_max_version': '76.0',
-                    'id': '@unknown_strict_max_version'
+                    'id': '@unknown_strict_max_version',
                 }
             }
         }
         with pytest.raises(forms.ValidationError) as exc:
             self.parse(data)
-        assert exc.value.message == (
-            'Unknown "strict_max_version" 76.0 for Firefox')
+        assert exc.value.message == ('Unknown "strict_max_version" 76.0 for Firefox')
 
     def test_dont_skip_apps_because_of_strict_version_incompatibility(self):
         # In the parent class this method would bump the min_version to 48.0
@@ -755,10 +717,7 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
         # static themes themselves.
         data = {
             'browser_specific_settings': {
-                'gecko': {
-                    'strict_min_version': '42.0',
-                    'id': '@random'
-                }
+                'gecko': {'strict_min_version': '42.0', 'id': '@random'}
             }
         }
 
@@ -766,36 +725,64 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
         assert len(apps) == 2
 
         assert apps[0].appdata == amo.FIREFOX
-        assert apps[0].min.version == (
-            amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX)
+        assert apps[0].min.version == (amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX)
         assert apps[0].max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
         assert apps[1].appdata == amo.ANDROID
-        assert apps[1].min.version == (
-            amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID)
+        assert apps[1].min.version == (amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID)
         assert apps[1].max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
 
-@pytest.mark.parametrize('filename, expected_files', [
-    ('webextension_no_id.xpi', [
-        'README.md', 'beasts', 'button', 'content_scripts', 'manifest.json',
-        'popup'
-    ]),
-    ('webextension_no_id.zip', [
-        'README.md', 'beasts', 'button', 'content_scripts', 'manifest.json',
-        'popup'
-    ]),
-    ('webextension_no_id.tar.gz', [
-        'README.md', 'beasts', 'button', 'content_scripts', 'manifest.json',
-        'popup'
-    ]),
-    ('webextension_no_id.tar.bz2', [
-        'README.md', 'beasts', 'button', 'content_scripts', 'manifest.json',
-        'popup'
-    ]),
-])
+@pytest.mark.parametrize(
+    'filename, expected_files',
+    [
+        (
+            'webextension_no_id.xpi',
+            [
+                'README.md',
+                'beasts',
+                'button',
+                'content_scripts',
+                'manifest.json',
+                'popup',
+            ],
+        ),
+        (
+            'webextension_no_id.zip',
+            [
+                'README.md',
+                'beasts',
+                'button',
+                'content_scripts',
+                'manifest.json',
+                'popup',
+            ],
+        ),
+        (
+            'webextension_no_id.tar.gz',
+            [
+                'README.md',
+                'beasts',
+                'button',
+                'content_scripts',
+                'manifest.json',
+                'popup',
+            ],
+        ),
+        (
+            'webextension_no_id.tar.bz2',
+            [
+                'README.md',
+                'beasts',
+                'button',
+                'content_scripts',
+                'manifest.json',
+                'popup',
+            ],
+        ),
+    ],
+)
 def test_extract_extension_to_dest(filename, expected_files):
-    extension_file = 'src/olympia/files/fixtures/files/{fname}'.format(
-        fname=filename)
+    extension_file = 'src/olympia/files/fixtures/files/{fname}'.format(fname=filename)
 
     with mock.patch('olympia.files.utils.os.fsync') as fsync_mock:
         temp_folder = utils.extract_extension_to_dest(extension_file)
@@ -806,13 +793,17 @@ def test_extract_extension_to_dest(filename, expected_files):
     assert not fsync_mock.called
 
 
-@pytest.mark.parametrize('filename', [
-    'webextension_no_id.xpi', 'webextension_no_id.zip',
-    'webextension_no_id.tar.bz2', 'webextension_no_id.tar.gz',
-])
+@pytest.mark.parametrize(
+    'filename',
+    [
+        'webextension_no_id.xpi',
+        'webextension_no_id.zip',
+        'webextension_no_id.tar.bz2',
+        'webextension_no_id.tar.gz',
+    ],
+)
 def test_extract_extension_to_dest_call_fsync(filename):
-    extension_file = 'src/olympia/files/fixtures/files/{fname}'.format(
-        fname=filename)
+    extension_file = 'src/olympia/files/fixtures/files/{fname}'.format(fname=filename)
 
     with mock.patch('olympia.files.utils.os.fsync') as fsync_mock:
         utils.extract_extension_to_dest(extension_file, force_fsync=True)
@@ -833,9 +824,7 @@ def test_extract_extension_to_dest_non_existing_archive():
 
 
 def test_extract_extension_to_dest_invalid_archive():
-    extension_file = (
-        'src/olympia/files/fixtures/files/invalid-cp437-encoding.xpi'
-    )
+    extension_file = 'src/olympia/files/fixtures/files/invalid-cp437-encoding.xpi'
 
     with mock.patch('olympia.files.utils.shutil.rmtree') as mock_rmtree:
         with pytest.raises(forms.ValidationError):
@@ -855,17 +844,21 @@ def file_obj():
 
 @pytestmark
 def test_bump_version_in_manifest_json(file_obj):
-    AppVersion.objects.create(application=amo.FIREFOX.id,
-                              version=amo.DEFAULT_WEBEXT_MIN_VERSION)
-    AppVersion.objects.create(application=amo.FIREFOX.id,
-                              version=amo.DEFAULT_WEBEXT_MAX_VERSION)
-    AppVersion.objects.create(application=amo.ANDROID.id,
-                              version=amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID)
-    AppVersion.objects.create(application=amo.ANDROID.id,
-                              version=amo.DEFAULT_WEBEXT_MAX_VERSION)
+    AppVersion.objects.create(
+        application=amo.FIREFOX.id, version=amo.DEFAULT_WEBEXT_MIN_VERSION
+    )
+    AppVersion.objects.create(
+        application=amo.FIREFOX.id, version=amo.DEFAULT_WEBEXT_MAX_VERSION
+    )
+    AppVersion.objects.create(
+        application=amo.ANDROID.id, version=amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID
+    )
+    AppVersion.objects.create(
+        application=amo.ANDROID.id, version=amo.DEFAULT_WEBEXT_MAX_VERSION
+    )
     with amo.tests.copy_file(
-            'src/olympia/files/fixtures/files/webextension.xpi',
-            file_obj.file_path):
+        'src/olympia/files/fixtures/files/webextension.xpi', file_obj.file_path
+    ):
         utils.update_version_number(file_obj, '0.0.1.1-signed')
         parsed = utils.parse_xpi(file_obj.file_path)
         assert parsed['version'] == '0.0.1.1-signed'
@@ -876,7 +869,14 @@ def test_extract_translations_simple(file_obj):
     with amo.tests.copy_file(extension, file_obj.file_path):
         messages = utils.extract_translations(file_obj)
         assert list(sorted(messages.keys())) == [
-            'de', 'en-US', 'ja', 'nb-NO', 'nl', 'ru', 'sv-SE']
+            'de',
+            'en-US',
+            'ja',
+            'nb-NO',
+            'nl',
+            'ru',
+            'sv-SE',
+        ]
 
 
 @mock.patch('olympia.files.utils.zipfile.ZipFile.read')
@@ -965,8 +965,7 @@ def test_get_all_files_prefix_with_strip_prefix():
     _touch(os.path.join(tempdir, 'dir1', 'foo2'))
 
     # strip_prefix alone doesn't do anything.
-    result = utils.get_all_files(
-        tempdir, strip_prefix=tempdir, prefix='/foo/bar')
+    result = utils.get_all_files(tempdir, strip_prefix=tempdir, prefix='/foo/bar')
     assert result == [
         os.path.join('/foo', 'bar', 'dir1'),
         os.path.join('/foo', 'bar', 'dir1', 'foo2'),
@@ -1017,37 +1016,23 @@ class TestResolvei18nMessage(object):
         assert utils.resolve_i18n_message('foo', {}, '') == 'foo'
 
     def test_locale_found(self):
-        messages = {
-            'de': {
-                'foo': {'message': 'bar'}
-            }
-        }
+        messages = {'de': {'foo': {'message': 'bar'}}}
 
         result = utils.resolve_i18n_message('__MSG_foo__', messages, 'de')
         assert result == 'bar'
 
     def test_uses_default_locale(self):
-        messages = {
-            'en-US': {
-                'foo': {'message': 'bar'}
-            }
-        }
+        messages = {'en-US': {'foo': {'message': 'bar'}}}
 
-        result = utils.resolve_i18n_message(
-            '__MSG_foo__', messages, 'de', 'en')
+        result = utils.resolve_i18n_message('__MSG_foo__', messages, 'de', 'en')
         assert result == 'bar'
 
     def test_no_locale_match(self):
         # Neither `locale` or `locale` are found, "message" is returned
         # unchanged
-        messages = {
-            'fr': {
-                'foo': {'message': 'bar'}
-            }
-        }
+        messages = {'fr': {'foo': {'message': 'bar'}}}
 
-        result = utils.resolve_i18n_message(
-            '__MSG_foo__', messages, 'de', 'en')
+        result = utils.resolve_i18n_message('__MSG_foo__', messages, 'de', 'en')
         assert result == '__MSG_foo__'
 
     def test_field_not_set(self):
@@ -1064,21 +1049,13 @@ class TestResolvei18nMessage(object):
         assert result == []
 
     def test_corrects_locales(self):
-        messages = {
-            'en-US': {
-                'foo': {'message': 'bar'}
-            }
-        }
+        messages = {'en-US': {'foo': {'message': 'bar'}}}
 
         result = utils.resolve_i18n_message('__MSG_foo__', messages, 'en')
         assert result == 'bar'
 
     def test_ignore_wrong_format(self):
-        messages = {
-            'en-US': {
-                'foo': 'bar'
-            }
-        }
+        messages = {'en-US': {'foo': 'bar'}}
 
         result = utils.resolve_i18n_message('__MSG_foo__', messages, 'en')
         assert result == '__MSG_foo__'
@@ -1092,9 +1069,15 @@ class TestXMLVulnerabilities(TestCase):
     """
 
     def test_general_entity_expansion_is_disabled(self):
-        zip_file = utils.SafeZip(os.path.join(
-            os.path.dirname(__file__), '..', 'fixtures', 'files',
-            'xxe-example-install.zip'))
+        zip_file = utils.SafeZip(
+            os.path.join(
+                os.path.dirname(__file__),
+                '..',
+                'fixtures',
+                'files',
+                'xxe-example-install.zip',
+            )
+        )
 
         # This asserts that the malicious install.rdf blows up with
         # a parse error. If it gets as far as this specific parse error
@@ -1120,10 +1103,11 @@ class TestXMLVulnerabilities(TestCase):
 
 class TestGetBackgroundImages(TestCase):
     file_obj = os.path.join(
-        settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
+        settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip'
+    )
     file_obj_dep = os.path.join(
-        settings.ROOT,
-        'src/olympia/devhub/tests/addons/static_theme_deprecated.zip')
+        settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme_deprecated.zip'
+    )
 
     def test_get_background_images(self):
         data = {'images': {'theme_frame': 'weta.png'}}
@@ -1155,8 +1139,8 @@ class TestGetBackgroundImages(TestCase):
 
     def test_get_background_images_not_image(self):
         self.file_obj = os.path.join(
-            settings.ROOT,
-            'src/olympia/devhub/tests/addons/static_theme_non_image.zip')
+            settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme_non_image.zip'
+        )
         data = {'images': {'theme_frame': 'not_an_image.js'}}
 
         images = utils.get_background_images(self.file_obj, data)
@@ -1164,14 +1148,18 @@ class TestGetBackgroundImages(TestCase):
 
     def test_get_background_images_with_additional_imgs(self):
         self.file_obj = os.path.join(
-            settings.ROOT,
-            'src/olympia/devhub/tests/addons/static_theme_tiled.zip')
-        data = {'images': {
-            'theme_frame': 'empty.png',
-            'additional_backgrounds': [
-                'transparent.gif', 'missing_&_ignored.png',
-                'weta_for_tiling.png']
-        }}
+            settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme_tiled.zip'
+        )
+        data = {
+            'images': {
+                'theme_frame': 'empty.png',
+                'additional_backgrounds': [
+                    'transparent.gif',
+                    'missing_&_ignored.png',
+                    'weta_for_tiling.png',
+                ],
+            }
+        }
 
         images = utils.get_background_images(self.file_obj, data)
         assert len(images.items()) == 3
@@ -1180,19 +1168,21 @@ class TestGetBackgroundImages(TestCase):
         assert len(images['weta_for_tiling.png']) == 93371
 
         # And again but only with the header image
-        images = utils.get_background_images(
-            self.file_obj, data, header_only=True)
+        images = utils.get_background_images(self.file_obj, data, header_only=True)
         assert len(images.items()) == 1
         assert len(images['empty.png']) == 332
 
 
-@pytest.mark.parametrize('value, expected', [
-    (1, '1/1/1'),
-    (1, '1/1/1'),
-    (12, '2/12/12'),
-    (123, '3/23/123'),
-    (123456789, '9/89/123456789'),
-])
+@pytest.mark.parametrize(
+    'value, expected',
+    [
+        (1, '1/1/1'),
+        (1, '1/1/1'),
+        (12, '2/12/12'),
+        (123, '3/23/123'),
+        (123456789, '9/89/123456789'),
+    ],
+)
 def test_id_to_path(value, expected):
     assert utils.id_to_path(value) == expected
 
@@ -1206,8 +1196,7 @@ class TestSafeZip(TestCase):
         with override_settings(MAX_ZIP_UNCOMPRESSED_SIZE=1000):
             with pytest.raises(forms.ValidationError):
                 # total uncompressed size of this xpi is: 2269 bytes
-                utils.SafeZip(get_addon_file(
-                    'valid_firefox_and_thunderbird_addon.xpi'))
+                utils.SafeZip(get_addon_file('valid_firefox_and_thunderbird_addon.xpi'))
 
 
 class TestArchiveMemberValidator(TestCase):
@@ -1241,8 +1230,7 @@ class TestArchiveMemberValidator(TestCase):
     def test_raises_when_filesize_is_above_limit(self):
         with pytest.raises(forms.ValidationError):
             utils._validate_archive_member_name_and_size(
-                'filename',
-                settings.FILE_UNZIP_SIZE_LIMIT + 100
+                'filename', settings.FILE_UNZIP_SIZE_LIMIT + 100
             )
 
 
@@ -1281,7 +1269,8 @@ class TestWriteCrxAsXpi(TestCase):
 
     def test_webextension_crx_not_a_crx(self):
         file_ = SimpleUploadedFile(
-            'foo.crx', b'Cr42\x02\x00\x00\x00&\x01\x00\x00\x00\x01\x00\x00')
+            'foo.crx', b'Cr42\x02\x00\x00\x00&\x01\x00\x00\x00\x01\x00\x00'
+        )
         with self.assertRaises(utils.InvalidOrUnsupportedCrx) as exc:
             utils.write_crx_as_xpi(file_, self.target)
         assert str(exc.exception) == 'CRX file does not start with Cr24'
@@ -1291,7 +1280,8 @@ class TestWriteCrxAsXpi(TestCase):
 
     def test_webextension_crx_version_unsupported(self):
         file_ = SimpleUploadedFile(
-            'foo.crx', b'Cr24\x04\x00\x00\x00&\x01\x00\x00\x00\x01\x00\x00')
+            'foo.crx', b'Cr24\x04\x00\x00\x00&\x01\x00\x00\x00\x01\x00\x00'
+        )
         with self.assertRaises(utils.InvalidOrUnsupportedCrx) as exc:
             utils.write_crx_as_xpi(file_, self.target)
         assert str(exc.exception) == 'Unsupported CRX version'
@@ -1301,7 +1291,8 @@ class TestWriteCrxAsXpi(TestCase):
 
     def test_webextension_crx_version_cant_unpack(self):
         file_ = SimpleUploadedFile(
-            'foo.crx', b'Cr24\x02\x00\x00\x00&\x00\x00\x00\x01\x00\x00')
+            'foo.crx', b'Cr24\x02\x00\x00\x00&\x00\x00\x00\x01\x00\x00'
+        )
         with self.assertRaises(utils.InvalidOrUnsupportedCrx) as exc:
             utils.write_crx_as_xpi(file_, self.target)
         assert str(exc.exception) == 'Invalid or corrupt CRX file'

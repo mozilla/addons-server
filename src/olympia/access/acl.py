@@ -42,7 +42,8 @@ def action_allowed_user(user, permission):
     assert permission in amo.permissions.PERMISSIONS_LIST  # constants only.
     return any(
         match_rules(group.rules, permission.app, permission.action)
-        for group in user.groups_list)
+        for group in user.groups_list
+    )
 
 
 def experiments_submission_allowed(user, parsed_addon_data):
@@ -51,9 +52,9 @@ def experiments_submission_allowed(user, parsed_addon_data):
 
     See bug 1220097.
     """
-    return (
-        not parsed_addon_data.get('is_experiment', False) or
-        action_allowed_user(user, amo.permissions.EXPERIMENTS_SUBMIT))
+    return not parsed_addon_data.get('is_experiment', False) or action_allowed_user(
+        user, amo.permissions.EXPERIMENTS_SUBMIT
+    )
 
 
 def langpack_submission_allowed(user, parsed_addon_data):
@@ -63,9 +64,9 @@ def langpack_submission_allowed(user, parsed_addon_data):
     See https://github.com/mozilla/addons-server/issues/11788 and
     https://github.com/mozilla/addons-server/issues/11793
     """
-    return (
-        not parsed_addon_data.get('type') == amo.ADDON_LPAPP or
-        action_allowed_user(user, amo.permissions.LANGPACK_SUBMIT))
+    return not parsed_addon_data.get('type') == amo.ADDON_LPAPP or action_allowed_user(
+        user, amo.permissions.LANGPACK_SUBMIT
+    )
 
 
 def system_addon_submission_allowed(user, parsed_addon_data):
@@ -73,31 +74,40 @@ def system_addon_submission_allowed(user, parsed_addon_data):
     by people with the right permission.
     """
     guid = parsed_addon_data.get('guid') or ''
-    return (
-        not guid.lower().endswith(amo.SYSTEM_ADDON_GUIDS) or
-        action_allowed_user(user, amo.permissions.SYSTEM_ADDON_SUBMIT))
+    return not guid.lower().endswith(amo.SYSTEM_ADDON_GUIDS) or action_allowed_user(
+        user, amo.permissions.SYSTEM_ADDON_SUBMIT
+    )
 
 
 def mozilla_signed_extension_submission_allowed(user, parsed_addon_data):
     """Add-ons already signed with mozilla internal certificate can only be
     submitted by people with the right permission.
     """
-    return (
-        not parsed_addon_data.get('is_mozilla_signed_extension') or
-        action_allowed_user(user, amo.permissions.SYSTEM_ADDON_SUBMIT))
+    return not parsed_addon_data.get(
+        'is_mozilla_signed_extension'
+    ) or action_allowed_user(user, amo.permissions.SYSTEM_ADDON_SUBMIT)
 
 
-def check_ownership(request, obj, require_owner=False, require_author=False,
-                    ignore_disabled=False, admin=True):
+def check_ownership(
+    request,
+    obj,
+    require_owner=False,
+    require_author=False,
+    ignore_disabled=False,
+    admin=True,
+):
     """
     A convenience function.  Check if request.user has permissions
     for the object.
     """
     if hasattr(obj, 'check_ownership'):
-        return obj.check_ownership(request, require_owner=require_owner,
-                                   require_author=require_author,
-                                   ignore_disabled=ignore_disabled,
-                                   admin=admin)
+        return obj.check_ownership(
+            request,
+            require_owner=require_owner,
+            require_author=require_author,
+            ignore_disabled=ignore_disabled,
+            admin=admin,
+        )
     return False
 
 
@@ -108,19 +118,21 @@ def check_collection_ownership(request, collection, require_owner=False):
     if request.user.id == collection.author_id:
         return True
     elif collection.author_id == settings.TASK_USER_ID and action_allowed_user(
-            request.user, amo.permissions.ADMIN_CURATION):
+        request.user, amo.permissions.ADMIN_CURATION
+    ):
         return True
     elif not require_owner:
         return (
-            collection.pk == settings.COLLECTION_FEATURED_THEMES_ID and
-            action_allowed_user(
-                request.user, amo.permissions.COLLECTIONS_CONTRIBUTE))
+            collection.pk == settings.COLLECTION_FEATURED_THEMES_ID
+            and action_allowed_user(
+                request.user, amo.permissions.COLLECTIONS_CONTRIBUTE
+            )
+        )
     else:
         return False
 
 
-def check_addon_ownership(request, addon, dev=False, admin=True,
-                          ignore_disabled=False):
+def check_addon_ownership(request, addon, dev=False, admin=True, ignore_disabled=False):
     """
     Check request.user's permissions for the addon.
 
@@ -145,15 +157,13 @@ def check_addon_ownership(request, addon, dev=False, admin=True,
     if dev:
         roles += (amo.AUTHOR_ROLE_DEV,)
 
-    return addon.addonuser_set.filter(
-        user=request.user, role__in=roles
-    ).exists()
+    return addon.addonuser_set.filter(user=request.user, role__in=roles).exists()
 
 
 def check_addons_reviewer(request, allow_content_reviewers=True):
     permissions = [
         amo.permissions.ADDONS_REVIEW,
-        amo.permissions.ADDONS_RECOMMENDED_REVIEW
+        amo.permissions.ADDONS_RECOMMENDED_REVIEW,
     ]
     if allow_content_reviewers:
         permissions.append(amo.permissions.ADDONS_CONTENT_REVIEW)
@@ -180,7 +190,8 @@ def is_reviewer(request, addon, allow_content_reviewers=True):
     if addon.type == amo.ADDON_STATICTHEME:
         return check_static_theme_reviewer(request)
     return check_addons_reviewer(
-        request, allow_content_reviewers=allow_content_reviewers)
+        request, allow_content_reviewers=allow_content_reviewers
+    )
 
 
 def is_user_any_kind_of_reviewer(user, allow_viewers=False):

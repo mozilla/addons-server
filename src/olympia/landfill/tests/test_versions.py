@@ -10,7 +10,6 @@ from olympia.versions.models import ApplicationsVersions, Version
 
 
 class VersionsTests(TestCase):
-
     def setUp(self):
         super(VersionsTests, self).setUp()
         self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)

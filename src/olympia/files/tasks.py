@@ -24,10 +24,7 @@ log = olympia.core.logger.getLogger('z.files.task')
 def extract_optional_permissions(ids, **kw):
     log.info(
         '[%s@%s] Extracting permissions from Files, from id: %s to id: %s...'
-        % (
-            len(ids), extract_optional_permissions.rate_limit, ids[0],
-            ids[-1]
-        )
+        % (len(ids), extract_optional_permissions.rate_limit, ids[0], ids[-1])
     )
     files = File.objects.filter(pk__in=ids).no_transforms()
 
@@ -36,17 +33,19 @@ def extract_optional_permissions(ids, **kw):
 
     for file_ in files:
         try:
-            log.info('Parsing File.id: %s @ %s' %
-                     (file_.pk, file_.current_file_path))
-            parsed_data = parse_xpi(file_.current_file_path,
-                                    addon=file_.addon, user=user)
+            log.info('Parsing File.id: %s @ %s' % (file_.pk, file_.current_file_path))
+            parsed_data = parse_xpi(
+                file_.current_file_path, addon=file_.addon, user=user
+            )
             optional_permissions = parsed_data.get('optional_permissions', [])
             if optional_permissions:
-                log.info('Found %s optional permissions for: %s' %
-                         (len(optional_permissions), file_.pk))
+                log.info(
+                    'Found %s optional permissions for: %s'
+                    % (len(optional_permissions), file_.pk)
+                )
                 WebextPermission.objects.update_or_create(
-                    defaults={'optional_permissions': optional_permissions},
-                    file=file_)
+                    defaults={'optional_permissions': optional_permissions}, file=file_
+                )
         except Exception as err:
             log.error('Failed to extract: %s, error: %s' % (file_.pk, err))
 
@@ -72,8 +71,8 @@ def repack_fileupload(results, upload_pk):
             # transformed in a generic error message for the developer, so we
             # just log it and re-raise.
             log.exception(
-                'Could not extract upload %s for repack.', upload_pk,
-                exc_info=exc)
+                'Could not extract upload %s for repack.', upload_pk, exc_info=exc
+            )
             raise
         timer.log_interval('1.extracted')
         log.info('Zip from upload %s extracted, repackaging', upload_pk)

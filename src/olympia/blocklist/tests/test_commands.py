@@ -23,19 +23,18 @@ with open(blocklist_file) as file_object:
 
 
 class TestImportBlocklist(TestCase):
-
     def setUp(self):
         responses.add(
             responses.GET,
-            settings.REMOTE_SETTINGS_API_URL +
-            'buckets/blocklists/collections/addons/records',
-            json=blocklist_json)
-        self.task_user = user_factory(
-            id=settings.TASK_USER_ID, username='mozilla')
+            settings.REMOTE_SETTINGS_API_URL
+            + 'buckets/blocklists/collections/addons/records',
+            json=blocklist_json,
+        )
+        self.task_user = user_factory(id=settings.TASK_USER_ID, username='mozilla')
         assert LegacyImport.objects.count() == 0
 
     def test_empty(self):
-        """ Test nothing is added if none of the guids match - any nothing
+        """Test nothing is added if none of the guids match - any nothing
         fails.
         """
         addon_factory(file_kw={'is_webextension': True})
@@ -44,26 +43,33 @@ class TestImportBlocklist(TestCase):
         assert Block.objects.count() == 0
         assert LegacyImport.objects.count() == 8
         # the sample blocklist.json contains one regex for Thunderbird only
-        assert LegacyImport.objects.filter(
-            outcome=LegacyImport.OUTCOME_NOTFIREFOX).count() == 1
-        assert LegacyImport.objects.filter(
-            outcome=LegacyImport.OUTCOME_NOMATCH).count() == 7
+        assert (
+            LegacyImport.objects.filter(outcome=LegacyImport.OUTCOME_NOTFIREFOX).count()
+            == 1
+        )
+        assert (
+            LegacyImport.objects.filter(outcome=LegacyImport.OUTCOME_NOMATCH).count()
+            == 7
+        )
 
     def test_regex(self):
         """ Test regex style "guids" are parsed and expanded to blocks."""
         addon_factory(
-            guid='_qdNembers_@exmys.myysarch.com',
-            file_kw={'is_webextension': True})
+            guid='_qdNembers_@exmys.myysarch.com', file_kw={'is_webextension': True}
+        )
         addon_factory(
             guid='_dqMNemberstst_@www.dowespedtgttest.com',
-            file_kw={'is_webextension': True})
+            file_kw={'is_webextension': True},
+        )
         addon_factory(
             guid='{90ac2d06-caf8-46b9-5325-59c82190b687}',
-            file_kw={'is_webextension': True})
+            file_kw={'is_webextension': True},
+        )
         # this one is in the regex but doesn't have any webextension versions.
         addon_factory(
             guid='{_qjNembers_@wwqw.texcenteernow.com}',
-            file_kw={'is_webextension': False})
+            file_kw={'is_webextension': False},
+        )
         # And random other addon
         addon_factory(file_kw={'is_webextension': True})
 
@@ -78,19 +84,20 @@ class TestImportBlocklist(TestCase):
         for block in blocks:
             assert block.url == this_block['details']['bug']
             assert block.reason == this_block['details']['why']
-            assert block.min_version == (
-                this_block['versionRange'][0]['minVersion'])
-            assert block.max_version == (
-                this_block['versionRange'][0]['maxVersion'])
+            assert block.min_version == (this_block['versionRange'][0]['minVersion'])
+            assert block.max_version == (this_block['versionRange'][0]['maxVersion'])
             assert block.legacy_id == '*' + this_block['id']
             assert block.in_legacy_blocklist
             assert block.modified == datetime(2019, 11, 29, 22, 22, 46, 785000)
             assert block.is_imported_from_legacy_regex
         assert LegacyImport.objects.count() == 8
-        assert LegacyImport.objects.filter(
-            outcome=LegacyImport.OUTCOME_NOMATCH).count() == 6
+        assert (
+            LegacyImport.objects.filter(outcome=LegacyImport.OUTCOME_NOMATCH).count()
+            == 6
+        )
         legacy_import = LegacyImport.objects.get(
-            outcome=LegacyImport.OUTCOME_REGEXBLOCKS)
+            outcome=LegacyImport.OUTCOME_REGEXBLOCKS
+        )
         assert legacy_import.legacy_id == this_block['id']
         assert legacy_import.record == this_block
 
@@ -98,13 +105,16 @@ class TestImportBlocklist(TestCase):
         """There are some regex that don't start with ^ and end with $"""
         addon_factory(
             guid='__TEMPLATE__APPLICATION__@puua-mapa.com',
-            file_kw={'is_webextension': True})
+            file_kw={'is_webextension': True},
+        )
         addon_factory(
             guid='{84aebb36-1433-4082-b7ec-29b790d12c17}',
-            file_kw={'is_webextension': True})
+            file_kw={'is_webextension': True},
+        )
         addon_factory(
             guid='{0c9970a2-6874-493b-a486-2295cfe251c2}',
-            file_kw={'is_webextension': True})
+            file_kw={'is_webextension': True},
+        )
         addon_factory(file_kw={'is_webextension': True})
         call_command('import_blocklist')
         assert Block.objects.count() == 3
@@ -116,10 +126,11 @@ class TestImportBlocklist(TestCase):
     def test_single_guid(self):
         addon_factory(
             guid='{99454877-975a-443e-a0c7-03ab910a8461}',
-            file_kw={'is_webextension': True})
+            file_kw={'is_webextension': True},
+        )
         addon_factory(
-            guid='Ytarkovpn.5.14@firefox.com',
-            file_kw={'is_webextension': True})
+            guid='Ytarkovpn.5.14@firefox.com', file_kw={'is_webextension': True}
+        )
         # And random other addon
         addon_factory(file_kw={'is_webextension': True})
 
@@ -131,9 +142,11 @@ class TestImportBlocklist(TestCase):
         assert blocks[0].url == blocklist_json['data'][1]['details']['bug']
         assert blocks[0].reason == blocklist_json['data'][1]['details']['why']
         assert blocks[0].min_version == (
-            blocklist_json['data'][1]['versionRange'][0]['minVersion'])
+            blocklist_json['data'][1]['versionRange'][0]['minVersion']
+        )
         assert blocks[0].max_version == (
-            blocklist_json['data'][1]['versionRange'][0]['maxVersion'])
+            blocklist_json['data'][1]['versionRange'][0]['maxVersion']
+        )
         assert blocks[0].legacy_id == blocklist_json['data'][1]['id']
         assert blocks[0].in_legacy_blocklist
         assert blocks[0].modified == datetime(2019, 11, 29, 15, 32, 56, 477000)
@@ -143,19 +156,24 @@ class TestImportBlocklist(TestCase):
         assert blocks[1].url == blocklist_json['data'][2]['details']['bug']
         assert blocks[1].reason == blocklist_json['data'][2]['details']['why']
         assert blocks[1].min_version == (
-            blocklist_json['data'][2]['versionRange'][0]['minVersion'])
+            blocklist_json['data'][2]['versionRange'][0]['minVersion']
+        )
         assert blocks[1].max_version == (
-            blocklist_json['data'][2]['versionRange'][0]['maxVersion'])
+            blocklist_json['data'][2]['versionRange'][0]['maxVersion']
+        )
         assert blocks[1].legacy_id == blocklist_json['data'][2]['id']
         assert blocks[1].in_legacy_blocklist
         assert blocks[1].modified == datetime(2019, 11, 22, 16, 49, 58, 416000)
         assert not blocks[1].is_imported_from_legacy_regex
 
         assert LegacyImport.objects.count() == 8
-        assert LegacyImport.objects.filter(
-            outcome=LegacyImport.OUTCOME_NOMATCH).count() == 5
+        assert (
+            LegacyImport.objects.filter(outcome=LegacyImport.OUTCOME_NOMATCH).count()
+            == 5
+        )
         imports = LegacyImport.objects.filter(
-            outcome=LegacyImport.OUTCOME_BLOCK).order_by('created')
+            outcome=LegacyImport.OUTCOME_BLOCK
+        ).order_by('created')
         assert imports.count() == 2
         assert imports[0].legacy_id == blocks[0].legacy_id
         assert imports[0].record == blocklist_json['data'][1]
@@ -164,8 +182,8 @@ class TestImportBlocklist(TestCase):
 
     def test_single_guids_not_webextension(self):
         addon_factory(
-            guid='Ytarkovpn.5.14@firefox.com',
-            file_kw={'is_webextension': False})
+            guid='Ytarkovpn.5.14@firefox.com', file_kw={'is_webextension': False}
+        )
         # And random other addon
         addon_factory(file_kw={'is_webextension': True})
 
@@ -173,31 +191,39 @@ class TestImportBlocklist(TestCase):
         assert Block.objects.count() == 0
 
         assert LegacyImport.objects.count() == 8
-        assert LegacyImport.objects.filter(
-            outcome=LegacyImport.OUTCOME_NOMATCH).count() == 7
+        assert (
+            LegacyImport.objects.filter(outcome=LegacyImport.OUTCOME_NOMATCH).count()
+            == 7
+        )
 
     def test_target_application(self):
         fx_addon = addon_factory(
             guid='mozilla_ccc2.2@inrneg4gdownlomanager.com',
-            file_kw={'is_webextension': True})
+            file_kw={'is_webextension': True},
+        )
         # Block only for Thunderbird
         addon_factory(
             guid='{0D2172E4-C3AE-465A-B80D-53F840275B5E}',
-            file_kw={'is_webextension': True})
+            file_kw={'is_webextension': True},
+        )
         addon_factory(file_kw={'is_webextension': True})
 
         call_command('import_blocklist')
         assert Block.objects.count() == 1
         this_block = blocklist_json['data'][5]
         assert (
-            this_block['versionRange'][0]['targetApplication'][0]['guid'] ==
-            amo.FIREFOX.guid)
+            this_block['versionRange'][0]['targetApplication'][0]['guid']
+            == amo.FIREFOX.guid
+        )
         assert Block.objects.get().guid == fx_addon.guid
         assert LegacyImport.objects.count() == 8
-        assert LegacyImport.objects.filter(
-            outcome=LegacyImport.OUTCOME_NOMATCH).count() == 6
+        assert (
+            LegacyImport.objects.filter(outcome=LegacyImport.OUTCOME_NOMATCH).count()
+            == 6
+        )
         legacy_import = LegacyImport.objects.get(
-            outcome=LegacyImport.OUTCOME_REGEXBLOCKS)
+            outcome=LegacyImport.OUTCOME_REGEXBLOCKS
+        )
         assert legacy_import.legacy_id == this_block['id']
         assert legacy_import.record == this_block
 
@@ -206,10 +232,12 @@ class TestImportBlocklist(TestCase):
         Check we escape it correctly."""
         addon1 = addon_factory(
             guid='{f0af364e-5167-45ca-9cf0-66b396d1918c}',
-            file_kw={'is_webextension': True})
+            file_kw={'is_webextension': True},
+        )
         addon2 = addon_factory(
             guid='{01e26e69-a2d8-48a0-b068-87869bdba3d0}',
-            file_kw={'is_webextension': True})
+            file_kw={'is_webextension': True},
+        )
         addon_factory(file_kw={'is_webextension': True})
 
         call_command('import_blocklist')
@@ -222,10 +250,8 @@ class TestImportBlocklist(TestCase):
         for block in blocks:
             assert block.url == this_block['details']['bug']
             assert block.reason == this_block['details']['why']
-            assert block.min_version == (
-                this_block['versionRange'][0]['minVersion'])
-            assert block.max_version == (
-                this_block['versionRange'][0]['maxVersion'])
+            assert block.min_version == (this_block['versionRange'][0]['minVersion'])
+            assert block.max_version == (this_block['versionRange'][0]['maxVersion'])
             assert block.legacy_id == '*' + this_block['id']
             assert block.in_legacy_blocklist
 
@@ -233,10 +259,12 @@ class TestImportBlocklist(TestCase):
         """mysql doesn't support /d special charactor, only [:digit:]."""
         addon1 = addon_factory(
             guid='aapbdbdomjkkjkaonfhkkikfgjllcleb@chrome-store-foxified-990648491',  # noqa
-            file_kw={'is_webextension': True})
+            file_kw={'is_webextension': True},
+        )
         addon2 = addon_factory(
             guid='aapbdbdomjkkjkaonfhkkikfgjllcleb@chromeStoreFoxified-1006328831',  # noqa
-            file_kw={'is_webextension': True})
+            file_kw={'is_webextension': True},
+        )
         addon_factory(file_kw={'is_webextension': True})
 
         call_command('import_blocklist')
@@ -245,60 +273,55 @@ class TestImportBlocklist(TestCase):
         assert blocks[0].guid == addon1.guid
         assert blocks[1].guid == addon2.guid
 
-    @mock.patch('olympia.blocklist.management.commands.import_blocklist.'
-                'import_block_from_blocklist.delay')
+    @mock.patch(
+        'olympia.blocklist.management.commands.import_blocklist.'
+        'import_block_from_blocklist.delay'
+    )
     def test_blocks_are_not_imported_twice(self, import_task_mock):
         addon_factory(guid='{99454877-975a-443e-a0c7-03ab910a8461}')
         addon_factory()
         imported_not_changed = LegacyImport.objects.create(
-            legacy_id='5d2778e3-cbaa-5192-89f0-5abf3ea10656',
-            timestamp=1574441398416)
+            legacy_id='5d2778e3-cbaa-5192-89f0-5abf3ea10656', timestamp=1574441398416
+        )
         imported_and_changed = LegacyImport.objects.create(
-            legacy_id='9085fdba-8598-46a9-b9fd-4e7343a15c62',
-            timestamp=0)
+            legacy_id='9085fdba-8598-46a9-b9fd-4e7343a15c62', timestamp=0
+        )
         assert len(blocklist_json['data']) == 8
 
         call_command('import_blocklist')
         assert import_task_mock.call_count == 7
-        assert import_task_mock.call_args_list[0][0] == (
-            blocklist_json['data'][0],)
-        assert import_task_mock.call_args_list[1][0] == (
-            blocklist_json['data'][1],)
+        assert import_task_mock.call_args_list[0][0] == (blocklist_json['data'][0],)
+        assert import_task_mock.call_args_list[1][0] == (blocklist_json['data'][1],)
         # blocklist_json['data'][2] is the already imported block
-        assert imported_not_changed.legacy_id == (
-            blocklist_json['data'][2]['id'])
-        assert import_task_mock.call_args_list[2][0] == (
-            blocklist_json['data'][3],)
-        assert import_task_mock.call_args_list[3][0] == (
-            blocklist_json['data'][4],)
+        assert imported_not_changed.legacy_id == (blocklist_json['data'][2]['id'])
+        assert import_task_mock.call_args_list[2][0] == (blocklist_json['data'][3],)
+        assert import_task_mock.call_args_list[3][0] == (blocklist_json['data'][4],)
         # we skip over blocklist_json['data'][5] because its done at the end
-        assert import_task_mock.call_args_list[4][0] == (
-            blocklist_json['data'][6],)
-        assert import_task_mock.call_args_list[5][0] == (
-            blocklist_json['data'][7],)
+        assert import_task_mock.call_args_list[4][0] == (blocklist_json['data'][6],)
+        assert import_task_mock.call_args_list[5][0] == (blocklist_json['data'][7],)
 
         # blocklist_json['data'][5] was already imported but has a different
         # last_modified timestamp so we're processing it again
-        assert import_task_mock.call_args_list[6][0] == (
-            blocklist_json['data'][5],)
-        assert imported_and_changed.legacy_id == (
-            blocklist_json['data'][5]['id'])
+        assert import_task_mock.call_args_list[6][0] == (blocklist_json['data'][5],)
+        assert imported_and_changed.legacy_id == (blocklist_json['data'][5]['id'])
 
     def test_existing_legacy_import_updates_changes(self):
         # this is the LegacyImport from the last time
         existing_import = LegacyImport.objects.create(
-            legacy_id='029fa6f9-2341-40b7-5443-9a66a057f199',
-            timestamp=0)
+            legacy_id='029fa6f9-2341-40b7-5443-9a66a057f199', timestamp=0
+        )
         # A Block created last time
         existing_block = Block.objects.create(
             addon=addon_factory(
                 guid='{bf8194c2-b86d-4ebc-9b53-1c07b6ff779e}',
-                file_kw={'is_webextension': True}),
+                file_kw={'is_webextension': True},
+            ),
             legacy_id='*029fa6f9-2341-40b7-5443-9a66a057f199',
             min_version='123',
             max_version='456',
             reason='old reason',
-            updated_by=self.task_user)
+            updated_by=self.task_user,
+        )
         # Another Block created last time, but not in the current guid regex.
         block_to_be_deleted_id = Block.objects.create(
             addon=addon_factory(file_kw={'is_webextension': True}),
@@ -306,23 +329,24 @@ class TestImportBlocklist(TestCase):
             min_version='123',
             max_version='456',
             reason='old reason',
-            updated_by=self.task_user).id
+            updated_by=self.task_user,
+        ).id
         # Addon that would match the block guid regex but isn't already a Block
         new_addon = addon_factory(
             guid='{f0af364e-5167-45ca-9cf0-66b396d1918c}',
-            file_kw={'is_webextension': True})
+            file_kw={'is_webextension': True},
+        )
         # And this is LegacyImport from last time but has been deleted from v2
-        LegacyImport.objects.create(
-            legacy_id='1234567890', timestamp=0)
+        LegacyImport.objects.create(legacy_id='1234567890', timestamp=0)
         # And a block that was created last time from that import
         Block.objects.create(
-            guid='something@',
-            legacy_id='1234567890', updated_by=self.task_user)
+            guid='something@', legacy_id='1234567890', updated_by=self.task_user
+        )
         assert Block.objects.all().count() == 3
         assert LegacyImport.objects.filter(
-            legacy_id='029fa6f9-2341-40b7-5443-9a66a057f199').exists()
-        assert LegacyImport.objects.filter(
-            legacy_id='1234567890').exists()
+            legacy_id='029fa6f9-2341-40b7-5443-9a66a057f199'
+        ).exists()
+        assert LegacyImport.objects.filter(legacy_id='1234567890').exists()
 
         with mock.patch('django_statsd.clients.statsd.incr') as incr_mock:
             call_command('import_blocklist')
@@ -345,65 +369,75 @@ class TestImportBlocklist(TestCase):
         assert not LegacyImport.objects.filter(legacy_id='1234567890').exists()
         assert not Block.objects.filter(legacy_id='1234567890').exists()
 
-        incr_mock.assert_has_calls([
-            mock.call('blocklist.import_blocklist.new_record_found',
-                      count=7),
-            mock.call('blocklist.import_blocklist.modified_record_found',
-                      count=1),
-            mock.call('blocklist.import_blocklist.deleted_record_found',
-                      count=1),
-            mock.call('blocklist.tasks.import_blocklist.new_record_processed'),
-            mock.call('blocklist.tasks.import_blocklist.record_guid'),
-            mock.call('blocklist.tasks.import_blocklist.new_record_processed'),
-            mock.call('blocklist.tasks.import_blocklist.record_guid'),
-            mock.call('blocklist.tasks.import_blocklist.new_record_processed'),
-            mock.call('blocklist.tasks.import_blocklist.record_guid', count=3),
-            mock.call('blocklist.tasks.import_blocklist.new_record_processed'),
-            mock.call('blocklist.tasks.import_blocklist.new_record_processed'),
-            mock.call('blocklist.tasks.import_blocklist.new_record_processed'),
-            mock.call('blocklist.tasks.import_blocklist.block_updated'),
-            mock.call('blocklist.tasks.import_blocklist.block_added'),
-            mock.call('blocklist.tasks.import_blocklist.block_deleted'),
-            mock.call(
-                'blocklist.tasks.import_blocklist.modified_record_processed'),
-            mock.call('blocklist.tasks.import_blocklist.block_deleted'),
-            mock.call(
-                'blocklist.tasks.import_blocklist.deleted_record_processed'),
-        ])
+        incr_mock.assert_has_calls(
+            [
+                mock.call('blocklist.import_blocklist.new_record_found', count=7),
+                mock.call('blocklist.import_blocklist.modified_record_found', count=1),
+                mock.call('blocklist.import_blocklist.deleted_record_found', count=1),
+                mock.call('blocklist.tasks.import_blocklist.new_record_processed'),
+                mock.call('blocklist.tasks.import_blocklist.record_guid'),
+                mock.call('blocklist.tasks.import_blocklist.new_record_processed'),
+                mock.call('blocklist.tasks.import_blocklist.record_guid'),
+                mock.call('blocklist.tasks.import_blocklist.new_record_processed'),
+                mock.call('blocklist.tasks.import_blocklist.record_guid', count=3),
+                mock.call('blocklist.tasks.import_blocklist.new_record_processed'),
+                mock.call('blocklist.tasks.import_blocklist.new_record_processed'),
+                mock.call('blocklist.tasks.import_blocklist.new_record_processed'),
+                mock.call('blocklist.tasks.import_blocklist.block_updated'),
+                mock.call('blocklist.tasks.import_blocklist.block_added'),
+                mock.call('blocklist.tasks.import_blocklist.block_deleted'),
+                mock.call('blocklist.tasks.import_blocklist.modified_record_processed'),
+                mock.call('blocklist.tasks.import_blocklist.block_deleted'),
+                mock.call('blocklist.tasks.import_blocklist.deleted_record_processed'),
+            ]
+        )
         # 6 rather than 7 because there's 1 non-Firefox block in the test data
-        assert 6 == len([
-            call for call in incr_mock.mock_calls
-            if call[1][0].endswith('new_record_processed')])
-        assert 1 == len([
-            call for call in incr_mock.mock_calls
-            if call[1][0].endswith('modified_record_processed')])
-        assert 1 == len([
-            call for call in incr_mock.mock_calls
-            if call[1][0].endswith('deleted_record_processed')])
+        assert 6 == len(
+            [
+                call
+                for call in incr_mock.mock_calls
+                if call[1][0].endswith('new_record_processed')
+            ]
+        )
+        assert 1 == len(
+            [
+                call
+                for call in incr_mock.mock_calls
+                if call[1][0].endswith('modified_record_processed')
+            ]
+        )
+        assert 1 == len(
+            [
+                call
+                for call in incr_mock.mock_calls
+                if call[1][0].endswith('deleted_record_processed')
+            ]
+        )
 
 
 class TestExportBlocklist(TestCase):
-
     def test_command(self):
         for idx in range(0, 5):
             addon_factory()
         # one version, 0 - *
         Block.objects.create(
-            addon=addon_factory(
-                file_kw={'is_signed': True, 'is_webextension': True}),
-            updated_by=user_factory())
+            addon=addon_factory(file_kw={'is_signed': True, 'is_webextension': True}),
+            updated_by=user_factory(),
+        )
         # one version, 0 - 9999
         Block.objects.create(
-            addon=addon_factory(
-                file_kw={'is_signed': True, 'is_webextension': True}),
+            addon=addon_factory(file_kw={'is_signed': True, 'is_webextension': True}),
             updated_by=user_factory(),
-            max_version='9999')
+            max_version='9999',
+        )
         # one version, 0 - *, unlisted
         Block.objects.create(
             addon=addon_factory(
                 version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
-                file_kw={'is_signed': True, 'is_webextension': True}),
-            updated_by=user_factory())
+                file_kw={'is_signed': True, 'is_webextension': True},
+            ),
+            updated_by=user_factory(),
+        )
 
         call_command('export_blocklist', '1')
         out_path = os.path.join(settings.MLBF_STORAGE_PATH, '1', 'filter')
@@ -411,7 +445,6 @@ class TestExportBlocklist(TestCase):
 
 
 class TestBulkAddBlocks(TestCase):
-
     def test_command(self):
         user_factory(id=settings.TASK_USER_ID)
 
@@ -430,12 +463,10 @@ class TestBulkAddBlocks(TestCase):
         call_command('bulk_add_blocks', guids_input=guids_path)
         # this time we have 1 matching guid so one Block created
         assert Block.objects.count() == 1
-        assert Block.objects.last().guid == (
-            '{0020bd71-b1ba-4295-86af-db7f4e7eaedc}')
+        assert Block.objects.last().guid == ('{0020bd71-b1ba-4295-86af-db7f4e7eaedc}')
 
         addon_factory(guid='{00116dc4-ba1f-42c5-b20c-da7f743f7377}')
-        call_command(
-            'bulk_add_blocks', guids_input=guids_path, min_version='44')
+        call_command('bulk_add_blocks', guids_input=guids_path, min_version='44')
         # The guid before shouldn't be added twice
         # assert Block.objects.count() == 2
         prev_block = Block.objects.first()

@@ -19,6 +19,7 @@ class PositiveAutoField(models.AutoField):
 
     Because AutoFields are special we need a custom database backend to support
     using them.  See olympia.core.db.mysql.base for that."""
+
     description = _("Positive integer")
 
     def get_internal_type(self):
@@ -29,7 +30,6 @@ class PositiveAutoField(models.AutoField):
 
 
 class HttpHttpsOnlyURLField(fields.URLField):
-
     def __init__(self, *args, **kwargs):
         super(HttpHttpsOnlyURLField, self).__init__(*args, **kwargs)
 
@@ -42,10 +42,11 @@ class HttpHttpsOnlyURLField(fields.URLField):
                 message=_(
                     'This field can only be used to link to external websites.'
                     ' URLs on %(domain)s are not allowed.',
-                ) % {'domain': settings.DOMAIN},
+                )
+                % {'domain': settings.DOMAIN},
                 code='no_amo_url',
-                inverse_match=True
-            )
+                inverse_match=True,
+            ),
         ]
 
 
@@ -62,15 +63,14 @@ def validate_cidr(value):
         ipaddress.ip_network(value)
     except ValueError:
         raise exceptions.ValidationError(
-            _('Enter a valid IP4 or IP6 network.'), code='invalid')
+            _('Enter a valid IP4 or IP6 network.'), code='invalid'
+        )
 
 
 class CIDRField(models.Field):
     empty_strings_allowed = False
     description = _('CIDR')
-    default_error_messages = {
-        'invalid': _('Enter a valid IP4 or IP6 network.')
-    }
+    default_error_messages = {'invalid': _('Enter a valid IP4 or IP6 network.')}
 
     def __init__(self, verbose_name=None, name=None, *args, **kwargs):
         self.validators = [validate_cidr]
@@ -112,9 +112,6 @@ class CIDRField(models.Field):
         return str(value)
 
     def formfield(self, **kwargs):
-        defaults = {
-            'form_class': fields.CharField,
-            'validators': self.validators
-        }
+        defaults = {'form_class': fields.CharField, 'validators': self.validators}
         defaults.update(kwargs)
         return super(CIDRField, self).formfield(**defaults)

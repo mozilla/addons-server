@@ -17,7 +17,6 @@ def celery_error(*, capture_and_log=False, **kw):
         raise RuntimeError('This is an exception from celery')
     except Exception as exception:
         if capture_and_log:
-            log.exception(
-                'Capturing celery exception as a log', exc_info=exception)
+            log.exception('Capturing celery exception as a log', exc_info=exception)
         else:
             raise exception

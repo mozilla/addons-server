@@ -11,8 +11,13 @@ from rest_framework.fields import empty
 
 from olympia import amo
 from olympia.amo.tests import (
-    APITestClient, TestCase, addon_factory, collection_factory, reverse_ns,
-    user_factory)
+    APITestClient,
+    TestCase,
+    addon_factory,
+    collection_factory,
+    reverse_ns,
+    user_factory,
+)
 from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.bandwagon.models import Collection, CollectionAddon
 
@@ -22,8 +27,7 @@ class TestCollectionViewSetList(TestCase):
 
     def setUp(self):
         self.user = user_factory()
-        self.url = reverse_ns(
-            'collection-list', kwargs={'user_pk': self.user.pk})
+        self.url = reverse_ns('collection-list', kwargs={'user_pk': self.user.pk})
         super(TestCollectionViewSetList, self).setUp()
 
     def test_basic(self):
@@ -45,8 +49,7 @@ class TestCollectionViewSetList(TestCase):
 
     def test_different_user(self):
         random_user = user_factory()
-        other_url = reverse_ns('collection-list',
-                               kwargs={'user_pk': random_user.pk})
+        other_url = reverse_ns('collection-list', kwargs={'user_pk': random_user.pk})
         collection_factory(author=random_user)
 
         self.client.login_api(self.user)
@@ -55,8 +58,7 @@ class TestCollectionViewSetList(TestCase):
 
     def test_admin(self):
         random_user = user_factory()
-        other_url = reverse_ns('collection-list',
-                               kwargs={'user_pk': random_user.pk})
+        other_url = reverse_ns('collection-list', kwargs={'user_pk': random_user.pk})
         collection_factory(author=random_user)
 
         self.grant_permission(self.user, 'Collections:Edit')
@@ -75,8 +77,7 @@ class TestCollectionViewSetList(TestCase):
 
     def test_404(self):
         # Invalid user.
-        url = reverse_ns(
-            'collection-list', kwargs={'user_pk': self.user.pk + 66})
+        url = reverse_ns('collection-list', kwargs={'user_pk': self.user.pk + 66})
 
         # Not logged in.
         response = self.client.get(url)
@@ -122,8 +123,10 @@ class TestCollectionViewSetDetail(TestCase):
 
     def _get_url(self, user, collection):
         return reverse_ns(
-            'collection-detail', api_version='v5', kwargs={
-                'user_pk': user.pk, 'slug': collection.slug})
+            'collection-detail',
+            api_version='v5',
+            kwargs={'user_pk': user.pk, 'slug': collection.slug},
+        )
 
     def test_basic(self):
         response = self.client.get(self.url)
@@ -133,13 +136,14 @@ class TestCollectionViewSetDetail(TestCase):
     def test_no_id_lookup(self):
         collection = collection_factory(author=self.user, slug='999')
         id_url = reverse_ns(
-            'collection-detail', kwargs={
-                'user_pk': self.user.pk, 'slug': collection.id})
+            'collection-detail', kwargs={'user_pk': self.user.pk, 'slug': collection.id}
+        )
         response = self.client.get(id_url)
         assert response.status_code == 404
         slug_url = reverse_ns(
-            'collection-detail', kwargs={
-                'user_pk': self.user.pk, 'slug': collection.slug})
+            'collection-detail',
+            kwargs={'user_pk': self.user.pk, 'slug': collection.slug},
+        )
         response = self.client.get(slug_url)
         assert response.status_code == 200
         assert response.data['id'] == collection.id
@@ -216,14 +220,19 @@ class TestCollectionViewSetDetail(TestCase):
 
     def test_404(self):
         # Invalid user.
-        response = self.client.get(reverse_ns(
-            'collection-detail', kwargs={
-                'user_pk': self.user.pk + 66, 'slug': self.collection.slug}))
+        response = self.client.get(
+            reverse_ns(
+                'collection-detail',
+                kwargs={'user_pk': self.user.pk + 66, 'slug': self.collection.slug},
+            )
+        )
         assert response.status_code == 404
         # Invalid collection.
-        response = self.client.get(reverse_ns(
-            'collection-detail', kwargs={
-                'user_pk': self.user.pk, 'slug': 'hello'}))
+        response = self.client.get(
+            reverse_ns(
+                'collection-detail', kwargs={'user_pk': self.user.pk, 'slug': 'hello'}
+            )
+        )
         assert response.status_code == 404
 
     def test_with_addons(self):
@@ -254,10 +263,12 @@ class TestCollectionViewSetDetail(TestCase):
     def test_with_addons_and_wrap_outgoing_links_and_lang(self):
         addon = addon_factory(
             support_url='http://support.example.com',
-            homepage='http://homepage.example.com')
+            homepage='http://homepage.example.com',
+        )
         self.collection.add_addon(addon)
         response = self.client.get(
-            self.url + '?with_addons&lang=en-US&wrap_outgoing_links')
+            self.url + '?with_addons&lang=en-US&wrap_outgoing_links'
+        )
         assert response.status_code == 200
         assert response.data['id'] == self.collection.id
         addon_data = response.data['addons'][0]['addon']
@@ -266,16 +277,18 @@ class TestCollectionViewSetDetail(TestCase):
         assert addon_data['name'] == {'en-US': str(addon.name)}
         assert isinstance(addon_data['homepage']['en-US'], str)
         assert addon_data['homepage'] == {
-            'en-US': get_outgoing_url(str(addon.homepage))}
+            'en-US': get_outgoing_url(str(addon.homepage))
+        }
         assert isinstance(addon_data['support_url']['en-US'], str)
         assert addon_data['support_url'] == {
-            'en-US': get_outgoing_url(str(addon.support_url))}
+            'en-US': get_outgoing_url(str(addon.support_url))
+        }
 
-        overridden_api_gates = {
-            'v5': ('l10n_flat_input_output',)}
+        overridden_api_gates = {'v5': ('l10n_flat_input_output',)}
         with override_settings(DRF_API_GATES=overridden_api_gates):
             response = self.client.get(
-                self.url + '?with_addons&lang=en-US&wrap_outgoing_links')
+                self.url + '?with_addons&lang=en-US&wrap_outgoing_links'
+            )
             assert response.status_code == 200
             assert response.data['id'] == self.collection.id
             addon_data = response.data['addons'][0]['addon']
@@ -283,11 +296,9 @@ class TestCollectionViewSetDetail(TestCase):
             assert isinstance(addon_data['name'], str)
             assert addon_data['name'] == str(addon.name)
             assert isinstance(addon_data['homepage'], str)
-            assert addon_data['homepage'] == get_outgoing_url(
-                str(addon.homepage))
+            assert addon_data['homepage'] == get_outgoing_url(str(addon.homepage))
             assert isinstance(addon_data['support_url'], str)
-            assert addon_data['support_url'] == get_outgoing_url(
-                str(addon.support_url))
+            assert addon_data['support_url'] == get_outgoing_url(str(addon.support_url))
 
 
 class CollectionViewSetDataMixin(object):
@@ -340,32 +351,29 @@ class CollectionViewSetDataMixin(object):
         response = self.send(data=data)
         assert response.status_code == 400
         assert json.loads(response.content) == {
-            'name': ['You must provide an object of {lang-code:value}.']}
+            'name': ['You must provide an object of {lang-code:value}.']
+        }
 
         # Passing a dict of localised values
         data.update(name={'en-US': u'   '})
         response = self.send(data=data)
         assert response.status_code == 400
-        assert json.loads(response.content) == {
-            'name': ['Name cannot be empty.']}
+        assert json.loads(response.content) == {'name': ['Name cannot be empty.']}
 
-    @override_settings(DRF_API_GATES={
-        'v5': ('l10n_flat_input_output',)})
+    @override_settings(DRF_API_GATES={'v5': ('l10n_flat_input_output',)})
     def test_update_name_invalid_flat_input(self):
         self.client.login_api(self.user)
         data = dict(self.data)
         data.update(name=u'   ')
         response = self.send(data=data)
         assert response.status_code == 400
-        assert json.loads(response.content) == {
-            'name': ['Name cannot be empty.']}
+        assert json.loads(response.content) == {'name': ['Name cannot be empty.']}
 
         # Passing a dict of localised values
         data.update(name={'en-US': u'   '})
         response = self.send(data=data)
         assert response.status_code == 400
-        assert json.loads(response.content) == {
-            'name': ['Name cannot be empty.']}
+        assert json.loads(response.content) == {'name': ['Name cannot be empty.']}
 
     def test_biography_no_links(self):
         self.client.login_api(self.user)
@@ -374,18 +382,17 @@ class CollectionViewSetDataMixin(object):
         response = self.send(data=data)
         assert response.status_code == 400
         assert json.loads(response.content) == {
-            'description': [
-                'You must provide an object of {lang-code:value}.']}
+            'description': ['You must provide an object of {lang-code:value}.']
+        }
 
-        data.update(description={
-            'en-US': '<a href="https://google.com">google</a>'})
+        data.update(description={'en-US': '<a href="https://google.com">google</a>'})
         response = self.send(data=data)
         assert response.status_code == 400
         assert json.loads(response.content) == {
-            'description': ['No links are allowed.']}
+            'description': ['No links are allowed.']
+        }
 
-    @override_settings(DRF_API_GATES={
-        'v5': ('l10n_flat_input_output',)})
+    @override_settings(DRF_API_GATES={'v5': ('l10n_flat_input_output',)})
     def test_biography_no_links_flat_input(self):
         self.client.login_api(self.user)
         data = dict(self.data)
@@ -393,14 +400,15 @@ class CollectionViewSetDataMixin(object):
         response = self.send(data=data)
         assert response.status_code == 400
         assert json.loads(response.content) == {
-            'description': ['No links are allowed.']}
+            'description': ['No links are allowed.']
+        }
 
-        data.update(description={
-            'en-US': '<a href="https://google.com">google</a>'})
+        data.update(description={'en-US': '<a href="https://google.com">google</a>'})
         response = self.send(data=data)
         assert response.status_code == 400
         assert json.loads(response.content) == {
-            'description': ['No links are allowed.']}
+            'description': ['No links are allowed.']
+        }
 
     def test_slug_valid(self):
         self.client.login_api(self.user)
@@ -409,8 +417,11 @@ class CollectionViewSetDataMixin(object):
         response = self.send(data=data)
         assert response.status_code == 400
         assert json.loads(response.content) == {
-            'slug': [u'The custom URL must consist of letters, numbers, '
-                     u'underscores or hyphens.']}
+            'slug': [
+                u'The custom URL must consist of letters, numbers, '
+                u'underscores or hyphens.'
+            ]
+        }
 
     def test_slug_unique(self):
         collection_factory(author=self.user, slug='edam')
@@ -420,18 +431,18 @@ class CollectionViewSetDataMixin(object):
         response = self.send(data=data)
         assert response.status_code == 400
         assert u'This custom URL is already in use' in (
-            ','.join(json.loads(response.content)['non_field_errors']))
+            ','.join(json.loads(response.content)['non_field_errors'])
+        )
 
 
 class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
-
     def send(self, url=None, data=None):
         return self.client.post(url or self.url, data or self.data)
 
     def get_url(self, user):
         return reverse_ns(
-            'collection-list', api_version='v5',
-            kwargs={'user_pk': user.pk})
+            'collection-list', api_version='v5', kwargs={'user_pk': user.pk}
+        )
 
     def test_basic_create(self):
         self.client.login_api(self.user)
@@ -462,10 +473,10 @@ class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
         response = self.send(data=data)
         assert response.status_code == 400
         assert json.loads(response.content) == {
-            'name': ['You must provide an object of {lang-code:value}.']}
+            'name': ['You must provide an object of {lang-code:value}.']
+        }
 
-    @override_settings(DRF_API_GATES={
-        'v5': ('l10n_flat_input_output',)})
+    @override_settings(DRF_API_GATES={'v5': ('l10n_flat_input_output',)})
     def test_create_minimal_flat_input(self):
         self.client.login_api(self.user)
         data = {
@@ -527,7 +538,6 @@ class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
 
 
 class TestCollectionViewSetPatch(CollectionViewSetDataMixin, TestCase):
-
     def setUp(self):
         self.collection = collection_factory(author=self.user)
         super(TestCollectionViewSetPatch, self).setUp()
@@ -537,8 +547,10 @@ class TestCollectionViewSetPatch(CollectionViewSetDataMixin, TestCase):
 
     def get_url(self, user):
         return reverse_ns(
-            'collection-detail', api_version='v5', kwargs={
-                'user_pk': user.pk, 'slug': self.collection.slug})
+            'collection-detail',
+            api_version='v5',
+            kwargs={'user_pk': user.pk, 'slug': self.collection.slug},
+        )
 
     def test_basic_patch(self):
         self.client.login_api(self.user)
@@ -547,8 +559,7 @@ class TestCollectionViewSetPatch(CollectionViewSetDataMixin, TestCase):
         assert response.status_code == 200
         assert response.content != original
         self.collection = self.collection.reload()
-        self.check_data(self.collection, self.data,
-                        json.loads(response.content))
+        self.check_data(self.collection, self.data, json.loads(response.content))
 
     def test_different_account(self):
         self.client.login_api(self.user)
@@ -582,8 +593,7 @@ class TestCollectionViewSetPatch(CollectionViewSetDataMixin, TestCase):
 
         assert response.content != original
         self.collection = self.collection.reload()
-        self.check_data(self.collection, self.data,
-                        json.loads(response.content))
+        self.check_data(self.collection, self.data, json.loads(response.content))
         # Just double-check we didn't steal their collection
         assert self.collection.author.id == random_user.id
 
@@ -614,8 +624,9 @@ class TestCollectionViewSetDelete(TestCase):
 
     def get_url(self, user):
         return reverse_ns(
-            'collection-detail', kwargs={
-                'user_pk': user.pk, 'slug': self.collection.slug})
+            'collection-detail',
+            kwargs={'user_pk': user.pk, 'slug': self.collection.slug},
+        )
 
     def test_delete(self):
         self.client.login_api(self.user)
@@ -771,12 +782,13 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         self.addon_disabled.update(disabled_by_user=True)
         self.addon_deleted.delete()
         self.addon_pending.current_version.all_files[0].update(
-            status=amo.STATUS_AWAITING_REVIEW)
+            status=amo.STATUS_AWAITING_REVIEW
+        )
 
         self.url = reverse_ns(
-            'collection-addon-list', kwargs={
-                'user_pk': self.user.pk,
-                'collection_slug': self.collection.slug})
+            'collection-addon-list',
+            kwargs={'user_pk': self.user.pk, 'collection_slug': self.collection.slug},
+        )
         super(TestCollectionAddonViewSetList, self).setUp()
 
     def check_response(self, response):
@@ -785,16 +797,23 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
 
     def test_404(self):
         # Invalid user.
-        response = self.client.get(reverse_ns(
-            'collection-addon-list', kwargs={
-                'user_pk': self.user.pk + 66,
-                'collection_slug': self.collection.slug}))
+        response = self.client.get(
+            reverse_ns(
+                'collection-addon-list',
+                kwargs={
+                    'user_pk': self.user.pk + 66,
+                    'collection_slug': self.collection.slug,
+                },
+            )
+        )
         assert response.status_code == 404
         # Invalid collection.
-        response = self.client.get(reverse_ns(
-            'collection-addon-list', kwargs={
-                'user_pk': self.user.pk,
-                'collection_slug': 'hello'}))
+        response = self.client.get(
+            reverse_ns(
+                'collection-addon-list',
+                kwargs={'user_pk': self.user.pk, 'collection_slug': 'hello'},
+            )
+        )
         assert response.status_code == 404
 
     def check_result_order(self, response, first, second, third):
@@ -813,77 +832,102 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
 
         # First default sort
         self.check_result_order(
-            self.client.get(self.url),
-            self.addon_b, self.addon_a, self.addon_c)
+            self.client.get(self.url), self.addon_b, self.addon_a, self.addon_c
+        )
 
         # Popularity ascending
         self.check_result_order(
             self.client.get(self.url + '?sort=popularity'),
-            self.addon_c, self.addon_a, self.addon_b)
+            self.addon_c,
+            self.addon_a,
+            self.addon_b,
+        )
 
         # Popularity descending (same as default)
         self.check_result_order(
             self.client.get(self.url + '?sort=-popularity'),
-            self.addon_b, self.addon_a, self.addon_c)
+            self.addon_b,
+            self.addon_a,
+            self.addon_c,
+        )
 
         CollectionAddon.objects.get(
-            collection=self.collection, addon=self.addon_a).update(
-            created=self.days_ago(1))
+            collection=self.collection, addon=self.addon_a
+        ).update(created=self.days_ago(1))
         CollectionAddon.objects.get(
-            collection=self.collection, addon=self.addon_b).update(
-            created=self.days_ago(3))
+            collection=self.collection, addon=self.addon_b
+        ).update(created=self.days_ago(3))
         CollectionAddon.objects.get(
-            collection=self.collection, addon=self.addon_c).update(
-            created=self.days_ago(2))
+            collection=self.collection, addon=self.addon_c
+        ).update(created=self.days_ago(2))
 
         # Added ascending
         self.check_result_order(
             self.client.get(self.url + '?sort=added'),
-            self.addon_b, self.addon_c, self.addon_a)
+            self.addon_b,
+            self.addon_c,
+            self.addon_a,
+        )
 
         # Added descending
         self.check_result_order(
             self.client.get(self.url + '?sort=-added'),
-            self.addon_a, self.addon_c, self.addon_b)
+            self.addon_a,
+            self.addon_c,
+            self.addon_b,
+        )
 
         # Name ascending
         self.check_result_order(
             self.client.get(self.url + '?sort=name'),
-            self.addon_a, self.addon_b, self.addon_c)
+            self.addon_a,
+            self.addon_b,
+            self.addon_c,
+        )
 
         # Name descending
         self.check_result_order(
             self.client.get(self.url + '?sort=-name'),
-            self.addon_c, self.addon_b, self.addon_a)
+            self.addon_c,
+            self.addon_b,
+            self.addon_a,
+        )
 
         # Name ascending, German
         self.check_result_order(
             self.client.get(self.url + '?sort=name&lang=de'),
-            self.addon_a, self.addon_c, self.addon_b)
+            self.addon_a,
+            self.addon_c,
+            self.addon_b,
+        )
 
         # Name descending, German
         self.check_result_order(
             self.client.get(self.url + '?sort=-name&lang=de'),
-            self.addon_b, self.addon_c, self.addon_a)
+            self.addon_b,
+            self.addon_c,
+            self.addon_a,
+        )
 
     def test_name_sorting_no_english(self):
         CollectionAddon.objects.get(
-            collection=self.collection, addon=self.addon_a).update(
-            created=self.days_ago(1))
+            collection=self.collection, addon=self.addon_a
+        ).update(created=self.days_ago(1))
         CollectionAddon.objects.get(
-            collection=self.collection, addon=self.addon_b).update(
-            created=self.days_ago(3))
+            collection=self.collection, addon=self.addon_b
+        ).update(created=self.days_ago(3))
         CollectionAddon.objects.get(
-            collection=self.collection, addon=self.addon_c).update(
-            created=self.days_ago(2))
+            collection=self.collection, addon=self.addon_c
+        ).update(created=self.days_ago(2))
 
         # Change all english translations to be Spanish instead, making sure we
         # don't have translations in settings.LANGUAGE_CODE (en-US).
         from olympia.translations.models import Translation
-        Translation.objects.filter(locale=settings.LANGUAGE_CODE, id__in=(
-            self.addon_a.name_id,
-            self.addon_b.name_id,
-            self.addon_c.name_id)).update(locale='es')
+
+        Translation.objects.filter(
+            locale=settings.LANGUAGE_CODE,
+            id__in=(self.addon_a.name_id, self.addon_b.name_id, self.addon_c.name_id),
+        ).update(locale='es')
 
         # Then give a valid default_locale to the addons, 'de' (they already
         # all have a german translation)
@@ -895,7 +939,10 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         # default_locale, # German).
         self.check_result_order(
             self.client.get(self.url + '?sort=name&lang=fr'),
-            self.addon_a, self.addon_c, self.addon_b)
+            self.addon_a,
+            self.addon_c,
+            self.addon_b,
+        )
 
     def test_only_one_sort_parameter_supported(self):
         response = self.client.get(self.url + '?sort=popularity,name')
@@ -903,7 +950,8 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         assert response.status_code == 400
         assert response.json() == [
             'You can only specify one "sort" argument. Multiple orderings '
-            'are not supported']
+            'are not supported'
+        ]
 
     def test_with_deleted_or_with_hidden(self):
         response = self.send(self.url)
@@ -921,11 +969,14 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         # And one more still - with_deleted gets you with_hidden too.
         assert len(response.json()['results']) == 6
         all_addons_ids = {
-            self.addon_a.id, self.addon_b.id, self.addon_c.id,
-            self.addon_disabled.id, self.addon_deleted.id,
-            self.addon_pending.id}
-        result_ids = {
-            result['addon']['id'] for result in response.json()['results']}
+            self.addon_a.id,
+            self.addon_b.id,
+            self.addon_c.id,
+            self.addon_disabled.id,
+            self.addon_deleted.id,
+            self.addon_pending.id,
+        }
+        result_ids = {result['addon']['id'] for result in response.json()['results']}
         assert all_addons_ids == result_ids
 
     def test_no_caching_authenticated(self):
@@ -990,9 +1041,9 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         new_collection = collection_factory(author=self.user)
         new_collection.add_addon(self.addon_a)
         url = reverse_ns(
-            'collection-addon-list', kwargs={
-                'user_pk': self.user.pk,
-                'collection_slug': new_collection.slug})
+            'collection-addon-list',
+            kwargs={'user_pk': self.user.pk, 'collection_slug': new_collection.slug},
+        )
         with self.assertNumQueries(25):
             response = self.client.get(url)
         assert isinstance(response, HttpResponse)
@@ -1039,11 +1090,13 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
 
     def test_transforms(self):
         ca_a = CollectionAddon.objects.get(
-            collection=self.collection, addon=self.addon_a)
+            collection=self.collection, addon=self.addon_a
+        )
         ca_a.comments = {'en-US': 'Nótes!'}
         ca_a.save()
         ca_c = CollectionAddon.objects.get(
-            collection=self.collection, addon=self.addon_c)
+            collection=self.collection, addon=self.addon_c
+        )
         ca_c.comments = {'en-US': 'Super', 'fr': 'Supúrb'}
         ca_c.save()
 
@@ -1056,20 +1109,23 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         assert results[2]['notes'] == {'en-US': 'Super', 'fr': 'Supúrb'}
 
         # addon l10n
-        assert results[0]['addon']['name'] == {
-            'en-US': 'anteater', 'de': 'Ameisenbär'}
-        assert results[1]['addon']['name'] == {
-            'en-US': 'baboon', 'de': 'Pavian'}
-        assert results[2]['addon']['name'] == {
-            'en-US': 'cheetah', 'de': 'Gepard'}
+        assert results[0]['addon']['name'] == {'en-US': 'anteater', 'de': 'Ameisenbär'}
+        assert results[1]['addon']['name'] == {'en-US': 'baboon', 'de': 'Pavian'}
+        assert results[2]['addon']['name'] == {'en-US': 'cheetah', 'de': 'Gepard'}
 
         # license l10n
         assert results[0]['addon']['current_version']['license']['name'] == {
-            'en-US': 'My License', 'fr': 'Mä Licence'}
+            'en-US': 'My License',
+            'fr': 'Mä Licence',
+        }
         assert results[1]['addon']['current_version']['license']['name'] == {
-            'en-US': 'My License', 'fr': 'Mä Licence'}
+            'en-US': 'My License',
+            'fr': 'Mä Licence',
+        }
         assert results[2]['addon']['current_version']['license']['name'] == {
-            'en-US': 'My License', 'fr': 'Mä Licence'}
+            'en-US': 'My License',
+            'fr': 'Mä Licence',
+        }
 
 
 class TestCollectionAddonViewSetDetail(CollectionAddonViewSetMixin, TestCase):
@@ -1081,10 +1137,13 @@ class TestCollectionAddonViewSetDetail(CollectionAddonViewSetMixin, TestCase):
         self.addon = addon_factory()
         self.collection.add_addon(self.addon)
         self.url = reverse_ns(
-            'collection-addon-detail', kwargs={
+            'collection-addon-detail',
+            kwargs={
                 'user_pk': self.user.pk,
                 'collection_slug': self.collection.slug,
-                'addon': self.addon.id})
+                'addon': self.addon.id,
+            },
+        )
         super(TestCollectionAddonViewSetDetail, self).setUp()
 
     def check_response(self, response):
@@ -1093,10 +1152,13 @@ class TestCollectionAddonViewSetDetail(CollectionAddonViewSetMixin, TestCase):
 
     def test_with_slug(self):
         self.url = reverse_ns(
-            'collection-addon-detail', kwargs={
+            'collection-addon-detail',
+            kwargs={
                 'user_pk': self.user.pk,
                 'collection_slug': self.collection.slug,
-                'addon': self.addon.slug})
+                'addon': self.addon.slug,
+            },
+        )
         self.test_basic()
 
     def test_deleted(self):
@@ -1111,16 +1173,18 @@ class TestCollectionAddonViewSetCreate(CollectionAddonViewSetMixin, TestCase):
         self.user = user_factory()
         self.collection = collection_factory(author=self.user)
         self.url = reverse_ns(
-            'collection-addon-list', api_version='v5', kwargs={
-                'user_pk': self.user.pk,
-                'collection_slug': self.collection.slug})
+            'collection-addon-list',
+            api_version='v5',
+            kwargs={'user_pk': self.user.pk, 'collection_slug': self.collection.slug},
+        )
         self.addon = addon_factory()
         super(TestCollectionAddonViewSetCreate, self).setUp()
 
     def check_response(self, response):
         assert response.status_code == 201, response.content
         assert CollectionAddon.objects.filter(
-            collection=self.collection.id, addon=self.addon.id).exists()
+            collection=self.collection.id, addon=self.addon.id
+        ).exists()
 
     def send(self, url, data=None):
         data = data or {'addon': self.addon.pk}
@@ -1128,41 +1192,44 @@ class TestCollectionAddonViewSetCreate(CollectionAddonViewSetMixin, TestCase):
 
     def test_basic(self):
         assert not CollectionAddon.objects.filter(
-            collection=self.collection.id).exists()
+            collection=self.collection.id
+        ).exists()
         self.client.login_api(self.user)
         response = self.send(self.url)
         self.check_response(response)
 
     def test_add_with_comments(self):
         self.client.login_api(self.user)
-        response = self.send(self.url,
-                             data={'addon': self.addon.pk,
-                                   'notes': {'en-US': 'its good!'}})
+        response = self.send(
+            self.url, data={'addon': self.addon.pk, 'notes': {'en-US': 'its good!'}}
+        )
         self.check_response(response)
         collection_addon = CollectionAddon.objects.get(
-            collection=self.collection.id, addon=self.addon.id)
+            collection=self.collection.id, addon=self.addon.id
+        )
         assert collection_addon.addon == self.addon
         assert collection_addon.collection == self.collection
         assert collection_addon.comments == 'its good!'
 
         # Double-check trying to create with a non-dict name now fails
-        response = self.send(self.url,
-                             data={'addon': self.addon.pk,
-                                   'notes': 'its good!'})
+        response = self.send(
+            self.url, data={'addon': self.addon.pk, 'notes': 'its good!'}
+        )
         assert response.status_code == 400
         assert json.loads(response.content) == {
-            'notes': ['You must provide an object of {lang-code:value}.']}
+            'notes': ['You must provide an object of {lang-code:value}.']
+        }
 
-    @override_settings(DRF_API_GATES={
-        'v5': ('l10n_flat_input_output',)})
+    @override_settings(DRF_API_GATES={'v5': ('l10n_flat_input_output',)})
     def test_add_with_comments_flat_input(self):
         self.client.login_api(self.user)
-        response = self.send(self.url,
-                             data={'addon': self.addon.pk,
-                                   'notes': 'its good!'})
+        response = self.send(
+            self.url, data={'addon': self.addon.pk, 'notes': 'its good!'}
+        )
         self.check_response(response)
         collection_addon = CollectionAddon.objects.get(
-            collection=self.collection.id, addon=self.addon.id)
+            collection=self.collection.id, addon=self.addon.id
+        )
         assert collection_addon.addon == self.addon
         assert collection_addon.collection == self.collection
         assert collection_addon.comments == 'its good!'
@@ -1171,8 +1238,7 @@ class TestCollectionAddonViewSetCreate(CollectionAddonViewSetMixin, TestCase):
         self.client.login_api(self.user)
         response = self.send(self.url, data={'notes': {'en-US': ''}})
         assert response.status_code == 400
-        assert json.loads(response.content) == {
-            'addon': [u'This field is required.']}
+        assert json.loads(response.content) == {'addon': [u'This field is required.']}
 
     def test_fail_when_not_public_addon(self):
         self.client.login_api(self.user)
@@ -1180,16 +1246,18 @@ class TestCollectionAddonViewSetCreate(CollectionAddonViewSetMixin, TestCase):
         response = self.send(self.url)
         assert response.status_code == 400
         assert json.loads(response.content) == {
-            'addon': ['Invalid pk or slug "%s" - object does not exist.' %
-                      self.addon.pk]}
+            'addon': [
+                'Invalid pk or slug "%s" - object does not exist.' % self.addon.pk
+            ]
+        }
 
     def test_fail_when_invalid_addon(self):
         self.client.login_api(self.user)
         response = self.send(self.url, data={'addon': 3456})
         assert response.status_code == 400
         assert json.loads(response.content) == {
-            'addon': ['Invalid pk or slug "%s" - object does not exist.' %
-                      3456]}
+            'addon': ['Invalid pk or slug "%s" - object does not exist.' % 3456]
+        }
 
     def test_with_slug(self):
         self.client.login_api(self.user)
@@ -1197,14 +1265,12 @@ class TestCollectionAddonViewSetCreate(CollectionAddonViewSetMixin, TestCase):
         self.check_response(response)
 
     def test_uniqueness_message(self):
-        CollectionAddon.objects.create(
-            collection=self.collection, addon=self.addon)
+        CollectionAddon.objects.create(collection=self.collection, addon=self.addon)
         self.client.login_api(self.user)
         response = self.send(self.url, data={'addon': self.addon.slug})
         assert response.status_code == 400
         assert response.data == {
-            u'non_field_errors':
-                [u'This add-on already belongs to the collection']
+            u'non_field_errors': [u'This add-on already belongs to the collection']
         }
 
 
@@ -1217,17 +1283,20 @@ class TestCollectionAddonViewSetPatch(CollectionAddonViewSetMixin, TestCase):
         self.addon = addon_factory()
         self.collection.add_addon(self.addon)
         self.url = reverse_ns(
-            'collection-addon-detail', api_version='v5', kwargs={
+            'collection-addon-detail',
+            api_version='v5',
+            kwargs={
                 'user_pk': self.user.pk,
                 'collection_slug': self.collection.slug,
-                'addon': self.addon.id})
+                'addon': self.addon.id,
+            },
+        )
         super(TestCollectionAddonViewSetPatch, self).setUp()
 
     def check_response(self, response, notes=empty):
         notes = notes if notes != empty else u'it does things'
         assert response.status_code == 200, response.content
-        collection_addon = CollectionAddon.objects.get(
-            collection=self.collection.id)
+        collection_addon = CollectionAddon.objects.get(collection=self.collection.id)
         assert collection_addon.addon == self.addon
         assert collection_addon.collection == self.collection
         assert collection_addon.comments == notes
@@ -1248,10 +1317,10 @@ class TestCollectionAddonViewSetPatch(CollectionAddonViewSetMixin, TestCase):
         response = self.send(self.url, data)
         assert response.status_code == 400
         assert json.loads(response.content) == {
-            'notes': ['You must provide an object of {lang-code:value}.']}
+            'notes': ['You must provide an object of {lang-code:value}.']
+        }
         # But with the correct api gate, we can use the old behavior
-        overridden_api_gates = {
-            'v5': ('l10n_flat_input_output',)}
+        overridden_api_gates = {'v5': ('l10n_flat_input_output',)}
         with override_settings(DRF_API_GATES=overridden_api_gates):
             response = self.send(self.url, data)
             self.check_response(response)
@@ -1259,8 +1328,7 @@ class TestCollectionAddonViewSetPatch(CollectionAddonViewSetMixin, TestCase):
     def test_cant_change_addon(self):
         self.client.login_api(self.user)
         new_addon = addon_factory()
-        response = self.send(self.url,
-                             data={'addon': new_addon.id})
+        response = self.send(self.url, data={'addon': new_addon.id})
         self.check_response(response, notes=None)
 
     def test_deleted(self):
@@ -1277,23 +1345,28 @@ class TestCollectionAddonViewSetDelete(CollectionAddonViewSetMixin, TestCase):
         self.addon = addon_factory()
         self.collection.add_addon(self.addon)
         self.url = reverse_ns(
-            'collection-addon-detail', kwargs={
+            'collection-addon-detail',
+            kwargs={
                 'user_pk': self.user.pk,
                 'collection_slug': self.collection.slug,
-                'addon': self.addon.id})
+                'addon': self.addon.id,
+            },
+        )
         super(TestCollectionAddonViewSetDelete, self).setUp()
 
     def check_response(self, response):
         assert response.status_code == 204
         assert not CollectionAddon.objects.filter(
-            collection=self.collection.id, addon=self.addon).exists()
+            collection=self.collection.id, addon=self.addon
+        ).exists()
 
     def send(self, url):
         return self.client.delete(url)
 
     def test_basic(self):
         assert CollectionAddon.objects.filter(
-            collection=self.collection.id, addon=self.addon).exists()
+            collection=self.collection.id, addon=self.addon
+        ).exists()
         self.client.login_api(self.user)
         response = self.send(self.url)
         self.check_response(response)

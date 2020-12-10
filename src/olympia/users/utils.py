@@ -14,7 +14,6 @@ log = olympia.core.logger.getLogger('z.users')
 
 
 class UnsubscribeCode(object):
-
     @classmethod
     def create(cls, email):
         """Encode+Hash an email for an unsubscribe code."""
@@ -41,8 +40,9 @@ class UnsubscribeCode(object):
 
     @classmethod
     def make_secret(cls, token):
-        return hmac.new(force_bytes(settings.SECRET_KEY), msg=token,
-                        digestmod=hashlib.sha256).hexdigest()
+        return hmac.new(
+            force_bytes(settings.SECRET_KEY), msg=token, digestmod=hashlib.sha256
+        ).hexdigest()
 
 
 def get_task_user():
