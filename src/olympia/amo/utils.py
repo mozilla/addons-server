@@ -952,6 +952,8 @@ def attach_trans_dict(model, objs):
 
     # Build and attach translations for each field on each object.
     for obj in objs:
+        if not obj:
+            continue
         obj.translations = collections.defaultdict(list)
         for field in fields:
             t_id = getattr(obj, field.attname, None)

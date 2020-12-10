@@ -1094,6 +1094,8 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         )
         ca_a.comments = {'en-US': 'Nótes!'}
         ca_a.save()
+        self.addon_b.current_version.license = None
+        self.addon_b.current_version.save()
         ca_c = CollectionAddon.objects.get(
             collection=self.collection, addon=self.addon_c
         )
@@ -1118,10 +1120,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
             'en-US': 'My License',
             'fr': 'Mä Licence',
         }
-        assert results[1]['addon']['current_version']['license']['name'] == {
-            'en-US': 'My License',
-            'fr': 'Mä Licence',
-        }
+        assert results[1]["addon"]["current_version"]["license"] is None
         assert results[2]['addon']['current_version']['license']['name'] == {
             'en-US': 'My License',
             'fr': 'Mä Licence',
