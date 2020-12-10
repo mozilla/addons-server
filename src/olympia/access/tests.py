@@ -6,16 +6,21 @@ from django.contrib.auth.models import AnonymousUser
 from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
-from olympia.amo.tests import (
-    addon_factory, TestCase, req_factory_factory, user_factory)
+from olympia.amo.tests import addon_factory, TestCase, req_factory_factory, user_factory
 from olympia.users.models import UserProfile
 
 from .acl import (
-    action_allowed, check_addon_ownership, check_addons_reviewer,
-    check_ownership, check_static_theme_reviewer,
+    action_allowed,
+    check_addon_ownership,
+    check_addons_reviewer,
+    check_ownership,
+    check_static_theme_reviewer,
     check_unlisted_addons_reviewer,
-    is_reviewer, is_user_any_kind_of_reviewer, match_rules,
-    system_addon_submission_allowed)
+    is_reviewer,
+    is_user_any_kind_of_reviewer,
+    match_rules,
+    system_addon_submission_allowed,
+)
 
 
 pytestmark = pytest.mark.django_db
@@ -58,8 +63,9 @@ def test_match_rules():
     )
 
     for rule in rules:
-        assert not match_rules(rule, 'Admin', '%'), \
+        assert not match_rules(rule, 'Admin', '%'), (
             "%s == Admin:%% and shouldn't" % rule
+        )
 
 
 def test_anonymous_user():
@@ -69,13 +75,15 @@ def test_anonymous_user():
 
 class ACLTestCase(TestCase):
     """Test some basic ACLs by going to various locked pages on AMO."""
+
     fixtures = ['access/login.json']
 
     def test_admin_login_anon(self):
         # Login form for anonymous user on the admin page.
         url = '/en-US/admin/models/'
-        self.assert3xx(self.client.get(url),
-                       '/admin/models/login/?next=/en-US/admin/models/')
+        self.assert3xx(
+            self.client.get(url), '/admin/models/login/?next=/en-US/admin/models/'
+        )
 
 
 class TestHasPerm(TestCase):
@@ -117,8 +125,7 @@ class TestHasPerm(TestCase):
         self.request = self.fake_request_with_user(self.login_admin())
         assert check_ownership(self.request, self.addon, require_author=False)
 
-        assert not check_ownership(self.request, self.addon,
-                                   require_author=True)
+        assert not check_ownership(self.request, self.addon, require_author=True)
 
     def test_disabled(self):
         self.addon.update(status=amo.STATUS_DISABLED)
@@ -133,8 +140,7 @@ class TestHasPerm(TestCase):
 
     def test_ignore_disabled(self):
         self.addon.update(status=amo.STATUS_DISABLED)
-        assert check_addon_ownership(self.request, self.addon,
-                                     ignore_disabled=True)
+        assert check_addon_ownership(self.request, self.addon, ignore_disabled=True)
 
     def test_owner(self):
         assert check_addon_ownership(self.request, self.addon)
@@ -172,9 +178,7 @@ class TestHasPerm(TestCase):
         # At this point, `user_dev` is an owner of `addon_for_user_dev`.
 
         # Let's add `user_dev` as a developer of `self.addon`.
-        self.addon.addonuser_set.create(
-            user=user_dev, role=amo.AUTHOR_ROLE_DEV
-        )
+        self.addon.addonuser_set.create(user=user_dev, role=amo.AUTHOR_ROLE_DEV)
         # Now, let's make sure `user_dev` is not an owner.
         self.request = self.fake_request_with_user(user_dev)
 
@@ -199,8 +203,7 @@ class TestCheckReviewer(TestCase):
         assert not check_static_theme_reviewer(request)
         assert not is_user_any_kind_of_reviewer(request.user)
         assert not is_reviewer(request, self.addon)
-        assert not is_reviewer(
-            request, self.addon, allow_content_reviewers=False)
+        assert not is_reviewer(request, self.addon, allow_content_reviewers=False)
         assert not is_reviewer(request, self.statictheme)
 
     def test_perm_addons(self):
@@ -240,11 +243,9 @@ class TestCheckReviewer(TestCase):
         self.grant_permission(self.user, 'Addons:ThemeReview')
         request = req_factory_factory('noop', user=self.user)
         assert not is_reviewer(request, self.addon)
-        assert not is_reviewer(
-            request, self.addon, allow_content_reviewers=False)
+        assert not is_reviewer(request, self.addon, allow_content_reviewers=False)
         assert is_reviewer(request, self.statictheme)
-        assert is_reviewer(
-            request, self.statictheme, allow_content_reviewers=False)
+        assert is_reviewer(request, self.statictheme, allow_content_reviewers=False)
         assert check_static_theme_reviewer(request)
         assert is_user_any_kind_of_reviewer(request.user)
 
@@ -256,13 +257,11 @@ class TestCheckReviewer(TestCase):
         assert not check_unlisted_addons_reviewer(request)
         assert not check_static_theme_reviewer(request)
         assert not is_reviewer(request, self.statictheme)
-        assert not is_reviewer(
-            request, self.statictheme, allow_content_reviewers=False)
+        assert not is_reviewer(request, self.statictheme, allow_content_reviewers=False)
 
         assert check_addons_reviewer(request)
         assert is_reviewer(request, self.addon)
-        assert not is_reviewer(
-            request, self.addon, allow_content_reviewers=False)
+        assert not is_reviewer(request, self.addon, allow_content_reviewers=False)
 
     def test_perm_reviewertools_view(self):
         self.grant_permission(self.user, 'ReviewerTools:View')
@@ -274,17 +273,26 @@ class TestCheckReviewer(TestCase):
         assert not is_reviewer(request, self.statictheme)
         assert not check_addons_reviewer(request)
         assert not is_reviewer(request, self.addon)
-        assert not is_reviewer(
-            request, self.addon, allow_content_reviewers=False)
+        assert not is_reviewer(request, self.addon, allow_content_reviewers=False)
 
 
-system_guids = pytest.mark.parametrize('guid', [
-    'foø@mozilla.org', 'baa@shield.mozilla.org', 'moo@pioneer.mozilla.org',
-    'blâh@mozilla.com', 'foø@Mozilla.Org', 'addon@shield.moZilla.com',
-    'baa@ShielD.MozillA.OrG', 'moo@PIONEER.mozilla.org', 'blâh@MOZILLA.COM',
-    'flop@search.mozilla.org', 'user@mozillaonline.com',
-    'tester@MoZiLlAoNlInE.CoM'
-])
+system_guids = pytest.mark.parametrize(
+    'guid',
+    [
+        'foø@mozilla.org',
+        'baa@shield.mozilla.org',
+        'moo@pioneer.mozilla.org',
+        'blâh@mozilla.com',
+        'foø@Mozilla.Org',
+        'addon@shield.moZilla.com',
+        'baa@ShielD.MozillA.OrG',
+        'moo@PIONEER.mozilla.org',
+        'blâh@MOZILLA.COM',
+        'flop@search.mozilla.org',
+        'user@mozillaonline.com',
+        'tester@MoZiLlAoNlInE.CoM',
+    ],
+)
 
 
 @system_guids

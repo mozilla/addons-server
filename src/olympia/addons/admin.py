@@ -7,13 +7,15 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.core import validators
 from django.forms.models import modelformset_factory
-from django.http.response import (HttpResponseForbidden,
-                                  HttpResponseNotAllowed,
-                                  HttpResponseRedirect)
+from django.http.response import (
+    HttpResponseForbidden,
+    HttpResponseNotAllowed,
+    HttpResponseRedirect,
+)
 from django.shortcuts import get_object_or_404
 from django.urls import resolve
 from django.utils.encoding import force_text
-from django.utils.html import format_html
+from django.utils.html import format_html, format_html_join
 from django.utils.translation import ugettext, ugettext_lazy as _
 
 import olympia.core.logger
@@ -47,9 +49,11 @@ class AddonUserInline(admin.TabularInline):
             return format_html(
                 '<a href="{}">Admin User Profile</a> ({})',
                 reverse('admin:users_userprofile_change', args=(obj.user.pk,)),
-                obj.user.email)
+                obj.user.email,
+            )
         else:
             return ''
+
     user_profile_link.short_description = 'User Profile'
 
 
@@ -66,8 +70,14 @@ class FileInline(admin.TabularInline):
     extra = 0
     max_num = 0
     fields = (
-        'created', 'version__version', 'version__channel', 'platform',
-        'status', 'version__is_blocked', 'hash_link')
+        'created',
+        'version__version',
+        'version__channel',
+        'platform',
+        'status',
+        'version__is_blocked',
+        'hash_link',
+    )
     editable_fields = ('status',)
     readonly_fields = tuple(set(fields) - set(editable_fields))
     can_delete = False
@@ -76,12 +86,13 @@ class FileInline(admin.TabularInline):
     checks_class = FileInlineChecks
 
     def version__version(self, obj):
-        return obj.version.version + (
-            ' - Deleted' if obj.version.deleted else '')
+        return obj.version.version + (' - Deleted' if obj.version.deleted else '')
+
     version__version.short_description = 'Version'
 
     def version__channel(self, obj):
         return obj.version.get_channel_display()
+
     version__channel.short_description = 'Channel'
 
     def version__is_blocked(self, obj):
@@ -91,12 +102,14 @@ class FileInline(admin.TabularInline):
         url = block.get_admin_url_path()
         template = '<a href="{}">Blocked ({} - {})</a>'
         return format_html(template, url, block.min_version, block.max_version)
+
     version__is_blocked.short_description = 'Block status'
 
     def hash_link(self, obj):
         url = reverse('zadmin.recalc_hash', args=(obj.id,))
         template = '<a href="{}" class="recalc" title="{}">Recalc Hash</a>'
         return format_html(template, url, obj.hash)
+
     hash_link.short_description = 'Hash'
 
     def get_formset(self, request, obj=None, **kwargs):
@@ -117,87 +130,190 @@ class FileInline(admin.TabularInline):
     def get_queryset(self, request):
         self.pager = amo.utils.paginate(
             request,
-            Version.unfiltered.filter(addon=self.instance).values_list(
-                'pk', flat=True),
-            30)
+            Version.unfiltered.filter(addon=self.instance).values_list('pk', flat=True),
+            30,
+        )
         # A list coercion so this doesn't result in a subquery with a LIMIT
         # which MySQL doesn't support (at this time).
         versions = list(self.pager.object_list)
-        qs = super().get_queryset(request).filter(
-            version__in=versions).order_by('-version__id')
+        qs = (
+            super()
+            .get_queryset(request)
+            .filter(version__in=versions)
+            .order_by('-version__id')
+        )
         return qs.select_related('version')
 
 
 class AddonAdmin(admin.ModelAdmin):
     class Media:
         css = {
-            'all': ('css/admin/l10n.css', 'css/admin/pagination.css')
+            'all': (
+                'css/admin/l10n.css',
+                'css/admin/pagination.css',
+                'css/admin/addons.css',
+            )
         }
-        js = (
-            'admin/js/jquery.init.js', 'js/admin/l10n.js',
-            'js/admin/recalc_hash.js'
-        )
+        js = ('admin/js/jquery.init.js', 'js/admin/l10n.js', 'js/admin/recalc_hash.js')
 
-    exclude = ('authors',)
-    list_display = ('__str__', 'type', 'guid', 'status', 'average_rating',
-                    'reviewer_links')
+    list_display = (
+        '__str__',
+        'type',
+        'guid',
+        'status',
+        'average_rating',
+        'authors_links',
+        'reviewer_links',
+    )
     list_filter = ('type', 'status')
     search_fields = ('id', '^guid', '^slug')
     inlines = (AddonUserInline, FileInline)
-    readonly_fields = ('id', 'created',
-                       'average_rating', 'bayesian_rating', 'guid',
-                       'total_ratings_link', 'text_ratings_count',
-                       'weekly_downloads', 'average_daily_users')
+    readonly_fields = (
+        'id',
+        'created',
+        'average_rating',
+        'bayesian_rating',
+        'guid',
+        'total_ratings_link',
+        'text_ratings_count',
+        'weekly_downloads',
+        'average_daily_users',
+    )
 
     fieldsets = (
-        (None, {
-            'fields': ('id', 'created', 'name', 'slug', 'guid',
-                       'default_locale', 'type',
-                       'status'),
-        }),
-        ('Details', {
-            'fields': ('summary', 'description', 'homepage', 'eula',
-                       'privacy_policy', 'developer_comments', 'icon_type',
-                       ),
-        }),
-        ('Support', {
-            'fields': ('support_url', 'support_email'),
-        }),
-        ('Stats', {
-            'fields': ('total_ratings_link', 'average_rating',
-                       'bayesian_rating', 'text_ratings_count',
-                       'weekly_downloads', 'average_daily_users'),
-        }),
-        ('Flags', {
-            'fields': ('disabled_by_user', 'requires_payment',
-                       'is_experimental', 'reputation'),
-        }),
-        ('Dictionaries and Language Packs', {
-            'fields': ('target_locale',),
-        }))
+        (
+            None,
+            {
+                'fields': (
+                    'id',
+                    'created',
+                    'name',
+                    'slug',
+                    'guid',
+                    'default_locale',
+                    'type',
+                    'status',
+                ),
+            },
+        ),
+        (
+            'Details',
+            {
+                'fields': (
+                    'summary',
+                    'description',
+                    'homepage',
+                    'eula',
+                    'privacy_policy',
+                    'developer_comments',
+                    'icon_type',
+                ),
+            },
+        ),
+        (
+            'Support',
+            {
+                'fields': ('support_url', 'support_email'),
+            },
+        ),
+        (
+            'Stats',
+            {
+                'fields': (
+                    'total_ratings_link',
+                    'average_rating',
+                    'bayesian_rating',
+                    'text_ratings_count',
+                    'weekly_downloads',
+                    'average_daily_users',
+                ),
+            },
+        ),
+        (
+            'Flags',
+            {
+                'fields': (
+                    'disabled_by_user',
+                    'requires_payment',
+                    'is_experimental',
+                    'reputation',
+                ),
+            },
+        ),
+        (
+            'Dictionaries and Language Packs',
+            {
+                'fields': ('target_locale',),
+            },
+        ),
+    )
     actions = ['git_extract_action']
 
-    def queryset(self, request):
-        return models.Addon.unfiltered
+    def get_queryset(self, request):
+        return (
+            Addon.unfiltered.all()
+            .only_translations()
+            .transform(Addon.attach_all_authors)
+        )
 
     def get_urls(self):
         def wrap(view):
             def wrapper(*args, **kwargs):
                 return self.admin_site.admin_view(view)(*args, **kwargs)
+
             return functools.update_wrapper(wrapper, view)
 
         urlpatterns = super(AddonAdmin, self).get_urls()
         custom_urlpatterns = [
-            url(r'^(?P<object_id>.+)/git_extract/$',
+            url(
+                r'^(?P<object_id>.+)/git_extract/$',
                 wrap(self.git_extract_view),
-                name='addons_git_extract'),
+                name='addons_git_extract',
+            ),
         ]
         return custom_urlpatterns + urlpatterns
 
+    def authors_links(self, obj):
+        # Note: requires .transform(Addon.attach_all_authors) to have been
+        # applied to fill all_authors property and role on each user in it.
+        authors = obj.all_authors
+        return (
+            format_html(
+                '<ul>{}</ul>',
+                format_html_join(
+                    '',
+                    '<li><a href="{}">{} ({}{})</a></li>',
+                    (
+                        (
+                            urljoin(
+                                settings.EXTERNAL_SITE_URL,
+                                reverse(
+                                    'admin:users_userprofile_change', args=(author.pk,)
+                                ),
+                            ),
+                            author.email,
+                            dict(amo.AUTHOR_CHOICES_UNFILTERED)[author.role],
+                            ', Not listed' if author.listed is False else '',
+                        )
+                        for author in authors
+                    ),
+                ),
+            )
+            if authors
+            else '-'
+        )
+
+    authors_links.short_description = _('Authors')
+
     def total_ratings_link(self, obj):
         return related_content_link(
-            obj, Rating, 'addon', related_manager='without_replies',
-            count=obj.total_ratings)
+            obj,
+            Rating,
+            'addon',
+            related_manager='without_replies',
+            text=obj.total_ratings,
+        )
+
     total_ratings_link.short_description = _(u'Ratings')
 
     def reviewer_links(self, obj):
@@ -231,10 +347,8 @@ class AddonAdmin(admin.ModelAdmin):
         if lookup_field != 'pk':
             addon = None
             try:
-                if lookup_field == 'slug':
-                    addon = self.queryset(request).all().get(slug=object_id)
-                elif lookup_field == 'guid':
-                    addon = self.queryset(request).get(guid=object_id)
+                if lookup_field in ('slug', 'guid'):
+                    addon = self.get_queryset(request).get(**{lookup_field: object_id})
             except Addon.DoesNotExist:
                 raise http.Http404
             # Don't get in an infinite loop if addon.slug.isdigit().
@@ -244,34 +358,42 @@ class AddonAdmin(admin.ModelAdmin):
                     url += '?' + request.GET.urlencode()
                 return http.HttpResponsePermanentRedirect(url)
 
-        return super().change_view(request, object_id, form_url,
-                                   extra_context=extra_context)
+        return super().change_view(
+            request, object_id, form_url, extra_context=extra_context
+        )
 
-    def render_change_form(self, request, context, add=False, change=False,
-                           form_url='', obj=None):
+    def render_change_form(
+        self, request, context, add=False, change=False, form_url='', obj=None
+    ):
         context.update(
             {
                 'external_site_url': settings.EXTERNAL_SITE_URL,
-                'has_listed_versions': obj.has_listed_versions(
-                    include_deleted=True
-                ) if obj else False,
-                'has_unlisted_versions': obj.has_unlisted_versions(
-                    include_deleted=True
-                ) if obj else False
+                'has_listed_versions': obj.has_listed_versions(include_deleted=True)
+                if obj
+                else False,
+                'has_unlisted_versions': obj.has_unlisted_versions(include_deleted=True)
+                if obj
+                else False,
             }
         )
 
-        return super().render_change_form(request=request, context=context,
-                                          add=add, change=change,
-                                          form_url=form_url, obj=obj)
+        return super().render_change_form(
+            request=request,
+            context=context,
+            add=add,
+            change=change,
+            form_url=form_url,
+            obj=obj,
+        )
 
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)
         if 'status' in form.changed_data:
-            ActivityLog.create(
-                amo.LOG.CHANGE_STATUS, obj, form.cleaned_data['status'])
-            log.info('Addon "%s" status changed to: %s' % (
-                obj.slug, form.cleaned_data['status']))
+            ActivityLog.create(amo.LOG.CHANGE_STATUS, obj, form.cleaned_data['status'])
+            log.info(
+                'Addon "%s" status changed to: %s'
+                % (obj.slug, form.cleaned_data['status'])
+            )
 
     def git_extract_action(self, request, qs):
         addon_ids = []
@@ -280,8 +402,9 @@ class AddonAdmin(admin.ModelAdmin):
             addon_ids.append(force_text(addon))
         kw = {'addons': ', '.join(addon_ids)}
         self.message_user(
-            request, ugettext('Git extraction triggered for '
-                              '"%(addons)s".' % kw))
+            request, ugettext('Git extraction triggered for "%(addons)s".' % kw)
+        )
+
     git_extract_action.short_description = "Git-Extract"
 
     def git_extract_view(self, request, object_id, extra_context=None):
@@ -296,7 +419,8 @@ class AddonAdmin(admin.ModelAdmin):
         self.git_extract_action(request, (obj,))
 
         return HttpResponseRedirect(
-            reverse('admin:addons_addon_change', args=(obj.pk, )))
+            reverse('admin:addons_addon_change', args=(obj.pk,))
+        )
 
 
 class FrozenAddonAdmin(admin.ModelAdmin):
@@ -313,7 +437,8 @@ class ReplacementAddonForm(forms.ModelForm):
                 if path.startswith(site):
                     raise forms.ValidationError(
                         'Paths for [%s] should be relative, not full URLs '
-                        'including the domain name' % site)
+                        'including the domain name' % site
+                    )
                 validators.URLValidator()(path)
             else:
                 path = ('/' if not path.startswith('/') else '') + path
@@ -334,7 +459,8 @@ class ReplacementAddonAdmin(admin.ModelAdmin):
         guid_param = urlencode({'guid': obj.guid})
         return format_html(
             '<a href="{}">Test</a>',
-            reverse('addons.find_replacement') + '?%s' % guid_param)
+            reverse('addons.find_replacement') + '?%s' % guid_param,
+        )
 
     def guid_slug(self, obj):
         try:
@@ -354,12 +480,12 @@ class ReplacementAddonAdmin(admin.ModelAdmin):
         # won't be able to make any changes but they can see the list.
         if obj is not None:
             return super(ReplacementAddonAdmin, self).has_change_permission(
-                request, obj=obj)
+                request, obj=obj
+            )
         else:
-            return (
-                acl.action_allowed(request, amo.permissions.ADDONS_EDIT) or
-                super(ReplacementAddonAdmin, self).has_change_permission(
-                    request, obj=obj))
+            return acl.action_allowed(request, amo.permissions.ADDONS_EDIT) or super(
+                ReplacementAddonAdmin, self
+            ).has_change_permission(request, obj=obj)
 
 
 @admin.register(models.AddonRegionalRestrictions)
@@ -374,16 +500,19 @@ class AddonRegionalRestrictionsAdmin(admin.ModelAdmin):
 
     def addon__name(self, obj):
         return str(obj.addon)
+
     addon__name.short_description = 'Addon'
 
     def _send_mail(self, obj, action):
         message = (
             f'Regional restriction for addon "{obj.addon.name}" '
-            f'[{obj.addon.id}] {action}: {obj.excluded_regions}')
+            f'[{obj.addon.id}] {action}: {obj.excluded_regions}'
+        )
         send_mail(
             f'Regional Restriction {action} for Add-on',
             message,
-            recipient_list=('amo-admins@mozilla.com',))
+            recipient_list=('amo-admins@mozilla.com',),
+        )
 
     def delete_model(self, request, obj):
         self._send_mail(obj, 'deleted')

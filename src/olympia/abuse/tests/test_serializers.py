@@ -9,13 +9,14 @@ from django.test.client import RequestFactory
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.abuse.serializers import (
-    AddonAbuseReportSerializer, UserAbuseReportSerializer)
+    AddonAbuseReportSerializer,
+    UserAbuseReportSerializer,
+)
 from olympia.accounts.serializers import BaseUserSerializer
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 
 
 class TestAddonAbuseReportSerializer(TestCase):
-
     def serialize(self, report, **extra_context):
         return AddonAbuseReportSerializer(report, context=extra_context).data
 
@@ -25,11 +26,7 @@ class TestAddonAbuseReportSerializer(TestCase):
         serialized = self.serialize(report)
         assert serialized == {
             'reporter': None,
-            'addon': {
-                'guid': addon.guid,
-                'id': addon.id,
-                'slug': addon.slug
-            },
+            'addon': {'guid': addon.guid, 'id': addon.id, 'slug': addon.slug},
             'message': 'bad stuff',
             'addon_install_method': None,
             'addon_install_origin': None,
@@ -55,11 +52,7 @@ class TestAddonAbuseReportSerializer(TestCase):
         serialized = self.serialize(report)
         assert serialized == {
             'reporter': None,
-            'addon': {
-                'guid': '@guid',
-                'id': None,
-                'slug': None
-            },
+            'addon': {'guid': '@guid', 'id': None, 'slug': None},
             'message': 'bad stuff',
             'addon_install_method': None,
             'addon_install_origin': None,
@@ -115,7 +108,8 @@ class TestAddonAbuseReportSerializer(TestCase):
             'report_entry_point': 'uninstall',
         }
         result = AddonAbuseReportSerializer(
-            data, context=extra_context).to_internal_value(data)
+            data, context=extra_context
+        ).to_internal_value(data)
         expected = {
             'addon': None,
             'addon_install_method': AbuseReport.ADDON_INSTALL_METHODS.URL,
@@ -143,7 +137,6 @@ class TestAddonAbuseReportSerializer(TestCase):
 
 
 class TestUserAbuseReportSerializer(TestCase):
-
     def serialize(self, report, **extra_context):
         return UserAbuseReportSerializer(report, context=extra_context).data
 
@@ -155,5 +148,5 @@ class TestUserAbuseReportSerializer(TestCase):
         assert serialized == {
             'reporter': None,
             'user': serialized_user,
-            'message': 'bad stuff'
+            'message': 'bad stuff',
         }

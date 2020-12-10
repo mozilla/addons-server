@@ -13,7 +13,13 @@ from .models import PrimaryHero, SecondaryHero, SecondaryHeroModule
 
 class ExternalAddonSerializer(AddonSerializer):
     class Meta:
-        fields = ('id', 'guid', 'homepage', 'name', 'type',)
+        fields = (
+            'id',
+            'guid',
+            'homepage',
+            'name',
+            'type',
+        )
         model = Addon
 
 
@@ -31,8 +37,7 @@ class PrimaryHeroShelfSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PrimaryHero
-        fields = ('addon', 'description', 'external', 'featured_image',
-                  'gradient')
+        fields = ('addon', 'description', 'external', 'featured_image', 'gradient')
 
     def to_representation(self, instance):
         rep = super().to_representation(instance)

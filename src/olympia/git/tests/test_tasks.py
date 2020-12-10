@@ -58,14 +58,10 @@ class TestContinueGitExtraction(TestCase):
 
 class TestOnExtractionError(TestCase):
     @mock.patch('olympia.git.tasks.remove_git_extraction_entry')
-    def test_calls_remove_git_extraction_entry(
-        self, remove_git_extraction_entry_mock
-    ):
+    def test_calls_remove_git_extraction_entry(self, remove_git_extraction_entry_mock):
         addon_pk = 123
 
-        on_extraction_error(
-            request=None, exc=None, traceback=None, addon_pk=addon_pk
-        )
+        on_extraction_error(request=None, exc=None, traceback=None, addon_pk=addon_pk)
 
         remove_git_extraction_entry_mock.assert_called_with(addon_pk)
 
@@ -74,9 +70,7 @@ class TestOnExtractionError(TestCase):
         addon_repo = AddonGitRepository(addon)
         # Create the git repo
         addon_repo.git_repository
-        update_git_repo_creation_time(
-            addon_repo, time=datetime.datetime(2019, 1, 1)
-        )
+        update_git_repo_creation_time(addon_repo, time=datetime.datetime(2019, 1, 1))
         assert addon_repo.is_extracted
         assert not addon_repo.is_recent
         # Simulate a git extraction in progress.
@@ -84,9 +78,7 @@ class TestOnExtractionError(TestCase):
         # This is the error raised by the task that extracts a version.
         exc = BrokenRefError('cannot locate branch error')
 
-        on_extraction_error(
-            request=None, exc=exc, traceback=None, addon_pk=addon.pk
-        )
+        on_extraction_error(request=None, exc=exc, traceback=None, addon_pk=addon.pk)
 
         # The task should remove the git repository on BrokenRefError.
         assert not addon_repo.is_extracted
@@ -100,9 +92,7 @@ class TestOnExtractionError(TestCase):
         addon_repo = AddonGitRepository(addon)
         # Create the git repo
         addon_repo.git_repository
-        update_git_repo_creation_time(
-            addon_repo, time=datetime.datetime(2019, 1, 1)
-        )
+        update_git_repo_creation_time(addon_repo, time=datetime.datetime(2019, 1, 1))
         assert addon_repo.is_extracted
         assert not addon_repo.is_recent
         # Simulate a git extraction in progress.
@@ -110,9 +100,7 @@ class TestOnExtractionError(TestCase):
         # This is the error raised by the task that extracts a version.
         exc = MissingMasterBranchError('cannot find master branch')
 
-        on_extraction_error(
-            request=None, exc=exc, traceback=None, addon_pk=addon.pk
-        )
+        on_extraction_error(request=None, exc=exc, traceback=None, addon_pk=addon.pk)
 
         # The task should remove the git repository on
         # MissingMasterBranchError.
@@ -132,9 +120,7 @@ class TestOnExtractionError(TestCase):
         GitExtractionEntry.objects.create(addon_id=addon.pk, in_progress=True)
         exc = Exception('some error')
 
-        on_extraction_error(
-            request=None, exc=exc, traceback=None, addon_pk=addon.pk
-        )
+        on_extraction_error(request=None, exc=exc, traceback=None, addon_pk=addon.pk)
 
         assert addon_repo.is_extracted
         assert GitExtractionEntry.objects.count() == 0
@@ -154,9 +140,7 @@ class TestOnExtractionError(TestCase):
         # This is the error raised by the task that extracts a version.
         exc = MissingMasterBranchError('cannot find master branch')
 
-        on_extraction_error(
-            request=None, exc=exc, traceback=None, addon_pk=addon.pk
-        )
+        on_extraction_error(request=None, exc=exc, traceback=None, addon_pk=addon.pk)
 
         # When the creation time of an add-on git repository is too recent (< 1
         # hour ago), then we do not delete the repository because it might be
@@ -170,9 +154,7 @@ class TestOnExtractionError(TestCase):
 
 class TestExtractVersionsToGit(TestCase):
     @mock.patch('olympia.git.tasks.extract_version_to_git')
-    def test_calls_extract_version_to_git_n_times(
-        self, extract_version_to_git_mock
-    ):
+    def test_calls_extract_version_to_git_n_times(self, extract_version_to_git_mock):
         v1 = version_factory(
             addon=addon_factory(),
             file_kw={
@@ -195,9 +177,7 @@ class TestExtractVersionsToGit(TestCase):
             },
         )
 
-        extract_versions_to_git(
-            addon_pk=123, version_pks=[v1.pk, v2.pk, v3.pk]
-        )
+        extract_versions_to_git(addon_pk=123, version_pks=[v1.pk, v2.pk, v3.pk])
 
         extract_version_to_git_mock.assert_has_calls(
             [

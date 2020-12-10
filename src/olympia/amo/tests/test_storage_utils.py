@@ -11,7 +11,11 @@ from django.utils.encoding import force_str
 import pytest
 
 from olympia.amo.storage_utils import (
-    copy_stored_file, move_stored_file, rm_stored_dir, walk_storage)
+    copy_stored_file,
+    move_stored_file,
+    rm_stored_dir,
+    walk_storage,
+)
 from olympia.amo.tests import TestCase
 from olympia.amo.utils import rm_local_tmp_dir
 
@@ -29,28 +33,28 @@ def test_storage_walk():
         storage.save(jn(u'one/two/file1.txt'), ContentFile(''))
         storage.save(jn(u'one/three/file1.txt'), ContentFile(''))
         storage.save(jn(u'four/five/file1.txt'), ContentFile(''))
-        storage.save(jn(u'four/kristi\u2603/kristi\u2603.txt'),
-                     ContentFile(''))
+        storage.save(jn(u'four/kristi\u2603/kristi\u2603.txt'), ContentFile(''))
 
-        results = [(dir, set(subdirs), set(files))
-                   for dir, subdirs, files in sorted(walk_storage(tmp))]
+        results = [
+            (dir, set(subdirs), set(files))
+            for dir, subdirs, files in sorted(walk_storage(tmp))
+        ]
 
+        assert results.pop(0) == (tmp, set([u'four', u'one']), set([u'file1.txt']))
+        assert results.pop(0) == (jn(u'four'), set([u'five', u'kristi\u2603']), set([]))
+        assert results.pop(0) == (jn(u'four/five'), set([]), set([u'file1.txt']))
         assert results.pop(0) == (
-            tmp, set([u'four', u'one']), set([u'file1.txt']))
+            jn(u'four/kristi\u2603'),
+            set([]),
+            set([u'kristi\u2603.txt']),
+        )
         assert results.pop(0) == (
-            jn(u'four'), set([u'five', u'kristi\u2603']), set([]))
-        assert results.pop(0) == (
-            jn(u'four/five'), set([]), set([u'file1.txt']))
-        assert results.pop(0) == (
-            jn(u'four/kristi\u2603'), set([]),
-            set([u'kristi\u2603.txt']))
-        assert results.pop(0) == (
-            jn(u'one'), set([u'three', u'two']),
-            set([u'file1.txt', u'file2.txt']))
-        assert results.pop(0) == (
-            jn(u'one/three'), set([]), set([u'file1.txt']))
-        assert results.pop(0) == (
-            jn(u'one/two'), set([]), set([u'file1.txt']))
+            jn(u'one'),
+            set([u'three', u'two']),
+            set([u'file1.txt', u'file2.txt']),
+        )
+        assert results.pop(0) == (jn(u'one/three'), set([]), set([u'file1.txt']))
+        assert results.pop(0) == (jn(u'one/two'), set([]), set([u'file1.txt']))
         assert len(results) == 0
     finally:
         rm_local_tmp_dir(tmp)
@@ -63,8 +67,7 @@ def test_rm_stored_dir():
         storage.save(jn('file1.txt'), ContentFile('<stuff>'))
         storage.save(jn('one/file1.txt'), ContentFile(''))
         storage.save(jn('one/two/file1.txt'), ContentFile('moar stuff'))
-        storage.save(jn(u'one/kristi\u0107/kristi\u0107.txt'),
-                     ContentFile(''))
+        storage.save(jn(u'one/kristi\u0107/kristi\u0107.txt'), ContentFile(''))
 
         rm_stored_dir(jn('one'))
 
@@ -79,7 +82,6 @@ def test_rm_stored_dir():
 
 
 class TestFileOps(TestCase):
-
     def setUp(self):
         super(TestFileOps, self).setUp()
         self.tmp = tempfile.mkdtemp(dir=settings.TMP_PATH)
@@ -120,8 +122,7 @@ class TestFileOps(TestCase):
         assert not storage.exists(src)
 
     def test_non_ascii(self):
-        src = self.newfile(u'kristi\u0107.txt',
-                           u'ivan kristi\u0107'.encode('utf8'))
+        src = self.newfile(u'kristi\u0107.txt', u'ivan kristi\u0107'.encode('utf8'))
         dest = self.path(u'somedir/kristi\u0107.txt')
         copy_stored_file(src, dest)
         assert self.contents(dest) == b'ivan kristi\xc4\x87'

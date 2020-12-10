@@ -12,5 +12,13 @@ class BlockSerializer(serializers.ModelSerializer):
     class Meta:
         model = Block
         fields = (
-            'id', 'created', 'modified', 'addon_name', 'guid', 'min_version',
-            'max_version', 'reason', 'url')
+            'id',
+            'created',
+            'modified',
+            'addon_name',
+            'guid',
+            'min_version',
+            'max_version',
+            'reason',
+            'url',
+        )

@@ -25,6 +25,7 @@ class BaseSearchIndexer(object):
     - create_new_index(cls, index_name)
     - reindex_tasks_group(cls, index_name)
     """
+
     @classmethod
     def get_index_alias(cls):
         return settings.ES_INDEXES.get(cls.get_model().ES_ALIAS_KEY)
@@ -51,8 +52,9 @@ class BaseSearchIndexer(object):
 
         for field_name in field_names:
             # _translations is the suffix in TranslationSerializer.
-            mapping[doc_name]['properties']['%s_translations' % field_name] = (
-                cls.get_translations_definition())
+            mapping[doc_name]['properties'][
+                '%s_translations' % field_name
+            ] = cls.get_translations_definition()
 
     @classmethod
     def get_translations_definition(cls):
@@ -65,8 +67,8 @@ class BaseSearchIndexer(object):
             'type': 'object',
             'properties': {
                 'lang': {'type': 'text', 'index': False},
-                'string': {'type': 'text', 'index': False}
-            }
+                'string': {'type': 'text', 'index': False},
+            },
         }
 
     @classmethod
@@ -108,8 +110,7 @@ class BaseSearchIndexer(object):
                 }
 
     @classmethod
-    def attach_language_specific_analyzers_with_raw_variant(
-            cls, mapping, field_names):
+    def attach_language_specific_analyzers_with_raw_variant(cls, mapping, field_names):
         """
         Like attach_language_specific_analyzers() but with an extra field to
         storethe "raw" variant of the value, for exact matches.
@@ -124,7 +125,7 @@ class BaseSearchIndexer(object):
                     'analyzer': analyzer,
                     'fields': {
                         'raw': cls.get_raw_field_definition(),
-                    }
+                    },
                 }
 
     @classmethod
@@ -137,7 +138,8 @@ class BaseSearchIndexer(object):
             db_field = '%s_id' % field
 
         extend_with_me = {
-            '%s_translations' % field: [
+            '%s_translations'
+            % field: [
                 {'lang': to_language(lang), 'string': str(string)}
                 for lang, string in obj.translations[getattr(obj, db_field)]
                 if string
@@ -174,9 +176,7 @@ class BaseSearchIndexer(object):
         if db_field is None:
             db_field = '%s_id' % field
 
-        translations = dict(
-            obj.translations[getattr(obj, db_field)]
-        )
+        translations = dict(obj.translations[getattr(obj, db_field)])
 
         return {
             '%s_l10n_%s' % (field, lang): translations.get(lang) or ''

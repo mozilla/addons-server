@@ -20,7 +20,8 @@ from .utils import (
     get_signed_impression_blob_from_results,
     filter_adzerk_results_to_es_results_qs,
     send_event_ping,
-    send_impression_pings)
+    send_impression_pings,
+)
 
 
 log = olympia.core.logger.getLogger('z.shelves')
@@ -29,8 +30,9 @@ VALID_EVENT_TYPES = ('click', 'conversion')
 
 
 class ShelfViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
-    queryset = Shelf.objects.filter(
-        shelfmanagement__enabled=True).order_by('shelfmanagement__position')
+    queryset = Shelf.objects.filter(shelfmanagement__enabled=True).order_by(
+        'shelfmanagement__position'
+    )
     permission_classes = []
     serializer_class = ShelfSerializer
 
@@ -51,13 +53,15 @@ class SponsoredShelfViewSet(viewsets.ViewSetMixin, AddonSearchView):
     def get_paginated_response(self, data):
         response = super().get_paginated_response(data)
         response.data['impression_url'] = self.reverse_action('impression')
-        response.data['impression_data'] = (
-            get_signed_impression_blob_from_results(self.adzerk_results))
+        response.data['impression_data'] = get_signed_impression_blob_from_results(
+            self.adzerk_results
+        )
         # reorder results to match adzerk order
         order = list(self.adzerk_results.keys())
         response.data['results'] = sorted(
             response.data.get('results', ()),
-            key=lambda result: order.index(str(result.get('id'))))
+            key=lambda result: order.index(str(result.get('id'))),
+        )
         return response
 
     def filter_queryset(self, qs):
@@ -66,22 +70,31 @@ class SponsoredShelfViewSet(viewsets.ViewSetMixin, AddonSearchView):
         self.adzerk_results = get_addons_from_adzerk(count)
         ids = list(self.adzerk_results.keys())
         group_ids_to_allow = [
-            group.id for group in PROMOTED_GROUPS
-            if group.can_be_selected_by_adzerk]
-        results_qs = qs.query(query.Bool(must=[
-            Q('terms', id=ids),
-            Q('terms', **{'promoted.group_id': group_ids_to_allow})]))
+            group.id for group in PROMOTED_GROUPS if group.can_be_selected_by_adzerk
+        ]
+        results_qs = qs.query(
+            query.Bool(
+                must=[
+                    Q('terms', id=ids),
+                    Q('terms', **{'promoted.group_id': group_ids_to_allow}),
+                ]
+            )
+        )
         results_qs.execute()  # To cache the results.
-        extras = filter_adzerk_results_to_es_results_qs(
-            self.adzerk_results, results_qs)
+        extras = filter_adzerk_results_to_es_results_qs(self.adzerk_results, results_qs)
         if extras:
             group_names = '; '.join(
-                str(group.name) for group in PROMOTED_GROUPS
-                if group.can_be_selected_by_adzerk)
+                str(group.name)
+                for group in PROMOTED_GROUPS
+                if group.can_be_selected_by_adzerk
+            )
             for id_ in extras:
                 log.error(
                     'Addon id [%s] returned from Adzerk, but not in a valid '
-                    'Promoted group [%s]', id_, group_names)
+                    'Promoted group [%s]',
+                    id_,
+                    group_names,
+                )
             statsd.incr('services.adzerk.elasticsearch_miss', len(extras))
         return results_qs
 
@@ -92,8 +105,8 @@ class SponsoredShelfViewSet(viewsets.ViewSetMixin, AddonSearchView):
             send_impression_pings(signed_impressions)
         except APIException as e:
             return Response(
-                f'Bad impression_data: {e}',
-                status=status.HTTP_400_BAD_REQUEST)
+                f'Bad impression_data: {e}', status=status.HTTP_400_BAD_REQUEST
+            )
         return Response(status=status.HTTP_202_ACCEPTED)
 
     @action(detail=False, methods=['post'])
@@ -102,9 +115,7 @@ class SponsoredShelfViewSet(viewsets.ViewSetMixin, AddonSearchView):
         try:
             send_event_ping(signed_click, 'click')
         except APIException as e:
-            return Response(
-                f'Bad click_data: {e}',
-                status=status.HTTP_400_BAD_REQUEST)
+            return Response(f'Bad click_data: {e}', status=status.HTTP_400_BAD_REQUEST)
         return Response(status=status.HTTP_202_ACCEPTED)
 
     @action(detail=False, methods=['post'])
@@ -113,12 +124,12 @@ class SponsoredShelfViewSet(viewsets.ViewSetMixin, AddonSearchView):
         data_type = request.data.get('type')
         if data_type not in VALID_EVENT_TYPES:
             return Response(
-                f'Bad type: {data_type}',
-                status=status.HTTP_400_BAD_REQUEST)
+                f'Bad type: {data_type}', status=status.HTTP_400_BAD_REQUEST
+            )
         try:
             send_event_ping(signed_data, data_type)
         except APIException as e:
             return Response(
-                f'Bad data for {data_type}: {e}',
-                status=status.HTTP_400_BAD_REQUEST)
+                f'Bad data for {data_type}: {e}', status=status.HTTP_400_BAD_REQUEST
+            )
         return Response(status=status.HTTP_202_ACCEPTED)

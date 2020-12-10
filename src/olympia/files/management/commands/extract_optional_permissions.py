@@ -18,9 +18,11 @@ class Command(BaseCommand):
         ).order_by('pk')
         pks = list(files.values_list('pk', flat=True))
 
-        log.info('Using %s file pks to extract permissions, max pk: %s' %
-                 (len(pks), pks[- 1]))
+        log.info(
+            'Using %s file pks to extract permissions, max pk: %s' % (len(pks), pks[-1])
+        )
         if pks:
             chunked_tasks = create_chunked_tasks_signatures(
-                extract_optional_permissions, pks, chunk_size=100)
+                extract_optional_permissions, pks, chunk_size=100
+            )
             chunked_tasks.apply_async()

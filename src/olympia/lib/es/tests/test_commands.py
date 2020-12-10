@@ -88,9 +88,11 @@ class TestIndexCommand(ESTestCase):
     def get_indices_aliases(cls):
         """Return the test indices with an alias."""
         indices = cls.es.indices.get_alias()
-        items = [(index, list(aliases['aliases'].keys())[0])
-                 for index, aliases in indices.items()
-                 if len(aliases['aliases']) > 0 and index.startswith('test_')]
+        items = [
+            (index, list(aliases['aliases'].keys())[0])
+            for index, aliases in indices.items()
+            if len(aliases['aliases']) > 0 and index.startswith('test_')
+        ]
         items.sort()
         return items
 
@@ -110,7 +112,9 @@ class TestIndexCommand(ESTestCase):
                 # alias in setUpClass.
                 time.sleep(1)
                 management.call_command(
-                    'reindex', wipe=wipe, noinput=True, stdout=self.stdout)
+                    'reindex', wipe=wipe, noinput=True, stdout=self.stdout
+                )
+
         t = ReindexThread()
         t.start()
 
@@ -138,7 +142,8 @@ class TestIndexCommand(ESTestCase):
             if len(self.expected) == old_addons_count:
                 raise AssertionError(
                     'Could not index objects in foreground while reindexing '
-                    'in the background.')
+                    'in the background.'
+                )
 
         t.join()  # Wait for the thread to finish.
         t.stdout.seek(0)
@@ -182,21 +187,15 @@ class TestIndexCommand(ESTestCase):
         # Patch reindex.gather_index_data_tasks so that it returns a group of
         # dummy tasks - otherwise the chain would not contain the indexation
         # tasks and that's what we really care about.
-        gather_index_data_tasks_mock.return_value = group(
-            [dummy_task.si()] * 42
-        )
+        gather_index_data_tasks_mock.return_value = group([dummy_task.si()] * 42)
         workflow = command.create_workflow(alias)
 
         # Make sure we called gather_index_data_tasks_mock with the alias and
         # timestamped index.
         expected_index = alias
         assert gather_index_data_tasks_mock.call_args[0][0] == expected_index
-        assert gather_index_data_tasks_mock.call_args[0][1].startswith(
-            expected_index
-        )
-        assert re.search(
-            '[0-9]{14}$', gather_index_data_tasks_mock.call_args[0][1]
-        )
+        assert gather_index_data_tasks_mock.call_args[0][1].startswith(expected_index)
+        assert re.search('[0-9]{14}$', gather_index_data_tasks_mock.call_args[0][1])
 
         # Inspect workflow to make sure it contains what we expect. We should
         # have a chain with a few startup tasks, then a chord that indexes the
@@ -206,15 +205,13 @@ class TestIndexCommand(ESTestCase):
         expected_tasks = [
             'olympia.lib.es.management.commands.reindex.create_new_index',
             'olympia.lib.es.management.commands.reindex.flag_database',
-            'celery.chord'
+            'celery.chord',
         ]
         assert expected_tasks == [task.name for task in workflow.tasks]
 
         reindex_chord = workflow.tasks[2]
 
-        expected_header = [
-            'olympia.lib.es.tests.test_commands.dummy_task'
-        ] * 42
+        expected_header = ['olympia.lib.es.tests.test_commands.dummy_task'] * 42
         assert expected_header == [task.name for task in reindex_chord.tasks]
 
         expected_body = [

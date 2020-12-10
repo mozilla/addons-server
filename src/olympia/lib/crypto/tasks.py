@@ -19,7 +19,8 @@ log = olympia.core.logger.getLogger('z.task')
 
 
 MAIL_COSE_SUBJECT = (
-    u'Your Firefox extension has been re-signed with a stronger signature')
+    u'Your Firefox extension has been re-signed with a stronger signature'
+)
 
 MAIL_COSE_MESSAGE = u'''
 Hello,
@@ -52,7 +53,8 @@ add-on, please sign in to addons.mozilla.org and delete your add-on(s).
 '''
 
 version_regex = re.compile(
-    r'^(?P<prefix>.*)(?P<version>\.1\-signed)(|\-(?P<number>\d+))$')
+    r'^(?P<prefix>.*)(?P<version>\.1\-signed)(|\-(?P<number>\d+))$'
+)
 
 
 def get_new_version_number(version):
@@ -62,9 +64,8 @@ def get_new_version_number(version):
     else:
         num = int(match.groupdict()['number'] or 1)
         return u'{}{}-{}'.format(
-            match.groupdict()['prefix'],
-            match.groupdict()['version'],
-            num + 1)
+            match.groupdict()['prefix'], match.groupdict()['version'], num + 1
+        )
 
 
 @task
@@ -87,10 +88,9 @@ def sign_addons(addon_ids, force=False, send_emails=True, **kw):
 
     # query everything except for search-plugins as they're generally
     # not signed
-    current_versions = (
-        Addon.objects
-        .filter(id__in=addon_ids)
-        .values_list('_current_version', flat=True))
+    current_versions = Addon.objects.filter(id__in=addon_ids).values_list(
+        '_current_version', flat=True
+    )
     qset = Version.objects.filter(id__in=current_versions)
 
     addons_emailed = set()
@@ -104,11 +104,11 @@ def sign_addons(addon_ids, force=False, send_emails=True, **kw):
 
         if not to_sign:
             log.info(
-                'Not signing addon {0}, version {1} (no files)'
-                .format(version.addon, version))
-        log.info(
-            u'Signing addon {0}, version {1}'
-            .format(version.addon, version))
+                'Not signing addon {0}, version {1} (no files)'.format(
+                    version.addon, version
+                )
+            )
+        log.info(u'Signing addon {0}, version {1}'.format(version.addon, version))
         bumped_version_number = get_new_version_number(version.version)
         signed_at_least_a_file = False  # Did we sign at least one file?
 
@@ -134,8 +134,7 @@ def sign_addons(addon_ids, force=False, send_emails=True, **kw):
                 else:  # We didn't sign, so revert the version bump.
                     shutil.move(backup_path, file_obj.file_path)
             except Exception:
-                log.error('Failed signing file {0}'.format(file_obj.pk),
-                          exc_info=True)
+                log.error('Failed signing file {0}'.format(file_obj.pk), exc_info=True)
                 # Revert the version bump, restore the backup.
                 shutil.move(backup_path, file_obj.file_path)
 
@@ -149,17 +148,21 @@ def sign_addons(addon_ids, force=False, send_emails=True, **kw):
                 addon,
                 version,
                 previous_version_str,
-                user=task_user)
+                user=task_user,
+            )
             if send_emails and addon.pk not in addons_emailed:
                 # Send a mail to the owners/devs warning them we've
                 # automatically signed their addon.
-                qs = (AddonUser.objects
-                      .filter(role=amo.AUTHOR_ROLE_OWNER, addon=addon)
-                      .exclude(user__email__isnull=True))
+                qs = AddonUser.objects.filter(
+                    role=amo.AUTHOR_ROLE_OWNER, addon=addon
+                ).exclude(user__email__isnull=True)
                 emails = qs.values_list('user__email', flat=True)
                 subject = mail_subject
                 message = mail_message.format(addon=addon.name)
                 amo.utils.send_mail(
-                    subject, message, recipient_list=emails,
-                    headers={'Reply-To': 'amo-admins@mozilla.com'})
+                    subject,
+                    message,
+                    recipient_list=emails,
+                    headers={'Reply-To': 'amo-admins@mozilla.com'},
+                )
                 addons_emailed.add(addon.pk)

@@ -43,17 +43,15 @@ class GranularUserRateThrottle(UserRateThrottle):
 
     def allow_request(self, request, view):
         if settings.API_THROTTLING:
-            request_allowed = super(
-                GranularUserRateThrottle, self).allow_request(request, view)
+            request_allowed = super(GranularUserRateThrottle, self).allow_request(
+                request, view
+            )
 
             if not request_allowed:
                 user = getattr(request, 'user', None)
                 if user and request.user.is_authenticated:
-                    log.info(
-                        'User %s throttled for scope %s',
-                        request.user, self.scope)
-                    ActivityLog.create(
-                        amo.LOG.THROTTLED, self.scope, user=user)
+                    log.info('User %s throttled for scope %s', request.user, self.scope)
+                    ActivityLog.create(amo.LOG.THROTTLED, self.scope, user=user)
 
             return request_allowed
         else:
@@ -79,18 +77,20 @@ class GranularIPRateThrottle(GranularUserRateThrottle):
     IP throttling but in most cases we'll want the child class to override that
     and add a custom rate.
     """
+
     scope = 'anon'
 
     def get_cache_key(self, request, view):
         return self.cache_format % {
             'scope': self.scope,
-            'ident': self.get_ident(request)  # This will get the IP.
+            'ident': self.get_ident(request),  # This will get the IP.
         }
 
 
-class ThrottleOnlyUnsafeMethodsMixin():
+class ThrottleOnlyUnsafeMethodsMixin:
     """Mixin to add to a throttling class to only apply the throttling if the
     request method is "unsafe", i.e. POST/PUT/PATCH/DELETE."""
+
     def allow_request(self, request, view):
         if request.method not in SAFE_METHODS:
             return super().allow_request(request, view)

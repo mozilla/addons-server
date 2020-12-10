@@ -48,8 +48,11 @@ class PromotedSubscriptionInline(admin.StackedInline):
         readonly_fields = self.readonly_fields
         onboarding_fields = ('onboarding_rate', 'onboarding_period')
 
-        if (obj and hasattr(obj, 'promotedsubscription') and
-                obj.promotedsubscription.stripe_checkout_completed):
+        if (
+            obj
+            and hasattr(obj, 'promotedsubscription')
+            and obj.promotedsubscription.stripe_checkout_completed
+        ):
             readonly_fields = onboarding_fields + readonly_fields
         return readonly_fields
 
@@ -68,15 +71,12 @@ class PromotedSubscriptionInline(admin.StackedInline):
         if not obj or not obj.stripe_subscription_id:
             return '-'
 
-        stripe_sub_url = '/'.join([
-            settings.STRIPE_DASHBOARD_URL,
-            'subscriptions',
-            obj.stripe_subscription_id
-        ])
+        stripe_sub_url = '/'.join(
+            [settings.STRIPE_DASHBOARD_URL, 'subscriptions', obj.stripe_subscription_id]
+        )
 
         return format_html(
-            '<a href="{}">View subscription on Stripe</a>',
-            stripe_sub_url
+            '<a href="{}">View subscription on Stripe</a>', stripe_sub_url
         )
 
     stripe_information.short_description = "Stripe information"
@@ -115,33 +115,37 @@ class PromotedApprovalInline(admin.TabularInline):
         if not self.instance:
             return self.model.objects.none()
         qs = super().get_queryset(request)
-        qs = (
-            qs.filter(version__addon__promotedaddon=self.instance)
-              .order_by('-version_id'))
+        qs = qs.filter(version__addon__promotedaddon=self.instance).order_by(
+            '-version_id'
+        )
         return qs
 
 
 class PromotedAddonAdmin(admin.ModelAdmin):
     list_display = (
-        'addon__name', 'group_id', 'application_id', 'is_approved',
-        'primary_hero_shelf')
+        'addon__name',
+        'group_id',
+        'application_id',
+        'is_approved',
+        'primary_hero_shelf',
+    )
     view_on_site = False
     raw_id_fields = ('addon',)
     fields = ('addon', 'group_id', 'application_id')
     list_filter = ('group_id', 'application_id')
-    inlines = (PromotedApprovalInline, PrimaryHeroInline,
-               PromotedSubscriptionInline)
+    inlines = (PromotedApprovalInline, PrimaryHeroInline, PromotedSubscriptionInline)
 
     class Media:
-        js = (
-            'js/admin/promotedaddon.js',
-        )
+        js = ('js/admin/promotedaddon.js',)
 
     @classmethod
     def _transformer(self, objs):
         Version.transformer_promoted(
-            [promo.addon._current_version for promo in objs
-             if promo.addon._current_version]
+            [
+                promo.addon._current_version
+                for promo in objs
+                if promo.addon._current_version
+            ]
         )
 
     def get_queryset(self, request):
@@ -157,12 +161,17 @@ class PromotedAddonAdmin(admin.ModelAdmin):
                     queryset=(
                         Addon.unfiltered.all()
                         .select_related('_current_version')
-                        .only_translations())))
-            .transform(self._transformer))
+                        .only_translations()
+                    ),
+                )
+            )
+            .transform(self._transformer)
+        )
         return qset
 
     def addon__name(self, obj):
         return str(obj.addon)
+
     addon__name.short_description = 'Addon'
 
     def is_approved(self, obj):
@@ -174,11 +183,12 @@ class PromotedAddonAdmin(admin.ModelAdmin):
         else:
             # return None when there are some apps approved but not all.
             return None
+
     is_approved.boolean = True
 
     def primary_hero_shelf(self, obj):
-        return (obj.primaryhero.enabled if hasattr(obj, 'primaryhero')
-                else None)
+        return obj.primaryhero.enabled if hasattr(obj, 'primaryhero') else None
+
     primary_hero_shelf.boolean = True
 
     def formfield_for_foreignkey(self, db_field, request=None, **kwargs):
@@ -186,13 +196,12 @@ class PromotedAddonAdmin(admin.ModelAdmin):
 
         if db_field.name == 'addon':
             kwargs['widget'] = admin.widgets.ForeignKeyRawIdWidget(
-                db_field.remote_field, self.admin_site,
-                using=kwargs.get('using'))
+                db_field.remote_field, self.admin_site, using=kwargs.get('using')
+            )
             kwargs['queryset'] = Addon.objects.all()
             kwargs['help_text'] = db_field.help_text
             return SlugOrPkChoiceField(**kwargs)
-        return super().formfield_for_foreignkey(
-            db_field, request, **kwargs)
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
     def has_delete_permission(self, request, obj=None):
         qs = PrimaryHeroInline.model.objects.filter(enabled=True)

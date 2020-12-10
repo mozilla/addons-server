@@ -50,8 +50,11 @@ class AbuseReport(ModelBase):
     REASONS = APIChoicesWithNone(
         ('DAMAGE', 1, 'Damages computer and/or data'),
         ('SPAM', 2, 'Creates spam or advertising'),
-        ('SETTINGS', 3, 'Changes search / homepage / new tab page '
-                        'without informing user'),
+        (
+            'SETTINGS',
+            3,
+            'Changes search / homepage / new tab page without informing user',
+        ),
         # `4` was previously 'New tab takeover' but has been merged into the
         # previous one. We avoid re-using the value.
         ('BROKEN', 5, "Doesn’t work, breaks websites, or slows Firefox down"),
@@ -128,73 +131,90 @@ class AbuseReport(ModelBase):
 
     # NULL if the reporter is anonymous.
     reporter = models.ForeignKey(
-        UserProfile, null=True, blank=True, related_name='abuse_reported',
-        on_delete=models.SET_NULL)
-    country_code = models.CharField(
-        max_length=2, default=None, null=True)
+        UserProfile,
+        null=True,
+        blank=True,
+        related_name='abuse_reported',
+        on_delete=models.SET_NULL,
+    )
+    country_code = models.CharField(max_length=2, default=None, null=True)
     # An abuse report can be for an addon or a user.
     # If user is non-null then both addon and guid should be null.
     # If user is null then addon should be non-null if guid was in our DB,
     # otherwise addon will be null also.
     # If both addon and user is null guid should be set.
     addon = models.ForeignKey(
-        Addon, null=True, related_name='abuse_reports',
-        on_delete=models.CASCADE)
+        Addon, null=True, related_name='abuse_reports', on_delete=models.CASCADE
+    )
     guid = models.CharField(max_length=255, null=True)
     user = models.ForeignKey(
-        UserProfile, null=True, related_name='abuse_reports',
-        on_delete=models.SET_NULL)
+        UserProfile, null=True, related_name='abuse_reports', on_delete=models.SET_NULL
+    )
     message = models.TextField(blank=True)
 
     state = models.PositiveSmallIntegerField(
-        default=STATES.UNTRIAGED, choices=STATES.choices)
+        default=STATES.UNTRIAGED, choices=STATES.choices
+    )
 
     # Extra optional fields for more information, giving some context that is
     # meant to be extracted automatically by the client (i.e. Firefox) and
     # submitted via the API.
-    client_id = models.CharField(
-        default=None, max_length=64, blank=True, null=True)
-    addon_name = models.CharField(
-        default=None, max_length=255, blank=True, null=True)
+    client_id = models.CharField(default=None, max_length=64, blank=True, null=True)
+    addon_name = models.CharField(default=None, max_length=255, blank=True, null=True)
     addon_summary = models.CharField(
-        default=None, max_length=255, blank=True, null=True)
+        default=None, max_length=255, blank=True, null=True
+    )
     addon_version = models.CharField(
-        default=None, max_length=255, blank=True, null=True)
+        default=None, max_length=255, blank=True, null=True
+    )
     addon_signature = models.PositiveSmallIntegerField(
-        default=None, choices=ADDON_SIGNATURES.choices, blank=True, null=True)
+        default=None, choices=ADDON_SIGNATURES.choices, blank=True, null=True
+    )
     application = models.PositiveSmallIntegerField(
-        default=amo.FIREFOX.id, choices=amo.APPS_CHOICES, blank=True,
-        null=True)
+        default=amo.FIREFOX.id, choices=amo.APPS_CHOICES, blank=True, null=True
+    )
     application_version = models.CharField(
-        default=None, max_length=255, blank=True, null=True)
+        default=None, max_length=255, blank=True, null=True
+    )
     application_locale = models.CharField(
-        default=None, max_length=255, blank=True, null=True)
+        default=None, max_length=255, blank=True, null=True
+    )
     operating_system = models.CharField(
-        default=None, max_length=255, blank=True, null=True)
+        default=None, max_length=255, blank=True, null=True
+    )
     operating_system_version = models.CharField(
-        default=None, max_length=255, blank=True, null=True)
-    install_date = models.DateTimeField(
-        default=None, blank=True, null=True)
+        default=None, max_length=255, blank=True, null=True
+    )
+    install_date = models.DateTimeField(default=None, blank=True, null=True)
     reason = models.PositiveSmallIntegerField(
-        default=None, choices=REASONS.choices, blank=True, null=True)
+        default=None, choices=REASONS.choices, blank=True, null=True
+    )
     addon_install_origin = models.CharField(
         # Supposed to be an URL, but the scheme could be moz-foo: or something
         # like that, and it's potentially truncated, so use a CharField and not
         # a URLField. We also don't want to automatically turn this into a
         # clickable link in the admin in case it's dangerous.
-        default=None, max_length=255, blank=True, null=True)
+        default=None,
+        max_length=255,
+        blank=True,
+        null=True,
+    )
     addon_install_method = models.PositiveSmallIntegerField(
-        default=None, choices=ADDON_INSTALL_METHODS.choices, blank=True,
-        null=True)
+        default=None, choices=ADDON_INSTALL_METHODS.choices, blank=True, null=True
+    )
     addon_install_source = models.PositiveSmallIntegerField(
-        default=None, choices=ADDON_INSTALL_SOURCES.choices, blank=True,
-        null=True)
+        default=None, choices=ADDON_INSTALL_SOURCES.choices, blank=True, null=True
+    )
     addon_install_source_url = models.CharField(
         # See addon_install_origin above as for why it's not an URLField.
-        default=None, max_length=255, blank=True, null=True)
+        default=None,
+        max_length=255,
+        blank=True,
+        null=True,
+    )
     report_entry_point = models.PositiveSmallIntegerField(
-        default=None, choices=REPORT_ENTRY_POINTS.choices, blank=True,
-        null=True)
+        default=None, choices=REPORT_ENTRY_POINTS.choices, blank=True, null=True
+    )
 
     unfiltered = AbuseReportManager(include_deleted=True)
     objects = AbuseReportManager()
@@ -238,7 +258,7 @@ class AbuseReport(ModelBase):
     def type(self):
         with translation.override(settings.LANGUAGE_CODE):
             if self.addon and self.addon.type in amo.ADDON_TYPE:
-                type_ = (translation.ugettext(amo.ADDON_TYPE[self.addon.type]))
+                type_ = translation.ugettext(amo.ADDON_TYPE[self.addon.type])
             elif self.user:
                 type_ = 'User'
             else:

@@ -24,11 +24,11 @@ KEY_LOCALES_FOR_EDITORIAL_CONTENT = ('de', 'fr', 'es', 'pl', 'it', 'ja')
 class SlugOrPkChoiceField(forms.ModelChoiceField):
     """A ModelChoiceField that supports entering slugs instead of PKs for
     convenience."""
+
     def clean(self, value):
-        if (value and isinstance(value, str) and not value.isdigit()):
+        if value and isinstance(value, str) and not value.isdigit():
             try:
-                value = self.queryset.values_list(
-                    'pk', flat=True).get(slug=value)
+                value = self.queryset.values_list('pk', flat=True).get(slug=value)
             except self.queryset.model.DoesNotExist:
                 value = value
         return super(SlugOrPkChoiceField, self).clean(value)
@@ -76,13 +76,13 @@ class PositionChinaFilter(PositionFilter):
 
 class DiscoveryItemAdmin(admin.ModelAdmin):
     class Media:
-        css = {
-            'all': ('css/admin/discovery.css',)
-        }
-    list_display = ('__str__',
-                    'position',
-                    'position_china',
-                    )
+        css = {'all': ('css/admin/discovery.css',)}
+
+    list_display = (
+        '__str__',
+        'position',
+        'position_china',
+    )
     list_filter = (PositionFilter, PositionChinaFilter)
     raw_id_fields = ('addon',)
     readonly_fields = ('previews',)
@@ -92,27 +92,29 @@ class DiscoveryItemAdmin(admin.ModelAdmin):
         # Select `addon` as well as it's `_current_version`.
         # We are forced to use `prefetch_related` to ensure transforms
         # are being run, though, we only care about translations
-        qset = (
-            DiscoveryItem.objects.all()
-            .prefetch_related(
-                Prefetch(
-                    'addon',
-                    queryset=(
-                        Addon.unfiltered.all()
-                        .select_related('_current_version')
-                        .only_translations()))))
+        qset = DiscoveryItem.objects.all().prefetch_related(
+            Prefetch(
+                'addon',
+                queryset=(
+                    Addon.unfiltered.all()
+                    .select_related('_current_version')
+                    .only_translations()
+                ),
+            )
+        )
         return qset
 
     def formfield_for_foreignkey(self, db_field, request=None, **kwargs):
         if db_field.name == 'addon':
             kwargs['widget'] = ForeignKeyRawIdWidget(
-                db_field.remote_field, self.admin_site,
-                using=kwargs.get('using'))
+                db_field.remote_field, self.admin_site, using=kwargs.get('using')
+            )
             kwargs['queryset'] = Addon.objects.all()
             kwargs['help_text'] = db_field.help_text
             return SlugOrPkChoiceField(**kwargs)
         return super(DiscoveryItemAdmin, self).formfield_for_foreignkey(
-            db_field, request, **kwargs)
+            db_field, request, **kwargs
+        )
 
     def build_preview(self, obj, locale):
         return format_html(
@@ -121,14 +123,14 @@ class DiscoveryItemAdmin(admin.ModelAdmin):
             '<div class="editorial-description">{}</div></div>',
             locale,
             obj.addon.name,
-            mark_safe(obj.description_text))
+            mark_safe(obj.description_text),
+        )
 
     def previews(self, obj):
         translations = []
-        for locale in ('en-US', ) + KEY_LOCALES_FOR_EDITORIAL_CONTENT:
+        for locale in ('en-US',) + KEY_LOCALES_FOR_EDITORIAL_CONTENT:
             with translation.override(locale):
-                translations.append(
-                    conditional_escape(self.build_preview(obj, locale)))
+                translations.append(conditional_escape(self.build_preview(obj, locale)))
         return mark_safe(''.join(translations))
 
 

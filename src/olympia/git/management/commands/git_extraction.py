@@ -39,9 +39,7 @@ class Command(BaseCommand):
         parser.add_argument(
             '--limit',
             type=int,
-            help=(
-                'The number of entries to process when the command is invoked.'
-            )
+            help=('The number of entries to process when the command is invoked.'),
         )
 
     @use_primary_db
@@ -114,9 +112,7 @@ class Command(BaseCommand):
         )
 
         if len(versions_to_extract) == 0:
-            log.info(
-                'No version to git-extract for add-on "%s", exiting.', addon.pk
-            )
+            log.info('No version to git-extract for add-on "%s", exiting.', addon.pk)
             # We can safely delete the entry because there is no version to
             # extract.
             entry.delete()
@@ -125,9 +121,7 @@ class Command(BaseCommand):
         version_pks = versions_to_extract[0:batch_size]
         tasks = [
             # Create a task to extract the BATCH_SIZE first versions.
-            extract_versions_to_git.si(
-                addon_pk=addon.pk, version_pks=version_pks
-            )
+            extract_versions_to_git.si(addon_pk=addon.pk, version_pks=version_pks)
         ]
         if len(version_pks) < len(versions_to_extract):
             # If there are more versions to git-extract, let's keep the entry

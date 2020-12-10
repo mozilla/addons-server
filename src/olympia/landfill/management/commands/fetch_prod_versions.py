@@ -18,6 +18,7 @@ class KeyboardInterruptError(Exception):
 
 class Command(BaseCommand):
     """Download versions for a particular add-on from AMO public data."""
+
     VERSIONS_API_URL = (
         'https://addons.mozilla.org/api/v4/addons/addon/%(slug)s/versions/'
     )
@@ -47,11 +48,10 @@ class Command(BaseCommand):
     def _get_versions_from_page(self, slug, page):
         data = []
         print('fetching %s' % page)
-        query_params = {
-            'page': page
-        }
+        query_params = {'page': page}
         response = requests.get(
-            self.VERSIONS_API_URL % {'slug': slug}, params=query_params)
+            self.VERSIONS_API_URL % {'slug': slug}, params=query_params
+        )
         print('fetched %s' % page)
 
         for version in response.json()['results']:
@@ -65,8 +65,11 @@ class Command(BaseCommand):
             f.write(data.content)
 
     def _handle_version(self, data):
-        if self.addon.versions(manager='unfiltered_for_relations').filter(
-                version=data['version']).exists():
+        if (
+            self.addon.versions(manager='unfiltered_for_relations')
+            .filter(version=data['version'])
+            .exists()
+        ):
             print('Skipping %s (version already exists' % data['version'])
             return
 
@@ -78,10 +81,8 @@ class Command(BaseCommand):
             'platform': amo.PLATFORM_DICT[files_data['platform']].id,
             'size': files_data['size'],
             'is_webextension': files_data['is_webextension'],
-            'is_mozilla_signed_extension': (
-                files_data['is_mozilla_signed_extension']),
-            'strict_compatibility': (
-                data['is_strict_compatibility_enabled'])
+            'is_mozilla_signed_extension': (files_data['is_mozilla_signed_extension']),
+            'strict_compatibility': (data['is_strict_compatibility_enabled']),
         }
 
         version_kw = {
@@ -93,8 +94,7 @@ class Command(BaseCommand):
 
         print('Creating version %s' % data['version'])
         with atomic():
-            version = version_factory(
-                addon=self.addon, file_kw=file_kw, **version_kw)
+            version = version_factory(addon=self.addon, file_kw=file_kw, **version_kw)
 
             # Download the file to the right path.
             print('Downloading file for version %s' % data['version'])

@@ -61,9 +61,10 @@ def custom_exception_handler(exc, context=None):
         # a dict of strings here, depending on what happened. Fortunately the
         # only thing we care about is the most basic case, a string, we don't
         # need to test for the rest.
-        if (not isinstance(exc, exceptions.Throttled) and
-            not (isinstance(exc, exceptions.PermissionDenied) and
-                 code_or_codes == 'permission_denied_restriction')):
+        if not isinstance(exc, exceptions.Throttled) and not (
+            isinstance(exc, exceptions.PermissionDenied)
+            and code_or_codes == 'permission_denied_restriction'
+        ):
             set_rollback()
         if isinstance(exc, UnavailableForLegalReasons):
             url = 'https://www.mozilla.org/about/policy/transparency/'

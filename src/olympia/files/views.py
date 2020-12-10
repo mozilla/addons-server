@@ -34,6 +34,6 @@ def serve_file_upload(request, uuid):
         log.info('Preventing access to %s, upload path is falsey.' % upload.id)
         return http.HttpResponseGone('upload path does not exist anymore')
 
-    return HttpResponseXSendFile(request,
-                                 upload.path,
-                                 content_type='application/octet-stream')
+    return HttpResponseXSendFile(
+        request, upload.path, content_type='application/octet-stream'
+    )

@@ -8,15 +8,16 @@ from olympia.addons.models import Addon
 
 
 def owner_or_unlisted_reviewer(request, addon):
-    return (acl.check_unlisted_addons_reviewer(request) or
-            # We don't want "admins" here, because it includes anyone with the
-            # "Addons:Edit" perm, we only want those with
-            # "Addons:ReviewUnlisted" perm (which is checked above).
-            acl.check_addon_ownership(request, addon, admin=False, dev=True))
+    return (
+        acl.check_unlisted_addons_reviewer(request)
+        # We don't want "admins" here, because it includes anyone with the
+        # "Addons:Edit" perm, we only want those with
+        # "Addons:ReviewUnlisted" perm (which is checked above).
+        or acl.check_addon_ownership(request, addon, admin=False, dev=True)
+    )
 
 
-def addon_view(
-        f, qs=Addon.objects.all, include_deleted_when_checking_versions=False):
+def addon_view(f, qs=Addon.objects.all, include_deleted_when_checking_versions=False):
     @functools.wraps(f)
     def wrapper(request, addon_id=None, *args, **kw):
         """Provides an addon instance to the view given addon_id, which can be
@@ -44,11 +45,12 @@ def addon_view(
         # If the addon has no listed versions it needs either an author
         # (owner/viewer/dev/support) or an unlisted addon reviewer.
         has_listed_versions = addon.has_listed_versions(
-            include_deleted=include_deleted_when_checking_versions)
-        if not (has_listed_versions or
-                owner_or_unlisted_reviewer(request, addon)):
+            include_deleted=include_deleted_when_checking_versions
+        )
+        if not (has_listed_versions or owner_or_unlisted_reviewer(request, addon)):
             raise http.Http404
         return f(request, addon, *args, **kw)
+
     return wrapper
 
 

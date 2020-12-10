@@ -10,9 +10,7 @@ from rest_framework.test import APIRequestFactory, force_authenticate
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.amo.tests import TestCase, user_factory
-from olympia.api.throttling import (
-    GranularIPRateThrottle, GranularUserRateThrottle
-)
+from olympia.api.throttling import GranularIPRateThrottle, GranularUserRateThrottle
 
 
 class TestGranularUserRateThrottle(TestCase):
@@ -31,8 +29,7 @@ class TestGranularUserRateThrottle(TestCase):
         assert self.throttle.parse_rate('456/7hour') == (456, 7 * 3600)
 
     @mock.patch('rest_framework.throttling.UserRateThrottle.allow_request')
-    def test_allow_request_if_api_throttling_setting_is_false(
-            self, allow_request_mock):
+    def test_allow_request_if_api_throttling_setting_is_false(self, allow_request_mock):
         request = RequestFactory().get('/test')
         view = object()
 

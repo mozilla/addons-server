@@ -26,6 +26,7 @@ def user_profile_from_uid(f):
             log.warning('Multiple profile matches for FxA id %s' % uid)
         except UserProfile.DoesNotExist:
             log.info('No profile match for FxA id %s' % uid)
+
     return wrapper
 
 
@@ -34,15 +35,17 @@ def user_profile_from_uid(f):
 @user_profile_from_uid
 def primary_email_change_event(profile, changed_date, email):
     """Process the primaryEmailChangedEvent."""
-    if (not profile.email_changed or
-            profile.email_changed < changed_date):
+    if not profile.email_changed or profile.email_changed < changed_date:
         profile.update(email=email, email_changed=changed_date)
         log.info(
-            'Account pk [%s] email [%s] changed from FxA on %s' % (
-                profile.id, email, changed_date))
+            'Account pk [%s] email [%s] changed from FxA on %s'
+            % (profile.id, email, changed_date)
+        )
     else:
-        log.warning('Account pk [%s] email updated ignored, %s > %s' %
-                    (profile.id, profile.email_changed, changed_date))
+        log.warning(
+            'Account pk [%s] email updated ignored, %s > %s'
+            % (profile.id, profile.email_changed, changed_date)
+        )
 
 
 @task
@@ -52,9 +55,9 @@ def delete_user_event(user, deleted_date):
     """Process the delete user event."""
     if switch_is_active('fxa-account-delete'):
         user.delete(addon_msg='Deleted via FxA account deletion')
-        log.info(
-            'Account pk [%s] deleted from FxA on %s' % (user.id, deleted_date))
+        log.info('Account pk [%s] deleted from FxA on %s' % (user.id, deleted_date))
     else:
         log.info(
             f'Skipping deletion from FxA for account [{user.id}] because '
-            'waffle inactive')
+            'waffle inactive'
+        )

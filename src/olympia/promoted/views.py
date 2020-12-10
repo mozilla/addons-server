@@ -34,9 +34,7 @@ def stripe_webhook(request):
     sig_header = request.META.get("HTTP_STRIPE_SIGNATURE")
 
     try:
-        event = create_stripe_webhook_event(
-            payload=payload, sig_header=sig_header
-        )
+        event = create_stripe_webhook_event(payload=payload, sig_header=sig_header)
     except stripe.error.SignatureVerificationError:
         log.exception("received stripe event with invalid signature")
         return Response(status=HTTP_400_BAD_REQUEST)

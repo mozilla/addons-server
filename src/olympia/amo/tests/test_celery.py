@@ -25,8 +25,7 @@ def test_celery_routes_in_queues():
     # check the default queue is defined in CELERY_QUEUES
     assert settings.CELERY_TASK_DEFAULT_QUEUE in queues_in_queues
 
-    queues_in_routes = set(
-        [c['queue'] for c in settings.CELERY_TASK_ROUTES.values()])
+    queues_in_routes = set([c['queue'] for c in settings.CELERY_TASK_ROUTES.values()])
     assert queues_in_queues == queues_in_routes
 
 
@@ -74,9 +73,7 @@ class TestCeleryWorker(TestCase):
         result.get()
 
         assert celery_cache.set.called
-        assert (
-            celery_cache.set.call_args[0][0] ==
-            f'task_start_time.{result.id}')
+        assert celery_cache.set.call_args[0][0] == f'task_start_time.{result.id}'
 
     @mock.patch('olympia.amo.celery.cache')
     @mock.patch('olympia.amo.celery.statsd')
@@ -89,20 +86,19 @@ class TestCeleryWorker(TestCase):
         result.get()
 
         approx_run_time = utc_millesecs_from_epoch() - task_start
-        assert (celery_statsd.timing.call_args[0][0] ==
-                'tasks.olympia.amo.tests.test_celery.fake_task_with_result')
+        assert (
+            celery_statsd.timing.call_args[0][0]
+            == 'tasks.olympia.amo.tests.test_celery.fake_task_with_result'
+        )
         actual_run_time = celery_statsd.timing.call_args[0][1]
 
         fuzz = 2000  # 2 seconds
-        assert (actual_run_time >= (approx_run_time - fuzz) and
-                actual_run_time <= (approx_run_time + fuzz))
+        assert actual_run_time >= (approx_run_time - fuzz) and actual_run_time <= (
+            approx_run_time + fuzz
+        )
 
-        assert (
-            celery_cache.get.call_args[0][0] ==
-            f'task_start_time.{result.id}')
-        assert (
-            celery_cache.delete.call_args[0][0] ==
-            f'task_start_time.{result.id}')
+        assert celery_cache.get.call_args[0][0] == f'task_start_time.{result.id}'
+        assert celery_cache.delete.call_args[0][0] == f'task_start_time.{result.id}'
 
     @mock.patch('olympia.amo.celery.cache')
     @mock.patch('olympia.amo.celery.statsd')

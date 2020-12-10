@@ -5,8 +5,7 @@ import waffle
 from django_statsd.clients import statsd
 
 import olympia.core.logger
-from olympia.constants.blocklist import (
-    MLBF_BASE_ID_CONFIG_KEY, MLBF_TIME_CONFIG_KEY)
+from olympia.constants.blocklist import MLBF_BASE_ID_CONFIG_KEY, MLBF_TIME_CONFIG_KEY
 from olympia.zadmin.models import get_config
 
 from .mlbf import MLBF
@@ -58,37 +57,38 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
 
     changes_count = mlbf.blocks_changed_since_previous(previous_filter)
     statsd.incr(
-        'blocklist.cron.upload_mlbf_to_remote_settings.blocked_changed',
-        changes_count)
+        'blocklist.cron.upload_mlbf_to_remote_settings.blocked_changed', changes_count
+    )
     need_update = (
-        force_base or
-        last_generation_time < get_blocklist_last_modified_time() or
-        changes_count)
+        force_base
+        or last_generation_time < get_blocklist_last_modified_time()
+        or changes_count
+    )
     if not need_update:
-        log.info(
-            'No new/modified/deleted Blocks in database; '
-            'skipping MLBF generation')
+        log.info('No new/modified/deleted Blocks in database; skipping MLBF generation')
         return
 
     statsd.incr(
         'blocklist.cron.upload_mlbf_to_remote_settings.blocked_count',
-        len(mlbf.blocked_items))
+        len(mlbf.blocked_items),
+    )
     statsd.incr(
         'blocklist.cron.upload_mlbf_to_remote_settings.not_blocked_count',
-        len(mlbf.not_blocked_items))
+        len(mlbf.not_blocked_items),
+    )
 
     base_filter_id = get_config(MLBF_BASE_ID_CONFIG_KEY, 0, json_value=True)
     # optimize for when the base_filter was the previous generation so
     # we don't have to load the blocked JSON file twice.
     base_filter = (
         MLBF.load_from_storage(base_filter_id)
-        if last_generation_time != base_filter_id else
-        previous_filter)
+        if last_generation_time != base_filter_id
+        else previous_filter
+    )
 
     make_base_filter = (
-        force_base or
-        not base_filter_id or
-        mlbf.should_reset_base_filter(base_filter))
+        force_base or not base_filter_id or mlbf.should_reset_base_filter(base_filter)
+    )
 
     if last_generation_time and not make_base_filter:
         try:
@@ -100,9 +100,7 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
     if make_base_filter:
         mlbf.generate_and_write_filter()
 
-    upload_filter.delay(
-        generation_time,
-        is_base=make_base_filter)
+    upload_filter.delay(generation_time, is_base=make_base_filter)
 
     if base_filter_id:
         cleanup_old_files.delay(base_filter_id=base_filter_id)

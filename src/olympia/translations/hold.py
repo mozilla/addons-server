@@ -47,8 +47,8 @@ def save_translations(instance):
         is_new = translation.autoid is None
         translation.save(force_insert=is_new, force_update=not is_new)
         translation_saved.send(
-            sender=instance.__class__, instance=instance,
-            field_name=field_name)
+            sender=instance.__class__, instance=instance, field_name=field_name
+        )
 
     if key in _to_save.translations:
         del _to_save.translations[key]

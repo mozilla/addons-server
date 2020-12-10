@@ -42,9 +42,7 @@ class PromotedAddonTestCase(TestCase):
 class TestOnStripeChargeFailed(PromotedAddonTestCase):
     EVENT_TYPE = "charge.failed"
 
-    @mock.patch(
-        "olympia.promoted.tasks.retrieve_stripe_subscription_for_invoice"
-    )
+    @mock.patch("olympia.promoted.tasks.retrieve_stripe_subscription_for_invoice")
     def test_ignores_invalid_event_type(self, retrieve_sub_mock):
         event = self.create_stripe_event(event_type="not-charge-failed")
 
@@ -52,9 +50,7 @@ class TestOnStripeChargeFailed(PromotedAddonTestCase):
 
         retrieve_sub_mock.assert_not_called()
 
-    @mock.patch(
-        "olympia.promoted.tasks.retrieve_stripe_subscription_for_invoice"
-    )
+    @mock.patch("olympia.promoted.tasks.retrieve_stripe_subscription_for_invoice")
     def test_ignores_events_without_data(self, retrieve_sub_mock):
         event = self.create_stripe_event(data={})
 
@@ -62,9 +58,7 @@ class TestOnStripeChargeFailed(PromotedAddonTestCase):
 
         retrieve_sub_mock.assert_not_called()
 
-    @mock.patch(
-        "olympia.promoted.tasks.retrieve_stripe_subscription_for_invoice"
-    )
+    @mock.patch("olympia.promoted.tasks.retrieve_stripe_subscription_for_invoice")
     def test_ignores_events_without_data_object(self, retrieve_sub_mock):
         event = self.create_stripe_event(data={"object": None})
 
@@ -72,9 +66,7 @@ class TestOnStripeChargeFailed(PromotedAddonTestCase):
 
         retrieve_sub_mock.assert_not_called()
 
-    @mock.patch(
-        "olympia.promoted.tasks.retrieve_stripe_subscription_for_invoice"
-    )
+    @mock.patch("olympia.promoted.tasks.retrieve_stripe_subscription_for_invoice")
     def test_ignores_unknown_promoted_subscriptions(self, retrieve_sub_mock):
         subscription_id = "subscription-id"
         retrieve_sub_mock.return_value = {
@@ -90,9 +82,7 @@ class TestOnStripeChargeFailed(PromotedAddonTestCase):
         retrieve_sub_mock.assert_called_once_with(invoice_id=invoice_id)
         assert len(mail.outbox) == 0
 
-    @mock.patch(
-        "olympia.promoted.tasks.retrieve_stripe_subscription_for_invoice"
-    )
+    @mock.patch("olympia.promoted.tasks.retrieve_stripe_subscription_for_invoice")
     def test_ignores_stripe_errors(self, retrieve_sub_mock):
         retrieve_sub_mock.side_effect = ValueError("stripe error")
         invoice_id = "invoice-id"
@@ -105,9 +95,7 @@ class TestOnStripeChargeFailed(PromotedAddonTestCase):
         assert len(mail.outbox) == 0
 
     @override_settings(VERIFIED_ADDONS_EMAIL="verified@example.com")
-    @mock.patch(
-        "olympia.promoted.tasks.retrieve_stripe_subscription_for_invoice"
-    )
+    @mock.patch("olympia.promoted.tasks.retrieve_stripe_subscription_for_invoice")
     def test_sends_email_to_amo_admins(self, retrieve_sub_mock):
         subscription_id = "subscription-id"
         self.promoted_addon.promotedsubscription.update(
@@ -127,13 +115,12 @@ class TestOnStripeChargeFailed(PromotedAddonTestCase):
         assert len(mail.outbox) == 1
         email = mail.outbox[0]
         assert (
-            email.subject ==
-            f"Stripe payment failure detected for add-on: {self.addon.name}"
+            email.subject
+            == f"Stripe payment failure detected for add-on: {self.addon.name}"
         )
         assert email.to == ["verified@example.com"]
         assert (
-            f"following add-on: {absolutify(self.addon.get_detail_url())}"
-            in email.body
+            f"following add-on: {absolutify(self.addon.get_detail_url())}" in email.body
         )
         assert (
             absolutify(
@@ -145,13 +132,10 @@ class TestOnStripeChargeFailed(PromotedAddonTestCase):
             in email.body
         )
         assert (
-            f"//dashboard.stripe.com/test/subscriptions/{subscription_id}"
-            in email.body
+            f"//dashboard.stripe.com/test/subscriptions/{subscription_id}" in email.body
         )
 
-    @mock.patch(
-        "olympia.promoted.tasks.retrieve_stripe_subscription_for_invoice"
-    )
+    @mock.patch("olympia.promoted.tasks.retrieve_stripe_subscription_for_invoice")
     def test_sends_email_to_amo_admins_in_livemode(self, retrieve_sub_mock):
         subscription_id = "subscription-id"
         self.promoted_addon.promotedsubscription.update(
@@ -215,10 +199,7 @@ class TestOnStripeCustomerSubscriptionDeleted(PromotedAddonTestCase):
 
         on_stripe_customer_subscription_deleted(event=event)
 
-        assert (
-            self.promoted_addon.promotedsubscription.cancelled_at ==
-            cancelled_at
-        )
+        assert self.promoted_addon.promotedsubscription.cancelled_at == cancelled_at
 
     def test_cancels_subscription(self):
         subscription_id = "stripe-sub-id"
@@ -235,10 +216,7 @@ class TestOnStripeCustomerSubscriptionDeleted(PromotedAddonTestCase):
         on_stripe_customer_subscription_deleted(event=event)
         self.promoted_addon.refresh_from_db()
 
-        assert (
-            self.promoted_addon.promotedsubscription.cancelled_at ==
-            cancelled_at
-        )
+        assert self.promoted_addon.promotedsubscription.cancelled_at == cancelled_at
         assert self.promoted_addon.group_id == NOT_PROMOTED.id
 
 
@@ -279,11 +257,6 @@ class TestOnStripeChargeSucceeded(PromotedAddonTestCase):
 
         assert len(mail.outbox) == 1
         email = mail.outbox[0]
-        assert (
-            email.subject == "Stripe payment succeeded"
-        )
+        assert email.subject == "Stripe payment succeeded"
         assert email.to == ["verified@example.com"]
-        assert (
-            f"//dashboard.stripe.com/test/payments/{payment_intent}"
-            in email.body
-        )
+        assert f"//dashboard.stripe.com/test/payments/{payment_intent}" in email.body

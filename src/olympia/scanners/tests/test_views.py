@@ -74,17 +74,13 @@ class TestScannerResultViewInternal(TestCase):
         good_result_1 = ScannerResult.objects.create(
             scanner=WAT, version=good_version_1
         )
-        ActivityLog.create(
-            amo.LOG.APPROVE_VERSION, good_version_1, user=self.user
-        )
+        ActivityLog.create(amo.LOG.APPROVE_VERSION, good_version_1, user=self.user)
         # result labelled as "good" because auto-approve has been confirmed
         good_version_2 = version_factory(addon=addon_factory())
         good_result_2 = ScannerResult.objects.create(
             scanner=CUSTOMS, version=good_version_2
         )
-        ActivityLog.create(
-            amo.LOG.APPROVE_VERSION, good_version_2, user=task_user
-        )
+        ActivityLog.create(amo.LOG.APPROVE_VERSION, good_version_2, user=task_user)
         ActivityLog.create(
             amo.LOG.CONFIRM_AUTO_APPROVED, good_version_2, user=self.user
         )
@@ -111,16 +107,12 @@ class TestScannerResultViewInternal(TestCase):
         # accurate. This is needed because `label` is an annotated field
         # created in the QuerySet.
         good_result_2.label = 'good'
-        assert (
-            results[0] == ScannerResultSerializer(instance=good_result_2).data
-        )
+        assert results[0] == ScannerResultSerializer(instance=good_result_2).data
         # Force a `label` value so that the serialized (expected) data is
         # accurate. This is needed because `label` is an annotated field
         # created in the QuerySet.
         good_result_1.label = 'good'
-        assert (
-            results[1] == ScannerResultSerializer(instance=good_result_1).data
-        )
+        assert results[1] == ScannerResultSerializer(instance=good_result_1).data
         # Force a `label` value so that the serialized (expected) data is
         # accurate. This is needed because `label` is an annotated field
         # created in the QuerySet.
@@ -150,16 +142,12 @@ class TestScannerResultViewInternal(TestCase):
 
     def test_get_by_scanner_with_empty_value(self):
         invalid_scanner = ""
-        response = self.client.get(
-            '{}?scanner={}'.format(self.url, invalid_scanner)
-        )
+        response = self.client.get('{}?scanner={}'.format(self.url, invalid_scanner))
         assert response.status_code == 400
 
     def test_get_by_scanner_with_unknown_scanner(self):
         invalid_scanner = "yaraaaa"
-        response = self.client.get(
-            '{}?scanner={}'.format(self.url, invalid_scanner)
-        )
+        response = self.client.get('{}?scanner={}'.format(self.url, invalid_scanner))
         assert response.status_code == 400
 
     def test_get_by_label(self):
@@ -193,16 +181,12 @@ class TestScannerResultViewInternal(TestCase):
 
     def test_get_by_label_with_empty_value(self):
         invalid_label = ""
-        response = self.client.get(
-            '{}?label={}'.format(self.url, invalid_label)
-        )
+        response = self.client.get('{}?label={}'.format(self.url, invalid_label))
         assert response.status_code == 400
 
     def test_get_by_label_with_unknown_label(self):
         invalid_label = "gooda"
-        response = self.client.get(
-            '{}?label={}'.format(self.url, invalid_label)
-        )
+        response = self.client.get('{}?label={}'.format(self.url, invalid_label))
         assert response.status_code == 400
 
     def test_get_by_label_and_scanner(self):
@@ -254,27 +238,21 @@ class TestScannerResultViewInternal(TestCase):
         blocked_addon_1 = addon_factory()
         blocked_version_1 = version_factory(addon=blocked_addon_1)
         ScannerResult.objects.create(scanner=YARA, version=blocked_version_1)
-        block_1 = Block.objects.create(
-            guid=blocked_addon_1.guid, updated_by=self.user
-        )
+        block_1 = Block.objects.create(guid=blocked_addon_1.guid, updated_by=self.user)
         block_activity_log_save(block_1, change=False)
         # result labelled as "bad" because the add-on is blocked and the block
         # has been edited.
         blocked_addon_2 = addon_factory()
         blocked_version_2 = version_factory(addon=blocked_addon_2)
         ScannerResult.objects.create(scanner=YARA, version=blocked_version_2)
-        block_2 = Block.objects.create(
-            guid=blocked_addon_2.guid, updated_by=self.user
-        )
+        block_2 = Block.objects.create(guid=blocked_addon_2.guid, updated_by=self.user)
         block_activity_log_save(block_2, change=True)
         # result labelled as "bad" because the add-on is blocked and the block
         # has been added *and* edited. It should only return one result.
         blocked_addon_3 = addon_factory()
         blocked_version_3 = version_factory(addon=blocked_addon_3)
         ScannerResult.objects.create(scanner=YARA, version=blocked_version_3)
-        block_3 = Block.objects.create(
-            guid=blocked_addon_3.guid, updated_by=self.user
-        )
+        block_3 = Block.objects.create(guid=blocked_addon_3.guid, updated_by=self.user)
         block_activity_log_save(block_3, change=False)
         block_activity_log_save(block_3, change=True)
         # result labelled as "bad" because its state is TRUE_POSITIVE and the
@@ -284,9 +262,7 @@ class TestScannerResultViewInternal(TestCase):
         ScannerResult.objects.create(
             scanner=YARA, version=blocked_version_4, state=TRUE_POSITIVE
         )
-        block_4 = Block.objects.create(
-            guid=blocked_addon_4.guid, updated_by=self.user
-        )
+        block_4 = Block.objects.create(guid=blocked_addon_4.guid, updated_by=self.user)
         block_activity_log_save(block_4, change=False)
 
         response = self.client.get(self.url)
@@ -295,14 +271,10 @@ class TestScannerResultViewInternal(TestCase):
     def test_get_results_with_good_blocked_versions(self):
         # Result labelled as "good" because auto-approve has been confirmed.
         version_1 = version_factory(addon=addon_factory())
-        result_1 = ScannerResult.objects.create(
-            scanner=CUSTOMS, version=version_1
-        )
+        result_1 = ScannerResult.objects.create(scanner=CUSTOMS, version=version_1)
         ActivityLog.create(amo.LOG.APPROVE_VERSION, version_1, user=self.user)
         # Oh noes! The version has been blocked.
-        block_1 = Block.objects.create(
-            guid=version_1.addon.guid, updated_by=self.user
-        )
+        block_1 = Block.objects.create(guid=version_1.addon.guid, updated_by=self.user)
         block_activity_log_save(block_1, change=False)
 
         response = self.client.get(self.url)
@@ -313,20 +285,12 @@ class TestScannerResultViewInternal(TestCase):
     def test_get_unique_bad_results(self):
         version_1 = version_factory(addon=addon_factory(), version='1.0')
         ScannerResult.objects.create(scanner=MAD, version=version_1)
-        ActivityLog.create(
-            amo.LOG.BLOCKLIST_BLOCK_ADDED, version_1, user=self.user
-        )
-        ActivityLog.create(
-            amo.LOG.BLOCKLIST_BLOCK_EDITED, version_1, user=self.user
-        )
+        ActivityLog.create(amo.LOG.BLOCKLIST_BLOCK_ADDED, version_1, user=self.user)
+        ActivityLog.create(amo.LOG.BLOCKLIST_BLOCK_EDITED, version_1, user=self.user)
         version_2 = version_factory(addon=addon_factory(), version='2.0')
         ScannerResult.objects.create(scanner=MAD, version=version_2)
-        ActivityLog.create(
-            amo.LOG.BLOCKLIST_BLOCK_ADDED, version_2, user=self.user
-        )
-        ActivityLog.create(
-            amo.LOG.BLOCKLIST_BLOCK_EDITED, version_2, user=self.user
-        )
+        ActivityLog.create(amo.LOG.BLOCKLIST_BLOCK_ADDED, version_2, user=self.user)
+        ActivityLog.create(amo.LOG.BLOCKLIST_BLOCK_EDITED, version_2, user=self.user)
 
         response = self.client.get('{}?label=bad'.format(self.url))
         results = self.assert_json_results(response, expected_results=2)
@@ -336,21 +300,13 @@ class TestScannerResultViewInternal(TestCase):
         version_1 = version_factory(addon=addon_factory(), version='1.0')
         ScannerResult.objects.create(scanner=MAD, version=version_1)
         ActivityLog.create(amo.LOG.APPROVE_VERSION, version_1, user=self.user)
-        ActivityLog.create(
-            amo.LOG.CONFIRM_AUTO_APPROVED, version_1, user=self.user
-        )
-        ActivityLog.create(
-            amo.LOG.CONFIRM_AUTO_APPROVED, version_1, user=self.user
-        )
+        ActivityLog.create(amo.LOG.CONFIRM_AUTO_APPROVED, version_1, user=self.user)
+        ActivityLog.create(amo.LOG.CONFIRM_AUTO_APPROVED, version_1, user=self.user)
         version_2 = version_factory(addon=addon_factory(), version='2.0')
         ScannerResult.objects.create(scanner=MAD, version=version_2)
         ActivityLog.create(amo.LOG.APPROVE_VERSION, version_2, user=self.user)
-        ActivityLog.create(
-            amo.LOG.CONFIRM_AUTO_APPROVED, version_2, user=self.user
-        )
-        ActivityLog.create(
-            amo.LOG.CONFIRM_AUTO_APPROVED, version_2, user=self.user
-        )
+        ActivityLog.create(amo.LOG.CONFIRM_AUTO_APPROVED, version_2, user=self.user)
+        ActivityLog.create(amo.LOG.CONFIRM_AUTO_APPROVED, version_2, user=self.user)
 
         response = self.client.get('{}?label=good'.format(self.url))
         results = self.assert_json_results(response, expected_results=2)

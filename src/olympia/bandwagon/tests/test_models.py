@@ -24,8 +24,7 @@ def activitylog_count(type):
 
 
 class TestCollections(TestCase):
-    fixtures = ('base/addon_3615', 'bandwagon/test_models',
-                'base/user_4043307')
+    fixtures = ('base/addon_3615', 'bandwagon/test_models', 'base/user_4043307')
 
     def setUp(self):
         super(TestCollections, self).setUp()
@@ -36,7 +35,8 @@ class TestCollections(TestCase):
     def test_description(self):
         c = Collection.objects.create(
             description='<a href="http://example.com">example.com</a> '
-                        'http://example.com <b>foo</b> some text')
+            'http://example.com <b>foo</b> some text'
+        )
         # All markup escaped, links are stripped.
         assert str(c.description) == '&lt;b&gt;foo&lt;/b&gt; some text'
 
@@ -50,8 +50,11 @@ class TestCollections(TestCase):
         listed_count = Collection.objects.listed().count()
         # Make a private collection.
         Collection.objects.create(
-            name='Hello', uuid='4e2a1acc39ae47ec956f46e080ac7f69',
-            listed=False, author=self.user)
+            name='Hello',
+            uuid='4e2a1acc39ae47ec956f46e080ac7f69',
+            listed=False,
+            author=self.user,
+        )
 
         assert Collection.objects.listed().count() == listed_count
 
@@ -111,8 +114,8 @@ class TestCollections(TestCase):
         assert index_addons_mock.call_count == 0
 
         collection = Collection.objects.create(
-            author=self.user, slug='featured',
-            id=settings.COLLECTION_FEATURED_THEMES_ID)
+            author=self.user, slug='featured', id=settings.COLLECTION_FEATURED_THEMES_ID
+        )
         addon_featured = addon_factory()
         index_addons_mock.reset_mock()
 
@@ -132,8 +135,8 @@ class TestCollections(TestCase):
         assert index_addons_mock.call_count == 0
 
         collection = Collection.objects.create(
-            author=self.user, slug='featured',
-            id=settings.COLLECTION_FEATURED_THEMES_ID)
+            author=self.user, slug='featured', id=settings.COLLECTION_FEATURED_THEMES_ID
+        )
         addon_featured = addon_factory()
         collection.add_addon(addon_featured)
         index_addons_mock.reset_mock()
@@ -152,10 +155,7 @@ class TestCollectionQuerySet(TestCase):
         collection = Collection.objects.create(author=user)
         addon = Addon.objects.all()[0]
 
-        qset = (
-            Collection.objects
-            .filter(pk=collection.id)
-            .with_has_addon(addon.id))
+        qset = Collection.objects.filter(pk=collection.id).with_has_addon(addon.id)
 
         assert not qset.first().has_addon
 

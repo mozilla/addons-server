@@ -17,8 +17,8 @@ class TestRepackFileUpload(UploadTest, TestCase):
     @mock.patch('olympia.files.tasks.shutil')
     @mock.patch.object(SafeZip, 'extract_to_dest')
     def test_repacking_xpi_files_with_mocks(
-            self, extract_to_dest_mock, shutil_mock, get_sha256_mock,
-            move_stored_file_mock):
+        self, extract_to_dest_mock, shutil_mock, get_sha256_mock, move_stored_file_mock
+    ):
         """Opposite of test_not_repacking_non_xpi_files() (using same mocks)"""
         upload = self.get_upload('webextension.xpi')
         get_sha256_mock.return_value = 'fakehashfrommock'
@@ -63,7 +63,7 @@ class TestRepackFileUpload(UploadTest, TestCase):
                 u'chrome/skin/',
                 u'chrome/skin/overlay.css',
                 u'install.rdf',
-                u'삮'
+                u'삮',
             ]
         # Spot-check an individual file.
         info = z.getinfo('install.rdf')
@@ -84,7 +84,5 @@ class TestHideDisabledFile(TestCase):
     def test_hide_disabled_files(self, move_file_mock):
         hide_disabled_files.delay(addon_id=self.addon1.id)
         move_file_mock.assert_called_once_with(
-            self.file1.file_path,
-            self.file1.guarded_file_path,
-            self.msg
+            self.file1.file_path, self.file1.guarded_file_path, self.msg
         )

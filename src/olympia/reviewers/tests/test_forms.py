@@ -4,11 +4,8 @@ from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.addons.models import Addon, AddonReviewerFlags
-from olympia.amo.tests import (
-    TestCase, addon_factory, file_factory, version_factory)
-from olympia.constants.reviewers import (
-    REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
-)
+from olympia.amo.tests import TestCase, addon_factory, file_factory, version_factory
+from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.reviewers.forms import ReviewForm
 from olympia.reviewers.models import AutoApprovalSummary, CannedResponse
 from olympia.reviewers.utils import ReviewHelper
@@ -33,8 +30,10 @@ class TestReviewForm(TestCase):
     def get_form(self, data=None):
         return ReviewForm(
             data=data,
-            helper=ReviewHelper(request=self.request, addon=self.addon,
-                                version=self.version))
+            helper=ReviewHelper(
+                request=self.request, addon=self.addon, version=self.version
+            ),
+        )
 
     def set_statuses_and_get_actions(self, addon_status, file_status):
         self.file.update(status=file_status)
@@ -47,8 +46,8 @@ class TestReviewForm(TestCase):
     def test_actions_reject(self):
         self.grant_permission(self.request.user, 'Addons:Review')
         actions = self.set_statuses_and_get_actions(
-            addon_status=amo.STATUS_NOMINATED,
-            file_status=amo.STATUS_AWAITING_REVIEW)
+            addon_status=amo.STATUS_NOMINATED, file_status=amo.STATUS_AWAITING_REVIEW
+        )
         action = actions['reject']['details']
         assert force_text(action).startswith('This will reject this version')
 
@@ -56,7 +55,8 @@ class TestReviewForm(TestCase):
         # If the add-on is null we only show reply, comment and super review.
         self.grant_permission(self.request.user, 'Addons:Review')
         actions = self.set_statuses_and_get_actions(
-            addon_status=amo.STATUS_NULL, file_status=amo.STATUS_NULL)
+            addon_status=amo.STATUS_NULL, file_status=amo.STATUS_NULL
+        )
         assert list(actions.keys()) == ['reply', 'super', 'comment']
 
     def test_actions_addon_status_deleted(self):
@@ -64,7 +64,8 @@ class TestReviewForm(TestCase):
         # super review.
         self.grant_permission(self.request.user, 'Addons:Review')
         actions = self.set_statuses_and_get_actions(
-            addon_status=amo.STATUS_DELETED, file_status=amo.STATUS_NULL)
+            addon_status=amo.STATUS_DELETED, file_status=amo.STATUS_NULL
+        )
         assert list(actions.keys()) == ['reply', 'super', 'comment']
 
     def test_actions_no_pending_files(self):
@@ -72,47 +73,57 @@ class TestReviewForm(TestCase):
         # reject_multiple_versions, reply, comment and super review.
         self.grant_permission(self.request.user, 'Addons:Review')
         actions = self.set_statuses_and_get_actions(
-            addon_status=amo.STATUS_APPROVED,
-            file_status=amo.STATUS_APPROVED)
+            addon_status=amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED
+        )
         assert list(actions.keys()) == [
-            'reject_multiple_versions', 'reply', 'super', 'comment'
+            'reject_multiple_versions',
+            'reply',
+            'super',
+            'comment',
         ]
 
         # The add-on is already disabled so we don't show
         # reject_multiple_versions, but reply/super/comment are still present.
         actions = self.set_statuses_and_get_actions(
-            addon_status=amo.STATUS_DISABLED,
-            file_status=amo.STATUS_DISABLED)
+            addon_status=amo.STATUS_DISABLED, file_status=amo.STATUS_DISABLED
+        )
         assert list(actions.keys()) == ['reply', 'super', 'comment']
 
     def test_actions_admin_flagged_addon_actions(self):
         AddonReviewerFlags.objects.create(
-            addon=self.addon, needs_admin_code_review=True)
+            addon=self.addon, needs_admin_code_review=True
+        )
         # Test with an admin reviewer.
         self.grant_permission(self.request.user, 'Reviews:Admin')
         actions = self.set_statuses_and_get_actions(
-            addon_status=amo.STATUS_NOMINATED,
-            file_status=amo.STATUS_AWAITING_REVIEW)
+            addon_status=amo.STATUS_NOMINATED, file_status=amo.STATUS_AWAITING_REVIEW
+        )
         assert 'public' in actions.keys()
         # Test with an non-admin reviewer.
         self.request.user.groupuser_set.all().delete()
         self.grant_permission(self.request.user, 'Addons:Review')
         actions = self.set_statuses_and_get_actions(
-            addon_status=amo.STATUS_NOMINATED,
-            file_status=amo.STATUS_AWAITING_REVIEW)
+            addon_status=amo.STATUS_NOMINATED, file_status=amo.STATUS_AWAITING_REVIEW
+        )
         assert 'public' not in actions.keys()
 
     def test_canned_responses(self):
         self.cr_addon = CannedResponse.objects.create(
-            name=u'addon reason', response=u'addon reason body',
-            sort_group=u'public', type=amo.CANNED_RESPONSE_TYPE_ADDON)
+            name=u'addon reason',
+            response=u'addon reason body',
+            sort_group=u'public',
+            type=amo.CANNED_RESPONSE_TYPE_ADDON,
+        )
         self.cr_theme = CannedResponse.objects.create(
-            name=u'theme reason', response=u'theme reason body',
-            sort_group=u'public', type=amo.CANNED_RESPONSE_TYPE_THEME)
+            name=u'theme reason',
+            response=u'theme reason body',
+            sort_group=u'public',
+            type=amo.CANNED_RESPONSE_TYPE_THEME,
+        )
         self.grant_permission(self.request.user, 'Addons:Review')
         self.set_statuses_and_get_actions(
-            addon_status=amo.STATUS_NOMINATED,
-            file_status=amo.STATUS_AWAITING_REVIEW)
+            addon_status=amo.STATUS_NOMINATED, file_status=amo.STATUS_AWAITING_REVIEW
+        )
         form = self.get_form()
         choices = form.fields['canned_response'].choices[1][1]
         # choices is grouped by the sort_group, where choices[0] is the
@@ -140,7 +151,7 @@ class TestReviewForm(TestCase):
         assert not form.is_valid()
         assert form.errors == {
             'action': [u'This field is required.'],
-            'comments': [u'This field is required.']
+            'comments': [u'This field is required.'],
         }
 
         # Alter the action to make it not require comments to be sent
@@ -161,28 +172,33 @@ class TestReviewForm(TestCase):
         # auto-approve everything (including self.addon.current_version)
         for version in Version.unfiltered.all():
             AutoApprovalSummary.objects.create(
-                version=version, verdict=amo.AUTO_APPROVED)
+                version=version, verdict=amo.AUTO_APPROVED
+            )
 
         form = self.get_form()
         assert not form.is_bound
         assert form.fields['versions'].required is False
-        assert list(form.fields['versions'].queryset) == [
-            self.addon.current_version]
+        assert list(form.fields['versions'].queryset) == [self.addon.current_version]
 
     def test_versions_queryset_contains_pending_files_for_listed(self):
         self.grant_permission(self.request.user, 'Addons:Review')
         addon_factory()  # Extra add-on, shouldn't be included.
-        version_factory(addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED,
-                        file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        version_factory(
+            addon=self.addon,
+            channel=amo.RELEASE_CHANNEL_LISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
         # auto-approve everything (including self.addon.current_version)
         for version in Version.unfiltered.all():
             AutoApprovalSummary.objects.create(
-                version=version, verdict=amo.AUTO_APPROVED)
+                version=version, verdict=amo.AUTO_APPROVED
+            )
         form = self.get_form()
         assert not form.is_bound
         assert form.fields['versions'].required is False
         assert list(form.fields['versions'].queryset) == list(
-            self.addon.versions.all().order_by('pk'))
+            self.addon.versions.all().order_by('pk')
+        )
         assert form.fields['versions'].queryset.count() == 2
 
         content = str(form['versions'])
@@ -208,13 +224,16 @@ class TestReviewForm(TestCase):
         # The queryset should contain both pending and approved versions.
         addon_factory()  # Extra add-on, shouldn't be included.
         pending_version = version_factory(
-            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+            addon=self.addon,
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         # auto-approve everything
         for version in Version.unfiltered.all():
             AutoApprovalSummary.objects.create(
-                version=version, verdict=amo.AUTO_APPROVED)
+                version=version, verdict=amo.AUTO_APPROVED
+            )
         form = self.get_form()
         assert not form.is_bound
         assert form.fields['versions'].required is False
@@ -227,7 +246,8 @@ class TestReviewForm(TestCase):
         assert not form.is_bound
         assert form.fields['versions'].required is False
         assert list(form.fields['versions'].queryset) == list(
-            self.addon.versions.all().order_by('pk'))
+            self.addon.versions.all().order_by('pk')
+        )
         assert form.fields['versions'].queryset.count() == 2
 
         content = str(form['versions'])
@@ -264,16 +284,16 @@ class TestReviewForm(TestCase):
         # auto-approve everything (including self.addon.current_version)
         for version in Version.unfiltered.all():
             AutoApprovalSummary.objects.create(
-                version=version, verdict=amo.AUTO_APPROVED)
+                version=version, verdict=amo.AUTO_APPROVED
+            )
         self.grant_permission(self.request.user, 'Addons:Review')
-        form = self.get_form(data={
-            'action': 'reject_multiple_versions', 'comments': 'lol'})
+        form = self.get_form(
+            data={'action': 'reject_multiple_versions', 'comments': 'lol'}
+        )
         form.helper.actions['reject_multiple_versions']['versions'] = True
         assert form.is_bound
         assert not form.is_valid()
-        assert form.errors == {
-            'versions': [u'This field is required.']
-        }
+        assert form.errors == {'versions': [u'This field is required.']}
 
     def test_delayed_rejection_days_widget_attributes(self):
         # Regular reviewers can't customize the delayed rejection period.
