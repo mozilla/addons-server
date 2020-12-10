@@ -75,7 +75,7 @@ class ReviewerQueueTable(tables.Table, ItemStateTable):
         if not hasattr(record, 'flags'):
             record.flags = get_flags_for_row(record)
         return ''.join(
-            '<div class="app-icon ed-sprite-%s" ' 'title="%s"></div>' % flag
+            '<div class="app-icon ed-sprite-%s" title="%s"></div>' % flag
             for flag in record.flags
         )
 

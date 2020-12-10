@@ -931,7 +931,7 @@ class TestFileUpload(UploadTest):
                 {
                     'context': ['<code>', None],
                     'description': [
-                        'Something something, see ' 'https://bugzilla.mozilla.org/'
+                        'Something something, see https://bugzilla.mozilla.org/'
                     ],
                     'column': 0,
                     'line': 1,
@@ -967,7 +967,7 @@ class TestFileUpload(UploadTest):
                 {
                     'context': ['<code>', None],
                     'description': [
-                        'Something something, see ' 'https://bugzilla.mozilla.org/'
+                        'Something something, see https://bugzilla.mozilla.org/'
                     ],
                     'column': 0,
                     'line': 1,
@@ -982,7 +982,7 @@ class TestFileUpload(UploadTest):
                 {
                     'context': ['<code>', None],
                     'description': [
-                        'Something something, see ' 'https://bugzilla.mozilla.org/'
+                        'Something something, see https://bugzilla.mozilla.org/'
                     ],
                     'column': 0,
                     'line': 1,
@@ -1018,7 +1018,7 @@ class TestFileUpload(UploadTest):
                 {
                     'context': ['<code>', None],
                     'description': [
-                        'Something something, see ' 'https://bugzilla.mozilla.org/'
+                        'Something something, see https://bugzilla.mozilla.org/'
                     ],
                     'column': 0,
                     'line': 1,
@@ -1032,7 +1032,7 @@ class TestFileUpload(UploadTest):
                 {
                     'context': ['<code>', None],
                     'description': [
-                        'Something something, see ' 'https://bugzilla.mozilla.org/'
+                        'Something something, see https://bugzilla.mozilla.org/'
                     ],
                     'column': 0,
                     'line': 1,

@@ -225,7 +225,7 @@ class PromotedSubscription(ModelBase):
     link_visited_at = models.DateTimeField(
         null=True,
         help_text=(
-            'This date is set when the developer has visited the onboarding ' 'page.'
+            'This date is set when the developer has visited the onboarding page.'
         ),
     )
     # This field should only be used for the Stripe Checkout process, use

@@ -4925,7 +4925,7 @@ class TestReview(ReviewBase):
             amo.STATUS_AWAITING_REVIEW
         )
         assert response.context['form'].errors['action'] == (
-            ['Select a valid choice. public is not one of the available ' 'choices.']
+            ['Select a valid choice. public is not one of the available choices.']
         )
 
         # Same if it's the content review flag.
@@ -4940,7 +4940,7 @@ class TestReview(ReviewBase):
             amo.STATUS_AWAITING_REVIEW
         )
         assert response.context['form'].errors['action'] == (
-            ['Select a valid choice. public is not one of the available ' 'choices.']
+            ['Select a valid choice. public is not one of the available choices.']
         )
 
     def test_admin_flagged_addon_actions_as_content_reviewer(self):

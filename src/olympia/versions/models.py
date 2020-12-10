@@ -248,7 +248,7 @@ class Version(OnChangeMixin, ModelBase):
         approval_notes = None
         if parsed_data.get('is_mozilla_signed_extension'):
             approval_notes = (
-                'This version has been signed with ' 'Mozilla internal certificate.'
+                'This version has been signed with Mozilla internal certificate.'
             )
         version = cls.objects.create(
             addon=addon,

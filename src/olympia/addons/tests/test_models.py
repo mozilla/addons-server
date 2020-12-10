@@ -888,7 +888,7 @@ class TestAddonModels(TestCase):
         assert self.newlines_helper(before) == after
 
     def test_newlines_code_inline(self):
-        before = "Code tags aren't blocks.\n\n" '<code>alert(test);</code>\n\n' 'See?'
+        before = "Code tags aren't blocks.\n\n" '<code>alert(test);</code>\n\nSee?'
 
         after = before  # Should stay the same
 
@@ -912,9 +912,9 @@ class TestAddonModels(TestCase):
         assert self.newlines_helper(before) == after
 
         # All together now
-        before = '<ul><li>\nxx</li> <li>xx\n</li> <li>xx\nxx</li> ' '<li></li>\n</ul>'
+        before = '<ul><li>\nxx</li> <li>xx\n</li> <li>xx\nxx</li> <li></li>\n</ul>'
 
-        after = '<ul><li>xx</li> <li>xx</li> <li>xx\nxx</li> ' '<li></li></ul>'
+        after = '<ul><li>xx</li> <li>xx</li> <li>xx\nxx</li> <li></li></ul>'
 
         assert self.newlines_helper(before) == after
 
@@ -970,7 +970,7 @@ class TestAddonModels(TestCase):
 
     def test_newlines_spaced_blocks(self):
         before = (
-            '<blockquote>\n\n<ul>\n\n<li>\n\ntest\n\n</li>\n\n' '</ul>\n\n</blockquote>'
+            '<blockquote>\n\n<ul>\n\n<li>\n\ntest\n\n</li>\n\n</ul>\n\n</blockquote>'
         )
 
         after = '<blockquote><ul><li>test</li></ul></blockquote>'

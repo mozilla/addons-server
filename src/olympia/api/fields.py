@@ -78,9 +78,7 @@ class TranslationSerializerField(fields.Field):
     """
 
     default_error_messages = {
-        'min_length': _(
-            'The field must have a length of at least {num} ' 'characters.'
-        ),
+        'min_length': _('The field must have a length of at least {num} characters.'),
         'unknown_locale': _('The language code {lang_code} is invalid.'),
         'no_dict': _('You must provide an object of {lang-code:value}.'),
     }
