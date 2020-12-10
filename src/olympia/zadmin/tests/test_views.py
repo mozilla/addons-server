@@ -40,13 +40,13 @@ class TestHomeAndIndex(TestCase):
         # Redirected because no permissions if not logged in.
         self.client.logout()
         response = self.client.get(url)
-        self.assert3xx(response, '/admin/models/login/?' 'next=/en-US/admin/models/')
+        self.assert3xx(response, '/admin/models/login/?next=/en-US/admin/models/')
 
         # Redirected when logged in without enough permissions.
         user = user_factory(username='staffperson', email='staffperson@m.c')
         self.client.login(email=user.email)
         response = self.client.get(url)
-        self.assert3xx(response, '/admin/models/login/?' 'next=/en-US/admin/models/')
+        self.assert3xx(response, '/admin/models/login/?next=/en-US/admin/models/')
 
         # Can access with a "is_staff" user.
         user.update(email='someone@mozilla.com')

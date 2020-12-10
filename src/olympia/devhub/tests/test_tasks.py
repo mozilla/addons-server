@@ -464,7 +464,7 @@ class TestRunAddonsLinter(UploadTest, ValidatorTestCase):
             tasks.run_addons_linter('doesntexist', amo.RELEASE_CHANNEL_LISTED)
 
         assert str(exc.value) == (
-            'Path "doesntexist" is not a file or directory or ' 'does not exist.'
+            'Path "doesntexist" is not a file or directory or does not exist.'
         )
 
     def test_run_linter_use_temporary_file(self):
@@ -786,7 +786,7 @@ class TestLegacyAddonRestrictions(UploadTest, ValidatorTestCase):
 def test_send_welcome_email(send_html_mail_jinja_mock):
     tasks.send_welcome_email(3615, ['del@icio.us'], {'omg': 'yes'})
     send_html_mail_jinja_mock.assert_called_with(
-        ('Mozilla Add-ons: Your add-on has been submitted to' ' addons.mozilla.org!'),
+        ('Mozilla Add-ons: Your add-on has been submitted to addons.mozilla.org!'),
         'devhub/emails/submission.html',
         'devhub/emails/submission.txt',
         {'omg': 'yes'},

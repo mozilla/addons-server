@@ -675,9 +675,7 @@ class TestEditAuthor(TestOwnership):
 
         # An email has been sent to the authors to warn them.
         author_delete = mail.outbox[0]
-        assert author_delete.subject == (
-            'An author has been removed from your' ' add-on'
-        )
+        assert author_delete.subject == ('An author has been removed from your add-on')
         # Make sure all the authors are aware of the addition.
         assert 'del@icio.us' in author_delete.to  # The original author.
         assert 'regular@mozilla.com' in author_delete.to  # The removed one.
@@ -704,9 +702,7 @@ class TestEditAuthor(TestOwnership):
 
         # An email has been sent to the authors to warn them.
         author_delete = mail.outbox[0]
-        assert author_delete.subject == (
-            'An author has been removed from your' ' add-on'
-        )
+        assert author_delete.subject == ('An author has been removed from your add-on')
         # Make sure all the authors are aware of the addition.
         assert 'del@icio.us' in author_delete.to  # The original author.
         assert 'regular@mozilla.com' in author_delete.to  # The removed one.

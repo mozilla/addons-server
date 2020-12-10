@@ -430,7 +430,7 @@ class TestUploadURLs(TestCase):
         FileUpload.objects.all().delete()
         self.run_addons_linter.reset_mock()
 
-        fpath = 'src/olympia/files/fixtures/files/' 'webextension_validation_error.zip'
+        fpath = 'src/olympia/files/fixtures/files/webextension_validation_error.zip'
 
         with open(fpath, 'rb') as file_:
             resp = self.client.post(reverse(view, kwargs=kw), {'upload': file_})

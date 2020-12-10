@@ -183,7 +183,7 @@ def test_css_helper(getmtime, time):
     rendered = template.render()
 
     assert rendered == (
-        '<link rel="stylesheet" media="all" ' 'href="//example.com/test.css?build=1" />'
+        '<link rel="stylesheet" media="all" href="//example.com/test.css?build=1" />'
     )
 
     template = from_string('{{ css("common_protocol_less_url", debug=False) }}')

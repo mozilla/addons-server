@@ -442,7 +442,7 @@ class AddonAndVersionViewSetDetailMixin(object):
         # depend on Accept-Encoding.
         assert response['Vary'] == 'Origin, X-Country-Code'
         assert response['Link'] == (
-            '<https://www.mozilla.org/about/policy/transparency/>; ' 'rel="blocked-by"'
+            '<https://www.mozilla.org/about/policy/transparency/>; rel="blocked-by"'
         )
         data = response.json()
         assert data == {'detail': 'Unavailable for legal reasons.'}

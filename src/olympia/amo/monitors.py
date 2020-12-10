@@ -48,7 +48,7 @@ def memcache():
 
             memcache_results.append((ip, port, result))
         if not using_twemproxy and len(memcache_results) < 2:
-            status = ('2+ memcache servers are required.' '%s available') % len(
+            status = ('2+ memcache servers are required. %s available') % len(
                 memcache_results
             )
             monitor_log.warning(status)

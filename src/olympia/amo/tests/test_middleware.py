@@ -31,21 +31,21 @@ class TestMiddleware(TestCase):
         response = test.Client().get('/pages/appversions/', follow=True)
         assert 'Vary' not in response
 
-    @patch('django.contrib.auth.middleware.' 'AuthenticationMiddleware.process_request')
+    @patch('django.contrib.auth.middleware.AuthenticationMiddleware.process_request')
     def test_authentication_used_outside_the_api(self, process_request):
         req = RequestFactory().get('/')
         req.is_api = False
         AuthenticationMiddlewareWithoutAPI().process_request(req)
         assert process_request.called
 
-    @patch('django.contrib.sessions.middleware.' 'SessionMiddleware.process_request')
+    @patch('django.contrib.sessions.middleware.SessionMiddleware.process_request')
     def test_authentication_not_used_with_the_api(self, process_request):
         req = RequestFactory().get('/')
         req.is_api = True
         AuthenticationMiddlewareWithoutAPI().process_request(req)
         assert not process_request.called
 
-    @patch('django.contrib.auth.middleware.' 'AuthenticationMiddleware.process_request')
+    @patch('django.contrib.auth.middleware.AuthenticationMiddleware.process_request')
     def test_authentication_is_used_with_accounts_auth(self, process_request):
         req = RequestFactory().get('/api/v3/accounts/authenticate/')
         req.is_api = True
@@ -72,7 +72,7 @@ def test_redirect_with_unicode_get():
 def test_source_with_wrong_unicode_get():
     # The following url is a string (bytes), not unicode.
     response = test.Client().get(
-        '/firefox/collections/mozmj/autumn/' '?source=firefoxsocialmedia\x14\x85'
+        '/firefox/collections/mozmj/autumn/?source=firefoxsocialmedia\x14\x85'
     )
     assert response.status_code == 302
     assert response['Location'].endswith('?source=firefoxsocialmedia%14%C3%82%C2%85')

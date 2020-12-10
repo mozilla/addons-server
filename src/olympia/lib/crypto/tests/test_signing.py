@@ -586,7 +586,7 @@ class TestTasks(TestCase):
 
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_resign_and_bump_version_in_model(self, mock_sign_file):
-        fname = './src/olympia/files/fixtures/files/webextension_signed_already' '.xpi'
+        fname = './src/olympia/files/fixtures/files/webextension_signed_already.xpi'
         with amo.tests.copy_file(fname, self.file_.file_path):
             self.file_.update(is_signed=True)
             file_hash = self.file_.generate_hash()
@@ -710,7 +710,7 @@ class TestSignatureInfo(object):
     @pytest.fixture(autouse=True)
     def setup(self):
         fixture_path = (
-            'src/olympia/lib/crypto/tests/' 'mozilla-generated-by-openssl.pkcs7.der'
+            'src/olympia/lib/crypto/tests/mozilla-generated-by-openssl.pkcs7.der'
         )
 
         with open(fixture_path, 'rb') as fobj:

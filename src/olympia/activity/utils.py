@@ -183,7 +183,7 @@ def add_email_to_activity_log(parser):
                 )
         else:
             log.warning(
-                '%s tried to use an invalid activity email token for ' 'version %s.',
+                '%s tried to use an invalid activity email token for version %s.',
                 user.email,
                 version.id,
             )
@@ -201,7 +201,7 @@ def add_email_to_activity_log(parser):
             'Ignored email reply from banned user %s for version %s.'
             % (user.id, version.id)
         )
-        raise ActivityEmailError('Your account is not allowed to send ' 'replies.')
+        raise ActivityEmailError('Your account is not allowed to send replies.')
 
 
 def action_from_user(user, version):

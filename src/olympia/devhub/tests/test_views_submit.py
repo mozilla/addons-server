@@ -1011,13 +1011,13 @@ class DetailsPageMixin(object):
         data = self.get_dict(name='()+([#')
         response = self.client.post(self.url, data)
         assert response.status_code == 200
-        error = 'Ensure this field contains at least one letter or number' ' character.'
+        error = 'Ensure this field contains at least one letter or number character.'
         self.assertFormError(response, 'form', 'name', error)
 
         data = self.get_dict(name='±↡∋⌚')
         response = self.client.post(self.url, data)
         assert response.status_code == 200
-        error = 'Ensure this field contains at least one letter or number' ' character.'
+        error = 'Ensure this field contains at least one letter or number character.'
         self.assertFormError(response, 'form', 'name', error)
 
         # 'ø' is not a symbol, it's actually a letter, so it should be valid.
@@ -1055,13 +1055,13 @@ class DetailsPageMixin(object):
         data = self.get_dict(summary='()+([#')
         response = self.client.post(self.url, data)
         assert response.status_code == 200
-        error = 'Ensure this field contains at least one letter or number' ' character.'
+        error = 'Ensure this field contains at least one letter or number character.'
         self.assertFormError(response, 'form', 'summary', error)
 
         data = self.get_dict(summary='±↡∋⌚')
         response = self.client.post(self.url, data)
         assert response.status_code == 200
-        error = 'Ensure this field contains at least one letter or number' ' character.'
+        error = 'Ensure this field contains at least one letter or number character.'
         self.assertFormError(response, 'form', 'summary', error)
 
         # 'ø' is not a symbol, it's actually a letter, so it should be valid.
@@ -1448,7 +1448,7 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
             response,
             'license_form',
             'builtin',
-            'Select a valid choice. 4 is not one of ' 'the available choices.',
+            'Select a valid choice. 4 is not one of the available choices.',
         )
 
     def test_set_privacy_nomsg(self):
@@ -1618,7 +1618,7 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
             response,
             'license_form',
             'builtin',
-            'Select a valid choice. 4 is not one of ' 'the available choices.',
+            'Select a valid choice. 4 is not one of the available choices.',
         )
 
 
@@ -2037,7 +2037,7 @@ class VersionSubmitUploadMixin(object):
         self.version.files.update(status=amo.STATUS_AWAITING_REVIEW)
         response = self.post(expected_status=200)
         assert pq(response.content)('ul.errorlist').text() == (
-            'Version 0.1 already exists. ' 'Continue with existing upload instead?'
+            'Version 0.1 already exists. Continue with existing upload instead?'
         )
         # url is always to the details page even for unlisted (will redirect).
         assert pq(response.content)('ul.errorlist a').attr('href') == (

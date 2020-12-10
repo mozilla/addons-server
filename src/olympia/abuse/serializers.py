@@ -39,7 +39,7 @@ class BaseAbuseReportSerializer(serializers.ModelSerializer):
 class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
     error_messages = {
         'max_length': _(
-            'Please ensure this field has no more than {max_length} ' 'characters.'
+            'Please ensure this field has no more than {max_length} characters.'
         )
     }
 

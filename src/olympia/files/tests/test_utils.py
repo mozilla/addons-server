@@ -370,7 +370,7 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         file_obj = addon.current_version.all_files[0]
         file_obj.update(is_mozilla_signed_extension=True)
         fixture = (
-            'src/olympia/files/fixtures/files/' 'legacy-addon-already-signed-0.1.0.xpi'
+            'src/olympia/files/fixtures/files/legacy-addon-already-signed-0.1.0.xpi'
         )
 
         with amo.tests.copy_file(fixture, file_obj.file_path):

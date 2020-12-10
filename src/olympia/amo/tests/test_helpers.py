@@ -100,7 +100,7 @@ def test_template_escaping():
     # but all arguments are.
     expected = '<a href="...">This is a &lt;h1&gt;test&lt;/h1&gt;</a>'
     original = (
-        '{{ _(\'<a href="...">{0}</a>\')|format_html(' '"This is a <h1>test</h1>") }}'
+        '{{ _(\'<a href="...">{0}</a>\')|format_html("This is a <h1>test</h1>") }}'
     )
     assert render(original) == expected
 
@@ -282,7 +282,7 @@ def test_external_url():
         settings.REDIRECT_SECRET_KEY = secretkey
 
 
-@patch('olympia.amo.templatetags.jinja_helpers.urlresolvers.' 'get_outgoing_url')
+@patch('olympia.amo.templatetags.jinja_helpers.urlresolvers.get_outgoing_url')
 def test_linkify_bounce_url_callback(mock_get_outgoing_url):
     mock_get_outgoing_url.return_value = 'bar'
 
@@ -294,7 +294,7 @@ def test_linkify_bounce_url_callback(mock_get_outgoing_url):
 
 
 @patch(
-    'olympia.amo.templatetags.jinja_helpers.urlresolvers.' 'linkify_bounce_url_callback'
+    'olympia.amo.templatetags.jinja_helpers.urlresolvers.linkify_bounce_url_callback'
 )
 def test_linkify_with_outgoing_text_links(mock_linkify_bounce_url_callback):
     def side_effect(attrs, new=False):
@@ -310,7 +310,7 @@ def test_linkify_with_outgoing_text_links(mock_linkify_bounce_url_callback):
 
 
 @patch(
-    'olympia.amo.templatetags.jinja_helpers.urlresolvers.' 'linkify_bounce_url_callback'
+    'olympia.amo.templatetags.jinja_helpers.urlresolvers.linkify_bounce_url_callback'
 )
 def test_linkify_with_outgoing_markup_links(mock_linkify_bounce_url_callback):
     def side_effect(attrs, new=False):

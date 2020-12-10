@@ -40,7 +40,7 @@ class TestTranslationFormMixin(TestCase):
         )
         assert form.errors['name'].as_ul() == expected
         # default_locale is a normal field so data-lang is absent.
-        expected = '<ul class="errorlist">' '<li>This field is required.</li>' '</ul>'
+        expected = '<ul class="errorlist"><li>This field is required.</li></ul>'
         assert form.errors['default_locale'].as_ul() == expected
 
         # When there are multiple errors, they should all be shown.

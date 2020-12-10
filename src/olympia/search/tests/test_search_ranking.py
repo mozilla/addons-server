@@ -312,9 +312,7 @@ class TestRankingScenarios(ESTestCase):
             description=None,
             name='Frame Demolition',
             slug=u'frame-demolition',
-            summary=(
-                'Enabling route to load abstracted file layer in select ' 'sites.'
-            ),
+            summary=('Enabling route to load abstracted file layer in select sites.'),
             weekly_downloads=70,
         )
         amo.tests.addon_factory(
@@ -481,7 +479,7 @@ class TestRankingScenarios(ESTestCase):
             name='Authenticator',
             slug=u'auth-helper',
             summary=(
-                'Authenticator generates 2-Step Verification codes in your' ' browser.'
+                'Authenticator generates 2-Step Verification codes in your browser.'
             ),
             weekly_downloads=500,
         )

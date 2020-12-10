@@ -192,7 +192,7 @@ def validation_task(fn):
             # All validation tasks should receive `results`.
             if not results:
                 raise Exception(
-                    'Unexpected call to a validation task without ' '`results`'
+                    'Unexpected call to a validation task without `results`'
                 )
 
             if results['errors'] > 0:

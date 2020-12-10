@@ -60,7 +60,7 @@ class WebTokenAuthentication(BaseAuthentication):
         if len(auth_header) == 1:
             msg = {
                 'detail': ugettext(
-                    'Invalid Authorization header. ' 'No credentials provided.'
+                    'Invalid Authorization header. No credentials provided.'
                 ),
                 'code': 'ERROR_INVALID_HEADER',
             }
@@ -187,7 +187,7 @@ class JWTKeyAuthentication(JSONWebTokenAuthentication):
             try:
                 # Log all exceptions
                 log.info(
-                    'JWTKeyAuthentication failed; ' 'it raised %s (%s)',
+                    'JWTKeyAuthentication failed; it raised %s (%s)',
                     exc.__class__.__name__,
                     exc,
                 )
@@ -257,7 +257,7 @@ class JWTKeyAuthentication(JSONWebTokenAuthentication):
             return None
 
         if len(auth) == 1:
-            msg = ugettext('Invalid Authorization header. ' 'No credentials provided.')
+            msg = ugettext('Invalid Authorization header. No credentials provided.')
             raise exceptions.AuthenticationFailed(msg)
         elif len(auth) > 2:
             msg = ugettext(

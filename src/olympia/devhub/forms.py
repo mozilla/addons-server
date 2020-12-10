@@ -1116,7 +1116,7 @@ class NewUploadForm(forms.Form):
                         ugettext('a blocklist entry'),
                     ),
                     amo_admins=(
-                        '<a href="mailto:amo-admins@mozilla.com">AMO Admins' '</a>'
+                        '<a href="mailto:amo-admins@mozilla.com">AMO Admins</a>'
                     ),
                 )
             )

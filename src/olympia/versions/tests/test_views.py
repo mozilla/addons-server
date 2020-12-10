@@ -339,7 +339,7 @@ class TestDownloads(TestDownloadsBase):
         assert response.status_code == 451
         assert response['Vary'] == 'X-Country-Code'
         assert response['Link'] == (
-            '<https://www.mozilla.org/about/policy/transparency/>; ' 'rel="blocked-by"'
+            '<https://www.mozilla.org/about/policy/transparency/>; rel="blocked-by"'
         )
 
 

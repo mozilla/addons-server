@@ -552,7 +552,7 @@ PUENTE = {
             ),
             ('**/templates/admin/**.html', 'django_babel.extract.extract_django'),
             (
-                '**/templates/devhub/forms/widgets/' 'compat_app_input_option.html',
+                '**/templates/devhub/forms/widgets/compat_app_input_option.html',
                 'django_babel.extract.extract_django',
             ),
             ('src/olympia/**/templates/**.html', 'jinja2'),
@@ -1732,7 +1732,7 @@ RECOMMENDATION_ENGINE_URL = env(
 )
 TAAR_LITE_RECOMMENDATION_ENGINE_URL = env(
     'TAAR_LITE_RECOMMENDATION_ENGINE_URL',
-    default=('https://taar.dev.mozaws.net/taarlite/api/v1/' 'addon_recommendations/'),
+    default=('https://taar.dev.mozaws.net/taarlite/api/v1/addon_recommendations/'),
 )
 RECOMMENDATION_ENGINE_TIMEOUT = env.float('RECOMMENDATION_ENGINE_TIMEOUT', default=1)
 
@@ -1746,7 +1746,7 @@ REPUTATION_SERVICE_TIMEOUT = env.float('REPUTATION_SERVICE_TIMEOUT', default=1)
 # then delete) before you can locally.  If you really need to test get ops to
 # stop the 'monitor_fxa_sqs` command.
 FXA_SQS_AWS_QUEUE_URL = (
-    'https://sqs.us-east-1.amazonaws.com/927034868273/' 'amo-account-change-dev'
+    'https://sqs.us-east-1.amazonaws.com/927034868273/amo-account-change-dev'
 )
 FXA_SQS_AWS_WAIT_TIME = 20  # Seconds.
 

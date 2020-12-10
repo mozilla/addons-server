@@ -320,7 +320,7 @@ class TestUploadRestrictionChecker(TestCase):
         )
         assert incr_mock.call_count == 2
         assert incr_mock.call_args_list[0][0] == (
-            'devhub.is_submission_allowed.DeveloperAgreementRestriction' '.failure',
+            'devhub.is_submission_allowed.DeveloperAgreementRestriction.failure',
         )
         assert incr_mock.call_args_list[1][0] == (
             'devhub.is_submission_allowed.failure',

@@ -65,9 +65,7 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
         or changes_count
     )
     if not need_update:
-        log.info(
-            'No new/modified/deleted Blocks in database; ' 'skipping MLBF generation'
-        )
+        log.info('No new/modified/deleted Blocks in database; skipping MLBF generation')
         return
 
     statsd.incr(
