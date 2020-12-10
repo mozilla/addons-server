@@ -67,9 +67,9 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         'last_login_ip',
         'known_ip_adresses',
         'last_known_activity_time',
-        'ratings_created',
-        'collections_created',
-        'addons_created',
+        'ratings_authorship',
+        'collections_authorship',
+        'addons_authorship',
         'activity',
         'abuse_reports_by_this_user',
         'abuse_reports_for_this_user',
@@ -105,7 +105,13 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         ),
         (
             'Content',
-            {'fields': ('addons_created', 'collections_created', 'ratings_created')},
+            {
+                'fields': (
+                    'addons_authorship',
+                    'collections_authorship',
+                    'ratings_authorship',
+                )
+            },
         ),
         (
             'Abuse Reports',

@@ -599,6 +599,11 @@ class TestUserAdmin(TestCase):
             addon=dummy_addon, version=dummy_addon.current_version, user=self.user
         )
         Rating.objects.create(
+            addon=dummy_addon,
+            version=version_factory(addon=dummy_addon),
+            user=self.user,
+        )
+        Rating.objects.create(
             addon=dummy_addon, user=user_factory(), ip_address='255.255.0.0'
         )
         url, text = self._call_related_content_method('ratings_authorship')
