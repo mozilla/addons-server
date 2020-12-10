@@ -129,7 +129,7 @@ class PrimaryHeroImage(ModelBase):
         else:
             return None
 
-    preview_image.short_description = "Image"
+    preview_image.short_description = 'Image'
     preview_image.allow_tags = True
 
     def delete(self, *args, **kwargs):
@@ -209,7 +209,7 @@ class PrimaryHero(ModelBase):
         else:
             if list(PrimaryHero.objects.filter(enabled=True)) == [self]:
                 error_dict['enabled'] = ValidationError(
-                    'You can\'t disable the only enabled primary shelf.'
+                    "You can't disable the only enabled primary shelf."
                 )
         if error_dict:
             raise ValidationError(error_dict)
@@ -248,7 +248,7 @@ class SecondaryHero(CTACheckMixin, ModelBase):
         if not self.enabled:
             if list(SecondaryHero.objects.filter(enabled=True)) == [self]:
                 raise ValidationError(
-                    'You can\'t disable the only enabled secondary shelf.'
+                    "You can't disable the only enabled secondary shelf."
                 )
 
 

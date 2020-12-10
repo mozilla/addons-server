@@ -96,7 +96,7 @@ class BaseRatingSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError(
                     {
                         'addon': ugettext(
-                            u'You can\'t change the add-on of a review once'
+                            u"You can't change the add-on of a review once"
                             u' it has been created.'
                         )
                     }
@@ -157,7 +157,7 @@ class RatingSerializerReply(BaseRatingSerializer):
         if data['reply_to'].reply_to:
             # Only one level of replying is allowed, so if it's already a
             # reply, we shouldn't allow that.
-            msg = ugettext(u'You can\'t reply to a review that is already a reply.')
+            msg = ugettext(u"You can't reply to a review that is already a reply.")
             raise serializers.ValidationError(msg)
 
         data = super(RatingSerializerReply, self).validate(data)
@@ -201,7 +201,7 @@ class RatingSerializer(BaseRatingSerializer):
         if self.partial:
             raise serializers.ValidationError(
                 ugettext(
-                    u'You can\'t change the version of the add-on '
+                    u"You can't change the version of the add-on "
                     u'reviewed once the review has been created.'
                 )
             )
@@ -215,7 +215,7 @@ class RatingSerializer(BaseRatingSerializer):
         if version_inst.addon_id != addon.pk or not version_inst.is_public():
             raise serializers.ValidationError(
                 ugettext(
-                    u'This version of the add-on doesn\'t exist or ' u'isn\'t public.'
+                    u"This version of the add-on doesn't exist or " u"isn't public."
                 )
             )
         return version
@@ -225,7 +225,7 @@ class RatingSerializer(BaseRatingSerializer):
         if not self.partial:
             if data['addon'].authors.filter(pk=data['user'].pk).exists():
                 raise serializers.ValidationError(
-                    ugettext(u'You can\'t leave a review on your own add-on.')
+                    ugettext(u"You can't leave a review on your own add-on.")
                 )
 
             rating_exists_on_this_version = (
@@ -240,7 +240,7 @@ class RatingSerializer(BaseRatingSerializer):
             if rating_exists_on_this_version:
                 raise serializers.ValidationError(
                     ugettext(
-                        u'You can\'t leave more than one review for the '
+                        u"You can't leave more than one review for the "
                         u'same version of an add-on.'
                     )
                 )

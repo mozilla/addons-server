@@ -312,7 +312,7 @@ def test_outgoing_url_javascript_scheme():
 
 
 @pytest.mark.parametrize(
-    "test_input,expected",
+    'test_input,expected',
     [
         ('ga-ie', 'ga-IE'),
         # Capitalization is no big deal.

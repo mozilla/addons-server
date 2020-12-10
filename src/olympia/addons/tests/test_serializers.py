@@ -82,14 +82,14 @@ class AddonSerializerOutputTestMixin(object):
 
     def _test_version_license_and_release_notes(self, version, data):
         assert data['release_notes'] == {
-            'en-US': u'Release notes in english',
-            'fr': u'Notes de version en français',
+            'en-US': 'Release notes in english',
+            'fr': 'Notes de version en français',
         }
         assert data['license']
         assert dict(data['license']) == {
             'id': version.license.pk,
             'is_custom': True,
-            'name': {'en-US': u'My License', 'fr': u'Mä Licence'},
+            'name': {'en-US': 'My License', 'fr': 'Mä Licence'},
             # License text is not present in version serializer used from
             # AddonSerializer.
             'url': 'http://license.example.com/',
@@ -142,11 +142,11 @@ class AddonSerializerOutputTestMixin(object):
         cat1.save()
         license = License.objects.create(
             name={
-                'en-US': u'My License',
-                'fr': u'Mä Licence',
+                'en-US': 'My License',
+                'fr': 'Mä Licence',
             },
             text={
-                'en-US': u'Lorem ipsum dolor sit amet, has nemore patrioqué',
+                'en-US': 'Lorem ipsum dolor sit amet, has nemore patrioqué',
             },
             url='http://license.example.com/',
         )
@@ -155,9 +155,9 @@ class AddonSerializerOutputTestMixin(object):
             average_rating=4.21,
             bayesian_rating=4.22,
             category=cat1,
-            contributions=u'https://paypal.me/foobar/',
-            description=u'My Addôn description',
-            developer_comments=u'Dévelopers Addôn comments',
+            contributions='https://paypal.me/foobar/',
+            description='My Addôn description',
+            developer_comments='Dévelopers Addôn comments',
             file_kw={
                 'hash': 'fakehash',
                 'is_restart_required': False,
@@ -166,22 +166,22 @@ class AddonSerializerOutputTestMixin(object):
                 'size': 42,
             },
             guid=generate_addon_guid(),
-            homepage=u'https://www.example.org/',
+            homepage='https://www.example.org/',
             icon_hash='fakehash',
             icon_type='image/png',
-            name=u'My Addôn',
+            name='My Addôn',
             slug='my-addon',
-            summary=u'My Addôn summary',
-            support_email=u'support@example.org',
-            support_url=u'https://support.example.org/support/my-addon/',
+            summary='My Addôn summary',
+            support_email='support@example.org',
+            support_url='https://support.example.org/support/my-addon/',
             tags=['some_tag', 'some_other_tag'],
             total_ratings=666,
             text_ratings_count=555,
             version_kw={
                 'license': license,
                 'release_notes': {
-                    'en-US': u'Release notes in english',
-                    'fr': u'Notes de version en français',
+                    'en-US': 'Release notes in english',
+                    'fr': 'Notes de version en français',
                 },
             },
             weekly_downloads=2147483647,
@@ -190,17 +190,17 @@ class AddonSerializerOutputTestMixin(object):
             user=user_factory(username='hidden_author'), addon=self.addon, listed=False
         )
         second_author = user_factory(
-            username='second_author', display_name=u'Secönd Author'
+            username='second_author', display_name='Secönd Author'
         )
         first_author = user_factory(
-            username='first_author', display_name=u'First Authôr'
+            username='first_author', display_name='First Authôr'
         )
         AddonUser.objects.create(user=second_author, addon=self.addon, position=2)
         AddonUser.objects.create(user=first_author, addon=self.addon, position=1)
         second_preview = Preview.objects.create(
             addon=self.addon,
             position=2,
-            caption={'en-US': u'My câption', 'fr': u'Mön tîtré'},
+            caption={'en-US': 'My câption', 'fr': 'Mön tîtré'},
             sizes={'thumbnail': [199, 99], 'image': [567, 780]},
         )
         first_preview = Preview.objects.create(addon=self.addon, position=1)
@@ -296,7 +296,7 @@ class AddonSerializerOutputTestMixin(object):
 
         result_preview = result['previews'][1]
         assert result_preview['id'] == second_preview.pk
-        assert result_preview['caption'] == {'en-US': u'My câption', 'fr': u'Mön tîtré'}
+        assert result_preview['caption'] == {'en-US': 'My câption', 'fr': 'Mön tîtré'}
         assert result_preview['image_url'] == absolutify(second_preview.image_url)
         assert result_preview['thumbnail_url'] == absolutify(
             second_preview.thumbnail_url
@@ -338,9 +338,9 @@ class AddonSerializerOutputTestMixin(object):
 
     def test_wrap_outgoing_links(self):
         self.addon = addon_factory(
-            contributions=u'https://paypal.me/fôobar',
+            contributions='https://paypal.me/fôobar',
             homepage='http://support.example.com/',
-            support_url=u'https://support.example.org/support/my-âddon/',
+            support_url='https://support.example.org/support/my-âddon/',
         )
         self.request = self.get_request('/', {'wrap_outgoing_links': 1})
         result = self.serialize()
@@ -479,7 +479,7 @@ class AddonSerializerOutputTestMixin(object):
         assert result_version['compatibility'] == {}
 
     def test_deleted(self):
-        self.addon = addon_factory(name=u'My Deleted Addôn')
+        self.addon = addon_factory(name='My Deleted Addôn')
         self.addon.delete()
         result = self.serialize()
 
@@ -489,8 +489,8 @@ class AddonSerializerOutputTestMixin(object):
     def test_has_policies(self):
         self.addon = addon_factory()
         self.addon.eula = {
-            'en-US': u'My Addôn EULA in english',
-            'fr': u'Houlalà',
+            'en-US': 'My Addôn EULA in english',
+            'fr': 'Houlalà',
         }
         self.addon.privacy_policy = 'lol'
         self.addon.save()
@@ -546,13 +546,13 @@ class AddonSerializerOutputTestMixin(object):
 
     def test_translations(self):
         translated_descriptions = {
-            'en-US': u'My Addôn description in english',
-            'fr': u'Description de mon Addôn',
+            'en-US': 'My Addôn description in english',
+            'fr': 'Description de mon Addôn',
         }
 
         translated_homepages = {
-            'en-US': u'http://www.google.com/',
-            'fr': u'http://www.googlé.fr/',
+            'en-US': 'http://www.google.com/',
+            'fr': 'http://www.googlé.fr/',
         }
         self.addon = addon_factory()
         self.addon.description = translated_descriptions
@@ -612,7 +612,7 @@ class AddonSerializerOutputTestMixin(object):
         self.addon = addon_factory(file_kw={'strict_compatibility': True})
         result_version = self.serialize()['current_version']
         assert result_version['compatibility'] == {
-            'firefox': {'max': u'5.0.99', 'min': u'4.0.99'}
+            'firefox': {'max': '5.0.99', 'min': '4.0.99'}
         }
         assert result_version['is_strict_compatibility_enabled'] is True
 
@@ -642,7 +642,7 @@ class AddonSerializerOutputTestMixin(object):
         Preview.objects.create(
             addon=self.addon,
             position=1,
-            caption={'en-US': u'My câption', 'fr': u'Mön tîtré'},
+            caption={'en-US': 'My câption', 'fr': 'Mön tîtré'},
             sizes={'thumbnail': [123, 45], 'image': [678, 910]},
         )
         result = self.serialize()
@@ -760,7 +760,7 @@ class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
         result = self.serialize()
         assert result['current_version']['id'] == version_for_58.pk
         assert result['current_version']['compatibility'] == {
-            'firefox': {'max': u'58.*', 'min': u'58.0'}
+            'firefox': {'max': '58.*', 'min': '58.0'}
         }
         assert result['current_version']['is_strict_compatibility_enabled']
 
@@ -787,7 +787,7 @@ class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
         result = self.serialize()
         assert result['current_version']['id'] == self.addon.current_version.pk
         assert result['current_version']['compatibility'] == {
-            'firefox': {'max': u'59.*', 'min': u'59.0'}
+            'firefox': {'max': '59.*', 'min': '59.0'}
         }
         assert result['current_version']['is_strict_compatibility_enabled']
 
@@ -819,7 +819,7 @@ class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
         result = self.serialize()
         assert result['current_version']['id'] == self.addon.current_version.pk
         assert result['current_version']['compatibility'] == {
-            'firefox': {'max': u'59.*', 'min': u'59.0'}
+            'firefox': {'max': '59.*', 'min': '59.0'}
         }
         assert result['current_version']['is_strict_compatibility_enabled']
 
@@ -852,7 +852,7 @@ class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
         result = self.serialize()
         assert result['current_version']['id'] == self.addon.current_version.pk
         assert result['current_version']['compatibility'] == {
-            'firefox': {'max': u'59.*', 'min': u'59.0'}
+            'firefox': {'max': '59.*', 'min': '59.0'}
         }
         assert result['current_version']['is_strict_compatibility_enabled']
 
@@ -883,7 +883,7 @@ class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
         result = self.serialize()
         assert result['current_version']['id'] == self.addon.current_version.pk
         assert result['current_version']['compatibility'] == {
-            'firefox': {'max': u'59.*', 'min': u'59.0'}
+            'firefox': {'max': '59.*', 'min': '59.0'}
         }
         assert result['current_version']['is_strict_compatibility_enabled']
 
@@ -973,11 +973,11 @@ class TestVersionSerializerOutput(TestCase):
         now = self.days_ago(0)
         license = License.objects.create(
             name={
-                'en-US': u'My License',
-                'fr': u'Mä Licence',
+                'en-US': 'My License',
+                'fr': 'Mä Licence',
             },
             text={
-                'en-US': u'Lorem ipsum dolor sit amet, has nemore patrioqué',
+                'en-US': 'Lorem ipsum dolor sit amet, has nemore patrioqué',
             },
             url='http://license.example.com/',
         )
@@ -994,8 +994,8 @@ class TestVersionSerializerOutput(TestCase):
                 'min_app_version': '50.0',
                 'max_app_version': '*',
                 'release_notes': {
-                    'en-US': u'Release notes in english',
-                    'fr': u'Notes de version en français',
+                    'en-US': 'Release notes in english',
+                    'fr': 'Notes de version en français',
                 },
                 'reviewed': now,
             },
@@ -1011,7 +1011,7 @@ class TestVersionSerializerOutput(TestCase):
         result = self.serialize()
         assert result['id'] == self.version.pk
 
-        assert result['compatibility'] == {'firefox': {'max': u'*', 'min': u'50.0'}}
+        assert result['compatibility'] == {'firefox': {'max': '*', 'min': '50.0'}}
 
         assert result['files']
         assert len(result['files']) == 2
@@ -1049,16 +1049,16 @@ class TestVersionSerializerOutput(TestCase):
             addon.get_dev_url('versions.edit', args=[self.version.pk], prefix_only=True)
         )
         assert result['release_notes'] == {
-            'en-US': u'Release notes in english',
-            'fr': u'Notes de version en français',
+            'en-US': 'Release notes in english',
+            'fr': 'Notes de version en français',
         }
         assert result['license']
         assert dict(result['license']) == {
             'id': license.pk,
             'is_custom': True,
-            'name': {'en-US': u'My License', 'fr': u'Mä Licence'},
+            'name': {'en-US': 'My License', 'fr': 'Mä Licence'},
             'text': {
-                'en-US': u'Lorem ipsum dolor sit amet, has nemore patrioqué',
+                'en-US': 'Lorem ipsum dolor sit amet, has nemore patrioqué',
             },
             'url': 'http://license.example.com/',
         }
@@ -1198,11 +1198,11 @@ class TestSimpleVersionSerializerOutput(TestCase):
         now = self.days_ago(0)
         license = License.objects.create(
             name={
-                'en-US': u'My License',
-                'fr': u'Mä Licence',
+                'en-US': 'My License',
+                'fr': 'Mä Licence',
             },
             text={
-                'en-US': u'Lorem ipsum dolor sit amet, has nemore patrioqué',
+                'en-US': 'Lorem ipsum dolor sit amet, has nemore patrioqué',
             },
             url='http://license.example.com/',
         )
@@ -1220,7 +1220,7 @@ class TestSimpleVersionSerializerOutput(TestCase):
         assert result['license'] is not None
         assert result['license']['id'] == license.pk
         assert result['license']['name']['en-US'] == 'My License'
-        assert result['license']['name']['fr'] == u'Mä Licence'
+        assert result['license']['name']['fr'] == 'Mä Licence'
         assert result['license']['url'] == 'http://license.example.com/'
         assert 'text' not in result['license']
 
@@ -1348,8 +1348,8 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
 
     def test_translations(self):
         translated_name = {
-            'en-US': u'My Addôn name in english',
-            'fr': u'Nom de mon Addôn',
+            'en-US': 'My Addôn name in english',
+            'fr': 'Nom de mon Addôn',
         }
         self.addon = addon_factory()
         self.addon.name = translated_name
@@ -1504,96 +1504,96 @@ class TestReplacementAddonSerializer(TestCase):
         return serializer.to_representation(replacement)
 
     def test_valid_addon_path(self):
-        addon = addon_factory(slug=u'stuff', guid=u'newstuff@mozilla')
+        addon = addon_factory(slug='stuff', guid='newstuff@mozilla')
 
         rep = ReplacementAddon.objects.create(
-            guid='legacy@mozilla', path=u'/addon/stuff/'
+            guid='legacy@mozilla', path='/addon/stuff/'
         )
         result = self.serialize(rep)
-        assert result['guid'] == u'legacy@mozilla'
-        assert result['replacement'] == [u'newstuff@mozilla']
+        assert result['guid'] == 'legacy@mozilla'
+        assert result['replacement'] == ['newstuff@mozilla']
 
         # Edge case, but should accept numeric IDs too
-        rep.update(path=u'/addon/%s/' % addon.id)
+        rep.update(path='/addon/%s/' % addon.id)
         result = self.serialize(rep)
-        assert result['guid'] == u'legacy@mozilla'
-        assert result['replacement'] == [u'newstuff@mozilla']
+        assert result['guid'] == 'legacy@mozilla'
+        assert result['replacement'] == ['newstuff@mozilla']
 
     def test_invalid_addons(self):
         """Broken paths, invalid add-ons, etc, should fail gracefully to None."""
         rep = ReplacementAddon.objects.create(
-            guid='legacy@mozilla', path=u'/addon/stuff/'
+            guid='legacy@mozilla', path='/addon/stuff/'
         )
         result = self.serialize(rep)
-        assert result['guid'] == u'legacy@mozilla'
+        assert result['guid'] == 'legacy@mozilla'
         # Addon path doesn't exist.
         assert result['replacement'] == []
 
         # Add the add-on but make it not public
         addon = addon_factory(
-            slug=u'stuff', guid=u'newstuff@mozilla', status=amo.STATUS_NULL
+            slug='stuff', guid='newstuff@mozilla', status=amo.STATUS_NULL
         )
         result = self.serialize(rep)
-        assert result['guid'] == u'legacy@mozilla'
+        assert result['guid'] == 'legacy@mozilla'
         assert result['replacement'] == []
 
         # Double check that the test is good and it will work once public.
         addon.update(status=amo.STATUS_APPROVED)
         result = self.serialize(rep)
-        assert result['replacement'] == [u'newstuff@mozilla']
+        assert result['replacement'] == ['newstuff@mozilla']
 
         # But urls aren't resolved - and don't break everything
         rep.update(path=addon.get_absolute_url())
         result = self.serialize(rep)
-        assert result['guid'] == u'legacy@mozilla'
+        assert result['guid'] == 'legacy@mozilla'
         assert result['replacement'] == []
 
     def test_valid_collection_path(self):
-        addon = addon_factory(slug=u'stuff', guid=u'newstuff@mozilla')
-        me = user_factory(username=u'me')
-        collection = collection_factory(slug=u'bag', author=me)
+        addon = addon_factory(slug='stuff', guid='newstuff@mozilla')
+        me = user_factory(username='me')
+        collection = collection_factory(slug='bag', author=me)
         collection.add_addon(addon)
 
         rep = ReplacementAddon.objects.create(
-            guid=u'legacy@mozilla', path=u'/collections/me/bag/'
+            guid='legacy@mozilla', path='/collections/me/bag/'
         )
         result = self.serialize(rep)
-        assert result['guid'] == u'legacy@mozilla'
-        assert result['replacement'] == [u'newstuff@mozilla']
+        assert result['guid'] == 'legacy@mozilla'
+        assert result['replacement'] == ['newstuff@mozilla']
 
         # Edge case, but should accept numeric user IDs too
-        rep.update(path=u'/collections/%s/bag/' % me.id)
+        rep.update(path='/collections/%s/bag/' % me.id)
         result = self.serialize(rep)
-        assert result['guid'] == u'legacy@mozilla'
-        assert result['replacement'] == [u'newstuff@mozilla']
+        assert result['guid'] == 'legacy@mozilla'
+        assert result['replacement'] == ['newstuff@mozilla']
 
     def test_invalid_collections(self):
         """Broken paths, invalid users or collections, should fail gracefully
         to None."""
         rep = ReplacementAddon.objects.create(
-            guid=u'legacy@mozilla', path=u'/collections/me/bag/'
+            guid='legacy@mozilla', path='/collections/me/bag/'
         )
         result = self.serialize(rep)
-        assert result['guid'] == u'legacy@mozilla'
+        assert result['guid'] == 'legacy@mozilla'
         assert result['replacement'] == []
 
         # Create the user but not the collection.
-        me = user_factory(username=u'me')
+        me = user_factory(username='me')
         result = self.serialize(rep)
-        assert result['guid'] == u'legacy@mozilla'
+        assert result['guid'] == 'legacy@mozilla'
         assert result['replacement'] == []
 
         # Create the collection but make the add-on invalid.
         addon = addon_factory(
-            slug=u'stuff', guid=u'newstuff@mozilla', status=amo.STATUS_NULL
+            slug='stuff', guid='newstuff@mozilla', status=amo.STATUS_NULL
         )
-        collection = collection_factory(slug=u'bag', author=me)
+        collection = collection_factory(slug='bag', author=me)
         collection.add_addon(addon)
         result = self.serialize(rep)
-        assert result['guid'] == u'legacy@mozilla'
+        assert result['guid'] == 'legacy@mozilla'
         assert result['replacement'] == []
 
         # Double check that the test is good and it will work once public.
         addon.update(status=amo.STATUS_APPROVED)
         result = self.serialize(rep)
-        assert result['replacement'] == [u'newstuff@mozilla']
+        assert result['replacement'] == ['newstuff@mozilla']

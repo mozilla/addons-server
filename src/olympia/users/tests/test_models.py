@@ -366,7 +366,7 @@ class TestUserProfile(TestCase):
 
     def test_welcome_name(self):
         u1 = UserProfile.objects.create(username='sc')
-        u2 = UserProfile.objects.create(username='sc2', display_name="Sarah Connor")
+        u2 = UserProfile.objects.create(username='sc2', display_name='Sarah Connor')
         u3 = UserProfile.objects.create()
         assert u1.welcome_name == 'Firefox user %s' % u1.id
         assert u2.welcome_name == 'Sarah Connor'
@@ -1074,7 +1074,7 @@ class TestOnChangeName(TestCase):
         addon = addon_factory()
         AddonUser.objects.create(user=user, addon=addon, listed=False)
         self.index_addons_mock.reset_mock()
-        user.update(display_name=u'bâr')
+        user.update(display_name='bâr')
         assert self.index_addons_mock.delay.call_count == 0
 
     def test_changes_display_name(self):
@@ -1083,7 +1083,7 @@ class TestOnChangeName(TestCase):
         AddonUser.objects.create(user=user, addon=addon, listed=True)
         self.index_addons_mock.reset_mock()
 
-        user.update(display_name=u'bâr')
+        user.update(display_name='bâr')
         assert self.index_addons_mock.delay.call_count == 1
         assert self.index_addons_mock.delay.call_args[0] == ([addon.pk],)
 
@@ -1093,7 +1093,7 @@ class TestOnChangeName(TestCase):
         AddonUser.objects.create(user=user, addon=addon, listed=True)
         self.index_addons_mock.reset_mock()
 
-        user.update(username=u'föo')
+        user.update(username='föo')
         assert self.index_addons_mock.delay.call_count == 1
         assert self.index_addons_mock.delay.call_args[0] == ([addon.pk],)
 
@@ -1147,16 +1147,16 @@ class TestUserManager(TestCase):
     fixtures = ('users/test_backends',)
 
     def test_create_user(self):
-        user = UserProfile.objects.create_user("test@test.com", 'xxx')
+        user = UserProfile.objects.create_user('test@test.com', 'xxx')
         assert user.pk is not None
 
     def test_create_superuser(self):
         user = UserProfile.objects.create_superuser(
-            "test",
-            "test@test.com",
+            'test',
+            'test@test.com',
         )
         assert user.pk is not None
-        Group.objects.get(name="Admins") in user.groups.all()
+        Group.objects.get(name='Admins') in user.groups.all()
         assert not user.is_staff  # Not a mozilla.com email...
         assert user.is_superuser
 

@@ -25,48 +25,48 @@ class TestPromotedAddonAdmin(TestCase):
     def _get_approval_form(self, item, approvals):
         count = str(len(approvals))
         out = {
-            "addon": str(item.addon_id) if item else '',
-            "group_id": str(item.group_id) if item else '0',
-            "application_id": str(getattr(item, 'application_id', None) or ''),
-            "form-TOTAL_FORMS": str(count),
-            "form-INITIAL_FORMS": str(count),
-            "form-MIN_NUM_FORMS": '0',
-            "form-MAX_NUM_FORMS": '0',
+            'addon': str(item.addon_id) if item else '',
+            'group_id': str(item.group_id) if item else '0',
+            'application_id': str(getattr(item, 'application_id', None) or ''),
+            'form-TOTAL_FORMS': str(count),
+            'form-INITIAL_FORMS': str(count),
+            'form-MIN_NUM_FORMS': '0',
+            'form-MAX_NUM_FORMS': '0',
         }
         for index in range(0, len(approvals)):
             out.update(
                 **{
-                    f"form-{index}-id": str(approvals[index].id),
+                    f'form-{index}-id': str(approvals[index].id),
                 }
             )
         return out
 
     def _get_heroform(self, item_id):
         return {
-            "primaryhero-TOTAL_FORMS": "1",
-            "primaryhero-INITIAL_FORMS": "0",
-            "primaryhero-MIN_NUM_FORMS": "0",
-            "primaryhero-MAX_NUM_FORMS": "1",
-            "primaryhero-0-image": "",
-            "primaryhero-0-gradient_color": "",
-            "primaryhero-0-id": "",
-            "primaryhero-0-promoted_addon": item_id,
-            "primaryhero-__prefix__-image": "",
-            "primaryhero-__prefix__-gradient_color": "",
-            "primaryhero-__prefix__-id": "",
-            "primaryhero-__prefix__-promoted_addon": item_id,
+            'primaryhero-TOTAL_FORMS': '1',
+            'primaryhero-INITIAL_FORMS': '0',
+            'primaryhero-MIN_NUM_FORMS': '0',
+            'primaryhero-MAX_NUM_FORMS': '1',
+            'primaryhero-0-image': '',
+            'primaryhero-0-gradient_color': '',
+            'primaryhero-0-id': '',
+            'primaryhero-0-promoted_addon': item_id,
+            'primaryhero-__prefix__-image': '',
+            'primaryhero-__prefix__-gradient_color': '',
+            'primaryhero-__prefix__-id': '',
+            'primaryhero-__prefix__-promoted_addon': item_id,
         }
 
     def _get_promotedsubscriptionform(self, item_id):
         return {
-            "promotedsubscription-TOTAL_FORMS": "1",
-            "promotedsubscription-INITIAL_FORMS": "0",
-            "promotedsubscription-MIN_NUM_FORMS": "0",
-            "promotedsubscription-MAX_NUM_FORMS": "1",
-            "promotedsubscription-0-onboarding_rate": "",
-            "promotedsubscription-0-onboarding_period": "",
-            "promotedsubscription-0-id": "",
-            "promotedsubscription-0-promoted_addon": item_id,
+            'promotedsubscription-TOTAL_FORMS': '1',
+            'promotedsubscription-INITIAL_FORMS': '0',
+            'promotedsubscription-MIN_NUM_FORMS': '0',
+            'promotedsubscription-MAX_NUM_FORMS': '1',
+            'promotedsubscription-0-onboarding_rate': '',
+            'promotedsubscription-0-onboarding_period': '',
+            'promotedsubscription-0-id': '',
+            'promotedsubscription-0-promoted_addon': item_id,
         }
 
     def test_can_see_in_admin_with_discovery_edit(self):
@@ -215,7 +215,7 @@ class TestPromotedAddonAdmin(TestCase):
                 **self._get_promotedsubscriptionform(''),
                 **self._get_heroform(''),
                 **{
-                    "form-0-group_id": str(LINE.id),
+                    'form-0-group_id': str(LINE.id),
                 },
             ),
             follow=True,
@@ -233,9 +233,9 @@ class TestPromotedAddonAdmin(TestCase):
                 **self._get_promotedsubscriptionform(''),
                 **self._get_heroform(''),
                 **{
-                    "form-1-id": '',
-                    "form-1-group_id": str(LINE.id),
-                    "form-1-version": str(ver1.id),
+                    'form-1-id': '',
+                    'form-1-group_id': str(LINE.id),
+                    'form-1-version': str(ver1.id),
                 },
             ),
             follow=True,
@@ -427,7 +427,7 @@ class TestPromotedAddonAdmin(TestCase):
         assert PromotedAddon.objects.count() == 0
 
     def test_can_edit_primary_hero(self):
-        addon = addon_factory(name=u'BarFöo')
+        addon = addon_factory(name='BarFöo')
         item = PromotedAddon.objects.create(addon=addon)
         hero = PrimaryHero.objects.create(promoted_addon=item, gradient_color='#592ACB')
         self.detail_url = reverse(self.detail_url_name, args=(item.pk,))
@@ -465,7 +465,7 @@ class TestPromotedAddonAdmin(TestCase):
         assert hero.description == 'primary descriptíon'
 
     def test_can_add_primary_hero(self):
-        addon = addon_factory(name=u'BarFöo')
+        addon = addon_factory(name='BarFöo')
         item = PromotedAddon.objects.create(addon=addon)
         uploaded_photo = get_uploaded_file('transparent.png')
         image = PrimaryHeroImage.objects.create(custom_image=uploaded_photo)

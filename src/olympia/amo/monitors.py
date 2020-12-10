@@ -68,12 +68,12 @@ def libraries():
         Image.new('RGB', (16, 16)).save(io.BytesIO(), 'JPEG')
         libraries_results.append(('PIL+JPEG', True, 'Got it!'))
     except Exception as e:
-        msg = "Failed to create a jpeg image: %s" % e
+        msg = 'Failed to create a jpeg image: %s' % e
         libraries_results.append(('PIL+JPEG', False, msg))
 
     missing_libs = [lib for lib, success, _ in libraries_results if not success]
     if missing_libs:
-        status = 'missing libs: %s' % ",".join(missing_libs)
+        status = 'missing libs: %s' % ','.join(missing_libs)
     return status, libraries_results
 
 

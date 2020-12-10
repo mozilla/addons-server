@@ -68,7 +68,7 @@ class RemoteSettings(object):
         bucket_url = f'{settings.REMOTE_SETTINGS_WRITER_URL}buckets/{self.bucket}'
         headers = self.headers
         response = requests.get(bucket_url, headers=headers)
-        data = {'permissions': {'read': ["system.Everyone"]}}
+        data = {'permissions': {'read': ['system.Everyone']}}
         if response.status_code == 403:
             # lets create them
             log.info(

@@ -15,31 +15,31 @@ from .tasks import (
 from .utils import create_stripe_webhook_event
 
 
-log = olympia.core.logger.getLogger("z.promoted")
+log = olympia.core.logger.getLogger('z.promoted')
 
 
 # This dict maps a Stripe event type with a Celery task that handles events of
 # that type.
 ON_STRIPE_EVENT_TASKS = {
-    "charge.failed": on_stripe_charge_failed,
-    "charge.succeeded": on_stripe_charge_succeeded,
-    "customer.subscription.deleted": on_stripe_customer_subscription_deleted,
+    'charge.failed': on_stripe_charge_failed,
+    'charge.succeeded': on_stripe_charge_succeeded,
+    'customer.subscription.deleted': on_stripe_customer_subscription_deleted,
 }
 
 
-@api_view(["POST"])
+@api_view(['POST'])
 @csrf_exempt
 def stripe_webhook(request):
     payload = request.body
-    sig_header = request.META.get("HTTP_STRIPE_SIGNATURE")
+    sig_header = request.META.get('HTTP_STRIPE_SIGNATURE')
 
     try:
         event = create_stripe_webhook_event(payload=payload, sig_header=sig_header)
     except stripe.error.SignatureVerificationError:
-        log.exception("received stripe event with invalid signature")
+        log.exception('received stripe event with invalid signature')
         return Response(status=HTTP_400_BAD_REQUEST)
     except ValueError:
-        log.exception("received stripe event with invalid payload")
+        log.exception('received stripe event with invalid payload')
         return Response(status=HTTP_400_BAD_REQUEST)
 
     task = ON_STRIPE_EVENT_TASKS.get(event.type)

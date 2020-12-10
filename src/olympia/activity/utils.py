@@ -66,7 +66,7 @@ class ActivityEmailParser(object):
         )
 
         if invalid_email:
-            log.exception('ActivityEmailParser didn\'t get a valid message.')
+            log.exception("ActivityEmailParser didn't get a valid message.")
             raise ActivityEmailEncodingError(
                 'Invalid or malformed json message object.'
             )
@@ -146,7 +146,7 @@ def add_email_to_activity_log_wrapper(message, spam_rating):
 
 
 def add_email_to_activity_log(parser):
-    log.info("Saving from email reply")
+    log.info('Saving from email reply')
     uuid = parser.get_uuid()
     try:
         token = ActivityLogToken.objects.get(uuid=uuid)
@@ -177,7 +177,7 @@ def add_email_to_activity_log(parser):
                     % (user.email, version.id)
                 )
                 raise ActivityEmailTokenError(
-                    'You don\'t have permission to reply to this add-on. You '
+                    "You don't have permission to reply to this add-on. You "
                     'have to be a listed developer currently, or an AMO '
                     'reviewer.'
                 )
@@ -188,12 +188,12 @@ def add_email_to_activity_log(parser):
                 version.id,
             )
             reason = (
-                'it\'s for an old version of the addon'
+                "it's for an old version of the addon"
                 if not token.is_expired()
                 else 'there have been too many replies'
             )
             raise ActivityEmailTokenError(
-                'You can\'t reply to this email as the reply token is no '
+                "You can't reply to this email as the reply token is no "
                 'longer valid because %s.' % reason
             )
     else:
@@ -274,7 +274,7 @@ def notify_about_activity_log(
 
     # Not being localised because we don't know the recipients locale.
     with translation.override('en-US'):
-        subject = reviewer_subject = u'Mozilla Add-ons: %s %s' % (
+        subject = reviewer_subject = 'Mozilla Add-ons: %s %s' % (
             addon.name,
             version.version,
         )
@@ -376,7 +376,7 @@ def send_activity_mail(
             log.info(
                 'Created token with UUID %s for user: %s.' % (token.uuid, recipient.id)
             )
-        reply_to = "%s%s@%s" % (
+        reply_to = '%s%s@%s' % (
             REPLY_TO_PREFIX,
             token.uuid.hex,
             settings.INBOUND_EMAIL_DOMAIN,

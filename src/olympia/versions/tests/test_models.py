@@ -243,7 +243,7 @@ class TestVersion(TestCase):
     def test_compatible_apps(self):
         v = Version.objects.get(pk=81551)
 
-        assert amo.FIREFOX in v.compatible_apps, "Missing Firefox >_<"
+        assert amo.FIREFOX in v.compatible_apps, 'Missing Firefox >_<'
 
         # We should be re-using the same Version instance in
         # ApplicationsVersions loaded from <Version>._compat_map().
@@ -1081,7 +1081,7 @@ class TestVersion(TestCase):
         assert version.version == '5.1b4'
 
     def test_version_kept_when_license_deleted(self):
-        license = License.objects.create(name="MyLicense")
+        license = License.objects.create(name='MyLicense')
         self.version.update(license=license)
         license.delete()
         assert not License.objects.filter(pk=license.pk).exists()
@@ -1089,7 +1089,7 @@ class TestVersion(TestCase):
 
 
 @pytest.mark.parametrize(
-    "addon_status,file_status,is_unreviewed",
+    'addon_status,file_status,is_unreviewed',
     [
         (amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW, True),
         (amo.STATUS_NOMINATED, amo.STATUS_NOMINATED, True),
@@ -1426,7 +1426,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         )
         assert not storage.exists(
             path
-        ), "Expected original upload to move but it still exists."
+        ), 'Expected original upload to move but it still exists.'
         # set path to empty string (default db value) when deleted
         assert self.upload.path == ''
         files = version.all_files
@@ -1749,7 +1749,7 @@ class TestPermissionsFromUpload(TestVersionFromUpload):
 
     def setUp(self):
         super(TestPermissionsFromUpload, self).setUp()
-        self.addon.update(guid="allPermissions1@mozilla.com")
+        self.addon.update(guid='allPermissions1@mozilla.com')
         self.current = self.addon.current_version
 
     def test_permissions_includes_devtools(self):

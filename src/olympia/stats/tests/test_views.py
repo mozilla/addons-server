@@ -346,16 +346,16 @@ class TestCsvAndJsonViews(StatsTestCase):
             json.loads(force_text(response.content)),
             [
                 {
-                    "data": {"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": {"4.0": 1500}},
-                    "count": 1500,
-                    "date": "2009-06-02",
-                    "end": "2009-06-02",
+                    'data': {'{ec8030f7-c20a-464f-9b0e-13a3a9e97384}': {'4.0': 1500}},
+                    'count': 1500,
+                    'date': '2009-06-02',
+                    'end': '2009-06-02',
                 },
                 {
-                    "data": {"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": {"4.0": 1000}},
-                    "count": 1000,
-                    "date": "2009-06-01",
-                    "end": "2009-06-01",
+                    'data': {'{ec8030f7-c20a-464f-9b0e-13a3a9e97384}': {'4.0': 1000}},
+                    'count': 1000,
+                    'date': '2009-06-01',
+                    'end': '2009-06-01',
                 },
             ],
         )
@@ -413,23 +413,23 @@ class TestCsvAndJsonViews(StatsTestCase):
             json.loads(force_text(response.content)),
             [
                 {
-                    "count": 1500,
-                    "date": "2009-06-02",
-                    "end": "2009-06-02",
-                    "data": {
-                        u"Ελληνικά (el)": 800,
+                    'count': 1500,
+                    'date': '2009-06-02',
+                    'end': '2009-06-02',
+                    'data': {
+                        u'Ελληνικά (el)': 800,
                         u'Espa\xf1ol (de M\xe9xico) (es-mx)': 400,
-                        u"English (US) (en-us)": 300,
+                        u'English (US) (en-us)': 300,
                     },
                 },
                 {
-                    "count": 1000,
-                    "date": "2009-06-01",
-                    "end": "2009-06-01",
-                    "data": {
-                        u"Ελληνικά (el)": 400,
+                    'count': 1000,
+                    'date': '2009-06-01',
+                    'end': '2009-06-01',
+                    'data': {
+                        u'Ελληνικά (el)': 400,
                         u'Espa\xf1ol (de M\xe9xico) (es-mx)': 300,
-                        u"English (US) (en-us)": 300,
+                        u'English (US) (en-us)': 300,
                     },
                 },
             ],
@@ -486,16 +486,16 @@ class TestCsvAndJsonViews(StatsTestCase):
             json.loads(force_text(response.content)),
             [
                 {
-                    "count": 1500,
-                    "date": "2009-06-02",
-                    "end": "2009-06-02",
-                    "data": {"Linux": 400, "Windows": 500},
+                    'count': 1500,
+                    'date': '2009-06-02',
+                    'end': '2009-06-02',
+                    'data': {'Linux': 400, 'Windows': 500},
                 },
                 {
-                    "count": 1000,
-                    "date": "2009-06-01",
-                    "end": "2009-06-01",
-                    "data": {"Linux": 300, "Windows": 400},
+                    'count': 1000,
+                    'date': '2009-06-01',
+                    'end': '2009-06-01',
+                    'data': {'Linux': 300, 'Windows': 400},
                 },
             ],
         )
@@ -615,8 +615,8 @@ class TestCsvAndJsonViews(StatsTestCase):
         self.assertListEqual(
             json.loads(force_text(response.content)),
             [
-                {"date": "2009-06-02", "end": "2009-06-02", "count": 1500},
-                {"date": "2009-06-01", "end": "2009-06-01", "count": 1000},
+                {'date': '2009-06-02', 'end': '2009-06-02', 'count': 1500},
+                {'date': '2009-06-01', 'end': '2009-06-01', 'count': 1000},
             ],
         )
 
@@ -671,16 +671,16 @@ class TestCsvAndJsonViews(StatsTestCase):
             json.loads(force_text(response.content)),
             [
                 {
-                    "date": "2009-06-02",
-                    "end": "2009-06-02",
-                    "count": 1500,
-                    "data": {"api": 550, "search": 950},
+                    'date': '2009-06-02',
+                    'end': '2009-06-02',
+                    'count': 1500,
+                    'data': {'api': 550, 'search': 950},
                 },
                 {
-                    "date": "2009-06-01",
-                    "end": "2009-06-01",
-                    "count": 1000,
-                    "data": {"api": 550, "search": 450},
+                    'date': '2009-06-01',
+                    'end': '2009-06-01',
+                    'count': 1000,
+                    'data': {'api': 550, 'search': 450},
                 },
             ],
         )

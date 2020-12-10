@@ -149,7 +149,7 @@ def isotime(t):
     """Date/Time format according to ISO 8601"""
     if not hasattr(t, 'tzinfo'):
         return
-    return _append_tz(t).astimezone(pytz.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    return _append_tz(t).astimezone(pytz.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
 
 
 def epoch(t):
@@ -203,7 +203,7 @@ def paginate(request, queryset, per_page=20, count=None):
     except (EmptyPage, InvalidPage):
         paginated = paginator.page(1)
 
-    paginated.url = u'%s?%s' % (request.path, request.GET.urlencode())
+    paginated.url = '%s?%s' % (request.path, request.GET.urlencode())
     return paginated
 
 
@@ -1115,7 +1115,7 @@ class StopWatch:
     def log_interval(self, label):
         now = datetime.datetime.utcnow()
         statsd.timing(self.prefix + label, now - self._timestamp)
-        log.info("%s: %s", self.prefix + label, now - self._timestamp)
+        log.info('%s: %s', self.prefix + label, now - self._timestamp)
         self._timestamp = now
 
 

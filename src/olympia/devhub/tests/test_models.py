@@ -58,4 +58,4 @@ class TestBlogPosts(TestCase):
         BlogPost.objects.create(title='hi')
         bp = BlogPost.objects.all()
         assert bp.count() == 1
-        assert bp[0].title == "hi"
+        assert bp[0].title == 'hi'

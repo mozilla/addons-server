@@ -140,7 +140,7 @@ def test_css_helper(getmtime, time):
     template = from_string('{{ css("common", debug=True) }}')
     rendered = template.render()
 
-    expected = "\n".join(
+    expected = '\n'.join(
         [
             '<link rel="stylesheet" media="all" '
             'href="%s?build=1" />' % (settings.STATIC_URL + j)
@@ -232,7 +232,7 @@ def test_css(getmtime, time):
     template = from_string('{{ css("common", debug=True) }}')
     rendered = template.render()
 
-    expected = "\n".join(
+    expected = '\n'.join(
         [
             '<link rel="stylesheet" media="all" '
             'href="%s?build=1" />' % (settings.STATIC_URL + j)
@@ -278,7 +278,7 @@ def test_js(getmtime, time):
     template = from_string('{{ js("common", debug=True) }}')
     rendered = template.render()
 
-    expected = "\n".join(
+    expected = '\n'.join(
         [
             '<script src="%s?build=1"></script>' % (settings.STATIC_URL + j)
             for j in settings.MINIFY_BUNDLES['js']['common']

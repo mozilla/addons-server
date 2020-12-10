@@ -26,27 +26,27 @@ from olympia.promoted.utils import (
 
 
 def test_retrieve_stripe_checkout_session():
-    stripe_session_id = "some stripe session id"
+    stripe_session_id = 'some stripe session id'
     sub = PromotedSubscription(stripe_session_id=stripe_session_id)
 
     with mock.patch(
-        "olympia.promoted.utils.stripe.checkout.Session.retrieve"
+        'olympia.promoted.utils.stripe.checkout.Session.retrieve'
     ) as stripe_retrieve:
         retrieve_stripe_checkout_session(subscription=sub)
 
         stripe_retrieve.assert_called_once_with(stripe_session_id)
 
 
-@override_settings(STRIPE_API_SPONSORED_YEARLY_PRICE_ID="yearly-sponsored-price-id")
+@override_settings(STRIPE_API_SPONSORED_YEARLY_PRICE_ID='yearly-sponsored-price-id')
 def test_create_stripe_checkout_session_for_sponsored():
     addon = addon_factory()
     promoted_addon = PromotedAddon.objects.create(addon=addon, group_id=SPONSORED.id)
     sub = PromotedSubscription.objects.filter(promoted_addon=promoted_addon).get()
-    customer_email = "some-email@example.org"
-    fake_session = "fake session"
+    customer_email = 'some-email@example.org'
+    fake_session = 'fake session'
 
     with mock.patch(
-        "olympia.promoted.utils.stripe.checkout.Session.create"
+        'olympia.promoted.utils.stripe.checkout.Session.create'
     ) as stripe_create:
         stripe_create.return_value = fake_session
         session = create_stripe_checkout_session(
@@ -55,35 +55,35 @@ def test_create_stripe_checkout_session_for_sponsored():
 
         assert session == fake_session
         stripe_create.assert_called_once_with(
-            payment_method_types=["card"],
-            mode="subscription",
+            payment_method_types=['card'],
+            mode='subscription',
             cancel_url=absolutify(
                 reverse(
-                    "devhub.addons.onboarding_subscription_cancel",
+                    'devhub.addons.onboarding_subscription_cancel',
                     args=[addon.id],
                 )
             ),
             success_url=absolutify(
                 reverse(
-                    "devhub.addons.onboarding_subscription_success",
+                    'devhub.addons.onboarding_subscription_success',
                     args=[addon.id],
                 )
             ),
-            line_items=[{"price": "yearly-sponsored-price-id", "quantity": 1}],
+            line_items=[{'price': 'yearly-sponsored-price-id', 'quantity': 1}],
             customer_email=customer_email,
         )
 
 
-@override_settings(STRIPE_API_VERIFIED_MONTHLY_PRICE_ID="monthly-verified-price-id")
+@override_settings(STRIPE_API_VERIFIED_MONTHLY_PRICE_ID='monthly-verified-price-id')
 def test_create_stripe_checkout_session_for_verified():
     addon = addon_factory()
     promoted_addon = PromotedAddon.objects.create(addon=addon, group_id=VERIFIED.id)
     sub = PromotedSubscription.objects.filter(promoted_addon=promoted_addon).get()
-    customer_email = "some-email@example.org"
-    fake_session = "fake session"
+    customer_email = 'some-email@example.org'
+    fake_session = 'fake session'
 
     with mock.patch(
-        "olympia.promoted.utils.stripe.checkout.Session.create"
+        'olympia.promoted.utils.stripe.checkout.Session.create'
     ) as stripe_create:
         stripe_create.return_value = fake_session
         session = create_stripe_checkout_session(
@@ -92,21 +92,21 @@ def test_create_stripe_checkout_session_for_verified():
 
         assert session == fake_session
         stripe_create.assert_called_once_with(
-            payment_method_types=["card"],
-            mode="subscription",
+            payment_method_types=['card'],
+            mode='subscription',
             cancel_url=absolutify(
                 reverse(
-                    "devhub.addons.onboarding_subscription_cancel",
+                    'devhub.addons.onboarding_subscription_cancel',
                     args=[addon.id],
                 )
             ),
             success_url=absolutify(
                 reverse(
-                    "devhub.addons.onboarding_subscription_success",
+                    'devhub.addons.onboarding_subscription_success',
                     args=[addon.id],
                 )
             ),
-            line_items=[{"price": "monthly-verified-price-id", "quantity": 1}],
+            line_items=[{'price': 'monthly-verified-price-id', 'quantity': 1}],
             customer_email=customer_email,
         )
 
@@ -122,11 +122,11 @@ def test_create_stripe_checkout_session_with_invalid_group_id():
 
     with pytest.raises(ValueError):
         create_stripe_checkout_session(
-            subscription=sub, customer_email="doesnotmatter@example.org"
+            subscription=sub, customer_email='doesnotmatter@example.org'
         )
 
 
-@override_settings(STRIPE_API_SPONSORED_YEARLY_PRICE_ID="yearly-sponsored-price-id")
+@override_settings(STRIPE_API_SPONSORED_YEARLY_PRICE_ID='yearly-sponsored-price-id')
 def test_create_stripe_checkout_session_with_custom_rate():
     addon = addon_factory()
     promoted_addon = PromotedAddon.objects.create(addon=addon, group_id=SPONSORED.id)
@@ -134,18 +134,18 @@ def test_create_stripe_checkout_session_with_custom_rate():
     # Set a custom onboarding rate, in cents.
     onboarding_rate = 1234
     sub.update(onboarding_rate=onboarding_rate)
-    customer_email = "some-email@example.org"
-    fake_session = "fake session"
+    customer_email = 'some-email@example.org'
+    fake_session = 'fake session'
     fake_product = {
-        "product": "some-product-id",
-        "currency": "some-currency",
-        "recurring": {"interval": "year", "interval_count": 1},
+        'product': 'some-product-id',
+        'currency': 'some-currency',
+        'recurring': {'interval': 'year', 'interval_count': 1},
     }
 
     with mock.patch(
-        "olympia.promoted.utils.stripe.checkout.Session.create"
+        'olympia.promoted.utils.stripe.checkout.Session.create'
     ) as stripe_create, mock.patch(
-        "olympia.promoted.utils.stripe.Price.retrieve"
+        'olympia.promoted.utils.stripe.Price.retrieve'
     ) as stripe_retrieve:
         stripe_create.return_value = fake_session
         stripe_retrieve.return_value = fake_product
@@ -156,53 +156,53 @@ def test_create_stripe_checkout_session_with_custom_rate():
 
         assert session == fake_session
         stripe_create.assert_called_once_with(
-            payment_method_types=["card"],
-            mode="subscription",
+            payment_method_types=['card'],
+            mode='subscription',
             cancel_url=absolutify(
                 reverse(
-                    "devhub.addons.onboarding_subscription_cancel",
+                    'devhub.addons.onboarding_subscription_cancel',
                     args=[addon.id],
                 )
             ),
             success_url=absolutify(
                 reverse(
-                    "devhub.addons.onboarding_subscription_success",
+                    'devhub.addons.onboarding_subscription_success',
                     args=[addon.id],
                 )
             ),
             line_items=[
                 {
-                    "price_data": {
-                        "product": fake_product["product"],
-                        "currency": fake_product["currency"],
-                        "recurring": {
-                            "interval": fake_product["recurring"]["interval"],
-                            "interval_count": fake_product["recurring"][
-                                "interval_count"
+                    'price_data': {
+                        'product': fake_product['product'],
+                        'currency': fake_product['currency'],
+                        'recurring': {
+                            'interval': fake_product['recurring']['interval'],
+                            'interval_count': fake_product['recurring'][
+                                'interval_count'
                             ],
                         },
-                        "unit_amount": onboarding_rate,
+                        'unit_amount': onboarding_rate,
                     },
-                    "quantity": 1,
+                    'quantity': 1,
                 }
             ],
             customer_email=customer_email,
         )
 
 
-@override_settings(STRIPE_API_SPONSORED_YEARLY_PRICE_ID="yearly-sponsored-price-id")
-@override_settings(STRIPE_API_SPONSORED_MONTHLY_PRICE_ID="monthly-sponsored-price-id")
+@override_settings(STRIPE_API_SPONSORED_YEARLY_PRICE_ID='yearly-sponsored-price-id')
+@override_settings(STRIPE_API_SPONSORED_MONTHLY_PRICE_ID='monthly-sponsored-price-id')
 def test_create_stripe_checkout_session_for_sponsored_with_custom_period():
     addon = addon_factory()
     promoted_addon = PromotedAddon.objects.create(addon=addon, group_id=SPONSORED.id)
     sub = PromotedSubscription.objects.filter(promoted_addon=promoted_addon).get()
     # Set a custom billing period.
     sub.update(onboarding_period=BILLING_PERIOD_MONTHLY)
-    customer_email = "some-email@example.org"
-    fake_session = "fake session"
+    customer_email = 'some-email@example.org'
+    fake_session = 'fake session'
 
     with mock.patch(
-        "olympia.promoted.utils.stripe.checkout.Session.create"
+        'olympia.promoted.utils.stripe.checkout.Session.create'
     ) as stripe_create:
         stripe_create.return_value = fake_session
 
@@ -212,38 +212,38 @@ def test_create_stripe_checkout_session_for_sponsored_with_custom_period():
 
         assert session == fake_session
         stripe_create.assert_called_once_with(
-            payment_method_types=["card"],
-            mode="subscription",
+            payment_method_types=['card'],
+            mode='subscription',
             cancel_url=absolutify(
                 reverse(
-                    "devhub.addons.onboarding_subscription_cancel",
+                    'devhub.addons.onboarding_subscription_cancel',
                     args=[addon.id],
                 )
             ),
             success_url=absolutify(
                 reverse(
-                    "devhub.addons.onboarding_subscription_success",
+                    'devhub.addons.onboarding_subscription_success',
                     args=[addon.id],
                 )
             ),
-            line_items=[{"price": "monthly-sponsored-price-id", "quantity": 1}],
+            line_items=[{'price': 'monthly-sponsored-price-id', 'quantity': 1}],
             customer_email=customer_email,
         )
 
 
-@override_settings(STRIPE_API_VERIFIED_YEARLY_PRICE_ID="yearly-verified-price-id")
-@override_settings(STRIPE_API_VERIFIED_MONTHLY_PRICE_ID="monthly-verified-price-id")
+@override_settings(STRIPE_API_VERIFIED_YEARLY_PRICE_ID='yearly-verified-price-id')
+@override_settings(STRIPE_API_VERIFIED_MONTHLY_PRICE_ID='monthly-verified-price-id')
 def test_create_stripe_checkout_session_for_verified_with_custom_period():
     addon = addon_factory()
     promoted_addon = PromotedAddon.objects.create(addon=addon, group_id=VERIFIED.id)
     sub = PromotedSubscription.objects.filter(promoted_addon=promoted_addon).get()
     # Set a custom billing period.
     sub.update(onboarding_period=BILLING_PERIOD_YEARLY)
-    customer_email = "some-email@example.org"
-    fake_session = "fake session"
+    customer_email = 'some-email@example.org'
+    fake_session = 'fake session'
 
     with mock.patch(
-        "olympia.promoted.utils.stripe.checkout.Session.create"
+        'olympia.promoted.utils.stripe.checkout.Session.create'
     ) as stripe_create:
         stripe_create.return_value = fake_session
 
@@ -253,26 +253,26 @@ def test_create_stripe_checkout_session_for_verified_with_custom_period():
 
         assert session == fake_session
         stripe_create.assert_called_once_with(
-            payment_method_types=["card"],
-            mode="subscription",
+            payment_method_types=['card'],
+            mode='subscription',
             cancel_url=absolutify(
                 reverse(
-                    "devhub.addons.onboarding_subscription_cancel",
+                    'devhub.addons.onboarding_subscription_cancel',
                     args=[addon.id],
                 )
             ),
             success_url=absolutify(
                 reverse(
-                    "devhub.addons.onboarding_subscription_success",
+                    'devhub.addons.onboarding_subscription_success',
                     args=[addon.id],
                 )
             ),
-            line_items=[{"price": "yearly-verified-price-id", "quantity": 1}],
+            line_items=[{'price': 'yearly-verified-price-id', 'quantity': 1}],
             customer_email=customer_email,
         )
 
 
-@override_settings(STRIPE_API_SPONSORED_MONTHLY_PRICE_ID="monthlty-sponsored-price-id")
+@override_settings(STRIPE_API_SPONSORED_MONTHLY_PRICE_ID='monthlty-sponsored-price-id')
 def test_create_stripe_checkout_session_with_custom_rate_and_period():
     addon = addon_factory()
     promoted_addon = PromotedAddon.objects.create(addon=addon, group_id=SPONSORED.id)
@@ -283,18 +283,18 @@ def test_create_stripe_checkout_session_with_custom_rate_and_period():
         onboarding_rate=onboarding_rate,
         onboarding_period=BILLING_PERIOD_MONTHLY,
     )
-    customer_email = "some-email@example.org"
-    fake_session = "fake session"
+    customer_email = 'some-email@example.org'
+    fake_session = 'fake session'
     fake_product = {
-        "product": "some-product-id",
-        "currency": "some-currency",
-        "recurring": {"interval": "month", "interval_count": 1},
+        'product': 'some-product-id',
+        'currency': 'some-currency',
+        'recurring': {'interval': 'month', 'interval_count': 1},
     }
 
     with mock.patch(
-        "olympia.promoted.utils.stripe.checkout.Session.create"
+        'olympia.promoted.utils.stripe.checkout.Session.create'
     ) as stripe_create, mock.patch(
-        "olympia.promoted.utils.stripe.Price.retrieve"
+        'olympia.promoted.utils.stripe.Price.retrieve'
     ) as stripe_retrieve:
         stripe_create.return_value = fake_session
         stripe_retrieve.return_value = fake_product
@@ -305,34 +305,34 @@ def test_create_stripe_checkout_session_with_custom_rate_and_period():
 
         assert session == fake_session
         stripe_create.assert_called_once_with(
-            payment_method_types=["card"],
-            mode="subscription",
+            payment_method_types=['card'],
+            mode='subscription',
             cancel_url=absolutify(
                 reverse(
-                    "devhub.addons.onboarding_subscription_cancel",
+                    'devhub.addons.onboarding_subscription_cancel',
                     args=[addon.id],
                 )
             ),
             success_url=absolutify(
                 reverse(
-                    "devhub.addons.onboarding_subscription_success",
+                    'devhub.addons.onboarding_subscription_success',
                     args=[addon.id],
                 )
             ),
             line_items=[
                 {
-                    "price_data": {
-                        "product": fake_product["product"],
-                        "currency": fake_product["currency"],
-                        "recurring": {
-                            "interval": fake_product["recurring"]["interval"],
-                            "interval_count": fake_product["recurring"][
-                                "interval_count"
+                    'price_data': {
+                        'product': fake_product['product'],
+                        'currency': fake_product['currency'],
+                        'recurring': {
+                            'interval': fake_product['recurring']['interval'],
+                            'interval_count': fake_product['recurring'][
+                                'interval_count'
                             ],
                         },
-                        "unit_amount": onboarding_rate,
+                        'unit_amount': onboarding_rate,
                     },
-                    "quantity": 1,
+                    'quantity': 1,
                 }
             ],
             customer_email=customer_email,
@@ -341,11 +341,11 @@ def test_create_stripe_checkout_session_with_custom_rate_and_period():
 
 def test_create_stripe_customer_portal():
     addon = addon_factory()
-    customer_id = "some-customer-id"
-    fake_portal = "fake-return-value"
+    customer_id = 'some-customer-id'
+    fake_portal = 'fake-return-value'
 
     with mock.patch(
-        "olympia.promoted.utils.stripe.billing_portal.Session.create"
+        'olympia.promoted.utils.stripe.billing_portal.Session.create'
     ) as create_portal_mock:
         create_portal_mock.return_value = fake_portal
 
@@ -354,18 +354,18 @@ def test_create_stripe_customer_portal():
         assert portal == fake_portal
         create_portal_mock.assert_called_once_with(
             customer=customer_id,
-            return_url=absolutify(reverse("devhub.addons.edit", args=[addon.slug])),
+            return_url=absolutify(reverse('devhub.addons.edit', args=[addon.slug])),
         )
 
 
-@override_settings(STRIPE_API_WEBHOOK_SECRET="webhook-secret")
+@override_settings(STRIPE_API_WEBHOOK_SECRET='webhook-secret')
 def test_create_stripe_webhook_event():
-    fake_event = "fake-event"
-    payload = "some payload"
-    sig_header = "some sig_header"
+    fake_event = 'fake-event'
+    payload = 'some payload'
+    sig_header = 'some sig_header'
 
     with mock.patch(
-        "olympia.promoted.utils.stripe.Webhook.construct_event"
+        'olympia.promoted.utils.stripe.Webhook.construct_event'
     ) as stripe_construct_event:
         stripe_construct_event.return_value = fake_event
 
@@ -375,17 +375,17 @@ def test_create_stripe_webhook_event():
         stripe_construct_event.assert_called_once_with(
             payload,
             sig_header,
-            "webhook-secret",
+            'webhook-secret',
         )
 
 
 def test_retrieve_stripe_subscription():
-    stripe_subscription_id = "some stripe subscription id"
+    stripe_subscription_id = 'some stripe subscription id'
     sub = PromotedSubscription(stripe_subscription_id=stripe_subscription_id)
-    fake_subscription = "fake-stripe-subscription"
+    fake_subscription = 'fake-stripe-subscription'
 
     with mock.patch(
-        "olympia.promoted.utils.stripe.Subscription.retrieve"
+        'olympia.promoted.utils.stripe.Subscription.retrieve'
     ) as stripe_retrieve:
         stripe_retrieve.return_value = fake_subscription
 
@@ -396,15 +396,15 @@ def test_retrieve_stripe_subscription():
 
 
 def test_retrieve_stripe_subscription_for_invoice():
-    invoice_id = "invoice-id"
-    subscription_id = "subscription-id"
-    fake_invoice = {"subscription": subscription_id}
-    fake_subscription = "fake-stripe-subscription"
+    invoice_id = 'invoice-id'
+    subscription_id = 'subscription-id'
+    fake_invoice = {'subscription': subscription_id}
+    fake_subscription = 'fake-stripe-subscription'
 
     with mock.patch(
-        "olympia.promoted.utils.stripe.Invoice.retrieve"
+        'olympia.promoted.utils.stripe.Invoice.retrieve'
     ) as invoice_mock, mock.patch(
-        "olympia.promoted.utils.stripe.Subscription.retrieve"
+        'olympia.promoted.utils.stripe.Subscription.retrieve'
     ) as subscription_mock:
         invoice_mock.return_value = fake_invoice
         subscription_mock.return_value = fake_subscription

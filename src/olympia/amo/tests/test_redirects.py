@@ -53,7 +53,7 @@ class TestRedirects(TestCase):
         response = self.client.get(
             '/developers',
             follow=True,
-            HTTP_ACCEPT_LANGUAGE='some,thing-very;very,,,broken!\'jj',
+            HTTP_ACCEPT_LANGUAGE="some,thing-very;very,,,broken!'jj",
         )
         self.assert3xx(response, '/en-US/developers/', status_code=302)
 

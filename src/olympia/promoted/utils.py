@@ -45,7 +45,7 @@ def create_stripe_checkout_session(subscription, customer_email):
     price_id = get_stripe_price_id_for_subscription(subscription)
     if not price_id:
         raise ValueError(
-            "No price ID for promoted group ID: {}.".format(
+            'No price ID for promoted group ID: {}.'.format(
                 subscription.promoted_addon.group_id
             )
         )
@@ -57,33 +57,33 @@ def create_stripe_checkout_session(subscription, customer_email):
         price = stripe.Price.retrieve(price_id)
 
         line_item = {
-            "price_data": {
-                "product": price.get("product"),
-                "currency": price.get("currency"),
-                "recurring": {
-                    "interval": price.get("recurring", {}).get("interval"),
-                    "interval_count": price.get("recurring", {}).get("interval_count"),
+            'price_data': {
+                'product': price.get('product'),
+                'currency': price.get('currency'),
+                'recurring': {
+                    'interval': price.get('recurring', {}).get('interval'),
+                    'interval_count': price.get('recurring', {}).get('interval_count'),
                 },
-                "unit_amount": subscription.onboarding_rate,
+                'unit_amount': subscription.onboarding_rate,
             },
-            "quantity": 1,
+            'quantity': 1,
         }
     else:
         # The default price will be used for this subscription.
-        line_item = {"price": price_id, "quantity": 1}
+        line_item = {'price': price_id, 'quantity': 1}
 
     return stripe.checkout.Session.create(
-        payment_method_types=["card"],
-        mode="subscription",
+        payment_method_types=['card'],
+        mode='subscription',
         cancel_url=absolutify(
             reverse(
-                "devhub.addons.onboarding_subscription_cancel",
+                'devhub.addons.onboarding_subscription_cancel',
                 args=[subscription.promoted_addon.addon_id],
             )
         ),
         success_url=absolutify(
             reverse(
-                "devhub.addons.onboarding_subscription_success",
+                'devhub.addons.onboarding_subscription_success',
                 args=[subscription.promoted_addon.addon_id],
             )
         ),
@@ -113,7 +113,7 @@ def create_stripe_customer_portal(customer_id, addon):
     stripe.api_key = settings.STRIPE_API_SECRET_KEY
     return stripe.billing_portal.Session.create(
         customer=customer_id,
-        return_url=absolutify(reverse("devhub.addons.edit", args=[addon.slug])),
+        return_url=absolutify(reverse('devhub.addons.edit', args=[addon.slug])),
     )
 
 
@@ -128,4 +128,4 @@ def retrieve_stripe_subscription_for_invoice(invoice_id):
     """This function returns a Stripe Subscription object or raises errors."""
     stripe.api_key = settings.STRIPE_API_SECRET_KEY
     invoice = stripe.Invoice.retrieve(invoice_id)
-    return stripe.Subscription.retrieve(invoice["subscription"])
+    return stripe.Subscription.retrieve(invoice['subscription'])

@@ -141,12 +141,12 @@ class TestScannerResultViewInternal(TestCase):
         assert results[0].get('scanner') == 'customs'
 
     def test_get_by_scanner_with_empty_value(self):
-        invalid_scanner = ""
+        invalid_scanner = ''
         response = self.client.get('{}?scanner={}'.format(self.url, invalid_scanner))
         assert response.status_code == 400
 
     def test_get_by_scanner_with_unknown_scanner(self):
-        invalid_scanner = "yaraaaa"
+        invalid_scanner = 'yaraaaa'
         response = self.client.get('{}?scanner={}'.format(self.url, invalid_scanner))
         assert response.status_code == 400
 
@@ -180,12 +180,12 @@ class TestScannerResultViewInternal(TestCase):
         assert results[0].get('label') == 'bad'
 
     def test_get_by_label_with_empty_value(self):
-        invalid_label = ""
+        invalid_label = ''
         response = self.client.get('{}?label={}'.format(self.url, invalid_label))
         assert response.status_code == 400
 
     def test_get_by_label_with_unknown_label(self):
-        invalid_label = "gooda"
+        invalid_label = 'gooda'
         response = self.client.get('{}?label={}'.format(self.url, invalid_label))
         assert response.status_code == 400
 

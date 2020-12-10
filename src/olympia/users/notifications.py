@@ -42,7 +42,7 @@ upgrade_success = Notification(
     id=5,
     group='dev',
     short='upgrade_success',
-    label=_('my add-on\'s compatibility is upgraded successfully'),
+    label=_("my add-on's compatibility is upgraded successfully"),
     mandatory=False,
     default_checked=True,
 )
@@ -78,7 +78,7 @@ upgrade_fail = Notification(
     id=9,
     group='dev',
     short='upgrade_fail',
-    label=_('my add-on\'s compatibility cannot be upgraded'),
+    label=_("my add-on's compatibility cannot be upgraded"),
     mandatory=True,
     default_checked=True,
 )

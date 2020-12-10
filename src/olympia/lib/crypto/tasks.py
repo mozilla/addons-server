@@ -22,7 +22,7 @@ MAIL_COSE_SUBJECT = (
     u'Your Firefox extension has been re-signed with a stronger signature'
 )
 
-MAIL_COSE_MESSAGE = u'''
+MAIL_COSE_MESSAGE = u"""
 Hello,
 
 Mozilla has recently upgraded the signing [1] for Firefox extensions, themes,
@@ -50,7 +50,7 @@ The Add-ons Team
 You have received this email because you are a registered developer of a
 Firefox add-on. If you do not want to receive these updates regarding your
 add-on, please sign in to addons.mozilla.org and delete your add-on(s).
-'''
+"""
 
 version_regex = re.compile(
     r'^(?P<prefix>.*)(?P<version>\.1\-signed)(|\-(?P<number>\d+))$'

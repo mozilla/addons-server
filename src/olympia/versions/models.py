@@ -155,9 +155,9 @@ def source_upload_path(instance, filename):
             break
 
     return os.path.join(
-        u'version_source',
+        'version_source',
         utils.id_to_path(instance.pk),
-        u'{0}-{1}-src{2}'.format(instance.addon.slug, instance.version, ext),
+        '{0}-{1}-src{2}'.format(instance.addon.slug, instance.version, ext),
     )
 
 
@@ -248,7 +248,7 @@ class Version(OnChangeMixin, ModelBase):
         approval_notes = None
         if parsed_data.get('is_mozilla_signed_extension'):
             approval_notes = (
-                u'This version has been signed with ' u'Mozilla internal certificate.'
+                'This version has been signed with ' 'Mozilla internal certificate.'
             )
         version = cls.objects.create(
             addon=addon,
@@ -396,7 +396,7 @@ class Version(OnChangeMixin, ModelBase):
         # To avoid a circular import
         from .tasks import delete_preview_files
 
-        log.info(u'Version deleted: %r (%s)' % (self, self.id))
+        log.info('Version deleted: %r (%s)' % (self, self.id))
         activity.log_create(amo.LOG.DELETE_VERSION, self.addon, str(self.version))
 
         if hard:
@@ -1109,7 +1109,7 @@ class ApplicationsVersions(models.Model):
         if self.version.is_compatible_by_default and self.version.is_compatible_app(
             amo.APP_IDS[self.application]
         ):
-            return ugettext(u'{app} {min} and later').format(
+            return ugettext('{app} {min} and later').format(
                 app=self.get_application_display(), min=self.min
             )
-        return u'%s %s - %s' % (self.get_application_display(), self.min, self.max)
+        return '%s %s - %s' % (self.get_application_display(), self.min, self.max)

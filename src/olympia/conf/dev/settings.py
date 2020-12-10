@@ -39,7 +39,7 @@ CODE_MANAGER_URL = env(
 STATIC_URL = '%s/static/' % CDN_HOST
 MEDIA_URL = '%s/user-media/' % CDN_HOST
 
-SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
+SESSION_COOKIE_DOMAIN = '.%s' % DOMAIN
 
 # Domain emails should be sent to.
 INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN', default='addons-dev.allizom.org')

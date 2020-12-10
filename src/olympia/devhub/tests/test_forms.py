@@ -914,7 +914,7 @@ class TestAdditionalDetailsForm(TestCase):
     def test_tags_long(self):
         tag = ' -%s' % ('t' * 128)
         data = self.data.copy()
-        data.update({"tags": tag})
+        data.update({'tags': tag})
         form = forms.AdditionalDetailsForm(
             data=data, request=self.request, instance=self.addon
         )

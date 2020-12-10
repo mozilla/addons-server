@@ -82,7 +82,7 @@ class TestViewExtensionQueueTable(TestCase):
         assert a.attr('href') == (
             reverse('reviewers.review', args=[str(row.addon_slug)])
         )
-        assert a.text() == u"フォクすけといっしょ 0.12"
+        assert a.text() == u'フォクすけといっしょ 0.12'
 
     def test_addon_type_id(self):
         row = Mock()
@@ -319,7 +319,7 @@ class TestReviewHelper(TestReviewHelperBase):
             helper = self.get_helper()
             actions = helper.actions
             for k, v in actions.items():
-                assert str(v['details']), "Missing details for: %s" % k
+                assert str(v['details']), 'Missing details for: %s' % k
 
     def get_review_actions(self, addon_status, file_status, content_review=False):
         self.file.update(status=file_status)
@@ -1756,7 +1756,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
         assert len(mail.outbox) == 1
         message = mail.outbox[0]
-        assert message.subject == ('%s didn\'t pass review' % self.preamble)
+        assert message.subject == ("%s didn't pass review" % self.preamble)
         assert 'did not meet the criteria' in message.body
 
         # AddonApprovalsCounter was not touched since we didn't approve.

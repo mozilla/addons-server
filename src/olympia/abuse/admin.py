@@ -7,9 +7,7 @@ from django.db.models import Count, Q, Prefetch
 from django.template import loader
 from django.utils.translation import ugettext
 
-from rangefilter.filter import (
-    DateRangeFilter as DateRangeFilterBase,
-)
+from rangefilter.filter import DateRangeFilter as DateRangeFilterBase
 
 from olympia import amo
 from olympia.access import acl

@@ -217,7 +217,7 @@ class VersionView(APIView):
             if len(guid) > 64:
                 raise forms.ValidationError(
                     ugettext(
-                        'Please specify your Add-on ID in the manifest if it\'s '
+                        "Please specify your Add-on ID in the manifest if it's "
                         'longer than 64 characters.'
                     )
                 )

@@ -51,10 +51,10 @@ def safe_substitute(string, *args):
 
 
 class ReviewerQueueTable(tables.Table, ItemStateTable):
-    addon_name = tables.Column(verbose_name=_(u'Add-on'))
-    addon_type_id = tables.Column(verbose_name=_(u'Type'))
-    waiting_time_min = tables.Column(verbose_name=_(u'Waiting Time'))
-    flags = tables.Column(verbose_name=_(u'Flags'), orderable=False)
+    addon_name = tables.Column(verbose_name=_('Add-on'))
+    addon_type_id = tables.Column(verbose_name=_('Type'))
+    waiting_time_min = tables.Column(verbose_name=_('Waiting Time'))
+    flags = tables.Column(verbose_name=_('Flags'), orderable=False)
 
     class Meta:
         orderable = True
@@ -62,7 +62,7 @@ class ReviewerQueueTable(tables.Table, ItemStateTable):
     def render_addon_name(self, record):
         url = reverse('reviewers.review', args=[record.addon_slug])
         self.increment_item()
-        return u'<a href="%s">%s <em>%s</em></a>' % (
+        return '<a href="%s">%s <em>%s</em></a>' % (
             url,
             jinja2.escape(record.addon_name),
             jinja2.escape(record.latest_version),
@@ -75,7 +75,7 @@ class ReviewerQueueTable(tables.Table, ItemStateTable):
         if not hasattr(record, 'flags'):
             record.flags = get_flags_for_row(record)
         return ''.join(
-            u'<div class="app-icon ed-sprite-%s" ' u'title="%s"></div>' % flag
+            '<div class="app-icon ed-sprite-%s" ' 'title="%s"></div>' % flag
             for flag in record.flags
         )
 
@@ -93,17 +93,17 @@ class ReviewerQueueTable(tables.Table, ItemStateTable):
             r = _('moments ago')
         elif record.waiting_time_hours == 0:
             # L10n: first argument is number of minutes
-            r = ungettext(
-                u'{0} minute', u'{0} minutes', record.waiting_time_min
-            ).format(record.waiting_time_min)
+            r = ungettext('{0} minute', '{0} minutes', record.waiting_time_min).format(
+                record.waiting_time_min
+            )
         elif record.waiting_time_days == 0:
             # L10n: first argument is number of hours
-            r = ungettext(u'{0} hour', u'{0} hours', record.waiting_time_hours).format(
+            r = ungettext('{0} hour', '{0} hours', record.waiting_time_hours).format(
                 record.waiting_time_hours
             )
         else:
             # L10n: first argument is number of days
-            r = ungettext(u'{0} day', u'{0} days', record.waiting_time_days).format(
+            r = ungettext('{0} day', '{0} days', record.waiting_time_days).format(
                 record.waiting_time_days
             )
         return jinja2.escape(r)
@@ -115,9 +115,9 @@ class ReviewerQueueTable(tables.Table, ItemStateTable):
 
 class ViewUnlistedAllListTable(tables.Table, ItemStateTable):
     id = tables.Column(verbose_name=_('ID'))
-    addon_name = tables.Column(verbose_name=_(u'Add-on'))
-    guid = tables.Column(verbose_name=_(u'GUID'))
-    authors = tables.Column(verbose_name=_(u'Authors'), orderable=False)
+    addon_name = tables.Column(verbose_name=_('Add-on'))
+    guid = tables.Column(verbose_name=_('GUID'))
+    authors = tables.Column(verbose_name=_('Authors'), orderable=False)
 
     class Meta(ReviewerQueueTable.Meta):
         model = ViewUnlistedAllList
@@ -131,23 +131,23 @@ class ViewUnlistedAllListTable(tables.Table, ItemStateTable):
             ],
         )
         self.increment_item()
-        return safe_substitute(u'<a href="%s">%s</a>', url, record.addon_name)
+        return safe_substitute('<a href="%s">%s</a>', url, record.addon_name)
 
     def render_guid(self, record):
-        return safe_substitute(u'%s', record.guid)
+        return safe_substitute('%s', record.guid)
 
     def render_authors(self, record):
         authors = record.authors
         if not len(authors):
             return ''
-        more = ' '.join(safe_substitute(u'%s', uname) for (_, uname) in authors)
+        more = ' '.join(safe_substitute('%s', uname) for (_, uname) in authors)
         author_links = ' '.join(
             safe_substitute(
-                u'<a href="%s">%s</a>', UserProfile.create_user_url(id_), uname
+                '<a href="%s">%s</a>', UserProfile.create_user_url(id_), uname
             )
             for (id_, uname) in authors[0:3]
         )
-        return u'<span title="%s">%s%s</span>' % (
+        return '<span title="%s">%s%s</span>' % (
             more,
             author_links,
             ' ...' if len(authors) > 3 else '',
@@ -167,16 +167,16 @@ def view_table_factory(viewqueue):
 
 
 class ModernAddonQueueTable(ReviewerQueueTable):
-    addon_name = tables.Column(verbose_name=_(u'Add-on'), accessor='name')
+    addon_name = tables.Column(verbose_name=_('Add-on'), accessor='name')
     # Override empty_values for flags so that they can be displayed even if the
     # model does not have a flags attribute.
-    flags = tables.Column(verbose_name=_(u'Flags'), empty_values=(), orderable=False)
+    flags = tables.Column(verbose_name=_('Flags'), empty_values=(), orderable=False)
     last_human_review = tables.DateTimeColumn(
-        verbose_name=_(u'Last Review'),
+        verbose_name=_('Last Review'),
         accessor='addonapprovalscounter.last_human_review',
     )
     weight = tables.Column(
-        verbose_name=_(u'Weight'),
+        verbose_name=_('Weight'),
         accessor='_current_version.autoapprovalsummary.weight',
     )
 
@@ -199,7 +199,7 @@ class ModernAddonQueueTable(ReviewerQueueTable):
 
     def render_addon_name(self, record):
         url = self._get_addon_name_url(record)
-        return u'<a href="%s">%s <em>%s</em></a>' % (
+        return '<a href="%s">%s <em>%s</em></a>' % (
             url,
             jinja2.escape(record.name),
             jinja2.escape(record.current_version),
@@ -241,7 +241,7 @@ class AutoApprovedTable(ModernAddonQueueTable):
 
 
 class ContentReviewTable(AutoApprovedTable):
-    last_updated = tables.DateTimeColumn(verbose_name=_(u'Last Updated'))
+    last_updated = tables.DateTimeColumn(verbose_name=_('Last Updated'))
 
     class Meta(ReviewerQueueTable.Meta):
         fields = ('addon_name', 'flags', 'last_updated')
@@ -292,9 +292,7 @@ class MadReviewTable(ScannersReviewTable):
     listed_text = _('Listed version')
     unlisted_text = _('Unlisted versions ({0})')
     filter_listed = {
-        'addon___current_version__reviewerflags__needs_human_review_by_mad': (  # noqa
-            True
-        )
+        'addon___current_version__reviewerflags__needs_human_review_by_mad': True
     }
     filter_unlisted = {'reviewerflags__needs_human_review_by_mad': True}
 
@@ -615,7 +613,7 @@ class ReviewHelper(object):
             'label': _('Comment'),
             'details': _(
                 'Make a comment on this version. The developer '
-                'won\'t be able to see this.'
+                "won't be able to see this."
             ),
             'minimal': True,
             'available': (is_reviewer),
@@ -808,8 +806,8 @@ class ReviewBase(object):
                 self.version.update(reviewed=datetime.now())
 
         log.info(
-            u'Sending reviewer reply for %s to authors and other'
-            u'recipients' % self.addon
+            'Sending reviewer reply for %s to authors and other'
+            'recipients' % self.addon
         )
         log_and_notify(
             action,
@@ -888,15 +886,15 @@ class ReviewBase(object):
             AddonApprovalsCounter.reset_for_addon(addon=self.addon)
 
         self.log_action(amo.LOG.APPROVE_VERSION)
-        template = u'%s_to_approved' % self.review_type
+        template = '%s_to_approved' % self.review_type
         if self.review_type in ['extension_pending', 'theme_pending']:
-            subject = u'Mozilla Add-ons: %s %s Updated'
+            subject = 'Mozilla Add-ons: %s %s Updated'
         else:
-            subject = u'Mozilla Add-ons: %s %s Approved'
+            subject = 'Mozilla Add-ons: %s %s Approved'
         self.notify_email(template, subject)
 
         self.log_public_message()
-        log.info(u'Sending email for %s' % (self.addon))
+        log.info('Sending email for %s' % (self.addon))
 
     def reject_latest_version(self):
         """Reject the add-on latest version (potentially setting the add-on
@@ -928,12 +926,12 @@ class ReviewBase(object):
             )
 
         self.log_action(amo.LOG.REJECT_VERSION)
-        template = u'%s_to_rejected' % self.review_type
-        subject = u'Mozilla Add-ons: %s %s didn\'t pass review'
+        template = '%s_to_rejected' % self.review_type
+        subject = "Mozilla Add-ons: %s %s didn't pass review"
         self.notify_email(template, subject)
 
         self.log_sandbox_message()
-        log.info(u'Sending email for %s' % (self.addon))
+        log.info('Sending email for %s' % (self.addon))
 
     def process_super_review(self):
         """Mark an add-on as needing admin code, content, or theme review."""
@@ -954,7 +952,7 @@ class ReviewBase(object):
         )
 
         self.log_action(log_action_type)
-        log.info(u'%s for %s' % (log_action_type.short, self.addon))
+        log.info('%s for %s' % (log_action_type.short, self.addon))
 
     def approve_content(self):
         """Approve content of an add-on."""
@@ -1132,7 +1130,7 @@ class ReviewBase(object):
             # version of the add-on instead of one of the versions we rejected,
             # it will be used to generate a token allowing the developer to
             # reply, and that only works with the latest version.
-            self.data['version_numbers'] = u', '.join(
+            self.data['version_numbers'] = ', '.join(
                 str(v.version) for v in self.data['versions']
             )
             if pending_rejection_deadline:
@@ -1183,10 +1181,10 @@ class ReviewAddon(ReviewBase):
     set_addon_status = True
 
     def log_public_message(self):
-        log.info(u'Making %s public' % (self.addon))
+        log.info('Making %s public' % (self.addon))
 
     def log_sandbox_message(self):
-        log.info(u'Making %s disabled' % (self.addon))
+        log.info('Making %s disabled' % (self.addon))
 
 
 class ReviewFiles(ReviewBase):
@@ -1194,13 +1192,13 @@ class ReviewFiles(ReviewBase):
 
     def log_public_message(self):
         log.info(
-            u'Making %s files %s public'
+            'Making %s files %s public'
             % (self.addon, ', '.join([f.filename for f in self.files]))
         )
 
     def log_sandbox_message(self):
         log.info(
-            u'Making %s files %s disabled'
+            'Making %s files %s disabled'
             % (self.addon, ', '.join([f.filename for f in self.files]))
         )
 
@@ -1217,8 +1215,8 @@ class ReviewUnlisted(ReviewBase):
 
         self.set_files(amo.STATUS_APPROVED, self.files)
 
-        template = u'unlisted_to_reviewed_auto'
-        subject = u'Mozilla Add-ons: %s %s signed and ready to download'
+        template = 'unlisted_to_reviewed_auto'
+        subject = 'Mozilla Add-ons: %s %s signed and ready to download'
         self.log_action(amo.LOG.APPROVE_VERSION)
 
         if self.human_review:
@@ -1227,10 +1225,10 @@ class ReviewUnlisted(ReviewBase):
         self.notify_email(template, subject, perm_setting=None)
 
         log.info(
-            u'Making %s files %s public'
+            'Making %s files %s public'
             % (self.addon, ', '.join([f.filename for f in self.files]))
         )
-        log.info(u'Sending email for %s' % (self.addon))
+        log.info('Sending email for %s' % (self.addon))
 
     def block_multiple_versions(self):
         min_version = ('0', None)

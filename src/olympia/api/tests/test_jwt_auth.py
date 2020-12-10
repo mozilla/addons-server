@@ -83,7 +83,7 @@ class TestJWTKeyAuthDecodeHandler(JWTAuthKeyTester, TestCase):
 
     def test_decode_invalid_non_ascii_token(self):
         with self.assertRaises(jwt.DecodeError) as ctx:
-            jwt_auth.jwt_decode_handler(u'Ivan Krsti\u0107')
+            jwt_auth.jwt_decode_handler('Ivan Krsti\u0107')
 
         assert str(ctx.exception) == 'Not enough segments'
 

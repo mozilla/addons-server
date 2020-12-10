@@ -225,7 +225,7 @@ class PromotedSubscription(ModelBase):
     link_visited_at = models.DateTimeField(
         null=True,
         help_text=(
-            "This date is set when the developer has visited the onboarding " "page."
+            'This date is set when the developer has visited the onboarding ' 'page.'
         ),
     )
     # This field should only be used for the Stripe Checkout process, use
@@ -235,30 +235,30 @@ class PromotedSubscription(ModelBase):
     checkout_cancelled_at = models.DateTimeField(
         null=True,
         help_text=(
-            "This date is set when the developer has cancelled the initial "
-            "payment process."
+            'This date is set when the developer has cancelled the initial '
+            'payment process.'
         ),
     )
     checkout_completed_at = models.DateTimeField(
         null=True,
         help_text=(
-            "This date is set when the developer has successfully completed "
-            "the initial payment process."
+            'This date is set when the developer has successfully completed '
+            'the initial payment process.'
         ),
     )
     cancelled_at = models.DateTimeField(
         null=True,
-        help_text="This date is set when the subscription has been cancelled.",
+        help_text='This date is set when the subscription has been cancelled.',
     )
     onboarding_rate = models.PositiveIntegerField(
         default=None,
         blank=True,
         null=True,
         help_text=(
-            "If set, this rate will be used to charge the developer for this"
-            " subscription. The value should be a non-negative integer in"
-            " cents. The default rate configured in Stripe for the promoted"
-            " group will be used otherwise."
+            'If set, this rate will be used to charge the developer for this'
+            ' subscription. The value should be a non-negative integer in'
+            ' cents. The default rate configured in Stripe for the promoted'
+            ' group will be used otherwise.'
         ),
     )
     onboarding_period = models.CharField(
@@ -267,9 +267,9 @@ class PromotedSubscription(ModelBase):
         blank=True,
         null=True,
         help_text=(
-            "If set, this billing period will be used for this subscription."
-            " The default period configured in Stripe for the promoted group"
-            "will be used otherwise."
+            'If set, this billing period will be used for this subscription.'
+            ' The default period configured in Stripe for the promoted group'
+            'will be used otherwise.'
         ),
     )
 

@@ -164,7 +164,7 @@ def clean_slug(instance, slug_field='slug'):
             # solution tested.
             raise RuntimeError('No suitable slug increment for {} found'.format(slug))
 
-        slug = u'{slug}{postfix}'.format(slug=slug, postfix=num)
+        slug = '{slug}{postfix}'.format(slug=slug, postfix=num)
 
     setattr(instance, slug_field, slug)
 
@@ -520,7 +520,7 @@ class Addon(OnChangeMixin, ModelBase):
         ]
 
     def __str__(self):
-        return u'%s: %s' % (self.id, self.name)
+        return '%s: %s' % (self.id, self.name)
 
     def __init__(self, *args, **kw):
         super(Addon, self).__init__(*args, **kw)
@@ -554,7 +554,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     def deny_resubmission(self):
         if self.is_guid_denied:
-            raise RuntimeError("GUID already denied")
+            raise RuntimeError('GUID already denied')
 
         activity.log_create(amo.LOG.DENIED_GUID_ADDED, self)
         log.info('Deny resubmission for addon "%s"', self.slug)
@@ -562,7 +562,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     def allow_resubmission(self):
         if not self.is_guid_denied:
-            raise RuntimeError("GUID already denied")
+            raise RuntimeError('GUID already denied')
 
         activity.log_create(amo.LOG.DENIED_GUID_DELETED, self)
         log.info('Allow resubmission for addon "%s"', self.slug)
@@ -597,12 +597,12 @@ class Addon(OnChangeMixin, ModelBase):
             'weekly_downloads': self.weekly_downloads,
             'url': jinja_helpers.absolutify(self.get_url_path()),
             'user_str': (
-                "%s, %s (%s)" % (user.name, user.email, user.id) if user else "Unknown"
+                '%s, %s (%s)' % (user.name, user.email, user.id) if user else 'Unknown'
             ),
         }
 
         email_msg = (
-            u"""
+            """
         The following %(atype)s was deleted.
         %(atype)s: %(name)s
         URL: %(url)s
@@ -978,13 +978,13 @@ class Addon(OnChangeMixin, ModelBase):
                 if send_signal and _signal:
                     signals.version_changed.send(sender=self)
                 log.info(
-                    u'Version changed from current: %s to %s '
-                    u'for addon %s' % tuple(diff + [self])
+                    'Version changed from current: %s to %s '
+                    'for addon %s' % tuple(diff + [self])
                 )
             except Exception as e:
                 log.error(
-                    u'Could not save version changes current: %s to %s '
-                    u'for addon %s (%s)' % tuple(diff + [self, e])
+                    'Could not save version changes current: %s to %s '
+                    'for addon %s (%s)' % tuple(diff + [self, e])
                 )
 
         return bool(updated)
@@ -1912,7 +1912,7 @@ class AddonUser(OnChangeMixin, SaveUpdateMixin, models.Model):
     role = models.SmallIntegerField(
         default=amo.AUTHOR_ROLE_OWNER, choices=amo.AUTHOR_CHOICES_UNFILTERED
     )
-    listed = models.BooleanField(_(u'Listed'), default=True)
+    listed = models.BooleanField(_('Listed'), default=True)
     position = models.IntegerField(default=0)
 
     unfiltered = AddonUserManager(include_deleted=True)
@@ -1991,7 +1991,7 @@ class AddonUserPendingConfirmation(SaveUpdateMixin, models.Model):
     role = models.SmallIntegerField(
         default=amo.AUTHOR_ROLE_OWNER, choices=amo.AUTHOR_CHOICES
     )
-    listed = models.BooleanField(_(u'Listed'), default=True)
+    listed = models.BooleanField(_('Listed'), default=True)
     # Note: we don't bother with position for authors waiting confirmation,
     # because it's impossible to properly reconcile it with the confirmed
     # authors. Instead, authors waiting confirmation are displayed in the order
@@ -2031,7 +2031,7 @@ class AddonApprovalsCounter(ModelBase):
     last_content_review = models.DateTimeField(null=True, db_index=True)
 
     def __str__(self):
-        return u'%s: %d' % (str(self.pk), self.counter) if self.pk else u''
+        return '%s: %d' % (str(self.pk), self.counter) if self.pk else ''
 
     @classmethod
     def increment_for_addon(cls, addon):
@@ -2204,8 +2204,8 @@ class AppSupport(ModelBase):
     id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
     app = models.PositiveIntegerField(choices=amo.APPS_CHOICES, db_column='app_id')
-    min = models.BigIntegerField("Minimum app version", null=True)
-    max = models.BigIntegerField("Maximum app version", null=True)
+    min = models.BigIntegerField('Minimum app version', null=True)
+    max = models.BigIntegerField('Maximum app version', null=True)
 
     class Meta:
         db_table = 'appsupport'

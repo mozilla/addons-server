@@ -45,7 +45,7 @@ class File(OnChangeMixin, ModelBase):
     platform = models.PositiveIntegerField(
         choices=amo.SUPPORTED_PLATFORMS_CHOICES,
         default=amo.PLATFORM_ALL.id,
-        db_column="platform_id",
+        db_column='platform_id',
     )
     filename = models.CharField(max_length=255, default='')
     size = models.PositiveIntegerField(default=0)  # In bytes.

@@ -106,7 +106,7 @@ class TestRankingScenarios(ESTestCase):
             name='Tab Mix Plus',
             slug=u'tab-mix-plus',
             summary=(
-                'Tab Mix Plus enhances Firefox\'s tab browsing capabilities. '
+                "Tab Mix Plus enhances Firefox's tab browsing capabilities. "
                 'It includes such features as duplicating tabs, controlling '
                 'tab focus, tab clicking options, undo closed tabs and '
                 'windows, plus much more. It also includes a full-featured '
@@ -178,7 +178,7 @@ class TestRankingScenarios(ESTestCase):
                 'NoMiners is an Add-on that tries to block cryptominers such '
                 'as coinhive.\n\nBlocking those pesky miner scripts will '
                 'relieve your CPU and BATTERY while browsing the web.'
-                '\n\nIt\'s open source, so feel free to check out the code '
+                "\n\nIt's open source, so feel free to check out the code "
                 'and submit improvements.'
             ),
             weekly_downloads=71,
@@ -211,7 +211,7 @@ class TestRankingScenarios(ESTestCase):
             name='Privacy Settings',
             slug=u'privacy-settings',
             summary=(
-                'Alter Firefox\'s built-in privacy settings easily with a '
+                "Alter Firefox's built-in privacy settings easily with a "
                 'toolbar panel.'
             ),
             weekly_downloads=1492,
@@ -416,7 +416,7 @@ class TestRankingScenarios(ESTestCase):
                 u'A very lightweight add-on that allows you to watch YouTube™ '
                 u'videos using Flash® Player instead of the '
                 u'default HTML5 player. The Flash® Player will consume less '
-                u'CPU and RAM resources if your device doesn\'t easily '
+                u"CPU and RAM resources if your device doesn't easily "
                 u'support HTML5 videos. Try it!'
             ),
             weekly_downloads=21882,
@@ -460,7 +460,7 @@ class TestRankingScenarios(ESTestCase):
                 'For all those who are missing the old Firefox Pocket addon, '
                 'and not satisfied with the new Pocket integration, here is '
                 'an unofficial client for the excellent Pocket service. '
-                'Hope you\'ll enjoy it!'
+                "Hope you'll enjoy it!"
             ),
             weekly_downloads=1123,
         )

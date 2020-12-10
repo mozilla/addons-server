@@ -59,7 +59,7 @@ class AbstractScannerResult(ModelBase):
     )
     version = models.ForeignKey(
         'versions.Version',
-        related_name="%(class)ss",
+        related_name='%(class)ss',
         on_delete=models.CASCADE,
         null=True,
     )
@@ -182,7 +182,7 @@ class AbstractScannerResult(ModelBase):
         action_name = ACTIONS.get(action_id, None)
 
         if not action_name:
-            raise Exception("invalid action %s" % action_id)
+            raise Exception('invalid action %s' % action_id)
 
         ACTION_FUNCTIONS = {
             NO_ACTION: _no_action,
@@ -194,7 +194,7 @@ class AbstractScannerResult(ModelBase):
         action_function = ACTION_FUNCTIONS.get(action_id, None)
 
         if not action_function:
-            raise Exception("no implementation for action %s" % action_id)
+            raise Exception('no implementation for action %s' % action_id)
 
         # We have a valid action to execute, so let's do it!
         log.info('Starting action "%s" for version %s.', action_name, version.pk)
@@ -287,7 +287,7 @@ class ScannerRule(AbstractScannerRule):
 class ScannerResult(AbstractScannerResult):
     upload = models.ForeignKey(
         FileUpload,
-        related_name="%(class)ss",  # scannerresults
+        related_name='%(class)ss',  # scannerresults
         on_delete=models.SET_NULL,
         null=True,
     )

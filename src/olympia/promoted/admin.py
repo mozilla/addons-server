@@ -63,9 +63,9 @@ class PromotedSubscriptionInline(admin.StackedInline):
         return False
 
     def onboarding_url(self, obj):
-        return format_html("<pre>{}</pre>", obj.get_onboarding_url())
+        return format_html('<pre>{}</pre>', obj.get_onboarding_url())
 
-    onboarding_url.short_description = "Onboarding URL"
+    onboarding_url.short_description = 'Onboarding URL'
 
     def stripe_information(self, obj):
         if not obj or not obj.stripe_subscription_id:
@@ -79,7 +79,7 @@ class PromotedSubscriptionInline(admin.StackedInline):
             '<a href="{}">View subscription on Stripe</a>', stripe_sub_url
         )
 
-    stripe_information.short_description = "Stripe information"
+    stripe_information.short_description = 'Stripe information'
 
 
 class PromotedApprovalInline(admin.TabularInline):

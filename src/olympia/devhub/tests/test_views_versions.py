@@ -107,7 +107,7 @@ class TestVersion(TestCase):
             'Deleting your add-on will permanently delete all versions and '
             'files you have submitted for this add-on, listed or not. '
             'The add-on ID will continue to be linked to your account, so '
-            'others won\'t be able to submit versions using the same ID.'
+            "others won't be able to submit versions using the same ID."
         )
 
     def test_delete_message_if_bits_are_messy(self):
@@ -121,7 +121,7 @@ class TestVersion(TestCase):
             'Deleting your add-on will permanently delete all versions and '
             'files you have submitted for this add-on, listed or not. '
             'The add-on ID will continue to be linked to your account, so '
-            'others won\'t be able to submit versions using the same ID.'
+            "others won't be able to submit versions using the same ID."
         )
 
     def test_delete_message_incomplete(self):
@@ -335,7 +335,7 @@ class TestVersion(TestCase):
         entry = ActivityLog.objects.get()
         assert entry.action == amo.LOG.USER_DISABLE.id
         msg = entry.to_string()
-        assert str(self.addon.name) in msg, "Unexpected: %r" % msg
+        assert str(self.addon.name) in msg, 'Unexpected: %r' % msg
 
     @mock.patch('olympia.files.models.File.hide_disabled_file')
     def test_user_can_disable_addon_pending_version(self, hide_mock):
@@ -364,7 +364,7 @@ class TestVersion(TestCase):
         entry = ActivityLog.objects.get()
         assert entry.action == amo.LOG.USER_DISABLE.id
         msg = entry.to_string()
-        assert str(self.addon.name) in msg, "Unexpected: %r" % msg
+        assert str(self.addon.name) in msg, 'Unexpected: %r' % msg
 
     @mock.patch('olympia.files.models.File.hide_disabled_file')
     def test_disabling_addon_awaiting_review_disables_version(self, hide_mock):
@@ -396,7 +396,7 @@ class TestVersion(TestCase):
         entry = ActivityLog.objects.get()
         assert entry.action == amo.LOG.USER_ENABLE.id
         msg = entry.to_string()
-        assert str(self.addon.name) in msg, "Unexpected: %r" % msg
+        assert str(self.addon.name) in msg, 'Unexpected: %r' % msg
 
     def test_unprivileged_user_cant_disable_addon(self):
         self.addon.update(disabled_by_user=False)
@@ -858,7 +858,7 @@ class TestVersionEditDetails(TestVersionEditBase):
     def test_dont_reset_needs_admin_code_review_flag_if_no_new_source(self):
         tdir = temp.gettempdir()
         tmp_file = temp.NamedTemporaryFile
-        with tmp_file(suffix=".zip", dir=tdir) as source_file:
+        with tmp_file(suffix='.zip', dir=tdir) as source_file:
             with zipfile.ZipFile(source_file, 'w') as zip_file:
                 zip_file.writestr('foo', 'a' * (2 ** 21))
             source_file.seek(0)
@@ -890,7 +890,7 @@ class TestVersionEditStaticTheme(TestVersionEditBase):
     def test_no_compat(self):
         response = self.client.get(self.url)
         doc = pq(response.content)
-        assert not doc("#id_form-TOTAL_FORMS")
+        assert not doc('#id_form-TOTAL_FORMS')
 
     def test_no_upload(self):
         response = self.client.get(self.url)

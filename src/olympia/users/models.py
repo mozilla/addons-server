@@ -209,7 +209,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             self.username = force_text(self.username)
 
     def __str__(self):
-        return u'%s: %s' % (self.id, self.display_name or self.username)
+        return '%s: %s' % (self.id, self.display_name or self.username)
 
     @classmethod
     def get_lookup_field(cls, identifier):
@@ -372,11 +372,11 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         else:
             split_id = re.match(r'((\d*?)(\d{0,3}?))\d{1,3}$', str(self.id))
             modified = int(time.mktime(self.modified.timetuple()))
-            path = "/".join(
+            path = '/'.join(
                 [
                     split_id.group(2) or '0',
                     split_id.group(1) or '0',
-                    "%s.png?modified=%s" % (self.id, modified),
+                    '%s.png?modified=%s' % (self.id, modified),
                 ]
             )
             return user_media_url('userpics') + path
@@ -594,9 +594,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     @staticmethod
     def user_logged_in(sender, request, user, **kwargs):
         """Log when a user logs in and records its IP address."""
-        log.info(
-            u'User (%s) logged in successfully' % user, extra={'email': user.email}
-        )
+        log.info('User (%s) logged in successfully' % user, extra={'email': user.email})
         user.update(last_login_ip=core.get_remote_addr() or '')
 
     def mobile_collection(self):
@@ -670,7 +668,7 @@ class UserNotification(ModelBase):
         return NOTIFICATIONS_BY_ID.get(self.notification_id)
 
     def __str__(self):
-        return u'{user}, {notification}, enabled={enabled}'.format(
+        return '{user}, {notification}, enabled={enabled}'.format(
             user=self.user.name,
             notification=self.notification.short,
             enabled=self.enabled,

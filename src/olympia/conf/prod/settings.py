@@ -27,7 +27,7 @@ CODE_MANAGER_URL = env('CODE_MANAGER_URL', default='https://code.addons.mozilla.
 STATIC_URL = '%s/static/' % CDN_HOST
 MEDIA_URL = '%s/user-media/' % CDN_HOST
 
-SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
+SESSION_COOKIE_DOMAIN = '.%s' % DOMAIN
 
 # Domain emails should be sent to.
 INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN', default='addons.mozilla.org')

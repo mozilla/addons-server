@@ -1067,7 +1067,7 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         translation.activate('de')
         addon.reload()
         assert addon.name == 'Meine Beispielerweiterung'
-        assert addon.summary == u'Benachrichtigt den Benutzer über Linkklicks'
+        assert addon.summary == 'Benachrichtigt den Benutzer über Linkklicks'
 
     def test_too_long_guid_not_in_manifest_forbidden(self):
         fname = 'src/olympia/files/fixtures/files/webextension_no_id.xpi'
@@ -1084,7 +1084,7 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         assert response.data == {
             'error': (
                 "Please specify your Add-on ID in the manifest if it's "
-                "longer than 64 characters."
+                'longer than 64 characters.'
             )
         }
 
