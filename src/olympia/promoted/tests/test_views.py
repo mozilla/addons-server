@@ -25,7 +25,7 @@ class TestStripeWebhook(TestCase):
     @mock.patch('olympia.promoted.views.create_stripe_webhook_event')
     def test_invalid_signature(self, create_mock):
         create_mock.side_effect = stripe.error.SignatureVerificationError(
-            message='error', sig_header=""
+            message='error', sig_header=''
         )
 
         response = self.client.post(self.url)
