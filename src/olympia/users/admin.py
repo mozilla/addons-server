@@ -4,6 +4,7 @@ from django import http
 from django.conf.urls import url
 from django.contrib import admin, messages
 from django.contrib.admin.utils import unquote
+from django.db.models import Count, Q
 from django.db.utils import IntegrityError
 from django.http import (
     Http404,
@@ -21,7 +22,7 @@ from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.access import acl
 from olympia.activity.models import ActivityLog, UserLog
-from olympia.addons.models import Addon
+from olympia.addons.models import Addon, AddonUser
 from olympia.amo.admin import CommaSearchInAdminMixin
 from olympia.api.models import APIKey, APIKeyConfirmation
 from olympia.bandwagon.models import Collection
@@ -66,9 +67,9 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         'last_login_ip',
         'known_ip_adresses',
         'last_known_activity_time',
-        'ratings_created',
-        'collections_created',
-        'addons_created',
+        'ratings_authorship',
+        'collections_authorship',
+        'addons_authorship',
         'activity',
         'abuse_reports_by_this_user',
         'abuse_reports_for_this_user',
@@ -104,7 +105,13 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         ),
         (
             'Content',
-            {'fields': ('addons_created', 'collections_created', 'ratings_created')},
+            {
+                'fields': (
+                    'addons_authorship',
+                    'collections_authorship',
+                    'ratings_authorship',
+                )
+            },
         ),
         (
             'Abuse Reports',
@@ -360,20 +367,37 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
 
     has_active_api_key.boolean = True
 
-    def collections_created(self, obj):
+    def collections_authorship(self, obj):
         return related_content_link(obj, Collection, 'author')
 
-    collections_created.short_description = _('Collections')
+    collections_authorship.short_description = _('Collections')
 
-    def addons_created(self, obj):
-        return related_content_link(obj, Addon, 'authors', related_manager='unfiltered')
+    def addons_authorship(self, obj):
+        counts = (
+            AddonUser.unfiltered.filter(user=obj)
+            .order_by()
+            .aggregate(
+                active_role=Count('role', filter=~Q(role=amo.AUTHOR_ROLE_DELETED)),
+                deleted_role=Count('role', filter=Q(role=amo.AUTHOR_ROLE_DELETED)),
+            )
+        )
+        return related_content_link(
+            obj,
+            Addon,
+            'authors',
+            text=format_html(
+                '{} (active role), {} (deleted role)',
+                counts['active_role'],
+                counts['deleted_role'],
+            ),
+        )
 
-    addons_created.short_description = _('Addons')
+    addons_authorship.short_description = _('Addons')
 
-    def ratings_created(self, obj):
+    def ratings_authorship(self, obj):
         return related_content_link(obj, Rating, 'user')
 
-    ratings_created.short_description = _('Ratings')
+    ratings_authorship.short_description = _('Ratings')
 
     def activity(self, obj):
         return related_content_link(obj, ActivityLog, 'user')

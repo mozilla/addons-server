@@ -1158,26 +1158,66 @@ class Addon(OnChangeMixin, ModelBase):
             version.addon = addon
 
     @staticmethod
-    def attach_listed_authors(addons, addon_dict=None):
+    def _attach_authors(
+        addons,
+        addon_dict=None,
+        manager='objects',
+        listed=True,
+        to_attr='listed_authors',
+    ):
+        # It'd be nice if this could be done with something like
+        # qs.prefetch_related(
+        #     Prefetch('authors', queryset=UserProfile.objects.annotate(
+        #         role=F('addonuser__role'), listed=F('addonuser__listed'))))
+        # instead, but that doesn't work because the prefetch queryset is
+        # making a different join for addonuser than the one used by the
+        # manytomanyfield, so the results are completely wrong when there are
+        # more than one add-on. Also this wouldn't let us customize the
+        # AddonUser manager to include/exclude deleted roles.
+        # So instead, we do it via AddonUser, copy the properties on the users
+        # and throw away the AddonUser instances afterwards.
         if addon_dict is None:
             addon_dict = {addon.id: addon for addon in addons}
 
+        filters = {'addon__in': addons}
+        if listed is not None:
+            filters['listed'] = listed
+        addonuser_qs = getattr(AddonUser, manager).all()
         addonuser_qs = (
-            AddonUser.objects.filter(addon__in=addons, listed=True)
+            addonuser_qs.filter(**filters)
             .order_by('addon_id', 'position')
             .select_related('user')
         )
         seen = set()
         groupby = itertools.groupby(addonuser_qs, key=lambda u: u.addon_id)
         for addon_id, addonusers in groupby:
-            addon_dict[addon_id].listed_authors = [au.user for au in addonusers]
+            authors = []
+            for addonuser in addonusers:
+                setattr(addonuser.user, 'role', addonuser.role)
+                setattr(addonuser.user, 'listed', addonuser.listed)
+                authors.append(addonuser.user)
+            setattr(addon_dict[addon_id], to_attr, authors)
             seen.add(addon_id)
-        # set listed_authors to empty list on addons without listed authors.
+        # set authors to empty list on addons without any.
         [
-            setattr(addon, 'listed_authors', [])
+            setattr(addon, to_attr, [])
             for addon in addon_dict.values()
             if addon.id not in seen
         ]
+
+    @staticmethod
+    def attach_listed_authors(addons, addon_dict=None):
+        Addon._attach_authors(addons, addon_dict=addon_dict)
+
+    @staticmethod
+    def attach_all_authors(addons, addon_dict=None):
+        Addon._attach_authors(
+            addons,
+            addon_dict=addon_dict,
+            manager='unfiltered',
+            listed=None,
+            to_attr='all_authors',
+        )
 
     @staticmethod
     def attach_previews(addons, addon_dict=None, no_transforms=False):

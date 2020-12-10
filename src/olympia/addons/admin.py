@@ -15,7 +15,7 @@ from django.http.response import (
 from django.shortcuts import get_object_or_404
 from django.urls import resolve
 from django.utils.encoding import force_text
-from django.utils.html import format_html
+from django.utils.html import format_html, format_html_join
 from django.utils.translation import ugettext, ugettext_lazy as _
 
 import olympia.core.logger
@@ -147,16 +147,22 @@ class FileInline(admin.TabularInline):
 
 class AddonAdmin(admin.ModelAdmin):
     class Media:
-        css = {'all': ('css/admin/l10n.css', 'css/admin/pagination.css')}
+        css = {
+            'all': (
+                'css/admin/l10n.css',
+                'css/admin/pagination.css',
+                'css/admin/addons.css',
+            )
+        }
         js = ('admin/js/jquery.init.js', 'js/admin/l10n.js', 'js/admin/recalc_hash.js')
 
-    exclude = ('authors',)
     list_display = (
         '__str__',
         'type',
         'guid',
         'status',
         'average_rating',
+        'authors_links',
         'reviewer_links',
     )
     list_filter = ('type', 'status')
@@ -243,8 +249,12 @@ class AddonAdmin(admin.ModelAdmin):
     )
     actions = ['git_extract_action']
 
-    def queryset(self, request):
-        return models.Addon.unfiltered
+    def get_queryset(self, request):
+        return (
+            Addon.unfiltered.all()
+            .only_translations()
+            .transform(Addon.attach_all_authors)
+        )
 
     def get_urls(self):
         def wrap(view):
@@ -263,13 +273,45 @@ class AddonAdmin(admin.ModelAdmin):
         ]
         return custom_urlpatterns + urlpatterns
 
+    def authors_links(self, obj):
+        # Note: requires .transform(Addon.attach_all_authors) to have been
+        # applied to fill all_authors property and role on each user in it.
+        authors = obj.all_authors
+        return (
+            format_html(
+                '<ul>{}</ul>',
+                format_html_join(
+                    '',
+                    '<li><a href="{}">{} ({}{})</a></li>',
+                    (
+                        (
+                            urljoin(
+                                settings.EXTERNAL_SITE_URL,
+                                reverse(
+                                    'admin:users_userprofile_change', args=(author.pk,)
+                                ),
+                            ),
+                            author.email,
+                            dict(amo.AUTHOR_CHOICES_UNFILTERED)[author.role],
+                            ', Not listed' if author.listed is False else '',
+                        )
+                        for author in authors
+                    ),
+                ),
+            )
+            if authors
+            else '-'
+        )
+
+    authors_links.short_description = _('Authors')
+
     def total_ratings_link(self, obj):
         return related_content_link(
             obj,
             Rating,
             'addon',
             related_manager='without_replies',
-            count=obj.total_ratings,
+            text=obj.total_ratings,
         )
 
     total_ratings_link.short_description = _(u'Ratings')
@@ -305,10 +347,8 @@ class AddonAdmin(admin.ModelAdmin):
         if lookup_field != 'pk':
             addon = None
             try:
-                if lookup_field == 'slug':
-                    addon = self.queryset(request).all().get(slug=object_id)
-                elif lookup_field == 'guid':
-                    addon = self.queryset(request).get(guid=object_id)
+                if lookup_field in ('slug', 'guid'):
+                    addon = self.get_queryset(request).get(**{lookup_field: object_id})
             except Addon.DoesNotExist:
                 raise http.Http404
             # Don't get in an infinite loop if addon.slug.isdigit().

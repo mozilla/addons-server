@@ -489,7 +489,7 @@ class TestAddonModels(TestCase):
     def test_transformer(self):
         author = UserProfile.objects.get(pk=55021)
         new_author = AddonUser.objects.create(
-            addon_id=3615, user=user_factory(), listed=True
+            addon_id=3615, user=user_factory(username='new_author'), listed=True
         ).user
         # make the new_author a deleted author of another addon
         AddonUser.objects.create(
@@ -498,12 +498,24 @@ class TestAddonModels(TestCase):
         # Deleted, so shouldn't show up below.
         AddonUser.objects.create(
             addon_id=3615,
-            user=user_factory(),
+            user=user_factory(username='deleted_author'),
             listed=True,
             role=amo.AUTHOR_ROLE_DELETED,
-        ).user
+        )
+        # Not listed, should not show up.
+        AddonUser.objects.create(
+            addon_id=3615,
+            user=user_factory(username='not_listed_author'),
+            listed=False,
+            role=amo.AUTHOR_ROLE_OWNER,
+        )
+        # Different author on another add-on - should not show up
+        AddonUser.objects.create(addon=addon_factory(), user=user_factory())
+        # First author, but on another add-on, not deleted - should not show up
+        AddonUser.objects.create(addon=addon_factory(), user=author)
 
-        addon = Addon.objects.get(pk=3615)
+        # Force evaluation of the queryset and test a single add-on
+        addon = list(Addon.objects.all().order_by('pk'))[0]
 
         # If the transformer works then we won't have any more queries.
         with self.assertNumQueries(0):
@@ -515,7 +527,55 @@ class TestAddonModels(TestCase):
         # repeat to check the position ordering works
         author.addonuser_set.filter(addon=addon).update(position=1)
         addon = Addon.objects.get(pk=3615)
-        assert [u.pk for u in addon.listed_authors] == [new_author.pk, author.pk]
+        with self.assertNumQueries(0):
+            assert [u.pk for u in addon.listed_authors] == [new_author.pk, author.pk]
+
+    def test_transformer_all_authors(self):
+        author = UserProfile.objects.get(pk=55021)
+        new_author = AddonUser.objects.create(
+            addon_id=3615, user=user_factory(username='new_author'), listed=True
+        ).user
+        # make the new_author a deleted author of another addon
+        AddonUser.objects.create(
+            addon=addon_factory(), user=new_author, role=amo.AUTHOR_ROLE_DELETED
+        )
+        # Deleted, so it should show up cause we're looking at *all* authors
+        # explicitly.
+        deleted_author = AddonUser.objects.create(
+            addon_id=3615,
+            user=user_factory(username='deleted_author'),
+            listed=True,
+            role=amo.AUTHOR_ROLE_DELETED,
+        ).user
+        # Not listed, should also show up.
+        not_listed_author = AddonUser.objects.create(
+            addon_id=3615,
+            user=user_factory(username='not_listed_author'),
+            listed=False,
+            role=amo.AUTHOR_ROLE_OWNER,
+        ).user
+        # Different author on another add-on - should not show up
+        AddonUser.objects.create(addon=addon_factory(), user=user_factory())
+        # First author, but on another add-on, not deleted - should not show up
+        AddonUser.objects.create(addon=addon_factory(), user=author)
+
+        # Force evaluation of the queryset and test a single add-on
+        addon = list(Addon.objects.transform(Addon.attach_all_authors).order_by('pk'))[
+            0
+        ]
+
+        # If the transformer works then we won't have any more queries.
+        with self.assertNumQueries(0):
+            assert [u.pk for u in addon.all_authors] == [
+                author.pk,
+                new_author.pk,
+                deleted_author.pk,
+                not_listed_author.pk,
+            ]
+        for user in addon.all_authors:
+            addonuser = AddonUser.unfiltered.filter(user=user, addon=addon).get()
+            assert user.role == addonuser.role
+            assert user.listed == addonuser.listed
 
     def _delete(self, addon_id):
         """Test deleting add-ons."""
