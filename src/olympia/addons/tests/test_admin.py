@@ -141,6 +141,21 @@ class TestAddonAdmin(TestCase):
         assert b'Reviewer Tools (listed)' in response.content
         assert b'Reviewer Tools (unlisted)' in response.content
 
+    def test_list_queries(self):
+        addon_factory(guid='@foo')
+        addon_factory(guid='@bar')
+        addon_factory(guid='@xyz')
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Addons:Edit')
+        self.client.login(email=user.email)
+
+        with self.assertNumQueries(12):
+            # FIXME: explain each query, lower count (#16132 should fix it
+            # the scaling, currently there is one query per add-on for the
+            # unlisted reviewer exists() query)
+            response = self.client.get(self.list_url, follow=True)
+            assert response.status_code == 200
+
     def test_can_edit_with_addons_edit_permission(self):
         addon = addon_factory(guid='@foo')
         self.detail_url = reverse(
@@ -512,8 +527,6 @@ class TestAddonAdmin(TestCase):
             response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
         assert addon.guid in response.content.decode('utf-8')
-
-        # FIXME: make query count scale correctly with more add-ons.
 
     def test_version_pagination(self):
         addon = addon_factory(users=[user_factory()])
