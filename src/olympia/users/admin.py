@@ -4,6 +4,7 @@ from django import http
 from django.conf.urls import url
 from django.contrib import admin, messages
 from django.contrib.admin.utils import unquote
+from django.db.models import Count, Q
 from django.db.utils import IntegrityError
 from django.http import (
     Http404, HttpResponseForbidden, HttpResponseNotAllowed,
@@ -18,7 +19,7 @@ from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.access import acl
 from olympia.activity.models import ActivityLog, UserLog
-from olympia.addons.models import Addon
+from olympia.addons.models import Addon, AddonUser
 from olympia.amo.admin import CommaSearchInAdminMixin
 from olympia.api.models import APIKey, APIKeyConfirmation
 from olympia.bandwagon.models import Collection
@@ -292,17 +293,18 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     collections_authorship.short_description = _('Collections')
 
     def addons_authorship(self, obj):
-        non_deleted_authorship_count = Addon.unfiltered.filter(
-            addonuser__user=obj).exclude(
-            addonuser__role=amo.AUTHOR_ROLE_DELETED).count()
-        deleted_authorship_count = Addon.unfiltered.filter(
-            addonuser__user=obj,
-            addonuser__role=amo.AUTHOR_ROLE_DELETED).count()
+        counts = (
+            AddonUser.unfiltered.filter(user=obj).order_by().aggregate(
+                active_role=Count(
+                    'role', filter=~Q(role=amo.AUTHOR_ROLE_DELETED)),
+                deleted_role=Count(
+                    'role', filter=Q(role=amo.AUTHOR_ROLE_DELETED)))
+        )
         return related_content_link(
             obj, Addon, 'authors',
             text=format_html('{} (active role), {} (deleted role)',
-                             non_deleted_authorship_count,
-                             deleted_authorship_count),
+                             counts['active_role'],
+                             counts['deleted_role']),
         )
     addons_authorship.short_description = _('Addons')
 
