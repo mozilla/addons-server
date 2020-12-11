@@ -72,7 +72,7 @@ class TestSubmitBase(TestCase):
         return self.get_addon().versions.latest()
 
     def generate_source_zip(
-        self, suffix='.zip', data=u'z' * (2 ** 21), compression=zipfile.ZIP_DEFLATED
+        self, suffix='.zip', data='z' * (2 ** 21), compression=zipfile.ZIP_DEFLATED
     ):
         tdir = temp.gettempdir()
         source = temp.NamedTemporaryFile(suffix=suffix, dir=tdir)
@@ -125,8 +125,8 @@ class TestAddonSubmitAgreementWithPostReviewEnabled(TestSubmitBase):
         form = response.context['agreement_form']
         assert form.is_valid() is False
         assert form.errors == {
-            'distribution_agreement': [u'This field is required.'],
-            'review_policy': [u'This field is required.'],
+            'distribution_agreement': ['This field is required.'],
+            'review_policy': ['This field is required.'],
         }
         doc = pq(response.content)
         for id_ in form.errors.keys():
@@ -616,7 +616,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
 
         # Check that `all_files` is correct
         all_ = sorted([f.filename for f in addon.current_version.all_files])
-        assert all_ == [u'beastify-1.0-an+fx.xpi']
+        assert all_ == ['beastify-1.0-an+fx.xpi']
 
         # Default to PLATFORM_ALL
         assert addon.current_version.supported_platforms == [amo.PLATFORM_ALL]
@@ -656,7 +656,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         addon = Addon.objects.get()
         self.assert3xx(response, reverse('devhub.submit.details', args=[addon.slug]))
         all_ = sorted([f.filename for f in addon.current_version.all_files])
-        assert all_ == [u'weta_fade-1.0-an+fx.xpi']  # A single XPI for all.
+        assert all_ == ['weta_fade-1.0-an+fx.xpi']  # A single XPI for all.
         assert addon.type == amo.ADDON_STATICTHEME
         previews = list(addon.current_version.previews.all())
         assert len(previews) == 3
@@ -675,7 +675,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.assert3xx(response, reverse('devhub.submit.finish', args=[addon.slug]))
         all_ = sorted([f.filename for f in latest_version.all_files])
-        assert all_ == [u'weta_fade-1.0-an+fx.xpi']  # A single XPI for all.
+        assert all_ == ['weta_fade-1.0-an+fx.xpi']  # A single XPI for all.
         assert addon.type == amo.ADDON_STATICTHEME
         # Only listed submissions need a preview generated.
         assert latest_version.previews.all().count() == 0
@@ -702,7 +702,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         # Next step is same as non-wizard flow too.
         self.assert3xx(response, reverse('devhub.submit.details', args=[addon.slug]))
         all_ = sorted([f.filename for f in addon.current_version.all_files])
-        assert all_ == [u'weta_fade-1.0-an+fx.xpi']  # A single XPI for all.
+        assert all_ == ['weta_fade-1.0-an+fx.xpi']  # A single XPI for all.
         assert addon.type == amo.ADDON_STATICTHEME
         previews = list(addon.current_version.previews.all())
         assert len(previews) == 3
@@ -733,7 +733,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         # Next step is same as non-wizard flow too.
         self.assert3xx(response, reverse('devhub.submit.finish', args=[addon.slug]))
         all_ = sorted([f.filename for f in latest_version.all_files])
-        assert all_ == [u'weta_fade-1.0-an+fx.xpi']  # A single XPI for all.
+        assert all_ == ['weta_fade-1.0-an+fx.xpi']  # A single XPI for all.
         assert addon.type == amo.ADDON_STATICTHEME
         # Only listed submissions need a preview generated.
         assert latest_version.previews.all().count() == 0
@@ -839,7 +839,7 @@ class TestAddonSubmitSource(TestSubmitBase):
             has_source=False, source=self.generate_source_zip(), expect_errors=True
         )
         assert response.context['form'].errors == {
-            'source': [u'Source file uploaded but you indicated no source was needed.']
+            'source': ['Source file uploaded but you indicated no source was needed.']
         }
         self.addon = self.addon.reload()
         assert not self.get_version().source
@@ -848,7 +848,7 @@ class TestAddonSubmitSource(TestSubmitBase):
     def test_say_yes_but_dont_submit_source_fails(self):
         response = self.post(has_source=True, source=None, expect_errors=True)
         assert response.context['form'].errors == {
-            'source': [u'You have not uploaded a source file.']
+            'source': ['You have not uploaded a source file.']
         }
         self.addon = self.addon.reload()
         assert not self.get_version().source
@@ -904,7 +904,7 @@ class TestAddonSubmitSource(TestSubmitBase):
             expect_errors=True,
         )
         assert response.context['form'].errors == {
-            'source': [u'Invalid or broken archive.'],
+            'source': ['Invalid or broken archive.'],
         }
         self.addon = self.addon.reload()
         assert not self.get_version().source
@@ -917,7 +917,7 @@ class TestAddonSubmitSource(TestSubmitBase):
             expect_errors=True,
         )
         assert response.context['form'].errors == {
-            'source': [u'Invalid or broken archive.'],
+            'source': ['Invalid or broken archive.'],
         }
         self.addon = self.addon.reload()
         assert not self.get_version().source
@@ -936,7 +936,7 @@ class TestAddonSubmitSource(TestSubmitBase):
         source.seek(0)  # Last seek to reset source descriptor before posting.
         response = self.post(has_source=True, source=source, expect_errors=True)
         assert response.context['form'].errors == {
-            'source': [u'Invalid or broken archive.'],
+            'source': ['Invalid or broken archive.'],
         }
         self.addon = self.addon.reload()
         assert not self.get_version().source
@@ -952,7 +952,7 @@ class TestAddonSubmitSource(TestSubmitBase):
         with open(source.name, 'rb'):
             response = self.post(has_source=True, source=source, expect_errors=True)
         assert response.context['form'].errors == {
-            'source': [u'Invalid or broken archive.'],
+            'source': ['Invalid or broken archive.'],
         }
         self.addon = self.addon.reload()
         assert not self.get_version().source
@@ -1021,10 +1021,10 @@ class DetailsPageMixin(object):
         self.assertFormError(response, 'form', 'name', error)
 
         # 'ø' is not a symbol, it's actually a letter, so it should be valid.
-        data = self.get_dict(name=u'ø')
+        data = self.get_dict(name='ø')
         response = self.client.post(self.url, data)
         assert response.status_code == 302
-        assert self.get_addon().name == u'ø'
+        assert self.get_addon().name == 'ø'
 
     def test_submit_slug_invalid(self):
         # Submit an invalid slug.
@@ -1065,10 +1065,10 @@ class DetailsPageMixin(object):
         self.assertFormError(response, 'form', 'summary', error)
 
         # 'ø' is not a symbol, it's actually a letter, so it should be valid.
-        data = self.get_dict(summary=u'ø')
+        data = self.get_dict(summary='ø')
         response = self.client.post(self.url, data)
         assert response.status_code == 302
-        assert self.get_addon().summary == u'ø'
+        assert self.get_addon().summary == 'ø'
 
     def test_submit_summary_length(self):
         # Summary is too long.
@@ -1166,7 +1166,7 @@ class DetailsPageMixin(object):
             'form',
             'name',
             'Ensure name and summary combined are at most 70 characters '
-            u'(they have 100).',
+            '(they have 100).',
         )
 
         # success: together name and summary are 70 characters.

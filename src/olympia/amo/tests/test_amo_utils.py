@@ -26,7 +26,7 @@ from olympia.amo.utils import (
 
 pytestmark = pytest.mark.django_db
 
-u = u'Ελληνικά'
+u = 'Ελληνικά'
 
 
 def test_slug_validator():
@@ -41,7 +41,7 @@ def test_slug_validator():
     'test_input,expected',
     [
         ('xx x  - "#$@ x', 'xx-x-x'),
-        (u'Bän...g (bang)', u'bäng-bang'),
+        ('Bän...g (bang)', 'bäng-bang'),
         (u, u.lower()),
         ('-'.join([u, u]), '-'.join([u, u]).lower()),
         (' - '.join([u, u]), '-'.join([u, u]).lower()),
@@ -49,9 +49,9 @@ def test_slug_validator():
         ('tags/', 'tags'),
         ('holy_wars', 'holy_wars'),
         # I don't really care what slugify returns.  Just don't crash.
-        (u'x荿', u'x\u837f'),
-        (u'ϧ΃蒬蓣', u'\u03e7\u84ac\u84e3'),
-        (u'¿x', u'x'),
+        ('x荿', 'x\u837f'),
+        ('ϧ΃蒬蓣', '\u03e7\u84ac\u84e3'),
+        ('¿x', 'x'),
     ],
 )
 def test_slugify(test_input, expected):
@@ -155,7 +155,7 @@ class TestLocalFileStorage(TestCase):
             assert fd.read() == 'stuff'
 
     def test_non_ascii_filename(self):
-        fn = os.path.join(self.tmp, u'Ivan Krsti\u0107.txt')
+        fn = os.path.join(self.tmp, 'Ivan Krsti\u0107.txt')
         with self.stor.open(fn, 'w') as fd:
             fd.write('stuff')
         with self.stor.open(fn, 'r') as fd:
@@ -164,9 +164,9 @@ class TestLocalFileStorage(TestCase):
     def test_non_ascii_content(self):
         fn = os.path.join(self.tmp, 'somefile.txt')
         with self.stor.open(fn, 'wb') as fd:
-            fd.write(u'Ivan Krsti\u0107.txt'.encode('utf8'))
+            fd.write('Ivan Krsti\u0107.txt'.encode('utf8'))
         with self.stor.open(fn, 'rb') as fd:
-            assert fd.read().decode('utf8') == u'Ivan Krsti\u0107.txt'
+            assert fd.read().decode('utf8') == 'Ivan Krsti\u0107.txt'
 
     def test_make_file_dirs(self):
         dp = os.path.join(self.tmp, 'path', 'to')
@@ -246,13 +246,13 @@ class TestCacheNamespaces(TestCase):
             '<script>alert("BALL SO HARD")</script>',
             '&lt;script&gt;alert("BALL SO HARD")&lt;/script&gt;',
         ),
-        (u'Bän...g (bang)', u'Bän...g (bang)'),
+        ('Bän...g (bang)', 'Bän...g (bang)'),
         (u, u),
         ('-'.join([u, u]), '-'.join([u, u])),
         (' - '.join([u, u]), ' - '.join([u, u])),
-        (u'x荿', u'x\u837f'),
-        (u'ϧ΃蒬蓣', u'\u03e7\u0383\u84ac\u84e3'),
-        (u'¿x', u'¿x'),
+        ('x荿', 'x\u837f'),
+        ('ϧ΃蒬蓣', '\u03e7\u0383\u84ac\u84e3'),
+        ('¿x', '¿x'),
     ],
 )
 def test_escape_all(test_input, expected):

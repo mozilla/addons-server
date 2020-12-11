@@ -192,11 +192,11 @@ class TestSendMail(TestCase):
         send_mail(
             'test subject', 'test body', perm_setting='reply', recipient_list=[to]
         )
-        assert u'an add-on developer replies to' in mail.outbox[0].body
+        assert 'an add-on developer replies to' in mail.outbox[0].body
 
     def test_send_html_mail_jinja(self):
         emails = ['omg@org.yes']
-        subject = u'Mozilla Add-ons: Thank you for your submission!'
+        subject = 'Mozilla Add-ons: Thank you for your submission!'
         html_template = 'devhub/emails/submission.html'
         text_template = 'devhub/emails/submission.txt'
         send_html_mail_jinja(

@@ -20,7 +20,7 @@ def test_base_paths_bytestring(key):
 
     One of many examples would be
 
-    >>> os.path.join(u'path1', u'pæth2'.encode('utf-8'))
+    >>> os.path.join('path1', 'pæth2'.encode('utf-8'))
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
       File "/usr/lib64/python2.7/posixpath.py", line 80, in join

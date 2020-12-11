@@ -34,7 +34,7 @@ def dev_addon_listing_items(context, addons, src=None, notes=None):
 def dev_page_title(context, title=None, addon=None):
     """Wrapper for devhub page titles."""
     if addon:
-        title = u'%s :: %s' % (title, addon.name)
+        title = '%s :: %s' % (title, addon.name)
     else:
         devhub = ugettext('Developer Hub')
         title = '%s :: %s' % (title, devhub) if title else devhub

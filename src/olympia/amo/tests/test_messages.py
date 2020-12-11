@@ -67,9 +67,9 @@ def test_unicode_dups():
     request = HttpRequest()
     setattr(request, '_messages', default_storage(request))
 
-    info(request, u'Titlé', u'Body')
-    info(request, u'Titlé', u'Body')
-    info(request, u'Another Titlé', u'Another Body')
+    info(request, 'Titlé', 'Body')
+    info(request, 'Titlé', 'Body')
+    info(request, 'Another Titlé', 'Another Body')
 
     storage = django_messages.get_messages(request)
     assert len(storage) == 2, 'Too few or too many messages recorded.'

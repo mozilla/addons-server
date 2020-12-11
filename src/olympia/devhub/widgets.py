@@ -62,7 +62,7 @@ class IconTypeSelect(forms.RadioSelect):
                     )
                 )
 
-        return mark_safe(u'\n'.join(output))
+        return mark_safe('\n'.join(output))
 
 
 class CategoriesSelectMultiple(forms.CheckboxSelectMultiple):
@@ -99,12 +99,12 @@ class CategoriesSelectMultiple(forms.CheckboxSelectMultiple):
         output = []
         for (k, group) in enumerate(groups):
             cls = 'addon-misc-category' if k == 1 else 'addon-categories'
-            output.append(u'<ul class="%s checkbox-choices">' % cls)
+            output.append('<ul class="%s checkbox-choices">' % cls)
 
             for i, (option_value, option_label) in group:
                 if has_id:
                     final_attrs = dict(final_attrs, id='%s_%s' % (attrs['id'], i))
-                    label_for = u' for="%s"' % final_attrs['id']
+                    label_for = ' for="%s"' % final_attrs['id']
                 else:
                     label_for = ''
 
@@ -115,10 +115,10 @@ class CategoriesSelectMultiple(forms.CheckboxSelectMultiple):
                 rendered_cb = cb.render(name, option_value)
                 option_label = conditional_escape(force_text(option_label))
                 output.append(
-                    u'<li><label%s>%s %s</label></li>'
+                    '<li><label%s>%s %s</label></li>'
                     % (label_for, rendered_cb, option_label)
                 )
 
-            output.append(u'</ul>')
+            output.append('</ul>')
 
-        return mark_safe(u'\n'.join(output))
+        return mark_safe('\n'.join(output))

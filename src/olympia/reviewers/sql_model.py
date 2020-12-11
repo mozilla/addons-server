@@ -233,7 +233,7 @@ class RawSQLManager(object):
         def add(specs):
             c = join_specs(*specs, connector=connector)
             if stack[-1] in (AND, OR):
-                c = u'(%s)' % (c)
+                c = '(%s)' % (c)
             elif stack[-1] is not None:
                 stack.append(connector)
             if c:
@@ -248,7 +248,7 @@ class RawSQLManager(object):
                 specs.append(child)
         if len(specs):
             add(specs)
-        return u' '.join([c for c in stack if c])
+        return ' '.join([c for c in stack if c])
 
     def _kw_clause_from_q(self, *pairs, **kw):
         """Makes a WHERE clause out of pairs of (key, val) from Q objects."""
@@ -256,7 +256,7 @@ class RawSQLManager(object):
         stmt = []
         for field, val in pairs:
             stmt.append(self._kw_filter_to_clause(field, val))
-        return (u' %s ' % connector).join(stmt)
+        return (' %s ' % connector).join(stmt)
 
     def _kw_filter_to_clause(self, field, val):
         """Makes a WHERE clause out of field = val."""
@@ -264,10 +264,10 @@ class RawSQLManager(object):
             raise ValueError('Not a valid field for where clause: %r' % field)
         field = self._resolve_alias(field)
         if val is None:
-            return u'%s IS NULL' % (field,)
+            return '%s IS NULL' % (field,)
         else:
             param_k = self._param(val)
-            return u'%s = %%(%s)s' % (field, param_k)
+            return '%s = %%(%s)s' % (field, param_k)
 
     def _filter_to_clause(self, *specs, **kw):
         """Makes a WHERE clause out of filter_raw() arguments."""
@@ -294,10 +294,10 @@ class RawSQLManager(object):
             else:
                 param = '%%(%s)s' % self._param(val)
             full_clause.append('%s %s %s' % (field, clause.group('op'), param))
-        c = (u' %s ' % connector).join(full_clause)
+        c = (' %s ' % connector).join(full_clause)
         if len(full_clause) > 1:
             # Protect OR clauses
-            c = u'(%s)' % c
+            c = '(%s)' % c
         return c
 
     def _resolve_alias(self, field):
@@ -307,20 +307,20 @@ class RawSQLManager(object):
         return field
 
     def _compile(self, parts):
-        sep = u',\n'
-        and_ = u' %s\n' % AND
-        select = [u'%s AS `%s`' % (v, k) for k, v in parts['select'].items()]
-        stmt = u'SELECT\n%s\nFROM\n%s' % (sep.join(select), u'\n'.join(parts['from']))
+        sep = ',\n'
+        and_ = ' %s\n' % AND
+        select = ['%s AS `%s`' % (v, k) for k, v in parts['select'].items()]
+        stmt = 'SELECT\n%s\nFROM\n%s' % (sep.join(select), '\n'.join(parts['from']))
         if parts.get('where'):
-            stmt = u'%s\nWHERE\n%s' % (stmt, and_.join(parts['where']))
+            stmt = '%s\nWHERE\n%s' % (stmt, and_.join(parts['where']))
         if parts.get('group_by'):
-            stmt = u'%s\nGROUP BY\n%s' % (stmt, parts['group_by'])
+            stmt = '%s\nGROUP BY\n%s' % (stmt, parts['group_by'])
         if parts.get('having'):
-            stmt = u'%s\nHAVING\n%s' % (stmt, and_.join(parts['having']))
+            stmt = '%s\nHAVING\n%s' % (stmt, and_.join(parts['having']))
         if parts.get('order_by'):
-            stmt = u'%s\nORDER BY\n%s' % (stmt, sep.join(parts['order_by']))
+            stmt = '%s\nORDER BY\n%s' % (stmt, sep.join(parts['order_by']))
         if len(parts['limit']):
-            stmt = u'%s\nLIMIT %s' % (stmt, ', '.join([str(i) for i in parts['limit']]))
+            stmt = '%s\nLIMIT %s' % (stmt, ', '.join([str(i) for i in parts['limit']]))
         return stmt
 
     def _execute(self, sql):

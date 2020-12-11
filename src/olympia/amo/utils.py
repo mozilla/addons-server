@@ -780,7 +780,7 @@ def to_language(locale):
 
 
 def get_locale_from_lang(lang):
-    """Pass in a language (u'en-US') get back a Locale object courtesy of
+    """Pass in a language ('en-US') get back a Locale object courtesy of
     Babel.  Use this to figure out currencies, bidi, names, etc."""
     # Special fake language can just act like English for formatting and such.
     # Do the same for 'cak' because it's not in http://cldr.unicode.org/ and

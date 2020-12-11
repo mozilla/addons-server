@@ -37,14 +37,14 @@ class TestViews(TestCase):
     def setUp(self):
         super(TestViews, self).setUp()
         self.addon = addon_factory(
-            slug=u'my-addôn', file_kw={'size': 1024}, version_kw={'version': '1.0'}
+            slug='my-addôn', file_kw={'size': 1024}, version_kw={'version': '1.0'}
         )
         self.version = self.addon.current_version
         self.addon.current_version.update(created=self.days_ago(3))
 
     def test_version_update_info(self):
         self.version.release_notes = {
-            'en-US': u'Fix for an important bug',
+            'en-US': 'Fix for an important bug',
             'fr': u"Quelque chose en français.\n\nQuelque chose d'autre.",
         }
         self.version.save()
@@ -320,7 +320,7 @@ class TestDownloads(TestDownloadsBase):
         self.assert_served_by_redirecting_to_cdn(self.client.get(self.file_url))
 
     def test_unicode_url(self):
-        self.file.update(filename=u'图像浏览器-0.5-fx.xpi')
+        self.file.update(filename='图像浏览器-0.5-fx.xpi')
         self.assert_served_by_redirecting_to_cdn(self.client.get(self.file_url))
 
     def test_deleted(self):
@@ -531,7 +531,7 @@ class TestDownloadSource(TestCase):
         super(TestDownloadSource, self).setUp()
         self.addon = Addon.objects.get(pk=3615)
         # Make sure non-ascii is ok.
-        self.addon.update(slug=u'crosswarpex-확장')
+        self.addon.update(slug='crosswarpex-확장')
         self.version = self.addon.current_version
         tdir = temp.gettempdir()
         self.source_file = temp.NamedTemporaryFile(suffix='.zip', dir=tdir)

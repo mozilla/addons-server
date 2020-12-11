@@ -199,8 +199,8 @@ class TestCleanSlug(TestCase):
         assert b.slug == amo.utils.slugify(b.slug)
 
     def test_clean_slug_unicode(self):
-        addon = Addon.objects.create(name=u'Addön 1')
-        assert addon.slug == u'addön-1'
+        addon = Addon.objects.create(name='Addön 1')
+        assert addon.slug == 'addön-1'
 
     def test_name_only_has_invalid_slug_chars(self):
         # Create an addon and save it to have an id.
@@ -599,7 +599,7 @@ class TestAddonModels(TestCase):
 
     def test_delete(self):
         addon = Addon.unfiltered.get(pk=3615)
-        addon.name = u'é'  # Make sure we don't have encoding issues.
+        addon.name = 'é'  # Make sure we don't have encoding issues.
         addon.save()
         self._delete(3615)
 
@@ -648,9 +648,9 @@ class TestAddonModels(TestCase):
 
     def test_delete_reason(self):
         """Test deleting with a reason gives the reason in the mail."""
-        reason = u'trêason'
+        reason = 'trêason'
         a = Addon.objects.get(pk=3615)
-        a.name = u'é'
+        a.name = 'é'
         assert len(mail.outbox) == 0
         a.delete(msg='bye', reason=reason)
         assert len(mail.outbox) == 1
@@ -2324,9 +2324,9 @@ class TestCategoryModel(TestCase):
         category = Category(
             type=amo.ADDON_EXTENSION, application=amo.FIREFOX.id, slug='alerts-updates'
         )
-        assert category.name == u'Alerts & Updates'
+        assert category.name == 'Alerts & Updates'
         with translation.override('fr'):
-            assert category.name == u'Alertes et mises à jour'
+            assert category.name == 'Alertes et mises à jour'
 
     def test_name_fallback_to_empty(self):
         category = Category.objects.create(
@@ -2335,9 +2335,9 @@ class TestCategoryModel(TestCase):
             slug='this-cat-does-not-exist',
         )
 
-        assert category.name == u''
+        assert category.name == ''
         with translation.override('fr'):
-            assert category.name == u''
+            assert category.name == ''
 
 
 class TestPreviewModel(BasePreviewMixin, TestCase):
@@ -2639,19 +2639,19 @@ class TestAddonFromUpload(UploadTest):
         translation.activate('de')
         addon.reload()
         assert addon.name == 'Meine Beispielerweiterung'
-        assert addon.summary == u'Benachrichtigt den Benutzer über Linkklicks'
+        assert addon.summary == 'Benachrichtigt den Benutzer über Linkklicks'
 
     def test_webext_resolve_translations_corrects_locale(self):
         """Make sure we correct invalid `default_locale` values"""
         parsed_data = {
-            'default_locale': u'sv',
-            'guid': u'notify-link-clicks-i18n@notzilla.org',
-            'name': u'__MSG_extensionName__',
+            'default_locale': 'sv',
+            'guid': 'notify-link-clicks-i18n@notzilla.org',
+            'name': '__MSG_extensionName__',
             'is_webextension': True,
             'type': 1,
             'apps': [],
-            'summary': u'__MSG_extensionDescription__',
-            'version': u'1.0',
+            'summary': '__MSG_extensionDescription__',
+            'version': '1.0',
             'homepage': '...',
         }
 
@@ -2669,14 +2669,14 @@ class TestAddonFromUpload(UploadTest):
         for invalid locales
         """
         parsed_data = {
-            'default_locale': u'xxx',
-            'guid': u'notify-link-clicks-i18n@notzilla.org',
-            'name': u'__MSG_extensionName__',
+            'default_locale': 'xxx',
+            'guid': 'notify-link-clicks-i18n@notzilla.org',
+            'name': '__MSG_extensionName__',
             'is_webextension': True,
             'type': 1,
             'apps': [],
-            'summary': u'__MSG_extensionDescription__',
-            'version': u'1.0',
+            'summary': '__MSG_extensionDescription__',
+            'version': '1.0',
             'homepage': '...',
         }
 

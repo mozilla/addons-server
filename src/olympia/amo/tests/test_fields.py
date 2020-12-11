@@ -19,44 +19,44 @@ class HttpHttpsOnlyURLFieldTestCase(TestCase):
 
     def test_invalid_scheme_validation_error(self):
         with self.assertRaises(exceptions.ValidationError):
-            self.field.clean(u'javascript://foo.com/')
+            self.field.clean('javascript://foo.com/')
 
     def test_invalid_ftp_scheme_validation_error(self):
         with self.assertRaises(exceptions.ValidationError):
-            self.field.clean(u'ftp://foo.com/')
+            self.field.clean('ftp://foo.com/')
 
     def test_invalid_ftps_scheme_validation_error(self):
         with self.assertRaises(exceptions.ValidationError):
-            self.field.clean(u'ftps://foo.com/')
+            self.field.clean('ftps://foo.com/')
 
     def test_no_scheme_assumes_http(self):
-        assert self.field.clean(u'foo.com') == 'http://foo.com'
+        assert self.field.clean('foo.com') == 'http://foo.com'
 
     def test_http_scheme(self):
-        assert self.field.clean(u'http://foo.com/') == u'http://foo.com/'
+        assert self.field.clean('http://foo.com/') == 'http://foo.com/'
 
     def test_https_scheme(self):
-        assert self.field.clean(u'https://foo.com/') == u'https://foo.com/'
+        assert self.field.clean('https://foo.com/') == 'https://foo.com/'
 
     def test_catches_invalid_url(self):
         # https://github.com/mozilla/addons-server/issues/1452
         with self.assertRaises(exceptions.ValidationError):
-            assert self.field.clean(u'https://test.[com')
+            assert self.field.clean('https://test.[com')
 
     def test_with_domain_and_no_scheme(self):
         with self.assertRaises(exceptions.ValidationError):
-            self.field.clean(u'%s' % self.domain)
+            self.field.clean('%s' % self.domain)
 
     def test_with_domain_and_http(self):
         with self.assertRaises(exceptions.ValidationError):
-            self.field.clean(u'http://%s' % self.domain)
+            self.field.clean('http://%s' % self.domain)
 
     def test_with_domain_and_https(self):
         with self.assertRaises(exceptions.ValidationError):
-            self.field.clean(u'https://%s' % self.domain)
+            self.field.clean('https://%s' % self.domain)
 
     def test_domain_is_escaped_in_regex_validator(self):
-        assert self.field.clean(u'example-com.fr') == u'http://example-com.fr'
+        assert self.field.clean('example-com.fr') == 'http://example-com.fr'
 
 
 class TestPositiveAutoField(TestCase):

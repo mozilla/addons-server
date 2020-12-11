@@ -47,15 +47,15 @@ def test_summarize_validation():
     v = Mock()
     v.errors = 1
     v.warnings = 1
-    assert u'1 error, 1 warning' == render(
+    assert '1 error, 1 warning' == render(
         '{{ summarize_validation(validation) }}', {'validation': v}
     )
     v.errors = 2
-    assert u'2 errors, 1 warning' == render(
+    assert '2 errors, 1 warning' == render(
         '{{ summarize_validation(validation) }}', {'validation': v}
     )
     v.warnings = 2
-    assert u'2 errors, 2 warnings' == render(
+    assert '2 errors, 2 warnings' == render(
         '{{ summarize_validation(validation) }}', {'validation': v}
     )
 
@@ -73,16 +73,16 @@ def test_log_action_class():
 class TestDisplayUrl(amo.tests.TestCase):
     def setUp(self):
         super(TestDisplayUrl, self).setUp()
-        self.raw_url = u'http://host/%s' % u'フォクすけといっしょ'
+        self.raw_url = 'http://host/%s' % 'フォクすけといっしょ'
 
     def test_utf8(self):
         url = quote(self.raw_url.encode('utf8'))
-        assert render(u'{{ url|display_url }}', {'url': url}) == (self.raw_url)
+        assert render('{{ url|display_url }}', {'url': url}) == (self.raw_url)
 
     def test_unicode(self):
         url = quote(self.raw_url.encode('utf8'))
         url = force_text(force_bytes(url, 'utf8'), 'utf8')
-        assert render(u'{{ url|display_url }}', {'url': url}) == (self.raw_url)
+        assert render('{{ url|display_url }}', {'url': url}) == (self.raw_url)
 
 
 class TestDevFilesStatus(TestCase):

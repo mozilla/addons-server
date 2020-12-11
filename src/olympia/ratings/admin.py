@@ -112,12 +112,12 @@ class RatingAdmin(admin.ModelAdmin):
     def addon_link(self, obj):
         return related_single_content_link(obj, 'addon')
 
-    addon_link.short_description = _(u'Add-on')
+    addon_link.short_description = _('Add-on')
 
     def user_link(self, obj):
         return related_single_content_link(obj, 'user')
 
-    user_link.short_description = _(u'User')
+    user_link.short_description = _('User')
 
     def ip_address_link(self, obj):
         return format_html(
@@ -128,7 +128,7 @@ class RatingAdmin(admin.ModelAdmin):
             obj.ip_address,
         )
 
-    ip_address_link.short_description = _(u'IP Address')
+    ip_address_link.short_description = _('IP Address')
 
 
 admin.site.register(Rating, RatingAdmin)

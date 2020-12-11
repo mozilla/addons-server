@@ -10,7 +10,7 @@ class Config(models.Model):
     value = models.TextField()
 
     class Meta:
-        db_table = u'config'
+        db_table = 'config'
 
     def __str__(self):
         return self.key

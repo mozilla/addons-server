@@ -417,9 +417,9 @@ class TestCsvAndJsonViews(StatsTestCase):
                     'date': '2009-06-02',
                     'end': '2009-06-02',
                     'data': {
-                        u'Ελληνικά (el)': 800,
-                        u'Espa\xf1ol (de M\xe9xico) (es-mx)': 400,
-                        u'English (US) (en-us)': 300,
+                        'Ελληνικά (el)': 800,
+                        'Espa\xf1ol (de M\xe9xico) (es-mx)': 400,
+                        'English (US) (en-us)': 300,
                     },
                 },
                 {
@@ -427,9 +427,9 @@ class TestCsvAndJsonViews(StatsTestCase):
                     'date': '2009-06-01',
                     'end': '2009-06-01',
                     'data': {
-                        u'Ελληνικά (el)': 400,
-                        u'Espa\xf1ol (de M\xe9xico) (es-mx)': 300,
-                        u'English (US) (en-us)': 300,
+                        'Ελληνικά (el)': 400,
+                        'Espa\xf1ol (de M\xe9xico) (es-mx)': 300,
+                        'English (US) (en-us)': 300,
                     },
                 },
             ],

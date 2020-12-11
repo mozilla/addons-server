@@ -302,7 +302,7 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         for obj in qs:
             ActivityLog.create(amo.LOG.ADMIN_USER_BANNED, obj)
             users.append(force_text(obj))
-        kw = {'users': u', '.join(users)}
+        kw = {'users': ', '.join(users)}
         self.message_user(
             request, ugettext('The users "%(users)s" have been banned.' % kw)
         )
@@ -329,7 +329,7 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         for user in qs:
             ActivityLog.create(amo.LOG.ADMIN_API_KEY_RESET, user)
             users.append(force_text(user))
-        kw = {'users': u', '.join(users)}
+        kw = {'users': ', '.join(users)}
         self.message_user(
             request, ugettext('The users "%(users)s" had their API Key reset.' % kw)
         )
@@ -337,9 +337,9 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     reset_api_key_action.short_description = _('Reset API Key')
 
     def picture_img(self, obj):
-        return format_html(u'<img src="{}" />', obj.picture_url)
+        return format_html('<img src="{}" />', obj.picture_url)
 
-    picture_img.short_description = _(u'Profile Photo')
+    picture_img.short_description = _('Profile Photo')
 
     def known_ip_adresses(self, obj):
         ip_adresses = set(
@@ -511,7 +511,7 @@ class UserRestrictionHistoryAdmin(admin.ModelAdmin):
     def user_link(self, obj):
         return related_single_content_link(obj, 'user')
 
-    user_link.short_description = _(u'User')
+    user_link.short_description = _('User')
 
     def has_add_permission(self, request):
         return False

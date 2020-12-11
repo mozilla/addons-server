@@ -42,7 +42,7 @@ def walk_storage(
             yield root, dirs, files
             for dn in dirs:
                 dn = force_text(dn)
-                new_roots.append(u'%s/%s' % (root, dn))
+                new_roots.append('%s/%s' % (root, dn))
         roots[:] = new_roots
 
 

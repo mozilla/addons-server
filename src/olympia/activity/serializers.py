@@ -36,7 +36,7 @@ class ActivityLogSerializer(serializers.ModelSerializer):
 
     def get_action_label(self, obj):
         log = obj.log()
-        default = ugettext(u'Review note')
+        default = ugettext('Review note')
         return default if not hasattr(log, 'short') else log.short
 
     def get_action(self, obj):

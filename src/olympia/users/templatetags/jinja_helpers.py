@@ -40,7 +40,7 @@ def _user_link(user, max_text_length=None):
     else:
         name = user.name
 
-    return u'<a href="%s" title="%s">%s</a>' % (
+    return '<a href="%s" title="%s">%s</a>' % (
         user.get_absolute_url(),
         jinja2.escape(user.name),
         jinja2.escape(force_text(name)),

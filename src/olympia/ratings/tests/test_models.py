@@ -208,7 +208,7 @@ class TestRatingModel(TestCase):
         rating = Rating.objects.create(
             user=review_user,
             addon=addon,
-            body=u'Rêviiiiiiew',
+            body='Rêviiiiiiew',
             user_responsible=review_user,
         )
 
@@ -238,7 +238,7 @@ class TestRatingModel(TestCase):
             reply_to=rating,
             user=user,
             addon=rating.addon,
-            body=u'Rêply',
+            body='Rêply',
             user_responsible=user,
         )
 
@@ -263,7 +263,7 @@ class TestRatingModel(TestCase):
         assert mail.outbox == []
 
         rating.user_responsible = rating.user
-        rating.body = u'Editëd...'
+        rating.body = 'Editëd...'
         rating.save()
 
         activity_log = ActivityLog.objects.latest('pk')
@@ -282,7 +282,7 @@ class TestRatingModel(TestCase):
         assert mail.outbox == []
 
         reply.user_responsible = reply.user
-        reply.body = u'Actuälly...'
+        reply.body = 'Actuälly...'
         reply.save()
 
         activity_log = ActivityLog.objects.latest('pk')

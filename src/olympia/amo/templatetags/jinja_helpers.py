@@ -165,11 +165,11 @@ def numberfmt(num, format=None):
 @jinja2.contextfunction
 def page_title(context, title):
     title = smart_text(title)
-    base_title = ugettext(u'Add-ons for {0}').format(amo.FIREFOX.pretty)
+    base_title = ugettext('Add-ons for {0}').format(amo.FIREFOX.pretty)
     # The following line doesn't use string formatting because we want to
     # preserve the type of `title` in case it's a jinja2 `Markup` (safe,
     # escaped) object.
-    return django_format_html(u'{} :: {}', title, base_title)
+    return django_format_html('{} :: {}', title, base_title)
 
 
 @library.filter
@@ -216,7 +216,7 @@ def field(field, label=None, **attrs):
         field.label = label
     # HTML from Django is already escaped.
     return jinja2.Markup(
-        u'%s<p>%s%s</p>'
+        '%s<p>%s%s</p>'
         % (field.errors, field.label_tag(), field.as_widget(attrs=attrs))
     )
 
@@ -233,10 +233,10 @@ def category_arrow(context, key, prefix):
 @library.filter
 def timesince(time):
     if not time:
-        return u''
+        return ''
     ago = defaultfilters.timesince(time)
     # L10n: relative time in the past, like '4 days ago'
-    return ugettext(u'{0} ago').format(ago)
+    return ugettext('{0} ago').format(ago)
 
 
 @library.filter

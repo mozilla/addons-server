@@ -210,7 +210,7 @@ class TestSQLModel(TestCase):
         assert [c.category for c in qs] == ['apparel', 'safety']
 
     def test_filter_raw_non_ascii(self):
-        uni = u'フォクすけといっしょ'
+        uni = 'フォクすけといっしょ'
         qs = (
             Summary.objects.all()
             .filter_raw('category =', uni)

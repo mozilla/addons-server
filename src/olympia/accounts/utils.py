@@ -122,7 +122,7 @@ def path_with_query(request):
     next_path = request.path
     qs = request.GET.urlencode()
     if qs:
-        return u'{next_path}?{qs}'.format(next_path=next_path, qs=qs)
+        return '{next_path}?{qs}'.format(next_path=next_path, qs=qs)
     else:
         return next_path
 

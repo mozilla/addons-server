@@ -145,7 +145,7 @@ class TestPublicUserProfileSerializer(TestCase):
         assert self.user.has_anonymous_display_name is True
         assert data['has_anonymous_display_name'] is True
 
-        self.user.update(display_name=u'Bób dé bob')
+        self.user.update(display_name='Bób dé bob')
         data = self.serialize()
         assert data['has_anonymous_username'] is True
         assert data['has_anonymous_display_name'] is False
@@ -201,11 +201,11 @@ class TestUserProfileSerializer(TestPublicUserProfileSerializer, PermissionsTest
 
     def setUp(self):
         self.now = days_ago(0)
-        self.user_email = u'a@m.o'
+        self.user_email = 'a@m.o'
         self.user_kwargs.update(
             {
                 'email': self.user_email,
-                'display_name': u'This is my náme',
+                'display_name': 'This is my náme',
                 'last_login_ip': '123.45.67.89',
             }
         )
@@ -250,13 +250,13 @@ class TestUserProfileSerializer(TestPublicUserProfileSerializer, PermissionsTest
             assert 'fxa_edit_email_url' not in data
 
     def test_validate_homepage(self):
-        domain = u'example.org'
-        allowed_url = u'http://github.com'
+        domain = 'example.org'
+        allowed_url = 'http://github.com'
         serializer = self.serializer(context={'request': self.request})
 
         with override_settings(DOMAIN=domain):
             with self.assertRaises(serializers.ValidationError):
-                serializer.validate_homepage(u'http://{}'.format(domain))
+                serializer.validate_homepage('http://{}'.format(domain))
             # It should not raise when value is allowed.
             assert serializer.validate_homepage(allowed_url) == allowed_url
 

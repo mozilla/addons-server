@@ -91,20 +91,20 @@ def get_fileupload_by_uuid_or_404(value):
 
 class AddonFilter(BaseFilter):
     opts = (
-        ('updated', _(u'Updated')),
-        ('name', _(u'Name')),
-        ('created', _(u'Created')),
-        ('popular', _(u'Downloads')),
-        ('rating', _(u'Rating')),
+        ('updated', _('Updated')),
+        ('name', _('Name')),
+        ('created', _('Created')),
+        ('popular', _('Downloads')),
+        ('rating', _('Rating')),
     )
 
 
 class ThemeFilter(BaseFilter):
     opts = (
-        ('created', _(u'Created')),
-        ('name', _(u'Name')),
-        ('popular', _(u'Downloads')),
-        ('rating', _(u'Rating')),
+        ('created', _('Created')),
+        ('name', _('Name')),
+        ('popular', _('Downloads')),
+        ('rating', _('Rating')),
     )
 
 
@@ -1075,11 +1075,11 @@ def upload_image(request, addon_id, addon, upload_type):
                 # L10n: {0} is an image width/height (in pixels).
                 errors.append(
                     ugettext(
-                        u'Icon must be at least {0} pixels wide and ' u'tall.'
+                        'Icon must be at least {0} pixels wide and ' 'tall.'
                     ).format(standard_size)
                 )
             if icon_size[0] != icon_size[1]:
-                errors.append(ugettext(u'Icon must be square (same width and height).'))
+                errors.append(ugettext('Icon must be square (same width and height).'))
 
         if errors and is_preview and os.path.exists(loc):
             # Delete the temporary preview file in case of error.
@@ -1228,9 +1228,9 @@ def check_validation_override(request, form, addon, version):
                 'operating_systems': '',
                 'applications': '',
                 'comments': ugettext(
-                    u'This upload has failed validation, and may '
-                    u'lack complete validation results. Please '
-                    u'take due care when reviewing it.'
+                    'This upload has failed validation, and may '
+                    'lack complete validation results. Please '
+                    'take due care when reviewing it.'
                 ),
             }
         )
@@ -1340,56 +1340,56 @@ def submit_version_distribution(request, addon_id, addon):
 WIZARD_COLOR_FIELDS = [
     (
         'frame',
-        _(u'Header area background'),
+        _('Header area background'),
         _(
-            u'The color of the header area background, displayed in the part of '
-            u'the header not covered or visible through the header image. Manifest '
-            u'field:  frame.'
+            'The color of the header area background, displayed in the part of '
+            'the header not covered or visible through the header image. Manifest '
+            'field:  frame.'
         ),
         'rgba(229,230,232,1)',
     ),
     (
         'tab_background_text',
-        _(u'Header area text and icons'),
+        _('Header area text and icons'),
         _(
-            u'The color of the text and icons in the header area, except the '
-            u'active tab. Manifest field:  tab_background_text.'
+            'The color of the text and icons in the header area, except the '
+            'active tab. Manifest field:  tab_background_text.'
         ),
         'rgba(0,0,0,1',
     ),
     (
         'toolbar',
-        _(u'Toolbar area background'),
+        _('Toolbar area background'),
         _(
-            u'The background color for the navigation bar, the bookmarks bar, and '
-            u'the selected tab.  Manifest field:  toolbar.'
+            'The background color for the navigation bar, the bookmarks bar, and '
+            'the selected tab.  Manifest field:  toolbar.'
         ),
         False,
     ),
     (
         'bookmark_text',
-        _(u'Toolbar area text and icons'),
+        _('Toolbar area text and icons'),
         _(
-            u'The color of the text and icons in the toolbar and the active tab. '
-            u'Manifest field:  bookmark_text.'
+            'The color of the text and icons in the toolbar and the active tab. '
+            'Manifest field:  bookmark_text.'
         ),
         False,
     ),
     (
         'toolbar_field',
-        _(u'Toolbar field area background'),
+        _('Toolbar field area background'),
         _(
-            u'The background color for fields in the toolbar, such as the URL bar. '
-            u'Manifest field:  toolbar_field.'
+            'The background color for fields in the toolbar, such as the URL bar. '
+            'Manifest field:  toolbar_field.'
         ),
         False,
     ),
     (
         'toolbar_field_text',
-        _(u'Toolbar field area text'),
+        _('Toolbar field area text'),
         _(
-            u'The color of text in fields in the toolbar, such as the URL bar. '
-            u'Manifest field:  toolbar_field_text.'
+            'The color of text in fields in the toolbar, such as the URL bar. '
+            'Manifest field:  toolbar_field_text.'
         ),
         False,
     ),
@@ -1563,9 +1563,9 @@ def _submit_source(request, addon, version, next_view):
                 user=request.user,
                 details={
                     'comments': (
-                        u'This version has been automatically '
-                        u'flagged for admin review, as it had source '
-                        u'files attached when submitted.'
+                        'This version has been automatically '
+                        'flagged for admin review, as it had source '
+                        'files attached when submitted.'
                     )
                 },
             )

@@ -8,59 +8,59 @@ from . import applications
 # Platforms
 class PLATFORM_ANY:
     id = 0
-    name = _(u'Any')
+    name = _('Any')
     shortname = 'any'
     # API name is not translated
-    api_name = u'ALL'
+    api_name = 'ALL'
 
 
 class PLATFORM_ALL:
     id = 1
-    name = _(u'All Platforms')
+    name = _('All Platforms')
     shortname = 'all'
-    api_name = u'ALL'
+    api_name = 'ALL'
 
 
 class PLATFORM_LINUX:
     id = 2
-    name = _(u'Linux')
+    name = _('Linux')
     shortname = 'linux'
-    api_name = u'Linux'
+    api_name = 'Linux'
 
 
 class PLATFORM_MAC:
     id = 3
-    name = _(u'Mac OS X')
+    name = _('Mac OS X')
     shortname = 'mac'
-    api_name = u'Darwin'
+    api_name = 'Darwin'
 
 
 class PLATFORM_BSD:
     id = 4
-    name = _(u'BSD')
+    name = _('BSD')
     shortname = 'bsd'
-    api_name = u'BSD_OS'
+    api_name = 'BSD_OS'
 
 
 class PLATFORM_WIN:
     id = 5
-    name = _(u'Windows')
+    name = _('Windows')
     shortname = 'windows'
-    api_name = u'WINNT'
+    api_name = 'WINNT'
 
 
 class PLATFORM_SUN:
     id = 6
-    name = _(u'Solaris')
+    name = _('Solaris')
     shortname = 'solaris'
     api_name = 'SunOS'
 
 
 class PLATFORM_ANDROID:
     id = 7
-    name = _(u'Android')
-    shortname = u'android'
-    api_name = u'Android'
+    name = _('Android')
+    shortname = 'android'
+    api_name = 'Android'
 
 
 # Contains historic platforms that are no longer supported.

@@ -117,7 +117,7 @@ class TestExtractor(AppVersionsMixin, TestCase):
         with pytest.raises(forms.ValidationError) as exc:
             utils.check_xpi_info(manifest, xpi_file=mock.Mock())
 
-        assert exc.value.message == u'Maximum size for WebExtension themes is 7.0 MB.'
+        assert exc.value.message == 'Maximum size for WebExtension themes is 7.0 MB.'
 
         # dpuble check only static themes are limited
         manifest = utils.ManifestJSONExtractor('/fake_path', '{}').parse()
@@ -408,7 +408,7 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
             with pytest.raises(forms.ValidationError) as exc:
                 utils.parse_xpi(file_obj.file_path)
                 assert dict(exc.value.messages)['en-us'].startswith(
-                    u'Add-on names cannot contain the Mozilla or'
+                    'Add-on names cannot contain the Mozilla or'
                 )
 
     @mock.patch('olympia.addons.models.resolve_i18n_message')

@@ -21,7 +21,7 @@ class CollectionsTests(TestCase):
         generate_collection(self.addon)
         with self.activate(locale='es'):
             collection_name = str(Collection.objects.last().name)
-            assert collection_name.startswith(u'(español) ')
+            assert collection_name.startswith('(español) ')
 
     def test_collections_addons_generation(self):
         generate_collection(self.addon, APPS['android'])
@@ -32,4 +32,4 @@ class CollectionsTests(TestCase):
         generate_collection(self.addon, APPS['android'])
         with self.activate(locale='es'):
             collection_name = str(Collection.objects.last().name)
-            assert collection_name.startswith(u'(español) ')
+            assert collection_name.startswith('(español) ')

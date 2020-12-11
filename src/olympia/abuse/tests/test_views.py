@@ -45,7 +45,7 @@ class AddonAbuseViewSetTestBase(object):
         assert AbuseReport.objects.filter(addon_id=addon.id).exists()
         report = AbuseReport.objects.get(addon_id=addon.id)
         assert report.guid == addon.guid
-        self.check_report(report, u'[Extension] Abuse Report for %s' % addon.name)
+        self.check_report(report, '[Extension] Abuse Report for %s' % addon.name)
         assert report.message == 'abuse!'
 
     def test_report_addon_by_slug(self):
@@ -60,7 +60,7 @@ class AddonAbuseViewSetTestBase(object):
         assert AbuseReport.objects.filter(addon_id=addon.id).exists()
         report = AbuseReport.objects.get(addon_id=addon.id)
         assert report.guid == addon.guid
-        self.check_report(report, u'[Extension] Abuse Report for %s' % addon.name)
+        self.check_report(report, '[Extension] Abuse Report for %s' % addon.name)
 
     def test_report_addon_by_guid(self):
         addon = addon_factory(guid='@badman')
@@ -74,7 +74,7 @@ class AddonAbuseViewSetTestBase(object):
         assert AbuseReport.objects.filter(addon_id=addon.id).exists()
         report = AbuseReport.objects.get(addon_id=addon.id)
         assert report.guid == addon.guid
-        self.check_report(report, u'[Extension] Abuse Report for %s' % addon.name)
+        self.check_report(report, '[Extension] Abuse Report for %s' % addon.name)
         assert report.message == 'abuse!'
 
     def test_report_addon_guid_not_on_amo(self):
@@ -89,7 +89,7 @@ class AddonAbuseViewSetTestBase(object):
         assert AbuseReport.objects.filter(guid=guid).exists()
         report = AbuseReport.objects.get(guid=guid)
         assert not report.addon
-        self.check_report(report, u'[Addon] Abuse Report for %s' % guid)
+        self.check_report(report, '[Addon] Abuse Report for %s' % guid)
         assert report.message == 'abuse!'
 
     def test_report_addon_invalid_identifier(self):
@@ -109,7 +109,7 @@ class AddonAbuseViewSetTestBase(object):
 
         assert AbuseReport.objects.filter(addon_id=addon.id).exists()
         report = AbuseReport.objects.get(addon_id=addon.id)
-        self.check_report(report, u'[Extension] Abuse Report for %s' % addon.name)
+        self.check_report(report, '[Extension] Abuse Report for %s' % addon.name)
         assert report.message == 'abuse!'
 
     def test_no_addon_fails(self):
@@ -144,7 +144,7 @@ class AddonAbuseViewSetTestBase(object):
 
         assert AbuseReport.objects.filter(addon_id=addon.id).exists()
         report = AbuseReport.objects.get(addon_id=addon.id)
-        self.check_report(report, u'[Extension] Abuse Report for %s' % addon.name)
+        self.check_report(report, '[Extension] Abuse Report for %s' % addon.name)
         assert report.message == ''
 
     def test_message_can_be_blank_if_reason_is_provided(self):
@@ -158,7 +158,7 @@ class AddonAbuseViewSetTestBase(object):
 
         assert AbuseReport.objects.filter(addon_id=addon.id).exists()
         report = AbuseReport.objects.get(addon_id=addon.id)
-        self.check_report(report, u'[Extension] Abuse Report for %s' % addon.name)
+        self.check_report(report, '[Extension] Abuse Report for %s' % addon.name)
         assert report.message == ''
 
     def test_message_length_limited(self):
@@ -197,16 +197,16 @@ class AddonAbuseViewSetTestBase(object):
     def test_optional_fields(self):
         data = {
             'addon': '@mysteryaddon',
-            'message': u'This is abusé!',
+            'message': 'This is abusé!',
             'client_id': 'i' * 64,
-            'addon_name': u'Addon Næme',
-            'addon_summary': u'Addon sûmmary',
+            'addon_name': 'Addon Næme',
+            'addon_summary': 'Addon sûmmary',
             'addon_version': '0.01.01',
             'addon_signature': None,
             'app': 'firefox',
             'appversion': '42.0.1',
-            'lang': u'Lô-käl',
-            'operating_system': u'Sømething OS',
+            'lang': 'Lô-käl',
+            'operating_system': 'Sømething OS',
             'install_date': '2004-08-15T16:23:42',
             'reason': 'spam',
             'addon_install_origin': 'http://example.com/',
@@ -218,7 +218,7 @@ class AddonAbuseViewSetTestBase(object):
 
         assert AbuseReport.objects.filter(guid=data['addon']).exists()
         report = AbuseReport.objects.get(guid=data['addon'])
-        self.check_report(report, u'[Addon] Abuse Report for %s' % data['addon'])
+        self.check_report(report, '[Addon] Abuse Report for %s' % data['addon'])
         assert not report.addon  # Not an add-on in database, that's ok.
         # Straightforward comparisons:
         for field in (
@@ -246,7 +246,7 @@ class AddonAbuseViewSetTestBase(object):
     def test_optional_fields_errors(self):
         data = {
             'addon': '@mysteryaddon',
-            'message': u'Message cân be quite big if needed' * 256,
+            'message': 'Message cân be quite big if needed' * 256,
             'client_id': 'i' * 65,
             'addon_name': 'a' * 256,
             'addon_summary': 's' * 256,
@@ -308,7 +308,7 @@ class AddonAbuseViewSetTestBase(object):
 
         assert AbuseReport.objects.filter(guid=data['addon']).exists()
         report = AbuseReport.objects.get(guid=data['addon'])
-        self.check_report(report, u'[Addon] Abuse Report for %s' % data['addon'])
+        self.check_report(report, '[Addon] Abuse Report for %s' % data['addon'])
         assert not report.addon  # Not an add-on in database, that's ok.
         assert report.addon_install_method == (AbuseReport.ADDON_INSTALL_METHODS.OTHER)
         assert report.addon_install_source == (AbuseReport.ADDON_INSTALL_SOURCES.OTHER)
@@ -326,7 +326,7 @@ class AddonAbuseViewSetTestBase(object):
 
         assert AbuseReport.objects.filter(guid=addon.guid).exists()
         report = AbuseReport.objects.get(addon=addon)
-        self.check_report(report, u'[Extension] Abuse Report for %s' % addon.name)
+        self.check_report(report, '[Extension] Abuse Report for %s' % addon.name)
         assert report.addon == addon
         assert report.addon_install_method == (AbuseReport.ADDON_INSTALL_METHODS.OTHER)
         assert report.addon_install_source == (AbuseReport.ADDON_INSTALL_SOURCES.OTHER)
@@ -376,7 +376,7 @@ class UserAbuseViewSetTestBase(object):
 
         assert AbuseReport.objects.filter(user_id=user.id).exists()
         report = AbuseReport.objects.get(user_id=user.id)
-        self.check_report(report, u'[User] Abuse Report for %s' % user.name)
+        self.check_report(report, '[User] Abuse Report for %s' % user.name)
 
     def test_report_user_username(self):
         user = user_factory()
@@ -389,7 +389,7 @@ class UserAbuseViewSetTestBase(object):
 
         assert AbuseReport.objects.filter(user_id=user.id).exists()
         report = AbuseReport.objects.get(user_id=user.id)
-        self.check_report(report, u'[User] Abuse Report for %s' % user.name)
+        self.check_report(report, '[User] Abuse Report for %s' % user.name)
 
     def test_no_user_fails(self):
         response = self.client.post(self.url, data={'message': 'abuse!'})

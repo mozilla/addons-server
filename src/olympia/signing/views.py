@@ -162,7 +162,7 @@ class VersionView(APIView):
             filedata = request.FILES['upload']
         else:
             raise forms.ValidationError(
-                ugettext(u'Missing "upload" key in multipart file data.'),
+                ugettext('Missing "upload" key in multipart file data.'),
                 status.HTTP_400_BAD_REQUEST,
             )
 

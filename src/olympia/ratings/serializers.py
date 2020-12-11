@@ -97,7 +97,7 @@ class BaseRatingSerializer(serializers.ModelSerializer):
                     {
                         'addon': ugettext(
                             u"You can't change the add-on of a review once"
-                            u' it has been created.'
+                            ' it has been created.'
                         )
                     }
                 )
@@ -202,7 +202,7 @@ class RatingSerializer(BaseRatingSerializer):
             raise serializers.ValidationError(
                 ugettext(
                     u"You can't change the version of the add-on "
-                    u'reviewed once the review has been created.'
+                    'reviewed once the review has been created.'
                 )
             )
 
@@ -241,7 +241,7 @@ class RatingSerializer(BaseRatingSerializer):
                 raise serializers.ValidationError(
                     ugettext(
                         u"You can't leave more than one review for the "
-                        u'same version of an add-on.'
+                        'same version of an add-on.'
                     )
                 )
         return data

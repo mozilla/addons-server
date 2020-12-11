@@ -9,7 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 class OneOrMorePrintableCharacterValidator(object):
     """Validate that the value contains at least one printable character."""
 
-    message = _(u'Must contain at least one printable character.')
+    message = _('Must contain at least one printable character.')
     # See http://www.unicode.org/reports/tr4/tr44-6.html#Property_Values
     # This is relatively permissive, we want at least one printable character,
     # but we allow it to be punctuation or symbol. So we want either a
@@ -29,7 +29,7 @@ class OneOrMoreLetterOrNumberCharacterValidator(OneOrMorePrintableCharacterValid
     """Validate that the value contains at least a letter or a number
     character."""
 
-    message = _(u'Ensure this field contains at least one letter or number character.')
+    message = _('Ensure this field contains at least one letter or number character.')
 
     # We want at least a (L)etter or (N)umber for the value to be valid.
     unicode_categories = ('L', 'N')

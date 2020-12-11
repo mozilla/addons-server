@@ -168,4 +168,4 @@ def test_generate_jsi18n_files():
     filename = os.path.join(settings.STATICFILES_DIRS[0], 'js', 'i18n', 'fr.js')
     with open(filename) as f:
         content = f.read()
-        assert u'Erreur' in content
+        assert 'Erreur' in content

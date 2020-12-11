@@ -75,5 +75,5 @@ class FileAdmin(admin.ModelAdmin):
             '<a href="{}">Download file</a>', instance.get_absolute_url(attachment=True)
         )
 
-    file_download_url.short_description = u'Download this file'
+    file_download_url.short_description = 'Download this file'
     file_download_url.allow_tags = True

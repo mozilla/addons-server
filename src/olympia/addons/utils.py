@@ -33,8 +33,8 @@ def verify_mozilla_trademark(name, user, form=None):
             if violates_trademark:
                 raise forms.ValidationError(
                     ugettext(
-                        u'Add-on names cannot contain the Mozilla or '
-                        u'Firefox trademarks.'
+                        'Add-on names cannot contain the Mozilla or '
+                        'Firefox trademarks.'
                     )
                 )
 

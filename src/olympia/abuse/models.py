@@ -267,4 +267,4 @@ class AbuseReport(ModelBase):
 
     def __str__(self):
         name = self.target.name if self.target else self.guid
-        return u'[%s] Abuse Report for %s' % (self.type, name)
+        return '[%s] Abuse Report for %s' % (self.type, name)

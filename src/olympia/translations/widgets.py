@@ -16,7 +16,7 @@ def get_string(x):
             .values_list('localized_string', flat=True)[0]
         )
     except IndexError:
-        return u''
+        return ''
 
 
 class TranslationTextInput(forms.widgets.TextInput):

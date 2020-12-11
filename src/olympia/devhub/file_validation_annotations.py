@@ -41,12 +41,12 @@ def annotate_legacy_addon_restrictions(path, results, parsed_data, error=True):
     # We can be broad here. Search plugins are not validated through this
     # path and as of right now (Jan 2019) there aren't any legacy type
     # add-ons allowed to submit anymore.
-    msg = ugettext(u'Legacy extensions are no longer supported in Firefox.')
+    msg = ugettext('Legacy extensions are no longer supported in Firefox.')
 
     description = ugettext(
-        u'Add-ons for Thunderbird and SeaMonkey are now listed and '
-        u'maintained on addons.thunderbird.net. You can use the same '
-        u'account to update your add-ons on the new site.'
+        'Add-ons for Thunderbird and SeaMonkey are now listed and '
+        'maintained on addons.thunderbird.net. You can use the same '
+        'account to update your add-ons on the new site.'
     )
 
     # `parsed_data` only contains the most minimal amount of data because
@@ -89,9 +89,9 @@ def annotate_search_plugin_restriction(results, file_path, channel):
     # path and as of right now (Jan 2019) there aren't any legacy type
     # add-ons allowed to submit anymore.
     msg = ugettext(
-        u'Open Search add-ons are {blog_link_open}no longer supported on AMO'
-        u'{blog_link_close}. You can create a {doc_link_open}search extension '
-        u'instead{doc_link_close}.'
+        'Open Search add-ons are {blog_link_open}no longer supported on AMO'
+        '{blog_link_close}. You can create a {doc_link_open}search extension '
+        'instead{doc_link_close}.'
     ).format(
         blog_link_open=(
             '<a href="https://blog.mozilla.org/addons/2019/10/15/'

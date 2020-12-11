@@ -36,7 +36,7 @@ class TestBaseRatingSerializer(TestCase):
             user=self.user,
             rating=4,
             version=addon.current_version,
-            body=u'This is my rëview. Like ît?',
+            body='This is my rëview. Like ît?',
         )
 
         result = self.serialize()
@@ -88,7 +88,7 @@ class TestBaseRatingSerializer(TestCase):
             user=self.user,
             rating=4,
             version=addon.current_version,
-            body=u'This is my rëview. Like ît?',
+            body='This is my rëview. Like ît?',
         )
 
         self.rating.delete()
@@ -131,7 +131,7 @@ class TestBaseRatingSerializer(TestCase):
             user=self.user,
             rating=4,
             version=addon.current_version,
-            body=u'This is my rëview. Like ît?',
+            body='This is my rëview. Like ît?',
         )
 
         result = self.serialize()
@@ -148,7 +148,7 @@ class TestBaseRatingSerializer(TestCase):
             user=self.user,
             rating=4,
             version=addon.current_version,
-            body=u'This is my rëview. Like ît?',
+            body='This is my rëview. Like ît?',
         )
 
         result = self.serialize()
@@ -165,7 +165,7 @@ class TestBaseRatingSerializer(TestCase):
             user=self.user,
             rating=4,
             version=addon.current_version,
-            body=u'This is my rëview. Like ît?',
+            body='This is my rëview. Like ît?',
         )
         # should include the account profile for your own requests
         self.request.user = self.user
@@ -180,7 +180,7 @@ class TestBaseRatingSerializer(TestCase):
             user=self.user,
             rating=4,
             version=addon.current_version,
-            body=u'This is my rëview. Like ît?',
+            body='This is my rëview. Like ît?',
         )
         # should include account profile url for admins
         admin = user_factory()
@@ -196,7 +196,7 @@ class TestBaseRatingSerializer(TestCase):
             user=self.user,
             rating=4,
             version=addon.current_version,
-            body=u'This is my rëview. Like ît?',
+            body='This is my rëview. Like ît?',
         )
 
         result = self.serialize()
@@ -216,7 +216,7 @@ class TestBaseRatingSerializer(TestCase):
             user=self.user,
             rating=4,
             version=addon.current_version,
-            body=u'This is my rëview. Like ît?',
+            body='This is my rëview. Like ît?',
         )
         self.rating.update(is_latest=False, previous_count=42)
         result = self.serialize()
@@ -248,13 +248,13 @@ class TestBaseRatingSerializer(TestCase):
             addon=addon,
             user=self.user,
             version=addon.current_version,
-            body=u'This is my rëview. Like ît ?',
+            body='This is my rëview. Like ît ?',
         )
         reply = Rating.objects.create(
             addon=addon,
             user=reply_user,
             version=addon.current_version,
-            body=u'Thîs is a reply.',
+            body='Thîs is a reply.',
             reply_to=self.rating,
         )
 
@@ -280,13 +280,13 @@ class TestBaseRatingSerializer(TestCase):
             addon=addon,
             user=self.user,
             version=addon.current_version,
-            body=u'This is my rëview. Like ît ?',
+            body='This is my rëview. Like ît ?',
         )
         Rating.objects.create(
             addon=addon,
             user=reply_user,
             version=addon.current_version,
-            body=u'Thîs is a reply.',
+            body='Thîs is a reply.',
             reply_to=self.rating,
         )
         # should be the profile for your own requests
@@ -301,13 +301,13 @@ class TestBaseRatingSerializer(TestCase):
             addon=addon,
             user=self.user,
             version=addon.current_version,
-            body=u'This is my rëview. Like ît ?',
+            body='This is my rëview. Like ît ?',
         )
         reply = Rating.objects.create(
             addon=addon,
             user=reply_user,
             version=addon.current_version,
-            body=u'Thîs is a reply.',
+            body='Thîs is a reply.',
             reply_to=self.rating,
         )
         reply.delete()
@@ -325,13 +325,13 @@ class TestBaseRatingSerializer(TestCase):
             addon=addon,
             user=self.user,
             version=addon.current_version,
-            body=u'This is my rëview. Like ît ?',
+            body='This is my rëview. Like ît ?',
         )
         reply = Rating.objects.create(
             addon=addon,
             user=reply_user,
             version=addon.current_version,
-            body=u'Thîs is a reply.',
+            body='Thîs is a reply.',
             reply_to=self.rating,
         )
         reply.delete()
@@ -371,7 +371,7 @@ class TestBaseRatingSerializer(TestCase):
             user=self.user,
             rating=4,
             version=addon.current_version,
-            body=u'This is my rëview. Like ît?',
+            body='This is my rëview. Like ît?',
         )
 
         result = self.serialize()
@@ -382,7 +382,7 @@ class TestBaseRatingSerializer(TestCase):
             rating=self.rating,
             user=self.request.user,
             flag=RatingFlag.OTHER,
-            note=u'foo',
+            note='foo',
         )
         result = self.serialize()
         assert 'flags' in result

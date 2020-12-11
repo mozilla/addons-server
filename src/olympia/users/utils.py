@@ -33,7 +33,7 @@ class UnsubscribeCode(object):
             raise ValueError
 
         if cls.make_secret(decoded) != hash:
-            log.info(u'[Tampering] Unsubscribe link data does not match hash')
+            log.info('[Tampering] Unsubscribe link data does not match hash')
             raise ValueError
 
         return force_text(email)

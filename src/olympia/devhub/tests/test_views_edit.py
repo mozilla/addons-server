@@ -212,10 +212,10 @@ class BaseTestEditDescribe(BaseTestEdit):
         self.assertFormError(response, 'form', 'name', error)
 
         # 'ø' is not a symbol, it's actually a letter, so it should be valid.
-        data = self.get_dict(name=u'ø')
+        data = self.get_dict(name='ø')
         response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
-        assert self.get_addon().name == u'ø'
+        assert self.get_addon().name == 'ø'
 
     def test_edit_slugs_unique(self):
         Addon.objects.get(id=5579).update(slug='test_slug')
@@ -260,10 +260,10 @@ class BaseTestEditDescribe(BaseTestEdit):
         self.assertFormError(response, 'form', 'summary', error)
 
         # 'ø' is not a symbol, it's actually a letter, so it should be valid.
-        data = self.get_dict(summary=u'ø')
+        data = self.get_dict(summary='ø')
         response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
-        assert self.get_addon().summary == u'ø'
+        assert self.get_addon().summary == 'ø'
 
     def test_edit_summary_max_length(self):
         data = self.get_dict(
@@ -482,7 +482,7 @@ class BaseTestEditDescribe(BaseTestEdit):
             'form',
             'name',
             'Ensure name and summary combined are at most 70 characters '
-            u'(they have 100).',
+            '(they have 100).',
         )
 
         # success: together name and summary are 70 characters.
@@ -738,16 +738,16 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
     def test_edit_description_does_not_affect_privacy_policy(self):
         # Regression test for #10229
         addon = self.get_addon()
-        addon.privacy_policy = u'My polïcy!'
+        addon.privacy_policy = 'My polïcy!'
         addon.save()
-        data = self.get_dict(description=u'Sométhing descriptive.')
+        data = self.get_dict(description='Sométhing descriptive.')
         response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
         addon = Addon.objects.get(pk=addon.pk)
         assert addon.privacy_policy_id
-        assert addon.privacy_policy == u'My polïcy!'
+        assert addon.privacy_policy == 'My polïcy!'
         assert addon.description_id
-        assert addon.description == u'Sométhing descriptive.'
+        assert addon.description == 'Sométhing descriptive.'
 
     def test_no_manage_billing_when_no_subscription(self):
         response = self.client.get(self.url)

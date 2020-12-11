@@ -24,7 +24,7 @@ class FIREFOX(App):
     id = 1
     shortername = 'fx'
     short = 'firefox'
-    pretty = _(u'Firefox')
+    pretty = _('Firefox')
     browser = True
     types = [ADDON_EXTENSION, ADDON_DICT, ADDON_LPAPP, ADDON_PLUGIN, ADDON_STATICTHEME]
     guid = '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}'
@@ -46,7 +46,7 @@ class THUNDERBIRD(App):
     id = 18
     short = 'thunderbird'
     shortername = 'tb'
-    pretty = _(u'Thunderbird')
+    pretty = _('Thunderbird')
     browser = False
     types = [ADDON_EXTENSION, ADDON_DICT, ADDON_LPAPP]
     guid = '{3550f703-e582-4d05-9a08-453d09bdfdc6}'
@@ -59,7 +59,7 @@ class SEAMONKEY(App):
     id = 59
     short = 'seamonkey'
     shortername = 'sm'
-    pretty = _(u'SeaMonkey')
+    pretty = _('SeaMonkey')
     browser = True
     types = [ADDON_EXTENSION, ADDON_DICT, ADDON_LPAPP, ADDON_PLUGIN]
     guid = '{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}'
@@ -77,7 +77,7 @@ class SUNBIRD(App):
     id = 52
     short = 'sunbird'
     shortername = 'sb'
-    pretty = _(u'Sunbird')
+    pretty = _('Sunbird')
     browser = False
     types = [ADDON_EXTENSION, ADDON_DICT, ADDON_LPAPP]
     guid = '{718e30fb-e89b-41dd-9da7-e25a45638b28}'
@@ -95,7 +95,7 @@ class MOBILE(App):
     id = 60
     short = 'mobile'
     shortername = 'fn'
-    pretty = _(u'Mobile')
+    pretty = _('Mobile')
     browser = True
     types = [ADDON_EXTENSION, ADDON_DICT, ADDON_LPAPP]
     guid = '{a23983c0-fd0e-11dc-95ff-0800200c9a66}'
@@ -109,7 +109,7 @@ class ANDROID(App):
     id = 61
     short = 'android'
     shortername = 'an'
-    pretty = _(u'Firefox for Android')
+    pretty = _('Firefox for Android')
     browser = True
     types = [ADDON_EXTENSION, ADDON_DICT, ADDON_LPAPP]
     guid = '{aa3c5121-dab2-40e2-81ca-7ea25febc110}'
@@ -146,7 +146,7 @@ class MOZILLA(App):
     id = 2
     short = 'mz'
     shortername = 'mz'
-    pretty = _(u'Mozilla')
+    pretty = _('Mozilla')
     browser = True
     types = [ADDON_EXTENSION, ADDON_DICT, ADDON_LPAPP, ADDON_PLUGIN]
     guid = '{86c18b42-e466-45a9-ae7a-9b95ba6f5640}'
@@ -156,7 +156,7 @@ class MOZILLA(App):
 class UNKNOWN_APP(App):
     """Placeholder for unknown applications."""
 
-    pretty = _(u'Unknown')
+    pretty = _('Unknown')
 
 
 # UAs will attempt to match in this order.

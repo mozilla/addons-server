@@ -50,20 +50,20 @@ class TestRepackFileUpload(UploadTest, TestCase):
         with zipfile.ZipFile(upload.path) as z:
             contents = sorted(z.namelist())
             assert contents == [
-                u'chrome.manifest',
-                u'chrome/',
-                u'chrome/content/',
-                u'chrome/content/ff-overlay.js',
-                u'chrome/content/ff-overlay.xul',
-                u'chrome/content/overlay.js',
-                u'chrome/locale/',
-                u'chrome/locale/en-US/',
-                u'chrome/locale/en-US/overlay.dtd',
-                u'chrome/locale/en-US/overlay.properties',
-                u'chrome/skin/',
-                u'chrome/skin/overlay.css',
-                u'install.rdf',
-                u'삮',
+                'chrome.manifest',
+                'chrome/',
+                'chrome/content/',
+                'chrome/content/ff-overlay.js',
+                'chrome/content/ff-overlay.xul',
+                'chrome/content/overlay.js',
+                'chrome/locale/',
+                'chrome/locale/en-US/',
+                'chrome/locale/en-US/overlay.dtd',
+                'chrome/locale/en-US/overlay.properties',
+                'chrome/skin/',
+                'chrome/skin/overlay.css',
+                'install.rdf',
+                '삮',
             ]
         # Spot-check an individual file.
         info = z.getinfo('install.rdf')

@@ -187,7 +187,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
     def test_unhide_disabled_files(self):
         f = File.objects.get(pk=67442)
         f.status = amo.STATUS_APPROVED
-        f.filename = u'test_unhide_disabled_filés.xpi'
+        f.filename = 'test_unhide_disabled_filés.xpi'
         with storage.open(f.guarded_file_path, 'wb') as fp:
             fp.write(b'some data\n')
         f.unhide_disabled_file()
@@ -252,7 +252,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         f = File()
         f.version = Version(version='0.1.7')
         f.version._compatible_apps = {amo.FIREFOX: None}
-        f.version.addon = Addon(name=u' フォクすけ  といっしょ')
+        f.version.addon = Addon(name=' フォクすけ  といっしょ')
         assert f.generate_filename() == 'addon-0.1.7-fx.xpi'
 
     def test_generate_hash(self):
@@ -286,35 +286,35 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         file_ = File.objects.get(pk=67442)
         file_.update(is_webextension=True)
         permissions = [
-            u'iamstring',
-            u'iamnutherstring',
-            {u'iamadict': u'hmm'},
-            [u'iamalistinalist', u'indeedy'],
+            'iamstring',
+            'iamnutherstring',
+            {'iamadict': 'hmm'},
+            ['iamalistinalist', 'indeedy'],
             13,
-            u'laststring!',
-            u'iamstring',
-            u'iamnutherstring',
-            u'laststring!',
+            'laststring!',
+            'iamstring',
+            'iamnutherstring',
+            'laststring!',
             None,
         ]
         WebextPermission.objects.create(permissions=permissions, file=file_)
 
         # Strings only please.No duplicates.
-        assert file_.permissions == [u'iamstring', u'iamnutherstring', u'laststring!']
+        assert file_.permissions == ['iamstring', 'iamnutherstring', 'laststring!']
 
     def test_optional_permissions_list_string_only(self):
         file_ = File.objects.get(pk=67442)
         file_.update(is_webextension=True)
         optional_permissions = [
-            u'iamstring',
-            u'iamnutherstring',
-            {u'iamadict': u'hmm'},
-            [u'iamalistinalist', u'indeedy'],
+            'iamstring',
+            'iamnutherstring',
+            {'iamadict': 'hmm'},
+            ['iamalistinalist', 'indeedy'],
             13,
-            u'laststring!',
-            u'iamstring',
-            u'iamnutherstring',
-            u'laststring!',
+            'laststring!',
+            'iamstring',
+            'iamnutherstring',
+            'laststring!',
             None,
         ]
         WebextPermission.objects.create(
@@ -323,9 +323,9 @@ class TestFile(TestCase, amo.tests.AMOPaths):
 
         # Strings only please.No duplicates.
         assert file_.optional_permissions == [
-            u'iamstring',
-            u'iamnutherstring',
-            u'laststring!',
+            'iamstring',
+            'iamnutherstring',
+            'laststring!',
         ]
 
     def test_current_file_path(self):
@@ -527,18 +527,18 @@ class TestParseXpi(TestCase):
         parsed = self.parse(filename='webextension_no_id.xpi')
         assert len(parsed['permissions'])
         assert parsed['permissions'] == [
-            u'http://*/*',
-            u'https://*/*',
-            u'bookmarks',
-            u'made up permission',
-            u'https://google.com/',
+            'http://*/*',
+            'https://*/*',
+            'bookmarks',
+            'made up permission',
+            'https://google.com/',
         ]
 
     def test_parse_optional_permissions(self):
         parsed = self.parse(filename='webextension_no_id.xpi')
         print(parsed)
         assert len(parsed['optional_permissions'])
-        assert parsed['optional_permissions'] == [u'cookies', u'https://optional.com/']
+        assert parsed['optional_permissions'] == ['cookies', 'https://optional.com/']
 
     def test_parse_apps(self):
         expected = [
@@ -806,7 +806,7 @@ class TestFileUpload(UploadTest):
     def upload(self, **params):
         # The data should be in chunks.
         data = [bytes(bytearray(s)) for s in chunked(self.data, 3)]
-        return FileUpload.from_post(data, u'filenamé.xpi', len(self.data), **params)
+        return FileUpload.from_post(data, 'filenamé.xpi', len(self.data), **params)
 
     def test_from_post_write_file(self):
         assert storage.open(self.upload().path, 'rb').read() == self.data
@@ -814,7 +814,7 @@ class TestFileUpload(UploadTest):
     def test_from_post_filename(self):
         upload = self.upload()
         assert upload.uuid
-        assert upload.name == u'{0}_filenamé.xpi'.format(force_text(upload.uuid.hex))
+        assert upload.name == '{0}_filenamé.xpi'.format(force_text(upload.uuid.hex))
 
     def test_from_post_hash(self):
         hashdigest = hashlib.sha256(self.data).hexdigest()
@@ -855,16 +855,16 @@ class TestFileUpload(UploadTest):
         assert not upload.valid
 
     def test_ascii_names(self):
-        upload = FileUpload.from_post(b'', u'jétpack.xpi', 0)
+        upload = FileUpload.from_post(b'', 'jétpack.xpi', 0)
         assert 'xpi' in upload.name
 
-        upload = FileUpload.from_post(b'', u'мозила_србија-0.11-fx.xpi', 0)
+        upload = FileUpload.from_post(b'', 'мозила_србија-0.11-fx.xpi', 0)
         assert 'xpi' in upload.name
 
-        upload = FileUpload.from_post(b'', u'フォクすけといっしょ.xpi', 0)
+        upload = FileUpload.from_post(b'', 'フォクすけといっしょ.xpi', 0)
         assert 'xpi' in upload.name
 
-        upload = FileUpload.from_post(b'', u'\u05d0\u05d5\u05e1\u05e3.xpi', 0)
+        upload = FileUpload.from_post(b'', '\u05d0\u05d5\u05e1\u05e3.xpi', 0)
         assert 'xpi' in upload.name
 
     def test_validator_sets_binary_via_extensions(self):
@@ -1278,19 +1278,19 @@ class TestFileFromUpload(UploadTest):
         assert file_.is_restart_required
 
     def test_utf8(self):
-        upload = self.upload(u'jétpack')
-        self.version.addon.name = u'jéts!'
+        upload = self.upload('jétpack')
+        self.version.addon.name = 'jéts!'
         file_ = File.from_upload(upload, self.version, self.platform, parsed_data={})
-        assert file_.filename == u'jets-0.1.xpi'
+        assert file_.filename == 'jets-0.1.xpi'
 
     @mock.patch('olympia.files.models.copy_stored_file')
     def test_dont_send_both_bytes_and_str_to_copy_stored_file(
         self, copy_stored_file_mock
     ):
-        upload = self.upload(u'jétpack')
-        self.version.addon.name = u'jéts!'
+        upload = self.upload('jétpack')
+        self.version.addon.name = 'jéts!'
         file_ = File.from_upload(upload, self.version, self.platform, parsed_data={})
-        assert file_.filename == u'jets-0.1.xpi'
+        assert file_.filename == 'jets-0.1.xpi'
         expected_path_orig = force_text(upload.path)
         expected_path_dest = force_text(file_.current_file_path)
         assert copy_stored_file_mock.call_count == 1
@@ -1403,8 +1403,8 @@ class TestFileFromUpload(UploadTest):
         assert len(permissions_list) == 8
         assert permissions_list == [
             # first 5 are 'permissions'
-            u'http://*/*',
-            u'https://*/*',
+            'http://*/*',
+            'https://*/*',
             'bookmarks',
             'made up permission',
             'https://google.com/',

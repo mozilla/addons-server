@@ -212,13 +212,13 @@ class TestCompatForm(TestCase):
         assert form.initial['max'] == current_max.pk
 
     def _test_form_choices_expect_all_versions(self, version):
-        expected_min_choices = [(u'', u'---------')] + list(
+        expected_min_choices = [('', '---------')] + list(
             AppVersion.objects.filter(application=amo.FIREFOX.id)
             .exclude(version__contains='*')
             .values_list('pk', 'version')
             .order_by('version_int')
         )
-        expected_max_choices = [(u'', u'---------')] + list(
+        expected_max_choices = [('', '---------')] + list(
             AppVersion.objects.filter(application=amo.FIREFOX.id)
             .values_list('pk', 'version')
             .order_by('version_int')
@@ -262,14 +262,14 @@ class TestCompatForm(TestCase):
             application=amo.FIREFOX.id, version='57.*'
         )
 
-        expected_min_choices = [(u'', u'---------')] + list(
+        expected_min_choices = [('', '---------')] + list(
             AppVersion.objects.filter(application=amo.FIREFOX.id)
             .exclude(version__contains='*')
             .exclude(pk__in=(firefox_57.pk, firefox_57_s.pk))
             .values_list('pk', 'version')
             .order_by('version_int')
         )
-        expected_max_choices = [(u'', u'---------')] + list(
+        expected_max_choices = [('', '---------')] + list(
             AppVersion.objects.filter(application=amo.FIREFOX.id)
             .exclude(pk__in=(firefox_57.pk, firefox_57_s.pk))
             .values_list('pk', 'version')
@@ -284,7 +284,7 @@ class TestCompatForm(TestCase):
         assert list(form.fields['min'].choices) == expected_min_choices
         assert list(form.fields['max'].choices) == expected_max_choices
 
-        expected_an_choices = [(u'', u'---------')] + list(
+        expected_an_choices = [('', '---------')] + list(
             AppVersion.objects.filter(application=amo.ANDROID.id)
             .values_list('pk', 'version')
             .order_by('version_int')
@@ -352,9 +352,9 @@ class TestPreviewForm(TestCase):
         preview = addon.previews.all()[0]
         assert preview.sizes == (
             {
-                u'image': [2400, 1600],
-                u'thumbnail': [640, 427],
-                u'original': [3000, 2000],
+                'image': [2400, 1600],
+                'thumbnail': [640, 427],
+                'original': [3000, 2000],
             }
         )
         assert os.path.exists(preview.image_path)
@@ -432,17 +432,17 @@ class TestDescribeForm(TestCase):
     def test_slug_deny(self):
         delicious = Addon.objects.get()
         form = forms.DescribeForm(
-            {'slug': u'submit'}, request=self.request, instance=delicious
+            {'slug': 'submit'}, request=self.request, instance=delicious
         )
         assert not form.is_valid()
         assert form.errors['slug'] == (
-            [u'The slug cannot be "submit". Please choose another.']
+            ['The slug cannot be "submit". Please choose another.']
         )
 
     def test_name_trademark_mozilla(self):
         delicious = Addon.objects.get()
         form = forms.DescribeForm(
-            {'name': u'Delicious Mozilla', 'summary': u'foô', 'slug': u'bar'},
+            {'name': 'Delicious Mozilla', 'summary': 'foô', 'slug': 'bar'},
             request=self.request,
             instance=delicious,
         )
@@ -452,14 +452,14 @@ class TestDescribeForm(TestCase):
             form.errors['name']
             .data[0]
             .message.startswith(
-                u'Add-on names cannot contain the Mozilla or Firefox trademarks.'
+                'Add-on names cannot contain the Mozilla or Firefox trademarks.'
             )
         )
 
     def test_name_trademark_firefox(self):
         delicious = Addon.objects.get()
         form = forms.DescribeForm(
-            {'name': u'Delicious Firefox', 'summary': u'foö', 'slug': u'bar'},
+            {'name': 'Delicious Firefox', 'summary': 'foö', 'slug': 'bar'},
             request=self.request,
             instance=delicious,
         )
@@ -468,14 +468,14 @@ class TestDescribeForm(TestCase):
             form.errors['name']
             .data[0]
             .message.startswith(
-                u'Add-on names cannot contain the Mozilla or Firefox trademarks.'
+                'Add-on names cannot contain the Mozilla or Firefox trademarks.'
             )
         )
 
     def test_name_trademark_allowed_for_prefix(self):
         delicious = Addon.objects.get()
         form = forms.DescribeForm(
-            {'name': u'Delicious for Mozilla', 'summary': u'foø', 'slug': u'bar'},
+            {'name': 'Delicious for Mozilla', 'summary': 'foø', 'slug': 'bar'},
             request=self.request,
             instance=delicious,
         )
@@ -485,7 +485,7 @@ class TestDescribeForm(TestCase):
     def test_name_no_trademark(self):
         delicious = Addon.objects.get()
         form = forms.DescribeForm(
-            {'name': u'Delicious Dumdidum', 'summary': u'đoo', 'slug': u'bar'},
+            {'name': 'Delicious Dumdidum', 'summary': 'đoo', 'slug': 'bar'},
             request=self.request,
             instance=delicious,
         )
@@ -495,11 +495,11 @@ class TestDescribeForm(TestCase):
     def test_slug_isdigit(self):
         delicious = Addon.objects.get()
         form = forms.DescribeForm(
-            {'slug': u'123'}, request=self.request, instance=delicious
+            {'slug': '123'}, request=self.request, instance=delicious
         )
         assert not form.is_valid()
         assert form.errors['slug'] == (
-            [u'The slug cannot be "123". Please choose another.']
+            ['The slug cannot be "123". Please choose another.']
         )
 
     def test_bogus_support_url(self):
@@ -509,7 +509,7 @@ class TestDescribeForm(TestCase):
             instance=Addon.objects.get(),
         )
         assert not form.is_valid()
-        assert form.errors['support_url'] == [u'Enter a valid URL.']
+        assert form.errors['support_url'] == ['Enter a valid URL.']
 
     def test_ftp_support_url(self):
         form = forms.DescribeForm(
@@ -518,14 +518,14 @@ class TestDescribeForm(TestCase):
             instance=Addon.objects.get(),
         )
         assert not form.is_valid()
-        assert form.errors['support_url'] == [u'Enter a valid URL.']
+        assert form.errors['support_url'] == ['Enter a valid URL.']
 
     def test_http_support_url(self):
         form = forms.DescribeForm(
             {
-                'name': u'Delicious Dumdidum',
-                'summary': u'foo',
-                'slug': u'bar',
+                'name': 'Delicious Dumdidum',
+                'summary': 'foo',
+                'slug': 'bar',
                 'support_url': 'http://foo.com',
             },
             request=self.request,
@@ -539,7 +539,7 @@ class TestDescribeForm(TestCase):
 
         with override_switch('content-optimization', active=False):
             form = forms.DescribeForm(
-                {'name': u'Delicious for everyone', 'summary': u'foo', 'slug': u'bar'},
+                {'name': 'Delicious for everyone', 'summary': 'foo', 'slug': 'bar'},
                 request=self.request,
                 instance=delicious,
             )
@@ -547,7 +547,7 @@ class TestDescribeForm(TestCase):
 
         with override_switch('content-optimization', active=True):
             form = forms.DescribeForm(
-                {'name': u'Delicious for everyone', 'summary': u'foo', 'slug': u'bar'},
+                {'name': 'Delicious for everyone', 'summary': 'foo', 'slug': 'bar'},
                 request=self.request,
                 instance=delicious,
             )
@@ -556,7 +556,7 @@ class TestDescribeForm(TestCase):
             # But only extensions are required to have a description
             delicious.update(type=amo.ADDON_STATICTHEME)
             form = forms.DescribeForm(
-                {'name': u'Delicious for everyone', 'summary': u'foo', 'slug': u'bar'},
+                {'name': 'Delicious for everyone', 'summary': 'foo', 'slug': 'bar'},
                 request=self.request,
                 instance=delicious,
             )
@@ -566,10 +566,10 @@ class TestDescribeForm(TestCase):
             delicious.update(type=amo.ADDON_EXTENSION)
             form = forms.DescribeForm(
                 {
-                    'name': u'Delicious for everyone',
-                    'summary': u'foo',
-                    'slug': u'bar',
-                    'description': u'its a description',
+                    'name': 'Delicious for everyone',
+                    'summary': 'foo',
+                    'slug': 'bar',
+                    'description': 'its a description',
                 },
                 request=self.request,
                 instance=delicious,
@@ -583,10 +583,10 @@ class TestDescribeForm(TestCase):
         with override_switch('content-optimization', active=False):
             form = forms.DescribeForm(
                 {
-                    'name': u'Delicious for everyone',
-                    'summary': u'foo',
-                    'slug': u'bar',
-                    'description': u'123456789',
+                    'name': 'Delicious for everyone',
+                    'summary': 'foo',
+                    'slug': 'bar',
+                    'description': '123456789',
                 },
                 request=self.request,
                 instance=delicious,
@@ -596,10 +596,10 @@ class TestDescribeForm(TestCase):
         with override_switch('content-optimization', active=True):
             form = forms.DescribeForm(
                 {
-                    'name': u'Delicious for everyone',
-                    'summary': u'foo',
-                    'slug': u'bar',
-                    'description': u'123456789',
+                    'name': 'Delicious for everyone',
+                    'summary': 'foo',
+                    'slug': 'bar',
+                    'description': '123456789',
                 },
                 request=self.request,
                 instance=delicious,
@@ -610,10 +610,10 @@ class TestDescribeForm(TestCase):
             delicious.update(type=amo.ADDON_STATICTHEME)
             form = forms.DescribeForm(
                 {
-                    'name': u'Delicious for everyone',
-                    'summary': u'foo',
-                    'slug': u'bar',
-                    'description': u'123456789',
+                    'name': 'Delicious for everyone',
+                    'summary': 'foo',
+                    'slug': 'bar',
+                    'description': '123456789',
                 },
                 request=self.request,
                 instance=delicious,
@@ -624,10 +624,10 @@ class TestDescribeForm(TestCase):
             delicious.update(type=amo.ADDON_EXTENSION)
             form = forms.DescribeForm(
                 {
-                    'name': u'Delicious for everyone',
-                    'summary': u'foo',
-                    'slug': u'bar',
-                    'description': u'1234567890',
+                    'name': 'Delicious for everyone',
+                    'summary': 'foo',
+                    'slug': 'bar',
+                    'description': '1234567890',
                 },
                 request=self.request,
                 instance=delicious,
@@ -637,23 +637,23 @@ class TestDescribeForm(TestCase):
     def test_name_summary_lengths(self):
         delicious = Addon.objects.get()
         short_data = {
-            'name': u'n',
-            'summary': u's',
-            'slug': u'bar',
-            'description': u'1234567890',
+            'name': 'n',
+            'summary': 's',
+            'slug': 'bar',
+            'description': '1234567890',
         }
         over_70_data = {
-            'name': u'this is a name that hits the 50 char limit almost',
-            'summary': u'this is a summary that doesn`t get close to the '
-            u'existing 250 limit but is over 70',
-            'slug': u'bar',
-            'description': u'1234567890',
+            'name': 'this is a name that hits the 50 char limit almost',
+            'summary': 'this is a summary that doesn`t get close to the '
+            'existing 250 limit but is over 70',
+            'slug': 'bar',
+            'description': '1234567890',
         }
         under_70_data = {
-            'name': u'this is a name that is over the 50 char limit by a few',
-            'summary': u'ab',
-            'slug': u'bar',
-            'description': u'1234567890',
+            'name': 'this is a name that is over the 50 char limit by a few',
+            'summary': 'ab',
+            'slug': 'bar',
+            'description': '1234567890',
         }
 
         # short name and summary - both allowed with DescribeForm
@@ -665,10 +665,10 @@ class TestDescribeForm(TestCase):
         )
         assert not form.is_valid()
         assert form.errors['name'] == [
-            u'Ensure this value has at least 2 characters (it has 1).'
+            'Ensure this value has at least 2 characters (it has 1).'
         ]
         assert form.errors['summary'] == [
-            u'Ensure this value has at least 2 characters (it has 1).'
+            'Ensure this value has at least 2 characters (it has 1).'
         ]
 
         # As are long names and summaries
@@ -683,8 +683,8 @@ class TestDescribeForm(TestCase):
         assert not form.is_valid()
         assert len(over_70_data['name']) + len(over_70_data['summary']) == 130
         assert form.errors['name'] == [
-            u'Ensure name and summary combined are at most 70 characters '
-            u'(they have 130).'
+            'Ensure name and summary combined are at most 70 characters '
+            '(they have 130).'
         ]
         assert 'summary' not in form.errors
 
@@ -694,7 +694,7 @@ class TestDescribeForm(TestCase):
         )
         assert not form.is_valid()
         assert form.errors['name'] == [
-            u'Ensure this value has at most 50 characters (it has 54).'
+            'Ensure this value has at most 50 characters (it has 54).'
         ]
         # DescribeFormContentOptimization only cares that the total is <= 70
         form = forms.DescribeFormContentOptimization(
@@ -708,12 +708,12 @@ class TestDescribeForm(TestCase):
         assert delicious.default_locale == 'en-US'
 
         summary_needs_cropping = {
-            'name_en-us': u'a' * 25,
-            'name_fr': u'b' * 30,
-            'summary_en-us': u'c' * 45,
-            'summary_fr': u'd' * 45,  # 30 + 45 is > 70
-            'slug': u'slug',
-            'description_en-us': u'z' * 10,
+            'name_en-us': 'a' * 25,
+            'name_fr': 'b' * 30,
+            'summary_en-us': 'c' * 45,
+            'summary_fr': 'd' * 45,  # 30 + 45 is > 70
+            'slug': 'slug',
+            'description_en-us': 'z' * 10,
         }
         form = forms.DescribeFormContentOptimization(
             summary_needs_cropping,
@@ -722,17 +722,17 @@ class TestDescribeForm(TestCase):
             should_auto_crop=True,
         )
         assert form.is_valid(), form.errors
-        assert form.cleaned_data['name']['en-us'] == u'a' * 25  # no change
-        assert form.cleaned_data['summary']['en-us'] == u'c' * 45  # no change
-        assert form.cleaned_data['name']['fr'] == u'b' * 30  # no change
-        assert form.cleaned_data['summary']['fr'] == u'd' * 40  # 45 to 40
+        assert form.cleaned_data['name']['en-us'] == 'a' * 25  # no change
+        assert form.cleaned_data['summary']['en-us'] == 'c' * 45  # no change
+        assert form.cleaned_data['name']['fr'] == 'b' * 30  # no change
+        assert form.cleaned_data['summary']['fr'] == 'd' * 40  # 45 to 40
 
         summary_needs_cropping_no_name = {
-            'name_en-us': u'a' * 25,
-            'summary_en-us': u'c' * 45,
-            'summary_fr': u'd' * 50,
-            'slug': u'slug',
-            'description_en-us': u'z' * 10,
+            'name_en-us': 'a' * 25,
+            'summary_en-us': 'c' * 45,
+            'summary_fr': 'd' * 50,
+            'slug': 'slug',
+            'description_en-us': 'z' * 10,
         }
         form = forms.DescribeFormContentOptimization(
             summary_needs_cropping_no_name,
@@ -741,18 +741,18 @@ class TestDescribeForm(TestCase):
             should_auto_crop=True,
         )
         assert form.is_valid(), form.errors
-        assert form.cleaned_data['name']['en-us'] == u'a' * 25
-        assert form.cleaned_data['summary']['en-us'] == u'c' * 45
+        assert form.cleaned_data['name']['en-us'] == 'a' * 25
+        assert form.cleaned_data['summary']['en-us'] == 'c' * 45
         assert 'fr' not in form.cleaned_data['name']  # we've not added it
-        assert form.cleaned_data['summary']['fr'] == u'd' * 45  # 50 to 45
+        assert form.cleaned_data['summary']['fr'] == 'd' * 45  # 50 to 45
 
         name_needs_cropping = {
-            'name_en-us': u'a' * 67,
-            'name_fr': u'b' * 69,
-            'summary_en-us': u'c' * 2,
-            'summary_fr': u'd' * 3,
-            'slug': u'slug',
-            'description_en-us': u'z' * 10,
+            'name_en-us': 'a' * 67,
+            'name_fr': 'b' * 69,
+            'summary_en-us': 'c' * 2,
+            'summary_fr': 'd' * 3,
+            'slug': 'slug',
+            'description_en-us': 'z' * 10,
         }
         form = forms.DescribeFormContentOptimization(
             name_needs_cropping,
@@ -761,17 +761,17 @@ class TestDescribeForm(TestCase):
             should_auto_crop=True,
         )
         assert form.is_valid(), form.errors
-        assert form.cleaned_data['name']['en-us'] == u'a' * 67  # no change
-        assert form.cleaned_data['summary']['en-us'] == u'c' * 2  # no change
-        assert form.cleaned_data['name']['fr'] == u'b' * 68  # 69 to 68
-        assert form.cleaned_data['summary']['fr'] == u'd' * 2  # 3 to 2
+        assert form.cleaned_data['name']['en-us'] == 'a' * 67  # no change
+        assert form.cleaned_data['summary']['en-us'] == 'c' * 2  # no change
+        assert form.cleaned_data['name']['fr'] == 'b' * 68  # 69 to 68
+        assert form.cleaned_data['summary']['fr'] == 'd' * 2  # 3 to 2
 
         name_needs_cropping_no_summary = {
-            'name_en-us': u'a' * 50,
-            'name_fr': u'b' * 69,
-            'summary_en-us': u'c' * 20,
-            'slug': u'slug',
-            'description_en-us': u'z' * 10,
+            'name_en-us': 'a' * 50,
+            'name_fr': 'b' * 69,
+            'summary_en-us': 'c' * 20,
+            'slug': 'slug',
+            'description_en-us': 'z' * 10,
         }
         form = forms.DescribeFormContentOptimization(
             name_needs_cropping_no_summary,
@@ -780,9 +780,9 @@ class TestDescribeForm(TestCase):
             should_auto_crop=True,
         )
         assert form.is_valid(), form.errors
-        assert form.cleaned_data['name']['en-us'] == u'a' * 50  # no change
-        assert form.cleaned_data['summary']['en-us'] == u'c' * 20  # no change
-        assert form.cleaned_data['name']['fr'] == u'b' * 50  # 69 to 50
+        assert form.cleaned_data['name']['en-us'] == 'a' * 50  # no change
+        assert form.cleaned_data['summary']['en-us'] == 'c' * 20  # no change
+        assert form.cleaned_data['name']['fr'] == 'b' * 50  # 69 to 50
         assert 'fr' not in form.cleaned_data['summary']
 
 
@@ -837,8 +837,8 @@ class TestAdditionalDetailsForm(TestCase):
         assert self.get_tag_text() == ['bar beer', 'foo']
 
     def test_tags_unicode(self):
-        self.add_tags(u'Österreich')
-        assert self.get_tag_text() == [u'Österreich'.lower()]
+        self.add_tags('Österreich')
+        assert self.get_tag_text() == ['Österreich'.lower()]
 
     def add_restricted(self, *args):
         if not args:
@@ -931,14 +931,14 @@ class TestAdditionalDetailsForm(TestCase):
             instance=self.addon,
         )
         assert not form.is_valid()
-        assert form.errors['homepage'] == [u'Enter a valid URL.']
+        assert form.errors['homepage'] == ['Enter a valid URL.']
 
     def test_ftp_homepage(self):
         form = forms.AdditionalDetailsForm(
             {'homepage': 'ftp://foo.com'}, request=self.request, instance=self.addon
         )
         assert not form.is_valid()
-        assert form.errors['homepage'] == [u'Enter a valid URL.']
+        assert form.errors['homepage'] == ['Enter a valid URL.']
 
     def test_homepage_is_not_required(self):
         form = forms.AdditionalDetailsForm(

@@ -96,7 +96,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=18981,
             description=None,
             name='Tab Center Redux',
-            slug=u'tab-center-redux',
+            slug='tab-center-redux',
             summary='Move your tabs to the side of your browser window.',
             weekly_downloads=915,
         )
@@ -104,7 +104,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=468126,
             description=None,
             name='Tab Mix Plus',
-            slug=u'tab-mix-plus',
+            slug='tab-mix-plus',
             summary=(
                 "Tab Mix Plus enhances Firefox's tab browsing capabilities. "
                 'It includes such features as duplicating tabs, controlling '
@@ -118,7 +118,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=8838,
             description=None,
             name='Redux DevTools',
-            slug=u'remotedev',
+            slug='remotedev',
             summary=('DevTools for Redux with actions history, undo and replay.'),
             weekly_downloads=1032,
         )
@@ -126,7 +126,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=482,
             description=None,
             name='Open Image in New Tab',
-            slug=u'open-image-new-tab',
+            slug='open-image-new-tab',
             summary='Adds a context menu to open images in a new tab.',
             weekly_downloads=158,
         )
@@ -134,7 +134,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=2607,
             description=None,
             name='Open image in a new tab',
-            slug=u'open-image-in-a-new-tab',
+            slug='open-image-in-a-new-tab',
             summary='A context menu to open images in a new tab',
             weekly_downloads=329,
         )
@@ -142,7 +142,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=27832,
             description=None,
             name='Open Bookmarks in New Tab',
-            slug=u'open-bookmarks-in-new-tab',
+            slug='open-bookmarks-in-new-tab',
             summary=(
                 'After you installed this addon to your Firefox, bookmarks '
                 'are opened in new tab always.'
@@ -153,7 +153,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=528,
             description=None,
             name='Coinhive Blocker',
-            slug=u'coinhive-blocker',
+            slug='coinhive-blocker',
             summary='Coinhive mining blocker',
             weekly_downloads=132,
         )
@@ -161,7 +161,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=3015,
             description=None,
             name='CoinBlock',
-            slug=u'coinblock',
+            slug='coinblock',
             summary=(
                 'With the rising popularity of coinminers in js form, this '
                 'extension attempts to block those hosted on coin-hive, and '
@@ -173,7 +173,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=418,
             description=None,
             name='NoMiners',
-            slug=u'nominers',
+            slug='nominers',
             summary=(
                 'NoMiners is an Add-on that tries to block cryptominers such '
                 'as coinhive.\n\nBlocking those pesky miner scripts will '
@@ -187,7 +187,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=399485,
             description=None,
             name='Privacy Badger',
-            slug=u'privacy-badger17',
+            slug='privacy-badger17',
             summary=(
                 'Protects your privacy by blocking spying ads and invisible '
                 'trackers.'
@@ -198,7 +198,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=8728,
             description=None,
             name='Privacy Pass',
-            slug=u'privacy-pass',
+            slug='privacy-pass',
             summary=(
                 'Handles passes containing cryptographically blinded tokens '
                 'for bypassing challenge pages.'
@@ -209,7 +209,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=15406,
             description=None,
             name='Privacy Settings',
-            slug=u'privacy-settings',
+            slug='privacy-settings',
             summary=(
                 "Alter Firefox's built-in privacy settings easily with a "
                 'toolbar panel.'
@@ -220,7 +220,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=12857,
             description=None,
             name='Google Privacy',
-            slug=u'google-privacy',
+            slug='google-privacy',
             summary=(
                 'Make some popular websites respect your privacy settings.\n'
                 'Please see the known issues below!'
@@ -231,7 +231,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=70553,
             description=None,
             name='Blur',
-            slug=u'donottrackplus',
+            slug='donottrackplus',
             summary='Protect your Passwords, Payments, and Privacy.',
             weekly_downloads=2224,
         )
@@ -239,10 +239,10 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=1009156,
             description=None,
             name='Ghostery',
-            slug=u'ghostery',
+            slug='ghostery',
             summary=(
-                u'See who’s tracking you online and protect your privacy with '
-                u'Ghostery.'
+                'See who’s tracking you online and protect your privacy with '
+                'Ghostery.'
             ),
             weekly_downloads=49315,
         )
@@ -250,7 +250,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=954288,
             description=None,
             name='Firebug',
-            slug=u'firebug',
+            slug='firebug',
             summary=(
                 'Firebug integrates with Firefox to put a wealth of '
                 'development tools at your fingertips while you browse. You '
@@ -263,7 +263,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=10821,
             description=None,
             name='Firebug Autocompleter',
-            slug=u'firebug-autocompleter',
+            slug='firebug-autocompleter',
             summary='Firebug command line autocomplete.',
             weekly_downloads=76,
         )
@@ -271,7 +271,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=11992,
             description=None,
             name='Firefinder for Firebug',
-            slug=u'firefinder-for-firebug',
+            slug='firefinder-for-firebug',
             summary=(
                 'Finds HTML elements matching chosen CSS selector(s) or XPath '
                 'expression'
@@ -282,7 +282,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=8200,
             description=None,
             name='Fire Drag',
-            slug=u'fire-drag',
+            slug='fire-drag',
             summary='drag texts and links with/without e10s',
             weekly_downloads=506,
         )
@@ -290,7 +290,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=61014,
             description=None,
             name='Menu Wizard',
-            slug=u's3menu-wizard',
+            slug='s3menu-wizard',
             summary=(
                 'Customizemenus=Helps removing, moving and renaming menus and '
                 'menu items\nColorize important menu for ease of use! (use '
@@ -303,7 +303,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=81237,
             description=None,
             name='Add-ons Manager Context Menu',
-            slug=u'am-context',
+            slug='am-context',
             summary='Add more items to Add-ons Manager context menu.',
             weekly_downloads=169,
         )
@@ -311,7 +311,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=51,
             description=None,
             name='Frame Demolition',
-            slug=u'frame-demolition',
+            slug='frame-demolition',
             summary=('Enabling route to load abstracted file layer in select sites.'),
             weekly_downloads=70,
         )
@@ -319,7 +319,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=99,
             description=None,
             name='reStyle',
-            slug=u're-style',
+            slug='re-style',
             summary=(
                 'A user style manager which can load local files and apply UI '
                 'styles even in Firefox 57+'
@@ -330,7 +330,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=150,
             description=None,
             name='MegaUpload DownloadHelper',
-            slug=u'megaupload-downloadhelper',
+            slug='megaupload-downloadhelper',
             summary=(
                 'Download from MegaUpload.\nMegaUpload Download Helper will '
                 'start your download once ready.\nMegaUpload Download Helper '
@@ -343,7 +343,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=2830,
             description=None,
             name='RapidShare DownloadHelper',
-            slug=u'rapidshare-downloadhelper',
+            slug='rapidshare-downloadhelper',
             summary=(
                 'Note from Mozilla: This add-on has been discontinued. Try '
                 '<a rel="nofollow" href="https://addons.mozilla.org/firefox/'
@@ -357,7 +357,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=98716,
             description=None,
             name='Popup Blocker',
-            slug=u'popup_blocker',
+            slug='popup_blocker',
             summary=(
                 'Prevents your web browser from opening a new window on top '
                 'of the content or web site you are viewing. The Addon also '
@@ -370,7 +370,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=8830,
             description=None,
             name='No Flash',
-            slug=u'no-flash',
+            slug='no-flash',
             summary=(
                 'Replace Youtube, Vimeo and Dailymotion Flash video players '
                 'embedded on third-party website by the HTML5 counterpart '
@@ -386,7 +386,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=547880,
             description=None,
             name='Download Flash and Video',
-            slug=u'download-flash-and-video',
+            slug='download-flash-and-video',
             summary=(
                 'Download Flash and Video is a great download helper tool '
                 'that lets you download Flash games and Flash videos '
@@ -399,7 +399,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=158796,
             description=None,
             name='YouTube Flash Video Player',
-            slug=u'youtube-flash-video-player',
+            slug='youtube-flash-video-player',
             summary=(
                 'YouTube Flash Video Player is a powerful tool that will let '
                 'you choose Flash video player as default YouTube video '
@@ -411,13 +411,13 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=206980,
             description=None,
             name='YouTube Flash Player',
-            slug=u'youtube-flash-player',
+            slug='youtube-flash-player',
             summary=(
-                u'A very lightweight add-on that allows you to watch YouTube™ '
-                u'videos using Flash® Player instead of the '
-                u'default HTML5 player. The Flash® Player will consume less '
+                'A very lightweight add-on that allows you to watch YouTube™ '
+                'videos using Flash® Player instead of the '
+                'default HTML5 player. The Flash® Player will consume less '
                 u"CPU and RAM resources if your device doesn't easily "
-                u'support HTML5 videos. Try it!'
+                'support HTML5 videos. Try it!'
             ),
             weekly_downloads=21882,
         )
@@ -425,7 +425,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=5056,
             description=None,
             name='Disable Hello, Pocket & Reader+',
-            slug=u'disable-hello-pocket-reader',
+            slug='disable-hello-pocket-reader',
             summary=(
                 'Turn off Pocket, Reader, Hello and WebRTC bloatware - keep '
                 'browser fast and clean'
@@ -436,7 +436,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=26135,
             description=None,
             name='Reader',
-            slug=u'reader',
+            slug='reader',
             summary='Reader is the ultimate Reader tool for Firefox.',
             weekly_downloads=2463,
         )
@@ -444,7 +444,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=53412,
             description=None,
             name='Disable WebRTC',
-            slug=u'happy-bonobo-disable-webrtc',
+            slug='happy-bonobo-disable-webrtc',
             summary=(
                 'WebRTC leaks your actual IP addresses from behind your VPN, '
                 'by default.'
@@ -455,7 +455,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=12953,
             description=None,
             name='In My Pocket',
-            slug=u'in-my-pocket',
+            slug='in-my-pocket',
             summary=(
                 'For all those who are missing the old Firefox Pocket addon, '
                 'and not satisfied with the new Pocket integration, here is '
@@ -468,7 +468,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=4089,
             description=None,
             name='Tabby Cat',
-            slug=u'tabby-cat-friend',
+            slug='tabby-cat-friend',
             summary='A new friend in every new tab.',
             weekly_downloads=350,
             promoted=RECOMMENDED,
@@ -477,7 +477,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=5819,
             description=None,
             name='Authenticator',
-            slug=u'auth-helper',
+            slug='auth-helper',
             summary=(
                 'Authenticator generates 2-Step Verification codes in your browser.'
             ),
@@ -487,7 +487,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=74094,
             description=None,
             name='OneTab',
-            slug=u'onetab',
+            slug='onetab',
             summary=(
                 'OneTab - Too many tabs? Convert tabs to a list and reduce '
                 'browser memory'
@@ -498,7 +498,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=14968,
             description=None,
             name='FoxyTab',
-            slug=u'foxytab',
+            slug='foxytab',
             summary=(
                 'Collection of Tab Related Actions Lorem ipsum dolor sit '
                 'amet, mea dictas corpora aliquando te. Et pri docendi '
@@ -512,10 +512,10 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=3064,
             description=None,
             name='Simple WebSocket Client',
-            slug=u'in-my-pocket',
+            slug='in-my-pocket',
             summary=(
-                u'Construct custom Web Socket requests and handle responses '
-                u'to directly test your Web Socket services.'
+                'Construct custom Web Socket requests and handle responses '
+                'to directly test your Web Socket services.'
             ),
         )
         amo.tests.addon_factory(
@@ -536,8 +536,8 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=101940,
             description=None,
             name='Personas Plus',
-            slug=u'personas-plus',
-            summary=u'Persona Plus',
+            slug='personas-plus',
+            summary='Persona Plus',
         )
 
         # Some more or less Dummy data to test a few very specific scenarios
@@ -625,7 +625,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=4089,
             description=None,
             name='Stripy Dog 1',
-            slug=u'stripy-dog-1',
+            slug='stripy-dog-1',
             summary='A new friend in every new window.',
             weekly_downloads=350,
             promoted=RECOMMENDED,
@@ -634,7 +634,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=4089,
             description=None,
             name='Stripy Dog 2',
-            slug=u'stripy-dog-2',
+            slug='stripy-dog-2',
             summary='A new friend in every new window.',
             weekly_downloads=350,
             promoted=LINE,
@@ -643,7 +643,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=4089,
             description=None,
             name='Stripy Dog 3',
-            slug=u'stripy-dog-3',
+            slug='stripy-dog-3',
             summary='A new friend in every new window.',
             weekly_downloads=350,
             promoted=VERIFIED,
@@ -652,7 +652,7 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=4089,
             description=None,
             name='Stripy Dog 4',
-            slug=u'stripy-dog-4',
+            slug='stripy-dog-4',
             summary='A new friend in every new window.',
             weekly_downloads=350,
         )
@@ -995,7 +995,7 @@ class TestRankingScenarios(ESTestCase):
         # we're requesting the string that matches the default locale (fr).
         # Note that the name returned follows the language requested.
         self._check_scenario(
-            u'foobar unique francais',
+            'foobar unique francais',
             (['Foobar unique english', 1057.3596],),
             lang='en-US',
         )

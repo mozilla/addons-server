@@ -69,347 +69,346 @@ class StaticCategory(object):
 CATEGORIES_NO_APP = {
     ADDON_EXTENSION: {
         'alerts-updates': StaticCategory(
-            name=_(u'Alerts & Updates'),
+            name=_('Alerts & Updates'),
             description=_(
-                u'Download Firefox extensions that help you stay '
-                u'up-to-date, track tasks, improve efficiency. Find '
-                u'extensions that reload tabs, manage productivity, and '
-                u'more.'
+                'Download Firefox extensions that help you stay '
+                'up-to-date, track tasks, improve efficiency. Find '
+                'extensions that reload tabs, manage productivity, and '
+                'more.'
             ),
         ),
         'appearance': StaticCategory(
-            name=_(u'Appearance'),
+            name=_('Appearance'),
             description=_(
-                u'Download extensions that modify the appearance of '
-                u'websites and the browser Firefox. This category '
-                u'includes extensions for dark themes, tab management, '
-                u'and more.'
+                'Download extensions that modify the appearance of '
+                'websites and the browser Firefox. This category '
+                'includes extensions for dark themes, tab management, '
+                'and more.'
             ),
         ),
         'bookmarks': StaticCategory(
-            name=_(u'Bookmarks'),
+            name=_('Bookmarks'),
             description=_(
-                u'Download extensions that enhance bookmarks by '
-                u'password-protecting them, searching for duplicates, '
-                u'finding broken bookmarks, and more.'
+                'Download extensions that enhance bookmarks by '
+                'password-protecting them, searching for duplicates, '
+                'finding broken bookmarks, and more.'
             ),
         ),
         'download-management': StaticCategory(
-            name=_(u'Download Management'),
+            name=_('Download Management'),
             description=_(
-                u'Download Firefox extensions that can help download web, '
-                u'music and video content. You can also find extensions '
-                u'to manage downloads, share files, and more.'
+                'Download Firefox extensions that can help download web, '
+                'music and video content. You can also find extensions '
+                'to manage downloads, share files, and more.'
             ),
         ),
         'feeds-news-blogging': StaticCategory(
-            name=_(u'Feeds, News & Blogging'),
+            name=_('Feeds, News & Blogging'),
             description=_(
-                u'Download Firefox extensions that remove clutter so you '
-                u'can stay up-to-date on social media, catch up on blogs, '
-                u'RSS feeds, reduce eye strain, and more.'
+                'Download Firefox extensions that remove clutter so you '
+                'can stay up-to-date on social media, catch up on blogs, '
+                'RSS feeds, reduce eye strain, and more.'
             ),
         ),
         'games-entertainment': StaticCategory(
-            name=_(u'Games & Entertainment'),
+            name=_('Games & Entertainment'),
             description=_(
-                u'Download Firefox extensions to boost your entertainment '
-                u'experience. This category includes extensions that can '
-                u'enhance gaming, control video playback, and more.'
+                'Download Firefox extensions to boost your entertainment '
+                'experience. This category includes extensions that can '
+                'enhance gaming, control video playback, and more.'
             ),
         ),
         'language-support': StaticCategory(
-            name=_(u'Language Support'),
+            name=_('Language Support'),
             description=_(
-                u'Download Firefox extensions that offer language support '
-                u'like grammar check, look-up words, translate text, '
-                u'provide text-to-speech, and more.'
+                'Download Firefox extensions that offer language support '
+                'like grammar check, look-up words, translate text, '
+                'provide text-to-speech, and more.'
             ),
         ),
         'photos-music-videos': StaticCategory(
-            name=_(u'Photos, Music & Videos'),
+            name=_('Photos, Music & Videos'),
             description=_(
-                u'Download Firefox extensions that enhance photo, music '
-                u'and video experiences. Extensions in this category '
-                u'modify audio and video, reverse image search, and more.'
+                'Download Firefox extensions that enhance photo, music '
+                'and video experiences. Extensions in this category '
+                'modify audio and video, reverse image search, and more.'
             ),
         ),
         'privacy-security': StaticCategory(
-            name=_(u'Privacy & Security'),
+            name=_('Privacy & Security'),
             description=_(
-                u'Download Firefox extensions to browse privately and '
-                u'securely. This category includes extensions to block '
-                u'annoying ads, prevent tracking, manage redirects, and '
-                u'more.'
+                'Download Firefox extensions to browse privately and '
+                'securely. This category includes extensions to block '
+                'annoying ads, prevent tracking, manage redirects, and '
+                'more.'
             ),
         ),
         'search-tools': StaticCategory(
-            name=_(u'Search Tools'),
+            name=_('Search Tools'),
             description=_(
-                u'Download Firefox extensions for search and look-up. '
-                u'This category includes extensions that highlight and '
-                u'search text, lookup IP addresses/domains, and more.'
+                'Download Firefox extensions for search and look-up. '
+                'This category includes extensions that highlight and '
+                'search text, lookup IP addresses/domains, and more.'
             ),
         ),
         'shopping': StaticCategory(
-            name=_(u'Shopping'),
+            name=_('Shopping'),
             description=_(
-                u'Download Firefox extensions that can enhance your '
-                u'online shopping experience with coupon finders, deal '
-                u'finders, review analyzers, more.'
+                'Download Firefox extensions that can enhance your '
+                'online shopping experience with coupon finders, deal '
+                'finders, review analyzers, more.'
             ),
         ),
         'social-communication': StaticCategory(
-            name=_(u'Social & Communication'),
+            name=_('Social & Communication'),
             description=_(
-                u'Download Firefox extensions to enhance social media and '
-                u'instant messaging. This category includes improved tab '
-                u'notifications, video downloaders, and more.'
+                'Download Firefox extensions to enhance social media and '
+                'instant messaging. This category includes improved tab '
+                'notifications, video downloaders, and more.'
             ),
         ),
         'tabs': StaticCategory(
-            name=_(u'Tabs'),
+            name=_('Tabs'),
             description=_(
-                u'Download Firefox extension to customize tabs and the '
-                u'new tab page. Discover extensions that can control '
-                u'tabs, change the way you interact with them, and more.'
+                'Download Firefox extension to customize tabs and the '
+                'new tab page. Discover extensions that can control '
+                'tabs, change the way you interact with them, and more.'
             ),
         ),
         'web-development': StaticCategory(
-            name=_(u'Web Development'),
+            name=_('Web Development'),
             description=_(
-                u'Download Firefox extensions that feature web '
-                u'development tools. This category includes extensions '
-                u'for GitHub, user agent switching, cookie management, '
-                u'and more.'
+                'Download Firefox extensions that feature web '
+                'development tools. This category includes extensions '
+                'for GitHub, user agent switching, cookie management, '
+                'and more.'
             ),
         ),
         'other': StaticCategory(
-            name=_(u'Other'),
+            name=_('Other'),
             weight=333,
             description=_(
-                u'Download Firefox extensions that can be unpredictable '
-                u'and creative, yet useful for those odd tasks.'
+                'Download Firefox extensions that can be unpredictable '
+                'and creative, yet useful for those odd tasks.'
             ),
         ),
         # Android only categories:
         'device-features-location': StaticCategory(
-            name=_(u'Device Features & Location'),
+            name=_('Device Features & Location'),
             description=_(
-                u'Download extensions to enhance Firefox for Android. '
-                u'Perform quick searches, free up system resources, take '
-                u'notes, and more.'
+                'Download extensions to enhance Firefox for Android. '
+                'Perform quick searches, free up system resources, take '
+                'notes, and more.'
             ),
         ),
         'experimental': StaticCategory(
-            name=_(u'Experimental'),
+            name=_('Experimental'),
             description=_(
-                u'Download Firefox extensions that are regularly updated '
-                u'and ready for public testing. Your feedback informs '
-                u'developers on changes to make in upcoming versions.'
+                'Download Firefox extensions that are regularly updated '
+                'and ready for public testing. Your feedback informs '
+                'developers on changes to make in upcoming versions.'
             ),
         ),
         'performance': StaticCategory(
-            name=_(u'Performance'),
+            name=_('Performance'),
             description=_(
-                u'Download extensions that give Firefox a performance '
-                u'boost. Find extensions that help you be more productive '
-                u'and efficient by blocking annoying ads and more.'
+                'Download extensions that give Firefox a performance '
+                'boost. Find extensions that help you be more productive '
+                'and efficient by blocking annoying ads and more.'
             ),
         ),
         'photos-media': StaticCategory(
-            name=_(u'Photos & Media'),
+            name=_('Photos & Media'),
             description=_(
-                u'Download Firefox extensions to enhance photos and '
-                u'media. This category includes extensions to reverse '
-                u'search images, capture full page screenshots, and more.'
+                'Download Firefox extensions to enhance photos and '
+                'media. This category includes extensions to reverse '
+                'search images, capture full page screenshots, and more.'
             ),
         ),
         'security-privacy': StaticCategory(
-            name=_(u'Security & Privacy'),
+            name=_('Security & Privacy'),
             description=_(
-                u'Download Firefox extensions to surf safely and '
-                u'privately. Discover extensions that can stop sneaky ad '
-                u'trackers in their tracks, easily clear browsing '
-                u'history, and more.'
+                'Download Firefox extensions to surf safely and '
+                'privately. Discover extensions that can stop sneaky ad '
+                'trackers in their tracks, easily clear browsing '
+                'history, and more.'
             ),
         ),
         'social-networking': StaticCategory(
-            name=_(u'Social Networking'),
+            name=_('Social Networking'),
             description=_(
-                u'Download Firefox extensions to enhance your experience '
-                u'on popular social networking websites such as YouTube, '
-                u'GitHub, Reddit, and more.'
+                'Download Firefox extensions to enhance your experience '
+                'on popular social networking websites such as YouTube, '
+                'GitHub, Reddit, and more.'
             ),
         ),
         'sports-games': StaticCategory(
-            name=_(u'Sports & Games'),
+            name=_('Sports & Games'),
             description=_(
-                u'Download Firefox extensions to give your entertainment '
-                u'experience a boost with live stream enhancers, sports '
-                u'updates, and more.'
+                'Download Firefox extensions to give your entertainment '
+                'experience a boost with live stream enhancers, sports '
+                'updates, and more.'
             ),
         ),
         'user-interface': StaticCategory(
-            name=_(u'User Interface'),
+            name=_('User Interface'),
             description=_(
-                u'Download user interface Firefox extensions to alter web '
-                u'pages for easier reading, searching, browsing, and more.'
+                'Download user interface Firefox extensions to alter web '
+                'pages for easier reading, searching, browsing, and more.'
             ),
         ),
     },
     _ADDON_THEME: {
-        'animals': StaticCategory(name=_(u'Animals')),
-        'compact': StaticCategory(name=_(u'Compact')),
-        'large': StaticCategory(name=_(u'Large')),
-        'miscellaneous': StaticCategory(name=_(u'Miscellaneous')),
-        'modern': StaticCategory(name=_(u'Modern')),
-        'nature': StaticCategory(name=_(u'Nature')),
-        'os-integration': StaticCategory(name=_(u'OS Integration')),
-        'retro': StaticCategory(name=_(u'Retro')),
-        'sports': StaticCategory(name=_(u'Sports')),
+        'animals': StaticCategory(name=_('Animals')),
+        'compact': StaticCategory(name=_('Compact')),
+        'large': StaticCategory(name=_('Large')),
+        'miscellaneous': StaticCategory(name=_('Miscellaneous')),
+        'modern': StaticCategory(name=_('Modern')),
+        'nature': StaticCategory(name=_('Nature')),
+        'os-integration': StaticCategory(name=_('OS Integration')),
+        'retro': StaticCategory(name=_('Retro')),
+        'sports': StaticCategory(name=_('Sports')),
     },
     ADDON_STATICTHEME: {
         'abstract': StaticCategory(
-            name=_(u'Abstract'),
+            name=_('Abstract'),
             description=_(
-                u'Download Firefox artistic and conceptual themes. This '
-                u'category includes colorful palettes and shapes, fantasy '
-                u'landscapes, playful cats, psychedelic flowers.'
+                'Download Firefox artistic and conceptual themes. This '
+                'category includes colorful palettes and shapes, fantasy '
+                'landscapes, playful cats, psychedelic flowers.'
             ),
         ),
         'causes': StaticCategory(
-            name=_(u'Causes'),
+            name=_('Causes'),
             description=_(
-                u'Download Firefox themes for niche interests and topics. '
-                u'This category includes sports themes, holidays, '
-                u'philanthropic causes, nationalities, and much more.'
+                'Download Firefox themes for niche interests and topics. '
+                'This category includes sports themes, holidays, '
+                'philanthropic causes, nationalities, and much more.'
             ),
         ),
         'fashion': StaticCategory(
-            name=_(u'Fashion'),
+            name=_('Fashion'),
             description=_(
-                u'Download Firefox themes that celebrate style of all '
-                u'forms—patterns, florals, textures, models, and more.'
+                'Download Firefox themes that celebrate style of all '
+                'forms—patterns, florals, textures, models, and more.'
             ),
         ),
         'film-and-tv': StaticCategory(
-            name=_(u'Film and TV'),
+            name=_('Film and TV'),
             description=_(
-                u'Download Firefox themes with movies and television. '
-                u'This category includes anime like Uchiha Madara, movies '
-                u'like The Matrix, shows (Game of Thrones), and more.'
+                'Download Firefox themes with movies and television. '
+                'This category includes anime like Uchiha Madara, movies '
+                'like The Matrix, shows (Game of Thrones), and more.'
             ),
         ),
         'firefox': StaticCategory(
-            name=_(u'Firefox'),
+            name=_('Firefox'),
             description=_(
-                u'Download Firefox themes with the Firefox browser theme. '
-                u'This category includes colorful, diverse depictions of '
-                u'the Firefox logo, including more general fox themes.'
+                'Download Firefox themes with the Firefox browser theme. '
+                'This category includes colorful, diverse depictions of '
+                'the Firefox logo, including more general fox themes.'
             ),
         ),
         'foxkeh': StaticCategory(
-            name=_(u'Foxkeh'),
+            name=_('Foxkeh'),
             description=_(
-                u'Download Firefox themes with the Japanese Firefox. This '
-                u'category includes themes that depict the cute Foxkeh '
-                u'mascot in various poses on diverse landscapes.'
+                'Download Firefox themes with the Japanese Firefox. This '
+                'category includes themes that depict the cute Foxkeh '
+                'mascot in various poses on diverse landscapes.'
             ),
         ),
         'holiday': StaticCategory(
-            name=_(u'Holiday'),
+            name=_('Holiday'),
             description=_(
-                u'Download Firefox themes with holidays. This category '
-                u'includes Christmas, Halloween, Thanksgiving, St. '
-                u'Patrick’s Day, Easter, Fourth of July, and more.'
+                'Download Firefox themes with holidays. This category '
+                'includes Christmas, Halloween, Thanksgiving, St. '
+                'Patrick’s Day, Easter, Fourth of July, and more.'
             ),
         ),
         'music': StaticCategory(
-            name=_(u'Music'),
+            name=_('Music'),
             description=_(
-                u'Download Firefox themes for musical interests and '
-                u'artists. This category includes popular bands like '
-                u'Nirvana and BTS, instruments, music videos, and much '
-                u'more.'
+                'Download Firefox themes for musical interests and '
+                'artists. This category includes popular bands like '
+                'Nirvana and BTS, instruments, music videos, and much '
+                'more.'
             ),
         ),
         'nature': StaticCategory(
-            name=_(u'Nature'),
+            name=_('Nature'),
             description=_(
-                u'Download Firefox themes with animals and natural '
-                u'landscapes. This category includes flowers, sunsets, '
-                u'foxes, seasons, planets, kittens, birds, and more.'
+                'Download Firefox themes with animals and natural '
+                'landscapes. This category includes flowers, sunsets, '
+                'foxes, seasons, planets, kittens, birds, and more.'
             ),
         ),
         'other': StaticCategory(
-            name=_(u'Other'),
+            name=_('Other'),
             weight=333,
             description=_(
-                u'Download Firefox themes that are interesting, creative, '
-                u'and unique.'
+                'Download Firefox themes that are interesting, creative, ' 'and unique.'
             ),
         ),
         'scenery': StaticCategory(
-            name=_(u'Scenery'),
+            name=_('Scenery'),
             description=_(
-                u'Download Firefox themes that feature the environment '
-                u'and the natural world. This category includes sunsets, '
-                u'beaches, illustrations, city skylines, and more.'
+                'Download Firefox themes that feature the environment '
+                'and the natural world. This category includes sunsets, '
+                'beaches, illustrations, city skylines, and more.'
             ),
         ),
         'seasonal': StaticCategory(
-            name=_(u'Seasonal'),
+            name=_('Seasonal'),
             description=_(
-                u'Download Firefox themes for all four seasons—fall, '
-                u'winter, spring, and summer. Autumn leaves, snowy '
-                u'mountain peaks, sunny summer days, and spring flowers.'
+                'Download Firefox themes for all four seasons—fall, '
+                'winter, spring, and summer. Autumn leaves, snowy '
+                'mountain peaks, sunny summer days, and spring flowers.'
             ),
         ),
         'solid': StaticCategory(
-            name=_(u'Solid'),
+            name=_('Solid'),
             description=_(
-                u'Download Firefox themes with solid and gradient colors '
-                u'to personalize your browser. This category includes '
-                u'bold reds, pastels, soft greys, and much more.'
+                'Download Firefox themes with solid and gradient colors '
+                'to personalize your browser. This category includes '
+                'bold reds, pastels, soft greys, and much more.'
             ),
         ),
         'sports': StaticCategory(
-            name=_(u'Sports'),
+            name=_('Sports'),
             description=_(
-                u'Download Firefox themes that feature a variety of '
-                u'sports. This category includes country flags, sports '
-                u'teams, soccer, hockey, and more.'
+                'Download Firefox themes that feature a variety of '
+                'sports. This category includes country flags, sports '
+                'teams, soccer, hockey, and more.'
             ),
         ),
         'websites': StaticCategory(
-            name=_(u'Websites'),
+            name=_('Websites'),
             description=_(
-                u'Download Firefox themes that capture the essence of the '
-                u'web—captivating, unusual, and distinctive.'
+                'Download Firefox themes that capture the essence of the '
+                'web—captivating, unusual, and distinctive.'
             ),
         ),
     },
-    ADDON_DICT: {'general': StaticCategory(name=_(u'General'))},
+    ADDON_DICT: {'general': StaticCategory(name=_('General'))},
     _ADDON_SEARCH: {
-        'bookmarks': StaticCategory(name=_(u'Bookmarks')),
-        'business': StaticCategory(name=_(u'Business')),
+        'bookmarks': StaticCategory(name=_('Bookmarks')),
+        'business': StaticCategory(name=_('Business')),
         'dictionaries-encyclopedias': StaticCategory(
-            name=_(u'Dictionaries & Encyclopedias')
+            name=_('Dictionaries & Encyclopedias')
         ),
-        'general': StaticCategory(name=_(u'General')),
-        'kids': StaticCategory(name=_(u'Kids')),
-        'multiple-search': StaticCategory(name=_(u'Multiple Search')),
-        'music': StaticCategory(name=_(u'Music')),
-        'news-blogs': StaticCategory(name=_(u'News & Blogs')),
-        'photos-images': StaticCategory(name=_(u'Photos & Images')),
-        'shopping-e-commerce': StaticCategory(name=_(u'Shopping & E-Commerce')),
-        'social-people': StaticCategory(name=_(u'Social & People')),
-        'sports': StaticCategory(name=_(u'Sports')),
-        'travel': StaticCategory(name=_(u'Travel')),
-        'video': StaticCategory(name=_(u'Video')),
+        'general': StaticCategory(name=_('General')),
+        'kids': StaticCategory(name=_('Kids')),
+        'multiple-search': StaticCategory(name=_('Multiple Search')),
+        'music': StaticCategory(name=_('Music')),
+        'news-blogs': StaticCategory(name=_('News & Blogs')),
+        'photos-images': StaticCategory(name=_('Photos & Images')),
+        'shopping-e-commerce': StaticCategory(name=_('Shopping & E-Commerce')),
+        'social-people': StaticCategory(name=_('Social & People')),
+        'sports': StaticCategory(name=_('Sports')),
+        'travel': StaticCategory(name=_('Travel')),
+        'video': StaticCategory(name=_('Video')),
     },
-    ADDON_LPAPP: {'general': StaticCategory(name=_(u'General'))},
+    ADDON_LPAPP: {'general': StaticCategory(name=_('General'))},
 }
 
 CATEGORIES_NO_APP[_ADDON_PERSONA] = {

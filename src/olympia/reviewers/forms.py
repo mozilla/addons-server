@@ -29,18 +29,18 @@ log = olympia.core.logger.getLogger('z.reviewers.forms')
 
 ACTION_FILTERS = (
     ('', ''),
-    ('approved', _(u'Approved reviews')),
-    ('deleted', _(u'Deleted reviews')),
+    ('approved', _('Approved reviews')),
+    ('deleted', _('Deleted reviews')),
 )
 
 ACTION_DICT = dict(approved=amo.LOG.APPROVE_RATING, deleted=amo.LOG.DELETE_RATING)
 
 
 class RatingModerationLogForm(forms.Form):
-    start = forms.DateField(required=False, label=_(u'View entries between'))
-    end = forms.DateField(required=False, label=_(u'and'))
+    start = forms.DateField(required=False, label=_('View entries between'))
+    end = forms.DateField(required=False, label=_('and'))
     filter = forms.ChoiceField(
-        required=False, choices=ACTION_FILTERS, label=_(u'Filter by type/action')
+        required=False, choices=ACTION_FILTERS, label=_('Filter by type/action')
     )
 
     def clean(self):
@@ -55,9 +55,9 @@ class RatingModerationLogForm(forms.Form):
 
 
 class ReviewLogForm(forms.Form):
-    start = forms.DateField(required=False, label=_(u'View entries between'))
-    end = forms.DateField(required=False, label=_(u'and'))
-    search = forms.CharField(required=False, label=_(u'containing'))
+    start = forms.DateField(required=False, label=_('View entries between'))
+    end = forms.DateField(required=False, label=_('and'))
+    search = forms.CharField(required=False, label=_('containing'))
 
     def __init__(self, *args, **kw):
         super(ReviewLogForm, self).__init__(*args, **kw)
@@ -86,25 +86,25 @@ class ReviewLogForm(forms.Form):
 
 class QueueSearchForm(forms.Form):
     text_query = forms.CharField(
-        required=False, label=_(u'Search by add-on name / author email')
+        required=False, label=_('Search by add-on name / author email')
     )
     searching = forms.BooleanField(
         widget=forms.HiddenInput, required=False, initial=True
     )
     needs_admin_code_review = forms.ChoiceField(
         required=False,
-        label=_(u'Needs Admin Code Review'),
-        choices=[('', ''), ('1', _(u'yes')), ('0', _(u'no'))],
+        label=_('Needs Admin Code Review'),
+        choices=[('', ''), ('1', _('yes')), ('0', _('no'))],
     )
     application_id = forms.ChoiceField(
         required=False,
-        label=_(u'Application'),
+        label=_('Application'),
         choices=([('', '')] + [(a.id, a.pretty) for a in amo.APPS_ALL.values()]),
     )
     addon_type_ids = forms.MultipleChoiceField(
         required=False,
-        label=_(u'Add-on Types'),
-        choices=[(amo.ADDON_ANY, _(u'Any'))] + list(amo.ADDON_TYPES.items()),
+        label=_('Add-on Types'),
+        choices=[(amo.ADDON_ANY, _('Any'))] + list(amo.ADDON_TYPES.items()),
     )
 
     def __init__(self, *args, **kw):
@@ -152,7 +152,7 @@ class QueueSearchForm(forms.Form):
                 % qs._param(lang),
             ]
             qs.base_query['from'].extend(joins)
-            fuzzy_q = u'%' + data['text_query'] + u'%'
+            fuzzy_q = '%' + data['text_query'] + '%'
             qs = qs.filter_raw(
                 Q('addon_name LIKE', fuzzy_q)
                 # Search translated add-on names / support emails in
@@ -172,30 +172,30 @@ class QueueSearchForm(forms.Form):
 
 class AllAddonSearchForm(forms.Form):
     text_query = forms.CharField(
-        required=False, label=_(u'Search by add-on name / author email / guid')
+        required=False, label=_('Search by add-on name / author email / guid')
     )
     searching = forms.BooleanField(
         widget=forms.HiddenInput, required=False, initial=True
     )
     needs_admin_code_review = forms.ChoiceField(
         required=False,
-        label=_(u'Needs Admin Code Review'),
-        choices=[('', ''), ('1', _(u'yes')), ('0', _(u'no'))],
+        label=_('Needs Admin Code Review'),
+        choices=[('', ''), ('1', _('yes')), ('0', _('no'))],
     )
     application_id = forms.ChoiceField(
         required=False,
-        label=_(u'Application'),
+        label=_('Application'),
         choices=([('', '')] + [(a.id, a.pretty) for a in amo.APPS_ALL.values()]),
     )
     max_version = forms.ChoiceField(
         required=False,
-        label=_(u'Max. Version'),
-        choices=[('', _(u'Select an application first'))],
+        label=_('Max. Version'),
+        choices=[('', _('Select an application first'))],
     )
     deleted = forms.ChoiceField(
         required=False,
-        choices=[('', ''), ('1', _(u'yes')), ('0', _(u'no'))],
-        label=_(u'Deleted'),
+        choices=[('', ''), ('1', _('yes')), ('0', _('no'))],
+        label=_('Deleted'),
     )
 
     def __init__(self, *args, **kw):
@@ -265,7 +265,7 @@ class AllAddonSearchForm(forms.Form):
                 % qs._param(lang),
             ]
             qs.base_query['from'].extend(joins)
-            fuzzy_q = u'%' + data['text_query'] + u'%'
+            fuzzy_q = '%' + data['text_query'] + '%'
             qs = qs.filter_raw(
                 Q('addon_name LIKE', fuzzy_q)
                 | Q('guid LIKE', fuzzy_q)
@@ -348,7 +348,7 @@ class ReviewForm(forms.Form):
     use_required_attribute = False
 
     comments = forms.CharField(
-        required=True, widget=forms.Textarea(), label=_(u'Comments:')
+        required=True, widget=forms.Textarea(), label=_('Comments:')
     )
     canned_response = NonValidatingChoiceField(required=False)
     action = forms.ChoiceField(required=True, widget=forms.RadioSelect())
@@ -364,8 +364,8 @@ class ReviewForm(forms.Form):
         queryset=Version.objects.none(),
     )  # queryset is set later in __init__.
 
-    operating_systems = forms.CharField(required=False, label=_(u'Operating systems:'))
-    applications = forms.CharField(required=False, label=_(u'Applications:'))
+    operating_systems = forms.CharField(required=False, label=_('Operating systems:'))
+    applications = forms.CharField(required=False, label=_('Applications:'))
     delayed_rejection = forms.BooleanField(
         # For the moment we default to immediate rejections, but in the future
         # this will have to be dynamically set in __init__() to default to
@@ -398,7 +398,7 @@ class ReviewForm(forms.Form):
         required=False,
         widget=NumberInput,
         initial=REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT,
-        label=_(u'days'),
+        label=_('days'),
         min_value=1,
         max_value=99,
     )
@@ -520,9 +520,9 @@ class PublicWhiteboardForm(forms.ModelForm):
 class ModerateRatingFlagForm(forms.ModelForm):
 
     action_choices = [
-        (ratings.REVIEW_MODERATE_KEEP, _(u'Keep review; remove flags')),
-        (ratings.REVIEW_MODERATE_SKIP, _(u'Skip for now')),
-        (ratings.REVIEW_MODERATE_DELETE, _(u'Delete review')),
+        (ratings.REVIEW_MODERATE_KEEP, _('Keep review; remove flags')),
+        (ratings.REVIEW_MODERATE_SKIP, _('Skip for now')),
+        (ratings.REVIEW_MODERATE_DELETE, _('Delete review')),
     ]
     action = forms.ChoiceField(
         choices=action_choices, required=False, initial=0, widget=forms.RadioSelect()

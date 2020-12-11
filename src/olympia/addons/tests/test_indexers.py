@@ -242,7 +242,7 @@ class TestAddonIndexer(TestCase):
         assert extracted['current_version']
         assert extracted['listed_authors'] == [
             {
-                'name': u'55021 التطب',
+                'name': '55021 التطب',
                 'id': 55021,
                 'username': '55021',
                 'is_public': True,
@@ -286,7 +286,7 @@ class TestAddonIndexer(TestCase):
         file_factory(version=version, platform=PLATFORM_MAC.id, is_webextension=True)
         del version.all_files
         version.license = License.objects.create(
-            name=u'My licensé', url='http://example.com/', builtin=0
+            name='My licensé', url='http://example.com/', builtin=0
         )
         [
             WebextPermission.objects.create(
@@ -316,15 +316,14 @@ class TestAddonIndexer(TestCase):
         assert extracted['current_version']['license'] == {
             'builtin': 0,
             'id': version.license.pk,
-            'name_translations': [{'lang': u'en-US', 'string': u'My licensé'}],
-            'url': u'http://example.com/',
+            'name_translations': [{'lang': 'en-US', 'string': 'My licensé'}],
+            'url': 'http://example.com/',
         }
         assert extracted['current_version']['release_notes_translations'] == [
-            {'lang': 'en-US', 'string': u'Fix for an important bug'},
+            {'lang': 'en-US', 'string': 'Fix for an important bug'},
             {
                 'lang': 'fr',
-                'string': u'Quelque chose en fran\xe7ais.'
-                u"\n\nQuelque chose d'autre.",
+                'string': 'Quelque chose en fran\xe7ais.' u"\n\nQuelque chose d'autre.",
             },
         ]
         assert extracted['current_version']['reviewed'] == version.reviewed
@@ -366,13 +365,13 @@ class TestAddonIndexer(TestCase):
 
     def test_extract_translations(self):
         translations_name = {
-            'en-US': u'Name in ënglish',
-            'es': u'Name in Español',
+            'en-US': 'Name in ënglish',
+            'es': 'Name in Español',
             'it': None,  # Empty name should be ignored in extract.
         }
         translations_description = {
-            'en-US': u'Description in ënglish',
-            'es': u'Description in Español',
+            'en-US': 'Description in ënglish',
+            'es': 'Description in Español',
             'fr': '',  # Empty description should be ignored in extract.
             'it': '<script>alert(42)</script>',
         }
@@ -449,7 +448,7 @@ class TestAddonIndexer(TestCase):
         second_preview = Preview.objects.create(
             addon=self.addon,
             position=2,
-            caption={'en-US': u'My câption', 'fr': u'Mön tîtré'},
+            caption={'en-US': 'My câption', 'fr': 'Mön tîtré'},
             sizes={'thumbnail': [199, 99], 'image': [567, 780]},
         )
         first_preview = Preview.objects.create(addon=self.addon, position=1)
@@ -465,8 +464,8 @@ class TestAddonIndexer(TestCase):
         assert extracted['previews'][1]['id'] == second_preview.pk
         assert extracted['previews'][1]['modified'] == second_preview.modified
         assert extracted['previews'][1]['caption_translations'] == [
-            {'lang': 'en-US', 'string': u'My câption'},
-            {'lang': 'fr', 'string': u'Mön tîtré'},
+            {'lang': 'en-US', 'string': 'My câption'},
+            {'lang': 'fr', 'string': 'Mön tîtré'},
         ]
         assert (
             extracted['previews'][1]['sizes']
