@@ -6,6 +6,7 @@ import django_tables2 as tables
 import olympia.core.logger
 from django.conf import settings
 from django.contrib.humanize.templatetags.humanize import naturaltime
+from django.db.models import Count, F, Q
 from django.template import loader
 from django.utils import translation
 from django.utils.translation import ugettext_lazy as _, ungettext
@@ -58,6 +59,10 @@ class ReviewerQueueTable(tables.Table, ItemStateTable):
 
     class Meta:
         orderable = True
+
+    @classmethod
+    def get_queryset(cls, admin_reviewer=False):
+        return cls.Meta.model.objects.all()
 
     def render_addon_name(self, record):
         url = reverse('reviewers.review', args=[record.addon_slug])
@@ -121,6 +126,10 @@ class ViewUnlistedAllListTable(tables.Table, ItemStateTable):
 
     class Meta(ReviewerQueueTable.Meta):
         model = ViewUnlistedAllList
+
+    @classmethod
+    def get_queryset(cls, admin_reviewer=False):
+        return cls.Meta.model.objects.all()
 
     def render_addon_name(self, record):
         url = reverse(
@@ -232,12 +241,18 @@ class PendingRejectionTable(ModernAddonQueueTable):
     class Meta(ModernAddonQueueTable.Meta):
         fields = ('addon_name', 'flags', 'last_human_review', 'weight', 'deadline')
 
+    @classmethod
+    def get_queryset(cls, admin_reviewer=False):
+        return Addon.objects.get_pending_rejection_queue(admin_reviewer=admin_reviewer)
+
     def render_deadline(self, value):
         return naturaltime(value) if value else ''
 
 
 class AutoApprovedTable(ModernAddonQueueTable):
-    pass
+    @classmethod
+    def get_queryset(cls, admin_reviewer=False):
+        return Addon.objects.get_auto_approved_queue(admin_reviewer=admin_reviewer)
 
 
 class ContentReviewTable(AutoApprovedTable):
@@ -249,6 +264,10 @@ class ContentReviewTable(AutoApprovedTable):
         exclude = ('addon_type_id', 'last_human_review', 'waiting_time_min', 'weight')
         orderable = False
 
+    @classmethod
+    def get_queryset(cls, admin_reviewer=False):
+        return Addon.objects.get_content_review_queue(admin_reviewer=admin_reviewer)
+
     def render_last_updated(self, value):
         return naturaltime(value) if value else ''
 
@@ -259,30 +278,51 @@ class ContentReviewTable(AutoApprovedTable):
 class ScannersReviewTable(AutoApprovedTable):
     listed_text = _('Listed versions needing human review ({0})')
     unlisted_text = _('Unlisted versions needing human review ({0})')
-    filter_listed = filter_unlisted = {'needs_human_review': True}
+
+    @classmethod
+    def get_queryset(cls, admin_reviewer=False):
+        return Addon.objects.get_scanners_queue(admin_reviewer=admin_reviewer).annotate(
+            unlisted_versions_that_need_human_review=Count(
+                'versions',
+                filter=Q(
+                    versions__needs_human_review=True,
+                    versions__channel=amo.RELEASE_CHANNEL_UNLISTED,
+                ),
+            ),
+            listed_versions_that_need_human_review=Count(
+                'versions',
+                filter=Q(
+                    versions__needs_human_review=True,
+                    versions__channel=amo.RELEASE_CHANNEL_LISTED,
+                ),
+            ),
+        )
 
     def render_addon_name(self, record):
         rval = [jinja2.escape(record.name)]
 
-        listed_versions = record.versions.filter(
-            channel=amo.RELEASE_CHANNEL_LISTED,
-            **self.filter_listed,
-        ).count()
-        if listed_versions:
+        if record.listed_versions_that_need_human_review:
             url = reverse('reviewers.review', args=[record.slug])
             rval.append(
-                '<a href="%s">%s</a>' % (url, self.listed_text.format(listed_versions))
+                '<a href="%s">%s</a>'
+                % (
+                    url,
+                    self.listed_text.format(
+                        record.listed_versions_that_need_human_review
+                    ),
+                )
             )
 
-        unlisted_versions = record.versions.filter(
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
-            **self.filter_unlisted,
-        ).count()
-        if unlisted_versions:
+        if record.unlisted_versions_that_need_human_review:
             url = reverse('reviewers.review', args=['unlisted', record.slug])
             rval.append(
                 '<a href="%s">%s</a>'
-                % (url, self.unlisted_text.format(unlisted_versions))
+                % (
+                    url,
+                    self.unlisted_text.format(
+                        record.unlisted_versions_that_need_human_review
+                    ),
+                )
             )
 
         return ''.join(rval)
@@ -291,10 +331,19 @@ class ScannersReviewTable(AutoApprovedTable):
 class MadReviewTable(ScannersReviewTable):
     listed_text = _('Listed version')
     unlisted_text = _('Unlisted versions ({0})')
-    filter_listed = {
-        'addon___current_version__reviewerflags__needs_human_review_by_mad': True
-    }
-    filter_unlisted = {'reviewerflags__needs_human_review_by_mad': True}
+
+    @classmethod
+    def get_queryset(cls, admin_reviewer=False):
+        return Addon.objects.get_mad_queue(admin_reviewer=admin_reviewer).annotate(
+            unlisted_versions_that_need_human_review=Count(
+                'versions',
+                filter=Q(
+                    versions__reviewerflags__needs_human_review_by_mad=True,
+                    versions__channel=amo.RELEASE_CHANNEL_UNLISTED,
+                ),
+            ),
+            listed_versions_that_need_human_review=F('_current_version__reviewerflags'),
+        )
 
 
 class ReviewHelper(object):
