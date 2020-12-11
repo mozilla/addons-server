@@ -59,7 +59,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.blocklist.models import Block, BlocklistSubmission
 from olympia.constants.promoted import LINE, RECOMMENDED, SPOTLIGHT, STRATEGIC
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
-from olympia.constants.scanners import MAD
+from olympia.constants.scanners import CUSTOMS, MAD, YARA
 from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.git.utils import AddonGitRepository, extract_version_to_git
 from olympia.git.tests.test_utils import apply_changes
@@ -75,7 +75,7 @@ from olympia.reviewers.templatetags.jinja_helpers import code_manager_url
 from olympia.reviewers.utils import ContentReviewTable
 from olympia.reviewers.views import _queue
 from olympia.reviewers.serializers import CannedResponseSerializer
-from olympia.scanners.models import ScannerResult
+from olympia.scanners.models import ScannerResult, ScannerRule
 from olympia.users.models import UserProfile
 from olympia.versions.models import (
     ApplicationsVersions,
@@ -5871,17 +5871,37 @@ class TestReview(ReviewBase):
 
     def test_versions_that_are_flagged_by_scanners_are_highlighted(self):
         self.addon.current_version.update(created=self.days_ago(366))
+        customs_rule = ScannerRule.objects.create(name='ringo', scanner=CUSTOMS)
+        yara_rule = ScannerRule.objects.create(name='star', scanner=YARA)
         for i in range(0, 10):
             # Add versions 1.0 to 1.9. Flag a few of them as needing human
             # review.
-            version_factory(
+            matched_yara_rule = not bool(i % 3)
+            matched_customs_rule = not bool(i % 3) and not bool(i % 2)
+            version = version_factory(
                 addon=self.addon,
                 version=f'1.{i}',
-                needs_human_review=not bool(i % 3),
+                needs_human_review=matched_yara_rule or matched_customs_rule,
                 created=self.days_ago(365 - i),
             )
+            if matched_yara_rule:
+                ScannerResult.objects.create(
+                    scanner=yara_rule.scanner,
+                    version=version,
+                    results=[{'rule': yara_rule.name}],
+                )
+            if matched_customs_rule:
+                ScannerResult.objects.create(
+                    scanner=customs_rule.scanner,
+                    version=version,
+                    results={'matchedResults': [customs_rule.name]},
+                )
 
-        response = self.client.get(self.url)
+        with self.assertNumQueries(60):
+            # See test_item_history_pagination() for more details about the
+            # queries count. What's important here is that the extra versions
+            # and scanner results don't cause extra queries.
+            response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
         tds = doc('#versions-history .review-files td.files')
@@ -5893,6 +5913,75 @@ class TestReview(ReviewBase):
         assert 'Flagged by scanners' in tds.eq(3).text()
         assert 'Flagged by scanners' in tds.eq(6).text()
         assert 'Flagged by scanners' in tds.eq(9).text()
+
+        # There are no other flagged versions in the other page.
+        span = doc('#review-files-header .risk-high')
+        assert span.length == 0
+
+        # Load the second page. This time there should be a message indicating
+        # there are flagged versions in other pages.
+        response = self.client.get(self.url, {'page': 2})
+        assert response.status_code == 200
+        doc = pq(response.content)
+        span = doc('#review-files-header .risk-high')
+        assert span.length == 1
+        assert span.text() == '4 versions flagged by scanners on other pages.'
+
+    def test_versions_that_are_flagged_by_scanners_are_highlighted_admin(self):
+        self.login_as_admin()
+        self.addon.current_version.update(created=self.days_ago(366))
+        customs_rule = ScannerRule.objects.create(name='ringo', scanner=CUSTOMS)
+        yara_rule = ScannerRule.objects.create(name='star', scanner=YARA)
+        for i in range(0, 10):
+            # Add versions 1.0 to 1.9. Flag a few of them as needing human
+            # review.
+            matched_yara_rule = not bool(i % 3)
+            matched_customs_rule = not bool(i % 3) and not bool(i % 2)
+            version = version_factory(
+                addon=self.addon,
+                version=f'1.{i}',
+                needs_human_review=matched_yara_rule or matched_customs_rule,
+                created=self.days_ago(365 - i),
+            )
+            if matched_yara_rule:
+                ScannerResult.objects.create(
+                    scanner=yara_rule.scanner,
+                    version=version,
+                    results=[{'rule': yara_rule.name}],
+                )
+            if matched_customs_rule:
+                ScannerResult.objects.create(
+                    scanner=customs_rule.scanner,
+                    version=version,
+                    results={'matchedResults': [customs_rule.name]},
+                )
+
+        with self.assertNumQueries(62):
+            # See test_item_history_pagination() for more details about the
+            # queries count. What's important here is that the extra versions
+            # and scanner results don't cause extra queries.
+            # There are 2 extra queries caused by additional stuff available to
+            # admins, but not more.
+            response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        tds = doc('#versions-history .review-files td.files')
+        assert tds.length == 10
+        # Original version should not be there any more, it's on the second
+        # page. Versions on the page should be displayed in chronological order
+        # Versions 1.0, 1.3, 1.6, 1.9 are flagged for human review.
+        assert 'Flagged by scanners (yara, customs)' in tds.eq(0).text()
+        assert 'Flagged by scanners (yara)' in tds.eq(3).text()
+        assert 'Flagged by scanners (yara, customs)' in tds.eq(6).text()
+        assert 'Flagged by scanners (yara)' in tds.eq(9).text()
+        # We're an admin so not only does the text mention the scanner name, but there
+        # should be a link to the scanner result page. Let's check one.
+        scanner_results = self.addon.versions.get(version='1.0').scannerresults.all()
+        links = tds.eq(0).find('.risk-high a')
+        for i, result in enumerate(scanner_results):
+            assert links[i].attrib['href'] == reverse(
+                'admin:scanners_scannerresult_change', args=(result.pk,)
+            )
 
         # There are no other flagged versions in the other page.
         span = doc('#review-files-header .risk-high')

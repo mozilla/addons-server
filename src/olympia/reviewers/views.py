@@ -781,12 +781,12 @@ def review(request, addon, channel=None):
         .filter(channel=channel)
         .select_related('autoapprovalsummary')
         .select_related('reviewerflags')
-        # Prefetch scanner results, but we only care about pk, scanner and
-        # score, not the results themselves.
+        # Prefetch scanner results... but without the results json as we don't
+        # need it.
         .prefetch_related(
             Prefetch(
                 'scannerresults',
-                queryset=ScannerResult.objects.only('pk', 'scanner', 'score'),
+                queryset=ScannerResult.objects.defer('results'),
             )
         )
         # Add activity transformer to prefetch all related activity logs on
