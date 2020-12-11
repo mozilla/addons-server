@@ -242,7 +242,7 @@ class TestActivity(HubTest):
         assert '&lt;script&gt;' in str(doc), 'XSS FTL'
 
     def test_xss_collections(self):
-        self.log_collection(1, "<script>alert('v1@gra for ')</script>")
+        self.log_collection(1, "<script>alert('v1@gra for u')</script>")
         doc = self.get_pq()
         assert len(doc('.item')) == 1
         assert '<script>' not in str(doc), 'XSS FTL'
@@ -250,7 +250,7 @@ class TestActivity(HubTest):
 
     def test_xss_collections_unlisted_addon(self):
         self.make_addon_unlisted(self.addon)
-        self.log_collection(1, "<script>alert('v1@gra for ')</script>")
+        self.log_collection(1, "<script>alert('v1@gra for u')</script>")
         doc = self.get_pq()
         assert len(doc('.item')) == 2
         assert '<script>' not in str(doc), 'XSS FTL'

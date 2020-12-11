@@ -45,7 +45,7 @@ class TestViews(TestCase):
     def test_version_update_info(self):
         self.version.release_notes = {
             'en-US': 'Fix for an important bug',
-            'fr': u"Quelque chose en français.\n\nQuelque chose d'autre.",
+            'fr': "Quelque chose en français.\n\nQuelque chose d'autre.",
         }
         self.version.save()
 
@@ -90,7 +90,7 @@ class TestViews(TestCase):
             doc = PyQuery(response.content, parser='html')
             assert doc('html').attr('xmlns') == 'http://www.w3.org/1999/xhtml'
             assert doc('p').html() == (
-                u"Quelque chose en français.<br/><br/>Quelque chose d'autre."
+                "Quelque chose en français.<br/><br/>Quelque chose d'autre."
             )
 
     def test_version_update_info_legacy_redirect(self):

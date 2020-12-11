@@ -473,7 +473,7 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_actions_public_static_theme(self):
         # Having Addons:Review and dealing with a public add-on would
         # normally be enough to give you access to reject multiple versions
-        # action, but it should not be available if yo're not theme reviewer.
+        # action, but it should not be available if you're not theme reviewer.
         self.grant_permission(self.request.user, 'Addons:Review')
         self.addon.update(type=amo.ADDON_STATICTHEME)
         expected = []
@@ -585,7 +585,7 @@ class TestReviewHelper(TestReviewHelperBase):
             == expected
         )
 
-        # Having Addons:RecommendedReview allows you to do it (though yo'd
+        # Having Addons:RecommendedReview allows you to do it (though you'd
         # be better off just do a full review).
         self.grant_permission(self.request.user, 'Addons:RecommendedReview')
         expected = [

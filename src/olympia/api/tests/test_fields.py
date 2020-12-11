@@ -145,7 +145,7 @@ class TestTranslationSerializerField(TestCase):
         with self.assertRaises(ValidationError) as exc:
             field.to_internal_value(data)
         assert exc.exception.message == (
-            u"The language code 'unknown-locale' is invalid."
+            "The language code 'unknown-locale' is invalid."
         )
 
     def test_none_type_locale_is_allowed(self):

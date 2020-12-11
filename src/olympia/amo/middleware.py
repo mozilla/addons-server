@@ -227,7 +227,7 @@ class ReadOnlyMiddleware(MiddlewareMixin):
 
     ERROR_MSG = _(
         'Some features are temporarily disabled while we '
-        u"perform website maintenance. We'll be back to "
+        "perform website maintenance. We'll be back to "
         'full capacity shortly.'
     )
 

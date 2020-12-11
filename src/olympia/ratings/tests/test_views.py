@@ -1378,7 +1378,7 @@ class TestRatingViewSetEdit(TestCase):
         response = self.client.patch(self.url, {'version': new_version.pk})
         assert response.status_code == 400
         assert response.data['version'] == [
-            u"You can't change the version of the add-on reviewed once "
+            "You can't change the version of the add-on reviewed once "
             'the review has been created.'
         ]
 
@@ -1388,7 +1388,7 @@ class TestRatingViewSetEdit(TestCase):
         response = self.client.patch(self.url, {'addon': new_addon.pk})
         assert response.status_code == 400
         assert response.data['addon'] == [
-            u"You can't change the add-on of a review once it has been " 'created.'
+            "You can't change the add-on of a review once it has been created."
         ]
 
     def test_edit_admin(self):
@@ -1788,7 +1788,7 @@ class TestRatingViewSetPost(TestCase):
         )
         assert response.status_code == 400
         assert response.data['version'] == [
-            u"This version of the add-on doesn't exist or isn't public."
+            "This version of the add-on doesn't exist or isn't public."
         ]
 
     def test_post_deleted_addon(self):
@@ -1832,7 +1832,7 @@ class TestRatingViewSetPost(TestCase):
         )
         assert response.status_code == 400
         assert response.data['version'] == [
-            u"This version of the add-on doesn't exist or isn't public."
+            "This version of the add-on doesn't exist or isn't public."
         ]
 
     def test_post_disabled_version(self):
@@ -1857,7 +1857,7 @@ class TestRatingViewSetPost(TestCase):
         )
         assert response.status_code == 400
         assert response.data['version'] == [
-            u"This version of the add-on doesn't exist or isn't public."
+            "This version of the add-on doesn't exist or isn't public."
         ]
 
     def test_post_not_public_addon(self):
@@ -1941,8 +1941,7 @@ class TestRatingViewSetPost(TestCase):
         )
         assert response.status_code == 400
         assert response.data['non_field_errors'] == [
-            u"You can't leave more than one review for the same version of "
-            'an add-on.'
+            "You can't leave more than one review for the same version of " 'an add-on.'
         ]
 
     @override_settings(CACHES=locmem_cache)
@@ -2410,7 +2409,7 @@ class TestRatingViewSetReply(TestCase):
         response = self.client.post(self.url, data={'body': 'LOL øø!'})
         assert response.status_code == 400
         assert response.data['non_field_errors'] == [
-            u"You can't reply to a review that is already a reply."
+            "You can't reply to a review that is already a reply."
         ]
 
     @override_settings(CACHES=locmem_cache)

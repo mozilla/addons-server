@@ -649,7 +649,7 @@ class LicenseForm(AMOModelForm):
     )
     name = forms.CharField(
         widget=TranslationTextInput(),
-        label=_(u"What is your license's name?"),
+        label=_("What is your license's name?"),
         required=False,
         initial=_('Custom License'),
     )
@@ -758,7 +758,7 @@ class PolicyForm(TranslationFormMixin, AMOModelForm):
     eula = TransField(
         widget=TransTextarea(),
         required=False,
-        label=_(u"Please specify your add-on's " 'End-User License Agreement:'),
+        label=_("Please specify your add-on's " 'End-User License Agreement:'),
     )
     has_priv = forms.BooleanField(
         required=False, label=_('This add-on has a Privacy Policy'), label_suffix=''
@@ -766,7 +766,7 @@ class PolicyForm(TranslationFormMixin, AMOModelForm):
     privacy_policy = TransField(
         widget=TransTextarea(),
         required=False,
-        label=_(u"Please specify your add-on's Privacy Policy:"),
+        label=_("Please specify your add-on's Privacy Policy:"),
     )
 
     def __init__(self, *args, **kw):

@@ -22,7 +22,7 @@ MAIL_COSE_SUBJECT = (
     'Your Firefox extension has been re-signed with a stronger signature'
 )
 
-MAIL_COSE_MESSAGE = u"""
+MAIL_COSE_MESSAGE = """
 Hello,
 
 Mozilla has recently upgraded the signing [1] for Firefox extensions, themes,

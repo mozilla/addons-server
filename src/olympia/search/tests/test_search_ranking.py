@@ -416,7 +416,7 @@ class TestRankingScenarios(ESTestCase):
                 'A very lightweight add-on that allows you to watch YouTube™ '
                 'videos using Flash® Player instead of the '
                 'default HTML5 player. The Flash® Player will consume less '
-                u"CPU and RAM resources if your device doesn't easily "
+                "CPU and RAM resources if your device doesn't easily "
                 'support HTML5 videos. Try it!'
             ),
             weekly_downloads=21882,

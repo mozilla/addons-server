@@ -458,7 +458,7 @@ class TestCsvAndJsonViews(StatsTestCase):
         assert response.status_code == 200
         self.csv_eq(
             response,
-            u"""date,count,English (US) (en-us),Espa\xf1ol (de M\xe9xico) (es-mx),Ελληνικά (el)
+            """date,count,English (US) (en-us),Espa\xf1ol (de M\xe9xico) (es-mx),Ελληνικά (el)
             2009-06-02,1500,300,400,800
             2009-06-01,1000,300,300,400""",  # noqa
         )
@@ -521,7 +521,7 @@ class TestCsvAndJsonViews(StatsTestCase):
         assert response.status_code == 200
         self.csv_eq(
             response,
-            u"""date,count,Linux,Windows
+            """date,count,Linux,Windows
             2009-06-02,1500,400,500
             2009-06-01,1000,300,400""",
         )

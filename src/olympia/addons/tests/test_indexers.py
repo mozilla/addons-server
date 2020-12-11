@@ -323,7 +323,7 @@ class TestAddonIndexer(TestCase):
             {'lang': 'en-US', 'string': 'Fix for an important bug'},
             {
                 'lang': 'fr',
-                'string': 'Quelque chose en fran\xe7ais.' u"\n\nQuelque chose d'autre.",
+                'string': "Quelque chose en fran\xe7ais.\n\nQuelque chose d'autre.",
             },
         ]
         assert extracted['current_version']['reviewed'] == version.reviewed
