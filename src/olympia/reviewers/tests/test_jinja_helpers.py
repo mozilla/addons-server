@@ -53,10 +53,10 @@ def test_version_status():
         File(status=amo.STATUS_APPROVED),
         File(status=amo.STATUS_AWAITING_REVIEW),
     ]
-    assert u'Approved,Awaiting Review' == (jinja_helpers.version_status(addon, version))
+    assert 'Approved,Awaiting Review' == (jinja_helpers.version_status(addon, version))
 
     version.all_files = [File(status=amo.STATUS_AWAITING_REVIEW)]
-    assert u'Awaiting Review' == jinja_helpers.version_status(addon, version)
+    assert 'Awaiting Review' == jinja_helpers.version_status(addon, version)
 
 
 def test_file_review_status_handles_invalid_status_id():
@@ -67,7 +67,7 @@ def test_file_review_status_handles_invalid_status_id():
 
     # 99 isn't a valid status, so return the status code for reference.
     status = jinja_helpers.file_review_status(None, File(status=99))
-    assert u'[status:99]' == status
+    assert '[status:99]' == status
 
 
 def test_create_a_code_manager_url():

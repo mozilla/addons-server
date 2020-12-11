@@ -22,7 +22,7 @@ class _LOG(object):
 class CREATE_ADDON(_LOG):
     id = 1
     action_class = 'add'
-    format = _(u'{addon} was created.')
+    format = _('{addon} was created.')
     keep = True
 
 
@@ -31,25 +31,25 @@ class EDIT_PROPERTIES(_LOG):
 
     id = 2
     action_class = 'edit'
-    format = _(u'{addon} properties edited.')
+    format = _('{addon} properties edited.')
 
 
 class EDIT_DESCRIPTIONS(_LOG):
     id = 3
     action_class = 'edit'
-    format = _(u'{addon} description edited.')
+    format = _('{addon} description edited.')
 
 
 class EDIT_CATEGORIES(_LOG):
     id = 4
     action_class = 'edit'
-    format = _(u'Categories edited for {addon}.')
+    format = _('Categories edited for {addon}.')
 
 
 class ADD_USER_WITH_ROLE(_LOG):
     id = 5
     action_class = 'add'
-    format = _(u'{0.name} ({1}) added to {addon}.')
+    format = _('{0.name} ({1}) added to {addon}.')
     keep = True
 
 
@@ -57,46 +57,46 @@ class REMOVE_USER_WITH_ROLE(_LOG):
     id = 6
     action_class = 'delete'
     # L10n: {0} is the user being removed, {1} is their role.
-    format = _(u'{0.name} ({1}) removed from {addon}.')
+    format = _('{0.name} ({1}) removed from {addon}.')
     keep = True
 
 
 class EDIT_CONTRIBUTIONS(_LOG):
     id = 7
     action_class = 'edit'
-    format = _(u'Contributions for {addon}.')
+    format = _('Contributions for {addon}.')
 
 
 class USER_DISABLE(_LOG):
     id = 8
-    format = _(u'{addon} disabled.')
+    format = _('{addon} disabled.')
     keep = True
 
 
 class USER_ENABLE(_LOG):
     id = 9
-    format = _(u'{addon} enabled.')
+    format = _('{addon} enabled.')
     keep = True
 
 
 class CHANGE_STATUS(_LOG):
     id = 12
     # L10n: {status} is the status
-    format = _(u'{addon} status changed to {status}.')
+    format = _('{addon} status changed to {status}.')
     keep = True
 
 
 class ADD_VERSION(_LOG):
     id = 16
     action_class = 'add'
-    format = _(u'{version} added to {addon}.')
+    format = _('{version} added to {addon}.')
     keep = True
 
 
 class EDIT_VERSION(_LOG):
     id = 17
     action_class = 'edit'
-    format = _(u'{version} edited for {addon}.')
+    format = _('{version} edited for {addon}.')
 
 
 class DELETE_VERSION(_LOG):
@@ -104,14 +104,14 @@ class DELETE_VERSION(_LOG):
     action_class = 'delete'
     # Note, {0} is a string not a version since the version is deleted.
     # L10n: {0} is the version number
-    format = _(u'Version {0} deleted from {addon}.')
+    format = _('Version {0} deleted from {addon}.')
     keep = True
 
 
 class ADD_FILE_TO_VERSION(_LOG):
     id = 19
     action_class = 'add'
-    format = _(u'File {0.name} added to {version} of {addon}.')
+    format = _('File {0.name} added to {version} of {addon}.')
 
 
 class DELETE_FILE_FROM_VERSION(_LOG):
@@ -123,14 +123,14 @@ class DELETE_FILE_FROM_VERSION(_LOG):
 
     id = 20
     action_class = 'delete'
-    format = _(u'File {0} deleted from {version} of {addon}.')
+    format = _('File {0} deleted from {version} of {addon}.')
 
 
 class APPROVE_VERSION(_LOG):
     id = 21
     action_class = 'approve'
-    format = _(u'{addon} {version} approved.')
-    short = _(u'Approved')
+    format = _('{addon} {version} approved.')
+    short = _('Approved')
     keep = True
     review_email_user = True
     review_queue = True
@@ -140,8 +140,8 @@ class APPROVE_VERSION(_LOG):
 class PRELIMINARY_VERSION(_LOG):
     id = 42
     action_class = 'approve'
-    format = _(u'{addon} {version} given preliminary review.')
-    short = _(u'Preliminarily approved')
+    format = _('{addon} {version} given preliminary review.')
+    short = _('Preliminarily approved')
     keep = True
     review_email_user = True
     review_queue = True
@@ -152,8 +152,8 @@ class REJECT_VERSION(_LOG):
     # takes add-on, version, reviewtype
     id = 43
     action_class = 'reject'
-    format = _(u'{addon} {version} rejected.')
-    short = _(u'Rejected')
+    format = _('{addon} {version} rejected.')
+    short = _('Rejected')
     keep = True
     review_email_user = True
     review_queue = True
@@ -163,8 +163,8 @@ class REJECT_VERSION(_LOG):
 class RETAIN_VERSION(_LOG):
     # takes add-on, version, reviewtype
     id = 22
-    format = _(u'{addon} {version} retained.')
-    short = _(u'Retained')
+    format = _('{addon} {version} retained.')
+    short = _('Retained')
     keep = True
     review_email_user = True
     review_queue = True
@@ -174,8 +174,8 @@ class RETAIN_VERSION(_LOG):
 class ESCALATE_VERSION(_LOG):
     # takes add-on, version, reviewtype
     id = 23
-    format = _(u'{addon} {version} escalated.')
-    short = _(u'Super review requested')
+    format = _('{addon} {version} escalated.')
+    short = _('Super review requested')
     keep = True
     review_email_user = True
     review_queue = True
@@ -185,8 +185,8 @@ class ESCALATE_VERSION(_LOG):
 class REQUEST_VERSION(_LOG):
     # takes add-on, version, reviewtype
     id = 24
-    format = _(u'{addon} {version} review requested.')
-    short = _(u'Review requested')
+    format = _('{addon} {version} review requested.')
+    short = _('Review requested')
     keep = True
     review_email_user = True
     review_queue = True
@@ -195,8 +195,8 @@ class REQUEST_VERSION(_LOG):
 # Obsolete now that we have pending rejections, kept for compatibility.
 class REQUEST_INFORMATION(_LOG):
     id = 44
-    format = _(u'{addon} {version} more information requested.')
-    short = _(u'More information requested')
+    format = _('{addon} {version} more information requested.')
+    short = _('More information requested')
     keep = True
     review_email_user = True
     review_queue = True
@@ -208,8 +208,8 @@ class REQUEST_INFORMATION(_LOG):
 # and also to re-use the `sanitize` property.
 class REQUEST_SUPER_REVIEW(_LOG):
     id = 45
-    format = _(u'{addon} {version} super review requested.')
-    short = _(u'Super review requested')
+    format = _('{addon} {version} super review requested.')
+    short = _('Super review requested')
     keep = True
     review_queue = True
     sanitize = _(
@@ -223,8 +223,8 @@ class REQUEST_SUPER_REVIEW(_LOG):
 
 class COMMENT_VERSION(_LOG):
     id = 49
-    format = _(u'Comment on {addon} {version}.')
-    short = _(u'Commented')
+    format = _('Comment on {addon} {version}.')
+    short = _('Commented')
     keep = True
     review_queue = True
     hide_developer = True
@@ -234,31 +234,31 @@ class COMMENT_VERSION(_LOG):
 class ADD_TAG(_LOG):
     id = 25
     action_class = 'tag'
-    format = _(u'{tag} added to {addon}.')
+    format = _('{tag} added to {addon}.')
 
 
 class REMOVE_TAG(_LOG):
     id = 26
     action_class = 'tag'
-    format = _(u'{tag} removed from {addon}.')
+    format = _('{tag} removed from {addon}.')
 
 
 class ADD_TO_COLLECTION(_LOG):
     id = 27
     action_class = 'collection'
-    format = _(u'{addon} added to {collection}.')
+    format = _('{addon} added to {collection}.')
 
 
 class REMOVE_FROM_COLLECTION(_LOG):
     id = 28
     action_class = 'collection'
-    format = _(u'{addon} removed from {collection}.')
+    format = _('{addon} removed from {collection}.')
 
 
 class ADD_RATING(_LOG):
     id = 29
     action_class = 'review'
-    format = _(u'{rating} for {addon} written.')
+    format = _('{rating} for {addon} written.')
 
 
 # TODO(davedash): Add these when we do the admin site
@@ -266,25 +266,25 @@ class ADD_RECOMMENDED_CATEGORY(_LOG):
     id = 31
     action_class = 'edit'
     # L10n: {0} is a category name.
-    format = _(u'{addon} featured in {0}.')
+    format = _('{addon} featured in {0}.')
 
 
 class REMOVE_RECOMMENDED_CATEGORY(_LOG):
     id = 32
     action_class = 'edit'
     # L10n: {0} is a category name.
-    format = _(u'{addon} no longer featured in {0}.')
+    format = _('{addon} no longer featured in {0}.')
 
 
 class ADD_RECOMMENDED(_LOG):
     id = 33
-    format = _(u'{addon} is now featured.')
+    format = _('{addon} is now featured.')
     keep = True
 
 
 class REMOVE_RECOMMENDED(_LOG):
     id = 34
-    format = _(u'{addon} is no longer featured.')
+    format = _('{addon} is no longer featured.')
     keep = True
 
 
@@ -292,7 +292,7 @@ class ADD_APPVERSION(_LOG):
     id = 35
     action_class = 'add'
     # L10n: {0} is the application, {1} is the version of the app
-    format = _(u'{0} {1} added.')
+    format = _('{0} {1} added.')
 
 
 class CHANGE_USER_WITH_ROLE(_LOG):
@@ -300,7 +300,7 @@ class CHANGE_USER_WITH_ROLE(_LOG):
 
     id = 36
     # L10n: {0} is a user, {1} is their role
-    format = _(u'{0.name} role changed to {1} for {addon}.')
+    format = _('{0.name} role changed to {1} for {addon}.')
     keep = True
 
 
@@ -309,26 +309,26 @@ class CHANGE_LICENSE(_LOG):
 
     id = 37
     action_class = 'edit'
-    format = _(u'{addon} is now licensed under {0}.')
+    format = _('{addon} is now licensed under {0}.')
 
 
 class CHANGE_POLICY(_LOG):
     id = 38
     action_class = 'edit'
-    format = _(u'{addon} policy changed.')
+    format = _('{addon} policy changed.')
 
 
 class CHANGE_ICON(_LOG):
     id = 39
     action_class = 'edit'
-    format = _(u'{addon} icon changed.')
+    format = _('{addon} icon changed.')
 
 
 class APPROVE_RATING(_LOG):
     id = 40
     action_class = 'approve'
-    format = _(u'{rating} for {addon} approved.')
-    reviewer_format = _(u'{user} approved {rating} for {addon}.')
+    format = _('{rating} for {addon} approved.')
+    reviewer_format = _('{user} approved {rating} for {addon}.')
     keep = True
     reviewer_event = True
 
@@ -338,37 +338,37 @@ class DELETE_RATING(_LOG):
 
     id = 41
     action_class = 'review'
-    format = _(u'Review {rating} for {addon} deleted.')
-    reviewer_format = _(u'{user} deleted {rating} for {addon}.')
+    format = _('Review {rating} for {addon} deleted.')
+    reviewer_format = _('{user} deleted {rating} for {addon}.')
     keep = True
     reviewer_event = True
 
 
 class MAX_APPVERSION_UPDATED(_LOG):
     id = 46
-    format = _(u'Application max version for {version} updated.')
+    format = _('Application max version for {version} updated.')
 
 
 class BULK_VALIDATION_EMAILED(_LOG):
     id = 47
-    format = _(u'Authors emailed about compatibility of {version}.')
+    format = _('Authors emailed about compatibility of {version}.')
 
 
 class BULK_VALIDATION_USER_EMAILED(_LOG):
     id = 130
-    format = _(u'Email sent to Author about add-on compatibility.')
+    format = _('Email sent to Author about add-on compatibility.')
 
 
 class CHANGE_PASSWORD(_LOG):
     id = 48
-    format = _(u'Password changed.')
+    format = _('Password changed.')
 
 
 class APPROVE_VERSION_WAITING(_LOG):
     id = 53
     action_class = 'approve'
-    format = _(u'{addon} {version} approved but waiting to be made public.')
-    short = _(u'Approved but waiting')
+    format = _('{addon} {version} approved but waiting to be made public.')
+    short = _('Approved but waiting')
     keep = True
     review_email_user = True
     review_queue = True
@@ -376,7 +376,7 @@ class APPROVE_VERSION_WAITING(_LOG):
 
 class USER_EDITED(_LOG):
     id = 60
-    format = _(u'Account updated.')
+    format = _('Account updated.')
 
 
 class CUSTOM_TEXT(_LOG):
@@ -391,78 +391,78 @@ class CUSTOM_HTML(_LOG):
 
 class OBJECT_ADDED(_LOG):
     id = 100
-    format = _(u'Created: {0}.')
+    format = _('Created: {0}.')
     admin_event = True
 
 
 class OBJECT_EDITED(_LOG):
     id = 101
-    format = _(u'Edited field: {2} set to: {0}.')
+    format = _('Edited field: {2} set to: {0}.')
     admin_event = True
 
 
 class OBJECT_DELETED(_LOG):
     id = 102
-    format = _(u'Deleted: {1}.')
+    format = _('Deleted: {1}.')
     admin_event = True
 
 
 class ADMIN_USER_EDITED(_LOG):
     id = 103
-    format = _(u'User {user} edited, reason: {1}')
+    format = _('User {user} edited, reason: {1}')
     admin_event = True
 
 
 class ADMIN_USER_ANONYMIZED(_LOG):
     id = 104
-    format = _(u'User {user} anonymized.')
+    format = _('User {user} anonymized.')
     keep = True
     admin_event = True
 
 
 class ADMIN_USER_RESTRICTED(_LOG):
     id = 105
-    format = _(u'User {user} restricted.')
+    format = _('User {user} restricted.')
     keep = True
     admin_event = True
 
 
 class ADMIN_VIEWED_LOG(_LOG):
     id = 106
-    format = _(u'Admin {0} viewed activity log for {user}.')
+    format = _('Admin {0} viewed activity log for {user}.')
     admin_event = True
 
 
 class EDIT_RATING(_LOG):
     id = 107
     action_class = 'review'
-    format = _(u'{rating} for {addon} updated.')
+    format = _('{rating} for {addon} updated.')
 
 
 class THEME_REVIEW(_LOG):
     id = 108
     action_class = 'review'
-    format = _(u'{addon} reviewed.')
+    format = _('{addon} reviewed.')
     keep = True
 
 
 class ADMIN_USER_BANNED(_LOG):
     id = 109
-    format = _(u'User {user} banned.')
+    format = _('User {user} banned.')
     keep = True
     admin_event = True
 
 
 class ADMIN_USER_PICTURE_DELETED(_LOG):
     id = 110
-    format = _(u'User {user} picture deleted.')
+    format = _('User {user} picture deleted.')
     admin_event = True
 
 
 class GROUP_USER_ADDED(_LOG):
     id = 120
     action_class = 'access'
-    format = _(u'User {0.name} added to {group}.')
+    format = _('User {0.name} added to {group}.')
     keep = True
     admin_event = True
 
@@ -470,27 +470,27 @@ class GROUP_USER_ADDED(_LOG):
 class GROUP_USER_REMOVED(_LOG):
     id = 121
     action_class = 'access'
-    format = _(u'User {0.name} removed from {group}.')
+    format = _('User {0.name} removed from {group}.')
     keep = True
     admin_event = True
 
 
 class ADDON_UNLISTED(_LOG):
     id = 128
-    format = _(u'{addon} unlisted.')
+    format = _('{addon} unlisted.')
     keep = True
 
 
 class BETA_SIGNED(_LOG):
     id = 131
-    format = _(u'{file} was signed.')
+    format = _('{file} was signed.')
     keep = True
 
 
 # Obsolete, we don't care about validation results on beta files.
 class BETA_SIGNED_VALIDATION_FAILED(_LOG):
     id = 132
-    format = _(u'{file} was signed.')
+    format = _('{file} was signed.')
     keep = True
 
 
@@ -498,26 +498,26 @@ class DELETE_ADDON(_LOG):
     id = 133
     action_class = 'delete'
     # L10n: {0} is the add-on GUID.
-    format = _(u'Addon id {0} with GUID {1} has been deleted')
+    format = _('Addon id {0} with GUID {1} has been deleted')
     keep = True
 
 
 class EXPERIMENT_SIGNED(_LOG):
     id = 134
-    format = _(u'{file} was signed.')
+    format = _('{file} was signed.')
     keep = True
 
 
 class UNLISTED_SIGNED(_LOG):
     id = 135
-    format = _(u'{file} was signed.')
+    format = _('{file} was signed.')
     keep = True
 
 
 # Obsolete, we don't care about validation results on unlisted files anymore.
 class UNLISTED_SIGNED_VALIDATION_FAILED(_LOG):
     id = 136
-    format = _(u'{file} was signed.')
+    format = _('{file} was signed.')
     keep = True
 
 
@@ -525,7 +525,7 @@ class UNLISTED_SIGNED_VALIDATION_FAILED(_LOG):
 # and the distinction for sideloading add-ons is gone as well.
 class UNLISTED_SIDELOAD_SIGNED_VALIDATION_PASSED(_LOG):
     id = 137
-    format = _(u'{file} was signed.')
+    format = _('{file} was signed.')
     keep = True
 
 
@@ -533,53 +533,53 @@ class UNLISTED_SIDELOAD_SIGNED_VALIDATION_PASSED(_LOG):
 # and the distinction for sideloading add-ons is gone as well.
 class UNLISTED_SIDELOAD_SIGNED_VALIDATION_FAILED(_LOG):
     id = 138
-    format = _(u'{file} was signed.')
+    format = _('{file} was signed.')
     keep = True
 
 
 class PRELIMINARY_ADDON_MIGRATED(_LOG):
     id = 139
-    format = _(u'{addon} migrated from preliminary.')
+    format = _('{addon} migrated from preliminary.')
     keep = True
     review_queue = True
 
 
 class DEVELOPER_REPLY_VERSION(_LOG):
     id = 140
-    format = _(u'Reply by developer on {addon} {version}.')
-    short = _(u'Developer Reply')
+    format = _('Reply by developer on {addon} {version}.')
+    short = _('Developer Reply')
     keep = True
     review_queue = True
 
 
 class REVIEWER_REPLY_VERSION(_LOG):
     id = 141
-    format = _(u'Reply by reviewer on {addon} {version}.')
-    short = _(u'Reviewer Reply')
+    format = _('Reply by reviewer on {addon} {version}.')
+    short = _('Reviewer Reply')
     keep = True
     review_queue = True
 
 
 class APPROVAL_NOTES_CHANGED(_LOG):
     id = 142
-    format = _(u'Approval notes changed for {addon} {version}.')
-    short = _(u'Approval notes changed')
+    format = _('Approval notes changed for {addon} {version}.')
+    short = _('Approval notes changed')
     keep = True
     review_queue = True
 
 
 class SOURCE_CODE_UPLOADED(_LOG):
     id = 143
-    format = _(u'Source code uploaded for {addon} {version}.')
-    short = _(u'Source code uploaded')
+    format = _('Source code uploaded for {addon} {version}.')
+    short = _('Source code uploaded')
     keep = True
     review_queue = True
 
 
 class CONFIRM_AUTO_APPROVED(_LOG):
     id = 144
-    format = _(u'Auto-Approval confirmed for {addon} {version}.')
-    short = _(u'Auto-Approval confirmed')
+    format = _('Auto-Approval confirmed for {addon} {version}.')
+    short = _('Auto-Approval confirmed')
     keep = True
     reviewer_review_action = True
     review_queue = True
@@ -588,18 +588,18 @@ class CONFIRM_AUTO_APPROVED(_LOG):
 
 class ENABLE_VERSION(_LOG):
     id = 145
-    format = _(u'{addon} {version} re-enabled.')
+    format = _('{addon} {version} re-enabled.')
 
 
 class DISABLE_VERSION(_LOG):
     id = 146
-    format = _(u'{addon} {version} disabled.')
+    format = _('{addon} {version} disabled.')
 
 
 class APPROVE_CONTENT(_LOG):
     id = 147
-    format = _(u'{addon} {version} content approved.')
-    short = _(u'Content approved')
+    format = _('{addon} {version} content approved.')
+    short = _('Content approved')
     keep = True
     reviewer_review_action = True
     review_queue = True
@@ -609,8 +609,8 @@ class APPROVE_CONTENT(_LOG):
 class REJECT_CONTENT(_LOG):
     id = 148
     action_class = 'reject'
-    format = _(u'{addon} {version} content rejected.')
-    short = _(u'Content rejected')
+    format = _('{addon} {version} content rejected.')
+    short = _('Content rejected')
     keep = True
     review_email_user = True
     review_queue = True
@@ -619,8 +619,8 @@ class REJECT_CONTENT(_LOG):
 
 class ADMIN_ALTER_INFO_REQUEST(_LOG):
     id = 149
-    format = _(u'{addon} information request altered or removed by admin.')
-    short = _(u'Information request altered')
+    format = _('{addon} information request altered or removed by admin.')
+    short = _('Information request altered')
     keep = True
     reviewer_review_action = True
     review_queue = True
@@ -628,16 +628,16 @@ class ADMIN_ALTER_INFO_REQUEST(_LOG):
 
 class DEVELOPER_CLEAR_INFO_REQUEST(_LOG):
     id = 150
-    format = _(u'Information request cleared by developer on ' u'{addon} {version}.')
-    short = _(u'Information request removed')
+    format = _('Information request cleared by developer on {addon} {version}.')
+    short = _('Information request removed')
     keep = True
     review_queue = True
 
 
 class REQUEST_ADMIN_REVIEW_CODE(_LOG):
     id = 151
-    format = _(u'{addon} {version} admin add-on-review requested.')
-    short = _(u'Admin add-on-review requested')
+    format = _('{addon} {version} admin add-on-review requested.')
+    short = _('Admin add-on-review requested')
     keep = True
     review_queue = True
     reviewer_review_action = True
@@ -646,8 +646,8 @@ class REQUEST_ADMIN_REVIEW_CODE(_LOG):
 
 class REQUEST_ADMIN_REVIEW_CONTENT(_LOG):
     id = 152
-    format = _(u'{addon} {version} admin content-review requested.')
-    short = _(u'Admin content-review requested')
+    format = _('{addon} {version} admin content-review requested.')
+    short = _('Admin content-review requested')
     keep = True
     review_queue = True
     reviewer_review_action = True
@@ -656,8 +656,8 @@ class REQUEST_ADMIN_REVIEW_CONTENT(_LOG):
 
 class REQUEST_ADMIN_REVIEW_THEME(_LOG):
     id = 153
-    format = _(u'{addon} {version} admin theme-review requested.')
-    short = _(u'Admin theme-review requested')
+    format = _('{addon} {version} admin theme-review requested.')
+    short = _('Admin theme-review requested')
     keep = True
     review_queue = True
     reviewer_review_action = True
@@ -667,13 +667,13 @@ class REQUEST_ADMIN_REVIEW_THEME(_LOG):
 class CREATE_STATICTHEME_FROM_PERSONA(_LOG):
     id = 154
     action_class = 'add'
-    format = _(u'{addon} was migrated from a lightweight theme.')
+    format = _('{addon} was migrated from a lightweight theme.')
     keep = True
 
 
 class ADMIN_API_KEY_RESET(_LOG):
     id = 155
-    format = _(u'User {user} api key reset.')
+    format = _('User {user} api key reset.')
     admin_event = True
 
 

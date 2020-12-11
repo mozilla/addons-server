@@ -188,7 +188,7 @@ class TestActivityLog(TestCase):
         activity = ActivityLog.objects.latest('pk')
         # Override _arguments to use reviews.review instead of ratings.rating,
         # as old data already present in the db would use.
-        activity._arguments = u'[{"addons.addon": %d}, {"reviews.review": %d}]' % (
+        activity._arguments = '[{"addons.addon": %d}, {"reviews.review": %d}]' % (
             addon.pk,
             rating.pk,
         )
@@ -485,8 +485,8 @@ class TestDraftComment(TestCase):
         user = user_factory()
 
         canned_response = CannedResponse.objects.create(
-            name=u'Terms of services',
-            response=u'test',
+            name='Terms of services',
+            response='test',
             category=amo.CANNED_RESPONSE_CATEGORY_OTHER,
             type=amo.CANNED_RESPONSE_TYPE_ADDON,
         )

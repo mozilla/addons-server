@@ -71,7 +71,7 @@ class BaseESSerializer(serializers.ModelSerializer):
         # so we have to support them. So let's strip microseconds and handle
         # the datetime in a unified way.
         value = value.partition('.')[0]
-        return datetime.strptime(value, u'%Y-%m-%dT%H:%M:%S')
+        return datetime.strptime(value, '%Y-%m-%dT%H:%M:%S')
 
     def _attach_fields(self, obj, data, field_names):
         """Attach fields to fake instance."""

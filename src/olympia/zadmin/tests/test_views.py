@@ -127,7 +127,7 @@ class TestRecalculateHash(TestCase):
         )
 
         r = self.client.post(reverse('zadmin.recalc_hash', args=[file.id]))
-        assert json.loads(r.content)[u'success'] == 1
+        assert json.loads(r.content)['success'] == 1
 
         file = File.objects.get(pk=file.id)
 

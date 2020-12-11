@@ -24,7 +24,7 @@ class TestReviewNotesSerializerOutput(TestCase, LogMixin):
         self.user = user_factory(reviewer_name='fôo')
         self.addon = addon_factory()
         self.now = self.days_ago(0)
-        self.entry = self.log(u'Oh nøes!', amo.LOG.REJECT_VERSION, self.now)
+        self.entry = self.log('Oh nøes!', amo.LOG.REJECT_VERSION, self.now)
 
     def serialize(self, context=None):
         if context is None:
@@ -40,7 +40,7 @@ class TestReviewNotesSerializerOutput(TestCase, LogMixin):
         assert result['date'] == self.now.isoformat() + 'Z'
         assert result['action'] == 'rejected'
         assert result['action_label'] == 'Rejected'
-        assert result['comments'] == u'Oh nøes!'
+        assert result['comments'] == 'Oh nøes!'
         # To allow reviewers to stay anonymous the user object only contains
         # the author name, which can use the reviewer name alias if present
         # depending on the action.
@@ -56,7 +56,7 @@ class TestReviewNotesSerializerOutput(TestCase, LogMixin):
         assert result['date'] == self.now.isoformat() + 'Z'
         assert result['action'] == 'rejected'
         assert result['action_label'] == 'Rejected'
-        assert result['comments'] == u'Oh nøes!'
+        assert result['comments'] == 'Oh nøes!'
         # For backwards-compatibility in API v3 the id, url and username are
         # present but empty - we still don't want to reveal the actual reviewer
         # info.
@@ -83,7 +83,7 @@ class TestReviewNotesSerializerOutput(TestCase, LogMixin):
         assert result['highlight']
 
     def test_should_not_highlight(self):
-        no_highlight = self.log(u'something élse', amo.LOG.REJECT_VERSION)
+        no_highlight = self.log('something élse', amo.LOG.REJECT_VERSION)
 
         result = self.serialize(context={'to_highlight': [no_highlight.pk]})
 
@@ -91,7 +91,7 @@ class TestReviewNotesSerializerOutput(TestCase, LogMixin):
         assert not result['highlight']
 
     def test_sanitized_activity_detail_not_exposed_to_developer(self):
-        self.entry = self.log(u'ßäď ŞŤųƒƒ', amo.LOG.REQUEST_ADMIN_REVIEW_CODE)
+        self.entry = self.log('ßäď ŞŤųƒƒ', amo.LOG.REQUEST_ADMIN_REVIEW_CODE)
         result = self.serialize()
 
         assert result['action_label'] == (amo.LOG.REQUEST_ADMIN_REVIEW_CODE.short)

@@ -47,13 +47,13 @@ class AppversionsFeed(BaseFeed):
     # wanky.  I blame fligtar.
 
     def title(self):
-        return ugettext(u'Application Versions')
+        return ugettext('Application Versions')
 
     def link(self):
         return absolutify(url('apps.appversions'))
 
     def description(self):
-        return ugettext(u'Acceptable versions for all applications on AMO.')
+        return ugettext('Acceptable versions for all applications on AMO.')
 
     def items(self):
         apps, versions = get_versions(order=('application', '-version_int'))
@@ -62,7 +62,7 @@ class AppversionsFeed(BaseFeed):
 
     def item_title(self, item):
         app, version = item
-        return u'%s %s' % (app.pretty, version)
+        return '%s %s' % (app.pretty, version)
 
     item_description = ''
 

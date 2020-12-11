@@ -77,7 +77,7 @@ def clean_addon_slug(slug, instance):
                 ugettext('This slug is already in use. Please choose another.')
             )
         if DeniedSlug.blocked(slug):
-            msg = ugettext(u'The slug cannot be "%(slug)s". ' u'Please choose another.')
+            msg = ugettext('The slug cannot be "%(slug)s". Please choose another.')
             raise forms.ValidationError(msg % {'slug': slug})
 
     return slug
@@ -622,8 +622,8 @@ class LicenseRadioSelect(forms.RadioSelect):
         )
 
         link = (
-            u'<a class="xx extra" href="%s" target="_blank" '
-            u'rel="noopener noreferrer">%s</a>'
+            '<a class="xx extra" href="%s" target="_blank" '
+            'rel="noopener noreferrer">%s</a>'
         )
         license = self.choices[index][1]
 
@@ -649,14 +649,14 @@ class LicenseForm(AMOModelForm):
     )
     name = forms.CharField(
         widget=TranslationTextInput(),
-        label=_(u"What is your license's name?"),
+        label=_("What is your license's name?"),
         required=False,
         initial=_('Custom License'),
     )
     text = forms.CharField(
         widget=TranslationTextarea(),
         required=False,
-        label=_(u'Provide the text of your license.'),
+        label=_('Provide the text of your license.'),
     )
 
     def __init__(self, *args, **kwargs):
@@ -753,20 +753,20 @@ class PolicyForm(TranslationFormMixin, AMOModelForm):
     """Form for editing the add-ons EULA and privacy policy."""
 
     has_eula = forms.BooleanField(
-        required=False, label=_(u'This add-on has an End-User License Agreement')
+        required=False, label=_('This add-on has an End-User License Agreement')
     )
     eula = TransField(
         widget=TransTextarea(),
         required=False,
-        label=_(u"Please specify your add-on's " u'End-User License Agreement:'),
+        label=_("Please specify your add-on's " 'End-User License Agreement:'),
     )
     has_priv = forms.BooleanField(
-        required=False, label=_(u'This add-on has a Privacy Policy'), label_suffix=''
+        required=False, label=_('This add-on has a Privacy Policy'), label_suffix=''
     )
     privacy_policy = TransField(
         widget=TransTextarea(),
         required=False,
-        label=_(u"Please specify your add-on's Privacy Policy:"),
+        label=_("Please specify your add-on's Privacy Policy:"),
     )
 
     def __init__(self, *args, **kw):
@@ -781,7 +781,7 @@ class PolicyForm(TranslationFormMixin, AMOModelForm):
 
     def _has_field(self, name):
         # If there's a eula in any language, this addon has a eula.
-        n = getattr(self.addon, u'%s_id' % name)
+        n = getattr(self.addon, '%s_id' % name)
         return any(map(bool, Translation.objects.filter(id=n)))
 
     class Meta:
@@ -1033,12 +1033,12 @@ class NewUploadForm(forms.Form):
         to_field_name='uuid',
         error_messages={
             'invalid_choice': _(
-                u'There was an error with your ' u'upload. Please try again.'
+                'There was an error with your upload. Please try again.'
             )
         },
     )
     admin_override_validation = forms.BooleanField(
-        required=False, label=_(u'Override failed validation')
+        required=False, label=_('Override failed validation')
     )
     compatible_apps = forms.TypedMultipleChoiceField(
         choices=amo.APPS_CHOICES,
@@ -1074,7 +1074,7 @@ class NewUploadForm(forms.Form):
             and acl.action_allowed(self.request, amo.permissions.REVIEWS_ADMIN)
         ):
             raise forms.ValidationError(
-                ugettext(u'There was an error with your upload. ' u'Please try again.')
+                ugettext('There was an error with your upload. Please try again.')
             )
 
     def check_throttles(self, request):
@@ -1140,13 +1140,13 @@ class NewUploadForm(forms.Form):
                     msg = DoubleSafe(
                         '%s <a href="%s">%s</a>'
                         % (
-                            ugettext(u'Version {version} already exists.'),
+                            ugettext('Version {version} already exists.'),
                             next_url,
-                            ugettext(u'Continue with existing upload instead?'),
+                            ugettext('Continue with existing upload instead?'),
                         )
                     )
                 else:
-                    msg = ugettext(u'Version {version} already exists.')
+                    msg = ugettext('Version {version} already exists.')
                 raise forms.ValidationError(msg.format(version=version_string))
 
     def clean(self):
@@ -1187,13 +1187,11 @@ class SourceForm(WithSourceMixin, forms.ModelForm):
         has_source = self.data.get('has_source')  # Not cleaned yet.
         if has_source == 'yes' and not source:
             raise forms.ValidationError(
-                ugettext(u'You have not uploaded a source file.')
+                ugettext('You have not uploaded a source file.')
             )
         elif has_source == 'no' and source:
             raise forms.ValidationError(
-                ugettext(
-                    u'Source file uploaded but you indicated no source ' u'was needed.'
-                )
+                ugettext('Source file uploaded but you indicated no source was needed.')
             )
         # At this point we know we can proceed with the actual archive
         # validation.
@@ -1254,8 +1252,8 @@ class CombinedNameSummaryCleanMixin(object):
 
     def clean(self):
         message = _(
-            u'Ensure name and summary combined are at most '
-            u'{limit_value} characters (they have {show_value}).'
+            'Ensure name and summary combined are at most '
+            '{limit_value} characters (they have {show_value}).'
         )
         super(CombinedNameSummaryCleanMixin, self).clean()
         name_summary_locales = set(

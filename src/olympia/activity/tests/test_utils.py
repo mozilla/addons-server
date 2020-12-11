@@ -286,7 +286,7 @@ class TestLogAndNotify(TestCase):
     def _create(self, action, author=None):
         author = author or self.reviewer
         details = {
-            'comments': u'I spy, with my líttle €ye...',
+            'comments': 'I spy, with my líttle €ye...',
             'version': self.version.version,
         }
         activity = ActivityLog.create(
@@ -307,7 +307,7 @@ class TestLogAndNotify(TestCase):
     def _check_email(self, call, url, reason_text):
         subject = call[0][0]
         body = call[0][1]
-        assert subject == u'Mozilla Add-ons: %s %s' % (
+        assert subject == 'Mozilla Add-ons: %s %s' % (
             self.addon.name,
             self.version.version,
         )
@@ -323,12 +323,12 @@ class TestLogAndNotify(TestCase):
         # One from the developer.  So the developer is on the 'thread'
         self._create(amo.LOG.DEVELOPER_REPLY_VERSION, self.developer)
         action = amo.LOG.DEVELOPER_REPLY_VERSION
-        comments = u'Thïs is á reply'
+        comments = 'Thïs is á reply'
         log_and_notify(action, comments, self.developer, self.version)
 
         logs = ActivityLog.objects.filter(action=action.id)
         assert len(logs) == 2  # We added one above.
-        assert logs[0].details['comments'] == u'Thïs is á reply'
+        assert logs[0].details['comments'] == 'Thïs is á reply'
 
         assert send_mail_mock.call_count == 2  # One author, one reviewer.
         sender = formataddr((self.developer.name, NOTIFICATIONS_FROM_EMAIL))
@@ -363,12 +363,12 @@ class TestLogAndNotify(TestCase):
         # One from the developer.
         self._create(amo.LOG.DEVELOPER_REPLY_VERSION, self.developer)
         action = amo.LOG.REVIEWER_REPLY_VERSION
-        comments = u'Thîs ïs a revïewer replyîng'
+        comments = 'Thîs ïs a revïewer replyîng'
         log_and_notify(action, comments, self.reviewer, self.version)
 
         logs = ActivityLog.objects.filter(action=action.id)
         assert len(logs) == 1
-        assert logs[0].details['comments'] == u'Thîs ïs a revïewer replyîng'
+        assert logs[0].details['comments'] == 'Thîs ïs a revïewer replyîng'
 
         assert send_mail_mock.call_count == 2  # Both authors.
         sender = formataddr((self.reviewer.reviewer_name, NOTIFICATIONS_FROM_EMAIL))
@@ -415,18 +415,18 @@ class TestLogAndNotify(TestCase):
         assert self.reviewer.email in recipients
         assert self.developer2.email in recipients
 
-        assert u'Approval notes changed' in (send_mail_mock.call_args_list[0][0][1])
-        assert u'Approval notes changed' in (send_mail_mock.call_args_list[1][0][1])
+        assert 'Approval notes changed' in (send_mail_mock.call_args_list[0][0][1])
+        assert 'Approval notes changed' in (send_mail_mock.call_args_list[1][0][1])
 
     def test_staff_cc_group_is_empty_no_failure(self):
         Group.objects.create(name=ACTIVITY_MAIL_GROUP, rules='None:None')
-        log_and_notify(amo.LOG.REJECT_VERSION, u'á', self.reviewer, self.version)
+        log_and_notify(amo.LOG.REJECT_VERSION, 'á', self.reviewer, self.version)
 
     @mock.patch('olympia.activity.utils.send_mail')
     def test_staff_cc_group_get_mail(self, send_mail_mock):
         self.grant_permission(self.reviewer, 'None:None', ACTIVITY_MAIL_GROUP)
         action = amo.LOG.DEVELOPER_REPLY_VERSION
-        comments = u'Thïs is á reply'
+        comments = 'Thïs is á reply'
         log_and_notify(action, comments, self.developer, self.version)
 
         logs = ActivityLog.objects.filter(action=action.id)
@@ -459,7 +459,7 @@ class TestLogAndNotify(TestCase):
         self._create(amo.LOG.APPROVE_VERSION, self.task_user)
 
         action = amo.LOG.DEVELOPER_REPLY_VERSION
-        comments = u'Thïs is á reply'
+        comments = 'Thïs is á reply'
         log_and_notify(action, comments, self.developer, self.version)
 
         logs = ActivityLog.objects.filter(action=action.id)
@@ -480,7 +480,7 @@ class TestLogAndNotify(TestCase):
         ).delete()
 
         action = amo.LOG.DEVELOPER_REPLY_VERSION
-        comments = u'Thïs is á reply'
+        comments = 'Thïs is á reply'
         log_and_notify(action, comments, self.developer, self.version)
 
         logs = ActivityLog.objects.filter(action=action.id)
@@ -498,12 +498,12 @@ class TestLogAndNotify(TestCase):
         # One from the developer.  So the developer is on the 'thread'
         self._create(amo.LOG.DEVELOPER_REPLY_VERSION, self.developer)
         action = amo.LOG.DEVELOPER_REPLY_VERSION
-        comments = u'Thïs is á reply'
+        comments = 'Thïs is á reply'
         log_and_notify(action, comments, self.developer, self.version)
 
         logs = ActivityLog.objects.filter(action=action.id)
         assert len(logs) == 2  # We added one above.
-        assert logs[0].details['comments'] == u'Thïs is á reply'
+        assert logs[0].details['comments'] == 'Thïs is á reply'
 
         assert send_mail_mock.call_count == 2  # One author, one reviewer.
         recipients = self._recipients(send_mail_mock)
@@ -539,12 +539,12 @@ class TestLogAndNotify(TestCase):
         # One from the developer.  So the developer is on the 'thread'
         self._create(amo.LOG.DEVELOPER_REPLY_VERSION, self.developer)
         action = amo.LOG.DEVELOPER_REPLY_VERSION
-        comments = u'Thïs is á reply'
+        comments = 'Thïs is á reply'
         log_and_notify(action, comments, self.developer, self.version)
 
         logs = ActivityLog.objects.filter(action=action.id)
         assert len(logs) == 2  # We added one above.
-        assert logs[0].details['comments'] == u'Thïs is á reply'
+        assert logs[0].details['comments'] == 'Thïs is á reply'
 
         assert send_mail_mock.call_count == 2  # One author, one reviewer.
         recipients = self._recipients(send_mail_mock)
@@ -578,7 +578,7 @@ class TestLogAndNotify(TestCase):
         # One from the reviewer.
         self._create(amo.LOG.REJECT_VERSION, self.reviewer)
         action = amo.LOG.REVIEWER_REPLY_VERSION
-        comments = u'Thîs ïs a revïewer replyîng'
+        comments = 'Thîs ïs a revïewer replyîng'
         log_and_notify(action, comments, self.reviewer, self.version)
 
         sender = r'"mr \"quote\" escape" <notifications@%s>' % (
@@ -591,7 +591,7 @@ class TestLogAndNotify(TestCase):
         # One from the reviewer.
         self._create(amo.LOG.REJECT_VERSION, self.reviewer)
         action = amo.LOG.REVIEWER_REPLY_VERSION
-        comments = u'This email&#39;s entities should be decoded'
+        comments = 'This email&#39;s entities should be decoded'
         log_and_notify(action, comments, self.reviewer, self.version)
 
         body = send_mail_mock.call_args_list[1][0][1]
@@ -629,8 +629,8 @@ class TestLogAndNotify(TestCase):
 
 @pytest.mark.django_db
 def test_send_activity_mail():
-    subject = u'This ïs ã subject'
-    message = u'And... this ïs a messãge!'
+    subject = 'This ïs ã subject'
+    message = 'And... this ïs a messãge!'
     addon = addon_factory()
     latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
     user = user_factory()

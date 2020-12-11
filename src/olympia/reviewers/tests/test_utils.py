@@ -73,16 +73,16 @@ class TestViewExtensionQueueTable(TestCase):
         page = Mock()
         page.start_index = Mock()
         page.start_index.return_value = 1
-        row.addon_name = u'フォクすけといっしょ'
+        row.addon_name = 'フォクすけといっしょ'
         row.addon_slug = 'test'
-        row.latest_version = u'0.12'
+        row.latest_version = '0.12'
         self.table.set_page(page)
         a = pq(self.table.render_addon_name(row))
 
         assert a.attr('href') == (
             reverse('reviewers.review', args=[str(row.addon_slug)])
         )
-        assert a.text() == u'フォクすけといっしょ 0.12'
+        assert a.text() == 'フォクすけといっしょ 0.12'
 
     def test_addon_type_id(self):
         row = Mock()
@@ -93,35 +93,35 @@ class TestViewExtensionQueueTable(TestCase):
         row = Mock()
         row.waiting_time_days = 10
         row.waiting_time_hours = 10 * 24
-        assert self.table.render_waiting_time_min(row) == u'10 days'
+        assert self.table.render_waiting_time_min(row) == '10 days'
 
     def test_waiting_time_one_day(self):
         row = Mock()
         row.waiting_time_days = 1
         row.waiting_time_hours = 24
         row.waiting_time_min = 60 * 24
-        assert self.table.render_waiting_time_min(row) == u'1 day'
+        assert self.table.render_waiting_time_min(row) == '1 day'
 
     def test_waiting_time_in_hours(self):
         row = Mock()
         row.waiting_time_days = 0
         row.waiting_time_hours = 22
         row.waiting_time_min = 60 * 22
-        assert self.table.render_waiting_time_min(row) == u'22 hours'
+        assert self.table.render_waiting_time_min(row) == '22 hours'
 
     def test_waiting_time_in_min(self):
         row = Mock()
         row.waiting_time_days = 0
         row.waiting_time_hours = 0
         row.waiting_time_min = 11
-        assert self.table.render_waiting_time_min(row) == u'11 minutes'
+        assert self.table.render_waiting_time_min(row) == '11 minutes'
 
     def test_waiting_time_in_secs(self):
         row = Mock()
         row.waiting_time_days = 0
         row.waiting_time_hours = 0
         row.waiting_time_min = 0
-        assert self.table.render_waiting_time_min(row) == u'moments ago'
+        assert self.table.render_waiting_time_min(row) == 'moments ago'
 
     def test_flags(self):
         row = Mock()
@@ -140,7 +140,7 @@ class TestUnlistedViewAllListTable(TestCase):
         page = Mock()
         page.start_index = Mock()
         page.start_index.return_value = 1
-        row.addon_name = u'フォクすけといっしょ'
+        row.addon_name = 'フォクすけといっしょ'
         row.addon_slug = 'test'
         self.table.set_page(page)
         a = pq(self.table.render_addon_name(row))
@@ -148,7 +148,7 @@ class TestUnlistedViewAllListTable(TestCase):
         assert a.attr('href') == reverse(
             'reviewers.review', args=['unlisted', str(row.addon_slug)]
         )
-        assert a.text() == u'フォクすけといっしょ'
+        assert a.text() == 'フォクすけといっしょ'
 
     def test_authors_few(self):
         row = Mock()
@@ -1015,7 +1015,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert len(mail.outbox) == 1
         message = mail.outbox[0]
         assert message.subject == (
-            u'Mozilla Add-ons: Delicious Bookmarks 2.1.072 Approved'
+            'Mozilla Add-ons: Delicious Bookmarks 2.1.072 Approved'
         )
         assert '/en-US/firefox/addon/a3615' not in message.body
         assert '/es/firefox/addon/a3615' not in message.body
@@ -1030,7 +1030,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
         assert len(mail.outbox) == 1
         message = mail.outbox[0]
-        assert message.subject == (u'Mozilla Add-ons: None 2.1.072 Approved')
+        assert message.subject == ('Mozilla Add-ons: None 2.1.072 Approved')
         assert '/addon/a3615' in message.body
         assert 'Your add-on, None ' in message.body
 
@@ -1768,12 +1768,12 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 1
 
     def test_email_unicode_monster(self):
-        self.addon.name = u'TaobaoShopping淘宝网导航按钮'
+        self.addon.name = 'TaobaoShopping淘宝网导航按钮'
         self.addon.save()
         self.setup_data(amo.STATUS_NOMINATED)
         self.helper.handler.reject_latest_version()
         message = mail.outbox[0]
-        assert u'TaobaoShopping淘宝网导航按钮' in message.subject
+        assert 'TaobaoShopping淘宝网导航按钮' in message.subject
 
     def test_nomination_to_super_review(self):
         self.setup_data(amo.STATUS_NOMINATED)
@@ -1940,8 +1940,8 @@ class TestReviewHelper(TestReviewHelperBase):
         message = mail.outbox[0]
         assert message.to == [self.addon.authors.all()[0].email]
         assert message.subject == (
-            u'Mozilla Add-ons: Delicious Bookmarks has been disabled on '
-            u'addons.mozilla.org'
+            'Mozilla Add-ons: Delicious Bookmarks has been disabled on '
+            'addons.mozilla.org'
         )
         assert 'your add-on Delicious Bookmarks has been disabled' in message.body
         log_token = ActivityLogToken.objects.get()
@@ -2004,8 +2004,8 @@ class TestReviewHelper(TestReviewHelperBase):
         message = mail.outbox[0]
         assert message.to == [self.addon.authors.all()[0].email]
         assert message.subject == (
-            u'Mozilla Add-ons: Delicious Bookmarks will be disabled on '
-            u'addons.mozilla.org'
+            'Mozilla Add-ons: Delicious Bookmarks will be disabled on '
+            'addons.mozilla.org'
         )
         assert 'your add-on Delicious Bookmarks will be disabled' in message.body
         log_token = ActivityLogToken.objects.get()
@@ -2075,7 +2075,7 @@ class TestReviewHelper(TestReviewHelperBase):
         message = mail.outbox[0]
         assert message.to == [self.addon.authors.all()[0].email]
         assert message.subject == (
-            u'Mozilla Add-ons: Versions disabled for Delicious Bookmarks'
+            'Mozilla Add-ons: Versions disabled for Delicious Bookmarks'
         )
         assert 'Version(s) affected and disabled:\n3.1, 2.1.072' in message.body
         log_token = ActivityLogToken.objects.filter(version=self.version).get()
@@ -2139,8 +2139,8 @@ class TestReviewHelper(TestReviewHelperBase):
         message = mail.outbox[0]
         assert message.to == [self.addon.authors.all()[0].email]
         assert message.subject == (
-            u'Mozilla Add-ons: Delicious Bookmarks has been disabled on '
-            u'addons.mozilla.org'
+            'Mozilla Add-ons: Delicious Bookmarks has been disabled on '
+            'addons.mozilla.org'
         )
         assert 'your add-on Delicious Bookmarks has been disabled' in message.body
         log_token = ActivityLogToken.objects.get()
@@ -2202,8 +2202,8 @@ class TestReviewHelper(TestReviewHelperBase):
         message = mail.outbox[0]
         assert message.to == [self.addon.authors.all()[0].email]
         assert message.subject == (
-            u'Mozilla Add-ons: Delicious Bookmarks will be disabled on '
-            u'addons.mozilla.org'
+            'Mozilla Add-ons: Delicious Bookmarks will be disabled on '
+            'addons.mozilla.org'
         )
         assert 'your add-on Delicious Bookmarks will be disabled' in message.body
         log_token = ActivityLogToken.objects.get()
@@ -2631,7 +2631,7 @@ def test_send_email_autoescape():
 
     # Make sure HTML is not auto-escaped.
     send_mail(
-        u'Random subject with %s',
+        'Random subject with %s',
         s,
         recipient_list=['nobody@mozilla.org'],
         from_email='nobody@mozilla.org',

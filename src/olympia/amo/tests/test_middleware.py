@@ -79,7 +79,7 @@ def test_source_with_wrong_unicode_get():
 
 
 def test_trailing_slash_middleware():
-    response = test.Client().get(u'/en-US/about/?xxx=\xc3')
+    response = test.Client().get('/en-US/about/?xxx=\xc3')
     assert response.status_code == 301
     assert response['Location'].endswith('/en-US/about?xxx=%C3%83%C2%83')
 

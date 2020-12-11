@@ -109,15 +109,15 @@ class TestReviewForm(TestCase):
 
     def test_canned_responses(self):
         self.cr_addon = CannedResponse.objects.create(
-            name=u'addon reason',
-            response=u'addon reason body',
-            sort_group=u'public',
+            name='addon reason',
+            response='addon reason body',
+            sort_group='public',
             type=amo.CANNED_RESPONSE_TYPE_ADDON,
         )
         self.cr_theme = CannedResponse.objects.create(
-            name=u'theme reason',
-            response=u'theme reason body',
-            sort_group=u'public',
+            name='theme reason',
+            response='theme reason body',
+            sort_group='public',
             type=amo.CANNED_RESPONSE_TYPE_THEME,
         )
         self.grant_permission(self.request.user, 'Addons:Review')
@@ -150,8 +150,8 @@ class TestReviewForm(TestCase):
         assert form.is_bound
         assert not form.is_valid()
         assert form.errors == {
-            'action': [u'This field is required.'],
-            'comments': [u'This field is required.'],
+            'action': ['This field is required.'],
+            'comments': ['This field is required.'],
         }
 
         # Alter the action to make it not require comments to be sent
@@ -293,7 +293,7 @@ class TestReviewForm(TestCase):
         form.helper.actions['reject_multiple_versions']['versions'] = True
         assert form.is_bound
         assert not form.is_valid()
-        assert form.errors == {'versions': [u'This field is required.']}
+        assert form.errors == {'versions': ['This field is required.']}
 
     def test_delayed_rejection_days_widget_attributes(self):
         # Regular reviewers can't customize the delayed rejection period.

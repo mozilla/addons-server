@@ -5,7 +5,7 @@ from olympia.users.utils import UnsubscribeCode
 
 
 def test_email_unsubscribe_code_parse():
-    email = u'nobody@mozîlla.org'
+    email = 'nobody@mozîlla.org'
     token, hash_ = UnsubscribeCode.create(email)
 
     r_email = UnsubscribeCode.parse(token, hash_)

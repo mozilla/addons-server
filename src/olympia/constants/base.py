@@ -20,17 +20,17 @@ _STATUS_REJECTED = 12  # Deprecated. Applied only to rejected personas.
 _STATUS_REVIEW_PENDING = 14  # Deprecated. Was personas, needing further action
 
 STATUS_CHOICES_ADDON = {
-    STATUS_NULL: _(u'Incomplete'),
-    STATUS_NOMINATED: _(u'Awaiting Review'),
-    STATUS_APPROVED: _(u'Approved'),
-    STATUS_DISABLED: _(u'Disabled by Mozilla'),
-    STATUS_DELETED: _(u'Deleted'),
+    STATUS_NULL: _('Incomplete'),
+    STATUS_NOMINATED: _('Awaiting Review'),
+    STATUS_APPROVED: _('Approved'),
+    STATUS_DISABLED: _('Disabled by Mozilla'),
+    STATUS_DELETED: _('Deleted'),
 }
 
 STATUS_CHOICES_FILE = {
-    STATUS_AWAITING_REVIEW: _(u'Awaiting Review'),
-    STATUS_APPROVED: _(u'Approved'),
-    STATUS_DISABLED: _(u'Disabled by Mozilla'),
+    STATUS_AWAITING_REVIEW: _('Awaiting Review'),
+    STATUS_APPROVED: _('Approved'),
+    STATUS_DISABLED: _('Disabled by Mozilla'),
 }
 
 # We need to expose nice values that aren't localisable.
@@ -63,8 +63,8 @@ RELEASE_CHANNEL_UNLISTED = 1
 RELEASE_CHANNEL_LISTED = 2
 
 RELEASE_CHANNEL_CHOICES = (
-    (RELEASE_CHANNEL_UNLISTED, _(u'Unlisted')),
-    (RELEASE_CHANNEL_LISTED, _(u'Listed')),
+    (RELEASE_CHANNEL_UNLISTED, _('Unlisted')),
+    (RELEASE_CHANNEL_LISTED, _('Listed')),
 )
 
 CHANNEL_CHOICES_API = {
@@ -117,28 +117,28 @@ GROUP_TYPE_THEME = [ADDON_STATICTHEME]
 
 # Singular
 ADDON_TYPE = {
-    ADDON_EXTENSION: _(u'Extension'),
-    _ADDON_THEME: _(u'Deprecated Complete Theme'),
-    ADDON_DICT: _(u'Dictionary'),
-    _ADDON_SEARCH: _(u'Search Engine'),
-    ADDON_LPAPP: _(u'Language Pack (Application)'),
-    ADDON_LPADDON: _(u'Language Pack (Add-on)'),
-    ADDON_PLUGIN: _(u'Plugin'),
-    _ADDON_PERSONA: _(u'Deprecated LWT'),
-    ADDON_STATICTHEME: _(u'Theme (Static)'),
+    ADDON_EXTENSION: _('Extension'),
+    _ADDON_THEME: _('Deprecated Complete Theme'),
+    ADDON_DICT: _('Dictionary'),
+    _ADDON_SEARCH: _('Search Engine'),
+    ADDON_LPAPP: _('Language Pack (Application)'),
+    ADDON_LPADDON: _('Language Pack (Add-on)'),
+    ADDON_PLUGIN: _('Plugin'),
+    _ADDON_PERSONA: _('Deprecated LWT'),
+    ADDON_STATICTHEME: _('Theme (Static)'),
 }
 
 # Plural
 ADDON_TYPES = {
-    ADDON_EXTENSION: _(u'Extensions'),
-    _ADDON_THEME: _(u'Deprecated Complete Themes'),
-    ADDON_DICT: _(u'Dictionaries'),
-    _ADDON_SEARCH: _(u'Search Tools'),
-    ADDON_LPAPP: _(u'Language Packs (Application)'),
-    ADDON_LPADDON: _(u'Language Packs (Add-on)'),
-    ADDON_PLUGIN: _(u'Plugins'),
-    _ADDON_PERSONA: _(u'Deprecated LWTs'),
-    ADDON_STATICTHEME: _(u'Themes (Static)'),
+    ADDON_EXTENSION: _('Extensions'),
+    _ADDON_THEME: _('Deprecated Complete Themes'),
+    ADDON_DICT: _('Dictionaries'),
+    _ADDON_SEARCH: _('Search Tools'),
+    ADDON_LPAPP: _('Language Packs (Application)'),
+    ADDON_LPADDON: _('Language Packs (Add-on)'),
+    ADDON_PLUGIN: _('Plugins'),
+    _ADDON_PERSONA: _('Deprecated LWTs'),
+    ADDON_STATICTHEME: _('Themes (Static)'),
 }
 
 # Searchable Add-on Types

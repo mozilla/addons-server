@@ -46,8 +46,8 @@ class CollectionSerializer(serializers.ModelSerializer):
             UniqueTogetherValidator(
                 queryset=Collection.objects.all(),
                 message=_(
-                    u'This custom URL is already in use by another one '
-                    u'of your collections.'
+                    'This custom URL is already in use by another one '
+                    'of your collections.'
                 ),
                 fields=('slug', 'author'),
             ),
@@ -63,16 +63,16 @@ class CollectionSerializer(serializers.ModelSerializer):
                 locale: self.validate_name(sub_value)
                 for locale, sub_value in value.items()
             }
-        if value.strip() == u'':
-            raise serializers.ValidationError(ugettext(u'Name cannot be empty.'))
+        if value.strip() == '':
+            raise serializers.ValidationError(ugettext('Name cannot be empty.'))
         if DeniedName.blocked(value):
-            raise serializers.ValidationError(ugettext(u'This name cannot be used.'))
+            raise serializers.ValidationError(ugettext('This name cannot be used.'))
         return value
 
     def validate_description(self, value):
         if has_links(clean_nl(str(value))):
             # There's some links, we don't want them.
-            raise serializers.ValidationError(ugettext(u'No links are allowed.'))
+            raise serializers.ValidationError(ugettext('No links are allowed.'))
         return value
 
     def validate_slug(self, value):
@@ -80,13 +80,13 @@ class CollectionSerializer(serializers.ModelSerializer):
             value,
             lower=False,
             message=ugettext(
-                u'The custom URL must consist of letters, '
-                u'numbers, underscores or hyphens.'
+                'The custom URL must consist of letters, '
+                'numbers, underscores or hyphens.'
             ),
         )
         if DeniedName.blocked(value):
             raise serializers.ValidationError(
-                ugettext(u'This custom URL cannot be used.')
+                ugettext('This custom URL cannot be used.')
             )
 
         return value
@@ -117,7 +117,7 @@ class CollectionAddonSerializer(serializers.ModelSerializer):
         validators = [
             UniqueTogetherValidator(
                 queryset=CollectionAddon.objects.all(),
-                message=_(u'This add-on already belongs to the collection'),
+                message=_('This add-on already belongs to the collection'),
                 fields=('addon', 'collection'),
             ),
         ]

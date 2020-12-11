@@ -82,13 +82,13 @@ class Test404(TestCase):
         response = self.client.get('/api/v3/lol')
         assert response.status_code == 404
         data = json.loads(response.content)
-        assert data['detail'] == u'Not found.'
+        assert data['detail'] == 'Not found.'
 
     def test_404_api_v4(self):
         response = self.client.get('/api/v4/lol')
         assert response.status_code == 404
         data = json.loads(response.content)
-        assert data['detail'] == u'Not found.'
+        assert data['detail'] == 'Not found.'
 
     def test_404_with_mobile_detected(self):
         res = self.client.get('/en-US/firefox/xxxxxxx', X_IS_MOBILE_AGENTS='1')

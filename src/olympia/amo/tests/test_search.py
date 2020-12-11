@@ -320,9 +320,9 @@ class TestES(ESTestCaseWithAddons):
         results = list(qs)
         assert len(results) == 6
         assert qs.aggregations == {
-            u'tags': [
-                {u'doc_count': 3, u'key': u'sky'},
-                {u'doc_count': 2, u'key': u'earth'},
-                {u'doc_count': 1, u'key': u'ocean'},
+            'tags': [
+                {'doc_count': 3, 'key': 'sky'},
+                {'doc_count': 2, 'key': 'earth'},
+                {'doc_count': 1, 'key': 'ocean'},
             ]
         }

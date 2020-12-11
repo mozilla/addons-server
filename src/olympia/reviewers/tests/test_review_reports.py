@@ -155,26 +155,26 @@ class TestReviewReports(object):
                     'Add-ons Reviewed',
                 ],
                 (
-                    (u'Staff B', u'*', u'10,212', u'1,458.86', '-', u'7'),
-                    (u'Volunteer A', u'', u'2,393', u'265.89', '810', u'9'),
+                    ('Staff B', '*', '10,212', '1,458.86', '-', '7'),
+                    ('Volunteer A', '', '2,393', '265.89', '810', '9'),
                 ),
             ),
             (
                 'Weekly Volunteer Contribution Ratio',
                 ['Group', 'Total Risk', 'Average Risk', 'Add-ons Reviewed'],
                 (
-                    (u'All Reviewers', u'12,605', u'787.81', u'16'),
-                    (u'Volunteers', u'2,393', u'265.89', u'9'),
+                    ('All Reviewers', '12,605', '787.81', '16'),
+                    ('Volunteers', '2,393', '265.89', '9'),
                 ),
             ),
             (
                 'Weekly Add-on Reviews by Risk Profiles',
                 ['Risk Category', 'All Reviewers', 'Volunteers'],
                 (
-                    (u'highest', u'6', u'3'),
-                    (u'high', u'3', u'1'),
-                    (u'medium', u'4', u'3'),
-                    (u'low', u'3', u'2'),
+                    ('highest', '6', '3'),
+                    ('high', '3', '1'),
+                    ('medium', '4', '3'),
+                    ('low', '3', '2'),
                 ),
             ),
             (
@@ -191,7 +191,7 @@ class TestReviewReports(object):
             expected[3] = (
                 'Quarterly contributions',
                 ['Name', 'Points', 'Add-ons Reviewed'],
-                ((u'Volunteer A', u'810', u'9'),),
+                (('Volunteer A', '810', '9'),),
             )
         assert data == expected
 
@@ -225,14 +225,14 @@ class TestReviewReports(object):
                 'Weekly Content Reviews, 10 Reviews or More',
                 ['Name', 'Staff', 'Points', 'Add-ons Reviewed'],
                 (
-                    (u'Firefox user {}'.format(self.reviewer3.id), u'', '140', u'14'),
-                    (u'Staff Content D', u'*', '-', u'10'),
+                    ('Firefox user {}'.format(self.reviewer3.id), '', '140', '14'),
+                    ('Staff Content D', '*', '-', '10'),
                 ),
             ),
             (
                 'Weekly Volunteer Contribution Ratio',
                 ['Group', 'Add-ons Reviewed'],
-                ((u'All Reviewers', u'24'), (u'Volunteers', u'14')),
+                (('All Reviewers', '24'), ('Volunteers', '14')),
             ),
             (
                 'Quarterly contributions',
@@ -248,7 +248,7 @@ class TestReviewReports(object):
             expected[2] = (
                 'Quarterly contributions',
                 ['Name', 'Points', 'Add-ons Reviewed'],
-                ((u'Firefox user {}'.format(self.reviewer3.id), u'140', u'14'),),
+                (('Firefox user {}'.format(self.reviewer3.id), '140', '14'),),
             )
         assert data == expected
 
@@ -292,8 +292,8 @@ class TestReviewReports(object):
                 'Weekly Volunteer Contribution Ratio',
                 ['Group', 'Total Risk', 'Average Risk', 'Add-ons Reviewed'],
                 (
-                    (u'All Reviewers', u'-', u'-', u'0'),
-                    (u'Volunteers', u'-', u'-', u'0'),
+                    ('All Reviewers', '-', '-', '0'),
+                    ('Volunteers', '-', '-', '0'),
                 ),
             ),
             (
@@ -337,7 +337,7 @@ class TestReviewReports(object):
             (
                 'Weekly Volunteer Contribution Ratio',
                 ['Group', 'Add-ons Reviewed'],
-                ((u'All Reviewers', u'0'), (u'Volunteers', u'0')),
+                (('All Reviewers', '0'), ('Volunteers', '0')),
             ),
             ('Quarterly contributions', ['Name', 'Points', 'Add-ons Reviewed'], ()),
         ]

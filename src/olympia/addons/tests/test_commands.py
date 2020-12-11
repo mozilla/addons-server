@@ -178,7 +178,7 @@ class TestAddDynamicThemeTagForThemeApiCommand(TestCase):
         call_command('process_addons', task='add_dynamic_theme_tag_for_theme_api')
 
         assert list(addon.tags.all().values_list('tag_text', flat=True)) == [
-            u'dynamic theme'
+            'dynamic theme'
         ]
 
         assert not no_perms.tags.all().exists()
@@ -237,7 +237,7 @@ class RecalculateWeightTestCase(TestCase):
     def test_task_works_correctly(self):
         addon = addon_factory(average_daily_users=100000)
         FileValidation.objects.create(
-            file=addon.current_version.all_files[0], validation=u'{}'
+            file=addon.current_version.all_files[0], validation='{}'
         )
         addon = Addon.objects.get(pk=addon.pk)
         summary = AutoApprovalSummary.objects.create(

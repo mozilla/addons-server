@@ -41,7 +41,7 @@ class TestUploadValidation(ValidatorTestCase, BaseUploadTest):
             'for more information'
         )
         assert msg['description'][0] == '&lt;iframe&gt;'
-        assert msg['context'] == ([u'<em:description>...', u'<foo/>'])
+        assert msg['context'] == (['<em:description>...', '<foo/>'])
 
     def test_date_on_upload(self):
         upload = FileUpload.objects.get(name='invalid_webextension.xpi')
@@ -61,8 +61,8 @@ class TestUploadValidation(ValidatorTestCase, BaseUploadTest):
         upload = FileUpload.objects.get(uuid=uuid)
         assert upload.processed_validation['errors'] == 1
         assert upload.processed_validation['messages'][0]['id'] == [
-            u'validator',
-            u'unexpected_exception',
+            'validator',
+            'unexpected_exception',
         ]
 
     def test_login_required(self):
@@ -119,8 +119,8 @@ class TestUploadErrors(BaseUploadTest):
     def test_long_uuid(self):
         """An add-on uuid may be more than 64 chars, see bug 1203915."""
         long_guid = (
-            u'this_guid_is_longer_than_the_limit_of_64_chars_see_'
-            u'bug_1201176_but_should_not_fail_see_bug_1203915@xpi'
+            'this_guid_is_longer_than_the_limit_of_64_chars_see_'
+            'bug_1201176_but_should_not_fail_see_bug_1203915@xpi'
         )
         xpi_info = check_xpi_info({'guid': long_guid, 'version': '1.0'})
         assert xpi_info['guid'] == long_guid
@@ -156,7 +156,7 @@ class TestFileValidation(TestCase):
         doc = pq(response.content)
         assert not doc('#site-nav').hasClass('app-nav'), 'Expected add-ons devhub nav'
         assert doc('header h2').text() == (
-            u'Validation Results for testaddon-20101217.xpi'
+            'Validation Results for testaddon-20101217.xpi'
         )
         assert doc('#addon-validator-suite').attr('data-validateurl') == (self.json_url)
 
@@ -251,7 +251,7 @@ class TestFileValidation(TestCase):
             'for more information'
         )
         assert msg['description'][0] == '&lt;iframe&gt;'
-        assert msg['context'] == ([u'<em:description>...', u'<foo/>'])
+        assert msg['context'] == (['<em:description>...', '<foo/>'])
 
     def test_linkify_validation_messages(self):
         self.file_validation.update(

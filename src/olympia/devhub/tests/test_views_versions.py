@@ -531,7 +531,7 @@ class TestVersion(TestCase):
         buttons = doc('.version-status-actions form button')
         # We should only show the links for one of the disabled versions.
         assert buttons.length == 1
-        assert buttons.text() == u'Request Review'
+        assert buttons.text() == 'Request Review'
 
     def test_reviewed_cannot_request_review(self):
         self.addon.update(status=amo.STATUS_NULL)

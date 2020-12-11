@@ -47,7 +47,7 @@ class TestCollectionAddonSerializer(TestCase):
         self.item = CollectionAddon.objects.get(
             addon=self.addon, collection=self.collection
         )
-        self.item.comments = u'Dis is nice'
+        self.item.comments = 'Dis is nice'
         self.item.save()
 
     def serialize(self):

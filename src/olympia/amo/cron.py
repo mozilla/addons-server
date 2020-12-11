@@ -57,7 +57,7 @@ def gc(test_result=True):
     stale_uploads = FileUpload.objects.filter(created__lte=a_week_ago).order_by('id')
     for file_upload in stale_uploads:
         log.info(
-            u'[FileUpload:{uuid}] Removing file: {path}'.format(
+            '[FileUpload:{uuid}] Removing file: {path}'.format(
                 uuid=file_upload.uuid, path=file_upload.path
             )
         )

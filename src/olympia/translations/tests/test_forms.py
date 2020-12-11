@@ -31,7 +31,7 @@ class TestTranslationFormMixin(TestCase):
         form = DummyForm(data={})
         # Both name and default_locale should display errors as lists with no
         # issues. Nothing about the underlying implementation should be shown
-        # (i.e., don't display an ugly [u'This field is required'] message).
+        # (i.e., don't display an ugly ['This field is required'] message).
         # name is a translated field so data-lang is present.
         expected = (
             '<ul class="errorlist">'
@@ -71,36 +71,36 @@ class TestTranslationFormMixin(TestCase):
             form = DummyForm(data={})
             # Both name and default_locale should display errors as lists with
             # no issues. Nothing about the underlying implementation should be
-            # shown (i.e., don't display an ugly [u'This field is required']
+            # shown (i.e., don't display an ugly ['This field is required']
             # message). name is a translated field so data-lang is present.
             # Note that data-lang points to the language of the translation
             # expected to be present, not the language of the message we're
             # displaying to the user - that's why it's displaying a french
             # message with a data-lang="en-us" attribute, it's not a bug.
             expected = (
-                u'<ul class="errorlist">'
-                u'<li data-lang="en-us">Champ nécessaire.</li>'
-                u'</ul>'
+                '<ul class="errorlist">'
+                '<li data-lang="en-us">Champ nécessaire.</li>'
+                '</ul>'
             )
             assert form.errors['name'].as_ul() == expected
             # default_locale is a normal field so data-lang is absent.
-            expected = u'<ul class="errorlist">' u'<li>Champ nécessaire.</li>' u'</ul>'
+            expected = '<ul class="errorlist"><li>Champ nécessaire.</li></ul>'
             assert form.errors['default_locale'].as_ul() == expected
 
             # When there are multiple errors, they should all be shown.
-            form.add_error('name', u'Errör about name')
-            form.add_error('default_locale', u'Errôr about default_locale')
+            form.add_error('name', 'Errör about name')
+            form.add_error('default_locale', 'Errôr about default_locale')
             expected = (
-                u'<ul class="errorlist">'
-                u'<li data-lang="en-us">Champ nécessaire.</li>'
-                u'<li>Errör about name</li>'
-                u'</ul>'
+                '<ul class="errorlist">'
+                '<li data-lang="en-us">Champ nécessaire.</li>'
+                '<li>Errör about name</li>'
+                '</ul>'
             )
             assert form.errors['name'].as_ul() == expected
             expected = (
-                u'<ul class="errorlist">'
-                u'<li>Champ nécessaire.</li>'
-                u'<li>Errôr about default_locale</li>'
-                u'</ul>'
+                '<ul class="errorlist">'
+                '<li>Champ nécessaire.</li>'
+                '<li>Errôr about default_locale</li>'
+                '</ul>'
             )
             assert form.errors['default_locale'].as_ul() == expected

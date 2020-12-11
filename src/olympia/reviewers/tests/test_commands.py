@@ -66,7 +66,7 @@ class AutoApproveTestsMixin(object):
         )
         self.file = self.version.all_files[0]
         self.file_validation = FileValidation.objects.create(
-            file=self.version.all_files[0], validation=u'{}'
+            file=self.version.all_files[0], validation='{}'
         )
         AddonApprovalsCounter.objects.create(addon=self.addon, counter=1)
 
@@ -607,10 +607,10 @@ class TestAutoApproveCommandTransactions(AutoApproveTestsMixin, TransactionTestC
         ]
         self.versions[0].update(nomination=days_ago(1))
         FileValidation.objects.create(
-            file=self.versions[0].all_files[0], validation=u'{}'
+            file=self.versions[0].all_files[0], validation='{}'
         )
         FileValidation.objects.create(
-            file=self.versions[1].all_files[0], validation=u'{}'
+            file=self.versions[1].all_files[0], validation='{}'
         )
         super(TestAutoApproveCommandTransactions, self).setUp()
 

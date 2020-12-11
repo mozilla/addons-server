@@ -77,7 +77,7 @@ class LocaleAndAppURLMiddleware(MiddlewareMixin):
 
             if query_string:
                 query_string = force_text(query_string, errors='ignore')
-                full_path = u'%s?%s' % (full_path, query_string)
+                full_path = '%s?%s' % (full_path, query_string)
 
             response = redirect_type(full_path)
             # Cache the redirect for a year.
@@ -226,9 +226,9 @@ class ReadOnlyMiddleware(MiddlewareMixin):
     """
 
     ERROR_MSG = _(
-        u'Some features are temporarily disabled while we '
-        u"perform website maintenance. We'll be back to "
-        u'full capacity shortly.'
+        'Some features are temporarily disabled while we '
+        "perform website maintenance. We'll be back to "
+        'full capacity shortly.'
     )
 
     def process_request(self, request):

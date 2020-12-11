@@ -44,9 +44,9 @@ class ActivityFeedRSS(Feed):
     def title(self, key):
         """Title for the feed as a whole"""
         if key.addon:
-            return ugettext(u'Recent Changes for %s') % key.addon
+            return ugettext('Recent Changes for %s') % key.addon
         else:
-            return ugettext(u'Recent Changes for My Add-ons')
+            return ugettext('Recent Changes for My Add-ons')
 
     def link(self):
         """Link for the feed as a whole"""

@@ -21,7 +21,7 @@ class CategoriesTests(TestCase):
         category = Category.objects.get(
             id=CATEGORIES[APPS['android'].id][ADDON_EXTENSION]['shopping'].id
         )
-        assert str(category.name) == u'Shopping'
+        assert str(category.name) == 'Shopping'
 
         # Re-generating should not create any more.
         data = generate_categories(APPS['android'], ADDON_EXTENSION)
@@ -32,4 +32,4 @@ class CategoriesTests(TestCase):
         category = Category.objects.get(
             id=CATEGORIES[APPS['android'].id][ADDON_EXTENSION]['shopping'].id
         )
-        assert str(category.name) == u'Shopping'
+        assert str(category.name) == 'Shopping'

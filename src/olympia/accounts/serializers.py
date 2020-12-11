@@ -140,20 +140,20 @@ class UserProfileSerializer(PublicUserProfileSerializer):
     def validate_biography(self, value):
         if has_links(clean_nl(str(value))):
             # There's some links, we don't want them.
-            raise serializers.ValidationError(ugettext(u'No links are allowed.'))
+            raise serializers.ValidationError(ugettext('No links are allowed.'))
         return value
 
     def validate_display_name(self, value):
         if DeniedName.blocked(value):
             raise serializers.ValidationError(
-                ugettext(u'This display name cannot be used.')
+                ugettext('This display name cannot be used.')
             )
         return value
 
     def validate_reviewer_name(self, value):
         if DeniedName.blocked(value):
             raise serializers.ValidationError(
-                ugettext(u'This reviewer name cannot be used.')
+                ugettext('This reviewer name cannot be used.')
             )
         return value
 
@@ -161,8 +161,8 @@ class UserProfileSerializer(PublicUserProfileSerializer):
         if settings.DOMAIN.lower() in value.lower():
             raise serializers.ValidationError(
                 ugettext(
-                    u'The homepage field can only be used to link to '
-                    u'external websites.'
+                    'The homepage field can only be used to link to '
+                    'external websites.'
                 )
             )
         return value
@@ -172,16 +172,16 @@ class UserProfileSerializer(PublicUserProfileSerializer):
 
         if value.content_type not in amo.IMG_TYPES or not image_check.is_image():
             raise serializers.ValidationError(
-                ugettext(u'Images must be either PNG or JPG.')
+                ugettext('Images must be either PNG or JPG.')
             )
 
         if image_check.is_animated():
-            raise serializers.ValidationError(ugettext(u'Images cannot be animated.'))
+            raise serializers.ValidationError(ugettext('Images cannot be animated.'))
 
         if value.size > settings.MAX_PHOTO_UPLOAD_SIZE:
             raise serializers.ValidationError(
                 ugettext(
-                    u'Please use images smaller than %dMB.'
+                    'Please use images smaller than %dMB.'
                     % (settings.MAX_PHOTO_UPLOAD_SIZE / 1024 / 1024)
                 )
             )
@@ -250,8 +250,8 @@ class AccountSuperCreateSerializer(serializers.Serializer):
             count = qs.count()
             if count != 1:
                 log.info(
-                    u'Super creation: looking for group with '
-                    u'permissions {} {} (count: {})'.format(group, rule, count)
+                    'Super creation: looking for group with '
+                    'permissions {} {} (count: {})'.format(group, rule, count)
                 )
                 raise serializers.ValidationError(
                     'Could not find a permissions group with the exact rules needed.'

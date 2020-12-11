@@ -426,7 +426,7 @@ class TestWithUser(TestCase):
         # "/a/path/?" gets URL safe base64 encoded to L2EvcGF0aC8_.
         self.request.data = {
             'code': 'foo',
-            'state': u'some-blob:{next_path}'.format(
+            'state': 'some-blob:{next_path}'.format(
                 next_path=force_text(base64.urlsafe_b64encode(b'/a/path/?'))
             ),
         }
@@ -445,7 +445,7 @@ class TestWithUser(TestCase):
         # "/foo" gets URL safe base64 encoded to L2Zvbw== so it will be L2Zvbw.
         self.request.data = {
             'code': 'foo',
-            'state': u'some-blob:{next_path}'.format(next_path='L2Zvbw'),
+            'state': 'some-blob:{next_path}'.format(next_path='L2Zvbw'),
         }
         args, kwargs = self.fn(self.request)
         assert args == (self, self.request)
@@ -461,7 +461,7 @@ class TestWithUser(TestCase):
         self.find_user.return_value = self.user
         self.request.data = {
             'code': 'foo',
-            'state': u'some-blob:/raw/path',
+            'state': 'some-blob:/raw/path',
         }
         args, kwargs = self.fn(self.request)
         assert args == (self, self.request)
@@ -477,7 +477,7 @@ class TestWithUser(TestCase):
         self.find_user.return_value = self.user
         self.request.data = {
             'code': 'foo',
-            'state': u'some-blob:',
+            'state': 'some-blob:',
         }
         args, kwargs = self.fn(self.request)
         assert args == (self, self.request)
@@ -493,7 +493,7 @@ class TestWithUser(TestCase):
         self.find_user.return_value = self.user
         self.request.data = {
             'code': 'foo',
-            'state': u'some-blob:{next_path}'.format(
+            'state': 'some-blob:{next_path}'.format(
                 next_path=force_text(
                     base64.urlsafe_b64encode(b'https://www.google.com')
                 )
@@ -626,7 +626,7 @@ class TestWithUser(TestCase):
         self.find_user.return_value = self.user
         self.request.data = {
             'code': 'foo',
-            'state': u'some-blob:{next_path}'.format(
+            'state': 'some-blob:{next_path}'.format(
                 next_path=force_text(base64.urlsafe_b64encode(b'/a/path/?'))
             ),
         }
@@ -666,7 +666,7 @@ class TestWithUser(TestCase):
         self.find_user.return_value = self.user
         self.request.data = {
             'code': 'foo',
-            'state': u'some-blob:{next_path}'.format(
+            'state': 'some-blob:{next_path}'.format(
                 next_path=force_text(base64.urlsafe_b64encode(b'/a/path/?'))
             ),
         }
@@ -871,7 +871,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
         user = UserProfile.objects.create(
             email='real@yeahoo.com', fxa_id='10', deleted=True
         )
-        identity = {u'email': u'real@yeahoo.com', u'uid': u'10'}
+        identity = {'email': 'real@yeahoo.com', 'uid': '10'}
         self.fxa_identify.return_value = identity, 'someopenidtoken'
         self.reregister_user.side_effect = lambda user: user.update(deleted=False)
         response = self.client.get(
@@ -892,7 +892,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
     def test_success_no_account_registers(self):
         user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
         assert not user_qs.exists()
-        identity = {u'email': u'me@yeahoo.com', u'uid': u'e0b6f'}
+        identity = {'email': 'me@yeahoo.com', 'uid': 'e0b6f'}
         self.fxa_identify.return_value = identity, 'someopenidtoken'
         self.register_user.side_effect = lambda identity: UserProfile.objects.create(
             username='foo', email='me@yeahoo.com', fxa_id='e0b6f'
@@ -915,7 +915,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
     def test_register_redirects_edit(self):
         user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
         assert not user_qs.exists()
-        identity = {u'email': u'me@yeahoo.com', u'uid': u'e0b6f'}
+        identity = {'email': 'me@yeahoo.com', 'uid': 'e0b6f'}
         self.fxa_identify.return_value = identity, 'someopenidtoken'
         user = UserProfile(username='foo', email='me@yeahoo.com')
         self.register_user.return_value = user
@@ -943,7 +943,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
     def test_register_redirects_edit_absolute_to(self):
         user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
         assert not user_qs.exists()
-        identity = {u'email': u'me@yeahoo.com', u'uid': u'e0b6f'}
+        identity = {'email': 'me@yeahoo.com', 'uid': 'e0b6f'}
         self.fxa_identify.return_value = identity, 'someopenidtoken'
         user = UserProfile(username='foo', email='me@yeahoo.com')
         self.register_user.return_value = user
@@ -978,7 +978,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
     def test_register_redirects_edit_ignores_to_when_unsafe(self):
         user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
         assert not user_qs.exists()
-        identity = {u'email': u'me@yeahoo.com', u'uid': u'e0b6f'}
+        identity = {'email': 'me@yeahoo.com', 'uid': 'e0b6f'}
         self.fxa_identify.return_value = identity, 'someopenidtoken'
         user = UserProfile(username='foo', email='me@yeahoo.com')
         self.register_user.return_value = user
@@ -1282,7 +1282,7 @@ class TestAccountViewSet(TestCase):
         self.test_is_public_because_developer()
 
         # Should still work if the username contains a period.
-        self.user.update(username=u'fôo.bar')
+        self.user.update(username='fôo.bar')
         self.url = reverse_ns('account-detail', kwargs={'pk': self.user.username})
         self.test_is_public_because_developer()
 
@@ -1412,13 +1412,13 @@ class TestAccountViewSetUpdate(TestCase):
             'display_name': ['Ensure this field has no more than 50 characters.']
         }
 
-        response = self.patch(data={'display_name': u'\x7F\u20DF'})
+        response = self.patch(data={'display_name': '\x7F\u20DF'})
         assert response.status_code == 400
         assert json.loads(force_text(response.content)) == {
             'display_name': ['Must contain at least one printable character.']
         }
 
-        response = self.patch(data={'display_name': u'a\x7F'})
+        response = self.patch(data={'display_name': 'a\x7F'})
         assert response.status_code == 200
 
         response = self.patch(data={'display_name': 'a' * 50})
@@ -1442,13 +1442,13 @@ class TestAccountViewSetUpdate(TestCase):
             'reviewer_name': ['Ensure this field has no more than 50 characters.']
         }
 
-        response = self.patch(data={'reviewer_name': u'\x7F\u20DF'})
+        response = self.patch(data={'reviewer_name': '\x7F\u20DF'})
         assert response.status_code == 400
         assert json.loads(force_text(response.content)) == {
             'reviewer_name': ['Must contain at least one printable character.']
         }
 
-        response = self.patch(data={'reviewer_name': u'a\x7F'})
+        response = self.patch(data={'reviewer_name': 'a\x7F'})
         assert response.status_code == 200
 
         response = self.patch(data={'reviewer_name': 'a' * 50})
@@ -1510,7 +1510,7 @@ class TestAccountViewSetUpdate(TestCase):
         response = self.client.patch(self.url, data, format='multipart')
         assert response.status_code == 400
         assert json.loads(force_text(response.content)) == {
-            'picture_upload': [u'Images must be either PNG or JPG.']
+            'picture_upload': ['Images must be either PNG or JPG.']
         }
 
     def test_picture_upload_animated(self):
@@ -1520,7 +1520,7 @@ class TestAccountViewSetUpdate(TestCase):
         response = self.client.patch(self.url, data, format='multipart')
         assert response.status_code == 400
         assert json.loads(force_text(response.content)) == {
-            'picture_upload': [u'Images cannot be animated.']
+            'picture_upload': ['Images cannot be animated.']
         }
 
     def test_picture_upload_not_image(self):
@@ -1531,8 +1531,8 @@ class TestAccountViewSetUpdate(TestCase):
         assert response.status_code == 400
         assert json.loads(force_text(response.content)) == {
             'picture_upload': [
-                u'Upload a valid image. The file you uploaded was either not '
-                u'an image or a corrupted image.'
+                'Upload a valid image. The file you uploaded was either not '
+                'an image or a corrupted image.'
             ]
         }
 
@@ -1758,7 +1758,7 @@ class TestParseNextPath(TestCase):
         ]
         next_path = views.parse_next_path(parts)
         assert next_path == (
-            u'/en-US/firefox/addon/dęlîcíøùs-päñčåkę/?src=hp-dl-featured'
+            '/en-US/firefox/addon/dęlîcíøùs-päñčåkę/?src=hp-dl-featured'
         )
 
     def test_path_with_unicodedecodeerror(self):
@@ -1879,7 +1879,7 @@ class TestAccountNotificationViewSetList(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert len(response.data) == 8
-        assert {'name': u'reply', 'enabled': True, 'mandatory': False} in response.data
+        assert {'name': 'reply', 'enabled': True, 'mandatory': False} in response.data
 
     def test_defaults_non_dev(self):
         self.user.addons.all().delete()
@@ -1887,7 +1887,7 @@ class TestAccountNotificationViewSetList(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert len(response.data) == 2
-        assert {'name': u'reply', 'enabled': True, 'mandatory': False} in response.data
+        assert {'name': 'reply', 'enabled': True, 'mandatory': False} in response.data
 
     def test_user_set_notifications_included(self):
         reply_notification = NOTIFICATIONS_BY_ID[3]
@@ -1898,7 +1898,7 @@ class TestAccountNotificationViewSetList(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert len(response.data) == 8
-        assert {'name': u'reply', 'enabled': False, 'mandatory': False} in response.data
+        assert {'name': 'reply', 'enabled': False, 'mandatory': False} in response.data
 
     def test_user_set_notifications_included_non_dev(self):
         self.user.addons.all().delete()
@@ -1910,7 +1910,7 @@ class TestAccountNotificationViewSetList(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert len(response.data) == 2
-        assert {'name': u'reply', 'enabled': False, 'mandatory': False} in response.data
+        assert {'name': 'reply', 'enabled': False, 'mandatory': False} in response.data
 
     def test_old_notifications_are_safely_ignored(self):
         UserNotification.objects.create(
@@ -1921,7 +1921,7 @@ class TestAccountNotificationViewSetList(TestCase):
         assert response.status_code == 200
         assert len(response.data) == 8
         # Check for any known notification, just to see the response looks okay
-        assert {'name': u'reply', 'enabled': True, 'mandatory': False} in response.data
+        assert {'name': 'reply', 'enabled': True, 'mandatory': False} in response.data
 
     def test_basket_integration(self):
         self.client.login_api(self.user)
@@ -1939,7 +1939,7 @@ class TestAccountNotificationViewSetList(TestCase):
 
         assert response.status_code == 200
         assert {
-            'name': u'announcements',
+            'name': 'announcements',
             'enabled': True,
             'mandatory': False,
         } in response.data
@@ -1958,7 +1958,7 @@ class TestAccountNotificationViewSetList(TestCase):
         assert response.status_code == 200
         # And the notification shoudn't be included either.
         assert {
-            'name': u'announcements',
+            'name': 'announcements',
             'enabled': True,
             'mandatory': False,
         } not in response.data
@@ -1986,13 +1986,13 @@ class TestAccountNotificationViewSetList(TestCase):
 
         assert response.status_code == 200
         assert {
-            'name': u'announcements',
+            'name': 'announcements',
             'enabled': False,
             'mandatory': False,
         } in response.data
         # Check our response only contains one announcements notification.
         assert (
-            len([nfn for nfn in response.data if nfn['name'] == u'announcements']) == 1
+            len([nfn for nfn in response.data if nfn['name'] == 'announcements']) == 1
         )
 
     def test_no_auth_fails(self):
@@ -2043,7 +2043,7 @@ class TestAccountNotificationViewSetUpdate(TestCase):
         self.client.login_api(self.user)
         # Check it's set to the default True beforehand.
         assert {
-            'name': u'reply',
+            'name': 'reply',
             'enabled': True,
             'mandatory': False,
         } in self.client.get(self.list_url).data
@@ -2051,7 +2051,7 @@ class TestAccountNotificationViewSetUpdate(TestCase):
         response = self.client.post(self.url, data={'reply': False})
         assert response.status_code == 200, response.content
         # Now we've set it to False.
-        assert {'name': u'reply', 'enabled': False, 'mandatory': False} in response.data
+        assert {'name': 'reply', 'enabled': False, 'mandatory': False} in response.data
         # And the notification has been saved.
         un_obj = UserNotification.objects.get(
             user=self.user, notification_id=reply_notification.id
@@ -2069,7 +2069,7 @@ class TestAccountNotificationViewSetUpdate(TestCase):
         response = self.client.post(self.url, data={'reply': False})
         assert response.status_code == 200, response.content
         # Now we've set it to False.
-        assert {'name': u'reply', 'enabled': False, 'mandatory': False} in response.data
+        assert {'name': 'reply', 'enabled': False, 'mandatory': False} in response.data
         # And the notification has been saved.
         un_obj = UserNotification.objects.get(
             user=self.user, notification_id=reply_notification.id
@@ -2107,7 +2107,7 @@ class TestAccountNotificationViewSetUpdate(TestCase):
         response = self.client.post(self.url, data={'reply': False})
         assert response.status_code == 200, response.content
         # Now we've set it to False.
-        assert {'name': u'reply', 'enabled': False, 'mandatory': False} in response.data
+        assert {'name': 'reply', 'enabled': False, 'mandatory': False} in response.data
         # And the notification has been saved.
         un_obj = UserNotification.objects.get(
             user=original_user, notification_id=NOTIFICATIONS_BY_ID[3].id
@@ -2118,7 +2118,7 @@ class TestAccountNotificationViewSetUpdate(TestCase):
         self.client.login_api(self.user)
 
         assert {
-            'name': u'announcements',
+            'name': 'announcements',
             'enabled': False,
             'mandatory': False,
         } in self.client.get(self.list_url).data
@@ -2180,7 +2180,7 @@ class TestAccountNotificationUnsubscribe(TestCase):
         data = {'token': token, 'hash': hash_, 'notification': notification_const.short}
         response = self.client.post(self.url, data=data)
         assert response.status_code == 200, response.content
-        assert response.data == {'name': u'reply', 'enabled': False, 'mandatory': False}
+        assert response.data == {'name': 'reply', 'enabled': False, 'mandatory': False}
         ntn = UserNotification.objects.get(
             user=self.user, notification_id=notification_const.id
         )
@@ -2212,7 +2212,7 @@ class TestAccountNotificationUnsubscribe(TestCase):
         response = self.client.post(self.url, data=data)
         assert response.status_code == 200, response.content
         assert response.data == {
-            'name': u'new_review',
+            'name': 'new_review',
             'enabled': False,
             'mandatory': False,
         }
@@ -2230,7 +2230,7 @@ class TestAccountNotificationUnsubscribe(TestCase):
 
     def test_unsubscribe_invalid_token_or_hash(self):
         token, hash_ = UnsubscribeCode.create(self.user.email)
-        data = {'token': token, 'hash': hash_ + u'a', 'notification': 'reply'}
+        data = {'token': token, 'hash': hash_ + 'a', 'notification': 'reply'}
         response = self.client.post(self.url, data=data)
         assert response.status_code == 403
         assert response.data == {'detail': 'Invalid token or hash.'}

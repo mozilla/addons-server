@@ -7,24 +7,24 @@ from olympia.lib.cache import memoize, memoize_key, make_key
 
 def test_make_key():
     with translation.override('en-US'):
-        assert make_key(u'é@øel') == u'é@øel:en-us'
+        assert make_key('é@øel') == 'é@øel:en-us'
 
     with translation.override('de'):
-        assert make_key(u'é@øel') == u'é@øel:de'
+        assert make_key('é@øel') == 'é@øel:de'
 
     with translation.override('de'):
-        assert make_key(u'é@øel', with_locale=False) == u'é@øel'
+        assert make_key('é@øel', with_locale=False) == 'é@øel'
 
     with translation.override('en-US'):
-        assert make_key(u'é@øel', normalize=True) == '2798e65bbe384320c9da7930e93e63fb'
+        assert make_key('é@øel', normalize=True) == '2798e65bbe384320c9da7930e93e63fb'
 
     assert (
-        make_key(u'é@øel', with_locale=False, normalize=True)
+        make_key('é@øel', with_locale=False, normalize=True)
         == 'a83feada27737072d4ec741640368f07'
     )
 
     with translation.override('fr'):
-        assert make_key(u'é@øel', normalize=True) == 'bc5208e905c8dfcc521e4196e16cfa1a'
+        assert make_key('é@øel', normalize=True) == 'bc5208e905c8dfcc521e4196e16cfa1a'
 
 
 def test_memoize_key():
@@ -47,5 +47,5 @@ def test_memcached_unicode():
 
     https://github.com/linsomniac/python-memcached/issues/79
     """
-    cache.set(u'këy', u'Iñtërnâtiônàlizætiøn2')
-    assert cache.get(u'këy') == u'Iñtërnâtiônàlizætiøn2'
+    cache.set('këy', 'Iñtërnâtiônàlizætiøn2')
+    assert cache.get('këy') == 'Iñtërnâtiônàlizætiøn2'

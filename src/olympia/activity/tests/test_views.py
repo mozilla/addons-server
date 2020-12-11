@@ -179,13 +179,13 @@ class TestReviewNotesViewSetDetail(ReviewNotesViewSetDetailMixin, TestCase):
     def setUp(self):
         super(TestReviewNotesViewSetDetail, self).setUp()
         self.addon = addon_factory(
-            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon'
+            guid=generate_addon_guid(), name='My Addôn', slug='my-addon'
         )
         self.user = user_factory()
         self.version = self.addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED
         )
-        self.note = self.log(u'noôo!', amo.LOG.REVIEWER_REPLY_VERSION, self.days_ago(0))
+        self.note = self.log('noôo!', amo.LOG.REVIEWER_REPLY_VERSION, self.days_ago(0))
         self._set_tested_url()
 
     def _test_url(self):
@@ -194,7 +194,7 @@ class TestReviewNotesViewSetDetail(ReviewNotesViewSetDetailMixin, TestCase):
         result = json.loads(response.content)
         assert result['id'] == self.note.pk
         assert result['action_label'] == amo.LOG.REVIEWER_REPLY_VERSION.short
-        assert result['comments'] == u'noôo!'
+        assert result['comments'] == 'noôo!'
         assert result['highlight']  # Its the first reply so highlight
 
     def _set_tested_url(self, pk=None, version_pk=None, addon_pk=None):
@@ -220,16 +220,14 @@ class TestReviewNotesViewSetList(ReviewNotesViewSetDetailMixin, TestCase):
     def setUp(self):
         super(TestReviewNotesViewSetList, self).setUp()
         self.addon = addon_factory(
-            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon'
+            guid=generate_addon_guid(), name='My Addôn', slug='my-addon'
         )
         self.user = user_factory()
-        self.note = self.log(u'noôo!', amo.LOG.APPROVE_VERSION, self.days_ago(3))
+        self.note = self.log('noôo!', amo.LOG.APPROVE_VERSION, self.days_ago(3))
         self.note2 = self.log(
-            u'réply!', amo.LOG.DEVELOPER_REPLY_VERSION, self.days_ago(2)
+            'réply!', amo.LOG.DEVELOPER_REPLY_VERSION, self.days_ago(2)
         )
-        self.note3 = self.log(
-            u'yéss!', amo.LOG.REVIEWER_REPLY_VERSION, self.days_ago(1)
-        )
+        self.note3 = self.log('yéss!', amo.LOG.REVIEWER_REPLY_VERSION, self.days_ago(1))
 
         self.version = self.addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED
@@ -238,7 +236,7 @@ class TestReviewNotesViewSetList(ReviewNotesViewSetDetailMixin, TestCase):
 
     def test_queries(self):
         self.note4 = self.log(
-            u'fiiiine', amo.LOG.REVIEWER_REPLY_VERSION, self.days_ago(0)
+            'fiiiine', amo.LOG.REVIEWER_REPLY_VERSION, self.days_ago(0)
         )
         self._login_developer()
         with self.assertNumQueries(17):
@@ -289,7 +287,7 @@ class TestReviewNotesViewSetList(ReviewNotesViewSetDetailMixin, TestCase):
 
     def test_admin_activity_hidden_from_developer(self):
         # Add an extra activity note but a type we don't show the developer.
-        self.log(u'sécrets', amo.LOG.COMMENT_VERSION, self.days_ago(0))
+        self.log('sécrets', amo.LOG.COMMENT_VERSION, self.days_ago(0))
         self._login_developer()
         # _test_url will check only the 3 notes defined in setup are there.
         self._test_url()
@@ -301,7 +299,7 @@ class TestReviewNotesViewSetCreate(TestCase):
     def setUp(self):
         super(TestReviewNotesViewSetCreate, self).setUp()
         self.addon = addon_factory(
-            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon'
+            guid=generate_addon_guid(), name='My Addôn', slug='my-addon'
         )
         self.version = self.addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED
@@ -312,7 +310,7 @@ class TestReviewNotesViewSetCreate(TestCase):
         )
 
     def _post_reply(self):
-        return self.client.post(self.url, {'comments': u'comménty McCómm€nt'})
+        return self.client.post(self.url, {'comments': 'comménty McCómm€nt'})
 
     def get_review_activity_queryset(self):
         return ActivityLog.objects.filter(action__in=amo.LOG_REVIEW_QUEUE_DEVELOPER)
@@ -343,7 +341,7 @@ class TestReviewNotesViewSetCreate(TestCase):
         rdata = response.data
         assert reply.pk == rdata['id']
         assert (
-            str(reply.details['comments']) == rdata['comments'] == u'comménty McCómm€nt'
+            str(reply.details['comments']) == rdata['comments'] == 'comménty McCómm€nt'
         )
         assert reply.user == self.user
         assert reply.user.name == rdata['user']['name'] == self.user.name
@@ -369,7 +367,7 @@ class TestReviewNotesViewSetCreate(TestCase):
         rdata = response.data
         assert reply.pk == rdata['id']
         assert (
-            str(reply.details['comments']) == rdata['comments'] == u'comménty McCómm€nt'
+            str(reply.details['comments']) == rdata['comments'] == 'comménty McCómm€nt'
         )
         assert reply.user == self.user
         assert reply.user.name == rdata['user']['name'] == self.user.name
@@ -426,7 +424,7 @@ class TestReviewNotesViewSetCreate(TestCase):
             'version-reviewnotes-list',
             kwargs={'addon_pk': self.addon.pk, 'version_pk': new_version.pk},
         )
-        response = self.client.post(new_url, {'comments': u'comménty McCómm€nt'})
+        response = self.client.post(new_url, {'comments': 'comménty McCómm€nt'})
         assert response.status_code == 201
         assert self.get_review_activity_queryset().count() == 1
 

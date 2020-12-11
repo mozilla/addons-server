@@ -284,8 +284,8 @@ def test_outgoing_url():
 
 def test_outgoing_url_dirty_unicode():
     bad = (
-        u'http://chupakabr.ru/\u043f\u0440\u043e\u0435\u043a\u0442\u044b/'
-        u'\u043c\u0443\u0437\u044b\u043a\u0430-vkontakteru/'
+        'http://chupakabr.ru/\u043f\u0440\u043e\u0435\u043a\u0442\u044b/'
+        '\u043c\u0443\u0437\u044b\u043a\u0430-vkontakteru/'
     )
     urlresolvers.get_outgoing_url(bad)  # bug 564057
 

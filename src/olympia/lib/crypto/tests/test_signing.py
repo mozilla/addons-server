@@ -155,7 +155,7 @@ class TestSigning(TestCase):
 
     def test_sign_file_non_ascii_filename(self):
         src = self.file_.file_path
-        self.file_.update(filename=u'jétpack.xpi')
+        self.file_.update(filename='jétpack.xpi')
         shutil.move(src, self.file_.file_path)
         self.assert_not_signed()
         signing.sign_file(self.file_)
@@ -171,7 +171,7 @@ class TestSigning(TestCase):
             with zipfile.ZipFile(self.file_.file_path, mode='r') as zf:
                 with zf.open('META-INF/manifest.mf', 'r') as manifest_mf:
                     manifest_contents = manifest_mf.read().decode('utf-8')
-                    assert u'\u1109\u1161\u11a9' in manifest_contents
+                    assert '\u1109\u1161\u11a9' in manifest_contents
 
     def test_no_sign_missing_file(self):
         os.unlink(self.file_.file_path)
@@ -289,7 +289,7 @@ class TestSigning(TestCase):
         assert signing.get_id(self.addon) == self.addon.guid
 
     def test_get_id_long_guid_bug_1203365(self):
-        long_guid = u'x' * 65
+        long_guid = 'x' * 65
         hashed = hashlib.sha256(force_bytes(long_guid)).hexdigest()
         self.addon.update(guid=long_guid)
         assert len(self.addon.guid) > 64
@@ -297,7 +297,7 @@ class TestSigning(TestCase):
         assert signing.get_id(self.addon) == hashed
 
     def test_sign_addon_with_unicode_guid(self):
-        self.addon.update(guid=u'NavratnePeniaze@NávratnéPeniaze')
+        self.addon.update(guid='NavratnePeniaze@NávratnéPeniaze')
 
         signing.sign_file(self.file_)
 
@@ -305,7 +305,7 @@ class TestSigning(TestCase):
 
         subject_info = signature_info.signer_certificate['subject']
 
-        assert subject_info['common_name'] == u'NavratnePeniaze@NávratnéPeniaze'
+        assert subject_info['common_name'] == 'NavratnePeniaze@NávratnéPeniaze'
         assert manifest.count('Name: ') == 4
         # Need to use .startswith() since the signature from `cose.sig`
         # changes on every test-run, so we're just not going to check it
@@ -447,7 +447,7 @@ class TestTasks(TestCase):
     def setUp(self):
         super(TestTasks, self).setUp()
         self.addon = amo.tests.addon_factory(
-            name=u'Rændom add-on', version_kw={'version': '0.0.1'}
+            name='Rændom add-on', version_kw={'version': '0.0.1'}
         )
         self.version = self.addon.current_version
         self.max_appversion = self.version.apps.first().max
@@ -461,7 +461,7 @@ class TestTasks(TestCase):
         super(TestTasks, self).tearDown()
 
     def get_backup_file_path(self):
-        return u'{0}.backup_signature'.format(self.file_.file_path)
+        return '{0}.backup_signature'.format(self.file_.file_path)
 
     def set_max_appversion(self, version):
         """Set self.max_appversion to the given version."""
@@ -496,7 +496,7 @@ class TestTasks(TestCase):
         # We want to make sure each file has been signed.
         self.file2 = amo.tests.file_factory(version=self.version)
         self.file2.update(filename='webextension-b.xpi')
-        backup_file2_path = u'{0}.backup_signature'.format(self.file2.file_path)
+        backup_file2_path = '{0}.backup_signature'.format(self.file2.file_path)
         try:
             fpath = 'src/olympia/files/fixtures/files/webextension.xpi'
             with amo.tests.copy_file(fpath, self.file_.file_path):
@@ -539,7 +539,7 @@ class TestTasks(TestCase):
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_sign_bump_non_ascii_filename(self, mock_sign_file):
         """Sign files which have non-ascii filenames."""
-        self.file_.update(filename=u'wébextension.xpi')
+        self.file_.update(filename='wébextension.xpi')
         with amo.tests.copy_file(
             'src/olympia/files/fixtures/files/webextension.xpi', self.file_.file_path
         ):
@@ -555,16 +555,16 @@ class TestTasks(TestCase):
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_sign_bump_non_ascii_version(self, mock_sign_file):
         """Sign versions which have non-ascii version numbers."""
-        self.version.update(version=u'é0.0.1')
+        self.version.update(version='é0.0.1')
         with amo.tests.copy_file(
             'src/olympia/files/fixtures/files/webextension.xpi', self.file_.file_path
         ):
             file_hash = self.file_.generate_hash()
-            assert self.version.version == u'é0.0.1'
+            assert self.version.version == 'é0.0.1'
             tasks.sign_addons([self.addon.pk])
             assert mock_sign_file.called
             self.version.reload()
-            assert self.version.version == u'é0.0.1.1-signed'
+            assert self.version.version == 'é0.0.1.1-signed'
             assert file_hash != self.file_.generate_hash()
             self.assert_backup()
 
@@ -689,7 +689,7 @@ class TestTasks(TestCase):
             tasks.sign_addons([self.addon.pk])
             mock_sign_file.assert_called_with(self.file_)
 
-        assert u'Rændom add-on' in mail.outbox[0].message().as_string()
+        assert 'Rændom add-on' in mail.outbox[0].message().as_string()
 
 
 @pytest.mark.parametrize(

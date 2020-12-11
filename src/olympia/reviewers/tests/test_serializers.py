@@ -167,7 +167,7 @@ class TestFileInfoDiffSerializer(TestCase):
         super(TestFileInfoDiffSerializer, self).setUp()
 
         self.addon = addon_factory(
-            name=u'My Addôn',
+            name='My Addôn',
             slug='my-addon',
             file_kw={'filename': 'webextension_no_id.xpi', 'is_webextension': True},
         )
@@ -314,7 +314,7 @@ class TestFileInfoDiffSerializer(TestCase):
         data = self.serialize(parent_version=parent_version)
 
         assert data['id'] == self.addon.current_version.current_file.pk
-        assert data['filename'] == u'manifest.json'
+        assert data['filename'] == 'manifest.json'
         assert data['diff'] is not None
 
     def test_uses_unknown_minified_code(self):
@@ -393,11 +393,11 @@ class TestAddonBrowseVersionSerializer(TestCase):
 
         license = License.objects.create(
             name={
-                'en-US': u'My License',
-                'fr': u'Mä Licence',
+                'en-US': 'My License',
+                'fr': 'Mä Licence',
             },
             text={
-                'en-US': u'Lorem ipsum dolor sit amet, has nemore patrioqué',
+                'en-US': 'Lorem ipsum dolor sit amet, has nemore patrioqué',
             },
             url='http://license.example.com/',
         )
@@ -416,8 +416,8 @@ class TestAddonBrowseVersionSerializer(TestCase):
                 'min_app_version': '50.0',
                 'max_app_version': '*',
                 'release_notes': {
-                    'en-US': u'Release notes in english',
-                    'fr': u'Notes de version en français',
+                    'en-US': 'Release notes in english',
+                    'fr': 'Notes de version en français',
                 },
                 'reviewed': self.days_ago(0),
             },
@@ -510,14 +510,14 @@ class TestAddonBrowseVersionSerializer(TestCase):
         assert manifest_data['depth'] == 0
         assert manifest_data['filename'] == 'manifest.json'
         assert manifest_data['mime_category'] == 'text'
-        assert manifest_data['path'] == u'manifest.json'
+        assert manifest_data['path'] == 'manifest.json'
 
         ja_locale_data = data['file_entries']['_locales/ja']
 
         assert ja_locale_data['depth'] == 1
         assert ja_locale_data['mime_category'] == 'directory'
         assert ja_locale_data['filename'] == 'ja'
-        assert ja_locale_data['path'] == u'_locales/ja'
+        assert ja_locale_data['path'] == '_locales/ja'
 
     def test_get_entries_cached(self):
         serializer = self.get_serializer()
@@ -613,7 +613,7 @@ class TestAddonCompareVersionSerializer(TestCase):
         super(TestAddonCompareVersionSerializer, self).setUp()
 
         self.addon = addon_factory(
-            name=u'My Addôn',
+            name='My Addôn',
             slug='my-addon',
             file_kw={'filename': 'webextension_no_id.xpi', 'is_webextension': True},
         )
@@ -630,7 +630,7 @@ class TestAddonCompareVersionSerializer(TestCase):
 
     def create_new_version_for_addon(self, xpi_filename):
         addon = addon_factory(
-            name=u'My Addôn',
+            name='My Addôn',
             slug='my-addon',
             file_kw={'filename': xpi_filename, 'is_webextension': True},
         )
@@ -694,15 +694,15 @@ class TestAddonCompareVersionSerializer(TestCase):
         assert manifest_data['depth'] == 0
         assert manifest_data['filename'] == expected_filename
         assert manifest_data['mime_category'] == expected_file_type
-        assert manifest_data['path'] == u'manifest.json'
+        assert manifest_data['path'] == 'manifest.json'
         assert manifest_data['status'] == ''
 
         # Added a new file
         test_txt_data = data['file_entries']['test.txt']
         assert test_txt_data['depth'] == 0
-        assert test_txt_data['filename'] == u'test.txt'
+        assert test_txt_data['filename'] == 'test.txt'
         assert test_txt_data['mime_category'] == 'text'
-        assert test_txt_data['path'] == u'test.txt'
+        assert test_txt_data['path'] == 'test.txt'
         assert test_txt_data['status'] == 'A'
 
         # Deleted file
@@ -714,7 +714,7 @@ class TestAddonCompareVersionSerializer(TestCase):
         # database. But it doesn't matter much here since we're primarily
         # after the git status.
         assert readme_data['mime_category'] is None
-        assert readme_data['path'] == u'README.md'
+        assert readme_data['path'] == 'README.md'
 
     def test_recreate_parent_dir_of_deleted_file(self):
         addon, repo, parent_version, new_version = self.create_new_version_for_addon(
@@ -827,8 +827,8 @@ class TestAddonCompareVersionSerializer(TestCase):
 class TestCannedResponseSerializer(TestCase):
     def test_basic(self):
         response = CannedResponse.objects.create(
-            name=u'Terms of services',
-            response=u'test',
+            name='Terms of services',
+            response='test',
             category=amo.CANNED_RESPONSE_CATEGORY_OTHER,
             type=amo.CANNED_RESPONSE_TYPE_ADDON,
         )

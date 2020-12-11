@@ -19,10 +19,10 @@ log = olympia.core.logger.getLogger('z.task')
 
 
 MAIL_COSE_SUBJECT = (
-    u'Your Firefox extension has been re-signed with a stronger signature'
+    'Your Firefox extension has been re-signed with a stronger signature'
 )
 
-MAIL_COSE_MESSAGE = u"""
+MAIL_COSE_MESSAGE = """
 Hello,
 
 Mozilla has recently upgraded the signing [1] for Firefox extensions, themes,
@@ -60,10 +60,10 @@ version_regex = re.compile(
 def get_new_version_number(version):
     match = version_regex.search(version)
     if not match:
-        return u'{}.1-signed'.format(version)
+        return '{}.1-signed'.format(version)
     else:
         num = int(match.groupdict()['number'] or 1)
-        return u'{}{}-{}'.format(
+        return '{}{}-{}'.format(
             match.groupdict()['prefix'], match.groupdict()['version'], num + 1
         )
 
@@ -108,7 +108,7 @@ def sign_addons(addon_ids, force=False, send_emails=True, **kw):
                     version.addon, version
                 )
             )
-        log.info(u'Signing addon {0}, version {1}'.format(version.addon, version))
+        log.info('Signing addon {0}, version {1}'.format(version.addon, version))
         bumped_version_number = get_new_version_number(version.version)
         signed_at_least_a_file = False  # Did we sign at least one file?
 

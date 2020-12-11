@@ -143,10 +143,10 @@ class TestAllLocales(TestCase):
         save_signal(sender=TranslatedModel, instance=obj)
 
         result = jinja_helpers.all_locales(obj, 'description')
-        assert u'<div class="trans" data-name="description">' in result
-        assert u'<span lang="en-us">There</span>' in result
-        assert u'<span lang="es">Is No</span>' in result
-        assert u'<span lang="fr">Spoon</span>' in result
+        assert '<div class="trans" data-name="description">' in result
+        assert '<span lang="en-us">There</span>' in result
+        assert '<span lang="es">Is No</span>' in result
+        assert '<span lang="fr">Spoon</span>' in result
 
     def test_all_locales_empty(self):
         obj = TranslatedModel()
@@ -156,13 +156,13 @@ class TestAllLocales(TestCase):
         save_signal(sender=TranslatedModel, instance=obj)
 
         result = jinja_helpers.all_locales(obj, 'description')
-        assert u'<div class="trans" data-name="description">' in result
-        assert u'<span lang="en-us">There</span>' in result
-        assert u'<span lang="es">Is No</span>' in result
-        assert u'<span lang="fr"></span>' in result
+        assert '<div class="trans" data-name="description">' in result
+        assert '<span lang="en-us">There</span>' in result
+        assert '<span lang="es">Is No</span>' in result
+        assert '<span lang="fr"></span>' in result
 
         result = jinja_helpers.all_locales(obj, 'description', prettify_empty=True)
-        assert u'<div class="trans" data-name="description">' in result
-        assert u'<span lang="en-us">There</span>' in result
-        assert u'<span lang="es">Is No</span>' in result
-        assert u'<span class="empty" lang="fr">None</span>' in result
+        assert '<div class="trans" data-name="description">' in result
+        assert '<span lang="en-us">There</span>' in result
+        assert '<span lang="es">Is No</span>' in result
+        assert '<span class="empty" lang="fr">None</span>' in result

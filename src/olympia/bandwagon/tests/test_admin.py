@@ -70,7 +70,7 @@ class TestCollectionAdmin(TestCase):
         assert collection.slug not in response.content.decode('utf-8')
 
     def test_can_edit_with_collections_edit_permission(self):
-        collection = Collection.objects.create(slug=u'floob')
+        collection = Collection.objects.create(slug='floob')
         addon = addon_factory()
         addon2 = addon_factory()
         collection_addon = CollectionAddon.objects.create(

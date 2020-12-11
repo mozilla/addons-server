@@ -463,7 +463,7 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
     def setUp(self):
         super(TestAddonViewSetDetail, self).setUp()
         self.addon = addon_factory(
-            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon'
+            guid=generate_addon_guid(), name='My Addôn', slug='my-addon'
         )
         self._set_tested_url(self.addon.pk)
 
@@ -475,7 +475,7 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         result = json.loads(force_text(response.content))
         assert response['Vary'] == 'Origin, Accept-Encoding, X-Country-Code'
         assert result['id'] == self.addon.pk
-        assert result['name'] == {'en-US': u'My Addôn'}
+        assert result['name'] == {'en-US': 'My Addôn'}
         assert result['slug'] == self.addon.slug
         assert result['last_updated'] == (
             self.addon.last_updated.replace(microsecond=0).isoformat() + 'Z'
@@ -595,19 +595,19 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
             assert response.status_code == 200
             result = json.loads(force_text(response.content))
             assert result['id'] == self.addon.pk
-            assert result['name'] == u'My Addôn, mine'
+            assert result['name'] == 'My Addôn, mine'
 
             response = self.client.get(self.url, {'lang': 'fr'})
             assert response.status_code == 200
             result = json.loads(force_text(response.content))
             assert result['id'] == self.addon.pk
-            assert result['name'] == u'Mon Addôn, le mien'
+            assert result['name'] == 'Mon Addôn, le mien'
 
             response = self.client.get(self.url, {'lang': 'de'})
             assert response.status_code == 200
             result = json.loads(force_text(response.content))
             assert result['id'] == self.addon.pk
-            assert result['name'] == u'My Addôn, mine'
+            assert result['name'] == 'My Addôn, mine'
 
     def test_with_wrong_app_and_appversion_params(self):
         # These parameters should only work with langpacks, and are ignored
@@ -642,7 +642,7 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
     def setUp(self):
         super(TestVersionViewSetDetail, self).setUp()
         self.addon = addon_factory(
-            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon'
+            guid=generate_addon_guid(), name='My Addôn', slug='my-addon'
         )
 
         # Don't use addon.current_version, changing its state as we do in
@@ -787,7 +787,7 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
     def setUp(self):
         super(TestVersionViewSetList, self).setUp()
         self.addon = addon_factory(
-            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon'
+            guid=generate_addon_guid(), name='My Addôn', slug='my-addon'
         )
         self.old_version = self.addon.current_version
         self.old_version.update(created=self.days_ago(2))
@@ -1034,7 +1034,7 @@ class TestAddonViewSetEulaPolicy(TestCase):
     def setUp(self):
         super(TestAddonViewSetEulaPolicy, self).setUp()
         self.addon = addon_factory(
-            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon'
+            guid=generate_addon_guid(), name='My Addôn', slug='my-addon'
         )
         self.url = reverse_ns('addon-eula-policy', kwargs={'pk': self.addon.pk})
 
@@ -1055,14 +1055,14 @@ class TestAddonViewSetEulaPolicy(TestCase):
         assert data['privacy_policy'] is None
 
     def test_policy(self):
-        self.addon.eula = {'en-US': u'My Addôn EULA', 'fr': u'Hoüla'}
-        self.addon.privacy_policy = u'My Prïvacy, My Policy'
+        self.addon.eula = {'en-US': 'My Addôn EULA', 'fr': 'Hoüla'}
+        self.addon.privacy_policy = 'My Prïvacy, My Policy'
         self.addon.save()
         response = self.client.get(self.url)
         assert response.status_code == 200
         data = json.loads(force_text(response.content))
-        assert data['eula'] == {'en-US': u'My Addôn EULA', 'fr': u'Hoüla'}
-        assert data['privacy_policy'] == {'en-US': u'My Prïvacy, My Policy'}
+        assert data['eula'] == {'en-US': 'My Addôn EULA', 'fr': 'Hoüla'}
+        assert data['privacy_policy'] == {'en-US': 'My Prïvacy, My Policy'}
 
 
 class TestAddonSearchView(ESTestCase):
@@ -1082,8 +1082,8 @@ class TestAddonSearchView(ESTestCase):
         self.refresh()
 
     def test_get_queryset_excludes(self):
-        addon_factory(slug='my-addon', name=u'My Addôn', popularity=666)
-        addon_factory(slug='my-second-addon', name=u'My second Addôn', popularity=555)
+        addon_factory(slug='my-addon', name='My Addôn', popularity=666)
+        addon_factory(slug='my-second-addon', name='My second Addôn', popularity=555)
         self.refresh()
 
         view = AddonSearchView()
@@ -1136,9 +1136,9 @@ class TestAddonSearchView(ESTestCase):
         return data
 
     def test_basic(self):
-        addon = addon_factory(slug='my-addon', name=u'My Addôn', popularity=666)
+        addon = addon_factory(slug='my-addon', name='My Addôn', popularity=666)
         addon2 = addon_factory(
-            slug='my-second-addon', name=u'My second Addôn', popularity=555
+            slug='my-second-addon', name='My second Addôn', popularity=555
         )
         self.refresh()
 
@@ -1148,7 +1148,7 @@ class TestAddonSearchView(ESTestCase):
 
         result = data['results'][0]
         assert result['id'] == addon.pk
-        assert result['name'] == {'en-US': u'My Addôn'}
+        assert result['name'] == {'en-US': 'My Addôn'}
         assert result['slug'] == 'my-addon'
         assert result['last_updated'] == (
             addon.last_updated.replace(microsecond=0).isoformat() + 'Z'
@@ -1159,7 +1159,7 @@ class TestAddonSearchView(ESTestCase):
 
         result = data['results'][1]
         assert result['id'] == addon2.pk
-        assert result['name'] == {'en-US': u'My second Addôn'}
+        assert result['name'] == {'en-US': 'My second Addôn'}
         assert result['slug'] == 'my-second-addon'
 
         # latest_unlisted_version should never be exposed in public search.
@@ -1180,8 +1180,8 @@ class TestAddonSearchView(ESTestCase):
             assert search_mock.call_count == 1
 
     def test_es_queries_made_some_result(self):
-        addon_factory(slug='foormidable', name=u'foo')
-        addon_factory(slug='foobar', name=u'foo')
+        addon_factory(slug='foormidable', name='foo')
+        addon_factory(slug='foobar', name='foo')
         self.refresh()
 
         with patch.object(
@@ -1195,7 +1195,7 @@ class TestAddonSearchView(ESTestCase):
     def test_no_unlisted(self):
         addon_factory(
             slug='my-addon',
-            name=u'My Addôn',
+            name='My Addôn',
             status=amo.STATUS_NULL,
             popularity=666,
             version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
@@ -1206,11 +1206,11 @@ class TestAddonSearchView(ESTestCase):
         assert len(data['results']) == 0
 
     def test_pagination(self):
-        addon = addon_factory(slug='my-addon', name=u'My Addôn', popularity=33)
+        addon = addon_factory(slug='my-addon', name='My Addôn', popularity=33)
         addon2 = addon_factory(
-            slug='my-second-addon', name=u'My second Addôn', popularity=22
+            slug='my-second-addon', name='My second Addôn', popularity=22
         )
-        addon_factory(slug='my-third-addon', name=u'My third Addôn', popularity=11)
+        addon_factory(slug='my-third-addon', name='My third Addôn', popularity=11)
         self.refresh()
 
         data = self.perform_search(self.url, {'page_size': 1})
@@ -1219,7 +1219,7 @@ class TestAddonSearchView(ESTestCase):
 
         result = data['results'][0]
         assert result['id'] == addon.pk
-        assert result['name'] == {'en-US': u'My Addôn'}
+        assert result['name'] == {'en-US': 'My Addôn'}
         assert result['slug'] == 'my-addon'
 
         # Search using the second page URL given in return value.
@@ -1229,25 +1229,25 @@ class TestAddonSearchView(ESTestCase):
 
         result = data['results'][0]
         assert result['id'] == addon2.pk
-        assert result['name'] == {'en-US': u'My second Addôn'}
+        assert result['name'] == {'en-US': 'My second Addôn'}
         assert result['slug'] == 'my-second-addon'
 
     def test_pagination_sort_and_query(self):
-        addon_factory(slug='my-addon', name=u'Cy Addôn')
-        addon2 = addon_factory(slug='my-second-addon', name=u'By second Addôn')
-        addon1 = addon_factory(slug='my-first-addon', name=u'Ay first Addôn')
-        addon_factory(slug='only-happy-when-itrains', name=u'Garbage')
+        addon_factory(slug='my-addon', name='Cy Addôn')
+        addon2 = addon_factory(slug='my-second-addon', name='By second Addôn')
+        addon1 = addon_factory(slug='my-first-addon', name='Ay first Addôn')
+        addon_factory(slug='only-happy-when-itrains', name='Garbage')
         self.refresh()
 
         data = self.perform_search(
-            self.url, {'page_size': 1, 'q': u'addôn', 'sort': 'name'}
+            self.url, {'page_size': 1, 'q': 'addôn', 'sort': 'name'}
         )
         assert data['count'] == 3
         assert len(data['results']) == 1
 
         result = data['results'][0]
         assert result['id'] == addon1.pk
-        assert result['name'] == {'en-US': u'Ay first Addôn'}
+        assert result['name'] == {'en-US': 'Ay first Addôn'}
 
         # Search using the second page URL given in return value.
         assert 'sort=name' in data['next']
@@ -1258,28 +1258,28 @@ class TestAddonSearchView(ESTestCase):
 
         result = data['results'][0]
         assert result['id'] == addon2.pk
-        assert result['name'] == {'en-US': u'By second Addôn'}
+        assert result['name'] == {'en-US': 'By second Addôn'}
 
     def test_filtering_only_reviewed_addons(self):
-        public_addon = addon_factory(slug='my-addon', name=u'My Addôn', popularity=222)
+        public_addon = addon_factory(slug='my-addon', name='My Addôn', popularity=222)
         addon_factory(
             slug='my-incomplete-addon',
-            name=u'My incomplete Addôn',
+            name='My incomplete Addôn',
             status=amo.STATUS_NULL,
         )
         addon_factory(
             slug='my-disabled-addon',
-            name=u'My disabled Addôn',
+            name='My disabled Addôn',
             status=amo.STATUS_DISABLED,
         )
         addon_factory(
             slug='my-unlisted-addon',
-            name=u'My unlisted Addôn',
+            name='My unlisted Addôn',
             version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
         )
         addon_factory(
             slug='my-disabled-by-user-addon',
-            name=u'My disabled by user Addôn',
+            name='My disabled by user Addôn',
             disabled_by_user=True,
         )
         self.refresh()
@@ -1290,12 +1290,12 @@ class TestAddonSearchView(ESTestCase):
 
         result = data['results'][0]
         assert result['id'] == public_addon.pk
-        assert result['name'] == {'en-US': u'My Addôn'}
+        assert result['name'] == {'en-US': 'My Addôn'}
         assert result['slug'] == 'my-addon'
 
     def test_with_query(self):
-        addon = addon_factory(slug='my-addon', name=u'My Addon', tags=['some_tag'])
-        addon_factory(slug='unrelated', name=u'Unrelated')
+        addon = addon_factory(slug='my-addon', name='My Addon', tags=['some_tag'])
+        addon_factory(slug='unrelated', name='Unrelated')
         self.refresh()
 
         data = self.perform_search(self.url, {'q': 'addon'})
@@ -1304,7 +1304,7 @@ class TestAddonSearchView(ESTestCase):
 
         result = data['results'][0]
         assert result['id'] == addon.pk
-        assert result['name'] == {'en-US': u'My Addon'}
+        assert result['name'] == {'en-US': 'My Addon'}
         assert result['slug'] == 'my-addon'
 
     def test_with_session_cookie(self):
@@ -1345,9 +1345,9 @@ class TestAddonSearchView(ESTestCase):
 
     def test_filter_by_featured_no_app_no_lang(self):
         addon = addon_factory(
-            slug='my-addon', name=u'Featured Addôn', promoted=RECOMMENDED
+            slug='my-addon', name='Featured Addôn', promoted=RECOMMENDED
         )
-        addon_factory(slug='other-addon', name=u'Other Addôn')
+        addon_factory(slug='other-addon', name='Other Addôn')
         assert addon.promoted_group() == RECOMMENDED
         self.reindex(Addon)
 
@@ -1388,7 +1388,7 @@ class TestAddonSearchView(ESTestCase):
         assert addon2.promotedaddon.application_id is amo.FIREFOX.id
         assert addon2.promotedaddon.approved_applications == [amo.FIREFOX]
 
-        addon3 = addon_factory(slug='other-addon', name=u'Other Addôn')
+        addon3 = addon_factory(slug='other-addon', name='Other Addôn')
         ApplicationsVersions.objects.get_or_create(
             application=amo.ANDROID.id,
             version=addon3.current_version,
@@ -1474,16 +1474,16 @@ class TestAddonSearchView(ESTestCase):
 
     def test_filter_by_platform(self):
         # First add-on is available for all platforms.
-        addon = addon_factory(slug='my-addon', name=u'My Addôn', popularity=33)
+        addon = addon_factory(slug='my-addon', name='My Addôn', popularity=33)
         addon_factory(
             slug='my-linux-addon',
-            name=u'My linux-only Addön',
+            name='My linux-only Addön',
             file_kw={'platform': amo.PLATFORM_LINUX.id},
             popularity=22,
         )
         mac_addon = addon_factory(
             slug='my-mac-addon',
-            name=u'My mac-only Addön',
+            name='My mac-only Addön',
             file_kw={'platform': amo.PLATFORM_MAC.id},
             popularity=11,
         )
@@ -1503,13 +1503,13 @@ class TestAddonSearchView(ESTestCase):
     def test_filter_by_app(self):
         addon = addon_factory(
             slug='my-addon',
-            name=u'My Addôn',
+            name='My Addôn',
             popularity=33,
             version_kw={'min_app_version': '42.0', 'max_app_version': '*'},
         )
         an_addon = addon_factory(
             slug='my-tb-addon',
-            name=u'My ANd Addøn',
+            name='My ANd Addøn',
             popularity=22,
             version_kw={
                 'application': amo.ANDROID.id,
@@ -1519,7 +1519,7 @@ class TestAddonSearchView(ESTestCase):
         )
         both_addon = addon_factory(
             slug='my-both-addon',
-            name=u'My Both Addøn',
+            name='My Both Addøn',
             popularity=11,
             version_kw={'min_app_version': '43.0', 'max_app_version': '*'},
         )
@@ -1550,13 +1550,13 @@ class TestAddonSearchView(ESTestCase):
     def test_filter_by_appversion(self):
         addon = addon_factory(
             slug='my-addon',
-            name=u'My Addôn',
+            name='My Addôn',
             popularity=33,
             version_kw={'min_app_version': '42.0', 'max_app_version': '*'},
         )
         an_addon = addon_factory(
             slug='my-tb-addon',
-            name=u'My ANd Addøn',
+            name='My ANd Addøn',
             popularity=22,
             version_kw={
                 'application': amo.ANDROID.id,
@@ -1566,7 +1566,7 @@ class TestAddonSearchView(ESTestCase):
         )
         both_addon = addon_factory(
             slug='my-both-addon',
-            name=u'My Both Addøn',
+            name='My Both Addøn',
             popularity=11,
             version_kw={'min_app_version': '43.0', 'max_app_version': '*'},
         )
@@ -1609,7 +1609,7 @@ class TestAddonSearchView(ESTestCase):
             'alerts-updates'
         ]
         category = Category.from_static_category(static_category, True)
-        addon = addon_factory(slug='my-addon', name=u'My Addôn', category=category)
+        addon = addon_factory(slug='my-addon', name='My Addôn', category=category)
 
         self.refresh()
 
@@ -1635,13 +1635,13 @@ class TestAddonSearchView(ESTestCase):
 
         addon_ext = addon_factory(
             slug='my-addon-ext',
-            name=u'My Addôn Ext',
+            name='My Addôn Ext',
             category=get_category(amo.ADDON_EXTENSION, 'other'),
             type=amo.ADDON_EXTENSION,
         )
         addon_st = addon_factory(
             slug='my-addon-st',
-            name=u'My Addôn ST',
+            name='My Addôn ST',
             category=get_category(amo.ADDON_STATICTHEME, 'other'),
             type=amo.ADDON_STATICTHEME,
         )
@@ -1651,13 +1651,13 @@ class TestAddonSearchView(ESTestCase):
         # Create some add-ons in a different category.
         addon_factory(
             slug='different-addon-ext',
-            name=u'Diff Addôn Ext',
+            name='Diff Addôn Ext',
             category=get_category(amo.ADDON_EXTENSION, 'tabs'),
             type=amo.ADDON_EXTENSION,
         )
         addon_factory(
             slug='different-addon-st',
-            name=u'Diff Addôn ST',
+            name='Diff Addôn ST',
             category=get_category(amo.ADDON_STATICTHEME, 'sports'),
             type=amo.ADDON_STATICTHEME,
         )
@@ -1676,15 +1676,15 @@ class TestAddonSearchView(ESTestCase):
 
     def test_filter_with_tags(self):
         addon = addon_factory(
-            slug='my-addon', name=u'My Addôn', tags=['some_tag'], popularity=999
+            slug='my-addon', name='My Addôn', tags=['some_tag'], popularity=999
         )
         addon2 = addon_factory(
             slug='another-addon',
-            name=u'Another Addôn',
+            name='Another Addôn',
             tags=['unique_tag', 'some_tag'],
             popularity=333,
         )
-        addon3 = addon_factory(slug='unrelated', name=u'Unrelated', tags=['unrelated'])
+        addon3 = addon_factory(slug='unrelated', name='Unrelated', tags=['unrelated'])
         self.refresh()
 
         data = self.perform_search(self.url, {'tag': 'some_tag'})
@@ -1723,22 +1723,22 @@ class TestAddonSearchView(ESTestCase):
         assert data == ['Invalid "app" parameter.']
 
     def test_filter_by_author(self):
-        author = user_factory(username=u'my-fancyAuthôr')
+        author = user_factory(username='my-fancyAuthôr')
         addon = addon_factory(
-            slug='my-addon', name=u'My Addôn', tags=['some_tag'], popularity=999
+            slug='my-addon', name='My Addôn', tags=['some_tag'], popularity=999
         )
         AddonUser.objects.create(addon=addon, user=author)
         addon2 = addon_factory(
             slug='another-addon',
-            name=u'Another Addôn',
+            name='Another Addôn',
             tags=['unique_tag', 'some_tag'],
             popularity=333,
         )
-        author2 = user_factory(username=u'my-FancyAuthôrName')
+        author2 = user_factory(username='my-FancyAuthôrName')
         AddonUser.objects.create(addon=addon2, user=author2)
         self.reindex(Addon)
 
-        data = self.perform_search(self.url, {'author': u'my-fancyAuthôr'})
+        data = self.perform_search(self.url, {'author': 'my-fancyAuthôr'})
         assert data['count'] == 1
         assert len(data['results']) == 1
 
@@ -1751,13 +1751,13 @@ class TestAddonSearchView(ESTestCase):
         author2 = user_factory(username='bar')
         another_author = user_factory(username='someoneelse')
         addon = addon_factory(
-            slug='my-addon', name=u'My Addôn', tags=['some_tag'], popularity=999
+            slug='my-addon', name='My Addôn', tags=['some_tag'], popularity=999
         )
         AddonUser.objects.create(addon=addon, user=author)
         AddonUser.objects.create(addon=addon, user=author2)
         addon2 = addon_factory(
             slug='another-addon',
-            name=u'Another Addôn',
+            name='Another Addôn',
             tags=['unique_tag', 'some_tag'],
             popularity=333,
         )
@@ -1766,7 +1766,7 @@ class TestAddonSearchView(ESTestCase):
         AddonUser.objects.create(addon=another_addon, user=another_author)
         self.reindex(Addon)
 
-        data = self.perform_search(self.url, {'author': u'foo,bar'})
+        data = self.perform_search(self.url, {'author': 'foo,bar'})
         assert data['count'] == 2
         assert len(data['results']) == 2
 
@@ -1779,7 +1779,7 @@ class TestAddonSearchView(ESTestCase):
 
         # repeat with author ids
         data = self.perform_search(
-            self.url, {'author': u'%s,%s' % (author.pk, author2.pk)}
+            self.url, {'author': '%s,%s' % (author.pk, author2.pk)}
         )
         assert data['count'] == 2
         assert len(data['results']) == 2
@@ -1793,7 +1793,7 @@ class TestAddonSearchView(ESTestCase):
 
         # and mixed username and ids
         data = self.perform_search(
-            self.url, {'author': u'%s,%s' % (author.pk, author2.username)}
+            self.url, {'author': '%s,%s' % (author.pk, author2.username)}
         )
         assert data['count'] == 2
         assert len(data['results']) == 2
@@ -1807,12 +1807,12 @@ class TestAddonSearchView(ESTestCase):
 
     def test_filter_by_guid(self):
         addon = addon_factory(
-            slug='my-addon', name=u'My Addôn', guid='random@guid', popularity=999
+            slug='my-addon', name='My Addôn', guid='random@guid', popularity=999
         )
         addon_factory()
         self.reindex(Addon)
 
-        data = self.perform_search(self.url, {'guid': u'random@guid'})
+        data = self.perform_search(self.url, {'guid': 'random@guid'})
         assert data['count'] == 1
         assert len(data['results']) == 1
 
@@ -1822,18 +1822,18 @@ class TestAddonSearchView(ESTestCase):
 
     def test_filter_by_multiple_guid(self):
         addon = addon_factory(
-            slug='my-addon', name=u'My Addôn', guid='random@guid', popularity=999
+            slug='my-addon', name='My Addôn', guid='random@guid', popularity=999
         )
         addon2 = addon_factory(
             slug='another-addon',
-            name=u'Another Addôn',
+            name='Another Addôn',
             guid='random2@guid',
             popularity=333,
         )
         addon_factory()
         self.reindex(Addon)
 
-        data = self.perform_search(self.url, {'guid': u'random@guid,random2@guid'})
+        data = self.perform_search(self.url, {'guid': 'random@guid,random2@guid'})
         assert data['count'] == 2
         assert len(data['results']) == 2
 
@@ -1846,7 +1846,7 @@ class TestAddonSearchView(ESTestCase):
 
         # Throw in soome random invalid guids too that will be ignored.
         data = self.perform_search(
-            self.url, {'guid': u'random@guid,invalid@guid,notevenaguid$,random2@guid'}
+            self.url, {'guid': 'random@guid,invalid@guid,notevenaguid$,random2@guid'}
         )
         assert data['count'] == len(data['results']) == 2
         assert data['results'][0]['id'] == addon.pk
@@ -1855,7 +1855,7 @@ class TestAddonSearchView(ESTestCase):
     def test_filter_by_guid_return_to_amo(self):
         addon = addon_factory(
             slug='my-addon',
-            name=u'My Addôn',
+            name='My Addôn',
             guid='random@guid',
             popularity=999,
             promoted=RECOMMENDED,
@@ -1877,7 +1877,7 @@ class TestAddonSearchView(ESTestCase):
 
     def test_filter_by_guid_return_to_amo_not_part_of_safe_list(self):
         addon = addon_factory(
-            slug='my-addon', name=u'My Addôn', guid='random@guid', popularity=999
+            slug='my-addon', name='My Addôn', guid='random@guid', popularity=999
         )
         addon_factory()
         self.reindex(Addon)
@@ -1914,7 +1914,7 @@ class TestAddonSearchView(ESTestCase):
         self.create_switch('return-to-amo', active=False)
         assert not switch_is_active('return-to-amo')
         addon = addon_factory(
-            slug='my-addon', name=u'My Addôn', guid='random@guid', popularity=999
+            slug='my-addon', name='My Addôn', guid='random@guid', popularity=999
         )
         addon_factory()
         self.reindex(Addon)
@@ -1933,16 +1933,16 @@ class TestAddonSearchView(ESTestCase):
                 type=amo.ADDON_EXTENSION,
                 default_locale='en-GB',
                 name='Banana Bonkers',
-                description=u'Let your browser eat your bananas',
-                summary=u'Banana Summary',
+                description='Let your browser eat your bananas',
+                summary='Banana Summary',
             )
 
-            addon.name = {'es': u'Banana Bonkers espanole'}
-            addon.description = {'es': u'Deje que su navegador coma sus plátanos'}
-            addon.summary = {'es': u'resumen banana'}
+            addon.name = {'es': 'Banana Bonkers espanole'}
+            addon.description = {'es': 'Deje que su navegador coma sus plátanos'}
+            addon.summary = {'es': 'resumen banana'}
             addon.save()
 
-        addon_factory(slug='English Addon', name=u'My English Addôn')
+        addon_factory(slug='English Addon', name='My English Addôn')
 
         self.reindex(Addon)
 
@@ -1969,7 +1969,7 @@ class TestAddonSearchView(ESTestCase):
 
         # Exclude addon2 and addon3 by slug.
         data = self.perform_search(
-            self.url, {'exclude_addons': u','.join((addon2.slug, addon3.slug))}
+            self.url, {'exclude_addons': ','.join((addon2.slug, addon3.slug))}
         )
 
         assert len(data['results']) == 1
@@ -1978,7 +1978,7 @@ class TestAddonSearchView(ESTestCase):
 
         # Exclude addon1 and addon2 by pk.
         data = self.perform_search(
-            self.url, {'exclude_addons': u','.join(map(str, (addon2.pk, addon1.pk)))}
+            self.url, {'exclude_addons': ','.join(map(str, (addon2.pk, addon1.pk)))}
         )
 
         assert len(data['results']) == 1
@@ -1987,7 +1987,7 @@ class TestAddonSearchView(ESTestCase):
 
         # Exclude addon1 by pk and addon3 by slug.
         data = self.perform_search(
-            self.url, {'exclude_addons': u','.join((str(addon1.pk), addon3.slug))}
+            self.url, {'exclude_addons': ','.join((str(addon1.pk), addon3.slug))}
         )
 
         assert len(data['results']) == 1
@@ -2004,7 +2004,7 @@ class TestAddonSearchView(ESTestCase):
             # the first 4 characters are not analyzed for fuzziness
             addon_factory(
                 slug='my-addon2',
-                name={'de': u'Mein Hufrinnenmesser'},
+                name={'de': 'Mein Hufrinnenmesser'},
                 default_locale='de',
             )
 
@@ -2028,7 +2028,7 @@ class TestAddonSearchView(ESTestCase):
         for i in range(0, 10):
             addon_factory()
         self.refresh()
-        query = u'남포역립카페추천 ˇjjtat닷컴ˇ ≡제이제이♠♣ 남포역스파 ' u'남포역op남포역유흥≡남포역안마남포역오피 ♠♣'
+        query = '남포역립카페추천 ˇjjtat닷컴ˇ ≡제이제이♠♣ 남포역스파 남포역op남포역유흥≡남포역안마남포역오피 ♠♣'
         data = self.perform_search(self.url, {'q': query})
         # No results, but no 500 either.
         assert data['count'] == 0
@@ -2081,9 +2081,9 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
         return data
 
     def test_basic(self):
-        addon = addon_factory(slug='my-addon', name=u'My Addôn')
-        addon2 = addon_factory(slug='my-second-addon', name=u'My second Addôn')
-        addon_factory(slug='nonsense', name=u'Nope Nope Nope')
+        addon = addon_factory(slug='my-addon', name='My Addôn')
+        addon2 = addon_factory(slug='my-second-addon', name='My second Addôn')
+        addon_factory(slug='nonsense', name='Nope Nope Nope')
         self.refresh()
 
         data = self.perform_search(self.url, {'q': 'my'})  # No db query.
@@ -2096,13 +2096,13 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
 
     def test_type(self):
         addon = addon_factory(
-            slug='my-addon', name=u'My Addôn', type=amo.ADDON_EXTENSION
+            slug='my-addon', name='My Addôn', type=amo.ADDON_EXTENSION
         )
         addon2 = addon_factory(
-            slug='my-second-addon', name=u'My second Addôn', type=amo.ADDON_STATICTHEME
+            slug='my-second-addon', name='My second Addôn', type=amo.ADDON_STATICTHEME
         )
-        addon_factory(slug='nonsense', name=u'Nope Nope Nope')
-        addon_factory(slug='whocares', name=u'My dict', type=amo.ADDON_DICT)
+        addon_factory(slug='nonsense', name='Nope Nope Nope')
+        addon_factory(slug='whocares', name='My dict', type=amo.ADDON_DICT)
         self.refresh()
 
         # No db query.
@@ -2159,8 +2159,8 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
         assert len(data['results']) == 0
 
     def test_get_queryset_excludes(self):
-        addon_factory(slug='my-addon', name=u'My Addôn', popularity=666)
-        addon_factory(slug='my-theme', name=u'My Th€me', type=amo.ADDON_STATICTHEME)
+        addon_factory(slug='my-addon', name='My Addôn', popularity=666)
+        addon_factory(slug='my-theme', name='My Th€me', type=amo.ADDON_STATICTHEME)
         self.refresh()
 
         view = AddonAutoCompleteSearchView()
@@ -2193,7 +2193,7 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
     def test_no_unlisted(self):
         addon_factory(
             slug='my-addon',
-            name=u'My Addôn',
+            name='My Addôn',
             status=amo.STATUS_NULL,
             popularity=666,
             version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
@@ -2215,13 +2215,11 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
         assert len(data['results']) == 10
 
     def test_sort_ignored(self):
-        addon = addon_factory(
-            slug='my-addon', name=u'My Addôn', average_daily_users=100
-        )
+        addon = addon_factory(slug='my-addon', name='My Addôn', average_daily_users=100)
         addon2 = addon_factory(
-            slug='my-second-addon', name=u'My second Addôn', average_daily_users=200
+            slug='my-second-addon', name='My second Addôn', average_daily_users=200
         )
-        addon_factory(slug='nonsense', name=u'Nope Nope Nope')
+        addon_factory(slug='nonsense', name='Nope Nope Nope')
         self.refresh()
 
         data = self.perform_search(self.url, {'q': 'my', 'sort': 'users'})
@@ -2347,24 +2345,24 @@ class TestStaticCategoryView(TestCase):
         entry = data[0]
 
         assert entry == {
-            u'name': u'Feeds, News & Blogging',
-            u'weight': 0,
-            u'misc': False,
-            u'id': 1,
-            u'application': u'firefox',
-            u'description': (
-                u'Download Firefox extensions that remove clutter so you '
-                u'can stay up-to-date on social media, catch up on blogs, '
-                u'RSS feeds, reduce eye strain, and more.'
+            'name': 'Feeds, News & Blogging',
+            'weight': 0,
+            'misc': False,
+            'id': 1,
+            'application': 'firefox',
+            'description': (
+                'Download Firefox extensions that remove clutter so you '
+                'can stay up-to-date on social media, catch up on blogs, '
+                'RSS feeds, reduce eye strain, and more.'
             ),
-            u'type': u'extension',
-            u'slug': u'feeds-news-blogging',
+            'type': 'extension',
+            'slug': 'feeds-news-blogging',
         }
 
     def test_with_description(self):
         # StaticCategory is immutable, so avoid calling it's __setattr__
         # directly.
-        object.__setattr__(CATEGORIES_BY_ID[1], 'description', u'does stuff')
+        object.__setattr__(CATEGORIES_BY_ID[1], 'description', 'does stuff')
         with self.assertNumQueries(0):
             response = self.client.get(self.url)
         assert response.status_code == 200
@@ -2376,14 +2374,14 @@ class TestStaticCategoryView(TestCase):
         entry = data[0]
 
         assert entry == {
-            u'name': u'Feeds, News & Blogging',
-            u'weight': 0,
-            u'misc': False,
-            u'id': 1,
-            u'application': u'firefox',
-            u'description': u'does stuff',
-            u'type': u'extension',
-            u'slug': u'feeds-news-blogging',
+            'name': 'Feeds, News & Blogging',
+            'weight': 0,
+            'misc': False,
+            'id': 1,
+            'application': 'firefox',
+            'description': 'does stuff',
+            'type': 'extension',
+            'slug': 'feeds-news-blogging',
         }
 
     @pytest.mark.needs_locales_compilation
@@ -2412,11 +2410,11 @@ class TestLanguageToolsView(TestCase):
     def test_wrong_app_or_no_app(self):
         response = self.client.get(self.url)
         assert response.status_code == 400
-        assert response.data == {'detail': u'Invalid or missing app parameter.'}
+        assert response.data == {'detail': 'Invalid or missing app parameter.'}
 
         response = self.client.get(self.url, {'app': 'foo'})
         assert response.status_code == 400
-        assert response.data == {'detail': u'Invalid or missing app parameter.'}
+        assert response.data == {'detail': 'Invalid or missing app parameter.'}
 
     def test_basic(self):
         dictionary = addon_factory(type=amo.ADDON_DICT, target_locale='fr')
@@ -2473,13 +2471,13 @@ class TestLanguageToolsView(TestCase):
 
     def test_with_invalid_appversion(self):
         response = self.client.get(
-            self.url, {'app': 'firefox', 'type': 'language', 'appversion': u'foôbar'}
+            self.url, {'app': 'firefox', 'type': 'language', 'appversion': 'foôbar'}
         )
         assert response.status_code == 400
         assert response.data == {'detail': 'Invalid appversion parameter.'}
 
     def test_with_author_filtering(self):
-        user = user_factory(username=u'mozillä')
+        user = user_factory(username='mozillä')
         addon1 = addon_factory(type=amo.ADDON_LPAPP, target_locale='de')
         addon2 = addon_factory(type=amo.ADDON_LPAPP, target_locale='fr')
         AddonUser.objects.create(addon=addon1, user=user)
@@ -2492,7 +2490,7 @@ class TestLanguageToolsView(TestCase):
         addon_factory(type=amo.ADDON_LPAPP, target_locale='it')
 
         response = self.client.get(
-            self.url, {'app': 'firefox', 'type': 'language', 'author': u'mozillä'}
+            self.url, {'app': 'firefox', 'type': 'language', 'author': 'mozillä'}
         )
         assert response.status_code == 200
         data = json.loads(force_text(response.content))
@@ -2504,8 +2502,8 @@ class TestLanguageToolsView(TestCase):
         )
 
     def test_with_multiple_authors_filtering(self):
-        user1 = user_factory(username=u'mozillä')
-        user2 = user_factory(username=u'firefôx')
+        user1 = user_factory(username='mozillä')
+        user2 = user_factory(username='firefôx')
         addon1 = addon_factory(type=amo.ADDON_LPAPP, target_locale='de')
         addon2 = addon_factory(type=amo.ADDON_LPAPP, target_locale='fr')
         AddonUser.objects.create(addon=addon1, user=user1)
@@ -2519,7 +2517,7 @@ class TestLanguageToolsView(TestCase):
 
         response = self.client.get(
             self.url,
-            {'app': 'firefox', 'type': 'language', 'author': u'mozillä,firefôx'},
+            {'app': 'firefox', 'type': 'language', 'author': 'mozillä,firefôx'},
         )
         assert response.status_code == 200
         data = json.loads(force_text(response.content))
@@ -2768,7 +2766,7 @@ class TestCompatOverrideView(TestCase):
     def test_response(self):
         response = self.client.get(
             reverse_ns('addon-compat-override', api_version='v3'),
-            data={'guid': u'extrabad@thing,bad@thing'},
+            data={'guid': 'extrabad@thing,bad@thing'},
         )
         assert response.status_code == 200
         data = json.loads(force_text(response.content))
@@ -2914,10 +2912,10 @@ class TestAddonRecommendationView(ESTestCase):
                 assert count_mock.call_count == 0
 
     def test_es_queries_made_results(self):
-        addon_factory(slug='foormidable', name=u'foo', guid='@a')
-        addon_factory(slug='foobar', name=u'foo', guid='@b')
-        addon_factory(slug='fbar', name=u'foo', guid='@c')
-        addon_factory(slug='fb', name=u'foo', guid='@d')
+        addon_factory(slug='foormidable', name='foo', guid='@a')
+        addon_factory(slug='foobar', name='foo', guid='@b')
+        addon_factory(slug='fbar', name='foo', guid='@c')
+        addon_factory(slug='fb', name='foo', guid='@d')
         self.refresh()
 
         self.get_addon_recommendations_mock.return_value = (

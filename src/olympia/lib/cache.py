@@ -12,7 +12,7 @@ from django.utils.encoding import force_bytes, force_text
 def make_key(key, with_locale=True, normalize=False):
     """Generate the full key for ``k``, with a prefix."""
     if with_locale:
-        key = u'{key}:{lang}'.format(key=key, lang=translation.get_language())
+        key = '{key}:{lang}'.format(key=key, lang=translation.get_language())
 
     if normalize:
         return force_text(hashlib.md5(force_bytes(key)).hexdigest())

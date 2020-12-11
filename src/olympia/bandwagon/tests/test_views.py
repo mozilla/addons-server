@@ -304,9 +304,9 @@ class TestCollectionViewSetDetail(TestCase):
 class CollectionViewSetDataMixin(object):
     client_class = APITestClient
     data = {
-        'name': {'fr': u'lé $túff', 'en-US': u'$tuff'},
-        'description': {'fr': u'Un dis une dát', 'en-US': u'dis n dat'},
-        'slug': u'stuff',
+        'name': {'fr': 'lé $túff', 'en-US': '$tuff'},
+        'description': {'fr': 'Un dis une dát', 'en-US': 'dis n dat'},
+        'slug': 'stuff',
         'public': True,
         'default_locale': 'fr',
     }
@@ -347,7 +347,7 @@ class CollectionViewSetDataMixin(object):
         self.client.login_api(self.user)
         data = dict(self.data)
         # Sending a single value for localized field is now forbidden.
-        data.update(name=u'   ')
+        data.update(name='   ')
         response = self.send(data=data)
         assert response.status_code == 400
         assert json.loads(response.content) == {
@@ -355,7 +355,7 @@ class CollectionViewSetDataMixin(object):
         }
 
         # Passing a dict of localised values
-        data.update(name={'en-US': u'   '})
+        data.update(name={'en-US': '   '})
         response = self.send(data=data)
         assert response.status_code == 400
         assert json.loads(response.content) == {'name': ['Name cannot be empty.']}
@@ -364,13 +364,13 @@ class CollectionViewSetDataMixin(object):
     def test_update_name_invalid_flat_input(self):
         self.client.login_api(self.user)
         data = dict(self.data)
-        data.update(name=u'   ')
+        data.update(name='   ')
         response = self.send(data=data)
         assert response.status_code == 400
         assert json.loads(response.content) == {'name': ['Name cannot be empty.']}
 
         # Passing a dict of localised values
-        data.update(name={'en-US': u'   '})
+        data.update(name={'en-US': '   '})
         response = self.send(data=data)
         assert response.status_code == 400
         assert json.loads(response.content) == {'name': ['Name cannot be empty.']}
@@ -413,13 +413,13 @@ class CollectionViewSetDataMixin(object):
     def test_slug_valid(self):
         self.client.login_api(self.user)
         data = dict(self.data)
-        data.update(slug=u'£^@')
+        data.update(slug='£^@')
         response = self.send(data=data)
         assert response.status_code == 400
         assert json.loads(response.content) == {
             'slug': [
-                u'The custom URL must consist of letters, numbers, '
-                u'underscores or hyphens.'
+                'The custom URL must consist of letters, numbers, '
+                'underscores or hyphens.'
             ]
         }
 
@@ -427,10 +427,10 @@ class CollectionViewSetDataMixin(object):
         collection_factory(author=self.user, slug='edam')
         self.client.login_api(self.user)
         data = dict(self.data)
-        data.update(slug=u'edam')
+        data.update(slug='edam')
         response = self.send(data=data)
         assert response.status_code == 400
-        assert u'This custom URL is already in use' in (
+        assert 'This custom URL is already in use' in (
             ','.join(json.loads(response.content)['non_field_errors'])
         )
 
@@ -456,8 +456,8 @@ class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
     def test_create_minimal(self):
         self.client.login_api(self.user)
         data = {
-            'name': {'en-US': u'this'},
-            'slug': u'minimal',
+            'name': {'en-US': 'this'},
+            'slug': 'minimal',
         }
         response = self.send(data=data)
         assert response.status_code == 201, response.content
@@ -467,8 +467,8 @@ class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
 
         # Double-check trying to create with a non-dict name now fails
         data = {
-            'name': u'this',
-            'slug': u'minimal',
+            'name': 'this',
+            'slug': 'minimal',
         }
         response = self.send(data=data)
         assert response.status_code == 400
@@ -480,8 +480,8 @@ class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
     def test_create_minimal_flat_input(self):
         self.client.login_api(self.user)
         data = {
-            'name': u'this',
-            'slug': u'minimal',
+            'name': 'this',
+            'slug': 'minimal',
         }
         response = self.send(data=data)
         assert response.status_code == 201, response.content
@@ -492,8 +492,8 @@ class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
     def test_create_cant_set_readonly(self):
         self.client.login_api(self.user)
         data = {
-            'name': {'en-US': u'this'},
-            'slug': u'minimal',
+            'name': {'en-US': 'this'},
+            'slug': 'minimal',
             'addon_count': 99,  # In the serializer but read-only.
         }
         response = self.send(data=data)
@@ -527,8 +527,8 @@ class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
     def test_create_numeric_slug(self):
         self.client.login_api(self.user)
         data = {
-            'name': {'en-US': u'this'},
-            'slug': u'1',
+            'name': {'en-US': 'this'},
+            'slug': '1',
         }
         response = self.send(data=data)
         assert response.status_code == 201, response.content
@@ -753,22 +753,22 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
     def setUp(self):
         self.user = user_factory()
         self.collection = collection_factory(author=self.user)
-        self.addon_a = addon_factory(name=u'anteater')
-        self.addon_b = addon_factory(name=u'baboon')
-        self.addon_c = addon_factory(name=u'cheetah')
-        self.addon_disabled = addon_factory(name=u'antelope_disabled')
-        self.addon_deleted = addon_factory(name=u'buffalo_deleted')
-        self.addon_pending = addon_factory(name=u'pelican_pending')
+        self.addon_a = addon_factory(name='anteater')
+        self.addon_b = addon_factory(name='baboon')
+        self.addon_c = addon_factory(name='cheetah')
+        self.addon_disabled = addon_factory(name='antelope_disabled')
+        self.addon_deleted = addon_factory(name='buffalo_deleted')
+        self.addon_pending = addon_factory(name='pelican_pending')
 
         # Set a few more languages on our add-ons to test sorting
         # a bit better. https://github.com/mozilla/addons-server/issues/8354
-        self.addon_a.name = {'de': u'Ameisenbär'}
+        self.addon_a.name = {'de': 'Ameisenbär'}
         self.addon_a.save()
 
-        self.addon_b.name = {'de': u'Pavian'}
+        self.addon_b.name = {'de': 'Pavian'}
         self.addon_b.save()
 
-        self.addon_c.name = {'de': u'Gepard'}
+        self.addon_c.name = {'de': 'Gepard'}
         self.addon_c.save()
 
         self.collection.add_addon(self.addon_a)
@@ -1238,7 +1238,7 @@ class TestCollectionAddonViewSetCreate(CollectionAddonViewSetMixin, TestCase):
         self.client.login_api(self.user)
         response = self.send(self.url, data={'notes': {'en-US': ''}})
         assert response.status_code == 400
-        assert json.loads(response.content) == {'addon': [u'This field is required.']}
+        assert json.loads(response.content) == {'addon': ['This field is required.']}
 
     def test_fail_when_not_public_addon(self):
         self.client.login_api(self.user)
@@ -1270,7 +1270,7 @@ class TestCollectionAddonViewSetCreate(CollectionAddonViewSetMixin, TestCase):
         response = self.send(self.url, data={'addon': self.addon.slug})
         assert response.status_code == 400
         assert response.data == {
-            u'non_field_errors': [u'This add-on already belongs to the collection']
+            'non_field_errors': ['This add-on already belongs to the collection']
         }
 
 
@@ -1294,7 +1294,7 @@ class TestCollectionAddonViewSetPatch(CollectionAddonViewSetMixin, TestCase):
         super(TestCollectionAddonViewSetPatch, self).setUp()
 
     def check_response(self, response, notes=empty):
-        notes = notes if notes != empty else u'it does things'
+        notes = notes if notes != empty else 'it does things'
         assert response.status_code == 200, response.content
         collection_addon = CollectionAddon.objects.get(collection=self.collection.id)
         assert collection_addon.addon == self.addon

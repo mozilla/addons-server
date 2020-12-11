@@ -114,7 +114,7 @@ class Collection(ModelBase):
         ]
 
     def __str__(self):
-        return u'%s (%s)' % (self.name, self.addon_count)
+        return '%s (%s)' % (self.name, self.addon_count)
 
     def save(self, **kw):
         if not self.uuid:

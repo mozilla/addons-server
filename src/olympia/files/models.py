@@ -240,7 +240,7 @@ class File(OnChangeMixin, ModelBase):
             return self.filename
         if len(m.group('slug')) < maxlen:
             return self.filename
-        return u'%s...%s' % (m.group('slug')[0 : (maxlen - 3)], m.group('suffix'))
+        return '%s...%s' % (m.group('slug')[0 : (maxlen - 3)], m.group('suffix'))
 
     def latest_xpi_url(self, attachment=False):
         addon = self.version.addon
@@ -322,7 +322,7 @@ class File(OnChangeMixin, ModelBase):
                 if len(remaining_dirs) == len(remaining_files) == 0:
                     storage.delete(source_parent_path)
         except (UnicodeEncodeError, IOError):
-            msg = u'Move Failure: {} {}'.format(source_path, destination_path)
+            msg = 'Move Failure: {} {}'.format(source_path, destination_path)
             log.exception(msg)
 
     def hide_disabled_file(self):
@@ -680,7 +680,7 @@ class FileValidation(ModelBase):
 
 
 class WebextPermission(ModelBase):
-    NATIVE_MESSAGING_NAME = u'nativeMessaging'
+    NATIVE_MESSAGING_NAME = 'nativeMessaging'
     permissions = JSONField(default=dict)
     optional_permissions = JSONField(default=dict)
     file = models.OneToOneField(

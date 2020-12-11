@@ -23,13 +23,13 @@ class LoggerTests(TestCase):
         )
 
     @mock.patch('olympia.core.get_remote_addr', lambda: '127.0.0.1')
-    @mock.patch('olympia.core.get_user', lambda: UserProfile(username=u'fôo'))
+    @mock.patch('olympia.core.get_user', lambda: UserProfile(username='fôo'))
     def test_get_logger_adapter(self):
         log = olympia.core.logger.getLogger('test')
         expected_kwargs = {
             'extra': {
                 'REMOTE_ADDR': '127.0.0.1',
-                'USERNAME': u'fôo',
+                'USERNAME': 'fôo',
             }
         }
         assert log.process('test msg', {}) == ('test msg', expected_kwargs)
@@ -61,18 +61,18 @@ class LoggerTests(TestCase):
     @mock.patch('olympia.core.get_remote_addr', lambda: '127.0.0.1')
     @mock.patch(
         'olympia.core.get_user',
-        lambda: UserProfile(username=u'fôo', email=u'foo@bar.com'),
+        lambda: UserProfile(username='fôo', email='foo@bar.com'),
     )
     def test_get_logger_adapter_with_extra(self):
         log = olympia.core.logger.getLogger('test')
         expected_kwargs = {
             'extra': {
                 'REMOTE_ADDR': '127.0.0.1',
-                'USERNAME': u'fôo',
-                'email': u'foo@bar.com',
+                'USERNAME': 'fôo',
+                'email': 'foo@bar.com',
             }
         }
-        extra = {'extra': {'email': u'foo@bar.com'}}
+        extra = {'extra': {'email': 'foo@bar.com'}}
         assert log.process('test msg', extra) == ('test msg', expected_kwargs)
 
     def test_json_formatter(self):

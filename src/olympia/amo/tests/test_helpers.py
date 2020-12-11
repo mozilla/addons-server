@@ -67,7 +67,7 @@ def test_page_title():
     # Check the dirty unicodes.
     s = render(
         '{{ page_title(x) }}',
-        {'request': request, 'x': force_bytes(u'\u05d0\u05d5\u05e1\u05e3')},
+        {'request': request, 'x': force_bytes('\u05d0\u05d5\u05e1\u05e3')},
     )
 
 
@@ -214,7 +214,7 @@ def test_urlparams():
 
 
 def test_urlparams_unicode():
-    url = u'/xx?evil=reco\ufffd\ufffd\ufffd\u02f5'
+    url = '/xx?evil=reco\ufffd\ufffd\ufffd\u02f5'
     utils.urlparams(url)
 
 
@@ -222,13 +222,13 @@ def test_urlparams_returns_safe_string():
     s = render('{{ "https://foo.com/"|urlparams(param="help+me") }}', {})
     assert s == 'https://foo.com/?param=help%2Bme'
 
-    s = render(u'{{ "https://foo.com/"|urlparams(param="obiwankénobi") }}', {})
+    s = render('{{ "https://foo.com/"|urlparams(param="obiwankénobi") }}', {})
     assert s == 'https://foo.com/?param=obiwank%C3%A9nobi'
 
-    s = render(u'{{ "https://foo.com/"|urlparams(param=42) }}', {})
+    s = render('{{ "https://foo.com/"|urlparams(param=42) }}', {})
     assert s == 'https://foo.com/?param=42'
 
-    s = render(u'{{ "https://foo.com/"|urlparams(param="") }}', {})
+    s = render('{{ "https://foo.com/"|urlparams(param="") }}', {})
     assert s == 'https://foo.com/?param='
 
     s = render('{{ "https://foo.com/"|urlparams(param="help%2Bme") }}', {})
@@ -375,8 +375,8 @@ def test_absolutify():
 
 def test_timesince():
     month_ago = datetime.now() - timedelta(days=30)
-    assert jinja_helpers.timesince(month_ago) == u'1 month ago'
-    assert jinja_helpers.timesince(None) == u''
+    assert jinja_helpers.timesince(month_ago) == '1 month ago'
+    assert jinja_helpers.timesince(None) == ''
 
 
 def test_timeuntil():
@@ -389,7 +389,7 @@ def test_timeuntil():
 def test_format_unicode():
     # This makes sure there's no UnicodeEncodeError when doing the string
     # interpolation.
-    assert render(u'{{ "foo {0}"|format_html("baré") }}') == u'foo baré'
+    assert render('{{ "foo {0}"|format_html("baré") }}') == 'foo baré'
 
 
 class TestStoragePath(TestCase):

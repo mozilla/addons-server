@@ -21,7 +21,7 @@ class TestDeniedNameAdminAddForm(UserFormBase):
             'names': '\n\n',
         }
         r = self.client.post(url, data)
-        self.assertFormError(r, 'form', 'names', u'This field is required.')
+        self.assertFormError(r, 'form', 'names', 'This field is required.')
 
     def test_add(self):
         self.client.login(email=self.user.email)

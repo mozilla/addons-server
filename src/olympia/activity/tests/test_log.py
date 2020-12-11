@@ -18,8 +18,8 @@ class LogTest(TestCase):
         If we get details, verify they are stored as JSON, and we get out what
         we put in.
         """
-        addon = addon_factory(name=u'kümar is awesome')
-        magic = {'title': u'nô', 'body': u'wày!'}
+        addon = addon_factory(name='kümar is awesome')
+        magic = {'title': 'nô', 'body': 'wày!'}
         al = ActivityLog.create(amo.LOG.DELETE_RATING, 1, addon, details=magic)
 
         assert al.details == magic

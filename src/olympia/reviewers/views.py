@@ -1564,7 +1564,7 @@ class ReviewAddonVersionMixin(object):
         return self.addon_object
 
     def check_permissions(self, request):
-        if self.action == u'list':
+        if self.action == 'list':
             # When listing DRF doesn't explicitly check for object permissions
             # but here we need to do that against the parent add-on.
             # So we're calling check_object_permission() ourselves,

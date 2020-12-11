@@ -67,23 +67,23 @@ class TranslationFormMixin(object):
 class LocaleErrorList(ErrorList):
     def as_ul(self):
         if not self.data:
-            return u''
+            return ''
 
         li = []
         for item in self.data:
             if isinstance(item, LocaleErrorMessage):
                 locale, message = item.locale, item.message
-                extra = mark_safe(u' data-lang="%s"' % conditional_escape(locale))
+                extra = mark_safe(' data-lang="%s"' % conditional_escape(locale))
             else:
-                message, extra = u''.join(list(item)), u''
+                message, extra = ''.join(list(item)), ''
             li.append((extra, conditional_escape(force_text(message))))
 
         return mark_safe(
             format_html(
-                u'<ul class="{}">{}</ul>',
+                '<ul class="{}">{}</ul>',
                 self.error_class,
                 format_html_join(
-                    u'', u'<li{}>{}</li>', ((extra, elem) for extra, elem in li)
+                    '', '<li{}>{}</li>', ((extra, elem) for extra, elem in li)
                 ),
             )
         )

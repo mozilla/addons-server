@@ -21,7 +21,7 @@ class TestAddonView(TestCase):
             self.addon.slug.encode('utf-8')
         )
         self.request.path = self.id_path = (
-            u'http://testserver/addon/%s/reviews' % self.addon.id
+            'http://testserver/addon/%s/reviews' % self.addon.id
         )
         self.request.GET = {}
 
@@ -30,16 +30,16 @@ class TestAddonView(TestCase):
         self.assert3xx(res, self.slug_path, 301)
 
     def test_301_by_guid(self):
-        self.request.path = u'http://testserver/addon/%s/reviews' % self.addon.guid
+        self.request.path = 'http://testserver/addon/%s/reviews' % self.addon.guid
         res = self.view(self.request, str(self.addon.guid))
         self.assert3xx(res, self.slug_path, 301)
 
     def test_slug_replace_no_conflict(self):
-        path = u'http://testserver/addon/{id}/reviews/{id}345/path'
+        path = 'http://testserver/addon/{id}/reviews/{id}345/path'
         self.request.path = path.format(id=self.addon.id)
 
         res = self.view(self.request, str(self.addon.id))
-        redirection = u'http://testserver/addon/{slug}/reviews/{id}345/path'.format(
+        redirection = 'http://testserver/addon/{slug}/reviews/{id}345/path'.format(
             id=self.addon.id, slug=quote(self.addon.slug.encode('utf8'))
         )
         self.assert3xx(res, redirection, 301)

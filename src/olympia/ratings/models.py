@@ -223,7 +223,7 @@ class Rating(ModelBase):
                 flag.delete()
 
         log.info(
-            u'Rating deleted: %s deleted id:%s by %s ("%s")',
+            'Rating deleted: %s deleted id:%s by %s ("%s")',
             user_responsible.name,
             self.pk,
             self.user.name,
@@ -264,7 +264,7 @@ class Rating(ModelBase):
                 'rating_url': jinja_helpers.absolutify(reply_url),
             }
             recipients = [self.reply_to.user.email]
-            subject = u'Mozilla Add-on Developer Reply: %s' % self.addon.name
+            subject = 'Mozilla Add-on Developer Reply: %s' % self.addon.name
             template = 'ratings/emails/reply_review.ltxt'
             perm_setting = 'reply'
         else:
@@ -278,7 +278,7 @@ class Rating(ModelBase):
                 'rating_url': jinja_helpers.absolutify(rating_url),
             }
             recipients = [author.email for author in self.addon.authors.all()]
-            subject = u'Mozilla Add-on User Rating: %s' % self.addon.name
+            subject = 'Mozilla Add-on User Rating: %s' % self.addon.name
             template = 'ratings/emails/new_rating.txt'
             perm_setting = 'new_review'
         send_mail_jinja(
@@ -351,10 +351,10 @@ class RatingFlag(ModelBase):
     SUPPORT = 'review_flag_reason_bug_support'
     OTHER = 'review_flag_reason_other'
     FLAGS = (
-        (SPAM, _(u'Spam or otherwise non-review content')),
-        (LANGUAGE, _(u'Inappropriate language/dialog')),
-        (SUPPORT, _(u'Misplaced bug report or support request')),
-        (OTHER, _(u'Other (please specify)')),
+        (SPAM, _('Spam or otherwise non-review content')),
+        (LANGUAGE, _('Inappropriate language/dialog')),
+        (SUPPORT, _('Misplaced bug report or support request')),
+        (OTHER, _('Other (please specify)')),
     )
 
     rating = models.ForeignKey(Rating, db_column='review_id', on_delete=models.CASCADE)

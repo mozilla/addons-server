@@ -573,7 +573,7 @@ class TestValidateFilePath(ValidatorTestCase):
     @mock.patch('olympia.devhub.tasks.parse_addon')
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_manifest_not_found_error(self, run_addons_linter_mock, parse_addon_mock):
-        parse_addon_mock.side_effect = NoManifestFound(message=u'Fôo')
+        parse_addon_mock.side_effect = NoManifestFound(message='Fôo')
         # When parse_addon() raises a NoManifestFound error, we should
         # still call the linter to let it raise the appropriate error message.
         tasks.validate_file_path(
@@ -586,7 +586,7 @@ class TestValidateFilePath(ValidatorTestCase):
     def test_invalid_json_manifest_error(
         self, run_addons_linter_mock, parse_addon_mock
     ):
-        parse_addon_mock.side_effect = NoManifestFound(message=u'Fôo')
+        parse_addon_mock.side_effect = NoManifestFound(message='Fôo')
         # When parse_addon() raises a InvalidManifest error, we should
         # still call the linter to let it raise the appropriate error message.
         tasks.validate_file_path(
@@ -744,7 +744,7 @@ class TestLegacyAddonRestrictions(UploadTest, ValidatorTestCase):
         expected = ['validation', 'messages', 'legacy_addons_unsupported']
         assert upload.processed_validation['messages'][0]['id'] == expected
         assert upload.processed_validation['messages'][0]['description'] == [
-            u'Add-ons for Thunderbird and SeaMonkey are now listed and '
+            'Add-ons for Thunderbird and SeaMonkey are now listed and '
             'maintained on addons.thunderbird.net. You can use the same '
             'account to update your add-ons on the new site.'
         ]
@@ -764,7 +764,7 @@ class TestLegacyAddonRestrictions(UploadTest, ValidatorTestCase):
         expected = ['validation', 'messages', 'legacy_addons_unsupported']
         assert upload.processed_validation['messages'][0]['id'] == expected
         assert upload.processed_validation['messages'][0]['description'] == [
-            u'Add-ons for Thunderbird and SeaMonkey are now listed and '
+            'Add-ons for Thunderbird and SeaMonkey are now listed and '
             'maintained on addons.thunderbird.net. You can use the same '
             'account to update your add-ons on the new site.'
         ]
@@ -970,7 +970,7 @@ class TestAPIKeyInSubmission(UploadTest, TestCase):
         assert upload.processed_validation['errors'] == 1
         messages = upload.processed_validation['messages']
         assert len(messages) == 1
-        assert messages[0]['id'] == [u'validation', u'messages', u'api_key_detected']
+        assert messages[0]['id'] == ['validation', 'messages', 'api_key_detected']
         assert (
             'Your developer API key was found in the submitted '
             'file.' in messages[0]['message']
@@ -997,7 +997,7 @@ class TestAPIKeyInSubmission(UploadTest, TestCase):
         assert upload.processed_validation['errors'] == 1
         messages = upload.processed_validation['messages']
         assert len(messages) == 1
-        assert messages[0]['id'] == [u'validation', u'messages', u'api_key_detected']
+        assert messages[0]['id'] == ['validation', 'messages', 'api_key_detected']
         assert (
             'Your developer API key was found in the submitted '
             'file.' in messages[0]['message']
@@ -1027,7 +1027,7 @@ class TestAPIKeyInSubmission(UploadTest, TestCase):
         assert upload.processed_validation['errors'] == 1
         messages = upload.processed_validation['messages']
         assert len(messages) == 1
-        assert messages[0]['id'] == [u'validation', u'messages', u'api_key_detected']
+        assert messages[0]['id'] == ['validation', 'messages', 'api_key_detected']
         assert (
             'The developer API key of a coauthor was found in the '
             'submitted file.' in messages[0]['message']

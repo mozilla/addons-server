@@ -167,13 +167,13 @@ class TranslationTestCase(TestCase):
         self.trans_eq(german.name, 'english name', 'en-US')
 
         # Check that a different locale creates a new row with the same id.
-        german.name = u'Gemütlichkeit name'
-        german.description = u'clöüserw description'
+        german.name = 'Gemütlichkeit name'
+        german.description = 'clöüserw description'
         german.save()
 
         assert Translation.objects.count() == 12  # New name *and* description.
-        self.trans_eq(german.name, u'Gemütlichkeit name', 'de')
-        self.trans_eq(german.description, u'clöüserw description', 'de')
+        self.trans_eq(german.name, 'Gemütlichkeit name', 'de')
+        self.trans_eq(german.description, 'clöüserw description', 'de')
 
         # ids should be the same, autoids are different.
         assert o.name.id == german.name.id
@@ -181,8 +181,8 @@ class TranslationTestCase(TestCase):
 
         # Check that de finds the right translation.
         fresh_german = get_model()
-        self.trans_eq(fresh_german.name, u'Gemütlichkeit name', 'de')
-        self.trans_eq(fresh_german.description, u'clöüserw description', 'de')
+        self.trans_eq(fresh_german.name, 'Gemütlichkeit name', 'de')
+        self.trans_eq(fresh_german.description, 'clöüserw description', 'de')
 
         # Check that en-US has the right translations.
         translation.deactivate()
@@ -444,7 +444,7 @@ class TranslationTestCase(TestCase):
 
     def test_purified_field_str(self):
         m = FancyModel.objects.get(pk=1)
-        stringified = u'%s' % m.purified
+        stringified = '%s' % m.purified
 
         doc = pq(stringified)
         assert doc('a[href="http://yyy.com"][rel="nofollow"]')[0].text == (
@@ -454,7 +454,7 @@ class TranslationTestCase(TestCase):
 
     def test_linkified_field_str(self):
         m = FancyModel.objects.get(pk=1)
-        stringified = u'%s' % m.linkified
+        stringified = '%s' % m.linkified
 
         doc = pq(stringified)
         assert doc('a[href="http://yyy.com"][rel="nofollow"]')[0].text == (
@@ -468,7 +468,7 @@ class TranslationTestCase(TestCase):
         env = jinja2.Environment()
         t = env.from_string('{{ m.purified }}=={{ m.linkified }}')
         s = t.render({'m': m})
-        assert s == u'%s==%s' % (
+        assert s == '%s==%s' % (
             m.purified.localized_string_clean,
             m.linkified.localized_string_clean,
         )
@@ -640,22 +640,22 @@ class PurifiedTranslationTest(TestCase):
         assert isinstance(PurifiedTranslation().__html__(), str)
 
     def test_raw_text(self):
-        s = u'   This is some text   '
+        s = '   This is some text   '
         x = PurifiedTranslation(localized_string=s)
         assert x.__html__() == 'This is some text'
 
     def test_allowed_tags(self):
-        s = u'<b>bold text</b> or <code>code</code>'
+        s = '<b>bold text</b> or <code>code</code>'
         x = PurifiedTranslation(localized_string=s)
-        assert x.__html__() == u'<b>bold text</b> or <code>code</code>'
+        assert x.__html__() == '<b>bold text</b> or <code>code</code>'
 
     def test_forbidden_tags(self):
-        s = u'<script>some naughty xss</script>'
+        s = '<script>some naughty xss</script>'
         x = PurifiedTranslation(localized_string=s)
         assert x.__html__() == '&lt;script&gt;some naughty xss&lt;/script&gt;'
 
     def test_internal_link(self):
-        s = u'<b>markup</b> <a href="http://addons.mozilla.org/foo">bar</a>'
+        s = '<b>markup</b> <a href="http://addons.mozilla.org/foo">bar</a>'
         x = PurifiedTranslation(localized_string=s)
         doc = pq(x.__html__())
         links = doc('a[href="http://addons.mozilla.org/foo"][rel="nofollow"]')
@@ -665,7 +665,7 @@ class PurifiedTranslationTest(TestCase):
     @patch('olympia.amo.urlresolvers.get_outgoing_url')
     def test_external_link(self, get_outgoing_url_mock):
         get_outgoing_url_mock.return_value = 'http://external.url'
-        s = u'<b>markup</b> <a href="http://example.com">bar</a>'
+        s = '<b>markup</b> <a href="http://example.com">bar</a>'
         x = PurifiedTranslation(localized_string=s)
         doc = pq(x.__html__())
         links = doc('a[href="http://external.url"][rel="nofollow"]')
@@ -675,7 +675,7 @@ class PurifiedTranslationTest(TestCase):
     @patch('olympia.amo.urlresolvers.get_outgoing_url')
     def test_external_text_link(self, get_outgoing_url_mock):
         get_outgoing_url_mock.return_value = 'http://external.url'
-        s = u'<b>markup</b> http://example.com'
+        s = '<b>markup</b> http://example.com'
         x = PurifiedTranslation(localized_string=s)
         doc = pq(x.__html__())
         links = doc('a[href="http://external.url"][rel="nofollow"]')
@@ -687,14 +687,14 @@ class LinkifiedTranslationTest(TestCase):
     @patch('olympia.amo.urlresolvers.get_outgoing_url')
     def test_allowed_tags(self, get_outgoing_url_mock):
         get_outgoing_url_mock.return_value = 'http://external.url'
-        s = u'<a href="http://example.com">bar</a>'
+        s = '<a href="http://example.com">bar</a>'
         x = LinkifiedTranslation(localized_string=s)
         doc = pq(x.__html__())
         links = doc('a[href="http://external.url"][rel="nofollow"]')
         assert links[0].text == 'bar'
 
     def test_forbidden_tags(self):
-        s = u'<script>some naughty xss</script> <b>bold</b>'
+        s = '<script>some naughty xss</script> <b>bold</b>'
         x = LinkifiedTranslation(localized_string=s)
         assert x.__html__() == (
             '&lt;script&gt;some naughty xss&lt;/script&gt; &lt;b&gt;bold&lt;/b&gt;'
@@ -703,7 +703,7 @@ class LinkifiedTranslationTest(TestCase):
 
 class NoLinksNoMarkupTranslationTest(TestCase):
     def test_forbidden_tags(self):
-        s = u'<script>some naughty xss</script> <b>bold</b>'
+        s = '<script>some naughty xss</script> <b>bold</b>'
         x = NoLinksNoMarkupTranslation(localized_string=s)
         assert x.__html__() == (
             '&lt;script&gt;some naughty xss&lt;/script&gt; &lt;b&gt;bold&lt;/b&gt;'
@@ -711,26 +711,26 @@ class NoLinksNoMarkupTranslationTest(TestCase):
 
     def test_links_stripped(self):
         # Link with markup.
-        s = u'a <a href="http://example.com">link</a> with markup'
+        s = 'a <a href="http://example.com">link</a> with markup'
         x = NoLinksNoMarkupTranslation(localized_string=s)
-        assert x.__html__() == u'a  with markup'
+        assert x.__html__() == 'a  with markup'
 
         # Text link.
-        s = u'a text http://example.com link'
+        s = 'a text http://example.com link'
         x = NoLinksNoMarkupTranslation(localized_string=s)
-        assert x.__html__() == u'a text  link'
+        assert x.__html__() == 'a text  link'
 
         # Text link, markup link, forbidden tags and bad markup.
         s = (
-            u'a <a href="http://example.com">link</a> with markup, a text '
-            u'http://example.com link, <b>with forbidden tags</b>, '
-            u'<script>forbidden tags</script> and <http://bad.markup.com'
+            'a <a href="http://example.com">link</a> with markup, a text '
+            'http://example.com link, <b>with forbidden tags</b>, '
+            '<script>forbidden tags</script> and <http://bad.markup.com'
         )
         x = NoLinksNoMarkupTranslation(localized_string=s)
         assert x.__html__() == (
-            u'a  with markup, a text  link, '
-            u'&lt;b&gt;with forbidden tags&lt;/b&gt;, '
-            u'&lt;script&gt;forbidden tags&lt;/script&gt; and'
+            'a  with markup, a text  link, '
+            '&lt;b&gt;with forbidden tags&lt;/b&gt;, '
+            '&lt;script&gt;forbidden tags&lt;/script&gt; and'
         )
 
 
@@ -778,11 +778,11 @@ def test_translated_field_default_null():
     assert german.name.locale == 'en-us'
 
     # Check that a different locale creates a new row with the same id.
-    german.name = u'Gemütlichkeit name'
+    german.name = 'Gemütlichkeit name'
     german.save()
 
     assert Translation.objects.count() == 2  # New name *and* description.
-    assert german.name == u'Gemütlichkeit name'
+    assert german.name == 'Gemütlichkeit name'
     assert german.name.locale == 'de'
 
     # ids should be the same, autoids are different.
@@ -791,7 +791,7 @@ def test_translated_field_default_null():
 
     # Check that de finds the right translation.
     fresh_german = get_model()
-    assert fresh_german.name == u'Gemütlichkeit name'
+    assert fresh_german.name == 'Gemütlichkeit name'
 
     # Update!
     translation.activate('en-us')
@@ -850,11 +850,11 @@ def test_translated_field_fk_lookups():
     assert german.name.locale == 'en-us'
 
     # Check that a different locale creates a new row with the same id.
-    german.name = u'Gemütlichkeit name'
+    german.name = 'Gemütlichkeit name'
     german.save()
 
     assert Translation.objects.count() == 2  # New name *and* description.
-    assert german.name == u'Gemütlichkeit name'
+    assert german.name == 'Gemütlichkeit name'
     assert german.name.locale == 'de'
 
     # Now fetch the parent `TranslatedModel` and make sure that
@@ -878,7 +878,7 @@ def test_translated_field_fk_lookups():
 def test_translated_field_emoji_support():
     # Make sure utf8mb4 settings are correct and emojis are correctly handled
     assert Translation.objects.count() == 0
-    obj = TranslatedModel.objects.create(name=u'😀❤')
+    obj = TranslatedModel.objects.create(name='😀❤')
 
     def get_model():
         return TranslatedModel.objects.get(pk=obj.pk)
@@ -892,15 +892,15 @@ def test_translated_field_emoji_support():
     # Its name should still be there, using the fallback...
     translation.activate('de')
     german = get_model()
-    assert german.name == u'😀❤'
+    assert german.name == '😀❤'
     assert german.name.locale == 'en-us'
 
     # Check that a different locale creates a new row with the same id.
-    german.name = u'😀'
+    german.name = '😀'
     german.save()
 
     assert Translation.objects.count() == 2  # New name *and* description.
-    assert german.name == u'😀'
+    assert german.name == '😀'
     assert german.name.locale == 'de'
 
     # ids should be the same, autoids are different.
@@ -909,4 +909,4 @@ def test_translated_field_emoji_support():
 
     # Check that de finds the right translation.
     fresh_german = get_model()
-    assert fresh_german.name == u'😀'
+    assert fresh_german.name == '😀'

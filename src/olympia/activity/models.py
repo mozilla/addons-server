@@ -528,34 +528,34 @@ class ActivityLog(ModelBase):
             if isinstance(arg, Addon) and not addon:
                 if arg.has_listed_versions():
                     addon = self.f(
-                        u'<a href="{0}">{1}</a>', arg.get_url_path(), arg.name
+                        '<a href="{0}">{1}</a>', arg.get_url_path(), arg.name
                     )
                 else:
-                    addon = self.f(u'{0}', arg.name)
+                    addon = self.f('{0}', arg.name)
                 arguments.remove(arg)
             if isinstance(arg, Rating) and not rating:
                 rating = self.f(
-                    u'<a href="{0}">{1}</a>', arg.get_url_path(), ugettext('Review')
+                    '<a href="{0}">{1}</a>', arg.get_url_path(), ugettext('Review')
                 )
                 arguments.remove(arg)
             if isinstance(arg, Version) and not version:
                 text = ugettext('Version {0}')
                 if arg.channel == amo.RELEASE_CHANNEL_LISTED:
                     version = self.f(
-                        u'<a href="{1}">%s</a>' % text, arg.version, arg.get_url_path()
+                        '<a href="{1}">%s</a>' % text, arg.version, arg.get_url_path()
                     )
                 else:
                     version = self.f(text, arg.version)
                 arguments.remove(arg)
             if isinstance(arg, Collection) and not collection:
                 collection = self.f(
-                    u'<a href="{0}">{1}</a>', arg.get_url_path(), arg.name
+                    '<a href="{0}">{1}</a>', arg.get_url_path(), arg.name
                 )
                 arguments.remove(arg)
             if isinstance(arg, Tag) and not tag:
                 if arg.can_reverse():
                     tag = self.f(
-                        u'<a href="{0}">{1}</a>', arg.get_url_path(), arg.tag_text
+                        '<a href="{0}">{1}</a>', arg.get_url_path(), arg.tag_text
                     )
                 else:
                     tag = self.f('{0}', arg.tag_text)
@@ -571,7 +571,7 @@ class ActivityLog(ModelBase):
                     validation = 'ignored'
 
                 file_ = self.f(
-                    u'<a href="{0}">{1}</a> (validation {2})',
+                    '<a href="{0}">{1}</a> (validation {2})',
                     arg.get_url_path(),
                     arg.filename,
                     validation,

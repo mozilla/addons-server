@@ -521,14 +521,14 @@ class TestVersion(TestCase):
         addon = Addon.objects.get(id=3615)
         version = version_factory(addon=addon, version='0.1')
         uploaded_name = source_upload_path(version, 'foo.tar.gz')
-        assert uploaded_name.endswith(u'a3615-0.1-src.tar.gz')
+        assert uploaded_name.endswith('a3615-0.1-src.tar.gz')
 
     def test_source_upload_path_utf8_chars(self):
         addon = Addon.objects.get(id=3615)
-        addon.update(slug=u'crosswarpex-확장')
+        addon.update(slug='crosswarpex-확장')
         version = version_factory(addon=addon, version='0.1')
         uploaded_name = source_upload_path(version, 'crosswarpex-확장.tar.gz')
-        assert uploaded_name.endswith(u'crosswarpex-확장-0.1-src.tar.gz')
+        assert uploaded_name.endswith('crosswarpex-확장-0.1-src.tar.gz')
 
     def test_status_handles_invalid_status_id(self):
         version = Addon.objects.get(id=3615).current_version
@@ -537,7 +537,7 @@ class TestVersion(TestCase):
 
         version.all_files[0].update(status=99)  # 99 isn't a valid status.
         # otherwise return the status code for reference.
-        assert version.status == [u'[status:99]']
+        assert version.status == ['[status:99]']
 
     def test_is_ready_for_auto_approval(self):
         addon = Addon.objects.get(id=3615)
@@ -1250,7 +1250,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         )
         assert version.is_mozilla_signed
         assert version.approval_notes == (
-            u'This version has been signed with ' u'Mozilla internal certificate.'
+            'This version has been signed with Mozilla internal certificate.'
         )
 
     def test_carry_over_license_no_version(self):
@@ -1370,7 +1370,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         # Since https://github.com/mozilla/addons-server/issues/8752 we are
         # selecting PLATFORM_ALL every time as a temporary measure until
         # platforms get removed.
-        assert files[0].filename == u'delicious_bookmarks-0.1-fx.xpi'
+        assert files[0].filename == 'delicious_bookmarks-0.1-fx.xpi'
 
     def test_creates_platform_files(self):
         # We are creating files for 'all' platforms every time, #8752
@@ -1432,9 +1432,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         files = version.all_files
         assert len(files) == 1
         assert sorted([f.platform for f in files]) == [amo.PLATFORM_ALL.id]
-        assert sorted([f.filename for f in files]) == [
-            u'delicious_bookmarks-0.1-fx.xpi'
-        ]
+        assert sorted([f.filename for f in files]) == ['delicious_bookmarks-0.1-fx.xpi']
 
         with storage.open(files[0].file_path) as f:
             assert uploaded_hash == hashlib.sha256(f.read()).hexdigest()
@@ -1881,11 +1879,9 @@ class TestApplicationsVersions(TestCase):
         assert str(version.apps.all()[0]) == 'Firefox 3.0 - 3.5'
 
     def test_repr_when_unicode(self):
-        addon = addon_factory(
-            version_kw=dict(min_app_version=u'ك', max_app_version=u'ك')
-        )
+        addon = addon_factory(version_kw=dict(min_app_version='ك', max_app_version='ك'))
         version = addon.current_version
-        assert str(version.apps.all()[0]) == u'Firefox ك - ك'
+        assert str(version.apps.all()[0]) == 'Firefox ك - ك'
 
 
 class TestVersionPreview(BasePreviewMixin, TestCase):
