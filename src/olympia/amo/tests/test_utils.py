@@ -101,7 +101,7 @@ class TestAttachTransDict(TestCase):
             'es': 'Spanish 2 Name',
         }
         addon2.save()
-        attach_trans_dict(Addon, [addon, addon2])
+        attach_trans_dict(Addon, [addon, addon2, None])
         assert set(addon.translations[addon.description_id]) == (
             set([('en-us', 'English Description'), ('fr', 'French Description')])
         )
