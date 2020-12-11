@@ -944,7 +944,7 @@ class TestAddonSubmitSource(TestSubmitBase):
 
     def test_with_bad_source_broken_archive_compressed_tar(self):
         source = self.generate_source_tar()
-        with open(source.name, "r+b") as fobj:
+        with open(source.name, 'r+b') as fobj:
             fobj.truncate(512)
         # Still looks like a tar at first glance.
         assert tarfile.is_tarfile(source.name)
@@ -2254,11 +2254,11 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
             'experiment_inside_webextension.xpi',
             validation=json.dumps(
                 {
-                    "notices": 2,
-                    "errors": 0,
-                    "messages": [],
-                    "metadata": {},
-                    "warnings": 1,
+                    'notices': 2,
+                    'errors': 0,
+                    'messages': [],
+                    'metadata': {},
+                    'warnings': 1,
                 }
             ),
         )
@@ -2276,11 +2276,11 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
             'theme_experiment_inside_webextension.xpi',
             validation=json.dumps(
                 {
-                    "notices": 2,
-                    "errors": 0,
-                    "messages": [],
-                    "metadata": {},
-                    "warnings": 1,
+                    'notices': 2,
+                    'errors': 0,
+                    'messages': [],
+                    'metadata': {},
+                    'warnings': 1,
                 }
             ),
         )
@@ -2310,11 +2310,11 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
             'webextension_langpack.xpi',
             validation=json.dumps(
                 {
-                    "notices": 2,
-                    "errors": 0,
-                    "messages": [],
-                    "metadata": {},
-                    "warnings": 1,
+                    'notices': 2,
+                    'errors': 0,
+                    'messages': [],
+                    'metadata': {},
+                    'warnings': 1,
                 }
             ),
         )

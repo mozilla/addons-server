@@ -314,7 +314,7 @@ class AddonAdmin(admin.ModelAdmin):
             text=obj.total_ratings,
         )
 
-    total_ratings_link.short_description = _(u'Ratings')
+    total_ratings_link.short_description = _('Ratings')
 
     def reviewer_links(self, obj):
         links = []
@@ -325,7 +325,7 @@ class AddonAdmin(admin.ModelAdmin):
                         settings.EXTERNAL_SITE_URL,
                         reverse('reviewers.review', args=['listed', obj.id]),
                     ),
-                    _(u'Reviewer Tools (listed)'),
+                    _('Reviewer Tools (listed)'),
                 )
             )
         if obj.has_unlisted_versions(include_deleted=True):
@@ -335,12 +335,12 @@ class AddonAdmin(admin.ModelAdmin):
                         settings.EXTERNAL_SITE_URL,
                         reverse('reviewers.review', args=['unlisted', obj.id]),
                     ),
-                    _(u'Reviewer Tools (unlisted)'),
+                    _('Reviewer Tools (unlisted)'),
                 )
             )
         return format_html('&nbsp;|&nbsp;'.join(links))
 
-    reviewer_links.short_description = _(u'Reviewer links')
+    reviewer_links.short_description = _('Reviewer links')
 
     def change_view(self, request, object_id, form_url='', extra_context=None):
         lookup_field = Addon.get_lookup_field(object_id)
@@ -405,7 +405,7 @@ class AddonAdmin(admin.ModelAdmin):
             request, ugettext('Git extraction triggered for "%(addons)s".' % kw)
         )
 
-    git_extract_action.short_description = "Git-Extract"
+    git_extract_action.short_description = 'Git-Extract'
 
     def git_extract_view(self, request, object_id, extra_context=None):
         if request.method != 'POST':
@@ -466,7 +466,7 @@ class ReplacementAddonAdmin(admin.ModelAdmin):
         try:
             slug = models.Addon.objects.get(guid=obj.guid).slug
         except models.Addon.DoesNotExist:
-            slug = ugettext(u'- Add-on not on AMO -')
+            slug = ugettext('- Add-on not on AMO -')
         return slug
 
     def has_module_permission(self, request):

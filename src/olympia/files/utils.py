@@ -204,7 +204,7 @@ class RDFExtractor(object):
     # Telemetry and Web Extension Experiments types.
     # See: bug 1220097 and https://github.com/mozilla/addons-server/issues/3315
     EXPERIMENT_TYPES = ('128', '256')
-    manifest = u'urn:mozilla:install-manifest'
+    manifest = 'urn:mozilla:install-manifest'
     is_experiment = False  # Experiment extensions: bug 1220097.
 
     def __init__(self, zip_file, certinfo=None):
@@ -845,11 +845,11 @@ def extract_extension_to_dest(source, dest=None, force_fsync=False):
 
     try:
         source = force_text(source)
-        if source.endswith((u'.zip', u'.xpi')):
+        if source.endswith(('.zip', '.xpi')):
             with open(source, 'rb') as source_file:
                 zip_file = SafeZip(source_file, force_fsync=force_fsync)
                 zip_file.extract_to_dest(target)
-        elif source.endswith((u'.tar.gz', u'.tar.bz2', u'.tgz')):
+        elif source.endswith(('.tar.gz', '.tar.bz2', '.tgz')):
             tarfile_class = tarfile.TarFile if not force_fsync else FSyncedTarFile
             with tarfile_class.open(source) as archive:
                 archive.extractall(target)
@@ -1028,7 +1028,7 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
         max_size = settings.MAX_STATICTHEME_SIZE
         if xpi_file and os.path.getsize(xpi_file.name) > max_size:
             raise forms.ValidationError(
-                ugettext(u'Maximum size for WebExtension themes is {0}.').format(
+                ugettext('Maximum size for WebExtension themes is {0}.').format(
                     filesizeformat(max_size)
                 )
             )
@@ -1041,7 +1041,7 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
 
     # Parse the file to get and validate package data with the addon.
     if not acl.experiments_submission_allowed(user, xpi_info):
-        raise forms.ValidationError(ugettext(u'You cannot submit this type of add-on'))
+        raise forms.ValidationError(ugettext('You cannot submit this type of add-on'))
 
     if not addon and not acl.system_addon_submission_allowed(user, xpi_info):
         guids = ' or '.join('"' + guid + '"' for guid in amo.SYSTEM_ADDON_GUIDS)
@@ -1051,7 +1051,7 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
 
     if not acl.mozilla_signed_extension_submission_allowed(user, xpi_info):
         raise forms.ValidationError(
-            ugettext(u'You cannot submit a Mozilla Signed Extension')
+            ugettext('You cannot submit a Mozilla Signed Extension')
         )
 
     if not acl.langpack_submission_allowed(user, xpi_info):
@@ -1083,7 +1083,7 @@ def parse_addon(pkg, addon=None, user=None, minimal=False):
     if name.endswith(amo.VALID_ADDON_FILE_EXTENSIONS):
         parsed = parse_xpi(pkg, addon, minimal=minimal, user=user)
     else:
-        valid_extensions_string = u'(%s)' % u', '.join(amo.VALID_ADDON_FILE_EXTENSIONS)
+        valid_extensions_string = '(%s)' % ', '.join(amo.VALID_ADDON_FILE_EXTENSIONS)
         raise UnsupportedFileType(
             ugettext(
                 'Unsupported file type, please upload a supported '
@@ -1123,7 +1123,7 @@ def get_sha256(file_obj, block_size=io.DEFAULT_BUFFER_SIZE):
 def update_version_number(file_obj, new_version_number):
     """Update the manifest to have the new version number."""
     # Create a new xpi with the updated version.
-    updated = u'{0}.updated_version_number'.format(file_obj.file_path)
+    updated = '{0}.updated_version_number'.format(file_obj.file_path)
     # Copy the original XPI, with the updated install.rdf or package.json.
     with zipfile.ZipFile(file_obj.file_path, 'r') as source:
         file_list = source.infolist()

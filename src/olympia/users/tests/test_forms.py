@@ -18,7 +18,7 @@ class TestDeniedNameAdminAddForm(UserFormBase):
         self.client.login(email=self.user.email)
         url = reverse('admin:users_deniedname_add')
         data = {
-            'names': "\n\n",
+            'names': '\n\n',
         }
         r = self.client.post(url, data)
         self.assertFormError(r, 'form', 'names', u'This field is required.')
@@ -27,7 +27,7 @@ class TestDeniedNameAdminAddForm(UserFormBase):
         self.client.login(email=self.user.email)
         url = reverse('admin:users_deniedname_add')
         data = {
-            'names': "IE6Fan\nfubar\n\n",
+            'names': 'IE6Fan\nfubar\n\n',
         }
         r = self.client.post(url, data)
         msg = '1 new values added to the deny list. '

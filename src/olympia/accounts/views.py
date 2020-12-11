@@ -89,10 +89,10 @@ ERROR_STATUSES = {
     ERROR_STATE_MISMATCH: 400,
 }
 LOGIN_ERROR_MESSAGES = {
-    ERROR_AUTHENTICATED: _(u'You are already logged in.'),
-    ERROR_NO_CODE: _(u'Your login attempt could not be parsed. Please try again.'),
-    ERROR_NO_PROFILE: _(u'Your Firefox Account could not be found. Please try again.'),
-    ERROR_STATE_MISMATCH: _(u'You could not be logged in. Please try again.'),
+    ERROR_AUTHENTICATED: _('You are already logged in.'),
+    ERROR_NO_CODE: _('Your login attempt could not be parsed. Please try again.'),
+    ERROR_NO_PROFILE: _('Your Firefox Account could not be found. Please try again.'),
+    ERROR_STATE_MISMATCH: _('You could not be logged in. Please try again.'),
 }
 
 # Name of the cookie that contains the auth token for the API. It used to be
@@ -106,7 +106,7 @@ API_TOKEN_COOKIE = 'frontend_auth_token'
 def safe_redirect(url, action, request):
     if not _is_safe_url(url, request):
         url = reverse('home')
-    log.info(u'Redirecting after {} to: {}'.format(action, url))
+    log.info('Redirecting after {} to: {}'.format(action, url))
     return HttpResponseRedirect(url)
 
 
@@ -190,9 +190,9 @@ def login_user(sender, request, user, identity):
 
 def fxa_error_message(message, login_help_url):
     return format_html(
-        u'{error} <a href="{url}">{help_text}</a>',
+        '{error} <a href="{url}">{help_text}</a>',
         url=login_help_url,
-        help_text=_(u'Need help?'),
+        help_text=_('Need help?'),
         error=message,
     )
 
@@ -582,7 +582,7 @@ class AccountViewSet(
     def picture(self, request, pk=None):
         user = self.get_object()
         user.delete_picture()
-        log.info(u'User (%s) deleted photo' % user)
+        log.info('User (%s) deleted photo' % user)
         return self.retrieve(request)
 
 
@@ -638,10 +638,10 @@ class AccountSuperCreate(APIView):
         request.session.save()
 
         log.info(
-            u'API user {api_user} created and logged in a user from '
-            u'the super-create API: user_id: {user.pk}; '
-            u'user_name: {user.username}; fxa_id: {user.fxa_id}; '
-            u'group: {group}'.format(user=user, api_user=request.user, group=group)
+            'API user {api_user} created and logged in a user from '
+            'the super-create API: user_id: {user.pk}; '
+            'user_name: {user.username}; fxa_id: {user.fxa_id}; '
+            'group: {group}'.format(user=user, api_user=request.user, group=group)
         )
 
         cookie = {

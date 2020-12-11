@@ -61,7 +61,7 @@ def update_last_updated(addon_id):
 @task
 @use_primary_db
 def update_appsupport(ids, **kw):
-    log.info("[%s@None] Updating appsupport for %s." % (len(ids), ids))
+    log.info('[%s@None] Updating appsupport for %s.' % (len(ids), ids))
 
     addons = Addon.objects.filter(id__in=ids).no_transforms()
     support = []
@@ -85,7 +85,7 @@ def update_appsupport(ids, **kw):
 
 @task
 def update_addon_average_daily_users(data, **kw):
-    log.info("[%s] Updating add-ons ADU totals." % (len(data)))
+    log.info('[%s] Updating add-ons ADU totals.' % (len(data)))
 
     for addon_guid, count in data:
         try:
@@ -291,7 +291,7 @@ def delete_addons(addon_ids, with_deleted=False, **kw):
 @task
 @use_primary_db
 def update_addon_hotness(averages):
-    log.info("[%s] Updating add-ons hotness scores.", (len(averages)))
+    log.info('[%s] Updating add-ons hotness scores.', (len(averages)))
 
     averages = dict(averages)
     addons = (
@@ -339,7 +339,7 @@ def update_addon_weekly_downloads(data):
             # date in regards to currently existing add-ons.
             log.info(
                 'Got a weekly_downloads update (%s) but the add-on '
-                'doesn\'t exist (hashed_guid=%s).',
+                "doesn't exist (hashed_guid=%s).",
                 count,
                 hashed_guid,
             )

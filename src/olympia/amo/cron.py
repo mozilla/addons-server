@@ -77,8 +77,8 @@ def category_totals():
     Update category counts for sidebar navigation.
     """
     log.info('Starting category counts update...')
-    addon_statuses = ",".join(['%s'] * len(VALID_ADDON_STATUSES))
-    file_statuses = ",".join(['%s'] * len(VALID_FILE_STATUSES))
+    addon_statuses = ','.join(['%s'] * len(VALID_ADDON_STATUSES))
+    file_statuses = ','.join(['%s'] * len(VALID_FILE_STATUSES))
 
     with connection.cursor() as cursor:
         cursor.execute(

@@ -153,4 +153,4 @@ def test_version_dict():
 
 
 def test_version_int_unicode():
-    assert version_int(u'\u2322 ugh stephend') == 200100
+    assert version_int('\u2322 ugh stephend') == 200100

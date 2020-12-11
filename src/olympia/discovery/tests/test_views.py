@@ -346,14 +346,14 @@ class TestDiscoveryRecommendations(DiscoveryTestMixin, TestCase):
 
         self.client.get(self.url, {'telemetry-client-id': '666'})
         self.get_disco_recommendations_mock.assert_called_with(
-            u'666', [u'103@mozilla', u'101@mozilla']
+            '666', ['103@mozilla', '101@mozilla']
         )
 
     def test_recommendations_with_garbage_telemetry_id(self):
-        self.client.get(self.url, {'telemetry-client-id': u'gærbäge'})
+        self.client.get(self.url, {'telemetry-client-id': 'gærbäge'})
         assert not self.get_disco_recommendations_mock.called
 
-        self.client.get(self.url, {'telemetry-client-id': u''})
+        self.client.get(self.url, {'telemetry-client-id': ''})
         assert not self.get_disco_recommendations_mock.called
 
     def test_no_recommendations_for_china_edition(self):
@@ -423,7 +423,7 @@ class TestDiscoveryItemViewSet(TestCase):
         assert result['addon'] == {'guid': self.items[1].addon.guid}
 
         result = response.data['results'][2]
-        assert result['custom_description'] == (u'This time with a custom description')
+        assert result['custom_description'] == ('This time with a custom description')
         assert result['addon'] == {'guid': self.items[2].addon.guid}
 
     def test_recommended(self):

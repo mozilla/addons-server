@@ -117,7 +117,7 @@ class Rating(ModelBase):
     previous_count = models.PositiveIntegerField(
         default=0,
         editable=False,
-        help_text="How many previous ratings by the user for this add-on?",
+        help_text='How many previous ratings by the user for this add-on?',
     )
 
     unfiltered = RatingManager(include_deleted=True)

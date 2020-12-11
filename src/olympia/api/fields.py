@@ -78,11 +78,9 @@ class TranslationSerializerField(fields.Field):
     """
 
     default_error_messages = {
-        'min_length': _(
-            u'The field must have a length of at least {num} ' u'characters.'
-        ),
-        'unknown_locale': _(u'The language code {lang_code} is invalid.'),
-        'no_dict': _(u'You must provide an object of {lang-code:value}.'),
+        'min_length': _('The field must have a length of at least {num} characters.'),
+        'unknown_locale': _('The language code {lang_code} is invalid.'),
+        'no_dict': _('You must provide an object of {lang-code:value}.'),
     }
 
     def __init__(self, *args, **kwargs):
@@ -323,7 +321,7 @@ class SlugOrPrimaryKeyRelatedField(serializers.RelatedField):
         if self.render_as not in ['pk', 'slug']:
             raise ValueError(
                 "'render_as' must be one of 'pk' or 'slug', "
-                "not %r" % (self.render_as,)
+                'not %r' % (self.render_as,)
             )
         self.slug_field = kwargs.pop('slug_field', 'slug')
         super(SlugOrPrimaryKeyRelatedField, self).__init__(*args, **kwargs)

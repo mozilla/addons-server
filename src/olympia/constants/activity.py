@@ -214,9 +214,9 @@ class REQUEST_SUPER_REVIEW(_LOG):
     review_queue = True
     sanitize = _(
         "The addon has been flagged for Admin Review.  It's still "
-        "in our review queue, but it will need to be checked by one "
-        "of our admin reviewers. The review might take longer than "
-        "usual."
+        'in our review queue, but it will need to be checked by one '
+        'of our admin reviewers. The review might take longer than '
+        'usual.'
     )
     reviewer_review_action = True
 

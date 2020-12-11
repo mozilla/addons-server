@@ -38,7 +38,7 @@ def test_slug_validator():
 
 
 @pytest.mark.parametrize(
-    "test_input,expected",
+    'test_input,expected',
     [
         ('xx x  - "#$@ x', 'xx-x-x'),
         (u'Bän...g (bang)', u'bäng-bang'),
@@ -101,7 +101,7 @@ def test_resize_transparency_for_P_mode_bug_1181221():
 
 
 @pytest.mark.parametrize(
-    "test_input,expected",
+    'test_input,expected',
     [
         ('en-us', 'en-US'),
         ('en_US', 'en-US'),
@@ -119,7 +119,7 @@ def test_to_language(test_input, expected):
 
 
 @pytest.mark.parametrize(
-    "test_input,expected",
+    'test_input,expected',
     [
         ('en-us', 'en-US'),
         ('en_US', 'en-US'),
@@ -240,7 +240,7 @@ class TestCacheNamespaces(TestCase):
 
 
 @pytest.mark.parametrize(
-    "test_input,expected",
+    'test_input,expected',
     [
         (
             '<script>alert("BALL SO HARD")</script>',

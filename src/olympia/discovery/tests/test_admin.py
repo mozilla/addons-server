@@ -35,63 +35,63 @@ class TestDiscoveryAdmin(TestCase):
         assert self.list_url in response.content.decode('utf-8')
 
     def test_can_list_with_discovery_edit_permission(self):
-        DiscoveryItem.objects.create(addon=addon_factory(name=u'FooBâr'))
+        DiscoveryItem.objects.create(addon=addon_factory(name='FooBâr'))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Discovery:Edit')
         self.client.login(email=user.email)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
-        assert u'FooBâr' in response.content.decode('utf-8')
+        assert 'FooBâr' in response.content.decode('utf-8')
 
     def test_list_filtering_position_yes(self):
-        DiscoveryItem.objects.create(addon=addon_factory(name=u'FooBâr'), position=1)
-        DiscoveryItem.objects.create(addon=addon_factory(name=u'Âbsent'))
+        DiscoveryItem.objects.create(addon=addon_factory(name='FooBâr'), position=1)
+        DiscoveryItem.objects.create(addon=addon_factory(name='Âbsent'))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Discovery:Edit')
         self.client.login(email=user.email)
         response = self.client.get(self.list_url + '?position=yes', follow=True)
         assert response.status_code == 200
-        assert u'FooBâr' in response.content.decode('utf-8')
-        assert u'Âbsent' not in response.content.decode('utf-8')
+        assert 'FooBâr' in response.content.decode('utf-8')
+        assert 'Âbsent' not in response.content.decode('utf-8')
 
     def test_list_filtering_position_no(self):
         DiscoveryItem.objects.create(
-            addon=addon_factory(name=u'FooBâr'), position_china=42
+            addon=addon_factory(name='FooBâr'), position_china=42
         )
-        DiscoveryItem.objects.create(addon=addon_factory(name=u'Âbsent'), position=1)
+        DiscoveryItem.objects.create(addon=addon_factory(name='Âbsent'), position=1)
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Discovery:Edit')
         self.client.login(email=user.email)
         response = self.client.get(self.list_url + '?position=no', follow=True)
         assert response.status_code == 200
-        assert u'FooBâr' in response.content.decode('utf-8')
-        assert u'Âbsent' not in response.content.decode('utf-8')
+        assert 'FooBâr' in response.content.decode('utf-8')
+        assert 'Âbsent' not in response.content.decode('utf-8')
 
     def test_list_filtering_position_yes_china(self):
         DiscoveryItem.objects.create(
-            addon=addon_factory(name=u'FooBâr'), position_china=1
+            addon=addon_factory(name='FooBâr'), position_china=1
         )
-        DiscoveryItem.objects.create(addon=addon_factory(name=u'Âbsent'))
+        DiscoveryItem.objects.create(addon=addon_factory(name='Âbsent'))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Discovery:Edit')
         self.client.login(email=user.email)
         response = self.client.get(self.list_url + '?position_china=yes', follow=True)
         assert response.status_code == 200
-        assert u'FooBâr' in response.content.decode('utf-8')
-        assert u'Âbsent' not in response.content.decode('utf-8')
+        assert 'FooBâr' in response.content.decode('utf-8')
+        assert 'Âbsent' not in response.content.decode('utf-8')
 
     def test_list_filtering_position_no_china(self):
-        DiscoveryItem.objects.create(addon=addon_factory(name=u'FooBâr'), position=42)
+        DiscoveryItem.objects.create(addon=addon_factory(name='FooBâr'), position=42)
         DiscoveryItem.objects.create(
-            addon=addon_factory(name=u'Âbsent'), position_china=1
+            addon=addon_factory(name='Âbsent'), position_china=1
         )
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Discovery:Edit')
         self.client.login(email=user.email)
         response = self.client.get(self.list_url + '?position_china=no', follow=True)
         assert response.status_code == 200
-        assert u'FooBâr' in response.content.decode('utf-8')
-        assert u'Âbsent' not in response.content.decode('utf-8')
+        assert 'FooBâr' in response.content.decode('utf-8')
+        assert 'Âbsent' not in response.content.decode('utf-8')
 
     def test_can_edit_with_discovery_edit_permission(self):
         addon = addon_factory(name='BarFöo')
@@ -149,8 +149,8 @@ class TestDiscoveryAdmin(TestCase):
         assert '{ghi}' in previews_content
 
     def test_can_change_addon_with_discovery_edit_permission(self):
-        addon = addon_factory(name=u'BarFöo')
-        addon2 = addon_factory(name=u'Another ône', slug='another-addon')
+        addon = addon_factory(name='BarFöo')
+        addon2 = addon_factory(name='Another ône', slug='another-addon')
         item = DiscoveryItem.objects.create(addon=addon)
         self.detail_url = reverse(
             'admin:discovery_discoveryitem_change', args=(item.pk,)
@@ -160,7 +160,7 @@ class TestDiscoveryAdmin(TestCase):
         self.client.login(email=user.email)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
-        assert u'BarFöo' in response.content.decode('utf-8')
+        assert 'BarFöo' in response.content.decode('utf-8')
 
         # Change add-on using the slug.
         response = self.client.post(
@@ -181,8 +181,8 @@ class TestDiscoveryAdmin(TestCase):
         assert item.addon == addon
 
     def test_change_addon_errors(self):
-        addon = addon_factory(name=u'BarFöo')
-        addon2 = addon_factory(name=u'Another ône', slug='another-addon')
+        addon = addon_factory(name='BarFöo')
+        addon2 = addon_factory(name='Another ône', slug='another-addon')
         item = DiscoveryItem.objects.create(addon=addon)
         self.detail_url = reverse(
             'admin:discovery_discoveryitem_change', args=(item.pk,)
@@ -192,7 +192,7 @@ class TestDiscoveryAdmin(TestCase):
         self.client.login(email=user.email)
 
         # Try changing using an unknown slug.
-        response = self.client.post(self.detail_url, {'addon': u'gârbage'}, follow=True)
+        response = self.client.post(self.detail_url, {'addon': 'gârbage'}, follow=True)
         assert response.status_code == 200
         assert not response.context_data['adminform'].form.is_valid()
         assert 'addon' in response.context_data['adminform'].form.errors
@@ -241,7 +241,7 @@ class TestDiscoveryAdmin(TestCase):
         assert not DiscoveryItem.objects.filter(pk=item.pk).exists()
 
     def test_can_add_with_discovery_edit_permission(self):
-        addon = addon_factory(name=u'BarFöo')
+        addon = addon_factory(name='BarFöo')
         self.add_url = reverse('admin:discovery_discoveryitem_add')
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Discovery:Edit')
@@ -264,7 +264,7 @@ class TestDiscoveryAdmin(TestCase):
         assert item.custom_description == 'This description is as well!'
 
     def test_can_not_add_without_discovery_edit_permission(self):
-        addon = addon_factory(name=u'BarFöo')
+        addon = addon_factory(name='BarFöo')
         self.add_url = reverse('admin:discovery_discoveryitem_add')
         user = user_factory(email='someone@mozilla.com')
         self.client.login(email=user.email)
@@ -317,12 +317,12 @@ class TestDiscoveryAdmin(TestCase):
         assert DiscoveryItem.objects.filter(pk=item.pk).exists()
 
     def test_query_count(self):
-        DiscoveryItem.objects.create(addon=addon_factory(name=u'FooBâr'))
-        DiscoveryItem.objects.create(addon=addon_factory(name=u'FooBâr 2'))
-        DiscoveryItem.objects.create(addon=addon_factory(name=u'FooBâr 3'))
-        DiscoveryItem.objects.create(addon=addon_factory(name=u'FooBâr 4'))
-        DiscoveryItem.objects.create(addon=addon_factory(name=u'FooBâr 5'))
-        DiscoveryItem.objects.create(addon=addon_factory(name=u'FooBâr 6'))
+        DiscoveryItem.objects.create(addon=addon_factory(name='FooBâr'))
+        DiscoveryItem.objects.create(addon=addon_factory(name='FooBâr 2'))
+        DiscoveryItem.objects.create(addon=addon_factory(name='FooBâr 3'))
+        DiscoveryItem.objects.create(addon=addon_factory(name='FooBâr 4'))
+        DiscoveryItem.objects.create(addon=addon_factory(name='FooBâr 5'))
+        DiscoveryItem.objects.create(addon=addon_factory(name='FooBâr 6'))
 
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Discovery:Edit')
@@ -340,8 +340,8 @@ class TestDiscoveryAdmin(TestCase):
         with self.assertNumQueries(9):
             response = self.client.get(self.list_url, follow=True)
 
-        DiscoveryItem.objects.create(addon=addon_factory(name=u'FooBâr 5'))
-        DiscoveryItem.objects.create(addon=addon_factory(name=u'FooBâr 6'))
+        DiscoveryItem.objects.create(addon=addon_factory(name='FooBâr 5'))
+        DiscoveryItem.objects.create(addon=addon_factory(name='FooBâr 6'))
 
         # Ensure the count is stable
         with self.assertNumQueries(9):
@@ -392,7 +392,7 @@ class TestPrimaryHeroImageAdmin(TestCase):
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
         content = response.content.decode('utf-8')
-        assert u'transparent.jpg' in content
+        assert 'transparent.jpg' in content
 
         updated_photo = get_uploaded_file('preview_4x3.jpg')
         response = self.client.post(
@@ -577,24 +577,24 @@ class TestSecondaryHeroShelfAdmin(TestCase):
     def _get_moduleform(self, item, module_data, initial=0):
         count = str(len(module_data))
         out = {
-            "modules-TOTAL_FORMS": count,
-            "modules-INITIAL_FORMS": initial,
-            "modules-MIN_NUM_FORMS": count,
-            "modules-MAX_NUM_FORMS": count,
-            "modules-__prefix__-icon": "",
-            "modules-__prefix__-description": "",
-            "modules-__prefix__-id": "",
-            "modules-__prefix__-shelf": str(item),
+            'modules-TOTAL_FORMS': count,
+            'modules-INITIAL_FORMS': initial,
+            'modules-MIN_NUM_FORMS': count,
+            'modules-MAX_NUM_FORMS': count,
+            'modules-__prefix__-icon': '',
+            'modules-__prefix__-description': '',
+            'modules-__prefix__-id': '',
+            'modules-__prefix__-shelf': str(item),
         }
         for index in range(0, len(module_data)):
             out.update(
                 **{
-                    f"modules-{index}-icon": str(module_data[index]['icon']),
-                    f"modules-{index}-description": str(
+                    f'modules-{index}-icon': str(module_data[index]['icon']),
+                    f'modules-{index}-description': str(
                         module_data[index]['description']
                     ),
-                    f"modules-{index}-id": str(module_data[index].get('id', '')),
-                    f"modules-{index}-shelf": str(item),
+                    f'modules-{index}-id': str(module_data[index].get('id', '')),
+                    f'modules-{index}-shelf': str(item),
                 }
             )
         return out

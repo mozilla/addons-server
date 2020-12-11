@@ -52,7 +52,7 @@ def robots(request):
     """Generate a robots.txt"""
     _service = request.META['SERVER_NAME'] == settings.SERVICES_DOMAIN
     if _service or not settings.ENGAGE_ROBOTS:
-        template = "User-agent: *\nDisallow: /"
+        template = 'User-agent: *\nDisallow: /'
     else:
         ctx = {
             'apps': amo.APP_USAGE,
@@ -60,7 +60,7 @@ def robots(request):
         }
         template = render(request, 'amo/robots.html', ctx)
 
-    return HttpResponse(template, content_type="text/plain")
+    return HttpResponse(template, content_type='text/plain')
 
 
 @non_atomic_requests

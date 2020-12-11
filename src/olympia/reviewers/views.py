@@ -1338,7 +1338,7 @@ def download_git_stored_file(request, version_id, filename):
         blob_or_tree = tree[serializer._get_selected_file()]
 
         if blob_or_tree.type == pygit2.GIT_OBJ_TREE:
-            return http.HttpResponseBadRequest('Can\'t serve directories')
+            return http.HttpResponseBadRequest("Can't serve directories")
         selected_file = serializer._get_entries()[filename]
     except (KeyError, NotFound):
         raise http.Http404()

@@ -196,8 +196,8 @@ class TestDashboard(HubTest):
 
         assert doc('.blog-posts').length == 1
         assert doc('.blog-posts li').length == 5
-        assert doc('.blog-posts li a').eq(0).text() == "hi 0"
-        assert doc('.blog-posts li a').eq(4).text() == "hi 4"
+        assert doc('.blog-posts li a').eq(0).text() == 'hi 0'
+        assert doc('.blog-posts li a').eq(4).text() == 'hi 4'
 
     def test_sort_created_filter(self):
         response = self.client.get(self.url + '?sort=created')
@@ -1186,7 +1186,7 @@ class TestUpload(BaseUploadTest):
         assert validation['warnings'] == 0
         assert len(validation['messages'])
         msg = validation['messages'][0]
-        assert msg['type'] == u'error'
+        assert msg['type'] == 'error'
         assert msg['message'] == (
             'Unsupported file type, please upload a supported file '
             '(.crx, .xpi, .zip).'
@@ -1375,7 +1375,7 @@ class TestUploadDetail(BaseUploadTest):
             (m['message'], m.get('type') == 'error')
             for m in data['validation']['messages']
         ]
-        expected = [(u'"/version" is a required property', True)]
+        expected = [('"/version" is a required property', True)]
         assert message == expected
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
@@ -1430,10 +1430,10 @@ class TestUploadDetail(BaseUploadTest):
         data = json.loads(force_text(response.content))
         assert data['validation']['messages'] == [
             {
-                u'tier': 1,
-                u'message': u'You cannot submit this type of add-on',
-                u'fatal': True,
-                u'type': u'error',
+                'tier': 1,
+                'message': 'You cannot submit this type of add-on',
+                'fatal': True,
+                'type': 'error',
             }
         ]
 
@@ -1482,7 +1482,7 @@ class TestUploadDetail(BaseUploadTest):
         assert self.client.login(email=user.email)
         self.grant_permission(user, 'SystemAddon:Submit')
         mock_validator.return_value = json.dumps(self.validation_ok())
-        mock_get_signature.return_value = "Mozilla Extensions"
+        mock_get_signature.return_value = 'Mozilla Extensions'
         self.upload_file(
             '../../../files/fixtures/files/webextension_signed_already.xpi'
         )
@@ -1508,10 +1508,10 @@ class TestUploadDetail(BaseUploadTest):
         data = json.loads(force_text(response.content))
         assert data['validation']['messages'] == [
             {
-                u'tier': 1,
-                u'message': u'You cannot submit a Mozilla Signed Extension',
-                u'fatal': True,
-                u'type': u'error',
+                'tier': 1,
+                'message': 'You cannot submit a Mozilla Signed Extension',
+                'fatal': True,
+                'type': 'error',
             }
         ]
 
@@ -1552,7 +1552,7 @@ class TestUploadDetail(BaseUploadTest):
         assert msg['id'] == ['validation', 'messages', 'legacy_addons_unsupported']
         assert msg['type'] == 'warning'
         assert msg['message'] == (
-            u'Legacy extensions are no longer supported in Firefox.'
+            'Legacy extensions are no longer supported in Firefox.'
         )
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
@@ -1581,9 +1581,9 @@ class TestUploadDetail(BaseUploadTest):
         )
         data = json.loads(force_text(response.content))
         assert data['validation']['messages'][0]['id'] == [
-            u'validation',
-            u'messages',
-            u'legacy_addons_unsupported',
+            'validation',
+            'messages',
+            'legacy_addons_unsupported',
         ]
 
     def test_no_redirect_for_metadata(self):
@@ -1686,7 +1686,7 @@ class TestQueuePosition(TestCase):
             span = doc('.queue-position')
 
             assert span.length
-            assert "Queue Position: 1 of 2" in span.text()
+            assert 'Queue Position: 1 of 2' in span.text()
 
     def test_static_themes_in_queue(self):
         statuses = [
@@ -1707,7 +1707,7 @@ class TestQueuePosition(TestCase):
             span = doc('.queue-position')
 
             assert span.length
-            assert "Queue Position: 1 of 3" in span.text()
+            assert 'Queue Position: 1 of 3' in span.text()
 
 
 class TestVersionXSS(TestCase):
@@ -1891,11 +1891,11 @@ class TestDocs(TestCase):
         assert '/en-US/developers/docs/te/st', reverse('devhub.docs', args=['te/st'])
 
         urls = [
-            (reverse('devhub.docs', args=["getting-started"]), 301),
-            (reverse('devhub.docs', args=["how-to"]), 301),
-            (reverse('devhub.docs', args=["how-to/other-addons"]), 301),
-            (reverse('devhub.docs', args=["fake-page"]), 404),
-            (reverse('devhub.docs', args=["how-to/fake-page"]), 404),
+            (reverse('devhub.docs', args=['getting-started']), 301),
+            (reverse('devhub.docs', args=['how-to']), 301),
+            (reverse('devhub.docs', args=['how-to/other-addons']), 301),
+            (reverse('devhub.docs', args=['fake-page']), 404),
+            (reverse('devhub.docs', args=['how-to/fake-page']), 404),
             (reverse('devhub.docs'), 301),
         ]
 
@@ -2066,7 +2066,7 @@ class TestLogout(UserViewBase):
         self.client.cookies[API_TOKEN_COOKIE] = 'some.token.value'
         response = self.client.get(reverse('devhub.logout'))
         cookie = response.cookies[settings.SESSION_COOKIE_NAME]
-        cookie_date_string = u'Thu, 01 Jan 1970 00:00:00 GMT'
+        cookie_date_string = 'Thu, 01 Jan 1970 00:00:00 GMT'
         assert cookie.value == ''
         # in django2.1+ changed to django.utils.http.http_date from cookie_date
         assert cookie['expires'].replace('-', ' ') == cookie_date_string

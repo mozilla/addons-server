@@ -84,7 +84,7 @@ class CacheStatTracker(BaseCache):
         self._setup_proxies()
 
     def __repr__(self):
-        return str("<CacheStatTracker for %s>") % repr(self._real_cache)
+        return str('<CacheStatTracker for %s>') % repr(self._real_cache)
 
     def __contains__(self, key):
         return self._real_cache.__contains__(key)
@@ -136,4 +136,4 @@ def assert_cache_requests(num, alias='default'):
 
     executed = len(cache_using.requests_log)
 
-    assert executed == num, "%d requests executed, %d expected" % (executed, num)
+    assert executed == num, '%d requests executed, %d expected' % (executed, num)

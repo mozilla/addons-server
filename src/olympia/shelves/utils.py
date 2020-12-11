@@ -61,11 +61,14 @@ def process_adzerk_result(decision):
     contents = (decision.get('contents') or [{}])[0]
     events = (decision.get('events') or [{}])[0]
     addon_id = str(contents.get('data', {}).get('customData', {}).get('id'))
-    return addon_id, {
-        'impression': path_and_query(decision.get('impressionUrl', '')),
-        'click': path_and_query(decision.get('clickUrl', ''), ('noredirect',)),
-        'conversion': path_and_query(events.get('url', '')),
-    }
+    return (
+        addon_id,
+        {
+            'impression': path_and_query(decision.get('impressionUrl', '')),
+            'click': path_and_query(decision.get('clickUrl', ''), ('noredirect',)),
+            'conversion': path_and_query(events.get('url', '')),
+        },
+    )
 
 
 def process_adzerk_results(response):
@@ -85,12 +88,12 @@ def get_addons_from_adzerk(count):
     network_id = settings.ADZERK_NETWORK_ID
     placements = [
         {
-            "divName": "multi",
-            "networkId": network_id,
-            "siteId": site_id,
-            "adTypes": [5],
-            "eventIds": [2],
-            "count": count,
+            'divName': 'multi',
+            'networkId': network_id,
+            'siteId': site_id,
+            'adTypes': [5],
+            'eventIds': [2],
+            'count': count,
         }
     ]
     url = settings.ADZERK_URL

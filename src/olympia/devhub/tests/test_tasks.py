@@ -335,24 +335,24 @@ class TestTrackValidatorStats(TestCase):
 class TestRunAddonsLinter(UploadTest, ValidatorTestCase):
     mock_sign_addon_warning = json.dumps(
         {
-            "warnings": 1,
-            "errors": 0,
-            "messages": [
+            'warnings': 1,
+            'errors': 0,
+            'messages': [
                 {
-                    "context": None,
-                    "editors_only": False,
-                    "description": "Add-ons which are already signed will be "
-                    "re-signed when published on AMO. This will "
-                    "replace any existing signatures on the add-on.",
-                    "column": None,
-                    "type": "warning",
-                    "id": ["testcases_content", "signed_xpi"],
-                    "file": "",
-                    "tier": 2,
-                    "message": "Package already signed",
-                    "uid": "87326f8f699f447e90b3d5a66a78513e",
-                    "line": None,
-                    "compatibility_type": None,
+                    'context': None,
+                    'editors_only': False,
+                    'description': 'Add-ons which are already signed will be '
+                    're-signed when published on AMO. This will '
+                    'replace any existing signatures on the add-on.',
+                    'column': None,
+                    'type': 'warning',
+                    'id': ['testcases_content', 'signed_xpi'],
+                    'file': '',
+                    'tier': 2,
+                    'message': 'Package already signed',
+                    'uid': '87326f8f699f447e90b3d5a66a78513e',
+                    'line': None,
+                    'compatibility_type': None,
                 },
             ],
         }
@@ -424,17 +424,17 @@ class TestRunAddonsLinter(UploadTest, ValidatorTestCase):
 
     def test_binary_flag_set_on_addon_for_binary_extensions(self):
         results = {
-            "errors": 0,
-            "success": True,
-            "warnings": 0,
-            "notices": 0,
-            "message_tree": {},
-            "messages": [],
-            "metadata": {
-                "contains_binary_extension": True,
-                "version": "1.0",
-                "name": "gK0Bes Bot",
-                "id": "gkobes@gkobes",
+            'errors': 0,
+            'success': True,
+            'warnings': 0,
+            'notices': 0,
+            'message_tree': {},
+            'messages': [],
+            'metadata': {
+                'contains_binary_extension': True,
+                'version': '1.0',
+                'name': 'gK0Bes Bot',
+                'id': 'gkobes@gkobes',
             },
         }
         self.addon = addon_factory()
@@ -513,8 +513,8 @@ class TestRunAddonsLinter(UploadTest, ValidatorTestCase):
         def get_args(cls):
             return cls.args
 
-    @override_switch("disable-linter-xpi-autoclose", active=True)
-    @mock.patch("olympia.devhub.tasks.subprocess")
+    @override_switch('disable-linter-xpi-autoclose', active=True)
+    @mock.patch('olympia.devhub.tasks.subprocess')
     def test_xpi_autoclose_is_disabled(self, subprocess_mock):
         subprocess_mock.Popen = self.FakePopen
 
@@ -524,8 +524,8 @@ class TestRunAddonsLinter(UploadTest, ValidatorTestCase):
 
         assert '--disable-xpi-autoclose' in self.FakePopen.get_args()
 
-    @override_switch("disable-linter-xpi-autoclose", active=False)
-    @mock.patch("olympia.devhub.tasks.subprocess")
+    @override_switch('disable-linter-xpi-autoclose', active=False)
+    @mock.patch('olympia.devhub.tasks.subprocess')
     def test_xpi_autoclose_is_enabled(self, subprocess_mock):
         subprocess_mock.Popen = self.FakePopen
 
@@ -885,7 +885,7 @@ class TestCreateVersionForUpload(UploadTest, TestCase):
         newer_upload.update(
             created=datetime.today() + timedelta(hours=1),
             valid=False,
-            validation=json.dumps({"errors": 5}),
+            validation=json.dumps({'errors': 5}),
         )
 
         tasks.create_version_for_upload(self.addon, upload, amo.RELEASE_CHANNEL_LISTED)

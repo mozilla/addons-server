@@ -323,7 +323,7 @@ class TestAddonIndexer(TestCase):
             {'lang': 'en-US', 'string': u'Fix for an important bug'},
             {
                 'lang': 'fr',
-                'string': u"Quelque chose en fran\xe7ais."
+                'string': u'Quelque chose en fran\xe7ais.'
                 u"\n\nQuelque chose d'autre.",
             },
         ]

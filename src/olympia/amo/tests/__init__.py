@@ -104,8 +104,8 @@ def setup_es_test_data(es):
     except Exception as e:
         e.args = tuple(
             [
-                u"%s (it looks like ES is not running, try starting it or "
-                u"don't run ES tests: make test_no_es)" % e.args[0]
+                '%s (it looks like ES is not running, try starting it or '
+                "don't run ES tests: make test_no_es)" % e.args[0]
             ]
             + list(e.args[1:])
         )
@@ -233,7 +233,7 @@ def assert_url_equal(url, expected, compare_host=False):
 
 
 def compare_url_part(part, expected):
-    assert part == expected, u'Expected %s, got %s' % (expected, part)
+    assert part == expected, 'Expected %s, got %s' % (expected, part)
 
 
 def create_sample(name=None, **kw):
@@ -694,7 +694,7 @@ def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **k
     default_locale = kw.get('default_locale', settings.LANGUAGE_CODE)
 
     # Keep as much unique data as possible in the uuid: '-' aren't important.
-    name = kw.pop('name', u'Addôn %s' % str(uuid.uuid4()).replace('-', ''))
+    name = kw.pop('name', 'Addôn %s' % str(uuid.uuid4()).replace('-', ''))
     slug = kw.pop('slug', None)
     if slug is None:
         slug = name.replace(' ', '-').lower()[:30]
@@ -717,7 +717,7 @@ def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **k
     }
     if 'summary' not in kw:
         # Assign a dummy summary if none was specified in keyword args.
-        kwargs['summary'] = u'Summary for %s' % name
+        kwargs['summary'] = 'Summary for %s' % name
     kwargs['guid'] = kw.pop('guid', '{%s}' % str(uuid.uuid4()))
     kwargs.update(kw)
 
@@ -802,11 +802,11 @@ def collection_factory(**kw):
 def license_factory(**kw):
     data = {
         'name': {
-            'en-US': u'My License',
-            'fr': u'Mä Licence',
+            'en-US': 'My License',
+            'fr': 'Mä Licence',
         },
         'text': {
-            'en-US': u'Lorem ipsum dolor sit amet, has nemore patrioqué',
+            'en-US': 'Lorem ipsum dolor sit amet, has nemore patrioqué',
         },
         'url': 'http://license.example.com/',
     }
@@ -1002,8 +1002,8 @@ class TestXss(TestCase):
     def setUp(self):
         super(TestXss, self).setUp()
         self.addon = Addon.objects.get(id=3615)
-        self.name = u"<script>alert('hé')</script>"
-        self.escaped = u'&lt;script&gt;alert(&#39;hé&#39;)&lt;/script&gt;'
+        self.name = "<script>alert('hé')</script>"
+        self.escaped = '&lt;script&gt;alert(&#39;hé&#39;)&lt;/script&gt;'
         self.addon.name = self.name
         self.addon.save()
         u = UserProfile.objects.get(email='del@icio.us')

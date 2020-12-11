@@ -123,8 +123,7 @@ def test_template_escaping():
     expected = '<b>5 users</b>'
     assert (
         render(
-            '{{ ngettext(\'<b>{0} user</b>\', \'<b>{0} users</b>\', 2)'
-            '|format_html(5) }}'
+            "{{ ngettext('<b>{0} user</b>', '<b>{0} users</b>', 2)" '|format_html(5) }}'
         )
         == expected
     )
@@ -135,7 +134,7 @@ def test_template_escaping():
     expected = '<b>&lt;script&gt; users</b>'
     assert (
         render(
-            '{{ ngettext(\'<b>{0} user</b>\', \'<b>{0} users</b>\', 2)'
+            "{{ ngettext('<b>{0} user</b>', '<b>{0} users</b>', 2)"
             '|format_html("<script>")|safe }}'
         )
         == expected
@@ -394,13 +393,13 @@ def test_format_unicode():
 
 
 class TestStoragePath(TestCase):
-    @override_settings(ADDONS_PATH=None, MEDIA_ROOT="/path/")
+    @override_settings(ADDONS_PATH=None, MEDIA_ROOT='/path/')
     def test_without_settings(self):
         del settings.ADDONS_PATH
         path = jinja_helpers.user_media_path('addons')
         assert path == '/path/addons'
 
-    @override_settings(ADDONS_PATH="/another/path/")
+    @override_settings(ADDONS_PATH='/another/path/')
     def test_with_settings(self):
         path = jinja_helpers.user_media_path('addons')
         assert path == '/another/path/'

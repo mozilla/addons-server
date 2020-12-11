@@ -48,7 +48,7 @@ def make_adapter_with_retry():
     adapter = HTTPAdapter(
         max_retries=Retry(
             total=1,
-            method_whitelist=["POST"],
+            method_whitelist=['POST'],
             status_forcelist=[500, 502, 503, 504],
         )
     )
@@ -122,8 +122,8 @@ def _run_scanner_for_url(scanner_result, url, scanner, api_url, api_key):
     """
     with requests.Session() as http:
         adapter = make_adapter_with_retry()
-        http.mount("http://", adapter)
-        http.mount("https://", adapter)
+        http.mount('http://', adapter)
+        http.mount('https://', adapter)
 
         json_payload = {
             'api_key': api_key,
@@ -493,8 +493,8 @@ def call_mad_api(all_results, upload_pk):
         with statsd.timer('devhub.mad'):
             with requests.Session() as http:
                 adapter = make_adapter_with_retry()
-                http.mount("http://", adapter)
-                http.mount("https://", adapter)
+                http.mount('http://', adapter)
+                http.mount('https://', adapter)
 
                 json_payload = {'scanners': {'customs': customs_results.results}}
                 response = http.post(

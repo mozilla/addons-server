@@ -522,7 +522,7 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
                 """
         parsed_data = utils.ManifestJSONExtractor('/fake_path', json_string).parse()
 
-        assert parsed_data['devtools_page'] == "devtools/my-page.html"
+        assert parsed_data['devtools_page'] == 'devtools/my-page.html'
 
 
 class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
@@ -693,7 +693,7 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
 
     def test_theme_json_extracted(self):
         # Check theme data is extracted from the manifest and returned.
-        data = {'theme': {'colors': {'tab_background_text': "#3deb60"}}}
+        data = {'theme': {'colors': {'tab_background_text': '#3deb60'}}}
         assert self.parse(data)['theme'] == data['theme']
 
     def test_unknown_strict_max_version(self):

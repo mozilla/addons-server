@@ -268,7 +268,7 @@ class UserNotificationSerializer(serializers.Serializer):
     def update(self, instance, validated_data):
         if instance.notification.mandatory:
             raise serializers.ValidationError(
-                'Attempting to set [%s] to %s. Mandatory notifications can\'t '
+                "Attempting to set [%s] to %s. Mandatory notifications can't "
                 'be modified'
                 % (instance.notification.short, validated_data.get('enabled'))
             )

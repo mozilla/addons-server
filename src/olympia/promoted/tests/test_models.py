@@ -272,7 +272,7 @@ class TestPromotedSubscription(TestCase):
         sub = PromotedSubscription.objects.filter(promoted_addon=promoted_addon).get()
 
         assert sub.get_onboarding_url(absolute=False) == reverse(
-            "devhub.addons.onboarding_subscription",
+            'devhub.addons.onboarding_subscription',
             args=[sub.promoted_addon.addon.slug],
             add_prefix=False,
         )
@@ -283,18 +283,18 @@ class TestPromotedSubscription(TestCase):
         )
         sub = PromotedSubscription.objects.filter(promoted_addon=promoted_addon).get()
 
-        external_site_url = "http://example.org"
+        external_site_url = 'http://example.org'
         with override_settings(EXTERNAL_SITE_URL=external_site_url):
             url = sub.get_onboarding_url()
-            assert url == "{}{}".format(
+            assert url == '{}{}'.format(
                 external_site_url,
                 reverse(
-                    "devhub.addons.onboarding_subscription",
+                    'devhub.addons.onboarding_subscription',
                     args=[sub.promoted_addon.addon.slug],
                     add_prefix=False,
                 ),
             )
-            assert "en-US" not in url
+            assert 'en-US' not in url
 
     def test_stripe_checkout_completed(self):
         sub = PromotedSubscription()

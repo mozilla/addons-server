@@ -667,7 +667,7 @@ class ReviewerScore(ModelBase):
 
         user_log.info(
             (
-                u'Determining award points for user %s for version %s of addon %s'
+                'Determining award points for user %s for version %s of addon %s'
                 % (user, version, addon.id)
             ).encode('utf-8')
         )
@@ -683,8 +683,8 @@ class ReviewerScore(ModelBase):
 
         user_log.info(
             (
-                u'Determined %s award points (event: %s) for user %s for version '
-                u'%s of addon %s' % (score, event, user, version, addon.id)
+                'Determined %s award points (event: %s) for user %s for version '
+                '%s of addon %s' % (score, event, user, version, addon.id)
             ).encode('utf-8')
         )
 
@@ -713,7 +713,7 @@ class ReviewerScore(ModelBase):
             cls.get_key(invalidate=True)
             user_log.info(
                 (
-                    u'Awarding %s points to user %s for "%s" for addon %s'
+                    'Awarding %s points to user %s for "%s" for addon %s'
                     % (score, user, amo.REVIEWED_CHOICES[event], addon.id)
                 ).encode('utf-8')
             )
@@ -730,7 +730,7 @@ class ReviewerScore(ModelBase):
         cls.objects.create(user=user, addon=addon, score=score, note_key=event)
         cls.get_key(invalidate=True)
         user_log.info(
-            u'Awarding %s points to user %s for "%s" for review %s'
+            'Awarding %s points to user %s for "%s" for review %s'
             % (score, user, amo.REVIEWED_CHOICES[event], review_id)
         )
 
@@ -1012,7 +1012,7 @@ class AutoApprovalSummary(ModelBase):
     )
 
     def __str__(self):
-        return u'%s %s' % (self.version.addon.name, self.version)
+        return '%s %s' % (self.version.addon.name, self.version)
 
     def calculate_weight(self):
         """Calculate the weight value for this version according to various
@@ -1419,7 +1419,7 @@ class Whiteboard(ModelBase):
         db_table = 'review_whiteboard'
 
     def __str__(self):
-        return u'[%s] private: |%s| public: |%s|' % (
+        return '[%s] private: |%s| public: |%s|' % (
             self.addon.name,
             self.private,
             self.public,

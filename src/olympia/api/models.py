@@ -60,7 +60,7 @@ class APIKey(ModelBase):
         ]
 
     def __str__(self):
-        return u'<{cls} user={user}, type={type}, key={key} secret=...>'.format(
+        return '<{cls} user={user}, type={type}, key={key} secret=...>'.format(
             cls=self.__class__.__name__, key=self.key, type=self.type, user=self.user
         )
 

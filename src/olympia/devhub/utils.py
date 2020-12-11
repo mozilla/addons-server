@@ -86,7 +86,7 @@ def limit_validation_results(validation):
             ugettext(
                 'Validation generated too many errors/warnings so %s '
                 'messages were truncated. After addressing the visible '
-                'messages, you\'ll be able to see the others.'
+                "messages, you'll be able to see the others."
             )
             % leftover_count
         )

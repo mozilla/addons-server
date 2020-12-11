@@ -130,7 +130,7 @@ class TestEditLicense(TestOwnership):
         response = self.client.post(self.url, data)
         assert response.status_code == 200
         license_form = response.context['license_form']
-        assert license_form.errors == {'builtin': [u'This field is required.']}
+        assert license_form.errors == {'builtin': ['This field is required.']}
 
     def test_no_license_required_for_unlisted(self):
         self.make_addon_unlisted(self.addon)

@@ -20,10 +20,10 @@ class PositiveAutoField(models.AutoField):
     Because AutoFields are special we need a custom database backend to support
     using them.  See olympia.core.db.mysql.base for that."""
 
-    description = _("Positive integer")
+    description = _('Positive integer')
 
     def get_internal_type(self):
-        return "PositiveAutoField"
+        return 'PositiveAutoField'
 
     def rel_db_type(self, connection):
         return models.PositiveIntegerField().db_type(connection=connection)

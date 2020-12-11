@@ -39,7 +39,7 @@ def update_user_ratings():
                 AND addons.inactive = 0
               GROUP BY addons_users.user_id
               """ % (
-        ",".join(map(str, VALID_ADDON_STATUSES))
+        ','.join(map(str, VALID_ADDON_STATUSES))
     )
 
     cursor.execute(q)

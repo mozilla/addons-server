@@ -57,11 +57,11 @@ def test_call_adzerk_server(statsd_mock):
     data = {
         'placements': [
             {
-                "divName": 'multi',
-                "networkId": network_id,
-                "siteId": site_id,
-                "adTypes": [5],
-                "count": 3,
+                'divName': 'multi',
+                'networkId': network_id,
+                'siteId': site_id,
+                'adTypes': [5],
+                'count': 3,
             },
         ]
     }
@@ -93,50 +93,48 @@ def test_process_adzerk_results():
         'decisions': {
             'multi': [
                 {
-                    "clickUrl": "https://e-9999.adzerk.net/r?e=eyJ2IjoiMS42I&iwiA",
-                    "impressionUrl": "https://e-9999.adzerk.net/i.gif?e=eyJ2I&jLg",
-                    "contents": [
+                    'clickUrl': 'https://e-9999.adzerk.net/r?e=eyJ2IjoiMS42I&iwiA',
+                    'impressionUrl': 'https://e-9999.adzerk.net/i.gif?e=eyJ2I&jLg',
+                    'contents': [
                         {
-                            "data": {"customData": {"id": "1234"}},
+                            'data': {'customData': {'id': '1234'}},
                         }
                     ],
-                    "events": [
-                        {"id": 2, "url": "https://e-9999.adzerk.net/e.gif?e=454545"}
+                    'events': [
+                        {'id': 2, 'url': 'https://e-9999.adzerk.net/e.gif?e=454545'}
                     ],
                 },
                 {
-                    "clickUrl": "https://e-9999.adzerk.net/r?e=different",
-                    "impressionUrl": "https://e-9999.adzerk.net/i.gif?e=values",
-                    "contents": [
+                    'clickUrl': 'https://e-9999.adzerk.net/r?e=different',
+                    'impressionUrl': 'https://e-9999.adzerk.net/i.gif?e=values',
+                    'contents': [
                         {
-                            "data": {
-                                "customData": {"id": "1234"}  # duplicate id with foo1
-                            },
-                        }
+                            'data': {'customData': {'id': '1234'}},
+                        }  # duplicate id with foo1
                     ],
-                    "events": [
-                        {"id": 2, "url": "https://e-9999.adzerk.net/e.gif?e=787878"}
+                    'events': [
+                        {'id': 2, 'url': 'https://e-9999.adzerk.net/e.gif?e=787878'}
                     ],
                 },
                 {
-                    "clickUrl": "https://e-9999.adzerk.net/r?e=eyJ2IjoiMS42IiwiA",
-                    "impressionUrl": "https://e-9999.adzerk.net/i.gif?e=eyJ2IjLg",
-                    "contents": [
+                    'clickUrl': 'https://e-9999.adzerk.net/r?e=eyJ2IjoiMS42IiwiA',
+                    'impressionUrl': 'https://e-9999.adzerk.net/i.gif?e=eyJ2IjLg',
+                    'contents': [
                         {
-                            "data": {"customData": {"id": "not-a-number"}},
+                            'data': {'customData': {'id': 'not-a-number'}},
                         }
                     ],
-                    "events": [],
+                    'events': [],
                 },
                 {
-                    "clickUrl": "https://e-9999.adzerk.net/r?e=ey44545",
-                    "impressionUrl": "https://e-9999.adzerk.net/i.gif?e=thesfsg",
-                    "contents": [
+                    'clickUrl': 'https://e-9999.adzerk.net/r?e=ey44545',
+                    'impressionUrl': 'https://e-9999.adzerk.net/i.gif?e=thesfsg',
+                    'contents': [
                         {
-                            "data": {"customData": {"id": "1"}},
+                            'data': {'customData': {'id': '1'}},
                         }
                     ],
-                    "events": [{"id": 2, "url": ""}],
+                    'events': [{'id': 2, 'url': ''}],
                 },
             ]
         }
@@ -164,12 +162,12 @@ def test_get_addons_from_adzerk(call_server_mock, process_mock):
     data = {
         'placements': [
             {
-                "divName": 'multi',
-                "networkId": network_id,
-                "siteId": site_id,
-                "adTypes": [5],
-                "eventIds": [2],
-                "count": 2,
+                'divName': 'multi',
+                'networkId': network_id,
+                'siteId': site_id,
+                'adTypes': [5],
+                'eventIds': [2],
+                'count': 2,
             },
         ]
     }

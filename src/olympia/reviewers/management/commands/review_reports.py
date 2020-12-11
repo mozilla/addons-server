@@ -19,7 +19,7 @@ from olympia.constants.reviewers import (
 from premailer import transform
 
 SQL_DIR = os.path.join(
-    settings.ROOT, "src/olympia/reviewers/management/commands/review_reports_sql/"
+    settings.ROOT, 'src/olympia/reviewers/management/commands/review_reports_sql/'
 )
 
 REPORTS = {
@@ -58,7 +58,7 @@ class Command(BaseCommand):
     help = 'Generate and send the review report'
 
     def handle(self, *args, **options):
-        log.info("Generating add-on reviews report...")
+        log.info('Generating add-on reviews report...')
 
         addon_report_data = self.fetch_report_data('addon')
         addon_report_html = self.generate_report_html('addon', addon_report_data)
@@ -71,7 +71,7 @@ class Command(BaseCommand):
             'addon-reviewers@mozilla.org', addon_report_subject, addon_report_html
         )
 
-        log.info("Generating content reviews report...")
+        log.info('Generating content reviews report...')
         content_report_data = self.fetch_report_data('content')
         content_report_html = self.generate_report_html('content', content_report_data)
         content_report_subject = '%s %s-%s' % (

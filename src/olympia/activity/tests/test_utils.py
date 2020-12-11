@@ -46,7 +46,7 @@ class TestEmailParser(TestCase):
     def test_basic_email(self):
         parser = ActivityEmailParser(sample_message_content['Message'])
         assert parser.get_uuid() == '5a0b8a83d501412589cc5d562334b46b'
-        assert parser.reply == ('This is a developer reply to an AMO.  It\'s nice.')
+        assert parser.reply == ("This is a developer reply to an AMO.  It's nice.")
 
     def test_with_invalid_msg(self):
         with self.assertRaises(ActivityEmailEncodingError):
@@ -84,7 +84,7 @@ class TestEmailParser(TestCase):
 class TestEmailBouncing(TestCase):
     BOUNCE_REPLY = (
         'Hello,\n\nAn email was received, apparently from you. Unfortunately '
-        'we couldn\'t process it because of:\n%s\n\nPlease visit %s to leave '
+        "we couldn't process it because of:\n%s\n\nPlease visit %s to leave "
         'a reply instead.\n--\nMozilla Add-ons\n%s\n'
     )
 
@@ -596,7 +596,7 @@ class TestLogAndNotify(TestCase):
 
         body = send_mail_mock.call_args_list[1][0][1]
         assert "email's entities should be decoded" in body
-        assert "&" not in body
+        assert '&' not in body
 
     @mock.patch('olympia.activity.utils.send_mail')
     def test_notify_about_previous_activity(self, send_mail_mock):

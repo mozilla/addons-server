@@ -82,7 +82,7 @@ class CategoriesSelectMultiple(forms.CheckboxSelectMultiple):
         miscs = Category.objects.filter(misc=True).values_list('id', flat=True)
         for c in self.choices:
             if c[0] in miscs:
-                msg = ugettext('My add-on doesn\'t fit into any of the categories')
+                msg = ugettext("My add-on doesn't fit into any of the categories")
                 other = (c[0], msg)
             else:
                 choices.append(c)

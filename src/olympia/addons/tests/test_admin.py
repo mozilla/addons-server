@@ -795,7 +795,7 @@ class TestAddonRegionalRestrictionsAdmin(TestCase):
         )
         assert response.status_code == 200
         restriction = AddonRegionalRestrictions.objects.get(addon=addon)
-        assert restriction.excluded_regions == ["DE", "BR"]
+        assert restriction.excluded_regions == ['DE', 'BR']
         assert len(mail.outbox) == 1
         assert mail.outbox[0].subject == ('Regional Restriction added for Add-on')
         assert mail.outbox[0].body == (
@@ -828,7 +828,7 @@ class TestAddonRegionalRestrictionsAdmin(TestCase):
         )
         assert response.status_code == 200
         restriction.reload()
-        assert restriction.excluded_regions == ["DE", "BR"]
+        assert restriction.excluded_regions == ['DE', 'BR']
         assert restriction.addon == addon  # didn't change
         assert len(mail.outbox) == 1
         assert mail.outbox[0].subject == ('Regional Restriction changed for Add-on')

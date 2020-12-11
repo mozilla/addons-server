@@ -94,7 +94,7 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
         try:
             mlbf.generate_and_write_stash(previous_filter)
         except FileNotFoundError:
-            log.info('No previous blocked.json so we can\'t create a stash.')
+            log.info("No previous blocked.json so we can't create a stash.")
             # fallback to creating a new base if stash fails
             make_base_filter = True
     if make_base_filter:

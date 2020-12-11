@@ -15,7 +15,7 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         """Handle command arguments."""
-        parser.add_argument('id', help="CT baseline identifier", metavar=('ID'))
+        parser.add_argument('id', help='CT baseline identifier', metavar=('ID'))
         parser.add_argument(
             '--addon-guids-input',
             help='Path to json file with [[guid, version],...] data for all '

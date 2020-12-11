@@ -35,18 +35,18 @@ def file_compare(file_obj, version):
 def file_review_status(addon, file):
     if file.status == amo.STATUS_DISABLED:
         if file.reviewed is not None:
-            return ugettext(u'Rejected')
+            return ugettext('Rejected')
         # Can't assume that if the reviewed date is missing its
         # unreviewed.  Especially for versions.
         else:
-            return ugettext(u'Rejected or Unreviewed')
+            return ugettext('Rejected or Unreviewed')
     return file.STATUS_CHOICES.get(file.status, ugettext('[status:%s]') % file.status)
 
 
 @library.global_function
 def version_status(addon, version):
     if version.deleted:
-        return ugettext(u'Deleted')
+        return ugettext('Deleted')
     return ','.join(str(s) for s in version.status)
 
 

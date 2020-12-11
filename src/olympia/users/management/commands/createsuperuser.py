@@ -21,11 +21,11 @@ from olympia.users.models import Group, GroupUser
 
 
 class Command(CreateSuperUserCommand):
-    help = '''
+    help = """
 Used to create a superuser. This is similar to django's createsuperuser
 command but it doesn't support any arguments. This will prompt for a username
 and email address and that's it.
-'''
+"""
     # TODO: Use `UserProfile.REQUIRED_FIELDS`? Not sure why `username`
     # isn't in there...
     required_fields = ('username', 'email')

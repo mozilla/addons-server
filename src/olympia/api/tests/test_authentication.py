@@ -164,7 +164,7 @@ class TestJWTKeyAuthentication(JWTAuthKeyTester, TestCase):
             self.auth.authenticate(self.request(token))
         assert ctx.exception.detail == (
             "API key based tokens are not refreshable, don't include "
-            "`orig_iat` in their payload."
+            '`orig_iat` in their payload.'
         )
 
     def test_cant_refresh_token(self):

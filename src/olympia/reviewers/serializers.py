@@ -82,7 +82,7 @@ class FileEntriesMixin(object):
         try:
             return self.git_repo.revparse_single(self._get_version().git_hash)
         except pygit2.InvalidSpecError:
-            raise NotFound('Couldn\'t find the requested version in git-repository')
+            raise NotFound("Couldn't find the requested version in git-repository")
 
     @cached_property
     def tree(self):
@@ -595,15 +595,14 @@ class DraftCommentSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 {
                     'comment': ugettext(
-                        'You can\'t submit a comment if `canned_response` is '
-                        'defined.'
+                        "You can't submit a comment if `canned_response` is " 'defined.'
                     )
                 }
             )
 
         if not canned_response and not comment:
             raise serializers.ValidationError(
-                {'comment': ugettext('You can\'t submit an empty comment.')}
+                {'comment': ugettext("You can't submit an empty comment.")}
             )
 
         lineno = self.get_or_default('lineno', data)
@@ -613,7 +612,7 @@ class DraftCommentSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 {
                     'comment': ugettext(
-                        'You can\'t submit a line number without associating '
+                        "You can't submit a line number without associating "
                         'it to a filename.'
                     )
                 }

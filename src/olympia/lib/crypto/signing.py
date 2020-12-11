@@ -151,13 +151,13 @@ def sign_file(file_obj):
 
     if not settings.ENABLE_ADDON_SIGNING:
         raise SigningError(
-            u'Not signing file {0}: no active endpoint'.format(file_obj.pk)
+            'Not signing file {0}: no active endpoint'.format(file_obj.pk)
         )
 
     # No file? No signature.
     if not os.path.exists(file_obj.current_file_path):
         raise SigningError(
-            u'File {0} doesn\'t exist on disk'.format(file_obj.current_file_path)
+            "File {0} doesn't exist on disk".format(file_obj.current_file_path)
         )
 
     # Don't sign Mozilla signed extensions (they're already signed).
@@ -166,15 +166,15 @@ def sign_file(file_obj):
         # though we didn't sign, it's not an error - we just don't need to do
         # anything in this case.
         log.info(
-            u'Not signing file {0}: mozilla signed extension is already '
-            u'signed'.format(file_obj.pk)
+            'Not signing file {0}: mozilla signed extension is already '
+            'signed'.format(file_obj.pk)
         )
         return file_obj
 
     # We only sign files that are compatible with Firefox.
     if not supports_firefox(file_obj):
         raise SigningError(
-            u'Not signing version {0}: not for a Firefox version we support'.format(
+            'Not signing version {0}: not for a Firefox version we support'.format(
                 file_obj.version.pk
             )
         )
@@ -192,7 +192,7 @@ def sign_file(file_obj):
         is_signed=True,
         size=size,
     )
-    log.info(u'Signing complete for file {0}'.format(file_obj.pk))
+    log.info('Signing complete for file {0}'.format(file_obj.pk))
 
     if waffle.switch_is_active('enable-uploads-commit-to-git-storage'):
         # Schedule this version for git extraction.
@@ -222,7 +222,7 @@ def is_signed(file_path):
     except (zipfile.BadZipFile, IOError):
         filenames = set()
     return set(
-        [u'META-INF/mozilla.rsa', u'META-INF/mozilla.sf', u'META-INF/manifest.mf']
+        ['META-INF/mozilla.rsa', 'META-INF/mozilla.sf', 'META-INF/manifest.mf']
     ).issubset(filenames)
 
 

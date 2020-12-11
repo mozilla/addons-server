@@ -5,8 +5,8 @@ from . import views
 
 urlpatterns = [
     re_path(
-        r"^stripe-webhook$",
+        r'^stripe-webhook$',
         views.stripe_webhook,
-        name="promoted.stripe_webhook",
+        name='promoted.stripe_webhook',
     ),
 ]

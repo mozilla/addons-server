@@ -39,7 +39,7 @@ class TestShelfForm(TestCase):
             responses.GET,
             reverse_ns('addon-search', api_version='v4') + self.criteria_404,
             status=404,
-            json={"detail": "Not found."},
+            json={'detail': 'Not found.'},
         ),
         responses.add(
             responses.GET,
@@ -52,13 +52,13 @@ class TestShelfForm(TestCase):
                 },
             ),
             status=404,
-            json={"detail": "Not found."},
+            json={'detail': 'Not found.'},
         ),
         responses.add(
             responses.GET,
             reverse_ns('addon-search', api_version='v4') + self.criteria_not_200,
             status=400,
-            json=['Invalid \"sort\" parameter.'],
+            json=['Invalid "sort" parameter.'],
         )
         responses.add(
             responses.GET,
@@ -173,7 +173,7 @@ class TestShelfForm(TestCase):
         assert not form.is_valid()
         with self.assertRaises(ValidationError) as exc:
             form.clean()
-        assert exc.exception.message == ('Check criteria - Invalid \"sort\" parameter.')
+        assert exc.exception.message == ('Check criteria - Invalid "sort" parameter.')
 
     def test_clean_returns_empty(self):
         data = {
