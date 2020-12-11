@@ -60,7 +60,16 @@
       {% endif %}
 
       {% if version.needs_human_review %}
-        <div><strong class="risk-high">{{ _('Flagged by scanners') }}</strong></div>
+        <div><strong class="risk-high">
+          {{ _('Flagged by scanners') }}
+          {%- if request.user.is_staff and action_allowed(amo.permissions.ADMIN_SCANNERS_RESULTS_VIEW) %}
+            {% for result in version.scannerresults.all() -%}
+              {%- if loop.first %}({% endif -%}
+              <a href="{{ url('admin:scanners_scannerresult_change', result.pk ) }}">{{ result.get_scanner_display() }}</a>
+              {%- if loop.last %}){% else %}, {% endif -%}
+            {%- endfor %}
+          {%- endif %}
+        </strong></div>
       {% elif version.needs_human_review_by_mad %}
         <div><strong class="risk-medium">{{ _('Flagged for human review') }}</strong></div>
       {% endif %}
