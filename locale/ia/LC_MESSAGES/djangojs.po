@@ -1,12 +1,12 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-08-27 20:51+0000\n"
-"Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
+"PO-Revision-Date: 2020-12-11 00:32+0000\n"
+"Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
 "MIME-Version: 1.0\n"
@@ -27,9 +27,8 @@ msgstr "Il ha habite un problema con le connexion al servitor."
 msgid "Select a file..."
 msgstr "Elige un file..."
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi or .crx"
-msgstr "Le nomine de tu additivo debe finir per .zip, .xpi, .crx, o .xml"
+msgstr "Le nomine de tu additivo debe finir per.zip, .xpi o .crx"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format

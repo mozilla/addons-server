@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-12-07 20:12+0000\n"
+"PO-Revision-Date: 2020-12-11 00:34+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -959,13 +959,11 @@ msgstr "{addon} {version} rejectate programmate."
 msgid "Rejection scheduled"
 msgstr "Rejection programmate"
 
-#, fuzzy
 msgid "{addon} {version} re-signed (previously {0})."
-msgstr "Revision demandate pro {addon} {version}."
+msgstr "{addon} {version} resignate (precedentemente {0})."
 
-#, fuzzy
 msgid "Version re-signed"
-msgstr "Version %s re-activate."
+msgstr "Version resignate"
 
 msgid "Firefox"
 msgstr "Firefox"
