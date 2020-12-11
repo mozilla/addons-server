@@ -1074,9 +1074,9 @@ def upload_image(request, addon_id, addon, upload_type):
             if icon_size[0] < standard_size or icon_size[1] < standard_size:
                 # L10n: {0} is an image width/height (in pixels).
                 errors.append(
-                    ugettext(
-                        'Icon must be at least {0} pixels wide and ' 'tall.'
-                    ).format(standard_size)
+                    ugettext('Icon must be at least {0} pixels wide and tall.').format(
+                        standard_size
+                    )
                 )
             if icon_size[0] != icon_size[1]:
                 errors.append(ugettext('Icon must be square (same width and height).'))

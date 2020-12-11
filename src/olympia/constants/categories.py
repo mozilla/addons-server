@@ -346,7 +346,7 @@ CATEGORIES_NO_APP = {
             name=_('Other'),
             weight=333,
             description=_(
-                'Download Firefox themes that are interesting, creative, ' 'and unique.'
+                'Download Firefox themes that are interesting, creative, and unique.'
             ),
         ),
         'scenery': StaticCategory(

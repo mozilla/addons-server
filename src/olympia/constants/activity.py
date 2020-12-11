@@ -628,7 +628,7 @@ class ADMIN_ALTER_INFO_REQUEST(_LOG):
 
 class DEVELOPER_CLEAR_INFO_REQUEST(_LOG):
     id = 150
-    format = _('Information request cleared by developer on ' '{addon} {version}.')
+    format = _('Information request cleared by developer on {addon} {version}.')
     short = _('Information request removed')
     keep = True
     review_queue = True

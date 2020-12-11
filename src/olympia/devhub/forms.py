@@ -77,7 +77,7 @@ def clean_addon_slug(slug, instance):
                 ugettext('This slug is already in use. Please choose another.')
             )
         if DeniedSlug.blocked(slug):
-            msg = ugettext('The slug cannot be "%(slug)s". ' 'Please choose another.')
+            msg = ugettext('The slug cannot be "%(slug)s". Please choose another.')
             raise forms.ValidationError(msg % {'slug': slug})
 
     return slug
@@ -1033,7 +1033,7 @@ class NewUploadForm(forms.Form):
         to_field_name='uuid',
         error_messages={
             'invalid_choice': _(
-                'There was an error with your ' 'upload. Please try again.'
+                'There was an error with your upload. Please try again.'
             )
         },
     )
@@ -1074,7 +1074,7 @@ class NewUploadForm(forms.Form):
             and acl.action_allowed(self.request, amo.permissions.REVIEWS_ADMIN)
         ):
             raise forms.ValidationError(
-                ugettext('There was an error with your upload. ' 'Please try again.')
+                ugettext('There was an error with your upload. Please try again.')
             )
 
     def check_throttles(self, request):
@@ -1191,9 +1191,7 @@ class SourceForm(WithSourceMixin, forms.ModelForm):
             )
         elif has_source == 'no' and source:
             raise forms.ValidationError(
-                ugettext(
-                    'Source file uploaded but you indicated no source ' 'was needed.'
-                )
+                ugettext('Source file uploaded but you indicated no source was needed.')
             )
         # At this point we know we can proceed with the actual archive
         # validation.

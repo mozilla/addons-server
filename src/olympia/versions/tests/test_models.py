@@ -1250,7 +1250,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         )
         assert version.is_mozilla_signed
         assert version.approval_notes == (
-            'This version has been signed with ' 'Mozilla internal certificate.'
+            'This version has been signed with Mozilla internal certificate.'
         )
 
     def test_carry_over_license_no_version(self):
