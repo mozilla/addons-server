@@ -1120,7 +1120,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
             'en-US': 'My License',
             'fr': 'Mä Licence',
         }
-        assert results[1]["addon"]["current_version"]["license"] is None
+        assert results[1]['addon']['current_version']['license'] is None
         assert results[2]['addon']['current_version']['license']['name'] == {
             'en-US': 'My License',
             'fr': 'Mä Licence',
