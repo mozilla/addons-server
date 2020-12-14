@@ -1,12 +1,12 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-08-18 09:28+0000\n"
-"Last-Translator: KAHINA <kahinamessaoudi03@gmail.com>\n"
+"PO-Revision-Date: 2020-12-14 19:42+0000\n"
+"Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
@@ -27,9 +27,8 @@ msgstr "Teḍra-d tuccḍa deg unermes n uqeddac."
 msgid "Select a file..."
 msgstr "Fren afaylu..."
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi or .crx"
-msgstr "Isem n ufaylu n uzegrir-ik issefk ad ifak s .zip, .xpi, .crx neɣ .xml"
+msgstr "Azegrir-inek·inem issefk ad ifakk s .zip, .xpi, .crx neɣ .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
