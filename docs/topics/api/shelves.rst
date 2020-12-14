@@ -98,8 +98,14 @@ This endpoint returns the enabled shelves displayed on the AMO Homepage below th
     :query int count: The number of results for this query.
     :query string next: The URL of the next page of results.
     :query string previous: The URL of the previous page of results.
-    :>json array results: The array of shelves displayed on the AMO Homepage. Each shelf includes its title, url, endpoint, criteria, footer text, footer pathname, and the add-ons based on the shelf's endpoint and criteria.
-
+    :>json array results: The array of shelves displayed on the AMO Homepage.
+    :>json string results[].title: The title of the shelf.
+    :>json string results[].url: The configured URL using the shelf's endpoint and criteria; links to the shelf's returned add-ons.
+    :>json string results[].endpoint: The endpoint selected for the shelf.
+    :>json string results[].criteria: The criteria for the addons in the shelf.
+    :>json string|null results[].footer_text: The optional text in the footer of the shelf.
+    :>json string|null results[].footer_pathname: The optional pathname of the URL for the footer's text.
+    :>json array results[].addons: An array of :ref:`add-ons <addon-detail-object>` or :ref:`collections <collection-detail-object>`.
 
 ---------------
 Sponsored Shelf
