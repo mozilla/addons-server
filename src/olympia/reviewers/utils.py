@@ -342,7 +342,9 @@ class MadReviewTable(ScannersReviewTable):
                     versions__channel=amo.RELEASE_CHANNEL_UNLISTED,
                 ),
             ),
-            listed_versions_that_need_human_review=F('_current_version__reviewerflags'),
+            listed_versions_that_need_human_review=F(
+                '_current_version__reviewerflags__needs_human_review_by_mad'
+            ),
         )
 
 
