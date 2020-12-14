@@ -1459,10 +1459,9 @@ class TestQueueBasics(QueueTest):
         assert len(connection.queries) == 1
         full_query = connection.queries[0]['sql']
 
-        qs = qs.all()  # Trash queryset caching
         reset_queries()
         response = _queue(
-            request, ContentReviewTable, 'content_review', qs=qs, SearchForm=None
+            request, ContentReviewTable, 'content_review', SearchForm=None
         )
         assert connection.queries
         assert full_query not in [item['sql'] for item in connection.queries]
@@ -1472,10 +1471,9 @@ class TestQueueBasics(QueueTest):
 
         request = RequestFactory().get('/', {'per_page': 2})
         request.user = self.user
-        qs = qs.all()  # Trash queryset caching
         reset_queries()
         response = _queue(
-            request, ContentReviewTable, 'content_review', qs=qs, SearchForm=None
+            request, ContentReviewTable, 'content_review', SearchForm=None
         )
         assert connection.queries
         assert full_query not in [item['sql'] for item in connection.queries]
@@ -1485,10 +1483,9 @@ class TestQueueBasics(QueueTest):
 
         request = RequestFactory().get('/', {'per_page': 2, 'page': 2})
         request.user = self.user
-        qs = qs.all()  # Trash queryset caching
         reset_queries()
         response = _queue(
-            request, ContentReviewTable, 'content_review', qs=qs, SearchForm=None
+            request, ContentReviewTable, 'content_review', SearchForm=None
         )
         assert connection.queries
         assert full_query not in [item['sql'] for item in connection.queries]
