@@ -6,7 +6,6 @@ from django.conf import settings
 from django.conf.urls import url
 from django.contrib import admin
 from django.core import validators
-from django.db.models import Exists, OuterRef
 from django.forms.models import modelformset_factory
 from django.http.response import (
     HttpResponseForbidden,
