@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-07-09 14:45+0000\n"
+"PO-Revision-Date: 2020-12-15 19:02+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: vi\n"
@@ -25,9 +25,8 @@ msgstr "Kết nối tới máy chủ có vấn đề."
 msgid "Select a file..."
 msgstr "Chọn tập tin…"
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi or .crx"
-msgstr "Tiện ích của bạn phải có đuôi là .zip, .xpi, .crx hoặc .xml"
+msgstr "Tiện ích của bạn phải có đuôi kết thúc bằng một trong các đuôi sau: .zip, .xpi, .crx hoặc .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -115,7 +114,6 @@ msgstr "Danh sách kiểm tra bản đệ trình tiện ích"
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Vui lòng xác minh các điểm sau đây trước khi hoàn thành đệ trình của bạn. Điều này sẽ giảm thiểu sự chậm trễ hoặc hiểu lầm trong quá trình xem xét:"
 
-#, fuzzy
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -495,14 +493,12 @@ msgid "Download Mediums from {0} to {1}"
 msgstr "Lượt tải xuống từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Contents, last {0} days"
-msgstr "Nguồn tải xuống, {0} ngày trước"
+msgstr "Lượt tải xuống nội dung, {0} ngày trước"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Contents from {0} to {1}"
-msgstr "Lượt tải xuống từ {0} đến {1}"
+msgstr "Lượt tải xuống nội dung từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
 #, fuzzy
