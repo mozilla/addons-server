@@ -162,10 +162,13 @@ class TestAddonAdmin(TestCase):
         self.grant_permission(user, 'Addons:Edit')
         self.client.login(email=user.email)
 
-        with self.assertNumQueries(12):
-            # FIXME: explain each query, lower count (#16132 should fix it
-            # the scaling, currently there is one query per add-on for the
-            # unlisted reviewer exists() query)
+        with self.assertNumQueries(9):
+            # - 2 savepoints
+            # - 2 user and groups
+            # - 2 count (repeated, django admin limitation)
+            # - 1 main query
+            # - 1 translations
+            # - 1 all authors in one query
             response = self.client.get(self.list_url, follow=True)
             assert response.status_code == 200
 

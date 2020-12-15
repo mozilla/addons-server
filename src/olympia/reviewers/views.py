@@ -507,9 +507,9 @@ def filter_admin_review_for_legacy_queue(qs):
     )
 
 
-def _queue(request, TableObj, tab, qs=None, unlisted=False, SearchForm=QueueSearchForm):
-    if qs is None:
-        qs = TableObj.Meta.model.objects.all()
+def _queue(request, TableObj, tab, unlisted=False, SearchForm=QueueSearchForm):
+    admin_reviewer = is_admin_reviewer(request)
+    qs = TableObj.get_queryset(admin_reviewer=admin_reviewer)
 
     if SearchForm:
         if request.GET:
@@ -671,39 +671,27 @@ def application_versions_json(request):
 
 @permission_or_tools_view_required(amo.permissions.ADDONS_CONTENT_REVIEW)
 def queue_content_review(request):
-    admin_reviewer = is_admin_reviewer(request)
-    qs = Addon.objects.get_content_review_queue(admin_reviewer=admin_reviewer)
-    return _queue(request, ContentReviewTable, 'content_review', qs=qs, SearchForm=None)
+    return _queue(request, ContentReviewTable, 'content_review', SearchForm=None)
 
 
 @permission_or_tools_view_required(amo.permissions.ADDONS_REVIEW)
 def queue_auto_approved(request):
-    admin_reviewer = is_admin_reviewer(request)
-    qs = Addon.objects.get_auto_approved_queue(admin_reviewer=admin_reviewer)
-    return _queue(request, AutoApprovedTable, 'auto_approved', qs=qs, SearchForm=None)
+    return _queue(request, AutoApprovedTable, 'auto_approved', SearchForm=None)
 
 
 @permission_or_tools_view_required(amo.permissions.ADDONS_REVIEW)
 def queue_scanners(request):
-    admin_reviewer = is_admin_reviewer(request)
-    qs = Addon.objects.get_scanners_queue(admin_reviewer=admin_reviewer)
-    return _queue(request, ScannersReviewTable, 'scanners', qs=qs, SearchForm=None)
+    return _queue(request, ScannersReviewTable, 'scanners', SearchForm=None)
 
 
 @permission_or_tools_view_required(amo.permissions.ADDONS_REVIEW)
 def queue_mad(request):
-    admin_reviewer = is_admin_reviewer(request)
-    qs = Addon.objects.get_mad_queue(admin_reviewer=admin_reviewer)
-    return _queue(request, MadReviewTable, 'mad', qs=qs, SearchForm=None)
+    return _queue(request, MadReviewTable, 'mad', SearchForm=None)
 
 
 @permission_or_tools_view_required(amo.permissions.REVIEWS_ADMIN)
 def queue_pending_rejection(request):
-    admin_reviewer = is_admin_reviewer(request)
-    qs = Addon.objects.get_pending_rejection_queue(admin_reviewer=admin_reviewer)
-    return _queue(
-        request, PendingRejectionTable, 'pending_rejection', qs=qs, SearchForm=None
-    )
+    return _queue(request, PendingRejectionTable, 'pending_rejection', SearchForm=None)
 
 
 def determine_channel(channel_as_text):

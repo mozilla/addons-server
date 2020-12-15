@@ -1459,10 +1459,9 @@ class TestQueueBasics(QueueTest):
         assert len(connection.queries) == 1
         full_query = connection.queries[0]['sql']
 
-        qs = qs.all()  # Trash queryset caching
         reset_queries()
         response = _queue(
-            request, ContentReviewTable, 'content_review', qs=qs, SearchForm=None
+            request, ContentReviewTable, 'content_review', SearchForm=None
         )
         assert connection.queries
         assert full_query not in [item['sql'] for item in connection.queries]
@@ -1472,10 +1471,9 @@ class TestQueueBasics(QueueTest):
 
         request = RequestFactory().get('/', {'per_page': 2})
         request.user = self.user
-        qs = qs.all()  # Trash queryset caching
         reset_queries()
         response = _queue(
-            request, ContentReviewTable, 'content_review', qs=qs, SearchForm=None
+            request, ContentReviewTable, 'content_review', SearchForm=None
         )
         assert connection.queries
         assert full_query not in [item['sql'] for item in connection.queries]
@@ -1485,10 +1483,9 @@ class TestQueueBasics(QueueTest):
 
         request = RequestFactory().get('/', {'per_page': 2, 'page': 2})
         request.user = self.user
-        qs = qs.all()  # Trash queryset caching
         reset_queries()
         response = _queue(
-            request, ContentReviewTable, 'content_review', qs=qs, SearchForm=None
+            request, ContentReviewTable, 'content_review', SearchForm=None
         )
         assert connection.queries
         assert full_query not in [item['sql'] for item in connection.queries]
@@ -2602,7 +2599,8 @@ class TestScannersReviewQueue(QueueTest):
 
     def test_results(self):
         self.generate_files()
-        response = self.client.get(self.url)
+        with self.assertNumQueries(16):
+            response = self.client.get(self.url)
         assert response.status_code == 200
 
         expected = []
@@ -8963,25 +8961,18 @@ class TestMadQueue(QueueTest):
         ]
 
     def test_results(self):
-        with self.assertNumQueries(24):
+        with self.assertNumQueries(16):
             # That's a lot of queries. Some of them are unfortunately scaling
             # with the number of add-ons in the queue.
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
-            # - 3 for the addons in the queue and their files (regardless of
+            # - 3 for the addons in the queue, their files and the number of
+            #     flagged versions they have in each channel (regardless of
             #     how many are in the queue - that's the important bit)
             # - 2 for config items (motd / site notice)
             # - 2 for my add-ons / my collection in user menu
             # - 4 for reviewer scores and user stuff displayed above the queue
-            # - 2 queries for first add-on to get listed/unlisted count of
-            #     versions with needs human review flag
-            # - 2 queries for second add-on to get listed/unlisted count of
-            #     versions with needs human review flag
-            # - 2 queries for third add-on to get listed/unlisted count of
-            #     versions with needs human review flag
-            # - 2 queries for fourth add-on to get listed/unlisted count of
-            #     versions with needs human review flag
             response = self.client.get(self.url)
         assert response.status_code == 200
 
