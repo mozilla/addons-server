@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-12-15 07:05+0000\n"
+"PO-Revision-Date: 2020-12-15 07:09+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -951,13 +951,11 @@ msgstr "{addon} {version} reject scheduled."
 msgid "Rejection scheduled"
 msgstr "Rejection scheduled"
 
-#, fuzzy
 msgid "{addon} {version} re-signed (previously {0})."
-msgstr "{addon} {version} review requested."
+msgstr "{addon} {version} re-signed (previously {0})."
 
-#, fuzzy
 msgid "Version re-signed"
-msgstr "Version %s re-enabled."
+msgstr "Version re-signed"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2225,13 +2223,13 @@ msgstr "Your payment has been recorded, but there are currently no published ver
 msgid "Manage add-on"
 msgstr "Manage add-on"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a "
 "href=\"mailto:%(email)s\">%(email)s</a>."
 msgstr ""
-"There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a href=\"mailto:amo-"
-"admins@mozilla.com\">amo-admins@mozilla.com</a>."
+"There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a "
+"href=\"mailto:%(email)s\">%(email)s</a>."
 
 msgid "Thank you for joining the Promoted Add-ons Program!"
 msgstr "Thank you for joining the Promoted Add-ons Program!"
