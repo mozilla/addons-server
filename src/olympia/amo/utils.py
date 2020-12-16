@@ -34,10 +34,8 @@ from django.core.validators import ValidationError, validate_slug
 from django.forms.fields import Field
 from django.http import HttpResponse
 from django.http.response import HttpResponseRedirectBase
-from django.middleware.cache import CacheMiddleware
 from django.template import engines, loader
 from django.utils import translation
-from django.utils.decorators import decorator_from_middleware_with_args
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import _urlparse as django_urlparse, quote_etag
 
@@ -1126,21 +1124,3 @@ class HttpResponseTemporaryRedirect(HttpResponseRedirectBase):
     redirect POSTs too."""
 
     status_code = 307
-
-
-def cache_page_if_anonymous(timeout, *, cache=None, key_prefix=None):
-    """
-    Decorator that behaves like django's cache_page(), but only for anonymous
-    users.
-    """
-
-    class _CacheMiddlewareIfAnonymous(CacheMiddleware):
-        def process_request(self, request):
-            if request.user.is_authenticated:
-                request._cache_update_cache = False
-                return None
-            return super().process_request(request)
-
-    return decorator_from_middleware_with_args(_CacheMiddlewareIfAnonymous)(
-        cache_timeout=timeout, cache_alias=cache, key_prefix=key_prefix
-    )

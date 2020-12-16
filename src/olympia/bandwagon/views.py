@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.conf import settings
 from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 
 from rest_framework import serializers
 from rest_framework.viewsets import ModelViewSet
@@ -8,7 +9,7 @@ from rest_framework.viewsets import ModelViewSet
 from olympia import amo
 from olympia.accounts.views import AccountViewSet
 from olympia.addons.models import Addon, attach_tags
-from olympia.amo.utils import attach_trans_dict, cache_page_if_anonymous
+from olympia.amo.utils import attach_trans_dict
 from olympia.api.filters import OrderingAliasFilter
 from olympia.api.permissions import (
     AllOf,
@@ -129,17 +130,16 @@ class CollectionAddonViewSet(ModelViewSet):
     }
     ordering = ('-addon__weekly_downloads',)
 
-    # This endpoint can be quite slow so it's cached for one hour for all
-    # anonymous users.
-    @method_decorator(cache_page_if_anonymous(60 * 60 * 1))
-    def list(self, request, *args, **kwargs):
+    @method_decorator(cache_page(60 * 60 * 1))
+    def _cached_list(self, request, *args, **kwargs):
         # Swap DRF's Response with a HttpResponse so that it's smaller in size
         # when pickling (data attribute is lost, we only keep the rendered
         # content), which matters because by default, memcached doesn't
         # accept values over 1 MB.
-        # Note that this needs to happen before cache_page_if_anonymous() has
-        # seen the response, because it attaches the callback that caches the
-        # response to it. That's why we manually call finalize_response() and
+        # Note that this needs to happen inside the method that is decorated
+        # by cache_page(), because cache_page() attaches the callback that does
+        # the caching to the response returned by the function/method it
+        # decorates. That's why we manually call finalize_response() and
         # render() here.
         response = super().list(*args, *kwargs)
         response = self.finalize_response(request, response, *args, **kwargs)
@@ -149,6 +149,18 @@ class CollectionAddonViewSet(ModelViewSet):
             status=response.status_code,
             content_type='application/json',
         )
+
+    def list(self, request, *args, **kwargs):
+        # This endpoint can be quite slow so we cache the most popular
+        # collections - those from mozilla - for all anonymous users for one
+        # hour.
+        if (
+            self.kwargs['user_pk'] in ('mozilla', str(settings.TASK_USER_ID))
+            and not request.user.is_authenticated
+        ):
+            return self._cached_list(request, *args, **kwargs)
+        else:
+            return super().list(*args, *kwargs)
 
     def get_collection(self):
         if not hasattr(self, 'collection'):

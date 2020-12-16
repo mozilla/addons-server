@@ -8,6 +8,7 @@ from django.http import HttpResponse
 from django.test.utils import override_settings
 
 from rest_framework.fields import empty
+from rest_framework.response import Response
 
 from olympia import amo
 from olympia.amo.tests import (
@@ -980,26 +981,84 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         assert all_addons_ids == result_ids
 
     def test_no_caching_authenticated(self):
+        self.user = user_factory(id=settings.TASK_USER_ID)
+        self.collection.update(author=self.user)
+        self.url = reverse_ns(
+            'collection-addon-list',
+            kwargs={'user_pk': self.user.pk, 'collection_slug': self.collection.slug},
+        )
         self.client.login_api(self.user)
-        # Passing authentication makes an extra query.
-        with self.assertNumQueries(26):
+        # Passing authentication makes an extra query. We should not be caching.
+        self._test_no_caching(expected_num_queries=26)
+
+    def test_no_caching_authenticated_by_username(self):
+        self.user.update(username='notmozilla')
+        self.url = reverse_ns(
+            'collection-addon-list',
+            kwargs={
+                'user_pk': self.user.username,
+                'collection_slug': self.collection.slug,
+            },
+        )
+        self.client.login_api(self.user)
+        # Passing authentication makes an extra query. We should not be caching.
+        self._test_no_caching(expected_num_queries=26)
+
+    def test_no_caching_anonymous_not_mozilla_collection(self):
+        self._test_no_caching()
+
+    def test_no_caching_anonymous_but_not_mozilla_collection_by_username(self):
+        self.user.update(username='notmozilla')
+        self.url = reverse_ns(
+            'collection-addon-list',
+            kwargs={
+                'user_pk': self.user.username,
+                'collection_slug': self.collection.slug,
+            },
+        )
+        self._test_no_caching()
+
+    def test_caching_anonymous(self):
+        self.user = user_factory(id=settings.TASK_USER_ID)
+        self.collection.update(author=self.user)
+        self.url = reverse_ns(
+            'collection-addon-list',
+            kwargs={'user_pk': self.user.pk, 'collection_slug': self.collection.slug},
+        )
+        self._test_caching()
+
+    def test_caching_anonymous_by_username(self):
+        self.user.update(username='mozilla')
+        self.url = reverse_ns(
+            'collection-addon-list',
+            kwargs={
+                'user_pk': self.user.username,
+                'collection_slug': self.collection.slug,
+            },
+        )
+        self._test_caching()
+
+    def _test_no_caching(self, expected_num_queries=25):
+        with self.assertNumQueries(expected_num_queries):
             response = self.client.get(self.url)
-        assert isinstance(response, HttpResponse)
+        # We aren't caching so we should be swapping DRF's Response with HttpResponse.
+        assert isinstance(response, Response)
         assert response['Content-Type'] == 'application/json'
         assert response.status_code == 200
         assert len(response.json()['results']) == 3
+        assert 'Cache-Control' not in response
 
-        # We should get an updated response with only 2 add-ons are we're
-        # authenticated.
+        # Tere is no caching so we should get an updated response with only 2 add-ons.
         self.collection.addons.remove(self.addon_a)
-        with self.assertNumQueries(26):
+        with self.assertNumQueries(expected_num_queries):
             response = self.client.get(self.url)
-        assert isinstance(response, HttpResponse)
+        assert isinstance(response, Response)
         assert response['Content-Type'] == 'application/json'
         assert response.status_code == 200
         assert len(response.json()['results']) == 2
+        assert 'Cache-Control' not in response
 
-    def test_caching_anonymous(self):
+    def _test_caching(self):
         # Force first add-on to have an enormous description (large enough
         # that the response being an HttpResponse and not a DRF Response would
         # matter, but not too large so that it makes pickling even an
@@ -1018,8 +1077,9 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         assert response['Content-Type'] == 'application/json'
         assert response.status_code == 200
         assert len(response.json()['results']) == 3
+        assert response['Cache-Control'] == 'max-age=3600'
 
-        # We should get a cached response with 3 add-ons are we're anonymous.
+        # We should get a cached response with 3 add-ons.
         self.collection.addons.remove(self.addon_a)
         with self.assertNumQueries(2):
             response = self.client.get(self.url)
@@ -1027,6 +1087,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         assert response['Content-Type'] == 'application/json'
         assert response.status_code == 200
         assert len(response.json()['results']) == 3
+        assert response['Cache-Control'] == 'max-age=3600'
 
         # Any URL parameter added creates a separate cache key as well, so we
         # see the updated results with a new URL.
@@ -1036,20 +1097,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         assert response['Content-Type'] == 'application/json'
         assert response.status_code == 200
         assert len(response.json()['results']) == 2
-
-        # Different collection should of course be cached separately.
-        new_collection = collection_factory(author=self.user)
-        new_collection.add_addon(self.addon_a)
-        url = reverse_ns(
-            'collection-addon-list',
-            kwargs={'user_pk': self.user.pk, 'collection_slug': new_collection.slug},
-        )
-        with self.assertNumQueries(25):
-            response = self.client.get(url)
-        assert isinstance(response, HttpResponse)
-        assert response['Content-Type'] == 'application/json'
-        assert response.status_code == 200
-        assert len(response.json()['results']) == 1
+        assert response['Cache-Control'] == 'max-age=3600'
 
         # Old response remains cached.
         with self.assertNumQueries(2):
@@ -1058,6 +1106,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         assert response['Content-Type'] == 'application/json'
         assert response.status_code == 200
         assert len(response.json()['results']) == 3
+        assert response['Cache-Control'] == 'max-age=3600'
 
     def test_basic(self):
         with self.assertNumQueries(25):
