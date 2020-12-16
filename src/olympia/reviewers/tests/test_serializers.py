@@ -710,7 +710,7 @@ class TestAddonCompareVersionSerializer(TestCase):
         assert readme_data['status'] == 'D'
         assert readme_data['depth'] == 0
         assert readme_data['filename'] == 'README.md'
-        # Not testing mimetype as text/markdown is missing in travis mimetypes
+        # Not testing mimetype as text/markdown is missing in CI mimetypes
         # database. But it doesn't matter much here since we're primarily
         # after the git status.
         assert readme_data['mime_category'] is None

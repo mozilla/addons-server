@@ -2,8 +2,8 @@
     :target: https://github.com/mozilla/addons-server/blob/master/.github/CODE_OF_CONDUCT.md
     :alt: Code of conduct
 
-.. image:: https://travis-ci.org/mozilla/addons-server.svg?branch=master
-    :target: https://travis-ci.org/mozilla/addons-server
+.. image:: https://circleci.com/gh/mozilla/addons-server.svg?style=svg
+    :target: https://circleci.com/gh/mozilla/addons-server
 
 
 Addons-Server

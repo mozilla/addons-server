@@ -4,12 +4,12 @@
     "repository": {
         "url": "https://github.com/mozilla/addons-server",
         "license": "BSD 3-Clause",
-        "tests": "https://travis-ci.org/mozilla/addons-server"
+        "tests": "https://app.circleci.com/pipelines/github/mozilla/addons-server"
     },
     "participate": {
         "home": "https://wiki.mozilla.org/Add-ons/Contribute/AMO/Code",
         "docs": "http://addons-server.readthedocs.io/",
-        "matrix": "https://chat.mozilla.org/#/room/#amo:mozilla.org",
+        "matrix": "https://chat.mozilla.org/#/room/#amo:mozilla.org"
     },
     "bugs": {
         "list": "https://github.com/mozilla/addons-server/issues",
