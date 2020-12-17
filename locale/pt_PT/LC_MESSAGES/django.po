@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-12-12 00:25+0000\n"
+"PO-Revision-Date: 2020-12-17 21:37+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -965,13 +965,11 @@ msgstr "Rejeição de {addon} {version} agendada."
 msgid "Rejection scheduled"
 msgstr "Agendamento da rejeição"
 
-#, fuzzy
 msgid "{addon} {version} re-signed (previously {0})."
-msgstr "Solicitada uma revisão para {addon} {version}."
+msgstr "{addon} {version} reassinado (anteriormente {0})."
 
-#, fuzzy
 msgid "Version re-signed"
-msgstr "Versão %s reativada."
+msgstr "Versão reassinada"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2268,13 +2266,11 @@ msgstr "O seu pagamento foi registado, mas atualmente não há nenhuma versão d
 msgid "Manage add-on"
 msgstr "Gerir extra"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a "
 "href=\"mailto:%(email)s\">%(email)s</a>."
-msgstr ""
-"Ocorreu um erro ao configurar o pagamento para o seu extra. Se está a ter problemas com este processo ou mudou de ideias, entre em contacto connosco em <a href=\"mailto:amo-admins@mozilla.com\">amo-"
-"admins@mozilla.com</a>."
+msgstr "Ocorreu um erro ao configurar o pagamento para o seu extra. Se está a ter problemas com este processo ou mudou de ideias, entre em contacto connosco em <a href=\"mailto:%(email)s\">%(email)s</a>."
 
 msgid "Thank you for joining the Promoted Add-ons Program!"
 msgstr "Obrigado por aderir ao programa de extras promovidos!"
