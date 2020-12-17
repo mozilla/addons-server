@@ -165,8 +165,11 @@ class TestUserProfile(TestCase):
         )
         assert rating_writer.should_send_delete_email()
 
+    @mock.patch('olympia.amo.tasks.trigger_sync_objects_to_basket')
     @mock.patch.object(File, 'hide_disabled_file')
-    def test_ban_and_disable_related_content_bulk(self, hide_disabled_mock):
+    def test_ban_and_disable_related_content_bulk(
+        self, hide_disabled_mock, trigger_sync_objects_to_basket_mock
+    ):
         user_sole = user_factory(
             email='sole@foo.baa', fxa_id='13579', last_login_ip='127.0.0.1'
         )
@@ -180,6 +183,7 @@ class TestUserProfile(TestCase):
             users=UserProfile.objects.filter(id__in=[user_multi.id, innocent_user.id])
         )
         self.setup_user_to_be_have_content_disabled(user_multi)
+        trigger_sync_objects_to_basket_mock.reset_mock()
 
         # Now that everything is set up, disable/delete related content.
         UserProfile.ban_and_disable_related_content_bulk([user_sole, user_multi])
@@ -232,6 +236,22 @@ class TestUserProfile(TestCase):
         assert user_multi.last_login_ip == '127.0.0.2'
 
         hide_disabled_mock.assert_not_called()
+        assert trigger_sync_objects_to_basket_mock.call_count == 3
+        assert trigger_sync_objects_to_basket_mock.call_args_list[0][0] == (
+            'addon',
+            [addon_multi.pk],
+            'addonuser change',
+        )
+        assert trigger_sync_objects_to_basket_mock.call_args_list[1][0] == (
+            'userprofile',
+            [user_sole.pk, user_multi.pk],
+            'user ban',
+        )
+        assert trigger_sync_objects_to_basket_mock.call_args_list[2][0] == (
+            'addon',
+            [addon_sole.pk],
+            'user ban content',
+        )
 
     def setup_user_to_be_have_content_disabled(self, user):
         addon = user.addons.last()

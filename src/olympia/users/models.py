@@ -532,10 +532,11 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
         # Finally run Addon.force_disable to add the logging; update versions
         # Status was already DISABLED so shouldn't fire watch_disabled again.
+        addons_sole_ids = []
         for addon in addons_sole:
+            addons_sole_ids.append(addon.pk)
             addon.force_disable()
-        # Don't pass a set to a .delay - sets can't be serialized as JSON
-        index_addons.delay(list(addon_ids - addon_joint_ids))
+        index_addons.delay(addons_sole_ids)
 
         # delete the other content associated with the user
         Collection.objects.filter(author__in=users).delete()
@@ -554,6 +555,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         from olympia.amo.tasks import trigger_sync_objects_to_basket
 
         trigger_sync_objects_to_basket('userprofile', ids, 'user ban')
+        trigger_sync_objects_to_basket('addon', addons_sole_ids, 'user ban content')
 
     def _prepare_delete_email(self):
         site_url = settings.EXTERNAL_SITE_URL
