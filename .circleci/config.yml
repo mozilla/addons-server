@@ -289,8 +289,6 @@ references:
       - image: redis:2.8
       - image: memcached:1.4
       - image: circleci/mysql:8.0
-        # This is needed to avoid an error with an authentication plugin.
-        command: --default-authentication-plugin=mysql_native_password
         environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
           MYSQL_DATABASE: olympia
@@ -353,8 +351,10 @@ jobs:
       - run:
           name: Initial setup
           command: |
-            sudo apt-get update
-            sudo apt-get install -y gettext pngcrush librsvg2-bin
+            curl -sL https://dev.mysql.com/get/mysql-apt-config_0.8.15-1_all.deb --output mysql-apt-config.deb
+            sudo dpkg -i mysql-apt-config.deb
+            sudo apt-get update -q
+            sudo apt-get install -y gettext pngcrush librsvg2-bin libmysqlclient-dev
             sudo cp ./docker/etc/mime.types /etc/mime.types
             sudo touch /addons-server-docker-container
       - node/install:
