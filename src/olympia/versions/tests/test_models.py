@@ -805,9 +805,9 @@ class TestVersion(TestCase):
         del version.all_files  # Reset all_files cache.
         assert not version.was_auto_approved
 
-    @mock.patch('olympia.amo.tasks.sync_objects_to_basket')
+    @mock.patch('olympia.amo.tasks.trigger_sync_objects_to_basket')
     def test_version_field_changes_not_synced_to_basket(
-        self, sync_objects_to_basket_mock
+        self, trigger_sync_objects_to_basket_mock
     ):
         addon = Addon.objects.get(id=3615)
         version = addon.current_version
@@ -817,34 +817,42 @@ class TestVersion(TestCase):
             nomination=self.days_ago(2),
             version='1.42',
         )
-        assert sync_objects_to_basket_mock.delay.call_count == 0
+        assert trigger_sync_objects_to_basket_mock.call_count == 0
 
-    @mock.patch('olympia.amo.tasks.sync_objects_to_basket')
-    def test_version_field_changes_synced_to_basket(self, sync_objects_to_basket_mock):
+    @mock.patch('olympia.amo.tasks.trigger_sync_objects_to_basket')
+    def test_version_promoted_changes_synced_to_basket(
+        self, trigger_sync_objects_to_basket_mock
+    ):
         addon = Addon.objects.get(id=3615)
         PromotedApproval.objects.create(
             version=addon.current_version,
             group_id=RECOMMENDED.id,
             application_id=amo.FIREFOX.id,
         )
-        assert sync_objects_to_basket_mock.delay.call_count == 1
-        sync_objects_to_basket_mock.delay.assert_called_with('addon', addon.pk)
+        assert trigger_sync_objects_to_basket_mock.call_count == 1
+        trigger_sync_objects_to_basket_mock.assert_called_with(
+            'addon', [addon.pk], 'promoted change'
+        )
 
-    @mock.patch('olympia.amo.tasks.sync_objects_to_basket')
+    @mock.patch('olympia.amo.tasks.trigger_sync_objects_to_basket')
     def test_unlisted_version_deleted_synced_to_basket(
-        self, sync_objects_to_basket_mock
+        self, trigger_sync_objects_to_basket_mock
     ):
         addon = Addon.objects.get(id=3615)
         version = addon.current_version
         version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        sync_objects_to_basket_mock.reset_mock()
+        trigger_sync_objects_to_basket_mock.reset_mock()
 
         version.delete()
-        assert sync_objects_to_basket_mock.delay.call_count == 1
-        sync_objects_to_basket_mock.delay.assert_called_with('addon', addon.pk)
+        assert trigger_sync_objects_to_basket_mock.call_count == 1
+        trigger_sync_objects_to_basket_mock.assert_called_with(
+            'addon', [addon.pk], 'unlisted version deleted'
+        )
 
-    @mock.patch('olympia.amo.tasks.sync_objects_to_basket')
-    def test_version_deleted_not_synced_to_basket(self, sync_objects_to_basket_mock):
+    @mock.patch('olympia.amo.tasks.trigger_sync_objects_to_basket')
+    def test_version_deleted_not_synced_to_basket(
+        self, trigger_sync_objects_to_basket_mock
+    ):
         addon = Addon.objects.get(id=3615)
         # We need to create a new version, if we delete current_version this
         # would be synced to basket because _current_version would change.
@@ -852,7 +860,7 @@ class TestVersion(TestCase):
             addon=addon, file_kw={'status': amo.STATUS_NOMINATED}
         )
         new_version.delete()
-        assert sync_objects_to_basket_mock.delay.call_count == 0
+        assert trigger_sync_objects_to_basket_mock.call_count == 0
 
     def test_promoted_can_be_disabled_and_deleted(self):
         addon = Addon.objects.get(id=3615)
@@ -1481,8 +1489,10 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         )
         assert upload_version.nomination == pending_version.nomination
 
-    @mock.patch('olympia.amo.tasks.sync_objects_to_basket')
-    def test_from_upload_unlisted(self, sync_objects_to_basket_mock):
+    @mock.patch('olympia.amo.tasks.trigger_sync_objects_to_basket')
+    def test_from_upload_unlisted_synced_with_basket(
+        self, trigger_sync_objects_to_basket_mock
+    ):
         parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload,
@@ -1495,12 +1505,12 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert sorted(amo.PLATFORMS[f.platform].shortname for f in files) == (['all'])
         # It's a new unlisted version, we should be syncing the add-on with
         # basket.
-        assert sync_objects_to_basket_mock.delay.call_count == 1
-        assert sync_objects_to_basket_mock.delay.called_with('addon', self.addon.pk)
+        assert trigger_sync_objects_to_basket_mock.call_count == 1
+        trigger_sync_objects_to_basket_mock.assert_called_with('addon', self.addon.pk)
 
-    @mock.patch('olympia.amo.tasks.sync_objects_to_basket')
+    @mock.patch('olympia.amo.tasks.trigger_sync_objects_to_basket')
     def test_from_upload_listed_not_synced_with_basket(
-        self, sync_objects_to_basket_mock
+        self, trigger_sync_objects_to_basket_mock
     ):
         parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
         version = Version.from_upload(
@@ -1515,7 +1525,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         # It's a new listed version, we should *not* be syncing the add-on with
         # basket through version_uploaded signal, but only when
         # _current_version changes, which isn't the case here.
-        assert sync_objects_to_basket_mock.delay.call_count == 0
+        assert trigger_sync_objects_to_basket_mock.call_count == 0
 
     def test_set_version_to_customs_scanners_result(self):
         self.create_switch('enable-customs', active=True)
