@@ -1990,9 +1990,7 @@ def addon_user_sync(sender=None, instance=None, **kwargs):
     if created_or_deleted and instance.addon.status != amo.STATUS_DELETED:
         from olympia.amo.tasks import trigger_sync_objects_to_basket
 
-        trigger_sync_objects_to_basket(
-            'addon', [instance.addon.pk], 'addonuser change'
-        )
+        trigger_sync_objects_to_basket('addon', [instance.addon.pk], 'addonuser change')
 
 
 models.signals.post_delete.connect(

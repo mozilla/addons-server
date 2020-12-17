@@ -669,7 +669,9 @@ class TestUserProfile(TestCase):
         assert not user.reload().is_public
 
     @mock.patch('olympia.amo.tasks.trigger_sync_objects_to_basket')
-    def test_user_field_changes_not_synced_to_basket(self, trigger_sync_objects_to_basket_mock):
+    def test_user_field_changes_not_synced_to_basket(
+        self, trigger_sync_objects_to_basket_mock
+    ):
         user = UserProfile.objects.get(id=4043307)
         # Note that basket_token is for newsletters, and is irrelevant here.
         user.update(
@@ -684,28 +686,38 @@ class TestUserProfile(TestCase):
         assert trigger_sync_objects_to_basket_mock.call_count == 0
 
     @mock.patch('olympia.amo.tasks.trigger_sync_objects_to_basket')
-    def test_user_field_changes_synced_to_basket(self, trigger_sync_objects_to_basket_mock):
+    def test_user_field_changes_synced_to_basket(
+        self, trigger_sync_objects_to_basket_mock
+    ):
         user = UserProfile.objects.get(id=4043307)
         user.update(last_login=self.days_ago(0))
         assert trigger_sync_objects_to_basket_mock.call_count == 1
-        trigger_sync_objects_to_basket_mock.assert_called_with('userprofile', [4043307], 'attribute change')
+        trigger_sync_objects_to_basket_mock.assert_called_with(
+            'userprofile', [4043307], 'attribute change'
+        )
 
         trigger_sync_objects_to_basket_mock.reset_mock()
         user.update(display_name='Fôoo')
         assert trigger_sync_objects_to_basket_mock.call_count == 1
-        trigger_sync_objects_to_basket_mock.assert_called_with('userprofile', [4043307], 'attribute change')
+        trigger_sync_objects_to_basket_mock.assert_called_with(
+            'userprofile', [4043307], 'attribute change'
+        )
 
         trigger_sync_objects_to_basket_mock.reset_mock()
         user.update(fxa_id='wât')  # Can technically happen if admins do it.
         assert trigger_sync_objects_to_basket_mock.call_count == 1
-        trigger_sync_objects_to_basket_mock.assert_called_with('userprofile', [4043307], 'attribute change')
+        trigger_sync_objects_to_basket_mock.assert_called_with(
+            'userprofile', [4043307], 'attribute change'
+        )
 
     @mock.patch('olympia.amo.tasks.trigger_sync_objects_to_basket')
     def test_user_deletion_synced_to_basket(self, trigger_sync_objects_to_basket_mock):
         user = UserProfile.objects.get(id=4043307)
         user.delete()
         assert trigger_sync_objects_to_basket_mock.call_count == 1
-        trigger_sync_objects_to_basket_mock.assert_called_with('userprofile', [4043307], 'attribute change')
+        trigger_sync_objects_to_basket_mock.assert_called_with(
+            'userprofile', [4043307], 'attribute change'
+        )
 
     def test_get_lookup_field(self):
         user = UserProfile.objects.get(id=55021)

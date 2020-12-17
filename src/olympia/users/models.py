@@ -552,6 +552,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             users, fields=('banned', 'deleted', 'modified') + cls.ANONYMIZED_FIELDS
         )
         from olympia.amo.tasks import trigger_sync_objects_to_basket
+
         trigger_sync_objects_to_basket('userprofile', ids, 'user ban')
 
     def _prepare_delete_email(self):
@@ -1078,6 +1079,7 @@ def watch_changes(old_attr=None, new_attr=None, instance=None, sender=None, **kw
     )
     if any(field in changes for field in basket_relevant_changes):
         from olympia.amo.tasks import trigger_sync_objects_to_basket
+
         trigger_sync_objects_to_basket('userprofile', [instance.pk], 'attribute change')
 
 
