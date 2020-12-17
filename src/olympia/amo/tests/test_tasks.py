@@ -10,7 +10,7 @@ from django.test.utils import override_settings
 
 from olympia.accounts.serializers import UserProfileBasketSyncSerializer
 from olympia.addons.serializers import AddonBasketSyncSerializer
-from olympia.amo.tasks import sync_object_to_basket
+from olympia.amo.tasks import sync_objects_to_basket
 from olympia.amo.tests import addon_factory, TestCase, user_factory
 
 
@@ -18,12 +18,12 @@ from olympia.amo.tests import addon_factory, TestCase, user_factory
 class TestSyncObjectToBasket(TestCase):
     def test_unsupported(self):
         with self.assertRaises(ImproperlyConfigured):
-            sync_object_to_basket('version', 42)
+            sync_objects_to_basket('version', 42)
 
     @override_switch('basket-amo-sync', active=False)
     def test_switch_is_not_active(self):
         addon = addon_factory()
-        sync_object_to_basket('addon', addon.pk)
+        sync_objects_to_basket('addon', addon.pk)
         assert len(responses.calls) == 0
 
     @override_settings(BASKET_API_KEY='a-basket-key')
@@ -35,7 +35,7 @@ class TestSyncObjectToBasket(TestCase):
             # Gotta deactivate the sync when calling addon_factory() because
             # the change to _current_version inside will trigger a sync.
             addon = addon_factory()
-        sync_object_to_basket('addon', addon.pk)
+        sync_objects_to_basket('addon', addon.pk)
         assert len(responses.calls) == 1
         request = responses.calls[0].request
         assert request.headers['x-api-key'] == settings.BASKET_API_KEY
@@ -58,7 +58,7 @@ class TestSyncObjectToBasket(TestCase):
             # the change to _current_version inside will trigger a sync.
             addon = addon_factory()
         with self.assertRaises(HTTPError):
-            sync_object_to_basket('addon', addon.pk)
+            sync_objects_to_basket('addon', addon.pk)
 
         assert len(responses.calls) == 1
         request = responses.calls[0].request
@@ -77,7 +77,7 @@ class TestSyncObjectToBasket(TestCase):
             json=True,
         )
         user = user_factory()
-        sync_object_to_basket('userprofile', user.pk)
+        sync_objects_to_basket('userprofile', user.pk)
         assert len(responses.calls) == 1
         request = responses.calls[0].request
         assert request.headers['x-api-key'] == settings.BASKET_API_KEY

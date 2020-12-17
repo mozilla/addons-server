@@ -1098,7 +1098,7 @@ CELERY_TASK_ROUTES = {
     'olympia.amo.tasks.delete_logs': {'queue': 'amo'},
     'olympia.amo.tasks.send_email': {'queue': 'amo'},
     'olympia.amo.tasks.set_modified_on_object': {'queue': 'amo'},
-    'olympia.amo.tasks.sync_object_to_basket': {'queue': 'amo'},
+    'olympia.amo.tasks.sync_objects_to_basket': {'queue': 'amo'},
     'olympia.blocklist.tasks.cleanup_old_files': {'queue': 'amo'},
     # Addons
     'olympia.addons.tasks.add_dynamic_theme_tag': {'queue': 'addons'},
