@@ -155,9 +155,9 @@ def sync_objects_to_basket(model_name, pks):
         )
     model = serializer_class.Meta.model
     manager = getattr(model, 'unfiltered', model.objects)
-    objs = manager.get(pk__in=pks)
+    objs = manager.filter(pk__in=pks)
     for obj in objs:
-        # FIXME: if basket would support synchronizing multiple objects of the same type
+        # FIXME: if basket supported synchronizing multiple objects of the same type
         # at the same time, we'd do a single call. 99% of the time we're only going to
         # sync a single object at a time though, so it shouldn't matter much for now.
         locale_to_use = getattr(obj, 'default_locale', settings.LANGUAGE_CODE)

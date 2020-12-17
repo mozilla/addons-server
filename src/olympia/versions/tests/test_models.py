@@ -1506,7 +1506,9 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         # It's a new unlisted version, we should be syncing the add-on with
         # basket.
         assert trigger_sync_objects_to_basket_mock.call_count == 1
-        trigger_sync_objects_to_basket_mock.assert_called_with('addon', self.addon.pk)
+        trigger_sync_objects_to_basket_mock.assert_called_with(
+            'addon', [self.addon.pk], 'new unlisted version'
+        )
 
     @mock.patch('olympia.amo.tasks.trigger_sync_objects_to_basket')
     def test_from_upload_listed_not_synced_with_basket(
