@@ -3,12 +3,7 @@ import datetime
 import os.path
 import tempfile
 
-from unittest.mock import Mock
-
 from django.conf import settings
-from django.contrib.auth.models import AnonymousUser
-from django.http import HttpResponse
-from django.test.client import RequestFactory
 from django.utils.functional import cached_property
 from django.utils.http import quote_etag
 
@@ -24,7 +19,6 @@ from olympia.amo.tests import TestCase, addon_factory
 from olympia.amo.utils import (
     HttpResponseXSendFile,
     attach_trans_dict,
-    cache_page_if_anonymous,
     extract_colors_from_image,
     get_locale_from_lang,
     pngcrush_image,
@@ -298,48 +292,3 @@ def test_images_are_small():
             if os.path.getsize(os.path.join(root, name)) > IMAGE_FILESIZE_MAX
         ]
     assert not large_images
-
-
-def test_cache_page_if_anonymous():
-    def fake_view(request):
-        return HttpResponse(content)
-
-    def fake_request(url='/fakeview', user=None):
-        request = RequestFactory().get(url)
-        request.user = AnonymousUser() if user is None else user
-        return request
-
-    content = 'Base Content'
-    decorated_view = cache_page_if_anonymous(60)(fake_view)
-
-    # Request the view once.
-    request = fake_request()
-    response = decorated_view(request)
-    assert response.content == b'Base Content'
-
-    # Change the contents: shouldn't matter, we're hitting the cache.
-    content = 'Somewhat Fresh Content'
-    request = fake_request()
-    response = decorated_view(request)
-    assert response.content == b'Base Content'
-
-    # Change the query parameter: we're getting fresh content.
-    request = fake_request('/fakeview?param=foo')
-    response = decorated_view(request)
-    assert response.content == b'Somewhat Fresh Content'
-
-    # Change the contents again, we're hitting the cache with the param as well
-    content = 'Super Recent Content'
-    request = fake_request('/fakeview?param=foo')
-    response = decorated_view(request)
-    assert response.content == b'Somewhat Fresh Content'
-
-    # Make an authenticated request: we're bypassing the cache.
-    request = fake_request('/fakeview?param=foo', user=Mock(spec=['is_authenticated']))
-    response = decorated_view(request)
-    assert response.content == b'Super Recent Content'
-
-    # Go back to being anonymous: we should see the cache again.
-    request = fake_request()
-    response = decorated_view(request)
-    assert response.content == b'Base Content'
