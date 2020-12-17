@@ -383,7 +383,6 @@ jobs:
       - run:
           command: tox -e << parameters.toxenv >>
           environment:
-            RUNNING_IN_CI: True
             ES_VERSION: 6.x
             AUTOGRAPH_SERVER_URL: http://127.0.0.1:5500
 

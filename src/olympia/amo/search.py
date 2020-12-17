@@ -26,9 +26,6 @@ def get_es(hosts=None, timeout=None, **settings):
         else getattr(dj_settings, 'ES_TIMEOUT', DEFAULT_TIMEOUT)
     )
 
-    if os.environ.get('RUNNING_IN_CI'):
-        settings['http_auth'] = ('elastic', 'changeme')
-
     return Elasticsearch(hosts, timeout=timeout, **settings)
 
 
