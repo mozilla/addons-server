@@ -91,14 +91,44 @@ def delete_anonymous_collections(items, **kw):
     Collection.objects.filter(type=amo.COLLECTION_ANONYMOUS, pk__in=items).delete()
 
 
+def trigger_sync_object_to_basket(model_name, pk, reason):
+    """
+    Wrapper around sync_object_to_basket task to avoid queuing the task if the waffle
+    switch is off.
+    """
+    if not switch_is_active('basket-amo-sync'):
+        log.debug(
+            'Should have triggered a sync of %s %s with basket because of %s '
+            'but "basket-amo-sync" is off',
+            model_name,
+            pk,
+            reason,
+        )
+    else:
+        log.debug(
+            'Triggering a sync of %s %s with basket because of %s',
+            model_name,
+            pk,
+            reason,
+        )
+        sync_object_to_basket.delay(model_name, pk)
+
+
 @task
 @use_primary_db
 def sync_object_to_basket(model_name, pk):
     """
     Celery task to sync an object (UserProfile or Addon instance) with Basket.
+
+    Don't call directly, use trigger_sync_object_to_basket().
     """
     if not switch_is_active('basket-amo-sync'):
-        log.info(
+        # If the waffle is off we really shouldn't be here: we should have gone through
+        # trigger_sync_object_to_basket() wrapper which does this check and avoids
+        # calling the task if it's off, so something is wrong, warn about it.
+        # (There is a small edge case where the waffle could be turned off right after
+        # some tasks have been queued, but it's not likely to happen a lot)
+        log.warning(
             'Not synchronizing %s %s with basket because "basket-amo-sync" '
             'switch is off.',
             model_name,
