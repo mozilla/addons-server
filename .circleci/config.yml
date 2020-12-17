@@ -279,7 +279,7 @@ references:
     working_directory: ~/addons-server
     docker:
       # This is the python version we run in production.
-      - image: circleci/python:3.8
+      - image: cimg/python:3.8
       # Below are services this project depends on. In addition to these
       # services, we also need autograph, which is started in the `test` job
       # because we need to pass a configuration file to it and it's not
@@ -379,7 +379,6 @@ jobs:
       - run:
           name: Wait for elasticsearch
           command: dockerize -wait tcp://localhost:9200 -timeout 1m
-      - run: pip install tox
       - run: pip install --no-deps -r requirements/ci_base.txt
       - run:
           command: tox -e << parameters.toxenv >>
