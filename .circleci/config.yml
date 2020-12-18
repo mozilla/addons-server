@@ -12,7 +12,9 @@ orbs:
 
 references:
   # We declare the autograph configuration here to be able to fully leverage
-  # Docker executors.
+  # Docker executors. This configuration should be kept in sync with the
+  # content of `scripts/autograph_localdev_config.yaml`, which is used for
+  # local dev. Sadly, we cannot "include" this file here.
   autograph_config: &autograph_config |
     # Note: Most of the configuration here got copied from
     # https://github.com/mozilla-services/autograph/blob/master/autograph.yaml
