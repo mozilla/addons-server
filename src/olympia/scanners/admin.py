@@ -637,7 +637,9 @@ class AbstractScannerRuleAdminMixin(admin.ModelAdmin):
     def matched_results_link(self, obj):
         if not obj.pk or not obj.scanner:
             return '-'
-        count = obj.results.count()
+        counts = obj.results.aggregate(
+            addons=Count('version__addon', distinct=True), total=Count('id')
+        )
         ResultModel = obj.results.model
         url = reverse(
             'admin:{}_{}_changelist'.format(
@@ -649,7 +651,13 @@ class AbstractScannerRuleAdminMixin(admin.ModelAdmin):
         }
         result_admin = admin.site._registry[ResultModel]
         params.update(result_admin.get_unfiltered_changelist_params())
-        return format_html('<a href="{}?{}">{}</a>', url, urlencode(params), count)
+        return format_html(
+            '<a href="{}?{}">{} ({} add-ons)</a>',
+            url,
+            urlencode(params),
+            counts['total'],
+            counts['addons'],
+        )
 
     matched_results_link.short_description = 'Matched Results'
 
