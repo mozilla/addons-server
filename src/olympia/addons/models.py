@@ -1801,7 +1801,7 @@ def watch_changes(old_attr=None, new_attr=None, instance=None, sender=None, **kw
         # Some changes are not tracked here:
         # - Any authors changes (separate model)
         # - Creation/Deletion of unlisted version (separate model)
-        # - Name change (separate model, not implemented yet)
+        # - Name change (separate model/signal, see below)
         # - Categories changes (separate model, ignored for now)
         # - average_rating changes (ignored for now, happens too often)
         # - average_daily_users changes (ignored for now, happens too often)
@@ -1812,30 +1812,18 @@ def watch_changes(old_attr=None, new_attr=None, instance=None, sender=None, **kw
         'disabled_by_user',
     )
     if any(field in changes for field in basket_relevant_changes):
-        from olympia.amo.tasks import sync_object_to_basket
+        from olympia.amo.tasks import trigger_sync_objects_to_basket
 
-        log.info(
-            'Triggering a sync of %s %s with basket because of %s change',
-            'addon',
-            instance.pk,
-            'attribute',
-        )
-        sync_object_to_basket.delay('addon', instance.pk)
+        trigger_sync_objects_to_basket('addon', [instance.pk], 'attribute change')
 
 
 @receiver(translation_saved, sender=Addon, dispatch_uid='watch_addon_name_changes')
 def watch_addon_name_changes(sender=None, instance=None, **kw):
     field_name = kw.get('field_name')
     if instance and field_name == 'name':
-        from olympia.amo.tasks import sync_object_to_basket
+        from olympia.amo.tasks import trigger_sync_objects_to_basket
 
-        log.info(
-            'Triggering a sync of %s %s with basket because of %s change',
-            'addon',
-            instance.pk,
-            'name',
-        )
-        sync_object_to_basket.delay('addon', instance.pk)
+        trigger_sync_objects_to_basket('addon', [instance.pk], 'name change')
 
 
 def attach_translations_dict(addons):
@@ -2000,15 +1988,9 @@ def addon_user_sync(sender=None, instance=None, **kwargs):
     # or not, it just needs to be updated whenever an author is added/removed.
     created_or_deleted = kwargs.get('created', True) or instance.is_deleted
     if created_or_deleted and instance.addon.status != amo.STATUS_DELETED:
-        from olympia.amo.tasks import sync_object_to_basket
+        from olympia.amo.tasks import trigger_sync_objects_to_basket
 
-        log.info(
-            'Triggering a sync of %s %s with basket because of %s change',
-            'addon',
-            instance.addon.pk,
-            'addonuser',
-        )
-        sync_object_to_basket.delay('addon', instance.addon.pk)
+        trigger_sync_objects_to_basket('addon', [instance.addon.pk], 'addonuser change')
 
 
 models.signals.post_delete.connect(

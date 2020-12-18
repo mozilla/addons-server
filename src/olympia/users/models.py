@@ -532,23 +532,30 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
         # Finally run Addon.force_disable to add the logging; update versions
         # Status was already DISABLED so shouldn't fire watch_disabled again.
+        addons_sole_ids = []
         for addon in addons_sole:
+            addons_sole_ids.append(addon.pk)
             addon.force_disable()
-        # Don't pass a set to a .delay - sets can't be serialized as JSON
-        index_addons.delay(list(addon_ids - addon_joint_ids))
+        index_addons.delay(addons_sole_ids)
 
         # delete the other content associated with the user
         Collection.objects.filter(author__in=users).delete()
         Rating.objects.filter(user__in=users).delete(user_responsible=core.get_user())
         # And then delete the users.
+        ids = []
         for user in users:
             log.info(f'User ({user}: <{user.email}>) is being anonymized and banned.')
             user.banned = user.modified = datetime.now()
             user.deleted = True
+            ids.append(user.pk)
         cls.anonymize_users(users)
         cls.objects.bulk_update(
             users, fields=('banned', 'deleted', 'modified') + cls.ANONYMIZED_FIELDS
         )
+        from olympia.amo.tasks import trigger_sync_objects_to_basket
+
+        trigger_sync_objects_to_basket('userprofile', ids, 'user ban')
+        trigger_sync_objects_to_basket('addon', addons_sole_ids, 'user ban content')
 
     def _prepare_delete_email(self):
         site_url = settings.EXTERNAL_SITE_URL
@@ -1073,15 +1080,9 @@ def watch_changes(old_attr=None, new_attr=None, instance=None, sender=None, **kw
         'location',
     )
     if any(field in changes for field in basket_relevant_changes):
-        from olympia.amo.tasks import sync_object_to_basket
+        from olympia.amo.tasks import trigger_sync_objects_to_basket
 
-        log.info(
-            'Triggering a sync of %s %s with basket because of %s change',
-            'userprofile',
-            instance.pk,
-            'attribute',
-        )
-        sync_object_to_basket.delay('userprofile', instance.pk)
+        trigger_sync_objects_to_basket('userprofile', [instance.pk], 'attribute change')
 
 
 user_logged_in.connect(UserProfile.user_logged_in)

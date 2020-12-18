@@ -990,9 +990,11 @@ def watch_changes(old_attr=None, new_attr=None, instance=None, sender=None, **kw
         # deleted. (When a listed version is deleted, watch_changes() in
         # olympia.addon.models should take care of it (since _current_version
         # will change).
-        from olympia.amo.tasks import sync_object_to_basket
+        from olympia.amo.tasks import trigger_sync_objects_to_basket
 
-        sync_object_to_basket.delay('addon', instance.addon.pk)
+        trigger_sync_objects_to_basket(
+            'addon', [instance.addon.pk], 'unlisted version deleted'
+        )
 
 
 def watch_new_unlisted_version(sender=None, instance=None, **kwargs):
@@ -1002,9 +1004,11 @@ def watch_new_unlisted_version(sender=None, instance=None, **kwargs):
     # in olympia.addon.models (since _current_version will change).
     # What's left here is unlisted version upload.
     if instance and instance.channel == amo.RELEASE_CHANNEL_UNLISTED:
-        from olympia.amo.tasks import sync_object_to_basket
+        from olympia.amo.tasks import trigger_sync_objects_to_basket
 
-        sync_object_to_basket.delay('addon', instance.addon.pk)
+        trigger_sync_objects_to_basket(
+            'addon', [instance.addon.pk], 'new unlisted version'
+        )
 
 
 version_uploaded = django.dispatch.Signal()
