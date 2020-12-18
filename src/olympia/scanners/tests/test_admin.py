@@ -855,12 +855,24 @@ class TestScannerRuleAdmin(TestCase):
 
     def test_change_view_contains_link_to_results(self):
         rule = ScannerRule.objects.create(name='bar', scanner=YARA)
-        result = ScannerResult(scanner=YARA)
+        addon = addon_factory()
+        version = addon.current_version
+        result = ScannerResult(scanner=YARA, version=version)
         result.add_yara_result(rule=rule.name)
         result.save()
-        # Create an extra result that doesn't match the rule we'll be looking
-        # at: it shouldn't affect anything.
-        ScannerResult.objects.create(scanner=YARA)
+        # Create another version that matches for the same add-on.
+        version = version_factory(addon=addon)
+        result = ScannerResult(scanner=YARA, version=version)
+        result.add_yara_result(rule=rule.name)
+        result.save()
+        # Create another add-on that has a matching version
+        addon = addon_factory()
+        result = ScannerResult(scanner=YARA, version=addon.current_version)
+        result.add_yara_result(rule=rule.name)
+        result.save()
+        # Create an extra result on the same add-on that doesn't match the rule
+        # we'll be looking at: it shouldn't affect anything.
+        ScannerResult.objects.create(scanner=YARA, version=version_factory(addon=addon))
         url = reverse('admin:scanners_scannerrule_change', args=(rule.pk,))
         response = self.client.get(url)
         assert response.status_code == 200
@@ -873,7 +885,7 @@ class TestScannerRuleAdmin(TestCase):
             f'&has_version=all&state=all'
         )
         assert link.attr('href') == expected_href
-        assert link.text() == '1'  # Our rule has only one result.
+        assert link.text() == '3 (2 add-ons)'
 
         link_response = self.client.get(expected_href)
         assert link_response.status_code == 200
@@ -961,10 +973,21 @@ class TestScannerQueryRuleAdmin(AMOPaths, TestCase):
 
     def test_change_view_contains_link_to_results(self):
         rule = ScannerQueryRule.objects.create(name='bar', scanner=YARA)
-        result = ScannerQueryResult(scanner=YARA)
+        addon = addon_factory()
+        version = addon.current_version
+        result = ScannerQueryResult(scanner=YARA, version=version)
         result.add_yara_result(rule=rule.name)
         result.save()
-        ScannerQueryResult.objects.create(scanner=YARA)  # Doesn't match
+        # Create another version that matches for the same add-on.
+        version = version_factory(addon=addon)
+        result = ScannerQueryResult(scanner=YARA, version=version)
+        result.add_yara_result(rule=rule.name)
+        result.save()
+        # Create another add-on that has a matching version
+        addon = addon_factory()
+        result = ScannerQueryResult(scanner=YARA, version=addon.current_version)
+        result.add_yara_result(rule=rule.name)
+        result.save()
         url = reverse('admin:scanners_scannerqueryrule_change', args=(rule.pk,))
         response = self.client.get(url)
         assert response.status_code == 200
@@ -983,7 +1006,7 @@ class TestScannerQueryRuleAdmin(AMOPaths, TestCase):
         results_list_url = reverse('admin:scanners_scannerqueryresult_changelist')
         expected_href = f'{results_list_url}?matched_rules__id__exact={rule.pk}'
         assert link.attr('href') == expected_href
-        assert link.text() == '1'
+        assert link.text() == '3 (2 add-ons)'
 
         link_response = self.client.get(expected_href)
         assert link_response.status_code == 200
