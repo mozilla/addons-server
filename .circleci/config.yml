@@ -277,23 +277,48 @@ references:
     #
     ###########################################################################
 
+  variables:
+    - &working-directory "~/addons-server"
+
+  docker-images:
+    # This is the python version we run in production.
+    - &python "cimg/python:3.8"
+    - &redis "redis:2.8"
+    - &memcached "memcached:1.4"
+    - &mysql "circleci/mysql:8.0"
+
+  mysql-config: &mysql-config
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: yes
+      MYSQL_DATABASE: olympia
+
   defaults: &defaults
-    working_directory: ~/addons-server
+    working_directory: &working-directory
     docker:
-      # This is the python version we run in production.
-      - image: cimg/python:3.8
+      - image: *python
+
+  defaults-with-services: &defaults-with-services
+    <<: *defaults
+    docker:
+      - image: *python
       # Below are services this project depends on. In addition to these
-      # services, we also need autograph, which is started in the `test` job
-      # because we need to pass a configuration file to it and it's not
-      # possible in this section.
+      # services, we also need autograph and elasticsearch but not all the
+      # time, hence the presence of other `defaults-with-*` references.
       #
       # Most settings below should be kept in sync with `docker-compose.yml`.
-      - image: redis:2.8
-      - image: memcached:1.4
-      - image: circleci/mysql:8.0
-        environment:
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
-          MYSQL_DATABASE: olympia
+      - image: *redis
+      - image: *memcached
+      - image: *mysql
+        <<: *mysql-config
+
+  defaults-with-elasticsearch: &defaults-with-elasticsearch
+    <<: *defaults
+    docker:
+      - image: *python
+      - image: *redis
+      - image: *memcached
+      - image: *mysql
+        <<: *mysql-config
       - image: docker.elastic.co/elasticsearch/elasticsearch:6.8.8
         environment:
           # Disable all xpack related features to avoid unrelated logging in
@@ -305,6 +330,15 @@ references:
           discovery.type: single-node
           cluster.name: default-cluster
           ES_JAVA_OPTS: -Xms256m -Xmx256m
+
+  defaults-with-autograph: &defaults-with-autograph
+    <<: *defaults
+    docker:
+      - image: *python
+      - image: *redis
+      - image: *memcached
+      - image: *mysql
+        <<: *mysql-config
       - image: mozilla/autograph:3.3.2
         command: bash -c 'echo -e "$AUTOGRAPH_CONFIG" > amo_config.yaml && cat amo_config.yaml && /go/bin/autograph -c amo_config.yaml'
         environment:
@@ -312,7 +346,7 @@ references:
 
   defaults-release: &defaults-release
     machine: true
-    working_directory: ~/addons-server
+    working_directory: &working-directory
 
 commands:
   make_release:
@@ -415,12 +449,12 @@ commands:
 
             git reset --hard "$CIRCLE_SHA1"
 
-jobs:
-  test:
-    <<: *defaults
+  setup_container:
+    description: common setup for the primary container
     parameters:
-      toxenv:
-        type: string
+      wait_services:
+        type: boolean
+        default: false
     steps:
       - better_checkout
       - run:
@@ -442,23 +476,65 @@ jobs:
             rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
           environment:
             DOCKERIZE_VERSION: v0.6.1
-      - run:
-          name: Wait for redis
-          command: dockerize -wait tcp://localhost:6379 -timeout 1m
-      - run:
-          name: Wait for mysql
-          command: dockerize -wait tcp://localhost:3306 -timeout 1m
-      - run:
-          name: Wait for memcached
-          command: dockerize -wait tcp://localhost:11211 -timeout 1m
+      - when:
+          condition: << parameters.wait_services >>
+          steps:
+            - run:
+                name: Wait for redis
+                command: dockerize -wait tcp://localhost:6379 -timeout 1m
+            - run:
+                name: Wait for mysql
+                command: dockerize -wait tcp://localhost:3306 -timeout 1m
+            - run:
+                name: Wait for memcached
+                command: dockerize -wait tcp://localhost:11211 -timeout 1m
+
+jobs:
+  test:
+    <<: *defaults
+    parameters:
+      toxenv:
+        type: string
+    steps:
+      - setup_container
+      - run: pip install --no-deps -r requirements/ci_base.txt
+      - run: tox -e << parameters.toxenv >>
+
+  test-with-services:
+    <<: *defaults-with-services
+    parameters:
+      toxenv:
+        type: string
+    steps:
+      - setup_container:
+          wait_services: true
+      - run: pip install --no-deps -r requirements/ci_base.txt
+      - run: tox -e << parameters.toxenv >>
+
+  test-with-elasticsearch:
+    <<: *defaults-with-elasticsearch
+    steps:
+      - setup_container
       - run:
           name: Wait for elasticsearch
           command: dockerize -wait tcp://localhost:9200 -timeout 1m
       - run: pip install --no-deps -r requirements/ci_base.txt
       - run:
-          command: tox -e << parameters.toxenv >>
+          command: tox -e es
           environment:
             ES_VERSION: 6.x
+
+  test-with-autograph:
+    <<: *defaults-with-autograph
+    parameters:
+      toxenv:
+        type: string
+    steps:
+      - setup_container
+      - run: pip install --no-deps -r requirements/ci_base.txt
+      - run:
+          command: tox -e << parameters.toxenv >>
+          environment:
             AUTOGRAPH_SERVER_URL: http://127.0.0.1:5500
 
   release-master:
@@ -487,13 +563,21 @@ workflows:
               toxenv:
                 - codestyle
                 - docs
-                - assets
+      - test-with-services:
+          matrix:
+            parameters:
+              toxenv:
                 - addons-versions-files-ratings
+                - assets
                 - devhub
-                - es
-                - reviewers-and-zadmin
-                - amo-lib-locales-and-signing
                 - main
+      - test-with-autograph:
+          matrix:
+            parameters:
+              toxenv:
+                - amo-lib-locales-and-signing
+                - reviewers-and-zadmin
+      - test-with-elasticsearch
       - release-master:
           filters:
             branches:
