@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-12-18 13:40+0000\n"
+"PO-Revision-Date: 2020-12-18 13:47+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -4019,7 +4019,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Open a new tab to the right of your current tab, not at the end of the row."
-msgstr ""
+msgstr "Avaa uusi välilehti nykyisen välilehden oikealle puolelle, ei välilehtirivin loppuun."
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
@@ -4092,7 +4092,7 @@ msgstr "Estä hakukoneita tietämästä mitä hakutuloksia napsautat."
 
 #. editorial content for the discovery pane.
 msgid "Download YouTube videos and/or audio."
-msgstr ""
+msgstr "Lataa YouTube-videoita ja -ääntä."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4233,7 +4233,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make informed shopping decisions."
-msgstr ""
+msgstr "Seuraa Amazon-hintahistoriaa. Tee tietoon perustuvia ostopäätöksiä."
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence. This extension provides an extra check to ensure you're shopping on a site that's been vetted for reliability."
@@ -4272,7 +4272,7 @@ msgstr "Käytätkö VPN:ää? IP-osoitteesi saattaa vuotaa. Pysäytä vuodot poi
 
 #. editorial content for the discovery pane.
 msgid "Close annoying pop-ups with a simple click."
-msgstr ""
+msgstr "Sulje ärsyttävät ponnahdusikkunat yhdellä napsautuksella."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4389,7 +4389,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
-msgstr ""
+msgstr "Muuta selaimesi ulkoasua. Suunnittele helposti omat visuaaliset teemat, jotta Firefox näyttää haluamaltasi."
 
 #. editorial content for the discovery pane.
 msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
