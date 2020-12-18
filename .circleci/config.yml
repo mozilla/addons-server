@@ -396,7 +396,7 @@ commands:
             then
               git fetch << parameters.fetch_options >> --force origin "refs/tags/${CIRCLE_TAG}"
             else
-              git fetch << parameters.fetch_options >> --force origin 'circleci:remotes/origin/circleci'
+              git fetch << parameters.fetch_options >> --force origin "${CIRCLE_BRANCH}:remotes/origin/${CIRCLE_BRANCH}"
             fi
 
 
