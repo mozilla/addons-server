@@ -114,7 +114,7 @@ CORS_URLS_REGEX = r'{}(?!accounts/session/)'.format(DRF_API_REGEX)
 
 
 def get_db_config(environ_var, atomic_requests=True):
-    values = env.db(var=environ_var, default='mysql://root:@localhost/olympia')
+    values = env.db(var=environ_var, default='mysql://root:@127.0.0.1/olympia')
 
     values.update(
         {

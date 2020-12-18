@@ -1,5 +1,3 @@
-import os
-
 from django.conf import settings as dj_settings
 
 from django_statsd.clients import statsd
@@ -25,9 +23,6 @@ def get_es(hosts=None, timeout=None, **settings):
         if timeout is not None
         else getattr(dj_settings, 'ES_TIMEOUT', DEFAULT_TIMEOUT)
     )
-
-    if os.environ.get('RUNNING_IN_CI'):
-        settings['http_auth'] = ('elastic', 'changeme')
 
     return Elasticsearch(hosts, timeout=timeout, **settings)
 

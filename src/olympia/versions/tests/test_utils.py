@@ -38,7 +38,7 @@ def test_write_svg_to_png(filename):
         out = os.path.join(out_dir, 'a', 'b.png')
         write_svg_to_png(svg, out)
         assert storage.exists(out)
-        # compare the image content. rms should be 0 but travis renders it
+        # compare the image content. rms should be 0 but CI renders it
         # different... 3 is the magic difference.
         svg_png_img = Image.open(svg_png)
         svg_out_img = Image.open(out)

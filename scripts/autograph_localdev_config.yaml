@@ -1,5 +1,8 @@
-# Note: Most of the configuration here got copied from
+# Note (1): Most of the configuration here got copied from
 # https://github.com/mozilla-services/autograph/blob/master/autograph.yaml
+#
+# Note (2): the content of the file is also embedded in `.circleci/config.yml`.
+# Any change here should likely be duplicated.
 
 server:
     # This port should be perfectly free, the upstream default of 8000
