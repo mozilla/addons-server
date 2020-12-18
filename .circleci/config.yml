@@ -395,6 +395,9 @@ commands:
             if [ -n "$CIRCLE_TAG" ]
             then
               git fetch << parameters.fetch_options >> --force origin "refs/tags/${CIRCLE_TAG}"
+            elif [[ "$CIRCLE_BRANCH" =~ ^pull\/* ]]
+            then
+              git fetch << parameters.fetch_options >> --force origin "${CIRCLE_BRANCH}/head:remotes/origin/${CIRCLE_BRANCH}"
             else
               git fetch << parameters.fetch_options >> --force origin "${CIRCLE_BRANCH}:remotes/origin/${CIRCLE_BRANCH}"
             fi
