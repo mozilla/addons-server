@@ -454,7 +454,7 @@ commands:
     parameters:
       wait_services:
         type: boolean
-        default: false
+        default: true
     steps:
       - better_checkout
       - run:
@@ -496,7 +496,8 @@ jobs:
       toxenv:
         type: string
     steps:
-      - setup_container
+      - setup_container:
+          wait_services: false
       - run: pip install --no-deps -r requirements/ci_base.txt
       - run: tox -e << parameters.toxenv >>
 
@@ -506,8 +507,7 @@ jobs:
       toxenv:
         type: string
     steps:
-      - setup_container:
-          wait_services: true
+      - setup_container
       - run: pip install --no-deps -r requirements/ci_base.txt
       - run: tox -e << parameters.toxenv >>
 
