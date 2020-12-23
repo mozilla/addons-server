@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-11-09 11:58+0000\n"
-"Last-Translator: Selim Şumlu <selim@sum.lu>\n"
+"PO-Revision-Date: 2020-12-12 12:19+0000\n"
+"Last-Translator: Grk <gurkan_gullu@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -26,9 +26,8 @@ msgstr "Sunucuyla bağlantı kurulurken bir hata oluştu."
 msgid "Select a file..."
 msgstr "Dosya seçin..."
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi or .crx"
-msgstr "Eklentiniz .zip, .xpi, .crx veya .xml ile bitmelidir"
+msgstr "Eklentiniz .zip, .xpi veya .crx ile bitmelidir"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
