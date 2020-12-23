@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-04-23 15:23+0000\n"
+"PO-Revision-Date: 2020-12-23 12:09+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -27,9 +27,8 @@ msgstr "Vyskytl se problém při kontaktování serveru."
 msgid "Select a file..."
 msgstr "Vybrat soubor..."
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi or .crx"
-msgstr "Název vašeho doplňku by měl končit .zip, .xpi, .crx nebo .xml"
+msgstr "Název vašeho doplňku by měl končit .zip, .xpi nebo .crx"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
