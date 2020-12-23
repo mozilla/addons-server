@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-12-23 08:42+0000\n"
+"PO-Revision-Date: 2020-12-23 08:52+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -4738,7 +4738,7 @@ msgid "Is in a promoted addon group that requires pre-review"
 msgstr ""
 
 msgid "Delayed because it's the first listed version"
-msgstr ""
+msgstr "ఆలస్యం ఎందుకంటే ఇది మొదటిసారి జాబితా చేయబడిన వెర్షను"
 
 msgid "Version string and guid match a blocklist Block"
 msgstr ""
@@ -6009,16 +6009,16 @@ msgid "new add-ons or Firefox features are available"
 msgstr ""
 
 msgid "my add-on's compatibility is upgraded successfully"
-msgstr ""
+msgstr "నా పొడగింత అనుగుణ్యత విజయవంతంగా నవీకరించబడినప్పుడు"
 
 msgid "someone writes a review of my add-on"
-msgstr ""
+msgstr "నా పొడగింతపై ఎవరైనా సమీక్ష వ్రాసినప్పుడు"
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
 msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
+msgstr "నా పొడగింత అనుగుణ్యతను నవీకరించలేనప్పుడు"
 
 msgid "my add-on is reviewed by a reviewer"
 msgstr "నా పొడగింత ఒక సమీక్షకుడిచే సమీక్షించబడినప్పుడు"
