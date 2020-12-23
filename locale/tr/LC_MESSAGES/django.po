@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-12-23 16:33+0000\n"
+"PO-Revision-Date: 2020-12-23 16:37+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -64,7 +64,7 @@ msgstr "Değişme tarihi:"
 
 #, python-format
 msgid "By %(filter_title)s"
-msgstr ""
+msgstr "%(filter_title)s ile"
 
 msgid "All"
 msgstr "Tümü"
@@ -2423,7 +2423,7 @@ msgid "Requires Payment?"
 msgstr "Ücretli mi?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
-msgstr ""
+msgstr "Bu eklentinin temel özelliklerini kullanmak için önceden veya deneme süresinin sonunda ödeme yapılması gerekiyorsa bu kutuyu işaretleyin."
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr "Bu eklenti için ödeme yapılması, ücretli bir servis/yazılım veya ek donanım gerekiyor."
@@ -2444,6 +2444,8 @@ msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
 " for listed add-ons."
 msgstr ""
+"Destek talepleri için bir e-posta adresi görüntülemek isterseniz buraya girin. Her dil için farklı adresleriniz varsa, bu alanın birden çok çevirisi eklenebilir. Yalnızca listelenen eklentiler için "
+"geçerlidir."
 
 msgid "Website"
 msgstr "Web sitesi"
@@ -3226,7 +3228,7 @@ msgid "Read more about the source code review policy."
 msgstr "Kaynak kodu inceleme politikasıyla ilgili daha fazla bilgi edinin."
 
 msgid "Build best-in-class extensions and themes"
-msgstr ""
+msgstr "Mükemmel eklentiler ve temalar oluşturun"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
@@ -4691,13 +4693,13 @@ msgid "You can't reply to a review that is already a reply."
 msgstr ""
 
 msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
+msgstr "İnceleme oluşturulduktan sonra incelenen eklentinin sürümünü değiştiremezsiniz."
 
 msgid "This version of the add-on doesn't exist or isn't public."
 msgstr "Eklentinin bu sürümü mevcut değil veya herkese açık değil."
 
 msgid "You can't leave a review on your own add-on."
-msgstr ""
+msgstr "Kendi eklentinizde yorum yazamazsınız."
 
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr ""
@@ -5349,7 +5351,7 @@ msgid "You don't have permission to review it."
 msgstr "İnceleme izniniz yok."
 
 msgid "Please select one or more versions in the list below."
-msgstr ""
+msgstr "Lütfen aşağıdaki listeden bir veya daha fazla sürüm seçin."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr ""
