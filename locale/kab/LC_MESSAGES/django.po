@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-12-24 17:06+0000\n"
+"PO-Revision-Date: 2020-12-24 20:58+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -2215,7 +2215,7 @@ msgid "You're done! A new version <strong>%(new_version_number)s</strong> of you
 msgstr ""
 
 msgid "A newer version of your add-on is currently pending review."
-msgstr "Lqem akk amaynut i uzegrir-inek·inem ha-t-an deg uṛaǧu n usenqed."
+msgstr "Lqem akk amaynut i uzegrir-inek·inem ha-t-an yettṛaǧu asenqed."
 
 msgid "If you have any questions, don’t hesitate to contact us."
 msgstr "Ma yella tesεiḍ kra n usteqsi, ur ttkakru ara ad aɣ-d-tenremseḍ."
