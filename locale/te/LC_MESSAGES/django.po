@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-12-23 08:52+0000\n"
+"PO-Revision-Date: 2020-12-24 18:18+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -3883,7 +3883,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr ""
+msgstr "ఇంగ్లీష్, ఫ్రెంచ్, స్పానిష్, ఇతర భాషల మధ్య నిపుణుల జర్మన్ అనువాదాలను పొందండి."
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
@@ -5579,7 +5579,7 @@ msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
 msgstr ""
 
 msgid "Maximum query length exceeded."
-msgstr ""
+msgstr "ప్రశ్న గరిష్ట పొడవు మించిపోయింది."
 
 msgid "Could not find Add-on with ID \"{}\"."
 msgstr "\"{}\" గుర్తింపుతో ఉన్న పొడగింతను కనుగొనలేకపోయాము."
