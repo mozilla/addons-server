@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-12-25 20:15+0000\n"
+"PO-Revision-Date: 2020-12-25 20:34+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -3565,7 +3565,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
-msgstr ""
+msgstr "మీ వెతుకుడు ఫలితాలకు బ్రిటానికా వాస్తవాలను చేర్చుకోండి."
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
@@ -3638,7 +3638,7 @@ msgstr "ఏ పేజీ లోని పాఠ్య పరిమాణాన�
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Stop trackers in their tracks and learn more about them."
-msgstr ""
+msgstr "ట్రాకర్లను వాటి బాటలోనే ఆపివేసి, వాటి గురించి మరింత తెలుసుకోండి."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
