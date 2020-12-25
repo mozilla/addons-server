@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-12-25 20:10+0000\n"
+"PO-Revision-Date: 2020-12-25 20:15+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -3667,7 +3667,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Automatically reload tabs based on time intervals you set."
-msgstr ""
+msgstr "మీరు అమర్చిన కాల వ్యవధుల ప్రకారం ట్యాబులను స్వయంచాలకంగా రీలోడు చేస్తుంది."
 
 #. editorial content for the discovery pane.
 msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
@@ -3698,7 +3698,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Enhance your viewing experience by adjusting video speed and more."
-msgstr ""
+msgstr "వీడియో వేగం, ఇతరాలను సర్దుబాటు చేసుకోవడం ద్వారా మీ వీక్షణ అనుభవాన్ని మెరుగుపరుచుకోండి."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4053,7 +4053,7 @@ msgstr "దారిమార్పులను ఆపివేయండి, త
 
 #. editorial content for the discovery pane.
 msgid "Adds show/hide ability to all password fields."
-msgstr ""
+msgstr "సంకేతపదాల ఖాళీలన్నిటికీ వాటిని చూపించే/దాచే సౌలభ్యాన్ని చేరుస్తుంది."
 
 #. editorial content for the discovery pane.
 msgid "Focus on what you're watching by dimming everything but the video player."
@@ -4951,7 +4951,7 @@ msgid "Self-reviews are not allowed."
 msgstr "స్వయం-సమీక్షలు అనుమతించబడవు."
 
 msgid "Review successfully processed."
-msgstr ""
+msgstr "సమీక్ష విజయవంతంగా ప్రాసెస్ చేయబడింది."
 
 msgid "Review lock limit reached"
 msgstr ""
@@ -5190,7 +5190,7 @@ msgid "All reviews have been moderated. Good work!"
 msgstr "అన్ని సమీక్షలు మోడరేట్ చేయబడ్డాయి. మంచి పని!"
 
 msgid "There are currently no add-ons of this type to review."
-msgstr ""
+msgstr "సమీక్షించడానికి ప్రస్తుతం ఈ రకమైన పొడగింతలు ఏమీ లేవు."
 
 msgid "Helpful Links:"
 msgstr "ఉపయోగపడే లంకెలు:"
