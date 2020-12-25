@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-12-24 18:18+0000\n"
+"PO-Revision-Date: 2020-12-25 20:10+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -329,7 +329,7 @@ msgid "This feature is temporarily disabled while we perform website maintenance
 msgstr ""
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
-msgstr ""
+msgstr "మేము వెబ్‌సైటు నిర్వహణ పూర్తిచేసేవరకూ ఈ పేజీలోని కొన్ని విశేషాలు తాత్కాలికంగా నిలిపివేయబడ్డాయి. దయచేసి కొంత సేపటి తర్వాత ప్రయత్నించండి."
 
 msgid "Are you human?"
 msgstr "మీరు మనిషా?"
