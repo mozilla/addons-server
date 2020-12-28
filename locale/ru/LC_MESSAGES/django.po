@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-12-17 04:27+0000\n"
+"PO-Revision-Date: 2020-12-27 18:37+0000\n"
 "Last-Translator: Victor Bychek <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -1460,7 +1460,7 @@ msgid "Excellent (3)"
 msgstr "Отлично (3)"
 
 msgid "Manual Reviewer Points"
-msgstr "Очки за проверку вручную"
+msgstr "Баллы за проверку вручную"
 
 msgid "New Legacy Add-on Review"
 msgstr "Проверка нового устаревшего дополнения"
@@ -5237,7 +5237,7 @@ msgid "Reviewer Leaderboard"
 msgstr "Панель лидера редакторов"
 
 msgid "No review points awarded yet."
-msgstr "Очков за проверки пока не начислено."
+msgstr "Баллов за проверки пока не начислено."
 
 msgid "Rank"
 msgstr "Место"
@@ -5592,10 +5592,10 @@ msgid "{num} versions pending rejection on other pages."
 msgstr "{num} версий, ожидающих отклонения на других страницах."
 
 msgid "Recent Points"
-msgstr "Недавние очки"
+msgstr "Недавние баллы"
 
 msgid "No points awarded yet."
-msgstr "Очков пока не начислено."
+msgstr "Баллов пока не начислено."
 
 msgid "Top Reviewers (past 7 days)"
 msgstr "Топ редакторов (последние 7 дней)"
@@ -5608,7 +5608,7 @@ msgstr "Всё время"
 
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
-msgstr "У вас <span>{0}</span> очков."
+msgstr "У вас <span>{0}</span> баллов."
 
 msgid "Theme"
 msgstr "Тема"
