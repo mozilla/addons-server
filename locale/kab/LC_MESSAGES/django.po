@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-12-29 05:11+0000\n"
+"PO-Revision-Date: 2020-12-29 05:15+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -2244,7 +2244,7 @@ msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the progr
 msgstr "Azegrir-inek·inem <strong>%(addon_name)s</strong> ad yettwarnu ɣer wahil akken kan ara yettusbadu uxelleṣ s unagraw Stripe. Sit ɣef tqeffalt ddaw i wakken ad tkemmleḍ:"
 
 msgid "Continue to Stripe Checkout"
-msgstr ""
+msgstr "Kemmel ɣer Stripe Checkout"
 
 msgid "Manage Authors & License"
 msgstr "Sefrek imeskaren & iselkinen"
@@ -4840,7 +4840,7 @@ msgid "Has auto-approval disabled/delayed flag set"
 msgstr "Tacreḍt tawurmant n uqbal tensa/tɛeṭṭel"
 
 msgid "Is in a promoted addon group that requires pre-review"
-msgstr ""
+msgstr "Yella deg ugraw n yizegrar yettwarefden i yesran asenqed uzwir"
 
 msgid "Delayed because it's the first listed version"
 msgstr "Yeɛṭel acku d lqem amenzu i d-yettwabedren"
@@ -5405,7 +5405,7 @@ msgid "Clear Auto-Approval Extra Delay"
 msgstr "Sfeḍ tanzagt-nniḍen n uqbal awurman"
 
 msgid "Clear pending rejections"
-msgstr ""
+msgstr "Sfeḍ aṛaǧu n tugtin"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Sfeḍ tummla n ucegger n tengalt n unedbal"
