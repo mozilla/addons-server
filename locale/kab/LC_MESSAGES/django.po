@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-12-29 05:01+0000\n"
+"PO-Revision-Date: 2020-12-29 05:11+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -2237,11 +2237,11 @@ msgstr ""
 "href=\"mailto:%(email)s\">%(email)s</a>."
 
 msgid "Thank you for joining the Promoted Add-ons Program!"
-msgstr ""
+msgstr "Tanemmirt imi d-terniḍ ɣer wahil n yizegrar yettwarefden!"
 
 #, python-format
 msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the program once payment is set up through the Stripe system. Click on the button below to continue:"
-msgstr ""
+msgstr "Azegrir-inek·inem <strong>%(addon_name)s</strong> ad yettwarnu ɣer wahil akken kan ara yettusbadu uxelleṣ s unagraw Stripe. Sit ɣef tqeffalt ddaw i wakken ad tkemmleḍ:"
 
 msgid "Continue to Stripe Checkout"
 msgstr ""
