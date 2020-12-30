@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-12-22 10:30+0000\n"
-"Last-Translator: posilejte.spam <posilejte.spam@gmail.com>\n"
+"PO-Revision-Date: 2020-12-30 02:30+0000\n"
+"Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -3732,9 +3732,8 @@ msgstr "Napíchněte se na akademické znalosti. Mějte volný přístup k více
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
-msgstr "Přizpůsobte si gesta myši. Objevte nový způsob, jak provádět navigaci pomocí více než 50 užitečných gest myši."
+msgstr "Přizpůsobte si gesta myši. Objevte nový způsob, jak provádět navigaci pomocí více než 50 konfigurací."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
