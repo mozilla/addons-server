@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-12-25 20:34+0000\n"
+"PO-Revision-Date: 2020-12-30 13:33+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -246,7 +246,7 @@ msgstr ""
 "నిర్ధారించడానికి ఈ హెడర్ తప్పనిసరి."
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
-msgstr ""
+msgstr "'రిఫరర్' శీర్షికలను నిలిపివేయడానికి మీ విహారిణిని అమర్చుకొని ఉంటే, దయచేసి వాటిని కనీసం ఈ సైటుకి, లేదా HTTPS అనుసంధానాలకు, లేదా 'అదే-మూల' అభ్యర్థనలకు తిరిగి చేతనించండి."
 
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
@@ -3814,7 +3814,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals."
-msgstr ""
+msgstr "సమయ వ్యవధి ఆధారంగా ట్యాబులను స్వయంచాలకంగా రీలోడ్ చేయండి."
 
 #. editorial content for the discovery pane.
 msgid "Find and resolve broken bookmarks, duplicates, and more."
