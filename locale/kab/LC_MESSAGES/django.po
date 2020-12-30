@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-12-30 08:09+0000\n"
+"PO-Revision-Date: 2020-12-30 08:42+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4442,11 +4442,11 @@ msgstr "Awi-d ileqman n tegnawt srid seg Firefox."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
-msgstr ""
+msgstr "Sefrek akud-ik ugar s temrint n yiminig ara d-isseknen amahil s yidlifen"
 
 #. editorial content for the primary hero shelves.
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
-msgstr ""
+msgstr "Teɛyiḍ seg \"Seḥbes tavidyut. Kemmel taɣuri?\" asfaylu n udeiwenn? Sel i uẓawan i tḥemmleḍ s war aneḥbus deg Youtube."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -5553,7 +5553,7 @@ msgid "The developer has provided source code."
 msgstr "Aneflay yefka-d tangalt taɣbalut."
 
 msgid "Scanners score:"
-msgstr ""
+msgstr "Agmuḍ n uskani:"
 
 msgid "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
 msgstr ""
@@ -6223,6 +6223,15 @@ msgid ""
 "\n"
 "The Firefox Add-ons Team"
 msgstr ""
+"Azul,\n"
+"\n"
+"Tremseḍ-d izen-a acku amiḍan-ik %(name)s on %(site_url)s yettwakkes. Aya This izmer ad d-yeḍru s wudem awurman ma tekkseḍ amiḍan-ik Firefox melmi kan.\n"
+"\n"
+"Ma yella ur tgiḍ ara aya neɣ tɣileḍ dakken d amdan-nniḍen i ikecmen ɣer umiḍan-ik, ttxil-k err-d i yizen-a. Ma ulac, ulac tigawt-nniḍen ara nexdem.\n"
+"\n"
+"S tumert,\n"
+"\n"
+"The Firefox Add-ons Team"
 
 msgctxt "user_list_others"
 msgid "others"
