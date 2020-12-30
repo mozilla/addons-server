@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-12-30 02:30+0000\n"
+"PO-Revision-Date: 2020-12-30 02:40+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -319,9 +319,8 @@ msgstr "<h1>Ale ne! Nastala chyba.</h1> <p>Brzy to opravíme.</p> <p> Můžete z
 msgid "Register or Log in"
 msgstr ""
 
-#, fuzzy
 msgid "Email:"
-msgstr "E-mail"
+msgstr "E-mail:"
 
 msgid "OK"
 msgstr ""
@@ -3274,14 +3273,14 @@ msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
 
 msgid "Email Address"
-msgstr ""
+msgstr "E-mailová adresa"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
 msgstr ""
 
 msgid "Sign Up"
-msgstr ""
+msgstr "Registrace"
 
 msgid "Thanks!"
 msgstr ""
@@ -3887,9 +3886,8 @@ msgstr "Nenechte se sledovat při vyhledávání na Googlu nebo Yandexu."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
-msgstr "Provádějte zavření panelů, přechod na předchozí stránku, aktualizaci stránky a další činnosti pomocí gest myši."
+msgstr "Provádějte zavření panelů, procházení stránek a další činnosti pomocí gest myši."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5441,7 +5439,7 @@ msgid "Notify me about new unlisted versions"
 msgstr "Upozornit na nově přidané verze"
 
 msgid "Allow resubmission"
-msgstr ""
+msgstr "Povolit opětovné nahrání"
 
 #, fuzzy
 msgid "Deny resubmission"
