@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-11-05 09:05+0000\n"
+"PO-Revision-Date: 2020-12-31 14:21+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -2292,7 +2292,7 @@ msgid "Your payment has been recorded, but there are currently no published vers
 msgstr ""
 
 msgid "Manage add-on"
-msgstr ""
+msgstr "Gérer les modules complémentaires"
 
 #, python-format
 msgid ""
@@ -4516,7 +4516,7 @@ msgstr "Double-cliquez sur n’importe quel mot pour voir instantanément sa dé
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
-msgstr ""
+msgstr "Certains sites web ont des difficultés pour lire les vidéos sur Android. Voici une solution."
 
 #. editorial content for the primary hero shelves.
 msgid "For those moments you need to fire lasers out of cat eyes."
