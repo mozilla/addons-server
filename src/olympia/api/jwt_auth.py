@@ -21,7 +21,6 @@ from django.core.exceptions import ObjectDoesNotExist
 import jwt
 
 from rest_framework import exceptions
-from rest_framework_jwt.settings import api_settings
 
 import olympia.core.logger
 
@@ -46,7 +45,7 @@ def jwt_decode_handler(token, get_api_key=APIKey.get_jwt_key):
             'verify_iat': False,
             'verify_aud': False,
         },
-        algorithms=[api_settings.JWT_ALGORITHM],
+        algorithms=[settings.JWT_AUTH['JWT_ALGORITHM']],
     )
 
     if 'iss' not in token_data:
@@ -79,15 +78,15 @@ def jwt_decode_handler(token, get_api_key=APIKey.get_jwt_key):
             token,
             api_key.secret,
             options=options,
-            leeway=api_settings.JWT_LEEWAY,
-            algorithms=[api_settings.JWT_ALGORITHM],
+            leeway=settings.JWT_AUTH['JWT_LEEWAY'],
+            algorithms=[settings.JWT_AUTH['JWT_ALGORITHM']],
         )
 
         # Verify clock skew for future iat-values pyjwt removed that check in
         # https://github.com/jpadilla/pyjwt/pull/252/
         # `verify_iat` is still in options because pyjwt still validates
         # that `iat` is a proper number.
-        if int(payload['iat']) > (now + api_settings.JWT_LEEWAY):
+        if int(payload['iat']) > (now + settings.JWT_AUTH['JWT_LEEWAY']):
             raise jwt.InvalidIssuedAtError(
                 'Issued At claim (iat) cannot be in the future.'
             )

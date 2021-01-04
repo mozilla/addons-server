@@ -1568,7 +1568,7 @@ MAX_APIKEY_JWT_AUTH_TOKEN_LIFETIME = 5 * 60
 # means it's sent instantaneously.
 API_KEY_CONFIRMATION_DELAY = None
 
-# django-rest-framework-jwt settings:
+# JWT authentication related settings:
 JWT_AUTH = {
     # Use HMAC using SHA-256 hash algorithm. It should be the default, but we
     # want to make sure it does not change behind our backs.
@@ -1577,8 +1577,6 @@ JWT_AUTH = {
     # This adds some padding to timestamp validation in case client/server
     # clocks are off.
     'JWT_LEEWAY': 5,
-    # We don't allow refreshes.
-    'JWT_ALLOW_REFRESH': False,
 }
 
 DRF_API_GATES = {
