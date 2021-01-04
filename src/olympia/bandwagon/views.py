@@ -160,7 +160,7 @@ class CollectionAddonViewSet(ModelViewSet):
         ):
             return self._cached_list(request, *args, **kwargs)
         else:
-            return super().list(*args, *kwargs)
+            return super().list(request, *args, *kwargs)
 
     def get_collection(self):
         if not hasattr(self, 'collection'):
