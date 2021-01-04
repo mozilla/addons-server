@@ -18,7 +18,7 @@ body {
     font-size: 13px;
 }
 
-section + h1 {
+section+h1 {
     margin: 15px 0;
 }
 
@@ -38,6 +38,7 @@ hgroup {
     h2 {
         color: @medium-gray;
     }
+
     b {
         font-weight: bold;
     }
@@ -62,7 +63,12 @@ h5 {
     }
 }
 
-pre, code, kbd, tt, samp, tt {
+pre,
+code,
+kbd,
+tt,
+samp,
+tt {
     font-family: @mono-stack;
 }
 
@@ -71,16 +77,23 @@ pre {
     white-space: pre-wrap;
 }
 
-.primary, .modal {
-    p, ul, ol {
+.primary,
+.modal {
+
+    p,
+    ul,
+    ol {
         line-height: 1.3em;
     }
+
     p {
         margin-top: 1em;
     }
-    > p:first-child {
+
+    >p:first-child {
         margin: 0;
     }
+
     ul {
         &.indent {
             list-style: disc inside;
@@ -88,6 +101,7 @@ pre {
             margin-top: 1em;
         }
     }
+
     em {
         font-style: italic;
     }
@@ -106,35 +120,44 @@ pre {
 }
 
 .addon-details {
-    .primary, .secondary {
+
+    .primary,
+    .secondary {
         font-family: @serif-stack;
     }
 }
 
-.island, .modal, .popup {
+.island,
+.modal,
+.popup {
+
     .sidebar-breakout h3,
     h2 {
         margin-bottom: .5em;
 
         .seeall {
-            .defaultlink
+            .defaultlink()
         }
     }
+
     &.hero {
         h1 {
             margin-bottom: 5px;
             margin-left: 12px;
         }
+
         hgroup {
             h3 {
                 color: @medium-gray;
                 font-size: 14px;
             }
+
             b {
                 font-weight: bold;
             }
         }
-        header + .item {
+
+        header+.item {
             border-top: 1px dotted @border-blue;
             margin-top: 1em;
         }
@@ -142,7 +165,7 @@ pre {
 }
 
 .primary {
-    > .seeall {
+    >.seeall {
         text-align: center;
         clear: both;
         font-size: 14px;
@@ -159,9 +182,10 @@ pre {
         color: @dark-gray;
 
         .seeall {
-            .defaultlink
+            .defaultlink()
         }
     }
+
     h3 {
         font-family: @sans-stack;
         color: @dark-gray;
