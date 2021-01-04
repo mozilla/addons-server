@@ -69,9 +69,7 @@ def jwt_decode_handler(token, get_api_key=APIKey.get_jwt_key):
         'verify_nbf': False,
         'verify_iat': True,
         'verify_aud': False,
-        'require_exp': True,
-        'require_iat': True,
-        'require_nbf': False,
+        'require': ['exp', 'iat'],
     }
 
     try:
@@ -115,8 +113,7 @@ def jwt_decode_handler(token, get_api_key=APIKey.get_jwt_key):
         )
         raise
 
-    max_jwt_auth_token_lifetime = settings.MAX_APIKEY_JWT_AUTH_TOKEN_LIFETIME
-    if payload['exp'] - payload['iat'] > max_jwt_auth_token_lifetime:
+    if payload['exp'] - payload['iat'] > settings.MAX_APIKEY_JWT_AUTH_TOKEN_LIFETIME:
         log.info(
             'JWT auth: expiration is too long; '
             'iss={iss}, iat={iat}, exp={exp}'.format(**payload)
