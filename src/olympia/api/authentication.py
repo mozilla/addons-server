@@ -9,7 +9,6 @@ import jwt
 
 from rest_framework import exceptions
 from rest_framework.authentication import BaseAuthentication, get_authorization_header
-from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 import olympia.core.logger
 
@@ -34,7 +33,7 @@ class WebTokenAuthentication(BaseAuthentication):
         Authorization: Bearer eyJhbGciOiAiSFMyNTYiLCAidHlwIj
     """
 
-    www_authenticate_realm = 'api'
+    www_authenticate_realm = 'Access to addons.mozilla.org internal API'
     auth_header_prefix = 'Bearer'
     salt = 'olympia.api.auth'
 
@@ -45,15 +44,15 @@ class WebTokenAuthentication(BaseAuthentication):
         authentication scheme should return `403 Permission Denied` responses.
         """
         return '{0} realm="{1}"'.format(
-            self.auth_header_prefix.lower(), self.www_authenticate_realm
+            self.auth_header_prefix, self.www_authenticate_realm
         )
 
     def get_token_value(self, request):
         auth_header = get_authorization_header(request).split()
-        expected_header_prefix = self.auth_header_prefix.lower()
+        expected_header_prefix = self.auth_header_prefix.upper()
 
         if not auth_header or (
-            smart_text(auth_header[0].lower()) != expected_header_prefix
+            smart_text(auth_header[0].upper()) != expected_header_prefix
         ):
             return None
 
@@ -150,7 +149,7 @@ class WebTokenAuthentication(BaseAuthentication):
         return user
 
 
-class JWTKeyAuthentication(JSONWebTokenAuthentication):
+class JWTKeyAuthentication(BaseAuthentication):
     """
     DRF authentication class for JWT header auth with API keys.
 
@@ -168,14 +167,23 @@ class JWTKeyAuthentication(JSONWebTokenAuthentication):
     by the authenticated user.
     """
 
+    www_authenticate_realm = 'Access to addons.mozilla.org external API'
+    auth_header_prefix = 'JWT'
+
+    def authenticate_header(self, request):
+        """
+        Return a string to be used as the value of the `WWW-Authenticate`
+        header in a `401 Unauthenticated` response, or `None` if the
+        authentication scheme should return `403 Permission Denied` responses.
+        """
+        return '{0} realm="{1}"'.format(
+            self.auth_header_prefix, self.www_authenticate_realm
+        )
+
     def authenticate(self, request):
         """
         Returns a two-tuple of `User` and token if a valid signature has been
         supplied using JWT-based authentication.  Otherwise returns `None`.
-
-        Copied from rest_framework_jwt BaseJSONWebTokenAuthentication, with
-        the decode_handler changed to our own - because we don't want that
-        decoder to be the default one in settings - and logging added.
         """
         jwt_value = self.get_jwt_value(request)
         if jwt_value is None:
@@ -196,7 +204,7 @@ class JWTKeyAuthentication(JSONWebTokenAuthentication):
             except TypeError:
                 msg = ugettext('Wrong type for one or more keys in payload')
                 raise exceptions.AuthenticationFailed(msg)
-            except jwt.ExpiredSignature:
+            except jwt.ExpiredSignatureError:
                 msg = ugettext('Signature has expired.')
                 raise exceptions.AuthenticationFailed(msg)
             except jwt.DecodeError:
@@ -245,15 +253,10 @@ class JWTKeyAuthentication(JSONWebTokenAuthentication):
     def get_jwt_value(self, request):
         """
         Get the JWT token from the authorization header.
-
-        Copied from upstream's implementation but uses a hardcoded 'JWT'
-        prefix in order to be isolated from JWT_AUTH_HEADER_PREFIX setting
-        which is used for the non-api key auth above.
         """
         auth = get_authorization_header(request).split()
-        auth_header_prefix = 'jwt'  # JWT_AUTH_HEADER_PREFIX.lower()
 
-        if not auth or smart_text(auth[0].lower()) != auth_header_prefix:
+        if not auth or smart_text(auth[0].upper()) != self.auth_header_prefix.upper():
             return None
 
         if len(auth) == 1:

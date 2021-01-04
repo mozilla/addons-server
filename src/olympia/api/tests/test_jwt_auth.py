@@ -5,7 +5,6 @@ from django.conf import settings
 import jwt
 
 from rest_framework.exceptions import AuthenticationFailed
-from rest_framework_jwt.settings import api_settings
 
 from olympia.amo.tests import TestCase
 from olympia.api import jwt_auth
@@ -44,8 +43,8 @@ class JWTAuthKeyTester(object):
 
     def encode_token_payload(self, payload, secret):
         """Encodes a JWT payload as a client would."""
-        token = jwt.encode(payload, secret, api_settings.JWT_ALGORITHM)
-        return token.decode('utf-8')
+        token = jwt.encode(payload, secret, settings.JWT_AUTH['JWT_ALGORITHM'])
+        return token
 
     def create_auth_token(self, user, issuer, secret):
         payload = self.auth_token_payload(user, issuer)

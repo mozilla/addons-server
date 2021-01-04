@@ -88,10 +88,9 @@ Pillow==8.0.1 \
     --hash=sha256:4b0ef2470c4979e345e4e0cc1bbac65fda11d0d7b789dbac035e4c6ce3f98adb \
     --hash=sha256:8de332053707c80963b589b22f8e0229f1be1f3ca862a932c1bcd48dafb18dd8 \
     --hash=sha256:11c5c6e9b02c9dac08af04f093eb5a2f84857df70a7d4a6a6ad461aca803fb9e
-# PyJWT is required by djangorestframework-jwt
-PyJWT==1.7.1 \
-    --hash=sha256:5c6eca3c2940464d106b99ba83b00c6add741c9becaec087fb7ccdefea71350e \
-    --hash=sha256:8d59a976fb773f3e6a39c85636357c4f0e242707394cadadd9814f5cbaa20e96
+PyJWT==2.0.0 \
+    --hash=sha256:5c2ff2eb27d7e342dfc3cafcc16412781f06db2690fbef81922b0172598f085b \
+    --hash=sha256:7a2b271c6dac2fda9e0c33d176c4253faba2c6c6b3a99c7f28a32c3c97522779
 SQLAlchemy==1.3.22 \
     --hash=sha256:61628715931f4962e0cdb2a7c87ff39eea320d2aa96bd471a3c293d146f90394 \
     --hash=sha256:81d8d099a49f83111cce55ec03cc87eef45eec0d90f9842b4fc674f860b857b0 \
@@ -237,9 +236,6 @@ django-waffle==2.0.0 \
 # djangorestframework is required by drf-nested-routers
 djangorestframework==3.12.2 \
     --hash=sha256:0209bafcb7b5010fdfec784034f059d512256424de2a0f084cb82b096d6dd6a7
-djangorestframework-jwt==1.11.0 \
-    --hash=sha256:ab15dfbbe535eede8e2e53adaf52ef0cf018ee27dbfad10cbc4cbec2ab63d38c \
-    --hash=sha256:5efe33032f3a4518a300dc51a51c92145ad95fb6f4b272e5aa24701db67936a7
 dockerflow==2020.10.0 \
     --hash=sha256:226086becc436b5a1995348e26c4fb2ad1d4e5dbc10dffec0c675c9a43306c8b \
     --hash=sha256:36787fa016e5505d71d60c36cd4e0de7b2d1e50059160bd4e93ceb62bb40d3f8

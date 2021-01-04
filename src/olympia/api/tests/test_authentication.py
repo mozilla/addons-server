@@ -18,7 +18,6 @@ from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework_jwt.views import refresh_jwt_token
 
 from olympia import core
 from olympia.amo.templatetags.jinja_helpers import absolutify
@@ -71,6 +70,13 @@ class TestJWTKeyAuthentication(JWTAuthKeyTester, TestCase):
         assert user == self.user
         assert user.last_login_ip == '15.16.23.42'
         self.assertCloseToNow(user.last_login)
+
+    def test_authenticate_header(self):
+        request = self.factory.post('/api/v4/whatever/')
+        assert (
+            self.auth.authenticate_header(request)
+            == 'JWT realm="Access to addons.mozilla.org external API"'
+        )
 
     def test_wrong_type_for_iat(self):
         api_key = self.create_api_key(self.user)
@@ -130,7 +136,7 @@ class TestJWTKeyAuthentication(JWTAuthKeyTester, TestCase):
 
     @mock.patch('olympia.api.jwt_auth.jwt_decode_handler')
     def test_decode_expired_signature(self, jwt_decode_handler):
-        jwt_decode_handler.side_effect = jwt.ExpiredSignature
+        jwt_decode_handler.side_effect = jwt.ExpiredSignatureError
 
         with self.assertRaises(AuthenticationFailed) as ctx:
             self.auth.authenticate(self.request('whatever'))
@@ -166,21 +172,6 @@ class TestJWTKeyAuthentication(JWTAuthKeyTester, TestCase):
             "API key based tokens are not refreshable, don't include "
             '`orig_iat` in their payload.'
         )
-
-    def test_cant_refresh_token(self):
-        # Developers generate tokens, not us, they should not be refreshable,
-        # the refresh implementation does not even know how to decode them.
-        api_key = self.create_api_key(self.user)
-        payload = self.auth_token_payload(self.user, api_key.key)
-        payload['orig_iat'] = timegm(payload['iat'].utctimetuple())
-        token = self.encode_token_payload(payload, api_key.secret)
-
-        request = self.factory.post('/lol-refresh', {'token': token})
-        response = refresh_jwt_token(request)
-        response.render()
-        assert response.status_code == 400
-        data = json.loads(response.content)
-        assert data == {'non_field_errors': ['Error decoding signature.']}
 
 
 class TestJWTKeyAuthProtectedView(WithDynamicEndpoints, JWTAuthKeyTester, TestCase):
@@ -235,7 +226,7 @@ class TestWebTokenAuthentication(TestCase):
         self.user = user_factory(read_dev_agreement=datetime.now())
 
     def _authenticate(self, token):
-        url = absolutify('/api/v3/whatever/')
+        url = absolutify('/api/v4/whatever/')
         prefix = WebTokenAuthentication.auth_header_prefix
         request = self.factory.post(
             url,
@@ -251,12 +242,15 @@ class TestWebTokenAuthentication(TestCase):
         assert user == self.user
 
     def test_authenticate_header(self):
-        request = self.factory.post('/api/v3/whatever/')
-        assert self.auth.authenticate_header(request) == 'bearer realm="api"'
+        request = self.factory.post('/api/v4/whatever/')
+        assert (
+            self.auth.authenticate_header(request)
+            == 'Bearer realm="Access to addons.mozilla.org internal API"'
+        )
 
     def test_wrong_header_only_prefix(self):
         request = self.factory.post(
-            '/api/v3/whatever/',
+            '/api/v4/whatever/',
             HTTP_AUTHORIZATION=WebTokenAuthentication.auth_header_prefix,
         )
         with self.assertRaises(AuthenticationFailed) as exp:
@@ -268,7 +262,7 @@ class TestWebTokenAuthentication(TestCase):
 
     def test_wrong_header_too_many_spaces(self):
         request = self.factory.post(
-            '/api/v3/whatever/',
+            '/api/v4/whatever/',
             HTTP_AUTHORIZATION='{} foo bar'.format(
                 WebTokenAuthentication.auth_header_prefix
             ),
@@ -282,7 +276,7 @@ class TestWebTokenAuthentication(TestCase):
         )
 
     def test_no_token(self):
-        request = self.factory.post('/api/v3/whatever/')
+        request = self.factory.post('/api/v4/whatever/')
         self.auth.authenticate(request) is None
 
     def test_expired_token(self):
