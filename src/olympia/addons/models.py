@@ -976,7 +976,7 @@ class Addon(OnChangeMixin, ModelBase):
             try:
                 self.update(**updated)
                 if send_signal and _signal:
-                    signals.version_changed.send(instance=self, sender=self.__class__)
+                    signals.version_changed.send(sender=self.__class__, instance=self)
                 log.info(
                     'Version changed from current: %s to %s '
                     'for addon %s' % tuple(diff + [self])
@@ -1710,7 +1710,7 @@ def version_changed(sender, instance, **kw):
 
     # watch_changes() also does a sync when it detects a _current_version change, but it
     # might not have fired, since it depends on on_change() being sent.
-    trigger_sync_objects_to_basket.delay('addon', [instance.pk], 'version change')
+    trigger_sync_objects_to_basket('addon', [instance.pk], 'version change')
     tasks.version_changed.delay(instance.pk)
 
 

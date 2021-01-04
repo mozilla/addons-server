@@ -1826,8 +1826,8 @@ class TestAddonModels(TestCase):
     ):
         addon = Addon.objects.get(pk=3615)
         version_factory(addon=addon)  # Fires version_changed since it's approved.
-        assert trigger_sync_objects_to_basket_mock.delay.call_count == 1
-        assert trigger_sync_objects_to_basket_mock.delay.called_with(
+        assert trigger_sync_objects_to_basket_mock.call_count == 1
+        assert trigger_sync_objects_to_basket_mock.called_with(
             'addon', [3615], 'version change'
         )
 
