@@ -1821,6 +1821,17 @@ class TestAddonModels(TestCase):
         )
 
     @patch('olympia.amo.tasks.trigger_sync_objects_to_basket')
+    def test_addon_version_changes_synced_to_basket(
+        self, trigger_sync_objects_to_basket_mock
+    ):
+        addon = Addon.objects.get(pk=3615)
+        version_factory(addon=addon)  # Fires version_changed since it's approved.
+        assert trigger_sync_objects_to_basket_mock.call_count == 1
+        assert trigger_sync_objects_to_basket_mock.called_with(
+            'addon', [3615], 'version change'
+        )
+
+    @patch('olympia.amo.tasks.trigger_sync_objects_to_basket')
     def test_addon_deletion_synced_to_basket(self, trigger_sync_objects_to_basket_mock):
         addon = Addon.objects.get(id=3615)
         addon.delete()

@@ -236,18 +236,27 @@ class TestUserProfile(TestCase):
         assert user_multi.last_login_ip == '127.0.0.2'
 
         hide_disabled_mock.assert_not_called()
-        assert trigger_sync_objects_to_basket_mock.call_count == 3
+        assert trigger_sync_objects_to_basket_mock.call_count == 4
         assert trigger_sync_objects_to_basket_mock.call_args_list[0][0] == (
             'addon',
             [addon_multi.pk],
             'addonuser change',
         )
         assert trigger_sync_objects_to_basket_mock.call_args_list[1][0] == (
+            'addon',
+            [addon_sole.pk],
+            'version change',
+        )
+        assert trigger_sync_objects_to_basket_mock.call_args_list[2][0] == (
             'userprofile',
             [user_sole.pk, user_multi.pk],
             'user ban',
         )
-        assert trigger_sync_objects_to_basket_mock.call_args_list[2][0] == (
+        # Note: this extra call wouldn't be sent to Basket because the task being
+        # triggered would be a duplicate with the one caused by the version change that
+        # happens when the add-on was disabled, so we could remove it. But it's nice to
+        # have it anyway as a catch-all in case somehow version_changed isn't triggered.
+        assert trigger_sync_objects_to_basket_mock.call_args_list[3][0] == (
             'addon',
             [addon_sole.pk],
             'user ban content',
