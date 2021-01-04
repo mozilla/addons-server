@@ -976,7 +976,7 @@ class Addon(OnChangeMixin, ModelBase):
             try:
                 self.update(**updated)
                 if send_signal and _signal:
-                    signals.version_changed.send(sender=self)
+                    signals.version_changed.send(instance=self, sender=self.__class__)
                 log.info(
                     'Version changed from current: %s to %s '
                     'for addon %s' % tuple(diff + [self])
@@ -1704,10 +1704,14 @@ dbsignals.pre_save.connect(save_signal, sender=Addon, dispatch_uid='addon_transl
 
 
 @receiver(signals.version_changed, dispatch_uid='version_changed')
-def version_changed(sender, **kw):
+def version_changed(sender, instance, **kw):
     from . import tasks
+    from olympia.amo.tasks import trigger_sync_objects_to_basket
 
-    tasks.version_changed.delay(sender.id)
+    # watch_changes() also does a sync when it detects a _current_version change, but it
+    # might not have fired, since it depends on on_change() being sent.
+    trigger_sync_objects_to_basket.delay('addon', [instance.pk], 'version change')
+    tasks.version_changed.delay(instance.pk)
 
 
 @receiver(dbsignals.post_save, sender=Addon, dispatch_uid='addons.search.index')
