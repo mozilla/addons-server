@@ -166,6 +166,7 @@ class JWTKeyAuthentication(BaseAuthentication):
     this authentication method you cannot prove that the request was made
     by the authenticated user.
     """
+
     www_authenticate_realm = 'Access to addons.mozilla.org external API'
     auth_header_prefix = 'JWT'
 
