@@ -66,9 +66,9 @@ cryptography==3.3.1 \
     --hash=sha256:0e85aaae861d0485eb5a79d33226dd6248d2a9f133b81532c8f5aae37de10ff7 \
     --hash=sha256:7e177e4bea2de937a584b13645cab32f25e3d96fc0bc4a4cf99c27dc77682be6
 # idna is required by cryptography
-idna==2.10 \
-    --hash=sha256:b97d804b1e9b523befed77c48dacec60e6dcb0b5391d57af6a65a312a90648c0 \
-    --hash=sha256:b307872f855b18632ce0c21c5e45be78c0ea7ae4c15c828c20788b26921eb3f6
+idna==3.0 \
+    --hash=sha256:320229aadbdfc597bc28876748cc0c9d04d476e0fe6caacaaddea146365d9f63 \
+    --hash=sha256:c9a26e10e5558412384fac891eefb41957831d31be55f1e2c98ed97a70abb969
 # ipaddress is required by cryptography, docker-py
 ipaddress==1.0.23 \
     --hash=sha256:6e0f4a39e66cb5bb9a137b00276a2eff74f93b71dcbdad6f10ff7df9d3557fcc \
