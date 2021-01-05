@@ -371,14 +371,9 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         assert activity_log.action == amo.LOG.APPROVE_VERSION.id
         assert sign_file_mock.call_count == 1
         assert sign_file_mock.call_args[0][0] == self.file
-        assert len(mail.outbox) == 1
-        msg = mail.outbox[0]
-        assert msg.to == [self.author.email]
-        assert msg.from_email == settings.ADDONS_EMAIL
-        assert msg.subject == 'Mozilla Add-ons: %s %s Approved' % (
-            str(self.addon.name),
-            self.version.version,
-        )
+        # Can't test sending the mail here because TestCase doesn't handle
+        # transactions so on_commit never fires. It's tested in
+        # TestAutoApproveCommandTransactions below.
 
     @mock.patch.object(auto_approve, 'set_reviewing_cache')
     @mock.patch.object(auto_approve, 'clear_reviewing_cache')
@@ -639,6 +634,13 @@ class TestAutoApproveCommandTransactions(AutoApproveTestsMixin, TransactionTestC
         assert self.files[1].reviewed
 
         assert len(mail.outbox) == 1
+        msg = mail.outbox[0]
+        assert msg.to == [self.addons[1].authors.all()[0].email]
+        assert msg.from_email == settings.ADDONS_EMAIL
+        assert msg.subject == 'Mozilla Add-ons: %s %s Updated' % (
+            str(self.addons[1].name),
+            self.versions[1].version,
+        )
 
         assert get_reviewing_cache(self.addons[0].pk) is None
         assert get_reviewing_cache(self.addons[1].pk) is None
