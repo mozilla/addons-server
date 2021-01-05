@@ -15,7 +15,7 @@ class APIRequestMiddleware(MiddlewareMixin):
 
     def process_response(self, request, response):
         if request.is_api:
-            patch_vary_headers(response, ['X-Country-Code'])
+            patch_vary_headers(response, ['X-Country-Code', 'Accept-Language'])
         return response
 
     def process_exception(self, request, exception):

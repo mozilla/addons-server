@@ -22,11 +22,11 @@ class TestAPIRequestMiddleware(TestCase):
         request.is_api = True
         response = HttpResponse()
         APIRequestMiddleware().process_response(request, response)
-        assert response['Vary'] == 'X-Country-Code'
+        assert response['Vary'] == 'X-Country-Code, Accept-Language'
 
         response['Vary'] = 'Foo, Bar'
         APIRequestMiddleware().process_response(request, response)
-        assert response['Vary'] == 'Foo, Bar, X-Country-Code'
+        assert response['Vary'] == 'Foo, Bar, X-Country-Code, Accept-Language'
 
     def test_vary_not_applied_outside_api(self):
         request = mock.Mock()
