@@ -82,6 +82,31 @@ small number of shelves - and likely only one - this endpoint is not paginated.
     :>json string results[].modules[].cta.text: The call to action text.
 
 
+----------------
+Homepage Shelves
+----------------
+
+.. _homepage-shelves:
+
+This endpoint returns the enabled shelves displayed on the AMO Homepage below the hero area.
+
+
+.. http:get:: /api/v4/shelves/
+
+    :query int page_size: Maximum number of results to return for the requested page. Defaults to 25.
+    :query int page_count: The number of pages available in the pagination. 
+    :query int count: The number of results for this query.
+    :query string next: The URL of the next page of results.
+    :query string previous: The URL of the previous page of results.
+    :>json array results: The array of shelves displayed on the AMO Homepage.
+    :>json string results[].title: The title of the shelf.
+    :>json string results[].url: The configured URL using the shelf's endpoint and criteria; links to the shelf's returned add-ons.
+    :>json string results[].endpoint: The endpoint selected for the shelf.
+    :>json string results[].criteria: The criteria for the addons in the shelf.
+    :>json string|null results[].footer_text: The optional text in the footer of the shelf.
+    :>json string|null results[].footer_pathname: The optional pathname of the URL for the footer's text.
+    :>json array results[].addons: An array of :ref:`add-ons <addon-detail-object>` or :ref:`collections <collection-detail-object>`.
+
 ---------------
 Sponsored Shelf
 ---------------
