@@ -278,7 +278,7 @@ class AddonAndVersionViewSetDetailMixin(object):
         assert response.status_code == 401
         # Response is short enough that it won't be compressed, so it doesn't
         # depend on Accept-Encoding.
-        assert response['Vary'] == 'Origin, X-Country-Code'
+        assert response['Vary'] == 'Origin, X-Country-Code, Accept-Language'
 
     def test_get_not_listed_no_rights(self):
         user = UserProfile.objects.create(username='simpleuser')
@@ -301,7 +301,7 @@ class AddonAndVersionViewSetDetailMixin(object):
         assert response.status_code == 403
         # Response is short enough that it won't be compressed, so it doesn't
         # depend on Accept-Encoding.
-        assert response['Vary'] == 'Origin, X-Country-Code'
+        assert response['Vary'] == 'Origin, X-Country-Code, Accept-Language'
 
     def test_get_not_listed_simple_reviewer(self):
         user = UserProfile.objects.create(username='reviewer')
@@ -413,14 +413,17 @@ class AddonAndVersionViewSetDetailMixin(object):
         assert response.status_code == 404
         # Response is short enough that it won't be compressed, so it doesn't
         # depend on Accept-Encoding.
-        assert response['Vary'] == 'Origin, X-Country-Code'
+        assert response['Vary'] == 'Origin, X-Country-Code, Accept-Language'
 
     def test_addon_regional_restrictions(self):
         response = self.client.get(
             self.url, {'lang': 'en-US'}, HTTP_X_COUNTRY_CODE='fr'
         )
         assert response.status_code == 200
-        assert response['Vary'] == 'Origin, Accept-Encoding, X-Country-Code'
+        assert (
+            response['Vary']
+            == 'Origin, Accept-Encoding, X-Country-Code, Accept-Language'
+        )
 
         AddonRegionalRestrictions.objects.create(
             addon=self.addon, excluded_regions=['AB', 'CD']
@@ -429,7 +432,10 @@ class AddonAndVersionViewSetDetailMixin(object):
             self.url, {'lang': 'en-US'}, HTTP_X_COUNTRY_CODE='fr'
         )
         assert response.status_code == 200
-        assert response['Vary'] == 'Origin, Accept-Encoding, X-Country-Code'
+        assert (
+            response['Vary']
+            == 'Origin, Accept-Encoding, X-Country-Code, Accept-Language'
+        )
 
         AddonRegionalRestrictions.objects.filter(addon=self.addon).update(
             excluded_regions=['AB', 'CD', 'FR']
@@ -440,7 +446,7 @@ class AddonAndVersionViewSetDetailMixin(object):
         assert response.status_code == 451
         # Response is short enough that it won't be compressed, so it doesn't
         # depend on Accept-Encoding.
-        assert response['Vary'] == 'Origin, X-Country-Code'
+        assert response['Vary'] == 'Origin, X-Country-Code, Accept-Language'
         assert response['Link'] == (
             '<https://www.mozilla.org/about/policy/transparency/>; rel="blocked-by"'
         )
@@ -473,7 +479,10 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         response = self.client.get(self.url, data=kwargs, **extra)
         assert response.status_code == 200
         result = json.loads(force_text(response.content))
-        assert response['Vary'] == 'Origin, Accept-Encoding, X-Country-Code'
+        assert (
+            response['Vary']
+            == 'Origin, Accept-Encoding, X-Country-Code, Accept-Language'
+        )
         assert result['id'] == self.addon.pk
         assert result['name'] == {'en-US': 'My Addôn'}
         assert result['slug'] == self.addon.slug
@@ -653,7 +662,10 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
     def _test_url(self):
         response = self.client.get(self.url)
         assert response.status_code == 200
-        assert response['Vary'] == 'Origin, Accept-Encoding, X-Country-Code'
+        assert (
+            response['Vary']
+            == 'Origin, Accept-Encoding, X-Country-Code, Accept-Language'
+        )
         result = json.loads(force_text(response.content))
         assert result['id'] == self.version.pk
         assert result['version'] == self.version.version
