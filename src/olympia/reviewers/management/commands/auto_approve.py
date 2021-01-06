@@ -12,7 +12,7 @@ from post_request_task.task import (
     _discard_tasks,
     _start_queuing_tasks,
     _send_tasks_and_stop_queuing,
-    _stop_queuing_tasks
+    _stop_queuing_tasks,
 )
 
 import olympia.core.logger
