@@ -604,6 +604,20 @@ class AddonSerializerOutputTestMixin(object):
         assert result['homepage']['outgoing'] == {
             'fr': get_outgoing_url(translated_homepages['fr'])
         }
+        # Check when it's a missing locale we don't mangle the `_default` value
+        self.request = self.get_request('/', {'lang': 'de'})
+        with override('de'):
+            result = self.serialize()
+        assert result['homepage']['url'] == {
+            'en-US': translated_homepages['en-US'],
+            'de': None,
+            '_default': 'en-US',
+        }
+        assert result['homepage']['outgoing'] == {
+            'en-US': get_outgoing_url(translated_homepages['en-US']),
+            'de': None,
+            '_default': 'en-US',
+        }
 
         # And again, but with v3 style flat strings
         with override('fr'):

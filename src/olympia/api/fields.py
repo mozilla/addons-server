@@ -373,7 +373,11 @@ class OutgoingSerializerMixin:
             return None
         if isinstance(data, dict):
             outgoing = {
-                key: get_outgoing_url(value) if value else None
+                key: value
+                if key == '_default'
+                else get_outgoing_url(value)
+                if value
+                else None
                 for key, value in data.items()
             }
         else:
