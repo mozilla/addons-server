@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-12-26 16:29+0000\n"
+"PO-Revision-Date: 2021-01-06 12:57+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2232,6 +2232,7 @@ msgstr "Tu ha finite!"
 #, python-format
 msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
 msgstr ""
+"Tu ha finite! Un nove version <strong>%(new_version_number)s</strong> de tu additivo <strong>%(addon_name)s</strong> sera publicate como %(group_name)s e deberea devenir disponibile tra breve."
 
 msgid "A newer version of your add-on is currently pending review."
 msgstr "Un nove version del additivo attende actualmente revision."
@@ -2240,7 +2241,7 @@ msgid "If you have any questions, don’t hesitate to contact us."
 msgstr "Si tu ha ulle questiones, non hesitar continger nos."
 
 msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
-msgstr ""
+msgstr "Tu pagamento ha essite registrate, ma il ha actualmente nulle versiones publicate de tu additivo. Carga un nove version public pro completar iste processo."
 
 msgid "Manage add-on"
 msgstr "Gerer additivo"
@@ -2250,16 +2251,18 @@ msgid ""
 "There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a "
 "href=\"mailto:%(email)s\">%(email)s</a>."
 msgstr ""
+"Un error occurreva durante le configuration del pagamento pro tu additivo. Si tu remarca problemas con iste processo o tu ha cambiate opinion, continge nos a <a "
+"href=\"mailto:%(email)s\">%(email)s</a>."
 
 msgid "Thank you for joining the Promoted Add-ons Program!"
-msgstr ""
+msgstr "Gratias pro junger te al programma del additivos promovite!"
 
 #, python-format
 msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the program once payment is set up through the Stripe system. Click on the button below to continue:"
 msgstr ""
 
 msgid "Continue to Stripe Checkout"
-msgstr ""
+msgstr "Continuar sur Stripe Checkout"
 
 msgid "Manage Authors & License"
 msgstr "Gerer autores & licentia"
@@ -3163,7 +3166,7 @@ msgid "View All"
 msgstr "Vider toto"
 
 msgid "Manage Billing on Stripe"
-msgstr ""
+msgstr "Gerer facturation sur Stripe"
 
 msgid "Listed Review Page"
 msgstr "Pagina de revision del additivos in le lista de presentation"
@@ -4451,7 +4454,7 @@ msgstr "Recipe informationes meteorologic  justo de Firefox."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
-msgstr ""
+msgstr "Gere melio tu tempore con un horologio del navigator que delinea le intervallos de labor."
 
 #. editorial content for the primary hero shelves.
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
