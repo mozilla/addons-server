@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2021-01-06 12:57+0000\n"
+"PO-Revision-Date: 2021-01-06 13:06+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2259,7 +2259,7 @@ msgstr "Gratias pro junger te al programma del additivos promovite!"
 
 #, python-format
 msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the program once payment is set up through the Stripe system. Click on the button below to continue:"
-msgstr ""
+msgstr "Tu additivo <strong>%(addon_name)s</strong> sera includite in le programma un vice que le pagamento es definite per le systema Stripe. Clicca sur le button infra pro continuar:"
 
 msgid "Continue to Stripe Checkout"
 msgstr "Continuar sur Stripe Checkout"
@@ -4458,7 +4458,7 @@ msgstr "Gere melio tu tempore con un horologio del navigator que delinea le inte
 
 #. editorial content for the primary hero shelves.
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
-msgstr ""
+msgstr "Fatigate de ille fenestra de dialogo \"Video pausate. Continuar observar?\" dialogo? Ascolta non interrumpite tu musica favorite sur YouTube."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
