@@ -29,7 +29,6 @@ from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 from olympia.devhub.tasks import create_version_for_upload
 from olympia.hero.models import PrimaryHero, SecondaryHero
-from olympia.promoted.models import PromotedAddon
 from olympia.constants.promoted import RECOMMENDED
 
 from .version import generate_version
@@ -99,8 +98,8 @@ class GenerateAddonsSerializer(serializers.Serializer):
             addon = addon_factory(
                 status=amo.STATUS_APPROVED,
                 version_kw={'nomination': days_ago(6)},
+                promoted=RECOMMENDED,
             )
-            PromotedAddon.objects.create(addon=addon, group_id=RECOMMENDED.id)
             AddonUser.objects.create(user=user_factory(), addon=addon)
 
             PrimaryHero.objects.create(promoted_addon=addon.promotedaddon, enabled=True)
@@ -116,8 +115,8 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 status=amo.STATUS_APPROVED,
                 type=ADDON_STATICTHEME,
                 version_kw={'nomination': days_ago(6)},
+                promoted=RECOMMENDED,
             )
-            PromotedAddon.objects.create(addon=addon, group_id=RECOMMENDED.id)
             generate_version(addon=addon)
             addon.update_version()
 
@@ -144,8 +143,8 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 name='{}'.format(name),
                 slug='{}'.format(name),
                 version_kw={'nomination': days_ago(6)},
+                promoted=RECOMMENDED,
             )
-            PromotedAddon.objects.create(addon=addon, group_id=RECOMMENDED.id)
             addon.save()
         else:
             author.update(id=settings.TASK_USER_ID)
@@ -155,8 +154,8 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 name='{}'.format(name),
                 slug='{}'.format(name),
                 version_kw={'nomination': days_ago(6)},
+                promoted=RECOMMENDED,
             )
-            PromotedAddon.objects.create(addon=addon, group_id=RECOMMENDED.id)
             addon.save()
         return addon
 
@@ -187,8 +186,8 @@ class GenerateAddonsSerializer(serializers.Serializer):
             weekly_downloads=9999999,
             developer_comments='This is a testing addon.',
             version_kw={'nomination': days_ago(6)},
+            promoted=RECOMMENDED,
         )
-        PromotedAddon.objects.create(addon=addon, group_id=RECOMMENDED.id)
         Preview.objects.create(addon=addon, position=1)
         Rating.objects.create(addon=addon, rating=5, user=user_factory())
         Rating.objects.create(addon=addon, rating=5, user=user_factory())
@@ -240,8 +239,8 @@ class GenerateAddonsSerializer(serializers.Serializer):
             weekly_downloads=9999999,
             developer_comments='This is a testing addon for Android.',
             version_kw={'nomination': days_ago(6)},
+            promoted=RECOMMENDED,
         )
-        PromotedAddon.objects.create(addon=addon, group_id=RECOMMENDED.id)
         Preview.objects.create(addon=addon, position=1)
         Rating.objects.create(addon=addon, rating=5, user=user_factory())
         Rating.objects.create(addon=addon, rating=5, user=user_factory())
@@ -279,8 +278,8 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 weekly_downloads=9999999,
                 developer_comments='This is a testing addon.',
                 version_kw={'nomination': days_ago(6)},
+                promoted=RECOMMENDED,
             )
-            PromotedAddon.objects.create(addon=addon, group_id=RECOMMENDED.id)
             addon.save()
             generate_collection(addon, app=FIREFOX)
             print('Created addon {0} for testing successfully'.format(addon.name))
@@ -314,8 +313,8 @@ class GenerateAddonsSerializer(serializers.Serializer):
             weekly_downloads=123456,
             developer_comments='This is a testing theme, used within pytest.',
             version_kw={'nomination': days_ago(6)},
+            promoted=RECOMMENDED,
         )
-        PromotedAddon.objects.create(addon=addon, group_id=RECOMMENDED.id)
         addon.save()
         generate_collection(addon, app=FIREFOX, type=amo.COLLECTION_RECOMMENDED)
         print('Created Theme {0} for testing successfully'.format(addon.name))
@@ -344,8 +343,8 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 type=ADDON_STATICTHEME,
                 file_kw={'is_webextension': True},
                 version_kw={'nomination': days_ago(6)},
+                promoted=RECOMMENDED,
             )
-            PromotedAddon.objects.create(addon=addon, group_id=RECOMMENDED.id)
             generate_collection(addon, type=amo.COLLECTION_RECOMMENDED)
 
     def create_a_named_collection_and_addon(self, name, author):
