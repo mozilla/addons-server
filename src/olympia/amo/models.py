@@ -186,7 +186,14 @@ class OnChangeMixin(object):
 
     def __init__(self, *args, **kw):
         super(OnChangeMixin, self).__init__(*args, **kw)
-        self._initial_attr = dict(self.__dict__)
+        self._reset_initial_attrs()
+
+    def _reset_initial_attrs(self):
+        self._initial_attrs = {
+            k: v
+            for k, v in self.__dict__.items()
+            if k not in ('_state', '_initial_attrs')
+        }
 
     @classmethod
     def on_change(cls, callback):
@@ -265,8 +272,10 @@ class OnChangeMixin(object):
             and kwargs.get('update_fields') is None
             and kwargs.pop('_dynamic_update_fields', True)
         ):
-            fields = [f.name for f in self._meta.get_fields()]
-            initial_attrs = {k: v for k, v in self._initial_attr.items() if k in fields}
+            fields = [f.attname for f in self._meta.concrete_fields]
+            initial_attrs = {
+                k: v for k, v in self._initial_attrs.items() if k in fields
+            }
             kwargs['update_fields'] = list(
                 dict(
                     {(k, self.__dict__[k]) for k in initial_attrs}
@@ -280,9 +289,9 @@ class OnChangeMixin(object):
         signal = kwargs.pop('_signal', True)
         result = super(OnChangeMixin, self).save(*args, **kwargs)
         if signal and self.__class__ in _on_change_callbacks:
-            self._send_changes(self._initial_attr, dict(self.__dict__))
+            self._send_changes(self._initial_attrs, dict(self.__dict__))
         # Reset initial_attr to be ready for the next save.
-        self._initial_attr = dict(self.__dict__)
+        self._reset_initial_attrs()
         return result
 
     def update(self, **kwargs):
@@ -297,7 +306,7 @@ class OnChangeMixin(object):
         if signal and self.__class__ in _on_change_callbacks:
             self._send_changes(old_attr, kwargs)
         # Reset initial_attr to be ready for the next save.
-        self._initial_attr = dict(self.__dict__)
+        self._reset_initial_attrs()
         return result
 
 
