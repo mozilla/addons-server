@@ -620,6 +620,7 @@ class AddonSerializerOutputTestMixin(object):
         }
 
         # And again, but with v3 style flat strings
+        self.request = self.get_request('/', {'lang': 'fr'})
         with override('fr'):
             gates = {self.request.version: ('l10n_flat_input_output',)}
             with override_settings(DRF_API_GATES=gates):
