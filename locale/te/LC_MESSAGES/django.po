@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2021-01-05 17:50+0000\n"
+"PO-Revision-Date: 2021-01-07 18:13+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -4386,10 +4386,10 @@ msgid "Add-on ID is required for Firefox 47 and below."
 msgstr ""
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr ""
+msgstr "తోడ్పాటువున్న కనిష్ఠ \"strict_min_version\" 42.0."
 
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
-msgstr ""
+msgstr "{app} యొక్క గుర్తుతెలియని \"strict_min_version\" {appver} "
 
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr ""
@@ -5821,7 +5821,7 @@ msgid "Report Trademark Abuse"
 msgstr "ట్రేడ్‌మార్క్ దుర్వినియోగాన్ని నివేదించండి"
 
 msgid "The new website supports mobile and desktop clients"
-msgstr ""
+msgstr "కొత్త వెబ్‌సైటు మొబైల్, డెస్క్‌టాప్ క్లయింట్లకు తోడ్పాటునిస్తుంది"
 
 msgid "View the new site"
 msgstr "కొత్త సైటును చూడండి"
@@ -5910,7 +5910,7 @@ msgstr "మార్పులను విస్మరించుము"
 
 #. {0} is a language name, like 'French'
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr ""
+msgstr "మీరు <b>{0}</b> అనువాదాలన్నింటిని తొలగించాలని నిశ్చయించుకున్నారా? వీటినిక వెనక్కితీసుకురాలేము."
 
 msgid "Delete Locale"
 msgstr "లొకేల్‌ను తొలగించండి"
