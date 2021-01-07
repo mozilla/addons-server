@@ -270,7 +270,7 @@ class OnChangeMixin(object):
             kwargs['update_fields'] = list(
                 dict(
                     {(k, self.__dict__[k]) for k in initial_attrs}
-                    - set(initial_attrs)
+                    - set(initial_attrs.items())
                     # Never include primary key field - it might be set to None
                     # initially in initial_attr right after a call to create()
                     # even though self.pk is set.
@@ -296,6 +296,8 @@ class OnChangeMixin(object):
         result = super(OnChangeMixin, self).update(_signal=signal, **kwargs)
         if signal and self.__class__ in _on_change_callbacks:
             self._send_changes(old_attr, kwargs)
+        # Reset initial_attr to be ready for the next save.
+        self._initial_attr = dict(self.__dict__)
         return result
 
 
