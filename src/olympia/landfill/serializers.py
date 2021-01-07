@@ -29,6 +29,8 @@ from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 from olympia.devhub.tasks import create_version_for_upload
 from olympia.hero.models import PrimaryHero, SecondaryHero
+from olympia.promoted.models import PromotedAddon
+from olympia.constants.promoted import RECOMMENDED
 
 from .version import generate_version
 
@@ -96,9 +98,9 @@ class GenerateAddonsSerializer(serializers.Serializer):
         for _ in range(10):
             addon = addon_factory(
                 status=amo.STATUS_APPROVED,
-                recommended=True,
                 version_kw={'nomination': days_ago(6)},
             )
+            PromotedAddon.objects.create(addon=addon, group_id=RECOMMENDED.id)
             AddonUser.objects.create(user=user_factory(), addon=addon)
 
             PrimaryHero.objects.create(promoted_addon=addon.promotedaddon, enabled=True)
@@ -113,9 +115,9 @@ class GenerateAddonsSerializer(serializers.Serializer):
             addon = addon_factory(
                 status=amo.STATUS_APPROVED,
                 type=ADDON_STATICTHEME,
-                recommended=True,
                 version_kw={'nomination': days_ago(6)},
             )
+            PromotedAddon.objects.create(addon=addon, group_id=RECOMMENDED.id)
             generate_version(addon=addon)
             addon.update_version()
 
@@ -141,9 +143,9 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 users=[UserProfile.objects.get(username=author)],
                 name='{}'.format(name),
                 slug='{}'.format(name),
-                recommended=True,
                 version_kw={'nomination': days_ago(6)},
             )
+            PromotedAddon.objects.create(addon=addon, group_id=RECOMMENDED.id)
             addon.save()
         else:
             author.update(id=settings.TASK_USER_ID)
@@ -152,9 +154,9 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 users=[UserProfile.objects.get(username=author.username)],
                 name='{}'.format(name),
                 slug='{}'.format(name),
-                recommended=True,
                 version_kw={'nomination': days_ago(6)},
             )
+            PromotedAddon.objects.create(addon=addon, group_id=RECOMMENDED.id)
             addon.save()
         return addon
 
@@ -178,7 +180,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
             file_kw={'is_webextension': True},
             guid=generate_addon_guid(),
             name='Ui-Addon',
-            recommended=True,
             slug='ui-test-2',
             summary='My Addon summary',
             tags=['some_tag', 'another_tag', 'ui-testing', 'selenium', 'python'],
@@ -187,6 +188,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
             developer_comments='This is a testing addon.',
             version_kw={'nomination': days_ago(6)},
         )
+        PromotedAddon.objects.create(addon=addon, group_id=RECOMMENDED.id)
         Preview.objects.create(addon=addon, position=1)
         Rating.objects.create(addon=addon, rating=5, user=user_factory())
         Rating.objects.create(addon=addon, rating=5, user=user_factory())
@@ -224,7 +226,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
             file_kw={'is_webextension': True},
             guid=generate_addon_guid(),
             name='Ui-Addon-Android',
-            recommended=True,
             slug='ui-test-addon-android',
             summary='My Addon summary for Android',
             tags=[
@@ -240,6 +241,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
             developer_comments='This is a testing addon for Android.',
             version_kw={'nomination': days_ago(6)},
         )
+        PromotedAddon.objects.create(addon=addon, group_id=RECOMMENDED.id)
         Preview.objects.create(addon=addon, position=1)
         Rating.objects.create(addon=addon, rating=5, user=user_factory())
         Rating.objects.create(addon=addon, rating=5, user=user_factory())
@@ -271,7 +273,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 description='My Addon description',
                 guid='@webextension-guid',
                 name='Ui-Addon-Install',
-                recommended=True,
                 slug='ui-test-install',
                 summary='My Addon summary',
                 tags=['some_tag', 'another_tag', 'ui-testing', 'selenium', 'python'],
@@ -279,6 +280,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 developer_comments='This is a testing addon.',
                 version_kw={'nomination': days_ago(6)},
             )
+            PromotedAddon.objects.create(addon=addon, group_id=RECOMMENDED.id)
             addon.save()
             generate_collection(addon, app=FIREFOX)
             print('Created addon {0} for testing successfully'.format(addon.name))
@@ -303,7 +305,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
             guid=generate_addon_guid(),
             homepage='https://www.example.org/',
             name='Ui-Test Theme',
-            recommended=True,
             slug='ui-test',
             summary='My UI theme summary',
             support_email='support@example.org',
@@ -314,6 +315,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
             developer_comments='This is a testing theme, used within pytest.',
             version_kw={'nomination': days_ago(6)},
         )
+        PromotedAddon.objects.create(addon=addon, group_id=RECOMMENDED.id)
         addon.save()
         generate_collection(addon, app=FIREFOX, type=amo.COLLECTION_RECOMMENDED)
         print('Created Theme {0} for testing successfully'.format(addon.name))
@@ -338,12 +340,12 @@ class GenerateAddonsSerializer(serializers.Serializer):
         """
         for _ in range(6):
             addon = addon_factory(
-                recommended=True,
                 status=amo.STATUS_APPROVED,
                 type=ADDON_STATICTHEME,
                 file_kw={'is_webextension': True},
                 version_kw={'nomination': days_ago(6)},
             )
+            PromotedAddon.objects.create(addon=addon, group_id=RECOMMENDED.id)
             generate_collection(addon, type=amo.COLLECTION_RECOMMENDED)
 
     def create_a_named_collection_and_addon(self, name, author):
