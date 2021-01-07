@@ -252,11 +252,43 @@ https://github.com/mozilla/addons-server/issues/8816 for more details)
 Outgoing Links
 ~~~~~~~~~~~~~~
 
+How outgoing links are treated has changed in v5 API.
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+Default v3/v4 API behavior
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 If the ``wrap_outgoing_links`` query parameter is present, any external links
 returned for properties such as ``support_url`` or ``homepage`` will be wrapped
 through ``outgoing.prod.mozaws.net``. Fields supporting some HTML, such as
 add-on ``description`` or ``summary``, always do this regardless of whether or
 not the query parameter is present.
+
+
+^^^^^^^^^^^^^^^
+v5 API behavior
+^^^^^^^^^^^^^^^
+
+All fields that can have external links that would be presented to the user,
+such as ``support_url`` or ``homepage``, are returned as a object both containing the
+original url (``url``), and wrapped through ``outgoing.prod.mozaws.net`` (``outgoing``).
+
+.. code-block:: json
+
+    {
+        "contributions": {
+            "url": "https://paypal.me/xxx",
+            "outgoing": "https://outgoing.prod.mozaws.net/123456"
+        }
+    }
+
+Note, if the field is also a translated field then the ``url`` and ``outgoing``
+values could be an object rather than a string
+(See :ref:`translated fields <api-overview-translations>` for translated field represenations).
+
+Fields supporting some HTML, such as add-on ``description`` or ``summary``,
+always wrap any links directly inside the content (the original url is not available).
+
 
 ~~~~~~~~~~~~
 Cross Origin
@@ -427,3 +459,5 @@ These are `v5` specific changes - `v4` changes apply also.
   The requested locale is returned as ``none``, with the default_locale code under the ``_default`` key.
   See :ref:`v5 API translation behavior<api-overview-translations-v5>` for specification and examples.
   https://github.com/mozilla/addons-server/issues/16069
+* 2021-01-07: changed API behavior with all fields that could be affected by ``wrap_outgoing_links``.
+  Now the url is an object containing both the original url and the wrapped url.  See :ref:`Outgoing Links <api-overview-outgoing>`.

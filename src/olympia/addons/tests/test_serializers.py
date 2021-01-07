@@ -68,7 +68,7 @@ class AddonSerializerOutputTestMixin(object):
 
     def get_request(self, path, data=None, **extra):
         request = APIRequestFactory().get(path, data, **extra)
-        request.version = None
+        request.version = 'v5'
         return request
 
     def _test_author(self, author, data):
@@ -258,8 +258,11 @@ class AddonSerializerOutputTestMixin(object):
         utm_string = '&'.join(
             f'{key}={value}' for key, value in amo.CONTRIBUTE_UTM_PARAMS.items()
         )
-        assert result['contributions_url'] == (
+        assert result['contributions_url']['url'] == (
             self.addon.contributions + '?' + utm_string
+        )
+        assert result['contributions_url']['outgoing'] == (
+            get_outgoing_url(self.addon.contributions + '?' + utm_string)
         )
         assert result['edit_url'] == absolutify(self.addon.get_dev_url())
         assert result['default_locale'] == self.addon.default_locale
@@ -268,7 +271,10 @@ class AddonSerializerOutputTestMixin(object):
         assert result['guid'] == self.addon.guid
         assert result['has_eula'] is False
         assert result['has_privacy_policy'] is False
-        assert result['homepage'] == {'en-US': str(self.addon.homepage)}
+        assert result['homepage']['url'] == {'en-US': str(self.addon.homepage)}
+        assert result['homepage']['outgoing'] == {
+            'en-US': get_outgoing_url(str(self.addon.homepage))
+        }
         assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
         assert result['icons'] == {
             '32': absolutify(self.addon.get_icon_url(32)),
@@ -327,7 +333,10 @@ class AddonSerializerOutputTestMixin(object):
         assert result['status'] == 'public'
         assert result['summary'] == {'en-US': self.addon.summary}
         assert result['support_email'] == {'en-US': self.addon.support_email}
-        assert result['support_url'] == {'en-US': str(self.addon.support_url)}
+        assert result['support_url']['url'] == {'en-US': str(self.addon.support_url)}
+        assert result['support_url']['outgoing'] == {
+            'en-US': get_outgoing_url(str(self.addon.support_url))
+        }
         assert set(result['tags']) == {'some_tag', 'some_other_tag'}
         assert result['type'] == 'extension'
         assert result['url'] == self.addon.get_absolute_url()
@@ -336,17 +345,29 @@ class AddonSerializerOutputTestMixin(object):
 
         return result
 
-    def test_wrap_outgoing_links(self):
+    @override_settings(DRF_API_GATES={'v5': ('wrap-outgoing-parameter',)})
+    def test_outgoing_links_in_v3_v4(self):
         self.addon = addon_factory(
             contributions='https://paypal.me/fôobar',
             homepage='http://support.example.com/',
             support_url='https://support.example.org/support/my-âddon/',
         )
-        self.request = self.get_request('/', {'wrap_outgoing_links': 1})
-        result = self.serialize()
         utm_string = '&'.join(
             f'{key}={value}' for key, value in amo.CONTRIBUTE_UTM_PARAMS.items()
         )
+
+        # with no wrap_outgoing_links param first
+        self.request = self.get_request('/')
+        result = self.serialize()
+        assert result['homepage'] == {'en-US': str(self.addon.homepage)}
+        assert result['support_url'] == {'en-US': str(self.addon.support_url)}
+        assert result['contributions_url'] == (
+            self.addon.contributions + '?' + utm_string
+        )
+
+        # then with wrap_outgoing_links param:
+        self.request = self.get_request('/', {'wrap_outgoing_links': 1})
+        result = self.serialize()
         assert result['contributions_url'] == get_outgoing_url(
             str(self.addon.contributions) + '?' + utm_string
         )
@@ -372,7 +393,12 @@ class AddonSerializerOutputTestMixin(object):
             'en-US': get_outgoing_url(str(self.addon.support_url)),
         }
         # And again, but with v3 style flat strings
-        gates = {self.request.version: ('l10n_flat_input_output',)}
+        gates = {
+            self.request.version: (
+                'wrap-outgoing-parameter',
+                'l10n_flat_input_output',
+            )
+        }
         with override_settings(DRF_API_GATES=gates):
             result = self.serialize()
         assert result['contributions_url'] == get_outgoing_url(
@@ -561,7 +587,11 @@ class AddonSerializerOutputTestMixin(object):
 
         result = self.serialize()
         assert result['description'] == translated_descriptions
-        assert result['homepage'] == translated_homepages
+        assert result['homepage']['url'] == translated_homepages
+        assert result['homepage']['outgoing'] == {
+            locale: get_outgoing_url(url)
+            for locale, url in translated_homepages.items()
+        }
 
         # Try a single translation. The locale activation is normally done by
         # LocaleAndAppURLMiddleware, but since we're directly calling the
@@ -570,15 +600,36 @@ class AddonSerializerOutputTestMixin(object):
         with override('fr'):
             result = self.serialize()
         assert result['description'] == {'fr': translated_descriptions['fr']}
-        assert result['homepage'] == {'fr': translated_homepages['fr']}
+        assert result['homepage']['url'] == {'fr': translated_homepages['fr']}
+        assert result['homepage']['outgoing'] == {
+            'fr': get_outgoing_url(translated_homepages['fr'])
+        }
+        # Check when it's a missing locale we don't mangle the `_default` value
+        self.request = self.get_request('/', {'lang': 'de'})
+        with override('de'):
+            result = self.serialize()
+        assert result['homepage']['url'] == {
+            'en-US': translated_homepages['en-US'],
+            'de': None,
+            '_default': 'en-US',
+        }
+        assert result['homepage']['outgoing'] == {
+            'en-US': get_outgoing_url(translated_homepages['en-US']),
+            'de': None,
+            '_default': 'en-US',
+        }
 
         # And again, but with v3 style flat strings
+        self.request = self.get_request('/', {'lang': 'fr'})
         with override('fr'):
             gates = {self.request.version: ('l10n_flat_input_output',)}
             with override_settings(DRF_API_GATES=gates):
                 result = self.serialize()
         assert result['description'] == translated_descriptions['fr']
-        assert result['homepage'] == translated_homepages['fr']
+        assert result['homepage']['url'] == translated_homepages['fr']
+        assert result['homepage']['outgoing'] == (
+            get_outgoing_url(translated_homepages['fr'])
+        )
 
     def test_webextension(self):
         self.addon = addon_factory(file_kw={'is_webextension': True})

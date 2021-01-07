@@ -1,6 +1,7 @@
 from olympia import amo
 from olympia.amo.tests import addon_factory, TestCase
 from olympia.amo.tests.test_helpers import get_uploaded_file
+from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.constants.promoted import RECOMMENDED
 from olympia.promoted.models import PromotedAddon
 
@@ -85,7 +86,10 @@ class TestPrimaryHeroShelfSerializer(TestCase):
         assert ExternalAddonSerializer(instance=addon).data == {
             'id': addon.id,
             'guid': addon.guid,
-            'homepage': {'en-US': str(addon.homepage)},
+            'homepage': {
+                'url': {'en-US': str(addon.homepage)},
+                'outgoing': {'en-US': get_outgoing_url(str(addon.homepage))},
+            },
             'name': {'en-US': str(addon.name)},
             'type': 'extension',
         }
@@ -110,7 +114,20 @@ class TestSecondaryHeroShelfSerializer(TestCase):
             'description': 'description',
             'cta': {
                 'url': 'http://testserver/extensions/',
+                'outgoing': 'http://testserver/extensions/',
                 'text': 'Go here',
+            },
+            'modules': [],
+        }
+        hero.update(cta_url='https://goo.gl/stuff/', cta_text='Googl here')
+        data = SecondaryHeroShelfSerializer(instance=hero).data
+        assert data == {
+            'headline': 'Its a héadline!',
+            'description': 'description',
+            'cta': {
+                'url': 'https://goo.gl/stuff/',
+                'outgoing': get_outgoing_url('https://goo.gl/stuff/'),
+                'text': 'Googl here',
             },
             'modules': [],
         }
@@ -142,6 +159,7 @@ class TestSecondaryHeroShelfSerializer(TestCase):
                     'icon': 'http://testserver/static/img/hero/icons/b.svg',
                     'cta': {
                         'url': 'http://testserver/extensions/',
+                        'outgoing': 'http://testserver/extensions/',
                         'text': 'Go here',
                     },
                 },
