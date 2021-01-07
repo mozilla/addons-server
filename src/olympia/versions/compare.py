@@ -118,6 +118,8 @@ class VersionString(str):
     def __le__(self, other):
         return not self.__gt__(other)
 
+    __hash__ = str.__hash__
+
 
 def version_int(version):
     """This is used for converting an app version's version string into a

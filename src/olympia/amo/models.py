@@ -238,29 +238,64 @@ class OnChangeMixin(object):
                 sender=self.__class__,
             )
 
-    def save(self, *args, **kw):
+    def save(self, *args, **kwargs):
         """
         Save changes to the model instance.
 
         If _signal=False is in `kw` the on_change() callbacks won't be called.
         """
-        signal = kw.pop('_signal', True)
-        result = super(OnChangeMixin, self).save(*args, **kw)
+        # When saving an existing instance, if the caller didn't specify
+        # an explicit update_fields and _dynamic_update_fields is absent or
+        # True, we attempt to find out which fields were changed and only
+        # save those. This allows for slightly better performance as we don't
+        # keep re-saving the same data over and over again, but also avoids
+        # overwriting data that has changed in the meantime.
+        # Fields with auto_now=True will be included all the time.
+        #
+        # Note that deferred fields will be included in the list of changed
+        # fields if they are loaded afterwards, even if their value does not
+        # change.
+        if (
+            self.pk
+            # Just having self.pk is not enough, we only really want to catch
+            # UPDATE calls and the caller could be doing Model(pk=1).save().
+            # Django save() implementation uses the special _state attribute
+            # for this.
+            and self._state.adding is False
+            and kwargs.get('update_fields') is None
+            and kwargs.pop('_dynamic_update_fields', True)
+        ):
+            fields = [f.name for f in self._meta.get_fields()]
+            initial_attrs = {k: v for k, v in self._initial_attr.items() if k in fields}
+            kwargs['update_fields'] = list(
+                dict(
+                    {(k, self.__dict__[k]) for k in initial_attrs}
+                    - set(initial_attrs)
+                    # Never include primary key field - it might be set to None
+                    # initially in initial_attr right after a call to create()
+                    # even though self.pk is set.
+                    - set(((self._meta.pk.name, self.pk),))
+                ).keys()
+            ) + [f.name for f in self._meta.fields if getattr(f, 'auto_now', False)]
+        signal = kwargs.pop('_signal', True)
+        result = super(OnChangeMixin, self).save(*args, **kwargs)
         if signal and self.__class__ in _on_change_callbacks:
             self._send_changes(self._initial_attr, dict(self.__dict__))
+        # Reset initial_attr to be ready for the next save.
+        self._initial_attr = dict(self.__dict__)
         return result
 
-    def update(self, **kw):
+    def update(self, **kwargs):
         """
         Shortcut for doing an UPDATE on this object.
 
-        If _signal=False is in ``kw`` the post_save signal won't be sent.
+        If _signal=False is in ``kwargs`` the post_save signal won't be sent.
         """
-        signal = kw.pop('_signal', True)
+        signal = kwargs.pop('_signal', True)
         old_attr = dict(self.__dict__)
-        result = super(OnChangeMixin, self).update(_signal=signal, **kw)
+        result = super(OnChangeMixin, self).update(_signal=signal, **kwargs)
         if signal and self.__class__ in _on_change_callbacks:
-            self._send_changes(old_attr, kw)
+            self._send_changes(old_attr, kwargs)
         return result
 
 
