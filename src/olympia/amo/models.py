@@ -188,12 +188,13 @@ class OnChangeMixin(object):
         super(OnChangeMixin, self).__init__(*args, **kw)
         self._reset_initial_attrs()
 
-    def _reset_initial_attrs(self):
-        self._initial_attrs = {
-            k: v
-            for k, v in self.__dict__.items()
-            if k not in ('_state', '_initial_attrs')
-        }
+    def _reset_initial_attrs(self, attrs=None):
+        if attrs is None:
+            self._initial_attrs = {
+                k: v for k, v in self.__dict__.items() if k not in ('_state', '_initial_attrs')
+            }
+        else:
+            self._initial_attrs.update(attrs)
 
     @classmethod
     def on_change(cls, callback):
@@ -281,7 +282,7 @@ class OnChangeMixin(object):
                     {(k, self.__dict__[k]) for k in initial_attrs}
                     - set(initial_attrs.items())
                     # Never include primary key field - it might be set to None
-                    # initially in initial_attr right after a call to create()
+                    # initially in initial_attrs right after a call to create()
                     # even though self.pk is set.
                     - set(((self._meta.pk.name, self.pk),))
                 ).keys()
@@ -305,8 +306,12 @@ class OnChangeMixin(object):
         result = super(OnChangeMixin, self).update(_signal=signal, **kwargs)
         if signal and self.__class__ in _on_change_callbacks:
             self._send_changes(old_attr, kwargs)
-        # Reset initial_attr to be ready for the next save.
-        self._reset_initial_attrs()
+        # Reset initial_attr to be ready for the next save. We only reset the
+        # fields we changed however, because the rest hasn't been saved yet.
+        # Otherwise doing obj.foo = 'bar' followed by obj.update(plop=42) and
+        # then obj.save() wouldn't save `foo`, because we'd reset the attrs
+        # used to compare in the .update() call.
+        self._reset_initial_attrs(attrs=kwargs)
         return result
 
 
