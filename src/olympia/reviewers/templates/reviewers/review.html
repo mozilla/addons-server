@@ -268,18 +268,6 @@
                   data-toggle-button-selector="#force_disable_addon"
                   id="force_enable_addon" class="toggle" type="button">{{ _('Force-enable add-on') }}</button>
         </li>
-        <li>
-        {% if addon.blocklistsubmission %}
-          <a href="{{ url('admin:blocklist_blocklistsubmission_change', addon.blocklistsubmission.id) }}" class="button"
-                  id="edit_addon_blocklistsubmission" type="button">{{ _('View Blocklist Submission') }}</a>
-        {% elif not addon.block %}
-          <a href="{{ url('admin:blocklist_block_addaddon', addon.pk) }}" class="button"
-                  id="block_addon" type="button">{{ _('Block add-on') }}</a>
-        {% else %}
-          <a href="{{ url('admin:blocklist_block_addaddon', addon.pk) }}" class="button"
-                  id="edit_addon_block" type="button">{{ _('Update add-on block') }}</a>
-        {% endif %}
-        </li>
 
         {% if addon.type in (amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT) %}
           <li {% if addon.auto_approval_disabled %}class="hidden"{% endif %}>
@@ -356,6 +344,19 @@
           </li>
         {% endif %}
       {% endif %}
+
+      <li>
+        {% if addon.blocklistsubmission %}
+          <a href="{{ url('admin:blocklist_blocklistsubmission_change', addon.blocklistsubmission.id) }}" class="button"
+                  id="edit_addon_blocklistsubmission" type="button">{{ _('View Blocklist Submission') }}</a>
+        {% elif not addon.block %}
+          <a href="{{ url('admin:blocklist_block_addaddon', addon.pk) }}" class="button"
+                  id="block_addon" type="button">{{ _('Block add-on') }}</a>
+        {% else %}
+          <a href="{{ url('admin:blocklist_block_addaddon', addon.pk) }}" class="button"
+                  id="edit_addon_block" type="button">{{ _('Update add-on block') }}</a>
+        {% endif %}
+      </li>
     </ul>
     {% endif %} {# /is-admin #}
   </div>

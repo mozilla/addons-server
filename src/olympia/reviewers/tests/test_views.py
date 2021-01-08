@@ -4244,6 +4244,13 @@ class TestReview(ReviewBase):
             reverse('admin:blocklist_blocklistsubmission_change', args=(subm.id,))
         )
 
+    def test_admin_block_actions_deleted_addon(self):
+        # Use the id for the review page url because deleting the add-on will
+        # delete the slug as well.
+        self.url = reverse('reviewers.review', args=[self.addon.id])
+        self.addon.delete()
+        self.test_admin_block_actions()
+
     def test_unflag_option_forflagged_as_admin(self):
         self.login_as_admin()
         AddonReviewerFlags.objects.create(
