@@ -95,15 +95,16 @@ services:
 
   addons-frontend:
     <<: *env
-    environment:
-      - API_HOST=http://olympia.test
-      - PROXY_API_HOST=http://olympia.test
-      - HOSTNAME=uitests
-      - WEBPACK_SERVER_HOST=olympia.test
-      - CSP=false
-      - FXA_CONFIG=default
     image: mozilla/addons-frontend:latest
+    environment:
+      # We change the proxy port (which is the main entrypoint) as well as the
+      # webpack port to avoid a conflict in case someone runs both addons-server
+      # and addons-frontend locally, with the frontend configured to access
+      # addons-server locally.
+      - PROXY_PORT=7010
+      - WEBPACK_SERVER_PORT=7011
     ports:
-      - "3000:3000"
-      - "3001:3001"
-    command: yarn amo
+      # We need to expose this port so that statics can be fetched (they are
+      # exposed using webpack and not by the node app server).
+      - 7011:7011
+    command: yarn amo:olympia
