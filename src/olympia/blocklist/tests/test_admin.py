@@ -6,6 +6,7 @@ from unittest import mock
 from django.conf import settings
 from django.contrib.admin.models import LogEntry, ADDITION
 from django.contrib.contenttypes.models import ContentType
+from olympia.addons.models import DeniedGuid
 from olympia.constants.activity import BLOCKLIST_SIGNOFF
 
 from pyquery import PyQuery as pq
@@ -1737,6 +1738,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         deleted_addon = addon_factory(guid='guid@', version_kw={'version': '1.2.5'})
         deleted_addon.delete()
         assert deleted_addon.status == amo.STATUS_DELETED
+        assert not DeniedGuid.objects.filter(guid=deleted_addon.guid).exists()
 
         response = self.client.get(self.submission_url + '?guids=guid@', follow=True)
         content = response.content.decode('utf-8')
@@ -1767,6 +1769,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert block.addon == deleted_addon
         deleted_addon.reload()
         assert deleted_addon.status == amo.STATUS_DELETED  # Should stay deleted
+        assert DeniedGuid.objects.filter(guid=deleted_addon.guid).exists()
 
 
 class TestBlockAdminEdit(TestCase):
