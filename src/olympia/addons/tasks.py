@@ -31,12 +31,6 @@ log = olympia.core.logger.getLogger('z.task')
 @task
 @use_primary_db
 def version_changed(addon_id, **kw):
-    update_last_updated(addon_id)
-    update_appsupport([addon_id])
-
-
-def update_last_updated(addon_id):
-    queries = Addon._last_updated_queries()
     try:
         addon = Addon.objects.get(pk=addon_id)
     except Addon.DoesNotExist:
@@ -44,18 +38,25 @@ def update_last_updated(addon_id):
             '[1@None] Updating last updated for %s failed, no addon found' % addon_id
         )
         return
+    log.info('[1@None] Updating last updated for %s.' % addon.pk)
+    addon.update(last_updated=compute_last_updated(addon))
+    update_appsupport([addon.pk])
 
-    log.info('[1@None] Updating last updated for %s.' % addon_id)
 
+def compute_last_updated(addon):
+    queries = Addon._last_updated_queries()
     if addon.status == amo.STATUS_APPROVED:
         q = 'public'
     else:
         q = 'exp'
-    qs = queries[q].filter(pk=addon_id).using('default')
-    res = qs.values_list('id', 'last_updated')
-    if res:
-        pk, t = res[0]
-        Addon.objects.filter(pk=pk).update(last_updated=t)
+    values = (
+        queries[q]
+        .filter(pk=addon.pk)
+        .using('default')
+        .values_list('last_updated', flat=True)
+    )
+    if values:
+        addon.update(last_updated=values[0])
 
 
 @task
