@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2021-01-07 18:13+0000\n"
+"PO-Revision-Date: 2021-01-08 17:22+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -2793,7 +2793,7 @@ msgid "Step-by-step build instructions to create an exact copy of the add-on cod
 msgstr ""
 
 msgid "A build script that executes all necessary technical steps."
-msgstr ""
+msgstr "అవసరమైన సాంకేతిక అంచెలన్నిటినీ నిర్వర్తించే ఒక బిల్డు స్క్రిప్టు."
 
 msgid "Operating system and build environment requirements."
 msgstr "నిర్వాహక వ్యవస్థ, బిల్డ్ పర్వాపరణ ఆవశ్యకాలు."
