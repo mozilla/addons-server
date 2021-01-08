@@ -477,6 +477,9 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         assert result['id'] == self.addon.pk
         assert result['name'] == {'en-US': 'My Addôn'}
         assert result['slug'] == self.addon.slug
+        assert result['last_updated'] == (
+            self.addon.last_updated.replace(microsecond=0).isoformat() + 'Z'
+        )
         return result
 
     def _set_tested_url(self, param):
@@ -1147,6 +1150,9 @@ class TestAddonSearchView(ESTestCase):
         assert result['id'] == addon.pk
         assert result['name'] == {'en-US': 'My Addôn'}
         assert result['slug'] == 'my-addon'
+        assert result['last_updated'] == (
+            addon.last_updated.replace(microsecond=0).isoformat() + 'Z'
+        )
 
         # latest_unlisted_version should never be exposed in public search.
         assert 'latest_unlisted_version' not in result
