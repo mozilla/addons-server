@@ -68,6 +68,7 @@ class TestModelBase(TestCase):
 
     def test_change_called_on_new_instance_save(self):
         for create_addon in (Addon, Addon.objects.create):
+            self.cb.reset_mock()
             addon = create_addon(disabled_by_user=False, type=amo.ADDON_EXTENSION)
             addon.disabled_by_user = True
             addon.save()
@@ -98,6 +99,157 @@ class TestModelBase(TestCase):
         assert kw['new_attr']['disabled_by_user']
         assert kw['instance'].id == addon.id
         assert kw['sender'] == Addon
+
+    def test_initial_attrs_initialization(self):
+        addon = Addon(average_daily_users=123)
+        assert addon._initial_attrs['average_daily_users'] == 123
+        assert addon._initial_attrs['weekly_downloads'] == 0
+        assert '_state' not in addon._initial_attrs
+
+    def test_initial_attrs_create(self):
+        addon = Addon.objects.create(average_daily_users=123)
+        assert addon._initial_attrs['average_daily_users'] == 123
+        assert addon._initial_attrs['weekly_downloads'] == 0
+        assert '_state' not in addon._initial_attrs
+
+    def test_initial_attrs_basic_save(self):
+        addon = Addon.objects.get(pk=3615)
+        addon.average_daily_users = 123
+        addon.weekly_downloads = 456
+        # _initial_attrs before save: still holds the previous values.
+        assert addon._initial_attrs['average_daily_users'] == 6000000
+        assert addon._initial_attrs['weekly_downloads'] == 13053
+        addon.save()
+
+        # _initial_attrs on the instance now fully updated with latest values.
+        assert addon._initial_attrs['average_daily_users'] == 123
+        assert addon._initial_attrs['weekly_downloads'] == 456
+
+        # Everything updated after reload (proving the save()s did work)
+        addon.reload()
+        assert addon.weekly_downloads == 456
+        assert addon.average_daily_users == 123
+        assert addon._initial_attrs['average_daily_users'] == 123
+        assert addon._initial_attrs['weekly_downloads'] == 456
+
+    def test_initial_attrs_double_save(self):
+        addon = Addon.objects.get(pk=3615)
+        addon.average_daily_users = 123
+        # _initial_attrs before save: still holds the previous values.
+        assert addon._initial_attrs['average_daily_users'] == 6000000
+        assert addon._initial_attrs['weekly_downloads'] == 13053
+        addon.save()
+
+        addon.weekly_downloads = 456
+        assert addon._initial_attrs['average_daily_users'] == 123
+        assert addon._initial_attrs['weekly_downloads'] == 13053
+        addon.save()
+
+        # _initial_attrs on the instance now fully updated with latest values.
+        assert addon._initial_attrs['average_daily_users'] == 123
+        assert addon._initial_attrs['weekly_downloads'] == 456
+
+        # Everything updated after reload (proving the save()s did work)
+        addon.reload()
+        assert addon.weekly_downloads == 456
+        assert addon.average_daily_users == 123
+        assert addon._initial_attrs['average_daily_users'] == 123
+        assert addon._initial_attrs['weekly_downloads'] == 456
+
+    def test_initial_attrs_explicit_update_fields_save(self):
+        addon = Addon.objects.get(pk=3615)
+        addon.average_daily_users = 123
+        addon.weekly_downloads = 456
+        # _initial_attrs before save: still holds the previous values.
+        assert addon._initial_attrs['average_daily_users'] == 6000000
+        assert addon._initial_attrs['weekly_downloads'] == 13053
+        addon.save(update_fields=['weekly_downloads'])
+
+        # _initial_attrs on the instance still holds the previous value for the
+        # field we didn't save, for the other it's updated with latest value.
+        assert addon._initial_attrs['average_daily_users'] == 6000000
+        assert addon._initial_attrs['weekly_downloads'] == 456
+
+        # The field we saved is updated after reload (proving the save() did
+        # work, and the other change was lost, never saved).
+        addon.reload()
+        assert addon.weekly_downloads == 456
+        assert addon.average_daily_users == 6000000
+        assert addon._initial_attrs['average_daily_users'] == 6000000
+        assert addon._initial_attrs['weekly_downloads'] == 456
+
+    def test_initial_attrs_update_then_save(self):
+        addon = Addon.objects.get(pk=3615)
+        addon.average_daily_users = 123
+        addon.update(weekly_downloads=456)
+        # _initial_attrs has been updated with the field we update()d, but not
+        # with the other yet since it hasn't been saved yet.
+        assert addon._initial_attrs['average_daily_users'] == 6000000
+        assert addon._initial_attrs['weekly_downloads'] == 456
+
+        # Now we save...
+        addon.save()
+
+        # _initial_attrs on the instance now fully updated with latest values.
+        assert addon._initial_attrs['average_daily_users'] == 123
+        assert addon._initial_attrs['weekly_downloads'] == 456
+
+        # Everything updated after reload (proving the update() + save() did
+        # work)
+        addon.reload()
+        assert addon.weekly_downloads == 456
+        assert addon.average_daily_users == 123
+        assert addon._initial_attrs['average_daily_users'] == 123
+        assert addon._initial_attrs['weekly_downloads'] == 456
+
+    def test_initial_attrs_update_fields_passed_on_save(self):
+        addon = Addon.objects.get(pk=3615)
+        addon.average_daily_users = 123
+        addon.weekly_downloads = 456
+        # Manually tweak _initial_attrs to prevent us from seeing the change to
+        # average_daily_users. It shouldn't be saved.
+        addon._initial_attrs['average_daily_users'] = addon.average_daily_users
+
+        # Do the save. Our OnChange implementation should automatically pass
+        # update_fields to django.
+        addon.save()
+
+        # Everything should look updated on the instance
+        assert addon.average_daily_users == 123
+        assert addon.weekly_downloads == 456
+        assert addon._initial_attrs['average_daily_users'] == 123
+        assert addon._initial_attrs['weekly_downloads'] == 456
+
+        # But when reloading, the changes to average_daily_users should be lost
+        # since we altered _initial_attrs, preventing it to be passed to save()
+        # through the update_fields parameter behind the scenes. The change to
+        # weekly_downloads should have gone through normally.
+        addon.reload()
+        assert addon.average_daily_users == 6000000
+        assert addon.weekly_downloads == 456
+
+    def test_initial_attrs_save_disable_dynamic_update_fields(self):
+        addon = Addon.objects.get(pk=3615)
+        addon.average_daily_users = 123
+        addon.weekly_downloads = 456
+        # Manually tweak _initial_attrs to prevent us from seeing the change to
+        # average_daily_users. It shouldn't be saved.
+        addon._initial_attrs['average_daily_users'] = addon.average_daily_users
+
+        # Save, disabling dynamic update fields support: both fields should be
+        # saved.
+        addon.save(_dynamic_update_fields=False)
+
+        # Everything should look updated on the instance
+        assert addon.average_daily_users == 123
+        assert addon.weekly_downloads == 456
+        assert addon._initial_attrs['average_daily_users'] == 123
+        assert addon._initial_attrs['weekly_downloads'] == 456
+
+        # Everything should have been updated in the db as well.
+        addon.reload()
+        assert addon.average_daily_users == 123
+        assert addon.weekly_downloads == 456
 
     def test_change_is_not_recursive(self):
         class fn:

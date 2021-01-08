@@ -292,9 +292,14 @@ class OnChangeMixin(object):
         signal = kwargs.pop('_signal', True)
         result = super(OnChangeMixin, self).save(*args, **kwargs)
         if signal and self.__class__ in _on_change_callbacks:
-            self._send_changes(self._initial_attrs, dict(self.__dict__))
+            self._send_changes(self._initial_attrs.copy(), dict(self.__dict__))
         # Reset initial_attr to be ready for the next save.
-        self._reset_initial_attrs()
+        updated_fields = kwargs.get('update_fields')
+        self._reset_initial_attrs(
+            attrs={k: self.__dict__[k] for k in updated_fields}
+            if updated_fields
+            else None
+        )
         return result
 
     def update(self, **kwargs):
