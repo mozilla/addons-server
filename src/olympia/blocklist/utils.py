@@ -2,7 +2,6 @@ from datetime import datetime
 import re
 
 from django.conf import settings
-from olympia.addons.models import DeniedGuid
 
 import olympia.core.logger
 from olympia import amo
