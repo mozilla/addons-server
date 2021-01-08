@@ -8,6 +8,12 @@ from django.db import transaction
 import waffle
 
 from django_statsd.clients import statsd
+from post_request_task.task import (
+    _discard_tasks,
+    _start_queuing_tasks,
+    _send_tasks_and_stop_queuing,
+    _stop_queuing_tasks,
+)
 
 import olympia.core.logger
 
@@ -92,8 +98,22 @@ class Command(BaseCommand):
             # we have to do it now to prevent overwriting an existing lock with
             # our own.
             set_reviewing_cache(version.addon.pk, settings.TASK_USER_ID)
+
+        # Discard any existing celery tasks that may have been queued before:
+        # If there are any left at this point, it means the transaction from
+        # the previous loop iteration was not committed and we shouldn't
+        # trigger the corresponding tasks.
+        _discard_tasks()
+        # Queue celery tasks for this version, avoiding triggering them too
+        # soon...
+        _start_queuing_tasks()
+
         try:
             with transaction.atomic():
+                # ...and release the queued tasks to celery once transaction
+                # is committed.
+                transaction.on_commit(_send_tasks_and_stop_queuing)
+
                 log.info(
                     'Processing %s version %s...',
                     str(version.addon.name),
@@ -154,6 +174,12 @@ class Command(BaseCommand):
             # Always clear our own lock no matter what happens (but only ours).
             if not already_locked:
                 clear_reviewing_cache(version.addon.pk)
+            # Stop post request task queue before moving on (useful in tests to
+            # leave a fresh state for the next test. Note that we don't want to
+            # send or clear queued tasks (they may belong to a transaction that
+            # has been rolled back, or they may not have been processed by the
+            # on commit handler yet).
+            _stop_queuing_tasks()
 
     @statsd.timer('reviewers.auto_approve.approve')
     def approve(self, version):

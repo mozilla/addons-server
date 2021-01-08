@@ -16,11 +16,7 @@ from celery import Celery, group
 from celery.signals import task_failure, task_postrun, task_prerun
 from django_statsd.clients import statsd
 from kombu import serialization
-from post_request_task.task import (
-    PostRequestTask,
-    _start_queuing_tasks,
-    _send_tasks_and_stop_queuing,
-)
+from post_request_task.task import PostRequestTask
 
 import olympia.core.logger
 
@@ -178,11 +174,3 @@ def create_chunked_tasks_signatures(
     ]
     log.info('Created a group of %s tasks for task "%s".', len(tasks), str(task.name))
     return group(tasks)
-
-
-def pause_all_tasks():
-    _start_queuing_tasks()
-
-
-def resume_all_tasks():
-    _send_tasks_and_stop_queuing()
