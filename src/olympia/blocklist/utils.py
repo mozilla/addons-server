@@ -2,6 +2,7 @@ from datetime import datetime
 import re
 
 from django.conf import settings
+from olympia.addons.models import DeniedGuid
 
 import olympia.core.logger
 from olympia import amo
@@ -234,7 +235,10 @@ def disable_addon_for_block(block):
         review.clear_specific_needs_human_review_flags(version)
 
     if block.min_version == Block.MIN and block.max_version == Block.MAX:
-        block.addon.update(status=amo.STATUS_DISABLED)
+        if block.addon.status == amo.STATUS_DELETED:
+            block.addon.deny_resubmission()
+        else:
+            block.addon.update(status=amo.STATUS_DISABLED)
 
 
 def save_guids_to_blocks(guids, submission, *, fields_to_set):

@@ -1729,6 +1729,45 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert doc('#result_list tbody tr').length == 3
         assert doc('#changelist-filter li.selected a').text() == 'All'
 
+    def test_blocked_deleted_keeps_addon_status(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.login(email=user.email)
+
+        deleted_addon = addon_factory(guid='guid@', version_kw={'version': '1.2.5'})
+        deleted_addon.delete()
+        assert deleted_addon.status == amo.STATUS_DELETED
+
+        response = self.client.get(self.submission_url + '?guids=guid@', follow=True)
+        content = response.content.decode('utf-8')
+        assert 'Add-on GUIDs (one per line)' not in content
+        assert deleted_addon.guid in content
+        assert Block.objects.count() == 0  # Check we didn't create it already
+        assert 'Block History' in content
+
+        # Create the block
+        response = self.client.post(
+            self.submission_url,
+            {
+                'input_guids': 'guid@',
+                'action': '0',
+                'min_version': '0',
+                'max_version': '*',
+                'existing_min_version': '0',
+                'existing_max_version': '*',
+                'url': 'dfd',
+                'reason': 'some reason',
+                '_save': 'Save',
+            },
+            follow=True,
+        )
+        assert response.status_code == 200
+        assert Block.objects.count() == 1
+        block = Block.objects.first()
+        assert block.addon == deleted_addon
+        deleted_addon.reload()
+        assert deleted_addon.status == amo.STATUS_DELETED  # Should stay deleted
+
 
 class TestBlockAdminEdit(TestCase):
     def setUp(self):
