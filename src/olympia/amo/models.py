@@ -191,7 +191,9 @@ class OnChangeMixin(object):
     def _reset_initial_attrs(self, attrs=None):
         if attrs is None:
             self._initial_attrs = {
-                k: v for k, v in self.__dict__.items() if k not in ('_state', '_initial_attrs')
+                k: v
+                for k, v in self.__dict__.items()
+                if k not in ('_state', '_initial_attrs')
             }
         else:
             self._initial_attrs.update(attrs)
