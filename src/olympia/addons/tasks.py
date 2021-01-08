@@ -55,8 +55,7 @@ def compute_last_updated(addon):
         .using('default')
         .values_list('last_updated', flat=True)
     )
-    if values:
-        addon.update(last_updated=values[0])
+    return values[0] if values else None
 
 
 @task

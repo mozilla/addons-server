@@ -733,13 +733,18 @@ def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **k
 
     version = version_factory(file_kw, addon=addon, **version_kw)
     addon.update_version()
-    addon.status = status
     # version_changed task will be triggered and will update last_updated in
     # database for this add-on depending on the state of the version / files.
     # We're calling the function it uses to compute the value ourselves and=
     # sticking that into the attribute ourselves so that we already have the
     # correct value in the instance we are going to return.
+    # Note: the aim is to have the instance consistent with what will be in the
+    # database because of the task, *not* to be consistent with the status of
+    # the add-on. Because we force the add-on status without forcing the status
+    # of the latest file, the value we end up with might not make sense in some
+    # cases.
     addon.last_updated = compute_last_updated(addon)
+    addon.status = status
 
     for tag in tags:
         Tag(tag_text=tag).save_tag(addon)
