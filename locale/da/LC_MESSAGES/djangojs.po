@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Ad-dons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-09-21 18:53+0000\n"
+"PO-Revision-Date: 2021-01-09 11:29+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark <joergenr@stofanet.dk>\n"
 "Language: da\n"
@@ -26,9 +26,8 @@ msgstr "Der opstod et problem med at kontakte serveren."
 msgid "Select a file..."
 msgstr "Vælg en fil..."
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi or .crx"
-msgstr "Din tilføjelse skal ende på .zip, .xpi, .crx eller .xml"
+msgstr "Din tilføjelse skal ende på .zip, .xpi, eller .crx"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -101,7 +100,7 @@ msgid "WebExtension upgrade"
 msgstr "WebExtension-opgradering"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "Vi tillader og opfordrer til en opgradering, men denne proces kan ikke fortrydes. Når dine brugere har WebExtension installeret, kan de ikke installere ældre tilføjelser."
 
 msgid "Porting a legacy Firefox add-on on MDN"
 msgstr ""
