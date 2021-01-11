@@ -33,3 +33,6 @@ updates:
   - dependency-name: vine
     versions:
     - ">= 5"
+  - dependency-name: idna
+    versions:
+    - ">= 3"
