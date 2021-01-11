@@ -859,7 +859,7 @@ class SourceFileInput(forms.widgets.ClearableFileInput):
 class VersionForm(WithSourceMixin, forms.ModelForm):
     release_notes = TransField(widget=TransTextarea(), required=False)
     approval_notes = forms.CharField(
-        widget=TranslationTextarea(attrs={'rows': 4}), required=False
+        widget=forms.Textarea(attrs={'rows': 4}), required=False
     )
     source = forms.FileField(required=False, widget=SourceFileInput)
 

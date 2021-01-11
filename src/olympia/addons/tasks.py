@@ -16,6 +16,7 @@ from olympia.addons.models import (
     attach_tags,
     attach_translations_dict,
 )
+from olympia.addons.utils import compute_last_updated
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import LocalFileStorage, extract_colors_from_image
@@ -31,12 +32,6 @@ log = olympia.core.logger.getLogger('z.task')
 @task
 @use_primary_db
 def version_changed(addon_id, **kw):
-    update_last_updated(addon_id)
-    update_appsupport([addon_id])
-
-
-def update_last_updated(addon_id):
-    queries = Addon._last_updated_queries()
     try:
         addon = Addon.objects.get(pk=addon_id)
     except Addon.DoesNotExist:
@@ -44,18 +39,9 @@ def update_last_updated(addon_id):
             '[1@None] Updating last updated for %s failed, no addon found' % addon_id
         )
         return
-
-    log.info('[1@None] Updating last updated for %s.' % addon_id)
-
-    if addon.status == amo.STATUS_APPROVED:
-        q = 'public'
-    else:
-        q = 'exp'
-    qs = queries[q].filter(pk=addon_id).using('default')
-    res = qs.values_list('id', 'last_updated')
-    if res:
-        pk, t = res[0]
-        Addon.objects.filter(pk=pk).update(last_updated=t)
+    log.info('[1@None] Updating last updated for %s.' % addon.pk)
+    addon.update(last_updated=compute_last_updated(addon))
+    update_appsupport([addon.pk])
 
 
 @task

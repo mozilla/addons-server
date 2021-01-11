@@ -1059,8 +1059,12 @@ def watch_changes(old_attr=None, new_attr=None, instance=None, sender=None, **kw
     }
 
     # Log email changes.
-    if 'email' in changes and new_attr['email'] is not None:
-        log.info('Creating user history for user: %s' % instance.pk)
+    if (
+        'email' in changes
+        and new_attr['email'] is not None
+        and old_attr.get('email') is not None
+    ):
+        log.info('Creating user history for user: %s', instance.pk)
         UserHistory.objects.create(email=old_attr.get('email'), user_id=instance.pk)
     # If username or display_name changes, reindex the user add-ons, if there
     # are any.
