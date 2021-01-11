@@ -1,3 +1,4 @@
+import os
 import random
 from contextlib import contextmanager
 from datetime import timedelta
@@ -607,3 +608,35 @@ class TestFixLangpacksWithMaxVersionStar(TestCase):
         for version in Version.objects.all():
             for app in version.compatible_apps:
                 assert version.compatible_apps[app].max.version == '77.*'
+
+
+class TestCreateCustomIconFromPredefined(TestCase):
+    def test_basic(self):
+        custom_icon_already = addon_factory(icon_type='image/jpeg')
+        default_icon = addon_factory()
+        predefined_icon = addon_factory(icon_type='icon/alerts')
+        # this won't work, but it shouldn't choke the task
+        broken_icon_type = addon_factory(icon_type='icon/missing')
+        call_command('process_addons', task='create_custom_icon_from_predefined')
+
+        custom_icon_already.reload()
+        assert custom_icon_already.icon_type == 'image/jpeg'
+        default_icon.reload()
+        assert default_icon.icon_type == ''
+        broken_icon_type.reload()
+        assert broken_icon_type.icon_type == 'icon/missing'  # still broken
+
+        predefined_icon.reload()
+        assert predefined_icon.icon_type == 'image/png'
+        assert predefined_icon.icon_hash == '94f34187'
+        assert os.path.exists(
+            os.path.join(predefined_icon.get_icon_dir(), f'{predefined_icon.id}-32.png')
+        )
+        assert os.path.exists(
+            os.path.join(predefined_icon.get_icon_dir(), f'{predefined_icon.id}-64.png')
+        )
+        assert os.path.exists(
+            os.path.join(
+                predefined_icon.get_icon_dir(), f'{predefined_icon.id}-128.png'
+            )
+        )
