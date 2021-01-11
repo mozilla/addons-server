@@ -279,11 +279,10 @@ class OnChangeMixin(object):
             concrete_initial_attrs = [
                 (k, v) for k, v in self._initial_attrs.items() if k in fields
             ]
-            current_attrs = [
-                (k, self.__dict__[k]) for k, v in concrete_initial_attrs
-            ]
+            current_attrs = [(k, self.__dict__[k]) for k, v in concrete_initial_attrs]
             changed_attrs = (
-                set(current_attrs) - set(concrete_initial_attrs)
+                set(current_attrs)
+                - set(concrete_initial_attrs)
                 # Never include primary key field - it might be set to None
                 # initially in _initial_attrs right after a call to create()
                 # even though self.pk is set.
