@@ -276,19 +276,23 @@ class OnChangeMixin(object):
             and kwargs.pop('_dynamic_update_fields', True)
         ):
             fields = [f.attname for f in self._meta.concrete_fields]
-            initial_attrs = {
-                k: v for k, v in self._initial_attrs.items() if k in fields
-            }
-            kwargs['update_fields'] = list(
-                dict(
-                    {(k, self.__dict__[k]) for k in initial_attrs}
-                    - set(initial_attrs.items())
-                    # Never include primary key field - it might be set to None
-                    # initially in initial_attrs right after a call to create()
-                    # even though self.pk is set.
-                    - set(((self._meta.pk.name, self.pk),))
-                ).keys()
-            ) + [f.name for f in self._meta.fields if getattr(f, 'auto_now', False)]
+            concrete_initial_attrs = [
+                (k, v) for k, v in self._initial_attrs.items() if k in fields
+            ]
+            current_attrs = [
+                (k, self.__dict__[k]) for k, v in concrete_initial_attrs
+            ]
+            changed_attrs = (
+                set(current_attrs) - set(concrete_initial_attrs)
+                # Never include primary key field - it might be set to None
+                # initially in _initial_attrs right after a call to create()
+                # even though self.pk is set.
+                - set(((self._meta.pk.name, self.pk),))
+            )
+            auto_now_fields = [
+                f.name for f in self._meta.fields if getattr(f, 'auto_now', False)
+            ]
+            kwargs['update_fields'] = [k for k, v in changed_attrs] + auto_now_fields
         signal = kwargs.pop('_signal', True)
         result = super(OnChangeMixin, self).save(*args, **kwargs)
         if signal and self.__class__ in _on_change_callbacks:
