@@ -16,6 +16,7 @@ from olympia.addons.models import (
     attach_tags,
     attach_translations_dict,
 )
+from olympia.addons.utils import compute_last_updated
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import LocalFileStorage, extract_colors_from_image
@@ -41,21 +42,6 @@ def version_changed(addon_id, **kw):
     log.info('[1@None] Updating last updated for %s.' % addon.pk)
     addon.update(last_updated=compute_last_updated(addon))
     update_appsupport([addon.pk])
-
-
-def compute_last_updated(addon):
-    queries = Addon._last_updated_queries()
-    if addon.status == amo.STATUS_APPROVED:
-        q = 'public'
-    else:
-        q = 'exp'
-    values = (
-        queries[q]
-        .filter(pk=addon.pk)
-        .using('default')
-        .values_list('last_updated', flat=True)
-    )
-    return values[0] if values else None
 
 
 @task

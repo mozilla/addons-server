@@ -105,3 +105,21 @@ def get_addon_recommendations_invalid():
         TAAR_LITE_OUTCOME_REAL_FAIL,
         TAAR_LITE_FALLBACK_REASON_INVALID,
     )
+
+
+def compute_last_updated(addon):
+    """Compute the value of last_updated for a single add-on."""
+    from olympia.addons.models import Addon
+
+    queries = Addon._last_updated_queries()
+    if addon.status == amo.STATUS_APPROVED:
+        q = 'public'
+    else:
+        q = 'exp'
+    values = (
+        queries[q]
+        .filter(pk=addon.pk)
+        .using('default')
+        .values_list('last_updated', flat=True)
+    )
+    return values[0] if values else None
