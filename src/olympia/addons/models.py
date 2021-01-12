@@ -252,9 +252,14 @@ class AddonManager(ManagerBase):
             .select_related(
                 'addonapprovalscounter',
                 'reviewerflags',
+                '_current_version',
                 '_current_version__autoapprovalsummary',
+                '_current_version__reviewerflags',
                 'promotedaddon',
-            ).prefetch_related('_current_version__files')
+            )
+            .prefetch_related(
+                '_current_version__files',
+            )
         )
         if not show_pending_rejection:
             qs = qs.filter(
@@ -277,6 +282,7 @@ class AddonManager(ManagerBase):
             .filter(_current_version__autoapprovalsummary__verdict=success_verdict)
             .exclude(_current_version__autoapprovalsummary__confirmed=True)
             .order_by(
+                '-_current_version__autoapprovalsummary__score',
                 '-_current_version__autoapprovalsummary__weight',
                 'addonapprovalscounter__last_human_review',
                 'created',

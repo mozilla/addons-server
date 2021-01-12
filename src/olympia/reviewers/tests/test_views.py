@@ -2247,20 +2247,36 @@ class TestAutoApprovedQueue(QueueTest):
         AutoApprovalSummary.objects.create(
             version=addon3.current_version, verdict=amo.AUTO_APPROVED
         )
+        # Somehow a high score for customs, not mad: will be ignored.
+        ScannerResult.objects.create(
+            scanner=CUSTOMS, version=addon3.current_version, score=0.95
+        )
         AddonApprovalsCounter.objects.create(
             addon=addon3, counter=1, last_human_review=None
         )
 
-        # Has been auto-approved, should be first because of its weight.
+        # Has been auto-approved, should be second because of its weight.
         addon4 = addon_factory(name='Addôn 4')
         addon4.update(created=self.days_ago(14))
         AutoApprovalSummary.objects.create(
             version=addon4.current_version, verdict=amo.AUTO_APPROVED, weight=500
         )
+        ScannerResult.objects.create(
+            scanner=MAD, version=addon4.current_version, score=0.75
+        )
         AddonApprovalsCounter.objects.create(
             addon=addon4, counter=0, last_human_review=self.days_ago(1)
         )
-        self.expected_addons = [addon4, addon2, addon3, addon1]
+
+        # Has been auto-approved, should be first because of its score.
+        addon5 = addon_factory(name='Addôn 4')
+        AutoApprovalSummary.objects.create(
+            version=addon5.current_version, verdict=amo.AUTO_APPROVED, weight=10
+        )
+        ScannerResult.objects.create(
+            scanner=MAD, version=addon5.current_version, score=0.9
+        )
+        self.expected_addons = [addon5, addon4, addon2, addon3, addon1]
 
     def test_only_viewable_with_specific_permission(self):
         # content reviewer does not have access.
@@ -2333,7 +2349,7 @@ class TestAutoApprovedQueue(QueueTest):
         self.generate_files()
 
         self._test_queue_layout(
-            'Auto Approved', tab_position=3, total_addons=4, total_queues=4, per_page=1
+            'Auto Approved', tab_position=3, total_addons=5, total_queues=4, per_page=1
         )
 
     def test_pending_rejection_filtered_out(self):

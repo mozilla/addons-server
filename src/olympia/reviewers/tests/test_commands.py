@@ -3,11 +3,12 @@ from datetime import datetime, timedelta
 from unittest import mock
 
 from django.conf import settings
-from olympia.constants.scanners import DELAY_AUTO_APPROVAL, YARA
 from django.core import mail
 from django.core.management import call_command
 from django.test.testcases import TransactionTestCase
+
 from olympia import amo
+from olympia.abuse.models import AbuseReport
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import AddonApprovalsCounter, AddonReviewerFlags
 from olympia.amo.tests import (
@@ -19,9 +20,11 @@ from olympia.amo.tests import (
 )
 from olympia.amo.utils import days_ago
 from olympia.constants.promoted import RECOMMENDED
+from olympia.constants.scanners import DELAY_AUTO_APPROVAL, MAD, YARA
 from olympia.files.models import FileValidation
 from olympia.files.utils import lock
 from olympia.lib.crypto.signing import SigningError
+from olympia.ratings.models import Rating
 from olympia.reviewers.management.commands import (
     auto_approve,
     auto_reject,
@@ -361,7 +364,8 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         self.addon.reload()
         self.file.reload()
         assert AutoApprovalSummary.objects.count() == 1
-        assert AutoApprovalSummary.objects.get(version=self.version)
+        summary = AutoApprovalSummary.objects.get(version=self.version)
+        assert summary
         assert get_reviewing_cache(self.addon.pk) is None
         assert self.addon.status == amo.STATUS_APPROVED
         assert self.file.status == amo.STATUS_APPROVED
@@ -374,6 +378,17 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         # Can't test sending the mail here because TestCase doesn't handle
         # transactions so on_commit never fires. It's tested in
         # TestAutoApproveCommandTransactions below.
+        return summary
+
+    def test_full_with_weights_and_score(self):
+        ScannerResult.objects.create(score=0.314, scanner=MAD, version=self.version)
+        AbuseReport.objects.create(addon=self.addon)
+        Rating.objects.create(
+            addon=self.addon, version=self.version, user=user_factory(), rating=2
+        )
+        summary = self.test_full()
+        assert summary.weight == 15
+        assert summary.score == 31
 
     @mock.patch.object(auto_approve, 'set_reviewing_cache')
     @mock.patch.object(auto_approve, 'clear_reviewing_cache')

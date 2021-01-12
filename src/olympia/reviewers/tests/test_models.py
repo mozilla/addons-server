@@ -25,6 +25,7 @@ from olympia.constants.promoted import (
     STRATEGIC,
     SPONSORED,
 )
+from olympia.constants.scanners import CUSTOMS, MAD
 from olympia.files.models import FileValidation, WebextPermission
 from olympia.promoted.models import PromotedAddon
 from olympia.ratings.models import Rating
@@ -1145,6 +1146,33 @@ class TestAutoApprovalSummary(TestCase):
             file=self.version.all_files[0], validation='{}'
         )
         AddonApprovalsCounter.objects.create(addon=self.addon, counter=1)
+
+    def test_calculate_score_no_scanner_results(self):
+        summary = AutoApprovalSummary.objects.create(version=self.version)
+        assert not self.version.scannerresults.exists()
+        assert summary.calculate_score() == 0
+        assert summary.score == 0
+
+        # Make one on a non-MAD scanner, it should be ignored.
+        self.version.scannerresults.create(scanner=CUSTOMS, score=0.9)
+        assert summary.calculate_score() == 0
+        assert summary.score == 0
+
+    def test_calculate_score_negative_score_on_scanner_result(self):
+        self.version.scannerresults.create(scanner=MAD, score=-1)
+        summary = AutoApprovalSummary.objects.create(version=self.version)
+        assert summary.calculate_score() == 0
+        assert summary.score == 0
+
+    def test_calculate_score(self):
+        self.version.scannerresults.create(scanner=MAD, score=0.738)
+        summary = AutoApprovalSummary.objects.create(version=self.version)
+        assert summary.calculate_score() == 73
+        assert summary.score ==73
+
+        self.version.scannerresults.update(score=0.858)
+        assert summary.calculate_score() == 85
+        assert summary.score == 85
 
     def test_negative_weight(self):
         summary = AutoApprovalSummary.objects.create(version=self.version, weight=-300)
