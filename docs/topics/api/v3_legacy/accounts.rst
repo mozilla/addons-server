@@ -2,6 +2,12 @@
 Accounts
 ========
 
+.. warning::
+
+    These v3 APIs are now deprecated and you should switch to a newer version before
+    it is removed. See :ref:`the API versions available<api-versions-list>` for details
+    of the different API versions available and the deprection timeline.
+
 The following API endpoints cover a users account.
 
 

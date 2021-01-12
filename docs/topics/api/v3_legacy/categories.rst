@@ -2,10 +2,11 @@
 Categories
 ==========
 
-.. note::
+.. warning::
 
-    These APIs are experimental and are currently being worked on. Endpoints
-    may change without warning.
+    These v3 APIs are now deprecated and you should switch to a newer version before
+    it is removed. See :ref:`the API versions available<api-versions-list>` for details
+    of the different API versions available and the deprection timeline.
 
 -------------
 Category List

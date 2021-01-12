@@ -2,10 +2,14 @@
 Activity
 ========
 
-.. note::
+.. warning::
 
-    These APIs are experimental and are currently being worked on. Endpoints
-    may change without warning. The only authentication method available at
+    These v3 APIs are now deprecated and you should switch to a newer version before
+    it is removed. See :ref:`the API versions available<api-versions-list>` for details
+    of the different API versions available and the deprection timeline.
+
+.. note::
+    The only authentication method available at
     the moment is :ref:`the internal one<v3-api-auth-internal>`.
 
 
@@ -91,4 +95,3 @@ Any other content or invalid emails will be discarded.
     :<json string Message.TextBody: The plain text body of the email.
     :<json array To: Array of To email addresses.  All will be parsed, and the first matching the correct format used.
     :<json string To[].EmailAddress: An email address in the format `reviewreply+randomuuidstring@addons.mozilla.org`.
-

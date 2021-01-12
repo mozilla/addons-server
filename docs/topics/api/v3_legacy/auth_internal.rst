@@ -4,6 +4,13 @@
 Authentication (internal)
 =========================
 
+.. warning::
+
+    These v3 APIs are now deprecated and you should switch to a newer version before
+    it is removed. See :ref:`the API versions available<api-versions-list>` for details
+    of the different API versions available and the deprection timeline.
+
+
 This documents how to use authentication in your API requests when you are
 working on a web application that lives on AMO domain or subdomain. If you
 are looking for how to authenticate with the API from an external client, using
