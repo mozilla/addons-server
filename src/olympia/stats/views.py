@@ -5,7 +5,6 @@ import itertools
 
 from datetime import timedelta
 
-from dateutil.parser import parse
 from django import http
 from django.core.exceptions import PermissionDenied
 from django.core.files.storage import get_storage_class
@@ -21,7 +20,7 @@ from olympia.amo.decorators import allow_cross_site_request
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import AMOJSONEncoder, render
 from olympia.core.languages import ALL_LANGUAGES
-from olympia.stats.decorators import addon_view_stats
+from olympia.stats.decorators import addon_view_stats, bigquery_api_view
 from olympia.stats.forms import DateForm
 
 from .utils import get_updates_series, get_download_series
@@ -50,35 +49,6 @@ SERIES = (
 
 
 storage = get_storage_class()()
-
-
-def get_series(model, extra_field=None, source=None, **filters):
-    """
-    Get a generator of dicts for the stats model given by the filters.
-
-    Returns {'date': , 'count': } by default. Add an extra field (such as
-    application faceting) by passing `extra_field=apps`. `apps` should be in
-    the query result.
-    """
-    extra = () if extra_field is None else (extra_field,)
-    # Put a slice on it so we get more than 10 (the default), but limit to 365.
-    qs = (
-        model.search()
-        .order_by('-date')
-        .filter(**filters)
-        .values_dict('date', 'count', *extra)
-    )
-    if source:
-        qs = qs.source(source)
-    for val in qs[:365]:
-        # Convert the datetimes to a date.
-        date_ = parse(val['date']).date()
-        rv = {'count': val['count'], 'date': date_, 'end': date_}
-        if source:
-            rv['data'] = extract(val[source])
-        elif extra_field:
-            rv['data'] = extract(val[extra_field])
-        yield rv
 
 
 def csv_fields(series):
@@ -141,6 +111,7 @@ def extract(dicts):
     return extracted
 
 
+@bigquery_api_view
 @addon_view_stats
 @non_atomic_requests
 def overview_series(request, addon, group, start, end, format):
@@ -153,7 +124,6 @@ def overview_series(request, addon, group, start, end, format):
         addon=addon, start_date=start_date, end_date=end_date
     )
     updates = get_updates_series(addon=addon, start_date=start_date, end_date=end_date)
-
     series = zip_overview(downloads, updates)
 
     return render_json(request, addon, series)
@@ -195,6 +165,7 @@ def zip_overview(downloads, updates):
         }
 
 
+@bigquery_api_view
 @addon_view_stats
 @non_atomic_requests
 def downloads_series(request, addon, group, start, end, format):
@@ -211,6 +182,7 @@ def downloads_series(request, addon, group, start, end, format):
         return render_json(request, addon, series)
 
 
+@bigquery_api_view
 @addon_view_stats
 @non_atomic_requests
 def download_breakdown_series(request, addon, group, start, end, format, source):
@@ -245,6 +217,7 @@ def rename_unknown_values(series):
         yield row
 
 
+@bigquery_api_view
 @addon_view_stats
 @non_atomic_requests
 def usage_series(request, addon, group, start, end, format):
@@ -262,6 +235,7 @@ def usage_series(request, addon, group, start, end, format):
         return render_json(request, addon, series)
 
 
+@bigquery_api_view
 @addon_view_stats
 @non_atomic_requests
 def usage_breakdown_series(request, addon, group, start, end, format, field):

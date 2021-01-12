@@ -409,7 +409,12 @@ z.StatsManager = (function () {
       error: errorHandler,
     });
 
-    function errorHandler() {
+    function errorHandler(response, unused1, unused2) {
+      if (response.status === 503) {
+        $def.resolve();
+        return $def;
+      }
+
       $def.fail();
     }
 
