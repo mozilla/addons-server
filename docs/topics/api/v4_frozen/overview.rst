@@ -6,9 +6,9 @@ Overview
 
 .. note::
 
-    These APIs are not frozen and can change at any time without warning.
-    See :ref:`the API versions available<v4-api-versions-list>` for details
-    if you need stability.
+    These v4 APIs are now frozen.
+    See :ref:`the API versions available<api-versions-list>` for details of the
+    different API versions available.
 
 This describes the details of the requests and responses you can expect from
 the `addons.mozilla.org <https://addons.mozilla.org/firefox/>`_ API.
@@ -241,9 +241,6 @@ specified.
 .. _`Cross-Origin Resource Sharing`: https://developer.mozilla.org/en-US/docs/HTTP/Access_control_CORS
 
 
-.. _v4-api-versions-list:
-
-
 -----------
 Site Status
 -----------
@@ -260,34 +257,6 @@ See :ref:`maintainance mode <v4-api-overview-maintainance>` for more details of 
 
     :>json boolean read_only: Whether the site in read-only mode.
     :>json string|null notice: A site-wide notice about any current known difficulties or restrictions.  If this API is being consumed by a tool/frontend it should be displayed to the user.
-
-
-------------
-API Versions
-------------
-
-~~~~~~~~~~~~~~
-Default v4 API
-~~~~~~~~~~~~~~
-
-All documentation here, unless otherwise specified, refers to the default `v4` APIs,
-which are considered stable.
-The request and responses are *NOT* frozen though, and can change at any time,
-depending on the requirements of addons-frontend (the primary consumer).
-
-
-~~~~~~~~~~~~~
-Frozen v3 API
-~~~~~~~~~~~~~
-
-Any consumer of the APIs that requires more stablity may consider using
-the `v3` API instead, which is frozen.  No new API endpoints (so no new features)
-will be added to `v3` and we aim to make no breaking changes.
-Despite the aim, we can't guarantee 100% stability.
-The `v3` API will be maintained for as long as Firefox ESR60 is supported by Mozilla,
-i.e. at least October 23rd 2019.
-
-The documentation for `v3` can be accessed at: :ref:`v3-api-index`
 
 
 ----------------

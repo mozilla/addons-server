@@ -4,11 +4,9 @@ Accounts
 
 .. note::
 
-    These APIs are not frozen and can change at any time without warning.
-    See :ref:`the API versions available<v4-api-versions-list>` for alternatives
-    if you need stability.
-    The only authentication method available at
-    the moment is :ref:`the internal one<v4-api-auth-internal>`.
+    These v4 APIs are now frozen.
+    See :ref:`the API versions available<api-versions-list>` for details of the
+    different API versions available.
 
 The following API endpoints cover a users account.
 

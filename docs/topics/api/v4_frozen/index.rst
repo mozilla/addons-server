@@ -1,8 +1,12 @@
 .. _v4-api-index:
 
-=================
-External API (V4)
-=================
+==========================
+External API (V4 - Frozen)
+==========================
+
+These v4 APIs are now frozen.
+See :ref:`the API versions available<api-versions-list>` for details of the
+different API versions available.
 
 This shows you how to use the `addons.mozilla.org <https://addons.mozilla.org/en-US/firefox/>`_
 API at ``/api/v4/`` which is hosted at the following URLs:

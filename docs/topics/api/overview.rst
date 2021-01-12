@@ -163,18 +163,9 @@ translations as values, and by default all languages are returned:
 However, for performance, if you pass the ``lang`` parameter to a ``GET``
 request, then only the most relevant translation (the specified language or the
 fallback, depending on whether a translation is available in the requested
-language) will be returned.
+language) will be returned, and the other translations are omitted from the response.
+The response is always an object.
 
-
-.. _api-overview-translations-v5:
-
-^^^^^^^^^^^^^^^
-v5 API behavior
-^^^^^^^^^^^^^^^
-
-The response is always an object. If the ``lang`` parameter is passed then only the
-translation for the requested language is returned, and the other translations are
-omitted from the response.
 For example, for a request ``?lang=en-US``:
 
 .. code-block:: json
@@ -231,12 +222,6 @@ https://github.com/mozilla/addons-server/issues/8816 for more details)
 ~~~~~~~~~~~~~~
 Outgoing Links
 ~~~~~~~~~~~~~~
-
-How outgoing links are treated has changed in v5 API.
-
-^^^^^^^^^^^^^^^
-v5 API behavior
-^^^^^^^^^^^^^^^
 
 All fields that can have external links that would be presented to the user,
 such as ``support_url`` or ``homepage``, are returned as a object both containing the
@@ -416,7 +401,7 @@ These are `v5` specific changes - `v4` changes apply also.
 * 2019-05-09: renamed the experimental `v4dev` api to `v5` and made the `v5` API generally available (on AMO production also)
 * 2020-12-19: changed the structure of the translated fields in a response when a single language is requested but it's missing.
   The requested locale is returned as ``none``, with the default_locale code under the ``_default`` key.
-  See :ref:`v5 API translation behavior<api-overview-translations-v5>` for specification and examples.
+  See :ref:`v5 API translation behavior<api-overview-translations>` for specification and examples.
   https://github.com/mozilla/addons-server/issues/16069
 * 2021-01-07: changed API behavior with all fields that could be affected by ``wrap_outgoing_links``.
   Now the url is an object containing both the original url and the wrapped url.  See :ref:`Outgoing Links <api-overview-outgoing>`.
