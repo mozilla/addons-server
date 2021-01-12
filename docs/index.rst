@@ -30,3 +30,4 @@ Archived Contents
    :maxdepth: 1
 
    topics/api/v3_legacy/index
+   topics/api/v4_frozen/index

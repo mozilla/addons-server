@@ -1,18 +1,24 @@
-============
-External API
-============
+.. _v4-api-index:
+
+==========================
+External API (V4 - Frozen)
+==========================
+
+These v4 APIs are now frozen.
+See :ref:`the API versions available<api-versions-list>` for details of the
+different API versions available.
 
 This shows you how to use the `addons.mozilla.org <https://addons.mozilla.org/en-US/firefox/>`_
-API at ``/api/v5/`` which is hosted at the following URLs:
+API at ``/api/v4/`` which is hosted at the following URLs:
 
-.. _api-environments:
+.. _v4-api-environments:
 
 ===========  =========================================
 Environment  URL
 ===========  =========================================
-Production   ``https://addons.mozilla.org/api/v5/``
-Staging      ``https://addons.allizom.org/api/v5/``
-Development  ``https://addons-dev.allizom.org/api/v5/``
+Production   ``https://addons.mozilla.org/api/v4/``
+Staging      ``https://addons.allizom.org/api/v4/``
+Development  ``https://addons-dev.allizom.org/api/v4/``
 ===========  =========================================
 
 Production
@@ -22,8 +28,8 @@ Staging or Development
     you're testing features that aren't available in production yet.
     Your production account is not linked to any of these APIs.
 
-Dive into the :ref:`overview section <api-overview>` and the
-:ref:`authentication section <api-auth>` for an example of how to get started
+Dive into the :ref:`overview section <v4-api-overview>` and the
+:ref:`authentication section <v4-api-auth>` for an example of how to get started
 using the API.
 
 .. toctree::

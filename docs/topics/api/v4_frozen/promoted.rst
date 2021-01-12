@@ -10,7 +10,7 @@ Promoted add-ons
 Stripe Webhook
 --------------
 
-.. _stripe-webhook:
+.. _v4-stripe-webhook:
 
 This endpoint receives `event notifications
 <https://stripe.com/docs/webhooks>`_ from Stripe.
@@ -18,4 +18,4 @@ This endpoint receives `event notifications
     .. note::
         Requests are signed by Stripe and verified by the server.
 
-.. http:post:: /api/v5/promoted/stripe-webhook
+.. http:post:: /api/v4/promoted/stripe-webhook

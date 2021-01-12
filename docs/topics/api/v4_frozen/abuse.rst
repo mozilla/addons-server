@@ -4,9 +4,9 @@ Abuse Reports
 
 .. note::
 
-    These APIs are not frozen and can change at any time without warning.
-    See :ref:`the API versions available<api-versions-list>` for alternatives
-    if you need stability.
+    These v4 APIs are now frozen.
+    See :ref:`the API versions available<api-versions-list>` for details of the
+    different API versions available.
 
 The following API endpoint covers abuse reporting
 
@@ -14,7 +14,7 @@ The following API endpoint covers abuse reporting
 Submitting an add-on abuse report
 ---------------------------------
 
-.. _`addonabusereport-create`:
+.. _v4-addonabusereport-create:
 
 The following API endpoint allows an abuse report to be submitted for an Add-on,
 either listed on https://addons.mozilla.org or not.
@@ -32,27 +32,27 @@ to if necessary.
     if an unsupported value is sent, it will be silently changed to ``other``
     instead of raising a 400 error.
 
-.. http:post:: /api/v5/abuse/report/addon/
+.. http:post:: /api/v4/abuse/report/addon/
 
     :<json string addon: The id, slug, or guid of the add-on to report for abuse (required).
     :<json string message: The body/content of the abuse report (required).
-    :<json string|null report_entry_point: The report entry point. The accepted values are documented in the :ref:`table below <abuse-report_entry_point-parameter>`.
-    :<json string|null addon_install_method: The add-on install method. The accepted values are documented in the :ref:`table below <abuse-addon_install_method-parameter>`.
+    :<json string|null report_entry_point: The report entry point. The accepted values are documented in the :ref:`table below <v4-abuse-report_entry_point-parameter>`.
+    :<json string|null addon_install_method: The add-on install method. The accepted values are documented in the :ref:`table below <v4-abuse-addon_install_method-parameter>`.
     :<json string|null addon_install_origin: The add-on install origin.
-    :<json string|null addon_install_source: The add-on install source. The accepted values are documented in the :ref:`table below <abuse-addon_install_source-parameter>`.
+    :<json string|null addon_install_source: The add-on install source. The accepted values are documented in the :ref:`table below <v4-abuse-addon_install_source-parameter>`.
     :<json string|null addon_install_source_url: The add-on install source URL.
     :<json string|null addon_name: The add-on name in the locale used by the client.
-    :<json string|null addon_signature: The add-on signature state. The accepted values are documented in the :ref:`table below <abuse-addon_signature-parameter>`.
+    :<json string|null addon_signature: The add-on signature state. The accepted values are documented in the :ref:`table below <v4-abuse-addon_signature-parameter>`.
     :<json string|null addon_summary: The add-on summary in the locale used by the client.
     :<json string|null addon_version: The add-on version string.
-    :<json string|null app: The :ref:`application <addon-detail-application>` used by the client. Can be either ``firefox`` or ``android``.
+    :<json string|null app: The :ref:`application <v4-addon-detail-application>` used by the client. Can be either ``firefox`` or ``android``.
     :<json string|null appversion: The application version used by the client.
     :<json string|null lang: The language code of the locale used by the client for the application.
     :<json string|null client_id: The client's hashed telemetry ID.
     :<json string|null install_date: The add-on install date.
     :<json string|null operating_system: The client's operating system.
     :<json string|null operating_system_version: The client's operating system version.
-    :<json string|null reason: The reason for the report. The accepted values are documented in the :ref:`table below <abuse-reason-parameter>`.
+    :<json string|null reason: The reason for the report. The accepted values are documented in the :ref:`table below <v4-abuse-reason-parameter>`.
     :>json object|null reporter: The user who submitted the report, if authenticated.
     :>json int reporter.id: The id of the user who submitted the report.
     :>json string reporter.name: The name of the user who submitted the report.
@@ -81,7 +81,7 @@ to if necessary.
     :>json string|null operating_system_version: The client's operating system version.
     :>json string|null reason: The reason for the report.
 
-.. _abuse-report_entry_point-parameter:
+.. _v4-abuse-report_entry_point-parameter:
 
  Accepted values for the ``report_entry_point`` parameter:
 
@@ -94,7 +94,7 @@ to if necessary.
                          amo  Report button on an AMO page (using ``navigator.mozAddonManager.reportAbuse``)
  ===========================  =================================================
 
-.. _abuse-addon_install_method-parameter:
+.. _v4-abuse-addon_install_method-parameter:
 
  Accepted values for the ``addon_install_method`` parameter:
 
@@ -122,7 +122,7 @@ to if necessary.
                         sync  Sync (obsolete, for backwards-compatibility)
  ===========================  =================================================
 
-.. _abuse-addon_install_source-parameter:
+.. _v4-abuse-addon_install_source-parameter:
 
  Accepted values for the ``addon_install_source`` parameter:
 
@@ -154,7 +154,7 @@ to if necessary.
                        other  Other
  ===========================  =================================================
 
-.. _abuse-addon_signature-parameter:
+.. _v4-abuse-addon_signature-parameter:
 
 
  Accepted values for the ``addon_signature`` parameter:
@@ -176,7 +176,7 @@ to if necessary.
                   privileged  Privileged
  ===========================  =================================================
 
-.. _abuse-reason-parameter:
+.. _v4-abuse-reason-parameter:
 
  Accepted values for the ``reason`` parameter:
 
@@ -199,15 +199,15 @@ to if necessary.
 Submitting a user abuse report
 ------------------------------
 
-.. _`userabusereport-create`:
+.. _v4-userabusereport-create:
 
 The following API endpoint allows an abuse report to be submitted for a user account
 on https://addons.mozilla.org.  Authentication is not required, but is recommended
 so reports can be responded to if necessary.
 
-.. http:post:: /api/v5/abuse/report/user/
+.. http:post:: /api/v4/abuse/report/user/
 
-    .. _userabusereport-create-request:
+    .. _v4-userabusereport-create-request:
 
     :<json string user: The id or username of the user to report for abuse (required).
     :<json string message: The body/content of the abuse report (required).

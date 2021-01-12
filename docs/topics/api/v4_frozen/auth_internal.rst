@@ -1,21 +1,14 @@
-.. _v3-api-auth-internal:
+.. _v4-api-auth-internal:
 
 =========================
 Authentication (internal)
 =========================
 
-.. warning::
-
-    These v3 APIs are now deprecated and you should switch to a newer version before
-    it is removed. See :ref:`the API versions available<api-versions-list>` for details
-    of the different API versions available and the deprection timeline.
-
-
 This documents how to use authentication in your API requests when you are
 working on a web application that lives on AMO domain or subdomain. If you
 are looking for how to authenticate with the API from an external client, using
 your API keys, read the :ref:`documentation for external authentication
-<v3-api-auth>` instead.
+<v4-api-auth>` instead.
 
 When using this authentication mechanism, the server is responsible for
 creating an API Token when the user logs in, and sends it back in
@@ -29,7 +22,7 @@ Fetching the token
 A fresh token, valid for 30 days, is automatically generated and added to the
 responses of the following endpoint:
 
-    * ``/api/v3/accounts/authenticate/``
+    * ``/api/auth/authenticate-callback/``
 
 The token is available in two forms:
 

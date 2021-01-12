@@ -20,7 +20,7 @@ can therefore be re-used for different categories.
 
 This endpoint is not paginated.
 
-.. http:get:: /api/v4/addons/categories/
+.. http:get:: /api/v5/addons/categories/
 
     :>json int id: The category id.
     :>json string name: The category name. Returns the already translated string.

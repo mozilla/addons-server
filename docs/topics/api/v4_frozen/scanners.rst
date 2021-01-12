@@ -11,7 +11,7 @@ Scanners
 Scanner Results
 ---------------------
 
-.. _scanner-results:
+.. _v4-scanner-results:
 
 This endpoint returns a list of labelled scanner results.
 
@@ -19,7 +19,7 @@ This endpoint returns a list of labelled scanner results.
         Requires authentication and the current user to have read access to the
         scanner results.
 
-.. http:get:: /api/v5/scanner/results/
+.. http:get:: /api/v4/scanner/results/
 
     :query string label: Filter by label.
     :query string scanner: Filter by scanner name.

@@ -2,17 +2,17 @@
 Categories
 ==========
 
-.. warning::
+.. note::
 
-    These v3 APIs are now deprecated and you should switch to a newer version before
-    it is removed. See :ref:`the API versions available<api-versions-list>` for details
-    of the different API versions available and the deprection timeline.
+    These v4 APIs are now frozen.
+    See :ref:`the API versions available<api-versions-list>` for details of the
+    different API versions available.
 
 -------------
 Category List
 -------------
 
-.. _v3-category-list:
+.. _v4-category-list:
 
 Categories are defined by a name, a slug, a type and an application. Slugs are
 only guaranteed to be unique for a given ``app`` and ``type`` combination, and
@@ -20,19 +20,19 @@ can therefore be re-used for different categories.
 
 This endpoint is not paginated.
 
-.. http:get:: /api/v3/addons/categories/
+.. http:get:: /api/v4/addons/categories/
 
     :>json int id: The category id.
     :>json string name: The category name. Returns the already translated string.
-    :>json string slug: The category slug. See :ref:`csv table <v3-category-csv-table>` for more possible values.
-    :>json string application: Application, see :ref:`add-on application <v3-addon-detail-application>` for more details.
+    :>json string slug: The category slug. See :ref:`csv table <v4-category-csv-table>` for more possible values.
+    :>json string application: Application, see :ref:`add-on application <v4-addon-detail-application>` for more details.
     :>json boolean misc: Whether or not the category is miscellaneous.
-    :>json string type: Category type, see :ref:`add-on type <v3-addon-detail-type>` for more details.
+    :>json string type: Category type, see :ref:`add-on type <v4-addon-detail-type>` for more details.
     :>json int weight: Category weight used in sort ordering.
-    :>json string description: The category description. Returns the already translated string.
+    :>json string|null description: The category description. Returns the already translated string.
 
 
-.. _v3-category-csv-table:
+.. _v4-category-csv-table:
 
 ------------------
 Current categories

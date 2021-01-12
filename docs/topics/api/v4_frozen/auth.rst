@@ -1,4 +1,4 @@
-.. _api-auth:
+.. _v4-api-auth:
 
 =========================
 Authentication (External)
@@ -10,7 +10,7 @@ This header acts as a one-time token that authenticates your user account.
 No JWT claims are made about the actual API request you are making.
 
 If you are building an app that lives on the AMO domain, read the
-:ref:`documentation for internal authentication <api-auth-internal>` instead.
+:ref:`documentation for internal authentication <v4-api-auth-internal>` instead.
 
 Access Credentials
 ==================
@@ -121,11 +121,11 @@ into an HTTP Authorization header prefixed with ``JWT``, like this::
 Example request
 ===============
 
-Using the :ref:`profile <profile>` as an example endpoint,
+Using the :ref:`profile <v4-profile>` as an example endpoint,
 here's what a JWT authenticated HTTP request would look like in
 `curl <http://curl.haxx.se/>`_::
 
-    curl "https://addons.mozilla.org/api/v5/accounts/profile/" \
+    curl "https://addons.mozilla.org/api/v4/accounts/profile/" \
          -H "Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ5b3VyLWFwaS1rZXkiLCJpYXQiOjE0NDcyNzMwOTYsImp0aSI6IjAuNDczNjI5NDQ2MjM0NTU0MDUiLCJleHAiOjE0NDcyNzMxNTZ9.TQ4B8GEm7UWZPcHuNGgjzD8EU9oUBVbL70Le1IeuYx0"
 
 

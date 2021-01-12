@@ -19,7 +19,7 @@ Review Notes List
 
 This endpoint allows you to list the approval/rejection review history for a version of an add-on.
 
-.. http:get:: /api/v4/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id)/reviewnotes/
+.. http:get:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id)/reviewnotes/
 
     .. note::
         All add-ons require authentication and either
@@ -45,7 +45,7 @@ This endpoint allows you to fetch a single review note for a specific version of
         only contains the name of the reviewer or author. That name may, for
         some actions, be an alias and not the usual name of the user.
 
-.. http:get:: /api/v4/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id)/reviewnotes/(int:id)/
+.. http:get:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id)/reviewnotes/(int:id)/
 
     .. _review-notes-version-detail-object:
 
@@ -84,7 +84,7 @@ This endpoint allows a mail server or similar to submit a json object containing
 The only type of email currently supported is a reply to an activity email (e.g an add-on review, or a reply to an add-on review).
 Any other content or invalid emails will be discarded.
 
-.. http:post:: /api/v4/activity/mail
+.. http:post:: /api/v5/activity/mail
 
     .. note::
         This API endpoint uses a custom authentication method.

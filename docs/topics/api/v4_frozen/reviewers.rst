@@ -1,4 +1,4 @@
-.. _reviewers:
+.. _v4-reviewers:
 
 =========
 Reviewers
@@ -6,11 +6,11 @@ Reviewers
 
 .. note::
 
-    These APIs are not frozen and can change at any time without warning.
-    See :ref:`the API versions available<api-versions-list>` for alternatives
-    if you need stability.
+    These v4 APIs are now frozen.
+    See :ref:`the API versions available<api-versions-list>` for details of the
+    different API versions available.
     The only authentication method available at
-    the moment is :ref:`the internal one<api-auth-internal>`.
+    the moment is :ref:`the internal one<v4-api-auth-internal>`.
 
 ---------
 Subscribe
@@ -26,9 +26,9 @@ sent when a new version is submitted on a particular add-on.
         ``.../subscribe/`` uses the listed channel implicitly.
         This endpoint is deprecated, use the explicit channel endpoints.
 
-.. http:post:: /api/v5/reviewers/addon/(int:addon_id)/subscribe/
-.. http:post:: /api/v5/reviewers/addon/(int:addon_id)/subscribe_listed/
-.. http:post:: /api/v5/reviewers/addon/(int:addon_id)/subscribe_unlisted/
+.. http:post:: /api/v4/reviewers/addon/(int:addon_id)/subscribe/
+.. http:post:: /api/v4/reviewers/addon/(int:addon_id)/subscribe_listed/
+.. http:post:: /api/v4/reviewers/addon/(int:addon_id)/subscribe_unlisted/
 
 
 -----------
@@ -45,9 +45,9 @@ sent when a new version is submitted on a particular add-on.
         ``.../unsubscribe/`` uses the listed channel implicitly.
         This endpoint is deprecated, use the explicit channel endpoints.
 
-.. http:post:: /api/v5/reviewers/addon/(int:addon_id)/unsubscribe/
-.. http:post:: /api/v5/reviewers/addon/(int:addon_id)/unsubscribe_listed/
-.. http:post:: /api/v5/reviewers/addon/(int:addon_id)/unsubscribe_unlisted/
+.. http:post:: /api/v4/reviewers/addon/(int:addon_id)/unsubscribe/
+.. http:post:: /api/v4/reviewers/addon/(int:addon_id)/unsubscribe_listed/
+.. http:post:: /api/v4/reviewers/addon/(int:addon_id)/unsubscribe_unlisted/
 
 
 -------
@@ -60,7 +60,7 @@ This endpoint allows you to disable the public listing for an add-on.
        Requires authentication and the current user to have ``Reviews:Admin``
         permission.
 
-.. http:post:: /api/v5/reviewers/addon/(int:addon_id)/disable/
+.. http:post:: /api/v4/reviewers/addon/(int:addon_id)/disable/
 
 ------
 Enable
@@ -75,7 +75,7 @@ of its versions.
         Requires authentication and the current user to have ``Reviews:Admin``
         permission.
 
-.. http:post:: /api/v5/reviewers/addon/(int:addon_id)/enable/
+.. http:post:: /api/v4/reviewers/addon/(int:addon_id)/enable/
 
 
 -----
@@ -89,7 +89,7 @@ add-on.
        Requires authentication and the current user to have ``Reviews:Admin``
        permission.
 
-.. http:patch:: /api/v5/reviewers/addon/(int:addon_id)/flags/
+.. http:patch:: /api/v4/reviewers/addon/(int:addon_id)/flags/
 
     :>json boolean auto_approval_disabled: Boolean indicating whether auto approval are disabled on an add-on or not. When it's ``true``, new versions for this add-on will make it appear in the regular reviewer queues instead of being auto-approved.
     :>json boolean auto_approval_disabled_until_next_approval: Boolean indicating whether auto approval are disabled on an add-on until the next version is approved or not. Has the same effect as ``auto_approval_disabled`` but is automatically reset to ``false`` when the latest version of the add-on is manually approved by a human reviewer.
@@ -109,7 +109,7 @@ denied.
         Requires authentication and the current user to have ``Reviews:Admin``
         permission.
 
-.. http:post:: /api/v5/reviewers/addon/(int:addon_id)/allow_resubmission/
+.. http:post:: /api/v4/reviewers/addon/(int:addon_id)/allow_resubmission/
 
     :statuscode 202: Success.
     :statuscode 409: The add-on GUID was not previously denied.
@@ -125,7 +125,7 @@ denied.
         Requires authentication and the current user to have ``Reviews:Admin``
         permission.
 
-.. http:post:: /api/v5/reviewers/addon/(int:addon_id)/deny_resubmission/
+.. http:post:: /api/v4/reviewers/addon/(int:addon_id)/deny_resubmission/
 
     :statuscode 202: Success.
     :statuscode 409: The add-on GUID was already denied.
@@ -134,7 +134,7 @@ denied.
 List Versions
 -------------
 
-This endpoint allows you to list versions that can be used either for :ref:`browsing <reviewers-versions-browse>` or diffing versions.
+This endpoint allows you to list versions that can be used either for :ref:`browsing <v4-reviewers-versions-browse>` or diffing versions.
 
     .. note::
         Requires authentication and the current user to have ``ReviewerTools:View``
@@ -148,13 +148,13 @@ This endpoint allows you to list versions that can be used either for :ref:`brow
 
 If the user doesn't have ``AddonsReviewUnlisted`` permissions only listed versions are shown. Otherwise it can contain mixed listed and unlisted versions.
 
-.. http:get:: /api/v5/reviewers/addon/(int:addon_id)/versions/
+.. http:get:: /api/v4/reviewers/addon/(int:addon_id)/versions/
 
     :>json int id: The version id.
     :>json string channel: The version channel, which determines its visibility on the site. Can be either ``unlisted`` or ``listed``.
     :>json string version: The version number string for the version.
 
-.. _reviewers-versions-browse:
+.. _v4-reviewers-versions-browse:
 
 ------
 Browse
@@ -168,18 +168,18 @@ This endpoint allows you to browse through the contents of an Add-on version.
         unlisted add-ons. Additionally the current user can also be the owner
         of the add-on.
 
-.. http:get:: /api/v5/reviewers/addon/(int:addon_id)/versions/(int:version_id)/
+.. http:get:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/
 
-    Inherits the following properties from :ref:`version detail <version-detail-object>`: ``id``, ``channel``, ``reviewed`` and ``version``.
+    Inherits the following properties from :ref:`version detail <v4-version-detail-object>`: ``id``, ``channel``, ``reviewed`` and ``version``.
 
-    .. _reviewers-versions-browse-detail:
+    .. _v4-reviewers-versions-browse-detail:
 
     :param string file: The specific file in the XPI to retrieve. Defaults to manifest.json, install.rdf or package.json for Add-ons as well as the XML file for search engines.
     :param boolean file_only: Indicates that the API should only return data for the requested file, and not version data. If this is ``true`` then the only property returned of those listed below is the ``file`` property.
     :>json string validation_url_json: The absolute url to the addons-linter validation report, rendered as JSON.
     :>json string validation_url: The absolute url to the addons-linter validation report, rendered as HTML.
     :>json boolean has_been_validated: ``True`` if the version has been validated through addons-linter.
-    :>json object addon: A simplified :ref:`add-on <addon-detail-object>` object that contains only a few properties: ``id``, ``name``, ``icon_url`` and ``slug``.
+    :>json object addon: A simplified :ref:`add-on <v4-addon-detail-object>` object that contains only a few properties: ``id``, ``name``, ``icon_url`` and ``slug``.
     :>json array file_entries[]: The complete file-tree of the extracted XPI.
     :>json int file_entries[].depth: Level of folder-tree depth, starting with 0.
     :>json string file_entries[].filename: The filename of the file.
@@ -210,13 +210,13 @@ This endpoint allows you to compare two Add-on versions with each other.
         unlisted add-ons. Additionally the current user can also be the owner
         of the add-on.
 
-.. http:get:: /api/v5/reviewers/addon/(int:addon_id)/versions/(int:base_version_id)/compare_to/(int:version_id)/
+.. http:get:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:base_version_id)/compare_to/(int:version_id)/
 
     .. note::
 
         Contrary to what ``git diff`` does, this API renders a hunk full of unmodified lines for unmodified files.
 
-    Inherits most properties from :ref:`browse detail <reviewers-versions-browse-detail>`, except that most of the `file.entries[]` properties
+    Inherits most properties from :ref:`browse detail <v4-reviewers-versions-browse-detail>`, except that most of the `file.entries[]` properties
     and `file.download_url` can be `null` in case of a deleted file.
 
     Properties specific to this endpoint:
@@ -337,9 +337,9 @@ This endpoint allows you to retrieve a list of canned responses.
         Requires authentication and the current user to have any
         reviewer-related permission.
 
-.. http:get:: /api/v5/reviewers/canned-responses/
+.. http:get:: /api/v4/reviewers/canned-responses/
 
-    .. _reviewers-canned-response-detail:
+    .. _v4-reviewers-canned-response-detail:
 
     Retrieve canned responses
 
@@ -367,19 +367,19 @@ These endpoints allow you to draft comments that can be submitted through the re
         of the add-on.
 
 
-.. http:get:: /api/v5/reviewers/addon/(int:addon_id)/versions/(int:version_id)/draft_comments/
+.. http:get:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/draft_comments/
 
-    Retrieve existing draft comments for a specific version. See :ref:`pagination <api-overview-pagination>` for more details.
+    Retrieve existing draft comments for a specific version. See :ref:`pagination <v4-api-overview-pagination>` for more details.
 
     :>json int count: The number of comments for this version.
     :>json string next: The URL of the next page of results.
     :>json string previous: The URL of the previous page of results.
-    :>json array results: An array of :ref:`comments <reviewers-draft-comment-detail-object>`.
+    :>json array results: An array of :ref:`comments <v4-reviewers-draft-comment-detail-object>`.
 
 
-.. http:get:: /api/v5/reviewers/addon/(int:addon_id)/versions/(int:version_id)/draft_comments/(int:comment_id)/
+.. http:get:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/draft_comments/(int:comment_id)/
 
-    .. _reviewers-draft-comment-detail-object:
+    .. _v4-reviewers-draft-comment-detail-object:
 
     :>json int id: The id of the draft comment object.
     :>json string comment: The comment that is being drafted as part of a review. Specific to a line in a file.
@@ -390,25 +390,25 @@ These endpoints allow you to draft comments that can be submitted through the re
     :>json string user.name: The name for an author.
     :>json string user.username: The username for an author.
     :>json string|null user.url: The link to the profile page for an author, if the author's profile is public.
-    :>json object|null canned_response: Object holding the :ref:`canned response <reviewers-canned-response-detail>` if set.
+    :>json object|null canned_response: Object holding the :ref:`canned response <v4-reviewers-canned-response-detail>` if set.
 
-.. http:post:: /api/v5/reviewers/addon/(int:addon_id)/versions/(int:version_id)/draft_comments/
+.. http:post:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/draft_comments/
 
     Create a draft comment for a specific version.
 
     :<json string comment: The comment that is being drafted as part of a review.
     :<json string filename: The full file path this comment is related to. This must represent the full path, including sub-folders and relative to the root. E.g ``lib/scripts/background.js``
     :<json int lineno: The line number this comment is related to (optional). Please make sure that in case of comments for git diffs, that the `lineno` used here belongs to the file in the version that belongs to `version_id` and not it's parent.
-    :<json int canned_response: The id of the :ref:`canned response <reviewers-canned-response-detail>` (optional).
+    :<json int canned_response: The id of the :ref:`canned response <v4-reviewers-canned-response-detail>` (optional).
 
     :statuscode 201: New comment has been created.
     :statuscode 400: An error occurred, check the `error` value in the JSON.
     :statuscode 403: The user doesn't have the permission to create a comment. This might happen (among other cases) when someone without permissions for unlisted versions tries to add a comment for an unlisted version (which shouldn't happen as the user doesn't see unlisted versions, but it's blocked here too).
 
     **Response**
-        In case of successful creation, the response is a :ref:`draft comment object<reviewers-draft-comment-detail-object>`.
+        In case of successful creation, the response is a :ref:`draft comment object<v4-reviewers-draft-comment-detail-object>`.
 
-.. http:delete:: /api/v5/reviewers/addon/(int:addon_id)/versions/(int:version_id)/draft_comments/(int:comment_id)/
+.. http:delete:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/draft_comments/(int:comment_id)/
 
     Delete a draft comment.
 
@@ -416,17 +416,17 @@ These endpoints allow you to draft comments that can be submitted through the re
     :statuscode 404: The user doesn't have the permission to delete. This might happen when someone tries to delete a comment created by another reviewer or author.
 
 
-.. http:patch:: /api/v5/reviewers/addon/(int:addon_id)/versions/(int:version_id)/draft_comments/(int:comment_id)
+.. http:patch:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/draft_comments/(int:comment_id)
 
     Update a comment, it's filename or line number.
 
     :<json string comment: The comment that is being drafted as part of a review.
     :<json string filename: The full file path this comment is related to. This must represent the full path, including sub-folders and relative to the root. E.g ``lib/scripts/background.js``
     :<json int lineno: The line number this comment is related to. Please make sure that in case of comments for git diffs, that the `lineno` used here belongs to the file in the version that belongs to `version_id` and not it's parent.
-    :<json int canned_response: The id of the :ref:`canned response <reviewers-canned-response-detail>` (optional).
+    :<json int canned_response: The id of the :ref:`canned response <v4-reviewers-canned-response-detail>` (optional).
 
     :statuscode 200: The comment has been updated.
     :statuscode 400: An error occurred, check the `error` value in the JSON.
 
     **Response**
-        In case of successful creation, the response is a :ref:`draft comment object<reviewers-draft-comment-detail-object>`.
+        In case of successful creation, the response is a :ref:`draft comment object<v4-reviewers-draft-comment-detail-object>`.
