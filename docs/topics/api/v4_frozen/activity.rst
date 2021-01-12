@@ -5,21 +5,21 @@ Activity
 .. note::
 
     These APIs are not frozen and can change at any time without warning.
-    See :ref:`the API versions available<api-versions-list>` for alternatives
+    See :ref:`the API versions available<v4-api-versions-list>` for alternatives
     if you need stability.
     The only authentication method available at
-    the moment is :ref:`the internal one<api-auth-internal>`.
+    the moment is :ref:`the internal one<v4-api-auth-internal>`.
 
 
 -----------------
 Review Notes List
 -----------------
 
-.. _review-notes-version-list:
+.. _v4-review-notes-version-list:
 
 This endpoint allows you to list the approval/rejection review history for a version of an add-on.
 
-.. http:get:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id)/reviewnotes/
+.. http:get:: /api/v4/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id)/reviewnotes/
 
     .. note::
         All add-ons require authentication and either
@@ -29,14 +29,14 @@ This endpoint allows you to list the approval/rejection review history for a ver
     :>json int count: The number of versions for this add-on.
     :>json string next: The URL of the next page of results.
     :>json string previous: The URL of the previous page of results.
-    :>json array results: An array of :ref:`per version review notes<review-notes-version-detail-object>`.
+    :>json array results: An array of :ref:`per version review notes<v4-review-notes-version-detail-object>`.
 
 
 -------------------
 Review Notes Detail
 -------------------
 
-.. _review-notes-version-detail:
+.. _v4-review-notes-version-detail:
 
 This endpoint allows you to fetch a single review note for a specific version of an add-on.
 
@@ -45,19 +45,19 @@ This endpoint allows you to fetch a single review note for a specific version of
         only contains the name of the reviewer or author. That name may, for
         some actions, be an alias and not the usual name of the user.
 
-.. http:get:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id)/reviewnotes/(int:id)/
+.. http:get:: /api/v4/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id)/reviewnotes/(int:id)/
 
-    .. _review-notes-version-detail-object:
+    .. _v4-review-notes-version-detail-object:
 
     :>json int id: The id for a review note.
-    :>json string action: The :ref:`type of review note<review-note-action>`.
+    :>json string action: The :ref:`type of review note<v4-review-note-action>`.
     :>json string action_label: The text label of the action.
     :>json string user.name: The name of the reviewer or author.
     :>json string comments: The text content of the review note.
     :>json string date: The date the review note was created.
 
 
-.. _review-note-action:
+.. _v4-review-note-action:
 
     Possible values for the ``action`` field:
 
@@ -78,13 +78,13 @@ This endpoint allows you to fetch a single review note for a specific version of
 Incoming Mail End-point
 -----------------------
 
-.. _activity_mail:
+.. _v4-activity_mail:
 
 This endpoint allows a mail server or similar to submit a json object containing single email into AMO which will be processed.
 The only type of email currently supported is a reply to an activity email (e.g an add-on review, or a reply to an add-on review).
 Any other content or invalid emails will be discarded.
 
-.. http:post:: /api/v5/activity/mail
+.. http:post:: /api/v4/activity/mail
 
     .. note::
         This API endpoint uses a custom authentication method.

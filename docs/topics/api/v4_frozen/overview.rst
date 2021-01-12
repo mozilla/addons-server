@@ -1,4 +1,4 @@
-.. _api-overview:
+.. _v4-api-overview:
 
 ========
 Overview
@@ -7,7 +7,7 @@ Overview
 .. note::
 
     These APIs are not frozen and can change at any time without warning.
-    See :ref:`the API versions available<api-versions-list>` for details
+    See :ref:`the API versions available<v4-api-versions-list>` for details
     if you need stability.
 
 This describes the details of the requests and responses you can expect from
@@ -31,7 +31,7 @@ Status Codes
 
 There are some common API responses that you can expect to receive at times.
 
-.. http:get:: /api/v5/...
+.. http:get:: /api/v4/...
 
     :statuscode 200: Success.
     :statuscode 201: Creation successful.
@@ -90,7 +90,7 @@ constants are as follows:
     ========================  =========================================================
 
 
-.. _api-overview-maintainance:
+.. _v4-api-overview-maintainance:
 
 ~~~~~~~~~~~~~~~~~
 Maintainance Mode
@@ -114,9 +114,9 @@ The response when returning ``HTTP 503 Service Unavailable`` in case of read-onl
     }
 
 In case we are not in read-only mode everything should be back working as normal.
-To check if the site is in read-only mode before submitting a response, the :ref:`site status api<api-site-status>` can be called.
+To check if the site is in read-only mode before submitting a response, the :ref:`site status api<v4-api-site-status>` can be called.
 
-.. _api-overview-pagination:
+.. _v4-api-overview-pagination:
 
 ~~~~~~~~~~
 Pagination
@@ -140,7 +140,7 @@ The following properties will be available in paginated responses:
 * *results*: the array containing the results for this page.
 
 
-.. _api-overview-translations:
+.. _v4-api-overview-translations:
 
 ~~~~~~~~~~~~~~~~~
 Translated Fields
@@ -166,73 +166,44 @@ fallback, depending on whether a translation is available in the requested
 language) will be returned.
 
 
-.. _api-overview-translations-v5:
+.. _v4-api-overview-translations-v3:
 
-^^^^^^^^^^^^^^^
-v5 API behavior
-^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^
+Default API behavior
+^^^^^^^^^^^^^^^^^^^^
 
-The response is always an object. If the ``lang`` parameter is passed then only the
-translation for the requested language is returned, and the other translations are
-omitted from the response.
-For example, for a request ``?lang=en-US``:
+In API version 3 or 4 the response, if the ``lang`` parameter is passed, is a single string.
 
 .. code-block:: json
 
     {
-        "name": {
-            "en-US": "Games"
-        }
+        "name": "Games"
     }
 
-If, however, a request is made with a ``lang`` parameter for a language that doesn't exist for that object
-then a fallback translation is returned, the requested language is included with a value of ``null``, and the language of the fallback is indicated.
-For example, for a request ``?lang=de``:
-
-.. code-block:: json
-
-    {
-        "name": {
-            "en-US": "Games",
-            "de": null,
-            "_default": "en-US"
-        }
-    }
-
-For ``POST``, ``PATCH`` and ``PUT`` requests you submit an object containing
-translations for any languages needing to be updated/saved.  Any language not
-in the object is not updated, but is not removed.
-
-For example, if there were existing translations of::
-
-"name": {"en-US": "Games", "fr": "Jeux","kn": "ಆಟಗಳು"}
-
-and the following data was submitted in a request:
-
-.. code-block:: json
-
-    {
-        "name": {
-            "en-US": "Fun"
-        }
-    }
-
-Then the resulting translations would be::
-
-"name": {"en-US": "Fun", "fr": "Jeux","kn": "ಆಟಗಳು"}
-
-To delete a translation, pass ``null`` as the value for that language.
-(Note: this behavior is currently buggy/broken - see
-https://github.com/mozilla/addons-server/issues/8816 for more details)
+This behaviour also applies to ``POST``, ``PATCH`` and ``PUT`` requests: you
+can either submit an object containing several translations, or just a string.
+If only a string is supplied, it will only be used to translate the field in
+the current language.
 
 
-.. _api-overview-outgoing:
+.. _v4-api-overview-outgoing:
 
 ~~~~~~~~~~~~~~
 Outgoing Links
 ~~~~~~~~~~~~~~
 
 How outgoing links are treated has changed in v5 API.
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+Default v3/v4 API behavior
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If the ``wrap_outgoing_links`` query parameter is present, any external links
+returned for properties such as ``support_url`` or ``homepage`` will be wrapped
+through ``outgoing.prod.mozaws.net``. Fields supporting some HTML, such as
+add-on ``description`` or ``summary``, always do this regardless of whether or
+not the query parameter is present.
+
 
 ^^^^^^^^^^^^^^^
 v5 API behavior
@@ -253,7 +224,7 @@ original url (``url``), and wrapped through ``outgoing.prod.mozaws.net`` (``outg
 
 Note, if the field is also a translated field then the ``url`` and ``outgoing``
 values could be an object rather than a string
-(See :ref:`translated fields <api-overview-translations>` for translated field represenations).
+(See `translated fields <v4-api-overview-translations>` for translated field represenations).
 
 Fields supporting some HTML, such as add-on ``description`` or ``summary``,
 always wrap any links directly inside the content (the original url is not available).
@@ -270,22 +241,22 @@ specified.
 .. _`Cross-Origin Resource Sharing`: https://developer.mozilla.org/en-US/docs/HTTP/Access_control_CORS
 
 
-.. _api-versions-list:
+.. _v4-api-versions-list:
 
 
 -----------
 Site Status
 -----------
 
-.. _`api-site-status`:
+.. _v4-api-site-status:
 
 This special endpoint returns if the site is in read only mode, and if there is a site notice currently in effect.
-See :ref:`maintainance mode <api-overview-maintainance>` for more details of when the site is read only and how requests are affected.
+See :ref:`maintainance mode <v4-api-overview-maintainance>` for more details of when the site is read only and how requests are affected.
 
 
-.. http:get:: /api/v5/site/
+.. http:get:: /api/v4/site/
 
-    .. _site-status-object:
+    .. _v4-site-status-object:
 
     :>json boolean read_only: Whether the site in read-only mode.
     :>json string|null notice: A site-wide notice about any current known difficulties or restrictions.  If this API is being consumed by a tool/frontend it should be displayed to the user.
@@ -296,34 +267,25 @@ API Versions
 ------------
 
 ~~~~~~~~~~~~~~
-Default v5 API
+Default v4 API
 ~~~~~~~~~~~~~~
 
-All documentation here, unless otherwise specified, refers to the default `v5` APIs,
+All documentation here, unless otherwise specified, refers to the default `v4` APIs,
 which are considered stable.
 The request and responses are *NOT* frozen though, and can change at any time,
 depending on the requirements of addons-frontend (the primary consumer).
 
 
 ~~~~~~~~~~~~~
-Frozen v4 API
+Frozen v3 API
 ~~~~~~~~~~~~~
 
 Any consumer of the APIs that requires more stablity may consider using
-the `v4` API instead, which is frozen.  No new API endpoints (so no new features)
-will be added to `v4` and we aim to make no breaking changes.
+the `v3` API instead, which is frozen.  No new API endpoints (so no new features)
+will be added to `v3` and we aim to make no breaking changes.
 Despite the aim, we can't guarantee 100% stability.
-
-The documentation for `v4` can be accessed at: :ref:`v4-api-index`
-
-
-~~~~~~~~~~~~~~~~~
-Deprecated v3 API
-~~~~~~~~~~~~~~~~~
-
-The `v3` is now deprecated.  If you are using this API you should switch to `v4`,
-which is now frozen.
-The `v3` API will be maintained and available until at least 31st December 2021.
+The `v3` API will be maintained for as long as Firefox ESR60 is supported by Mozilla,
+i.e. at least October 23rd 2019.
 
 The documentation for `v3` can be accessed at: :ref:`v3-api-index`
 
@@ -403,24 +365,6 @@ v4 API changelog
 * 2020-10-22: added /shelves/sponsored/event endpoint for conversions, and to replace click endpoint https://github.com/mozilla/addons-server/issues/15718
 * 2020-11-05: dropped heading and description from discovery API https://github.com/mozilla/addons-server/issues/11272
 * 2020-11-05: added endpoint to receive Stripe events. https://github.com/mozilla/addons-server/issues/15879
-* 2021-01-14: as addons-frontend now uses /v5/, v5 becomes the stable default; v4 becomes frozen; v3 is deprecated
-
-----------------
-v5 API changelog
-----------------
-These are `v5` specific changes - `v4` changes apply also.
-
-* 2018-09-27: created the `v4dev` API.  The `v4dev` api is not available on AMO production server.
-  See :ref:`translations<api-overview-translations>` for details on the change to responses containing localisations.
-  https://github.com/mozilla/addons-server/issues/9467
-* 2019-05-09: renamed the experimental `v4dev` api to `v5` and made the `v5` API generally available (on AMO production also)
-* 2020-12-19: changed the structure of the translated fields in a response when a single language is requested but it's missing.
-  The requested locale is returned as ``none``, with the default_locale code under the ``_default`` key.
-  See :ref:`v5 API translation behavior<api-overview-translations-v5>` for specification and examples.
-  https://github.com/mozilla/addons-server/issues/16069
-* 2021-01-07: changed API behavior with all fields that could be affected by ``wrap_outgoing_links``.
-  Now the url is an object containing both the original url and the wrapped url.  See :ref:`Outgoing Links <api-overview-outgoing>`.
-
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/

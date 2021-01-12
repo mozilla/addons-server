@@ -5,7 +5,7 @@ Signing
 .. note::
 
     These APIs are not frozen and can change at any time without warning.
-    See :ref:`the API versions available<api-versions-list>` for alternatives
+    See :ref:`the API versions available<v4-api-versions-list>` for alternatives
     if you need stability.
 
 The following API endpoints help you get your add-on signed by Mozilla
@@ -29,7 +29,7 @@ the ``-g`` flag to skip "URL globbing" which won't interact well with add-on
 Ids that have {} characters in them.
 
 
-.. _upload-version:
+.. _v4-upload-version:
 
 -------------------
 Uploading a version
@@ -44,13 +44,13 @@ validation or review fails.
 If the upload succeeded then it will be submitted for
 validation and you will be able to check its status.
 
-.. http:put:: /api/v5/addons/(string:guid)/versions/(string:version)/
+.. http:put:: /api/v4/addons/(string:guid)/versions/(string:version)/
 
     **Request:**
 
     .. sourcecode:: bash
 
-        curl "https://addons.mozilla.org/api/v5/addons/@my-addon/versions/1.0/"
+        curl "https://addons.mozilla.org/api/v4/addons/@my-addon/versions/1.0/"
             -g -XPUT --form "upload=@build/my-addon.xpi"
             -H "Authorization: JWT <jwt-token>"
 
@@ -72,7 +72,7 @@ validation and you will be able to check its status.
 
     **Response:**
 
-    The response body will be the same as the :ref:`version-status` response.
+    The response body will be the same as the :ref:`v4-version-status` response.
 
     :statuscode 201: new add-on and version created.
     :statuscode 202: new version created.
@@ -88,16 +88,16 @@ Uploading without an ID
 .. note::
     This is only valid for `WebExtensions <https://wiki.mozilla.org/WebExtensions>`_.
     All other add-on types require an add-on ID and have to use the regular
-    endpoint to :ref:`upload a version <upload-version>`.
+    endpoint to :ref:`upload a version <v4-upload-version>`.
 
 
-.. http:post:: /api/v5/addons/
+.. http:post:: /api/v4/addons/
 
     **Request:**
 
     .. sourcecode:: bash
 
-        curl "https://addons.mozilla.org/api/v5/addons/"
+        curl "https://addons.mozilla.org/api/v4/addons/"
             -g -XPOST -F "upload=@build/my-addon.xpi" -F "version=1.0"
             -H "Authorization: JWT <jwt-token>"
 
@@ -124,7 +124,7 @@ If this is the first time that your add-on's UUID has been seen then
 the add-on will be created as an unlisted add-on when the version is
 uploaded.
 
-.. _`version-status`:
+.. _v4-version-status:
 
 -----------------------------------
 Checking the status of your upload
@@ -143,13 +143,13 @@ If validation passed then your add-on will be submitted for automated or
 manual review. Once review is complete then then ``reviewed`` property will be
 set and you can check the results with the ``passed_review`` property.
 
-.. http:get:: /api/v5/addons/(string:guid)/versions/(string:version)/[uploads/(string:upload-pk)/]
+.. http:get:: /api/v4/addons/(string:guid)/versions/(string:version)/[uploads/(string:upload-pk)/]
 
     **Request:**
 
     .. sourcecode:: bash
 
-        curl "https://addons.mozilla.org/api/v5/addons/@my-addon/versions/1.0/"
+        curl "https://addons.mozilla.org/api/v4/addons/@my-addon/versions/1.0/"
             -g -H "Authorization: JWT <jwt-token>"
 
     :param guid: The add-on `extension identifier <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#id>`_.
@@ -166,7 +166,7 @@ set and you can check the results with the ``passed_review`` property.
                 "automated_signing": true,
                 "files": [
                     {
-                        "download_url": "https://addons.mozilla.org/api/v5/downloads/file/100/example-id.0-fx+an.xpi",
+                        "download_url": "https://addons.mozilla.org/api/v4/downloads/file/100/example-id.0-fx+an.xpi",
                         "hash": "sha256:1bb945266bf370170a656350d9b640cbcaf70e671cf753c410e604219cdd9267",
                         "signed": true
                     }
@@ -175,7 +175,7 @@ set and you can check the results with the ``passed_review`` property.
                 "pk": "f68abbb3b1624c098fe979a409fe3ce9",
                 "processed": true,
                 "reviewed": true,
-                "url": "https://addons.mozilla.org/api/v5/addons/@example-id.0/uploads/f68abbb3b1624c098fe979a409fe3ce9/",
+                "url": "https://addons.mozilla.org/api/v4/addons/@example-id.0/uploads/f68abbb3b1624c098fe979a409fe3ce9/",
                 "valid": true,
                 "validation_results": {},
                 "validation_url": "https://addons.mozilla.org/en-US/developers/upload/f68abbb3b1624c098fe979a409fe3ce9",
@@ -210,7 +210,7 @@ set and you can check the results with the ``passed_review`` property.
     :statuscode 403: you do not own this add-on.
     :statuscode 404: add-on or version not found.
 
-.. _download-signed-file:
+.. _v4-download-signed-file:
 
 ------------------------
 Downloading signed files
@@ -220,13 +220,13 @@ When checking on your :ref:`request to sign a version <version-status>`,
 a successful response will give you an API URL to download the signed files.
 This endpoint returns the actual file data for download.
 
-.. http:get:: /api/v5/file/[int:file_id]/[string:base_filename]
+.. http:get:: /api/v4/file/[int:file_id]/[string:base_filename]
 
     **Request:**
 
     .. sourcecode:: bash
 
-        curl "https://addons.mozilla.org/api/v5/file/123/some-addon.xpi"
+        curl "https://addons.mozilla.org/api/v4/file/123/some-addon.xpi"
             -g -H "Authorization: JWT <jwt-token>"
 
     :param file_id: the primary key of the add-on file.

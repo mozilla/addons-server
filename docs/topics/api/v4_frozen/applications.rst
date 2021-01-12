@@ -6,10 +6,10 @@ Applications
 Applications Versions
 ---------------------
 
-.. _applications-version:
+.. _v4-applications-version:
 
 This internal endpoint allows you to create applications versions to be
-referenced in add-ons manifests. It requires :ref:`authentication<api-auth>`
+referenced in add-ons manifests. It requires :ref:`v4-authentication<api-auth>`
 and a special permission.
 
 The currently available applications versions are listed on a dedicated page:
@@ -29,18 +29,18 @@ version and ``*``.
 Versions that already exist will be skipped.
 
 Examples:
-    - A request to ``/api/v5/applications/firefox/42.0/`` will create versions
+    - A request to ``/api/v4/applications/firefox/42.0/`` will create versions
       ``42.0`` and ``42.*``.
-    - A request to ``/api/v5/applications/firefox/42.0a1/`` will create versions
+    - A request to ``/api/v4/applications/firefox/42.0a1/`` will create versions
       ``42.0``, ``42.0a1``, and ``42.*``.
-    - A request to ``/api/v5/applications/firefox/42.0.1/`` will create versions
+    - A request to ``/api/v4/applications/firefox/42.0.1/`` will create versions
       ``42.0`` and ``42.0.1``. ``42.*``.
 
-.. http:put:: /api/v5/applications/(string:application)/(string:version)/
+.. http:put:: /api/v4/applications/(string:application)/(string:version)/
 
     **Request:**
 
-      :param application: The :ref:`application <addon-detail-application>`
+      :param application: The :ref:`application <v4-addon-detail-application>`
       :param version: The version of the application, e.g. 42.0
 
     **Response:**
