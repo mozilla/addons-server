@@ -361,6 +361,7 @@ class TestSecondaryHeroShelfViewSet(TestCase):
         assert len(response.json()['results']) == 3
 
 
+# If we delete HeroShelvesView move all these tests to TestShelfViewSet
 class TestHeroShelvesView(TestCase):
     def setUp(self):
         self.url = reverse_ns('hero-shelves', api_version='v5')
@@ -403,9 +404,7 @@ class TestHeroShelvesView(TestCase):
             cta_text='go here!',
             enabled=True,
         )
-        response = self.client.get(
-            self.url, {'lang': 'en-US', 'wrap_outgoing_links': ''}
-        )
+        response = self.client.get(self.url, {'lang': 'en-US'})
         assert 'outgoing.' in json.dumps(response.json()['primary'])
         assert 'outgoing.' in json.dumps(response.json()['secondary'])
 
@@ -444,8 +443,6 @@ class TestHeroShelvesView(TestCase):
             enabled=False,
         )
         # No SecondaryHero at all
-        response = self.client.get(
-            self.url, {'lang': 'en-US', 'wrap_outgoing_links': ''}
-        )
+        response = self.client.get(self.url, {'lang': 'en-US'})
         assert response.json()['primary'] is None
         assert response.json()['secondary'] is None
