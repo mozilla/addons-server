@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2021-01-13 16:45+0000\n"
+"PO-Revision-Date: 2021-01-13 16:56+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -328,7 +328,7 @@ msgid "Maintenance in progress"
 msgstr "నిర్వహణ పురోగతిలో ఉంది"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
-msgstr ""
+msgstr "మేము వెబ్‌సైటు నిర్వహణ పూర్తిచేసేవరకూ ఈ సౌలభ్యం తాత్కాలికంగా నిలిపివేయబడింది. దయచేసి మీ విహారిణి యొక్క వెనుక బొత్తాన్ని వాడి, కొంత సేపటి తర్వాత ప్రయత్నించండి."
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "మేము వెబ్‌సైటు నిర్వహణ పూర్తిచేసేవరకూ ఈ పేజీలోని కొన్ని విశేషాలు తాత్కాలికంగా నిలిపివేయబడ్డాయి. దయచేసి కొంత సేపటి తర్వాత ప్రయత్నించండి."
@@ -343,6 +343,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
+"<p>దయచేసి కింద ఇచ్చిన <strong>పదాలన్నిటినీ</strong> ఇవ్వండి, <strong>అవసరమైన చోట ఖాళీతో వేరుపరచండి</strong>. </p> <p> ఒకవేళ ఇవి చదవడం కష్టంగా ఉంటే, బదులుగా <a href=\"#\" "
+"id=\"recaptcha_different\">వేరే పదాలు ప్రయత్నించండి</a> లేదా <a href=\"#\" id=\"recaptcha_audio\">మరో విధమైన సవాలును ప్రయత్నించండి</a>. </p>"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
