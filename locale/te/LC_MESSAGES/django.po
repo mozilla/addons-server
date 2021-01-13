@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2021-01-08 17:22+0000\n"
+"PO-Revision-Date: 2021-01-13 16:45+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -5619,7 +5619,7 @@ msgid "You cannot add a listed version to this addon via the API due to missing 
 msgstr ""
 
 msgid "No uploaded file for that addon and version."
-msgstr ""
+msgstr "ఆ పొడగింత, ఆ వెర్షనుకు ఎక్కించిన ఫైలు ఏమీ లేదు."
 
 msgid "Overview"
 msgstr "అవలోకనం"
@@ -5738,7 +5738,7 @@ msgid "Download campaigns by Date"
 msgstr "తేదీవారి దింపుకోలు ప్రచారాలు"
 
 msgid "About tracking external sources..."
-msgstr ""
+msgstr "బయటి వనరుల ట్రాకింగు గురించి..."
 
 msgid "Download contents by Date"
 msgstr "తేదీవారి దింపుకోలు విషయాలు"
@@ -5789,7 +5789,7 @@ msgid "Download sources by Date"
 msgstr "తేదీ వారి మూలాలు దింపుకోండి"
 
 msgid "Add-on Status by Date"
-msgstr ""
+msgstr "తేదీవారి పొడగింత స్థితి"
 
 msgid "Daily Users by Date"
 msgstr "తేదీ వారీగా రోజువారీ వాడుకరులు"
