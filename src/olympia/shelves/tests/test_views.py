@@ -179,7 +179,7 @@ class TestShelfViewSet(ESTestCase):
         assert result['results'][1]['addons'][0]['type'] == 'extension'
 
     # If we delete HeroShelvesView move all the TestHeroShelvesView tests here
-    def test_hero_shelves_in_response(self):
+    def test_only_hero_shelves_in_response(self):
         phero = PrimaryHero.objects.create(
             promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
             enabled=True,
@@ -208,6 +208,40 @@ class TestShelfViewSet(ESTestCase):
             'primary': PrimaryHeroShelfSerializer(instance=phero).data,
             'secondary': SecondaryHeroShelfSerializer(instance=shero).data,
         }
+
+    def test_full_response(self):
+        phero = PrimaryHero.objects.create(
+            promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
+            enabled=True,
+        )
+        shero = SecondaryHero.objects.create(
+            headline='headline', description='description', enabled=True
+        )
+        SecondaryHeroModule.objects.create(shelf=shero)
+        SecondaryHeroModule.objects.create(shelf=shero)
+        SecondaryHeroModule.objects.create(shelf=shero)
+
+        self.hpshelf_a.update(enabled=True)
+
+        with self.assertNumQueries(17):
+            # 17 queries:
+            # - 4 to get the shelves
+            # - 11 as TestPrimaryHeroShelfViewSet.test_basic
+            # - 2 as TestSecondaryHeroShelfViewSet.test_basic
+            response = self.client.get(self.url)
+        assert response.status_code == 200
+
+        result = json.loads(response.content)
+
+        assert len(result['results']) == 1
+
+        assert result['results'][0]['title'] == 'Recommended extensions'
+        assert result['results'][0]['addons'][0]['name']['en-US'] == (
+            'test addon test03'
+        )
+
+        assert result['primary'] == PrimaryHeroShelfSerializer(instance=phero).data
+        assert result['secondary'] == SecondaryHeroShelfSerializer(instance=shero).data
 
 
 class TestSponsoredShelfViewSet(ESTestCase):
