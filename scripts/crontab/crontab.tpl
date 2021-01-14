@@ -17,7 +17,6 @@ HOME=/tmp
 15 * * * * %(django)s send_pending_rejection_last_warning_notifications
 20 * * * * %(z_cron)s addon_last_updated
 25 * * * * %(z_cron)s hide_disabled_files
-45 * * * * %(z_cron)s update_addon_appsupport
 55 * * * * %(z_cron)s unhide_disabled_files
 
 # Four times per day

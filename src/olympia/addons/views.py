@@ -643,9 +643,7 @@ class LanguageToolsView(ListAPIView):
                 params['application'], params['appversions']
             )
         else:
-            # appversions filtering only makes sense for language packs only,
-            # so it's ignored here.
-            qs = self.get_queryset_base(params['application'], params['types'])
+            qs = self.get_queryset_base(params['types'])
 
         if params['authors']:
             qs = qs.filter(
@@ -653,7 +651,7 @@ class LanguageToolsView(ListAPIView):
             ).distinct()
         return qs
 
-    def get_queryset_base(self, application, addon_types):
+    def get_queryset_base(self, addon_types):
         """
         Return base queryset to be used as the starting point in both
         get_queryset() and get_language_packs_queryset_with_appversions().
@@ -661,7 +659,6 @@ class LanguageToolsView(ListAPIView):
         return (
             Addon.objects.public()
             .filter(
-                appsupport__app=application,
                 type__in=addon_types,
                 target_locale__isnull=False,
             )
@@ -687,7 +684,7 @@ class LanguageToolsView(ListAPIView):
         and max keys pointing to application versions expressed as ints.
         """
         # Base queryset.
-        qs = self.get_queryset_base(application, (amo.ADDON_LPAPP,))
+        qs = self.get_queryset_base((amo.ADDON_LPAPP,))
         # Version queryset we'll prefetch once for all results. We need to
         # find the ones compatible with the app+appversion requested, and we
         # can avoid loading translations by removing transforms and then

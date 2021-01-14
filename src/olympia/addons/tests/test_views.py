@@ -3,6 +3,7 @@ import json
 
 from unittest import mock
 
+from django.core.cache import cache
 from django.test.utils import override_settings
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlunquote
@@ -2702,9 +2703,11 @@ class TestLanguageToolsView(TestCase):
         assert expected_versions == returned_versions
 
     def test_memoize(self):
+        cache.clear()
+        super_author = user_factory(username='super')
+        addon_factory(type=amo.ADDON_DICT, target_locale='fr', users=(super_author,))
         addon_factory(type=amo.ADDON_DICT, target_locale='fr')
-        addon_factory(type=amo.ADDON_DICT, target_locale='fr')
-        addon_factory(type=amo.ADDON_LPAPP, target_locale='es')
+        addon_factory(type=amo.ADDON_LPAPP, target_locale='es', users=(super_author,))
 
         with self.assertNumQueries(2):
             response = self.client.get(self.url, {'app': 'firefox', 'lang': 'fr'})
@@ -2718,13 +2721,14 @@ class TestLanguageToolsView(TestCase):
             ).content == (response.content)
 
         with self.assertNumQueries(2):
-            assert (
-                self.client.get(self.url, {'app': 'android', 'lang': 'fr'}).content
-                != response.content
-            )
+            assert self.client.get(
+                self.url, {'app': 'firefox', 'lang': 'fr', 'author': 'super'}
+            ).content != (response.content)
         # Same again, should be cached; no queries.
         with self.assertNumQueries(0):
-            self.client.get(self.url, {'app': 'android', 'lang': 'fr'})
+            self.client.get(
+                self.url, {'app': 'firefox', 'lang': 'fr', 'author': 'super'}
+            )
         # Change the lang, we should get queries again.
         with self.assertNumQueries(2):
             self.client.get(self.url, {'app': 'firefox', 'lang': 'de'})
