@@ -1,4 +1,5 @@
 from django.db.transaction import non_atomic_requests
+from django.utils.decorators import classonlymethod
 
 from django_statsd.clients import statsd
 from elasticsearch_dsl import Q, query
@@ -11,6 +12,7 @@ import olympia.core.logger
 from olympia.addons.views import AddonSearchView
 from olympia.api.pagination import ESPageNumberPagination
 from olympia.constants.promoted import PROMOTED_GROUPS
+from olympia.hero.views import PrimaryHeroShelfViewSet, SecondaryHeroShelfViewSet
 from olympia.search.filters import ReviewedContentFilter
 
 from .models import Shelf
@@ -35,6 +37,21 @@ class ShelfViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     )
     permission_classes = []
     serializer_class = ShelfSerializer
+
+    def list(self, request, *args, **kwargs):
+        response = super().list(request, *args, **kwargs)
+        response.data['primary'] = PrimaryHeroShelfViewSet(
+            request=request
+        ).get_one_random_data()
+        response.data['secondary'] = SecondaryHeroShelfViewSet(
+            request=request
+        ).get_one_random_data()
+        return response
+
+    @classonlymethod
+    def as_view(cls, *args, **initkwargs):
+        view = super().as_view(*args, **initkwargs)
+        return non_atomic_requests(view)
 
 
 class SponsoredShelfPagination(ESPageNumberPagination):

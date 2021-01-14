@@ -18,6 +18,11 @@ from olympia.amo.tests import (
 )
 from olympia.bandwagon.models import CollectionAddon
 from olympia.constants.promoted import RECOMMENDED, SPONSORED, VERIFIED
+from olympia.hero.models import PrimaryHero, SecondaryHero, SecondaryHeroModule
+from olympia.hero.serializers import (
+    PrimaryHeroShelfSerializer,
+    SecondaryHeroShelfSerializer,
+)
 from olympia.promoted.models import PromotedAddon
 from olympia.shelves.models import Shelf, ShelfManagement
 from olympia.users.models import UserProfile
@@ -78,7 +83,7 @@ class TestShelfViewSet(ESTestCase):
         cls.refresh()
 
     def setUp(self):
-        self.url = reverse_ns('shelves-list')
+        self.url = reverse_ns('shelves-list', api_version='v5')
 
         shelf_a = Shelf.objects.create(
             title='Recommended extensions',
@@ -103,10 +108,13 @@ class TestShelfViewSet(ESTestCase):
         self.hpshelf_b = ShelfManagement.objects.create(shelf=shelf_b, position=2)
         ShelfManagement.objects.create(shelf=shelf_c, position=1)
 
-        self.search_url = reverse_ns('addon-search') + shelf_a.criteria
+        self.search_url = (
+            reverse_ns('addon-search', api_version='v5') + shelf_a.criteria
+        )
 
         self.collections_url = reverse_ns(
             'collection-addon-list',
+            api_version='v5',
             kwargs={
                 'user_pk': settings.TASK_USER_ID,
                 'collection_slug': shelf_b.criteria,
@@ -123,6 +131,8 @@ class TestShelfViewSet(ESTestCase):
             'page_size': 25,
             'previous': None,
             'results': [],
+            'primary': None,
+            'secondary': None,
         }
 
     def test_only_enabled_shelves_in_view(self):
@@ -167,6 +177,71 @@ class TestShelfViewSet(ESTestCase):
             'recommended'
         )
         assert result['results'][1]['addons'][0]['type'] == 'extension'
+
+    # If we delete HeroShelvesView move all the TestHeroShelvesView tests here
+    def test_only_hero_shelves_in_response(self):
+        phero = PrimaryHero.objects.create(
+            promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
+            enabled=True,
+        )
+        shero = SecondaryHero.objects.create(
+            headline='headline', description='description', enabled=True
+        )
+        SecondaryHeroModule.objects.create(shelf=shero)
+        SecondaryHeroModule.objects.create(shelf=shero)
+        SecondaryHeroModule.objects.create(shelf=shero)
+
+        with self.assertNumQueries(14):
+            # 14 queries:
+            # - 1 to get the shelves
+            # - 11 as TestPrimaryHeroShelfViewSet.test_basic
+            # - 2 as TestSecondaryHeroShelfViewSet.test_basic
+            response = self.client.get(self.url, {'lang': 'en-US'})
+        assert response.status_code == 200
+        assert response.json() == {
+            'count': 0,
+            'next': None,
+            'page_count': 1,
+            'page_size': 25,
+            'previous': None,
+            'results': [],
+            'primary': PrimaryHeroShelfSerializer(instance=phero).data,
+            'secondary': SecondaryHeroShelfSerializer(instance=shero).data,
+        }
+
+    def test_full_response(self):
+        phero = PrimaryHero.objects.create(
+            promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
+            enabled=True,
+        )
+        shero = SecondaryHero.objects.create(
+            headline='headline', description='description', enabled=True
+        )
+        SecondaryHeroModule.objects.create(shelf=shero)
+        SecondaryHeroModule.objects.create(shelf=shero)
+        SecondaryHeroModule.objects.create(shelf=shero)
+
+        self.hpshelf_a.update(enabled=True)
+
+        with self.assertNumQueries(17):
+            # 17 queries:
+            # - 4 to get the shelves
+            # - 11 as TestPrimaryHeroShelfViewSet.test_basic
+            # - 2 as TestSecondaryHeroShelfViewSet.test_basic
+            response = self.client.get(self.url)
+        assert response.status_code == 200
+
+        result = json.loads(response.content)
+
+        assert len(result['results']) == 1
+
+        assert result['results'][0]['title'] == 'Recommended extensions'
+        assert result['results'][0]['addons'][0]['name']['en-US'] == (
+            'test addon test03'
+        )
+
+        assert result['primary'] == PrimaryHeroShelfSerializer(instance=phero).data
+        assert result['secondary'] == SecondaryHeroShelfSerializer(instance=shero).data
 
 
 class TestSponsoredShelfViewSet(ESTestCase):
