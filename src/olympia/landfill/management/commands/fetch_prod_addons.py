@@ -19,7 +19,7 @@ class KeyboardInterruptError(Exception):
 class Command(BaseCommand):
     """Download and save all AMO add-ons public data."""
 
-    SEARCH_API_URL = 'https://addons.mozilla.org/api/v4/addons/search/'
+    SEARCH_API_URL = 'https://addons.mozilla.org/api/v5/addons/search/'
 
     def add_arguments(self, parser):
         parser.add_argument(

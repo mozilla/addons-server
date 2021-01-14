@@ -20,9 +20,12 @@ class ShelfForm(forms.ModelForm):
             'footer_pathname',
         )
 
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        super().__init__(*args, **kwargs)
+
     def clean(self):
         data = self.cleaned_data
-        baseUrl = settings.INTERNAL_SITE_URL
 
         endpoint = data.get('endpoint')
         criteria = data.get('criteria')
@@ -35,17 +38,17 @@ class ShelfForm(forms.ModelForm):
                 if not criteria.startswith('?') or criteria.count('?') > 1:
                     raise forms.ValidationError('Check criteria field.')
                 else:
-                    api = drf_reverse('v4:addon-search')
-                    url = baseUrl + api + criteria
+                    api = drf_reverse('addon-search', request=self.request)
+                    url = api + criteria
             elif endpoint == 'collections':
-                api = drf_reverse(
-                    'v4:collection-addon-list',
+                url = drf_reverse(
+                    'collection-addon-list',
+                    request=self.request,
                     kwargs={
                         'user_pk': settings.TASK_USER_ID,
                         'collection_slug': criteria,
                     },
                 )
-                url = baseUrl + api
             else:
                 return
 

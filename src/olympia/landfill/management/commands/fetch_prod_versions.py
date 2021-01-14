@@ -20,7 +20,7 @@ class Command(BaseCommand):
     """Download versions for a particular add-on from AMO public data."""
 
     VERSIONS_API_URL = (
-        'https://addons.mozilla.org/api/v4/addons/addon/%(slug)s/versions/'
+        'https://addons.mozilla.org/api/v5/addons/addon/%(slug)s/versions/'
     )
 
     def add_arguments(self, parser):

@@ -999,7 +999,7 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
         }
 
     def test_score(self):
-        self.request.version = 'v4'
+        self.request.version = 'v5'
         self.addon = addon_factory()
         result = self.serialize()
         assert result['_score'] == 1.0  # No query, we get ConstantScoring(1.0)

@@ -1633,7 +1633,7 @@ REST_FRAMEWORK = {
         'olympia.api.parsers.MultiPartParser',
     ),
     'ALLOWED_VERSIONS': DRF_API_VERSIONS,
-    'DEFAULT_VERSION': 'v4',
+    'DEFAULT_VERSION': 'v5',
     'DEFAULT_VERSIONING_CLASS': ('rest_framework.versioning.NamespaceVersioning'),
     # Add our custom exception handler, that wraps all exceptions into
     # Responses and not just the ones that are api-related.

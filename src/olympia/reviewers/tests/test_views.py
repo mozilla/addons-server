@@ -7293,7 +7293,7 @@ class TestReviewAddonVersionViewSetDetail(
         assert response.status_code == 200
         result = json.loads(response.content)
 
-        assert result['addon']['name'] == str(self.addon.name)
+        assert result['addon']['name'] == {'en-US': str(self.addon.name)}
 
         assert result['file']['content'] == '# beastify\n'
         assert result['file_entries'] is not None
@@ -8374,7 +8374,7 @@ class TestReviewAddonVersionCompareViewSet(
 
         result = json.loads(response.content)
 
-        assert result['addon']['name'] == str(self.addon.name)
+        assert result['addon']['name'] == {'en-US': str(self.addon.name)}
 
         assert result['file']['diff']['path'] == 'README.md'
         assert result['file']['diff']['hunks'][0]['changes'] == [

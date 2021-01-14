@@ -1070,10 +1070,10 @@ class WithDynamicEndpointsMixin(object):
     def endpoint(self, view, url_regex=None):
         """
         Register a view function or view class temporarily as the handler for
-        requests to /api/v4/dynamic-endpoint (We use /api/v4/ to make sure not
+        requests to /api/v5/dynamic-endpoint (We use /api/v5/ to make sure not
         to be affected by the locale & app redirection middleware.)
         """
-        url_regex = url_regex or r'^api/v4/dynamic-endpoint$'
+        url_regex = url_regex or r'^api/v5/dynamic-endpoint$'
         if hasattr(view, 'as_view'):
             view = view.as_view()
 
