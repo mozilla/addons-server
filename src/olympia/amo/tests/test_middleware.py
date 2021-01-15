@@ -57,6 +57,11 @@ class TestMiddleware(TestCase):
         AuthenticationMiddlewareWithoutAPI().process_request(req)
         assert process_request.call_count == 2
 
+        req = RequestFactory().get('/api/v5/accounts/authenticate/')
+        req.is_api = True
+        AuthenticationMiddlewareWithoutAPI().process_request(req)
+        assert process_request.call_count == 3
+
 
 def test_redirect_with_unicode_get():
     response = test.Client().get(

@@ -1,7 +1,11 @@
 import responses
 
 from django.conf import settings
+from django.contrib.auth.models import AnonymousUser
 from django.core.exceptions import ValidationError
+
+from rest_framework.settings import api_settings
+from rest_framework.test import APIRequestFactory
 
 from olympia.amo.tests import TestCase, reverse_ns
 from olympia.shelves.forms import ShelfForm
@@ -16,9 +20,15 @@ class TestShelfForm(TestCase):
         self.criteria_not_200 = '?sort=user&type=statictheme'
         self.criteria_empty = '?sort=users&type=theme'
 
+        api_version = api_settings.DEFAULT_VERSION
+        self.request = APIRequestFactory().get('/api/%s/' % api_version)
+        self.request.versioning_scheme = api_settings.DEFAULT_VERSIONING_CLASS()
+        self.request.version = api_version
+        self.request.user = AnonymousUser()
+
         responses.add(
             responses.GET,
-            reverse_ns('addon-search', api_version='v4') + self.criteria_sea,
+            reverse_ns('addon-search') + self.criteria_sea,
             status=200,
             json={'count': 103},
         )
@@ -26,7 +36,6 @@ class TestShelfForm(TestCase):
             responses.GET,
             reverse_ns(
                 'collection-addon-list',
-                api_version='v4',
                 kwargs={
                     'user_pk': settings.TASK_USER_ID,
                     'collection_slug': self.criteria_col,
@@ -37,7 +46,7 @@ class TestShelfForm(TestCase):
         )
         responses.add(
             responses.GET,
-            reverse_ns('addon-search', api_version='v4') + self.criteria_404,
+            reverse_ns('addon-search') + self.criteria_404,
             status=404,
             json={'detail': 'Not found.'},
         ),
@@ -45,7 +54,6 @@ class TestShelfForm(TestCase):
             responses.GET,
             reverse_ns(
                 'collection-addon-list',
-                api_version='v4',
                 kwargs={
                     'user_pk': settings.TASK_USER_ID,
                     'collection_slug': self.criteria_col_404,
@@ -56,13 +64,13 @@ class TestShelfForm(TestCase):
         ),
         responses.add(
             responses.GET,
-            reverse_ns('addon-search', api_version='v4') + self.criteria_not_200,
+            reverse_ns('addon-search') + self.criteria_not_200,
             status=400,
             json=['Invalid "sort" parameter.'],
         )
         responses.add(
             responses.GET,
-            reverse_ns('addon-search', api_version='v4') + self.criteria_empty,
+            reverse_ns('addon-search') + self.criteria_empty,
             status=200,
             json={'count': 0},
         )
@@ -73,7 +81,8 @@ class TestShelfForm(TestCase):
                 'title': 'Recommended extensions',
                 'endpoint': 'search',
                 'criteria': self.criteria_sea,
-            }
+            },
+            request=self.request,
         )
         assert form.is_valid(), form.errors
         assert form.cleaned_data['criteria'] == (
@@ -86,14 +95,16 @@ class TestShelfForm(TestCase):
                 'title': 'Password managers (Collections)',
                 'endpoint': 'collections',
                 'criteria': self.criteria_col,
-            }
+            },
+            request=self.request,
         )
         assert form.is_valid(), form.errors
         assert form.cleaned_data['criteria'] == 'password-managers'
 
     def test_clean_form_is_missing_title_field(self):
         form = ShelfForm(
-            {'title': '', 'endpoint': 'search', 'criteria': self.criteria_sea}
+            {'title': '', 'endpoint': 'search', 'criteria': self.criteria_sea},
+            request=self.request,
         )
         assert not form.is_valid()
         assert form.errors == {'title': ['This field is required.']}
@@ -104,14 +115,16 @@ class TestShelfForm(TestCase):
                 'title': 'Recommended extensions',
                 'endpoint': '',
                 'criteria': self.criteria_sea,
-            }
+            },
+            request=self.request,
         )
         assert not form.is_valid()
         assert form.errors == {'endpoint': ['This field is required.']}
 
     def test_clean_form_is_missing_criteria_field(self):
         form = ShelfForm(
-            {'title': 'Recommended extensions', 'endpoint': 'search', 'criteria': ''}
+            {'title': 'Recommended extensions', 'endpoint': 'search', 'criteria': ''},
+            request=self.request,
         )
         assert not form.is_valid()
         assert form.errors == {'criteria': ['This field is required.']}
@@ -122,7 +135,8 @@ class TestShelfForm(TestCase):
                 'title': 'Recommended extensions',
                 'endpoint': 'search',
                 'criteria': '..?recommended-true',
-            }
+            },
+            request=self.request,
         )
         assert not form.is_valid()
         with self.assertRaises(ValidationError) as exc:
@@ -135,7 +149,8 @@ class TestShelfForm(TestCase):
                 'title': 'Recommended extensions',
                 'endpoint': 'search',
                 'criteria': '??recommended-true',
-            }
+            },
+            request=self.request,
         )
         assert not form.is_valid()
         with self.assertRaises(ValidationError) as exc:
@@ -144,7 +159,8 @@ class TestShelfForm(TestCase):
 
     def test_clean_form_throws_error_for_NoReverseMatch(self):
         form = ShelfForm(
-            {'title': 'New collection', 'endpoint': 'collections', 'criteria': '/'}
+            {'title': 'New collection', 'endpoint': 'collections', 'criteria': '/'},
+            request=self.request,
         )
         assert not form.is_valid()
         with self.assertRaises(ValidationError) as exc:
@@ -157,7 +173,7 @@ class TestShelfForm(TestCase):
             'endpoint': 'collections',
             'criteria': self.criteria_col_404,
         }
-        form = ShelfForm(data)
+        form = ShelfForm(data, request=self.request)
         assert not form.is_valid()
         with self.assertRaises(ValidationError) as exc:
             form.clean()
@@ -169,7 +185,7 @@ class TestShelfForm(TestCase):
             'endpoint': 'search',
             'criteria': self.criteria_not_200,
         }
-        form = ShelfForm(data)
+        form = ShelfForm(data, request=self.request)
         assert not form.is_valid()
         with self.assertRaises(ValidationError) as exc:
             form.clean()
@@ -181,7 +197,7 @@ class TestShelfForm(TestCase):
             'endpoint': 'search',
             'criteria': self.criteria_empty,
         }
-        form = ShelfForm(data)
+        form = ShelfForm(data, request=self.request)
         assert not form.is_valid()
         with self.assertRaises(ValidationError) as exc:
             form.clean()

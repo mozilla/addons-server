@@ -55,12 +55,12 @@ class TestRatingViewSetGet(TestCase):
         assert detail_url.endswith('/v3/reviews/review/%d/' % rating.pk)
 
     def test_url_default(self):
-        assert self.url.endswith('/v4/ratings/rating/')
+        assert self.url.endswith('/v5/ratings/rating/')
         rating = Rating.objects.create(
             addon=self.addon, body='review 1', user=user_factory()
         )
         detail_url = reverse_ns(self.detail_url_name, kwargs={'pk': rating.pk})
-        assert detail_url.endswith('/v4/ratings/rating/%d/' % rating.pk)
+        assert detail_url.endswith('/v5/ratings/rating/%d/' % rating.pk)
 
     def test_list_addon(self, **kwargs):
         review1 = Rating.objects.create(
@@ -2080,7 +2080,7 @@ class TestRatingViewSetFlag(TestCase):
         assert v3_url.endswith(expected_url)
 
     def test_url_default(self):
-        expected_url = '/v4/ratings/rating/%d/flag/' % self.rating.pk
+        expected_url = '/v5/ratings/rating/%d/flag/' % self.rating.pk
         assert self.url.endswith(expected_url)
 
     def test_flag_anonymous(self):
@@ -2254,7 +2254,7 @@ class TestRatingViewSetReply(TestCase):
         assert v3_url.endswith(expected_url)
 
     def test_url_default(self):
-        expected_url = '/api/v4/ratings/rating/%d/reply/' % self.rating.pk
+        expected_url = '/api/v5/ratings/rating/%d/reply/' % self.rating.pk
         assert self.url.endswith(expected_url)
 
     def test_get_method_not_allowed(self):
