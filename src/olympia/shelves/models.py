@@ -2,7 +2,7 @@ from django.db import models
 
 from olympia.amo.models import ModelBase
 
-ENDPOINTS = ('collections', 'search')
+ENDPOINTS = ('collections', 'search', 'search-themes')
 
 ENDPOINT_CHOICES = tuple((ty, ty) for ty in ENDPOINTS)
 

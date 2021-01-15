@@ -16,8 +16,7 @@ class TestShelfForm(TestCase):
         self.criteria_sea = '?promoted=recommended&sort=random&type=extension'
         self.criteria_col = 'password-managers'
         self.criteria_col_404 = 'passwordmanagers'
-        self.criteria_404 = 'sort=users&type=statictheme'
-        self.criteria_not_200 = '?sort=user&type=statictheme'
+        self.criteria_not_200 = '?sort=user&type=extension'
         self.criteria_empty = '?sort=users&type=theme'
 
         api_version = api_settings.DEFAULT_VERSION
@@ -44,12 +43,6 @@ class TestShelfForm(TestCase):
             status=200,
             json={'count': 1},
         )
-        responses.add(
-            responses.GET,
-            reverse_ns('addon-search') + self.criteria_404,
-            status=404,
-            json={'detail': 'Not found.'},
-        ),
         responses.add(
             responses.GET,
             reverse_ns(
@@ -156,6 +149,36 @@ class TestShelfForm(TestCase):
         with self.assertRaises(ValidationError) as exc:
             form.clean()
         assert exc.exception.message == ('Check criteria field.')
+
+    def test_clean_searchtheme_criteria_theme_used_for_statictheme_type(self):
+        form = ShelfForm(
+            {
+                'title': 'Recommended extensions',
+                'endpoint': 'search',
+                'criteria': '?recommended=true&type=statictheme',
+            }
+        )
+        assert not form.is_valid()
+        with self.assertRaises(ValidationError) as exc:
+            form.clean()
+        assert exc.exception.message == (
+            'Use "search-themes" endpoint for type=statictheme.'
+        )
+
+    def test_clean_searchtheme_criteria_theme_not_used_for_other_type(self):
+        form = ShelfForm(
+            {
+                'title': 'Recommended extensions',
+                'endpoint': 'search-themes',
+                'criteria': '?recommended=true&type=extension',
+            }
+        )
+        assert not form.is_valid()
+        with self.assertRaises(ValidationError) as exc:
+            form.clean()
+        assert exc.exception.message == (
+            'Don`t use "search-themes" endpoint for non themes. Use "search".'
+        )
 
     def test_clean_form_throws_error_for_NoReverseMatch(self):
         form = ShelfForm(

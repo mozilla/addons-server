@@ -34,12 +34,20 @@ class ShelfForm(forms.ModelForm):
             return
 
         try:
-            if endpoint == 'search':
+            if endpoint in ('search', 'search-themes'):
                 if not criteria.startswith('?') or criteria.count('?') > 1:
                     raise forms.ValidationError('Check criteria field.')
-                else:
-                    api = drf_reverse('addon-search', request=self.request)
-                    url = api + criteria
+                params = criteria[1:].split('&')
+                if endpoint == 'search' and 'type=statictheme' in params:
+                    raise forms.ValidationError(
+                        'Use "search-themes" endpoint for type=statictheme.'
+                    )
+                elif endpoint == 'search-themes' and 'type=statictheme' not in params:
+                    raise forms.ValidationError(
+                        'Don`t use "search-themes" endpoint for non themes. '
+                        'Use "search".'
+                    )
+                url = drf_reverse('addon-search', request=self.request) + criteria
             elif endpoint == 'collections':
                 url = drf_reverse(
                     'collection-addon-list',
