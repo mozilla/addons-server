@@ -576,7 +576,7 @@ class LanguageToolsView(ListAPIView):
     def get_query_params(self):
         """
         Parse query parameters that this API supports:
-        - app (mandatory)
+        - app (ignored unless appversion, then mandatory)
         - type (optional)
         - appversion (optional, makes type mandatory)
         - author (optional)
@@ -587,14 +587,16 @@ class LanguageToolsView(ListAPIView):
         Returns a dict containing application (int), types (tuple or None),
         appversions (dict or None) and author (string or None).
         """
-        # app parameter is mandatory when calling this API.
-        try:
-            application = AddonAppQueryParam(self.request.GET).get_value()
-        except ValueError:
-            raise exceptions.ParseError('Invalid or missing app parameter.')
-
         # appversion parameter is optional.
         if AddonAppVersionQueryParam.query_param in self.request.GET:
+            # app parameter is mandatory with appversion
+            try:
+                application = AddonAppQueryParam(self.request.GET).get_value()
+            except ValueError:
+                raise exceptions.ParseError(
+                    'Invalid or missing app parameter while appversion parameter is '
+                    'set.'
+                )
             try:
                 value = AddonAppVersionQueryParam(self.request.GET).get_values()
                 appversions = {'min': value[1], 'max': value[2]}
@@ -602,6 +604,7 @@ class LanguageToolsView(ListAPIView):
                 raise exceptions.ParseError('Invalid appversion parameter.')
         else:
             appversions = None
+            application = None
 
         # type is optional, unless appversion is set. That's because the way
         # dicts and language packs have their compatibility info set in the

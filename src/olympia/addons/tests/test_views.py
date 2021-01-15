@@ -2420,14 +2420,13 @@ class TestLanguageToolsView(TestCase):
         super(TestLanguageToolsView, self).setUp()
         self.url = reverse_ns('addon-language-tools')
 
-    def test_wrong_app_or_no_app(self):
-        response = self.client.get(self.url)
+    def test_wrong_app(self):
+        response = self.client.get(self.url, {'app': 'foo', 'appversion': '57.0'})
         assert response.status_code == 400
-        assert response.data == {'detail': 'Invalid or missing app parameter.'}
-
-        response = self.client.get(self.url, {'app': 'foo'})
-        assert response.status_code == 400
-        assert response.data == {'detail': 'Invalid or missing app parameter.'}
+        assert response.data == {
+            'detail': 'Invalid or missing app parameter while appversion parameter '
+            'is set.'
+        }
 
     def test_basic(self):
         dictionary = addon_factory(type=amo.ADDON_DICT, target_locale='fr')
@@ -2480,6 +2479,14 @@ class TestLanguageToolsView(TestCase):
         assert response.data == {
             'detail': 'Invalid or missing type parameter while appversion '
             'parameter is set.'
+        }
+
+    def test_with_appversion_but_no_application(self):
+        response = self.client.get(self.url, {'appversion': '57.0'})
+        assert response.status_code == 400
+        assert response.data == {
+            'detail': 'Invalid or missing app parameter while appversion parameter '
+            'is set.'
         }
 
     def test_with_invalid_appversion(self):
