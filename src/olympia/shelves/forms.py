@@ -47,7 +47,7 @@ class ShelfForm(forms.ModelForm):
                         'Don`t use "search-themes" endpoint for non themes. '
                         'Use "search".'
                     )
-                url = drf_reverse('v4:addon-search') + criteria
+                url = drf_reverse('addon-search', request=self.request) + criteria
             elif endpoint == 'collections':
                 url = drf_reverse(
                     'collection-addon-list',
