@@ -47,6 +47,8 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('reviewers', '0012_autoapprovalsummary_score'),
+        # Need a recent enough migration to have score and version in ScannerResult
+        ('scanners', '0037_auto_20200717_1233'),
     ]
 
     operations = [

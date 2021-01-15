@@ -2259,22 +2259,16 @@ class TestAutoApprovedQueue(QueueTest):
         addon4 = addon_factory(name='Addôn 4')
         addon4.update(created=self.days_ago(14))
         AutoApprovalSummary.objects.create(
-            version=addon4.current_version, verdict=amo.AUTO_APPROVED, weight=500
-        )
-        ScannerResult.objects.create(
-            scanner=MAD, version=addon4.current_version, score=0.75
+            version=addon4.current_version, verdict=amo.AUTO_APPROVED, weight=500, score=75
         )
         AddonApprovalsCounter.objects.create(
             addon=addon4, counter=0, last_human_review=self.days_ago(1)
         )
 
         # Has been auto-approved, should be first because of its score.
-        addon5 = addon_factory(name='Addôn 4')
+        addon5 = addon_factory(name='Addôn 5')
         AutoApprovalSummary.objects.create(
-            version=addon5.current_version, verdict=amo.AUTO_APPROVED, weight=10
-        )
-        ScannerResult.objects.create(
-            scanner=MAD, version=addon5.current_version, score=0.9
+            version=addon5.current_version, verdict=amo.AUTO_APPROVED, weight=10, score=90
         )
         self.expected_addons = [addon5, addon4, addon2, addon3, addon1]
 
