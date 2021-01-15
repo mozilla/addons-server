@@ -1168,7 +1168,7 @@ class TestAutoApprovalSummary(TestCase):
         self.version.scannerresults.create(scanner=MAD, score=0.738)
         summary = AutoApprovalSummary.objects.create(version=self.version)
         assert summary.calculate_score() == 73
-        assert summary.score ==73
+        assert summary.score == 73
 
         self.version.scannerresults.update(score=0.858)
         assert summary.calculate_score() == 85
