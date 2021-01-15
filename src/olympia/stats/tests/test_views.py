@@ -8,6 +8,7 @@ from unittest import mock
 from django.http import Http404
 from django.test.client import RequestFactory
 from django.utils.encoding import force_text
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.access.models import Group, GroupUser
@@ -990,6 +991,16 @@ class TestStatsWithBigQuery(TestCase):
             end_date=self.end_date,
         )
 
+    @override_switch('disable-bigquery', active=True)
+    @mock.patch('olympia.stats.views.get_updates_series')
+    def test_usage_series_disabled(self, get_updates_series_mock):
+        url = reverse('stats.usage_series', args=self.series_args)
+
+        response = self.client.get(url)
+
+        get_updates_series_mock.assert_not_called()
+        assert response.status_code == 503
+
     def test_usage_breakdown_series(self):
         for (url_name, source) in [
             ('stats.apps_series', 'apps'),
@@ -1012,6 +1023,48 @@ class TestStatsWithBigQuery(TestCase):
                     end_date=self.end_date,
                     source=source,
                 )
+
+    @override_switch('disable-bigquery', active=True)
+    def test_usage_breakdown_series_disabled(self):
+        for (url_name, source) in [
+            ('stats.apps_series', 'apps'),
+            ('stats.countries_series', 'countries'),
+            ('stats.locales_series', 'locales'),
+            ('stats.os_series', 'os'),
+            ('stats.versions_series', 'versions'),
+        ]:
+            url = reverse(url_name, args=self.series_args)
+
+            with mock.patch(
+                'olympia.stats.views.get_updates_series'
+            ) as get_updates_series_mock:
+                response = self.client.get(url)
+
+                get_updates_series_mock.assert_not_called()
+                assert response.status_code == 503
+                assert 'json' in response.get('content-type')
+
+    @override_switch('disable-bigquery', active=True)
+    def test_usage_breakdown_series_csv_disabled(self):
+        self.series_args[4] = 'csv'
+
+        for (url_name, source) in [
+            ('stats.apps_series', 'apps'),
+            ('stats.countries_series', 'countries'),
+            ('stats.locales_series', 'locales'),
+            ('stats.os_series', 'os'),
+            ('stats.versions_series', 'versions'),
+        ]:
+            url = reverse(url_name, args=self.series_args)
+
+            with mock.patch(
+                'olympia.stats.views.get_updates_series'
+            ) as get_updates_series_mock:
+                response = self.client.get(url)
+
+                get_updates_series_mock.assert_not_called()
+                assert response.status_code == 503
+                assert 'csv' in response.get('content-type')
 
     def test_stats_by_country(self):
         url = reverse('stats.countries', args=[self.addon.slug])
@@ -1053,6 +1106,19 @@ class TestStatsWithBigQuery(TestCase):
             end_date=self.end_date,
         )
 
+    @override_switch('disable-bigquery', active=True)
+    @mock.patch('olympia.stats.views.get_updates_series')
+    @mock.patch('olympia.stats.views.get_download_series')
+    def test_overview_series_with_bigquery_download_stats_disabled(
+        self, get_download_series_mock, get_updates_series_mock
+    ):
+        url = reverse('stats.overview_series', args=self.series_args)
+
+        self.client.get(url)
+
+        get_download_series_mock.assert_not_called()
+        get_updates_series_mock.assert_not_called()
+
     def test_overview_shows_links_to_bigquery_download_stats(self):
         url = reverse('stats.overview', args=[self.addon.slug])
 
@@ -1082,6 +1148,14 @@ class TestStatsWithBigQuery(TestCase):
         response = self.client.get(url)
 
         assert b'How are downloads counted' not in response.content
+
+    @override_switch('disable-bigquery', active=True)
+    def test_download_stats_disabled(self):
+        url = reverse('stats.downloads', args=[self.addon.slug])
+
+        response = self.client.get(url)
+
+        assert b'statistics are temporarily unavailable' in response.content
 
     def test_download_stats_by_source(self):
         url = reverse('stats.sources', args=[self.addon.slug])

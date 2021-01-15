@@ -89,6 +89,14 @@
 {% endblock %}
 
 {% block content %}
+  {% if waffle.switch('disable-bigquery') %}
+    <div class="notification-box info">
+      {% trans %}
+        Sorry, the statistics are temporarily unavailable.
+      {% endtrans %}
+    </div>
+  {% endif %}
+
   <div id="lm" class="loadmessage"><span>{{ _('Loading the latest data&hellip;') }}</span></div>
   <div class="secondary">
     {% if addon %}
