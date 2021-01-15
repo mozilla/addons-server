@@ -103,13 +103,26 @@ hero shelf is returned, along with the enabled shelves.
     :>json array results: The array of shelves displayed on the AMO Homepage.
     :>json string results[].title: The title of the shelf.
     :>json string results[].url: The configured URL using the shelf's endpoint and criteria; links to the shelf's returned add-ons.
-    :>json string results[].endpoint: The endpoint selected for the shelf.
+    :>json string results[].endpoint: The :ref:`endpoint type <shelf-endpoint-type>` selected for the shelf.
     :>json string results[].criteria: The criteria for the addons in the shelf.
     :>json string|null results[].footer_text: The optional text in the footer of the shelf.
     :>json string|null results[].footer_pathname: The optional pathname of the URL for the footer's text.
     :>json array results[].addons: An array of :ref:`add-ons <addon-detail-object>` or :ref:`collections <collection-detail-object>`.
     :>json object primary: A :ref:`primary hero shelf <primary-hero-shelf>`.
     :>json object secondary: A :ref:`secondary hero shelf <secondary-hero-shelf>`.
+
+.. _shelf-endpoint-type:
+
+    Possible values for the ``endpoint`` field:
+
+    ==============  ====================================================================
+             Value  Description
+    ==============  ====================================================================
+            search  an :ref:`addon search<addon-search>`, excluding ``?type=statictheme``
+     search-themes  an :ref:`addon search<addon-search>`, with ``?type=statictheme``
+       collections  a mozilla :ref:`collection<collection-addon-list>`.
+                    The collection slug will be in ``criteria``
+    ==============  ====================================================================
 
 ---------------
 Sponsored Shelf
