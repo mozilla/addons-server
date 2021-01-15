@@ -107,7 +107,7 @@ hero shelf is returned, along with the enabled shelves.
     :>json string results[].criteria: The criteria for the addons in the shelf.
     :>json string|null results[].footer_text: The optional text in the footer of the shelf.
     :>json string|null results[].footer_pathname: The optional pathname of the URL for the footer's text.
-    :>json array results[].addons: An array of :ref:`add-ons <addon-detail-object>` or :ref:`collections <collection-detail-object>`.
+    :>json array results[].addons: An array of :ref:`add-ons <addon-detail-object>`.
     :>json object primary: A :ref:`primary hero shelf <primary-hero-shelf>`.
     :>json object secondary: A :ref:`secondary hero shelf <secondary-hero-shelf>`.
 
