@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2021-01-16 21:24+0000\n"
+"PO-Revision-Date: 2021-01-16 21:27+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -2538,9 +2538,8 @@ msgstr "Formáty PNG a JPG jsou podporovány, formát PNG je doporučen. Maximá
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "Minimální velikost je 1000x750 a je vyžadován poměr stran 4:3."
 
-#, fuzzy
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr "Když budete mít na stránce vašeho doplňku snímky obrazovky, výrazně se tím zvýší jeho šance na to, že bude instalován a že bude doporučován na domovské stránce."
+msgstr "Snímky obrazovky na stránce doplňku výrazně zvyšují jeho šance na to, že si ho uživatelé nainstalují."
 
 msgid "Continue"
 msgstr "Pokračovat"
@@ -2674,13 +2673,11 @@ msgstr "Odeslat novou verzi"
 msgid "Cancel and Disable Version"
 msgstr "Zrušit a zakázat verzi"
 
-#, fuzzy
 msgid "Are you sure you wish to cancel and disable version?"
-msgstr "Opravdu chcete smazat tuto verzi?"
+msgstr "Opravdu chcete zrušit a smazat tuto verzi?"
 
-#, fuzzy
 msgid "Yes, Cancel"
-msgstr "Zrušit"
+msgstr "Ano, zrušit"
 
 msgid "No, don't cancel"
 msgstr ""
@@ -2820,9 +2817,8 @@ msgstr "Tuto verzi můžete také upravit přidáním poznámek k vydání nebo 
 msgid "Edit version {0}"
 msgstr "Upravit verzi {0}"
 
-#, fuzzy
 msgid "Version Signature Pending"
-msgstr "Verze podepsána"
+msgstr "Verze čeká na podespání"
 
 #, fuzzy
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
@@ -3228,9 +3224,8 @@ msgid "Whether you’re new to extension development, polishing up or porting an
 msgstr ""
 
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Visit the Extension Workshop"
-msgstr "Workshop tvorby rozšíření"
+msgstr "Navštivte web Workshop tvorby rozšíření"
 
 msgid "Connect with us"
 msgstr ""
@@ -3238,9 +3233,8 @@ msgstr ""
 msgid "Twitter"
 msgstr ""
 
-#, fuzzy
 msgid "For developers"
-msgstr "Vývojář"
+msgstr "Pro vývojáře"
 
 msgid "For end users"
 msgstr ""
@@ -3279,9 +3273,8 @@ msgstr ""
 msgid "Resources"
 msgstr "Zdroje"
 
-#, fuzzy
 msgid "WebExtensions API"
-msgstr "WebExtension"
+msgstr "WebExtensions API"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: nástroj pro sestavení a testování rozšíření"
@@ -3371,9 +3364,8 @@ msgstr "Žádná fotografie"
 msgid "User Photo"
 msgstr "Fotografie uživatele"
 
-#, fuzzy
 msgid "Profile"
-msgstr "Můj účet"
+msgstr "Profil"
 
 #, fuzzy
 msgid "Submit or Manage Extensions"
