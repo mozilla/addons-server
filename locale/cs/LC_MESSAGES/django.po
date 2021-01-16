@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2021-01-16 21:13+0000\n"
+"PO-Revision-Date: 2021-01-16 21:24+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -127,13 +127,11 @@ msgstr "Poznámky mohou být přidány pouze k posledním verzím doplňků."
 msgid "Ratings"
 msgstr "Hodnocení"
 
-#, fuzzy
 msgid "Reviewer Tools (listed)"
-msgstr "Nástroje pro redaktory"
+msgstr "Nástroje pro redaktory (uvedené)"
 
-#, fuzzy
 msgid "Reviewer Tools (unlisted)"
-msgstr "Nástroje pro redaktory"
+msgstr "Nástroje pro redaktory (neuvedené)"
 
 msgid "Reviewer links"
 msgstr ""
@@ -310,11 +308,13 @@ msgstr ""
 msgid "Oops"
 msgstr "Jejda"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
-msgstr "<h1>Ale ne! Nastala chyba.</h1> <p>Brzy to opravíme.</p> <p> Můžete zkusit obnovit stránku či přejít zpět na <a href=\"%(home)s\">domovskou stránku doplňků</a>. </p>"
+msgstr ""
+"<h1>Ale ne! Nastala chyba.</h1> <p>Brzy to opravíme.</p> <p>Můžete zkusit obnovit stránku či přejít zpět na <a href=\"%(home)s\">domovskou stránku doplňků</a>. Můžete nám také pomoci s opravou <a "
+"href=\"https://github.com/mozilla/addons/issues/new\">nahlášením této chyby</a> včetně podrobností, jak jste se na tuto stránku dostali.</p>"
 
 msgid "Register or Log in"
 msgstr ""
@@ -949,29 +949,23 @@ msgstr ""
 msgid "User {user} throttled for scope \"{0}\""
 msgstr ""
 
-#, fuzzy
 msgid "{addon} {version} content reject scheduled."
-msgstr "Obsah doplňku {addon} {version} zamítnut."
+msgstr "Zamítnutí obsahu doplňku {addon} {version} bylo naplánováno."
 
-#, fuzzy
 msgid "Content reject scheduled"
-msgstr "Obsah zamítnut"
+msgstr "Zamítnutí obsahu naplánováno"
 
-#, fuzzy
 msgid "{addon} {version} reject scheduled."
-msgstr "{addon} {version} zamítnut."
+msgstr "Zamítnutí {addon} {version} naplánováno."
 
-#, fuzzy
 msgid "Rejection scheduled"
-msgstr "Lhůta pro doplnění informací"
+msgstr "Zamítnutí naplánováno"
 
-#, fuzzy
 msgid "{addon} {version} re-signed (previously {0})."
-msgstr "{addon} {version} - vyžádána kontrola."
+msgstr "Doplněk {addon} {version} znovu podepsán (původně {0})."
 
-#, fuzzy
 msgid "Version re-signed"
-msgstr "Verze %s znovu povolena."
+msgstr "Verze znovu podepsána"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1022,9 +1016,8 @@ msgstr "Vlastník"
 msgid "Developer"
 msgstr "Vývojář"
 
-#, fuzzy
 msgid "(Deleted)"
-msgstr "Smazáno"
+msgstr "(Smazáno)"
 
 msgid "Extension"
 msgstr "Rozšíření"
@@ -1406,13 +1399,11 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Not Promoted"
-msgstr "Propagovat"
+msgstr "Nepropagováno"
 
-#, fuzzy
 msgid "Recommended"
-msgstr "Doporučeno ({0})"
+msgstr "Doporučené"
 
 msgid "Sponsored"
 msgstr "Sponzorováno"
@@ -1603,9 +1594,8 @@ msgstr "Obrázek nízké kvality, špatných rozměrů či prázdný obrázek"
 msgid "Header image alignment problem"
 msgstr "Problém se zarovnáním obrázku záhlaví"
 
-#, fuzzy
 msgid "No action"
-msgstr "Více akcí"
+msgstr "Žádná akce"
 
 msgid "Flag for human review"
 msgstr "Označit pro kontrolu člověkem"
@@ -2244,9 +2234,8 @@ msgstr "Kliknutím na tlačítko Přijmout potvrdíte, že chcete být přidán 
 msgid "Decline"
 msgstr "Odmítnout"
 
-#, fuzzy
 msgid "Set Up Payment"
-msgstr "Vyžaduje platbu"
+msgstr "Nastavení platby"
 
 msgid "You're done!"
 msgstr ""
@@ -2264,9 +2253,8 @@ msgstr ""
 msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
 msgstr ""
 
-#, fuzzy
 msgid "Manage add-on"
-msgstr "Jazykový balíček (doplněk)"
+msgstr "Správa doplňku"
 
 #, python-format
 msgid ""
@@ -5837,9 +5825,8 @@ msgstr "dle zdroje"
 msgid "by Medium"
 msgstr ""
 
-#, fuzzy
 msgid "by Content"
-msgstr "Obsah"
+msgstr "podle obsahu"
 
 msgid "by Campaign"
 msgstr ""
@@ -5936,27 +5923,23 @@ msgstr "Načítají se poslední data&hellip;"
 msgid "No data available."
 msgstr "Nejsou dostupná žádná data."
 
-#, fuzzy
 msgid "This dashboard is <b>private</b>."
-msgstr "Tato nástěnka je aktuálně <b>soukromá</b>."
+msgstr "Tato nástěnka je <b>soukromá</b>."
 
 msgid "Application usage by Date"
 msgstr "Podíl aplikace dle data"
 
-#, fuzzy
 msgid "Download campaigns by Date"
-msgstr "Zdroje stažení dle data"
+msgstr "Kampaně stažení dle data"
 
 msgid "About tracking external sources..."
 msgstr "O sledování externích zdrojů..."
 
-#, fuzzy
 msgid "Download contents by Date"
-msgstr "Zdroje stažení dle data"
+msgstr "Obsah stažení dle data"
 
-#, fuzzy
 msgid "User countries by Date"
-msgstr "Jazyky dle data"
+msgstr "Země uživatelů dle data"
 
 msgid "Downloaded by Date"
 msgstr "Stažení dle data"
@@ -5964,16 +5947,14 @@ msgstr "Stažení dle data"
 msgid "User languages by Date"
 msgstr "Jazyky dle data"
 
-#, fuzzy
 msgid "Download mediums by Date"
-msgstr "Stažení dle data"
+msgstr "Způsoby stažení dle data"
 
 msgid "Platform usage by Date"
 msgstr "Používanost platforem dle data"
 
-#, fuzzy
 msgid "<b>{0}</b> Weekly Downloads"
-msgstr "<b>{0}</b> stažení"
+msgstr "<b>{0}</b> stažení týdně"
 
 msgid "Loading..."
 msgstr "Probíhá načítání..."
