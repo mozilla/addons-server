@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-11-22 13:48+0000\n"
+"PO-Revision-Date: 2020-11-22 10:59+0000\n"
 "Last-Translator: atomicmind <atomicmind@yahoo.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -3693,12 +3693,12 @@ msgstr "Poenostavljeno upravljanje gesel. Sinhronizirajte vse svoje spletne prij
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "Učinkovito in lahko blokiranje oglasov. uBlock Origin uporablja tisoče filtrov vsebin brez prekomerne porabe pomnilnika."
+msgstr "Učinkovito in lahko blokiranje oglasov. uBlock Origin uporablja tisoče filtrov vsebin ob majhni porabi pomnilnika."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "Razširite YouTube z naborom novih funkcij, kot so način kina, zavračanje oglasov, nadzor samodejnega predvajanja in več."
+msgstr "Razširite YouTube z naborom novih funkcij, kot so način kina, zavračanje oglasov, nadzor nad  samodejnim predvajanjem in več."
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
@@ -4219,7 +4219,7 @@ msgstr "Varno shranite gesla in se samodejno prijavite v poznana spletna mesta."
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
-msgstr "Preprosto orodje za zavračanje oglasov, ki prikazuje samo vsebino, ki jo želite."
+msgstr "Preprosto orodje za zavračanje oglasov, ki prikazuje samo želeno vsebino."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make informed shopping decisions."
