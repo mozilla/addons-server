@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2021-01-17 14:13+0000\n"
+"PO-Revision-Date: 2021-01-17 14:18+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -3256,9 +3256,8 @@ msgstr "Nyt for udviklere"
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
 
-#, fuzzy
 msgid "Email Address"
-msgstr "IP-adresse"
+msgstr "Mailadresse"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
@@ -3368,9 +3367,8 @@ msgstr "Intet foto"
 msgid "User Photo"
 msgstr "Brugerfoto"
 
-#, fuzzy
 msgid "Profile"
-msgstr "Min profil"
+msgstr "Profil"
 
 #, fuzzy
 msgid "Submit or Manage Extensions"
@@ -3379,9 +3377,8 @@ msgstr "Indsend en ny version"
 msgid "Customize Firefox"
 msgstr "Tilpas Firefox"
 
-#, fuzzy
 msgid "Learn how to make an extension"
-msgstr "Læs hvordan man laver en tilføjelse"
+msgstr "Læs hvordan man laver en udvidelse"
 
 msgid "Ready to submit or manage your extension?"
 msgstr ""
@@ -4911,9 +4908,8 @@ msgid_plural "{0} days"
 msgstr[0] "{0} dag"
 msgstr[1] "{0} dage"
 
-#, fuzzy
 msgid "ID"
-msgstr "CIDR"
+msgstr "ID"
 
 msgid "Last Review"
 msgstr ""
@@ -5108,13 +5104,11 @@ msgstr ""
 msgid "Review lock limit reached"
 msgstr ""
 
-#, fuzzy
 msgid "{addon} – EULA"
-msgstr "{addon} :: EULA"
+msgstr "{addon} – EULA"
 
-#, fuzzy
 msgid "{addon} – Privacy Policy"
-msgstr "{addon} :: Privatlivspolitik"
+msgstr "{addon} – Privatlivspolitik"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
 msgstr ""
