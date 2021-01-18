@@ -10,8 +10,8 @@ from olympia.addons.models import Addon, update_search_index
 from olympia.amo.utils import slugify
 from olympia.constants.applications import APPS
 from olympia.constants.base import ADDON_EXTENSION, ADDON_STATICTHEME, STATUS_APPROVED
+from olympia.constants.categories import CATEGORIES
 
-from .categories import generate_categories
 from .collection import generate_collection
 from .images import generate_addon_preview
 from .names import generate_names
@@ -26,7 +26,7 @@ def _yield_name_and_cat(num, app=None, type=None):
     Yield `num` tuples of (addon_name, category) for the given `app`
     and `type`.
     """
-    categories = generate_categories(app=app, type=type)
+    categories = list(CATEGORIES[app.id][type].values())
     if num > len(generate_names()):
         base_names = islice(cycle(generate_names()), num)
         addons = [

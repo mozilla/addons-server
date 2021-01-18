@@ -30,7 +30,6 @@ from olympia.addons.models import (
     AddonCategory,
     AddonUser,
     AddonUserPendingConfirmation,
-    Category,
     DeniedSlug,
     Preview,
 )
@@ -39,11 +38,11 @@ from olympia.amo.fields import HttpHttpsOnlyURLField, ReCaptchaField
 from olympia.amo.forms import AMOModelForm
 from olympia.amo.messages import DoubleSafe
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import remove_icons, slug_validator, slugify, sorted_groupby
+from olympia.amo.utils import remove_icons, slug_validator, slugify
 from olympia.amo.validators import OneOrMoreLetterOrNumberCharacterValidator
 from olympia.applications.models import AppVersion
 from olympia.blocklist.models import Block
-from olympia.constants.categories import CATEGORIES, CATEGORIES_NO_APP
+from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID, CATEGORIES_NO_APP
 from olympia.devhub.utils import (
     fetch_existing_translations_from_addon,
     UploadRestrictionChecker,
@@ -212,13 +211,11 @@ class CategoryForm(forms.Form):
     application = forms.TypedChoiceField(
         choices=amo.APPS_CHOICES, coerce=int, widget=forms.HiddenInput, required=True
     )
-    categories = forms.ModelMultipleChoiceField(
-        queryset=Category.objects.all(), widget=CategoriesSelectMultiple
-    )
+    categories = forms.MultipleChoiceField(choices=(), widget=CategoriesSelectMultiple)
 
     def save(self, addon):
         application = self.cleaned_data.get('application')
-        categories_new = [c.id for c in self.cleaned_data['categories']]
+        categories_new = [int(c) for c in self.cleaned_data['categories']]
         categories_old = [
             c.id for c in addon.app_categories.get(amo.APP_IDS[application].short, [])
         ]
@@ -239,7 +236,7 @@ class CategoryForm(forms.Form):
 
     def clean_categories(self):
         categories = self.cleaned_data['categories']
-        total = categories.count()
+        total = len(categories)
         max_cat = amo.MAX_CATEGORIES
 
         if total > max_cat:
@@ -252,7 +249,7 @@ class CategoryForm(forms.Form):
                 ).format(max_cat)
             )
 
-        has_misc = list(filter(lambda x: x.misc, categories))
+        has_misc = list(filter(lambda x: CATEGORIES_BY_ID.get(int(x)).misc, categories))
         if has_misc and total > 1:
             raise forms.ValidationError(
                 ugettext(
@@ -273,12 +270,11 @@ class BaseCategoryFormSet(BaseFormSet):
         apps = sorted(self.addon.compatible_apps.keys(), key=lambda x: x.id)
 
         # Drop any apps that don't have appropriate categories.
-        qs = Category.objects.filter(type=self.addon.type)
-        app_cats = {k: list(v) for k, v in sorted_groupby(qs, 'application')}
         for app in list(apps):
-            if app and not app_cats.get(app.id):
+            if app and not CATEGORIES.get(app.id, {}).get(self.addon.type):
                 apps.remove(app)
-        if not app_cats:
+
+        if not CATEGORIES_NO_APP.get(self.addon.type):
             apps = []
 
         for app in apps:
@@ -290,7 +286,10 @@ class BaseCategoryFormSet(BaseFormSet):
             form.request = self.request
             form.initial['application'] = key
             form.app = app
-            cats = sorted(app_cats[key], key=lambda x: x.name)
+            cats = sorted(
+                CATEGORIES.get(key, {}).get(self.addon.type, {}).values(),
+                key=lambda x: x.name,
+            )
             form.fields['categories'].choices = [(c.id, c.name) for c in cats]
 
     def save(self):

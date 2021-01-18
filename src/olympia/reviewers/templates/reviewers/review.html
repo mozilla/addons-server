@@ -406,7 +406,7 @@
 
   <strong>{{ _('Categories') }}</strong>
   <ul>
-    {% for category in addon.categories.all() %}
+    {% for category in addon.all_categories %}
     <li>{{ category.name }}</li>
     {% endfor %}
   </ul>

@@ -20,7 +20,6 @@ from olympia.addons.models import (
     AddonReviewerFlags,
     AddonUser,
     AppSupport,
-    Category,
     DeniedGuid,
     DeniedSlug,
     FrozenAddon,
@@ -1170,23 +1169,21 @@ class TestAddonModels(TestCase):
         assert addon.app_categories == {'firefox': expected_firefox_cats}
 
         # Let's add a ANDROID category.
-        android_static_cat = CATEGORIES[amo.ANDROID.id][amo.ADDON_EXTENSION][
+        android_category = CATEGORIES[amo.ANDROID.id][amo.ADDON_EXTENSION][
             'sports-games'
         ]
-        and_category = Category.from_static_category(android_static_cat)
-        and_category.save()
-        AddonCategory.objects.create(addon=addon, category=and_category)
+        AddonCategory.objects.create(addon=addon, category_id=android_category.id)
 
         # Reload the addon to get a fresh, uncached categories list.
         addon = get_addon()
 
         # Test that the ANDROID category was added correctly.
         assert sorted(addon.all_categories) == sorted(
-            expected_firefox_cats + [android_static_cat]
+            expected_firefox_cats + [android_category]
         )
         assert sorted(addon.app_categories.keys()) == ['android', 'firefox']
         assert addon.app_categories['firefox'] == expected_firefox_cats
-        assert addon.app_categories['android'] == [android_static_cat]
+        assert addon.app_categories['android'] == [android_category]
 
     def test_app_categories_ignore_unknown_cats(self):
         def get_addon():
@@ -1207,16 +1204,11 @@ class TestAddonModels(TestCase):
 
         # Associate this add-on with a couple more categories, including
         # one that does not exist in the constants.
-        unknown_cat = Category.objects.create(
-            application=amo.SUNBIRD.id, id=123456, type=amo.ADDON_EXTENSION
-        )
-        AddonCategory.objects.create(addon=addon, category=unknown_cat)
+        AddonCategory.objects.create(addon=addon, category_id=12345)
         android_static_cat = CATEGORIES[amo.ANDROID.id][amo.ADDON_EXTENSION][
             'sports-games'
         ]
-        an_category = Category.from_static_category(android_static_cat)
-        an_category.save()
-        AddonCategory.objects.create(addon=addon, category=an_category)
+        AddonCategory.objects.create(addon=addon, category=android_static_cat)
 
         # Reload the addon to get a fresh, uncached categories list.
         addon = get_addon()
@@ -1424,7 +1416,7 @@ class TestAddonModels(TestCase):
 
     def test_category_transform(self):
         addon = Addon.objects.get(id=3615)
-        cats = addon.categories.filter(application=amo.FIREFOX.id)
+        cats = CATEGORIES[amo.FIREFOX.id][addon.type].values()
         names = [c.name for c in cats]
 
         appname = getattr(amo.APP_IDS.get(amo.FIREFOX.id), 'short', '')
@@ -2180,9 +2172,7 @@ class TestAddonDelete(TestCase):
     def test_cascades(self):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
 
-        AddonCategory.objects.create(
-            addon=addon, category=Category.objects.create(type=amo.ADDON_EXTENSION)
-        )
+        AddonCategory.objects.create(addon=addon, category_id=1)
         AddonUser.objects.create(addon=addon, user=UserProfile.objects.create())
         AppSupport.objects.create(addon=addon, app=1)
         FrozenAddon.objects.create(addon=addon)
@@ -2347,36 +2337,6 @@ class TestBackupVersion(TestCase):
         assert not self.addon.current_version
         version.save()
         assert Addon.objects.get(pk=1865).current_version
-
-
-class TestCategoryModel(TestCase):
-    def test_category_url(self):
-        """Every type must have a url path for its categories."""
-        for t in amo.ADDON_TYPE.keys():
-            if t == amo.ADDON_DICT:
-                continue  # Language packs don't have categories.
-            cat = Category(type=t, slug='omg')
-            assert cat.get_url_path()
-
-    @pytest.mark.needs_locales_compilation
-    def test_name_from_constants(self):
-        category = Category(
-            type=amo.ADDON_EXTENSION, application=amo.FIREFOX.id, slug='alerts-updates'
-        )
-        assert category.name == 'Alerts & Updates'
-        with translation.override('fr'):
-            assert category.name == 'Alertes et mises à jour'
-
-    def test_name_fallback_to_empty(self):
-        category = Category.objects.create(
-            type=amo.ADDON_EXTENSION,
-            application=amo.FIREFOX.id,
-            slug='this-cat-does-not-exist',
-        )
-
-        assert category.name == ''
-        with translation.override('fr'):
-            assert category.name == ''
 
 
 class TestPreviewModel(BasePreviewMixin, TestCase):

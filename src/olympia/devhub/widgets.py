@@ -6,7 +6,7 @@ from django.utils.html import conditional_escape, format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext
 
-from olympia.addons.models import Category
+from olympia.constants.categories import CATEGORIES_BY_ID
 
 
 class IconTypeSelect(forms.RadioSelect):
@@ -79,9 +79,8 @@ class CategoriesSelectMultiple(forms.CheckboxSelectMultiple):
         choices = []
         other = None
 
-        miscs = Category.objects.filter(misc=True).values_list('id', flat=True)
         for c in self.choices:
-            if c[0] in miscs:
+            if CATEGORIES_BY_ID[c[0]].misc:
                 msg = ugettext("My add-on doesn't fit into any of the categories")
                 other = (c[0], msg)
             else:

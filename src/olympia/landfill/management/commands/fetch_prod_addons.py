@@ -8,7 +8,7 @@ from django.db.transaction import atomic
 from olympia import amo
 from olympia.amo.tests import addon_factory, user_factory
 from olympia.constants.categories import CATEGORIES
-from olympia.addons.models import Addon, Category
+from olympia.addons.models import Addon
 from olympia.users.models import UserProfile
 
 
@@ -124,9 +124,7 @@ class Command(BaseCommand):
             category = None
             print('Category %s' % category, 'not found')
         else:
-            category = Category.from_static_category(
-                CATEGORIES[amo.FIREFOX.id][addon_type][category], True
-            )
+            category = CATEGORIES[amo.FIREFOX.id][addon_type][category]
 
         print('Creating add-on %s' % addon_data['slug'])
 

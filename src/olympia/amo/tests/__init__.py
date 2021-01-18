@@ -46,7 +46,6 @@ from olympia.addons.models import (
     Addon,
     AddonCategory,
     AddonGUID,
-    Category,
     update_search_index as addon_update_search_index,
 )
 from olympia.amo.urlresolvers import get_url_prefix, Prefixer, set_url_prefix
@@ -754,10 +753,7 @@ def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **k
 
     application = version_kw.get('application', amo.FIREFOX.id)
     if not category and addon.type in CATEGORIES[application]:
-        static_category = random.choice(
-            list(CATEGORIES[application][addon.type].values())
-        )
-        category = Category.from_static_category(static_category, True)
+        category = random.choice(list(CATEGORIES[application][addon.type].values()))
     if category:
         AddonCategory.objects.create(addon=addon, category=category)
 

@@ -15,7 +15,7 @@ from freezegun import freeze_time
 from waffle.testutils import override_switch
 
 from olympia import amo, core
-from olympia.addons.models import Addon, Category
+from olympia.addons.models import Addon
 from olympia.amo.tests import (
     addon_factory,
     get_random_ip,
@@ -420,7 +420,7 @@ class TestDistributionChoiceForm(TestCase):
 
 
 class TestDescribeForm(TestCase):
-    fixtures = ('base/addon_3615', 'base/addon_3615_categories', 'addons/denied')
+    fixtures = ('base/addon_3615', 'addons/denied')
 
     def setUp(self):
         super(TestDescribeForm, self).setUp()
@@ -988,7 +988,6 @@ class TestIconForm(TestCase):
 
 class TestCategoryForm(TestCase):
     def test_no_possible_categories(self):
-        Category.objects.create(type=amo.ADDON_DICT, application=amo.FIREFOX.id)
         addon = addon_factory(type=amo.ADDON_DICT)
         request = req_factory_factory('/')
         form = forms.CategoryFormSet(addon=addon, request=request)
