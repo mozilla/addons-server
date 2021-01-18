@@ -26,10 +26,10 @@ class TestMiddleware(TestCase):
         response = test.Client().get('/pages/appversions/')
         assert response['Vary'] == 'Accept-Language, User-Agent'
 
-        # No Vary after that (we should Vary on Cookie but avoid it for perf
-        # reasons).
+        # Only Vary on Accept-Encoding after that (because of gzip middleware).
+        # Crucially, we avoid Varying on Cookie.
         response = test.Client().get('/pages/appversions/', follow=True)
-        assert 'Vary' not in response
+        assert response['Vary'] == 'Accept-Encoding'
 
     @patch('django.contrib.auth.middleware.AuthenticationMiddleware.process_request')
     def test_authentication_used_outside_the_api(self, process_request):
