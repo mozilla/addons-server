@@ -64,9 +64,10 @@ class ShelfSerializer(serializers.ModelSerializer):
                 'user_pk': str(settings.TASK_USER_ID),
                 'collection_slug': obj.criteria,
             }
-            return CollectionAddonViewSet(
+            collection_addons = CollectionAddonViewSet(
                 request=request, action='list', kwargs=kwargs
             ).data
+            return [item['addon'] for item in collection_addons if 'addon' in item]
         else:
             return None
 
