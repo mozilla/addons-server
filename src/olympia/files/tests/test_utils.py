@@ -524,6 +524,14 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
 
         assert parsed_data['devtools_page'] == 'devtools/my-page.html'
 
+    def test_version_not_string(self):
+        """Test parsing doesn't fail if version is not a string - that error
+        should be handled downstream by the linter."""
+        data = {
+            'version': 42
+        }
+        assert self.parse(data)['version'] == '42'
+
 
 class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
     def test_parse_langpack(self):
