@@ -545,7 +545,7 @@ class ManifestJSONExtractor(object):
         data = {
             'guid': self.guid,
             'type': self.type,
-            'version': self.get('version', ''),
+            'version': str(self.get('version', '')),
             'is_webextension': True,
             'name': self.get('name'),
             'summary': self.get('description'),
