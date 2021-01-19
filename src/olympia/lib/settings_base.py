@@ -1286,10 +1286,7 @@ CSP_CONNECT_SRC = (
     ANALYTICS_HOST,
     PROD_CDN_HOST,
 )
-CSP_FORM_ACTION = (
-    "'self'",
-    'https://developer.mozilla.org',
-)
+CSP_FORM_ACTION = ("'self'",)
 CSP_FONT_SRC = (
     "'self'",
     PROD_CDN_HOST,
