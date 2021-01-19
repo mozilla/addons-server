@@ -29,6 +29,7 @@ from olympia.reviewers.models import (
     get_flags,
     get_flags_for_row,
 )
+from olympia.reviewers.templatetags.jinja_helpers import format_score
 from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
 from olympia.versions.models import VersionReviewerFlags
@@ -188,9 +189,13 @@ class ModernAddonQueueTable(ReviewerQueueTable):
         verbose_name=_('Weight'),
         accessor='_current_version.autoapprovalsummary.weight',
     )
+    score = tables.Column(
+        verbose_name=_('Score'),
+        accessor='_current_version.autoapprovalsummary.score',
+    )
 
     class Meta(ReviewerQueueTable.Meta):
-        fields = ('addon_name', 'flags', 'last_human_review', 'weight')
+        fields = ('addon_name', 'flags', 'last_human_review', 'weight', 'score')
         # Exclude base fields ReviewerQueueTable has that we don't want.
         exclude = (
             'addon_type_id',
@@ -228,6 +233,9 @@ class ModernAddonQueueTable(ReviewerQueueTable):
             classname = 'low'
 
         return '<span class="risk-%s">%d</span>' % (classname, value)
+
+    def render_score(self, value):
+        return format_score(value)
 
     render_last_content_review = render_last_human_review
 

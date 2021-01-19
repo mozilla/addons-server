@@ -214,3 +214,8 @@ def code_manager_url(page, addon_id, version_id, base_version_id=None):
 @jinja2.contextfunction
 def check_review_delete(context, rating):
     return user_can_delete_rating(context['request'], rating)
+
+
+@library.filter
+def format_score(value):
+    return '{:0.0f}%'.format(value) if value and value >= 0 else 'n/a'
