@@ -98,7 +98,7 @@ FXA_CONFIG = {'default': {}, 'internal': {}}\n"\
 RUN DJANGO_SETTINGS_MODULE='settings_local' locale/compile-mo.sh locale
 
 # compile asssets
-RUN npm install \
+RUN npm install --production \
     && make -f Makefile-docker copy_node_js \
     && DJANGO_SETTINGS_MODULE='settings_local' python manage.py compress_assets \
     && DJANGO_SETTINGS_MODULE='settings_local' python manage.py generate_jsi18n_files \
