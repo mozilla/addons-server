@@ -403,9 +403,9 @@ MIDDLEWARE = (
     # Test if it's an API request first so later middlewares don't need to.
     # Also add relevant Vary header to API responses.
     'olympia.api.middleware.APIRequestMiddleware',
-    # Gzip (for API only) middleware needs to be executed after every
-    # modification to the response, so it's placed at the top of the list.
-    'olympia.api.middleware.GZipMiddlewareForAPIOnly',
+    # Gzip middleware needs to be executed after every modification to the
+    # response, so it's placed at the top of the list.
+    'django.middleware.gzip.GZipMiddleware',
     # Statsd and logging come first to get timings etc. Munging REMOTE_ADDR
     # must come before middlewares potentially using REMOTE_ADDR, so it's
     # also up there.
@@ -425,8 +425,8 @@ MIDDLEWARE = (
     'corsheaders.middleware.CorsMiddleware',
     # Enable conditional processing, e.g ETags.
     'django.middleware.http.ConditionalGetMiddleware',
-    'olympia.amo.middleware.CommonMiddleware',
     'olympia.amo.middleware.NoVarySessionMiddleware',
+    'olympia.amo.middleware.CommonMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'olympia.amo.middleware.AuthenticationMiddlewareWithoutAPI',
     # Our middleware that adds additional information for the user
@@ -1125,7 +1125,6 @@ CELERY_TASK_ROUTES = {
     'olympia.addons.tasks.update_addon_average_daily_users': {'queue': 'cron'},
     'olympia.addons.tasks.update_addon_hotness': {'queue': 'cron'},
     'olympia.addons.tasks.update_addon_weekly_downloads': {'queue': 'cron'},
-    'olympia.addons.tasks.update_appsupport': {'queue': 'cron'},
     # Bandwagon
     'olympia.bandwagon.tasks.collection_meta': {'queue': 'bandwagon'},
     # Reviewers
@@ -1286,10 +1285,7 @@ CSP_CONNECT_SRC = (
     ANALYTICS_HOST,
     PROD_CDN_HOST,
 )
-CSP_FORM_ACTION = (
-    "'self'",
-    'https://developer.mozilla.org',
-)
+CSP_FORM_ACTION = ("'self'",)
 CSP_FONT_SRC = (
     "'self'",
     PROD_CDN_HOST,
@@ -1715,7 +1711,6 @@ CRON_JOBS = {
     'update_addon_average_daily_users': 'olympia.addons.cron',
     'update_addon_weekly_downloads': 'olympia.addons.cron',
     'addon_last_updated': 'olympia.addons.cron',
-    'update_addon_appsupport': 'olympia.addons.cron',
     'hide_disabled_files': 'olympia.addons.cron',
     'unhide_disabled_files': 'olympia.addons.cron',
     'update_addon_hotness': 'olympia.addons.cron',

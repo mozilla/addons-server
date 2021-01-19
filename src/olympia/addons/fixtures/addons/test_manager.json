@@ -1,5 +1,4 @@
-[
-    {
+[{
         "pk": 1,
         "model": "addons.addon",
         "fields": {
@@ -164,16 +163,6 @@
             "version": 2,
             "datestatuschanged": null,
             "size": 173056
-        }
-    },
-    {
-        "pk": 1186,
-        "model": "addons.appsupport",
-        "fields": {
-            "app": 1,
-            "addon": 1,
-            "modified": "2010-10-02 07:30:34",
-            "created": "2010-10-02 07:30:34"
         }
     }
 ]

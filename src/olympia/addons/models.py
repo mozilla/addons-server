@@ -2157,26 +2157,6 @@ models.signals.post_delete.connect(
 )
 
 
-class AppSupport(ModelBase):
-    """Cache to tell us if an add-on's current version supports an app."""
-
-    id = PositiveAutoField(primary_key=True)
-    addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
-    app = models.PositiveIntegerField(choices=amo.APPS_CHOICES, db_column='app_id')
-    min = models.BigIntegerField('Minimum app version', null=True)
-    max = models.BigIntegerField('Maximum app version', null=True)
-
-    class Meta:
-        db_table = 'appsupport'
-        indexes = [
-            models.Index(fields=('addon', 'app', 'min', 'max'), name='minmax_idx'),
-            models.Index(fields=('app',), name='app_id_refs_id_481ce338'),
-        ]
-        constraints = [
-            models.UniqueConstraint(fields=('addon', 'app'), name='addon_id'),
-        ]
-
-
 class DeniedSlug(ModelBase):
     name = models.CharField(max_length=255, unique=True, default='')
 

@@ -14,7 +14,6 @@ from olympia import amo
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import (
     Addon,
-    AppSupport,
     DeniedGuid,
     Preview,
     attach_tags,
@@ -46,32 +45,6 @@ def version_changed(addon_id, **kw):
         return
     log.info('[1@None] Updating last updated for %s.' % addon.pk)
     addon.update(last_updated=compute_last_updated(addon))
-    update_appsupport([addon.pk])
-
-
-@task
-@use_primary_db
-def update_appsupport(ids, **kw):
-    log.info('[%s@None] Updating appsupport for %s.' % (len(ids), ids))
-
-    addons = Addon.objects.filter(id__in=ids).no_transforms()
-    support = []
-    for addon in addons:
-        for app, appver in addon.compatible_apps.items():
-            if appver is None:
-                # Fake support for all version ranges.
-                min_, max_ = 0, 999999999999999999
-            else:
-                min_, max_ = appver.min.version_int, appver.max.version_int
-
-            support.append(AppSupport(addon=addon, app=app.id, min=min_, max=max_))
-
-    if not support:
-        return
-
-    with transaction.atomic():
-        AppSupport.objects.filter(addon__id__in=ids).delete()
-        AppSupport.objects.bulk_create(support)
 
 
 @task

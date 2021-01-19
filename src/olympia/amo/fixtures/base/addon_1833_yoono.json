@@ -1,5 +1,4 @@
-[
-    {
+[{
         "pk": 426250,
         "model": "translations.translation",
         "fields": {
@@ -148,16 +147,6 @@
             "version": 101235,
             "min": 233,
             "max": 303
-        }
-    },
-    {
-        "pk": 3,
-        "model": "addons.appsupport",
-        "fields": {
-            "app": 1,
-            "addon": 1833,
-            "modified": "2010-10-04 13:01:45",
-            "created": "2010-10-04 13:01:45"
         }
     }
 ]

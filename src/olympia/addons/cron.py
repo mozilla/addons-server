@@ -1,7 +1,6 @@
 from datetime import date
 
-from django.db.models import F, Q, Value, IntegerField
-from celery import group
+from django.db.models import Q, Value, IntegerField
 
 import olympia.core.logger
 
@@ -11,7 +10,6 @@ from olympia.addons.tasks import (
     update_addon_average_daily_users as _update_addon_average_daily_users,
     update_addon_hotness as _update_addon_hotness,
     update_addon_weekly_downloads as _update_addon_weekly_downloads,
-    update_appsupport,
 )
 from olympia.amo.celery import create_chunked_tasks_signatures
 from olympia.amo.decorators import use_primary_db
@@ -90,27 +88,6 @@ def addon_last_updated():
     # Get anything that didn't match above.
     other = Addon.objects.filter(last_updated__isnull=True).values_list('id', 'created')
     _change_last_updated(dict(other))
-
-
-def update_addon_appsupport():
-    # Find all the add-ons that need their app support details updated.
-    newish = Q(last_updated__gte=F('appsupport__created')) | Q(
-        appsupport__created__isnull=True
-    )
-    has_app_and_file = Q(
-        versions__apps__isnull=False,
-        versions__files__status__in=amo.VALID_FILE_STATUSES,
-    )
-    ids = (
-        Addon.objects.valid()
-        .distinct()
-        .filter(newish, has_app_and_file)
-        .values_list('id', flat=True)
-    )
-
-    task_log.info('Updating appsupport for %d new-ish addons.' % len(ids))
-    ts = [update_appsupport.subtask(args=[chunk]) for chunk in chunked(ids, 20)]
-    group(ts).apply_async()
 
 
 def hide_disabled_files():

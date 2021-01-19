@@ -74,11 +74,6 @@ class TestCSPHeaders(TestCase):
         for val in base_settings.CSP_IMG_SRC:
             assert not val.startswith('http:')
 
-    def test_http_protocol_not_in_form_action(self):
-        """Make sure a form-action does not have hosts using http:."""
-        for val in base_settings.CSP_FORM_ACTION:
-            assert not val.startswith('http:')
-
     def test_child_src_matches_frame_src(self):
         """Check frame-src directive has same settings as child-src"""
         assert base_settings.CSP_FRAME_SRC == base_settings.CSP_CHILD_SRC
@@ -97,9 +92,9 @@ class TestCSPHeaders(TestCase):
         assert "'self'" in base_settings.CSP_CONNECT_SRC
         assert "'self'" in base_settings.CSP_CHILD_SRC
         assert "'self'" in base_settings.CSP_FRAME_SRC
-        assert "'self'" in base_settings.CSP_FORM_ACTION
         assert "'self'" in base_settings.CSP_IMG_SRC
         assert "'self'" in base_settings.CSP_STYLE_SRC
+        assert "'self'" in base_settings.CSP_FORM_ACTION
 
     def test_not_self_in_script_src(self):
         """script-src should not need 'self' or a.m.o for services.a.m.o"""

@@ -156,7 +156,7 @@ class TestShelfViewSet(ESTestCase):
             'See more enhanced privacy extensions'
         )
         assert result['results'][0]['footer_pathname'] == ''
-        assert result['results'][0]['addons'][0]['addon']['name']['en-US'] == (
+        assert result['results'][0]['addons'][0]['name']['en-US'] == (
             'test addon privacy01'
         )
 
