@@ -94,6 +94,7 @@ class TestCSPHeaders(TestCase):
         assert "'self'" in base_settings.CSP_FRAME_SRC
         assert "'self'" in base_settings.CSP_IMG_SRC
         assert "'self'" in base_settings.CSP_STYLE_SRC
+        assert "'self'" in base_settings.CSP_FORM_ACTION
 
     def test_not_self_in_script_src(self):
         """script-src should not need 'self' or a.m.o for services.a.m.o"""
