@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-12-09 11:00+0000\n"
+"PO-Revision-Date: 2021-01-19 08:33+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4194,7 +4194,7 @@ msgstr "In soad iepen ljepblêden? Skip it skowen en sykje fia fluchtoetsen."
 
 #. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
-msgstr "Stop trochferwizingen, sadat jo de winske side flugger berikje kinne."
+msgstr "Stop trochferwizingen, sadat jo de winske side flugger berikke kinne."
 
 #. editorial content for the discovery pane.
 msgid "Adds show/hide ability to all password fields."
