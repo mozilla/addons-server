@@ -13,7 +13,7 @@ from olympia.addons.tasks import (
     update_addon_average_daily_users,
     update_addon_weekly_downloads,
 )
-from olympia.addons.models import Addon, AppSupport, FrozenAddon
+from olympia.addons.models import Addon, FrozenAddon
 from olympia.amo.tests import addon_factory, file_factory, TestCase
 from olympia.files.models import File
 from olympia.versions.models import Version
@@ -39,21 +39,6 @@ class TestLastUpdated(TestCase):
         cron.addon_last_updated()
         for addon in Addon.objects.filter(status=amo.STATUS_APPROVED):
             assert addon.last_updated == addon.created
-
-    def test_appsupport(self):
-        ids = Addon.objects.values_list('id', flat=True)
-        cron.update_appsupport(ids)
-        assert AppSupport.objects.filter(app=amo.FIREFOX.id).count() == 2
-
-        # Run it again to test deletes.
-        cron.update_appsupport(ids)
-        assert AppSupport.objects.filter(app=amo.FIREFOX.id).count() == 2
-
-    def test_appsupport_listed(self):
-        AppSupport.objects.all().delete()
-        assert AppSupport.objects.filter(addon=3723).count() == 0
-        cron.update_addon_appsupport()
-        assert AppSupport.objects.filter(addon=3723, app=amo.FIREFOX.id).count() == 0
 
 
 class TestHideDisabledFiles(TestCase):

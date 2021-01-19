@@ -576,7 +576,7 @@ class LanguageToolsView(ListAPIView):
     def get_query_params(self):
         """
         Parse query parameters that this API supports:
-        - app (mandatory)
+        - app (ignored unless appversion, then mandatory)
         - type (optional)
         - appversion (optional, makes type mandatory)
         - author (optional)
@@ -587,14 +587,16 @@ class LanguageToolsView(ListAPIView):
         Returns a dict containing application (int), types (tuple or None),
         appversions (dict or None) and author (string or None).
         """
-        # app parameter is mandatory when calling this API.
-        try:
-            application = AddonAppQueryParam(self.request.GET).get_value()
-        except ValueError:
-            raise exceptions.ParseError('Invalid or missing app parameter.')
-
         # appversion parameter is optional.
         if AddonAppVersionQueryParam.query_param in self.request.GET:
+            # app parameter is mandatory with appversion
+            try:
+                application = AddonAppQueryParam(self.request.GET).get_value()
+            except ValueError:
+                raise exceptions.ParseError(
+                    'Invalid or missing app parameter while appversion parameter is '
+                    'set.'
+                )
             try:
                 value = AddonAppVersionQueryParam(self.request.GET).get_values()
                 appversions = {'min': value[1], 'max': value[2]}
@@ -602,6 +604,7 @@ class LanguageToolsView(ListAPIView):
                 raise exceptions.ParseError('Invalid appversion parameter.')
         else:
             appversions = None
+            application = None
 
         # type is optional, unless appversion is set. That's because the way
         # dicts and language packs have their compatibility info set in the
@@ -643,9 +646,7 @@ class LanguageToolsView(ListAPIView):
                 params['application'], params['appversions']
             )
         else:
-            # appversions filtering only makes sense for language packs only,
-            # so it's ignored here.
-            qs = self.get_queryset_base(params['application'], params['types'])
+            qs = self.get_queryset_base(params['types'])
 
         if params['authors']:
             qs = qs.filter(
@@ -653,7 +654,7 @@ class LanguageToolsView(ListAPIView):
             ).distinct()
         return qs
 
-    def get_queryset_base(self, application, addon_types):
+    def get_queryset_base(self, addon_types):
         """
         Return base queryset to be used as the starting point in both
         get_queryset() and get_language_packs_queryset_with_appversions().
@@ -661,7 +662,6 @@ class LanguageToolsView(ListAPIView):
         return (
             Addon.objects.public()
             .filter(
-                appsupport__app=application,
                 type__in=addon_types,
                 target_locale__isnull=False,
             )
@@ -687,7 +687,7 @@ class LanguageToolsView(ListAPIView):
         and max keys pointing to application versions expressed as ints.
         """
         # Base queryset.
-        qs = self.get_queryset_base(application, (amo.ADDON_LPAPP,))
+        qs = self.get_queryset_base((amo.ADDON_LPAPP,))
         # Version queryset we'll prefetch once for all results. We need to
         # find the ones compatible with the app+appversion requested, and we
         # can avoid loading translations by removing transforms and then

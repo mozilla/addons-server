@@ -1,5 +1,4 @@
-[
-    {
+[{
         "pk": 1174945,
         "model": "versions.version",
         "fields": {
@@ -114,16 +113,6 @@
             "summary": 13252951,
             "_current_version": 1174945,
             "total_ratings": 0
-        }
-    },
-    {
-        "pk": 9999991,
-        "model": "addons.appsupport",
-        "fields": {
-            "app": 1,
-            "addon": 228107,
-            "modified": "2010-10-02 07:22:41",
-            "created": "2010-10-02 07:22:41"
         }
     },
     {

@@ -438,7 +438,7 @@ on AMO.
         In addition, the results can be cached for up to 24 hours, based on the
         full URL used in the request.
 
-    :query string app: Mandatory. Filter by :ref:`add-on application <addon-detail-application>` availability.
+    :query string app: Mandatory when ``appversion`` is present, ignored otherwise. Filter by :ref:`add-on application <addon-detail-application>` availability.
     :query string appversion: Filter by application version compatibility. Pass the full version as a string, e.g. ``46.0``. Only valid when both the ``app`` and ``type`` parameters are also present, and only makes sense for Language Packs, since Dictionaries are always compatible with every application version.
     :query string author: Filter by exact (listed) author username. Multiple author names can be specified, separated by comma(s), in which case add-ons with at least one matching author are returned.
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)

@@ -19,7 +19,6 @@ from olympia.addons.models import (
     AddonRegionalRestrictions,
     AddonReviewerFlags,
     AddonUser,
-    AppSupport,
     Category,
     DeniedGuid,
     DeniedSlug,
@@ -2184,7 +2183,6 @@ class TestAddonDelete(TestCase):
             addon=addon, category=Category.objects.create(type=amo.ADDON_EXTENSION)
         )
         AddonUser.objects.create(addon=addon, user=UserProfile.objects.create())
-        AppSupport.objects.create(addon=addon, app=1)
         FrozenAddon.objects.create(addon=addon)
 
         AddonLog.objects.create(

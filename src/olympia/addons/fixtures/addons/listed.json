@@ -1,5 +1,4 @@
-[
-    {
+[{
         "pk": 5,
         "model": "versions.license",
         "fields": {
@@ -83,16 +82,6 @@
             "max": 291,
             "version": 89774,
             "min": 290
-        }
-    },
-    {
-        "pk": 1118,
-        "model": "addons.appsupport",
-        "fields": {
-            "app": 1,
-            "addon": 3723,
-            "modified": "2010-10-02 07:22:41",
-            "created": "2010-10-02 07:22:41"
         }
     }
 ]
