@@ -14,7 +14,8 @@ class Shelf(ModelBase):
     )
     criteria = models.CharField(
         max_length=200,
-        help_text='e.g., ?promoted=recommended&sort=random&type=extension',
+        help_text='e.g., "?promoted=recommended&sort=random&type=extension" '
+        'or the collection slug',
     )
     footer_text = models.CharField(
         max_length=200, blank=True, help_text='e.g., See more recommended extensions'

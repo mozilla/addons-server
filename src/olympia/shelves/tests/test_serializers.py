@@ -70,16 +70,16 @@ class TestShelvesSerializer(ESTestCase):
     def setUp(self):
         self.search_pop_thm = Shelf.objects.create(
             title='Populâr themes',
-            endpoint='search',
+            endpoint='search-themes',
             criteria='?sort=users&type=statictheme',
             footer_text='See more populâr themes',
         )
 
-        self.search_rec_thm = Shelf.objects.create(
-            title='Recommended themes',
+        self.search_rec_ext = Shelf.objects.create(
+            title='Recommended extensions',
             endpoint='search',
-            criteria='?promoted=recommended&sort=random&type=statictheme',
-            footer_text='See more recommended themes',
+            criteria='?promoted=recommended&sort=random&type=extension',
+            footer_text='See more recommended extensions',
         )
 
         self.collections_shelf = Shelf.objects.create(
@@ -101,8 +101,8 @@ class TestShelvesSerializer(ESTestCase):
         context['request'] = self.request
         return ShelfSerializer(instance, context=context).data
 
-    def _get_url(self, instance):
-        if instance.endpoint == 'search':
+    def _get_result_url(self, instance):
+        if instance.endpoint in ('search', 'search-themes'):
             return reverse_ns('addon-search') + instance.criteria
         elif instance.endpoint == 'collections':
             return reverse_ns(
@@ -116,16 +116,24 @@ class TestShelvesSerializer(ESTestCase):
             return None
 
     def test_basic(self):
+        data = self.serialize(self.search_rec_ext)
+        assert data['title'] == 'Recommended extensions'
+        assert data['endpoint'] == 'search'
+        assert data['criteria'] == '?promoted=recommended&sort=random&type=extension'
+        assert data['footer_text'] == 'See more recommended extensions'
+        assert data['footer_pathname'] == ''
+
+    def test_basic_themes(self):
         data = self.serialize(self.search_pop_thm)
         assert data['title'] == 'Populâr themes'
-        assert data['endpoint'] == 'search'
+        assert data['endpoint'] == 'search-themes'
         assert data['criteria'] == '?sort=users&type=statictheme'
         assert data['footer_text'] == 'See more populâr themes'
         assert data['footer_pathname'] == ''
 
     def test_url_and_addons_search(self):
         pop_data = self.serialize(self.search_pop_thm)
-        assert pop_data['url'] == self._get_url(self.search_pop_thm)
+        assert pop_data['url'] == self._get_result_url(self.search_pop_thm)
 
         assert len(pop_data['addons']) == 2
         assert pop_data['addons'][0]['name']['en-US'] == ('test addon test02')
@@ -136,18 +144,18 @@ class TestShelvesSerializer(ESTestCase):
         assert pop_data['addons'][1]['promoted']['category'] == ('recommended')
         assert pop_data['addons'][1]['type'] == 'statictheme'
 
-        # Test 'Recommended Themes' shelf - should include 1 addon
-        rec_data = self.serialize(self.search_rec_thm)
-        assert rec_data['url'] == self._get_url(self.search_rec_thm)
+        # Test 'Recommended Extensions' shelf - should include 1 addon
+        rec_data = self.serialize(self.search_rec_ext)
+        assert rec_data['url'] == self._get_result_url(self.search_rec_ext)
 
         assert len(rec_data['addons']) == 1
-        assert rec_data['addons'][0]['name']['en-US'] == ('test addon test04')
+        assert rec_data['addons'][0]['name']['en-US'] == ('test addon test03')
         assert rec_data['addons'][0]['promoted']['category'] == ('recommended')
-        assert rec_data['addons'][0]['type'] == 'statictheme'
+        assert rec_data['addons'][0]['type'] == 'extension'
 
     def test_url_and_addons_collections(self):
         data = self.serialize(self.collections_shelf)
-        assert data['url'] == self._get_url(self.collections_shelf)
+        assert data['url'] == self._get_result_url(self.collections_shelf)
         assert data['addons'][0]['name']['en-US'] == ('test addon privacy01')
 
 

@@ -30,7 +30,7 @@ class ShelfSerializer(serializers.ModelSerializer):
         ]
 
     def get_url(self, obj):
-        if obj.endpoint == 'search':
+        if obj.endpoint in ('search', 'search-themes'):
             api = drf_reverse('addon-search', request=self.context.get('request'))
             url = api + obj.criteria
         elif obj.endpoint == 'collections':
@@ -48,7 +48,7 @@ class ShelfSerializer(serializers.ModelSerializer):
         return url
 
     def get_addons(self, obj):
-        if obj.endpoint == 'search':
+        if obj.endpoint in ('search', 'search-themes'):
             criteria = obj.criteria.strip('?')
             params = dict(parse.parse_qsl(criteria))
             request = self.context.get('request')
