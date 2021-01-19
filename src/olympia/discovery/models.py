@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils.translation import ugettext
 
 from olympia import amo
 from olympia.addons.models import Addon
@@ -53,17 +52,5 @@ class DiscoveryItem(OnChangeMixin, ModelBase):
         return str(self.addon)
 
     @property
-    def description_text(self):
-        """
-        Return item description (translated, but not including HTML) ready to
-        be returned by the disco pane API.
-        """
-        if self.custom_description:
-            value = ugettext(self.custom_description)
-        else:
-            addon = self.addon
-            if addon.type == amo.ADDON_EXTENSION and addon.summary:
-                value = addon.summary
-            else:
-                value = ''
-        return value
+    def should_fallback_to_addon_summary(self):
+        return bool(self.addon.type == amo.ADDON_EXTENSION and self.addon.summary)
