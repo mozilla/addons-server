@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2021-01-13 16:56+0000\n"
+"PO-Revision-Date: 2021-01-20 17:26+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -302,13 +302,13 @@ msgid ""
 msgstr ""
 
 msgid "Register or Log in"
-msgstr ""
+msgstr "నమోదవ్వండి లేదా ప్రవేశించండి"
 
 msgid "Email:"
 msgstr "ఈమెయిలు:"
 
 msgid "OK"
-msgstr ""
+msgstr "సరే"
 
 msgid "No results found"
 msgstr "ఫలితాలు కనుగొనబడలేదు"
@@ -410,7 +410,7 @@ msgid "Email address not found."
 msgstr "ఈమెయిల్ చిరునామా కనబడలేదు."
 
 msgid "Unavailable for legal reasons."
-msgstr ""
+msgstr "న్యాయపరమైన కారణాలవల్ల అందుబాటులో లేదు."
 
 msgid "The field must have a length of at least {num} characters."
 msgstr "ఈ ఫీల్డ్ కనీసం {num} అక్షరాల పొడవు ఉండాలి."
@@ -988,7 +988,7 @@ msgid "Unlisted"
 msgstr "జాబితాచేయని"
 
 msgid "API"
-msgstr ""
+msgstr "API"
 
 msgid "Owner"
 msgstr "యజమాని"
@@ -1379,7 +1379,7 @@ msgid "Recommended"
 msgstr "సిఫార్సు చేయబడింది"
 
 msgid "Sponsored"
-msgstr ""
+msgstr "ప్రాయోజితం"
 
 msgid "Verified"
 msgstr ""
@@ -2188,10 +2188,10 @@ msgid "Decline"
 msgstr "తిరస్కరించు"
 
 msgid "Set Up Payment"
-msgstr ""
+msgstr "చెల్లింపును అమర్చండి"
 
 msgid "You're done!"
-msgstr ""
+msgstr "మీరు పూర్తి చేశారు!"
 
 #, python-format
 msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
