@@ -5632,6 +5632,14 @@ class TestReview(ReviewBase):
         )
         assert doc('.addon-rating a').attr['href'] == rating_url
 
+        self.reviewer.update(email='reviewer@nonmozilla.com')
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('.addon-rating strong')
+        assert doc('.addon-rating strong').text() == '1 review'
+
     def test_user_ratings_unlisted_addon(self):
         user = UserProfile.objects.get(email='reviewer@mozilla.com')
         self.grant_permission(user, 'Addons:ReviewUnlisted')
@@ -6095,25 +6103,6 @@ class TestReview(ReviewBase):
         )
 
         self.assertRedirects(response, self.url)
-
-    def test_review_moderator_addon_rating_read_only(self):
-        user = user_factory()
-        Rating.objects.create(
-            body='Lorem ipsum dolor',
-            rating=3,
-            ip_address='10.5.6.7',
-            addon=self.addon,
-            user=user,
-        )
-
-        self.grant_permission(self.reviewer, 'Rating:Modarate')
-        self.reviewer.update(email='reviewer@nonmozilla.com')
-
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('.addon-rating strong')
-        assert doc('.addon-rating strong').text() == '1 review'
 
 
 class TestAbuseReportsView(ReviewerTest):
