@@ -32,6 +32,9 @@ v4_api_urls = [
     re_path(r'^', include(amo_api_patterns)),
     re_path(r'^promoted/', include('olympia.promoted.api_urls')),
     re_path(r'^scanner/', include('olympia.scanners.api_urls')),
+]
+
+v5_api_urls = v4_api_urls + [
     re_path(r'^shelves/', include('olympia.shelves.urls')),
 ]
 
@@ -39,5 +42,5 @@ urlpatterns = [
     re_path(r'^auth/', include((auth_callback_patterns, 'auth'))),
     re_path(r'^v3/', include((v3_api_urls, 'v3'))),
     re_path(r'^v4/', include((v4_api_urls, 'v4'))),
-    re_path(r'^v5/', include((v4_api_urls, 'v5'))),
+    re_path(r'^v5/', include((v5_api_urls, 'v5'))),
 ]

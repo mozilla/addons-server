@@ -89,17 +89,13 @@ Homepage Shelves
 
 This endpoint returns the shelves to display on the AMO Homepage.
 A single, randomly selected, primary hero shelf and a single, randomly selected secondary
-hero shelf is returned, along with the enabled shelves.
+hero shelf is returned, along with the enabled shelves. As there will only ever be a
+small number of shelves this endpoint is not paginated.
 
 
 .. http:get:: /api/v5/shelves/
 
-    :query int page_size: Maximum number of results to return for the requested page. Defaults to 25.
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
-    :>query int page_count: The number of pages available in the pagination.
-    :>json int count: The number of results for this query.
-    :>json string next: The URL of the next page of results.
-    :>json string previous: The URL of the previous page of results.
     :>json array results: The array of shelves displayed on the AMO Homepage.
     :>json string results[].title: The title of the shelf.
     :>json string results[].url: The configured URL using the shelf's endpoint and criteria; links to the shelf's returned add-ons.

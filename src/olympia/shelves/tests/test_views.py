@@ -125,11 +125,6 @@ class TestShelfViewSet(ESTestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert response.json() == {
-            'count': 0,
-            'next': None,
-            'page_count': 1,
-            'page_size': 25,
-            'previous': None,
             'results': [],
             'primary': None,
             'secondary': None,
@@ -140,7 +135,7 @@ class TestShelfViewSet(ESTestCase):
         self.hpshelf_b.update(enabled=True)
         # don't enable shelf_c
 
-        with self.assertNumQueries(26):
+        with self.assertNumQueries(25):
             response = self.client.get(self.url)
         assert response.status_code == 200
 
@@ -199,11 +194,6 @@ class TestShelfViewSet(ESTestCase):
             response = self.client.get(self.url, {'lang': 'en-US'})
         assert response.status_code == 200
         assert response.json() == {
-            'count': 0,
-            'next': None,
-            'page_count': 1,
-            'page_size': 25,
-            'previous': None,
             'results': [],
             'primary': PrimaryHeroShelfSerializer(instance=phero).data,
             'secondary': SecondaryHeroShelfSerializer(instance=shero).data,
@@ -223,9 +213,9 @@ class TestShelfViewSet(ESTestCase):
 
         self.hpshelf_a.update(enabled=True)
 
-        with self.assertNumQueries(17):
-            # 17 queries:
-            # - 4 to get the shelves
+        with self.assertNumQueries(16):
+            # 16 queries:
+            # - 3 to get the shelves
             # - 11 as TestPrimaryHeroShelfViewSet.test_basic
             # - 2 as TestSecondaryHeroShelfViewSet.test_basic
             response = self.client.get(self.url)

@@ -37,16 +37,21 @@ class ShelfViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     )
     permission_classes = []
     serializer_class = ShelfSerializer
+    pagination_class = None
 
     def list(self, request, *args, **kwargs):
-        response = super().list(request, *args, **kwargs)
-        response.data['primary'] = PrimaryHeroShelfViewSet(
-            request=request
-        ).get_one_random_data()
-        response.data['secondary'] = SecondaryHeroShelfViewSet(
-            request=request
-        ).get_one_random_data()
-        return response
+        results = super().list(request, *args, **kwargs).data
+        return Response(
+            {
+                'results': results,
+                'primary': PrimaryHeroShelfViewSet(
+                    request=request
+                ).get_one_random_data(),
+                'secondary': SecondaryHeroShelfViewSet(
+                    request=request
+                ).get_one_random_data(),
+            }
+        )
 
     @classonlymethod
     def as_view(cls, *args, **initkwargs):
