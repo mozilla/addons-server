@@ -5637,8 +5637,7 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('.addon-rating strong')
-        assert doc('.addon-rating strong').text() == '1 review'
+        assert not doc('.addon-rating a')
 
     def test_user_ratings_unlisted_addon(self):
         user = UserProfile.objects.get(email='reviewer@mozilla.com')
