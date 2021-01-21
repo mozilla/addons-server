@@ -5632,6 +5632,13 @@ class TestReview(ReviewBase):
         )
         assert doc('.addon-rating a').attr['href'] == rating_url
 
+        self.reviewer.update(email='reviewer@nonmozilla.com')
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('.addon-rating a')
+
     def test_user_ratings_unlisted_addon(self):
         user = UserProfile.objects.get(email='reviewer@mozilla.com')
         self.grant_permission(user, 'Addons:ReviewUnlisted')
