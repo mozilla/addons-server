@@ -1183,24 +1183,7 @@ class TestAutoApprovalSummary(TestCase):
         summary = AutoApprovalSummary(version=self.version)
         assert summary.weight_info == {}
         weight_info = summary.calculate_weight()
-        expected_result = {
-            'abuse_reports': 0,
-            'admin_code_review': 0,
-            'average_daily_users': 0,
-            'negative_ratings': 0,
-            'reputation': 0,
-            'past_rejection_history': 0,
-            'uses_custom_csp': 0,
-            'uses_eval_or_document_write': 0,
-            'uses_implied_eval': 0,
-            'uses_innerhtml': 0,
-            'uses_native_messaging': 0,
-            'size_of_code_changes': 0,
-            'uses_remote_scripts': 0,
-            'uses_unknown_minified_code': 0,
-            'violates_mozilla_conditions': 0,
-            'uses_coinminer': 0,
-        }
+        expected_result = {}
         assert weight_info == expected_result
         assert summary.weight_info == weight_info
 
@@ -1212,6 +1195,8 @@ class TestAutoApprovalSummary(TestCase):
         weight_info = summary.calculate_weight()
         assert summary.weight_info == weight_info
         assert summary.weight == 100
+        assert summary.non_code_weight == 100
+        assert summary.code_weight == 0
         assert weight_info['admin_code_review'] == 100
 
     def test_calculate_weight_abuse_reports(self):
@@ -1239,6 +1224,8 @@ class TestAutoApprovalSummary(TestCase):
         weight_info = summary.calculate_weight()
         assert summary.weight_info == weight_info
         assert summary.weight == 45
+        assert summary.non_code_weight == 45
+        assert summary.code_weight == 0
         assert weight_info['abuse_reports'] == 45
 
         # Should be capped at 100. We're already at 45, adding 4 more should
@@ -1262,6 +1249,8 @@ class TestAutoApprovalSummary(TestCase):
         weight_info = summary.calculate_weight()
         assert summary.weight_info == weight_info
         assert summary.weight == 15
+        assert summary.non_code_weight == 15
+        assert summary.code_weight == 0
         assert weight_info['abuse_reports'] == 15
 
     def test_calculate_weight_negative_ratings(self):
@@ -1297,7 +1286,9 @@ class TestAutoApprovalSummary(TestCase):
         weight_info = summary.calculate_weight()
         assert summary.weight_info == weight_info
         assert summary.weight == 0  # Not enough negative ratings yet...
-        assert weight_info['negative_ratings'] == 0
+        assert summary.non_code_weight == 0
+        assert summary.code_weight == 0
+        assert weight_info == {}
 
         # Create one more to get to weight == 1.
         Rating.objects.create(
@@ -1306,7 +1297,9 @@ class TestAutoApprovalSummary(TestCase):
         weight_info = summary.calculate_weight()
         assert summary.weight_info == weight_info
         assert summary.weight == 1
-        assert weight_info['negative_ratings'] == 1
+        assert summary.non_code_weight == 1
+        assert summary.code_weight == 0
+        assert weight_info == {'negative_ratings': 1}
 
         # Create 5000 more (sorry!) to make sure it's capped at 100.
         ratings = [
@@ -1320,7 +1313,9 @@ class TestAutoApprovalSummary(TestCase):
         weight_info = summary.calculate_weight()
         assert summary.weight_info == weight_info
         assert summary.weight == 100
-        assert weight_info['negative_ratings'] == 100
+        assert summary.non_code_weight == 100
+        assert summary.code_weight == 0
+        assert weight_info == {'negative_ratings': 100}
 
     def test_calculate_weight_reputation(self):
         summary = AutoApprovalSummary(version=self.version)
@@ -1328,25 +1323,33 @@ class TestAutoApprovalSummary(TestCase):
         weight_info = summary.calculate_weight()
         assert summary.weight_info == weight_info
         assert summary.weight == 0
-        assert weight_info['reputation'] == 0
+        assert summary.non_code_weight == 0
+        assert summary.code_weight == 0
+        assert weight_info == {}
 
         self.addon.update(reputation=3)
         weight_info = summary.calculate_weight()
         assert summary.weight_info == weight_info
         assert summary.weight == -300
-        assert weight_info['reputation'] == -300
+        assert summary.non_code_weight == -300
+        assert summary.code_weight == 0
+        assert weight_info == {'reputation': -300}
 
         self.addon.update(reputation=1000)
         weight_info = summary.calculate_weight()
         assert summary.weight_info == weight_info
         assert summary.weight == -300
-        assert weight_info['reputation'] == -300
+        assert summary.non_code_weight == -300
+        assert summary.code_weight == 0
+        assert weight_info == {'reputation': -300}
 
         self.addon.update(reputation=-1000)
         weight_info = summary.calculate_weight()
         assert summary.weight_info == weight_info
         assert summary.weight == 0
-        assert weight_info['reputation'] == 0
+        assert summary.non_code_weight == 0
+        assert summary.code_weight == 0
+        assert weight_info == {}
 
     def test_calculate_weight_average_daily_users(self):
         self.addon.update(average_daily_users=142444)
@@ -1354,14 +1357,18 @@ class TestAutoApprovalSummary(TestCase):
         weight_info = summary.calculate_weight()
         assert summary.weight_info == weight_info
         assert summary.weight == 14
-        assert weight_info['average_daily_users'] == 14
+        assert summary.non_code_weight == 14
+        assert summary.code_weight == 0
+        assert weight_info == {'average_daily_users': 14}
 
         self.addon.update(average_daily_users=1756567658)
         summary = AutoApprovalSummary(version=self.version)
         weight_info = summary.calculate_weight()
         assert summary.weight_info == weight_info
         assert summary.weight == 100
-        assert weight_info['average_daily_users'] == 100
+        assert summary.non_code_weight == 100
+        assert summary.code_weight == 0
+        assert weight_info == {'average_daily_users': 100}
 
     def test_calculate_weight_past_rejection_history(self):
         # Old rejected version, does not count.
@@ -1421,7 +1428,9 @@ class TestAutoApprovalSummary(TestCase):
         weight_info = summary.calculate_weight()
         assert summary.weight_info == weight_info
         assert summary.weight == 20
-        assert weight_info['past_rejection_history'] == 20
+        assert summary.non_code_weight == 20
+        assert summary.code_weight == 0
+        assert weight_info == {'past_rejection_history': 20}
 
         # Should be capped at 100.
         for i in range(0, 10):
@@ -1434,7 +1443,9 @@ class TestAutoApprovalSummary(TestCase):
         weight_info = summary.calculate_weight()
         assert summary.weight_info == weight_info
         assert summary.weight == 100
-        assert weight_info['past_rejection_history'] == 100
+        assert summary.non_code_weight == 100
+        assert summary.code_weight == 0
+        assert weight_info == {'past_rejection_history': 100}
 
     def test_calculate_weight_uses_eval_or_document_write(self):
         validation_data = {
@@ -1449,7 +1460,9 @@ class TestAutoApprovalSummary(TestCase):
         weight_info = summary.calculate_weight()
         assert summary.weight_info == weight_info
         assert summary.weight == 50
-        assert weight_info['uses_eval_or_document_write'] == 50
+        assert summary.non_code_weight == 0
+        assert summary.code_weight == 50
+        assert weight_info == {'uses_eval_or_document_write': 50}
 
         validation_data = {
             'messages': [
@@ -1463,7 +1476,9 @@ class TestAutoApprovalSummary(TestCase):
         weight_info = summary.calculate_weight()
         assert summary.weight_info == weight_info
         assert summary.weight == 50
-        assert weight_info['uses_eval_or_document_write'] == 50
+        assert summary.non_code_weight == 0
+        assert summary.code_weight == 50
+        assert weight_info == {'uses_eval_or_document_write': 50}
 
         # Still only 20 if both appear.
         validation_data = {
@@ -1481,7 +1496,9 @@ class TestAutoApprovalSummary(TestCase):
         weight_info = summary.calculate_weight()
         assert summary.weight_info == weight_info
         assert summary.weight == 50
-        assert weight_info['uses_eval_or_document_write'] == 50
+        assert summary.non_code_weight == 0
+        assert summary.code_weight == 50
+        assert weight_info == {'uses_eval_or_document_write': 50}
 
     def test_calculate_weight_uses_implied_eval(self):
         validation_data = {
@@ -1496,7 +1513,9 @@ class TestAutoApprovalSummary(TestCase):
         weight_info = summary.calculate_weight()
         assert summary.weight_info == weight_info
         assert summary.weight == 5
-        assert weight_info['uses_implied_eval'] == 5
+        assert summary.non_code_weight == 0
+        assert summary.code_weight == 5
+        assert weight_info == {'uses_implied_eval': 5}
 
     def test_calculate_weight_uses_innerhtml(self):
         validation_data = {
@@ -1511,7 +1530,9 @@ class TestAutoApprovalSummary(TestCase):
         weight_info = summary.calculate_weight()
         assert summary.weight_info == weight_info
         assert summary.weight == 50
-        assert weight_info['uses_innerhtml'] == 50
+        assert summary.non_code_weight == 0
+        assert summary.code_weight == 50
+        assert weight_info == {'uses_innerhtml': 50}
 
     def test_calculate_weight_uses_innerhtml_multiple_times(self):
         validation_data = {
@@ -1536,7 +1557,9 @@ class TestAutoApprovalSummary(TestCase):
         assert summary.weight_info == weight_info
         # 50 base, + 10 per additional instance.
         assert summary.weight == 70
-        assert weight_info['uses_innerhtml'] == 70
+        assert summary.non_code_weight == 0
+        assert summary.code_weight == 70
+        assert weight_info == {'uses_innerhtml': 70}
 
     def test_calculate_weight_uses_custom_csp(self):
         validation_data = {
@@ -1551,7 +1574,9 @@ class TestAutoApprovalSummary(TestCase):
         weight_info = summary.calculate_weight()
         assert summary.weight_info == weight_info
         assert summary.weight == 90
-        assert weight_info['uses_custom_csp'] == 90
+        assert summary.non_code_weight == 0
+        assert summary.code_weight == 90
+        assert weight_info == {'uses_custom_csp': 90}
 
     def test_calculate_weight_uses_native_messaging(self):
         WebextPermission.objects.create(file=self.file, permissions=['nativeMessaging'])
@@ -1560,7 +1585,9 @@ class TestAutoApprovalSummary(TestCase):
         weight_info = summary.calculate_weight()
         assert summary.weight_info == weight_info
         assert summary.weight == 100
-        assert weight_info['uses_native_messaging'] == 100
+        assert summary.non_code_weight == 0
+        assert summary.code_weight == 100
+        assert weight_info == {'uses_native_messaging': 100}
 
     def test_calculate_weight_uses_remote_scripts(self):
         validation_data = {
@@ -1575,7 +1602,9 @@ class TestAutoApprovalSummary(TestCase):
         weight_info = summary.calculate_weight()
         assert summary.weight_info == weight_info
         assert summary.weight == 100
-        assert weight_info['uses_remote_scripts'] == 100
+        assert summary.non_code_weight == 0
+        assert summary.code_weight == 100
+        assert weight_info == {'uses_remote_scripts': 100}
 
     def test_calculate_weight_violates_mozilla_conditions_of_use(self):
         validation_data = {
@@ -1590,7 +1619,9 @@ class TestAutoApprovalSummary(TestCase):
         weight_info = summary.calculate_weight()
         assert summary.weight_info == weight_info
         assert summary.weight == 20
-        assert weight_info['violates_mozilla_conditions'] == 20
+        assert summary.non_code_weight == 0
+        assert summary.code_weight == 20
+        assert weight_info == {'violates_mozilla_conditions': 20}
 
     def test_calculate_weight_uses_unknown_minified_code_nothing(self):
         validation_data = {
@@ -1601,7 +1632,9 @@ class TestAutoApprovalSummary(TestCase):
         weight_info = summary.calculate_weight()
         assert summary.weight_info == weight_info
         assert summary.weight == 0
-        assert weight_info['uses_unknown_minified_code'] == 0
+        assert summary.non_code_weight == 0
+        assert summary.code_weight == 0
+        assert weight_info == {}
 
         validation_data = {
             'metadata': {
@@ -1613,7 +1646,9 @@ class TestAutoApprovalSummary(TestCase):
         weight_info = summary.calculate_weight()
         assert summary.weight_info == weight_info
         assert summary.weight == 0
-        assert weight_info['uses_unknown_minified_code'] == 0
+        assert summary.non_code_weight == 0
+        assert summary.code_weight == 0
+        assert weight_info == {}
 
         validation_data = {
             # Missing metadata: no weight.
@@ -1623,7 +1658,9 @@ class TestAutoApprovalSummary(TestCase):
         weight_info = summary.calculate_weight()
         assert summary.weight_info == weight_info
         assert summary.weight == 0
-        assert weight_info['uses_unknown_minified_code'] == 0
+        assert summary.non_code_weight == 0
+        assert summary.code_weight == 0
+        assert weight_info == {}
 
     def test_calculate_weight_uses_unknown_minified_code(self):
         validation_data = {'metadata': {'unknownMinifiedFiles': ['something']}}
@@ -1632,7 +1669,9 @@ class TestAutoApprovalSummary(TestCase):
         weight_info = summary.calculate_weight()
         assert summary.weight_info == weight_info
         assert summary.weight == 100
-        assert weight_info['uses_unknown_minified_code'] == 100
+        assert summary.non_code_weight == 0
+        assert summary.code_weight == 100
+        assert weight_info == {'uses_unknown_minified_code': 100}
 
     def test_calculate_weight_uses_unknown_minified_code_multiple_times(self):
         validation_data = {
@@ -1644,7 +1683,9 @@ class TestAutoApprovalSummary(TestCase):
         assert summary.weight_info == weight_info
         # 100 base, + 20 per additional instance.
         assert summary.weight == 120
-        assert weight_info['uses_unknown_minified_code'] == 120
+        assert summary.non_code_weight == 0
+        assert summary.code_weight == 120
+        assert weight_info == {'uses_unknown_minified_code': 120}
 
     def test_calculate_size_of_code_changes_no_current_validation(self):
         # Delete the validation for the previously confirmed version and reload
@@ -1656,7 +1697,9 @@ class TestAutoApprovalSummary(TestCase):
         weight_info = summary.calculate_weight()
         assert summary.weight_info == weight_info
         assert summary.weight == 500
-        assert weight_info['no_validation_result'] == 500
+        assert summary.non_code_weight == 0
+        assert summary.code_weight == 500
+        assert weight_info == {'no_validation_result': 500}
 
     def test_calculate_size_of_code_changes_no_new_validation(self):
         # Delete the validation for the new version and reload that version.
@@ -1668,7 +1711,9 @@ class TestAutoApprovalSummary(TestCase):
         weight_info = summary.calculate_weight()
         assert summary.weight_info == weight_info
         assert summary.weight == 500
-        assert weight_info['no_validation_result'] == 500
+        assert summary.non_code_weight == 0
+        assert summary.code_weight == 500
+        assert weight_info == {'no_validation_result': 500}
 
     def test_calculate_size_of_code_changes_no_reported_size(self):
         summary = AutoApprovalSummary(version=self.version)
@@ -1676,7 +1721,9 @@ class TestAutoApprovalSummary(TestCase):
         assert summary.weight_info == weight_info
         assert summary.calculate_size_of_code_changes() == 0
         assert summary.weight == 0
-        assert weight_info['size_of_code_changes'] == 0
+        assert summary.non_code_weight == 0
+        assert summary.code_weight == 0
+        assert weight_info == {}
 
     def test_calculate_size_of_code_changes_no_previous_version_size(self):
         validation_data = {
@@ -1690,7 +1737,9 @@ class TestAutoApprovalSummary(TestCase):
         weight_info = summary.calculate_weight()
         assert summary.weight_info == weight_info
         assert summary.weight == 3
-        assert weight_info['size_of_code_changes'] == 3
+        assert summary.non_code_weight == 0
+        assert summary.code_weight == 3
+        assert weight_info == {'size_of_code_changes': 3}
 
     def test_calculate_size_of_code_changes(self):
         old_validation_data = {
@@ -1710,7 +1759,9 @@ class TestAutoApprovalSummary(TestCase):
         weight_info = summary.calculate_weight()
         assert summary.weight_info == weight_info
         assert summary.weight == 2
-        assert weight_info['size_of_code_changes'] == 2
+        assert summary.non_code_weight == 0
+        assert summary.code_weight == 2
+        assert weight_info == {'size_of_code_changes': 2}
 
     def test_calculate_size_of_code_change_use_previously_confirmed(self):
         old_validation_data = {
@@ -1752,7 +1803,9 @@ class TestAutoApprovalSummary(TestCase):
         weight_info = summary.calculate_weight()
         assert summary.weight_info == weight_info
         assert summary.weight == 2
-        assert weight_info['size_of_code_changes'] == 2
+        assert summary.non_code_weight == 0
+        assert summary.code_weight == 2
+        assert weight_info == {'size_of_code_changes': 2}
 
     def test_calculate_size_of_code_changes_no_negative(self):
         old_validation_data = {
@@ -1772,7 +1825,9 @@ class TestAutoApprovalSummary(TestCase):
         weight_info = summary.calculate_weight()
         assert summary.weight_info == weight_info
         assert summary.weight == 3
-        assert weight_info['size_of_code_changes'] == 3
+        assert summary.non_code_weight == 0
+        assert summary.code_weight == 3
+        assert weight_info == {'size_of_code_changes': 3}
 
     def test_calculate_size_of_code_changes_max(self):
         old_validation_data = {
@@ -1792,7 +1847,9 @@ class TestAutoApprovalSummary(TestCase):
         weight_info = summary.calculate_weight()
         assert summary.weight_info == weight_info
         assert summary.weight == 100
-        assert weight_info['size_of_code_changes'] == 100
+        assert summary.non_code_weight == 0
+        assert summary.code_weight == 100
+        assert weight_info == {'size_of_code_changes': 100}
 
     def test_calculate_weight_sum(self):
         validation_data = {
@@ -1809,24 +1866,14 @@ class TestAutoApprovalSummary(TestCase):
         summary = AutoApprovalSummary(version=self.version)
         weight_info = summary.calculate_weight()
         assert summary.weight_info == weight_info
+        assert summary.non_code_weight == 0
+        assert summary.code_weight == 205
         assert summary.weight == 205
         expected_result = {
-            'abuse_reports': 0,
-            'admin_code_review': 0,
-            'average_daily_users': 0,
-            'negative_ratings': 0,
-            'reputation': 0,
-            'past_rejection_history': 0,
             'uses_custom_csp': 90,
             'uses_eval_or_document_write': 50,
             'uses_implied_eval': 5,
             'uses_innerhtml': 60,  # There is one extra.
-            'uses_native_messaging': 0,
-            'size_of_code_changes': 0,
-            'uses_remote_scripts': 0,
-            'uses_unknown_minified_code': 0,
-            'violates_mozilla_conditions': 0,
-            'uses_coinminer': 0,
         }
         assert weight_info == expected_result
 
@@ -1890,7 +1937,7 @@ class TestAutoApprovalSummary(TestCase):
         summary = AutoApprovalSummary(version=self.version)
         assert summary.weight_info == {}
         pretty_weight_info = summary.get_pretty_weight_info()
-        assert pretty_weight_info == ['Risk breakdown not available.']
+        assert pretty_weight_info == ['Weight breakdown not available.']
 
         summary.weight_info = {
             'key1': 666,
@@ -2135,6 +2182,35 @@ class TestAutoApprovalSummary(TestCase):
         assert summary.pk
         assert summary.version == self.version
         assert info == {'dummy_verdict': True}
+
+    def test_create_summary_for_version_no_mocks(self):
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, needs_admin_code_review=True
+        )
+        self.file_validation.update(
+            validation=json.dumps(
+                {
+                    'messages': [
+                        {'id': ['DANGEROUS_EVAL']},
+                    ]
+                }
+            )
+        )
+        self.version.scannerresults.create(
+            scanner=MAD, score=0.95, version=self.version
+        )
+        summary, info = AutoApprovalSummary.create_summary_for_version(
+            self.version,
+        )
+        assert summary.verdict == amo.AUTO_APPROVED
+        assert summary.score == 95
+        assert summary.weight == 150
+        assert summary.code_weight == 50
+        assert summary.non_code_weight == 100
+        assert summary.weight_info == {
+            'admin_code_review': 100,
+            'uses_eval_or_document_write': 50,
+        }
 
     @mock.patch.object(AutoApprovalSummary, 'calculate_verdict', spec=True)
     def test_create_summary_no_previously_approved_versions(

@@ -991,6 +991,8 @@ class AutoApprovalSummary(ModelBase):
         choices=amo.AUTO_APPROVAL_VERDICT_CHOICES, default=amo.NOT_AUTO_APPROVED
     )
     weight = models.IntegerField(default=0)
+    non_code_weight = models.IntegerField(default=0)
+    code_weight = models.IntegerField(default=0)
     weight_info = JSONField(default=dict, null=True)
     confirmed = models.NullBooleanField(default=None)
     score = models.PositiveSmallIntegerField(default=None, null=True)
@@ -1023,10 +1025,25 @@ class AutoApprovalSummary(ModelBase):
         The weight value is then used in reviewer tools to prioritize add-ons
         in the auto-approved queue, the weight_info shown to reviewers in the
         review page."""
+        non_code_weight_factors = self.calculate_non_code_weight_factors()
+        code_weight_factors = self.calculate_static_analysis_weight_factors()
+        self.non_code_weight = sum(non_code_weight_factors.values())
+        self.code_weight = sum(code_weight_factors.values())
+        self.weight_info = {
+            k: v
+            for k, v in dict(**non_code_weight_factors, **code_weight_factors).items()
+            # No need to keep 0 value items in the breakdown in the db, they won't be
+            # displayed anyway.
+            if v
+        }
+        self.weight = self.non_code_weight + self.code_weight
+        return self.weight_info
+
+    def calculate_non_code_weight_factors(self):
         addon = self.version.addon
         one_year_ago = (self.created or datetime.now()) - timedelta(days=365)
         six_weeks_ago = (self.created or datetime.now()) - timedelta(days=42)
-        self.weight_info = {
+        factors = {
             # Add-ons under admin code review: 100 added to weight.
             'admin_code_review': 100 if addon.needs_admin_code_review else 0,
             # Each abuse reports for the add-on or one of the listed developers
@@ -1075,9 +1092,7 @@ class AutoApprovalSummary(ModelBase):
                 100,
             ),
         }
-        self.weight_info.update(self.calculate_static_analysis_weight_factors())
-        self.weight = sum(self.weight_info.values())
-        return self.weight_info
+        return factors
 
     def calculate_static_analysis_weight_factors(self):
         """Calculate the static analysis risk factors, returning a dict of
@@ -1148,7 +1163,7 @@ class AutoApprovalSummary(ModelBase):
         # Some precision is lost but we don't particularly care that much, it's
         # mainly going to be used as a denormalized field to help the database
         # query, and be displayed in a list.
-        self.score = int(self.version.scanners_score)
+        self.score = int(self.version.maliciousness_score)
         return self.score
 
     def get_pretty_weight_info(self):
@@ -1158,7 +1173,7 @@ class AutoApprovalSummary(ModelBase):
                 ['%s: %d' % (k, v) for k, v in self.weight_info.items() if v]
             )
         else:
-            weight_info = [ugettext('Risk breakdown not available.')]
+            weight_info = [ugettext('Weight breakdown not available.')]
         return weight_info
 
     def find_previous_confirmed_version(self):
@@ -1416,6 +1431,8 @@ class AutoApprovalSummary(ModelBase):
         data['score'] = instance.score
         data['verdict'] = instance.verdict
         data['weight'] = instance.weight
+        data['non_code_weight'] = instance.non_code_weight
+        data['code_weight'] = instance.code_weight
         data['weight_info'] = instance.weight_info
         instance, _ = cls.objects.update_or_create(version=version, defaults=data)
         return instance, verdict_info

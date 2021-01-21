@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import json
 from datetime import datetime, timedelta
 from unittest import mock
 
@@ -386,8 +387,19 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         Rating.objects.create(
             addon=self.addon, version=self.version, user=user_factory(), rating=2
         )
+        self.file_validation.update(
+            validation=json.dumps(
+                {
+                    'messages': [
+                        {'id': ['DANGEROUS_EVAL']},
+                    ]
+                }
+            )
+        )
         summary = self.test_full()
-        assert summary.weight == 15
+        assert summary.weight == 65
+        assert summary.non_code_weight == 15
+        assert summary.code_weight == 50
         assert summary.score == 31
 
     @mock.patch.object(auto_approve, 'set_reviewing_cache')
@@ -672,58 +684,6 @@ class TestAutoApproveCommandTransactions(AutoApproveTestsMixin, TransactionTestC
                 'is_blocked': 0,
             }
         )
-
-
-class TestRecalculatePostReviewWeightsCommand(TestCase):
-    @mock.patch.object(AutoApprovalSummary, 'calculate_weight')
-    def test_ignore_confirmed(self, calculate_weight_mock):
-        addon = addon_factory()
-        AutoApprovalSummary.objects.create(
-            version=addon.current_version, verdict=amo.AUTO_APPROVED, confirmed=True
-        )
-        call_command('recalculate_post_review_weights')
-        assert calculate_weight_mock.call_count == 0
-
-    @mock.patch.object(AutoApprovalSummary, 'calculate_weight')
-    def test_ignore_not_auto_approved(self, calculate_weight_mock):
-        addon = addon_factory()
-        AutoApprovalSummary.objects.create(
-            version=addon.current_version,
-            verdict=amo.NOT_AUTO_APPROVED,
-            confirmed=False,
-        )
-        call_command('recalculate_post_review_weights')
-        assert calculate_weight_mock.call_count == 0
-
-    def test_dont_save_if_weight_has_not_changed(self):
-        addon = addon_factory()
-        summary = AutoApprovalSummary.objects.create(
-            version=addon.current_version,
-            verdict=amo.AUTO_APPROVED,
-            confirmed=False,
-            weight=500,
-        )
-        old_modified_date = self.days_ago(42)
-        summary.update(modified=old_modified_date)
-        call_command('recalculate_post_review_weights')
-        summary.reload()
-        assert summary.weight == 500  # Because of no validation results found.
-        assert summary.modified == old_modified_date
-
-    def test_save_new_weight(self):
-        addon = addon_factory()
-        summary = AutoApprovalSummary.objects.create(
-            version=addon.current_version,
-            verdict=amo.AUTO_APPROVED,
-            confirmed=False,
-            weight=666,
-        )
-        old_modified_date = self.days_ago(42)
-        summary.update(modified=old_modified_date)
-        call_command('recalculate_post_review_weights')
-        summary.reload()
-        assert summary.weight == 500  # Because of no validation results found.
-        assert summary.modified != old_modified_date
 
 
 class TestSendPendingRejectionLastWarningNotification(TestCase):
