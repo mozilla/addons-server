@@ -14,37 +14,39 @@ class Migration(migrations.Migration):
             model_name='category',
             name='addons',
         ),
-        # migrations.RemoveConstraint(
-        #     model_name='addoncategory',
-        #     name='addon_id',
-        # ),
-        # migrations.RemoveIndex(
-        #     model_name='addoncategory',
-        #     name='category_addon_idx',
-        # ),
         migrations.RemoveField(
             model_name='addon',
             name='categories',
         ),
-        migrations.AlterField(
-            model_name='addoncategory',
-            name='category',
-            field=models.SmallIntegerField(),
-        ),
-        migrations.RenameField(
-            model_name='addoncategory',
-            old_name='category',
-            new_name='category_id',
-        ),
-        migrations.AddIndex(
-            model_name='addoncategory',
-            index=models.Index(fields=['category_id', 'addon'], name='category_id_addon_idx'),
-        ),
-        migrations.AddConstraint(
-            model_name='addoncategory',
-            constraint=models.UniqueConstraint(fields=('addon', 'category_id'), name='category_id_addon_id'),
-        ),
-        migrations.DeleteModel(
-            name='Category',
+        migrations.RunSQL(
+            "ALTER TABLE `addons_categories` DROP FOREIGN KEY `addons_categories_category_id_f4f5c093_fk_categories_id`;",
+            state_operations=[
+                migrations.AlterField(
+                    model_name='addoncategory',
+                    name='category',
+                    field=models.PositiveIntegerField(),
+                ),
+                migrations.RenameField(
+                    model_name='addoncategory',
+                    old_name='category',
+                    new_name='category_id',
+                ),
+                migrations.RemoveConstraint(
+                    model_name='addoncategory',
+                    name='addon_id',
+                ),
+                migrations.RemoveIndex(
+                    model_name='addoncategory',
+                    name='category_addon_idx',
+                ),
+                migrations.AddIndex(
+                    model_name='addoncategory',
+                    index=models.Index(fields=['category_id', 'addon'], name='category_addon_idx'),
+                ),
+                migrations.AddConstraint(
+                    model_name='addoncategory',
+                    constraint=models.UniqueConstraint(fields=('addon', 'category_id'), name='addon_id'),
+                ),
+            ],
         ),
     ]

@@ -1905,17 +1905,15 @@ class MigratedLWT(OnChangeMixin, ModelBase):
 class AddonCategory(models.Model):
     id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
-    category_id = models.SmallIntegerField()
+    category_id = models.PositiveIntegerField()
 
     class Meta:
         db_table = 'addons_categories'
         indexes = [
-            models.Index(fields=('category_id', 'addon'), name='category_id_addon_idx'),
+            models.Index(fields=('category_id', 'addon'), name='category_addon_idx'),
         ]
         constraints = [
-            models.UniqueConstraint(
-                fields=('addon', 'category_id'), name='category_id_addon_id'
-            ),
+            models.UniqueConstraint(fields=('addon', 'category_id'), name='addon_id'),
         ]
 
     def __init__(self, *args, **kwargs):
