@@ -411,8 +411,10 @@ z.StatsManager = (function () {
 
     function errorHandler(response, unused1, unused2) {
       if (response.status === 503) {
-        $def.resolve();
-        return $def;
+        // The API returns a 503 with no data when we disable BigQuery so let's
+        // handle this error using the normal flow, which will display "no data
+        // available".
+        return fetchHandler(response.responseText, response.status, response);
       }
 
       $def.fail();
@@ -422,7 +424,7 @@ z.StatsManager = (function () {
       var maxdate = '1970-01-01',
         mindate = new Date().iso();
 
-      if (xhr.status == 200) {
+      if ([200, 503].includes(xhr.status)) {
         if (!dataStore[metric]) {
           dataStore[metric] = {
             mindate: new Date().iso(),
