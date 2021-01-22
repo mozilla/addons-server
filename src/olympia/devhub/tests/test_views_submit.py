@@ -22,7 +22,7 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
-from olympia.addons.models import Addon, AddonCategory, Category
+from olympia.addons.models import Addon, AddonCategory
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
@@ -34,7 +34,6 @@ from olympia.amo.tests import (
 )
 from olympia.amo.urlresolvers import reverse
 from olympia.blocklist.models import Block
-from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.devhub import views
 from olympia.files.tests.test_models import UploadTest
@@ -1225,12 +1224,8 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
         super(TestAddonSubmitDetails, self).setUp()
         self.url = reverse('devhub.submit.details', args=['a3615'])
 
-        AddonCategory.objects.filter(
-            addon=self.get_addon(), category=Category.objects.get(id=1)
-        ).delete()
-        AddonCategory.objects.filter(
-            addon=self.get_addon(), category=Category.objects.get(id=71)
-        ).delete()
+        AddonCategory.objects.filter(addon=self.get_addon(), category_id=1).delete()
+        AddonCategory.objects.filter(addon=self.get_addon(), category_id=71).delete()
 
         ctx = self.client.get(self.url).context['cat_form']
         self.cat_initial = initial(ctx.initial_forms[0])
@@ -1395,7 +1390,7 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
 
         self.is_success(self.get_dict())
 
-        addon_cats = self.get_addon().categories.values_list('id', flat=True)
+        addon_cats = [c.id for c in self.get_addon().all_categories]
         assert sorted(addon_cats) == [1, 22]
 
     def test_submit_categories_addandremove(self):
@@ -1408,8 +1403,7 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
         assert sorted(category_ids_new) == [22, 71]
 
     def test_submit_categories_remove(self):
-        category = Category.objects.get(id=1)
-        AddonCategory(addon=self.addon, category=category).save()
+        AddonCategory(addon=self.addon, category_id=1).save()
         assert sorted([cat.id for cat in self.get_addon().all_categories]) == [1, 22]
 
         self.cat_initial['categories'] = [22]
@@ -1492,19 +1486,9 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
         super(TestStaticThemeSubmitDetails, self).setUp()
         self.url = reverse('devhub.submit.details', args=['a3615'])
 
-        AddonCategory.objects.filter(
-            addon=self.get_addon(), category=Category.objects.get(id=1)
-        ).delete()
-        AddonCategory.objects.filter(
-            addon=self.get_addon(), category=Category.objects.get(id=22)
-        ).delete()
-        AddonCategory.objects.filter(
-            addon=self.get_addon(), category=Category.objects.get(id=71)
-        ).delete()
-        Category.from_static_category(CATEGORIES_BY_ID[300]).save()  # abstract
-        Category.from_static_category(CATEGORIES_BY_ID[308]).save()  # firefox
-        Category.from_static_category(CATEGORIES_BY_ID[400]).save()  # abstract
-        Category.from_static_category(CATEGORIES_BY_ID[408]).save()  # firefox
+        AddonCategory.objects.filter(addon=self.get_addon(), category_id=1).delete()
+        AddonCategory.objects.filter(addon=self.get_addon(), category_id=22).delete()
+        AddonCategory.objects.filter(addon=self.get_addon(), category_id=71).delete()
 
         self.next_step = reverse('devhub.submit.finish', args=['a3615'])
         License.objects.create(builtin=11, on_form=True, creative_commons=True)
@@ -1572,14 +1556,12 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
         assert [cat.id for cat in self.get_addon().all_categories] == []
         self.is_success(self.get_dict(category='firefox'))
 
-        addon_cats = self.get_addon().categories.values_list('id', flat=True)
+        addon_cats = [c.id for c in self.get_addon().all_categories]
         assert sorted(addon_cats) == [308, 408]
 
     def test_submit_categories_change(self):
-        category_desktop = Category.objects.get(id=300)
-        category_android = Category.objects.get(id=400)
-        AddonCategory(addon=self.addon, category=category_desktop).save()
-        AddonCategory(addon=self.addon, category=category_android).save()
+        AddonCategory(addon=self.addon, category_id=300).save()
+        AddonCategory(addon=self.addon, category_id=400).save()
         assert sorted([cat.id for cat in self.get_addon().all_categories]) == [300, 400]
 
         self.client.post(self.url, self.get_dict(category='firefox'))
