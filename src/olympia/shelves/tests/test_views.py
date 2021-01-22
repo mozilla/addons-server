@@ -223,6 +223,9 @@ class TestShelfViewSet(ESTestCase):
 
         result = json.loads(response.content)
 
+        for prop in ('count', 'next', 'page_count', 'page_size', 'previous'):
+            assert prop not in result
+
         assert len(result['results']) == 1
 
         assert result['results'][0]['title'] == 'Recommended extensions'
