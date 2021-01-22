@@ -542,6 +542,7 @@ class FileUpload(ModelBase):
             user_media_path('addons'), 'temp', uuid.uuid4().hex, ext
         )
 
+        # The following log statement is used by foxsec-pipeline.
         log.info(
             'UPLOAD: %r (%s bytes) to %r' % (self.name, size, self.path),
             extra={'email': (self.user.email if self.user and self.user.email else '')},

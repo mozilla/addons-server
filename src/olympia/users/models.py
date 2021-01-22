@@ -601,6 +601,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     @staticmethod
     def user_logged_in(sender, request, user, **kwargs):
         """Log when a user logs in and records its IP address."""
+        # The following log statement is used by foxsec-pipeline.
         log.info('User (%s) logged in successfully' % user, extra={'email': user.email})
         user.update(last_login_ip=core.get_remote_addr() or '')
 
@@ -760,6 +761,7 @@ class IPNetworkUserRestriction(GetErrorMessageMixin, ModelBase):
                 remote_addr in restriction.network
                 or user_last_login_ip in restriction.network
             ):
+                # The following log statement is used by foxsec-pipeline.
                 log.info(
                     'Restricting request from %s %s, %s %s (%s)',
                     'ip',
@@ -838,6 +840,7 @@ class EmailUserRestriction(GetErrorMessageMixin, NormalizeEmailMixin, ModelBase)
 
         for restriction in restrictions:
             if fnmatchcase(email, restriction.email_pattern):
+                # The following log statement is used by foxsec-pipeline.
                 log.info(
                     'Restricting request from %s %s (%s)',
                     'email',
@@ -920,6 +923,7 @@ class ReputationRestrictionMixin:
                 data = response.json()
                 if int(data['reputation']) <= cls.reputation_threshold:
                     # Low reputation means we should block that request.
+                    # The following log statement is used by foxsec-pipeline.
                     log.info(
                         'Restricting request from %s %s (%s)',
                         reputation_type,
@@ -997,6 +1001,7 @@ class DeveloperAgreementRestriction(GetErrorMessageMixin):
             and request.user.has_read_developer_agreement()
         )
         if not allowed:
+            # The following log statement is used by foxsec-pipeline.
             log.info(
                 'Restricting request from %s %s (%s)',
                 'developer',
