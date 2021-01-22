@@ -406,6 +406,7 @@ These are `v5` specific changes - `v4` changes apply also.
 * 2021-01-07: changed API behavior with all fields that could be affected by ``wrap_outgoing_links``.
   Now the url is an object containing both the original url and the wrapped url.  See :ref:`Outgoing Links <api-overview-outgoing>`.
 * 2021-01-21: in language-tools api, made ``application`` parameter only mandatory when ``appversion`` parameter is also present, and ignored otherwise.  https://github.com/mozilla/addons-server/issues/12315
+* 2021-01-28: dropped the pagination fields from the shelves api (it's still an object with a ``results`` property though). https://github.com/mozilla/addons-server/issues/16342
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/
