@@ -665,6 +665,7 @@ def handle_upload(
         source=source,
         user=user,
     )
+    # The following log statement is used by foxsec-pipeline.
     log.info('FileUpload created: %s' % upload.uuid.hex)
 
     if submit:

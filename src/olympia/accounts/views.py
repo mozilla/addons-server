@@ -303,6 +303,8 @@ def with_user(format):
                     request, ERROR_NO_PROFILE, next_path=next_path, format=format
                 )
             else:
+                # The following log statement is used by foxsec-pipeline.
+                log.info('Logging in FxA user %s', identity['email'])
                 user = find_user(identity)
                 # We can't use waffle.flag_is_active() wrapper, because
                 # request.user isn't populated at this point (and we don't want
