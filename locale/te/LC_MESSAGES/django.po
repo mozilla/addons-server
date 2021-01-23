@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2021-01-20 17:26+0000\n"
+"PO-Revision-Date: 2021-01-23 14:42+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -3232,7 +3232,7 @@ msgid "See how"
 msgstr "ఎలాగో చూడండి"
 
 msgid "Get involved"
-msgstr ""
+msgstr "పాలుపంచుకోండి"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
@@ -3525,7 +3525,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Instant weather updates from around the world."
-msgstr ""
+msgstr "ప్రపంచం చుట్టుపక్కల నుండి తక్షణ వాతావరణ తాజాకరణలు."
 
 #. editorial content for the discovery pane.
 msgid "Choose the page you see every time you open a new tab."
@@ -3936,7 +3936,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Download YouTube videos and/or audio."
-msgstr ""
+msgstr "యూట్యూబు వీడియోలను, ఆడియోలను దించుకోండి."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3959,7 +3959,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on web pages to save and access later."
-msgstr ""
+msgstr "జాల పేజీల లోని పాఠ్యాన్ని ఎంచుకొని, తర్వాత చూడడం కోసం భద్రపరచుకోండి."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4112,7 +4112,7 @@ msgstr "మీ వ్యక్తిగత ఇష్టాంశాలను స
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
-msgstr ""
+msgstr "మీరు VPN వాడుతారా? మీ ఐపీ చిరునామా బయల్పడవచ్చు. WebRTCని అచేతనం చేసుకోవడం ద్వారా దాన్ని ఆపండి."
 
 #. editorial content for the discovery pane.
 msgid "Close annoying pop-ups with a simple click."
@@ -4152,7 +4152,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Adjust browser audio settings with extreme clarity."
-msgstr ""
+msgstr "విహారిణి ఆడియో అమరికలను గొప్ప స్పష్టతతో సర్దుబాటు చేసుకోండి."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4178,7 +4178,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Stop wasting valuable memory space with inactive tabs."
-msgstr ""
+msgstr "అచేతనంగా ఉన్న ట్యాబులతో విలువైన మెమొరీని వృధా కాకుండా ఆపుకోండి."
 
 #. editorial content for the discovery pane.
 msgid "Save complete pages—or just portions—as a single HTML file."
@@ -4703,7 +4703,7 @@ msgid "Private Whiteboard"
 msgstr "అంతరంగిక వైట్‌బోర్డ్"
 
 msgid "Keep review; remove flags"
-msgstr ""
+msgstr "సమీక్షను ఉంచు; ఫ్లాగులను తొలగించు"
 
 msgid "Skip for now"
 msgstr "ప్రస్తుతం దాటవేయి"
