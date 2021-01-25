@@ -1026,7 +1026,7 @@ class AutoApprovalSummary(ModelBase):
         in the auto-approved queue, the weight_info shown to reviewers in the
         review page."""
         metadata_weight_factors = self.calculate_non_code_weight_factors()
-        code_weight_factors = self.calculate_static_analysis_weight_factors()
+        code_weight_factors = self.calculate_code_weight_factors()
         self.metadata_weight = sum(non_code_weight_factors.values())
         self.code_weight = sum(code_weight_factors.values())
         self.weight_info = {
@@ -1094,7 +1094,7 @@ class AutoApprovalSummary(ModelBase):
         }
         return factors
 
-    def calculate_static_analysis_weight_factors(self):
+    def calculate_code_weight_factors(self):
         """Calculate the static analysis risk factors, returning a dict of
         risk factors.
 
