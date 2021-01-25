@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='autoapprovalsummary',
-            name='non_code_weight',
+            name='metadata_weight',
             field=models.IntegerField(default=0),
         ),
     ]

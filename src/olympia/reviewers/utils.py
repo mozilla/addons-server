@@ -189,9 +189,9 @@ class ModernAddonQueueTable(ReviewerQueueTable):
         verbose_name=_('Code Weight'),
         accessor='_current_version.autoapprovalsummary.code_weight',
     )
-    non_code_weight = tables.Column(
+    metadata_weight = tables.Column(
         verbose_name=_('Metadata Weight'),
-        accessor='_current_version.autoapprovalsummary.non_code_weight',
+        accessor='_current_version.autoapprovalsummary.metadata_weight',
     )
     weight = tables.Column(
         verbose_name=_('Total Weight'),
@@ -208,7 +208,7 @@ class ModernAddonQueueTable(ReviewerQueueTable):
             'flags',
             'last_human_review',
             'code_weight',
-            'non_code_weight',
+            'metadata_weight',
             'weight',
             'score',
         )
@@ -265,7 +265,7 @@ class PendingRejectionTable(ModernAddonQueueTable):
             'last_human_review',
             'deadline',
             'code_weight',
-            'non_code_weight',
+            'metadata_weight',
             'weight',
             'score',
         )
@@ -295,7 +295,7 @@ class ContentReviewTable(AutoApprovedTable):
             'last_human_review',
             'waiting_time_min',
             'code_weight',
-            'non_code_weight',
+            'metadata_weight',
             'weight',
         )
         orderable = False

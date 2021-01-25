@@ -3716,7 +3716,7 @@ class TestReview(ReviewBase):
             verdict=amo.AUTO_APPROVED,
             weight=326,
             code_weight=126,
-            non_code_weight=200,
+            metadata_weight=200,
             weight_info={'fôo': 42, 'bär': 84, 'oof': 105, 'rab': 95},
         )
         self.grant_permission(self.reviewer, 'Addons:Review')

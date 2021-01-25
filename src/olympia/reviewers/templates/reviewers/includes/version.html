@@ -58,7 +58,7 @@
       {% if version.autoapprovalsummary %}
         <div class="file-weight" title="{{ version.autoapprovalsummary.get_pretty_weight_info()|join('\n') }}">
           <strong>{{ _('Code Weight:') }}</strong> {{ version.autoapprovalsummary.code_weight }}<br>
-          <strong>{{ _('Metadata Weight:') }}</strong> {{ version.autoapprovalsummary.non_code_weight }}
+          <strong>{{ _('Metadata Weight:') }}</strong> {{ version.autoapprovalsummary.metadata_weight }}
         </div>
       {% endif %}
 

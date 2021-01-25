@@ -991,7 +991,7 @@ class AutoApprovalSummary(ModelBase):
         choices=amo.AUTO_APPROVAL_VERDICT_CHOICES, default=amo.NOT_AUTO_APPROVED
     )
     weight = models.IntegerField(default=0)
-    non_code_weight = models.IntegerField(default=0)
+    metadata_weight = models.IntegerField(default=0)
     code_weight = models.IntegerField(default=0)
     weight_info = JSONField(default=dict, null=True)
     confirmed = models.NullBooleanField(default=None)
@@ -1025,21 +1025,21 @@ class AutoApprovalSummary(ModelBase):
         The weight value is then used in reviewer tools to prioritize add-ons
         in the auto-approved queue, the weight_info shown to reviewers in the
         review page."""
-        non_code_weight_factors = self.calculate_non_code_weight_factors()
+        metadata_weight_factors = self.calculate_non_code_weight_factors()
         code_weight_factors = self.calculate_static_analysis_weight_factors()
-        self.non_code_weight = sum(non_code_weight_factors.values())
+        self.metadata_weight = sum(non_code_weight_factors.values())
         self.code_weight = sum(code_weight_factors.values())
         self.weight_info = {
             k: v
-            for k, v in dict(**non_code_weight_factors, **code_weight_factors).items()
+            for k, v in dict(**metadata_weight_factors, **code_weight_factors).items()
             # No need to keep 0 value items in the breakdown in the db, they won't be
             # displayed anyway.
             if v
         }
-        self.weight = self.non_code_weight + self.code_weight
+        self.weight = self.metadata_weight + self.code_weight
         return self.weight_info
 
-    def calculate_non_code_weight_factors(self):
+    def calculate_metadata_weight_factors(self):
         addon = self.version.addon
         one_year_ago = (self.created or datetime.now()) - timedelta(days=365)
         six_weeks_ago = (self.created or datetime.now()) - timedelta(days=42)
@@ -1431,7 +1431,7 @@ class AutoApprovalSummary(ModelBase):
         data['score'] = instance.score
         data['verdict'] = instance.verdict
         data['weight'] = instance.weight
-        data['non_code_weight'] = instance.non_code_weight
+        data['metadata_weight'] = instance.non_code_weight
         data['code_weight'] = instance.code_weight
         data['weight_info'] = instance.weight_info
         instance, _ = cls.objects.update_or_create(version=version, defaults=data)
