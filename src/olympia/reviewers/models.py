@@ -1025,9 +1025,9 @@ class AutoApprovalSummary(ModelBase):
         The weight value is then used in reviewer tools to prioritize add-ons
         in the auto-approved queue, the weight_info shown to reviewers in the
         review page."""
-        metadata_weight_factors = self.calculate_non_code_weight_factors()
+        metadata_weight_factors = self.calculate_metadata_weight_factors()
         code_weight_factors = self.calculate_code_weight_factors()
-        self.metadata_weight = sum(non_code_weight_factors.values())
+        self.metadata_weight = sum(metadata_weight_factors.values())
         self.code_weight = sum(code_weight_factors.values())
         self.weight_info = {
             k: v

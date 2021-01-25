@@ -20,11 +20,11 @@ def recalculate_post_review_weight(ids):
 
         old_weight = summary.weight
         old_code_weight = summary.code_weight
-        old_metadata_weight = summary.non_code_weight
+        old_metadata_weight = summary.metadata_weight
         summary.calculate_weight()
         if (
             summary.weight != old_weight
-            or summary.metadata_weight != old_non_code_weight
+            or summary.metadata_weight != old_metadata_weight
             or summary.code_weight != old_code_weight
         ):
             summary.save()
