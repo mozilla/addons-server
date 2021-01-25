@@ -1,5 +1,4 @@
-from urllib import parse
-
+from rest_framework.request import Request as DRFRequest
 from rest_framework.settings import api_settings
 from rest_framework.test import APIRequestFactory
 
@@ -60,10 +59,36 @@ class TestShelvesSerializer(ESTestCase):
             promoted=RECOMMENDED,
         )
 
-        user = UserProfile.objects.create(pk=settings.TASK_USER_ID)
-        collection = collection_factory(author=user, slug='privacy-matters')
+        cls.mozilla_user = UserProfile.objects.create(pk=settings.TASK_USER_ID)
+        collection = collection_factory(author=cls.mozilla_user, slug='privacy-matters')
         addon = addon_factory(name='test addon privacy01')
         CollectionAddon.objects.create(addon=addon, collection=collection)
+
+        # add some extra extensions to test count limits
+        addon_factory(
+            name='test extra extension 1',
+            type=amo.ADDON_EXTENSION,
+            average_daily_users=4,
+            weekly_downloads=1,
+        )
+        addon_factory(
+            name='test extra extension 2',
+            type=amo.ADDON_EXTENSION,
+            average_daily_users=4,
+            weekly_downloads=1,
+        )
+        addon_factory(
+            name='test extra theme 1',
+            type=amo.ADDON_STATICTHEME,
+            average_daily_users=4,
+            weekly_downloads=1,
+        )
+        addon_factory(
+            name='test extra theme 2',
+            type=amo.ADDON_STATICTHEME,
+            average_daily_users=4,
+            weekly_downloads=1,
+        )
 
         cls.refresh()
 
@@ -95,9 +120,9 @@ class TestShelvesSerializer(ESTestCase):
         self.request.versioning_scheme = api_settings.DEFAULT_VERSIONING_CLASS()
         self.request.version = api_version
         self.request.user = AnonymousUser()
+        self.request = DRFRequest(self.request)
 
     def serialize(self, instance, **context):
-        self.request.query_params = dict(parse.parse_qsl(instance.criteria))
         context['request'] = self.request
         return ShelfSerializer(instance, context=context).data
 
@@ -135,7 +160,7 @@ class TestShelvesSerializer(ESTestCase):
         pop_data = self.serialize(self.search_pop_thm)
         assert pop_data['url'] == self._get_result_url(self.search_pop_thm)
 
-        assert len(pop_data['addons']) == 2
+        assert len(pop_data['addons']) == 3
         assert pop_data['addons'][0]['name']['en-US'] == ('test addon test02')
         assert pop_data['addons'][0]['promoted'] is None
         assert pop_data['addons'][0]['type'] == 'statictheme'
@@ -157,6 +182,39 @@ class TestShelvesSerializer(ESTestCase):
         data = self.serialize(self.collections_shelf)
         assert data['url'] == self._get_result_url(self.collections_shelf)
         assert data['addons'][0]['name']['en-US'] == ('test addon privacy01')
+
+    def test_addon_count(self):
+        shelf = Shelf(
+            title='Populâr stuff',
+            endpoint='search',
+            criteria='?sort=users&type=extension',
+        )
+
+        data = self.serialize(shelf)
+        # non-themes are limited to 4 by default
+        assert len(data['addons']) == 4
+
+        shelf.endpoint = 'search-themes'
+        shelf.criteria = '?sort=users&type=statictheme'
+        data = self.serialize(shelf)
+        # themes are limited to 3 by default
+        assert len(data['addons']) == 3
+
+        # double check by changing the endpoint without changing the criteria
+        shelf.endpoint = 'search'
+        data = self.serialize(shelf)
+        assert len(data['addons']) == 4
+
+        # check collections are limited to 4 also
+        collection = collection_factory(author=self.mozilla_user, slug='all-the-addons')
+        for addon in Addon.objects.filter(type=amo.ADDON_EXTENSION):
+            CollectionAddon.objects.create(addon=addon, collection=collection)
+        assert collection.addons.count() == 5
+        shelf.endpoint = 'collections'
+        shelf.criteria = 'all-the-addons'
+
+        data = self.serialize(shelf)
+        assert len(data['addons']) == 4
 
 
 class TestESSponsoredAddonSerializer(AddonSerializerOutputTestMixin, ESTestCase):

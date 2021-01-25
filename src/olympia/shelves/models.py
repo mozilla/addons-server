@@ -32,6 +32,12 @@ class Shelf(ModelBase):
     def __str__(self):
         return self.title
 
+    def get_count(self):
+        if self.endpoint in ('search-themes',):
+            return 3
+        else:
+            return 4
+
 
 class ShelfManagement(ModelBase):
     shelf = models.OneToOneField(Shelf, on_delete=models.CASCADE)

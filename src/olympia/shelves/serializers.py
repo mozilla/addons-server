@@ -4,6 +4,7 @@ from django.conf import settings
 from django.core.signing import TimestampSigner
 
 from rest_framework import serializers
+from rest_framework.request import Request as DRFRequest
 from rest_framework.reverse import reverse as drf_reverse
 
 from olympia.addons.serializers import ESAddonSerializer
@@ -48,28 +49,34 @@ class ShelfSerializer(serializers.ModelSerializer):
         return url
 
     def get_addons(self, obj):
+        request = self.context.get('request')
+        if isinstance(request, DRFRequest):
+            # rest framework wraps the underlying Request
+            real_request = request._request
+        else:
+            real_request = request
+        orginal_get = real_request.GET
+        real_request.GET = real_request.GET.copy()
+
         if obj.endpoint in ('search', 'search-themes'):
             criteria = obj.criteria.strip('?')
             params = dict(parse.parse_qsl(criteria))
-            request = self.context.get('request')
-            tmp = request.GET
-            request.GET = request.GET.copy()
             request.GET.update(params)
-            addons = AddonSearchView(request=request).data
-            request.GET = tmp
-            return addons
+            addons = AddonSearchView(request=request).get_data(obj.get_count())
         elif obj.endpoint == 'collections':
-            request = self.context.get('request')
             kwargs = {
                 'user_pk': str(settings.TASK_USER_ID),
                 'collection_slug': obj.criteria,
             }
             collection_addons = CollectionAddonViewSet(
                 request=request, action='list', kwargs=kwargs
-            ).data
-            return [item['addon'] for item in collection_addons if 'addon' in item]
+            ).get_data(obj.get_count())
+            addons = [item['addon'] for item in collection_addons if 'addon' in item]
         else:
-            return None
+            addons = None
+
+        real_request.GET = orginal_get
+        return addons
 
 
 class ESSponsoredAddonSerializer(ESAddonSerializer):
