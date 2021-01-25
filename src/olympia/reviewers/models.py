@@ -1431,7 +1431,7 @@ class AutoApprovalSummary(ModelBase):
         data['score'] = instance.score
         data['verdict'] = instance.verdict
         data['weight'] = instance.weight
-        data['metadata_weight'] = instance.non_code_weight
+        data['metadata_weight'] = instance.metadata_weight
         data['code_weight'] = instance.code_weight
         data['weight_info'] = instance.weight_info
         instance, _ = cls.objects.update_or_create(version=version, defaults=data)
