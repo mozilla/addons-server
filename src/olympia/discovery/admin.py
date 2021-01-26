@@ -4,6 +4,7 @@ from django.contrib.admin.widgets import ForeignKeyRawIdWidget
 from django.utils import translation
 from django.utils.html import conditional_escape, format_html
 from django.utils.safestring import mark_safe
+from django.utils.translation import gettext
 from django.db.models import Prefetch
 
 from olympia import promoted
@@ -123,7 +124,11 @@ class DiscoveryItemAdmin(admin.ModelAdmin):
             '<div class="editorial-description">{}</div></div>',
             locale,
             obj.addon.name,
-            mark_safe(obj.description_text),
+            mark_safe(
+                gettext(obj.custom_description)
+                or (obj.should_fallback_to_addon_summary and obj.addon.summary)
+                or ''
+            ),
         )
 
     def previews(self, obj):
