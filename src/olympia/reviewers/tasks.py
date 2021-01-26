@@ -11,18 +11,20 @@ log = olympia.core.logger.getLogger('z.task')
 
 @task
 @use_primary_db
-def recalculate_post_review_weight(ids, only_current_version=False):
+def recalculate_post_review_weight(ids):
     """Recalculate the post-review weight that should be assigned to
-    auto-approved add-on versions from a list of ids."""
+    auto-approved add-on current version from a list of add-on ids."""
     addons = Addon.objects.filter(id__in=ids)
     for addon in addons:
-        if only_current_version:
-            summaries = [AutoApprovalSummary.objects.get(version=addon.current_version)]
-        else:
-            summaries = AutoApprovalSummary.objects.filter(
-                version__in=addon.versions.all()
-            )
+        summary = AutoApprovalSummary.objects.get(version=addon.current_version)
 
-        for summary in summaries:
-            summary.calculate_weight()
+        old_weight = summary.weight
+        old_code_weight = summary.code_weight
+        old_metadata_weight = summary.metadata_weight
+        summary.calculate_weight()
+        if (
+            summary.weight != old_weight
+            or summary.metadata_weight != old_metadata_weight
+            or summary.code_weight != old_code_weight
+        ):
             summary.save()

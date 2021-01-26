@@ -992,16 +992,16 @@ class TestVersion(TestCase):
         flags.update(needs_human_review_by_mad=True)
         assert version.needs_human_review_by_mad
 
-    def test_scanners_score(self):
+    def test_maliciousness_score(self):
         addon = Addon.objects.get(id=3615)
         version = addon.current_version
-        assert version.scanners_score == 0
+        assert version.maliciousness_score == 0
         ScannerResult.objects.create(version=version, scanner=MAD, score=0.15)
-        assert version.scanners_score == 15
+        assert version.maliciousness_score == 15
         # In case of an error, we'll likely receive a -1.
         version_2 = version_factory(addon=addon)
         ScannerResult.objects.create(version=version_2, scanner=MAD, score=-1)
-        assert version_2.scanners_score == 0
+        assert version_2.maliciousness_score == 0
 
     def test_approved_for_groups(self):
         version = addon_factory().current_version
