@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2021-01-13 16:56+0000\n"
+"PO-Revision-Date: 2021-01-23 14:50+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -302,13 +302,13 @@ msgid ""
 msgstr ""
 
 msgid "Register or Log in"
-msgstr ""
+msgstr "నమోదవ్వండి లేదా ప్రవేశించండి"
 
 msgid "Email:"
 msgstr "ఈమెయిలు:"
 
 msgid "OK"
-msgstr ""
+msgstr "సరే"
 
 msgid "No results found"
 msgstr "ఫలితాలు కనుగొనబడలేదు"
@@ -410,7 +410,7 @@ msgid "Email address not found."
 msgstr "ఈమెయిల్ చిరునామా కనబడలేదు."
 
 msgid "Unavailable for legal reasons."
-msgstr ""
+msgstr "న్యాయపరమైన కారణాలవల్ల అందుబాటులో లేదు."
 
 msgid "The field must have a length of at least {num} characters."
 msgstr "ఈ ఫీల్డ్ కనీసం {num} అక్షరాల పొడవు ఉండాలి."
@@ -988,7 +988,7 @@ msgid "Unlisted"
 msgstr "జాబితాచేయని"
 
 msgid "API"
-msgstr ""
+msgstr "API"
 
 msgid "Owner"
 msgstr "యజమాని"
@@ -1379,7 +1379,7 @@ msgid "Recommended"
 msgstr "సిఫార్సు చేయబడింది"
 
 msgid "Sponsored"
-msgstr ""
+msgstr "ప్రాయోజితం"
 
 msgid "Verified"
 msgstr ""
@@ -2188,10 +2188,10 @@ msgid "Decline"
 msgstr "తిరస్కరించు"
 
 msgid "Set Up Payment"
-msgstr ""
+msgstr "చెల్లింపును అమర్చండి"
 
 msgid "You're done!"
-msgstr ""
+msgstr "మీరు పూర్తి చేశారు!"
 
 #, python-format
 msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
@@ -3232,7 +3232,7 @@ msgid "See how"
 msgstr "ఎలాగో చూడండి"
 
 msgid "Get involved"
-msgstr ""
+msgstr "పాలుపంచుకోండి"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
@@ -3525,7 +3525,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Instant weather updates from around the world."
-msgstr ""
+msgstr "ప్రపంచం చుట్టుపక్కల నుండి తక్షణ వాతావరణ తాజాకరణలు."
 
 #. editorial content for the discovery pane.
 msgid "Choose the page you see every time you open a new tab."
@@ -3936,7 +3936,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Download YouTube videos and/or audio."
-msgstr ""
+msgstr "యూట్యూబు వీడియోలను, ఆడియోలను దించుకోండి."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3959,7 +3959,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on web pages to save and access later."
-msgstr ""
+msgstr "జాల పేజీల లోని పాఠ్యాన్ని ఎంచుకొని, తర్వాత చూడడం కోసం భద్రపరచుకోండి."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4112,7 +4112,7 @@ msgstr "మీ వ్యక్తిగత ఇష్టాంశాలను స
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
-msgstr ""
+msgstr "మీరు VPN వాడుతారా? మీ ఐపీ చిరునామా బయల్పడవచ్చు. WebRTCని అచేతనం చేసుకోవడం ద్వారా దాన్ని ఆపండి."
 
 #. editorial content for the discovery pane.
 msgid "Close annoying pop-ups with a simple click."
@@ -4152,7 +4152,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Adjust browser audio settings with extreme clarity."
-msgstr ""
+msgstr "విహారిణి ఆడియో అమరికలను గొప్ప స్పష్టతతో సర్దుబాటు చేసుకోండి."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4178,11 +4178,11 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Stop wasting valuable memory space with inactive tabs."
-msgstr ""
+msgstr "అచేతనంగా ఉన్న ట్యాబులతో విలువైన మెమొరీని వృధా కాకుండా ఆపుకోండి."
 
 #. editorial content for the discovery pane.
 msgid "Save complete pages—or just portions—as a single HTML file."
-msgstr ""
+msgstr "పూర్తి పేజీలను—లేదా కేవలం భాగాలను—ఏక HTML ఫైలుగా భద్రపరచుకోండి."
 
 #. editorial content for the discovery pane.
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
@@ -4214,7 +4214,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Enjoy the benefits of strong password management."
-msgstr ""
+msgstr "బలమైన సంకేతపద నిర్వహణ యొక్క ప్రయోజనాలను ఆనందించండి."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4241,7 +4241,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
-msgstr ""
+msgstr "Google, Yahoo, DuckDuckGo లలో మాట్లాడి వెతకడానికి స్వర గుర్తింపును వాడండి."
 
 #. editorial content for the discovery pane.
 msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
@@ -4255,7 +4255,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Get a more advanced search page on Firefox for Android."
-msgstr ""
+msgstr "ఆండ్రాయిడ్ కోసం Firefoxలో మరింత ఉన్నతమైన వెతుకులాట పేజీని పొందండి."
 
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
@@ -4267,11 +4267,11 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Get weather updates right in the browser."
-msgstr ""
+msgstr "వాతావరణ తాజాకరణలను విహారిణిలోనే పొందండి."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr ""
+msgstr "ఒకే నొక్కుతో కుకీలను, విహరణ చరిత్రను, క్యాషె లోని ఫైళ్ళను తొలగించుకోండి."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4285,7 +4285,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Easily organize tons of open tabs."
-msgstr ""
+msgstr "అనేక తెరిచివున్న ట్యాబులను తేలికగా నిర్వహించుకోండి."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4703,7 +4703,7 @@ msgid "Private Whiteboard"
 msgstr "అంతరంగిక వైట్‌బోర్డ్"
 
 msgid "Keep review; remove flags"
-msgstr ""
+msgstr "సమీక్షను ఉంచు; ఫ్లాగులను తొలగించు"
 
 msgid "Skip for now"
 msgstr "ప్రస్తుతం దాటవేయి"

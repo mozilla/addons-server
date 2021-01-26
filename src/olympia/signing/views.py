@@ -287,6 +287,9 @@ class VersionView(APIView):
                     status.HTTP_400_BAD_REQUEST,
                 )
 
+        # Note: The following function call contains a log statement that is
+        # used by foxsec-pipeline - if refactoring, keep in mind we need to
+        # trigger the same log statement.
         file_upload = devhub_handle_upload(
             filedata=filedata,
             request=request,

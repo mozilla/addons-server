@@ -259,6 +259,9 @@ class Version(OnChangeMixin, ModelBase):
         )
         email = upload.user.email if upload.user and upload.user.email else ''
         with core.override_remote_addr(upload.ip_address):
+            # The following log statement is used by foxsec-pipeline.
+            # We override the IP because it might be called from a task and we
+            # want the original IP from the submitter.
             log.info(
                 'New version: %r (%s) from %r' % (version, version.id, upload),
                 extra={
@@ -856,7 +859,7 @@ class Version(OnChangeMixin, ModelBase):
             return False
 
     @property
-    def scanners_score(self):
+    def maliciousness_score(self):
         try:
             # We use the score of the MAD scanner because it is the 'ensemble'
             # score (i.e. score computed using all other scanner scores).

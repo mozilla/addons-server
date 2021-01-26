@@ -12,7 +12,7 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
-from olympia.addons.models import Addon, AddonApprovalsCounter, AddonCategory, Category
+from olympia.addons.models import Addon, AddonApprovalsCounter, AddonCategory
 from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.tests import (
     TestCase,
@@ -25,7 +25,6 @@ from olympia.amo.tests import (
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import image_size
-from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.constants.promoted import VERIFIED
 from olympia.devhub.forms import DescribeForm
 from olympia.promoted.models import PromotedAddon
@@ -39,7 +38,6 @@ class BaseTestEdit(TestCase):
         'base/users',
         'base/addon_3615',
         'base/addon_5579',
-        'base/addon_3615_categories',
     ]
     listed = True
     __test__ = False  # this is an abstract test case
@@ -51,9 +49,9 @@ class BaseTestEdit(TestCase):
         addon = self.get_addon()
         if self.listed:
             self.make_addon_listed(addon)
-            ac = AddonCategory.objects.filter(addon=addon, category__id=22)[0]
+            ac = AddonCategory.objects.filter(addon=addon, category_id=22)[0]
             ac.save()
-            AddonCategory.objects.filter(addon=addon, category__id__in=[1, 71]).delete()
+            AddonCategory.objects.filter(addon=addon, category_id__in=[1, 71]).delete()
 
             self.tags = ['tag3', 'tag2', 'tag1']
             for t in self.tags:
@@ -528,7 +526,7 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
 
         self.client.post(self.describe_edit_url, self.get_dict())
 
-        addon_cats = self.get_addon().categories.values_list('id', flat=True)
+        addon_cats = [c.id for c in self.get_addon().all_categories]
         assert sorted(addon_cats) == [1, 22]
 
     def test_edit_no_previous_categories(self):
@@ -539,7 +537,7 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
         self.cat_initial['categories'] = [22, 71]
         response = self.client.post(self.describe_edit_url, self.get_dict())
         self.addon = self.get_addon()
-        addon_cats = self.addon.categories.values_list('id', flat=True)
+        addon_cats = [c.id for c in self.get_addon().all_categories]
         assert sorted(addon_cats) == [22, 71]
 
         # Make sure the categories list we display to the user in the response
@@ -555,7 +553,7 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
         self.cat_initial['categories'] = [22, 71]
         response = self.client.post(self.describe_edit_url, self.get_dict())
         self.addon = self.get_addon()
-        addon_cats = self.addon.categories.values_list('id', flat=True)
+        addon_cats = [c.id for c in self.get_addon().all_categories]
         assert sorted(addon_cats) == [22, 71]
 
         # Make sure the categories list we display to the user in the response
@@ -565,15 +563,14 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
         )
 
     def test_edit_categories_remove(self):
-        category = Category.objects.get(id=1)
-        AddonCategory(addon=self.addon, category=category).save()
+        AddonCategory(addon=self.addon, category_id=1).save()
         assert sorted([cat.id for cat in self.get_addon().all_categories]) == [1, 22]
 
         self.cat_initial['categories'] = [22]
         response = self.client.post(self.describe_edit_url, self.get_dict())
 
         self.addon = self.get_addon()
-        addon_cats = self.addon.categories.values_list('id', flat=True)
+        addon_cats = [c.id for c in self.get_addon().all_categories]
         assert sorted(addon_cats) == [22]
 
         # Make sure the categories list we display to the user in the response
@@ -600,8 +597,7 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
         )
 
     def test_edit_categories_other_failure(self):
-        Category.objects.get(id=22).update(misc=True)
-        self.cat_initial['categories'] = [22, 1]
+        self.cat_initial['categories'] = [73, 1]
         response = self.client.post(
             self.describe_edit_url, formset(self.cat_initial, initial_count=1)
         )
@@ -1626,11 +1622,6 @@ class StaticMixin(object):
         addon.update(type=amo.ADDON_STATICTHEME)
         if self.listed:
             AddonCategory.objects.filter(addon=addon).delete()
-            # 300 & 400: abstract; 308 & 408: firefox.
-            Category.from_static_category(CATEGORIES_BY_ID[300], save=True)
-            Category.from_static_category(CATEGORIES_BY_ID[308], save=True)
-            Category.from_static_category(CATEGORIES_BY_ID[400], save=True)
-            Category.from_static_category(CATEGORIES_BY_ID[408], save=True)
             VersionPreview.objects.create(version=addon.current_version)
 
 
@@ -1659,23 +1650,18 @@ class TestEditDescribeStaticThemeListed(
             self.get_addon().all_categories
         )
 
-        addon_cats = self.get_addon().categories.values_list('id', flat=True)
+        addon_cats = [c.id for c in self.get_addon().all_categories]
         assert sorted(addon_cats) == [308, 408]
 
     def test_edit_categories_change(self):
-        category_desktop = Category.objects.get(id=300)
-        category_android = Category.objects.get(id=400)
-        AddonCategory(addon=self.addon, category=category_desktop).save()
-        AddonCategory(addon=self.addon, category=category_android).save()
+        AddonCategory(addon=self.addon, category_id=300).save()
+        AddonCategory(addon=self.addon, category_id=400).save()
         assert sorted([cat.id for cat in self.get_addon().all_categories]) == [300, 400]
 
         self.client.post(self.describe_edit_url, self.get_dict(category='firefox'))
         category_ids_new = [cat.id for cat in self.get_addon().all_categories]
         # Only ever one category for Static Themes (per application)
         assert category_ids_new == [308, 408]
-        # Check we didn't delete the Category object too!
-        assert category_desktop.reload()
-        assert category_android.reload()
 
     def test_edit_categories_required(self):
         data = self.get_dict(category='')

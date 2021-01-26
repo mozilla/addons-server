@@ -185,17 +185,33 @@ class ModernAddonQueueTable(ReviewerQueueTable):
         verbose_name=_('Last Review'),
         accessor='addonapprovalscounter.last_human_review',
     )
+    code_weight = tables.Column(
+        verbose_name=_('Code Weight'),
+        accessor='_current_version.autoapprovalsummary.code_weight',
+    )
+    metadata_weight = tables.Column(
+        verbose_name=_('Metadata Weight'),
+        accessor='_current_version.autoapprovalsummary.metadata_weight',
+    )
     weight = tables.Column(
-        verbose_name=_('Weight'),
+        verbose_name=_('Total Weight'),
         accessor='_current_version.autoapprovalsummary.weight',
     )
     score = tables.Column(
-        verbose_name=_('Score'),
+        verbose_name=_('Maliciousness Score'),
         accessor='_current_version.autoapprovalsummary.score',
     )
 
     class Meta(ReviewerQueueTable.Meta):
-        fields = ('addon_name', 'flags', 'last_human_review', 'weight', 'score')
+        fields = (
+            'addon_name',
+            'flags',
+            'last_human_review',
+            'code_weight',
+            'metadata_weight',
+            'weight',
+            'score',
+        )
         # Exclude base fields ReviewerQueueTable has that we don't want.
         exclude = (
             'addon_type_id',
@@ -222,17 +238,13 @@ class ModernAddonQueueTable(ReviewerQueueTable):
     def render_last_human_review(self, value):
         return naturaltime(value) if value else ''
 
-    def render_weight(self, value):
-        if value > amo.POST_REVIEW_WEIGHT_HIGHEST_RISK:
-            classname = 'highest'
-        elif value > amo.POST_REVIEW_WEIGHT_HIGH_RISK:
-            classname = 'high'
-        elif value > amo.POST_REVIEW_WEIGHT_MEDIUM_RISK:
-            classname = 'medium'
-        else:
-            classname = 'low'
-
-        return '<span class="risk-%s">%d</span>' % (classname, value)
+    def render_weight(self, *, record, value):
+        return '<span title="%s">%d</span>' % (
+            '\n'.join(
+                record.current_version.autoapprovalsummary.get_pretty_weight_info()
+            ),
+            value,
+        )
 
     def render_score(self, value):
         return format_score(value)
@@ -247,7 +259,16 @@ class PendingRejectionTable(ModernAddonQueueTable):
     )
 
     class Meta(ModernAddonQueueTable.Meta):
-        fields = ('addon_name', 'flags', 'last_human_review', 'weight', 'deadline')
+        fields = (
+            'addon_name',
+            'flags',
+            'last_human_review',
+            'deadline',
+            'code_weight',
+            'metadata_weight',
+            'weight',
+            'score',
+        )
 
     @classmethod
     def get_queryset(cls, admin_reviewer=False):
@@ -269,7 +290,14 @@ class ContentReviewTable(AutoApprovedTable):
     class Meta(ReviewerQueueTable.Meta):
         fields = ('addon_name', 'flags', 'last_updated')
         # Exclude base fields ReviewerQueueTable has that we don't want.
-        exclude = ('addon_type_id', 'last_human_review', 'waiting_time_min', 'weight')
+        exclude = (
+            'addon_type_id',
+            'last_human_review',
+            'waiting_time_min',
+            'code_weight',
+            'metadata_weight',
+            'weight',
+        )
         orderable = False
 
     @classmethod

@@ -40,7 +40,7 @@ class _BaseAddonGeneratorMixin(object):
         assert len(data) == size
         categories = collections.defaultdict(int)
         for addonname, cat in data:
-            categories[cat] += 1
+            categories[cat.id] += 1
         # Addons are spread between categories evenly - the difference
         # between the largest and smallest category is less than 2.
         assert max(categories.values()) - min(categories.values()) < 2

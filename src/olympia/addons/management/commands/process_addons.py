@@ -21,11 +21,6 @@ from olympia.amo.utils import chunked
 from olympia.devhub.tasks import get_preview_sizes, recreate_previews
 from olympia.lib.crypto.tasks import sign_addons
 from olympia.reviewers.tasks import recalculate_post_review_weight
-from olympia.versions.compare import version_int
-
-
-firefox_56_star = version_int('56.*')
-current_autoapprovalsummary = '_current_version__autoapprovalsummary__'
 
 
 def get_recalc_needed_filters():
@@ -65,16 +60,12 @@ tasks = {
     'recalculate_post_review_weight': {
         'method': recalculate_post_review_weight,
         'qs': [
-            Q(**{current_autoapprovalsummary + 'verdict': amo.AUTO_APPROVED})
-            & ~Q(**{current_autoapprovalsummary + 'confirmed': True})
+            Q(_current_version__autoapprovalsummary__verdict=amo.AUTO_APPROVED)
+            & ~Q(_current_version__autoapprovalsummary__confirmed=True)
         ],
     },
     'constantly_recalculate_post_review_weight': {
-        # This re-calculates the whole post-review weight which can be costly
-        # so take that into account. We may want to optimize that later
-        # in case we notice things are slower than needed - cgrebs 20190730
         'method': recalculate_post_review_weight,
-        'kwargs': {'only_current_version': True},
         'qs': get_recalc_needed_filters(),
     },
     'resign_addons_for_cose': {

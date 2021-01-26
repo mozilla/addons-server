@@ -20,7 +20,6 @@ from django.utils.translation import trans_real, ugettext_lazy as _
 
 from django_jsonfield_backport.models import JSONField
 from django_statsd.clients import statsd
-from jinja2.filters import do_dictsort
 
 import olympia.core.logger
 
@@ -38,7 +37,6 @@ from olympia.amo.models import (
     ModelBase,
     OnChangeMixin,
     SaveUpdateMixin,
-    SlugField,
 )
 from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.urlresolvers import reverse
@@ -52,7 +50,7 @@ from olympia.amo.utils import (
     timer,
     to_language,
 )
-from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
+from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.constants.promoted import NOT_PROMOTED, RECOMMENDED
 from olympia.constants.reviewers import REPUTATION_CHOICES
 from olympia.files.models import File
@@ -453,7 +451,6 @@ class Addon(OnChangeMixin, ModelBase):
         related_name='addons',
         q_filter=~Q(addonuser__role=amo.AUTHOR_ROLE_DELETED),
     )
-    categories = models.ManyToManyField('Category', through='AddonCategory')
 
     _current_version = models.ForeignKey(
         Version,
@@ -1516,9 +1513,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     @cached_property
     def all_categories(self):
-        return list(
-            filter(None, [cat.to_static_category() for cat in self.categories.all()])
-        )
+        return [addoncat.category for addoncat in self.addoncategory_set.all()]
 
     @cached_property
     def current_previews(self):
@@ -1915,16 +1910,25 @@ class MigratedLWT(OnChangeMixin, ModelBase):
 class AddonCategory(models.Model):
     id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
-    category = models.ForeignKey('Category', on_delete=models.CASCADE)
+    category_id = models.PositiveIntegerField()
 
     class Meta:
         db_table = 'addons_categories'
         indexes = [
-            models.Index(fields=('category', 'addon'), name='category_addon_idx'),
+            models.Index(fields=('category_id', 'addon'), name='category_addon_idx'),
         ]
         constraints = [
-            models.UniqueConstraint(fields=('addon', 'category'), name='addon_id'),
+            models.UniqueConstraint(fields=('addon', 'category_id'), name='addon_id'),
         ]
+
+    def __init__(self, *args, **kwargs):
+        if 'category' in kwargs:
+            kwargs['category_id'] = kwargs.pop('category').id
+        super().__init__(*args, **kwargs)
+
+    @property
+    def category(self):
+        return CATEGORIES_BY_ID.get(self.category_id)
 
 
 class AddonUserManager(ManagerBase):
@@ -2125,79 +2129,6 @@ class DeniedGuid(ModelBase):
 
     def __str__(self):
         return self.guid
-
-
-class Category(OnChangeMixin, ModelBase):
-    id = PositiveAutoField(primary_key=True)
-    slug = SlugField(max_length=50, help_text='Used in Category URLs.', db_index=False)
-    type = models.PositiveIntegerField(
-        db_column='addontype_id', choices=do_dictsort(amo.ADDON_TYPE)
-    )
-    application = models.PositiveIntegerField(
-        choices=amo.APPS_CHOICES, null=True, blank=True, db_column='application_id'
-    )
-    count = models.IntegerField('Addon count', default=0)
-    weight = models.IntegerField(
-        default=0, help_text='Category weight used in sort ordering'
-    )
-    misc = models.BooleanField(default=False)
-
-    addons = models.ManyToManyField(Addon, through='AddonCategory')
-
-    class Meta:
-        db_table = 'categories'
-        verbose_name_plural = 'Categories'
-        indexes = [
-            models.Index(fields=('type',), name='addontype_id'),
-            models.Index(fields=('application',), name='application_id'),
-            models.Index(fields=('slug',), name='categories_slug'),
-        ]
-
-    @property
-    def name(self):
-        try:
-            value = CATEGORIES[self.application][self.type][self.slug].name
-        except KeyError:
-            # We can't find the category in the constants dict. This shouldn't
-            # happen, but just in case handle it by returning an empty string.
-            value = ''
-        return str(value)
-
-    def __str__(self):
-        return str(self.name)
-
-    def get_url_path(self):
-        try:
-            type = amo.ADDON_SLUGS[self.type]
-        except KeyError:
-            type = amo.ADDON_SLUGS[amo.ADDON_EXTENSION]
-        return reverse('browse.%s' % type, args=[self.slug])
-
-    def to_static_category(self):
-        """Return the corresponding StaticCategory instance from a Category."""
-        try:
-            staticcategory = CATEGORIES[self.application][self.type][self.slug]
-        except KeyError:
-            staticcategory = None
-        return staticcategory
-
-    @classmethod
-    def from_static_category(cls, static_category, save=False):
-        """Return a Category instance created from a StaticCategory.
-
-        Does not save it into the database by default. Useful in tests."""
-        # We need to drop description and name - they are StaticCategory
-        # properties not present in the database.
-        data = dict(static_category.__dict__)
-        del data['name']
-        del data['description']
-        if save:
-            category, _ = Category.objects.get_or_create(
-                id=static_category.id, defaults=data
-            )
-            return category
-        else:
-            return cls(**data)
 
 
 class Preview(BasePreview, ModelBase):

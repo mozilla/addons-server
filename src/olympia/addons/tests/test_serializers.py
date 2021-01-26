@@ -11,7 +11,6 @@ from olympia.addons.models import (
     Addon,
     AddonCategory,
     AddonUser,
-    Category,
     Preview,
     ReplacementAddon,
 )
@@ -136,10 +135,7 @@ class AddonSerializerOutputTestMixin(object):
         assert data['version'] == version.version
 
     def test_basic(self):
-        cat1 = Category.from_static_category(
-            CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['bookmarks']
-        )
-        cat1.save()
+        cat1 = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['bookmarks']
         license = License.objects.create(
             name={
                 'en-US': 'My License',
@@ -220,15 +216,9 @@ class AddonSerializerOutputTestMixin(object):
         # Reset current_version.compatible_apps now that we've added an app.
         del self.addon.current_version._compatible_apps
 
-        cat2 = Category.from_static_category(
-            CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['alerts-updates']
-        )
-        cat2.save()
+        cat2 = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['alerts-updates']
         AddonCategory.objects.create(addon=self.addon, category=cat2)
-        cat3 = Category.from_static_category(
-            CATEGORIES[amo.ANDROID.id][amo.ADDON_EXTENSION]['sports-games']
-        )
-        cat3.save()
+        cat3 = CATEGORIES[amo.ANDROID.id][amo.ADDON_EXTENSION]['sports-games']
         AddonCategory.objects.create(addon=self.addon, category=cat3)
 
         result = self.serialize()
@@ -1448,10 +1438,7 @@ class TestAddonBasketSyncSerializer(TestCase):
         return serializer.to_representation(self.addon)
 
     def test_basic(self):
-        category = Category.from_static_category(
-            CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['bookmarks']
-        )
-        category.save()
+        category = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['bookmarks']
         self.addon = addon_factory(category=category)
         data = self.serialize()
         expected_data = {

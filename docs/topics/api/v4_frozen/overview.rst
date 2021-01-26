@@ -334,6 +334,7 @@ v4 API changelog
 * 2020-10-22: added /shelves/sponsored/event endpoint for conversions, and to replace click endpoint https://github.com/mozilla/addons-server/issues/15718
 * 2020-11-05: dropped heading and description from discovery API https://github.com/mozilla/addons-server/issues/11272
 * 2020-11-05: added endpoint to receive Stripe events. https://github.com/mozilla/addons-server/issues/15879
+* 2021-01-28: removed the /shelves/ endpoints from /v4/.  They are only useful internally within AMO and are still under rapid development making them unsuitable for a frozen API.
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/
