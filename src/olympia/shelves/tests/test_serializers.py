@@ -6,6 +6,7 @@ from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 
 from olympia import amo
+from olympia.addons.models import Addon
 from olympia.amo.tests import addon_factory, collection_factory, ESTestCase, reverse_ns
 from olympia.bandwagon.models import CollectionAddon
 from olympia.constants.promoted import RECOMMENDED
