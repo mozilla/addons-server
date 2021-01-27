@@ -457,10 +457,11 @@ class AddonSearchView(ListAPIView):
         view = super(AddonSearchView, cls).as_view(**kwargs)
         return non_atomic_requests(view)
 
-    @property
-    def data(self):
+    def get_data(self, count=None):
         self.initial(self.request)
         queryset = self.filter_queryset(self.get_queryset())
+        if count:
+            queryset = queryset[0:count]
         serializer = self.get_serializer(queryset, many=True)
         return serializer.data
 
