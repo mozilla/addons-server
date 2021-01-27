@@ -1,4 +1,4 @@
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.amo.urlresolvers import reverse
@@ -16,7 +16,7 @@ class TestFileAdmin(TestCase):
         self.client.login(email=user.email)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
-        assert str(file_.pk) in force_text(response.content)
+        assert str(file_.pk) in force_str(response.content)
 
     def test_can_edit_with_admin_advanced_permission(self):
         addon = addon_factory()
@@ -27,7 +27,7 @@ class TestFileAdmin(TestCase):
         self.client.login(email=user.email)
         response = self.client.get(detail_url, follow=True)
         assert response.status_code == 200
-        assert str(file_.id) in force_text(response.content)
+        assert str(file_.id) in force_str(response.content)
 
         assert not file_.is_webextension
 
@@ -70,4 +70,4 @@ class TestFileAdmin(TestCase):
         assert response.status_code == 200
 
         expected_url = file_.get_absolute_url(attachment=True)
-        assert expected_url in force_text(response.content)
+        assert expected_url in force_str(response.content)

@@ -13,7 +13,7 @@ from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.test.utils import override_settings
 from django.test.testcases import TransactionTestCase
-from django.utils.encoding import force_bytes, force_text
+from django.utils.encoding import force_bytes, force_str
 
 from unittest import mock
 import pytest
@@ -33,13 +33,13 @@ from olympia.versions.compare import version_int
 def _get_signature_details(path):
     with zipfile.ZipFile(path, mode='r') as zobj:
         info = signing.SignatureInfo(zobj.read('META-INF/mozilla.rsa'))
-        manifest = force_text(zobj.read('META-INF/manifest.mf'))
+        manifest = force_str(zobj.read('META-INF/manifest.mf'))
         return info, manifest
 
 
 def _get_recommendation_data(path):
     with zipfile.ZipFile(path, mode='r') as zobj:
-        return json.loads(force_text(zobj.read('mozilla-recommendation.json')))
+        return json.loads(force_str(zobj.read('mozilla-recommendation.json')))
 
 
 @override_settings(ENABLE_ADDON_SIGNING=True)

@@ -1,9 +1,9 @@
 from datetime import date
 
 from django.utils import translation
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 from django.utils.http import urlsafe_base64_decode
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 
 import colorgram
 from elasticsearch_dsl import Q, query
@@ -44,7 +44,7 @@ class AddonQueryParam(object):
             value = self.get_value_from_reverse_dict()
         if self.is_valid(value):
             return value
-        raise ValueError(ugettext('Invalid "%s" parameter.' % self.query_param))
+        raise ValueError(gettext('Invalid "%s" parameter.' % self.query_param))
 
     def is_valid(self, value):
         return value in self.valid_values
@@ -57,7 +57,7 @@ class AddonQueryParam(object):
         value = self.query_data.get(self.query_param, '')
         value = self.reverse_dict.get(value.lower())
         if value is None:
-            raise ValueError(ugettext('Invalid "%s" parameter.' % self.query_param))
+            raise ValueError(gettext('Invalid "%s" parameter.' % self.query_param))
         return value
 
     def get_value_from_object_from_reverse_dict(self):
@@ -89,7 +89,7 @@ class AddonQueryMultiParam(object):
             value = self.lookup_string_value(value)
         if self.is_valid(value):
             return value
-        raise ValueError(ugettext('Invalid "%s" parameter.' % self.query_param))
+        raise ValueError(gettext('Invalid "%s" parameter.' % self.query_param))
 
     def get_values(self):
         values = str(self.query_data.get(self.query_param, '')).split(',')
@@ -133,10 +133,10 @@ class AddonAppVersionQueryParam(AddonQueryParam):
             low = version_int(appversion)
             high = version_int(appversion + 'a')
             if low < version_int('10.0'):
-                raise ValueError(ugettext('Invalid "%s" parameter.' % self.query_param))
+                raise ValueError(gettext('Invalid "%s" parameter.' % self.query_param))
             return app, low, high
         raise ValueError(
-            ugettext(
+            gettext(
                 'Invalid combination of "%s" and "%s" parameters.'
                 % (AddonAppQueryParam.query_param, self.query_param)
             )
@@ -199,16 +199,16 @@ class AddonGuidQueryParam(AddonQueryMultiParam):
         # feature in Firefox.
         if value.startswith('rta:') and '@' not in value:
             if not switch_is_active('return-to-amo'):
-                raise ValueError(ugettext('Return To AMO is currently disabled'))
+                raise ValueError(gettext('Return To AMO is currently disabled'))
             try:
-                # We need to keep force_text on the input because
+                # We need to keep force_str on the input because
                 # urlsafe_base64_decode requires str from Django 2.2 onwards.
-                value = force_text(urlsafe_base64_decode(force_text(value[4:])))
+                value = force_str(urlsafe_base64_decode(force_str(value[4:])))
                 if not amo.ADDON_GUID_PATTERN.match(value):
                     raise ValueError()
             except (TypeError, ValueError):
                 raise ValueError(
-                    ugettext('Invalid Return To AMO guid (not in base64url format?)')
+                    gettext('Invalid Return To AMO guid (not in base64url format?)')
                 )
             # Filter on the now decoded guid param as normal, then add promoted
             # filter on top to only return "safe" add-ons for return to AMO.
@@ -274,7 +274,7 @@ class AddonCategoryQueryParam(AddonQueryParam):
             self.reverse_dict = [CATEGORIES[app][type_] for type_ in types]
         except KeyError:
             raise ValueError(
-                ugettext(
+                gettext(
                     'Invalid combination of "%s", "%s" and "%s" parameters.'
                     % (
                         AddonAppQueryParam.query_param,
@@ -298,7 +298,7 @@ class AddonCategoryQueryParam(AddonQueryParam):
         for reverse_dict in self.reverse_dict:
             value = reverse_dict.get(query_value)
             if value is None:
-                raise ValueError(ugettext('Invalid "%s" parameter.' % self.query_param))
+                raise ValueError(gettext('Invalid "%s" parameter.' % self.query_param))
             values.append(value)
         return values
 
@@ -845,9 +845,7 @@ class SearchQueryFilter(BaseFilterBackend):
             return qs
 
         if len(search_query) > self.MAX_QUERY_LENGTH:
-            raise serializers.ValidationError(
-                ugettext('Maximum query length exceeded.')
-            )
+            raise serializers.ValidationError(gettext('Maximum query length exceeded.'))
 
         return self.apply_search_query(search_query, qs, sort_param)
 

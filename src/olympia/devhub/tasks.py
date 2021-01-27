@@ -19,8 +19,8 @@ from django.core.files.storage import default_storage as storage
 from django.core.validators import ValidationError
 from django.db import transaction
 from django.template import loader
-from django.utils.encoding import force_text
-from django.utils.translation import ugettext
+from django.utils.encoding import force_str
+from django.utils.translation import gettext
 
 from celery.result import AsyncResult
 from django_statsd.clients import statsd
@@ -212,7 +212,7 @@ def validation_task(fn):
             # If we raised a BadZipFile we can return a single exception with
             # a generic message indicating the zip is invalid or corrupt.
             results = deepcopy(amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT)
-            results['messages'][0]['message'] = ugettext(
+            results['messages'][0]['message'] = gettext(
                 'Invalid or corrupt add-on file.'
             )
             return results
@@ -235,7 +235,7 @@ def validate_upload(results, upload_pk, channel):
     Should only be called directly by Validator."""
     upload = FileUpload.objects.get(pk=upload_pk)
     data = validate_file_path(upload.path, channel)
-    return {**results, **json.loads(force_text(data))}
+    return {**results, **json.loads(force_str(data))}
 
 
 @validation_task
@@ -249,7 +249,7 @@ def validate_file(results, file_pk):
         data = file.validation.validation
     else:
         data = validate_file_path(file.current_file_path, file.version.channel)
-    return {**results, **json.loads(force_text(data))}
+    return {**results, **json.loads(force_str(data))}
 
 
 def validate_file_path(path, channel):
@@ -416,14 +416,14 @@ def check_for_api_keys_in_file(results, upload_pk):
                                 'submission.' % key.user
                             )
                             if key.user == upload.user:
-                                msg = ugettext(
+                                msg = gettext(
                                     'Your developer API key was '
                                     'found in the submitted file. '
                                     'To protect your account, the '
                                     'key will be revoked.'
                                 )
                             else:
-                                msg = ugettext(
+                                msg = gettext(
                                     'The developer API key of a '
                                     'coauthor was found in the '
                                     'submitted file. To protect '
@@ -521,7 +521,7 @@ def run_addons_linter(path, channel):
     if error:
         raise ValueError(error)
 
-    parsed_data = json.loads(force_text(output))
+    parsed_data = json.loads(force_str(output))
 
     result = json.dumps(fix_addons_linter_output(parsed_data, channel))
     track_validation_stats(result)
@@ -533,7 +533,7 @@ def track_validation_stats(json_result):
     """
     Given a raw JSON string of validator results, log some stats.
     """
-    result = json.loads(force_text(json_result))
+    result = json.loads(force_str(json_result))
     result_kind = 'success' if result['errors'] == 0 else 'failure'
     statsd.incr('devhub.linter.results.all.{}'.format(result_kind))
 
@@ -758,7 +758,7 @@ def send_welcome_email(addon_pk, emails, context, **kw):
 
 def send_api_key_revocation_email(emails):
     log.info('[1@None] Sending API key revocation email to %s.' % emails)
-    subject = ugettext(
+    subject = gettext(
         'Mozilla Security Notice: Your AMO API credentials have been revoked'
     )
     template = loader.get_template('devhub/emails/submission_api_key_revocation.txt')

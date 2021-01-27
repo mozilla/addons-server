@@ -11,7 +11,7 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 from django.utils.functional import cached_property
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 
 import jinja2
 
@@ -535,11 +535,11 @@ class ActivityLog(ModelBase):
                 arguments.remove(arg)
             if isinstance(arg, Rating) and not rating:
                 rating = self.f(
-                    '<a href="{0}">{1}</a>', arg.get_url_path(), ugettext('Review')
+                    '<a href="{0}">{1}</a>', arg.get_url_path(), gettext('Review')
                 )
                 arguments.remove(arg)
             if isinstance(arg, Version) and not version:
-                text = ugettext('Version {0}')
+                text = gettext('Version {0}')
                 if arg.channel == amo.RELEASE_CHANNEL_LISTED:
                     version = self.f(
                         '<a href="{1}">%s</a>' % text, arg.version, arg.get_url_path()
@@ -582,7 +582,7 @@ class ActivityLog(ModelBase):
                 # the non-addon argument could be a string or an int. If it's
                 # an int, we want to retrieve the string and translate it.
                 if isinstance(arg, int) and arg in amo.STATUS_CHOICES_ADDON:
-                    status = ugettext(amo.STATUS_CHOICES_ADDON[arg])
+                    status = gettext(amo.STATUS_CHOICES_ADDON[arg])
                 else:
                     # It's not an int or not one of the choices, so assume it's
                     # a string or an unknown int we want to display as-is.

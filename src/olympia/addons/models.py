@@ -16,7 +16,7 @@ from django.db.models import F, Max, Q, signals as dbsignals
 from django.dispatch import receiver
 from django.utils import translation
 from django.utils.functional import cached_property
-from django.utils.translation import trans_real, ugettext_lazy as _
+from django.utils.translation import trans_real, gettext_lazy as _
 
 from django_jsonfield_backport.models import JSONField
 from django_statsd.clients import statsd

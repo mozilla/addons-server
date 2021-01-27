@@ -7,7 +7,7 @@ from unittest import mock
 
 from django.http import Http404
 from django.test.client import RequestFactory
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 from waffle.testutils import override_switch
 
 from olympia import amo
@@ -252,12 +252,12 @@ class TestLayout(StatsTestCase):
 
 class TestCsvAndJsonViews(StatsTestCase):
     def csv_eq(self, response, expected):
-        content = force_text(response.content)
+        content = force_str(response.content)
         content_csv = csv.DictReader(
             # Drop lines that are comments.
             filter(lambda row: row[0] != '#', content.splitlines())
         )
-        expected = force_text(expected)
+        expected = force_str(expected)
         expected_csv = csv.DictReader(
             # Strip any extra spaces from the expected content.
             line.strip()
@@ -273,7 +273,7 @@ class TestCsvAndJsonViews(StatsTestCase):
         )
 
         assert response.status_code == 200
-        self.assertListEqual(json.loads(force_text(response.content)), [])
+        self.assertListEqual(json.loads(force_str(response.content)), [])
 
     def test_usage_series_no_data_csv(self):
         self.get_updates_series_mock.return_value = []
@@ -297,7 +297,7 @@ class TestCsvAndJsonViews(StatsTestCase):
 
         assert response.status_code == 200
         self.assertListEqual(
-            json.loads(force_text(response.content)),
+            json.loads(force_str(response.content)),
             [
                 {'count': 1500, 'date': '2009-06-02', 'end': '2009-06-02'},
                 {'count': 1000, 'date': '2009-06-01', 'end': '2009-06-01'},
@@ -344,7 +344,7 @@ class TestCsvAndJsonViews(StatsTestCase):
 
         assert response.status_code == 200
         self.assertListEqual(
-            json.loads(force_text(response.content)),
+            json.loads(force_str(response.content)),
             [
                 {
                     'data': {'{ec8030f7-c20a-464f-9b0e-13a3a9e97384}': {'4.0': 1500}},
@@ -411,7 +411,7 @@ class TestCsvAndJsonViews(StatsTestCase):
 
         assert response.status_code == 200
         self.assertListEqual(
-            json.loads(force_text(response.content)),
+            json.loads(force_str(response.content)),
             [
                 {
                     'count': 1500,
@@ -484,7 +484,7 @@ class TestCsvAndJsonViews(StatsTestCase):
 
         assert response.status_code == 200
         self.assertListEqual(
-            json.loads(force_text(response.content)),
+            json.loads(force_str(response.content)),
             [
                 {
                     'count': 1500,
@@ -549,7 +549,7 @@ class TestCsvAndJsonViews(StatsTestCase):
 
         assert response.status_code == 200
         self.assertListEqual(
-            json.loads(force_text(response.content)),
+            json.loads(force_str(response.content)),
             [
                 {
                     'count': 1500,
@@ -614,7 +614,7 @@ class TestCsvAndJsonViews(StatsTestCase):
 
         assert response.status_code == 200
         self.assertListEqual(
-            json.loads(force_text(response.content)),
+            json.loads(force_str(response.content)),
             [
                 {'date': '2009-06-02', 'end': '2009-06-02', 'count': 1500},
                 {'date': '2009-06-01', 'end': '2009-06-01', 'count': 1000},
@@ -669,7 +669,7 @@ class TestCsvAndJsonViews(StatsTestCase):
 
         assert response.status_code == 200
         self.assertListEqual(
-            json.loads(force_text(response.content)),
+            json.loads(force_str(response.content)),
             [
                 {
                     'date': '2009-06-02',
@@ -736,7 +736,7 @@ class TestCsvAndJsonViews(StatsTestCase):
 
         assert response.status_code == 200
         self.assertListEqual(
-            json.loads(force_text(response.content)),
+            json.loads(force_str(response.content)),
             [
                 {
                     'data': {'content-1': 550, 'content-2': 950},
@@ -803,7 +803,7 @@ class TestCsvAndJsonViews(StatsTestCase):
 
         assert response.status_code == 200
         self.assertListEqual(
-            json.loads(force_text(response.content)),
+            json.loads(force_str(response.content)),
             [
                 {
                     'data': {'medium-1': 550, 'medium-2': 950},
@@ -870,7 +870,7 @@ class TestCsvAndJsonViews(StatsTestCase):
 
         assert response.status_code == 200
         self.assertListEqual(
-            json.loads(force_text(response.content)),
+            json.loads(force_str(response.content)),
             [
                 {
                     'data': {'campaign-1': 550, 'campaign-2': 950},
@@ -1222,4 +1222,4 @@ class TestRenderCSV(TestCase):
             fields=fields,
         )
 
-        assert '\r\n'.join([',a', '1,2', '0,4']) in force_text(response.content)
+        assert '\r\n'.join([',a', '1,2', '0,4']) in force_str(response.content)

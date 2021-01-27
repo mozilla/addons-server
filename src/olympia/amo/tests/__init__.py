@@ -26,7 +26,7 @@ from django.test.client import Client, RequestFactory
 from django.test.utils import override_settings
 from django.conf import urls as django_urls
 from django.utils import translation
-from django.utils.encoding import force_str, force_text
+from django.utils.encoding import force_str
 
 import pytest
 from dateutil.parser import parse as dateutil_parser
@@ -1019,7 +1019,7 @@ class TestXss(TestCase):
 
     def assertNameAndNoXSS(self, url):
         response = self.client.get(url)
-        content = force_text(response.content)
+        content = force_str(response.content)
         assert self.name not in content
         assert self.escaped in content
 

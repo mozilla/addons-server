@@ -1,4 +1,4 @@
-from django.utils.translation import ugettext, ugettext_lazy as _
+from django.utils.translation import gettext, gettext_lazy as _
 
 from rest_framework import serializers
 from rest_framework.validators import UniqueTogetherValidator
@@ -64,29 +64,29 @@ class CollectionSerializer(serializers.ModelSerializer):
                 for locale, sub_value in value.items()
             }
         if value.strip() == '':
-            raise serializers.ValidationError(ugettext('Name cannot be empty.'))
+            raise serializers.ValidationError(gettext('Name cannot be empty.'))
         if DeniedName.blocked(value):
-            raise serializers.ValidationError(ugettext('This name cannot be used.'))
+            raise serializers.ValidationError(gettext('This name cannot be used.'))
         return value
 
     def validate_description(self, value):
         if has_links(clean_nl(str(value))):
             # There's some links, we don't want them.
-            raise serializers.ValidationError(ugettext('No links are allowed.'))
+            raise serializers.ValidationError(gettext('No links are allowed.'))
         return value
 
     def validate_slug(self, value):
         slug_validator(
             value,
             lower=False,
-            message=ugettext(
+            message=gettext(
                 'The custom URL must consist of letters, '
                 'numbers, underscores or hyphens.'
             ),
         )
         if DeniedName.blocked(value):
             raise serializers.ValidationError(
-                ugettext('This custom URL cannot be used.')
+                gettext('This custom URL cannot be used.')
             )
 
         return value

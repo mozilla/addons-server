@@ -2,7 +2,7 @@
 from urllib.parse import quote
 
 from django.utils import translation
-from django.utils.encoding import force_bytes, force_text
+from django.utils.encoding import force_bytes, force_str
 
 import pytest
 
@@ -81,7 +81,7 @@ class TestDisplayUrl(amo.tests.TestCase):
 
     def test_unicode(self):
         url = quote(self.raw_url.encode('utf8'))
-        url = force_text(force_bytes(url, 'utf8'), 'utf8')
+        url = force_str(force_bytes(url, 'utf8'), 'utf8')
         assert render('{{ url|display_url }}', {'url': url}) == (self.raw_url)
 
 

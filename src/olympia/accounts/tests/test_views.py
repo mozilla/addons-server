@@ -13,7 +13,7 @@ from django.contrib.messages import get_messages
 from django.urls import reverse
 from django.test import RequestFactory
 from django.test.utils import override_settings
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.settings import api_settings
@@ -427,7 +427,7 @@ class TestWithUser(TestCase):
         self.request.data = {
             'code': 'foo',
             'state': 'some-blob:{next_path}'.format(
-                next_path=force_text(base64.urlsafe_b64encode(b'/a/path/?'))
+                next_path=force_str(base64.urlsafe_b64encode(b'/a/path/?'))
             ),
         }
         args, kwargs = self.fn(self.request)
@@ -494,9 +494,7 @@ class TestWithUser(TestCase):
         self.request.data = {
             'code': 'foo',
             'state': 'some-blob:{next_path}'.format(
-                next_path=force_text(
-                    base64.urlsafe_b64encode(b'https://www.google.com')
-                )
+                next_path=force_str(base64.urlsafe_b64encode(b'https://www.google.com'))
             ),
         }
         args, kwargs = self.fn(self.request)
@@ -543,7 +541,7 @@ class TestWithUser(TestCase):
         self.request.data = {
             'code': 'foo',
             'state': 'some-blob:{}'.format(
-                force_text(base64.urlsafe_b64encode(b'/next'))
+                force_str(base64.urlsafe_b64encode(b'/next'))
             ),
         }
         self.user = UserProfile()
@@ -563,7 +561,7 @@ class TestWithUser(TestCase):
         self.request.data = {
             'code': 'foo',
             'state': 'some-blob:{}'.format(
-                force_text(base64.urlsafe_b64encode(b'/next'))
+                force_str(base64.urlsafe_b64encode(b'/next'))
             ),
         }
         self.user = UserProfile()
@@ -594,7 +592,7 @@ class TestWithUser(TestCase):
         self.request.data = {
             'code': 'foo',
             'state': 'other-blob:{}'.format(
-                force_text(base64.urlsafe_b64encode(b'/next'))
+                force_str(base64.urlsafe_b64encode(b'/next'))
             ),
         }
         self.fn(self.request)
@@ -627,7 +625,7 @@ class TestWithUser(TestCase):
         self.request.data = {
             'code': 'foo',
             'state': 'some-blob:{next_path}'.format(
-                next_path=force_text(base64.urlsafe_b64encode(b'/a/path/?'))
+                next_path=force_str(base64.urlsafe_b64encode(b'/a/path/?'))
             ),
         }
         # @with_user should return a redirect response directly in that case.
@@ -655,7 +653,7 @@ class TestWithUser(TestCase):
             'id_token_hint': ['someopenidtoken'],
             'prompt': ['none'],
             'scope': ['profile openid'],
-            'state': ['some-blob:{next_path}'.format(next_path=force_text(next_path))],
+            'state': ['some-blob:{next_path}'.format(next_path=force_str(next_path))],
         }
 
     def _test_should_continue_without_redirect_for_two_factor_auth(
@@ -667,7 +665,7 @@ class TestWithUser(TestCase):
         self.request.data = {
             'code': 'foo',
             'state': 'some-blob:{next_path}'.format(
-                next_path=force_text(base64.urlsafe_b64encode(b'/a/path/?'))
+                next_path=force_str(base64.urlsafe_b64encode(b'/a/path/?'))
             ),
         }
         args, kwargs = self.fn(self.request)
@@ -746,7 +744,7 @@ class TestWithUser(TestCase):
             'code': 'foo',
             'fake_fxa_email': self.user.email,
             'state': 'some-blob:{next_path}'.format(
-                next_path=force_text(base64.urlsafe_b64encode(b'/a/path/?'))
+                next_path=force_str(base64.urlsafe_b64encode(b'/a/path/?'))
             ),
         }
         args, kwargs = self.fn(self.request)
@@ -927,7 +925,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
                     'state': ':'.join(
                         [
                             self.fxa_state,
-                            force_text(base64.urlsafe_b64encode(b'/go/here')),
+                            force_str(base64.urlsafe_b64encode(b'/go/here')),
                         ]
                     ),
                 },
@@ -956,7 +954,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
                         'state': ':'.join(
                             [
                                 self.fxa_state,
-                                force_text(
+                                force_str(
                                     base64.urlsafe_b64encode(
                                         b'https://supersafe.com/go/here'
                                     )
@@ -990,7 +988,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
                     'state': ':'.join(
                         [
                             self.fxa_state,
-                            force_text(base64.urlsafe_b64encode(b'https://go.go/here')),
+                            force_str(base64.urlsafe_b64encode(b'https://go.go/here')),
                         ]
                     ),
                 },
@@ -1047,7 +1045,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
                 'state': ':'.join(
                     [
                         self.fxa_state,
-                        force_text(base64.urlsafe_b64encode(b'/en-US/firefox/a/path')),
+                        force_str(base64.urlsafe_b64encode(b'/en-US/firefox/a/path')),
                     ]
                 ),
             },
@@ -1070,7 +1068,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
                 'state': ':'.join(
                     [
                         self.fxa_state,
-                        force_text(base64.urlsafe_b64encode(b'/en-US/firefox/a/path')),
+                        force_str(base64.urlsafe_b64encode(b'/en-US/firefox/a/path')),
                     ]
                 ),
             },
@@ -1099,7 +1097,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
                     'state': ':'.join(
                         [
                             self.fxa_state,
-                            force_text(base64.urlsafe_b64encode(next_path.encode())),
+                            force_str(base64.urlsafe_b64encode(next_path.encode())),
                         ]
                     ),
                 },
@@ -1123,7 +1121,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
                     'state': ':'.join(
                         [
                             self.fxa_state,
-                            force_text(base64.urlsafe_b64encode(next_path.encode())),
+                            force_str(base64.urlsafe_b64encode(next_path.encode())),
                         ]
                     ),
                 },
@@ -1148,7 +1146,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
                     'state': ':'.join(
                         [
                             self.fxa_state,
-                            force_text(base64.urlsafe_b64encode(next_path.encode())),
+                            force_str(base64.urlsafe_b64encode(next_path.encode())),
                         ]
                     ),
                 },
@@ -1175,7 +1173,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
                     'state': ':'.join(
                         [
                             self.fxa_state,
-                            force_text(base64.urlsafe_b64encode(next_path.encode())),
+                            force_str(base64.urlsafe_b64encode(next_path.encode())),
                         ]
                     ),
                 },
@@ -1339,7 +1337,7 @@ class TestAccountViewSetUpdate(TestCase):
         response = self.patch()
         assert response.status_code == 200
         assert response.content != original
-        modified_json = json.loads(force_text(response.content))
+        modified_json = json.loads(force_str(response.content))
         self.user = self.user.reload()
         for prop, value in self.update_data.items():
             assert modified_json[prop] == value
@@ -1364,7 +1362,7 @@ class TestAccountViewSetUpdate(TestCase):
         response = self.patch(url=url)
         assert response.status_code == 200
         assert response.content != original
-        modified_json = json.loads(force_text(response.content))
+        modified_json = json.loads(force_str(response.content))
         random_user = random_user.reload()
         for prop, value in self.update_data.items():
             assert modified_json[prop] == value
@@ -1382,7 +1380,7 @@ class TestAccountViewSetUpdate(TestCase):
         assert response.content == original
         self.user = self.user.reload()
         # Confirm field hasn't been updated.
-        response = json.loads(force_text(response.content))
+        response = json.loads(force_str(response.content))
         assert response['last_login_ip'] == ''
         assert self.user.last_login_ip == ''
         assert response['username'] == existing_username
@@ -1394,7 +1392,7 @@ class TestAccountViewSetUpdate(TestCase):
             data={'biography': '<a href="https://google.com">google</a>'}
         )
         assert response.status_code == 400
-        assert json.loads(force_text(response.content)) == {
+        assert json.loads(force_str(response.content)) == {
             'biography': ['No links are allowed.']
         }
 
@@ -1402,19 +1400,19 @@ class TestAccountViewSetUpdate(TestCase):
         self.client.login_api(self.user)
         response = self.patch(data={'display_name': 'a'})
         assert response.status_code == 400
-        assert json.loads(force_text(response.content)) == {
+        assert json.loads(force_str(response.content)) == {
             'display_name': ['Ensure this field has at least 2 characters.']
         }
 
         response = self.patch(data={'display_name': 'a' * 51})
         assert response.status_code == 400
-        assert json.loads(force_text(response.content)) == {
+        assert json.loads(force_str(response.content)) == {
             'display_name': ['Ensure this field has no more than 50 characters.']
         }
 
         response = self.patch(data={'display_name': '\x7F\u20DF'})
         assert response.status_code == 400
-        assert json.loads(force_text(response.content)) == {
+        assert json.loads(force_str(response.content)) == {
             'display_name': ['Must contain at least one printable character.']
         }
 
@@ -1432,19 +1430,19 @@ class TestAccountViewSetUpdate(TestCase):
         self.client.login_api(self.user)
         response = self.patch(data={'reviewer_name': 'a'})
         assert response.status_code == 400
-        assert json.loads(force_text(response.content)) == {
+        assert json.loads(force_str(response.content)) == {
             'reviewer_name': ['Ensure this field has at least 2 characters.']
         }
 
         response = self.patch(data={'reviewer_name': 'a' * 51})
         assert response.status_code == 400
-        assert json.loads(force_text(response.content)) == {
+        assert json.loads(force_str(response.content)) == {
             'reviewer_name': ['Ensure this field has no more than 50 characters.']
         }
 
         response = self.patch(data={'reviewer_name': '\x7F\u20DF'})
         assert response.status_code == 400
-        assert json.loads(force_text(response.content)) == {
+        assert json.loads(force_str(response.content)) == {
             'reviewer_name': ['Must contain at least one printable character.']
         }
 
@@ -1470,7 +1468,7 @@ class TestAccountViewSetUpdate(TestCase):
         data = {'picture_upload': photo, 'biography': 'not just setting photo'}
         response = self.client.patch(self.url, data, format='multipart')
         assert response.status_code == 200
-        json_content = json.loads(force_text(response.content))
+        json_content = json.loads(force_str(response.content))
         self.user = self.user.reload()
         assert 'anon_user.png' not in json_content['picture_url']
         assert '%s.png' % self.user.id in json_content['picture_url']
@@ -1488,7 +1486,7 @@ class TestAccountViewSetUpdate(TestCase):
         assert response.status_code == 200
         # Should delete the photo
         assert not path.exists(self.user.picture_path)
-        json_content = json.loads(force_text(response.content))
+        json_content = json.loads(force_str(response.content))
         assert json_content['picture_url'] is None
 
     def test_account_picture_disallowed_verbs(self):
@@ -1509,7 +1507,7 @@ class TestAccountViewSetUpdate(TestCase):
         data = {'picture_upload': gif}
         response = self.client.patch(self.url, data, format='multipart')
         assert response.status_code == 400
-        assert json.loads(force_text(response.content)) == {
+        assert json.loads(force_str(response.content)) == {
             'picture_upload': ['Images must be either PNG or JPG.']
         }
 
@@ -1519,7 +1517,7 @@ class TestAccountViewSetUpdate(TestCase):
         data = {'picture_upload': gif}
         response = self.client.patch(self.url, data, format='multipart')
         assert response.status_code == 400
-        assert json.loads(force_text(response.content)) == {
+        assert json.loads(force_str(response.content)) == {
             'picture_upload': ['Images cannot be animated.']
         }
 
@@ -1529,7 +1527,7 @@ class TestAccountViewSetUpdate(TestCase):
         data = {'picture_upload': gif}
         response = self.client.patch(self.url, data, format='multipart')
         assert response.status_code == 400
-        assert json.loads(force_text(response.content)) == {
+        assert json.loads(force_str(response.content)) == {
             'picture_upload': [
                 'Upload a valid image. The file you uploaded was either not '
                 'an image or a corrupted image.'

@@ -1,5 +1,4 @@
-from django.conf.urls import include, url
-from django.urls import NoReverseMatch
+from django.urls import include, NoReverseMatch, re_path
 
 from rest_framework.response import Response
 from rest_framework.settings import api_settings
@@ -17,17 +16,17 @@ class EmptyViewSet(GenericViewSet):
 
 class TestNamespacing(WithDynamicEndpoints, TestCase):
     def setUp(self):
-        v3_only_url = url(
+        v3_only_url = re_path(
             r'foo', EmptyViewSet.as_view(actions={'get': 'list'}), name='foo'
         )
-        v4_only_url = url(
+        v4_only_url = re_path(
             r'baa', EmptyViewSet.as_view(actions={'get': 'list'}), name='baa'
         )
-        both_url = url(
+        both_url = re_path(
             r'yay', EmptyViewSet.as_view(actions={'get': 'list'}), name='yay'
         )
-        v3_url = url(r'v3/', include(([v3_only_url, both_url], 'v3')))
-        v4_url = url(r'v4/', include(([v4_only_url, both_url], 'v4')))
+        v3_url = re_path(r'v3/', include(([v3_only_url, both_url], 'v3')))
+        v4_url = re_path(r'v4/', include(([v4_only_url, both_url], 'v4')))
         self.endpoint(include([v3_url, v4_url]), url_regex=r'^api/')
 
     def test_v3(self):

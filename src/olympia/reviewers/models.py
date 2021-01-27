@@ -8,7 +8,7 @@ from django.core.cache import cache
 from django.db import models
 from django.db.models import Q, Sum
 from django.template import loader
-from django.utils.translation import ugettext, ugettext_lazy as _
+from django.utils.translation import gettext, gettext_lazy as _
 
 from django_jsonfield_backport.models import JSONField
 
@@ -1173,7 +1173,7 @@ class AutoApprovalSummary(ModelBase):
                 ['%s: %d' % (k, v) for k, v in self.weight_info.items() if v]
             )
         else:
-            weight_info = [ugettext('Weight breakdown not available.')]
+            weight_info = [gettext('Weight breakdown not available.')]
         return weight_info
 
     def find_previous_confirmed_version(self):

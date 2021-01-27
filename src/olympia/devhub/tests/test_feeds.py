@@ -2,7 +2,7 @@ import uuid
 
 from urllib.parse import urlencode
 
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 
 from pyquery import PyQuery as pq
 
@@ -203,7 +203,7 @@ class TestActivity(HubTest):
         assert res['content-type'] == 'application/rss+xml; charset=utf-8'
         assert len(pq(res.content)('item')) == 5
         assert '<title>Recent Changes for %s</title>' % self.addon in (
-            force_text(res.content)
+            force_str(res.content)
         )
 
     def test_rss_unlisted_addon(self):

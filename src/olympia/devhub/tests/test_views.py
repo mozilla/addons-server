@@ -9,7 +9,7 @@ from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.test import RequestFactory
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 from django.utils.translation import trim_whitespace
 
 from unittest import mock
@@ -390,7 +390,7 @@ class TestVersionStats(TestCase):
             Rating.objects.create(addon=addon, user=user, version=addon.current_version)
 
         url = reverse('devhub.versions.stats', args=[addon.slug])
-        data = json.loads(force_text(self.client.get(url).content))
+        data = json.loads(force_str(self.client.get(url).content))
         exp = {
             str(version.id): {
                 'reviews': 10,
@@ -699,7 +699,7 @@ class TestActivityFeed(TestCase):
         doc = pq(response.content)
         assert len(doc('#recent-activity .item')) == 1
 
-        content = force_text(response.content)
+        content = force_str(response.content)
         assert self.action_user.reviewer_name in content
         assert self.action_user.name not in content
 
@@ -711,7 +711,7 @@ class TestActivityFeed(TestCase):
         doc = pq(response.content)
         assert len(doc('#recent-activity .item')) == 1
 
-        content = force_text(response.content)
+        content = force_str(response.content)
         # Assertions are inverted compared to the test above.
         assert self.action_user.reviewer_name not in content
         assert self.action_user.name in content
@@ -1272,7 +1272,7 @@ class TestUploadDetail(BaseUploadTest):
             reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
         )
         assert response.status_code == 200
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
 
         assert data['validation']['errors'] == 1
         assert data['url'] == (
@@ -1370,7 +1370,7 @@ class TestUploadDetail(BaseUploadTest):
         response = self.client.get(
             reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
         )
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         message = [
             (m['message'], m.get('type') == 'error')
             for m in data['validation']['messages']
@@ -1391,7 +1391,7 @@ class TestUploadDetail(BaseUploadTest):
         response = self.client.get(
             reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
         )
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         message = [
             (m['message'], m.get('fatal', False))
             for m in data['validation']['messages']
@@ -1414,7 +1414,7 @@ class TestUploadDetail(BaseUploadTest):
         response = self.client.get(
             reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
         )
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         assert data['validation']['messages'] == []
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
@@ -1427,7 +1427,7 @@ class TestUploadDetail(BaseUploadTest):
         response = self.client.get(
             reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
         )
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         assert data['validation']['messages'] == [
             {
                 'tier': 1,
@@ -1448,7 +1448,7 @@ class TestUploadDetail(BaseUploadTest):
         response = self.client.get(
             reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
         )
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         assert data['validation']['messages'] == []
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
@@ -1461,7 +1461,7 @@ class TestUploadDetail(BaseUploadTest):
         response = self.client.get(
             reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
         )
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         assert data['validation']['messages'] == [
             {
                 'tier': 1,
@@ -1490,7 +1490,7 @@ class TestUploadDetail(BaseUploadTest):
         response = self.client.get(
             reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
         )
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         assert data['validation']['messages'] == []
 
     @mock.patch('olympia.files.utils.get_signer_organizational_unit_name')
@@ -1505,7 +1505,7 @@ class TestUploadDetail(BaseUploadTest):
         response = self.client.get(
             reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
         )
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         assert data['validation']['messages'] == [
             {
                 'tier': 1,
@@ -1545,7 +1545,7 @@ class TestUploadDetail(BaseUploadTest):
         response = self.client.get(
             reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
         )
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
 
         msg = data['validation']['messages'][0]
 
@@ -1570,7 +1570,7 @@ class TestUploadDetail(BaseUploadTest):
                 'devhub.upload_detail_for_version', args=[addon.slug, upload.uuid.hex]
             )
         )
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         assert data['validation']['messages'] == []
 
     def test_legacy_langpacks_disallowed(self):
@@ -1579,7 +1579,7 @@ class TestUploadDetail(BaseUploadTest):
         response = self.client.get(
             reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
         )
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         assert data['validation']['messages'][0]['id'] == [
             'validation',
             'messages',
@@ -2014,7 +2014,7 @@ class TestThemeBackgroundImage(TestCase):
     def test_no_header_image(self):
         response = self.client.post(self.url, follow=True)
         assert response.status_code == 200
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         assert data == {}
 
     def test_header_image(self):
@@ -2025,7 +2025,7 @@ class TestThemeBackgroundImage(TestCase):
         copy_stored_file(zip_file, destination)
         response = self.client.post(self.url, follow=True)
         assert response.status_code == 200
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         assert data
         assert len(data.items()) == 1
         assert 'weta.png' in data

@@ -11,7 +11,7 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.forms import ValidationError
 from django.test.utils import override_settings
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 
 from unittest import mock
 import pytest
@@ -814,7 +814,7 @@ class TestFileUpload(UploadTest):
     def test_from_post_filename(self):
         upload = self.upload()
         assert upload.uuid
-        assert upload.name == '{0}_filenamé.xpi'.format(force_text(upload.uuid.hex))
+        assert upload.name == '{0}_filenamé.xpi'.format(force_str(upload.uuid.hex))
 
     def test_from_post_hash(self):
         hashdigest = hashlib.sha256(self.data).hexdigest()
@@ -1229,8 +1229,8 @@ class TestFileFromUpload(UploadTest):
             with storage.open(fname, 'w') as fs:
                 shutil.copyfileobj(open(fname), fs)
         data = {
-            'path': force_text(fname),
-            'name': force_text(name),
+            'path': force_str(fname),
+            'name': force_str(name),
             'hash': 'sha256:%s' % name,
             'validation': validation_data,
         }
@@ -1291,8 +1291,8 @@ class TestFileFromUpload(UploadTest):
         self.version.addon.name = 'jéts!'
         file_ = File.from_upload(upload, self.version, self.platform, parsed_data={})
         assert file_.filename == 'jets-0.1.xpi'
-        expected_path_orig = force_text(upload.path)
-        expected_path_dest = force_text(file_.current_file_path)
+        expected_path_orig = force_str(upload.path)
+        expected_path_dest = force_str(file_.current_file_path)
         assert copy_stored_file_mock.call_count == 1
         assert copy_stored_file_mock.call_args_list[0][0] == (
             expected_path_orig,

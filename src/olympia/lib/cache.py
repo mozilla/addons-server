@@ -6,7 +6,7 @@ from contextlib import contextmanager
 from django.core.cache.backends.base import DEFAULT_TIMEOUT, BaseCache
 from django.core.cache import cache, caches, _create_cache
 from django.utils import translation
-from django.utils.encoding import force_bytes, force_text
+from django.utils.encoding import force_bytes, force_str
 
 
 def make_key(key, with_locale=True, normalize=False):
@@ -15,8 +15,8 @@ def make_key(key, with_locale=True, normalize=False):
         key = '{key}:{lang}'.format(key=key, lang=translation.get_language())
 
     if normalize:
-        return force_text(hashlib.md5(force_bytes(key)).hexdigest())
-    return force_text(key)
+        return force_str(hashlib.md5(force_bytes(key)).hexdigest())
+    return force_str(key)
 
 
 def memoize_key(prefix, *args, **kwargs):

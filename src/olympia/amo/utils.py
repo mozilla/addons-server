@@ -36,7 +36,7 @@ from django.http import HttpResponse
 from django.http.response import HttpResponseRedirectBase
 from django.template import engines, loader
 from django.utils import translation
-from django.utils.encoding import force_bytes, force_text
+from django.utils.encoding import force_bytes, force_str
 from django.utils.http import _urlparse as django_urlparse, quote_etag
 
 import bleach
@@ -118,13 +118,13 @@ def urlparams(url_, hash=None, **query):
     New query params will be appended to existing parameters, except duplicate
     names, which will be replaced.
     """
-    url = django_urlparse(force_text(url_))
+    url = django_urlparse(force_str(url_))
 
     fragment = hash if hash is not None else url.fragment
 
     # Use dict(parse_qsl) so we don't get lists of values.
     q = url.query
-    query_dict = dict(parse_qsl(force_text(q))) if q else {}
+    query_dict = dict(parse_qsl(force_str(q))) if q else {}
     query_dict.update(
         (k, force_bytes(v) if v is not None else v) for k, v in query.items()
     )
@@ -312,7 +312,7 @@ def send_mail(
                 unsubscribe_url = absolutify(
                     reverse(
                         'users.unsubscribe',
-                        args=[force_text(token), hash, perm_setting.short],
+                        args=[force_str(token), hash, perm_setting.short],
                         add_prefix=False,
                     )
                 )
@@ -517,7 +517,7 @@ def slugify(s, ok=SLUG_OK, lower=True, spaces=False, delimiter='-'):
     # http://www.unicode.org/reports/tr44/tr44-4.html#GC_Values_Table
     rv = []
 
-    for c in force_text(s):
+    for c in force_str(s):
         cat = unicodedata.category(c)[0]
         if cat in 'LN' or c in ok:
             rv.append(c)
@@ -536,12 +536,12 @@ def normalize_string(value, strip_punctuation=False):
     * strips whitespaces, newlines and tabs
     * optionally removes puncutation
     """
-    value = unicodedata.normalize('NFD', force_text(value))
+    value = unicodedata.normalize('NFD', force_str(value))
     value = value.encode('utf-8', 'ignore')
 
     if strip_punctuation:
         value = value.translate(None, force_bytes(string.punctuation))
-    return force_text(b' '.join(value.split()))
+    return force_str(b' '.join(value.split()))
 
 
 def slug_validator(
@@ -861,7 +861,7 @@ def escape_all(value):
 
     """
     if isinstance(value, str):
-        value = jinja2.escape(force_text(value))
+        value = jinja2.escape(force_str(value))
         value = linkify_with_outgoing(value)
         return value
     elif isinstance(value, list):
@@ -871,7 +871,7 @@ def escape_all(value):
         for k, lv in value.items():
             value[k] = escape_all(lv)
     elif isinstance(value, Translation):
-        value = jinja2.escape(force_text(value))
+        value = jinja2.escape(force_str(value))
     return value
 
 
@@ -972,8 +972,8 @@ def rm_local_tmp_dir(path):
     certain that your executing code is operating on a local temp dir, not a
     directory managed by the Django Storage API.
     """
-    path = force_text(path)
-    tmp_path = force_text(settings.TMP_PATH)
+    path = force_str(path)
+    tmp_path = force_str(settings.TMP_PATH)
     assert path.startswith((tmp_path, tempfile.gettempdir()))
     return shutil.rmtree(path)
 
@@ -1101,7 +1101,7 @@ def use_fake_fxa():
 class AMOJSONEncoder(JSONEncoder):
     def default(self, obj):
         if isinstance(obj, Translation):
-            return force_text(obj)
+            return force_str(obj)
         return super(AMOJSONEncoder, self).default(obj)
 
 

@@ -2,7 +2,7 @@
 import os
 
 from django.conf import settings
-from django.utils.encoding import smart_text
+from django.utils.encoding import smart_str
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
 from django.utils.http import urlquote
@@ -552,10 +552,10 @@ class TestDownloadSource(TestCase):
         assert response.status_code == 200
         assert response[settings.XSENDFILE_HEADER]
         assert 'Content-Disposition' in response
-        filename = smart_text(self.filename)
+        filename = smart_str(self.filename)
         content_disposition = response['Content-Disposition']
         assert filename in decode_http_header_value(content_disposition)
-        expected_path = smart_text(self.version.source.path)
+        expected_path = smart_str(self.version.source.path)
         xsendfile_header = decode_http_header_value(response[settings.XSENDFILE_HEADER])
         assert xsendfile_header == expected_path
 
@@ -577,10 +577,10 @@ class TestDownloadSource(TestCase):
         assert response.status_code == 200
         assert response[settings.XSENDFILE_HEADER]
         assert 'Content-Disposition' in response
-        filename = smart_text(self.filename)
+        filename = smart_str(self.filename)
         content_disposition = response['Content-Disposition']
         assert filename in decode_http_header_value(content_disposition)
-        expected_path = smart_text(self.version.source.path)
+        expected_path = smart_str(self.version.source.path)
         xsendfile_header = decode_http_header_value(response[settings.XSENDFILE_HEADER])
         assert xsendfile_header == expected_path
 

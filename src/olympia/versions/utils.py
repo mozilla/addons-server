@@ -9,7 +9,7 @@ import zipfile
 from base64 import b64encode
 
 from django.conf import settings
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 
 from PIL import Image
 
@@ -82,7 +82,7 @@ def encode_header(header_blob, file_ext):
                 img_format = header_image.format.lower()
         src = 'data:image/%s;base64,%s' % (
             img_format,
-            force_text(b64encode(header_blob)),
+            force_str(b64encode(header_blob)),
         )
     except (IOError, ValueError, TypeError, lxml.etree.XMLSyntaxError) as err:
         log.info(err)

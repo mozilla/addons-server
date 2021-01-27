@@ -5,7 +5,7 @@ import settings
 
 from django.core.management.base import BaseCommand
 from django.db import connection
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 
 import olympia.core.logger
 
@@ -129,7 +129,7 @@ class Command(BaseCommand):
                     table_content = cursor.fetchall()
                     table_content = tuple(
                         (
-                            tuple((force_text(item) for item in row))
+                            tuple((force_str(item) for item in row))
                             for row in table_content
                         )
                     )

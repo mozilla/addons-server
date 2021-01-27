@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import transaction
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 
 from django_statsd.clients import statsd
 from multidb import get_replica
@@ -265,7 +265,7 @@ def cleanup_old_files(*, base_filter_id):
     six_months_ago = datetime_to_ts(datetime.now() - timedelta(weeks=26))
     base_filter_ts = int(base_filter_id)
     for dir in storage.listdir(settings.MLBF_STORAGE_PATH)[0]:
-        dir = force_text(dir)
+        dir = force_str(dir)
         # skip non-numeric folder names
         if not dir.isdigit():
             log.info('Skipping %s because not a timestamp', dir)

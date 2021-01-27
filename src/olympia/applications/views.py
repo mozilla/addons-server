@@ -1,6 +1,6 @@
 from django.core.cache import cache
 from django.db.transaction import non_atomic_requests
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 
 from rest_framework.exceptions import ParseError
 from rest_framework.response import Response
@@ -47,13 +47,13 @@ class AppversionsFeed(BaseFeed):
     # wanky.  I blame fligtar.
 
     def title(self):
-        return ugettext('Application Versions')
+        return gettext('Application Versions')
 
     def link(self):
         return absolutify(url('apps.appversions'))
 
     def description(self):
-        return ugettext('Acceptable versions for all applications on AMO.')
+        return gettext('Acceptable versions for all applications on AMO.')
 
     def items(self):
         apps, versions = get_versions(order=('application', '-version_int'))

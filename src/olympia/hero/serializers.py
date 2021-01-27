@@ -1,4 +1,4 @@
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 
 from rest_framework import serializers
 
@@ -48,7 +48,7 @@ class PrimaryHeroShelfSerializer(serializers.ModelSerializer):
         if 'request' in self.context and 'raw' in self.context['request'].GET:
             return str(obj.description or '')
         elif obj.description:
-            return ugettext(obj.description)
+            return gettext(obj.description)
         else:
             return str(obj.promoted_addon.addon.summary or '')
 
@@ -91,7 +91,7 @@ class SecondaryHeroShelfModuleSerializer(serializers.ModelSerializer):
         fields = ('icon', 'description', 'cta')
 
     def get_description(self, obj):
-        return ugettext(obj.description)
+        return gettext(obj.description)
 
 
 class SecondaryHeroShelfSerializer(serializers.ModelSerializer):
@@ -105,7 +105,7 @@ class SecondaryHeroShelfSerializer(serializers.ModelSerializer):
         fields = ('headline', 'description', 'cta', 'modules')
 
     def get_headline(self, obj):
-        return ugettext(obj.headline)
+        return gettext(obj.headline)
 
     def get_description(self, obj):
-        return ugettext(obj.description)
+        return gettext(obj.description)

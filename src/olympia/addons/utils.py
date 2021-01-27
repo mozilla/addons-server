@@ -2,7 +2,7 @@ import uuid
 
 from django import forms
 from django.conf import settings
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 
 from olympia import amo
 from olympia.access.acl import action_allowed_user
@@ -32,7 +32,7 @@ def verify_mozilla_trademark(name, user, form=None):
 
             if violates_trademark:
                 raise forms.ValidationError(
-                    ugettext(
+                    gettext(
                         'Add-on names cannot contain the Mozilla or '
                         'Firefox trademarks.'
                     )

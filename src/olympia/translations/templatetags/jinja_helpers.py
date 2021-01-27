@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.template import engines, loader
 from django.utils import translation
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 from django.utils.translation.trans_real import to_language
 
 import bleach
@@ -50,7 +50,7 @@ def truncate(s, length=255, killwords=True, end='...'):
         return s.__truncate__(length, killwords, end)
 
     return jinja2.filters.do_truncate(
-        engines['jinja2'].env, force_text(s), length, killwords, end
+        engines['jinja2'].env, force_str(s), length, killwords, end
     )
 
 

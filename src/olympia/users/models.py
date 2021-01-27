@@ -21,9 +21,9 @@ from django.db import models
 from django.template import loader
 from django.utils import timezone
 from django.utils.crypto import salted_hmac
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 from django.utils.functional import cached_property
-from django.utils.translation import ugettext, ugettext_lazy as _
+from django.utils.translation import gettext, gettext_lazy as _
 
 import olympia.core.logger
 
@@ -50,7 +50,7 @@ def generate_auth_id():
 
 def get_anonymized_username():
     """Gets an anonymized username."""
-    return 'anonymous-{}'.format(force_text(binascii.b2a_hex(os.urandom(16))))
+    return 'anonymous-{}'.format(force_str(binascii.b2a_hex(os.urandom(16))))
 
 
 class UserEmailField(forms.ModelChoiceField):
@@ -62,7 +62,7 @@ class UserEmailField(forms.ModelChoiceField):
     Displays disabled state as readonly thanks to UserEmailBoundField.
     """
 
-    default_error_messages = {'invalid_choice': ugettext('No user with that email.')}
+    default_error_messages = {'invalid_choice': gettext('No user with that email.')}
     widget = forms.EmailInput
 
     def __init__(self, *args, **kwargs):
@@ -80,7 +80,7 @@ class UserEmailField(forms.ModelChoiceField):
         return UserEmailBoundField(form, self, field_name)
 
 
-class UserEmailBoundField(forms.BoundField):
+class UserEmailBoundField(forms.boundfield.BoundField):
     """A BoundField that treats disabled as readonly (enabling users to select
     the text, not suffer from low contrast etc. The form field underneath
     behaves normally and django will still ignore incoming data for it)."""
@@ -206,7 +206,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     def __init__(self, *args, **kw):
         super(UserProfile, self).__init__(*args, **kw)
         if self.username:
-            self.username = force_text(self.username)
+            self.username = force_str(self.username)
 
     def __str__(self):
         return '%s: %s' % (self.id, self.display_name or self.username)
@@ -426,9 +426,9 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     @property
     def name(self):
         if self.display_name:
-            return force_text(self.display_name)
+            return force_str(self.display_name)
         else:
-            return ugettext('Firefox user {id}').format(id=self.id)
+            return gettext('Firefox user {id}').format(id=self.id)
 
     welcome_name = name
 
@@ -611,7 +611,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             defaults={
                 'slug': 'mobile',
                 'listed': False,
-                'name': ugettext('My Mobile Add-ons'),
+                'name': gettext('My Mobile Add-ons'),
             },
         )
 
@@ -621,7 +621,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             defaults={
                 'slug': 'favorites',
                 'listed': False,
-                'name': ugettext('My Favorite Add-ons'),
+                'name': gettext('My Favorite Add-ons'),
             },
         )
 

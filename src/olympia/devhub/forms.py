@@ -14,7 +14,7 @@ from django.forms.models import BaseModelFormSet, modelformset_factory
 from django.forms.widgets import RadioSelect
 from django.utils.html import escape, format_html
 from django.utils.safestring import mark_safe
-from django.utils.translation import ugettext, ugettext_lazy as _, ungettext
+from django.utils.translation import gettext, gettext_lazy as _, ngettext
 
 import waffle
 from django_statsd.clients import statsd
@@ -73,10 +73,10 @@ def clean_addon_slug(slug, instance):
     if slug != instance.slug:
         if Addon.objects.filter(slug=slug).exists():
             raise forms.ValidationError(
-                ugettext('This slug is already in use. Please choose another.')
+                gettext('This slug is already in use. Please choose another.')
             )
         if DeniedSlug.blocked(slug):
-            msg = ugettext('The slug cannot be "%(slug)s". Please choose another.')
+            msg = gettext('The slug cannot be "%(slug)s". Please choose another.')
             raise forms.ValidationError(msg % {'slug': slug})
 
     return slug
@@ -96,7 +96,7 @@ def clean_tags(request, tags):
     )
     if denied:
         # L10n: {0} is a single tag or a comma-separated list of tags.
-        msg = ungettext('Invalid tag: {0}', 'Invalid tags: {0}', len(denied)).format(
+        msg = ngettext('Invalid tag: {0}', 'Invalid tags: {0}', len(denied)).format(
             ', '.join(denied)
         )
         raise forms.ValidationError(msg)
@@ -107,7 +107,7 @@ def clean_tags(request, tags):
     if not acl.action_allowed(request, amo.permissions.ADDONS_EDIT):
         if restricted:
             # L10n: {0} is a single tag or a comma-separated list of tags.
-            msg = ungettext(
+            msg = ngettext(
                 '"{0}" is a reserved tag and cannot be used.',
                 '"{0}" are reserved tags and cannot be used.',
                 len(restricted),
@@ -119,21 +119,21 @@ def clean_tags(request, tags):
 
     if total > max_tags:
         num = total - max_tags
-        msg = ungettext(
+        msg = ngettext(
             'You have {0} too many tags.', 'You have {0} too many tags.', num
         ).format(num)
         raise forms.ValidationError(msg)
 
     if any(t for t in target if len(t) > max_len):
         raise forms.ValidationError(
-            ugettext(
+            gettext(
                 'All tags must be %s characters or less after invalid '
                 'characters are removed.' % max_len
             )
         )
 
     if any(t for t in target if len(t) < min_len):
-        msg = ungettext(
+        msg = ngettext(
             'All tags must be at least {0} character.',
             'All tags must be at least {0} characters.',
             min_len,
@@ -242,7 +242,7 @@ class CategoryForm(forms.Form):
         if total > max_cat:
             # L10n: {0} is the number of categories.
             raise forms.ValidationError(
-                ungettext(
+                ngettext(
                     'You can have only {0} category.',
                     'You can have only {0} categories.',
                     max_cat,
@@ -252,7 +252,7 @@ class CategoryForm(forms.Form):
         has_misc = list(filter(lambda x: CATEGORIES_BY_ID.get(int(x)).misc, categories))
         if has_misc and total > 1:
             raise forms.ValidationError(
-                ugettext(
+                gettext(
                     'The miscellaneous category cannot be combined with '
                     'additional categories.'
                 )
@@ -369,13 +369,13 @@ class AdditionalDetailsForm(AddonFormBase):
 
             if not hostname.endswith(amo.VALID_CONTRIBUTION_DOMAINS):
                 raise forms.ValidationError(
-                    ugettext('URL domain must be one of [%s], or a subdomain.')
+                    gettext('URL domain must be one of [%s], or a subdomain.')
                     % ', '.join(amo.VALID_CONTRIBUTION_DOMAINS)
                 )
             elif hostname == 'github.com' and not path.startswith('/sponsors/'):
                 # Issue 15497, validate path for GitHub Sponsors
                 raise forms.ValidationError(
-                    ugettext('URL path for GitHub Sponsors must contain /sponsors/.')
+                    gettext('URL path for GitHub Sponsors must contain /sponsors/.')
                 )
 
         return self.cleaned_data['contributions']
@@ -393,7 +393,7 @@ class AdditionalDetailsForm(AddonFormBase):
             missing = [k for k, v in fields.items() if v not in qs]
             if missing:
                 raise forms.ValidationError(
-                    ugettext(
+                    gettext(
                         'Before changing your default locale you must have a '
                         'name, summary, and description in that locale. '
                         'You are missing %s.'
@@ -479,7 +479,7 @@ class AuthorForm(forms.ModelForm):
             # This should never happen, the client is trying to add a user
             # directly to AddonUser through the formset, they should have
             # been added to AuthorWaitingConfirmation instead.
-            raise forms.ValidationError(ugettext('Users can not be added directly'))
+            raise forms.ValidationError(gettext('Users can not be added directly'))
         return rval
 
 
@@ -495,7 +495,7 @@ class AuthorWaitingConfirmationForm(AuthorForm):
 
             if self.addon.authors.filter(pk=user.pk).exists():
                 raise forms.ValidationError(
-                    ugettext('An author can only be present once.')
+                    gettext('An author can only be present once.')
                 )
 
             name_validators = user._meta.get_field('display_name').validators
@@ -506,7 +506,7 @@ class AuthorWaitingConfirmationForm(AuthorForm):
                     validator(user.display_name)
             except forms.ValidationError:
                 raise forms.ValidationError(
-                    ugettext(
+                    gettext(
                         'The account needs a display name before it can be added '
                         'as an author.'
                     )
@@ -542,9 +542,9 @@ class BaseAuthorFormSet(BaseModelFormSet):
             )
         )
         if not any(d['role'] == amo.AUTHOR_ROLE_OWNER for d in data):
-            raise forms.ValidationError(ugettext('Must have at least one owner.'))
+            raise forms.ValidationError(gettext('Must have at least one owner.'))
         if not any(d['listed'] for d in data):
-            raise forms.ValidationError(ugettext('At least one author must be listed.'))
+            raise forms.ValidationError(gettext('At least one author must be listed.'))
 
 
 class BaseAuthorWaitingConfirmationFormSet(BaseModelFormSet):
@@ -565,7 +565,7 @@ class BaseAuthorWaitingConfirmationFormSet(BaseModelFormSet):
         )
         users = [d['user'].id for d in data]
         if len(users) != len(set(users)):
-            raise forms.ValidationError(ugettext('An author can only be present once.'))
+            raise forms.ValidationError(gettext('An author can only be present once.'))
 
 
 AuthorFormSet = modelformset_factory(
@@ -592,7 +592,7 @@ class DeleteForm(forms.Form):
     def clean_slug(self):
         data = self.cleaned_data
         if not data['slug'] == self.addon.slug:
-            raise forms.ValidationError(ugettext('Slug incorrect.'))
+            raise forms.ValidationError(gettext('Slug incorrect.'))
 
 
 class LicenseRadioSelect(forms.RadioSelect):
@@ -627,7 +627,7 @@ class LicenseRadioSelect(forms.RadioSelect):
         license = self.choices[index][1]
 
         if hasattr(license, 'url') and license.url:
-            details = link % (license.url, ugettext('Details'))
+            details = link % (license.url, gettext('Details'))
             context['label'] = mark_safe(str(context['label']) + ' ' + details)
         if hasattr(license, 'icons'):
             context['attrs']['data-cc'] = license.icons
@@ -677,7 +677,7 @@ class LicenseForm(AMOModelForm):
         cs = [(x.builtin, x) for x in licenses]
         if not self.cc_licenses:
             # creative commons licenses don't have an 'other' option.
-            cs.append((License.OTHER, ugettext('Other')))
+            cs.append((License.OTHER, gettext('Other')))
         self.fields['builtin'].choices = cs
         if self.version and self.version.channel == amo.RELEASE_CHANNEL_UNLISTED:
             self.fields['builtin'].required = False
@@ -688,7 +688,7 @@ class LicenseForm(AMOModelForm):
 
     def clean_name(self):
         name = self.cleaned_data['name']
-        return name.strip() or ugettext('Custom License')
+        return name.strip() or gettext('Custom License')
 
     def clean(self):
         data = self.cleaned_data
@@ -696,7 +696,7 @@ class LicenseForm(AMOModelForm):
             return data
         elif data['builtin'] == License.OTHER and not data['text']:
             raise forms.ValidationError(
-                ugettext('License text is required when choosing Other.')
+                gettext('License text is required when choosing Other.')
             )
         return data
 
@@ -802,7 +802,7 @@ class PolicyForm(TranslationFormMixin, AMOModelForm):
 class WithSourceMixin(object):
     def get_invalid_source_file_type_message(self):
         valid_extensions_string = '(%s)' % ', '.join(VALID_SOURCE_EXTENSIONS)
-        return ugettext(
+        return gettext(
             'Unsupported file type, please upload an archive '
             'file {extensions}.'.format(extensions=valid_extensions_string)
         )
@@ -832,7 +832,7 @@ class WithSourceMixin(object):
                         self.get_invalid_source_file_type_message()
                     )
             except (zipfile.BadZipFile, tarfile.ReadError, IOError, EOFError):
-                raise forms.ValidationError(ugettext('Invalid or broken archive.'))
+                raise forms.ValidationError(gettext('Invalid or broken archive.'))
         return source
 
 
@@ -918,7 +918,7 @@ class CompatForm(forms.ModelForm):
         min_ = self.cleaned_data.get('min')
         max_ = self.cleaned_data.get('max')
         if not (min_ and max_ and min_.version_int <= max_.version_int):
-            raise forms.ValidationError(ugettext('Invalid version range.'))
+            raise forms.ValidationError(gettext('Invalid version range.'))
         return self.cleaned_data
 
 
@@ -990,7 +990,7 @@ class BaseCompatFormSet(BaseModelFormSet):
             for form in self.forms:
                 form.data = self.data
             raise forms.ValidationError(
-                ugettext('Need at least one compatible application.')
+                gettext('Need at least one compatible application.')
             )
 
 
@@ -1073,7 +1073,7 @@ class NewUploadForm(forms.Form):
             and acl.action_allowed(self.request, amo.permissions.REVIEWS_ADMIN)
         ):
             raise forms.ValidationError(
-                ugettext('There was an error with your upload. Please try again.')
+                gettext('There was an error with your upload. Please try again.')
             )
 
     def check_throttles(self, request):
@@ -1101,7 +1101,7 @@ class NewUploadForm(forms.Form):
         block = Block.objects.filter(guid=guid).first()
         if block and block.is_version_blocked(version_string):
             msg = escape(
-                ugettext(
+                gettext(
                     'Version {version} matches {block_link} for this add-on. '
                     'You can contact {amo_admins} for additional information.'
                 )
@@ -1112,7 +1112,7 @@ class NewUploadForm(forms.Form):
                     block_link=format_html(
                         '<a href="{}">{}</a>',
                         reverse('blocklist.block', args=[guid]),
-                        ugettext('a blocklist entry'),
+                        gettext('a blocklist entry'),
                     ),
                     amo_admins=(
                         '<a href="mailto:amo-admins@mozilla.com">AMO Admins</a>'
@@ -1130,7 +1130,7 @@ class NewUploadForm(forms.Form):
             if existing_versions.exists():
                 version = existing_versions[0]
                 if version.deleted:
-                    msg = ugettext('Version {version} was uploaded before and deleted.')
+                    msg = gettext('Version {version} was uploaded before and deleted.')
                 elif version.unreviewed_files:
                     next_url = reverse(
                         'devhub.submit.version.details',
@@ -1139,13 +1139,13 @@ class NewUploadForm(forms.Form):
                     msg = DoubleSafe(
                         '%s <a href="%s">%s</a>'
                         % (
-                            ugettext('Version {version} already exists.'),
+                            gettext('Version {version} already exists.'),
                             next_url,
-                            ugettext('Continue with existing upload instead?'),
+                            gettext('Continue with existing upload instead?'),
                         )
                     )
                 else:
-                    msg = ugettext('Version {version} already exists.')
+                    msg = gettext('Version {version} already exists.')
                 raise forms.ValidationError(msg.format(version=version_string))
 
     def clean(self):
@@ -1185,12 +1185,10 @@ class SourceForm(WithSourceMixin, forms.ModelForm):
         source = self.cleaned_data.get('source')
         has_source = self.data.get('has_source')  # Not cleaned yet.
         if has_source == 'yes' and not source:
-            raise forms.ValidationError(
-                ugettext('You have not uploaded a source file.')
-            )
+            raise forms.ValidationError(gettext('You have not uploaded a source file.'))
         elif has_source == 'no' and source:
             raise forms.ValidationError(
-                ugettext('Source file uploaded but you indicated no source was needed.')
+                gettext('Source file uploaded but you indicated no source was needed.')
             )
         # At this point we know we can proceed with the actual archive
         # validation.

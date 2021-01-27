@@ -8,10 +8,10 @@ from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.forms import CheckboxInput
 from django.template import defaultfilters, Library, loader
-from django.utils.encoding import smart_text
+from django.utils.encoding import smart_str
 from django.utils.html import format_html as django_format_html
 from django.utils.safestring import mark_safe
-from django.utils.translation import get_language, to_locale, trim_whitespace, ugettext
+from django.utils.translation import get_language, to_locale, trim_whitespace, gettext
 
 import jinja2
 import waffle
@@ -164,8 +164,8 @@ def numberfmt(num, format=None):
 @library.global_function
 @jinja2.contextfunction
 def page_title(context, title):
-    title = smart_text(title)
-    base_title = ugettext('Add-ons for {0}').format(amo.FIREFOX.pretty)
+    title = smart_str(title)
+    base_title = gettext('Add-ons for {0}').format(amo.FIREFOX.pretty)
     # The following line doesn't use string formatting because we want to
     # preserve the type of `title` in case it's a jinja2 `Markup` (safe,
     # escaped) object.
@@ -236,7 +236,7 @@ def timesince(time):
         return ''
     ago = defaultfilters.timesince(time)
     # L10n: relative time in the past, like '4 days ago'
-    return ugettext('{0} ago').format(ago)
+    return gettext('{0} ago').format(ago)
 
 
 @library.filter
@@ -389,7 +389,7 @@ def format_html(string, *args, **kwargs):
     Checks both, *args and **kwargs for potentially unsafe arguments (
     not marked as `mark_safe`) and escapes them appropriately.
     """
-    return django_format_html(smart_text(string), *args, **kwargs)
+    return django_format_html(smart_str(string), *args, **kwargs)
 
 
 @library.global_function

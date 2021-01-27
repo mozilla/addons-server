@@ -5,7 +5,7 @@ import waffle
 from celery import chain, chord
 from django.conf import settings
 from django.forms import ValidationError
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 
 from django_statsd.clients import statsd
 
@@ -83,7 +83,7 @@ def limit_validation_results(validation):
         )
 
         message = (
-            ugettext(
+            gettext(
                 'Validation generated too many errors/warnings so %s '
                 'messages were truncated. After addressing the visible '
                 "messages, you'll be able to see the others."

@@ -9,7 +9,7 @@ from django.contrib.humanize.templatetags.humanize import naturaltime
 from django.db.models import Count, F, Q
 from django.template import loader
 from django.utils import translation
-from django.utils.translation import ugettext_lazy as _, ungettext
+from django.utils.translation import gettext_lazy as _, ngettext
 
 from olympia import amo
 from olympia.access import acl
@@ -99,17 +99,17 @@ class ReviewerQueueTable(tables.Table, ItemStateTable):
             r = _('moments ago')
         elif record.waiting_time_hours == 0:
             # L10n: first argument is number of minutes
-            r = ungettext('{0} minute', '{0} minutes', record.waiting_time_min).format(
+            r = ngettext('{0} minute', '{0} minutes', record.waiting_time_min).format(
                 record.waiting_time_min
             )
         elif record.waiting_time_days == 0:
             # L10n: first argument is number of hours
-            r = ungettext('{0} hour', '{0} hours', record.waiting_time_hours).format(
+            r = ngettext('{0} hour', '{0} hours', record.waiting_time_hours).format(
                 record.waiting_time_hours
             )
         else:
             # L10n: first argument is number of days
-            r = ungettext('{0} day', '{0} days', record.waiting_time_days).format(
+            r = ngettext('{0} day', '{0} days', record.waiting_time_days).format(
                 record.waiting_time_days
             )
         return jinja2.escape(r)

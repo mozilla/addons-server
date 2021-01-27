@@ -3,7 +3,6 @@ from urllib.parse import urlencode, urljoin
 
 from django import http, forms
 from django.conf import settings
-from django.conf.urls import url
 from django.contrib import admin
 from django.core import validators
 from django.forms.models import modelformset_factory
@@ -13,10 +12,10 @@ from django.http.response import (
     HttpResponseRedirect,
 )
 from django.shortcuts import get_object_or_404
-from django.urls import resolve
-from django.utils.encoding import force_text
+from django.urls import re_path, resolve
+from django.utils.encoding import force_str
 from django.utils.html import format_html, format_html_join
-from django.utils.translation import ugettext, ugettext_lazy as _
+from django.utils.translation import gettext, gettext_lazy as _
 
 import olympia.core.logger
 from olympia import amo
@@ -298,7 +297,7 @@ class AddonAdmin(admin.ModelAdmin):
 
         urlpatterns = super(AddonAdmin, self).get_urls()
         custom_urlpatterns = [
-            url(
+            re_path(
                 r'^(?P<object_id>.+)/git_extract/$',
                 wrap(self.git_extract_view),
                 name='addons_git_extract',
@@ -434,10 +433,10 @@ class AddonAdmin(admin.ModelAdmin):
         addon_ids = []
         for addon in qs:
             GitExtractionEntry.objects.create(addon=addon)
-            addon_ids.append(force_text(addon))
+            addon_ids.append(force_str(addon))
         kw = {'addons': ', '.join(addon_ids)}
         self.message_user(
-            request, ugettext('Git extraction triggered for "%(addons)s".' % kw)
+            request, gettext('Git extraction triggered for "%(addons)s".' % kw)
         )
 
     git_extract_action.short_description = 'Git-Extract'
@@ -501,7 +500,7 @@ class ReplacementAddonAdmin(admin.ModelAdmin):
         try:
             slug = models.Addon.objects.get(guid=obj.guid).slug
         except models.Addon.DoesNotExist:
-            slug = ugettext('- Add-on not on AMO -')
+            slug = gettext('- Add-on not on AMO -')
         return slug
 
     def has_module_permission(self, request):

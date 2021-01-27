@@ -7,7 +7,7 @@ from base64 import b64decode, b64encode
 from django.db import transaction
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
-from django.utils.encoding import force_bytes, force_text
+from django.utils.encoding import force_bytes, force_str
 
 import requests
 import waffle
@@ -50,7 +50,7 @@ def get_id(addon):
     if len(guid) <= 64:
         # Return guid as original unicode string.
         return addon.guid
-    return force_text(hashlib.sha256(guid).hexdigest())
+    return force_str(hashlib.sha256(guid).hexdigest())
 
 
 def use_promoted_signer(file_obj, promo_group):
@@ -68,7 +68,7 @@ def call_signing(file_obj):
     conf = settings.AUTOGRAPH_CONFIG
 
     with storage.open(file_obj.current_file_path) as fobj:
-        input_data = force_text(b64encode(fobj.read()))
+        input_data = force_str(b64encode(fobj.read()))
 
     signing_data = {
         'input': input_data,

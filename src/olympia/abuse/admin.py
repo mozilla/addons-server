@@ -5,7 +5,7 @@ from django.contrib import admin
 from django.core.paginator import Paginator
 from django.db.models import Count, Q, Prefetch
 from django.template import loader
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 
 from rangefilter.filter import DateRangeFilter as DateRangeFilterBase
 
@@ -22,7 +22,7 @@ from .models import AbuseReport
 class AbuseReportTypeFilter(admin.SimpleListFilter):
     # Human-readable title which will be displayed in the
     # right admin sidebar just above the filter options.
-    title = ugettext('type')
+    title = gettext('type')
 
     # Parameter for the filter that will be used in the URL query.
     parameter_name = 'type'
@@ -36,8 +36,8 @@ class AbuseReportTypeFilter(admin.SimpleListFilter):
         in the right sidebar.
         """
         return (
-            ('user', ugettext('Users')),
-            ('addon', ugettext('Addons')),
+            ('user', gettext('Users')),
+            ('addon', gettext('Addons')),
         )
 
     def queryset(self, request, queryset):
@@ -96,7 +96,7 @@ class MinimumReportsCountFilter(FakeChoicesMixin, admin.SimpleListFilter):
     """
 
     template = 'admin/abuse/abusereport/minimum_reports_count_filter.html'
-    title = ugettext('minimum reports count (grouped by guid)')
+    title = gettext('minimum reports count (grouped by guid)')
     parameter_name = 'minimum_reports_count'
 
     def lookups(self, request, model_admin):
@@ -124,7 +124,7 @@ class DateRangeFilter(FakeChoicesMixin, DateRangeFilterBase):
     """
 
     template = 'admin/abuse/abusereport/date_range_filter.html'
-    title = ugettext('creation date')
+    title = gettext('creation date')
 
     def _get_form_fields(self):
         return OrderedDict(
@@ -371,7 +371,7 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         name = obj.target.name if obj.target else obj.addon_name
         return '%s %s' % (name, obj.addon_version or '')
 
-    target_name.short_description = ugettext('User / Add-on')
+    target_name.short_description = gettext('User / Add-on')
 
     def addon_card(self, obj):
         template = loader.get_template('reviewers/addon_details_box.html')
@@ -413,24 +413,24 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     def distribution(self, obj):
         return obj.get_addon_signature_display() if obj.addon_signature else ''
 
-    distribution.short_description = ugettext('Distribution')
+    distribution.short_description = gettext('Distribution')
 
     def reporter_country(self, obj):
         return obj.country_code
 
-    reporter_country.short_description = ugettext("Reporter's country")
+    reporter_country.short_description = gettext("Reporter's country")
 
     def message_excerpt(self, obj):
         return truncate_text(obj.message, 140)[0] if obj.message else ''
 
-    message_excerpt.short_description = ugettext('Message excerpt')
+    message_excerpt.short_description = gettext('Message excerpt')
 
     def mark_as_valid(self, request, qs):
         for obj in qs:
             obj.update(state=AbuseReport.STATES.VALID)
         self.message_user(
             request,
-            ugettext(
+            gettext(
                 'The %d selected reports have been marked as valid.' % (qs.count())
             ),
         )
@@ -442,12 +442,12 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
             obj.update(state=AbuseReport.STATES.SUSPICIOUS)
         self.message_user(
             request,
-            ugettext(
+            gettext(
                 'The %d selected reports have been marked as suspicious.' % (qs.count())
             ),
         )
 
-    mark_as_suspicious.short_description = ugettext(
+    mark_as_suspicious.short_description = gettext(
         'Mark selected abuse reports as suspicious'
     )
 

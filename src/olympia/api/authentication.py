@@ -2,8 +2,8 @@ from django.conf import settings
 from django.contrib.auth.signals import user_logged_in
 from django.core import signing
 from django.utils.crypto import constant_time_compare
-from django.utils.encoding import force_text, smart_text
-from django.utils.translation import ugettext
+from django.utils.encoding import force_str, smart_str
+from django.utils.translation import gettext
 
 import jwt
 
@@ -52,13 +52,13 @@ class WebTokenAuthentication(BaseAuthentication):
         expected_header_prefix = self.auth_header_prefix.upper()
 
         if not auth_header or (
-            smart_text(auth_header[0].upper()) != expected_header_prefix
+            smart_str(auth_header[0].upper()) != expected_header_prefix
         ):
             return None
 
         if len(auth_header) == 1:
             msg = {
-                'detail': ugettext(
+                'detail': gettext(
                     'Invalid Authorization header. No credentials provided.'
                 ),
                 'code': 'ERROR_INVALID_HEADER',
@@ -66,7 +66,7 @@ class WebTokenAuthentication(BaseAuthentication):
             raise exceptions.AuthenticationFailed(msg)
         elif len(auth_header) > 2:
             msg = {
-                'detail': ugettext(
+                'detail': gettext(
                     'Invalid Authorization header. Credentials '
                     'string should not contain spaces.'
                 ),
@@ -94,19 +94,19 @@ class WebTokenAuthentication(BaseAuthentication):
     def authenticate_token(self, token):
         try:
             payload = signing.loads(
-                force_text(token),
+                force_str(token),
                 salt=self.salt,
                 max_age=settings.SESSION_COOKIE_AGE or None,
             )
         except signing.SignatureExpired:
             msg = {
-                'detail': ugettext('Signature has expired.'),
+                'detail': gettext('Signature has expired.'),
                 'code': 'ERROR_SIGNATURE_EXPIRED',
             }
             raise exceptions.AuthenticationFailed(msg)
         except signing.BadSignature:
             msg = {
-                'detail': ugettext('Error decoding signature.'),
+                'detail': gettext('Error decoding signature.'),
                 'code': 'ERROR_DECODING_SIGNATURE',
             }
             raise exceptions.AuthenticationFailed(msg)
@@ -202,16 +202,16 @@ class JWTKeyAuthentication(BaseAuthentication):
                 # Re-raise to deal with them properly.
                 raise exc
             except TypeError:
-                msg = ugettext('Wrong type for one or more keys in payload')
+                msg = gettext('Wrong type for one or more keys in payload')
                 raise exceptions.AuthenticationFailed(msg)
             except jwt.ExpiredSignatureError:
-                msg = ugettext('Signature has expired.')
+                msg = gettext('Signature has expired.')
                 raise exceptions.AuthenticationFailed(msg)
             except jwt.DecodeError:
-                msg = ugettext('Error decoding signature.')
+                msg = gettext('Error decoding signature.')
                 raise exceptions.AuthenticationFailed(msg)
             except jwt.InvalidTokenError:
-                msg = ugettext('Invalid JWT Token.')
+                msg = gettext('Invalid JWT Token.')
                 raise exceptions.AuthenticationFailed(msg)
             # Note: AuthenticationFailed can also be raised directly from our
             # jwt_decode_handler.
@@ -256,14 +256,14 @@ class JWTKeyAuthentication(BaseAuthentication):
         """
         auth = get_authorization_header(request).split()
 
-        if not auth or smart_text(auth[0].upper()) != self.auth_header_prefix.upper():
+        if not auth or smart_str(auth[0].upper()) != self.auth_header_prefix.upper():
             return None
 
         if len(auth) == 1:
-            msg = ugettext('Invalid Authorization header. No credentials provided.')
+            msg = gettext('Invalid Authorization header. No credentials provided.')
             raise exceptions.AuthenticationFailed(msg)
         elif len(auth) > 2:
-            msg = ugettext(
+            msg = gettext(
                 'Invalid Authorization header. Credentials string '
                 'should not contain spaces.'
             )
@@ -286,7 +286,7 @@ class UnsubscribeTokenAuthentication(BaseAuthentication):
             )
             user = UserProfile.objects.get(email=email)
         except ValueError:
-            raise exceptions.AuthenticationFailed(ugettext('Invalid token or hash.'))
+            raise exceptions.AuthenticationFailed(gettext('Invalid token or hash.'))
         except UserProfile.DoesNotExist:
-            raise exceptions.AuthenticationFailed(ugettext('Email address not found.'))
+            raise exceptions.AuthenticationFailed(gettext('Email address not found.'))
         return (user, None)

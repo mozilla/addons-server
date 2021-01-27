@@ -2,8 +2,8 @@ import json
 
 from django.conf import settings
 from django.shortcuts import get_object_or_404
-from django.utils.encoding import force_text
-from django.utils.translation import ugettext
+from django.utils.encoding import force_str
+from django.utils.translation import gettext
 
 from rest_framework import status
 from rest_framework.decorators import (
@@ -88,7 +88,7 @@ class VersionReviewNotesViewSet(
         )
         if version != latest_version:
             raise ParseError(
-                ugettext('Only latest versions of addons can have notes added.')
+                gettext('Only latest versions of addons can have notes added.')
             )
         activity_object = log_and_notify(
             action_from_user(request.user, version),
@@ -109,7 +109,7 @@ class EmailCreationPermission(object):
     def has_permission(self, request, view):
         try:
             # request.data isn't available at this point.
-            data = json.loads(force_text(request.body))
+            data = json.loads(force_str(request.body))
         except ValueError:
             # Verification checks don't send JSON, but do send the key as POST.
             data = request.POST

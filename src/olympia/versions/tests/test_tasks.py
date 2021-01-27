@@ -3,7 +3,7 @@ from base64 import b64encode
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 
 from unittest import mock
 import pytest
@@ -48,7 +48,7 @@ def check_render(
             header_blob = header_file.read()
             base_64_uri = 'data:%s;base64,%s' % (
                 mimetype,
-                force_text(b64encode(header_blob)),
+                force_str(b64encode(header_blob)),
             )
     else:
         base_64_uri = ''
@@ -198,7 +198,7 @@ def test_generate_static_theme_preview(
         else preserve_aspect_ratio
     )
     check_render(
-        force_text(header_svg),
+        force_str(header_svg),
         header_url,
         header_height,
         preserve_aspect_ratio[0],
@@ -210,7 +210,7 @@ def test_generate_static_theme_preview(
         680,
     )
     check_render(
-        force_text(list_svg),
+        force_str(list_svg),
         header_url,
         header_height,
         preserve_aspect_ratio[1],
@@ -222,7 +222,7 @@ def test_generate_static_theme_preview(
         760,
     )
     check_render(
-        force_text(single_svg),
+        force_str(single_svg),
         header_url,
         header_height,
         preserve_aspect_ratio[2],
@@ -364,7 +364,7 @@ def test_generate_static_theme_preview_with_alternative_properties(
     list_svg = write_svg_to_png_mock.call_args_list[1][0][0]
     single_svg = write_svg_to_png_mock.call_args_list[2][0][0]
     check_render(
-        force_text(header_svg),
+        force_str(header_svg),
         'transparent.gif',
         1,
         'xMaxYMin meet',
@@ -376,7 +376,7 @@ def test_generate_static_theme_preview_with_alternative_properties(
         680,
     )
     check_render(
-        force_text(list_svg),
+        force_str(list_svg),
         'transparent.gif',
         1,
         'xMaxYMin meet',
@@ -388,7 +388,7 @@ def test_generate_static_theme_preview_with_alternative_properties(
         760,
     )
     check_render(
-        force_text(single_svg),
+        force_str(single_svg),
         'transparent.gif',
         1,
         'xMaxYMin meet',
@@ -425,7 +425,7 @@ def check_render_additional(svg_content, inner_svg_width, colors):
         header_blob = header_file.read()
     base_64_uri = 'data:%s;base64,%s' % (
         'image/png',
-        force_text(b64encode(header_blob)),
+        force_str(b64encode(header_blob)),
     )
     assert 'xlink:href="%s"></image>' % base_64_uri in svg_content
     # check each of our colors was included
@@ -533,8 +533,8 @@ def test_generate_preview_with_additional_backgrounds(
     header_svg = write_svg_to_png_mock.call_args_list[0][0][0]
     list_svg = write_svg_to_png_mock.call_args_list[1][0][0]
     single_svg = write_svg_to_png_mock.call_args_list[2][0][0]
-    check_render_additional(force_text(header_svg), 680, colors)
-    check_render_additional(force_text(list_svg), 760, colors)
-    check_render_additional(force_text(single_svg), 720, colors)
+    check_render_additional(force_str(header_svg), 680, colors)
+    check_render_additional(force_str(list_svg), 760, colors)
+    check_render_additional(force_str(single_svg), 720, colors)
 
     index_addons_mock.assert_called_with([addon.id])

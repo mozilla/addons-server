@@ -19,8 +19,8 @@ from django.http import (
 from django.middleware import common
 from django.utils.cache import patch_cache_control, patch_vary_headers
 from django.utils.deprecation import MiddlewareMixin
-from django.utils.encoding import force_text, iri_to_uri
-from django.utils.translation import activate, ugettext_lazy as _
+from django.utils.encoding import force_str, iri_to_uri
+from django.utils.translation import activate, gettext_lazy as _
 
 from rest_framework import permissions
 
@@ -76,7 +76,7 @@ class LocaleAndAppURLMiddleware(MiddlewareMixin):
             full_path = quote(full_path.encode('utf-8'))
 
             if query_string:
-                query_string = force_text(query_string, errors='ignore')
+                query_string = force_str(query_string, errors='ignore')
                 full_path = '%s?%s' % (full_path, query_string)
 
             response = redirect_type(full_path)

@@ -1,6 +1,6 @@
 from django import forms
 from django.utils import translation
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 from django.utils.translation.trans_real import to_language
 from django.utils.safestring import mark_safe
 
@@ -37,7 +37,7 @@ class TranslationTextarea(forms.widgets.Textarea):
     def has_changed(self, initial, data):
         return not (
             (initial is None and data is None)
-            or (force_text(initial) == force_text(data))
+            or (force_str(initial) == force_str(data))
         )
 
 

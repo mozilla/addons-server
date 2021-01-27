@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.core.files.storage import default_storage
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 
 from rest_framework import serializers
 
@@ -140,27 +140,27 @@ class UserProfileSerializer(PublicUserProfileSerializer):
     def validate_biography(self, value):
         if has_links(clean_nl(str(value))):
             # There's some links, we don't want them.
-            raise serializers.ValidationError(ugettext('No links are allowed.'))
+            raise serializers.ValidationError(gettext('No links are allowed.'))
         return value
 
     def validate_display_name(self, value):
         if DeniedName.blocked(value):
             raise serializers.ValidationError(
-                ugettext('This display name cannot be used.')
+                gettext('This display name cannot be used.')
             )
         return value
 
     def validate_reviewer_name(self, value):
         if DeniedName.blocked(value):
             raise serializers.ValidationError(
-                ugettext('This reviewer name cannot be used.')
+                gettext('This reviewer name cannot be used.')
             )
         return value
 
     def validate_homepage(self, value):
         if settings.DOMAIN.lower() in value.lower():
             raise serializers.ValidationError(
-                ugettext(
+                gettext(
                     'The homepage field can only be used to link to '
                     'external websites.'
                 )
@@ -172,15 +172,15 @@ class UserProfileSerializer(PublicUserProfileSerializer):
 
         if value.content_type not in amo.IMG_TYPES or not image_check.is_image():
             raise serializers.ValidationError(
-                ugettext('Images must be either PNG or JPG.')
+                gettext('Images must be either PNG or JPG.')
             )
 
         if image_check.is_animated():
-            raise serializers.ValidationError(ugettext('Images cannot be animated.'))
+            raise serializers.ValidationError(gettext('Images cannot be animated.'))
 
         if value.size > settings.MAX_PHOTO_UPLOAD_SIZE:
             raise serializers.ValidationError(
-                ugettext(
+                gettext(
                     'Please use images smaller than %dMB.'
                     % (settings.MAX_PHOTO_UPLOAD_SIZE / 1024 / 1024)
                 )

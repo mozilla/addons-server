@@ -3,7 +3,7 @@ import re
 from collections import OrderedDict
 from urllib.parse import unquote
 
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 
 from bleach.linkifier import TLDS
 from rest_framework import serializers
@@ -81,7 +81,7 @@ class BaseRatingSerializer(serializers.ModelSerializer):
             data['addon'] = self.context['view'].get_addon_object()
             if data['addon'] is None:
                 raise serializers.ValidationError(
-                    {'addon': ugettext('This field is required.')}
+                    {'addon': gettext('This field is required.')}
                 )
 
             # Get the user from the request, don't allow clients to pick one
@@ -95,7 +95,7 @@ class BaseRatingSerializer(serializers.ModelSerializer):
             if self.context['request'].data.get('addon'):
                 raise serializers.ValidationError(
                     {
-                        'addon': ugettext(
+                        'addon': gettext(
                             "You can't change the add-on of a review once"
                             ' it has been created.'
                         )
@@ -157,7 +157,7 @@ class RatingSerializerReply(BaseRatingSerializer):
         if data['reply_to'].reply_to:
             # Only one level of replying is allowed, so if it's already a
             # reply, we shouldn't allow that.
-            msg = ugettext("You can't reply to a review that is already a reply.")
+            msg = gettext("You can't reply to a review that is already a reply.")
             raise serializers.ValidationError(msg)
 
         data = super(RatingSerializerReply, self).validate(data)
@@ -200,7 +200,7 @@ class RatingSerializer(BaseRatingSerializer):
     def validate_version(self, version):
         if self.partial:
             raise serializers.ValidationError(
-                ugettext(
+                gettext(
                     "You can't change the version of the add-on "
                     'reviewed once the review has been created.'
                 )
@@ -214,7 +214,7 @@ class RatingSerializer(BaseRatingSerializer):
         version_inst = version['version']
         if version_inst.addon_id != addon.pk or not version_inst.is_public():
             raise serializers.ValidationError(
-                ugettext("This version of the add-on doesn't exist or isn't public.")
+                gettext("This version of the add-on doesn't exist or isn't public.")
             )
         return version
 
@@ -223,7 +223,7 @@ class RatingSerializer(BaseRatingSerializer):
         if not self.partial:
             if data['addon'].authors.filter(pk=data['user'].pk).exists():
                 raise serializers.ValidationError(
-                    ugettext("You can't leave a review on your own add-on.")
+                    gettext("You can't leave a review on your own add-on.")
                 )
 
             rating_exists_on_this_version = (
@@ -237,7 +237,7 @@ class RatingSerializer(BaseRatingSerializer):
             )
             if rating_exists_on_this_version:
                 raise serializers.ValidationError(
-                    ugettext(
+                    gettext(
                         "You can't leave more than one review for the "
                         'same version of an add-on.'
                     )
@@ -269,7 +269,7 @@ class RatingFlagSerializer(serializers.ModelSerializer):
         flags = dict(RatingFlag.FLAGS)
         if flag not in flags:
             raise serializers.ValidationError(
-                ugettext(
+                gettext(
                     'Invalid flag [%s] - must be one of [%s]' % (flag, ','.join(flags))
                 )
             )
@@ -280,7 +280,7 @@ class RatingFlagSerializer(serializers.ModelSerializer):
         data['user'] = self.request.user
         if not data['rating'].body:
             raise serializers.ValidationError(
-                ugettext("This rating can't be flagged because it has no review text.")
+                gettext("This rating can't be flagged because it has no review text.")
             )
 
         if 'note' in data and data['note'].strip():
@@ -288,7 +288,7 @@ class RatingFlagSerializer(serializers.ModelSerializer):
         elif data.get('flag') == RatingFlag.OTHER:
             raise serializers.ValidationError(
                 {
-                    'note': ugettext(
+                    'note': gettext(
                         'A short explanation must be provided when selecting '
                         '"Other" as a flag reason.'
                     )

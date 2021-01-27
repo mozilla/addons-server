@@ -1,14 +1,15 @@
 from django.conf import settings
-from django.conf.urls import url
 from django.contrib import admin, messages
 from django.contrib.admin import SimpleListFilter
-from django.db.models import Count, FieldDoesNotExist, Prefetch
+from django.core.exceptions import FieldDoesNotExist
+from django.db.models import Count, Prefetch
 from django.http import Http404
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
+from django.urls import re_path
 from django.utils.html import format_html, format_html_join
 from django.utils.http import urlencode, is_safe_url
-from django.utils.translation import ugettext, gettext_lazy as _
+from django.utils.translation import gettext, gettext_lazy as _
 
 
 from urllib.parse import urljoin, urlparse
@@ -65,7 +66,7 @@ class PresenceFilter(SimpleListFilter):
 
 
 class MatchesFilter(PresenceFilter):
-    title = ugettext('presence of matched rules')
+    title = gettext('presence of matched rules')
     parameter_name = 'has_matched_rules'
 
     def lookups(self, request, model_admin):
@@ -78,7 +79,7 @@ class MatchesFilter(PresenceFilter):
 
 
 class StateFilter(SimpleListFilter):
-    title = ugettext('result state')
+    title = gettext('result state')
     parameter_name = 'state'
 
     def lookups(self, request, model_admin):
@@ -118,7 +119,7 @@ class ScannerRuleListFilter(admin.RelatedOnlyFieldListFilter):
 
 
 class ExcludeMatchedRuleFilter(SimpleListFilter):
-    title = ugettext('all but results matching only this rule')
+    title = gettext('all but results matching only this rule')
     parameter_name = 'exclude_rule'
 
     def lookups(self, request, model_admin):
@@ -151,7 +152,7 @@ class ExcludeMatchedRuleFilter(SimpleListFilter):
 
 
 class WithVersionFilter(PresenceFilter):
-    title = ugettext('presence of a version')
+    title = gettext('presence of a version')
     parameter_name = 'has_version'
 
     def lookups(self, request, model_admin):
@@ -166,19 +167,19 @@ class WithVersionFilter(PresenceFilter):
 class VersionChannelFilter(admin.ChoicesFieldListFilter):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.title = ugettext('version channel')
+        self.title = gettext('version channel')
 
 
 class AddonStatusFilter(admin.ChoicesFieldListFilter):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.title = ugettext('add-on status')
+        self.title = gettext('add-on status')
 
 
 class AddonVisibilityFilter(admin.BooleanFieldListFilter):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.title = ugettext('add-on listing visibility')
+        self.title = gettext('add-on listing visibility')
 
     def choices(self, changelist):
         # We're doing a lookup on disabled_by_user: if it's True then the
@@ -200,13 +201,13 @@ class AddonVisibilityFilter(admin.BooleanFieldListFilter):
 class FileStatusFiler(admin.ChoicesFieldListFilter):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.title = ugettext('file status')
+        self.title = gettext('file status')
 
 
 class FileIsSigned(admin.BooleanFieldListFilter):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.title = ugettext('file signature')
+        self.title = gettext('file signature')
 
 
 class AbstractScannerResultAdminMixin(admin.ModelAdmin):
@@ -555,22 +556,22 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
         urls = super().get_urls()
         info = self.model._meta.app_label, self.model._meta.model_name
         custom_urls = [
-            url(
+            re_path(
                 r'^(?P<pk>.+)/report-false-positive/$',
                 self.admin_site.admin_view(self.handle_false_positive),
                 name='%s_%s_handlefalsepositive' % info,
             ),
-            url(
+            re_path(
                 r'^(?P<pk>.+)/report-true-positive/$',
                 self.admin_site.admin_view(self.handle_true_positive),
                 name='%s_%s_handletruepositive' % info,
             ),
-            url(
+            re_path(
                 r'^(?P<pk>.+)/report-inconclusive/$',
                 self.admin_site.admin_view(self.handle_inconclusive),
                 name='%s_%s_handleinconclusive' % info,
             ),
-            url(
+            re_path(
                 r'^(?P<pk>.+)/revert-report/$',
                 self.admin_site.admin_view(self.handle_revert),
                 name='%s_%s_handlerevert' % info,
@@ -892,12 +893,12 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
         urls = super().get_urls()
         info = self.model._meta.app_label, self.model._meta.model_name
         custom_urls = [
-            url(
+            re_path(
                 r'^(?P<pk>.+)/abort/$',
                 self.admin_site.admin_view(self.handle_abort),
                 name='%s_%s_handle_abort' % info,
             ),
-            url(
+            re_path(
                 r'^(?P<pk>.+)/run/$',
                 self.admin_site.admin_view(self.handle_run),
                 name='%s_%s_handle_run' % info,

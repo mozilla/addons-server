@@ -1,10 +1,10 @@
 from django.conf import settings
 
 from django import forms
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 from django.utils.html import conditional_escape, format_html
 from django.utils.safestring import mark_safe
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 
 from olympia.constants.categories import CATEGORIES_BY_ID
 
@@ -81,7 +81,7 @@ class CategoriesSelectMultiple(forms.CheckboxSelectMultiple):
 
         for c in self.choices:
             if CATEGORIES_BY_ID[c[0]].misc:
-                msg = ugettext("My add-on doesn't fit into any of the categories")
+                msg = gettext("My add-on doesn't fit into any of the categories")
                 other = (c[0], msg)
             else:
                 choices.append(c)
@@ -93,7 +93,7 @@ class CategoriesSelectMultiple(forms.CheckboxSelectMultiple):
         if other:
             groups.append([(choices_size, other)])
 
-        str_values = set([force_text(v) for v in value])
+        str_values = set([force_str(v) for v in value])
 
         output = []
         for (k, group) in enumerate(groups):
@@ -110,9 +110,9 @@ class CategoriesSelectMultiple(forms.CheckboxSelectMultiple):
                 cb = forms.CheckboxInput(
                     final_attrs, check_test=lambda value: value in str_values
                 )
-                option_value = force_text(option_value)
+                option_value = force_str(option_value)
                 rendered_cb = cb.render(name, option_value)
-                option_label = conditional_escape(force_text(option_label))
+                option_label = conditional_escape(force_str(option_label))
                 output.append(
                     '<li><label%s>%s %s</label></li>'
                     % (label_for, rendered_cb, option_label)
