@@ -506,6 +506,10 @@ jobs:
     parameters:
       toxenv:
         type: string
+      djangoversion:
+        type: string
+    environment:
+        DJANGO_VERSION : << parameters.djangoversion >>
     steps:
       - setup_container
       - run: pip install --no-deps -r requirements/ci_base.txt
@@ -513,6 +517,11 @@ jobs:
 
   test-with-elasticsearch:
     <<: *defaults-with-elasticsearch
+    parameters:
+      djangoversion:
+        type: string
+    environment:
+        DJANGO_VERSION : << parameters.djangoversion >>
     steps:
       - setup_container
       - run:
@@ -529,6 +538,10 @@ jobs:
     parameters:
       toxenv:
         type: string
+      djangoversion:
+        type: string
+    environment:
+        DJANGO_VERSION : << parameters.djangoversion >>
     steps:
       - setup_container
       - run: pip install --no-deps -r requirements/ci_base.txt
@@ -566,6 +579,9 @@ workflows:
       - test-with-services:
           matrix:
             parameters:
+              djangoversion:
+                - django22
+                - django32
               toxenv:
                 - addons-versions-files-ratings
                 - assets
@@ -574,10 +590,18 @@ workflows:
       - test-with-autograph:
           matrix:
             parameters:
+              djangoversion:
+                - django22
+                - django32
               toxenv:
                 - amo-lib-locales-and-signing
                 - reviewers-and-zadmin
-      - test-with-elasticsearch
+      - test-with-elasticsearch:
+          matrix:
+            parameters:
+              djangoversion:
+                - django22
+                - django32
       - release-master:
           filters:
             branches:
