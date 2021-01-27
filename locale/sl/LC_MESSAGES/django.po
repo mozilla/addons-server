@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-11-22 10:59+0000\n"
-"Last-Translator: atomicmind <atomicmind@yahoo.com>\n"
+"PO-Revision-Date: 2021-01-27 10:53+0000\n"
+"Last-Translator: Matjaž Horvat <matjaz.horvat@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -133,7 +133,7 @@ msgstr "Povezave za pregledovalce"
 
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
-msgstr ""
+msgstr "Razširjanje Git sproženo za \"%(addons)s\"."
 
 msgid "- Add-on not on AMO -"
 msgstr "- Dodatek ni na AMO -"
@@ -161,7 +161,7 @@ msgid "My Themes"
 msgstr "Moje teme"
 
 msgid "Git-Extract"
-msgstr ""
+msgstr "Git-Extract"
 
 msgid "Tools"
 msgstr "Orodja"
