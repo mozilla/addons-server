@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2021-01-27 12:06+0000\n"
+"PO-Revision-Date: 2021-01-27 12:09+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -2264,10 +2264,10 @@ msgid "You're done! A new version <strong>%(new_version_number)s</strong> of you
 msgstr ""
 
 msgid "A newer version of your add-on is currently pending review."
-msgstr ""
+msgstr "Na pregled trenutno čaka novejša različica vašega dodatka."
 
 msgid "If you have any questions, don’t hesitate to contact us."
-msgstr ""
+msgstr "Če imate kakršna koli vprašanja, se obrnite na nas."
 
 msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
 msgstr ""
@@ -4910,9 +4910,8 @@ msgstr "Razčlenitev tveganja ni na voljo."
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Ne morete objaviti komentarja, če je določen 'canned_response'."
 
-#, fuzzy
 msgid "You can't submit an empty comment."
-msgstr "Ne morete poslati jezikovnega paketa"
+msgstr "Ne morete oddati praznega komentarja."
 
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
@@ -5060,9 +5059,8 @@ msgstr "Preizkusi varnosti"
 msgid "Flagged By Scanners"
 msgstr "Preizkusi varnosti"
 
-#, fuzzy
 msgid "Flagged for Human Review"
-msgstr "Označi za človeški pregled"
+msgstr "Označeno za človeški pregled"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Samodejno odobreni dodatki"
@@ -5079,7 +5077,6 @@ msgstr "Vodnik za preglede"
 msgid "Content Review"
 msgstr "Pregled vsebine"
 
-#, fuzzy
 msgid "Content Review ({0})"
 msgstr "Pregled vsebine ({0})"
 
