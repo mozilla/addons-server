@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.utils.encoding import smart_text
-from django.utils.translation import get_language, ugettext_lazy as _
+from django.utils.translation import get_language, gettext, ugettext_lazy as _
 
 from rest_framework import fields, serializers
 
@@ -93,6 +93,13 @@ class TranslationSerializerField(fields.Field):
         request = self.context.get('request', None)
         return is_gate_active(request, 'l10n_flat_input_output')
 
+    def get_requested_language(self):
+        request = self.context.get('request', None)
+        if request and request.method == 'GET' and 'lang' in request.GET:
+            return request.GET['lang']
+        else:
+            return None
+
     def fetch_all_translations(self, obj, source, field):
         # this property is set by amo.utils.attach_trans_dict
         if trans_dict := getattr(obj, 'translations', None):
@@ -129,11 +136,7 @@ class TranslationSerializerField(fields.Field):
         if not field:
             return None
 
-        requested_language = None
-
-        request = self.context.get('request', None)
-        if request and request.method == 'GET' and 'lang' in request.GET:
-            requested_language = request.GET['lang']
+        requested_language = self.get_requested_language()
 
         if requested_language:
             single = self.fetch_single_translation(
@@ -393,3 +396,35 @@ class OutgoingTranslationField(OutgoingSerializerMixin, TranslationSerializerFie
 
 class OutgoingESTranslationField(OutgoingSerializerMixin, ESTranslationSerializerField):
     pass
+
+
+class GetTextTranslationSerializerField(TranslationSerializerField):
+    """A TranslationSerializerField that gets it's translations from .po files via
+    gettext rather than the database with TranslatedField."""
+
+    def fetch_all_translations(self, obj, source, field):
+        # skip gettext in the default locale
+        # TODO: iterate through all/subset of locales to actually get all translations?
+        return {to_language(settings.LANGUAGE_CODE): str(field)}
+
+    def fetch_single_translation(self, obj, source, field, requested_language):
+        value = gettext(field) if field else field
+        default_language = to_language(settings.LANGUAGE_CODE)
+        requested_language = to_language(requested_language)
+        if not value or requested_language == default_language or value != field:
+            actual_language = requested_language
+        else:
+            # we've fallen back to the default locale
+            actual_language = default_language
+
+        return self._format_single_translation_response(
+            value,
+            actual_language,
+            requested_language,
+        )
+
+    def to_internal_value(self, data):
+        # It wouldn't be impossible to implement this, but we can only write the default
+        # locale value, so it'd have to handle that.  Also different l10n data
+        # structures for v4 and v5 would be messy. Only used read-only currently.
+        raise NotImplementedError

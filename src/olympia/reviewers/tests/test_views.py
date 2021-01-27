@@ -2305,45 +2305,6 @@ class TestAutoApprovedQueue(QueueTest):
             # - 4 for reviewer scores and user stuff displayed above the queue
             self._test_results()
 
-    def test_results_weights(self):
-        addon1 = addon_factory(name='Addôn 1')
-        AutoApprovalSummary.objects.create(
-            version=addon1.current_version,
-            verdict=amo.AUTO_APPROVED,
-            weight=amo.POST_REVIEW_WEIGHT_HIGHEST_RISK + 1,
-        )
-        AddonApprovalsCounter.reset_for_addon(addon1)
-
-        addon2 = addon_factory(name='Addôn 2')
-        AutoApprovalSummary.objects.create(
-            version=addon2.current_version,
-            verdict=amo.AUTO_APPROVED,
-            weight=amo.POST_REVIEW_WEIGHT_HIGH_RISK + 1,
-        )
-        AddonApprovalsCounter.reset_for_addon(addon2)
-
-        addon3 = addon_factory(name='Addôn 3')
-        AutoApprovalSummary.objects.create(
-            version=addon3.current_version,
-            verdict=amo.AUTO_APPROVED,
-            weight=amo.POST_REVIEW_WEIGHT_MEDIUM_RISK + 1,
-        )
-        AddonApprovalsCounter.reset_for_addon(addon3)
-
-        addon4 = addon_factory(name='Addôn 4')
-        AutoApprovalSummary.objects.create(
-            version=addon4.current_version, verdict=amo.AUTO_APPROVED, weight=1
-        )
-        AddonApprovalsCounter.reset_for_addon(addon4)
-
-        self.expected_addons = [addon1, addon2, addon3, addon4]
-
-        self.login_with_permission()
-        doc = self._test_results()
-        expected = ['risk-highest', 'risk-high', 'risk-medium', 'risk-low']
-        classnames = [item.attrib['class'] for item in doc('.addon-row td:eq(4) span')]
-        assert expected == classnames
-
     def test_queue_layout(self):
         self.login_with_permission()
         self.generate_files()
@@ -3752,34 +3713,36 @@ class TestReview(ReviewBase):
         AutoApprovalSummary.objects.create(
             version=self.version,
             verdict=amo.AUTO_APPROVED,
-            weight=284,
-            weight_info={'fôo': 200, 'bär': 84},
+            weight=326,
+            code_weight=126,
+            metadata_weight=200,
+            weight_info={'fôo': 42, 'bär': 84, 'oof': 105, 'rab': 95},
         )
         self.grant_permission(self.reviewer, 'Addons:Review')
         url = reverse('reviewers.review', args=[self.addon.slug])
         response = self.client.get(url)
         assert response.status_code == 200
         doc = pq(response.content)
-        risk = doc('.listing-body .file-weight')
-        assert risk.text() == 'Weight: 284'
-        assert risk.attr['title'] == 'bär: 84\nfôo: 200'
+        weight = doc('.listing-body .file-weight')
+        assert weight.text() == 'Code Weight: 126\nMetadata Weight: 200'
+        assert weight.attr['title'] == 'bär: 84\nfôo: 42\noof: 105\nrab: 95'
 
-    def test_scanners_score(self):
+    def test_maliciousness_score(self):
         self.grant_permission(self.reviewer, 'Addons:Review')
         url = reverse('reviewers.review', args=[self.addon.slug])
         # Without a score.
         response = self.client.get(url)
         assert response.status_code == 200
         doc = pq(response.content)
-        score = doc('.listing-body .scanners-score')
-        assert score.text() == 'Scanners score: n/a ?'
+        score = doc('.listing-body .maliciousness-score')
+        assert score.text() == 'Maliciousness Score: n/a ?'
         # With a score.
         ScannerResult.objects.create(version=self.version, scanner=MAD, score=0.1)
         response = self.client.get(url)
         assert response.status_code == 200
         doc = pq(response.content)
-        score = doc('.listing-body .scanners-score')
-        assert score.text() == 'Scanners score: 10% ?'
+        score = doc('.listing-body .maliciousness-score')
+        assert score.text() == 'Maliciousness Score: 10% ?'
 
     def test_item_history_notes(self):
         version = self.addon.versions.all()[0]

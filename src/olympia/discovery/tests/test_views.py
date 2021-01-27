@@ -47,10 +47,10 @@ class DiscoveryTestMixin(object):
         assert result_file['url'] == file_.get_absolute_url()
         assert result_file['permissions'] == file_.permissions
 
-    def _check_disco_addon(self, result, item, flat_name=False, heading=False):
+    def _check_disco_addon(self, result, item, flat_l10n=False, heading=False):
         addon = item.addon
         assert result['addon']['id'] == item.addon_id == addon.pk
-        if flat_name:
+        if flat_l10n:
             assert result['addon']['name'] == str(addon.name)
         else:
             assert result['addon']['name'] == {'en-US': str(addon.name)}
@@ -61,21 +61,28 @@ class DiscoveryTestMixin(object):
             == addon.current_version.all_files[0].pk
         )
 
-        assert result['description_text'] == item.description_text
+        description_text = (
+            item.custom_description
+            or (addon.type == amo.ADDON_EXTENSION and str(addon.summary))
+            or ''
+        )
+        if flat_l10n:
+            assert result['description_text'] == description_text
+        else:
+            assert result['description_text'] == (
+                {'en-US': description_text} if description_text else None
+            )
         if heading:
             assert result['heading'] == (
                 f'{addon.name} <span>by <a href="{addon.get_absolute_url()}">'
                 f'{self.addon_user.name}</a></span>'
             )
             assert result['description'] == (
-                f'<blockquote>{result["description_text"]}</blockquote>'
+                f'<blockquote>{description_text}</blockquote>'
             )
         else:
             assert 'heading' not in result
             assert 'description' not in result
-
-        # https://github.com/mozilla/addons-server/issues/11817
-        assert 'heading_text' not in result
 
         self._check_disco_addon_version(
             result['addon']['current_version'], addon.current_version
@@ -152,7 +159,7 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
 
         for i, result in enumerate(response.data['results']):
             assert result['is_recommendation'] is False
-            self._check_disco_addon(result, discopane_items[i], flat_name=True)
+            self._check_disco_addon(result, discopane_items[i], flat_l10n=True)
 
     @override_settings(DRF_API_GATES={'v5': ('disco-heading-and-description-shim',)})
     def test_list_html_heading_and_description(self):
