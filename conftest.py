@@ -147,7 +147,16 @@ def test_pre_setup(request, tmpdir, settings):
     # This is done by Django too whenever `settings` is changed
     # directly but because we're using the `settings` fixture
     # here this is not detected correctly.
-    caches._caches.caches = {}
+    if hasattr(caches, '_caches'):
+        # django 2.2
+        caches._caches.caches = {}
+    else:
+        # django 3.2
+        for cache in caches:
+            try:
+                del caches[cache]
+            except AttributeError:
+                pass
 
     # Randomize the cache key prefix to keep
     # tests isolated from each other.
