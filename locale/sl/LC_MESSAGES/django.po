@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2021-01-27 10:53+0000\n"
-"Last-Translator: Matjaž Horvat <matjaz.horvat@gmail.com>\n"
+"PO-Revision-Date: 2021-01-27 12:06+0000\n"
+"Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -311,9 +311,8 @@ msgstr "<h1>Opla! Prišlo je do napake.</h1> <p>Lotili se je bomo v kratkem.</p>
 msgid "Register or Log in"
 msgstr "Registrirajte se ali se prijavite"
 
-#, fuzzy
 msgid "Email:"
-msgstr "E-pošta"
+msgstr "E-pošta:"
 
 msgid "OK"
 msgstr "V redu"
@@ -1034,9 +1033,8 @@ msgid "Developer"
 msgstr "Razvijalec"
 
 # 85%
-#, fuzzy
 msgid "(Deleted)"
-msgstr "Izbrisano"
+msgstr "(Izbrisano)"
 
 msgid "Extension"
 msgstr "Dodatek"
@@ -1420,9 +1418,8 @@ msgstr "Android"
 msgid "Not Promoted"
 msgstr "Promoviraj"
 
-#, fuzzy
 msgid "Recommended"
-msgstr "Priporočeno ({0})"
+msgstr "Priporočeno"
 
 msgid "Sponsored"
 msgstr ""
@@ -1616,9 +1613,8 @@ msgstr "Nekvalitetna, raztegnjena ali prazna slika"
 msgid "Header image alignment problem"
 msgstr "Problem s poravnavo slike v glavi"
 
-#, fuzzy
 msgid "No action"
-msgstr "Več dejanj"
+msgstr "Ni dejanja"
 
 msgid "Flag for human review"
 msgstr "Označi za človeški pregled"
@@ -1651,9 +1647,8 @@ msgstr "Prekinjeno"
 msgid "Aborting"
 msgstr ""
 
-#, fuzzy
 msgid "Completed"
-msgstr "Nepopolno"
+msgstr "Dokončano"
 
 msgid "Scheduled"
 msgstr "Načrtovano"
@@ -2258,9 +2253,8 @@ msgstr "Kliknite gumb Sprejmi in potrdite, da želite biti dodani kot avtor za {
 msgid "Decline"
 msgstr "Zavrni"
 
-#, fuzzy
 msgid "Set Up Payment"
-msgstr "Zahteva plačilo"
+msgstr "Nastavi plačilo"
 
 msgid "You're done!"
 msgstr "Končali ste!"
@@ -2278,9 +2272,8 @@ msgstr ""
 msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
 msgstr ""
 
-#, fuzzy
 msgid "Manage add-on"
-msgstr "Jezikovni paket (dodatek)"
+msgstr "Upravljanje dodatka"
 
 #, python-format
 msgid ""
@@ -2706,9 +2699,8 @@ msgstr "Prekliči in onemogoči različico"
 msgid "Are you sure you wish to cancel and disable version?"
 msgstr "Ali ste prepričani, da želite izbrisati to različico?"
 
-#, fuzzy
 msgid "Yes, Cancel"
-msgstr "Prekliči"
+msgstr "Da, prekliči"
 
 msgid "No, don't cancel"
 msgstr ""
@@ -3247,9 +3239,8 @@ msgstr ""
 "Če vaš dodatek pošilja podatke iz uporabnikovega računalnika, je zahtevan pravilnik o zasebnosti, ki razlaga, kateri podatki se pošiljajo in kako se jih uporablja.\n"
 "                To velja samo za navedene dodatke."
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
-msgstr "Če vaš dodatek vsebuje dvojiško ali zamaskirano kodo, ki je drugačna od znanih knjižnic, naložite njegove vire za pregled."
+msgstr "Če vaš dodatek vsebuje zmanjšano, skrajšano ali drugače strojno ustvarjeno kodo, ki je drugačna od znanih knjižnic, naložite njene vire za pregled."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr "Za to različico v datoteki README ali opombah za pregledovalca vključite navodila, kako poustvariti končno datoteko dodatka."
@@ -3282,9 +3273,8 @@ msgid "Matrix"
 msgstr "Matrix"
 
 # The title for a user if they are a developer
-#, fuzzy
 msgid "Add-on Developers Mailing List"
-msgstr "Središče za razvijalce dodatkov"
+msgstr "Dopisni seznam razvijalcev dodatkov"
 
 #, fuzzy
 msgid "Extensions Developers Newsletter"
@@ -3458,9 +3448,8 @@ msgstr "Po želji vnesite katerekoli informacije, ki bi lahko prišle prav pregl
 msgid "Source code"
 msgstr "Izvorna koda"
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr "Če vaš dodatek vsebuje dvojiško ali zamaskirano kodo, dajte njegov vir na razpolago pregledovalcem tukaj."
+msgstr "Če vaš dodatek vsebuje zmanjšano, skrajšano ali drugače strojno ustvarjeno kodo, dajte njegov vir na razpolago pregledovalcem tukaj."
 
 msgid "File {file_id} ({platform})"
 msgstr "Datoteka {file_id} ({platform})"
@@ -4480,7 +4469,6 @@ msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Nekatere strani imajo težave pri predvajanju videoposnetkov v Firefoxu za Android. Ta razširitev odpravlja težave."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "For those moments you need to fire lasers out of cat eyes."
 msgstr "Za tiste trenutke, ko morate iz mačka izstreljevati laserje."
 
@@ -5701,21 +5689,18 @@ msgstr "[stanje: %s]"
 msgid "Other Pending Review"
 msgstr "Drugi čakajoči na pregled ({0})"
 
-#, fuzzy
 msgid "Updates"
-msgstr "Obnovi"
+msgstr "Posodobitve"
 
 #, fuzzy
 msgid "Rating Reviews"
 msgstr "Čaka na pregled"
 
-#, fuzzy
 msgid "Auto Approved"
-msgstr "Samodejno odobren ({0})"
+msgstr "Samodejno odobren"
 
-#, fuzzy
 msgid "Pending Rejection"
-msgstr "Drugi čakajoči na pregled ({0})"
+msgstr "Čakajoč na zavrnitev"
 
 msgid "presence of matched rules"
 msgstr ""
@@ -5743,13 +5728,11 @@ msgstr "Stanje dodatka"
 msgid "add-on listing visibility"
 msgstr "Vidnost dodatka"
 
-#, fuzzy
 msgid "file status"
-msgstr "Stanje strani "
+msgstr "stanje datoteke"
 
-#, fuzzy
 msgid "file signature"
-msgstr "{file} je bila podpisana."
+msgstr "podpis datoteke"
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
@@ -5988,9 +5971,8 @@ msgstr "O zasledovanju zunanjih virov ..."
 msgid "Download contents by Date"
 msgstr "Viri prenosa po datumu"
 
-#, fuzzy
 msgid "User countries by Date"
-msgstr "Uporabniški jeziki po datumu"
+msgstr "Države uporabnikov po datumu"
 
 msgid "Downloaded by Date"
 msgstr "Prenosi po datumu"
@@ -6005,9 +5987,8 @@ msgstr "Prenosi po datumu"
 msgid "Platform usage by Date"
 msgstr "Uporaba platforme po datumu"
 
-#, fuzzy
 msgid "<b>{0}</b> Weekly Downloads"
-msgstr "<b>{0}</b> prenosov"
+msgstr "<b>{0}</b> prenosov tedensko"
 
 msgid "Loading..."
 msgstr "Nalaganje..."
@@ -6292,9 +6273,8 @@ msgstr "Uporabniška obvestila"
 msgid "Ban"
 msgstr "Izobči"
 
-#, fuzzy
 msgid "Reset session(s)"
-msgstr "Izbriši različico"
+msgstr "Ponastavi sejo/-e"
 
 msgid "Delete picture"
 msgstr "Izbriši sliko"

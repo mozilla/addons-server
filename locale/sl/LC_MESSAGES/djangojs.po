@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-04-27 13:30+0000\n"
+"PO-Revision-Date: 2021-01-27 11:55+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -28,9 +28,8 @@ msgstr "Pri vzpostavljanju stika s strežnikom je prišlo do napake."
 msgid "Select a file..."
 msgstr "Izberite datoteko ..."
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi or .crx"
-msgstr "Končnica vašega dodatka mora biti .zip, .xpi, .crx ali .xml"
+msgstr "Končnica vašega dodatka mora biti .zip, .xpi ali .crx"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -132,8 +131,8 @@ msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Zmanjšani, skrajšani ali drugače strojno ustvarjeni skripti (razen znanih knjižnic) morajo biti za pregled oddani ločeno. Prepričajte se, da uporabite polje za nalaganje izvorne kode, da se "
-"izognete zavrnitvi svoje oddaje."
+"Zmanjšani, skrajšani ali drugače strojno ustvarjeni skripti (razen znanih knjižnic) morajo biti za pregled oddani ločeno. Prepričajte se, da uporabite polje za nalaganje izvorne kode, da se izognete"
+" zavrnitvi svoje oddaje."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Postopek preverjanja veljavnosti je odkril te težave, ki lahko vodi do zavrnitev:"
@@ -473,14 +472,12 @@ msgid "Applications from {0} to {1}"
 msgstr "Programi od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Countries, last {0} days"
-msgstr "Prispevki zadnjih {0} dni"
+msgstr "Države, zadnjih {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Countries from {0} to {1}"
-msgstr "Prispevki od {0} do {1}"
+msgstr "Države od {0} do {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
