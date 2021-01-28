@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-11-22 11:17+0000\n"
+"PO-Revision-Date: 2020-11-22 11:19+0000\n"
 "Last-Translator: atomicmind <atomicmind@yahoo.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -1422,10 +1422,10 @@ msgid "Recommended"
 msgstr "Priporočeno"
 
 msgid "Sponsored"
-msgstr ""
+msgstr "Sponzorirano"
 
 msgid "Verified"
-msgstr ""
+msgstr "Preverjeno"
 
 #, fuzzy
 msgid "By Firefox"
