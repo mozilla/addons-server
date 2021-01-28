@@ -222,11 +222,13 @@ class _TransField(object):
         # `to_field_name` and `limit_choices_to` to the form field
         # for `ForeignKey`. So let's drop them before forwarding
         # since `CharField` doesn't accept them.
-        for k in ('queryset', 'to_field_name', 'limit_choices_to'):
-            if k in kwargs:
-                del kwargs[k]
+        # django3.2 also passes `blank` too for ModelChoiceField.
+        kwargs.pop('queryset', None)
+        kwargs.pop('to_field_name', None)
+        kwargs.pop('limit_choices_to', None)
+        kwargs.pop('blank', None)
 
-        super(_TransField, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     def set_default_values(self, field_name, parent_form, default_locale):
         self.parent_form = parent_form
