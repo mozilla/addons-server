@@ -125,12 +125,9 @@ class ViewUnlistedAllListTable(tables.Table, ItemStateTable):
     guid = tables.Column(verbose_name=_('GUID'))
     authors = tables.Column(verbose_name=_('Authors'), orderable=False)
 
-    class Meta(ReviewerQueueTable.Meta):
-        model = ViewUnlistedAllList
-
     @classmethod
     def get_queryset(cls, admin_reviewer=False):
-        return cls.Meta.model.objects.all()
+        return ViewUnlistedAllList.objects.all()
 
     def render_addon_name(self, record):
         url = reverse(
@@ -170,8 +167,9 @@ class ViewUnlistedAllListTable(tables.Table, ItemStateTable):
 
 def view_table_factory(viewqueue):
     class ViewQueueTable(ReviewerQueueTable):
-        class Meta(ReviewerQueueTable.Meta):
-            model = viewqueue
+        @classmethod
+        def get_queryset(cls, admin_reviewer=False):
+            return viewqueue.objects.all()
 
     return ViewQueueTable
 
