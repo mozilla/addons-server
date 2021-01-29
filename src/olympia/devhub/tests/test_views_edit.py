@@ -15,11 +15,12 @@ from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonApprovalsCounter, AddonCategory
 from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.tests import (
-    TestCase,
+    addon_factory,
     formset,
     initial,
     req_factory_factory,
-    addon_factory,
+    SQUOTE_ESCAPED,
+    TestCase,
     user_factory,
 )
 from olympia.amo.tests.test_helpers import get_image_path
@@ -401,9 +402,9 @@ class BaseTestEditDescribe(BaseTestEdit):
 
         assert b'<script>' not in response.content
         assert (
-            b'This\n&lt;b&gt;IS&lt;/b&gt;&lt;script&gt;alert(&#39;awesome'
-            b'&#39;)&lt;/script&gt;</textarea>'
-        ) in response.content
+            f'This\n&lt;b&gt;IS&lt;/b&gt;&lt;script&gt;alert({SQUOTE_ESCAPED}awesome'
+            f'{SQUOTE_ESCAPED})&lt;/script&gt;</textarea>'
+        ) in response.content.decode('utf-8')
 
     def test_description_optional(self):
         """Description is optional by default - so confirm that here and

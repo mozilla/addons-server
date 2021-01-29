@@ -13,7 +13,13 @@ from olympia.activity.models import (
     DraftComment,
 )
 from olympia.addons.models import Addon, AddonUser
-from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
+from olympia.amo.tests import (
+    addon_factory,
+    TestCase,
+    DQUOTE_ESCAPED,
+    user_factory,
+    version_factory,
+)
 from olympia.bandwagon.models import Collection
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import CannedResponse
@@ -294,7 +300,7 @@ class TestActivityLog(TestCase):
         log_expected = (
             'Yolo role changed to Owner for <a href="/en-US/'
             'firefox/addon/a3615/">Delicious &lt;script src='
-            '&#34;x.js&#34;&gt;Bookmarks</a>.'
+            f'{DQUOTE_ESCAPED}x.js{DQUOTE_ESCAPED}&gt;Bookmarks</a>.'
         )
         assert log.to_string() == log_expected
 

@@ -27,6 +27,7 @@ from django.test.utils import override_settings
 from django.conf import urls as django_urls
 from django.utils import translation
 from django.utils.encoding import force_str
+from django.utils.html import escape
 
 import pytest
 from dateutil.parser import parse as dateutil_parser
@@ -84,6 +85,11 @@ translation.activate('en-us')
 # ES_INDEXES before the test run even begins - if we were using
 # override_settings() on ES_INDEXES we'd be in trouble.
 ES_INDEX_SUFFIXES = {key: timestamp_index('') for key in settings.ES_INDEXES.keys()}
+
+# django2.2 encodes with the decimal code; django3.2 with the hex code.
+SQUOTE_ESCAPED = escape("'")
+# Unfortunately `escape` returns `&quot;` rather than the code so workaround:
+DQUOTE_ESCAPED = '&#x22;' if 'x' in SQUOTE_ESCAPED else '&#34;'
 
 
 def get_es_index_name(key):
@@ -1010,7 +1016,9 @@ class TestXss(TestCase):
         super(TestXss, self).setUp()
         self.addon = Addon.objects.get(id=3615)
         self.name = "<script>alert('hé')</script>"
-        self.escaped = '&lt;script&gt;alert(&#39;hé&#39;)&lt;/script&gt;'
+        self.escaped = (
+            f'&lt;script&gt;alert({SQUOTE_ESCAPED}hé{SQUOTE_ESCAPED})&lt;/script&gt;'
+        )
         self.addon.name = self.name
         self.addon.save()
         u = UserProfile.objects.get(email='del@icio.us')
