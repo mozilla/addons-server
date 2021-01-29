@@ -181,23 +181,23 @@ class ModernAddonQueueTable(ReviewerQueueTable):
     flags = tables.Column(verbose_name=_('Flags'), empty_values=(), orderable=False)
     last_human_review = tables.DateTimeColumn(
         verbose_name=_('Last Review'),
-        accessor='addonapprovalscounter.last_human_review',
+        accessor='addonapprovalscounter__last_human_review',
     )
     code_weight = tables.Column(
         verbose_name=_('Code Weight'),
-        accessor='_current_version.autoapprovalsummary.code_weight',
+        accessor='_current_version__autoapprovalsummary__code_weight',
     )
     metadata_weight = tables.Column(
         verbose_name=_('Metadata Weight'),
-        accessor='_current_version.autoapprovalsummary.metadata_weight',
+        accessor='_current_version__autoapprovalsummary__metadata_weight',
     )
     weight = tables.Column(
         verbose_name=_('Total Weight'),
-        accessor='_current_version.autoapprovalsummary.weight',
+        accessor='_current_version__autoapprovalsummary__weight',
     )
     score = tables.Column(
         verbose_name=_('Maliciousness Score'),
-        accessor='_current_version.autoapprovalsummary.score',
+        accessor='_current_version__autoapprovalsummary__score',
     )
 
     class Meta(ReviewerQueueTable.Meta):
@@ -253,7 +253,7 @@ class ModernAddonQueueTable(ReviewerQueueTable):
 class PendingRejectionTable(ModernAddonQueueTable):
     deadline = tables.Column(
         verbose_name=_('Pending Rejection Deadline'),
-        accessor='_current_version.reviewerflags.pending_rejection',
+        accessor='_current_version__reviewerflags__pending_rejection',
     )
 
     class Meta(ModernAddonQueueTable.Meta):
