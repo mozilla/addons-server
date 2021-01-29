@@ -14,7 +14,7 @@ from django.db import models
 from django.dispatch import receiver
 from django.template.defaultfilters import slugify
 from django.utils.crypto import get_random_string
-from django.utils.encoding import force_bytes, force_text
+from django.utils.encoding import force_bytes, force_str
 from django.utils.functional import cached_property
 
 from django_jsonfield_backport.models import JSONField
@@ -99,7 +99,7 @@ class File(OnChangeMixin, ModelBase):
         return str(self.id)
 
     def get_platform_display(self):
-        return force_text(amo.PLATFORMS[self.platform].name)
+        return force_str(amo.PLATFORMS[self.platform].name)
 
     @property
     def has_been_validated(self):
@@ -150,8 +150,8 @@ class File(OnChangeMixin, ModelBase):
         assert parsed_data is not None
 
         file_ = cls(version=version, platform=platform)
-        upload_path = force_text(nfd_str(upload.path))
-        ext = force_text(os.path.splitext(upload_path)[1])
+        upload_path = force_str(nfd_str(upload.path))
+        ext = force_str(os.path.splitext(upload_path)[1])
         file_.filename = file_.generate_filename(extension=ext or '.xpi')
         # Size in bytes.
         file_.size = storage.size(upload_path)
@@ -307,7 +307,7 @@ class File(OnChangeMixin, ModelBase):
         or re-enabled.
 
         IOError and UnicodeEncodeError are caught and logged."""
-        log_message = force_text(log_message)
+        log_message = force_str(log_message)
         try:
             if storage.exists(source_path):
                 source_parent_path = os.path.dirname(source_path)
@@ -528,7 +528,7 @@ class FileUpload(ModelBase):
         _base, ext = os.path.splitext(filename)
         was_crx = ext == '.crx'
         # Filename we'll expose (but not use for storage).
-        self.name = force_text('{0}_{1}'.format(self.uuid.hex, filename))
+        self.name = force_str('{0}_{1}'.format(self.uuid.hex, filename))
 
         # Final path on our filesystem. If it had a valid extension we change
         # it to .xpi (CRX files are converted before validation, so they will

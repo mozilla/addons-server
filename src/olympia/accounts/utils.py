@@ -7,7 +7,7 @@ from urllib.parse import urlencode, urlparse
 
 from django.conf import settings
 from django.http import HttpResponseRedirect
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 from django.utils.http import is_safe_url
 
 import boto3
@@ -61,7 +61,7 @@ def fxa_login_url(
     id_token=None,
 ):
     if next_path and _is_safe_url(next_path, request):
-        state += ':' + force_text(urlsafe_b64encode(next_path.encode('utf-8'))).rstrip(
+        state += ':' + force_str(urlsafe_b64encode(next_path.encode('utf-8'))).rstrip(
             '='
         )
     query = {
@@ -111,7 +111,7 @@ def default_fxa_login_url(request):
 
 
 def generate_fxa_state():
-    return force_text(binascii.hexlify(os.urandom(32)))
+    return force_str(binascii.hexlify(os.urandom(32)))
 
 
 def redirect_for_login(request):

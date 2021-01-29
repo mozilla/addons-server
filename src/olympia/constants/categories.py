@@ -5,7 +5,7 @@ from functools import total_ordering
 
 from django.urls import reverse
 from django.utils.encoding import force_bytes
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from olympia.constants.applications import ANDROID, FIREFOX
 from olympia.constants.base import (

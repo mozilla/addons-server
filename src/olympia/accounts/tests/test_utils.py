@@ -10,7 +10,7 @@ from unittest import mock
 from django.contrib.auth.models import AnonymousUser
 from django.test import RequestFactory
 from django.test.utils import override_settings
-from django.utils.encoding import force_bytes, force_text
+from django.utils.encoding import force_bytes, force_str
 
 from waffle.testutils import override_switch
 
@@ -78,7 +78,7 @@ def test_default_fxa_login_url_with_state():
         'action': ['signin'],
         'client_id': ['foo'],
         'scope': ['profile openid'],
-        'state': ['myfxastate:{next_path}'.format(next_path=force_text(next_path))],
+        'state': ['myfxastate:{next_path}'.format(next_path=force_str(next_path))],
     }
 
 
@@ -100,7 +100,7 @@ def test_default_fxa_register_url_with_state():
         'action': ['signup'],
         'client_id': ['foo'],
         'scope': ['profile openid'],
-        'state': ['myfxastate:{next_path}'.format(next_path=force_text(next_path))],
+        'state': ['myfxastate:{next_path}'.format(next_path=force_str(next_path))],
     }
 
 
@@ -130,7 +130,7 @@ def test_fxa_login_url_without_requiring_two_factor_auth():
         'action': ['signin'],
         'client_id': ['foo'],
         'scope': ['profile openid'],
-        'state': ['myfxastate:{next_path}'.format(next_path=force_text(next_path))],
+        'state': ['myfxastate:{next_path}'.format(next_path=force_str(next_path))],
     }
 
 
@@ -161,7 +161,7 @@ def test_fxa_login_url_requiring_two_factor_auth():
         'action': ['signin'],
         'client_id': ['foo'],
         'scope': ['profile openid'],
-        'state': ['myfxastate:{next_path}'.format(next_path=force_text(next_path))],
+        'state': ['myfxastate:{next_path}'.format(next_path=force_str(next_path))],
     }
 
 
@@ -195,7 +195,7 @@ def test_fxa_login_url_requiring_two_factor_auth_passing_token():
         'id_token_hint': ['YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXo='],
         'prompt': ['none'],
         'scope': ['profile openid'],
-        'state': ['myfxastate:{next_path}'.format(next_path=force_text(next_path))],
+        'state': ['myfxastate:{next_path}'.format(next_path=force_str(next_path))],
     }
 
 
@@ -240,7 +240,7 @@ def test_fxa_login_url_when_faking_fxa_auth():
         'action': ['signin'],
         'client_id': ['foo'],
         'scope': ['profile openid'],
-        'state': ['myfxastate:{next_path}'.format(next_path=force_text(next_path))],
+        'state': ['myfxastate:{next_path}'.format(next_path=force_str(next_path))],
     }
 
 

@@ -10,7 +10,7 @@ from django.core.exceptions import PermissionDenied
 from django.core.files.storage import get_storage_class
 from django.db.transaction import non_atomic_requests
 from django.utils.cache import add_never_cache_headers, patch_cache_control
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 
 import olympia.core.logger
 
@@ -422,5 +422,5 @@ def render_json(request, addon, stats):
 
     # Django's encoder supports date and datetime.
     json.dump(stats, response, cls=AMOJSONEncoder)
-    fudge_headers(response, force_text(response.content) != json.dumps([]))
+    fudge_headers(response, force_str(response.content) != json.dumps([]))
     return response

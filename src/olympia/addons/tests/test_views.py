@@ -5,7 +5,7 @@ from unittest import mock
 
 from django.core.cache import cache
 from django.test.utils import override_settings
-from django.utils.encoding import force_bytes, force_text
+from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode, urlunquote
 
 import pytest
@@ -187,7 +187,7 @@ class AddonAndVersionViewSetDetailMixin(object):
         self.addon.update(status=amo.STATUS_NOMINATED)
         response = self.client.get(self.url)
         assert response.status_code == 401
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         assert data['detail'] == ('Authentication credentials were not provided.')
         assert data['is_disabled_by_developer'] is False
         assert data['is_disabled_by_mozilla'] is False
@@ -198,7 +198,7 @@ class AddonAndVersionViewSetDetailMixin(object):
         self.client.login_api(user)
         response = self.client.get(self.url)
         assert response.status_code == 403
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         assert data['detail'] == ('You do not have permission to perform this action.')
         assert data['is_disabled_by_developer'] is False
         assert data['is_disabled_by_mozilla'] is False
@@ -223,7 +223,7 @@ class AddonAndVersionViewSetDetailMixin(object):
         self.addon.update(disabled_by_user=True)
         response = self.client.get(self.url)
         assert response.status_code == 401
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         assert data['detail'] == ('Authentication credentials were not provided.')
         assert data['is_disabled_by_developer'] is True
         assert data['is_disabled_by_mozilla'] is False
@@ -234,7 +234,7 @@ class AddonAndVersionViewSetDetailMixin(object):
         self.client.login_api(user)
         response = self.client.get(self.url)
         assert response.status_code == 403
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         assert data['detail'] == ('You do not have permission to perform this action.')
         assert data['is_disabled_by_developer'] is True
         assert data['is_disabled_by_mozilla'] is False
@@ -243,7 +243,7 @@ class AddonAndVersionViewSetDetailMixin(object):
         self.addon.update(status=amo.STATUS_DISABLED)
         response = self.client.get(self.url)
         assert response.status_code == 401
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         assert data['detail'] == ('Authentication credentials were not provided.')
         assert data['is_disabled_by_developer'] is False
         assert data['is_disabled_by_mozilla'] is True
@@ -254,7 +254,7 @@ class AddonAndVersionViewSetDetailMixin(object):
         self.client.login_api(user)
         response = self.client.get(self.url)
         assert response.status_code == 403
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         assert data['detail'] == ('You do not have permission to perform this action.')
         assert data['is_disabled_by_developer'] is False
         assert data['is_disabled_by_mozilla'] is True
@@ -263,7 +263,7 @@ class AddonAndVersionViewSetDetailMixin(object):
         self.make_addon_unlisted(self.addon)
         response = self.client.get(self.url)
         assert response.status_code == 401
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         assert data['detail'] == ('Authentication credentials were not provided.')
         assert data['is_disabled_by_developer'] is False
         assert data['is_disabled_by_mozilla'] is False
@@ -286,7 +286,7 @@ class AddonAndVersionViewSetDetailMixin(object):
         self.client.login_api(user)
         response = self.client.get(self.url)
         assert response.status_code == 403
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         assert data['detail'] == ('You do not have permission to perform this action.')
         assert data['is_disabled_by_developer'] is False
         assert data['is_disabled_by_mozilla'] is False
@@ -310,7 +310,7 @@ class AddonAndVersionViewSetDetailMixin(object):
         self.client.login_api(user)
         response = self.client.get(self.url)
         assert response.status_code == 403
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         assert data['detail'] == ('You do not have permission to perform this action.')
         assert data['is_disabled_by_developer'] is False
         assert data['is_disabled_by_mozilla'] is False
@@ -335,7 +335,7 @@ class AddonAndVersionViewSetDetailMixin(object):
         self.addon.delete()
         response = self.client.get(self.url)
         assert response.status_code == 404
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         assert data['detail'] == 'Not found.'
         # `is_disabled_by_developer` and `is_disabled_by_mozilla` are only
         # added for 401/403.
@@ -348,7 +348,7 @@ class AddonAndVersionViewSetDetailMixin(object):
         self.client.login_api(user)
         response = self.client.get(self.url)
         assert response.status_code == 404
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         assert data['detail'] == 'Not found.'
         # `is_disabled_by_developer` and `is_disabled_by_mozilla` are only
         # added for 401/403.
@@ -362,7 +362,7 @@ class AddonAndVersionViewSetDetailMixin(object):
         self.client.login_api(user)
         response = self.client.get(self.url)
         assert response.status_code == 404
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         assert data['detail'] == 'Not found.'
         # `is_disabled_by_developer` and `is_disabled_by_mozilla` are only
         # added for 401/403.
@@ -385,7 +385,7 @@ class AddonAndVersionViewSetDetailMixin(object):
         self.client.login_api(user)
         response = self.client.get(self.url)
         assert response.status_code == 404
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         assert data['detail'] == 'Not found.'
         # `is_disabled_by_developer` and `is_disabled_by_mozilla` are only
         # added for 401/403.
@@ -396,7 +396,7 @@ class AddonAndVersionViewSetDetailMixin(object):
         self._set_tested_url(self.addon.pk + 42)
         response = self.client.get(self.url)
         assert response.status_code == 404
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         assert data['detail'] == 'Not found.'
         # `is_disabled_by_developer` and `is_disabled_by_mozilla` are only
         # added for 401/403.
@@ -478,7 +478,7 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
             extra = {}
         response = self.client.get(self.url, data=kwargs, **extra)
         assert response.status_code == 200
-        result = json.loads(force_text(response.content))
+        result = json.loads(force_str(response.content))
         assert (
             response['Vary']
             == 'Origin, Accept-Encoding, X-Country-Code, Accept-Language'
@@ -577,19 +577,19 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
 
         response = self.client.get(self.url, {'lang': 'en-US'})
         assert response.status_code == 200
-        result = json.loads(force_text(response.content))
+        result = json.loads(force_str(response.content))
         assert result['id'] == self.addon.pk
         assert result['name'] == {'en-US': 'My Addôn, mine'}
 
         response = self.client.get(self.url, {'lang': 'fr'})
         assert response.status_code == 200
-        result = json.loads(force_text(response.content))
+        result = json.loads(force_str(response.content))
         assert result['id'] == self.addon.pk
         assert result['name'] == {'fr': 'Mon Addôn, le mien'}
 
         response = self.client.get(self.url, {'lang': 'de'})
         assert response.status_code == 200
-        result = json.loads(force_text(response.content))
+        result = json.loads(force_str(response.content))
         assert result['id'] == self.addon.pk
         assert result['name'] == {
             'en-US': 'My Addôn, mine',
@@ -602,19 +602,19 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         with override_settings(DRF_API_GATES=overridden_api_gates):
             response = self.client.get(self.url, {'lang': 'en-US'})
             assert response.status_code == 200
-            result = json.loads(force_text(response.content))
+            result = json.loads(force_str(response.content))
             assert result['id'] == self.addon.pk
             assert result['name'] == 'My Addôn, mine'
 
             response = self.client.get(self.url, {'lang': 'fr'})
             assert response.status_code == 200
-            result = json.loads(force_text(response.content))
+            result = json.loads(force_str(response.content))
             assert result['id'] == self.addon.pk
             assert result['name'] == 'Mon Addôn, le mien'
 
             response = self.client.get(self.url, {'lang': 'de'})
             assert response.status_code == 200
-            result = json.loads(force_text(response.content))
+            result = json.loads(force_str(response.content))
             assert result['id'] == self.addon.pk
             assert result['name'] == 'My Addôn, mine'
 
@@ -629,19 +629,19 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         # Missing app
         response = self.client.get(self.url, {'appversion': '58.0'})
         assert response.status_code == 400
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         assert data == {'detail': 'Invalid "app" parameter.'}
 
         # Invalid appversion
         response = self.client.get(self.url, {'appversion': 'fr', 'app': 'firefox'})
         assert response.status_code == 400
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         assert data == {'detail': 'Invalid "appversion" parameter.'}
 
         # Invalid app
         response = self.client.get(self.url, {'appversion': '58.0', 'app': 'fr'})
         assert response.status_code == 400
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         assert data == {'detail': 'Invalid "app" parameter.'}
 
 
@@ -666,7 +666,7 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
             response['Vary']
             == 'Origin, Accept-Encoding, X-Country-Code, Accept-Language'
         )
-        result = json.loads(force_text(response.content))
+        result = json.loads(force_str(response.content))
         assert result['id'] == self.version.pk
         assert result['version'] == self.version.version
 
@@ -821,7 +821,7 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
     def _test_url(self, **kwargs):
         response = self.client.get(self.url, data=kwargs)
         assert response.status_code == 200
-        result = json.loads(force_text(response.content))
+        result = json.loads(force_str(response.content))
         assert result['results']
         assert len(result['results']) == 2
         result_version = result['results'][0]
@@ -834,7 +834,7 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
     def _test_url_contains_all(self, **kwargs):
         response = self.client.get(self.url, data=kwargs)
         assert response.status_code == 200
-        result = json.loads(force_text(response.content))
+        result = json.loads(force_str(response.content))
         assert result['results']
         assert len(result['results']) == 3
         result_version = result['results'][0]
@@ -850,7 +850,7 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
     def _test_url_only_contains_old_version(self, **kwargs):
         response = self.client.get(self.url, data=kwargs)
         assert response.status_code == 200
-        result = json.loads(force_text(response.content))
+        result = json.loads(force_str(response.content))
         assert result['results']
         assert len(result['results']) == 1
         result_version = result['results'][0]
@@ -878,7 +878,7 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
     def test_bad_filter(self):
         response = self.client.get(self.url, data={'filter': 'ahahaha'})
         assert response.status_code == 400
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         assert data == ['Invalid "filter" parameter specified.']
 
     def test_disabled_version_reviewer(self):
@@ -1026,7 +1026,7 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         # confirm that we have access to view unlisted versions.
         response = self.client.get(self.url, data={'filter': 'all_with_unlisted'})
         assert response.status_code == 200
-        result = json.loads(force_text(response.content))
+        result = json.loads(force_str(response.content))
         assert result['results']
         assert len(result['results']) == 1
         result_version = result['results'][0]
@@ -1036,7 +1036,7 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         # And that without_unlisted doesn't fail when there are no unlisted
         response = self.client.get(self.url, data={'filter': 'all_without_unlisted'})
         assert response.status_code == 200
-        result = json.loads(force_text(response.content))
+        result = json.loads(force_str(response.content))
         assert result['results'] == []
 
 
@@ -1062,7 +1062,7 @@ class TestAddonViewSetEulaPolicy(TestCase):
     def test_policy_none(self):
         response = self.client.get(self.url)
         assert response.status_code == 200
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         assert data['eula'] is None
         assert data['privacy_policy'] is None
 
@@ -1072,7 +1072,7 @@ class TestAddonViewSetEulaPolicy(TestCase):
         self.addon.save()
         response = self.client.get(self.url)
         assert response.status_code == 200
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         assert data['eula'] == {'en-US': 'My Addôn EULA', 'fr': 'Hoüla'}
         assert data['privacy_policy'] == {'en-US': 'My Prïvacy, My Policy'}
 
@@ -1144,7 +1144,7 @@ class TestAddonSearchView(ESTestCase):
         with self.assertNumQueries(0):
             response = self.client.get(url, data, **headers)
         assert response.status_code == expected_status, response.content
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         return data
 
     def test_basic(self):
@@ -1870,9 +1870,9 @@ class TestAddonSearchView(ESTestCase):
         addon_factory()
         self.reindex(Addon)
 
-        # We need to keep force_text because urlsafe_base64_encode only starts
+        # We need to keep force_str because urlsafe_base64_encode only starts
         # returning a string from Django 2.2 onwards, before that a bytestring.
-        param = 'rta:%s' % force_text(urlsafe_base64_encode(force_bytes(addon.guid)))
+        param = 'rta:%s' % force_str(urlsafe_base64_encode(force_bytes(addon.guid)))
 
         data = self.perform_search(self.url, {'guid': param})
         assert data['count'] == 1
@@ -1889,18 +1889,18 @@ class TestAddonSearchView(ESTestCase):
         addon_factory()
         self.reindex(Addon)
 
-        # We need to keep force_text because urlsafe_base64_encode only starts
+        # We need to keep force_str because urlsafe_base64_encode only starts
         # returning a string from Django 2.2 onwards, before that a bytestring.
-        param = 'rta:%s' % force_text(urlsafe_base64_encode(force_bytes(addon.guid)))
+        param = 'rta:%s' % force_str(urlsafe_base64_encode(force_bytes(addon.guid)))
 
         data = self.perform_search(self.url, {'guid': param})
         assert data['count'] == 0
         assert data['results'] == []
 
     def test_filter_by_guid_return_to_amo_wrong_format(self):
-        # We need to keep force_text because urlsafe_base64_encode only starts
+        # We need to keep force_str because urlsafe_base64_encode only starts
         # returning a string from Django 2.2 onwards, before that a bytestring.
-        param = 'rta:%s' % force_text(urlsafe_base64_encode(b'foo@bar')[:-1])
+        param = 'rta:%s' % force_str(urlsafe_base64_encode(b'foo@bar')[:-1])
 
         data = self.perform_search(self.url, {'guid': param}, expected_status=400)
         assert data == ['Invalid Return To AMO guid (not in base64url format?)']
@@ -1926,9 +1926,9 @@ class TestAddonSearchView(ESTestCase):
         addon_factory()
         self.reindex(Addon)
 
-        # We need to keep force_text because urlsafe_base64_encode only starts
+        # We need to keep force_str because urlsafe_base64_encode only starts
         # returning a string from Django 2.2 onwards, before that a bytestring.
-        param = 'rta:%s' % force_text(urlsafe_base64_encode(force_bytes(addon.guid)))
+        param = 'rta:%s' % force_str(urlsafe_base64_encode(force_bytes(addon.guid)))
 
         data = self.perform_search(self.url, {'guid': param}, expected_status=400)
         assert data == ['Return To AMO is currently disabled']
@@ -2084,7 +2084,7 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
         with self.assertNumQueries(0):
             response = self.client.get(url, data, **headers)
         assert response.status_code == expected_status
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         return data
 
     def test_basic(self):
@@ -2293,7 +2293,7 @@ class TestAddonFeaturedView(ESTestCase):
 
         response = self.client.get(self.url)
         assert response.status_code == 200
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         assert data['results']
         assert len(data['results']) == 2
         # order is random
@@ -2309,26 +2309,26 @@ class TestAddonFeaturedView(ESTestCase):
         # ask for > 10, to check we're not hitting the default ES page size.
         response = self.client.get(self.url + '?page_size=11')
         assert response.status_code == 200
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         assert data['results']
         assert len(data['results']) == 11
 
     def test_invalid_app(self):
         response = self.client.get(self.url, {'app': 'foxeh', 'type': 'extension'})
         assert response.status_code == 400
-        assert json.loads(force_text(response.content)) == ['Invalid "app" parameter.']
+        assert json.loads(force_str(response.content)) == ['Invalid "app" parameter.']
 
     def test_invalid_type(self):
         response = self.client.get(self.url, {'app': 'firefox', 'type': 'lol'})
         assert response.status_code == 400
-        assert json.loads(force_text(response.content)) == ['Invalid "type" parameter.']
+        assert json.loads(force_str(response.content)) == ['Invalid "type" parameter.']
 
     def test_invalid_category(self):
         response = self.client.get(
             self.url, {'category': 'lol', 'app': 'firefox', 'type': 'extension'}
         )
         assert response.status_code == 400
-        assert json.loads(force_text(response.content)) == [
+        assert json.loads(force_str(response.content)) == [
             'Invalid "category" parameter.'
         ]
 
@@ -2344,7 +2344,7 @@ class TestStaticCategoryView(TestCase):
         with self.assertNumQueries(0):
             response = self.client.get(self.url)
         assert response.status_code == 200
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
 
         assert len(data) == 58
 
@@ -2373,7 +2373,7 @@ class TestStaticCategoryView(TestCase):
         with self.assertNumQueries(0):
             response = self.client.get(self.url)
         assert response.status_code == 200
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
 
         assert len(data) == 58
 
@@ -2397,7 +2397,7 @@ class TestStaticCategoryView(TestCase):
             response = self.client.get(self.url, HTTP_ACCEPT_LANGUAGE='de')
 
         assert response.status_code == 200
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
 
         assert data[0]['name'] == 'RSS-Feeds, Nachrichten & Bloggen'
 
@@ -2453,7 +2453,7 @@ class TestLanguageToolsView(TestCase):
 
         response = self.client.get(self.url, {'app': 'firefox'})
         assert response.status_code == 200
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         assert len(data['results']) == 3
         expected = [dictionary, dictionary_spelling_variant, language_pack]
         assert len(data['results']) == len(expected)
@@ -2507,7 +2507,7 @@ class TestLanguageToolsView(TestCase):
             self.url, {'app': 'firefox', 'type': 'language', 'author': 'mozillä'}
         )
         assert response.status_code == 200
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         expected = [addon1, addon2]
 
         assert len(data['results']) == len(expected)
@@ -2534,7 +2534,7 @@ class TestLanguageToolsView(TestCase):
             {'app': 'firefox', 'type': 'language', 'author': 'mozillä,firefôx'},
         )
         assert response.status_code == 200
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         expected = [addon1, addon2]
         assert len(data['results']) == len(expected)
         assert set(item['id'] for item in data['results']) == set(
@@ -2713,7 +2713,7 @@ class TestLanguageToolsView(TestCase):
         with self.assertNumQueries(2):
             response = self.client.get(self.url, {'app': 'firefox', 'lang': 'fr'})
         assert response.status_code == 200
-        assert len(json.loads(force_text(response.content))['results']) == 3
+        assert len(json.loads(force_str(response.content))['results']) == 3
 
         # Same again, should be cached; no queries.
         with self.assertNumQueries(0):
@@ -2761,7 +2761,7 @@ class TestReplacementAddonView(TestCase):
 
         response = self.client.get(reverse_ns('addon-replacement-addon'))
         assert response.status_code == 200
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         results = data['results']
         assert len(results) == 3
         assert {'guid': 'legacy2addon@moz', 'replacement': [rep_addon1.guid]} in results
@@ -2786,7 +2786,7 @@ class TestCompatOverrideView(TestCase):
             data={'guid': 'extrabad@thing,bad@thing'},
         )
         assert response.status_code == 200
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         results = data['results']
         assert len(results) == 0
 
@@ -2812,7 +2812,7 @@ class TestAddonRecommendationView(ESTestCase):
         with self.assertNumQueries(0):
             response = self.client.get(url, data, **headers)
         assert response.status_code == expected_status, response.content
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         return data
 
     def test_basic(self):

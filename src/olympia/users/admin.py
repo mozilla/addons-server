@@ -1,7 +1,6 @@
 import functools
 
 from django import http
-from django.conf.urls import url
 from django.contrib import admin, messages
 from django.contrib.admin.utils import unquote
 from django.db.models import Count, Q
@@ -13,10 +12,10 @@ from django.http import (
     HttpResponseRedirect,
 )
 from django.template.response import TemplateResponse
-from django.urls import reverse
-from django.utils.encoding import force_text
+from django.urls import re_path, reverse
+from django.utils.encoding import force_str
 from django.utils.html import format_html, format_html_join
-from django.utils.translation import ugettext, ugettext_lazy as _
+from django.utils.translation import gettext, gettext_lazy as _
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport
@@ -147,22 +146,22 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
 
         urlpatterns = super(UserAdmin, self).get_urls()
         custom_urlpatterns = [
-            url(
+            re_path(
                 r'^(?P<object_id>.+)/ban/$',
                 wrap(self.ban_view),
                 name='users_userprofile_ban',
             ),
-            url(
+            re_path(
                 r'^(?P<object_id>.+)/reset_api_key/$',
                 wrap(self.reset_api_key_view),
                 name='users_userprofile_reset_api_key',
             ),
-            url(
+            re_path(
                 r'^(?P<object_id>.+)/reset_session/$',
                 wrap(self.reset_session_view),
                 name='users_userprofile_reset_session',
             ),
-            url(
+            re_path(
                 r'^(?P<object_id>.+)/delete_picture/$',
                 wrap(self.delete_picture_view),
                 name='users_userprofile_delete_picture',
@@ -232,10 +231,8 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
 
         ActivityLog.create(amo.LOG.ADMIN_USER_BANNED, obj)
         UserProfile.ban_and_disable_related_content_bulk([obj], move_files=True)
-        kw = {'user': force_text(obj)}
-        self.message_user(
-            request, ugettext('The user "%(user)s" has been banned.' % kw)
-        )
+        kw = {'user': force_str(obj)}
+        self.message_user(request, gettext('The user "%(user)s" has been banned.' % kw))
         return HttpResponseRedirect(
             reverse('admin:users_userprofile_change', args=(obj.pk,))
         )
@@ -287,10 +284,10 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
 
         ActivityLog.create(amo.LOG.ADMIN_USER_PICTURE_DELETED, obj)
         obj.delete_picture()
-        kw = {'user': force_text(obj)}
+        kw = {'user': force_str(obj)}
         self.message_user(
             request,
-            ugettext('The picture belonging to user "%(user)s" has been deleted.' % kw),
+            gettext('The picture belonging to user "%(user)s" has been deleted.' % kw),
         )
         return HttpResponseRedirect(
             reverse('admin:users_userprofile_change', args=(obj.pk,))
@@ -301,10 +298,10 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         UserProfile.ban_and_disable_related_content_bulk(qs)
         for obj in qs:
             ActivityLog.create(amo.LOG.ADMIN_USER_BANNED, obj)
-            users.append(force_text(obj))
+            users.append(force_str(obj))
         kw = {'users': ', '.join(users)}
         self.message_user(
-            request, ugettext('The users "%(users)s" have been banned.' % kw)
+            request, gettext('The users "%(users)s" have been banned.' % kw)
         )
 
     ban_action.short_description = _('Ban selected users')
@@ -314,10 +311,10 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         qs.update(auth_id=None)  # A new value will be generated at next login.
         for obj in qs:
             ActivityLog.create(amo.LOG.ADMIN_USER_SESSION_RESET, obj)
-            users.append(force_text(obj))
+            users.append(force_str(obj))
         kw = {'users': ', '.join(users)}
         self.message_user(
-            request, ugettext('The users "%(users)s" had their session(s) reset.' % kw)
+            request, gettext('The users "%(users)s" had their session(s) reset.' % kw)
         )
 
     reset_session_action.short_description = _('Reset session')
@@ -328,10 +325,10 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         APIKey.objects.filter(user__in=qs).update(is_active=None)
         for user in qs:
             ActivityLog.create(amo.LOG.ADMIN_API_KEY_RESET, user)
-            users.append(force_text(user))
+            users.append(force_str(user))
         kw = {'users': ', '.join(users)}
         self.message_user(
-            request, ugettext('The users "%(users)s" had their API Key reset.' % kw)
+            request, gettext('The users "%(users)s" had their API Key reset.' % kw)
         )
 
     reset_api_key_action.short_description = _('Reset API Key')

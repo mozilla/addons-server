@@ -3,7 +3,7 @@ import hashlib
 import hmac
 
 from django.conf import settings
-from django.utils.encoding import force_bytes, force_text
+from django.utils.encoding import force_bytes, force_str
 
 import olympia.core.logger
 
@@ -36,7 +36,7 @@ class UnsubscribeCode(object):
             log.info('[Tampering] Unsubscribe link data does not match hash')
             raise ValueError
 
-        return force_text(email)
+        return force_str(email)
 
     @classmethod
     def make_secret(cls, token):

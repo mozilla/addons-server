@@ -2,7 +2,7 @@
 import json
 
 from django.conf import settings
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 
 from olympia import amo
 from olympia.amo.tests import APITestClient, ESTestCase, reverse_ns
@@ -30,7 +30,7 @@ class TestRankingScenarios(ESTestCase):
         params['q'] = query
         response = self.client.get(url, params)
         assert response.status_code == 200
-        data = json.loads(force_text(response.content))
+        data = json.loads(force_str(response.content))
         assert data['count']
         results = data['results']
 

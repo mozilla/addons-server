@@ -5,7 +5,7 @@ import os
 from unittest import mock
 
 from django.core.files.storage import default_storage as storage
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
@@ -903,7 +903,7 @@ class TestEditMedia(BaseTestEdit):
         data = {'upload_image': src_image}
 
         response = self.client.post(self.icon_upload, data)
-        response_json = json.loads(force_text(response.content))
+        response_json = json.loads(force_str(response.content))
         addon = self.get_addon()
 
         # Now, save the form so it gets moved properly.
@@ -949,7 +949,7 @@ class TestEditMedia(BaseTestEdit):
         data = {'upload_image': src_image}
 
         response = self.client.post(self.icon_upload, data)
-        response_json = json.loads(force_text(response.content))
+        response_json = json.loads(force_str(response.content))
         addon = self.get_addon()
 
         # Now, save the form so it gets moved properly.
@@ -989,7 +989,7 @@ class TestEditMedia(BaseTestEdit):
         src_image = open(img, 'rb')
 
         res = self.client.post(url, {'upload_image': src_image})
-        response_json = json.loads(force_text(res.content))
+        response_json = json.loads(force_str(res.content))
         assert response_json['errors'][0] == msg
 
     def test_edit_media_icon_wrong_type(self):
@@ -1016,48 +1016,48 @@ class TestEditMedia(BaseTestEdit):
         addon = self.get_addon()
         addon.update(icon_type='')
         url = reverse('devhub.ajax.image.status', args=[addon.slug])
-        result = json.loads(force_text(self.client.get(url).content))
+        result = json.loads(force_str(self.client.get(url).content))
         assert result['icons']
 
     def test_image_status_works(self):
         self.setup_image_status()
-        result = json.loads(force_text(self.client.get(self.url).content))
+        result = json.loads(force_str(self.client.get(self.url).content))
         assert result['icons']
 
     def test_image_status_fails(self):
         self.setup_image_status()
         storage.delete(self.icon_dest)
-        result = json.loads(force_text(self.client.get(self.url).content))
+        result = json.loads(force_str(self.client.get(self.url).content))
         assert not result['icons']
 
     def test_preview_status_works(self):
         self.setup_image_status()
-        result = json.loads(force_text(self.client.get(self.url).content))
+        result = json.loads(force_str(self.client.get(self.url).content))
         assert result['previews']
 
         # No previews means that all the images are done.
         self.addon.previews.all().delete()
-        result = json.loads(force_text(self.client.get(self.url).content))
+        result = json.loads(force_str(self.client.get(self.url).content))
         assert result['previews']
 
     def test_preview_status_fails(self):
         self.setup_image_status()
         storage.delete(self.preview.thumbnail_path)
-        result = json.loads(force_text(self.client.get(self.url).content))
+        result = json.loads(force_str(self.client.get(self.url).content))
         assert not result['previews']
 
     def test_image_status_default(self):
         self.setup_image_status()
         storage.delete(self.icon_dest)
         self.get_addon().update(icon_type='icon/photos')
-        result = json.loads(force_text(self.client.get(self.url).content))
+        result = json.loads(force_str(self.client.get(self.url).content))
         assert result['icons']
 
     def check_image_animated(self, url, msg):
         filehandle = open(get_image_path('animated.png'), 'rb')
 
         res = self.client.post(url, {'upload_image': filehandle})
-        response_json = json.loads(force_text(res.content))
+        response_json = json.loads(force_str(res.content))
         assert response_json['errors'][0] == msg
 
     def test_icon_animated(self):
@@ -1076,7 +1076,7 @@ class TestEditMedia(BaseTestEdit):
             self.icon_upload,
             {'upload_image': open(get_image_path('mozilla-small.png'), 'rb')},
         )
-        assert json.loads(force_text(response.content))['errors'] == [
+        assert json.loads(force_str(response.content))['errors'] == [
             size_msg,
             ratio_msg,
         ]
@@ -1085,22 +1085,22 @@ class TestEditMedia(BaseTestEdit):
         response = self.client.post(
             self.icon_upload, {'upload_image': open(get_image_path('icon64.png'), 'rb')}
         )
-        assert json.loads(force_text(response.content))['errors'] == [size_msg]
+        assert json.loads(force_str(response.content))['errors'] == [size_msg]
 
         # mozilla.png is big enough but still not square
         response = self.client.post(
             self.icon_upload,
             {'upload_image': open(get_image_path('mozilla.png'), 'rb')},
         )
-        assert json.loads(force_text(response.content))['errors'] == [ratio_msg]
+        assert json.loads(force_str(response.content))['errors'] == [ratio_msg]
 
         # and mozilla-sq is the right ratio and big enough
         response = self.client.post(
             self.icon_upload,
             {'upload_image': open(get_image_path('mozilla-sq.png'), 'rb')},
         )
-        assert json.loads(force_text(response.content))['errors'] == []
-        assert json.loads(force_text(response.content))['upload_hash']
+        assert json.loads(force_str(response.content))['errors'] == []
+        assert json.loads(force_str(response.content))['upload_hash']
 
     def preview_add(self, amount=1, image_name='preview_4x3.jpg'):
         src_image = open(get_image_path(image_name), 'rb')
@@ -1110,7 +1110,7 @@ class TestEditMedia(BaseTestEdit):
         url = self.preview_upload
         response = self.client.post(url, data_formset)
 
-        details = json.loads(force_text(response.content))
+        details = json.loads(force_str(response.content))
         upload_hash = details['upload_hash']
 
         # Create and post with the formset.
@@ -1145,7 +1145,7 @@ class TestEditMedia(BaseTestEdit):
             self.preview_upload,
             {'upload_image': open(get_image_path('mozilla.png'), 'rb')},
         )
-        assert json.loads(force_text(response.content))['errors'] == [
+        assert json.loads(force_str(response.content))['errors'] == [
             size_msg,
             ratio_msg,
         ]
@@ -1155,22 +1155,22 @@ class TestEditMedia(BaseTestEdit):
             self.preview_upload,
             {'upload_image': open(get_image_path('preview_landscape.jpg'), 'rb')},
         )
-        assert json.loads(force_text(response.content))['errors'] == [size_msg]
+        assert json.loads(force_str(response.content))['errors'] == [size_msg]
 
         # teamaddons.jpg is big enough but still wrong ratio.
         response = self.client.post(
             self.preview_upload,
             {'upload_image': open(get_image_path('teamaddons.jpg'), 'rb')},
         )
-        assert json.loads(force_text(response.content))['errors'] == [ratio_msg]
+        assert json.loads(force_str(response.content))['errors'] == [ratio_msg]
 
         # and preview_4x3.jpg is the right ratio and big enough
         response = self.client.post(
             self.preview_upload,
             {'upload_image': open(get_image_path('preview_4x3.jpg'), 'rb')},
         )
-        assert json.loads(force_text(response.content))['errors'] == []
-        assert json.loads(force_text(response.content))['upload_hash']
+        assert json.loads(force_str(response.content))['errors'] == []
+        assert json.loads(force_str(response.content))['upload_hash']
 
     def test_edit_media_preview_edit(self):
         self.preview_add()

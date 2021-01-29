@@ -11,7 +11,7 @@ from django import test
 from django.conf import settings
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 
 import pytest
 
@@ -495,7 +495,7 @@ class TestVersion(TestCase):
         res = self.client.get('/__version__')
         assert res.status_code == 200
         assert res._headers['content-type'] == ('Content-Type', 'application/json')
-        content = json.loads(force_text(res.content))
+        content = json.loads(force_str(res.content))
         assert content['python'] == '%s.%s' % (
             sys.version_info.major,
             sys.version_info.minor,

@@ -1,5 +1,5 @@
 from django.db.models import Prefetch, Q
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 
 from rest_framework import serializers
 from rest_framework.decorators import action
@@ -110,7 +110,7 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
             return
         else:
             # AddonViewSet.get_lookup_field() expects a string.
-            self.kwargs['addon_pk'] = force_text(self.kwargs['addon_pk'])
+            self.kwargs['addon_pk'] = force_str(self.kwargs['addon_pk'])
         # When loading the add-on, pass a specific permission class - the
         # default from AddonViewSet is too restrictive, we are not modifying
         # the add-on itself so we don't need all the permission checks it does.

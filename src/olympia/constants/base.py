@@ -1,7 +1,7 @@
 import re
 from collections import namedtuple
 
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 
 # Add-on and File statuses.

@@ -1,8 +1,8 @@
 import datetime
 
 from django.conf import settings
-from django.utils.encoding import force_text
-from django.utils.translation import ugettext
+from django.utils.encoding import force_str
+from django.utils.translation import gettext
 
 import jinja2
 
@@ -35,18 +35,18 @@ def file_compare(file_obj, version):
 def file_review_status(addon, file):
     if file.status == amo.STATUS_DISABLED:
         if file.reviewed is not None:
-            return ugettext('Rejected')
+            return gettext('Rejected')
         # Can't assume that if the reviewed date is missing its
         # unreviewed.  Especially for versions.
         else:
-            return ugettext('Rejected or Unreviewed')
-    return file.STATUS_CHOICES.get(file.status, ugettext('[status:%s]') % file.status)
+            return gettext('Rejected or Unreviewed')
+    return file.STATUS_CHOICES.get(file.status, gettext('[status:%s]') % file.status)
 
 
 @library.global_function
 def version_status(addon, version):
     if version.deleted:
-        return ugettext('Deleted')
+        return gettext('Deleted')
     return ','.join(str(s) for s in version.status)
 
 
@@ -63,45 +63,45 @@ def queue_tabnav(context):
     if listed:
         tabnav = []
         if acl.action_allowed(request, amo.permissions.ADDONS_RECOMMENDED_REVIEW):
-            tabnav.append(('recommended', 'queue_recommended', ugettext('Recommended')))
+            tabnav.append(('recommended', 'queue_recommended', gettext('Recommended')))
         if acl.action_allowed(request, amo.permissions.ADDONS_REVIEW):
             tabnav.append(
                 (
                     'extension',
                     'queue_extension',
-                    '🛠️ ' + ugettext('Other Pending Review'),
+                    '🛠️ ' + gettext('Other Pending Review'),
                 )
             )
             tabnav.append(
-                ('scanners', 'queue_scanners', ugettext('Flagged By Scanners'))
+                ('scanners', 'queue_scanners', gettext('Flagged By Scanners'))
             )
-            tabnav.append(('mad', 'queue_mad', ugettext('Flagged for Human Review')))
+            tabnav.append(('mad', 'queue_mad', gettext('Flagged for Human Review')))
         if acl.action_allowed(request, amo.permissions.STATIC_THEMES_REVIEW):
             tabnav.extend(
                 (
                     (
                         'theme_nominated',
                         'queue_theme_nominated',
-                        '🎨 ' + ugettext('New'),
+                        '🎨 ' + gettext('New'),
                     ),
                     (
                         'theme_pending',
                         'queue_theme_pending',
-                        '🎨 ' + ugettext('Updates'),
+                        '🎨 ' + gettext('Updates'),
                     ),
                 )
             )
         if acl.action_allowed(request, amo.permissions.RATINGS_MODERATE):
-            tabnav.append(('moderated', 'queue_moderated', ugettext('Rating Reviews')))
+            tabnav.append(('moderated', 'queue_moderated', gettext('Rating Reviews')))
 
         if acl.action_allowed(request, amo.permissions.ADDONS_REVIEW):
             tabnav.append(
-                ('auto_approved', 'queue_auto_approved', ugettext('Auto Approved'))
+                ('auto_approved', 'queue_auto_approved', gettext('Auto Approved'))
             )
 
         if acl.action_allowed(request, amo.permissions.ADDONS_CONTENT_REVIEW):
             tabnav.append(
-                ('content_review', 'queue_content_review', ugettext('Content Review'))
+                ('content_review', 'queue_content_review', gettext('Content Review'))
             )
 
         if acl.action_allowed(request, amo.permissions.REVIEWS_ADMIN):
@@ -109,11 +109,11 @@ def queue_tabnav(context):
                 (
                     'pending_rejection',
                     'queue_pending_rejection',
-                    ugettext('Pending Rejection'),
+                    gettext('Pending Rejection'),
                 )
             )
     else:
-        tabnav = [('all', 'unlisted_queue_all', ugettext('All Unlisted Add-ons'))]
+        tabnav = [('all', 'unlisted_queue_all', gettext('All Unlisted Add-ons'))]
 
     return tabnav
 
@@ -146,7 +146,7 @@ def all_distinct_files(context, version):
     # {<file.hash>: [<file>, 'Windows / Mac OS X']}
     hashes_to_file = {}
     for file_ in version.all_files:
-        display_name = force_text(amo.PLATFORMS[file_.platform].name)
+        display_name = force_str(amo.PLATFORMS[file_.platform].name)
         if file_.original_hash in hashes_to_file:
             hashes_to_file[file_.original_hash][1] += ' / ' + display_name
         else:

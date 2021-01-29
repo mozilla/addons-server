@@ -8,7 +8,7 @@ from django.template.loader import render_to_string
 from django.template.response import TemplateResponse
 from django.urls import path
 from django.utils.html import format_html
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 
 import waffle
 
@@ -46,7 +46,7 @@ def _get_version_choices(block, field_name):
 
 
 class BlocklistSubmissionStateFilter(admin.SimpleListFilter):
-    title = ugettext('Signoff State')
+    title = gettext('Signoff State')
     parameter_name = 'signoff_state'
     default_value = BlocklistSubmission.SIGNOFF_PENDING
     field_choices = BlocklistSubmission.SIGNOFF_STATES.items()

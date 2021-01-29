@@ -13,8 +13,8 @@ from rest_framework.reverse import reverse as drf_reverse
 
 from django.core.cache import cache
 from django.utils.functional import cached_property
-from django.utils.encoding import force_text
-from django.utils.translation import ugettext
+from django.utils.encoding import force_str
+from django.utils.translation import gettext
 
 from olympia import amo
 from olympia.activity.models import DraftComment
@@ -169,7 +169,7 @@ class FileEntriesMixin(object):
 
             for entry_wrapper in self.repo.iter_tree(tree):
                 entry = entry_wrapper.tree_entry
-                path = force_text(entry_wrapper.path)
+                path = force_str(entry_wrapper.path)
                 blob = entry_wrapper.blob
 
                 mimetype, entry_mime_category = get_mime_type_for_blob(
@@ -178,7 +178,7 @@ class FileEntriesMixin(object):
 
                 result[path] = {
                     'depth': path.count(os.sep),
-                    'filename': force_text(entry.name),
+                    'filename': force_str(entry.name),
                     'sha256': None,
                     'mime_category': entry_mime_category,
                     'mimetype': mimetype,
@@ -594,7 +594,7 @@ class DraftCommentSerializer(serializers.ModelSerializer):
         if comment and canned_response:
             raise serializers.ValidationError(
                 {
-                    'comment': ugettext(
+                    'comment': gettext(
                         "You can't submit a comment if `canned_response` is " 'defined.'
                     )
                 }
@@ -602,7 +602,7 @@ class DraftCommentSerializer(serializers.ModelSerializer):
 
         if not canned_response and not comment:
             raise serializers.ValidationError(
-                {'comment': ugettext("You can't submit an empty comment.")}
+                {'comment': gettext("You can't submit an empty comment.")}
             )
 
         lineno = self.get_or_default('lineno', data)
@@ -611,7 +611,7 @@ class DraftCommentSerializer(serializers.ModelSerializer):
         if lineno and not filename:
             raise serializers.ValidationError(
                 {
-                    'comment': ugettext(
+                    'comment': gettext(
                         "You can't submit a line number without associating "
                         'it to a filename.'
                     )

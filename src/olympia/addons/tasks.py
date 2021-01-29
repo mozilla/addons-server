@@ -4,7 +4,7 @@ import os
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import transaction
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 
 from elasticsearch_dsl import Search
 
@@ -321,8 +321,8 @@ def create_custom_icon_from_predefined(addon_ids, **kwargs):
     _, icons = storage.listdir(predefined)
     for icon in icons:
         if b'32' in icon and b'default' not in icon:
-            icon_name = force_text(icon.split(b'-')[0])
-            with open(os.path.join(predefined, force_text(icon)), 'rb') as fd:
+            icon_name = force_str(icon.split(b'-')[0])
+            with open(os.path.join(predefined, force_str(icon)), 'rb') as fd:
                 hashes[icon_name] = hashlib.md5(fd.read()).hexdigest()[:8]
 
     for addon in addons:

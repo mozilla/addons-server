@@ -15,7 +15,7 @@ from django.db.transaction import non_atomic_requests
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.http import urlquote
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 from django.views.decorators.cache import never_cache
 
 import pygit2
@@ -208,115 +208,115 @@ def dashboard(request):
     queue_counts = fetch_queue_counts(admin_reviewer=admin_reviewer)
 
     if view_all or acl.action_allowed(request, amo.permissions.ADDONS_REVIEW):
-        sections[ugettext('Pre-Review Add-ons')] = []
+        sections[gettext('Pre-Review Add-ons')] = []
         if acl.action_allowed(request, amo.permissions.ADDONS_RECOMMENDED_REVIEW):
-            sections[ugettext('Pre-Review Add-ons')].append(
+            sections[gettext('Pre-Review Add-ons')].append(
                 (
-                    ugettext('Recommended ({0})').format(queue_counts['recommended']),
+                    gettext('Recommended ({0})').format(queue_counts['recommended']),
                     reverse('reviewers.queue_recommended'),
                 )
             )
-        sections[ugettext('Pre-Review Add-ons')].extend(
+        sections[gettext('Pre-Review Add-ons')].extend(
             (
                 (
-                    ugettext('Other Pending Review ({0})').format(
+                    gettext('Other Pending Review ({0})').format(
                         queue_counts['extension']
                     ),
                     reverse('reviewers.queue_extension'),
                 ),
-                (ugettext('Performance'), reverse('reviewers.performance')),
-                (ugettext('Review Log'), reverse('reviewers.reviewlog')),
+                (gettext('Performance'), reverse('reviewers.performance')),
+                (gettext('Review Log'), reverse('reviewers.reviewlog')),
                 (
-                    ugettext('Add-on Review Guide'),
+                    gettext('Add-on Review Guide'),
                     'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
                 ),
             )
         )
-        sections[ugettext('Security Scanners')] = [
+        sections[gettext('Security Scanners')] = [
             (
-                ugettext('Flagged By Scanners'),
+                gettext('Flagged By Scanners'),
                 reverse('reviewers.queue_scanners'),
             ),
             (
-                ugettext('Flagged for Human Review'),
+                gettext('Flagged for Human Review'),
                 reverse('reviewers.queue_mad'),
             ),
         ]
 
-        sections[ugettext('Auto-Approved Add-ons')] = [
+        sections[gettext('Auto-Approved Add-ons')] = [
             (
-                ugettext('Auto Approved Add-ons ({0})').format(
+                gettext('Auto Approved Add-ons ({0})').format(
                     queue_counts['auto_approved']
                 ),
                 reverse('reviewers.queue_auto_approved'),
             ),
-            (ugettext('Performance'), reverse('reviewers.performance')),
-            (ugettext('Add-on Review Log'), reverse('reviewers.reviewlog')),
+            (gettext('Performance'), reverse('reviewers.performance')),
+            (gettext('Add-on Review Log'), reverse('reviewers.reviewlog')),
             (
-                ugettext('Review Guide'),
+                gettext('Review Guide'),
                 'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             ),
         ]
     if view_all or acl.action_allowed(request, amo.permissions.ADDONS_CONTENT_REVIEW):
-        sections[ugettext('Content Review')] = [
+        sections[gettext('Content Review')] = [
             (
-                ugettext('Content Review ({0})').format(queue_counts['content_review']),
+                gettext('Content Review ({0})').format(queue_counts['content_review']),
                 reverse('reviewers.queue_content_review'),
             ),
-            (ugettext('Performance'), reverse('reviewers.performance')),
+            (gettext('Performance'), reverse('reviewers.performance')),
         ]
     if view_all or acl.action_allowed(request, amo.permissions.STATIC_THEMES_REVIEW):
-        sections[ugettext('Themes')] = [
+        sections[gettext('Themes')] = [
             (
-                ugettext('New ({0})').format(queue_counts['theme_nominated']),
+                gettext('New ({0})').format(queue_counts['theme_nominated']),
                 reverse('reviewers.queue_theme_nominated'),
             ),
             (
-                ugettext('Updates ({0})').format(queue_counts['theme_pending']),
+                gettext('Updates ({0})').format(queue_counts['theme_pending']),
                 reverse('reviewers.queue_theme_pending'),
             ),
-            (ugettext('Performance'), reverse('reviewers.performance')),
-            (ugettext('Review Log'), reverse('reviewers.reviewlog')),
+            (gettext('Performance'), reverse('reviewers.performance')),
+            (gettext('Review Log'), reverse('reviewers.reviewlog')),
             (
-                ugettext('Theme Review Guide'),
+                gettext('Theme Review Guide'),
                 'https://wiki.mozilla.org/Add-ons/Reviewers/Themes/Guidelines',
             ),
         ]
     if view_all or acl.action_allowed(request, amo.permissions.RATINGS_MODERATE):
-        sections[ugettext('User Ratings Moderation')] = [
+        sections[gettext('User Ratings Moderation')] = [
             (
-                ugettext('Ratings Awaiting Moderation ({0})').format(
+                gettext('Ratings Awaiting Moderation ({0})').format(
                     queue_counts['moderated']
                 ),
                 reverse('reviewers.queue_moderated'),
             ),
             (
-                ugettext('Moderated Review Log'),
+                gettext('Moderated Review Log'),
                 reverse('reviewers.ratings_moderation_log'),
             ),
             (
-                ugettext('Moderation Guide'),
+                gettext('Moderation Guide'),
                 'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
             ),
         ]
     if view_all or acl.action_allowed(request, amo.permissions.ADDONS_REVIEW_UNLISTED):
-        sections[ugettext('Unlisted Add-ons')] = [
-            (ugettext('All Unlisted Add-ons'), reverse('reviewers.unlisted_queue_all')),
+        sections[gettext('Unlisted Add-ons')] = [
+            (gettext('All Unlisted Add-ons'), reverse('reviewers.unlisted_queue_all')),
             (
-                ugettext('Review Guide'),
+                gettext('Review Guide'),
                 'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             ),
         ]
     if view_all or acl.action_allowed(
         request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT
     ):
-        sections[ugettext('Announcement')] = [
-            (ugettext('Update message of the day'), reverse('reviewers.motd'))
+        sections[gettext('Announcement')] = [
+            (gettext('Update message of the day'), reverse('reviewers.motd'))
         ]
     if view_all or acl.action_allowed(request, amo.permissions.REVIEWS_ADMIN):
-        sections[ugettext('Admin Tools')] = [
+        sections[gettext('Admin Tools')] = [
             (
-                ugettext('Add-ons Pending Rejection ({0})').format(
+                gettext('Add-ons Pending Rejection ({0})').format(
                     queue_counts['pending_rejection']
                 ),
                 reverse('reviewers.queue_pending_rejection'),
@@ -641,7 +641,7 @@ def queue_moderated(request):
             amo.messages.error(
                 request,
                 ' '.join(
-                    e.as_text() or ugettext('An unknown error occurred')
+                    e.as_text() or gettext('An unknown error occurred')
                     for e in reviews_formset.errors
                 ),
             )
@@ -755,7 +755,7 @@ def review(request, addon, channel=None):
     latest_not_disabled_version = addon.find_latest_version(channel=channel)
 
     if not settings.ALLOW_SELF_REVIEWS and addon.has_author(request.user):
-        amo.messages.warning(request, ugettext('Self-reviews are not allowed.'))
+        amo.messages.warning(request, gettext('Self-reviews are not allowed.'))
         return redirect(reverse('reviewers.dashboard'))
 
     # Queryset to be paginated for versions. We use the default ordering to get
@@ -845,7 +845,7 @@ def review(request, addon, channel=None):
         # reviewer)
         form.helper.process()
 
-        amo.messages.success(request, ugettext('Review successfully processed.'))
+        amo.messages.success(request, gettext('Review successfully processed.'))
         clear_reviewing_cache(addon.id)
         return redirect(form.helper.redirect_url or redirect_url)
 
@@ -1076,7 +1076,7 @@ def review_viewing(request):
             is_user = 1
         else:
             currently_viewing = settings.TASK_USER_ID
-            current_name = ugettext('Review lock limit reached')
+            current_name = gettext('Review lock limit reached')
             is_user = 2
     else:
         current_name = UserProfile.objects.get(pk=currently_viewing).name
@@ -1271,8 +1271,8 @@ def eula(request, addon):
         request,
         addon,
         addon.eula,
-        page_title=ugettext('{addon} – EULA'),
-        long_title=ugettext('End-User License Agreement'),
+        page_title=gettext('{addon} – EULA'),
+        long_title=gettext('End-User License Agreement'),
     )
 
 
@@ -1283,8 +1283,8 @@ def privacy(request, addon):
         request,
         addon,
         addon.privacy_policy,
-        page_title=ugettext('{addon} – Privacy Policy'),
-        long_title=ugettext('Privacy Policy'),
+        page_title=gettext('{addon} – Privacy Policy'),
+        long_title=gettext('Privacy Policy'),
     )
 
 

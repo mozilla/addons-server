@@ -2,7 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.forms import ValidationError
 from django.forms.utils import ErrorList
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 from django.utils.html import conditional_escape, format_html, format_html_join
 from django.utils.safestring import mark_safe
 from django.utils.translation.trans_real import to_language
@@ -76,7 +76,7 @@ class LocaleErrorList(ErrorList):
                 extra = mark_safe(' data-lang="%s"' % conditional_escape(locale))
             else:
                 message, extra = ''.join(list(item)), ''
-            li.append((extra, conditional_escape(force_text(message))))
+            li.append((extra, conditional_escape(force_str(message))))
 
         return mark_safe(
             format_html(
@@ -94,4 +94,4 @@ class LocaleErrorList(ErrorList):
             return error.message
         if isinstance(error, ValidationError):
             return list(error)[0]
-        return force_text(error)
+        return force_str(error)

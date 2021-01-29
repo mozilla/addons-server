@@ -4,7 +4,7 @@ from django import http
 from django.contrib.auth.models import AnonymousUser
 from django.core.exceptions import PermissionDenied
 from django.test import RequestFactory
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 
 from unittest import mock
 import pytest
@@ -40,7 +40,7 @@ def test_json_view():
 
     response = decorators.json_view(func)(mock.Mock())
     assert isinstance(response, http.HttpResponse)
-    assert force_text(response.content) == '{"x": 1}'
+    assert force_str(response.content) == '{"x": 1}'
     assert response['Content-Type'] == 'application/json'
     assert response.status_code == 200
 
@@ -61,7 +61,7 @@ def test_json_view_error():
     """json_view.error returns 400 responses."""
     response = decorators.json_view.error({'msg': 'error'})
     assert isinstance(response, http.HttpResponseBadRequest)
-    assert force_text(response.content) == '{"msg": "error"}'
+    assert force_str(response.content) == '{"msg": "error"}'
     assert response['Content-Type'] == 'application/json'
 
 
@@ -75,7 +75,7 @@ def test_json_view_status():
 
 def test_json_view_response_status():
     response = decorators.json_response({'msg': 'error'}, status_code=202)
-    assert force_text(response.content) == '{"msg": "error"}'
+    assert force_str(response.content) == '{"msg": "error"}'
     assert response['Content-Type'] == 'application/json'
     assert response.status_code == 202
 

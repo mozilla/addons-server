@@ -10,9 +10,9 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.db import models, transaction
 from django.db.models import Q
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 from django.utils.functional import cached_property
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 
 import jinja2
 from olympia.constants.applications import APP_IDS
@@ -543,7 +543,7 @@ class Version(OnChangeMixin, ModelBase):
     @property
     def status(self):
         return [
-            f.STATUS_CHOICES.get(f.status, ugettext('[status:%s]') % f.status)
+            f.STATUS_CHOICES.get(f.status, gettext('[status:%s]') % f.status)
             for f in self.all_files
         ]
 
@@ -811,7 +811,7 @@ class Version(OnChangeMixin, ModelBase):
             return {}
         file_obj = self.all_files[0]
         return {
-            name: force_text(b64encode(background))
+            name: force_str(b64encode(background))
             for name, background in utils.get_background_images(
                 file_obj, theme_data=None, header_only=header_only
             ).items()
@@ -1116,7 +1116,7 @@ class ApplicationsVersions(models.Model):
         if self.version.is_compatible_by_default and self.version.is_compatible_app(
             amo.APP_IDS[self.application]
         ):
-            return ugettext('{app} {min} and later').format(
+            return gettext('{app} {min} and later').format(
                 app=self.get_application_display(), min=self.min
             )
         return '%s %s - %s' % (self.get_application_display(), self.min, self.max)

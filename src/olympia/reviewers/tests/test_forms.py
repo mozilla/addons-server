@@ -1,4 +1,4 @@
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 
 from pyquery import PyQuery as pq
 
@@ -49,7 +49,7 @@ class TestReviewForm(TestCase):
             addon_status=amo.STATUS_NOMINATED, file_status=amo.STATUS_AWAITING_REVIEW
         )
         action = actions['reject']['details']
-        assert force_text(action).startswith('This will reject this version')
+        assert force_str(action).startswith('This will reject this version')
 
     def test_actions_addon_status_null(self):
         # If the add-on is null we only show reply, comment and super review.

@@ -1,4 +1,4 @@
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 from django.utils.translation import pgettext
 
 import jinja2
@@ -43,5 +43,5 @@ def _user_link(user, max_text_length=None):
     return '<a href="%s" title="%s">%s</a>' % (
         user.get_absolute_url(),
         jinja2.escape(user.name),
-        jinja2.escape(force_text(name)),
+        jinja2.escape(force_str(name)),
     )

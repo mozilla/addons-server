@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
-from django.utils.encoding import smart_text
-from django.utils.translation import get_language, gettext, ugettext_lazy as _
+from django.utils.encoding import smart_str
+from django.utils.translation import get_language, gettext, gettext_lazy as _
 
 from rest_framework import fields, serializers
 
@@ -343,9 +343,9 @@ class SlugOrPrimaryKeyRelatedField(serializers.RelatedField):
             try:
                 return self.queryset.get(**{self.slug_field: data})
             except ObjectDoesNotExist:
-                msg = _(
-                    'Invalid pk or slug "%s" - object does not exist.'
-                ) % smart_text(data)
+                msg = _('Invalid pk or slug "%s" - object does not exist.') % smart_str(
+                    data
+                )
                 raise ValidationError(msg)
 
 

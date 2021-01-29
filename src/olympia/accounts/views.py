@@ -12,9 +12,9 @@ from django.core import signing
 from django.db.models import Q
 from django.http import Http404, HttpResponseRedirect
 from django.urls import reverse
-from django.utils.encoding import force_bytes, force_text
+from django.utils.encoding import force_bytes, force_str
 from django.utils.html import format_html
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 import waffle
 
@@ -290,7 +290,7 @@ def with_user(format):
                     identity = {
                         'email': data['fake_fxa_email'],
                         'uid': 'fake_fxa_id-%s'
-                        % force_text(binascii.b2a_hex(os.urandom(16))),
+                        % force_str(binascii.b2a_hex(os.urandom(16))),
                     }
                     id_token = identity['email']
                 else:
@@ -618,7 +618,7 @@ class AccountSuperCreate(APIView):
         data = serializer.data
 
         group = serializer.validated_data.get('group', None)
-        user_token = force_text(binascii.b2a_hex(os.urandom(4)))
+        user_token = force_str(binascii.b2a_hex(os.urandom(4)))
         username = data.get('username', 'super-created-{}'.format(user_token))
         fxa_id = data.get('fxa_id', None)
         email = data.get('email', '{}@addons.mozilla.org'.format(username))

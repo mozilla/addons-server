@@ -5,8 +5,8 @@ import random
 from django.conf import settings
 from django.db import models
 from django.utils.crypto import constant_time_compare, get_random_string
-from django.utils.encoding import force_text
-from django.utils.translation import ugettext
+from django.utils.encoding import force_str
+from django.utils.translation import gettext
 
 from aesfield.field import AESField
 
@@ -120,7 +120,7 @@ class APIKey(ModelBase):
                     byte_length
                 )
             )
-        return force_text(binascii.b2a_hex(os.urandom(byte_length)))
+        return force_str(binascii.b2a_hex(os.urandom(byte_length)))
 
 
 class APIKeyConfirmation(ModelBase):
@@ -145,7 +145,7 @@ class APIKeyConfirmation(ModelBase):
             'domain': settings.DOMAIN,
         }
         return send_mail_jinja(
-            ugettext('Confirmation for developer API keys'),
+            gettext('Confirmation for developer API keys'),
             'devhub/emails/api_key_confirmation.ltxt',
             context,
             recipient_list=[self.user.email],
