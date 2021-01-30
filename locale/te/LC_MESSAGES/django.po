@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2021-01-30 18:27+0000\n"
+"PO-Revision-Date: 2021-01-30 18:37+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -4069,7 +4069,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr ""
+msgstr "సంకేతపదాలను సురక్షితంగా భద్రపరచి, తెలిసిన వెబ్‌సైట్ల లోనికి స్వయంచాలకంగా ప్రవేశించండి."
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
@@ -4382,7 +4382,7 @@ msgid "Learn More"
 msgstr "ఇంకా తెలుసుకోండి"
 
 msgid "Could not parse the manifest file."
-msgstr ""
+msgstr "మానిఫెస్ట్ ఫైల్‌ను చదవడం సాధ్యంకాలేదు."
 
 msgid "Add-on ID is required for Firefox 47 and below."
 msgstr ""
@@ -5431,7 +5431,7 @@ msgstr ""
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr ""
+msgstr "వెర్షను %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 msgid "(Confirmed)"
 msgstr "(ధ్రువీకరించారు)"
@@ -5599,7 +5599,7 @@ msgid "You cannot add versions to an addon that has status: %s."
 msgstr ""
 
 msgid "Version does not match the manifest file."
-msgstr ""
+msgstr "మానిఫెస్ట్ ఫైల్‌తో వెర్షన్ సరిపోలలేదు."
 
 #, python-format
 msgid "Version already exists. Latest version is: %s."
@@ -5923,7 +5923,7 @@ msgstr "వాడుకరి \"%(user)s\" నిషేధించబడ్డ�
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr ""
+msgstr "వాడుకరి \"%(user)s\"కు చెందిన బొమ్మ తొలగించబడింది."
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned."
