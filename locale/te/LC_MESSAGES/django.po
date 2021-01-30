@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2021-01-23 14:50+0000\n"
+"PO-Revision-Date: 2021-01-30 18:27+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -3932,7 +3932,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Prevent search engines from knowing what search results you click on."
-msgstr ""
+msgstr "మీరు ఏ వెతుకుడు ఫలితాల మీద నొక్కారో తెలుసుకోకుండా వెతుకుడు యంత్రాలను నివారించండి."
 
 #. editorial content for the discovery pane.
 msgid "Download YouTube videos and/or audio."
@@ -3945,7 +3945,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Create general and website-specific notes to review later."
-msgstr ""
+msgstr "తరువాత పునరావలోకనానికి సాధారణ, వెబ్‌సైట్-ప్రత్యేక గమనికలను వ్రాసుకోండి."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
