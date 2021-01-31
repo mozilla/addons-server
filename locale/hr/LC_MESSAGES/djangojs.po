@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-12-07 19:58+0000\n"
-"Last-Translator: Ivan <1vanhorvat@protonmail.com>\n"
+"PO-Revision-Date: 2021-01-31 15:03+0000\n"
+"Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
@@ -263,7 +263,7 @@ msgid "Add-ons Downloaded"
 msgstr "Dodataka preuzeto"
 
 msgid "Add-ons Updated"
-msgstr "Dodataka ažurirano"
+msgstr "Aktualizirani dodaci"
 
 msgid "Reviews Written"
 msgstr "Recenzija napisano"
@@ -386,7 +386,7 @@ msgid "Browse Listing Popular Sort"
 msgstr "Pretraži listu popularnog sortirano"
 
 msgid "Browse Listing Updated Sort"
-msgstr "Pretraži listu ažuriranog sortirano"
+msgstr "Pretraži razvrstani popis aktualiziranja"
 
 msgid "Browse Listing Up and Coming Sort"
 msgstr "Pretraži listu perspektivnih sortirano"
@@ -575,11 +575,11 @@ msgstr "Dodaci napravljeni od {0} do {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Updated, last {0} days"
-msgstr "Dodaci ažurirani, posljednjih {0} dana"
+msgstr "Aktualizirani dodaci, zadnjih {0} dana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Updated from {0} to {1}"
-msgstr "Dodaci ažurirani od {0} do {1}"
+msgstr "Aktualizirani dodaci od {0} do {1}"
 
 #. L10n: {0} is an integer.
 msgid "Reviews Written, last {0} days"
