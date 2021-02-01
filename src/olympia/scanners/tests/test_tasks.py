@@ -7,7 +7,6 @@ import requests
 
 from django.conf import settings
 from django.test.utils import override_settings
-from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.amo.tests import (
