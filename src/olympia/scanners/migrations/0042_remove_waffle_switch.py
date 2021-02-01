@@ -5,7 +5,7 @@ from django.db import migrations
 def remove_waffle_switch(apps, schema_editor):
     Switch = apps.get_model('waffle', 'Switch')
 
-    Switch.objects.filter(name='enable-scanner-results-api').delete()
+    Switch.objects.filter(name='yara-read-binary').delete()
 
 
 class Migration(migrations.Migration):
