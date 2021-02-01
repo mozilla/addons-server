@@ -587,6 +587,10 @@ workflows:
                 - assets
                 - devhub
                 - main
+            exclude:
+              - {djangoversion: django32, toxenv: main}
+              - {djangoversion: django32, toxenv: devhub}
+
       - test-with-autograph:
           matrix:
             parameters:
@@ -596,12 +600,13 @@ workflows:
               toxenv:
                 - amo-lib-locales-and-signing
                 - reviewers-and-zadmin
+            exclude:
+              - {djangoversion: django32, toxenv: amo-lib-locales-and-signing}
       - test-with-elasticsearch:
           matrix:
             parameters:
               djangoversion:
                 - django22
-                - django32
       - release-master:
           filters:
             branches:
