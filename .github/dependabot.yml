@@ -15,9 +15,6 @@ updates:
   - dependency-name: Django
     versions:
     - ">= 3.0"
-  - dependency-name: django-tables2
-    versions:
-    - ">= 2"
   - dependency-name: elasticsearch
     versions:
     - ">= 7"
