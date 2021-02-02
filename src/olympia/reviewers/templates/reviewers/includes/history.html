@@ -9,6 +9,9 @@
     {% if record.details %}
       {# <pre> rather than <div> so that white space is preserved on copy #}
       <pre class="light history-comment">{{ record.details.comments }}</pre>
+      {% if record.details.reason %}
+        <pre class="light history-comment">Reason: {{ record.details.reason }}</pre>
+      {% endif %}
     {% endif %}
   </td>
 </tr>
