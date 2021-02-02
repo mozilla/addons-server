@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.utils.encoding import smart_str
-from django.utils.translation import get_language, gettext, gettext_lazy as _
+from django.utils.translation import get_language, gettext, gettext_lazy as _, override
 
 from rest_framework import fields, serializers
 
@@ -402,27 +402,48 @@ class GetTextTranslationSerializerField(TranslationSerializerField):
     """A TranslationSerializerField that gets it's translations from .po files via
     gettext rather than the database with TranslatedField."""
 
+    def _fetch_some_translations(self, field, langs):
+        if not field:
+            return {}
+        base_locale = to_language(settings.LANGUAGE_CODE)
+        translations = {}
+        if base_locale in langs:
+            # we get the base_locale for free - it's just the field text
+            translations[base_locale] = str(field)
+            langs = (lang for lang in langs if lang != base_locale)
+        for lang in langs:
+            with override(lang):
+                value = gettext(field)
+                if value not in translations.values():
+                    translations[lang] = value
+        return translations
+
     def fetch_all_translations(self, obj, source, field):
-        # TODO: iterate through all/subset of locales to actually get all translations?
-        # gettext will try to get the translation in the current locale
-        value = gettext(field) if field else field
-        base_language = to_language(settings.LANGUAGE_CODE)
-        current_language = to_language(get_language())
-        if base_language == current_language or value == field:
-            return {base_language: value}
-        else:
-            # if the current locale differs from en-US return the base language too
-            return {base_language: str(field), current_language: value}
+        # TODO: get all locales or KEY_LOCALES_FOR_EDITORIAL_CONTENT at least?
+        base_locale = to_language(settings.LANGUAGE_CODE)
+        current_locale = to_language(get_language())
+        default_locale = obj.default_locale
+
+        return self._fetch_some_translations(
+            field, {base_locale, current_locale, default_locale}
+        )
 
     def fetch_single_translation(self, obj, source, field, requested_language):
-        value = gettext(field) if field else field
-        base_language = to_language(settings.LANGUAGE_CODE)
-        requested_language = to_language(requested_language)
-        if not value or requested_language == base_language or value != field:
-            actual_language = requested_language
-        else:
-            # we've fallen back to the locale the content was entered in
-            actual_language = base_language
+        base_locale = to_language(settings.LANGUAGE_CODE)
+        default_locale = obj.default_locale
+
+        translations = self._fetch_some_translations(
+            field, {base_locale, requested_language, default_locale}
+        )
+        actual_language = (
+            requested_language
+            if requested_language in translations
+            else default_locale
+            if default_locale in translations
+            else base_locale
+        )
+
+        value = translations.get(actual_language)
 
         return self._format_single_translation_response(
             value,

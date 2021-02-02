@@ -18,7 +18,7 @@ class TestDiscoverySerializer(TestCase):
 
     @pytest.mark.needs_locales_compilation
     def test_custom_description_text_no_lang(self):
-        addon = addon_factory(summary='Foo', description='Bar')
+        addon = addon_factory(summary='Foo', description='Bar', default_locale='de')
         custom_desc_en = (
             # this is predefined in strings.jinja2 (and localized already)
             'Block invisible trackers and spying ads that follow you around the web.'
@@ -27,12 +27,19 @@ class TestDiscoverySerializer(TestCase):
             'Bloquez les traqueurs invisibles et les publicités espionnes qui vous '
             'suivent sur le Web.'
         )
+        custom_desc_de = (
+            'Blockieren Sie unsichtbare Verfolger und Werbung, die Sie beobachtet '
+            'und im Netz verfolgt.'
+        )
         item = DiscoveryItem.objects.create(
             addon=addon, custom_description=custom_desc_en
         )
-        assert self.serialize(item)['description_text'] == {'en-US': custom_desc_en}
+        assert self.serialize(item)['description_text'] == {
+            'en-US': custom_desc_en,
+            'de': custom_desc_de,
+        }
         with override_settings(DRF_API_GATES={'v5': ('l10n_flat_input_output',)}):
-            assert self.serialize(item)['description_text'] == custom_desc_en
+            assert self.serialize(item)['description_text'] == custom_desc_de
 
         # repeat for the edge case when we have a different system language than en-US
         with self.activate('fr'):
@@ -40,13 +47,14 @@ class TestDiscoverySerializer(TestCase):
             assert self.serialize(item)['description_text'] == {
                 'en-US': custom_desc_en,
                 'fr': custom_desc_fr,
+                'de': custom_desc_de,
             }
             with override_settings(DRF_API_GATES={'v5': ('l10n_flat_input_output',)}):
                 assert self.serialize(item)['description_text'] == custom_desc_fr
 
     @pytest.mark.needs_locales_compilation
     def test_custom_description_text_lang_specified(self):
-        addon = addon_factory(summary='Foo', description='Bar')
+        addon = addon_factory(summary='Foo', description='Bar', default_locale='de')
         custom_desc_en = (
             # this is predefined in strings.jinja2 (and localized already)
             'Block invisible trackers and spying ads that follow you around the web.'
@@ -54,6 +62,10 @@ class TestDiscoverySerializer(TestCase):
         custom_desc_fr = (
             'Bloquez les traqueurs invisibles et les publicités espionnes qui vous '
             'suivent sur le Web.'
+        )
+        custom_desc_de = (
+            'Blockieren Sie unsichtbare Verfolger und Werbung, die Sie beobachtet '
+            'und im Netz verfolgt.'
         )
         item = DiscoveryItem.objects.create(
             addon=addon, custom_description=custom_desc_en
@@ -70,6 +82,16 @@ class TestDiscoverySerializer(TestCase):
         # but we don't for az
         with self.activate('az'):
             item.reload()
+            assert self.serialize(item, 'az')['description_text'] == {
+                'de': custom_desc_de,
+                'az': None,
+                '_default': 'de',
+            }
+            with override_settings(DRF_API_GATES={'v5': ('l10n_flat_input_output',)}):
+                assert self.serialize(item, 'az')['description_text'] == custom_desc_de
+
+            # cover the edge case where the addon is set a default locale we don't have
+            item.addon.update(default_locale='az')
             assert self.serialize(item, 'az')['description_text'] == {
                 'en-US': custom_desc_en,
                 'az': None,

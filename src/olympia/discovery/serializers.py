@@ -78,7 +78,7 @@ class FieldAlwaysFlatWhenFlatGateActiveMixin:
 
     def get_requested_language(self):
         # For l10n_flat_input_output, if the request didn't specify a `lang=xx` then
-        # fake it with the system language so we get a single (flat) result.
+        # fake it with the current locale so we get a single (flat) result.
         requested = super().get_requested_language()
         if not requested:
             request = self.context.get('request', None)
