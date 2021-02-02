@@ -174,7 +174,7 @@ class SecondaryHeroShelf(SecondaryHero):
 class ShelfModule(Shelf):
     class Meta:
         proxy = True
-        verbose_name_plural = 'shelves'
+        verbose_name_plural = 'shelf modules'
 
 
 admin.site.register(DiscoveryItem, DiscoveryItemAdmin)

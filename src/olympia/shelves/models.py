@@ -25,6 +25,12 @@ class Shelf(ModelBase):
         blank=True,
         help_text='e.g., collections/4757633/privacy-matters',
     )
+    addon_count = models.PositiveSmallIntegerField(
+        default=0,
+        blank=True,
+        help_text='0 means the default number (4, or 3 for search-themes) of add-ons '
+        'will included be in shelf responses. Set to override.',
+    )
 
     class Meta:
         verbose_name_plural = 'shelves'
@@ -33,10 +39,7 @@ class Shelf(ModelBase):
         return self.title
 
     def get_count(self):
-        if self.endpoint in ('search-themes',):
-            return 3
-        else:
-            return 4
+        return self.addon_count or (3 if self.endpoint in ('search-themes',) else 4)
 
 
 class ShelfManagement(ModelBase):

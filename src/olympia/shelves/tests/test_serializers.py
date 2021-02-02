@@ -211,3 +211,11 @@ class TestShelvesSerializer(ESTestCase):
 
         data = self.serialize(shelf)
         assert len(data['addons']) == 4
+
+        # override the count with a custom setting
+        shelf.update(addon_count=5)
+        data = self.serialize(shelf)
+        assert len(data['addons']) == 5
+        shelf.update(addon_count=2)
+        data = self.serialize(shelf)
+        assert len(data['addons']) == 2
