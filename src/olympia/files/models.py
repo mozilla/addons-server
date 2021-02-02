@@ -542,12 +542,6 @@ class FileUpload(ModelBase):
             user_media_path('addons'), 'temp', uuid.uuid4().hex, ext
         )
 
-        # The following log statement is used by foxsec-pipeline.
-        log.info(
-            'UPLOAD: %r (%s bytes) to %r' % (self.name, size, self.path),
-            extra={'email': (self.user.email if self.user and self.user.email else '')},
-        )
-
         hash_obj = None
         if was_crx:
             try:
@@ -560,6 +554,15 @@ class FileUpload(ModelBase):
         if hash_obj is None:
             hash_obj = self.write_data_to_path(chunks)
         self.hash = 'sha256:%s' % hash_obj.hexdigest()
+
+        # The following log statement is used by foxsec-pipeline.
+        log.info(
+            'UPLOAD: %r (%s bytes) to %r' % (self.name, size, self.path),
+            extra={
+                'email': (self.user.email if self.user and self.user.email else ''),
+                'upload_hash': self.hash,
+            },
+        )
         self.save()
 
     def generate_access_token(self):
