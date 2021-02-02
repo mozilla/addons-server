@@ -403,19 +403,26 @@ class GetTextTranslationSerializerField(TranslationSerializerField):
     gettext rather than the database with TranslatedField."""
 
     def fetch_all_translations(self, obj, source, field):
-        # skip gettext in the default locale
         # TODO: iterate through all/subset of locales to actually get all translations?
-        return {to_language(settings.LANGUAGE_CODE): str(field)}
+        # gettext will try to get the translation in the current locale
+        value = gettext(field) if field else field
+        base_language = to_language(settings.LANGUAGE_CODE)
+        current_language = to_language(get_language())
+        if base_language == current_language or value == field:
+            return {base_language: value}
+        else:
+            # if the current locale differs from en-US return the base language too
+            return {base_language: str(field), current_language: value}
 
     def fetch_single_translation(self, obj, source, field, requested_language):
         value = gettext(field) if field else field
-        default_language = to_language(settings.LANGUAGE_CODE)
+        base_language = to_language(settings.LANGUAGE_CODE)
         requested_language = to_language(requested_language)
-        if not value or requested_language == default_language or value != field:
+        if not value or requested_language == base_language or value != field:
             actual_language = requested_language
         else:
-            # we've fallen back to the default locale
-            actual_language = default_language
+            # we've fallen back to the locale the content was entered in
+            actual_language = base_language
 
         return self._format_single_translation_response(
             value,
