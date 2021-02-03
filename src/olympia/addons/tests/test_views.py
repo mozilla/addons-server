@@ -644,6 +644,24 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         data = json.loads(force_str(response.content))
         assert data == {'detail': 'Invalid "app" parameter.'}
 
+    def test_with_grouped_ratings(self):
+        assert 'grouped_counts' not in self.client.get(self.url).json()['ratings']
+
+        response = self.client.get(self.url, {'show_grouped_ratings': 'true'})
+        assert 'grouped_counts' in response.json()['ratings']
+        assert response.json()['ratings']['grouped_counts'] == {
+            '1': 0,
+            '2': 0,
+            '3': 0,
+            '4': 0,
+            '5': 0,
+        }
+
+        response = self.client.get(self.url, {'show_grouped_ratings': '58.0'})
+        assert response.status_code == 400
+        data = json.loads(force_str(response.content))
+        assert data == {'detail': 'show_grouped_ratings parameter should be a boolean'}
+
 
 class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
     client_class = APITestClient

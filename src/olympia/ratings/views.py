@@ -26,9 +26,10 @@ from olympia.api.permissions import (
 from olympia.api.throttling import GranularUserRateThrottle
 from olympia.api.utils import is_gate_active
 
-from .models import GroupedRating, Rating, RatingFlag
+from .models import Rating, RatingFlag
 from .permissions import CanDeleteRatingPermission
 from .serializers import RatingFlagSerializer, RatingSerializer, RatingSerializerReply
+from .utils import get_grouped_ratings
 
 
 class RatingThrottle(GranularUserRateThrottle):
@@ -226,17 +227,8 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
     def get_paginated_response(self, data):
         request = self.request
         extra_data = {}
-        if 'show_grouped_ratings' in request.GET:
-            try:
-                show_grouped_ratings = serializers.BooleanField().to_internal_value(
-                    request.GET['show_grouped_ratings']
-                )
-            except serializers.ValidationError:
-                raise ParseError('show_grouped_ratings parameter should be a boolean')
-            if show_grouped_ratings and self.get_addon_object():
-                extra_data['grouped_ratings'] = dict(
-                    GroupedRating.get(self.addon_object.id)
-                )
+        if grouped_rating := get_grouped_ratings(request, self.get_addon_object()):
+            extra_data['grouped_ratings'] = grouped_rating
         if 'show_permissions_for' in request.GET and is_gate_active(
             self.request, 'ratings-can_reply'
         ):
