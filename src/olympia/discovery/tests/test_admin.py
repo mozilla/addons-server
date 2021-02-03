@@ -899,6 +899,7 @@ class TestShelfAdmin(TestCase):
                 'criteria': ('?promoted=recommended&sort=random&type=extension'),
                 'footer_text': 'See more',
                 'footer_pathname': '/this/is/the/pathname',
+                'addon_count': 2,
             }
 
             response = self.client.post(
@@ -910,6 +911,7 @@ class TestShelfAdmin(TestCase):
             assert item.title == 'Recommended extensions'
             assert item.endpoint == 'search'
             assert item.criteria == ('?promoted=recommended&sort=random&type=extension')
+            assert item.addon_count == item.get_count() == 2
 
     def test_can_delete_with_discovery_edit_permission(self):
         item = Shelf.objects.create(

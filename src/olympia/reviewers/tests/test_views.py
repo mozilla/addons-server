@@ -16,6 +16,7 @@ from django.core.files.base import File as DjangoFile
 from django.db import connection, reset_queries
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
+from olympia.blocklist.utils import block_activity_log_save
 
 from rest_framework.test import APIRequestFactory
 
@@ -6042,11 +6043,16 @@ class TestReview(ReviewBase):
         assert span.text() == 'Blocked Blocked'
         assert span.length == 2  # a new version is blocked too
 
-        block.update(max_version='98')
+        block_reason = 'Very bad addon!'
+        block.update(max_version='98', reason=block_reason)
+        block_activity_log_save(obj=block, change=False)
         response = self.client.get(self.url)
         span = pq(response.content)('#versions-history .blocked-version')
         assert span.text() == 'Blocked'
         assert span.length == 1
+        assert block_reason in (
+            pq(response.content)('#versions-history .history-comment').text()
+        )
 
     def test_redirect_after_review_unlisted(self):
         self.url = reverse('reviewers.review', args=('unlisted', self.addon.slug))

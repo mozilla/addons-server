@@ -69,7 +69,7 @@ def block_activity_log_delete(obj, *, submission_obj=None, delete_user=None):
         'url': obj.url,
         'reason': obj.reason,
         'include_in_legacy': obj.in_legacy_blocklist,
-        'comments': f'Versions {obj.min_version} - {obj.max_version} blocked.',
+        'comments': f'Versions {obj.min_version} - {obj.max_version} unblocked.',
     }
     if submission_obj:
         details['signoff_state'] = submission_obj.SIGNOFF_STATES.get(

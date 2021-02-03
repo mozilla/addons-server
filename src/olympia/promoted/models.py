@@ -1,18 +1,14 @@
-from django.conf import settings
 from django.db import models
 from django.dispatch import receiver
-from urllib.parse import urljoin
 
 from olympia.addons.models import Addon
 from olympia.amo.models import ModelBase
-from olympia.amo.urlresolvers import reverse
 from olympia.constants.applications import APP_IDS, APPS_CHOICES, APP_USAGE
 from olympia.constants.promoted import (
     NOT_PROMOTED,
     PRE_REVIEW_GROUPS,
     PROMOTED_GROUPS,
     PROMOTED_GROUPS_BY_ID,
-    BILLING_PERIODS,
 )
 from olympia.versions.models import Version
 
@@ -97,18 +93,6 @@ class PromotedAddon(ModelBase):
         except AttributeError:
             pass
 
-    @property
-    def has_pending_subscription(self):
-        """Checks if there is a subscription needed for this promotion, and if
-        so, if it has been completed.  Returns True if there is outstanding
-        payment needed."""
-        return (
-            self.group.require_subscription
-            and (subscr := getattr(self, 'promotedsubscription', None))
-            and not subscr.is_active
-            and not self.has_approvals
-        )
-
     def approve_for_addon(self):
         """This sets up the addon as approved for the current promoted group.
 
@@ -136,10 +120,7 @@ class PromotedAddon(ModelBase):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 
-        if self.group.require_subscription:
-            if not hasattr(self, 'promotedsubscription'):
-                PromotedSubscription.objects.create(promoted_addon=self)
-        elif (
+        if (
             self.group.immediate_approval
             and self.approved_applications != self.all_applications
         ):
@@ -214,93 +195,3 @@ def update_es_for_promoted(sender, instance, **kw):
 )
 def update_es_for_promoted_approval(sender, instance, **kw):
     update_es_for_promoted(sender=sender, instance=instance.version, **kw)
-
-
-class PromotedSubscription(ModelBase):
-    promoted_addon = models.OneToOneField(
-        PromotedAddon,
-        on_delete=models.CASCADE,
-        null=False,
-    )
-    link_visited_at = models.DateTimeField(
-        null=True,
-        help_text=(
-            'This date is set when the developer has visited the onboarding page.'
-        ),
-    )
-    # This field should only be used for the Stripe Checkout process, use
-    # `stripe_subscription_id` when interacting with the API.
-    stripe_session_id = models.CharField(default=None, null=True, max_length=100)
-    stripe_subscription_id = models.CharField(default=None, null=True, max_length=100)
-    checkout_cancelled_at = models.DateTimeField(
-        null=True,
-        help_text=(
-            'This date is set when the developer has cancelled the initial '
-            'payment process.'
-        ),
-    )
-    checkout_completed_at = models.DateTimeField(
-        null=True,
-        help_text=(
-            'This date is set when the developer has successfully completed '
-            'the initial payment process.'
-        ),
-    )
-    cancelled_at = models.DateTimeField(
-        null=True,
-        help_text='This date is set when the subscription has been cancelled.',
-    )
-    onboarding_rate = models.PositiveIntegerField(
-        default=None,
-        blank=True,
-        null=True,
-        help_text=(
-            'If set, this rate will be used to charge the developer for this'
-            ' subscription. The value should be a non-negative integer in'
-            ' cents. The default rate configured in Stripe for the promoted'
-            ' group will be used otherwise.'
-        ),
-    )
-    onboarding_period = models.CharField(
-        choices=BILLING_PERIODS,
-        max_length=10,
-        blank=True,
-        null=True,
-        help_text=(
-            'If set, this billing period will be used for this subscription.'
-            ' The default period configured in Stripe for the promoted group'
-            'will be used otherwise.'
-        ),
-    )
-
-    def __str__(self):
-        return f'Subscription for {self.promoted_addon}'
-
-    def get_onboarding_url(self, absolute=True):
-        if not self.id:
-            return None
-
-        url = reverse(
-            'devhub.addons.onboarding_subscription',
-            args=[self.promoted_addon.addon.slug],
-            add_prefix=False,
-        )
-        if absolute:
-            url = urljoin(settings.EXTERNAL_SITE_URL, url)
-        return url
-
-    @property
-    def stripe_checkout_completed(self):
-        return bool(self.checkout_completed_at)
-
-    @property
-    def stripe_checkout_cancelled(self):
-        return bool(self.checkout_cancelled_at)
-
-    @property
-    def is_active(self):
-        """A subscription can only be active when it has started so we return a
-        boolean value only in this case. None is returned otheriwse."""
-        if self.stripe_checkout_completed:
-            return not self.cancelled_at
-        return None

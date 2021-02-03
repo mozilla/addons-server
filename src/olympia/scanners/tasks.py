@@ -269,8 +269,6 @@ def _run_yara_for_path(scanner_result, path, definition=None):
         for zip_info in zip_file.info_list:
             if not zip_info.is_dir():
                 file_content = zip_file.read(zip_info)
-                if not waffle.switch_is_active('yara-read-binary'):
-                    file_content = file_content.decode(errors='ignore')
                 filename = zip_info.filename
                 # Fill externals variable for this file.
                 externals['is_json_file'] = filename.endswith('.json')

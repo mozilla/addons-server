@@ -15,9 +15,48 @@ exclude = '''
    | static
    | \.git
    | \.npm
-   | \.tox
   )/
   | src/.*/migrations/.*\.py
   | src/olympia/translations/tests/testapp/migrations/.*\.py
+  | src/django-babel/.*\.py
 )
 '''
+
+[tool.pytest.ini_options]
+addopts = "-vs --reuse-db --showlocals --tb=short"
+python_files = "test*.py"
+norecursedirs = [
+  "node_modules",
+  "locale",
+  "static",
+  "media",
+  "site-static",
+  "user-media",
+  "tmp",
+  "templates",
+  "fixtures",
+  "migrations",
+  ".*",
+  "*.egg",
+  "dist",
+  "cache",
+  "venv",
+  "__pycache__",
+]
+DJANGO_SETTINGS_MODULE = "settings_test"
+# Ignoring csp deprecation warnings, we have control over the module and
+# currently it warns for child-src which is deprecated in CSPv3 but we're still
+# on CSP 2 while CSP 3 is still in working draft (sept 2018)
+filterwarnings = [
+  "default",
+  "ignore:::csp.utils",
+  # Ignore ResourceWarning for now. It's a Python 3 thing :-/
+  "ignore::ResourceWarning",
+]
+markers = [
+  "es_tests: mark a test as an elasticsearch test.",
+  "needs_locales_compilation: mark a test as needing compiled locales to work.",
+  "allow_external_http_requests: mark a test to allow external http requests and disable responses.",
+  "static_assets: Tests that are depending on `compress_assets` and require to be separated with other tests.",
+  "internal_routes_allowed: mark a test as needing INTERNAL_ROUTES_ALLOWED=True.",
+]

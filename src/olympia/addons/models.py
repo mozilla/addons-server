@@ -1434,17 +1434,6 @@ class Addon(OnChangeMixin, ModelBase):
                 return PromotedTheme(addon=self, group_id=RECOMMENDED.id)
         return None
 
-    @property
-    def promoted_subscription(self):
-        """Returns a PromotedSubscription if it exists, None otherwise."""
-        from olympia.promoted.models import PromotedAddon, PromotedSubscription
-
-        try:
-            return self.promotedaddon.promotedsubscription
-        except (PromotedAddon.DoesNotExit, PromotedSubscription.DoesNotExist):
-            pass
-        return None
-
     @cached_property
     def tags_partitioned_by_developer(self):
         """Returns a tuple of developer tags and user tags for this addon."""

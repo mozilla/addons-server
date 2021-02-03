@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2021-01-11 13:35+0000\n"
+"PO-Revision-Date: 2021-02-03 13:01+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -95,7 +95,7 @@ msgid "You are already logged in."
 msgstr "Você já se identificou."
 
 msgid "Your login attempt could not be parsed. Please try again."
-msgstr "A sua tentativa de identificação não pôde ser analisada. Tente novamente."
+msgstr "Sua tentativa de identificação não pôde ser analisada. Tente novamente."
 
 msgid "Your Firefox Account could not be found. Please try again."
 msgstr "Sua Conta Firefox não pôde ser encontrada. Tente novamente."
@@ -252,7 +252,7 @@ msgstr ""
 "navegador não será sequestrado por terceiros."
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
-msgstr "Caso você tenha configurado seu navegador para desativar os cabeçalhos \"Referer\", por favor, reative-os pelo menos para este site, para conexões HTTPS ou para solicitações \"same-origin\"."
+msgstr "Caso você tenha configurado seu navegador para desativar cabeçalhos 'Referer', reative pelo menos neste site, em conexões HTTPS ou em requisições 'same-origin'."
 
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
@@ -286,7 +286,7 @@ msgstr "Página inicial de extensões"
 
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
-msgstr "Se você chegou até aqui através de um link, %(open_bug_link)sreporte um bug%(close_bug_link)s. Nos diga de onde veio e o que estava procurando, e faremos o possível para corrigir."
+msgstr "Se você chegou até aqui através de um link, %(open_bug_link)sregistre um problema%(close_bug_link)s. Nos diga de onde veio e o que estava procurando, e faremos o possível para corrigir."
 
 msgid "Not Found"
 msgstr "Não encontrado"
@@ -299,11 +299,12 @@ msgid ""
 "website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
 "href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>Desculpe, mas não encontramos o que você está procurando.</h1> <p> A página ou arquivo que você solicitou não foi encontrado no nosso site. É possível que você tenha clicado em um link "
-"desatualizado, ou digitou o endereço incorretamente. </p> <ul> <li>Se você digitou o endereço, verifique a digitação.</li> <li> Se seguiu um link de algum lugar, %(open_bug_link)sregistre o "
-"problema%(close_bug_link)s. Nos diga de onde veio e o que procurava, e faremos o possível para corrigir. </li> </ul> <p>Ou você pode ir para algumas das páginas mais populares do nosso site.</p> "
-"<ul> <li>Está interessado em uma <a href=\"%(rec)s\">lista de extensões em destaque</a>?</li> <li> Quer <a href=\"%(search)s\">procurar extensões</a>? Você pode ir na <a href=\"%(search)s\">página "
-"de pesquisa</a> ou simplesmente usar o campo de pesquisa acima. </li> <li> Se preferir começar de novo, basta ir até a <a href=\"%(home)s\">página inicial de extensões</a>. </li> </ul>"
+"<h1>Desculpe, mas não encontramos o que você está procurando.</h1><p>A página ou arquivo que você solicitou não foi encontrado em nosso site. É possível que você tenha clicado em um link "
+"desatualizado, ou digitou o endereço incorretamente.</p><ul><li>Se você digitou o endereço, verifique a digitação.</li><li>Se seguiu um link de algum lugar, %(open_bug_link)sregistre o "
+"problema%(close_bug_link)s. Nos diga de onde veio e o que procurava e faremos o possível para corrigir.</li></ul><p>Você também pode ir para algumas das páginas mais populares do nosso "
+"site.</p><ul><li>Está interessado em uma <a href=\"%(rec)s\">lista de extensões em destaque</a>?</li><li>Quer <a href=\"%(search)s\">procurar extensões</a>? Você pode ir na <a "
+"href=\"%(search)s\">página de pesquisa</a> ou simplesmente usar o campo de pesquisa acima.</li><li>Se preferir começar de novo, basta ir para a <a href=\"%(home)s\">página inicial de "
+"extensões</a>.</li></ul>"
 
 msgid "Oops"
 msgstr "Ops"
@@ -320,7 +321,7 @@ msgid "Register or Log in"
 msgstr "Cadastre-se ou entre"
 
 msgid "Email:"
-msgstr "E-mail:"
+msgstr "Email:"
 
 msgid "OK"
 msgstr "OK"
@@ -359,8 +360,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> Por favor insira <strong>todas as palavras</strong> abaixo, <strong>separadas por um espaço, se necessário</strong>. </p> <p> Se estiver difícil de ler, você pode <a href=\"#\" "
-"id=\"recaptcha_different\">tentar palavras diferentes</a> ou <a href=\"#\" id=\"recaptcha_audio\">um tipo diferente de desafio</a>. </p>"
+"<p>Digite <strong>todas as palavras</strong> abaixo, <strong>separadas por um espaço, se necessário</strong>.</p><p>Se estiver difícil de ler, você pode <a href=\"#\" "
+"id=\"recaptcha_different\">tentar palavras diferentes</a> ou <a href=\"#\" id=\"recaptcha_audio\">outro tipo de desafio</a>.</p>"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -426,7 +427,7 @@ msgid "Invalid token or hash."
 msgstr "Token ou hash inválido."
 
 msgid "Email address not found."
-msgstr "Endereço de e-mail não encontrado."
+msgstr "Endereço de email não encontrado."
 
 msgid "Unavailable for legal reasons."
 msgstr "Não disponível por motivos legais"
@@ -461,7 +462,7 @@ msgstr "Extensões submetidas necessitam ter um arquivo manifest com pelo menos 
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "Esteja ciente que WebExtensions não aceitam um \"*\" em %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
+msgstr "Esteja ciente que WebExtensions não aceitam \"*\" em %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
 
 msgid "GUID"
 msgstr "GUID"
@@ -775,10 +776,10 @@ msgid "Application max version for {version} updated."
 msgstr "Versão máxima da aplicação para {version} atualizada."
 
 msgid "Authors emailed about compatibility of {version}."
-msgstr "Os autores foram notificados por e-mail sobre a compatibilidade de {version}."
+msgstr "Os autores foram notificados por email sobre a compatibilidade de {version}."
 
 msgid "Email sent to Author about add-on compatibility."
-msgstr "E-mail enviado ao autor sobre a compatibilidade da extensão."
+msgstr "Email enviado ao autor sobre a compatibilidade da extensão."
 
 msgid "Password changed."
 msgstr "Senha alterada."
@@ -1672,11 +1673,11 @@ msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_l
 msgstr "Extensões Open Search {blog_link_open}não são mais suportadas no AMO{blog_link_close}. Em vez disso, você pode criar uma {doc_link_open}extensão de pesquisa{doc_link_close}."
 
 msgid "This slug is already in use. Please choose another."
-msgstr "Esse identificador já está em uso. Por favor, escolha outro."
+msgstr "Esse identificador já está em uso. Escolha outro."
 
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "O identificador não pode ser \"%(slug)s\". Por favor escolha outro."
+msgstr "O identificador não pode ser \"%(slug)s\". Escolha outro."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
@@ -1767,7 +1768,7 @@ msgid "This add-on has a Privacy Policy"
 msgstr "Essa extensão possui uma Política de Privacidade"
 
 msgid "Please specify your add-on's Privacy Policy:"
-msgstr "Por favor, especifique a política de privacidade da sua extensão:"
+msgstr "Especifique a política de privacidade da sua extensão:"
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Tipo de arquivo não suportado, envie um arquivo de arquivamento no formato {extensions}."
@@ -1785,7 +1786,7 @@ msgid "Need at least one compatible application."
 msgstr "Você deve selecionar pelo menos uma aplicação compatível."
 
 msgid "There was an error with your upload. Please try again."
-msgstr "Ocorreu um erro ao enviar seu arquivo. Por favor, tente novamente."
+msgstr "Ocorreu um erro ao enviar o arquivo. Tente novamente."
 
 msgid "Override failed validation"
 msgstr "Substituir validação com falha"
@@ -1922,7 +1923,7 @@ msgid "Author invitation for {addon_name}"
 msgstr "Convite de autor de {addon_name}"
 
 msgid "A confirmation email has been sent to {email}"
-msgstr "Um e-mail de confirmação foi enviado para {email}"
+msgstr "Um email de confirmação foi enviado para {email}"
 
 msgid "An author role has been changed on your add-on"
 msgstr "Foi alterado o papel de um autor da sua extensão"
@@ -2159,8 +2160,8 @@ msgid ""
 "This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
 "this add-on."
 msgstr ""
-"Esta extensão não é compatível com o <b>%(app_name)s %(app_version)s</b>, a versão mais recente do %(app_name)s. Por favor, considere atualizar as informações de compatibilidade da sua extensão ou "
-"envie uma nova versão."
+"Esta extensão não é compatível com o <b>%(app_name)s %(app_version)s</b>, a versão mais recente do %(app_name)s. Considere atualizar as informações de compatibilidade da sua extensão ou envie uma "
+"nova versão."
 
 #, python-format
 msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
@@ -2439,14 +2440,14 @@ msgid "Categories are the primary way users browse through add-ons. Choose any t
 msgstr "As categorias são o método mais comum que os usuários usam para navegar pelas extensões. Escolha uma que se enquadre na funcionalidade da sua extensão para uma maior exposição."
 
 msgid "Email"
-msgstr "E-mail"
+msgstr "Email"
 
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
 " for listed add-ons."
 msgstr ""
-"Se você desejar exibir um endereço de e-mail para suporte digite-o aqui. Se você tiver endereços de e-mail diferentes para cada idioma, pode adicioná-los neste campo. Isto só é válido para extensões"
-" listadas."
+"Se quiser exibir um endereço de email para consultas de suporte, digite aqui. Se tiver endereços de email diferentes por idioma, várias traduções deste campo podem ser adicionadas. Isso só é "
+"relevante para extensões listadas."
 
 msgid "Website"
 msgstr "Site"
@@ -2765,7 +2766,7 @@ msgid "Select a category for this add-on:"
 msgstr "Selecione uma categoria para esta extensão:"
 
 msgid "Support email:"
-msgstr "E-mail de suporte:"
+msgstr "Email de suporte:"
 
 msgid "Support website:"
 msgstr "Página de suporte:"
@@ -2860,7 +2861,7 @@ msgid "Version Signature Pending"
 msgstr "Assinatura de versão pendente"
 
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
-msgstr "Pronto! Esta versão será assinada para auto-distribuição em breve. Você será notificado por e-mail quando o arquivo assinado estiver pronto para download."
+msgstr "Pronto! Esta versão será assinada para auto-distribuição em breve. Você será notificado por email quando o arquivo assinado estiver pronto para download."
 
 msgid "Go to My Submissions"
 msgstr "Ir para minhas submissões"
@@ -3051,7 +3052,7 @@ msgid "Please click the confirm button below to generate API credentials for use
 msgstr "Clique no botão de confirmação abaixo para gerar credenciais de API para o usuário <strong>%(name)s</strong>."
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr "Um link de confirmação será enviado para seu endereço de e-mail. Após a confirmação, você encontrará suas chaves de API nesta página."
+msgstr "Um link de confirmação será enviado para seu endereço de email. Após a confirmação, você encontrará suas chaves de API nesta página."
 
 msgid "You don't have any API credentials."
 msgstr "Você não tem nenhuma credencial de API."
@@ -3171,7 +3172,7 @@ msgid "Your add-on is displayed in our gallery and users are receiving automatic
 msgstr "Sua extensão será exibido em nossa galeria e os usuários receberão atualizações automáticas."
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr "Sua extensão foi desativada por um administrador do site e não será mais exibida em nossa galeria. Se tiver alguma dúvida, envie um e-mail para amo-admins@mozilla.com."
+msgstr "Sua extensão foi desativada por um administrador do site e não será mais exibida em nossa galeria. Se tiver alguma dúvida, envie um email para amo-admins@mozilla.com."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr "Sua extensão não será incluída nos resultados de pesquisas, e a página de listagem indicará que você desativou a extensão. Novas versões não serão aceitas neste estado."
@@ -3253,7 +3254,7 @@ msgid "License"
 msgstr "Licença"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
-msgstr "Por favor escolha uma licença apropriada para o seu código fonte. Isto é relevante apenas para complementos listados."
+msgstr "Escolha uma licença apropriada para os direitos que você concede sobre seu código fonte. Isto é relevante apenas para extensões listadas."
 
 #. %s is a list of HTML tags.
 #, python-format
@@ -3292,7 +3293,7 @@ msgid "If your add-on contains minified, concatenated or otherwise machine-gener
 msgstr "Se sua extensão contém código minimizado, concatenado ou gerado por máquina, que não seja de bibliotecas conhecidas, envie o código fonte para revisão."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
-msgstr "Por favor, inclua instruções sobre como reproduzir o arquivo final da extensão, um arquivo LEIAME ou notas ao Revisor para esta versão."
+msgstr "Inclua instruções sobre como reproduzir o arquivo final da extensão, seja um arquivo README/LEIAME ou as notas ao revisor para esta versão."
 
 msgid "Read more about the source code review policy."
 msgstr "Leia mais sobre a política de revisão de código."
@@ -3335,7 +3336,7 @@ msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr "Fique em dia sobre notícias e eventos para desenvolvedores de extensões do Firefox."
 
 msgid "Email Address"
-msgstr "Endereço de e-mail"
+msgstr "Endereço de email"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
@@ -3349,7 +3350,7 @@ msgstr "Obrigado!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr ""
-"Se você não confirmou anteriormente uma inscrição em um boletim informativo relacionado à Mozilla, pode precisar fazê-lo. Verifique se recebeu um e-mail nosso em sua caixa de entrada ou filtro de "
+"Se você não confirmou anteriormente uma inscrição em um boletim informativo relacionado à Mozilla, pode precisar fazê-lo. Verifique se recebeu um email nosso em sua caixa de entrada ou no filtro de "
 "spam."
 
 msgid "Resources"
@@ -3778,7 +3779,7 @@ msgstr "Impeça que sites maliciosos utilizem o processamento do seu computador 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
-msgstr "Obtenha assistência gramatical onde quer que você escreva na Web — mídias sociais, e-mails, documentos e mais."
+msgstr "Obtenha assistência gramatical onde quer que você escreva na web — mídias sociais, emails, documentos e muito mais."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4057,7 +4058,7 @@ msgstr "Abra uma nova aba à direita da aba atual e não ao final da sequência 
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr "Derrote o spam. Use e-mails temporários inteligentes para se manter anônimo e evitar spam."
+msgstr "Derrote o spam. Use emails temporários inteligentes para se manter anônimo e evitar spam."
 
 #. editorial content for the discovery pane.
 msgid "A direct path to customizing the built-in privacy settings in Firefox."
@@ -4725,7 +4726,7 @@ msgid "Make false statements, disparage add-on authors or personally insult them
 msgstr "Não faça afirmações falsas, deprecie os autores da extensão ou os insulte pessoalmente."
 
 msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr "Incluir o seu e-mail, telefone ou quaisquer outros dados ou os de qualquer outra pessoa."
+msgstr "Inclua o email, telefone ou outros dados pessoais, seus ou de outra pessoa."
 
 msgid "Post reviews for an add-on you or your organization wrote or represent."
 msgstr "Não poste análises para uma extensão que você ou sua organização criou ou representa."
@@ -4858,7 +4859,7 @@ msgid "add-on, reviewer or comment"
 msgstr "extensão, editor ou comentário"
 
 msgid "Search by add-on name / author email"
-msgstr "Procurar pelo nome da extensão / e-mail do autor"
+msgstr "Procurar pelo nome da extensão / email do autor"
 
 msgid "Needs Admin Code Review"
 msgstr "Precisa revisar o código de administração"
@@ -4873,7 +4874,7 @@ msgid "Add-on Types"
 msgstr "Tipos de extensões"
 
 msgid "Search by add-on name / author email / guid"
-msgstr "Procurar pelo nome da extensão/ e-mail do autor / guid"
+msgstr "Procurar pelo nome da extensão / email do autor / guid"
 
 msgid "Max. Version"
 msgstr "Versão máx."
@@ -6196,7 +6197,7 @@ msgid "You can only enter one, either IP Address or Network."
 msgstr "Só pode informar um dos dois, Endereço IP ou Rede."
 
 msgid "No user with that email."
-msgstr "Nenhum usuário com esse e-mail."
+msgstr "Nenhum usuário com este email."
 
 msgid "Firefox user {id}"
 msgstr "Usuário {id} do Firefox"
@@ -6214,24 +6215,24 @@ msgid "Multiple add-ons violating our policies have been submitted from your loc
 msgstr "Várias extensões que violam nossas políticas foram enviadas a partir de sua localização. O endereço IP foi bloqueado."
 
 msgid "Email Pattern"
-msgstr "Máscara de e-mails"
+msgstr "Máscara de emails"
 
 msgid ""
 "Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
 " Please note that we do not include \"@\" in the match so you  should do that in the pattern."
 msgstr ""
-"Digite um domínio completo ou e-mail que deve ser bloqueado, ou use uma máscara estilo glob para corresponder a outros padrões. Por exemplo, \"@*.mail.com\"\n"
+"Digite um domínio completo ou email que deve ser bloqueado, ou use uma máscara estilo glob para corresponder a outros padrões. Por exemplo, \"@*.mail.com\"\n"
 "Note que não incluímos o \"@\" ao corresponder, por isso você deve incluir na máscara."
 
 msgid "The email address used for your account is not allowed for add-on submission."
-msgstr "O endereço de e-mail usado na sua conta não é aceito para enviar extensões."
+msgstr "O endereço de email usado na sua conta não é aceito para enviar extensões."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
 msgstr ""
-"Digite o domínio completo de e-mails descartáveis que deve ser bloqueado. Caracteres curingas não são aceitos: se você precisar deles ou precisar bloquear um e-mail todo e não apenas a parte do "
-"domínio, em vez disso use \"Restrições de usuários de e-mail\"."
+"Digite o domínio completo de emails descartáveis que devem ser bloqueados. Caracteres curingas não são aceitos, se você precisar deles ou precisar bloquear um email todo e não apenas a parte do "
+"domínio, em vez disso use \"Restrições de usuários de email\"."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
@@ -6315,7 +6316,7 @@ msgstr ""
 "¶\n"
 "%(author_confirmation_link)s¶\n"
 "¶\n"
-"Se você não esperava receber este convite, envie um e-mail para amo-admins@mozilla.com.\n"
+"Se você não esperava receber este convite, envie um email para amo-admins@mozilla.com.\n"
 "¶\n"
 "Atenciosamente,\n"
 "Equipe de extensões da Mozilla"
@@ -6354,9 +6355,9 @@ msgid ""
 msgstr ""
 "Olá,\n"
 "\n"
-"Você recebeu esta mensagem porque sua conta de usuário %(name)s em %(site_url)s foi excluída. Isso pode ter sido feito automaticamente se você excluiu recentemente sua Conta Firefox.\n"
+"Você recebeu esta mensagem porque sua conta de usuário %(name)s em %(site_url)s foi excluída. Isso pode ter sido feito automaticamente caso tenha excluído recentemente sua Conta Firefox.\n"
 "\n"
-"Se você não fez isso ou acredita que uma pessoa não autorizada acessou sua conta, responda a este e-mail. Caso contrário, não precisa fazer mais nada.\n"
+"Se você não fez isso, ou acredita que uma pessoa não autorizada acessou sua conta, responda a este email. Caso contrário, não precisa fazer mais nada.\n"
 "\n"
 "Saudações,\n"
 "\n"
