@@ -21,6 +21,7 @@ class ShelfForm(forms.ModelForm):
             'title',
             'endpoint',
             'criteria',
+            'addon_count',
             'footer_text',
             'footer_pathname',
         )
