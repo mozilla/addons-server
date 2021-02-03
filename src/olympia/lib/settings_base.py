@@ -82,7 +82,7 @@ LESS_LIVE_REFRESH = False  # Refresh the CSS on save?
 LESS_BIN = env('LESS_BIN', default='node_modules/less/bin/lessc')
 
 # Path to cleancss (our CSS minifier).
-CLEANCSS_BIN = env('CLEANCSS_BIN', default='node_modules/less/bin/lessc')
+CLEANCSS_BIN = env('CLEANCSS_BIN', default='node_modules/clean-css-cli/bin/cleancss')
 
 # Path to our JS minifier.
 JS_MINIFIER_BIN = env('JS_MINIFIER_BIN', default='node_modules/terser/bin/terser')

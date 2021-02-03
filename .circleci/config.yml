@@ -455,6 +455,15 @@ commands:
       wait_services:
         type: boolean
         default: true
+      install_python_test_dependencies:
+        type: boolean
+        default: true
+      install_node_dependencies:
+        type: boolean
+        default: false
+      update_deps:
+        type: boolean
+        default: false
     steps:
       - better_checkout
       - run:
@@ -488,54 +497,132 @@ commands:
             - run:
                 name: Wait for memcached
                 command: dockerize -wait tcp://localhost:11211 -timeout 1m
+      - when:
+          condition: << parameters.install_python_test_dependencies >>
+          steps:
+            - run: make install_python_test_dependencies
+      - when:
+          condition: << parameters.install_node_dependencies >>
+          steps:
+            - run: make install_node_dependencies
+      - when:
+          condition: << parameters.update_deps >>
+          steps:
+            - run: make update_deps
+      - run:
+          name: Set environment variables
+          command: |
+            echo 'export PYTHONPATH=src' >> $BASH_ENV
+      # should be executed after all python install commands
+      - run: pyenv rehash
 
 jobs:
-  test:
+  addons-versions-files-ratings:
+    <<: *defaults-with-services
+    steps:
+      - setup_container
+      - run:
+          command: pytest -n 2 -m 'not es_tests and not needs_locales_compilation and not static_assets' -v src/olympia/addons/ src/olympia/versions/ src/olympia/files/ src/olympia/ratings/
+
+  amo-lib-locales-and-signing:
+    <<: *defaults-with-autograph
+    steps:
+      - setup_container:
+          install_node_dependencies: true
+      - run:
+          command: pytest -n 2 -m 'not es_tests and not needs_locales_compilation and not static_assets' -v src/olympia/amo/ src/olympia/lib/ src/olympia/signing
+          environment:
+            AUTOGRAPH_SERVER_URL: http://127.0.0.1:5500
+      - run: bash ./locale/compile-mo.sh ./locale/
+      - run:
+          command: pytest -n 2 -m 'needs_locales_compilation' -v src/olympia/
+
+  assets:
+    <<: *defaults-with-services
+    steps:
+      - setup_container:
+          install_python_test_dependencies: false
+          update_deps: true
+      - run: make update_assets
+      - run:
+          command: pytest -m "static_assets" -v src/olympia/
+      - run: make run_js_tests
+
+  codestyle:
     <<: *defaults
-    parameters:
-      toxenv:
-        type: string
     steps:
       - setup_container:
           wait_services: false
-      - run: pip install --no-deps -r requirements/ci_base.txt
-      - run: tox -e << parameters.toxenv >>
+          install_node_dependencies: true
+      - run: make setup-codestyle
+      - run: pyenv rehash
+      - run: make lint-codestyle
 
-  test-with-services:
+  devhub:
     <<: *defaults-with-services
-    parameters:
-      toxenv:
-        type: string
+    steps:
+      - setup_container:
+          install_node_dependencies: true
+      - run:
+          command: pytest -n 2 -m 'not es_tests and not needs_locales_compilation and not static_assets' -v src/olympia/devhub/
+
+  docs:
+    <<: *defaults
+    steps:
+      - setup_container:
+          wait_services: false
+          install_python_test_dependencies: false
+      - run: pip install --no-deps -r requirements/docs.txt
+      - run: make docs
+
+  main:
+    <<: *defaults-with-services
+    steps:
+      - setup_container:
+          install_node_dependencies: true
+      - run:
+          command: |
+            pytest -n 2 -m 'not es_tests and not needs_locales_compilation and not static_assets and not internal_routes_allowed' \
+              -v src/olympia/ \
+              --ignore src/olympia/addons/ \
+              --ignore src/olympia/devhub/ \
+              --ignore src/olympia/files/ \
+              --ignore src/olympia/reviewers/ \
+              --ignore src/olympia/ratings/ \
+              --ignore src/olympia/amo/ \
+              --ignore src/olympia/lib/ \
+              --ignore src/olympia/signing \
+              --ignore src/olympia/versions/ \
+              --ignore src/olympia/zadmin
+
+  reviewers-and-zadmin:
+    <<: *defaults-with-autograph
     steps:
       - setup_container
-      - run: pip install --no-deps -r requirements/ci_base.txt
-      - run: tox -e << parameters.toxenv >>
+      - run:
+          command: pytest -n 2 -m 'not es_tests and not needs_locales_compilation and not static_assets' -v src/olympia/reviewers/ src/olympia/zadmin/
+          environment:
+            AUTOGRAPH_SERVER_URL: http://127.0.0.1:5500
+      - run:
+          name: internal_routes_allowed
+          command: |
+            # We need to change the setting in the file because we can't
+            # override an env variable here, and the next command requires
+            # `INTERNAL_ROUTES_ALLOWED` to be set to `True`.
+            sed -i 's/^INTERNAL_ROUTES_ALLOWED.*/INTERNAL_ROUTES_ALLOWED=True/' settings_test.py
+            pytest -m 'internal_routes_allowed' -v src/olympia/
 
-  test-with-elasticsearch:
+  es-tests:
     <<: *defaults-with-elasticsearch
     steps:
       - setup_container
       - run:
           name: Wait for elasticsearch
           command: dockerize -wait tcp://localhost:9200 -timeout 1m
-      - run: pip install --no-deps -r requirements/ci_base.txt
       - run:
-          command: tox -e es
+          command: pytest -m "es_tests and not needs_locales_compilation and not static_assets" -v src/olympia/
           environment:
             ES_VERSION: 6.x
-
-  test-with-autograph:
-    <<: *defaults-with-autograph
-    parameters:
-      toxenv:
-        type: string
-    steps:
-      - setup_container
-      - run: pip install --no-deps -r requirements/ci_base.txt
-      - run:
-          command: tox -e << parameters.toxenv >>
-          environment:
-            AUTOGRAPH_SERVER_URL: http://127.0.0.1:5500
 
   release-master:
     <<: *defaults-release
@@ -557,27 +644,15 @@ workflows:
   version: 2
   default-workflow:
     jobs:
-      - test:
-          matrix:
-            parameters:
-              toxenv:
-                - codestyle
-                - docs
-      - test-with-services:
-          matrix:
-            parameters:
-              toxenv:
-                - addons-versions-files-ratings
-                - assets
-                - devhub
-                - main
-      - test-with-autograph:
-          matrix:
-            parameters:
-              toxenv:
-                - amo-lib-locales-and-signing
-                - reviewers-and-zadmin
-      - test-with-elasticsearch
+      - addons-versions-files-ratings
+      - amo-lib-locales-and-signing
+      - assets
+      - codestyle
+      - devhub
+      - docs
+      - main
+      - reviewers-and-zadmin
+      - es-tests
       - release-master:
           filters:
             branches:
