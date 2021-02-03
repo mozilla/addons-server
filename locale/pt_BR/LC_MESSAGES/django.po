@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2021-02-03 12:43+0000\n"
+"PO-Revision-Date: 2021-02-03 13:01+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -360,8 +360,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> Por favor insira <strong>todas as palavras</strong> abaixo, <strong>separadas por um espaço, se necessário</strong>. </p> <p> Se estiver difícil de ler, você pode <a href=\"#\" "
-"id=\"recaptcha_different\">tentar palavras diferentes</a> ou <a href=\"#\" id=\"recaptcha_audio\">um tipo diferente de desafio</a>. </p>"
+"<p>Digite <strong>todas as palavras</strong> abaixo, <strong>separadas por um espaço, se necessário</strong>.</p><p>Se estiver difícil de ler, você pode <a href=\"#\" "
+"id=\"recaptcha_different\">tentar palavras diferentes</a> ou <a href=\"#\" id=\"recaptcha_audio\">outro tipo de desafio</a>.</p>"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -462,7 +462,7 @@ msgstr "Extensões submetidas necessitam ter um arquivo manifest com pelo menos 
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "Esteja ciente que WebExtensions não aceitam um \"*\" em %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
+msgstr "Esteja ciente que WebExtensions não aceitam \"*\" em %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
 
 msgid "GUID"
 msgstr "GUID"
@@ -1673,11 +1673,11 @@ msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_l
 msgstr "Extensões Open Search {blog_link_open}não são mais suportadas no AMO{blog_link_close}. Em vez disso, você pode criar uma {doc_link_open}extensão de pesquisa{doc_link_close}."
 
 msgid "This slug is already in use. Please choose another."
-msgstr "Esse identificador já está em uso. Por favor, escolha outro."
+msgstr "Esse identificador já está em uso. Escolha outro."
 
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "O identificador não pode ser \"%(slug)s\". Por favor escolha outro."
+msgstr "O identificador não pode ser \"%(slug)s\". Escolha outro."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
@@ -1768,7 +1768,7 @@ msgid "This add-on has a Privacy Policy"
 msgstr "Essa extensão possui uma Política de Privacidade"
 
 msgid "Please specify your add-on's Privacy Policy:"
-msgstr "Por favor, especifique a política de privacidade da sua extensão:"
+msgstr "Especifique a política de privacidade da sua extensão:"
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Tipo de arquivo não suportado, envie um arquivo de arquivamento no formato {extensions}."
@@ -1786,7 +1786,7 @@ msgid "Need at least one compatible application."
 msgstr "Você deve selecionar pelo menos uma aplicação compatível."
 
 msgid "There was an error with your upload. Please try again."
-msgstr "Ocorreu um erro ao enviar seu arquivo. Por favor, tente novamente."
+msgstr "Ocorreu um erro ao enviar o arquivo. Tente novamente."
 
 msgid "Override failed validation"
 msgstr "Substituir validação com falha"
@@ -2160,8 +2160,8 @@ msgid ""
 "This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
 "this add-on."
 msgstr ""
-"Esta extensão não é compatível com o <b>%(app_name)s %(app_version)s</b>, a versão mais recente do %(app_name)s. Por favor, considere atualizar as informações de compatibilidade da sua extensão ou "
-"envie uma nova versão."
+"Esta extensão não é compatível com o <b>%(app_name)s %(app_version)s</b>, a versão mais recente do %(app_name)s. Considere atualizar as informações de compatibilidade da sua extensão ou envie uma "
+"nova versão."
 
 #, python-format
 msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
@@ -3254,7 +3254,7 @@ msgid "License"
 msgstr "Licença"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
-msgstr "Por favor escolha uma licença apropriada para o seu código fonte. Isto é relevante apenas para complementos listados."
+msgstr "Escolha uma licença apropriada para os direitos que você concede sobre seu código fonte. Isto é relevante apenas para extensões listadas."
 
 #. %s is a list of HTML tags.
 #, python-format
@@ -3293,7 +3293,7 @@ msgid "If your add-on contains minified, concatenated or otherwise machine-gener
 msgstr "Se sua extensão contém código minimizado, concatenado ou gerado por máquina, que não seja de bibliotecas conhecidas, envie o código fonte para revisão."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
-msgstr "Por favor, inclua instruções sobre como reproduzir o arquivo final da extensão, um arquivo LEIAME ou notas ao Revisor para esta versão."
+msgstr "Inclua instruções sobre como reproduzir o arquivo final da extensão, seja um arquivo README/LEIAME ou as notas ao revisor para esta versão."
 
 msgid "Read more about the source code review policy."
 msgstr "Leia mais sobre a política de revisão de código."
