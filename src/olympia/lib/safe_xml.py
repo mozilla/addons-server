@@ -22,20 +22,20 @@ if any(module in sys.modules for module in patched_modules):
         'this monkey patch was not applied early enough. {0}'.format(existing_modules)
     )
 
-from defusedxml import defuse_stdlib  # noqa isort:skip
+from defusedxml import defuse_stdlib  # noqa
 
 defuse_stdlib()
 
-import lxml  # noqa isort:skip
-import lxml.etree  # noqa isort:skip
-from rdflib.plugins.parsers import rdfxml  # noqa isort:skip
-from xml.sax.handler import (  # noqa isort:skip
+import lxml  # noqa
+import lxml.etree  # noqa
+from rdflib.plugins.parsers import rdfxml  # noqa
+from xml.sax.handler import (  # noqa
     feature_external_ges,
     feature_external_pes,
 )
 
 
-from olympia.lib import safe_lxml_etree  # noqa isort:skip
+from olympia.lib import safe_lxml_etree  # noqa
 
 
 lxml.etree = safe_lxml_etree
