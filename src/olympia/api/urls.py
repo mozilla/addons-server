@@ -30,7 +30,6 @@ v4_api_urls = [
     re_path(r'^reviewers/', include('olympia.reviewers.api_urls')),
     re_path(r'^', include('olympia.signing.urls')),
     re_path(r'^', include(amo_api_patterns)),
-    re_path(r'^promoted/', include('olympia.promoted.api_urls')),
     re_path(r'^scanner/', include('olympia.scanners.api_urls')),
 ]
 

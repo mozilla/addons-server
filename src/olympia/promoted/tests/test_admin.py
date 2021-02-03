@@ -1,7 +1,3 @@
-import datetime
-
-from pyquery import PyQuery as pq
-
 from olympia import amo
 from olympia.amo.tests import addon_factory, TestCase, user_factory, version_factory
 from olympia.amo.tests.test_helpers import get_uploaded_file
@@ -10,7 +6,6 @@ from olympia.constants.promoted import (
     LINE,
     RECOMMENDED,
     VERIFIED,
-    SPONSORED,
     NOT_PROMOTED,
 )
 from olympia.hero.models import PrimaryHero, PrimaryHeroImage
@@ -55,18 +50,6 @@ class TestPromotedAddonAdmin(TestCase):
             'primaryhero-__prefix__-gradient_color': '',
             'primaryhero-__prefix__-id': '',
             'primaryhero-__prefix__-promoted_addon': item_id,
-        }
-
-    def _get_promotedsubscriptionform(self, item_id):
-        return {
-            'promotedsubscription-TOTAL_FORMS': '1',
-            'promotedsubscription-INITIAL_FORMS': '0',
-            'promotedsubscription-MIN_NUM_FORMS': '0',
-            'promotedsubscription-MAX_NUM_FORMS': '1',
-            'promotedsubscription-0-onboarding_rate': '',
-            'promotedsubscription-0-onboarding_period': '',
-            'promotedsubscription-0-id': '',
-            'promotedsubscription-0-promoted_addon': item_id,
         }
 
     def test_can_see_in_admin_with_discovery_edit(self):
@@ -158,7 +141,6 @@ class TestPromotedAddonAdmin(TestCase):
             detail_url,
             dict(
                 self._get_approval_form(item, approvals),
-                **self._get_promotedsubscriptionform(''),
                 **self._get_heroform(''),
                 **{
                     'group_id': LINE.id,  # change the group
@@ -181,7 +163,6 @@ class TestPromotedAddonAdmin(TestCase):
             detail_url,
             dict(
                 self._get_approval_form(item, approvals),
-                **self._get_promotedsubscriptionform(''),
                 **self._get_heroform(''),
                 **{
                     'form-0-DELETE': 'on',  # delete the latest approval
@@ -212,7 +193,6 @@ class TestPromotedAddonAdmin(TestCase):
             detail_url,
             dict(
                 self._get_approval_form(item, [approval]),
-                **self._get_promotedsubscriptionform(''),
                 **self._get_heroform(''),
                 **{
                     'form-0-group_id': str(LINE.id),
@@ -230,7 +210,6 @@ class TestPromotedAddonAdmin(TestCase):
             detail_url,
             dict(
                 self._get_approval_form(item, [approval]),
-                **self._get_promotedsubscriptionform(''),
                 **self._get_heroform(''),
                 **{
                     'form-1-id': '',
@@ -348,7 +327,6 @@ class TestPromotedAddonAdmin(TestCase):
             add_url,
             dict(
                 self._get_approval_form(None, []),
-                **self._get_promotedsubscriptionform(''),
                 **self._get_heroform(''),
                 **{
                     'addon': str(addon.id),
@@ -390,7 +368,6 @@ class TestPromotedAddonAdmin(TestCase):
             add_url,
             dict(
                 self._get_approval_form(None, []),
-                **self._get_promotedsubscriptionform(''),
                 **self._get_heroform(''),
                 **{
                     'addon': str(addon.id),
@@ -444,7 +421,6 @@ class TestPromotedAddonAdmin(TestCase):
             self.detail_url,
             dict(
                 self._get_heroform(item.pk),
-                **self._get_promotedsubscriptionform(item.pk),
                 **self._get_approval_form(item, []),
                 **{
                     'primaryhero-INITIAL_FORMS': '1',
@@ -484,7 +460,6 @@ class TestPromotedAddonAdmin(TestCase):
             self.detail_url,
             dict(
                 self._get_heroform(item.pk),
-                **self._get_promotedsubscriptionform(item.pk),
                 **self._get_approval_form(item, []),
                 **{
                     'primaryhero-0-gradient_color': '#054096',
@@ -546,65 +521,6 @@ class TestPromotedAddonAdmin(TestCase):
         # The approval *won't* have been deleted though
         assert PromotedApproval.objects.filter().exists()
 
-    def test_hides_subscription_when_group_is_not_applicable(self):
-        item = PromotedAddon.objects.create(
-            addon=addon_factory(), group_id=RECOMMENDED.id
-        )
-        user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
-        self.client.login(email=user.email)
-
-        response = self.client.get(reverse(self.detail_url_name, args=(item.pk,)))
-
-        assert response.status_code == 200
-        assert b'Onboarding URL' not in response.content
-        assert b'Stripe information' not in response.content
-
-    def test_shows_subscription_when_group_is_verified(self):
-        item = PromotedAddon.objects.create(addon=addon_factory(), group_id=VERIFIED.id)
-        user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
-        self.client.login(email=user.email)
-
-        response = self.client.get(reverse(self.detail_url_name, args=(item.pk,)))
-
-        assert response.status_code == 200
-        assert b'Onboarding URL' in response.content
-
-    def test_shows_subscription_when_group_is_sponsored(self):
-        item = PromotedAddon.objects.create(
-            addon=addon_factory(), group_id=SPONSORED.id
-        )
-        user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
-        self.client.login(email=user.email)
-
-        response = self.client.get(reverse(self.detail_url_name, args=(item.pk,)))
-
-        assert response.status_code == 200
-        assert b'Onboarding URL' in response.content
-        assert b'Stripe information' in response.content
-        assert b'View subscription on Stripe' not in response.content
-
-    def test_shows_link_to_stripe_subscription(self):
-        item = PromotedAddon.objects.create(
-            addon=addon_factory(), group_id=SPONSORED.id
-        )
-        stripe_subscription_id = 'some-id'
-        item.promotedsubscription.update(stripe_subscription_id=stripe_subscription_id)
-        user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
-        self.client.login(email=user.email)
-
-        response = self.client.get(reverse(self.detail_url_name, args=(item.pk,)))
-
-        assert response.status_code == 200
-        content = response.content.decode('utf-8')
-        assert 'Onboarding URL' in content
-        assert 'Stripe information' in content
-        assert 'View subscription on Stripe' in content
-        assert f'/subscriptions/{stripe_subscription_id}' in content
-
     def test_updates_not_promoted_to_verified(self):
         item = PromotedAddon.objects.create(
             addon=addon_factory(), group_id=NOT_PROMOTED.id
@@ -618,7 +534,6 @@ class TestPromotedAddonAdmin(TestCase):
             detail_url,
             dict(
                 self._get_approval_form(item, []),
-                **self._get_promotedsubscriptionform(item.id),
                 **self._get_heroform(item.id),
                 **{'group_id': VERIFIED.id},  # change group
             ),
@@ -628,41 +543,3 @@ class TestPromotedAddonAdmin(TestCase):
 
         assert response.status_code == 200
         assert item.group_id == VERIFIED.id
-
-    def test_cannot_update_onboarding_rate_when_payment_completed(self):
-        item = PromotedAddon.objects.create(
-            addon=addon_factory(),
-            group_id=SPONSORED.id,
-        )
-        # Pretend the subscription is active.
-        item.promotedsubscription.update(checkout_completed_at=datetime.datetime.now())
-        assert item.promotedsubscription.stripe_checkout_completed
-        user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
-        self.client.login(email=user.email)
-
-        response = self.client.get(reverse(self.detail_url_name, args=(item.pk,)))
-
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('.field-onboarding_rate').length == 1
-        assert doc('.field-onboarding_rate .readonly').length == 1
-
-    def test_cannot_update_onboarding_period_when_payment_completed(self):
-        item = PromotedAddon.objects.create(
-            addon=addon_factory(),
-            group_id=SPONSORED.id,
-        )
-        # Pretend the subscription is active.
-        item.promotedsubscription.update(checkout_completed_at=datetime.datetime.now())
-        assert item.promotedsubscription.stripe_checkout_completed
-        user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
-        self.client.login(email=user.email)
-
-        response = self.client.get(reverse(self.detail_url_name, args=(item.pk,)))
-
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('.field-onboarding_period').length == 1
-        assert doc('.field-onboarding_period .readonly').length == 1

@@ -526,10 +526,6 @@ class ReviewHelper(object):
         )
         version_is_blocked = self.version and self.version.is_blocked
 
-        promoted_subscription_okay = (
-            not promoted_group or not self.addon.promotedaddon.has_pending_subscription
-        )
-
         # Special logic for availability of reject multiple action:
         if version_is_unlisted:
             can_reject_multiple = is_appropriate_reviewer
@@ -566,7 +562,6 @@ class ReviewHelper(object):
                 and version_is_unreviewed
                 and is_appropriate_reviewer
                 and not version_is_blocked
-                and promoted_subscription_okay
             ),
         }
         actions['reject'] = {
@@ -758,7 +753,6 @@ class ReviewBase(object):
     def set_promoted(self):
         group = self.addon.promoted_group(currently_approved=False)
         if group and group.pre_review:
-            assert not self.addon.promotedaddon.has_pending_subscription
             # These addons shouldn't be be attempted for auto approval anyway,
             # but double check that the cron job isn't trying to approve it.
             assert not self.user.id == settings.TASK_USER_ID

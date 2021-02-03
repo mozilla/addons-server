@@ -1072,11 +1072,6 @@ CELERY_TASK_ROUTES = {
     'olympia.devhub.tasks.validate_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.validate_upload': {'queue': 'devhub'},
     'olympia.files.tasks.repack_fileupload': {'queue': 'devhub'},
-    'olympia.promoted.tasks.on_stripe_charge_failed': {'queue': 'devhub'},
-    'olympia.promoted.tasks.on_stripe_charge_succeeded': {'queue': 'devhub'},
-    'olympia.promoted.tasks.on_stripe_customer_subscription_deleted': {
-        'queue': 'devhub'
-    },
     'olympia.scanners.tasks.run_customs': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_wat': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_yara': {'queue': 'devhub'},
@@ -1800,21 +1795,3 @@ ADZERK_URL = f'https://e-{ADZERK_NETWORK_ID}.adzerk.net/api/v2'
 ADZERK_IMPRESSION_TIMEOUT = 60  # seconds
 ADZERK_EVENT_URL = f'https://e-{ADZERK_NETWORK_ID}.adzerk.net/'
 ADZERK_EVENT_TIMEOUT = 60 * 60 * 24  # seconds
-
-# Subscription
-STRIPE_DASHBOARD_URL = 'https://dashboard.stripe.com'
-STRIPE_API_SECRET_KEY = env('STRIPE_API_SECRET_KEY', default=None)
-STRIPE_API_PUBLIC_KEY = env('STRIPE_API_PUBLIC_KEY', default=None)
-STRIPE_API_WEBHOOK_SECRET = env('STRIPE_API_WEBHOOK_SECRET', default=None)
-STRIPE_API_VERIFIED_MONTHLY_PRICE_ID = env(
-    'STRIPE_API_VERIFIED_MONTHLY_PRICE_ID', default=None
-)
-STRIPE_API_VERIFIED_YEARLY_PRICE_ID = env(
-    'STRIPE_API_VERIFIED_YEARLY_PRICE_ID', default=None
-)
-STRIPE_API_SPONSORED_MONTHLY_PRICE_ID = env(
-    'STRIPE_API_SPONSORED_MONTHLY_PRICE_ID', default=None
-)
-STRIPE_API_SPONSORED_YEARLY_PRICE_ID = env(
-    'STRIPE_API_SPONSORED_YEARLY_PRICE_ID', default=None
-)
