@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2021-02-03 11:23+0000\n"
+"PO-Revision-Date: 2021-02-03 11:34+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -3051,7 +3051,7 @@ msgid "Please click the confirm button below to generate API credentials for use
 msgstr "Clique no botão de confirmação abaixo para gerar credenciais de API para o usuário <strong>%(name)s</strong>."
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr "Um link de confirmação será enviado para seu endereço de e-mail. Após a confirmação, você encontrará suas chaves de API nesta página."
+msgstr "Um link de confirmação será enviado para seu endereço de email. Após a confirmação, você encontrará suas chaves de API nesta página."
 
 msgid "You don't have any API credentials."
 msgstr "Você não tem nenhuma credencial de API."
@@ -3171,7 +3171,7 @@ msgid "Your add-on is displayed in our gallery and users are receiving automatic
 msgstr "Sua extensão será exibido em nossa galeria e os usuários receberão atualizações automáticas."
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr "Sua extensão foi desativada por um administrador do site e não será mais exibida em nossa galeria. Se tiver alguma dúvida, envie um e-mail para amo-admins@mozilla.com."
+msgstr "Sua extensão foi desativada por um administrador do site e não será mais exibida em nossa galeria. Se tiver alguma dúvida, envie um email para amo-admins@mozilla.com."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr "Sua extensão não será incluída nos resultados de pesquisas, e a página de listagem indicará que você desativou a extensão. Novas versões não serão aceitas neste estado."
@@ -3335,7 +3335,7 @@ msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr "Fique em dia sobre notícias e eventos para desenvolvedores de extensões do Firefox."
 
 msgid "Email Address"
-msgstr "Endereço de e-mail"
+msgstr "Endereço de email"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
@@ -3349,7 +3349,7 @@ msgstr "Obrigado!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr ""
-"Se você não confirmou anteriormente uma inscrição em um boletim informativo relacionado à Mozilla, pode precisar fazê-lo. Verifique se recebeu um e-mail nosso em sua caixa de entrada ou filtro de "
+"Se você não confirmou anteriormente uma inscrição em um boletim informativo relacionado à Mozilla, pode precisar fazê-lo. Verifique se recebeu um email nosso em sua caixa de entrada ou no filtro de "
 "spam."
 
 msgid "Resources"
@@ -3778,7 +3778,7 @@ msgstr "Impeça que sites maliciosos utilizem o processamento do seu computador 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
-msgstr "Obtenha assistência gramatical onde quer que você escreva na Web — mídias sociais, e-mails, documentos e mais."
+msgstr "Obtenha assistência gramatical onde quer que você escreva na web — mídias sociais, emails, documentos e muito mais."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4057,7 +4057,7 @@ msgstr "Abra uma nova aba à direita da aba atual e não ao final da sequência 
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr "Derrote o spam. Use e-mails temporários inteligentes para se manter anônimo e evitar spam."
+msgstr "Derrote o spam. Use emails temporários inteligentes para se manter anônimo e evitar spam."
 
 #. editorial content for the discovery pane.
 msgid "A direct path to customizing the built-in privacy settings in Firefox."
@@ -4725,7 +4725,7 @@ msgid "Make false statements, disparage add-on authors or personally insult them
 msgstr "Não faça afirmações falsas, deprecie os autores da extensão ou os insulte pessoalmente."
 
 msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr "Incluir o seu e-mail, telefone ou quaisquer outros dados ou os de qualquer outra pessoa."
+msgstr "Inclua o email, telefone ou outros dados pessoais, seus ou de outra pessoa."
 
 msgid "Post reviews for an add-on you or your organization wrote or represent."
 msgstr "Não poste análises para uma extensão que você ou sua organização criou ou representa."
@@ -4858,7 +4858,7 @@ msgid "add-on, reviewer or comment"
 msgstr "extensão, editor ou comentário"
 
 msgid "Search by add-on name / author email"
-msgstr "Procurar pelo nome da extensão / e-mail do autor"
+msgstr "Procurar pelo nome da extensão / email do autor"
 
 msgid "Needs Admin Code Review"
 msgstr "Precisa revisar o código de administração"
@@ -4873,7 +4873,7 @@ msgid "Add-on Types"
 msgstr "Tipos de extensões"
 
 msgid "Search by add-on name / author email / guid"
-msgstr "Procurar pelo nome da extensão/ e-mail do autor / guid"
+msgstr "Procurar pelo nome da extensão / email do autor / guid"
 
 msgid "Max. Version"
 msgstr "Versão máx."
@@ -6196,7 +6196,7 @@ msgid "You can only enter one, either IP Address or Network."
 msgstr "Só pode informar um dos dois, Endereço IP ou Rede."
 
 msgid "No user with that email."
-msgstr "Nenhum usuário com esse e-mail."
+msgstr "Nenhum usuário com este email."
 
 msgid "Firefox user {id}"
 msgstr "Usuário {id} do Firefox"
@@ -6214,24 +6214,24 @@ msgid "Multiple add-ons violating our policies have been submitted from your loc
 msgstr "Várias extensões que violam nossas políticas foram enviadas a partir de sua localização. O endereço IP foi bloqueado."
 
 msgid "Email Pattern"
-msgstr "Máscara de e-mails"
+msgstr "Máscara de emails"
 
 msgid ""
 "Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
 " Please note that we do not include \"@\" in the match so you  should do that in the pattern."
 msgstr ""
-"Digite um domínio completo ou e-mail que deve ser bloqueado, ou use uma máscara estilo glob para corresponder a outros padrões. Por exemplo, \"@*.mail.com\"\n"
+"Digite um domínio completo ou email que deve ser bloqueado, ou use uma máscara estilo glob para corresponder a outros padrões. Por exemplo, \"@*.mail.com\"\n"
 "Note que não incluímos o \"@\" ao corresponder, por isso você deve incluir na máscara."
 
 msgid "The email address used for your account is not allowed for add-on submission."
-msgstr "O endereço de e-mail usado na sua conta não é aceito para enviar extensões."
+msgstr "O endereço de email usado na sua conta não é aceito para enviar extensões."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
 msgstr ""
-"Digite o domínio completo de e-mails descartáveis que deve ser bloqueado. Caracteres curingas não são aceitos: se você precisar deles ou precisar bloquear um e-mail todo e não apenas a parte do "
-"domínio, em vez disso use \"Restrições de usuários de e-mail\"."
+"Digite o domínio completo de emails descartáveis que devem ser bloqueados. Caracteres curingas não são aceitos, se você precisar deles ou precisar bloquear um email todo e não apenas a parte do "
+"domínio, em vez disso use \"Restrições de usuários de email\"."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
