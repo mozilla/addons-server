@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2021-01-30 18:37+0000\n"
+"PO-Revision-Date: 2021-02-03 19:26+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -4065,7 +4065,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Modify your bookmarks through an easily accessible panel."
-msgstr ""
+msgstr "తేలిగ్గా చేరుకోగలిగే ప్యానెలు నుండి మీ ఇష్టాంశాలను మార్చుకోండి."
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
@@ -4228,7 +4228,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Find archived, dead, or otherwise disappeared web pages."
-msgstr ""
+msgstr "ఆర్కైవ్ చేయబడిన, చనిపోయిన లేదా అదృశ్యమైన వెబ్ పేజీలను కనుగొనండి."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
