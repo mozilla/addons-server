@@ -32,7 +32,7 @@ from olympia.activity.utils import (
     send_activity_mail,
 )
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.tests import TestCase, addon_factory, user_factory
+from olympia.amo.tests import TestCase, addon_factory, SQUOTE_ESCAPED, user_factory
 from olympia.amo.urlresolvers import reverse
 
 
@@ -591,7 +591,7 @@ class TestLogAndNotify(TestCase):
         # One from the reviewer.
         self._create(amo.LOG.REJECT_VERSION, self.reviewer)
         action = amo.LOG.REVIEWER_REPLY_VERSION
-        comments = 'This email&#39;s entities should be decoded'
+        comments = f'This email{SQUOTE_ESCAPED}s entities should be decoded'
         log_and_notify(action, comments, self.reviewer, self.version)
 
         body = send_mail_mock.call_args_list[1][0][1]

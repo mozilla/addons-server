@@ -36,20 +36,6 @@ INTERNAL_SITE_URL = 'http://testserver'
 STATIC_URL = '%s/static/' % CDN_HOST
 MEDIA_URL = '%s/user-media/' % CDN_HOST
 
-# We are setting memcached here to make sure our test setup is as close
-# to our production system as possible.
-CACHES = {
-    'default': {
-        # `CacheStatTracker` is required for `assert_cache_requests` to work
-        # properly
-        'BACKEND': 'olympia.lib.cache.CacheStatTracker',
-        'LOCATION': os.environ.get('MEMCACHE_LOCATION', 'localhost:11211'),
-        'OPTIONS': {
-            'ACTUAL_BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',  # noqa
-        }
-    },
-}
-
 # Overrides whatever storage you might have put in local settings.
 DEFAULT_FILE_STORAGE = 'olympia.amo.utils.LocalFileStorage'
 

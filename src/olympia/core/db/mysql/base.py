@@ -1,15 +1,9 @@
-from django.db.backends.mysql.base import (
-    DatabaseWrapper as MySQLDBWrapper,
-    DatabaseIntrospection as MySQLDBIntrospection,
-    DatabaseSchemaEditor as MySQLDBSchemeEditor,
-)
+from django.db.backends.mysql import base as mysql_base
 
 
-class DatabaseIntrospection(MySQLDBIntrospection):
+class DatabaseIntrospection(mysql_base.DatabaseIntrospection):
     def get_field_type(self, data_type, description):
-        field_type = super(DatabaseIntrospection, self).get_field_type(
-            data_type, description
-        )
+        field_type = super().get_field_type(data_type, description)
         if 'auto_increment' in description.extra:
             if field_type == 'IntegerField':
                 if description.is_unsigned:
@@ -17,7 +11,7 @@ class DatabaseIntrospection(MySQLDBIntrospection):
         return field_type
 
 
-class DatabaseSchemaEditor(MySQLDBSchemeEditor):
+class DatabaseSchemaEditor(mysql_base.DatabaseSchemaEditor):
     def create_model(self, model):
         for field in model._meta.local_fields:
             # Autoincrement SQL for backends with post table definition variant
@@ -27,20 +21,28 @@ class DatabaseSchemaEditor(MySQLDBSchemeEditor):
                 )
                 if autoinc_sql:
                     self.deferred_sql.extend(autoinc_sql)
-        super(DatabaseSchemaEditor, self).create_model(model)
+        super().create_model(model)
 
 
-class DatabaseWrapper(MySQLDBWrapper):
+class DatabaseOperations(mysql_base.DatabaseOperations):
+    integer_field_ranges = {
+        **mysql_base.DatabaseOperations.integer_field_ranges,
+        'PositiveAutoField': mysql_base.DatabaseOperations.integer_field_ranges[
+            'PositiveIntegerField'
+        ],
+    }
+    cast_data_types = {
+        **mysql_base.DatabaseOperations.cast_data_types,
+        'PositiveAutoField': 'unsigned integer',
+    }
+
+
+class DatabaseWrapper(mysql_base.DatabaseWrapper):
     introspection_class = DatabaseIntrospection
     SchemaEditorClass = DatabaseSchemaEditor
+    ops_class = DatabaseOperations
 
-    # data_types is _data_types in <django2.1
-    # Also replaces data_types cached_property in <django2.1 so copy over the
-    # microsecond fixes as >=mysql5.6.4 is supports_microsecond_precision=True.
-    data_types = dict(
-        getattr(MySQLDBWrapper, '_data_types', MySQLDBWrapper.data_types),
-        PositiveAutoField='integer UNSIGNED AUTO_INCREMENT',
-        DateTimeField='datetime(6)',
-        TimeField='time(6)',
-    )
-    _data_types = data_types
+    data_types = {
+        **mysql_base.DatabaseWrapper.data_types,
+        'PositiveAutoField': 'integer UNSIGNED AUTO_INCREMENT',
+    }

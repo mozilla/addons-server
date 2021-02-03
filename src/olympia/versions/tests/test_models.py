@@ -1149,7 +1149,7 @@ class TestVersionFromUpload(UploadTest, TestCase):
         self.addon.update(guid='guid@xpi')
         self.selected_app = amo.FIREFOX.id
         self.dummy_parsed_data = {'version': '0.1'}
-        self.fake_user = mock.Mock(groups_list=[])
+        self.fake_user = user_factory()
 
 
 class TestExtensionVersionFromUpload(TestVersionFromUpload):

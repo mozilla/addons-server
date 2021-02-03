@@ -22,7 +22,7 @@ import olympia
 from olympia import amo
 from olympia.amo import urlresolvers, utils
 from olympia.amo.templatetags import jinja_helpers
-from olympia.amo.tests import TestCase, reverse_ns
+from olympia.amo.tests import SQUOTE_ESCAPED, TestCase, reverse_ns
 from olympia.amo.utils import ImageCheck
 
 
@@ -79,7 +79,7 @@ def test_page_title_markup():
     res = render(
         '{{ page_title("{0}"|format_html("It\'s all text")) }}', {'request': request}
     )
-    assert res == 'It&#39;s all text :: Add-ons for Firefox'
+    assert res == f'It{SQUOTE_ESCAPED}s all text :: Add-ons for Firefox'
 
 
 def test_template_escaping():

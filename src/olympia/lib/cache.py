@@ -1,10 +1,9 @@
 import hashlib
 import functools
 import itertools
-from contextlib import contextmanager
 
-from django.core.cache.backends.base import DEFAULT_TIMEOUT, BaseCache
-from django.core.cache import cache, caches, _create_cache
+from django.core.cache.backends.base import DEFAULT_TIMEOUT
+from django.core.cache import cache
 from django.utils import translation
 from django.utils.encoding import force_bytes, force_str
 
@@ -61,79 +60,3 @@ def memoize(prefix, timeout=60):
         return wrapper
 
     return decorator
-
-
-class CacheStatTracker(BaseCache):
-    """A small class used to track cache calls."""
-
-    requests_limit = 5000
-
-    def __init__(self, location, params):
-        custom_params = params.copy()
-        options = custom_params['OPTIONS'].copy()
-
-        custom_params['BACKEND'] = options.pop('ACTUAL_BACKEND')
-        custom_params['OPTIONS'] = options
-
-        # Patch back in the `location` for memcached backend to pick up.
-        custom_params['LOCATION'] = location
-
-        self._real_cache = _create_cache(custom_params['BACKEND'], **custom_params)
-
-        self.requests_log = []
-        self._setup_proxies()
-
-    def __repr__(self):
-        return str('<CacheStatTracker for %s>') % repr(self._real_cache)
-
-    def __contains__(self, key):
-        return self._real_cache.__contains__(key)
-
-    def __getattr__(self, name):
-        return getattr(self._real_cache, name)
-
-    def _proxy(self, name):
-        def _real_proxy(*args, **kwargs):
-            self.requests_log.append(
-                {
-                    'name': name,
-                    'args': args,
-                    'kwargs': kwargs,
-                }
-            )
-            return getattr(self._real_cache, name)(*args, **kwargs)
-
-        return _real_proxy
-
-    def _setup_proxies(self):
-        mappings = (
-            'add',
-            'get',
-            'set',
-            'delete',
-            'clear',
-            'has_key',
-            'incr',
-            'decr',
-            'get_many',
-            'set_many',
-            'delete_many',
-        )
-
-        for name in mappings:
-            setattr(self, name, self._proxy(name))
-
-    def clear_log(self):
-        self.requests_log = []
-
-
-@contextmanager
-def assert_cache_requests(num, alias='default'):
-    cache_using = caches[alias]
-    cache_using.clear_log()
-
-    yield
-
-    executed = len(cache_using.requests_log)
-
-    assert executed == num, '%d requests executed, %d expected' % (executed, num)
