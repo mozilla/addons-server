@@ -7,9 +7,9 @@ wheel==0.36.2 \
 setuptools==52.0.0 \
     --hash=sha256:0a6f1f18249f78cffdad842efadf1ed7b039fa3355d93f3890f56bd66a48cf27 \
     --hash=sha256:fb3a1ee622509550dbf1d419f241296169d7f09cb1eb5b1736f2f10965932b96
-tox==3.21.3 \
-    --hash=sha256:76df3db6eee929bb62bdbacca5bb6bc840669d98e86a015b7a57b7df0a6eaf8b \
-    --hash=sha256:854e6e4a71c614b488f81cb88df3b92edcb1a9ec43d4102e6289e9669bbf7f18
+tox==3.21.4 \
+    --hash=sha256:65d0e90ceb816638a50d64f4b47b11da767b284c0addda2294cb3cd69bd72425 \
+    --hash=sha256:cf7fef81a3a2434df4d7af2a6d1bf606d2970220addfbe7dea2615bd4bb2c252
 
 # Dependencies of Tox
 virtualenv==20.4.2 \
