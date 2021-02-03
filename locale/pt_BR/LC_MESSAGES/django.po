@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2021-01-11 13:35+0000\n"
+"PO-Revision-Date: 2021-02-03 11:23+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -320,7 +320,7 @@ msgid "Register or Log in"
 msgstr "Cadastre-se ou entre"
 
 msgid "Email:"
-msgstr "E-mail:"
+msgstr "Email:"
 
 msgid "OK"
 msgstr "OK"
@@ -426,7 +426,7 @@ msgid "Invalid token or hash."
 msgstr "Token ou hash inválido."
 
 msgid "Email address not found."
-msgstr "Endereço de e-mail não encontrado."
+msgstr "Endereço de email não encontrado."
 
 msgid "Unavailable for legal reasons."
 msgstr "Não disponível por motivos legais"
@@ -775,10 +775,10 @@ msgid "Application max version for {version} updated."
 msgstr "Versão máxima da aplicação para {version} atualizada."
 
 msgid "Authors emailed about compatibility of {version}."
-msgstr "Os autores foram notificados por e-mail sobre a compatibilidade de {version}."
+msgstr "Os autores foram notificados por email sobre a compatibilidade de {version}."
 
 msgid "Email sent to Author about add-on compatibility."
-msgstr "E-mail enviado ao autor sobre a compatibilidade da extensão."
+msgstr "Email enviado ao autor sobre a compatibilidade da extensão."
 
 msgid "Password changed."
 msgstr "Senha alterada."
@@ -1922,7 +1922,7 @@ msgid "Author invitation for {addon_name}"
 msgstr "Convite de autor de {addon_name}"
 
 msgid "A confirmation email has been sent to {email}"
-msgstr "Um e-mail de confirmação foi enviado para {email}"
+msgstr "Um email de confirmação foi enviado para {email}"
 
 msgid "An author role has been changed on your add-on"
 msgstr "Foi alterado o papel de um autor da sua extensão"
@@ -2439,14 +2439,14 @@ msgid "Categories are the primary way users browse through add-ons. Choose any t
 msgstr "As categorias são o método mais comum que os usuários usam para navegar pelas extensões. Escolha uma que se enquadre na funcionalidade da sua extensão para uma maior exposição."
 
 msgid "Email"
-msgstr "E-mail"
+msgstr "Email"
 
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
 " for listed add-ons."
 msgstr ""
-"Se você desejar exibir um endereço de e-mail para suporte digite-o aqui. Se você tiver endereços de e-mail diferentes para cada idioma, pode adicioná-los neste campo. Isto só é válido para extensões"
-" listadas."
+"Se quiser exibir um endereço de email para consultas de suporte, digite aqui. Se tiver endereços de email diferentes por idioma, várias traduções deste campo podem ser adicionadas. Isso só é "
+"relevante para extensões listadas."
 
 msgid "Website"
 msgstr "Site"
@@ -2765,7 +2765,7 @@ msgid "Select a category for this add-on:"
 msgstr "Selecione uma categoria para esta extensão:"
 
 msgid "Support email:"
-msgstr "E-mail de suporte:"
+msgstr "Email de suporte:"
 
 msgid "Support website:"
 msgstr "Página de suporte:"
@@ -2860,7 +2860,7 @@ msgid "Version Signature Pending"
 msgstr "Assinatura de versão pendente"
 
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
-msgstr "Pronto! Esta versão será assinada para auto-distribuição em breve. Você será notificado por e-mail quando o arquivo assinado estiver pronto para download."
+msgstr "Pronto! Esta versão será assinada para auto-distribuição em breve. Você será notificado por email quando o arquivo assinado estiver pronto para download."
 
 msgid "Go to My Submissions"
 msgstr "Ir para minhas submissões"
