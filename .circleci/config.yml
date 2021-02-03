@@ -497,7 +497,6 @@ commands:
             - run:
                 name: Wait for memcached
                 command: dockerize -wait tcp://localhost:11211 -timeout 1m
-      - run: pip install --no-deps -r requirements/ci_base.txt
       - when:
           condition: << parameters.install_python_test_dependencies >>
           steps:
