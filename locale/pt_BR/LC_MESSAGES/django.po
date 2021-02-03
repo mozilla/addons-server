@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2021-02-03 11:50+0000\n"
+"PO-Revision-Date: 2021-02-03 12:09+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -252,7 +252,7 @@ msgstr ""
 "navegador não será sequestrado por terceiros."
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
-msgstr "Caso você tenha configurado seu navegador para desativar os cabeçalhos \"Referer\", por favor, reative-os pelo menos para este site, para conexões HTTPS ou para solicitações \"same-origin\"."
+msgstr "Caso você tenha configurado seu navegador para desativar cabeçalhos 'Referer', reative pelo menos neste site, em conexões HTTPS ou em requisições 'same-origin'."
 
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
@@ -286,7 +286,7 @@ msgstr "Página inicial de extensões"
 
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
-msgstr "Se você chegou até aqui através de um link, %(open_bug_link)sreporte um bug%(close_bug_link)s. Nos diga de onde veio e o que estava procurando, e faremos o possível para corrigir."
+msgstr "Se você chegou até aqui através de um link, %(open_bug_link)sregistre um problema%(close_bug_link)s. Nos diga de onde veio e o que estava procurando, e faremos o possível para corrigir."
 
 msgid "Not Found"
 msgstr "Não encontrado"
