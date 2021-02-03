@@ -1,15 +1,13 @@
-from django.conf import settings
 from django.contrib import admin
 from django.db.models import Prefetch
 from django.forms.models import modelformset_factory
-from django.utils.html import format_html
 
 from olympia.addons.models import Addon
 from olympia.hero.admin import PrimaryHeroInline
 from olympia.versions.models import Version
 
 from .forms import AdminBasePromotedApprovalFormSet
-from .models import PromotedApproval, PromotedSubscription
+from .models import PromotedApproval
 
 
 class PromotedApprovalInlineChecks(admin.checks.InlineModelAdminChecks):
@@ -18,68 +16,6 @@ class PromotedApprovalInlineChecks(admin.checks.InlineModelAdminChecks):
         Addon, Version) so we have to bypass this check.
         """
         return []
-
-
-class PromotedSubscriptionInline(admin.StackedInline):
-    model = PromotedSubscription
-    view_on_site = False
-    extra = 0  # No extra form should be added...
-    max_num = 1  # ...and we expect up to one form.
-    fields = (
-        'onboarding_rate',
-        'onboarding_period',
-        'onboarding_url',
-        'link_visited_at',
-        'checkout_cancelled_at',
-        'checkout_completed_at',
-        'cancelled_at',
-        'stripe_information',
-    )
-    readonly_fields = (
-        'onboarding_url',
-        'link_visited_at',
-        'checkout_cancelled_at',
-        'checkout_completed_at',
-        'cancelled_at',
-        'stripe_information',
-    )
-
-    def get_readonly_fields(self, request, obj=None):
-        readonly_fields = self.readonly_fields
-        onboarding_fields = ('onboarding_rate', 'onboarding_period')
-
-        if (
-            obj
-            and hasattr(obj, 'promotedsubscription')
-            and obj.promotedsubscription.stripe_checkout_completed
-        ):
-            readonly_fields = onboarding_fields + readonly_fields
-        return readonly_fields
-
-    def has_add_permission(self, request, obj=None):
-        return False
-
-    def has_delete_permission(self, request, obj=None):
-        return False
-
-    def onboarding_url(self, obj):
-        return format_html('<pre>{}</pre>', obj.get_onboarding_url())
-
-    onboarding_url.short_description = 'Onboarding URL'
-
-    def stripe_information(self, obj):
-        if not obj or not obj.stripe_subscription_id:
-            return '-'
-
-        stripe_sub_url = '/'.join(
-            [settings.STRIPE_DASHBOARD_URL, 'subscriptions', obj.stripe_subscription_id]
-        )
-
-        return format_html(
-            '<a href="{}">View subscription on Stripe</a>', stripe_sub_url
-        )
-
-    stripe_information.short_description = 'Stripe information'
 
 
 class PromotedApprovalInline(admin.TabularInline):
@@ -133,10 +69,7 @@ class PromotedAddonAdmin(admin.ModelAdmin):
     raw_id_fields = ('addon',)
     fields = ('addon', 'group_id', 'application_id')
     list_filter = ('group_id', 'application_id')
-    inlines = (PromotedApprovalInline, PrimaryHeroInline, PromotedSubscriptionInline)
-
-    class Media:
-        js = ('js/admin/promotedaddon.js',)
+    inlines = (PromotedApprovalInline, PrimaryHeroInline)
 
     @classmethod
     def _transformer(self, objs):

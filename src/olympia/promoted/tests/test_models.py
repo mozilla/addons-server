@@ -1,18 +1,14 @@
-import datetime
 from unittest import mock
 
 from django.conf import settings
-from django.test.utils import override_settings
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
 from olympia.amo.tests import addon_factory, TestCase, user_factory
-from olympia.amo.urlresolvers import reverse
 from olympia.constants import applications, promoted
 from olympia.promoted.models import (
     PromotedAddon,
     PromotedApproval,
-    PromotedSubscription,
 )
 
 
@@ -68,27 +64,6 @@ class TestPromotedAddon(TestCase):
             applications.FIREFOX,
             applications.ANDROID,
         ]
-
-    def test_creates_a_subscription_when_group_should_have_one(self):
-        assert PromotedSubscription.objects.count() == 0
-
-        promoted_addon = PromotedAddon.objects.create(
-            addon=addon_factory(), group_id=promoted.SPONSORED.id
-        )
-
-        assert PromotedSubscription.objects.count() == 1
-        assert PromotedSubscription.objects.all()[0].promoted_addon == promoted_addon
-
-        # Do not create a subscription twice.
-        promoted_addon.save()
-        assert PromotedSubscription.objects.count() == 1
-
-    def test_no_subscription_created_when_group_should_not_have_one(self):
-        assert PromotedSubscription.objects.count() == 0
-
-        PromotedAddon.objects.create(addon=addon_factory(), group_id=promoted.LINE.id)
-
-        assert PromotedSubscription.objects.count() == 0
 
     def test_auto_approves_addon_when_saved_for_immediate_approval(self):
         # empty case with no group set
@@ -185,66 +160,6 @@ class TestPromotedAddon(TestCase):
         assert addon.current_version is None
         assert promo.get_resigned_version_number() is None
 
-    def test_has_pending_subscription(self):
-        promo = PromotedAddon.objects.create(
-            addon=addon_factory(), group_id=promoted.RECOMMENDED.id
-        )
-        PromotedSubscription.objects.create(promoted_addon=promo)
-
-        # checking the group doesn't require subscription
-        assert not promo.group.require_subscription
-        assert hasattr(promo, 'promotedsubscription')
-        assert not promo.promotedsubscription.is_active
-        assert not promo.has_approvals
-        assert not promo.has_pending_subscription
-
-        # and when it does
-        promo.update(group_id=promoted.VERIFIED.id)
-        assert promo.group.require_subscription
-        assert hasattr(promo, 'promotedsubscription')
-        assert not promo.promotedsubscription.is_active
-        assert not promo.has_approvals
-        assert promo.has_pending_subscription
-
-        # when there isn't a subscription (existing promo before subscriptions)
-        promo.promotedsubscription.delete()
-        promo = PromotedAddon.objects.get(id=promo.id)
-        assert promo.group.require_subscription
-        assert not hasattr(promo, 'promotedsubscription')
-        assert not promo.has_pending_subscription
-
-        # and when there is
-        PromotedSubscription.objects.create(promoted_addon=promo)
-        assert promo.group.require_subscription
-        assert hasattr(promo, 'promotedsubscription')
-        assert not promo.promotedsubscription.is_active
-        assert not promo.has_approvals
-        assert promo.has_pending_subscription
-
-        # when there's a subscription that's been paid
-        promo.promotedsubscription.update(checkout_completed_at=datetime.datetime.now())
-        assert promo.group.require_subscription
-        assert hasattr(promo, 'promotedsubscription')
-        assert promo.promotedsubscription.is_active
-        assert not promo.has_approvals
-        assert not promo.has_pending_subscription
-
-        # and when it's not been paid
-        promo.promotedsubscription.update(checkout_completed_at=None)
-        assert promo.group.require_subscription
-        assert hasattr(promo, 'promotedsubscription')
-        assert not promo.promotedsubscription.is_active
-        assert not promo.has_approvals
-        assert promo.has_pending_subscription
-
-        # when there's an existing version approved (existing promo)
-        promo.approve_for_version(promo.addon.current_version)
-        assert promo.group.require_subscription
-        assert hasattr(promo, 'promotedsubscription')
-        assert not promo.promotedsubscription.is_active
-        assert promo.has_approvals
-        assert not promo.has_pending_subscription
-
     def test_has_approvals(self):
         addon = addon_factory()
         promoted_addon = PromotedAddon.objects.create(
@@ -257,72 +172,3 @@ class TestPromotedAddon(TestCase):
         promoted_addon.reload()
 
         assert promoted_addon.has_approvals
-
-
-class TestPromotedSubscription(TestCase):
-    def test_get_onboarding_url_with_new_object(self):
-        sub = PromotedSubscription()
-
-        assert sub.get_onboarding_url() is None
-
-    def test_get_relative_onboarding_url(self):
-        promoted_addon = PromotedAddon.objects.create(
-            addon=addon_factory(), group_id=promoted.SPONSORED.id
-        )
-        sub = PromotedSubscription.objects.filter(promoted_addon=promoted_addon).get()
-
-        assert sub.get_onboarding_url(absolute=False) == reverse(
-            'devhub.addons.onboarding_subscription',
-            args=[sub.promoted_addon.addon.slug],
-            add_prefix=False,
-        )
-
-    def test_get_onboarding_url(self):
-        promoted_addon = PromotedAddon.objects.create(
-            addon=addon_factory(), group_id=promoted.SPONSORED.id
-        )
-        sub = PromotedSubscription.objects.filter(promoted_addon=promoted_addon).get()
-
-        external_site_url = 'http://example.org'
-        with override_settings(EXTERNAL_SITE_URL=external_site_url):
-            url = sub.get_onboarding_url()
-            assert url == '{}{}'.format(
-                external_site_url,
-                reverse(
-                    'devhub.addons.onboarding_subscription',
-                    args=[sub.promoted_addon.addon.slug],
-                    add_prefix=False,
-                ),
-            )
-            assert 'en-US' not in url
-
-    def test_stripe_checkout_completed(self):
-        sub = PromotedSubscription()
-
-        assert not sub.stripe_checkout_completed
-
-        sub.update(checkout_completed_at=datetime.datetime.now())
-
-        assert sub.stripe_checkout_completed
-
-    def test_stripe_checkout_cancelled(self):
-        sub = PromotedSubscription()
-
-        assert not sub.stripe_checkout_cancelled
-
-        sub.update(checkout_cancelled_at=datetime.datetime.now())
-
-        assert sub.stripe_checkout_cancelled
-
-    def test_is_active(self):
-        sub = PromotedSubscription()
-
-        assert sub.is_active is None
-
-        sub.update(checkout_completed_at=datetime.datetime.now())
-
-        assert sub.is_active
-
-        sub.update(cancelled_at=datetime.datetime.now())
-
-        assert sub.is_active is False

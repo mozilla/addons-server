@@ -30,7 +30,6 @@ from olympia.constants.promoted import (
     SPOTLIGHT,
     STRATEGIC,
     SPONSORED,
-    VERIFIED,
 )
 from olympia.files.models import File
 from olympia.lib.crypto.tests.test_signing import (
@@ -676,54 +675,6 @@ class TestReviewHelper(TestReviewHelperBase):
             'super',
             'comment',
         ]
-        assert (
-            list(
-                self.get_review_actions(
-                    addon_status=amo.STATUS_APPROVED,
-                    file_status=amo.STATUS_AWAITING_REVIEW,
-                ).keys()
-            )
-            == expected
-        )
-
-    def test_actions_promoted_no_subscription_cant_be_approved(self):
-        # the public action shouldn't be available if a subscription is needed
-        # for the promoted group
-        self.make_addon_promoted(self.addon, SPONSORED)
-        self.grant_permission(self.request.user, 'Addons:Review')
-        expected = ['reject', 'reject_multiple_versions', 'reply', 'super', 'comment']
-        assert (
-            list(
-                self.get_review_actions(
-                    addon_status=amo.STATUS_APPROVED,
-                    file_status=amo.STATUS_AWAITING_REVIEW,
-                ).keys()
-            )
-            == expected
-        )
-
-        # finish the checkout
-        self.addon.promotedaddon.promotedsubscription.update(
-            checkout_completed_at=datetime.now()
-        )
-        expected = ['public'] + expected
-        assert (
-            list(
-                self.get_review_actions(
-                    addon_status=amo.STATUS_APPROVED,
-                    file_status=amo.STATUS_AWAITING_REVIEW,
-                ).keys()
-            )
-            == expected
-        )
-
-        # and check the case where the addon is already fully promoted but
-        # hasn't paid yet (trial participant)
-        self.addon.promotedaddon.promotedsubscription.update(checkout_completed_at=None)
-        assert (
-            not self.addon.promotedaddon.promotedsubscription.stripe_checkout_completed
-        )
-        self.make_addon_promoted(self.addon, VERIFIED, approve_version=True)
         assert (
             list(
                 self.get_review_actions(
@@ -2352,32 +2303,6 @@ class TestReviewHelper(TestReviewHelperBase):
         ).exists()
         assert self.addon.promoted_group() == LINE
 
-    def test_nominated_to_approved_promoted_unpaid_subscription_fails(self):
-        self.make_addon_promoted(self.addon, VERIFIED)
-        subscription = self.addon.promotedaddon.promotedsubscription
-
-        assert not self.addon.promoted_group()
-        assert not subscription.stripe_checkout_completed
-        with self.assertRaises(AssertionError):
-            self.test_nomination_to_public()
-        assert not self.addon.current_version.promoted_approvals.filter(
-            group_id=VERIFIED.id
-        ).exists()
-        assert not self.addon.promoted_group()
-
-    def test_nominated_to_approved_promoted_has_subscription(self):
-        self.make_addon_promoted(self.addon, VERIFIED)
-        subscription = self.addon.promotedaddon.promotedsubscription
-        subscription.update(checkout_completed_at=datetime.now())
-
-        assert not self.addon.promoted_group()
-        assert subscription.stripe_checkout_completed
-        self.test_nomination_to_public()
-        assert self.addon.current_version.promoted_approvals.filter(
-            group_id=VERIFIED.id
-        ).exists()
-        assert self.addon.promoted_group() == VERIFIED
-
     def test_approved_update_recommended(self):
         self.make_addon_promoted(self.addon, RECOMMENDED)
         assert not self.addon.promoted_group()
@@ -2395,32 +2320,6 @@ class TestReviewHelper(TestReviewHelperBase):
             group_id=LINE.id
         ).exists()
         assert self.addon.promoted_group() == LINE
-
-    def test_approved_update_promoted_unpaid_subscription_fails(self):
-        self.make_addon_promoted(self.addon, VERIFIED)
-        subscription = self.addon.promotedaddon.promotedsubscription
-
-        assert not self.addon.promoted_group()
-        assert not subscription.stripe_checkout_completed
-        with self.assertRaises(AssertionError):
-            self.test_public_addon_with_version_awaiting_review_to_public()
-        assert not self.addon.current_version.promoted_approvals.filter(
-            group_id=VERIFIED.id
-        ).exists()
-        assert not self.addon.promoted_group()
-
-    def test_approved_update_promoted_has_subscription(self):
-        self.make_addon_promoted(self.addon, VERIFIED)
-        subscription = self.addon.promotedaddon.promotedsubscription
-        subscription.update(checkout_completed_at=datetime.now())
-
-        assert not self.addon.promoted_group()
-        assert subscription.stripe_checkout_completed
-        self.test_public_addon_with_version_awaiting_review_to_public()
-        assert self.addon.current_version.promoted_approvals.filter(
-            group_id=VERIFIED.id
-        ).exists()
-        assert self.addon.promoted_group() == VERIFIED
 
     def test_autoapprove_fails_for_promoted(self):
         self.make_addon_promoted(self.addon, RECOMMENDED)

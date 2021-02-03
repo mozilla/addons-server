@@ -175,7 +175,6 @@ DJANGO_PERMISSIONS_MAPPING.update(
         'hero.delete_secondaryheromodule': DISCOVERY_EDIT,
         'promoted.view_promotedapproval': DISCOVERY_EDIT,
         'promoted.delete_promotedapproval': DISCOVERY_EDIT,
-        'promoted.change_promotedsubscription': DISCOVERY_EDIT,
         'reviewers.delete_reviewerscore': ADMIN_ADVANCED,
         'scanners.add_scannerrule': ADMIN_SCANNERS_RULES_EDIT,
         'scanners.change_scannerrule': ADMIN_SCANNERS_RULES_EDIT,

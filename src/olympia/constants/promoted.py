@@ -20,7 +20,6 @@ _PromotedSuperClass = namedtuple(
         'autograph_signing_states',
         'can_primary_hero',
         'can_be_selected_by_adzerk',
-        'require_subscription',
         'immediate_approval',
     ],
     defaults=(
@@ -34,7 +33,6 @@ _PromotedSuperClass = namedtuple(
         {},  # autograph_signing_states - should be a dict of App.short: state
         False,  # can_primary_hero - can be added to a primary hero shelf
         False,  # can_be_selected_by_adzerk
-        False,  # require_subscription
         False,  # immediate_approval - will addon be auto-approved once added
     ),
 )
@@ -81,7 +79,6 @@ SPONSORED = PromotedClass(
     },
     can_primary_hero=True,
     can_be_selected_by_adzerk=True,
-    require_subscription=True,
 )
 
 VERIFIED = PromotedClass(
@@ -96,7 +93,6 @@ VERIFIED = PromotedClass(
         applications.ANDROID.short: 'verified',
     },
     can_be_selected_by_adzerk=True,
-    require_subscription=True,
 )
 
 LINE = PromotedClass(
