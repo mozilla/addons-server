@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2021-01-06 01:31+0000\n"
+"PO-Revision-Date: 2021-01-07 00:47+0000\n"
 "Last-Translator: Julian Mueller <jmueller956@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_CA\n"
@@ -134,7 +134,7 @@ msgstr "Reviewer links"
 
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
-msgstr ""
+msgstr "Git extraction triggered for \"%(addons)s\"."
 
 msgid "- Add-on not on AMO -"
 msgstr "- Add-on not on AMO -"
@@ -161,7 +161,7 @@ msgid "My Themes"
 msgstr "My Themes"
 
 msgid "Git-Extract"
-msgstr ""
+msgstr "Git-Extract"
 
 msgid "Tools"
 msgstr "Tools"
@@ -316,7 +316,7 @@ msgid "Email:"
 msgstr "Email:"
 
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 msgid "No results found"
 msgstr "No results found"
@@ -418,7 +418,7 @@ msgid "Email address not found."
 msgstr "Email address not found."
 
 msgid "Unavailable for legal reasons."
-msgstr ""
+msgstr "Unavailable for legal reasons."
 
 msgid "The field must have a length of at least {num} characters."
 msgstr "The field must have a length of at least {num} characters."
@@ -508,7 +508,7 @@ msgstr "Blocks to be updated are different because Min or Max Version has change
 
 #, python-format
 msgid "%(value)s contains *"
-msgstr ""
+msgstr "%(value)s contains *"
 
 msgid "Invalid version"
 msgstr "Invalid version"
@@ -2209,20 +2209,20 @@ msgid "Set Up Payment"
 msgstr "Requires Payment"
 
 msgid "You're done!"
-msgstr ""
+msgstr "You're done!"
 
 #, python-format
 msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
-msgstr ""
+msgstr "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
 
 msgid "A newer version of your add-on is currently pending review."
-msgstr ""
+msgstr "A newer version of your add-on is currently pending review."
 
 msgid "If you have any questions, don’t hesitate to contact us."
-msgstr ""
+msgstr "If you have any questions, don't hesitate to contact us."
 
 msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
-msgstr ""
+msgstr "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
 
 #, fuzzy
 msgid "Manage add-on"
@@ -2235,14 +2235,14 @@ msgid ""
 msgstr ""
 
 msgid "Thank you for joining the Promoted Add-ons Program!"
-msgstr ""
+msgstr "Thank you for joining the Promoted Add-ons Program!"
 
 #, python-format
 msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the program once payment is set up through the Stripe system. Click on the button below to continue:"
-msgstr ""
+msgstr "Your add-on <strong>%(addon_name)s</strong> will be included in the program once payment is set up through the Stripe system. Click on the button below to continue:"
 
 msgid "Continue to Stripe Checkout"
-msgstr ""
+msgstr "Continue to Stripe Checkout"
 
 msgid "Manage Authors & License"
 msgstr "Manage Authors & License"
@@ -3151,7 +3151,7 @@ msgid "View All"
 msgstr "View All"
 
 msgid "Manage Billing on Stripe"
-msgstr ""
+msgstr "Manage Billing on Stripe"
 
 msgid "Listed Review Page"
 msgstr "Listed Review Page"
@@ -4433,11 +4433,11 @@ msgstr "Get weather updates right in the browser."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
-msgstr ""
+msgstr "Manage your time better with a browser clock that charts work intervals."
 
 #. editorial content for the primary hero shelves.
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
-msgstr ""
+msgstr "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4483,9 +4483,8 @@ msgstr "Lowest supported “strict_min_version” is 42.0."
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr "Unknown \"strict_min_version\" {appver} for {app}"
 
-#, fuzzy
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
-msgstr "Unknown \"strict_min_version\" {appver} for {app}"
+msgstr "Unknown \"strict_max_version\" {appver} for {app}"
 
 msgid "Unsupported archive type."
 msgstr "Unsupported archive type."
@@ -5362,9 +5361,8 @@ msgstr "More Actions"
 msgid "Notify me about new listed versions"
 msgstr "Notify me about new listed versions"
 
-#, fuzzy
 msgid "Notify me about new unlisted versions"
-msgstr "Notify me about new listed versions"
+msgstr "Notify me about new unlisted versions"
 
 msgid "Allow resubmission"
 msgstr "Allow resubmission"
