@@ -8,7 +8,7 @@ from django.core.validators import ValidationError
 from unittest import mock
 import pytest
 
-from olympia.amo.tests import DQUOTE_ESCAPED, TestCase
+from olympia.amo.tests import TestCase
 from olympia.amo.utils import (
     LocalFileStorage,
     cache_ns_key,
@@ -278,7 +278,7 @@ def test_no_jinja_autoescape():
     tpl = '{{ val }}'
     ctx = {'val': val}
     template = from_string(tpl)
-    assert template.render(ctx) == f'some double quote: {DQUOTE_ESCAPED} and a &lt;'
+    assert template.render(ctx) == 'some double quote: &#34; and a &lt;'
     with no_jinja_autoescape():
         template = from_string(tpl)
         assert template.render(ctx) == 'some double quote: " and a <'
