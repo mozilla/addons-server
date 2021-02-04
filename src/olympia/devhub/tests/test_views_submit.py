@@ -29,6 +29,8 @@ from olympia.amo.tests import (
     create_default_webext_appversion,
     formset,
     initial,
+    STRING_QUOTE_OPEN,
+    STRING_QUOTE_CLOSE,
     user_factory,
     version_factory,
 )
@@ -1030,12 +1032,13 @@ class DetailsPageMixin(object):
         data = self.get_dict(slug='slug!!! aksl23%%')
         response = self.client.post(self.url, data)
         assert response.status_code == 200
+        # “slug” vs 'slug'
         self.assertFormError(
             response,
             'form',
             'slug',
-            "Enter a valid 'slug'" + ' consisting of letters, numbers, underscores or '
-            'hyphens.',
+            f'Enter a valid {STRING_QUOTE_OPEN}slug{STRING_QUOTE_CLOSE} consisting of '
+            'letters, numbers, underscores or hyphens.',
         )
 
     def test_submit_slug_required(self):
