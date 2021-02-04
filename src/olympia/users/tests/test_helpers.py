@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from olympia.amo.tests import SQUOTE_ESCAPED, DQUOTE_ESCAPED
 from olympia.users.models import UserProfile
 from olympia.users.templatetags.jinja_helpers import user_link, users_list
 
@@ -33,7 +32,7 @@ def test_user_link_xss():
     user = UserProfile(
         username='jconnor', display_name="""xss"'><iframe onload=alert(3)>""", pk=1
     )
-    html = f'xss{DQUOTE_ESCAPED}{SQUOTE_ESCAPED}&gt;&lt;iframe onload=alert(3)&gt;'
+    html = 'xss&#34;&#39;&gt;&lt;iframe onload=alert(3)&gt;'
     assert user_link(user) == '<a href="%s" title="%s">%s</a>' % (
         user.get_absolute_url(),
         html,

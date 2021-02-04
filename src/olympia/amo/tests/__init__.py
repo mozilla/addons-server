@@ -88,8 +88,6 @@ ES_INDEX_SUFFIXES = {key: timestamp_index('') for key in settings.ES_INDEXES.key
 
 # django2.2 encodes with the decimal code; django3.2 with the hex code.
 SQUOTE_ESCAPED = escape("'")
-# Unfortunately `escape` returns `&quot;` rather than the code so workaround:
-DQUOTE_ESCAPED = '&#x22;' if 'x' in SQUOTE_ESCAPED else '&#34;'
 
 
 def get_es_index_name(key):
