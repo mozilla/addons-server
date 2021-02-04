@@ -1,6 +1,5 @@
-from django.conf import settings
 from django.utils.html import format_html
-from django.utils.translation import gettext
+from django.utils.translation import get_language, gettext
 
 from rest_framework import serializers
 
@@ -79,12 +78,12 @@ class FieldAlwaysFlatWhenFlatGateActiveMixin:
 
     def get_requested_language(self):
         # For l10n_flat_input_output, if the request didn't specify a `lang=xx` then
-        # fake it as `lang=en-US` so we get a single (flat) result.
+        # fake it with the current locale so we get a single (flat) result.
         requested = super().get_requested_language()
         if not requested:
             request = self.context.get('request', None)
             if is_gate_active(request, 'l10n_flat_input_output'):
-                requested = settings.LANGUAGE_CODE
+                requested = get_language()
         return requested
 
     def get_attribute(self, obj):
