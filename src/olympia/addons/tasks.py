@@ -254,6 +254,22 @@ def delete_addons(addon_ids, with_deleted=False, **kw):
 
 @task
 @use_primary_db
+def hard_delete_legacy_versions(addon_ids, **kw):
+    """Hard-delete legacy versions from specific add-on ids."""
+    log.info(
+        '[%s@%s] Hard Deleting legacy versions from addons starting at id: %s...'
+        % (len(addon_ids), hard_delete_legacy_versions.rate_limit, addon_ids[0])
+    )
+    addons = Addon.unfiltered.filter(pk__in=addon_ids).no_transforms()
+    for addon in addons:
+        with transaction.atomic():
+            addon.versions(manager='unfiltered_for_relations').filter(
+                files__is_webextension=False, files__is_mozilla_signed_extension=False
+            ).delete()
+
+
+@task
+@use_primary_db
 def update_addon_hotness(averages):
     log.info('[%s] Updating add-ons hotness scores.', (len(averages)))
 
