@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2021-01-12 08:51+0000\n"
+"PO-Revision-Date: 2021-02-05 08:19+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -140,7 +140,7 @@ msgstr "Liens pour la révision"
 
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
-msgstr ""
+msgstr "Extraction Git déclenchée pour « %(addons)s »."
 
 msgid "- Add-on not on AMO -"
 msgstr "- Module complémentaire non présent sur AMO -"
@@ -2273,7 +2273,7 @@ msgid "Decline"
 msgstr "Refuser"
 
 msgid "Set Up Payment"
-msgstr ""
+msgstr "Configurer les paiements"
 
 msgid "You're done!"
 msgstr "C’est fini !"
@@ -2281,6 +2281,8 @@ msgstr "C’est fini !"
 #, python-format
 msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
 msgstr ""
+"Vous avez terminé ! Une nouvelle version <strong>%(new_version_number)s</strong> de votre module complémentaire <strong>%(addon_name)s</strong> sera publiée en tant que %(group_name)s et devrait "
+"être disponible sous peu."
 
 msgid "A newer version of your add-on is currently pending review."
 msgstr "Une version plus récente de votre module complémentaire est actuellement en attente de validation."
@@ -2290,6 +2292,8 @@ msgstr "Si vous avez des questions, n’hésitez pas à nous contacter."
 
 msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
 msgstr ""
+"Votre paiement a été enregistré, mais il n’existe actuellement aucune version publiée de votre module complémentaire. Veuillez mettre en ligne une nouvelle version publique afin de terminer ce "
+"processus."
 
 msgid "Manage add-on"
 msgstr "Gérer les modules complémentaires"
