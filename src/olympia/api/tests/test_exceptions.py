@@ -23,7 +23,7 @@ test_exception = SimpleRouter()
 test_exception.register('testexcept', DummyViewSet, basename='test-exception')
 
 
-@override_settings(ROOT_URLCONF=test_exception.urls)
+@override_settings(ROOT_URLCONF=tuple(test_exception.urls))
 class TestExceptionHandlerWithViewSet(TestCase):
     # The test client connects to got_request_exception, so we need to mock it
     # otherwise it would immediately re-raise the exception.

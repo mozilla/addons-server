@@ -29,7 +29,7 @@ class CollectionAddonInline(admin.TabularInline):
         # remove an add-on from a collection (they can't delete a collection).
         return self.has_change_permission(request, obj=obj)
 
-    def has_add_permission(self, request):
+    def has_add_permission(self, request, obj=None):
         return CollectionAdmin(Collection, self.admin_site).has_add_permission(request)
 
 

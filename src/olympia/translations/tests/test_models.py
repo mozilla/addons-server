@@ -555,14 +555,23 @@ class TranslationTestCase(TestCase):
 
 class TranslationMultiDbTests(TransactionTestCase):
     fixtures = ['testapp/test_models.json']
+    # ConnectionHandler has changed in django3.2 - databases is now a @property
+    patch_property = (
+        'databases'
+        if isinstance(
+            getattr(django.db.utils.ConnectionHandler, 'databases'),
+            django.utils.functional.cached_property,
+        )
+        else 'settings'
+    )
 
     def setUp(self):
-        super(TranslationMultiDbTests, self).setUp()
+        super().setUp()
         translation.activate('en-US')
 
     def tearDown(self):
         self.cleanup_fake_connections()
-        super(TranslationMultiDbTests, self).tearDown()
+        super().tearDown()
 
     def reset_queries(self):
         # Django does a separate SQL query once per connection on MySQL, see
@@ -585,7 +594,7 @@ class TranslationMultiDbTests(TransactionTestCase):
         }
 
     def cleanup_fake_connections(self):
-        with patch.object(django.db.connections, 'databases', self.mocked_dbs):
+        with patch.object(django.db.connections, self.patch_property, self.mocked_dbs):
             for key in ('default', 'slave-1', 'slave-2'):
                 connections[key].close()
 
@@ -599,7 +608,7 @@ class TranslationMultiDbTests(TransactionTestCase):
     @override_settings(DEBUG=True)
     @patch('multidb.get_replica', lambda: 'slave-2')
     def test_translations_reading_from_multiple_db(self):
-        with patch.object(django.db.connections, 'databases', self.mocked_dbs):
+        with patch.object(django.db.connections, self.patch_property, self.mocked_dbs):
             # Make sure we are in a clean environnement.
             self.reset_queries()
 
@@ -612,7 +621,7 @@ class TranslationMultiDbTests(TransactionTestCase):
     @patch('multidb.get_replica', lambda: 'slave-2')
     @pytest.mark.xfail(reason='Needs django-queryset-transform patch to work')
     def test_translations_reading_from_multiple_db_using(self):
-        with patch.object(django.db.connections, 'databases', self.mocked_dbs):
+        with patch.object(django.db.connections, self.patch_property, self.mocked_dbs):
             # Make sure we are in a clean environnement.
             self.reset_queries()
 
@@ -624,7 +633,7 @@ class TranslationMultiDbTests(TransactionTestCase):
     @override_settings(DEBUG=True)
     @patch('multidb.get_replica', lambda: 'slave-2')
     def test_translations_reading_from_multiple_db_pinning(self):
-        with patch.object(django.db.connections, 'databases', self.mocked_dbs):
+        with patch.object(django.db.connections, self.patch_property, self.mocked_dbs):
             # Make sure we are in a clean environnement.
             self.reset_queries()
 

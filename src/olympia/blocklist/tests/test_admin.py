@@ -3,6 +3,7 @@ import json
 
 from unittest import mock
 
+import django
 from django.conf import settings
 from django.contrib.admin.models import LogEntry, ADDITION
 from django.contrib.contenttypes.models import ContentType
@@ -19,6 +20,17 @@ from olympia.amo.tests import TestCase, addon_factory, user_factory, version_fac
 from olympia.amo.urlresolvers import reverse
 
 from ..models import Block, BlocklistSubmission
+
+
+IS_DJANGO_32 = django.VERSION[0] == 3
+# django3.2 uses fancy double quotes in its admin logging too
+FANCY_QUOTE_OR_DOUBLE_OPEN = '“' if IS_DJANGO_32 else '"'
+FANCY_QUOTE_OR_DOUBLE_CLOSE = '”' if IS_DJANGO_32 else '"'
+# And sometimes it's a named entity instead, because reasons.
+FANCY_QUOTE_OR_ENTITY_OPEN = '“' if IS_DJANGO_32 else '&quot;'
+FANCY_QUOTE_OR_ENTITY_CLOSE = '”' if IS_DJANGO_32 else '&quot;'
+# Now with a 50% dash length improvement!
+LONG_DASH = '—' if IS_DJANGO_32 else '-'
 
 
 class TestBlockAdmin(TestCase):
@@ -293,8 +305,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert log == ActivityLog.objects.for_versions(deleted_addon_version).last()
         assert not ActivityLog.objects.for_versions(pending_version).exists()
         assert [msg.message for msg in response.context['messages']] == [
-            'The blocklist submission "No Sign-off: guid@; dfd; some reason" '
-            'was added successfully.'
+            f'The blocklist submission {FANCY_QUOTE_OR_DOUBLE_OPEN}No Sign-off: guid@; '
+            f'dfd; some reason{FANCY_QUOTE_OR_DOUBLE_CLOSE} was added successfully.'
         ]
 
         response = self.client.get(
@@ -769,8 +781,9 @@ class TestBlocklistSubmissionAdmin(TestCase):
 
         assert [msg.message for msg in response.context['messages']] == [
             'The blocklist submission '
-            '"No Sign-off: any@new, partial@existing, full@exist...; dfd; '
-            'some reason" was added successfully.'
+            f'{FANCY_QUOTE_OR_DOUBLE_OPEN}No Sign-off: any@new, partial@existing, '
+            f'full@exist...; dfd; some reason{FANCY_QUOTE_OR_DOUBLE_CLOSE} was added '
+            'successfully.'
         ]
 
         # This time the blocks are updated
@@ -1245,14 +1258,18 @@ class TestBlocklistSubmissionAdmin(TestCase):
         log_entry = LogEntry.objects.get()
         assert log_entry.user == user
         assert log_entry.object_id == str(mbs.id)
-        assert log_entry.change_message == json.dumps(
-            [{'changed': {'fields': ['url', 'reason']}}]
-        )
+        change_json = json.loads(log_entry.change_message)
+        # change_message fields are the Field names rather than the fields in django3.2
+        change_json[0]['changed']['fields'] = [
+            field.lower() for field in change_json[0]['changed']['fields']
+        ]
+        assert change_json == [{'changed': {'fields': ['url', 'reason']}}]
 
         response = self.client.get(multi_url, follow=True)
         assert (
-            b'Changed &quot;Pending: guid@, invalid@, second@invalid; '
-            b'new.url; a new reason thats longer than 40 cha...' in response.content
+            f'Changed {FANCY_QUOTE_OR_ENTITY_OPEN}Pending: guid@, invalid@, '
+            'second@invalid; new.url; a new reason thats longer than 40 cha...'
+            in response.content.decode('utf-8')
         )
 
     def test_edit_page_with_blocklist_signoff(self):
@@ -1424,8 +1441,9 @@ class TestBlocklistSubmissionAdmin(TestCase):
 
         response = self.client.get(multi_url, follow=True)
         assert (
-            b'Changed &quot;Approved: guid@, invalid@'
-            b'&quot; - Sign-off Approval' in response.content
+            f'Changed {FANCY_QUOTE_OR_ENTITY_OPEN}Approved: guid@, invalid@'
+            f'{FANCY_QUOTE_OR_ENTITY_CLOSE} {LONG_DASH} Sign-off Approval'
+            in response.content.decode('utf-8')
         )
         assert b'not a Block!' not in response.content
 
@@ -1502,11 +1520,12 @@ class TestBlocklistSubmissionAdmin(TestCase):
         )
 
         response = self.client.get(multi_url, follow=True)
+        content = response.content.decode('utf-8')
         assert (
-            b'Changed &quot;Rejected: guid@, invalid@'
-            b'&quot; - Sign-off Rejection' in response.content
+            f'Changed {FANCY_QUOTE_OR_ENTITY_OPEN}Rejected: guid@, invalid@'
+            f'{FANCY_QUOTE_OR_ENTITY_CLOSE} {LONG_DASH} Sign-off Rejection' in content
         )
-        assert b'not a Block!' not in response.content
+        assert 'not a Block!' not in content
 
         # statuses didn't change
         addon.reload()
