@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from django.core.management.base import BaseCommand, CommandError
-from django.db.models import Q, F
+from django.db.models import Count, Q, F
 
 from celery import chord, group
 
@@ -13,6 +13,7 @@ from olympia.addons.tasks import (
     delete_addons,
     extract_colors_from_static_themes,
     find_inconsistencies_between_es_and_db,
+    hard_delete_extra_files,
     hard_delete_legacy_versions,
     recreate_theme_previews,
 )
@@ -22,6 +23,7 @@ from olympia.amo.utils import chunked
 from olympia.devhub.tasks import get_preview_sizes, recreate_previews
 from olympia.lib.crypto.tasks import sign_addons
 from olympia.reviewers.tasks import recalculate_post_review_weight
+from olympia.versions.models import Version
 
 
 def get_recalc_needed_filters():
@@ -128,6 +130,16 @@ tasks = {
             )
         ],
         'allowed_kwargs': ('with_deleted',),
+    },
+    'hard_delete_extra_files': {
+        'method': hard_delete_extra_files,
+        'qs': [
+            Q(
+                versions__in=Version.unfiltered.annotate(
+                    nb_files=Count('files')
+                ).filter(nb_files__gt=1).filter(files__is_webextension=True)
+            )
+        ],
     },
     'hard_delete_legacy_versions': {
         'method': hard_delete_legacy_versions,
