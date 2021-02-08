@@ -1005,6 +1005,7 @@ def review(request, addon, channel=None):
         form=form,
         has_versions_pending_rejection=has_versions_pending_rejection,
         is_admin=is_admin,
+        language_dict=dict(settings.LANGUAGES),
         latest_not_disabled_version=latest_not_disabled_version,
         latest_version_is_unreviewed_and_not_pending_rejection=(
             version

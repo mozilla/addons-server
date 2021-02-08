@@ -3,7 +3,7 @@ from django.utils import translation
 
 import pytest
 
-from unittest.mock import Mock, patch
+from unittest.mock import Mock
 
 from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase
@@ -123,7 +123,6 @@ def test_l10n_menu():
     assert 'data-rm-locale="/en-US/developers/addon/None/rmlocale"' in menu
 
 
-@patch.object(settings, 'AMO_LANGUAGES', ('de', 'en-US', 'es', 'fr', 'pt-BR'))
 class TestAllLocales(TestCase):
     def test_all_locales_none(self):
         addon = None

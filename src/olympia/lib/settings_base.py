@@ -164,9 +164,7 @@ TIME_ZONE = 'UTC'
 LANGUAGE_CODE = 'en-US'
 
 # Accepted locales / languages.
-from olympia.core.languages import LANGUAGE_MAPPING  # noqa
-
-AMO_LANGUAGES = LANGUAGE_MAPPING.keys()
+from olympia.core.languages import AMO_LANGUAGES  # noqa
 
 # Bidirectional languages.
 # Locales in here *must* be in `AMO_LANGUAGES` too.
@@ -182,9 +180,9 @@ SHORTER_LANGUAGES = {
 }
 
 # Override Django's built-in with our native names
-LANGUAGES = {
-    locale.lower(): value['native'] for locale, value in LANGUAGE_MAPPING.items()
-}
+LANGUAGES = [
+    (locale.lower(), value['native']) for locale, value in AMO_LANGUAGES.items()
+]
 
 LANGUAGE_URL_MAP = {locale.lower(): locale for locale in AMO_LANGUAGES}
 

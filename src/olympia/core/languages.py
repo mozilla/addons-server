@@ -1,8 +1,6 @@
 # Languages that we support on AMO, e.g we have translations for them
 # and they're tested.
-# They're automatically added to `settings.AMO_LANGUAGES` in
-# `lib.settings_base`
-LANGUAGE_MAPPING = {
+AMO_LANGUAGES = {
     'af': {'english': 'Afrikaans', 'native': 'Afrikaans'},
     'ar': {'english': 'Arabic', 'native': '\u0639\u0631\u0628\u064a'},
     'ast': {'english': 'Asturian', 'native': 'Asturianu'},
@@ -105,7 +103,7 @@ LANGUAGE_MAPPING = {
 }
 
 # Languages supported by product-details that we don't have translations for
-# and haven't been tested. It's fine to move languages up to `LANGUAGE_MAPPING`
+# and haven't been tested. It's fine to move languages up to `AMO_LANGUAGES`
 # but make sure they're tested.
 # Languages in here are used for example in statistics views.
 ADDITIONAL_PRODUCT_LANGUAGES = {
@@ -246,6 +244,4 @@ ADDITIONAL_PRODUCT_LANGUAGES = {
 }
 
 
-ALL_LANGUAGES = {}
-ALL_LANGUAGES.update(LANGUAGE_MAPPING)
-ALL_LANGUAGES.update(ADDITIONAL_PRODUCT_LANGUAGES)
+ALL_LANGUAGES = {**AMO_LANGUAGES, **ADDITIONAL_PRODUCT_LANGUAGES}

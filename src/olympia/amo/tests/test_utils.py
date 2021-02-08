@@ -178,7 +178,7 @@ def test_set_writable_cached_property():
     assert callme.call_count == 1
 
 
-@pytest.mark.parametrize('lang', settings.AMO_LANGUAGES)
+@pytest.mark.parametrize('lang', settings.AMO_LANGUAGES.keys())
 def test_get_locale_from_lang(lang):
     """Make sure all languages in settings.AMO_LANGUAGES can be resolved."""
     locale = get_locale_from_lang(lang)
