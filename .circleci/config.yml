@@ -661,7 +661,7 @@ workflows:
             parameters:
               djangoversion:
                 - django22
-#                - django32 # django3.2 tests still failing
+                - django32
       - assets:
           matrix:
             parameters:

@@ -11,7 +11,6 @@ from django import test
 from django.conf import settings
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
-from django.utils.encoding import force_str
 
 import pytest
 
@@ -341,12 +340,11 @@ class TestOtherStuff(TestCase):
 
     def test_opensearch(self):
         client = test.Client()
-        page = client.get('/en-US/firefox/opensearch.xml')
+        result = client.get('/en-US/firefox/opensearch.xml')
 
-        wanted = ('Content-Type', 'text/xml')
-        assert page._headers['content-type'] == wanted
+        assert result.get('Content-Type') == 'text/xml'
 
-        doc = etree.fromstring(page.content)
+        doc = etree.fromstring(result.content)
         e = doc.find('{http://a9.com/-/spec/opensearch/1.1/}ShortName')
         assert e.text == 'Firefox Add-ons'
 
@@ -391,9 +389,9 @@ class TestCORS(TestCase):
 
 class TestContribute(TestCase):
     def test_contribute_json(self):
-        res = self.client.get('/contribute.json')
-        assert res.status_code == 200
-        assert res._headers['content-type'] == ('Content-Type', 'application/json')
+        result = self.client.get('/contribute.json')
+        assert result.status_code == 200
+        assert result.get('Content-Type') == 'application/json'
 
 
 class TestRobots(TestCase):
@@ -492,10 +490,10 @@ class TestAtomicRequests(WithDynamicEndpointsAndTransactions):
 
 class TestVersion(TestCase):
     def test_version_json(self):
-        res = self.client.get('/__version__')
-        assert res.status_code == 200
-        assert res._headers['content-type'] == ('Content-Type', 'application/json')
-        content = json.loads(force_str(res.content))
+        result = self.client.get('/__version__')
+        assert result.status_code == 200
+        assert result.get('Content-Type') == 'application/json'
+        content = result.json()
         assert content['python'] == '%s.%s' % (
             sys.version_info.major,
             sys.version_info.minor,
