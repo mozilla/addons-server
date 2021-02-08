@@ -136,6 +136,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :query string app: Used in conjunction with ``appversion`` below to alter ``current_version`` behaviour. Need to be a valid :ref:`add-on application <addon-detail-application>`.
     :query string appversion: Make ``current_version`` return the latest public version of the add-on compatible with the given application version, if possible, otherwise fall back on the generic implementation. Pass the full version as a string, e.g. ``46.0``. Only valid when the ``app`` parameter is also present. Currently only compatible with language packs through the add-on detail API, ignored for other types of add-ons and APIs.
     :query string lang: Activate translations in the specific language for that query. (See :ref:`Translated Fields <api-overview-translations>`)
+    :query boolean show_grouped_ratings: Whether or not to show ratings aggregates in the ``ratings`` object (Use "true"/"1" as truthy values, "0"/"false" as falsy ones).
     :>json int id: The add-on id on AMO.
     :>json array authors: Array holding information about the authors for the add-on.
     :>json int authors[].id: The id for an author.
@@ -181,6 +182,12 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json string ratings_url: The URL to the user ratings list page for the add-on.
     :>json float ratings.average: The average user rating for the add-on.
     :>json float ratings.bayesian_average: The bayesian average user rating for the add-on.
+    :>json object ratings.grouped_counts: Object with aggregate counts for ratings.  Only included when ``show_grouped_ratings`` is present in the request.
+    :>json int ratings.grouped_counts.1: the count of ratings with a score of 1.
+    :>json int ratings.grouped_counts.2: the count of ratings with a score of 2.
+    :>json int ratings.grouped_counts.3: the count of ratings with a score of 3.
+    :>json int ratings.grouped_counts.4: the count of ratings with a score of 4.
+    :>json int ratings.grouped_counts.5: the count of ratings with a score of 5.
     :>json boolean requires_payment: Does the add-on require payment, non-free services or software, or additional hardware.
     :>json string review_url: The URL to the reviewer review page for the add-on.
     :>json string slug: The add-on slug.

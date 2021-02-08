@@ -31,6 +31,7 @@ from olympia.constants.promoted import PROMOTED_GROUPS, RECOMMENDED
 from olympia.files.models import File
 from olympia.promoted.models import PromotedAddon
 from olympia.search.filters import AddonAppVersionQueryParam
+from olympia.ratings.utils import get_grouped_ratings
 from olympia.users.models import UserProfile
 from olympia.versions.models import (
     ApplicationsVersions,
@@ -505,12 +506,17 @@ class AddonSerializer(serializers.ModelSerializer):
         return {str(size): absolutify(get_icon(size)) for size in amo.ADDON_ICON_SIZES}
 
     def get_ratings(self, obj):
-        return {
+        ratings = {
             'average': obj.average_rating,
             'bayesian_average': obj.bayesian_rating,
             'count': obj.total_ratings,
             'text_count': obj.text_ratings_count,
         }
+        if (request := self.context.get('request', None)) and (
+            grouped := get_grouped_ratings(request, obj)
+        ):
+            ratings['grouped_counts'] = grouped
+        return ratings
 
     def get_is_source_public(self, obj):
         return False
@@ -741,6 +747,14 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         # es_meta is added by BaseESSerializer.to_representation() before DRF's
         # to_representation() is called, so it's present on all objects.
         return obj._es_meta['score']
+
+    def get_ratings(self, obj):
+        return {
+            'average': obj.average_rating,
+            'bayesian_average': obj.bayesian_rating,
+            'count': obj.total_ratings,
+            'text_count': obj.text_ratings_count,
+        }
 
     def to_representation(self, obj):
         data = super(ESAddonSerializer, self).to_representation(obj)

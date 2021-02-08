@@ -49,6 +49,7 @@ from olympia.constants.categories import CATEGORIES
 from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.constants.promoted import RECOMMENDED
 from olympia.files.models import WebextPermission
+from olympia.ratings.models import Rating
 from olympia.versions.models import (
     ApplicationsVersions,
     AppVersion,
@@ -735,6 +736,17 @@ class AddonSerializerOutputTestMixin(object):
             result = self.serialize()
             assert 'created' not in result
 
+    def test_grouped_ratings(self):
+        self.addon = addon_factory()
+        self.request = self.get_request('/', {'show_grouped_ratings': 1})
+        result = self.serialize()
+        assert result['ratings']['grouped_counts'] == {1: 0, 2: 0, 3: 0, 4: 0, 5: 0}
+        Rating.objects.create(addon=self.addon, rating=2, user=user_factory())
+        Rating.objects.create(addon=self.addon, rating=2, user=user_factory())
+        Rating.objects.create(addon=self.addon, rating=5, user=user_factory())
+        result = self.serialize()
+        assert result['ratings']['grouped_counts'] == {1: 0, 2: 2, 3: 0, 4: 0, 5: 1}
+
 
 class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
     serializer_class = AddonSerializer
@@ -999,6 +1011,13 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
         self.addon = addon_factory()
         result = self.serialize()
         assert '_score' not in result
+
+    def test_grouped_ratings(self):
+        # as grouped ratings aren't stored in ES, we don't support this
+        self.addon = addon_factory()
+        self.request = self.get_request('/', {'show_grouped_ratings': 1})
+        result = self.serialize()
+        assert 'grouped_counts' not in result['ratings']
 
 
 class TestVersionSerializerOutput(TestCase):
