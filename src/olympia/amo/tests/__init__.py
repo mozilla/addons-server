@@ -90,9 +90,6 @@ ES_INDEX_SUFFIXES = {key: timestamp_index('') for key in settings.ES_INDEXES.key
 SQUOTE_ESCAPED = escape("'")
 # Unfortunately `escape` returns `&quot;` rather than the code so workaround:
 DQUOTE_ESCAPED = '&#x22;' if 'x' in SQUOTE_ESCAPED else '&#34;'
-# django3.2 uses fancy double quotes in its error strings
-STRING_QUOTE_OPEN = '“' if 'x' in SQUOTE_ESCAPED else "'"
-STRING_QUOTE_CLOSE = '”' if 'x' in SQUOTE_ESCAPED else "'"
 
 
 def get_es_index_name(key):
