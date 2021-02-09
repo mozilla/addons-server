@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-02-09 17:39+0000\n"
-"PO-Revision-Date: 2021-02-09 18:18+0000\n"
+"PO-Revision-Date: 2021-02-09 18:21+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -1612,7 +1612,7 @@ msgid "Delay auto-approval indefinitely"
 msgstr "Відкласти автоматичне затвердження на невизначений термін"
 
 msgid "Delay auto-approval indefinitely and add restrictions"
-msgstr "Відкласти автозатвердження на невизначений час та додати обмеження"
+msgstr "Відкладайте автозатвердження на невизначений час та додайте обмеження"
 
 msgid "True positive"
 msgstr "Дійсно позитивний"
@@ -4453,7 +4453,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "The easiest way to manage all of your YouTube channel subscriptions."
-msgstr ""
+msgstr "Найпростіший спосіб керувати всіма своїми підписками на канали YouTube."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4866,9 +4866,8 @@ msgstr "Затримка, тому що це перша оприлюднена �
 msgid "Version string and guid match a blocklist Block"
 msgstr "Рядок версії та настанов збігаються з заблокованим у списку блокування"
 
-#, fuzzy
 msgid "Weight breakdown not available."
-msgstr "Розподіл ризиків недоступний."
+msgstr ""
 
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Ви не можете надіслати коментар, якщо визначено \"canned_response\"."
