@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-02-09 17:39+0000\n"
-"PO-Revision-Date: 2021-02-09 18:21+0000\n"
+"PO-Revision-Date: 2021-02-09 18:28+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -4449,7 +4449,7 @@ msgstr "Тисячі GIF-файлів під рукою."
 
 #. editorial content for the primary hero shelves.
 msgid "Begone, annoying cookie warnings!"
-msgstr ""
+msgstr "Приберіть надокучливі попередження про куки!"
 
 #. editorial content for the primary hero shelves.
 msgid "The easiest way to manage all of your YouTube channel subscriptions."
@@ -4867,7 +4867,7 @@ msgid "Version string and guid match a blocklist Block"
 msgstr "Рядок версії та настанов збігаються з заблокованим у списку блокування"
 
 msgid "Weight breakdown not available."
-msgstr ""
+msgstr "Розподіл ваги недоступний."
 
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Ви не можете надіслати коментар, якщо визначено \"canned_response\"."
@@ -4917,19 +4917,17 @@ msgstr "ID"
 msgid "Last Review"
 msgstr "Остання перевірка"
 
-#, fuzzy
 msgid "Code Weight"
-msgstr "Вага"
+msgstr "Вага коду"
 
 msgid "Metadata Weight"
-msgstr ""
+msgstr "Вага метаданих"
 
-#, fuzzy
 msgid "Total Weight"
-msgstr "Вага"
+msgstr "Загальна вага"
 
 msgid "Maliciousness Score"
-msgstr ""
+msgstr "Оцінка зловмисності"
 
 msgid "Pending Rejection Deadline"
 msgstr "Кінцевий термін очікування на відхилення"
@@ -5585,19 +5583,16 @@ msgid "The developer has provided source code."
 msgstr "Розробник надав програмний код."
 
 msgid "Maliciousness Score:"
-msgstr ""
+msgstr "Оцінка зловмисності:"
 
-#, fuzzy
 msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr "Оцінка сканерів — це ймовірність зловмисності цієї версії на основі знахідок сканерів."
+msgstr "Оцінка шкідливості — це ймовірність зловмисності цієї версії на основі знахідок сканерів."
 
-#, fuzzy
 msgid "Code Weight:"
-msgstr "Вага:"
+msgstr "Вага коду:"
 
-#, fuzzy
 msgid "Metadata Weight:"
-msgstr "Вага:"
+msgstr "Вага метаданих:"
 
 msgid "Flagged by scanners"
 msgstr "Позначено сканерами"
@@ -5864,7 +5859,7 @@ msgid "Custom..."
 msgstr "Вибрати..."
 
 msgid "Sorry, the statistics are temporarily unavailable."
-msgstr ""
+msgstr "Статистика тимчасово недоступна."
 
 msgid "Loading the latest data&hellip;"
 msgstr "Завантаження останніх даних&hellip;"
