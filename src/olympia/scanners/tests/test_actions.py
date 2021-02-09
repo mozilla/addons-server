@@ -3,7 +3,7 @@ from unittest import mock
 
 import pytest
 
-from olympia.amo.tests import TestCase, addon_factory, version_factory
+from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
 from olympia.constants.scanners import (
     CUSTOMS,
     DELAY_AUTO_APPROVAL,
@@ -13,6 +13,7 @@ from olympia.constants.scanners import (
     NO_ACTION,
     YARA,
 )
+from olympia.files.models import FileUpload
 from olympia.scanners.models import (
     ScannerResult,
     ScannerRule,
@@ -20,10 +21,12 @@ from olympia.scanners.models import (
 from olympia.scanners.actions import (
     _delay_auto_approval,
     _delay_auto_approval_indefinitely,
+    _delay_auto_approval_indefinitely_and_restrict,
     _flag_for_human_review,
     _flag_for_human_review_by_scanner,
     _no_action,
 )
+from olympia.users.models import EmailUserRestriction, IPNetworkUserRestriction
 from olympia.versions.models import VersionReviewerFlags
 
 
@@ -53,6 +56,78 @@ class TestActions(TestCase):
         assert version.needs_human_review
 
     def test_delay_auto_approval_indefinitely(self):
+        addon = addon_factory()
+        version = addon.current_version
+        assert not version.needs_human_review
+        assert addon.auto_approval_delayed_until is None
+        _delay_auto_approval_indefinitely(version)
+        assert addon.auto_approval_delayed_until == datetime.max
+        assert version.needs_human_review
+
+    def test_delay_auto_approval_indefinitely_and_restrict(self):
+        user1 = user_factory(last_login_ip='5.6.7.8')
+        user2 = user_factory(last_login_ip='')
+        user3 = user_factory()
+        user4 = user_factory(last_login_ip='4.8.15.16')
+        addon = addon_factory(users=[user1, user2])
+        FileUpload.objects.create(
+            addon=addon,
+            user=user3,
+            version=addon.current_version.version,
+            ip_address='1.2.3.4',
+        )
+        version = addon.current_version
+        assert not version.needs_human_review
+        assert addon.auto_approval_delayed_until is None
+        _delay_auto_approval_indefinitely_and_restrict(version)
+        assert addon.auto_approval_delayed_until == datetime.max
+        assert version.needs_human_review
+        assert EmailUserRestriction.objects.filter(email_pattern=user1.email).exists()
+        assert EmailUserRestriction.objects.filter(email_pattern=user2.email).exists()
+        assert EmailUserRestriction.objects.filter(email_pattern=user3.email).exists()
+        assert not EmailUserRestriction.objects.filter(
+            email_pattern=user4.email
+        ).exists()
+
+        assert IPNetworkUserRestriction.objects.filter(network='5.6.7.8/32').exists()
+        assert IPNetworkUserRestriction.objects.filter(network='1.2.3.4/32').exists()
+        assert not IPNetworkUserRestriction.objects.filter(network=None).exists()
+        assert not IPNetworkUserRestriction.objects.filter(network='').exists()
+
+    def test_delay_auto_approval_indefinitely_and_restrict_already_restricted(self):
+        user1 = user_factory(last_login_ip='5.6.7.8')
+        user2 = user_factory(last_login_ip='')
+        user3 = user_factory()
+        user4 = user_factory(last_login_ip='4.8.15.16')
+        EmailUserRestriction.objects.create(email_pattern=user1.email)
+        EmailUserRestriction.objects.create(email_pattern=user3.email)
+        IPNetworkUserRestriction.objects.create(network='5.6.7.8/32')
+        addon = addon_factory(users=[user1, user2])
+        FileUpload.objects.create(
+            addon=addon,
+            user=user3,
+            version=addon.current_version.version,
+            ip_address='1.2.3.4',
+        )
+        version = addon.current_version
+        assert not version.needs_human_review
+        assert addon.auto_approval_delayed_until is None
+        _delay_auto_approval_indefinitely_and_restrict(version)
+        assert addon.auto_approval_delayed_until == datetime.max
+        assert version.needs_human_review
+        assert EmailUserRestriction.objects.filter(email_pattern=user1.email).exists()
+        assert EmailUserRestriction.objects.filter(email_pattern=user2.email).exists()
+        assert EmailUserRestriction.objects.filter(email_pattern=user3.email).exists()
+        assert not EmailUserRestriction.objects.filter(
+            email_pattern=user4.email
+        ).exists()
+
+        assert IPNetworkUserRestriction.objects.filter(network='5.6.7.8/32').exists()
+        assert IPNetworkUserRestriction.objects.filter(network='1.2.3.4/32').exists()
+        assert not IPNetworkUserRestriction.objects.filter(network=None).exists()
+        assert not IPNetworkUserRestriction.objects.filter(network='').exists()
+
+    def test_delay_auto_approval_indefinitely_and_restrict_nothing_to_restrict(self):
         addon = addon_factory()
         version = addon.current_version
         assert not version.needs_human_review

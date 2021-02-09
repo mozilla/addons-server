@@ -240,6 +240,11 @@ class Version(OnChangeMixin, ModelBase):
                 'Addon is Mozilla Disabled; no new versions are allowed.'
             )
 
+        if upload.addon and upload.addon != addon:
+            raise VersionCreateError(
+                'FileUpload was made for a different Addon'
+            )
+
         license_id = None
         if channel == amo.RELEASE_CHANNEL_LISTED:
             previous_version = addon.find_latest_version(channel=channel, exclude=())
@@ -322,9 +327,14 @@ class Version(OnChangeMixin, ModelBase):
         version.inherit_nomination(from_statuses=[amo.STATUS_AWAITING_REVIEW])
         version.disable_old_files()
 
-        # After the upload has been copied to all platforms, remove the upload.
+        # After the upload has been copied to all platforms, delete it from
+        # storage. Keep the FileUpload instance (it gets cleaned up by a cron
+        # eventually some time after its creation, in amo.cron.gc()), making
+        # sure it's associated with the add-on instance.
         storage.delete(upload.path)
         upload.path = ''
+        if upload.addon is None:
+            upload.addon = addon
         upload.save()
 
         version_uploaded.send(instance=version, sender=Version)
