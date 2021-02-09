@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-07 10:50+0000\n"
+"POT-Creation-Date: 2021-02-09 15:42+0000\n"
 "PO-Revision-Date: 2020-10-21 10:59+0000\n"
 "Last-Translator: Rhoslyn Prys <rprys@posteo.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -125,6 +125,9 @@ msgstr "Nodyn adolygu"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr ""
+
+msgid "Authors"
+msgstr "Awduron"
 
 msgid "Ratings"
 msgstr ""
@@ -1614,6 +1617,9 @@ msgstr "Galluogi Auto-Cymeradwyo"
 msgid "Delay auto-approval indefinitely"
 msgstr ""
 
+msgid "Delay auto-approval indefinitely and add restrictions"
+msgstr ""
+
 msgid "True positive"
 msgstr ""
 
@@ -2257,51 +2263,8 @@ msgstr ""
 msgid "Decline"
 msgstr ""
 
-msgid "Set Up Payment"
-msgstr ""
-
-msgid "You're done!"
-msgstr ""
-
-#, python-format
-msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
-msgstr ""
-
-msgid "A newer version of your add-on is currently pending review."
-msgstr ""
-
-msgid "If you have any questions, don’t hesitate to contact us."
-msgstr ""
-
-msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
-msgstr ""
-
-# {0} is the name of the collection
-#, fuzzy
-msgid "Manage add-on"
-msgstr "Rheoli {0}"
-
-#, python-format
-msgid ""
-"There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a href=\"mailto:%(email)s\">"
-"%(email)s</a>."
-msgstr ""
-
-msgid "Thank you for joining the Promoted Add-ons Program!"
-msgstr ""
-
-#, python-format
-msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the program once payment is set up through the Stripe system. Click on the button below to continue:"
-msgstr ""
-
-msgid "Continue to Stripe Checkout"
-msgstr ""
-
 msgid "Manage Authors & License"
 msgstr ""
-
-msgid "Authors"
-msgstr "Awduron"
 
 msgid "About author roles"
 msgstr ""
@@ -3161,9 +3124,6 @@ msgid "Upload New Version"
 msgstr ""
 
 msgid "View All"
-msgstr ""
-
-msgid "Manage Billing on Stripe"
 msgstr ""
 
 msgid "Listed Review Page"
@@ -4471,6 +4431,18 @@ msgstr ""
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Thousands of GIFs at your fingertips."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Begone, annoying cookie warnings!"
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "The easiest way to manage all of your YouTube channel subscriptions."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr ""
@@ -4777,6 +4749,7 @@ msgstr ""
 msgid "start"
 msgstr ""
 
+#. L10n: end, as in "end date"
 msgid "end"
 msgstr ""
 
@@ -4877,7 +4850,7 @@ msgstr ""
 msgid "Version string and guid match a blocklist Block"
 msgstr ""
 
-msgid "Risk breakdown not available."
+msgid "Weight breakdown not available."
 msgstr ""
 
 msgid "You can't submit a comment if `canned_response` is defined."
@@ -4938,7 +4911,16 @@ msgstr "GUID"
 msgid "Last Review"
 msgstr ""
 
-msgid "Weight"
+msgid "Code Weight"
+msgstr ""
+
+msgid "Metadata Weight"
+msgstr ""
+
+msgid "Total Weight"
+msgstr ""
+
+msgid "Maliciousness Score"
 msgstr ""
 
 msgid "Pending Rejection Deadline"
@@ -5444,16 +5426,6 @@ msgstr ""
 msgid "Force-enable add-on"
 msgstr ""
 
-msgid "View Blocklist Submission"
-msgstr ""
-
-#, fuzzy
-msgid "Block add-on"
-msgstr "Nôl i'r ychwanegyn"
-
-msgid "Update add-on block"
-msgstr ""
-
 #, fuzzy
 msgid "Disable Listed Auto-Approval"
 msgstr "Galluogi Auto-Cymeradwyo"
@@ -5488,6 +5460,16 @@ msgstr "Clirio Baner Adolygu Cynnwys Gweinyddol"
 
 msgid "Clear Admin Static Theme Review Flag"
 msgstr "Clirio Baner Adolygu Thema Sefydlog Gweinyddol"
+
+msgid "View Blocklist Submission"
+msgstr ""
+
+#, fuzzy
+msgid "Block add-on"
+msgstr "Nôl i'r ychwanegyn"
+
+msgid "Update add-on block"
+msgstr ""
 
 msgid "(admin)"
 msgstr ""
@@ -5629,13 +5611,16 @@ msgstr ""
 msgid "The developer has provided source code."
 msgstr ""
 
-msgid "Scanners score:"
+msgid "Maliciousness Score:"
 msgstr ""
 
-msgid "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
+msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
 msgstr ""
 
-msgid "Weight:"
+msgid "Code Weight:"
+msgstr ""
+
+msgid "Metadata Weight:"
 msgstr ""
 
 msgid "Flagged by scanners"
@@ -5912,6 +5897,9 @@ msgid "365 days"
 msgstr ""
 
 msgid "Custom..."
+msgstr ""
+
+msgid "Sorry, the statistics are temporarily unavailable."
 msgstr ""
 
 msgid "Loading the latest data&hellip;"
