@@ -462,9 +462,9 @@ google-auth==1.25.0 \
 google-api-core==1.26.0 \
     --hash=sha256:002e44c533299aecd9dd265d200f9eacd9957cddd2c72e2cd1cb5cea127e972d \
     --hash=sha256:4230ec764d48ca934fe69b85cc217e31e844e176f68df93e252acd55350e730b
-google-cloud-core==1.5.0 \
-    --hash=sha256:99a8a15f406f53f2b11bda1f45f952a9cdfbdbba8abf40c75651019d800879f5 \
-    --hash=sha256:1277a015f8eeb014c48f2ec094ed5368358318f1146cf49e8de389962dc19106
+google-cloud-core==1.6.0 \
+    --hash=sha256:40d9c2da2d03549b5ac3dcccf289d4f15e6d1210044c6381ce45c92913e62904 \
+    --hash=sha256:c6abb18527545379fc82efc4de75ce9a3772ccad2fc645adace593ba097cbb02
 google-resumable-media==1.2.0 \
     --hash=sha256:dbe670cd7f02f3586705fd5a108c8ab8552fa36a1cad8afbc5a54e982cf34f0c \
     --hash=sha256:ee98b1921e5bda94867a08c864e55b4763d63887664f49ee1c231988f56b9d43
