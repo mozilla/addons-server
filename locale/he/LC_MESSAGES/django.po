@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-02-09 17:39+0000\n"
-"PO-Revision-Date: 2021-02-09 19:42+0000\n"
+"PO-Revision-Date: 2021-02-09 19:54+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -2640,7 +2640,7 @@ msgid "Yes, Cancel"
 msgstr "כן, לבטל"
 
 msgid "No, don't cancel"
-msgstr ""
+msgstr "לא, לא לבטל"
 
 msgid "Name and Summary:"
 msgstr "שם ותקציר:"
@@ -2652,7 +2652,7 @@ msgstr "נדרש"
 msgid ""
 "Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
 "submission process is complete."
-msgstr ""
+msgstr "אזהרה: יש לך ערכים של שם/תקציר בשפות אחרות שייחתכו באופן אוטומטי כדי שיתאימו למגבלה של %(max_length)s תווים.  כדי לערוך אותם יש לעבור לדף עריכת המוצר לאחר סיום תהליך ההגשה."
 
 msgid "Add-on URL:"
 msgstr "כתובת התוספת:"
@@ -2809,7 +2809,7 @@ msgid "Web template engines, both for HTML and CSS"
 msgstr "מנועי תבניות אתרים, עבור HTML ו־CSS"
 
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
-msgstr ""
+msgstr "כל כלי אחר שלוקח קוד או קבצים, מעבד אותם ויוצר קוד או קבצים שייכללו בתוספת"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
 msgstr "אין צורך לספק קוד מקור, ניתן להמשיך לשלב הבא."
@@ -3915,7 +3915,7 @@ msgstr "הסתרת חלקים מהאתרים המופיעים בפניך."
 
 #. editorial content for the discovery pane.
 msgid "Download images you find on the web."
-msgstr ""
+msgstr "הורדת תמונות מהאינטרנט."
 
 #. editorial content for the discovery pane.
 msgid "Restrict access to inappropriate or undesired content with a filter."
@@ -5580,13 +5580,11 @@ msgstr ""
 msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
 msgstr ""
 
-#, fuzzy
 msgid "Code Weight:"
-msgstr "משקל:"
+msgstr "משקל הקוד:"
 
-#, fuzzy
 msgid "Metadata Weight:"
-msgstr "משקל:"
+msgstr "משקל מטא־נתונים:"
 
 msgid "Flagged by scanners"
 msgstr ""
@@ -5617,29 +5615,24 @@ msgstr "נדחה או לא נסקר"
 msgid "[status:%s]"
 msgstr "[מצב:%s]"
 
-#, fuzzy
 msgid "Other Pending Review"
-msgstr "סקירה ממתינה אחרת ({0})"
+msgstr "סקירה ממתינה אחרת"
 
 # 85%
 # 100%
-#, fuzzy
 msgid "Updates"
-msgstr "עדכון"
+msgstr "עדכונים"
 
-#, fuzzy
 msgid "Rating Reviews"
-msgstr "ממתין לסקירה"
+msgstr "סקירות לדירוגים"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
-#, fuzzy
 msgid "Auto Approved"
-msgstr "אושר אוטומטית ({0})"
+msgstr "אושר אוטומטית"
 
-#, fuzzy
 msgid "Pending Rejection"
-msgstr "סקירה ממתינה אחרת ({0})"
+msgstr "בהמתנה לדחייה"
 
 msgid "presence of matched rules"
 msgstr ""
@@ -5653,9 +5646,8 @@ msgstr ""
 msgid "presence of a version"
 msgstr "נוכחות של גרסה"
 
-#, fuzzy
 msgid "version channel"
-msgstr "הגרסה נחתמה"
+msgstr "ערוץ גרסה"
 
 msgid "add-on status"
 msgstr "מצב התוספת"
