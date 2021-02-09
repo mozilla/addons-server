@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-07 10:50+0000\n"
+"POT-Creation-Date: 2021-02-09 15:42+0000\n"
 "PO-Revision-Date: 2020-11-09 07:11+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -118,6 +118,9 @@ msgstr "Notă de recenzie"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Notele pot fi adăugate numai la cele mai recente versiuni ale suplimentelor."
+
+msgid "Authors"
+msgstr "Autori"
 
 msgid "Ratings"
 msgstr "Evaluări"
@@ -1625,6 +1628,10 @@ msgstr "Amână aprobarea automată"
 msgid "Delay auto-approval indefinitely"
 msgstr "Întârzie aprobarea automată pe termen nelimitat"
 
+#, fuzzy
+msgid "Delay auto-approval indefinitely and add restrictions"
+msgstr "Întârzie aprobarea automată pe termen nelimitat"
+
 msgid "True positive"
 msgstr "Adevărat pozitiv"
 
@@ -2257,51 +2264,8 @@ msgstr "Dă clic pe butonul de acceptare de mai jos pentru confirmarea că vrei 
 msgid "Decline"
 msgstr "Refuză"
 
-#, fuzzy
-msgid "Set Up Payment"
-msgstr "Necesită plată"
-
-msgid "You're done!"
-msgstr ""
-
-#, python-format
-msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
-msgstr ""
-
-msgid "A newer version of your add-on is currently pending review."
-msgstr ""
-
-msgid "If you have any questions, don’t hesitate to contact us."
-msgstr ""
-
-msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
-msgstr ""
-
-#, fuzzy
-msgid "Manage add-on"
-msgstr "Pachet lingvistic (supliment)"
-
-#, python-format
-msgid ""
-"There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a href=\"mailto:%(email)s\">"
-"%(email)s</a>."
-msgstr ""
-
-msgid "Thank you for joining the Promoted Add-ons Program!"
-msgstr ""
-
-#, python-format
-msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the program once payment is set up through the Stripe system. Click on the button below to continue:"
-msgstr ""
-
-msgid "Continue to Stripe Checkout"
-msgstr ""
-
 msgid "Manage Authors & License"
 msgstr "Gestionează autorii și licența"
-
-msgid "Authors"
-msgstr "Autori"
 
 msgid "About author roles"
 msgstr "Despre rolurile autorilor"
@@ -3220,9 +3184,6 @@ msgstr "Încarcă o versiune nouă"
 
 msgid "View All"
 msgstr "Vezi toate"
-
-msgid "Manage Billing on Stripe"
-msgstr ""
 
 msgid "Listed Review Page"
 msgstr "Pagină de recenzii listate"
@@ -4532,6 +4493,18 @@ msgstr ""
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Thousands of GIFs at your fingertips."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Begone, annoying cookie warnings!"
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "The easiest way to manage all of your YouTube channel subscriptions."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Extensiile sunt ca un fel de aplicații pentru Firefox."
@@ -4845,6 +4818,7 @@ msgstr "care conțin"
 msgid "start"
 msgstr "început"
 
+#. L10n: end, as in "end date"
 msgid "end"
 msgstr "sfârșit"
 
@@ -4945,7 +4919,8 @@ msgstr "Întârziere din cauză că este prima versiune listată"
 msgid "Version string and guid match a blocklist Block"
 msgstr "Șirul și GUID-ul versiunii corespund unui blocaj din lista de blocaje"
 
-msgid "Risk breakdown not available."
+#, fuzzy
+msgid "Weight breakdown not available."
 msgstr "Analiza riscurilor nu este disponibilă."
 
 msgid "You can't submit a comment if `canned_response` is defined."
@@ -4996,8 +4971,19 @@ msgstr "ID"
 msgid "Last Review"
 msgstr "Ultima recenzie"
 
-msgid "Weight"
+#, fuzzy
+msgid "Code Weight"
 msgstr "Greutate"
+
+msgid "Metadata Weight"
+msgstr ""
+
+#, fuzzy
+msgid "Total Weight"
+msgstr "Greutate"
+
+msgid "Maliciousness Score"
+msgstr ""
 
 msgid "Pending Rejection Deadline"
 msgstr "În termenul-limită pentru respingere"
@@ -5491,15 +5477,6 @@ msgstr "Dezactivează forțat suplimentul"
 msgid "Force-enable add-on"
 msgstr "Activează forțat suplimentul"
 
-msgid "View Blocklist Submission"
-msgstr "Afișează lista de blocări trimisă"
-
-msgid "Block add-on"
-msgstr "Blochează suplimentul"
-
-msgid "Update add-on block"
-msgstr "Actualizează blocarea suplimentului"
-
 msgid "Disable Listed Auto-Approval"
 msgstr "Dezactivează aprobarea automată a versiunilor listate"
 
@@ -5529,6 +5506,15 @@ msgstr "Șterge semnalarea de recenzie a conținutului de către un administrato
 
 msgid "Clear Admin Static Theme Review Flag"
 msgstr "Șterge semnalarea de recenzie a temei statice de către un administrator"
+
+msgid "View Blocklist Submission"
+msgstr "Afișează lista de blocări trimisă"
+
+msgid "Block add-on"
+msgstr "Blochează suplimentul"
+
+msgid "Update add-on block"
+msgstr "Actualizează blocarea suplimentului"
 
 msgid "(admin)"
 msgstr "(admin)"
@@ -5667,13 +5653,19 @@ msgstr "Descarcă fișierele"
 msgid "The developer has provided source code."
 msgstr "Dezvoltatorul a furnizat codul sursă."
 
-msgid "Scanners score:"
-msgstr "Scor scanere:"
+msgid "Maliciousness Score:"
+msgstr ""
 
-msgid "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
+#, fuzzy
+msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
 msgstr "Scorul scanerelor reprezintă probabilitatea ca această versiune să fie rău-intenționată, în baza constatărilor scanerelor."
 
-msgid "Weight:"
+#, fuzzy
+msgid "Code Weight:"
+msgstr "Greutate:"
+
+#, fuzzy
+msgid "Metadata Weight:"
 msgstr "Greutate:"
 
 msgid "Flagged by scanners"
@@ -5947,6 +5939,9 @@ msgstr "365 de zile"
 
 msgid "Custom..."
 msgstr "Personalizat..."
+
+msgid "Sorry, the statistics are temporarily unavailable."
+msgstr ""
 
 msgid "Loading the latest data&hellip;"
 msgstr "Se încarcă cele mai recente date&hellip;"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-07 10:50+0000\n"
+"POT-Creation-Date: 2021-02-09 15:42+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -129,6 +129,9 @@ msgstr "Review Date"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Only latest versions of addons can have notes added."
+
+msgid "Authors"
+msgstr "Authors"
 
 msgid "Ratings"
 msgstr "Ratings"
@@ -1735,6 +1738,10 @@ msgstr "Disable Auto-Approval"
 msgid "Delay auto-approval indefinitely"
 msgstr "Delay auto-approval indefinitely"
 
+#, fuzzy
+msgid "Delay auto-approval indefinitely and add restrictions"
+msgstr "Delay auto-approval indefinitely"
+
 msgid "True positive"
 msgstr "True positive"
 
@@ -2394,53 +2401,8 @@ msgstr "Click on the Accept button below to confirm you want to be added as an a
 msgid "Decline"
 msgstr "Decline"
 
-#, fuzzy
-msgid "Set Up Payment"
-msgstr "Required fields"
-
-msgid "You're done!"
-msgstr "You're done!"
-
-#, python-format
-msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
-msgstr "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
-
-msgid "A newer version of your add-on is currently pending review."
-msgstr "A newer version of your add-on is currently pending review."
-
-msgid "If you have any questions, don’t hesitate to contact us."
-msgstr "If you have any questions, don’t hesitate to contact us."
-
-msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
-msgstr "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
-
-#, fuzzy
-msgid "Manage add-on"
-msgstr "Language Pack (Add-on)"
-
-#, fuzzy, python-format
-msgid ""
-"There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a href=\"mailto:%(email)s\">"
-"%(email)s</a>."
-msgstr ""
-"There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a href=\"mailto:amo-admins@mozilla."
-"com\">amo-admins@mozilla.com</a>."
-
-msgid "Thank you for joining the Promoted Add-ons Program!"
-msgstr "Thank you for joining the Promoted Add-ons Program!"
-
-#, python-format
-msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the program once payment is set up through the Stripe system. Click on the button below to continue:"
-msgstr "Your add-on <strong>%(addon_name)s</strong> will be included in the program once payment is set up through the Stripe system. Click on the button below to continue:"
-
-msgid "Continue to Stripe Checkout"
-msgstr "Continue to Stripe Checkout"
-
 msgid "Manage Authors & License"
 msgstr "Manage Authors & License"
-
-msgid "Authors"
-msgstr "Authors"
 
 msgid "About author roles"
 msgstr "About author roles"
@@ -3439,9 +3401,6 @@ msgstr "Upload New Version"
 
 msgid "View All"
 msgstr "View All"
-
-msgid "Manage Billing on Stripe"
-msgstr "Manage Billing on Stripe"
 
 #, fuzzy
 msgid "Listed Review Page"
@@ -4852,6 +4811,18 @@ msgstr "Manage your time better with a browser clock that charts work intervals.
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
 msgstr "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
 
+#. editorial content for the primary hero shelves.
+msgid "Thousands of GIFs at your fingertips."
+msgstr "Thousands of GIFs at your fingertips."
+
+#. editorial content for the primary hero shelves.
+msgid "Begone, annoying cookie warnings!"
+msgstr "Begone, annoying cookie warnings!"
+
+#. editorial content for the primary hero shelves.
+msgid "The easiest way to manage all of your YouTube channel subscriptions."
+msgstr "The easiest way to manage all of your YouTube channel subscriptions."
+
 #. editorial content for the secondary hero shelves.
 #, fuzzy
 msgid "Extensions are like apps for Firefox."
@@ -5176,6 +5147,7 @@ msgstr "containing"
 msgid "start"
 msgstr "start"
 
+#. L10n: end, as in "end date"
 msgid "end"
 msgstr "end"
 
@@ -5286,7 +5258,8 @@ msgstr "Delayed because it's the first listed version"
 msgid "Version string and guid match a blocklist Block"
 msgstr "Version string and guid match a blocklist Block"
 
-msgid "Risk breakdown not available."
+#, fuzzy
+msgid "Weight breakdown not available."
 msgstr "Risk breakdown not available."
 
 msgid "You can't submit a comment if `canned_response` is defined."
@@ -5336,8 +5309,19 @@ msgstr "CIDR"
 msgid "Last Review"
 msgstr "Last Review"
 
-msgid "Weight"
+#, fuzzy
+msgid "Code Weight"
 msgstr "Weight"
+
+msgid "Metadata Weight"
+msgstr "Metadata Weight"
+
+#, fuzzy
+msgid "Total Weight"
+msgstr "Weight"
+
+msgid "Maliciousness Score"
+msgstr "Maliciousness Score"
 
 #, fuzzy
 msgid "Pending Rejection Deadline"
@@ -5889,17 +5873,6 @@ msgid "Force-enable add-on"
 msgstr "Re-enable Version"
 
 #, fuzzy
-msgid "View Blocklist Submission"
-msgstr "View All Versions"
-
-#, fuzzy
-msgid "Block add-on"
-msgstr "Back to addon"
-
-msgid "Update add-on block"
-msgstr "Update add-on block"
-
-#, fuzzy
 msgid "Disable Listed Auto-Approval"
 msgstr "Disable Auto-Approval"
 
@@ -5937,6 +5910,17 @@ msgstr "Clear Admin Review Flag"
 #, fuzzy
 msgid "Clear Admin Static Theme Review Flag"
 msgstr "Clear Admin Review Flag"
+
+#, fuzzy
+msgid "View Blocklist Submission"
+msgstr "View All Versions"
+
+#, fuzzy
+msgid "Block add-on"
+msgstr "Back to addon"
+
+msgid "Update add-on block"
+msgstr "Update add-on block"
 
 msgid "(admin)"
 msgstr "(admin)"
@@ -6082,14 +6066,19 @@ msgstr "Download files"
 msgid "The developer has provided source code."
 msgstr "The developer has provided source code."
 
-msgid "Scanners score:"
-msgstr "Scanners score:"
+msgid "Maliciousness Score:"
+msgstr "Maliciousness Score:"
 
-msgid "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
+#, fuzzy
+msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
 msgstr "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
 
 #, fuzzy
-msgid "Weight:"
+msgid "Code Weight:"
+msgstr "Weight"
+
+#, fuzzy
+msgid "Metadata Weight:"
 msgstr "Weight"
 
 #, fuzzy
@@ -6379,6 +6368,9 @@ msgstr "365 days"
 
 msgid "Custom..."
 msgstr "Custom..."
+
+msgid "Sorry, the statistics are temporarily unavailable."
+msgstr "Sorry, the statistics are temporarily unavailable."
 
 msgid "Loading the latest data&hellip;"
 msgstr "Loading the latest data&hellip;"
