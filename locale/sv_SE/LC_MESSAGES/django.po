@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-02-09 17:39+0000\n"
-"PO-Revision-Date: 2021-02-09 22:13+0000\n"
+"PO-Revision-Date: 2021-02-09 22:20+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -1596,9 +1596,8 @@ msgstr "Försena automatisk godkännande"
 msgid "Delay auto-approval indefinitely"
 msgstr "Försena automatisk godkännande på obestämd tid"
 
-#, fuzzy
 msgid "Delay auto-approval indefinitely and add restrictions"
-msgstr "Försena automatisk godkännande på obestämd tid"
+msgstr "Försena automatisk godkännande på obestämd tid och lägg till begränsningar"
 
 msgid "True positive"
 msgstr "Sann positiv"
@@ -4437,11 +4436,11 @@ msgstr "Tusentals GIF-filer till hands."
 
 #. editorial content for the primary hero shelves.
 msgid "Begone, annoying cookie warnings!"
-msgstr ""
+msgstr "Försvinn, irriterande varningar om kakor!"
 
 #. editorial content for the primary hero shelves.
 msgid "The easiest way to manage all of your YouTube channel subscriptions."
-msgstr ""
+msgstr "Det enklaste sättet att hantera alla dina YouTube-kanalprenumerationer."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4854,9 +4853,8 @@ msgstr "Försenad eftersom det är den första listade versionen"
 msgid "Version string and guid match a blocklist Block"
 msgstr "Versionssträng och guid matchar ett blocklistblock"
 
-#, fuzzy
 msgid "Weight breakdown not available."
-msgstr "Risknedbrytning inte tillgänglig."
+msgstr "Viktnedbrytning inte tillgängligt."
 
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Du kan inte skicka en kommentar om `canned_response` är definierat."
@@ -4903,19 +4901,17 @@ msgstr "ID"
 msgid "Last Review"
 msgstr "Senaste granskning"
 
-#, fuzzy
 msgid "Code Weight"
-msgstr "Vikt"
+msgstr "Kodvikt"
 
 msgid "Metadata Weight"
-msgstr ""
+msgstr "Viktning av metadata"
 
-#, fuzzy
 msgid "Total Weight"
-msgstr "Vikt"
+msgstr "Totalvikt"
 
 msgid "Maliciousness Score"
-msgstr ""
+msgstr "Skadlighetpoäng"
 
 msgid "Pending Rejection Deadline"
 msgstr "Deadline för väntande avslag"
@@ -5571,19 +5567,16 @@ msgid "The developer has provided source code."
 msgstr "Utvecklaren har lämnat källkod."
 
 msgid "Maliciousness Score:"
-msgstr ""
+msgstr "Skadlighetspoäng:"
 
-#, fuzzy
 msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr "Skannerns poäng representerar sannolikheten för att den här versionen är skadlig, baserat på skannerns resultat."
+msgstr "Skadlighetspoäng representerar sannolikheten för att den här versionen är skadlig, baserat på skannrarnas resultat."
 
-#, fuzzy
 msgid "Code Weight:"
-msgstr "Vikt:"
+msgstr "Kodvikt:"
 
-#, fuzzy
 msgid "Metadata Weight:"
-msgstr "Vikt:"
+msgstr "Viktning av metadata:"
 
 msgid "Flagged by scanners"
 msgstr "Flaggad av skannrar"
@@ -5850,7 +5843,7 @@ msgid "Custom..."
 msgstr "Anpassad..."
 
 msgid "Sorry, the statistics are temporarily unavailable."
-msgstr ""
+msgstr "Tyvärr är statistiken tillfälligt otillgänglig."
 
 msgid "Loading the latest data&hellip;"
 msgstr "Laddar in det senaste datat&hellip;"
