@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-02-09 17:39+0000\n"
-"PO-Revision-Date: 2021-02-09 19:23+0000\n"
+"PO-Revision-Date: 2021-02-09 19:33+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -971,9 +971,8 @@ msgstr "מועד אחרון לבקשה למידע"
 msgid "{addon} {version} re-signed (previously {0})."
 msgstr "נשלחה בקשה לסקירה עבור {addon} {version}."
 
-#, fuzzy
 msgid "Version re-signed"
-msgstr "הגרסה %s אופשרה מחדש."
+msgstr "הגרסה נחתמה מחדש"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2634,13 +2633,11 @@ msgstr "הגשת גרסה חדשה"
 msgid "Cancel and Disable Version"
 msgstr "ביטול והשבתת הגרסה"
 
-#, fuzzy
 msgid "Are you sure you wish to cancel and disable version?"
-msgstr "האם ברצונך למחוק את הגרסה הזו?"
+msgstr "האם ברצונך לבטל ולהשבית את הגרסה הזו?"
 
-#, fuzzy
 msgid "Yes, Cancel"
-msgstr "ביטול"
+msgstr "כן, לבטל"
 
 msgid "No, don't cancel"
 msgstr ""
@@ -3824,9 +3821,8 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
-msgstr "שימוש במחוות עכבר כדי לסגור לשוניות, לחזור לדף הקודם, לטעון מחדש ועוד."
+msgstr "שימוש במחוות עכבר כדי לסגור לשוניות, לעבור בין דפים ועוד."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3954,9 +3950,8 @@ msgid "Get expert German translations between English, French, Spanish, and othe
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
-msgstr "הגבלת Firefox מכניסה לאתרים מוגדרים."
+msgstr "הגבלת Firefox מפני כניסה לאתרים מוגדרים. כלי נהדר להפעלת משמעת עצמית ברשת."
 
 #. editorial content for the discovery pane.
 msgid "Manage your productivity by working in set time intervals."
@@ -4333,9 +4328,8 @@ msgid "Select, sort, and run your downloads faster."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get weather updates right in the browser."
-msgstr "עדכוני מזג אוויר מיידיים מרחבי העולם."
+msgstr "קבלת עדכוני מזג אוויר היישר מהדפדפן."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
@@ -4362,14 +4356,12 @@ msgstr "יצירה והתאמה אישית של קבוצות לשוניות."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Save an entire web page—including images and styling—as a single HTML file."
-msgstr "שמירת דפים שלמים — או רק חלקים מהם — כקובץ HTML בודד."
+msgstr "שמירת דף אינטרנט שלם — כולל תמונות ועיצוב — כקובץ HTML בודד."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Automatically replace derogatory words across the web."
-msgstr "מחיקת עוגיות באופן אוטומטי לאחר סגירת לשונית."
+msgstr "החלפה אוטומטית של מילים פוגעות או מזלזלות ברחבי הרשת."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
@@ -4396,23 +4388,20 @@ msgid "Double-click any word to instantly see its definition."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
-msgstr "ישנם אתרים שמתקשים בהפעלת סרטונים ב־Firefox עבור Android. הרחבה זו מספקת את התיקון."
+msgstr "ישנם אתרים המתקשים בהפעלת סרטונים ב־Android. הרחבה זו מספקת את התיקון."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "לאותם הרגעים שפשוט מתחשק לך לירות לייזר בעזרת חתול."
+msgstr "לאותם הרגעים שפשוט מתחשק לך לירות לייזר מתוך עיניים של חתול."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Get weather updates directly from Firefox."
-msgstr "עדכוני מזג אוויר מיידיים מרחבי העולם."
+msgstr "קבלת עדכוני מזג אוויר היישר מ־Firefox."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
@@ -4891,16 +4880,14 @@ msgstr "מזהה"
 msgid "Last Review"
 msgstr "הסקירה האחרונה"
 
-#, fuzzy
 msgid "Code Weight"
-msgstr "משקל"
+msgstr "משקל הקוד"
 
 msgid "Metadata Weight"
 msgstr ""
 
-#, fuzzy
 msgid "Total Weight"
-msgstr "משקל"
+msgstr "משקל כולל"
 
 msgid "Maliciousness Score"
 msgstr ""
