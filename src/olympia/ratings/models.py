@@ -1,4 +1,3 @@
-from django.core.cache import cache
 from django.db import models
 from django.db.models import Q
 from django.dispatch import receiver
@@ -378,48 +377,10 @@ class RatingFlag(ModelBase):
         ]
 
 
-class GroupedRating(object):
-    """
-    Group an add-on's ratings so we can have a graph of rating counts.
-
-    SELECT rating, COUNT(rating) FROM reviews where addon=:id
-    """
-
-    # Non-critical data, so we always leave it in memcache. Cache for a
-    # particular add-on is cleared when a rating is added/modified and updated
-    # when a request tries to retrieve them and the cache is empty.
-    prefix = 'addons:grouped:rating'
-
-    @classmethod
-    def key(cls, addon_pk):
-        return '%s:%s' % (cls.prefix, addon_pk)
-
-    @classmethod
-    def delete(cls, addon_pk):
-        cache.delete(cls.key(addon_pk))
-
-    @classmethod
-    def get(cls, addon_pk, update_none=True):
-        try:
-            grouped_ratings = cache.get(cls.key(addon_pk))
-            if update_none and grouped_ratings is None:
-                return cls.set(addon_pk)
-            return grouped_ratings
-        except Exception:
-            # Don't worry about failures, especially timeouts.
-            return
-
-    @classmethod
-    def set(cls, addon_pk, using=None):
-        qs = (
-            Rating.without_replies.all()
-            .using(using)
-            .filter(addon=addon_pk, is_latest=True)
-            .values_list('rating')
-            .annotate(models.Count('rating'))
-            .order_by()
-        )
-        counts = dict(qs)
-        ratings = [(rating, counts.get(rating, 0)) for rating in range(1, 6)]
-        cache.set(cls.key(addon_pk), ratings)
-        return ratings
+class RatingAggregate(ModelBase):
+    addon = models.OneToOneField('addons.Addon', on_delete=models.CASCADE)
+    count_1 = models.IntegerField(default=0, null=False)
+    count_2 = models.IntegerField(default=0, null=False)
+    count_3 = models.IntegerField(default=0, null=False)
+    count_4 = models.IntegerField(default=0, null=False)
+    count_5 = models.IntegerField(default=0, null=False)

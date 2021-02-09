@@ -2,7 +2,7 @@
 from unittest import mock
 
 from olympia.amo.tests import TestCase, addon_factory, user_factory
-from olympia.ratings.models import Rating
+from olympia.ratings.models import Rating, RatingAggregate
 from olympia.ratings.tasks import addon_rating_aggregates
 
 
@@ -11,6 +11,10 @@ class TestAddonRatingAggregates(TestCase):
     # since it'd call addon_rating_aggregates too early.
     @mock.patch.object(Rating, 'post_save', lambda *args, **kwargs: None)
     def test_addon_rating_aggregates(self):
+        def get_grouped_counts(addon):
+            aggregate = addon.ratingaggregate
+            return {idx: getattr(aggregate, f'count_{idx}') for idx in range(1, 6)}
+
         addon = addon_factory()
         addon2 = addon_factory()
 
@@ -59,10 +63,15 @@ class TestAddonRatingAggregates(TestCase):
         assert addon.text_ratings_count == 0
         assert addon2.text_ratings_count == 0
 
+        with self.assertRaises(RatingAggregate.DoesNotExist):
+            addon.ratingaggregate
+        with self.assertRaises(RatingAggregate.DoesNotExist):
+            addon2.ratingaggregate
+
         # Trigger the task and test results.
         addon_rating_aggregates([addon.pk, addon2.pk])
-        addon.reload()
-        addon2.reload()
+        addon = addon.__class__.objects.get(id=addon.id)
+        addon2 = addon2.__class__.objects.get(id=addon2.id)
         assert addon.total_ratings == 4
         assert addon2.total_ratings == 2
         assert addon.bayesian_rating == 1.9821428571428572
@@ -71,17 +80,21 @@ class TestAddonRatingAggregates(TestCase):
         assert addon2.average_rating == 1.0
         assert addon.text_ratings_count == 2
         assert addon2.text_ratings_count == 1
+        assert get_grouped_counts(addon) == {1: 1, 2: 1, 3: 2, 4: 0, 5: 0}
+        assert get_grouped_counts(addon2) == {1: 2, 2: 0, 3: 0, 4: 0, 5: 0}
 
         # Trigger the task with a single add-on.
         Rating.objects.create(addon=addon2, rating=5, user=user_factory(), body='xxx')
-        addon2.reload()
+        addon2 = addon2.__class__.objects.get(id=addon2.id)
         assert addon2.total_ratings == 2
+        assert get_grouped_counts(addon2) == {1: 2, 2: 0, 3: 0, 4: 0, 5: 0}
 
         addon_rating_aggregates(addon2.pk)
-        addon2.reload()
+        addon2 = addon2.__class__.objects.get(id=addon2.id)
         assert addon2.total_ratings == 3
         assert addon2.text_ratings_count == 2
         assert addon.bayesian_rating == 1.9821428571428572
         assert addon.average_rating == 2.25
         assert addon2.bayesian_rating == 1.97915
         assert addon2.average_rating == 2.3333
+        assert get_grouped_counts(addon2) == {1: 2, 2: 0, 3: 0, 4: 0, 5: 1}

@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework.exceptions import ParseError
 
-from .models import GroupedRating
+from .models import RatingAggregate
 
 
 def get_grouped_ratings(request, addon):
@@ -13,4 +13,8 @@ def get_grouped_ratings(request, addon):
         except serializers.ValidationError:
             raise ParseError('show_grouped_ratings parameter should be a boolean')
         if show_grouped_ratings and addon:
-            return dict(GroupedRating.get(addon.id))
+            try:
+                aggregate = addon.ratingaggregate
+            except RatingAggregate.DoesNotExist:
+                aggregate = RatingAggregate()
+            return {idx: getattr(aggregate, f'count_{idx}') for idx in range(1, 6)}
