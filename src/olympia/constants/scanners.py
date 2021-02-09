@@ -14,12 +14,16 @@ NO_ACTION = 1
 FLAG_FOR_HUMAN_REVIEW = 20
 DELAY_AUTO_APPROVAL = 100
 DELAY_AUTO_APPROVAL_INDEFINITELY = 200
+DELAY_AUTO_APPROVAL_INDEFINITELY_AND_RESTRICT = 300
 
 ACTIONS = {
     NO_ACTION: _('No action'),
     FLAG_FOR_HUMAN_REVIEW: _('Flag for human review'),
     DELAY_AUTO_APPROVAL: _('Delay auto-approval'),
     DELAY_AUTO_APPROVAL_INDEFINITELY: _('Delay auto-approval indefinitely'),
+    DELAY_AUTO_APPROVAL_INDEFINITELY_AND_RESTRICT: _(
+        'Delay auto-approval indefinitely and add restrictions'
+    ),
 }
 
 UNKNOWN = None

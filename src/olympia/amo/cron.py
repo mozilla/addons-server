@@ -43,18 +43,18 @@ def gc(test_result=True):
     for chunk in chunked(collections_to_delete, 100):
         tasks.delete_anonymous_collections.delay(chunk)
 
-    a_week_ago = days_ago(7)
+    two_weeks_ago = days_ago(15)
     # Delete stale add-ons with no versions. Should soft-delete add-ons that
     # are somehow not in incomplete status, hard-delete the rest. No email
     # should be sent in either case.
     versionless_addons = Addon.objects.filter(
-        versions__pk=None, created__lte=a_week_ago
+        versions__pk=None, created__lte=two_weeks_ago
     ).values_list('pk', flat=True)
     for chunk in chunked(versionless_addons, 100):
         delete_addons.delay(chunk)
 
     # Delete stale FileUploads.
-    stale_uploads = FileUpload.objects.filter(created__lte=a_week_ago).order_by('id')
+    stale_uploads = FileUpload.objects.filter(created__lte=two_weeks_ago).order_by('id')
     for file_upload in stale_uploads:
         log.info(
             '[FileUpload:{uuid}] Removing file: {path}'.format(

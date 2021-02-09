@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 
 from olympia.constants.scanners import MAD
+from olympia.users.models import EmailUserRestriction, IPNetworkUserRestriction
 
 
 def _no_action(version):
@@ -37,10 +38,37 @@ def _delay_auto_approval_indefinitely(version):
     )
 
 
+def _delay_auto_approval_indefinitely_and_restrict(version):
+    """Delay auto-approval for the whole add-on indefinitely, and restricts the
+    user(s) and their IP(s)."""
+    _delay_auto_approval_indefinitely(version)
+
+    # Collect users and their IPs
+    upload = (
+        version.addon.fileupload_set.all()
+        .select_related('user')
+        .filter(version=version.version)
+        .first()
+    )
+    users = set(version.addon.authors.all())
+    if upload:
+        users.add(upload.user)
+    ips = set(user.last_login_ip for user in users if user.last_login_ip)
+    if upload and upload.ip_address:
+        ips.add(upload.ip_address)
+
+    # Restrict all those IPs and users.
+    for user in users:
+        EmailUserRestriction.objects.get_or_create(email_pattern=user.email)
+
+    for ip in ips:
+        IPNetworkUserRestriction.objects.get_or_create(network=f'{ip}/32')
+
+
 def _flag_for_human_review_by_scanner(version, scanner):
     from olympia.versions.models import VersionReviewerFlags
 
-    if scanner is not MAD:
+    if scanner != MAD:
         raise ValueError('scanner should be MAD')
 
     VersionReviewerFlags.objects.update_or_create(
