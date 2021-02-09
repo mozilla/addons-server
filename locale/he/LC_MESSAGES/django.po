@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-02-09 17:39+0000\n"
-"PO-Revision-Date: 2021-02-09 20:46+0000\n"
+"PO-Revision-Date: 2021-02-09 22:40+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -4276,7 +4276,7 @@ msgstr "מדידת דפי אינטרנט. ציור סרגל דיגיטלי בכ�
 
 #. editorial content for the discovery pane.
 msgid "Enjoy the benefits of strong password management."
-msgstr ""
+msgstr "להנות מהיתרונות של ניהול ססמאות חזקות."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
