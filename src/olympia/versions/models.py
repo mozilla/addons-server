@@ -241,9 +241,7 @@ class Version(OnChangeMixin, ModelBase):
             )
 
         if upload.addon and upload.addon != addon:
-            raise VersionCreateError(
-                'FileUpload was made for a different Addon'
-            )
+            raise VersionCreateError('FileUpload was made for a different Addon')
 
         license_id = None
         if channel == amo.RELEASE_CHANNEL_LISTED:

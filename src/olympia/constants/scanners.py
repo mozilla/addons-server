@@ -21,7 +21,9 @@ ACTIONS = {
     FLAG_FOR_HUMAN_REVIEW: _('Flag for human review'),
     DELAY_AUTO_APPROVAL: _('Delay auto-approval'),
     DELAY_AUTO_APPROVAL_INDEFINITELY: _('Delay auto-approval indefinitely'),
-    DELAY_AUTO_APPROVAL_INDEFINITELY_AND_RESTRICT: _('Delay auto-approval indefinitely and add restrictions'),
+    DELAY_AUTO_APPROVAL_INDEFINITELY_AND_RESTRICT: _(
+        'Delay auto-approval indefinitely and add restrictions'
+    ),
 }
 
 UNKNOWN = None
