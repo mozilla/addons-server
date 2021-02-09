@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-02-09 17:39+0000\n"
-"PO-Revision-Date: 2021-02-09 20:23+0000\n"
+"PO-Revision-Date: 2021-02-09 20:38+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -4312,7 +4312,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
-msgstr ""
+msgstr "להפוך את הרשת לכהה או לבחור בערכת צבעים מותאמת אישית כדי להתאים באופן חזותי את הרשת לטעמך."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4333,12 +4333,12 @@ msgstr "קבלת עדכוני מזג אוויר היישר מהדפדפן."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr ""
+msgstr "מחיקת עוגיות, היסטוריית גלישה, וקבצים במטמון בלחיצה אחת בלבד."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Remove tracking elements from web links."
-msgstr ""
+msgstr "הסרת רכיבי מעקב מקישורי אינטרנט."
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
@@ -4365,7 +4365,7 @@ msgstr "החלפה אוטומטית של מילים פוגעות או מזלזל
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr ""
+msgstr "חסימת כל המודעות — וידאו, חלונות קופצים, באנרים ועוד."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4375,7 +4375,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Skip over sponsored portions of YouTube videos."
-msgstr ""
+msgstr "דילוג על חלקים ממומנים בסרטוני YouTube."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4409,19 +4409,19 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
-msgstr ""
+msgstr "נמאס לך מחלונית הדו־שיח של \"הווידאו מושהה. להמשיך לצפות?\"? האזנה למוזיקה האהובה עליך ללא הפרעה ב־YouTube."
 
 #. editorial content for the primary hero shelves.
 msgid "Thousands of GIFs at your fingertips."
-msgstr ""
+msgstr "אלפי קובצי GIF בקצות האצבעות שלך."
 
 #. editorial content for the primary hero shelves.
 msgid "Begone, annoying cookie warnings!"
-msgstr ""
+msgstr "הסתלקו, אזהרות עוגיות מעצבנות!"
 
 #. editorial content for the primary hero shelves.
 msgid "The easiest way to manage all of your YouTube channel subscriptions."
-msgstr ""
+msgstr "הדרך הקלה ביותר לנהל את כל המינויים לערוץ ה־YouTube שלך."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4437,7 +4437,7 @@ msgstr "הצגת כל ההרחבות"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
-msgstr ""
+msgstr "כלים לארגון לשוניות"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
