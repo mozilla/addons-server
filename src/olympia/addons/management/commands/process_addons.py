@@ -13,6 +13,7 @@ from olympia.addons.tasks import (
     delete_addons,
     extract_colors_from_static_themes,
     find_inconsistencies_between_es_and_db,
+    hard_delete_legacy_versions,
     recreate_theme_previews,
 )
 from olympia.abuse.models import AbuseReport
@@ -127,6 +128,16 @@ tasks = {
             )
         ],
         'allowed_kwargs': ('with_deleted',),
+    },
+    'hard_delete_legacy_versions': {
+        'method': hard_delete_legacy_versions,
+        'qs': [
+            Q(
+                versions__files__is_webextension=False,
+                versions__files__is_mozilla_signed_extension=False,
+            )
+        ],
+        'distinct': True,
     },
     'create_custom_icon_from_predefined': {
         'method': create_custom_icon_from_predefined,

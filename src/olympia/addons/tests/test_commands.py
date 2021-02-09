@@ -549,6 +549,42 @@ class TestDeleteObsoleteAddons(TestCase):
         assert Addon.objects.get(id=self.dictionary.id)
 
 
+class TestHardDeleteLegacyVersions(TestCase):
+    def setUp(self):
+        self.versions_to_keep = []
+        addon0 = addon_factory(file_kw={'is_webextension': True})
+        self.versions_to_keep.append(addon0.current_version.pk)
+        version = version_factory(addon=addon0, file_kw={'is_webextension': True})
+        version.delete()
+        self.versions_to_keep.append(version.pk)
+        version_factory(addon=addon0, file_kw={'is_webextension': False})
+        version_factory(addon=addon0, file_kw={'is_webextension': False}).delete()
+
+        addon1 = addon_factory(file_kw={'is_webextension': True})
+        self.versions_to_keep.append(addon1.current_version.pk)
+        addon_factory(
+            file_kw={'is_webextension': False, 'is_mozilla_signed_extension': False}
+        )
+        addon2 = addon_factory(
+            file_kw={'is_webextension': False, 'is_mozilla_signed_extension': True}
+        )
+        self.versions_to_keep.append(addon2.current_version.pk)
+
+    def test_basic(self):
+        assert Addon.unfiltered.count() == 4
+        assert Version.unfiltered.count() == 7
+
+        call_command(
+            'process_addons', with_deleted=True, task='hard_delete_legacy_versions'
+        )
+
+        assert Addon.unfiltered.count() == 4  # Unchanged: we're just deleting versions.
+        assert Version.unfiltered.count() == len(self.versions_to_keep)
+        assert Version.unfiltered.filter(pk__in=self.versions_to_keep).count() == len(
+            self.versions_to_keep
+        )
+
+
 class TestFixLangpacksWithMaxVersionStar(TestCase):
     def setUp(self):
         addon = addon_factory(  # Should autocreate the AppVersions for Firefox
