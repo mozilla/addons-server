@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-02-09 17:39+0000\n"
-"PO-Revision-Date: 2021-02-09 18:56+0000\n"
+"PO-Revision-Date: 2021-02-09 19:00+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1627,9 +1627,8 @@ msgstr "Automatikus jóváhagyás késleltetése"
 msgid "Delay auto-approval indefinitely"
 msgstr "Automatikus elfogadás késleltetése határozatlan ideig"
 
-#, fuzzy
 msgid "Delay auto-approval indefinitely and add restrictions"
-msgstr "Automatikus elfogadás késleltetése határozatlan ideig"
+msgstr "Automatikus elfogadás késleltetése határozatlan ideig, és korlátozások hozzáadása"
 
 msgid "True positive"
 msgstr "Valódi pozitív"
@@ -4887,9 +4886,8 @@ msgstr "Késleltetetve, mert ez az első listázott verzió"
 msgid "Version string and guid match a blocklist Block"
 msgstr "A verziószám és a GUID megegyezik egy blokkolási listán található blokkolással"
 
-#, fuzzy
 msgid "Weight breakdown not available."
-msgstr "A kockázati bontás nem érhető el."
+msgstr "A súly szerinti lebontás nem áll rendelkezésre."
 
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Nem küldhet megjegyzést, ha a „canned_response” be van állítva."
@@ -4936,16 +4934,14 @@ msgstr "Azonosító"
 msgid "Last Review"
 msgstr "Legutóbbi értékelés"
 
-#, fuzzy
 msgid "Code Weight"
-msgstr "Súly"
+msgstr "Kód súlya"
 
 msgid "Metadata Weight"
 msgstr "Metaadatok súlya"
 
-#, fuzzy
 msgid "Total Weight"
-msgstr "Súly"
+msgstr "Teljes súly"
 
 msgid "Maliciousness Score"
 msgstr "Rosszindulat pontszáma"
@@ -5614,17 +5610,14 @@ msgstr "A fejlesztő biztosított forráskódot."
 msgid "Maliciousness Score:"
 msgstr "Rosszindulat pontszáma:"
 
-#, fuzzy
 msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr "Az Átvizsgáló pontszáma annak a valószínűségét jelenti, hogy az átvizsgáló megállapításai alapján ez a verzió rosszindulatú-e."
+msgstr "A rosszindulat pontszáma annak a valószínűségét jelenti, hogy az átvizsgáló megállapításai alapján ez a verzió rosszindulatú-e."
 
-#, fuzzy
 msgid "Code Weight:"
-msgstr "Súly:"
+msgstr "Kód súlya:"
 
-#, fuzzy
 msgid "Metadata Weight:"
-msgstr "Súly:"
+msgstr "Metaadatok súlya:"
 
 msgid "Flagged by scanners"
 msgstr "Átvizsgálók által megjelölve"
