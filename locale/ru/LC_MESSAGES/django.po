@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-02-09 17:39+0000\n"
-"PO-Revision-Date: 2021-02-09 19:04+0000\n"
+"PO-Revision-Date: 2021-02-10 07:21+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -3761,7 +3761,7 @@ msgstr "Наведите курсор на изображение, чтобы у
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Automatically erase cookies after you close a tab."
-msgstr "Автоматическое удаление куки при закрытии вкладки."
+msgstr "Автоматическое удаление кук при закрытии вкладки."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4491,7 +4491,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "The easiest way to manage all of your YouTube channel subscriptions."
-msgstr ""
+msgstr "Самый простой способ управлять всеми подписками на каналы YouTube."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4969,7 +4969,7 @@ msgid "Total Weight"
 msgstr "Вес"
 
 msgid "Maliciousness Score"
-msgstr ""
+msgstr "Оценка вредоносности"
 
 msgid "Pending Rejection Deadline"
 msgstr "Ожидания срока отклонения"
@@ -5625,7 +5625,7 @@ msgid "The developer has provided source code."
 msgstr "Разработчик предоставил исходный код."
 
 msgid "Maliciousness Score:"
-msgstr ""
+msgstr "Оценка вредоносности:"
 
 msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
 msgstr "Оценка вредоносности отражает вероятность того, что эта версия является вредоносной, на основе результатов сканирования."
@@ -5903,7 +5903,7 @@ msgid "Custom..."
 msgstr "Настроить..."
 
 msgid "Sorry, the statistics are temporarily unavailable."
-msgstr ""
+msgstr "Извините, статистика временно недоступна."
 
 msgid "Loading the latest data&hellip;"
 msgstr "Загрузка последних данных&hellip;"
