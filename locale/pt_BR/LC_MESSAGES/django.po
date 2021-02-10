@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-02-09 17:39+0000\n"
-"PO-Revision-Date: 2021-02-09 19:21+0000\n"
+"PO-Revision-Date: 2021-02-10 00:42+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -1629,9 +1629,8 @@ msgstr "Adiar aprovação automática"
 msgid "Delay auto-approval indefinitely"
 msgstr "Adiar aprovação automática indefinidamente"
 
-#, fuzzy
 msgid "Delay auto-approval indefinitely and add restrictions"
-msgstr "Adiar aprovação automática indefinidamente"
+msgstr "Adiar aprovação automática indefinidamente e adicionar restrições"
 
 msgid "True positive"
 msgstr "Verdadeiro positivo"
@@ -4927,9 +4926,8 @@ msgstr "Adiado porque é a primeira versão listada"
 msgid "Version string and guid match a blocklist Block"
 msgstr "String e guid da versão correspondem a um item da lista de bloqueio"
 
-#, fuzzy
 msgid "Weight breakdown not available."
-msgstr "Estrutura de análise de riscos não disponível."
+msgstr "Análise de peso não disponível."
 
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Você não pode enviar um comentário se `canned_response` estiver definido."
@@ -4976,16 +4974,14 @@ msgstr "ID"
 msgid "Last Review"
 msgstr "Última avaliação"
 
-#, fuzzy
 msgid "Code Weight"
-msgstr "Peso"
+msgstr "Peso do código"
 
 msgid "Metadata Weight"
 msgstr "Peso de metadados"
 
-#, fuzzy
 msgid "Total Weight"
-msgstr "Peso"
+msgstr "Peso total"
 
 msgid "Maliciousness Score"
 msgstr "Pontuação de maliciosidade"
@@ -5669,13 +5665,11 @@ msgstr "Pontuação de maliciosidade:"
 msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
 msgstr "A pontuação dos verificadores representa a probabilidade desta versão ser maliciosa, com base nas descobertas dos verificadores."
 
-#, fuzzy
 msgid "Code Weight:"
-msgstr "Peso:"
+msgstr "Peso do código:"
 
-#, fuzzy
 msgid "Metadata Weight:"
-msgstr "Peso:"
+msgstr "Peso de metadados:"
 
 msgid "Flagged by scanners"
 msgstr "Sinalizado por verificadores"
