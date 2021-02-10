@@ -4873,7 +4873,7 @@ msgid "Version string and guid match a blocklist Block"
 msgstr "De versiestring en guid komen overeen met een blokkering op de blokkeringslijst"
 
 msgid "Weight breakdown not available."
-msgstr ""
+msgstr "Gewichtsuitwerking niet beschikbaar."
 
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "U kunt geen commentaar indienen als ‘canned_response’ is gedefinieerd."
@@ -4922,13 +4922,13 @@ msgid "Last Review"
 msgstr "Laatste beoordeling"
 
 msgid "Code Weight"
-msgstr ""
+msgstr "Codegewicht"
 
 msgid "Metadata Weight"
-msgstr ""
+msgstr "Gewicht metagegevens"
 
 msgid "Total Weight"
-msgstr ""
+msgstr "Totaal gewicht"
 
 msgid "Maliciousness Score"
 msgstr "Schadelijkheidsscore"
@@ -5595,10 +5595,10 @@ msgid "The Maliciousness Score represents the likelihood of this version being m
 msgstr "De Schadelijkheidsscore geeft aan hoe waarschijnlijk het is dat deze versie schadelijk is, gebaseerd op de bevindingen van de scanner."
 
 msgid "Code Weight:"
-msgstr ""
+msgstr "Codegewicht:"
 
 msgid "Metadata Weight:"
-msgstr ""
+msgstr "Gewicht metagegevens:"
 
 msgid "Flagged by scanners"
 msgstr "Door scanners gemarkeerd"
