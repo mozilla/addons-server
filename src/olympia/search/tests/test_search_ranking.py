@@ -969,7 +969,7 @@ class TestRankingScenarios(ESTestCase):
         # contain the lang we requested, instead it will return an object with
         # the default_locale for this addon (fr).
         assert 'mn' not in SEARCH_LANGUAGE_TO_ANALYZER
-        assert 'mn' in settings.LANGUAGES
+        assert 'mn' in settings.AMO_LANGUAGES
         self._check_scenario(
             'foobar unique francais',
             (['Foobar unique francais', 1057.3596],),
@@ -983,7 +983,7 @@ class TestRankingScenarios(ESTestCase):
         # contain the lang we requested, instead it will return an object with
         # the default_locale for this addon (fr).
         assert 'ca' in SEARCH_LANGUAGE_TO_ANALYZER
-        assert 'ca' in settings.LANGUAGES
+        assert 'ca' in settings.AMO_LANGUAGES
         self._check_scenario(
             'foobar unique francais',
             (['Foobar unique francais', 1057.3596],),

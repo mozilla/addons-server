@@ -99,13 +99,13 @@ class Prefixer(object):
         lang, dash, territory = first_lower.partition('-')
 
         # Check language-territory first.
-        if first_lower in settings.LANGUAGES:
+        if first_lower in settings.LANGUAGE_URL_MAP:
             if second in amo.APPS:
                 return first, second, rest
             else:
                 return first, '', first_rest
         # And check just language next.
-        elif dash and lang in settings.LANGUAGES:
+        elif dash and lang in settings.LANGUAGE_URL_MAP:
             first = lang
             if second in amo.APPS:
                 return first, second, rest
@@ -236,7 +236,7 @@ def linkify_and_clean(text):
 
 def lang_from_accept_header(header):
     # Map all our lang codes and any prefixes to the locale code.
-    langs = dict((k.lower(), v) for k, v in settings.LANGUAGE_URL_MAP.items())
+    langs = settings.LANGUAGE_URL_MAP
 
     # If we have a lang or a prefix of the lang, return the locale code.
     for lang, _ in parse_accept_lang_header(header.lower()):

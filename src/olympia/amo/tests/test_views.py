@@ -37,9 +37,9 @@ from olympia.zadmin.models import set_config
 
 
 @pytest.mark.django_db
-@pytest.mark.parametrize('locale', list(settings.LANGUAGES))
-def test_locale_switcher(client, locale):
-    response = client.get('/{}/developers/'.format(locale))
+@pytest.mark.parametrize('locale_pair', settings.LANGUAGES)
+def test_locale_switcher(client, locale_pair):
+    response = client.get('/{}/developers/'.format(locale_pair[0]))
     assert response.status_code == 200
 
 
