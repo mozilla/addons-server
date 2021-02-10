@@ -20,6 +20,7 @@ from olympia.constants.base import _ADDON_PERSONA, _ADDON_THEME, _ADDON_WEBAPP
 from olympia.amo.utils import chunked
 from olympia.devhub.tasks import get_preview_sizes, recreate_previews
 from olympia.lib.crypto.tasks import sign_addons
+from olympia.ratings.tasks import addon_rating_aggregates
 from olympia.reviewers.tasks import recalculate_post_review_weight
 
 
@@ -131,6 +132,10 @@ tasks = {
     'create_custom_icon_from_predefined': {
         'method': create_custom_icon_from_predefined,
         'qs': [~Q(icon_type__in=('', 'image/jpeg', 'image/png'))],
+    },
+    'update_rating_aggregates': {
+        'method': addon_rating_aggregates,
+        'qs': [Q(status=amo.STATUS_APPROVED)],
     },
 }
 
