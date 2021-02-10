@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-02-09 17:39+0000\n"
-"PO-Revision-Date: 2021-02-10 04:44+0000\n"
+"PO-Revision-Date: 2021-02-10 04:46+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -4375,15 +4375,15 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Thousands of GIFs at your fingertips."
-msgstr ""
+msgstr "快速挑選數以千計的 GIF 動圖。"
 
 #. editorial content for the primary hero shelves.
 msgid "Begone, annoying cookie warnings!"
-msgstr ""
+msgstr "去去 Cookie 警告走！"
 
 #. editorial content for the primary hero shelves.
 msgid "The easiest way to manage all of your YouTube channel subscriptions."
-msgstr ""
+msgstr "最簡單就能管理您所有 YouTube 頻道訂閱的方式。"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -5776,7 +5776,7 @@ msgid "Custom..."
 msgstr "自訂…"
 
 msgid "Sorry, the statistics are temporarily unavailable."
-msgstr ""
+msgstr "抱歉，暫時無法提供統計資料。"
 
 msgid "Loading the latest data&hellip;"
 msgstr "讀取最新資料&hellip;"
