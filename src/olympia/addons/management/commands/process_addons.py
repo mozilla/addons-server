@@ -135,9 +135,9 @@ tasks = {
         'method': hard_delete_extra_files,
         'qs': [
             Q(
-                versions__in=Version.unfiltered.annotate(
-                    nb_files=Count('files')
-                ).filter(nb_files__gt=1).filter(files__is_webextension=True)
+                versions__in=Version.unfiltered.annotate(nb_files=Count('files'))
+                .filter(nb_files__gt=1)
+                .filter(files__is_webextension=True)
             )
         ],
     },
