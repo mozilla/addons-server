@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-02-09 17:39+0000\n"
-"PO-Revision-Date: 2020-12-07 11:13+0000\n"
+"PO-Revision-Date: 2021-02-10 06:45+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -1618,7 +1618,7 @@ msgid "Delay auto-approval indefinitely"
 msgstr "Automatische goedkeuring voor onbepaalde tijd uitstellen"
 
 msgid "Delay auto-approval indefinitely and add restrictions"
-msgstr ""
+msgstr "Automatische goedkeuring voor onbepaalde tijd uitstellen en beperkingen toevoegen"
 
 msgid "True positive"
 msgstr "Werkelijk positief"
@@ -4452,15 +4452,15 @@ msgstr "Bent u dat dialoogvenster ‘Video gepauzeerd. Doorgaan met kijken?’ b
 
 #. editorial content for the primary hero shelves.
 msgid "Thousands of GIFs at your fingertips."
-msgstr ""
+msgstr "Duizenden GIFs binnen handbereik."
 
 #. editorial content for the primary hero shelves.
 msgid "Begone, annoying cookie warnings!"
-msgstr ""
+msgstr "Ga heen, vervelende cookiewaarschuwingen!"
 
 #. editorial content for the primary hero shelves.
 msgid "The easiest way to manage all of your YouTube channel subscriptions."
-msgstr ""
+msgstr "De eenvoudigste manier om al uw kanaalabonnementen van YouTube te beheren."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -5865,7 +5865,7 @@ msgid "Custom..."
 msgstr "Aangepast…"
 
 msgid "Sorry, the statistics are temporarily unavailable."
-msgstr ""
+msgstr "Sorry, de statistieken zijn tijdelijk niet beschikbaar."
 
 msgid "Loading the latest data&hellip;"
 msgstr "Laatste gegevens laden…"
