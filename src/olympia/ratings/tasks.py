@@ -82,7 +82,7 @@ def addon_rating_aggregates(addons, **kw):
 
     for addon in addon_objs:
         counts = grouped_counts.get(addon.id, {})
-        total = sum(counts.values())
+        total = sum(count for score, count in counts.items() if score)
         average = (
             round(
                 sum(score * count for score, count in counts.items() if score and count)
