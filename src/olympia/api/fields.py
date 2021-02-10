@@ -422,7 +422,7 @@ class GetTextTranslationSerializerField(TranslationSerializerField):
         # TODO: get all locales or KEY_LOCALES_FOR_EDITORIAL_CONTENT at least?
         base_locale = to_language(settings.LANGUAGE_CODE)
         current_locale = to_language(get_language())
-        default_locale = obj.default_locale
+        default_locale = getattr(obj, 'default_locale', base_locale)
 
         return self._fetch_some_translations(
             field, {base_locale, current_locale, default_locale}
@@ -430,7 +430,7 @@ class GetTextTranslationSerializerField(TranslationSerializerField):
 
     def fetch_single_translation(self, obj, source, field, requested_language):
         base_locale = to_language(settings.LANGUAGE_CODE)
-        default_locale = obj.default_locale
+        default_locale = getattr(obj, 'default_locale', base_locale)
 
         translations = self._fetch_some_translations(
             field, {base_locale, requested_language, default_locale}
@@ -456,3 +456,40 @@ class GetTextTranslationSerializerField(TranslationSerializerField):
         # locale value, so it'd have to handle that.  Also different l10n data
         # structures for v4 and v5 would be messy. Only used read-only currently.
         raise NotImplementedError
+
+
+class FieldAlwaysFlatWhenFlatGateActiveMixin:
+    """Terribly named mixin to wrap around TranslationSerializerField (and subclasses)
+    to always return a single flat string when 'l10n_flat_input_output' is enabled to
+    replicate the v4 and earlier behavior in the discovery/hero API."""
+
+    def get_requested_language(self):
+        # For l10n_flat_input_output, if the request didn't specify a `lang=xx` then
+        # fake it with the current locale so we get a single (flat) result.
+        requested = super().get_requested_language()
+        if not requested:
+            request = self.context.get('request', None)
+            if is_gate_active(request, 'l10n_flat_input_output'):
+                requested = get_language()
+        return requested
+
+    def get_attribute(self, obj):
+        # For l10n_flat_input_output, make sure to always return a string as before.
+        attribute = super().get_attribute(obj)
+        if attribute is None:
+            request = self.context.get('request', None)
+            if is_gate_active(request, 'l10n_flat_input_output'):
+                attribute = ''
+        return attribute
+
+
+class GetTextTranslationSerializerFieldFlat(
+    FieldAlwaysFlatWhenFlatGateActiveMixin, GetTextTranslationSerializerField
+):
+    pass
+
+
+class TranslationSerializerFieldFlat(
+    FieldAlwaysFlatWhenFlatGateActiveMixin, TranslationSerializerField
+):
+    pass

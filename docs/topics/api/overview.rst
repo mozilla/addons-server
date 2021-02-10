@@ -411,6 +411,7 @@ These are `v5` specific changes - `v4` changes apply also.
 * 2021-02-04: dropped /shelves/sponsored endpoint https://github.com/mozilla/addons-server/issues/16390
 * 2021-02-11: removed Stripe webhook endpoint https://github.com/mozilla/addons-server/issues/16391
 * 2021-02-11: added ``show_grouped_ratings`` to addon detail endpoint. https://github.com/mozilla/addons-server/issues/16459
+* 2021-02-18: made ``description``, ``headline``, and ``cta.text`` in shelves/hero endpoint translated fields in the response. (They were always localized, we just didn't return them as such). https://github.com/mozilla/addons-server/issues/16515
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/

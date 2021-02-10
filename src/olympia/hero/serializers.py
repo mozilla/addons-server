@@ -1,11 +1,13 @@
-from django.utils.translation import gettext
-
 from rest_framework import serializers
 
 from olympia.addons.models import Addon
 from olympia.addons.serializers import AddonSerializer
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.api.fields import OutgoingURLField
+from olympia.api.fields import (
+    GetTextTranslationSerializerFieldFlat,
+    OutgoingURLField,
+    TranslationSerializerFieldFlat,
+)
 from olympia.discovery.serializers import DiscoveryAddonSerializer
 
 from .models import PrimaryHero, SecondaryHero, SecondaryHeroModule
@@ -30,27 +32,35 @@ class HeroAddonSerializer(DiscoveryAddonSerializer):
 
 
 class PrimaryHeroShelfSerializer(serializers.ModelSerializer):
-    description = serializers.SerializerMethodField()
+    description = GetTextTranslationSerializerFieldFlat()
     featured_image = serializers.CharField(source='image_url')
     addon = HeroAddonSerializer(source='promoted_addon.addon')
+    addon_summary = TranslationSerializerFieldFlat(
+        source='promoted_addon.addon.summary'
+    )
     external = ExternalAddonSerializer(source='promoted_addon.addon')
 
     class Meta:
         model = PrimaryHero
-        fields = ('addon', 'description', 'external', 'featured_image', 'gradient')
+        fields = (
+            'addon',
+            'addon_summary',  # this isn't included in the response
+            'description',
+            'external',
+            'featured_image',
+            'gradient',
+        )
 
     def to_representation(self, instance):
         rep = super().to_representation(instance)
         rep.pop('addon' if instance.is_external else 'external')
-        return rep
 
-    def get_description(self, obj):
+        addon_summary = rep.pop('addon_summary')
         if 'request' in self.context and 'raw' in self.context['request'].GET:
-            return str(obj.description or '')
-        elif obj.description:
-            return gettext(obj.description)
-        else:
-            return str(obj.promoted_addon.addon.summary or '')
+            rep['description'] = str(instance.description or '')
+        elif not rep['description']:
+            rep['description'] = addon_summary
+        return rep
 
 
 class AbsoluteOutgoingURLField(OutgoingURLField):
@@ -60,7 +70,7 @@ class AbsoluteOutgoingURLField(OutgoingURLField):
 
 class CTAField(serializers.Serializer):
     cta_url = AbsoluteOutgoingURLField()
-    cta_text = serializers.CharField()
+    cta_text = GetTextTranslationSerializerFieldFlat()
 
     def to_representation(self, obj):
         if obj.cta_url and obj.cta_text:
@@ -83,29 +93,20 @@ class CTAField(serializers.Serializer):
 
 class SecondaryHeroShelfModuleSerializer(serializers.ModelSerializer):
     icon = serializers.CharField(source='icon_url')
-    description = serializers.SerializerMethodField()
+    description = GetTextTranslationSerializerFieldFlat()
     cta = CTAField(source='*')
 
     class Meta:
         model = SecondaryHeroModule
         fields = ('icon', 'description', 'cta')
 
-    def get_description(self, obj):
-        return gettext(obj.description)
-
 
 class SecondaryHeroShelfSerializer(serializers.ModelSerializer):
-    headline = serializers.SerializerMethodField()
-    description = serializers.SerializerMethodField()
+    headline = GetTextTranslationSerializerFieldFlat()
+    description = GetTextTranslationSerializerFieldFlat()
     cta = CTAField(source='*')
     modules = SecondaryHeroShelfModuleSerializer(many=True)
 
     class Meta:
         model = SecondaryHero
         fields = ('headline', 'description', 'cta', 'modules')
-
-    def get_headline(self, obj):
-        return gettext(obj.headline)
-
-    def get_description(self, obj):
-        return gettext(obj.description)

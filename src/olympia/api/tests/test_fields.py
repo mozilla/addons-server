@@ -2,6 +2,7 @@
 from django.core.exceptions import ValidationError
 from django.test.utils import override_settings
 
+import pytest
 from unittest.mock import Mock
 from rest_framework import serializers
 from rest_framework.request import Request
@@ -9,15 +10,19 @@ from rest_framework.test import APIRequestFactory
 
 from olympia.addons.models import Addon
 from olympia.addons.serializers import AddonSerializer
-from olympia.amo.tests import TestCase, addon_factory
+from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.api.fields import (
     ESTranslationSerializerField,
+    GetTextTranslationSerializerField,
+    GetTextTranslationSerializerFieldFlat,
     ReverseChoiceField,
     SlugOrPrimaryKeyRelatedField,
     SplitField,
     TranslationSerializerField,
+    TranslationSerializerFieldFlat,
 )
 from olympia.translations.models import Translation
+from olympia.versions.models import Version
 
 
 class TestReverseChoiceField(TestCase):
@@ -471,7 +476,7 @@ class TestSlugOrPrimaryKeyRelatedField(TestCase):
         ]
 
 
-class SampleSerializer(serializers.Serializer):
+class SampleSplitFieldSerializer(serializers.Serializer):
     addon = SplitField(
         serializers.PrimaryKeyRelatedField(queryset=Addon.objects), AddonSerializer()
     )
@@ -483,7 +488,7 @@ class TestSplitField(TestCase):
 
     def test_output(self):
         # If we pass an Addon instance.
-        serializer = SampleSerializer({'addon': self.addon})
+        serializer = SampleSplitFieldSerializer({'addon': self.addon})
         assert 'addon' in serializer.data
         # The output is from AddonSerializer.
         assert serializer.data['addon']['id'] == self.addon.id
@@ -492,6 +497,156 @@ class TestSplitField(TestCase):
     def test_input(self):
         # If we pass data (e.g. on create) the input serializer is used.
         data = {'addon': self.addon.id}
-        serializer = SampleSerializer(data=data)
+        serializer = SampleSplitFieldSerializer(data=data)
         assert serializer.is_valid()
         assert serializer.to_internal_value(data=data) == {'addon': self.addon}
+
+
+class Thing:
+    pass
+
+
+class SampleGetTextSerializer(serializers.Serializer):
+    desc = GetTextTranslationSerializerField()
+
+
+@pytest.mark.needs_locales_compilation
+class TestGetTextTranslationSerializerField(TestCase):
+    desc_en = (
+        # this is predefined in strings.jinja2 (and localized already)
+        'Block invisible trackers and spying ads that follow you around the web.'
+    )
+    desc_fr = (
+        'Bloquez les traqueurs invisibles et les publicités espionnes qui vous '
+        'suivent sur le Web.'
+    )
+    desc_de = (
+        'Blockieren Sie unsichtbare Verfolger und Werbung, die Sie beobachtet '
+        'und im Netz verfolgt.'
+    )
+
+    def serialize(self, item, lang=None):
+        request = APIRequestFactory().get('/' if not lang else f'/?lang={lang}')
+        request.version = 'v5'
+        return SampleGetTextSerializer(context={'request': request}).to_representation(
+            item
+        )
+
+    def test_no_lang(self):
+        thing = Thing()
+        thing.desc = self.desc_en
+        thing.default_locale = 'de'
+
+        assert self.serialize(thing)['desc'] == {
+            'en-US': self.desc_en,
+            'de': self.desc_de,
+        }
+
+        # repeat for the edge case when we have a different system language than en-US
+        with self.activate('fr'):
+            assert self.serialize(thing)['desc'] == {
+                'en-US': self.desc_en,
+                'fr': self.desc_fr,
+                'de': self.desc_de,
+            }
+
+    def test_lang_specified(self):
+        thing = Thing()
+        thing.desc = self.desc_en
+        thing.default_locale = 'de'
+
+        # we have l10n for fr
+        with self.activate('fr'):
+            assert self.serialize(thing, 'fr')['desc'] == {
+                'fr': self.desc_fr,
+            }
+
+        # but we don't for az
+        with self.activate('az'):
+            assert self.serialize(thing, 'az')['desc'] == {
+                'de': self.desc_de,
+                'az': None,
+                '_default': 'de',
+            }
+
+            # cover the edge case where the object has a default locale we don't have
+            thing.default_locale = 'az'
+            assert self.serialize(thing, 'az')['desc'] == {
+                'en-US': self.desc_en,
+                'az': None,
+                '_default': 'en-US',
+            }
+
+
+class SampleFlatTranslationSerializer(serializers.ModelSerializer):
+    gettext = GetTextTranslationSerializerFieldFlat(source='approval_notes')
+    db = TranslationSerializerFieldFlat(source='release_notes')
+
+    class Meta:
+        model = Version
+        fields = [
+            'gettext',
+            'db',
+        ]
+
+
+class TestFlatTranslationSerializerFields(TestCase):
+    desc_en = (
+        # this is predefined in strings.jinja2 (and localized already)
+        'Block invisible trackers and spying ads that follow you around the web.'
+    )
+    desc_fr = (
+        'Bloquez les traqueurs invisibles et les publicités espionnes qui vous '
+        'suivent sur le Web.'
+    )
+
+    def serialize(self, item, lang=None):
+        request = APIRequestFactory().get('/' if not lang else f'/?lang={lang}')
+        request.version = 'v5'
+        return SampleFlatTranslationSerializer(
+            context={'request': request}).to_representation(item)
+
+    @pytest.mark.needs_locales_compilation
+    def test_basic(self):
+        version = version_factory(
+            addon=addon_factory(),
+            approval_notes=self.desc_en,
+            release_notes={'en-US': 'release!', 'fr': 'lé release!'})
+        assert self.serialize(version) == {
+            'gettext': {'en-US': self.desc_en},
+            'db': {'en-US': 'release!', 'fr': 'lé release!'},
+        }
+        with override_settings(DRF_API_GATES={'v5': ('l10n_flat_input_output',)}):
+            assert self.serialize(version) == {
+                'gettext': self.desc_en,
+                'db': 'release!',
+            }
+
+        # And works when a lang is specified:
+        with self.activate('fr'):
+            version.reload()
+            assert self.serialize(version, 'fr') == {
+                'gettext': {'fr': self.desc_fr},
+                'db': {'fr': 'lé release!'},
+            }
+            with override_settings(DRF_API_GATES={'v5': ('l10n_flat_input_output',)}):
+                assert self.serialize(version) == {
+                    'gettext': self.desc_fr,
+                    'db': 'lé release!',
+                }
+
+        # Test the empty string case
+        version.approval_notes = ''
+        version.release_notes = ''
+        version.save()
+        assert self.serialize(version) == {
+            'gettext': None,
+            'db': None,
+        }
+        with override_settings(DRF_API_GATES={'v5': ('l10n_flat_input_output',)}):
+            assert self.serialize(version) == {
+                'gettext': '',
+                'db': '',
+            }
+
+

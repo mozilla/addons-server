@@ -1,13 +1,13 @@
 from django.utils.html import format_html
-from django.utils.translation import get_language, gettext
+from django.utils.translation import gettext
 
 from rest_framework import serializers
 
 from olympia.addons.models import Addon
 from olympia.addons.serializers import AddonSerializer, VersionSerializer
 from olympia.api.fields import (
-    GetTextTranslationSerializerField,
-    TranslationSerializerField,
+    GetTextTranslationSerializerFieldFlat,
+    TranslationSerializerFieldFlat,
 )
 from olympia.api.utils import is_gate_active
 from olympia.discovery.models import DiscoveryItem
@@ -69,43 +69,6 @@ class DiscoveryAddonSerializer(AddonSerializer):
             'url',
         )
         model = Addon
-
-
-class FieldAlwaysFlatWhenFlatGateActiveMixin:
-    """Terribly named mixin to wrap around TranslationSerializerField (and subclasses)
-    to always return a single flat string when 'l10n_flat_input_output' is enabled to
-    replicate the v4 and earlier behavior in the discovery API."""
-
-    def get_requested_language(self):
-        # For l10n_flat_input_output, if the request didn't specify a `lang=xx` then
-        # fake it with the current locale so we get a single (flat) result.
-        requested = super().get_requested_language()
-        if not requested:
-            request = self.context.get('request', None)
-            if is_gate_active(request, 'l10n_flat_input_output'):
-                requested = get_language()
-        return requested
-
-    def get_attribute(self, obj):
-        # For l10n_flat_input_output, make sure to always return a string as before.
-        attribute = super().get_attribute(obj)
-        if attribute is None:
-            request = self.context.get('request', None)
-            if is_gate_active(request, 'l10n_flat_input_output'):
-                attribute = ''
-        return attribute
-
-
-class GetTextTranslationSerializerFieldFlat(
-    FieldAlwaysFlatWhenFlatGateActiveMixin, GetTextTranslationSerializerField
-):
-    pass
-
-
-class TranslationSerializerFieldFlat(
-    FieldAlwaysFlatWhenFlatGateActiveMixin, TranslationSerializerField
-):
-    pass
 
 
 class DiscoverySerializer(serializers.ModelSerializer):
