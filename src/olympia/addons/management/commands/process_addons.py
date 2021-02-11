@@ -140,6 +140,7 @@ tasks = {
                 .filter(files__is_webextension=True)
             )
         ],
+        'distinct': True,
     },
     'hard_delete_legacy_versions': {
         'method': hard_delete_legacy_versions,
