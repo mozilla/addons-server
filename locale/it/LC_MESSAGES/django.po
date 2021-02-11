@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-02-09 17:39+0000\n"
-"PO-Revision-Date: 2021-02-10 22:21+0000\n"
+"PO-Revision-Date: 2021-02-10 22:31+0000\n"
 "Last-Translator: Jenny <leanintocuriosity@gmx.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -4941,7 +4941,7 @@ msgid "Version string and guid match a blocklist Block"
 msgstr "Stringa e GUID di versione trovati in un blocco della blocklist"
 
 msgid "Weight breakdown not available."
-msgstr ""
+msgstr "Analisi dettagliata delle dimensioni non disponibile."
 
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Se è definita `canned_response` non puoi inviare un commento."
@@ -4989,13 +4989,13 @@ msgid "Last Review"
 msgstr "Ultima revisione"
 
 msgid "Code Weight"
-msgstr ""
+msgstr "Dimensione del codice"
 
 msgid "Metadata Weight"
-msgstr ""
+msgstr "Dimensione dei metadati"
 
 msgid "Total Weight"
-msgstr ""
+msgstr "Dimensione totale"
 
 msgid "Maliciousness Score"
 msgstr ""
@@ -5668,10 +5668,10 @@ msgid "The Maliciousness Score represents the likelihood of this version being m
 msgstr ""
 
 msgid "Code Weight:"
-msgstr ""
+msgstr "Dimensione del codice:"
 
 msgid "Metadata Weight:"
-msgstr ""
+msgstr "Dimensione dei metadati:"
 
 msgid "Flagged by scanners"
 msgstr "Contrassegnato da scanner"
