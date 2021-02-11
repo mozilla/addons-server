@@ -4,6 +4,7 @@ from olympia.addons.models import Addon
 from olympia.addons.serializers import AddonSerializer
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.api.fields import (
+    FallbackField,
     GetTextTranslationSerializerFieldFlat,
     OutgoingURLField,
     TranslationSerializerFieldFlat,
@@ -32,19 +33,20 @@ class HeroAddonSerializer(DiscoveryAddonSerializer):
 
 
 class PrimaryHeroShelfSerializer(serializers.ModelSerializer):
-    description = GetTextTranslationSerializerFieldFlat()
+    description = FallbackField(
+        GetTextTranslationSerializerFieldFlat(),
+        TranslationSerializerFieldFlat(
+            source='promoted_addon.addon.summary'
+        )
+    )
     featured_image = serializers.CharField(source='image_url')
     addon = HeroAddonSerializer(source='promoted_addon.addon')
-    addon_summary = TranslationSerializerFieldFlat(
-        source='promoted_addon.addon.summary'
-    )
     external = ExternalAddonSerializer(source='promoted_addon.addon')
 
     class Meta:
         model = PrimaryHero
         fields = (
             'addon',
-            'addon_summary',  # this isn't included in the response
             'description',
             'external',
             'featured_image',
@@ -55,11 +57,8 @@ class PrimaryHeroShelfSerializer(serializers.ModelSerializer):
         rep = super().to_representation(instance)
         rep.pop('addon' if instance.is_external else 'external')
 
-        addon_summary = rep.pop('addon_summary')
         if 'request' in self.context and 'raw' in self.context['request'].GET:
             rep['description'] = str(instance.description or '')
-        elif not rep['description']:
-            rep['description'] = addon_summary
         return rep
 
 
