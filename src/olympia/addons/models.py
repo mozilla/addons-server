@@ -858,6 +858,10 @@ class Addon(OnChangeMixin, ModelBase):
     def ratings_url(self):
         return reverse('addons.ratings.list', args=[self.slug])
 
+    @property
+    def versions_url(self):
+        return reverse('addons.versions', args=[self.slug])
+
     @cached_property
     def listed_authors(self):
         return self.authors.filter(addons=self, addonuser__listed=True).order_by(
