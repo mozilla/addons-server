@@ -6,6 +6,7 @@ from rest_framework import serializers
 from olympia.addons.models import Addon
 from olympia.addons.serializers import AddonSerializer, VersionSerializer
 from olympia.api.fields import (
+    FallbackField,
     GetTextTranslationSerializerFieldFlat,
     TranslationSerializerFieldFlat,
 )
@@ -74,11 +75,11 @@ class DiscoveryAddonSerializer(AddonSerializer):
 class DiscoverySerializer(serializers.ModelSerializer):
     heading = serializers.SerializerMethodField()
     description = serializers.SerializerMethodField()
-    description_text = GetTextTranslationSerializerFieldFlat(
-        source='custom_description'
+    description_text = FallbackField(
+        GetTextTranslationSerializerFieldFlat(source='custom_description'),
+        TranslationSerializerFieldFlat(source='addon_summary_fallback'),
     )
     addon = DiscoveryAddonSerializer()
-    addon_summary = TranslationSerializerFieldFlat(source='addon.summary')
     is_recommendation = serializers.SerializerMethodField()
 
     class Meta:
@@ -88,7 +89,6 @@ class DiscoverySerializer(serializers.ModelSerializer):
             'description_text',
             'addon',
             'is_recommendation',
-            'addon_summary',  # this isn't included in the response
         )
         model = DiscoveryItem
 
@@ -115,9 +115,7 @@ class DiscoverySerializer(serializers.ModelSerializer):
 
     def get_description(self, obj):
         description = (
-            gettext(obj.custom_description)
-            or (obj.should_fallback_to_addon_summary and obj.addon.summary)
-            or ''
+            gettext(obj.custom_description) or obj.addon_summary_fallback or ''
         )
         return format_html('<blockquote>{}</blockquote>', description)
 
@@ -129,14 +127,5 @@ class DiscoverySerializer(serializers.ModelSerializer):
         ):
             data.pop('heading', None)
             data.pop('description', None)
-
-        # if there wasn't a custom description, swap it out for the addon summary
-        addon_summary = data.pop('addon_summary', None)
-        if (
-            not data.get('description_text')
-            and instance.should_fallback_to_addon_summary
-            and addon_summary
-        ):
-            data['description_text'] = addon_summary
 
         return data

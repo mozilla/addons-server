@@ -15,6 +15,7 @@ from olympia.api.fields import (
     ESTranslationSerializerField,
     GetTextTranslationSerializerField,
     GetTextTranslationSerializerFieldFlat,
+    FallbackField,
     ReverseChoiceField,
     SlugOrPrimaryKeyRelatedField,
     SplitField,
@@ -604,14 +605,16 @@ class TestFlatTranslationSerializerFields(TestCase):
         request = APIRequestFactory().get('/' if not lang else f'/?lang={lang}')
         request.version = 'v5'
         return SampleFlatTranslationSerializer(
-            context={'request': request}).to_representation(item)
+            context={'request': request}
+        ).to_representation(item)
 
     @pytest.mark.needs_locales_compilation
     def test_basic(self):
         version = version_factory(
             addon=addon_factory(),
             approval_notes=self.desc_en,
-            release_notes={'en-US': 'release!', 'fr': 'lé release!'})
+            release_notes={'en-US': 'release!', 'fr': 'lé release!'},
+        )
         assert self.serialize(version) == {
             'gettext': {'en-US': self.desc_en},
             'db': {'en-US': 'release!', 'fr': 'lé release!'},
@@ -650,3 +653,53 @@ class TestFlatTranslationSerializerFields(TestCase):
             }
 
 
+class SampleFallbackFieldSerializer(serializers.ModelSerializer):
+    name = FallbackField(
+        serializers.CharField(),
+        serializers.CharField(source='description'),
+        serializers.CharField(source='summary'),
+    )
+
+    class Meta:
+        model = Addon
+        fields = [
+            'name',
+        ]
+
+
+class TestFallbackField(TestCase):
+    def test_output(self):
+        addon = addon_factory(name='náme', description='déscription', summary='summáry')
+
+        # if the addon name is set then we get name
+        assert SampleFallbackFieldSerializer(addon).data['name'] == addon.name
+
+        # if it's not set we should get the description
+        addon.update(name='')
+        assert SampleFallbackFieldSerializer(addon).data['name'] == addon.description
+
+        # and if description isn't set either, then the 3rd field
+        addon.update(description='')
+        assert SampleFallbackFieldSerializer(addon).data['name'] == addon.summary
+
+    def test_input(self):
+        # If we pass data (e.g. on create) the first serializer is used.
+        data = {'name': 'foobar'}
+        serializer = SampleFallbackFieldSerializer(data=data)
+        assert serializer.is_valid()
+        assert serializer.to_internal_value(data=data) == {'name': 'foobar'}
+        serializer.save()
+        assert Addon.objects.count() == 1
+        addon = Addon.objects.get()
+        assert addon.name == 'foobar'
+        assert addon.description is None
+        assert addon.summary is None
+
+        serializer = SampleFallbackFieldSerializer(instance=addon, data={'name': 'ho!'})
+        assert serializer.is_valid()
+        serializer.save()
+        assert Addon.objects.count() == 1  # still one
+        addon.reload()
+        assert addon.name == 'ho!'  # updated
+        assert addon.description is None
+        assert addon.summary is None

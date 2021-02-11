@@ -197,6 +197,7 @@ class TestShelfViewSet(ESTestCase):
         phero = PrimaryHero.objects.create(
             promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
             enabled=True,
+            description='Hero!',
         )
         shero = SecondaryHero.objects.create(
             headline='headline', description='description', enabled=True

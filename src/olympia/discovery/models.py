@@ -52,8 +52,12 @@ class DiscoveryItem(OnChangeMixin, ModelBase):
         return str(self.addon)
 
     @property
-    def should_fallback_to_addon_summary(self):
-        return bool(self.addon.type == amo.ADDON_EXTENSION and self.addon.summary)
+    def addon_summary_fallback(self):
+        return (
+            self.addon.summary
+            if self.addon.type == amo.ADDON_EXTENSION and self.addon.summary
+            else None
+        )
 
     @property
     def default_locale(self):
