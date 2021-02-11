@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2021-01-19 08:33+0000\n"
+"POT-Creation-Date: 2021-02-09 17:39+0000\n"
+"PO-Revision-Date: 2021-02-10 13:34+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -122,6 +122,9 @@ msgstr "Opmerking by beoardieling"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Allinnich by de lêste ferzjes fan add-ons kinne opmerkingen tafoege wurde."
+
+msgid "Authors"
+msgstr "Skriuwers"
 
 msgid "Ratings"
 msgstr "Wurdearring"
@@ -1615,6 +1618,9 @@ msgstr "Automatysk goedkarre útstelle"
 msgid "Delay auto-approval indefinitely"
 msgstr "Automatyske goedkarring foar ûnbepaalde tiid útstelle"
 
+msgid "Delay auto-approval indefinitely and add restrictions"
+msgstr "Automatyske goedkarring foar ûnbepaalde tiid útstelle en beheiningen tafoegje"
+
 msgid "True positive"
 msgstr "Wier posityf"
 
@@ -2237,52 +2243,8 @@ msgstr "Klik hjirûnder op de knop Akseptearje om te befêstigjen dat jo tafoege
 msgid "Decline"
 msgstr "Wegerje"
 
-msgid "Set Up Payment"
-msgstr "Betelling ynstelle"
-
-msgid "You're done!"
-msgstr "Jo binne klear!"
-
-#, python-format
-msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
-msgstr ""
-"Jo binne klear! In nije ferzje <strong>%(new_version_number)s</strong> fan jo add-on <strong>%(addon_name)s</strong> wurdt publisearre as %(group_name)s en soe ynkoarten beskikber wêze moatte."
-
-msgid "A newer version of your add-on is currently pending review."
-msgstr "In nijere ferzje fan jo add-on wachtet op dit stuit op beoardieling."
-
-msgid "If you have any questions, don’t hesitate to contact us."
-msgstr "As jo fragen hawwe, nim dan gerêst kontakt mei ús op."
-
-msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
-msgstr "Jo betelling is registrearre, mar der binne op dit stuit gjin publisearre ferzjes fan jo add-on. Laad in nije iepenbiere ferzje op om dit proses te foltôgjen."
-
-msgid "Manage add-on"
-msgstr "Add-on beheare"
-
-#, python-format
-msgid ""
-"There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a "
-"href=\"mailto:%(email)s\">%(email)s</a>."
-msgstr ""
-"Der is in flater bard by it ynstellen fan de betelling foar jo add-on. As jo problemen mei dit proses ûnderfine of fan gedachten feroare binne, nim dan kontakt mei ús op fia <a "
-"href=\"mailto:%(email)s\">%(email)s</a>."
-
-msgid "Thank you for joining the Promoted Add-ons Program!"
-msgstr "Tank foar jo dielnimming oan it Promoted Add-ons-programma!"
-
-#, python-format
-msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the program once payment is set up through the Stripe system. Click on the button below to continue:"
-msgstr "Jo add-on <strong>%(addon_name)s</strong> wurdt yn it programma opnommen sa gau as de betelling fia it Stripe-systeem ynsteld is. Klik op ûndersteande knop om fierder te gean:"
-
-msgid "Continue to Stripe Checkout"
-msgstr "Trochgean nei Stripe Checkout"
-
 msgid "Manage Authors & License"
 msgstr "Skriuwers en lisinsje beheare"
-
-msgid "Authors"
-msgstr "Skriuwers"
 
 msgid "About author roles"
 msgstr "Oer ûntwikkelersfunksjes"
@@ -3189,9 +3151,6 @@ msgstr "Nije ferzje oplade"
 
 msgid "View All"
 msgstr "Alles besjen"
-
-msgid "Manage Billing on Stripe"
-msgstr "Fakturearjen op stripe beheare"
 
 msgid "Listed Review Page"
 msgstr "Side foar fermelde beoardielingen"
@@ -4492,6 +4451,18 @@ msgstr "Behear jo tiid better mei in browserklok dy't wurkyntervallen yn kaart b
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
 msgstr "Wurch fan dat dialoochfinster ‘Video gepauzeerd. Doorgaan met kijken?’ Harkje ûnûnderbrutsen nei jo favorite muzyk op YouTube."
 
+#. editorial content for the primary hero shelves.
+msgid "Thousands of GIFs at your fingertips."
+msgstr "Tûzenen GIFs deunby."
+
+#. editorial content for the primary hero shelves.
+msgid "Begone, annoying cookie warnings!"
+msgstr "Gean fuort, ferfelende cookiewarskôgingen!"
+
+#. editorial content for the primary hero shelves.
+msgid "The easiest way to manage all of your YouTube channel subscriptions."
+msgstr "De ienfâldigste manier om al jo kanaalabonneminten fan YouTube te behearen."
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Utwreidingen binne as apps foar Firefox."
@@ -4800,6 +4771,7 @@ msgstr "befettet"
 msgid "start"
 msgstr "start"
 
+#. L10n: end, as in "end date"
 msgid "end"
 msgstr "ein"
 
@@ -4900,8 +4872,8 @@ msgstr "Fertrage omdat it de earste ferzje yn de list is"
 msgid "Version string and guid match a blocklist Block"
 msgstr "De ferzjestring en guid komme oerien mei in blokkearring op de blokkearringslist"
 
-msgid "Risk breakdown not available."
-msgstr "Risiko-útwurking net beskikber."
+msgid "Weight breakdown not available."
+msgstr "Gewichtsútwurking net beskikber."
 
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Jo kinne gjin kommentaar yntsjinje as ‘canned_response’ definiearre is."
@@ -4948,8 +4920,17 @@ msgstr "ID"
 msgid "Last Review"
 msgstr "Lêste beoardieling"
 
-msgid "Weight"
-msgstr "Gewicht"
+msgid "Code Weight"
+msgstr "Koadegewicht"
+
+msgid "Metadata Weight"
+msgstr "Gewicht metagegevens"
+
+msgid "Total Weight"
+msgstr "Totaal gewicht"
+
+msgid "Maliciousness Score"
+msgstr "Skealikheidsskoare"
 
 msgid "Pending Rejection Deadline"
 msgstr "Deadline foar wachtrige foar ôfwizing"
@@ -5433,15 +5414,6 @@ msgstr "Add-on twongen útskeakelje"
 msgid "Force-enable add-on"
 msgstr "Add-on forsearre ynskeakelje"
 
-msgid "View Blocklist Submission"
-msgstr "Ynstjoering foar blokkearringslist besjen"
-
-msgid "Block add-on"
-msgstr "Add-on blokkearje"
-
-msgid "Update add-on block"
-msgstr "Add-on-blokkearring bywurkje"
-
 msgid "Disable Listed Auto-Approval"
 msgstr "Automatysk goedkarre fan fermeldingen útskeakelje"
 
@@ -5471,6 +5443,15 @@ msgstr "Markearring foar ynhâldsbeoardieling troch behearder wiskje"
 
 msgid "Clear Admin Static Theme Review Flag"
 msgstr "Markearring foar beoardieling fan statysk tema troch behearder wiskje"
+
+msgid "View Blocklist Submission"
+msgstr "Ynstjoering foar blokkearringslist besjen"
+
+msgid "Block add-on"
+msgstr "Add-on blokkearje"
+
+msgid "Update add-on block"
+msgstr "Add-on-blokkearring bywurkje"
 
 msgid "(admin)"
 msgstr "(behear)"
@@ -5608,14 +5589,17 @@ msgstr "Bestannen downloade"
 msgid "The developer has provided source code."
 msgstr "De ûntwikkeler hat in boarnekoade opjûn."
 
-msgid "Scanners score:"
-msgstr "Scannersskoare:"
+msgid "Maliciousness Score:"
+msgstr "Skealikheidsskoare:"
 
-msgid "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr "De Scannersskoare jout oan hoe wierskynlik it is dat dizze ferzje skeadlik is, basearre op de befiningen fan de scanner."
+msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
+msgstr "De Skealikheid skoare jout oan hoe wierskynlik it is dat dizze ferzje skeadlik is, basearre op de befiningen fan de scanner."
 
-msgid "Weight:"
-msgstr "Gewicht:"
+msgid "Code Weight:"
+msgstr "Koadegewicht:"
+
+msgid "Metadata Weight:"
+msgstr "Gewicht metagegevens:"
 
 msgid "Flagged by scanners"
 msgstr "Troch scanners markearre"
@@ -5880,6 +5864,9 @@ msgstr "365 dagen"
 
 msgid "Custom..."
 msgstr "Oanpast…"
+
+msgid "Sorry, the statistics are temporarily unavailable."
+msgstr "Sorry, de statistiken binne tydlik net beskikber."
 
 msgid "Loading the latest data&hellip;"
 msgstr "Lêste gegevens lade…"

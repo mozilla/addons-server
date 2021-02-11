@@ -43,6 +43,7 @@ from olympia.versions.models import (
     ApplicationsVersions,
     License,
     Version,
+    VersionCreateError,
     VersionPreview,
     VersionReviewerFlags,
     source_upload_path,
@@ -1174,6 +1175,45 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         flags.reload()
         assert flags.notified_about_auto_approval_delay is False
 
+    def test_upload_already_attached_to_different_addon(self):
+        # The exception isn't necessarily caught, but it's fine to 500 and go
+        # to Sentry in this case - this isn't supposed to happen.
+        self.upload.update(addon=addon_factory())
+        with self.assertRaises(VersionCreateError):
+            Version.from_upload(
+                self.upload,
+                self.addon,
+                [self.selected_app],
+                amo.RELEASE_CHANNEL_LISTED,
+                parsed_data=self.dummy_parsed_data,
+            )
+
+    def test_addon_disabled(self):
+        # The exception isn't necessarily caught, but it's fine to 500 and go
+        # to Sentry in this case - this isn't supposed to happen.
+        self.addon.update(status=amo.STATUS_DISABLED)
+        with self.assertRaises(VersionCreateError):
+            Version.from_upload(
+                self.upload,
+                self.addon,
+                [self.selected_app],
+                amo.RELEASE_CHANNEL_LISTED,
+                parsed_data=self.dummy_parsed_data,
+            )
+
+    def test_addon_is_attached_to_upload_if_it_wasnt(self):
+        assert self.upload.addon is None
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            [self.selected_app],
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=self.dummy_parsed_data,
+        )
+        assert version
+        self.upload.reload()
+        assert self.upload.addon == self.addon
+
     @mock.patch('olympia.versions.models.log')
     def test_logging_nulls(self, log_mock):
         assert self.upload.user is None
@@ -1432,6 +1472,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             amo.RELEASE_CHANNEL_LISTED,
             parsed_data=parsed_data,
         )
+        self.upload.reload()
         assert not storage.exists(
             path
         ), 'Expected original upload to move but it still exists.'

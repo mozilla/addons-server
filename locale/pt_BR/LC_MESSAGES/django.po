@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2021-02-03 13:01+0000\n"
+"POT-Creation-Date: 2021-02-09 17:39+0000\n"
+"PO-Revision-Date: 2021-02-10 00:44+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -121,6 +121,9 @@ msgstr "Nota de revisão"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Apenas as versões mais recentes das extensões podem ter notas adicionadas."
+
+msgid "Authors"
+msgstr "Autores"
 
 msgid "Ratings"
 msgstr "Avaliações"
@@ -1626,6 +1629,9 @@ msgstr "Adiar aprovação automática"
 msgid "Delay auto-approval indefinitely"
 msgstr "Adiar aprovação automática indefinidamente"
 
+msgid "Delay auto-approval indefinitely and add restrictions"
+msgstr "Adiar aprovação automática indefinidamente e adicionar restrições"
+
 msgid "True positive"
 msgstr "Verdadeiro positivo"
 
@@ -2261,49 +2267,8 @@ msgstr "Clique no botão 'Aceitar' abaixo para confirmar que você quer ser adic
 msgid "Decline"
 msgstr "Recusar"
 
-msgid "Set Up Payment"
-msgstr "Preparar pagamento"
-
-msgid "You're done!"
-msgstr "Pronto!"
-
-#, python-format
-msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
-msgstr "Pronto! A nova versão <strong>%(new_version_number)s</strong> de sua extensão <strong>%(addon_name)s</strong> será publicada como %(group_name)s se deve estar disponível em breve."
-
-msgid "A newer version of your add-on is currently pending review."
-msgstr "Uma versão mais nova de sua extensão está com revisão pendente."
-
-msgid "If you have any questions, don’t hesitate to contact us."
-msgstr "Se tiver alguma dúvida, não hesite em entrar em contato conosco."
-
-msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
-msgstr "Seu pagamento foi registrado, mas no momento não há versões publicadas de sua extensão. Envie uma nova versão pública para concluir este processo."
-
-msgid "Manage add-on"
-msgstr "Gerenciar extensão"
-
-#, python-format
-msgid ""
-"There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a "
-"href=\"mailto:%(email)s\">%(email)s</a>."
-msgstr "Houve um erro ao preparar o pagamento de sua extensão. Se você está tendo problemas com este processo, ou mudou de ideia, entre em contato conosco em <a href=\"mailto:%(email)s\">%(email)s</a>."
-
-msgid "Thank you for joining the Promoted Add-ons Program!"
-msgstr "Obrigado por aderir ao programa de extensões promovidas!"
-
-#, python-format
-msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the program once payment is set up through the Stripe system. Click on the button below to continue:"
-msgstr "Sua extensão <strong>%(addon_name)s</strong> será incluída no programa assim que o pagamento for concluído através do sistema Stripe. Clique no botão abaixo para continuar:"
-
-msgid "Continue to Stripe Checkout"
-msgstr "Prosseguir para pagamento no Stripe"
-
 msgid "Manage Authors & License"
 msgstr "Gerenciar autores e licença"
-
-msgid "Authors"
-msgstr "Autores"
 
 msgid "About author roles"
 msgstr "Sobre as funções do autor"
@@ -3228,9 +3193,6 @@ msgstr "Enviar versão nova"
 
 msgid "View All"
 msgstr "Ver todos"
-
-msgid "Manage Billing on Stripe"
-msgstr "Gerenciar faturamento no Stripe"
 
 msgid "Listed Review Page"
 msgstr "Página de revisões listadas"
@@ -4540,6 +4502,18 @@ msgstr "Gerencie melhor seu tempo com um relógio de navegador que registra os i
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
 msgstr "Cansado de ver a mensagem \"Vídeo pausado. Continuar assistindo?\" aparecer? Ouça suas músicas preferidas sem interrupções no YouTube."
 
+#. editorial content for the primary hero shelves.
+msgid "Thousands of GIFs at your fingertips."
+msgstr "Milhares de GIFs ao seu alcance."
+
+#. editorial content for the primary hero shelves.
+msgid "Begone, annoying cookie warnings!"
+msgstr "Vão embora, avisos irritantes de cookies!"
+
+#. editorial content for the primary hero shelves.
+msgid "The easiest way to manage all of your YouTube channel subscriptions."
+msgstr "A maneira mais fácil de gerenciar todas as suas inscrições em canais do YouTube."
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Extensões são como aplicativos no Firefox."
@@ -4851,6 +4825,7 @@ msgstr "contendo"
 msgid "start"
 msgstr "início"
 
+#. L10n: end, as in "end date"
 msgid "end"
 msgstr "fim"
 
@@ -4951,8 +4926,8 @@ msgstr "Adiado porque é a primeira versão listada"
 msgid "Version string and guid match a blocklist Block"
 msgstr "String e guid da versão correspondem a um item da lista de bloqueio"
 
-msgid "Risk breakdown not available."
-msgstr "Estrutura de análise de riscos não disponível."
+msgid "Weight breakdown not available."
+msgstr "Análise de peso não disponível."
 
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Você não pode enviar um comentário se `canned_response` estiver definido."
@@ -4999,8 +4974,17 @@ msgstr "ID"
 msgid "Last Review"
 msgstr "Última avaliação"
 
-msgid "Weight"
-msgstr "Peso"
+msgid "Code Weight"
+msgstr "Peso do código"
+
+msgid "Metadata Weight"
+msgstr "Peso de metadados"
+
+msgid "Total Weight"
+msgstr "Peso total"
+
+msgid "Maliciousness Score"
+msgstr "Pontuação de maliciosidade"
 
 msgid "Pending Rejection Deadline"
 msgstr "Prazo de rejeição pendente"
@@ -5496,17 +5480,6 @@ msgstr "Forçar desativação da extensão"
 msgid "Force-enable add-on"
 msgstr "Forçar ativação da extensão"
 
-msgid "View Blocklist Submission"
-msgstr "Ver envio para lista de bloqueios"
-
-# 80%
-# 100%
-msgid "Block add-on"
-msgstr "Bloquear extensão"
-
-msgid "Update add-on block"
-msgstr "Atualizar bloqueio de extensão"
-
 msgid "Disable Listed Auto-Approval"
 msgstr "Desativar a aprovação automática de listados"
 
@@ -5536,6 +5509,17 @@ msgstr "Limpar a sinalização da revisão do conteúdo de administração"
 
 msgid "Clear Admin Static Theme Review Flag"
 msgstr "Limpar sinalização de revisão de tema estático de administração"
+
+msgid "View Blocklist Submission"
+msgstr "Ver envio para lista de bloqueios"
+
+# 80%
+# 100%
+msgid "Block add-on"
+msgstr "Bloquear extensão"
+
+msgid "Update add-on block"
+msgstr "Atualizar bloqueio de extensão"
 
 msgid "(admin)"
 msgstr "(administrador)"
@@ -5674,14 +5658,17 @@ msgstr "Baixar arquivos"
 msgid "The developer has provided source code."
 msgstr "O desenvolvedor forneceu o código fonte."
 
-msgid "Scanners score:"
-msgstr "Pontuação dos verificadores:"
+msgid "Maliciousness Score:"
+msgstr "Pontuação de maliciosidade:"
 
-msgid "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr "A pontuação dos verificadores representa a probabilidade desta versão ser maliciosa, com base nas descobertas dos verificadores."
+msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
+msgstr "A pontuação de maliciosidade representa a probabilidade desta versão ser maliciosa, com base nas descobertas dos verificadores."
 
-msgid "Weight:"
-msgstr "Peso:"
+msgid "Code Weight:"
+msgstr "Peso do código:"
+
+msgid "Metadata Weight:"
+msgstr "Peso de metadados:"
 
 msgid "Flagged by scanners"
 msgstr "Sinalizado por verificadores"
@@ -5948,6 +5935,9 @@ msgstr "365 dias"
 
 msgid "Custom..."
 msgstr "Personalizar..."
+
+msgid "Sorry, the statistics are temporarily unavailable."
+msgstr "Desculpe, as estatísticas estão temporariamente indisponíveis."
 
 msgid "Loading the latest data&hellip;"
 msgstr "Carregando os dados mais recentes&hellip;"

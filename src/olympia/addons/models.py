@@ -873,8 +873,10 @@ class Addon(OnChangeMixin, ModelBase):
         return Rating.objects.filter(addon=self, reply_to=None)
 
     def language_ascii(self):
-        lang = trans_real.to_language(self.default_locale)
-        return settings.LANGUAGES.get(lang)
+        lang = settings.LANGUAGE_URL_MAP.get(
+            trans_real.to_language(self.default_locale)
+        )
+        return settings.AMO_LANGUAGES.get(lang, {}).get('native')
 
     @property
     def valid_file_statuses(self):

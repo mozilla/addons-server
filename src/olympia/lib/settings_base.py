@@ -164,9 +164,7 @@ TIME_ZONE = 'UTC'
 LANGUAGE_CODE = 'en-US'
 
 # Accepted locales / languages.
-from olympia.core.languages import LANGUAGE_MAPPING  # noqa
-
-AMO_LANGUAGES = LANGUAGE_MAPPING.keys()
+from olympia.core.languages import AMO_LANGUAGES  # noqa
 
 # Bidirectional languages.
 # Locales in here *must* be in `AMO_LANGUAGES` too.
@@ -182,9 +180,9 @@ SHORTER_LANGUAGES = {
 }
 
 # Override Django's built-in with our native names
-LANGUAGES = {
-    locale.lower(): value['native'] for locale, value in LANGUAGE_MAPPING.items()
-}
+LANGUAGES = [
+    (locale.lower(), value['native']) for locale, value in AMO_LANGUAGES.items()
+]
 
 LANGUAGE_URL_MAP = {locale.lower(): locale for locale in AMO_LANGUAGES}
 
@@ -1101,6 +1099,8 @@ CELERY_TASK_ROUTES = {
     'olympia.addons.tasks.delete_preview_files': {'queue': 'addons'},
     'olympia.addons.tasks.version_changed': {'queue': 'addons'},
     'olympia.addons.tasks.create_custom_icon_from_predefined': {'queue': 'addons'},
+    'olympia.addons.tasks.hard_delete_extra_files': {'queue': 'addons'},
+    'olympia.addons.tasks.hard_delete_legacy_versions': {'queue': 'addons'},
     'olympia.files.tasks.hide_disabled_files': {'queue': 'addons'},
     'olympia.versions.tasks.delete_preview_files': {'queue': 'addons'},
     'olympia.git.tasks.continue_git_extraction': {'queue': 'addons'},

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-07 10:50+0000\n"
+"POT-Creation-Date: 2021-02-09 17:39+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -125,6 +125,9 @@ msgstr "Nota ulasan"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Hanya add-ons versi terkini boleh disertakan dengan nota."
+
+msgid "Authors"
+msgstr "Pengarang"
 
 msgid "Ratings"
 msgstr "Penarafan"
@@ -1636,6 +1639,9 @@ msgstr "Nyahdaya Auto-Kelulusan"
 msgid "Delay auto-approval indefinitely"
 msgstr ""
 
+msgid "Delay auto-approval indefinitely and add restrictions"
+msgstr ""
+
 msgid "True positive"
 msgstr ""
 
@@ -2262,51 +2268,8 @@ msgstr ""
 msgid "Decline"
 msgstr ""
 
-#, fuzzy
-msgid "Set Up Payment"
-msgstr "Perlu Bayaran"
-
-msgid "You're done!"
-msgstr ""
-
-#, python-format
-msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
-msgstr ""
-
-msgid "A newer version of your add-on is currently pending review."
-msgstr ""
-
-msgid "If you have any questions, don’t hesitate to contact us."
-msgstr ""
-
-msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
-msgstr ""
-
-#, fuzzy
-msgid "Manage add-on"
-msgstr "Pek Bahasa (Add-on)"
-
-#, python-format
-msgid ""
-"There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a href=\"mailto:%(email)s\">"
-"%(email)s</a>."
-msgstr ""
-
-msgid "Thank you for joining the Promoted Add-ons Program!"
-msgstr ""
-
-#, python-format
-msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the program once payment is set up through the Stripe system. Click on the button below to continue:"
-msgstr ""
-
-msgid "Continue to Stripe Checkout"
-msgstr ""
-
 msgid "Manage Authors & License"
 msgstr "Urus Pengarang & Lesen"
-
-msgid "Authors"
-msgstr "Pengarang"
 
 msgid "About author roles"
 msgstr "Perihal peranan pengarang"
@@ -3186,9 +3149,6 @@ msgstr "Muat naik Versi Baru"
 
 msgid "View All"
 msgstr "Papar Semua"
-
-msgid "Manage Billing on Stripe"
-msgstr ""
 
 msgid "Listed Review Page"
 msgstr "Halaman Semakan Disenaraikan"
@@ -4553,6 +4513,18 @@ msgstr ""
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Thousands of GIFs at your fingertips."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Begone, annoying cookie warnings!"
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "The easiest way to manage all of your YouTube channel subscriptions."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 #, fuzzy
 msgid "Extensions are like apps for Firefox."
@@ -4870,6 +4842,7 @@ msgstr "mengandungi"
 msgid "start"
 msgstr "mula"
 
+#. L10n: end, as in "end date"
 msgid "end"
 msgstr "akhir"
 
@@ -4973,7 +4946,7 @@ msgstr ""
 msgid "Version string and guid match a blocklist Block"
 msgstr ""
 
-msgid "Risk breakdown not available."
+msgid "Weight breakdown not available."
 msgstr ""
 
 msgid "You can't submit a comment if `canned_response` is defined."
@@ -5020,8 +4993,19 @@ msgstr "GUID"
 msgid "Last Review"
 msgstr "Semakan Terakhir"
 
-msgid "Weight"
+#, fuzzy
+msgid "Code Weight"
 msgstr "Pertimbangkan"
+
+msgid "Metadata Weight"
+msgstr ""
+
+#, fuzzy
+msgid "Total Weight"
+msgstr "Pertimbangkan"
+
+msgid "Maliciousness Score"
+msgstr ""
 
 #, fuzzy
 msgid "Pending Rejection Deadline"
@@ -5533,17 +5517,6 @@ msgid "Force-enable add-on"
 msgstr "Add-on yang dipaksa-daya"
 
 #, fuzzy
-msgid "View Blocklist Submission"
-msgstr "Tinjau Semua Serahan"
-
-#, fuzzy
-msgid "Block add-on"
-msgstr "Kembali ke add-on"
-
-msgid "Update add-on block"
-msgstr ""
-
-#, fuzzy
 msgid "Disable Listed Auto-Approval"
 msgstr "Nyahdaya Auto-Kelulusan"
 
@@ -5578,6 +5551,17 @@ msgstr "Buang Tanda Semakan Kandungan Pentadbir"
 
 msgid "Clear Admin Static Theme Review Flag"
 msgstr "Buang Tanda Semakan Pentadbir Tema Statik"
+
+#, fuzzy
+msgid "View Blocklist Submission"
+msgstr "Tinjau Semua Serahan"
+
+#, fuzzy
+msgid "Block add-on"
+msgstr "Kembali ke add-on"
+
+msgid "Update add-on block"
+msgstr ""
 
 msgid "(admin)"
 msgstr "(pentadbir)"
@@ -5720,13 +5704,18 @@ msgstr "Muat turun fail"
 msgid "The developer has provided source code."
 msgstr "Pembangun menyediakan kod sumber."
 
-msgid "Scanners score:"
+msgid "Maliciousness Score:"
 msgstr ""
 
-msgid "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
+msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
 msgstr ""
 
-msgid "Weight:"
+#, fuzzy
+msgid "Code Weight:"
+msgstr "Pertimbangkan:"
+
+#, fuzzy
+msgid "Metadata Weight:"
 msgstr "Pertimbangkan:"
 
 msgid "Flagged by scanners"
@@ -6012,6 +6001,9 @@ msgstr "365 hari"
 
 msgid "Custom..."
 msgstr "Penyesuaian..."
+
+msgid "Sorry, the statistics are temporarily unavailable."
+msgstr ""
 
 msgid "Loading the latest data&hellip;"
 msgstr "Memuatkan data&hellip; terkini"

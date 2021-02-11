@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-12-07 11:13+0000\n"
+"POT-Creation-Date: 2021-02-09 17:39+0000\n"
+"PO-Revision-Date: 2021-02-10 06:44+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -121,6 +121,9 @@ msgstr "Opmerking bij beoordeling"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Alleen bij de nieuwste versies van add-ons kunnen opmerkingen worden toegevoegd."
+
+msgid "Authors"
+msgstr "Schrijvers"
 
 msgid "Ratings"
 msgstr "Waarderingen"
@@ -1614,6 +1617,9 @@ msgstr "Automatische goedkeuring uitstellen"
 msgid "Delay auto-approval indefinitely"
 msgstr "Automatische goedkeuring voor onbepaalde tijd uitstellen"
 
+msgid "Delay auto-approval indefinitely and add restrictions"
+msgstr "Automatische goedkeuring voor onbepaalde tijd uitstellen en beperkingen toevoegen"
+
 msgid "True positive"
 msgstr "Werkelijk positief"
 
@@ -2236,52 +2242,8 @@ msgstr "Klik hieronder op de knop Accepteren om te bevestigen dat u wilt worden 
 msgid "Decline"
 msgstr "Weigeren"
 
-msgid "Set Up Payment"
-msgstr "Betaling instellen"
-
-msgid "You're done!"
-msgstr "U bent klaar!"
-
-#, python-format
-msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
-msgstr ""
-"U bent klaar! Een nieuwe versie <strong>%(new_version_number)s</strong> van uw add-on <strong>%(addon_name)s</strong> wordt gepubliceerd als %(group_name)s en zou binnenkort beschikbaar moeten zijn."
-
-msgid "A newer version of your add-on is currently pending review."
-msgstr "Een nieuwere versie van uw add-on wacht momenteel op beoordeling."
-
-msgid "If you have any questions, don’t hesitate to contact us."
-msgstr "Als u vragen hebt, neem dan gerust contact met ons op."
-
-msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
-msgstr "Uw betaling is geregistreerd, maar er zijn momenteel geen gepubliceerde versies van uw add-on. Upload een nieuwe openbare versie om dit proces te voltooien."
-
-msgid "Manage add-on"
-msgstr "Add-on beheren"
-
-#, python-format
-msgid ""
-"There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a "
-"href=\"mailto:%(email)s\">%(email)s</a>."
-msgstr ""
-"Er is een fout opgetreden bij het instellen van de betaling voor uw add-on. Als u problemen met dit proces ondervindt of van gedachten bent veranderd, neem dan contact met ons op via <a "
-"href=\"mailto:%(email)s\">%(email)s</a>."
-
-msgid "Thank you for joining the Promoted Add-ons Program!"
-msgstr "Bedankt voor uw deelname aan het Promoted Add-ons-programma!"
-
-#, python-format
-msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the program once payment is set up through the Stripe system. Click on the button below to continue:"
-msgstr "Uw add-on <strong>%(addon_name)s</strong> wordt in het programma opgenomen zodra de betaling via het Stripe-systeem is ingesteld. Klik op onderstaande knop om verder te gaan:"
-
-msgid "Continue to Stripe Checkout"
-msgstr "Doorgaan naar Stripe Checkout"
-
 msgid "Manage Authors & License"
 msgstr "Schrijvers en licentie beheren"
-
-msgid "Authors"
-msgstr "Schrijvers"
 
 msgid "About author roles"
 msgstr "Over ontwikkelaarsfuncties"
@@ -3188,9 +3150,6 @@ msgstr "Nieuwe versie uploaden"
 
 msgid "View All"
 msgstr "Alles bekijken"
-
-msgid "Manage Billing on Stripe"
-msgstr "Facturering op Stripe beheren"
 
 msgid "Listed Review Page"
 msgstr "Pagina voor vermelde beoordelingen"
@@ -4491,6 +4450,18 @@ msgstr "Beheer uw tijd beter met een browserklok die de werkintervallen in kaart
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
 msgstr "Bent u dat dialoogvenster ‘Video gepauzeerd. Doorgaan met kijken?’ beu? Luister zonder onderbreking naar uw favoriete muziek op YouTube."
 
+#. editorial content for the primary hero shelves.
+msgid "Thousands of GIFs at your fingertips."
+msgstr "Duizenden GIFs binnen handbereik."
+
+#. editorial content for the primary hero shelves.
+msgid "Begone, annoying cookie warnings!"
+msgstr "Ga heen, vervelende cookiewaarschuwingen!"
+
+#. editorial content for the primary hero shelves.
+msgid "The easiest way to manage all of your YouTube channel subscriptions."
+msgstr "De eenvoudigste manier om al uw kanaalabonnementen van YouTube te beheren."
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Extensies zijn als apps voor Firefox."
@@ -4800,6 +4771,7 @@ msgstr "bevat"
 msgid "start"
 msgstr "start"
 
+#. L10n: end, as in "end date"
 msgid "end"
 msgstr "einde"
 
@@ -4900,8 +4872,8 @@ msgstr "Vertraagd omdat het de eerste versie in de lijst is"
 msgid "Version string and guid match a blocklist Block"
 msgstr "De versiestring en guid komen overeen met een blokkering op de blokkeringslijst"
 
-msgid "Risk breakdown not available."
-msgstr "Risico-uitwerking niet beschikbaar."
+msgid "Weight breakdown not available."
+msgstr "Gewichtsuitwerking niet beschikbaar."
 
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "U kunt geen commentaar indienen als ‘canned_response’ is gedefinieerd."
@@ -4949,8 +4921,17 @@ msgstr "ID"
 msgid "Last Review"
 msgstr "Laatste beoordeling"
 
-msgid "Weight"
-msgstr "Gewicht"
+msgid "Code Weight"
+msgstr "Codegewicht"
+
+msgid "Metadata Weight"
+msgstr "Gewicht metagegevens"
+
+msgid "Total Weight"
+msgstr "Totaal gewicht"
+
+msgid "Maliciousness Score"
+msgstr "Schadelijkheidsscore"
 
 msgid "Pending Rejection Deadline"
 msgstr "Deadline voor wachtrij voor afwijzing"
@@ -5432,15 +5413,6 @@ msgstr "Add-on geforceerd uitschakelen"
 msgid "Force-enable add-on"
 msgstr "Add-on geforceerd inschakelen"
 
-msgid "View Blocklist Submission"
-msgstr "Inzending voor blokkeringslijst bekijken"
-
-msgid "Block add-on"
-msgstr "Add-on blokkeren"
-
-msgid "Update add-on block"
-msgstr "Add-on-blokkering bijwerken"
-
 msgid "Disable Listed Auto-Approval"
 msgstr "Automatische goedkeuring van vermeldingen uitschakelen"
 
@@ -5470,6 +5442,15 @@ msgstr "Markering voor inhoudsbeoordeling door beheerder wissen"
 
 msgid "Clear Admin Static Theme Review Flag"
 msgstr "Markering voor beoordeling van statisch thema door beheerder wissen"
+
+msgid "View Blocklist Submission"
+msgstr "Inzending voor blokkeringslijst bekijken"
+
+msgid "Block add-on"
+msgstr "Add-on blokkeren"
+
+msgid "Update add-on block"
+msgstr "Add-on-blokkering bijwerken"
 
 msgid "(admin)"
 msgstr "(beheer)"
@@ -5607,14 +5588,17 @@ msgstr "Bestanden downloaden"
 msgid "The developer has provided source code."
 msgstr "De ontwikkelaar heeft een broncode opgegeven."
 
-msgid "Scanners score:"
-msgstr "Scannersscore:"
+msgid "Maliciousness Score:"
+msgstr "Schadelijkheidsscore:"
 
-msgid "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr "De Scannersscore geeft aan hoe waarschijnlijk het is dat deze versie schadelijk is, gebaseerd op de bevindingen van de scanner."
+msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
+msgstr "De Schadelijkheidsscore geeft aan hoe waarschijnlijk het is dat deze versie schadelijk is, gebaseerd op de bevindingen van de scanner."
 
-msgid "Weight:"
-msgstr "Gewicht:"
+msgid "Code Weight:"
+msgstr "Codegewicht:"
+
+msgid "Metadata Weight:"
+msgstr "Gewicht metagegevens:"
 
 msgid "Flagged by scanners"
 msgstr "Door scanners gemarkeerd"
@@ -5879,6 +5863,9 @@ msgstr "365 dagen"
 
 msgid "Custom..."
 msgstr "Aangepast…"
+
+msgid "Sorry, the statistics are temporarily unavailable."
+msgstr "Sorry, de statistieken zijn tijdelijk niet beschikbaar."
 
 msgid "Loading the latest data&hellip;"
 msgstr "Laatste gegevens laden…"

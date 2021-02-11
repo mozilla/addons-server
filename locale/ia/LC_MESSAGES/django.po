@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2021-01-13 19:17+0000\n"
-"Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
+"POT-Creation-Date: 2021-02-09 17:39+0000\n"
+"PO-Revision-Date: 2021-02-11 11:28+0000\n"
+"Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
 "MIME-Version: 1.0\n"
@@ -119,6 +119,9 @@ msgstr "Nota de revision"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Solmente le ultime versiones del additivos pote haber notas addite."
+
+msgid "Authors"
+msgstr "Autores"
 
 msgid "Ratings"
 msgstr "Evalutationes"
@@ -1603,6 +1606,9 @@ msgstr "Retardar auto-approbation"
 msgid "Delay auto-approval indefinitely"
 msgstr "Retardar auto-approbation indefinitemente"
 
+msgid "Delay auto-approval indefinitely and add restrictions"
+msgstr "Retardar auto-approbation indefinitemente e adder restrictiones"
+
 msgid "True positive"
 msgstr "Ver positive"
 
@@ -2223,52 +2229,8 @@ msgstr "Clicca sur le button Acceptar infra pro confirmar que tu desira esser ad
 msgid "Decline"
 msgstr "Refusar"
 
-msgid "Set Up Payment"
-msgstr "Preparar pagamento"
-
-msgid "You're done!"
-msgstr "Tu ha finite!"
-
-#, python-format
-msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
-msgstr ""
-"Tu ha finite! Un nove version <strong>%(new_version_number)s</strong> de tu additivo <strong>%(addon_name)s</strong> sera publicate como %(group_name)s e deberea devenir disponibile tra breve."
-
-msgid "A newer version of your add-on is currently pending review."
-msgstr "Un nove version del additivo attende actualmente revision."
-
-msgid "If you have any questions, don’t hesitate to contact us."
-msgstr "Si tu ha ulle questiones, non hesitar continger nos."
-
-msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
-msgstr "Tu pagamento ha essite registrate, ma il ha actualmente nulle versiones publicate de tu additivo. Carga un nove version public pro completar iste processo."
-
-msgid "Manage add-on"
-msgstr "Gerer additivo"
-
-#, python-format
-msgid ""
-"There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a "
-"href=\"mailto:%(email)s\">%(email)s</a>."
-msgstr ""
-"Un error occurreva durante le configuration del pagamento pro tu additivo. Si tu remarca problemas con iste processo o tu ha cambiate opinion, continge nos a <a "
-"href=\"mailto:%(email)s\">%(email)s</a>."
-
-msgid "Thank you for joining the Promoted Add-ons Program!"
-msgstr "Gratias pro junger te al programma del additivos promovite!"
-
-#, python-format
-msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the program once payment is set up through the Stripe system. Click on the button below to continue:"
-msgstr "Tu additivo <strong>%(addon_name)s</strong> sera includite in le programma un vice que le pagamento es definite per le systema Stripe. Clicca sur le button infra pro continuar:"
-
-msgid "Continue to Stripe Checkout"
-msgstr "Continuar sur Stripe Checkout"
-
 msgid "Manage Authors & License"
 msgstr "Gerer autores & licentia"
-
-msgid "Authors"
-msgstr "Autores"
 
 msgid "About author roles"
 msgstr "A proposito del rolos de autores"
@@ -3164,9 +3126,6 @@ msgstr "Incargar nove version"
 
 msgid "View All"
 msgstr "Vider toto"
-
-msgid "Manage Billing on Stripe"
-msgstr "Gerer facturation sur Stripe"
 
 msgid "Listed Review Page"
 msgstr "Pagina de revision del additivos in le lista de presentation"
@@ -4460,6 +4419,18 @@ msgstr "Gere melio tu tempore con un horologio del navigator que delinea le inte
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
 msgstr "Fatigate de ille fenestra de dialogo \"Video pausate. Continuar observar?\" dialogo? Ascolta non interrumpite tu musica favorite sur YouTube."
 
+#. editorial content for the primary hero shelves.
+msgid "Thousands of GIFs at your fingertips."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Begone, annoying cookie warnings!"
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "The easiest way to manage all of your YouTube channel subscriptions."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Le extensiones es como applicationes pro Firefox."
@@ -4768,6 +4739,7 @@ msgstr "continente"
 msgid "start"
 msgstr "initiar"
 
+#. L10n: end, as in "end date"
 msgid "end"
 msgstr "finir"
 
@@ -4868,7 +4840,8 @@ msgstr "Retardate perque il es le prime version listate"
 msgid "Version string and guid match a blocklist Block"
 msgstr "Le catena de version e le GUID concorda con un blocada del lista del blocadas"
 
-msgid "Risk breakdown not available."
+#, fuzzy
+msgid "Weight breakdown not available."
 msgstr "Analyse risco non disponibile."
 
 msgid "You can't submit a comment if `canned_response` is defined."
@@ -4916,8 +4889,17 @@ msgstr "ID"
 msgid "Last Review"
 msgstr "Ultime revision"
 
-msgid "Weight"
-msgstr "Peso"
+msgid "Code Weight"
+msgstr "Peso codice"
+
+msgid "Metadata Weight"
+msgstr ""
+
+msgid "Total Weight"
+msgstr "Peso total"
+
+msgid "Maliciousness Score"
+msgstr ""
 
 msgid "Pending Rejection Deadline"
 msgstr "Data expiration del rejection pendente"
@@ -5397,15 +5379,6 @@ msgstr "Fortiar disactivation de additivo"
 msgid "Force-enable add-on"
 msgstr "Fortiar activation de additivo"
 
-msgid "View Blocklist Submission"
-msgstr "Vider invio del lista del blocadas"
-
-msgid "Block add-on"
-msgstr "Blocar additivo"
-
-msgid "Update add-on block"
-msgstr "Actualisar blocada de additivo"
-
 msgid "Disable Listed Auto-Approval"
 msgstr "Disactivar auto-approbation de additivos publicate"
 
@@ -5435,6 +5408,15 @@ msgstr "Remover le signal de revision de contento per administrator"
 
 msgid "Clear Admin Static Theme Review Flag"
 msgstr "Remover le signal de revision de thema static per administrator"
+
+msgid "View Blocklist Submission"
+msgstr "Vider invio del lista del blocadas"
+
+msgid "Block add-on"
+msgstr "Blocar additivo"
+
+msgid "Update add-on block"
+msgstr "Actualisar blocada de additivo"
 
 msgid "(admin)"
 msgstr "(administrator)"
@@ -5572,14 +5554,17 @@ msgstr "Discargar files"
 msgid "The developer has provided source code."
 msgstr "Le disveloppator ha fornite le codice fonte."
 
-msgid "Scanners score:"
-msgstr "Valutation del scanditores:"
+msgid "Maliciousness Score:"
+msgstr ""
 
-msgid "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr "Le valutation del scanditores representa le probabilitate de esser maligne de iste version, in base al resultatos del scanditores."
+msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
+msgstr "Le valutation del malitiositate representa le probabilitate de esser maligne de iste version, in base al resultatos del scanditores."
 
-msgid "Weight:"
-msgstr "Peso:"
+msgid "Code Weight:"
+msgstr "Peso codice:"
+
+msgid "Metadata Weight:"
+msgstr "Peso metadatos:"
 
 msgid "Flagged by scanners"
 msgstr "Signalate per scanditores"
@@ -5844,6 +5829,9 @@ msgstr "365 dies"
 
 msgid "Custom..."
 msgstr "Personalisate..."
+
+msgid "Sorry, the statistics are temporarily unavailable."
+msgstr ""
 
 msgid "Loading the latest data&hellip;"
 msgstr "Cargamento del ultime datos&hellip;"

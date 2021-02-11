@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-12-09 23:26+0000\n"
+"POT-Creation-Date: 2021-02-09 17:39+0000\n"
+"PO-Revision-Date: 2021-02-09 19:00+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -126,6 +126,9 @@ msgstr "Értékelési megjegyzés"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Csak a legfrissebb verziókhoz lehet jegyzeteket hozzáadni."
+
+msgid "Authors"
+msgstr "Szerzők"
 
 msgid "Ratings"
 msgstr "Értékelések"
@@ -1624,6 +1627,9 @@ msgstr "Automatikus jóváhagyás késleltetése"
 msgid "Delay auto-approval indefinitely"
 msgstr "Automatikus elfogadás késleltetése határozatlan ideig"
 
+msgid "Delay auto-approval indefinitely and add restrictions"
+msgstr "Automatikus elfogadás késleltetése határozatlan ideig, és korlátozások hozzáadása"
+
 msgid "True positive"
 msgstr "Valódi pozitív"
 
@@ -2249,51 +2255,8 @@ msgstr "Kattintson a lenti Elfogadás gombra, hogy megerősítse azt, hogy a(z) 
 msgid "Decline"
 msgstr "Elutasítás"
 
-msgid "Set Up Payment"
-msgstr "Fizetés beállítása"
-
-msgid "You're done!"
-msgstr "Kész is van!"
-
-#, python-format
-msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
-msgstr "Kész! A(z) <strong>%(addon_name)s</strong> kiegészítője <strong>%(new_version_number)s</strong> verziója %(group_name)s néven lesz közzétéve, és hamarosan elérhetővé válik."
-
-msgid "A newer version of your add-on is currently pending review."
-msgstr "A kiegészítője újabb verziója jelenleg felülvizsgálatra vár."
-
-msgid "If you have any questions, don’t hesitate to contact us."
-msgstr "Ha bármi kérdése van, forduljon hozzánk bizalommal."
-
-msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
-msgstr "Fizetését rögzítettük, de a kiegészítőnek jelenleg nincsenek közzétett verziói. A folyamat befejezéséhez töltsön fel egy új nyilvános verziót."
-
-msgid "Manage add-on"
-msgstr "Kiegészítő kezelése"
-
-#, python-format
-msgid ""
-"There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a "
-"href=\"mailto:%(email)s\">%(email)s</a>."
-msgstr ""
-"Hiba történt a kiegészítőért való fizetés beállításakor. Ha problémákat tapasztal e folyamatban, vagy meggondolta magát, lépjen velünk kapcsolatba az <a href=\"mailto:%(email)s\">%(email)s</a> "
-"címen."
-
-msgid "Thank you for joining the Promoted Add-ons Program!"
-msgstr "Köszönjük, hogy csatlakozott a Támogatot kiegészítők programhoz!"
-
-#, python-format
-msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the program once payment is set up through the Stripe system. Click on the button below to continue:"
-msgstr "A(z) <strong>%(addon_name)s</strong> kiegészítője bekerül a programba, amint a Stripe-on keresztüli fizetés kész. A folytatáshoz kattintson az alábbi gombra:"
-
-msgid "Continue to Stripe Checkout"
-msgstr "Tovább a Stripe-fizetéshez"
-
 msgid "Manage Authors & License"
 msgstr "Szerzők és licencek kezelése"
-
-msgid "Authors"
-msgstr "Szerzők"
 
 msgid "About author roles"
 msgstr "Szerző feladatai"
@@ -3200,9 +3163,6 @@ msgstr "Új verzió feltöltése"
 
 msgid "View All"
 msgstr "Mutassa mindet"
-
-msgid "Manage Billing on Stripe"
-msgstr "Stripe-számlázás kezelése"
 
 msgid "Listed Review Page"
 msgstr "Listázott értékelés oldal"
@@ -4504,6 +4464,18 @@ msgstr "Ossza be jobban az idejét a egy böngészőórával, amely összeszámo
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
 msgstr "Unja a „Videó szüneteltetve. Folytatja a nézését?” párbeszédablakot? Hallgassa kedvenc zenéit megszakítás nélkül a YouTube-on."
 
+#. editorial content for the primary hero shelves.
+msgid "Thousands of GIFs at your fingertips."
+msgstr "GIF-ek ezrei karnyújtásnyira."
+
+#. editorial content for the primary hero shelves.
+msgid "Begone, annoying cookie warnings!"
+msgstr "Bosszantó sütifigyelmeztetések, távozzatok!"
+
+#. editorial content for the primary hero shelves.
+msgid "The easiest way to manage all of your YouTube channel subscriptions."
+msgstr "A YouTube csatornafeliratkozásainak kezelésének legegyszerűbb módja."
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "A kiegészítők olyanok, mintha alkalmazások lennének a Firefoxhoz."
@@ -4813,6 +4785,7 @@ msgstr "tartalmazza"
 msgid "start"
 msgstr "kezdet"
 
+#. L10n: end, as in "end date"
 msgid "end"
 msgstr "vége"
 
@@ -4913,8 +4886,8 @@ msgstr "Késleltetetve, mert ez az első listázott verzió"
 msgid "Version string and guid match a blocklist Block"
 msgstr "A verziószám és a GUID megegyezik egy blokkolási listán található blokkolással"
 
-msgid "Risk breakdown not available."
-msgstr "A kockázati bontás nem érhető el."
+msgid "Weight breakdown not available."
+msgstr "A súly szerinti lebontás nem áll rendelkezésre."
 
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Nem küldhet megjegyzést, ha a „canned_response” be van állítva."
@@ -4961,8 +4934,17 @@ msgstr "Azonosító"
 msgid "Last Review"
 msgstr "Legutóbbi értékelés"
 
-msgid "Weight"
-msgstr "Súly"
+msgid "Code Weight"
+msgstr "Kód súlya"
+
+msgid "Metadata Weight"
+msgstr "Metaadatok súlya"
+
+msgid "Total Weight"
+msgstr "Teljes súly"
+
+msgid "Maliciousness Score"
+msgstr "Rosszindulat pontszáma"
 
 msgid "Pending Rejection Deadline"
 msgstr "Függőben lévő elutasítás határideje"
@@ -5448,17 +5430,6 @@ msgstr "Kiegészítő erőltetett letiltása"
 msgid "Force-enable add-on"
 msgstr "Kiegészítő erőltetett engedélyezése"
 
-msgid "View Blocklist Submission"
-msgstr "Összes blokkolási lista beküldése"
-
-# 80%
-# 100%
-msgid "Block add-on"
-msgstr "Kiegészítő blokkolása"
-
-msgid "Update add-on block"
-msgstr "Kiegészítő blokkolásának frissítése"
-
 msgid "Disable Listed Auto-Approval"
 msgstr "Listázottak automatikus jóváhagyásának letiltása"
 
@@ -5488,6 +5459,17 @@ msgstr "Adminisztrátori tartalomértékelés jelző törlése"
 
 msgid "Clear Admin Static Theme Review Flag"
 msgstr "Adminisztrátori statikus téma értékelés jelző törlése"
+
+msgid "View Blocklist Submission"
+msgstr "Összes blokkolási lista beküldése"
+
+# 80%
+# 100%
+msgid "Block add-on"
+msgstr "Kiegészítő blokkolása"
+
+msgid "Update add-on block"
+msgstr "Kiegészítő blokkolásának frissítése"
 
 msgid "(admin)"
 msgstr "(admin)"
@@ -5625,14 +5607,17 @@ msgstr "Fájlok letöltése"
 msgid "The developer has provided source code."
 msgstr "A fejlesztő biztosított forráskódot."
 
-msgid "Scanners score:"
-msgstr "Átvizsgáló pontszáma:"
+msgid "Maliciousness Score:"
+msgstr "Rosszindulat pontszáma:"
 
-msgid "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr "Az Átvizsgáló pontszáma annak a valószínűségét jelenti, hogy az átvizsgáló megállapításai alapján ez a verzió rosszindulatú-e."
+msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
+msgstr "A rosszindulat pontszáma annak a valószínűségét jelenti, hogy az átvizsgáló megállapításai alapján ez a verzió rosszindulatú-e."
 
-msgid "Weight:"
-msgstr "Súly:"
+msgid "Code Weight:"
+msgstr "Kód súlya:"
+
+msgid "Metadata Weight:"
+msgstr "Metaadatok súlya:"
 
 msgid "Flagged by scanners"
 msgstr "Átvizsgálók által megjelölve"
@@ -5897,6 +5882,9 @@ msgstr "365 nap"
 
 msgid "Custom..."
 msgstr "Egyéni…"
+
+msgid "Sorry, the statistics are temporarily unavailable."
+msgstr "Sajnáljuk, a statisztikák ideiglenesen nem érhetőek el."
 
 msgid "Loading the latest data&hellip;"
 msgstr "Legfrissebb adatok betöltése&hellip;"

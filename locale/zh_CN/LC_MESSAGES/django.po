@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-12-23 13:46+0000\n"
+"POT-Creation-Date: 2021-02-09 17:39+0000\n"
+"PO-Revision-Date: 2021-02-09 22:15+0000\n"
 "Last-Translator: 你我皆凡人 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -118,6 +118,9 @@ msgstr "审核说明"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "仅最新版的 addons 可添加说明。"
+
+msgid "Authors"
+msgstr "作者"
 
 msgid "Ratings"
 msgstr "评分量"
@@ -1584,6 +1587,9 @@ msgstr "推迟自动批准"
 msgid "Delay auto-approval indefinitely"
 msgstr "无限期推迟自动批准"
 
+msgid "Delay auto-approval indefinitely and add restrictions"
+msgstr "无限期推迟自动批准并添加限制"
+
 msgid "True positive"
 msgstr "真阳性"
 
@@ -2188,49 +2194,8 @@ msgstr "点击下方接受按钮，来确认您要被添加为 {addon_name} 的�
 msgid "Decline"
 msgstr "拒绝"
 
-msgid "Set Up Payment"
-msgstr "设置付款"
-
-msgid "You're done!"
-msgstr "完成了！"
-
-#, python-format
-msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
-msgstr "完成了！附加组件 <strong>%(addon_name)s</strong> 的新版本 <strong>%(new_version_number)s</strong> 将作为 %(group_name)s 发布，很快就会上架。"
-
-msgid "A newer version of your add-on is currently pending review."
-msgstr "您附加组件的新版本目前正在等待审核。"
-
-msgid "If you have any questions, don’t hesitate to contact us."
-msgstr "如有任何疑问，请随时与我们联系。"
-
-msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
-msgstr "已收到您的付款，但暂无附加组件的发布版本。请上传新的公开版本以完成此过程。"
-
-msgid "Manage add-on"
-msgstr "管理附加组件"
-
-#, python-format
-msgid ""
-"There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a "
-"href=\"mailto:%(email)s\">%(email)s</a>."
-msgstr "进行附加组件的付款时出错。若您在此过程遇到问题或已改变主意，请通过 <a href=\"mailto:%(email)s\">%(email)s</a> 与我们联系。"
-
-msgid "Thank you for joining the Promoted Add-ons Program!"
-msgstr "感谢您加入“附加组件推广计划”！"
-
-#, python-format
-msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the program once payment is set up through the Stripe system. Click on the button below to continue:"
-msgstr "通过 Stripe 系统完成付款后，您的附加组件 <strong>%(addon_name)s</strong> 即可加入该推广计划。点击下方按钮继续："
-
-msgid "Continue to Stripe Checkout"
-msgstr "继续前往 Stripe 支付"
-
 msgid "Manage Authors & License"
 msgstr "管理作者和许可协议"
-
-msgid "Authors"
-msgstr "作者"
 
 msgid "About author roles"
 msgstr "关于作者角色"
@@ -3100,9 +3065,6 @@ msgstr "上传新版本"
 
 msgid "View All"
 msgstr "查看全部"
-
-msgid "Manage Billing on Stripe"
-msgstr "管理 Stripe 上的账单"
 
 msgid "Listed Review Page"
 msgstr "上架审核页面"
@@ -4387,6 +4349,18 @@ msgstr "工作、休息合理划分，助您高效管理时间。"
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
 msgstr "是否厌倦了“视频已暂停，要继续观看吗？”的提示？让您在 YouTube 上畅听喜欢的音乐。"
 
+#. editorial content for the primary hero shelves.
+msgid "Thousands of GIFs at your fingertips."
+msgstr "成千上万的 GIF 图触手可及。"
+
+#. editorial content for the primary hero shelves.
+msgid "Begone, annoying cookie warnings!"
+msgstr "滚蛋吧，烦人的 Cookie 警告！"
+
+#. editorial content for the primary hero shelves.
+msgid "The easiest way to manage all of your YouTube channel subscriptions."
+msgstr "轻松管理所有 YouTube 频道订阅。"
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "给 Firefox 加点机能。"
@@ -4685,6 +4659,7 @@ msgstr "包含"
 msgid "start"
 msgstr "开始日期"
 
+#. L10n: end, as in "end date"
 msgid "end"
 msgstr "结束日期"
 
@@ -4785,8 +4760,8 @@ msgstr "因为是首次上架的版本，已推迟"
 msgid "Version string and guid match a blocklist Block"
 msgstr "版本字符串与 GUID，与屏蔽列表中的项目匹配"
 
-msgid "Risk breakdown not available."
-msgstr "风险分解不可用。"
+msgid "Weight breakdown not available."
+msgstr "权重分解不可用。"
 
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "若定义了“canned_response”，则无法提交评论。"
@@ -4830,8 +4805,17 @@ msgstr "ID"
 msgid "Last Review"
 msgstr "上次审核"
 
-msgid "Weight"
-msgstr "加权"
+msgid "Code Weight"
+msgstr "代码权重"
+
+msgid "Metadata Weight"
+msgstr "元数据权重"
+
+msgid "Total Weight"
+msgstr "总权重"
+
+msgid "Maliciousness Score"
+msgstr "恶意评分"
 
 msgid "Pending Rejection Deadline"
 msgstr "待驳回期限"
@@ -5311,15 +5295,6 @@ msgstr "强制禁用附加组件"
 msgid "Force-enable add-on"
 msgstr "强制启用附加组件"
 
-msgid "View Blocklist Submission"
-msgstr "查看提交的屏蔽列表"
-
-msgid "Block add-on"
-msgstr "屏蔽附加组件"
-
-msgid "Update add-on block"
-msgstr "更新附加组件屏蔽列表"
-
 msgid "Disable Listed Auto-Approval"
 msgstr "禁用上架项目自动批准"
 
@@ -5349,6 +5324,15 @@ msgstr "清除管理员审核内容标记"
 
 msgid "Clear Admin Static Theme Review Flag"
 msgstr "清除管理员审核静态主题标记"
+
+msgid "View Blocklist Submission"
+msgstr "查看提交的屏蔽列表"
+
+msgid "Block add-on"
+msgstr "屏蔽附加组件"
+
+msgid "Update add-on block"
+msgstr "更新附加组件屏蔽列表"
 
 msgid "(admin)"
 msgstr "（管理员）"
@@ -5486,14 +5470,17 @@ msgstr "下载文件"
 msgid "The developer has provided source code."
 msgstr "开发者已提供源代码。"
 
-msgid "Scanners score:"
-msgstr "扫描器得分："
+msgid "Maliciousness Score:"
+msgstr "恶意评分："
 
-msgid "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr "扫描器得分表示基于扫描结果，此版本是恶意版本的可能性。"
+msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
+msgstr "恶意评分基于扫描结果，表示此版本被恶意感染的可能性。"
 
-msgid "Weight:"
-msgstr "加权："
+msgid "Code Weight:"
+msgstr "代码权重："
+
+msgid "Metadata Weight:"
+msgstr "元数据权重："
 
 msgid "Flagged by scanners"
 msgstr "由扫描器标记"
@@ -5759,6 +5746,9 @@ msgstr "365 天"
 
 msgid "Custom..."
 msgstr "自定义..."
+
+msgid "Sorry, the statistics are temporarily unavailable."
+msgstr "抱歉，该统计信息暂时不可用。"
 
 msgid "Loading the latest data&hellip;"
 msgstr "载入最新数据&hellip;"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-12-07 13:00+0000\n"
+"POT-Creation-Date: 2021-02-09 17:39+0000\n"
+"PO-Revision-Date: 2021-02-09 22:40+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -122,6 +122,9 @@ msgstr "סקירה"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "ניתן להוסיף הערות רק לגרסאות עדכניות של תוספות."
+
+msgid "Authors"
+msgstr "יוצרים"
 
 msgid "Ratings"
 msgstr "דירוגים"
@@ -300,11 +303,13 @@ msgstr ""
 msgid "Oops"
 msgstr "אוי"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
-msgstr "<h1>אופס!  קרתה איזו תקלה.</h1> <p>אנו כבר נתפנה לטפל בה.</p> <p> אפשר לנסות לרענן את העמוד, או לחזור אל <a href=\"%(home)s\">דף הבית של התוספות</a>. </p>"
+msgstr ""
+"<h1>אופס! קרתה איזו תקלה.</h1> <p>אנו כבר נתפנה לטפל בה.</p> <p> אפשר לנסות לרענן את העמוד, או לחזור אל <a href=\"%(home)s\">דף הבית של התוספות</a>. ניתן גם לעזור לנו לתקן בעיה זו על־ידי <a "
+"href=\"https://github.com/mozilla/addons/issues/new\">הגשת דיווח על תקלה</a> עם הפרטים אודות כיצד הגעת לדף זה. </p>"
 
 msgid "Register or Log in"
 msgstr "הרשמה או התחברות"
@@ -966,9 +971,8 @@ msgstr "מועד אחרון לבקשה למידע"
 msgid "{addon} {version} re-signed (previously {0})."
 msgstr "נשלחה בקשה לסקירה עבור {addon} {version}."
 
-#, fuzzy
 msgid "Version re-signed"
-msgstr "הגרסה %s אופשרה מחדש."
+msgstr "הגרסה נחתמה מחדש"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1419,9 +1423,8 @@ msgstr "ממומן"
 msgid "Verified"
 msgstr "מאומת"
 
-#, fuzzy
 msgid "By Firefox"
-msgstr "Firefox"
+msgstr "מאת Firefox"
 
 msgid "Spotlight"
 msgstr ""
@@ -1615,6 +1618,9 @@ msgid "Delay auto-approval"
 msgstr "השהיית אישור אוטומטי"
 
 msgid "Delay auto-approval indefinitely"
+msgstr ""
+
+msgid "Delay auto-approval indefinitely and add restrictions"
 msgstr ""
 
 msgid "True positive"
@@ -2239,51 +2245,8 @@ msgstr "יש ללחוץ על כפתור האישור למטה כדי לאשר ש
 msgid "Decline"
 msgstr "דחייה"
 
-#, fuzzy
-msgid "Set Up Payment"
-msgstr "תשלום נדרש"
-
-msgid "You're done!"
-msgstr "סיימת!"
-
-#, python-format
-msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
-msgstr "סיימת! גרסה חדשה <strong>%(new_version_number)s</strong> של התוספת שלך <strong>%(addon_name)s</strong> תפורסם כ־%(group_name)s ותהיה זמינה תוך זמן קצר."
-
-msgid "A newer version of your add-on is currently pending review."
-msgstr "גרסה חדשה יותר של התוספת שלך ממתינה כעת לסקירה."
-
-msgid "If you have any questions, don’t hesitate to contact us."
-msgstr ""
-
-msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
-msgstr ""
-
-#, fuzzy
-msgid "Manage add-on"
-msgstr "חבילת שפה (תוספת)"
-
-#, python-format
-msgid ""
-"There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a "
-"href=\"mailto:%(email)s\">%(email)s</a>."
-msgstr ""
-
-msgid "Thank you for joining the Promoted Add-ons Program!"
-msgstr ""
-
-#, python-format
-msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the program once payment is set up through the Stripe system. Click on the button below to continue:"
-msgstr ""
-
-msgid "Continue to Stripe Checkout"
-msgstr ""
-
 msgid "Manage Authors & License"
 msgstr "ניהול יוצרים ורשיונות"
-
-msgid "Authors"
-msgstr "יוצרים"
 
 msgid "About author roles"
 msgstr "על אודות תפקידי יוצרים"
@@ -2670,16 +2633,14 @@ msgstr "הגשת גרסה חדשה"
 msgid "Cancel and Disable Version"
 msgstr "ביטול והשבתת הגרסה"
 
-#, fuzzy
 msgid "Are you sure you wish to cancel and disable version?"
-msgstr "האם ברצונך למחוק את הגרסה הזו?"
+msgstr "האם ברצונך לבטל ולהשבית את הגרסה הזו?"
 
-#, fuzzy
 msgid "Yes, Cancel"
-msgstr "ביטול"
+msgstr "כן, לבטל"
 
 msgid "No, don't cancel"
-msgstr ""
+msgstr "לא, לא לבטל"
 
 msgid "Name and Summary:"
 msgstr "שם ותקציר:"
@@ -2691,7 +2652,7 @@ msgstr "נדרש"
 msgid ""
 "Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
 "submission process is complete."
-msgstr ""
+msgstr "אזהרה: יש לך ערכים של שם/תקציר בשפות אחרות שייחתכו באופן אוטומטי כדי שיתאימו למגבלה של %(max_length)s תווים.  כדי לערוך אותם יש לעבור לדף עריכת המוצר לאחר סיום תהליך ההגשה."
 
 msgid "Add-on URL:"
 msgstr "כתובת התוספת:"
@@ -2848,7 +2809,7 @@ msgid "Web template engines, both for HTML and CSS"
 msgstr "מנועי תבניות אתרים, עבור HTML ו־CSS"
 
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
-msgstr ""
+msgstr "כל כלי אחר שלוקח קוד או קבצים, מעבד אותם ויוצר קוד או קבצים שייכללו בתוספת"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
 msgstr "אין צורך לספק קוד מקור, ניתן להמשיך לשלב הבא."
@@ -3145,9 +3106,6 @@ msgstr "העלאת גרסה חדשה"
 
 msgid "View All"
 msgstr "הצגת הכל"
-
-msgid "Manage Billing on Stripe"
-msgstr ""
 
 msgid "Listed Review Page"
 msgstr "עמוד סקירה גלוי"
@@ -3863,9 +3821,8 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
-msgstr "שימוש במחוות עכבר כדי לסגור לשוניות, לחזור לדף הקודם, לטעון מחדש ועוד."
+msgstr "שימוש במחוות עכבר כדי לסגור לשוניות, לעבור בין דפים ועוד."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3958,7 +3915,7 @@ msgstr "הסתרת חלקים מהאתרים המופיעים בפניך."
 
 #. editorial content for the discovery pane.
 msgid "Download images you find on the web."
-msgstr ""
+msgstr "הורדת תמונות מהאינטרנט."
 
 #. editorial content for the discovery pane.
 msgid "Restrict access to inappropriate or undesired content with a filter."
@@ -3974,7 +3931,7 @@ msgstr "לנצח את הספאם. שימוש בכתובות דוא״ל זמני�
 
 #. editorial content for the discovery pane.
 msgid "A direct path to customizing the built-in privacy settings in Firefox."
-msgstr ""
+msgstr "נתיב ישיר להתאמה אישית של הגדרות הפרטיות המובנות ב־Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations by highlighting text and clicking the button that pops up."
@@ -3982,7 +3939,7 @@ msgstr "קבלת תרגומים מיידיים על־ידי סימון טקסט 
 
 #. editorial content for the discovery pane.
 msgid "Go straight to the website you want to access without being redirected in between."
-msgstr ""
+msgstr "מעבר ישיר לאתר שאליו ברצונך לגשת, מבלי להיות מנותב תוך כדי."
 
 #. editorial content for the discovery pane.
 msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
@@ -3993,9 +3950,8 @@ msgid "Get expert German translations between English, French, Spanish, and othe
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
-msgstr "הגבלת Firefox מכניסה לאתרים מוגדרים."
+msgstr "הגבלת Firefox מפני כניסה לאתרים מוגדרים. כלי נהדר להפעלת משמעת עצמית ברשת."
 
 #. editorial content for the discovery pane.
 msgid "Manage your productivity by working in set time intervals."
@@ -4012,7 +3968,7 @@ msgstr "הפעלת מצב לילה לחווית צפייה טובה יותר."
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search by leveraging the power of multiple search providers."
-msgstr ""
+msgstr "חיפוש תמונות הפוך על־ידי מינוף כוחן של ספקי חיפוש מרובים."
 
 #. editorial content for the discovery pane.
 msgid "A more efficient way to save bookmarks if you use multiple bookmark folders."
@@ -4028,7 +3984,7 @@ msgstr "המרת דף אינטרנט שלם לשפה המועדפת עליך —
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a web page in new tabs."
-msgstr ""
+msgstr "הצגה מיידית של כל הקישורים מדף אינטרנט בלשוניות חדשות."
 
 #. editorial content for the discovery pane.
 msgid "Strip away redirect pages and URL tracking parameters from web links. Works automatically."
@@ -4036,7 +3992,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Prevent search engines from knowing what search results you click on."
-msgstr ""
+msgstr "למנוע ממנועי חיפוש לדעת באלו תוצאות חיפוש בוחרים."
 
 #. editorial content for the discovery pane.
 msgid "Download YouTube videos and/or audio."
@@ -4063,7 +4019,7 @@ msgstr "ניקוי מטמון הדפדפן שלך בלחיצת כפתור או �
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on web pages to save and access later."
-msgstr ""
+msgstr "הדגשת טקסט בדפי אינטרנט כדי לשמור ולגשת אליהם מאוחר יותר."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4087,11 +4043,11 @@ msgstr "ניווט אוטומטי לגרסה מאובטחת של אתר, אם ק
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr ""
+msgstr "מחיקת היסטוריית הניווט שלך. הגדרת מספר מותאם אישית של ימים לשמירת היסטוריית הדפדפן לפני שתנוקה באופן אוטומטי."
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
-msgstr ""
+msgstr "עצירת הופעתן של פרסומות בתוצאות החיפוש שלך."
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
@@ -4103,7 +4059,7 @@ msgstr "מילוי טפסים באופן אוטומטי. שמירת נתונים
 
 #. editorial content for the discovery pane.
 msgid "Search privately with just a click."
-msgstr ""
+msgstr "חיפוש באופן פרטי בלחיצה אחת בלבד."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4165,7 +4121,7 @@ msgstr "הוספת יכולת ההצגה/הסתרה לכל שדות הססמאו
 
 #. editorial content for the discovery pane.
 msgid "Focus on what you're watching by dimming everything but the video player."
-msgstr ""
+msgstr "להתמקד במה שצופים על־ידי עמעום הכל מלבד נגן הוידאו."
 
 #. editorial content for the discovery pane.
 msgid "Modify your bookmarks through an easily accessible panel."
@@ -4221,7 +4177,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Close annoying pop-ups with a simple click."
-msgstr ""
+msgstr "סגירת חלונות קופצים מעצבנים בלחיצה פשוטה."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4320,7 +4276,7 @@ msgstr "מדידת דפי אינטרנט. ציור סרגל דיגיטלי בכ�
 
 #. editorial content for the discovery pane.
 msgid "Enjoy the benefits of strong password management."
-msgstr ""
+msgstr "להנות מהיתרונות של ניהול ססמאות חזקות."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4330,7 +4286,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
-msgstr ""
+msgstr "לחסום אתרים שמסיחים את הדעת. כל מה שעליך לעשות זה להוסיף לרשימה את האתרים שברצונך לחסום. משמעת מיידית!"
 
 #. editorial content for the discovery pane.
 msgid "Find archived, dead, or otherwise disappeared web pages."
@@ -4339,7 +4295,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
-msgstr ""
+msgstr "שינוי מראה הדפדפן שלך. ניתן לתכנן בקלות ערכות נושא חזותיות משלך כדי לגרום ל־Firefox להיראות כרצונך."
 
 #. editorial content for the discovery pane.
 msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
@@ -4347,16 +4303,16 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
-msgstr ""
+msgstr "שימוש בזיהוי דיבור כדי לאפשר חיפוש קולי ב־Google, ‏Yahoo ו־DuckDuckGo."
 
 #. editorial content for the discovery pane.
 msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr ""
+msgstr "מעקב אחר מוצרים וקבלת התרעה כאשר המחירים יורדים על פריטים שמעניינים אותך ב־Amazon, ‏Best Buy, ‏eBay, ‏Home Depot, ‏Walmart."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
-msgstr ""
+msgstr "להפוך את הרשת לכהה או לבחור בערכת צבעים מותאמת אישית כדי להתאים באופן חזותי את הרשת לטעמך."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4372,18 +4328,17 @@ msgid "Select, sort, and run your downloads faster."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get weather updates right in the browser."
-msgstr "עדכוני מזג אוויר מיידיים מרחבי העולם."
+msgstr "קבלת עדכוני מזג אוויר היישר מהדפדפן."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr ""
+msgstr "מחיקת עוגיות, היסטוריית גלישה, וקבצים במטמון בלחיצה אחת בלבד."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Remove tracking elements from web links."
-msgstr ""
+msgstr "הסרת רכיבי מעקב מקישורי אינטרנט."
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
@@ -4401,18 +4356,16 @@ msgstr "יצירה והתאמה אישית של קבוצות לשוניות."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Save an entire web page—including images and styling—as a single HTML file."
-msgstr "שמירת דפים שלמים — או רק חלקים מהם — כקובץ HTML בודד."
+msgstr "שמירת דף אינטרנט שלם — כולל תמונות ועיצוב — כקובץ HTML בודד."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Automatically replace derogatory words across the web."
-msgstr "מחיקת עוגיות באופן אוטומטי לאחר סגירת לשונית."
+msgstr "החלפה אוטומטית של מילים פוגעות או מזלזלות ברחבי הרשת."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr ""
+msgstr "חסימת כל המודעות — וידאו, חלונות קופצים, באנרים ועוד."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4422,7 +4375,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Skip over sponsored portions of YouTube videos."
-msgstr ""
+msgstr "דילוג על חלקים ממומנים בסרטוני YouTube."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4435,23 +4388,20 @@ msgid "Double-click any word to instantly see its definition."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
-msgstr "ישנם אתרים שמתקשים בהפעלת סרטונים ב־Firefox עבור Android. הרחבה זו מספקת את התיקון."
+msgstr "ישנם אתרים המתקשים בהפעלת סרטונים ב־Android. הרחבה זו מספקת את התיקון."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "לאותם הרגעים שפשוט מתחשק לך לירות לייזר בעזרת חתול."
+msgstr "לאותם הרגעים שפשוט מתחשק לך לירות לייזר מתוך עיניים של חתול."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Get weather updates directly from Firefox."
-msgstr "עדכוני מזג אוויר מיידיים מרחבי העולם."
+msgstr "קבלת עדכוני מזג אוויר היישר מ־Firefox."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
@@ -4459,7 +4409,19 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
-msgstr ""
+msgstr "נמאס לך מחלונית הדו־שיח של \"הווידאו מושהה. להמשיך לצפות?\"? האזנה למוזיקה האהובה עליך ללא הפרעה ב־YouTube."
+
+#. editorial content for the primary hero shelves.
+msgid "Thousands of GIFs at your fingertips."
+msgstr "אלפי קובצי GIF בקצות האצבעות שלך."
+
+#. editorial content for the primary hero shelves.
+msgid "Begone, annoying cookie warnings!"
+msgstr "הסתלקו, אזהרות עוגיות מעצבנות!"
+
+#. editorial content for the primary hero shelves.
+msgid "The easiest way to manage all of your YouTube channel subscriptions."
+msgstr "הדרך הקלה ביותר לנהל את כל המינויים לערוץ ה־YouTube שלך."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4475,7 +4437,7 @@ msgstr "הצגת כל ההרחבות"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
-msgstr ""
+msgstr "כלים לארגון לשוניות"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
@@ -4767,6 +4729,7 @@ msgstr "מכיל"
 msgid "start"
 msgstr "התחלה"
 
+#. L10n: end, as in "end date"
 msgid "end"
 msgstr "סיום"
 
@@ -4869,7 +4832,7 @@ msgstr ""
 msgid "Version string and guid match a blocklist Block"
 msgstr ""
 
-msgid "Risk breakdown not available."
+msgid "Weight breakdown not available."
 msgstr ""
 
 msgid "You can't submit a comment if `canned_response` is defined."
@@ -4879,7 +4842,7 @@ msgid "You can't submit an empty comment."
 msgstr "לא ניתן לשלוח הערה ריקה."
 
 msgid "You can't submit a line number without associating it to a filename."
-msgstr ""
+msgstr "לא ניתן להגיש מספר שורה מבלי לשייך אותו לשם קובץ."
 
 msgid "Type"
 msgstr "סוג"
@@ -4917,8 +4880,17 @@ msgstr "מזהה"
 msgid "Last Review"
 msgstr "הסקירה האחרונה"
 
-msgid "Weight"
-msgstr "משקל"
+msgid "Code Weight"
+msgstr "משקל הקוד"
+
+msgid "Metadata Weight"
+msgstr "משקל מטא־נתונים"
+
+msgid "Total Weight"
+msgstr "משקל כולל"
+
+msgid "Maliciousness Score"
+msgstr ""
 
 #, fuzzy
 msgid "Pending Rejection Deadline"
@@ -4933,9 +4905,8 @@ msgstr "גרסאות מוצגות שצריכות לעבור סקירה אנוש�
 msgid "Unlisted versions needing human review ({0})"
 msgstr "גרסאות לא מוצגות שצריכות לעבור סקירה אנושית ({0})"
 
-#, fuzzy
 msgid "Listed version"
-msgstr "גרסאות שמוצגות"
+msgstr ""
 
 msgid "Unlisted versions ({0})"
 msgstr "גרסאות שאינן מוצגות ({0})"
@@ -5002,9 +4973,8 @@ msgstr "שליחת הערה על הגרסה הזאת. למפתח לא תהיה �
 
 # 75%
 # 100%
-#, fuzzy
 msgid "Pre-Review Add-ons"
-msgstr "סקירת תוספות"
+msgstr ""
 
 msgid "Recommended ({0})"
 msgstr ""
@@ -5021,11 +4991,9 @@ msgstr "מדריך סקירת תוספות"
 msgid "Security Scanners"
 msgstr "סורקי אבטחה"
 
-#, fuzzy
 msgid "Flagged By Scanners"
-msgstr "סורקי אבטחה"
+msgstr "סומן בדגל על־ידי סורקים"
 
-#, fuzzy
 msgid "Flagged for Human Review"
 msgstr "סומן לסקירה אנושית"
 
@@ -5048,9 +5016,8 @@ msgstr "מדריך סקירה"
 msgid "Content Review"
 msgstr "סקירת תוכן"
 
-#, fuzzy
 msgid "Content Review ({0})"
-msgstr "סקירת תוכן ({0})"
+msgstr ""
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
@@ -5089,9 +5056,8 @@ msgstr "הכרזה"
 msgid "Update message of the day"
 msgstr "עדכון ההודעה היומית"
 
-#, fuzzy
 msgid "Add-ons Pending Rejection ({0})"
-msgstr "סקירה ממתינה אחרת ({0})"
+msgstr "תוספות הממתינות לדחייה ({0})"
 
 msgid "An unknown error occurred"
 msgstr "אירעה שגיאה בלתי ידועה"
@@ -5105,16 +5071,14 @@ msgstr "הסקירה עברה עיבוד בהצלחה."
 msgid "Review lock limit reached"
 msgstr ""
 
-#, fuzzy
 msgid "{addon} – EULA"
-msgstr "‏{addon} :: הסכם רישיון למשתמש קצה"
+msgstr "‏{addon} – הסכם רישיון למשתמש קצה"
 
-#, fuzzy
 msgid "{addon} – Privacy Policy"
-msgstr "‏{addon} :: מדיניות פרטיות"
+msgstr "‏{addon} – מדיניות פרטיות"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "דיווחים בגין שימוש לרעה – {addon} – תוספות עבור Firefox"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "דיווחים על שימוש לרעה עבור התוספת {addon} והמפתחים שלה ({num})"
@@ -5189,12 +5153,11 @@ msgstr "גלריית תמונות"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "אין מה לראות כאן!  המפתח לא צירף שום פרטים."
 
-#, fuzzy
 msgid "Add-on name translations"
-msgstr "לפי גרסת תוספת"
+msgstr "תרגומים לשם התוספת"
 
 msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr "כלי סקירה – תוספות עבור Firefox"
 
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the Reviewer Tools dashboard"
@@ -5307,7 +5270,7 @@ msgid "All-Time"
 msgstr "כל הזמנים"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr " – כלי סקירה – תוספות עבור Firefox"
 
 msgid "Back to review"
 msgstr "חזרה לסקירה"
@@ -5317,7 +5280,6 @@ msgstr "סקירת תוכן – תוספות עבור Firefox"
 
 # 75%
 # 100%
-#, fuzzy
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
 msgstr "תוספות שאושרו אוטומטית"
 
@@ -5325,11 +5287,10 @@ msgid "Review Moderation – Add-ons for Firefox"
 msgstr ""
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr ""
+msgstr "תוספות שאינן מוצגות – תוספות עבור Firefox"
 
-#, fuzzy
 msgid "Pending Rejection – Add-ons for Firefox"
-msgstr "‏{addon} – תוספות עבור Firefox"
+msgstr "‏בהמתנה לדחייה – תוספות עבור Firefox"
 
 msgid "Advanced Search"
 msgstr "חיפוש מתקדם"
@@ -5420,11 +5381,10 @@ msgid "More Actions"
 msgstr "פעולות נוספות"
 
 msgid "Notify me about new listed versions"
-msgstr "להודיע לי על גרסאות חדשות שמפורסמות"
+msgstr "להודיע לי על גרסאות חדשות שמוצגות"
 
-#, fuzzy
 msgid "Notify me about new unlisted versions"
-msgstr "להודיע לי על גרסאות חדשות שמפורסמות"
+msgstr "להודיע לי על גרסאות חדשות שאינן מוצגות"
 
 msgid "Allow resubmission"
 msgstr "לאפשר הגשה מחודשת"
@@ -5438,37 +5398,23 @@ msgstr "אילוץ נטרול התוספת"
 msgid "Force-enable add-on"
 msgstr "אילוץ הפעלת התוספת"
 
-msgid "View Blocklist Submission"
-msgstr "הצגת הגשות של רשימת חסימה"
-
-msgid "Block add-on"
-msgstr "חסימת תוספת"
-
-msgid "Update add-on block"
-msgstr ""
-
-#, fuzzy
 msgid "Disable Listed Auto-Approval"
-msgstr "השבתת אישור אוטומטי"
+msgstr "השבתת אישור אוטומטי עבור תוספות מוצגות"
 
-#, fuzzy
 msgid "Enable Listed Auto-Approval"
-msgstr "הפעלת אישור אוטומטי"
+msgstr "הפעלת אישור אוטומטי עבור תוספות מוצגות"
 
-#, fuzzy
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
-msgstr "השבתת אישור אוטומטי"
+msgstr "השבתת אישור אוטומטי עבור תוספות מוצגות עד האישור הידני הבא"
 
-#, fuzzy
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
-msgstr "הפעלת אישור אוטומטי"
+msgstr "הפעלת אישור אוטומטי עבור תוספות מוצגות לפני האישור הידני הבא"
 
 msgid "Auto-Approval currently disabled until {date}"
-msgstr ""
+msgstr "האישור האוטומטי מושבת כרגע עד לתאריך {date}"
 
-#, fuzzy
 msgid "Clear Auto-Approval Extra Delay"
-msgstr "הפעלת אישור אוטומטי"
+msgstr ""
 
 msgid "Clear pending rejections"
 msgstr ""
@@ -5481,6 +5427,15 @@ msgstr "ניקוי סימון דרישת סקירת תוכן של מנהל"
 
 msgid "Clear Admin Static Theme Review Flag"
 msgstr "ניקוי סימון דרישת סקירת ערכת נושא קבועה של מנהל"
+
+msgid "View Blocklist Submission"
+msgstr "הצגת הגשות של רשימת חסימה"
+
+msgid "Block add-on"
+msgstr "חסימת תוספת"
+
+msgid "Update add-on block"
+msgstr ""
 
 msgid "(admin)"
 msgstr "(מנהל)"
@@ -5498,7 +5453,7 @@ msgid "Resolution"
 msgstr "פתרון"
 
 msgid "Add-on Review Log – Add-ons for Firefox"
-msgstr ""
+msgstr "יומן סקירת תוספות – תוספות עבור Firefox"
 
 msgid "Reviewer"
 msgstr "סוקר"
@@ -5619,14 +5574,17 @@ msgstr "הורדת קבצים"
 msgid "The developer has provided source code."
 msgstr "המפתח סיפק קוד מקור."
 
-msgid "Scanners score:"
+msgid "Maliciousness Score:"
 msgstr ""
 
-msgid "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
+msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
 msgstr ""
 
-msgid "Weight:"
-msgstr "משקל:"
+msgid "Code Weight:"
+msgstr "משקל הקוד:"
+
+msgid "Metadata Weight:"
+msgstr "משקל מטא־נתונים:"
 
 msgid "Flagged by scanners"
 msgstr ""
@@ -5657,29 +5615,24 @@ msgstr "נדחה או לא נסקר"
 msgid "[status:%s]"
 msgstr "[מצב:%s]"
 
-#, fuzzy
 msgid "Other Pending Review"
-msgstr "סקירה ממתינה אחרת ({0})"
+msgstr "סקירה ממתינה אחרת"
 
 # 85%
 # 100%
-#, fuzzy
 msgid "Updates"
-msgstr "עדכון"
+msgstr "עדכונים"
 
-#, fuzzy
 msgid "Rating Reviews"
-msgstr "ממתין לסקירה"
+msgstr "סקירות לדירוגים"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
-#, fuzzy
 msgid "Auto Approved"
-msgstr "אושר אוטומטית ({0})"
+msgstr "אושר אוטומטית"
 
-#, fuzzy
 msgid "Pending Rejection"
-msgstr "סקירה ממתינה אחרת ({0})"
+msgstr "בהמתנה לדחייה"
 
 msgid "presence of matched rules"
 msgstr ""
@@ -5693,9 +5646,8 @@ msgstr ""
 msgid "presence of a version"
 msgstr "נוכחות של גרסה"
 
-#, fuzzy
 msgid "version channel"
-msgstr "הגרסה נחתמה"
+msgstr "ערוץ גרסה"
 
 msgid "add-on status"
 msgstr "מצב התוספת"
@@ -5907,6 +5859,9 @@ msgstr "365 ימים"
 
 msgid "Custom..."
 msgstr "מותאם אישית..."
+
+msgid "Sorry, the statistics are temporarily unavailable."
+msgstr "מצטערים, הנתונים הסטטיסטיים אינם זמינים באופן זמני."
 
 msgid "Loading the latest data&hellip;"
 msgstr "הנתונים האחרונים נטענים&hellip;"
@@ -6252,6 +6207,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"המחבר הבא נוסף לתוספת שלך %(addon_name)s ‏( %(addon_url)s ):\n"
+"\n"
+"‏%(author_name)s ‏( %(author_url)s ): ‏%(author_role)s"
 
 #, python-format
 msgid ""
@@ -6268,6 +6226,18 @@ msgid ""
 "Kind regards,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"שלום %(author_name)s,\n"
+"\n"
+"הוזמנת להפוך למחבר של התוספת %(addon_name)s ב־%(domain)s. קבלת ההזמנה תעניק לך גישה לערוך את התוספת, ותאפשר לך להציג את שמך ברשימת המחברים באתר.\n"
+"\n"
+"יש ללחוץ על הקישור שלהלן כדי להגיב אם ברצונך להתווסף כמחבר עבור %(addon_name)s.\n"
+"\n"
+"%(author_confirmation_link)s\n"
+"\n"
+"אם לא ציפית לקבל הזמנה זו, נא לשלוח דוא״ל לכתובת amo-admins@mozilla.com.\n"
+"\n"
+"בברכה,\n"
+"צוות התוספות של Firefox"
 
 #, python-format
 msgid ""
@@ -6275,6 +6245,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"המחבר הבא השתנה בתוספת שלך %(addon_name)s ‏( %(addon_url)s ):\n"
+"\n"
+"‏%(author_name)s ‏( %(author_url)s ): ‏%(author_role)s"
 
 #, python-format
 msgid ""
@@ -6282,6 +6255,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s )"
 msgstr ""
+"המחבר הבא הוסר מהתוספת %(addon_name)s ‏( %(addon_url)s ):\n"
+"\n"
+"‏%(author_name)s ‏( %(author_url)s )"
 
 #, python-format
 msgid ""
@@ -6295,6 +6271,15 @@ msgid ""
 "\n"
 "The Firefox Add-ons Team"
 msgstr ""
+"שלום,\n"
+"\n"
+"הודעה זו נשלחה אליך מכיוון שחשבון המשתמש שלך %(name)s ב־%(site_url)s נמחק. ייתכן שזה בוצע באופן אוטומטי אם מחקת לאחרונה את חשבון ה־Firefox שלך.\n"
+"\n"
+"אם פעולה זו לא בוצעה על ידך או שלפי דעתך גורם לא מורשה קיבל גישה לחשבון שלך, נא להשיב לדוא״ל זה. אחרת, אין צורך לנקוט בפעולות נוספות.\n"
+"\n"
+"בברכה,\n"
+"\n"
+"צוות התוספות של Firefox"
 
 msgctxt "user_list_others"
 msgid "others"

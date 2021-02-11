@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-12-08 17:25+0000\n"
-"Last-Translator: Francesco Lodolo <flod+pontoon@mozilla.com>\n"
+"POT-Creation-Date: 2021-02-09 17:39+0000\n"
+"PO-Revision-Date: 2021-02-10 22:31+0000\n"
+"Last-Translator: Jenny <leanintocuriosity@gmx.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -122,6 +122,9 @@ msgstr "Nota di revisione"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Le note possono essere aggiunte solo alle versioni più recenti del componente aggiuntivo."
+
+msgid "Authors"
+msgstr "Autori"
 
 msgid "Ratings"
 msgstr "Valutazione"
@@ -1650,6 +1653,9 @@ msgstr "Ritarda l’approvazione automatica"
 msgid "Delay auto-approval indefinitely"
 msgstr "Ritarda l’approvazione automatica indefinitamente"
 
+msgid "Delay auto-approval indefinitely and add restrictions"
+msgstr "Ritarda l’approvazione automatica indefinitamente e aggiungi restrizioni"
+
 msgid "True positive"
 msgstr "Vero positivo"
 
@@ -2278,53 +2284,8 @@ msgstr "Fai clic sul pulsante Accetta di seguito per confermare che desideri ess
 msgid "Decline"
 msgstr "Declina"
 
-msgid "Set Up Payment"
-msgstr "Imposta pagamento"
-
-msgid "You're done!"
-msgstr "Hai finito!"
-
-#, python-format
-msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
-msgstr "Hai finito! La nuova versione <strong>%(new_version_number)s</strong> del componente aggiuntivo <strong>%(addon_name)s</strong> verrà pubblicata come %(group_name)s e sarà presto disponibile."
-
-msgid "A newer version of your add-on is currently pending review."
-msgstr "Una nuova versione del componente aggiuntivo è in attesa di revisione."
-
-msgid "If you have any questions, don’t hesitate to contact us."
-msgstr "Se hai altre domande, non esitare a contattarci."
-
-msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
-msgstr "Il tuo pagamento è stato registrato ma attualmente non sono presenti versioni pubblicate del tuo componente aggiuntivo. Carica una nuova versione pubblica per completare questo processo."
-
-msgid "Manage add-on"
-msgstr "Gestione componente aggiuntivo"
-
-#, python-format
-msgid ""
-"There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a "
-"href=\"mailto:%(email)s\">%(email)s</a>."
-msgstr ""
-"Si è verificato un errore durante la configurazione del pagamento per il componente aggiuntivo. Se stai riscontrando problemi con il procedimento oppure hai cambiato idea, contattaci all’indirizzo "
-"<a href=\"mailto:%(email)s\">%(email)s</a>."
-
-msgid "Thank you for joining the Promoted Add-ons Program!"
-msgstr "Grazie per la tua adesione al programma Promoted Add-ons!"
-
-#, python-format
-msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the program once payment is set up through the Stripe system. Click on the button below to continue:"
-msgstr ""
-"Il componente aggiuntivo <strong>%(addon_name)s</strong> sarà incluso nel programma dopo che avrai configurato il pagamento tramite il sistema Stripe. Fai clic sul pulsante sottostante per "
-"procedere:"
-
-msgid "Continue to Stripe Checkout"
-msgstr "Continua su Stripe Checkout"
-
 msgid "Manage Authors & License"
 msgstr "Gestisci autori e licenza"
-
-msgid "Authors"
-msgstr "Autori"
 
 msgid "About author roles"
 msgstr "Informazioni sui ruoli degli autori"
@@ -3249,9 +3210,6 @@ msgstr "Carica nuova versione"
 
 msgid "View All"
 msgstr "Mostra tutto"
-
-msgid "Manage Billing on Stripe"
-msgstr "Gestisci la fatturazione su Stripe"
 
 msgid "Listed Review Page"
 msgstr "Pagina revisione componenti aggiuntivi su AMO"
@@ -4557,6 +4515,18 @@ msgstr "Gestisci meglio il tuo tempo con un orologio sul browser che traccia gli
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
 msgstr "Stanco di quella finestra di dialogo “Video in pausa. Stai ancora guardando?” Ascolta la tua musica preferita su YouTube ininterrottamente."
 
+#. editorial content for the primary hero shelves.
+msgid "Thousands of GIFs at your fingertips."
+msgstr "Migliaia di GIF a portata di mano."
+
+#. editorial content for the primary hero shelves.
+msgid "Begone, annoying cookie warnings!"
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "The easiest way to manage all of your YouTube channel subscriptions."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Le estensioni sono come piccole applicazioni per Firefox."
@@ -4869,6 +4839,7 @@ msgstr "contiene"
 msgid "start"
 msgstr "inizia per"
 
+#. L10n: end, as in "end date"
 msgid "end"
 msgstr "finisce con"
 
@@ -4969,8 +4940,8 @@ msgstr "Posticipato perché è la prima versione elencata"
 msgid "Version string and guid match a blocklist Block"
 msgstr "Stringa e GUID di versione trovati in un blocco della blocklist"
 
-msgid "Risk breakdown not available."
-msgstr "Analisi rischio non disponibile."
+msgid "Weight breakdown not available."
+msgstr "Analisi dettagliata delle dimensioni non disponibile."
 
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Se è definita `canned_response` non puoi inviare un commento."
@@ -5017,8 +4988,17 @@ msgstr "ID"
 msgid "Last Review"
 msgstr "Ultima revisione"
 
-msgid "Weight"
-msgstr "Peso"
+msgid "Code Weight"
+msgstr "Dimensione del codice"
+
+msgid "Metadata Weight"
+msgstr "Dimensione dei metadati"
+
+msgid "Total Weight"
+msgstr "Dimensione totale"
+
+msgid "Maliciousness Score"
+msgstr ""
 
 msgid "Pending Rejection Deadline"
 msgstr "Scadenza per il rifiuto in sospeso"
@@ -5506,15 +5486,6 @@ msgstr "Forza la disattivazione del componente aggiuntivo"
 msgid "Force-enable add-on"
 msgstr "Forza l'attivazione del componente aggiuntivo"
 
-msgid "View Blocklist Submission"
-msgstr "Visualizza la lista dei caricamenti bloccati"
-
-msgid "Block add-on"
-msgstr "Blocca componente aggiuntivo"
-
-msgid "Update add-on block"
-msgstr "Aggiorna blocco componente aggiuntivo"
-
 msgid "Disable Listed Auto-Approval"
 msgstr "Disattiva l’approvazione automatica dei componenti elencati"
 
@@ -5544,6 +5515,15 @@ msgstr "Rimuovi il flag per la revisione dei contenuti da parte di un amministra
 
 msgid "Clear Admin Static Theme Review Flag"
 msgstr "Rimuovi il contrassegno per la revisione del codice da parte di un amministratore"
+
+msgid "View Blocklist Submission"
+msgstr "Visualizza la lista dei caricamenti bloccati"
+
+msgid "Block add-on"
+msgstr "Blocca componente aggiuntivo"
+
+msgid "Update add-on block"
+msgstr "Aggiorna blocco componente aggiuntivo"
 
 msgid "(admin)"
 msgstr "(admin)"
@@ -5681,14 +5661,17 @@ msgstr "Scarica i file"
 msgid "The developer has provided source code."
 msgstr "Lo sviluppatore ha reso disponibile il codice sorgente."
 
-msgid "Scanners score:"
-msgstr "Punteggio scanner:"
+msgid "Maliciousness Score:"
+msgstr ""
 
-msgid "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr "Il punteggio scanner esprime il grado di probabilità che la versione contenga codice malevolo in base all’analisi automatica degli scanner."
+msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
+msgstr ""
 
-msgid "Weight:"
-msgstr "Dimensioni:"
+msgid "Code Weight:"
+msgstr "Dimensione del codice:"
+
+msgid "Metadata Weight:"
+msgstr "Dimensione dei metadati:"
 
 msgid "Flagged by scanners"
 msgstr "Contrassegnato da scanner"
@@ -5953,6 +5936,9 @@ msgstr "365 giorni"
 
 msgid "Custom..."
 msgstr "Personalizzato…"
+
+msgid "Sorry, the statistics are temporarily unavailable."
+msgstr ""
 
 msgid "Loading the latest data&hellip;"
 msgstr "Caricamento dei dati più recenti in corso&hellip;"

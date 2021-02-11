@@ -23,6 +23,7 @@ from olympia.constants.scanners import (
     CUSTOMS,
     DELAY_AUTO_APPROVAL,
     DELAY_AUTO_APPROVAL_INDEFINITELY,
+    DELAY_AUTO_APPROVAL_INDEFINITELY_AND_RESTRICT,
     FLAG_FOR_HUMAN_REVIEW,
     QUERY_RULE_STATES,
     MAD,
@@ -40,6 +41,7 @@ from olympia.files.models import FileUpload
 from olympia.scanners.actions import (
     _delay_auto_approval,
     _delay_auto_approval_indefinitely,
+    _delay_auto_approval_indefinitely_and_restrict,
     _flag_for_human_review,
     _flag_for_human_review_by_scanner,
     _no_action,
@@ -188,7 +190,10 @@ class AbstractScannerResult(ModelBase):
             NO_ACTION: _no_action,
             FLAG_FOR_HUMAN_REVIEW: _flag_for_human_review,
             DELAY_AUTO_APPROVAL: _delay_auto_approval,
-            DELAY_AUTO_APPROVAL_INDEFINITELY: (_delay_auto_approval_indefinitely),
+            DELAY_AUTO_APPROVAL_INDEFINITELY: _delay_auto_approval_indefinitely,
+            DELAY_AUTO_APPROVAL_INDEFINITELY_AND_RESTRICT: (
+                _delay_auto_approval_indefinitely_and_restrict
+            ),
         }
 
         action_function = ACTION_FUNCTIONS.get(action_id, None)

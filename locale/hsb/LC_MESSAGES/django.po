@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-12-07 12:05+0000\n"
+"POT-Creation-Date: 2021-02-09 17:39+0000\n"
+"PO-Revision-Date: 2021-02-09 19:13+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -119,6 +119,9 @@ msgstr "Přepruwowanska přispomnjenka"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Přispomnjenki dadźa so jenož najnowšim wersijam přidatkow přidać."
+
+msgid "Authors"
+msgstr "Awtorojo"
 
 msgid "Ratings"
 msgstr "Pohódnoćenja"
@@ -1598,6 +1601,9 @@ msgstr "Awtomatiske schwalenje komdźić"
 msgid "Delay auto-approval indefinitely"
 msgstr "Awtomatiske schwalenje na njewěsty čas wotstorčić"
 
+msgid "Delay auto-approval indefinitely and add restrictions"
+msgstr "Awtomatiske schwalenje na njewěsty čas wotstorčić a wobmjezowanja přidać"
+
 msgid "True positive"
 msgstr "Prawje pozitiwny"
 
@@ -2228,51 +2234,8 @@ msgstr "Klikńće na tłóčatko „Akceptować“ deleka, zo byšće wobkrući�
 msgid "Decline"
 msgstr "Wotpokazać"
 
-msgid "Set Up Payment"
-msgstr "Płaćenje trěbne"
-
-msgid "You're done!"
-msgstr "Sće hotowy!"
-
-#, python-format
-msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
-msgstr "Sće hotowy! Nowa wersija <strong>%(new_version_number)s</strong> wašeho přidatka <strong>%(addon_name)s</strong>  so jako %(group_name)s wozjewi a dyrbjała bórze k dispoziciji być."
-
-msgid "A newer version of your add-on is currently pending review."
-msgstr "Nowša wersija wašeho přidatka tuchwilu na přepruwowanje čaka."
-
-msgid "If you have any questions, don’t hesitate to contact us."
-msgstr "Jeli maće prašenja, stajće so z nami do zwiska."
-
-msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
-msgstr "Waše płaćenje je zapřijate, ale njejsu tuchwilu žane wozjewjene wersije wašeho přidatka. Prošu nahrajće nowu zjawnu wersiju, zo byšće tutón proces wotzamknył."
-
-msgid "Manage add-on"
-msgstr "Přidatk rjadować"
-
-#, python-format
-msgid ""
-"There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a "
-"href=\"mailto:%(email)s\">%(email)s</a>."
-msgstr ""
-"Při konfigurowanju wašeho płaćenja za waš přidatk je zmylk nastał. Jeli na problemy z tutym procesom storčiće abo sće swoje měnjenje změnił, stajće so prošu z <a "
-"href=\"mailto:%(email)s\">%(email)s</a> do zwiska."
-
-msgid "Thank you for joining the Promoted Add-ons Program!"
-msgstr "Dźakujemy so, zo sće programej za spěchowane přidatki přidružił!"
-
-#, python-format
-msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the program once payment is set up through the Stripe system. Click on the button below to continue:"
-msgstr "Waš přidatk <strong>%(addon_name)s</strong> so do programa zapřijmje, hdyž je płaćenje přez system Stripe skonfigurowane. Klikńće na tłóčatko deleka, zo byšće pokročował:"
-
-msgid "Continue to Stripe Checkout"
-msgstr "Dale k płaćenju Stripe"
-
 msgid "Manage Authors & License"
 msgstr "Awtorow a licencu rjadować"
-
-msgid "Authors"
-msgstr "Awtorojo"
 
 msgid "About author roles"
 msgstr "Wo awtorowych rólach"
@@ -3187,9 +3150,6 @@ msgstr "Najnowšu wersiju nahrać"
 
 msgid "View All"
 msgstr "Wšě pokazać"
-
-msgid "Manage Billing on Stripe"
-msgstr "Wotličenje na Stripe rjadować"
 
 msgid "Listed Review Page"
 msgstr "Přepruwowanska strona za nalistowane přidatki"
@@ -4490,6 +4450,18 @@ msgstr "Rjadujće swój čas lěpje z časnikom wobhladowaka, kotryž dźěłowe
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
 msgstr "Sće dialoga „Widejo zastajene. Chceće sej jo dale wobhladować?“ syty? Poskajće na swoju najlubšu hudźbu bjez přetorhnjenja na YouTube."
 
+#. editorial content for the primary hero shelves.
+msgid "Thousands of GIFs at your fingertips."
+msgstr "Tysacy GIF-wobrazow k ruce"
+
+#. editorial content for the primary hero shelves.
+msgid "Begone, annoying cookie warnings!"
+msgstr "Preč z mjerzacymi plackowymi warnowanjemi!"
+
+#. editorial content for the primary hero shelves.
+msgid "The easiest way to manage all of your YouTube channel subscriptions."
+msgstr "Najlóša móžnosć, wšě waše abonementy kanalow YouTube rjadować."
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Rozšěrjenja su za Firefox kaž nałoženja."
@@ -4802,6 +4774,7 @@ msgstr "z"
 msgid "start"
 msgstr "spočatk"
 
+#. L10n: end, as in "end date"
 msgid "end"
 msgstr "kónc"
 
@@ -4902,8 +4875,8 @@ msgstr "Zadźerženy, dokelž je prěnja podata wersija"
 msgid "Version string and guid match a blocklist Block"
 msgstr "Znamješkowy rjećazk a GUID wersije blokowanju blokowanskeje lisćiny wotpowědujetej"
 
-msgid "Risk breakdown not available."
-msgstr "Rizikowa analyza k dispoziciji njeje."
+msgid "Weight breakdown not available."
+msgstr "Analyza wažnosće k dispoziciji njeje."
 
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "NJemóžeće komentar wotpósłać, jeli ‚canned_response‘ je definowany."
@@ -4956,8 +4929,17 @@ msgstr "ID"
 msgid "Last Review"
 msgstr "Poslednje přepruwowanje"
 
-msgid "Weight"
-msgstr "Wažnosć"
+msgid "Code Weight"
+msgstr "Wažnosć žórłoweho koda"
+
+msgid "Metadata Weight"
+msgstr "Wažnosć metadatow"
+
+msgid "Total Weight"
+msgstr "Cyłkowna wažnosć"
+
+msgid "Maliciousness Score"
+msgstr "Wuslědk złósće"
 
 msgid "Pending Rejection Deadline"
 msgstr "Termin za wustejace wotpokazanje"
@@ -5438,15 +5420,6 @@ msgstr "Znjemóžnjenje přidatka wunuzować"
 msgid "Force-enable add-on"
 msgstr "Zmóžnjenje přidatka wunuzować"
 
-msgid "View Blocklist Submission"
-msgstr "Zapodaća za lisćinu blokowanjow pokazać"
-
-msgid "Block add-on"
-msgstr "Přidatk blokować"
-
-msgid "Update add-on block"
-msgstr "Blokowanje přidatka aktualizować"
-
 msgid "Disable Listed Auto-Approval"
 msgstr "Awtomatiske schwalenje nalistowanych přidatkow znjemóžnić"
 
@@ -5476,6 +5449,15 @@ msgstr "Marku za přepruwowanje wobsaha wot administratora wotstronić"
 
 msgid "Clear Admin Static Theme Review Flag"
 msgstr "Marku za přepruwowanje statiskeje drasty wot administratora wotstronić"
+
+msgid "View Blocklist Submission"
+msgstr "Zapodaća za lisćinu blokowanjow pokazać"
+
+msgid "Block add-on"
+msgstr "Přidatk blokować"
+
+msgid "Update add-on block"
+msgstr "Blokowanje přidatka aktualizować"
 
 msgid "(admin)"
 msgstr "(admin)"
@@ -5613,14 +5595,17 @@ msgstr "Dataje sćahnyć"
 msgid "The developer has provided source code."
 msgstr "Wuwiwar je žórłowy kod k dispoziciji stajił."
 
-msgid "Scanners score:"
-msgstr "Skenowanski wuslědk:"
+msgid "Maliciousness Score:"
+msgstr "Wuslědk złósće:"
 
-msgid "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr "Skenowanski wuslědk prawdźepodobnosć zwuraznja, z kajkejž je wersija na zakładźe namakankow skenera złóstna ."
+msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
+msgstr "Wuslědk złósće prawdźepodobnosć zwuraznja, z kajkejž je wersija na zakładźe namakankow skenera złóstna ."
 
-msgid "Weight:"
-msgstr "Wažnosć:"
+msgid "Code Weight:"
+msgstr "Wažnosć žórłoweho koda:"
+
+msgid "Metadata Weight:"
+msgstr "Wažnosć metadatow:"
 
 msgid "Flagged by scanners"
 msgstr "Přez skenery markěrowany"
@@ -5885,6 +5870,9 @@ msgstr "365 dnjow"
 
 msgid "Custom..."
 msgstr "Swójske..."
+
+msgid "Sorry, the statistics are temporarily unavailable."
+msgstr "Bohužel statistika tuchwilu k dispoziciji njeje."
 
 msgid "Loading the latest data&hellip;"
 msgstr "Najnowše daty so začituja&hellip;"

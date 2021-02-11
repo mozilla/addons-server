@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-12-17 21:37+0000\n"
+"POT-Creation-Date: 2021-02-09 17:39+0000\n"
+"PO-Revision-Date: 2021-02-09 22:21+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -118,6 +118,9 @@ msgstr "Nota da revisão"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Apenas as versões mais recentes de extras podem ter notas adicionadas."
+
+msgid "Authors"
+msgstr "Autores"
 
 # 85%
 msgid "Ratings"
@@ -1622,6 +1625,9 @@ msgstr "Atrasar a aprovação automática"
 msgid "Delay auto-approval indefinitely"
 msgstr "Atrasar a aprovação automática indefinidamente"
 
+msgid "Delay auto-approval indefinitely and add restrictions"
+msgstr "Atrasar a aprovação automática indefinidamente e adicionar restrições"
+
 msgid "True positive"
 msgstr "Positivo verdadeiro"
 
@@ -2244,49 +2250,8 @@ msgstr "Clique no botão Aceitar abaixo para confirmar que deseja ser adicionado
 msgid "Decline"
 msgstr "Recusar"
 
-msgid "Set Up Payment"
-msgstr "Configurar o pagamento"
-
-msgid "You're done!"
-msgstr "Você terminou!"
-
-#, python-format
-msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
-msgstr "Você terminou! Uma nova versão <strong>%(new_version_number)s</strong> do seu extra <strong>%(addon_name)s</strong> será publicada como %(group_name)s e deverá ficará disponível em breve."
-
-msgid "A newer version of your add-on is currently pending review."
-msgstr "Uma versão mais recente do seu extra está atualmente a aguardar por uma análise."
-
-msgid "If you have any questions, don’t hesitate to contact us."
-msgstr "Se tiver qualquer pergunta, não hesite em contactar-nos."
-
-msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
-msgstr "O seu pagamento foi registado, mas atualmente não há nenhuma versão do seu extra publicada. Por favor, insira uma nova versão pública para concluir este processo."
-
-msgid "Manage add-on"
-msgstr "Gerir extra"
-
-#, python-format
-msgid ""
-"There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a "
-"href=\"mailto:%(email)s\">%(email)s</a>."
-msgstr "Ocorreu um erro ao configurar o pagamento para o seu extra. Se está a ter problemas com este processo ou mudou de ideias, entre em contacto connosco em <a href=\"mailto:%(email)s\">%(email)s</a>."
-
-msgid "Thank you for joining the Promoted Add-ons Program!"
-msgstr "Obrigado por aderir ao programa de extras promovidos!"
-
-#, python-format
-msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the program once payment is set up through the Stripe system. Click on the button below to continue:"
-msgstr "O seu extra <strong>%(addon_name)s</strong> será incluído no programa assim que o pagamento for configurado através do sistema Stripe. Clique no botão abaixo para continuar:"
-
-msgid "Continue to Stripe Checkout"
-msgstr "Continuar para a finalização das compras via Stripe"
-
 msgid "Manage Authors & License"
 msgstr "Gerir autores e licença"
-
-msgid "Authors"
-msgstr "Autores"
 
 msgid "About author roles"
 msgstr "Sobre as funções do autor"
@@ -3197,9 +3162,6 @@ msgstr "Carregar nova versão"
 
 msgid "View All"
 msgstr "Ver todas"
-
-msgid "Manage Billing on Stripe"
-msgstr "Gerir a faturação no Stripe"
 
 msgid "Listed Review Page"
 msgstr "Página de revisões listadas"
@@ -4501,6 +4463,18 @@ msgstr "Faça uma gestão mais eficiente do seu tempo com um relógio de navegad
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
 msgstr "Cansado de ver a janela \"Vídeo pausado. Continuar a ver?\"? Ouça as suas músicas favoritas no YouTube, sem interrupções."
 
+#. editorial content for the primary hero shelves.
+msgid "Thousands of GIFs at your fingertips."
+msgstr "Milhares de GIFs na ponta dos seus dedos."
+
+#. editorial content for the primary hero shelves.
+msgid "Begone, annoying cookie warnings!"
+msgstr "Adeus, avisos de cookies irritantes!"
+
+#. editorial content for the primary hero shelves.
+msgid "The easiest way to manage all of your YouTube channel subscriptions."
+msgstr "A maneira mais fácil de gerir todas as suas subscrições em canais do YouTube."
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "As extensões são como aplicações para o Firefox."
@@ -4812,6 +4786,7 @@ msgstr "contendo"
 msgid "start"
 msgstr "início"
 
+#. L10n: end, as in "end date"
 msgid "end"
 msgstr "fim"
 
@@ -4912,8 +4887,8 @@ msgstr "Atrasado porque é a primeira versão listada"
 msgid "Version string and guid match a blocklist Block"
 msgstr "O string e guid da versão correspondem a um bloco da lista de bloqueio"
 
-msgid "Risk breakdown not available."
-msgstr "Análise do risco não disponível."
+msgid "Weight breakdown not available."
+msgstr "Análise do peso não disponível."
 
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Não pode submeter um comentário se `canned_response` estiver definida."
@@ -4960,8 +4935,17 @@ msgstr "ID."
 msgid "Last Review"
 msgstr "Última revisão"
 
-msgid "Weight"
-msgstr "Peso"
+msgid "Code Weight"
+msgstr "Peso do código"
+
+msgid "Metadata Weight"
+msgstr "Peso dos metadados"
+
+msgid "Total Weight"
+msgstr "Peso total"
+
+msgid "Maliciousness Score"
+msgstr "Pontuação de malícia"
 
 msgid "Pending Rejection Deadline"
 msgstr "Prazo limite da rejeição"
@@ -5442,15 +5426,6 @@ msgstr "Desativar forçosamente o extra"
 msgid "Force-enable add-on"
 msgstr "Ativar forçosamente o extra"
 
-msgid "View Blocklist Submission"
-msgstr "Ver a Lista de Bloqueios de Submissão"
-
-msgid "Block add-on"
-msgstr "Bloquear extra"
-
-msgid "Update add-on block"
-msgstr "Atualizar bloqueio de extra"
-
 msgid "Disable Listed Auto-Approval"
 msgstr "Desativar Aprovação Automática Listada"
 
@@ -5480,6 +5455,15 @@ msgstr "Limpar etiqueta de revisão de conteúdo de administrador"
 
 msgid "Clear Admin Static Theme Review Flag"
 msgstr "Limpar etiqueta de revisão de tema estático de administrador"
+
+msgid "View Blocklist Submission"
+msgstr "Ver a Lista de Bloqueios de Submissão"
+
+msgid "Block add-on"
+msgstr "Bloquear extra"
+
+msgid "Update add-on block"
+msgstr "Atualizar bloqueio de extra"
 
 msgid "(admin)"
 msgstr "(admin)"
@@ -5617,14 +5601,17 @@ msgstr "Transferir ficheiros"
 msgid "The developer has provided source code."
 msgstr "O programador forneceu o código fonte."
 
-msgid "Scanners score:"
-msgstr "Pontuação dos analisadores:"
+msgid "Maliciousness Score:"
+msgstr "Pontuação de malícia:"
 
-msgid "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr "A pontuação dos analisadores representa a probabilidade desta versão ser maliciosa, com base nas descobertas dos analisadores."
+msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
+msgstr "A pontuação de malícia representa a probabilidade desta versão ser maliciosa, com base nas descobertas dos analisadores."
 
-msgid "Weight:"
-msgstr "Peso:"
+msgid "Code Weight:"
+msgstr "Peso do código:"
+
+msgid "Metadata Weight:"
+msgstr "Peso dos metadados:"
 
 msgid "Flagged by scanners"
 msgstr "Sinalizado pelos analisadores"
@@ -5890,6 +5877,9 @@ msgstr "365 dias"
 
 msgid "Custom..."
 msgstr "Personalizar..."
+
+msgid "Sorry, the statistics are temporarily unavailable."
+msgstr "Pedimos desculpa, mas as estatísticas estão temporariamente indisponíveis."
 
 msgid "Loading the latest data&hellip;"
 msgstr "A carregar os últimos dados&hellip;"

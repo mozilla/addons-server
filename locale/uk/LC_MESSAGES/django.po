@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-12-08 12:53+0000\n"
+"POT-Creation-Date: 2021-02-09 17:39+0000\n"
+"PO-Revision-Date: 2021-02-09 18:28+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -125,6 +125,9 @@ msgstr "Нотатка перевірки"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Лише останні версії додатків можуть мати нотатки."
+
+msgid "Authors"
+msgstr "Автори"
 
 msgid "Ratings"
 msgstr "Оцінки"
@@ -1608,6 +1611,9 @@ msgstr "Відкласти автоматичне затвердження"
 msgid "Delay auto-approval indefinitely"
 msgstr "Відкласти автоматичне затвердження на невизначений термін"
 
+msgid "Delay auto-approval indefinitely and add restrictions"
+msgstr "Відкладайте автозатвердження на невизначений час та додайте обмеження"
+
 msgid "True positive"
 msgstr "Дійсно позитивний"
 
@@ -2234,50 +2240,8 @@ msgstr "Натисніть кнопку Прийняти внизу, щоб пі
 msgid "Decline"
 msgstr "Відхилити"
 
-msgid "Set Up Payment"
-msgstr "Налаштування платежу"
-
-msgid "You're done!"
-msgstr "Ви завершили!"
-
-#, python-format
-msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
-msgstr "Ви завершили! Нова версія <strong>%(new_version_number)s</strong> вашого додатку <strong>%(addon_name)s</strong> буде опубліковано як %(group_name)s і незабаром стане доступною."
-
-msgid "A newer version of your add-on is currently pending review."
-msgstr "Наразі новіша версія вашого додатку очікує розгляду."
-
-msgid "If you have any questions, don’t hesitate to contact us."
-msgstr "Якщо у вас виникли питання, не соромтеся зв’язуватися з нами."
-
-msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
-msgstr "Ваш платіж зафіксовано, але наразі немає опублікованих версій вашого додатку. Завантажте нову загальнодоступну версію, щоб завершити цей процес."
-
-msgid "Manage add-on"
-msgstr "Керування додатком"
-
-#, python-format
-msgid ""
-"There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a "
-"href=\"mailto:%(email)s\">%(email)s</a>."
-msgstr ""
-"Сталася помилка під час налаштування оплати за ваш додаток. Якщо у вас виникають проблеми з цим процесом або ви передумали, зв’яжіться з нами за адресою <a href=\"mailto:%(email)s\">%(email)s</a>."
-
-msgid "Thank you for joining the Promoted Add-ons Program!"
-msgstr "Дякуємо, що приєдналися до програми рекламованих додатків!"
-
-#, python-format
-msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the program once payment is set up through the Stripe system. Click on the button below to continue:"
-msgstr "Ваш додаток <strong>%(addon_name)s</strong> буде включено до програми після налаштування оплати через систему Stripe. Натисніть на кнопку внизу, щоб продовжити:"
-
-msgid "Continue to Stripe Checkout"
-msgstr "Продовжити Stripe Checkout"
-
 msgid "Manage Authors & License"
 msgstr "Керування авторами і ліцензією"
-
-msgid "Authors"
-msgstr "Автори"
 
 msgid "About author roles"
 msgstr "Про ролі автора"
@@ -3188,9 +3152,6 @@ msgstr "Вивантажити нову версію"
 
 msgid "View All"
 msgstr "Продивитися все"
-
-msgid "Manage Billing on Stripe"
-msgstr "Керувати виставленням рахунків у Stripe"
 
 msgid "Listed Review Page"
 msgstr "Сторінка перевірки опублікованих"
@@ -4482,6 +4443,18 @@ msgstr "Керувати своїм часом краще за допомого�
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
 msgstr "Набридла поява вікна \"Відео зупинено. Продовжити перегляд?\" Слухайте улюблену музику безперервно на YouTube."
 
+#. editorial content for the primary hero shelves.
+msgid "Thousands of GIFs at your fingertips."
+msgstr "Тисячі GIF-файлів під рукою."
+
+#. editorial content for the primary hero shelves.
+msgid "Begone, annoying cookie warnings!"
+msgstr "Приберіть надокучливі попередження про куки!"
+
+#. editorial content for the primary hero shelves.
+msgid "The easiest way to manage all of your YouTube channel subscriptions."
+msgstr "Найпростіший спосіб керувати всіма своїми підписками на канали YouTube."
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Розширення - це наче програми для вашого браузера."
@@ -4792,6 +4765,7 @@ msgstr "яка містить"
 msgid "start"
 msgstr "початкова"
 
+#. L10n: end, as in "end date"
 msgid "end"
 msgstr "кінцева"
 
@@ -4892,8 +4866,8 @@ msgstr "Затримка, тому що це перша оприлюднена �
 msgid "Version string and guid match a blocklist Block"
 msgstr "Рядок версії та настанов збігаються з заблокованим у списку блокування"
 
-msgid "Risk breakdown not available."
-msgstr "Розподіл ризиків недоступний."
+msgid "Weight breakdown not available."
+msgstr "Розподіл ваги недоступний."
 
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Ви не можете надіслати коментар, якщо визначено \"canned_response\"."
@@ -4943,8 +4917,17 @@ msgstr "ID"
 msgid "Last Review"
 msgstr "Остання перевірка"
 
-msgid "Weight"
-msgstr "Вага"
+msgid "Code Weight"
+msgstr "Вага коду"
+
+msgid "Metadata Weight"
+msgstr "Вага метаданих"
+
+msgid "Total Weight"
+msgstr "Загальна вага"
+
+msgid "Maliciousness Score"
+msgstr "Оцінка зловмисності"
 
 msgid "Pending Rejection Deadline"
 msgstr "Кінцевий термін очікування на відхилення"
@@ -5424,15 +5407,6 @@ msgstr "Примусово вимкнути додаток"
 msgid "Force-enable add-on"
 msgstr "Примусово увімкнути додаток"
 
-msgid "View Blocklist Submission"
-msgstr "Переглянути подання списку блокування"
-
-msgid "Block add-on"
-msgstr "Блокувати додаток"
-
-msgid "Update add-on block"
-msgstr "Оновити блокування додатка"
-
 msgid "Disable Listed Auto-Approval"
 msgstr "Вимкнути автоматичне схвалення оприлюднених"
 
@@ -5462,6 +5436,15 @@ msgstr "Прибрати позначку перевірки вмісту адм
 
 msgid "Clear Admin Static Theme Review Flag"
 msgstr "Прибрати позначку перевірки статичної теми адміном"
+
+msgid "View Blocklist Submission"
+msgstr "Переглянути подання списку блокування"
+
+msgid "Block add-on"
+msgstr "Блокувати додаток"
+
+msgid "Update add-on block"
+msgstr "Оновити блокування додатка"
 
 msgid "(admin)"
 msgstr "(admin)"
@@ -5599,14 +5582,17 @@ msgstr "Завантажити файли"
 msgid "The developer has provided source code."
 msgstr "Розробник надав програмний код."
 
-msgid "Scanners score:"
-msgstr "Оцінка сканерів:"
+msgid "Maliciousness Score:"
+msgstr "Оцінка зловмисності:"
 
-msgid "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr "Оцінка сканерів — це ймовірність зловмисності цієї версії на основі знахідок сканерів."
+msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
+msgstr "Оцінка шкідливості — це ймовірність зловмисності цієї версії на основі знахідок сканерів."
 
-msgid "Weight:"
-msgstr "Вага:"
+msgid "Code Weight:"
+msgstr "Вага коду:"
+
+msgid "Metadata Weight:"
+msgstr "Вага метаданих:"
 
 msgid "Flagged by scanners"
 msgstr "Позначено сканерами"
@@ -5871,6 +5857,9 @@ msgstr "365 днів"
 
 msgid "Custom..."
 msgstr "Вибрати..."
+
+msgid "Sorry, the statistics are temporarily unavailable."
+msgstr "Статистика тимчасово недоступна."
 
 msgid "Loading the latest data&hellip;"
 msgstr "Завантаження останніх даних&hellip;"

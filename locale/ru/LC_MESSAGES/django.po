@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-12-27 18:37+0000\n"
-"Last-Translator: Victor Bychek <a@bychek.ru>\n"
+"POT-Creation-Date: 2021-02-09 17:39+0000\n"
+"PO-Revision-Date: 2021-02-11 06:41+0000\n"
+"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -124,6 +124,9 @@ msgstr "Замечание проверяющего"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Примечания можно добавлять только для последних версий дополнений."
+
+msgid "Authors"
+msgstr "Авторы"
 
 msgid "Ratings"
 msgstr "Рейтинги"
@@ -1615,6 +1618,9 @@ msgstr "Задержка автоодобрения"
 msgid "Delay auto-approval indefinitely"
 msgstr "Отложить автоодобрение на неопределённый срок"
 
+msgid "Delay auto-approval indefinitely and add restrictions"
+msgstr "Отложить автоодобрение на неопределённый срок и добавить ограничения"
+
 msgid "True positive"
 msgstr "Истинноположительный"
 
@@ -2243,50 +2249,8 @@ msgstr "Нажмите кнопку «Принять» ниже, чтобы по
 msgid "Decline"
 msgstr "Отклонить"
 
-msgid "Set Up Payment"
-msgstr "Настройка платежей"
-
-msgid "You're done!"
-msgstr "Вы закончили!"
-
-#, python-format
-msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
-msgstr ""
-"Готово! Новая версия <strong>%(new_version_number)s</strong> вашего дополнения <strong>%(addon_name)s</strong> будет опубликована как %(group_name)s и должна стать доступной в ближайшее время."
-
-msgid "A newer version of your add-on is currently pending review."
-msgstr "Новая версия вашего дополнения ожидает рассмотрения."
-
-msgid "If you have any questions, don’t hesitate to contact us."
-msgstr "Если у вас есть вопросы, не стесняйтесь обращаться к нам."
-
-msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
-msgstr "Ваш платёж был зарегистрирован, но в настоящее время отсутствуют опубликованные версии вашего дополнения. Пожалуйста, загрузите новую публичную версию, чтобы завершить этот процесс."
-
-msgid "Manage add-on"
-msgstr "Управление дополнением"
-
-#, python-format
-msgid ""
-"There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a "
-"href=\"mailto:%(email)s\">%(email)s</a>."
-msgstr "При прохождении оплаты за ваше дополнение произошла ошибка. Если у вас возникли проблемы с этим процессом или вы передумали, свяжитесь с нами по адресу <a href=\"mailto:%(email)s\">%(email)s</a>."
-
-msgid "Thank you for joining the Promoted Add-ons Program!"
-msgstr "Спасибо за присоединение к Программе продвигаемых дополнений!"
-
-#, python-format
-msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the program once payment is set up through the Stripe system. Click on the button below to continue:"
-msgstr "Ваше дополнение <strong>%(addon_name)s</strong> будет включено в программу после того, как будет настроена оплата через систему Stripe. Щёлкните по кнопке ниже, чтобы продолжить:"
-
-msgid "Continue to Stripe Checkout"
-msgstr "Продолжить в Stripe"
-
 msgid "Manage Authors & License"
 msgstr "Управление авторами и лицензией"
-
-msgid "Authors"
-msgstr "Авторы"
 
 msgid "About author roles"
 msgstr "О ролях автора"
@@ -3212,9 +3176,6 @@ msgstr "Загрузить новую версию"
 msgid "View All"
 msgstr "Просмотреть все"
 
-msgid "Manage Billing on Stripe"
-msgstr "Управление биллингом на Stripe"
-
 msgid "Listed Review Page"
 msgstr "Страница проверки опубликованных"
 
@@ -3800,7 +3761,7 @@ msgstr "Наведите курсор на изображение, чтобы у
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Automatically erase cookies after you close a tab."
-msgstr "Автоматическое удаление куки при закрытии вкладки."
+msgstr "Автоматическое удаление кук при закрытии вкладки."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4520,6 +4481,18 @@ msgstr "Лучше управляйте своим временем с брау�
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
 msgstr "Устали от постоянного появления \"Видео приостановлено. Продолжить просмотр?\"? Слушайте любимую музыку на YouTube без перерыва."
 
+#. editorial content for the primary hero shelves.
+msgid "Thousands of GIFs at your fingertips."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Begone, annoying cookie warnings!"
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "The easiest way to manage all of your YouTube channel subscriptions."
+msgstr "Самый простой способ управлять всеми подписками на каналы YouTube."
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Расширения — это как приложения для Firefox."
@@ -4832,6 +4805,7 @@ msgstr "содержащая"
 msgid "start"
 msgstr "начальная"
 
+#. L10n: end, as in "end date"
 msgid "end"
 msgstr "конечная"
 
@@ -4932,8 +4906,8 @@ msgstr "Отложено, так как это первая опубликова
 msgid "Version string and guid match a blocklist Block"
 msgstr "Строка версии и guid соответствуют списку блокировки Block"
 
-msgid "Risk breakdown not available."
-msgstr "Распределение рисков недоступно."
+msgid "Weight breakdown not available."
+msgstr "Распределение по весу недоступно."
 
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Вы не можете оставить комментарий, если определено `canned_response`."
@@ -4983,8 +4957,17 @@ msgstr "ID"
 msgid "Last Review"
 msgstr "Последняя проверка"
 
-msgid "Weight"
-msgstr "Вес"
+msgid "Code Weight"
+msgstr "Вес кода"
+
+msgid "Metadata Weight"
+msgstr "Вес метаданных"
+
+msgid "Total Weight"
+msgstr "Общий вес"
+
+msgid "Maliciousness Score"
+msgstr "Оценка вредоносности"
 
 msgid "Pending Rejection Deadline"
 msgstr "Ожидания срока отклонения"
@@ -5464,15 +5447,6 @@ msgstr "Принудительно отключить дополнение"
 msgid "Force-enable add-on"
 msgstr "Принудительно включить дополнение"
 
-msgid "View Blocklist Submission"
-msgstr "Просмотр списка заблокированных отправок"
-
-msgid "Block add-on"
-msgstr "Заблокировать дополнение"
-
-msgid "Update add-on block"
-msgstr "Обновить блокировку дополнений"
-
 msgid "Disable Listed Auto-Approval"
 msgstr "Отключить автоодобрение опубликованных"
 
@@ -5502,6 +5476,15 @@ msgstr "Снять флаг проверки содержимого админо
 
 msgid "Clear Admin Static Theme Review Flag"
 msgstr "Снять флаг проверки статической темы администратором"
+
+msgid "View Blocklist Submission"
+msgstr "Просмотр списка заблокированных отправок"
+
+msgid "Block add-on"
+msgstr "Заблокировать дополнение"
+
+msgid "Update add-on block"
+msgstr "Обновить блокировку дополнений"
 
 msgid "(admin)"
 msgstr "(админ)"
@@ -5639,14 +5622,17 @@ msgstr "Загрузить файлы"
 msgid "The developer has provided source code."
 msgstr "Разработчик предоставил исходный код."
 
-msgid "Scanners score:"
-msgstr "Оценка сканеров:"
+msgid "Maliciousness Score:"
+msgstr "Оценка вредоносности:"
 
-msgid "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr "Оценка сканеров отражает вероятность того, что эта версия является вредоносной, на основе результатов сканирования."
+msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
+msgstr "Оценка вредоносности отражает вероятность того, что эта версия является вредоносной, на основе результатов сканирования."
 
-msgid "Weight:"
-msgstr "Вес:"
+msgid "Code Weight:"
+msgstr "Вес кода:"
+
+msgid "Metadata Weight:"
+msgstr "Вес метаданных:"
 
 msgid "Flagged by scanners"
 msgstr "Отмечено сканерами"
@@ -5911,6 +5897,9 @@ msgstr "365 дней"
 
 msgid "Custom..."
 msgstr "Настроить..."
+
+msgid "Sorry, the statistics are temporarily unavailable."
+msgstr "Извините, статистика временно недоступна."
 
 msgid "Loading the latest data&hellip;"
 msgstr "Загрузка последних данных&hellip;"

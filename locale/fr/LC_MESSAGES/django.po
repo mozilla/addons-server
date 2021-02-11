@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-07 10:50+0000\n"
+"POT-Creation-Date: 2021-02-09 17:39+0000\n"
 "PO-Revision-Date: 2021-02-05 08:19+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
@@ -125,6 +125,9 @@ msgstr "Note de revue"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Seules les versions les plus récentes des modules peuvent être notées."
+
+msgid "Authors"
+msgstr "Auteurs"
 
 msgid "Ratings"
 msgstr "Notes"
@@ -1647,6 +1650,9 @@ msgstr "Retarder l’approbation automatique"
 msgid "Delay auto-approval indefinitely"
 msgstr "Retarder l’approbation automatique indéfiniment"
 
+msgid "Delay auto-approval indefinitely and add restrictions"
+msgstr ""
+
 msgid "True positive"
 msgstr "Vrai positif"
 
@@ -2272,53 +2278,8 @@ msgstr "Cliquez sur le bouton Accepter ci-dessous pour confirmer que vous souhai
 msgid "Decline"
 msgstr "Refuser"
 
-msgid "Set Up Payment"
-msgstr "Configurer les paiements"
-
-msgid "You're done!"
-msgstr "C’est fini !"
-
-#, python-format
-msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
-msgstr ""
-"Vous avez terminé ! Une nouvelle version <strong>%(new_version_number)s</strong> de votre module complémentaire <strong>%(addon_name)s</strong> sera publiée en tant que %(group_name)s et devrait "
-"être disponible sous peu."
-
-msgid "A newer version of your add-on is currently pending review."
-msgstr "Une version plus récente de votre module complémentaire est actuellement en attente de validation."
-
-msgid "If you have any questions, don’t hesitate to contact us."
-msgstr "Si vous avez des questions, n’hésitez pas à nous contacter."
-
-msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
-msgstr ""
-"Votre paiement a été enregistré, mais il n’existe actuellement aucune version publiée de votre module complémentaire. Veuillez mettre en ligne une nouvelle version publique afin de terminer ce "
-"processus."
-
-msgid "Manage add-on"
-msgstr "Gérer les modules complémentaires"
-
-#, python-format
-msgid ""
-"There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a "
-"href=\"mailto:%(email)s\">%(email)s</a>."
-msgstr ""
-
-msgid "Thank you for joining the Promoted Add-ons Program!"
-msgstr "Merci d’avoir rejoint le programme de modules complémentaires sponsorisés !"
-
-#, python-format
-msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the program once payment is set up through the Stripe system. Click on the button below to continue:"
-msgstr ""
-
-msgid "Continue to Stripe Checkout"
-msgstr ""
-
 msgid "Manage Authors & License"
 msgstr "Gérer les auteurs et la licence"
-
-msgid "Authors"
-msgstr "Auteurs"
 
 msgid "About author roles"
 msgstr "À propos des rôles des auteurs"
@@ -3231,9 +3192,6 @@ msgstr "Envoyer une nouvelle version"
 
 msgid "View All"
 msgstr "Voir toutes les versions"
-
-msgid "Manage Billing on Stripe"
-msgstr ""
 
 msgid "Listed Review Page"
 msgstr "Page des révisions listées"
@@ -4542,6 +4500,18 @@ msgstr ""
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Thousands of GIFs at your fingertips."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Begone, annoying cookie warnings!"
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "The easiest way to manage all of your YouTube channel subscriptions."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Les extensions sont comme des applications pour Firefox."
@@ -4853,6 +4823,7 @@ msgstr "contenant"
 msgid "start"
 msgstr "début"
 
+#. L10n: end, as in "end date"
 msgid "end"
 msgstr "fin"
 
@@ -4953,8 +4924,8 @@ msgstr "Retardé parce que c’est la première version listée"
 msgid "Version string and guid match a blocklist Block"
 msgstr "La chaîne de version et le GUID correspondent à un blocage de la liste de blocage."
 
-msgid "Risk breakdown not available."
-msgstr "Répartition des risques non disponible."
+msgid "Weight breakdown not available."
+msgstr ""
 
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Vous ne pouvez pas soumettre de commentaire si « canned_response » est défini."
@@ -5001,8 +4972,17 @@ msgstr "Identifiant"
 msgid "Last Review"
 msgstr "Dernière revue"
 
-msgid "Weight"
-msgstr "Poids"
+msgid "Code Weight"
+msgstr ""
+
+msgid "Metadata Weight"
+msgstr ""
+
+msgid "Total Weight"
+msgstr ""
+
+msgid "Maliciousness Score"
+msgstr ""
 
 msgid "Pending Rejection Deadline"
 msgstr "En attente de date limite de rejet"
@@ -5484,15 +5464,6 @@ msgstr "Forcer la désactivation du module"
 msgid "Force-enable add-on"
 msgstr "Forcer l’activation du module"
 
-msgid "View Blocklist Submission"
-msgstr "Afficher la soumission de la liste de blocage"
-
-msgid "Block add-on"
-msgstr "Bloquer le module"
-
-msgid "Update add-on block"
-msgstr "Mettre à jour le blocage de module complémentaire"
-
 msgid "Disable Listed Auto-Approval"
 msgstr "Désactiver l’approbation automatique de module publié"
 
@@ -5522,6 +5493,15 @@ msgstr "Enlever le signalement de revue de contenu par un administrateur"
 
 msgid "Clear Admin Static Theme Review Flag"
 msgstr "Enlever le signalement de revue de thème statique par un administrateur"
+
+msgid "View Blocklist Submission"
+msgstr "Afficher la soumission de la liste de blocage"
+
+msgid "Block add-on"
+msgstr "Bloquer le module"
+
+msgid "Update add-on block"
+msgstr "Mettre à jour le blocage de module complémentaire"
 
 msgid "(admin)"
 msgstr "(admin)"
@@ -5659,14 +5639,17 @@ msgstr "Télécharger les fichiers"
 msgid "The developer has provided source code."
 msgstr "Le développeur a fourni le code source."
 
-msgid "Scanners score:"
-msgstr "Score des scanners :"
+msgid "Maliciousness Score:"
+msgstr ""
 
-msgid "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr "Le score des scanners représente la probabilité que cette version soit malveillante, sur la base des résultats des scanners."
+msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
+msgstr ""
 
-msgid "Weight:"
-msgstr "Poids :"
+msgid "Code Weight:"
+msgstr ""
+
+msgid "Metadata Weight:"
+msgstr ""
 
 msgid "Flagged by scanners"
 msgstr "Signalé par des scanners"
@@ -5931,6 +5914,9 @@ msgstr "365 jours"
 
 msgid "Custom..."
 msgstr "Personnalisé…"
+
+msgid "Sorry, the statistics are temporarily unavailable."
+msgstr ""
 
 msgid "Loading the latest data&hellip;"
 msgstr "Chargement des dernières données…"

@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-07 10:50+0000\n"
-"PO-Revision-Date: 2020-12-07 22:49+0000\n"
+"POT-Creation-Date: 2021-02-09 17:39+0000\n"
+"PO-Revision-Date: 2021-02-11 02:05+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -118,6 +118,9 @@ msgstr "Granskningsanteckning"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Endast senaste versionerna av tillägg kan ha anteckningar."
+
+msgid "Authors"
+msgstr "Upphovsmän"
 
 msgid "Ratings"
 msgstr "Betyg"
@@ -1593,6 +1596,9 @@ msgstr "Försena automatisk godkännande"
 msgid "Delay auto-approval indefinitely"
 msgstr "Försena automatisk godkännande på obestämd tid"
 
+msgid "Delay auto-approval indefinitely and add restrictions"
+msgstr "Försena automatisk godkännande på obestämd tid och lägg till begränsningar"
+
 msgid "True positive"
 msgstr "Sann positiv"
 
@@ -2211,49 +2217,8 @@ msgstr "Klicka på knappen Godkänn nedan för att bekräfta att du vill läggas
 msgid "Decline"
 msgstr "Avböj"
 
-msgid "Set Up Payment"
-msgstr "Konfigurera betalning"
-
-msgid "You're done!"
-msgstr "Du är klar!"
-
-#, python-format
-msgid "You're done! A new version <strong>%(new_version_number)s</strong> of your add-on <strong>%(addon_name)s</strong> will be published as %(group_name)s and should become available shortly."
-msgstr "Du är klar! En ny version <strong>%(new_version_number)s</strong> av ditt tillägg <strong>%(addon_name)s</strong> kommer att publiceras som %(group_name)s och bör vara tillgänglig inom kort."
-
-msgid "A newer version of your add-on is currently pending review."
-msgstr "En nyare version av ditt tillägg väntar för närvarande på granskning."
-
-msgid "If you have any questions, don’t hesitate to contact us."
-msgstr "Tveka inte att kontakta oss om du har några frågor."
-
-msgid "Your payment has been recorded, but there are currently no published versions of your add-on. Please upload a new public version in order to complete this process."
-msgstr "Din betalning har registrerats, men det finns för närvarande inga publicerade versioner av ditt tillägg. Ladda upp en ny offentlig version för att slutföra processen."
-
-msgid "Manage add-on"
-msgstr "Hantera tillägg"
-
-#, python-format
-msgid ""
-"There was an error while setting up payment for your add-on. If you're experiencing problems with this process or you've changed your mind, please contact us at <a "
-"href=\"mailto:%(email)s\">%(email)s</a>."
-msgstr "Det uppstod ett fel när du konfigurerade betalningen för tillägget. Om du har problem med den här processen eller om du har ändrat dig, kontakta oss på <a href=\"mailto:%(email)s\">%(email)s</a>."
-
-msgid "Thank you for joining the Promoted Add-ons Program!"
-msgstr "Tack för att du gick med i programmet Promoted Add-ons!"
-
-#, python-format
-msgid "Your add-on <strong>%(addon_name)s</strong> will be included in the program once payment is set up through the Stripe system. Click on the button below to continue:"
-msgstr "Ditt tillägg <strong>%(addon_name)s</strong> kommer att ingå i programmet när betalningen har konfigurerats via Stripe-systemet. Klicka på knappen nedan för att fortsätta:"
-
-msgid "Continue to Stripe Checkout"
-msgstr "Fortsätt till Stripe-betalning"
-
 msgid "Manage Authors & License"
 msgstr "Hantera upphovsmän & licens"
-
-msgid "Authors"
-msgstr "Upphovsmän"
 
 msgid "About author roles"
 msgstr "Om roller för upphovsmän"
@@ -3173,9 +3138,6 @@ msgstr "Ladda upp ny version"
 
 msgid "View All"
 msgstr "Visa alla"
-
-msgid "Manage Billing on Stripe"
-msgstr "Hantera fakturering på Stripe"
 
 msgid "Listed Review Page"
 msgstr "Granskningssida för listade"
@@ -4468,6 +4430,18 @@ msgstr "Hantera din tid bättre med en webbläsarklocka som visar arbetsinterval
 msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
 msgstr "Trött på dialogen \"Video pausad. Fortsätt titta?\"? Lyssna på din favoritmusik utan avbrott på YouTube."
 
+#. editorial content for the primary hero shelves.
+msgid "Thousands of GIFs at your fingertips."
+msgstr "Tusentals GIF-filer till hands."
+
+#. editorial content for the primary hero shelves.
+msgid "Begone, annoying cookie warnings!"
+msgstr "Försvinn, irriterande varningar om kakor!"
+
+#. editorial content for the primary hero shelves.
+msgid "The easiest way to manage all of your YouTube channel subscriptions."
+msgstr "Det enklaste sättet att hantera alla dina YouTube-kanalprenumerationer."
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Tillägg är som appar för Firefox."
@@ -4778,6 +4752,7 @@ msgstr "innehåller"
 msgid "start"
 msgstr "start"
 
+#. L10n: end, as in "end date"
 msgid "end"
 msgstr "slut"
 
@@ -4878,8 +4853,8 @@ msgstr "Försenad eftersom det är den första listade versionen"
 msgid "Version string and guid match a blocklist Block"
 msgstr "Versionssträng och guid matchar ett blocklistblock"
 
-msgid "Risk breakdown not available."
-msgstr "Risknedbrytning inte tillgänglig."
+msgid "Weight breakdown not available."
+msgstr "Viktnedbrytning inte tillgänglig."
 
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Du kan inte skicka en kommentar om `canned_response` är definierat."
@@ -4926,8 +4901,17 @@ msgstr "ID"
 msgid "Last Review"
 msgstr "Senaste granskning"
 
-msgid "Weight"
-msgstr "Vikt"
+msgid "Code Weight"
+msgstr "Kodvikt"
+
+msgid "Metadata Weight"
+msgstr "Viktning av metadata"
+
+msgid "Total Weight"
+msgstr "Totalvikt"
+
+msgid "Maliciousness Score"
+msgstr "Skadlighetpoäng"
 
 msgid "Pending Rejection Deadline"
 msgstr "Deadline för väntande avslag"
@@ -5407,15 +5391,6 @@ msgstr "Inaktivera tillägg med våld"
 msgid "Force-enable add-on"
 msgstr "Aktivera tillägg med våld"
 
-msgid "View Blocklist Submission"
-msgstr "Visa blocklist inlämning"
-
-msgid "Block add-on"
-msgstr "Blockera tillägg"
-
-msgid "Update add-on block"
-msgstr "Uppdatera tilläggsblockering"
-
 msgid "Disable Listed Auto-Approval"
 msgstr "Inaktivera listad automatisk godkännande"
 
@@ -5445,6 +5420,15 @@ msgstr "Rensa flagga för administrativ innehållsgranskning"
 
 msgid "Clear Admin Static Theme Review Flag"
 msgstr "Rensa flagga för administrativ statisk temagranskning"
+
+msgid "View Blocklist Submission"
+msgstr "Visa blocklist inlämning"
+
+msgid "Block add-on"
+msgstr "Blockera tillägg"
+
+msgid "Update add-on block"
+msgstr "Uppdatera tilläggsblockering"
 
 msgid "(admin)"
 msgstr "(admin)"
@@ -5582,14 +5566,17 @@ msgstr "Hämta filer"
 msgid "The developer has provided source code."
 msgstr "Utvecklaren har lämnat källkod."
 
-msgid "Scanners score:"
-msgstr "Skannrar poäng:"
+msgid "Maliciousness Score:"
+msgstr "Skadlighetspoäng:"
 
-msgid "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr "Skannerns poäng representerar sannolikheten för att den här versionen är skadlig, baserat på skannerns resultat."
+msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
+msgstr "Skadlighetspoäng representerar sannolikheten för att den här versionen är skadlig, baserat på skannrarnas resultat."
 
-msgid "Weight:"
-msgstr "Vikt:"
+msgid "Code Weight:"
+msgstr "Kodvikt:"
+
+msgid "Metadata Weight:"
+msgstr "Viktning av metadata:"
 
 msgid "Flagged by scanners"
 msgstr "Flaggad av skannrar"
@@ -5854,6 +5841,9 @@ msgstr "365 dagarna"
 
 msgid "Custom..."
 msgstr "Anpassad..."
+
+msgid "Sorry, the statistics are temporarily unavailable."
+msgstr "Tyvärr är statistiken tillfälligt otillgänglig."
 
 msgid "Loading the latest data&hellip;"
 msgstr "Laddar in det senaste datat&hellip;"
