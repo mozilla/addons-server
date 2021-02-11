@@ -1099,8 +1099,6 @@ CELERY_TASK_ROUTES = {
     'olympia.addons.tasks.delete_preview_files': {'queue': 'addons'},
     'olympia.addons.tasks.version_changed': {'queue': 'addons'},
     'olympia.addons.tasks.create_custom_icon_from_predefined': {'queue': 'addons'},
-    'olympia.addons.tasks.hard_delete_extra_files': {'queue': 'addons'},
-    'olympia.addons.tasks.hard_delete_legacy_versions': {'queue': 'addons'},
     'olympia.files.tasks.hide_disabled_files': {'queue': 'addons'},
     'olympia.versions.tasks.delete_preview_files': {'queue': 'addons'},
     'olympia.git.tasks.continue_git_extraction': {'queue': 'addons'},
@@ -1115,6 +1113,8 @@ CELERY_TASK_ROUTES = {
     'olympia.addons.tasks.recreate_theme_previews': {'queue': 'addons'},
     # Adhoc
     # A queue to be used for one-off tasks that could be resource intensive.
+    'olympia.addons.tasks.hard_delete_extra_files': {'queue': 'adhoc'},
+    'olympia.addons.tasks.hard_delete_legacy_versions': {'queue': 'adhoc'},
     'olympia.files.tasks.extract_optional_permissions': {'queue': 'adhoc'},
     # Crons
     'olympia.addons.tasks.update_addon_average_daily_users': {'queue': 'cron'},
