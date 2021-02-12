@@ -389,6 +389,7 @@ v4 API changelog
 * 2020-11-05: dropped heading and description from discovery API https://github.com/mozilla/addons-server/issues/11272
 * 2020-11-05: added endpoint to receive Stripe events. https://github.com/mozilla/addons-server/issues/15879
 * 2021-01-14: as addons-frontend now uses /v5/, v5 becomes the stable default; v4 becomes frozen; v3 is deprecated
+* 2021-02-12: added ``versions_url`` to addon detail endpoint. https://github.com/mozilla/addons-server/issues/16534
 
 ----------------
 v5 API changelog
@@ -411,6 +412,7 @@ These are `v5` specific changes - `v4` changes apply also.
 * 2021-02-04: dropped /shelves/sponsored endpoint https://github.com/mozilla/addons-server/issues/16390
 * 2021-02-11: removed Stripe webhook endpoint https://github.com/mozilla/addons-server/issues/16391
 * 2021-02-11: added ``show_grouped_ratings`` to addon detail endpoint. https://github.com/mozilla/addons-server/issues/16459
+* 2021-02-12: added ``versions_url`` to addon detail endpoint. https://github.com/mozilla/addons-server/issues/16534
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/
