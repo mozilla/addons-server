@@ -26,7 +26,7 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.applications.models import AppVersion
-from olympia.files.models import FileValidation, WebextPermission
+from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.ratings.models import Rating, RatingAggregate
 from olympia.reviewers.models import AutoApprovalSummary
 from olympia.versions.models import ApplicationsVersions, Version, VersionPreview
