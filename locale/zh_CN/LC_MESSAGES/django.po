@@ -1036,7 +1036,7 @@ msgid "Extensions"
 msgstr "扩展"
 
 msgid "Deprecated Complete Themes"
-msgstr "已不推荐使用的完整主题"
+msgstr "已不赞成使用的完整主题"
 
 # Plural in this context means many of the add-on type
 msgid "Dictionaries"
