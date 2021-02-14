@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-02-09 17:39+0000\n"
-"PO-Revision-Date: 2021-02-14 16:33+0000\n"
+"PO-Revision-Date: 2021-02-14 16:37+0000\n"
 "Last-Translator: Ivan <1vanhorvat@protonmail.com>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -919,7 +919,7 @@ msgid "Admin theme-review requested"
 msgstr "Administratorski pregled teme zatražen"
 
 msgid "{addon} was migrated from a lightweight theme."
-msgstr "{addon} je preseljen iz lakih motiva."
+msgstr "{addon} je preseljen iz lakih tema."
 
 msgid "User {user} api key reset."
 msgstr "Api ključ korisnika {user} resetiran."
@@ -1299,16 +1299,16 @@ msgid "Download Firefox themes for musical interests and artists. This category 
 msgstr "Preuzmi glazbene i umjetničke teme za Firefox. Ova kategorija uključuje popularne bendove poput Nirvane i BTS-a, instrumente, muzičke spotove i još mnogo toga."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr "Preuzmi Firefoxov motive sa životinjama i prirodnim krajolicima. Ova kategorija uključuje cvijeće, zalaske sunca, lisice, godišnja doba, planete, mačiće, ptice i još mnogo toga."
+msgstr "Preuzmi teme za Firefox sa životinjama i prirodnim krajolicima. Ova kategorija uključuje cvijeće, zalaske sunca, lisice, godišnja doba, planete, mačiće, ptice i još mnogo toga."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr "Preuzmi Firefox motive koji su zanimljivi, kreativni i jedinstveni."
+msgstr "Preuzmi teme za Firefox koje su zanimljive, kreativne i jedinstvene."
 
 msgid "Scenery"
 msgstr "Pejzaž"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr "Preuzmi Firefox motive koji sadrže okoliš i prirodni svijet. Ova kategorija uključuje zalaske sunca, plaže, ilustracije, siluete gradova i još mnogo toga."
+msgstr "Preuzmi teme za Firefox koje sadrže okoliš i prirodni svijet. Ova kategorija uključuje zalaske sunca, plaže, ilustracije, siluete gradova i još mnogo toga."
 
 msgid "Seasonal"
 msgstr "Sezonske"
@@ -1320,16 +1320,16 @@ msgid "Solid"
 msgstr "Jednobojne"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr "Preuzmi Firefox motive s punim i prijelaznim bojama za individualiziranje preglednika. Ova kategorija uključuje jake crvene boje, pastelne boje, meke sive boje i još mnogo toga."
+msgstr "Preuzmi teme za Firefox s punim i prijelaznim bojama za individualiziranje preglednika. Ova kategorija uključuje jake crvene boje, pastelne boje, meke sive boje i još mnogo toga."
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr "Preuzmi Firefox motive s različitim sportovima. Ova kategorija uključuje zastave država, sportske momčadi, nogomet, hokej i još mnogo toga."
+msgstr "Preuzmi teme za Firefox s različitim sportovima. Ova kategorija uključuje zastave država, sportske momčadi, nogomet, hokej i još mnogo toga."
 
 msgid "Websites"
 msgstr "Web stranice"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr "Preuzmi Firefox motive koji otkrivaju bit interneta – zadivljujuće, neobične i prepoznatljive."
+msgstr "Preuzmi teme za Firefox koje otkrivaju bit interneta – zadivljujuće, neobične i prepoznatljive."
 
 msgid "General"
 msgstr "Opće"
@@ -2072,7 +2072,7 @@ msgid "Extension Development"
 msgstr "Razvoj proširenja"
 
 msgid "Themes"
-msgstr "Motivi"
+msgstr "Teme"
 
 # 100%
 msgid "Developer Policies"
@@ -2213,7 +2213,7 @@ msgstr "Starija aktivnost za Moji dodaci"
 #. {0} is an integer.
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] "<b>{0}</b> motiv"
+msgstr[0] "<b>{0}</b> tema"
 msgstr[1] "<b>{0}</b> motiva"
 msgstr[2] "<b>{0}</b> motiva"
 
@@ -2881,29 +2881,29 @@ msgid "Administrative overrides"
 msgstr ""
 
 msgid "Create a Theme Version"
-msgstr "Stvori verziju motiva"
+msgstr "Stvori verziju teme"
 
 msgid "Create a Theme"
-msgstr "Stvori motiv"
+msgstr "Stvori temu"
 
 # 80%
 msgid "Sign Add-on"
 msgstr "Potpiši dodatak"
 
 msgid "Theme generate"
-msgstr "Generiraj motiv"
+msgstr "Generiraj temu"
 
 msgid "Theme generator"
-msgstr "Generator motiva"
+msgstr "Generator tema"
 
 msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
 msgstr ""
 
 msgid "Theme name"
-msgstr "Naziv motiva"
+msgstr "Naziv teme"
 
 msgid "Select a header image for your theme"
-msgstr "Odaberi sliku zaglavlja za tvoj motiv"
+msgstr "Odaberi sliku zaglavlja za tvoju temu"
 
 msgid "Recommended height: 200 pixels"
 msgstr "Preporučena visina: 200 piksela"
@@ -2921,7 +2921,7 @@ msgid "Select a different header image"
 msgstr "Odaberi jednu drugu sliku zaglavlja"
 
 msgid "Select colors for your theme"
-msgstr "Odaberi boje za tvoj motiv"
+msgstr "Odaberi boje za tvoju temu"
 
 msgid "optional"
 msgstr "opcionalno"
@@ -2930,10 +2930,10 @@ msgid "Browser preview"
 msgstr "Pregled preglednika"
 
 msgid "Uploading Theme"
-msgstr "Prijenos motiva"
+msgstr "Prijenos teme"
 
 msgid "Finish Theme"
-msgstr "Završi motiv"
+msgstr "Završi temu"
 
 msgid "Back"
 msgstr "Natrag"
@@ -3175,7 +3175,7 @@ msgstr ""
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
-"Svejedno, je li tek počinješ razvijati proširenja, ispravljati ili portirati postojeća proširenja i motive ili izraditi prilagođeno poslovno rješenje, imamo resurse koji će ti pomoći u tvom radu."
+"Svejedno, je li tek počinješ razvijati proširenja, ispravljati ili portirati postojeća proširenja i teme ili izraditi prilagođeno poslovno rješenje, imamo resurse koji će ti pomoći u tvom radu."
 
 msgid "Visit the Extension Workshop"
 msgstr "Posjeti radionicu za proširenja"
@@ -3286,13 +3286,13 @@ msgid "View All Submissions"
 msgstr "Prikaži sva slanja"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
-msgstr "Ovdje se pregledava i upravlja vlastitim dodacima i motivima. Za objavljivanje prvog vlastitog dodatka, klikni „Pošalji svoj prvi dodatak” ili „Pošalji svoj prvi motiv”."
+msgstr "Ovdje se pregledava i upravlja vlastitim dodacima i temama. Za objavljivanje prvog vlastitog dodatka, klikni „Pošalji svoj prvi dodatak” ili „Pošalji svoju prvu temu”."
 
 msgid "Submit Your First Add-on"
 msgstr "Pošalji svoj prvi dodatak"
 
 msgid "Submit Your First Theme"
-msgstr "Pošalji svoj prvi motiv"
+msgstr "Pošalji svoju prvu temu"
 
 msgid "Add-on Developer Hub"
 msgstr "Centar za programere dodataka"
@@ -3329,7 +3329,7 @@ msgid "Ready to submit or manage your extension?"
 msgstr "Želiš poslati tvoje proširenje i njime upravljati?"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
-msgstr "Za slanje i upravljanje proširenjima i motivima, prijavi se na Centar za programere."
+msgstr "Za slanje i upravljanje proširenjima i temama, prijavi se na Centar za programere."
 
 msgid "Register for a developer account or log in to the Developer Hub"
 msgstr "Registriraj se za račun programera ili se prijavi na Centar za programere"
@@ -4280,7 +4280,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
-msgstr "Promijeni izgled preglednika. Jednostavno dizajniraj vlastite vizualne motive kako bi Firefox izgledao kako želiš."
+msgstr "Promijeni izgled preglednika. Jednostavno dizajniraj vlastite vizualne teme kako bi Firefox izgledao kako želiš."
 
 #. editorial content for the discovery pane.
 msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
