@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-02-09 17:39+0000\n"
-"PO-Revision-Date: 2021-02-14 14:36+0000\n"
+"PO-Revision-Date: 2021-02-14 16:33+0000\n"
 "Last-Translator: Ivan <1vanhorvat@protonmail.com>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -173,7 +173,7 @@ msgid "My Add-ons"
 msgstr "Moji dodaci"
 
 msgid "My Themes"
-msgstr "Moji motivi"
+msgstr "Moje teme"
 
 msgid "Git-Extract"
 msgstr ""
@@ -203,7 +203,7 @@ msgid "Submit a New Add-on"
 msgstr "Dodaj novi dodatak"
 
 msgid "Submit a New Theme"
-msgstr "Pošalji novi motiv"
+msgstr "Dodaj novu temu"
 
 msgid "Developer Hub"
 msgstr "Centar za programere"
@@ -284,7 +284,7 @@ msgid "Browse all extensions"
 msgstr "Pregledaj sve dodatke"
 
 msgid "Browse all themes"
-msgstr "Pregledaj sve motive"
+msgstr "Pregledaj sve teme"
 
 msgid "Add-ons Home Page"
 msgstr "Naslovnica dodataka"
@@ -913,10 +913,10 @@ msgid "Admin content-review requested"
 msgstr "Administratorski pregled sadržaja zatražen"
 
 msgid "{addon} {version} admin theme-review requested."
-msgstr "{addon} {version} administratorski pregled motiva zatražen."
+msgstr "{addon} {version} administratorski pregled teme zatražen."
 
 msgid "Admin theme-review requested"
-msgstr "Administratorski pregled motiva zatražen"
+msgstr "Administratorski pregled teme zatražen"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} je preseljen iz lakih motiva."
@@ -1054,7 +1054,7 @@ msgid "Deprecated LWT"
 msgstr "Zastarjela LWT tema"
 
 msgid "Theme (Static)"
-msgstr "Motiv (statički)"
+msgstr "Tema (statička)"
 
 msgid "Extensions"
 msgstr "Proširenja"
@@ -1078,10 +1078,10 @@ msgid "Plugins"
 msgstr "Dodaci za preglednik"
 
 msgid "Deprecated LWTs"
-msgstr "Zastarjeli LWT motivi"
+msgstr "Zastarjele LWT teme"
 
 msgid "Themes (Static)"
-msgstr "Motivi (statički)"
+msgstr "Teme (statičke)"
 
 msgid "Alerts & Updates"
 msgstr "Upozorenja i aktualiziranja"
@@ -1094,7 +1094,7 @@ msgid "Appearance"
 msgstr "Izgled"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr "Preuzmi proširenja koja mijenjaju izgled web stranica i preglednika Firefox. Ova kategorija uključuje proširenja za tamne motive, upravljanje karticama i još mnogo toga."
+msgstr "Preuzmi proširenja koja mijenjaju izgled web stranica i preglednika Firefox. Ova kategorija uključuje proširenja za tamne teme, upravljanje karticama i još mnogo toga."
 
 msgid "Bookmarks"
 msgstr "Zabilješke"
@@ -1257,46 +1257,46 @@ msgid "Abstract"
 msgstr "Abstraktno"
 
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
-msgstr "Preuzmi Firefoxove umjetničke i konceptualne motive. Ova kategorija uključuje šarene palete i oblike, fantastične pejzaže, razigrane mačke, psihodelično cvijeće."
+msgstr "Preuzmi Firefoxove umjetničke i konceptualne teme. Ova kategorija uključuje šarene palete i oblike, fantastične pejzaže, razigrane mačke, psihodelično cvijeće."
 
 msgid "Causes"
 msgstr "Povodi"
 
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
-msgstr "Preuzmi Firefox motive za posebne interese i teme. Ova kategorija uključuje sportske motive, praznike, filantropske povode, nacionalnosti i još mnogo toga."
+msgstr "Preuzmi teme za Firefox za posebne interese i predmete. Ova kategorija uključuje sportske motive, praznike, filantropske povode, nacionalnosti i još mnogo toga."
 
 msgid "Fashion"
 msgstr "Moda"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr "Preuzmi Firefox motive koji slave stil svih oblika – mustre, cvijeće, teksture i još mnogo toga."
+msgstr "Preuzmi teme za Firefox koje slave stilove svih oblika – uzorci, cvijeće, teksture i još mnogo toga."
 
 msgid "Film and TV"
 msgstr "Film i TV"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr "Preuzmi Firefox filmske i televizijske motive. U ovu kategoriju spadaju anime poput Uchiha Madara, filmovi poput The Matrix, emisije (Game of Thrones) i još mnogo toga."
+msgstr "Preuzmi filmske i televizijske teme za Firefox. U ovu kategoriju spadaju anime poput Uchiha Madara, filmovi poput The Matrix, emisije (Game of Thrones) i još mnogo toga. "
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
-msgstr "Preuzmi Firefox motive s motivom Firefox preglednika. Ova kategorija uključuje šarene, raznolike slike Firefox logotipa, uključujući opće motive s lisicama."
+msgstr "Preuzmi teme za Firefox s Firefoxovim motivom. Ova kategorija uključuje šarene, raznolike slike Firefoxovog logotipa, uključujući opće teme s lisicama."
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
-msgstr "Preuzmi Firefox motive s japanskim Firefoxom. Ova kategorija uključuje motive koji prikazuju simpatičnu maskotu Foxkeh u raznim pozama i u raznolikim krajolicima."
+msgstr "Preuzmi Firefoxove teme s japanskim Firefoxom. Ova kategorija uključuje teme koje prikazuju simpatičnu maskotu Foxkeh u raznim pozama u raznolikim krajolicima."
 
 msgid "Holiday"
 msgstr "Blagdan"
 
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr "Preuzmi Firefox motive s praznicima. Ova kategorija uključuje Božić, Noć vještica, Dan zahvalnosti, Dan svetog Patrika, Uskrs i još mnogo toga."
+msgstr "Preuzmi teme za Firefox s praznicima. Ova kategorija uključuje Božić, Noć vještica, Dan zahvalnosti, Dan svetog Patrika, Uskrs i još mnogo toga."
 
 msgid "Music"
 msgstr "Glazba"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr "Preuzmi muzičke i umjetničke Firefox motive. Ova kategorija uključuje popularne bendove poput Nirvane i BTS-a, instrumente, muzičke spotove i još mnogo toga."
+msgstr "Preuzmi glazbene i umjetničke teme za Firefox. Ova kategorija uključuje popularne bendove poput Nirvane i BTS-a, instrumente, muzičke spotove i još mnogo toga."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
 msgstr "Preuzmi Firefoxov motive sa životinjama i prirodnim krajolicima. Ova kategorija uključuje cvijeće, zalaske sunca, lisice, godišnja doba, planete, mačiće, ptice i još mnogo toga."
@@ -1434,7 +1434,7 @@ msgid "Add-on"
 msgstr "Dodatak"
 
 msgid "Static Theme"
-msgstr "Statički motiv"
+msgstr "Statička tema"
 
 msgid "Persona"
 msgstr "Persona"
@@ -1492,10 +1492,10 @@ msgid "Updated Language Pack Review"
 msgstr "Aktualizirana recenzija jezičnog paketa"
 
 msgid "Theme Review"
-msgstr "Recenzija motiva"
+msgstr "Recenzija teme"
 
 msgid "Theme (Static) Review"
-msgstr "Recenzija (statičkog) motiva"
+msgstr "Recenzija (statičke) teme"
 
 msgid "New Search Provider Review"
 msgstr "Nova recenzija pružatelja usluge za pretragu"
@@ -1507,13 +1507,13 @@ msgid "Updated Search Provider Review"
 msgstr "Aktualizirana recenzija ponuđača usluge traženja"
 
 msgid "New Complete Theme Review"
-msgstr "Novi pregled kompletnog motiva"
+msgstr "Novi pregled kompletne teme"
 
 msgid "Preliminary Complete Theme Review"
-msgstr "Preliminarni pregled kompletnog motiva"
+msgstr "Preliminarni pregled kompletne teme"
 
 msgid "Updated Complete Theme Review"
-msgstr "Aktualizirani pregled kompletnog motiva"
+msgstr "Aktualizirani pregled kompletne teme"
 
 msgid "Moderated Add-on Review"
 msgstr "Moderirana recenzija dodataka"
@@ -1891,13 +1891,13 @@ msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Dodatak se ne može izbrisati. Umjesto toga deaktiviraj ovaj dodatak."
 
 msgid "Theme deleted."
-msgstr "Motiv izbrisan."
+msgstr "Tema izbrisana."
 
 msgid "Add-on deleted."
 msgstr "Dodatak izbrisan."
 
 msgid "URL name was incorrect. Theme was not deleted."
-msgstr "Naziv URL-a nije točan. Motiv nije izbrisan."
+msgstr "Naziv URL-a nije točan. Tema nije izbrisana."
 
 msgid "URL name was incorrect. Add-on was not deleted."
 msgstr "Naziv URL-a nije točan. Dodatak nije izbrisan."
@@ -4492,7 +4492,7 @@ msgid "Version numbers should only contain letters, numbers, and these punctuati
 msgstr ""
 
 msgid "Maximum size for WebExtension themes is {0}."
-msgstr "Maksimalna veličina za WebExtension motive je {0}."
+msgstr "Maksimalna veličina za WebExtension teme je {0}."
 
 msgid "You cannot submit this type of add-on"
 msgstr ""
@@ -4778,7 +4778,7 @@ msgid "Needs Admin Content Review"
 msgstr "Potreban je administratorski pregled sadržaja"
 
 msgid "Needs Admin Static Theme Review"
-msgstr "Potreban je administratorski pregled statičkog motiva"
+msgstr "Potreban je administratorski pregled statičke teme"
 
 msgid "Requires Restart"
 msgstr "Zahtjeva ponovno pokretanje"
@@ -4999,7 +4999,7 @@ msgstr "Aktualiziranja ({0})"
 
 # 100%
 msgid "Theme Review Guide"
-msgstr "Vodič za pregled motiva"
+msgstr "Vodič za pregled tema"
 
 msgid "User Ratings Moderation"
 msgstr "Moderacija korisničkih ocjenjivanja"
@@ -5102,7 +5102,7 @@ msgid "Bad User Ratings ({num})"
 msgstr "Loše ocjene korisnika ({num})"
 
 msgid "Theme Images"
-msgstr "Slike motiva"
+msgstr "Slike teme"
 
 msgid "Rendered Preview"
 msgstr "Iscrtani pregled"
@@ -5385,7 +5385,7 @@ msgid "Clear Admin Content Review Flag"
 msgstr "Izbriši oznaku za administratorski pregled sadržaja"
 
 msgid "Clear Admin Static Theme Review Flag"
-msgstr "Izbriši oznaku za administratorski pregled statičkog motiva"
+msgstr "Izbriši oznaku za administratorski pregled statičke teme"
 
 msgid "View Blocklist Submission"
 msgstr "Prikaži prijavu iz blokiranog popisa"
@@ -5505,7 +5505,7 @@ msgid "You have <span>{0}</span> points."
 msgstr "Imaš <span>{0}</span> bodova."
 
 msgid "Theme"
-msgstr "Motiv"
+msgstr "Tema"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
