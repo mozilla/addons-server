@@ -23,6 +23,7 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.ratings.models import Rating, RatingFlag
+from olympia.ratings.tasks import addon_rating_aggregates
 
 
 locmem_cache = settings.CACHES.copy()
@@ -102,6 +103,7 @@ class TestRatingViewSetGet(TestCase):
         older_review.update_denormalized_fields()
         assert review1.reload().is_latest is True
         assert older_review.reload().is_latest is False
+        addon_rating_aggregates(self.addon.id)
 
         params = {'addon': self.addon.pk}
         params.update(kwargs)

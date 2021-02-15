@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 from django.core.cache import cache
 from django.db.models import Avg, Count, F
 
@@ -7,7 +9,7 @@ from olympia.addons.models import Addon
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 
-from .models import GroupedRating, Rating
+from .models import Rating, RatingAggregate
 
 
 log = olympia.core.logger.getLogger('z.task')
@@ -56,17 +58,6 @@ def addon_rating_aggregates(addons, **kw):
         % (len(addons), addon_rating_aggregates.rate_limit)
     )
     addon_objs = list(Addon.objects.filter(pk__in=addons))
-    # The following returns something like
-    # [{'rating': 2.0, 'addon': 7, 'count': 5},
-    #  {'rating': 3.75, 'addon': 6, 'count': 8}, ...]
-    qs = (
-        Rating.without_replies.all()
-        .filter(addon__in=addons, is_latest=True)
-        .values('addon')  # Group by addon id.
-        .annotate(rating=Avg('rating'), count=Count('addon'))  # Aggregates.
-        .order_by()
-    )  # Reset order by so that `created` is not included.
-    stats = {x['addon']: (x['rating'], x['count']) for x in qs}
 
     text_qs = (
         Rating.without_replies.all()
@@ -78,17 +69,42 @@ def addon_rating_aggregates(addons, **kw):
     )
     text_stats = {x['addon']: x['count'] for x in text_qs}
 
+    grouped_qs = (
+        Rating.without_replies.all()
+        .filter(addon__in=addons, is_latest=True)
+        .values_list('addon_id', 'rating')
+        .annotate(Count('rating'))
+        .order_by()
+    )
+    grouped_counts = defaultdict(dict)
+    for addon_id, rating, count in grouped_qs:
+        grouped_counts[addon_id][rating] = count
+
     for addon in addon_objs:
-        rating, reviews = stats.get(addon.pk, [0, 0])
+        counts = grouped_counts.get(addon.id, {})
+        total = sum(count for score, count in counts.items() if score)
+        average = (
+            round(
+                sum(score * count for score, count in counts.items() if score and count)
+                / total,
+                4,
+            )
+            if total
+            else 0
+        )
+
         reviews_with_text = text_stats.get(addon.pk, 0)
         addon.update(
-            total_ratings=reviews,
-            average_rating=rating,
+            total_ratings=total,
+            average_rating=average,
             text_ratings_count=reviews_with_text,
         )
 
-        # Clear cached grouped ratings
-        GroupedRating.delete(addon.pk)
+        # Update grouped ratings
+        RatingAggregate.objects.update_or_create(
+            addon=addon,
+            defaults={f'count_{idx}': counts.get(idx, 0) for idx in range(1, 6)},
+        )
 
     # Delay bayesian calculations to avoid slave lag.
     addon_bayesian_rating.apply_async(args=addons, countdown=5)

@@ -27,7 +27,7 @@ from olympia.amo.tests import (
 )
 from olympia.applications.models import AppVersion
 from olympia.files.models import File, FileValidation, WebextPermission
-from olympia.ratings.models import Rating
+from olympia.ratings.models import Rating, RatingAggregate
 from olympia.reviewers.models import AutoApprovalSummary
 from olympia.versions.models import ApplicationsVersions, Version, VersionPreview
 
@@ -728,3 +728,14 @@ class TestCreateCustomIconFromPredefined(TestCase):
                 predefined_icon.get_icon_dir(), f'{predefined_icon.id}-128.png'
             )
         )
+
+
+def test_update_rating_aggregates():
+    addon = addon_factory()
+    Rating.objects.create(addon=addon, user=user_factory(), rating=4)
+    assert RatingAggregate.objects.filter(addon=addon).delete()
+    call_command('process_addons', task='update_rating_aggregates')
+    assert RatingAggregate.objects.filter(addon=addon).exists()
+    addon = Addon.objects.get(id=addon.id)
+    assert addon.ratingaggregate
+    assert addon.ratingaggregate.count_4 == 1

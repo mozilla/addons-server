@@ -8,7 +8,7 @@ from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
 from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.tests import ESTestCase, TestCase, addon_factory, user_factory
-from olympia.ratings.models import GroupedRating, Rating, RatingFlag
+from olympia.ratings.models import Rating, RatingFlag
 from olympia.users.models import UserProfile
 
 
@@ -298,63 +298,6 @@ class TestRatingModel(TestCase):
         rating.save()
         assert not ActivityLog.objects.exists()
         assert mail.outbox == []
-
-
-class TestGroupedRating(TestCase):
-    @classmethod
-    # Prevent <Rating>.post_save() from being fired when setting up test data,
-    # since it'd affect the results of our tests by calculating GroupedRating
-    # results early (and storing result in cache) or changing is_latest boolean
-    # on reviews.
-    @mock.patch.object(Rating, 'post_save', lambda *args, **kwargs: None)
-    def setUpTestData(cls):
-        cls.addon = addon_factory()
-        user = user_factory()
-
-        # Create a few ratings with various scores.
-        rating = Rating.objects.create(addon=cls.addon, rating=3, user=user)
-        Rating.objects.create(addon=cls.addon, rating=3, user=user_factory())
-        Rating.objects.create(addon=cls.addon, rating=2, user=user_factory())
-        Rating.objects.create(addon=cls.addon, rating=1, user=user_factory())
-        Rating.objects.create(addon=cls.addon, rating=1, user=user_factory())
-        Rating.objects.create(addon=cls.addon, rating=1, user=user_factory())
-
-        # GroupedRating should ignore replies, so let's add one.
-        Rating.objects.create(
-            addon=cls.addon, rating=5, user=user_factory(), reply_to=rating
-        )
-
-        # GroupedRating should also ignore reviews that aren't the latest for
-        # this user and addon, so let's add another one from the same user.
-        Rating.objects.create(addon=cls.addon, rating=4, user=user, is_latest=False)
-
-        # There are three '1' ratings, one '2' rating, 2 'three' ratings,
-        # and zero for '4' and '5' since replies and non-latest reviews do not
-        # count.
-        cls.expected_grouped_rating = [(1, 3), (2, 1), (3, 2), (4, 0), (5, 0)]
-
-    def test_delete_grouped_rating_on_save(self):
-        # post_save() -> addon_rating_aggregates() -> GroupedRating.delete()
-        self.test_set()
-        GroupedRating.delete(self.addon.pk)
-        assert GroupedRating.get(self.addon.pk, update_none=False) is None
-
-    def test_get_unknown_addon_id(self):
-        assert GroupedRating.get(3, update_none=False) is None
-        assert GroupedRating.get(3) == [(1, 0), (2, 0), (3, 0), (4, 0), (5, 0)]
-
-    def test_set(self):
-        assert GroupedRating.get(self.addon.pk, update_none=False) is None
-        GroupedRating.set(self.addon.pk)
-        assert GroupedRating.get(self.addon.pk, update_none=False) == (
-            self.expected_grouped_rating
-        )
-
-    def test_update_none(self):
-        assert GroupedRating.get(self.addon.pk, update_none=False) is None
-        assert GroupedRating.get(self.addon.pk, update_none=True) == (
-            self.expected_grouped_rating
-        )
 
 
 class TestRefreshTest(ESTestCase):
