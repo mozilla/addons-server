@@ -1802,7 +1802,9 @@ class TestBlockAdminEdit(TestCase):
         )
         self.change_url = reverse('admin:blocklist_block_change', args=(self.block.pk,))
         self.submission_url = reverse('admin:blocklist_blocklistsubmission_add')
-        self.task_user = user_factory(id=settings.TASK_USER_ID)
+        # We need the task user because some test cases eventually trigger
+        # `disable_addon_for_block()`.
+        user_factory(id=settings.TASK_USER_ID)
 
     def _test_edit(self, user, signoff_state):
         self.grant_permission(user, 'Blocklist:Create')
