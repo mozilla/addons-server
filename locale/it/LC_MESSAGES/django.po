@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-02-09 17:39+0000\n"
-"PO-Revision-Date: 2021-02-10 22:31+0000\n"
-"Last-Translator: Jenny <leanintocuriosity@gmx.com>\n"
+"PO-Revision-Date: 2021-02-11 11:05+0000\n"
+"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -4521,11 +4521,11 @@ msgstr "Migliaia di GIF a portata di mano."
 
 #. editorial content for the primary hero shelves.
 msgid "Begone, annoying cookie warnings!"
-msgstr ""
+msgstr "Addio, fastidiosi avvisi sui cookie!"
 
 #. editorial content for the primary hero shelves.
 msgid "The easiest way to manage all of your YouTube channel subscriptions."
-msgstr ""
+msgstr "Il modo più semplice per gestire tutte le tue iscrizioni ai canali YouTube."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4998,7 +4998,7 @@ msgid "Total Weight"
 msgstr "Dimensione totale"
 
 msgid "Maliciousness Score"
-msgstr ""
+msgstr "Punteggio di pericolosità"
 
 msgid "Pending Rejection Deadline"
 msgstr "Scadenza per il rifiuto in sospeso"
@@ -5662,10 +5662,10 @@ msgid "The developer has provided source code."
 msgstr "Lo sviluppatore ha reso disponibile il codice sorgente."
 
 msgid "Maliciousness Score:"
-msgstr ""
+msgstr "Punteggio di pericolosità:"
 
 msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr ""
+msgstr "Il punteggio di pericolosità, calcolato in base ai risultati degli scanner, esprime il grado di probabilità che la versione sia dannosa."
 
 msgid "Code Weight:"
 msgstr "Dimensione del codice:"
@@ -5938,7 +5938,7 @@ msgid "Custom..."
 msgstr "Personalizzato…"
 
 msgid "Sorry, the statistics are temporarily unavailable."
-msgstr ""
+msgstr "Le statistiche sono temporaneamente non disponibili."
 
 msgid "Loading the latest data&hellip;"
 msgstr "Caricamento dei dati più recenti in corso&hellip;"
