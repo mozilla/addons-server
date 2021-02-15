@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-02-09 17:39+0000\n"
-"PO-Revision-Date: 2021-02-09 22:15+0000\n"
-"Last-Translator: 你我皆凡人 <eloli@foxmail.com>\n"
+"PO-Revision-Date: 2021-02-13 03:31+0000\n"
+"Last-Translator: ff98sha <ff98sha@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -262,7 +262,7 @@ msgid "Firefox Add-ons"
 msgstr "Firefox 附加组件"
 
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr "抱歉，但我们找不到您输入的地址。如果您是在找一个附加组件，有可能附加组件的作者已经将其移除。"
+msgstr "抱歉，我们找不到您输入的地址。如果您是在找一个附加组件，有可能附加组件的作者已经将其移除。"
 
 msgid "Suggested Pages"
 msgstr "推荐页面"
@@ -1008,7 +1008,7 @@ msgid "Extension"
 msgstr "扩展"
 
 msgid "Deprecated Complete Theme"
-msgstr "已不推荐使用的完整主题"
+msgstr "已不赞成使用的完整主题"
 
 msgid "Dictionary"
 msgstr "字典"
@@ -1036,7 +1036,7 @@ msgid "Extensions"
 msgstr "扩展"
 
 msgid "Deprecated Complete Themes"
-msgstr "已不推荐使用的完整主题"
+msgstr "已不赞成使用的完整主题"
 
 # Plural in this context means many of the add-on type
 msgid "Dictionaries"

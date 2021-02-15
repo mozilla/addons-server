@@ -192,6 +192,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json array tags: List containing the text of the tags set on the add-on.
     :>json string type: The :ref:`add-on type <v4-addon-detail-type>`.
     :>json string url: The (absolute) add-on detail URL.
+    :>json string versions_url: The URL to the version history page for the add-on.
     :>json int weekly_downloads: The number of downloads for the add-on in the last week. Not present for lightweight themes.
 
 

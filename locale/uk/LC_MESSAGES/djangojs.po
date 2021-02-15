@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-02-09 17:39+0000\n"
-"PO-Revision-Date: 2020-12-08 12:59+0000\n"
+"PO-Revision-Date: 2021-02-13 02:14+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
@@ -730,7 +730,7 @@ msgstr[1] "Залишилось <b>{0}</b> символи"
 msgstr[2] "Залишилось <b>{0}</b> символів"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Дана функція тимчасово вимкнута доки ми проводимо технічне обслуговування вебсайту. Будь ласка, спробуйте пізніше."
+msgstr "Цю функцію тимчасово вимкнено доки ми проводимо технічне обслуговування вебсайту. Будь ласка, спробуйте пізніше."
 
 msgid "Remove this localization"
 msgstr "Вилучити цю локалізацію"

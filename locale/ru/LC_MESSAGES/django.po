@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-02-09 17:39+0000\n"
-"PO-Revision-Date: 2021-02-10 07:21+0000\n"
+"PO-Revision-Date: 2021-02-14 18:51+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -4483,11 +4483,11 @@ msgstr "Устали от постоянного появления \"Видео
 
 #. editorial content for the primary hero shelves.
 msgid "Thousands of GIFs at your fingertips."
-msgstr ""
+msgstr "Тысячи GIF-роликов у вас под рукой."
 
 #. editorial content for the primary hero shelves.
 msgid "Begone, annoying cookie warnings!"
-msgstr ""
+msgstr "Сгиньте, надоедливые предупреждения о куках!"
 
 #. editorial content for the primary hero shelves.
 msgid "The easiest way to manage all of your YouTube channel subscriptions."
@@ -4907,7 +4907,7 @@ msgid "Version string and guid match a blocklist Block"
 msgstr "Строка версии и guid соответствуют списку блокировки Block"
 
 msgid "Weight breakdown not available."
-msgstr ""
+msgstr "Распределение по весу недоступно."
 
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Вы не можете оставить комментарий, если определено `canned_response`."
@@ -4957,16 +4957,14 @@ msgstr "ID"
 msgid "Last Review"
 msgstr "Последняя проверка"
 
-#, fuzzy
 msgid "Code Weight"
-msgstr "Вес"
+msgstr "Вес кода"
 
 msgid "Metadata Weight"
-msgstr ""
+msgstr "Вес метаданных"
 
-#, fuzzy
 msgid "Total Weight"
-msgstr "Вес"
+msgstr "Общий вес"
 
 msgid "Maliciousness Score"
 msgstr "Оценка вредоносности"
@@ -5630,13 +5628,11 @@ msgstr "Оценка вредоносности:"
 msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
 msgstr "Оценка вредоносности отражает вероятность того, что эта версия является вредоносной, на основе результатов сканирования."
 
-#, fuzzy
 msgid "Code Weight:"
-msgstr "Вес:"
+msgstr "Вес кода:"
 
-#, fuzzy
 msgid "Metadata Weight:"
-msgstr "Вес:"
+msgstr "Вес метаданных:"
 
 msgid "Flagged by scanners"
 msgstr "Отмечено сканерами"

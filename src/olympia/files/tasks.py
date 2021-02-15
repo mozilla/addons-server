@@ -2,8 +2,6 @@ import os
 import shutil
 import tempfile
 
-from django.conf import settings
-
 import olympia.core.logger
 
 from olympia.amo.celery import task
@@ -11,43 +9,11 @@ from olympia.amo.decorators import use_primary_db
 from olympia.amo.storage_utils import move_stored_file
 from olympia.amo.utils import StopWatch
 from olympia.devhub.tasks import validation_task
-from olympia.files.models import File, FileUpload, WebextPermission
-from olympia.files.utils import extract_zip, get_sha256, parse_xpi
-from olympia.users.models import UserProfile
+from olympia.files.models import File, FileUpload
+from olympia.files.utils import extract_zip, get_sha256
 
 
 log = olympia.core.logger.getLogger('z.files.task')
-
-
-@task
-@use_primary_db
-def extract_optional_permissions(ids, **kw):
-    log.info(
-        '[%s@%s] Extracting permissions from Files, from id: %s to id: %s...'
-        % (len(ids), extract_optional_permissions.rate_limit, ids[0], ids[-1])
-    )
-    files = File.objects.filter(pk__in=ids).no_transforms()
-
-    # A user needs to be passed down to parse_xpi(), so we use the task user.
-    user = UserProfile.objects.get(pk=settings.TASK_USER_ID)
-
-    for file_ in files:
-        try:
-            log.info('Parsing File.id: %s @ %s' % (file_.pk, file_.current_file_path))
-            parsed_data = parse_xpi(
-                file_.current_file_path, addon=file_.addon, user=user
-            )
-            optional_permissions = parsed_data.get('optional_permissions', [])
-            if optional_permissions:
-                log.info(
-                    'Found %s optional permissions for: %s'
-                    % (len(optional_permissions), file_.pk)
-                )
-                WebextPermission.objects.update_or_create(
-                    defaults={'optional_permissions': optional_permissions}, file=file_
-                )
-        except Exception as err:
-            log.error('Failed to extract: %s, error: %s' % (file_.pk, err))
 
 
 @validation_task
