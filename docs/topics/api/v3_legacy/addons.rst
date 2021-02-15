@@ -203,6 +203,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json object theme_data: Object holding `lightweight theme (Persona) <https://developer.mozilla.org/en-US/Add-ons/Themes/Lightweight_themes>`_ data. Only present for themes (Persona).
     :>json string type: The :ref:`add-on type <v3-addon-detail-type>`.
     :>json string url: The (absolute) add-on detail URL.
+    :>json string versions_url: The URL to the version history page for the add-on.
     :>json int weekly_downloads: The number of downloads for the add-on in the last week. Not present for lightweight themes.
 
 

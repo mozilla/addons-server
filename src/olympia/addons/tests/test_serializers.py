@@ -333,6 +333,11 @@ class AddonSerializerOutputTestMixin(object):
         assert result['url'] == self.addon.get_absolute_url()
         assert result['weekly_downloads'] == self.addon.weekly_downloads
         assert result['promoted'] is None
+        assert (
+            result['versions_url']
+            == absolutify(self.addon.versions_url)
+            == absolutify(reverse('addons.versions', args=[self.addon.slug]))
+        )
 
         return result
 

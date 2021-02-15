@@ -402,6 +402,7 @@ class AddonSerializer(serializers.ModelSerializer):
     tags = serializers.SerializerMethodField()
     type = ReverseChoiceField(choices=list(amo.ADDON_TYPE_CHOICES_API.items()))
     url = serializers.SerializerMethodField()
+    versions_url = serializers.SerializerMethodField()
 
     class Meta:
         model = Addon
@@ -443,6 +444,7 @@ class AddonSerializer(serializers.ModelSerializer):
             'tags',
             'type',
             'url',
+            'versions_url',
             'weekly_downloads',
         )
 
@@ -493,6 +495,9 @@ class AddonSerializer(serializers.ModelSerializer):
 
     def get_ratings_url(self, obj):
         return absolutify(obj.ratings_url)
+
+    def get_versions_url(self, obj):
+        return absolutify(obj.versions_url)
 
     def get_review_url(self, obj):
         return absolutify(reverse('reviewers.review', args=[obj.pk]))
