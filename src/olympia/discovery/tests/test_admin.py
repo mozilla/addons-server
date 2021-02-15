@@ -913,6 +913,49 @@ class TestShelfAdmin(TestCase):
             assert item.criteria == ('?promoted=recommended&sort=random&type=extension')
             assert item.addon_count == item.get_count() == 2
 
+    def test_blank_or_nonnumber_addon_count_errors(self):
+        item = Shelf.objects.create(
+            title='Popular extensions',
+            endpoint='search',
+            criteria='?sort=users&type=extension',
+            footer_text='See more',
+            footer_pathname='/this/is/the/pathname',
+        )
+        detail_url = reverse(self.detail_url_name, args=(item.pk,))
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Discovery:Edit')
+        self.client.login(email=user.email)
+        data = {
+            'title': 'Recommended extensions',
+            'endpoint': 'search',
+            'criteria': ('?promoted=recommended&sort=random&type=extension'),
+            'footer_text': 'See more',
+            'footer_pathname': '/this/is/the/pathname',
+            # addon_count is missing
+        }
+        response = self.client.post(detail_url, data, follow=False)
+        self.assertFormError(
+            response, 'adminform', 'addon_count', 'This field is required.'
+        )
+        # as an empty string
+        data['addon_count'] = ''
+        response = self.client.post(detail_url, data, follow=False)
+        self.assertFormError(
+            response, 'adminform', 'addon_count', 'This field is required.'
+        )
+        # without a valid number
+        data['addon_count'] = 'aa'
+        response = self.client.post(detail_url, data, follow=False)
+        self.assertFormError(
+            response, 'adminform', 'addon_count', 'Enter a whole number.'
+        )
+        # and finally with a valid number
+        data['addon_count'] = '1'
+        response = self.client.post(detail_url, data, follow=False)
+        assert response.status_code == 302, response.content
+        item.reload()
+        assert item.addon_count == 1
+
     def test_can_delete_with_discovery_edit_permission(self):
         item = Shelf.objects.create(
             title='Recommended extensions',
@@ -951,6 +994,7 @@ class TestShelfAdmin(TestCase):
                 'criteria': ('?promoted=recommended&sort=random&type=extension'),
                 'footer_text': 'See more',
                 'footer_pathname': '/this/is/the/pathname',
+                'addon_count': '0',
             }
 
             response = self.client.post(add_url, mock_clean.return_value, follow=True)
@@ -976,6 +1020,7 @@ class TestShelfAdmin(TestCase):
                 'criteria': '?promoted=recommended&sort=random&type=extension',
                 'footer_text': 'See more',
                 'footer_pathname': '/this/is/the/pathname',
+                'addon_count': '0',
             },
             follow=True,
         )
@@ -1004,6 +1049,7 @@ class TestShelfAdmin(TestCase):
                 'criteria': '?promoted=recommended&sort=users&type=extension',
                 'footer_text': 'See more',
                 'footer_pathname': '/this/is/the/pathname',
+                'addon_count': '0',
             },
             follow=True,
         )

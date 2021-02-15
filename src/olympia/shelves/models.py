@@ -27,7 +27,6 @@ class Shelf(ModelBase):
     )
     addon_count = models.PositiveSmallIntegerField(
         default=0,
-        blank=True,
         help_text='0 means the default number (4, or 3 for search-themes) of add-ons '
         'will included be in shelf responses. Set to override.',
     )
