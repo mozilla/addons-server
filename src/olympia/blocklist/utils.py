@@ -8,6 +8,7 @@ from olympia import amo
 from olympia.activity import log_create
 from olympia.constants.blocklist import REMOTE_SETTINGS_COLLECTION_LEGACY
 from olympia.lib.remote_settings import RemoteSettings
+from olympia.users.utils import get_task_user
 
 
 log = olympia.core.logger.getLogger('z.amo.blocklist')
@@ -214,7 +215,7 @@ def disable_addon_for_block(block):
         addon=block.addon,
         version=None,
         review_type='pending',
-        user=block.updated_by,
+        user=get_task_user(),
     )
     review.set_data(
         {

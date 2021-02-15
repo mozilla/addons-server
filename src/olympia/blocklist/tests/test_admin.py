@@ -238,6 +238,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         self.submission_list_url = reverse(
             'admin:blocklist_blocklistsubmission_changelist'
         )
+        self.task_user = user_factory(id=settings.TASK_USER_ID)
 
     def test_add_single(self):
         user = user_factory(email='someone@mozilla.com')
@@ -551,7 +552,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         )
         assert disable_log.action == amo.LOG.REJECT_VERSION.id
         assert disable_log.arguments == [new_addon, new_addon.current_version]
-        assert disable_log.user == new_block.updated_by
+        assert disable_log.user == self.task_user
         assert (
             disable_log
             == ActivityLog.objects.for_versions(new_addon.current_version).first()
@@ -602,7 +603,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         )
         assert disable_log.action == amo.LOG.REJECT_VERSION.id
         assert disable_log.arguments == [partial_addon, partial_addon.current_version]
-        assert disable_log.user == existing_and_partial.updated_by
+        assert disable_log.user == self.task_user
         assert (
             disable_log
             == ActivityLog.objects.for_versions(partial_addon.current_version).first()
@@ -1407,7 +1408,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
 
         assert disable_log.action == amo.LOG.REJECT_VERSION.id
         assert disable_log.arguments == [addon, version]
-        assert disable_log.user == mbs.updated_by
+        assert disable_log.user == self.task_user
         assert (
             disable_log
             == ActivityLog.objects.for_versions(addon.current_version).first()
@@ -1801,6 +1802,9 @@ class TestBlockAdminEdit(TestCase):
         )
         self.change_url = reverse('admin:blocklist_block_change', args=(self.block.pk,))
         self.submission_url = reverse('admin:blocklist_blocklistsubmission_add')
+        # We need the task user because some test cases eventually trigger
+        # `disable_addon_for_block()`.
+        user_factory(id=settings.TASK_USER_ID)
 
     def _test_edit(self, user, signoff_state):
         self.grant_permission(user, 'Blocklist:Create')
