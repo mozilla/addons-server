@@ -1794,3 +1794,5 @@ ADZERK_URL = f'https://e-{ADZERK_NETWORK_ID}.adzerk.net/api/v2'
 ADZERK_IMPRESSION_TIMEOUT = 60  # seconds
 ADZERK_EVENT_URL = f'https://e-{ADZERK_NETWORK_ID}.adzerk.net/'
 ADZERK_EVENT_TIMEOUT = 60 * 60 * 24  # seconds
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
