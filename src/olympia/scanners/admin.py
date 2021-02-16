@@ -690,6 +690,7 @@ class ScannerQueryResultAdmin(AbstractScannerResultAdminMixin, admin.ModelAdmin)
         'formatted_channel',
         'version_number',
         'formatted_created',
+        'is_file_signed',
         'was_blocked',
         'authors',
         'formatted_matched_rules',
@@ -750,6 +751,14 @@ class ScannerQueryResultAdmin(AbstractScannerResultAdminMixin, admin.ModelAdmin)
         return '-'
 
     version_number.short_description = 'Version'
+
+    def is_file_signed(self, obj):
+        if obj.version and obj.version.current_file:
+            return obj.version.current_file.is_signed
+        return False
+
+    is_file_signed.short_description = 'Is Signed'
+    is_file_signed.boolean = True
 
     def get_unfiltered_changelist_params(self):
         return {}
