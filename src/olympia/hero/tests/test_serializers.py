@@ -37,7 +37,7 @@ class TestPrimaryHeroShelfSerializer(TestCase):
         data = PrimaryHeroShelfSerializer(instance=hero).data
         assert data == {
             'featured_image': self.image,
-            'description': 'Déscription',
+            'description': {'en-US': 'Déscription'},
             'gradient': {'start': GRADIENT_START_COLOR[1], 'end': 'color-green-70'},
             'addon': HeroAddonSerializer(instance=addon).data,
         }
@@ -53,17 +53,17 @@ class TestPrimaryHeroShelfSerializer(TestCase):
             description='hero description',
         )
         data = PrimaryHeroShelfSerializer(instance=hero).data
-        assert data['description'] == 'hero description'
+        assert data['description'] == {'en-US': 'hero description'}
 
         hero.update(description='')
         data = PrimaryHeroShelfSerializer(instance=hero).data
-        assert data['description'] == ''
+        assert data['description'] is None
 
         # falls back to the addon summary if one is available
         addon.summary = 'addon summary'
         addon.save()
         data = PrimaryHeroShelfSerializer(instance=hero).data
-        assert data['description'] == 'addon summary'
+        assert data['description'] == {'en-US': 'addon summary'}
 
     def test_external_addon(self):
         addon = addon_factory(
@@ -79,7 +79,7 @@ class TestPrimaryHeroShelfSerializer(TestCase):
         )
         assert PrimaryHeroShelfSerializer(instance=hero).data == {
             'featured_image': self.image,
-            'description': 'Summary',
+            'description': {'en-US': 'Summary'},
             'gradient': {'start': GRADIENT_START_COLOR[1], 'end': 'color-green-70'},
             'external': ExternalAddonSerializer(instance=addon).data,
         }
@@ -102,32 +102,32 @@ class TestSecondaryHeroShelfSerializer(TestCase):
         )
         data = SecondaryHeroShelfSerializer(instance=hero).data
         assert data == {
-            'headline': 'Its a héadline!',
-            'description': 'description',
+            'headline': {'en-US': 'Its a héadline!'},
+            'description': {'en-US': 'description'},
             'cta': None,
             'modules': [],
         }
         hero.update(cta_url='/extensions/', cta_text='Go here')
         data = SecondaryHeroShelfSerializer(instance=hero).data
         assert data == {
-            'headline': 'Its a héadline!',
-            'description': 'description',
+            'headline': {'en-US': 'Its a héadline!'},
+            'description': {'en-US': 'description'},
             'cta': {
                 'url': 'http://testserver/extensions/',
                 'outgoing': 'http://testserver/extensions/',
-                'text': 'Go here',
+                'text': {'en-US': 'Go here'},
             },
             'modules': [],
         }
         hero.update(cta_url='https://goo.gl/stuff/', cta_text='Googl here')
         data = SecondaryHeroShelfSerializer(instance=hero).data
         assert data == {
-            'headline': 'Its a héadline!',
-            'description': 'description',
+            'headline': {'en-US': 'Its a héadline!'},
+            'description': {'en-US': 'description'},
             'cta': {
                 'url': 'https://goo.gl/stuff/',
                 'outgoing': get_outgoing_url('https://goo.gl/stuff/'),
-                'text': 'Googl here',
+                'text': {'en-US': 'Googl here'},
             },
             'modules': [],
         }
@@ -145,26 +145,26 @@ class TestSecondaryHeroShelfSerializer(TestCase):
         ]
         data = SecondaryHeroShelfSerializer(instance=hero).data
         assert data == {
-            'headline': '',
-            'description': '',
+            'headline': None,
+            'description': None,
             'cta': None,
             'modules': [
                 {
-                    'description': promos[0].description,
+                    'description': {'en-US': promos[0].description},
                     'icon': 'http://testserver/static/img/hero/icons/a.svg',
                     'cta': None,
                 },
                 {
-                    'description': '',
+                    'description': None,
                     'icon': 'http://testserver/static/img/hero/icons/b.svg',
                     'cta': {
                         'url': 'http://testserver/extensions/',
                         'outgoing': 'http://testserver/extensions/',
-                        'text': 'Go here',
+                        'text': {'en-US': 'Go here'},
                     },
                 },
                 {
-                    'description': '',
+                    'description': None,
                     'icon': 'http://testserver/static/img/hero/icons/c.svg',
                     'cta': None,
                 },

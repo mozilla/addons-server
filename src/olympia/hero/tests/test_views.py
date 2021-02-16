@@ -259,9 +259,9 @@ class TestPrimaryHeroShelfViewSet(TestCase):
         assert response.status_code == 200
         results = response.json()['results']
         assert len(results) == 3
-        assert results[0]['description'] == 'addon'
-        assert results[1]['description'] == 'hero'
-        assert results[2]['description'] == ''
+        assert results[0]['description'] == {'en-US': 'addon'}
+        assert results[1]['description'] == {'en-US': 'hero'}
+        assert results[2]['description'] is None
 
         response = self.client.get(self.url + '?raw')
         assert response.status_code == 200

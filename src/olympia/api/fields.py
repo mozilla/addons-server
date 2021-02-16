@@ -422,7 +422,7 @@ class GetTextTranslationSerializerField(TranslationSerializerField):
         # TODO: get all locales or KEY_LOCALES_FOR_EDITORIAL_CONTENT at least?
         base_locale = to_language(settings.LANGUAGE_CODE)
         current_locale = to_language(get_language())
-        default_locale = obj.default_locale
+        default_locale = getattr(obj, 'default_locale', base_locale)
 
         return self._fetch_some_translations(
             field, {base_locale, current_locale, default_locale}
@@ -430,7 +430,7 @@ class GetTextTranslationSerializerField(TranslationSerializerField):
 
     def fetch_single_translation(self, obj, source, field, requested_language):
         base_locale = to_language(settings.LANGUAGE_CODE)
-        default_locale = obj.default_locale
+        default_locale = getattr(obj, 'default_locale', base_locale)
 
         translations = self._fetch_some_translations(
             field, {base_locale, requested_language, default_locale}
@@ -456,3 +456,98 @@ class GetTextTranslationSerializerField(TranslationSerializerField):
         # locale value, so it'd have to handle that.  Also different l10n data
         # structures for v4 and v5 would be messy. Only used read-only currently.
         raise NotImplementedError
+
+
+class FieldAlwaysFlatWhenFlatGateActiveMixin:
+    """Terribly named mixin to wrap around TranslationSerializerField (and subclasses)
+    to always return a single flat string when 'l10n_flat_input_output' is enabled to
+    replicate the v4 and earlier behavior in the discovery/hero API."""
+
+    def get_requested_language(self):
+        # For l10n_flat_input_output, if the request didn't specify a `lang=xx` then
+        # fake it with the current locale so we get a single (flat) result.
+        requested = super().get_requested_language()
+        if not requested:
+            request = self.context.get('request', None)
+            if is_gate_active(request, 'l10n_flat_input_output'):
+                requested = get_language()
+        return requested
+
+    def get_attribute(self, obj):
+        # For l10n_flat_input_output, make sure to always return a string as before.
+        attribute = super().get_attribute(obj)
+        if attribute is None:
+            request = self.context.get('request', None)
+            if is_gate_active(request, 'l10n_flat_input_output'):
+                attribute = ''
+        return attribute
+
+
+class GetTextTranslationSerializerFieldFlat(
+    FieldAlwaysFlatWhenFlatGateActiveMixin, GetTextTranslationSerializerField
+):
+    pass
+
+
+class TranslationSerializerFieldFlat(
+    FieldAlwaysFlatWhenFlatGateActiveMixin, TranslationSerializerField
+):
+    pass
+
+
+class FallbackField(fields.Field):
+    """
+    A wrapper that will return the value from the first field, or the second if the
+    first returns a falsey value, (and so on for as many fields passed as args).
+    Generally you will need to specify source on at least one of the fields (or they'll
+    all be using the same object attribute).
+    If used in a write serializer it will be first field that is written.
+    Example usage:
+    name = FallbackField(
+        GetTextTranslationSerializerField(),
+        TranslationSerializerField(source='addon.name'),
+    )
+    """
+
+    label = None
+
+    def __init__(self, *args, **kwargs):
+        self.fields = args
+        assert len(self.fields) > 0
+        kwargs['required'] = self.fields[0].required
+        super().__init__(source=self.fields[0].source, **kwargs)
+
+    def bind(self, field_name, parent):
+        super().bind(field_name, parent)
+        for field in self.fields:
+            field.bind(field_name, parent)
+
+    def get_read_only(self):
+        return self.fields[0].read_only
+
+    def set_read_only(self, val):
+        self.fields[0].read_only = val
+
+    read_only = property(get_read_only, set_read_only)
+
+    def get_value(self, data):
+        return self.fields[0].get_value(data)
+
+    def to_internal_value(self, value):
+        return self.fields[0].to_internal_value(value)
+
+    def get_attribute(self, obj):
+        att = None
+        for field in self.fields:
+            att = field.get_attribute(obj)
+            if att:
+                return att
+        return att
+
+    def to_representation(self, value):
+        rep = None
+        for field in self.fields:
+            rep = field.to_representation(value)
+            if rep:
+                return rep
+        return rep

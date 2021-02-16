@@ -125,9 +125,7 @@ class DiscoveryItemAdmin(admin.ModelAdmin):
             locale,
             obj.addon.name,
             mark_safe(
-                gettext(obj.custom_description)
-                or (obj.should_fallback_to_addon_summary and obj.addon.summary)
-                or ''
+                gettext(obj.custom_description) or obj.addon_summary_fallback or ''
             ),
         )
 
