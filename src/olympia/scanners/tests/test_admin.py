@@ -1321,6 +1321,12 @@ class TestScannerQueryResultAdmin(TestCase):
             attachment=True
         )
         assert html('.field-download a')[0].attrib['href'] == download_link
+        assert '/icon-no.svg' in html('.field-is_file_signed img')[0].attrib['src']
+
+        addon.versions.all()[0].files.all()[0].update(is_signed=True)
+        response = self.client.get(self.list_url)
+        html = pq(response.content)
+        assert '/icon-yes.svg' in html('.field-is_file_signed img')[0].attrib['src']
 
     def test_list_view_no_query_permissions(self):
         rule = ScannerQueryRule.objects.create(name='rule', scanner=YARA)
