@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-02-09 17:39+0000\n"
+"POT-Creation-Date: 2021-02-16 17:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -188,12 +188,12 @@ msgstr ""
 msgid "- Add-on not on AMO -"
 msgstr ""
 
-#: src/olympia/addons/models.py:1945 src/olympia/addons/models.py:2018
+#: src/olympia/addons/models.py:1951 src/olympia/addons/models.py:2024
 #: src/olympia/constants/base.py:67
 msgid "Listed"
 msgstr ""
 
-#: src/olympia/addons/models.py:2191
+#: src/olympia/addons/models.py:2197
 msgid "Addon and collection paths need to end with \"/\""
 msgstr ""
 
@@ -3204,7 +3204,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html:13
 #: src/olympia/devhub/templates/devhub/includes/macros.html:17
-#: src/olympia/ratings/models.py:76
+#: src/olympia/ratings/models.py:75
 #: src/olympia/reviewers/templates/reviewers/includes/files_view.html:30
 #: src/olympia/reviewers/templates/reviewers/includes/files_view.html:31
 #: src/olympia/translations/templates/translations/all-locales.html:6
@@ -4592,7 +4592,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:3
-#: src/olympia/reviewers/views.py:1275
+#: src/olympia/reviewers/views.py:1276
 msgid "End-User License Agreement"
 msgstr ""
 
@@ -4604,7 +4604,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:21
 #: src/olympia/reviewers/templates/reviewers/addon_details_box.html:142
-#: src/olympia/reviewers/views.py:1287 src/olympia/templates/copyright.html:5
+#: src/olympia/reviewers/views.py:1288 src/olympia/templates/copyright.html:5
 msgid "Privacy Policy"
 msgstr ""
 
@@ -4979,7 +4979,7 @@ msgid "Load older..."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:127
-#: src/olympia/discovery/serializers.py:148
+#: src/olympia/discovery/serializers.py:111
 #: src/olympia/reviewers/templates/reviewers/review.html:33
 msgid "by"
 msgstr ""
@@ -6751,19 +6751,19 @@ msgstr ""
 msgid "IP Address"
 msgstr ""
 
-#: src/olympia/ratings/models.py:354
+#: src/olympia/ratings/models.py:353
 msgid "Spam or otherwise non-review content"
 msgstr ""
 
-#: src/olympia/ratings/models.py:355
+#: src/olympia/ratings/models.py:354
 msgid "Inappropriate language/dialog"
 msgstr ""
 
-#: src/olympia/ratings/models.py:356
+#: src/olympia/ratings/models.py:355
 msgid "Misplaced bug report or support request"
 msgstr ""
 
-#: src/olympia/ratings/models.py:357
+#: src/olympia/ratings/models.py:356
 msgid "Other (please specify)"
 msgstr ""
 
@@ -7320,15 +7320,15 @@ msgstr ""
 msgid "Review successfully processed."
 msgstr ""
 
-#: src/olympia/reviewers/views.py:1079
+#: src/olympia/reviewers/views.py:1080
 msgid "Review lock limit reached"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:1274
+#: src/olympia/reviewers/views.py:1275
 msgid "{addon} – EULA"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:1286
+#: src/olympia/reviewers/views.py:1287
 msgid "{addon} – Privacy Policy"
 msgstr ""
 
