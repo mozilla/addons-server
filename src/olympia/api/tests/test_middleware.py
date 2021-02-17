@@ -124,6 +124,8 @@ class TestAPICacheControlMiddleware(TestCase):
         assert response['Cache-Control'] == 'max-age=180'
 
     def test_functional_should_not_cache(self):
-        response = self.client.get(reverse_ns('amo-site-status'), HTTP_AUTHORIZATION='blah')
+        response = self.client.get(
+            reverse_ns('amo-site-status'), HTTP_AUTHORIZATION='blah'
+        )
         assert response.status_code == 200
         assert 'Cache-Control' not in response

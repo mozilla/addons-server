@@ -35,7 +35,8 @@ class APICacheControlMiddleware:
         )
         response_conditions = (
             not response.cookies
-            and response.status_code >= 200 and response.status_code < 400
+            and response.status_code >= 200
+            and response.status_code < 400
             and get_max_age(response) is None
         )
         if request_conditions and response_conditions:
