@@ -6,6 +6,7 @@ import django.test
 from django.conf import settings
 from django.http import HttpResponse
 from django.test.utils import override_settings
+from django.utils.cache import get_max_age
 
 from rest_framework.fields import empty
 from rest_framework.response import Response
@@ -1012,7 +1013,9 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         self._test_no_caching(expected_num_queries=26)
 
     def test_no_caching_anonymous_not_mozilla_collection(self):
-        self._test_no_caching()
+        # No caching done by addons-server, but we get the Cache-Control set
+        # from middleware.
+        self._test_no_caching(expected_max_age=180)
 
     def test_no_caching_anonymous_but_not_mozilla_collection_by_username(self):
         self.user.update(username='notmozilla')
@@ -1023,7 +1026,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
                 'collection_slug': self.collection.slug,
             },
         )
-        self._test_no_caching()
+        self._test_no_caching(expected_max_age=180)
 
     def test_caching_anonymous(self):
         self.user = user_factory(id=settings.TASK_USER_ID)
@@ -1045,7 +1048,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         )
         self._test_caching()
 
-    def _test_no_caching(self, expected_num_queries=25):
+    def _test_no_caching(self, expected_num_queries=25, expected_max_age=None):
         with self.assertNumQueries(expected_num_queries):
             response = self.client.get(self.url)
         # We aren't caching so we should be swapping DRF's Response with HttpResponse.
@@ -1053,7 +1056,9 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         assert response['Content-Type'] == 'application/json'
         assert response.status_code == 200
         assert len(response.json()['results']) == 3
-        assert 'Cache-Control' not in response
+        # Cache-control header should be set by middleware, but depends on
+        # whether the request is authenticated or not.
+        assert get_max_age(response) == expected_max_age
 
         # Tere is no caching so we should get an updated response with only 2 add-ons.
         self.collection.addons.remove(self.addon_a)
@@ -1063,7 +1068,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         assert response['Content-Type'] == 'application/json'
         assert response.status_code == 200
         assert len(response.json()['results']) == 2
-        assert 'Cache-Control' not in response
+        assert get_max_age(response) == expected_max_age
 
     def _test_caching(self):
         # Force first add-on to have an enormous description (large enough
