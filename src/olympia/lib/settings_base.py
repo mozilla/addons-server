@@ -401,6 +401,7 @@ MIDDLEWARE = (
     # Test if it's an API request first so later middlewares don't need to.
     # Also add relevant Vary header to API responses.
     'olympia.api.middleware.APIRequestMiddleware',
+    'olympia.api.middleware.APICacheControlMiddleware',
     # Gzip middleware needs to be executed after every modification to the
     # response, so it's placed at the top of the list.
     'django.middleware.gzip.GZipMiddleware',
