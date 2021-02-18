@@ -401,6 +401,7 @@ MIDDLEWARE = (
     # Test if it's an API request first so later middlewares don't need to.
     # Also add relevant Vary header to API responses.
     'olympia.api.middleware.APIRequestMiddleware',
+    'olympia.api.middleware.APICacheControlMiddleware',
     # Gzip middleware needs to be executed after every modification to the
     # response, so it's placed at the top of the list.
     'django.middleware.gzip.GZipMiddleware',
@@ -1558,6 +1559,9 @@ MAX_APIKEY_JWT_AUTH_TOKEN_LIFETIME = 5 * 60
 # see their api keys the first time they request one is sent. A value of None
 # means it's sent instantaneously.
 API_KEY_CONFIRMATION_DELAY = None
+
+# Default cache duration for the API, in seconds.
+API_CACHE_DURATION = 3 * 60
 
 # JWT authentication related settings:
 JWT_AUTH = {
