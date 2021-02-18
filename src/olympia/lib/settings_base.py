@@ -1791,12 +1791,4 @@ GOOGLE_APPLICATION_CREDENTIALS = env('GOOGLE_APPLICATION_CREDENTIALS', default=N
 BIGQUERY_PROJECT = 'moz-fx-data-shared-prod'
 BIGQUERY_AMO_DATASET = 'amo_dev'
 
-ADZERK_TIMEOUT = 5  # seconds
-ADZERK_NETWORK_ID = env('ADZERK_NETWORK_ID', default=10521)
-ADZERK_SITE_ID = env('ADZERK_SITE_ID', default=1133496)
-ADZERK_URL = f'https://e-{ADZERK_NETWORK_ID}.adzerk.net/api/v2'
-ADZERK_IMPRESSION_TIMEOUT = 60  # seconds
-ADZERK_EVENT_URL = f'https://e-{ADZERK_NETWORK_ID}.adzerk.net/'
-ADZERK_EVENT_TIMEOUT = 60 * 60 * 24  # seconds
-
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
