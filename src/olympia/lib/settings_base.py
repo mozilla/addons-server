@@ -1560,6 +1560,9 @@ MAX_APIKEY_JWT_AUTH_TOKEN_LIFETIME = 5 * 60
 # means it's sent instantaneously.
 API_KEY_CONFIRMATION_DELAY = None
 
+# Default cache duration for the API, in seconds.
+API_CACHE_DURATION = 3 * 60
+
 # JWT authentication related settings:
 JWT_AUTH = {
     # Use HMAC using SHA-256 hash algorithm. It should be the default, but we

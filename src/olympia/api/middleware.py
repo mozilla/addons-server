@@ -40,5 +40,5 @@ class APICacheControlMiddleware:
             and get_max_age(response) is None
         )
         if request_conditions and response_conditions:
-            patch_cache_control(response, max_age=3 * 60)
+            patch_cache_control(response, max_age=settings.API_CACHE_DURATION)
         return response
