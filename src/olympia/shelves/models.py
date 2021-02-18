@@ -8,7 +8,7 @@ ENDPOINT_CHOICES = tuple((ty, ty) for ty in ENDPOINTS)
 
 
 class Shelf(ModelBase):
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, help_text='Will be translated.')
     endpoint = models.CharField(
         max_length=200, choices=ENDPOINT_CHOICES, db_column='shelf_type'
     )
@@ -18,7 +18,9 @@ class Shelf(ModelBase):
         'or the collection slug',
     )
     footer_text = models.CharField(
-        max_length=200, blank=True, help_text='e.g., See more recommended extensions'
+        max_length=200,
+        blank=True,
+        help_text='e.g., See more recommended extensions. Will be translated.',
     )
     footer_pathname = models.CharField(
         max_length=255,

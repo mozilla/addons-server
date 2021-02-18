@@ -90,6 +90,15 @@ class SecondaryHeroShelfAPIParser(BaseAPIParser):
     )
 
 
+class HomepageShelvesAPIParser(BaseAPIParser):
+    api = settings.HOMEPAGE_SHELVES_EDITORIAL_CONTENT_API
+    l10n_comment = 'editorial content for the homepage shelves.'
+    fields = (
+        'title',
+        'footer_text',
+    )
+
+
 class Command(BaseCommand):
     help = (
         'Extract editorial disco pane, primary, and secondary hero shelf '
@@ -97,14 +106,14 @@ class Command(BaseCommand):
     )
 
     def handle(self, *args, **options):
-        disco = DiscoItemAPIParser()
-        primary_hero = PrimaryHeroShelfAPIParser()
-        secondary_hero = SecondaryHeroShelfAPIParser()
-        results_content = (
-            disco.get_results_content()
-            + '\n'
-            + primary_hero.get_results_content()
-            + secondary_hero.get_results_content()
+        results_content = '\n'.join(
+            parser().get_results_content()
+            for parser in (
+                DiscoItemAPIParser,
+                PrimaryHeroShelfAPIParser,
+                SecondaryHeroShelfAPIParser,
+                HomepageShelvesAPIParser,
+            )
         )
         self.generate_file_from_api_results(results_content)
 

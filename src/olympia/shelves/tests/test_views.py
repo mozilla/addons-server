@@ -9,6 +9,7 @@ from olympia.amo.tests import (
     collection_factory,
     ESTestCase,
     reverse_ns,
+    TestCase,
 )
 from olympia.bandwagon.models import CollectionAddon
 from olympia.constants.promoted import RECOMMENDED
@@ -137,27 +138,27 @@ class TestShelfViewSet(ESTestCase):
 
         assert len(result['results']) == 2
 
-        assert result['results'][0]['title'] == 'Enhanced privacy extensions'
+        assert result['results'][0]['title'] == {'en-US': 'Enhanced privacy extensions'}
         assert result['results'][0]['url'] == self.collections_url
         assert result['results'][0]['endpoint'] == 'collections'
         assert result['results'][0]['criteria'] == 'privacy-matters'
-        assert result['results'][0]['footer_text'] == (
-            'See more enhanced privacy extensions'
-        )
+        assert result['results'][0]['footer_text'] == {
+            'en-US': 'See more enhanced privacy extensions'
+        }
         assert result['results'][0]['footer_pathname'] == ''
         assert result['results'][0]['addons'][0]['name']['en-US'] == (
             'test addon privacy01'
         )
 
-        assert result['results'][1]['title'] == 'Recommended extensions'
+        assert result['results'][1]['title'] == {'en-US': 'Recommended extensions'}
         assert result['results'][1]['url'] == self.search_url
         assert result['results'][1]['endpoint'] == 'search'
         assert result['results'][1]['criteria'] == (
             '?promoted=recommended&sort=random&type=extension'
         )
-        assert result['results'][1]['footer_text'] == (
-            'See more recommended extensions'
-        )
+        assert result['results'][1]['footer_text'] == {
+            'en-US': 'See more recommended extensions'
+        }
         assert result['results'][1]['footer_pathname'] == ''
         assert result['results'][1]['addons'][0]['name']['en-US'] == (
             'test addon test03'
@@ -223,10 +224,52 @@ class TestShelfViewSet(ESTestCase):
 
         assert len(result['results']) == 1
 
-        assert result['results'][0]['title'] == 'Recommended extensions'
-        assert result['results'][0]['addons'][0]['name']['en-US'] == (
-            'test addon test03'
-        )
+        assert result['results'][0]['title'] == {'en-US': 'Recommended extensions'}
+        assert result['results'][0]['addons'][0]['name'] == {
+            'en-US': 'test addon test03'
+        }
 
         assert result['primary'] == PrimaryHeroShelfSerializer(instance=phero).data
         assert result['secondary'] == SecondaryHeroShelfSerializer(instance=shero).data
+
+
+class TestEditorialShelfViewSet(TestCase):
+    client_class = APITestClient
+
+    def test_basic(self):
+        url = reverse_ns('shelves-editorial-list', api_version='v5')
+
+        shelf_a = Shelf.objects.create(
+            title='Recommended extensions',
+            endpoint='search',
+            criteria='?promoted=recommended&sort=random&type=extension',
+            footer_text='See more!',
+        )
+        shelf_b = Shelf.objects.create(
+            title='Enhanced privacy extensions',
+            endpoint='collections',
+            criteria='privacy-matters',
+            footer_text='',
+        )
+        shelf_c = Shelf.objects.create(
+            title='Popular themes',
+            endpoint='search',
+            criteria='?sort=users&type=statictheme',
+            footer_text='See more popular themes',
+        )
+
+        # we set position but it's not used for this endpoint
+        ShelfManagement.objects.create(shelf=shelf_a, position=3)
+        ShelfManagement.objects.create(shelf=shelf_b, position=6)
+        ShelfManagement.objects.create(shelf=shelf_c, position=1, enabled=False)
+
+        response = self.client.get(url)
+        assert response.status_code == 200
+
+        assert response.json() == {
+            'results': [
+                {'title': 'Recommended extensions', 'footer_text': 'See more!'},
+                {'title': 'Enhanced privacy extensions', 'footer_text': ''},
+                {'title': 'Popular themes', 'footer_text': 'See more popular themes'},
+            ]
+        }

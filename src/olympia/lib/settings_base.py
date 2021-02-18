@@ -523,6 +523,9 @@ PRIMARY_HERO_EDITORIAL_CONTENT_API = (
 SECONDARY_HERO_EDITORIAL_CONTENT_API = (
     'https://addons.mozilla.org/api/v4/hero/secondary/?all=true'
 )
+HOMEPAGE_SHELVES_EDITORIAL_CONTENT_API = (
+    'https://addons.mozilla.org/api/v5/shelves/editorial'
+)
 
 # Filename where the strings will be stored. Used in puente config below.
 EDITORIAL_CONTENT_FILENAME = 'src/olympia/discovery/strings.jinja2'
