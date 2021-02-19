@@ -80,9 +80,9 @@ def generate_addons(num, owner, app_name, addon_type=ADDON_EXTENSION):
         generate_addon_preview(addon)
         generate_translations(addon)
         # Only feature 5 addons per category at max.
-        if featured_categories[category] < 5:
+        if featured_categories[category.id] < 5:
             generate_collection(addon, app)
-            featured_categories[category] += 1
+            featured_categories[category.id] += 1
         generate_ratings(addon, 5)
 
 
