@@ -124,6 +124,11 @@ class Prefixer(object):
         Return a valid application string using the User Agent to guess.  Falls
         back to settings.DEFAULT_APP.
         """
+        if 'app' in self.request.GET:
+            app = self.request.GET['app'].lower()
+            if app in amo.APPS.keys():
+                return app
+
         ua = self.request.META.get('HTTP_USER_AGENT')
         if ua:
             for app in amo.APP_DETECT:
