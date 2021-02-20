@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-02-16 17:52+0000\n"
-"PO-Revision-Date: 2021-02-20 18:32+0000\n"
+"PO-Revision-Date: 2021-02-20 18:42+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1620,9 +1620,8 @@ msgstr "თვითდამოწმების გადადება"
 msgid "Delay auto-approval indefinitely"
 msgstr "თვითდამოწმების გადადება განუსაზღვრელად"
 
-#, fuzzy
 msgid "Delay auto-approval indefinitely and add restrictions"
-msgstr "თვითდამოწმების გადადება განუსაზღვრელად"
+msgstr "თვითდამოწმების გადადება განუსაზღვრელად და შეზღუდვების დამატება"
 
 msgid "True positive"
 msgstr "ჭეშმარიტი დადებითი"
@@ -3081,7 +3080,7 @@ msgid "Invisible"
 msgstr "უხილავი"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
-msgstr "გთხოვთ მიუთითოთ დამატების ვერსია და შეავსოთ ყველა მონაცემი."
+msgstr "გთხოვთ სრულად შეავსოთ დამატება ვერსიის მონაცემის ან მონაცემების აღმწერის დართვით."
 
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
 msgstr "განხილვის დასრულებისთანავე მიიღებთ წერილს ელფოსტაზე. იქამდე, თქვენი დამატება არ გამოჩნდება გალერეაში, მაგრამ ხელმისაწვდომი იქნება პირდაპირ ბმულზე. "
@@ -4442,7 +4441,7 @@ msgstr "ათასობით GIF თქვენს ხელთ."
 
 #. editorial content for the primary hero shelves.
 msgid "Begone, annoying cookie warnings!"
-msgstr ""
+msgstr "აქშა, ფუნთუშების აბეზარო შეტყობინებებო!"
 
 #. editorial content for the primary hero shelves.
 msgid "The easiest way to manage all of your YouTube channel subscriptions."
@@ -4906,16 +4905,14 @@ msgstr "ID"
 msgid "Last Review"
 msgstr "ბოლო მიმოხილვა"
 
-#, fuzzy
 msgid "Code Weight"
-msgstr "წონა"
+msgstr "კოდის მოცულობა"
 
 msgid "Metadata Weight"
-msgstr ""
+msgstr "მონაცემების აღმწერის მოცულობა"
 
-#, fuzzy
 msgid "Total Weight"
-msgstr "წონა"
+msgstr "საერთო მოცულობა"
 
 msgid "Maliciousness Score"
 msgstr ""
@@ -5580,13 +5577,11 @@ msgstr ""
 msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
 msgstr "სკანერების ქულა აჩვენებს, თუ რამდენად საიმედოდაა დაცული ეს ვერსია მავნებლობისგან, კვლევის საფუძველზე."
 
-#, fuzzy
 msgid "Code Weight:"
-msgstr "წონა:"
+msgstr "კოდის მოცულობა:"
 
-#, fuzzy
 msgid "Metadata Weight:"
-msgstr "წონა:"
+msgstr "მონაცემების აღმწერის მოცულობა:"
 
 msgid "Flagged by scanners"
 msgstr "მონიშნულია სკანერების მიერ"
@@ -5853,7 +5848,7 @@ msgid "Custom..."
 msgstr "მითითება..."
 
 msgid "Sorry, the statistics are temporarily unavailable."
-msgstr ""
+msgstr "სამწუხაროდ სტატისტიკა დროებით მიუწვდომელია."
 
 msgid "Loading the latest data&hellip;"
 msgstr "უახლესი მონაცემების ჩატვირთვა&hellip;"
