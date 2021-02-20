@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-02-16 17:52+0000\n"
-"PO-Revision-Date: 2021-02-20 18:42+0000\n"
+"PO-Revision-Date: 2021-02-20 18:46+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4856,9 +4856,8 @@ msgstr "გადადებულია, ვინაიდან პირვ
 msgid "Version string and guid match a blocklist Block"
 msgstr "ვერსიის სტრიქონი და guid ემთხვევა შეზღუდვის სიის ჩანაწერს"
 
-#, fuzzy
 msgid "Weight breakdown not available."
-msgstr "დაზიანების საშიშროება არაა."
+msgstr "დაშლა მოცულობის მიხედვით შეუძლებელია."
 
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "გამოხმაურების გაგზავნას ვერ შეძლებთ, როცა „წინასწარ განსაზღვრული პასუხია“ მითითებული."
@@ -4915,7 +4914,7 @@ msgid "Total Weight"
 msgstr "საერთო მოცულობა"
 
 msgid "Maliciousness Score"
-msgstr ""
+msgstr "მავნებლობის ქულა"
 
 msgid "Pending Rejection Deadline"
 msgstr "უარყოფის ვადის მომლოდინე"
@@ -5571,11 +5570,10 @@ msgid "The developer has provided source code."
 msgstr "შემმუშავებელმა წარმოადგინა პირველწყარო კოდი."
 
 msgid "Maliciousness Score:"
-msgstr ""
+msgstr "მავნებლობის ქულა:"
 
-#, fuzzy
 msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr "სკანერების ქულა აჩვენებს, თუ რამდენად საიმედოდაა დაცული ეს ვერსია მავნებლობისგან, კვლევის საფუძველზე."
+msgstr "მავნებლობის ქულა აჩვენებს, თუ რამდენად მავნე შეიძლება აღმოჩნდეს ეს ვერსია, სკანერების კვლევის საფუძველზე."
 
 msgid "Code Weight:"
 msgstr "კოდის მოცულობა:"
