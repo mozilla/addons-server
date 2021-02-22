@@ -60,15 +60,16 @@ class LocaleAndAppURLMiddleware(MiddlewareMixin):
         ):
             return redirect_type(request.path.replace('/mobile', '/android'))
 
-        if 'lang' in request.GET and not re.match(
+        if ('lang' in request.GET or 'app' in request.GET) and not re.match(
             settings.SUPPORTED_NONAPPS_NONLOCALES_REGEX, prefixer.shortened_path
         ):
-            # Blank out the locale so that we can set a new one.  Remove lang
-            # from query params so we don't have an infinite loop.
+            # Blank out the locale so that we can set a new one.  Remove
+            # lang/app from query params so we don't have an infinite loop.
             prefixer.locale = ''
             new_path = prefixer.fix(prefixer.shortened_path)
             query = request.GET.dict()
-            query.pop('lang')
+            query.pop('app', None)
+            query.pop('lang', None)
             return redirect_type(urlparams(new_path, **query))
 
         if full_path != request.path:

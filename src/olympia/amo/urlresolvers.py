@@ -121,9 +121,14 @@ class Prefixer(object):
 
     def get_app(self):
         """
-        Return a valid application string using the User Agent to guess.  Falls
-        back to settings.DEFAULT_APP.
+        Return a valid application string based on the `app` query parameter or
+        the User Agent. Falls back to settings.DEFAULT_APP.
         """
+        if 'app' in self.request.GET:
+            app = self.request.GET['app'].lower()
+            if app in amo.APPS.keys():
+                return app
+
         ua = self.request.META.get('HTTP_USER_AGENT')
         if ua:
             for app in amo.APP_DETECT:
