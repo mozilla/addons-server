@@ -94,7 +94,7 @@ class TestShelvesSerializer(ESTestCase):
             endpoint='search-themes',
             criteria='?sort=users&type=statictheme',
             footer_text='See more populâr themes',
-            footer_url='/see/more/popular/themes'
+            footer_url='/see/more/popular/themes',
         )
 
         self.search_rec_ext = Shelf.objects.create(
@@ -102,7 +102,7 @@ class TestShelvesSerializer(ESTestCase):
             endpoint='search',
             criteria='?promoted=recommended&sort=random&type=extension',
             footer_text='See more recommended extensions',
-            footer_url='/see/more/recommended/extensions'
+            footer_url='/see/more/recommended/extensions',
         )
 
         self.collections_shelf = Shelf.objects.create(
@@ -110,7 +110,7 @@ class TestShelvesSerializer(ESTestCase):
             endpoint='collections',
             criteria='privacy-matters',
             footer_text='See more enhanced privacy extensions',
-            footer_url='/see/more/privacy/extensions'
+            footer_url='/see/more/privacy/extensions',
         )
 
         # Set up the request to support drf_reverse
@@ -146,9 +146,11 @@ class TestShelvesSerializer(ESTestCase):
         assert data['criteria'] == '?promoted=recommended&sort=random&type=extension'
         assert data['footer']['text'] == {'en-US': 'See more recommended extensions'}
         assert data['footer']['url'] == (
-            'http://testserver/see/more/recommended/extensions')
+            'http://testserver/see/more/recommended/extensions'
+        )
         assert data['footer']['outgoing'] == (
-            'http://testserver/see/more/recommended/extensions')
+            'http://testserver/see/more/recommended/extensions'
+        )
 
     def test_basic_themes(self):
         data = self.serialize(self.search_pop_thm)

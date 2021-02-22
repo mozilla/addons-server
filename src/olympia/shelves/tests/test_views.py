@@ -145,11 +145,14 @@ class TestShelfViewSet(ESTestCase):
         assert result['results'][0]['endpoint'] == 'collections'
         assert result['results'][0]['criteria'] == 'privacy-matters'
         assert result['results'][0]['footer']['url'] == (
-            'http://testserver/see/more/enhanced/privacy/extensions')
+            'http://testserver/see/more/enhanced/privacy/extensions'
+        )
         assert result['results'][0]['footer']['outgoing'] == (
-            'http://testserver/see/more/enhanced/privacy/extensions')
+            'http://testserver/see/more/enhanced/privacy/extensions'
+        )
         assert result['results'][0]['footer']['text'] == {
-            'en-US': 'See more enhanced privacy extensions'}
+            'en-US': 'See more enhanced privacy extensions'
+        }
         assert result['results'][0]['addons'][0]['name']['en-US'] == (
             'test addon privacy01'
         )
@@ -161,11 +164,14 @@ class TestShelfViewSet(ESTestCase):
             '?promoted=recommended&sort=random&type=extension'
         )
         assert result['results'][1]['footer']['url'] == (
-            'http://testserver/see/more/recommended/extensions')
+            'http://testserver/see/more/recommended/extensions'
+        )
         assert result['results'][1]['footer']['outgoing'] == (
-            'http://testserver/see/more/recommended/extensions')
+            'http://testserver/see/more/recommended/extensions'
+        )
         assert result['results'][1]['footer']['text'] == {
-            'en-US': 'See more recommended extensions'}
+            'en-US': 'See more recommended extensions'
+        }
         assert result['results'][1]['addons'][0]['name']['en-US'] == (
             'test addon test03'
         )
