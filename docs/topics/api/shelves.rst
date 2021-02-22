@@ -101,8 +101,10 @@ small number of shelves this endpoint is not paginated.
     :>json string results[].url: The configured URL using the shelf's endpoint and criteria; links to the shelf's returned add-ons.
     :>json string results[].endpoint: The :ref:`endpoint type <shelf-endpoint-type>` selected for the shelf.
     :>json string results[].criteria: The criteria for the addons in the shelf.
-    :>json string|null results[].footer_text: The optional text in the footer of the shelf.
-    :>json string|null results[].footer_pathname: The optional pathname of the URL for the footer's text.
+    :>json object|null results[].footer: The optional footer link and text for the shelf.
+    :>json string results[].footer.url: The url the call to action would link to.
+    :>json string results[].footer.outgoing: url wrapped with outgoing (See :ref:`Outgoing Links <api-overview-outgoing>`).
+    :>json object|null results[].footer.text: The call to action text. 
     :>json array results[].addons: An array of :ref:`add-ons <addon-detail-object>`.
     :>json object primary: A :ref:`primary hero shelf <primary-hero-shelf>`.
     :>json object secondary: A :ref:`secondary hero shelf <secondary-hero-shelf>`.

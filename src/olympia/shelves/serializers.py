@@ -7,13 +7,45 @@ from rest_framework.request import Request as DRFRequest
 from rest_framework.reverse import reverse as drf_reverse
 
 from olympia.addons.views import AddonSearchView
+from olympia.amo.templatetags.jinja_helpers import absolutify
+from olympia.api.fields import (
+    GetTextTranslationSerializerFieldFlat,
+    OutgoingURLField,
+)
 from olympia.bandwagon.views import CollectionAddonViewSet
 
 from .models import Shelf
 
 
+class AbsoluteOutgoingURLField(OutgoingURLField):
+    def to_representation(self, obj):
+        return super().to_representation(absolutify(obj) if obj else obj)
+
+class FooterField(serializers.Serializer):
+    footer_url = AbsoluteOutgoingURLField()
+    footer_text = GetTextTranslationSerializerFieldFlat()
+
+    def to_representation(self, obj):
+        if obj.footer_url and obj.footer_text:
+            data = super().to_representation(obj)
+            if isinstance(data.get('footer_url'), dict):
+                return {
+                    'url': data.get('footer_url', {}).get('url'),
+                    'outgoing': data.get('footer_url', {}).get('outgoing'),
+                    'text': data.get('footer_text'),
+                }
+            else:
+                # when 'wrap-outgoing-parameter' is on footer_url is a flat string
+                return {
+                    'url': data.get('footer_url'),
+                    'text': data.get('footer_text'),
+                }
+        else:
+            return None
+
 class ShelfSerializer(serializers.ModelSerializer):
     url = serializers.SerializerMethodField()
+    footer = FooterField(source='*')
     addons = serializers.SerializerMethodField()
 
     class Meta:
@@ -23,8 +55,7 @@ class ShelfSerializer(serializers.ModelSerializer):
             'url',
             'endpoint',
             'criteria',
-            'footer_text',
-            'footer_pathname',
+            'footer',
             'addons',
         ]
 

@@ -880,8 +880,8 @@ class TestShelfAdmin(TestCase):
             title='Popular extensions',
             endpoint='search',
             criteria='?sort=users&type=extension',
-            footer_text='See more',
-            footer_pathname='/this/is/the/pathname',
+            footer_url='http://testserver/extensions/',
+            footer_text='See more popular extensions',
         )
         detail_url = reverse(self.detail_url_name, args=(item.pk,))
         user = user_factory(email='someone@mozilla.com')
@@ -898,7 +898,11 @@ class TestShelfAdmin(TestCase):
                 'endpoint': 'search',
                 'criteria': ('?promoted=recommended&sort=random&type=extension'),
                 'footer_text': 'See more',
-                'footer_pathname': '/this/is/the/pathname',
+                'footer': {
+                    'url': 'http://testserver/extensions/',
+                    'outing': 'http://testserver/extensions/',
+                    'text': {'en-US': 'See more recommended extensions'},
+                },
                 'addon_count': 2,
             }
 
@@ -918,8 +922,8 @@ class TestShelfAdmin(TestCase):
             title='Popular extensions',
             endpoint='search',
             criteria='?sort=users&type=extension',
-            footer_text='See more',
-            footer_pathname='/this/is/the/pathname',
+            footer_url='http://testserver/extensions/',
+            footer_text='See more popular extensions',
         )
         detail_url = reverse(self.detail_url_name, args=(item.pk,))
         user = user_factory(email='someone@mozilla.com')
@@ -929,8 +933,11 @@ class TestShelfAdmin(TestCase):
             'title': 'Recommended extensions',
             'endpoint': 'search',
             'criteria': ('?promoted=recommended&sort=random&type=extension'),
-            'footer_text': 'See more',
-            'footer_pathname': '/this/is/the/pathname',
+            'footer': {
+                    'url': 'http://testserver/extensions/',
+                    'outing': 'http://testserver/extensions/',
+                    'text': {'en-US': 'See more recommended extensions'},
+            },
             # addon_count is missing
         }
         response = self.client.post(detail_url, data, follow=False)
@@ -961,8 +968,8 @@ class TestShelfAdmin(TestCase):
             title='Recommended extensions',
             endpoint='search',
             criteria='?promoted=recommended&sort=random&type=extension',
-            footer_text='See more',
-            footer_pathname='/this/is/the/pathname',
+            footer_url='http://testserver/extensions/',
+            footer_text='See more recommended extensions',
         )
         delete_url = reverse('admin:discovery_shelfmodule_delete', args=(item.pk,))
         user = user_factory(email='someone@mozilla.com')
@@ -992,8 +999,11 @@ class TestShelfAdmin(TestCase):
                 'title': 'Recommended extensions',
                 'endpoint': 'search',
                 'criteria': ('?promoted=recommended&sort=random&type=extension'),
-                'footer_text': 'See more',
-                'footer_pathname': '/this/is/the/pathname',
+                'footer': {
+                    'url': 'http://testserver/extensions/',
+                    'outing': 'http://testserver/extensions/',
+                    'text': {'en-US': 'See more recommended extensions'},
+                },
                 'addon_count': '0',
             }
 
@@ -1018,8 +1028,8 @@ class TestShelfAdmin(TestCase):
                 'title': 'Recommended extensions',
                 'endpoint': 'search',
                 'criteria': '?promoted=recommended&sort=random&type=extension',
-                'footer_text': 'See more',
-                'footer_pathname': '/this/is/the/pathname',
+                'footer_url': 'http://testserver/extensions/',
+                'footer_text': 'See more recommended extensions',
                 'addon_count': '0',
             },
             follow=True,
@@ -1032,8 +1042,8 @@ class TestShelfAdmin(TestCase):
             title='Recommended extensions',
             endpoint='search',
             criteria='?promoted=recommended&sort=random&type=extension',
-            footer_text='See more',
-            footer_pathname='/this/is/the/pathname',
+            footer_url='http://testserver/extensions/',
+            footer_text='See more recommended extensions',
         )
         detail_url = reverse('admin:discovery_shelfmodule_change', args=(item.pk,))
         user = user_factory(email='someone@mozilla.com')
@@ -1047,8 +1057,8 @@ class TestShelfAdmin(TestCase):
                 'title': 'Popular extensions',
                 'endpoint': 'search',
                 'criteria': '?promoted=recommended&sort=users&type=extension',
-                'footer_text': 'See more',
-                'footer_pathname': '/this/is/the/pathname',
+                'footer_url': 'http://testserver/extensions/',
+                'footer_text': 'See more popular extensions',
                 'addon_count': '0',
             },
             follow=True,
@@ -1063,8 +1073,8 @@ class TestShelfAdmin(TestCase):
             title='Recommended extensions',
             endpoint='search',
             criteria='?promoted=recommended&sort=random&type=extension',
-            footer_text='See more',
-            footer_pathname='/this/is/the/pathname',
+            footer_url='http://testserver/extensions/',
+            footer_text='See more recommended extensions',
         )
         delete_url = reverse('admin:discovery_shelfmodule_delete', args=(item.pk,))
         user = user_factory(email='someone@mozilla.com')

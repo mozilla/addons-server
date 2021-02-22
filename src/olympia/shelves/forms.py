@@ -23,7 +23,7 @@ class ShelfForm(forms.ModelForm):
             'criteria',
             'addon_count',
             'footer_text',
-            'footer_pathname',
+            'footer_url',
         )
 
     def clean(self):

@@ -20,7 +20,7 @@ class Shelf(ModelBase):
     footer_text = models.CharField(
         max_length=200, blank=True, help_text='e.g., See more recommended extensions'
     )
-    footer_pathname = models.CharField(
+    footer_url = models.CharField(
         max_length=255,
         blank=True,
         help_text='e.g., collections/4757633/privacy-matters',
