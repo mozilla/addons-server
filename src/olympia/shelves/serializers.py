@@ -21,6 +21,7 @@ class AbsoluteOutgoingURLField(OutgoingURLField):
     def to_representation(self, obj):
         return super().to_representation(absolutify(obj) if obj else obj)
 
+
 class FooterField(serializers.Serializer):
     footer_url = AbsoluteOutgoingURLField()
     footer_text = GetTextTranslationSerializerFieldFlat()
@@ -42,6 +43,7 @@ class FooterField(serializers.Serializer):
                 }
         else:
             return None
+
 
 class ShelfSerializer(serializers.ModelSerializer):
     url = serializers.SerializerMethodField()

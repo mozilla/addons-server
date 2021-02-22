@@ -934,9 +934,9 @@ class TestShelfAdmin(TestCase):
             'endpoint': 'search',
             'criteria': ('?promoted=recommended&sort=random&type=extension'),
             'footer': {
-                    'url': 'http://testserver/extensions/',
-                    'outing': 'http://testserver/extensions/',
-                    'text': {'en-US': 'See more recommended extensions'},
+                'url': 'http://testserver/extensions/',
+                'outing': 'http://testserver/extensions/',
+                'text': {'en-US': 'See more recommended extensions'},
             },
             # addon_count is missing
         }

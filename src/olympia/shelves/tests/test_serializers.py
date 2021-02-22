@@ -8,7 +8,6 @@ from django.contrib.auth.models import AnonymousUser
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.tests import addon_factory, collection_factory, ESTestCase, reverse_ns
-from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.bandwagon.models import CollectionAddon
 from olympia.constants.promoted import RECOMMENDED
 from olympia.users.models import UserProfile
@@ -146,8 +145,10 @@ class TestShelvesSerializer(ESTestCase):
         assert data['endpoint'] == 'search'
         assert data['criteria'] == '?promoted=recommended&sort=random&type=extension'
         assert data['footer']['text'] == {'en-US': 'See more recommended extensions'}
-        assert data['footer']['url'] == 'http://testserver/see/more/recommended/extensions'
-        assert data['footer']['outgoing'] == 'http://testserver/see/more/recommended/extensions'
+        assert data['footer']['url'] == (
+            'http://testserver/see/more/recommended/extensions')
+        assert data['footer']['outgoing'] == (
+            'http://testserver/see/more/recommended/extensions')
 
     def test_basic_themes(self):
         data = self.serialize(self.search_pop_thm)
