@@ -60,7 +60,7 @@ class MiddlewareTest(TestCase):
         assert response is None
 
         # Things matching settings.SUPPORTED_NONAPPS_NONLOCALES_REGEX don't get
-        # a redirect either, even if they have a lang GET parameter.
+        # a redirect either, even if they have a lang or app GET parameter.
         with self.settings(SUPPORTED_NONAPPS_NONLOCALES_REGEX=r'^lol'):
             response = self.process('/lol?lang=fr')
             assert self.request.LANG == 'fr'
@@ -68,6 +68,9 @@ class MiddlewareTest(TestCase):
 
             response = self.process('/lol')
             assert self.request.LANG == 'en-US'
+            assert response is None
+
+            response = self.process('/lol?app=android')
             assert response is None
 
     def test_v3_api_no_redirect(self):
@@ -122,6 +125,16 @@ class MiddlewareTest(TestCase):
             '/en-US/android/',
             'Mozilla/5.0 (Android; Tablet; rv:18.0) Gecko/18.0 Firefox/18.0',
         )
+
+        # We can also set the application using the `app` query parameter.
+        check('/en-US/?app=android', '/en-US/android/', '')
+        check('/en-US/?app=firefox', '/en-US/firefox/', '')
+        check('/en-US/android?app=firefox', '/en-US/android/', '')
+        check('/en-US/android/?app=invalid', '/en-US/android/', '')
+        check('/en-US/android/?app=', '/en-US/android/', '')
+        check('/?app=android&lang=fr', '/fr/android/', '')
+        check('/?app=android&lang=', '/en-US/android/', '')
+        check('/?app=invalid&lang=', '/en-US/firefox/', '')
 
     def test_get_lang(self):
         def check(url, expected):
@@ -194,7 +207,16 @@ class TestPrefixer(TestCase):
         assert urlresolvers.reverse('home') == '/'
 
         # With a request, locale and app prefixes work.
-        Client().get('/')
+        client = Client()
+        client.get('/')
+        assert urlresolvers.reverse('home') == '/en-US/firefox/'
+        client.get('/?app=android')
+        assert urlresolvers.reverse('home') == '/en-US/android/'
+        client.get('/?app=firefox')
+        assert urlresolvers.reverse('home') == '/en-US/firefox/'
+        client.get('/?app=invalid')
+        assert urlresolvers.reverse('home') == '/en-US/firefox/'
+        client.get('/?app=')
         assert urlresolvers.reverse('home') == '/en-US/firefox/'
 
     def test_resolve(self):

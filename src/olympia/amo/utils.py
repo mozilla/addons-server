@@ -123,18 +123,17 @@ def urlparams(url_, hash=None, **query):
     fragment = hash if hash is not None else url.fragment
 
     # Use dict(parse_qsl) so we don't get lists of values.
-    q = url.query
-    query_dict = dict(parse_qsl(force_str(q))) if q else {}
+    query_dict = dict(parse_qsl(force_str(url.query))) if url.query else {}
     query_dict.update(
         (k, force_bytes(v) if v is not None else v) for k, v in query.items()
     )
     query_string = urlencode(
         [(k, unquote_to_bytes(v)) for k, v in query_dict.items() if v is not None]
     )
-    new = ParseResult(
+    result = ParseResult(
         url.scheme, url.netloc, url.path, url.params, query_string, fragment
     )
-    return new.geturl()
+    return result.geturl()
 
 
 def partial(func, *args, **kw):

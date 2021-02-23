@@ -1563,6 +1563,7 @@ class TestAccountViewSetDelete(TestCase):
             response.cookies[settings.SESSION_COOKIE_NAME].get('samesite')
             == settings.SESSION_COOKIE_SAMESITE
         )
+        assert 'Cache-Control' not in response
         assert 'dontremoveme' not in response.cookies
         assert self.client.cookies[views.API_TOKEN_COOKIE].value == ''
         assert self.client.cookies[settings.SESSION_COOKIE_NAME].value == ''

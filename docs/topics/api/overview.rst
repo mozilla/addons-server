@@ -390,6 +390,7 @@ v4 API changelog
 * 2020-11-05: added endpoint to receive Stripe events. https://github.com/mozilla/addons-server/issues/15879
 * 2021-01-14: as addons-frontend now uses /v5/, v5 becomes the stable default; v4 becomes frozen; v3 is deprecated
 * 2021-02-12: added ``versions_url`` to addon detail endpoint. https://github.com/mozilla/addons-server/issues/16534
+* 2021-02-25: ``platform`` filtering was remoed from add-on search and autocomplete endpoints. https://github.com/mozilla/addons-server/issues/16463
 
 ----------------
 v5 API changelog
@@ -415,6 +416,7 @@ These are `v5` specific changes - `v4` changes apply also.
 * 2021-02-18: made ``description``, ``headline``, and ``cta.text`` in shelves/hero endpoint translated fields in the response. (They were always localized, we just didn't return them as such). https://github.com/mozilla/addons-server/issues/16515
 * 2021-02-18: added ``versions_url`` to addon detail endpoint. https://github.com/mozilla/addons-server/issues/16534
 * 2021-02-25: made ``headline`` and ``footer_text`` in shelves endpoint translated fields. Also added shelves/editorial endpoint for the localization process. https://github.com/mozilla/addons-server/issues/16514
+* 2021-02-25: ``platform`` filtering was remoed from add-on search and autocomplete endpoints. https://github.com/mozilla/addons-server/issues/16463
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/

@@ -74,6 +74,10 @@ SILENCED_SYSTEM_CHECKS = (
     # Recommendation to use OneToOneField instead of ForeignKey(unique=True)
     # but our translations are the way they are...
     'fields.W342',
+    # We have some non-unique constraint/index names.
+    # See https://github.com/mozilla/addons-server/issues/16497
+    'models.E030',
+    'models.E032',
 )
 
 # LESS CSS OPTIONS (Debug only).
@@ -401,6 +405,7 @@ MIDDLEWARE = (
     # Test if it's an API request first so later middlewares don't need to.
     # Also add relevant Vary header to API responses.
     'olympia.api.middleware.APIRequestMiddleware',
+    'olympia.api.middleware.APICacheControlMiddleware',
     # Gzip middleware needs to be executed after every modification to the
     # response, so it's placed at the top of the list.
     'django.middleware.gzip.GZipMiddleware',
@@ -1562,6 +1567,9 @@ MAX_APIKEY_JWT_AUTH_TOKEN_LIFETIME = 5 * 60
 # means it's sent instantaneously.
 API_KEY_CONFIRMATION_DELAY = None
 
+# Default cache duration for the API, in seconds.
+API_CACHE_DURATION = 3 * 60
+
 # JWT authentication related settings:
 JWT_AUTH = {
     # Use HMAC using SHA-256 hash algorithm. It should be the default, but we
@@ -1712,7 +1720,6 @@ CRON_JOBS = {
     'unhide_disabled_files': 'olympia.addons.cron',
     'update_addon_hotness': 'olympia.addons.cron',
     'gc': 'olympia.amo.cron',
-    'category_totals': 'olympia.amo.cron',
     'auto_import_blocklist': 'olympia.blocklist.cron',
     'upload_mlbf_to_remote_settings': 'olympia.blocklist.cron',
     'update_blog_posts': 'olympia.devhub.cron',
@@ -1789,13 +1796,5 @@ GOOGLE_APPLICATION_CREDENTIALS = env('GOOGLE_APPLICATION_CREDENTIALS', default=N
 # See: https://bugzilla.mozilla.org/show_bug.cgi?id=1633746
 BIGQUERY_PROJECT = 'moz-fx-data-shared-prod'
 BIGQUERY_AMO_DATASET = 'amo_dev'
-
-ADZERK_TIMEOUT = 5  # seconds
-ADZERK_NETWORK_ID = env('ADZERK_NETWORK_ID', default=10521)
-ADZERK_SITE_ID = env('ADZERK_SITE_ID', default=1133496)
-ADZERK_URL = f'https://e-{ADZERK_NETWORK_ID}.adzerk.net/api/v2'
-ADZERK_IMPRESSION_TIMEOUT = 60  # seconds
-ADZERK_EVENT_URL = f'https://e-{ADZERK_NETWORK_ID}.adzerk.net/'
-ADZERK_EVENT_TIMEOUT = 60 * 60 * 24  # seconds
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'

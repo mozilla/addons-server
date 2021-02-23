@@ -93,8 +93,6 @@ populate_data: ## populate a new database
 
 	# Now that addons have been generated, reindex.
 	$(PYTHON_COMMAND) manage.py reindex --force --noinput
-	# Also update category counts (denormalized field)
-	$(PYTHON_COMMAND) manage.py cron category_totals
 
 .PHONY: cleanup_python_build_dir
 cleanup_python_build_dir:
@@ -177,9 +175,6 @@ setup-ui-tests:
 
 	# Now that addons have been generated, reindex.
 	$(PYTHON_COMMAND) manage.py reindex --force --noinput
-	# Also update category counts (denormalized field)
-	$(PYTHON_COMMAND) manage.py cron category_totals
-
 
 .PHONY: perf-tests
 perf-tests: setup-ui-tests

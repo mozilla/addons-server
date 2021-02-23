@@ -89,6 +89,8 @@ class TestFile(TestCase, amo.tests.AMOPaths):
     def test_get_absolute_url(self):
         file_ = File.objects.get(id=67442)
         url = file_.get_absolute_url()
+        # Important: Fenix relies on this URL pattern to decide when to trigger
+        # the add-on install flow. Changing this URL would likely break Fenix.
         expected = '/firefox/downloads/file/67442/delicious_bookmarks-2.1.072-fx.xpi'
         assert url.endswith(expected), url
 

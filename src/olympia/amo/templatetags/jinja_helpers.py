@@ -30,11 +30,15 @@ register = Library()
 
 
 # Registering some utils as filters:
-urlparams = library.filter(utils.urlparams)
 library.filter(utils.epoch)
 library.filter(utils.isotime)
 library.global_function(dict)
 library.global_function(utils.randslice)
+
+
+@library.filter
+def urlparams(*args, **kwargs):
+    return jinja2.Markup(utils.urlparams(*args, **kwargs))
 
 
 @library.global_function

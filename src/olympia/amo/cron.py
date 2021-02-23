@@ -1,6 +1,5 @@
 from datetime import datetime, timedelta
 from django.core.files.storage import default_storage as storage
-from django.db import connection
 
 import olympia.core.logger
 
@@ -10,7 +9,6 @@ from olympia.addons.models import Addon
 from olympia.addons.tasks import delete_addons
 from olympia.amo.utils import chunked
 from olympia.bandwagon.models import Collection
-from olympia.constants.base import VALID_ADDON_STATUSES, VALID_FILE_STATUSES
 from olympia.files.models import FileUpload
 from olympia.scanners.models import ScannerResult
 
@@ -70,35 +68,3 @@ def gc(test_result=True):
 
     # Delete stale ScannerResults.
     ScannerResult.objects.filter(upload=None, version=None).delete()
-
-
-def category_totals():
-    """
-    Update category counts for sidebar navigation.
-    """
-    log.info('Starting category counts update...')
-    addon_statuses = ','.join(['%s'] * len(VALID_ADDON_STATUSES))
-    file_statuses = ','.join(['%s'] * len(VALID_FILE_STATUSES))
-
-    with connection.cursor() as cursor:
-        cursor.execute(
-            """
-        UPDATE categories AS t INNER JOIN (
-         SELECT at.category_id, COUNT(DISTINCT Addon.id) AS ct
-          FROM addons AS Addon
-          INNER JOIN versions AS Version
-            ON (Addon.id = Version.addon_id)
-          INNER JOIN applications_versions AS av
-            ON (av.version_id = Version.id)
-          INNER JOIN addons_categories AS at
-            ON (at.addon_id = Addon.id)
-          INNER JOIN files AS File
-            ON (Version.id = File.version_id AND File.status IN (%s))
-          WHERE Addon.status IN (%s) AND Addon.inactive = 0
-          GROUP BY at.category_id)
-        AS j ON (t.id = j.category_id)
-        SET t.count = j.ct
-        """
-            % (file_statuses, addon_statuses),
-            VALID_FILE_STATUSES + VALID_ADDON_STATUSES,
-        )
