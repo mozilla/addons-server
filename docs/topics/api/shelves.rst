@@ -97,11 +97,11 @@ small number of shelves this endpoint is not paginated.
 
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :>json array results: The array of shelves displayed on the AMO Homepage.
-    :>json string results[].title: The title of the shelf.
+    :>json object|null results[].headline: The title of the shelf. (See :ref:`translated fields <api-overview-translations>`.  Note: when ``lang`` is not specified, not all locales will be returned, unlike other translated fields).
     :>json string results[].url: The configured URL using the shelf's endpoint and criteria; links to the shelf's returned add-ons.
     :>json string results[].endpoint: The :ref:`endpoint type <shelf-endpoint-type>` selected for the shelf.
     :>json string results[].criteria: The criteria for the addons in the shelf.
-    :>json string|null results[].footer_text: The optional text in the footer of the shelf.
+    :>json object|null results[].footer_text: The optional text in the footer of the shelf. (See :ref:`translated fields <api-overview-translations>`.  Note: when ``lang`` is not specified, not all locales will be returned, unlike other translated fields).
     :>json string|null results[].footer_pathname: The optional pathname of the URL for the footer's text.
     :>json array results[].addons: An array of :ref:`add-ons <addon-detail-object>`.
     :>json object primary: A :ref:`primary hero shelf <primary-hero-shelf>`.
@@ -119,3 +119,24 @@ small number of shelves this endpoint is not paginated.
        collections  a mozilla :ref:`collection<collection-addon-list>`.
                     The collection slug will be in ``criteria``
     ==============  ====================================================================
+
+
+----------------------------------
+Homepage Shelves Editorial Content
+----------------------------------
+
+.. _homepage-shelves-editorial:
+
+This endpoint allows you to fetch all editorial content for Homepage Shelves.
+This is used internally to generate .po files containing the strings defined by the content team.
+
+
+.. http:get:: /api/v5/shelves/editorial
+
+    :>json array results: The array of shelves displayed on the AMO Homepage.
+    :>json string|null results[].headline: The title of the shelf.
+    :>json string results[].url: The configured URL using the shelf's endpoint and criteria; links to the shelf's returned add-ons.
+    :>json string results[].endpoint: The :ref:`endpoint type <shelf-endpoint-type>` selected for the shelf.
+    :>json string results[].criteria: The criteria for the addons in the shelf.
+    :>json string|null results[].footer_text: The optional text in the footer of the shelf.
+    :>json string|null results[].footer_pathname: The optional pathname of the URL for the footer's text.

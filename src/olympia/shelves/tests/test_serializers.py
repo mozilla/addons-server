@@ -7,13 +7,19 @@ from django.contrib.auth.models import AnonymousUser
 
 from olympia import amo
 from olympia.addons.models import Addon
-from olympia.amo.tests import addon_factory, collection_factory, ESTestCase, reverse_ns
+from olympia.amo.tests import (
+    addon_factory,
+    collection_factory,
+    ESTestCase,
+    reverse_ns,
+    TestCase,
+)
 from olympia.bandwagon.models import CollectionAddon
 from olympia.constants.promoted import RECOMMENDED
 from olympia.users.models import UserProfile
 
 from ..models import Shelf
-from ..serializers import ShelfSerializer
+from ..serializers import ShelfSerializer, ShelfEditorialSerializer
 
 
 class TestShelvesSerializer(ESTestCase):
@@ -138,18 +144,18 @@ class TestShelvesSerializer(ESTestCase):
 
     def test_basic(self):
         data = self.serialize(self.search_rec_ext)
-        assert data['title'] == 'Recommended extensions'
+        assert data['title'] == {'en-US': 'Recommended extensions'}
         assert data['endpoint'] == 'search'
         assert data['criteria'] == '?promoted=recommended&sort=random&type=extension'
-        assert data['footer_text'] == 'See more recommended extensions'
+        assert data['footer_text'] == {'en-US': 'See more recommended extensions'}
         assert data['footer_pathname'] == ''
 
     def test_basic_themes(self):
         data = self.serialize(self.search_pop_thm)
-        assert data['title'] == 'Populâr themes'
+        assert data['title'] == {'en-US': 'Populâr themes'}
         assert data['endpoint'] == 'search-themes'
         assert data['criteria'] == '?sort=users&type=statictheme'
-        assert data['footer_text'] == 'See more populâr themes'
+        assert data['footer_text'] == {'en-US': 'See more populâr themes'}
         assert data['footer_pathname'] == ''
 
     def test_url_and_addons_search(self):
@@ -157,11 +163,11 @@ class TestShelvesSerializer(ESTestCase):
         assert pop_data['url'] == self._get_result_url(self.search_pop_thm)
 
         assert len(pop_data['addons']) == 3
-        assert pop_data['addons'][0]['name']['en-US'] == ('test addon test02')
+        assert pop_data['addons'][0]['name'] == {'en-US': 'test addon test02'}
         assert pop_data['addons'][0]['promoted'] is None
         assert pop_data['addons'][0]['type'] == 'statictheme'
 
-        assert pop_data['addons'][1]['name']['en-US'] == ('test addon test04')
+        assert pop_data['addons'][1]['name'] == {'en-US': 'test addon test04'}
         assert pop_data['addons'][1]['promoted']['category'] == ('recommended')
         assert pop_data['addons'][1]['type'] == 'statictheme'
 
@@ -170,14 +176,14 @@ class TestShelvesSerializer(ESTestCase):
         assert rec_data['url'] == self._get_result_url(self.search_rec_ext)
 
         assert len(rec_data['addons']) == 1
-        assert rec_data['addons'][0]['name']['en-US'] == ('test addon test03')
+        assert rec_data['addons'][0]['name'] == {'en-US': 'test addon test03'}
         assert rec_data['addons'][0]['promoted']['category'] == ('recommended')
         assert rec_data['addons'][0]['type'] == 'extension'
 
     def test_url_and_addons_collections(self):
         data = self.serialize(self.collections_shelf)
         assert data['url'] == self._get_result_url(self.collections_shelf)
-        assert data['addons'][0]['name']['en-US'] == ('test addon privacy01')
+        assert data['addons'][0]['name'] == {'en-US': 'test addon privacy01'}
 
     def test_addon_count(self):
         shelf = Shelf(
@@ -219,3 +225,13 @@ class TestShelvesSerializer(ESTestCase):
         shelf.update(addon_count=2)
         data = self.serialize(shelf)
         assert len(data['addons']) == 2
+
+
+class TestShelfEditorialSerializer(TestCase):
+    def test_basic(self):
+        shelf = Shelf(title='the title', footer_text='footer')
+        serializer = ShelfEditorialSerializer(shelf)
+        assert serializer.data == {
+            'title': 'the title',
+            'footer_text': 'footer',
+        }

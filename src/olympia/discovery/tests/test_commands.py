@@ -59,6 +59,15 @@ secondary_hero_fake_data = {
     ]
 }
 
+shelves_fake_data = {
+    'results': [
+        {'title': 'greât shelf description', 'footer_text': 'fóóter text'},
+        {'title': 'custom shelf is custom ', 'footer_text': None},
+        {'title': None, 'footer_text': 'fóóter text? '},
+        {'title': ''},
+    ]
+}
+
 expected_content = """{# L10n: editorial content for the discovery pane. #}
 {% trans %}greât custom description{% endtrans %}
 
@@ -71,6 +80,7 @@ expected_content = """{# L10n: editorial content for the discovery pane. #}
 
 {# L10n: editorial content for the primary hero shelves. #}
 {% trans %}custom primary description is custom {% endtrans %}
+
 
 {# L10n: editorial content for the secondary hero shelves. #}
 {% trans %}sïïïck headline{% endtrans %}
@@ -85,6 +95,18 @@ expected_content = """{# L10n: editorial content for the discovery pane. #}
 
 {# L10n: editorial content for the secondary hero shelves. #}
 {% trans %}not custom description is not custom {% endtrans %}
+
+
+{# L10n: editorial content for the homepage shelves. #}
+{% trans %}greât shelf description{% endtrans %}
+{# L10n: editorial content for the homepage shelves. #}
+{% trans %}fóóter text{% endtrans %}
+
+{# L10n: editorial content for the homepage shelves. #}
+{% trans %}custom shelf is custom {% endtrans %}
+
+{# L10n: editorial content for the homepage shelves. #}
+{% trans %}fóóter text? {% endtrans %}
 
 """
 
@@ -113,6 +135,12 @@ class TestExtractDiscoStringsCommand(TestCase):
             settings.SECONDARY_HERO_EDITORIAL_CONTENT_API,
             content_type='application/json',
             body=json.dumps(secondary_hero_fake_data),
+        )
+        responses.add(
+            responses.GET,
+            settings.HOMEPAGE_SHELVES_EDITORIAL_CONTENT_API,
+            content_type='application/json',
+            body=json.dumps(shelves_fake_data),
         )
 
         with tempfile.NamedTemporaryFile() as file_, override_settings(
