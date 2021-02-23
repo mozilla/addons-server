@@ -32,7 +32,6 @@ This endpoint allows you to search through public add-ons.
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :query int page: 1-based page number. Defaults to 1.
     :query int page_size: Maximum number of results to return for the requested page. Defaults to 25.
-    :query string platform: Filter by :ref:`add-on platform <addon-detail-platform>` availability.
     :query string promoted: Filter to add-ons in a specific :ref:`promoted category <addon-detail-promoted-category>`.  Can be combined with `app`.   Multiple promoted categories can be specified, separated by comma(s), in which case any add-ons in any of the promotions will be returned.
     :query string tag: Filter by exact tag name. Multiple tag names can be specified, separated by comma(s), in which case add-ons containing *all* specified tags are returned.
     :query string type: Filter by :ref:`add-on type <addon-detail-type>`.  Multiple types can be specified, separated by comma(s), in which case add-ons that are any of the matching types are returned.
@@ -102,7 +101,6 @@ for autocomplete though, there are a couple key differences:
     :query string author: Filter by exact (listed) author username. Multiple author names can be specified, separated by comma(s), in which case add-ons with at least one matching author are returned.
     :query string category: Filter by :ref:`category slug <category-list>`. ``app`` and ``type`` parameters need to be set, otherwise this parameter is ignored.
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
-    :query string platform: Filter by :ref:`add-on platform <addon-detail-platform>` availability.
     :query string tag: Filter by exact tag name. Multiple tag names can be specified, separated by comma(s).
     :query string type: Filter by :ref:`add-on type <addon-detail-type>`.
     :>json array results: An array of :ref:`add-ons <addon-detail-object>`. Only the ``id``, ``icon_url``, ``name``, ``promoted``, ``type`` and ``url`` fields are supported though.
@@ -389,7 +387,7 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     :>json boolean files[].is_webextension: Whether the file is a WebExtension or not.
     :>json array files[].optional_permissions[]: Array of the optional webextension permissions for this File, as strings. Empty for non-webextensions.
     :>json array files[].permissions[]: Array of the webextension permissions for this File, as strings. Empty for non-webextensions.
-    :>json string files[].platform: The :ref:`platform <addon-detail-platform>` for a file.
+    :>json string files[].platform: The :ref:`platform <addon-detail-platform>` for a file (obsolete, will be removed soon: all add-ons should have their ``platform`` set to ``all`` already).
     :>json int files[].size: The size for a file, in bytes.
     :>json int files[].status: The :ref:`status <addon-detail-status>` for a file.
     :>json string files[].url: The (absolute) URL to download a file.

@@ -32,7 +32,6 @@ This endpoint allows you to search through public add-ons.
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <v4-api-overview-translations>`)
     :query int page: 1-based page number. Defaults to 1.
     :query int page_size: Maximum number of results to return for the requested page. Defaults to 25.
-    :query string platform: Filter by :ref:`add-on platform <v4-addon-detail-platform>` availability.
     :query string promoted: Filter to add-ons in a specific :ref:`promoted category <v4-addon-detail-promoted-category>`.  Can be combined with `app`.   Multiple promoted categories can be specified, separated by comma(s), in which case any add-ons in any of the promotions will be returned.
     :query string tag: Filter by exact tag name. Multiple tag names can be specified, separated by comma(s), in which case add-ons containing *all* specified tags are returned.
     :query string type: Filter by :ref:`add-on type <v4-addon-detail-type>`.  Multiple types can be specified, separated by comma(s), in which case add-ons that are any of the matching types are returned.
@@ -102,7 +101,6 @@ for autocomplete though, there are a couple key differences:
     :query string author: Filter by exact (listed) author username. Multiple author names can be specified, separated by comma(s), in which case add-ons with at least one matching author are returned.
     :query string category: Filter by :ref:`category slug <v4-category-list>`. ``app`` and ``type`` parameters need to be set, otherwise this parameter is ignored.
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <v4-api-overview-translations>`)
-    :query string platform: Filter by :ref:`add-on platform <v4-addon-detail-platform>` availability.
     :query string tag: Filter by exact tag name. Multiple tag names can be specified, separated by comma(s).
     :query string type: Filter by :ref:`add-on type <v4-addon-detail-type>`.
     :>json array results: An array of :ref:`add-ons <v4-addon-detail-object>`. Only the ``id``, ``icon_url``, ``name``, ``promoted``, ``type`` and ``url`` fields are supported though.
