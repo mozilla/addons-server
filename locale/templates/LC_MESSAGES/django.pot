@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-02-16 17:52+0000\n"
+"POT-Creation-Date: 2021-02-23 18:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -188,12 +188,12 @@ msgstr ""
 msgid "- Add-on not on AMO -"
 msgstr ""
 
-#: src/olympia/addons/models.py:1951 src/olympia/addons/models.py:2024
+#: src/olympia/addons/models.py:1953 src/olympia/addons/models.py:2026
 #: src/olympia/constants/base.py:67
 msgid "Listed"
 msgstr ""
 
-#: src/olympia/addons/models.py:2197
+#: src/olympia/addons/models.py:2199
 msgid "Addon and collection paths need to end with \"/\""
 msgstr ""
 
@@ -321,7 +321,7 @@ msgstr ""
 msgid "CIDR"
 msgstr ""
 
-#: src/olympia/amo/middleware.py:228 src/olympia/templates/base.html:64
+#: src/olympia/amo/middleware.py:229 src/olympia/templates/base.html:64
 #: src/olympia/templates/impala/base.html:78
 msgid ""
 "Some features are temporarily disabled while we perform website maintenance. "
@@ -554,12 +554,12 @@ msgstr ""
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr ""
 
-#: src/olympia/amo/templatetags/jinja_helpers.py:168
+#: src/olympia/amo/templatetags/jinja_helpers.py:172
 msgid "Add-ons for {0}"
 msgstr ""
 
 #. L10n: relative time in the past, like '4 days ago'
-#: src/olympia/amo/templatetags/jinja_helpers.py:239
+#: src/olympia/amo/templatetags/jinja_helpers.py:243
 msgid "{0} ago"
 msgstr ""
 
@@ -2023,32 +2023,32 @@ msgstr ""
 msgid "Android"
 msgstr ""
 
-#: src/olympia/constants/promoted.py:50
+#: src/olympia/constants/promoted.py:48
 msgid "Not Promoted"
 msgstr ""
 
-#: src/olympia/constants/promoted.py:56
+#: src/olympia/constants/promoted.py:54
 #: src/olympia/reviewers/templatetags/jinja_helpers.py:66
 msgid "Recommended"
 msgstr ""
 
-#: src/olympia/constants/promoted.py:71
+#: src/olympia/constants/promoted.py:69
 msgid "Sponsored"
 msgstr ""
 
-#: src/olympia/constants/promoted.py:86
+#: src/olympia/constants/promoted.py:83
 msgid "Verified"
 msgstr ""
 
-#: src/olympia/constants/promoted.py:100
+#: src/olympia/constants/promoted.py:96
 msgid "By Firefox"
 msgstr ""
 
-#: src/olympia/constants/promoted.py:117
+#: src/olympia/constants/promoted.py:112
 msgid "Spotlight"
 msgstr ""
 
-#: src/olympia/constants/promoted.py:128
+#: src/olympia/constants/promoted.py:123
 msgid "Strategic"
 msgstr ""
 
@@ -6439,46 +6439,53 @@ msgstr ""
 msgid "The easiest way to manage all of your YouTube channel subscriptions."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:884
+msgid ""
+"Return to a simpler time — when your top search results stood above the ads "
+"(Google and Bing search engine compatible)."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:883
+#: src/olympia/discovery/strings.jinja2:886
 msgid "Extensions are like apps for Firefox."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:885
+#: src/olympia/discovery/strings.jinja2:888
 msgid ""
 "They add features to Firefox to make browsing faster, safer, or just plain "
 "fun."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:887
+#: src/olympia/discovery/strings.jinja2:890
 msgid "See all extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:889
+#: src/olympia/discovery/strings.jinja2:892
 msgid "Tab organizers and tools"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:891
+#: src/olympia/discovery/strings.jinja2:894
 msgid "Privacy beyond browser extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:893
+#: src/olympia/discovery/strings.jinja2:896
 msgid "Media enhancers for Firefox"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:895
-#: src/olympia/discovery/strings.jinja2:899
+#: src/olympia/discovery/strings.jinja2:898
+#: src/olympia/discovery/strings.jinja2:902
 msgid "Explore extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:897
+#: src/olympia/discovery/strings.jinja2:900
 msgid "Learn More"
 msgstr ""
 
@@ -8165,7 +8172,7 @@ msgstr ""
 
 #: src/olympia/search/filters.py:47 src/olympia/search/filters.py:60
 #: src/olympia/search/filters.py:92 src/olympia/search/filters.py:136
-#: src/olympia/search/filters.py:301
+#: src/olympia/search/filters.py:280
 #, python-format
 msgid "Invalid \"%s\" parameter."
 msgstr ""
@@ -8183,12 +8190,12 @@ msgstr ""
 msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr ""
 
-#: src/olympia/search/filters.py:279
+#: src/olympia/search/filters.py:258
 #, python-format
 msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
 msgstr ""
 
-#: src/olympia/search/filters.py:848
+#: src/olympia/search/filters.py:827
 msgid "Maximum query length exceeded."
 msgstr ""
 

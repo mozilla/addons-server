@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-02-16 17:52+0000\n"
+"POT-Creation-Date: 2021-02-23 18:22+0000\n"
 "PO-Revision-Date: 2020-11-12 22:41+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -4386,6 +4386,10 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "The easiest way to manage all of your YouTube channel subscriptions."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
