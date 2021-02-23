@@ -228,27 +228,6 @@ class AddonGuidQueryParam(AddonQueryMultiParam):
         return isinstance(value, str)
 
 
-class AddonPlatformQueryParam(AddonQueryParam):
-    query_param = 'platform'
-    reverse_dict = amo.PLATFORM_DICT
-    valid_values = amo.PLATFORMS
-    es_field = 'platforms'
-    operator = 'terms'  # Because we'll be sending a list every time.
-
-    def get_value(self):
-        value = super(AddonPlatformQueryParam, self).get_value()
-        # No matter what platform the client wants to see, we always need to
-        # include PLATFORM_ALL to match add-ons compatible with all platforms.
-        if value != amo.PLATFORM_ALL.id:
-            value = [value, amo.PLATFORM_ALL.id]
-        else:
-            value = [value]
-        return value
-
-    def get_value_from_reverse_dict(self):
-        return self.get_value_from_object_from_reverse_dict()
-
-
 class AddonTypeQueryParam(AddonQueryMultiParam):
     query_param = 'type'
     reverse_dict = amo.ADDON_SEARCH_SLUGS
@@ -854,7 +833,8 @@ class SearchParameterFilter(BaseFilterBackend):
     """
     A django-rest-framework filter backend for ES queries that look for items
     matching a specific set of params in request.GET: app, appversion,
-    author, category, exclude_addons, platform, tag and type.
+    author, category, exclude_addons, featured, guid, promoted, tag, type,
+    color...
     """
 
     available_clauses = [
@@ -865,7 +845,6 @@ class SearchParameterFilter(BaseFilterBackend):
         AddonExcludeAddonsQueryParam,
         AddonFeaturedQueryParam,
         AddonGuidQueryParam,
-        AddonPlatformQueryParam,
         AddonPromotedQueryParam,
         AddonTagQueryParam,
         AddonTypeQueryParam,

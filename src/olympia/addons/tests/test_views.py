@@ -1502,34 +1502,6 @@ class TestAddonSearchView(ESTestCase):
             assert len(data['results']) == 1
             assert data['results'][0]['id'] == addon.pk
 
-    def test_filter_by_platform(self):
-        # First add-on is available for all platforms.
-        addon = addon_factory(slug='my-addon', name='My Addôn', popularity=33)
-        addon_factory(
-            slug='my-linux-addon',
-            name='My linux-only Addön',
-            file_kw={'platform': amo.PLATFORM_LINUX.id},
-            popularity=22,
-        )
-        mac_addon = addon_factory(
-            slug='my-mac-addon',
-            name='My mac-only Addön',
-            file_kw={'platform': amo.PLATFORM_MAC.id},
-            popularity=11,
-        )
-        self.refresh()
-
-        data = self.perform_search(self.url)
-        assert data['count'] == 3
-        assert len(data['results']) == 3
-        assert data['results'][0]['id'] == addon.pk
-
-        data = self.perform_search(self.url, {'platform': 'mac'})
-        assert data['count'] == 2
-        assert len(data['results']) == 2
-        assert data['results'][0]['id'] == addon.pk
-        assert data['results'][1]['id'] == mac_addon.pk
-
     def test_filter_by_app(self):
         addon = addon_factory(
             slug='my-addon',
