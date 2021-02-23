@@ -198,7 +198,7 @@ def test_urlparams():
 
     # Adding query with existing params.
     s = render('{{ base_query|urlparams(frag, sort=sort) }}', c)
-    amo.tests.assert_url_equal(s, '%s?sort=name&amp;x=y#frag' % url)
+    amo.tests.assert_url_equal(s, '%s?sort=name&x=y#frag' % url)
 
     # Replacing a query param.
     s = render('{{ base_query|urlparams(frag, x="z") }}', c)
@@ -239,6 +239,27 @@ def test_urlparams_returns_safe_string():
 
     s = render('{{ "https://foo.com/"|urlparams(param="%AAA") }}', {})
     assert s == 'https://foo.com/?param=%AAA'
+
+    string = render(
+        '{{ unsafe_url|urlparams }}',
+        {
+            'unsafe_url': "http://url.with?foo=<script>alert('awesome')</script>"
+            '&baa=that'
+        },
+    )
+    assert string == (
+        'http://url.with?foo=%3Cscript%3Ealert%28%27awesome%27%29%3C%2Fscript%3E'
+        '&baa=that'
+    )
+
+    string = render(
+        '{{ "http://safe.url?baa=that"|urlparams(foo=unsafe_param) }}',
+        {'unsafe_param': "<script>alert('awesome')</script>"},
+    )
+    assert string == (
+        'http://safe.url?baa=that'
+        '&foo=%3Cscript%3Ealert%28%27awesome%27%29%3C%2Fscript%3E'
+    )
 
 
 def test_isotime():
