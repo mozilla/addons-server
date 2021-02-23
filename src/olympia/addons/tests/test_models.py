@@ -698,6 +698,14 @@ class TestAddonModels(TestCase):
         self._delete(3615)
         assert DeniedGuid.objects.filter(guid=addon.guid).exists()
 
+    def test_delete_disabled_addon_no_guid(self):
+        addon = Addon.unfiltered.get(pk=3615)
+        addon.update(status=amo.STATUS_DISABLED, guid=None)
+        self._delete(3615)
+        # Adding it to the DeniedGuid would be pointless since it's empty. The
+        # important thing is that the delete() calls succeeds.
+        assert not DeniedGuid.objects.filter(guid=addon.guid).exists()
+
     def test_delete_unknown_type(self):
         """
         Test making sure deleting add-ons with an unknown type, like old
@@ -2917,6 +2925,11 @@ class TestAddonAndDeniedGuid(TestCase):
     def test_deny_already_denied_guid(self):
         addon = addon_factory()
         addon.deny_resubmission()
+        with pytest.raises(RuntimeError):
+            addon.deny_resubmission()
+
+    def test_deny_empty_guid(self):
+        addon = addon_factory(guid=None)
         with pytest.raises(RuntimeError):
             addon.deny_resubmission()
 

@@ -555,6 +555,8 @@ class Addon(OnChangeMixin, ModelBase):
         self.update_status()
 
     def deny_resubmission(self):
+        if not self.guid:
+            raise RuntimeError('No GUID on this add-on')
         if self.is_guid_denied:
             raise RuntimeError('GUID already denied')
 
