@@ -1713,7 +1713,6 @@ CRON_JOBS = {
     'unhide_disabled_files': 'olympia.addons.cron',
     'update_addon_hotness': 'olympia.addons.cron',
     'gc': 'olympia.amo.cron',
-    'category_totals': 'olympia.amo.cron',
     'auto_import_blocklist': 'olympia.blocklist.cron',
     'upload_mlbf_to_remote_settings': 'olympia.blocklist.cron',
     'update_blog_posts': 'olympia.devhub.cron',
