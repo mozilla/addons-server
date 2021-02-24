@@ -4,6 +4,7 @@ import os
 from unittest import mock
 
 from django.core.files.storage import default_storage as storage
+from django.urls import reverse
 from django.utils.encoding import force_str
 
 from pyquery import PyQuery as pq
@@ -23,7 +24,6 @@ from olympia.amo.tests import (
     user_factory,
 )
 from olympia.amo.tests.test_helpers import get_image_path
-from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import image_size
 from olympia.devhub.forms import DescribeForm
 from olympia.tags.models import AddonTag, Tag

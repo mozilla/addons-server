@@ -19,6 +19,7 @@ from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 from django.db import models
 from django.template import loader
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.crypto import salted_hmac
 from django.utils.encoding import force_str
@@ -32,7 +33,6 @@ from olympia.access.models import Group, GroupUser
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField, CIDRField
 from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
-from olympia.amo.urlresolvers import reverse
 from olympia.amo.validators import OneOrMorePrintableCharacterValidator
 from olympia.translations.query import order_by_translation
 from olympia.users.notifications import NOTIFICATIONS_BY_ID

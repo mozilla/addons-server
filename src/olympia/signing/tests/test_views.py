@@ -4,13 +4,16 @@ import os
 from datetime import datetime, timedelta
 from unittest import mock
 
-import responses
 from django.conf import settings
 from django.forms import ValidationError
 from django.test.testcases import TransactionTestCase
 from django.test.utils import override_settings
+from django.urls import reverse
 from django.utils import translation
+
+import responses
 from freezegun import freeze_time
+
 from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
@@ -25,7 +28,6 @@ from olympia.amo.tests import (
     reverse_ns,
     user_factory,
 )
-from olympia.amo.urlresolvers import reverse
 from olympia.api.tests.utils import APIKeyAuthTestMixin
 from olympia.blocklist.models import Block
 from olympia.files.models import File, FileUpload

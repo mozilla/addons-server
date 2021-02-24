@@ -1,7 +1,9 @@
+from django.urls import reverse
+
 from olympia import amo
 from olympia.amo.tests import addon_factory, TestCase, user_factory, version_factory
 from olympia.amo.tests.test_helpers import get_uploaded_file
-from olympia.amo.urlresolvers import django_reverse, reverse
+from olympia.amo.reverse import django_reverse
 from olympia.constants.promoted import (
     LINE,
     RECOMMENDED,

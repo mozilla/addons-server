@@ -129,7 +129,7 @@ def default_prefixer(settings):
     prefixer = amo.urlresolvers.Prefixer(request)
     prefixer.app = settings.DEFAULT_APP
     prefixer.locale = settings.LANGUAGE_CODE
-    amo.urlresolvers.set_url_prefix(prefixer)
+    amo.reverse.set_url_prefix(prefixer)
 
 
 @pytest.fixture(autouse=True)
@@ -208,7 +208,7 @@ def test_pre_setup(request, tmpdir, settings):
     clean_translations(None)  # Make sure queued translations are removed.
 
     # Make sure we revert everything we might have changed to prefixers.
-    amo.urlresolvers.clean_url_prefixes()
+    amo.reverse.clean_url_prefixes()
 
 
 @pytest.fixture

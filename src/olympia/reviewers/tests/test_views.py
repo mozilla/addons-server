@@ -16,7 +16,7 @@ from django.core.files.base import File as DjangoFile
 from django.db import connection, reset_queries
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
-from olympia.blocklist.utils import block_activity_log_save
+from django.urls import reverse
 
 from rest_framework.test import APIRequestFactory
 
@@ -56,8 +56,8 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
-from olympia.amo.urlresolvers import reverse
 from olympia.blocklist.models import Block, BlocklistSubmission
+from olympia.blocklist.utils import block_activity_log_save
 from olympia.constants.promoted import LINE, RECOMMENDED, SPOTLIGHT, STRATEGIC
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.constants.scanners import CUSTOMS, MAD, YARA

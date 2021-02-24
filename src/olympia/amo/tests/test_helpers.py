@@ -21,6 +21,7 @@ import olympia
 
 from olympia import amo
 from olympia.amo import urlresolvers, utils
+from olympia.amo.reverse import set_url_prefix
 from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.tests import SQUOTE_ESCAPED, TestCase, reverse_ns
 from olympia.amo.utils import ImageCheck
@@ -141,7 +142,7 @@ def test_template_escaping():
     )
 
 
-@patch('olympia.amo.templatetags.jinja_helpers.urlresolvers.reverse')
+@patch('olympia.amo.templatetags.jinja_helpers.reverse')
 def test_url(mock_reverse):
     render('{{ url("viewname", 1, z=2) }}')
     mock_reverse.assert_called_with(
@@ -282,7 +283,7 @@ def test_locale_url():
     rf = RequestFactory()
     request = rf.get('/de', SCRIPT_NAME='/z')
     prefixer = urlresolvers.Prefixer(request)
-    urlresolvers.set_url_prefix(prefixer)
+    set_url_prefix(prefixer)
     s = render('{{ locale_url("mobile") }}')
     assert s == '/z/de/mobile'
 

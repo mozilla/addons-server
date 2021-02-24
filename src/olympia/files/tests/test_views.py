@@ -1,7 +1,8 @@
 # coding=utf-8
 from django.conf import settings
+from django.urls import reverse
+
 from olympia.amo.tests import TestCase
-from olympia.amo.urlresolvers import reverse
 
 from .test_models import UploadTest
 

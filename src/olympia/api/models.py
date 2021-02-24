@@ -4,6 +4,7 @@ import random
 
 from django.conf import settings
 from django.db import models
+from django.urls import reverse
 from django.utils.crypto import constant_time_compare, get_random_string
 from django.utils.encoding import force_str
 from django.utils.translation import gettext
@@ -13,7 +14,6 @@ from aesfield.field import AESField
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ModelBase
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import send_mail_jinja
 from olympia.users.models import UserProfile
 

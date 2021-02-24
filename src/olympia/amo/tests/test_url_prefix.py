@@ -1,12 +1,13 @@
 from django import shortcuts
 from django.conf import settings
-from django.urls import set_script_prefix
+from django.urls import resolve, reverse, set_script_prefix
 from django.test.client import Client, RequestFactory
 
 import pytest
 
 from olympia.amo import urlresolvers
 from olympia.amo.middleware import LocaleAndAppURLMiddleware
+from olympia.amo.reverse import clean_url_prefixes, set_url_prefix
 from olympia.amo.tests import TestCase
 
 
@@ -156,7 +157,7 @@ class MiddlewareTest(TestCase):
 
 class TestPrefixer(TestCase):
     def tearDown(self):
-        urlresolvers.clean_url_prefixes()
+        clean_url_prefixes()
         set_script_prefix('/')
         super(TestPrefixer, self).tearDown()
 
@@ -203,34 +204,34 @@ class TestPrefixer(TestCase):
 
     def test_reverse(self):
         # Make sure it works outside the request.
-        urlresolvers.clean_url_prefixes()  # Modified in TestCase.
-        assert urlresolvers.reverse('home') == '/'
+        clean_url_prefixes()  # Modified in TestCase.
+        assert reverse('home') == '/'
 
         # With a request, locale and app prefixes work.
         client = Client()
         client.get('/')
-        assert urlresolvers.reverse('home') == '/en-US/firefox/'
+        assert reverse('home') == '/en-US/firefox/'
         client.get('/?app=android')
-        assert urlresolvers.reverse('home') == '/en-US/android/'
+        assert reverse('home') == '/en-US/android/'
         client.get('/?app=firefox')
-        assert urlresolvers.reverse('home') == '/en-US/firefox/'
+        assert reverse('home') == '/en-US/firefox/'
         client.get('/?app=invalid')
-        assert urlresolvers.reverse('home') == '/en-US/firefox/'
+        assert reverse('home') == '/en-US/firefox/'
         client.get('/?app=')
-        assert urlresolvers.reverse('home') == '/en-US/firefox/'
+        assert reverse('home') == '/en-US/firefox/'
 
     def test_resolve(self):
         # 'home' is now a frontend view
-        func, args, kwargs = urlresolvers.resolve('/')
+        func, args, kwargs = resolve('/')
         assert func.__name__ == 'frontend_view'
 
         # a django view works too
-        func, args, kwargs = urlresolvers.resolve('/developers/')
+        func, args, kwargs = resolve('/developers/')
         assert func.__name__ == 'index'
 
         # With a request with locale and app prefixes, it still works.
         Client().get('/')
-        func, args, kwargs = urlresolvers.resolve('/en-US/firefox/pages/appversions/')
+        func, args, kwargs = resolve('/en-US/firefox/pages/appversions/')
         assert func.__name__ == 'appversions'
 
     def test_script_name(self):
@@ -240,25 +241,25 @@ class TestPrefixer(TestCase):
         assert prefixer.fix(prefixer.shortened_path) == ('/oremj/en-US/firefox/foo')
 
         # Now check reverse.
-        urlresolvers.set_url_prefix(prefixer)
-        assert urlresolvers.reverse('home') == '/oremj/en-US/firefox/'
+        set_url_prefix(prefixer)
+        assert reverse('home') == '/oremj/en-US/firefox/'
 
 
 class TestPrefixerActivate(TestCase):
     def test_activate_locale(self):
         with self.activate(locale='fr'):
-            assert urlresolvers.reverse('home') == '/fr/firefox/'
-        assert urlresolvers.reverse('home') == '/en-US/firefox/'
+            assert reverse('home') == '/fr/firefox/'
+        assert reverse('home') == '/en-US/firefox/'
 
     def test_activate_app(self):
         with self.activate(app='android'):
-            assert urlresolvers.reverse('home') == '/en-US/android/'
-        assert urlresolvers.reverse('home') == '/en-US/firefox/'
+            assert reverse('home') == '/en-US/android/'
+        assert reverse('home') == '/en-US/firefox/'
 
     def test_activate_app_locale(self):
         with self.activate(locale='de', app='android'):
-            assert urlresolvers.reverse('home') == '/de/android/'
-        assert urlresolvers.reverse('home') == '/en-US/firefox/'
+            assert reverse('home') == '/de/android/'
+        assert reverse('home') == '/en-US/firefox/'
 
 
 def test_redirect():

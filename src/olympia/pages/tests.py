@@ -1,7 +1,7 @@
 from django.conf import settings
+from django.urls import reverse
 
 from olympia.amo.tests import TestCase
-from olympia.amo.urlresolvers import reverse
 
 
 class TestPages(TestCase):

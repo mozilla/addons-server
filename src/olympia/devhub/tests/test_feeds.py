@@ -2,13 +2,13 @@ import uuid
 
 from urllib.parse import urlencode
 
+from django.urls import reverse
 from django.utils.encoding import force_str
 
 from pyquery import PyQuery as pq
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
-from olympia.amo.urlresolvers import reverse
 from olympia.bandwagon.models import Collection
 from olympia.devhub.models import RssKey
 from olympia.devhub.tests.test_views import HubTest

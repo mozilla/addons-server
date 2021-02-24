@@ -49,7 +49,8 @@ from olympia.addons.models import (
     AddonGUID,
     update_search_index as addon_update_search_index,
 )
-from olympia.amo.urlresolvers import get_url_prefix, Prefixer, set_url_prefix
+from olympia.amo.reverse import get_url_prefix, set_url_prefix
+from olympia.amo.urlresolvers import Prefixer
 from olympia.amo.storage_utils import copy_stored_file
 from olympia.addons.tasks import compute_last_updated, unindex_addons
 from olympia.applications.models import AppVersion

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django import test
 from django.test.client import RequestFactory
+from django.urls import reverse
 
 import pytest
 
@@ -12,7 +13,6 @@ from olympia.amo.middleware import (
     RequestIdMiddleware,
 )
 from olympia.amo.tests import TestCase
-from olympia.amo.urlresolvers import reverse
 from olympia.zadmin.models import Config
 
 

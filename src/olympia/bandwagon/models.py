@@ -2,6 +2,7 @@ import uuid
 
 from django.conf import settings
 from django.db import models
+from django.urls import reverse
 
 from olympia import activity, amo
 from olympia.access import acl
@@ -9,7 +10,6 @@ from olympia.addons.models import Addon
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.urlresolvers import reverse
 from olympia.translations.fields import (
     LinkifiedField,
     NoLinksNoMarkupField,

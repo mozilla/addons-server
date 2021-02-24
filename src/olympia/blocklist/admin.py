@@ -6,7 +6,7 @@ from django.forms.widgets import HiddenInput
 from django.shortcuts import get_object_or_404, redirect
 from django.template.loader import render_to_string
 from django.template.response import TemplateResponse
-from django.urls import path
+from django.urls import path, reverse
 from django.utils.html import format_html
 from django.utils.translation import gettext
 
@@ -14,7 +14,6 @@ import waffle
 
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
-from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseTemporaryRedirect
 from olympia.versions.models import Version
 

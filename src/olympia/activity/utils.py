@@ -7,6 +7,7 @@ from html import unescape
 from django.conf import settings
 from django.forms import ValidationError
 from django.template import loader
+from django.urls import reverse
 from django.utils import translation
 
 import waffle
@@ -19,7 +20,6 @@ from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog, ActivityLogToken
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import send_mail
 from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user

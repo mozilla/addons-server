@@ -10,6 +10,7 @@ from unittest import mock
 from django.contrib.auth.models import AnonymousUser
 from django.test import RequestFactory
 from django.test.utils import override_settings
+from django.urls import reverse
 from django.utils.encoding import force_bytes, force_str
 
 from waffle.testutils import override_switch
@@ -17,7 +18,6 @@ from waffle.testutils import override_switch
 from olympia.accounts import utils
 from olympia.accounts.utils import process_fxa_event
 from olympia.amo.tests import TestCase, user_factory
-from olympia.amo.urlresolvers import reverse
 from olympia.users.models import UserProfile
 
 

@@ -8,6 +8,7 @@ from django.core.cache import cache
 from django.db import models
 from django.db.models import Q, Sum
 from django.template import loader
+from django.urls import reverse
 from django.utils.translation import gettext, gettext_lazy as _
 
 from django_jsonfield_backport.models import JSONField
@@ -21,7 +22,6 @@ from olympia.addons.models import Addon, AddonApprovalsCounter
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ModelBase
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import cache_ns_key, send_mail
 from olympia.constants.base import _ADDON_SEARCH
 from olympia.constants.promoted import (

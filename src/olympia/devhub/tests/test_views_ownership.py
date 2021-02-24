@@ -1,6 +1,7 @@
 """Tests for ``devhub.views.ownership`` and ``devhub.views.invitation``."""
 from django.conf import settings
 from django.core import mail
+from django.urls import reverse
 
 from pyquery import PyQuery as pq
 
@@ -9,7 +10,6 @@ from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonUser, AddonUserPendingConfirmation
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, formset, user_factory
-from olympia.amo.urlresolvers import reverse
 from olympia.devhub.forms import LicenseForm
 from olympia.users.models import EmailUserRestriction, UserProfile
 from olympia.versions.models import License, Version

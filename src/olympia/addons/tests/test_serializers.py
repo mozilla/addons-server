@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
 from django.test.utils import override_settings
+from django.urls import reverse
 from django.utils.translation import override
 
 from rest_framework.test import APIRequestFactory
@@ -43,7 +44,7 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
-from olympia.amo.urlresolvers import get_outgoing_url, reverse
+from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.licenses import LICENSES_BY_BUILTIN

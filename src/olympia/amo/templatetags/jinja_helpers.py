@@ -8,6 +8,7 @@ from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.forms import CheckboxInput
 from django.template import defaultfilters, Library, loader
+from django.urls import reverse
 from django.utils.encoding import smart_str
 from django.utils.html import format_html as django_format_html
 from django.utils.safestring import mark_safe
@@ -23,6 +24,7 @@ from rest_framework.settings import api_settings
 
 from olympia import amo
 from olympia.amo import urlresolvers, utils
+from olympia.amo.reverse import get_url_prefix
 from olympia.lib.jingo_minify_helpers import _build_html, get_css_urls, get_js_urls
 
 
@@ -66,7 +68,7 @@ def xssafe(value):
 @library.global_function
 def locale_url(url):
     """Take a URL and give it the locale prefix."""
-    prefixer = urlresolvers.get_url_prefix()
+    prefixer = get_url_prefix()
     script = prefixer.request.META['SCRIPT_NAME']
     parts = [script, prefixer.locale, url.lstrip('/')]
     return '/'.join(parts)
@@ -79,7 +81,7 @@ def url(viewname, *args, **kwargs):
     host = kwargs.pop('host', '')
     url = '%s%s' % (
         host,
-        urlresolvers.reverse(viewname, args=args, kwargs=kwargs, add_prefix=add_prefix),
+        reverse(viewname, args=args, kwargs=kwargs, add_prefix=add_prefix),
     )
     return url
 

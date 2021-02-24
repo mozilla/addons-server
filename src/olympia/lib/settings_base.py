@@ -1697,7 +1697,7 @@ SENTRY_CONFIG = {
 
 
 # We need to load this before sentry_sdk.init or our reverse replacement is too late.
-from olympia.amo import urlresolvers  # noqa
+from olympia.amo import reverse  # noqa
 
 
 sentry_sdk.init(

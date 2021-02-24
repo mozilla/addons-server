@@ -3,12 +3,13 @@ import json
 
 from unittest import mock
 
+from django.urls import reverse
+
 from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.amo.tests import TestCase, user_factory
-from olympia.amo.urlresolvers import reverse
 from olympia.files.models import File
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version

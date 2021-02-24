@@ -11,6 +11,7 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.forms import ValidationError
 from django.test.utils import override_settings
+from django.urls import reverse
 from django.utils.encoding import force_str
 
 from unittest import mock
@@ -22,7 +23,6 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, user_factory
-from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import chunked
 from olympia.applications.models import AppVersion
 from olympia.files.models import (

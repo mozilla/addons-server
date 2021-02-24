@@ -3,6 +3,7 @@ from collections import defaultdict, namedtuple
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.urls import reverse
 from django.utils.html import format_html
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
@@ -15,7 +16,6 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.models import ModelBase
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import chunked
 from olympia.users.models import UserProfile
 from olympia.versions.compare import VersionString

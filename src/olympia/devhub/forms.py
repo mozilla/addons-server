@@ -12,6 +12,7 @@ from django.db.models import Q
 from django.forms.formsets import BaseFormSet, formset_factory
 from django.forms.models import BaseModelFormSet, modelformset_factory
 from django.forms.widgets import RadioSelect
+from django.urls import reverse
 from django.utils.html import escape, format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext, gettext_lazy as _, ngettext
@@ -37,7 +38,6 @@ from olympia.addons.utils import verify_mozilla_trademark
 from olympia.amo.fields import HttpHttpsOnlyURLField, ReCaptchaField
 from olympia.amo.forms import AMOModelForm
 from olympia.amo.messages import DoubleSafe
-from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import remove_icons, slug_validator, slugify
 from olympia.amo.validators import OneOrMoreLetterOrNumberCharacterValidator
 from olympia.applications.models import AppVersion

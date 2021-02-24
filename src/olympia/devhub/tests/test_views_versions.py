@@ -5,6 +5,7 @@ import zipfile
 from django.core import mail
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
+from django.urls import reverse
 
 from unittest import mock
 
@@ -24,7 +25,6 @@ from olympia.amo.tests import (
     version_factory,
     user_factory,
 )
-from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
 from olympia.constants.promoted import RECOMMENDED
 from olympia.files.models import File

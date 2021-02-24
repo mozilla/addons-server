@@ -10,6 +10,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.db import models, transaction
 from django.db.models import Q
+from django.urls import reverse
 from django.utils.encoding import force_str
 from django.utils.functional import cached_property
 from django.utils.translation import gettext
@@ -33,7 +34,6 @@ from olympia.amo.models import (
     ModelBase,
     OnChangeMixin,
 )
-from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import sorted_groupby, utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
 from olympia.constants.licenses import LICENSES_BY_BUILTIN

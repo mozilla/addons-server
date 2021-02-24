@@ -1,9 +1,8 @@
 from django.conf import settings
 from django.urls import re_path
 from django.http import HttpResponsePermanentRedirect as perma_redirect
+from django.urls import reverse
 from django.views.generic.base import TemplateView
-
-from olympia.amo.urlresolvers import reverse
 
 
 urlpatterns = [
