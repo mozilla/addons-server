@@ -4,10 +4,9 @@ from rest_framework.settings import api_settings
 
 from django import forms
 from django.conf import settings
-from django.urls import NoReverseMatch
+from django.urls import NoReverseMatch, reverse
 
 import olympia.core.logger
-from olympia.amo.urlresolvers import reverse
 from olympia.shelves.models import Shelf
 
 

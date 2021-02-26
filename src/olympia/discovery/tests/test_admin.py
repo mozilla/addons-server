@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
-from pyquery import PyQuery as pq
+import os
 from unittest import mock
 
-import os
+from django.urls import reverse
+
 import responses
+from pyquery import PyQuery as pq
 
 from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.tests import TestCase, addon_factory, reverse_ns, user_factory
 from olympia.amo.tests.test_helpers import get_uploaded_file
-from olympia.amo.urlresolvers import django_reverse, reverse
+from olympia.amo.reverse import django_reverse
 from django.conf import settings
 from django.core.files.images import get_image_dimensions
 

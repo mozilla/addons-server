@@ -3,6 +3,7 @@ from urllib.parse import urlsplit, urlunsplit
 
 from django.conf import settings
 from django.http.request import QueryDict
+from django.urls import reverse
 
 from rest_framework import exceptions, serializers
 
@@ -12,7 +13,6 @@ from olympia.accounts.serializers import (
     UserProfileBasketSyncSerializer,
 )
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.urlresolvers import reverse
 from olympia.api.fields import (
     ESTranslationSerializerField,
     OutgoingTranslationField,

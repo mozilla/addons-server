@@ -11,6 +11,7 @@ from django import test
 from django.conf import settings
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
+from django.urls import reverse
 
 import pytest
 
@@ -30,7 +31,6 @@ from olympia.amo.tests import (
     reverse_ns,
     user_factory,
 )
-from olympia.amo.urlresolvers import reverse
 from olympia.amo.views import handler500
 from olympia.users.models import UserProfile
 from olympia.zadmin.models import set_config

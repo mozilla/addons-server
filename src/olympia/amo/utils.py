@@ -35,6 +35,7 @@ from django.forms.fields import Field
 from django.http import HttpResponse
 from django.http.response import HttpResponseRedirectBase
 from django.template import engines, loader
+from django.urls import reverse
 from django.utils import translation
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import _urlparse as django_urlparse, quote_etag
@@ -58,7 +59,7 @@ from django.db.transaction import non_atomic_requests
 from olympia.core.logger import getLogger
 from olympia.amo import ADDON_ICON_SIZES, search
 from olympia.amo.pagination import ESPaginator
-from olympia.amo.urlresolvers import linkify_with_outgoing, reverse
+from olympia.amo.urlresolvers import linkify_with_outgoing
 from olympia.translations.models import Translation
 from olympia.users.models import UserNotification
 from olympia.users.utils import UnsubscribeCode

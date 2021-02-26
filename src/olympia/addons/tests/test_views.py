@@ -5,6 +5,7 @@ from unittest import mock
 
 from django.core.cache import cache
 from django.test.utils import override_settings
+from django.urls import reverse
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode, urlunquote
 
@@ -39,7 +40,7 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
-from olympia.amo.urlresolvers import get_outgoing_url, reverse
+from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.bandwagon.models import CollectionAddon
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.constants.promoted import (

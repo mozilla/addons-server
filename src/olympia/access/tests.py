@@ -82,7 +82,7 @@ class ACLTestCase(TestCase):
         # Login form for anonymous user on the admin page.
         url = '/en-US/admin/models/'
         self.assert3xx(
-            self.client.get(url), '/admin/models/login/?next=/en-US/admin/models/'
+            self.client.get(url), '/en-US/admin/models/login/?next=/en-US/admin/models/'
         )
 
 

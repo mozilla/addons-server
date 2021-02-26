@@ -2,6 +2,7 @@
 import json
 
 from django.core.files.storage import default_storage as storage
+from django.urls import reverse
 
 from unittest import mock
 import waffle
@@ -11,7 +12,6 @@ from pyquery import PyQuery as pq
 from olympia import amo
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.tests import addon_factory, TestCase
-from olympia.amo.urlresolvers import reverse
 from olympia.devhub.tests.test_tasks import ValidatorTestCase
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.tests.test_models import UploadTest as BaseUploadTest

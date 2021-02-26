@@ -7,17 +7,17 @@ import django
 from django.conf import settings
 from django.contrib.admin.models import LogEntry, ADDITION
 from django.contrib.contenttypes.models import ContentType
-from olympia.addons.models import DeniedGuid
-from olympia.constants.activity import BLOCKLIST_SIGNOFF
+from django.urls import reverse
 
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
+from olympia.addons.models import DeniedGuid
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
-from olympia.amo.urlresolvers import reverse
+from olympia.constants.activity import BLOCKLIST_SIGNOFF
 
 from ..models import Block, BlocklistSubmission
 

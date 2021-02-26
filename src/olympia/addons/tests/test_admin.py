@@ -6,6 +6,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.contrib.messages.storage import default_storage as default_messages_storage
 from django.core import mail
+from django.urls import reverse
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
@@ -18,7 +19,7 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
-from olympia.amo.urlresolvers import django_reverse, reverse
+from olympia.amo.reverse import django_reverse
 from olympia.blocklist.models import Block
 
 

@@ -12,7 +12,7 @@ from django.http.response import (
     HttpResponseRedirect,
 )
 from django.shortcuts import get_object_or_404
-from django.urls import re_path, resolve
+from django.urls import re_path, resolve, reverse
 from django.utils.encoding import force_str
 from django.utils.html import format_html, format_html_join
 from django.utils.translation import gettext, gettext_lazy as _
@@ -22,7 +22,6 @@ from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonUser
-from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import send_mail
 from olympia.files.models import File
 from olympia.git.models import GitExtractionEntry

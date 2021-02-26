@@ -6,7 +6,7 @@ from django.db.models import Count, Prefetch
 from django.http import Http404
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
-from django.urls import re_path
+from django.urls import re_path, reverse
 from django.utils.html import format_html, format_html_join
 from django.utils.http import urlencode, is_safe_url
 from django.utils.translation import gettext, gettext_lazy as _
@@ -17,7 +17,6 @@ from urllib.parse import urljoin, urlparse
 from olympia import amo
 from olympia.access import acl
 from olympia.addons.models import Addon
-from olympia.amo.urlresolvers import reverse
 from olympia.constants.scanners import (
     ABORTING,
     COMPLETED,

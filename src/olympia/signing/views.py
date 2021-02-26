@@ -1,6 +1,7 @@
 import functools
 
 from django import forms
+from django.urls import reverse
 from django.utils.translation import gettext
 
 from rest_framework import status
@@ -14,7 +15,6 @@ from olympia import amo
 from olympia.access import acl
 from olympia.addons.models import Addon
 from olympia.amo.decorators import use_primary_db
-from olympia.amo.urlresolvers import reverse
 from olympia.api.authentication import JWTKeyAuthentication
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.api.throttling import (

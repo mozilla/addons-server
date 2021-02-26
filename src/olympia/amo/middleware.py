@@ -30,6 +30,7 @@ from olympia import amo
 from olympia.amo.utils import render
 
 from . import urlresolvers
+from .reverse import set_url_prefix
 from .templatetags.jinja_helpers import urlparams
 
 
@@ -52,7 +53,7 @@ class LocaleAndAppURLMiddleware(MiddlewareMixin):
         # accidental misconfiguration.
         redirect_type = HttpResponseRedirect
 
-        urlresolvers.set_url_prefix(prefixer)
+        set_url_prefix(prefixer)
         full_path = prefixer.fix(prefixer.shortened_path)
 
         if prefixer.app == amo.MOBILE.short and request.path.rstrip('/').endswith(

@@ -9,6 +9,7 @@ from django.core.files.storage import default_storage as storage
 from django.db import models
 from django.db.models.fields.related_descriptors import ManyToManyDescriptor
 from django.db.models.query import ModelIterable
+from django.urls import resolve, reverse
 from django.urls.exceptions import Resolver404
 from django.utils import timezone, translation
 from django.utils.functional import cached_property
@@ -18,7 +19,6 @@ import multidb.pinning
 
 import olympia.core.logger
 
-from olympia.amo.urlresolvers import resolve, reverse
 from olympia.translations.hold import save_translations
 
 from . import search

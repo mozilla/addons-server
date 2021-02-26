@@ -7,7 +7,9 @@ from unittest import mock
 
 from django.http import Http404
 from django.test.client import RequestFactory
+from django.urls import reverse
 from django.utils.encoding import force_str
+
 from waffle.testutils import override_switch
 
 from olympia import amo
@@ -19,7 +21,6 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
-from olympia.amo.urlresolvers import reverse
 from olympia.constants.applications import FIREFOX
 from olympia.stats import views
 from olympia.users.models import UserProfile

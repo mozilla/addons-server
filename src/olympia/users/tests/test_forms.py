@@ -1,7 +1,8 @@
 import ipaddress
 
+from django.urls import reverse
+
 from olympia.amo.tests import TestCase
-from olympia.amo.urlresolvers import reverse
 from olympia.users.models import UserProfile, IPNetworkUserRestriction
 
 

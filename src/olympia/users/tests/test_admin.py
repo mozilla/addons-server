@@ -5,6 +5,7 @@ from django.contrib.messages.storage import default_storage as default_messages_
 from django.db import connection
 from django.test import RequestFactory
 from django.test.utils import CaptureQueriesContext
+from django.urls import reverse
 from django.utils.dateformat import DateFormat
 
 from unittest import mock
@@ -22,7 +23,6 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
-from olympia.amo.urlresolvers import reverse
 from olympia.api.models import APIKey, APIKeyConfirmation
 from olympia.bandwagon.models import Collection
 from olympia.ratings.models import Rating

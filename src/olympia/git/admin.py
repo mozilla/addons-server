@@ -1,9 +1,9 @@
 from django.contrib import admin
 from django.db.models import Prefetch
+from django.urls import reverse
 from django.utils.html import format_html
 
 from olympia.addons.models import Addon
-from olympia.amo.urlresolvers import reverse
 
 from .models import GitExtractionEntry
 

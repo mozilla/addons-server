@@ -1695,6 +1695,11 @@ SENTRY_CONFIG = {
     'send_default_pii': True,
 }
 
+
+# We need to load this before sentry_sdk.init or our reverse replacement is too late.
+from olympia.amo import reverse  # noqa
+
+
 sentry_sdk.init(
     integrations=[DjangoIntegration(), CeleryIntegration()],
     **SENTRY_CONFIG,

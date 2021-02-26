@@ -1,9 +1,9 @@
 from django.contrib.admin.sites import AdminSite
+from django.urls import reverse
 
 from pyquery import PyQuery as pq
 
 from olympia.amo.tests import TestCase, addon_factory, user_factory
-from olympia.amo.urlresolvers import reverse
 from olympia.git.admin import GitExtractionEntryAdmin
 from olympia.git.models import GitExtractionEntry
 

@@ -1,13 +1,13 @@
 from datetime import datetime, timedelta
 
 from django.conf import settings
+from django.urls import reverse
 
 from dateutil.parser import parse
 from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.amo.tests import TestCase
-from olympia.amo.urlresolvers import reverse
 from olympia.users.models import UserProfile
 
 

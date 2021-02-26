@@ -19,6 +19,7 @@ from django.core.files.storage import default_storage as storage
 from django.core.validators import ValidationError
 from django.db import transaction
 from django.template import loader
+from django.urls import reverse
 from django.utils.encoding import force_str
 from django.utils.translation import gettext
 
@@ -31,7 +32,6 @@ from olympia import amo
 from olympia.addons.models import Addon, Preview
 from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on, use_primary_db
-from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
     image_size,
     pngcrush_image,

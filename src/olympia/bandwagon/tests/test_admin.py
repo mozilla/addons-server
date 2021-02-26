@@ -1,10 +1,10 @@
 from django.conf import settings
+from django.urls import reverse
 
 from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory, formset, user_factory
-from olympia.amo.urlresolvers import reverse
 from olympia.bandwagon.models import Collection, CollectionAddon
 
 
