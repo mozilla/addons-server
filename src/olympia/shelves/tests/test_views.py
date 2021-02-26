@@ -85,6 +85,7 @@ class TestShelfViewSet(ESTestCase):
             endpoint='search',
             criteria='?promoted=recommended&sort=random&type=extension',
             footer_text='See more recommended extensions',
+            footer_pathname='/extensions/',
         )
         shelf_b = Shelf.objects.create(
             title='Enhanced privacy extensions',
@@ -97,6 +98,7 @@ class TestShelfViewSet(ESTestCase):
             endpoint='search',
             criteria='?sort=users&type=statictheme',
             footer_text='See more popular themes',
+            footer_pathname='http://foo.baa',
         )
 
         self.hpshelf_a = ShelfManagement.objects.create(shelf=shelf_a, position=3)
@@ -142,10 +144,11 @@ class TestShelfViewSet(ESTestCase):
         assert result['results'][0]['url'] == self.collections_url
         assert result['results'][0]['endpoint'] == 'collections'
         assert result['results'][0]['criteria'] == 'privacy-matters'
-        assert result['results'][0]['footer_text'] == {
+        assert result['results'][0]['footer']['text'] == {
             'en-US': 'See more enhanced privacy extensions'
         }
-        assert result['results'][0]['footer_pathname'] == ''
+        assert result['results'][0]['footer']['url'] is None
+        assert result['results'][0]['footer']['outgoing'] is None
         assert result['results'][0]['addons'][0]['name']['en-US'] == (
             'test addon privacy01'
         )
@@ -156,10 +159,11 @@ class TestShelfViewSet(ESTestCase):
         assert result['results'][1]['criteria'] == (
             '?promoted=recommended&sort=random&type=extension'
         )
-        assert result['results'][1]['footer_text'] == {
+        assert result['results'][1]['footer']['text'] == {
             'en-US': 'See more recommended extensions'
         }
-        assert result['results'][1]['footer_pathname'] == ''
+        assert result['results'][1]['footer']['url'] == 'http://testserver/extensions/'
+        assert result['results'][0]['footer']['outgoing'] is None
         assert result['results'][1]['addons'][0]['name']['en-US'] == (
             'test addon test03'
         )

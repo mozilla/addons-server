@@ -7,16 +7,25 @@ from rest_framework.request import Request as DRFRequest
 from rest_framework.reverse import reverse as drf_reverse
 
 from olympia.addons.views import AddonSearchView
-from olympia.api.fields import GetTextTranslationSerializerField
+from olympia.api.fields import (
+    AbsoluteOutgoingURLField,
+    GetTextTranslationSerializerField,
+)
 from olympia.bandwagon.views import CollectionAddonViewSet
+from olympia.hero.serializers import CTAField
 
 from .models import Shelf
+
+
+class ShelfFooterField(CTAField):
+    url = AbsoluteOutgoingURLField(source='footer_pathname')
+    text = GetTextTranslationSerializerField(source='footer_text')
 
 
 class ShelfSerializer(serializers.ModelSerializer):
     title = GetTextTranslationSerializerField()
     url = serializers.SerializerMethodField()
-    footer_text = GetTextTranslationSerializerField()
+    footer = ShelfFooterField(source='*')
     addons = serializers.SerializerMethodField()
 
     class Meta:
@@ -26,8 +35,7 @@ class ShelfSerializer(serializers.ModelSerializer):
             'url',
             'endpoint',
             'criteria',
-            'footer_text',
-            'footer_pathname',
+            'footer',
             'addons',
         ]
 

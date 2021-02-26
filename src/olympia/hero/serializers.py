@@ -2,13 +2,13 @@ from rest_framework import serializers
 
 from olympia.addons.models import Addon
 from olympia.addons.serializers import AddonSerializer
-from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.api.fields import (
+    AbsoluteOutgoingURLField,
     FallbackField,
     GetTextTranslationSerializerFieldFlat,
-    OutgoingURLField,
     TranslationSerializerFieldFlat,
 )
+from olympia.api.utils import is_gate_active
 from olympia.discovery.serializers import DiscoveryAddonSerializer
 
 from .models import PrimaryHero, SecondaryHero, SecondaryHeroModule
@@ -60,29 +60,24 @@ class PrimaryHeroShelfSerializer(serializers.ModelSerializer):
         return rep
 
 
-class AbsoluteOutgoingURLField(OutgoingURLField):
-    def to_representation(self, obj):
-        return super().to_representation(absolutify(obj) if obj else obj)
-
-
 class CTAField(serializers.Serializer):
-    cta_url = AbsoluteOutgoingURLField()
-    cta_text = GetTextTranslationSerializerFieldFlat()
+    url = AbsoluteOutgoingURLField(source='cta_url')
+    text = GetTextTranslationSerializerFieldFlat(source='cta_text')
 
     def to_representation(self, obj):
-        if obj.cta_url and obj.cta_text:
-            data = super().to_representation(obj)
-            if isinstance(data.get('cta_url'), dict):
-                return {
-                    'url': data.get('cta_url', {}).get('url'),
-                    'outgoing': data.get('cta_url', {}).get('outgoing'),
-                    'text': data.get('cta_text'),
-                }
+        data = super().to_representation(obj)
+        if data.get('url') or data.get('text'):
+            request = self.context.get('request', None)
+
+            if request and is_gate_active(request, 'wrap-outgoing-parameter'):
+                # when 'wrap-outgoing-parameter' is on url is a flat string already
+                return data
             else:
-                # when 'wrap-outgoing-parameter' is on cta_url is a flat string
+                url = data.get('url') or {}
                 return {
-                    'url': data.get('cta_url'),
-                    'text': data.get('cta_text'),
+                    **data,
+                    'url': url.get('url'),
+                    'outgoing': url.get('outgoing'),
                 }
         else:
             return None

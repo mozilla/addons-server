@@ -5,6 +5,7 @@ from django.utils.translation import get_language, gettext, gettext_lazy as _, o
 
 from rest_framework import fields, serializers
 
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.amo.utils import to_language
 from olympia.api.utils import is_gate_active
@@ -396,6 +397,11 @@ class OutgoingTranslationField(OutgoingSerializerMixin, TranslationSerializerFie
 
 class OutgoingESTranslationField(OutgoingSerializerMixin, ESTranslationSerializerField):
     pass
+
+
+class AbsoluteOutgoingURLField(OutgoingURLField):
+    def to_representation(self, obj):
+        return super().to_representation(absolutify(obj) if obj else obj)
 
 
 class GetTextTranslationSerializerField(TranslationSerializerField):
