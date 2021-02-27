@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-02-23 18:22+0000\n"
-"PO-Revision-Date: 2021-02-26 05:45+0000\n"
+"PO-Revision-Date: 2021-02-27 03:24+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4449,7 +4449,7 @@ msgstr "უმარტივესი გზა, YouTube-არხების 
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
-msgstr "დაიბრუნეთ ის დრო — როცა ძიების სასურველი შედეგებს, რეკლამები არ ფარავდა (საძიებოები Google და Bing თავსებადია)."
+msgstr "დაიბრუნეთ ის დრო — როცა ძიების სასურველ შედეგებს, რეკლამები არ ფარავდა (საძიებოები Google და Bing თავსებადია)."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
