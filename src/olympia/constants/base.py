@@ -226,31 +226,33 @@ VALID_CONTRIBUTION_DOMAINS = (
 # Icon upload sizes
 ADDON_ICON_SIZES = [32, 64, 128]
 
-_size_tuple = namedtuple('SizeTuple', 'width height')
+_dimensions = namedtuple('SizeTuple', 'width height')
 # Preview upload sizes - see mozilla/addons-server#9487 for background.
 ADDON_PREVIEW_SIZES = {
-    'thumb': _size_tuple(640, 480),
-    'min': _size_tuple(1000, 750),
-    'full': _size_tuple(2400, 1800),
+    'thumb': _dimensions(640, 480),
+    'min': _dimensions(1000, 750),
+    'full': _dimensions(2400, 1800),
 }
 
-# Static theme preview sizes
-THEME_PREVIEW_SIZES = {
+# Static theme preview renderings, with different dimensions
+THEME_PREVIEW_RENDERINGS = {
     'header': {
-        'thumbnail': _size_tuple(473, 64),
-        'full': _size_tuple(680, 92),
+        'thumbnail': _dimensions(473, 64),
+        'full': _dimensions(680, 92),
         'position': 0,
+        'thumbnail_format': 'png',
     },
     'list': {
-        'thumbnail': _size_tuple(529, 64),
-        'full': _size_tuple(760, 92),
+        'thumbnail': _dimensions(529, 64),
+        'full': _dimensions(760, 92),
         'position': 1,
+        'thumbnail_format': 'png',
     },
-    # single is planned to be the new default size in 2019 Q1.
     'single': {
-        'thumbnail': _size_tuple(501, 64),
-        'full': _size_tuple(720, 92),
+        'thumbnail': _dimensions(383, 49),
+        'full': _dimensions(720, 92),
         'position': 2,
+        'thumbnail_format': 'jpg',
     },
 }
 THEME_FRAME_COLOR_DEFAULT = 'rgba(229,230,232,1)'

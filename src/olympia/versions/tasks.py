@@ -80,30 +80,37 @@ def generate_static_theme_preview(theme_manifest, version_pk):
     if not file_:
         return
     context = _build_static_theme_preview_context(theme_manifest, file_)
-    sizes = sorted(
-        amo.THEME_PREVIEW_SIZES.values(), key=operator.itemgetter('position')
+    renderings = sorted(
+        amo.THEME_PREVIEW_RENDERINGS.values(), key=operator.itemgetter('position')
     )
     colors = None
-    for size in sizes:
+    for rendering in renderings:
         # Create a Preview for this size.
         preview = VersionPreview.objects.create(
-            version_id=version_pk, position=size['position']
+            version_id=version_pk,
+            position=rendering['position'],
+            sizes={'thumbnail_format': rendering['thumbnail_format']},
         )
         # Add the size to the context and render
-        context.update(svg_render_size=size['full'])
+        context.update(svg_render_size=rendering['full'])
         svg = tmpl.render(context).encode('utf-8')
         if write_svg_to_png(svg, preview.image_path):
-            resize_image(preview.image_path, preview.thumbnail_path, size['thumbnail'])
+            resize_image(
+                preview.image_path,
+                preview.thumbnail_path,
+                rendering['thumbnail'],
+                format=rendering['thumbnail_format'],
+            )
             pngcrush_image(preview.image_path)
             # Extract colors once and store it for all previews.
-            # Use the thumbnail for extra speed, we don't need to be super
-            # accurate.
+            # Use the thumbnail for extra speed, we don't need to be super accurate.
             if colors is None:
                 colors = extract_colors_from_image(preview.thumbnail_path)
             data = {
                 'sizes': {
-                    'image': size['full'],
-                    'thumbnail': size['thumbnail'],
+                    'image': rendering['full'],
+                    'thumbnail': rendering['thumbnail'],
+                    'thumbnail_format': rendering['thumbnail_format'],
                 },
                 'colors': colors,
             }

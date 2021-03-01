@@ -288,8 +288,8 @@ class AddonSerializerOutputTestMixin(object):
         assert result_preview['thumbnail_url'] == absolutify(
             first_preview.thumbnail_url
         )
-        assert result_preview['image_size'] == first_preview.image_size
-        assert result_preview['thumbnail_size'] == first_preview.thumbnail_size
+        assert result_preview['image_size'] == first_preview.image_dimensions
+        assert result_preview['thumbnail_size'] == first_preview.thumbnail_dimensions
 
         result_preview = result['previews'][1]
         assert result_preview['id'] == second_preview.pk
@@ -298,10 +298,14 @@ class AddonSerializerOutputTestMixin(object):
         assert result_preview['thumbnail_url'] == absolutify(
             second_preview.thumbnail_url
         )
-        assert result_preview['image_size'] == second_preview.image_size == [567, 780]
+        assert (
+            result_preview['image_size']
+            == second_preview.image_dimensions
+            == [567, 780]
+        )
         assert (
             result_preview['thumbnail_size']
-            == second_preview.thumbnail_size
+            == second_preview.thumbnail_dimensions
             == [199, 99]
         )
 
@@ -716,9 +720,9 @@ class AddonSerializerOutputTestMixin(object):
         assert result['previews'][0]['thumbnail_url'] == absolutify(
             current_preview.thumbnail_url
         )
-        assert result['previews'][0]['image_size'] == (current_preview.image_size)
+        assert result['previews'][0]['image_size'] == current_preview.image_dimensions
         assert result['previews'][0]['thumbnail_size'] == (
-            current_preview.thumbnail_size
+            current_preview.thumbnail_dimensions
         )
 
         # Make sure we don't fail if somehow there is no current version.

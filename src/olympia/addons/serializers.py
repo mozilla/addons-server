@@ -76,6 +76,8 @@ class PreviewSerializer(serializers.ModelSerializer):
     caption = TranslationSerializerField()
     image_url = serializers.SerializerMethodField()
     thumbnail_url = serializers.SerializerMethodField()
+    image_size = serializers.ReadOnlyField(source='image_dimensions')
+    thumbnail_size = serializers.ReadOnlyField(source='thumbnail_dimensions')
 
     class Meta:
         # Note: this serializer can also be used for VersionPreview.
