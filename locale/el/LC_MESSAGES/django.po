@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-02-23 18:22+0000\n"
-"PO-Revision-Date: 2021-03-01 11:43+0000\n"
+"PO-Revision-Date: 2021-03-01 11:54+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -5642,9 +5642,8 @@ msgstr "Ο προγραμματιστής παρέχει τον πηγαίο κ�
 msgid "Maliciousness Score:"
 msgstr ""
 
-#, fuzzy
 msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr "Η βαθμολογία σαρωτών δείχνει την πιθανότητα να είναι κακόβουλη αυτή η έκδοση, βάσει των ευρημάτων των σαρωτών."
+msgstr "Η βαθμολογία κακοήθειας αντιπροσωπεύει την πιθανότητα να είναι κακόβουλη αυτή η έκδοση, βάσει των ευρημάτων των σαρωτών."
 
 msgid "Code Weight:"
 msgstr "Βάρος κώδικα:"
