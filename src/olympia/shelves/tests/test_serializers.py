@@ -14,6 +14,7 @@ from olympia.amo.tests import (
     reverse_ns,
     TestCase,
 )
+from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.bandwagon.models import CollectionAddon
 from olympia.constants.promoted import RECOMMENDED
 from olympia.users.models import UserProfile
@@ -100,6 +101,7 @@ class TestShelvesSerializer(ESTestCase):
             endpoint='search-themes',
             criteria='?sort=users&type=statictheme',
             footer_text='See more populâr themes',
+            footer_pathname='/themes/',
         )
 
         self.search_rec_ext = Shelf.objects.create(
@@ -114,6 +116,7 @@ class TestShelvesSerializer(ESTestCase):
             endpoint='collections',
             criteria='privacy-matters',
             footer_text='See more enhanced privacy extensions',
+            footer_pathname='https://blog.mozilla.org/addons',
         )
 
         # Set up the request to support drf_reverse
@@ -147,16 +150,18 @@ class TestShelvesSerializer(ESTestCase):
         assert data['title'] == {'en-US': 'Recommended extensions'}
         assert data['endpoint'] == 'search'
         assert data['criteria'] == '?promoted=recommended&sort=random&type=extension'
-        assert data['footer_text'] == {'en-US': 'See more recommended extensions'}
-        assert data['footer_pathname'] == ''
+        assert data['footer']['text'] == {'en-US': 'See more recommended extensions'}
+        assert data['footer']['url'] is None
+        assert data['footer']['outgoing'] is None
 
     def test_basic_themes(self):
         data = self.serialize(self.search_pop_thm)
         assert data['title'] == {'en-US': 'Populâr themes'}
         assert data['endpoint'] == 'search-themes'
         assert data['criteria'] == '?sort=users&type=statictheme'
-        assert data['footer_text'] == {'en-US': 'See more populâr themes'}
-        assert data['footer_pathname'] == ''
+        assert data['footer']['text'] == {'en-US': 'See more populâr themes'}
+        assert data['footer']['url'] == 'http://testserver/themes/'
+        assert data['footer']['outgoing'] == 'http://testserver/themes/'
 
     def test_url_and_addons_search(self):
         pop_data = self.serialize(self.search_pop_thm)
@@ -184,6 +189,10 @@ class TestShelvesSerializer(ESTestCase):
         data = self.serialize(self.collections_shelf)
         assert data['url'] == self._get_result_url(self.collections_shelf)
         assert data['addons'][0]['name'] == {'en-US': 'test addon privacy01'}
+        assert data['footer']['url'] == 'https://blog.mozilla.org/addons'
+        assert data['footer']['outgoing'] == get_outgoing_url(
+            'https://blog.mozilla.org/addons'
+        )
 
     def test_addon_count(self):
         shelf = Shelf(
