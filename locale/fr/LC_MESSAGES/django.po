@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-02-23 18:22+0000\n"
-"PO-Revision-Date: 2021-03-01 09:47+0000\n"
+"PO-Revision-Date: 2021-03-01 18:04+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -1749,7 +1749,7 @@ msgid "URL domain must be one of [%s], or a subdomain."
 msgstr "Le domaine de l’URL doit appartenir à [%s] ou à l’un de ses sous-domaines."
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr ""
+msgstr "Le lien des sponsors GitHub doit contenir /sponsors/."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
