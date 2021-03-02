@@ -739,3 +739,44 @@ def test_update_rating_aggregates():
     addon = Addon.objects.get(id=addon.id)
     assert addon.ratingaggregate
     assert addon.ratingaggregate.count_4 == 1
+
+
+@pytest.mark.django_db
+def test_delete_list_theme_previews():
+    old_list_preview_size = {
+        'thumbnail': [529, 64],
+        'image': [760, 92],
+    }
+    addon = addon_factory(type=amo.ADDON_STATICTHEME)
+    other_version = version_factory(
+        addon=addon, file_kw={'status': amo.STATUS_AWAITING_REVIEW}
+    )
+
+    firefox_preview = VersionPreview.objects.create(
+        version=addon.current_version, sizes=amo.THEME_PREVIEW_RENDERINGS['firefox']
+    )
+    amo_preview = VersionPreview.objects.create(
+        version=addon.current_version, sizes=amo.THEME_PREVIEW_RENDERINGS['amo']
+    )
+    old_list_preview = VersionPreview.objects.create(
+        version=addon.current_version, sizes=old_list_preview_size
+    )
+    other_firefox_preview = VersionPreview.objects.create(
+        version=other_version, sizes=amo.THEME_PREVIEW_RENDERINGS['firefox']
+    )
+    other_amo_preview = VersionPreview.objects.create(
+        version=other_version, sizes=amo.THEME_PREVIEW_RENDERINGS['amo']
+    )
+    other_old_list_preview = VersionPreview.objects.create(
+        version=other_version, sizes=old_list_preview_size
+    )
+
+    call_command('process_addons', task='delete_list_theme_previews')
+
+    assert VersionPreview.objects.count() == 4
+    assert VersionPreview.objects.filter(id=firefox_preview.id).exists()
+    assert VersionPreview.objects.filter(id=amo_preview.id).exists()
+    assert not VersionPreview.objects.filter(id=old_list_preview.id).exists()
+    assert VersionPreview.objects.filter(id=other_firefox_preview.id).exists()
+    assert VersionPreview.objects.filter(id=other_amo_preview.id).exists()
+    assert not VersionPreview.objects.filter(id=other_old_list_preview.id).exists()

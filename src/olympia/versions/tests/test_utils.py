@@ -116,8 +116,8 @@ def test_additional_background(
     assert background.width == image_width
     assert background.height == image_height
     background.calculate_pattern_offsets(
-        amo.THEME_PREVIEW_RENDERINGS['header']['full'].width,
-        amo.THEME_PREVIEW_RENDERINGS['header']['full'].height,
+        amo.THEME_PREVIEW_RENDERINGS['firefox']['full'].width,
+        amo.THEME_PREVIEW_RENDERINGS['firefox']['full'].height,
     )
     assert background.pattern_width == pattern_width
     assert background.pattern_height == pattern_height

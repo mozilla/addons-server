@@ -25,6 +25,7 @@ from olympia.lib.crypto.tasks import sign_addons
 from olympia.ratings.tasks import addon_rating_aggregates
 from olympia.reviewers.tasks import recalculate_post_review_weight
 from olympia.versions.models import Version
+from olympia.versions.tasks import delete_list_theme_previews
 
 
 def get_recalc_needed_filters():
@@ -106,6 +107,14 @@ tasks = {
             )
         ],
         'kwargs': {'only_missing': True},
+    },
+    'delete_list_theme_previews': {
+        'method': delete_list_theme_previews,
+        'qs': [
+            Q(
+                type=amo.ADDON_STATICTHEME,
+            )
+        ],
     },
     'add_dynamic_theme_tag_for_theme_api': {
         'method': add_dynamic_theme_tag,

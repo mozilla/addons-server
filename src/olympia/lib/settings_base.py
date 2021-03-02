@@ -1113,6 +1113,7 @@ CELERY_TASK_ROUTES = {
     'olympia.git.tasks.extract_versions_to_git': {'queue': 'addons'},
     'olympia.git.tasks.on_extraction_error': {'queue': 'addons'},
     'olympia.git.tasks.remove_git_extraction_entry': {'queue': 'addons'},
+    'olympia.versions.tasks.delete_list_theme_previews': {'queue': 'addons'},
     # Additional image processing tasks that aren't as important go in the
     # addons queue to leave the 'devhub' queue free to process validations etc.
     'olympia.addons.tasks.extract_colors_from_static_themes': {'queue': 'addons'},
