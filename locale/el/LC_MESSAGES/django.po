@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-02-23 18:22+0000\n"
-"PO-Revision-Date: 2021-03-01 11:54+0000\n"
+"PO-Revision-Date: 2021-03-02 10:30+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4971,13 +4971,13 @@ msgid "Code Weight"
 msgstr "Βάρος κώδικα"
 
 msgid "Metadata Weight"
-msgstr ""
+msgstr "Βάρος μεταδεδομένων"
 
 msgid "Total Weight"
 msgstr "Συνολικό βάρος"
 
 msgid "Maliciousness Score"
-msgstr ""
+msgstr "Βαθμολογία κακοήθειας"
 
 msgid "Pending Rejection Deadline"
 msgstr "Εκκρεμούσα προθεσμία απόρριψης"
@@ -5640,7 +5640,7 @@ msgid "The developer has provided source code."
 msgstr "Ο προγραμματιστής παρέχει τον πηγαίο κώδικα."
 
 msgid "Maliciousness Score:"
-msgstr ""
+msgstr "Βαθμολογία κακοήθειας:"
 
 msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
 msgstr "Η βαθμολογία κακοήθειας αντιπροσωπεύει την πιθανότητα να είναι κακόβουλη αυτή η έκδοση, βάσει των ευρημάτων των σαρωτών."
@@ -5919,7 +5919,7 @@ msgid "Custom..."
 msgstr "Προσαρμοσμένο..."
 
 msgid "Sorry, the statistics are temporarily unavailable."
-msgstr ""
+msgstr "Λυπούμαστε, τα στατιστικά στοιχεία δεν είναι προσωρινά διαθέσιμα."
 
 msgid "Loading the latest data&hellip;"
 msgstr "Φόρτωση των πιο πρόσφατων δεδομένων&hellip;"
