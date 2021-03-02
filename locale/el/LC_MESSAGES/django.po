@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-02-23 18:22+0000\n"
-"PO-Revision-Date: 2021-03-02 10:30+0000\n"
+"PO-Revision-Date: 2021-03-02 10:41+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4503,7 +4503,7 @@ msgstr "Εξαφανιστείτε, ενοχλητικές προειδοποι�
 
 #. editorial content for the primary hero shelves.
 msgid "The easiest way to manage all of your YouTube channel subscriptions."
-msgstr ""
+msgstr "Ο πιο εύκολος τρόπος διαχείρισης όλων των συνδρομών σας στο YouTube."
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
