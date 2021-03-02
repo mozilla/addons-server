@@ -4507,7 +4507,7 @@ msgstr "Ο πιο εύκολος τρόπος διαχείρισης όλων τ
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
-msgstr ""
+msgstr "Επιστρέψτε σε πιο απλές εποχές — όταν τα κορυφαία αποτελέσματα αναζήτησης βρίσκονταν πάνω από τις διαφημίσεις (συμβατό με τις μηχανές αναζήτησης Google και Bing)."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
