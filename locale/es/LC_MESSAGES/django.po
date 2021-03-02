@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-02-23 18:22+0000\n"
-"PO-Revision-Date: 2021-03-02 15:14+0000\n"
-"Last-Translator: Paulina Rodriguez <pauli.rodriguez.c@gmail.com>\n"
+"PO-Revision-Date: 2020-12-18 23:07+0000\n"
+"Last-Translator: sarah.hill0778 <sarah.hill0778@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -5052,13 +5052,11 @@ msgstr "Otras revisiones pendientes ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Otras revisiones pendientes ({0})"
 
-#, fuzzy
 msgid "Listed version"
-msgstr "Versiones listadas"
+msgstr "Versión listada"
 
-#, fuzzy
 msgid "Unlisted versions ({0})"
-msgstr "Versiones listadas"
+msgstr "Versiones no listadas ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Esto aprobará, firmará y publicará esta versión. El desarrollador recibirá los comentarios."
@@ -5252,9 +5250,8 @@ msgstr "Visibilidad"
 msgid "Visible"
 msgstr "Visible"
 
-#, fuzzy
 msgid "Weekly Downloads"
-msgstr "Descargas"
+msgstr "Descargas semanales"
 
 msgid "Average Daily Users"
 msgstr "Promedio de usuarios diarios"
@@ -5535,9 +5532,8 @@ msgstr "Notificarme cuando haya nuevas versiones listadas"
 msgid "Allow resubmission"
 msgstr "Ver todos los envíos"
 
-#, fuzzy
 msgid "Deny resubmission"
-msgstr "Administrar mis envíos"
+msgstr ""
 
 msgid "Force-disable add-on"
 msgstr "Forzar desactivación del complemento"
