@@ -249,7 +249,7 @@ THEME_PREVIEW_RENDERINGS = {
         'thumbnail_format': 'png',
     },
     'single': {
-        'thumbnail': _dimensions(383, 49),
+        'thumbnail': _dimensions(720, 92),
         'full': _dimensions(720, 92),
         'position': 2,
         'thumbnail_format': 'jpg',
