@@ -861,7 +861,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         assert addon.reviewerflags.notified_about_expiring_delayed_rejections
         message = mail.outbox[0]
         assert message.subject == (
-            'Mozilla Add-ons: %s will be disabled on addons.mozilla.org'
+            'Reminder - Mozilla Add-ons: %s will be disabled on addons.mozilla.org'
             % str(addon.name)
         )
         assert message.to == [author.email]
