@@ -1,12 +1,24 @@
 repos:
   - repo: local
     hooks:
-      - id: format
-        name: format with black and prettier
+      - id: black
+        name: format python with black
         language: system
-        entry: docker-compose exec -T web make format
-      - id: lint
-        name: check code formatting
+        entry: docker-compose exec -T web black
+        types: [python]
+      - id: prettier
+        name: format javascript with prettier
         language: system
-        entry: docker-compose exec -T web make lint
-fail_fast: true
+        entry: docker-compose exec -T web $(shell npm $(NPM_ARGS) bin)/prettier
+        args: [--write]
+        types: [javascript]
+      - id: flake8
+        name: lint python with flake8
+        language: system
+        entry: docker-compose exec -T web flake8
+        types: [python]
+      - id: curlylint
+        name: lint html with curlylint
+        language: system
+        entry: docker-compose exec -T web curlylint
+        types: [html]
