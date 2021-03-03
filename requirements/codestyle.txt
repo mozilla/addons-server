@@ -129,3 +129,6 @@ typed-ast==1.4.2 \
     --hash=sha256:9fc0b3cb5d1720e7141d103cf4819aea239f7d136acf9ee4a69b047b7986175a
 flake8-quotes==3.2.0 \
     --hash=sha256:3f1116e985ef437c130431ac92f9b3155f8f652fda7405ac22ffdfd7a9d1055e
+pre-commit==2.10.1 \
+    --hash=sha256:16212d1fde2bed88159287da88ff03796863854b04dc9f838a55979325a3d20e
+
