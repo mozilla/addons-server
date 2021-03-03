@@ -1,0 +1,13 @@
+repos:
+  - repo: local
+    hooks:
+      - id: format
+        name: format with black and prettier
+        language: system
+        entry: docker-compose exec -T web make format
+      - id: lint
+        name: check code formatting
+        language: system
+        entry: docker-compose exec -T web make lint
+fail_fast: true
+default_stages: [push]
