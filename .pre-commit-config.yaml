@@ -10,4 +10,3 @@ repos:
         language: system
         entry: docker-compose exec -T web make lint
 fail_fast: true
-default_stages: [push]
