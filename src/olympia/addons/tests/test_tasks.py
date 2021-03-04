@@ -40,25 +40,20 @@ def test_recreate_theme_previews():
     assert addon_without_previews.current_previews.count() == 0
     assert addon_with_previews.current_previews.count() == 1
     recreate_theme_previews([addon_without_previews.id, addon_with_previews.id])
-    assert addon_without_previews.reload().current_previews.count() == 3
-    assert addon_with_previews.reload().current_previews.count() == 3
+    assert addon_without_previews.reload().current_previews.count() == 2
+    assert addon_with_previews.reload().current_previews.count() == 2
     sizes = addon_without_previews.current_previews.values_list('sizes', flat=True)
     renderings = amo.THEME_PREVIEW_RENDERINGS
     assert list(sizes) == [
         {
-            'image': list(renderings['header']['full']),
-            'thumbnail': list(renderings['header']['thumbnail']),
-            'thumbnail_format': renderings['header']['thumbnail_format'],
+            'image': list(renderings['firefox']['full']),
+            'thumbnail': list(renderings['firefox']['thumbnail']),
+            'thumbnail_format': renderings['firefox']['thumbnail_format'],
         },
         {
-            'image': list(renderings['list']['full']),
-            'thumbnail': list(renderings['list']['thumbnail']),
-            'thumbnail_format': renderings['list']['thumbnail_format'],
-        },
-        {
-            'image': list(renderings['single']['full']),
-            'thumbnail': list(renderings['single']['thumbnail']),
-            'thumbnail_format': renderings['single']['thumbnail_format'],
+            'image': list(renderings['amo']['full']),
+            'thumbnail': list(renderings['amo']['thumbnail']),
+            'thumbnail_format': renderings['amo']['thumbnail_format'],
         },
     ]
 
@@ -76,12 +71,8 @@ def test_create_missing_theme_previews(parse_addon_mock):
         version=theme.current_version,
         sizes={'image': [123, 456], 'thumbnail': [34, 45]},
     )
-    VersionPreview.objects.create(
-        version=theme.current_version,
-        sizes={'image': [123, 456], 'thumbnail': [34, 45]},
-    )
 
-    # addon has 3 complete previews already so skip when only_missing=True
+    # addon has 2 complete previews already so skip when only_missing=True
     with mock.patch('olympia.addons.tasks.generate_static_theme_preview') as p:
         recreate_theme_previews([theme.id], only_missing=True)
         assert p.call_count == 0
@@ -94,7 +85,7 @@ def test_create_missing_theme_previews(parse_addon_mock):
         recreate_theme_previews([theme.id], only_missing=True)
         assert p.call_count == 1
 
-    # And delete it so the addon only has 2 previews
+    # And delete it so the addon only has 1 preview
     preview.delete()
     with mock.patch('olympia.addons.tasks.generate_static_theme_preview') as p:
         recreate_theme_previews([theme.id], only_missing=True)

@@ -665,10 +665,9 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert all_ == ['weta_fade-1.0-an+fx.xpi']  # A single XPI for all.
         assert addon.type == amo.ADDON_STATICTHEME
         previews = list(addon.current_version.previews.all())
-        assert len(previews) == 3
+        assert len(previews) == 2
         assert storage.exists(previews[0].image_path)
         assert storage.exists(previews[1].image_path)
-        assert storage.exists(previews[2].image_path)
 
     def test_static_theme_submit_unlisted(self):
         assert Addon.unfiltered.count() == 0
@@ -711,10 +710,9 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert all_ == ['weta_fade-1.0-an+fx.xpi']  # A single XPI for all.
         assert addon.type == amo.ADDON_STATICTHEME
         previews = list(addon.current_version.previews.all())
-        assert len(previews) == 3
+        assert len(previews) == 2
         assert storage.exists(previews[0].image_path)
         assert storage.exists(previews[1].image_path)
-        assert storage.exists(previews[2].image_path)
 
     def test_static_theme_wizard_unlisted(self):
         # Check we get the correct template.
@@ -2141,9 +2139,8 @@ class VersionSubmitUploadMixin(object):
         assert log_items.filter(action=amo.LOG.ADD_VERSION.id)
         if self.channel == amo.RELEASE_CHANNEL_LISTED:
             previews = list(version.previews.all())
-            assert len(previews) == 3
+            assert len(previews) == 2
             assert storage.exists(previews[0].image_path)
-            assert storage.exists(previews[1].image_path)
             assert storage.exists(previews[1].image_path)
         else:
             assert version.previews.all().count() == 0
@@ -2201,9 +2198,8 @@ class VersionSubmitUploadMixin(object):
         assert log_items.filter(action=amo.LOG.ADD_VERSION.id)
         if self.channel == amo.RELEASE_CHANNEL_LISTED:
             previews = list(version.previews.all())
-            assert len(previews) == 3
+            assert len(previews) == 2
             assert storage.exists(previews[0].image_path)
-            assert storage.exists(previews[1].image_path)
             assert storage.exists(previews[1].image_path)
         else:
             assert version.previews.all().count() == 0

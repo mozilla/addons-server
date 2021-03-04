@@ -1123,6 +1123,7 @@ CELERY_TASK_ROUTES = {
     # A queue to be used for one-off tasks that could be resource intensive.
     'olympia.addons.tasks.hard_delete_extra_files': {'queue': 'adhoc'},
     'olympia.addons.tasks.hard_delete_legacy_versions': {'queue': 'adhoc'},
+    'olympia.versions.tasks.delete_list_theme_previews': {'queue': 'adhoc'},
     # Crons
     'olympia.addons.tasks.update_addon_average_daily_users': {'queue': 'cron'},
     'olympia.addons.tasks.update_addon_hotness': {'queue': 'cron'},

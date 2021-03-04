@@ -96,7 +96,7 @@ def check_preview(
         (
             'weta_theme_full.svg',
             92,  # different value for 680 and 760/720
-            ('xMaxYMin slice', 'xMaxYMin meet', 'xMaxYMin meet'),
+            ('xMaxYMin slice', 'xMaxYMin meet'),
             'image/svg+xml',
             True,
         ),
@@ -142,53 +142,39 @@ def test_generate_static_theme_preview(
     copy_stored_file(zip_file, destination)
     generate_static_theme_preview(theme_manifest, addon.current_version.pk)
 
-    assert resize_image_mock.call_count == 3
-    assert write_svg_to_png_mock.call_count == 3
-    assert pngcrush_image_mock.call_count == 3
+    assert resize_image_mock.call_count == 2
+    assert write_svg_to_png_mock.call_count == 2
+    assert pngcrush_image_mock.call_count == 2
 
-    # First check the header Preview is good
-    header_preview = VersionPreview.objects.get(
+    # First check the firefox Preview is good
+    firefox_preview = VersionPreview.objects.get(
         version=addon.current_version,
-        position=amo.THEME_PREVIEW_RENDERINGS['header']['position'],
+        position=amo.THEME_PREVIEW_RENDERINGS['firefox']['position'],
     )
     check_preview(
-        header_preview,
-        amo.THEME_PREVIEW_RENDERINGS['header'],
+        firefox_preview,
+        amo.THEME_PREVIEW_RENDERINGS['firefox'],
         write_svg_to_png_mock.call_args_list[0][0],
         resize_image_mock.call_args_list[0][0],
         pngcrush_image_mock.call_args_list[0][0],
     )
 
-    # Then the list Preview
-    list_preview = VersionPreview.objects.get(
+    # And then Preview used on AMO
+    amo_preview = VersionPreview.objects.get(
         version=addon.current_version,
-        position=amo.THEME_PREVIEW_RENDERINGS['list']['position'],
+        position=amo.THEME_PREVIEW_RENDERINGS['amo']['position'],
     )
     check_preview(
-        list_preview,
-        amo.THEME_PREVIEW_RENDERINGS['list'],
+        amo_preview,
+        amo.THEME_PREVIEW_RENDERINGS['amo'],
         write_svg_to_png_mock.call_args_list[1][0],
         resize_image_mock.call_args_list[1][0],
         pngcrush_image_mock.call_args_list[1][0],
     )
 
-    # And finally the new single Preview
-    single_preview = VersionPreview.objects.get(
-        version=addon.current_version,
-        position=amo.THEME_PREVIEW_RENDERINGS['single']['position'],
-    )
-    check_preview(
-        single_preview,
-        amo.THEME_PREVIEW_RENDERINGS['single'],
-        write_svg_to_png_mock.call_args_list[2][0],
-        resize_image_mock.call_args_list[2][0],
-        pngcrush_image_mock.call_args_list[2][0],
-    )
-
     # Now check the svg renders
-    header_svg = write_svg_to_png_mock.call_args_list[0][0][0]
-    list_svg = write_svg_to_png_mock.call_args_list[1][0][0]
-    single_svg = write_svg_to_png_mock.call_args_list[2][0][0]
+    firefox_svg = write_svg_to_png_mock.call_args_list[0][0][0]
+    amo_svg = write_svg_to_png_mock.call_args_list[1][0][0]
     colors = [
         'class="%s" fill="%s"' % (key, color)
         for (key, color) in theme_manifest['colors'].items()
@@ -199,7 +185,7 @@ def test_generate_static_theme_preview(
         else preserve_aspect_ratio
     )
     check_render(
-        force_str(header_svg),
+        force_str(firefox_svg),
         header_url,
         header_height,
         preserve_aspect_ratio[0],
@@ -211,22 +197,10 @@ def test_generate_static_theme_preview(
         680,
     )
     check_render(
-        force_str(list_svg),
+        force_str(amo_svg),
         header_url,
         header_height,
         preserve_aspect_ratio[1],
-        mimetype,
-        valid_img,
-        colors,
-        760,
-        92,
-        760,
-    )
-    check_render(
-        force_str(single_svg),
-        header_url,
-        header_height,
-        preserve_aspect_ratio[2],
         mimetype,
         valid_img,
         colors,
@@ -314,58 +288,44 @@ def test_generate_static_theme_preview_with_alternative_properties(
     copy_stored_file(zip_file, destination)
     generate_static_theme_preview(theme_manifest, addon.current_version.pk)
 
-    assert resize_image_mock.call_count == 3
-    assert write_svg_to_png_mock.call_count == 3
-    assert pngcrush_image_mock.call_count == 3
+    assert resize_image_mock.call_count == 2
+    assert write_svg_to_png_mock.call_count == 2
+    assert pngcrush_image_mock.call_count == 2
 
-    # First check the header Preview is good
-    header_preview = VersionPreview.objects.get(
+    # First check the firefox Preview is good
+    firefox_preview = VersionPreview.objects.get(
         version=addon.current_version,
-        position=amo.THEME_PREVIEW_RENDERINGS['header']['position'],
+        position=amo.THEME_PREVIEW_RENDERINGS['firefox']['position'],
     )
     check_preview(
-        header_preview,
-        amo.THEME_PREVIEW_RENDERINGS['header'],
+        firefox_preview,
+        amo.THEME_PREVIEW_RENDERINGS['firefox'],
         write_svg_to_png_mock.call_args_list[0][0],
         resize_image_mock.call_args_list[0][0],
         pngcrush_image_mock.call_args_list[0][0],
     )
 
-    # Then the list Preview
-    list_preview = VersionPreview.objects.get(
+    # And then the Preview used on AMO
+    amo_preview = VersionPreview.objects.get(
         version=addon.current_version,
-        position=amo.THEME_PREVIEW_RENDERINGS['list']['position'],
+        position=amo.THEME_PREVIEW_RENDERINGS['amo']['position'],
     )
     check_preview(
-        list_preview,
-        amo.THEME_PREVIEW_RENDERINGS['list'],
+        amo_preview,
+        amo.THEME_PREVIEW_RENDERINGS['amo'],
         write_svg_to_png_mock.call_args_list[1][0],
         resize_image_mock.call_args_list[1][0],
         pngcrush_image_mock.call_args_list[1][0],
-    )
-
-    # And finally the new single Preview
-    single_preview = VersionPreview.objects.get(
-        version=addon.current_version,
-        position=amo.THEME_PREVIEW_RENDERINGS['single']['position'],
-    )
-    check_preview(
-        single_preview,
-        amo.THEME_PREVIEW_RENDERINGS['single'],
-        write_svg_to_png_mock.call_args_list[2][0],
-        resize_image_mock.call_args_list[2][0],
-        pngcrush_image_mock.call_args_list[2][0],
     )
 
     colors = [
         'class="%s" fill="%s"' % (key, color) for (key, color) in svg_colors.items()
     ]
 
-    header_svg = write_svg_to_png_mock.call_args_list[0][0][0]
-    list_svg = write_svg_to_png_mock.call_args_list[1][0][0]
-    single_svg = write_svg_to_png_mock.call_args_list[2][0][0]
+    firefox_svg = write_svg_to_png_mock.call_args_list[0][0][0]
+    amo_svg = write_svg_to_png_mock.call_args_list[1][0][0]
     check_render(
-        force_str(header_svg),
+        force_str(firefox_svg),
         'transparent.gif',
         1,
         'xMaxYMin meet',
@@ -377,19 +337,7 @@ def test_generate_static_theme_preview_with_alternative_properties(
         680,
     )
     check_render(
-        force_str(list_svg),
-        'transparent.gif',
-        1,
-        'xMaxYMin meet',
-        'image/gif',
-        True,
-        colors,
-        760,
-        92,
-        760,
-    )
-    check_render(
-        force_str(single_svg),
+        force_str(amo_svg),
         'transparent.gif',
         1,
         'xMaxYMin meet',
@@ -474,47 +422,34 @@ def test_generate_preview_with_additional_backgrounds(
     copy_stored_file(zip_file, destination)
     generate_static_theme_preview(theme_manifest, addon.current_version.pk)
 
-    assert resize_image_mock.call_count == 3
-    assert write_svg_to_png_mock.call_count == 3
-    assert pngcrush_image_mock.call_count == 3
+    assert resize_image_mock.call_count == 2
+    assert write_svg_to_png_mock.call_count == 2
+    assert pngcrush_image_mock.call_count == 2
 
-    # First check the header Preview is good
-    header_preview = VersionPreview.objects.get(
+    # First check the firefox Preview is good
+    firefox_preview = VersionPreview.objects.get(
         version=addon.current_version,
-        position=amo.THEME_PREVIEW_RENDERINGS['header']['position'],
+        position=amo.THEME_PREVIEW_RENDERINGS['firefox']['position'],
     )
     check_preview(
-        header_preview,
-        amo.THEME_PREVIEW_RENDERINGS['header'],
+        firefox_preview,
+        amo.THEME_PREVIEW_RENDERINGS['firefox'],
         write_svg_to_png_mock.call_args_list[0][0],
         resize_image_mock.call_args_list[0][0],
         pngcrush_image_mock.call_args_list[0][0],
     )
 
-    # Then the list Preview
-    list_preview = VersionPreview.objects.get(
+    # And then the Preview used on AMO
+    amo_preview = VersionPreview.objects.get(
         version=addon.current_version,
-        position=amo.THEME_PREVIEW_RENDERINGS['list']['position'],
+        position=amo.THEME_PREVIEW_RENDERINGS['amo']['position'],
     )
     check_preview(
-        list_preview,
-        amo.THEME_PREVIEW_RENDERINGS['list'],
+        amo_preview,
+        amo.THEME_PREVIEW_RENDERINGS['amo'],
         write_svg_to_png_mock.call_args_list[1][0],
         resize_image_mock.call_args_list[1][0],
         pngcrush_image_mock.call_args_list[1][0],
-    )
-
-    # And finally the new single Preview
-    single_preview = VersionPreview.objects.get(
-        version=addon.current_version,
-        position=amo.THEME_PREVIEW_RENDERINGS['single']['position'],
-    )
-    check_preview(
-        single_preview,
-        amo.THEME_PREVIEW_RENDERINGS['single'],
-        write_svg_to_png_mock.call_args_list[2][0],
-        resize_image_mock.call_args_list[2][0],
-        pngcrush_image_mock.call_args_list[2][0],
     )
 
     # These defaults are mostly defined in the xml template
@@ -531,11 +466,9 @@ def test_generate_preview_with_additional_backgrounds(
         'class="%s" fill="%s"' % (key, color) for (key, color) in default_colors.items()
     ]
 
-    header_svg = write_svg_to_png_mock.call_args_list[0][0][0]
-    list_svg = write_svg_to_png_mock.call_args_list[1][0][0]
-    single_svg = write_svg_to_png_mock.call_args_list[2][0][0]
-    check_render_additional(force_str(header_svg), 680, colors)
-    check_render_additional(force_str(list_svg), 760, colors)
-    check_render_additional(force_str(single_svg), 720, colors)
+    firefox_svg = write_svg_to_png_mock.call_args_list[0][0][0]
+    amo_svg = write_svg_to_png_mock.call_args_list[1][0][0]
+    check_render_additional(force_str(firefox_svg), 680, colors)
+    check_render_additional(force_str(amo_svg), 720, colors)
 
     index_addons_mock.assert_called_with([addon.id])

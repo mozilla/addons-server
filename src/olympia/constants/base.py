@@ -236,19 +236,13 @@ ADDON_PREVIEW_SIZES = {
 
 # Static theme preview renderings, with different dimensions
 THEME_PREVIEW_RENDERINGS = {
-    'header': {
+    'firefox': {
         'thumbnail': _dimensions(473, 64),
         'full': _dimensions(680, 92),
         'position': 0,
         'thumbnail_format': 'png',
     },
-    'list': {
-        'thumbnail': _dimensions(529, 64),
-        'full': _dimensions(760, 92),
-        'position': 1,
-        'thumbnail_format': 'png',
-    },
-    'single': {
+    'amo': {
         'thumbnail': _dimensions(720, 92),
         'full': _dimensions(720, 92),
         'position': 2,

@@ -124,3 +124,23 @@ def delete_preview_files(pk, **kw):
     VersionPreview.delete_preview_files(
         sender=None, instance=VersionPreview.objects.get(pk=pk)
     )
+
+
+@task
+@use_primary_db
+def delete_list_theme_previews(addon_ids, **kw):
+    # Make sure we import `index_addons` late in the game to avoid having
+    # a "copy" of it here that won't get mocked by our ESTestCase
+    from olympia.addons.tasks import index_addons
+
+    log.info(
+        '[%s@%s] Deleting preview sizes for themes starting at id: %s...'
+        % (len(addon_ids), delete_list_theme_previews.rate_limit, addon_ids[0])
+    )
+    for addon_id in addon_ids:
+        log.info('Deleting "list" size previews for theme: %s' % addon_id)
+        VersionPreview.objects.filter(
+            version__addon_id=addon_id, sizes__image=[760, 92]
+        ).delete()
+
+    index_addons.delay(addon_ids)
