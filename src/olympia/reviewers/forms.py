@@ -9,13 +9,13 @@ from django.forms.models import (
     ModelMultipleChoiceField,
     modelformset_factory,
 )
+from django.urls import reverse
 from django.utils.translation import get_language, gettext, gettext_lazy as _
 
 import olympia.core.logger
 
 from olympia import amo, ratings
 from olympia.access import acl
-from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.ratings.models import Rating

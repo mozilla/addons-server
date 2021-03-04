@@ -5,6 +5,7 @@ from django.conf import settings
 from django.utils.encoding import smart_str
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
+from django.urls import reverse
 from django.utils.http import urlquote
 
 from unittest import mock
@@ -17,7 +18,6 @@ from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonRegionalRestrictions
 from olympia.amo.templatetags.jinja_helpers import user_media_url
 from olympia.amo.tests import TestCase, addon_factory
-from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import urlencode, urlparams
 from olympia.files.models import File
 from olympia.users.models import UserProfile

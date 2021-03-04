@@ -13,6 +13,7 @@ from django.core.files.storage import default_storage as storage
 from django.db import models
 from django.dispatch import receiver
 from django.template.defaultfilters import slugify
+from django.urls import reverse
 from django.utils.crypto import get_random_string
 from django.utils.encoding import force_bytes, force_str
 from django.utils.functional import cached_property
@@ -28,7 +29,6 @@ from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
 from olympia.amo.storage_utils import copy_stored_file, move_stored_file
 from olympia.amo.templatetags.jinja_helpers import user_media_path, user_media_url
-from olympia.amo.urlresolvers import reverse
 from olympia.files.utils import get_sha256, InvalidOrUnsupportedCrx, write_crx_as_xpi
 
 

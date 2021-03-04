@@ -7,6 +7,7 @@ from django.conf import settings
 from django.contrib.admin.sites import AdminSite
 from django.test import RequestFactory
 from django.test.utils import override_settings
+from django.urls import reverse
 from django.utils.html import format_html
 from django.utils.http import urlencode
 
@@ -21,7 +22,6 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
-from olympia.amo.urlresolvers import reverse
 from olympia.constants.scanners import (
     ABORTING,
     COMPLETED,

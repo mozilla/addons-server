@@ -8,6 +8,7 @@ from email.utils import formataddr
 
 from django.conf import settings
 from django.core import mail
+from django.urls import reverse
 
 from unittest import mock
 import pytest
@@ -33,7 +34,6 @@ from olympia.activity.utils import (
 )
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, SQUOTE_ESCAPED, user_factory
-from olympia.amo.urlresolvers import reverse
 
 
 TESTS_DIR = os.path.dirname(os.path.abspath(__file__))

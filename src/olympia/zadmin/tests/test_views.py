@@ -3,12 +3,13 @@ import json
 
 from unittest import mock
 
+from django.urls import reverse
+
 from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.amo.tests import TestCase, user_factory
-from olympia.amo.urlresolvers import reverse
 from olympia.files.models import File
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
@@ -40,13 +41,13 @@ class TestHomeAndIndex(TestCase):
         # Redirected because no permissions if not logged in.
         self.client.logout()
         response = self.client.get(url)
-        self.assert3xx(response, '/admin/models/login/?next=/en-US/admin/models/')
+        self.assert3xx(response, '/en-US/admin/models/login/?next=/en-US/admin/models/')
 
         # Redirected when logged in without enough permissions.
         user = user_factory(username='staffperson', email='staffperson@m.c')
         self.client.login(email=user.email)
         response = self.client.get(url)
-        self.assert3xx(response, '/admin/models/login/?next=/en-US/admin/models/')
+        self.assert3xx(response, '/en-US/admin/models/login/?next=/en-US/admin/models/')
 
         # Can access with a "is_staff" user.
         user.update(email='someone@mozilla.com')
@@ -184,5 +185,5 @@ class TestPerms(TestCase):
         self.client.logout()
         self.assert3xx(
             self.client.get(reverse('admin:index')),
-            '/admin/models/login/?next=/en-US/admin/models/',
+            '/en-US/admin/models/login/?next=/en-US/admin/models/',
         )

@@ -1,11 +1,11 @@
 from django.template import engines
+from django.urls import reverse
 
 from pyquery import PyQuery as pq
 
 from olympia.addons.models import Addon
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory
-from olympia.amo.urlresolvers import reverse
 
 
 class HelpersTest(TestCase):

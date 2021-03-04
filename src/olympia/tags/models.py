@@ -1,10 +1,9 @@
 from django.db import models
-from django.urls import NoReverseMatch
+from django.urls import NoReverseMatch, reverse
 
 from olympia import activity, amo
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ManagerBase, ModelBase
-from olympia.amo.urlresolvers import reverse
 
 
 class TagManager(ManagerBase):

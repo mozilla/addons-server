@@ -14,6 +14,7 @@ from django.conf import settings
 from django.core.files import temp
 from django.core.files.storage import default_storage as storage
 from django.test.utils import override_settings
+from django.urls import reverse
 
 from unittest import mock
 import responses
@@ -33,7 +34,6 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
-from olympia.amo.urlresolvers import reverse
 from olympia.blocklist.models import Block
 from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.devhub import views

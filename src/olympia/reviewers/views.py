@@ -14,6 +14,7 @@ from django.db.models import Prefetch, Q
 from django.db.transaction import non_atomic_requests
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
+from django.urls import reverse
 from django.utils.http import urlquote
 from django.utils.translation import gettext
 from django.views.decorators.cache import never_cache
@@ -55,7 +56,6 @@ from olympia.amo.decorators import (
     permission_required,
     post_required,
 )
-from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import paginate, render
 from olympia.api.permissions import (
     AllowAnyKindOfReviewer,

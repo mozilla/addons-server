@@ -3,13 +3,16 @@ from datetime import datetime, timedelta
 from unittest import mock
 from unittest.mock import Mock, patch
 
-import pytest
-import responses
 from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.test.utils import override_settings
+from django.urls import reverse
 from django.utils import translation
+
+import pytest
+import responses
+
 from olympia import amo
 from olympia.activity.models import ActivityLog, ActivityLogToken
 from olympia.addons.models import Addon, AddonApprovalsCounter, AddonReviewerFlags
@@ -21,7 +24,6 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
-from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import send_mail
 from olympia.blocklist.models import Block, BlocklistSubmission
 from olympia.constants.promoted import (

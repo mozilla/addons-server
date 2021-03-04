@@ -3,6 +3,7 @@ import os
 from django import http
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, redirect
+from django.urls import reverse
 from django.utils.cache import patch_vary_headers
 
 import olympia.core.logger
@@ -11,7 +12,6 @@ from olympia import amo
 from olympia.access import acl
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon, AddonRegionalRestrictions
-from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseXSendFile, render, urlparams
 from olympia.files.models import File
 from olympia.versions.models import Version

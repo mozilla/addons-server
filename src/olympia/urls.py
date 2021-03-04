@@ -2,9 +2,9 @@ from django.conf import settings
 from django.urls import include, re_path
 from django.contrib import admin
 from django.shortcuts import redirect
+from django.urls import reverse
 from django.views.static import serve as serve_static
 
-from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import urlparams
 from olympia.amo.views import frontend_view
 from olympia.files.urls import upload_patterns

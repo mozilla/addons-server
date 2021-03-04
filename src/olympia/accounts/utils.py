@@ -7,13 +7,13 @@ from urllib.parse import urlencode, urlparse
 
 from django.conf import settings
 from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.utils.encoding import force_str
 from django.utils.http import is_safe_url
 
 import boto3
 
 from olympia.accounts.tasks import delete_user_event, primary_email_change_event
-from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import use_fake_fxa
 from olympia.core.logger import getLogger
 

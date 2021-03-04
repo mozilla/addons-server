@@ -1,7 +1,7 @@
+from django.urls import reverse
 from django.utils.encoding import force_str
 
 from olympia.amo.tests import TestCase, addon_factory, user_factory
-from olympia.amo.urlresolvers import reverse
 
 
 class TestFileAdmin(TestCase):

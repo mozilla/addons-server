@@ -14,6 +14,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db import models, transaction
 from django.db.models import F, Max, Q, signals as dbsignals
 from django.dispatch import receiver
+from django.urls import reverse
 from django.utils import translation
 from django.utils.functional import cached_property
 from django.utils.translation import trans_real, gettext_lazy as _
@@ -39,7 +40,6 @@ from olympia.amo.models import (
     SaveUpdateMixin,
 )
 from olympia.amo.templatetags import jinja_helpers
-from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
     StopWatch,
     attach_trans_dict,

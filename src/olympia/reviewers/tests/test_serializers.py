@@ -2,6 +2,7 @@
 import json
 
 from django.core.cache import cache
+from django.urls import reverse
 
 from rest_framework.exceptions import NotFound
 from rest_framework.settings import api_settings
@@ -17,7 +18,6 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
-from olympia.amo.urlresolvers import reverse
 from olympia.files.models import FileValidation
 from olympia.git.utils import AddonGitRepository, extract_version_to_git
 from olympia.git.tests.test_utils import apply_changes
