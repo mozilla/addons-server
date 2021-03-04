@@ -43,18 +43,22 @@ def test_recreate_theme_previews():
     assert addon_without_previews.reload().current_previews.count() == 3
     assert addon_with_previews.reload().current_previews.count() == 3
     sizes = addon_without_previews.current_previews.values_list('sizes', flat=True)
+    renderings = amo.THEME_PREVIEW_RENDERINGS
     assert list(sizes) == [
         {
-            'image': list(amo.THEME_PREVIEW_SIZES['header']['full']),
-            'thumbnail': list(amo.THEME_PREVIEW_SIZES['header']['thumbnail']),
+            'image': list(renderings['header']['full']),
+            'thumbnail': list(renderings['header']['thumbnail']),
+            'thumbnail_format': renderings['header']['thumbnail_format'],
         },
         {
-            'image': list(amo.THEME_PREVIEW_SIZES['list']['full']),
-            'thumbnail': list(amo.THEME_PREVIEW_SIZES['list']['thumbnail']),
+            'image': list(renderings['list']['full']),
+            'thumbnail': list(renderings['list']['thumbnail']),
+            'thumbnail_format': renderings['list']['thumbnail_format'],
         },
         {
-            'image': list(amo.THEME_PREVIEW_SIZES['single']['full']),
-            'thumbnail': list(amo.THEME_PREVIEW_SIZES['single']['thumbnail']),
+            'image': list(renderings['single']['full']),
+            'thumbnail': list(renderings['single']['thumbnail']),
+            'thumbnail_format': renderings['single']['thumbnail_format'],
         },
     ]
 

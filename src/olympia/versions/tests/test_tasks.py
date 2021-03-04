@@ -71,6 +71,7 @@ def check_preview(
     assert preview_instance.sizes == {
         'image': list(theme_size_constant['full']),
         'thumbnail': list(theme_size_constant['thumbnail']),
+        'thumbnail_format': theme_size_constant['thumbnail_format'],
     }
     resize_path, thumb_path, thumb_size = resize_image_mock_args
     assert resize_path == png_path
@@ -148,11 +149,11 @@ def test_generate_static_theme_preview(
     # First check the header Preview is good
     header_preview = VersionPreview.objects.get(
         version=addon.current_version,
-        position=amo.THEME_PREVIEW_SIZES['header']['position'],
+        position=amo.THEME_PREVIEW_RENDERINGS['header']['position'],
     )
     check_preview(
         header_preview,
-        amo.THEME_PREVIEW_SIZES['header'],
+        amo.THEME_PREVIEW_RENDERINGS['header'],
         write_svg_to_png_mock.call_args_list[0][0],
         resize_image_mock.call_args_list[0][0],
         pngcrush_image_mock.call_args_list[0][0],
@@ -161,11 +162,11 @@ def test_generate_static_theme_preview(
     # Then the list Preview
     list_preview = VersionPreview.objects.get(
         version=addon.current_version,
-        position=amo.THEME_PREVIEW_SIZES['list']['position'],
+        position=amo.THEME_PREVIEW_RENDERINGS['list']['position'],
     )
     check_preview(
         list_preview,
-        amo.THEME_PREVIEW_SIZES['list'],
+        amo.THEME_PREVIEW_RENDERINGS['list'],
         write_svg_to_png_mock.call_args_list[1][0],
         resize_image_mock.call_args_list[1][0],
         pngcrush_image_mock.call_args_list[1][0],
@@ -174,11 +175,11 @@ def test_generate_static_theme_preview(
     # And finally the new single Preview
     single_preview = VersionPreview.objects.get(
         version=addon.current_version,
-        position=amo.THEME_PREVIEW_SIZES['single']['position'],
+        position=amo.THEME_PREVIEW_RENDERINGS['single']['position'],
     )
     check_preview(
         single_preview,
-        amo.THEME_PREVIEW_SIZES['single'],
+        amo.THEME_PREVIEW_RENDERINGS['single'],
         write_svg_to_png_mock.call_args_list[2][0],
         resize_image_mock.call_args_list[2][0],
         pngcrush_image_mock.call_args_list[2][0],
@@ -320,11 +321,11 @@ def test_generate_static_theme_preview_with_alternative_properties(
     # First check the header Preview is good
     header_preview = VersionPreview.objects.get(
         version=addon.current_version,
-        position=amo.THEME_PREVIEW_SIZES['header']['position'],
+        position=amo.THEME_PREVIEW_RENDERINGS['header']['position'],
     )
     check_preview(
         header_preview,
-        amo.THEME_PREVIEW_SIZES['header'],
+        amo.THEME_PREVIEW_RENDERINGS['header'],
         write_svg_to_png_mock.call_args_list[0][0],
         resize_image_mock.call_args_list[0][0],
         pngcrush_image_mock.call_args_list[0][0],
@@ -333,11 +334,11 @@ def test_generate_static_theme_preview_with_alternative_properties(
     # Then the list Preview
     list_preview = VersionPreview.objects.get(
         version=addon.current_version,
-        position=amo.THEME_PREVIEW_SIZES['list']['position'],
+        position=amo.THEME_PREVIEW_RENDERINGS['list']['position'],
     )
     check_preview(
         list_preview,
-        amo.THEME_PREVIEW_SIZES['list'],
+        amo.THEME_PREVIEW_RENDERINGS['list'],
         write_svg_to_png_mock.call_args_list[1][0],
         resize_image_mock.call_args_list[1][0],
         pngcrush_image_mock.call_args_list[1][0],
@@ -346,11 +347,11 @@ def test_generate_static_theme_preview_with_alternative_properties(
     # And finally the new single Preview
     single_preview = VersionPreview.objects.get(
         version=addon.current_version,
-        position=amo.THEME_PREVIEW_SIZES['single']['position'],
+        position=amo.THEME_PREVIEW_RENDERINGS['single']['position'],
     )
     check_preview(
         single_preview,
-        amo.THEME_PREVIEW_SIZES['single'],
+        amo.THEME_PREVIEW_RENDERINGS['single'],
         write_svg_to_png_mock.call_args_list[2][0],
         resize_image_mock.call_args_list[2][0],
         pngcrush_image_mock.call_args_list[2][0],
@@ -480,11 +481,11 @@ def test_generate_preview_with_additional_backgrounds(
     # First check the header Preview is good
     header_preview = VersionPreview.objects.get(
         version=addon.current_version,
-        position=amo.THEME_PREVIEW_SIZES['header']['position'],
+        position=amo.THEME_PREVIEW_RENDERINGS['header']['position'],
     )
     check_preview(
         header_preview,
-        amo.THEME_PREVIEW_SIZES['header'],
+        amo.THEME_PREVIEW_RENDERINGS['header'],
         write_svg_to_png_mock.call_args_list[0][0],
         resize_image_mock.call_args_list[0][0],
         pngcrush_image_mock.call_args_list[0][0],
@@ -493,11 +494,11 @@ def test_generate_preview_with_additional_backgrounds(
     # Then the list Preview
     list_preview = VersionPreview.objects.get(
         version=addon.current_version,
-        position=amo.THEME_PREVIEW_SIZES['list']['position'],
+        position=amo.THEME_PREVIEW_RENDERINGS['list']['position'],
     )
     check_preview(
         list_preview,
-        amo.THEME_PREVIEW_SIZES['list'],
+        amo.THEME_PREVIEW_RENDERINGS['list'],
         write_svg_to_png_mock.call_args_list[1][0],
         resize_image_mock.call_args_list[1][0],
         pngcrush_image_mock.call_args_list[1][0],
@@ -506,11 +507,11 @@ def test_generate_preview_with_additional_backgrounds(
     # And finally the new single Preview
     single_preview = VersionPreview.objects.get(
         version=addon.current_version,
-        position=amo.THEME_PREVIEW_SIZES['single']['position'],
+        position=amo.THEME_PREVIEW_RENDERINGS['single']['position'],
     )
     check_preview(
         single_preview,
-        amo.THEME_PREVIEW_SIZES['single'],
+        amo.THEME_PREVIEW_RENDERINGS['single'],
         write_svg_to_png_mock.call_args_list[2][0],
         resize_image_mock.call_args_list[2][0],
         pngcrush_image_mock.call_args_list[2][0],
