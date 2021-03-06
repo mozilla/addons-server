@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-02-23 18:22+0000\n"
-"PO-Revision-Date: 2021-03-06 12:11+0000\n"
+"PO-Revision-Date: 2021-03-06 12:22+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -2537,10 +2537,10 @@ msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size 
 msgstr ""
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
-msgstr ""
+msgstr "Vähimmäiskoko on 1000x750, kuvasuhde 4:3 vaaditaan."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr ""
+msgstr "Kuvakaappausten lisääminen tuotesivulle lisää huomattavasti todennäköisyyttä asennuksen suhteen."
 
 msgid "Continue"
 msgstr "Jatka"
@@ -3236,7 +3236,7 @@ msgid "Visit the Extension Workshop"
 msgstr "Laajennukset"
 
 msgid "Connect with us"
-msgstr ""
+msgstr "Ole yhteydessä meihin"
 
 msgid "Twitter"
 msgstr "Twitter"
@@ -3519,10 +3519,10 @@ msgid "Validation"
 msgstr ""
 
 msgid "Delete/Disable"
-msgstr ""
+msgstr "Poista / poista käytöstä"
 
 msgid "Next version of this add-on"
-msgstr ""
+msgstr "Tämän lisäosan seuraava versio"
 
 msgid "Other versions"
 msgstr "Muut versiot"
@@ -3544,7 +3544,7 @@ msgid ""
 msgstr ""
 
 msgid "Deleting this version will permanently delete:"
-msgstr ""
+msgstr "Tämän version poistaminen poistaa pysyvästi:"
 
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
 msgstr ""
@@ -3556,7 +3556,7 @@ msgid "Delete Version"
 msgstr "Poista versio"
 
 msgid "Disable Version"
-msgstr ""
+msgstr "Poista versio käytöstä"
 
 #, python-format
 msgid ""
@@ -3642,7 +3642,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Instant weather updates from around the world."
-msgstr ""
+msgstr "Säätiedotteet ympäri maailmaa."
 
 #. editorial content for the discovery pane.
 msgid "Choose the page you see every time you open a new tab."
@@ -3694,7 +3694,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr ""
+msgstr "Lähetä uutisartikkeleja, tarinoita, bloggauksia ja paljon muuta suoraan Kindleen."
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
@@ -3836,7 +3836,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
-msgstr ""
+msgstr "Ota kuvakaappauksia verkkosivuista, tee muokkauksia ja jaa niitä."
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
@@ -3874,7 +3874,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop ad trackers when you click Google and Yandex search returns."
-msgstr ""
+msgstr "Pysäytä mainosseuraimet kun napsautat Google- ja Yandex-hakutuloksia."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3893,7 +3893,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
-msgstr ""
+msgstr "Estä kaikki ponnahdusikkunat oletusarvoisesti ja päätä sitten, mitkä haluat avata."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3935,11 +3935,11 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals."
-msgstr ""
+msgstr "Päivitä välilehdet automaattisesti tietyin aikavälein."
 
 #. editorial content for the discovery pane.
 msgid "Find and resolve broken bookmarks, duplicates, and more."
-msgstr ""
+msgstr "Etsi ja selvitä rikkinäiset kirjanmerkit, kaksoiskappaleet jne."
 
 #. editorial content for the discovery pane.
 msgid "Get things done with a helpful to-do list that syncs across devices."
