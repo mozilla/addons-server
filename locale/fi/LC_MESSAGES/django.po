@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-02-23 18:22+0000\n"
-"PO-Revision-Date: 2021-03-06 12:22+0000\n"
+"PO-Revision-Date: 2021-03-06 12:29+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -4112,7 +4112,7 @@ msgstr "Tallenna salasanat turvallisesti ja kirjaudu tunnetuille verkkosivustoil
 
 #. editorial content for the discovery pane.
 msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
-msgstr ""
+msgstr "Täytä lomakkeet automaattisesti. Kirjoita ja tallenna tiedot kerran, täytä sen jälkeen automaattisesti."
 
 #. editorial content for the discovery pane.
 msgid "Search privately with just a click."
@@ -4174,7 +4174,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Adds show/hide ability to all password fields."
-msgstr ""
+msgstr "Lisää mahdollisuuden näyttää tai piilottaa kaikki salasanakentät."
 
 #. editorial content for the discovery pane.
 msgid "Focus on what you're watching by dimming everything but the video player."
@@ -4186,7 +4186,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr ""
+msgstr "Tallenna salasanat turvallisesti ja kirjaudu sisään automaattisesti tunnetuille verkkosivustoille."
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
@@ -4220,7 +4220,7 @@ msgstr "Ota täysi hallinta selaamisen aikana kertyneistä evästeistä."
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
-msgstr ""
+msgstr "Poista selainhistoria automaattisesti valitsemiesi sivustojen osalta."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4238,7 +4238,7 @@ msgstr "Sulje ärsyttävät ponnahdusikkunat yhdellä napsautuksella."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
-msgstr ""
+msgstr "Löysitkö mielenkiintoisen kuvan verkosta? Käytä TinEye-palvelua löytääksesi kuvan alkuperän."
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
@@ -4299,7 +4299,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Save complete pages—or just portions—as a single HTML file."
-msgstr ""
+msgstr "Täydennä kokonaiset sivut — tai vain haluamasi osat sivusta — yhteen HTML-tiedostoon."
 
 #. editorial content for the discovery pane.
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
@@ -4580,7 +4580,7 @@ msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
 msgid "You cannot submit a language pack"
-msgstr ""
+msgstr "Et voi lähettää kielipakettia"
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr ""
@@ -4847,7 +4847,7 @@ msgid "Keep review; remove flags"
 msgstr ""
 
 msgid "Skip for now"
-msgstr ""
+msgstr "Ohita nyt"
 
 msgid "Delete review"
 msgstr ""
