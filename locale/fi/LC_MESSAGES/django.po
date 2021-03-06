@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-02-23 18:22+0000\n"
-"PO-Revision-Date: 2021-02-27 16:17+0000\n"
+"PO-Revision-Date: 2021-03-06 12:05+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -237,7 +237,7 @@ msgid "Some features are temporarily disabled while we perform website maintenan
 msgstr "Osa toiminnoista on hetkellisesti poissa käytöstä suorittaessamme verkkosivun huoltoa. Palaamme täyteen toimintaan pikaisesti."
 
 msgid "Must contain at least one printable character."
-msgstr ""
+msgstr "Tulee sisältää vähintään yhden tulostettavan merkin."
 
 msgid "Ensure this field contains at least one letter or number character."
 msgstr "Varmista, että tässä kentässä on vähintään yksi kirjain tai numeromerkki."
@@ -426,7 +426,7 @@ msgid "Unavailable for legal reasons."
 msgstr ""
 
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "Tämän kentän tulee sisältää vähintään {num} merkkiä."
 
 msgid "The language code {lang_code} is invalid."
 msgstr "Kielikoodi {lang_code} on virheellinen."
@@ -797,7 +797,7 @@ msgid "User {user} edited, reason: {1}"
 msgstr "Käyttäjä {user} muokkasi, syy: {1}"
 
 msgid "User {user} anonymized."
-msgstr ""
+msgstr "Käyttäjä {user} anonymisoitu."
 
 msgid "User {user} restricted."
 msgstr ""
@@ -1930,16 +1930,16 @@ msgid "Add-on deleted."
 msgstr "Lisäosa poistettu."
 
 msgid "URL name was incorrect. Theme was not deleted."
-msgstr ""
+msgstr "URL-osoite oli virheellinen. Teemaa ei poistettu."
 
 msgid "URL name was incorrect. Add-on was not deleted."
-msgstr ""
+msgstr "URL-osoite oli virheellinen. Lisäosaa ei poistettu."
 
 msgid "Invitation accepted."
-msgstr ""
+msgstr "Kutsu hyväksytty."
 
 msgid "Invitation declined."
-msgstr ""
+msgstr "Kutsu hylätty."
 
 msgid "An author has been added to your add-on"
 msgstr ""
@@ -2078,7 +2078,7 @@ msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "tai <a href=\"{0}\">peruuta</a>"
 
 msgid "More information on Developer Accounts"
-msgstr ""
+msgstr "Lisätietoja kehittäjätileistä"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
