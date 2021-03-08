@@ -193,6 +193,20 @@ class BlockLog(ModelBase):
         ordering = ('-created',)
 
 
+class IPLog(ModelBase):
+    """
+    This table is for indexing the activity log by IP (only for specific
+    actions).
+    """
+
+    activity_log = models.ForeignKey('ActivityLog', on_delete=models.CASCADE)
+    ip_address = models.CharField(max_length=45)
+
+    class Meta:
+        db_table = 'log_activity_ip'
+        ordering = ('-created',)
+
+
 class DraftComment(ModelBase):
     """A model that allows us to draft comments for reviews before we have
     an ActivityLog instance ready.
@@ -697,6 +711,14 @@ class ActivityLog(ModelBase):
                     guid=arg.guid,
                     created=kw.get('created', timezone.now()),
                 )
+
+        if getattr(action, 'store_ip', False):
+            # Index specific actions by their IP address. Note that the caller
+            # must take care of overriding remote addr if the action is created
+            # from a task.
+            IPLog.objects.create(
+                ip_address=core.get_remote_addr(), activity_log=al,
+                created=kw.get('created', timezone.now()))
 
         # Index by every user
         UserLog.objects.create(

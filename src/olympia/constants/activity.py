@@ -91,6 +91,7 @@ class ADD_VERSION(_LOG):
     action_class = 'add'
     format = _('{version} added to {addon}.')
     keep = True
+    store_ip = True
 
 
 class EDIT_VERSION(_LOG):

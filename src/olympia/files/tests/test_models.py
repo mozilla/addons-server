@@ -64,6 +64,7 @@ class UploadTest(TestCase, amo.tests.AMOPaths):
         upload.addon = addon
         upload.user = user
         upload.version = version
+        upload.ip_address = '127.0.0.42'
         if with_validation:
             # Simulate what fetch_manifest() does after uploading an app.
             upload.validation = validation or json.dumps(
