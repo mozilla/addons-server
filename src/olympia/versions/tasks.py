@@ -100,6 +100,7 @@ def generate_static_theme_preview(theme_manifest, version_pk):
                 preview.thumbnail_path,
                 rendering['thumbnail'],
                 format=rendering['thumbnail_format'],
+                quality=35,  # It's ignored for png format, so it's fine to always set.
             )
             pngcrush_image(preview.image_path)
             # Extract colors once and store it for all previews.
