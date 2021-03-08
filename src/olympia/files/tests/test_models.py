@@ -58,6 +58,8 @@ class UploadTest(TestCase, amo.tests.AMOPaths):
         version=None,
         with_validation=True,
     ):
+        if user is None:
+            user = user_factory()
         with open(abspath if abspath else self.file_path(filename), 'rb') as f:
             xpi = f.read()
         upload = FileUpload.from_post([xpi], filename=abspath or filename, size=1234)
@@ -65,6 +67,7 @@ class UploadTest(TestCase, amo.tests.AMOPaths):
         upload.user = user
         upload.version = version
         upload.ip_address = '127.0.0.42'
+        upload.source = amo.UPLOAD_SOURCE_DEVHUB
         if with_validation:
             # Simulate what fetch_manifest() does after uploading an app.
             upload.validation = validation or json.dumps(

@@ -37,7 +37,6 @@ from olympia.files.utils import parse_addon
 from olympia.promoted.models import PromotedApproval
 from olympia.reviewers.models import AutoApprovalSummary
 from olympia.users.models import UserProfile
-from olympia.users.utils import get_task_user
 from olympia.versions.compare import version_int, VersionString
 from olympia.versions.models import (
     ApplicationsVersions,
@@ -1214,35 +1213,38 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         self.upload.reload()
         assert self.upload.addon == self.addon
 
-    @mock.patch('olympia.versions.models.log')
-    def test_logging_nulls(self, log_mock):
-        assert self.upload.user is None
-        assert self.upload.ip_address is None
-        assert self.upload.source is None
-        version = Version.from_upload(
-            self.upload,
-            self.addon,
-            [self.selected_app],
-            amo.RELEASE_CHANNEL_LISTED,
-            parsed_data=self.dummy_parsed_data,
-        )
-        assert log_mock.info.call_count == 2
-        assert log_mock.info.call_args_list[0][0] == (
-            ('New version: %r (%s) from %r' % (version, version.pk, self.upload)),
-        )
-        assert log_mock.info.call_args_list[0][1] == {
-            'extra': {
-                'email': '',
-                'guid': self.addon.guid,
-                'upload': self.upload.uuid.hex,
-                'user_id': None,
-                'from_api': False,
-            }
-        }
-        assert ActivityLog.objects.count() == 1
-        activity = ActivityLog.objects.latest('pk')
-        assert activity.arguments == [version, self.addon]
-        assert activity.user == get_task_user()
+    def test_from_upload_no_user(self):
+        self.upload.update(user=None)
+        with self.assertRaises(VersionCreateError):
+            Version.from_upload(
+                self.upload,
+                self.addon,
+                [self.selected_app],
+                amo.RELEASE_CHANNEL_LISTED,
+                parsed_data=self.dummy_parsed_data,
+            )
+
+    def test_from_upload_no_ip_address(self):
+        self.upload.update(ip_address=None)
+        with self.assertRaises(VersionCreateError):
+            Version.from_upload(
+                self.upload,
+                self.addon,
+                [self.selected_app],
+                amo.RELEASE_CHANNEL_LISTED,
+                parsed_data=self.dummy_parsed_data,
+            )
+
+    def test_from_upload_no_source(self):
+        self.upload.update(source=None)
+        with self.assertRaises(VersionCreateError):
+            Version.from_upload(
+                self.upload,
+                self.addon,
+                [self.selected_app],
+                amo.RELEASE_CHANNEL_LISTED,
+                parsed_data=self.dummy_parsed_data,
+            )
 
     @mock.patch('olympia.versions.models.log')
     def test_logging(self, log_mock):
@@ -1692,6 +1694,7 @@ class TestExtensionVersionFromUploadTransactional(
         upload.user = user
         upload.version = version
         upload.ip_address = '127.0.0.42'
+        upload.source = amo.UPLOAD_SOURCE_DEVHUB
         if with_validation:
             # Simulate what fetch_manifest() does after uploading an app.
             upload.validation = validation or json.dumps(

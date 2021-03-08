@@ -243,6 +243,9 @@ class Version(OnChangeMixin, ModelBase):
         if upload.addon and upload.addon != addon:
             raise VersionCreateError('FileUpload was made for a different Addon')
 
+        if not upload.user or not upload.ip_address or not upload.source:
+            raise VersionCreateError('FileUpload does not have some required fields')
+
         license_id = None
         if channel == amo.RELEASE_CHANNEL_LISTED:
             previous_version = addon.find_latest_version(channel=channel, exclude=())

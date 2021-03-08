@@ -2235,12 +2235,13 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
         assert version.channel == amo.RELEASE_CHANNEL_LISTED
         assert version.all_files[0].status == amo.STATUS_AWAITING_REVIEW
         self.assert3xx(response, self.get_next_url(version))
-        logs_qs = ActivityLog.objects.for_addons(self.addon).filter(action=amo.LOG.ADD_VERSION.id)
+        logs_qs = ActivityLog.objects.for_addons(self.addon).filter(
+            action=amo.LOG.ADD_VERSION.id
+        )
         assert logs_qs.count() == 1
         log = logs_qs.get()
         assert log.iplog_set.count() == 1
         assert log.iplog_set.get().ip_address == self.upload.ip_address
-
 
     def test_experiment_inside_webext_upload_without_permission(self):
         self.upload = self.get_upload(
