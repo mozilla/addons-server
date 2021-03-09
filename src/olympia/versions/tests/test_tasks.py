@@ -62,7 +62,7 @@ def check_preview(
     preview_instance,
     theme_size_constant,
     write_svg_mock_args,
-    resize_image_mock_args,
+    resize_image_mock_args_kwargs,
     png_crush_mock_args,
 ):
     _, png_path = write_svg_mock_args
@@ -73,12 +73,16 @@ def check_preview(
         'thumbnail': list(theme_size_constant['thumbnail']),
         'thumbnail_format': theme_size_constant['thumbnail_format'],
     }
-    resize_path, thumb_path, thumb_size = resize_image_mock_args
+    (resize_path, thumb_path, thumb_size), resize_kwargs = resize_image_mock_args_kwargs
     assert resize_path == png_path
     assert thumb_path == preview_instance.thumbnail_path
     assert thumb_size == theme_size_constant['thumbnail']
     assert png_crush_mock_args[0] == preview_instance.image_path
     assert preview_instance.colors
+    assert resize_kwargs == {
+        'format': theme_size_constant['thumbnail_format'],
+        'quality': 35,
+    }
 
 
 @pytest.mark.django_db
@@ -155,7 +159,7 @@ def test_generate_static_theme_preview(
         firefox_preview,
         amo.THEME_PREVIEW_RENDERINGS['firefox'],
         write_svg_to_png_mock.call_args_list[0][0],
-        resize_image_mock.call_args_list[0][0],
+        resize_image_mock.call_args_list[0],
         pngcrush_image_mock.call_args_list[0][0],
     )
 
@@ -168,7 +172,7 @@ def test_generate_static_theme_preview(
         amo_preview,
         amo.THEME_PREVIEW_RENDERINGS['amo'],
         write_svg_to_png_mock.call_args_list[1][0],
-        resize_image_mock.call_args_list[1][0],
+        resize_image_mock.call_args_list[1],
         pngcrush_image_mock.call_args_list[1][0],
     )
 
@@ -301,7 +305,7 @@ def test_generate_static_theme_preview_with_alternative_properties(
         firefox_preview,
         amo.THEME_PREVIEW_RENDERINGS['firefox'],
         write_svg_to_png_mock.call_args_list[0][0],
-        resize_image_mock.call_args_list[0][0],
+        resize_image_mock.call_args_list[0],
         pngcrush_image_mock.call_args_list[0][0],
     )
 
@@ -314,7 +318,7 @@ def test_generate_static_theme_preview_with_alternative_properties(
         amo_preview,
         amo.THEME_PREVIEW_RENDERINGS['amo'],
         write_svg_to_png_mock.call_args_list[1][0],
-        resize_image_mock.call_args_list[1][0],
+        resize_image_mock.call_args_list[1],
         pngcrush_image_mock.call_args_list[1][0],
     )
 
@@ -435,7 +439,7 @@ def test_generate_preview_with_additional_backgrounds(
         firefox_preview,
         amo.THEME_PREVIEW_RENDERINGS['firefox'],
         write_svg_to_png_mock.call_args_list[0][0],
-        resize_image_mock.call_args_list[0][0],
+        resize_image_mock.call_args_list[0],
         pngcrush_image_mock.call_args_list[0][0],
     )
 
@@ -448,7 +452,7 @@ def test_generate_preview_with_additional_backgrounds(
         amo_preview,
         amo.THEME_PREVIEW_RENDERINGS['amo'],
         write_svg_to_png_mock.call_args_list[1][0],
-        resize_image_mock.call_args_list[1][0],
+        resize_image_mock.call_args_list[1],
         pngcrush_image_mock.call_args_list[1][0],
     )
 

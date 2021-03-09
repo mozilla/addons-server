@@ -666,12 +666,14 @@ def pngcrush_image(src, **kw):
     return False
 
 
-def resize_image(source, destination, size=None, format='png'):
+def resize_image(source, destination, size=None, *, format='png', quality=80):
     """Resizes and image from src, to dst.
     Returns a tuple of new width and height, original width and height.
 
     When dealing with local files it's up to you to ensure that all directories
     exist leading up to the dst filename.
+
+    quality kwarg is only valid for jpeg format - it's ignored for png.
     """
     if source == destination:
         raise Exception("source and destination can't be the same: %s" % source)
@@ -692,7 +694,7 @@ def resize_image(source, destination, size=None, format='png'):
     else:
         with storage.open(destination, 'wb') as fp:
             im = im.convert('RGB')
-            im.save(fp, 'JPEG', quality=80)
+            im.save(fp, 'JPEG', quality=quality)
     return (im.size, original_size)
 
 
