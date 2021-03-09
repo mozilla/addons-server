@@ -2,9 +2,11 @@ from datetime import datetime, timedelta
 
 from django.core.management.base import BaseCommand
 from django.db.models import Q
+from django.db.transaction import atomic
 
 import olympia.core.logger
 from olympia import amo
+from olympia.activity.models import IPLog
 from olympia.addons.models import Addon, AddonUser
 from olympia.addons.tasks import delete_addons
 from olympia.users.models import UserProfile, UserRestrictionHistory
@@ -42,11 +44,18 @@ class Command(BaseCommand):
         )
         addon_ids = list(addons_qs.values_list('id', flat=True))
 
-        log.info('Clearing %s for %d users', profile_clear.keys(), len(users))
-        for user in users:
-            user.update(**profile_clear, _signal=False)
+        with atomic():
+            log.info('Clearing %s for %d users', profile_clear.keys(), len(users))
+            for user in users:
+                user.update(**profile_clear, _signal=False)
 
-        user_restrictions.update(ip_address='', last_login_ip='')
+            user_restrictions.update(ip_address='', last_login_ip='')
+
+            # IPLog is only useful to link between an ip and an activity log, so we
+            # can delete any IPLog pointing to an activity belonging to one of the
+            # users we want to clear the data for.
+            ip_logs = IPLog.objects.filter(activity_log__user__in=users)
+            ip_logs.delete()
 
         if addon_ids:
             delete_addons.delay(addon_ids, with_deleted=True)

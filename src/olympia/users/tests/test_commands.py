@@ -7,6 +7,7 @@ from django.core.management import call_command
 from unittest.mock import ANY, patch
 
 from olympia import amo
+from olympia.activity.models import ActivityLog, IPLog
 from olympia.addons.models import Addon
 from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.users.management.commands.createsuperuser import Command as CreateSuperUser
@@ -75,6 +76,15 @@ class TestCreateSuperUser(TestCase):
 
 
 class TestClearOldUserData(TestCase):
+    def create_ip_log(self, user):
+        # Note: this is a dummy log that doesn't have store_ip=True on
+        # purpose, to ensure we directly use IPLog when it comes to
+        # deletion - so even if we change our minds about storing ips for
+        # a given action after a while, we'll still correctly clear the old
+        # data when it's time to do so.
+        activity = ActivityLog.create(amo.LOG.CUSTOM_TEXT, 'hi', user=user)
+        IPLog.objects.create(activity_log=activity, ip_address='127.0.0.56')
+
     def test_no_addons(self):
         recent_date = self.days_ago(2)
         old_date = self.days_ago((365 * 7) + 1)
@@ -82,32 +92,38 @@ class TestClearOldUserData(TestCase):
         # old enough but not deleted
         recent_not_deleted = user_factory(last_login_ip='127.0.0.1', fxa_id='12345')
         recent_not_deleted.update(modified=recent_date)
+        self.create_ip_log(recent_not_deleted)
 
         # Deleted but new
         new_user = user_factory(last_login_ip='127.0.0.1', deleted=True, fxa_id='67890')
+        self.create_ip_log(new_user)
 
         # Deleted and recent: last_login_ip, email, fxa_id must be cleared.
         recent_deleted_user = user_factory(
             last_login_ip='127.0.0.1', deleted=True, fxa_id='abcde'
         )
         recent_deleted_user.update(modified=recent_date)
+        self.create_ip_log(recent_deleted_user)
 
         # Deleted and recent but with some cleared data already null.
         recent_deleted_user_part = user_factory(
             last_login_ip='127.0.0.1', deleted=True, fxa_id=None
         )
         recent_deleted_user_part.update(modified=recent_date)
+        self.create_ip_log(recent_deleted_user_part)
 
         # recent and banned
         recent_banned_user = user_factory(
             last_login_ip='127.0.0.1', deleted=True, fxa_id='abcde', banned=recent_date
         )
         recent_banned_user.update(modified=recent_date)
+        self.create_ip_log(recent_banned_user)
 
         old_banned_user = user_factory(
             last_login_ip='127.0.0.1', deleted=True, fxa_id='abcde', banned=recent_date
         )
         old_banned_user.update(modified=old_date)
+        self.create_ip_log(old_banned_user)
 
         call_command('clear_old_user_data')
 
@@ -117,12 +133,22 @@ class TestClearOldUserData(TestCase):
         assert recent_not_deleted.email
         assert recent_not_deleted.fxa_id
         assert recent_not_deleted.modified == recent_date
+        assert recent_not_deleted.activitylog_set.count() == 1
+        assert (
+            IPLog.objects.filter(activity_log__user=recent_not_deleted).get().ip_address
+            == '127.0.0.56'
+        )
 
         new_user.reload()
         assert new_user.last_login_ip == '127.0.0.1'
         assert new_user.deleted is True
         assert new_user.email
         assert new_user.fxa_id
+        assert new_user.activitylog_set.count() == 1
+        assert (
+            IPLog.objects.filter(activity_log__user=new_user).get().ip_address
+            == '127.0.0.56'
+        )
 
         recent_deleted_user.reload()
         assert recent_deleted_user.last_login_ip == ''
@@ -130,6 +156,8 @@ class TestClearOldUserData(TestCase):
         assert not recent_deleted_user.email
         assert not recent_deleted_user.fxa_id
         assert recent_deleted_user.modified == recent_date
+        assert recent_deleted_user.activitylog_set.count() == 1
+        assert not IPLog.objects.filter(activity_log__user=recent_deleted_user).exists()
 
         recent_deleted_user_part.reload()
         assert recent_deleted_user_part.last_login_ip == ''
@@ -137,6 +165,10 @@ class TestClearOldUserData(TestCase):
         assert not recent_deleted_user_part.email
         assert not recent_deleted_user_part.fxa_id
         assert recent_deleted_user_part.modified == recent_date
+        assert recent_deleted_user_part.activitylog_set.count() == 1
+        assert not IPLog.objects.filter(
+            activity_log__user=recent_deleted_user_part
+        ).exists()
 
         recent_banned_user.reload()
         assert recent_banned_user.last_login_ip == '127.0.0.1'
@@ -144,6 +176,11 @@ class TestClearOldUserData(TestCase):
         assert recent_banned_user.email
         assert recent_banned_user.fxa_id
         assert recent_banned_user.banned
+        assert recent_banned_user.activitylog_set.count() == 1
+        assert (
+            IPLog.objects.filter(activity_log__user=recent_banned_user).get().ip_address
+            == '127.0.0.56'
+        )
 
         old_banned_user.reload()
         assert old_banned_user.last_login_ip == ''
@@ -152,6 +189,8 @@ class TestClearOldUserData(TestCase):
         assert not old_banned_user.fxa_id
         assert old_banned_user.modified == old_date
         assert old_banned_user.banned
+        assert old_banned_user.activitylog_set.count() == 1
+        assert not IPLog.objects.filter(activity_log__user=old_banned_user).exists()
 
     def test_user_restriction_history_cleared_too(self):
         recent_date = self.days_ago(2)
@@ -232,6 +271,7 @@ class TestClearOldUserData(TestCase):
         # Old but not deleted
         old_not_deleted = user_factory(last_login_ip='127.0.0.1', fxa_id='12345')
         old_not_deleted.update(modified=old_date)
+        self.create_ip_log(old_not_deleted)
         old_not_deleted_addon = addon_factory(
             users=[old_not_deleted], status=amo.STATUS_DELETED
         )
@@ -241,12 +281,14 @@ class TestClearOldUserData(TestCase):
             last_login_ip='127.0.0.1', deleted=True, fxa_id='67890'
         )
         recent_user.update(modified=self.days_ago(365))
+        self.create_ip_log(recent_user)
         recent_user_addon = addon_factory(
             users=[recent_user], status=amo.STATUS_DELETED
         )
 
         old_user = user_factory(deleted=True, fxa_id='dfdf')
         old_user.update(modified=old_date)
+        self.create_ip_log(old_user)
         old_user_addon = addon_factory(users=[old_user], status=amo.STATUS_DELETED)
         # Include an add-on that old_user _was_ an owner of, but now isn't.
         # Even if the addon is now deleted it shouldn't be hard-deleted with
@@ -272,6 +314,7 @@ class TestClearOldUserData(TestCase):
             last_login_ip='127.0.0.1', deleted=True, fxa_id='abcde', banned=old_date
         )
         old_banned_user.update(modified=old_date)
+        self.create_ip_log(old_banned_user)
         old_banned_user_addon = addon_factory(
             users=[old_banned_user], status=amo.STATUS_DISABLED
         )
@@ -285,6 +328,10 @@ class TestClearOldUserData(TestCase):
         assert old_not_deleted.fxa_id
         assert old_not_deleted.modified == old_date
         assert old_not_deleted_addon.reload()
+        assert (
+            IPLog.objects.filter(activity_log__user=old_not_deleted).get().ip_address
+            == '127.0.0.56'
+        )
 
         recent_user.reload()
         assert recent_user.last_login_ip == '127.0.0.1'
@@ -292,6 +339,10 @@ class TestClearOldUserData(TestCase):
         assert recent_user.email
         assert recent_user.fxa_id
         assert recent_user_addon.reload()
+        assert (
+            IPLog.objects.filter(activity_log__user=recent_user).get().ip_address
+            == '127.0.0.56'
+        )
 
         old_user.reload()
         assert old_user.last_login_ip == ''
@@ -301,6 +352,7 @@ class TestClearOldUserData(TestCase):
         assert old_user.modified == old_date
         assert not Addon.unfiltered.filter(id=old_user_addon.id).exists()
         assert no_longer_owner_addon.reload()
+        assert not IPLog.objects.filter(activity_log__user=old_user).exists()
 
         assert not Addon.unfiltered.filter(id=old_data_cleared_addon.id).exists()
 
@@ -312,6 +364,7 @@ class TestClearOldUserData(TestCase):
         assert old_banned_user.modified == old_date
         assert old_banned_user.banned
         assert not Addon.unfiltered.filter(id=old_banned_user_addon.id).exists()
+        assert not IPLog.objects.filter(activity_log__user=old_banned_user).exists()
 
         # But check that no_longer_owner_addon is deleted eventually
         old_not_deleted.update(deleted=True)

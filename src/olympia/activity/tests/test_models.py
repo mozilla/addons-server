@@ -11,6 +11,7 @@ from olympia.activity.models import (
     ActivityLogToken,
     AddonLog,
     DraftComment,
+    IPLog,
 )
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.tests import (
@@ -229,6 +230,37 @@ class TestActivityLog(TestCase):
         assert len(entries) == 1
         entries = ActivityLog.objects.for_user(user)
         assert len(entries) == 1
+
+    def test_ip_log(self):
+        addon = Addon.objects.get()
+        assert IPLog.objects.count() == 0
+        # Creating an activity log for an action without store_ip=True doesn't
+        # create an IPLog.
+        action = amo.LOG.REJECT_VERSION
+        assert not getattr(action, 'store_ip', False)
+        with core.override_remote_addr('127.0.4.8'):
+            activity = ActivityLog.create(
+                action,
+                addon,
+                addon.current_version,
+                user=self.request.user,
+            )
+        assert IPLog.objects.count() == 0
+        # Creating an activity log for an action *with* store_ip=True *does*
+        # create an IPLog.
+        action = amo.LOG.ADD_VERSION
+        assert getattr(action, 'store_ip', False)
+        with core.override_remote_addr('15.16.23.42'):
+            activity = ActivityLog.create(
+                action,
+                addon,
+                addon.current_version,
+                user=self.request.user,
+            )
+        assert IPLog.objects.count() == 1
+        ip_log = IPLog.objects.get()
+        assert ip_log.activity_log == activity
+        assert ip_log.ip_address == '15.16.23.42'
 
     def test_version_log(self):
         version = Version.objects.all()[0]
