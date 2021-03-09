@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-02-23 18:22+0000\n"
+"POT-Creation-Date: 2021-03-09 17:59+0000\n"
 "PO-Revision-Date: 2020-10-09 05:48+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -4285,9 +4285,9 @@ msgid "Close annoying pop-ups with a simple click."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-msgid "Find an interesting image on the web? Use TinEye to explore its origins."
-msgstr ""
+#, fuzzy
+msgid "Find an interesting image on the web? Want to learn more about it?"
+msgstr "هل ترى صورة مثيرة للاهتمام على الويب وترغب بمعرفة المزيد عنها؟ جرب أداة البحث عن الصور هذه."
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
@@ -4491,8 +4491,21 @@ msgstr ""
 msgid "Double-click any word to instantly see its definition."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Blues & Yellows"
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Forest Theme"
+msgstr "أنشئ سمتك الخاصة بنفسك"
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4529,6 +4542,14 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Get the scrollbar you always wanted—select width and your color of choice."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
