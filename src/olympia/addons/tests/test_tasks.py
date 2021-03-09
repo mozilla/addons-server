@@ -92,13 +92,13 @@ def test_create_missing_theme_previews(parse_addon_mock):
     assert VersionPreview.objects.count() == 3
     with mock.patch(f'{PATCH_PATH}.generate_static_theme_preview') as gstp, mock.patch(
         f'{PATCH_PATH}.resize_image'
-    ) as rs:
+    ) as resize:
         recreate_theme_previews([theme.id], only_missing=True)
         assert gstp.call_count == 0
-        assert rs.call_count == 0
+        assert resize.call_count == 0
         recreate_theme_previews([theme.id], only_missing=False)
         assert gstp.call_count == 1
-        assert rs.call_count == 0
+        assert resize.call_count == 0
         assert VersionPreview.objects.count() == 0
 
     # If the add-on is missing a preview, we call generate_static_theme_preview
@@ -108,10 +108,10 @@ def test_create_missing_theme_previews(parse_addon_mock):
     assert VersionPreview.objects.count() == 2
     with mock.patch(f'{PATCH_PATH}.generate_static_theme_preview') as gstp, mock.patch(
         f'{PATCH_PATH}.resize_image'
-    ) as rs:
+    ) as resize:
         recreate_theme_previews([theme.id], only_missing=True)
         assert gstp.call_count == 1
-        assert rs.call_count == 0
+        assert resize.call_count == 0
 
     # But we don't do the full regeneration to just get new thumbnail sizes or formats
     amo_preview.sizes['thumbnail'] = [666, 444]
@@ -124,10 +124,13 @@ def test_create_missing_theme_previews(parse_addon_mock):
     assert VersionPreview.objects.count() == 3
     with mock.patch(f'{PATCH_PATH}.generate_static_theme_preview') as gstp, mock.patch(
         f'{PATCH_PATH}.resize_image'
-    ) as rs:
+    ) as resize, mock.patch(f'{PATCH_PATH}.storage.delete') as storage:
+        old_firefox_thumb_path = firefox_preview.thumbnail_path
         recreate_theme_previews([theme.id], only_missing=True)
         assert gstp.call_count == 0  # not called
-        assert rs.call_count == 2
+        assert resize.call_count == 2
+        assert storage.call_count == 1  # should only have been called for gif->png
+        assert storage.call_args == ((old_firefox_thumb_path,),)
         amo_preview.reload()
         assert amo_preview.thumbnail_dimensions == [720, 92]
         firefox_preview.reload()
