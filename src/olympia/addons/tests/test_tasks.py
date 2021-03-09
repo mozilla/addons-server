@@ -58,38 +58,82 @@ def test_recreate_theme_previews():
     ]
 
 
+PATCH_PATH = 'olympia.addons.tasks'
+
+
 @pytest.mark.django_db
-@mock.patch('olympia.addons.tasks.parse_addon')
+@mock.patch(f'{PATCH_PATH}.parse_addon')
 def test_create_missing_theme_previews(parse_addon_mock):
+
     parse_addon_mock.return_value = {}
     theme = addon_factory(type=amo.ADDON_STATICTHEME)
-    preview = VersionPreview.objects.create(
+    amo_preview = VersionPreview.objects.create(
         version=theme.current_version,
-        sizes={'image': [123, 456], 'thumbnail': [34, 45]},
+        sizes={
+            'image': amo.THEME_PREVIEW_RENDERINGS['amo']['full'],
+            'thumbnail': amo.THEME_PREVIEW_RENDERINGS['amo']['thumbnail'],
+            'thumbnail_format': amo.THEME_PREVIEW_RENDERINGS['amo']['thumbnail_format'],
+        },
     )
-    VersionPreview.objects.create(
+    firefox_preview = VersionPreview.objects.create(
+        version=theme.current_version,
+        sizes={
+            'image': amo.THEME_PREVIEW_RENDERINGS['firefox']['full'],
+            'thumbnail': amo.THEME_PREVIEW_RENDERINGS['firefox']['thumbnail'],
+        },
+    )
+    # add another extra preview size that should be ignored
+    extra_preview = VersionPreview.objects.create(
         version=theme.current_version,
         sizes={'image': [123, 456], 'thumbnail': [34, 45]},
     )
 
-    # addon has 2 complete previews already so skip when only_missing=True
-    with mock.patch('olympia.addons.tasks.generate_static_theme_preview') as p:
+    # addon has all the complete previews already so skip when only_missing=True
+    assert VersionPreview.objects.count() == 3
+    with mock.patch(f'{PATCH_PATH}.generate_static_theme_preview') as gstp, mock.patch(
+        f'{PATCH_PATH}.resize_image'
+    ) as rs:
         recreate_theme_previews([theme.id], only_missing=True)
-        assert p.call_count == 0
+        assert gstp.call_count == 0
+        assert rs.call_count == 0
         recreate_theme_previews([theme.id], only_missing=False)
-        assert p.call_count == 1
+        assert gstp.call_count == 1
+        assert rs.call_count == 0
+        assert VersionPreview.objects.count() == 0
 
-    # break one of the previews
-    preview.update(sizes={})
-    with mock.patch('olympia.addons.tasks.generate_static_theme_preview') as p:
+    # If the add-on is missing a preview, we call generate_static_theme_preview
+    # amo_preview.delete() - `recreate_theme_previews` deletes all the previews already
+    firefox_preview.save()
+    extra_preview.save()
+    assert VersionPreview.objects.count() == 2
+    with mock.patch(f'{PATCH_PATH}.generate_static_theme_preview') as gstp, mock.patch(
+        f'{PATCH_PATH}.resize_image'
+    ) as rs:
         recreate_theme_previews([theme.id], only_missing=True)
-        assert p.call_count == 1
+        assert gstp.call_count == 1
+        assert rs.call_count == 0
 
-    # And delete it so the addon only has 1 preview
-    preview.delete()
-    with mock.patch('olympia.addons.tasks.generate_static_theme_preview') as p:
+    # But we don't do the full regeneration to just get new thumbnail sizes or formats
+    amo_preview.sizes['thumbnail'] = [666, 444]
+    amo_preview.save()
+    assert amo_preview.thumbnail_dimensions == [666, 444]
+    firefox_preview.sizes['thumbnail_format'] = 'gif'
+    firefox_preview.save()
+    assert firefox_preview.get_format('thumbnail') == 'gif'
+    extra_preview.save()
+    assert VersionPreview.objects.count() == 3
+    with mock.patch(f'{PATCH_PATH}.generate_static_theme_preview') as gstp, mock.patch(
+        f'{PATCH_PATH}.resize_image'
+    ) as rs:
         recreate_theme_previews([theme.id], only_missing=True)
-        assert p.call_count == 1
+        assert gstp.call_count == 0  # not called
+        assert rs.call_count == 2
+        amo_preview.reload()
+        assert amo_preview.thumbnail_dimensions == [720, 92]
+        firefox_preview.reload()
+        assert firefox_preview.get_format('thumbnail') == 'png'
+
+        assert VersionPreview.objects.count() == 3
 
 
 @pytest.mark.django_db

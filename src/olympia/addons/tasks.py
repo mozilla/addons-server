@@ -25,12 +25,14 @@ from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.utils import LocalFileStorage, extract_colors_from_image
+from olympia.devhub.tasks import resize_image
 from olympia.files.models import File
 from olympia.files.utils import get_filepath, parse_addon
 from olympia.lib.es.utils import index_objects
 from olympia.tags.models import Tag
 from olympia.versions.models import (
     generate_static_theme_preview,
+    Version,
     VersionPreview,
 )
 
@@ -191,23 +193,50 @@ def recreate_theme_previews(addon_ids, **kw):
         '[%s@%s] Recreating previews for themes starting at id: %s...'
         % (len(addon_ids), recreate_theme_previews.rate_limit, addon_ids[0])
     )
-    addons = Addon.objects.filter(pk__in=addon_ids).no_transforms()
+    version_ids = Addon.objects.filter(pk__in=addon_ids).values_list('_current_version')
+    versions = Version.objects.filter(pk__in=version_ids)
     only_missing = kw.get('only_missing', False)
 
-    for addon in addons:
-        version = addon.current_version
-        if not version:
-            continue
+    renders = {
+        render['full']: {
+            'thumb_size': render['thumbnail'],
+            'thumb_format': render['thumbnail_format'],
+        }
+        for render in amo.THEME_PREVIEW_RENDERINGS.values()
+    }
+
+    for version in versions:
         try:
             if only_missing:
-                with_size = (
-                    VersionPreview.objects.filter(version=version)
-                    .exclude(sizes={})
-                    .count()
-                )
-                if with_size == len(amo.THEME_PREVIEW_RENDERINGS):
+                existing_full_sizes = {
+                    tuple(size.get('image', ()))
+                    for size in VersionPreview.objects.filter(
+                        version=version
+                    ).values_list('sizes', flat=True)
+                }
+                all_full_sizes_present = not set(renders.keys()) - existing_full_sizes
+                if all_full_sizes_present:
+                    # i.e. we have all renders
+                    for preview in list(VersionPreview.objects.filter(version=version)):
+                        # so check the thumbnail size/format for each preview
+                        render = renders.get(tuple(preview.image_dimensions))
+                        if render and (
+                            render['thumb_size'] != tuple(preview.thumbnail_dimensions)
+                            or render['thumb_format'] != preview.get_format('thumbnail')
+                        ):
+                            preview.sizes['thumbnail_format'] = render['thumb_format']
+                            preview.sizes['thumbnail'] = render['thumb_size']
+                            resize_image(
+                                preview.image_path,
+                                preview.thumbnail_path,
+                                render['thumb_size'],
+                                format=render['thumb_format'],
+                                quality=35,
+                            )
+                            preview.save()
                     continue
-            log.info('Recreating previews for theme: %s' % addon.id)
+                # else carry on with a full preview generation
+            log.info('Recreating previews for theme: %s' % version.addon_id)
             VersionPreview.objects.filter(version=version).delete()
             xpi = get_filepath(version.all_files[0])
             theme_data = parse_addon(xpi, minimal=True).get('theme', {})
