@@ -236,10 +236,11 @@ class TestActivityLog(TestCase):
         assert IPLog.objects.count() == 0
         # Creating an activity log for an action without store_ip=True doesn't
         # create an IPLog.
-        assert not getattr(amo.LOG.REJECT_VERSION, 'store_ip', False)
+        action = amo.LOG.REJECT_VERSION
+        assert not getattr(action, 'store_ip', False)
         with core.override_remote_addr('127.0.4.8'):
             activity = ActivityLog.create(
-                amo.LOG.REJECT_VERSION,
+                action,
                 addon,
                 addon.current_version,
                 user=self.request.user,
@@ -247,10 +248,11 @@ class TestActivityLog(TestCase):
         assert IPLog.objects.count() == 0
         # Creating an activity log for an action *with* store_ip=True *does*
         # create an IPLog.
-        assert getattr(amo.LOG.ADD_VERSION, 'store_ip', False)
+        action = amo.LOG.ADD_VERSION
+        assert getattr(action, 'store_ip', False)
         with core.override_remote_addr('15.16.23.42'):
             activity = ActivityLog.create(
-                amo.LOG.ADD_VERSION,
+                action,
                 addon,
                 addon.current_version,
                 user=self.request.user,
