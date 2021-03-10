@@ -26,6 +26,7 @@ class TestActivity(HubTest):
         self.clone_addon(2)
         core.set_user(self.user_profile)
         self.addon, self.addon2 = list(self.user_profile.addons.all())
+        ActivityLog.objects.all().delete()
 
     def log_creates(self, num, addon=None):
         if not addon:
