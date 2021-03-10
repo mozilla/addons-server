@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-09 17:59+0000\n"
-"PO-Revision-Date: 2021-02-23 19:08+0000\n"
+"PO-Revision-Date: 2021-03-10 11:05+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -297,16 +297,17 @@ msgstr "Não encontrado"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
-"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
-"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
-"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
+"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
+"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
+"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Desculpe, mas não encontramos o que você está procurando.</h1><p>A página ou arquivo que você solicitou não foi encontrado em nosso site. É possível que você tenha clicado em um link "
-"desatualizado, ou digitou o endereço incorretamente.</p><ul><li>Se você digitou o endereço, verifique a digitação.</li><li>Se seguiu um link de algum lugar, %(open_bug_link)sregistre o problema"
-"%(close_bug_link)s. Nos diga de onde veio e o que procurava e faremos o possível para corrigir.</li></ul><p>Você também pode ir para algumas das páginas mais populares do nosso site.</"
-"p><ul><li>Está interessado em uma <a href=\"%(rec)s\">lista de extensões em destaque</a>?</li><li>Quer <a href=\"%(search)s\">procurar extensões</a>? Você pode ir na <a href=\"%(search)s\">página "
-"de pesquisa</a> ou simplesmente usar o campo de pesquisa acima.</li><li>Se preferir começar de novo, basta ir para a <a href=\"%(home)s\">página inicial de extensões</a>.</li></ul>"
+"desatualizado, ou digitou o endereço incorretamente.</p><ul><li>Se você digitou o endereço, verifique a digitação.</li><li>Se seguiu um link de algum lugar, %(open_bug_link)sregistre o "
+"problema%(close_bug_link)s. Nos diga de onde veio e o que procurava e faremos o possível para corrigir.</li></ul><p>Você também pode ir para algumas das páginas mais populares do nosso "
+"site.</p><ul><li>Está interessado em uma <a href=\"%(rec)s\">lista de extensões em destaque</a>?</li><li>Quer <a href=\"%(search)s\">procurar extensões</a>? Você pode ir na <a "
+"href=\"%(search)s\">página de pesquisa</a> ou simplesmente usar o campo de pesquisa acima.</li><li>Se preferir começar de novo, basta ir para a <a href=\"%(home)s\">página inicial de "
+"extensões</a>.</li></ul>"
 
 msgid "Oops"
 msgstr "Ops"
@@ -362,8 +363,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p>Digite <strong>todas as palavras</strong> abaixo, <strong>separadas por um espaço, se necessário</strong>.</p><p>Se estiver difícil de ler, você pode <a href=\"#\" id=\"recaptcha_different"
-"\">tentar palavras diferentes</a> ou <a href=\"#\" id=\"recaptcha_audio\">outro tipo de desafio</a>.</p>"
+"<p>Digite <strong>todas as palavras</strong> abaixo, <strong>separadas por um espaço, se necessário</strong>.</p><p>Se estiver difícil de ler, você pode <a href=\"#\" "
+"id=\"recaptcha_different\">tentar palavras diferentes</a> ou <a href=\"#\" id=\"recaptcha_audio\">outro tipo de desafio</a>.</p>"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -474,11 +475,11 @@ msgstr "Versões"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
+"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr ""
-"Se o seu aplicativo suportado não requer um arquivo manifest, você ainda tem de incluir um com as propriedades requeridas conforme especificado %(amo_manifests_mdn_link_open)saqui"
-"%(amo_manifests_mdn_link_close)s."
+"Se o seu aplicativo suportado não requer um arquivo manifest, você ainda tem de incluir um com as propriedades requeridas conforme especificado "
+"%(amo_manifests_mdn_link_open)saqui%(amo_manifests_mdn_link_close)s."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Essa URL já está sendo usada por outra coleção."
@@ -1839,8 +1840,7 @@ msgstr ""
 "Neste site. <span class=\"helptext\">A sua submissão será listada neste site e no gerenciador de Extensões do Firefox para milhões de usuários, após passar a análise de código. As atualizações "
 "automáticas são geridas por este site. Esta extensão será também considerada para promoções e concursos da Mozilla. A distribuição própria dos arquivos analisados também é possível.</span>"
 
-msgid ""
-"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 "Por sua conta. <span class=\"helptext\">A sua submissão será assinada imediatamente para distribuição própria. As atualizações devem ser geridas através de um updateURL ou atualizações de "
 "aplicativos externos.</span>"
@@ -1967,8 +1967,8 @@ msgstr "Ocorreu um erro ao enviar sua imagem."
 #, python-format
 msgid "The latest approved version of this %s addon cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
-"A última versão aprovada desta extensão %s não pode ser excluída nem desativada porque a versão anterior não foi aprovada para promoção %s. Entre em contato com os administradores da AMO se "
-"precisar de ajuda com isso."
+"A última versão aprovada desta extensão %s não pode ser excluída nem desativada porque a versão anterior não foi aprovada para promoção %s. Entre em contato com os administradores da AMO se precisar"
+" de ajuda com isso."
 
 #, python-format
 msgid "Version %s disabled."
@@ -2125,8 +2125,8 @@ msgstr "Depois do envio, uma série de testes automáticos de validação serão
 msgid "Do you want your add-on to be distributed on this site?"
 msgstr "Quer que a sua extensão seja distribuída neste site?"
 
-# {0} is a filename. example: windows.exe
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
+# {0} is a filename. example: windows.exe
 msgid "Validation Results for {0}"
 msgstr "Resultados da validação de {0}"
 
@@ -2170,12 +2170,10 @@ msgstr ""
 "nova versão."
 
 #, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
+msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Atualizar compatibilidade</a>, <a href=\"%(version_url)s\" class=\"button\">Enviar uma nova versão</a> ou <a href=\"#"
-"\" class=\"close\">Ignorar</a>"
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Atualizar compatibilidade</a>, <a href=\"%(version_url)s\" class=\"button\">Enviar uma nova versão</a> ou <a href=\"#\""
+" class=\"close\">Ignorar</a>"
 
 msgid "View and update application compatibility ranges"
 msgstr "Ver e atualizar os intervalos de compatibilidade da aplicação"
@@ -2410,8 +2408,8 @@ msgid "Email"
 msgstr "Email"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
 msgstr ""
 "Se quiser exibir um endereço de email para consultas de suporte, digite aqui. Se tiver endereços de email diferentes por idioma, várias traduções deste campo podem ser adicionadas. Isso só é "
 "relevante para extensões listadas."
@@ -2478,8 +2476,8 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
-"Envie um ícone para sua extensão ou escolha um dos nossos. O ícone é exibido em quase toda parte em que está sua extensão. As imagens enviadas devem ser um dos seguintes tipos de imagem: .png, ."
-"jpg. Somente é relevante para as extensões listadss."
+"Envie um ícone para sua extensão ou escolha um dos nossos. O ícone é exibido em quase toda parte em que está sua extensão. As imagens enviadas devem ser um dos seguintes tipos de imagem: .png, .jpg."
+" Somente é relevante para as extensões listadss."
 
 # %s is the application name (Firefox, Thunderbird).
 msgid "Select an icon for your add-on:"
@@ -2660,15 +2658,15 @@ msgstr "Antes que esta extensão possa ser enviada para publicação, estão fal
 msgid "This add-on doesn't have any versions."
 msgstr "Essa extensão não tem nenhuma versão."
 
-# {0} is the count of addons in a collection
 #. {0} is the number of downloads.
+# {0} is the count of addons in a collection
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
 msgstr[0] "<strong>{0}</strong> download semanal"
 msgstr[1] "<strong>{0}</strong> downloads semanais"
 
-# %1$s is the count of subscribers for a collection
 #. {0} is the number of active users.
+# %1$s is the count of subscribers for a collection
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> usuário ativo"
@@ -2881,8 +2879,8 @@ msgid "Operating system and build environment requirements."
 msgstr "Requisitos de sistema operacional e ambiente de compilação."
 
 msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
-"\">npm</span> version used)."
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
+"emphasis\">npm</span> version used)."
 msgstr ""
 "Detalhes (incluindo versões necessárias e instruções de instalação) de quaisquer programas usados no processo de compilação ─ por exemplo: versões de <span class=\"tech-emphasis\">node</span> e "
 "<span class=\"tech-emphasis\">npm</span> usadas)."
@@ -3008,11 +3006,11 @@ msgstr "Segredo JWT"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
-"\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
-"Para fazer requisições via API, envie o<a href=\"%(jwt_url)s\"> JSON Web Token (JWT)</a> como cabeçalho de autorização. Você precisará gerar um JWT para cada requisição como explicado na <a href="
-"\"%(docs_url)s\">documentação da API</a>."
+"Para fazer requisições via API, envie o<a href=\"%(jwt_url)s\"> JSON Web Token (JWT)</a> como cabeçalho de autorização. Você precisará gerar um JWT para cada requisição como explicado na <a "
+"href=\"%(docs_url)s\">documentação da API</a>."
 
 #, python-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
@@ -3111,8 +3109,7 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
-"your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
@@ -3122,8 +3119,7 @@ msgstr ""
 "Percebemos que suas credenciais secretas da API da AMO foram incluídas em uma extensão enviada ao addons.mozilla.org. Para proteger sua conta e suas extensões, revogamos as credenciais vazadas.\n"
 "Você pode gerar novas credenciais da API em %(api_keys_url)s\n"
 "\n"
-"Certifique-se de nunca compartilhar suas credenciais com ninguém. Nunca as inclua em um repositório público, extensão ou qualquer outro local público. Recomendamos que você revise seus repositórios "
-"de código e suas extensões para remover quaisquer referências às suas credenciais da AMO.\n"
+"Certifique-se de nunca compartilhar suas credenciais com ninguém. Nunca as inclua em um repositório público, extensão ou qualquer outro local público. Recomendamos que você revise seus repositórios de código e suas extensões para remover quaisquer referências às suas credenciais da AMO.\n"
 "\n"
 "Obrigado,\n"
 "Equipe de extensões da Mozilla"
@@ -3233,9 +3229,9 @@ msgstr "Alguns elementos HTML são suportados."
 msgid "Remove this application"
 msgstr "Remover esta aplicação"
 
-# {1} is the application name (Firefox, Thunderbird)
 #. {0} is the maximum number of add-on categories allowed.                {1} is
 #. the application name.
+# {1} is the application name (Firefox, Thunderbird)
 msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
 msgstr[0] "Selecione <b>até {0}</b> categoria do {1} para esta extensão:"
@@ -3437,8 +3433,8 @@ msgstr "Crie uma conta de desenvolvedor ou acesse sua conta no Developer Hub"
 msgid "Manage Version {0}"
 msgstr "Gerenciar versão {0}"
 
-# {0} is the name of the collection
 #. {0} is an add-on name.
+# {0} is the name of the collection
 msgid "Manage {0}"
 msgstr "Gerenciar {0}"
 
@@ -3623,15 +3619,15 @@ msgstr "Você tem certeza de que deseja cancelar sua solicitação de análise?"
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "Documentação de extensões :: Central do Desenvolvedor"
 
-# {0} is a number
 #. L10n: first parameter is the number of errors
+# {0} is a number
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} erro"
 msgstr[1] "{0} erros"
 
-# {0} is a number
 #. L10n: first parameter is the number of warnings
+# {0} is a number
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} alerta"
@@ -4484,7 +4480,7 @@ msgstr "Dê um duplo-clique em qualquer palavra para ver imediatamente a defini�
 
 #. editorial content for the discovery pane.
 msgid "Blues & Yellows"
-msgstr ""
+msgstr "Azul e amarelo"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4567,8 +4563,8 @@ msgstr "Privacidade além das extensões do navegador"
 msgid "Media enhancers for Firefox"
 msgstr "Aprimoradores de mídia no Firefox"
 
-# Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
+# Plural in this context means many of the add-on type
 msgid "Explore extensions"
 msgstr "Explorar extensões"
 
@@ -4667,8 +4663,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr "Dúvidas comuns sobre análises"
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
+" with these guidelines."
 msgstr ""
 "Revisões de extensões são uma forma de compartilhar as suas opiniões sobre as extensões que instalou e usou. A nossa equipe de moderação reserva o direito de recusar ou de remover qualquer análise "
 "que não cumpra com estas diretrizes."
@@ -6254,8 +6250,8 @@ msgstr ""
 "domínio, em vez disso use \"Restrições de usuários de email\"."
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
+" which explains how we handle your information."
 msgstr ""
 "Antes de iniciar, por favor leia e aceite nosso acordo de distribuição de extensões para o Firefox. Ele também vincula a nossa notificação de privacidade que explica como nós tratamos sua "
 "informação."
@@ -6316,8 +6312,7 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
-"website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"
