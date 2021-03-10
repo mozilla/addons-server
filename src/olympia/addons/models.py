@@ -1150,8 +1150,13 @@ class Addon(OnChangeMixin, ModelBase):
                 % (self.id, self.status, status, reason)
             )
             self.update(status=status)
+            # If task_user doesn't exist that's no big issue (i.e. in tests)
+            try:
+                task_user = get_task_user()
+            except UserProfile.DoesNotExist:
+                task_user = None
             activity.log_create(
-                amo.LOG.CHANGE_STATUS, self, self.status, user=get_task_user()
+                amo.LOG.CHANGE_STATUS, self, self.status, user=task_user
             )
 
         self.update_version(ignore=ignore_version)
