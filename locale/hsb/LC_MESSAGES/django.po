@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-09 17:59+0000\n"
-"PO-Revision-Date: 2021-03-10 11:05+0000\n"
+"PO-Revision-Date: 2021-03-10 11:12+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4427,7 +4427,7 @@ msgstr "Klikńće dwójce na někajke słowo, zo byšće hnydom jeho definiciju 
 
 #. editorial content for the discovery pane.
 msgid "Blues & Yellows"
-msgstr ""
+msgstr "Módre a žołte"
 
 #. editorial content for the discovery pane.
 msgid "Forest Theme"
@@ -4479,11 +4479,11 @@ msgstr "Wróćo k jednorišemu časej – hdyž waše najwažniše pytanske wusl
 
 #. editorial content for the primary hero shelves.
 msgid "Get the scrollbar you always wanted—select width and your color of choice."
-msgstr ""
+msgstr "Wobstarajće sej suwansku lajstu, kotruž sće hižo přeco chcył – wubjerće šěrokosć a swoju barbu. "
 
 #. editorial content for the primary hero shelves.
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
-msgstr ""
+msgstr "Składujće a wobnowće rajtarki. Wobsahuje funkcije za awtomatiske składowanje a synchronizowanje z mróčelu."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
