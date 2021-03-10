@@ -124,13 +124,10 @@ def test_create_missing_theme_previews(parse_addon_mock):
     assert VersionPreview.objects.count() == 3
     with mock.patch(f'{PATCH_PATH}.generate_static_theme_preview') as gstp, mock.patch(
         f'{PATCH_PATH}.resize_image'
-    ) as resize, mock.patch(f'{PATCH_PATH}.storage.delete') as storage:
-        old_firefox_thumb_path = firefox_preview.thumbnail_path
+    ) as resize:
         recreate_theme_previews([theme.id], only_missing=True)
         assert gstp.call_count == 0  # not called
         assert resize.call_count == 2
-        assert storage.call_count == 1  # should only have been called for gif->png
-        assert storage.call_args == ((old_firefox_thumb_path,),)
         amo_preview.reload()
         assert amo_preview.thumbnail_dimensions == [720, 92]
         firefox_preview.reload()

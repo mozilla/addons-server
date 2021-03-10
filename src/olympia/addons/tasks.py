@@ -225,7 +225,6 @@ def recreate_theme_previews(addon_ids, **kw):
                             render['thumb_size'] != tuple(preview.thumbnail_dimensions)
                             or render['thumb_format'] != preview.get_format('thumbnail')
                         ):
-                            old_thumbnail_path = preview.thumbnail_path
                             preview.sizes['thumbnail_format'] = render['thumb_format']
                             preview.sizes['thumbnail'] = render['thumb_size']
                             resize_image(
@@ -236,20 +235,6 @@ def recreate_theme_previews(addon_ids, **kw):
                                 quality=35,
                             )
                             preview.save()
-
-                            if old_thumbnail_path != preview.thumbnail_path:
-                                try:
-                                    log.info(
-                                        'Removing filename: %s for preview: %s'
-                                        % (old_thumbnail_path, preview.pk)
-                                    )
-                                    storage.delete(old_thumbnail_path)
-                                except Exception as e:
-                                    log.error(
-                                        'Error deleting preview file (%s): %s',
-                                        old_thumbnail_path,
-                                        e,
-                                    )
 
                     continue
                 # else carry on with a full preview generation
