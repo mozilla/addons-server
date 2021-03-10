@@ -189,7 +189,6 @@ cssselect==1.1.0 \
 cssutils==2.0.0 \
     --hash=sha256:e61c26eb9303116b6c3539596de975210b2cffc89f33fccb53db3acfdad2c71d \
     --hash=sha256:984b5dbe3a2a0483d7cb131609a17f4cbaa34dda306c419924858a88588fed7c
-# defusedxml is required by amo-validator
 defusedxml==0.7.1 \
     --hash=sha256:a352e7e428770286cc899e2542b6cdaedb2b4953ff269a210103ec58f6198a61 \
     --hash=sha256:1bb3032db185915b62d7c6209c5a8792be6a32ab2fedacc84e01b52c51aa3e69
