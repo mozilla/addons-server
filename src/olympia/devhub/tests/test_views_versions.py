@@ -361,7 +361,7 @@ class TestVersion(TestCase):
             != new_version
         )
 
-        entry = ActivityLog.objects.get()
+        entry = ActivityLog.objects.latest('pk')
         assert entry.action == amo.LOG.USER_DISABLE.id
         msg = entry.to_string()
         assert str(self.addon.name) in msg, 'Unexpected: %r' % msg

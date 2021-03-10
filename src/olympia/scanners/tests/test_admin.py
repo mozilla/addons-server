@@ -1070,14 +1070,14 @@ class TestScannerQueryRuleAdmin(AMOPaths, TestCase):
             name='bar',
             scanner=YARA,
             state=COMPLETED,
-            completed=datetime(2020, 9, 29, 14, 0, 1),
+            completed=datetime(2020, 9, 29, 14, 1, 2),
         )
         response = self.client.get(self.list_url)
         assert response.status_code == 200
         doc = pq(response.content)
         field = doc('.field-state_with_actions')
         assert field
-        assert field.text() == 'Completed (Sept. 29, 2020, 2 p.m.)'
+        assert field.text() == 'Completed (Sept. 29, 2020, 14:01)'
         assert not field.find('button')
 
         rule.update(completed=None)  # If somehow None (unknown finished time)
