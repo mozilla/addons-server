@@ -275,9 +275,9 @@ html5lib==1.1 \
     --hash=sha256:0d78f8fde1c230e99fe37986a60526d7049ed4bf8a9fadbad5f00e22e58e041d \
     --hash=sha256:b2e5b40261e20f354d198eae92afc10d750afb487ed5e50f9c4eaf07c184146f
 # importlib-metadata is required by kombu
-importlib-metadata==3.7.0 \
-    --hash=sha256:c6af5dbf1126cd959c4a8d8efd61d4d3c83bddb0459a17e554284a077574b614 \
-    --hash=sha256:24499ffde1b80be08284100393955842be4a59c7c16bbf2738aad0e464a8e0aa
+importlib-metadata==3.7.2 \
+    --hash=sha256:407d13f55dc6f2a844e62325d18ad7019a436c4bfcaee34cda35f2be6e7c3e34 \
+    --hash=sha256:18d5ff601069f98d5d605b6a4b50c18a34811d655c55548adc833e687289acde
 # isodate is required by rdflib
 isodate==0.6.0 \
     --hash=sha256:aa4d33c06640f5352aca96e4b81afd8ab3b47337cc12089822d6f322ac772c81 \
