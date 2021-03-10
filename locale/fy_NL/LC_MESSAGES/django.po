@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-09 17:59+0000\n"
-"PO-Revision-Date: 2021-03-10 10:54+0000\n"
+"PO-Revision-Date: 2021-03-10 12:30+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4428,7 +4428,7 @@ msgstr "Dûbelklik op elk wurd om daliks de definysje derfan te sjen."
 
 #. editorial content for the discovery pane.
 msgid "Blues & Yellows"
-msgstr ""
+msgstr "Blau- en gieltinten"
 
 #. editorial content for the discovery pane.
 msgid "Forest Theme"
@@ -4480,11 +4480,11 @@ msgstr "Gean werom nei in ienfâldiger tiden – doe't jo bêste sykresultaten b
 
 #. editorial content for the primary hero shelves.
 msgid "Get the scrollbar you always wanted—select width and your color of choice."
-msgstr ""
+msgstr "Krij de skowbalke dy't jo altyd woene – selektearje breedte en de kleur fan jo foarkar."
 
 #. editorial content for the primary hero shelves.
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
-msgstr ""
+msgstr "Ljepblêden bewarje en weromsette. Ynklusyf funksjes foar automatysk bewarjen en cloudsyngronisaasje."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
