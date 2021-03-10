@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-09 17:59+0000\n"
-"PO-Revision-Date: 2021-03-10 11:07+0000\n"
+"PO-Revision-Date: 2021-03-10 12:01+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4272,9 +4272,8 @@ msgid "Close annoying pop-ups with a simple click."
 msgstr "Feche pop-ups irritantes com um único clique."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Find an interesting image on the web? Want to learn more about it?"
-msgstr "Encontrou uma imagem interessante na web? Use o TinEye para explorar sua origem."
+msgstr "Encontrou uma imagem interessante na web? Quer saber mais sobre ela?"
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
@@ -4483,9 +4482,8 @@ msgid "Blues & Yellows"
 msgstr "Tons de azul e amarelo"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Forest Theme"
-msgstr "Criar um tema"
+msgstr "Tema de floresta"
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
