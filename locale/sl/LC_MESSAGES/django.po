@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-02-23 18:22+0000\n"
+"POT-Creation-Date: 2021-03-09 17:59+0000\n"
 "PO-Revision-Date: 2020-11-22 11:19+0000\n"
 "Last-Translator: atomicmind <atomicmind@yahoo.com>\n"
 "Language-Team: Slovenian\n"
@@ -4223,8 +4223,8 @@ msgid "Close annoying pop-ups with a simple click."
 msgstr "Zaprite nadležna pojavna okna s preprostim klikom."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-msgid "Find an interesting image on the web? Use TinEye to explore its origins."
+#, fuzzy
+msgid "Find an interesting image on the web? Want to learn more about it?"
 msgstr "Ste na spletu našli zanimivo sliko? Uporabite TinEye in raziščite njen izvor."
 
 #. editorial content for the discovery pane.
@@ -4431,10 +4431,23 @@ msgstr ""
 msgid "Double-click any word to instantly see its definition."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Blues & Yellows"
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Forest Theme"
+msgstr "Ustvarite temo"
+
 #. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Nekatere strani imajo težave pri predvajanju videoposnetkov v Firefoxu za Android. Ta razširitev odpravlja težave."
+
+#. editorial content for the primary hero shelves.
+msgid "Find an interesting image on the web? Use TinEye to explore its origins."
+msgstr "Ste na spletu našli zanimivo sliko? Uporabite TinEye in raziščite njen izvor."
 
 #. editorial content for the primary hero shelves.
 msgid "For those moments you need to fire lasers out of cat eyes."
@@ -4471,6 +4484,14 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Get the scrollbar you always wanted—select width and your color of choice."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
