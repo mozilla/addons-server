@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-09 17:59+0000\n"
-"PO-Revision-Date: 2021-03-10 11:05+0000\n"
+"PO-Revision-Date: 2021-03-10 11:07+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4480,7 +4480,7 @@ msgstr "Dê um duplo-clique em qualquer palavra para ver imediatamente a defini�
 
 #. editorial content for the discovery pane.
 msgid "Blues & Yellows"
-msgstr "Azul e amarelo"
+msgstr "Tons de azul e amarelo"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4533,11 +4533,11 @@ msgstr "Retorne para um tempo mais simples, quando os principais resultados de p
 
 #. editorial content for the primary hero shelves.
 msgid "Get the scrollbar you always wanted—select width and your color of choice."
-msgstr ""
+msgstr "Tenha a barra de rolagem que você sempre quis, selecione a espessura e a cor de sua escolha."
 
 #. editorial content for the primary hero shelves.
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
-msgstr ""
+msgstr "Salve e restaure abas. Inclui recursos de salvamento automático e sincronização na nuvem."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
