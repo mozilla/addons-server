@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-09 17:59+0000\n"
-"PO-Revision-Date: 2021-03-10 09:05+0000\n"
+"PO-Revision-Date: 2021-03-10 09:09+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -181,7 +181,7 @@ msgid "My Profile"
 msgstr "Saját profil"
 
 msgid "Account Settings"
-msgstr "Beállítások"
+msgstr "Fiókbeállítások"
 
 msgid "My Collections"
 msgstr "Saját gyűjtemények"
@@ -4234,9 +4234,8 @@ msgid "Close annoying pop-ups with a simple click."
 msgstr "Zárja be a bosszantó előugró ablakokat egyetlen kattintással."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Find an interesting image on the web? Want to learn more about it?"
-msgstr "Talált egy érdekes képet a weben? Használja a TinEye-t az eredete felfedezéséhez."
+msgstr "Talált egy érdekes képet a weben? Szeretne többet megtudni róla?"
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
@@ -4442,7 +4441,7 @@ msgstr "Kattintson duplán bármelyik szóra, hogy azonnal megnézze annak megha
 
 #. editorial content for the discovery pane.
 msgid "Blues & Yellows"
-msgstr ""
+msgstr "Kékek és sárgák"
 
 #. editorial content for the discovery pane.
 msgid "Forest Theme"
@@ -4494,11 +4493,11 @@ msgstr "Térjen vissza egy egyszerűbb időbe – amikor a keresési találatok 
 
 #. editorial content for the primary hero shelves.
 msgid "Get the scrollbar you always wanted—select width and your color of choice."
-msgstr ""
+msgstr "Szerezze be a görgetősávot, amelyre mindig vágyott – válassza ki a kívánt szélességet és színt."
 
 #. editorial content for the primary hero shelves.
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
-msgstr ""
+msgstr "Lapok mentése és visszaállítása. Támogatja az automatikus mentést és a felhős szinkronizálást."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
