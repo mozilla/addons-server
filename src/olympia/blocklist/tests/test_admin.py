@@ -257,6 +257,10 @@ class TestBlocklistSubmissionAdmin(TestCase):
         pending_version = version_factory(
             addon=addon, version='5.999', file_kw={'status': amo.STATUS_AWAITING_REVIEW}
         )
+        # Delete any ActivityLog caused by our creations above to make things
+        # easier to test.
+        ActivityLog.objects.all().delete()
+
         response = self.client.get(self.submission_url + '?guids=guid@', follow=True)
         content = response.content.decode('utf-8')
         assert 'Add-on GUIDs (one per line)' not in content
@@ -286,7 +290,18 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert Block.objects.count() == 1
         block = Block.objects.first()
         assert block.addon == addon
-        log = ActivityLog.objects.for_addons(addon).last()
+        logs = ActivityLog.objects.for_addons(addon)
+        # Multiple versions rejection somehow forces us to go through multiple
+        # add-on status updates, it all turns out to be ok in the end though...
+        log = logs[0]
+        assert log.action == amo.LOG.CHANGE_STATUS.id
+        log = logs[1]
+        assert log.action == amo.LOG.CHANGE_STATUS.id
+        log = logs[2]
+        assert log.action == amo.LOG.REJECT_VERSION.id
+        log = logs[3]
+        assert log.action == amo.LOG.REJECT_VERSION.id
+        log = logs[4]
         assert log.action == amo.LOG.BLOCKLIST_BLOCK_ADDED.id
         assert log.arguments == [addon, addon.guid, block]
         assert log.details['min_version'] == '0'
@@ -463,6 +478,10 @@ class TestBlocklistSubmissionAdmin(TestCase):
             average_daily_users_snapshot=146722437,
             updated_by=user_factory(),
         )
+        # Delete any ActivityLog caused by our creations above to make things
+        # easier to test.
+        ActivityLog.objects.all().delete()
+
         response = self.client.post(
             self.submission_url,
             {'guids': 'any@new\npartial@existing\nfull@existing\ninvalid@'},
@@ -527,8 +546,9 @@ class TestBlocklistSubmissionAdmin(TestCase):
                 action=amo.LOG.BLOCKLIST_SIGNOFF.id
             )
         )
-        add_log = logs[1]
-        disable_log = logs[0]
+        change_status_log = logs[0]
+        reject_log = logs[1]
+        add_log = logs[2]
         assert add_log.action == amo.LOG.BLOCKLIST_BLOCK_ADDED.id
         assert add_log.arguments == [new_addon, new_addon.guid, new_block]
         assert add_log.details['min_version'] == '0'
@@ -550,13 +570,14 @@ class TestBlocklistSubmissionAdmin(TestCase):
             add_log
             == ActivityLog.objects.for_versions(new_addon.current_version).last()
         )
-        assert disable_log.action == amo.LOG.REJECT_VERSION.id
-        assert disable_log.arguments == [new_addon, new_addon.current_version]
-        assert disable_log.user == self.task_user
+        assert reject_log.action == amo.LOG.REJECT_VERSION.id
+        assert reject_log.arguments == [new_addon, new_addon.current_version]
+        assert reject_log.user == self.task_user
         assert (
-            disable_log
+            reject_log
             == ActivityLog.objects.for_versions(new_addon.current_version).first()
         )
+        assert change_status_log.action == amo.LOG.CHANGE_STATUS.id
 
         existing_and_partial = existing_and_partial.reload()
         assert all_blocks[1] == existing_and_partial
@@ -574,8 +595,9 @@ class TestBlocklistSubmissionAdmin(TestCase):
                 action=amo.LOG.BLOCKLIST_SIGNOFF.id
             )
         )
-        edit_log = logs[1]
-        disable_log = logs[0]
+        change_status_log = logs[0]
+        reject_log = logs[1]
+        edit_log = logs[2]
         assert edit_log.action == amo.LOG.BLOCKLIST_BLOCK_EDITED.id
         assert edit_log.arguments == [
             partial_addon,
@@ -601,13 +623,14 @@ class TestBlocklistSubmissionAdmin(TestCase):
             edit_log
             == ActivityLog.objects.for_versions(partial_addon.current_version).last()
         )
-        assert disable_log.action == amo.LOG.REJECT_VERSION.id
-        assert disable_log.arguments == [partial_addon, partial_addon.current_version]
-        assert disable_log.user == self.task_user
+        assert reject_log.action == amo.LOG.REJECT_VERSION.id
+        assert reject_log.arguments == [partial_addon, partial_addon.current_version]
+        assert reject_log.user == self.task_user
         assert (
-            disable_log
+            reject_log
             == ActivityLog.objects.for_versions(partial_addon.current_version).first()
         )
+        assert change_status_log.action == amo.LOG.CHANGE_STATUS.id
 
         existing_and_full = existing_and_full.reload()
         assert all_blocks[0] == existing_and_full
@@ -719,6 +742,9 @@ class TestBlocklistSubmissionAdmin(TestCase):
             max_version='*',
             updated_by=user_factory(),
         )
+        # Delete any ActivityLog caused by our creations above to make things
+        # easier to test.
+        ActivityLog.objects.all().delete()
         response = self.client.post(
             self.submission_url,
             {'guids': 'any@new\npartial@existing\nfull@existing'},
@@ -794,7 +820,10 @@ class TestBlocklistSubmissionAdmin(TestCase):
 
         new_block = all_blocks[2]
         assert new_block.addon == new_addon
-        log = ActivityLog.objects.for_addons(new_addon).last()
+        logs = ActivityLog.objects.for_addons(new_addon)
+        assert logs[0].action == amo.LOG.CHANGE_STATUS.id
+        assert logs[1].action == amo.LOG.REJECT_VERSION.id
+        log = logs[2]
         assert log.action == amo.LOG.BLOCKLIST_BLOCK_ADDED.id
         assert log.arguments == [new_addon, new_addon.guid, new_block]
         assert log.details['min_version'] == '1'
@@ -815,7 +844,10 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert existing_zero_to_max.reason == 'some reason'
         assert existing_zero_to_max.url == 'dfd'
         assert existing_zero_to_max.in_legacy_blocklist is False
-        log = ActivityLog.objects.for_addons(existing_zero_to_max.addon).last()
+        logs = ActivityLog.objects.for_addons(existing_zero_to_max.addon)
+        assert logs[0].action == amo.LOG.CHANGE_STATUS.id
+        assert logs[1].action == amo.LOG.REJECT_VERSION.id
+        log = logs[2]
         assert log.action == amo.LOG.BLOCKLIST_BLOCK_EDITED.id
         assert log.arguments == [
             existing_zero_to_max.addon,
@@ -1383,9 +1415,10 @@ class TestBlocklistSubmissionAdmin(TestCase):
 
         assert new_block.addon == addon
         logs = ActivityLog.objects.for_addons(addon)
-        disable_log = logs[0]
-        add_log = logs[2]
-        signoff_log = logs[1]
+        change_status_log = logs[0]
+        reject_log = logs[1]
+        signoff_log = logs[2]
+        add_log = logs[3]
         assert add_log.action == amo.LOG.BLOCKLIST_BLOCK_ADDED.id
         assert add_log.arguments == [addon, addon.guid, new_block]
         assert add_log.details['min_version'] == '0'
@@ -1406,13 +1439,15 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert signoff_log.arguments == [addon, addon.guid, 'add', new_block]
         assert signoff_log.user == user
 
-        assert disable_log.action == amo.LOG.REJECT_VERSION.id
-        assert disable_log.arguments == [addon, version]
-        assert disable_log.user == self.task_user
+        assert reject_log.action == amo.LOG.REJECT_VERSION.id
+        assert reject_log.arguments == [addon, version]
+        assert reject_log.user == self.task_user
         assert (
-            disable_log
+            reject_log
             == ActivityLog.objects.for_versions(addon.current_version).first()
         )
+
+        assert change_status_log.action == amo.LOG.CHANGE_STATUS.id
 
         # blocks would have been submitted to remote settings legacy collection
         legacy_publish_blocks_mock.assert_called()
@@ -1847,8 +1882,9 @@ class TestBlockAdminEdit(TestCase):
                 action=BLOCKLIST_SIGNOFF.id
             )
         )
-        log = logs[1]
-        reject_log = logs[0]
+        change_status_log = logs[0]
+        reject_log = logs[1]
+        log = logs[2]
         assert log.action == amo.LOG.BLOCKLIST_BLOCK_EDITED.id
         assert log.arguments == [self.addon, self.addon.guid, self.block]
         assert log.details['min_version'] == '0'
@@ -1865,6 +1901,7 @@ class TestBlockAdminEdit(TestCase):
         vlog = ActivityLog.objects.for_versions(self.addon.current_version).last()
         assert vlog == log
         assert reject_log.action == amo.LOG.REJECT_VERSION.id
+        assert change_status_log.action == amo.LOG.CHANGE_STATUS.id
 
         # Check the block history contains the edit just made.
         response = self.client.get(self.change_url, follow=True)
