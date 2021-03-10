@@ -48,6 +48,7 @@ from olympia.versions.models import (
     source_upload_path,
 )
 from olympia.scanners.models import ScannerResult
+from olympia.users.utils import get_task_user
 
 
 pytestmark = pytest.mark.django_db
@@ -324,13 +325,18 @@ class TestVersion(TestCase):
         assert not VersionPreview.objects.filter(version=version).exists()
 
     def test_version_delete_logs(self):
+        task_user = UserProfile.objects.create(pk=settings.TASK_USER_ID)
         user = UserProfile.objects.get(pk=55021)
         core.set_user(user)
-        # The transform don't know bout my users.
         version = Version.objects.get(pk=81551)
-        assert ActivityLog.objects.count() == 0
+        qs = ActivityLog.objects.all()
+        assert qs.count() == 0
         version.delete()
-        assert ActivityLog.objects.count() == 2
+        assert qs.count() == 2
+        assert qs[0].action == amo.LOG.CHANGE_STATUS.id
+        assert qs[0].user == task_user
+        assert qs[1].action == amo.LOG.DELETE_VERSION.id
+        assert qs[1].user == user
 
     def test_version_delete_clear_pending_rejection(self):
         version = Version.objects.get(pk=81551)
@@ -1274,10 +1280,15 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
                 'from_api': True,
             }
         }
-        assert ActivityLog.objects.count() == 1
-        activity = ActivityLog.objects.latest('pk')
-        assert activity.arguments == [version, self.addon]
-        assert activity.user == user
+        task_user = get_task_user()
+        assert ActivityLog.objects.count() == 2
+        activities = ActivityLog.objects.all()
+        assert activities[0].action == amo.LOG.CHANGE_STATUS.id
+        assert activities[0].arguments == [self.addon, amo.STATUS_APPROVED]
+        assert activities[0].user == task_user
+        assert activities[1].action == amo.LOG.ADD_VERSION.id
+        assert activities[1].arguments == [version, self.addon]
+        assert activities[1].user == user
 
     def test_carry_over_old_license(self):
         version = Version.from_upload(
