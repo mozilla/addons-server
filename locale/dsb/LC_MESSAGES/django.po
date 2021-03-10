@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-09 17:59+0000\n"
-"PO-Revision-Date: 2021-03-10 11:13+0000\n"
+"PO-Revision-Date: 2021-03-10 11:14+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -4485,7 +4485,7 @@ msgstr "Wobstarajśo se suwańsku rědku, kótaruž sćo južo pśecej kśył �
 
 #. editorial content for the primary hero shelves.
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
-msgstr ""
+msgstr "Składujśo a wótnowśo rejtariki. Wopśimujo funkcije za awtomatiske składowanje a synchronizěrowanje z mrokawu."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
