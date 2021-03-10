@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-09 17:59+0000\n"
-"PO-Revision-Date: 2021-03-04 16:41+0000\n"
-"Last-Translator: achristophe.story <achristophe.story@gmail.com>\n"
+"PO-Revision-Date: 2021-03-10 13:21+0000\n"
+"Last-Translator: Benoit Leseul <benoit.leseul@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -1651,7 +1651,7 @@ msgid "Delay auto-approval indefinitely"
 msgstr "Retarder l’approbation automatique indéfiniment"
 
 msgid "Delay auto-approval indefinitely and add restrictions"
-msgstr ""
+msgstr "Retarder indéfiniment l’approbation automatique et ajouter des restrictions"
 
 msgid "True positive"
 msgstr "Vrai positif"
@@ -4273,7 +4273,7 @@ msgstr "Fermez les fenêtres popup publicitaires intempestives d’un simple cli
 
 #. editorial content for the discovery pane.
 msgid "Find an interesting image on the web? Want to learn more about it?"
-msgstr ""
+msgstr "Vous avez déniché une photo sympa sur le Web ? Vous aimeriez en savoir plus à son sujet ?"
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
@@ -4479,11 +4479,11 @@ msgstr "Double-cliquez sur n’importe quel mot pour voir instantanément sa dé
 
 #. editorial content for the discovery pane.
 msgid "Blues & Yellows"
-msgstr ""
+msgstr "Bleus et jaunes"
 
 #. editorial content for the discovery pane.
 msgid "Forest Theme"
-msgstr ""
+msgstr "Thème forestier"
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4499,7 +4499,7 @@ msgstr "Quand vous êtes excédé et que vous avez envie de tirer au laser avec 
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
-msgstr ""
+msgstr "Retire ces longs et laids paramètres de pistage dans les URL des résultats de recherche Google."
 
 #. editorial content for the primary hero shelves.
 msgid "Get weather updates directly from Firefox."
