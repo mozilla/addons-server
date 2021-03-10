@@ -151,9 +151,7 @@ class TestRatingsModerationLog(ReviewerTest):
 
         response = self.client.get(self.url, {'end': '2011-01-01'})
         assert response.status_code == 200
-        assert pq(response.content)('tbody td').eq(0).text() == (
-            'Jan. 1, 2011, midnight'
-        )
+        assert pq(response.content)('tbody td').eq(0).text() == ('Jan. 1, 2011, 00:00')
 
     def test_action_filter(self):
         """
@@ -5297,7 +5295,7 @@ class TestReview(ReviewBase):
         )
         self.assertRedirects(response, new_block_url)
 
-    def test_user_changes_log(self):
+    def test_important_changes_log(self):
         # Activity logs related to user changes should be displayed.
         # Create an activy log for each of the following: user addition, role
         # change and deletion.
@@ -5321,25 +5319,46 @@ class TestReview(ReviewBase):
             str(author.get_role_display()),
             self.addon,
         )
+        ActivityLog.create(amo.LOG.FORCE_DISABLE, self.addon)
+        ActivityLog.create(
+            amo.LOG.FORCE_ENABLE,
+            self.addon,
+        )
 
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert 'user_changes_log' in response.context
-        user_changes_log = response.context['user_changes_log']
-        actions = [log.action for log in user_changes_log]
+        assert 'important_changes_log' in response.context
+        important_changes_log = response.context['important_changes_log']
+        actions = [log.action for log in important_changes_log]
         assert actions == [
+            amo.LOG.CHANGE_STATUS.id,
             amo.LOG.ADD_USER_WITH_ROLE.id,
             amo.LOG.CHANGE_USER_WITH_ROLE.id,
             amo.LOG.REMOVE_USER_WITH_ROLE.id,
+            amo.LOG.FORCE_DISABLE.id,
+            amo.LOG.FORCE_ENABLE.id,
         ]
 
         # Make sure the logs are displayed in the page.
-        user_changes = doc('#user-changes li')
-        assert len(user_changes) == 3
-        assert '(Owner) added to ' in user_changes[0].text
-        assert 'role changed to Owner for ' in user_changes[1].text
-        assert '(Owner) removed from ' in user_changes[2].text
+        important_changes = doc('#important-changes-history li')
+        assert len(important_changes) == 6
+        # Note: addon_factory() tricks avoid some of the ActivityLogs we'd
+        # normally be getting for an approved add-on, because it forces the
+        # status - that's fine, in this case we only want to make sure the
+        # change status ones are included in the log.
+        assert ' status changed to Incomplete' in important_changes[0].text_content()
+        assert 'class' not in important_changes[1].attrib
+        assert '(Owner) added to ' in important_changes[1].text_content()
+        assert 'class' not in important_changes[1].attrib
+        assert 'role changed to Owner for ' in important_changes[2].text_content()
+        assert 'class' not in important_changes[2].attrib
+        assert '(Owner) removed from ' in important_changes[3].text_content()
+        assert 'class' not in important_changes[3].attrib
+        assert 'status force-disabled.' in important_changes[4].text_content()
+        assert important_changes[4].attrib['class'] == 'reviewer-review-action'
+        assert 'status force-enabled.' in important_changes[5].text_content()
+        assert important_changes[5].attrib['class'] == 'reviewer-review-action'
 
     @override_settings(CELERY_TASK_ALWAYS_EAGER=True)
     @mock.patch('olympia.devhub.tasks.validate')
@@ -6909,7 +6928,7 @@ class TestAddonReviewerViewSet(TestCase):
         assert self.addon.status == amo.STATUS_APPROVED
         assert ActivityLog.objects.count() == 1
         activity_log = ActivityLog.objects.latest('pk')
-        assert activity_log.action == amo.LOG.CHANGE_STATUS.id
+        assert activity_log.action == amo.LOG.FORCE_ENABLE.id
         assert activity_log.arguments[0] == self.addon
 
     def test_enable_already_public(self):
@@ -6921,7 +6940,7 @@ class TestAddonReviewerViewSet(TestCase):
         assert self.addon.status == amo.STATUS_APPROVED
         assert ActivityLog.objects.count() == 1
         activity_log = ActivityLog.objects.latest('pk')
-        assert activity_log.action == amo.LOG.CHANGE_STATUS.id
+        assert activity_log.action == amo.LOG.FORCE_ENABLE.id
         assert activity_log.arguments[0] == self.addon
 
     def test_enable_no_public_versions_should_fall_back_to_incomplete(self):
@@ -6977,7 +6996,7 @@ class TestAddonReviewerViewSet(TestCase):
         assert self.addon.status == amo.STATUS_DISABLED
         assert ActivityLog.objects.count() == 1
         activity_log = ActivityLog.objects.latest('pk')
-        assert activity_log.action == amo.LOG.CHANGE_STATUS.id
+        assert activity_log.action == amo.LOG.FORCE_DISABLE.id
         assert activity_log.arguments[0] == self.addon
 
     def test_patch_flags_not_logged_in(self):
