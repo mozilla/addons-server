@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-09 17:59+0000\n"
-"PO-Revision-Date: 2021-02-24 15:25+0000\n"
+"PO-Revision-Date: 2021-03-11 18:00+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4190,7 +4190,7 @@ msgstr "Claude enoiose quadros emergente con un simple clic."
 
 #. editorial content for the discovery pane.
 msgid "Find an interesting image on the web? Want to learn more about it?"
-msgstr ""
+msgstr "Trova tu sur le web un imagine interessante? Desira tu saper plus re illo?"
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
@@ -4400,7 +4400,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Forest Theme"
-msgstr ""
+msgstr "Thema de foresta"
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
