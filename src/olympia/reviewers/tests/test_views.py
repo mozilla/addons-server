@@ -151,9 +151,7 @@ class TestRatingsModerationLog(ReviewerTest):
 
         response = self.client.get(self.url, {'end': '2011-01-01'})
         assert response.status_code == 200
-        assert pq(response.content)('tbody td').eq(0).text() == (
-            'Jan. 1, 2011, midnight'
-        )
+        assert pq(response.content)('tbody td').eq(0).text() == ('Jan. 1, 2011, 00:00')
 
     def test_action_filter(self):
         """
@@ -3578,8 +3576,8 @@ class TestReview(ReviewBase):
             version_factory(
                 addon=addon, version=f'1.{i}', created=self.days_ago(365 - i)
             )
-        with self.assertNumQueries(59):
-            # FIXME: 59 is obviously still too high, but it's a starting point.
+        with self.assertNumQueries(62):
+            # FIXME: 62 is obviously still too high, but it's a starting point.
             # Potential further optimizations:
             # - Remove trivial... and not so trivial duplicates
             # - Group similar queries
@@ -3592,60 +3590,63 @@ class TestReview(ReviewBase):
             # 3. groups
             # 4. add-on by slug
             # 5. add-on translations
-            # 6. current version
-            # 7. version translations
-            # 8. applications versions
-            # 9. files
-            # 10. authors
-            # 11. previews
-            # 12. autoapprovalsummary for current version
-            # 13. promoted info for the add-on
-            # 14. latest version
-            # 15. latest version translations
-            # 16. latest version (repeated)
-            # 17. latest version translations (repeated)
-            # 18. addon reviewer flags
-            # 19. version reviewer flags
-            # 20. version reviewer flags (repeated)
-            # 21. files
-            # 22. autoapprovalsummary (repeated)
-            # 23. addonreusedguid
-            # 24. blocklist
-            # 25. canned responses
-            # 26. abuse reports count against user or addon
-            # 27. low ratings count
-            # 28. base version for comparison
-            # 29. translations for base version
-            # 30. applications versions for base version
-            # 31. files for base version
-            # 32. count of all versions in channel
-            # 33. paginated list of versions in channel
-            # 34. scanner results for paginated list of versions
-            # 35. translations for  paginated list of versions
-            # 36. applications versions for  paginated list of versions
-            # 37. files for  paginated list of versions
-            # 38. activity log for  paginated list of versions
-            # 39. ready for auto-approval info for  paginated list of versions
-            # 40. versionreviewer flags exists to find out if pending rejection
-            # 41. count versions needing human review on other pages
-            # 42. count versions needing human review by mad on other pages
-            # 43. count versions pending rejection on other pages
-            # 44. whiteboard
-            # 45. reviewer subscriptions for listed
-            # 46. reviewer subscriptions for unlisted
-            # 47. config for motd
-            # 48. my favorite collection for the current user
-            # 49. add-on list for the current user
-            # 50. config for site notice
-            # 51. translations for... (?)
-            # 52. specific log activity about the add-on
-            # 53. reusedguid (repeated)
-            # 54. select all versions in channel for versions dropdown widget
-            # 55. select files for those versions
-            # 56. select files waiting for review for particular version
-            # 57. select users by role for this add-on (?)
-            # 58. select categories (repeated)
-            # 59. savepoint
+            # 6. add-on categories
+            # 7. current version
+            # 8. version translations
+            # 9. applications versions
+            # 10. files
+            # 11. authors
+            # 12. previews
+            # 13. autoapprovalsummary for current version
+            # 14. promoted info for the add-on
+            # 15. latest version
+            # 16. latest version translations
+            # 17. latest version (repeated because different status filter)
+            # 18. latest version translations (repeated because different qs)
+            # 19. addon reviewer flags
+            # 20. version reviewer flags
+            # 21. version reviewer flags (repeated)
+            # 22. files
+            # 23. autoapprovalsummary (repeated)
+            # 24. addonreusedguid
+            # 25. blocklist
+            # 26. canned responses
+            # 27. abuse reports count against user or addon
+            # 28. low ratings count
+            # 29. base version for comparison
+            # 30. translations for base version
+            # 31. applications versions for base version
+            # 32. files for base version
+            # 33. count of all versions in channel
+            # 34. paginated list of versions in channel
+            # 35. scanner results for paginated list of versions
+            # 36. translations for  paginated list of versions
+            # 37. applications versions for  paginated list of versions
+            # 38. files for  paginated list of versions
+            # 39. activity log for  paginated list of versions
+            # 40. ready for auto-approval info for  paginated list of versions
+            # 41. versionreviewer flags exists to find out if pending rejection
+            # 42. count versions needing human review on other pages
+            # 43. count versions needing human review by mad on other pages
+            # 44. count versions pending rejection on other pages
+            # 45. whiteboard
+            # 46. reviewer subscriptions for listed
+            # 47. reviewer subscriptions for unlisted
+            # 48. config for motd
+            # 49. my favorite collection for the current user
+            # 50. count add-ons the user is a developer of
+            # 51. config for site notice
+            # 52. translations for... (?! id=1)
+            # 53. important activity log about the add-on
+            # 54. user for the activity
+            # 55. add-on for the activity
+            # 56. translation for the add-on for the activity
+            # 57. reusedguid (repeated)
+            # 58. select all versions in channel for versions dropdown widget
+            # 59. select files for those versions
+            # 60. select files waiting for review for particular version
+            # 61. select users by role for this add-on (?)
+            # 62. savepoint
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -5297,7 +5298,7 @@ class TestReview(ReviewBase):
         )
         self.assertRedirects(response, new_block_url)
 
-    def test_user_changes_log(self):
+    def test_important_changes_log(self):
         # Activity logs related to user changes should be displayed.
         # Create an activy log for each of the following: user addition, role
         # change and deletion.
@@ -5321,25 +5322,46 @@ class TestReview(ReviewBase):
             str(author.get_role_display()),
             self.addon,
         )
+        ActivityLog.create(amo.LOG.FORCE_DISABLE, self.addon)
+        ActivityLog.create(
+            amo.LOG.FORCE_ENABLE,
+            self.addon,
+        )
 
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert 'user_changes_log' in response.context
-        user_changes_log = response.context['user_changes_log']
-        actions = [log.action for log in user_changes_log]
+        assert 'important_changes_log' in response.context
+        important_changes_log = response.context['important_changes_log']
+        actions = [log.action for log in important_changes_log]
         assert actions == [
+            amo.LOG.CHANGE_STATUS.id,
             amo.LOG.ADD_USER_WITH_ROLE.id,
             amo.LOG.CHANGE_USER_WITH_ROLE.id,
             amo.LOG.REMOVE_USER_WITH_ROLE.id,
+            amo.LOG.FORCE_DISABLE.id,
+            amo.LOG.FORCE_ENABLE.id,
         ]
 
         # Make sure the logs are displayed in the page.
-        user_changes = doc('#user-changes li')
-        assert len(user_changes) == 3
-        assert '(Owner) added to ' in user_changes[0].text
-        assert 'role changed to Owner for ' in user_changes[1].text
-        assert '(Owner) removed from ' in user_changes[2].text
+        important_changes = doc('#important-changes-history li')
+        assert len(important_changes) == 6
+        # Note: addon_factory() tricks avoid some of the ActivityLogs we'd
+        # normally be getting for an approved add-on, because it forces the
+        # status - that's fine, in this case we only want to make sure the
+        # change status ones are included in the log.
+        assert ' status changed to Incomplete' in important_changes[0].text_content()
+        assert 'class' not in important_changes[1].attrib
+        assert '(Owner) added to ' in important_changes[1].text_content()
+        assert 'class' not in important_changes[1].attrib
+        assert 'role changed to Owner for ' in important_changes[2].text_content()
+        assert 'class' not in important_changes[2].attrib
+        assert '(Owner) removed from ' in important_changes[3].text_content()
+        assert 'class' not in important_changes[3].attrib
+        assert 'status force-disabled.' in important_changes[4].text_content()
+        assert important_changes[4].attrib['class'] == 'reviewer-review-action'
+        assert 'status force-enabled.' in important_changes[5].text_content()
+        assert important_changes[5].attrib['class'] == 'reviewer-review-action'
 
     @override_settings(CELERY_TASK_ALWAYS_EAGER=True)
     @mock.patch('olympia.devhub.tasks.validate')
@@ -5888,7 +5910,7 @@ class TestReview(ReviewBase):
                     results={'matchedResults': [customs_rule.name]},
                 )
 
-        with self.assertNumQueries(59):
+        with self.assertNumQueries(62):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.
@@ -5947,7 +5969,7 @@ class TestReview(ReviewBase):
                     results={'matchedResults': [customs_rule.name]},
                 )
 
-        with self.assertNumQueries(61):
+        with self.assertNumQueries(64):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.
@@ -6909,7 +6931,7 @@ class TestAddonReviewerViewSet(TestCase):
         assert self.addon.status == amo.STATUS_APPROVED
         assert ActivityLog.objects.count() == 1
         activity_log = ActivityLog.objects.latest('pk')
-        assert activity_log.action == amo.LOG.CHANGE_STATUS.id
+        assert activity_log.action == amo.LOG.FORCE_ENABLE.id
         assert activity_log.arguments[0] == self.addon
 
     def test_enable_already_public(self):
@@ -6921,7 +6943,7 @@ class TestAddonReviewerViewSet(TestCase):
         assert self.addon.status == amo.STATUS_APPROVED
         assert ActivityLog.objects.count() == 1
         activity_log = ActivityLog.objects.latest('pk')
-        assert activity_log.action == amo.LOG.CHANGE_STATUS.id
+        assert activity_log.action == amo.LOG.FORCE_ENABLE.id
         assert activity_log.arguments[0] == self.addon
 
     def test_enable_no_public_versions_should_fall_back_to_incomplete(self):
@@ -6977,7 +6999,7 @@ class TestAddonReviewerViewSet(TestCase):
         assert self.addon.status == amo.STATUS_DISABLED
         assert ActivityLog.objects.count() == 1
         activity_log = ActivityLog.objects.latest('pk')
-        assert activity_log.action == amo.LOG.CHANGE_STATUS.id
+        assert activity_log.action == amo.LOG.FORCE_DISABLE.id
         assert activity_log.arguments[0] == self.addon
 
     def test_patch_flags_not_logged_in(self):

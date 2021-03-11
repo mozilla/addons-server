@@ -40,14 +40,14 @@
 
   {% include 'reviewers/addon_details_box.html' %}
 
-  {% if user_changes_log %}
-  <div id="user-changes-history">
+  {% if important_changes_log %}
+  <div id="important-changes-history">
     <h3>
-      {{ _('Add-on user change history') }}
+      {{ _('Add-on important changes history') }}
     </h3>
-    <ul id="user-changes">
-      {% for user_change_log in user_changes_log %}
-        <li>{{ user_change_log.created }}: {{ user_change_log }}</li>
+    <ul>
+      {% for activity in important_changes_log %}
+        <li {% if activity.log.reviewer_review_action %}class="reviewer-review-action"{% endif %}>{{ activity.created|datetime }}: {{ activity }}</li>
       {% endfor %}
     </ul>
   </div>

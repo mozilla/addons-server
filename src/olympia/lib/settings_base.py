@@ -374,6 +374,10 @@ TEMPLATES = [
     },
 ]
 
+# Default datetime format in templates
+# https://docs.djangoproject.com/en/3.2/ref/templates/builtins/#std:templatefilter-date
+DATETIME_FORMAT = 'N j, Y, H:i'
+
 
 X_FRAME_OPTIONS = 'DENY'
 SECURE_BROWSER_XSS_FILTER = True

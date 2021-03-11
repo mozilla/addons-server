@@ -772,6 +772,26 @@ class VERSION_RESIGNED(_LOG):
     review_queue = True
 
 
+class FORCE_DISABLE(_LOG):
+    id = 167
+    keep = True
+    # We don't want to notify developers, this is not a regular rejection - the
+    # add-on is likely malicious.
+    hide_developer = True
+    reviewer_review_action = True
+    format = _('{addon} status force-disabled.')
+    short = _('Force disabled')
+
+
+class FORCE_ENABLE(_LOG):
+    id = 168
+    keep = True
+    hide_developer = True
+    reviewer_review_action = True
+    format = _('{addon} status force-enabled.')
+    short = _('Force enabled')
+
+
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
 assert len(LOGS) == len(set(log.id for log in LOGS))
