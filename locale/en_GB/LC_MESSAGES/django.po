@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-09 17:59+0000\n"
-"PO-Revision-Date: 2021-03-12 01:16+0000\n"
+"PO-Revision-Date: 2021-03-12 01:29+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -4187,9 +4187,8 @@ msgid "Close annoying pop-ups with a simple click."
 msgstr "Close annoying pop-ups with a simple click."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Find an interesting image on the web? Want to learn more about it?"
-msgstr "Find an interesting image on the web? Use TinEye to explore its origins."
+msgstr "Find an interesting image on the web? Want to learn more about it?"
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
@@ -4398,9 +4397,8 @@ msgid "Blues & Yellows"
 msgstr "Blues & Yellows"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Forest Theme"
-msgstr "Create a Theme"
+msgstr "Forest Theme"
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
