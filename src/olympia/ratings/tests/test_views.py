@@ -2005,7 +2005,7 @@ class TestRatingViewSetPost(TestCase):
                     'score': 2,
                     'version': self.addon.current_version.pk,
                 },
-                extra_kwargs={'REMOTE_ADDR': '4.8.15.16'}
+                extra_kwargs={'REMOTE_ADDR': '4.8.15.16'},
             )
             assert response.status_code == 201
 
@@ -2023,7 +2023,7 @@ class TestRatingViewSetPost(TestCase):
                     'score': 2,
                     'version': new_version.pk,
                 },
-                extra_kwargs={'REMOTE_ADDR': '4.8.15.16'}
+                extra_kwargs={'REMOTE_ADDR': '4.8.15.16'},
             )
             assert response.status_code == 429
 
@@ -2039,7 +2039,7 @@ class TestRatingViewSetPost(TestCase):
                     'score': 2,
                     'version': new_version.pk,
                 },
-                extra_kwargs={'REMOTE_ADDR': '4.8.15.16'}
+                extra_kwargs={'REMOTE_ADDR': '4.8.15.16'},
             )
             assert response.status_code == 201, response.content
 
