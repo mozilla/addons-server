@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-09 17:59+0000\n"
-"PO-Revision-Date: 2021-02-28 06:11+0000\n"
+"PO-Revision-Date: 2021-03-12 06:27+0000\n"
 "Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -4286,7 +4286,7 @@ msgstr "Chiudi fastidiosi pop-up con un semplice clic."
 
 #. editorial content for the discovery pane.
 msgid "Find an interesting image on the web? Want to learn more about it?"
-msgstr ""
+msgstr "Hai trovato un’immagine interessante sul Web? Vuoi saperne di più?"
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
@@ -4496,7 +4496,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Forest Theme"
-msgstr ""
+msgstr "A tema foresta"
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4544,11 +4544,11 @@ msgstr "Ritorna al tempo in cui era tutto più semplice, quando i risultati di r
 
 #. editorial content for the primary hero shelves.
 msgid "Get the scrollbar you always wanted—select width and your color of choice."
-msgstr ""
+msgstr "Ottieni la barra di scorrimento che hai sempre desiderato: seleziona la larghezza e il colore che preferisci."
 
 #. editorial content for the primary hero shelves.
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
-msgstr ""
+msgstr "Salva e ripristina le schede. Include funzioni di salvataggio automatico e sincronizzazione tramite cloud."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
