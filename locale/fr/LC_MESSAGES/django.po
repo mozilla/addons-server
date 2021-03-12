@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-09 17:59+0000\n"
-"PO-Revision-Date: 2020-09-17 13:15+0000\n"
+"PO-Revision-Date: 2021-03-11 17:00+0000\n"
 "Last-Translator: Benoit Leseul <benoit.leseul@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -4531,7 +4531,7 @@ msgstr "Revenez à une époque plus simple — lorsque les meilleurs résultats 
 
 #. editorial content for the primary hero shelves.
 msgid "Get the scrollbar you always wanted—select width and your color of choice."
-msgstr ""
+msgstr "La barre de défilement que vous avez toujours voulue — choisissez son épaisseur et la couleur de votre choix."
 
 #. editorial content for the primary hero shelves.
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
@@ -4583,7 +4583,7 @@ msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr "{app} : « strict_min_version » {appver} inconnu"
 
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
-msgstr ""
+msgstr "{app} : « strict_max_version » {appver} inconnu"
 
 msgid "Unsupported archive type."
 msgstr "Type d’archive non pris en charge."
@@ -4950,7 +4950,7 @@ msgid "Version string and guid match a blocklist Block"
 msgstr "La chaîne de version et le GUID correspondent à un blocage de la liste de blocage."
 
 msgid "Weight breakdown not available."
-msgstr ""
+msgstr "Répartition des poids non disponible."
 
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Vous ne pouvez pas soumettre de commentaire si « canned_response » est défini."
