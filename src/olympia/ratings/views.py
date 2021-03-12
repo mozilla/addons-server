@@ -23,7 +23,7 @@ from olympia.api.permissions import (
     ByHttpMethod,
     GroupPermission,
 )
-from olympia.api.throttling import GranularUserRateThrottle
+from olympia.api.throttling import GranularIPRateThrottle, GranularUserRateThrottle
 from olympia.api.utils import is_gate_active
 
 from .models import Rating, RatingFlag
@@ -38,7 +38,18 @@ class RatingThrottle(GranularUserRateThrottle):
 
     def allow_request(self, request, view):
         if request.method.lower() == 'post':
-            return super(RatingThrottle, self).allow_request(request, view)
+            return super().allow_request(request, view)
+        else:
+            return True
+
+
+class RatingIPThrottle(GranularIPRateThrottle):
+    rate = '1/minute'
+    scope = 'ip_rating'
+
+    def allow_request(self, request, view):
+        if request.method.lower() == 'post':
+            return super().allow_request(request, view)
         else:
             return True
 
@@ -78,7 +89,7 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
     ]
     reply_serializer_class = RatingSerializerReply
     flag_permission_classes = [AllowNotOwner]
-    throttle_classes = (RatingThrottle,)
+    throttle_classes = (RatingThrottle, RatingIPThrottle)
 
     def set_addon_object_from_rating(self, rating):
         """Set addon object on the instance from a rating object."""
