@@ -90,14 +90,14 @@ def test_create_missing_theme_previews(parse_addon_mock):
 
     # addon has all the complete previews already so skip when only_missing=True
     assert VersionPreview.objects.count() == 3
-    with mock.patch(f'{PATCH_PATH}.generate_static_theme_preview') as gstp, mock.patch(
-        f'{PATCH_PATH}.resize_image'
-    ) as resize:
+    with mock.patch(
+        f'{PATCH_PATH}.generate_static_theme_preview'
+    ) as gen_preview, mock.patch(f'{PATCH_PATH}.resize_image') as resize:
         recreate_theme_previews([theme.id], only_missing=True)
-        assert gstp.call_count == 0
+        assert gen_preview.call_count == 0
         assert resize.call_count == 0
         recreate_theme_previews([theme.id], only_missing=False)
-        assert gstp.call_count == 1
+        assert gen_preview.call_count == 1
         assert resize.call_count == 0
         assert VersionPreview.objects.count() == 0
 
@@ -106,11 +106,11 @@ def test_create_missing_theme_previews(parse_addon_mock):
     firefox_preview.save()
     extra_preview.save()
     assert VersionPreview.objects.count() == 2
-    with mock.patch(f'{PATCH_PATH}.generate_static_theme_preview') as gstp, mock.patch(
-        f'{PATCH_PATH}.resize_image'
-    ) as resize:
+    with mock.patch(
+        f'{PATCH_PATH}.generate_static_theme_preview'
+    ) as gen_preview, mock.patch(f'{PATCH_PATH}.resize_image') as resize:
         recreate_theme_previews([theme.id], only_missing=True)
-        assert gstp.call_count == 1
+        assert gen_preview.call_count == 1
         assert resize.call_count == 0
 
     # But we don't do the full regeneration to just get new thumbnail sizes or formats
@@ -122,11 +122,11 @@ def test_create_missing_theme_previews(parse_addon_mock):
     assert firefox_preview.get_format('thumbnail') == 'gif'
     extra_preview.save()
     assert VersionPreview.objects.count() == 3
-    with mock.patch(f'{PATCH_PATH}.generate_static_theme_preview') as gstp, mock.patch(
-        f'{PATCH_PATH}.resize_image'
-    ) as resize:
+    with mock.patch(
+        f'{PATCH_PATH}.generate_static_theme_preview'
+    ) as gen_preview, mock.patch(f'{PATCH_PATH}.resize_image') as resize:
         recreate_theme_previews([theme.id], only_missing=True)
-        assert gstp.call_count == 0  # not called
+        assert gen_preview.call_count == 0  # not called
         assert resize.call_count == 2
         amo_preview.reload()
         assert amo_preview.thumbnail_dimensions == [720, 92]
