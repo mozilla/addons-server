@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-09 17:59+0000\n"
-"PO-Revision-Date: 2021-03-14 12:23+0000\n"
+"PO-Revision-Date: 2021-03-14 12:34+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1595,9 +1595,8 @@ msgstr "Asεeṭṭel n uqbal awurman"
 msgid "Delay auto-approval indefinitely"
 msgstr "Aɛeṭṭel n uqval awurman i lebda"
 
-#, fuzzy
 msgid "Delay auto-approval indefinitely and add restrictions"
-msgstr "Aɛeṭṭel n uqval awurman i lebda"
+msgstr "Sεeṭṭel aqval awurman i lebda, ternuḍ ilugan"
 
 msgid "True positive"
 msgstr "Uzɣin ufrir"
@@ -4177,9 +4176,8 @@ msgid "Close annoying pop-ups with a simple click."
 msgstr "Mdel isfuyla udhimen imεekkṛen s yiwen n usiti kan."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Find an interesting image on the web? Want to learn more about it?"
-msgstr "Tufid-d tawlaft yelhan deg web? Seqdec TinEye akken ad tafeḍ ansa i d-tekka."
+msgstr "Af-d tugna yelhan deg web? Tebɣiḍ ad tissineḍ ugar fell-as?"
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
@@ -4388,9 +4386,8 @@ msgid "Blues & Yellows"
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Forest Theme"
-msgstr "Rnu asentel"
+msgstr "Asentel n teẓgi"
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4845,9 +4842,8 @@ msgstr "Yeɛṭel acku d lqem amenzu i d-yettwabedren"
 msgid "Version string and guid match a blocklist Block"
 msgstr "Azrr n lqem d GUID mṣadan ɣer yiḥder n tebdart n usewḥel"
 
-#, fuzzy
 msgid "Weight breakdown not available."
-msgstr "Afraq n umihi ulac-it."
+msgstr "Anegzum n taẓayt ulac-it."
 
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Tzemreḍ ad tazneḍ awennit ma yella `canned_response` yettusbadu."
