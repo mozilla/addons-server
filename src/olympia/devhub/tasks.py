@@ -615,24 +615,28 @@ def resize_icon(source, dest_folder, target_sizes, **kw):
 def resize_preview(src, preview_pk, **kw):
     """Resizes preview images and stores the sizes on the preview."""
     preview = Preview.objects.get(pk=preview_pk)
+    preview.sizes = {'thumbnail_format': amo.ADDON_PREVIEW_SIZES['thumbnail_format']}
     thumb_dst, full_dst, orig_dst = (
         preview.thumbnail_path,
         preview.image_path,
         preview.original_path,
     )
-    sizes = {}
     log.info('[1@None] Resizing preview and storing size: %s' % thumb_dst)
     try:
-        (sizes['thumbnail'], sizes['original']) = resize_image(
-            src, thumb_dst, amo.ADDON_PREVIEW_SIZES['thumb']
+        (preview.sizes['thumbnail'], preview.sizes['original']) = resize_image(
+            src,
+            thumb_dst,
+            amo.ADDON_PREVIEW_SIZES['thumbnail'],
+            format=amo.ADDON_PREVIEW_SIZES['thumbnail_format'],
         )
-        (sizes['image'], _) = resize_image(
-            src, full_dst, amo.ADDON_PREVIEW_SIZES['full']
+        (preview.sizes['image'], _) = resize_image(
+            src,
+            full_dst,
+            amo.ADDON_PREVIEW_SIZES['full'],
         )
         if not os.path.exists(os.path.dirname(orig_dst)):
             os.makedirs(os.path.dirname(orig_dst))
         os.rename(src, orig_dst)
-        preview.sizes = sizes
         preview.save()
         return True
     except Exception as e:
@@ -642,22 +646,32 @@ def resize_preview(src, preview_pk, **kw):
 def _recreate_images_for_preview(preview):
     log.info('Resizing preview: %s' % preview.id)
     try:
-        preview.sizes = {}
+        preview.sizes = {
+            'thumbnail_format': amo.ADDON_PREVIEW_SIZES['thumbnail_format']
+        }
         if storage.exists(preview.original_path):
             # We have an original size image, so we can resize that.
             src = preview.original_path
             preview.sizes['image'], preview.sizes['original'] = resize_image(
-                src, preview.image_path, amo.ADDON_PREVIEW_SIZES['full']
+                src,
+                preview.image_path,
+                amo.ADDON_PREVIEW_SIZES['full'],
             )
             preview.sizes['thumbnail'], _ = resize_image(
-                src, preview.thumbnail_path, amo.ADDON_PREVIEW_SIZES['thumb']
+                src,
+                preview.thumbnail_path,
+                amo.ADDON_PREVIEW_SIZES['thumbnail'],
+                format=amo.ADDON_PREVIEW_SIZES['thumbnail_format'],
             )
         else:
             # Otherwise we can't create a new sized full image, but can
             # use it for a new thumbnail
             src = preview.image_path
             preview.sizes['thumbnail'], preview.sizes['image'] = resize_image(
-                src, preview.thumbnail_path, amo.ADDON_PREVIEW_SIZES['thumb']
+                src,
+                preview.thumbnail_path,
+                amo.ADDON_PREVIEW_SIZES['thumbnail'],
+                format=amo.ADDON_PREVIEW_SIZES['thumbnail_format'],
             )
         preview.save()
         return True
