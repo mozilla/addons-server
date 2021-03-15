@@ -247,7 +247,6 @@ class AddonIndexer(BaseSearchIndexer):
                         'is_webextension': {'type': 'boolean'},
                         'is_mozilla_signed_extension': {'type': 'boolean'},
                         'is_restart_required': {'type': 'boolean', 'index': False},
-                        'platform': {'type': 'byte', 'index': False},
                         'size': {'type': 'long', 'index': False},
                         'strict_compatibility': {'type': 'boolean', 'index': False},
                         'status': {'type': 'byte'},
@@ -327,7 +326,6 @@ class AddonIndexer(BaseSearchIndexer):
                             },
                         },
                     },
-                    'platforms': {'type': 'byte'},
                     'previews': {
                         'type': 'object',
                         'properties': {
@@ -410,7 +408,6 @@ class AddonIndexer(BaseSearchIndexer):
                             file_.is_mozilla_signed_extension
                         ),
                         'is_restart_required': file_.is_restart_required,
-                        'platform': file_.platform,
                         'size': file_.size,
                         'status': file_.status,
                         'strict_compatibility': file_.strict_compatibility,
@@ -506,9 +503,6 @@ class AddonIndexer(BaseSearchIndexer):
         data = {attr: getattr(obj, attr) for attr in attrs}
 
         data['colors'] = None
-        if obj.current_version:
-            data['platforms'] = [p.id for p in obj.current_version.supported_platforms]
-
         # Extract dominant colors from static themes.
         if obj.type == amo.ADDON_STATICTHEME:
             first_preview = obj.current_previews.first()

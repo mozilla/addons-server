@@ -71,7 +71,6 @@ class FileInline(admin.TabularInline):
         'created',
         'version__version',
         'version__channel',
-        'platform',
         'status',
         'version__is_blocked',
         'hash_link',

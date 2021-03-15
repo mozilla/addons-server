@@ -31,7 +31,6 @@ class FileAdmin(admin.ModelAdmin):
                     'id',
                     'created',
                     'version',
-                    'platform',
                     'filename',
                     'size',
                     'hash',
