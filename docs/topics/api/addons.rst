@@ -232,19 +232,6 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
         For possible version values per application, see
         `valid application versions`_.
 
-.. _addon-detail-platform:
-
-    Possible values for the ``current_version.files[].platform`` field:
-
-    ==============  ==========================================================
-             Value  Description
-    ==============  ==========================================================
-               all  All
-               mac  Mac
-             linux  Linux
-           android  Android
-           windows  Windows
-    ==============  ==========================================================
 
 .. _addon-detail-type:
 
@@ -387,7 +374,6 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     :>json boolean files[].is_webextension: Whether the file is a WebExtension or not.
     :>json array files[].optional_permissions[]: Array of the optional webextension permissions for this File, as strings. Empty for non-webextensions.
     :>json array files[].permissions[]: Array of the webextension permissions for this File, as strings. Empty for non-webextensions.
-    :>json string files[].platform: The :ref:`platform <addon-detail-platform>` for a file (obsolete, will be removed soon: all add-ons should have their ``platform`` set to ``all`` already).
     :>json int files[].size: The size for a file, in bytes.
     :>json int files[].status: The :ref:`status <addon-detail-status>` for a file.
     :>json string files[].url: The (absolute) URL to download a file.
