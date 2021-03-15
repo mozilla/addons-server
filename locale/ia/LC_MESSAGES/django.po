@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-09 17:59+0000\n"
-"PO-Revision-Date: 2021-03-11 18:00+0000\n"
+"PO-Revision-Date: 2021-03-15 23:38+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4396,7 +4396,7 @@ msgstr "Duple-clicca ulle parola pro vider al instante su definition."
 
 #. editorial content for the discovery pane.
 msgid "Blues & Yellows"
-msgstr ""
+msgstr "Blaus e jalnes"
 
 #. editorial content for the discovery pane.
 msgid "Forest Theme"
