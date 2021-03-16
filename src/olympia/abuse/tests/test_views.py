@@ -346,6 +346,28 @@ class TestAddonAbuseViewSetLoggedIn(AddonAbuseViewSetTestBase, TestCase):
     def check_reporter(self, report):
         assert report.reporter == self.user
 
+    def test_throttle_ip_for_authenticated_users(self):
+        user = user_factory()
+        self.client.login_api(user)
+        addon = addon_factory()
+        for x in range(20):
+            response = self.client.post(
+                self.url,
+                data={'addon': str(addon.id), 'message': 'abuse!'},
+                REMOTE_ADDR='123.45.67.89',
+            )
+            assert response.status_code == 201, x
+
+        # Different user, same IP: should still be blocked (> 20 / day).
+        new_user = user_factory()
+        self.client.login_api(new_user)
+        response = self.client.post(
+            self.url,
+            data={'addon': str(addon.id), 'message': 'abuse!'},
+            REMOTE_ADDR='123.45.67.89',
+        )
+        assert response.status_code == 429
+
 
 class UserAbuseViewSetTestBase(object):
     client_class = APITestClient
@@ -443,3 +465,25 @@ class TestUserAbuseViewSetLoggedIn(UserAbuseViewSetTestBase, TestCase):
 
     def check_reporter(self, report):
         assert report.reporter == self.user
+
+    def test_throttle_ip_for_authenticated_users(self):
+        user = user_factory()
+        self.client.login_api(user)
+        target_user = user_factory()
+        for x in range(20):
+            response = self.client.post(
+                self.url,
+                data={'user': str(target_user.username), 'message': 'abuse!'},
+                REMOTE_ADDR='123.45.67.89',
+            )
+            assert response.status_code == 201, x
+
+        # Different user, same IP: should still be blocked (> 20 / day).
+        new_user = user_factory()
+        self.client.login_api(new_user)
+        response = self.client.post(
+            self.url,
+            data={'user': str(target_user.username), 'message': 'abuse!'},
+            REMOTE_ADDR='123.45.67.89',
+        )
+        assert response.status_code == 429
