@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-16 17:41+0000\n"
-"PO-Revision-Date: 2021-03-16 19:31+0000\n"
+"PO-Revision-Date: 2021-03-16 19:35+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -4450,9 +4450,8 @@ msgid "For those moments you need to fire lasers out of cat eyes."
 msgstr "Для випадків, коли вам треба спалити щось лазером з очей кота."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Web pages read aloud. 40+ languages supported."
-msgstr "Озвучування вмісту вебсторінок для вас. Доступно більш як 40 мовами."
+msgstr "Озвучування вмісту вебсторінок. Підтримується понад 40 мов."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
@@ -4467,9 +4466,8 @@ msgid "Manage your time better with a browser clock that charts work intervals."
 msgstr "Керувати своїм часом краще за допомогою годинника браузера, який визначає графіки робочих інтервалів."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
-msgstr "Набридла поява вікна \"Відео зупинено. Продовжити перегляд?\" Слухайте улюблену музику безперервно на YouTube."
+msgstr "Набридла поява повідомлення \"Відео зупинено. Продовжити перегляд?\" Слухайте улюблену музику безперервно на YouTube."
 
 #. editorial content for the primary hero shelves.
 msgid "Thousands of GIFs at your fingertips."
@@ -4480,7 +4478,6 @@ msgid "Begone, annoying cookie warnings!"
 msgstr "Приберіть надокучливі попередження про куки!"
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "The easiest way to manage YouTube subscriptions."
 msgstr "Найпростіший спосіб керувати всіма своїми підписками на канали YouTube."
 
@@ -4489,7 +4486,6 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr "Поверніться в часи, коли ваші найкращі результати пошуку стояли над оголошеннями (сумісні з пошуковою системою Google і Bing)."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Get the mouse scrollbar you've always wanted—specify width and color."
 msgstr "Отримайте панель прокрутки, яку ви завжди хотіли — виберіть власні ширину та колір."
 
@@ -5389,9 +5385,8 @@ msgstr "Перевірка вмісту {0}"
 msgid "Review {0}"
 msgstr "Перевірити {0}"
 
-#, fuzzy
 msgid "Add-on important changes history"
-msgstr "Історія змін користувачів додатку"
+msgstr "Історія важливих змін додатка"
 
 msgid "Add-on History"
 msgstr "Історія додатку"
