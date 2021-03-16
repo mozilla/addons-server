@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-16 17:41+0000\n"
-"PO-Revision-Date: 2017-10-24 11:51+0000\n"
-"Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
+"PO-Revision-Date: 2021-03-16 19:31+0000\n"
+"Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -968,21 +968,17 @@ msgstr "{addon} {version} перепідписано (раніше {0})."
 msgid "Version re-signed"
 msgstr "Версію перепідписано"
 
-#, fuzzy
 msgid "{addon} status force-disabled."
-msgstr "{addon} відключено."
+msgstr "Стан {addon} примусово вимкнено."
 
-#, fuzzy
 msgid "Force disabled"
-msgstr "Примусово вимкнути додаток"
+msgstr "Примусово вимкнено"
 
-#, fuzzy
 msgid "{addon} status force-enabled."
-msgstr "{addon} {version} знов увімкнено."
+msgstr "Стан {addon} примусово увімкнено."
 
-#, fuzzy
 msgid "Force enabled"
-msgstr "Примусово увімкнути додаток"
+msgstr "Примусово увімкнено"
 
 msgid "Firefox"
 msgstr "Firefox"
