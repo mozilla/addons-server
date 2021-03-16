@@ -12,7 +12,7 @@ from olympia.addons.views import AddonViewSet
 from olympia.api.throttling import GranularIPRateThrottle, GranularUserRateThrottle
 
 
-class AbuseThrottle(GranularUserRateThrottle):
+class AbuseUserThrottle(GranularUserRateThrottle):
     rate = '20/day'
     scope = 'user_abuse'
 
@@ -25,7 +25,7 @@ class AbuseIPThrottle(GranularIPRateThrottle):
 class AddonAbuseViewSet(CreateModelMixin, GenericViewSet):
     permission_classes = []
     serializer_class = AddonAbuseReportSerializer
-    throttle_classes = (AbuseThrottle, AbuseIPThrottle)
+    throttle_classes = (AbuseUserThrottle, AbuseIPThrottle)
 
     def get_addon_viewset(self):
         if hasattr(self, 'addon_viewset'):
@@ -80,7 +80,7 @@ class AddonAbuseViewSet(CreateModelMixin, GenericViewSet):
 class UserAbuseViewSet(CreateModelMixin, GenericViewSet):
     permission_classes = []
     serializer_class = UserAbuseReportSerializer
-    throttle_classes = (AbuseThrottle, AbuseIPThrottle)
+    throttle_classes = (AbuseUserThrottle, AbuseIPThrottle)
 
     def get_user_object(self):
         if hasattr(self, 'user_object'):

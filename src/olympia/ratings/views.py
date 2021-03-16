@@ -32,7 +32,7 @@ from .serializers import RatingFlagSerializer, RatingSerializer, RatingSerialize
 from .utils import get_grouped_ratings
 
 
-class RatingThrottle(GranularUserRateThrottle):
+class RatingUserThrottle(GranularUserRateThrottle):
     rate = '1/minute'
     scope = 'user_rating'
 
@@ -54,7 +54,7 @@ class RatingIPThrottle(GranularIPRateThrottle):
             return True
 
 
-class RatingReplyThrottle(RatingThrottle):
+class RatingReplyThrottle(RatingUserThrottle):
     rate = '1/5second'
     scope = 'user_rating_reply'
 
@@ -89,7 +89,7 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
     ]
     reply_serializer_class = RatingSerializerReply
     flag_permission_classes = [AllowNotOwner]
-    throttle_classes = (RatingThrottle, RatingIPThrottle)
+    throttle_classes = (RatingUserThrottle, RatingIPThrottle)
 
     def set_addon_object_from_rating(self, rating):
         """Set addon object on the instance from a rating object."""
