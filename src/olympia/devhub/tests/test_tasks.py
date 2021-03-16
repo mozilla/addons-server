@@ -144,6 +144,7 @@ def test_recreate_previews(pngcrush_image_mock):
     assert preview_no_original.reload().sizes == {
         'image': [533, 400],
         'thumbnail': [533, 400],
+        'thumbnail_format': 'jpg',
     }
     # Check no resize for full size, but resize happened for thumbnail
     assert storage.size(preview_no_original.image_path) == storage.size(
@@ -152,11 +153,13 @@ def test_recreate_previews(pngcrush_image_mock):
     assert storage.size(preview_no_original.thumbnail_path) != storage.size(
         get_image_path('mozilla.png')
     )
+    assert storage.size(preview_no_original.thumbnail_path) > 0
 
     assert preview_has_original.reload().sizes == {
         'image': [2400, 1600],
         'thumbnail': [640, 427],
         'original': [3000, 2000],
+        'thumbnail_format': 'jpg',
     }
     # Check both full and thumbnail changed, but original didn't.
     assert storage.size(preview_has_original.image_path) != storage.size(
@@ -165,6 +168,7 @@ def test_recreate_previews(pngcrush_image_mock):
     assert storage.size(preview_has_original.thumbnail_path) != storage.size(
         get_image_path('mozilla.png')
     )
+    assert storage.size(preview_has_original.thumbnail_path) > 0
     assert storage.size(preview_has_original.original_path) == storage.size(
         get_image_path('teamaddons.jpg')
     )
