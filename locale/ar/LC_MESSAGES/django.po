@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-09 17:59+0000\n"
+"POT-Creation-Date: 2021-03-16 17:41+0000\n"
 "PO-Revision-Date: 2020-10-09 05:48+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -973,6 +973,22 @@ msgstr "تم إعادة تفعيل {addon} {version}."
 #, fuzzy
 msgid "Version re-signed"
 msgstr "ملاحظات الإصدارة"
+
+#, fuzzy
+msgid "{addon} status force-disabled."
+msgstr "عُطّلت {addon}."
+
+#, fuzzy
+msgid "Force disabled"
+msgstr "عُطّلت {addon}."
+
+#, fuzzy
+msgid "{addon} status force-enabled."
+msgstr "تم إعادة تفعيل {addon} {version}."
+
+#, fuzzy
+msgid "Force enabled"
+msgstr "إضافات الهواتف الذكية"
 
 msgid "Firefox"
 msgstr "فَيَرفُكس"
@@ -4482,7 +4498,6 @@ msgid "Skip over sponsored portions of YouTube videos."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Have web pages read aloud to you. 40+ languages supported."
 msgstr ""
 
@@ -4513,6 +4528,10 @@ msgid "For those moments you need to fire lasers out of cat eyes."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
+msgid "Web pages read aloud. 40+ languages supported."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
 msgstr ""
 
@@ -4525,7 +4544,7 @@ msgid "Manage your time better with a browser clock that charts work intervals."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
+msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4537,7 +4556,7 @@ msgid "Begone, annoying cookie warnings!"
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid "The easiest way to manage all of your YouTube channel subscriptions."
+msgid "The easiest way to manage YouTube subscriptions."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4545,7 +4564,7 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid "Get the scrollbar you always wanted—select width and your color of choice."
+msgid "Get the mouse scrollbar you've always wanted—specify width and color."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -5512,7 +5531,7 @@ msgstr "التعليق على {0}"
 msgid "Review {0}"
 msgstr "التعليق على {0}"
 
-msgid "Add-on user change history"
+msgid "Add-on important changes history"
 msgstr ""
 
 msgid "Add-on History"

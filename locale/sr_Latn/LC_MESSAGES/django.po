@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-09 17:59+0000\n"
+"POT-Creation-Date: 2021-03-16 17:41+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -1124,6 +1124,22 @@ msgstr "Zahtevana je recenzija za {addon} {version}."
 #, fuzzy
 msgid "Version re-signed"
 msgstr "Verzija %s onemogućena."
+
+#, fuzzy
+msgid "{addon} status force-disabled."
+msgstr "{addon} onemogućen."
+
+#, fuzzy
+msgid "Force disabled"
+msgstr "{addon} onemogućen."
+
+#, fuzzy
+msgid "{addon} status force-enabled."
+msgstr "{addon} {version} je odbijen."
+
+#, fuzzy
+msgid "Force enabled"
+msgstr "Verzija za štampanje"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -5227,7 +5243,6 @@ msgid "Skip over sponsored portions of YouTube videos."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Have web pages read aloud to you. 40+ languages supported."
 msgstr ""
 
@@ -5259,6 +5274,10 @@ msgid "For those moments you need to fire lasers out of cat eyes."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
+msgid "Web pages read aloud. 40+ languages supported."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 msgid ""
 "Removes those long and ugly tracking parameters from Google search result "
 "URL's."
@@ -5275,7 +5294,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid ""
-"Tired of that \"Video paused. Continue watching?\" dialog? Listen to your "
+"Tired of that \"Video paused. Continue watching?\" message? Listen to your "
 "favorite music uninterrupted on YouTube."
 msgstr ""
 
@@ -5288,7 +5307,7 @@ msgid "Begone, annoying cookie warnings!"
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid "The easiest way to manage all of your YouTube channel subscriptions."
+msgid "The easiest way to manage YouTube subscriptions."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -5298,8 +5317,7 @@ msgid ""
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid ""
-"Get the scrollbar you always wanted—select width and your color of choice."
+msgid "Get the mouse scrollbar you've always wanted—specify width and color."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -6334,7 +6352,7 @@ msgstr "Pregledaj {0}"
 msgid "Review {0}"
 msgstr "Pregledaj {0}"
 
-msgid "Add-on user change history"
+msgid "Add-on important changes history"
 msgstr ""
 
 msgid "Add-on History"
