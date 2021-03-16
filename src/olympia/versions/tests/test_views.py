@@ -471,24 +471,6 @@ class TestDownloadsLatest(TestDownloadsBase):
         assert self.addon.current_version
         self.assert_served_by_redirecting_to_cdn(self.client.get(self.latest_url))
 
-    def test_platform(self):
-        # We still match PLATFORM_ALL.
-        url = reverse(
-            'downloads.latest', kwargs={'addon_id': self.addon.slug, 'platform': 5}
-        )
-        self.assert_served_by_redirecting_to_cdn(self.client.get(url))
-
-        # And now we match the platform in the url.
-        self.file.platform = self.platform
-        self.file.save()
-        self.assert_served_by_redirecting_to_cdn(self.client.get(url))
-
-        # But we can't match platform=3.
-        url = reverse(
-            'downloads.latest', kwargs={'addon_id': self.addon.slug, 'platform': 3}
-        )
-        assert self.client.get(url).status_code == 404
-
     def test_type(self):
         url = reverse(
             'downloads.latest',
@@ -510,18 +492,6 @@ class TestDownloadsLatest(TestDownloadsBase):
         )
         url += self.file.filename
         self.assert_served_locally(self.client.get(url), attachment=True)
-
-    def test_platform_multiple_objects(self):
-        file_ = File.objects.create(
-            platform=3,
-            version=self.file.version,
-            filename='unst.xpi',
-            status=self.file.status,
-        )
-        url = reverse(
-            'downloads.latest', kwargs={'addon_id': self.addon.slug, 'platform': 3}
-        )
-        self.assert_served_locally(self.client.get(url), file_=file_)
 
 
 class TestDownloadSource(TestCase):

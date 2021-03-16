@@ -40,7 +40,6 @@ from olympia.amo.tests import (
     TestCase,
     addon_factory,
     collection_factory,
-    file_factory,
     user_factory,
     version_factory,
 )
@@ -123,7 +122,6 @@ class AddonSerializerOutputTestMixin(object):
             result_file['is_mozilla_signed_extension']
             == file_.is_mozilla_signed_extension
         )
-        assert result_file['platform'] == (amo.PLATFORM_CHOICES_API[file_.platform])
         assert result_file['size'] == file_.size
         assert result_file['status'] == amo.STATUS_CHOICES_API[file_.status]
         assert result_file['url'] == file_.get_absolute_url()
@@ -160,7 +158,6 @@ class AddonSerializerOutputTestMixin(object):
                 'hash': 'fakehash',
                 'is_restart_required': False,
                 'is_webextension': True,
-                'platform': amo.PLATFORM_WIN.id,
                 'size': 42,
             },
             guid=generate_addon_guid(),
@@ -1034,6 +1031,7 @@ class TestVersionSerializerOutput(TestCase):
     def setUp(self):
         super(TestVersionSerializerOutput, self).setUp()
         self.request = APIRequestFactory().get('/')
+        self.request.version = 'v5'
 
     def serialize(self):
         serializer = VersionSerializer(context={'request': self.request})
@@ -1056,7 +1054,6 @@ class TestVersionSerializerOutput(TestCase):
                 'hash': 'fakehash',
                 'is_webextension': True,
                 'is_mozilla_signed_extension': True,
-                'platform': amo.PLATFORM_WIN.id,
                 'size': 42,
             },
             version_kw={
@@ -1072,11 +1069,7 @@ class TestVersionSerializerOutput(TestCase):
         )
 
         self.version = addon.current_version
-        first_file = self.version.files.latest('pk')
-        file_factory(version=self.version, platform=amo.PLATFORM_MAC.id)
-        second_file = self.version.files.latest('pk')
-        # Force reload of all_files cached property.
-        del self.version.all_files
+        current_file = self.version.current_file
 
         result = self.serialize()
         assert result['id'] == self.version.pk
@@ -1084,35 +1077,20 @@ class TestVersionSerializerOutput(TestCase):
         assert result['compatibility'] == {'firefox': {'max': '*', 'min': '50.0'}}
 
         assert result['files']
-        assert len(result['files']) == 2
+        assert len(result['files']) == 1
 
-        assert result['files'][0]['id'] == first_file.pk
+        assert result['files'][0]['id'] == current_file.pk
         assert result['files'][0]['created'] == (
-            first_file.created.replace(microsecond=0).isoformat() + 'Z'
+            current_file.created.replace(microsecond=0).isoformat() + 'Z'
         )
-        assert result['files'][0]['hash'] == first_file.hash
-        assert result['files'][0]['is_webextension'] == (first_file.is_webextension)
+        assert result['files'][0]['hash'] == current_file.hash
+        assert result['files'][0]['is_webextension'] == (current_file.is_webextension)
         assert result['files'][0]['is_mozilla_signed_extension'] == (
-            first_file.is_mozilla_signed_extension
+            current_file.is_mozilla_signed_extension
         )
-        assert result['files'][0]['platform'] == 'windows'
-        assert result['files'][0]['size'] == first_file.size
+        assert result['files'][0]['size'] == current_file.size
         assert result['files'][0]['status'] == 'public'
-        assert result['files'][0]['url'] == first_file.get_absolute_url()
-
-        assert result['files'][1]['id'] == second_file.pk
-        assert result['files'][1]['created'] == (
-            second_file.created.replace(microsecond=0).isoformat() + 'Z'
-        )
-        assert result['files'][1]['hash'] == second_file.hash
-        assert result['files'][1]['is_webextension'] == (second_file.is_webextension)
-        assert result['files'][1]['is_mozilla_signed_extension'] == (
-            second_file.is_mozilla_signed_extension
-        )
-        assert result['files'][1]['platform'] == 'mac'
-        assert result['files'][1]['size'] == second_file.size
-        assert result['files'][1]['status'] == 'public'
-        assert result['files'][1]['url'] == second_file.get_absolute_url()
+        assert result['files'][0]['url'] == current_file.get_absolute_url()
 
         assert result['channel'] == 'listed'
         assert result['edit_url'] == absolutify(
@@ -1133,6 +1111,19 @@ class TestVersionSerializerOutput(TestCase):
             'url': 'http://license.example.com/',
         }
         assert result['reviewed'] == (now.replace(microsecond=0).isoformat() + 'Z')
+
+    def test_platform(self):
+        self.version = addon_factory().current_version
+        result = self.serialize()
+        file_data = result['files'][0]
+        assert 'platform' not in file_data
+
+        # Test with shim
+        gates = {self.request.version: ('platform-shim',)}
+        with override_settings(DRF_API_GATES=gates):
+            result = self.serialize()
+        file_data = result['files'][0]
+        assert file_data['platform'] == 'all'
 
     def test_unlisted(self):
         addon = addon_factory()
@@ -1163,7 +1154,7 @@ class TestVersionSerializerOutput(TestCase):
         assert result['license']['url'] == absolutify(self.version.license_url())
 
         # And make sure it's not present in v3
-        gates = {None: ('del-version-license-is-custom',)}
+        gates = {self.request.version: ('del-version-license-is-custom',)}
         with override_settings(DRF_API_GATES=gates):
             result = self.serialize()
             assert 'is_custom' not in result['license']
@@ -1175,7 +1166,7 @@ class TestVersionSerializerOutput(TestCase):
         assert result['license']['is_custom'] is False
 
         # Again, make sure it's not present in v3
-        gates = {None: ('del-version-license-is-custom',)}
+        gates = {self.request.version: ('del-version-license-is-custom',)}
         with override_settings(DRF_API_GATES=gates):
             result = self.serialize()
             assert 'is_custom' not in result['license']

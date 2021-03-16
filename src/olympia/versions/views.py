@@ -165,14 +165,8 @@ def download_latest(request, addon, type='xpi', platform=None):
 
     Requires same permissions as download_file() does for this file.
     """
-    platforms = [amo.PLATFORM_ALL.id]
-    if platform is not None and int(platform) in amo.PLATFORMS:
-        platforms.append(int(platform))
-    version = addon._current_version_id
-    files = File.objects.filter(platform__in=platforms, version=version)
     try:
-        # If there's a file matching our platform, it'll float to the end.
-        file_ = sorted(files, key=lambda f: f.platform == platforms[-1])[-1]
+        file_ = addon.current_version.current_file
     except IndexError:
         raise http.Http404()
     return download_file(request, file_.id, type=type, file_=file_, addon=addon)

@@ -3,47 +3,12 @@ import pytest
 
 from olympia import amo
 from olympia.addons.models import Addon
-from olympia.amo.tests import TestCase
 from olympia.files.models import File
 from olympia.reviewers.templatetags import code_manager, jinja_helpers
 from olympia.versions.models import Version
 
 
 pytestmark = pytest.mark.django_db
-
-
-class TestCompareLink(TestCase):
-    fixtures = ['base/addon_3615']
-
-    def setUp(self):
-        super(TestCompareLink, self).setUp()
-        self.addon = Addon.objects.get(pk=3615)
-        self.current = File.objects.get(pk=67442)
-        self.version = Version.objects.create(addon=self.addon)
-
-    def test_same_platform(self):
-        file = File.objects.create(version=self.version, platform=self.current.platform)
-        assert file.pk == jinja_helpers.file_compare(self.current, self.version).pk
-
-    def test_different_platform(self):
-        file = File.objects.create(version=self.version, platform=self.current.platform)
-        File.objects.create(version=self.version, platform=amo.PLATFORM_LINUX.id)
-        assert file.pk == jinja_helpers.file_compare(self.current, self.version).pk
-
-    def test_specific_platform(self):
-        self.current.platform_id = amo.PLATFORM_LINUX.id
-        self.current.save()
-
-        linux = File.objects.create(
-            version=self.version, platform=amo.PLATFORM_LINUX.id
-        )
-        assert linux.pk == jinja_helpers.file_compare(self.current, self.version).pk
-
-    def test_no_platform(self):
-        self.current.platform_id = amo.PLATFORM_LINUX.id
-        self.current.save()
-        file = File.objects.create(version=self.version, platform=amo.PLATFORM_WIN.id)
-        assert file.pk == jinja_helpers.file_compare(self.current, self.version).pk
 
 
 def test_version_status():

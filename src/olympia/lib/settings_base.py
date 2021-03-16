@@ -1604,6 +1604,7 @@ DRF_API_GATES = {
         'is-featured-addon-shim',
         'disco-heading-and-description-shim',
         'wrap-outgoing-parameter',
+        'platform-shim',
     ),
     'v4': (
         'l10n_flat_input_output',
@@ -1611,6 +1612,7 @@ DRF_API_GATES = {
         'ratings-can_reply',
         'ratings-score-filter',
         'wrap-outgoing-parameter',
+        'platform-shim',
     ),
     'v5': (
         'addons-search-_score-field',

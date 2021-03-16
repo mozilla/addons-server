@@ -45,7 +45,7 @@ from .models import Addon, Preview, ReplacementAddon, attach_tags
 
 class FileSerializer(serializers.ModelSerializer):
     url = serializers.SerializerMethodField()
-    platform = ReverseChoiceField(choices=list(amo.PLATFORM_CHOICES_API.items()))
+    platform = serializers.SerializerMethodField()
     status = ReverseChoiceField(choices=list(amo.STATUS_CHOICES_API.items()))
     permissions = serializers.ListField(child=serializers.CharField())
     optional_permissions = serializers.ListField(child=serializers.CharField())
@@ -70,6 +70,18 @@ class FileSerializer(serializers.ModelSerializer):
 
     def get_url(self, obj):
         return obj.get_absolute_url()
+
+    def to_representation(self, obj):
+        data = super().to_representation(obj)
+        request = self.context.get('request', None)
+        if request and not is_gate_active(request, 'platform-shim'):
+            data.pop('platform', None)
+        return data
+
+    def get_platform(self, obj):
+        # platform is gone, but we need to keep the API backwards compatible so
+        # fake it by just returning 'all' all the time.
+        return 'all'
 
 
 class PreviewSerializer(serializers.ModelSerializer):
@@ -594,7 +606,6 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
             is_webextension=data.get('is_webextension'),
             is_mozilla_signed_extension=data.get('is_mozilla_signed_extension'),
             is_restart_required=data.get('is_restart_required', False),
-            platform=data['platform'],
             size=data['size'],
             status=data['status'],
             strict_compatibility=data.get('strict_compatibility', False),
