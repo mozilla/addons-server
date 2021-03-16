@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-09 17:59+0000\n"
+"POT-Creation-Date: 2021-03-16 17:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -154,46 +154,46 @@ msgstr ""
 msgid "Only latest versions of addons can have notes added."
 msgstr ""
 
-#: src/olympia/addons/admin.py:337
+#: src/olympia/addons/admin.py:336
 #: src/olympia/devhub/templates/devhub/addons/owner.html:28
 #: src/olympia/reviewers/templates/reviewers/review.html:400
 #: src/olympia/reviewers/utils.py:126
 msgid "Authors"
 msgstr ""
 
-#: src/olympia/addons/admin.py:348 src/olympia/users/admin.py:397
+#: src/olympia/addons/admin.py:347 src/olympia/users/admin.py:397
 msgid "Ratings"
 msgstr ""
 
-#: src/olympia/addons/admin.py:361
+#: src/olympia/addons/admin.py:360
 #: src/olympia/addons/templates/admin/addons/addon/change_form.html:8
 msgid "Reviewer Tools (listed)"
 msgstr ""
 
-#: src/olympia/addons/admin.py:371
+#: src/olympia/addons/admin.py:370
 #: src/olympia/addons/templates/admin/addons/addon/change_form.html:16
 msgid "Reviewer Tools (unlisted)"
 msgstr ""
 
-#: src/olympia/addons/admin.py:376
+#: src/olympia/addons/admin.py:375
 msgid "Reviewer links"
 msgstr ""
 
-#: src/olympia/addons/admin.py:438
+#: src/olympia/addons/admin.py:437
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
 msgstr ""
 
-#: src/olympia/addons/admin.py:502
+#: src/olympia/addons/admin.py:501
 msgid "- Add-on not on AMO -"
 msgstr ""
 
-#: src/olympia/addons/models.py:1953 src/olympia/addons/models.py:2026
+#: src/olympia/addons/models.py:1965 src/olympia/addons/models.py:2038
 #: src/olympia/constants/base.py:67
 msgid "Listed"
 msgstr ""
 
-#: src/olympia/addons/models.py:2199
+#: src/olympia/addons/models.py:2211
 msgid "Addon and collection paths need to end with \"/\""
 msgstr ""
 
@@ -937,7 +937,7 @@ msgid "{addon} {version} rejected."
 msgstr ""
 
 #: src/olympia/constants/activity.py:157
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:38
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:24
 msgid "Rejected"
 msgstr ""
 
@@ -1352,6 +1352,22 @@ msgstr ""
 msgid "Version re-signed"
 msgstr ""
 
+#: src/olympia/constants/activity.py:782
+msgid "{addon} status force-disabled."
+msgstr ""
+
+#: src/olympia/constants/activity.py:783
+msgid "Force disabled"
+msgstr ""
+
+#: src/olympia/constants/activity.py:791
+msgid "{addon} status force-enabled."
+msgstr ""
+
+#: src/olympia/constants/activity.py:792
+msgid "Force enabled"
+msgstr ""
+
 #: src/olympia/constants/applications.py:27 src/olympia/constants/categories.py:305
 #: src/olympia/templates/footer.html:12
 msgid "Firefox"
@@ -1398,7 +1414,7 @@ msgid "Disabled by Mozilla"
 msgstr ""
 
 #: src/olympia/constants/base.py:27 src/olympia/reviewers/forms.py:198
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:49
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:35
 msgid "Deleted"
 msgstr ""
 
@@ -2028,7 +2044,7 @@ msgid "Not Promoted"
 msgstr ""
 
 #: src/olympia/constants/promoted.py:54
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:66
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:52
 msgid "Recommended"
 msgstr ""
 
@@ -2323,7 +2339,7 @@ msgid "Inconclusive"
 msgstr ""
 
 #: src/olympia/constants/scanners.py:49
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:85
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:71
 msgid "New"
 msgstr ""
 
@@ -2633,7 +2649,7 @@ msgid ""
 "protect your add-on, the key will be revoked."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:761
+#: src/olympia/devhub/tasks.py:775
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr ""
 
@@ -4592,7 +4608,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:3
-#: src/olympia/reviewers/views.py:1276
+#: src/olympia/reviewers/views.py:1284
 msgid "End-User License Agreement"
 msgstr ""
 
@@ -4604,7 +4620,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:21
 #: src/olympia/reviewers/templates/reviewers/addon_details_box.html:142
-#: src/olympia/reviewers/views.py:1288 src/olympia/templates/copyright.html:5
+#: src/olympia/reviewers/views.py:1296 src/olympia/templates/copyright.html:5
 msgid "Privacy Policy"
 msgstr ""
 
@@ -6375,9 +6391,7 @@ msgid "Skip over sponsored portions of YouTube videos."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:611
-#: src/olympia/discovery/strings.jinja2:864
 msgid "Have web pages read aloud to you. 40+ languages supported."
 msgstr ""
 
@@ -6414,6 +6428,11 @@ msgid "For those moments you need to fire lasers out of cat eyes."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:864
+msgid "Web pages read aloud. 40+ languages supported."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:870
 msgid ""
 "Removes those long and ugly tracking parameters from Google search result "
@@ -6433,7 +6452,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:879
 msgid ""
-"Tired of that \"Video paused. Continue watching?\" dialog? Listen to your "
+"Tired of that \"Video paused. Continue watching?\" message? Listen to your "
 "favorite music uninterrupted on YouTube."
 msgstr ""
 
@@ -6449,7 +6468,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:888
-msgid "The easiest way to manage all of your YouTube channel subscriptions."
+msgid "The easiest way to manage YouTube subscriptions."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -6461,7 +6480,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:894
-msgid "Get the scrollbar you always wanted—select width and your color of choice."
+msgid "Get the mouse scrollbar you've always wanted—specify width and color."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -7250,12 +7269,12 @@ msgstr ""
 msgid "Security Scanners"
 msgstr ""
 
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:76
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:62
 #: src/olympia/reviewers/views.py:237
 msgid "Flagged By Scanners"
 msgstr ""
 
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:78
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:64
 #: src/olympia/reviewers/views.py:241
 msgid "Flagged for Human Review"
 msgstr ""
@@ -7277,7 +7296,7 @@ msgstr ""
 msgid "Review Guide"
 msgstr ""
 
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:104
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:90
 #: src/olympia/reviewers/views.py:261
 msgid "Content Review"
 msgstr ""
@@ -7319,7 +7338,7 @@ msgstr ""
 msgid "Unlisted Add-ons"
 msgstr ""
 
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:116
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:102
 #: src/olympia/reviewers/views.py:304
 msgid "All Unlisted Add-ons"
 msgstr ""
@@ -7350,15 +7369,15 @@ msgstr ""
 msgid "Review successfully processed."
 msgstr ""
 
-#: src/olympia/reviewers/views.py:1080
+#: src/olympia/reviewers/views.py:1088
 msgid "Review lock limit reached"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:1275
+#: src/olympia/reviewers/views.py:1283
 msgid "{addon} – EULA"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:1287
+#: src/olympia/reviewers/views.py:1295
 msgid "{addon} – Privacy Policy"
 msgstr ""
 
@@ -7706,7 +7725,7 @@ msgid "Review {0}"
 msgstr ""
 
 #: src/olympia/reviewers/templates/reviewers/review.html:46
-msgid "Add-on user change history"
+msgid "Add-on important changes history"
 msgstr ""
 
 #: src/olympia/reviewers/templates/reviewers/review.html:57
@@ -8072,33 +8091,33 @@ msgstr ""
 msgid "This version has not been reviewed."
 msgstr ""
 
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:42
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:28
 msgid "Rejected or Unreviewed"
 msgstr ""
 
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:43
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:29
 #: src/olympia/versions/models.py:557
 #, python-format
 msgid "[status:%s]"
 msgstr ""
 
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:72
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:58
 msgid "Other Pending Review"
 msgstr ""
 
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:90
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:76
 msgid "Updates"
 msgstr ""
 
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:95
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:81
 msgid "Rating Reviews"
 msgstr ""
 
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:99
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:85
 msgid "Auto Approved"
 msgstr ""
 
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:112
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:98
 msgid "Pending Rejection"
 msgstr ""
 

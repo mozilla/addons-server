@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-09 17:59+0000\n"
+"POT-Creation-Date: 2021-03-16 17:41+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1052,6 +1052,22 @@ msgstr "{addon} {version} review requested."
 #, fuzzy
 msgid "Version re-signed"
 msgstr "Version %s re-enabled."
+
+#, fuzzy
+msgid "{addon} status force-disabled."
+msgstr "{addon} disabled."
+
+#, fuzzy
+msgid "Force disabled"
+msgstr "Force-disable add-on"
+
+#, fuzzy
+msgid "{addon} status force-enabled."
+msgstr "{addon} {version} rejected."
+
+#, fuzzy
+msgid "Force enabled"
+msgstr "Re-enable Version"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4775,7 +4791,6 @@ msgid "Skip over sponsored portions of YouTube videos."
 msgstr "Skip over sponsored portions of YouTube videos."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Have web pages read aloud to you. 40+ languages supported."
 msgstr "Have web pages read aloud to you. 40+ languages supported."
 
@@ -4808,6 +4823,11 @@ msgid "For those moments you need to fire lasers out of cat eyes."
 msgstr "For those moments when you need to fire lasers out of a cat."
 
 #. editorial content for the primary hero shelves.
+#, fuzzy
+msgid "Web pages read aloud. 40+ languages supported."
+msgstr "Have web pages read aloud to you. 40+ languages supported."
+
+#. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
 msgstr "Removes those long and ugly tracking parameters from Google search result URL's."
 
@@ -4821,7 +4841,8 @@ msgid "Manage your time better with a browser clock that charts work intervals."
 msgstr "Manage your time better with a browser clock that charts work intervals."
 
 #. editorial content for the primary hero shelves.
-msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
+#, fuzzy
+msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
 msgstr "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
 
 #. editorial content for the primary hero shelves.
@@ -4833,7 +4854,8 @@ msgid "Begone, annoying cookie warnings!"
 msgstr "Begone, annoying cookie warnings!"
 
 #. editorial content for the primary hero shelves.
-msgid "The easiest way to manage all of your YouTube channel subscriptions."
+#, fuzzy
+msgid "The easiest way to manage YouTube subscriptions."
 msgstr "The easiest way to manage all of your YouTube channel subscriptions."
 
 #. editorial content for the primary hero shelves.
@@ -4841,7 +4863,8 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 
 #. editorial content for the primary hero shelves.
-msgid "Get the scrollbar you always wanted—select width and your color of choice."
+#, fuzzy
+msgid "Get the mouse scrollbar you've always wanted—specify width and color."
 msgstr "Get the scrollbar you always wanted—select width and your color of choice."
 
 #. editorial content for the primary hero shelves.
@@ -5827,7 +5850,8 @@ msgstr "Review {0}"
 msgid "Review {0}"
 msgstr "Review {0}"
 
-msgid "Add-on user change history"
+#, fuzzy
+msgid "Add-on important changes history"
 msgstr "Add-on user change history"
 
 msgid "Add-on History"
