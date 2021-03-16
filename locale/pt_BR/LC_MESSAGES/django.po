@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-16 17:41+0000\n"
-"PO-Revision-Date: 2021-03-16 18:27+0000\n"
+"PO-Revision-Date: 2021-03-16 20:47+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -986,21 +986,17 @@ msgstr "{addon} {version} reassinada (anteriormente {0})."
 msgid "Version re-signed"
 msgstr "Versão reassinada"
 
-#, fuzzy
 msgid "{addon} status force-disabled."
-msgstr "{addon} desativado."
+msgstr "Status de {addon} desativado à força."
 
-#, fuzzy
 msgid "Force disabled"
-msgstr "Forçar desativação da extensão"
+msgstr "Desativado à força"
 
-#, fuzzy
 msgid "{addon} status force-enabled."
-msgstr "{addon} {version} reativado."
+msgstr "Status de {addon} ativado à força."
 
-#, fuzzy
 msgid "Force enabled"
-msgstr "Forçar ativação da extensão"
+msgstr "Ativado à força"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4529,9 +4525,8 @@ msgid "Manage your time better with a browser clock that charts work intervals."
 msgstr "Gerencie melhor seu tempo com um relógio de navegador que registra os intervalos de trabalho."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
-msgstr "Cansado de ver a mensagem \"Vídeo pausado. Continuar assistindo?\" aparecer? Ouça suas músicas preferidas sem interrupções no YouTube."
+msgstr "Cansado de ver a mensagem \"Vídeo pausado. Continuar assistindo?\", ouça suas músicas preferidas sem interrupções no YouTube."
 
 #. editorial content for the primary hero shelves.
 msgid "Thousands of GIFs at your fingertips."
