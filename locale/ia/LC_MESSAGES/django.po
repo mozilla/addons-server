@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-09 17:59+0000\n"
-"PO-Revision-Date: 2021-03-15 23:38+0000\n"
+"PO-Revision-Date: 2021-03-16 07:48+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4448,11 +4448,11 @@ msgstr "Retornar a un tempore plus simple: quando tu melior resultatos del recer
 
 #. editorial content for the primary hero shelves.
 msgid "Get the scrollbar you always wanted—select width and your color of choice."
-msgstr ""
+msgstr "Obtene le barra de rolamento que tu sempre desirava, selige le largessa e tu color preferite."
 
 #. editorial content for the primary hero shelves.
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
-msgstr ""
+msgstr "Salva e restaura schedas. Include functiones de auto-salvamento e synchronisation in nube."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
