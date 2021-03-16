@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-09 18:00+0000\n"
-"PO-Revision-Date: 2021-02-03 11:49+0000\n"
-"Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
+"PO-Revision-Date: 2021-03-16 00:04+0000\n"
+"Last-Translator: gmbweeck <gmbweeck@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr "Sua extensão deve terminar com .zip, .xpi ou .crx"
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
 msgid "{0}% complete"
-msgstr "{0}% completo"
+msgstr "{0}% concluido"
 
 msgid "{0} of {1}"
 msgstr "{0} de {1}"
@@ -78,7 +78,7 @@ msgid "Finished validating {0}"
 msgstr "Validação de {0} concluída"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr "A validação da sua extensão expirou, ela será analisada manualmente."
+msgstr "A validação da sua extensão expirou, será analisada manualmente."
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
