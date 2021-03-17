@@ -157,7 +157,7 @@ def test_recreate_previews(pngcrush_image_mock):
 
     assert preview_has_original.reload().sizes == {
         'image': [2400, 1600],
-        'thumbnail': [640, 427],
+        'thumbnail': [533, 355],
         'original': [3000, 2000],
         'thumbnail_format': 'jpg',
     }
