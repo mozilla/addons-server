@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-16 17:41+0000\n"
-"PO-Revision-Date: 2021-03-17 11:46+0000\n"
+"PO-Revision-Date: 2021-03-17 11:53+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4454,18 +4454,16 @@ msgid "Begone, annoying cookie warnings!"
 msgstr "Adeo, enoiose avisos de cookies!"
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "The easiest way to manage YouTube subscriptions."
-msgstr "Le maniera plus facile de gerer tote tu subscriptiones de canales YouTube."
+msgstr "Le maniera plus facile de gerer subscriptiones YouTube."
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Retornar a un tempore plus simple: quando tu melior resultatos del recerca stava supra le avisos publicitari (compatibile con le motores de recerca Google e Bing)."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Get the mouse scrollbar you've always wanted—specify width and color."
-msgstr "Obtene le barra de rolamento que tu sempre desirava, selige le largessa e tu color preferite."
+msgstr "Installa le barra de rolamento del mus que tu ha sempre desirate, specifica largessa e color."
 
 #. editorial content for the primary hero shelves.
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
@@ -5358,9 +5356,8 @@ msgstr "Revision de contento pro {0}"
 msgid "Review {0}"
 msgstr "Revision {0}"
 
-#, fuzzy
 msgid "Add-on important changes history"
-msgstr "Chronologia del modificationes de usator del additivo"
+msgstr "Chronologia del cambiamentos importante del additivo"
 
 msgid "Add-on History"
 msgstr "Chronologia del additivo"
