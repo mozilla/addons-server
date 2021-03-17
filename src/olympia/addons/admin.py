@@ -158,6 +158,7 @@ class AddonAdmin(admin.ModelAdmin):
         'type',
         'guid',
         'status',
+        'average_daily_users',
         'average_rating',
         'authors_links',
         'reviewer_links',
