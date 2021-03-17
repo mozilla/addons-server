@@ -353,7 +353,7 @@ class TestPreviewForm(TestCase):
         assert preview.sizes == (
             {
                 'image': [2400, 1600],
-                'thumbnail': [640, 427],
+                'thumbnail': [533, 355],
                 'original': [3000, 2000],
                 'thumbnail_format': 'jpg',
             }
