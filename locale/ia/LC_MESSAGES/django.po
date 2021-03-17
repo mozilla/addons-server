@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-16 17:41+0000\n"
-"PO-Revision-Date: 2021-03-17 11:31+0000\n"
+"PO-Revision-Date: 2021-03-17 11:37+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -974,13 +974,11 @@ msgstr "Stato de {addon} disactivate a fortia."
 msgid "Force disabled"
 msgstr "Disactivation fortiate"
 
-#, fuzzy
 msgid "{addon} status force-enabled."
-msgstr "{addon} {version} re-activate."
+msgstr "Stato de {addon} activate a fortia."
 
-#, fuzzy
 msgid "Force enabled"
-msgstr "Fortiar activation de additivo"
+msgstr "Activate a fortia"
 
 msgid "Firefox"
 msgstr "Firefox"
