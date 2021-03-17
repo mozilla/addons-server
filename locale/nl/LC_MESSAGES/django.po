@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-16 17:41+0000\n"
-"PO-Revision-Date: 2021-03-10 08:25+0000\n"
+"PO-Revision-Date: 2021-03-16 18:08+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -981,7 +981,6 @@ msgstr "Versie opnieuw ondertekend"
 msgid "{addon} status force-disabled."
 msgstr ""
 
-#, fuzzy
 msgid "Force disabled"
 msgstr "Add-on geforceerd uitschakelen"
 
