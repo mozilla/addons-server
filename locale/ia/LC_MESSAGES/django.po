@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-16 17:41+0000\n"
-"PO-Revision-Date: 2021-03-17 11:37+0000\n"
+"PO-Revision-Date: 2021-03-17 11:46+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4426,9 +4426,8 @@ msgid "For those moments you need to fire lasers out of cat eyes."
 msgstr "Pro ille momentos que tu necessita un catto que tira radios laser ex oculos."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Web pages read aloud. 40+ languages supported."
-msgstr "Ascolta le contento del paginas web. Plus de 40 linguas supportate."
+msgstr "Paginas web legite in alte voce. Plus de 40 linguas supportate."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
@@ -4443,9 +4442,8 @@ msgid "Manage your time better with a browser clock that charts work intervals."
 msgstr "Gere melio tu tempore con un horologio del navigator que delinea le intervallos de labor."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
-msgstr "Fatigate de ille fenestra de dialogo \"Video pausate. Continuar observar?\" dialogo? Ascolta non interrumpite tu musica favorite sur YouTube."
+msgstr "Fatigate de ille \"Video pausate. Continuar observar?\" message? Ascolta tu musica favorite non interrumpite sur YouTube."
 
 #. editorial content for the primary hero shelves.
 msgid "Thousands of GIFs at your fingertips."
