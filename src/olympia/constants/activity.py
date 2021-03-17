@@ -779,7 +779,7 @@ class FORCE_DISABLE(_LOG):
     # add-on is likely malicious.
     hide_developer = True
     reviewer_review_action = True
-    format = _('{addon} status force-disabled.')
+    format = _('{user} force-disabled {addon}.')
     short = _('Force disabled')
 
 
@@ -788,7 +788,7 @@ class FORCE_ENABLE(_LOG):
     keep = True
     hide_developer = True
     reviewer_review_action = True
-    format = _('{addon} status force-enabled.')
+    format = _('{user} force-enabled {addon}.')
     short = _('Force enabled')
 
 

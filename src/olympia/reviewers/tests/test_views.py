@@ -5358,9 +5358,15 @@ class TestReview(ReviewBase):
         assert 'class' not in important_changes[2].attrib
         assert '(Owner) removed from ' in important_changes[3].text_content()
         assert 'class' not in important_changes[3].attrib
-        assert 'status force-disabled.' in important_changes[4].text_content()
+        assert (
+            'regularuser التطب force-disabled Public.'
+            in important_changes[4].text_content()
+        )
         assert important_changes[4].attrib['class'] == 'reviewer-review-action'
-        assert 'status force-enabled.' in important_changes[5].text_content()
+        assert (
+            'regularuser التطب force-enabled Public.'
+            in important_changes[5].text_content()
+        )
         assert important_changes[5].attrib['class'] == 'reviewer-review-action'
 
     @override_settings(CELERY_TASK_ALWAYS_EAGER=True)
