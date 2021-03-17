@@ -217,6 +217,7 @@ def recreate_theme_previews(addon_ids, **kw):
                 all_full_sizes_present = not set(renders.keys()) - existing_full_sizes
                 if all_full_sizes_present:
                     # i.e. we have all renders
+                    log.info('Resizing thumbnails for theme: %s' % version.addon_id)
                     for preview in list(VersionPreview.objects.filter(version=version)):
                         # so check the thumbnail size/format for each preview
                         render = renders.get(tuple(preview.image_dimensions))
@@ -234,6 +235,7 @@ def recreate_theme_previews(addon_ids, **kw):
                                 quality=35,
                             )
                             preview.save()
+
                     continue
                 # else carry on with a full preview generation
             log.info('Recreating previews for theme: %s' % version.addon_id)
@@ -243,6 +245,7 @@ def recreate_theme_previews(addon_ids, **kw):
             generate_static_theme_preview(theme_data, version.id)
         except IOError:
             pass
+    index_addons.delay(addon_ids)
 
 
 @task

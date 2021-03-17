@@ -1992,6 +1992,58 @@ class TestRatingViewSetPost(TestCase):
             assert response.status_code == 201, response.content
 
     @override_settings(CACHES=locmem_cache)
+    def test_throttle_by_ip(self):
+        with freeze_time('2017-11-01') as frozen_time:
+            self.user = user_factory()
+            self.client.login_api(self.user)
+            # First post, no problem.
+            response = self.client.post(
+                self.url,
+                {
+                    'addon': self.addon.pk,
+                    'body': 'My réview',
+                    'score': 2,
+                    'version': self.addon.current_version.pk,
+                },
+                extra_kwargs={'REMOTE_ADDR': '4.8.15.16'},
+            )
+            assert response.status_code == 201
+
+            # Add version so to avoid the one rating per version restriction.
+            new_version = version_factory(addon=self.addon)
+            # Second post, different user but same IP: nope, have to wait a
+            # while.
+            new_user = user_factory()
+            self.client.login_api(new_user)
+            response = self.client.post(
+                self.url,
+                {
+                    'addon': self.addon.pk,
+                    'body': 'My n3w réview',
+                    'score': 2,
+                    'version': new_version.pk,
+                },
+                extra_kwargs={'REMOTE_ADDR': '4.8.15.16'},
+            )
+            assert response.status_code == 429
+
+            # Throttle is 1 minute so check we can go again
+            frozen_time.tick(delta=timedelta(seconds=60))
+            # And we're good.
+            self.client.login_api(self.user)
+            response = self.client.post(
+                self.url,
+                {
+                    'addon': self.addon.pk,
+                    'body': 'My réview',
+                    'score': 2,
+                    'version': new_version.pk,
+                },
+                extra_kwargs={'REMOTE_ADDR': '4.8.15.16'},
+            )
+            assert response.status_code == 201, response.content
+
+    @override_settings(CACHES=locmem_cache)
     def test_rating_throttle_separated_from_abuse_throttle(self):
         with freeze_time('2017-11-01') as frozen_time:
             self.user = user_factory()

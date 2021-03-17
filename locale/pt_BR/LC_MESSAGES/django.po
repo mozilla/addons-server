@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-09 17:59+0000\n"
-"PO-Revision-Date: 2021-03-10 12:01+0000\n"
+"POT-Creation-Date: 2021-03-16 17:41+0000\n"
+"PO-Revision-Date: 2021-03-16 20:47+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -985,6 +985,18 @@ msgstr "{addon} {version} reassinada (anteriormente {0})."
 
 msgid "Version re-signed"
 msgstr "Versão reassinada"
+
+msgid "{addon} status force-disabled."
+msgstr "Status de {addon} desativado à força."
+
+msgid "Force disabled"
+msgstr "Desativado à força"
+
+msgid "{addon} status force-enabled."
+msgstr "Status de {addon} ativado à força."
+
+msgid "Force enabled"
+msgstr "Ativado à força"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4468,7 +4480,6 @@ msgid "Skip over sponsored portions of YouTube videos."
 msgstr "Descarte partes patrocinadas de vídeos do YouTube."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Have web pages read aloud to you. 40+ languages supported."
 msgstr "Faça com que páginas web sejam lidas em voz alta para você. Mais de 40 idiomas suportados."
 
@@ -4498,6 +4509,10 @@ msgid "For those moments you need to fire lasers out of cat eyes."
 msgstr "Para aqueles momentos em que você precisa disparar lasers com olhos de gato."
 
 #. editorial content for the primary hero shelves.
+msgid "Web pages read aloud. 40+ languages supported."
+msgstr "Páginas web lidas em voz alta. Mais de 40 idiomas suportados."
+
+#. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
 msgstr "Remove aqueles parâmetros de rastreamento longos e desagradáveis das URLs de resultados de pesquisas do Google."
 
@@ -4510,8 +4525,8 @@ msgid "Manage your time better with a browser clock that charts work intervals."
 msgstr "Gerencie melhor seu tempo com um relógio de navegador que registra os intervalos de trabalho."
 
 #. editorial content for the primary hero shelves.
-msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
-msgstr "Cansado de ver a mensagem \"Vídeo pausado. Continuar assistindo?\" aparecer? Ouça suas músicas preferidas sem interrupções no YouTube."
+msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
+msgstr "Cansado de ver a mensagem \"Vídeo pausado. Continuar assistindo?\", ouça suas músicas preferidas sem interrupções no YouTube."
 
 #. editorial content for the primary hero shelves.
 msgid "Thousands of GIFs at your fingertips."
@@ -4522,16 +4537,16 @@ msgid "Begone, annoying cookie warnings!"
 msgstr "Vão embora, avisos irritantes de cookies!"
 
 #. editorial content for the primary hero shelves.
-msgid "The easiest way to manage all of your YouTube channel subscriptions."
-msgstr "A maneira mais fácil de gerenciar todas as suas inscrições em canais do YouTube."
+msgid "The easiest way to manage YouTube subscriptions."
+msgstr "A maneira mais fácil de gerenciar inscrições no YouTube."
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Retorne para um tempo mais simples, quando os principais resultados de pesquisa apareciam acima dos anúncios (compatível com mecanismos de pesquisa Google e Bing)."
 
 #. editorial content for the primary hero shelves.
-msgid "Get the scrollbar you always wanted—select width and your color of choice."
-msgstr "Tenha a barra de rolagem que você sempre quis, selecione a espessura e a cor de sua escolha."
+msgid "Get the mouse scrollbar you've always wanted—specify width and color."
+msgstr "Tenha a barra de rolagem que você sempre quis, selecione a espessura e a cor."
 
 #. editorial content for the primary hero shelves.
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
@@ -5443,8 +5458,8 @@ msgstr "Análise de conteúdo {0}"
 msgid "Review {0}"
 msgstr "Análise {0}"
 
-msgid "Add-on user change history"
-msgstr "Histórico de alterações de usuário da extensão"
+msgid "Add-on important changes history"
+msgstr "Histórico de alterações importantes da extensão"
 
 msgid "Add-on History"
 msgstr "Histórico da extensão"

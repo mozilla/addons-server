@@ -46,6 +46,7 @@ class File(OnChangeMixin, ModelBase):
         choices=amo.SUPPORTED_PLATFORMS_CHOICES,
         default=amo.PLATFORM_ALL.id,
         db_column='platform_id',
+        null=True,
     )
     filename = models.CharField(max_length=255, default='')
     size = models.PositiveIntegerField(default=0)  # In bytes.
@@ -91,7 +92,6 @@ class File(OnChangeMixin, ModelBase):
             models.Index(
                 fields=('datestatuschanged', 'version'), name='statuschanged_idx'
             ),
-            models.Index(fields=('platform',), name='platform_id'),
             models.Index(fields=('status',), name='status'),
         ]
 

@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-09 17:59+0000\n"
-"PO-Revision-Date: 2021-02-23 22:53+0000\n"
+"POT-Creation-Date: 2021-03-16 17:41+0000\n"
+"PO-Revision-Date: 2021-03-11 17:26+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -964,6 +964,22 @@ msgstr "{addon} {version} signerad igen (tidigare {0})."
 
 msgid "Version re-signed"
 msgstr "Version signerad igen"
+
+#, fuzzy
+msgid "{addon} status force-disabled."
+msgstr "{addon} inaktiverad."
+
+#, fuzzy
+msgid "Force disabled"
+msgstr "Inaktivera tillägg med våld"
+
+#, fuzzy
+msgid "{addon} status force-enabled."
+msgstr "{addon} {version} återaktiverad."
+
+#, fuzzy
+msgid "Force enabled"
+msgstr "Aktivera tillägg med våld"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4206,9 +4222,8 @@ msgid "Close annoying pop-ups with a simple click."
 msgstr "Stäng irriterande popup-fönster med ett enkelt klick."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Find an interesting image on the web? Want to learn more about it?"
-msgstr "Hitta en intressant bild på webben? Använd TinEye för att utforska dess ursprung."
+msgstr "Hitta en intressant bild på webben? Vill du lära dig mer om den?"
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
@@ -4403,7 +4418,6 @@ msgid "Skip over sponsored portions of YouTube videos."
 msgstr "Hoppa över sponsrade delar av YouTube-videor."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Have web pages read aloud to you. 40+ languages supported."
 msgstr "Få webbsidor upplästa högt för dig. Över 40 språk stöds."
 
@@ -4414,12 +4428,11 @@ msgstr "Dubbelklicka på valfritt ord för att omedelbart se dess definition."
 
 #. editorial content for the discovery pane.
 msgid "Blues & Yellows"
-msgstr ""
+msgstr "Blå & gul"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Forest Theme"
-msgstr "Skapa ett tema"
+msgstr "Skogstema"
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4434,6 +4447,11 @@ msgid "For those moments you need to fire lasers out of cat eyes."
 msgstr "För de ögonblick när du behöver skjuta lasrar ur kattögon."
 
 #. editorial content for the primary hero shelves.
+#, fuzzy
+msgid "Web pages read aloud. 40+ languages supported."
+msgstr "Få webbsidor upplästa högt för dig. Över 40 språk stöds."
+
+#. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
 msgstr "Tar bort de långa och fula spårningsparametrarna från webbadressen i Googles sökresultat."
 
@@ -4446,7 +4464,8 @@ msgid "Manage your time better with a browser clock that charts work intervals."
 msgstr "Hantera din tid bättre med en webbläsarklocka som visar arbetsintervall."
 
 #. editorial content for the primary hero shelves.
-msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
+#, fuzzy
+msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
 msgstr "Trött på dialogen \"Video pausad. Fortsätt titta?\"? Lyssna på din favoritmusik utan avbrott på YouTube."
 
 #. editorial content for the primary hero shelves.
@@ -4458,7 +4477,8 @@ msgid "Begone, annoying cookie warnings!"
 msgstr "Försvinn, irriterande varningar om kakor!"
 
 #. editorial content for the primary hero shelves.
-msgid "The easiest way to manage all of your YouTube channel subscriptions."
+#, fuzzy
+msgid "The easiest way to manage YouTube subscriptions."
 msgstr "Det enklaste sättet att hantera alla dina YouTube-kanalprenumerationer."
 
 #. editorial content for the primary hero shelves.
@@ -4466,12 +4486,13 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr "Återgå till en enklare tid — när dina bästa sökresultat stod ovanför annonserna (Google och Bing-sökmotorkompatibla)."
 
 #. editorial content for the primary hero shelves.
-msgid "Get the scrollbar you always wanted—select width and your color of choice."
-msgstr ""
+#, fuzzy
+msgid "Get the mouse scrollbar you've always wanted—specify width and color."
+msgstr "Få rullningsfältet du alltid velat—välj bredd och färg."
 
 #. editorial content for the primary hero shelves.
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
-msgstr ""
+msgstr "Spara och återställ flikar. Inkluderar automatisk sparning och molnsynkroniseringsfunktioner."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -5362,7 +5383,8 @@ msgstr "Innehållsgranskning {0}"
 msgid "Review {0}"
 msgstr "Granska {0}"
 
-msgid "Add-on user change history"
+#, fuzzy
+msgid "Add-on important changes history"
 msgstr "Användarändringshistorik för tillägg"
 
 msgid "Add-on History"

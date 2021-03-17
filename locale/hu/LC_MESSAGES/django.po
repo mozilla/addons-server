@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-09 17:59+0000\n"
-"PO-Revision-Date: 2021-03-10 09:09+0000\n"
+"POT-Creation-Date: 2021-03-16 17:41+0000\n"
+"PO-Revision-Date: 2021-03-16 19:22+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -970,6 +970,18 @@ msgstr "{addon} {version} újra aláírva (korábban {0})."
 
 msgid "Version re-signed"
 msgstr "Verzió újra aláírva"
+
+msgid "{addon} status force-disabled."
+msgstr "{addon} állapota: erőltetetten letiltva."
+
+msgid "Force disabled"
+msgstr "Erőltetetten letiltva"
+
+msgid "{addon} status force-enabled."
+msgstr "{addon} állapota: erőltetetten engedélyezve."
+
+msgid "Force enabled"
+msgstr "Erőltetetten engedélyezve"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4430,7 +4442,6 @@ msgid "Skip over sponsored portions of YouTube videos."
 msgstr "Hagyja ki a YouTube-videók szponzorált részeit."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Have web pages read aloud to you. 40+ languages supported."
 msgstr "Olvastassa fel hangosan a weboldalakat. 40+ támogatott nyelv."
 
@@ -4460,6 +4471,10 @@ msgid "For those moments you need to fire lasers out of cat eyes."
 msgstr "Azokra a pillanatokra, amikor lézereket kell kilőnie egy macska szeméből."
 
 #. editorial content for the primary hero shelves.
+msgid "Web pages read aloud. 40+ languages supported."
+msgstr "Weboldalak hangos felolvasása. 40+ támogatott nyelven."
+
+#. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
 msgstr "Eltávolítja ezeket a hosszú és csúnya nyomkövető paramétereket a Google-keresési eredmények URL-jéből."
 
@@ -4472,8 +4487,8 @@ msgid "Manage your time better with a browser clock that charts work intervals."
 msgstr "Ossza be jobban az idejét a egy böngészőórával, amely összeszámolja a munka időtartamát."
 
 #. editorial content for the primary hero shelves.
-msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
-msgstr "Unja a „Videó szüneteltetve. Folytatja a nézését?” párbeszédablakot? Hallgassa kedvenc zenéit megszakítás nélkül a YouTube-on."
+msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
+msgstr "Unja a „Videó szüneteltetve. Folytatja a nézését?” üzenetet? Hallgassa kedvenc zenéit megszakítás nélkül a YouTube-on."
 
 #. editorial content for the primary hero shelves.
 msgid "Thousands of GIFs at your fingertips."
@@ -4484,16 +4499,16 @@ msgid "Begone, annoying cookie warnings!"
 msgstr "Bosszantó sütifigyelmeztetések, távozzatok!"
 
 #. editorial content for the primary hero shelves.
-msgid "The easiest way to manage all of your YouTube channel subscriptions."
-msgstr "A YouTube csatornafeliratkozásainak kezelésének legegyszerűbb módja."
+msgid "The easiest way to manage YouTube subscriptions."
+msgstr "A YouTube-feliratkozások kezelésének legegyszerűbb módja."
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Térjen vissza egy egyszerűbb időbe – amikor a keresési találatok a reklámok felett jelentek meg (a Google és a Bing keresővel kompatibilis)."
 
 #. editorial content for the primary hero shelves.
-msgid "Get the scrollbar you always wanted—select width and your color of choice."
-msgstr "Szerezze be a görgetősávot, amelyre mindig vágyott – válassza ki a kívánt szélességet és színt."
+msgid "Get the mouse scrollbar you've always wanted—specify width and color."
+msgstr "Szerezze be a görgetősávot, amelyre mindig vágyott – adja meg a kívánt szélességet és színt."
 
 #. editorial content for the primary hero shelves.
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
@@ -5393,8 +5408,8 @@ msgstr "{0} tartalmának értékelése"
 msgid "Review {0}"
 msgstr "{0} értékelése"
 
-msgid "Add-on user change history"
-msgstr "Kiegészítő felhasználóváltozásának előzményei"
+msgid "Add-on important changes history"
+msgstr "Kiegészítő fontos változásának előzményei"
 
 msgid "Add-on History"
 msgstr "Kiegészítő előzményei"

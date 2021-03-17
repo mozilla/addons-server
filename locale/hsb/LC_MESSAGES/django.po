@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-09 17:59+0000\n"
-"PO-Revision-Date: 2021-03-10 11:12+0000\n"
+"POT-Creation-Date: 2021-03-16 17:41+0000\n"
+"PO-Revision-Date: 2021-03-16 21:19+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -962,6 +962,18 @@ msgstr "Přidatk {addon} {version} je so nowo signował (do toho {0})."
 
 msgid "Version re-signed"
 msgstr "Wersija je so nowo signowała"
+
+msgid "{addon} status force-disabled."
+msgstr "Znjemóžnjenje statusa {addon} je so wunuzowało."
+
+msgid "Force disabled"
+msgstr "Znjemóžnjenje wunuzowane"
+
+msgid "{addon} status force-enabled."
+msgstr "Zmóžnjenje statusa {addon} je so wunuzowało."
+
+msgid "Force enabled"
+msgstr "Zmóžnjenje wunuzowane"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4416,7 +4428,6 @@ msgid "Skip over sponsored portions of YouTube videos."
 msgstr "Sponsorowane dźěle widejow YouTube přeskočić."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Have web pages read aloud to you. 40+ languages supported."
 msgstr "Dajće sej webstrony předčitać. Přez 40 rěčow so podpěruje."
 
@@ -4446,6 +4457,10 @@ msgid "For those moments you need to fire lasers out of cat eyes."
 msgstr "Za wokomiki, hdyž dyrbiće lasery z kočich wóčkow wutřělić."
 
 #. editorial content for the primary hero shelves.
+msgid "Web pages read aloud. 40+ languages supported."
+msgstr "Dajće sej webstrony předčitać. Přez 40 rěčow so podpěruje."
+
+#. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
 msgstr "Wotstronja te dołhe a hrozne slědowanske parametry z URL wuslědkow pytanja Google."
 
@@ -4458,8 +4473,8 @@ msgid "Manage your time better with a browser clock that charts work intervals."
 msgstr "Rjadujće swój čas lěpje z časnikom wobhladowaka, kotryž dźěłowe interwale grafisce předstaja."
 
 #. editorial content for the primary hero shelves.
-msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
-msgstr "Sće dialoga „Widejo zastajene. Chceće sej jo dale wobhladować?“ syty? Poskajće na swoju najlubšu hudźbu bjez přetorhnjenja na YouTube."
+msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
+msgstr "Sće zdźělenki „Widejo zastajene. Chceće sej jo dale wobhladować?“ syty? Poskajće na swoju najlubšu hudźbu bjez přetorhnjenja na YouTube."
 
 #. editorial content for the primary hero shelves.
 msgid "Thousands of GIFs at your fingertips."
@@ -4470,16 +4485,16 @@ msgid "Begone, annoying cookie warnings!"
 msgstr "Preč z mjerzacymi plackowymi warnowanjemi!"
 
 #. editorial content for the primary hero shelves.
-msgid "The easiest way to manage all of your YouTube channel subscriptions."
-msgstr "Najlóša móžnosć, wšě waše abonementy kanalow YouTube rjadować."
+msgid "The easiest way to manage YouTube subscriptions."
+msgstr "Najlóša móžnosć, wšě waše abonementy YouTube rjadować."
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Wróćo k jednorišemu časej – hdyž waše najwažniše pytanske wuslědki nad wabjenjom stejachu (kompatibelne z pytawomaj Google a Bing)."
 
 #. editorial content for the primary hero shelves.
-msgid "Get the scrollbar you always wanted—select width and your color of choice."
-msgstr "Wobstarajće sej suwansku lajstu, kotruž sće hižo přeco chcył – wubjerće šěrokosć a swoju barbu. "
+msgid "Get the mouse scrollbar you've always wanted—specify width and color."
+msgstr "Wobstarajće sej suwansku lajstu myški, kotruž sće hižo přeco chcył – wubjerće šěrokosć a barbu. "
 
 #. editorial content for the primary hero shelves.
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
@@ -5382,8 +5397,8 @@ msgstr "Přepruwowanje wobsaha {0}"
 msgid "Review {0}"
 msgstr "Přepruwowanje {0}"
 
-msgid "Add-on user change history"
-msgstr "Historija změnow wužiwarjow přidatka"
+msgid "Add-on important changes history"
+msgstr "Historija wažnych změnow přidatka"
 
 msgid "Add-on History"
 msgstr "Historija přidatka"

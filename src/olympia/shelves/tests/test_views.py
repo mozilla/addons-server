@@ -2,6 +2,9 @@ import json
 
 from django.conf import settings
 
+from rest_framework.settings import api_settings
+from rest_framework.test import APIRequestFactory
+
 from olympia import amo
 from olympia.amo.tests import (
     addon_factory,
@@ -185,6 +188,12 @@ class TestShelfViewSet(ESTestCase):
         SecondaryHeroModule.objects.create(shelf=shero)
         SecondaryHeroModule.objects.create(shelf=shero)
 
+        # We'll need a fake request with the right api version to pass to the
+        # serializers to compare the data, so that the right API gates are
+        # active.
+        request = APIRequestFactory().get('/')
+        request.version = api_settings.DEFAULT_VERSION
+
         with self.assertNumQueries(14):
             # 14 queries:
             # - 1 to get the shelves
@@ -194,8 +203,12 @@ class TestShelfViewSet(ESTestCase):
         assert response.status_code == 200
         assert response.json() == {
             'results': [],
-            'primary': PrimaryHeroShelfSerializer(instance=phero).data,
-            'secondary': SecondaryHeroShelfSerializer(instance=shero).data,
+            'primary': PrimaryHeroShelfSerializer(
+                instance=phero, context={'request': request}
+            ).data,
+            'secondary': SecondaryHeroShelfSerializer(
+                instance=shero, context={'request': request}
+            ).data,
         }
 
     def test_full_response(self):
@@ -223,6 +236,12 @@ class TestShelfViewSet(ESTestCase):
 
         result = json.loads(response.content)
 
+        # We'll need a fake request with the right api version to pass to the
+        # serializers to compare the data, so that the right API gates are
+        # active.
+        request = APIRequestFactory().get('/')
+        request.version = api_settings.DEFAULT_VERSION
+
         for prop in ('count', 'next', 'page_count', 'page_size', 'previous'):
             assert prop not in result
 
@@ -233,8 +252,18 @@ class TestShelfViewSet(ESTestCase):
             'en-US': 'test addon test03'
         }
 
-        assert result['primary'] == PrimaryHeroShelfSerializer(instance=phero).data
-        assert result['secondary'] == SecondaryHeroShelfSerializer(instance=shero).data
+        assert (
+            result['primary']
+            == PrimaryHeroShelfSerializer(
+                instance=phero, context={'request': request}
+            ).data
+        )
+        assert (
+            result['secondary']
+            == SecondaryHeroShelfSerializer(
+                instance=shero, context={'request': request}
+            ).data
+        )
 
 
 class TestEditorialShelfViewSet(TestCase):

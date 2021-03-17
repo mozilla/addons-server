@@ -615,6 +615,7 @@ class TestActivityFeed(TestCase):
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.versions.first()
         self.action_user = UserProfile.objects.get(email='reviewer@mozilla.com')
+        ActivityLog.objects.all().delete()
 
     def test_feed_for_all(self):
         response = self.client.get(reverse('devhub.feed_all'))
@@ -665,7 +666,7 @@ class TestActivityFeed(TestCase):
         self.add_log()
         res = self.client.get(reverse('devhub.addons'))
         doc = pq(res.content)
-        assert len(doc('.recent-activity li.item')) == 1
+        assert len(doc('.recent-activity li.item')) == 2
 
     def test_unlisted_addons_feed_sidebar(self):
         """Unlisted addons are displayed in the left side in the feed page."""
@@ -682,7 +683,7 @@ class TestActivityFeed(TestCase):
         self.add_log()
         res = self.client.get(reverse('devhub.feed_all'))
         doc = pq(res.content)
-        assert len(doc('#recent-activity .item')) == 1
+        assert len(doc('#recent-activity .item')) == 2
 
     def test_unlisted_addons_feed_filter(self):
         """Feed page can be filtered on unlisted addon."""
@@ -690,7 +691,7 @@ class TestActivityFeed(TestCase):
         self.add_log()
         res = self.client.get(reverse('devhub.feed', args=[self.addon.slug]))
         doc = pq(res.content)
-        assert len(doc('#recent-activity .item')) == 1
+        assert len(doc('#recent-activity .item')) == 2
 
     def test_reviewer_name_is_used_for_reviewer_actions(self):
         self.action_user.update(display_name='HîdeMe', reviewer_name='ShöwMe')

@@ -2,6 +2,9 @@ import json
 
 from django.test.utils import override_settings
 
+from rest_framework.settings import api_settings
+from rest_framework.test import APIRequestFactory
+
 from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import addon_factory, TestCase, reverse_ns
@@ -61,6 +64,12 @@ class TestPrimaryHeroShelfViewSet(TestCase):
         response = self.client.get(self.url)
         assert response.json() == {'results': []}
 
+        # We'll need a fake request with the right api version to pass to the
+        # serializers to compare the data, so that the right API gates are
+        # active.
+        request = APIRequestFactory().get('/')
+        request.version = api_settings.DEFAULT_VERSION
+
         hero_a.update(enabled=True)
         hero_b.update(enabled=True)
         hero_external.update(enabled=True)
@@ -83,9 +92,15 @@ class TestPrimaryHeroShelfViewSet(TestCase):
         assert response.status_code == 200
         assert response.json() == {
             'results': [
-                PrimaryHeroShelfSerializer(instance=hero_a).data,
-                PrimaryHeroShelfSerializer(instance=hero_b).data,
-                PrimaryHeroShelfSerializer(instance=hero_external).data,
+                PrimaryHeroShelfSerializer(
+                    instance=hero_a, context={'request': request}
+                ).data,
+                PrimaryHeroShelfSerializer(
+                    instance=hero_b, context={'request': request}
+                ).data,
+                PrimaryHeroShelfSerializer(
+                    instance=hero_external, context={'request': request}
+                ).data,
             ]
         }
         results = response.json()['results']
@@ -378,6 +393,12 @@ class TestHeroShelvesView(TestCase):
         SecondaryHeroModule.objects.create(shelf=shero)
         SecondaryHeroModule.objects.create(shelf=shero)
 
+        # We'll need a fake request with the right api version to pass to the
+        # serializers to compare the data, so that the right API gates are
+        # active.
+        request = APIRequestFactory().get('/')
+        request.version = api_settings.DEFAULT_VERSION
+
         with self.assertNumQueries(13):
             # 13 queries:
             # - 11 as TestPrimaryHeroShelfViewSet.test_basic above
@@ -385,8 +406,12 @@ class TestHeroShelvesView(TestCase):
             response = self.client.get(self.url, {'lang': 'en-US'})
         assert response.status_code == 200
         assert response.json() == {
-            'primary': PrimaryHeroShelfSerializer(instance=phero).data,
-            'secondary': SecondaryHeroShelfSerializer(instance=shero).data,
+            'primary': PrimaryHeroShelfSerializer(
+                instance=phero, context={'request': request}
+            ).data,
+            'secondary': SecondaryHeroShelfSerializer(
+                instance=shero, context={'request': request}
+            ).data,
         }
 
     def test_outgoing_wrapper(self):

@@ -78,7 +78,7 @@ services:
     image: redis:2.8
 
   rabbitmq:
-    image: rabbitmq:3.5
+    image: rabbitmq:3.8
     hostname: olympia
     expose:
       - "5672"

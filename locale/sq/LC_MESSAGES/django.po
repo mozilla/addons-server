@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-09 17:59+0000\n"
-"PO-Revision-Date: 2021-01-02 16:31+0000\n"
+"POT-Creation-Date: 2021-03-16 17:41+0000\n"
+"PO-Revision-Date: 2021-03-15 10:42+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -974,6 +974,22 @@ msgstr "{addon} {version} u rinënshkrua (më parë qe {0})."
 msgid "Version re-signed"
 msgstr "Versioni u rinënshkrua"
 
+#, fuzzy
+msgid "{addon} status force-disabled."
+msgstr "{addon} u çaktivizua."
+
+#, fuzzy
+msgid "Force disabled"
+msgstr "Aktivizoje shtesën me detyrim"
+
+#, fuzzy
+msgid "{addon} status force-enabled."
+msgstr "{addon} {version} u riaktivizua."
+
+#, fuzzy
+msgid "Force enabled"
+msgstr "Aktivizoje shtesën me detyrim"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -1612,9 +1628,8 @@ msgstr "Vonoji vetëmiratimin"
 msgid "Delay auto-approval indefinitely"
 msgstr "Vonoji vetëmiratimin pa afat"
 
-#, fuzzy
 msgid "Delay auto-approval indefinitely and add restrictions"
-msgstr "Vonoji vetëmiratimin pa afat"
+msgstr "Vonoji vetëmiratimin pa afat dhe shto kufizimet"
 
 msgid "True positive"
 msgstr "Pozitiv"
@@ -4229,9 +4244,8 @@ msgid "Close annoying pop-ups with a simple click."
 msgstr "Mbyllni flluska bezdisëse me një klikim të vetëm."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Find an interesting image on the web? Want to learn more about it?"
-msgstr "Gjetët një figurë me interes në web? Përdorni TinEye që të eksploroni origjinën e saj."
+msgstr "Gjetët një figurë me interes në web? Doni të mësoni më tepër rreth saj?"
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
@@ -4426,7 +4440,6 @@ msgid "Skip over sponsored portions of YouTube videos."
 msgstr "Anashkalo pjesë të sponsorizuara videosh Youtube."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Have web pages read aloud to you. 40+ languages supported."
 msgstr "Kijini faqet web të lexuara për ju. Mbulohen më shumë se 40 gjuhë."
 
@@ -4440,9 +4453,8 @@ msgid "Blues & Yellows"
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Forest Theme"
-msgstr "Krijoni një Temë"
+msgstr "Tema Pyll"
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4457,6 +4469,11 @@ msgid "For those moments you need to fire lasers out of cat eyes."
 msgstr "Për ato çaste kur s’rrini dot pa drejtuar lazerin te sytë e maces."
 
 #. editorial content for the primary hero shelves.
+#, fuzzy
+msgid "Web pages read aloud. 40+ languages supported."
+msgstr "Kijini faqet web të lexuara për ju. Mbulohen më shumë se 40 gjuhë."
+
+#. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
 msgstr "Heq prej URL-je përfundimesh kërkimi në Google ato parametra të gjatë dhe të shpifur gjurmimi."
 
@@ -4469,32 +4486,34 @@ msgid "Manage your time better with a browser clock that charts work intervals."
 msgstr "Administroni më mirë kohën tuaj me një sahat shfletuesi që shfaq intervale kohorë."
 
 #. editorial content for the primary hero shelves.
-msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
+#, fuzzy
+msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
 msgstr "Ju ka lodhur ai dialogu “Videoja u ndal. Të vazhdohet parja”? Dëgjoni muzikën tuaj të parapëlqyer në YouTube pa u ndërprerë."
 
 #. editorial content for the primary hero shelves.
 msgid "Thousands of GIFs at your fingertips."
-msgstr ""
+msgstr "Mijëra GIF-e në majë të gishtave."
 
 #. editorial content for the primary hero shelves.
 msgid "Begone, annoying cookie warnings!"
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid "The easiest way to manage all of your YouTube channel subscriptions."
-msgstr ""
+#, fuzzy
+msgid "The easiest way to manage YouTube subscriptions."
+msgstr "Rruga më e lehtë për të administruar krejt pajtimet tuaja në kanale YouTube-i."
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
-msgstr ""
+msgstr "Riktheni te një kohë më e thjeshtë — kur përfundimet kryesuese tuajat gjendeshin mbi reklamat (e përputhshme me motorë kërkimi Google dhe Bing)."
 
 #. editorial content for the primary hero shelves.
-msgid "Get the scrollbar you always wanted—select width and your color of choice."
+msgid "Get the mouse scrollbar you've always wanted—specify width and color."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
-msgstr ""
+msgstr "Ruani dhe riktheni skeda. Përfshin vetëruajtje dhe veçori njëkohësimi në re."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4906,9 +4925,8 @@ msgstr "E vonuar ngaqë është versioni i parë i shfaqur"
 msgid "Version string and guid match a blocklist Block"
 msgstr ""
 
-#, fuzzy
 msgid "Weight breakdown not available."
-msgstr "Analiza e rrezikut s’është gati."
+msgstr "Analiza e peshës s’është gati."
 
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "S’mund të parashtroni koment, nëse është përkufizuar parametri `canned_response`."
@@ -4955,16 +4973,14 @@ msgstr "ID"
 msgid "Last Review"
 msgstr "Shqyrtimi Më i RI"
 
-#, fuzzy
 msgid "Code Weight"
-msgstr "Peshë"
+msgstr "Peshë Kodi"
 
 msgid "Metadata Weight"
 msgstr ""
 
-#, fuzzy
 msgid "Total Weight"
-msgstr "Peshë"
+msgstr "Peshë Gjithsej"
 
 msgid "Maliciousness Score"
 msgstr ""
@@ -5387,7 +5403,8 @@ msgstr "Shqyrtim Lënde {0}"
 msgid "Review {0}"
 msgstr "Shqyrtoni {0}"
 
-msgid "Add-on user change history"
+#, fuzzy
+msgid "Add-on important changes history"
 msgstr "Historik ndryshimesh përdoruesi shtese"
 
 msgid "Add-on History"
@@ -5625,17 +5642,14 @@ msgstr "Zhvilluesi ka dhënë kodin burim."
 msgid "Maliciousness Score:"
 msgstr ""
 
-#, fuzzy
 msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr "Përfundimi nga Skanues përfaqëson gjasat që ky version të jetë keqdashës, bazuar në çka gjejnë skanuesit."
+msgstr "Vlerësimi i Dashakeqësisë përfaqëson gjasat që ky version të jetë keqdashës, bazuar në çka gjejnë skanuesit."
 
-#, fuzzy
 msgid "Code Weight:"
-msgstr "Peshë:"
+msgstr "Peshë Kodi:"
 
-#, fuzzy
 msgid "Metadata Weight:"
-msgstr "Peshë:"
+msgstr "Peshë Tejtëdhënash:"
 
 msgid "Flagged by scanners"
 msgstr "Me shenjë nga skanues"
@@ -5902,7 +5916,7 @@ msgid "Custom..."
 msgstr "Vetjake…"
 
 msgid "Sorry, the statistics are temporarily unavailable."
-msgstr ""
+msgstr "Ma ndjeni, aktualisht statistikat nuk janë të passhme."
 
 msgid "Loading the latest data&hellip;"
 msgstr "Po ngarkohen të dhënat më të reja&hellip;"

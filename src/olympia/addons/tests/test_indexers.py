@@ -11,7 +11,6 @@ from olympia.amo.models import SearchMixin
 from olympia.amo.tests import addon_factory, ESTestCase, TestCase, file_factory
 from olympia.bandwagon.models import Collection
 from olympia.constants.applications import FIREFOX
-from olympia.constants.platforms import PLATFORM_ALL, PLATFORM_MAC
 from olympia.constants.promoted import RECOMMENDED
 from olympia.constants.search import SEARCH_LANGUAGE_TO_ANALYZER
 from olympia.files.models import WebextPermission
@@ -77,7 +76,6 @@ class TestAddonIndexer(TestCase):
             'is_recommended',
             'listed_authors',
             'name',
-            'platforms',
             'previews',
             'promoted',
             'ratings',
@@ -173,7 +171,6 @@ class TestAddonIndexer(TestCase):
             'is_webextension',
             'is_restart_required',
             'is_mozilla_signed_extension',
-            'platform',
             'size',
             'status',
             'strict_compatibility',
@@ -248,7 +245,6 @@ class TestAddonIndexer(TestCase):
                 'is_public': True,
             }
         ]
-        assert extracted['platforms'] == [PLATFORM_ALL.id]
         assert extracted['ratings'] == {
             'average': self.addon.average_rating,
             'count': self.addon.total_ratings,
@@ -283,7 +279,7 @@ class TestAddonIndexer(TestCase):
         # Make the version a webextension and add a bunch of things to it to
         # test different scenarios.
         version.all_files[0].update(is_webextension=True)
-        file_factory(version=version, platform=PLATFORM_MAC.id, is_webextension=True)
+        file_factory(version=version, is_webextension=True)
         del version.all_files
         version.license = License.objects.create(
             name='My licensé', url='http://example.com/', builtin=0
@@ -339,19 +335,14 @@ class TestAddonIndexer(TestCase):
             assert extracted_file['is_mozilla_signed_extension'] == (
                 file_.is_mozilla_signed_extension
             )
-            assert extracted_file['platform'] == file_.platform
             assert extracted_file['size'] == file_.size
             assert extracted_file['status'] == file_.status
             assert extracted_file['permissions'] == permissions
             assert extracted_file['optional_permissions'] == optional_permissions
 
-        assert set(extracted['platforms']) == set([PLATFORM_MAC.id, PLATFORM_ALL.id])
-
     def test_version_compatibility_with_strict_compatibility_enabled(self):
         version = self.addon.current_version
-        file_factory(
-            version=version, platform=PLATFORM_MAC.id, strict_compatibility=True
-        )
+        file_factory(version=version, strict_compatibility=True)
         extracted = self._extract()
 
         assert extracted['current_version']['compatible_apps'] == {

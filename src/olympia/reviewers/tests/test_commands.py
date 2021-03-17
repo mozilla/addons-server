@@ -1250,7 +1250,7 @@ class TestNotifyAboutAutoApproveDelay(AutoApproveTestsMixin, TestCase):
 
 class TestAutoReject(TestCase):
     def setUp(self):
-        user_factory(
+        self.task_user = user_factory(
             id=settings.TASK_USER_ID, username='taskuser', email='taskuser@mozilla.com'
         )
         self.addon = addon_factory(
@@ -1376,6 +1376,7 @@ class TestAutoReject(TestCase):
         VersionReviewerFlags.objects.create(
             version=another_pending_rejection, pending_rejection=self.yesterday
         )
+        ActivityLog.objects.for_addons(self.addon).delete()
 
         command = auto_reject.Command()
         command.dry_run = False
@@ -1391,13 +1392,17 @@ class TestAutoReject(TestCase):
         another_pending_rejection.refresh_from_db()
         assert not self.version.is_public()
 
-        # There should be an activity log for each version with the rejection.
+        # There should be an activity log for each version with the rejection
+        # and one because the add-on is changing status as a result.
         logs = ActivityLog.objects.for_addons(self.addon)
-        assert len(logs) == 2
-        assert logs[0].action == amo.LOG.REJECT_VERSION.id
-        assert logs[0].arguments == [self.addon, self.version]
+        assert len(logs) == 3
+        assert logs[0].action == amo.LOG.CHANGE_STATUS.id
+        assert logs[0].arguments == [self.addon, amo.STATUS_NULL]
+        assert logs[0].user == self.task_user
         assert logs[1].action == amo.LOG.REJECT_VERSION.id
-        assert logs[1].arguments == [self.addon, another_pending_rejection]
+        assert logs[1].arguments == [self.addon, self.version]
+        assert logs[2].action == amo.LOG.REJECT_VERSION.id
+        assert logs[2].arguments == [self.addon, another_pending_rejection]
 
         # All pending rejections flags in the past should have been dropped
         # when the rejection was applied (there are no other pending rejections

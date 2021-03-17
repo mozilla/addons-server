@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-09 17:59+0000\n"
-"PO-Revision-Date: 2021-03-02 10:41+0000\n"
+"POT-Creation-Date: 2021-03-16 17:41+0000\n"
+"PO-Revision-Date: 2021-03-12 19:01+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -975,6 +975,22 @@ msgstr "Έγινε εκ νέου υπογραφή του {addon} {version} (πρ
 
 msgid "Version re-signed"
 msgstr "Έγινε εκ νέου υπογραφή της έκδοσης"
+
+#, fuzzy
+msgid "{addon} status force-disabled."
+msgstr "Το {addon} απενεργοποιήθηκε."
+
+#, fuzzy
+msgid "Force disabled"
+msgstr "Εξαναγκασμός απενεργοποίησης προσθέτου"
+
+#, fuzzy
+msgid "{addon} status force-enabled."
+msgstr "Η έκδοση {version} του {addon} ενεργοποιήθηκε ξανά."
+
+#, fuzzy
+msgid "Force enabled"
+msgstr "Εξαναγκαστική ενεργοποίηση προσθέτου"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4269,9 +4285,8 @@ msgid "Close annoying pop-ups with a simple click."
 msgstr "Κλείστε τα ενοχλητικά αναδυόμενα παράθυρα με ένα κλικ."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Find an interesting image on the web? Want to learn more about it?"
-msgstr "Βρήκατε μια ενδιαφέρουσα εικόνα στο web; Εξερευνήστε την προέλευσή της με το TinEye."
+msgstr "Βρήκατε μια ενδιαφέρουσα εικόνα στο διαδίκτυο; Θέλετε να μάθετε περισσότερα για αυτήν;"
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
@@ -4466,7 +4481,6 @@ msgid "Skip over sponsored portions of YouTube videos."
 msgstr "Παράλειψη των χορηγούμενων μερών των βίντεο στο YouTube."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Have web pages read aloud to you. 40+ languages supported."
 msgstr "Ανάγνωση ιστοσελίδων από τη συσκευή σας. Υποστήριξη για 40+ γλώσσες."
 
@@ -4477,12 +4491,11 @@ msgstr "Κάντε διπλό κλικ σε οποιαδήποτε λέξη γι
 
 #. editorial content for the discovery pane.
 msgid "Blues & Yellows"
-msgstr ""
+msgstr "Μπλε & κίτρινα"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Forest Theme"
-msgstr "Δημιουργία θέματος"
+msgstr "Θέμα δάσους"
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4497,6 +4510,11 @@ msgid "For those moments you need to fire lasers out of cat eyes."
 msgstr "Για εκείνες τις στιγμές που χρειάζεστε μια γάτα με μάτια που βγάζουν λέιζερ."
 
 #. editorial content for the primary hero shelves.
+#, fuzzy
+msgid "Web pages read aloud. 40+ languages supported."
+msgstr "Ανάγνωση ιστοσελίδων από τη συσκευή σας. Υποστήριξη για 40+ γλώσσες."
+
+#. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
 msgstr "Αφαιρεί τις μεγάλες παραμέτρους καταγραφής από τα URL των αποτελεσμάτων αναζήτησης Google."
 
@@ -4509,7 +4527,8 @@ msgid "Manage your time better with a browser clock that charts work intervals."
 msgstr "Διαχειριστείτε καλύτερα το χρόνο σας με ένα ρολόι που χαρτογραφεί τα διαστήματα εργασίας."
 
 #. editorial content for the primary hero shelves.
-msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
+#, fuzzy
+msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
 msgstr "Κουραστήκατε με το παράθυρο \"Το βίντεο διακόπηκε. Συνέχεια παρακολούθησης;\"; Ακούστε την αγαπημένη σας μουσική χωρίς διακοπή στο YouTube."
 
 #. editorial content for the primary hero shelves.
@@ -4521,7 +4540,8 @@ msgid "Begone, annoying cookie warnings!"
 msgstr "Εξαφανιστείτε, ενοχλητικές προειδοποιήσεις cookie!"
 
 #. editorial content for the primary hero shelves.
-msgid "The easiest way to manage all of your YouTube channel subscriptions."
+#, fuzzy
+msgid "The easiest way to manage YouTube subscriptions."
 msgstr "Ο πιο εύκολος τρόπος διαχείρισης όλων των συνδρομών σας στο YouTube."
 
 #. editorial content for the primary hero shelves.
@@ -4529,12 +4549,13 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr "Επιστρέψτε σε πιο απλές εποχές — όταν τα κορυφαία αποτελέσματα αναζήτησης βρίσκονταν πάνω από τις διαφημίσεις (συμβατό με τις μηχανές αναζήτησης Google και Bing)."
 
 #. editorial content for the primary hero shelves.
-msgid "Get the scrollbar you always wanted—select width and your color of choice."
-msgstr ""
+#, fuzzy
+msgid "Get the mouse scrollbar you've always wanted—specify width and color."
+msgstr "Αποκτήστε τη γραμμή κύλισης που πάντα θέλατε—επιλέξτε το πλάτος και το χρώμα."
 
 #. editorial content for the primary hero shelves.
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
-msgstr ""
+msgstr "Αποθήκευση και επαναφορά καρτελών. Περιλαμβάνει λειτουργίες αυτόματης αποθήκευσης και συγχρονισμού cloud."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -5432,7 +5453,8 @@ msgstr "Αξιολόγηση περιεχομένου {0}"
 msgid "Review {0}"
 msgstr "Αξιολόγηση {0}"
 
-msgid "Add-on user change history"
+#, fuzzy
+msgid "Add-on important changes history"
 msgstr "Ιστορικό αλλαγής χρήστη προσθέτου"
 
 msgid "Add-on History"

@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-09 17:59+0000\n"
-"PO-Revision-Date: 2021-03-10 10:00+0000\n"
+"POT-Creation-Date: 2021-03-16 17:41+0000\n"
+"PO-Revision-Date: 2021-03-17 02:39+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -962,6 +962,20 @@ msgstr "{addon} {version} 已要求重新審核（先前為 {0}）。"
 
 msgid "Version re-signed"
 msgstr "已重新審核版本"
+
+msgid "{addon} status force-disabled."
+msgstr "已強制停用 {addon}。"
+
+msgid "Force disabled"
+msgstr "已強制停用"
+
+# 93%
+# 100%
+msgid "{addon} status force-enabled."
+msgstr "已強制啟用 {addon}。"
+
+msgid "Force enabled"
+msgstr "已強制啟用"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4339,7 +4353,6 @@ msgid "Skip over sponsored portions of YouTube videos."
 msgstr "跳過 YouTube 影片的廣告贊助部分。"
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Have web pages read aloud to you. 40+ languages supported."
 msgstr "讓網頁自動朗讀，支援超過 40 種語言。"
 
@@ -4369,6 +4382,10 @@ msgid "For those moments you need to fire lasers out of cat eyes."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
+msgid "Web pages read aloud. 40+ languages supported."
+msgstr "讓網頁自動朗讀，支援超過 40 種語言。"
+
+#. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
 msgstr "移除 Google 搜尋結果網址當中，又臭又長的追蹤參數。"
 
@@ -4381,7 +4398,7 @@ msgid "Manage your time better with a browser clock that charts work intervals."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
+msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4393,15 +4410,15 @@ msgid "Begone, annoying cookie warnings!"
 msgstr "去去 Cookie 警告走！"
 
 #. editorial content for the primary hero shelves.
-msgid "The easiest way to manage all of your YouTube channel subscriptions."
-msgstr "最簡單就能管理您所有 YouTube 頻道訂閱的方式。"
+msgid "The easiest way to manage YouTube subscriptions."
+msgstr "最簡單就能管理所有 YouTube 訂閱項目的方式。"
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid "Get the scrollbar you always wanted—select width and your color of choice."
+msgid "Get the mouse scrollbar you've always wanted—specify width and color."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -5282,8 +5299,8 @@ msgstr "內容審核 {0}"
 msgid "Review {0}"
 msgstr "審核 {0}"
 
-msgid "Add-on user change history"
-msgstr "附加元件使用者變更紀錄"
+msgid "Add-on important changes history"
+msgstr "附加元件重要變更紀錄"
 
 msgid "Add-on History"
 msgstr "附加元件歷史"

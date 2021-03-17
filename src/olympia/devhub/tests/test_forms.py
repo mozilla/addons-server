@@ -355,15 +355,15 @@ class TestPreviewForm(TestCase):
                 'image': [2400, 1600],
                 'thumbnail': [640, 427],
                 'original': [3000, 2000],
+                'thumbnail_format': 'jpg',
             }
         )
         assert os.path.exists(preview.image_path)
         assert os.path.exists(preview.thumbnail_path)
         assert os.path.exists(preview.original_path)
 
-        assert pngcrush_image_mock.call_count == 2
-        assert pngcrush_image_mock.call_args_list[0][0][0] == (preview.thumbnail_path)
-        assert pngcrush_image_mock.call_args_list[1][0][0] == (preview.image_path)
+        assert pngcrush_image_mock.call_count == 1  # the thumbnail isn't a png now
+        assert pngcrush_image_mock.call_args_list[0][0][0] == (preview.image_path)
 
 
 class TestDistributionChoiceForm(TestCase):

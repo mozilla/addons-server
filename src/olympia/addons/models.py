@@ -66,6 +66,7 @@ from olympia.translations.fields import (
 from olympia.translations.hold import translation_saved
 from olympia.translations.models import Translation
 from olympia.users.models import UserProfile
+from olympia.users.utils import get_task_user
 from olympia.versions.compare import version_int
 from olympia.versions.models import (
     Version,
@@ -539,16 +540,20 @@ class Addon(OnChangeMixin, ModelBase):
         clean_slug(self, slug_field)
 
     def force_disable(self):
-        activity.log_create(amo.LOG.CHANGE_STATUS, self, amo.STATUS_DISABLED)
-        log.info('Addon "%s" status changed to: %s', self.slug, amo.STATUS_DISABLED)
+        activity.log_create(amo.LOG.FORCE_DISABLE, self)
+        log.info(
+            'Addon "%s" status force-changed to: %s', self.slug, amo.STATUS_DISABLED
+        )
         self.update(status=amo.STATUS_DISABLED)
         self.update_version()
         # See: https://github.com/mozilla/addons-server/issues/13194
         self.disable_all_files()
 
     def force_enable(self):
-        activity.log_create(amo.LOG.CHANGE_STATUS, self, amo.STATUS_APPROVED)
-        log.info('Addon "%s" status changed to: %s', self.slug, amo.STATUS_APPROVED)
+        activity.log_create(amo.LOG.FORCE_ENABLE, self)
+        log.info(
+            'Addon "%s" status force-changed to: %s', self.slug, amo.STATUS_APPROVED
+        )
         self.update(status=amo.STATUS_APPROVED)
         # Call update_status() to fix the status if the add-on is not actually
         # in a state that allows it to be public.
@@ -1145,7 +1150,14 @@ class Addon(OnChangeMixin, ModelBase):
                 % (self.id, self.status, status, reason)
             )
             self.update(status=status)
-            activity.log_create(amo.LOG.CHANGE_STATUS, self, self.status)
+            # If task_user doesn't exist that's no big issue (i.e. in tests)
+            try:
+                task_user = get_task_user()
+            except UserProfile.DoesNotExist:
+                task_user = None
+            activity.log_create(
+                amo.LOG.CHANGE_STATUS, self, self.status, user=task_user
+            )
 
         self.update_version(ignore=ignore_version)
 

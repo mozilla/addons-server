@@ -964,13 +964,21 @@ def review(request, addon, channel=None):
     wb_form_cls = PublicWhiteboardForm if is_static_theme else WhiteboardForm
     whiteboard_form = wb_form_cls(instance=whiteboard, prefix='whiteboard')
 
-    user_changes_actions = [
+    user_changes_actions = (
         amo.LOG.ADD_USER_WITH_ROLE.id,
         amo.LOG.CHANGE_USER_WITH_ROLE.id,
         amo.LOG.REMOVE_USER_WITH_ROLE.id,
-    ]
-    user_changes_log = ActivityLog.objects.filter(
-        action__in=user_changes_actions, addonlog__addon=addon
+    )
+    admin_changes_actions = (
+        amo.LOG.FORCE_DISABLE.id,
+        amo.LOG.FORCE_ENABLE.id,
+    )
+    status_changes_actions = (amo.LOG.CHANGE_STATUS.id,)
+    important_changes_log = ActivityLog.objects.filter(
+        action__in=(
+            user_changes_actions + admin_changes_actions + status_changes_actions
+        ),
+        addonlog__addon=addon,
     ).order_by('id')
 
     name_translations = (
@@ -1004,6 +1012,7 @@ def review(request, addon, channel=None):
         flags=flags,
         form=form,
         has_versions_pending_rejection=has_versions_pending_rejection,
+        important_changes_log=important_changes_log,
         is_admin=is_admin,
         language_dict=dict(settings.LANGUAGES),
         latest_not_disabled_version=latest_not_disabled_version,
@@ -1026,7 +1035,6 @@ def review(request, addon, channel=None):
             user=request.user, addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED
         ).exists(),
         unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED),
-        user_changes_log=user_changes_log,
         user_ratings=user_ratings,
         version=version,
         versions_flagged_by_scanners_other=versions_flagged_by_scanners_other,

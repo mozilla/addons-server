@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-09 17:59+0000\n"
-"PO-Revision-Date: 2021-02-27 03:24+0000\n"
+"POT-Creation-Date: 2021-03-16 17:41+0000\n"
+"PO-Revision-Date: 2021-03-13 12:38+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -960,6 +960,22 @@ msgstr "{addon} {version} დამოწმებულია ახლიდ�
 
 msgid "Version re-signed"
 msgstr "ვერსია დამოწმებულია ახლიდან"
+
+#, fuzzy
+msgid "{addon} status force-disabled."
+msgstr "{addon} გათიშულია."
+
+#, fuzzy
+msgid "Force disabled"
+msgstr "საგანგებოდ გამორთული დამატება"
+
+#, fuzzy
+msgid "{addon} status force-enabled."
+msgstr "{addon} {version} ჩაირთო."
+
+#, fuzzy
+msgid "Force enabled"
+msgstr "საგანგებოდ ამოქმედებული დამატება"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4211,9 +4227,8 @@ msgid "Close annoying pop-ups with a simple click."
 msgstr "მოაცილეთ მომაბეზრებელი ამომხტომი ფანჯრები ერთი დაწკაპებით."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Find an interesting image on the web? Want to learn more about it?"
-msgstr "საინტერესო სურათი ნახეთ ინტერნეტში? გამოიყენეთ TinEye მისი წარმომავლობის დასადგენად."
+msgstr "საინტერესო სურათი ნახეთ ინტერნეტში? გსურთ, მეტი შეიტყოთ მასზე?"
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
@@ -4408,7 +4423,6 @@ msgid "Skip over sponsored portions of YouTube videos."
 msgstr "გამოტოვეთ დაფინანსებული ნაწილები YouTube-ვიდეოებში."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Have web pages read aloud to you. 40+ languages supported."
 msgstr "ხმოვანი წამკითხველი ვებგვერდებისთვის. 40-ზე მეტი ენის მხარდაჭერით."
 
@@ -4419,12 +4433,11 @@ msgstr "ორჯერ დაწკაპეთ ნებისმიერ ს
 
 #. editorial content for the discovery pane.
 msgid "Blues & Yellows"
-msgstr ""
+msgstr "ლურჯი და ყვითელი"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Forest Theme"
-msgstr "თემის შექმნა"
+msgstr "ტყის იერსახე"
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4439,6 +4452,11 @@ msgid "For those moments you need to fire lasers out of cat eyes."
 msgstr "იმ შემთხვევებისთვის, როცა დაგჭირდებათ კატის მწველი მზერა."
 
 #. editorial content for the primary hero shelves.
+#, fuzzy
+msgid "Web pages read aloud. 40+ languages supported."
+msgstr "ხმოვანი წამკითხველი ვებგვერდებისთვის. 40-ზე მეტი ენის მხარდაჭერით."
+
+#. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
 msgstr "აცილებს ამ ვრცელ და შეუხედავ მეთვალყურეებს, Google-ის საძიებოს შედეგების ბმულებიდან."
 
@@ -4451,7 +4469,8 @@ msgid "Manage your time better with a browser clock that charts work intervals."
 msgstr "განაგეთ თქვენი დრო უკეთ ბრაუზერის საათით, რომელიც დაგეგმავს სამუშაო დროს."
 
 #. editorial content for the primary hero shelves.
-msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
+#, fuzzy
+msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
 msgstr "დაგღალათ „ვიდეო შეჩერებულია. გსურთ განაგრძოთ?“ შეტყობინებებმა? მოუსმინეთ სასურველ მუსიკას შეუჩერებლად YouTube-ზე."
 
 #. editorial content for the primary hero shelves.
@@ -4463,7 +4482,8 @@ msgid "Begone, annoying cookie warnings!"
 msgstr "აქშა, ფუნთუშების აბეზარო შეტყობინებებო!"
 
 #. editorial content for the primary hero shelves.
-msgid "The easiest way to manage all of your YouTube channel subscriptions."
+#, fuzzy
+msgid "The easiest way to manage YouTube subscriptions."
 msgstr "უმარტივესი გზა, YouTube-არხების ყველა გამოწერის სამართავად."
 
 #. editorial content for the primary hero shelves.
@@ -4471,12 +4491,13 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr "დაიბრუნეთ ის დრო — როცა ძიების სასურველ შედეგებს, რეკლამები არ ფარავდა (საძიებოები Google და Bing თავსებადია)."
 
 #. editorial content for the primary hero shelves.
-msgid "Get the scrollbar you always wanted—select width and your color of choice."
-msgstr ""
+#, fuzzy
+msgid "Get the mouse scrollbar you've always wanted—specify width and color."
+msgstr "სასურველი გადასაადგილებელი ზოლი — თავად შეარჩიეთ სიგანე და ფერი, გემოვნებით."
 
 #. editorial content for the primary hero shelves.
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
-msgstr ""
+msgstr "გადაინახეთ და დააბრუნეთ ჩანართები. შეუძლია თვითშენახვა და ღრუბელში სინქრონიზაციაც."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -5365,7 +5386,8 @@ msgstr "{0} შიგთავსის განხილვა"
 msgid "Review {0}"
 msgstr "მიმოხილვა {0}"
 
-msgid "Add-on user change history"
+#, fuzzy
+msgid "Add-on important changes history"
 msgstr "დამატების მომხმარებლის ცვლილების ისტორია"
 
 msgid "Add-on History"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-09 17:59+0000\n"
+"POT-Creation-Date: 2021-03-16 17:41+0000\n"
 "PO-Revision-Date: 2021-02-14 15:23+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -969,6 +969,22 @@ msgstr "Doplněk {addon} {version} znovu podepsán (původně {0})."
 
 msgid "Version re-signed"
 msgstr "Verze znovu podepsána"
+
+#, fuzzy
+msgid "{addon} status force-disabled."
+msgstr "Doplněk {addon} byl zakázán."
+
+#, fuzzy
+msgid "Force disabled"
+msgstr "Vynutit zakázání doplňku"
+
+#, fuzzy
+msgid "{addon} status force-enabled."
+msgstr "Doplněk {addon} {version} znovu povolen."
+
+#, fuzzy
+msgid "Force enabled"
+msgstr "Vynutit povolení doplňku"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4393,7 +4409,6 @@ msgid "Skip over sponsored portions of YouTube videos."
 msgstr "Přeskočte sponzorované části videí na YouTube."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Have web pages read aloud to you. 40+ languages supported."
 msgstr "Nechte si webové stránky předčítat. Podporováno více než 40 jazyků."
 
@@ -4426,6 +4441,11 @@ msgid "For those moments you need to fire lasers out of cat eyes."
 msgstr "Někdy prostě potřebujete kočky, co střílejí lasery."
 
 #. editorial content for the primary hero shelves.
+#, fuzzy
+msgid "Web pages read aloud. 40+ languages supported."
+msgstr "Nechte si webové stránky předčítat. Podporováno více než 40 jazyků."
+
+#. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
 msgstr ""
 
@@ -4439,7 +4459,7 @@ msgid "Manage your time better with a browser clock that charts work intervals."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
+msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4451,7 +4471,7 @@ msgid "Begone, annoying cookie warnings!"
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid "The easiest way to manage all of your YouTube channel subscriptions."
+msgid "The easiest way to manage YouTube subscriptions."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4459,7 +4479,7 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid "Get the scrollbar you always wanted—select width and your color of choice."
+msgid "Get the mouse scrollbar you've always wanted—specify width and color."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -5385,7 +5405,8 @@ msgstr "Kontrola obsahu {0}"
 msgid "Review {0}"
 msgstr "Kontrola {0}"
 
-msgid "Add-on user change history"
+#, fuzzy
+msgid "Add-on important changes history"
 msgstr "Historie změn doplňku uživatelem"
 
 msgid "Add-on History"

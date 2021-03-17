@@ -737,6 +737,7 @@ class TestAddonModels(TestCase):
             assert version.deleted
 
     def test_force_disable(self):
+        core.set_user(UserProfile.objects.get(email='admin@mozilla.com'))
         addon = Addon.unfiltered.get(pk=3615)
         assert addon.status != amo.STATUS_DISABLED
         files = File.objects.filter(version__addon=addon)
@@ -746,11 +747,23 @@ class TestAddonModels(TestCase):
 
         addon.force_disable()
 
+        log = ActivityLog.objects.latest('pk')
+        assert log.action == amo.LOG.FORCE_DISABLE.id
+
         assert addon.status == amo.STATUS_DISABLED
         files = File.objects.filter(version__addon=addon)
         assert files
         for file_ in files:
             assert file_.status == amo.STATUS_DISABLED
+
+    def test_force_enable(self):
+        core.set_user(UserProfile.objects.get(email='admin@mozilla.com'))
+        addon = Addon.unfiltered.get(pk=3615)
+        addon.update(status=amo.STATUS_DISABLED)
+        addon.force_enable()
+        assert addon.status == amo.STATUS_APPROVED
+        log = ActivityLog.objects.latest('pk')
+        assert log.action == amo.LOG.FORCE_ENABLE.id
 
     def test_incompatible_latest_apps(self):
         a = Addon.objects.get(pk=3615)

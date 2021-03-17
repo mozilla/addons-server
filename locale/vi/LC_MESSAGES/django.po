@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-09 17:59+0000\n"
-"PO-Revision-Date: 2021-02-18 08:08+0000\n"
+"POT-Creation-Date: 2021-03-16 17:41+0000\n"
+"PO-Revision-Date: 2021-03-13 08:10+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -40,7 +40,7 @@ msgid "Reporter's country"
 msgstr ""
 
 msgid "Message excerpt"
-msgstr ""
+msgstr "Đoạn trích tin nhắn"
 
 #, python-format
 msgid "The %d selected reports have been marked as valid."
@@ -51,7 +51,7 @@ msgid "The %d selected reports have been marked as suspicious."
 msgstr "%d báo cáo được chọn đã được đánh dấu là đáng ngờ."
 
 msgid "Mark selected abuse reports as suspicious"
-msgstr ""
+msgstr "Đánh dấu các báo cáo lạm dụng đã chọn là đáng ngờ"
 
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Hãy đảm bảo rằng trường này không vượt quá {max_length} ký tự."
@@ -437,7 +437,7 @@ msgstr "Bạn phải cung cấp một đối tượng của {lang-code:value}."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
-msgstr ""
+msgstr "pk hoặc slug \"%s\" không hợp lệ - đối tượng không tồn tại."
 
 msgid "Confirmation for developer API keys"
 msgstr "Xác nhận cho khóa API của nhà phát triển"
@@ -653,7 +653,7 @@ msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} đã được xét duyệt sơ bộ."
 
 msgid "Preliminarily approved"
-msgstr ""
+msgstr "Được duyệt sơ bộ"
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} bị từ chối."
@@ -671,7 +671,7 @@ msgid "{addon} {version} escalated."
 msgstr "{addon} {version} nâng cấp."
 
 msgid "Super review requested"
-msgstr ""
+msgstr "Đã yêu cầu xem xét nâng cao"
 
 msgid "{addon} {version} review requested."
 msgstr "{addon} {version} yêu cầu xét duyệt."
@@ -690,6 +690,7 @@ msgstr ""
 
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
+"Tiện ích đã được gắn cờ để quản trị viên xem xét. Nó vẫn nằm trong hàng đợi xem xét, nhưng sẽ cần được kiểm tra bởi một quản trị viên. Quá trình xem xét có thể mất nhiều thời gian hơn bình thường."
 
 msgid "Comment on {addon} {version}."
 msgstr "Nhận xét về {addon} {version}."
@@ -975,6 +976,22 @@ msgstr "{addon} {version} yêu cầu xét duyệt."
 msgid "Version re-signed"
 msgstr "Phiên bản %s đã bật lại."
 
+#, fuzzy
+msgid "{addon} status force-disabled."
+msgstr "{addon} bị vô hiệu hóa."
+
+#, fuzzy
+msgid "Force disabled"
+msgstr "{addon} bị vô hiệu hóa."
+
+#, fuzzy
+msgid "{addon} status force-enabled."
+msgstr "{addon} {version} đã bật lại."
+
+#, fuzzy
+msgid "Force enabled"
+msgstr "Buộc kích hoạt tiện ích mở rộng"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -1100,7 +1117,7 @@ msgid "Bookmarks"
 msgstr "Đánh dấu"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr ""
+msgstr "Tải xuống các tiện ích mở rộng để nâng cao tính năng của dấu trang bằng cách bảo vệ chúng bằng mật khẩu, tìm kiếm bản sao, tìm dấu trang bị hỏng, v.v."
 
 msgid "Download Management"
 msgstr "Quản lí tải xuống"
@@ -1173,7 +1190,7 @@ msgid "Other"
 msgstr "Khác"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr ""
+msgstr "Tải xuống các tiện ích mở rộng của Firefox có thể khó đoán và sáng tạo, nhưng sẽ hữu ích cho những tác vụ kỳ lạ."
 
 msgid "Device Features & Location"
 msgstr "Địa điểm & Tính năng Thiết bị"
@@ -4397,7 +4414,6 @@ msgid "Skip over sponsored portions of YouTube videos."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Have web pages read aloud to you. 40+ languages supported."
 msgstr ""
 
@@ -4430,6 +4446,10 @@ msgid "For those moments you need to fire lasers out of cat eyes."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
+msgid "Web pages read aloud. 40+ languages supported."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
 msgstr ""
 
@@ -4442,7 +4462,7 @@ msgid "Manage your time better with a browser clock that charts work intervals."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid "Tired of that \"Video paused. Continue watching?\" dialog? Listen to your favorite music uninterrupted on YouTube."
+msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4454,7 +4474,7 @@ msgid "Begone, annoying cookie warnings!"
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid "The easiest way to manage all of your YouTube channel subscriptions."
+msgid "The easiest way to manage YouTube subscriptions."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4462,7 +4482,7 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid "Get the scrollbar you always wanted—select width and your color of choice."
+msgid "Get the mouse scrollbar you've always wanted—specify width and color."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -5364,7 +5384,7 @@ msgstr "Đánh giá nội dung {0}"
 msgid "Review {0}"
 msgstr "Xét duyệt {0}"
 
-msgid "Add-on user change history"
+msgid "Add-on important changes history"
 msgstr ""
 
 msgid "Add-on History"
