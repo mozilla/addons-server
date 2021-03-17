@@ -490,6 +490,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
         content = response.content.decode('utf-8')
         # meta data for new blocks and existing ones needing update:
         assert 'Add-on GUIDs (one per line)' not in content
+        total_adu = addon_adu + addon_adu - 1
+        assert '2 Add-on GUIDs with {:,} users:'.format(total_adu) in content
         assert 'any@new' in content
         assert 'New Danger' in content
         assert str(new_addon.average_daily_users) in content

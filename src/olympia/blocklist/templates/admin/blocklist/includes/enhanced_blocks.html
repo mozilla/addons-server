@@ -1,6 +1,7 @@
 {% load i18n %}
+{% load humanize %}
 
-      <h3>{% blocktrans with count=blocks|length %}{{ count }} Add-on GUIDs{% endblocktrans %}:</h3>
+      <h3>{% blocktrans with count=blocks|length|intcomma adu=total_adu|intcomma %}{{ count }} Add-on GUIDs with {{ adu }} users{% endblocktrans %}:</h3>
        <ul class="guid_list">
         {% for block_obj in blocks %}
           <li>
