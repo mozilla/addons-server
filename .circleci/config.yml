@@ -289,7 +289,6 @@ references:
 
   mysql-config: &mysql-config
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: yes
       MYSQL_DATABASE: olympia
 
   defaults: &defaults
