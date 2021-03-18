@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-16 17:41+0000\n"
-"PO-Revision-Date: 2021-03-18 09:05+0000\n"
+"PO-Revision-Date: 2021-03-18 14:21+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -976,16 +976,14 @@ msgstr "Έγινε εκ νέου υπογραφή του {addon} {version} (πρ
 msgid "Version re-signed"
 msgstr "Έγινε εκ νέου υπογραφή της έκδοσης"
 
-#, fuzzy
 msgid "{addon} status force-disabled."
-msgstr "Το {addon} απενεργοποιήθηκε."
+msgstr "Το {addon} απενεργοποιήθηκε εξαναγκαστικά."
 
 msgid "Force disabled"
 msgstr "Έγινε εξαναγκαστική απενεργοποίηση"
 
-#, fuzzy
 msgid "{addon} status force-enabled."
-msgstr "Η έκδοση {version} του {addon} ενεργοποιήθηκε ξανά."
+msgstr "Το {addon} ενεργοποιήθηκε εξαναγκαστικά."
 
 msgid "Force enabled"
 msgstr "Έγινε εξαναγκαστική ενεργοποίηση"
