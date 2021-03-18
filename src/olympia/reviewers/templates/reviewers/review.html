@@ -284,6 +284,20 @@
                     data-toggle-button-selector="#disable_auto_approval"
                     id="enable_auto_approval" class="toggle" type="button">{{ _('Enable Listed Auto-Approval') }}</button>
           </li>
+          <li {% if addon.auto_approval_disabled_unlisted %}class="hidden"{% endif %}>
+            <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
+                    data-api-method="patch"
+                    data-api-data="{&quot;auto_approval_disabled_unlisted&quot;: true}"
+                    data-toggle-button-selector="#enable_auto_approval_unlisted"
+                    id="disable_auto_approval_unlisted" class="toggle" type="button">{{ _('Disable Unlisted Auto-Approval') }}</button>
+          </li>
+          <li {% if not addon.auto_approval_disabled_unlisted %}class="hidden"{% endif %}>
+            <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
+                    data-api-method="patch"
+                    data-api-data="{&quot;auto_approval_disabled_unlisted&quot;: false}"
+                    data-toggle-button-selector="#disable_auto_approval_unlisted"
+                    id="enable_auto_approval_unlisted" class="toggle" type="button">{{ _('Enable Unlisted Auto-Approval') }}</button>
+          </li>
           <li {% if addon.auto_approval_disabled_until_next_approval %}class="hidden"{% endif %}>
             <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
                     data-api-method="patch"

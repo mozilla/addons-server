@@ -1963,8 +1963,30 @@ class TestAutoApprovalSummary(TestCase):
             AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is True
         )
 
-        # That flag only applies to listed.
+        # The auto_approval_disabled flag only applies to listed.
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        assert (
+            AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is False
+        )
+
+    def test_check_has_auto_approval_disabled_unlisted(self):
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        assert (
+            AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is False
+        )
+
+        flags = AddonReviewerFlags.objects.create(addon=self.addon)
+        assert (
+            AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is False
+        )
+
+        flags.update(auto_approval_disabled_unlisted=True)
+        assert (
+            AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is True
+        )
+
+        # The auto_approval_disabled_unlisted flag only applies to unlisted.
+        self.version.update(channel=amo.RELEASE_CHANNEL_LISTED)
         assert (
             AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is False
         )

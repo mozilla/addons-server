@@ -1626,6 +1626,13 @@ class Addon(OnChangeMixin, ModelBase):
             return None
 
     @property
+    def auto_approval_disabled_unlisted(self):
+        try:
+            return self.reviewerflags.auto_approval_disabled_unlisted
+        except AddonReviewerFlags.DoesNotExist:
+            return None
+
+    @property
     def auto_approval_disabled_until_next_approval(self):
         try:
             return self.reviewerflags.auto_approval_disabled_until_next_approval
@@ -1865,6 +1872,7 @@ class AddonReviewerFlags(ModelBase):
     needs_admin_content_review = models.BooleanField(default=False)
     needs_admin_theme_review = models.BooleanField(default=False)
     auto_approval_disabled = models.BooleanField(default=False)
+    auto_approval_disabled_unlisted = models.NullBooleanField(default=None)
     auto_approval_disabled_until_next_approval = models.NullBooleanField(default=None)
     auto_approval_delayed_until = models.DateTimeField(default=None, null=True)
     notified_about_auto_approval_delay = models.NullBooleanField(default=None)

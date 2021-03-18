@@ -1523,6 +1523,21 @@ class TestAddonModels(TestCase):
         flags.update(auto_approval_disabled=True)
         assert addon.auto_approval_disabled is True
 
+    def test_auto_approval_disabled_unlisted_property(self):
+        addon = Addon.objects.get(pk=3615)
+        # No flags: None
+        assert addon.auto_approval_disabled_unlisted is None
+        # Flag present, value is None (default): None.
+        flags = AddonReviewerFlags.objects.create(addon=addon)
+        assert flags.auto_approval_disabled_unlisted is None
+        assert addon.auto_approval_disabled_unlisted is None
+        # Flag present, value is True: True.
+        flags.update(auto_approval_disabled_unlisted=True)
+        assert addon.auto_approval_disabled_unlisted is True
+        # Flag present, value is False: False.
+        flags.update(auto_approval_disabled_unlisted=False)
+        assert addon.auto_approval_disabled_unlisted is False
+
     def test_auto_approval_disabled_until_next_approval_property(self):
         addon = Addon.objects.get(pk=3615)
         # No flags: None
