@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-16 17:41+0000\n"
-"PO-Revision-Date: 2021-03-18 02:53+0000\n"
+"PO-Revision-Date: 2021-03-18 02:56+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -965,16 +965,16 @@ msgid "Version re-signed"
 msgstr "Version signerad igen"
 
 msgid "{addon} status force-disabled."
-msgstr ""
+msgstr "{addon} status inaktiverad med våld."
 
 msgid "Force disabled"
-msgstr ""
+msgstr "Tvingad inaktiverad"
 
 msgid "{addon} status force-enabled."
-msgstr ""
+msgstr "{addon} status aktiverad med våld."
 
 msgid "Force enabled"
-msgstr ""
+msgstr "Tvingad aktiverad"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -5370,7 +5370,7 @@ msgid "Review {0}"
 msgstr "Granska {0}"
 
 msgid "Add-on important changes history"
-msgstr "Viktig ändringshistorik för tillägg"
+msgstr "Historik över viktiga förändringar för tillägg"
 
 msgid "Add-on History"
 msgstr "Historik för tillägg"
