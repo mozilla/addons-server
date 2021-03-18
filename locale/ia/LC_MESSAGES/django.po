@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-16 17:41+0000\n"
-"PO-Revision-Date: 2021-03-18 22:38+0000\n"
+"PO-Revision-Date: 2021-03-18 22:56+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -558,7 +558,7 @@ msgid "Save"
 msgstr "Salvar"
 
 msgid "Save and add more"
-msgstr "Salvar e adder altero"
+msgstr "Salvar e adder plus"
 
 msgid "Delete"
 msgstr "Deler"
@@ -3842,7 +3842,7 @@ msgstr "Stoppa le traciatores publicitari quando tu clicca sur resultatos de rec
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
-msgstr "Usa gestos del mus pro clauder schedas, navigar inter paginas e altero ancora."
+msgstr "Usa gestos del mus pro clauder schedas, navigar inter paginas, e plus."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4384,7 +4384,7 @@ msgstr "Supplanta automaticamente parolas degradante inter le Web."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr "Bloca tote le avisos publicitari: videos, quadros resaltante, banners e altero ancora."
+msgstr "Bloca tote le annuncios: videos, quadros resaltante, bandieras, e plus."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
