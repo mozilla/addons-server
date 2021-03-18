@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-16 17:41+0000\n"
-"PO-Revision-Date: 2021-03-12 18:07+0000\n"
+"PO-Revision-Date: 2021-03-16 18:12+0000\n"
 "Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -978,21 +978,17 @@ msgstr "{addon} {version} rifirmato (precedentemente {0})."
 msgid "Version re-signed"
 msgstr "Versione rifirmata"
 
-#, fuzzy
 msgid "{addon} status force-disabled."
-msgstr "{addon} disattivato."
+msgstr ""
 
-#, fuzzy
 msgid "Force disabled"
-msgstr "Forza la disattivazione del componente aggiuntivo"
+msgstr ""
 
-#, fuzzy
 msgid "{addon} status force-enabled."
-msgstr "{addon} {version} riattivato."
+msgstr ""
 
-#, fuzzy
 msgid "Force enabled"
-msgstr "Forza l'attivazione del componente aggiuntivo"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4526,9 +4522,8 @@ msgid "For those moments you need to fire lasers out of cat eyes."
 msgstr "Per quei momenti nei quali hai bisogno di un gatto che spara raggi laser dagli occhi."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Web pages read aloud. 40+ languages supported."
-msgstr "Ascolta il contenuto delle pagine web. Più di 40 lingue supportate."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
@@ -4543,9 +4538,8 @@ msgid "Manage your time better with a browser clock that charts work intervals."
 msgstr "Gestisci meglio il tuo tempo con un orologio sul browser che traccia gli intervalli di lavoro."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
-msgstr "Stanco di quella finestra di dialogo “Video in pausa. Stai ancora guardando?” Ascolta la tua musica preferita su YouTube ininterrottamente."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Thousands of GIFs at your fingertips."
@@ -4556,7 +4550,6 @@ msgid "Begone, annoying cookie warnings!"
 msgstr "Addio, fastidiosi avvisi sui cookie!"
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "The easiest way to manage YouTube subscriptions."
 msgstr "Il modo più semplice per gestire tutte le tue iscrizioni ai canali YouTube."
 
@@ -5468,9 +5461,8 @@ msgstr "Revisione contenuti per {0}"
 msgid "Review {0}"
 msgstr "Revisione {0}"
 
-#, fuzzy
 msgid "Add-on important changes history"
-msgstr "Cronologia modifiche utenti"
+msgstr ""
 
 msgid "Add-on History"
 msgstr "Cronologia componente aggiuntivo"
