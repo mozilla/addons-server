@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-16 17:41+0000\n"
-"PO-Revision-Date: 2021-03-18 07:54+0000\n"
+"PO-Revision-Date: 2021-03-18 12:10+0000\n"
 "Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -4558,9 +4558,8 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr "Ritorna al tempo in cui era tutto più semplice, quando i risultati di ricerca principali erano posizionati prima degli annunci pubblicitari (compatibile con Google e Bing)."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Get the mouse scrollbar you've always wanted—specify width and color."
-msgstr "Ottieni la barra di scorrimento che hai sempre desiderato: seleziona la larghezza e il colore che preferisci."
+msgstr "Ottieni la barra di scorrimento che hai sempre desiderato: specifica la larghezza e il colore che preferisci."
 
 #. editorial content for the primary hero shelves.
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
