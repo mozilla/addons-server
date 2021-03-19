@@ -78,7 +78,6 @@ class Command(BaseCommand):
             'hash': files_data['hash'],
             'filename': basename(urlparse(files_data['url']).path),
             'status': amo.STATUS_CHOICES_API_LOOKUP[files_data['status']],
-            'platform': amo.PLATFORM_DICT[files_data['platform']].id,
             'size': files_data['size'],
             'is_webextension': files_data['is_webextension'],
             'is_mozilla_signed_extension': (files_data['is_mozilla_signed_extension']),

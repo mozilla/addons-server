@@ -711,13 +711,6 @@ class TestVersionEditDetails(TestVersionEditBase):
         defaults.update(kw)
         return super(TestVersionEditDetails, self).formset(*args, **defaults)
 
-    def test_files_platform_not_editable(self):
-        # https://github.com/mozilla/addons-server/issues/8752
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert 'file_form' not in response.context
-        assert not doc('#id_files-0-platform')
-
     def test_edit_notes(self):
         data = self.formset(release_notes='xx', approval_notes='yy')
         response = self.client.post(self.url, data)

@@ -64,8 +64,8 @@ class TestNewUploadForm(TestCase):
         form = forms.NewUploadForm(data, request=request)
         assert form.fields['compatible_apps'].initial == [amo.FIREFOX.id]
 
-        # with an add-on provided we select the platforms based on the current
-        # version
+        # with an add-on provided we pre-select the applications based on the
+        # current version
         form = forms.NewUploadForm(data, request=request, addon=addon)
         assert form.fields['compatible_apps'].initial == [
             amo.FIREFOX.id,

@@ -1,6 +1,6 @@
 <div><strong>{{ _('Files in this version:') }}</strong></div>
 <ul>
-{% for file in distinct_files %}
+{% for file in all_files %}
 <li class="file-info">
   <span class="light">
     <strong><a href="{{ file[0].get_absolute_url(attachment=True) }}" class="reviewers-install"

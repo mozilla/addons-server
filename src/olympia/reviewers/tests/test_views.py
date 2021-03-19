@@ -3510,7 +3510,7 @@ class TestReview(ReviewBase):
 
         file_ = self.version.all_files[0]
         expected = [
-            ('All Platforms', file_.get_absolute_url(attachment=True)),
+            (file_.get_absolute_url(attachment=True)),
             (
                 'Validation',
                 reverse('devhub.file_validation', args=[self.addon.slug, file_.id]),
@@ -4630,25 +4630,6 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         data = json.loads(response.content)
         assert data[str(self.addon.id)] == self.reviewer.name
-
-    def test_display_same_files_only_once(self):
-        """
-        Test whether identical files for different platforms
-        show up as one link with the appropriate text.
-        """
-        version = version_factory(addon=self.addon, version='0.2', file_kw=False)
-        file_mac = file_factory(version=version, platform=amo.PLATFORM_MAC.id)
-        file_android = file_factory(version=version, platform=amo.PLATFORM_ANDROID.id)
-
-        # Signing causes the same uploaded file to be different
-        file_mac.update(hash='xyz789', original_hash='123abc')
-        file_android.update(hash='zyx987', original_hash='123abc')
-
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        text = doc('.reviewers-install').eq(1).text()
-        assert text == 'Mac OS X / Android'
 
     def test_compare_no_link(self):
         response = self.client.get(self.url)

@@ -56,7 +56,6 @@ def file_status_message(file):
     choices = File.STATUS_CHOICES
     return {
         'fileid': file.id,
-        'platform': file.get_platform_display(),
         'created': format_date(file.created),
         'status': choices[file.status],
         'actions': amo.LOG_REVIEW_EMAIL_USER,

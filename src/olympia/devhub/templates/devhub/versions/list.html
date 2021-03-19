@@ -77,7 +77,7 @@
     <td class="file-validation">
       <ul>
         {% for file in version.all_files %}
-          <li>{{ file.get_platform_display() }}
+          <li>
           {% if file.has_been_validated %}
             <ul>
               <li><a href="{{ url('devhub.file_validation', addon.slug, file.id) }}">

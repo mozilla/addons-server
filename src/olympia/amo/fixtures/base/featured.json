@@ -333,7 +333,6 @@
             "created": "2010-01-14 11:39:41",
             "modified": "2010-01-14 11:40:45",
             "filename": "glue-4.5.16-fx.xpi",
-            "platform": 1,
             "version": 91189,
             "datestatuschanged": "2010-01-14 11:39:32",
             "size": 164864
@@ -348,7 +347,6 @@
             "created": "2010-01-12 20:50:21",
             "modified": "2010-01-13 08:21:42",
             "filename": "foxyproxy_standard-2.17-fx+sm+tb.xpi",
-            "platform": 1,
             "version": 90952,
             "datestatuschanged": "2010-01-12 20:50:11",
             "size": 592896
@@ -363,7 +361,6 @@
             "created": "2009-12-24 18:30:11",
             "modified": "2009-12-24 18:31:24",
             "filename": "read_it_later-2.0.3-fx.xpi",
-            "platform": 1,
             "version": 88798,
             "datestatuschanged": "2009-12-24 18:30:00",
             "size": 173056
@@ -378,7 +375,6 @@
             "created": "2009-05-08 05:26:22",
             "modified": "2009-05-08 05:26:22",
             "filename": "limon_free_english-hebrew_dictionary-0.5.3-fx.xpi",
-            "platform": 1,
             "version": 68019,
             "datestatuschanged": "2009-05-08 05:26:20",
             "size": 3072

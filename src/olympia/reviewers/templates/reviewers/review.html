@@ -138,7 +138,6 @@
         <ul>
           {% for file in form.unreviewed_files %}
           <li>
-            <strong>{{ file.get_platform_display() }}</strong> &middot;
             {{ file.filename }} &middot;
             {{ file_review_status(addon, file) }}
           </li>

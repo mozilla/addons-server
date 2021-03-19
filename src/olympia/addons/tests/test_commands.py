@@ -26,7 +26,7 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.applications.models import AppVersion
-from olympia.files.models import File, FileValidation, WebextPermission
+from olympia.files.models import FileValidation, WebextPermission
 from olympia.ratings.models import Rating, RatingAggregate
 from olympia.reviewers.models import AutoApprovalSummary
 from olympia.versions.models import ApplicationsVersions, Version, VersionPreview
@@ -553,88 +553,6 @@ class TestDeleteObsoleteAddons(TestCase):
         assert Addon.objects.get(id=self.extension.id)
         assert Addon.objects.get(id=self.static_theme.id)
         assert Addon.objects.get(id=self.dictionary.id)
-
-
-class TestHardDeleteLegacyVersions(TestCase):
-    def setUp(self):
-        self.versions_to_keep = []
-        addon0 = addon_factory(file_kw={'is_webextension': True})
-        self.versions_to_keep.append(addon0.current_version.pk)
-        version = version_factory(addon=addon0, file_kw={'is_webextension': True})
-        version.delete()
-        self.versions_to_keep.append(version.pk)
-        version_factory(addon=addon0, file_kw={'is_webextension': False})
-        version_factory(addon=addon0, file_kw={'is_webextension': False}).delete()
-
-        addon1 = addon_factory(file_kw={'is_webextension': True})
-        self.versions_to_keep.append(addon1.current_version.pk)
-        addon_factory(
-            file_kw={'is_webextension': False, 'is_mozilla_signed_extension': False}
-        )
-        addon2 = addon_factory(
-            file_kw={'is_webextension': False, 'is_mozilla_signed_extension': True}
-        )
-        self.versions_to_keep.append(addon2.current_version.pk)
-
-    def test_basic(self):
-        assert Addon.unfiltered.count() == 4
-        assert Version.unfiltered.count() == 7
-
-        call_command(
-            'process_addons', with_deleted=True, task='hard_delete_legacy_versions'
-        )
-
-        assert Addon.unfiltered.count() == 4  # Unchanged: we're just deleting versions.
-        assert Version.unfiltered.count() == len(self.versions_to_keep)
-        assert Version.unfiltered.filter(pk__in=self.versions_to_keep).count() == len(
-            self.versions_to_keep
-        )
-
-
-class TestHardDeleteExtraFiles(TestCase):
-    def setUp(self):
-        # Has multiple files for the same version
-        self.addon = addon_factory(file_kw={'is_webextension': True})
-        file_factory(
-            version=self.addon.current_version,
-            is_webextension=True,
-            platform=amo.PLATFORM_LINUX.id,
-        )
-
-        # Same, but add-on and versions are soft-deleted. Shouldn't matter as
-        # long as with_deleted is True.
-        self.deleted_addon = addon_factory(file_kw={'is_webextension': True})
-        file_factory(
-            version=self.deleted_addon.current_version,
-            is_webextension=True,
-            platform=amo.PLATFORM_WIN.id,
-        )
-        self.deleted_addon.delete()
-
-        # Only has a single file for each version, shouldn't be affected
-        self.extra_addon = addon_factory(file_kw={'is_webextension': True})
-        version_factory(addon=self.extra_addon, file_kw={'is_webextension': True})
-
-        # Has multiple files but shouldn't be affected because they
-        # are not webextensions.
-        self.extra_extra_addon = addon_factory()
-        file_factory(version=self.extra_extra_addon.current_version)
-
-    def test_basic(self):
-        assert Addon.unfiltered.count() == 4
-        assert Version.unfiltered.count() == 5
-        assert File.objects.count() == 8
-        assert File.objects.filter(platform=amo.PLATFORM_ALL.id).count() == 6
-
-        call_command(
-            'process_addons', task='hard_delete_extra_files', with_deleted=True
-        )
-
-        assert Addon.unfiltered.count() == 4
-        assert Version.unfiltered.count() == 5
-        assert File.objects.count() == 6
-
-        assert File.objects.filter(platform=amo.PLATFORM_ALL.id).count() == 6
 
 
 class TestFixLangpacksWithMaxVersionStar(TestCase):

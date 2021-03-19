@@ -50,12 +50,10 @@ class TestViews(TestCase):
         self.version.save()
 
         file_ = self.version.files.all()[0]
-        file_.update(platform=amo.PLATFORM_WIN.id)
 
         # Copy the file to create a new one attached to the same version.
         # This tests https://github.com/mozilla/addons-server/issues/8950
         file_.pk = None
-        file_.platform = amo.PLATFORM_MAC.id
         file_.save()
 
         response = self.client.get(
@@ -453,10 +451,6 @@ class TestUnlistedDisabledAndDeletedFileDownloads(TestDisabledFileDownloads):
 
 
 class TestDownloadsLatest(TestDownloadsBase):
-    def setUp(self):
-        super(TestDownloadsLatest, self).setUp()
-        self.platform = 5
-
     def test_404(self):
         url = reverse('downloads.latest', args=[123])
         assert self.client.get(url).status_code == 404
@@ -479,6 +473,7 @@ class TestDownloadsLatest(TestDownloadsBase):
         self.assert_served_locally(self.client.get(url), attachment=True)
 
     def test_platform_and_type(self):
+        # 'platform' should just be ignored nowadays.
         url = reverse(
             'downloads.latest',
             kwargs={'addon_id': self.addon.slug, 'platform': 5, 'type': 'attachment'},
@@ -488,7 +483,7 @@ class TestDownloadsLatest(TestDownloadsBase):
     def test_trailing_filename(self):
         url = reverse(
             'downloads.latest',
-            kwargs={'addon_id': self.addon.slug, 'platform': 5, 'type': 'attachment'},
+            kwargs={'addon_id': self.addon.slug, 'type': 'attachment'},
         )
         url += self.file.filename
         self.assert_served_locally(self.client.get(url), attachment=True)

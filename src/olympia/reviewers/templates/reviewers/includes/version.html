@@ -26,7 +26,7 @@
 <tr class="listing-body">
   <td class="files">
     {% if addon.type != amo.ADDON_STATICTHEME %}
-      {{ all_distinct_files(version) }}
+      {{ all_files(version) }}
       {% if version.compatible_apps_ordered %}
         <div><strong>{{ _('Compatibility:') }}</strong></div>
         <ul>

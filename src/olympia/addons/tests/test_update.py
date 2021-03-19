@@ -304,10 +304,6 @@ class TestLookup(VersionCheckMixin, TestCase):
     def test_platform_does_not_exist(self):
         """If client passes a platform, find that specific platform."""
         version = Version.objects.get(pk=115509)
-        for file in version.files.all():
-            file.platform = amo.PLATFORM_LINUX.id
-            file.save()
-
         version, file = self.get_update_instance(
             '1.2', self.version_int, self.app, self.platform
         )
@@ -316,41 +312,10 @@ class TestLookup(VersionCheckMixin, TestCase):
     def test_platform_exists(self):
         """If client passes a platform, find that specific platform."""
         version = Version.objects.get(pk=115509)
-        for file in version.files.all():
-            file.platform = amo.PLATFORM_LINUX.id
-            file.save()
-
         version, file = self.get_update_instance(
             '1.2', self.version_int, self.app, amo.PLATFORM_LINUX
         )
         assert version == self.version_1_2_2
-
-    def test_file_for_platform(self):
-        """If client passes a platform, make sure we get the right file."""
-        version = Version.objects.get(pk=self.version_1_2_2)
-        file_one = version.files.all()[0]
-        file_one.platform = amo.PLATFORM_LINUX.id
-        file_one.save()
-
-        file_two = File(
-            version=version,
-            filename='foo',
-            hash='bar',
-            platform=amo.PLATFORM_WIN.id,
-            status=amo.STATUS_APPROVED,
-        )
-        file_two.save()
-        version, file = self.get_update_instance(
-            '1.2', self.version_int, self.app, amo.PLATFORM_LINUX
-        )
-        assert version == self.version_1_2_2
-        assert file == file_one.pk
-
-        version, file = self.get_update_instance(
-            '1.2', self.version_int, self.app, amo.PLATFORM_WIN
-        )
-        assert version == self.version_1_2_2
-        assert file == file_two.pk
 
 
 class TestDefaultToCompat(VersionCheckMixin, TestCase):
