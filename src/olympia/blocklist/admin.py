@@ -459,6 +459,7 @@ class BlocklistSubmissionAdmin(admin.ModelAdmin):
         objects['is_imported_from_legacy_regex'] = [
             obj.guid for obj in objects['blocks'] if obj.is_imported_from_legacy_regex
         ]
+        objects['total_adu'] = sum(block.current_adu for block in objects['blocks'])
         return objects
 
     def change_view(self, request, object_id, form_url='', extra_context=None):

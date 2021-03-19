@@ -454,8 +454,9 @@ class TestBlocklistSubmissionAdmin(TestCase):
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
 
+        new_addon_adu = addon_adu
         new_addon = addon_factory(
-            guid='any@new', name='New Danger', average_daily_users=addon_adu
+            guid='any@new', name='New Danger', average_daily_users=new_addon_adu
         )
         existing_and_full = Block.objects.create(
             addon=addon_factory(guid='full@existing', name='Full Danger'),
@@ -465,10 +466,11 @@ class TestBlocklistSubmissionAdmin(TestCase):
             average_daily_users_snapshot=346733434,
             updated_by=user_factory(),
         )
+        partial_addon_adu = addon_adu - 1
         partial_addon = addon_factory(
             guid='partial@existing',
             name='Partial Danger',
-            average_daily_users=(addon_adu - 1),
+            average_daily_users=(partial_addon_adu),
         )
         existing_and_partial = Block.objects.create(
             addon=partial_addon,
@@ -490,6 +492,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
         content = response.content.decode('utf-8')
         # meta data for new blocks and existing ones needing update:
         assert 'Add-on GUIDs (one per line)' not in content
+        total_adu = new_addon_adu + partial_addon_adu
+        assert '2 Add-on GUIDs with {:,} users:'.format(total_adu) in content
         assert 'any@new' in content
         assert 'New Danger' in content
         assert str(new_addon.average_daily_users) in content
