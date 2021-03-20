@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-16 17:41+0000\n"
-"PO-Revision-Date: 2021-03-20 18:43+0000\n"
+"PO-Revision-Date: 2021-03-20 18:44+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -4524,9 +4524,8 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr "Вернитесь к более простым временам — когда первые результаты поиска стояли выше рекламы (совместимо с поисковыми системами Google и Bing)."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Get the mouse scrollbar you've always wanted—specify width and color."
-msgstr "Получите полосу прокрутки, которую всегда хотели — выберите ширину и цвет по своему усмотрению."
+msgstr "Получите полосу прокрутки мышью, которую всегда хотели — выберите ширину и цвет."
 
 #. editorial content for the primary hero shelves.
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
@@ -5426,9 +5425,8 @@ msgstr "Проверка содержимого {0}"
 msgid "Review {0}"
 msgstr "Проверить {0}"
 
-#, fuzzy
 msgid "Add-on important changes history"
-msgstr "История изменений пользователя дополнения"
+msgstr "История важных изменений дополнения"
 
 msgid "Add-on History"
 msgstr "История дополнения"
