@@ -6200,33 +6200,6 @@ class TestReviewPending(ReviewBase):
 
         assert mock_sign.called
 
-    def test_display_only_unreviewed_files(self):
-        """Only the currently unreviewed files are displayed."""
-        self.file.update(filename=b'somefilename.xpi')
-        reviewed = File.objects.create(
-            version=self.version,
-            status=amo.STATUS_APPROVED,
-            filename=b'file_reviewed.xpi',
-        )
-        disabled = File.objects.create(
-            version=self.version,
-            status=amo.STATUS_DISABLED,
-            filename=b'file_disabled.xpi',
-        )
-        unreviewed = File.objects.create(
-            version=self.version,
-            status=amo.STATUS_AWAITING_REVIEW,
-            filename=b'file_unreviewed.xpi',
-        )
-        response = self.client.get(self.url, self.pending_dict())
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert len(doc('.review-actions-files ul li')) == 2
-        assert reviewed.filename not in response.content
-        assert disabled.filename not in response.content
-        assert unreviewed.filename in response.content
-        assert self.file.filename in response.content
-
     @mock.patch('olympia.reviewers.utils.sign_file')
     def test_review_unreviewed_files(self, mock_sign):
         """Review all the unreviewed files when submitting a review."""
