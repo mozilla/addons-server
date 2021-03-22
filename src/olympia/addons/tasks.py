@@ -286,6 +286,7 @@ def delete_addons(addon_ids, with_deleted=False, **kw):
         for addon in addons:
             addon.delete(send_delete_email=False)
 
+
 @task
 @use_primary_db
 def update_addon_hotness(averages):
