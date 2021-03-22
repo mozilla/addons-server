@@ -15,6 +15,7 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.tests import addon_factory, TestCase
 from olympia.applications.models import AppVersion
+from olympia.constants.platforms import PLATFORM_LINUX
 from olympia.files.models import File
 from olympia.versions.models import ApplicationsVersions, Version
 
@@ -38,13 +39,6 @@ class TestDataValidate(VersionCheckMixin, TestCase):
             'appID': '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}',
             'appVersion': '3.7a1pre',
         }
-
-    def test_app_os(self):
-        data = self.data.copy()
-        data['appOS'] = 'something %s penguin' % amo.PLATFORM_LINUX.api_name
-        instance = self.get_update_instance(data)
-        assert instance.is_valid()
-        assert instance.data['appOS'] == amo.PLATFORM_LINUX.id
 
     def test_app_version_fails(self):
         data = self.data.copy()
@@ -301,19 +295,12 @@ class TestLookup(VersionCheckMixin, TestCase):
         )
         assert version == self.version_1_2_1
 
-    def test_platform_does_not_exist(self):
-        """If client passes a platform, find that specific platform."""
+    def test_platform_ignore(self):
+        """Ignore platform passed by clients (all add-ons are now compatible
+        with all platforms, only the app matters)"""
         version = Version.objects.get(pk=115509)
         version, file = self.get_update_instance(
-            '1.2', self.version_int, self.app, self.platform
-        )
-        assert version == self.version_1_2_1
-
-    def test_platform_exists(self):
-        """If client passes a platform, find that specific platform."""
-        version = Version.objects.get(pk=115509)
-        version, file = self.get_update_instance(
-            '1.2', self.version_int, self.app, amo.PLATFORM_LINUX
+            '1.2', self.version_int, self.app, PLATFORM_LINUX
         )
         assert version == self.version_1_2_2
 
@@ -457,52 +444,10 @@ class TestResponse(VersionCheckMixin, TestCase):
             'appVersion': '3.7a1pre',
         }
 
-        self.mac = amo.PLATFORM_MAC
-        self.win = amo.PLATFORM_WIN
-
     def test_bad_guid(self):
         self.data['id'] = 'garbage'
         instance = self.get_update_instance(self.data)
         assert json.loads(instance.get_output()) == instance.get_error_output()
-
-    def test_no_platform(self):
-        file = File.objects.get(pk=67442)
-        file.platform = self.win.id
-        file.save()
-
-        data = self.data.copy()
-        data['appOS'] = self.win.api_name
-        instance = self.get_update_instance(data)
-        assert instance.get_output()
-        assert instance.data['row']['file_id'] == file.pk
-
-        data['appOS'] = self.mac.api_name
-        instance = self.get_update_instance(data)
-        assert json.loads(instance.get_output()) == instance.get_no_updates_output()
-
-    def test_different_platform(self):
-        file = File.objects.get(pk=67442)
-        file.platform = self.win.id
-        file.save()
-        file_pk = file.pk
-
-        file.id = None
-        file.platform = self.mac.id
-        file.save()
-        mac_file_pk = file.pk
-
-        data = self.data.copy()
-        data['appOS'] = self.win.api_name
-        instance = self.get_update_instance(data)
-        instance.is_valid()
-        instance.get_update()
-        assert instance.data['row']['file_id'] == file_pk
-
-        data['appOS'] = self.mac.api_name
-        instance = self.get_update_instance(data)
-        instance.is_valid()
-        instance.get_update()
-        assert instance.data['row']['file_id'] == mac_file_pk
 
     def test_good_version(self):
         instance = self.get_update_instance(self.data)

@@ -89,9 +89,9 @@ class Update(object):
             """
             SELECT
                 `addons`.`guid` AS `guid`,
-                `addons`.`addontype_id` AS `type,
+                `addons`.`addontype_id` AS `type`,
                 `addons`.`inactive` AS `disabled_by_user`,
-                `appmin`.`version AS `min`,
+                `appmin`.`version` AS `min`,
                 `appmax`.`version` AS `max`,
                 `files`.`id` AS `file_id`,
                 `files`.`status` AS `file_status`,
@@ -101,21 +101,21 @@ class Update(object):
                 `files`.`datestatuschanged` AS `datestatuschanged`,
                 `files`.`strict_compatibility` AS strict_compat,
                 `versions`.`releasenotes`,
-                `versions.version` AS `version`
+                `versions`.`version` AS `version`
             FROM `versions`
             INNER JOIN `addons`
                 ON `addons`.`id` = `versions`.`addon_id`
                 AND `addons`.`id` = %(id)s
             INNER JOIN `applications_versions`
                 ON `applications_versions`.`version_id` = `versions`.`id`
-            INNER JOIN `appversions appmin`
+            INNER JOIN `appversions` `appmin`
                 ON `appmin`.`id` = `applications_versions`.`min`
                 AND `appmin`.`application_id` = %(app_id)s
-            INNER JOIN `appversions appmax`
+            INNER JOIN `appversions` `appmax`
                 ON `appmax`.`id` = `applications_versions`.`max`
                 AND `appmax`.`application_id` = %(app_id)s
             INNER JOIN `files`
-                ON files.version_id = versions.id
+                ON `files`.`version_id` = `versions`.`id`
             -- Find a reference to the user's current version, if it exists.
             -- These should never be inner joins. We need results even if we
             -- can't find the current version.
@@ -141,7 +141,7 @@ class Update(object):
             sql.append(
                 """AND
                 CASE WHEN `files`.`strict_compatibility` = 1 OR
-                          `files`.binary_components` = 1
+                          `files`.`binary_components` = 1
                 THEN `appmax`.`version_int` >= %(version_int)s ELSE 1 END
             """
             )
