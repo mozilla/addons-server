@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-16 17:41+0000\n"
-"PO-Revision-Date: 2021-03-16 18:09+0000\n"
-"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
+"PO-Revision-Date: 2021-03-22 11:01+0000\n"
+"Last-Translator: Benoit Leseul <benoit.leseul@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -984,16 +984,16 @@ msgid "Version re-signed"
 msgstr "Version re-signée"
 
 msgid "{addon} status force-disabled."
-msgstr ""
+msgstr "{addon} état désactivé de force."
 
 msgid "Force disabled"
-msgstr ""
+msgstr "Désactivé de force"
 
 msgid "{addon} status force-enabled."
-msgstr ""
+msgstr "{addon} état activé de force."
 
 msgid "Force enabled"
-msgstr ""
+msgstr "Activé de force"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4510,7 +4510,7 @@ msgstr "Quand vous êtes excédé et que vous avez envie de tirer au laser avec 
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
-msgstr ""
+msgstr "Lecture de pages web à haute voix. Plus de 40 langues prises en charge."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
@@ -5443,7 +5443,7 @@ msgid "Review {0}"
 msgstr "Revue {0}"
 
 msgid "Add-on important changes history"
-msgstr ""
+msgstr "Historique des modifications importantes du module"
 
 msgid "Add-on History"
 msgstr "Historique du module"
@@ -5665,7 +5665,7 @@ msgid "(Confirmed)"
 msgstr "(Confirmé)"
 
 msgid "Pending Rejection on review of new version"
-msgstr ""
+msgstr "Rejet en attente de la revue de la nouvelle version"
 
 msgid "Compatibility:"
 msgstr "Compatibilité :"
@@ -5717,19 +5717,19 @@ msgid "[status:%s]"
 msgstr "[état :%s]"
 
 msgid "Other Pending Review"
-msgstr ""
+msgstr "Autres révisions en attente"
 
 msgid "Updates"
 msgstr "Mises à jour"
 
 msgid "Rating Reviews"
-msgstr ""
+msgstr "Évaluations"
 
 msgid "Auto Approved"
 msgstr "Approuvé automatiquement"
 
 msgid "Pending Rejection"
-msgstr ""
+msgstr "En attente de rejet"
 
 msgid "presence of matched rules"
 msgstr "présence de règles de correspondance"
