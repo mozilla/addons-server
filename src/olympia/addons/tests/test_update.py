@@ -299,7 +299,8 @@ class TestLookup(VersionCheckMixin, TestCase):
         with all platforms, only the app matters)"""
         version = Version.objects.get(pk=115509)
         version, file = self.get_update_instance(
-            '1.2', self.version_int, self.app, 'Linux')
+            '1.2', self.version_int, self.app, 'Linux'
+        )
         assert version == self.version_1_2_2
 
 
