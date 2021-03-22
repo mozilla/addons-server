@@ -93,7 +93,7 @@ tasks = {
         'qs': [
             Q(
                 type=amo.ADDON_STATICTHEME,
-                status__in=[amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW],
+                status__in=[amo.STATUS_APPROVED, amo.STATUS_NOMINATED],
             )
         ],
         'kwargs': {'only_missing': False},
