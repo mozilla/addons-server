@@ -15,7 +15,6 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.tests import addon_factory, TestCase
 from olympia.applications.models import AppVersion
-from olympia.constants.platforms import PLATFORM_LINUX
 from olympia.files.models import File
 from olympia.versions.models import ApplicationsVersions, Version
 
@@ -125,7 +124,7 @@ class TestLookup(VersionCheckMixin, TestCase):
             'id': self.addon.guid,
             'appID': args[2].guid,
             'appVersion': 1,  # this is going to be overridden
-            'appOS': args[3].api_name if args[3] else '',
+            'appOS': args[3] if args[3] else '',
             'reqVersion': '',
         }
         # Allow version to be optional.
@@ -300,8 +299,7 @@ class TestLookup(VersionCheckMixin, TestCase):
         with all platforms, only the app matters)"""
         version = Version.objects.get(pk=115509)
         version, file = self.get_update_instance(
-            '1.2', self.version_int, self.app, PLATFORM_LINUX
-        )
+            '1.2', self.version_int, self.app, 'Linux')
         assert version == self.version_1_2_2
 
 

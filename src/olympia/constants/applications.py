@@ -32,7 +32,6 @@ class FIREFOX(App):
     # These versions were relabeled and should not be displayed.
     exclude_versions = (3.1, 3.7, 4.2)
     user_agent_string = 'Firefox'
-    platforms = 'desktop'  # DESKTOP_PLATFORMS (set in constants.platforms)
 
     @classmethod
     def matches_user_agent(cls, user_agent):
@@ -52,7 +51,6 @@ class THUNDERBIRD(App):
     guid = '{3550f703-e582-4d05-9a08-453d09bdfdc6}'
     min_display_version = 1.0
     user_agent_string = 'Thunderbird'
-    platforms = 'desktop'  # DESKTOP_PLATFORMS (set in constants.platforms)
 
 
 class SEAMONKEY(App):
@@ -67,7 +65,6 @@ class SEAMONKEY(App):
     exclude_versions = (1.5,)
     latest_version = None
     user_agent_string = 'SeaMonkey'
-    platforms = 'desktop'  # DESKTOP_PLATFORMS (set in constants.platforms)
 
 
 class SUNBIRD(App):
@@ -84,7 +81,6 @@ class SUNBIRD(App):
     min_display_version = 0.2
     latest_version = None
     user_agent_string = 'Sunbird'
-    platforms = 'desktop'  # DESKTOP_PLATFORMS (set in constants.platforms)
 
 
 class MOBILE(App):
@@ -101,7 +97,6 @@ class MOBILE(App):
     guid = '{a23983c0-fd0e-11dc-95ff-0800200c9a66}'
     min_display_version = 0.1
     user_agent_string = 'Fennec'
-    platforms = 'mobile'  # DESKTOP_PLATFORMS (set in constants.platforms)
 
 
 class ANDROID(App):
@@ -124,7 +119,6 @@ class ANDROID(App):
         re.compile(r'Mobile; rv:([\d.]+)'),
         re.compile(r'Tablet; rv:([\d.]+)'),
     ]
-    platforms = 'mobile'
     latest_version = None
 
     @classmethod
@@ -150,7 +144,6 @@ class MOZILLA(App):
     browser = True
     types = [ADDON_EXTENSION, ADDON_DICT, ADDON_LPAPP, ADDON_PLUGIN]
     guid = '{86c18b42-e466-45a9-ae7a-9b95ba6f5640}'
-    platforms = 'desktop'  # DESKTOP_PLATFORMS (set in constants.platforms)
 
 
 class UNKNOWN_APP(App):
