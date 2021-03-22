@@ -10,7 +10,6 @@ from services.utils import (
     log_configure,
     mypool,
     settings,
-    PLATFORM_NAMES_TO_CONSTANTS,
 )
 
 # This has to be imported after the settings so statsd knows where to log to.
@@ -59,10 +58,10 @@ class Update(object):
 
         data['app_id'] = app.id
 
-        sql = """SELECT id, status, addontype_id, guid FROM addons
-                 WHERE guid = %(guid)s AND
-                       inactive = 0 AND
-                       status NOT IN (%(STATUS_DELETED)s, %(STATUS_DISABLED)s)
+        sql = """SELECT `id`, `status`, `addontype_id`, `guid` FROM `addons`
+                 WHERE `guid` = %(guid)s AND
+                       `inactive` = 0 AND
+                       `status` NOT IN (%(STATUS_DELETED)s, %(STATUS_DISABLED)s)
                  LIMIT 1;"""
         self.cursor.execute(
             sql,
@@ -78,15 +77,6 @@ class Update(object):
 
         data['id'], data['addon_status'], data['type'], data['guid'] = result
         data['version_int'] = version_int(data['appVersion'])
-
-        if 'appOS' in data:
-            for k, v in PLATFORM_NAMES_TO_CONSTANTS.items():
-                if k in data['appOS']:
-                    data['appOS'] = v
-                    break
-            else:
-                data['appOS'] = None
-
         return True
 
     def get_update(self):
@@ -98,50 +88,49 @@ class Update(object):
         sql = [
             """
             SELECT
-                addons.guid as guid, addons.addontype_id as type,
-                addons.inactive as disabled_by_user, appmin.version as min,
-                appmax.version as max, files.id as file_id,
-                files.status as file_status, files.hash,
-                files.filename, versions.id as version_id,
-                files.datestatuschanged as datestatuschanged,
-                files.strict_compatibility as strict_compat,
-                versions.releasenotes, versions.version as version
-            FROM versions
-            INNER JOIN addons
-                ON addons.id = versions.addon_id AND addons.id = %(id)s
-            INNER JOIN applications_versions
-                ON applications_versions.version_id = versions.id
-            INNER JOIN appversions appmin
-                ON appmin.id = applications_versions.min
-                AND appmin.application_id = %(app_id)s
-            INNER JOIN appversions appmax
-                ON appmax.id = applications_versions.max
-                AND appmax.application_id = %(app_id)s
-            INNER JOIN files
-                ON files.version_id = versions.id AND (files.platform_id = 1
-            """
-        ]
-        if data.get('appOS'):
-            sql.append(' OR files.platform_id = %(appOS)s')
-
-        sql.append(
-            """
-            )
+                `addons`.`guid` AS `guid`,
+                `addons`.`addontype_id` AS `type`,
+                `addons`.`inactive` AS `disabled_by_user`,
+                `appmin`.`version` AS `min`,
+                `appmax`.`version` AS `max`,
+                `files`.`id` AS `file_id`,
+                `files`.`status` AS `file_status`,
+                `files`.`hash`,
+                `files`.`filename`,
+                `versions`.`id` AS `version_id`,
+                `files`.`datestatuschanged` AS `datestatuschanged`,
+                `files`.`strict_compatibility` AS strict_compat,
+                `versions`.`releasenotes`,
+                `versions`.`version` AS `version`
+            FROM `versions`
+            INNER JOIN `addons`
+                ON `addons`.`id` = `versions`.`addon_id`
+                AND `addons`.`id` = %(id)s
+            INNER JOIN `applications_versions`
+                ON `applications_versions`.`version_id` = `versions`.`id`
+            INNER JOIN `appversions` `appmin`
+                ON `appmin`.`id` = `applications_versions`.`min`
+                AND `appmin`.`application_id` = %(app_id)s
+            INNER JOIN `appversions` `appmax`
+                ON `appmax`.`id` = `applications_versions`.`max`
+                AND `appmax`.`application_id` = %(app_id)s
+            INNER JOIN `files`
+                ON `files`.`version_id` = `versions`.`id`
             -- Find a reference to the user's current version, if it exists.
             -- These should never be inner joins. We need results even if we
             -- can't find the current version.
-            LEFT JOIN versions curver
-                ON curver.addon_id = addons.id AND curver.version = %(version)s
-            LEFT JOIN files curfile
-                ON curfile.version_id = curver.id
+            LEFT JOIN `versions` `curver`
+                ON `curver`.`addon_id` = `addons`.`id`
+                AND `curver`.`version` = %(version)s
+            LEFT JOIN `files` `curfile`
+                ON `curfile`.`version_id` = `curver`.`id`
             WHERE
-                versions.deleted = 0 AND
-                versions.channel = %(RELEASE_CHANNEL_LISTED)s AND
-                files.status = %(STATUS_APPROVED)s
+                `versions`.`deleted` = 0
+                AND `versions`.`channel` = %(RELEASE_CHANNEL_LISTED)s
+                AND `files`.`status` = %(STATUS_APPROVED)s
+                AND `appmin`.`version_int` <= %(version_int)s
         """
-        )
-
-        sql.append('AND appmin.version_int <= %(version_int)s ')
+        ]
 
         if self.compat_mode == 'ignore':
             pass  # no further SQL modification required.
@@ -151,9 +140,9 @@ class Update(object):
             # components, default to compatible is disabled.
             sql.append(
                 """AND
-                CASE WHEN files.strict_compatibility = 1 OR
-                          files.binary_components = 1
-                THEN appmax.version_int >= %(version_int)s ELSE 1 END
+                CASE WHEN `files`.`strict_compatibility` = 1 OR
+                          `files`.`binary_components` = 1
+                THEN `appmax`.`version_int` >= %(version_int)s ELSE 1 END
             """
             )
             # Filter out versions that don't have the minimum maxVersion
@@ -161,12 +150,12 @@ class Update(object):
             d2c_min = applications.D2C_MIN_VERSIONS.get(data['app_id'])
             if d2c_min:
                 data['d2c_min_version'] = version_int(d2c_min)
-                sql.append('AND appmax.version_int >= %(d2c_min_version)s ')
+                sql.append('AND `appmax`.`version_int` >= %(d2c_min_version)s ')
 
         else:  # Not defined or 'strict'.
-            sql.append('AND appmax.version_int >= %(version_int)s ')
+            sql.append('AND `appmax`.`version_int` >= %(version_int)s ')
 
-        sql.append('ORDER BY versions.id DESC LIMIT 1;')
+        sql.append('ORDER BY `versions`.`id` DESC LIMIT 1;')
         self.cursor.execute(''.join(sql), data)
         result = self.cursor.fetchone()
 

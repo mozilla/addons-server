@@ -76,7 +76,6 @@ class Command(BaseCommand):
             file_kw = {
                 'hash': files[0]['hash'],
                 'status': amo.STATUS_CHOICES_API_LOOKUP[files[0]['status']],
-                'platform': amo.PLATFORM_DICT[files[0]['platform']].id,
                 'size': files[0]['size'],
                 'is_webextension': files[0]['is_webextension'],
                 'is_mozilla_signed_extension': (

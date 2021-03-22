@@ -1,7 +1,6 @@
 import datetime
 
 from django.conf import settings
-from django.utils.encoding import force_str
 from django.utils.translation import gettext
 
 import jinja2
@@ -125,24 +124,13 @@ def reviewers_score_bar(context, types=None, addon_type=None):
 @library.global_function
 @library.render_with('reviewers/includes/files_view.html')
 @jinja2.contextfunction
-def all_distinct_files(context, version):
-    """Only display a file once even if it's been uploaded
-    for several platforms."""
-    # hashes_to_file will group files per hash:
-    # {<file.hash>: [<file>, 'Windows / Mac OS X']}
-    hashes_to_file = {}
-    for file_ in version.all_files:
-        display_name = force_str(amo.PLATFORMS[file_.platform].name)
-        if file_.original_hash in hashes_to_file:
-            hashes_to_file[file_.original_hash][1] += ' / ' + display_name
-        else:
-            hashes_to_file[file_.original_hash] = [file_, display_name]
+def all_files(context, version):
     return new_context(
         dict(
             # This allows the template to call static().
             BUILD_ID_IMG=context.get('BUILD_ID_IMG'),
             # We don't need the hashes in the template.
-            distinct_files=hashes_to_file.values(),
+            all_files=version.all_files,
             amo=context.get('amo'),
             addon=context.get('addon'),
             latest_not_disabled_version=context.get('latest_not_disabled_version'),

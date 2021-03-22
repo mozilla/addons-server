@@ -300,27 +300,16 @@ class Version(OnChangeMixin, ModelBase):
             )
             compatible_apps[app.appdata].save()
 
-        # See #2828: sometimes when we generate the filename(s) below, in
-        # File.from_upload(), cache-machine is confused and has trouble
-        # fetching the ApplicationsVersions that were just created. To work
-        # around this we pre-generate version.compatible_apps and avoid the
-        # queries completely.
+        # Pre-generate _compatible_apps property to avoid accidentally
+        # triggering queries with that instance later.
         version._compatible_apps = compatible_apps
 
-        # For backwards compatibility. We removed specific platform
-        # support during submission but we don't handle it any different
-        # beyond that yet. That means, we're going to simply set it
-        # to `PLATFORM_ALL` and also have the backend create separate
-        # files for each platform. Cleaning that up is another step.
-        # Given the timing on this, we don't care about updates to legacy
-        # add-ons as well.
         # Create relevant file and update the all_files cached property on the
         # Version, because we might need it afterwards.
         version.all_files = [
             File.from_upload(
                 upload=upload,
                 version=version,
-                platform=amo.PLATFORM_ALL.id,
                 parsed_data=parsed_data,
             )
         ]
@@ -328,10 +317,10 @@ class Version(OnChangeMixin, ModelBase):
         version.inherit_nomination(from_statuses=[amo.STATUS_AWAITING_REVIEW])
         version.disable_old_files()
 
-        # After the upload has been copied to all platforms, delete it from
-        # storage. Keep the FileUpload instance (it gets cleaned up by a cron
-        # eventually some time after its creation, in amo.cron.gc()), making
-        # sure it's associated with the add-on instance.
+        # After the upload has been copied to its permanent location, delete it
+        # from storage. Keep the FileUpload instance (it gets cleaned up by a
+        # cron eventually some time after its creation, in amo.cron.gc()),
+        # making sure it's associated with the add-on instance.
         storage.delete(upload.path)
         upload.path = ''
         if upload.addon is None:
@@ -545,11 +534,6 @@ class Version(OnChangeMixin, ModelBase):
     def current_file(self):
         """Shortcut for selecting the first file from self.all_files"""
         return self.all_files[0]
-
-    @cached_property
-    def supported_platforms(self):
-        """Get a list of supported platform names."""
-        return list(set(amo.PLATFORMS[f.platform] for f in self.all_files))
 
     @property
     def status(self):

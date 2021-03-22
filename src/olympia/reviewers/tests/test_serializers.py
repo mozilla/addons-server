@@ -406,7 +406,6 @@ class TestAddonBrowseVersionSerializer(TestCase):
             file_kw={
                 'hash': 'fakehash',
                 'is_mozilla_signed_extension': True,
-                'platform': amo.PLATFORM_ALL.id,
                 'size': 42,
                 'filename': 'notify-link-clicks-i18n.xpi',
                 'is_webextension': True,

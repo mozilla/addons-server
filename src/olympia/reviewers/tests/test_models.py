@@ -1400,14 +1400,12 @@ class TestAutoApprovalSummary(TestCase):
             file_kw={
                 'reviewed': self.days_ago(13),
                 'status': amo.STATUS_DISABLED,
-                'platform': amo.PLATFORM_WIN.id,
             },
         )
         file_factory(
             reviewed=self.days_ago(13),
             version=version_with_multiple_files,
             status=amo.STATUS_DISABLED,
-            platform=amo.PLATFORM_MAC.id,
         )
 
         # Rejected version on a different add-on, does not count.

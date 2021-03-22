@@ -48,12 +48,8 @@ class TestHideDisabledFiles(TestCase):
         super(TestHideDisabledFiles, self).setUp()
         self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
         self.version = Version.objects.create(addon=self.addon)
-        self.f1 = File.objects.create(
-            version=self.version, filename='f1', platform=amo.PLATFORM_ALL.id
-        )
-        self.f2 = File.objects.create(
-            version=self.version, filename='f2', platform=amo.PLATFORM_ALL.id
-        )
+        self.f1 = File.objects.create(version=self.version, filename='f1')
+        self.f2 = File.objects.create(version=self.version, filename='f2')
 
     @mock.patch('olympia.files.models.os')
     def test_leave_nondisabled_files(self, os_mock):
@@ -151,9 +147,7 @@ class TestUnhideDisabledFiles(TestCase):
         super(TestUnhideDisabledFiles, self).setUp()
         self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
         self.version = Version.objects.create(addon=self.addon)
-        self.file_ = File.objects.create(
-            version=self.version, platform=amo.PLATFORM_ALL.id, filename='fé'
-        )
+        self.file_ = File.objects.create(version=self.version, filename='fé')
 
     @mock.patch('olympia.files.models.os')
     def test_leave_disabled_files(self, os_mock):

@@ -39,13 +39,6 @@ class TestDataValidate(VersionCheckMixin, TestCase):
             'appVersion': '3.7a1pre',
         }
 
-    def test_app_os(self):
-        data = self.data.copy()
-        data['appOS'] = 'something %s penguin' % amo.PLATFORM_LINUX.api_name
-        instance = self.get_update_instance(data)
-        assert instance.is_valid()
-        assert instance.data['appOS'] == amo.PLATFORM_LINUX.id
-
     def test_app_version_fails(self):
         data = self.data.copy()
         del data['appID']
@@ -131,7 +124,7 @@ class TestLookup(VersionCheckMixin, TestCase):
             'id': self.addon.guid,
             'appID': args[2].guid,
             'appVersion': 1,  # this is going to be overridden
-            'appOS': args[3].api_name if args[3] else '',
+            'appOS': args[3] if args[3] else '',
             'reqVersion': '',
         }
         # Allow version to be optional.
@@ -301,56 +294,14 @@ class TestLookup(VersionCheckMixin, TestCase):
         )
         assert version == self.version_1_2_1
 
-    def test_platform_does_not_exist(self):
-        """If client passes a platform, find that specific platform."""
+    def test_platform_ignore(self):
+        """Ignore platform passed by clients (all add-ons are now compatible
+        with all platforms, only the app matters)"""
         version = Version.objects.get(pk=115509)
-        for file in version.files.all():
-            file.platform = amo.PLATFORM_LINUX.id
-            file.save()
-
         version, file = self.get_update_instance(
-            '1.2', self.version_int, self.app, self.platform
-        )
-        assert version == self.version_1_2_1
-
-    def test_platform_exists(self):
-        """If client passes a platform, find that specific platform."""
-        version = Version.objects.get(pk=115509)
-        for file in version.files.all():
-            file.platform = amo.PLATFORM_LINUX.id
-            file.save()
-
-        version, file = self.get_update_instance(
-            '1.2', self.version_int, self.app, amo.PLATFORM_LINUX
+            '1.2', self.version_int, self.app, 'Linux'
         )
         assert version == self.version_1_2_2
-
-    def test_file_for_platform(self):
-        """If client passes a platform, make sure we get the right file."""
-        version = Version.objects.get(pk=self.version_1_2_2)
-        file_one = version.files.all()[0]
-        file_one.platform = amo.PLATFORM_LINUX.id
-        file_one.save()
-
-        file_two = File(
-            version=version,
-            filename='foo',
-            hash='bar',
-            platform=amo.PLATFORM_WIN.id,
-            status=amo.STATUS_APPROVED,
-        )
-        file_two.save()
-        version, file = self.get_update_instance(
-            '1.2', self.version_int, self.app, amo.PLATFORM_LINUX
-        )
-        assert version == self.version_1_2_2
-        assert file == file_one.pk
-
-        version, file = self.get_update_instance(
-            '1.2', self.version_int, self.app, amo.PLATFORM_WIN
-        )
-        assert version == self.version_1_2_2
-        assert file == file_two.pk
 
 
 class TestDefaultToCompat(VersionCheckMixin, TestCase):
@@ -492,52 +443,10 @@ class TestResponse(VersionCheckMixin, TestCase):
             'appVersion': '3.7a1pre',
         }
 
-        self.mac = amo.PLATFORM_MAC
-        self.win = amo.PLATFORM_WIN
-
     def test_bad_guid(self):
         self.data['id'] = 'garbage'
         instance = self.get_update_instance(self.data)
         assert json.loads(instance.get_output()) == instance.get_error_output()
-
-    def test_no_platform(self):
-        file = File.objects.get(pk=67442)
-        file.platform = self.win.id
-        file.save()
-
-        data = self.data.copy()
-        data['appOS'] = self.win.api_name
-        instance = self.get_update_instance(data)
-        assert instance.get_output()
-        assert instance.data['row']['file_id'] == file.pk
-
-        data['appOS'] = self.mac.api_name
-        instance = self.get_update_instance(data)
-        assert json.loads(instance.get_output()) == instance.get_no_updates_output()
-
-    def test_different_platform(self):
-        file = File.objects.get(pk=67442)
-        file.platform = self.win.id
-        file.save()
-        file_pk = file.pk
-
-        file.id = None
-        file.platform = self.mac.id
-        file.save()
-        mac_file_pk = file.pk
-
-        data = self.data.copy()
-        data['appOS'] = self.win.api_name
-        instance = self.get_update_instance(data)
-        instance.is_valid()
-        instance.get_update()
-        assert instance.data['row']['file_id'] == file_pk
-
-        data['appOS'] = self.mac.api_name
-        instance = self.get_update_instance(data)
-        instance.is_valid()
-        instance.get_update()
-        assert instance.data['row']['file_id'] == mac_file_pk
 
     def test_good_version(self):
         instance = self.get_update_instance(self.data)

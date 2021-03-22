@@ -14,11 +14,6 @@ from services.settings import settings
 
 import olympia.core.logger
 
-# Ugh. But this avoids any olympia models or django imports at all.
-# Perhaps we can import these without any problems and we can
-# remove all this.
-from olympia.constants.platforms import PLATFORMS
-
 
 # This is not DRY: it's a copy of amo.helpers.user_media_path, to avoid an
 # import (which should triggers an import loop).
@@ -48,11 +43,6 @@ def user_media_url(what):
     default = '%s%s/' % (settings.MEDIA_URL, what)
     key = '{0}_URL'.format(what.upper().replace('-', '_'))
     return getattr(settings, key, default)
-
-
-PLATFORM_NAMES_TO_CONSTANTS = {
-    platform.api_name: platform.id for platform in PLATFORMS.values()
-}
 
 
 version_re = re.compile(

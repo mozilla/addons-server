@@ -52,7 +52,7 @@ def resolve(path, urlconf=None):
     """Wraps django's resolve to remove the locale and app from the path."""
     prefixer = get_url_prefix()
     if prefixer:
-        _lang, _platform, path_fragment = prefixer.split_path(path)
+        _lang, application, path_fragment = prefixer.split_path(path)
         path = '/%s' % path_fragment
     return django_resolve(path, urlconf)
 

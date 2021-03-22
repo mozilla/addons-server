@@ -1633,10 +1633,6 @@ class TestQueuePosition(TestCase):
         self.edit_url = reverse(
             'devhub.versions.edit', args=[self.addon.slug, self.version.id]
         )
-        version_files = self.version.files.all()[0]
-        version_files.platform = amo.PLATFORM_LINUX.id
-        version_files.save()
-
         # Add a second one also awaiting review in each queue
         addon_factory(
             status=amo.STATUS_NOMINATED, file_kw={'status': amo.STATUS_AWAITING_REVIEW}

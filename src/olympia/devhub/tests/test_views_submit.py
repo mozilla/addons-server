@@ -607,30 +607,6 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
             'Need to select at least one application.'
         )
 
-    def test_default_supported_platforms(self):
-        """Test that we default to PLATFORM_ALL during submission.
-
-        This is temporarily while we're in process of getting rid
-        of supported platforms.
-
-        https://github.com/mozilla/addons-server/issues/8752
-        """
-        response = self.post()
-        addon = Addon.objects.get()
-        # Success, redirecting to source submission step.
-        self.assert3xx(response, reverse('devhub.submit.source', args=[addon.slug]))
-
-        # Check that `all_files` is correct
-        all_ = sorted([f.filename for f in addon.current_version.all_files])
-        assert all_ == ['beastify-1.0-an+fx.xpi']
-
-        # Default to PLATFORM_ALL
-        assert addon.current_version.supported_platforms == [amo.PLATFORM_ALL]
-
-        # And check that compatible apps have a sensible default too
-        apps = [app.id for app in addon.current_version.compatible_apps.keys()]
-        assert sorted(apps) == sorted([amo.FIREFOX.id, amo.ANDROID.id])
-
     def test_static_theme_wizard_button_shown(self):
         response = self.client.get(
             reverse('devhub.submit.upload', args=['listed']), follow=True
@@ -1684,7 +1660,6 @@ class TestAddonSubmitFinish(TestSubmitBase):
 
     def test_finish_submitting_listed_addon(self):
         version = self.addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
-        assert version.supported_platforms == ([amo.PLATFORM_ALL])
 
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -1740,7 +1715,6 @@ class TestAddonSubmitFinish(TestSubmitBase):
         self.addon.update(type=amo.ADDON_STATICTHEME)
         version = self.addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
         VersionPreview.objects.create(version=version)
-        assert version.supported_platforms == ([amo.PLATFORM_ALL])
 
         response = self.client.get(self.url)
         assert response.status_code == 200

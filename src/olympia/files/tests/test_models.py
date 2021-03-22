@@ -201,21 +201,6 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         assert storage.open(f.file_path).size
 
     def test_latest_url(self):
-        # With platform.
-        file_ = File.objects.get(id=74797)
-        actual = file_.latest_xpi_url()
-        assert actual == (
-            '/firefox/downloads/latest/cooliris/platform:3/addon-5579-latest.xpi'
-        )
-
-        actual = file_.latest_xpi_url(attachment=True)
-        assert actual == (
-            '/firefox/downloads/latest/cooliris/type:attachment/platform:3/'
-            'addon-5579-latest.xpi'
-        )
-
-        # Same tests repeated, but now without a platform because that File is
-        # available for all platforms and not just a specific one.
         file_ = File.objects.get(id=67442)
         actual = file_.latest_xpi_url()
         assert actual == ('/firefox/downloads/latest/a3615/addon-3615-latest.xpi')
@@ -239,11 +224,6 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         f.version.addon.name = 'A Place Where The Sea Remembers Your Name'
         f.generate_filename()
         assert f.pretty_filename() == 'a_place_where_the...-2.1.072-fx.xpi'
-
-    def test_generate_filename_platform_specific(self):
-        f = File.objects.get(id=67442)
-        f.platform = amo.PLATFORM_MAC.id
-        assert f.generate_filename() == ('delicious_bookmarks-2.1.072-fx-mac.xpi')
 
     def test_generate_filename_many_apps(self):
         f = File.objects.get(id=67442)
@@ -894,9 +874,7 @@ class TestFileUpload(UploadTest):
         addon = Addon.objects.get(pk=3615)
         addon.update(guid='guid@xpi')
         parsed_data = parse_addon(upload, addon=addon, user=user_factory())
-        file_ = File.from_upload(
-            upload, addon.current_version, amo.PLATFORM_ALL.id, parsed_data=parsed_data
-        )
+        file_ = File.from_upload(upload, addon.current_version, parsed_data=parsed_data)
         assert file_.binary
 
     def test_validator_sets_binary_via_content(self):
@@ -920,9 +898,7 @@ class TestFileUpload(UploadTest):
         addon = Addon.objects.get(pk=3615)
         addon.update(guid='guid@xpi')
         parsed_data = parse_addon(upload, addon=addon, user=user_factory())
-        file_ = File.from_upload(
-            upload, addon.current_version, amo.PLATFORM_ALL.id, parsed_data=parsed_data
-        )
+        file_ = File.from_upload(upload, addon.current_version, parsed_data=parsed_data)
         assert file_.binary
 
     @override_settings(VALIDATOR_MESSAGE_LIMIT=10)
@@ -1211,7 +1187,6 @@ class TestFileFromUpload(UploadTest):
 
     def setUp(self):
         super(TestFileFromUpload, self).setUp()
-        self.platform = amo.PLATFORM_ALL.id
         self.addon = Addon.objects.create(
             guid='guid@xpi', type=amo.ADDON_EXTENSION, name='xxx'
         )
@@ -1244,19 +1219,19 @@ class TestFileFromUpload(UploadTest):
 
     def test_filename(self):
         upload = self.upload('jetpack')
-        file_ = File.from_upload(upload, self.version, self.platform, parsed_data={})
+        file_ = File.from_upload(upload, self.version, parsed_data={})
         assert file_.filename == 'xxx-0.1.xpi'
 
     def test_filename_no_extension(self):
         upload = self.upload('jetpack')
         # Remove the extension.
         upload.name = upload.name.rsplit('.', 1)[0]
-        file_ = File.from_upload(upload, self.version, self.platform, parsed_data={})
+        file_ = File.from_upload(upload, self.version, parsed_data={})
         assert file_.filename == 'xxx-0.1.xpi'
 
     def test_file_validation(self):
         upload = self.upload('jetpack')
-        file = File.from_upload(upload, self.version, self.platform, parsed_data={})
+        file = File.from_upload(upload, self.version, parsed_data={})
         fv = FileValidation.objects.get(file=file)
         assert json.loads(fv.validation) == json.loads(upload.validation)
         assert fv.valid
@@ -1266,27 +1241,25 @@ class TestFileFromUpload(UploadTest):
 
     def test_file_hash(self):
         upload = self.upload('jetpack')
-        file_ = File.from_upload(upload, self.version, self.platform, parsed_data={})
+        file_ = File.from_upload(upload, self.version, parsed_data={})
         assert file_.hash.startswith('sha256:')
         assert len(file_.hash) == 64 + 7  # 64 for hash, 7 for 'sha256:'
 
     def test_does_not_requires_a_restart(self):
         upload = self.upload('jetpack')
-        file_ = File.from_upload(upload, self.version, self.platform, parsed_data={})
+        file_ = File.from_upload(upload, self.version, parsed_data={})
         assert not file_.is_restart_required
 
     def test_does_require_a_restart(self):
         upload = self.upload('extension')
         parsed_data = parse_addon(upload.path, addon=self.addon, user=user_factory())
-        file_ = File.from_upload(
-            upload, self.version, self.platform, parsed_data=parsed_data
-        )
+        file_ = File.from_upload(upload, self.version, parsed_data=parsed_data)
         assert file_.is_restart_required
 
     def test_utf8(self):
         upload = self.upload('jétpack')
         self.version.addon.name = 'jéts!'
-        file_ = File.from_upload(upload, self.version, self.platform, parsed_data={})
+        file_ = File.from_upload(upload, self.version, parsed_data={})
         assert file_.filename == 'jets-0.1.xpi'
 
     @mock.patch('olympia.files.models.copy_stored_file')
@@ -1295,7 +1268,7 @@ class TestFileFromUpload(UploadTest):
     ):
         upload = self.upload('jétpack')
         self.version.addon.name = 'jéts!'
-        file_ = File.from_upload(upload, self.version, self.platform, parsed_data={})
+        file_ = File.from_upload(upload, self.version, parsed_data={})
         assert file_.filename == 'jets-0.1.xpi'
         expected_path_orig = force_str(upload.path)
         expected_path_dest = force_str(file_.current_file_path)
@@ -1307,56 +1280,54 @@ class TestFileFromUpload(UploadTest):
 
     def test_size(self):
         upload = self.upload('extension')
-        file_ = File.from_upload(upload, self.version, self.platform, parsed_data={})
+        file_ = File.from_upload(upload, self.version, parsed_data={})
         assert file_.size == 2264
 
     def test_size_small(self):
         upload = self.upload('alt-rdf')
-        file_ = File.from_upload(upload, self.version, self.platform, parsed_data={})
+        file_ = File.from_upload(upload, self.version, parsed_data={})
         assert file_.size == 675
 
     def test_public_to_unreviewed(self):
         upload = self.upload('extension')
         self.addon.update(status=amo.STATUS_APPROVED)
         assert self.addon.status == amo.STATUS_APPROVED
-        file_ = File.from_upload(upload, self.version, self.platform, parsed_data={})
+        file_ = File.from_upload(upload, self.version, parsed_data={})
         assert file_.status == amo.STATUS_AWAITING_REVIEW
 
     def test_file_hash_paranoia(self):
         upload = self.upload('extension')
-        file_ = File.from_upload(upload, self.version, self.platform, parsed_data={})
+        file_ = File.from_upload(upload, self.version, parsed_data={})
         assert file_.hash.startswith('sha256:035ae07b4988711')
 
     def test_strict_compat(self):
         upload = self.upload('strict-compat')
         parsed_data = parse_addon(upload.path, addon=self.addon, user=user_factory())
-        file_ = File.from_upload(
-            upload, self.version, self.platform, parsed_data=parsed_data
-        )
+        file_ = File.from_upload(upload, self.version, parsed_data=parsed_data)
         assert file_.strict_compatibility
 
     def test_extension_extension(self):
         upload = self.upload('extension.xpi')
-        file_ = File.from_upload(upload, self.version, self.platform, parsed_data={})
+        file_ = File.from_upload(upload, self.version, parsed_data={})
         assert file_.filename.endswith('.xpi')
 
     def test_langpack_extension(self):
         upload = self.upload('webextension_langpack.xpi')
-        file_ = File.from_upload(upload, self.version, self.platform, parsed_data={})
+        file_ = File.from_upload(upload, self.version, parsed_data={})
         assert file_.filename.endswith('.xpi')
         assert not file_.is_restart_required
 
     def test_experiment(self):
         upload = self.upload('experiment_inside_webextension')
         file_ = File.from_upload(
-            upload, self.version, self.platform, parsed_data={'is_experiment': True}
+            upload, self.version, parsed_data={'is_experiment': True}
         )
         assert file_.is_experiment
 
     def test_not_experiment(self):
         upload = self.upload('extension')
         file_ = File.from_upload(
-            upload, self.version, self.platform, parsed_data={'is_experiment': False}
+            upload, self.version, parsed_data={'is_experiment': False}
         )
         assert not file_.is_experiment
 
@@ -1365,7 +1336,6 @@ class TestFileFromUpload(UploadTest):
         file_ = File.from_upload(
             upload,
             self.version,
-            self.platform,
             parsed_data={'is_mozilla_signed_extension': True},
         )
         assert file_.is_mozilla_signed_extension
@@ -1375,7 +1345,6 @@ class TestFileFromUpload(UploadTest):
         file_ = File.from_upload(
             upload,
             self.version,
-            self.platform,
             parsed_data={'is_mozilla_signed_extension': False},
         )
         assert not file_.is_mozilla_signed_extension
@@ -1383,13 +1352,13 @@ class TestFileFromUpload(UploadTest):
     def test_webextension(self):
         upload = self.upload('webextension')
         file_ = File.from_upload(
-            upload, self.version, self.platform, parsed_data={'is_webextension': True}
+            upload, self.version, parsed_data={'is_webextension': True}
         )
         assert file_.is_webextension
 
     def test_not_webextension(self):
         upload = self.upload('extension')
-        file_ = File.from_upload(upload, self.version, self.platform, parsed_data={})
+        file_ = File.from_upload(upload, self.version, parsed_data={})
         assert not file_.is_experiment
 
     def test_permissions(self):
@@ -1401,9 +1370,7 @@ class TestFileFromUpload(UploadTest):
         # Second content_scripts['matches'] contains two matches
         assert len(parsed_data['content_scripts'][0]['matches']) == 1
         assert len(parsed_data['content_scripts'][1]['matches']) == 2
-        file_ = File.from_upload(
-            upload, self.version, self.platform, parsed_data=parsed_data
-        )
+        file_ = File.from_upload(upload, self.version, parsed_data=parsed_data)
         permissions_list = file_.permissions
         # 5 + 2 + 1 = 8
         assert len(permissions_list) == 8
@@ -1430,9 +1397,7 @@ class TestFileFromUpload(UploadTest):
         upload = self.upload('webextension_no_id.xpi')
         parsed_data = parse_addon(upload, user=user_factory())
         assert len(parsed_data['optional_permissions']) == 2
-        file_ = File.from_upload(
-            upload, self.version, self.platform, parsed_data=parsed_data
-        )
+        file_ = File.from_upload(upload, self.version, parsed_data=parsed_data)
         permissions_list = file_.optional_permissions
         assert len(permissions_list) == 2
         assert permissions_list == parsed_data['optional_permissions']
@@ -1440,7 +1405,7 @@ class TestFileFromUpload(UploadTest):
     def test_file_is_copied_to_current_path_at_upload(self):
         upload = self.upload('webextension')
         file_ = File.from_upload(
-            upload, self.version, self.platform, parsed_data={'is_webextension': True}
+            upload, self.version, parsed_data={'is_webextension': True}
         )
         assert os.path.exists(file_.file_path)
         assert not os.path.exists(file_.guarded_file_path)
@@ -1450,7 +1415,7 @@ class TestFileFromUpload(UploadTest):
         self.addon.update(disabled_by_user=True)
         upload = self.upload('webextension')
         file_ = File.from_upload(
-            upload, self.version, self.platform, parsed_data={'is_webextension': True}
+            upload, self.version, parsed_data={'is_webextension': True}
         )
         assert not os.path.exists(file_.file_path)
         assert os.path.exists(file_.guarded_file_path)

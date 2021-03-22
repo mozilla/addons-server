@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import hashlib
 import os.path
 import json
 
@@ -7,7 +6,6 @@ from datetime import datetime, timedelta
 
 from django.db import transaction
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
 from django.test.testcases import TransactionTestCase
 
 from unittest import mock
@@ -231,9 +229,6 @@ class TestVersion(TestCase):
         super(TestVersion, self).setUp()
         self.version = Version.objects.get(pk=81551)
 
-    def named_plat(self, ids):
-        return [amo.PLATFORMS[i].shortname for i in ids]
-
     def target_mobile(self):
         app = amo.ANDROID.id
         app_vr = AppVersion.objects.create(application=app, version='1.0')
@@ -242,17 +237,13 @@ class TestVersion(TestCase):
         )
 
     def test_compatible_apps(self):
-        v = Version.objects.get(pk=81551)
+        version = Version.objects.get(pk=81551)
 
-        assert amo.FIREFOX in v.compatible_apps, 'Missing Firefox >_<'
+        assert amo.FIREFOX in version.compatible_apps, 'Missing Firefox >_<'
 
         # We should be re-using the same Version instance in
         # ApplicationsVersions loaded from <Version>._compat_map().
-        assert id(v) == id(v.compatible_apps[amo.FIREFOX].version)
-
-    def test_supported_platforms(self):
-        v = Version.objects.get(pk=81551)
-        assert amo.PLATFORM_ALL in v.supported_platforms
+        assert id(version) == id(version.compatible_apps[amo.FIREFOX].version)
 
     def test_is_restart_required(self):
         version = Version.objects.get(pk=81551)
@@ -275,18 +266,18 @@ class TestVersion(TestCase):
         assert version.is_webextension
 
     def test_has_files(self):
-        v = Version.objects.get(pk=81551)
-        assert v.has_files, 'Version with files not recognized.'
+        version = Version.objects.get(pk=81551)
+        assert version.has_files, 'Version with files not recognized.'
 
-        v.files.all().delete()
-        v = Version.objects.get(pk=81551)
-        assert not v.has_files, 'Version without files not recognized.'
+        version.files.all().delete()
+        version = Version.objects.get(pk=81551)
+        assert not version.has_files, 'Version without files not recognized.'
 
     def _get_version(self, status):
-        v = Version()
-        v.all_files = [mock.Mock()]
-        v.all_files[0].status = status
-        return v
+        version = Version()
+        version.all_files = [mock.Mock()]
+        version.all_files[0].status = status
+        return version
 
     def test_is_unreviewed(self):
         assert self._get_version(amo.STATUS_AWAITING_REVIEW).is_unreviewed
@@ -1405,19 +1396,6 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         )
         assert version.version == '0.1'
 
-    def test_file_platform(self):
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
-        version = Version.from_upload(
-            self.upload,
-            self.addon,
-            [self.selected_app],
-            amo.RELEASE_CHANNEL_LISTED,
-            parsed_data=parsed_data,
-        )
-        files = version.all_files
-        assert len(files) == 1
-        assert files[0].platform == amo.PLATFORM_ALL.id
-
     def test_file_name(self):
         parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
         version = Version.from_upload(
@@ -1428,76 +1406,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             parsed_data=parsed_data,
         )
         files = version.all_files
-        # Since https://github.com/mozilla/addons-server/issues/8752 we are
-        # selecting PLATFORM_ALL every time as a temporary measure until
-        # platforms get removed.
         assert files[0].filename == 'delicious_bookmarks-0.1-fx.xpi'
-
-    def test_creates_platform_files(self):
-        # We are creating files for 'all' platforms every time, #8752
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
-        version = Version.from_upload(
-            self.upload,
-            self.addon,
-            [self.selected_app],
-            amo.RELEASE_CHANNEL_LISTED,
-            parsed_data=parsed_data,
-        )
-        files = version.all_files
-        assert sorted(amo.PLATFORMS[f.platform].shortname for f in files) == (['all'])
-
-    def test_desktop_creates_all_platform_files(self):
-        # We are creating files for 'all' platforms every time, #8752
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
-        version = Version.from_upload(
-            self.upload,
-            self.addon,
-            [amo.FIREFOX.id],
-            amo.RELEASE_CHANNEL_LISTED,
-            parsed_data=parsed_data,
-        )
-        files = version.all_files
-        assert sorted(amo.PLATFORMS[f.platform].shortname for f in files) == (['all'])
-
-    def test_android_creates_all_platform_files(self):
-        # We are creating files for 'all' platforms every time, #8752
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
-        version = Version.from_upload(
-            self.upload,
-            self.addon,
-            [amo.ANDROID.id],
-            amo.RELEASE_CHANNEL_LISTED,
-            parsed_data=parsed_data,
-        )
-        files = version.all_files
-        assert sorted(amo.PLATFORMS[f.platform].shortname for f in files) == (['all'])
-
-    def test_platform_files_created(self):
-        path = self.upload.path
-        assert storage.exists(path)
-        with storage.open(path) as file_:
-            uploaded_hash = hashlib.sha256(file_.read()).hexdigest()
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
-        version = Version.from_upload(
-            self.upload,
-            self.addon,
-            [amo.FIREFOX.id, amo.ANDROID.id],
-            amo.RELEASE_CHANNEL_LISTED,
-            parsed_data=parsed_data,
-        )
-        self.upload.reload()
-        assert not storage.exists(
-            path
-        ), 'Expected original upload to move but it still exists.'
-        # set path to empty string (default db value) when deleted
-        assert self.upload.path == ''
-        files = version.all_files
-        assert len(files) == 1
-        assert sorted([f.platform for f in files]) == [amo.PLATFORM_ALL.id]
-        assert sorted([f.filename for f in files]) == ['delicious_bookmarks-0.1-fx.xpi']
-
-        with storage.open(files[0].file_path) as f:
-            assert uploaded_hash == hashlib.sha256(f.read()).hexdigest()
 
     def test_track_upload_time(self):
         # Set created time back (just for sanity) otherwise the delta
@@ -1548,15 +1457,13 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         self, trigger_sync_objects_to_basket_mock
     ):
         parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
-        version = Version.from_upload(
+        Version.from_upload(
             self.upload,
             self.addon,
             [amo.FIREFOX.id],
             amo.RELEASE_CHANNEL_UNLISTED,
             parsed_data=parsed_data,
         )
-        files = version.all_files
-        assert sorted(amo.PLATFORMS[f.platform].shortname for f in files) == (['all'])
         # It's a new unlisted version, we should be syncing the add-on with
         # basket.
         assert trigger_sync_objects_to_basket_mock.call_count == 1
@@ -1569,15 +1476,13 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         self, trigger_sync_objects_to_basket_mock
     ):
         parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
-        version = Version.from_upload(
+        Version.from_upload(
             self.upload,
             self.addon,
             [amo.FIREFOX.id],
             amo.RELEASE_CHANNEL_LISTED,
             parsed_data=parsed_data,
         )
-        files = version.all_files
-        assert sorted(amo.PLATFORMS[f.platform].shortname for f in files) == (['all'])
         # It's a new listed version, we should *not* be syncing the add-on with
         # basket through version_uploaded signal, but only when
         # _current_version changes, which isn't the case here.

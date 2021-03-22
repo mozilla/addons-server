@@ -1868,7 +1868,7 @@ class TestReviewHelper(TestReviewHelperBase):
             version=self.version, verdict=amo.AUTO_APPROVED, weight=101
         )
         # An extra file should not change anything.
-        file_factory(version=self.version, platform=amo.PLATFORM_LINUX.id)
+        file_factory(version=self.version)
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
 
         # Safeguards.
@@ -1918,7 +1918,7 @@ class TestReviewHelper(TestReviewHelperBase):
             version=self.version, verdict=amo.AUTO_APPROVED, weight=101
         )
         # An extra file should not change anything.
-        file_factory(version=self.version, platform=amo.PLATFORM_LINUX.id)
+        file_factory(version=self.version)
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
 
         in_the_future = datetime.now() + timedelta(days=14)
@@ -2194,7 +2194,7 @@ class TestReviewHelper(TestReviewHelperBase):
             version=self.version, verdict=amo.AUTO_APPROVED, weight=101
         )
         # An extra file should not change anything.
-        file_factory(version=self.version, platform=amo.PLATFORM_LINUX.id)
+        file_factory(version=self.version)
         self.setup_data(amo.STATUS_NULL, file_status=amo.STATUS_AWAITING_REVIEW)
 
         # Safeguards.
@@ -2360,7 +2360,7 @@ class TestReviewHelper(TestReviewHelperBase):
             addon=self.addon, version='3.0', needs_human_review=True
         )
         # An extra file should not change anything.
-        file_factory(version=self.version, platform=amo.PLATFORM_LINUX.id)
+        file_factory(version=self.version)
         self.setup_data(
             amo.STATUS_NULL,
             file_status=amo.STATUS_APPROVED,

@@ -35,7 +35,6 @@ def generate_version(addon, app=None):
     File.objects.create(
         filename='%s-%s' % (v.addon_id, v.id),
         version=v,
-        platform=amo.PLATFORM_ALL.id,
         status=amo.STATUS_APPROVED,
     )
     return v

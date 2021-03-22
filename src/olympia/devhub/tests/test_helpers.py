@@ -92,7 +92,6 @@ class TestDevFilesStatus(TestCase):
         self.version = Version.objects.create(addon=self.addon)
         self.file = File.objects.create(
             version=self.version,
-            platform=amo.PLATFORM_ALL.id,
             status=amo.STATUS_AWAITING_REVIEW,
         )
 

@@ -4,7 +4,6 @@ import os
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import transaction
-from django.db.models import Count
 from django.utils.encoding import force_str
 
 from elasticsearch_dsl import Search
@@ -26,7 +25,6 @@ from olympia.amo.decorators import use_primary_db
 from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.utils import LocalFileStorage, extract_colors_from_image
 from olympia.devhub.tasks import resize_image
-from olympia.files.models import File
 from olympia.files.utils import get_filepath, parse_addon
 from olympia.lib.es.utils import index_objects
 from olympia.tags.models import Tag
@@ -287,62 +285,6 @@ def delete_addons(addon_ids, with_deleted=False, **kw):
     else:
         for addon in addons:
             addon.delete(send_delete_email=False)
-
-
-@task
-@use_primary_db
-def hard_delete_legacy_versions(addon_ids, **kw):
-    """Hard-delete legacy versions from specific add-on ids."""
-    log.info(
-        '[%s@%s] Hard Deleting legacy versions from addons starting at id: %s...'
-        % (len(addon_ids), hard_delete_legacy_versions.rate_limit, addon_ids[0])
-    )
-    addons = Addon.unfiltered.filter(pk__in=addon_ids).no_transforms()
-    for addon in addons:
-        with transaction.atomic():
-            addon.versions(manager='unfiltered_for_relations').filter(
-                files__is_webextension=False, files__is_mozilla_signed_extension=False
-            ).delete()
-
-
-@task
-@use_primary_db
-def hard_delete_extra_files(addon_ids, **kw):
-    """Hard delete files after the first one for each version of each add-on
-    passed.
-
-    The first file, which is kept, will have its platform updated to `all`.
-    """
-    log.info(
-        'Hard Deleting extra files belonging to %d addons starting at id: %s...',
-        len(addon_ids),
-        addon_ids[0],
-    )
-    addons = Addon.unfiltered.filter(pk__in=addon_ids).no_transforms()
-    for addon in addons:
-        # Find all versions with extra files for that add-on.
-        with transaction.atomic():
-            versions = (
-                addon.versions(manager='unfiltered_for_relations')
-                .annotate(nb_files=Count('files'))
-                .filter(nb_files__gt=1)
-                .filter(files__is_webextension=True)
-                .no_transforms()
-            )
-            for version in versions:
-                # Gather pks for all files except the first one, then delete them.
-                pks = list(version.files.all().values_list('pk', flat=True)[1:])
-                log.info(
-                    'Hard Deleting extraneous files %s',
-                    ', '.join(str(pk) for pk in pks),
-                )
-                File.objects.filter(pk__in=pks).delete()
-
-            # Update remaining files that aren't set to `all` for the add-on: they
-            # should be the only remaining file for each version.
-            File.objects.filter(version__addon=addon).exclude(
-                platform=amo.PLATFORM_ALL.id
-            ).update(platform=amo.PLATFORM_ALL.id)
 
 
 @task

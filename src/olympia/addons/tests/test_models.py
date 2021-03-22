@@ -325,7 +325,6 @@ class TestAddonModels(TestCase):
         'base/addon_3615',
         'base/addon_3723_listed',
         'base/addon_4664_twitterbar',
-        'addons/invalid_latest_version',
         'addons/denied',
     ]
 
@@ -2514,22 +2513,7 @@ class TestAddonFromUpload(UploadTest):
         assert version.version == '0.1'
         assert len(version.compatible_apps.keys()) == 1
         assert list(version.compatible_apps.keys())[0].id == self.selected_app
-        assert version.files.get().platform == amo.PLATFORM_ALL.id
         assert version.files.get().status == amo.STATUS_AWAITING_REVIEW
-
-    def test_platforms(self):
-        # We are defaulting to PLATFORM_ALL for all uploads as part of
-        # removing platforms in favour of ApplicationsVersions
-        # See #8572 for more details.
-        addon = Addon.from_upload(
-            self.get_upload('extension.xpi'),
-            [amo.FIREFOX.id, amo.ANDROID.id],
-            parsed_data=self.dummy_parsed_data,
-        )
-        version = addon.versions.get()
-        assert sorted([file_.platform for file_ in version.all_files]) == (
-            [amo.PLATFORM_ALL.id]
-        )
 
     def test_no_homepage(self):
         addon = Addon.from_upload(
