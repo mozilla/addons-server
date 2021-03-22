@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import hashlib
 import os.path
 import json
 
@@ -7,7 +6,6 @@ from datetime import datetime, timedelta
 
 from django.db import transaction
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
 from django.test.testcases import TransactionTestCase
 
 from unittest import mock
@@ -1459,14 +1457,13 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         self, trigger_sync_objects_to_basket_mock
     ):
         parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
-        version = Version.from_upload(
+        Version.from_upload(
             self.upload,
             self.addon,
             [amo.FIREFOX.id],
             amo.RELEASE_CHANNEL_UNLISTED,
             parsed_data=parsed_data,
         )
-        files = version.all_files
         # It's a new unlisted version, we should be syncing the add-on with
         # basket.
         assert trigger_sync_objects_to_basket_mock.call_count == 1
@@ -1479,14 +1476,13 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         self, trigger_sync_objects_to_basket_mock
     ):
         parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
-        version = Version.from_upload(
+        Version.from_upload(
             self.upload,
             self.addon,
             [amo.FIREFOX.id],
             amo.RELEASE_CHANNEL_LISTED,
             parsed_data=parsed_data,
         )
-        files = version.all_files
         # It's a new listed version, we should *not* be syncing the add-on with
         # basket through version_uploaded signal, but only when
         # _current_version changes, which isn't the case here.

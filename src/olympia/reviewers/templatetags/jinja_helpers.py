@@ -1,7 +1,6 @@
 import datetime
 
 from django.conf import settings
-from django.utils.encoding import force_str
 from django.utils.translation import gettext
 
 import jinja2
