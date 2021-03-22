@@ -201,21 +201,6 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         assert storage.open(f.file_path).size
 
     def test_latest_url(self):
-        # With platform.
-        file_ = File.objects.get(id=74797)
-        actual = file_.latest_xpi_url()
-        assert actual == (
-            '/firefox/downloads/latest/cooliris/platform:3/addon-5579-latest.xpi'
-        )
-
-        actual = file_.latest_xpi_url(attachment=True)
-        assert actual == (
-            '/firefox/downloads/latest/cooliris/type:attachment/platform:3/'
-            'addon-5579-latest.xpi'
-        )
-
-        # Same tests repeated, but now without a platform because that File is
-        # available for all platforms and not just a specific one.
         file_ = File.objects.get(id=67442)
         actual = file_.latest_xpi_url()
         assert actual == ('/firefox/downloads/latest/a3615/addon-3615-latest.xpi')
