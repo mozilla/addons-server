@@ -11,7 +11,7 @@ from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.addons.models import Addon, AddonUser
-from olympia.amo.tests import addon_factory, TestCase
+from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.devhub.tests.test_tasks import ValidatorTestCase
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.tests.test_models import UploadTest as BaseUploadTest
@@ -305,6 +305,18 @@ class TestFileValidation(TestCase):
             UserProfile.objects.get(email='reviewer@mozilla.com'),
             'Addons:ReviewUnlisted',
         )
+
+        self.addon.delete()
+        args = [self.addon.pk, self.file.id]
+        json_url = reverse('devhub.json_file_validation', args=args)
+
+        assert self.client.head(json_url, follow=False).status_code == 200
+
+    def test_unlisted_viewers_can_see_json_results_for_deleted_addon(self):
+        unlisted_viewer = user_factory(email='unlisted_viewer@mozilla.com')
+        self.grant_permission(unlisted_viewer, 'ReviewerTools:ViewUnlisted')
+        self.client.logout()
+        self.client.login(email='unlisted_viewer@mozilla.com')
 
         self.addon.delete()
         args = [self.addon.pk, self.file.id]

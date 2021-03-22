@@ -107,7 +107,7 @@ class TestAddonView(TestCase):
         request, addon_ = self.func.call_args[0]
         assert addon_ == addon
 
-    @mock.patch('olympia.access.acl.check_unlisted_addons_reviewer', lambda r: False)
+    @mock.patch('olympia.access.acl.check_unlisted_addons_viewer', lambda r: False)
     @mock.patch(
         'olympia.access.acl.check_addon_ownership', lambda *args, **kwargs: False
     )
@@ -117,7 +117,7 @@ class TestAddonView(TestCase):
         with self.assertRaises(http.Http404):
             view(self.request, self.addon.slug)
 
-    @mock.patch('olympia.access.acl.check_unlisted_addons_reviewer', lambda r: False)
+    @mock.patch('olympia.access.acl.check_unlisted_addons_viewer', lambda r: False)
     @mock.patch(
         'olympia.access.acl.check_addon_ownership', lambda *args, **kwargs: True
     )
@@ -140,7 +140,7 @@ class TestAddonViewWithUnlisted(TestAddonView):
         super(TestAddonViewWithUnlisted, self).setUp()
         self.view = dec.addon_view_factory(qs=Addon.objects.all)(self.func)
 
-    @mock.patch('olympia.access.acl.check_unlisted_addons_reviewer', lambda r: False)
+    @mock.patch('olympia.access.acl.check_unlisted_addons_viewer', lambda r: False)
     @mock.patch(
         'olympia.access.acl.check_addon_ownership', lambda *args, **kwargs: False
     )
@@ -150,7 +150,7 @@ class TestAddonViewWithUnlisted(TestAddonView):
         with self.assertRaises(http.Http404):
             self.view(self.request, self.addon.slug)
 
-    @mock.patch('olympia.access.acl.check_unlisted_addons_reviewer', lambda r: False)
+    @mock.patch('olympia.access.acl.check_unlisted_addons_viewer', lambda r: False)
     @mock.patch(
         'olympia.access.acl.check_addon_ownership', lambda *args, **kwargs: True
     )
@@ -161,7 +161,7 @@ class TestAddonViewWithUnlisted(TestAddonView):
         request, addon = self.func.call_args[0]
         assert addon == self.addon
 
-    @mock.patch('olympia.access.acl.check_unlisted_addons_reviewer', lambda r: True)
+    @mock.patch('olympia.access.acl.check_unlisted_addons_viewer', lambda r: True)
     @mock.patch(
         'olympia.access.acl.check_addon_ownership', lambda *args, **kwargs: False
     )

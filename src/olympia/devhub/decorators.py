@@ -9,7 +9,6 @@ from olympia.access import acl
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon
 from olympia.amo.decorators import login_required
-from olympia.constants import permissions
 
 
 def dev_required(
@@ -32,11 +31,18 @@ def dev_required(
             def fun():
                 return f(request, addon_id=addon.id, addon=addon, *args, **kw)
 
+            read_permissions = [
+                amo.permissions.REVIEWER_TOOLS_VIEW,
+                amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW,
+            ]
+
             if request.method in ('HEAD', 'GET'):
                 # Allow reviewers for read operations.
                 if allow_reviewers_for_read and (
                     acl.is_reviewer(request, addon)
-                    or acl.action_allowed(request, permissions.REVIEWER_TOOLS_VIEW)
+                    or any(
+                        acl.action_allowed(request, perm) for perm in read_permissions
+                    )
                 ):
                     return fun()
                 # On read-only requests, ignore disabled so developers can

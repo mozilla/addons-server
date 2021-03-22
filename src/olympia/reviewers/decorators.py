@@ -10,11 +10,13 @@ from olympia.constants import permissions
 def _view_on_get(request):
     """Return True if the user can access this page.
 
-    If the user is in a group with rule 'ReviewerTools:View' and the request is
-    a GET request, they are allowed to view.
+    If the user is in a group with rule 'ReviewerTools:View' or
+    'ReviewerTools:ViewUnlisted' and the request is a GET request,
+    they are allowed to view.
     """
-    return request.method == 'GET' and acl.action_allowed(
-        request, permissions.REVIEWER_TOOLS_VIEW
+    return request.method == 'GET' and (
+        acl.action_allowed(request, permissions.REVIEWER_TOOLS_VIEW)
+        or acl.action_allowed(request, permissions.REVIEWER_TOOLS_UNLISTED_VIEW)
     )
 
 
@@ -35,18 +37,19 @@ def permission_or_tools_view_required(permission):
 
 
 def unlisted_addons_reviewer_required(f):
-    """Require an "unlisted addons" reviewer user.
+    """Require an "unlisted addons" reviewer or viewer user.
 
-    The user logged in must be an unlisted addons reviewer or admin.
-
-    An unlisted addons reviewer is someone who is in a group with the following
-    permission: 'Addons:ReviewUnlisted'.
+    The user logged in must satisfy one of the following:
+    - be an admin
+    - have the permission 'ReviewerTools:ViewUnlisted' (unlisted viewer)
+    - have the permission 'Addons:ReviewUnlisted' (unlisted reviewer)
     """
 
     @login_required
     @functools.wraps(f)
     def wrapper(request, *args, **kw):
-        if acl.check_unlisted_addons_reviewer(request):
+        view_on_get = _view_on_get(request)
+        if view_on_get or acl.check_unlisted_addons_reviewer(request):
             return f(request, *args, **kw)
         raise PermissionDenied
 
@@ -60,6 +63,7 @@ def any_reviewer_required(f):
 
     Allows access to users with any of those permissions:
     - ReviewerTools:View (for GET requests only)
+    - ReviewerTools:ViewUnlisted (for GET requests only)
     - Addons:Review
     - Addons:ReviewUnlisted
     - Addons:ContentReview

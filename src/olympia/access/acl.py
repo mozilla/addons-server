@@ -175,6 +175,14 @@ def check_unlisted_addons_reviewer(request):
     return action_allowed(request, amo.permissions.ADDONS_REVIEW_UNLISTED)
 
 
+def check_unlisted_addons_viewer(request):
+    unlisted_perms = [
+        amo.permissions.ADDONS_REVIEW_UNLISTED,
+        amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW,
+    ]
+    return any(action_allowed(request, perm) for perm in unlisted_perms)
+
+
 def check_static_theme_reviewer(request):
     return action_allowed(request, amo.permissions.STATIC_THEMES_REVIEW)
 
@@ -214,6 +222,11 @@ def is_user_any_kind_of_reviewer(user, allow_viewers=False):
         amo.permissions.STATIC_THEMES_REVIEW,
     ]
     if allow_viewers:
-        permissions.append(amo.permissions.REVIEWER_TOOLS_VIEW)
+        permissions.extend(
+            [
+                amo.permissions.REVIEWER_TOOLS_VIEW,
+                amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW,
+            ]
+        )
     allow_access = any(action_allowed_user(user, perm) for perm in permissions)
     return allow_access

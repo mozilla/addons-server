@@ -930,6 +930,22 @@ class TestDashboard(TestCase):
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
 
+    def test_unlisted_viewer(self):
+        # Grant user the permission read-only unlisted access.
+        self.grant_permission(self.user, 'ReviewerTools:ViewUnlisted')
+
+        # Test.
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert len(doc('.dashboard h3')) == 9
+        expected_links = [
+            reverse('reviewers.unlisted_queue_all'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
+        ]
+        links = [link.attrib['href'] for link in doc('.dashboard a')]
+        assert (expected_link in links for expected_link in expected_links)
+
     def test_static_theme_reviewer(self):
         # Create some static themes to test the queue counts.
         addon_factory(
@@ -3275,6 +3291,18 @@ class TestReview(ReviewBase):
         self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
         assert self.client.get(self.url).status_code == 200
 
+    def test_review_unlisted_while_a_listed_version_is_awaiting_review_viewer(self):
+        self.make_addon_unlisted(self.addon)
+        version_factory(
+            addon=self.addon,
+            channel=amo.RELEASE_CHANNEL_LISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        self.addon.update(status=amo.STATUS_NOMINATED, slug='awaiting')
+        self.url = reverse('reviewers.review', args=('unlisted', self.addon.slug))
+        self.grant_permission(self.reviewer, 'ReviewerTools:ViewUnlisted')
+        assert self.client.get(self.url).status_code == 200
+
     def test_needs_unlisted_reviewer_for_only_unlisted(self):
         self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.addon.update_version()
@@ -3295,6 +3323,26 @@ class TestReview(ReviewBase):
         self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
         assert self.client.head(self.url).status_code == 200
 
+    def test_needs_unlisted_viewer_for_only_unlisted(self):
+        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.addon.update_version()
+        self.url = reverse('reviewers.review', args=('unlisted', self.addon.slug))
+        assert self.client.head(self.url).status_code == 404
+
+        # Adding a listed version makes it pass @reviewer_addon_view_factory
+        # decorator that only depends on the addon being purely unlisted or
+        # not, but still fail the check inside the view because we're looking
+        # at the unlisted channel specifically.
+        version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED, version='9.9'
+        )
+        assert self.client.head(self.url).status_code == 403
+        assert self.client.post(self.url).status_code == 403
+
+        # It works with the right permission.
+        self.grant_permission(self.reviewer, 'ReviewerTools:ViewUnlisted')
+        assert self.client.head(self.url).status_code == 200
+
     def test_dont_need_unlisted_reviewer_for_mixed_channels(self):
         version_factory(
             addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED, version='9.9'
@@ -3304,6 +3352,8 @@ class TestReview(ReviewBase):
         assert self.addon.current_version.channel == amo.RELEASE_CHANNEL_LISTED
         assert self.client.head(self.url).status_code == 200
         self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
+        assert self.client.head(self.url).status_code == 200
+        self.grant_permission(self.reviewer, 'ReviewerTools:ViewUnlisted')
         assert self.client.head(self.url).status_code == 200
 
     def test_need_correct_reviewer_for_promoted_addon(self):
@@ -3689,6 +3739,20 @@ class TestReview(ReviewBase):
         )
         self.url = reverse('reviewers.review', args=['unlisted', self.addon.slug])
         self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
+        self.test_item_history(channel=amo.RELEASE_CHANNEL_UNLISTED)
+
+    def test_item_history_with_unlisted_review_page_viewer(self):
+        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.reload()
+        # Throw in an listed version to be ignored.
+        version_factory(
+            version='0.2',
+            addon=self.addon,
+            channel=amo.RELEASE_CHANNEL_LISTED,
+            file_kw={'status': amo.STATUS_APPROVED},
+        )
+        self.url = reverse('reviewers.review', args=['unlisted', self.addon.slug])
+        self.grant_permission(self.reviewer, 'ReviewerTools:ViewUnlisted')
         self.test_item_history(channel=amo.RELEASE_CHANNEL_UNLISTED)
 
     def test_item_history_compat_ordered(self):
@@ -4473,7 +4537,16 @@ class TestReview(ReviewBase):
         # version, even deleted.
         self.version.delete(hard=True)
         assert self.client.get(self.url).status_code == 404
-        # Reviewer with more powers can look.
+
+        # Unlisted viewers can view but not submit reviews.
+        self.grant_permission(self.reviewer, 'ReviewerTools:ViewUnlisted')
+        assert self.client.get(self.url).status_code == 200
+        response = self.client.post(
+            self.url, {'action': 'comment', 'comments': 'hello sailor'}
+        )
+        assert response.status_code == 302
+
+        # Unlisted reviewers can submit reviews.
         self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
         assert self.client.get(self.url).status_code == 200
         response = self.client.post(
@@ -5564,6 +5637,13 @@ class TestReview(ReviewBase):
         self.make_addon_unlisted(self.addon)
         self.test_abuse_reports()
 
+    def test_abuse_reports_unlisted_addon_viewer(self):
+        user = UserProfile.objects.get(email='reviewer@mozilla.com')
+        self.grant_permission(user, 'ReviewerTools:ViewUnlisted')
+        self.login_as_reviewer()
+        self.make_addon_unlisted(self.addon)
+        self.test_abuse_reports()
+
     def test_abuse_reports_developers(self):
         report = AbuseReport.objects.create(
             user=self.addon.listed_authors[0], message='Foo, Bâr!', country_code='DE'
@@ -5594,6 +5674,13 @@ class TestReview(ReviewBase):
     def test_abuse_reports_developers_unlisted_addon(self):
         user = UserProfile.objects.get(email='reviewer@mozilla.com')
         self.grant_permission(user, 'Addons:ReviewUnlisted')
+        self.login_as_reviewer()
+        self.make_addon_unlisted(self.addon)
+        self.test_abuse_reports_developers()
+
+    def test_abuse_reports_developers_unlisted_addon_viewer(self):
+        user = UserProfile.objects.get(email='reviewer@mozilla.com')
+        self.grant_permission(user, 'ReviewerTools:ViewUnlisted')
         self.login_as_reviewer()
         self.make_addon_unlisted(self.addon)
         self.test_abuse_reports_developers()
@@ -5667,6 +5754,13 @@ class TestReview(ReviewBase):
     def test_user_ratings_unlisted_addon(self):
         user = UserProfile.objects.get(email='reviewer@mozilla.com')
         self.grant_permission(user, 'Addons:ReviewUnlisted')
+        self.login_as_reviewer()
+        self.make_addon_unlisted(self.addon)
+        self.test_user_ratings()
+
+    def test_user_ratings_unlisted_addon_viewer(self):
+        user = UserProfile.objects.get(email='reviewer@mozilla.com')
+        self.grant_permission(user, 'ReviewerTools:ViewUnlisted')
         self.login_as_reviewer()
         self.make_addon_unlisted(self.addon)
         self.test_user_ratings()
@@ -5748,6 +5842,29 @@ class TestReview(ReviewBase):
         assert doc('.data-toggle.review-tested')[0].attrib['data-value'] == '|'
         # Unlisted versions can't be rejected with a delay so the data-value of
         # the field is empty as well.
+        elm = doc('.data-toggle.review-delayed-rejection')[0]
+        assert elm.attrib['data-value'] == '|'
+
+    def test_no_data_value_attributes_unlisted_for_viewer(self):
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        AutoApprovalSummary.objects.create(
+            verdict=amo.AUTO_APPROVED, version=self.version
+        )
+        unlisted_viewer = user_factory(email='unlisted_viewer@mozilla.com')
+        self.grant_permission(unlisted_viewer, 'ReviewerTools:ViewUnlisted')
+        self.client.logout()
+        self.client.login(email='unlisted_viewer@mozilla.com')
+        unlisted_url = reverse('reviewers.review', args=['unlisted', self.addon.slug])
+        response = self.client.get(unlisted_url)
+
+        assert response.status_code == 200
+        doc = pq(response.content)
+
+        assert not doc('.data-toggle.review-actions-desc')
+        assert not doc('select#id_versions.data-toggle')[0]
+        assert doc('.data-toggle.review-comments')[0].attrib['data-value'] == '|'
+        assert doc('.data-toggle.review-files')[0].attrib['data-value'] == '|'
+        assert doc('.data-toggle.review-tested')[0].attrib['data-value'] == '|'
         elm = doc('.data-toggle.review-delayed-rejection')[0]
         assert elm.attrib['data-value'] == '|'
 
@@ -6798,6 +6915,16 @@ class TestAddonReviewerViewSet(TestCase):
         assert response.status_code == 202
         assert ReviewerSubscription.objects.count() == 1
 
+    def test_subscribe_already_subscribed_unlisted_viewer(self):
+        ReviewerSubscription.objects.create(
+            user=self.user, addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED
+        )
+        self.grant_permission(self.user, 'ReviewerTools:ViewUnlisted')
+        self.client.login_api(self.user)
+        response = self.client.post(self.subscribe_url_unlisted)
+        assert response.status_code == 202
+        assert ReviewerSubscription.objects.count() == 1
+
     def test_subscribe(self):
         self.grant_permission(self.user, 'Addons:Review')
         self.client.login_api(self.user)
@@ -6817,6 +6944,13 @@ class TestAddonReviewerViewSet(TestCase):
 
     def test_subscribe_unlisted(self):
         self.grant_permission(self.user, 'Addons:ReviewUnlisted')
+        self.client.login_api(self.user)
+        response = self.client.post(self.subscribe_url_unlisted)
+        assert response.status_code == 202
+        assert ReviewerSubscription.objects.count() == 1
+
+    def test_subscribe_unlisted_viewer(self):
+        self.grant_permission(self.user, 'ReviewerTools:ViewUnlisted')
         self.client.login_api(self.user)
         response = self.client.post(self.subscribe_url_unlisted)
         assert response.status_code == 202
@@ -6885,6 +7019,16 @@ class TestAddonReviewerViewSet(TestCase):
             user=self.user, addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED
         )
         self.grant_permission(self.user, 'Addons:ReviewUnlisted')
+        self.client.login_api(self.user)
+        response = self.client.post(self.unsubscribe_url_unlisted)
+        assert response.status_code == 202
+        assert ReviewerSubscription.objects.count() == 0
+
+    def test_unsubscribe_unlisted_viewer(self):
+        ReviewerSubscription.objects.create(
+            user=self.user, addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED
+        )
+        self.grant_permission(self.user, 'ReviewerTools:ViewUnlisted')
         self.client.login_api(self.user)
         response = self.client.post(self.unsubscribe_url_unlisted)
         assert response.status_code == 202
@@ -7160,6 +7304,12 @@ class TestAddonReviewerViewSetJsonValidation(TestCase):
         self.make_addon_unlisted(self.addon)
         assert self.client.get(self.url).status_code == 200
 
+    def test_unlisted_viewer_can_see_results_for_unlisted(self):
+        self.grant_permission(self.user, 'ReviewerTools:ViewUnlisted')
+        self.client.login_api(self.user)
+        self.make_addon_unlisted(self.addon)
+        assert self.client.get(self.url).status_code == 200
+
     def test_non_reviewer_cannot_see_json_results(self):
         self.client.login_api(self.user)
         assert self.client.get(self.url).status_code == 403
@@ -7241,6 +7391,13 @@ class AddonReviewerViewSetPermissionMixin(object):
     def test_unlisted_version_unlisted_reviewer(self):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:ReviewUnlisted')
+        self.client.login_api(user)
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self._test_url()
+
+    def test_unlisted_version_unlisted_viewer(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'ReviewerTools:ViewUnlisted')
         self.client.login_api(user)
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self._test_url()
@@ -8736,6 +8893,13 @@ class TestDownloadGitFileView(TestCase):
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self._test_url_success()
 
+    def test_unlisted_version_unlisted_viewer(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'ReviewerTools:ViewUnlisted')
+        self.client.login(email=user.email)
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self._test_url_success()
+
     def test_unlisted_version_author(self):
         user = UserProfile.objects.create(username='author')
         AddonUser.objects.create(user=user, addon=self.addon)
@@ -8818,6 +8982,12 @@ class TestCannedResponseViewSet(TestCase):
     def test_unlisted_reviewer(self):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:ReviewUnlisted')
+        self.client.login_api(user)
+        self._test_url()
+
+    def test_unlisted_viewer(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'ReviewerTools:ViewUnlisted')
         self.client.login_api(user)
         self._test_url()
 
