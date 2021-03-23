@@ -4102,6 +4102,8 @@ class TestReview(ReviewBase):
         assert not doc('#clear_admin_theme_review')
         assert not doc('#disable_auto_approval')
         assert not doc('#enable_auto_approval')
+        assert not doc('#disable_auto_approval_unlisted')
+        assert not doc('#enable_auto_approval_unlisted')
         assert not doc('#clear_auto_approval_delayed_until')
         assert not doc('#clear_pending_rejections')
         assert not doc('#deny_resubmission')
@@ -4272,7 +4274,7 @@ class TestReview(ReviewBase):
         assert doc('#clear_admin_content_review').length == 0
         assert doc('#clear_admin_theme_review').length == 1
 
-    def test_disable_auto_approvals_as_admin(self):
+    def test_disable_auto_approval_as_admin(self):
         self.login_as_admin()
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -4293,8 +4295,7 @@ class TestReview(ReviewBase):
         assert doc('#disable_auto_approval')
         assert doc('#enable_auto_approval')
 
-        # Both of them should be absent on static themes, which are not
-        # auto-approved.
+        # They should be absent on static themes, which are not auto-approved.
         self.addon.update(type=amo.ADDON_STATICTHEME)
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -4302,7 +4303,36 @@ class TestReview(ReviewBase):
         assert not doc('#disable_auto_approval')
         assert not doc('#enable_auto_approval')
 
-    def test_enable_auto_approvals_as_admin_auto_approvals_disabled(self):
+    def test_disable_auto_approval_unlisted_as_admin(self):
+        self.login_as_admin()
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#disable_auto_approval_unlisted')
+        elem = doc('#disable_auto_approval_unlisted')[0]
+        assert 'hidden' not in elem.getparent().attrib.get('class', '')
+
+        assert doc('#enable_auto_approval_unlisted')
+        elem = doc('#enable_auto_approval_unlisted')[0]
+        assert 'hidden' in elem.getparent().attrib.get('class', '')
+
+        # Still present for dictionaries
+        self.addon.update(type=amo.ADDON_DICT)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#disable_auto_approval_unlisted')
+        assert doc('#enable_auto_approval_unlisted')
+
+        # They should be absent on static themes, which are not auto-approved.
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#disable_auto_approval_unlisted')
+        assert not doc('#enable_auto_approval_unlisted')
+
+    def test_enable_auto_approval_as_admin(self):
         self.login_as_admin()
         AddonReviewerFlags.objects.create(addon=self.addon, auto_approval_disabled=True)
         response = self.client.get(self.url)
@@ -4316,14 +4346,37 @@ class TestReview(ReviewBase):
         elem = doc('#enable_auto_approval')[0]
         assert 'hidden' not in elem.getparent().attrib.get('class', '')
 
-        # Both of them should be absent on static themes, which are not
-        # auto-approved.
+        # They should be absent on static themes, which are not auto-approved.
         self.addon.update(type=amo.ADDON_STATICTHEME)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
         assert not doc('#disable_auto_approval')
         assert not doc('#enable_auto_approval')
+
+    def test_enable_auto_approval_unlisted_as_admin(self):
+        self.login_as_admin()
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, auto_approval_disabled_unlisted=True
+        )
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#disable_auto_approval_unlisted')
+        elem = doc('#disable_auto_approval_unlisted')[0]
+        assert 'hidden' in elem.getparent().attrib.get('class', '')
+
+        assert doc('#enable_auto_approval_unlisted')
+        elem = doc('#enable_auto_approval_unlisted')[0]
+        assert 'hidden' not in elem.getparent().attrib.get('class', '')
+
+        # They should be absent on static themes, which are not auto-approved.
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#disable_auto_approval_unlisted')
+        assert not doc('#enable_auto_approval_unlisted')
 
     def test_clear_pending_rejections_as_admin(self):
         self.login_as_admin()
@@ -7000,12 +7053,14 @@ class TestAddonReviewerViewSet(TestCase):
         AddonReviewerFlags.objects.create(
             addon=self.addon,
             auto_approval_disabled=True,
+            auto_approval_disabled_unlisted=True,
             auto_approval_delayed_until=self.days_ago(42),
         )
         self.grant_permission(self.user, 'Reviews:Admin')
         self.client.login_api(self.user)
         data = {
             'auto_approval_disabled': False,
+            'auto_approval_disabled_unlisted': False,
             'auto_approval_disabled_until_next_approval': True,
             'auto_approval_delayed_until': None,
             'needs_admin_code_review': True,
@@ -7017,6 +7072,7 @@ class TestAddonReviewerViewSet(TestCase):
         assert AddonReviewerFlags.objects.filter(addon=self.addon).exists()
         reviewer_flags = AddonReviewerFlags.objects.get(addon=self.addon)
         assert reviewer_flags.auto_approval_disabled is False
+        assert reviewer_flags.auto_approval_disabled_unlisted is False
         assert reviewer_flags.auto_approval_disabled_until_next_approval is True
         assert reviewer_flags.auto_approval_delayed_until is None
         assert reviewer_flags.needs_admin_code_review is True
