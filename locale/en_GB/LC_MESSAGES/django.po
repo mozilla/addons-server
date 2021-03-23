@@ -5354,9 +5354,8 @@ msgstr "Content Review {0}"
 msgid "Review {0}"
 msgstr "Review {0}"
 
-#, fuzzy
 msgid "Add-on important changes history"
-msgstr "Add-on user change history"
+msgstr "Add-on important changes history"
 
 msgid "Add-on History"
 msgstr "Add-on History"
