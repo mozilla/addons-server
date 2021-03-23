@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-16 17:41+0000\n"
-"PO-Revision-Date: 2019-04-23 15:24+0000\n"
+"PO-Revision-Date: 2021-03-23 21:40+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ca\n"
@@ -26,9 +26,8 @@ msgstr "S'ha produït un problema en contactar amb el servidor."
 msgid "Select a file..."
 msgstr "Seleccioneu un fitxer..."
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi or .crx"
-msgstr "El vostre complement ha d'acabar amb .zip, .xpi, .crx, .jar o .xml"
+msgstr "El vostre complement ha d'acabar amb .zip, .xpi o .crx"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -48,7 +47,7 @@ msgid "Error with {0}"
 msgstr "Error amb {0}"
 
 msgid "Please make sure to report any linting related issues on GitHub"
-msgstr ""
+msgstr "Assegureu-vos de notificar qualsevol problema relacionat amb l'anàlisi d'errors a GitHub"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
