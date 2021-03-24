@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-16 17:41+0000\n"
-"PO-Revision-Date: 2021-03-24 06:07+0000\n"
+"PO-Revision-Date: 2021-03-24 06:13+0000\n"
 "Last-Translator: Đặng Duy Thanh <thanhdd.it@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -457,6 +457,8 @@ msgstr "Các phiên bản Ứng dụng Hợp lệ"
 
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr ""
+"Tiện ích được gửi lên Tiện Ích Mozilla phải có một tập tin manifest với ít nhất một trong các ứng dụng bên dưới phải được hỗ trợ. Chỉ các phiên bản được liệt kê bên dưới là được phép cho các ứng "
+"dụng này."
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
