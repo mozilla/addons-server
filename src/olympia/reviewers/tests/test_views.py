@@ -3576,8 +3576,18 @@ class TestReview(ReviewBase):
             version_factory(
                 addon=addon, version=f'1.{i}', created=self.days_ago(365 - i)
             )
-        with self.assertNumQueries(62):
-            # FIXME: 62 is obviously still too high, but it's a starting point.
+        # Since we're testing queries, also include an author change that will
+        # be displayed in the "important changes" log.
+        author = self.addon.addonuser_set.get()
+        core.set_user(author.user)
+        ActivityLog.create(
+            amo.LOG.ADD_USER_WITH_ROLE,
+            author.user,
+            str(author.get_role_display()),
+            self.addon,
+        )
+        with self.assertNumQueries(63):
+            # FIXME: obviously too high, but it's a starting point.
             # Potential further optimizations:
             # - Remove trivial... and not so trivial duplicates
             # - Group similar queries
@@ -3638,15 +3648,16 @@ class TestReview(ReviewBase):
             # 51. config for site notice
             # 52. translations for... (?! id=1)
             # 53. important activity log about the add-on
-            # 54. user for the activity
-            # 55. add-on for the activity
-            # 56. translation for the add-on for the activity
-            # 57. reusedguid (repeated)
-            # 58. select all versions in channel for versions dropdown widget
-            # 59. select files for those versions
-            # 60. select files waiting for review for particular version
-            # 61. select users by role for this add-on (?)
-            # 62. savepoint
+            # 54. user for the activity (from the ActivityLog foreignkey)
+            # 55. user for the activity (from the ActivityLog arguments)
+            # 56. add-on for the activity
+            # 57. translation for the add-on for the activity
+            # 58. reusedguid (repeated)
+            # 59. select all versions in channel for versions dropdown widget
+            # 60. select files for those versions
+            # 61. select files waiting for review for particular version
+            # 62. select users by role for this add-on (?)
+            # 63. savepoint
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -5316,7 +5327,6 @@ class TestReview(ReviewBase):
         important_changes_log = response.context['important_changes_log']
         actions = [log.action for log in important_changes_log]
         assert actions == [
-            amo.LOG.CHANGE_STATUS.id,
             amo.LOG.ADD_USER_WITH_ROLE.id,
             amo.LOG.CHANGE_USER_WITH_ROLE.id,
             amo.LOG.REMOVE_USER_WITH_ROLE.id,
@@ -5326,29 +5336,24 @@ class TestReview(ReviewBase):
 
         # Make sure the logs are displayed in the page.
         important_changes = doc('#important-changes-history li')
-        assert len(important_changes) == 6
-        # Note: addon_factory() tricks avoid some of the ActivityLogs we'd
-        # normally be getting for an approved add-on, because it forces the
-        # status - that's fine, in this case we only want to make sure the
-        # change status ones are included in the log.
-        assert ' status changed to Incomplete' in important_changes[0].text_content()
+        assert len(important_changes) == 5
+        assert 'class' not in important_changes[0].attrib
+        assert '(Owner) added to ' in important_changes[0].text_content()
+        assert 'class' not in important_changes[0].attrib
+        assert 'role changed to Owner for ' in important_changes[1].text_content()
         assert 'class' not in important_changes[1].attrib
-        assert '(Owner) added to ' in important_changes[1].text_content()
-        assert 'class' not in important_changes[1].attrib
-        assert 'role changed to Owner for ' in important_changes[2].text_content()
+        assert '(Owner) removed from ' in important_changes[2].text_content()
         assert 'class' not in important_changes[2].attrib
-        assert '(Owner) removed from ' in important_changes[3].text_content()
-        assert 'class' not in important_changes[3].attrib
         assert (
             'regularuser التطب force-disabled Public.'
+            in important_changes[3].text_content()
+        )
+        assert important_changes[3].attrib['class'] == 'reviewer-review-action'
+        assert (
+            'regularuser التطب force-enabled Public.'
             in important_changes[4].text_content()
         )
         assert important_changes[4].attrib['class'] == 'reviewer-review-action'
-        assert (
-            'regularuser التطب force-enabled Public.'
-            in important_changes[5].text_content()
-        )
-        assert important_changes[5].attrib['class'] == 'reviewer-review-action'
 
     @override_settings(CELERY_TASK_ALWAYS_EAGER=True)
     @mock.patch('olympia.devhub.tasks.validate')
@@ -5896,8 +5901,10 @@ class TestReview(ReviewBase):
                     version=version,
                     results={'matchedResults': [customs_rule.name]},
                 )
-
-        with self.assertNumQueries(62):
+        # Delete ActivityLog to make the query count easier to follow. We have
+        # other tests for the ActivityLog related stuff.
+        ActivityLog.objects.for_addons(self.addon).delete()
+        with self.assertNumQueries(59):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.
@@ -5956,7 +5963,7 @@ class TestReview(ReviewBase):
                     results={'matchedResults': [customs_rule.name]},
                 )
 
-        with self.assertNumQueries(64):
+        with self.assertNumQueries(61):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.

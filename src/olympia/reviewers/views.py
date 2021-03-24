@@ -973,10 +973,9 @@ def review(request, addon, channel=None):
         amo.LOG.FORCE_DISABLE.id,
         amo.LOG.FORCE_ENABLE.id,
     )
-    status_changes_actions = (amo.LOG.CHANGE_STATUS.id,)
     important_changes_log = ActivityLog.objects.filter(
         action__in=(
-            user_changes_actions + admin_changes_actions + status_changes_actions
+            user_changes_actions + admin_changes_actions
         ),
         addonlog__addon=addon,
     ).order_by('id')
