@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-16 17:41+0000\n"
-"PO-Revision-Date: 2021-03-16 18:08+0000\n"
+"PO-Revision-Date: 2021-03-24 10:00+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -979,16 +979,16 @@ msgid "Version re-signed"
 msgstr "Versie opnieuw ondertekend"
 
 msgid "{addon} status force-disabled."
-msgstr ""
+msgstr "{addon} status is geforceerd uitgeschakeld."
 
 msgid "Force disabled"
 msgstr "Add-on geforceerd uitschakelen"
 
 msgid "{addon} status force-enabled."
-msgstr ""
+msgstr "{addon} status is geforceerd ingeschakeld."
 
 msgid "Force enabled"
-msgstr ""
+msgstr "Geforceerd ingeschakeld"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4458,7 +4458,7 @@ msgstr "Voor die momenten waarop u lasers vanuit de ogen van een kat moet schiet
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
-msgstr ""
+msgstr "Webpagina’s hardop voorgelezen. Meer dan 40 ondersteunde talen."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
@@ -4474,7 +4474,7 @@ msgstr "Beheer uw tijd beter met een browserklok die de werkintervallen in kaart
 
 #. editorial content for the primary hero shelves.
 msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
-msgstr ""
+msgstr "Bent u dat bericht ‘Video gepauzeerd. Doorgaan met kijken?’ beu? Luister zonder onderbreking naar uw favoriete muziek op YouTube."
 
 #. editorial content for the primary hero shelves.
 msgid "Thousands of GIFs at your fingertips."
@@ -4486,7 +4486,7 @@ msgstr "Ga heen, vervelende cookiewaarschuwingen!"
 
 #. editorial content for the primary hero shelves.
 msgid "The easiest way to manage YouTube subscriptions."
-msgstr ""
+msgstr "De eenvoudigste manier om abonnementen van YouTube te beheren."
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
@@ -4494,7 +4494,7 @@ msgstr "Keer terug naar een eenvoudiger tijdperk – toen uw beste zoekresultate
 
 #. editorial content for the primary hero shelves.
 msgid "Get the mouse scrollbar you've always wanted—specify width and color."
-msgstr ""
+msgstr "Verkrijg de muisscrollbalk die u altijd al wilde – geef de breedte en de kleur op."
 
 #. editorial content for the primary hero shelves.
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
@@ -5390,7 +5390,7 @@ msgid "Review {0}"
 msgstr "Beoordeling {0}"
 
 msgid "Add-on important changes history"
-msgstr ""
+msgstr "Geschiedenis van belangrijke wijzigingen van de add-on"
 
 msgid "Add-on History"
 msgstr "Add-on-geschiedenis"
