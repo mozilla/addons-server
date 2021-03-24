@@ -974,9 +974,7 @@ def review(request, addon, channel=None):
         amo.LOG.FORCE_ENABLE.id,
     )
     important_changes_log = ActivityLog.objects.filter(
-        action__in=(
-            user_changes_actions + admin_changes_actions
-        ),
+        action__in=(user_changes_actions + admin_changes_actions),
         addonlog__addon=addon,
     ).order_by('id')
 
