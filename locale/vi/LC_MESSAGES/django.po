@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-16 17:41+0000\n"
-"PO-Revision-Date: 2020-09-13 11:38+0000\n"
-"Last-Translator: T <thanhthot.14@yandex.com>\n"
+"PO-Revision-Date: 2021-03-24 06:07+0000\n"
+"Last-Translator: Đặng Duy Thanh <thanhdd.it@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
@@ -247,14 +247,18 @@ msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
 msgstr ""
+"Bạn thấy thông báo này vì trang web HTTPS này yêu cầu trình duyệt web của bạn gửi 'Referer header', nhưng nó đã không được gửi. Tiêu đề này là bắt buộc vì lý do bảo mật, để đảm bảo rằng trình duyệt "
+"của bạn không bị các bên thứ ba chiếm quyền điều khiển."
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
-msgstr ""
+msgstr "Nếu bạn đã cấu hình trình duyệt của mình tắt tiêu đề 'Referer', vui lòng bật lại chúng, ít nhất là cho trang web này, hoặc cho các kết nối HTTPS, hoặc cho các yêu cầu 'same-origin'."
 
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
 msgstr ""
+"Bạn thấy thông báo này vì trang này yêu cầu một cookie CSRF khi gửi form. Cookie này là bắt buộc bởi lý do bảo mật, để đảm bảo rằng trình duyệt của bạn không bị các bên thứ ba chiếm quyền điều "
+"khiển."
 
 msgid "Page Not Found"
 msgstr "Không tìm thấy trang này"
@@ -313,14 +317,14 @@ msgstr ""
 "chúng tôi khắc phục sự cố này bằng cách <a href=\"https://github.com/mozilla/addons/issues/new\">gửi vấn đề</a> với các chi tiết về cách bạn truy cập trang này.</p>"
 
 msgid "Register or Log in"
-msgstr ""
+msgstr "Đăng ký hoặc đăng nhập"
 
 #, fuzzy
 msgid "Email:"
 msgstr "Email"
 
 msgid "OK"
-msgstr ""
+msgstr "Đồng ý"
 
 msgid "No results found"
 msgstr "Không tìm thấy kết quả nào"
@@ -400,10 +404,10 @@ msgid "Another Body"
 msgstr "Nội dung khác"
 
 msgid "Invalid Authorization header. No credentials provided."
-msgstr ""
+msgstr "Tiêu đề Authorization không hợp lệ. Không có thông tin xác thực nào được cung cấp."
 
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
-msgstr ""
+msgstr "Tiêu đề Authorization không hợp lệ. Chuỗi thông tin xác thực không được chứa khoảng trắng."
 
 msgid "Signature has expired."
 msgstr "Chữ ký đã hết hạn."
@@ -412,7 +416,7 @@ msgid "Error decoding signature."
 msgstr "Lỗi khi giải mã chữ ký."
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "Một hoặc nhiều khóa bị sai kiểu trong payload"
 
 msgid "Invalid JWT Token."
 msgstr "JWT Token không hợp lệ."
@@ -424,7 +428,7 @@ msgid "Email address not found."
 msgstr "Không tìm thấy địa chỉ email."
 
 msgid "Unavailable for legal reasons."
-msgstr ""
+msgstr "Không có sẵn vì lý do pháp lý."
 
 msgid "The field must have a length of at least {num} characters."
 msgstr "Trường phải có độ dài ít nhất {num} ký tự."
