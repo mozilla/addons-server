@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-16 17:41+0000\n"
-"PO-Revision-Date: 2021-03-24 07:23+0000\n"
+"PO-Revision-Date: 2021-03-24 13:37+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -957,13 +957,11 @@ msgstr ""
 msgid "Force disabled"
 msgstr "బలవంతంగా నిలిపివేయబడింది"
 
-#, fuzzy
 msgid "{addon} status force-enabled."
-msgstr "{addon} {version} తిరిగి చేతనమైనది."
+msgstr "{addon} బలవంతంగా చేతనమైంది."
 
-#, fuzzy
 msgid "Force enabled"
-msgstr "పొడగింతను బలవంతంగా చేతనించు"
+msgstr "బలవంతంగా చేతనించబడింది"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4304,9 +4302,8 @@ msgid "Blues & Yellows"
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Forest Theme"
-msgstr "అలంకారం సృష్టించు"
+msgstr "అడవి అలంకారం"
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
