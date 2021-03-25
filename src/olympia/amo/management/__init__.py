@@ -127,24 +127,17 @@ class ProcessObjectsCommand(BaseCommand):
             kwargs = task_info.get('kwargs', {})
             if task_info.get('allowed_kwargs'):
                 kwargs.update(
-                    {
-                        arg: options.get(arg, None)
-                        for arg in task_info['allowed_kwargs']
-                    }
+                    {arg: options.get(arg, None) for arg in task_info['allowed_kwargs']}
                 )
             # All the remaining tasks go in one group.
             grouping = []
             for chunk in chunked(pks, options.get('batch_size')):
-                grouping.append(
-                    task_info['task'].subtask(args=[chunk], kwargs=kwargs)
-                )
+                grouping.append(task_info['task'].subtask(args=[chunk], kwargs=kwargs))
 
             # Add the post task on to the end.
             post = None
             if 'post' in task_info:
-                post = task_info['post'].subtask(
-                    args=[], kwargs=kwargs, immutable=True
-                )
+                post = task_info['post'].subtask(args=[], kwargs=kwargs, immutable=True)
                 ts = chord(grouping, post)
             else:
                 ts = group(grouping)
