@@ -3670,7 +3670,7 @@ class TestReview(ReviewBase):
     def test_item_history_with_unlisted_versions_too(self):
         # Throw in an unlisted version to be ignored.
         version_factory(
-            version='0.2',
+            version='0.3',
             addon=self.addon,
             channel=amo.RELEASE_CHANNEL_UNLISTED,
             file_kw={'status': amo.STATUS_APPROVED},
@@ -3682,7 +3682,7 @@ class TestReview(ReviewBase):
         self.version.reload()
         # Throw in an listed version to be ignored.
         version_factory(
-            version='0.2',
+            version='0.3',
             addon=self.addon,
             channel=amo.RELEASE_CHANNEL_LISTED,
             file_kw={'status': amo.STATUS_APPROVED},

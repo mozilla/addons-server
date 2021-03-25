@@ -2176,15 +2176,15 @@ class TestAddonNomination(TestCase):
         """
         addon, nomination = self.setup_nomination()
         # Switching it to a public status.
-        version = Version.objects.create(addon=addon, version='0.1')
+        version = Version.objects.create(addon=addon, version='0.2')
         File.objects.create(status=amo.STATUS_APPROVED, version=version)
         assert addon.versions.latest().nomination == nomination
         # Adding a new unreviewed version.
-        version = Version.objects.create(addon=addon, version='0.2')
+        version = Version.objects.create(addon=addon, version='0.3')
         File.objects.create(status=amo.STATUS_AWAITING_REVIEW, version=version)
         assert addon.versions.latest().nomination == nomination
         # Adding a new unreviewed version.
-        version = Version.objects.create(addon=addon, version='0.3')
+        version = Version.objects.create(addon=addon, version='0.4')
         File.objects.create(status=amo.STATUS_AWAITING_REVIEW, version=version)
         assert addon.versions.latest().nomination == nomination
 

@@ -1434,7 +1434,11 @@ class TestAutoApprovalSummary(TestCase):
         for i in range(0, 10):
             version_factory(
                 addon=self.addon,
-                file_kw={'reviewed': self.days_ago(10), 'status': amo.STATUS_DISABLED},
+                version=str(i),
+                file_kw={
+                    'reviewed': self.days_ago(10),
+                    'status': amo.STATUS_DISABLED,
+                },
             )
 
         summary = AutoApprovalSummary(version=self.version)
