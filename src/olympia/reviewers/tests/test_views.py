@@ -5337,9 +5337,8 @@ class TestReview(ReviewBase):
         # Make sure the logs are displayed in the page.
         important_changes = doc('#important-changes-history li')
         assert len(important_changes) == 5
-        assert 'class' not in important_changes[0].attrib
         assert '(Owner) added to ' in important_changes[0].text_content()
-        assert 'class' not in important_changes[0].attrib
+        assert 'class' not in important_changes[1].attrib
         assert 'role changed to Owner for ' in important_changes[1].text_content()
         assert 'class' not in important_changes[1].attrib
         assert '(Owner) removed from ' in important_changes[2].text_content()
