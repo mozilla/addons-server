@@ -10,9 +10,9 @@ import pytest
 
 from olympia import amo
 from olympia.amo.storage_utils import copy_stored_file
-from olympia.amo.tests import addon_factory
-from olympia.versions.models import VersionPreview
-from olympia.versions.tasks import generate_static_theme_preview
+from olympia.amo.tests import addon_factory, version_factory
+from olympia.versions.models import Version, VersionPreview
+from olympia.versions.tasks import generate_static_theme_preview, hard_delete_versions
 
 
 HEADER_ROOT = os.path.join(settings.ROOT, 'src/olympia/versions/tests/static_themes/')
@@ -476,3 +476,13 @@ def test_generate_preview_with_additional_backgrounds(
     check_render_additional(force_str(amo_svg), 720, colors)
 
     index_addons_mock.assert_called_with([addon.id])
+
+
+@pytest.mark.django_db
+def test_hard_delete_task():
+    addon = addon_factory()
+    version1 = addon.current_version
+    version2 = version_factory(addon=addon)
+    assert Version.unfiltered.count() == 2
+    hard_delete_versions.delay([version1.pk, version2.pk])
+    assert Version.unfiltered.count() == 0

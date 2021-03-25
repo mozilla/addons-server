@@ -3,6 +3,7 @@ import operator
 import os
 import itertools
 
+from django.db import transaction
 from django.template import loader
 
 import olympia.core.logger
@@ -145,3 +146,21 @@ def delete_list_theme_previews(addon_ids, **kw):
         ).delete()
 
     index_addons.delay(addon_ids)
+
+
+@task
+@use_primary_db
+def hard_delete_versions(version_ids, **kw):
+    """Hard delete the given versions by id."""
+    log.info(
+        '[%s@%s] Hard deleting versions starting at id: %s...'
+        % (
+            len(version_ids),
+            hard_delete_versions.rate_limit,
+            version_ids[0],
+        )
+    )
+    versions = Version.unfiltered.filter(pk__in=version_ids).no_transforms()
+    for version in versions:
+        with transaction.atomic():
+            version.delete(hard=True)
