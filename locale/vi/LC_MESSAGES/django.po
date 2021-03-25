@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-16 17:41+0000\n"
-"PO-Revision-Date: 2021-03-24 06:16+0000\n"
+"PO-Revision-Date: 2021-03-25 06:09+0000\n"
 "Last-Translator: Đặng Duy Thanh <thanhdd.it@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -526,7 +526,7 @@ msgid "Invalid version"
 msgstr "Phiên bản không hợp lệ"
 
 msgid "Min version can not be greater than Max version"
-msgstr ""
+msgstr "Phiên bản tối thiểu không được lớn hơn phiên bản tối đa"
 
 #, fuzzy
 msgid "Review Listed"
@@ -551,11 +551,11 @@ msgstr "Trang chủ"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr ""
+msgstr "%(count)s GUIDs tiện ích đã bị chặn từ %(v_min)s đến %(v_max)s"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
-msgstr ""
+msgstr "Không tìm thấy %(count)s GUIDs tiện ích"
 
 msgid "The following block(s) were imported from a regex based legacy Block."
 msgstr ""
