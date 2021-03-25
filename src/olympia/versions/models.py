@@ -215,6 +215,9 @@ class Version(OnChangeMixin, ModelBase):
             models.Index(fields=('addon',), name='addon_id'),
             models.Index(fields=('license',), name='license_id'),
         ]
+        constraints = [
+            models.UniqueConstraint(fields=('addon', 'version'), name='version_id'),
+        ]
 
     def __str__(self):
         return jinja2.escape(self.version)
