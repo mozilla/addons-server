@@ -145,8 +145,8 @@ billiard==3.6.3.0 \
     --hash=sha256:bff575450859a6e0fbc2f9877d9b715b0bbc07c3565bb7ed2280526a0cdf5ede \
     --hash=sha256:d91725ce6425f33a97dfa72fb6bfef0e47d4652acd98a032bd1a7fbf06d5fa6a
 # bitarray is required by filtercascade
-bitarray == 1.7.1 \
-    --hash=sha256:e4de977d708b7024760266d827b8285e4405dce4293f25508c4556970139018a
+bitarray == 1.8.1 \
+    --hash=sha256:e02f79fba7a470d438eb39017d503498faaf760b17b6b46af1a9de12fd58d311
 bleach==3.3.0 \
     --hash=sha256:6123ddc1052673e52bab52cdc955bcb57a015264a1c57d37bea2f6b817af0125 \
     --hash=sha256:98b3170739e5e83dd9dc19633f074727ad848cbedb6026708c8ac2d3b697a433
