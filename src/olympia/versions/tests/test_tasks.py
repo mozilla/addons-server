@@ -19,7 +19,8 @@ HEADER_ROOT = os.path.join(settings.ROOT, 'src/olympia/versions/tests/static_the
 
 transparent_colors = [
     'class="%s" fill="rgb(0,0,0,0)"' % (field)
-    for field in UI_FIELDS if field != 'icons'  # bookmark_text class used instead
+    for field in UI_FIELDS
+    if field != 'icons'  # bookmark_text class used instead
 ]
 
 
@@ -68,13 +69,14 @@ def check_thumbnail(
     theme_size_constant,
     source_png_path,
     resize_image_mock_args_kwargs,
-    png_crush_mock_args,
+    png_crush_mock_args=None,
 ):
     (resize_path, thumb_path, thumb_size), resize_kwargs = resize_image_mock_args_kwargs
     assert resize_path == source_png_path
     assert thumb_path == preview_instance.thumbnail_path
     assert thumb_size == tuple(preview_instance.thumbnail_dimensions)
-    assert png_crush_mock_args[0] == source_png_path
+    if png_crush_mock_args:
+        assert png_crush_mock_args[0] == source_png_path
     assert preview_instance.colors
     assert resize_kwargs == {
         'format': theme_size_constant['thumbnail_format'],
@@ -162,7 +164,7 @@ def test_generate_static_theme_preview(
     assert resize_image_mock.call_count == 3
     assert write_svg_to_png_mock.call_count == 2
     assert convert_svg_to_png_mock.call_count == 1
-    assert pngcrush_image_mock.call_count == 2
+    assert pngcrush_image_mock.call_count == 1
 
     # First check the firefox Preview is good
     firefox_preview = VersionPreview.objects.get(
@@ -195,9 +197,8 @@ def test_generate_static_theme_preview(
     check_thumbnail(
         amo_preview,
         amo.THEME_PREVIEW_RENDERINGS['amo'],
-        amo_preview.original_path,
+        convert_svg_to_png_mock.call_args_list[0][0][1],
         resize_image_mock.call_args_list[2],
-        pngcrush_image_mock.call_args_list[1][0],
     )
 
     # Now check the svg renders
@@ -338,7 +339,7 @@ def test_generate_static_theme_preview_with_alternative_properties(
     assert resize_image_mock.call_count == 3
     assert write_svg_to_png_mock.call_count == 2
     assert convert_svg_to_png_mock.call_count == 1
-    assert pngcrush_image_mock.call_count == 2
+    assert pngcrush_image_mock.call_count == 1
 
     # First check the firefox Preview is good
     firefox_preview = VersionPreview.objects.get(
@@ -371,9 +372,8 @@ def test_generate_static_theme_preview_with_alternative_properties(
     check_thumbnail(
         amo_preview,
         amo.THEME_PREVIEW_RENDERINGS['amo'],
-        amo_preview.original_path,
+        convert_svg_to_png_mock.call_args_list[0][0][1],
         resize_image_mock.call_args_list[2],
-        pngcrush_image_mock.call_args_list[1][0],
     )
 
     colors = [
@@ -501,7 +501,7 @@ def test_generate_preview_with_additional_backgrounds(
     assert resize_image_mock.call_count == 3
     assert write_svg_to_png_mock.call_count == 2
     assert convert_svg_to_png_mock.call_count == 1
-    assert pngcrush_image_mock.call_count == 2
+    assert pngcrush_image_mock.call_count == 1
 
     # First check the firefox Preview is good
     firefox_preview = VersionPreview.objects.get(
@@ -534,9 +534,8 @@ def test_generate_preview_with_additional_backgrounds(
     check_thumbnail(
         amo_preview,
         amo.THEME_PREVIEW_RENDERINGS['amo'],
-        amo_preview.original_path,
+        convert_svg_to_png_mock.call_args_list[0][0][1],
         resize_image_mock.call_args_list[2],
-        pngcrush_image_mock.call_args_list[1][0],
     )
 
     # These defaults are mostly defined in the xml template

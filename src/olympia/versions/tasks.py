@@ -3,6 +3,7 @@ import operator
 import os
 import itertools
 import tempfile
+from io import BytesIO
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -72,22 +73,6 @@ def _build_static_theme_preview_context(theme_manifest, file_):
     return context
 
 
-def _build_static_theme_preview_partial_context(colors, prerendered_background_file):
-    context = {'amo': amo}
-    # we only want the colors from the manifest
-    context.update(
-        dict(process_color_value(prop, color) for prop, color in colors.items())
-    )
-    with open(prerendered_background_file, 'rb') as background_file:
-        prerendered_background = background_file.read()
-
-    header_src, _, _ = encode_header(
-        prerendered_background, 'png'
-    )
-    context['header_src'] = header_src
-    return context
-
-
 UI_FIELDS = (
     'toolbar',
     'tab_selected',
@@ -101,54 +86,75 @@ UI_FIELDS = (
 TRANSPARENT_UI = {field: 'rgb(0,0,0,0)' for field in UI_FIELDS}
 
 
-def render_to_svg(template, context, preview, theme_manifest):
-    # first stage - just the images
-    image_only_svg = template.render(context).encode('utf-8')
-
+def render_to_svg(template, context, preview, thumbnail_dimensions, theme_manifest):
     tmp_args = {
         'dir': settings.TMP_PATH,
         'mode': 'wb',
         'delete': not settings.DEBUG,
+        'suffix': '.png',
     }
-    with tempfile.NamedTemporaryFile(
-        suffix='.png', **tmp_args
-    ) as background_orig, tempfile.NamedTemporaryFile(
-        suffix='.jpg', **tmp_args
-    ) as background_opti:
-        # write the image only background to a file
-        if not write_svg_to_png(image_only_svg, background_orig.name):
-            return
-        # TODO: improvement - only jpg backgrounds re-encode as jpg?
-        # TODO: resize and return the jpeg as a blob so we don't have to reload it from
-        #       disk again in _build_static_theme_preview_partial_context?
-        resize_image(background_orig.name, background_opti.name, format='jpg')
-        # then rebuild a context with it and render
+
+    # first stage - just the images
+    image_only_svg = template.render(context).encode('utf-8')
+
+    with BytesIO() as background_blob:
+        # write the image only background to a file and back to a blob
+        with tempfile.NamedTemporaryFile(**tmp_args) as background_orig:
+            if not write_svg_to_png(image_only_svg, background_orig.name):
+                return
+            # TODO: improvement - only re-encode jpg backgrounds as jpg?
+            resize_image(background_orig.name, background_blob, format='jpg')
+
+        # and encode the image in base64 to use in the context
         try:
-            with_ui_context = _build_static_theme_preview_partial_context(
-                theme_manifest.get('colors', {}), background_opti.name
-            )
+            header_src, _, _ = encode_header(background_blob.getvalue(), 'jpg')
         except Exception as exc:
             log.info('Exception during svg preview generation %s', exc)
             return
-        with_ui_context.update(**{
-            'svg_render_size': context['svg_render_size'],
-            'header_src_height': context['svg_render_size'].height,
-            'header_width': context['svg_render_size'].width,
-        })
-        finished_svg = template.render(with_ui_context).encode('utf-8')
-        with storage.open(preview.image_path, 'wb') as image_path:
-            # and write that svg to preview.image_path
-            image_path.write(finished_svg)
-        # then also write a fully rendered svg to original for thumbsnails
-        # TODO: don't write to original_path, write to a temp file instead?
-        if convert_svg_to_png(preview.image_path, preview.original_path):
-            return preview.original_path
+
+    # then rebuild a context with it and render
+    with_ui_context = {
+        **dict(
+            process_color_value(prop, color)
+            for prop, color in theme_manifest.get('colors', {}).items()
+        ),
+        'amo': amo,
+        'header_src': header_src,
+        'svg_render_size': context['svg_render_size'],
+        'header_src_height': context['svg_render_size'].height,
+        'header_width': context['svg_render_size'].width,
+    }
+    finished_svg = template.render(with_ui_context).encode('utf-8')
+
+    # and write that svg to preview.image_path
+    with storage.open(preview.image_path, 'wb') as image_path:
+        image_path.write(finished_svg)
+
+    # then also write a fully rendered svg and resize for the thumbnails
+    with tempfile.NamedTemporaryFile(**tmp_args) as complete_preview_as_png:
+        if convert_svg_to_png(preview.image_path, complete_preview_as_png.name):
+            resize_image(
+                complete_preview_as_png.name,
+                preview.thumbnail_path,
+                thumbnail_dimensions,
+                format=preview.get_format('thumbnail'),
+                quality=35,  # It's ignored for png format, so it's fine to always set.
+            )
+            return True
 
 
-def render_to_png(template, context, preview):
+def render_to_png(template, context, preview, thumbnail_dimensions):
     svg = template.render(context).encode('utf-8')
     if write_svg_to_png(svg, preview.image_path):
-        return preview.image_path
+        resize_image(
+            preview.image_path,
+            preview.thumbnail_path,
+            thumbnail_dimensions,
+            format=preview.get_format('thumbnail'),
+            quality=35,  # It's ignored for png format, so it's fine to always set.
+        )
+        pngcrush_image(preview.image_path)
+        return True
 
 
 @task
@@ -168,7 +174,7 @@ def generate_static_theme_preview(theme_manifest, version_pk):
     )
     colors = None
     for rendering in renderings:
-        # Create a Preview for this size.
+        # Create a Preview for this rendering.
         preview = VersionPreview.objects.create(
             version_id=version_pk,
             position=rendering['position'],
@@ -181,20 +187,18 @@ def generate_static_theme_preview(theme_manifest, version_pk):
         # Add the size to the context and render
         complete_context.update(svg_render_size=rendering['full'])
         if rendering['image_format'] == 'svg':
-            png_path = render_to_svg(
-                tmpl, {**complete_context, **TRANSPARENT_UI}, preview, theme_manifest
+            render_success = render_to_svg(
+                tmpl,
+                {**complete_context, **TRANSPARENT_UI},
+                preview,
+                rendering['thumbnail'],
+                theme_manifest,
             )
         else:
-            png_path = render_to_png(tmpl, complete_context, preview)
-        if png_path:
-            resize_image(
-                png_path,
-                preview.thumbnail_path,
-                rendering['thumbnail'],
-                format=rendering['thumbnail_format'],
-                quality=35,  # It's ignored for png format, so it's fine to always set.
+            render_success = render_to_png(
+                tmpl, complete_context, preview, rendering['thumbnail']
             )
-            pngcrush_image(png_path)
+        if render_success:
             # Extract colors once and store it for all previews.
             # Use the thumbnail for extra speed, we don't need to be super accurate.
             if colors is None:

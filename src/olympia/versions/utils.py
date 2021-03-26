@@ -55,6 +55,7 @@ def convert_svg_to_png(svg_file, png_file):
     except subprocess.CalledProcessError as process_error:
         log.info(process_error)
         return False
+    return True
 
 
 def write_svg_to_png(svg_content, out):

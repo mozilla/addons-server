@@ -667,11 +667,13 @@ def pngcrush_image(src, **kw):
 
 
 def resize_image(source, destination, size=None, *, format='png', quality=80):
-    """Resizes and image from src, to dst.
+    """Resizes and image from source, to destination.
     Returns a tuple of new width and height, original width and height.
 
     When dealing with local files it's up to you to ensure that all directories
     exist leading up to the dst filename.
+
+    destination can be a string filename, a Path, or a file object.
 
     quality kwarg is only valid for jpeg format - it's ignored for png.
     """
