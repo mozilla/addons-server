@@ -100,6 +100,7 @@ def check_preview(
 @mock.patch('olympia.versions.tasks.pngcrush_image')
 @mock.patch('olympia.versions.tasks.resize_image')
 @mock.patch('olympia.versions.tasks.write_svg_to_png')
+@mock.patch('olympia.versions.tasks.convert_svg_to_png')
 @pytest.mark.parametrize(
     'header_url, header_height, preserve_aspect_ratio, mimetype, valid_img',
     (
@@ -120,6 +121,7 @@ def check_preview(
     ),
 )
 def test_generate_static_theme_preview(
+    convert_svg_to_png_mock,
     write_svg_to_png_mock,
     resize_image_mock,
     pngcrush_image_mock,
@@ -132,6 +134,7 @@ def test_generate_static_theme_preview(
     valid_img,
 ):
     write_svg_to_png_mock.return_value = True
+    convert_svg_to_png_mock.return_value = True
     extract_colors_from_image_mock.return_value = [
         {'h': 9, 's': 8, 'l': 7, 'ratio': 0.6}
     ]
@@ -157,7 +160,8 @@ def test_generate_static_theme_preview(
 
     # for svg preview we resize the intermediate background and write the svg twice
     assert resize_image_mock.call_count == 3
-    assert write_svg_to_png_mock.call_count == 3
+    assert write_svg_to_png_mock.call_count == 2
+    assert convert_svg_to_png_mock.call_count == 1
     assert pngcrush_image_mock.call_count == 2
 
     # First check the firefox Preview is good
@@ -187,6 +191,7 @@ def test_generate_static_theme_preview(
         amo_preview,
         amo.THEME_PREVIEW_RENDERINGS['amo'],
     )
+    assert convert_svg_to_png_mock.call_args_list[0][0][0] == amo_preview.image_path
     check_thumbnail(
         amo_preview,
         amo.THEME_PREVIEW_RENDERINGS['amo'],
@@ -198,7 +203,8 @@ def test_generate_static_theme_preview(
     # Now check the svg renders
     firefox_svg = write_svg_to_png_mock.call_args_list[0][0][0]
     interim_amo_svg = write_svg_to_png_mock.call_args_list[1][0][0]
-    amo_svg = write_svg_to_png_mock.call_args_list[2][0][0]
+    with open(amo_preview.image_path) as svg:
+        amo_svg = svg.read()
     colors = [
         'class="%s" fill="%s"' % (key, color)
         for (key, color) in theme_manifest['colors'].items()
@@ -255,6 +261,7 @@ def test_generate_static_theme_preview(
 @mock.patch('olympia.versions.tasks.pngcrush_image')
 @mock.patch('olympia.versions.tasks.resize_image')
 @mock.patch('olympia.versions.tasks.write_svg_to_png')
+@mock.patch('olympia.versions.tasks.convert_svg_to_png')
 @pytest.mark.parametrize(
     'manifest_images, manifest_colors, svg_colors',
     (
@@ -302,6 +309,7 @@ def test_generate_static_theme_preview(
     ),
 )
 def test_generate_static_theme_preview_with_alternative_properties(
+    convert_svg_to_png_mock,
     write_svg_to_png_mock,
     resize_image_mock,
     pngcrush_image_mock,
@@ -312,6 +320,7 @@ def test_generate_static_theme_preview_with_alternative_properties(
     svg_colors,
 ):
     write_svg_to_png_mock.return_value = True
+    convert_svg_to_png_mock.return_value = True
     extract_colors_from_image_mock.return_value = [
         {'h': 9, 's': 8, 'l': 7, 'ratio': 0.6}
     ]
@@ -327,7 +336,8 @@ def test_generate_static_theme_preview_with_alternative_properties(
 
     # for svg preview we resize the intermediate background and write the svg twice
     assert resize_image_mock.call_count == 3
-    assert write_svg_to_png_mock.call_count == 3
+    assert write_svg_to_png_mock.call_count == 2
+    assert convert_svg_to_png_mock.call_count == 1
     assert pngcrush_image_mock.call_count == 2
 
     # First check the firefox Preview is good
@@ -357,6 +367,7 @@ def test_generate_static_theme_preview_with_alternative_properties(
         amo_preview,
         amo.THEME_PREVIEW_RENDERINGS['amo'],
     )
+    assert convert_svg_to_png_mock.call_args_list[0][0][0] == amo_preview.image_path
     check_thumbnail(
         amo_preview,
         amo.THEME_PREVIEW_RENDERINGS['amo'],
@@ -371,7 +382,8 @@ def test_generate_static_theme_preview_with_alternative_properties(
 
     firefox_svg = write_svg_to_png_mock.call_args_list[0][0][0]
     interim_amo_svg = write_svg_to_png_mock.call_args_list[1][0][0]
-    amo_svg = write_svg_to_png_mock.call_args_list[2][0][0]
+    with open(amo_preview.image_path) as svg:
+        amo_svg = svg.read()
     check_render(
         force_str(firefox_svg),
         'transparent.gif',
@@ -448,7 +460,9 @@ def check_render_additional(svg_content, inner_svg_width, colors):
 @mock.patch('olympia.versions.tasks.pngcrush_image')
 @mock.patch('olympia.versions.tasks.resize_image')
 @mock.patch('olympia.versions.tasks.write_svg_to_png')
+@mock.patch('olympia.versions.tasks.convert_svg_to_png')
 def test_generate_preview_with_additional_backgrounds(
+    convert_svg_to_png_mock,
     write_svg_to_png_mock,
     resize_image_mock,
     pngcrush_image_mock,
@@ -456,6 +470,7 @@ def test_generate_preview_with_additional_backgrounds(
     index_addons_mock,
 ):
     write_svg_to_png_mock.return_value = True
+    convert_svg_to_png_mock.return_value = True
     extract_colors_from_image_mock.return_value = [
         {'h': 9, 's': 8, 'l': 7, 'ratio': 0.6}
     ]
@@ -484,7 +499,8 @@ def test_generate_preview_with_additional_backgrounds(
 
     # for svg preview we resize the intermediate background and write the svg twice
     assert resize_image_mock.call_count == 3
-    assert write_svg_to_png_mock.call_count == 3
+    assert write_svg_to_png_mock.call_count == 2
+    assert convert_svg_to_png_mock.call_count == 1
     assert pngcrush_image_mock.call_count == 2
 
     # First check the firefox Preview is good
@@ -514,6 +530,7 @@ def test_generate_preview_with_additional_backgrounds(
         amo_preview,
         amo.THEME_PREVIEW_RENDERINGS['amo'],
     )
+    assert convert_svg_to_png_mock.call_args_list[0][0][0] == amo_preview.image_path
     check_thumbnail(
         amo_preview,
         amo.THEME_PREVIEW_RENDERINGS['amo'],
@@ -538,7 +555,8 @@ def test_generate_preview_with_additional_backgrounds(
 
     firefox_svg = write_svg_to_png_mock.call_args_list[0][0][0]
     interim_amo_svg = write_svg_to_png_mock.call_args_list[1][0][0]
-    amo_svg = write_svg_to_png_mock.call_args_list[2][0][0]
+    with open(amo_preview.image_path) as svg:
+        amo_svg = svg.read()
     check_render_additional(force_str(firefox_svg), 680, colors)
     check_render_additional(force_str(interim_amo_svg), 720, transparent_colors)
     check_render(

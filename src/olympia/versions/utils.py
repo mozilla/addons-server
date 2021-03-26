@@ -38,6 +38,25 @@ def get_next_version_number(addon):
             version_counter += 1
 
 
+def convert_svg_to_png(svg_file, png_file):
+    try:
+        if not os.path.exists(os.path.dirname(png_file)):
+            os.makedirs(os.path.dirname(png_file))
+        command = [
+            settings.RSVG_CONVERT_BIN,
+            '--output',
+            png_file,
+            svg_file,
+        ]
+        subprocess.check_call(command)
+    except IOError as io_error:
+        log.info(io_error)
+        return False
+    except subprocess.CalledProcessError as process_error:
+        log.info(process_error)
+        return False
+
+
 def write_svg_to_png(svg_content, out):
     # when settings.DEBUG is on (i.e. locally) don't delete the svgs.
     tmp_args = {
@@ -49,24 +68,7 @@ def write_svg_to_png(svg_content, out):
     with tempfile.NamedTemporaryFile(**tmp_args) as temporary_svg:
         temporary_svg.write(svg_content)
         temporary_svg.flush()
-
-        try:
-            if not os.path.exists(os.path.dirname(out)):
-                os.makedirs(os.path.dirname(out))
-            command = [
-                settings.RSVG_CONVERT_BIN,
-                '--output',
-                out,
-                temporary_svg.name,
-            ]
-            subprocess.check_call(command)
-        except IOError as io_error:
-            log.info(io_error)
-            return False
-        except subprocess.CalledProcessError as process_error:
-            log.info(process_error)
-            return False
-    return True
+        return convert_svg_to_png(temporary_svg.name, out)
 
 
 def encode_header(header_blob, file_ext):

@@ -21,8 +21,9 @@ from olympia.versions.models import Version, VersionPreview
 
 from .utils import (
     AdditionalBackground,
-    process_color_value,
+    convert_svg_to_png,
     encode_header,
+    process_color_value,
     write_svg_to_png,
 )
 
@@ -139,9 +140,8 @@ def render_to_svg(template, context, preview, theme_manifest):
             # and write that svg to preview.image_path
             image_path.write(finished_svg)
         # then also write a fully rendered svg to original for thumbsnails
-        # TODO: change/allow write_svg_to_png to use a file path to avoid writing twice
         # TODO: don't write to original_path, write to a temp file instead?
-        if write_svg_to_png(finished_svg, preview.original_path):
+        if convert_svg_to_png(preview.image_path, preview.original_path):
             return preview.original_path
 
 
