@@ -1642,9 +1642,8 @@ msgstr "Otomatik onaylamayı geciktir"
 msgid "Delay auto-approval indefinitely"
 msgstr "Otomatik onaylamayı süresiz olarak ertele"
 
-#, fuzzy
 msgid "Delay auto-approval indefinitely and add restrictions"
-msgstr "Otomatik onaylamayı süresiz olarak ertele"
+msgstr "Otomatik onaylamayı süresiz ertele ve kısıtlama ekle"
 
 msgid "True positive"
 msgstr "Doğru alarm"
