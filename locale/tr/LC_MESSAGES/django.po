@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-16 17:41+0000\n"
-"PO-Revision-Date: 2021-03-27 13:54+0000\n"
+"PO-Revision-Date: 2021-03-28 11:09+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -989,9 +989,8 @@ msgstr ""
 msgid "Force disabled"
 msgstr "Zorla devre dışı bırakıldı"
 
-#, fuzzy
 msgid "{addon} status force-enabled."
-msgstr "{addon} {version} yeniden etkinleştirildi."
+msgstr "{addon} durumu zorla etkinleştirildi."
 
 msgid "Force enabled"
 msgstr "Zorla etkinleştirildi"
@@ -5363,9 +5362,8 @@ msgstr "İçerik İncelemesi {0}"
 msgid "Review {0}"
 msgstr "{0} eklentisini incele"
 
-#, fuzzy
 msgid "Add-on important changes history"
-msgstr "Eklenti kullanıcısı değişiklik geçmişi"
+msgstr "Eklentinin önemli değişiklik geçmişi"
 
 msgid "Add-on History"
 msgstr "Eklenti geçmişi"
