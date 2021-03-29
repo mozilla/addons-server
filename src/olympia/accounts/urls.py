@@ -51,10 +51,15 @@ accounts_v3 = accounts_v4 + [
     ),
 ]
 
-auth_callback_patterns = [
+auth_urls = [
     re_path(
         r'^authenticate-callback/$',
         views.AuthenticateView.as_view(),
         name='accounts.authenticate',
+    ),
+    re_path(
+        r'^fxa-notification',
+        views.FxaNotificationView.as_view(),
+        name='fxa-notification',
     ),
 ]
