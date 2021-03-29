@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-16 17:41+0000\n"
-"PO-Revision-Date: 2017-10-24 11:51+0000\n"
+"PO-Revision-Date: 2021-03-29 05:50+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -3880,7 +3880,7 @@ msgstr "Зменште навантаження на очі за допомог�
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
-msgstr "Блокуйте всі виринаючи вікна, потім вирішуйте, які з них відкривати."
+msgstr "Блокуйте всі спливні вікна, потім вирішуйте, які з них відкривати."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3979,7 +3979,7 @@ msgstr "Легко змінюйте вбудовані налаштування 
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations by highlighting text and clicking the button that pops up."
-msgstr "Миттєво перекладайте підсвічений текст натисканням виринаючої кнопки."
+msgstr "Миттєво перекладайте підсвічений текст натисканням спливної кнопки."
 
 #. editorial content for the discovery pane.
 msgid "Go straight to the website you want to access without being redirected in between."
@@ -4222,7 +4222,7 @@ msgstr "Ви користуєтесь VPN? Це може призвести до
 
 #. editorial content for the discovery pane.
 msgid "Close annoying pop-ups with a simple click."
-msgstr "Закрийте дратівливі виринаючі вікна в один клік."
+msgstr "Закрийте дратівливі спливні вікна в один клік."
 
 #. editorial content for the discovery pane.
 msgid "Find an interesting image on the web? Want to learn more about it?"
