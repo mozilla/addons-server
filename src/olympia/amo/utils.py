@@ -667,11 +667,13 @@ def pngcrush_image(src, **kw):
 
 
 def resize_image(source, destination, size=None, *, format='png', quality=80):
-    """Resizes and image from src, to dst.
+    """Resizes and image from source, to destination.
     Returns a tuple of new width and height, original width and height.
 
     When dealing with local files it's up to you to ensure that all directories
-    exist leading up to the dst filename.
+    exist leading up to the destination filename.
+
+    destination can be a string filename, or a file object.
 
     quality kwarg is only valid for jpeg format - it's ignored for png.
     """
@@ -684,17 +686,16 @@ def resize_image(source, destination, size=None, *, format='png', quality=80):
         original_size = im.size
         if size:
             im = processors.scale_and_crop(im, size)
-    if format == 'png':
-        with storage.open(destination, 'wb') as fp:
+    with storage.open(destination, 'wb') as dest_file:
+        if format == 'png':
             # Save the image to PNG in destination file path.
             # Don't keep the ICC profile as it can mess up pngcrush badly
             # (mozilla/addons/issues/697).
-            im.save(fp, 'png', icc_profile=None)
-        pngcrush_image(destination)
-    else:
-        with storage.open(destination, 'wb') as fp:
+            im.save(dest_file, 'png', icc_profile=None)
+            pngcrush_image(destination)
+        else:
             im = im.convert('RGB')
-            im.save(fp, 'JPEG', quality=quality)
+            im.save(dest_file, 'JPEG', quality=quality)
     return (im.size, original_size)
 
 

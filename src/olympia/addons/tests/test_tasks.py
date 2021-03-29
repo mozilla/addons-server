@@ -48,11 +48,13 @@ def test_recreate_theme_previews():
         {
             'image': list(renderings['firefox']['full']),
             'thumbnail': list(renderings['firefox']['thumbnail']),
+            'image_format': renderings['firefox']['image_format'],
             'thumbnail_format': renderings['firefox']['thumbnail_format'],
         },
         {
             'image': list(renderings['amo']['full']),
             'thumbnail': list(renderings['amo']['thumbnail']),
+            'image_format': renderings['amo']['image_format'],
             'thumbnail_format': renderings['amo']['thumbnail_format'],
         },
     ]
