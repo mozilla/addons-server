@@ -12,6 +12,9 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AddConstraint(
             model_name='version',
-            constraint=models.UniqueConstraint(fields=('addon', 'version'), name='version_id'),
+            constraint=models.UniqueConstraint(
+                fields=('addon', 'version'),
+                name='versions_addon_id_version_5a2e75b6_uniq',
+            ),
         ),
     ]
