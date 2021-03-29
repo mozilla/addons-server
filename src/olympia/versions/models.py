@@ -216,7 +216,10 @@ class Version(OnChangeMixin, ModelBase):
             models.Index(fields=('license',), name='license_id'),
         ]
         constraints = [
-            models.UniqueConstraint(fields=('addon', 'version'), name='version_id'),
+            models.UniqueConstraint(
+                fields=('addon', 'version'),
+                name='versions_addon_id_version_5a2e75b6_uniq',
+            ),
         ]
 
     def __str__(self):
