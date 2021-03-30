@@ -666,6 +666,26 @@ def pngcrush_image(src, **kw):
     return False
 
 
+def convert_svg_to_png(svg_file, png_file):
+    try:
+        if not os.path.exists(os.path.dirname(png_file)):
+            os.makedirs(os.path.dirname(png_file))
+        command = [
+            settings.RSVG_CONVERT_BIN,
+            '--output',
+            png_file,
+            svg_file,
+        ]
+        subprocess.check_call(command)
+    except IOError as io_error:
+        log.info(io_error)
+        return False
+    except subprocess.CalledProcessError as process_error:
+        log.info(process_error)
+        return False
+    return True
+
+
 def resize_image(source, destination, size=None, *, format='png', quality=80):
     """Resizes and image from source, to destination.
     Returns a tuple of new width and height, original width and height.
@@ -679,24 +699,40 @@ def resize_image(source, destination, size=None, *, format='png', quality=80):
     """
     if source == destination:
         raise Exception("source and destination can't be the same: %s" % source)
+    source_fileext = os.path.splitext(source)[1]
+    if source_fileext == '.svg':
+        tmp_args = {
+            'dir': settings.TMP_PATH,
+            'mode': 'w+b',
+            'suffix': '.png',
+            'delete': not settings.DEBUG,
+        }
+        with tempfile.NamedTemporaryFile(**tmp_args) as temporary_png:
+            convert_svg_to_png(source, temporary_png.name)
+            im = Image.open(temporary_png.name)
+            im.load()
+    else:
+        with storage.open(source, 'rb') as fp:
+            im = Image.open(fp)
+            im.load()
+    original_size = im.size
+    if size:
+        im = processors.scale_and_crop(im.convert('RGBA'), size)
 
-    with storage.open(source, 'rb') as fp:
-        im = Image.open(fp)
-        im = im.convert('RGBA')
-        original_size = im.size
-        if size:
-            im = processors.scale_and_crop(im, size)
     with storage.open(destination, 'wb') as dest_file:
         if format == 'png':
             # Save the image to PNG in destination file path.
             # Don't keep the ICC profile as it can mess up pngcrush badly
             # (mozilla/addons/issues/697).
+            im = im.convert('RGBA')
             im.save(dest_file, 'png', icc_profile=None)
             pngcrush_image(destination)
         else:
             im = im.convert('RGB')
             im.save(dest_file, 'JPEG', quality=quality)
-    return (im.size, original_size)
+    new_size = im.size
+    im.close()
+    return (new_size, original_size)
 
 
 def remove_icons(destination):
