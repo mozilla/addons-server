@@ -241,12 +241,14 @@ THEME_PREVIEW_RENDERINGS = {
         'thumbnail': _dimensions(473, 64),
         'full': _dimensions(680, 92),
         'position': 0,
+        'image_format': 'png',
         'thumbnail_format': 'png',
     },
     'amo': {
         'thumbnail': _dimensions(720, 92),
         'full': _dimensions(720, 92),
         'position': 2,
+        'image_format': 'svg',
         'thumbnail_format': 'jpg',
     },
 }

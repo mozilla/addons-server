@@ -35,6 +35,7 @@ class Command(ProcessObjectsCommand):
                 AbuseReport.STATES.VALID,
                 AbuseReport.STATES.SUSPICIOUS,
             )
+
             return [
                 # Only recalculate add-ons that received recent abuse reports
                 # possibly through their authors.
@@ -91,7 +92,7 @@ class Command(ProcessObjectsCommand):
                 'queryset_filters': [
                     Q(
                         type=amo.ADDON_STATICTHEME,
-                        status__in=[amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW],
+                        status__in=[amo.STATUS_APPROVED, amo.STATUS_NOMINATED],
                     )
                 ],
                 'kwargs': {'only_missing': False},

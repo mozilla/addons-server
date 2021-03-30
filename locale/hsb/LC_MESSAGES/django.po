@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-16 17:41+0000\n"
-"PO-Revision-Date: 2021-03-16 21:19+0000\n"
+"PO-Revision-Date: 2021-03-26 09:52+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -540,11 +540,11 @@ msgstr "Startowa strona"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr ""
+msgstr "LIčba přidatkowych GUID, kotrež su so hižo za %(v_min)s do %(v_max)s zablokowali: %(count)s"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
-msgstr ""
+msgstr "Ličba přidatkowych GUID, kotrež njejsu so namakali: %(count)s"
 
 msgid "The following block(s) were imported from a regex based legacy Block."
 msgstr "Slědowace blokowanja su so ze zestarjeneho blokowanja importował, kotrež na regularnych wurazach bazuje."
@@ -579,7 +579,7 @@ msgstr "Zapodać"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
-msgstr ""
+msgstr "Ličba přidatkowych GUIDs: %(count)s"
 
 msgid "Edit Block"
 msgstr "Blok wobdźěłać"
