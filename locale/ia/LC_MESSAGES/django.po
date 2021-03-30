@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-16 17:41+0000\n"
-"PO-Revision-Date: 2021-03-20 08:31+0000\n"
-"Last-Translator: Melo46 <melo@carmu.com>\n"
+"PO-Revision-Date: 2021-03-30 23:09+0000\n"
+"Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
 "MIME-Version: 1.0\n"
@@ -3595,7 +3595,7 @@ msgstr "Ha tu tonnas de schedas aperte? Organisa los in un barra lateral ordinat
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
-msgstr "Stop al traciamento de Facebook! Isola tu identitate de Facebook in un “scheda contextual” separate pro impedir a Facebook de traciar te per tote le Web."
+msgstr "Stop al traciamento de Facebook! Isola tu identitate de Facebook in un “contentor” separate pro impedir a Facebook de traciar te per tote le Web."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
