@@ -196,7 +196,7 @@ def recreate_theme_previews(addon_ids, **kw):
     only_missing = kw.get('only_missing', False)
 
     renders = {
-        render['full']: {
+        (render['full'], render['image_format']): {
             'thumb_size': render['thumbnail'],
             'thumb_format': render['thumbnail_format'],
         }
@@ -207,7 +207,7 @@ def recreate_theme_previews(addon_ids, **kw):
         try:
             if only_missing:
                 existing_full_sizes = {
-                    tuple(size.get('image', ()))
+                    (tuple(size.get('image', ())), size.get('image_format', 'png'))
                     for size in VersionPreview.objects.filter(
                         version=version
                     ).values_list('sizes', flat=True)
@@ -218,7 +218,11 @@ def recreate_theme_previews(addon_ids, **kw):
                     log.info('Resizing thumbnails for theme: %s' % version.addon_id)
                     for preview in list(VersionPreview.objects.filter(version=version)):
                         # so check the thumbnail size/format for each preview
-                        render = renders.get(tuple(preview.image_dimensions))
+                        preview_dimension_format = (
+                            tuple(preview.image_dimensions),
+                            preview.get_format('image'),
+                        )
+                        render = renders.get(preview_dimension_format)
                         if render and (
                             render['thumb_size'] != tuple(preview.thumbnail_dimensions)
                             or render['thumb_format'] != preview.get_format('thumbnail')
