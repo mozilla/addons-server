@@ -100,6 +100,11 @@ def check_preview(
     }
 
 
+def write_empty_png(svg_content, out):
+    copy_stored_file(os.path.join(HEADER_ROOT, 'empty.png'), out)
+    return True
+
+
 @pytest.mark.django_db
 @mock.patch('olympia.addons.tasks.index_addons.delay')
 @mock.patch('olympia.versions.tasks.extract_colors_from_image')
@@ -139,7 +144,7 @@ def test_generate_static_theme_preview(
     mimetype,
     valid_img,
 ):
-    write_svg_to_png_mock.return_value = True
+    write_svg_to_png_mock.side_effect = write_empty_png
     convert_svg_to_png_mock.return_value = True
     extract_colors_from_image_mock.return_value = [
         {'h': 9, 's': 8, 'l': 7, 'ratio': 0.6}
@@ -164,8 +169,8 @@ def test_generate_static_theme_preview(
     copy_stored_file(zip_file, destination)
     generate_static_theme_preview(theme_manifest, addon.current_version.pk)
 
-    # for svg preview we resize the intermediate background and write the svg twice
-    assert resize_image_mock.call_count == 3
+    # for svg preview we write the svg twice, 1st with write_svg, later with convert_svg
+    assert resize_image_mock.call_count == 2
     assert write_svg_to_png_mock.call_count == 2
     assert convert_svg_to_png_mock.call_count == 1
     assert pngcrush_image_mock.call_count == 1
@@ -202,7 +207,7 @@ def test_generate_static_theme_preview(
         amo_preview,
         amo.THEME_PREVIEW_RENDERINGS['amo'],
         convert_svg_to_png_mock.call_args_list[0][0][1],
-        resize_image_mock.call_args_list[2],
+        resize_image_mock.call_args_list[1],
     )
 
     # Now check the svg renders
@@ -246,11 +251,11 @@ def test_generate_static_theme_preview(
     )
     check_render(
         force_str(amo_svg),
-        header_url,
+        'empty.jpg',
         92,
         'xMaxYMin slice',
-        'image/jpg',
-        False,
+        'image/jpeg',
+        True,
         colors,
         720,
         92,
@@ -324,7 +329,7 @@ def test_generate_static_theme_preview_with_alternative_properties(
     manifest_colors,
     svg_colors,
 ):
-    write_svg_to_png_mock.return_value = True
+    write_svg_to_png_mock.side_effect = write_empty_png
     convert_svg_to_png_mock.return_value = True
     extract_colors_from_image_mock.return_value = [
         {'h': 9, 's': 8, 'l': 7, 'ratio': 0.6}
@@ -339,8 +344,8 @@ def test_generate_static_theme_preview_with_alternative_properties(
     copy_stored_file(zip_file, destination)
     generate_static_theme_preview(theme_manifest, addon.current_version.pk)
 
-    # for svg preview we resize the intermediate background and write the svg twice
-    assert resize_image_mock.call_count == 3
+    # for svg preview we write the svg twice, 1st with write_svg, later with convert_svg
+    assert resize_image_mock.call_count == 2
     assert write_svg_to_png_mock.call_count == 2
     assert convert_svg_to_png_mock.call_count == 1
     assert pngcrush_image_mock.call_count == 1
@@ -377,7 +382,7 @@ def test_generate_static_theme_preview_with_alternative_properties(
         amo_preview,
         amo.THEME_PREVIEW_RENDERINGS['amo'],
         convert_svg_to_png_mock.call_args_list[0][0][1],
-        resize_image_mock.call_args_list[2],
+        resize_image_mock.call_args_list[1],
     )
 
     colors = [
@@ -414,11 +419,11 @@ def test_generate_static_theme_preview_with_alternative_properties(
     )
     check_render(
         force_str(amo_svg),
-        None,
+        'empty.jpg',
         92,
         'xMaxYMin slice',
-        'image/jpg',
-        False,
+        'image/jpeg',
+        True,
         colors,
         720,
         92,
@@ -473,7 +478,7 @@ def test_generate_preview_with_additional_backgrounds(
     extract_colors_from_image_mock,
     index_addons_mock,
 ):
-    write_svg_to_png_mock.return_value = True
+    write_svg_to_png_mock.side_effect = write_empty_png
     convert_svg_to_png_mock.return_value = True
     extract_colors_from_image_mock.return_value = [
         {'h': 9, 's': 8, 'l': 7, 'ratio': 0.6}
@@ -501,8 +506,8 @@ def test_generate_preview_with_additional_backgrounds(
     copy_stored_file(zip_file, destination)
     generate_static_theme_preview(theme_manifest, addon.current_version.pk)
 
-    # for svg preview we resize the intermediate background and write the svg twice
-    assert resize_image_mock.call_count == 3
+    # for svg preview we write the svg twice, 1st with write_svg, later with convert_svg
+    assert resize_image_mock.call_count == 2
     assert write_svg_to_png_mock.call_count == 2
     assert convert_svg_to_png_mock.call_count == 1
     assert pngcrush_image_mock.call_count == 1
@@ -539,7 +544,7 @@ def test_generate_preview_with_additional_backgrounds(
         amo_preview,
         amo.THEME_PREVIEW_RENDERINGS['amo'],
         convert_svg_to_png_mock.call_args_list[0][0][1],
-        resize_image_mock.call_args_list[2],
+        resize_image_mock.call_args_list[1],
     )
 
     # These defaults are mostly defined in the xml template
@@ -564,11 +569,11 @@ def test_generate_preview_with_additional_backgrounds(
     check_render_additional(force_str(interim_amo_svg), 720, transparent_colors)
     check_render(
         force_str(amo_svg),
-        None,
+        'empty.jpg',
         92,
         'xMaxYMin slice',
-        'image/jpg',
-        False,
+        'image/jpeg',
+        True,
         colors,
         720,
         92,

@@ -673,8 +673,6 @@ def resize_image(source, destination, size=None, *, format='png', quality=80):
     When dealing with local files it's up to you to ensure that all directories
     exist leading up to the destination filename.
 
-    destination can be a string filename, or a file object.
-
     quality kwarg is only valid for jpeg format - it's ignored for png.
     """
     if source == destination:

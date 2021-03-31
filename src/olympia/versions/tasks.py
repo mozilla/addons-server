@@ -10,6 +10,8 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.template import loader
 
+from PIL import Image
+
 import olympia.core.logger
 
 from olympia import amo
@@ -100,11 +102,13 @@ def render_to_svg(template, context, preview, thumbnail_dimensions, theme_manife
 
     with BytesIO() as background_blob:
         # write the image only background to a file and back to a blob
-        with tempfile.NamedTemporaryFile(**tmp_args) as background_orig:
-            if not write_svg_to_png(image_only_svg, background_orig.name):
+        with tempfile.NamedTemporaryFile(**tmp_args) as background_png:
+            if not write_svg_to_png(image_only_svg, background_png.name):
                 return
             # TODO: improvement - only re-encode jpg backgrounds as jpg?
-            resize_image(background_orig.name, background_blob, format='jpg')
+            Image.open(background_png.name).convert('RGB').save(
+                background_blob, 'JPEG', quality=80
+            )
 
         # and encode the image in base64 to use in the context
         try:
