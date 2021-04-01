@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-16 17:41+0000\n"
-"PO-Revision-Date: 2021-04-01 09:52+0000\n"
+"PO-Revision-Date: 2021-04-01 09:57+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -4473,19 +4473,19 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Thousands of GIFs at your fingertips."
-msgstr ""
+msgstr "Tisoči animacij GIF na dosegu roke."
 
 #. editorial content for the primary hero shelves.
 msgid "Begone, annoying cookie warnings!"
-msgstr ""
+msgstr "Poberite se, obvestila o piškotkih!"
 
 #. editorial content for the primary hero shelves.
 msgid "The easiest way to manage YouTube subscriptions."
-msgstr ""
+msgstr "Najpreprostejši način za upravljanje naročnin na YouTube."
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
-msgstr ""
+msgstr "Vrnite se v preprostejše čase – ko so najustreznejši zadetki iskanja ležali nad oglasi (združljivo z iskalnikoma Google in Bing)."
 
 #. editorial content for the primary hero shelves.
 msgid "Get the mouse scrollbar you've always wanted—specify width and color."
@@ -4850,7 +4850,7 @@ msgid "Delay rejection, requiring developer to correct in less than…"
 msgstr "Odloži zavrnitev in zahtevaj razvijalčev popravek v manj kot …"
 
 msgid "Reject immediately. Only use in case of serious security issues."
-msgstr ""
+msgstr "Zavrni takoj. Uporabi samo v primeru resnih varnostnih težav."
 
 # 83%
 # 100%
@@ -4888,10 +4888,10 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
-msgstr ""
+msgstr "Samodejna odobritev začasno odložena"
 
 msgid "Auto-approval delayed indefinitely"
-msgstr ""
+msgstr "Samodejna odobritev odložena za nedoločen čas"
 
 msgid "Is locked by a reviewer"
 msgstr "Zaklenil pregledovalec"
@@ -4968,7 +4968,7 @@ msgid "Code Weight"
 msgstr "Teža kode"
 
 msgid "Metadata Weight"
-msgstr ""
+msgstr "Teža metapodatkov"
 
 msgid "Total Weight"
 msgstr "Skupna teža"
@@ -5152,7 +5152,7 @@ msgid "{addon} – Privacy Policy"
 msgstr "{addon} – Pravilnik o zasebnosti"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "Prijave o zlorabah – {addon} – Dodatki za Firefox"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Poročila o zlorabi za {addon} in njegove razvijalce ({num})"
@@ -5228,7 +5228,7 @@ msgid "Add-on name translations"
 msgstr "Prevodi imena dodatka"
 
 msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr "Orodja za pregledovalce – Dodatki za Firefox"
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Nazaj na pregledno ploščo orodij za pregledovalce"
@@ -5287,7 +5287,7 @@ msgid "Undelete"
 msgstr "Razveljavi izbris"
 
 msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
+msgstr "Učinkovitost pregledovalca – Dodatki za Firefox"
 
 msgid "Add-on Reviewer Performance"
 msgstr "Uspešnost pregledovalca dodatkov"
@@ -5339,7 +5339,7 @@ msgid "All-Time"
 msgstr "Ves čas"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr " – Orodja za pregledovalce – Dodatki za Firefox"
 
 msgid "Back to review"
 msgstr "Nazaj na pregled"
@@ -5957,7 +5957,7 @@ msgid "Custom..."
 msgstr "Po meri ..."
 
 msgid "Sorry, the statistics are temporarily unavailable."
-msgstr ""
+msgstr "Oprostite, statistika začasno ni na voljo."
 
 msgid "Loading the latest data&hellip;"
 msgstr "Nalaganje najnovejših podatkov&hellip;"
