@@ -45,6 +45,7 @@ storage/git-storage/*
 storage/mlbf/*
 storage/guarded-addons/*
 storage/shared_storage/*
+storage/sitemaps/*
 supervisord.pid
 tmp/*
 

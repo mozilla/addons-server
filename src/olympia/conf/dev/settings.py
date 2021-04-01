@@ -115,3 +115,5 @@ FXA_SQS_AWS_QUEUE_URL = (
 VAMO_URL = 'https://versioncheck-dev.allizom.org'
 
 REMOTE_SETTINGS_IS_TEST_SERVER = True
+
+SITEMAP_DEBUG_AVAILABLE = True
