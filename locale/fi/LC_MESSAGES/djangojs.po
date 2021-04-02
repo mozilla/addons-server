@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-16 17:41+0000\n"
-"PO-Revision-Date: 2021-02-27 16:13+0000\n"
-"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
+"PO-Revision-Date: 2021-03-18 12:05+0000\n"
+"Last-Translator: MozarellaMozilla <romepoksi@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -225,7 +225,7 @@ msgid "Amount, in USD"
 msgstr "Summa, USD"
 
 msgid "Number of Contributions"
-msgstr ""
+msgstr "Lahjoitusten lukumäärä"
 
 msgid "More Info..."
 msgstr "Lisätietoja..."
@@ -331,10 +331,10 @@ msgid "Version History"
 msgstr "Versiohistoria"
 
 msgid "Sharing"
-msgstr ""
+msgstr "Jakaminen"
 
 msgid "Category Pages"
-msgstr ""
+msgstr "Kategoriasivut"
 
 msgid "Collections"
 msgstr "Kokoelmat"
@@ -450,9 +450,8 @@ msgid "Countries, last {0} days"
 msgstr "Maat, viimeiset {0} päivää"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Countries from {0} to {1}"
-msgstr "Avustukset {0} - {1}"
+msgstr "Maat {0} - {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
@@ -630,7 +629,7 @@ msgstr "Asennukset aikavälillä {0} - {1}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> viimeisen {1} päivän aikana"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 msgid "<b>{0}</b> from {1} to {2}"
