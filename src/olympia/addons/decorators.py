@@ -7,9 +7,9 @@ from olympia.access import acl
 from olympia.addons.models import Addon
 
 
-def owner_or_unlisted_viewer(request, addon):
+def owner_or_unlisted_viewer_or_reviewer(request, addon):
     return (
-        acl.check_unlisted_addons_viewer(request)
+        acl.check_unlisted_addons_viewer_or_reviewer(request)
         # We don't want "admins" here, because it includes anyone with the
         # "Addons:Edit" perm, we only want those with
         # "ReviewerTools:ViewUnlisted" perm (which is checked above).
@@ -47,7 +47,9 @@ def addon_view(f, qs=Addon.objects.all, include_deleted_when_checking_versions=F
         has_listed_versions = addon.has_listed_versions(
             include_deleted=include_deleted_when_checking_versions
         )
-        if not (has_listed_versions or owner_or_unlisted_viewer(request, addon)):
+        if not (
+            has_listed_versions or owner_or_unlisted_viewer_or_reviewer(request, addon)
+        ):
             raise http.Http404
         return f(request, addon, *args, **kw)
 

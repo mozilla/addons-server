@@ -43,7 +43,7 @@ from olympia.abuse.models import AbuseReport
 from olympia.access import acl
 from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import ActivityLog, CommentLog, DraftComment
-from olympia.addons.decorators import addon_view, owner_or_unlisted_viewer
+from olympia.addons.decorators import addon_view, owner_or_unlisted_viewer_or_reviewer
 from olympia.addons.models import (
     Addon,
     AddonApprovalsCounter,
@@ -739,7 +739,7 @@ def review(request, addon, channel=None):
         channel == amo.RELEASE_CHANNEL_UNLISTED
         or not addon.has_listed_versions(include_deleted=True)
     )
-    if unlisted_only and not acl.check_unlisted_addons_viewer(request):
+    if unlisted_only and not acl.check_unlisted_addons_viewer_or_reviewer(request):
         raise PermissionDenied
 
     # Are we looking at a listed review page while only having content review
@@ -997,7 +997,9 @@ def review(request, addon, channel=None):
         # Used for reviewer subscription check, don't use global `is_reviewer`
         # since that actually is `is_user_any_kind_of_reviewer`.
         acl_is_reviewer=acl.is_reviewer(request, addon),
-        acl_check_unlisted_addons_viewer=acl.check_unlisted_addons_viewer(request),
+        acl_check_unlisted_addons_viewer_or_reviewer=(
+            acl.check_unlisted_addons_viewer_or_reviewer(request)
+        ),
         acl_is_review_moderator=(
             acl.action_allowed(request, amo.permissions.RATINGS_MODERATE)
             and request.user.is_staff
@@ -1153,12 +1155,12 @@ def reviewlog(request):
     form = ReviewLogForm(data)
 
     approvals = ActivityLog.objects.review_log()
-    if not acl.check_unlisted_addons_viewer(request):
+    if not acl.check_unlisted_addons_viewer_or_reviewer(request):
         # Only display logs related to unlisted versions to users with the
         # right permission.
         list_channel = amo.RELEASE_CHANNEL_LISTED
         approvals = approvals.filter(versionlog__version__channel=list_channel)
-    if not acl.check_addons_reviewer(request):
+    if not acl.check_listed_addons_reviewer(request):
         approvals = approvals.exclude(
             versionlog__version__addon__type__in=amo.GROUP_TYPE_ADDON
         )
@@ -1224,7 +1226,7 @@ def whiteboard(request, addon, channel):
         channel == amo.RELEASE_CHANNEL_UNLISTED
         or not addon.has_listed_versions(include_deleted=True)
     )
-    if unlisted_only and not acl.check_unlisted_addons_viewer(request):
+    if unlisted_only and not acl.check_unlisted_addons_viewer_or_reviewer(request):
         raise PermissionDenied
 
     whiteboard, _ = Whiteboard.objects.get_or_create(pk=addon.pk)
@@ -1325,7 +1327,7 @@ def download_git_stored_file(request, version_id, filename):
         if not (acl.is_reviewer(request, addon) or is_owner):
             raise PermissionDenied
     else:
-        if not owner_or_unlisted_viewer(request, addon):
+        if not owner_or_unlisted_viewer_or_reviewer(request, addon):
             raise http.Http404
 
     file = version.current_file
@@ -1507,7 +1509,7 @@ class AddonReviewerViewSet(GenericViewSet):
         addon = get_object_or_404(Addon.unfiltered.id_or_slug(kwargs['pk']))
         file = get_object_or_404(File, version__addon=addon, id=kwargs['file_id'])
         if file.version.channel == amo.RELEASE_CHANNEL_UNLISTED:
-            if not acl.check_unlisted_addons_viewer(request):
+            if not acl.check_unlisted_addons_viewer_or_reviewer(request):
                 raise PermissionDenied
         elif not acl.is_reviewer(request, addon):
             raise PermissionDenied
@@ -1552,7 +1554,7 @@ class ReviewAddonVersionMixin(object):
             # Allow viewing unlisted for reviewers with permissions or
             # addon authors.
             addon = self.get_addon_object()
-            self.can_view_unlisted = acl.check_unlisted_addons_viewer(
+            self.can_view_unlisted = acl.check_unlisted_addons_viewer_or_reviewer(
                 self.request
             ) or addon.has_author(self.request.user)
         return self.can_view_unlisted

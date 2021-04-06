@@ -216,7 +216,7 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
         # we are allowed to access unlisted data.
         obj = getattr(self, 'instance')
         request = self.request
-        if acl.check_unlisted_addons_viewer(request) or (
+        if acl.check_unlisted_addons_viewer_or_reviewer(request) or (
             obj
             and request.user.is_authenticated
             and obj.authors.filter(pk=request.user.pk).exists()

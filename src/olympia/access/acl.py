@@ -160,7 +160,7 @@ def check_addon_ownership(request, addon, dev=False, admin=True, ignore_disabled
     return addon.addonuser_set.filter(user=request.user, role__in=roles).exists()
 
 
-def check_addons_reviewer(request, allow_content_reviewers=True):
+def check_listed_addons_reviewer(request, allow_content_reviewers=True):
     permissions = [
         amo.permissions.ADDONS_REVIEW,
         amo.permissions.ADDONS_RECOMMENDED_REVIEW,
@@ -171,16 +171,20 @@ def check_addons_reviewer(request, allow_content_reviewers=True):
     return allow_access
 
 
+def check_listed_addons_viewer_or_reviewer(request, allow_content_reviewers=True):
+    return action_allowed(
+        request, amo.permissions.REVIEWER_TOOLS_VIEW
+    ) or check_listed_addons_reviewer(request, allow_content_reviewers)
+
+
 def check_unlisted_addons_reviewer(request):
     return action_allowed(request, amo.permissions.ADDONS_REVIEW_UNLISTED)
 
 
-def check_unlisted_addons_viewer(request):
-    unlisted_perms = [
-        amo.permissions.ADDONS_REVIEW_UNLISTED,
-        amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW,
-    ]
-    return any(action_allowed(request, perm) for perm in unlisted_perms)
+def check_unlisted_addons_viewer_or_reviewer(request):
+    return action_allowed(
+        request, amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW
+    ) or check_unlisted_addons_reviewer(request)
 
 
 def check_static_theme_reviewer(request):
@@ -197,7 +201,7 @@ def is_reviewer(request, addon, allow_content_reviewers=True):
     """
     if addon.type == amo.ADDON_STATICTHEME:
         return check_static_theme_reviewer(request)
-    return check_addons_reviewer(
+    return check_listed_addons_reviewer(
         request, allow_content_reviewers=allow_content_reviewers
     )
 
