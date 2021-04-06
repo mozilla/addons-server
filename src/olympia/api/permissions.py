@@ -179,7 +179,7 @@ class AllowReviewerUnlisted(AllowReviewer):
     """
 
     def has_permission(self, request, view):
-        return acl.check_unlisted_addons_viewer_or_reviewer(request)
+        return acl.check_unlisted_addons_viewer(request)
 
     def has_object_permission(self, request, view, obj):
         can_access_because_unlisted_viewer = (

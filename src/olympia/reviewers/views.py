@@ -127,7 +127,7 @@ from .decorators import (
     any_reviewer_or_moderator_required,
     any_reviewer_required,
     permission_or_tools_view_required,
-    unlisted_addons_reviewer_required,
+    unlisted_addons_viewer_or_reviewer_required,
 )
 
 
@@ -1246,7 +1246,7 @@ def whiteboard(request, addon, channel):
     raise PermissionDenied
 
 
-@unlisted_addons_reviewer_required
+@unlisted_addons_viewer_or_reviewer_required
 def unlisted_list(request):
     return _queue(
         request,

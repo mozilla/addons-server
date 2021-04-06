@@ -10,13 +10,11 @@ from olympia.constants import permissions
 def _view_on_get(request):
     """Return True if the user can access this page.
 
-    If the user is in a group with rule 'ReviewerTools:View' or
-    'ReviewerTools:ViewUnlisted' and the request is a GET request,
-    they are allowed to view.
+    If the user is in a group with rule 'ReviewerTools:View' and the request is
+    a GET request, they are allowed to view.
     """
-    return request.method == 'GET' and (
-        acl.action_allowed(request, permissions.REVIEWER_TOOLS_VIEW)
-        or acl.action_allowed(request, permissions.REVIEWER_TOOLS_UNLISTED_VIEW)
+    return request.method == 'GET' and acl.action_allowed(
+        request, permissions.REVIEWER_TOOLS_VIEW
     )
 
 
@@ -36,7 +34,7 @@ def permission_or_tools_view_required(permission):
     return decorator
 
 
-def unlisted_addons_reviewer_required(f):
+def unlisted_addons_viewer_or_reviewer_required(f):
     """Require an "unlisted addons" reviewer or viewer user.
 
     The user logged in must satisfy one of the following:
@@ -49,7 +47,7 @@ def unlisted_addons_reviewer_required(f):
     @functools.wraps(f)
     def wrapper(request, *args, **kw):
         view_on_get = _view_on_get(request)
-        if view_on_get or acl.check_unlisted_addons_reviewer(request):
+        if view_on_get or acl.check_unlisted_addons_viewer_or_reviewer(request):
             return f(request, *args, **kw)
         raise PermissionDenied
 
