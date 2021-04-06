@@ -7,23 +7,21 @@ from olympia.amo.decorators import login_required
 from olympia.constants import permissions
 
 
-def _view_on_get(request):
+def _view_on_get(request, permission):
     """Return True if the user can access this page.
 
     If the user is in a group with rule 'ReviewerTools:View' and the request is
     a GET request, they are allowed to view.
     """
-    return request.method == 'GET' and acl.action_allowed(
-        request, permissions.REVIEWER_TOOLS_VIEW
-    )
+    return request.method == 'GET' and acl.action_allowed(request, permission)
 
 
-def permission_or_tools_view_required(permission):
+def permission_or_tools_listed_view_required(permission):
     def decorator(f):
         @functools.wraps(f)
         @login_required
         def wrapper(request, *args, **kw):
-            view_on_get = _view_on_get(request)
+            view_on_get = _view_on_get(request, permissions.REVIEWER_TOOLS_VIEW)
             if view_on_get or acl.action_allowed(request, permission):
                 return f(request, *args, **kw)
             else:
@@ -34,24 +32,22 @@ def permission_or_tools_view_required(permission):
     return decorator
 
 
-def unlisted_addons_viewer_or_reviewer_required(f):
-    """Require an "unlisted addons" reviewer or viewer user.
+def permission_or_tools_unlisted_view_required(permission):
+    def decorator(f):
+        @functools.wraps(f)
+        @login_required
+        def wrapper(request, *args, **kw):
+            view_on_get = _view_on_get(
+                request, permissions.REVIEWER_TOOLS_UNLISTED_VIEW
+            )
+            if view_on_get or acl.action_allowed(request, permission):
+                return f(request, *args, **kw)
+            else:
+                raise PermissionDenied
 
-    The user logged in must satisfy one of the following:
-    - be an admin
-    - have the permission 'ReviewerTools:ViewUnlisted' (unlisted viewer)
-    - have the permission 'Addons:ReviewUnlisted' (unlisted reviewer)
-    """
+        return wrapper
 
-    @login_required
-    @functools.wraps(f)
-    def wrapper(request, *args, **kw):
-        view_on_get = _view_on_get(request)
-        if view_on_get or acl.check_unlisted_addons_viewer_or_reviewer(request):
-            return f(request, *args, **kw)
-        raise PermissionDenied
-
-    return wrapper
+    return decorator
 
 
 def any_reviewer_required(f):

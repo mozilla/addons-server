@@ -126,8 +126,8 @@ from olympia.zadmin.models import get_config, set_config
 from .decorators import (
     any_reviewer_or_moderator_required,
     any_reviewer_required,
-    permission_or_tools_view_required,
-    unlisted_addons_viewer_or_reviewer_required,
+    permission_or_tools_listed_view_required,
+    permission_or_tools_unlisted_view_required,
 )
 
 
@@ -144,7 +144,7 @@ def context(**kw):
     return ctx
 
 
-@permission_or_tools_view_required(amo.permissions.RATINGS_MODERATE)
+@permission_or_tools_listed_view_required(amo.permissions.RATINGS_MODERATE)
 def ratings_moderation_log(request):
     form = RatingModerationLogForm(request.GET)
     mod_log = ActivityLog.objects.moderation_events()
@@ -164,7 +164,7 @@ def ratings_moderation_log(request):
     return render(request, 'reviewers/moderationlog.html', data)
 
 
-@permission_or_tools_view_required(amo.permissions.RATINGS_MODERATE)
+@permission_or_tools_listed_view_required(amo.permissions.RATINGS_MODERATE)
 def ratings_moderation_log_detail(request, id):
     log = get_object_or_404(ActivityLog.objects.moderation_events(), pk=id)
 
@@ -605,29 +605,29 @@ def fetch_queue_counts(admin_reviewer):
     return {queue: count() for (queue, count) in counts.items()}
 
 
-@permission_or_tools_view_required(amo.permissions.ADDONS_REVIEW)
+@permission_or_tools_listed_view_required(amo.permissions.ADDONS_REVIEW)
 def queue_extension(request):
     return _queue(request, view_table_factory(ViewExtensionQueue), 'extension')
 
 
-@permission_or_tools_view_required(amo.permissions.ADDONS_RECOMMENDED_REVIEW)
+@permission_or_tools_listed_view_required(amo.permissions.ADDONS_RECOMMENDED_REVIEW)
 def queue_recommended(request):
     return _queue(request, view_table_factory(ViewRecommendedQueue), 'recommended')
 
 
-@permission_or_tools_view_required(amo.permissions.STATIC_THEMES_REVIEW)
+@permission_or_tools_listed_view_required(amo.permissions.STATIC_THEMES_REVIEW)
 def queue_theme_nominated(request):
     return _queue(
         request, view_table_factory(ViewThemeFullReviewQueue), 'theme_nominated'
     )
 
 
-@permission_or_tools_view_required(amo.permissions.STATIC_THEMES_REVIEW)
+@permission_or_tools_listed_view_required(amo.permissions.STATIC_THEMES_REVIEW)
 def queue_theme_pending(request):
     return _queue(request, view_table_factory(ViewThemePendingQueue), 'theme_pending')
 
 
-@permission_or_tools_view_required(amo.permissions.RATINGS_MODERATE)
+@permission_or_tools_listed_view_required(amo.permissions.RATINGS_MODERATE)
 def queue_moderated(request):
     qs = Rating.objects.all().to_moderate().order_by('ratingflag__created')
     page = paginate(request, qs, per_page=20)
@@ -673,27 +673,27 @@ def application_versions_json(request):
     return {'choices': form.version_choices_for_app_id(app_id)}
 
 
-@permission_or_tools_view_required(amo.permissions.ADDONS_CONTENT_REVIEW)
+@permission_or_tools_listed_view_required(amo.permissions.ADDONS_CONTENT_REVIEW)
 def queue_content_review(request):
     return _queue(request, ContentReviewTable, 'content_review', SearchForm=None)
 
 
-@permission_or_tools_view_required(amo.permissions.ADDONS_REVIEW)
+@permission_or_tools_listed_view_required(amo.permissions.ADDONS_REVIEW)
 def queue_auto_approved(request):
     return _queue(request, AutoApprovedTable, 'auto_approved', SearchForm=None)
 
 
-@permission_or_tools_view_required(amo.permissions.ADDONS_REVIEW)
+@permission_or_tools_listed_view_required(amo.permissions.ADDONS_REVIEW)
 def queue_scanners(request):
     return _queue(request, ScannersReviewTable, 'scanners', SearchForm=None)
 
 
-@permission_or_tools_view_required(amo.permissions.ADDONS_REVIEW)
+@permission_or_tools_listed_view_required(amo.permissions.ADDONS_REVIEW)
 def queue_mad(request):
     return _queue(request, MadReviewTable, 'mad', SearchForm=None)
 
 
-@permission_or_tools_view_required(amo.permissions.REVIEWS_ADMIN)
+@permission_or_tools_listed_view_required(amo.permissions.REVIEWS_ADMIN)
 def queue_pending_rejection(request):
     return _queue(request, PendingRejectionTable, 'pending_rejection', SearchForm=None)
 
@@ -1246,7 +1246,7 @@ def whiteboard(request, addon, channel):
     raise PermissionDenied
 
 
-@unlisted_addons_viewer_or_reviewer_required
+@permission_or_tools_unlisted_view_required(amo.permissions.ADDONS_REVIEW_UNLISTED)
 def unlisted_list(request):
     return _queue(
         request,
