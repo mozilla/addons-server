@@ -59,8 +59,8 @@ from olympia.amo.decorators import (
 from olympia.amo.utils import paginate, render
 from olympia.api.permissions import (
     AllowAnyKindOfReviewer,
-    AllowReviewer,
-    AllowReviewerUnlisted,
+    AllowListedViewerOrReviewer,
+    AllowUnlistedViewerOrReviewer,
     AnyOf,
     GroupPermission,
 )
@@ -1404,7 +1404,9 @@ class AddonReviewerViewSet(GenericViewSet):
         return Response(status=status.HTTP_202_ACCEPTED)
 
     @drf_action(
-        detail=True, methods=['post'], permission_classes=[AllowReviewerUnlisted]
+        detail=True,
+        methods=['post'],
+        permission_classes=[AllowUnlistedViewerOrReviewer],
     )
     def subscribe_unlisted(self, request, **kwargs):
         addon = get_object_or_404(Addon, pk=kwargs['pk'])
@@ -1414,7 +1416,9 @@ class AddonReviewerViewSet(GenericViewSet):
         return Response(status=status.HTTP_202_ACCEPTED)
 
     @drf_action(
-        detail=True, methods=['post'], permission_classes=[AllowReviewerUnlisted]
+        detail=True,
+        methods=['post'],
+        permission_classes=[AllowUnlistedViewerOrReviewer],
     )
     def unsubscribe_unlisted(self, request, **kwargs):
         addon = get_object_or_404(Addon, pk=kwargs['pk'])
@@ -1525,7 +1529,9 @@ class AddonReviewerViewSet(GenericViewSet):
 
 
 class ReviewAddonVersionMixin(object):
-    permission_classes = [AnyOf(AllowReviewer, AllowReviewerUnlisted)]
+    permission_classes = [
+        AnyOf(AllowListedViewerOrReviewer, AllowUnlistedViewerOrReviewer)
+    ]
 
     def get_queryset(self):
         # Permission classes disallow access to non-public/unlisted add-ons
@@ -1635,7 +1641,9 @@ class ReviewAddonVersionDraftCommentViewSet(
     GenericViewSet,
 ):
 
-    permission_classes = [AnyOf(AllowReviewer, AllowReviewerUnlisted)]
+    permission_classes = [
+        AnyOf(AllowListedViewerOrReviewer, AllowUnlistedViewerOrReviewer)
+    ]
 
     queryset = DraftComment.objects.all()
     serializer_class = DraftCommentSerializer

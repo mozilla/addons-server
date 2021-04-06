@@ -137,7 +137,7 @@ class AllowNotOwner(AllowOwner):
         return not super().has_object_permission(request, view, obj)
 
 
-class AllowReviewer(BasePermission):
+class AllowListedViewerOrReviewer(BasePermission):
     """Allow reviewers to access add-ons with listed versions.
 
     The user logged in must either be making a read-only request and have the
@@ -164,7 +164,7 @@ class AllowReviewer(BasePermission):
         return can_access_because_viewer or can_access_because_listed_reviewer
 
 
-class AllowReviewerUnlisted(AllowReviewer):
+class AllowUnlistedViewerOrReviewer(AllowListedViewerOrReviewer):
     """Allow unlisted reviewers to access add-ons with unlisted versions, or
     add-ons with no listed versions at all.
 

@@ -25,8 +25,8 @@ from olympia.api.permissions import (
     AllowOwner,
     AllowReadOnlyIfPublic,
     AllowRelatedObjectPermissions,
-    AllowReviewer,
-    AllowReviewerUnlisted,
+    AllowListedViewerOrReviewer,
+    AllowUnlistedViewerOrReviewer,
     AnyOf,
     ByHttpMethod,
     GroupPermission,
@@ -202,12 +202,12 @@ class TestAllowOwner(TestCase):
         assert not self.permission.has_object_permission(self.request, 'myview', obj)
 
 
-class TestAllowReviewer(TestCase):
+class TestAllowListedViewerOrReviewer(TestCase):
     # Note: be careful when testing, under the hood we're using a method that
     # relies on UserProfile.groups_list, which is cached on the UserProfile
     # instance.
     def setUp(self):
-        self.permission = AllowReviewer()
+        self.permission = AllowListedViewerOrReviewer()
         self.request_factory = RequestFactory()
         self.unsafe_methods = ('patch', 'post', 'put', 'delete')
         self.safe_methods = ('get', 'options', 'head')
@@ -266,7 +266,7 @@ class TestAllowReviewer(TestCase):
             assert not self.permission.has_object_permission(request, myview, obj)
 
     def test_reviewer_tools_unlisted_access_read_only(self):
-        self.permission = AllowReviewerUnlisted()
+        self.permission = AllowUnlistedViewerOrReviewer()
         user = user_factory()
         self.grant_permission(user, 'ReviewerTools:ViewUnlisted')
         obj = Mock(spec=[])
@@ -426,12 +426,12 @@ class TestAllowAnyKindOfReviewer(TestCase):
         assert self.permission.has_object_permission(self.request, myview, obj)
 
 
-class TestAllowUnlistedReviewer(TestCase):
+class TestAllowUnlistedViewerOrReviewer(TestCase):
     # Note: be careful when testing, under the hood we're using a method that
     # relies on UserProfile.groups_list, which is cached on the UserProfile
     # instance.
     def setUp(self):
-        self.permission = AllowReviewerUnlisted()
+        self.permission = AllowUnlistedViewerOrReviewer()
         self.request = RequestFactory().post('/')
 
     def test_user_cannot_be_anonymous(self):
