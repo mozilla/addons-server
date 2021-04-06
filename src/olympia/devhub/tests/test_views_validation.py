@@ -318,6 +318,7 @@ class TestFileValidation(TestCase):
         self.client.logout()
         self.client.login(email='unlisted_viewer@mozilla.com')
 
+        self.addon.versions.all()[0].update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.addon.delete()
         args = [self.addon.pk, self.file.id]
         json_url = reverse('devhub.json_file_validation', args=args)
