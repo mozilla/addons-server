@@ -2,7 +2,6 @@ import copy
 import json
 import os
 import io
-import subprocess
 import tempfile
 import zipfile
 
@@ -13,6 +12,7 @@ from django.utils.encoding import force_str
 
 from PIL import Image
 
+from olympia.amo.utils import convert_svg_to_png
 from olympia.core import logger
 from olympia.lib.safe_xml import lxml
 
@@ -36,26 +36,6 @@ def get_next_version_number(addon):
             return next_version
         else:
             version_counter += 1
-
-
-def convert_svg_to_png(svg_file, png_file):
-    try:
-        if not os.path.exists(os.path.dirname(png_file)):
-            os.makedirs(os.path.dirname(png_file))
-        command = [
-            settings.RSVG_CONVERT_BIN,
-            '--output',
-            png_file,
-            svg_file,
-        ]
-        subprocess.check_call(command)
-    except IOError as io_error:
-        log.info(io_error)
-        return False
-    except subprocess.CalledProcessError as process_error:
-        log.info(process_error)
-        return False
-    return True
 
 
 def write_svg_to_png(svg_content, out):

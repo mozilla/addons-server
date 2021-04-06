@@ -75,6 +75,7 @@ def test_create_missing_theme_previews(parse_addon_mock):
             'image': amo.THEME_PREVIEW_RENDERINGS['amo']['full'],
             'thumbnail': amo.THEME_PREVIEW_RENDERINGS['amo']['thumbnail'],
             'thumbnail_format': amo.THEME_PREVIEW_RENDERINGS['amo']['thumbnail_format'],
+            'image_format': amo.THEME_PREVIEW_RENDERINGS['amo']['image_format'],
         },
     )
     firefox_preview = VersionPreview.objects.create(
@@ -115,8 +116,22 @@ def test_create_missing_theme_previews(parse_addon_mock):
         assert gen_preview.call_count == 1
         assert resize.call_count == 0
 
+    # Preview is correct dimensions but wrong format, call generate_static_theme_preview
+    amo_preview.sizes['image_format'] = 'foo'
+    amo_preview.save()
+    firefox_preview.save()
+    extra_preview.save()
+    assert VersionPreview.objects.count() == 3
+    with mock.patch(
+        f'{PATCH_PATH}.generate_static_theme_preview'
+    ) as gen_preview, mock.patch(f'{PATCH_PATH}.resize_image') as resize:
+        recreate_theme_previews([theme.id], only_missing=True)
+        assert gen_preview.call_count == 1
+        assert resize.call_count == 0
+
     # But we don't do the full regeneration to just get new thumbnail sizes or formats
     amo_preview.sizes['thumbnail'] = [666, 444]
+    amo_preview.sizes['image_format'] = 'svg'
     amo_preview.save()
     assert amo_preview.thumbnail_dimensions == [666, 444]
     firefox_preview.sizes['thumbnail_format'] = 'gif'

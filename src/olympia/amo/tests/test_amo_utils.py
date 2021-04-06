@@ -8,7 +8,7 @@ from django.core.validators import ValidationError
 from unittest import mock
 import pytest
 
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import get_temp_filename, TestCase
 from olympia.amo.utils import (
     LocalFileStorage,
     cache_ns_key,
@@ -62,6 +62,25 @@ def test_slugify(test_input, expected):
 def test_resize_image():
     # src and dst shouldn't be the same.
     pytest.raises(Exception, resize_image, 't', 't', 'z')
+
+
+def test_resize_image_from_svg():
+    src_folder = os.path.join(
+        settings.ROOT, 'src', 'olympia', 'versions', 'tests', 'static_themes'
+    )
+    src = os.path.join(src_folder, 'weta_theme_full.svg')
+    expected = os.path.join(src_folder, 'weta_theme_full.jpg')
+    tmp_file_name = get_temp_filename()
+    try:
+        resize_image(src, tmp_file_name, (680, 92), format='jpg')
+        with open(tmp_file_name, 'rb') as dfh:
+            with open(expected, 'rb') as efh:
+                dd = dfh.read()
+                ee = efh.read()
+                assert len(dd) == len(ee) and dd == ee
+    finally:
+        if os.path.exists(tmp_file_name):
+            os.remove(tmp_file_name)
 
 
 def test_resize_transparency():
