@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-16 17:41+0000\n"
-"PO-Revision-Date: 2021-04-07 07:24+0000\n"
+"PO-Revision-Date: 2021-04-07 08:03+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -583,7 +583,7 @@ msgstr "Pošlji"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
-msgstr ""
+msgstr "%(count)s GUID-jev dodatkov"
 
 msgid "Edit Block"
 msgstr ""
@@ -1661,7 +1661,7 @@ msgid "Aborted"
 msgstr "Prekinjeno"
 
 msgid "Aborting"
-msgstr ""
+msgstr "Prekinjanje"
 
 msgid "Completed"
 msgstr "Dokončano"
