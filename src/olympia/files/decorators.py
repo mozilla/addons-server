@@ -5,7 +5,7 @@ import olympia.core.logger
 
 from olympia import amo
 from olympia.access import acl
-from olympia.addons.decorators import owner_or_unlisted_reviewer
+from olympia.addons.decorators import owner_or_unlisted_viewer_or_reviewer
 
 
 log = olympia.core.logger.getLogger('z.addons')
@@ -29,6 +29,6 @@ def allowed(request, file):
         raise PermissionDenied  # Listed but not allowed.
     # Not listed? Needs an owner or an "unlisted" admin.
     else:
-        if owner_or_unlisted_reviewer(request, addon):
+        if owner_or_unlisted_viewer_or_reviewer(request, addon):
             return True
     raise http.Http404  # Not listed, not owner or admin.

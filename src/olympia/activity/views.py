@@ -30,8 +30,8 @@ from olympia.activity.utils import (
 from olympia.addons.views import AddonChildMixin
 from olympia.api.permissions import (
     AllowAddonAuthor,
-    AllowReviewer,
-    AllowReviewerUnlisted,
+    AllowListedViewerOrReviewer,
+    AllowUnlistedViewerOrReviewer,
     AnyOf,
 )
 
@@ -40,7 +40,9 @@ class VersionReviewNotesViewSet(
     AddonChildMixin, ListModelMixin, RetrieveModelMixin, GenericViewSet
 ):
     permission_classes = [
-        AnyOf(AllowAddonAuthor, AllowReviewer, AllowReviewerUnlisted),
+        AnyOf(
+            AllowAddonAuthor, AllowListedViewerOrReviewer, AllowUnlistedViewerOrReviewer
+        ),
     ]
     serializer_class = ActivityLogSerializer
 

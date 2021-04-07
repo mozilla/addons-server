@@ -43,7 +43,7 @@ from olympia.abuse.models import AbuseReport
 from olympia.access import acl
 from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import ActivityLog, CommentLog, DraftComment
-from olympia.addons.decorators import addon_view, owner_or_unlisted_reviewer
+from olympia.addons.decorators import addon_view, owner_or_unlisted_viewer_or_reviewer
 from olympia.addons.models import (
     Addon,
     AddonApprovalsCounter,
@@ -59,8 +59,8 @@ from olympia.amo.decorators import (
 from olympia.amo.utils import paginate, render
 from olympia.api.permissions import (
     AllowAnyKindOfReviewer,
-    AllowReviewer,
-    AllowReviewerUnlisted,
+    AllowListedViewerOrReviewer,
+    AllowUnlistedViewerOrReviewer,
     AnyOf,
     GroupPermission,
 )
@@ -126,8 +126,8 @@ from olympia.zadmin.models import get_config, set_config
 from .decorators import (
     any_reviewer_or_moderator_required,
     any_reviewer_required,
-    permission_or_tools_view_required,
-    unlisted_addons_reviewer_required,
+    permission_or_tools_listed_view_required,
+    permission_or_tools_unlisted_view_required,
 )
 
 
@@ -144,7 +144,7 @@ def context(**kw):
     return ctx
 
 
-@permission_or_tools_view_required(amo.permissions.RATINGS_MODERATE)
+@permission_or_tools_listed_view_required(amo.permissions.RATINGS_MODERATE)
 def ratings_moderation_log(request):
     form = RatingModerationLogForm(request.GET)
     mod_log = ActivityLog.objects.moderation_events()
@@ -164,7 +164,7 @@ def ratings_moderation_log(request):
     return render(request, 'reviewers/moderationlog.html', data)
 
 
-@permission_or_tools_view_required(amo.permissions.RATINGS_MODERATE)
+@permission_or_tools_listed_view_required(amo.permissions.RATINGS_MODERATE)
 def ratings_moderation_log_detail(request, id):
     log = get_object_or_404(ActivityLog.objects.moderation_events(), pk=id)
 
@@ -203,7 +203,11 @@ def dashboard(request):
     # defined by a text and an URL. The template will show every link of every
     # section we provide in the context.
     sections = OrderedDict()
-    view_all = acl.action_allowed(request, amo.permissions.REVIEWER_TOOLS_VIEW)
+    view_all_permissions = [
+        amo.permissions.REVIEWER_TOOLS_VIEW,
+        amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW,
+    ]
+    view_all = any(acl.action_allowed(request, perm) for perm in view_all_permissions)
     admin_reviewer = is_admin_reviewer(request)
     queue_counts = fetch_queue_counts(admin_reviewer=admin_reviewer)
 
@@ -601,29 +605,29 @@ def fetch_queue_counts(admin_reviewer):
     return {queue: count() for (queue, count) in counts.items()}
 
 
-@permission_or_tools_view_required(amo.permissions.ADDONS_REVIEW)
+@permission_or_tools_listed_view_required(amo.permissions.ADDONS_REVIEW)
 def queue_extension(request):
     return _queue(request, view_table_factory(ViewExtensionQueue), 'extension')
 
 
-@permission_or_tools_view_required(amo.permissions.ADDONS_RECOMMENDED_REVIEW)
+@permission_or_tools_listed_view_required(amo.permissions.ADDONS_RECOMMENDED_REVIEW)
 def queue_recommended(request):
     return _queue(request, view_table_factory(ViewRecommendedQueue), 'recommended')
 
 
-@permission_or_tools_view_required(amo.permissions.STATIC_THEMES_REVIEW)
+@permission_or_tools_listed_view_required(amo.permissions.STATIC_THEMES_REVIEW)
 def queue_theme_nominated(request):
     return _queue(
         request, view_table_factory(ViewThemeFullReviewQueue), 'theme_nominated'
     )
 
 
-@permission_or_tools_view_required(amo.permissions.STATIC_THEMES_REVIEW)
+@permission_or_tools_listed_view_required(amo.permissions.STATIC_THEMES_REVIEW)
 def queue_theme_pending(request):
     return _queue(request, view_table_factory(ViewThemePendingQueue), 'theme_pending')
 
 
-@permission_or_tools_view_required(amo.permissions.RATINGS_MODERATE)
+@permission_or_tools_listed_view_required(amo.permissions.RATINGS_MODERATE)
 def queue_moderated(request):
     qs = Rating.objects.all().to_moderate().order_by('ratingflag__created')
     page = paginate(request, qs, per_page=20)
@@ -669,27 +673,27 @@ def application_versions_json(request):
     return {'choices': form.version_choices_for_app_id(app_id)}
 
 
-@permission_or_tools_view_required(amo.permissions.ADDONS_CONTENT_REVIEW)
+@permission_or_tools_listed_view_required(amo.permissions.ADDONS_CONTENT_REVIEW)
 def queue_content_review(request):
     return _queue(request, ContentReviewTable, 'content_review', SearchForm=None)
 
 
-@permission_or_tools_view_required(amo.permissions.ADDONS_REVIEW)
+@permission_or_tools_listed_view_required(amo.permissions.ADDONS_REVIEW)
 def queue_auto_approved(request):
     return _queue(request, AutoApprovedTable, 'auto_approved', SearchForm=None)
 
 
-@permission_or_tools_view_required(amo.permissions.ADDONS_REVIEW)
+@permission_or_tools_listed_view_required(amo.permissions.ADDONS_REVIEW)
 def queue_scanners(request):
     return _queue(request, ScannersReviewTable, 'scanners', SearchForm=None)
 
 
-@permission_or_tools_view_required(amo.permissions.ADDONS_REVIEW)
+@permission_or_tools_listed_view_required(amo.permissions.ADDONS_REVIEW)
 def queue_mad(request):
     return _queue(request, MadReviewTable, 'mad', SearchForm=None)
 
 
-@permission_or_tools_view_required(amo.permissions.REVIEWS_ADMIN)
+@permission_or_tools_listed_view_required(amo.permissions.REVIEWS_ADMIN)
 def queue_pending_rejection(request):
     return _queue(request, PendingRejectionTable, 'pending_rejection', SearchForm=None)
 
@@ -735,7 +739,7 @@ def review(request, addon, channel=None):
         channel == amo.RELEASE_CHANNEL_UNLISTED
         or not addon.has_listed_versions(include_deleted=True)
     )
-    if unlisted_only and not acl.check_unlisted_addons_reviewer(request):
+    if unlisted_only and not acl.check_unlisted_addons_viewer_or_reviewer(request):
         raise PermissionDenied
 
     # Are we looking at a listed review page while only having content review
@@ -990,6 +994,9 @@ def review(request, addon, channel=None):
         # Used for reviewer subscription check, don't use global `is_reviewer`
         # since that actually is `is_user_any_kind_of_reviewer`.
         acl_is_reviewer=acl.is_reviewer(request, addon),
+        acl_check_unlisted_addons_viewer_or_reviewer=(
+            acl.check_unlisted_addons_viewer_or_reviewer(request)
+        ),
         acl_is_review_moderator=(
             acl.action_allowed(request, amo.permissions.RATINGS_MODERATE)
             and request.user.is_staff
@@ -1145,12 +1152,12 @@ def reviewlog(request):
     form = ReviewLogForm(data)
 
     approvals = ActivityLog.objects.review_log()
-    if not acl.check_unlisted_addons_reviewer(request):
+    if not acl.check_unlisted_addons_viewer_or_reviewer(request):
         # Only display logs related to unlisted versions to users with the
         # right permission.
         list_channel = amo.RELEASE_CHANNEL_LISTED
         approvals = approvals.filter(versionlog__version__channel=list_channel)
-    if not acl.check_addons_reviewer(request):
+    if not acl.check_listed_addons_reviewer(request):
         approvals = approvals.exclude(
             versionlog__version__addon__type__in=amo.GROUP_TYPE_ADDON
         )
@@ -1216,7 +1223,7 @@ def whiteboard(request, addon, channel):
         channel == amo.RELEASE_CHANNEL_UNLISTED
         or not addon.has_listed_versions(include_deleted=True)
     )
-    if unlisted_only and not acl.check_unlisted_addons_reviewer(request):
+    if unlisted_only and not acl.check_unlisted_addons_viewer_or_reviewer(request):
         raise PermissionDenied
 
     whiteboard, _ = Whiteboard.objects.get_or_create(pk=addon.pk)
@@ -1236,7 +1243,7 @@ def whiteboard(request, addon, channel):
     raise PermissionDenied
 
 
-@unlisted_addons_reviewer_required
+@permission_or_tools_unlisted_view_required(amo.permissions.ADDONS_REVIEW_UNLISTED)
 def unlisted_list(request):
     return _queue(
         request,
@@ -1317,7 +1324,7 @@ def download_git_stored_file(request, version_id, filename):
         if not (acl.is_reviewer(request, addon) or is_owner):
             raise PermissionDenied
     else:
-        if not owner_or_unlisted_reviewer(request, addon):
+        if not owner_or_unlisted_viewer_or_reviewer(request, addon):
             raise http.Http404
 
     file = version.current_file
@@ -1394,7 +1401,9 @@ class AddonReviewerViewSet(GenericViewSet):
         return Response(status=status.HTTP_202_ACCEPTED)
 
     @drf_action(
-        detail=True, methods=['post'], permission_classes=[AllowReviewerUnlisted]
+        detail=True,
+        methods=['post'],
+        permission_classes=[AllowUnlistedViewerOrReviewer],
     )
     def subscribe_unlisted(self, request, **kwargs):
         addon = get_object_or_404(Addon, pk=kwargs['pk'])
@@ -1404,7 +1413,9 @@ class AddonReviewerViewSet(GenericViewSet):
         return Response(status=status.HTTP_202_ACCEPTED)
 
     @drf_action(
-        detail=True, methods=['post'], permission_classes=[AllowReviewerUnlisted]
+        detail=True,
+        methods=['post'],
+        permission_classes=[AllowUnlistedViewerOrReviewer],
     )
     def unsubscribe_unlisted(self, request, **kwargs):
         addon = get_object_or_404(Addon, pk=kwargs['pk'])
@@ -1499,7 +1510,7 @@ class AddonReviewerViewSet(GenericViewSet):
         addon = get_object_or_404(Addon.unfiltered.id_or_slug(kwargs['pk']))
         file = get_object_or_404(File, version__addon=addon, id=kwargs['file_id'])
         if file.version.channel == amo.RELEASE_CHANNEL_UNLISTED:
-            if not acl.check_unlisted_addons_reviewer(request):
+            if not acl.check_unlisted_addons_viewer_or_reviewer(request):
                 raise PermissionDenied
         elif not acl.is_reviewer(request, addon):
             raise PermissionDenied
@@ -1515,7 +1526,9 @@ class AddonReviewerViewSet(GenericViewSet):
 
 
 class ReviewAddonVersionMixin(object):
-    permission_classes = [AnyOf(AllowReviewer, AllowReviewerUnlisted)]
+    permission_classes = [
+        AnyOf(AllowListedViewerOrReviewer, AllowUnlistedViewerOrReviewer)
+    ]
 
     def get_queryset(self):
         # Permission classes disallow access to non-public/unlisted add-ons
@@ -1544,7 +1557,7 @@ class ReviewAddonVersionMixin(object):
             # Allow viewing unlisted for reviewers with permissions or
             # addon authors.
             addon = self.get_addon_object()
-            self.can_view_unlisted = acl.check_unlisted_addons_reviewer(
+            self.can_view_unlisted = acl.check_unlisted_addons_viewer_or_reviewer(
                 self.request
             ) or addon.has_author(self.request.user)
         return self.can_view_unlisted
@@ -1625,7 +1638,9 @@ class ReviewAddonVersionDraftCommentViewSet(
     GenericViewSet,
 ):
 
-    permission_classes = [AnyOf(AllowReviewer, AllowReviewerUnlisted)]
+    permission_classes = [
+        AnyOf(AllowListedViewerOrReviewer, AllowUnlistedViewerOrReviewer)
+    ]
 
     queryset = DraftComment.objects.all()
     serializer_class = DraftCommentSerializer

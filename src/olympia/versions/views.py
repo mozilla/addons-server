@@ -73,7 +73,7 @@ def download_file(request, file_id, type=None, file_=None, addon=None):
         return (
             acl.is_reviewer(request, addon)
             if channel == amo.RELEASE_CHANNEL_LISTED
-            else acl.check_unlisted_addons_reviewer(request)
+            else acl.check_unlisted_addons_viewer_or_reviewer(request)
         )
 
     if not file_:

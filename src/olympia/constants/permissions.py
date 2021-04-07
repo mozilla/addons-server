@@ -23,6 +23,8 @@ ADDONS_EDIT = AclPermission('Addons', 'Edit')
 ADDONS_VIEW_DELETED = AclPermission('Addons', 'ViewDeleted')
 # Can view only the reviewer tools.
 REVIEWER_TOOLS_VIEW = AclPermission('ReviewerTools', 'View')
+# Can view only the reviewer tools.
+REVIEWER_TOOLS_UNLISTED_VIEW = AclPermission('ReviewerTools', 'ViewUnlisted')
 
 # These users gain access to the accounts API to super-create users.
 ACCOUNTS_SUPER_CREATE = AclPermission('Accounts', 'SuperCreate')

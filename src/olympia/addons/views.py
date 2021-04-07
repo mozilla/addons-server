@@ -29,8 +29,8 @@ from olympia.api.permissions import (
     AllowAddonAuthor,
     AllowReadOnlyIfPublic,
     AllowRelatedObjectPermissions,
-    AllowReviewer,
-    AllowReviewerUnlisted,
+    AllowListedViewerOrReviewer,
+    AllowUnlistedViewerOrReviewer,
     AnyOf,
     GroupPermission,
     RegionalRestriction,
@@ -177,8 +177,8 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
         AnyOf(
             AllowReadOnlyIfPublic,
             AllowAddonAuthor,
-            AllowReviewer,
-            AllowReviewerUnlisted,
+            AllowListedViewerOrReviewer,
+            AllowUnlistedViewerOrReviewer,
         ),
     ]
     georestriction_classes = [
@@ -216,7 +216,7 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
         # we are allowed to access unlisted data.
         obj = getattr(self, 'instance')
         request = self.request
-        if acl.check_unlisted_addons_reviewer(request) or (
+        if acl.check_unlisted_addons_viewer_or_reviewer(request) or (
             obj
             and request.user.is_authenticated
             and obj.authors.filter(pk=request.user.pk).exists()
@@ -342,13 +342,17 @@ class AddonVersionViewSet(
                 # To see unlisted versions, you need to be add-on author or
                 # unlisted reviewer.
                 self.permission_classes = [
-                    AnyOf(AllowReviewerUnlisted, AllowAddonAuthor)
+                    AnyOf(AllowUnlistedViewerOrReviewer, AllowAddonAuthor)
                 ]
             elif requested == 'all_without_unlisted':
                 # To see all listed versions (not just public ones) you need to
                 # be add-on author or reviewer.
                 self.permission_classes = [
-                    AnyOf(AllowReviewer, AllowReviewerUnlisted, AllowAddonAuthor)
+                    AnyOf(
+                        AllowListedViewerOrReviewer,
+                        AllowUnlistedViewerOrReviewer,
+                        AllowAddonAuthor,
+                    )
                 ]
             # When listing, we can't use AllowRelatedObjectPermissions() with
             # check_permissions(), because AllowAddonAuthor needs an author to
@@ -374,14 +378,14 @@ class AddonVersionViewSet(
             # authors..
             self.permission_classes = [
                 AllowRelatedObjectPermissions(
-                    'addon', [AnyOf(AllowReviewerUnlisted, AllowAddonAuthor)]
+                    'addon', [AnyOf(AllowUnlistedViewerOrReviewer, AllowAddonAuthor)]
                 )
             ]
         elif not obj.is_public():
             # If the instance is disabled, only allow reviewers and authors.
             self.permission_classes = [
                 AllowRelatedObjectPermissions(
-                    'addon', [AnyOf(AllowReviewer, AllowAddonAuthor)]
+                    'addon', [AnyOf(AllowListedViewerOrReviewer, AllowAddonAuthor)]
                 )
             ]
         super(AddonVersionViewSet, self).check_object_permissions(request, obj)

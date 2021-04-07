@@ -90,6 +90,12 @@ class ReviewNotesViewSetDetailMixin(LogMixin):
         response = self.client.get(self.url)
         assert response.status_code == 200
 
+    def test_get_not_listed_unlisted_viewer(self):
+        self.make_addon_unlisted(self.addon)
+        self._login_reviewer(permission='ReviewerTools:ViewUnlisted')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
     def test_get_not_listed_author(self):
         self.make_addon_unlisted(self.addon)
         self._login_developer()

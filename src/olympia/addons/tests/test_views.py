@@ -324,6 +324,14 @@ class AddonAndVersionViewSetDetailMixin(object):
         response = self.client.get(self.url)
         assert response.status_code == 200
 
+    def test_get_not_listed_unlisted_viewer(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'ReviewerTools:ViewUnlisted')
+        self.make_addon_unlisted(self.addon)
+        self.client.login_api(user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
     def test_get_not_listed_author(self):
         user = UserProfile.objects.create(username='author')
         AddonUser.objects.create(user=user, addon=self.addon)
@@ -569,6 +577,19 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         assert result['latest_unlisted_version']
         assert result['latest_unlisted_version']['id'] == unlisted_version.pk
 
+    def test_show_latest_unlisted_version_unlisted_viewer(self):
+        user = UserProfile.objects.create(username='author')
+        self.grant_permission(user, 'ReviewerTools:ViewUnlisted')
+        self.client.login_api(user)
+
+        unlisted_version = version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED
+        )
+        unlisted_version.update(created=self.days_ago(1))
+        result = self._test_url()
+        assert result['latest_unlisted_version']
+        assert result['latest_unlisted_version']['id'] == unlisted_version.pk
+
     def test_with_lang(self):
         self.addon.name = {
             'en-US': 'My Addôn, mine',
@@ -785,6 +806,13 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self._test_url()
 
+    def test_unlisted_version_unlisted_viewer(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'ReviewerTools:ViewUnlisted')
+        self.client.login_api(user)
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self._test_url()
+
     def test_unlisted_version_author(self):
         user = UserProfile.objects.create(username='author')
         AddonUser.objects.create(user=user, addon=self.addon)
@@ -993,6 +1021,11 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         self.grant_permission(user, 'Addons:ReviewUnlisted')
         self.client.login_api(user)
 
+    def test_with_unlisted_unlisted_viewer(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'ReviewerTools:ViewUnlisted')
+        self.client.login_api(user)
+
         self._test_url_contains_all(filter='all_with_unlisted')
 
     def test_with_unlisted_author(self):
@@ -1037,6 +1070,30 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
         self.grant_permission(user, 'Addons:ReviewUnlisted')
+        self.client.login_api(user)
+        # delete the listed versions so only the unlisted version remains.
+        self.version.delete()
+        self.old_version.delete()
+
+        # confirm that we have access to view unlisted versions.
+        response = self.client.get(self.url, data={'filter': 'all_with_unlisted'})
+        assert response.status_code == 200
+        result = json.loads(force_str(response.content))
+        assert result['results']
+        assert len(result['results']) == 1
+        result_version = result['results'][0]
+        assert result_version['id'] == self.unlisted_version.pk
+        assert result_version['version'] == self.unlisted_version.version
+
+        # And that without_unlisted doesn't fail when there are no unlisted
+        response = self.client.get(self.url, data={'filter': 'all_without_unlisted'})
+        assert response.status_code == 200
+        result = json.loads(force_str(response.content))
+        assert result['results'] == []
+
+    def test_all_without_unlisted_when_no_listed_versions_for_viewer(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'ReviewerTools:ViewUnlisted')
         self.client.login_api(user)
         # delete the listed versions so only the unlisted version remains.
         self.version.delete()

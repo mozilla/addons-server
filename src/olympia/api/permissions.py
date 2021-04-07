@@ -137,7 +137,7 @@ class AllowNotOwner(AllowOwner):
         return not super().has_object_permission(request, view, obj)
 
 
-class AllowReviewer(BasePermission):
+class AllowListedViewerOrReviewer(BasePermission):
     """Allow reviewers to access add-ons with listed versions.
 
     The user logged in must either be making a read-only request and have the
@@ -164,28 +164,38 @@ class AllowReviewer(BasePermission):
         return can_access_because_viewer or can_access_because_listed_reviewer
 
 
-class AllowReviewerUnlisted(AllowReviewer):
+class AllowUnlistedViewerOrReviewer(AllowListedViewerOrReviewer):
     """Allow unlisted reviewers to access add-ons with unlisted versions, or
     add-ons with no listed versions at all.
 
     Like reviewers.decorators.unlisted_addons_reviewer_required, but as a
     permission class and not a decorator.
 
-    The user logged in must an unlisted add-on reviewer or admin.
+    The user logged in must an unlisted add-on reviewer or admin or have the
+    'ReviewerTools:ViewUnlisted' permission.
 
     An unlisted add-on reviewer is someone who is in the group with the
     following permission: 'Addons:ReviewUnlisted'.
     """
 
     def has_permission(self, request, view):
-        return acl.check_unlisted_addons_reviewer(request)
+        return acl.check_unlisted_addons_viewer_or_reviewer(request)
 
     def has_object_permission(self, request, view, obj):
+        can_access_because_unlisted_viewer = (
+            request.method in SAFE_METHODS
+            and acl.action_allowed(request, permissions.REVIEWER_TOOLS_UNLISTED_VIEW)
+        )
+        can_access_because_unlisted_reviewer = acl.check_unlisted_addons_reviewer(
+            request
+        )
         has_unlisted_or_no_listed = obj.has_unlisted_versions(
             include_deleted=True
         ) or not obj.has_listed_versions(include_deleted=True)
 
-        return has_unlisted_or_no_listed and self.has_permission(request, view)
+        return has_unlisted_or_no_listed and (
+            can_access_because_unlisted_viewer or can_access_because_unlisted_reviewer
+        )
 
 
 class AllowAnyKindOfReviewer(BasePermission):
@@ -194,6 +204,7 @@ class AllowAnyKindOfReviewer(BasePermission):
 
     Allows access to users with any of those permissions:
     - ReviewerTools:View (if request is safe)
+    - ReviewerTools:ViewUnlisted (if request is safe)
     - Addons:Review
     - Addons:ReviewUnlisted
     - Addons:ContentReview

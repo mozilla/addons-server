@@ -1,7 +1,7 @@
 import functools
 
 from django import http
-from django.core.exceptions import PermissionDenied
+from django.core.exceptions import ImproperlyConfigured, PermissionDenied
 from django.shortcuts import redirect
 
 from olympia import amo
@@ -9,7 +9,7 @@ from olympia.access import acl
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon
 from olympia.amo.decorators import login_required
-from olympia.constants import permissions
+from olympia.versions.models import Version
 
 
 def dev_required(
@@ -21,7 +21,10 @@ def dev_required(
 ):
     """Requires user to be add-on owner or admin.
 
-    When allow_reviewers is True, reviewers can view the page.
+    When allow_reviewers_for_read is True, reviewers can view the page if the
+    request is a HEAD or GET, provided that a file_id is also passed as keyword
+    argument (so the channel can be checked to determine whether the reviewer
+    has access)
     """
 
     def decorator(f):
@@ -33,12 +36,24 @@ def dev_required(
                 return f(request, addon_id=addon.id, addon=addon, *args, **kw)
 
             if request.method in ('HEAD', 'GET'):
-                # Allow reviewers for read operations.
-                if allow_reviewers_for_read and (
-                    acl.is_reviewer(request, addon)
-                    or acl.action_allowed(request, permissions.REVIEWER_TOOLS_VIEW)
-                ):
-                    return fun()
+                # Allow reviewers for read operations, if file_id is present
+                # and the reviewer is the right kind of reviewer for this file.
+                if allow_reviewers_for_read:
+                    file_id = kw.get('file_id')
+                    if file_id:
+                        is_unlisted = Version.unfiltered.filter(
+                            files__id=file_id, channel=amo.RELEASE_CHANNEL_UNLISTED
+                        ).exists()
+                        has_required_permission = (
+                            acl.check_unlisted_addons_viewer_or_reviewer(request)
+                            if is_unlisted
+                            else (acl.check_listed_addons_viewer_or_reviewer(request))
+                        )
+                        if has_required_permission:
+                            return fun()
+                    else:
+                        raise ImproperlyConfigured
+
                 # On read-only requests, ignore disabled so developers can
                 # still view their add-on.
                 if acl.check_addon_ownership(
