@@ -123,7 +123,7 @@ def addon_listing(request, theme=False):
 def index(request):
     ctx = {}
     if request.user.is_authenticated:
-        recent_addons = request.user.addons.order_by('-modified')[:3]
+        recent_addons = request.user.addons.all().order_by('-modified')[:3]
         ctx['recent_addons'] = []
         for addon in recent_addons:
             ctx['recent_addons'].append(
@@ -254,11 +254,14 @@ def _get_activities(request, action):
 
 
 def _get_items(action, addons):
-    # MySQL 8.0.21 (and maybe higher) doesn't optimize the join with double
-    # subquery the ActivityLog.objects.for_addons(addons) below would generate
-    # if addons is not transformed into a list first. Since some people have
-    # a lot of add-ons, we only take the last 100.
-    addon_ids = list(addons.order_by('-modified').values_list('pk', flat=True)[:100])
+    if not isinstance(addons, (list, tuple)):
+        # MySQL 8.0.21 (and maybe higher) doesn't optimize the join with
+        # double # subquery the ActivityLog.objects.for_addons(addons) below
+        # would generate if addons is not transformed into a list first. Since
+        # some people have a lot of add-ons, we only take the last 100.
+        addons = list(
+            addons.all().order_by('-modified').values_list('pk', flat=True)[:100]
+        )
 
     filters = {
         'updates': (amo.LOG.ADD_VERSION, amo.LOG.ADD_FILE_TO_VERSION),
@@ -276,7 +279,7 @@ def _get_items(action, addons):
     }
 
     filter_ = filters.get(action)
-    items = ActivityLog.objects.for_addons(addon_ids).exclude(
+    items = ActivityLog.objects.for_addons(addons).exclude(
         action__in=amo.LOG_HIDE_DEVELOPER
     )
     if filter_:
@@ -303,11 +306,10 @@ def feed(request, addon_id=None):
 
         if addon_id:
             addon = get_object_or_404(Addon.objects.id_or_slug(addon_id))
-            addons = addon  # common query set
             try:
-                key = RssKey.objects.get(addon=addons)
+                key = RssKey.objects.get(addon=addon)
             except RssKey.DoesNotExist:
-                key = RssKey.objects.create(addon=addons)
+                key = RssKey.objects.create(addon=addon)
 
             addon_selected = addon.id
 
@@ -316,9 +318,10 @@ def feed(request, addon_id=None):
             )
 
             if not acl.check_addon_ownership(
-                request, addons, dev=True, ignore_disabled=True
+                request, addon, dev=True, ignore_disabled=True
             ):
                 raise PermissionDenied
+            addons = [addon]
         else:
             rssurl = _get_rss_feed(request)
             addon = None
