@@ -437,7 +437,7 @@ class ActivityLog(ModelBase):
             # Cope with renames of key models (use the original model name like
             # it was in the ActivityLog as the key so that we can find it
             # later)
-            key = 'reviews.review' if name == 'ratings.rating' else name
+            key = 'ratings.rating' if name == 'reviews.review' else name
             (app_label, model_name) = name.split('.')
             model = apps.get_model(app_label, model_name)
             # Load the instances, avoiding transformers other than translations
