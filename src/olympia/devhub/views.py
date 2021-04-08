@@ -254,6 +254,12 @@ def _get_activities(request, action):
 
 
 def _get_items(action, addons):
+    # MySQL 8.0.21 (and maybe higher) doesn't optimize the join with double
+    # subquery the ActivityLog.objects.for_addons(addons) below would generate
+    # if addons is not transformed into a list first. Since some people have
+    # a lot of add-ons, we only take the last 100.
+    addon_ids = list(addons.order_by('-modified').values_list('pk', flat=True)[:100])
+
     filters = {
         'updates': (amo.LOG.ADD_VERSION, amo.LOG.ADD_FILE_TO_VERSION),
         'status': (
@@ -270,7 +276,7 @@ def _get_items(action, addons):
     }
 
     filter_ = filters.get(action)
-    items = ActivityLog.objects.for_addons(addons).exclude(
+    items = ActivityLog.objects.for_addons(addon_ids).exclude(
         action__in=amo.LOG_HIDE_DEVELOPER
     )
     if filter_:
