@@ -1216,6 +1216,12 @@ LOGGING = {
             'level': logging.WARNING,
             'propagate': True,
         },
+        # Downgrade DisallowedHost so it doesn't show up in Sentry
+        'django.security.DisallowedHost': {
+            'handlers': ['mozlog'],
+            'level': logging.WARNING,
+            'propagate': False,
+        },
         'elasticsearch': {
             'handlers': ['null'],
             'level': logging.INFO,
