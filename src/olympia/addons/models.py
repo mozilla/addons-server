@@ -1376,7 +1376,7 @@ class Addon(OnChangeMixin, ModelBase):
             self.all_categories,
             self.name,
             self.summary,
-            (version and version.license),
+            (version and version.license_id),
         ]
 
     def should_redirect_to_submit_flow(self):

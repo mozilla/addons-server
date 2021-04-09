@@ -231,6 +231,38 @@ class TestActivityLog(TestCase):
         entries = ActivityLog.objects.for_user(user)
         assert len(entries) == 1
 
+    def test_to_string_num_queries_model_depending_on_addon(self):
+        addon = Addon.objects.get()
+        addon2 = addon_factory()
+        with core.override_remote_addr('1.1.1.1'):
+            ActivityLog.create(
+                amo.LOG.ADD_VERSION,
+                addon,
+                addon.current_version,
+                user=self.request.user,
+            )
+            ActivityLog.create(
+                amo.LOG.ADD_VERSION,
+                addon2,
+                addon2.current_version,
+                user=user_factory(),
+            )
+        with self.assertNumQueries(6):
+            # - 1 for all activities
+            # - 1 for all users
+            # - 1 for all addons
+            # - 1 for all add-on translations
+            # - 1 for all versions
+            # - 1 for all versions translations
+            activities = ActivityLog.objects.for_addons([addon, addon2]).order_by('pk')
+            assert len(activities) == 2
+            assert activities[0].to_string() == (
+                '<a href="/en-US/firefox/addon/a3615/versions/">Version 2.1.072</a>'
+                ' added to '
+                '<a href="/en-US/firefox/addon/a3615/">Delicious Bookmarks</a>.'
+            )
+            assert activities[1].to_string()
+
     def test_ip_log(self):
         addon = Addon.objects.get()
         assert IPLog.objects.count() == 0

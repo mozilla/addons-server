@@ -437,9 +437,7 @@ class ActivityLog(ModelBase):
             # Cope with renames of key models (use the original model name like
             # it was in the ActivityLog as the key so that we can find it
             # later)
-            key = name
-            if key == 'reviews.review':
-                name = 'ratings.rating'
+            key = 'ratings.rating' if name == 'reviews.review' else name
             (app_label, model_name) = name.split('.')
             model = apps.get_model(app_label, model_name)
             # Load the instances, avoiding transformers other than translations
@@ -465,7 +463,25 @@ class ActivityLog(ModelBase):
                     objs.append(pk)
                 elif pk:
                     # Fetch the instance from the cache we built.
-                    objs.append(instances[name].get(int(pk)))
+                    obj = instances[name].get(int(pk))
+                    # Most of the time, we're eventually going to call
+                    # to_string() on each ActivityLog that we're processing
+                    # here. For some of the models, that will result in a call
+                    # to <model>.get_url_path(), which in turn can cause an
+                    # extra SQL query because some parent model is needed to
+                    # build the URL.
+                    # It's difficult to predict what we'll need as ActivitLog
+                    # is fairly generic, but we know Addon is going to be
+                    # needed in some cases for sure (Version, Rating) so if
+                    # we're dealing with objects that have an `addon_id`
+                    # property, and we have already fetched the corresponding
+                    # Addon instance, set the `addon`  property on the object
+                    # to the Addon instance we already have to avoid the extra
+                    # SQL query.
+                    addon_id = getattr(obj, 'addon_id', None)
+                    if addon := instances.get('addons.addon', {}).get(addon_id):
+                        obj.addon = addon
+                    objs.append(obj)
             # Override the arguments cached_property with what we got.
             activity.arguments = objs
 
