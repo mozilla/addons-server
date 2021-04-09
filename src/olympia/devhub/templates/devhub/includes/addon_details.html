@@ -67,7 +67,7 @@
     {% if addon.current_version %}
       <li>
         <strong>{{ _('Listed Version:') }}</strong>
-        <a href="{{ addon.versions_url }}">{{ addon.current_version.version }}</a>
+        <a href="{{ addon.current_version.get_url_path() }}">{{ addon.current_version.version }}</a>
         <span class="tip tooltip" title="{{ _('This is the version of your add-on that will '
                                               'be installed if someone clicks the Install '
                                               'button on addons.mozilla.org') }}">?</span>
