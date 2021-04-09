@@ -141,9 +141,9 @@ argparse==1.4.0 \
     --hash=sha256:62b089a55be1d8949cd2bc7e0df0bddb9e028faefc8c32038cc84862aefdd6e4
 # billiard is required by celery, pinned to <3.6 until we upgrade Celery to a version that
 # supports it.
-billiard==3.6.3.0 \
-    --hash=sha256:bff575450859a6e0fbc2f9877d9b715b0bbc07c3565bb7ed2280526a0cdf5ede \
-    --hash=sha256:d91725ce6425f33a97dfa72fb6bfef0e47d4652acd98a032bd1a7fbf06d5fa6a
+billiard==3.6.4.0 \
+    --hash=sha256:87103ea78fa6ab4d5c751c4909bcff74617d985de7fa8b672cf8618afd5a875b \
+    --hash=sha256:299de5a8da28a783d51b197d496bef4f1595dd023a93a4f59dde1886ae905547
 # bitarray is required by filtercascade
 bitarray == 1.9.1 \
     --hash=sha256:ec99acc1b18f99b7e9d0b77766b99f80b3c42d4e83306334deef9745b41a2079
