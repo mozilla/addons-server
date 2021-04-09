@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from unittest import mock
+import os
 import tempfile
 import zipfile
 
@@ -41,6 +42,7 @@ class TestRepackFileUpload(UploadTest, TestCase):
         upload = self.get_upload('unicode-filenames.xpi')
         original_hash = upload.hash
         fake_results = {'errors': 0}
+        tmp_dir_before_repacking = sorted(os.listdir(tempfile.gettempdir()))
         repack_fileupload(fake_results, upload.pk)
         upload.reload()
         assert upload.hash.startswith('sha256:')
@@ -70,6 +72,9 @@ class TestRepackFileUpload(UploadTest, TestCase):
         assert info.file_size == 717
         assert info.compress_size < info.file_size
         assert info.compress_type == zipfile.ZIP_DEFLATED
+        # Check we cleaned up after ourselves: we shouldn't have left anything
+        # in /tmp.
+        assert tmp_dir_before_repacking == sorted(os.listdir(tempfile.gettempdir()))
 
 
 class TestHideDisabledFile(TestCase):
