@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-16 17:41+0000\n"
-"PO-Revision-Date: 2021-03-24 02:26+0000\n"
+"PO-Revision-Date: 2021-04-10 02:28+0000\n"
 "Last-Translator: 你我皆凡人 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -3555,7 +3555,7 @@ msgstr "轻松下载视频。适用于 YouTube、Facebook、Vimeo、Twitch、Dai
 
 #. editorial content for the discovery pane.
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
-msgstr "您的 Emoji。适用于各种场合的大量精美 Emoji —— 尽在掌中。"
+msgstr "您的 Emoji。适用于各种场合的大量精美 Emoji——尽在掌中。"
 
 #. editorial content for the discovery pane.
 msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
