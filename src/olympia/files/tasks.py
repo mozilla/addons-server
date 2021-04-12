@@ -28,22 +28,26 @@ def repack_fileupload(results, upload_pk):
     if upload.path.endswith('.xpi'):
         timer = StopWatch('files.tasks.repack_fileupload.')
         timer.start()
-        try:
-            tempdir = tempfile.mkdtemp()  # *not* on TMP_PATH, we want local fs
-            extract_zip(upload.path, tempdir=tempdir)
-        except Exception as exc:
-            # Something bad happened, maybe we couldn't parse the zip file.
-            # @validation_task should ensure the exception is caught and
-            # transformed in a generic error message for the developer, so we
-            # just log it and re-raise.
-            log.exception(
-                'Could not extract upload %s for repack.', upload_pk, exc_info=exc
-            )
-            raise
-        timer.log_interval('1.extracted')
-        log.info('Zip from upload %s extracted, repackaging', upload_pk)
-        file_ = tempfile.NamedTemporaryFile(suffix='.zip', delete=False)
-        shutil.make_archive(os.path.splitext(file_.name)[0], 'zip', tempdir)
+        # tempdir must *not* be on TMP_PATH, we want local fs instead. It will be
+        # deleted automatically once we exit the context manager.
+        with tempfile.TemporaryDirectory(prefix='repack_fileupload_extract') as tempdir:
+            try:
+                extract_zip(upload.path, tempdir=tempdir)
+            except Exception as exc:
+                # Something bad happened, maybe we couldn't parse the zip file.
+                # @validation_task should ensure the exception is caught and
+                # transformed in a generic error message for the developer, so we
+                # just log it and re-raise.
+                log.exception(
+                    'Could not extract upload %s for repack.', upload_pk, exc_info=exc
+                )
+                raise
+            timer.log_interval('1.extracted')
+            log.info('Zip from upload %s extracted, repackaging', upload_pk)
+            # We'll move the file to its final location below with move_stored_file(),
+            # so don't let tempfile delete it.
+            file_ = tempfile.NamedTemporaryFile(suffix='.zip', delete=False)
+            shutil.make_archive(os.path.splitext(file_.name)[0], 'zip', tempdir)
         with open(file_.name, 'rb') as f:
             upload.hash = 'sha256:%s' % get_sha256(f)
         timer.log_interval('2.repackaged')
