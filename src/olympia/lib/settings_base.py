@@ -13,6 +13,7 @@ import sentry_sdk
 from kombu import Queue
 from sentry_sdk.integrations.celery import CeleryIntegration
 from sentry_sdk.integrations.django import DjangoIntegration
+from sentry_sdk.integrations.logging import ignore_logger
 
 import olympia.core.logger
 
@@ -1711,6 +1712,7 @@ sentry_sdk.init(
     integrations=[DjangoIntegration(), CeleryIntegration()],
     **SENTRY_CONFIG,
 )
+ignore_logger('django.security.DisallowedHost')
 
 # Automatically do 'from olympia import amo' when running shell_plus.
 SHELL_PLUS_POST_IMPORTS = (('olympia', 'amo'),)
