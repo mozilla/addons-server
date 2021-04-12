@@ -241,7 +241,6 @@ def recreate_theme_previews(addon_ids, **kw):
                     continue
                 # else carry on with a full preview generation
             log.info('Recreating previews for theme: %s' % version.addon_id)
-            VersionPreview.objects.filter(version=version).delete()
             xpi = get_filepath(version.all_files[0])
             theme_data = parse_addon(xpi, minimal=True).get('theme', {})
             generate_static_theme_preview(theme_data, version.id)

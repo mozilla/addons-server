@@ -178,6 +178,11 @@ def generate_static_theme_preview(theme_manifest, version_pk):
         amo.THEME_PREVIEW_RENDERINGS.values(), key=operator.itemgetter('position')
     )
     colors = None
+    old_preview_ids = list(
+        VersionPreview.objects.filter(version_id=version_pk).values_list(
+            'id', flat=True
+        )
+    )
     for rendering in renderings:
         # Create a Preview for this rendering.
         preview = VersionPreview.objects.create(
@@ -218,6 +223,7 @@ def generate_static_theme_preview(theme_manifest, version_pk):
                 'colors': colors,
             }
             preview.update(**data)
+    VersionPreview.objects.filter(id__in=old_preview_ids).delete()
     addon_id = Version.objects.values_list('addon_id', flat=True).get(id=version_pk)
     index_addons.delay([addon_id])
 

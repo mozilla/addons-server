@@ -102,10 +102,9 @@ def test_create_missing_theme_previews(parse_addon_mock):
         recreate_theme_previews([theme.id], only_missing=False)
         assert gen_preview.call_count == 1
         assert resize.call_count == 0
-        assert VersionPreview.objects.count() == 0
 
     # If the add-on is missing a preview, we call generate_static_theme_preview
-    # amo_preview.delete() - `recreate_theme_previews` deletes all the previews already
+    VersionPreview.objects.get(id=amo_preview.id).delete()
     firefox_preview.save()
     extra_preview.save()
     assert VersionPreview.objects.count() == 2
