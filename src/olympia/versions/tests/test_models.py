@@ -380,7 +380,7 @@ class TestVersion(TestCase):
         assert not hide_disabled_file_mock.called
 
         qs.update(status=amo.STATUS_AWAITING_REVIEW)
-        version = Version.objects.create(addon=addon)
+        version = Version.objects.create(addon=addon, version='0.87')
         version.disable_old_files()
         assert qs.all()[0].status == amo.STATUS_DISABLED
         assert hide_disabled_file_mock.called
@@ -402,7 +402,7 @@ class TestVersion(TestCase):
 
         # Doesn't happen even if the new version is also unlisted.
         new_version = Version.objects.create(
-            addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED
+            addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED, version='0.54'
         )
         new_version.disable_old_files()
         assert old_version.files.all()[0].status == amo.STATUS_AWAITING_REVIEW

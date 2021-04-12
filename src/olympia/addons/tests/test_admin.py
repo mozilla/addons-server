@@ -227,8 +227,10 @@ class TestAddonAdmin(TestCase):
 
     def test_show_links_to_reviewer_tools_with_both_channels(self):
         addon = addon_factory(guid='@foo')
-        version_factory(addon=addon, channel=amo.RELEASE_CHANNEL_LISTED)
-        version_factory(addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        version_factory(addon=addon, version='0.1', channel=amo.RELEASE_CHANNEL_LISTED)
+        version_factory(
+            addon=addon, version='0.2', channel=amo.RELEASE_CHANNEL_UNLISTED
+        )
         detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
@@ -537,7 +539,7 @@ class TestAddonAdmin(TestCase):
     def test_version_pagination(self):
         addon = addon_factory(users=[user_factory()])
         first_file = addon.current_version.all_files[0]
-        [version_factory(addon=addon) for i in range(0, 30)]
+        [version_factory(addon=addon, version=str(i)) for i in range(0, 30)]
         self.detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')

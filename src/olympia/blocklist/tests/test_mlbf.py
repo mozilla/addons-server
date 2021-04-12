@@ -206,23 +206,6 @@ class TestMLBF(TestCase):
         self.not_webext_version.all_files[0].update(is_webextension=True)
         assert len(fetch_blocked_from_db()) == 10
 
-    def test_fetch_blocked_with_duplicate_version_strings(self):
-        """Handling the edge case where an addon (erroronously) has more than
-        one version with the same version identififer."""
-        self.setup_data()
-        blocked_guids = fetch_blocked_from_db().values()
-        assert len(MLBF.hash_filter_inputs(blocked_guids)) == 8
-
-        version_factory(
-            addon=self.five_ver_block.addon,
-            version=self.five_ver_123_40.version,  # copying the same identifer
-            file_kw={'is_signed': True, 'is_webextension': True},
-        )
-        self.five_ver_block.addon.reload()
-        assert self.five_ver_block.addon.versions.filter(version='123.40').count() == 2
-        blocked_guids = fetch_blocked_from_db().values()
-        assert len(MLBF.hash_filter_inputs(blocked_guids)) == 8
-
     def test_hash_filter_inputs(self):
         data = [
             ('guid@', '1.0'),
