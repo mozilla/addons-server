@@ -9,6 +9,8 @@ import socket
 
 from datetime import datetime
 
+from django.security import DisallowedHost
+
 import sentry_sdk
 from kombu import Queue
 from sentry_sdk.integrations.celery import CeleryIntegration
@@ -1216,12 +1218,6 @@ LOGGING = {
             'level': logging.WARNING,
             'propagate': True,
         },
-        # Downgrade DisallowedHost so it doesn't show up in Sentry
-        'django.security.DisallowedHost': {
-            'handlers': ['mozlog'],
-            'level': logging.WARNING,
-            'propagate': False,
-        },
         'elasticsearch': {
             'handlers': ['null'],
             'level': logging.INFO,
@@ -1714,6 +1710,7 @@ from olympia.amo import reverse  # noqa
 
 
 sentry_sdk.init(
+    ignore_errors=[DisallowedHost()],
     integrations=[DjangoIntegration(), CeleryIntegration()],
     **SENTRY_CONFIG,
 )
