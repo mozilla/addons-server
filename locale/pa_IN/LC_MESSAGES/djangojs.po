@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-16 17:41+0000\n"
-"PO-Revision-Date: 2020-06-03 17:38+0000\n"
-"Last-Translator: jimidar <jimidar@gmail.com>\n"
+"PO-Revision-Date: 2021-04-12 00:27+0000\n"
+"Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
 "MIME-Version: 1.0\n"
@@ -45,10 +45,10 @@ msgid "Uploading {0}"
 msgstr "{0} ਅੱਪਲੋਡ ਹੋ ਰਿਹਾ"
 
 msgid "Error with {0}"
-msgstr "{0} ਨਾਲ ਖਾਮੀ"
+msgstr "{0} ਨਾਲ ਗਲਤੀ"
 
 msgid "Please make sure to report any linting related issues on GitHub"
-msgstr "ਕਿਰਪਾ ਕਰਕੇ ਕਿਸੇ ਸਤਰ੍ਹ ਸਬੰਧਿਤ ਮੁੱਦਿਆਂ ਦੀ GitHub ਤੇ ਰਿਪੋਰਟ ਕਰਨਾ  ਯਕੀਨੀ ਬਣਾਉ।"
+msgstr "ਲਿੰਟ ਸਬੰਧੀ ਕਿਸੇ ਵੀ ਮਸਲੇ ਨੂੰ GitHub 'ਤੇ ਰਿਪੋਰਟ ਕਰੋ।"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
@@ -61,7 +61,7 @@ msgstr[0] "&hellip;ਅਤੇ {0} ਹੋਰ"
 msgstr[1] "&hellip;ਅਤੇ {0} ਹੋਰ"
 
 msgid "See full validation report"
-msgstr "ਪੂਰੀ ਪ੍ਰਮਾਣਿਕਤਾ ਦੀ ਰਿਪੋਰਟ ਵੇਖੋ"
+msgstr "ਪ੍ਰਮਾਣਿਕਤਾ ਦੀ ਪੂਰੀ ਰਿਪੋਰਟ ਵੇਖੋ"
 
 msgid "Validating {0}"
 msgstr "{0} ਦੀ ਪ੍ਰਮਾਣਿਕਤਾ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ"
@@ -73,7 +73,7 @@ msgid "Received an empty response from the server; status: {0}"
 msgstr "ਸਰਵਰ ਵੱਲੋਂ ਇੱਕ ਖਾਲੀ ਜਵਾਬ ਮਿਲਿਆ; ਸਥਿਤੀ: {0}"
 
 msgid "Unexpected server error while validating."
-msgstr "ਵੈਧਤਾ ਦੌਰਾਨ ਅਚਾਨਕ ਸਰਵਰ ਗਲਤੀ।"
+msgstr "ਪ੍ਰਮਾਣਿਕਤਾ ਦੌਰਾਨ ਅਣਚਾਹੀ ਸਰਵਰ ਗਲਤੀ।"
 
 msgid "Finished validating {0}"
 msgstr "{0} ਦੀ ਪ੍ਰਮਾਣਿਕਤਾ ਮੁਕੰਮਲ ਹੋਈ"
@@ -123,8 +123,8 @@ msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"ਕੰਪਾਇਲਡ ਬਾਇਨਰੀਆਂ, ਨਾਲ ਦੀ ਨਾਲ ਛੋਟੀਆਂ ਜਾਂ ਬੇਕਾਰ ਸਕਰਿਪਟਾਂ (ਜਾਣੂ ਲਾਇਬਰ੍ਰੇਰੀਆਂ ਨੂੰ ਛੱਡ ਕੇ) ਨੂੰ ਸਮੀਖਿਆ ਲਈ ਆਪਣੇ ਸੋਰਸ ਕੋਡਾਂ ਨੂੰ ਵੱਖ ਤੋਂ ਦਾਖਲ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੈ। ਇਹ ਯਕੀਨੀ ਬਣਾਓ ਕੀ ਤੁਸੀਂ ਆਪਣੇ ਦਾਖਲ ਕਾਰਜ ਨੂੰ ਰੱਦ ਹੋਣ ਤੋਂ ਬਚਾਉਣ ਲਈ ਸੋਰਸ ਕੋਡ ਅੱਪਲੋਡ ਖੇਤਰ ਦੀ "
-"ਵਰਤੋਂ ਕਰ ਰਹੇ ਹੋ।"
+"ਕੰਪਾਇਲਡ ਬਾਇਨਰੀਆਂ, ਨਾਲ ਦੀ ਨਾਲ ਛੋਟੀਆਂ ਜਾਂ ਬੇਕਾਰ ਸਕਰਿਪਟਾਂ (ਜਾਣੂ ਲਾਇਬਰ੍ਰੇਰੀਆਂ ਨੂੰ ਛੱਡ ਕੇ) ਨੂੰ ਸਮੀਖਿਆ ਲਈ ਆਪਣੇ ਸੋਰਸ ਕੋਡਾਂ ਨੂੰ ਵੱਖ ਤੋਂ ਦਾਖਲ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੈ। ਇਹ ਯਕੀਨੀ ਬਣਾਓ ਕੀ ਤੁਸੀਂ ਆਪਣੇ ਦਾਖਲ ਕਾਰਜ ਨੂੰ ਰੱਦ "
+"ਹੋਣ ਤੋਂ ਬਚਾਉਣ ਲਈ ਸੋਰਸ ਕੋਡ ਅੱਪਲੋਡ ਖੇਤਰ ਦੀ ਵਰਤੋਂ ਕਰ ਰਹੇ ਹੋ।"
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "ਵੈਧਤਾ ਕਾਰਜ ਨੂੰ ਇਹ ਮਸਲੇ ਲੱਭੇ ਹਨ ਜੋ ਰੱਦ ਹੋਣ ਦਾ ਕਾਰਨ ਬਣ ਸਕਦੇ ਹਨ:"
@@ -145,7 +145,7 @@ msgid "Videos must be in WebM."
 msgstr "ਵੀਡੀਓ WebM ਵਿੱਚ ਹੋਣੀਆਂ ਚਾਹੀਦੀਆਂ ਹਨ।"
 
 msgid "This theme is incompatible with your version of {0}"
-msgstr "{0} ਦੇ ਤੁਹਾਡੇ ਵਰਜਨ ਨਾਲ ਇਹ ਥੀਮ ਅਨੁਕੂਲ ਨਹੀਂ ਹੈ"
+msgstr "{0} ਦਾ ਤੁਹਾਡਾ ਵਰਜ਼ਨ ਨਾਲ ਇਹ ਥੀਮ ਅਨੁਕੂਲ ਨਹੀਂ ਹੈ"
 
 msgid "Flagged for review"
 msgstr "ਸਮੀਖਿਆ ਲਈ ਨਿਸ਼ਾਨਬੱਧ ਕੀਤਾ"
@@ -157,7 +157,7 @@ msgid "Marked for deletion"
 msgstr "ਮਿਟਾਉਣ ਲਈ ਨਿਸ਼ਾਨੀ ਲਾਈ"
 
 msgid "Updating results&hellip;"
-msgstr "ਸੱਜਰੇ ਕੀਤੇ ਜਾ ਰਹੇ ਨਤੀਜੇ&hellip;"
+msgstr "ਨਤੀਜੇ ਅੱਪਡੇਟ ਕੀਤੇ ਜਾ ਰਹੇ ਹਨ&hellip;"
 
 msgid "Category"
 msgstr "ਵਰਗ"
@@ -240,7 +240,7 @@ msgid "Collections Created"
 msgstr "ਬਣਾਏ ਭੰਡਾਰ"
 
 msgid "Add-ons in Use"
-msgstr "ਵਰਤਿਆ ਜਾ ਰਿਹਾ ਐਡ-ਆਨ"
+msgstr "ਐਡ-ਆਨ ਵਿੱਚ ਵਰਤੋ ਹਨ"
 
 msgid "Add-ons Created"
 msgstr "ਐਡ-ਆਨ ਬਣਾਇਆ ਗਿਆ"
@@ -288,7 +288,7 @@ msgid "Search Suggestions"
 msgstr "ਖੋਜ ਸੁਝਾਅ"
 
 msgid "Search Results"
-msgstr "ਨਤੀਜੇ ਖੋਜੋ"
+msgstr "ਖੋਜ ਦੇ ਨਤੀਜੇ"
 
 msgid "Homepage Promo"
 msgstr "ਮੁੱਖ ਸਫਾ ਪਰੋਮੋ"
