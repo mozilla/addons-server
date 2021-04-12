@@ -9,7 +9,7 @@ import socket
 
 from datetime import datetime
 
-from django.security import DisallowedHost
+from django.core.exceptions import DisallowedHost
 
 import sentry_sdk
 from kombu import Queue
