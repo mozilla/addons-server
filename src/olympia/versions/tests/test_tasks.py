@@ -167,7 +167,12 @@ def test_generate_static_theme_preview(
     destination = addon.current_version.all_files[0].current_file_path
     zip_file = os.path.join(HEADER_ROOT, 'theme_images.zip')
     copy_stored_file(zip_file, destination)
+    # existing previews should be deleted if they exist
+    existing_preview = VersionPreview.objects.create(version=addon.current_version)
     generate_static_theme_preview(theme_manifest, addon.current_version.pk)
+    # check that it was deleted
+    assert not VersionPreview.objects.filter(id=existing_preview.id).exists()
+    assert VersionPreview.objects.filter(version=addon.current_version).count() == 2
 
     # for svg preview we write the svg twice, 1st with write_svg, later with convert_svg
     assert resize_image_mock.call_count == 2
