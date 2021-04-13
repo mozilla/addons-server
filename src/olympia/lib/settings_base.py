@@ -520,13 +520,10 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.sessions',
     'django.contrib.sitemaps',
-    # 'django.contrib.sites',
     'django.contrib.staticfiles',
     # Has to load after auth
     'django_statsd',
 )
-
-# SITE_ID = 1
 
 # These need to point to prod, because that's where the database lives. You can
 # change it locally to test the extraction process, but be careful not to
