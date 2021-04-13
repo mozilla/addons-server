@@ -187,6 +187,7 @@ def test_pre_setup(request, tmpdir, settings):
     settings.GIT_FILE_STORAGE_PATH = _path(storage_root, 'git-storage')
     settings.MLBF_STORAGE_PATH = _path(storage_root, 'mlbf')
     settings.MEDIA_ROOT = _path(shared_storage, 'uploads')
+    settings.SITEMAP_STORAGE_PATH = _path(storage_root, 'sitemaps')
     settings.TMP_PATH = _path(shared_storage, 'tmp')
 
     # Reset the prefixer and urlconf after updating media root

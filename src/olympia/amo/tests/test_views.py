@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
+import os
 import re
 import sys
 
@@ -523,3 +524,68 @@ class TestSiteStatusAPI(TestCase):
             'read_only': True,
             'notice': 'THIS is NOT Á TEST!',
         }
+
+
+TEST_SITEMAPS_DIR = os.path.join(
+    settings.ROOT, 'src', 'olympia', 'amo', 'tests', 'sitemaps'
+)
+
+
+class TestSitemap(TestCase):
+    @override_settings(SITEMAP_STORAGE_PATH=TEST_SITEMAPS_DIR)
+    def test_index(self):
+
+        result = self.client.get('/sitemap.xml')
+        assert result.status_code == 200
+        assert result.get('Content-Type') == 'application/xml'
+        assert (
+            b'<sitemap><loc>http://testserver/sitemap.xml?section=amo</loc>'
+            in result.content
+        )
+
+    @override_settings(SITEMAP_STORAGE_PATH=TEST_SITEMAPS_DIR)
+    def test_section(self):
+        result = self.client.get('/sitemap.xml?section=amo')
+        assert result.status_code == 200
+        assert result.get('Content-Type') == 'application/xml'
+        assert (
+            b'<url><loc>http://testserver/en-US/about</loc><lastmod>2021-04-08<'
+            in result.content
+        )
+
+        # a section with more than one page
+        result = self.client.get('/sitemap.xml?section=addons&p=2')
+        assert result.status_code == 200
+        assert result.get('Content-Type') == 'application/xml'
+        assert (
+            b'<loc>http://testserver/en-US/firefox/addon/delicious-pierogi/</loc>'
+            in result.content
+        )
+
+    @override_settings(SITEMAP_DEBUG_AVAILABLE=True)
+    def test_debug_requests(self):
+        # index
+        result = self.client.get('/sitemap.xml?debug')
+        assert result.status_code == 200
+        assert result.get('Content-Type') == 'application/xml'
+        assert (
+            b'<sitemap><loc>http://testserver/sitemap.xml?section=amo</loc>'
+            in result.content
+        )
+
+        # a section
+        result = self.client.get('/sitemap.xml?section=addons&debug')
+        assert result.status_code == 200
+        assert result.get('Content-Type') == 'application/xml'
+        # there aren't any addons so no content
+        assert (
+            b'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
+            b'xmlns:xhtml="http://www.w3.org/1999/xhtml">\n\n</urlset>'
+            in result.content
+        )
+
+    @override_settings(SITEMAP_DEBUG_AVAILABLE=False)
+    def test_debug_unavailable_on_prod(self):
+        result = self.client.get('/sitemap.xml?debug')
+        # it should 404 because debug is ignored andthe prebuilt sitemap.xml isn't there
+        assert result.status_code == 404

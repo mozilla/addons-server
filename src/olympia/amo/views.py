@@ -5,7 +5,9 @@ import sys
 import django
 from django import http
 from django.conf import settings
+from django.contrib.sitemaps.views import x_robots_tag
 from django.core.exceptions import ViewDoesNotExist
+from django.core.files.storage import default_storage as storage
 from django.db.transaction import non_atomic_requests
 from django.http import Http404, HttpResponse, JsonResponse
 from django.views.decorators.cache import never_cache
@@ -15,6 +17,7 @@ from rest_framework.exceptions import NotFound
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+import olympia
 from olympia import amo
 from olympia.amo.utils import render, use_fake_fxa
 from olympia.api.exceptions import base_500_data
@@ -22,6 +25,10 @@ from olympia.api.serializers import SiteStatusSerializer
 from olympia.users.models import UserProfile
 
 from . import monitors
+from .sitemap import build_sitemap, get_sitemap_path
+
+
+sitemap_log = olympia.core.logger.getLogger('z.monitor')
 
 
 @never_cache
@@ -177,3 +184,26 @@ class SiteStatusView(APIView):
 
     def get(self, request, format=None):
         return Response(SiteStatusSerializer(object()).data)
+
+
+@non_atomic_requests
+@x_robots_tag
+def sitemap(request):
+    section = request.GET.get('section')  # no section means the index page
+    page = request.GET.get('p', 1)
+    if 'debug' in request.GET and settings.SITEMAP_DEBUG_AVAILABLE:
+        content = build_sitemap(section, page)
+    else:
+        path = get_sitemap_path(section, page)
+        try:
+            content = storage.open(path)  # HttpResponse closes files after consuming
+        except FileNotFoundError as err:
+            sitemap_log.exception(
+                'Sitemap for section %s, page %s, not found',
+                section,
+                page,
+                exc_info=err,
+            )
+            raise Http404
+    response = HttpResponse(content, content_type='application/xml')
+    return response

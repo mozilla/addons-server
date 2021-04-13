@@ -1,4 +1,4 @@
-from django.urls import include, re_path
+from django.urls import include, path, re_path
 from django.views.decorators.cache import never_cache
 
 from . import views
@@ -33,4 +33,5 @@ urlpatterns = [
         views.fake_fxa_authorization,
         name='fake-fxa-authorization',
     ),
+    path('sitemap.xml', views.sitemap, name='amo.sitemap'),
 ]

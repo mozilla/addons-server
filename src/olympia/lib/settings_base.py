@@ -268,6 +268,7 @@ SUPPORTED_NONAPPS = (
     'robots.txt',
     'statistics',
     'services',
+    'sitemap.xml',
     'static',
     'user-media',
     '__version__',
@@ -283,6 +284,7 @@ SUPPORTED_NONLOCALES = (
     'google231a41e803e464e9.html',
     'robots.txt',
     'services',
+    'sitemap.xml',
     'downloads',
     'static',
     'user-media',
@@ -309,6 +311,7 @@ JINJA_EXCLUDE_TEMPLATE_PATHS = (
     r'debug_toolbar',
     r'^rangefilter\/',
     r'^registration\/',
+    r'sitemap.xml$',
 )
 
 TEMPLATES = [
@@ -517,6 +520,7 @@ INSTALLED_APPS = (
     'django.contrib.humanize',
     'django.contrib.messages',
     'django.contrib.sessions',
+    'django.contrib.sitemaps',
     'django.contrib.staticfiles',
     # Has to load after auth
     'django_statsd',
@@ -1552,6 +1556,7 @@ ADDONS_PATH = os.path.join(STORAGE_ROOT, 'files')
 GUARDED_ADDONS_PATH = os.path.join(STORAGE_ROOT, 'guarded-addons')
 GIT_FILE_STORAGE_PATH = os.path.join(STORAGE_ROOT, 'git-storage')
 MLBF_STORAGE_PATH = os.path.join(STORAGE_ROOT, 'mlbf')
+SITEMAP_STORAGE_PATH = os.path.join(STORAGE_ROOT, 'sitemaps')
 
 SHARED_STORAGE = os.path.join(STORAGE_ROOT, 'shared_storage')
 
@@ -1734,6 +1739,7 @@ CRON_JOBS = {
     'unhide_disabled_files': 'olympia.addons.cron',
     'update_addon_hotness': 'olympia.addons.cron',
     'gc': 'olympia.amo.cron',
+    'write_sitemaps': 'olympia.amo.cron',
     'auto_import_blocklist': 'olympia.blocklist.cron',
     'upload_mlbf_to_remote_settings': 'olympia.blocklist.cron',
     'update_blog_posts': 'olympia.devhub.cron',
@@ -1812,3 +1818,5 @@ BIGQUERY_PROJECT = 'moz-fx-data-shared-prod'
 BIGQUERY_AMO_DATASET = 'amo_dev'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+SITEMAP_DEBUG_AVAILABLE = False

@@ -163,3 +163,5 @@ except ImportError:
 
     warnings.warn('Could not import local_settings module. {}'.format(
         traceback.format_exc()))
+
+SITEMAP_DEBUG_AVAILABLE = True
