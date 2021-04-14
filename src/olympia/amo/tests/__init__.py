@@ -797,16 +797,17 @@ def collection_factory(**kw):
         'application': amo.FIREFOX.id,
         'name': 'Collection %s' % abs(hash(datetime.now())),
         'description': 'Its a collection %s' % abs(hash(datetime.now())),
-        'addon_count': random.randint(200, 2000),
         'listed': True,
     }
     data.update(kw)
     c = Collection(**data)
     if c.slug is None:
         c.slug = data['name'].replace(' ', '-').lower()
-    c.created = c.modified = datetime(
+    random_datetime = datetime(
         2011, 11, 11, random.randint(0, 23), random.randint(0, 59)
     )
+    c.created = kw.get('created', random_datetime)
+    c.modified = kw.get('modified', random_datetime)
     c.save()
     return c
 
