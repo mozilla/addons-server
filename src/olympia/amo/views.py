@@ -1,6 +1,8 @@
 import json
 import os
 import sys
+import time
+from os import stat as os_stat
 
 import django
 from django import http
@@ -10,6 +12,8 @@ from django.core.exceptions import ViewDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.db.transaction import non_atomic_requests
 from django.http import Http404, HttpResponse, JsonResponse
+from django.utils.cache import patch_cache_control
+from django.utils.http import http_date
 from django.views.decorators.cache import never_cache
 
 from django_statsd.clients import statsd
@@ -189,6 +193,9 @@ class SiteStatusView(APIView):
 @non_atomic_requests
 @x_robots_tag
 def sitemap(request):
+    expires_timestamp = None
+    modified_timestamp = None
+
     section = request.GET.get('section')  # no section means the index page
     page = request.GET.get('p', 1)
     if 'debug' in request.GET and settings.SITEMAP_DEBUG_AVAILABLE:
@@ -197,6 +204,7 @@ def sitemap(request):
         path = get_sitemap_path(section, page)
         try:
             content = storage.open(path)  # HttpResponse closes files after consuming
+            modified_timestamp = os_stat(path).st_mtime
         except FileNotFoundError as err:
             sitemap_log.exception(
                 'Sitemap for section %s, page %s, not found',
@@ -205,5 +213,15 @@ def sitemap(request):
                 exc_info=err,
             )
             raise Http404
+        expires_timestamp = modified_timestamp + (60 * 60 * 24)
     response = HttpResponse(content, content_type='application/xml')
+    if expires_timestamp:
+        # check the expiry date wouldn't be in the past
+        if expires_timestamp > time.time():
+            response['Expires'] = http_date(expires_timestamp)
+        else:
+            # otherwise, just return a Cache-Control header of an hour
+            patch_cache_control(response, max_age=60 * 60)
+    if modified_timestamp:
+        response['Last-Modified'] = http_date(modified_timestamp)
     return response

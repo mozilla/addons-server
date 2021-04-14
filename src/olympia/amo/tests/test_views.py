@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import datetime
 import json
 import os
 import re
@@ -13,6 +14,7 @@ from django.conf import settings
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 from django.urls import reverse
+from django.utils.http import http_date
 
 import pytest
 
@@ -534,7 +536,6 @@ TEST_SITEMAPS_DIR = os.path.join(
 class TestSitemap(TestCase):
     @override_settings(SITEMAP_STORAGE_PATH=TEST_SITEMAPS_DIR)
     def test_index(self):
-
         result = self.client.get('/sitemap.xml')
         assert result.status_code == 200
         assert result.get('Content-Type') == 'application/xml'
@@ -561,6 +562,38 @@ class TestSitemap(TestCase):
             b'<loc>http://testserver/en-US/firefox/addon/delicious-pierogi/</loc>'
             in result.content
         )
+
+    @override_settings(SITEMAP_STORAGE_PATH=TEST_SITEMAPS_DIR)
+    def test_headers(self):
+        file_timestamp = round(datetime.datetime.now().timestamp() - (60 * 60))
+
+        def stat_side_effect(path):
+            stat_list = list(os.stat(path))
+            # patch the modified timestamp
+            stat_list[8] = file_timestamp
+            return os.stat_result(stat_list)
+
+        with mock.patch('olympia.amo.views.os_stat') as stat_mock:
+            stat_mock.side_effect = stat_side_effect
+            result = self.client.get('/sitemap.xml')
+
+        assert result.status_code == 200
+        assert result.get('Content-Type') == 'application/xml'
+        assert result.get('Last-Modified') == http_date(file_timestamp)
+        assert result.get('Expires') == http_date(file_timestamp + (24 * 60 * 60))
+        assert not result.get('Cache-Control')
+
+        # Repeat when the file is older than a day
+        file_timestamp = file_timestamp - 24 * 60 * 60
+        with mock.patch('olympia.amo.views.os_stat') as stat_mock:
+            stat_mock.side_effect = stat_side_effect
+            result = self.client.get('/sitemap.xml')
+
+        assert result.status_code == 200
+        assert result.get('Content-Type') == 'application/xml'
+        assert result.get('Last-Modified') == http_date(file_timestamp)
+        assert not result.get('Expires')
+        assert result.get('Cache-Control') == 'max-age=3600'
 
     @override_settings(SITEMAP_DEBUG_AVAILABLE=True)
     def test_debug_requests(self):
