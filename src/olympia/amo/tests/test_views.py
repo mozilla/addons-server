@@ -90,15 +90,6 @@ class Test404(TestCase):
         data = json.loads(response.content)
         assert data['detail'] == 'Not found.'
 
-    def test_404_with_mobile_detected(self):
-        res = self.client.get('/en-US/firefox/xxxxxxx', X_IS_MOBILE_AGENTS='1')
-        assert res.status_code == 404
-        self.assertTemplateUsed(res, 'amo/404-responsive.html')
-
-        res = self.client.get('/en-US/firefox/xxxxxxx', X_IS_MOBILE_AGENTS='0')
-        assert res.status_code == 404
-        self.assertTemplateUsed(res, 'amo/404.html')
-
 
 class Test500(TestCase):
     def test_500_logged_in(self):

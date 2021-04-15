@@ -86,12 +86,7 @@ def handler404(request, exception=None, **kwargs):
     if getattr(request, 'is_api', False):
         # It's a v3+ api request
         return JsonResponse({'detail': str(NotFound.default_detail)}, status=404)
-    # X_IS_MOBILE_AGENTS is set by nginx as an env variable when it detects
-    # a mobile User Agent or when the mamo cookie is present.
-    if request.META.get('X_IS_MOBILE_AGENTS') == '1':
-        return render(request, 'amo/404-responsive.html', status=404)
-    else:
-        return render(request, 'amo/404.html', status=404)
+    return render(request, 'amo/404.html', status=404)
 
 
 @non_atomic_requests
