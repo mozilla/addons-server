@@ -29,11 +29,11 @@ class TestMLBF(TestCase):
             addon=addon_factory(file_kw={'is_signed': True, 'is_webextension': True}),
             updated_by=user,
         )
-        # one version, 0 - 9999
+        # one version, 0 - 65536
         Block.objects.create(
             addon=addon_factory(file_kw={'is_signed': True, 'is_webextension': True}),
             updated_by=user,
-            max_version='9999',
+            max_version='65536',
         )
         # one version, 0 - *, unlisted
         Block.objects.create(
