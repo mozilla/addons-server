@@ -6,15 +6,17 @@ from unittest import mock
 from django.conf import settings
 from django.urls import reverse
 
+from olympia import amo
 from olympia.amo.sitemap import (
     AddonSitemap,
     AMOSitemap,
     build_sitemap,
+    CollectionSitemap,
     get_sitemap_path,
     get_sitemap_section_pages,
     sitemaps,
 )
-from olympia.amo.tests import addon_factory
+from olympia.amo.tests import addon_factory, collection_factory, user_factory
 
 from .test_views import TEST_SITEMAPS_DIR
 
@@ -22,6 +24,7 @@ from .test_views import TEST_SITEMAPS_DIR
 def test_addon_sitemap():
     addon_a = addon_factory()
     addon_b = addon_factory()
+    addon_factory(status=amo.STATUS_NOMINATED)  # shouldn't show up
     sitemap = AddonSitemap()
     assert list(sitemap.items()) == [
         (addon_a.last_updated, addon_a.slug),
@@ -39,16 +42,39 @@ def test_amo_sitemap():
         assert sitemap.location(item) == reverse(item)
 
 
+def test_collection_sitemap(mozilla_user):
+    collection_a = collection_factory(
+        author=mozilla_user, modified=datetime.datetime(2020, 1, 1, 1, 1, 1)
+    )
+    collection_b = collection_factory(
+        author=mozilla_user, modified=datetime.datetime(2020, 2, 2, 2, 2, 2)
+    )
+
+    collection_factory(author=user_factory())  # not mozilla user
+    sitemap = CollectionSitemap()
+    assert list(sitemap.items()) == [
+        (collection_a.modified, collection_a.slug, mozilla_user.id),
+        (collection_b.modified, collection_b.slug, mozilla_user.id),
+    ]
+    for item in sitemap.items():
+        assert sitemap.location(item) == reverse(
+            'collections.detail', args=[mozilla_user.id, item.slug]
+        )
+        assert '/en-US/firefox/' in sitemap.location(item)
+        assert sitemap.lastmod(item) == item.modified
+
+
 def test_get_sitemap_section_pages():
     addon_factory()
     addon_factory()
     addon_factory()
-    assert list(sitemaps.keys()) == ['amo', 'addons']
+    assert list(sitemaps.keys()) == ['amo', 'addons', 'collections']
 
     pages = get_sitemap_section_pages()
     assert pages == [
         ('amo', 1),
         ('addons', 1),
+        ('collections', 1),
     ]
     with mock.patch.object(AddonSitemap, 'limit', 2):
         pages = get_sitemap_section_pages()
@@ -56,6 +82,7 @@ def test_get_sitemap_section_pages():
             ('amo', 1),
             ('addons', 1),
             ('addons', 2),
+            ('collections', 1),
         ]
 
 

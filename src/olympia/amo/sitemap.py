@@ -10,6 +10,7 @@ from django.urls import reverse
 
 from olympia.addons.models import Addon
 from olympia.amo.templatetags.jinja_helpers import absolutify
+from olympia.bandwagon.models import Collection
 
 
 class AddonSitemap(Sitemap):
@@ -51,9 +52,29 @@ class AMOSitemap(Sitemap):
         return reverse(item)
 
 
+class CollectionSitemap(Sitemap):
+    priority = 0.5
+    changefreq = 'daily'
+    # i18n = True  # TODO: support all localized urls
+
+    def items(self):
+        return (
+            Collection.objects.filter(author_id=settings.TASK_USER_ID)
+            .order_by('modified')
+            .values_list('modified', 'slug', 'author_id', named=True)
+        )
+
+    def lastmod(self, item):
+        return item.modified
+
+    def location(self, item):
+        return Collection.get_url_path(item)
+
+
 sitemaps = {
     'amo': AMOSitemap(),
     'addons': AddonSitemap(),
+    'collections': CollectionSitemap(),
 }
 
 
