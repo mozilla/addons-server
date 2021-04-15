@@ -31,7 +31,10 @@ class TestMLBF(TestCase):
         )
         # one version, 0 - 9999
         Block.objects.create(
-            addon=addon_factory(file_kw={'is_signed': True, 'is_webextension': True}),
+            addon=addon_factory(
+                version_kw={'version': '11.7'},
+                file_kw={'is_signed': True, 'is_webextension': True},
+            ),
             updated_by=user,
             max_version='9999',
         )
@@ -85,7 +88,10 @@ class TestMLBF(TestCase):
             max_version='0',
         )
         self.under = Block.objects.create(
-            addon=addon_factory(file_kw={'is_signed': True, 'is_webextension': True}),
+            addon=addon_factory(
+                version_kw={'version': '9998.0'},
+                file_kw={'is_signed': True, 'is_webextension': True},
+            ),
             updated_by=user,
             min_version='9999',
         )
