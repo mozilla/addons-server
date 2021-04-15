@@ -2,7 +2,6 @@ import random
 
 from datetime import datetime
 
-from olympia import amo
 from olympia.amo.utils import slugify
 from olympia.bandwagon.models import Collection, CollectionAddon
 
@@ -12,8 +11,6 @@ from .translations import generate_translations
 def create_collection(application, **kwargs):
     """Create a Collection for the given `application`."""
     data = {
-        'type': amo.COLLECTION_NORMAL,
-        'application': application,
         'name': 'Collection %s' % abs(hash(datetime.now())),
         'addon_count': random.randint(200, 2000),
         'listed': True,

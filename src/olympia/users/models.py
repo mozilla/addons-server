@@ -605,58 +605,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         log.info('User (%s) logged in successfully' % user, extra={'email': user.email})
         user.update(last_login_ip=core.get_remote_addr() or '')
 
-    def mobile_collection(self):
-        return self.special_collection(
-            amo.COLLECTION_MOBILE,
-            defaults={
-                'slug': 'mobile',
-                'listed': False,
-                'name': gettext('My Mobile Add-ons'),
-            },
-        )
-
-    def favorites_collection(self):
-        return self.special_collection(
-            amo.COLLECTION_FAVORITES,
-            defaults={
-                'slug': 'favorites',
-                'listed': False,
-                'name': gettext('My Favorite Add-ons'),
-            },
-        )
-
-    def special_collection(self, type_, defaults):
-        from olympia.bandwagon.models import Collection
-
-        c, new = Collection.objects.get_or_create(
-            author=self, type=type_, defaults=defaults
-        )
-        if new:
-            # Do an extra query to make sure this gets transformed.
-            c = Collection.objects.using('default').get(id=c.id)
-        return c
-
-    def addons_for_collection_type(self, type_):
-        """Return the addons for the given special collection type."""
-        from olympia.bandwagon.models import CollectionAddon
-
-        qs = CollectionAddon.objects.filter(
-            collection__author=self, collection__type=type_
-        )
-        return qs.values_list('addon', flat=True)
-
-    @cached_property
-    def mobile_addons(self):
-        return self.addons_for_collection_type(amo.COLLECTION_MOBILE)
-
-    @cached_property
-    def favorite_addons(self):
-        return self.addons_for_collection_type(amo.COLLECTION_FAVORITES)
-
-    @cached_property
-    def watching(self):
-        return self.collectionwatcher_set.values_list('collection', flat=True)
-
 
 class UserNotification(ModelBase):
     user = models.ForeignKey(

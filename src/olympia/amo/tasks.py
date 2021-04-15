@@ -16,7 +16,6 @@ from olympia import amo
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import get_email_backend
-from olympia.bandwagon.models import Collection
 
 
 log = olympia.core.logger.getLogger('z.task')
@@ -80,15 +79,6 @@ def delete_logs(items, **kw):
 
     log.info('[%s@%s] Deleting logs' % (len(items), delete_logs.rate_limit))
     ActivityLog.objects.filter(pk__in=items).exclude(action__in=amo.LOG_KEEP).delete()
-
-
-@task
-def delete_anonymous_collections(items, **kw):
-    log.info(
-        '[%s@%s] Deleting anonymous collections'
-        % (len(items), delete_anonymous_collections.rate_limit)
-    )
-    Collection.objects.filter(type=amo.COLLECTION_ANONYMOUS, pk__in=items).delete()
 
 
 def trigger_sync_objects_to_basket(model_name, pks, reason):

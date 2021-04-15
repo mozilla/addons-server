@@ -5,11 +5,9 @@ from django.db import models
 from django.urls import reverse
 
 from olympia import activity, amo
-from olympia.access import acl
 from olympia.addons.models import Addon
 from olympia.amo.fields import PositiveAutoField
-from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
-from olympia.amo.templatetags.jinja_helpers import absolutify
+from olympia.amo.models import ManagerBase, ModelBase
 from olympia.translations.fields import (
     LinkifiedField,
     NoLinksNoMarkupField,
@@ -19,76 +17,27 @@ from olympia.translations.fields import (
 from olympia.users.models import UserProfile
 
 
-SPECIAL_SLUGS = amo.COLLECTION_SPECIAL_SLUGS
-
-
-class CollectionQuerySet(BaseQuerySet):
-    def with_has_addon(self, addon_id):
-        """Add a `has_addon` property to each collection.
-
-        `has_addon` will be `True` if `addon_id` exists in that
-        particular collection.
-        """
-        has_addon = """
-            select 1 from addons_collections as ac
-                where ac.addon_id = %s and ac.collection_id = collections.id
-                limit 1"""
-
-        return self.extra(select={'has_addon': has_addon}, select_params=(addon_id,))
-
-
 class CollectionManager(ManagerBase):
-    _queryset_class = CollectionQuerySet
-
     def get_queryset(self):
-        qs = super(CollectionManager, self).get_queryset()
+        qs = super().get_queryset()
         return qs.transform(Collection.transformer)
-
-    def manual(self):
-        """Only hand-crafted, favorites, and featured collections should appear
-        in this filter."""
-        types = (
-            amo.COLLECTION_NORMAL,
-            amo.COLLECTION_FAVORITES,
-            amo.COLLECTION_FEATURED,
-        )
-
-        return self.filter(type__in=types)
-
-    def listed(self):
-        """Return public collections only."""
-        return self.filter(listed=True)
-
-    def owned_by(self, user):
-        """Collections authored by a user."""
-        return self.filter(author=user.pk)
 
 
 class Collection(ModelBase):
     id = PositiveAutoField(primary_key=True)
-    TYPE_CHOICES = amo.COLLECTION_CHOICES.items()
 
     uuid = models.UUIDField(blank=True, unique=True, null=True)
     name = TranslatedField(require_locale=False)
-    # nickname is deprecated.  Use slug.
-    nickname = models.CharField(max_length=30, blank=True, unique=True, null=True)
     slug = models.CharField(max_length=30, blank=True, null=True)
 
     description = NoLinksNoMarkupField(require_locale=False)
     default_locale = models.CharField(
         max_length=10, default='en-US', db_column='defaultlocale'
     )
-    type = models.PositiveIntegerField(
-        db_column='collection_type', choices=TYPE_CHOICES, default=0
-    )
-
     listed = models.BooleanField(
         default=True, help_text='Collections are either listed or private.'
     )
 
-    application = models.PositiveIntegerField(
-        choices=amo.APPS_CHOICES, db_column='application_id', blank=True, null=True
-    )
     addon_count = models.PositiveIntegerField(default=0, db_column='addonCount')
 
     addons = models.ManyToManyField(
@@ -103,11 +52,9 @@ class Collection(ModelBase):
     class Meta(ModelBase.Meta):
         db_table = 'collections'
         indexes = [
-            models.Index(fields=('application',), name='application_id'),
             models.Index(fields=('created',), name='created_idx'),
             models.Index(fields=('listed',), name='listed'),
             models.Index(fields=('slug',), name='slug_idx'),
-            models.Index(fields=('type',), name='type_idx'),
         ]
         constraints = [
             models.UniqueConstraint(fields=('author', 'slug'), name='author_id'),
@@ -128,13 +75,6 @@ class Collection(ModelBase):
         super(Collection, self).save(**kw)
 
     def clean_slug(self):
-        if self.type in SPECIAL_SLUGS:
-            self.slug = SPECIAL_SLUGS[self.type]
-            return
-
-        if self.slug in SPECIAL_SLUGS.values():
-            self.slug += '~'
-
         if not self.author:
             return
 
@@ -150,9 +90,6 @@ class Collection(ModelBase):
     def get_url_path(self):
         return reverse('collections.detail', args=[self.author_id, self.slug])
 
-    def get_abs_url(self):
-        return absolutify(self.get_url_path())
-
     @classmethod
     def get_fallback(cls):
         return cls._meta.get_field('default_locale')
@@ -165,13 +102,6 @@ class Collection(ModelBase):
 
     def owned_by(self, user):
         return user.id == self.author_id
-
-    def can_view_stats(self, request):
-        if request and request.user:
-            return self.owned_by(request.user) or acl.action_allowed(
-                request, amo.permissions.COLLECTION_STATS_VIEW
-            )
-        return False
 
     def is_public(self):
         return self.listed
@@ -192,14 +122,6 @@ class Collection(ModelBase):
         if kwargs.get('raw'):
             return
         tasks.collection_meta.delay(instance.id)
-
-    def index_addons(self, addons=None):
-        """Index add-ons belonging to that collection."""
-        from olympia.addons.tasks import index_addons
-
-        addon_ids = [addon.id for addon in (addons or self.addons.all())]
-        if addon_ids:
-            index_addons.delay(addon_ids)
 
     def check_ownership(
         self, request, require_owner, require_author, ignore_disabled, admin
@@ -250,6 +172,8 @@ class CollectionAddon(ModelBase):
     def post_save(sender, instance, **kwargs):
         """Update Collection.addon_count and reindex add-on if the collection
         is featured."""
+        from olympia.addons.tasks import index_addons
+
         if kwargs.get('raw'):
             return
         if instance.collection.listed:
@@ -265,10 +189,13 @@ class CollectionAddon(ModelBase):
             #  never changes, to change add-ons belonging to a collection we
             #  add or remove CollectionAddon instances, we never modify the
             #  addon foreignkey of an existing instance).
-            instance.collection.index_addons(addons=[instance.addon])
+            index_addons.delay([instance.addon.id])
 
     @staticmethod
     def post_delete(sender, instance, **kwargs):
+
+        from olympia.addons.tasks import index_addons
+
         if kwargs.get('raw'):
             return
         if instance.collection.listed:
@@ -281,7 +208,7 @@ class CollectionAddon(ModelBase):
             # That collection is special: each add-on in it is considered
             # recommended, so we need to index the add-on we just removed from
             # it.
-            instance.collection.index_addons(addons=[instance.addon])
+            index_addons.delay([instance.addon.id])
 
 
 models.signals.pre_save.connect(

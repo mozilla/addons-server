@@ -793,8 +793,6 @@ def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **k
 
 def collection_factory(**kw):
     data = {
-        'type': amo.COLLECTION_NORMAL,
-        'application': amo.FIREFOX.id,
         'name': 'Collection %s' % abs(hash(datetime.now())),
         'description': 'Its a collection %s' % abs(hash(datetime.now())),
         'listed': True,

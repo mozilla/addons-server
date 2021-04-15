@@ -573,22 +573,6 @@ class TestUserProfile(TestCase):
         addons = UserProfile.objects.get(id=2519).my_addons()
         assert sorted(str(a.name) for a in addons) == [addon1.name, addon2.name]
 
-    def test_mobile_collection(self):
-        u = UserProfile.objects.get(id='4043307')
-        assert not Collection.objects.filter(author=u)
-
-        c = u.mobile_collection()
-        assert c.type == amo.COLLECTION_MOBILE
-        assert c.slug == 'mobile'
-
-    def test_favorites_collection(self):
-        u = UserProfile.objects.get(id='4043307')
-        assert not Collection.objects.filter(author=u)
-
-        c = u.favorites_collection()
-        assert c.type == amo.COLLECTION_FAVORITES
-        assert c.slug == 'favorites'
-
     def test_get_url_path(self):
         assert UserProfile.objects.create(id=1).get_url_path() == (
             '/en-US/firefox/user/1/'
@@ -596,28 +580,6 @@ class TestUserProfile(TestCase):
         assert UserProfile.objects.create(username='yolo', id=2).get_url_path() == (
             '/en-US/firefox/user/2/'
         )
-
-    def test_mobile_addons(self):
-        user = UserProfile.objects.get(id='4043307')
-        addon1 = Addon.objects.create(name='test-1', type=amo.ADDON_EXTENSION)
-        addon2 = Addon.objects.create(name='test-2', type=amo.ADDON_EXTENSION)
-        mobile_collection = user.mobile_collection()
-        mobile_collection.add_addon(addon1)
-        other_collection = Collection.objects.create(name='other')
-        other_collection.add_addon(addon2)
-        assert user.mobile_addons.count() == 1
-        assert user.mobile_addons[0] == addon1.pk
-
-    def test_favorite_addons(self):
-        user = UserProfile.objects.get(id='4043307')
-        addon1 = Addon.objects.create(name='test-1', type=amo.ADDON_EXTENSION)
-        addon2 = Addon.objects.create(name='test-2', type=amo.ADDON_EXTENSION)
-        favorites_collection = user.favorites_collection()
-        favorites_collection.add_addon(addon1)
-        other_collection = Collection.objects.create(name='other')
-        other_collection.add_addon(addon2)
-        assert user.favorite_addons.count() == 1
-        assert user.favorite_addons[0] == addon1.pk
 
     def test_cannot_set_password(self):
         user = UserProfile.objects.get(id='4043307')

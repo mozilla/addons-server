@@ -1105,7 +1105,6 @@ CELERY_TASK_ROUTES = {
     'olympia.devhub.tasks.resize_icon': {'queue': 'images'},
     'olympia.devhub.tasks.resize_preview': {'queue': 'images'},
     # AMO
-    'olympia.amo.tasks.delete_anonymous_collections': {'queue': 'amo'},
     'olympia.amo.tasks.delete_logs': {'queue': 'amo'},
     'olympia.amo.tasks.send_email': {'queue': 'amo'},
     'olympia.amo.tasks.set_modified_on_object': {'queue': 'amo'},

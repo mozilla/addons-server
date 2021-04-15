@@ -49,16 +49,6 @@ def global_settings(request):
             {'text': gettext('My Collections'), 'href': reverse('collections.list')}
         )
 
-        if request.user.favorite_addons:
-            account_links.append(
-                {
-                    'text': gettext('My Favorites'),
-                    'href': reverse(
-                        'collections.detail', args=[request.user.id, 'favorites']
-                    ),
-                }
-            )
-
         account_links.append(
             {
                 'text': gettext('Log out'),
