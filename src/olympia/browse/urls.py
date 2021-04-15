@@ -15,6 +15,10 @@ urlpatterns = [
         frontend_view,
         name='browse.extensions',
     ),
+    re_path(r'^themes/categories$', frontend_view, name='browse.themes.categories'),
+    re_path(
+        r'^extensions/categories', frontend_view, name='browse.extensions.categories'
+    ),
     re_path(
         r'^search-tools/(?P<category>[^/]+)?$',
         frontend_view,
