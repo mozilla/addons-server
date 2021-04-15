@@ -11,6 +11,7 @@ class TestShelfForm(TestCase):
     def setUp(self):
         self.criteria_sea = '?promoted=recommended&sort=random&type=extension'
         self.criteria_col = 'password-managers'
+        self.criteria_col_themes = 'olympicgames-rio-by-lucky9'
         self.criteria_col_404 = 'passwordmanagers'
         self.criteria_not_200 = '?sort=user&type=extension'
         self.criteria_empty = '?sort=users&type=theme'
@@ -28,6 +29,18 @@ class TestShelfForm(TestCase):
                 kwargs={
                     'user_pk': settings.TASK_USER_ID,
                     'collection_slug': self.criteria_col,
+                },
+            ),
+            status=200,
+            json={'count': 1},
+        )
+        responses.add(
+            responses.GET,
+            reverse_ns(
+                'collection-addon-list',
+                kwargs={
+                    'user_pk': settings.TASK_USER_ID,
+                    'collection_slug': self.criteria_col_themes,
                 },
             ),
             status=200,
@@ -83,6 +96,18 @@ class TestShelfForm(TestCase):
         )
         assert form.is_valid(), form.errors
         assert form.cleaned_data['criteria'] == 'password-managers'
+
+    def test_clean_collections_themes(self):
+        form = ShelfForm(
+            {
+                'title': 'Olympic Themes (Collections)',
+                'endpoint': 'collections-themes',
+                'criteria': self.criteria_col_themes,
+                'addon_count': '0',
+            },
+        )
+        assert form.is_valid(), form.errors
+        assert form.cleaned_data['criteria'] == 'olympicgames-rio-by-lucky9'
 
     def test_clean_form_is_missing_title_field(self):
         form = ShelfForm(

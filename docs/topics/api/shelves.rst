@@ -113,14 +113,16 @@ small number of shelves this endpoint is not paginated.
 
     Possible values for the ``endpoint`` field:
 
-    ==============  ====================================================================
-             Value  Description
-    ==============  ====================================================================
-            search  an :ref:`addon search<addon-search>`, excluding ``?type=statictheme``
-     search-themes  an :ref:`addon search<addon-search>`, with ``?type=statictheme``
-       collections  a mozilla :ref:`collection<collection-addon-list>`.
-                    The collection slug will be in ``criteria``
-    ==============  ====================================================================
+    ===================  ====================================================================
+                  Value  Description
+    ===================  ====================================================================
+                 search  an :ref:`addon search<addon-search>`, excluding ``?type=statictheme``
+          search-themes  an :ref:`addon search<addon-search>`, with ``?type=statictheme``
+            collections  a mozilla :ref:`collection<collection-addon-list>`.
+                         The collection slug for these extensions will be in ``criteria``
+     collections-themes  a mozilla :ref:`collection<collection-addon-list>`.
+                         The collection slug for these themes will be in ``criteria``
+    ===================  ====================================================================
 
 
 ----------------------------------

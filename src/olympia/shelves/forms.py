@@ -50,7 +50,7 @@ class ShelfForm(forms.ModelForm):
                 )
             api = reverse(f'{api_settings.DEFAULT_VERSION}:addon-search')
             url = base_url + api + criteria
-        elif endpoint == 'collections':
+        elif endpoint in ('collections', 'collections-themes'):
             try:
                 api = reverse(
                     f'{api_settings.DEFAULT_VERSION}:collection-addon-list',
