@@ -900,7 +900,14 @@ def version_factory(file_kw=None, **kw):
     min_app_version = kw.pop('min_app_version', '4.0.99')
     max_app_version = kw.pop('max_app_version', '5.0.99')
     version_str = kw.pop(
-        'version', '%.1f' % (random.uniform(0, 999) + random.uniform(0, 999))
+        'version',
+        '%i.%i.%i.%i'
+        % (
+            random.uniform(0, 65535),
+            random.uniform(0, 65535),
+            random.uniform(0, 65535),
+            random.uniform(0, 65535),
+        ),
     )
     application = kw.pop('application', amo.FIREFOX.id)
     if not kw.get('license') and not kw.get('license_id'):
