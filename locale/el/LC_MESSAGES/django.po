@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-16 17:41+0000\n"
-"PO-Revision-Date: 2021-04-11 08:59+0000\n"
+"PO-Revision-Date: 2021-04-16 20:00+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4558,11 +4558,11 @@ msgstr "Προβολή όλων των επεκτάσεων"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
-msgstr "Εργαλεία οργάνωσης καρτελών"
+msgstr "Οργάνωση καρτελών"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
-msgstr "Απόρρητο πέρα από επεκτάσεις"
+msgstr "Απόρρητο χωρίς επεκτάσεις"
 
 #. editorial content for the secondary hero shelves.
 msgid "Media enhancers for Firefox"
