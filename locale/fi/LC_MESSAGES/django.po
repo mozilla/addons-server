@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-16 17:41+0000\n"
-"PO-Revision-Date: 2021-04-16 10:21+0000\n"
+"PO-Revision-Date: 2021-04-16 10:28+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -512,7 +512,7 @@ msgstr ""
 
 #, python-format
 msgid "%(value)s contains *"
-msgstr ""
+msgstr "%(value)s sisältää *"
 
 msgid "Invalid version"
 msgstr "Virheellinen versio"
@@ -818,10 +818,10 @@ msgid "User {user} picture deleted."
 msgstr "Käyttäjän {user} kuva poistettu."
 
 msgid "User {0.name} added to {group}."
-msgstr ""
+msgstr "Käyttäjä {0.name} lisätty ryhmään {group}."
 
 msgid "User {0.name} removed from {group}."
-msgstr ""
+msgstr "Käyttäjä {0.name} poistettu ryhmästä {group}."
 
 msgid "{addon} unlisted."
 msgstr ""
@@ -2227,7 +2227,7 @@ msgid "Remove"
 msgstr "Poista"
 
 msgid "Add Another Application&hellip;"
-msgstr ""
+msgstr "Lisää toinen sovellus&hellip;"
 
 msgid "Save Changes"
 msgstr "Tallenna muutokset"
@@ -3015,10 +3015,10 @@ msgid "Keep your API keys secret and <strong>never share them with anyone</stron
 msgstr ""
 
 msgid "JWT issuer"
-msgstr ""
+msgstr "JWT-myöntäjä"
 
 msgid "JWT secret"
-msgstr ""
+msgstr "JWT-salaisuus"
 
 #, python-format
 msgid ""
@@ -3207,7 +3207,7 @@ msgid "Allowed HTML: %(allowed_html)s"
 msgstr "Sallittu HTML: %(allowed_html)s"
 
 msgid "Some HTML supported."
-msgstr ""
+msgstr "Joitakin HTML-merkintöjä tuetaan."
 
 msgid "Remove this application"
 msgstr "Poista tämä sovellus"
@@ -5634,13 +5634,13 @@ msgid "Dismiss this announcement"
 msgstr ""
 
 msgid "Files in this version:"
-msgstr ""
+msgstr "Tiedostot tässä versiossa:"
 
 msgid "Browse all files in this version"
 msgstr "Selaa kaikkia tämän version tiedostoja"
 
 msgid "Contents"
-msgstr ""
+msgstr "Sisältö"
 
 msgid "Compare this version to the last reviewed version"
 msgstr ""
@@ -5883,7 +5883,7 @@ msgid "Maximum query length exceeded."
 msgstr ""
 
 msgid "Could not find Add-on with ID \"{}\"."
-msgstr ""
+msgstr "Lisäosaa ID:llä \"{}\" ei löydy."
 
 msgid "You do not own this addon."
 msgstr "Et omista tätä lisäosaa."
@@ -6284,7 +6284,7 @@ msgid "You can only enter one, either IP Address or Network."
 msgstr ""
 
 msgid "No user with that email."
-msgstr ""
+msgstr "Ei käyttäjää tällä sähköpostiosoitteella."
 
 msgid "Firefox user {id}"
 msgstr "Firefox-käyttäjä {id}"
