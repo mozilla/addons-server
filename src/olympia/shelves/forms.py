@@ -19,6 +19,7 @@ class ShelfForm(forms.ModelForm):
         fields = (
             'title',
             'endpoint',
+            'addon_type',
             'criteria',
             'addon_count',
             'footer_text',
@@ -30,24 +31,15 @@ class ShelfForm(forms.ModelForm):
         base_url = settings.INTERNAL_SITE_URL
 
         endpoint = data.get('endpoint')
+        addon_type = data.get('addon_type')
         criteria = data.get('criteria')
 
-        if criteria is None:
+        if None in (addon_type, criteria):
             return
 
-        if endpoint in ('search', 'search-themes'):
+        if endpoint == 'search':
             if not criteria.startswith('?') or criteria.count('?') > 1:
                 raise forms.ValidationError('Check criteria field.')
-            params = criteria[1:].split('&')
-            if endpoint == 'search' and 'type=statictheme' in params:
-                raise forms.ValidationError(
-                    'Use "search-themes" endpoint for type=statictheme.'
-                )
-            elif endpoint == 'search-themes' and 'type=statictheme' not in params:
-                raise forms.ValidationError(
-                    'Don`t use "search-themes" endpoint for non themes. '
-                    'Use "search".'
-                )
             api = reverse(f'{api_settings.DEFAULT_VERSION}:addon-search')
             url = base_url + api + criteria
         elif endpoint == 'collections':

@@ -100,6 +100,7 @@ small number of shelves this endpoint is not paginated.
     :>json object|null results[].headline: The title of the shelf. (See :ref:`translated fields <api-overview-translations>`.  Note: when ``lang`` is not specified, not all locales will be returned, unlike other translated fields).
     :>json string results[].url: The configured URL using the shelf's endpoint and criteria; links to the shelf's returned add-ons.
     :>json string results[].endpoint: The :ref:`endpoint type <shelf-endpoint-type>` selected for the shelf.
+    :>json string results[].addon_type: The type of the addons selected for the shelf (e.g., extensions or themes).
     :>json string results[].criteria: The criteria for the addons in the shelf.
     :>json object|null results[].footer: The optional footer to be displayed with the shelf.
     :>json string results[].footer.url: The optional url for the footer text.
@@ -113,14 +114,13 @@ small number of shelves this endpoint is not paginated.
 
     Possible values for the ``endpoint`` field:
 
-    ==============  ====================================================================
+    ==============  ====================================================
              Value  Description
-    ==============  ====================================================================
-            search  an :ref:`addon search<addon-search>`, excluding ``?type=statictheme``
-     search-themes  an :ref:`addon search<addon-search>`, with ``?type=statictheme``
+    ==============  ====================================================
+            search  an :ref:`addon search<addon-search>`
        collections  a mozilla :ref:`collection<collection-addon-list>`.
                     The collection slug will be in ``criteria``
-    ==============  ====================================================================
+    ==============  ====================================================
 
 
 ----------------------------------

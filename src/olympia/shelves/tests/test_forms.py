@@ -63,6 +63,7 @@ class TestShelfForm(TestCase):
             {
                 'title': 'Recommended extensions',
                 'endpoint': 'search',
+                'addon_type': 'extensions',
                 'criteria': self.criteria_sea,
                 'addon_count': '0',
             },
@@ -77,6 +78,7 @@ class TestShelfForm(TestCase):
             {
                 'title': 'Password managers (Collections)',
                 'endpoint': 'collections',
+                'addon_type': 'extensions',
                 'criteria': self.criteria_col,
                 'addon_count': '0',
             },
@@ -89,6 +91,7 @@ class TestShelfForm(TestCase):
             {
                 'title': '',
                 'endpoint': 'search',
+                'addon_type': 'extensions',
                 'criteria': self.criteria_sea,
                 'addon_count': '0',
             },
@@ -101,6 +104,7 @@ class TestShelfForm(TestCase):
             {
                 'title': 'Recommended extensions',
                 'endpoint': '',
+                'addon_type': 'extensions',
                 'criteria': self.criteria_sea,
                 'addon_count': '0',
             },
@@ -108,10 +112,24 @@ class TestShelfForm(TestCase):
         assert not form.is_valid()
         assert form.errors == {'endpoint': ['This field is required.']}
 
+    def test_clean_form_is_missing_addon_type_field(self):
+        form = ShelfForm(
+            {
+                'title': 'Recommended extensions',
+                'endpoint': 'search',
+                'addon_type': '',
+                'criteria': self.criteria_sea,
+                'addon_count': '0',
+            },
+        )
+        assert not form.is_valid()
+        assert form.errors == {'addon_type': ['This field is required.']}
+
     def test_clean_form_is_missing_addon_count_field(self):
         data = {
             'title': 'Recommended extensions',
             'endpoint': 'search',
+            'addon_type': 'extensions',
             'criteria': self.criteria_sea,
         }
         form = ShelfForm(data)
@@ -137,6 +155,7 @@ class TestShelfForm(TestCase):
             {
                 'title': 'Recommended extensions',
                 'endpoint': 'search',
+                'addon_type': 'extensions',
                 'criteria': '',
                 'addon_count': '0',
             },
@@ -149,6 +168,7 @@ class TestShelfForm(TestCase):
             {
                 'title': 'Recommended extensions',
                 'endpoint': 'search',
+                'addon_type': 'extensions',
                 'criteria': '..?recommended-true',
                 'addon_count': '0',
             },
@@ -163,6 +183,7 @@ class TestShelfForm(TestCase):
             {
                 'title': 'Recommended extensions',
                 'endpoint': 'search',
+                'addon_type': 'extensions',
                 'criteria': '??recommended-true',
                 'addon_count': '0',
             },
@@ -172,43 +193,12 @@ class TestShelfForm(TestCase):
             form.clean()
         assert exc.exception.message == ('Check criteria field.')
 
-    def test_clean_searchtheme_criteria_theme_used_for_statictheme_type(self):
-        form = ShelfForm(
-            {
-                'title': 'Recommended extensions',
-                'endpoint': 'search',
-                'criteria': '?recommended=true&type=statictheme',
-                'addon_count': '0',
-            }
-        )
-        assert not form.is_valid()
-        with self.assertRaises(ValidationError) as exc:
-            form.clean()
-        assert exc.exception.message == (
-            'Use "search-themes" endpoint for type=statictheme.'
-        )
-
-    def test_clean_searchtheme_criteria_theme_not_used_for_other_type(self):
-        form = ShelfForm(
-            {
-                'title': 'Recommended extensions',
-                'endpoint': 'search-themes',
-                'criteria': '?recommended=true&type=extension',
-                'addon_count': '0',
-            }
-        )
-        assert not form.is_valid()
-        with self.assertRaises(ValidationError) as exc:
-            form.clean()
-        assert exc.exception.message == (
-            'Don`t use "search-themes" endpoint for non themes. Use "search".'
-        )
-
     def test_clean_form_throws_error_for_NoReverseMatch(self):
         form = ShelfForm(
             {
                 'title': 'New collection',
                 'endpoint': 'collections',
+                'addon_type': 'extensions',
                 'criteria': '/',
                 'addon_count': '0',
             },
@@ -224,6 +214,7 @@ class TestShelfForm(TestCase):
         data = {
             'title': 'Password manager (Collections)',
             'endpoint': 'collections',
+            'addon_type': 'extensions',
             'criteria': self.criteria_col_404,
             'addon_count': '0',
         }
@@ -237,6 +228,7 @@ class TestShelfForm(TestCase):
         data = {
             'title': 'Popular themes',
             'endpoint': 'search',
+            'addon_type': 'themes',
             'criteria': self.criteria_not_200,
             'addon_count': '0',
         }
@@ -250,6 +242,7 @@ class TestShelfForm(TestCase):
         data = {
             'title': 'Popular themes',
             'endpoint': 'search',
+            'addon_type': 'themes',
             'criteria': self.criteria_empty,
             'addon_count': '0',
         }
