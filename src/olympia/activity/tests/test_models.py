@@ -186,7 +186,7 @@ class TestActivityLog(TestCase):
         del entry.arguments  # Cached version
         assert entry.arguments == []
 
-    def test_arguments_old_reviews_app(self):
+    def test_arguments_old_reviews_app_to_ratings(self):
         addon = Addon.objects.get()
         rating = Rating.objects.create(
             addon=addon, user=self.user, user_responsible=self.user, rating=5
@@ -199,6 +199,43 @@ class TestActivityLog(TestCase):
             rating.pk,
         )
         assert activity.arguments == [addon, rating]
+        activity.save()
+
+        with self.assertNumQueries(5):
+            # - 1 for all activities
+            # - 1 for all users
+            # - 1 for all addons
+            # - 1 for all add-on translations
+            # - 1 for all ratings
+            activity = ActivityLog.objects.latest('pk')
+            assert activity.arguments == [addon, rating]
+
+        # Add a second rating, this time the activity is recorded normally
+        # without the old-style arguments.
+        addon2 = addon_factory(slug='foo')
+        user2 = user_factory()
+        rating2 = Rating.objects.create(
+            addon=addon2, user=user2, user_responsible=user2, rating=2
+        )
+        with self.assertNumQueries(5):
+            # - 1 for all activities
+            # - 1 for all users
+            # - 1 for all addons
+            # - 1 for all add-on translations
+            # - 1 for all ratings
+            activities = ActivityLog.objects.for_addons([addon, addon2]).order_by('pk')
+            assert len(activities) == 2
+            assert activities[0].to_string() == (
+                f'<a href="/en-US/firefox/addon/a3615/reviews/{rating.pk}/">Review</a>'
+                ' for '
+                '<a href="/en-US/firefox/addon/a3615/">Delicious Bookmarks</a> written.'
+            )
+            assert activities[1].to_string() == (
+                f'<a href="/en-US/firefox/addon/{addon2.slug}/reviews/{rating2.pk}/">'
+                'Review</a> for '
+                f'<a href="/en-US/firefox/addon/{addon2.slug}/">{addon2.name}</a> '
+                'written.'
+            )
 
     def test_no_arguments(self):
         ActivityLog.create(amo.LOG.CUSTOM_HTML)

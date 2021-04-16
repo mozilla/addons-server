@@ -400,6 +400,12 @@ class ActivityLog(ModelBase):
 
     @classmethod
     def arguments_builder(cls, activities):
+        def handle_renames(value):
+            # Cope with renames of key models (use the original model name like
+            # it was in the ActivityLog as the key so that we can find it
+            # later)
+            return 'ratings.rating' if value == 'reviews.review' else value
+
         # We need to do 2 passes on each log:
         # - The first time, gather the references to every instance we need
         # - The second time, we built querysets for all instances of the same
@@ -429,15 +435,12 @@ class ActivityLog(ModelBase):
                 if name not in ('str', 'int', 'null') and pk:
                     # Convert pk to int to have consistent data for when we
                     # call .in_bulk() later.
+                    name = handle_renames(name)
                     instances_to_load[name].append(int(pk))
 
         # At this point, instances_to_load is a dict of "names" that
         # each have a bunch of pks we want to load.
         for name, pks in instances_to_load.items():
-            # Cope with renames of key models (use the original model name like
-            # it was in the ActivityLog as the key so that we can find it
-            # later)
-            key = 'ratings.rating' if name == 'reviews.review' else name
             (app_label, model_name) = name.split('.')
             model = apps.get_model(app_label, model_name)
             # Load the instances, avoiding transformers other than translations
@@ -445,7 +448,7 @@ class ActivityLog(ModelBase):
             qs = model.get_unfiltered_manager().all()
             if hasattr(qs, 'only_translations'):
                 qs = qs.only_translations()
-            instances[key] = qs.in_bulk(pks)
+            instances[name] = qs.in_bulk(pks)
 
         # instances is now a dict of "model names" that each have a dict of
         # {pk: instance}. We do our second pass on the logs to build the
@@ -463,6 +466,7 @@ class ActivityLog(ModelBase):
                     objs.append(pk)
                 elif pk:
                     # Fetch the instance from the cache we built.
+                    name = handle_renames(name)
                     obj = instances[name].get(int(pk))
                     # Most of the time, we're eventually going to call
                     # to_string() on each ActivityLog that we're processing
