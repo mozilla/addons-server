@@ -1,7 +1,6 @@
 import re
 from urllib.parse import urlsplit, urlunsplit
 
-from django.conf import settings
 from django.http.request import QueryDict
 from django.urls import reverse
 
