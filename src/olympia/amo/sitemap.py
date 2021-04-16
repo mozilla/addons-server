@@ -40,10 +40,18 @@ class AMOSitemap(Sitemap):
 
     def items(self):
         return [
+            # frontend pages
+            'home',
             'pages.about',
-            'contribute.json',
-            'devhub.index',
             'pages.review_guide',
+            'browse.extensions',
+            'browse.extensions.categories',
+            'browse.themes',  # TODO: when we add /android, .themes are /firefox only
+            'browse.themes.categories',
+            'browse.language-tools',  # TODO: when we add /android this is /firefox only
+            # server pages
+            'devhub.index',
+            'contribute.json',
             'apps.appversions',
             'apps.appversions.rss',
         ]
