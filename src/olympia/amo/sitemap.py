@@ -83,12 +83,6 @@ sitemaps = {
     'amo': AMOSitemap(),
     'addons': AddonSitemap(),
     'collections': CollectionSitemap(),
-    # category pages (wrapped search results of addons in a category)
-    # blocked-addons?
-    # user profiles
-    # error pages?
-    # addon review pages (+ direct?)
-    # addon privacy, eula, license, versions
 }
 
 
