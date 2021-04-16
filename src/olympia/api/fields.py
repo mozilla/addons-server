@@ -414,13 +414,13 @@ class GetTextTranslationSerializerField(TranslationSerializerField):
         base_locale = to_language(settings.LANGUAGE_CODE)
         translations = {}
         if base_locale in langs:
-            # we get the base_locale for free - it's just the field text
-            translations[base_locale] = str(field)
-            langs = (lang for lang in langs if lang != base_locale)
+            with override(base_locale):
+                translations[base_locale] = str(field)
+                langs = (lang for lang in langs if lang != base_locale)
         for lang in langs:
             with override(lang):
                 value = gettext(field)
-                if value not in translations.values():
+                if value != translations.get(base_locale):
                     translations[lang] = value
         return translations
 

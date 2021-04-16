@@ -4,6 +4,7 @@ from django.test.utils import override_settings
 from django.urls import reverse
 from django.utils.translation import override
 
+import pytest
 from rest_framework.test import APIRequestFactory
 
 from olympia import amo
@@ -1187,12 +1188,19 @@ class TestVersionSerializerOutput(TestCase):
         # None.
         assert result['url'] is None
 
+    # This test needs compiled locales to get the german and french
+    # translations of a builtin license name. GetTextTranslationSerializerField
+    # skips duplicate translations so without compiled locales the test behaves
+    # differently.
+    @pytest.mark.needs_locales_compilation
     def test_builtin_license(self):
         addon = addon_factory()
         self.version = addon.current_version
         license = self.version.license
         license.update(builtin=18)
         assert license._constant == LICENSES_BY_BUILTIN[18]
+
+        builtin_license_name_english = str(LICENSES_BY_BUILTIN[18].name)
 
         result = LicenseSerializer(context={'request': self.request}).to_representation(
             license
@@ -1201,22 +1209,32 @@ class TestVersionSerializerOutput(TestCase):
         assert result['is_custom'] is False
         # A request with no ?lang gets you the site default l10n in a dict to
         # match how non-constant values are returned.
-        assert result['name'] == {'en-US': str(LICENSES_BY_BUILTIN[18].name)}
+        assert result['name'] == {'en-US': builtin_license_name_english}
 
-        accept_request = APIRequestFactory().get('/')
-        accept_request.LANG = 'de'
-        result = LicenseSerializer(
-            context={'request': accept_request}
-        ).to_representation(license)
-        # An Accept-Language should result in a different default though.
-        assert result['name'] == {'de': str(LICENSES_BY_BUILTIN[18].name)}
+        with self.activate('de'):
+            builtin_license_name_german = str(LICENSES_BY_BUILTIN[18].name)
 
-        # But a requested lang returns a flat string
+            result = LicenseSerializer(
+                context={'request': self.request}
+            ).to_representation(license)
+            # A request with a specific language activated but still no ?lang
+            # gets you a bit more languages. Note that this is independant of
+            # which translations are in the database for the license name, it
+            # uses gettext and just a few languages that depend on the context
+            assert result['name'] == {
+                'de': builtin_license_name_german,
+                'en-US': builtin_license_name_english,
+            }
+
+        with self.activate('fr'):
+            builtin_license_name_french = str(LICENSES_BY_BUILTIN[18].name)
+
+        # But a requested lang returns an object with the requested translation
         lang_request = APIRequestFactory().get('/?lang=fr')
         result = LicenseSerializer(context={'request': lang_request}).to_representation(
             license
         )
-        assert result['name'] == str(LICENSES_BY_BUILTIN[18].name)
+        assert result['name'] == {'fr': builtin_license_name_french}
 
     def test_file_webext_permissions(self):
         self.version = addon_factory().current_version

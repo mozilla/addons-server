@@ -15,6 +15,7 @@ from olympia.accounts.serializers import (
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.api.fields import (
     ESTranslationSerializerField,
+    GetTextTranslationSerializerField,
     OutgoingTranslationField,
     OutgoingURLField,
     ReverseChoiceField,
@@ -124,20 +125,66 @@ class ESPreviewSerializer(BaseESSerializer, PreviewSerializer):
         return data
 
 
+class LicenseNameSerializerField(serializers.Field):
+    """Field to handle license name translations.
+
+    Builtin licenses, for better or worse, don't necessarily have their name
+    translated in the database like custom licenses. Instead, the string is in
+    this repos, and translated using gettext. This field deals with that
+    difference, delegating the rendering to TranslationSerializerField or
+    GetTextTranslationSerializerField depending on what the license instance
+    is.
+    """
+
+    builtin_translation_field_class = GetTextTranslationSerializerField
+    custom_translation_field_class = TranslationSerializerField
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.builtin_translation_field = self.builtin_translation_field_class()
+        self.custom_translation_field = self.custom_translation_field_class()
+
+    def bind(self, field_name, parent):
+        super().bind(field_name, parent)
+        self.builtin_translation_field.bind(field_name, parent)
+        self.custom_translation_field.bind(field_name, parent)
+
+    def get_attribute(self, obj):
+        if obj._constant:
+            return self.builtin_translation_field.get_attribute(obj._constant)
+        else:
+            return self.custom_translation_field.get_attribute(obj)
+
+    def to_representation(self, obj):
+        # Like TranslationSerializerField, the bulk of the logic is in
+        # get_attribute(), we just have to return the data at this point.
+        return obj
+
+
+class ESLicenseNameSerializerField(LicenseNameSerializerField):
+    """Like LicenseNameSerializerField, but uses the data from ES to avoid
+    a database query for custom licenses.
+
+    BaseESSerializer automatically changes
+    TranslationSerializerField to ESTranslationSerializerField for all base
+    fields on the serializer, but License name has its own special field to
+    handle builtin licences so it's done separately."""
+
+    custom_translation_field_class = ESTranslationSerializerField
+
+    def attach_translations(self, obj, data, field_name):
+        return self.custom_translation_field.attach_translations(obj, data, field_name)
+
+
 class LicenseSerializer(serializers.ModelSerializer):
     is_custom = serializers.SerializerMethodField()
-    name = serializers.SerializerMethodField()
+    name = LicenseNameSerializerField()
     text = TranslationSerializerField()
     url = serializers.SerializerMethodField()
 
     class Meta:
         model = License
         fields = ('id', 'is_custom', 'name', 'text', 'url')
-
-    def __init__(self, *args, **kwargs):
-        super(LicenseSerializer, self).__init__(*args, **kwargs)
-        self.db_name = TranslationSerializerField()
-        self.db_name.bind('name', self)
 
     def get_is_custom(self, obj):
         return not bool(obj.builtin)
@@ -156,22 +203,6 @@ class LicenseSerializer(serializers.ModelSerializer):
         if not obj.builtin and hasattr(obj, 'version_instance'):
             return absolutify(obj.version_instance.license_url())
         return None
-
-    def get_name(self, obj):
-        # See if there is a license constant
-        license_constant = obj._constant
-        if not license_constant:
-            # If not fall back on the name in the database.
-            return self.db_name.get_attribute(obj)
-        else:
-            request = self.context.get('request', None)
-            if request and request.method == 'GET' and 'lang' in request.GET:
-                # A single lang requested so return a flat string
-                return str(license_constant.name)
-            else:
-                # Otherwise mock the dict with the default lang.
-                lang = getattr(request, 'LANG', None) or settings.LANGUAGE_CODE
-                return {lang: str(license_constant.name)}
 
     def to_representation(self, instance):
         data = super(LicenseSerializer, self).to_representation(instance)
@@ -306,12 +337,9 @@ class CurrentVersionSerializer(SimpleVersionSerializer):
 
 
 class ESCompactLicenseSerializer(BaseESSerializer, CompactLicenseSerializer):
-    translated_fields = ('name',)
+    name = ESLicenseNameSerializerField()
 
-    def __init__(self, *args, **kwargs):
-        super(ESCompactLicenseSerializer, self).__init__(*args, **kwargs)
-        self.db_name = ESTranslationSerializerField()
-        self.db_name.bind('name', self)
+    translated_fields = ('name',)
 
     def fake_object(self, data):
         # We just pass the data as the fake object will have been created
@@ -652,11 +680,8 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
                 license_serializer._attach_fields(
                     version.license, data['license'], ('builtin', 'url')
                 )
-                # Can't use license_serializer._attach_translations() directly
-                # because 'name' is a SerializerMethodField, not an
-                # ESTranslatedField.
-                license_serializer.db_name.attach_translations(
-                    version.license, data['license'], 'name'
+                license_serializer._attach_translations(
+                    version.license, data['license'], ('name',)
                 )
             else:
                 version.license = None
