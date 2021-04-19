@@ -11,8 +11,10 @@ ADDON_ID = r"""(?P<addon_id>[^/<>"']+)"""
 # These will all start with /addon/<addon_id>/
 detail_patterns = [
     re_path(r'^$', frontend_view, name='addons.detail'),
+    re_path(r'^eula/', frontend_view, name='addons.eula'),
     re_path(r'^license/(?P<version>[^/]+)?', frontend_view, name='addons.license'),
     re_path(r'^reviews/', include('olympia.ratings.urls')),
+    re_path(r'^privacy/', frontend_view, name='addons.privacy'),
     re_path(r'^statistics/', include(stats_patterns)),
     re_path(r'^versions/', include('olympia.versions.urls')),
 ]
