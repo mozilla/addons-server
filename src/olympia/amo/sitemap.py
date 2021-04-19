@@ -21,7 +21,7 @@ class AddonSitemap(Sitemap):
     def items(self):
         return (
             Addon.objects.public()
-            .order_by('last_updated')
+            .order_by('-last_updated')
             .values_list('last_updated', 'slug', named=True)
         )
 
@@ -68,7 +68,7 @@ class CollectionSitemap(Sitemap):
     def items(self):
         return (
             Collection.objects.filter(author_id=settings.TASK_USER_ID)
-            .order_by('modified')
+            .order_by('-modified')
             .values_list('modified', 'slug', 'author_id', named=True)
         )
 
