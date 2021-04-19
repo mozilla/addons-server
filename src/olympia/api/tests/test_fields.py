@@ -538,18 +538,21 @@ class TestGetTextTranslationSerializerField(TestCase):
         thing.desc = self.desc_en
         thing.default_locale = 'de'
 
-        assert self.serialize(thing)['desc'] == {
-            'en-US': self.desc_en,
-            'de': self.desc_de,
-        }
-
-        # repeat for the edge case when we have a different system language than en-US
+        # No lang specified, so we're returning the default + the one currently
+        # activated in the thread + the base system one.
         with self.activate('fr'):
             assert self.serialize(thing)['desc'] == {
                 'en-US': self.desc_en,
                 'fr': self.desc_fr,
                 'de': self.desc_de,
             }
+
+        # No lang specified but the one currently activated should be en-US,
+        # and it's only returned once.
+        assert self.serialize(thing)['desc'] == {
+            'en-US': self.desc_en,
+            'de': self.desc_de,
+        }
 
     def test_lang_specified(self):
         thing = Thing()
