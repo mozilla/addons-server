@@ -408,45 +408,51 @@ class GetTextTranslationSerializerField(TranslationSerializerField):
     """A TranslationSerializerField that gets it's translations from .po files via
     gettext rather than the database with TranslatedField."""
 
-    def _fetch_some_translations(self, field, langs):
+    def _fetch_some_translations(self, field, languages, *, base_language):
         if not field:
             return {}
-        base_locale = to_language(settings.LANGUAGE_CODE)
         translations = {}
-        if base_locale in langs:
-            with override(base_locale):
-                translations[base_locale] = str(field)
-                langs = (lang for lang in langs if lang != base_locale)
-        for lang in langs:
-            with override(lang):
+        # If base_language is present in the iterable of languages we want to
+        # return a translation for, put it first, so that we can remove
+        # translations that don't change anything from the base string.
+        languages = [
+            base_language,
+            *(language for language in languages if language != base_language),
+        ]
+        for language in languages:
+            with override(language):
                 value = gettext(field)
-                if value != translations.get(base_locale):
-                    translations[lang] = value
+                # No point in returning translations that aren't different from
+                # the string in the base language.
+                if value != translations.get(base_language):
+                    translations[language] = value
         return translations
 
     def fetch_all_translations(self, obj, source, field):
         # TODO: get all locales or KEY_LOCALES_FOR_EDITORIAL_CONTENT at least?
-        base_locale = to_language(settings.LANGUAGE_CODE)
-        current_locale = to_language(get_language())
-        default_locale = getattr(obj, 'default_locale', base_locale)
+        base_language = to_language(settings.LANGUAGE_CODE)
+        current_language = to_language(get_language())
+        default_language = getattr(obj, 'default_locale', base_language)
 
         return self._fetch_some_translations(
-            field, {base_locale, current_locale, default_locale}
+            field, {current_language, default_language}, base_language=base_language
         )
 
     def fetch_single_translation(self, obj, source, field, requested_language):
-        base_locale = to_language(settings.LANGUAGE_CODE)
-        default_locale = getattr(obj, 'default_locale', base_locale)
+        base_language = to_language(settings.LANGUAGE_CODE)
+        default_language = getattr(obj, 'default_locale', base_language)
 
         translations = self._fetch_some_translations(
-            field, {base_locale, requested_language, default_locale}
+            field,
+            {requested_language, default_language},
+            base_language=base_language,
         )
         actual_language = (
             requested_language
             if requested_language in translations
-            else default_locale
-            if default_locale in translations
-            else base_locale
+            else default_language
+            if default_language in translations
+            else base_language
         )
 
         value = translations.get(actual_language)
