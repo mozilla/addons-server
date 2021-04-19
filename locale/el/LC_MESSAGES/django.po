@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-16 17:41+0000\n"
-"PO-Revision-Date: 2021-04-16 20:00+0000\n"
+"PO-Revision-Date: 2021-04-19 10:28+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4111,7 +4111,7 @@ msgstr "Δυνατότητες κύλισης τηλεφώνου στον υπο
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Clear your browser cache with a click or keystroke."
-msgstr "Καθαρίστε την προσωρινή μνήμη του προγράμματος περιήγησής σας με ένα κλικ ή πατώντας ένα κουμπί."
+msgstr "Καθαρίστε την κρυφή μνήμη του προγράμματος περιήγησής σας με ένα κλικ ή ένα πλήκτρο."
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on web pages to save and access later."
