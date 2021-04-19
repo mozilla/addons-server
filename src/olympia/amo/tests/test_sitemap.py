@@ -24,9 +24,12 @@ from .test_views import TEST_SITEMAPS_DIR
 def test_addon_sitemap():
     addon_a = addon_factory()
     addon_b = addon_factory()
+    addon_c = addon_factory()
+    addon_b.update(last_updated=datetime.datetime(2020, 1, 1, 1, 1, 1))
     addon_factory(status=amo.STATUS_NOMINATED)  # shouldn't show up
     sitemap = AddonSitemap()
     assert list(sitemap.items()) == [
+        (addon_c.last_updated, addon_c.slug),
         (addon_a.last_updated, addon_a.slug),
         (addon_b.last_updated, addon_b.slug),
     ]
@@ -53,8 +56,8 @@ def test_collection_sitemap(mozilla_user):
     collection_factory(author=user_factory())  # not mozilla user
     sitemap = CollectionSitemap()
     assert list(sitemap.items()) == [
-        (collection_a.modified, collection_a.slug, mozilla_user.id),
         (collection_b.modified, collection_b.slug, mozilla_user.id),
+        (collection_a.modified, collection_a.slug, mozilla_user.id),
     ]
     for item in sitemap.items():
         assert sitemap.location(item) == reverse(
