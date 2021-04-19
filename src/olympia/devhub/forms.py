@@ -319,13 +319,6 @@ class AddonFormMedia(AddonFormBase):
         super().__init__(*args, **kwargs)
         addon = kwargs.get('instance')
 
-        # If there an existing icon_type set, add it to the list
-        if addon and addon.icon_type and addon.icon_type.startswith('icon/'):
-            icon_name = addon.icon_type.split('/')[1]
-            self.fields['icon_type'].widget.choices = ICON_TYPES + [
-                (addon.icon_type, icon_name)
-            ]
-
     def save(self, addon, commit=True):
         if self.cleaned_data['icon_upload_hash']:
             upload_hash = self.cleaned_data['icon_upload_hash']

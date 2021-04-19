@@ -348,35 +348,3 @@ def update_addon_weekly_downloads(data):
             continue
 
         addon.update(weekly_downloads=int(float(count)))
-
-
-@task
-def create_custom_icon_from_predefined(addon_ids, **kwargs):
-    addons = Addon.objects.filter(id__in=addon_ids).no_transforms()
-    hashes = {}
-
-    predefined = os.path.join(settings.ROOT, 'static', 'img', 'addon-icons')
-    _, icons = storage.listdir(predefined)
-    for icon in icons:
-        if b'32' in icon and b'default' not in icon:
-            icon_name = force_str(icon.split(b'-')[0])
-            with open(os.path.join(predefined, force_str(icon)), 'rb') as fd:
-                hashes[icon_name] = hashlib.md5(fd.read()).hexdigest()[:8]
-
-    for addon in addons:
-        type_split = addon.icon_type.split('/') if addon.icon_type else []
-        if len(type_split) != 2 or type_split[0] != 'icon':
-            continue
-        icon_name = type_split[1]
-
-        destination = addon.get_icon_dir()
-        for size in (32, 64, 128):
-            src = os.path.join(predefined, f'{icon_name}-{size}.png')
-            if not os.path.exists(src):
-                break
-            copy_stored_file(
-                src,
-                os.path.join(destination, f'{addon.id}-{size}.png'),
-            )
-        else:
-            addon.update(icon_type='image/png', icon_hash=hashes.get(icon_name, ''))

@@ -1079,10 +1079,6 @@ class Addon(OnChangeMixin, ModelBase):
         # Figure out what to return for an image URL
         if not self.icon_type:
             return self.get_default_icon_url(size) if use_default else None
-        elif icon_type_split[0] == 'icon':
-            return '{0}img/addon-icons/{1}-{2}.png'.format(
-                settings.STATIC_URL, icon_type_split[1], size
-            )
         else:
             # [1] is the whole ID, [2] is the directory
             split_id = re.match(r'((\d*?)\d{1,3})$', str(self.id))

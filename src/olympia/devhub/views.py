@@ -997,7 +997,7 @@ def addons_section(request, addon_id, addon, section, editable=False):
 @json_view
 def image_status(request, addon_id, addon):
     # Default icon needs no checking.
-    if not addon.icon_type or addon.icon_type.split('/')[0] == 'icon':
+    if not addon.icon_type:
         icons = True
     else:
         icons = storage.exists(
