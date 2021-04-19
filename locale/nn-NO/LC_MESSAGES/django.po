@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-16 17:41+0000\n"
-"PO-Revision-Date: 2021-04-19 12:09+0000\n"
+"PO-Revision-Date: 2021-04-19 12:11+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -4369,9 +4369,8 @@ msgid "Blues & Yellows"
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Forest Theme"
-msgstr "Lag eit tema"
+msgstr "Skogstema"
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4880,16 +4879,14 @@ msgstr "ID"
 msgid "Last Review"
 msgstr "Siste vurdering"
 
-#, fuzzy
 msgid "Code Weight"
-msgstr "Vekt"
+msgstr "Kodevekt"
 
 msgid "Metadata Weight"
 msgstr ""
 
-#, fuzzy
 msgid "Total Weight"
-msgstr "Vekt"
+msgstr "Totalvekt"
 
 msgid "Maliciousness Score"
 msgstr ""
@@ -4906,9 +4903,8 @@ msgstr "Nokon må ta ei gjennomgåing på lista versjonar  ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Nokon må ta ei gjennomgåing på ulista versjonar ({0})"
 
-#, fuzzy
 msgid "Listed version"
-msgstr "Oppførte versjonar"
+msgstr "Oppført versjon"
 
 msgid "Unlisted versions ({0})"
 msgstr "Ikkje-lista versjonar ({0})"
@@ -5607,9 +5603,8 @@ msgstr "[status: %s]"
 msgid "Other Pending Review"
 msgstr "Annan pågåande gjennomgang ({0})"
 
-#, fuzzy
 msgid "Updates"
-msgstr "Oppdater"
+msgstr "Oppdateringar"
 
 #, fuzzy
 msgid "Rating Reviews"
