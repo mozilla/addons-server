@@ -45,7 +45,8 @@ class ShelfForm(forms.ModelForm):
         elif addon_type == 10 and 'type=statictheme' not in params:
             raise forms.ValidationError(
                 'Check fields - for "Theme (Static)" addon type, use type=statictheme. '
-                'For non theme addons, use "Extension" in Addon type field, not "Theme (Static)".'
+                'For non theme addons, use "Extension" in Addon type field, '
+                'not "Theme (Static)".'
             )
 
         if endpoint == 'search':

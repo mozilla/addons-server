@@ -246,7 +246,8 @@ class TestShelfForm(TestCase):
             form.clean()
         assert exc.exception.message == (
             'Check fields - for "Theme (Static)" addon type, use type=statictheme. '
-            'For non theme addons, use "Extension" in Addon type field, not "Theme (Static)".'
+            'For non theme addons, use "Extension" in Addon type field, '
+            'not "Theme (Static)".'
         )
 
     def test_clean_extensions_addontype_not_used_for_statictheme_type(self):
