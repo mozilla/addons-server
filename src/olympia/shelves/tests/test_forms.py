@@ -10,10 +10,10 @@ from olympia.shelves.forms import ShelfForm
 class TestShelfForm(TestCase):
     def setUp(self):
         self.criteria_sea = '?promoted=recommended&sort=random&type=extension'
+        self.criteria_theme = '?sort=users&type=statictheme'
         self.criteria_col = 'password-managers'
         self.criteria_col_404 = 'passwordmanagers'
         self.criteria_not_200 = '?sort=user&type=extension'
-        self.criteria_empty = '?sort=users&type=theme'
 
         responses.add(
             responses.GET,
@@ -51,19 +51,13 @@ class TestShelfForm(TestCase):
             status=400,
             json=['Invalid "sort" parameter.'],
         )
-        responses.add(
-            responses.GET,
-            reverse_ns('addon-search') + self.criteria_empty,
-            status=200,
-            json={'count': 0},
-        )
 
     def test_clean_search(self):
         form = ShelfForm(
             {
                 'title': 'Recommended extensions',
                 'endpoint': 'search',
-                'addon_type': 'extensions',
+                'addon_type': 1,
                 'criteria': self.criteria_sea,
                 'addon_count': '0',
             },
@@ -78,7 +72,7 @@ class TestShelfForm(TestCase):
             {
                 'title': 'Password managers (Collections)',
                 'endpoint': 'collections',
-                'addon_type': 'extensions',
+                'addon_type': 1,
                 'criteria': self.criteria_col,
                 'addon_count': '0',
             },
@@ -91,7 +85,7 @@ class TestShelfForm(TestCase):
             {
                 'title': '',
                 'endpoint': 'search',
-                'addon_type': 'extensions',
+                'addon_type': 1,
                 'criteria': self.criteria_sea,
                 'addon_count': '0',
             },
@@ -104,7 +98,7 @@ class TestShelfForm(TestCase):
             {
                 'title': 'Recommended extensions',
                 'endpoint': '',
-                'addon_type': 'extensions',
+                'addon_type': 1,
                 'criteria': self.criteria_sea,
                 'addon_count': '0',
             },
@@ -129,7 +123,7 @@ class TestShelfForm(TestCase):
         data = {
             'title': 'Recommended extensions',
             'endpoint': 'search',
-            'addon_type': 'extensions',
+            'addon_type': 1,
             'criteria': self.criteria_sea,
         }
         form = ShelfForm(data)
@@ -155,7 +149,7 @@ class TestShelfForm(TestCase):
             {
                 'title': 'Recommended extensions',
                 'endpoint': 'search',
-                'addon_type': 'extensions',
+                'addon_type': 1,
                 'criteria': '',
                 'addon_count': '0',
             },
@@ -168,7 +162,7 @@ class TestShelfForm(TestCase):
             {
                 'title': 'Recommended extensions',
                 'endpoint': 'search',
-                'addon_type': 'extensions',
+                'addon_type': 1,
                 'criteria': '..?recommended-true',
                 'addon_count': '0',
             },
@@ -183,7 +177,7 @@ class TestShelfForm(TestCase):
             {
                 'title': 'Recommended extensions',
                 'endpoint': 'search',
-                'addon_type': 'extensions',
+                'addon_type': 1,
                 'criteria': '??recommended-true',
                 'addon_count': '0',
             },
@@ -198,7 +192,7 @@ class TestShelfForm(TestCase):
             {
                 'title': 'New collection',
                 'endpoint': 'collections',
-                'addon_type': 'extensions',
+                'addon_type': 1,
                 'criteria': '/',
                 'addon_count': '0',
             },
@@ -214,7 +208,7 @@ class TestShelfForm(TestCase):
         data = {
             'title': 'Password manager (Collections)',
             'endpoint': 'collections',
-            'addon_type': 'extensions',
+            'addon_type': 1,
             'criteria': self.criteria_col_404,
             'addon_count': '0',
         }
@@ -226,9 +220,9 @@ class TestShelfForm(TestCase):
 
     def test_clean_returns_not_200(self):
         data = {
-            'title': 'Popular themes',
+            'title': 'Popular extensions',
             'endpoint': 'search',
-            'addon_type': 'themes',
+            'addon_type': 1,
             'criteria': self.criteria_not_200,
             'addon_count': '0',
         }
@@ -238,12 +232,12 @@ class TestShelfForm(TestCase):
             form.clean()
         assert exc.exception.message == ('Check criteria - Invalid "sort" parameter.')
 
-    def test_clean_returns_empty(self):
+    def test_clean_themes_addontype_used_for_statictheme_type(self):
         data = {
-            'title': 'Popular themes',
+            'title': 'Recommended extensions',
             'endpoint': 'search',
-            'addon_type': 'themes',
-            'criteria': self.criteria_empty,
+            'addon_type': 10,
+            'criteria': self.criteria_sea,
             'addon_count': '0',
         }
         form = ShelfForm(data)
@@ -251,5 +245,22 @@ class TestShelfForm(TestCase):
         with self.assertRaises(ValidationError) as exc:
             form.clean()
         assert exc.exception.message == (
-            'No add-ons found. Check criteria parameters - e.g., "type"'
+            'Check fields - for "Theme (Static)" addon type, use type=statictheme. '
+            'For non theme addons, use "Extension" in Addon type field, not "Theme (Static)".'
+        )
+
+    def test_clean_extensions_addontype_not_used_for_statictheme_type(self):
+        data = {
+            'title': 'Popular themes',
+            'endpoint': 'search',
+            'addon_type': 1,
+            'criteria': self.criteria_theme,
+            'addon_count': '0',
+        }
+        form = ShelfForm(data)
+        assert not form.is_valid()
+        with self.assertRaises(ValidationError) as exc:
+            form.clean()
+        assert exc.exception.message == (
+            'Use "Theme (Static)" in Addon type field for type=statictheme.'
         )

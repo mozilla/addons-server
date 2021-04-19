@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='shelf',
             name='addon_type',
-            field=models.CharField(choices=[('extensions', 'extensions'), ('themes', 'themes')], default='extensions', max_length=200),
+            field=models.PositiveIntegerField(choices=[(1, 'Extension'), (2, 'Deprecated Complete Theme'), (3, 'Dictionary'), (4, 'Search Engine'), (5, 'Language Pack (Application)'), (6, 'Language Pack (Add-on)'), (7, 'Plugin'), (9, 'Deprecated LWT'), (10, 'Theme (Static)')], db_column='addontype_id', default=1),
         ),
         migrations.AlterField(
             model_name='shelf',

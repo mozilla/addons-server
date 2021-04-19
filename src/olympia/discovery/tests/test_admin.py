@@ -881,7 +881,7 @@ class TestShelfAdmin(TestCase):
         item = Shelf.objects.create(
             title='Popular extensions',
             endpoint='search',
-            addon_type='extensions',
+            addon_type=1,
             criteria='?sort=users&type=extension',
             footer_text='See more',
             footer_pathname='/this/is/the/pathname',
@@ -899,7 +899,7 @@ class TestShelfAdmin(TestCase):
             mock_clean.return_value = {
                 'title': 'Recommended extensions',
                 'endpoint': 'search',
-                'addon_type': 'extensions',
+                'addon_type': 1,
                 'criteria': ('?promoted=recommended&sort=random&type=extension'),
                 'footer_text': 'See more',
                 'footer_pathname': '/this/is/the/pathname',
@@ -914,7 +914,7 @@ class TestShelfAdmin(TestCase):
             assert Shelf.objects.count() == 1
             assert item.title == 'Recommended extensions'
             assert item.endpoint == 'search'
-            assert item.addon_type == 'extensions'
+            assert item.addon_type == 1
             assert item.criteria == ('?promoted=recommended&sort=random&type=extension')
             assert item.addon_count == item.get_count() == 2
 
@@ -922,7 +922,7 @@ class TestShelfAdmin(TestCase):
         item = Shelf.objects.create(
             title='Popular extensions',
             endpoint='search',
-            addon_type='extensions',
+            addon_type=1,
             criteria='?sort=users&type=extension',
             footer_text='See more',
             footer_pathname='/this/is/the/pathname',
@@ -934,7 +934,7 @@ class TestShelfAdmin(TestCase):
         data = {
             'title': 'Recommended extensions',
             'endpoint': 'search',
-            'addon_type': 'extensions',
+            'addon_type': 1,
             'criteria': ('?promoted=recommended&sort=random&type=extension'),
             'footer_text': 'See more',
             'footer_pathname': '/this/is/the/pathname',
@@ -967,7 +967,7 @@ class TestShelfAdmin(TestCase):
         item = Shelf.objects.create(
             title='Recommended extensions',
             endpoint='search',
-            addon_type='extensions',
+            addon_type=1,
             criteria='?promoted=recommended&sort=random&type=extension',
             footer_text='See more',
             footer_pathname='/this/is/the/pathname',
@@ -999,7 +999,7 @@ class TestShelfAdmin(TestCase):
             mock_clean.return_value = {
                 'title': 'Recommended extensions',
                 'endpoint': 'search',
-                'addon_type': 'extensions',
+                'addon_type': 1,
                 'criteria': ('?promoted=recommended&sort=random&type=extension'),
                 'footer_text': 'See more',
                 'footer_pathname': '/this/is/the/pathname',
@@ -1013,7 +1013,7 @@ class TestShelfAdmin(TestCase):
             item = Shelf.objects.get()
             assert item.title == 'Recommended extensions'
             assert item.endpoint == 'search'
-            assert item.addon_type == 'extensions'
+            assert item.addon_type == 1
             assert item.criteria == ('?promoted=recommended&sort=random&type=extension')
 
     def test_can_not_add_without_discovery_edit_permission(self):
@@ -1027,7 +1027,7 @@ class TestShelfAdmin(TestCase):
             {
                 'title': 'Recommended extensions',
                 'endpoint': 'search',
-                'addon_type': 'extensions',
+                'addon_type': 1,
                 'criteria': '?promoted=recommended&sort=random&type=extension',
                 'footer_text': 'See more',
                 'footer_pathname': '/this/is/the/pathname',
@@ -1042,7 +1042,7 @@ class TestShelfAdmin(TestCase):
         item = Shelf.objects.create(
             title='Recommended extensions',
             endpoint='search',
-            addon_type='extensions',
+            addon_type=1,
             criteria='?promoted=recommended&sort=random&type=extension',
             footer_text='See more',
             footer_pathname='/this/is/the/pathname',
@@ -1058,7 +1058,7 @@ class TestShelfAdmin(TestCase):
             {
                 'title': 'Popular extensions',
                 'endpoint': 'search',
-                'addon_type': 'extensions',
+                'addon_type': 1,
                 'criteria': '?promoted=recommended&sort=users&type=extension',
                 'footer_text': 'See more',
                 'footer_pathname': '/this/is/the/pathname',
@@ -1075,7 +1075,7 @@ class TestShelfAdmin(TestCase):
         item = Shelf.objects.create(
             title='Recommended extensions',
             endpoint='search',
-            addon_type='extensions',
+            addon_type=1,
             criteria='?promoted=recommended&sort=random&type=extension',
             footer_text='See more',
             footer_pathname='/this/is/the/pathname',
@@ -1102,7 +1102,7 @@ class TestHomepageShelvesAdmin(TestCase):
         self.shelf = Shelf.objects.create(
             title='Populâr themes',
             endpoint='search',
-            addon_type='themes',
+            addon_type=10,
             criteria='?sort=users&type=statictheme',
         )
 
