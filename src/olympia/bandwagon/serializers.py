@@ -6,6 +6,7 @@ from rest_framework.validators import UniqueTogetherValidator
 from olympia.accounts.serializers import BaseUserSerializer
 from olympia.addons.models import Addon
 from olympia.addons.serializers import AddonSerializer
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import clean_nl, has_links, slug_validator
 from olympia.api.fields import (
     SlugOrPrimaryKeyRelatedField,
@@ -54,7 +55,7 @@ class CollectionSerializer(serializers.ModelSerializer):
         ]
 
     def get_url(self, obj):
-        return obj.get_abs_url()
+        return absolutify(obj.get_url_path())
 
     def validate_name(self, value):
         # if we have a localised dict of values validate them all.

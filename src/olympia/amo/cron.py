@@ -10,7 +10,6 @@ from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
 from olympia.addons.tasks import delete_addons
 from olympia.amo.utils import chunked
-from olympia.bandwagon.models import Collection
 from olympia.files.models import FileUpload
 from olympia.scanners.models import ScannerResult
 
@@ -35,14 +34,8 @@ def gc(test_result=True):
         .values_list('id', flat=True)
     )
 
-    collections_to_delete = Collection.objects.filter(
-        created__lt=days_ago(2), type=amo.COLLECTION_ANONYMOUS
-    ).values_list('id', flat=True)
-
     for chunk in chunked(logs, 100):
         tasks.delete_logs.delay(chunk)
-    for chunk in chunked(collections_to_delete, 100):
-        tasks.delete_anonymous_collections.delay(chunk)
 
     two_weeks_ago = days_ago(15)
     # Delete stale add-ons with no versions. Should soft-delete add-ons that

@@ -39,14 +39,12 @@ class CollectionAdmin(admin.ModelAdmin):
         'slug',
         'addon_count',
     )
-    list_filter = ('type', 'listed')
+    list_filter = ('listed',)
     fields = (
         'name',
         'slug',
         'uuid',
         'listed',
-        'type',
-        'application',
         'default_locale',
         'author',
     )

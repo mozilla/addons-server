@@ -3,7 +3,6 @@ from django.urls import reverse
 
 from pyquery import PyQuery as pq
 
-from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory, formset, user_factory
 from olympia.bandwagon.models import Collection, CollectionAddon
 
@@ -90,8 +89,6 @@ class TestCollectionAdmin(TestCase):
 
         post_data = {
             # Django wants the whole form to be submitted, unfortunately.
-            'application': amo.FIREFOX.id,
-            'type': collection.type,
             'default_locale': collection.default_locale,
             'author': user.pk,
         }
@@ -138,8 +135,6 @@ class TestCollectionAdmin(TestCase):
 
         post_data = {
             # Django wants the whole form to be submitted, unfortunately.
-            'application': amo.FIREFOX.id,
-            'type': collection.type,
             'default_locale': collection.default_locale,
             'author': user.pk,
         }
@@ -168,8 +163,6 @@ class TestCollectionAdmin(TestCase):
 
         post_data = {
             # Django wants the whole form to be submitted, unfortunately.
-            'application': amo.FIREFOX.id,
-            'type': collection.type,
             'default_locale': collection.default_locale,
             'author': user.pk,
         }
@@ -203,8 +196,6 @@ class TestCollectionAdmin(TestCase):
 
         post_data = {
             # Django wants the whole form to be submitted, unfortunately.
-            'application': amo.FIREFOX.id,
-            'type': collection.type,
             'default_locale': collection.default_locale,
             'author': mozilla.pk,
         }
@@ -240,8 +231,6 @@ class TestCollectionAdmin(TestCase):
 
         post_data = {
             # Django wants the whole form to be submitted, unfortunately.
-            'application': amo.FIREFOX.id,
-            'type': collection.type,
             'default_locale': collection.default_locale,
             'author': mozilla.pk,
         }

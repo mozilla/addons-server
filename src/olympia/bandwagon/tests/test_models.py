@@ -45,19 +45,6 @@ class TestCollections(TestCase):
         c = Collection.objects.get(pk=512)
         assert str(c.name) == 'yay'
 
-    def test_listed(self):
-        """Make sure the manager's listed() filter works."""
-        listed_count = Collection.objects.listed().count()
-        # Make a private collection.
-        Collection.objects.create(
-            name='Hello',
-            uuid='4e2a1acc39ae47ec956f46e080ac7f69',
-            listed=False,
-            author=self.user,
-        )
-
-        assert Collection.objects.listed().count() == listed_count
-
     def test_auto_uuid(self):
         c = Collection.objects.create(author=self.user)
         assert c.uuid
@@ -85,15 +72,6 @@ class TestCollections(TestCase):
         collection.reload()
         assert collection.addon_count == 0
         self.assertCloseToNow(collection.modified)
-
-    def test_favorites_slug(self):
-        c = Collection.objects.create(author=self.user, slug='favorites')
-        assert c.type == amo.COLLECTION_NORMAL
-        assert c.slug == 'favorites~'
-
-        c = Collection.objects.create(author=self.user, slug='favorites')
-        assert c.type == amo.COLLECTION_NORMAL
-        assert c.slug == 'favorites~-1'
 
     def test_slug_dupe(self):
         c = Collection.objects.create(author=self.user, slug='boom')
@@ -145,20 +123,3 @@ class TestCollections(TestCase):
         assert collection.addons.count() == 0
         assert index_addons_mock.call_count == 1
         assert index_addons_mock.call_args[0] == ([addon_featured.pk],)
-
-
-class TestCollectionQuerySet(TestCase):
-    fixtures = ('base/addon_3615',)
-
-    def test_with_has_addon(self):
-        user = UserProfile.objects.create(username='uhhh', email='uh@hh')
-        collection = Collection.objects.create(author=user)
-        addon = Addon.objects.all()[0]
-
-        qset = Collection.objects.filter(pk=collection.id).with_has_addon(addon.id)
-
-        assert not qset.first().has_addon
-
-        collection.add_addon(addon)
-
-        assert qset.first().has_addon

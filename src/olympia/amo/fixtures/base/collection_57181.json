@@ -48,12 +48,9 @@
         "fields": {
             "uuid": "f0b91d2d-534a-ead1-deaf-bee741e93503",
             "author": 5189612,
-            "application": 1,
             "listed": true,
-            "type": 1,
             "description": 847345,
             "default_locale": "en-US",
-            "nickname": null,
             "slug": "home-business-auto",
             "name": 847344,
             "created": "2010-02-20 00:50:34",

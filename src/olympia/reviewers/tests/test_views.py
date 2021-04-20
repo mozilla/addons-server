@@ -238,12 +238,12 @@ class TestReviewLog(ReviewerTest):
 
         # But they should have 2 showing for someone with the right perms.
         self.grant_permission(self.user, 'Addons:ReviewUnlisted')
-        with self.assertNumQueries(15):
-            # 15 queries:
+        with self.assertNumQueries(14):
+            # 14 queries:
             # - 2 savepoints because of tests
             # - 2 user and its groups
             # - 2 for motd config and site notice
-            # - 2 for collections and addons belonging to the user (menu bar)
+            # - 1 for collections and addons belonging to the user (menu bar)
             # - 1 count for the pagination
             # - 1 for the activities
             # - 1 for the users for these activities
@@ -261,7 +261,7 @@ class TestReviewLog(ReviewerTest):
         # Add more activity, it'd still should not cause more queries.
         self.make_an_approval(amo.LOG.APPROVE_CONTENT, addon=addon_factory())
         self.make_an_approval(amo.LOG.REJECT_CONTENT, addon=addon_factory())
-        with self.assertNumQueries(15):
+        with self.assertNumQueries(14):
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -2309,14 +2309,14 @@ class TestAutoApprovedQueue(QueueTest):
     def test_results(self):
         self.login_with_permission()
         self.generate_files()
-        with self.assertNumQueries(16):
+        with self.assertNumQueries(15):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
             # - 3 for the addons in the queues and their files (regardless of
             #     how many are in the queue - that's the important bit)
             # - 2 for config items (motd / site notice)
-            # - 2 for my add-ons / my collection in user menu
+            # - 1 for my add-ons in user menu
             # - 4 for reviewer scores and user stuff displayed above the queue
             self._test_results()
 
@@ -2491,14 +2491,14 @@ class TestContentReviewQueue(QueueTest):
     def test_results(self):
         self.login_with_permission()
         self.generate_files()
-        with self.assertNumQueries(16):
+        with self.assertNumQueries(15):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
             # - 3 for the addons in the queues and their files (regardless of
             #     how many are in the queue - that's the important bit)
             # - 2 for config items (motd / site notice)
-            # - 2 for my add-ons / my collection in user menu
+            # - 1 for my add-ons in user menu
             # - 4 for reviewer scores and user stuff displayed above the queue
             self._test_results()
 
@@ -2591,7 +2591,7 @@ class TestScannersReviewQueue(QueueTest):
 
     def test_results(self):
         self.generate_files()
-        with self.assertNumQueries(16):
+        with self.assertNumQueries(15):
             response = self.client.get(self.url)
         assert response.status_code == 200
 
@@ -3636,7 +3636,7 @@ class TestReview(ReviewBase):
             str(author.get_role_display()),
             self.addon,
         )
-        with self.assertNumQueries(63):
+        with self.assertNumQueries(62):
             # FIXME: obviously too high, but it's a starting point.
             # Potential further optimizations:
             # - Remove trivial... and not so trivial duplicates
@@ -3693,21 +3693,20 @@ class TestReview(ReviewBase):
             # 46. reviewer subscriptions for listed
             # 47. reviewer subscriptions for unlisted
             # 48. config for motd
-            # 49. my favorite collection for the current user
-            # 50. count add-ons the user is a developer of
-            # 51. config for site notice
-            # 52. translations for... (?! id=1)
-            # 53. important activity log about the add-on
-            # 54. user for the activity (from the ActivityLog foreignkey)
-            # 55. user for the activity (from the ActivityLog arguments)
-            # 56. add-on for the activity
-            # 57. translation for the add-on for the activity
-            # 58. reusedguid (repeated)
-            # 59. select all versions in channel for versions dropdown widget
-            # 60. select files for those versions
-            # 61. select files waiting for review for particular version
-            # 62. select users by role for this add-on (?)
-            # 63. savepoint
+            # 49. count add-ons the user is a developer of
+            # 50. config for site notice
+            # 51. translations for... (?! id=1)
+            # 52. important activity log about the add-on
+            # 53. user for the activity (from the ActivityLog foreignkey)
+            # 54. user for the activity (from the ActivityLog arguments)
+            # 55. add-on for the activity
+            # 56. translation for the add-on for the activity
+            # 57. reusedguid (repeated)
+            # 58. select all versions in channel for versions dropdown widget
+            # 59. select files for those versions
+            # 60. select files waiting for review for particular version
+            # 61. select users by role for this add-on (?)
+            # 62. savepoint
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -6073,7 +6072,7 @@ class TestReview(ReviewBase):
         # Delete ActivityLog to make the query count easier to follow. We have
         # other tests for the ActivityLog related stuff.
         ActivityLog.objects.for_addons(self.addon).delete()
-        with self.assertNumQueries(59):
+        with self.assertNumQueries(58):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.
@@ -6132,7 +6131,7 @@ class TestReview(ReviewBase):
                     results={'matchedResults': [customs_rule.name]},
                 )
 
-        with self.assertNumQueries(61):
+        with self.assertNumQueries(60):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.
@@ -6327,7 +6326,7 @@ class TestAbuseReportsView(ReviewerTest):
         AbuseReport.objects.create(addon=self.addon, message='Two')
         AbuseReport.objects.create(addon=self.addon, message='Three')
         AbuseReport.objects.create(user=self.addon_developer, message='Four')
-        with self.assertNumQueries(21):
+        with self.assertNumQueries(20):
             # - 2 savepoint/release savepoint
             # - 2 for user and groups
             # - 1 for the add-on
@@ -6335,7 +6334,7 @@ class TestAbuseReportsView(ReviewerTest):
             # - 7 for the add-on default transformer
             # - 1 for reviewer motd config
             # - 1 for site notice config
-            # - 2 for add-ons from logged in user and its collections
+            # - 1 for add-ons from logged in user
             # - 1 for abuse reports count (pagination)
             # - 1 for the abuse reports
             # - 2 for the add-on and its translations (duplicate, but it's
@@ -9173,7 +9172,7 @@ class TestMadQueue(QueueTest):
         ]
 
     def test_results(self):
-        with self.assertNumQueries(16):
+        with self.assertNumQueries(15):
             # That's a lot of queries. Some of them are unfortunately scaling
             # with the number of add-ons in the queue.
             # - 2 for savepoints because we're in tests
@@ -9183,7 +9182,7 @@ class TestMadQueue(QueueTest):
             #     flagged versions they have in each channel (regardless of
             #     how many are in the queue - that's the important bit)
             # - 2 for config items (motd / site notice)
-            # - 2 for my add-ons / my collection in user menu
+            # - 1 for my add-ons in user menu
             # - 4 for reviewer scores and user stuff displayed above the queue
             response = self.client.get(self.url)
         assert response.status_code == 200

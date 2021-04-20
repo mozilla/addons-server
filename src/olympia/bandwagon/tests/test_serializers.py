@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from unittest import mock
 
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import addon_factory, collection_factory, TestCase, user_factory
 from olympia.bandwagon.models import CollectionAddon
 from olympia.bandwagon.serializers import (
@@ -28,7 +29,7 @@ class TestCollectionSerializer(TestCase):
         assert data['uuid'] == self.collection.uuid.hex
         assert data['name'] == {'en-US': self.collection.name}
         assert data['description'] == {'en-US': self.collection.description}
-        assert data['url'] == self.collection.get_abs_url()
+        assert data['url'] == absolutify(self.collection.get_url_path())
         assert data['addon_count'] == self.collection.addon_count
         assert data['modified'] == (
             self.collection.modified.replace(microsecond=0).isoformat() + 'Z'
