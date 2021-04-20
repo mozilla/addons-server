@@ -28,11 +28,8 @@ from olympia.devhub.tasks import resize_image
 from olympia.files.utils import get_filepath, parse_addon
 from olympia.lib.es.utils import index_objects
 from olympia.tags.models import Tag
-from olympia.versions.models import (
-    generate_static_theme_preview,
-    Version,
-    VersionPreview,
-)
+from olympia.versions.models import Version, VersionPreview
+from olympia.versions.tasks import generate_static_theme_preview
 
 
 log = olympia.core.logger.getLogger('z.task')
@@ -243,7 +240,9 @@ def recreate_theme_previews(addon_ids, **kw):
             log.info('Recreating previews for theme: %s' % version.addon_id)
             xpi = get_filepath(version.all_files[0])
             theme_data = parse_addon(xpi, minimal=True).get('theme', {})
-            generate_static_theme_preview(theme_data, version.id)
+            generate_static_theme_preview.apply_async(
+                args=(theme_data, version.id), queue='adhoc'
+            )
         except IOError:
             pass
     index_addons.delay(addon_ids)
