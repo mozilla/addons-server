@@ -1155,8 +1155,9 @@ def reviewlog(request):
     if not acl.check_unlisted_addons_viewer_or_reviewer(request):
         # Only display logs related to unlisted versions to users with the
         # right permission.
-        list_channel = amo.RELEASE_CHANNEL_LISTED
-        approvals = approvals.filter(versionlog__version__channel=list_channel)
+        approvals = approvals.exclude(
+            versionlog__version__channel=amo.RELEASE_CHANNEL_UNLISTED
+        )
     if not acl.check_listed_addons_reviewer(request):
         approvals = approvals.exclude(
             versionlog__version__addon__type__in=amo.GROUP_TYPE_ADDON
