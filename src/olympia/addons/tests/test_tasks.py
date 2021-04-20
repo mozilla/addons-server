@@ -94,7 +94,7 @@ def test_create_missing_theme_previews(parse_addon_mock):
     # addon has all the complete previews already so skip when only_missing=True
     assert VersionPreview.objects.count() == 3
     with mock.patch(
-        f'{PATCH_PATH}.generate_static_theme_preview'
+        f'{PATCH_PATH}.generate_static_theme_preview.apply_async'
     ) as gen_preview, mock.patch(f'{PATCH_PATH}.resize_image') as resize:
         recreate_theme_previews([theme.id], only_missing=True)
         assert gen_preview.call_count == 0
@@ -109,7 +109,7 @@ def test_create_missing_theme_previews(parse_addon_mock):
     extra_preview.save()
     assert VersionPreview.objects.count() == 2
     with mock.patch(
-        f'{PATCH_PATH}.generate_static_theme_preview'
+        f'{PATCH_PATH}.generate_static_theme_preview.apply_async'
     ) as gen_preview, mock.patch(f'{PATCH_PATH}.resize_image') as resize:
         recreate_theme_previews([theme.id], only_missing=True)
         assert gen_preview.call_count == 1
@@ -122,7 +122,7 @@ def test_create_missing_theme_previews(parse_addon_mock):
     extra_preview.save()
     assert VersionPreview.objects.count() == 3
     with mock.patch(
-        f'{PATCH_PATH}.generate_static_theme_preview'
+        f'{PATCH_PATH}.generate_static_theme_preview.apply_async'
     ) as gen_preview, mock.patch(f'{PATCH_PATH}.resize_image') as resize:
         recreate_theme_previews([theme.id], only_missing=True)
         assert gen_preview.call_count == 1
@@ -139,7 +139,7 @@ def test_create_missing_theme_previews(parse_addon_mock):
     extra_preview.save()
     assert VersionPreview.objects.count() == 3
     with mock.patch(
-        f'{PATCH_PATH}.generate_static_theme_preview'
+        f'{PATCH_PATH}.generate_static_theme_preview.apply_async'
     ) as gen_preview, mock.patch(f'{PATCH_PATH}.resize_image') as resize:
         recreate_theme_previews([theme.id], only_missing=True)
         assert gen_preview.call_count == 0  # not called
