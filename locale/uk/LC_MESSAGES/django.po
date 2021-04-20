@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-20 21:51+0000\n"
+"PO-Revision-Date: 2021-04-20 21:55+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -938,16 +938,14 @@ msgstr "{addon} {version} перепідписано (раніше {0})."
 msgid "Version re-signed"
 msgstr "Версію перепідписано"
 
-#, fuzzy
 msgid "{user} force-disabled {addon}."
-msgstr "Примусово вимкнути додаток"
+msgstr "{user} примусово вимикає {addon}."
 
 msgid "Force disabled"
 msgstr "Примусово вимкнено"
 
-#, fuzzy
 msgid "{user} force-enabled {addon}."
-msgstr "Примусово увімкнути додаток"
+msgstr "{user} примусово вимикає {addon}."
 
 msgid "Force enabled"
 msgstr "Примусово увімкнено"
@@ -3187,9 +3185,8 @@ msgstr "Створюйте найкращі розширення та теми"
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr "Незалежно від того, чи ви новачок у розробці розширень, оновлюєте чи переносите наявне розширення або тему, чи створюєте власний бізнес-інструмент, у нас є ресурси, які вам допоможуть."
 
-#, fuzzy
 msgid "Visit the Firefox Extension Workshop"
-msgstr "Відвідайте центр розробки розширень"
+msgstr "Відвідайте центр розробки розширень Firefox"
 
 msgid "Connect with us"
 msgstr "Зв'яжіться з нами"
@@ -3377,9 +3374,8 @@ msgstr "Програмний код"
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
 msgstr "Якщо ваш додаток містить мінімізований, об'єднаний або інший автоматично згенерований код, надайте до нього доступ тут для редакторів."
 
-#, fuzzy
 msgid "File {file_id}"
-msgstr "Файл {file_id} ({platform})"
+msgstr "Файл {file_id}"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
@@ -4484,47 +4480,40 @@ msgid "Learn More"
 msgstr "Дізнатись більше"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended extensions"
-msgstr "Програма рекомендованих розширень"
+msgstr "Рекомендовані розширення"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more recommended extensions"
-msgstr "Програма рекомендованих розширень"
+msgstr "Більше рекомендованих розширень"
 
 #. editorial content for the homepage shelves.
 msgid "Popular themes"
 msgstr "Популярні теми"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular themes"
-msgstr "Оберіть кольори для вашої теми"
+msgstr "Більше популярних тем"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Enhanced privacy extensions"
-msgstr "Переглянути всі розширення"
+msgstr "Розширення для поліпшення приватності"
 
 #. editorial content for the homepage shelves.
 msgid "See more enhanced privacy extensions"
 msgstr "Більше розширень для поліпшення приватності"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Popular extensions"
-msgstr "Знайдіть більше розширень"
+msgstr "Популярні розширення"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular extensions"
-msgstr "Переглянути всі розширення"
+msgstr "Більше популярних розширень"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended themes"
-msgstr "Рекомендовано"
+msgstr "Рекомендовані теми"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
