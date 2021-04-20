@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-20 20:22+0000\n"
+"PO-Revision-Date: 2021-04-20 20:30+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4538,23 +4538,20 @@ msgid "Recommended extensions"
 msgstr "Προτεινόμενες επεκτάσεις"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more recommended extensions"
-msgstr "Πρόγραμμα προτεινόμενων επεκτάσεων"
+msgstr "Περισσότερες προτεινόμενες επεκτάσεις"
 
 #. editorial content for the homepage shelves.
 msgid "Popular themes"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular themes"
-msgstr "Επιλέξτε χρώματα για το θέμα σας"
+msgstr "Περισσότερα δημοφιλή θέματα"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Enhanced privacy extensions"
-msgstr "Προβολή όλων των επεκτάσεων"
+msgstr "Επεκτάσεις ενισχυμένου απορρήτου"
 
 #. editorial content for the homepage shelves.
 msgid "See more enhanced privacy extensions"
@@ -4562,9 +4559,8 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Popular extensions"
-msgstr "Εξερεύνηση επεκτάσεων"
+msgstr "Δημοφιλείς επεκτάσεις"
 
 #. editorial content for the homepage shelves.
 msgid "See more popular extensions"
@@ -5517,13 +5513,11 @@ msgstr "Απενεργοποίηση αυτόματης έγκρισης κατ�
 msgid "Enable Listed Auto-Approval"
 msgstr "Ενεργοποίηση αυτόματης έγκρισης καταχωρήσεων"
 
-#, fuzzy
 msgid "Disable Unlisted Auto-Approval"
-msgstr "Απενεργοποίηση αυτόματης έγκρισης καταχωρήσεων"
+msgstr "Απενεργοποίηση αυτόματης έγκρισης μη καταχωρημένων"
 
-#, fuzzy
 msgid "Enable Unlisted Auto-Approval"
-msgstr "Ενεργοποίηση αυτόματης έγκρισης καταχωρήσεων"
+msgstr "Ενεργοποίηση αυτόματης έγκρισης μη καταχωρημένων"
 
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
 msgstr "Απενεργοποίηση αυτόματης έγκρισης καταχωρήσεων μέχρι την επόμενη χειροκίνητη έγκριση"
