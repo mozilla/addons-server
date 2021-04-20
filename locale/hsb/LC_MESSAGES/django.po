@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-20 21:11+0000\n"
+"PO-Revision-Date: 2021-04-20 21:14+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -547,9 +547,9 @@ msgstr "GUID přidatkow (jedyn na linku)"
 msgid "Submit"
 msgstr "Zapodać"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%(count)s Add-on GUIDs with %(adu)s users"
-msgstr "Ličba přidatkowych GUIDs: %(count)s"
+msgstr "Ličba přidatkowych GUIDs: %(count)s - ličba wužiwarjow: %(adu)s"
 
 msgid "Edit Block"
 msgstr "Blok wobdźěłać"
@@ -4498,7 +4498,7 @@ msgstr "Dalše doporučene rozšěrjenja pokazać"
 
 #. editorial content for the homepage shelves.
 msgid "Popular themes"
-msgstr ""
+msgstr "Woblubowane drasty"
 
 #. editorial content for the homepage shelves.
 msgid "See more popular themes"
@@ -4510,7 +4510,7 @@ msgstr "Polěpšene rozšěrjenja za priwatnosć"
 
 #. editorial content for the homepage shelves.
 msgid "See more enhanced privacy extensions"
-msgstr ""
+msgstr "Dalše polěpšene rozšěrjenja za priwatnosć pokazać"
 
 #. editorial content for the homepage shelves.
 msgid "Popular extensions"
@@ -4526,15 +4526,15 @@ msgstr "Doporučene drasty"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
-msgstr ""
+msgstr "Dalše doporučene drasty pokazać"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended password managers"
-msgstr ""
+msgstr "Doporučene zrjadowaki hesłow"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended password managers"
-msgstr ""
+msgstr "Dalše doporučene zrjadowaki hesłow pokazać"
 
 msgid "Could not parse the manifest file."
 msgstr "Manifestowa dataja njeda so analyzować."
