@@ -22,7 +22,7 @@ from olympia.addons.models import AddonUser, Preview, Addon
 from olympia.addons.utils import generate_addon_guid
 from olympia.amo.tests import user_factory, addon_factory, copy_file_to_temp
 from olympia.amo.utils import days_ago
-from olympia.constants.applications import APPS, FIREFOX
+from olympia.constants.applications import FIREFOX
 from olympia.constants.base import ADDON_EXTENSION, ADDON_STATICTHEME
 from olympia.landfill.collection import generate_collection
 from olympia.ratings.models import Rating
@@ -318,16 +318,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
         addon.save()
         generate_collection(addon, app=FIREFOX)
         print('Created Theme {0} for testing successfully'.format(addon.name))
-
-    def create_featured_collections(self):
-        """Creates exactly 4 collections that are featured.
-
-        This fixture uses the generate_collection function from olympia.
-
-        """
-        for _ in range(4):
-            addon = addon_factory(type=amo.ADDON_EXTENSION)
-            generate_collection(addon, APPS['firefox'])
 
     def create_featured_themes(self):
         """Creates exactly 6 themes that will be not featured.

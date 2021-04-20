@@ -82,7 +82,6 @@ class Command(BaseCommand):
             serializer.create_generic_featured_addons()
             serializer.create_featured_addon_with_version()
             serializer.create_featured_theme()
-            serializer.create_featured_collections()
             serializer.create_featured_themes()
             for addon in base_collections:
                 serializer.create_a_named_collection_and_addon(addon, author='mozilla')
