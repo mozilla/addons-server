@@ -11,7 +11,7 @@ from django.contrib.sitemaps.views import x_robots_tag
 from django.core.exceptions import ViewDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.db.transaction import non_atomic_requests
-from django.http import Http404, HttpResponse, JsonResponse
+from django.http import FileResponse, Http404, HttpResponse, JsonResponse
 from django.utils.cache import patch_cache_control
 from django.utils.http import http_date
 from django.views.decorators.cache import never_cache
@@ -195,10 +195,11 @@ def sitemap(request):
     page = request.GET.get('p', 1)
     if 'debug' in request.GET and settings.SITEMAP_DEBUG_AVAILABLE:
         content = build_sitemap(section, page)
+        response = HttpResponse(content, content_type='application/xml')
     else:
         path = get_sitemap_path(section, page)
         try:
-            content = storage.open(path)  # HttpResponse closes files after consuming
+            content = storage.open(path)  # FileResponse closes files after consuming
             modified_timestamp = os_stat(path).st_mtime
         except FileNotFoundError as err:
             sitemap_log.exception(
@@ -209,7 +210,7 @@ def sitemap(request):
             )
             raise Http404
         expires_timestamp = modified_timestamp + (60 * 60 * 24)
-    response = HttpResponse(content, content_type='application/xml')
+        response = FileResponse(content, content_type='application/xml')
     if expires_timestamp:
         # check the expiry date wouldn't be in the past
         if expires_timestamp > time.time():
