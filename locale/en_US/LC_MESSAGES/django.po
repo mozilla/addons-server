@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-16 17:41+0000\n"
+"POT-Creation-Date: 2021-04-20 19:22+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -192,9 +192,6 @@ msgstr "Account Settings"
 msgid "My Collections"
 msgstr "My Collections"
 
-msgid "My Favorites"
-msgstr "My Favorites"
-
 msgid "Log out"
 msgstr "Log out"
 
@@ -277,36 +274,6 @@ msgid ""
 msgstr ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
-
-#, fuzzy
-msgid "Page Not Found"
-msgstr "Not Found"
-
-#, fuzzy
-msgid "Firefox Add-ons"
-msgstr "More Add-ons"
-
-msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-
-msgid "Suggested Pages"
-msgstr "Suggested Pages"
-
-#, fuzzy
-msgid "Browse all extensions"
-msgstr "Browse all add-ons"
-
-#, fuzzy
-msgid "Browse all themes"
-msgstr "Browse all add-ons"
-
-#, fuzzy
-msgid "Add-ons Home Page"
-msgstr "Add-on home page"
-
-#, fuzzy, python-format
-msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
-msgstr "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
 
 msgid "Not Found"
 msgstr "Not Found"
@@ -618,8 +585,8 @@ msgstr "Add-on GUIDs (one per line)"
 msgid "Submit"
 msgstr "Submit a New Add-on"
 
-#, python-format
-msgid "%(count)s Add-on GUIDs"
+#, fuzzy, python-format
+msgid "%(count)s Add-on GUIDs with %(adu)s users"
 msgstr "%(count)s Add-on GUIDs"
 
 msgid "Edit Block"
@@ -1054,16 +1021,16 @@ msgid "Version re-signed"
 msgstr "Version %s re-enabled."
 
 #, fuzzy
-msgid "{addon} status force-disabled."
-msgstr "{addon} disabled."
+msgid "{user} force-disabled {addon}."
+msgstr "Force-disable add-on"
 
 #, fuzzy
 msgid "Force disabled"
 msgstr "Force-disable add-on"
 
 #, fuzzy
-msgid "{addon} status force-enabled."
-msgstr "{addon} {version} rejected."
+msgid "{user} force-enabled {addon}."
+msgstr "Re-enable Version"
 
 #, fuzzy
 msgid "Force enabled"
@@ -1496,30 +1463,6 @@ msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
-
-msgid "Any"
-msgstr "Any"
-
-msgid "All Platforms"
-msgstr "All Platforms"
-
-msgid "Linux"
-msgstr "Linux"
-
-msgid "Mac OS X"
-msgstr "Mac OS X"
-
-msgid "BSD"
-msgstr "BSD"
-
-msgid "Windows"
-msgstr "Windows"
-
-msgid "Solaris"
-msgstr "Solaris"
-
-msgid "Android"
-msgstr "Android"
 
 #, fuzzy
 msgid "Not Promoted"
@@ -3494,7 +3437,7 @@ msgstr "Whether you’re new to extension development, polishing up or porting a
 
 # Plural in this context means many of the add-on type
 #, fuzzy
-msgid "Visit the Extension Workshop"
+msgid "Visit the Firefox Extension Workshop"
 msgstr "Extensions"
 
 msgid "Connect with us"
@@ -3711,7 +3654,8 @@ msgstr "Source code"
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
 msgstr "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
 
-msgid "File {file_id} ({platform})"
+#, fuzzy
+msgid "File {file_id}"
 msgstr "File {file_id} ({platform})"
 
 #, python-format
@@ -4871,6 +4815,14 @@ msgstr "Get the scrollbar you always wanted—select width and your color of cho
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr "Save and restore tabs. Includes auto-save and cloud sync features."
 
+#. editorial content for the primary hero shelves.
+msgid "Save batches of tabs as convenient bookmarks."
+msgstr "Save batches of tabs as convenient bookmarks."
+
+#. editorial content for the primary hero shelves.
+msgid "Tabs and bookmarks neatly organized in a Firefox side view."
+msgstr "Tabs and bookmarks neatly organized in a Firefox side view."
+
 #. editorial content for the secondary hero shelves.
 #, fuzzy
 msgid "Extensions are like apps for Firefox."
@@ -4906,6 +4858,62 @@ msgstr "Extensions"
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Learn More"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Recommended extensions"
+msgstr "Recommended Extensions program"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more recommended extensions"
+msgstr "Recommended Extensions program"
+
+#. editorial content for the homepage shelves.
+msgid "Popular themes"
+msgstr "Popular themes"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more popular themes"
+msgstr "Select colors for your Theme."
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Enhanced privacy extensions"
+msgstr "Browse all add-ons"
+
+#. editorial content for the homepage shelves.
+msgid "See more enhanced privacy extensions"
+msgstr "See more enhanced privacy extensions"
+
+# Plural in this context means many of the add-on type
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Popular extensions"
+msgstr "Extensions"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more popular extensions"
+msgstr "Browse all add-ons"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Recommended themes"
+msgstr "Recommended ({0})"
+
+#. editorial content for the homepage shelves.
+msgid "See more recommended themes"
+msgstr "See more recommended themes"
+
+#. editorial content for the homepage shelves.
+msgid "Recommended password managers"
+msgstr "Recommended password managers"
+
+#. editorial content for the homepage shelves.
+msgid "See more recommended password managers"
+msgstr "See more recommended password managers"
 
 msgid "Could not parse the manifest file."
 msgstr "Could not parse the manifest file."
@@ -5219,6 +5227,9 @@ msgstr "no"
 
 msgid "Add-on Types"
 msgstr "Add-on Types"
+
+msgid "Any"
+msgstr "Any"
 
 msgid "Search by add-on name / author email / guid"
 msgstr "Search by add-on name / author email / guid"
@@ -5930,6 +5941,14 @@ msgid "Enable Listed Auto-Approval"
 msgstr "Approval Status"
 
 #, fuzzy
+msgid "Disable Unlisted Auto-Approval"
+msgstr "Disable Auto-Approval"
+
+#, fuzzy
+msgid "Enable Unlisted Auto-Approval"
+msgstr "Approval Status"
+
+#, fuzzy
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
 msgstr "Disable Auto-Approval"
 
@@ -6023,6 +6042,9 @@ msgstr "Dismiss this announcement"
 
 msgid "Files in this version:"
 msgstr "Files in this version:"
+
+msgid "All Platforms"
+msgstr "All Platforms"
 
 #, fuzzy
 msgid "Browse all files in this version"
@@ -6684,12 +6706,6 @@ msgstr "No user with that email."
 #, fuzzy
 msgid "Firefox user {id}"
 msgstr "Firefox for Android"
-
-msgid "My Mobile Add-ons"
-msgstr "My Mobile Add-ons"
-
-msgid "My Favorite Add-ons"
-msgstr "My Favorite Add-ons"
 
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"

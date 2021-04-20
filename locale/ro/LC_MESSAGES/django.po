@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-16 17:41+0000\n"
+"POT-Creation-Date: 2021-04-20 19:22+0000\n"
 "PO-Revision-Date: 2020-11-09 07:11+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -177,9 +177,6 @@ msgstr "Setările contului"
 msgid "My Collections"
 msgstr "Colecțiile mele"
 
-msgid "My Favorites"
-msgstr "Favoritele mele"
-
 msgid "Log out"
 msgstr "Deconectare"
 
@@ -258,35 +255,6 @@ msgid ""
 msgstr ""
 "Vezi acest mesaj deoarece site-ul necesită un cookie CSRF la depunerea de formulare. Acest cookie este necesar din motive de securitate, pentru asigurarea că browserul nu este deturnat de părți "
 "terțe."
-
-msgid "Page Not Found"
-msgstr "Pagina nu a fost găsită"
-
-msgid "Firefox Add-ons"
-msgstr "Suplimente Firefox"
-
-msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr "Ne pare rău, dar nu am reușit să găsim nimic la adresa pe care ai introdus-o. Dacă ai urmat un link spre un supliment, este posibil ca suplimentul să fi fost eliminat chiar de autor."
-
-msgid "Suggested Pages"
-msgstr "Pagini sugerate"
-
-msgid "Browse all extensions"
-msgstr "Răsfoiește toate extensiile"
-
-msgid "Browse all themes"
-msgstr "Răsfoiește toate temele"
-
-# {0} is the application the user is browsing.  Examples:  Thunderbird,
-# Firefox,
-# Sunbird
-msgid "Add-ons Home Page"
-msgstr "Pagină de start pentru suplimente"
-
-#, python-format
-msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
-msgstr ""
-"Dacă ai urmat un link de undeva, te rugăm %(open_bug_link)ssă deschizi un tichet%(close_bug_link)s. Spune-ne de unde veneai și ce căutai și vom face tot ce ne stă în putință ca să rezolvăm problema."
 
 msgid "Not Found"
 msgstr "Nu a fost găsit"
@@ -587,8 +555,8 @@ msgstr "GUID-uri de suplimente (unul pe rând)"
 msgid "Submit"
 msgstr "Trimite"
 
-#, python-format
-msgid "%(count)s Add-on GUIDs"
+#, fuzzy, python-format
+msgid "%(count)s Add-on GUIDs with %(adu)s users"
 msgstr "%(count)s GUID-uri de suplimente"
 
 msgid "Edit Block"
@@ -976,16 +944,16 @@ msgid "Version re-signed"
 msgstr "Versiune %s reactivată."
 
 #, fuzzy
-msgid "{addon} status force-disabled."
-msgstr "{addon} dezactivat."
+msgid "{user} force-disabled {addon}."
+msgstr "Dezactivează forțat suplimentul"
 
 #, fuzzy
 msgid "Force disabled"
 msgstr "Dezactivează forțat suplimentul"
 
 #, fuzzy
-msgid "{addon} status force-enabled."
-msgstr "{addon} {version} reactivat."
+msgid "{user} force-enabled {addon}."
+msgstr "Activează forțat suplimentul"
 
 #, fuzzy
 msgid "Force enabled"
@@ -1409,30 +1377,6 @@ msgstr "Creative Commons cu atribuire, fără modificări 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons cu atribuire, distribuire în condiții identice 3.0"
-
-msgid "Any"
-msgstr "Oricare"
-
-msgid "All Platforms"
-msgstr "Toate platformele"
-
-msgid "Linux"
-msgstr "Linux"
-
-msgid "Mac OS X"
-msgstr "Mac OS X"
-
-msgid "BSD"
-msgstr "BSD"
-
-msgid "Windows"
-msgstr "Windows"
-
-msgid "Solaris"
-msgstr "Solaris"
-
-msgid "Android"
-msgstr "Android"
 
 msgid "Not Promoted"
 msgstr "Nepromovat"
@@ -3276,7 +3220,8 @@ msgstr ""
 "să te susținem."
 
 # Plural in this context means many of the add-on type
-msgid "Visit the Extension Workshop"
+#, fuzzy
+msgid "Visit the Firefox Extension Workshop"
 msgstr "Intră în atelierul de extensii"
 
 msgid "Connect with us"
@@ -3471,7 +3416,8 @@ msgstr "Cod sursă"
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
 msgstr "Dacă suplimentul conține cod minificat, legat în lanțuri sau generat altminteri de mașini, fă sursa disponibilă aici pentru recenzori."
 
-msgid "File {file_id} ({platform})"
+#, fuzzy
+msgid "File {file_id}"
 msgstr "Fișier {file_id} ({platform})"
 
 #, python-format
@@ -4550,6 +4496,14 @@ msgstr ""
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Save batches of tabs as convenient bookmarks."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Tabs and bookmarks neatly organized in a Firefox side view."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Extensiile sunt ca un fel de aplicații pentru Firefox."
@@ -4582,6 +4536,62 @@ msgstr "Explorează extensiile"
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Află mai multe"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Recommended extensions"
+msgstr "Program de extensii recomandate"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more recommended extensions"
+msgstr "Program de extensii recomandate"
+
+#. editorial content for the homepage shelves.
+msgid "Popular themes"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more popular themes"
+msgstr "Selectează culorile temei"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Enhanced privacy extensions"
+msgstr "Vezi toate extensiile"
+
+#. editorial content for the homepage shelves.
+msgid "See more enhanced privacy extensions"
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Popular extensions"
+msgstr "Explorează extensiile"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more popular extensions"
+msgstr "Vezi toate extensiile"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Recommended themes"
+msgstr "Recomandat"
+
+#. editorial content for the homepage shelves.
+msgid "See more recommended themes"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "Recommended password managers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more recommended password managers"
+msgstr ""
 
 msgid "Could not parse the manifest file."
 msgstr "Nu s-a reușit analizarea fișierului manifest."
@@ -4885,6 +4895,9 @@ msgstr "nu"
 
 msgid "Add-on Types"
 msgstr "Tipuri de suplimente"
+
+msgid "Any"
+msgstr "Oricare"
 
 msgid "Search by add-on name / author email / guid"
 msgstr "Caută după denumirea suplimentului / e-mailul autorului / guid"
@@ -5529,6 +5542,14 @@ msgstr "Dezactivează aprobarea automată a versiunilor listate"
 msgid "Enable Listed Auto-Approval"
 msgstr "Activează aprobarea automată a versiunilor listate"
 
+#, fuzzy
+msgid "Disable Unlisted Auto-Approval"
+msgstr "Dezactivează aprobarea automată a versiunilor listate"
+
+#, fuzzy
+msgid "Enable Unlisted Auto-Approval"
+msgstr "Activează aprobarea automată a versiunilor listate"
+
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
 msgstr "Dezactivează aprobarea automată a versiunilor listate până la următoarea aprobare manuală"
 
@@ -5612,6 +5633,9 @@ msgstr "Respinge acest anunț"
 
 msgid "Files in this version:"
 msgstr "Fișiere în această versiune:"
+
+msgid "All Platforms"
+msgstr "Toate platformele"
 
 msgid "Browse all files in this version"
 msgstr "Derulează toate fișierele din această versiune"
@@ -6236,12 +6260,6 @@ msgstr "Nu există niciun utilizator cu acea adresă de e-mail."
 
 msgid "Firefox user {id}"
 msgstr "Utilizator Firefox {id}"
-
-msgid "My Mobile Add-ons"
-msgstr "Suplimentele mele pentru dispozitive mobile"
-
-msgid "My Favorite Add-ons"
-msgstr "Suplimentele mele favorite"
 
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Introdu un interval valid de rețea CIDR IPv6 sau IPv6, de ex. 127.0.0.1/28"

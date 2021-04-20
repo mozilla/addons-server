@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-16 17:41+0000\n"
+"POT-Creation-Date: 2021-04-20 19:22+0000\n"
 "PO-Revision-Date: 2018-06-01 00:24+0000\n"
 "Last-Translator: pchew <pchew@change.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -193,10 +193,6 @@ msgstr ""
 msgid "My Collections"
 msgstr "My Collections"
 
-#, fuzzy
-msgid "My Favorites"
-msgstr "My Favorites"
-
 msgid "Log out"
 msgstr "Гарах"
 
@@ -270,35 +266,6 @@ msgstr ""
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
-msgstr ""
-
-msgid "Page Not Found"
-msgstr ""
-
-#, fuzzy
-msgid "Firefox Add-ons"
-msgstr "Миний нэмэгдлүүд"
-
-msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr ""
-
-msgid "Suggested Pages"
-msgstr ""
-
-msgid "Browse all extensions"
-msgstr ""
-
-msgid "Browse all themes"
-msgstr ""
-
-# {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
-# Sunbird
-#, fuzzy
-msgid "Add-ons Home Page"
-msgstr "{0} нэмэгдлүүд"
-
-#, python-format
-msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
 msgstr ""
 
 msgid "Not Found"
@@ -595,7 +562,7 @@ msgid "Submit"
 msgstr "New Version"
 
 #, python-format
-msgid "%(count)s Add-on GUIDs"
+msgid "%(count)s Add-on GUIDs with %(adu)s users"
 msgstr ""
 
 msgid "Edit Block"
@@ -991,13 +958,13 @@ msgstr ""
 msgid "Version re-signed"
 msgstr "Хувилбарын тэмдэглэл"
 
-msgid "{addon} status force-disabled."
+msgid "{user} force-disabled {addon}."
 msgstr ""
 
 msgid "Force disabled"
 msgstr ""
 
-msgid "{addon} status force-enabled."
+msgid "{user} force-enabled {addon}."
 msgstr ""
 
 msgid "Force enabled"
@@ -1420,30 +1387,6 @@ msgid "Creative Commons Attribution-NoDerivs 3.0"
 msgstr ""
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
-
-msgid "Any"
-msgstr ""
-
-msgid "All Platforms"
-msgstr ""
-
-msgid "Linux"
-msgstr ""
-
-msgid "Mac OS X"
-msgstr ""
-
-msgid "BSD"
-msgstr ""
-
-msgid "Windows"
-msgstr ""
-
-msgid "Solaris"
-msgstr ""
-
-msgid "Android"
 msgstr ""
 
 #, fuzzy
@@ -3258,7 +3201,7 @@ msgstr ""
 
 # Plural in this context means many of the add-on type
 #, fuzzy
-msgid "Visit the Extension Workshop"
+msgid "Visit the Firefox Extension Workshop"
 msgstr "Өргөтгөлүүд"
 
 msgid "Connect with us"
@@ -3463,7 +3406,7 @@ msgstr ""
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
 msgstr ""
 
-msgid "File {file_id} ({platform})"
+msgid "File {file_id}"
 msgstr ""
 
 #, python-format
@@ -4536,6 +4479,14 @@ msgstr ""
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Save batches of tabs as convenient bookmarks."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Tabs and bookmarks neatly organized in a Firefox side view."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr ""
@@ -4571,6 +4522,64 @@ msgstr "Өргөтгөлүүд"
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Нэмэлт мэдээлэл"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Recommended extensions"
+msgstr "Тайлбар:"
+
+# Plural in this context means many of the add-on type
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more recommended extensions"
+msgstr "Өргөтгөлүүд"
+
+#. editorial content for the homepage shelves.
+msgid "Popular themes"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more popular themes"
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Enhanced privacy extensions"
+msgstr "Өргөтгөлүүд"
+
+#. editorial content for the homepage shelves.
+msgid "See more enhanced privacy extensions"
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Popular extensions"
+msgstr "Өргөтгөлүүд"
+
+# Plural in this context means many of the add-on type
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more popular extensions"
+msgstr "Өргөтгөлүүд"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Recommended themes"
+msgstr "Тайлбар:"
+
+#. editorial content for the homepage shelves.
+msgid "See more recommended themes"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "Recommended password managers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more recommended password managers"
+msgstr ""
 
 msgid "Could not parse the manifest file."
 msgstr ""
@@ -4871,6 +4880,9 @@ msgstr "no"
 #, fuzzy
 msgid "Add-on Types"
 msgstr "Add-on Types"
+
+msgid "Any"
+msgstr ""
 
 msgid "Search by add-on name / author email / guid"
 msgstr ""
@@ -5559,6 +5571,14 @@ msgid "Enable Listed Auto-Approval"
 msgstr "Сүүлд шинэчлэгдсэн"
 
 #, fuzzy
+msgid "Disable Unlisted Auto-Approval"
+msgstr "Сүүлд шинэчлэгдсэн"
+
+#, fuzzy
+msgid "Enable Unlisted Auto-Approval"
+msgstr "Сүүлд шинэчлэгдсэн"
+
+#, fuzzy
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
 msgstr "Сүүлд шинэчлэгдсэн"
 
@@ -5648,6 +5668,9 @@ msgid "Dismiss this announcement"
 msgstr ""
 
 msgid "Files in this version:"
+msgstr ""
+
+msgid "All Platforms"
 msgstr ""
 
 msgid "Browse all files in this version"
@@ -6279,12 +6302,6 @@ msgid "No user with that email."
 msgstr ""
 
 msgid "Firefox user {id}"
-msgstr ""
-
-msgid "My Mobile Add-ons"
-msgstr ""
-
-msgid "My Favorite Add-ons"
 msgstr ""
 
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"

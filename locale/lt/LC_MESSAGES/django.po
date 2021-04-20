@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-16 17:41+0000\n"
+"POT-Creation-Date: 2021-04-20 19:22+0000\n"
 "PO-Revision-Date: 2017-08-10 14:20+0000\n"
 "Last-Translator: Paulius <paulius@mozilla.lt>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -186,9 +186,6 @@ msgstr "Paskyros nuostatos"
 msgid "My Collections"
 msgstr "Mano rinkiniai"
 
-msgid "My Favorites"
-msgstr "Mano mėgstamiausi"
-
 msgid "Log out"
 msgstr "Atsijungti"
 
@@ -262,35 +259,6 @@ msgstr ""
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
-msgstr ""
-
-#, fuzzy
-msgid "Page Not Found"
-msgstr "Tinklalapis nerastas"
-
-#, fuzzy
-msgid "Firefox Add-ons"
-msgstr "Daugiau priedų"
-
-msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr ""
-
-msgid "Suggested Pages"
-msgstr ""
-
-#, fuzzy
-msgid "Browse all extensions"
-msgstr "Populiarūs plėtiniai"
-
-msgid "Browse all themes"
-msgstr ""
-
-#, fuzzy
-msgid "Add-ons Home Page"
-msgstr "Priedai, skirti {0}"
-
-#, python-format
-msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
 msgstr ""
 
 msgid "Not Found"
@@ -583,7 +551,7 @@ msgid "Submit"
 msgstr "Neperžiūrėtas"
 
 #, python-format
-msgid "%(count)s Add-on GUIDs"
+msgid "%(count)s Add-on GUIDs with %(adu)s users"
 msgstr ""
 
 msgid "Edit Block"
@@ -988,14 +956,14 @@ msgid "Version re-signed"
 msgstr "Versijos pastabos"
 
 #, fuzzy
-msgid "{addon} status force-disabled."
+msgid "{user} force-disabled {addon}."
 msgstr "Priedas „{addon}“ sukurtas."
 
 msgid "Force disabled"
 msgstr ""
 
 #, fuzzy
-msgid "{addon} status force-enabled."
+msgid "{user} force-enabled {addon}."
 msgstr "Priedas „{addon}“ sukurtas."
 
 msgid "Force enabled"
@@ -1404,30 +1372,6 @@ msgid "Creative Commons Attribution-NoDerivs 3.0"
 msgstr ""
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
-
-msgid "Any"
-msgstr ""
-
-msgid "All Platforms"
-msgstr ""
-
-msgid "Linux"
-msgstr ""
-
-msgid "Mac OS X"
-msgstr ""
-
-msgid "BSD"
-msgstr ""
-
-msgid "Windows"
-msgstr ""
-
-msgid "Solaris"
-msgstr ""
-
-msgid "Android"
 msgstr ""
 
 #, fuzzy
@@ -3226,7 +3170,7 @@ msgid "Whether you’re new to extension development, polishing up or porting an
 msgstr ""
 
 #, fuzzy
-msgid "Visit the Extension Workshop"
+msgid "Visit the Firefox Extension Workshop"
 msgstr "Plėtiniai"
 
 msgid "Connect with us"
@@ -3422,7 +3366,7 @@ msgstr ""
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
 msgstr ""
 
-msgid "File {file_id} ({platform})"
+msgid "File {file_id}"
 msgstr ""
 
 #, python-format
@@ -4491,6 +4435,14 @@ msgstr ""
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Save batches of tabs as convenient bookmarks."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Tabs and bookmarks neatly organized in a Firefox side view."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr ""
@@ -4524,6 +4476,60 @@ msgstr "Plėtiniai"
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Sužinoti daugiau"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Recommended extensions"
+msgstr "Komentuoti"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more recommended extensions"
+msgstr "Populiarūs plėtiniai"
+
+#. editorial content for the homepage shelves.
+msgid "Popular themes"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more popular themes"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Enhanced privacy extensions"
+msgstr "Populiarūs plėtiniai"
+
+#. editorial content for the homepage shelves.
+msgid "See more enhanced privacy extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Popular extensions"
+msgstr "Plėtiniai"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more popular extensions"
+msgstr "Populiarūs plėtiniai"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Recommended themes"
+msgstr "Komentuoti"
+
+#. editorial content for the homepage shelves.
+msgid "See more recommended themes"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "Recommended password managers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more recommended password managers"
+msgstr ""
 
 msgid "Could not parse the manifest file."
 msgstr ""
@@ -4814,6 +4820,9 @@ msgid "no"
 msgstr ""
 
 msgid "Add-on Types"
+msgstr ""
+
+msgid "Any"
 msgstr ""
 
 msgid "Search by add-on name / author email / guid"
@@ -5488,6 +5497,12 @@ msgstr ""
 msgid "Enable Listed Auto-Approval"
 msgstr ""
 
+msgid "Disable Unlisted Auto-Approval"
+msgstr ""
+
+msgid "Enable Unlisted Auto-Approval"
+msgstr ""
+
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
 msgstr ""
 
@@ -5574,6 +5589,9 @@ msgid "Dismiss this announcement"
 msgstr ""
 
 msgid "Files in this version:"
+msgstr ""
+
+msgid "All Platforms"
 msgstr ""
 
 #, fuzzy
@@ -6202,12 +6220,6 @@ msgid "No user with that email."
 msgstr ""
 
 msgid "Firefox user {id}"
-msgstr ""
-
-msgid "My Mobile Add-ons"
-msgstr ""
-
-msgid "My Favorite Add-ons"
 msgstr ""
 
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"

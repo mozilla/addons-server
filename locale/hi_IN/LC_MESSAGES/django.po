@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-16 17:41+0000\n"
+"POT-Creation-Date: 2021-04-20 19:22+0000\n"
 "PO-Revision-Date: 2018-08-19 10:19+0000\n"
 "Last-Translator: Shivam Singhal <shivams2799@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -181,9 +181,6 @@ msgstr "खाता सेटिंग"
 msgid "My Collections"
 msgstr "मेरे संग्रह"
 
-msgid "My Favorites"
-msgstr "मेरे पसंदीदा"
-
 msgid "Log out"
 msgstr "लॉग आउट"
 
@@ -259,31 +256,6 @@ msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
 msgstr "आप यह संदेश देख रहे हैं क्योंकि फॉर्म सबमिट करते समय इस साइट को CSRF कुकी की आवश्यकता होती है। सुरक्षा कारणों से यह कुकी आवश्यक है, यह सुनिश्चित करने के लिए कि आपके ब्राउज़र को तीसरे पक्ष द्वारा अपहरण नहीं किया जा रहा है।"
-
-msgid "Page Not Found"
-msgstr "पेज उपलब्ध नहीं है"
-
-msgid "Firefox Add-ons"
-msgstr "Firefox एड-ऑन‌्स"
-
-msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr "क्षमा करें, लेकिन आपके द्वारा दर्ज किए गए पते पर हमें कुछ भी नहीं मिल रहा है। यदि आपने ऐड-ऑन के लिंक का पालन किया है, तो यह संभव है कि ऐड-ऑन को इसके लेखक द्वारा हटा दिया गया हो।"
-
-msgid "Suggested Pages"
-msgstr "सुझाए गए पृष्ठ"
-
-msgid "Browse all extensions"
-msgstr "सभी एक्सटेंशन ब्राउज करें"
-
-msgid "Browse all themes"
-msgstr "सभी थीम ब्राउज़ करें"
-
-msgid "Add-ons Home Page"
-msgstr "ऐड-ऑन मुख पृष्ठ"
-
-#, fuzzy, python-format
-msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
-msgstr "यदि आपने कहीं से किसी लिंक का पालन किया है, तो कृपया %(open_bug_link)sएक समस्या दर्ज करें%(close_bug_link)s। हमें बताएं कि आप कहां से आए थे और आप क्या खोज रहे थे, और हम इसे ठीक करने के लिए अपनी पूरी कोशिश करेंगे।"
 
 msgid "Not Found"
 msgstr "नहीं मिला"
@@ -585,8 +557,8 @@ msgstr "GUID ऐड-ऑन (प्रति पंक्ति एक)"
 msgid "Submit"
 msgstr "संस्करण सबमिट करें"
 
-#, python-format
-msgid "%(count)s Add-on GUIDs"
+#, fuzzy, python-format
+msgid "%(count)s Add-on GUIDs with %(adu)s users"
 msgstr "%(count)s GUIDs ऐड-ऑन"
 
 msgid "Edit Block"
@@ -979,15 +951,15 @@ msgid "Version re-signed"
 msgstr "संस्करण टिप्पणियाँ"
 
 #, fuzzy
-msgid "{addon} status force-disabled."
-msgstr "{addon} अक्षम।"
+msgid "{user} force-disabled {addon}."
+msgstr "{addon} के लिए {version} संपादित किया गया।"
 
 #, fuzzy
 msgid "Force disabled"
 msgstr "{addon} अक्षम।"
 
 #, fuzzy
-msgid "{addon} status force-enabled."
+msgid "{user} force-enabled {addon}."
 msgstr "{addon} सक्षम किया गया।"
 
 #, fuzzy
@@ -1396,30 +1368,6 @@ msgstr ""
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr ""
-
-msgid "Any"
-msgstr "कोई"
-
-msgid "All Platforms"
-msgstr "सभी प्लेटफार्म"
-
-msgid "Linux"
-msgstr "लिनक्स"
-
-msgid "Mac OS X"
-msgstr "मैक ओएस एक्स"
-
-msgid "BSD"
-msgstr "बीएसडी"
-
-msgid "Windows"
-msgstr "विंडोज़"
-
-msgid "Solaris"
-msgstr "सोलारिस"
-
-msgid "Android"
-msgstr "एंड्रॉयड"
 
 #, fuzzy
 msgid "Not Promoted"
@@ -3170,7 +3118,7 @@ msgid "Whether you’re new to extension development, polishing up or porting an
 msgstr ""
 
 #, fuzzy
-msgid "Visit the Extension Workshop"
+msgid "Visit the Firefox Extension Workshop"
 msgstr "एक्स्टेंशन"
 
 msgid "Connect with us"
@@ -3367,7 +3315,8 @@ msgstr "स्रोत कोड"
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
 msgstr ""
 
-msgid "File {file_id} ({platform})"
+#, fuzzy
+msgid "File {file_id}"
 msgstr "फाइल {file_id} ({platform})"
 
 #, python-format
@@ -4427,6 +4376,14 @@ msgstr ""
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Save batches of tabs as convenient bookmarks."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Tabs and bookmarks neatly organized in a Firefox side view."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr ""
@@ -4460,6 +4417,61 @@ msgstr "एक्स्टेंशन"
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "अधिक जानें"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Recommended extensions"
+msgstr "टिप्पणी की गई"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more recommended extensions"
+msgstr "सभी एक्सटेंशन ब्राउज करें"
+
+#. editorial content for the homepage shelves.
+msgid "Popular themes"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more popular themes"
+msgstr "अपनी थीम के लिए रंगों का चयन करें"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Enhanced privacy extensions"
+msgstr "सभी एक्सटेंशन ब्राउज करें"
+
+#. editorial content for the homepage shelves.
+msgid "See more enhanced privacy extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Popular extensions"
+msgstr "एक्स्टेंशन"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more popular extensions"
+msgstr "सभी एक्सटेंशन ब्राउज करें"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Recommended themes"
+msgstr "टिप्पणी की गई"
+
+#. editorial content for the homepage shelves.
+msgid "See more recommended themes"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "Recommended password managers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more recommended password managers"
+msgstr ""
 
 msgid "Could not parse the manifest file."
 msgstr "मैनिफेस्ट फ़ाइल को पार्स नहीं कर सका।"
@@ -4749,6 +4761,9 @@ msgstr "नहीं"
 
 msgid "Add-on Types"
 msgstr "ऐड-ऑन प्रकार"
+
+msgid "Any"
+msgstr "कोई"
 
 msgid "Search by add-on name / author email / guid"
 msgstr ""
@@ -5401,6 +5416,14 @@ msgid "Enable Listed Auto-Approval"
 msgstr "ऑटो-स्वीकृति को सक्षम करें"
 
 #, fuzzy
+msgid "Disable Unlisted Auto-Approval"
+msgstr "ऑटो-स्वीकृति को सक्षम करें"
+
+#, fuzzy
+msgid "Enable Unlisted Auto-Approval"
+msgstr "ऑटो-स्वीकृति को सक्षम करें"
+
+#, fuzzy
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
 msgstr "ऑटो-स्वीकृति को सक्षम करें"
 
@@ -5490,6 +5513,9 @@ msgstr "इस घोषणा को खारिज करें"
 
 msgid "Files in this version:"
 msgstr ""
+
+msgid "All Platforms"
+msgstr "सभी प्लेटफार्म"
 
 #, fuzzy
 msgid "Browse all files in this version"
@@ -6119,12 +6145,6 @@ msgstr ""
 
 msgid "Firefox user {id}"
 msgstr "Firefox उपयोगकर्ता {id}"
-
-msgid "My Mobile Add-ons"
-msgstr "मेरा मोबाइल ऐड-ऑन"
-
-msgid "My Favorite Add-ons"
-msgstr "मेरा पसंदीदा ऐड-ऑन"
 
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr ""

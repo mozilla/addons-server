@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-16 17:41+0000\n"
+"POT-Creation-Date: 2021-04-20 19:22+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -188,9 +188,6 @@ msgstr "Podešavanja naloga"
 msgid "My Collections"
 msgstr "Moje kolekcije"
 
-msgid "My Favorites"
-msgstr "Moji omiljeni"
-
 msgid "Log out"
 msgstr "Odjavi se"
 
@@ -282,42 +279,6 @@ msgid ""
 "You are seeing this message because this site requires a CSRF cookie when "
 "submitting forms. This cookie is required for security reasons, to ensure "
 "that your browser is not being hijacked by third parties."
-msgstr ""
-
-#, fuzzy
-msgid "Page Not Found"
-msgstr "Nije pronađeno"
-
-#, fuzzy
-msgid "Firefox Add-ons"
-msgstr "Još dodataka"
-
-msgid ""
-"Sorry, but we can't find anything at the address you entered. If you "
-"followed a link to an add-on, it's possible that add-on has been removed by "
-"its author."
-msgstr ""
-
-msgid "Suggested Pages"
-msgstr ""
-
-#, fuzzy
-msgid "Browse all extensions"
-msgstr "Pogledajte sve dodatke"
-
-#, fuzzy
-msgid "Browse all themes"
-msgstr "Pogledajte sve dodatke"
-
-#, fuzzy
-msgid "Add-ons Home Page"
-msgstr "Početna stranica dodatka"
-
-#, python-format
-msgid ""
-"If you followed a link from somewhere, please %(open_bug_link)sfile an issue "
-"%(close_bug_link)s. Tell us where you came from and what you were looking "
-"for, and we'll do our best to fix it."
 msgstr ""
 
 msgid "Not Found"
@@ -688,7 +649,7 @@ msgid "Submit"
 msgstr "Podnesi novi dodatak"
 
 #, python-format
-msgid "%(count)s Add-on GUIDs"
+msgid "%(count)s Add-on GUIDs with %(adu)s users"
 msgstr ""
 
 msgid "Edit Block"
@@ -1126,16 +1087,16 @@ msgid "Version re-signed"
 msgstr "Verzija %s onemogućena."
 
 #, fuzzy
-msgid "{addon} status force-disabled."
-msgstr "{addon} onemogućen."
+msgid "{user} force-disabled {addon}."
+msgstr "{version} izmenjen za {addon}."
 
 #, fuzzy
 msgid "Force disabled"
 msgstr "{addon} onemogućen."
 
 #, fuzzy
-msgid "{addon} status force-enabled."
-msgstr "{addon} {version} je odbijen."
+msgid "{user} force-enabled {addon}."
+msgstr "Verzija za štampanje"
 
 #, fuzzy
 msgid "Force enabled"
@@ -1670,30 +1631,6 @@ msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
-
-msgid "Any"
-msgstr "Sve"
-
-msgid "All Platforms"
-msgstr "Sve platforme"
-
-msgid "Linux"
-msgstr "Linux"
-
-msgid "Mac OS X"
-msgstr "Mac OS X"
-
-msgid "BSD"
-msgstr "BSD"
-
-msgid "Windows"
-msgstr "Windows"
-
-msgid "Solaris"
-msgstr "Solaris"
-
-msgid "Android"
-msgstr "Android"
 
 #, fuzzy
 msgid "Not Promoted"
@@ -3804,7 +3741,7 @@ msgstr ""
 
 # Plural in this context means many of the add-on type
 #, fuzzy
-msgid "Visit the Extension Workshop"
+msgid "Visit the Firefox Extension Workshop"
 msgstr "Ekstenzije"
 
 msgid "Connect with us"
@@ -4048,7 +3985,8 @@ msgstr ""
 "Ako Vaš dodatak sadrži binarni ili bagovit kod, uverite se da je izvorni kod "
 "dostupan za recezente."
 
-msgid "File {file_id} ({platform})"
+#, fuzzy
+msgid "File {file_id}"
 msgstr "Datoteka {file_id} ({platform})"
 
 #, python-format
@@ -5324,6 +5262,14 @@ msgstr ""
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Save batches of tabs as convenient bookmarks."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Tabs and bookmarks neatly organized in a Firefox side view."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr ""
@@ -5360,6 +5306,62 @@ msgstr "Ekstenzije"
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Saznajte više"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Recommended extensions"
+msgstr "Komentariši"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more recommended extensions"
+msgstr "Pogledajte sve dodatke"
+
+#. editorial content for the homepage shelves.
+msgid "Popular themes"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more popular themes"
+msgstr "Odaberite boje za Vašu temu."
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Enhanced privacy extensions"
+msgstr "Pogledajte sve dodatke"
+
+#. editorial content for the homepage shelves.
+msgid "See more enhanced privacy extensions"
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Popular extensions"
+msgstr "Ekstenzije"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more popular extensions"
+msgstr "Pogledajte sve dodatke"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Recommended themes"
+msgstr "Komentariši"
+
+#. editorial content for the homepage shelves.
+msgid "See more recommended themes"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "Recommended password managers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more recommended password managers"
+msgstr ""
 
 msgid "Could not parse the manifest file."
 msgstr ""
@@ -5697,6 +5699,9 @@ msgstr "ne"
 
 msgid "Add-on Types"
 msgstr "Vrste dodatka"
+
+msgid "Any"
+msgstr "Sve"
 
 msgid "Search by add-on name / author email / guid"
 msgstr ""
@@ -6446,6 +6451,14 @@ msgid "Enable Listed Auto-Approval"
 msgstr "Status dozvole"
 
 #, fuzzy
+msgid "Disable Unlisted Auto-Approval"
+msgstr "Status dozvole"
+
+#, fuzzy
+msgid "Enable Unlisted Auto-Approval"
+msgstr "Status dozvole"
+
+#, fuzzy
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
 msgstr "Status dozvole"
 
@@ -6538,6 +6551,9 @@ msgstr "Odbaci ovu najavu"
 
 msgid "Files in this version:"
 msgstr "Datoteke u ovoj verziji:"
+
+msgid "All Platforms"
+msgstr "Sve platforme"
 
 #, fuzzy
 msgid "Browse all files in this version"
@@ -7220,12 +7236,6 @@ msgstr "Nema korisnika sa tom adresom e-pošte."
 #, fuzzy
 msgid "Firefox user {id}"
 msgstr "Firefox za Android"
-
-msgid "My Mobile Add-ons"
-msgstr "Moji dodaci za mobilne"
-
-msgid "My Favorite Add-ons"
-msgstr "Moji omiljeni dodaci"
 
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr ""

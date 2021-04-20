@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-16 17:41+0000\n"
+"POT-Creation-Date: 2021-04-20 19:22+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -187,9 +187,6 @@ msgstr "Tetapan Akaun"
 msgid "My Collections"
 msgstr "Koleksi Saya"
 
-msgid "My Favorites"
-msgstr "Kegemaran Saya"
-
 msgid "Log out"
 msgstr "Log keluar"
 
@@ -267,33 +264,6 @@ msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
 msgstr "Anda dapat mesej ini kerana laman ini perlukan kuki CSRF apabila menghantar borang. Kuki ini diperlukan untuk keselamatan bagi memastikan pelayar anda tidak dirampas oleh pihak ketiga."
-
-msgid "Page Not Found"
-msgstr "Halaman Tidak Ditemui"
-
-msgid "Firefox Add-ons"
-msgstr "Add-ons Firefox"
-
-msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr "Maaf, kami tidak menemukan apa-apa pada alamat yang anda masukkan. Jika anda mengikuti pautan add-on, mungkin add-on tersebut telah dikeluarkan oleh pengarangnya."
-
-msgid "Suggested Pages"
-msgstr "Halaman Disyorkan"
-
-msgid "Browse all extensions"
-msgstr "Layari semua ekstensi"
-
-msgid "Browse all themes"
-msgstr "Layari semua tema"
-
-msgid "Add-ons Home Page"
-msgstr "Halaman utama Add-ons"
-
-#, fuzzy, python-format
-msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
-msgstr ""
-"Jika anda mengikuti pautan dari mana-mana, sila %(open_bug_link)sfailkan isu%(close_bug_link)s. Beritahu kami dari mana anda datang dan apa yang anda cari, dan kami akan buat yang terbaik untuk "
-"mengatasinya."
 
 msgid "Not Found"
 msgstr "Tidak Ditemui"
@@ -600,7 +570,7 @@ msgid "Submit"
 msgstr "Hantar Versi"
 
 #, python-format
-msgid "%(count)s Add-on GUIDs"
+msgid "%(count)s Add-on GUIDs with %(adu)s users"
 msgstr ""
 
 msgid "Edit Block"
@@ -997,16 +967,16 @@ msgid "Version re-signed"
 msgstr "Versi %s didayakan-semula."
 
 #, fuzzy
-msgid "{addon} status force-disabled."
-msgstr "{addon} dinyahdayakan."
+msgid "{user} force-disabled {addon}."
+msgstr "Add-on yang dipaksa-nyahdaya"
 
 #, fuzzy
 msgid "Force disabled"
 msgstr "Add-on yang dipaksa-nyahdaya"
 
 #, fuzzy
-msgid "{addon} status force-enabled."
-msgstr "{addon} {version} didayakan semula."
+msgid "{user} force-enabled {addon}."
+msgstr "Add-on yang dipaksa-daya"
 
 #, fuzzy
 msgid "Force enabled"
@@ -1415,30 +1385,6 @@ msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
-
-msgid "Any"
-msgstr "Mana-mana"
-
-msgid "All Platforms"
-msgstr "Platform All"
-
-msgid "Linux"
-msgstr "Linux"
-
-msgid "Mac OS X"
-msgstr "Mac OS X"
-
-msgid "BSD"
-msgstr "BSD"
-
-msgid "Windows"
-msgstr "Windows"
-
-msgid "Solaris"
-msgstr "Solaris"
-
-msgid "Android"
-msgstr "Android"
 
 #, fuzzy
 msgid "Not Promoted"
@@ -3239,7 +3185,7 @@ msgid "Whether you’re new to extension development, polishing up or porting an
 msgstr ""
 
 #, fuzzy
-msgid "Visit the Extension Workshop"
+msgid "Visit the Firefox Extension Workshop"
 msgstr "Ekstensi"
 
 msgid "Connect with us"
@@ -3440,7 +3386,8 @@ msgstr "Kod sumber"
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
 msgstr "Jika add-on anda mengandungi kod binari atau dikelirukan, sediakan sumbernya kepada penyemak di sini."
 
-msgid "File {file_id} ({platform})"
+#, fuzzy
+msgid "File {file_id}"
 msgstr "Fail {file_id} ({platform})"
 
 #, python-format
@@ -4569,6 +4516,14 @@ msgstr ""
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Save batches of tabs as convenient bookmarks."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Tabs and bookmarks neatly organized in a Firefox side view."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 #, fuzzy
 msgid "Extensions are like apps for Firefox."
@@ -4603,6 +4558,61 @@ msgstr "Ekstensi"
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Ketahui Selanjutnya"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Recommended extensions"
+msgstr "Komen"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more recommended extensions"
+msgstr "Layari semua ekstensi"
+
+#. editorial content for the homepage shelves.
+msgid "Popular themes"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more popular themes"
+msgstr "Pilih warna untuk tema anda"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Enhanced privacy extensions"
+msgstr "Layari semua ekstensi"
+
+#. editorial content for the homepage shelves.
+msgid "See more enhanced privacy extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Popular extensions"
+msgstr "Ekstensi"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more popular extensions"
+msgstr "Layari semua ekstensi"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Recommended themes"
+msgstr "Komen"
+
+#. editorial content for the homepage shelves.
+msgid "See more recommended themes"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "Recommended password managers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more recommended password managers"
+msgstr ""
 
 msgid "Could not parse the manifest file."
 msgstr "Tidak dapat menghuraikan manifes fail."
@@ -4908,6 +4918,9 @@ msgstr "tidak"
 
 msgid "Add-on Types"
 msgstr "Jenis Add-on"
+
+msgid "Any"
+msgstr "Mana-mana"
 
 msgid "Search by add-on name / author email / guid"
 msgstr "Cari mengikut nama add-on / e-mel pengarang / guid"
@@ -5570,6 +5583,14 @@ msgid "Enable Listed Auto-Approval"
 msgstr "Dayakan Auto-Kelulusan"
 
 #, fuzzy
+msgid "Disable Unlisted Auto-Approval"
+msgstr "Nyahdaya Auto-Kelulusan"
+
+#, fuzzy
+msgid "Enable Unlisted Auto-Approval"
+msgstr "Dayakan Auto-Kelulusan"
+
+#, fuzzy
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
 msgstr "Nyahdaya Auto-Kelulusan"
 
@@ -5660,6 +5681,9 @@ msgstr "Abaikan pengumuman ini"
 
 msgid "Files in this version:"
 msgstr "Fail dalam versi ini:"
+
+msgid "All Platforms"
+msgstr "Platform All"
 
 #, fuzzy
 msgid "Browse all files in this version"
@@ -6304,12 +6328,6 @@ msgstr "Tiada pengguna dengan e-mel berkenaan."
 
 msgid "Firefox user {id}"
 msgstr "Pengguna Firefox {id}"
-
-msgid "My Mobile Add-ons"
-msgstr "Add-ons Mobile Saya"
-
-msgid "My Favorite Add-ons"
-msgstr "Add-ons Kegemaran Saya"
 
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr ""
