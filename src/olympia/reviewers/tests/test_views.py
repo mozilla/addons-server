@@ -519,6 +519,23 @@ class TestReviewLog(ReviewerTest):
         url = reverse('reviewers.review', args=['unlisted', addon.slug])
         assert pq(response.content)('#log-listing tr td a').eq(1).attr('href') == url
 
+    def test_review_url_force_disable(self):
+        self.login_as_reviewer()
+        addon = addon_factory()
+
+        ActivityLog.create(
+            amo.LOG.FORCE_DISABLE,
+            addon,
+            user=self.get_user(),
+        )
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        url = reverse('reviewers.review', args=[addon.slug])
+
+        link = pq(response.content)('#log-listing tbody tr[data-addonid] a').eq(1)
+        assert link.attr('href') == url
+
     def test_reviewers_can_only_see_addon_types_they_have_perms_for(self):
         def check_two_showing():
             response = self.client.get(self.url)
