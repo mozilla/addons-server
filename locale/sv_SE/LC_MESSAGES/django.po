@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-20 21:08+0000\n"
+"PO-Revision-Date: 2021-04-20 21:10+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -4476,7 +4476,7 @@ msgstr "Se fler rekommenderade tillägg"
 
 #. editorial content for the homepage shelves.
 msgid "Popular themes"
-msgstr ""
+msgstr "Populära teman"
 
 #. editorial content for the homepage shelves.
 msgid "See more popular themes"
@@ -4488,7 +4488,7 @@ msgstr "Förbättrade integritetstillägg"
 
 #. editorial content for the homepage shelves.
 msgid "See more enhanced privacy extensions"
-msgstr ""
+msgstr "Se fler förbättrade integritetstillägg"
 
 #. editorial content for the homepage shelves.
 msgid "Popular extensions"
@@ -4504,15 +4504,15 @@ msgstr "Rekommenderade teman"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
-msgstr ""
+msgstr "Se fler rekommenderade teman"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended password managers"
-msgstr ""
+msgstr "Rekommenderade lösenordshanterare"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended password managers"
-msgstr ""
+msgstr "Se fler rekommenderade lösenordshanterare"
 
 msgid "Could not parse the manifest file."
 msgstr "Kunde inte tolka manifest-filen."
@@ -5444,7 +5444,7 @@ msgid "Disable Unlisted Auto-Approval"
 msgstr ""
 
 msgid "Enable Unlisted Auto-Approval"
-msgstr ""
+msgstr "Aktivera olistad automatisk godkännande"
 
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
 msgstr "Inaktivera listat automatisk godkännande tills nästa manuella godkännande"
