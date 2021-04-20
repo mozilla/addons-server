@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-16 17:41+0000\n"
+"POT-Creation-Date: 2021-04-20 19:22+0000\n"
 "PO-Revision-Date: 2020-07-17 11:46+0000\n"
 "Last-Translator: abtin <abtin@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -188,9 +188,6 @@ msgstr ""
 msgid "My Collections"
 msgstr "مجوعه‌های من"
 
-msgid "My Favorites"
-msgstr "افزودنی‌های محبوب من"
-
 msgid "Log out"
 msgstr "خروج"
 
@@ -265,35 +262,6 @@ msgstr ""
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
-msgstr ""
-
-msgid "Page Not Found"
-msgstr ""
-
-#, fuzzy
-msgid "Firefox Add-ons"
-msgstr "افزودنی‌های بیشتر"
-
-msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr ""
-
-msgid "Suggested Pages"
-msgstr ""
-
-#, fuzzy
-msgid "Browse all extensions"
-msgstr "محبوب‌ترین ضمیمه‌ها"
-
-#, fuzzy
-msgid "Browse all themes"
-msgstr "مشاهده‌ی همه‌ی {0} مضمون"
-
-#, fuzzy
-msgid "Add-ons Home Page"
-msgstr "صفحه خانگی افزودنی"
-
-#, python-format
-msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
 msgstr ""
 
 msgid "Not Found"
@@ -596,7 +564,7 @@ msgid "Submit"
 msgstr "نسخهٔ جدید"
 
 #, python-format
-msgid "%(count)s Add-on GUIDs"
+msgid "%(count)s Add-on GUIDs with %(adu)s users"
 msgstr ""
 
 msgid "Edit Block"
@@ -1007,16 +975,16 @@ msgid "Version re-signed"
 msgstr "نسخه"
 
 #, fuzzy
-msgid "{addon} status force-disabled."
-msgstr "{addon} در {0} ویژه شده است."
+msgid "{user} force-disabled {addon}."
+msgstr "دسته بندی‌ها برای {addon} ویرایش شد."
 
 #, fuzzy
 msgid "Force disabled"
 msgstr "افزودنی‌های بیشتر"
 
 #, fuzzy
-msgid "{addon} status force-enabled."
-msgstr "{addon} در {0} ویژه شده است."
+msgid "{user} force-enabled {addon}."
+msgstr "افزودنی‌های بیشتر"
 
 #, fuzzy
 msgid "Force enabled"
@@ -1441,30 +1409,6 @@ msgid "Creative Commons Attribution-NoDerivs 3.0"
 msgstr ""
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
-
-msgid "Any"
-msgstr ""
-
-msgid "All Platforms"
-msgstr ""
-
-msgid "Linux"
-msgstr ""
-
-msgid "Mac OS X"
-msgstr ""
-
-msgid "BSD"
-msgstr ""
-
-msgid "Windows"
-msgstr ""
-
-msgid "Solaris"
-msgstr ""
-
-msgid "Android"
 msgstr ""
 
 #, fuzzy
@@ -3281,7 +3225,7 @@ msgstr ""
 
 # Plural in this context means many of the add-on type
 #, fuzzy
-msgid "Visit the Extension Workshop"
+msgid "Visit the Firefox Extension Workshop"
 msgstr "ضمیمه‌ها"
 
 msgid "Connect with us"
@@ -3489,7 +3433,7 @@ msgstr ""
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
 msgstr ""
 
-msgid "File {file_id} ({platform})"
+msgid "File {file_id}"
 msgstr ""
 
 #, python-format
@@ -4558,6 +4502,14 @@ msgstr ""
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Save batches of tabs as convenient bookmarks."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Tabs and bookmarks neatly organized in a Firefox side view."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr ""
@@ -4592,6 +4544,60 @@ msgstr "ضمیمه‌ها"
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "بیشتر بدانید"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Recommended extensions"
+msgstr "محبوب‌ترین ضمیمه‌ها"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more recommended extensions"
+msgstr "محبوب‌ترین ضمیمه‌ها"
+
+#. editorial content for the homepage shelves.
+msgid "Popular themes"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more popular themes"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Enhanced privacy extensions"
+msgstr "محبوب‌ترین ضمیمه‌ها"
+
+#. editorial content for the homepage shelves.
+msgid "See more enhanced privacy extensions"
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Popular extensions"
+msgstr "ضمیمه‌ها"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more popular extensions"
+msgstr "محبوب‌ترین ضمیمه‌ها"
+
+#. editorial content for the homepage shelves.
+msgid "Recommended themes"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more recommended themes"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "Recommended password managers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more recommended password managers"
+msgstr ""
 
 msgid "Could not parse the manifest file."
 msgstr ""
@@ -4885,6 +4891,9 @@ msgid "no"
 msgstr "خیر"
 
 msgid "Add-on Types"
+msgstr ""
+
+msgid "Any"
 msgstr ""
 
 msgid "Search by add-on name / author email / guid"
@@ -5571,6 +5580,14 @@ msgid "Enable Listed Auto-Approval"
 msgstr "آخرین به‌هنگام‌سازی"
 
 #, fuzzy
+msgid "Disable Unlisted Auto-Approval"
+msgstr "آخرین به‌هنگام‌سازی"
+
+#, fuzzy
+msgid "Enable Unlisted Auto-Approval"
+msgstr "آخرین به‌هنگام‌سازی"
+
+#, fuzzy
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
 msgstr "آخرین به‌هنگام‌سازی"
 
@@ -5661,6 +5678,9 @@ msgid "Dismiss this announcement"
 msgstr ""
 
 msgid "Files in this version:"
+msgstr ""
+
+msgid "All Platforms"
 msgstr ""
 
 #, fuzzy
@@ -6297,13 +6317,6 @@ msgstr ""
 #, fuzzy
 msgid "Firefox user {id}"
 msgstr "فایرفاکس برای آندروید"
-
-#, fuzzy
-msgid "My Mobile Add-ons"
-msgstr "افزودنی‌های بیشتر"
-
-msgid "My Favorite Add-ons"
-msgstr "افزودنی‌های مورد علاقه من"
 
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr ""

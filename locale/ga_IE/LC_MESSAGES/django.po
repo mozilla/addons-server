@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-16 17:41+0000\n"
+"POT-Creation-Date: 2021-04-20 19:22+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -191,9 +191,6 @@ msgstr "Socruithe Cuntais"
 msgid "My Collections"
 msgstr "Mo Chuid Bailiúchán"
 
-msgid "My Favorites"
-msgstr "Na Breiseáin Is Ansa Liom"
-
 msgid "Log out"
 msgstr "Logáil amach"
 
@@ -270,36 +267,6 @@ msgstr ""
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
-msgstr ""
-
-#, fuzzy
-msgid "Page Not Found"
-msgstr "Gan Aimsiú"
-
-#, fuzzy
-msgid "Firefox Add-ons"
-msgstr "Tuilleadh Breiseán"
-
-msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr ""
-
-msgid "Suggested Pages"
-msgstr ""
-
-#, fuzzy
-msgid "Browse all extensions"
-msgstr "Brabhsáil gach breiseán"
-
-#, fuzzy
-msgid "Browse all themes"
-msgstr "Brabhsáil gach breiseán"
-
-#, fuzzy
-msgid "Add-ons Home Page"
-msgstr "Leathanach baile an bhreiseáin"
-
-#, python-format
-msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
 msgstr ""
 
 msgid "Not Found"
@@ -601,7 +568,7 @@ msgid "Submit"
 msgstr "Seol Leagan Nua"
 
 #, python-format
-msgid "%(count)s Add-on GUIDs"
+msgid "%(count)s Add-on GUIDs with %(adu)s users"
 msgstr ""
 
 msgid "Edit Block"
@@ -1035,16 +1002,16 @@ msgid "Version re-signed"
 msgstr "Nótaí Eisiúna"
 
 #, fuzzy
-msgid "{addon} status force-disabled."
-msgstr "Díchumasaíodh {addon}."
+msgid "{user} force-disabled {addon}."
+msgstr "Cuireadh {version} de {addon} in eagar."
 
 #, fuzzy
 msgid "Force disabled"
 msgstr "Díchumasaíodh {addon}."
 
 #, fuzzy
-msgid "{addon} status force-enabled."
-msgstr "Diúltaíodh {addon} {version}."
+msgid "{user} force-enabled {addon}."
+msgstr "Breiseáin Shoghluaiste"
 
 #, fuzzy
 msgid "Force enabled"
@@ -1463,31 +1430,6 @@ msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
-
-msgid "Any"
-msgstr "Ar bith"
-
-msgid "All Platforms"
-msgstr "Gach Ardán"
-
-msgid "Linux"
-msgstr "Linux"
-
-msgid "Mac OS X"
-msgstr "Mac OS X"
-
-msgid "BSD"
-msgstr "BSD"
-
-# 99% sure this is the OS
-msgid "Windows"
-msgstr "Windows"
-
-msgid "Solaris"
-msgstr "Solaris"
-
-msgid "Android"
-msgstr "Android"
 
 #, fuzzy
 msgid "Not Promoted"
@@ -3354,7 +3296,7 @@ msgid "Whether you’re new to extension development, polishing up or porting an
 msgstr ""
 
 #, fuzzy
-msgid "Visit the Extension Workshop"
+msgid "Visit the Firefox Extension Workshop"
 msgstr "Eisínteachtaí"
 
 msgid "Connect with us"
@@ -3562,7 +3504,7 @@ msgstr ""
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
 msgstr ""
 
-msgid "File {file_id} ({platform})"
+msgid "File {file_id}"
 msgstr ""
 
 #, python-format
@@ -4638,6 +4580,14 @@ msgstr ""
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Save batches of tabs as convenient bookmarks."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Tabs and bookmarks neatly organized in a Firefox side view."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr ""
@@ -4671,6 +4621,61 @@ msgstr "Eisínteachtaí"
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Tuilleadh Eolais"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Recommended extensions"
+msgstr "Nóta"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more recommended extensions"
+msgstr "Brabhsáil gach breiseán"
+
+#. editorial content for the homepage shelves.
+msgid "Popular themes"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more popular themes"
+msgstr "Roghnaigh deilbhín le haghaidh do bhreiseáin:"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Enhanced privacy extensions"
+msgstr "Brabhsáil gach breiseán"
+
+#. editorial content for the homepage shelves.
+msgid "See more enhanced privacy extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Popular extensions"
+msgstr "Eisínteachtaí"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more popular extensions"
+msgstr "Brabhsáil gach breiseán"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Recommended themes"
+msgstr "Nóta"
+
+#. editorial content for the homepage shelves.
+msgid "See more recommended themes"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "Recommended password managers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more recommended password managers"
+msgstr ""
 
 msgid "Could not parse the manifest file."
 msgstr ""
@@ -4968,6 +4973,9 @@ msgstr "níl"
 
 msgid "Add-on Types"
 msgstr "Cineálacha Breiseáin"
+
+msgid "Any"
+msgstr "Ar bith"
 
 msgid "Search by add-on name / author email / guid"
 msgstr ""
@@ -5668,6 +5676,14 @@ msgid "Enable Listed Auto-Approval"
 msgstr "Stádas Ceadaithe"
 
 #, fuzzy
+msgid "Disable Unlisted Auto-Approval"
+msgstr "Stádas Ceadaithe"
+
+#, fuzzy
+msgid "Enable Unlisted Auto-Approval"
+msgstr "Stádas Ceadaithe"
+
+#, fuzzy
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
 msgstr "Stádas Ceadaithe"
 
@@ -5759,6 +5775,9 @@ msgstr ""
 
 msgid "Files in this version:"
 msgstr ""
+
+msgid "All Platforms"
+msgstr "Gach Ardán"
 
 #, fuzzy
 msgid "Browse all files in this version"
@@ -6409,12 +6428,6 @@ msgstr "Níl aon úsáideoir leis an seoladh ríomhphoist sin."
 #, fuzzy
 msgid "Firefox user {id}"
 msgstr "Firefox ar Android"
-
-msgid "My Mobile Add-ons"
-msgstr "Mo Chuid Breiseán Soghluaiste"
-
-msgid "My Favorite Add-ons"
-msgstr "Na Breiseáin Is Ansa Liom"
 
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr ""

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-16 17:41+0000\n"
+"POT-Creation-Date: 2021-04-20 19:22+0000\n"
 "PO-Revision-Date: 2021-03-31 07:46+0000\n"
 "Last-Translator: aefgh39622@gmail.com <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
@@ -183,9 +183,6 @@ msgstr "การตั้งค่าบัญชี"
 msgid "My Collections"
 msgstr "ชุดสะสมของฉัน"
 
-msgid "My Favorites"
-msgstr "รายการโปรดของฉัน"
-
 msgid "Log out"
 msgstr "ออกจากระบบ"
 
@@ -250,9 +247,7 @@ msgstr "คุณพยายามที่จะทำบางสิ่งซ
 msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
-msgstr ""
-"คุณเห็นข้อความนี้เนื่องจากไซต์ HTTPS นี้ต้องการให้ 'ส่วนหัว Referer' ถูกส่งโดยเว็บเบราว์เซอร์ของคุณ แต่ไม่มีการส่ง จำเป็นต้องมีส่วนหัวนี้เนื่องจากเหตุผลเกี่ยวกับความปลอดภัย "
-"เพื่อให้แน่ใจว่าเบราว์เซอร์ของคุณจะไม่ถูกเจาะโดยบุคคลที่สาม"
+msgstr "คุณเห็นข้อความนี้เนื่องจากไซต์ HTTPS นี้ต้องการให้ 'ส่วนหัว Referer' ถูกส่งโดยเว็บเบราว์เซอร์ของคุณ แต่ไม่มีการส่ง จำเป็นต้องมีส่วนหัวนี้เนื่องจากเหตุผลเกี่ยวกับความปลอดภัย เพื่อให้แน่ใจว่าเบราว์เซอร์ของคุณจะไม่ถูกเจาะโดยบุคคลที่สาม"
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
 msgstr "ถ้าคุณได้กำหนดค่าเบราว์เซอร์ของคุณให้ปิดใช้งานส่วนหัว 'Referer' แล้ว ให้เปิดใช้งานใหม่อีกครั้ง อย่างน้อยให้กับไซต์นี้ หรือให้กับการเชื่อมต่อ HTTPS หรือให้กับคำขอแบบ 'same-origin'"
@@ -262,47 +257,21 @@ msgid ""
 "parties."
 msgstr "คุณเห็นข้อความนี้เนื่องจากไซต์นี้ต้องการคุกกี้ CSRF เมื่อส่งแบบฟอร์ม คุกกี้นี้จำเป็นต้องมีเนื่องจากเหตุผลเกี่ยวกับความปลอดภัย เพื่อให้แน่ใจว่าเบราว์เซอร์ของคุณไม่ถูกเจาะโดยบุคคลที่สาม"
 
-msgid "Page Not Found"
-msgstr "ไม่พบหน้า"
-
-msgid "Firefox Add-ons"
-msgstr "ส่วนเสริม Firefox"
-
-msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr "เสียใจด้วย แต่เราไม่สามารถค้นหาสิ่งใดจากที่อยู่ที่คุณป้อนได้ หากคุณเข้าดูส่วนเสริมจากลิงก์ที่คุณตามมา อาจเป็นไปได้ว่าส่วนเสริมถูกลบโดยผู้สร้างแล้ว"
-
-msgid "Suggested Pages"
-msgstr "หน้าที่แนะนำ"
-
-msgid "Browse all extensions"
-msgstr "เรียกดูส่วนขยายทั้งหมด"
-
-msgid "Browse all themes"
-msgstr "เรียกดูชุดตกแต่งทั้งหมด"
-
-msgid "Add-ons Home Page"
-msgstr "หน้าแรกส่วนเสริม"
-
-#, python-format
-msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
-msgstr "ถ้าคุณตามลิงก์มาจากที่ใดที่หนึ่ง โปรด%(open_bug_link)sรายงานปัญหานี้%(close_bug_link)s บอกเราว่าคุณมาจากที่ไหนและคุณกำลังมองหาอะไร แล้วเราจะซ่อมแซมอย่างดีที่สุด"
-
 msgid "Not Found"
 msgstr "ไม่พบ"
 
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
-"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
-"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
-"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
+"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
+"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
+"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>เราขออภัย แต่เราไม่พบสิ่งที่คุณกำลังค้นหาอยู่</h1> <p>ไม่พบหน้าหรือไฟล์ที่คุณร้องขอบนเว็บไซต์ของเรา มันเป็นไปได้ว่าคุณคลิกลิงก์ซึ่งหมดอายุแล้ว หรือพิมพ์ที่อยู่ไม่ถูกต้อง</p> <ul> "
-"<li>ถ้าคุณใช้การพิมพ์ที่อยู่ โปรดตรวจสอบการสะกดอีกครั้ง</li> <li>ถ้าคุณตามลิงก์นี้มาจากที่ไหนสักแห่ง โปรด%(open_bug_link)sรายงานปัญหา%(close_bug_link)s บอกเราว่าคุณมาจากไหนและคุณกำลังมองหาอะไร "
-"และเราจะทำการแก้ไขให้ดีที่สุด</li> </ul> <p>หรือคุณสามารถกระโดดข้ามไปยังหน้าที่ได้รับความนิยมบนเว็บไซต์ของเรา</p> <ul> <li>คุณสนใจ<a href=\"%(rec)s\">รายการส่วนเสริมที่แนะนำ</a>?</li> "
-"<li>คุณต้องการที่จะ<a href=\"%(search)s\">ค้นหาสำหรับส่วนเสริม</a>? คุณอาจจะไปที่<a href=\"%(search)s\">หน้าค้นหา</a> หรือใช้ช่องค้นหาด้านบน</li> <li>ถ้าคุณต้องการจะไปที่จุดเริ่มต้น เพียงแค่ไปที่<a "
-"href=\"%(home)s\">หน้าแรกของส่วนเสริม</a> </li> </ul>"
+"<h1>เราขออภัย แต่เราไม่พบสิ่งที่คุณกำลังค้นหาอยู่</h1> <p>ไม่พบหน้าหรือไฟล์ที่คุณร้องขอบนเว็บไซต์ของเรา มันเป็นไปได้ว่าคุณคลิกลิงก์ซึ่งหมดอายุแล้ว หรือพิมพ์ที่อยู่ไม่ถูกต้อง</p> <ul> <li>ถ้าคุณใช้การพิมพ์ที่อยู่ โปรดตรวจสอบการสะกดอีกครั้ง</li> "
+"<li>ถ้าคุณตามลิงก์นี้มาจากที่ไหนสักแห่ง โปรด%(open_bug_link)sรายงานปัญหา%(close_bug_link)s บอกเราว่าคุณมาจากไหนและคุณกำลังมองหาอะไร และเราจะทำการแก้ไขให้ดีที่สุด</li> </ul> "
+"<p>หรือคุณสามารถกระโดดข้ามไปยังหน้าที่ได้รับความนิยมบนเว็บไซต์ของเรา</p> <ul> <li>คุณสนใจ<a href=\"%(rec)s\">รายการส่วนเสริมที่แนะนำ</a>?</li> <li>คุณต้องการที่จะ<a href=\"%(search)s\">ค้นหาสำหรับส่วนเสริม</a>? "
+"คุณอาจจะไปที่<a href=\"%(search)s\">หน้าค้นหา</a> หรือใช้ช่องค้นหาด้านบน</li> <li>ถ้าคุณต้องการจะไปที่จุดเริ่มต้น เพียงแค่ไปที่<a href=\"%(home)s\">หน้าแรกของส่วนเสริม</a> </li> </ul>"
 
 msgid "Oops"
 msgstr "อุปส์"
@@ -355,8 +324,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> โปรดป้อน<strong>คำทั้งหมด</strong>ที่อยู่ด้านล่างนี้ <strong>โดยคั่นด้วยวรรคหากจำเป็น</strong> </p> <p> หากคำเหล่านี้อ่านได้ยาก คุณสามารถ<a href=\"#\" "
-"id=\"recaptcha_different\">ลองคำอื่น</a>หรือ<a href=\"#\" id=\"recaptcha_audio\">ลองการท้าทายแบบอื่น</a>แทนได้</p>"
+"<p> โปรดป้อน<strong>คำทั้งหมด</strong>ที่อยู่ด้านล่างนี้ <strong>โดยคั่นด้วยวรรคหากจำเป็น</strong> </p> <p> หากคำเหล่านี้อ่านได้ยาก คุณสามารถ<a href=\"#\" id=\"recaptcha_different\">ลองคำอื่น</a>หรือ<a href=\"#\" id="
+"\"recaptcha_audio\">ลองการท้าทายแบบอื่น</a>แทนได้</p>"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -464,8 +433,8 @@ msgstr "รุ่น"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
+"%(amo_manifests_mdn_link_close)s."
 msgstr "หากแอปพลิเคชันที่รองรับของคุณไม่ต้องการไฟล์กำกับ คุณยังคงต้องรวมไว้หนึ่งตามคุณสมบัติที่ต้องการที่ระบุไว้%(amo_manifests_mdn_link_open)sที่นี่%(amo_manifests_mdn_link_close)s"
 
 msgid "This custom URL is already in use by another one of your collections."
@@ -580,8 +549,8 @@ msgstr "ส่วนเสริมของ GUIDs (หนึ่งรายก�
 msgid "Submit"
 msgstr "ส่ง"
 
-#, python-format
-msgid "%(count)s Add-on GUIDs"
+#, fuzzy, python-format
+msgid "%(count)s Add-on GUIDs with %(adu)s users"
 msgstr "%(count)s ส่วนเสริมของ GUIDs"
 
 msgid "Edit Block"
@@ -974,15 +943,15 @@ msgid "Version re-signed"
 msgstr "เปิดใช้งานรุ่น %s ใหม่แล้ว"
 
 #, fuzzy
-msgid "{addon} status force-disabled."
-msgstr "ปิดการใช้งาน {addon} แล้ว"
+msgid "{user} force-disabled {addon}."
+msgstr "แก้ไข {version} สำหรับ {addon} แล้ว"
 
 #, fuzzy
 msgid "Force disabled"
 msgstr "ปิดการใช้งาน {addon} แล้ว"
 
 #, fuzzy
-msgid "{addon} status force-enabled."
+msgid "{user} force-enabled {addon}."
 msgstr "เปิดใช้งาน {addon} {version} ใหม่แล้ว"
 
 #, fuzzy
@@ -1390,30 +1359,6 @@ msgstr "Creative Commons แบบแสดงที่มา ไม่ดัด
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons แบบแสดงที่มา อนุญาตแบบเดียวกัน 3.0"
-
-msgid "Any"
-msgstr "ใด ๆ"
-
-msgid "All Platforms"
-msgstr "แพลตฟอร์มทั้งหมด"
-
-msgid "Linux"
-msgstr "Linux"
-
-msgid "Mac OS X"
-msgstr "Mac OS X"
-
-msgid "BSD"
-msgstr "BSD"
-
-msgid "Windows"
-msgstr "Windows"
-
-msgid "Solaris"
-msgstr "Solaris"
-
-msgid "Android"
-msgstr "Android"
 
 #, fuzzy
 msgid "Not Promoted"
@@ -1834,7 +1779,8 @@ msgid ""
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
 
-msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid ""
+"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
 msgid "Display Name"
@@ -2155,8 +2101,12 @@ msgid ""
 msgstr "ส่วนเสริมนี้ไม่สามารถเข้ากันได้กับ <b>%(app_name)s %(app_version)s</b> ซึ่งเป็นรุ่นล่าสุดของ %(app_name)s กรุณาพิจารณาการปรับปรุงความเข้ากันได้ของส่วนเสริมหรืออัปโหลดส่วนเสริมรุ่นใหม่"
 
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
-msgstr "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">อัปเดตความเข้ากันได้</a> <a href=\"%(version_url)s\" class=\"button\">อัปโหลดรุ่นใหม่</a> หรือ <a href=\"#\" class=\"close\">ไม่สนใจ</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
+msgstr ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">อัปเดตความเข้ากันได้</a> <a href=\"%(version_url)s\" class=\"button\">อัปโหลดรุ่นใหม่</a> หรือ <a href=\"#\" class=\"close"
+"\">ไม่สนใจ</a>"
 
 msgid "View and update application compatibility ranges"
 msgstr ""
@@ -2376,8 +2326,8 @@ msgid "Email"
 msgstr "อีเมล"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 
 msgid "Website"
@@ -2819,8 +2769,8 @@ msgid "Operating system and build environment requirements."
 msgstr ""
 
 msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
-"emphasis\">npm</span> version used)."
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
+"\">npm</span> version used)."
 msgstr ""
 
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
@@ -2939,8 +2889,8 @@ msgstr "ข้อมูลลับ JWT"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
 
 #, python-format
@@ -3013,7 +2963,8 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
+"your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
@@ -3160,7 +3111,7 @@ msgid "Whether you’re new to extension development, polishing up or porting an
 msgstr ""
 
 #, fuzzy
-msgid "Visit the Extension Workshop"
+msgid "Visit the Firefox Extension Workshop"
 msgstr "ส่วนขยาย"
 
 msgid "Connect with us"
@@ -3358,7 +3309,8 @@ msgstr "โค้ดต้นฉบับ"
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
 msgstr ""
 
-msgid "File {file_id} ({platform})"
+#, fuzzy
+msgid "File {file_id}"
 msgstr "ไฟล์ {file_id} ({platform})"
 
 #, python-format
@@ -4429,6 +4381,14 @@ msgstr ""
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Save batches of tabs as convenient bookmarks."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Tabs and bookmarks neatly organized in a Firefox side view."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "ส่วนขยายเป็นเหมือนแอปสำหรับ Firefox"
@@ -4460,6 +4420,61 @@ msgstr "สำรวจส่วนขยาย"
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "เรียนรู้เพิ่มเติม"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Recommended extensions"
+msgstr "แสดงความคิดเห็นแล้ว"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more recommended extensions"
+msgstr "ดูส่วนขยายทั้งหมด"
+
+#. editorial content for the homepage shelves.
+msgid "Popular themes"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more popular themes"
+msgstr "เลือกไอคอนสำหรับส่วนเสริมของคุณ"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Enhanced privacy extensions"
+msgstr "ดูส่วนขยายทั้งหมด"
+
+#. editorial content for the homepage shelves.
+msgid "See more enhanced privacy extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Popular extensions"
+msgstr "สำรวจส่วนขยาย"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more popular extensions"
+msgstr "ดูส่วนขยายทั้งหมด"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Recommended themes"
+msgstr "แสดงความคิดเห็นแล้ว"
+
+#. editorial content for the homepage shelves.
+msgid "See more recommended themes"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "Recommended password managers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more recommended password managers"
+msgstr ""
 
 msgid "Could not parse the manifest file."
 msgstr "ไม่สามารถแยกวิเคราะห์ไฟล์กำกับ"
@@ -4551,8 +4566,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr ""
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
-" with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
+"comply with these guidelines."
 msgstr ""
 
 msgid "Do:"
@@ -4749,6 +4764,9 @@ msgstr "ไม่"
 
 msgid "Add-on Types"
 msgstr ""
+
+msgid "Any"
+msgstr "ใด ๆ"
 
 msgid "Search by add-on name / author email / guid"
 msgstr ""
@@ -5406,6 +5424,12 @@ msgstr ""
 msgid "Enable Listed Auto-Approval"
 msgstr ""
 
+msgid "Disable Unlisted Auto-Approval"
+msgstr ""
+
+msgid "Enable Unlisted Auto-Approval"
+msgstr ""
+
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
 msgstr ""
 
@@ -5493,6 +5517,9 @@ msgstr ""
 
 msgid "Files in this version:"
 msgstr "ไฟล์ในรุ่นนี้:"
+
+msgid "All Platforms"
+msgstr "แพลตฟอร์มทั้งหมด"
 
 #, fuzzy
 msgid "Browse all files in this version"
@@ -6127,12 +6154,6 @@ msgstr ""
 msgid "Firefox user {id}"
 msgstr "ผู้ใช้ Firefox {id}"
 
-msgid "My Mobile Add-ons"
-msgstr ""
-
-msgid "My Favorite Add-ons"
-msgstr "ส่วนเสริมโปรดของฉัน"
-
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr ""
 
@@ -6156,8 +6177,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr ""
 
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
@@ -6215,7 +6236,8 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
+"website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"

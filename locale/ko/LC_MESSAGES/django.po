@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-16 17:41+0000\n"
+"POT-Creation-Date: 2021-04-20 19:22+0000\n"
 "PO-Revision-Date: 2021-01-22 15:58+0000\n"
 "Last-Translator: Channy Yun <channy@mozilla.or.kr>\n"
 "Language-Team: none\n"
@@ -181,9 +181,6 @@ msgstr "계정 설정"
 msgid "My Collections"
 msgstr "내 모음집"
 
-msgid "My Favorites"
-msgstr "내 선호목록"
-
 msgid "Log out"
 msgstr "로그아웃"
 
@@ -259,31 +256,6 @@ msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
 msgstr "이 사이트에서 양식을 제출할 때는 CSRF 쿠키가 필요하기 때문에, 이 메시지가 표시됩니다. 이 쿠키는 보안 상의 이유로 제 3자가 브라우저를 가로 채지 않도록 하기 위해 필요합니다."
-
-msgid "Page Not Found"
-msgstr "페이지가 없습니다"
-
-msgid "Firefox Add-ons"
-msgstr "Firefox 부가 기능"
-
-msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr "죄송합니다. 입력하신 주소를 찾지 못했습니다. 부가 기능 링크를 타고 들어오셨다면, 부가 기능이 개발자에 의해 삭제된 것일 수 있습니다."
-
-msgid "Suggested Pages"
-msgstr "추천 페이지"
-
-msgid "Browse all extensions"
-msgstr "모든 확장 기능 탐색하기"
-
-msgid "Browse all themes"
-msgstr "모든 테마 탐색하기"
-
-msgid "Add-ons Home Page"
-msgstr "부가 기능 홈 페이지"
-
-#, python-format
-msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
-msgstr "어딘가에 있는 링크에서 접근했다면 %(open_bug_link)s이슈를 올려%(close_bug_link)s주세요. 어디에서 왔으며 어떤 것을 찾으려 했는지 알려주시면 최선을 다해 고치도록 하겠습니다."
 
 msgid "Not Found"
 msgstr "찾을 수 없습니다."
@@ -581,8 +553,8 @@ msgstr ""
 msgid "Submit"
 msgstr "보내기"
 
-#, python-format
-msgid "%(count)s Add-on GUIDs"
+#, fuzzy, python-format
+msgid "%(count)s Add-on GUIDs with %(adu)s users"
 msgstr "%(count)s 추가 기능 GUID"
 
 msgid "Edit Block"
@@ -981,16 +953,16 @@ msgid "Version re-signed"
 msgstr "%s 버전이 다시 활성화되었습니다."
 
 #, fuzzy
-msgid "{addon} status force-disabled."
-msgstr "{addon}이(가) 사용 정지됐습니다."
+msgid "{user} force-disabled {addon}."
+msgstr "{addon}의 {version} 버전이 수정되었습니다."
 
 #, fuzzy
 msgid "Force disabled"
 msgstr "{addon}이(가) 사용 정지됐습니다."
 
 #, fuzzy
-msgid "{addon} status force-enabled."
-msgstr "{addon} {version} 버전이 다시 활성화 되었습니다."
+msgid "{user} force-enabled {addon}."
+msgstr "인쇄용 버전"
 
 #, fuzzy
 msgid "Force enabled"
@@ -1401,30 +1373,6 @@ msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
-
-msgid "Any"
-msgstr "모든 종류"
-
-msgid "All Platforms"
-msgstr "모든 플랫폼"
-
-msgid "Linux"
-msgstr "Linux"
-
-msgid "Mac OS X"
-msgstr "Mac OS X"
-
-msgid "BSD"
-msgstr "BSD"
-
-msgid "Windows"
-msgstr "Windows"
-
-msgid "Solaris"
-msgstr "Solaris"
-
-msgid "Android"
-msgstr "안드로이드"
 
 #, fuzzy
 msgid "Not Promoted"
@@ -3216,7 +3164,7 @@ msgstr ""
 
 # Plural in this context means many of the add-on type
 #, fuzzy
-msgid "Visit the Extension Workshop"
+msgid "Visit the Firefox Extension Workshop"
 msgstr "확장 기능"
 
 msgid "Connect with us"
@@ -3420,7 +3368,8 @@ msgstr "소스 코드"
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
 msgstr "만약 부가기능에 바이너리나 난독화된 코드가 포함되어 있다면 검토자들이 소스를 확인할 수 있도록 해 주세요."
 
-msgid "File {file_id} ({platform})"
+#, fuzzy
+msgid "File {file_id}"
 msgstr "파일 {file_id} ({platform})"
 
 #, python-format
@@ -4489,6 +4438,14 @@ msgstr ""
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Save batches of tabs as convenient bookmarks."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Tabs and bookmarks neatly organized in a Firefox side view."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "확장 기능은 Firefox만을 위한 앱입니다."
@@ -4521,6 +4478,62 @@ msgstr "확장 기능 탐색하기"
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "더 알아보기"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Recommended extensions"
+msgstr "추천 확장 프로그램"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more recommended extensions"
+msgstr "추천 확장 프로그램"
+
+#. editorial content for the homepage shelves.
+msgid "Popular themes"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more popular themes"
+msgstr "테마에 사용할 색을 설정하세요."
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Enhanced privacy extensions"
+msgstr "모든 확장기능 보기"
+
+#. editorial content for the homepage shelves.
+msgid "See more enhanced privacy extensions"
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Popular extensions"
+msgstr "확장 기능 탐색하기"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more popular extensions"
+msgstr "모든 확장기능 보기"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Recommended themes"
+msgstr "추천"
+
+#. editorial content for the homepage shelves.
+msgid "See more recommended themes"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "Recommended password managers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more recommended password managers"
+msgstr ""
 
 msgid "Could not parse the manifest file."
 msgstr ""
@@ -4813,6 +4826,9 @@ msgstr "아니오"
 
 msgid "Add-on Types"
 msgstr "부가 기능 종류"
+
+msgid "Any"
+msgstr "모든 종류"
 
 msgid "Search by add-on name / author email / guid"
 msgstr ""
@@ -5496,6 +5512,14 @@ msgid "Enable Listed Auto-Approval"
 msgstr "승인 상태"
 
 #, fuzzy
+msgid "Disable Unlisted Auto-Approval"
+msgstr "승인 상태"
+
+#, fuzzy
+msgid "Enable Unlisted Auto-Approval"
+msgstr "승인 상태"
+
+#, fuzzy
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
 msgstr "승인 상태"
 
@@ -5585,6 +5609,9 @@ msgstr "알림 무시하기"
 
 msgid "Files in this version:"
 msgstr "이 버전의 파일:"
+
+msgid "All Platforms"
+msgstr "모든 플랫폼"
 
 msgid "Browse all files in this version"
 msgstr "이 버전의 모든 파일 찾아보기"
@@ -6237,12 +6264,6 @@ msgstr "해당 이메일로 등록된 사용자가 없습니다"
 #, fuzzy
 msgid "Firefox user {id}"
 msgstr "Firefox 안드로이드"
-
-msgid "My Mobile Add-ons"
-msgstr "내 모바일 부가 기능"
-
-msgid "My Favorite Add-ons"
-msgstr "좋아하는 부가 기능"
 
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr ""
