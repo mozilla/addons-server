@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-20 21:10+0000\n"
+"PO-Revision-Date: 2021-04-20 21:19+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -550,7 +550,7 @@ msgstr "Skicka in"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs with %(adu)s users"
-msgstr ""
+msgstr "%(count)s GUID-tillägg med %(adu)s användare"
 
 msgid "Edit Block"
 msgstr "Redigera block"
@@ -935,16 +935,16 @@ msgid "Version re-signed"
 msgstr "Version signerad igen"
 
 msgid "{user} force-disabled {addon}."
-msgstr ""
+msgstr "{user} tvångsinaktiverade {addon}."
 
 msgid "Force disabled"
-msgstr "Tvingad inaktiverad"
+msgstr "Tvångsinaktiverad"
 
 msgid "{user} force-enabled {addon}."
-msgstr ""
+msgstr "{user} tvångsaktiverade {addon}."
 
 msgid "Force enabled"
-msgstr "Tvingad aktiverad"
+msgstr "Tvångsaktiverad"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -3171,7 +3171,7 @@ msgid "Whether you’re new to extension development, polishing up or porting an
 msgstr "Oavsett om du är ny med tilläggsutveckling, uppdatering eller porting av ett befintligt tillägg eller ett tema eller att skapa en anpassad företagslösning, har vi resurser att stödja dig."
 
 msgid "Visit the Firefox Extension Workshop"
-msgstr ""
+msgstr "Besök Firefox Extension Workshop"
 
 msgid "Connect with us"
 msgstr "Kontakta oss"
@@ -3364,7 +3364,7 @@ msgid "If your add-on contains minified, concatenated or otherwise machine-gener
 msgstr "Om ditt tillägg innehåller minifierad, sammanlänkad eller på annat sätt maskingenererad kod, gör källan tillgänglig här för granskare."
 
 msgid "File {file_id}"
-msgstr ""
+msgstr "Fil {file_id}"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
@@ -4428,11 +4428,11 @@ msgstr "Spara och återställ flikar. Inkluderar automatisk sparning och molnsyn
 
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
-msgstr ""
+msgstr "Spara grupper av flikar som praktiska bokmärken."
 
 #. editorial content for the primary hero shelves.
 msgid "Tabs and bookmarks neatly organized in a Firefox side view."
-msgstr ""
+msgstr "Flikar och bokmärken ordnade snyggt i Firefox sidovy."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -5441,7 +5441,7 @@ msgid "Enable Listed Auto-Approval"
 msgstr "Aktivera listad automatisk godkännande"
 
 msgid "Disable Unlisted Auto-Approval"
-msgstr ""
+msgstr "Inaktivera olistad automatisk godkännande"
 
 msgid "Enable Unlisted Auto-Approval"
 msgstr "Aktivera olistad automatisk godkännande"
