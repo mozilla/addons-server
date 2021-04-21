@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-21 13:22+0000\n"
+"PO-Revision-Date: 2021-04-21 18:02+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4448,11 +4448,11 @@ msgstr "Składujće a wobnowće rajtarki. Wobsahuje funkcije za awtomatiske skł
 
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
-msgstr ""
+msgstr "Składujće skupiny rajtarkow jako praktiske zapołožki."
 
 #. editorial content for the primary hero shelves.
 msgid "Tabs and bookmarks neatly organized in a Firefox side view."
-msgstr ""
+msgstr "Rajtarki a zapołožki so w bóčnym napohledźe Firefox porjadnje organizuja."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -5591,13 +5591,13 @@ msgid "Newer"
 msgstr "Nowše"
 
 msgid "{num} versions flagged by scanners on other pages."
-msgstr ""
+msgstr "Wersije, kotrež su so přez skenery na druhich stronach markěrowali: {num}"
 
 msgid "{num} versions flagged for human review on other pages."
-msgstr ""
+msgstr "Wersije, kotrež su so za čłowjeske přepruwowanje na druhich stronach markěrowali: {num}"
 
 msgid "{num} versions pending rejection on other pages."
-msgstr ""
+msgstr "Wersije z falowacym wótpokazanjom na druhich stronach: {num}"
 
 msgid "Recent Points"
 msgstr "Najnowše dypki"
