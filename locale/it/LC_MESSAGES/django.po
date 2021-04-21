@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-21 11:58+0000\n"
+"PO-Revision-Date: 2021-04-21 12:00+0000\n"
 "Last-Translator: Jenny <leanintocuriosity@gmx.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -4569,9 +4569,8 @@ msgid "See more popular themes"
 msgstr "Visualizza altri temi popolari"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Enhanced privacy extensions"
-msgstr "Visualizza tutte le estensioni"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "See more enhanced privacy extensions"
@@ -4579,31 +4578,28 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Popular extensions"
-msgstr "Esplora le estensioni"
+msgstr "Estensioni più popolari"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular extensions"
-msgstr "Visualizza tutte le estensioni"
+msgstr "Visualizza altre estensioni popolari"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended themes"
-msgstr "Consigliato"
+msgstr "Temi consigliati"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
-msgstr ""
+msgstr "Visualizza altri temi consigliati"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended password managers"
-msgstr ""
+msgstr "Gestori di password consigliati"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended password managers"
-msgstr ""
+msgstr "Visualizza altri gestori di password consigliati"
 
 msgid "Could not parse the manifest file."
 msgstr "Impossibile analizzare il file manifesto."
@@ -5540,13 +5536,11 @@ msgstr "Disattiva l’approvazione automatica dei componenti elencati"
 msgid "Enable Listed Auto-Approval"
 msgstr "Attiva l’approvazione automatica dei componenti elencati"
 
-#, fuzzy
 msgid "Disable Unlisted Auto-Approval"
-msgstr "Disattiva l’approvazione automatica dei componenti elencati"
+msgstr "Disattiva l’approvazione automatica delle estensioni non in elenco"
 
-#, fuzzy
 msgid "Enable Unlisted Auto-Approval"
-msgstr "Attiva l’approvazione automatica dei componenti elencati"
+msgstr "Attiva l’approvazione automatica delle estensioni non in elenco"
 
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
 msgstr "Disattiva l’approvazione automatica dei componenti elencati fino alla prossima approvazione manuale"
