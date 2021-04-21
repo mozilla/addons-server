@@ -315,9 +315,6 @@ class AddonFormMedia(AddonFormBase):
         model = Addon
         fields = ('icon_upload_hash', 'icon_type')
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
     def save(self, addon, commit=True):
         if self.cleaned_data['icon_upload_hash']:
             upload_hash = self.cleaned_data['icon_upload_hash']
