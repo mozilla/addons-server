@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-21 01:10+0000\n"
+"PO-Revision-Date: 2021-04-21 13:14+0000\n"
 "Last-Translator: 你我皆凡人 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -540,9 +540,9 @@ msgstr "附加组件 GUID（每行一项）"
 msgid "Submit"
 msgstr "提交"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%(count)s Add-on GUIDs with %(adu)s users"
-msgstr "%(count)s 个附加组件 GUID"
+msgstr "%(count)s 个有 %(adu)s 用户的附加组件 GUID"
 
 msgid "Edit Block"
 msgstr "编辑屏蔽项"
@@ -924,16 +924,14 @@ msgstr "{addon} {version} 已重新签名（先前为 {0}）。"
 msgid "Version re-signed"
 msgstr "已重新签名版本"
 
-#, fuzzy
 msgid "{user} force-disabled {addon}."
-msgstr "强制禁用附加组件"
+msgstr "{user} 已强制禁用 {addon}。"
 
 msgid "Force disabled"
 msgstr "已强制禁用"
 
-#, fuzzy
 msgid "{user} force-enabled {addon}."
-msgstr "强制启用附加组件"
+msgstr "{user} 已强制启用 {addon}。"
 
 msgid "Force enabled"
 msgstr "已强制启用"
@@ -3289,9 +3287,8 @@ msgstr "源代码"
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
 msgstr "如果您的附加组件包含压缩、拼接或机器生成代码，请在此上传其源代码以供审查。"
 
-#, fuzzy
 msgid "File {file_id}"
-msgstr "文件{file_id} ({platform})"
+msgstr "文件 {file_id}"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
@@ -4392,43 +4389,37 @@ msgid "Learn More"
 msgstr "了解更多"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended extensions"
-msgstr "扩展推荐计划"
+msgstr "推荐扩展"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more recommended extensions"
-msgstr "扩展推荐计划"
+msgstr "看看更多推荐扩展"
 
 #. editorial content for the homepage shelves.
 msgid "Popular themes"
-msgstr ""
+msgstr "热门主题"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular themes"
-msgstr "为您的主题选择颜色"
+msgstr "看看更多热门主题"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Enhanced privacy extensions"
-msgstr "浏览所有扩展"
+msgstr "隐私增强扩展"
 
 #. editorial content for the homepage shelves.
 msgid "See more enhanced privacy extensions"
-msgstr ""
+msgstr "看看更多隐私增强扩展"
 
 #. editorial content for the homepage shelves.
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Popular extensions"
-msgstr "发现更多扩展"
+msgstr "热门扩展"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular extensions"
-msgstr "浏览所有扩展"
+msgstr "看看更多热门扩展"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended themes"
@@ -4436,15 +4427,15 @@ msgstr "推荐主题"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
-msgstr ""
+msgstr "看看更多推荐主题"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended password managers"
-msgstr ""
+msgstr "推荐的密码管理器"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended password managers"
-msgstr ""
+msgstr "看看更多推荐的密码管理器"
 
 msgid "Could not parse the manifest file."
 msgstr "未能解析清单文件。"
@@ -5356,13 +5347,11 @@ msgstr "禁用上架项目自动批准"
 msgid "Enable Listed Auto-Approval"
 msgstr "启用上架项目自动批准"
 
-#, fuzzy
 msgid "Disable Unlisted Auto-Approval"
-msgstr "禁用上架项目自动批准"
+msgstr "禁用未上架项目自动批准"
 
-#, fuzzy
 msgid "Enable Unlisted Auto-Approval"
-msgstr "启用上架项目自动批准"
+msgstr "启用未上架项目自动批准"
 
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
 msgstr "禁用上架项目自动通过审核，直到下次人工审核通过"
