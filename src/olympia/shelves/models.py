@@ -46,7 +46,8 @@ class Shelf(ModelBase):
         return self.title
 
     def get_count(self):
-        return self.addon_count or (3 if self.addon_type in (10,) else 4)
+        return self.addon_count or (
+            3 if self.addon_type == amo.ADDON_STATICTHEME else 4)
 
 
 class ShelfManagement(ModelBase):

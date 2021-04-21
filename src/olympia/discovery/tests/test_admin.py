@@ -7,6 +7,7 @@ from django.urls import reverse
 import responses
 from pyquery import PyQuery as pq
 
+from olympia import amo
 from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.tests import TestCase, addon_factory, reverse_ns, user_factory
 from olympia.amo.tests.test_helpers import get_uploaded_file
@@ -881,7 +882,7 @@ class TestShelfAdmin(TestCase):
         item = Shelf.objects.create(
             title='Popular extensions',
             endpoint='search',
-            addon_type=1,
+            addon_type=amo.ADDON_EXTENSION,
             criteria='?sort=users&type=extension',
             footer_text='See more',
             footer_pathname='/this/is/the/pathname',
@@ -899,7 +900,7 @@ class TestShelfAdmin(TestCase):
             mock_clean.return_value = {
                 'title': 'Recommended extensions',
                 'endpoint': 'search',
-                'addon_type': 1,
+                'addon_type': amo.ADDON_EXTENSION,
                 'criteria': ('?promoted=recommended&sort=random&type=extension'),
                 'footer_text': 'See more',
                 'footer_pathname': '/this/is/the/pathname',
@@ -922,7 +923,7 @@ class TestShelfAdmin(TestCase):
         item = Shelf.objects.create(
             title='Popular extensions',
             endpoint='search',
-            addon_type=1,
+            addon_type=amo.ADDON_EXTENSION,
             criteria='?sort=users&type=extension',
             footer_text='See more',
             footer_pathname='/this/is/the/pathname',
@@ -934,7 +935,7 @@ class TestShelfAdmin(TestCase):
         data = {
             'title': 'Recommended extensions',
             'endpoint': 'search',
-            'addon_type': 1,
+            'addon_type': amo.ADDON_EXTENSION,
             'criteria': ('?promoted=recommended&sort=random&type=extension'),
             'footer_text': 'See more',
             'footer_pathname': '/this/is/the/pathname',
@@ -967,7 +968,7 @@ class TestShelfAdmin(TestCase):
         item = Shelf.objects.create(
             title='Recommended extensions',
             endpoint='search',
-            addon_type=1,
+            addon_type=amo.ADDON_EXTENSION,
             criteria='?promoted=recommended&sort=random&type=extension',
             footer_text='See more',
             footer_pathname='/this/is/the/pathname',
@@ -999,7 +1000,7 @@ class TestShelfAdmin(TestCase):
             mock_clean.return_value = {
                 'title': 'Recommended extensions',
                 'endpoint': 'search',
-                'addon_type': 1,
+                'addon_type': amo.ADDON_EXTENSION,
                 'criteria': ('?promoted=recommended&sort=random&type=extension'),
                 'footer_text': 'See more',
                 'footer_pathname': '/this/is/the/pathname',
@@ -1027,7 +1028,7 @@ class TestShelfAdmin(TestCase):
             {
                 'title': 'Recommended extensions',
                 'endpoint': 'search',
-                'addon_type': 1,
+                'addon_type': amo.ADDON_EXTENSION,
                 'criteria': '?promoted=recommended&sort=random&type=extension',
                 'footer_text': 'See more',
                 'footer_pathname': '/this/is/the/pathname',
@@ -1042,7 +1043,7 @@ class TestShelfAdmin(TestCase):
         item = Shelf.objects.create(
             title='Recommended extensions',
             endpoint='search',
-            addon_type=1,
+            addon_type=amo.ADDON_EXTENSION,
             criteria='?promoted=recommended&sort=random&type=extension',
             footer_text='See more',
             footer_pathname='/this/is/the/pathname',
@@ -1058,7 +1059,7 @@ class TestShelfAdmin(TestCase):
             {
                 'title': 'Popular extensions',
                 'endpoint': 'search',
-                'addon_type': 1,
+                'addon_type': amo.ADDON_EXTENSION,
                 'criteria': '?promoted=recommended&sort=users&type=extension',
                 'footer_text': 'See more',
                 'footer_pathname': '/this/is/the/pathname',
@@ -1075,7 +1076,7 @@ class TestShelfAdmin(TestCase):
         item = Shelf.objects.create(
             title='Recommended extensions',
             endpoint='search',
-            addon_type=1,
+            addon_type=amo.ADDON_EXTENSION,
             criteria='?promoted=recommended&sort=random&type=extension',
             footer_text='See more',
             footer_pathname='/this/is/the/pathname',
@@ -1102,7 +1103,7 @@ class TestHomepageShelvesAdmin(TestCase):
         self.shelf = Shelf.objects.create(
             title='Populâr themes',
             endpoint='search',
-            addon_type=10,
+            addon_type=amo.ADDON_STATICTHEME,
             criteria='?sort=users&type=statictheme',
         )
 

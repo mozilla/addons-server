@@ -6,10 +6,12 @@ from rest_framework import serializers
 from rest_framework.request import Request as DRFRequest
 from rest_framework.reverse import reverse as drf_reverse
 
+from olympia import amo
 from olympia.addons.views import AddonSearchView
 from olympia.api.fields import (
     AbsoluteOutgoingURLField,
     GetTextTranslationSerializerField,
+    ReverseChoiceField
 )
 from olympia.bandwagon.views import CollectionAddonViewSet
 from olympia.hero.serializers import CTAField
@@ -27,6 +29,7 @@ class ShelfSerializer(serializers.ModelSerializer):
     url = serializers.SerializerMethodField()
     footer = ShelfFooterField(source='*')
     addons = serializers.SerializerMethodField()
+    addon_type = ReverseChoiceField(choices=list(amo.ADDON_TYPE_CHOICES_API.items()))
 
     class Meta:
         model = Shelf

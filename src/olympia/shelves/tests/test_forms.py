@@ -3,6 +3,7 @@ import responses
 from django.conf import settings
 from django.core.exceptions import ValidationError
 
+from olympia import amo
 from olympia.amo.tests import TestCase, reverse_ns
 from olympia.shelves.forms import ShelfForm
 
@@ -57,7 +58,7 @@ class TestShelfForm(TestCase):
             {
                 'title': 'Recommended extensions',
                 'endpoint': 'search',
-                'addon_type': 1,
+                'addon_type': amo.ADDON_EXTENSION,
                 'criteria': self.criteria_sea,
                 'addon_count': '0',
             },
@@ -72,7 +73,7 @@ class TestShelfForm(TestCase):
             {
                 'title': 'Password managers (Collections)',
                 'endpoint': 'collections',
-                'addon_type': 1,
+                'addon_type': amo.ADDON_EXTENSION,
                 'criteria': self.criteria_col,
                 'addon_count': '0',
             },
@@ -85,7 +86,7 @@ class TestShelfForm(TestCase):
             {
                 'title': '',
                 'endpoint': 'search',
-                'addon_type': 1,
+                'addon_type': amo.ADDON_EXTENSION,
                 'criteria': self.criteria_sea,
                 'addon_count': '0',
             },
@@ -98,7 +99,7 @@ class TestShelfForm(TestCase):
             {
                 'title': 'Recommended extensions',
                 'endpoint': '',
-                'addon_type': 1,
+                'addon_type': amo.ADDON_EXTENSION,
                 'criteria': self.criteria_sea,
                 'addon_count': '0',
             },
@@ -123,7 +124,7 @@ class TestShelfForm(TestCase):
         data = {
             'title': 'Recommended extensions',
             'endpoint': 'search',
-            'addon_type': 1,
+            'addon_type': amo.ADDON_EXTENSION,
             'criteria': self.criteria_sea,
         }
         form = ShelfForm(data)
@@ -149,7 +150,7 @@ class TestShelfForm(TestCase):
             {
                 'title': 'Recommended extensions',
                 'endpoint': 'search',
-                'addon_type': 1,
+                'addon_type': amo.ADDON_EXTENSION,
                 'criteria': '',
                 'addon_count': '0',
             },
@@ -162,7 +163,7 @@ class TestShelfForm(TestCase):
             {
                 'title': 'Recommended extensions',
                 'endpoint': 'search',
-                'addon_type': 1,
+                'addon_type': amo.ADDON_EXTENSION,
                 'criteria': '..?recommended-true',
                 'addon_count': '0',
             },
@@ -177,7 +178,7 @@ class TestShelfForm(TestCase):
             {
                 'title': 'Recommended extensions',
                 'endpoint': 'search',
-                'addon_type': 1,
+                'addon_type': amo.ADDON_EXTENSION,
                 'criteria': '??recommended-true',
                 'addon_count': '0',
             },
@@ -192,7 +193,7 @@ class TestShelfForm(TestCase):
             {
                 'title': 'New collection',
                 'endpoint': 'collections',
-                'addon_type': 1,
+                'addon_type': amo.ADDON_EXTENSION,
                 'criteria': '/',
                 'addon_count': '0',
             },
@@ -208,7 +209,7 @@ class TestShelfForm(TestCase):
         data = {
             'title': 'Password manager (Collections)',
             'endpoint': 'collections',
-            'addon_type': 1,
+            'addon_type': amo.ADDON_EXTENSION,
             'criteria': self.criteria_col_404,
             'addon_count': '0',
         }
@@ -222,7 +223,7 @@ class TestShelfForm(TestCase):
         data = {
             'title': 'Popular extensions',
             'endpoint': 'search',
-            'addon_type': 1,
+            'addon_type': amo.ADDON_EXTENSION,
             'criteria': self.criteria_not_200,
             'addon_count': '0',
         }
@@ -236,7 +237,7 @@ class TestShelfForm(TestCase):
         data = {
             'title': 'Recommended extensions',
             'endpoint': 'search',
-            'addon_type': 10,
+            'addon_type': amo.ADDON_STATICTHEME,
             'criteria': self.criteria_sea,
             'addon_count': '0',
         }
@@ -254,7 +255,7 @@ class TestShelfForm(TestCase):
         data = {
             'title': 'Popular themes',
             'endpoint': 'search',
-            'addon_type': 1,
+            'addon_type': amo.ADDON_EXTENSION,
             'criteria': self.criteria_theme,
             'addon_count': '0',
         }

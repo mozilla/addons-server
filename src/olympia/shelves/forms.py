@@ -7,6 +7,7 @@ from django.conf import settings
 from django.urls import NoReverseMatch, reverse
 
 import olympia.core.logger
+from olympia import amo
 from olympia.shelves.models import Shelf
 
 
@@ -34,15 +35,15 @@ class ShelfForm(forms.ModelForm):
         addon_type = data.get('addon_type')
         criteria = data.get('criteria')
 
-        if None in (addon_type, criteria):
+        if criteria is None:
             return
 
         params = criteria[1:].split('&')
-        if addon_type == 1 and 'type=statictheme' in params:
+        if addon_type == amo.ADDON_EXTENSION and 'type=statictheme' in params:
             raise forms.ValidationError(
                 'Use "Theme (Static)" in Addon type field for type=statictheme.'
             )
-        elif addon_type == 10 and 'type=statictheme' not in params:
+        elif addon_type == amo.ADDON_STATICTHEME and 'type=statictheme' not in params:
             raise forms.ValidationError(
                 'Check fields - for "Theme (Static)" addon type, use type=statictheme. '
                 'For non theme addons, use "Extension" in Addon type field, '
