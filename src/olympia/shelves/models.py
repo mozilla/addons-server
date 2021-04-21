@@ -1,8 +1,9 @@
 from django.db import models
 
+from olympia import amo
 from olympia.amo.models import ModelBase
 
-ENDPOINTS = ('collections', 'search', 'search-themes')
+ENDPOINTS = ('collections', 'search')
 
 ENDPOINT_CHOICES = tuple((ty, ty) for ty in ENDPOINTS)
 
@@ -29,8 +30,13 @@ class Shelf(ModelBase):
     )
     addon_count = models.PositiveSmallIntegerField(
         default=0,
-        help_text='0 means the default number (4, or 3 for search-themes) of add-ons '
+        help_text='0 means the default number (4, or 3 for themes) of add-ons '
         'will be included in shelf responses. Set to override.',
+    )
+    addon_type = models.PositiveIntegerField(
+        choices=amo.ADDON_TYPE.items(),
+        db_column='addontype_id',
+        default=amo.ADDON_EXTENSION,
     )
 
     class Meta:
@@ -40,7 +46,9 @@ class Shelf(ModelBase):
         return self.title
 
     def get_count(self):
-        return self.addon_count or (3 if self.endpoint in ('search-themes',) else 4)
+        return self.addon_count or (
+            3 if self.addon_type == amo.ADDON_STATICTHEME else 4
+        )
 
 
 class ShelfManagement(ModelBase):

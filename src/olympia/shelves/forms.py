@@ -7,6 +7,7 @@ from django.conf import settings
 from django.urls import NoReverseMatch, reverse
 
 import olympia.core.logger
+from olympia import amo
 from olympia.shelves.models import Shelf
 
 
@@ -19,6 +20,7 @@ class ShelfForm(forms.ModelForm):
         fields = (
             'title',
             'endpoint',
+            'addon_type',
             'criteria',
             'addon_count',
             'footer_text',
@@ -30,24 +32,27 @@ class ShelfForm(forms.ModelForm):
         base_url = settings.INTERNAL_SITE_URL
 
         endpoint = data.get('endpoint')
+        addon_type = data.get('addon_type')
         criteria = data.get('criteria')
 
         if criteria is None:
             return
 
-        if endpoint in ('search', 'search-themes'):
+        params = criteria[1:].split('&')
+        if addon_type == amo.ADDON_EXTENSION and 'type=statictheme' in params:
+            raise forms.ValidationError(
+                'Use "Theme (Static)" in Addon type field for type=statictheme.'
+            )
+        elif addon_type == amo.ADDON_STATICTHEME and 'type=statictheme' not in params:
+            raise forms.ValidationError(
+                'Check fields - for "Theme (Static)" addon type, use type=statictheme. '
+                'For non theme addons, use "Extension" in Addon type field, '
+                'not "Theme (Static)".'
+            )
+
+        if endpoint == 'search':
             if not criteria.startswith('?') or criteria.count('?') > 1:
                 raise forms.ValidationError('Check criteria field.')
-            params = criteria[1:].split('&')
-            if endpoint == 'search' and 'type=statictheme' in params:
-                raise forms.ValidationError(
-                    'Use "search-themes" endpoint for type=statictheme.'
-                )
-            elif endpoint == 'search-themes' and 'type=statictheme' not in params:
-                raise forms.ValidationError(
-                    'Don`t use "search-themes" endpoint for non themes. '
-                    'Use "search".'
-                )
             api = reverse(f'{api_settings.DEFAULT_VERSION}:addon-search')
             url = base_url + api + criteria
         elif endpoint == 'collections':

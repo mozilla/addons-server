@@ -3,6 +3,7 @@ import responses
 from django.conf import settings
 from django.core.exceptions import ValidationError
 
+from olympia import amo
 from olympia.amo.tests import TestCase, reverse_ns
 from olympia.shelves.forms import ShelfForm
 
@@ -10,10 +11,10 @@ from olympia.shelves.forms import ShelfForm
 class TestShelfForm(TestCase):
     def setUp(self):
         self.criteria_sea = '?promoted=recommended&sort=random&type=extension'
+        self.criteria_theme = '?sort=users&type=statictheme'
         self.criteria_col = 'password-managers'
         self.criteria_col_404 = 'passwordmanagers'
         self.criteria_not_200 = '?sort=user&type=extension'
-        self.criteria_empty = '?sort=users&type=theme'
 
         responses.add(
             responses.GET,
@@ -51,18 +52,13 @@ class TestShelfForm(TestCase):
             status=400,
             json=['Invalid "sort" parameter.'],
         )
-        responses.add(
-            responses.GET,
-            reverse_ns('addon-search') + self.criteria_empty,
-            status=200,
-            json={'count': 0},
-        )
 
     def test_clean_search(self):
         form = ShelfForm(
             {
                 'title': 'Recommended extensions',
                 'endpoint': 'search',
+                'addon_type': amo.ADDON_EXTENSION,
                 'criteria': self.criteria_sea,
                 'addon_count': '0',
             },
@@ -77,6 +73,7 @@ class TestShelfForm(TestCase):
             {
                 'title': 'Password managers (Collections)',
                 'endpoint': 'collections',
+                'addon_type': amo.ADDON_EXTENSION,
                 'criteria': self.criteria_col,
                 'addon_count': '0',
             },
@@ -89,6 +86,7 @@ class TestShelfForm(TestCase):
             {
                 'title': '',
                 'endpoint': 'search',
+                'addon_type': amo.ADDON_EXTENSION,
                 'criteria': self.criteria_sea,
                 'addon_count': '0',
             },
@@ -101,6 +99,7 @@ class TestShelfForm(TestCase):
             {
                 'title': 'Recommended extensions',
                 'endpoint': '',
+                'addon_type': amo.ADDON_EXTENSION,
                 'criteria': self.criteria_sea,
                 'addon_count': '0',
             },
@@ -108,10 +107,24 @@ class TestShelfForm(TestCase):
         assert not form.is_valid()
         assert form.errors == {'endpoint': ['This field is required.']}
 
+    def test_clean_form_is_missing_addon_type_field(self):
+        form = ShelfForm(
+            {
+                'title': 'Recommended extensions',
+                'endpoint': 'search',
+                'addon_type': '',
+                'criteria': self.criteria_sea,
+                'addon_count': '0',
+            },
+        )
+        assert not form.is_valid()
+        assert form.errors == {'addon_type': ['This field is required.']}
+
     def test_clean_form_is_missing_addon_count_field(self):
         data = {
             'title': 'Recommended extensions',
             'endpoint': 'search',
+            'addon_type': amo.ADDON_EXTENSION,
             'criteria': self.criteria_sea,
         }
         form = ShelfForm(data)
@@ -137,6 +150,7 @@ class TestShelfForm(TestCase):
             {
                 'title': 'Recommended extensions',
                 'endpoint': 'search',
+                'addon_type': amo.ADDON_EXTENSION,
                 'criteria': '',
                 'addon_count': '0',
             },
@@ -149,6 +163,7 @@ class TestShelfForm(TestCase):
             {
                 'title': 'Recommended extensions',
                 'endpoint': 'search',
+                'addon_type': amo.ADDON_EXTENSION,
                 'criteria': '..?recommended-true',
                 'addon_count': '0',
             },
@@ -163,6 +178,7 @@ class TestShelfForm(TestCase):
             {
                 'title': 'Recommended extensions',
                 'endpoint': 'search',
+                'addon_type': amo.ADDON_EXTENSION,
                 'criteria': '??recommended-true',
                 'addon_count': '0',
             },
@@ -172,43 +188,12 @@ class TestShelfForm(TestCase):
             form.clean()
         assert exc.exception.message == ('Check criteria field.')
 
-    def test_clean_searchtheme_criteria_theme_used_for_statictheme_type(self):
-        form = ShelfForm(
-            {
-                'title': 'Recommended extensions',
-                'endpoint': 'search',
-                'criteria': '?recommended=true&type=statictheme',
-                'addon_count': '0',
-            }
-        )
-        assert not form.is_valid()
-        with self.assertRaises(ValidationError) as exc:
-            form.clean()
-        assert exc.exception.message == (
-            'Use "search-themes" endpoint for type=statictheme.'
-        )
-
-    def test_clean_searchtheme_criteria_theme_not_used_for_other_type(self):
-        form = ShelfForm(
-            {
-                'title': 'Recommended extensions',
-                'endpoint': 'search-themes',
-                'criteria': '?recommended=true&type=extension',
-                'addon_count': '0',
-            }
-        )
-        assert not form.is_valid()
-        with self.assertRaises(ValidationError) as exc:
-            form.clean()
-        assert exc.exception.message == (
-            'Don`t use "search-themes" endpoint for non themes. Use "search".'
-        )
-
     def test_clean_form_throws_error_for_NoReverseMatch(self):
         form = ShelfForm(
             {
                 'title': 'New collection',
                 'endpoint': 'collections',
+                'addon_type': amo.ADDON_EXTENSION,
                 'criteria': '/',
                 'addon_count': '0',
             },
@@ -224,6 +209,7 @@ class TestShelfForm(TestCase):
         data = {
             'title': 'Password manager (Collections)',
             'endpoint': 'collections',
+            'addon_type': amo.ADDON_EXTENSION,
             'criteria': self.criteria_col_404,
             'addon_count': '0',
         }
@@ -235,8 +221,9 @@ class TestShelfForm(TestCase):
 
     def test_clean_returns_not_200(self):
         data = {
-            'title': 'Popular themes',
+            'title': 'Popular extensions',
             'endpoint': 'search',
+            'addon_type': amo.ADDON_EXTENSION,
             'criteria': self.criteria_not_200,
             'addon_count': '0',
         }
@@ -246,11 +233,12 @@ class TestShelfForm(TestCase):
             form.clean()
         assert exc.exception.message == ('Check criteria - Invalid "sort" parameter.')
 
-    def test_clean_returns_empty(self):
+    def test_clean_themes_addontype_used_for_statictheme_type(self):
         data = {
-            'title': 'Popular themes',
+            'title': 'Recommended extensions',
             'endpoint': 'search',
-            'criteria': self.criteria_empty,
+            'addon_type': amo.ADDON_STATICTHEME,
+            'criteria': self.criteria_sea,
             'addon_count': '0',
         }
         form = ShelfForm(data)
@@ -258,5 +246,23 @@ class TestShelfForm(TestCase):
         with self.assertRaises(ValidationError) as exc:
             form.clean()
         assert exc.exception.message == (
-            'No add-ons found. Check criteria parameters - e.g., "type"'
+            'Check fields - for "Theme (Static)" addon type, use type=statictheme. '
+            'For non theme addons, use "Extension" in Addon type field, '
+            'not "Theme (Static)".'
+        )
+
+    def test_clean_extensions_addontype_not_used_for_statictheme_type(self):
+        data = {
+            'title': 'Popular themes',
+            'endpoint': 'search',
+            'addon_type': amo.ADDON_EXTENSION,
+            'criteria': self.criteria_theme,
+            'addon_count': '0',
+        }
+        form = ShelfForm(data)
+        assert not form.is_valid()
+        with self.assertRaises(ValidationError) as exc:
+            form.clean()
+        assert exc.exception.message == (
+            'Use "Theme (Static)" in Addon type field for type=statictheme.'
         )

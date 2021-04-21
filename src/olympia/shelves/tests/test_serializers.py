@@ -98,7 +98,8 @@ class TestShelvesSerializer(ESTestCase):
     def setUp(self):
         self.search_pop_thm = Shelf.objects.create(
             title='Populâr themes',
-            endpoint='search-themes',
+            endpoint='search',
+            addon_type=amo.ADDON_STATICTHEME,
             criteria='?sort=users&type=statictheme',
             footer_text='See more populâr themes',
             footer_pathname='/themes/',
@@ -107,6 +108,7 @@ class TestShelvesSerializer(ESTestCase):
         self.search_rec_ext = Shelf.objects.create(
             title='Recommended extensions',
             endpoint='search',
+            addon_type=amo.ADDON_EXTENSION,
             criteria='?promoted=recommended&sort=random&type=extension',
             footer_text='See more recommended extensions',
         )
@@ -114,6 +116,7 @@ class TestShelvesSerializer(ESTestCase):
         self.collections_shelf = Shelf.objects.create(
             title='Enhanced privacy extensions',
             endpoint='collections',
+            addon_type=amo.ADDON_EXTENSION,
             criteria='privacy-matters',
             footer_text='See more enhanced privacy extensions',
             footer_pathname='https://blog.mozilla.org/addons',
@@ -132,7 +135,7 @@ class TestShelvesSerializer(ESTestCase):
         return ShelfSerializer(instance, context=context).data
 
     def _get_result_url(self, instance):
-        if instance.endpoint in ('search', 'search-themes'):
+        if instance.endpoint == 'search':
             return reverse_ns('addon-search') + instance.criteria
         elif instance.endpoint == 'collections':
             return reverse_ns(
@@ -149,6 +152,7 @@ class TestShelvesSerializer(ESTestCase):
         data = self.serialize(self.search_rec_ext)
         assert data['title'] == {'en-US': 'Recommended extensions'}
         assert data['endpoint'] == 'search'
+        assert data['addon_type'] == 'extension'
         assert data['criteria'] == '?promoted=recommended&sort=random&type=extension'
         assert data['footer']['text'] == {'en-US': 'See more recommended extensions'}
         assert data['footer']['url'] is None
@@ -157,7 +161,8 @@ class TestShelvesSerializer(ESTestCase):
     def test_basic_themes(self):
         data = self.serialize(self.search_pop_thm)
         assert data['title'] == {'en-US': 'Populâr themes'}
-        assert data['endpoint'] == 'search-themes'
+        assert data['endpoint'] == 'search'
+        assert data['addon_type'] == 'statictheme'
         assert data['criteria'] == '?sort=users&type=statictheme'
         assert data['footer']['text'] == {'en-US': 'See more populâr themes'}
         assert data['footer']['url'] == 'http://testserver/themes/'
@@ -198,21 +203,22 @@ class TestShelvesSerializer(ESTestCase):
         shelf = Shelf(
             title='Populâr stuff',
             endpoint='search',
+            addon_type=amo.ADDON_EXTENSION,
             criteria='?sort=users&type=extension',
         )
 
         data = self.serialize(shelf)
-        # non-themes are limited to 4 by default
+        # extensions are limited to 4 by default
         assert len(data['addons']) == 4
 
-        shelf.endpoint = 'search-themes'
+        shelf.addon_type = amo.ADDON_STATICTHEME
         shelf.criteria = '?sort=users&type=statictheme'
         data = self.serialize(shelf)
         # themes are limited to 3 by default
         assert len(data['addons']) == 3
 
-        # double check by changing the endpoint without changing the criteria
-        shelf.endpoint = 'search'
+        # double check by changing the addon_type without changing the criteria
+        shelf.addon_type = amo.ADDON_EXTENSION
         data = self.serialize(shelf)
         assert len(data['addons']) == 4
 
