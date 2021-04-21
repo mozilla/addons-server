@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-21 08:51+0000\n"
+"PO-Revision-Date: 2021-04-21 09:03+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -552,9 +552,9 @@ msgstr "Additivo GUIDs (un pro linea)"
 msgid "Submit"
 msgstr "Inviar"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%(count)s Add-on GUIDs with %(adu)s users"
-msgstr "%(count)s Additivo GUIDs"
+msgstr "%(count)s GUIDs de additivos con %(adu)s usatores"
 
 msgid "Edit Block"
 msgstr "Rediger bloco"
@@ -938,16 +938,14 @@ msgstr "{addon} {version} resignate (precedentemente {0})."
 msgid "Version re-signed"
 msgstr "Version resignate"
 
-#, fuzzy
 msgid "{user} force-disabled {addon}."
-msgstr "Fortiar disactivation de additivo"
+msgstr "{user} ha disactivate a fortia {addon}."
 
 msgid "Force disabled"
 msgstr "Disactivation fortiate"
 
-#, fuzzy
 msgid "{user} force-enabled {addon}."
-msgstr "Fortiar activation de additivo"
+msgstr "{user} ha activate a fortia {addon}."
 
 msgid "Force enabled"
 msgstr "Activate a fortia"
@@ -3160,9 +3158,8 @@ msgstr ""
 "Si tu es nove al disveloppamento de extension, perfectionamento o portabilitate de un extension o thema existente, o creation de un solution de interprisa personalisate, nos ha le ressources pro te "
 "supportar."
 
-#, fuzzy
 msgid "Visit the Firefox Extension Workshop"
-msgstr "Visitar le laboratorio de extensiones"
+msgstr "Visita le Seminario de extensiones de Firefox"
 
 msgid "Connect with us"
 msgstr "Connecte te con nos"
@@ -3351,9 +3348,8 @@ msgstr "Codice fonte"
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
 msgstr "Si tu additivo contine codification minimisate, concatenate o altere generate automaticamente, rende le fonte disponibile hic pro revisores."
 
-#, fuzzy
 msgid "File {file_id}"
-msgstr "File {file_id} ({platform})"
+msgstr "File {file_id}"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
@@ -4460,14 +4456,12 @@ msgid "Learn More"
 msgstr "Saper plus"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended extensions"
-msgstr "Programma de extensiones recommendate"
+msgstr "Extensiones recommendate"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more recommended extensions"
-msgstr "Programma de extensiones recommendate"
+msgstr "Vide altere extensiones recommendate"
 
 #. editorial content for the homepage shelves.
 msgid "Popular themes"
@@ -4512,7 +4506,7 @@ msgstr "Gestores de contrasignos recommendate"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended password managers"
-msgstr ""
+msgstr "Vide altere gestores de contrasignos recommendate"
 
 msgid "Could not parse the manifest file."
 msgstr "Impossibile tractar le file manifesto."
