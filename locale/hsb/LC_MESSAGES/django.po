@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-20 21:14+0000\n"
+"PO-Revision-Date: 2021-04-21 13:22+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -933,16 +933,14 @@ msgstr "Přidatk {addon} {version} je so nowo signował (do toho {0})."
 msgid "Version re-signed"
 msgstr "Wersija je so nowo signowała"
 
-#, fuzzy
 msgid "{user} force-disabled {addon}."
-msgstr "Znjemóžnjenje přidatka wunuzować"
+msgstr "{user} je znjemóžnjenje přidatka wunuzował"
 
 msgid "Force disabled"
 msgstr "Znjemóžnjenje wunuzowane"
 
-#, fuzzy
 msgid "{user} force-enabled {addon}."
-msgstr "Zmóžnjenje přidatka wunuzować"
+msgstr "{user} je zmóžnjenje přidatka wunuzował"
 
 msgid "Force enabled"
 msgstr "Zmóžnjenje wunuzowane"
