@@ -11,7 +11,7 @@ from olympia.addons.views import AddonSearchView
 from olympia.api.fields import (
     AbsoluteOutgoingURLField,
     GetTextTranslationSerializerField,
-    ReverseChoiceField
+    ReverseChoiceField,
 )
 from olympia.bandwagon.views import CollectionAddonViewSet
 from olympia.hero.serializers import CTAField
