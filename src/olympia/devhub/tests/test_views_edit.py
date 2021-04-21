@@ -824,7 +824,6 @@ class TestEditMedia(BaseTestEdit):
         assert inputs[1].get('name') == 'icon_type'
         assert inputs[1].get('value') == 'image/png'
 
-
     def test_edit_media_uploadedicon(self):
         img = get_image_path('mozilla.png')
         src_image = open(img, 'rb')
@@ -974,7 +973,6 @@ class TestEditMedia(BaseTestEdit):
         storage.delete(self.preview.thumbnail_path)
         result = json.loads(force_str(self.client.get(self.url).content))
         assert not result['previews']
-
 
     def check_image_animated(self, url, msg):
         filehandle = open(get_image_path('animated.png'), 'rb')
