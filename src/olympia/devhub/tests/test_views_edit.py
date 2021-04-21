@@ -824,18 +824,6 @@ class TestEditMedia(BaseTestEdit):
         assert inputs[1].get('name') == 'icon_type'
         assert inputs[1].get('value') == 'image/png'
 
-    def test_edit_media_preuploadedicon(self):
-        data = {'icon_type': 'icon/appearance'}
-        data_formset = self.formset_media(**data)
-
-        response = self.client.post(self.media_edit_url, data_formset)
-        assert response.context['form'].errors == {}
-        addon = self.get_addon()
-
-        assert addon.get_icon_url(64).endswith('icons/appearance-64.png')
-
-        for k in data:
-            assert str(getattr(addon, k)) == data[k]
 
     def test_edit_media_uploadedicon(self):
         img = get_image_path('mozilla.png')
@@ -987,12 +975,6 @@ class TestEditMedia(BaseTestEdit):
         result = json.loads(force_str(self.client.get(self.url).content))
         assert not result['previews']
 
-    def test_image_status_default(self):
-        self.setup_image_status()
-        storage.delete(self.icon_dest)
-        self.get_addon().update(icon_type='icon/photos')
-        result = json.loads(force_str(self.client.get(self.url).content))
-        assert result['icons']
 
     def check_image_animated(self, url, msg):
         filehandle = open(get_image_path('animated.png'), 'rb')

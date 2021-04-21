@@ -1116,7 +1116,6 @@ CELERY_TASK_ROUTES = {
     'olympia.addons.tasks.delete_addons': {'queue': 'addons'},
     'olympia.addons.tasks.delete_preview_files': {'queue': 'addons'},
     'olympia.addons.tasks.version_changed': {'queue': 'addons'},
-    'olympia.addons.tasks.create_custom_icon_from_predefined': {'queue': 'addons'},
     'olympia.files.tasks.hide_disabled_files': {'queue': 'addons'},
     'olympia.versions.tasks.delete_preview_files': {'queue': 'addons'},
     'olympia.git.tasks.continue_git_extraction': {'queue': 'addons'},
