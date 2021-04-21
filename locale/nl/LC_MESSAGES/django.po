@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-21 08:59+0000\n"
+"PO-Revision-Date: 2021-04-21 09:37+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -4497,7 +4497,7 @@ msgstr "Meer aanbevolen extensies bekijken"
 
 #. editorial content for the homepage shelves.
 msgid "Popular themes"
-msgstr ""
+msgstr "Populaire thema’s"
 
 #. editorial content for the homepage shelves.
 msgid "See more popular themes"
@@ -4509,7 +4509,7 @@ msgstr "Verbeterde privacyextensies"
 
 #. editorial content for the homepage shelves.
 msgid "See more enhanced privacy extensions"
-msgstr ""
+msgstr "Meer verbeterde beveiligingsextensies bekijken"
 
 #. editorial content for the homepage shelves.
 # Plural in this context means many of the add-on type
@@ -4526,15 +4526,15 @@ msgstr "Aanbevolen thema’s"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
-msgstr ""
+msgstr "Meer aanbevolen thema’s bekijken"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended password managers"
-msgstr ""
+msgstr "Aanbevolen wachtwoordbeheerders"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended password managers"
-msgstr ""
+msgstr "Meer aanbevolen wachtwoordbeheerders bekijken"
 
 msgid "Could not parse the manifest file."
 msgstr "Kon het manifest-bestand niet verwerken."
