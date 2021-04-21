@@ -1,10 +1,6 @@
 import hashlib
-import os
 
-from django.conf import settings
-from django.core.files.storage import default_storage as storage
 from django.db import transaction
-from django.utils.encoding import force_str
 
 from elasticsearch_dsl import Search
 
@@ -22,7 +18,6 @@ from olympia.addons.models import (
 from olympia.addons.utils import compute_last_updated
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
-from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.utils import LocalFileStorage, extract_colors_from_image
 from olympia.devhub.tasks import resize_image
 from olympia.files.utils import get_filepath, parse_addon

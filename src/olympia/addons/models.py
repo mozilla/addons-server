@@ -1066,10 +1066,6 @@ class Addon(OnChangeMixin, ModelBase):
         If it's something else, it will return the default add-on icon, unless
         use_default is False, in which case it will return None.
         """
-        icon_type_split = []
-        if self.icon_type:
-            icon_type_split = self.icon_type.split('/')
-
         # Get the closest allowed size without going over
         if size not in amo.ADDON_ICON_SIZES and size >= amo.ADDON_ICON_SIZES[0]:
             size = [s for s in amo.ADDON_ICON_SIZES if s < size][-1]

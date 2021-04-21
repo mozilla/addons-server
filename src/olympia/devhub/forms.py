@@ -317,7 +317,6 @@ class AddonFormMedia(AddonFormBase):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        addon = kwargs.get('instance')
 
     def save(self, addon, commit=True):
         if self.cleaned_data['icon_upload_hash']:
