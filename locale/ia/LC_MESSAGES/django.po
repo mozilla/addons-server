@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-21 05:51+0000\n"
+"PO-Revision-Date: 2021-04-21 08:51+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4425,7 +4425,7 @@ msgstr "Salva gruppos de schedas como marcapaginas favorite"
 
 #. editorial content for the primary hero shelves.
 msgid "Tabs and bookmarks neatly organized in a Firefox side view."
-msgstr ""
+msgstr "Schedas e marcapaginas accuratemente organisate in un vista lateral de Firefox."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4471,7 +4471,7 @@ msgstr "Programma de extensiones recommendate"
 
 #. editorial content for the homepage shelves.
 msgid "Popular themes"
-msgstr ""
+msgstr "Themas popular"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4485,7 +4485,7 @@ msgstr "Vider tote le extensiones"
 
 #. editorial content for the homepage shelves.
 msgid "See more enhanced privacy extensions"
-msgstr ""
+msgstr "Vider altere extensiones pro accrescer le confidentialitate"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4504,11 +4504,11 @@ msgstr "Recommendate"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
-msgstr ""
+msgstr "Vide altere themas recommendate"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended password managers"
-msgstr ""
+msgstr "Gestores de contrasignos recommendate"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended password managers"
