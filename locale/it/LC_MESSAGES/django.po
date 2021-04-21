@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-21 12:00+0000\n"
+"PO-Revision-Date: 2021-04-21 13:04+0000\n"
 "Last-Translator: Jenny <leanintocuriosity@gmx.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -564,7 +564,7 @@ msgstr "Invia"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs with %(adu)s users"
-msgstr ""
+msgstr "%(count)s GUID di componenti aggiuntivi con %(adu)s utenti"
 
 msgid "Edit Block"
 msgstr "Modifica blocco"
@@ -4570,11 +4570,11 @@ msgstr "Visualizza altri temi popolari"
 
 #. editorial content for the homepage shelves.
 msgid "Enhanced privacy extensions"
-msgstr ""
+msgstr "Estensioni per migliorare la privacy"
 
 #. editorial content for the homepage shelves.
 msgid "See more enhanced privacy extensions"
-msgstr ""
+msgstr "Visualizza altre estensioni per migliorare la privacy"
 
 #. editorial content for the homepage shelves.
 # Plural in this context means many of the add-on type
