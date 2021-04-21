@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-21 13:12+0000\n"
+"PO-Revision-Date: 2021-04-21 18:00+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -4450,11 +4450,11 @@ msgstr "Składujśo a wótnowśo rejtariki. Wopśimujo funkcije za awtomatiske s
 
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
-msgstr ""
+msgstr "Składujśo kupki rejtarikow ako praktiske cytańske znamjenja."
 
 #. editorial content for the primary hero shelves.
 msgid "Tabs and bookmarks neatly organized in a Firefox side view."
-msgstr ""
+msgstr "Rejtariki a cytańske znamjenja se w bócnem naglěźe Firefox pórědnje organizěruju."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -5592,13 +5592,13 @@ msgid "Newer"
 msgstr "Nowše"
 
 msgid "{num} versions flagged by scanners on other pages."
-msgstr ""
+msgstr "Wersije, kótarež su se markěrowali pśez skannery na drugich bokach: {num}"
 
 msgid "{num} versions flagged for human review on other pages."
-msgstr ""
+msgstr "Wersije, kótarež su se markěrowali za cłowjeske pśeglědowanje na drugich bokach: {num}"
 
 msgid "{num} versions pending rejection on other pages."
-msgstr ""
+msgstr "Wersije z felujucym wótpokazanim na drugich bokach: {num}"
 
 msgid "Recent Points"
 msgstr "Nejnowše dypki"
