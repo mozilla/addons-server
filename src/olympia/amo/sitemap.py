@@ -5,31 +5,63 @@ from urllib.parse import urlparse
 
 from django.conf import settings
 from django.contrib.sitemaps import Sitemap
+from django.db.models import F
 from django.template import loader
 from django.urls import reverse
 
 from olympia.addons.models import Addon
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.bandwagon.models import Collection
+from olympia.versions.models import License
 
 
 class AddonSitemap(Sitemap):
     priority = 1
     changefreq = 'daily'
     # i18n = True  # TODO: support all localized urls
+    item_tuple = namedtuple('Item', ['last_updated', 'slug', 'urlname'])
 
     def items(self):
-        return (
+        items = list(
             Addon.objects.public()
             .order_by('-last_updated')
-            .values_list('last_updated', 'slug', named=True)
+            .annotate(license_builtin=F('_current_version__license__builtin'))
+            .values_list(
+                'last_updated',
+                'slug',
+                'privacy_policy_id',
+                'eula_id',
+                'license_builtin',
+                named=True,
+            )
         )
+        return [
+            *(
+                self.item_tuple(item.last_updated, item.slug, 'detail')
+                for item in items
+            ),
+            *(
+                self.item_tuple(item.last_updated, item.slug, 'privacy')
+                for item in items
+                if item.privacy_policy_id
+            ),
+            *(
+                self.item_tuple(item.last_updated, item.slug, 'eula')
+                for item in items
+                if item.eula_id
+            ),
+            *(
+                self.item_tuple(item.last_updated, item.slug, 'license')
+                for item in items
+                if item.license_builtin == License.OTHER  # i.e. custom license
+            ),
+        ]
 
     def lastmod(self, item):
         return item.last_updated
 
     def location(self, item):
-        return reverse('addons.detail', args=[item.slug])
+        return reverse(f'addons.{item.urlname}', args=[item.slug])
 
 
 class AMOSitemap(Sitemap):
