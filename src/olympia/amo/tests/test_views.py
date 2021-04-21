@@ -532,7 +532,7 @@ class TestSitemap(TestCase):
         assert result.get('Content-Type') == 'application/xml'
         assert (
             b'<sitemap><loc>http://testserver/sitemap.xml?section=amo</loc>'
-            in result.content
+            in result.getvalue()
         )
 
     @override_settings(SITEMAP_STORAGE_PATH=TEST_SITEMAPS_DIR)
@@ -542,7 +542,7 @@ class TestSitemap(TestCase):
         assert result.get('Content-Type') == 'application/xml'
         assert (
             b'<url><loc>http://testserver/en-US/about</loc><lastmod>2021-04-08<'
-            in result.content
+            in result.getvalue()
         )
 
         # a section with more than one page
@@ -551,7 +551,7 @@ class TestSitemap(TestCase):
         assert result.get('Content-Type') == 'application/xml'
         assert (
             b'<loc>http://testserver/en-US/firefox/addon/delicious-pierogi/</loc>'
-            in result.content
+            in result.getvalue()
         )
 
     @override_settings(SITEMAP_STORAGE_PATH=TEST_SITEMAPS_DIR)
