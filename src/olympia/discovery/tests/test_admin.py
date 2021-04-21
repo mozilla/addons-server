@@ -915,7 +915,7 @@ class TestShelfAdmin(TestCase):
             assert Shelf.objects.count() == 1
             assert item.title == 'Recommended extensions'
             assert item.endpoint == 'search'
-            assert item.addon_type == 1
+            assert item.addon_type == amo.ADDON_EXTENSION
             assert item.criteria == ('?promoted=recommended&sort=random&type=extension')
             assert item.addon_count == item.get_count() == 2
 
@@ -1014,7 +1014,7 @@ class TestShelfAdmin(TestCase):
             item = Shelf.objects.get()
             assert item.title == 'Recommended extensions'
             assert item.endpoint == 'search'
-            assert item.addon_type == 1
+            assert item.addon_type == amo.ADDON_EXTENSION
             assert item.criteria == ('?promoted=recommended&sort=random&type=extension')
 
     def test_can_not_add_without_discovery_edit_permission(self):
