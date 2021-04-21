@@ -4448,11 +4448,11 @@ msgstr "Tabbladen opslaan en herstellen. Inclusief functies voor automatisch ops
 
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
-msgstr ""
+msgstr "Groepen tabbladen opslaan als handige bladwijzers."
 
 #. editorial content for the primary hero shelves.
 msgid "Tabs and bookmarks neatly organized in a Firefox side view."
-msgstr ""
+msgstr "Tabbladen en bladwijzers netjes geordend in een zijaanzicht in Firefox."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
