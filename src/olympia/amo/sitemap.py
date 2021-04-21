@@ -1,16 +1,21 @@
 import datetime
+import math
 import os
 from collections import namedtuple
 from urllib.parse import urlparse
 
+from django.db.models import Count
 from django.conf import settings
 from django.contrib.sitemaps import Sitemap
 from django.db.models import F
 from django.template import loader
 from django.urls import reverse
 
-from olympia.addons.models import Addon
+from olympia import amo
+from olympia.addons.models import Addon, AddonCategory
+from olympia.amo.reverse import get_url_prefix
 from olympia.amo.templatetags.jinja_helpers import absolutify
+from olympia.constants.categories import CATEGORIES
 from olympia.bandwagon.models import Collection
 from olympia.versions.models import License
 
@@ -92,6 +97,45 @@ class AMOSitemap(Sitemap):
         return reverse(item)
 
 
+class CategoriesSitemap(Sitemap):
+    priority = 0.7
+    # i18n = True  # TODO: support all localized urls
+    changefreq = 'always'
+    lastmod = datetime.datetime.now()
+
+    def items(self):
+        def additems(type):
+            items = []
+            for category in CATEGORIES[current_app.id][type].values():
+                items.append((category, 1))
+                pages_needed = math.ceil(addon_counts.get(category.id, 1) / page_size)
+                for page in range(2, pages_needed + 1):
+                    items.append((category, page))
+            return items
+
+        page_size = settings.REST_FRAMEWORK['PAGE_SIZE']
+        current_app = amo.APPS[get_url_prefix().get_app()]
+        counts_qs = (
+            AddonCategory.objects.filter(
+                addon___current_version__isnull=False,
+                addon__disabled_by_user=False,
+                addon__status__in=amo.REVIEWED_STATUSES,
+            )
+            .values('category_id')
+            .annotate(count=Count('addon_id'))
+        )
+        addon_counts = {cat['category_id']: cat['count'] for cat in counts_qs}
+
+        items = additems(amo.ADDON_EXTENSION)
+        if current_app == amo.FIREFOX:
+            items.extend(additems(amo.ADDON_STATICTHEME))
+        return items
+
+    def location(self, item):
+        (category, page) = item
+        return category.get_url_path() + (f'?page={page}' if page > 1 else '')
+
+
 class CollectionSitemap(Sitemap):
     priority = 0.5
     changefreq = 'daily'
@@ -114,6 +158,7 @@ class CollectionSitemap(Sitemap):
 sitemaps = {
     'amo': AMOSitemap(),
     'addons': AddonSitemap(),
+    'categories': CategoriesSitemap(),
     'collections': CollectionSitemap(),
 }
 

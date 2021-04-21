@@ -9,15 +9,19 @@ urlpatterns = [
         frontend_view,
         name='browse.language-tools',
     ),
-    re_path(r'^themes/(?P<category>[^/]+)?$', frontend_view, name='browse.themes'),
     re_path(
-        r'^extensions/(?:(?P<category>[^/]+)/)?$',
+        r'^themes/(?:category/(?P<category>[^/]+)/)?$',
+        frontend_view,
+        name='browse.themes',
+    ),
+    re_path(
+        r'^extensions/(?:category/(?P<category>[^/]+)/)?$',
         frontend_view,
         name='browse.extensions',
     ),
-    re_path(r'^themes/categories$', frontend_view, name='browse.themes.categories'),
+    re_path(r'^themes/categories/$', frontend_view, name='browse.themes.categories'),
     re_path(
-        r'^extensions/categories', frontend_view, name='browse.extensions.categories'
+        r'^extensions/categories/$', frontend_view, name='browse.extensions.categories'
     ),
     re_path(
         r'^search-tools/(?P<category>[^/]+)?$',

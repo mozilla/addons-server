@@ -4,13 +4,16 @@ from collections import namedtuple
 from unittest import mock
 
 from django.conf import settings
+from django.test import override_settings
 from django.urls import reverse
 
 from olympia import amo
+from olympia.addons.models import AddonCategory
 from olympia.amo.sitemap import (
     AddonSitemap,
     AMOSitemap,
     build_sitemap,
+    CategoriesSitemap,
     CollectionSitemap,
     get_sitemap_path,
     get_sitemap_section_pages,
@@ -22,6 +25,7 @@ from olympia.amo.tests import (
     license_factory,
     user_factory,
 )
+from olympia.constants.categories import CATEGORIES
 
 from .test_views import TEST_SITEMAPS_DIR
 
@@ -66,6 +70,43 @@ def test_amo_sitemap():
         assert sitemap.location(item) == reverse(item)
 
 
+def test_categories_sitemap():
+    sitemap = CategoriesSitemap()
+    # without any addons we should still generate a url for each category
+    empty_cats = list(sitemap.items())
+    assert empty_cats == [
+        *(
+            (category, 1)
+            for category in CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION].values()
+        ),
+        *(
+            (category, 1)
+            for category in CATEGORIES[amo.FIREFOX.id][amo.ADDON_STATICTHEME].values()
+        ),
+    ]
+    # add some addons and check we generate extra pages when frontend would paginate
+    bookmarks_category = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['bookmarks']
+    shopping_category = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['shopping']
+    AddonCategory.objects.create(
+        addon=addon_factory(category=bookmarks_category), category=shopping_category
+    )
+    AddonCategory.objects.create(
+        addon=addon_factory(category=shopping_category), category=bookmarks_category
+    )
+    addon_factory(category=bookmarks_category)
+    addon_factory(category=shopping_category, status=amo.STATUS_NOMINATED)
+    # should be 3 addons in shopping (one not public, so 2 public), and 3 in bookmarks
+
+    patched_drf_setting = dict(settings.REST_FRAMEWORK)
+    patched_drf_setting['PAGE_SIZE'] = 2
+    with override_settings(REST_FRAMEWORK=patched_drf_setting):
+        cats_with_addons = list(sitemap.items())
+    # only one extra url, for a second bookmarks category page, because PAGE_SIZE = 2
+    extra = (bookmarks_category, 2)
+    assert extra in cats_with_addons
+    assert set(cats_with_addons) - set(empty_cats) == {extra}
+
+
 def test_collection_sitemap(mozilla_user):
     collection_a = collection_factory(
         author=mozilla_user, modified=datetime.datetime(2020, 1, 1, 1, 1, 1)
@@ -92,12 +133,13 @@ def test_get_sitemap_section_pages():
     addon_factory()
     addon_factory()
     addon_factory()
-    assert list(sitemaps.keys()) == ['amo', 'addons', 'collections']
+    assert list(sitemaps.keys()) == ['amo', 'addons', 'categories', 'collections']
 
     pages = get_sitemap_section_pages()
     assert pages == [
         ('amo', 1),
         ('addons', 1),
+        ('categories', 1),
         ('collections', 1),
     ]
     with mock.patch.object(AddonSitemap, 'limit', 2):
@@ -106,6 +148,7 @@ def test_get_sitemap_section_pages():
             ('amo', 1),
             ('addons', 1),
             ('addons', 2),
+            ('categories', 1),
             ('collections', 1),
         ]
 
