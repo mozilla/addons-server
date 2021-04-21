@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-21 09:03+0000\n"
+"PO-Revision-Date: 2021-04-21 09:12+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4468,33 +4468,28 @@ msgid "Popular themes"
 msgstr "Themas popular"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular themes"
-msgstr "Eliger colores pro tu thema"
+msgstr "Vide altere themas popular"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Enhanced privacy extensions"
-msgstr "Vider tote le extensiones"
+msgstr "Extensiones pro accrescer le confidentialitate"
 
 #. editorial content for the homepage shelves.
 msgid "See more enhanced privacy extensions"
 msgstr "Vider altere extensiones pro accrescer le confidentialitate"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Popular extensions"
-msgstr "Explorar extensiones"
+msgstr "Extensiones popular"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular extensions"
-msgstr "Vider tote le extensiones"
+msgstr "Vide altere extensiones popular"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended themes"
-msgstr "Recommendate"
+msgstr "Themas recommendate"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
@@ -5432,13 +5427,11 @@ msgstr "Disactivar auto-approbation de additivos publicate"
 msgid "Enable Listed Auto-Approval"
 msgstr "Activar auto-approbation de additivos publicate"
 
-#, fuzzy
 msgid "Disable Unlisted Auto-Approval"
-msgstr "Disactivar auto-approbation de additivos publicate"
+msgstr "Disactivar auto-approbation de additivos non listate"
 
-#, fuzzy
 msgid "Enable Unlisted Auto-Approval"
-msgstr "Activar auto-approbation de additivos publicate"
+msgstr "Activar auto-approbation de additivos non listate"
 
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
 msgstr "Disactivar in le lista de auto-approbation usque le sequente approbation del manual"
