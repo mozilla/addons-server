@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-21 00:34+0000\n"
+"PO-Revision-Date: 2021-04-21 00:38+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -3227,9 +3227,8 @@ msgstr ""
 "apoiar."
 
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Visit the Firefox Extension Workshop"
-msgstr "Visite o workshop de extensões"
+msgstr "Visite o workshop de extensões do Firefox"
 
 msgid "Connect with us"
 msgstr "Entre em contato conosco"
@@ -3425,9 +3424,8 @@ msgstr "Código-fonte"
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
 msgstr "Caso sua extensão contenha código que foi reduzido, concatenado ou gerado automaticamente, disponibilize o código fonte aqui para ser revisado."
 
-#, fuzzy
 msgid "File {file_id}"
-msgstr "Arquivo {file_id} ({platform})"
+msgstr "Arquivo {file_id}"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
@@ -4542,28 +4540,24 @@ msgid "Learn More"
 msgstr "Saiba mais"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended extensions"
-msgstr "Programa de extensões recomendadas"
+msgstr "Extensões recomendadas"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more recommended extensions"
-msgstr "Programa de extensões recomendadas"
+msgstr "Mais extensões recomendadas"
 
 #. editorial content for the homepage shelves.
 msgid "Popular themes"
 msgstr "Temas populares"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular themes"
-msgstr "Selecione as cores do seu tema"
+msgstr "Mais temas populares"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Enhanced privacy extensions"
-msgstr "Ver todas extensões"
+msgstr "Extensões de privacidade aprimorada"
 
 #. editorial content for the homepage shelves.
 msgid "See more enhanced privacy extensions"
@@ -4571,19 +4565,16 @@ msgstr "Mais extensões de privacidade aprimorada"
 
 #. editorial content for the homepage shelves.
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Popular extensions"
-msgstr "Explorar extensões"
+msgstr "Extensões populares"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular extensions"
-msgstr "Ver todas extensões"
+msgstr "Mais extensões populares"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended themes"
-msgstr "Recomendado"
+msgstr "Temas recomendados"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
@@ -5539,13 +5530,11 @@ msgstr "Desativar a aprovação automática de listados"
 msgid "Enable Listed Auto-Approval"
 msgstr "Ativar a aprovação automática de listados"
 
-#, fuzzy
 msgid "Disable Unlisted Auto-Approval"
-msgstr "Desativar a aprovação automática de listados"
+msgstr "Desativar aprovação automática de não listados"
 
-#, fuzzy
 msgid "Enable Unlisted Auto-Approval"
-msgstr "Ativar a aprovação automática de listados"
+msgstr "Ativar aprovação automática de não listados"
 
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
 msgstr "Desativar a aprovação automática de listados até a próxima aprovação manual"
