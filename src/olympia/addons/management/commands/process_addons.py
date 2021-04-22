@@ -6,7 +6,6 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.addons.tasks import (
     add_dynamic_theme_tag,
-    create_custom_icon_from_predefined,
     delete_addons,
     extract_colors_from_static_themes,
     find_inconsistencies_between_es_and_db,
@@ -142,10 +141,6 @@ class Command(ProcessObjectsCommand):
                     )
                 ],
                 'allowed_kwargs': ('with_deleted',),
-            },
-            'create_custom_icon_from_predefined': {
-                'task': create_custom_icon_from_predefined,
-                'queryset_filters': [~Q(icon_type__in=('', 'image/jpeg', 'image/png'))],
             },
             'update_rating_aggregates': {
                 'task': addon_rating_aggregates,
