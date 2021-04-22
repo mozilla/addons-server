@@ -1,6 +1,5 @@
 import datetime
 import os
-from collections import namedtuple
 from unittest import mock
 
 from django.conf import settings
@@ -26,42 +25,82 @@ from olympia.amo.tests import (
     user_factory,
 )
 from olympia.constants.categories import CATEGORIES
+from olympia.ratings.models import Rating
 
 from .test_views import TEST_SITEMAPS_DIR
 
 
+def rating_factory(addon):
+    return Rating.objects.create(
+        addon=addon,
+        version=addon.current_version,
+        rating=2,
+        body='text',
+        user=user_factory(),
+    )
+
+
 def test_addon_sitemap():
+    it = AddonSitemap.item_tuple
     addon_a = addon_factory(
+        slug='addon-a',
         privacy_policy='privacy!',
         eula='eula!',
         version_kw={'license': license_factory()},
     )
     # addon_factory generates licenses by default, but always with a builtin >0
-    addon_b = addon_factory()
+    addon_b = addon_factory(slug='addon-b')
     addon_b.update(last_updated=datetime.datetime(2020, 1, 1, 1, 1, 1))
     addon_c = addon_factory(
-        eula='only eula', version_kw={'license': license_factory(builtin=1)}
+        slug='addon-c',
+        eula='only eula',
+        version_kw={'license': license_factory(builtin=1)},
     )
-    addon_d = addon_factory(privacy_policy='only privacy')
+    addon_d = addon_factory(slug='addon-d', privacy_policy='only privacy')
     addon_factory(status=amo.STATUS_NOMINATED)  # shouldn't show up
     sitemap = AddonSitemap()
-    assert list(sitemap.items()) == [
-        (addon_d.last_updated, addon_d.slug, 'detail'),
-        (addon_c.last_updated, addon_c.slug, 'detail'),
-        (addon_a.last_updated, addon_a.slug, 'detail'),
-        (addon_b.last_updated, addon_b.slug, 'detail'),
-        (addon_d.last_updated, addon_d.slug, 'privacy'),
-        (addon_a.last_updated, addon_a.slug, 'privacy'),
-        (addon_c.last_updated, addon_c.slug, 'eula'),
-        (addon_a.last_updated, addon_a.slug, 'eula'),
-        (addon_a.last_updated, addon_a.slug, 'license'),
+    expected = [
+        it(addon_d.last_updated, addon_d.slug, 'detail', None),
+        it(addon_c.last_updated, addon_c.slug, 'detail', None),
+        it(addon_a.last_updated, addon_a.slug, 'detail', None),
+        it(addon_b.last_updated, addon_b.slug, 'detail', None),
+        it(addon_d.last_updated, addon_d.slug, 'privacy', None),
+        it(addon_a.last_updated, addon_a.slug, 'privacy', None),
+        it(addon_c.last_updated, addon_c.slug, 'eula', None),
+        it(addon_a.last_updated, addon_a.slug, 'eula', None),
+        it(addon_a.last_updated, addon_a.slug, 'license', None),
+        it(addon_d.last_updated, addon_d.slug, 'ratings.list', None),
+        it(addon_c.last_updated, addon_c.slug, 'ratings.list', None),
+        it(addon_a.last_updated, addon_a.slug, 'ratings.list', None),
+        it(addon_b.last_updated, addon_b.slug, 'ratings.list', None),
     ]
+    items = list(sitemap.items())
+    assert items == expected
     for item in sitemap.items():
         assert sitemap.location(item) == reverse(
             'addons.' + item.urlname, args=[item.slug]
         )
         assert '/en-US/firefox/' in sitemap.location(item)
         assert sitemap.lastmod(item) == item.last_updated
+
+    # add some ratings to test the rating page pagination
+    rating_factory(addon_c)
+    rating_factory(addon_c)
+    rating_factory(addon_c)
+    rating_factory(addon_a)
+    rating_factory(addon_a)  # only 2 for addon_a
+    patched_drf_setting = dict(settings.REST_FRAMEWORK)
+    patched_drf_setting['PAGE_SIZE'] = 2
+
+    with override_settings(REST_FRAMEWORK=patched_drf_setting):
+        items_with_ratings = list(sitemap.items())
+    # only one extra url, for a second ratings page, because PAGE_SIZE = 2
+    extra_rating = it(addon_c.last_updated, addon_c.slug, 'ratings.list', 'page=2')
+    assert extra_rating in items_with_ratings
+    assert set(items_with_ratings) - set(expected) == {extra_rating}
+    item = items_with_ratings[-3]
+    assert sitemap.location(item).endswith('/reviews/?page=2')
+    assert sitemap.lastmod(item) == item.last_updated
 
 
 def test_amo_sitemap():
@@ -146,7 +185,7 @@ def test_get_sitemap_section_pages():
         ('categories', 1),
         ('collections', 1),
     ]
-    with mock.patch.object(AddonSitemap, 'limit', 2):
+    with mock.patch.object(AddonSitemap, 'limit', 3):
         pages = get_sitemap_section_pages()
         assert pages == [
             ('amo', 1),
@@ -172,15 +211,14 @@ def test_build_sitemap():
 
     # then a section build
     def items_mock(self):
-        AddonValuesList = namedtuple('AddonValuesList', 'last_updated,slug,urlname')
         return [
-            AddonValuesList(
+            AddonSitemap.item_tuple(
                 datetime.datetime(2020, 10, 2, 0, 0, 0), 'delicious-pierogi', 'detail'
             ),
-            AddonValuesList(
+            AddonSitemap.item_tuple(
                 datetime.datetime(2020, 10, 1, 0, 0, 0), 'swanky-curry', 'detail'
             ),
-            AddonValuesList(
+            AddonSitemap.item_tuple(
                 datetime.datetime(2020, 9, 30, 0, 0, 0), 'spicy-pierogi', 'detail'
             ),
         ]

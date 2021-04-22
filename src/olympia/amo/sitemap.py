@@ -24,10 +24,12 @@ class AddonSitemap(Sitemap):
     priority = 1
     changefreq = 'daily'
     # i18n = True  # TODO: support all localized urls
-    item_tuple = namedtuple('Item', ['last_updated', 'slug', 'urlname'])
+    item_tuple = namedtuple(
+        'Item', ['last_updated', 'slug', 'urlname', 'urlargs'], defaults=(None,)
+    )
 
     def items(self):
-        items = list(
+        addons = list(
             Addon.objects.public()
             .order_by('-last_updated')
             .annotate(license_builtin=F('_current_version__license__builtin'))
@@ -37,36 +39,53 @@ class AddonSitemap(Sitemap):
                 'privacy_policy_id',
                 'eula_id',
                 'license_builtin',
+                'text_ratings_count',
                 named=True,
             )
         )
-        return [
+        items = [
             *(
-                self.item_tuple(item.last_updated, item.slug, 'detail')
-                for item in items
+                self.item_tuple(addon.last_updated, addon.slug, 'detail')
+                for addon in addons
             ),
             *(
-                self.item_tuple(item.last_updated, item.slug, 'privacy')
-                for item in items
-                if item.privacy_policy_id
+                self.item_tuple(addon.last_updated, addon.slug, 'privacy')
+                for addon in addons
+                if addon.privacy_policy_id
             ),
             *(
-                self.item_tuple(item.last_updated, item.slug, 'eula')
-                for item in items
-                if item.eula_id
+                self.item_tuple(addon.last_updated, addon.slug, 'eula')
+                for addon in addons
+                if addon.eula_id
             ),
             *(
-                self.item_tuple(item.last_updated, item.slug, 'license')
-                for item in items
-                if item.license_builtin == License.OTHER  # i.e. custom license
+                self.item_tuple(addon.last_updated, addon.slug, 'license')
+                for addon in addons
+                if addon.license_builtin == License.OTHER  # i.e. custom license
             ),
         ]
+        # add pages for ratings - and extra pages when needed to paginate
+        page_size = settings.REST_FRAMEWORK['PAGE_SIZE']
+        for addon in addons:
+            items.append(
+                self.item_tuple(addon.last_updated, addon.slug, 'ratings.list')
+            )
+            pages_needed = math.ceil(addon.text_ratings_count / page_size)
+            for page in range(2, pages_needed + 1):
+                items.append(
+                    self.item_tuple(
+                        addon.last_updated, addon.slug, 'ratings.list', f'page={page}'
+                    )
+                )
+        return items
 
     def lastmod(self, item):
         return item.last_updated
 
     def location(self, item):
-        return reverse(f'addons.{item.urlname}', args=[item.slug])
+        return reverse(f'addons.{item.urlname}', args=[item.slug]) + (
+            f'?{item.urlargs}' if item.urlargs else ''
+        )
 
 
 class AMOSitemap(Sitemap):
