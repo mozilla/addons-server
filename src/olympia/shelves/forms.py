@@ -50,9 +50,9 @@ class ShelfForm(forms.ModelForm):
                 addon_type == amo.ADDON_STATICTHEME and 'type=statictheme' not in params
             ):
                 raise forms.ValidationError(
-                    'Check fields - for "Theme (Static)" addon type, use type=statictheme. '
-                    'For non theme addons, use "Extension" in Addon type field, '
-                    'not "Theme (Static)".'
+                    'Check fields - for "Theme (Static)" addon type, use '
+                    'type=statictheme. For non theme addons, use "Extension" in Addon '
+                    'type field, not "Theme (Static)".'
                 )
             api = reverse(f'{api_settings.DEFAULT_VERSION}:addon-search')
             url = base_url + api + criteria
