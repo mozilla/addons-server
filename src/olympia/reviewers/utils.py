@@ -1179,25 +1179,21 @@ class ReviewBase(object):
                     defaults={'pending_rejection': pending_rejection_deadline},
                 )
 
+        # A rejection (delayed or not) implies the next version should be
+        # manually reviewed.
+        addonreviewerflags = {
+            'auto_approval_disabled_until_next_approval': True,
+        }
         if pending_rejection_deadline:
-            # A delayed rejection implies the next version should be manually
-            # reviewed and the developers should be notified again once the
-            # deadline is close.
-            AddonReviewerFlags.objects.update_or_create(
-                addon=self.addon,
-                defaults={
-                    'notified_about_expiring_delayed_rejections': False,
-                    'auto_approval_disabled_until_next_approval': True,
-                },
-            )
-            # The reviewer should be automatically subscribed to any new
-            # versions posted to the same channel.
-            ReviewerSubscription.objects.get_or_create(
-                user=self.user, addon=self.addon, channel=latest_version.channel
-            )
+            # Developers should be notified again once the deadline is close.
+            addonreviewerflags['notified_about_expiring_delayed_rejections'] = False
         else:
-            # An immediate one might require the add-on status to change.
+            # An immediate rejection might require the add-on status to change.
             self.addon.update_status()
+        AddonReviewerFlags.objects.update_or_create(
+            addon=self.addon,
+            defaults=addonreviewerflags,
+        )
 
         # Assign reviewer incentive scores and send email, if it's an human
         # reviewer: if it's not, it's coming from some automation where we
@@ -1228,6 +1224,12 @@ class ReviewBase(object):
                 subject = 'Mozilla Add-ons: Versions disabled for %s%s'
             log.info('Sending email for %s' % (self.addon))
             self.notify_email(template, subject, version=latest_version)
+
+            # The reviewer should be automatically subscribed to any new
+            # versions posted to the same channel.
+            ReviewerSubscription.objects.get_or_create(
+                user=self.user, addon=self.addon, channel=latest_version.channel
+            )
 
             ReviewerScore.award_points(
                 self.user,

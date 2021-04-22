@@ -1911,6 +1911,17 @@ class TestReviewHelper(TestReviewHelperBase):
         # Check points awarded.
         self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
 
+        # auto approvals should be disabled until the next manual approval.
+        flags = self.addon.reviewerflags
+        flags.reload()
+        assert flags.auto_approval_disabled_until_next_approval
+
+        # The reviewer should have been automatically subscribed to new listed
+        # versions.
+        assert ReviewerSubscription.objects.filter(
+            addon=self.addon, user=self.request.user, channel=self.version.channel
+        ).exists()
+
     def test_reject_multiple_versions_with_delay(self):
         old_version = self.version
         self.version = version_factory(addon=self.addon, version='3.0')
