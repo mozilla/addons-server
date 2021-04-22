@@ -38,21 +38,22 @@ class ShelfForm(forms.ModelForm):
         if criteria is None:
             return
 
-        params = criteria[1:].split('&')
-        if addon_type == amo.ADDON_EXTENSION and 'type=statictheme' in params:
-            raise forms.ValidationError(
-                'Use "Theme (Static)" in Addon type field for type=statictheme.'
-            )
-        elif addon_type == amo.ADDON_STATICTHEME and 'type=statictheme' not in params:
-            raise forms.ValidationError(
-                'Check fields - for "Theme (Static)" addon type, use type=statictheme. '
-                'For non theme addons, use "Extension" in Addon type field, '
-                'not "Theme (Static)".'
-            )
-
         if endpoint == 'search':
             if not criteria.startswith('?') or criteria.count('?') > 1:
                 raise forms.ValidationError('Check criteria field.')
+            params = criteria[1:].split('&')
+            if addon_type == amo.ADDON_EXTENSION and 'type=statictheme' in params:
+                raise forms.ValidationError(
+                    'Use "Theme (Static)" in Addon type field for type=statictheme.'
+                )
+            elif (
+                addon_type == amo.ADDON_STATICTHEME and 'type=statictheme' not in params
+            ):
+                raise forms.ValidationError(
+                    'Check fields - for "Theme (Static)" addon type, use type=statictheme. '
+                    'For non theme addons, use "Extension" in Addon type field, '
+                    'not "Theme (Static)".'
+                )
             api = reverse(f'{api_settings.DEFAULT_VERSION}:addon-search')
             url = base_url + api + criteria
         elif endpoint == 'collections':
