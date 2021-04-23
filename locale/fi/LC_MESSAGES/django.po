@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-23 17:29+0000\n"
+"PO-Revision-Date: 2021-04-23 17:42+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -3589,7 +3589,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "Onko sinulla paljon avoimia välilehtiä? Järjestä ne siistiin sivupalkkiin."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3678,7 +3678,7 @@ msgstr "Näytä maailmankellojen ajat Firefoxin tilarivillä."
 
 #. editorial content for the discovery pane.
 msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr ""
+msgstr "Käännöksiä vaivatta. Korosta teksti millä tahansa verkkosivulla — tai valitse koko sivu — kääntääksesi heti."
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom. Access 10+ million research papers for free."
@@ -4003,7 +4003,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a web page in new tabs."
-msgstr ""
+msgstr "Näytä kaikki verkkosivun linkit välittömästi uusissa välilehdissä."
 
 #. editorial content for the discovery pane.
 msgid "Strip away redirect pages and URL tracking parameters from web links. Works automatically."
@@ -4426,7 +4426,7 @@ msgstr "Niitä hetkiä varten, kun haluat ampua laseria kissan silmistä."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
-msgstr ""
+msgstr "Luetuta verkkosivut ääneen. Yli 40 tuettua kieltä."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
