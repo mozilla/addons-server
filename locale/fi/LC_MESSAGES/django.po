@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-23 17:42+0000\n"
+"PO-Revision-Date: 2021-04-23 17:47+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -4450,11 +4450,11 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Begone, annoying cookie warnings!"
-msgstr ""
+msgstr "Menkää pois, inhottavat evästevaroitukset!"
 
 #. editorial content for the primary hero shelves.
 msgid "The easiest way to manage YouTube subscriptions."
-msgstr ""
+msgstr "Helpoin tapa hallita YouTube-tilauksia."
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
@@ -4957,7 +4957,7 @@ msgid "Type"
 msgstr "Tyyppi"
 
 msgid "Waiting Time"
-msgstr ""
+msgstr "Odotusaika"
 
 msgid "Flags"
 msgstr ""
@@ -4968,20 +4968,20 @@ msgstr ""
 #. L10n: first argument is number of minutes
 msgid "{0} minute"
 msgid_plural "{0} minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} minuutti"
+msgstr[1] "{0} minuuttia"
 
 #. L10n: first argument is number of hours
 msgid "{0} hour"
 msgid_plural "{0} hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} tunti"
+msgstr[1] "{0} tuntia"
 
 #. L10n: first argument is number of days
 msgid "{0} day"
 msgid_plural "{0} days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} päivä"
+msgstr[1] "{0} päivää"
 
 #, fuzzy
 msgid "ID"
@@ -5197,7 +5197,7 @@ msgid "Add-ons Pending Rejection ({0})"
 msgstr "Ei tarkastettu"
 
 msgid "An unknown error occurred"
-msgstr ""
+msgstr "Tapahtui tuntematon virhe"
 
 msgid "Self-reviews are not allowed."
 msgstr "Omia lisäosiaan ei voi tarkastaa."
@@ -5740,7 +5740,7 @@ msgid "Additional sources:"
 msgstr ""
 
 msgid "Download files"
-msgstr ""
+msgstr "Lataa tiedostot"
 
 msgid "The developer has provided source code."
 msgstr ""
