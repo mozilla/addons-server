@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-23 14:34+0000\n"
+"PO-Revision-Date: 2021-04-23 14:51+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -4480,11 +4480,11 @@ msgstr "Сохранение и восстановление вкладок. В�
 
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
-msgstr ""
+msgstr "Сохраняйте группы вкладок в виде удобных закладок."
 
 #. editorial content for the primary hero shelves.
 msgid "Tabs and bookmarks neatly organized in a Firefox side view."
-msgstr ""
+msgstr "Вкладки и закладки аккуратно организованные в боковой панели Firefox."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4541,7 +4541,7 @@ msgstr "Расширения для повышения приватности"
 
 #. editorial content for the homepage shelves.
 msgid "See more enhanced privacy extensions"
-msgstr ""
+msgstr "Больше расширений для повышения приватности"
 
 #. editorial content for the homepage shelves.
 # Plural in this context means many of the add-on type
