@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-21 13:20+0000\n"
+"PO-Revision-Date: 2021-04-24 04:47+0000\n"
 "Last-Translator: 你我皆凡人 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -3929,7 +3929,7 @@ msgstr "享受来自全球超过 30000 多个电台的音乐。"
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
-msgstr "只传输 YouTube 影片的流式音频来节省带宽。"
+msgstr "只流式传输 YouTube 片段的音频来节省带宽。"
 
 #. editorial content for the discovery pane.
 msgid "Turn words into beautiful headlines and image overlay text."
