@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-24 15:12+0000\n"
+"PO-Revision-Date: 2021-04-24 15:16+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -548,9 +548,9 @@ msgstr "Add-on GUIDs (one per line)"
 msgid "Submit"
 msgstr "Submit"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%(count)s Add-on GUIDs with %(adu)s users"
-msgstr "%(count)s Add-on GUIDs"
+msgstr "%(count)s Add-on GUIDs with %(adu)s users"
 
 msgid "Edit Block"
 msgstr "Edit Block"
@@ -932,16 +932,14 @@ msgstr "{addon} {version} re-signed (previously {0})."
 msgid "Version re-signed"
 msgstr "Version re-signed"
 
-#, fuzzy
 msgid "{user} force-disabled {addon}."
-msgstr "Force-disable add-on"
+msgstr "{user} force-disabled {addon}."
 
 msgid "Force disabled"
 msgstr "Force disabled"
 
-#, fuzzy
 msgid "{user} force-enabled {addon}."
-msgstr "Force-enable add-on"
+msgstr "{user} force-enabled {addon}."
 
 msgid "Force enabled"
 msgstr "Force enabled"
@@ -3162,9 +3160,8 @@ msgstr "Build best-in-class extensions and themes"
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 
-#, fuzzy
 msgid "Visit the Firefox Extension Workshop"
-msgstr "Visit the Extension Workshop"
+msgstr "Visit the Firefox Extension Workshop"
 
 msgid "Connect with us"
 msgstr "Connect with us"
@@ -3355,9 +3352,8 @@ msgstr "Source code"
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
 msgstr "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
 
-#, fuzzy
 msgid "File {file_id}"
-msgstr "File {file_id} ({platform})"
+msgstr "File {file_id}"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
@@ -4460,47 +4456,40 @@ msgid "Learn More"
 msgstr "Learn More"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended extensions"
-msgstr "Recommended Extensions program"
+msgstr "Recommended extensions"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more recommended extensions"
-msgstr "Recommended Extensions program"
+msgstr "See more recommended extensions"
 
 #. editorial content for the homepage shelves.
 msgid "Popular themes"
 msgstr "Popular themes"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular themes"
-msgstr "Select colours for your theme"
+msgstr "See more popular themes"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Enhanced privacy extensions"
-msgstr "See all extensions"
+msgstr "Enhanced privacy extensions"
 
 #. editorial content for the homepage shelves.
 msgid "See more enhanced privacy extensions"
 msgstr "See more enhanced privacy extensions"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Popular extensions"
-msgstr "Explore extensions"
+msgstr "Popular extensions"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular extensions"
-msgstr "See all extensions"
+msgstr "See more popular extensions"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended themes"
-msgstr "Recommended"
+msgstr "Recommended themes"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
@@ -5438,13 +5427,11 @@ msgstr "Disable Listed Auto-Approval"
 msgid "Enable Listed Auto-Approval"
 msgstr "Enable Listed Auto-Approval"
 
-#, fuzzy
 msgid "Disable Unlisted Auto-Approval"
-msgstr "Disable Listed Auto-Approval"
+msgstr "Disable Unlisted Auto-Approval"
 
-#, fuzzy
 msgid "Enable Unlisted Auto-Approval"
-msgstr "Enable Listed Auto-Approval"
+msgstr "Enable Unlisted Auto-Approval"
 
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
 msgstr "Disable Listed Auto-Approval Until Next Manual Approval"
