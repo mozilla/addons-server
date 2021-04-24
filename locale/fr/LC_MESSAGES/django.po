@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-03-22 11:01+0000\n"
+"PO-Revision-Date: 2021-04-23 12:54+0000\n"
 "Last-Translator: Benoit Leseul <benoit.leseul@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -569,7 +569,7 @@ msgstr "Envoyer"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs with %(adu)s users"
-msgstr ""
+msgstr "%(count)s GUID de modules avec %(adu)s utilisateurs"
 
 msgid "Edit Block"
 msgstr "Modifier le blocage"
@@ -960,7 +960,7 @@ msgid "Force disabled"
 msgstr "Désactivé de force"
 
 msgid "{user} force-enabled {addon}."
-msgstr ""
+msgstr "{user} a activé de force {addon}."
 
 msgid "Force enabled"
 msgstr "Activé de force"
@@ -3227,7 +3227,7 @@ msgstr ""
 
 # Plural in this context means many of the add-on type
 msgid "Visit the Firefox Extension Workshop"
-msgstr ""
+msgstr "Visitez l’atelier d’extensions de Firefox"
 
 msgid "Connect with us"
 msgstr "Restons en lien"
@@ -3423,7 +3423,7 @@ msgid "If your add-on contains minified, concatenated or otherwise machine-gener
 msgstr "Si votre module complémentaire contient du code minifié, concaténé ou généré automatiquement de quelque façon, mettez ici sa source à disposition des réviseurs."
 
 msgid "File {file_id}"
-msgstr ""
+msgstr "Fichier {file_id}"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
@@ -4500,11 +4500,11 @@ msgstr "Enregistrer et restaurer les onglets. Avec des fonctions d’enregistrem
 
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
-msgstr ""
+msgstr "Enregistrez des lots d’onglets comme des marque-pages pratiques."
 
 #. editorial content for the primary hero shelves.
 msgid "Tabs and bookmarks neatly organized in a Firefox side view."
-msgstr ""
+msgstr "Les onglets et les marque-pages sont bien organisés dans une vue latérale de Firefox."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4541,52 +4541,52 @@ msgstr "En savoir plus"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended extensions"
-msgstr ""
+msgstr "Extensions recommandées"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended extensions"
-msgstr ""
+msgstr "Voir plus d’extensions recommandées"
 
 #. editorial content for the homepage shelves.
 msgid "Popular themes"
-msgstr ""
+msgstr "Thèmes populaires"
 
 #. editorial content for the homepage shelves.
 msgid "See more popular themes"
-msgstr ""
+msgstr "Voir plus de thèmes populaires"
 
 #. editorial content for the homepage shelves.
 msgid "Enhanced privacy extensions"
-msgstr ""
+msgstr "Extensions pour protéger mieux votre vie privée"
 
 #. editorial content for the homepage shelves.
 msgid "See more enhanced privacy extensions"
-msgstr ""
+msgstr "Voir plus d’extensions pour le respect de la vie privée"
 
 #. editorial content for the homepage shelves.
 # Plural in this context means many of the add-on type
 msgid "Popular extensions"
-msgstr ""
+msgstr "Extensions populaires"
 
 #. editorial content for the homepage shelves.
 msgid "See more popular extensions"
-msgstr ""
+msgstr "Voir plus d’extensions populaires"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended themes"
-msgstr ""
+msgstr "Thèmes recommandés"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
-msgstr ""
+msgstr "Voir plus de thèmes recommandés"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended password managers"
-msgstr ""
+msgstr "Gestionnaires de mots de passe recommandés"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended password managers"
-msgstr ""
+msgstr "Voir plus de gestionnaires de mots de passe recommandés"
 
 msgid "Could not parse the manifest file."
 msgstr "Impossible d’analyser le fichier manifeste."
@@ -5517,10 +5517,10 @@ msgid "Enable Listed Auto-Approval"
 msgstr "Activer l’approbation automatique de module publié"
 
 msgid "Disable Unlisted Auto-Approval"
-msgstr ""
+msgstr "Désactiver l’approbation automatique non répertoriée"
 
 msgid "Enable Unlisted Auto-Approval"
-msgstr ""
+msgstr "Activer l’approbation automatique non répertoriée"
 
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
 msgstr "Désactiver l’approbation automatique répertoriée jusqu’à la prochaine approbation manuelle"
