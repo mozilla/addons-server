@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-23 13:19+0000\n"
+"PO-Revision-Date: 2021-04-25 14:27+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -2094,7 +2094,7 @@ msgstr "En Son {0} Etkinlikleri"
 
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
-msgstr ""
+msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time>, %(user)s"
 
 msgid "No results found."
 msgstr "Sonuç bulunamadı."
@@ -4476,9 +4476,8 @@ msgstr "Popüler uzantılar"
 #. editorial content for the homepage shelves.
 # 95%
 # 100%
-#, fuzzy
 msgid "See more popular extensions"
-msgstr "Tüm eklentilere bak"
+msgstr "Diğer popüler uzantılara bakın"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended themes"
@@ -5431,13 +5430,11 @@ msgstr "Listelenmiş otomatik onaylamayı devre dışı bırak"
 msgid "Enable Listed Auto-Approval"
 msgstr "Listelenmiş otomatik onaylamayı etkinleştir"
 
-#, fuzzy
 msgid "Disable Unlisted Auto-Approval"
-msgstr "Listelenmiş otomatik onaylamayı devre dışı bırak"
+msgstr "Listelenmemiş otomatik onaylamayı devre dışı bırak"
 
-#, fuzzy
 msgid "Enable Unlisted Auto-Approval"
-msgstr "Listelenmiş otomatik onaylamayı etkinleştir"
+msgstr "Listelenmemiş otomatik onaylamayı etkinleştir"
 
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
 msgstr ""
