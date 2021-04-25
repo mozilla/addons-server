@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-21 02:56+0000\n"
-"Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
+"PO-Revision-Date: 2021-03-15 07:43+0000\n"
+"Last-Translator: ellie6915 <ellie6915@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -274,11 +274,13 @@ msgstr ""
 msgid "Oops"
 msgstr "앗 이런"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
-msgstr "<h1>저런!  오류가 발생했습니다.</h1> <p>빠른 시일 내에 고치도록 하겠습니다.</p> <p>현재 페이지를 새로고침해 보거나 <a href=\"%(home)s\">부가 기능 홈페이지</a>로 돌아가시기 바랍니다.</p>"
+msgstr ""
+"<h1>이런! 오류가 발생했습니다.</h1> <p>곧 해결하겠습니다.</p> <p> 현재 페이지를 새로고침 하시거나, 추가 기능 페이지 <a href=\"%(home)s\">로 돌아가시기 바랍니다.</a>. 또한 해당 페이지에 접속한 경로의 세부 정보를 <a "
+"href=\"https://github.com/mozilla/addons/issues/new\">에 제출해주시면</a> 해당 문제 해결에 도움을 주실 수 있습니다. </p>"
 
 msgid "Register or Log in"
 msgstr "가입하기 또는 로그인"
@@ -465,42 +467,40 @@ msgstr "GUID %(guid)s가 제출 보류 중"
 
 #, python-format
 msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
-msgstr ""
+msgstr "GUID %(guid)s 에 대한 블록은 읽기 전용입니다 - 기존 블록리스트 컬렉션을 통해 수정해야합니다."
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
-msgstr ""
+msgstr "GUID %(guid)s 가 있는 블록을 찾을 수 없음"
 
 #, python-format
 msgid "Addon with GUID %(guid)s does not exist"
 msgstr "GUID %(guid)s가 있는 부가 기능 없음"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr ""
+msgstr "최소 또는 최대 버전이 변경되었기 때문에 업데이트될 블록이 다릅니다."
 
 #, python-format
 msgid "%(value)s contains *"
-msgstr ""
+msgstr "%(value)s 포함 *"
 
 msgid "Invalid version"
 msgstr "잘못된 버전"
 
 msgid "Min version can not be greater than Max version"
-msgstr ""
+msgstr "최소 버전은 최대 버전보다 클 수 없음"
 
-#, fuzzy
 msgid "Review Listed"
-msgstr "검토 요청됨"
+msgstr "검토목록"
 
-#, fuzzy
 msgid "Review Unlisted"
-msgstr "검토 노트"
+msgstr "미등록 검토"
 
 msgid "This block was imported from a regex based legacy Block."
-msgstr ""
+msgstr "이 블록은 정규식 기반 레거시 블록에서 가져오기 했습니다."
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
-msgstr ""
+msgstr "변경 사항은 레거시 차단 목록에서 업데이트되지 않습니다. kinto 관리 webui를 통해 수동으로 변경 해주시기 바랍니다."
 
 #, python-format
 msgid "Delete Multiple %(name)s"
@@ -511,14 +511,14 @@ msgstr "첫화면"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr ""
+msgstr "%(count)s 추가 기능 GUIDs가 %(v_min)s에서 %(v_max)s까지 이미 차단되었습니다."
 
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr "%(count)s 부가기능 GUIDs 찾을 수 없음"
 
 msgid "The following block(s) were imported from a regex based legacy Block."
-msgstr ""
+msgstr "이 블록은 정규식 기반의 레거시 블록에서 가져오기 했습니다."
 
 msgid "Save"
 msgstr "저장"
