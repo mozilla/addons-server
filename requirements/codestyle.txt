@@ -45,8 +45,9 @@ curlylint==0.12.2 \
 toml==0.10.2 \
     --hash=sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b \
     --hash=sha256:b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f
-black==20.8b1 \
-    --hash=sha256:1c02557aa099101b9d21496f8a914e9ed2222ef70336404eeeac8edba836fbea
+black==21.4b0 \
+    --hash=sha256:2db7040bbbbaa46247bfcc05c6efdebd7ebe50c1c3ca745ca6e0f6776438c96c \
+    --hash=sha256:915d916c48646dbe8040d5265cff7111421a60a3dfe7f7e07273176a57c24a34
 typing-extensions==3.7.4.3 \
     --hash=sha256:7cb407020f00f7bfc3cb3e7881628838e69d8f3fcab2f64742a5e76b2f841918 \
     --hash=sha256:99d4073b617d30288f569d3f13d2bd7548c3a7e4c8de87db09a9d29bb3a4a60c \
