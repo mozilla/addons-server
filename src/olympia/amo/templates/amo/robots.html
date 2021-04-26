@@ -9,11 +9,16 @@ Disallow: /{{ app.short }}/downloads/
 
 {# Spacing is a little weird because it makes the output prettier #}
 {% for lang in settings.AMO_LANGUAGES -%}
+{% with collections_url=url('collections.list', add_prefix=False) %}
 
-Allow: /{{ lang }}/firefox{{ url('collections.list', add_prefix=False) }}{{ mozilla_user_id }}/
+Allow: /{{ lang }}/firefox{{ collections_url }}{{ mozilla_user_id }}/
+Allow: /{{ lang }}/firefox{{ collections_url }}{{ mozilla_user_username }}/
+Disallow: /{{ lang }}/firefox{{ collections_url }}{{ mozilla_user_id }}/$
+Disallow: /{{ lang }}/firefox{{ collections_url }}{{ mozilla_user_username }}/$
 {% for app in apps %}
 Disallow: /{{ lang }}/{{ app.short }}{{ url('search.search', add_prefix=False) }}
-Disallow: /{{ lang }}/{{ app.short }}{{ url('collections.list', add_prefix=False) }}
+Disallow: /{{ lang }}/{{ app.short }}{{ collections_url }}
 {% endfor %}
 
+{% endwith %}
 {% endfor %}

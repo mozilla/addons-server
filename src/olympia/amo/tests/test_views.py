@@ -400,10 +400,15 @@ class TestRobots(TestCase):
     @override_settings(ENGAGE_ROBOTS=True)
     def test_allow_mozilla_collections(self):
         """Make sure Mozilla collections are allowed"""
-        url = '{}{}/'.format(reverse('collections.list'), settings.TASK_USER_ID)
+        id_url = f"{reverse('collections.list')}{settings.TASK_USER_ID}/"
+        username_url = f"{reverse('collections.list')}mozilla/"
         response = self.client.get('/robots.txt')
         assert response.status_code == 200
-        assert 'Allow: {}'.format(url) in response.content.decode('utf-8')
+        content = response.content.decode('utf-8')
+        assert f'Allow: {id_url}' in content
+        assert f'Disallow: {id_url}$' in content
+        assert f'Allow: {username_url}' in content
+        assert f'Disallow: {username_url}$' in content
 
 
 def test_fake_fxa_authorization_correct_values_passed():
