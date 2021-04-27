@@ -113,10 +113,11 @@ class TestGC(TestCase):
 
 
 def test_write_sitemaps():
+    addon_factory()
     sitemaps_dir = settings.SITEMAP_STORAGE_PATH
     assert len(os.listdir(sitemaps_dir)) == 0
     write_sitemaps()
-    assert len(os.listdir(sitemaps_dir)) == 4
+    assert len(os.listdir(sitemaps_dir)) == len(sitemaps) + 1  # 1 is the index
 
     with open(os.path.join(sitemaps_dir, 'sitemap.xml')) as sitemap:
         contents = sitemap.read()
@@ -132,10 +133,7 @@ def test_write_sitemaps():
 
     with open(os.path.join(sitemaps_dir, 'sitemap-addons.xml')) as sitemap:
         contents = sitemap.read()
-        assert (
-            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
-            'xmlns:xhtml="http://www.w3.org/1999/xhtml">\n\n</urlset>' in contents
-        )
+        assert '<url><loc>http://testserver/en-US/firefox/' in contents
 
     with open(os.path.join(sitemaps_dir, 'sitemap-collections.xml')) as sitemap:
         contents = sitemap.read()

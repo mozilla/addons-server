@@ -1,5 +1,4 @@
 from datetime import datetime, timedelta
-from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.http import HttpRequest
 
@@ -72,8 +71,6 @@ def _setup_default_prefixer():
     request = HttpRequest()
     request.META['SCRIPT_NAME'] = ''
     prefixer = amo.urlresolvers.Prefixer(request)
-    prefixer.app = settings.DEFAULT_APP
-    prefixer.locale = settings.LANGUAGE_CODE
     amo.reverse.set_url_prefix(prefixer)
 
 
