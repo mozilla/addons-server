@@ -12,8 +12,6 @@ Add-ons help personalize the web experience for millions of users who have insta
 
 To learn how to help users discover your extension, stay up-to-date with news from the add-ons community, or contact the add-ons team, please visit https://extensionworkshop.com/documentation/manage/resources-for-publishers/
 
-If you are interested in getting more involved with Mozilla and want to help keep the add-ons ecosystem safe and healthy, please consider becoming a volunteer add-on reviewer. You can learn more at https://wiki.mozilla.org/Add-ons/Reviewers
-
 Happy developing!
 
 -- 
