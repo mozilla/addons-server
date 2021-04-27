@@ -27,7 +27,7 @@ class CREATE_ADDON(_LOG):
 
 
 class EDIT_PROPERTIES(_LOG):
-    """ Expects: addon """
+    """Expects: addon"""
 
     id = 2
     action_class = 'edit'
@@ -297,7 +297,7 @@ class ADD_APPVERSION(_LOG):
 
 
 class CHANGE_USER_WITH_ROLE(_LOG):
-    """ Expects: author.user, role, addon """
+    """Expects: author.user, role, addon"""
 
     id = 36
     # L10n: {0} is a user, {1} is their role
@@ -306,7 +306,7 @@ class CHANGE_USER_WITH_ROLE(_LOG):
 
 
 class CHANGE_LICENSE(_LOG):
-    """ Expects: license, addon """
+    """Expects: license, addon"""
 
     id = 37
     action_class = 'edit'

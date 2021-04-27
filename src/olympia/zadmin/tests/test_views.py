@@ -141,7 +141,7 @@ class TestRecalculateHash(TestCase):
         amo.tests.AMOPaths().file_fixture_path('delicious_bookmarks-2.1.106-fx.xpi'),
     )
     def test_regenerate_hash_get(self):
-        """ Don't allow GET """
+        """Don't allow GET"""
         version = Version.objects.create(addon_id=3615)
         file = File.objects.create(
             filename='delicious_bookmarks-2.1.106-fx.xpi', version=version

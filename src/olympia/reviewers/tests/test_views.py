@@ -3783,7 +3783,7 @@ class TestReview(ReviewBase):
         self.test_item_history(channel=amo.RELEASE_CHANNEL_UNLISTED)
 
     def test_item_history_compat_ordered(self):
-        """ Make sure that apps in compatibility are ordered. """
+        """Make sure that apps in compatibility are ordered."""
         av = AppVersion.objects.all()[0]
         v = self.addon.versions.all()[0]
 
@@ -3802,7 +3802,7 @@ class TestReview(ReviewBase):
         assert icons.eq(1).attr('title') == 'Firefox'
 
     def test_item_history_weight(self):
-        """ Make sure the weight is shown on the review page"""
+        """Make sure the weight is shown on the review page"""
         AutoApprovalSummary.objects.create(
             version=self.version,
             verdict=amo.AUTO_APPROVED,

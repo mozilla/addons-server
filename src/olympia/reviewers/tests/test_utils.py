@@ -1006,7 +1006,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.addon.current_version
 
     def test_nomination_to_public_new_addon(self):
-        """ Make sure new add-ons can be made public (bug 637959) """
+        """Make sure new add-ons can be made public (bug 637959)"""
         status = amo.STATUS_NOMINATED
         self.setup_data(status)
 

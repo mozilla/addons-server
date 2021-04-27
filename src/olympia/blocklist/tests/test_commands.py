@@ -53,7 +53,7 @@ class TestImportBlocklist(TestCase):
         )
 
     def test_regex(self):
-        """ Test regex style "guids" are parsed and expanded to blocks."""
+        """Test regex style "guids" are parsed and expanded to blocks."""
         addon_factory(
             guid='_qdNembers_@exmys.myysarch.com', file_kw={'is_webextension': True}
         )

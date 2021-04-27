@@ -38,7 +38,7 @@ pytestmark = pytest.mark.django_db
 
 
 def test_resize_icon_shrink():
-    """ Image should be shrunk so that the longest side is 32px. """
+    """Image should be shrunk so that the longest side is 32px."""
 
     resize_size = 32
     final_size = (32, 12)
@@ -47,7 +47,7 @@ def test_resize_icon_shrink():
 
 
 def test_resize_icon_enlarge():
-    """ Image stays the same, since the new size is bigger than both sides. """
+    """Image stays the same, since the new size is bigger than both sides."""
 
     resize_size = 350
     final_size = (339, 128)
@@ -56,7 +56,7 @@ def test_resize_icon_enlarge():
 
 
 def test_resize_icon_same():
-    """ Image stays the same, since the new size is the same. """
+    """Image stays the same, since the new size is the same."""
 
     resize_size = 339
     final_size = (339, 128)
@@ -65,7 +65,7 @@ def test_resize_icon_same():
 
 
 def test_resize_icon_list():
-    """ Resize multiple images at once. """
+    """Resize multiple images at once."""
 
     resize_size = [32, 339, 350]
     final_size = [(32, 12), (339, 128), (339, 128)]
