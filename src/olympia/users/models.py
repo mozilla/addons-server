@@ -316,12 +316,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         url = reverse('users.profile', args=[id_])
         return urlparams(url, src=src)
 
-    def get_themes_url_path(self, src=None, args=None):
-        from olympia.amo.utils import urlparams
-
-        url = reverse('users.themes', args=[self.id] + (args or []))
-        return urlparams(url, src=src)
-
     def get_url_path(self, src=None):
         return self.create_user_url(self.id, src=src)
 
