@@ -308,6 +308,7 @@ def forward_linter_results(results, upload_pk):
     linter results to `handle_upload_validation_result()` (the callback of the
     chord).
     """
+    log.debug('Called forward_linter_results() for upload_pk = %d', upload_pk)
     return results
 
 
