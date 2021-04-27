@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-27 13:15+0000\n"
+"PO-Revision-Date: 2021-04-27 13:20+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -1101,25 +1101,25 @@ msgid "Feeds, News & Blogging"
 msgstr "Akışlar, Haberler ve Blog'lar"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
-msgstr "Karmaşıklığı azaltan Firefox eklentilerini indirin. Sosyal medya, blog ve RSS'leri takip edin; göz yorgunluğunu azaltın ve çok daha fazlasını yapın."
+msgstr "Karmaşıklığı azaltan Firefox uzantılarını indirin. Sosyal medya, blog ve RSS'leri takip edin; göz yorgunluğunu azaltın ve çok daha fazlasını yapın."
 
 msgid "Games & Entertainment"
 msgstr "Oyunlar ve Eğlence"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
-msgstr "Eğlence deneyimini artıracak Firefox eklentilerini indirin. Bu kategori, oyun ve video deneyiminizi ve çok daha fazlasını artıran eklentiler içerir."
+msgstr "Eğlence deneyimini artıracak Firefox uzantılarını indirin. Bu kategori, oyun ve video deneyiminizi ve çok daha fazlasını artıran uzantılar içerir."
 
 msgid "Language Support"
 msgstr "Dil Desteği"
 
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr "Yazım denetimi, sözlük, metin çevirme, metinden konuşmaya aktarma ve benzeri dil desteklerini sunan Firefox eklentilerini indirin."
+msgstr "Yazım denetimi, sözlük, metin çevirme, metinden konuşmaya aktarma ve benzeri dil desteklerini sunan Firefox uzantılarını indirin."
 
 msgid "Photos, Music & Videos"
 msgstr "Fotoğraf, Müzik ve Videolar"
 
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
-msgstr "Fotoğraf, müzik ve video deneyimlerini geliştiren Firefox eklentilerini indirin. Bu kategorideki eklentiler ses ve videoyu düzenleyen ve daha fazlasını içeren araçları barındırır."
+msgstr "Fotoğraf, müzik ve video deneyimlerini geliştiren Firefox uzantılarını indirin. Bu kategorideki uzantılar ses ve videoyu düzenleyen ve daha fazlasını içeren araçları barındırır."
 
 msgid "Privacy & Security"
 msgstr "Gizlilik ve Güvenlik"
@@ -1134,13 +1134,13 @@ msgid "Shopping"
 msgstr "Alışveriş"
 
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr "Kuponlar, fırsatlar, incelemeler ve daha fazlası ile çevrimiçi alışveriş deneyiminizi geliştirebilecek Firefox eklentilerini indirin."
+msgstr "Kuponlar, fırsatlar, incelemeler ve daha fazlası ile çevrimiçi alışveriş deneyiminizi geliştirebilecek Firefox uzantılarını indirin."
 
 msgid "Social & Communication"
 msgstr "Sosyal ve İletişim"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
-msgstr "Sosyal medyayı ve anlık mesajlaşmayı geliştirmek için Firefox eklentilerini indirin. Bu kategori, iyileştirilmiş sekme bildirimlerini, video indiricileri ve daha fazlasını içerir."
+msgstr "Sosyal medyayı ve anlık mesajlaşmayı geliştirmek için Firefox uzantılarını indirin. Bu kategori, iyileştirilmiş sekme bildirimlerini, video indiricileri ve daha fazlasını içerir."
 
 msgid "Tabs"
 msgstr "Sekmeler"
@@ -1173,13 +1173,13 @@ msgid "Experimental"
 msgstr "Deneysel"
 
 msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
-msgstr "Düzenli olarak güncellenen ve herkesin test edebildiği Firefox eklentilerini indirin. Görüşleriniz, geliştiricilerin gelecek sürümlerde yapacağı değişikliklere yön verebilir."
+msgstr "Düzenli olarak güncellenen ve herkesin test edebildiği Firefox uzantılarını indirin. Görüşleriniz, geliştiricilerin gelecek sürümlerde yapacağı değişikliklere yön verebilir."
 
 msgid "Performance"
 msgstr "Performans"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr "Firefox'un performansını artıran eklentileri deneyin. Rahatsız edici reklamları engelleyerek veya başka geliştirmeler yaparak verimliliğinizi artıran eklentileri keşfedin."
+msgstr "Firefox'un performansını artıran uzantıları deneyin. Rahatsız edici reklamları engelleyerek veya başka geliştirmeler yaparak verimliliğinizi artıran uzantıları keşfedin."
 
 msgid "Photos & Media"
 msgstr "Fotoğraf ve Multimedya"
@@ -1197,7 +1197,7 @@ msgid "Social Networking"
 msgstr "Sosyal Ağlar"
 
 msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr "YouTube, GitHub, Reddit gibi popüler sosyal ağ web sitelerindeki deneyiminizi geliştirecek Firefox eklentilerini indirin."
+msgstr "YouTube, GitHub, Reddit gibi popüler sosyal ağ web sitelerindeki deneyiminizi geliştirecek Firefox uzantılarını indirin."
 
 msgid "Sports & Games"
 msgstr "Spor ve Maçlar"
@@ -1209,7 +1209,7 @@ msgid "User Interface"
 msgstr "Kullanıcı Arayüzü"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr "Daha kolay okuma, arama, göz atma ve daha fazlası için web sayfalarını değiştirmek üzere Firefox eklentilerini indirin."
+msgstr "Daha kolay okuma, arama, göz atma ve daha fazlası için web sayfalarını değiştirmek üzere Firefox uzantılarını indirin."
 
 msgid "Animals"
 msgstr "Hayvanlar"
@@ -2023,13 +2023,13 @@ msgstr "daha fazla eklenti..."
 
 # Plural in this context means many of the add-on type
 msgid "Extension Workshop"
-msgstr "Eklenti Atölyesi"
+msgstr "Uzantı Atölyesi"
 
 msgid "Documentation"
 msgstr "Belgelendirme"
 
 msgid "Extension Development"
-msgstr "Eklenti geliştirme"
+msgstr "Uzantı geliştirme"
 
 msgid "Themes"
 msgstr "Temalar"
@@ -2521,7 +2521,7 @@ msgstr "Güvenlik testleri"
 
 # Plural in this context means many of the add-on type
 msgid "Extension Tests"
-msgstr "Eklenti testleri"
+msgstr "Uzantı testleri"
 
 msgid "Localization Tests"
 msgstr "Yerelleştirme testleri"
@@ -3141,7 +3141,7 @@ msgid "Read more about the source code review policy."
 msgstr "Kaynak kodu inceleme politikasıyla ilgili daha fazla bilgi edinin."
 
 msgid "Build best-in-class extensions and themes"
-msgstr "Mükemmel eklentiler ve temalar oluşturun"
+msgstr "Mükemmel uzantılar ve temalar oluşturun"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
@@ -3169,10 +3169,10 @@ msgid "Add-on Developers Mailing List"
 msgstr "Eklenti Geliştiricileri E-posta Listesi"
 
 msgid "Extensions Developers Newsletter"
-msgstr "Eklenti Geliştiricileri Bülteni"
+msgstr "Uzantı Geliştiricileri Bülteni"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
-msgstr "Firefox eklenti geliştiricileri için güncel haberler ve etkinliklerden haberdar olun."
+msgstr "Firefox uzantı geliştiricileri için güncel haberler ve etkinliklerden haberdar olun."
 
 msgid "Email Address"
 msgstr "E-posta adresi"
@@ -3197,7 +3197,7 @@ msgid "WebExtensions API"
 msgstr "WebExtensions API"
 
 msgid "Web-Ext: build & test extensions"
-msgstr "Web-Ext: Eklentileri geliştirip test edin"
+msgstr "Web-Ext: Uzantıları geliştirip test edin"
 
 msgid "Promote"
 msgstr "Tanıtım"
@@ -3206,7 +3206,7 @@ msgid "\"Get The Add-on\" button"
 msgstr "\"Eklentiyi indir\" düğmesi"
 
 msgid "Recommended Extensions program"
-msgstr "Önerilen Eklentiler programı"
+msgstr "Önerilen Uzantılar programı"
 
 msgid "Contribute"
 msgstr "Katkıda bulunun"
@@ -3242,7 +3242,7 @@ msgid "Get involved"
 msgstr "Bize katılın"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
-msgstr "Binlerce geliştiriciyle bağlantı kurun ve eklenti ekosistemine katkıda bulunabileceğiniz diğer yolları keşfedin."
+msgstr "Binlerce geliştiriciyle bağlantı kurun ve uzantı ekosistemine katkıda bulunabileceğiniz diğer yolları keşfedin."
 
 msgid "Learn more about the developer community"
 msgstr "Geliştirici topluluğu hakkında daha fazla bilgi edinin"
@@ -3285,19 +3285,19 @@ msgid "Profile"
 msgstr "Profil"
 
 msgid "Submit or Manage Extensions"
-msgstr "Eklentileri gönder veya yönet"
+msgstr "Uzantıları gönder veya yönet"
 
 msgid "Customize Firefox"
 msgstr "Firefox’u özelleştirin"
 
 msgid "Learn how to make an extension"
-msgstr "Eklenti yapmayı öğrenin"
+msgstr "Uzantı yapmayı öğrenin"
 
 msgid "Ready to submit or manage your extension?"
-msgstr "Eklentinizi göndermeye veya yönetmeye hazır mısınız?"
+msgstr "Uzantınızı göndermeye veya yönetmeye hazır mısınız?"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
-msgstr "Eklentileri ve temaları göndermek veya yönetmek için Geliştirici Merkezi'nde oturum açın."
+msgstr "Uzantıları ve temaları göndermek veya yönetmek için Geliştirici Merkezi'nde oturum açın."
 
 msgid "Register for a developer account or log in to the Developer Hub"
 msgstr "Geliştirici hesabı açın veya Geliştirici Merkezi'ne giriş yapın"
@@ -4269,7 +4269,7 @@ msgstr "Android için Firefox'ta daha gelişmiş bir arama sayfası edinin."
 
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
-msgstr "Bazı siteler Firefox'un Android sürümünde video oynatmakta zorluk çekiyor. Bu eklenti bir düzeltme sağlar."
+msgstr "Bazı siteler Android için Firefox'ta videoları oynatamayabilir. Bu uzantı bu sorunu düzeltir."
 
 #. editorial content for the discovery pane.
 msgid "Select, sort, and run your downloads faster."
@@ -4408,7 +4408,7 @@ msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
-msgstr "Eklentiler, Firefox'ta çalışan uygulamalardır."
+msgstr "Uzantılar Firefox'ta çalışan uygulamalardır."
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
@@ -4418,7 +4418,7 @@ msgstr "Daha hızlı, daha güvenli ve daha eğlenceli gezintiler için Firefox�
 # 95%
 # 100%
 msgid "See all extensions"
-msgstr "Tüm eklentilere bak"
+msgstr "Tüm uzantılara bak"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
@@ -4426,7 +4426,7 @@ msgstr "Sekme düzenleyicileri ve araçları"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
-msgstr "Tarayıcı eklentilerinin ötesinde gizlilik"
+msgstr "Tarayıcı uzantılarının ötesinde gizlilik"
 
 #. editorial content for the secondary hero shelves.
 msgid "Media enhancers for Firefox"
@@ -4435,7 +4435,7 @@ msgstr ""
 #. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
 msgid "Explore extensions"
-msgstr "Eklentileri keşfet"
+msgstr "Uzantıları keşfet"
 
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
@@ -4461,11 +4461,11 @@ msgstr "Diğer popüler temalara bakın"
 # 95%
 # 100%
 msgid "Enhanced privacy extensions"
-msgstr "Geliştirilmiş gizlilik eklentileri"
+msgstr "Gelişmiş gizlilik uzantıları"
 
 #. editorial content for the homepage shelves.
 msgid "See more enhanced privacy extensions"
-msgstr "Diğer geliştirilmiş gizlilik eklentilerine bakın"
+msgstr "Diğer gelişmiş gizlilik uzantılarına bakın"
 
 #. editorial content for the homepage shelves.
 # Plural in this context means many of the add-on type
@@ -4556,7 +4556,7 @@ msgid "You cannot submit an add-on using an ID ending with %s"
 msgstr "%s ile biten bir ID ile eklenti gönderemezsiniz"
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr "Mozilla imzalı bir eklenti gönderemezsiniz"
+msgstr "Mozilla imzalı bir uzantı gönderemezsiniz"
 
 msgid "You cannot submit a language pack"
 msgstr "Dil paketi gönderemezsiniz"
