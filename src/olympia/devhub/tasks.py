@@ -298,6 +298,7 @@ def validate_file_path(path, channel):
             path=path, results=results, parsed_data=data, error=not is_mozilla_signed
         )
         return json.dumps(results)
+    log.info('Running linter on %s', path)
     return run_addons_linter(path, channel=channel)
 
 
@@ -307,7 +308,7 @@ def forward_linter_results(results, upload_pk):
     linter results to `handle_upload_validation_result()` (the callback of the
     chord).
     """
-    log.info('Called forward_linter_results() for upload_pk = %d', upload_pk)
+    log.debug('Called forward_linter_results() for upload_pk = %d', upload_pk)
     return results
 
 

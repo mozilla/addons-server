@@ -2,6 +2,7 @@
 import hashlib
 import json
 import os
+import re
 import tempfile
 import zipfile
 import shutil
@@ -801,6 +802,9 @@ class TestFileUpload(UploadTest):
         upload = self.upload()
         assert upload.uuid
         assert upload.name == '{0}_filenamé.xpi'.format(force_str(upload.uuid.hex))
+        # Actual path on filesystem is different, fully random
+        assert upload.name not in upload.path
+        assert re.match(r'.*/temp/[a-f0-9]{32}\.xpi$', upload.path)
 
     def test_from_post_hash(self):
         hashdigest = hashlib.sha256(self.data).hexdigest()
