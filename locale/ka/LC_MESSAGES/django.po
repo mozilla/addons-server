@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-27 06:06+0000\n"
+"PO-Revision-Date: 2021-04-27 06:10+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -549,9 +549,9 @@ msgstr "დამატება GUID (თითო ცალკე ხაზზ
 msgid "Submit"
 msgstr "წარდგენა"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%(count)s Add-on GUIDs with %(adu)s users"
-msgstr "%(count)s დამატება GUID"
+msgstr "%(count)s დამატება GUID მომხმარებლებით %(adu)s"
 
 msgid "Edit Block"
 msgstr "შეზღუდვის ჩასწორება"
@@ -933,16 +933,14 @@ msgstr "{addon} {version} დამოწმებულია ახლიდ�
 msgid "Version re-signed"
 msgstr "ვერსია დამოწმებულია ახლიდან"
 
-#, fuzzy
 msgid "{user} force-disabled {addon}."
-msgstr "დამატების იძულებით გამორთვა"
+msgstr "{user} მომხმარებელმა იძულებით გამორთო {addon}."
 
 msgid "Force disabled"
 msgstr "იძულებით გამორთული"
 
-#, fuzzy
 msgid "{user} force-enabled {addon}."
-msgstr "დამატების იძულებით ჩართვა"
+msgstr "{user} მომხმარებელმა იძულებით ჩართო {addon}."
 
 msgid "Force enabled"
 msgstr "იძულებით ჩართული"
@@ -3181,9 +3179,8 @@ msgstr ""
 "თუნდაც ჯერ პირველ ნაბიჯებს დგამდეთ გაფართოებების შემუშავებაში, დახვეწეთ ან გადააკეთეთ არსებული გაფართოება და თემა, ან შექმენით საკუთარ დაწესებულებაზე მორგებული გადაწყვეტა, ჩვენ დიდი ოდენობის მასალა "
 "გვაქვს თქვენს მხარდასაჭერად."
 
-#, fuzzy
 msgid "Visit the Firefox Extension Workshop"
-msgstr "ეწვიეთ გაფართოებების სახელოსნოს"
+msgstr "ეწვიეთ Firefox-ის გაფართოებების სახელოსნოს"
 
 msgid "Connect with us"
 msgstr "დაგვიკავშირდით"
@@ -3372,9 +3369,8 @@ msgstr "პირველწყარო კოდი"
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
 msgstr "თუ თქვენი დამატება შეიცავს შეკუმშულ, შერწყმულ ან სხვა მანქანური გზით წარმოებულ კოდს, განსახილველად განათავსეთ წყარო აქ."
 
-#, fuzzy
 msgid "File {file_id}"
-msgstr "ფაილი {file_id} ({platform})"
+msgstr "ფაილი {file_id}"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
@@ -4478,59 +4474,52 @@ msgid "Learn More"
 msgstr "იხილეთ ვრცლად"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended extensions"
-msgstr "სასურველი გაფართოებების პროგრამა"
+msgstr "სასურველი გაფართოებები"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more recommended extensions"
-msgstr "სასურველი გაფართოებების პროგრამა"
+msgstr "სხვა სასურველი გაფართოებები"
 
 #. editorial content for the homepage shelves.
 msgid "Popular themes"
-msgstr ""
+msgstr "გავრცელებული თემები"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular themes"
-msgstr "ფერების შერჩევა თემისთვის"
+msgstr "სხვა გავრცელებული თემები"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Enhanced privacy extensions"
-msgstr "ყველა გაფართოების ნახვა"
+msgstr "გაფართოებები პირადულობის ასამაღლებლად"
 
 #. editorial content for the homepage shelves.
 msgid "See more enhanced privacy extensions"
-msgstr ""
+msgstr "სხვა გაფართოებები პირადულობის ასამაღლებლად"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Popular extensions"
-msgstr "მოიძიეთ გაფართოებები"
+msgstr "გავრცელებული გაფართოებები"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular extensions"
-msgstr "ყველა გაფართოების ნახვა"
+msgstr "სხვა ფართოდ გავრცელებული გაფართოებები"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended themes"
-msgstr "სასურველი"
+msgstr "სასურველი თემები"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
-msgstr ""
+msgstr "სხვა სასურველი თემები"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended password managers"
-msgstr ""
+msgstr "პაროლების მართვის სასურველი საშუალებები"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended password managers"
-msgstr ""
+msgstr "სხვა სასურველი პაროლების მართველები"
 
 msgid "Could not parse the manifest file."
 msgstr "მანიფესტის ფაილის დამუშავება ვერ მოხერხდა."
@@ -5456,13 +5445,11 @@ msgstr "გამოქვეყნებულების ავტომა�
 msgid "Enable Listed Auto-Approval"
 msgstr "გამოქვეყნებულების ავტომატური მიღების ჩართვა"
 
-#, fuzzy
 msgid "Disable Unlisted Auto-Approval"
-msgstr "გამოქვეყნებულების ავტომატური მიღების გამორთვა"
+msgstr "გამოუქვეყნებლების თვითდამოწმების გათიშვა"
 
-#, fuzzy
 msgid "Enable Unlisted Auto-Approval"
-msgstr "გამოქვეყნებულების ავტომატური მიღების ჩართვა"
+msgstr "გამოუქვეყნებლების თვითდამოწმების ჩართვა"
 
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
 msgstr "გამოქვეყნებულების ავტომატური მიღების გამორთვა, ხელით მომდევნო მიღებამდე"
