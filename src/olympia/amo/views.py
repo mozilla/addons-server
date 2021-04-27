@@ -68,6 +68,7 @@ def robots(request):
         ctx = {
             'apps': amo.APP_USAGE,
             'mozilla_user_id': settings.TASK_USER_ID,
+            'mozilla_user_username': 'mozilla',
         }
         template = render(request, 'amo/robots.html', ctx)
 
