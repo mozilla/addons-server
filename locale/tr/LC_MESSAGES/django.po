@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-25 14:27+0000\n"
+"PO-Revision-Date: 2021-04-27 13:15+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -1012,7 +1012,7 @@ msgid "(Deleted)"
 msgstr "(Silindi)"
 
 msgid "Extension"
-msgstr "Eklenti"
+msgstr "Uzantı"
 
 msgid "Deprecated Complete Theme"
 msgstr "Kullanımdan Kaldırılmış Tam Tema"
@@ -1043,7 +1043,7 @@ msgstr "Tema (Sabit)"
 
 # Plural in this context means many of the add-on type
 msgid "Extensions"
-msgstr "Eklentiler"
+msgstr "Uzantılar"
 
 msgid "Deprecated Complete Themes"
 msgstr "Kullanımdan Kaldırılmış Tam Temalar"
@@ -1077,26 +1077,25 @@ msgid "Alerts & Updates"
 msgstr "Uyarılar ve Güncellemeler"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
-msgstr ""
-"Güncel kalmanıza, görevleri izlemenize, verimliliği artırmanıza yardımcı olan Firefox eklentilerini indirin. Sekmeleri tazeleyen, üretkenliği yöneten ve daha fazlasını sunan eklentileri bulun."
+msgstr "Güncel kalmanıza, görevleri izlemenize, verimliliği artırmanıza yardımcı olan Firefox uzantılarını indirin. Sekmeleri tazeleyen, üretkenliği yöneten ve daha fazlasını sunan uzantıları bulun."
 
 msgid "Appearance"
 msgstr "Görünüm"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr "Web sitelerinin ve Firefox tarayıcısının görünümünü değiştiren eklentileri indirin. Bu kategori, karanlık temalar, sekme yönetimi ve daha fazlası için eklentiler içerir."
+msgstr "Web sitelerinin ve Firefox tarayıcısının görünümünü değiştiren uzantıları indirin. Bu kategori, karanlık temalar, sekme yönetimi ve daha fazlası için uzantılar içerir."
 
 msgid "Bookmarks"
 msgstr "Yer İmleri"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr "Yer imlerini parola ile koruyacak, kopyaları arayacak, bozuk yer imlerini bulacak ve daha fazlasını yapacak eklentileri indirin."
+msgstr "Yer imlerini parola ile koruyacak, kopyaları arayacak, bozuk yer imlerini bulacak ve daha fazlasını yapacak uzantıları indirin."
 
 msgid "Download Management"
 msgstr "İndirme Yönetimi"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr "Web, müzik ve video içeriği indirmenize yardımcı olabilecek Firefox eklentilerini indirin. İndirmeleri yönetmek, dosya paylaşmak ve daha fazlasını yapmak için de eklentiler bulabilirsiniz."
+msgstr "Web, müzik ve video içeriği indirmenize yardımcı olabilecek Firefox uzantılarını indirin. İndirmeleri yönetmek, dosya paylaşmak ve daha fazlasını yapmak için de uzantılar bulabilirsiniz."
 
 msgid "Feeds, News & Blogging"
 msgstr "Akışlar, Haberler ve Blog'lar"
