@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-21 09:21+0000\n"
+"PO-Revision-Date: 2021-04-28 00:43+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -286,13 +286,13 @@ msgid ""
 msgstr "<h1>Ops!  Noko gjekk gale.</h1> <p>Vi kjem til å reparere det snart.</p> <p> Du kan prøve å oppdatere sida, eller gå tilbake til <a href=\"%(home)s\">startsida for utvidingar</a>. </p>"
 
 msgid "Register or Log in"
-msgstr ""
+msgstr "Registrer deg eller logg inn"
 
 msgid "Email:"
 msgstr "E-post:"
 
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 msgid "No results found"
 msgstr "Fann ingen resultat"
@@ -483,7 +483,7 @@ msgstr ""
 
 #, python-format
 msgid "%(value)s contains *"
-msgstr ""
+msgstr "%(value)s inneheld *"
 
 msgid "Invalid version"
 msgstr "Ugyldig versjon"
@@ -1360,7 +1360,7 @@ msgid "Recommended"
 msgstr "Tilrådde"
 
 msgid "Sponsored"
-msgstr ""
+msgstr "Sponsa"
 
 msgid "Verified"
 msgstr "Stadfesta"
@@ -2573,7 +2573,7 @@ msgid "Yes, Cancel"
 msgstr "Ja, avbryt"
 
 msgid "No, don't cancel"
-msgstr ""
+msgstr "Nei, ikkje avbryt"
 
 msgid "Name and Summary:"
 msgstr "Namn og samandrag:"
@@ -4429,7 +4429,7 @@ msgstr "Tilrådde utvidingsprogram"
 
 #. editorial content for the homepage shelves.
 msgid "Popular themes"
-msgstr ""
+msgstr "Populære tema"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
