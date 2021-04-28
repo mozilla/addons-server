@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-28 00:43+0000\n"
+"PO-Revision-Date: 2021-04-28 18:38+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -137,7 +137,7 @@ msgstr "Gjennomgåingslenker"
 
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
-msgstr ""
+msgstr "Git-extraksjon utløyst for «%(addons)s»."
 
 msgid "- Add-on not on AMO -"
 msgstr "- Utvidinga finst ikkje på AMO -"
@@ -164,7 +164,7 @@ msgid "My Themes"
 msgstr "Mine tema"
 
 msgid "Git-Extract"
-msgstr ""
+msgstr "Git-Extract"
 
 msgid "Tools"
 msgstr "Verktøy"
@@ -394,7 +394,7 @@ msgid "Email address not found."
 msgstr "Fann ikkje e-postadressa."
 
 msgid "Unavailable for legal reasons."
-msgstr ""
+msgstr "Ikkje tilgjengeleg på grunn av juridiske årsaker."
 
 msgid "The field must have a length of at least {num} characters."
 msgstr "Feltet må minst vere {num} teikn langt."
@@ -941,9 +941,8 @@ msgstr "Versjon %s slått på igjen."
 msgid "{user} force-disabled {addon}."
 msgstr "{version} redigert for {addon}."
 
-#, fuzzy
 msgid "Force disabled"
-msgstr "{addon} slått av."
+msgstr "Tvangsavslått"
 
 #, fuzzy
 msgid "{user} force-enabled {addon}."
@@ -4466,11 +4465,11 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "Recommended password managers"
-msgstr ""
+msgstr "Tilrådde passordhandterarar"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended password managers"
-msgstr ""
+msgstr "Vis fleire tilrådde passordhandterarar"
 
 msgid "Could not parse the manifest file."
 msgstr "Kunne ikkje tolke manifest-fila."
