@@ -11,6 +11,7 @@ from olympia import amo
 from olympia.addons.models import AddonCategory
 from olympia.amo.sitemap import (
     AddonSitemap,
+    AddonVersionSitemap,
     AMOSitemap,
     build_sitemap,
     CategoriesSitemap,
@@ -24,6 +25,7 @@ from olympia.amo.tests import (
     collection_factory,
     license_factory,
     user_factory,
+    version_factory,
 )
 from olympia.constants.categories import CATEGORIES
 
@@ -61,6 +63,43 @@ def test_addon_sitemap():
             'addons.' + item.urlname, args=[item.slug]
         )
         assert '/en-US/firefox/' in sitemap.location(item)
+        assert sitemap.lastmod(item) == item.last_updated
+
+
+def test_addonversions_sitemap():
+    sitemap = AddonVersionSitemap()
+    # give addon_a 3 versions total, but 1 version not approved, so 2 visible
+    addon_a = addon_factory()
+    version_factory(addon=addon_a)
+    version_factory(addon=addon_a, file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+    # give addon_b 3 versions total
+    addon_b = addon_factory()
+    version_factory(addon=addon_b)
+    version_factory(addon=addon_b)
+    addon_b.update(last_updated=datetime.datetime(2020, 1, 1, 1, 1, 1))
+    addon_factory(status=amo.STATUS_NOMINATED)  # shouldn't show up
+
+    patched_drf_setting = dict(settings.REST_FRAMEWORK)
+    patched_drf_setting['PAGE_SIZE'] = 2
+
+    with override_settings(REST_FRAMEWORK=patched_drf_setting):
+        items = list(sitemap.items())
+
+    assert items == [
+        (addon_a.last_updated, addon_a.slug, 1),
+        (addon_b.last_updated, addon_b.slug, 1),
+        (addon_b.last_updated, addon_b.slug, 2),
+    ]
+    for item in items:
+        if item.page > 1:
+            assert (
+                sitemap.location(item)
+                == reverse('addons.versions', args=[item.slug]) + f'?page={item.page}'
+            )
+        else:
+            assert sitemap.location(item) == reverse(
+                'addons.versions', args=[item.slug]
+            )
         assert sitemap.lastmod(item) == item.last_updated
 
 
@@ -137,12 +176,19 @@ def test_get_sitemap_section_pages():
     addon_factory()
     addon_factory()
     addon_factory()
-    assert list(sitemaps.keys()) == ['amo', 'addons', 'categories', 'collections']
+    assert list(sitemaps.keys()) == [
+        'amo',
+        'addons',
+        'addonversions',
+        'categories',
+        'collections',
+    ]
 
     pages = get_sitemap_section_pages()
     assert pages == [
         ('amo', 1),
         ('addons', 1),
+        ('addonversions', 1),
         ('categories', 1),
         ('collections', 1),
     ]
@@ -152,6 +198,7 @@ def test_get_sitemap_section_pages():
             ('amo', 1),
             ('addons', 1),
             ('addons', 2),
+            ('addonversions', 1),
             ('categories', 1),
             ('collections', 1),
         ]

@@ -4,10 +4,9 @@ import os
 from collections import namedtuple
 from urllib.parse import urlparse
 
-from django.db.models import Count
 from django.conf import settings
 from django.contrib.sitemaps import Sitemap
-from django.db.models import F
+from django.db.models import Count, F, Q
 from django.template import loader
 from django.urls import reverse
 
@@ -67,6 +66,51 @@ class AddonSitemap(Sitemap):
 
     def location(self, item):
         return reverse(f'addons.{item.urlname}', args=[item.slug])
+
+
+class AddonVersionSitemap(Sitemap):
+    priority = 0.5
+    changefreq = 'weekly'
+    # i18n = True  # TODO: support all localized urls
+    item_tuple = namedtuple('VersionItem', ['last_updated', 'slug', 'page'])
+
+    def items(self):
+        addons = list(
+            Addon.objects.public()
+            .order_by('-last_updated')
+            .annotate(
+                versions_count=Count(
+                    'versions',
+                    filter=Q(
+                        versions__deleted=False,
+                        versions__files__status__in=amo.REVIEWED_STATUSES,
+                    ),
+                )
+            )
+            .values_list(
+                'last_updated',
+                'slug',
+                'versions_count',
+                named=True,
+            )
+        )
+        items = []
+        page_size = settings.REST_FRAMEWORK['PAGE_SIZE']
+        for addon in addons:
+            pages_needed = math.ceil(addon.versions_count / page_size)
+            items.extend(
+                self.item_tuple(addon.last_updated, addon.slug, page)
+                for page in range(1, pages_needed + 1)
+            )
+        return items
+
+    def lastmod(self, item):
+        return item.last_updated
+
+    def location(self, item):
+        return reverse('addons.versions', args=[item.slug]) + (
+            f'?page={item.page}' if item.page > 1 else ''
+        )
 
 
 class AMOSitemap(Sitemap):
@@ -159,6 +203,7 @@ class CollectionSitemap(Sitemap):
 sitemaps = {
     'amo': AMOSitemap(),
     'addons': AddonSitemap(),
+    'addonversions': AddonVersionSitemap(),
     'categories': CategoriesSitemap(),
     'collections': CollectionSitemap(),
 }
