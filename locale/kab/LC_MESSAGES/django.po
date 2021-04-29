@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-29 19:05+0000\n"
+"PO-Revision-Date: 2021-04-29 19:09+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4445,47 +4445,40 @@ msgid "Learn More"
 msgstr "Issin ugar"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended extensions"
-msgstr "Ahil n yisiɣzaf yelhan"
+msgstr "Isiɣzaf yettuwellhen"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more recommended extensions"
-msgstr "Ahil n yisiɣzaf yelhan"
+msgstr "Wali ugar n yisiɣzaf yelhan"
 
 #. editorial content for the homepage shelves.
 msgid "Popular themes"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular themes"
-msgstr "Fren initen i usentel-ik"
+msgstr "Wali isental yettwasnen aṭas"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Enhanced privacy extensions"
-msgstr "Wali meṛṛa isiɣzaf"
+msgstr "Isiɣzaf i ummesten igerrzen n tudert-ik·im tabaḍnit"
 
 #. editorial content for the homepage shelves.
 msgid "See more enhanced privacy extensions"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Popular extensions"
-msgstr "Snirem isiɣzaf"
+msgstr "Snirem isiɣzafIsiɣzaf yettwassnen"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular extensions"
-msgstr "Wali meṛṛa isiɣzaf"
+msgstr "Wali ugar n yisiɣzaf yettwasnen aṭas"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended themes"
-msgstr "Yelha"
+msgstr "Isental yelhan"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
@@ -5349,9 +5342,8 @@ msgstr "Acegger n ugbur i {0}"
 msgid "Review {0}"
 msgstr "Acegger {0}"
 
-#, fuzzy
 msgid "Add-on important changes history"
-msgstr "Amezruy n ibeddilen n useqdac n uzegrir"
+msgstr "Azray n yibeddilen yesεan azal n uzegrir"
 
 msgid "Add-on History"
 msgstr "Amazray n uzegrir"
