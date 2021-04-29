@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-28 18:38+0000\n"
+"PO-Revision-Date: 2021-04-29 11:33+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -4417,47 +4417,40 @@ msgid "Learn More"
 msgstr "Les meir"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended extensions"
-msgstr "Tilrådde utvidingsprogram"
+msgstr "Tilrådde utvidingar"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more recommended extensions"
-msgstr "Tilrådde utvidingsprogram"
+msgstr "Vis fleire tilrådde utvidingar"
 
 #. editorial content for the homepage shelves.
 msgid "Popular themes"
 msgstr "Populære tema"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular themes"
-msgstr "Vel fargar for temaet ditt"
+msgstr "Vis fleire populære tema"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Enhanced privacy extensions"
-msgstr "Vis alle utvidingar"
+msgstr "Forbetra personvernutvidingar"
 
 #. editorial content for the homepage shelves.
 msgid "See more enhanced privacy extensions"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Popular extensions"
-msgstr "Utforsk utvidingar"
+msgstr "Populære udvidingar"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular extensions"
-msgstr "Vis alle utvidingar"
+msgstr "Vis fleire populære utvidingar"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended themes"
-msgstr "Tilrådde"
+msgstr "Tilrådde tema"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
