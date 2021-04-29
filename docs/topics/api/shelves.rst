@@ -97,7 +97,7 @@ small number of shelves this endpoint is not paginated.
 
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :>json array results: The array of shelves displayed on the AMO Homepage.
-    :>json object|null results[].title: The title of the shelf. (See :ref:`translated fields <api-overview-translations>`.  Note: when ``lang`` is not specified, not all locales will be returned, unlike other translated fields).
+    :>json object|null results[].headline: The title of the shelf. (See :ref:`translated fields <api-overview-translations>`.  Note: when ``lang`` is not specified, not all locales will be returned, unlike other translated fields).
     :>json string results[].url: The configured URL using the shelf's endpoint and criteria; links to the shelf's returned add-ons.
     :>json string results[].endpoint: The :ref:`endpoint type <shelf-endpoint-type>` selected for the shelf.
     :>json string results[].addon_type: The :ref:`add-on type <addon-detail-type>` selected for the shelf.
@@ -105,7 +105,7 @@ small number of shelves this endpoint is not paginated.
     :>json object|null results[].footer: The optional footer to be displayed with the shelf.
     :>json string results[].footer.url: The optional url for the footer text.
     :>json string results[].footer.outgoing: url wrapped with outgoing (See :ref:`Outgoing Links <api-overview-outgoing>`)
-    :>json object|null results[].footer.text: The optional text in the footer of the shelf. (See :ref:`translated fields <api-overview-translations>`.  Note: when ``lang`` is not specified, not all locales will be returned, unlike other translated fields).
+    :>json object|null results[].cta.text: The optional text in the footer of the shelf. (See :ref:`translated fields <api-overview-translations>`.  Note: when ``lang`` is not specified, not all locales will be returned, unlike other translated fields).
     :>json array results[].addons: An array of :ref:`add-ons <addon-detail-object>`.
     :>json object primary: A :ref:`primary hero shelf <primary-hero-shelf>`.
     :>json object secondary: A :ref:`secondary hero shelf <secondary-hero-shelf>`.
