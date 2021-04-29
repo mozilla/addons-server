@@ -118,6 +118,7 @@ class CategoriesSitemap(Sitemap):
         counts_qs = (
             AddonCategory.objects.filter(
                 addon___current_version__isnull=False,
+                addon___current_version__apps__application=current_app.id,
                 addon__disabled_by_user=False,
                 addon__status__in=amo.REVIEWED_STATUSES,
             )

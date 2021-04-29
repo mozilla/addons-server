@@ -95,7 +95,11 @@ def test_categories_sitemap():
     )
     addon_factory(category=bookmarks_category)
     addon_factory(category=shopping_category, status=amo.STATUS_NOMINATED)
-    # should be 3 addons in shopping (one not public, so 2 public), and 3 in bookmarks
+    addon_factory(
+        category=shopping_category, version_kw={'application': amo.ANDROID.id}
+    )
+    # should be 4 addons in shopping (one not public, one not compatible with Firefox,
+    # so 2 public), and 3 in bookmarks
 
     patched_drf_setting = dict(settings.REST_FRAMEWORK)
     patched_drf_setting['PAGE_SIZE'] = 2
