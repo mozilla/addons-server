@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-29 19:09+0000\n"
+"PO-Revision-Date: 2021-04-29 20:14+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4376,9 +4376,8 @@ msgid "Manage your time better with a browser clock that charts work intervals."
 msgstr "Sefrek akud-ik ugar s temrint n yiminig ara d-isseknen amahil s yidlifen"
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
-msgstr "Teɛyiḍ seg \"Seḥbes tavidyut. Kemmel taɣuri?\" asfaylu n udeiwenn? Sel i uẓawan i tḥemmleḍ s war aneḥbus deg Youtube."
+msgstr "Teɛyiḍ seg \"Seḥbes tavidyut-a. Kemmel awali?\" izen? Sell i uẓawan i tḥemmleḍ s war aneḥbus deg Youtube."
 
 #. editorial content for the primary hero shelves.
 msgid "Thousands of GIFs at your fingertips."
@@ -5408,13 +5407,11 @@ msgstr "Kkes aqbal awurman i d-yettwabedren"
 msgid "Enable Listed Auto-Approval"
 msgstr "Rmed aqbal awurman i d-yettwabedren"
 
-#, fuzzy
 msgid "Disable Unlisted Auto-Approval"
-msgstr "Kkes aqbal awurman i d-yettwabedren"
+msgstr "Sens aqbal awurman ur d-yettwabedren ara"
 
-#, fuzzy
 msgid "Enable Unlisted Auto-Approval"
-msgstr "Rmed aqbal awurman i d-yettwabedren"
+msgstr "Rmed aqbal awurman ur d-yettwabedren ara"
 
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
 msgstr "Sens aqbal awurman i d-yettwabedren almi d aqbal s ufus i d-itteddun"
