@@ -25,7 +25,7 @@ class AddonSitemap(Sitemap):
     changefreq = 'daily'
     # i18n = True  # TODO: support all localized urls
     item_tuple = namedtuple(
-        'Item', ['last_updated', 'slug', 'urlname', 'urlargs'], defaults=(None,)
+        'Item', ['last_updated', 'slug', 'urlname', 'page'], defaults=(1,)
     )
 
     def items(self):
@@ -67,16 +67,11 @@ class AddonSitemap(Sitemap):
         # add pages for ratings - and extra pages when needed to paginate
         page_size = settings.REST_FRAMEWORK['PAGE_SIZE']
         for addon in addons:
-            items.append(
-                self.item_tuple(addon.last_updated, addon.slug, 'ratings.list')
+            pages_needed = math.ceil((addon.text_ratings_count or 1)/ page_size)
+            items.extend(
+                self.item_tuple(addon.last_updated, addon.slug, 'ratings.list', page)
+                for page in range(1, pages_needed + 1)
             )
-            pages_needed = math.ceil(addon.text_ratings_count / page_size)
-            for page in range(2, pages_needed + 1):
-                items.append(
-                    self.item_tuple(
-                        addon.last_updated, addon.slug, 'ratings.list', f'page={page}'
-                    )
-                )
         return items
 
     def lastmod(self, item):
@@ -84,7 +79,7 @@ class AddonSitemap(Sitemap):
 
     def location(self, item):
         return reverse(f'addons.{item.urlname}', args=[item.slug]) + (
-            f'?{item.urlargs}' if item.urlargs else ''
+            f'?page={item.page}' if item.page > 1 else ''
         )
 
 

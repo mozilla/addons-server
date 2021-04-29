@@ -60,19 +60,19 @@ def test_addon_sitemap():
     addon_factory(status=amo.STATUS_NOMINATED)  # shouldn't show up
     sitemap = AddonSitemap()
     expected = [
-        it(addon_d.last_updated, addon_d.slug, 'detail', None),
-        it(addon_c.last_updated, addon_c.slug, 'detail', None),
-        it(addon_a.last_updated, addon_a.slug, 'detail', None),
-        it(addon_b.last_updated, addon_b.slug, 'detail', None),
-        it(addon_d.last_updated, addon_d.slug, 'privacy', None),
-        it(addon_a.last_updated, addon_a.slug, 'privacy', None),
-        it(addon_c.last_updated, addon_c.slug, 'eula', None),
-        it(addon_a.last_updated, addon_a.slug, 'eula', None),
-        it(addon_a.last_updated, addon_a.slug, 'license', None),
-        it(addon_d.last_updated, addon_d.slug, 'ratings.list', None),
-        it(addon_c.last_updated, addon_c.slug, 'ratings.list', None),
-        it(addon_a.last_updated, addon_a.slug, 'ratings.list', None),
-        it(addon_b.last_updated, addon_b.slug, 'ratings.list', None),
+        it(addon_d.last_updated, addon_d.slug, 'detail', 1),
+        it(addon_c.last_updated, addon_c.slug, 'detail', 1),
+        it(addon_a.last_updated, addon_a.slug, 'detail', 1),
+        it(addon_b.last_updated, addon_b.slug, 'detail', 1),
+        it(addon_d.last_updated, addon_d.slug, 'privacy', 1),
+        it(addon_a.last_updated, addon_a.slug, 'privacy', 1),
+        it(addon_c.last_updated, addon_c.slug, 'eula', 1),
+        it(addon_a.last_updated, addon_a.slug, 'eula', 1),
+        it(addon_a.last_updated, addon_a.slug, 'license', 1),
+        it(addon_d.last_updated, addon_d.slug, 'ratings.list', 1),
+        it(addon_c.last_updated, addon_c.slug, 'ratings.list', 1),
+        it(addon_a.last_updated, addon_a.slug, 'ratings.list', 1),
+        it(addon_b.last_updated, addon_b.slug, 'ratings.list', 1),
     ]
     items = list(sitemap.items())
     assert items == expected
@@ -95,7 +95,7 @@ def test_addon_sitemap():
     with override_settings(REST_FRAMEWORK=patched_drf_setting):
         items_with_ratings = list(sitemap.items())
     # only one extra url, for a second ratings page, because PAGE_SIZE = 2
-    extra_rating = it(addon_c.last_updated, addon_c.slug, 'ratings.list', 'page=2')
+    extra_rating = it(addon_c.last_updated, addon_c.slug, 'ratings.list', 2)
     assert extra_rating in items_with_ratings
     assert set(items_with_ratings) - set(expected) == {extra_rating}
     item = items_with_ratings[-3]
