@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-21 14:46+0000\n"
+"PO-Revision-Date: 2021-04-28 07:34+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -3921,7 +3921,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Search privately with just a click."
-msgstr ""
+msgstr "కేవలం ఒకే నొక్కుతో అంతరంగికంగా వెతకండి."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4042,7 +4042,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Find an interesting image on the web? Want to learn more about it?"
-msgstr ""
+msgstr "జాలంలో ఆసక్తికరమైన బొమ్మ కనబడిందా? దాని గురించి మరింత తెలుసుకోవాలనుకుంటున్నారా?"
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
@@ -4275,7 +4275,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Get weather updates directly from Firefox."
-msgstr ""
+msgstr "తాజా వాతావరణ విశేషాలను నేరుగా Firefoxలోనే పొందండి."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
@@ -4359,7 +4359,7 @@ msgstr "మరిన్ని సిఫార్సుచేయబడ్డ ప�
 
 #. editorial content for the homepage shelves.
 msgid "Popular themes"
-msgstr ""
+msgstr "ప్రాచుర్య అలంకారాలు"
 
 #. editorial content for the homepage shelves.
 msgid "See more popular themes"
@@ -5069,7 +5069,7 @@ msgid "Add-on name translations"
 msgstr "పొడగింత పేరు అనువాదాలు"
 
 msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr "సమీక్షకుల పనిముట్లు – Firefox పొడగింతలు"
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "సమీక్షకుల పనిమట్లల డాష్‌బోర్డ్‌కు తిరిగి వెళ్ళు"
@@ -5252,13 +5252,13 @@ msgid "Add-on History"
 msgstr "పొడగింత చరిత్ర"
 
 msgid "Previously deleted entries"
-msgstr ""
+msgstr "గతంలో తొలగించిన పద్దులు"
 
 msgid "You don't have permission to review it."
-msgstr ""
+msgstr "దీన్ని సమీక్షించడానికి మీకు అనుమతి లేదు."
 
 msgid "Please select one or more versions in the list below."
-msgstr ""
+msgstr "కింది జాబితా నుండి ఒకటి అంతకంటే ఎక్కువ వెర్షన్లను ఎంచుకోండి."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr ""
@@ -5695,7 +5695,7 @@ msgid "by Platform"
 msgstr "వేదిక ద్వారా"
 
 msgid "by Country"
-msgstr ""
+msgstr "దేశం వారీగా"
 
 msgid "close"
 msgstr "మూసివేయి"
@@ -5775,7 +5775,7 @@ msgid "No data available."
 msgstr "డేటా అందుబాటులో లేదు."
 
 msgid "This dashboard is <b>private</b>."
-msgstr ""
+msgstr "ఈ డాష్‌బోర్డు <b>అంతరంగికం</b>."
 
 msgid "Application usage by Date"
 msgstr "తేదీ వారీగా అనువర్తనపు వాడకం"

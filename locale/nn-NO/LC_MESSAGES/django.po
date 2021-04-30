@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-21 09:21+0000\n"
+"PO-Revision-Date: 2021-04-29 18:23+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -137,7 +137,7 @@ msgstr "Gjennomgåingslenker"
 
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
-msgstr ""
+msgstr "Git-extraksjon utløyst for «%(addons)s»."
 
 msgid "- Add-on not on AMO -"
 msgstr "- Utvidinga finst ikkje på AMO -"
@@ -164,7 +164,7 @@ msgid "My Themes"
 msgstr "Mine tema"
 
 msgid "Git-Extract"
-msgstr ""
+msgstr "Git-Extract"
 
 msgid "Tools"
 msgstr "Verktøy"
@@ -286,13 +286,13 @@ msgid ""
 msgstr "<h1>Ops!  Noko gjekk gale.</h1> <p>Vi kjem til å reparere det snart.</p> <p> Du kan prøve å oppdatere sida, eller gå tilbake til <a href=\"%(home)s\">startsida for utvidingar</a>. </p>"
 
 msgid "Register or Log in"
-msgstr ""
+msgstr "Registrer deg eller logg inn"
 
 msgid "Email:"
 msgstr "E-post:"
 
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 msgid "No results found"
 msgstr "Fann ingen resultat"
@@ -394,7 +394,7 @@ msgid "Email address not found."
 msgstr "Fann ikkje e-postadressa."
 
 msgid "Unavailable for legal reasons."
-msgstr ""
+msgstr "Ikkje tilgjengeleg på grunn av juridiske årsaker."
 
 msgid "The field must have a length of at least {num} characters."
 msgstr "Feltet må minst vere {num} teikn langt."
@@ -483,7 +483,7 @@ msgstr ""
 
 #, python-format
 msgid "%(value)s contains *"
-msgstr ""
+msgstr "%(value)s inneheld *"
 
 msgid "Invalid version"
 msgstr "Ugyldig versjon"
@@ -941,17 +941,15 @@ msgstr "Versjon %s slått på igjen."
 msgid "{user} force-disabled {addon}."
 msgstr "{version} redigert for {addon}."
 
-#, fuzzy
 msgid "Force disabled"
-msgstr "{addon} slått av."
+msgstr "Tvangsavslått"
 
 #, fuzzy
 msgid "{user} force-enabled {addon}."
 msgstr "Tvinga aktivering av utviding"
 
-#, fuzzy
 msgid "Force enabled"
-msgstr "Tvinga aktivering av utviding"
+msgstr "Tvangsaktivert"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1360,7 +1358,7 @@ msgid "Recommended"
 msgstr "Tilrådde"
 
 msgid "Sponsored"
-msgstr ""
+msgstr "Sponsa"
 
 msgid "Verified"
 msgstr "Stadfesta"
@@ -2573,7 +2571,7 @@ msgid "Yes, Cancel"
 msgstr "Ja, avbryt"
 
 msgid "No, don't cancel"
-msgstr ""
+msgstr "Nei, ikkje avbryt"
 
 msgid "Name and Summary:"
 msgstr "Namn og samandrag:"
@@ -4418,47 +4416,40 @@ msgid "Learn More"
 msgstr "Les meir"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended extensions"
-msgstr "Tilrådde utvidingsprogram"
+msgstr "Tilrådde utvidingar"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more recommended extensions"
-msgstr "Tilrådde utvidingsprogram"
+msgstr "Vis fleire tilrådde utvidingar"
 
 #. editorial content for the homepage shelves.
 msgid "Popular themes"
-msgstr ""
+msgstr "Populære tema"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular themes"
-msgstr "Vel fargar for temaet ditt"
+msgstr "Vis fleire populære tema"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Enhanced privacy extensions"
-msgstr "Vis alle utvidingar"
+msgstr "Forbetra personvernutvidingar"
 
 #. editorial content for the homepage shelves.
 msgid "See more enhanced privacy extensions"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Popular extensions"
-msgstr "Utforsk utvidingar"
+msgstr "Populære udvidingar"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular extensions"
-msgstr "Vis alle utvidingar"
+msgstr "Vis fleire populære utvidingar"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended themes"
-msgstr "Tilrådde"
+msgstr "Tilrådde tema"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
@@ -4466,11 +4457,11 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "Recommended password managers"
-msgstr ""
+msgstr "Tilrådde passordhandterarar"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended password managers"
-msgstr ""
+msgstr "Vis fleire tilrådde passordhandterarar"
 
 msgid "Could not parse the manifest file."
 msgstr "Kunne ikkje tolke manifest-fila."
@@ -5513,9 +5504,8 @@ msgstr "Samanlikn"
 msgid "Permissions:"
 msgstr "Løyve:"
 
-#, fuzzy
 msgid "Optional permissions:"
-msgstr "Løyve:"
+msgstr "Valfrie løyve:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -5591,9 +5581,8 @@ msgstr ""
 msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
 msgstr ""
 
-#, fuzzy
 msgid "Code Weight:"
-msgstr "Vekt:"
+msgstr "Kodevekt:"
 
 #, fuzzy
 msgid "Metadata Weight:"
@@ -5636,13 +5625,11 @@ msgstr "Oppdateringar"
 msgid "Rating Reviews"
 msgstr "Ventar på vurdering"
 
-#, fuzzy
 msgid "Auto Approved"
-msgstr "Automatisk godkjent ({0})"
+msgstr "Automatisk godkjent"
 
-#, fuzzy
 msgid "Pending Rejection"
-msgstr "Ventar på avslag ({0})"
+msgstr "Ventande avslag"
 
 msgid "presence of matched rules"
 msgstr ""
