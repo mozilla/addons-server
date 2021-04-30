@@ -1833,7 +1833,12 @@ class TestBlocklistSubmissionAdmin(TestCase):
 
 class TestBlockAdminEdit(TestCase):
     def setUp(self):
-        self.addon = addon_factory(guid='guid@', name='Danger Danger')
+        self.addon = addon_factory(
+            guid='guid@', name='Danger Danger', version_kw={'version': '123.456'}
+        )
+        self.extra_version = self.addon.current_version
+        # note, a lower version, to check it's the number, regardless, that's blocked.
+        version_factory(addon=self.addon, version='123')
         self.block = Block.objects.create(
             guid=self.addon.guid,
             updated_by=user_factory(),
@@ -1878,34 +1883,47 @@ class TestBlockAdminEdit(TestCase):
         submission = BlocklistSubmission.objects.get(input_guids=self.block.guid)
         assert submission.signoff_state == signoff_state
 
-    def _test_post_edit_logging(self, user):
+    def _test_post_edit_logging(self, user, blocked_version_changes=True):
         assert Block.objects.count() == 1  # check we didn't create another
-        assert Block.objects.first().addon == self.addon  # wasn't changed
-        logs = list(
+        block = Block.objects.first()
+        assert block.addon == self.addon  # wasn't changed
+        assert block.max_version == '123'
+        reject_log, edit_log = list(
             ActivityLog.objects.for_addons(self.addon).exclude(
                 action=BLOCKLIST_SIGNOFF.id
             )
         )
-        change_status_log = logs[0]
-        reject_log = logs[1]
-        log = logs[2]
-        assert log.action == amo.LOG.BLOCKLIST_BLOCK_EDITED.id
-        assert log.arguments == [self.addon, self.addon.guid, self.block]
-        assert log.details['min_version'] == '0'
-        assert log.details['max_version'] == self.addon.current_version.version
-        assert log.details['reason'] == 'some other reason'
+        assert edit_log.action == amo.LOG.BLOCKLIST_BLOCK_EDITED.id
+        assert edit_log.arguments == [self.addon, self.addon.guid, self.block]
+        assert edit_log.details['min_version'] == '0'
+        assert edit_log.details['max_version'] == self.addon.current_version.version
+        assert edit_log.details['reason'] == 'some other reason'
         block_log = (
-            ActivityLog.objects.for_block(self.block).filter(action=log.action).last()
+            ActivityLog.objects.for_block(self.block)
+            .filter(action=amo.LOG.BLOCKLIST_BLOCK_EDITED.id)
+            .last()
         )
-        assert block_log == log
+        assert block_log == edit_log
         block_log_by_guid = (
-            ActivityLog.objects.for_guidblock('guid@').filter(action=log.action).last()
+            ActivityLog.objects.for_guidblock('guid@')
+            .filter(action=amo.LOG.BLOCKLIST_BLOCK_EDITED.id)
+            .last()
         )
-        assert block_log_by_guid == log
-        vlog = ActivityLog.objects.for_versions(self.addon.current_version).last()
-        assert vlog == log
+        assert block_log_by_guid == edit_log
+        current_version_log = ActivityLog.objects.for_versions(
+            self.addon.current_version
+        ).last()
+        assert current_version_log == edit_log
+        assert block.is_version_blocked(self.addon.current_version.version)
+        if blocked_version_changes:
+            extra_version_log = ActivityLog.objects.for_versions(
+                self.extra_version
+            ).last()
+            # should have a block entry for the version even though it's now not blocked
+            assert extra_version_log == edit_log
+            assert not block.is_version_blocked(self.extra_version.version)
+
         assert reject_log.action == amo.LOG.REJECT_VERSION.id
-        assert change_status_log.action == amo.LOG.CHANGE_STATUS.id
 
         # Check the block history contains the edit just made.
         response = self.client.get(self.change_url, follow=True)
@@ -1949,7 +1967,7 @@ class TestBlockAdminEdit(TestCase):
         )
         self.block.update(max_version=self.addon.current_version.version)
         self._test_edit(user, BlocklistSubmission.SIGNOFF_PUBLISHED)
-        self._test_post_edit_logging(user)
+        self._test_post_edit_logging(user, blocked_version_changes=False)
 
     def test_invalid_versions_not_accepted(self):
         user = user_factory(email='someone@mozilla.com')
@@ -1959,8 +1977,8 @@ class TestBlockAdminEdit(TestCase):
         deleted_addon = addon_factory(version_kw={'version': '345.34a'})
         deleted_addon.delete()
         deleted_addon.addonguid.update(guid=self.addon.guid)
-        self.addon.current_version.update(version='123.4b5')
-        version_factory(addon=self.addon, version='678')
+        self.extra_version.update(version='123.4b5')
+        self.addon.current_version.update(version='678')
         # Update min_version in self.block to a version that doesn't exist
         self.block.update(min_version='444.4a')
 
@@ -1973,14 +1991,14 @@ class TestBlockAdminEdit(TestCase):
         assert ver_list.eq(0).text() == '(invalid)'
         assert ver_list.eq(1).attr['value'] == '0'
         assert ver_list.eq(2).attr['value'] == '123.4b5'
-        assert ver_list.eq(3).attr['value'] == '345.34a'
-        assert ver_list.eq(4).attr['value'] == '678'
+        assert ver_list.eq(3).attr['value'] == '678'
+        assert ver_list.eq(4).attr['value'] == '345.34a'
         ver_list = doc('#id_max_version option')
         assert len(ver_list) == 4
         assert ver_list.eq(0).attr['value'] == '*'
         assert ver_list.eq(1).attr['value'] == '123.4b5'
-        assert ver_list.eq(2).attr['value'] == '345.34a'
-        assert ver_list.eq(3).attr['value'] == '678'
+        assert ver_list.eq(2).attr['value'] == '678'
+        assert ver_list.eq(3).attr['value'] == '345.34a'
 
         data = {
             'input_guids': self.block.guid,

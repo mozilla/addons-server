@@ -14,7 +14,7 @@ from olympia.users.utils import get_task_user
 log = olympia.core.logger.getLogger('z.amo.blocklist')
 
 
-def add_version_log_for_blocked_versions(obj, al):
+def add_version_log_for_blocked_versions(obj, old_obj, al):
     from olympia.activity.models import VersionLog
 
     VersionLog.objects.bulk_create(
@@ -22,11 +22,12 @@ def add_version_log_for_blocked_versions(obj, al):
             VersionLog(activity_log=al, version_id=version.id)
             for version in obj.addon_versions
             if obj.is_version_blocked(version.version)
+            or old_obj.is_version_blocked(version.version)
         ]
     )
 
 
-def block_activity_log_save(obj, change, submission_obj=None):
+def block_activity_log_save(obj, change, submission_obj=None, old_obj=None):
     action = amo.LOG.BLOCKLIST_BLOCK_EDITED if change else amo.LOG.BLOCKLIST_BLOCK_ADDED
     legacy_inclusion = getattr(
         submission_obj if submission_obj else obj, 'in_legacy_blocklist'
@@ -58,7 +59,7 @@ def block_activity_log_save(obj, change, submission_obj=None):
             user=submission_obj.signoff_by,
         )
 
-    add_version_log_for_blocked_versions(obj, al)
+    add_version_log_for_blocked_versions(obj, old_obj or obj, al)
 
 
 def block_activity_log_delete(obj, *, submission_obj=None, delete_user=None):
@@ -88,7 +89,7 @@ def block_activity_log_delete(obj, *, submission_obj=None, delete_user=None):
         user=submission_obj.updated_by if submission_obj else delete_user,
     )
     if addon:
-        add_version_log_for_blocked_versions(obj, al)
+        add_version_log_for_blocked_versions(obj, obj, al)
     if submission_obj and submission_obj.signoff_by:
         args = (
             [amo.LOG.BLOCKLIST_SIGNOFF]
@@ -251,16 +252,24 @@ def save_guids_to_blocks(guids, submission, *, fields_to_set):
     Block.preload_addon_versions(blocks)
     for block in blocks:
         change = bool(block.id)
+        if change:
+            block_obj_before_change = Block(
+                min_version=block.min_version, max_version=block.max_version
+            )
+            setattr(block, 'modified', modified_datetime)
+        else:
+            block_obj_before_change = None
         for field, val in common_args.items():
             setattr(block, field, val)
-        if change:
-            setattr(block, 'modified', modified_datetime)
         block.average_daily_users_snapshot = block.current_adu
         block.save()
         if submission.id:
             block.submission.add(submission)
         block_activity_log_save(
-            block, change=change, submission_obj=submission if submission.id else None
+            block,
+            change=change,
+            submission_obj=submission if submission.id else None,
+            old_obj=block_obj_before_change,
         )
         disable_addon_for_block(block)
 
