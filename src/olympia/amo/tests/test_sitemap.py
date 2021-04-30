@@ -76,6 +76,7 @@ def test_addon_sitemap():
         it(addon_c.last_updated, addon_c.slug, 'eula', 1),
         it(addon_a.last_updated, addon_a.slug, 'eula', 1),
         it(addon_a.last_updated, addon_a.slug, 'license', 1),
+        it(addon_e.last_updated, addon_e.slug, 'ratings.list', 1),
         it(addon_d.last_updated, addon_d.slug, 'ratings.list', 1),
         it(addon_c.last_updated, addon_c.slug, 'ratings.list', 1),
         it(addon_a.last_updated, addon_a.slug, 'ratings.list', 1),
