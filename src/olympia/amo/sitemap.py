@@ -67,7 +67,7 @@ class AddonSitemap(Sitemap):
         # add pages for ratings - and extra pages when needed to paginate
         page_size = settings.REST_FRAMEWORK['PAGE_SIZE']
         for addon in addons:
-            pages_needed = math.ceil((addon.text_ratings_count or 1)/ page_size)
+            pages_needed = math.ceil((addon.text_ratings_count or 1) / page_size)
             items.extend(
                 self.item_tuple(addon.last_updated, addon.slug, 'ratings.list', page)
                 for page in range(1, pages_needed + 1)
