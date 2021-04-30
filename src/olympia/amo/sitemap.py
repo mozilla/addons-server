@@ -4,10 +4,9 @@ import os
 from collections import namedtuple
 from urllib.parse import urlparse
 
-from django.db.models import Count
 from django.conf import settings
 from django.contrib.sitemaps import Sitemap
-from django.db.models import F
+from django.db.models import Count, F, Q
 from django.template import loader
 from django.urls import reverse
 
@@ -31,11 +30,29 @@ class AddonSitemap(Sitemap):
             Addon.objects.public()
             .order_by('-last_updated')
             .annotate(license_builtin=F('_current_version__license__builtin'))
+            .annotate(
+                has_eula=Count(
+                    'eula__localized_string',
+                    filter=Q(
+                        ~Q(eula__localized_string=''),
+                        eula__locale=F('default_locale'),
+                    ),
+                )
+            )
+            .annotate(
+                has_privacy=Count(
+                    'privacy_policy__localized_string',
+                    filter=Q(
+                        ~Q(privacy_policy__localized_string=''),
+                        privacy_policy__locale=F('default_locale'),
+                    ),
+                )
+            )
             .values_list(
                 'last_updated',
                 'slug',
-                'privacy_policy_id',
-                'eula_id',
+                'has_eula',
+                'has_privacy',
                 'license_builtin',
                 named=True,
             )
@@ -48,12 +65,12 @@ class AddonSitemap(Sitemap):
             *(
                 self.item_tuple(item.last_updated, item.slug, 'privacy')
                 for item in items
-                if item.privacy_policy_id
+                if item.has_privacy
             ),
             *(
                 self.item_tuple(item.last_updated, item.slug, 'eula')
                 for item in items
-                if item.eula_id
+                if item.has_eula
             ),
             *(
                 self.item_tuple(item.last_updated, item.slug, 'license')
