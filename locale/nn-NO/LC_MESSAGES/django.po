@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-28 18:38+0000\n"
+"PO-Revision-Date: 2021-04-29 18:23+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -948,9 +948,8 @@ msgstr "Tvangsavslått"
 msgid "{user} force-enabled {addon}."
 msgstr "Tvinga aktivering av utviding"
 
-#, fuzzy
 msgid "Force enabled"
-msgstr "Tvinga aktivering av utviding"
+msgstr "Tvangsaktivert"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4417,47 +4416,40 @@ msgid "Learn More"
 msgstr "Les meir"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended extensions"
-msgstr "Tilrådde utvidingsprogram"
+msgstr "Tilrådde utvidingar"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more recommended extensions"
-msgstr "Tilrådde utvidingsprogram"
+msgstr "Vis fleire tilrådde utvidingar"
 
 #. editorial content for the homepage shelves.
 msgid "Popular themes"
 msgstr "Populære tema"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular themes"
-msgstr "Vel fargar for temaet ditt"
+msgstr "Vis fleire populære tema"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Enhanced privacy extensions"
-msgstr "Vis alle utvidingar"
+msgstr "Forbetra personvernutvidingar"
 
 #. editorial content for the homepage shelves.
 msgid "See more enhanced privacy extensions"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Popular extensions"
-msgstr "Utforsk utvidingar"
+msgstr "Populære udvidingar"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular extensions"
-msgstr "Vis alle utvidingar"
+msgstr "Vis fleire populære utvidingar"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended themes"
-msgstr "Tilrådde"
+msgstr "Tilrådde tema"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
@@ -5512,9 +5504,8 @@ msgstr "Samanlikn"
 msgid "Permissions:"
 msgstr "Løyve:"
 
-#, fuzzy
 msgid "Optional permissions:"
-msgstr "Løyve:"
+msgstr "Valfrie løyve:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -5590,9 +5581,8 @@ msgstr ""
 msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
 msgstr ""
 
-#, fuzzy
 msgid "Code Weight:"
-msgstr "Vekt:"
+msgstr "Kodevekt:"
 
 #, fuzzy
 msgid "Metadata Weight:"
@@ -5635,13 +5625,11 @@ msgstr "Oppdateringar"
 msgid "Rating Reviews"
 msgstr "Ventar på vurdering"
 
-#, fuzzy
 msgid "Auto Approved"
-msgstr "Automatisk godkjent ({0})"
+msgstr "Automatisk godkjent"
 
-#, fuzzy
 msgid "Pending Rejection"
-msgstr "Ventar på avslag ({0})"
+msgstr "Ventande avslag"
 
 msgid "presence of matched rules"
 msgstr ""

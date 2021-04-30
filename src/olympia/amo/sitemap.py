@@ -4,10 +4,9 @@ import os
 from collections import namedtuple
 from urllib.parse import urlparse
 
-from django.db.models import Count
 from django.conf import settings
 from django.contrib.sitemaps import Sitemap
-from django.db.models import F
+from django.db.models import Count, F, Q
 from django.template import loader
 from django.urls import reverse
 
@@ -24,49 +23,81 @@ class AddonSitemap(Sitemap):
     priority = 1
     changefreq = 'daily'
     # i18n = True  # TODO: support all localized urls
-    item_tuple = namedtuple('Item', ['last_updated', 'slug', 'urlname'])
+    item_tuple = namedtuple(
+        'Item', ['last_updated', 'slug', 'urlname', 'page'], defaults=(1,)
+    )
 
     def items(self):
-        items = list(
+        addons = list(
             Addon.objects.public()
             .order_by('-last_updated')
             .annotate(license_builtin=F('_current_version__license__builtin'))
+            .annotate(
+                has_eula=Count(
+                    'eula__localized_string',
+                    filter=Q(
+                        ~Q(eula__localized_string=''),
+                        eula__locale=F('default_locale'),
+                    ),
+                )
+            )
+            .annotate(
+                has_privacy=Count(
+                    'privacy_policy__localized_string',
+                    filter=Q(
+                        ~Q(privacy_policy__localized_string=''),
+                        privacy_policy__locale=F('default_locale'),
+                    ),
+                )
+            )
             .values_list(
                 'last_updated',
                 'slug',
-                'privacy_policy_id',
-                'eula_id',
+                'has_eula',
+                'has_privacy',
                 'license_builtin',
+                'text_ratings_count',
                 named=True,
             )
         )
-        return [
+        items = [
             *(
-                self.item_tuple(item.last_updated, item.slug, 'detail')
-                for item in items
+                self.item_tuple(addon.last_updated, addon.slug, 'detail')
+                for addon in addons
             ),
             *(
-                self.item_tuple(item.last_updated, item.slug, 'privacy')
-                for item in items
-                if item.privacy_policy_id
+                self.item_tuple(addon.last_updated, addon.slug, 'privacy')
+                for addon in addons
+                if addon.has_privacy
             ),
             *(
-                self.item_tuple(item.last_updated, item.slug, 'eula')
-                for item in items
-                if item.eula_id
+                self.item_tuple(addon.last_updated, addon.slug, 'eula')
+                for addon in addons
+                if addon.has_eula
             ),
             *(
-                self.item_tuple(item.last_updated, item.slug, 'license')
-                for item in items
-                if item.license_builtin == License.OTHER  # i.e. custom license
+                self.item_tuple(addon.last_updated, addon.slug, 'license')
+                for addon in addons
+                if addon.license_builtin == License.OTHER  # i.e. custom license
             ),
         ]
+        # add pages for ratings - and extra pages when needed to paginate
+        page_size = settings.REST_FRAMEWORK['PAGE_SIZE']
+        for addon in addons:
+            pages_needed = math.ceil((addon.text_ratings_count or 1) / page_size)
+            items.extend(
+                self.item_tuple(addon.last_updated, addon.slug, 'ratings.list', page)
+                for page in range(1, pages_needed + 1)
+            )
+        return items
 
     def lastmod(self, item):
         return item.last_updated
 
     def location(self, item):
-        return reverse(f'addons.{item.urlname}', args=[item.slug])
+        return reverse(f'addons.{item.urlname}', args=[item.slug]) + (
+            f'?page={item.page}' if item.page > 1 else ''
+        )
 
 
 class AMOSitemap(Sitemap):
@@ -118,6 +149,7 @@ class CategoriesSitemap(Sitemap):
         counts_qs = (
             AddonCategory.objects.filter(
                 addon___current_version__isnull=False,
+                addon___current_version__apps__application=current_app.id,
                 addon__disabled_by_user=False,
                 addon__status__in=amo.REVIEWED_STATUSES,
             )
