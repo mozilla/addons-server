@@ -66,14 +66,14 @@ class AddonSitemap(Sitemap):
                 for addon in addons
             ),
             *(
-                self.item_tuple(item.last_updated, item.slug, 'privacy')
-                for item in items
-                if item.has_privacy
+                self.item_tuple(addon.last_updated, addon.slug, 'privacy')
+                for addon in addons
+                if addon.has_privacy
             ),
             *(
-                self.item_tuple(item.last_updated, item.slug, 'eula')
-                for item in items
-                if item.has_eula
+                self.item_tuple(addon.last_updated, addon.slug, 'eula')
+                for addon in addons
+                if addon.has_eula
             ),
             *(
                 self.item_tuple(addon.last_updated, addon.slug, 'license')
