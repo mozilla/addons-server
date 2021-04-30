@@ -80,6 +80,7 @@ def test_addon_sitemap():
         it(addon_c.last_updated, addon_c.slug, 'ratings.list', 1),
         it(addon_a.last_updated, addon_a.slug, 'ratings.list', 1),
         it(addon_b.last_updated, addon_b.slug, 'ratings.list', 1),
+    ]
     items = list(sitemap.items())
     assert items == expected
     for item in sitemap.items():
