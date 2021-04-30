@@ -26,6 +26,7 @@ from olympia.amo.tests import (
 )
 from olympia.constants.categories import CATEGORIES
 from olympia.ratings.models import Rating
+from olympia.translations.models import Translation
 
 from .test_views import TEST_SITEMAPS_DIR
 
@@ -57,9 +58,15 @@ def test_addon_sitemap():
         version_kw={'license': license_factory(builtin=1)},
     )
     addon_d = addon_factory(slug='addon-d', privacy_policy='only privacy')
+    # throw in an edge case of an empty policy in a non-default locale
+    Translation.objects.create(
+        id=addon_d.privacy_policy_id, localized_string='', locale='fr'
+    )
+    addon_e = addon_factory(slug='addon-e', eula='', privacy_policy='')  # empty
     addon_factory(status=amo.STATUS_NOMINATED)  # shouldn't show up
     sitemap = AddonSitemap()
     expected = [
+        it(addon_e.last_updated, addon_e.slug, 'detail', 1),
         it(addon_d.last_updated, addon_d.slug, 'detail', 1),
         it(addon_c.last_updated, addon_c.slug, 'detail', 1),
         it(addon_a.last_updated, addon_a.slug, 'detail', 1),
@@ -73,7 +80,6 @@ def test_addon_sitemap():
         it(addon_c.last_updated, addon_c.slug, 'ratings.list', 1),
         it(addon_a.last_updated, addon_a.slug, 'ratings.list', 1),
         it(addon_b.last_updated, addon_b.slug, 'ratings.list', 1),
-    ]
     items = list(sitemap.items())
     assert items == expected
     for item in sitemap.items():
