@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-20 20:36+0000\n"
+"PO-Revision-Date: 2021-05-01 09:29+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -216,7 +216,7 @@ msgid "Error verifying input, please try again."
 msgstr "Σφάλμα επαλήθευσης εισόδου, παρακαλούμε δοκιμάστε ξανά."
 
 msgid "Enter a valid IP4 or IP6 network."
-msgstr "Εισάγετε ένα έγκυρο δίκτυο IP4 ή IP6."
+msgstr "Εισαγάγετε ένα έγκυρο δίκτυο IP4 ή IP6."
 
 msgid "CIDR"
 msgstr "CIDR"
@@ -332,8 +332,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> Παρακαλώ εισάγετε <strong>όλες τις λέξεις</strong> παρακάτω, <strong>διαχωρισμένες με διάστημα αν χρειάζεται</strong>. </p> <p> Αν είναι δυσανάγνωστες, μπορείτε να <a href=\"#\" "
-"id=\"recaptcha_different\">δοκιμάσετε διαφορετικές λέξεις</a> ή να <a href=\"#\" id=\"recaptcha_audio\">δοκιμαστείτε με έναν άλλο τρόπο</a> . </p>"
+"<p> Παρακαλώ εισαγάγετε <strong>όλες τις λέξεις</strong> παρακάτω, <strong>διαχωρισμένες με διάστημα αν χρειάζεται</strong>. </p> <p> Αν είναι δυσανάγνωστες, μπορείτε να <a href=\"#\" "
+"id=\"recaptcha_different\">δοκιμάσετε διαφορετικές λέξεις</a> ή να <a href=\"#\" id=\"recaptcha_audio\">δοκιμαστείτε με έναν άλλο τρόπο</a>. </p>"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
