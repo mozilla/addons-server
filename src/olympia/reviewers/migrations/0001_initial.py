@@ -33,7 +33,7 @@ class Migration(migrations.Migration):
                 ('verdict', models.PositiveSmallIntegerField(choices=[(0, 'Would have been auto-approved (dry-run mode was in effect)'), (1, 'Would *not* have been auto-approved (dry-run mode was in effect)'), (2, 'Was auto-approved'), (3, 'Was *not* auto-approved')], default=3)),
                 ('weight', models.IntegerField(default=0)),
                 ('weight_info', django_extensions.db.fields.json.JSONField(default={}, null=True)),
-                ('confirmed', models.NullBooleanField(default=None)),
+                ('confirmed', models.BooleanField(null=True)),
             ],
             options={
                 'db_table': 'editors_autoapprovalsummary',

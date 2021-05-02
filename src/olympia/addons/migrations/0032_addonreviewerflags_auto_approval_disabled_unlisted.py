@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='addonreviewerflags',
             name='auto_approval_disabled_unlisted',
-            field=models.NullBooleanField(default=None),
+            field=models.BooleanField(null=True),
         ),
     ]

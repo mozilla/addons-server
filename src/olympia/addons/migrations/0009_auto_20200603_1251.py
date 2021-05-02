@@ -11,8 +11,8 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='addon',
             name='public_stats',
-            field=models.NullBooleanField(
-                db_column='publicstats', default=False
+            field=models.BooleanField(
+                db_column='publicstats', null=True
             ),
         )
     ]

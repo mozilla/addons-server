@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='scannerqueryresult',
             name='was_blocked',
-            field=models.NullBooleanField(default=None),
+            field=models.BooleanField(null=True),
         ),
     ]

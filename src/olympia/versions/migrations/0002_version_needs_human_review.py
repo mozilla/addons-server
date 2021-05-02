@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='version',
             name='needs_human_review',
-            field=models.NullBooleanField(default=None),
+            field=models.BooleanField(null=True),
         ),
     ]

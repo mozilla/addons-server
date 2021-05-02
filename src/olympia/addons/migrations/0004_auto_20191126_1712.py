@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='addoncategory',
             name='feature',
-            field=models.NullBooleanField(default=None),
+            field=models.BooleanField(null=True),
         ),
         migrations.AlterField(
             model_name='category',
