@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-25 23:25+0000\n"
-"Last-Translator: Channy Yun <channy@mozilla.or.kr>\n"
+"PO-Revision-Date: 2021-05-02 18:58+0000\n"
+"Last-Translator: Kim YoungCheon <circcc@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -4469,60 +4469,53 @@ msgid "Learn More"
 msgstr "더 알아보기"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended extensions"
-msgstr "추천 확장 프로그램"
+msgstr "추천 확장 기능"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more recommended extensions"
-msgstr "추천 확장 프로그램"
+msgstr "추천 확장 기능 더보기"
 
 #. editorial content for the homepage shelves.
 msgid "Popular themes"
-msgstr ""
+msgstr "인기 테마"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular themes"
-msgstr "테마에 사용할 색을 설정하세요."
+msgstr "인기 테마 더보기"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Enhanced privacy extensions"
-msgstr "모든 확장기능 보기"
+msgstr "향상된 개인 정보 보호 확장 기능"
 
 #. editorial content for the homepage shelves.
 msgid "See more enhanced privacy extensions"
-msgstr ""
+msgstr "향상된 개인 정보 보호 확장 기능 더보기"
 
 #. editorial content for the homepage shelves.
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Popular extensions"
-msgstr "확장 기능 탐색하기"
+msgstr "인기 확장 기능"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular extensions"
-msgstr "모든 확장기능 보기"
+msgstr "인기 확장 기능 더보기"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended themes"
-msgstr "추천"
+msgstr "추천 테마"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
-msgstr ""
+msgstr "추천 테마 더보기"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended password managers"
-msgstr ""
+msgstr "추천 비밀번호 관리자"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended password managers"
-msgstr ""
+msgstr "추천 비밀번호 관리자 더보기"
 
 msgid "Could not parse the manifest file."
 msgstr ""
