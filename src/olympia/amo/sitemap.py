@@ -6,7 +6,7 @@ from urllib.parse import urlparse
 
 from django.conf import settings
 from django.contrib.sitemaps import Sitemap
-from django.db.models import Count, F, Q
+from django.db.models import Count, F, Max, Q
 from django.template import loader
 from django.urls import reverse
 
@@ -16,7 +16,14 @@ from olympia.amo.reverse import get_url_prefix
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.constants.categories import CATEGORIES
 from olympia.bandwagon.models import Collection
+from olympia.users.models import UserProfile
 from olympia.versions.models import License
+
+
+# These constants are from:
+# https://github.com/mozilla/addons-frontend/blob/master/src/amo/reducers/addonsByAuthors.js
+EXTENSIONS_BY_AUTHORS_PAGE_SIZE = 10
+THEMES_BY_AUTHORS_PAGE_SIZE = 12
 
 
 class AddonSitemap(Sitemap):
@@ -187,11 +194,78 @@ class CollectionSitemap(Sitemap):
         return Collection.get_url_path(item)
 
 
+class AccountSitemap(Sitemap):
+    priority = 0.5
+    changefreq = 'weekly'
+    # i18n = True  # TODO: support all localized urls
+    item_tuple = namedtuple(
+        'AccountItem',
+        ['addons_updated', 'id', 'extension_page', 'theme_page'],
+        defaults=(1, 1),
+    )
+
+    def items(self):
+        addon_q = Q(
+            addons___current_version__isnull=False,
+            addons__disabled_by_user=False,
+            addons__status__in=amo.REVIEWED_STATUSES,
+            addonuser__listed=True,
+            addonuser__role__in=(amo.AUTHOR_ROLE_DEV, amo.AUTHOR_ROLE_OWNER),
+        )
+        users = (
+            UserProfile.objects.filter(is_public=True)
+            .annotate(
+                theme_count=Count(
+                    'addons', filter=Q(addon_q, addons__type=amo.ADDON_STATICTHEME)
+                )
+            )
+            .annotate(
+                extension_count=Count(
+                    'addons', filter=Q(addon_q, addons__type=amo.ADDON_EXTENSION)
+                )
+            )
+            .annotate(addons_updated=Max('addons__last_updated', filter=addon_q))
+            .order_by('-addons_updated', '-modified')
+            .values_list(
+                'addons_updated', 'id', 'extension_count', 'theme_count', named=True
+            )
+        )
+        items = []
+        for user in users:
+            extension_pages_needed = math.ceil(
+                (user.extension_count or 1) / EXTENSIONS_BY_AUTHORS_PAGE_SIZE
+            )
+            theme_pages_needed = math.ceil(
+                (user.theme_count or 1) / THEMES_BY_AUTHORS_PAGE_SIZE
+            )
+            page_combinations_needed = (
+                (ext_page, theme_page)
+                for ext_page in range(1, extension_pages_needed + 1)
+                for theme_page in range(1, theme_pages_needed + 1)
+            )
+            items.extend(
+                self.item_tuple(user.addons_updated, user.id, ext_page, theme_page)
+                for ext_page, theme_page in page_combinations_needed
+            )
+        return items
+
+    def lastmod(self, item):
+        return item.addons_updated
+
+    def location(self, item):
+        urlargs = '&'.join(
+            ([f'page_e={item.extension_page}'] if item.extension_page > 1 else [])
+            + ([f'page_t={item.theme_page}'] if item.theme_page > 1 else [])
+        )
+        return UserProfile.create_user_url(item.id) + (f'?{urlargs}' if urlargs else '')
+
+
 sitemaps = {
     'amo': AMOSitemap(),
     'addons': AddonSitemap(),
     'categories': CategoriesSitemap(),
     'collections': CollectionSitemap(),
+    'users': AccountSitemap(),
 }
 
 

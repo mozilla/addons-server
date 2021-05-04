@@ -9,6 +9,7 @@ from django.urls import reverse
 from olympia import amo
 from olympia.addons.models import AddonCategory
 from olympia.amo.sitemap import (
+    AccountSitemap,
     AddonSitemap,
     AMOSitemap,
     build_sitemap,
@@ -180,11 +181,116 @@ def test_collection_sitemap(mozilla_user):
         assert sitemap.lastmod(item) == item.modified
 
 
+def test_accounts_sitemap():
+    user_with_themes = user_factory()
+    user_with_extensions = user_factory()
+    user_with_both = user_factory()
+    user_factory()  # no addons
+    extension = addon_factory(users=(user_with_extensions, user_with_both))
+    theme = addon_factory(
+        type=amo.ADDON_STATICTHEME, users=(user_with_themes, user_with_both)
+    )
+    sitemap = AccountSitemap()
+    items = list(sitemap.items())
+    assert items == [
+        (theme.last_updated, user_with_both.id, 1, 1),
+        (theme.last_updated, user_with_themes.id, 1, 1),
+        (extension.last_updated, user_with_extensions.id, 1, 1),
+    ]
+    for item in sitemap.items():
+        url = reverse('users.profile', args=[item.id])
+        if item[2] > 1 and item[3] > 1:
+            assert sitemap.location(item) == url + f'?page_e={item[2]}&page_t={item[3]}'
+        elif item[2] > 1:
+            assert sitemap.location(item) == url + f'?page_e={item[2]}'
+        elif item[3] > 1:
+            assert sitemap.location(item) == url + f'?page_t={item[3]}'
+        else:
+            assert sitemap.location(item) == url
+    # add some extra extensions and themes to test pagination
+    extra_extension_a = addon_factory(users=(user_with_extensions, user_with_both))
+    extra_extension_b = addon_factory(users=(user_with_extensions, user_with_both))
+    extra_theme_a = addon_factory(
+        type=amo.ADDON_STATICTHEME, users=(user_with_themes, user_with_both)
+    )
+    extra_theme_b = addon_factory(
+        type=amo.ADDON_STATICTHEME, users=(user_with_themes, user_with_both)
+    )
+    extra_theme_c = addon_factory(
+        type=amo.ADDON_STATICTHEME, users=(user_with_themes, user_with_both)
+    )
+    with mock.patch(
+        'olympia.amo.sitemap.EXTENSIONS_BY_AUTHORS_PAGE_SIZE', 2
+    ), mock.patch('olympia.amo.sitemap.THEMES_BY_AUTHORS_PAGE_SIZE', 3):
+        sitemap = AccountSitemap()
+        paginated_items = list(sitemap.items())
+    assert paginated_items == [
+        (extra_theme_c.last_updated, user_with_both.id, 1, 1),
+        (extra_theme_c.last_updated, user_with_both.id, 1, 2),
+        (extra_theme_c.last_updated, user_with_both.id, 2, 1),
+        (extra_theme_c.last_updated, user_with_both.id, 2, 2),
+        (extra_theme_c.last_updated, user_with_themes.id, 1, 1),
+        (extra_theme_c.last_updated, user_with_themes.id, 1, 2),
+        (extra_extension_b.last_updated, user_with_extensions.id, 1, 1),
+        (extra_extension_b.last_updated, user_with_extensions.id, 2, 1),
+    ]
+    # repeat, but after changing some of the addons so they wouldn't be visible
+    with mock.patch(
+        'olympia.amo.sitemap.EXTENSIONS_BY_AUTHORS_PAGE_SIZE', 2
+    ), mock.patch('olympia.amo.sitemap.THEMES_BY_AUTHORS_PAGE_SIZE', 3):
+        extra_theme_a.update(status=amo.STATUS_NOMINATED)
+        sitemap = AccountSitemap()
+        assert list(sitemap.items()) == [
+            # now only one page of themes for both users
+            (extra_theme_c.last_updated, user_with_both.id, 1, 1),
+            (extra_theme_c.last_updated, user_with_both.id, 2, 1),
+            (extra_theme_c.last_updated, user_with_themes.id, 1, 1),
+            (extra_extension_b.last_updated, user_with_extensions.id, 1, 1),
+            (extra_extension_b.last_updated, user_with_extensions.id, 2, 1),
+        ]
+        user_with_both.addonuser_set.filter(addon=extra_extension_a).update(
+            listed=False
+        )
+        assert list(sitemap.items()) == [
+            (extra_theme_c.last_updated, user_with_both.id, 1, 1),
+            (extra_theme_c.last_updated, user_with_themes.id, 1, 1),
+            (extra_extension_b.last_updated, user_with_extensions.id, 1, 1),
+            # user_with_extensions still has 2 pages of extensions though
+            (extra_extension_b.last_updated, user_with_extensions.id, 2, 1),
+        ]
+        extra_theme_c.delete()
+        assert list(sitemap.items()) == [
+            # the date used for lastmod has changed
+            (extra_theme_b.last_updated, user_with_both.id, 1, 1),
+            (extra_theme_b.last_updated, user_with_themes.id, 1, 1),
+            (extra_extension_b.last_updated, user_with_extensions.id, 1, 1),
+            # user_with_extensions still has 2 pages of extensions though
+            (extra_extension_b.last_updated, user_with_extensions.id, 2, 1),
+        ]
+        # and check that deleting roles works too
+        user_with_both.addonuser_set.filter(addon=extra_theme_b).update(
+            role=amo.AUTHOR_ROLE_DELETED
+        )
+        assert list(sitemap.items()) == [
+            # the date used for lastmod has changed, and the order too
+            (extra_theme_b.last_updated, user_with_themes.id, 1, 1),
+            (extra_extension_b.last_updated, user_with_both.id, 1, 1),
+            (extra_extension_b.last_updated, user_with_extensions.id, 1, 1),
+            (extra_extension_b.last_updated, user_with_extensions.id, 2, 1),
+        ]
+
+
 def test_get_sitemap_section_pages():
     addon_factory()
     addon_factory()
     addon_factory()
-    assert list(sitemaps.keys()) == ['amo', 'addons', 'categories', 'collections']
+    assert list(sitemaps.keys()) == [
+        'amo',
+        'addons',
+        'categories',
+        'collections',
+        'users',
+    ]
 
     pages = get_sitemap_section_pages()
     assert pages == [
@@ -192,6 +298,7 @@ def test_get_sitemap_section_pages():
         ('addons', 1),
         ('categories', 1),
         ('collections', 1),
+        ('users', 1),
     ]
     with mock.patch.object(AddonSitemap, 'limit', 3):
         pages = get_sitemap_section_pages()
@@ -201,6 +308,7 @@ def test_get_sitemap_section_pages():
             ('addons', 2),
             ('categories', 1),
             ('collections', 1),
+            ('users', 1),
         ]
 
 

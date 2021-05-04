@@ -8,7 +8,6 @@ USER_ID = r"""(?P<user_id>[^/<>"']+)"""
 # These will all start with /user/<user_id>/
 detail_patterns = [
     re_path(r'^$', frontend_view, name='users.profile'),
-    re_path(r'^themes(?:/(?P<category>[^ /]+))?$', frontend_view, name='users.themes'),
     re_path(r'^edit$', frontend_view, name='users.admin_edit'),
 ]
 
