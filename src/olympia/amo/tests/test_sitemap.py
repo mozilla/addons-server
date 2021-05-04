@@ -72,6 +72,11 @@ def test_addon_sitemap():
         it(addon_c.last_updated, addon_c.slug, 'detail', 1),
         it(addon_a.last_updated, addon_a.slug, 'detail', 1),
         it(addon_b.last_updated, addon_b.slug, 'detail', 1),
+        it(addon_e.last_updated, addon_e.slug, 'versions', 1),
+        it(addon_d.last_updated, addon_d.slug, 'versions', 1),
+        it(addon_c.last_updated, addon_c.slug, 'versions', 1),
+        it(addon_a.last_updated, addon_a.slug, 'versions', 1),
+        it(addon_b.last_updated, addon_b.slug, 'versions', 1),
         it(addon_d.last_updated, addon_d.slug, 'privacy', 1),
         it(addon_a.last_updated, addon_a.slug, 'privacy', 1),
         it(addon_c.last_updated, addon_c.slug, 'eula', 1),
@@ -300,7 +305,7 @@ def test_get_sitemap_section_pages():
         ('collections', 1),
         ('users', 1),
     ]
-    with mock.patch.object(AddonSitemap, 'limit', 3):
+    with mock.patch.object(AddonSitemap, 'limit', 5):
         pages = get_sitemap_section_pages()
         assert pages == [
             ('amo', 1),

@@ -73,6 +73,10 @@ class AddonSitemap(Sitemap):
                 for addon in addons
             ),
             *(
+                self.item_tuple(addon.last_updated, addon.slug, 'versions')
+                for addon in addons
+            ),
+            *(
                 self.item_tuple(addon.last_updated, addon.slug, 'privacy')
                 for addon in addons
                 if addon.has_privacy
