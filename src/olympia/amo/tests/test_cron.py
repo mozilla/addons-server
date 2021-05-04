@@ -117,25 +117,39 @@ def test_write_sitemaps():
     sitemaps_dir = settings.SITEMAP_STORAGE_PATH
     assert len(os.listdir(sitemaps_dir)) == 0
     write_sitemaps()
-    assert len(os.listdir(sitemaps_dir)) == len(sitemaps) + 1  # 1 is the index
+    assert len(os.listdir(sitemaps_dir)) == (
+        sum(len(sitemap.apps or ('',)) for sitemap in sitemaps.values())
+        + 1  # 1 is the index
+    )
 
     with open(os.path.join(sitemaps_dir, 'sitemap.xml')) as sitemap:
         contents = sitemap.read()
-        for section in sitemaps:
-            assert (
-                f'<sitemap><loc>http://testserver/sitemap.xml?section={section}</loc>'
-                in (contents)
-            )
+        entry = '<sitemap><loc>http://testserver/sitemap.xml?{params}</loc></sitemap>'
+        for section, sitemap in sitemaps.items():
+            if not sitemap.apps:
+                assert entry.format(params=f'section={section}') in contents
+            else:
+                for app in sitemap.apps:
+                    assert (
+                        entry.format(
+                            params=f'section={section}&amp;app_name={app.short}'
+                        )
+                        in contents
+                    )
 
     with open(os.path.join(sitemaps_dir, 'sitemap-amo.xml')) as sitemap:
         contents = sitemap.read()
         assert '<url><loc>http://testserver/en-US/about</loc>' in contents
 
-    with open(os.path.join(sitemaps_dir, 'sitemap-addons.xml')) as sitemap:
+    with open(os.path.join(sitemaps_dir, 'sitemap-addons-firefox.xml')) as sitemap:
         contents = sitemap.read()
         assert '<url><loc>http://testserver/en-US/firefox/' in contents
 
-    with open(os.path.join(sitemaps_dir, 'sitemap-collections.xml')) as sitemap:
+    with open(os.path.join(sitemaps_dir, 'sitemap-addons-android.xml')) as sitemap:
+        contents = sitemap.read()
+        assert '<url><loc>http://testserver/en-US/android/' in contents
+
+    with open(os.path.join(sitemaps_dir, 'sitemap-collections-firefox.xml')) as sitemap:
         contents = sitemap.read()
         assert (
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '

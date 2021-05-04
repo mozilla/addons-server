@@ -1,6 +1,8 @@
+from contextlib import contextmanager
 from threading import local
 
 from django import urls
+from django.http import HttpRequest
 
 
 # Get a pointer to Django's reverse and resolve because we're going to hijack
@@ -59,3 +61,22 @@ def resolve(path, urlconf=None):
 
 # Replace Django's resolve with our own.
 urls.resolve = resolve
+
+
+@contextmanager
+def override_url_prefix(*, app_name=None, locale=None):
+    from olympia.amo.urlresolvers import Prefixer
+
+    old_prefixer = get_url_prefix()
+    request = HttpRequest()
+    request.META['SCRIPT_NAME'] = ''
+    new_prefixer = Prefixer(request)
+    if app_name:
+        new_prefixer.app = app_name
+    if locale:
+        new_prefixer.locale = locale
+    try:
+        set_url_prefix(new_prefixer)
+        yield
+    finally:
+        set_url_prefix(old_prefixer)
