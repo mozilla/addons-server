@@ -242,14 +242,14 @@ class AccountSitemap(Sitemap):
             theme_pages_needed = math.ceil(
                 (user.theme_count or 1) / THEMES_BY_AUTHORS_PAGE_SIZE
             )
-            page_combinations_needed = (
-                (ext_page, theme_page)
-                for ext_page in range(1, extension_pages_needed + 1)
-                for theme_page in range(1, theme_pages_needed + 1)
-            )
             items.extend(
-                self.item_tuple(user.addons_updated, user.id, ext_page, theme_page)
-                for ext_page, theme_page in page_combinations_needed
+                self.item_tuple(user.addons_updated, user.id, ext_page, 1)
+                for ext_page in range(1, extension_pages_needed + 1)
+            )
+            # start themes at 2 because we don't want (1, 1) twice
+            items.extend(
+                self.item_tuple(user.addons_updated, user.id, 1, theme_page)
+                for theme_page in range(2, theme_pages_needed + 1)
             )
         return items
 
