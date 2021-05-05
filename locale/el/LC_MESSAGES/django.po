@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-05-01 09:29+0000\n"
+"PO-Revision-Date: 2021-05-05 08:41+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -237,7 +237,7 @@ msgid "Oops! Not allowed."
 msgstr "Ωχ! Δεν επιτρέπεται."
 
 msgid "You tried to do something that you weren't allowed to."
-msgstr "Προσπαθήσατε να κάνετε κάτι που δεν σάς επιτρέπεται."
+msgstr "Προσπαθήσατε να κάνετε κάτι που δεν σας επιτρέπεται."
 
 msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
@@ -272,7 +272,7 @@ msgstr ""
 "<h1>Λυπούμαστε, αλλά δεν μπορούμε να βρούμε αυτό που ψάχνετε.</h1> <p> Η σελίδα ή το αρχείο που ζητήσατε δεν βρέθηκε στην ιστοσελίδα μας. Πιθανώς, κάνατε κλικ σε ένα σύνδεσμο που είναι παρωχημένος, "
 "ή πληκτρολογήσατε λάθος τη διεύθυνση. </p> <ul> <li>Αν πληκτρολογήσατε τη διεύθυνση, παρακαλούμε ελέγξτε την ξανά για λάθη.</li> <li> Αν ακολουθήσατε ένα σύνδεσμο από κάπου, παρακαλούμε "
 "%(open_bug_link)sαναφέρετε ένα ζήτημα%(close_bug_link)s. Πείτε μας από πού ήρθατε και τι ψάχνετε και θα κάνουμε ό,τι καλύτερο μπορούμε για να το διορθώσουμε. </li> </ul> <p>Ή μπορείτε απλά να "
-"μεταβείτε σε μερικές από τις πιο δημοφιλείς σελίδες στην ιστοσελίδα μας.</p> <ul> <li>Σάς ενδιαφέρει μια <a href=\"%(rec)s\">λίστα με τα προτεινόμενα πρόσθετα</a>;</li> <li> Θέλετε να <a "
+"μεταβείτε σε μερικές από τις πιο δημοφιλείς σελίδες στην ιστοσελίδα μας.</p> <ul> <li>Σας ενδιαφέρει μια <a href=\"%(rec)s\">λίστα με τα προτεινόμενα πρόσθετα</a>;</li> <li> Θέλετε να <a "
 "href=\"%(search)s\">αναζητήσετε πρόσθετα</a>; Μπορείτε να πάτε στη <a href=\"%(search)s\">σελίδα αναζήτησης</a> ή απλά χρησιμοποιήστε το πεδίο αναζήτησης παραπάνω. </li> <li> Αν προτιμάτε να "
 "ξεκινήσετε από την αρχή, απλά μεταβείτε στην <a href=\"%(home)s\">αρχική σελίδα προσθέτων</a>. </li> </ul>"
 
@@ -1072,7 +1072,7 @@ msgstr "Ειδοποιήσεις & ενημερώσεις"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
 msgstr ""
-"Κάντε λήψη επεκτάσεων του Firefox που θα σάς βοηθήσουν να παραμείνετε ενημερωμένοι, να παρακολουθείτε εργασίες, να βελτιώσετε την αποδοτικότητά σας. Βρείτε επεκτάσεις που κάνουν ανανέωση καρτελών, "
+"Κάντε λήψη επεκτάσεων του Firefox που θα σας βοηθήσουν να παραμείνετε ενημερωμένοι, να παρακολουθείτε εργασίες, να βελτιώσετε την αποδοτικότητά σας. Βρείτε επεκτάσεις που κάνουν ανανέωση καρτελών, "
 "διαχειρίζονται την παραγωγικότητα και πολλά άλλα."
 
 msgid "Appearance"
@@ -1094,7 +1094,7 @@ msgstr "Διαχείριση λήψεων"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
 msgstr ""
-"Κάντε λήψη επεκτάσεων του Firefox που μπορούν να σάς βοηθήσουν να κάνετε λήψη περιεχομένου ιστού, μουσικής και βίντεο. Μπορείτε επίσης να βρείτε επεκτάσεις για διαχείριση λήψεων, κοινή χρήση αρχείων"
+"Κάντε λήψη επεκτάσεων του Firefox που μπορούν να σας βοηθήσουν να κάνετε λήψη περιεχομένου ιστού, μουσικής και βίντεο. Μπορείτε επίσης να βρείτε επεκτάσεις για διαχείριση λήψεων, κοινή χρήση αρχείων"
 " και πολλά άλλα."
 
 msgid "Feeds, News & Blogging"
@@ -1191,7 +1191,7 @@ msgstr "Επιδόσεις"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
 msgstr ""
-"Κάντε λήψη επεκτάσεων που ενισχύουν τις επιδόσεις του Firefox. Βρείτε επεκτάσεις που σάς βοηθούν να είστε πιο παραγωγικοί και αποτελεσματικοί, αποκλείοντας ενοχλητικές διαφημίσεις και πολλά άλλα."
+"Κάντε λήψη επεκτάσεων που ενισχύουν τις επιδόσεις του Firefox. Βρείτε επεκτάσεις που σας βοηθούν να είστε πιο παραγωγικοί και αποτελεσματικοί, αποκλείοντας ενοχλητικές διαφημίσεις και πολλά άλλα."
 
 msgid "Photos & Media"
 msgstr "Εικόνες & πολυμέσα"
@@ -1219,7 +1219,7 @@ msgid "Sports & Games"
 msgstr "Αθλητισμός & παιχνίδια"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr "Κάντε λήψη επεκτάσεων του Firefox που ενισχύουν την ψυχαγωγική σάς εμπειρία με βελτιώσεις ζωντανών ροών, αθλητικές ενημερώσεις και πολλά άλλα."
+msgstr "Κάντε λήψη επεκτάσεων του Firefox που ενισχύουν την ψυχαγωγική σας εμπειρία με βελτιώσεις ζωντανών ροών, αθλητικές ενημερώσεις και πολλά άλλα."
 
 msgid "User Interface"
 msgstr "Περιβάλλον χρήστη"
@@ -2507,7 +2507,7 @@ msgid "Continue"
 msgstr "Συνέχεια"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
-msgstr "Μπορούν οι άλλοι χρήστες να μοιραστούν το πρόσθετό σας, εφόσον σάς αναφέρουν ως δημιουργό;"
+msgstr "Μπορούν οι άλλοι χρήστες να μοιραστούν το πρόσθετό σας, εφόσον σας αναφέρουν ως δημιουργό;"
 
 msgid "Can others make commercial use of your Add-on?"
 msgstr "Μπορούν οι άλλοι χρήστες να κάνουν εμπορική χρήση του προσθέτου σας;"
@@ -3585,7 +3585,7 @@ msgstr[1] "{0} προειδοποιήσεις"
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Block invisible trackers and spying ads that follow you around the web."
-msgstr "Φραγή αόρατων ιχνηλατών και κατασκοπευτικών διαφημίσεων που σάς ακολουθούν στο διαδίκτυο."
+msgstr "Φραγή αόρατων ιχνηλατών και κατασκοπευτικών διαφημίσεων που σας ακολουθούν στο διαδίκτυο."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3605,7 +3605,7 @@ msgstr "Εκτελέστε αντίστροφες αναζητήσεις εικ�
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr "Φραγή διαφημίσεων και προστασία απορρήτου. Μια απλή ρύθμιση σας επιτρέπει να ελέγξετε τις διαφημίσεις που βλέπετε και το πώς καταγράφεστε στο διαδίκτυο."
+msgstr "Φραγή διαφημίσεων και προστασία απορρήτου. Μια απλή ρύθμιση σάς επιτρέπει να ελέγξετε τις διαφημίσεις που βλέπετε και το πώς καταγράφεστε στο διαδίκτυο."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3828,7 +3828,7 @@ msgstr "Ένα υπερέχον εργαλείο λήψεων μόνο για Wi
 
 #. editorial content for the discovery pane.
 msgid "Find out who's tracking you and where they may be sharing your information."
-msgstr "Μάθετε ποιοι σάς καταγράφουν και πού μπορεί να μοιραστούν τις πληροφορίες σας."
+msgstr "Μάθετε ποιοι σας καταγράφουν και πού μπορεί να μοιραστούν τις πληροφορίες σας."
 
 #. editorial content for the discovery pane.
 msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
@@ -4287,7 +4287,7 @@ msgstr "Αποθήκευση ολόκληρων σελίδων — ή τμημά
 
 #. editorial content for the discovery pane.
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
-msgstr "Περικοπή περιττών συμφωνιών για όρους υπηρεσιών. Αυτή η έξυπνη επέκταση σας βοηθά να καταλάβετε γρήγορα σε τι σας ζητείται να συμφωνήσετε."
+msgstr "Περικοπή περιττών συμφωνιών για όρους υπηρεσιών. Αυτή η έξυπνη επέκταση σάς βοηθά να καταλάβετε γρήγορα σε τι σας ζητείται να συμφωνήσετε."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4691,7 +4691,7 @@ msgid "Did the add-on work as you expected it to?"
 msgstr "Λειτούργησε το πρόσθετο όπως αναμένατε;"
 
 msgid "What features did you like or dislike?"
-msgstr "Ποια χαρακτηριστικά (δεν) σάς άρεσαν;"
+msgstr "Ποια χαρακτηριστικά (δεν) σας άρεσαν;"
 
 msgid "Was it useful?"
 msgstr "Ήταν χρήσιμο;"
@@ -6252,7 +6252,7 @@ msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
 msgstr ""
-"Πριν ξεκινήσετε, παρακαλώ διαβάστε και αποδεχτείτε τη συμφωνία διανομής προσθέτων του Firefox, καθώς και στις πολιτικές και τους κανόνες αξιολόγησης. Η συμφωνία διανομής προσθέτων του Firefox θα σάς"
+"Πριν ξεκινήσετε, παρακαλώ διαβάστε και αποδεχτείτε τη συμφωνία διανομής προσθέτων του Firefox, καθώς και στις πολιτικές και τους κανόνες αξιολόγησης. Η συμφωνία διανομής προσθέτων του Firefox θα σας"
 " παραπέμψει στη σημείωση απορρήτου μας, που εξηγεί πώς χειριζόμαστε τις πληροφορίες σας."
 
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
