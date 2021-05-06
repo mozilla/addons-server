@@ -41,7 +41,7 @@ class Migration(migrations.Migration):
                 ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
                 ('id', olympia.amo.fields.PositiveAutoField(primary_key=True, serialize=False)),
-                ('is_active', models.BooleanField(null=True)),
+                ('is_active', models.NullBooleanField(default=True)),
                 ('type', models.PositiveIntegerField(choices=[(1, 1)], default=0)),
                 ('key', models.CharField(db_index=True, max_length=255, unique=True)),
                 ('secret', aesfield.field.AESField(aes_key='api_key:secret', aes_method=getattr(settings, 'AES_METHOD', 'aesfield.default'), aes_prefix='aes:')),

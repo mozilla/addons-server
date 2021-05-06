@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='scannerresult',
             name='has_matches',
-            field=models.BooleanField(null=True),
+            field=models.NullBooleanField(),
         ),
         migrations.AddField(
             model_name='scannerresult',

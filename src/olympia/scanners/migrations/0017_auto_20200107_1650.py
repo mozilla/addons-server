@@ -76,7 +76,7 @@ class Migration(migrations.Migration):
                 ('modified', models.DateTimeField(auto_now=True)),
                 ('results', django_extensions.db.fields.json.JSONField(default=[])),
                 ('scanner', models.PositiveSmallIntegerField(choices=[(1, 'customs'), (2, 'wat'), (3, 'yara')])),
-                ('has_matches', models.BooleanField(null=True)),
+                ('has_matches', models.NullBooleanField()),
                 ('state', models.PositiveSmallIntegerField(blank=True, choices=[(None, 'Unknown'), (1, 'True positive'), (2, 'False positive')], default=None, null=True)),
                 ('matched_rules', models.ManyToManyField(through='scanners.ScannerQueryMatch', to='scanners.ScannerQueryRule')),
                 ('version', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='scannerqueryresults', to='versions.Version')),

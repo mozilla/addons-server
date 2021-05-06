@@ -41,7 +41,7 @@ class Migration(migrations.Migration):
                         to='addons.Addon',
                     ),
                 ),
-                ('in_progress', models.BooleanField(null=True)),
+                ('in_progress', models.NullBooleanField(default=None)),
             ],
             options={
                 'get_latest_by': 'created',

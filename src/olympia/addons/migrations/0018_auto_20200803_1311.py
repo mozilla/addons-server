@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='addonreviewerflags',
             name='notified_about_expiring_info_request',
-            field=models.BooleanField(null=True),
+            field=models.NullBooleanField(default=None),
         ),
     ]

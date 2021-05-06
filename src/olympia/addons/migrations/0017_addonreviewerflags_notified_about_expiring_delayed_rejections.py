@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='addonreviewerflags',
             name='notified_about_expiring_delayed_rejections',
-            field=models.BooleanField(null=True),
+            field=models.NullBooleanField(default=None),
         ),
     ]
