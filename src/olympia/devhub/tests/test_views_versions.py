@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import datetime
+import os.path
 import zipfile
 
 from django.core import mail
@@ -769,7 +770,9 @@ class TestVersionEditDetails(TestVersionEditBase):
             with zipfile.ZipFile(source_file, 'w') as zip_file:
                 zip_file.writestr('foo', 'a' * (2 ** 21))
             source_file.seek(0)
-            self.version.source = DjangoFile(source_file)
+            self.version.source.save(
+                os.path.basename(source_file.name), DjangoFile(source_file)
+            )
             self.version.save()
 
         response = self.client.get(self.url)
