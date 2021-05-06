@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-05-04 14:35+0000\n"
-"Last-Translator: lksmasin <lksmasin@gmail.com>\n"
+"PO-Revision-Date: 2021-05-06 10:10+0000\n"
+"Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -290,13 +290,13 @@ msgstr ""
 "href=\"https://github.com/mozilla/addons/issues/new\">nahlášením této chyby</a> včetně podrobností, jak jste se na tuto stránku dostali.</p>"
 
 msgid "Register or Log in"
-msgstr ""
+msgstr "Registrace nebo přihlášení"
 
 msgid "Email:"
 msgstr "E-mail:"
 
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 msgid "No results found"
 msgstr "Nenalezeny žádné výsledky"
@@ -2765,7 +2765,7 @@ msgid "Do you use any of the following?"
 msgstr "Používáte něco z tohoto?"
 
 msgid "Code generators or minifiers"
-msgstr ""
+msgstr "generátor kódu nebo minifikátory"
 
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
 msgstr "Nástroje, které slučují více souborů do jednoho souboru, jako je např. <span class=\"tech-emphasis\"> webpack </span>"
@@ -3143,7 +3143,7 @@ msgid "Visit the Firefox Extension Workshop"
 msgstr "Navštivte web Workshop tvorby rozšíření"
 
 msgid "Connect with us"
-msgstr ""
+msgstr "Spojte se s námi"
 
 msgid "Twitter"
 msgstr ""
@@ -4339,7 +4339,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Blues & Yellows"
-msgstr ""
+msgstr "Modrožlutá"
 
 #. editorial content for the discovery pane.
 msgid "Forest Theme"
@@ -4347,7 +4347,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
-msgstr ""
+msgstr "Některé weby mají potíže s přehráváním videí v systému Android. Tady je oprava."
 
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
