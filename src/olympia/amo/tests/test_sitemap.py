@@ -203,15 +203,7 @@ def test_accounts_sitemap():
         (extension.last_updated, user_with_extensions.id, 1, 1),
     ]
     for item in sitemap.items():
-        url = reverse('users.profile', args=[item.id])
-        if item[2] > 1 and item[3] > 1:
-            assert sitemap.location(item) == url + f'?page_e={item[2]}&page_t={item[3]}'
-        elif item[2] > 1:
-            assert sitemap.location(item) == url + f'?page_e={item[2]}'
-        elif item[3] > 1:
-            assert sitemap.location(item) == url + f'?page_t={item[3]}'
-        else:
-            assert sitemap.location(item) == url
+        assert sitemap.location(item) == reverse('users.profile', args=[item.id])
     # add some extra extensions and themes to test pagination
     extra_extension_a = addon_factory(users=(user_with_extensions, user_with_both))
     extra_extension_b = addon_factory(users=(user_with_extensions, user_with_both))
@@ -231,9 +223,8 @@ def test_accounts_sitemap():
         paginated_items = list(sitemap.items())
     assert paginated_items == [
         (extra_theme_c.last_updated, user_with_both.id, 1, 1),
-        (extra_theme_c.last_updated, user_with_both.id, 1, 2),
         (extra_theme_c.last_updated, user_with_both.id, 2, 1),
-        (extra_theme_c.last_updated, user_with_both.id, 2, 2),
+        (extra_theme_c.last_updated, user_with_both.id, 1, 2),
         (extra_theme_c.last_updated, user_with_themes.id, 1, 1),
         (extra_theme_c.last_updated, user_with_themes.id, 1, 2),
         (extra_extension_b.last_updated, user_with_extensions.id, 1, 1),
