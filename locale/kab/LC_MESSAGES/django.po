@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-05-06 17:31+0000\n"
+"PO-Revision-Date: 2021-05-06 17:33+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4405,7 +4405,7 @@ msgstr "Sekles, daɣen err-d accaren. Llan twuriwin n usekles awurman akked umta
 
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
-msgstr ""
+msgstr "Sekles tigrummiwin n yiccaren s yisem n ticraḍ n yisebtar yelhan i usemres."
 
 #. editorial content for the primary hero shelves.
 msgid "Tabs and bookmarks neatly organized in a Firefox side view."
@@ -4921,7 +4921,7 @@ msgid "Total Weight"
 msgstr "Taẓayt tasemdayt"
 
 msgid "Maliciousness Score"
-msgstr ""
+msgstr "Agmuḍ n yir asemres"
 
 msgid "Pending Rejection Deadline"
 msgstr "Deg uraǧu n tenzagt n tugin."
