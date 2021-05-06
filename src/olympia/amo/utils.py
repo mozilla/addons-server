@@ -726,6 +726,11 @@ def resize_image(source, destination, size=None, *, format='png', quality=80):
             im.save(dest_file, 'png', icc_profile=None)
             pngcrush_image(destination)
         else:
+            if source_fileext == '.png':
+                # Create a white rgba background for transparency
+                white_background = Image.new('RGBA', im.size, 'WHITE')
+                white_background.paste(im, (0, 0), im)
+                im = white_background
             im = im.convert('RGB')
             im.save(dest_file, 'JPEG', quality=quality)
     new_size = im.size
