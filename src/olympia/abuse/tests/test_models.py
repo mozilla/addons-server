@@ -122,6 +122,16 @@ class TestAbuse(TestCase):
             (16, 'System Add-on'),
             (17, 'Temporary Add-on'),
             (18, 'Unknown'),
+            (19, 'Windows Registry (User)'),
+            (20, 'Windows Registry (Global)'),
+            (21, 'System Add-on (Profile)'),
+            (22, 'System Add-on (Update)'),
+            (23, 'System Add-on (Bundled)'),
+            (24, 'System Add-on (Builtin)'),
+            (25, 'System Add-on (User)'),
+            (26, 'Application Add-on'),
+            (27, 'System Add-on (OS Share)'),
+            (28, 'System Add-on (OS Local)'),
             (127, 'Other'),
         )
 
@@ -145,6 +155,16 @@ class TestAbuse(TestCase):
             (16, 'system_addon'),
             (17, 'temporary_addon'),
             (18, 'unknown'),
+            (19, 'winreg_app_user'),
+            (20, 'winreg_app_global'),
+            (21, 'app_system_profile'),
+            (22, 'app_system_addons'),
+            (23, 'app_system_defaults'),
+            (24, 'app_builtin'),
+            (25, 'app_system_user'),
+            (26, 'app_global'),
+            (27, 'app_system_share'),
+            (28, 'app_system_local'),
             (127, 'other'),
         )
 

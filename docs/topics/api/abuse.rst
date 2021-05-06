@@ -137,21 +137,31 @@ to if necessary.
              about_debugging  Add-ons Debugging
            about_preferences  Preferences
                          amo  AMO
+                 app_builtin  System Add-on (Builtin)
+                  app_global  Application Add-on
                  app_profile  App Profile
+           app_system_addons  System Add-on (Update)
+         app_system_defaults  System Add-on (Bundled)
+            app_system_local  System Add-on (OS Local)
+          app_system_profile  System Add-on (Profile)
+            app_system_share  System Add-on (OS Share)
+             app_system_user  System Add-on (User)
                        disco  Disco Pane
                 distribution  Included in build
-                   extension  Extension
            enterprise_policy  Enterprise Policy
+                   extension  Extension
                     file_url  File URL
                   gmp_plugin  GMP Plugin
                     internal  Internal
+                       other  Other
                       plugin  Plugin
                        rtamo  Return To AMO
                         sync  Sync
                 system_addon  System Add-on
              temporary_addon  Temporary Add-on
                      unknown  Unknown
-                       other  Other
+           winreg_app_global  Windows Registry (Global)
+             winreg_app_user  Windows Registry (User)
  ===========================  =================================================
 
 .. _abuse-addon_signature-parameter:
