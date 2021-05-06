@@ -1865,10 +1865,14 @@ class AddonReviewerFlags(ModelBase):
     needs_admin_theme_review = models.BooleanField(default=False)
     auto_approval_disabled = models.BooleanField(default=False)
     auto_approval_disabled_unlisted = models.BooleanField(default=None, null=True)
-    auto_approval_disabled_until_next_approval = models.BooleanField(default=None, null=True )
+    auto_approval_disabled_until_next_approval = models.BooleanField(
+        default=None, null=True
+    )
     auto_approval_delayed_until = models.DateTimeField(default=None, null=True)
     notified_about_auto_approval_delay = models.BooleanField(default=None, null=True)
-    notified_about_expiring_delayed_rejections = models.BooleanField(default=None, null=True)
+    notified_about_expiring_delayed_rejections = models.BooleanField(
+        default=None, null=True
+    )
 
 
 class AddonRegionalRestrictions(ModelBase):
