@@ -502,7 +502,9 @@ class TestDownloadSource(TestCase):
         self.source_file = temp.NamedTemporaryFile(suffix='.zip', dir=tdir)
         self.source_file.write(b'a' * (2 ** 21))
         self.source_file.seek(0)
-        self.version.source = DjangoFile(self.source_file)
+        self.version.source.save(
+            os.path.basename(self.source_file.name), DjangoFile(self.source_file)
+        )
         self.version.save()
         self.filename = os.path.basename(self.version.source.path)
         self.user = UserProfile.objects.get(email='del@icio.us')
