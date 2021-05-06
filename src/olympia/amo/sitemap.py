@@ -21,6 +21,25 @@ from olympia.bandwagon.models import Collection
 from olympia.users.models import UserProfile
 
 
+# These constants are from:
+# https://github.com/mozilla/addons-frontend/blob/master/src/amo/reducers/addonsByAuthors.js
+EXTENSIONS_BY_AUTHORS_PAGE_SIZE = 10
+THEMES_BY_AUTHORS_PAGE_SIZE = 12
+# top 10 locales by visitor from GA (as of May 2021)
+FRONTEND_LANGUAGES = [
+    'de',
+    'en-GB',
+    'en-US',
+    'es',
+    'fr',
+    'ja',
+    'pl',
+    'pt-BR',
+    'ru',
+    'zh-CN',
+]
+
+
 # Copied over from django because we want the 3.2 version in 2.2.
 # We can delete this after we upgrade to django3.2
 # https://github.com/django/django/blob/3.2/django/contrib/sitemaps/__init__.py
@@ -102,8 +121,8 @@ class DjangoSitemap:
         if site is None:
             if site is None:
                 raise ImproperlyConfigured(
-                    "To use sitemaps, either enable the sites framework or pass "
-                    "a Site/RequestSite object in your view."
+                    'To use sitemaps, either enable the sites framework or pass '
+                    'a Site/RequestSite object in your view.'
                 )
         return site.domain
 
@@ -168,19 +187,24 @@ class DjangoSitemap:
         return urls
 
 
-# These constants are from:
-# https://github.com/mozilla/addons-frontend/blob/master/src/amo/reducers/addonsByAuthors.js
-EXTENSIONS_BY_AUTHORS_PAGE_SIZE = 10
-THEMES_BY_AUTHORS_PAGE_SIZE = 12
-
-
 class Sitemap(DjangoSitemap):
     limit = 1000
     apps = amo.APP_USAGE
+    i18n = True
+    languages = FRONTEND_LANGUAGES
+    alternates = True
+    # x_default = False  # TODO: enable this when we can validate it works well
+
+    def _location(self, item, force_lang_code=None):
+        if self.i18n:
+            obj, lang_code = item
+            # modified from Django implementation - we don't rely on locale for urls
+            with override_url_prefix(locale=(force_lang_code or lang_code)):
+                return self.location(obj)
+        return self.location(item)
 
 
 class AddonSitemap(Sitemap):
-    # i18n = True  # TODO: support all localized urls
     item_tuple = namedtuple(
         'Item', ['last_updated', 'slug', 'urlname', 'page'], defaults=(1,)
     )
@@ -226,7 +250,6 @@ class AddonSitemap(Sitemap):
 
 
 class AMOSitemap(Sitemap):
-    # i18n = True  # TODO: support all localized urls
     lastmod = datetime.datetime.now()
     apps = None  # because some urls are app-less, we specify per item
 
@@ -242,7 +265,6 @@ class AMOSitemap(Sitemap):
             ('browse.language-tools', amo.FIREFOX),
             # server pages
             ('devhub.index', None),
-            ('contribute.json', None),
             ('apps.appversions', amo.FIREFOX),
             ('apps.appversions', amo.ANDROID),
         ]
@@ -257,7 +279,6 @@ class AMOSitemap(Sitemap):
 
 
 class CategoriesSitemap(Sitemap):
-    # i18n = True  # TODO: support all localized urls
     lastmod = datetime.datetime.now()
     apps = (amo.FIREFOX,)  # category pages aren't supported on android
 
@@ -296,8 +317,6 @@ class CategoriesSitemap(Sitemap):
 
 
 class CollectionSitemap(Sitemap):
-    # i18n = True  # TODO: support all localized urls
-
     def items(self):
         return (
             Collection.objects.filter(author_id=settings.TASK_USER_ID)
@@ -313,7 +332,6 @@ class CollectionSitemap(Sitemap):
 
 
 class AccountSitemap(Sitemap):
-    # i18n = True  # TODO: support all localized urls
     item_tuple = namedtuple(
         'AccountItem',
         ['addons_updated', 'id', 'extension_page', 'theme_page'],

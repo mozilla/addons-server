@@ -546,7 +546,7 @@ class TestSitemap(TestCase):
         assert result.status_code == 200
         assert result.get('Content-Type') == 'application/xml'
         assert (
-            b'<url><loc>http://testserver/en-US/about</loc><lastmod>2021-04-08<'
+            b'<url><loc>http://testserver/en-US/about</loc><lastmod>2021-05-13<'
             in result.getvalue()
         )
 
@@ -555,7 +555,7 @@ class TestSitemap(TestCase):
         assert result.status_code == 200
         assert result.get('Content-Type') == 'application/xml'
         assert (
-            b'<loc>http://testserver/en-US/firefox/addon/delicious-pierogi/</loc>'
+            b'<loc>http://testserver/en-US/firefox/addon/delicious-chocolate/</loc>'
             in result.getvalue()
         )
 
@@ -564,7 +564,7 @@ class TestSitemap(TestCase):
         assert result.status_code == 200
         assert result.get('Content-Type') == 'application/xml'
         assert (
-            b'<loc>http://testserver/en-US/android/addon/delicious-pierogi/</loc>'
+            b'<loc>http://testserver/en-US/android/addon/delicious-chocolate/</loc>'
             in result.getvalue()
         )
 
