@@ -119,6 +119,22 @@ def test_resize_transparency_for_P_mode_bug_1181221():
             os.remove(dest)
 
 
+def test_resize_transparency_to_jpeg_has_white_background():
+    src = os.path.join(
+        settings.ROOT, 'src', 'olympia', 'amo', 'tests', 'images', 'transparent.png'
+    )
+    dest = tempfile.mkstemp(dir=settings.TMP_PATH)[1]
+    expected = src.replace('.png', '-expected.jpg')
+    try:
+        resize_image(src, dest, (32, 32), format='jpg')
+        with open(dest, 'rb') as dfh:
+            with open(expected, 'rb') as efh:
+                assert dfh.read() == efh.read()
+    finally:
+        if os.path.exists(dest):
+            os.remove(dest)
+
+
 @pytest.mark.parametrize(
     'test_input,expected',
     [
