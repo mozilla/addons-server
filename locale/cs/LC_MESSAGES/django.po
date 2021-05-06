@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-05-06 10:10+0000\n"
+"PO-Revision-Date: 2021-05-06 14:42+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -940,16 +940,14 @@ msgstr "Doplněk {addon} {version} znovu podepsán (původně {0})."
 msgid "Version re-signed"
 msgstr "Verze znovu podepsána"
 
-#, fuzzy
 msgid "{user} force-disabled {addon}."
-msgstr "Vynutit zakázání doplňku"
+msgstr ""
 
 msgid "Force disabled"
 msgstr ""
 
-#, fuzzy
 msgid "{user} force-enabled {addon}."
-msgstr "Vynutit povolení doplňku"
+msgstr ""
 
 msgid "Force enabled"
 msgstr ""
@@ -3138,9 +3136,8 @@ msgid "Whether you’re new to extension development, polishing up or porting an
 msgstr ""
 
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Visit the Firefox Extension Workshop"
-msgstr "Navštivte web Workshop tvorby rozšíření"
+msgstr ""
 
 msgid "Connect with us"
 msgstr "Spojte se s námi"
@@ -3333,9 +3330,8 @@ msgstr "Zdrojový kód"
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
 msgstr ""
 
-#, fuzzy
 msgid "File {file_id}"
-msgstr "Soubor {file_id} ({platform})"
+msgstr "Soubor {file_id}"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
@@ -4443,28 +4439,24 @@ msgid "Learn More"
 msgstr "Dozvědět se více"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended extensions"
-msgstr "Doporučené"
+msgstr "Doporučená rozšíření"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more recommended extensions"
-msgstr "Zobrazit všechna rozšíření"
+msgstr "Další doporučená rozšíření"
 
 #. editorial content for the homepage shelves.
 msgid "Popular themes"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular themes"
-msgstr "Vyberte barvy pro váš motiv vzhledu"
+msgstr "Další oblíbené vzhledy"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Enhanced privacy extensions"
-msgstr "Zobrazit všechna rozšíření"
+msgstr "Rozšíření zaměřená na zvýšení soukromí"
 
 #. editorial content for the homepage shelves.
 msgid "See more enhanced privacy extensions"
@@ -4472,19 +4464,16 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Popular extensions"
-msgstr "Podívejte se na další rozšíření"
+msgstr "Oblíbená rozšíření"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular extensions"
-msgstr "Zobrazit všechna rozšíření"
+msgstr "Další oblíbená rozšíření"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended themes"
-msgstr "Doporučené"
+msgstr "Doporučené motivy vzhledu"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
@@ -5427,9 +5416,8 @@ msgstr ""
 msgid "Enable Listed Auto-Approval"
 msgstr ""
 
-#, fuzzy
 msgid "Disable Unlisted Auto-Approval"
-msgstr "Zpozdit automatické schvalování"
+msgstr ""
 
 msgid "Enable Unlisted Auto-Approval"
 msgstr ""
