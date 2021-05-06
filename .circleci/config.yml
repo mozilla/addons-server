@@ -529,15 +529,11 @@ jobs:
       - run:
           command: pytest -n 2 -m 'not es_tests and not needs_locales_compilation and not static_assets' -v src/olympia/addons/ src/olympia/versions/ src/olympia/files/ src/olympia/ratings/
 
-  amo-lib-locales-and-signing:
-    <<: *defaults-with-autograph
+  locales:
+    <<: *defaults-with-services
     steps:
       - setup_container:
           install_node_dependencies: true
-      - run:
-          command: pytest -n 2 -m 'not es_tests and not needs_locales_compilation and not static_assets' -v src/olympia/amo/ src/olympia/lib/ src/olympia/signing
-          environment:
-            AUTOGRAPH_SERVER_URL: http://127.0.0.1:5500
       - run: bash ./locale/compile-mo.sh ./locale/
       - run:
           command: pytest -n 2 -m 'needs_locales_compilation' -v src/olympia/
@@ -592,20 +588,20 @@ jobs:
               --ignore src/olympia/addons/ \
               --ignore src/olympia/devhub/ \
               --ignore src/olympia/files/ \
+              --ignore src/olympia/lib/crypto/ \
               --ignore src/olympia/reviewers/ \
               --ignore src/olympia/ratings/ \
-              --ignore src/olympia/amo/ \
-              --ignore src/olympia/lib/ \
               --ignore src/olympia/signing \
               --ignore src/olympia/versions/ \
               --ignore src/olympia/zadmin
 
-  reviewers-and-zadmin:
+  reviewers-signing-zadmin:
     <<: *defaults-with-autograph
     steps:
-      - setup_container
+      - setup_container:
+          install_node_dependencies: true
       - run:
-          command: pytest -n 2 -m 'not es_tests and not needs_locales_compilation and not static_assets' -v src/olympia/reviewers/ src/olympia/zadmin/
+          command: pytest -n 2 -m 'not es_tests and not needs_locales_compilation and not static_assets' -v src/olympia/reviewers/ src/olympia/zadmin/ src/olympia/signing/ src/olympia/lib/crypto/
           environment:
             AUTOGRAPH_SERVER_URL: http://127.0.0.1:5500
       - run:
@@ -655,7 +651,7 @@ workflows:
               djangoversion:
                 - django22
                 - django32
-      - amo-lib-locales-and-signing:
+      - locales:
           matrix:
             parameters:
               djangoversion:
@@ -681,7 +677,7 @@ workflows:
               djangoversion:
                 - django22
                 - django32
-      - reviewers-and-zadmin:
+      - reviewers-signing-zadmin:
           matrix:
             parameters:
               djangoversion:
