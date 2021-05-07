@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-05-06 14:42+0000\n"
+"PO-Revision-Date: 2021-05-07 15:09+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -137,7 +137,7 @@ msgid "Reviewer Tools (unlisted)"
 msgstr "Nástroje pro redaktory (neuvedené)"
 
 msgid "Reviewer links"
-msgstr ""
+msgstr "Odkazy pro redaktora"
 
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
@@ -890,19 +890,19 @@ msgid "Block for {0} added to Blocklist."
 msgstr ""
 
 msgid "Block added"
-msgstr ""
+msgstr "Blok přidán"
 
 msgid "Block for {0} edited in Blocklist."
 msgstr ""
 
 msgid "Block edited"
-msgstr ""
+msgstr "Blok upraven"
 
 msgid "Block for {0} deleted from Blocklist."
 msgstr ""
 
 msgid "Block deleted"
-msgstr ""
+msgstr "Blok odstraněn"
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr ""
@@ -944,13 +944,13 @@ msgid "{user} force-disabled {addon}."
 msgstr ""
 
 msgid "Force disabled"
-msgstr ""
+msgstr "Nuceně vypnuté"
 
 msgid "{user} force-enabled {addon}."
 msgstr ""
 
 msgid "Force enabled"
-msgstr ""
+msgstr "Nuceně povolené"
 
 msgid "Firefox"
 msgstr "Firefox"
