@@ -113,6 +113,16 @@ class AbuseReport(ModelBase):
         ('SYSTEM_ADDON', 16, 'System Add-on'),
         ('TEMPORARY_ADDON', 17, 'Temporary Add-on'),
         ('UNKNOWN', 18, 'Unknown'),
+        ('WINREG_APP_USER', 19, 'Windows Registry (User)'),
+        ('WINREG_APP_GLOBAL', 20, 'Windows Registry (Global)'),
+        ('APP_SYSTEM_PROFILE', 21, 'System Add-on (Profile)'),
+        ('APP_SYSTEM_ADDONS', 22, 'System Add-on (Update)'),
+        ('APP_SYSTEM_DEFAULTS', 23, 'System Add-on (Bundled)'),
+        ('APP_BUILTIN', 24, 'System Add-on (Builtin)'),
+        ('APP_SYSTEM_USER', 25, 'System Add-on (User)'),
+        ('APP_GLOBAL', 26, 'Application Add-on'),
+        ('APP_SYSTEM_SHARE', 27, 'System Add-on (OS Share)'),
+        ('APP_SYSTEM_LOCAL', 28, 'System Add-on (OS Local)'),
         # Our own catch-all. The serializer expects it to be called "OTHER".
         ('OTHER', 127, 'Other'),
     )
