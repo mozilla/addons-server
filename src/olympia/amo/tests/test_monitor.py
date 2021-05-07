@@ -1,7 +1,4 @@
-from django.conf import settings
 from django.test.utils import override_settings
-
-import responses
 
 from unittest.mock import Mock, patch
 
@@ -65,9 +62,3 @@ class TestMonitor(TestCase):
         status, rabbitmq_results = monitors.rabbitmq()
         assert status == ''
         assert rabbitmq_results[0][1]
-
-    def test_signer(self):
-        responses.add_passthru(settings.AUTOGRAPH_CONFIG['server_url'])
-
-        status, signer_result = monitors.signer()
-        assert status == ''

@@ -867,3 +867,10 @@ class TestSignatureInfo(object):
         )
 
         assert self.info.signer_certificate == expected
+
+
+def test_signer_monitor():
+    responses.add_passthru(settings.AUTOGRAPH_CONFIG['server_url'])
+
+    status, signer_result = amo.monitors.signer()
+    assert status == ''
