@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-23 17:47+0000\n"
+"PO-Revision-Date: 2021-05-08 16:40+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -2241,7 +2241,7 @@ msgid "Decline"
 msgstr ""
 
 msgid "Manage Authors & License"
-msgstr ""
+msgstr "Hallitse tekijöitä ja lisenssiä"
 
 msgid "About author roles"
 msgstr ""
@@ -3398,9 +3398,8 @@ msgstr "Lähdekoodi"
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
 msgstr ""
 
-#, fuzzy
 msgid "File {file_id}"
-msgstr "Tiedosto {file_id} ({platform})"
+msgstr "Tiedosto {file_id}"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
@@ -4108,7 +4107,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
-msgstr ""
+msgstr "Nauti oudosta koulutuksesta. Lataa satunnainen Wikipedia-artikkeli aina, kun avaat uuden välilehden."
 
 #. editorial content for the discovery pane.
 msgid "Configure new tab pages to display custom background colors and images."
@@ -5245,9 +5244,8 @@ msgid "Visible"
 msgstr "Näkyvillä"
 
 # 100%
-#, fuzzy
 msgid "Weekly Downloads"
-msgstr "Lataukset"
+msgstr "Viikottaiset lataukset"
 
 msgid "Average Daily Users"
 msgstr ""
