@@ -330,13 +330,18 @@ def test_get_sitemap_section_pages():
     with mock.patch.object(AccountSitemap, 'items', items_mock):
         pages = get_sitemap_section_pages()
         assert pages == [
-            ('amo', 1),
-            ('addons', 1),
-            ('categories', 1),
-            ('collections', 1),
-            ('users', 1),
-            ('users', 2),
-            ('users', 3),
+            ('amo', None, 1),
+            ('addons', 'firefox', 1),
+            ('addons', 'android', 1),
+            ('categories', 'firefox', 1),
+            ('collections', 'firefox', 1),
+            ('collections', 'android', 1),
+            ('users', 'firefox', 1),
+            ('users', 'firefox', 2),
+            ('users', 'firefox', 3),
+            ('users', 'android', 1),
+            ('users', 'android', 2),
+            ('users', 'android', 3),
         ]
 
 
@@ -347,6 +352,8 @@ def test_build_sitemap():
             ('amo', None, 1),
             ('addons', 'firefox', 1),
             ('addons', 'firefox', 2),
+            ('addons', 'android', 1),
+            ('addons', 'android', 2),
         ]
         built = build_sitemap(section=None, app_name=None)
 

@@ -291,10 +291,11 @@ def get_sitemap_section_pages():
             pages.extend((section, None, page) for page in site.paginator.page_range)
             continue
         for app in site.apps:
-            # Add all pages of the sitemap section.
-            pages.extend(
-                (section, app.short, page) for page in site.paginator.page_range
-            )
+            with override_url_prefix(app_name=app.short):
+                # Add all pages of the sitemap section.
+                pages.extend(
+                    (section, app.short, page) for page in site.paginator.page_range
+                )
     return pages
 
 
