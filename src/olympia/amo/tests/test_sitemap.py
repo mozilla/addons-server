@@ -1,6 +1,6 @@
-import datetime
 import os
 from unittest import mock
+from datetime import datetime
 
 from django.conf import settings
 from django.test import override_settings
@@ -52,7 +52,7 @@ def test_addon_sitemap():
     )
     # addon_factory generates licenses by default, but always with a builtin >0
     addon_b = addon_factory(slug='addon-b')
-    addon_b.update(last_updated=datetime.datetime(2020, 1, 1, 1, 1, 1))
+    addon_b.update(last_updated=datetime(2020, 1, 1, 1, 1, 1))
     addon_c = addon_factory(
         slug='addon-c',
         eula='only eula',
@@ -166,10 +166,10 @@ def test_categories_sitemap():
 
 def test_collection_sitemap(mozilla_user):
     collection_a = collection_factory(
-        author=mozilla_user, modified=datetime.datetime(2020, 1, 1, 1, 1, 1)
+        author=mozilla_user, modified=datetime(2020, 1, 1, 1, 1, 1)
     )
     collection_b = collection_factory(
-        author=mozilla_user, modified=datetime.datetime(2020, 2, 2, 2, 2, 2)
+        author=mozilla_user, modified=datetime(2020, 2, 2, 2, 2, 2)
     )
 
     collection_factory(author=user_factory())  # not mozilla user
@@ -307,6 +307,26 @@ def test_get_sitemap_section_pages():
             ('users', 1),
         ]
 
+    # test the default pagination limit
+
+    def items_mock(self):
+        return [
+            AccountSitemap.item_tuple(datetime.now(), user_id, 7, 8)
+            for user_id in range(0, 2001)  # limit is 1000
+        ]
+
+    with mock.patch.object(AccountSitemap, 'items', items_mock):
+        pages = get_sitemap_section_pages()
+        assert pages == [
+            ('amo', 1),
+            ('addons', 1),
+            ('categories', 1),
+            ('collections', 1),
+            ('users', 1),
+            ('users', 2),
+            ('users', 3),
+        ]
+
 
 def test_build_sitemap():
     # test the index sitemap build first
@@ -325,13 +345,13 @@ def test_build_sitemap():
     def items_mock(self):
         return [
             AddonSitemap.item_tuple(
-                datetime.datetime(2020, 10, 2, 0, 0, 0), 'delicious-pierogi', 'detail'
+                datetime(2020, 10, 2, 0, 0, 0), 'delicious-pierogi', 'detail'
             ),
             AddonSitemap.item_tuple(
-                datetime.datetime(2020, 10, 1, 0, 0, 0), 'swanky-curry', 'detail'
+                datetime(2020, 10, 1, 0, 0, 0), 'swanky-curry', 'detail'
             ),
             AddonSitemap.item_tuple(
-                datetime.datetime(2020, 9, 30, 0, 0, 0), 'spicy-pierogi', 'detail'
+                datetime(2020, 9, 30, 0, 0, 0), 'spicy-pierogi', 'detail'
             ),
         ]
 

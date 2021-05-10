@@ -5,7 +5,7 @@ from collections import namedtuple
 from urllib.parse import urlparse
 
 from django.conf import settings
-from django.contrib.sitemaps import Sitemap
+from django.contrib.sitemaps import Sitemap as DjangoSitemap
 from django.db.models import Count, F, Max, Q
 from django.template import loader
 from django.urls import reverse
@@ -24,6 +24,10 @@ from olympia.versions.models import License
 # https://github.com/mozilla/addons-frontend/blob/master/src/amo/reducers/addonsByAuthors.js
 EXTENSIONS_BY_AUTHORS_PAGE_SIZE = 10
 THEMES_BY_AUTHORS_PAGE_SIZE = 12
+
+
+class Sitemap(DjangoSitemap):
+    limit = 1000
 
 
 class AddonSitemap(Sitemap):
