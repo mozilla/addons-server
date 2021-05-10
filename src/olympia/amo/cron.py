@@ -1,6 +1,5 @@
 from datetime import datetime, timedelta
 from django.core.files.storage import default_storage as storage
-from django.http import HttpRequest
 
 import olympia.core.logger
 
@@ -65,22 +64,12 @@ def gc(test_result=True):
     ScannerResult.objects.filter(upload=None, version=None).delete()
 
 
-def _setup_default_prefixer():
-    """`reverse` depends on a prefixer being set for an app and/or locale in the url,
-    and for non-requests (i.e. cron) this isn't set up."""
-    request = HttpRequest()
-    request.META['SCRIPT_NAME'] = ''
-    prefixer = amo.urlresolvers.Prefixer(request)
-    amo.reverse.set_url_prefix(prefixer)
-
-
 def write_sitemaps():
-    _setup_default_prefixer()
-    index_url = get_sitemap_path()
+    index_url = get_sitemap_path(None, None)
     with storage.open(index_url, 'w') as index_file:
-        index_file.write(build_sitemap())
-    for section, page in get_sitemap_section_pages():
-        filename = get_sitemap_path(section, page)
+        index_file.write(build_sitemap(None, None))
+    for section, app_name, page in get_sitemap_section_pages():
+        filename = get_sitemap_path(section, app_name, page)
         with storage.open(filename, 'w') as sitemap_file:
-            content = build_sitemap(section, page)
+            content = build_sitemap(section, app_name, page)
             sitemap_file.write(content)

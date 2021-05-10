@@ -551,11 +551,20 @@ class TestSitemap(TestCase):
         )
 
         # a section with more than one page
-        result = self.client.get('/sitemap.xml?section=addons&p=2')
+        result = self.client.get('/sitemap.xml?section=addons&app_name=firefox&p=2')
         assert result.status_code == 200
         assert result.get('Content-Type') == 'application/xml'
         assert (
             b'<loc>http://testserver/en-US/firefox/addon/delicious-pierogi/</loc>'
+            in result.getvalue()
+        )
+
+        # and for android
+        result = self.client.get('/sitemap.xml?section=addons&app_name=android')
+        assert result.status_code == 200
+        assert result.get('Content-Type') == 'application/xml'
+        assert (
+            b'<loc>http://testserver/en-US/android/addon/delicious-pierogi/</loc>'
             in result.getvalue()
         )
 
@@ -603,7 +612,7 @@ class TestSitemap(TestCase):
         )
 
         # a section
-        result = self.client.get('/sitemap.xml?section=addons&debug')
+        result = self.client.get('/sitemap.xml?section=addons&app_name=firefox&debug')
         assert result.status_code == 200
         assert result.get('Content-Type') == 'application/xml'
         # there aren't any addons so no content

@@ -193,12 +193,13 @@ def sitemap(request):
     modified_timestamp = None
 
     section = request.GET.get('section')  # no section means the index page
+    app = request.GET.get('app_name')
     page = request.GET.get('p', 1)
     if 'debug' in request.GET and settings.SITEMAP_DEBUG_AVAILABLE:
-        content = build_sitemap(section, page)
+        content = build_sitemap(section, app, page)
         response = HttpResponse(content, content_type='application/xml')
     else:
-        path = get_sitemap_path(section, page)
+        path = get_sitemap_path(section, app, page)
         try:
             content = storage.open(path)  # FileResponse closes files after consuming
             modified_timestamp = os_stat(path).st_mtime

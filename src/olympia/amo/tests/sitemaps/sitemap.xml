@@ -1,3 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<sitemap><loc>http://testserver/sitemap.xml?section=amo</loc></sitemap><sitemap><loc>http://testserver/sitemap.xml?section=addons</loc></sitemap><sitemap><loc>http://testserver/sitemap.xml?section=addons&amp;p=2</loc></sitemap></sitemapindex>
+<sitemap><loc>http://testserver/sitemap.xml?section=amo</loc></sitemap><sitemap><loc>http://testserver/sitemap.xml?section=addons&amp;app_name=firefox</loc></sitemap><sitemap><loc>http://testserver/sitemap.xml?section=addons&amp;app_name=firefox&amp;p=2</loc></sitemap><sitemap><loc>http://testserver/sitemap.xml?section=addons&amp;app_name=android</loc></sitemap><sitemap><loc>http://testserver/sitemap.xml?section=addons&amp;app_name=android&amp;p=2</loc></sitemap></sitemapindex>
