@@ -131,19 +131,13 @@ class AMOSitemap(Sitemap):
             ('pages.about', None),
             ('pages.review_guide', None),
             ('browse.extensions', amo.FIREFOX),
-            ('browse.extensions', amo.ANDROID),
-            ('browse.extensions.categories', amo.FIREFOX),
-            ('browse.extensions.categories', amo.ANDROID),
             ('browse.themes', amo.FIREFOX),
-            ('browse.themes.categories', amo.FIREFOX),
             ('browse.language-tools', amo.FIREFOX),
             # server pages
             ('devhub.index', None),
             ('contribute.json', None),
             ('apps.appversions', amo.FIREFOX),
             ('apps.appversions', amo.ANDROID),
-            ('apps.appversions.rss', amo.FIREFOX),
-            ('apps.appversions.rss', amo.ANDROID),
         ]
 
     def location(self, item):
