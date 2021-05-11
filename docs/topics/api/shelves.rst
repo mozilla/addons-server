@@ -136,9 +136,5 @@ This is used internally to generate .po files containing the strings defined by 
 .. http:get:: /api/v5/shelves/editorial
 
     :>json array results: The array of shelves displayed on the AMO Homepage.
-    :>json string|null results[].headline: The title of the shelf.
-    :>json string results[].url: The configured URL using the shelf's endpoint and criteria; links to the shelf's returned add-ons.
-    :>json string results[].endpoint: The :ref:`endpoint type <shelf-endpoint-type>` selected for the shelf.
-    :>json string results[].criteria: The criteria for the addons in the shelf.
+    :>json string|null results[].title: The title of the shelf.
     :>json string|null results[].footer_text: The optional text in the footer of the shelf.
-    :>json string|null results[].footer_pathname: The optional pathname of the URL for the footer's text.
