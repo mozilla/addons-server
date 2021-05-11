@@ -4549,11 +4549,11 @@ msgstr "Shihni më tepër tema të rekomanduara"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended password managers"
-msgstr ""
+msgstr "Përgjegjës të rekomanduar fjalëkalimesh"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended password managers"
-msgstr ""
+msgstr "Shihni më tepër përgjegjës të rekomanduar fjalëkalimesh"
 
 msgid "Could not parse the manifest file."
 msgstr "S’përtypi dot kartelën manifest."
