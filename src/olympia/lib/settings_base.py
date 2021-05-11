@@ -564,12 +564,12 @@ PUENTE = {
             # JINJA_EXCLUDE_TEMPLATE_PATHS
             (
                 'src/olympia/**/templates/**/emails/**.*',
-                'django_babel.extract.extract_django',
+                'enmerkar.extract.extract_django',
             ),
-            ('**/templates/admin/**.html', 'django_babel.extract.extract_django'),
+            ('**/templates/admin/**.html', 'enmerkar.extract.extract_django'),
             (
                 '**/templates/devhub/forms/widgets/compat_app_input_option.html',
-                'django_babel.extract.extract_django',
+                'enmerkar.extract.extract_django',
             ),
             ('src/olympia/**/templates/**.html', 'jinja2'),
         ],
