@@ -55,7 +55,7 @@ class AbstractScannerResult(ModelBase):
     # Store the "raw" results of a scanner.
     results = JSONField(default=list)
     scanner = models.PositiveSmallIntegerField(choices=SCANNERS.items())
-    has_matches = models.NullBooleanField()
+    has_matches = models.BooleanField(null=True)
     state = models.PositiveSmallIntegerField(
         choices=RESULT_STATES.items(), null=True, blank=True, default=UNKNOWN
     )
@@ -396,7 +396,7 @@ class ScannerQueryResult(AbstractScannerResult):
     matched_rules = models.ManyToManyField(
         'ScannerQueryRule', through='ScannerQueryMatch', related_name='results'
     )
-    was_blocked = models.NullBooleanField(default=None)
+    was_blocked = models.BooleanField(null=True, default=None)
 
     class Meta(AbstractScannerResult.Meta):
         db_table = 'scanners_query_results'

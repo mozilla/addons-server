@@ -12,7 +12,7 @@ class GitExtractionEntry(ModelBase):
     """
 
     addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
-    in_progress = models.NullBooleanField(default=None)
+    in_progress = models.BooleanField(default=None, null=True)
 
     class Meta(ModelBase.Meta):
         unique_together = ('addon', 'in_progress')
