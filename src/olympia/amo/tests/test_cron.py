@@ -91,6 +91,7 @@ class TestGC(TestCase):
             # Shouldn't be possible to have a public add-on with no versions,
             # but just in case it should still work.
             Addon.objects.create(status=amo.STATUS_APPROVED),
+            Addon.objects.create(status=amo.STATUS_DELETED),
         ]
         for addon in to_delete:
             addon.update(created=in_the_past)
@@ -99,14 +100,15 @@ class TestGC(TestCase):
             Addon.objects.create(status=amo.STATUS_NULL),
             addon_factory(created=in_the_past, version_kw={'deleted': True}),
             addon_factory(created=in_the_past, status=amo.STATUS_NULL),
+            addon_factory(created=in_the_past, status=amo.STATUS_DELETED),
         ]
 
         gc()
 
         for addon in to_delete:
-            assert not Addon.objects.filter(pk=addon.pk).exists()
+            assert not Addon.unfiltered.filter(pk=addon.pk).exists()
         for addon in to_keep:
-            assert Addon.objects.filter(pk=addon.pk).exists()
+            assert Addon.unfiltered.filter(pk=addon.pk).exists()
 
         # Make sure no email was sent.
         assert len(mail.outbox) == 0
