@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-05-11 07:35+0000\n"
+"PO-Revision-Date: 2021-05-11 07:40+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -4391,7 +4391,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Skip over sponsored portions of YouTube videos."
-msgstr ""
+msgstr "Ohita YouTube-videoiden sponsoroidut osat."
 
 #. editorial content for the discovery pane.
 msgid "Have web pages read aloud to you. 40+ languages supported."
@@ -4429,7 +4429,7 @@ msgstr "Luetuta verkkosivut ääneen. Yli 40 tuettua kieltä."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
-msgstr ""
+msgstr "Poista seurantaparametrit Google-hakutulosten osoitteista."
 
 #. editorial content for the primary hero shelves.
 msgid "Get weather updates directly from Firefox."
@@ -4465,7 +4465,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
-msgstr ""
+msgstr "Tallenna ja palauta välilehtiä. Sisältää automaattisen tallennuksen ja pilvisynkronoinnin."
 
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
@@ -4773,7 +4773,7 @@ msgid "You can't change the version of the add-on reviewed once the review has b
 msgstr ""
 
 msgid "This version of the add-on doesn't exist or isn't public."
-msgstr ""
+msgstr "Tätä versiota lisäosasta ei ole olemassa tai se ei ole julkinen."
 
 msgid "You can't leave a review on your own add-on."
 msgstr ""
