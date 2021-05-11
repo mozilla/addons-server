@@ -36,14 +36,12 @@ def gc(test_result=True):
         tasks.delete_logs.delay(chunk)
 
     two_weeks_ago = days_ago(15)
-    # Delete stale add-ons with no versions. Should soft-delete add-ons that
-    # are somehow not in incomplete status, hard-delete the rest. No email
-    # should be sent in either case.
-    versionless_addons = Addon.objects.filter(
+    # Hard-delete stale add-ons with no versions. No email should be sent.
+    versionless_addons = Addon.unfiltered.filter(
         versions__pk=None, created__lte=two_weeks_ago
     ).values_list('pk', flat=True)
     for chunk in chunked(versionless_addons, 100):
-        delete_addons.delay(chunk)
+        delete_addons.delay(chunk, with_deleted=True)
 
     # Delete stale FileUploads.
     stale_uploads = FileUpload.objects.filter(created__lte=two_weeks_ago).order_by('id')
