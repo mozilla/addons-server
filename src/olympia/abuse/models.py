@@ -118,11 +118,11 @@ class AbuseReport(ModelBase):
         ('APP_SYSTEM_PROFILE', 21, 'System Add-on (Profile)'),
         ('APP_SYSTEM_ADDONS', 22, 'System Add-on (Update)'),
         ('APP_SYSTEM_DEFAULTS', 23, 'System Add-on (Bundled)'),
-        ('APP_BUILTIN', 24, 'System Add-on (Builtin)'),
-        ('APP_SYSTEM_USER', 25, 'System Add-on (User)'),
+        ('APP_BUILTIN', 24, 'Built-in Add-on'),
+        ('APP_SYSTEM_USER', 25, 'System-wide Add-on (User)'),
         ('APP_GLOBAL', 26, 'Application Add-on'),
-        ('APP_SYSTEM_SHARE', 27, 'System Add-on (OS Share)'),
-        ('APP_SYSTEM_LOCAL', 28, 'System Add-on (OS Local)'),
+        ('APP_SYSTEM_SHARE', 27, 'System-wide Add-on (OS Share)'),
+        ('APP_SYSTEM_LOCAL', 28, 'System-wide Add-on (OS Local)'),
         # Our own catch-all. The serializer expects it to be called "OTHER".
         ('OTHER', 127, 'Other'),
     )
