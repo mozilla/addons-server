@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-05-08 16:40+0000\n"
+"PO-Revision-Date: 2021-05-11 07:24+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -1180,7 +1180,7 @@ msgid "Device Features & Location"
 msgstr "Laitteen ominaisuudet ja sijainti"
 
 msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr ""
+msgstr "Lataa laajennuksia parantaaksesi Firefoxin Android-versiota. Suorita nopeita hakuja, vapauta järjestelmän resursseja, tee muistiinpanoja ja paljon muuta."
 
 msgid "Experimental"
 msgstr "Kokeellinen"
@@ -1903,13 +1903,13 @@ msgid "Invitation declined."
 msgstr "Kutsu hylätty."
 
 msgid "An author has been added to your add-on"
-msgstr ""
+msgstr "Tekijä on lisätty lisäosaasi"
 
 msgid "Author invitation for {addon_name}"
 msgstr ""
 
 msgid "A confirmation email has been sent to {email}"
-msgstr ""
+msgstr "Vahvistusviesti on lähetetty osoitteeseen {email}"
 
 msgid "An author role has been changed on your add-on"
 msgstr ""
