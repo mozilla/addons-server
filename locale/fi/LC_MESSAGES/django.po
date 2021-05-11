@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-05-11 07:24+0000\n"
+"PO-Revision-Date: 2021-05-11 07:35+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -2008,7 +2008,7 @@ msgid "You must provide further details to proceed."
 msgstr ""
 
 msgid "Your old credentials were revoked and are no longer valid."
-msgstr ""
+msgstr "Vanhat kirjautumistietosi on kumottu, eivätkä ne ole enää voimassa."
 
 msgid "New API key created"
 msgstr "Uusi API-avain luotu"
@@ -2979,19 +2979,19 @@ msgid "A confirmation link will be sent to your email address. After confirmatio
 msgstr ""
 
 msgid "You don't have any API credentials."
-msgstr ""
+msgstr "Sinulla ei ole API-kirjautumistietoja."
 
 msgid "Revoke"
 msgstr "Kumoa"
 
 msgid "Revoke and regenerate credentials"
-msgstr ""
+msgstr "Kumoa ja luo uudelleen kirjautumistiedot"
 
 msgid "Confirm and generate new credentials"
-msgstr ""
+msgstr "Vahvista ja luo uudet kirjautumistiedot"
 
 msgid "Generate new credentials"
-msgstr ""
+msgstr "Luo uudet kirjautumistiedot"
 
 #, python-format
 msgid ""
@@ -3663,7 +3663,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
-msgstr ""
+msgstr "Estä haitallisia verkkosivustoja käyttämästä tietokoneesi tehoja kryptovaluutan louhintaan."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4127,7 +4127,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
-msgstr ""
+msgstr "Paljon avoimia välilehtiä? Lopeta vierittäminen ja hae pikanäppäimillä."
 
 #. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
@@ -4395,7 +4395,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Have web pages read aloud to you. 40+ languages supported."
-msgstr ""
+msgstr "Luetuta sivujen sisältö ääneen. Tuki yli 40 kielelle."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
