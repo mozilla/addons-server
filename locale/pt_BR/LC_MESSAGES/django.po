@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-05-12 13:19+0000\n"
-"PO-Revision-Date: 2021-05-12 14:01+0000\n"
+"PO-Revision-Date: 2021-05-12 14:02+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4488,9 +4488,8 @@ msgid "Web pages read aloud. 40+ languages supported."
 msgstr "Páginas web lidas em voz alta. Mais de 40 idiomas suportados."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Removes those long tracking parameters from Google search result URL's."
-msgstr "Remove aqueles parâmetros de rastreamento longos e desagradáveis das URLs de resultados de pesquisas do Google."
+msgstr "Remove aqueles longos parâmetros de rastreamento dos endereços de resultados de pesquisa do Google."
 
 #. editorial content for the primary hero shelves.
 msgid "Get weather updates directly from Firefox."
