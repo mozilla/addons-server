@@ -22,12 +22,10 @@ from olympia.amo.sitemap import (
 from olympia.amo.tests import (
     addon_factory,
     collection_factory,
-    license_factory,
     user_factory,
 )
 from olympia.constants.categories import CATEGORIES
 from olympia.ratings.models import Rating
-from olympia.translations.models import Translation
 
 from .test_views import TEST_SITEMAPS_DIR
 
@@ -44,46 +42,19 @@ def rating_factory(addon):
 
 def test_addon_sitemap():
     it = AddonSitemap.item_tuple
-    addon_a = addon_factory(
-        slug='addon-a',
-        privacy_policy='privacy!',
-        eula='eula!',
-        version_kw={'license': license_factory()},
-    )
-    # addon_factory generates licenses by default, but always with a builtin >0
+    addon_a = addon_factory(slug='addon-a')
     addon_b = addon_factory(slug='addon-b')
     addon_b.update(last_updated=datetime(2020, 1, 1, 1, 1, 1))
-    addon_c = addon_factory(
-        slug='addon-c',
-        eula='only eula',
-        version_kw={'license': license_factory(builtin=1)},
-    )
-    addon_d = addon_factory(slug='addon-d', privacy_policy='only privacy')
-    # throw in an edge case of an empty policy in a non-default locale
-    Translation.objects.create(
-        id=addon_d.privacy_policy_id, localized_string='', locale='fr'
-    )
-    addon_e = addon_factory(slug='addon-e', eula='', privacy_policy='')  # empty
+    addon_c = addon_factory(slug='addon-c')
     addon_factory(status=amo.STATUS_NOMINATED)  # shouldn't show up
     sitemap = AddonSitemap()
     expected = [
-        it(addon_e.last_updated, addon_e.slug, 'detail', 1),
-        it(addon_d.last_updated, addon_d.slug, 'detail', 1),
         it(addon_c.last_updated, addon_c.slug, 'detail', 1),
         it(addon_a.last_updated, addon_a.slug, 'detail', 1),
         it(addon_b.last_updated, addon_b.slug, 'detail', 1),
-        it(addon_e.last_updated, addon_e.slug, 'versions', 1),
-        it(addon_d.last_updated, addon_d.slug, 'versions', 1),
         it(addon_c.last_updated, addon_c.slug, 'versions', 1),
         it(addon_a.last_updated, addon_a.slug, 'versions', 1),
         it(addon_b.last_updated, addon_b.slug, 'versions', 1),
-        it(addon_d.last_updated, addon_d.slug, 'privacy', 1),
-        it(addon_a.last_updated, addon_a.slug, 'privacy', 1),
-        it(addon_c.last_updated, addon_c.slug, 'eula', 1),
-        it(addon_a.last_updated, addon_a.slug, 'eula', 1),
-        it(addon_a.last_updated, addon_a.slug, 'license', 1),
-        it(addon_e.last_updated, addon_e.slug, 'ratings.list', 1),
-        it(addon_d.last_updated, addon_d.slug, 'ratings.list', 1),
         it(addon_c.last_updated, addon_c.slug, 'ratings.list', 1),
         it(addon_a.last_updated, addon_a.slug, 'ratings.list', 1),
         it(addon_b.last_updated, addon_b.slug, 'ratings.list', 1),
