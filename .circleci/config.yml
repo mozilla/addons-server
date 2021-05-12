@@ -538,6 +538,11 @@ jobs:
           command: pytest -n 2 -m 'not es_tests and not needs_locales_compilation and not static_assets' -v src/olympia/amo/ src/olympia/lib/ src/olympia/signing
           environment:
             AUTOGRAPH_SERVER_URL: http://127.0.0.1:5500
+      # After having removed `tox`, we noticed that this job was a lot slower.
+      # The reason seems to be related to pyenv shims, which add a huge
+      # overhead to CLIs like `dennis-cmd`. By updating the path below, we
+      # should use `dennis-cmd` directly instead of the pyenv shim.
+      - run: echo "export PATH=\"$(pyenv prefix)/bin:$PATH\"" >> $BASH_ENV
       - run: bash ./locale/compile-mo.sh ./locale/
       - run:
           command: pytest -n 2 -m 'needs_locales_compilation' -v src/olympia/
