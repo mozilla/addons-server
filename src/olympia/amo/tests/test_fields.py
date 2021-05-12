@@ -91,8 +91,8 @@ class TestPositiveAutoField(TestCase):
 
     def test_unsigned_int_limits(self):
         self.ClassUsingPositiveAutoField.objects.create(id=1)
-        mysql_max_int_size = 4294967295
-        self.ClassUsingPositiveAutoField.objects.create(id=mysql_max_int_size)
+        mysql_max_signed_int = 2147483647
+        self.ClassUsingPositiveAutoField.objects.create(id=mysql_max_signed_int + 10)
         with self.assertRaises(DataError):
             self.ClassUsingPositiveAutoField.objects.create(id=-1)
 
