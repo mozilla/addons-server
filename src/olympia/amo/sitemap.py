@@ -32,8 +32,6 @@ class Sitemap(DjangoSitemap):
 
 
 class AddonSitemap(Sitemap):
-    priority = 1
-    changefreq = 'daily'
     # i18n = True  # TODO: support all localized urls
     item_tuple = namedtuple(
         'Item', ['last_updated', 'slug', 'urlname', 'page'], defaults=(1,)
@@ -117,9 +115,7 @@ class AddonSitemap(Sitemap):
 
 
 class AMOSitemap(Sitemap):
-    priority = 0.7
     # i18n = True  # TODO: support all localized urls
-    changefreq = 'always'
     lastmod = datetime.datetime.now()
     apps = None  # because some urls are app-less, we specify per item
 
@@ -150,9 +146,7 @@ class AMOSitemap(Sitemap):
 
 
 class CategoriesSitemap(Sitemap):
-    priority = 0.7
     # i18n = True  # TODO: support all localized urls
-    changefreq = 'always'
     lastmod = datetime.datetime.now()
     apps = (amo.FIREFOX,)  # category pages aren't supported on android
 
@@ -191,8 +185,6 @@ class CategoriesSitemap(Sitemap):
 
 
 class CollectionSitemap(Sitemap):
-    priority = 0.5
-    changefreq = 'daily'
     # i18n = True  # TODO: support all localized urls
 
     def items(self):
@@ -210,8 +202,6 @@ class CollectionSitemap(Sitemap):
 
 
 class AccountSitemap(Sitemap):
-    priority = 0.5
-    changefreq = 'weekly'
     # i18n = True  # TODO: support all localized urls
     item_tuple = namedtuple(
         'AccountItem',
