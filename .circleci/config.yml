@@ -538,6 +538,7 @@ jobs:
           command: pytest -n 2 -m 'not es_tests and not needs_locales_compilation and not static_assets' -v src/olympia/amo/ src/olympia/lib/ src/olympia/signing
           environment:
             AUTOGRAPH_SERVER_URL: http://127.0.0.1:5500
+      - run: echo "export PATH=\"$(pyenv prefix)/bin:$PATH\"" >> $BASH_ENV
       - run: bash ./locale/compile-mo.sh ./locale/
       - run:
           command: pytest -n 2 -m 'needs_locales_compilation' -v src/olympia/
