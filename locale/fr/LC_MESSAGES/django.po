@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-05-12 13:19+0000\n"
-"PO-Revision-Date: 2021-04-24 14:37+0000\n"
-"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
+"PO-Revision-Date: 2021-05-12 16:50+0000\n"
+"Last-Translator: Benoit Leseul <benoit.leseul@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -3245,7 +3245,7 @@ msgid "Matrix"
 msgstr "Matrix"
 
 msgid "Community forum"
-msgstr ""
+msgstr "Forum communautaire"
 
 msgid "Extensions Developers Newsletter"
 msgstr "Lettre d’information des développeurs d’extensions"
@@ -4489,7 +4489,7 @@ msgstr "Lecture de pages web à haute voix. Plus de 40 langues prises en charge.
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long tracking parameters from Google search result URL's."
-msgstr ""
+msgstr "Supprime ces longs paramètres de pistage des URL des résultats de recherche Google."
 
 #. editorial content for the primary hero shelves.
 msgid "Get weather updates directly from Firefox."
