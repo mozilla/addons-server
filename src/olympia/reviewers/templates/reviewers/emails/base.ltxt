@@ -10,9 +10,9 @@ To respond, please reply to this email or visit: {{ dev_versions_url }}
 
 You can also get in touch with us using these channels: https://wiki.mozilla.org/Add-ons#Contact_us
 
-For tips on how to attract more users by updating your add-on’s listing, please visit: https://extensionworkshop.com/documentation/develop/create-an-appealing-listing
+For tips on how to attract more users by updating your add-on’s listing, please visit: {{ settings.EXTENSION_WORKSHOP_URL }}/documentation/develop/create-an-appealing-listing
 
-To learn more about the review process, please visit: https://extensionworkshop.com/documentation/publish/add-on-policies/
+To learn more about the review process, please visit: {{ settings.EXTENSION_WORKSHOP_URL }}/documentation/publish/add-on-policies/
 
 -- 
 Mozilla Add-ons Team

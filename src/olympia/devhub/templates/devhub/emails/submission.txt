@@ -2,7 +2,7 @@ Thanks for submitting your {{ addon_name }} add-on to addons.mozilla.org (AMO)! 
 
 Please keep in mind that while your add-on has been screened and approved for listing, other reviewers may look into it in the future and determine that it requires changes or should be removed from the gallery. If that occurs, you will receive a separate notification with details and next steps.
 
-For more information about the review process and policies, please visit https://extensionworkshop.com/documentation/publish/add-on-policies/
+For more information about the review process and policies, please visit {{ settings.EXTENSION_WORKSHOP_URL }}/documentation/publish/add-on-policies/
 
 ********
 Attract Users, Stay Updated, & Get in Touch
@@ -10,7 +10,7 @@ Attract Users, Stay Updated, & Get in Touch
 
 Add-ons help personalize the web experience for millions of users who have installed Firefox, and we want to help make your users happy!
 
-To learn how to help users discover your extension, stay up-to-date with news from the add-ons community, or contact the add-ons team, please visit https://extensionworkshop.com/documentation/manage/resources-for-publishers/
+To learn how to help users discover your extension, stay up-to-date with news from the add-ons community, or contact the add-ons team, please visit {{ settings.EXTENSION_WORKSHOP_URL }}/documentation/manage/resources-for-publishers/
 
 Happy developing!
 
