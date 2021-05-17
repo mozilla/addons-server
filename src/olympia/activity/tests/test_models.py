@@ -225,16 +225,15 @@ class TestActivityLog(TestCase):
             # - 1 for all ratings
             activities = ActivityLog.objects.for_addons([addon, addon2]).order_by('pk')
             assert len(activities) == 2
+            addon_url = 'http://testserver/en-US/firefox/addon/a3615/'
             assert activities[0].to_string() == (
-                f'<a href="http://testserver/en-US/firefox/addon/a3615/reviews/{rating.pk}/">Review</a>'
-                ' for '
-                '<a href="http://testserver/en-US/firefox/addon/a3615/">Delicious Bookmarks</a> written.'
+                f'<a href="{addon_url}reviews/{rating.pk}/">Review</a> for '
+                f'<a href="{addon_url}">Delicious Bookmarks</a> written.'
             )
+            addon2_url = f'http://testserver/en-US/firefox/addon/{addon2.slug}/'
             assert activities[1].to_string() == (
-                f'<a href="http://testserver/en-US/firefox/addon/{addon2.slug}/reviews/{rating2.pk}/">'
-                'Review</a> for '
-                f'<a href="http://testserver/en-US/firefox/addon/{addon2.slug}/">{addon2.name}</a> '
-                'written.'
+                f'<a href="{addon2_url}reviews/{rating2.pk}/">Review</a> for '
+                f'<a href="{addon2_url}">{addon2.name}</a> written.'
             )
 
     def test_no_arguments(self):
@@ -293,10 +292,10 @@ class TestActivityLog(TestCase):
             # - 1 for all versions translations
             activities = ActivityLog.objects.for_addons([addon, addon2]).order_by('pk')
             assert len(activities) == 2
+            addon_url = 'http://testserver/en-US/firefox/addon/a3615/'
             assert activities[0].to_string() == (
-                '<a href="http://testserver/en-US/firefox/addon/a3615/versions/">Version 2.1.072</a>'
-                ' added to '
-                '<a href="http://testserver/en-US/firefox/addon/a3615/">Delicious Bookmarks</a>.'
+                f'<a href="{addon_url}versions/">Version 2.1.072</a> added to '
+                f'<a href="{addon_url}">Delicious Bookmarks</a>.'
             )
             assert activities[1].to_string()
 
