@@ -137,15 +137,15 @@ to if necessary.
              about_debugging  Add-ons Debugging
            about_preferences  Preferences
                          amo  AMO
-                 app_builtin  System Add-on (Builtin)
+                 app_builtin  Built-in Add-on
                   app_global  Application Add-on
                  app_profile  App Profile
            app_system_addons  System Add-on (Update)
          app_system_defaults  System Add-on (Bundled)
-            app_system_local  System Add-on (OS Local)
+            app_system_local  System-wide Add-on (OS Local)
           app_system_profile  System Add-on (Profile)
-            app_system_share  System Add-on (OS Share)
-             app_system_user  System Add-on (User)
+            app_system_share  System-wide Add-on (OS Share)
+             app_system_user  System-wide Add-on (User)
                        disco  Disco Pane
                 distribution  Included in build
            enterprise_policy  Enterprise Policy
