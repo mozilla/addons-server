@@ -576,7 +576,9 @@ class ActivityLog(ModelBase):
                 text = gettext('Version {0}')
                 if arg.channel == amo.RELEASE_CHANNEL_LISTED:
                     version = self.f(
-                        '<a href="{1}">%s</a>' % text, arg.version, arg.get_absolute_url()
+                        '<a href="{1}">%s</a>' % text,
+                        arg.version,
+                        arg.get_absolute_url(),
                     )
                 else:
                     version = self.f(text, arg.version)

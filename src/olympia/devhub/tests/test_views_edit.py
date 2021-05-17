@@ -1185,8 +1185,8 @@ class TagTestsMixin(object):
 
         assert result == ', '.join(sorted(self.tags))
         html = (
-            '<a href="/en-US/firefox/tag/tag4">tag4</a> added to '
-            '<a href="/en-US/firefox/addon/a3615/">Delicious Bookmarks</a>'
+            '<a href="http://testserver/en-US/firefox/tag/tag4">tag4</a> added to '
+            '<a href="http://testserver/en-US/firefox/addon/a3615/">Delicious Bookmarks</a>'
             '.'
         )
         assert (
