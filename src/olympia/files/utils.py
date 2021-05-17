@@ -996,7 +996,7 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
 
         if addon and addon.guid != guid:
             msg = gettext(
-                'The add-on ID in your manifest.json or install.rdf (%s) '
+                'The add-on ID in your manifest.json (%s) '
                 'does not match the ID of your add-on on AMO (%s)'
             )
             raise forms.ValidationError(msg % (guid, addon.guid))
