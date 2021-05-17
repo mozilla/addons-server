@@ -35,6 +35,7 @@ from olympia.api.permissions import (
     GroupPermission,
     RegionalRestriction,
 )
+from olympia.api.utils import is_gate_active
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.search.filters import (
     AddonAppQueryParam,
@@ -63,6 +64,7 @@ from .serializers import (
     ReplacementAddonSerializer,
     StaticCategorySerializer,
     VersionSerializer,
+    VersionSerializerForListing,
 )
 from .utils import (
     get_addon_recommendations,
@@ -328,7 +330,17 @@ class AddonVersionViewSet(
     # below in check_permissions() and check_object_permissions() depending on
     # what the client is requesting to see.
     permission_classes = []
-    serializer_class = VersionSerializer
+
+    def get_serializer_class(self):
+        if (
+            self.action == 'list'
+            and self.request
+            and not is_gate_active(self.request, 'keep-license-text-in-version-list')
+        ):
+            serializer_class = VersionSerializerForListing
+        else:
+            serializer_class = VersionSerializer
+        return serializer_class
 
     def check_permissions(self, request):
         requested = self.request.GET.get('filter')
@@ -427,7 +439,19 @@ class AddonVersionViewSet(
             queryset = addon.versions.filter(
                 files__status=amo.STATUS_APPROVED, channel=amo.RELEASE_CHANNEL_LISTED
             ).distinct()
-
+        if (
+            self.action == 'list'
+            and self.request
+            and not is_gate_active(self.request, 'keep-license-text-in-version-list')
+        ):
+            # When listing, we use the transformer_license (it's not active by default)
+            # to fetch licenses & their translations in one (two with translations)
+            # query regardless of the number of versions.
+            # Note that this transformer defers text, which we don't need when listing.
+            # This means we can't use it in API versions where the
+            # 'keep-license-text-in-version-list' gate is active, so that endpoint
+            # doesn't scale as nicely in those versions.
+            queryset = queryset.transform(Version.transformer_license)
         return queryset
 
 

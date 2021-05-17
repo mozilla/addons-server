@@ -2,7 +2,6 @@ from django.conf import settings
 from django.db import connections, models, router
 from django.utils import translation
 
-from olympia.translations.fields import TranslatedField
 from olympia.translations.models import Translation
 
 
@@ -16,7 +15,7 @@ no_locale_join = """LEFT OUTER JOIN `translations` {t}
 trans_fields = [f.name for f in Translation._meta.fields]
 
 
-def build_query(model, connection):
+def _build_query(*, model, connection, fields):
     qn = connection.ops.quote_name
     selects, joins, params = [], [], []
 
@@ -26,13 +25,8 @@ def build_query(model, connection):
     else:
         fallback = settings.LANGUAGE_CODE
 
-    if not hasattr(model._meta, 'translated_fields'):
-        model._meta.translated_fields = [
-            f for f in model._meta.fields if isinstance(f, TranslatedField)
-        ]
-
-    # Add the selects and joins for each translated field on the model.
-    for field in model._meta.translated_fields:
+    # Add the selects and joins for each field on the model passed to this function.
+    for field in fields:
         if isinstance(fallback, models.Field):
             fallback_str = '%s.%s' % (qn(model._meta.db_table), qn(fallback.column))
         else:
@@ -74,13 +68,23 @@ def get_trans(items):
     if not items:
         return
 
-    model = items[0].__class__
+    first_item = items[0]
+    model = first_item.__class__
+    assert hasattr(model._meta, 'translated_fields')
+    deferred_fields = first_item.get_deferred_fields()
+    fields = [
+        field
+        for field in model._meta.translated_fields
+        if field.attname not in deferred_fields
+    ]
+    if not fields:
+        return
     # FIXME: if we knew which db the queryset we are transforming used, we
     # could make sure we are re-using the same one.
     dbname = router.db_for_read(model)
     connection = connections[dbname]
-    sql, params = build_query(model, connection)
-    item_dict = dict((item.pk, item) for item in items)
+    sql, params = _build_query(model=model, connection=connection, fields=fields)
+    item_dict = {item.pk: item for item in items}
     ids = ','.join(map(str, item_dict.keys()))
 
     with connection.cursor() as cursor:
@@ -89,7 +93,7 @@ def get_trans(items):
         for row in cursor.fetchall():
             # We put the item's pk as the first selected field.
             item = item_dict[row[0]]
-            for index, field in enumerate(model._meta.translated_fields):
+            for index, field in enumerate(fields):
                 start = 1 + step * index
                 t = Translation(*row[start : start + step])
                 if t.id is not None and t.localized_string is not None:

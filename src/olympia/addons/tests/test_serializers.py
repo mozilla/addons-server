@@ -1265,6 +1265,20 @@ class TestVersionSerializerOutput(TestCase):
         assert result['files'][0]['optional_permissions'] == (optional_permissions)
 
 
+class TestVersionSerializerForListingOutput(TestCase):
+    def setUp(self):
+        self.request = APIRequestFactory().get('/')
+
+    def serialize(self):
+        serializer = SimpleVersionSerializer(context={'request': self.request})
+        return serializer.to_representation(self.version)
+
+    def test_basic(self):
+        self.version = addon_factory().current_version
+        result = self.serialize()
+        assert 'text' not in result['license']
+
+
 class TestSimpleVersionSerializerOutput(TestCase):
     def setUp(self):
         self.request = APIRequestFactory().get('/')

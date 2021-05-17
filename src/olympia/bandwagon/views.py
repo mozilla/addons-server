@@ -198,6 +198,15 @@ class CollectionAddonViewSet(ModelViewSet):
 
     @classmethod
     def _locales_transformer(self, objs):
+        """
+        Transformer to fetch all translations from objects related to CollectionAddon.
+
+        This is necessary because the regular translation transformer only fetches
+        translations for the current language, and only for the model the queryset is
+        built from, not related objects.
+
+        Only used when `lang` is not passed.
+        """
         current_versions = [
             obj.addon._current_version for obj in objs if obj.addon._current_version
         ]

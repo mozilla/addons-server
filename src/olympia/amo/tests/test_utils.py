@@ -84,6 +84,53 @@ class TestAttachTransDict(TestCase):
         }
         assert translations == expected_translations
 
+    def test_no_objects(self):
+        # Calling attach_trans_dict on an empty list/queryset shouldn't do anything.
+        attach_trans_dict(Addon, [])
+        attach_trans_dict(Addon, Addon.objects.none())
+
+    def test_deferred_field(self):
+        addon = addon_factory(
+            name='Name',
+            description='Description <script>alert(42)</script>!',
+            eula='',
+            summary='Summary',
+            homepage='http://home.pa.ge',
+            developer_comments='Developer Comments',
+            support_email='sup@example.com',
+            support_url='http://su.pport.url',
+        )
+        addon.save()
+        description_id = addon.description_id
+
+        addons = Addon.objects.defer('description').all()
+        attach_trans_dict(Addon, addons)
+        addon = addons[0]
+        assert isinstance(addon.translations, collections.defaultdict)
+        translations = dict(addon.translations)
+        assert translations[addon.name_id]
+        assert description_id not in translations
+
+    def test_defer_all_fields(self):
+        addon = addon_factory(
+            name='Name',
+            description='Description <script>alert(42)</script>!',
+            eula='',
+            summary='Summary',
+            homepage='http://home.pa.ge',
+            developer_comments='Developer Comments',
+            support_email='sup@example.com',
+            support_url='http://su.pport.url',
+        )
+        addon.save()
+
+        addons = Addon.objects.only('id').all()
+        attach_trans_dict(Addon, addons)
+        addon = addons[0]
+        assert isinstance(addon.translations, collections.defaultdict)
+        translations = dict(addon.translations)
+        assert list(translations.values()) == []
+
     def test_multiple_objects_with_multiple_translations(self):
         addon = addon_factory()
         addon.description = {'fr': 'French Description', 'en-us': 'English Description'}

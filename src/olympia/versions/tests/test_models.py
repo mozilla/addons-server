@@ -16,7 +16,13 @@ from waffle.testutils import override_switch
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonReviewerFlags
-from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
+from olympia.amo.tests import (
+    TestCase,
+    addon_factory,
+    license_factory,
+    user_factory,
+    version_factory,
+)
 from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
@@ -801,6 +807,30 @@ class TestVersion(TestCase):
         version.files.update(status=amo.STATUS_AWAITING_REVIEW)
         del version.all_files  # Reset all_files cache.
         assert not version.was_auto_approved
+
+    def test_transformer_license(self):
+        addon = Addon.objects.get(id=3615)
+        version1 = version_factory(addon=addon)
+        license = license_factory(name='Second License', text='Second License Text')
+        version2 = version_factory(addon=addon, license=license)
+
+        qs = Version.objects.filter(pk__in=(version1.pk, version2.pk)).no_transforms()
+        with self.assertNumQueries(5):
+            # - 1 for the versions
+            # - 2 for the licenses (1 for each version)
+            # - 2 for the licenses translations (1 for each version)
+            for version in qs.all():
+                assert version.license.name
+
+        # Using the transformer should prefetch licenses and name translations.
+        # License text should be deferred.
+        with self.assertNumQueries(3):
+            # - 1 for the versions
+            # - 1 for the licenses
+            # - 1 for the licenses translations (name)
+            for version in qs.transform(Version.transformer_license).all():
+                assert 'text_id' in version.license.get_deferred_fields()
+                assert version.license.name
 
     @mock.patch('olympia.amo.tasks.trigger_sync_objects_to_basket')
     def test_version_field_changes_not_synced_to_basket(
