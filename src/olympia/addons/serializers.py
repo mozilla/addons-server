@@ -293,7 +293,7 @@ class VersionSerializer(SimpleVersionSerializer):
         )
 
 
-class VersionSerializerForListing(VersionSerializer):
+class VersionListSerializer(VersionSerializer):
     # When we're listing versions, we don't want to include the full license
     # text every time: we only do this for the version detail endpoint.
     license = CompactLicenseSerializer()

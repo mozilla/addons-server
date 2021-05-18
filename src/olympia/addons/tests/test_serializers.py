@@ -1265,7 +1265,7 @@ class TestVersionSerializerOutput(TestCase):
         assert result['files'][0]['optional_permissions'] == (optional_permissions)
 
 
-class TestVersionSerializerForListingOutput(TestCase):
+class TestVersionListSerializerOutput(TestCase):
     def setUp(self):
         self.request = APIRequestFactory().get('/')
 

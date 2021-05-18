@@ -64,7 +64,7 @@ from .serializers import (
     ReplacementAddonSerializer,
     StaticCategorySerializer,
     VersionSerializer,
-    VersionSerializerForListing,
+    VersionListSerializer,
 )
 from .utils import (
     get_addon_recommendations,
@@ -337,7 +337,7 @@ class AddonVersionViewSet(
             and self.request
             and not is_gate_active(self.request, 'keep-license-text-in-version-list')
         ):
-            serializer_class = VersionSerializerForListing
+            serializer_class = VersionListSerializer
         else:
             serializer_class = VersionSerializer
         return serializer_class
