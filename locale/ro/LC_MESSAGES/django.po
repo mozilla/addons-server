@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-12 13:19+0000\n"
+"POT-Creation-Date: 2021-05-18 17:07+0000\n"
 "PO-Revision-Date: 2020-11-09 07:11+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -4639,8 +4639,8 @@ msgstr "Arhivă nevalidă."
 msgid "Could not find an add-on ID."
 msgstr "Nu s-a găsit un ID al suplimentului."
 
-#, python-format
-msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
+#, fuzzy, python-format
+msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
 msgstr "ID-ul suplimentului din manifest.json sau install.rdf (%s) nu corespunde ID-ului dat suplimentului pe AMO (%s)"
 
 msgid "Duplicate add-on ID found."

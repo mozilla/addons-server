@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-12 13:19+0000\n"
+"POT-Creation-Date: 2021-05-18 17:07+0000\n"
 "PO-Revision-Date: 2021-04-27 13:20+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -4543,9 +4543,9 @@ msgstr "Geçersiz arşiv."
 msgid "Could not find an add-on ID."
 msgstr "Eklenti kimliği bulunamadı."
 
-#, python-format
-msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr ""
+#, fuzzy, python-format
+msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
+msgstr "Bu tür (%s), AMO'daki eklentinizin türüyle (%s) eşleşmiyor"
 
 msgid "Duplicate add-on ID found."
 msgstr "Mükerrer eklenti kimliği tespit edildi."

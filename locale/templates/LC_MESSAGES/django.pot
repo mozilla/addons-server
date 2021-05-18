@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-12 13:19+0000\n"
+"POT-Creation-Date: 2021-05-18 17:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -6591,8 +6591,8 @@ msgstr ""
 #: src/olympia/files/utils.py:998
 #, python-format
 msgid ""
-"The add-on ID in your manifest.json or install.rdf (%s) does not match the ID"
-" of your add-on on AMO (%s)"
+"The add-on ID in your manifest.json (%s) does not match the ID of your add-on"
+" on AMO (%s)"
 msgstr ""
 
 #: src/olympia/files/utils.py:1014
@@ -8970,7 +8970,7 @@ msgctxt "user_list_others"
 msgid "others"
 msgstr ""
 
-#: src/olympia/versions/models.py:1120
+#: src/olympia/versions/models.py:1127
 msgid "{app} {min} and later"
 msgstr ""
 
