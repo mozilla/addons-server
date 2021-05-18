@@ -726,13 +726,12 @@ def resize_image(source, destination, size=None, *, format='png', quality=80):
             im.save(dest_file, 'png', icc_profile=None)
             pngcrush_image(destination)
         else:
-            if source_fileext == '.png':
-                # Create a white rgba background for transparency
-                white_background = Image.new('RGBA', im.size, 'WHITE')
-                white_background.paste(im, (0, 0), im)
-                im = white_background
-            im = im.convert('RGB')
-            im.save(dest_file, 'JPEG', quality=quality)
+            # Create a white rgba background for transparency
+            final_im = Image.new('RGBA', im.size, 'WHITE')
+            final_im.paste(im, (0, 0), im)
+            final_im = final_im.convert('RGB')
+            final_im.save(dest_file, 'JPEG', quality=quality)
+            final_im.close()
     new_size = im.size
     im.close()
     return (new_size, original_size)
@@ -843,9 +842,7 @@ class HttpResponseXSendFile(HttpResponse):
         etag=None,
         attachment=False,
     ):
-        super(HttpResponseXSendFile, self).__init__(
-            '', status=status, content_type=content_type
-        )
+        super().__init__('', status=status, content_type=content_type)
         # We normalize the path because if it contains dots, nginx will flag
         # the URI as unsafe.
         self[settings.XSENDFILE_HEADER] = os.path.normpath(path)
@@ -965,19 +962,31 @@ class LocalFileStorage(FileSystemStorage):
 
 
 def attach_trans_dict(model, objs):
-    """Put all translations into a translations dict."""
+    """Put all translations from all non-deferred translated fields from objs
+    into a translations dict on each instance."""
     # Get the ids of all the translations we need to fetch.
-    fields = model._meta.translated_fields
+    try:
+        deferred_fields = objs[0].get_deferred_fields()
+    except IndexError:
+        return
+    fields = [
+        field
+        for field in model._meta.translated_fields
+        if field.attname not in deferred_fields
+    ]
     ids = [
-        getattr(obj, f.attname)
-        for f in fields
+        getattr(obj, field.attname)
+        for field in fields
         for obj in objs
-        if getattr(obj, f.attname, None) is not None
+        if getattr(obj, field.attname, None) is not None
     ]
 
-    # Get translations in a dict, ids will be the keys. It's important to
-    # consume the result of sorted_groupby, which is an iterator.
-    qs = Translation.objects.filter(id__in=ids, localized_string__isnull=False)
+    if ids:
+        # Get translations in a dict, ids will be the keys. It's important to
+        # consume the result of sorted_groupby, which is an iterator.
+        qs = Translation.objects.filter(id__in=ids, localized_string__isnull=False)
+    else:
+        qs = []
     all_translations = {
         field_id: sorted(list(translations), key=lambda t: t.locale)
         for field_id, translations in sorted_groupby(qs, lambda t: t.id)

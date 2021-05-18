@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-05-12 13:19+0000\n"
-"PO-Revision-Date: 2021-05-12 18:54+0000\n"
+"PO-Revision-Date: 2021-05-13 23:59+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -2079,7 +2079,7 @@ msgstr "Нещодавня активність для моїх додатків
 
 #. first parameter is the name of an Addon
 msgid "Recent Activity for {0}"
-msgstr "Остання активність для {0}"
+msgstr "Нещодавня активність для {0}"
 
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"

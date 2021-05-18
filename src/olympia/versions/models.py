@@ -711,12 +711,19 @@ class Version(OnChangeMixin, ModelBase):
 
     @classmethod
     def transformer_license(cls, versions):
-        """Attach all the licenses to the versions."""
+        """Attach all the licenses to the versions.
+
+        Do not use if you need the license text: it's explicitly deferred in
+        this transformer, because it should only be used when listing multiple
+        versions, where returning license text is not supposed to be needed.
+
+        The translations app doesn't fully handle evaluating a deferred field,
+        so the callers need to make sure the license text will never be needed
+        on instances returned by a queryset transformed by this method."""
         if not versions:
             return
-
         license_ids = {ver.license_id for ver in versions}
-        licenses = License.objects.filter(id__in=license_ids)
+        licenses = License.objects.filter(id__in=license_ids).defer('text')
         license_dict = {lic.id: lic for lic in licenses}
 
         for version in versions:

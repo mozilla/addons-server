@@ -40,6 +40,7 @@ services:
       - ./storage/shared_storage/uploads:/srv/user-media
       - ./storage/files:/srv/user-media/addons
       - ./storage/guarded-addons:/srv/user-media/guarded-addons
+      - ./storage/sitemaps:/srv/user-media/sitemaps
     ports:
       - "80:80"
     networks:

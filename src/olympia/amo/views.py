@@ -1,19 +1,16 @@
 import json
 import os
 import sys
-import time
-from os import stat as os_stat
 
 import django
 from django import http
 from django.conf import settings
 from django.contrib.sitemaps.views import x_robots_tag
 from django.core.exceptions import ViewDoesNotExist
-from django.core.files.storage import default_storage as storage
+from django.core.paginator import EmptyPage, PageNotAnInteger
 from django.db.transaction import non_atomic_requests
-from django.http import FileResponse, Http404, HttpResponse, JsonResponse
+from django.http import Http404, HttpResponse, JsonResponse
 from django.utils.cache import patch_cache_control
-from django.utils.http import http_date
 from django.views.decorators.cache import never_cache
 
 from django_statsd.clients import statsd
@@ -23,13 +20,13 @@ from rest_framework.views import APIView
 
 import olympia
 from olympia import amo
-from olympia.amo.utils import render, use_fake_fxa
+from olympia.amo.utils import HttpResponseXSendFile, render, use_fake_fxa
 from olympia.api.exceptions import base_500_data
 from olympia.api.serializers import SiteStatusSerializer
 from olympia.users.models import UserProfile
 
 from . import monitors
-from .sitemap import build_sitemap, get_sitemap_path
+from .sitemap import build_sitemap, get_sitemap_path, InvalidSection
 
 
 sitemap_log = olympia.core.logger.getLogger('z.monitor')
@@ -189,37 +186,21 @@ class SiteStatusView(APIView):
 @non_atomic_requests
 @x_robots_tag
 def sitemap(request):
-    expires_timestamp = None
-    modified_timestamp = None
-
     section = request.GET.get('section')  # no section means the index page
     app = request.GET.get('app_name')
     page = request.GET.get('p', 1)
     if 'debug' in request.GET and settings.SITEMAP_DEBUG_AVAILABLE:
-        content = build_sitemap(section, app, page)
+        try:
+            content = build_sitemap(section, app, page)
+        except EmptyPage:
+            raise Http404('Page %s empty' % page)
+        except PageNotAnInteger:
+            raise Http404('No page "%s"' % page)
+        except InvalidSection:
+            raise Http404('No sitemap available for section: %r' % section)
         response = HttpResponse(content, content_type='application/xml')
     else:
         path = get_sitemap_path(section, app, page)
-        try:
-            content = storage.open(path)  # FileResponse closes files after consuming
-            modified_timestamp = os_stat(path).st_mtime
-        except FileNotFoundError as err:
-            sitemap_log.exception(
-                'Sitemap for section %s, page %s, not found',
-                section,
-                page,
-                exc_info=err,
-            )
-            raise Http404
-        expires_timestamp = modified_timestamp + (60 * 60 * 24)
-        response = FileResponse(content, content_type='application/xml')
-    if expires_timestamp:
-        # check the expiry date wouldn't be in the past
-        if expires_timestamp > time.time():
-            response['Expires'] = http_date(expires_timestamp)
-        else:
-            # otherwise, just return a Cache-Control header of an hour
-            patch_cache_control(response, max_age=60 * 60)
-    if modified_timestamp:
-        response['Last-Modified'] = http_date(modified_timestamp)
+        response = HttpResponseXSendFile(request, path, content_type='application/xml')
+        patch_cache_control(response, max_age=60 * 60)
     return response

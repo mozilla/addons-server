@@ -338,6 +338,24 @@ class TestPreviewForm(TestCase):
         form.save(addon)
         assert update_mock.called
 
+    def test_preview_transparency(self):
+        addon = Addon.objects.get(pk=3615)
+        name = 'transparent-cotton'
+        hash = '12345678abcd'
+        form = forms.PreviewForm(
+            {'caption': 'test', 'upload_hash': hash, 'position': 1}
+        )
+        with storage.open(os.path.join(self.dest, hash), 'wb') as f:
+            shutil.copyfileobj(open(get_image_path(name + '.png'), 'rb'), f)
+        assert form.is_valid()
+        form.save(addon)
+        preview = addon.previews.all()[0]
+        assert os.path.exists(preview.thumbnail_path)
+        with storage.open(preview.thumbnail_path, 'rb') as thumb_file, open(
+            get_image_path(name + '.jpg'), 'rb'
+        ) as sample_file:
+            assert thumb_file.read() == sample_file.read()
+
     @mock.patch('olympia.amo.utils.pngcrush_image')
     def test_preview_size(self, pngcrush_image_mock):
         addon = Addon.objects.get(pk=3615)

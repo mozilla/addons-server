@@ -1609,6 +1609,7 @@ DRF_API_GATES = {
         'disco-heading-and-description-shim',
         'wrap-outgoing-parameter',
         'platform-shim',
+        'keep-license-text-in-version-list',
     ),
     'v4': (
         'l10n_flat_input_output',
@@ -1617,6 +1618,7 @@ DRF_API_GATES = {
         'ratings-score-filter',
         'wrap-outgoing-parameter',
         'platform-shim',
+        'keep-license-text-in-version-list',
     ),
     'v5': (
         'addons-search-_score-field',

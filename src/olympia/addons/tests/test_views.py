@@ -3,6 +3,7 @@ import json
 
 from unittest import mock
 
+from django.conf import settings
 from django.core.cache import cache
 from django.test.utils import override_settings
 from django.urls import reverse
@@ -709,6 +710,9 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         result = json.loads(force_str(response.content))
         assert result['id'] == self.version.pk
         assert result['version'] == self.version.version
+        assert result['license']
+        assert result['license']['name']
+        assert result['license']['text']
 
     def _set_tested_url(self, param):
         self.url = reverse_ns(
@@ -874,9 +878,13 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         result_version = result['results'][0]
         assert result_version['id'] == self.version.pk
         assert result_version['version'] == self.version.version
+        assert result_version['license']
+        assert 'text' not in result_version['license']
         result_version = result['results'][1]
         assert result_version['id'] == self.old_version.pk
         assert result_version['version'] == self.old_version.version
+        assert result_version['license']
+        assert 'text' not in result_version['license']
 
     def _test_url_contains_all(self, **kwargs):
         response = self.client.get(self.url, data=kwargs)
@@ -908,10 +916,9 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         self.url = reverse_ns('addon-version-list', kwargs={'addon_pk': param})
 
     def test_queries(self):
-        with self.assertNumQueries(13):
-            # 13 queries:
+        with self.assertNumQueries(11):
+            # 11 queries:
             # - 2 savepoints because of tests
-            # - 2 user and its groups
             # - 2 addon and its translations
             # - 1 count for pagination
             # - 1 versions themselves
@@ -921,6 +928,39 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
             # - 1 licenses
             # - 1 licenses translations
             self._test_url(lang='en-US')
+
+    def test_old_api_versions_have_license_text(self):
+        current_api_version = settings.REST_FRAMEWORK['DEFAULT_VERSION']
+        old_api_versions = ('v3', 'v4')
+        assert (
+            'keep-license-text-in-version-list'
+            not in settings.DRF_API_GATES[current_api_version]
+        )
+        for api_version in old_api_versions:
+            assert (
+                'keep-license-text-in-version-list'
+                in settings.DRF_API_GATES[api_version]
+            )
+
+        overridden_api_gates = {
+            current_api_version: ('keep-license-text-in-version-list',)
+        }
+        with override_settings(DRF_API_GATES=overridden_api_gates):
+            response = self.client.get(self.url)
+            assert response.status_code == 200
+            result = json.loads(force_str(response.content))
+            assert result['results']
+            assert len(result['results']) == 2
+            result_version = result['results'][0]
+            assert result_version['id'] == self.version.pk
+            assert result_version['version'] == self.version.version
+            assert result_version['license']
+            assert result_version['license']['text']
+            result_version = result['results'][1]
+            assert result_version['id'] == self.old_version.pk
+            assert result_version['version'] == self.old_version.version
+            assert result_version['license']
+            assert result_version['license']['text']
 
     def test_bad_filter(self):
         response = self.client.get(self.url, data={'filter': 'ahahaha'})

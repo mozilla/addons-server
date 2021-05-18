@@ -132,9 +132,9 @@ class Translation(ModelBase):
             with connections['default'].cursor() as cursor:
                 cursor.execute(
                     """
-                    UPDATE translations_seq
-                    SET id=LAST_INSERT_ID(
-                        id + @@global.auto_increment_increment
+                    UPDATE `translations_seq`
+                    SET `id`=LAST_INSERT_ID(
+                        `id` + @@global.auto_increment_increment
                     )
                 """
                 )
@@ -144,9 +144,9 @@ class Translation(ModelBase):
                 if not cursor.rowcount > 0:
                     cursor.execute(
                         """
-                        INSERT INTO translations_seq (id)
+                        INSERT INTO `translations_seq` (`id`)
                         VALUES(LAST_INSERT_ID(
-                            id + @@global.auto_increment_increment
+                            `id` + @@global.auto_increment_increment
                         ))
                     """
                     )

@@ -380,7 +380,7 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     :>json object license: Object holding information about the license for the version.
     :>json boolean license.is_custom: Whether the license text has been provided by the developer, or not.  (When ``false`` the license is one of the common, predefined, licenses).
     :>json object|null license.name: The name of the license (See :ref:`translated fields <api-overview-translations>`).
-    :>json object|null license.text: The text of the license (See :ref:`translated fields <api-overview-translations>`). For performance reasons this field is omitted from add-on detail endpoint.
+    :>json object|null license.text: The text of the license (See :ref:`translated fields <api-overview-translations>`). For performance reasons this field is only present in version detail detail endpoint: all other endpoints omit it.
     :>json string|null license.url: The URL of the full text of license.
     :>json object|null release_notes: The release notes for this version (See :ref:`translated fields <api-overview-translations>`).
     :>json string reviewed: The date the version was reviewed at.

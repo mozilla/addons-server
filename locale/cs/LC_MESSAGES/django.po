@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-05-12 13:19+0000\n"
-"PO-Revision-Date: 2021-05-12 20:14+0000\n"
-"Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
+"PO-Revision-Date: 2021-05-13 12:11+0000\n"
+"Last-Translator: David Walczysko <wal.davca@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -478,7 +478,7 @@ msgstr ""
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
-msgstr ""
+msgstr "Blokace s GUID %(guid)s nebyla nalezena"
 
 #, python-format
 msgid "Addon with GUID %(guid)s does not exist"
@@ -495,7 +495,7 @@ msgid "Invalid version"
 msgstr "Neplatná verze"
 
 msgid "Min version can not be greater than Max version"
-msgstr ""
+msgstr "Minimální verze nesmí být větší než maximální verze"
 
 msgid "Review Listed"
 msgstr ""
