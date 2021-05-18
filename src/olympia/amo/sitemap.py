@@ -5,7 +5,6 @@ from collections import namedtuple
 from urllib.parse import urlparse
 
 from django.conf import settings
-from django.contrib.sitemaps import Sitemap as DjangoSitemap
 from django.core import paginator
 from django.core.exceptions import ImproperlyConfigured
 from django.core.paginator import EmptyPage
