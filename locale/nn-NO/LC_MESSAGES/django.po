@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-12 13:19+0000\n"
+"POT-Creation-Date: 2021-05-18 17:07+0000\n"
 "PO-Revision-Date: 2021-04-29 18:23+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4515,8 +4515,8 @@ msgstr "Ugyldig arkiv."
 msgid "Could not find an add-on ID."
 msgstr "Klarte ikkje å finne nokon utvidings-ID."
 
-#, python-format
-msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
+#, fuzzy, python-format
+msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
 msgstr "Utvidings-ID i manifest.json eller install.rdf (%s) matchar passar ikkje med ID-en for utvidinga di på AMO (%s)"
 
 msgid "Duplicate add-on ID found."
