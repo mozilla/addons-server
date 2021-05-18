@@ -127,14 +127,38 @@ class TranslationTestCase(TestCase):
 
     def test_fetch_translations(self):
         """Basic check of fetching translations in the current locale."""
-        o = TranslatedModel.objects.get(pk=1)
-        self.trans_eq(o.name, 'some name', 'en-US')
-        self.trans_eq(o.description, 'some description', 'en-US')
+        with self.assertNumQueries(2):
+            obj = TranslatedModel.objects.get(pk=1)
+            connection = connections['default']
+            sql_query = connection.queries[1]['sql']
+            assert '`testapp_translatedmodel`.`name`' in sql_query
+            assert '`testapp_translatedmodel`.`description`' in sql_query
+        self.trans_eq(obj.name, 'some name', 'en-US')
+        self.trans_eq(obj.description, 'some description', 'en-US')
 
     def test_fetch_no_translations(self):
         """Make sure models with no translations aren't harmed."""
-        o = UntranslatedModel.objects.get(pk=1)
-        assert o.number == 17
+        obj = UntranslatedModel.objects.get(pk=1)
+        assert obj.number == 17
+
+    def test_translation_deferred(self):
+        """Make sure deferred fields are not included in the query made by
+        get_trans()."""
+        with self.assertNumQueries(2):
+            obj = TranslatedModel.objects.defer('description').get(pk=1)
+            assert obj.get_deferred_fields() == {'description_id'}
+            connection = connections['default']
+            sql_query = connection.queries[1]['sql']
+            assert '`testapp_translatedmodel`.`name`' in sql_query
+            assert '`testapp_translatedmodel`.`description`' not in sql_query
+        self.trans_eq(obj.name, 'some name', 'en-US')
+
+    def test_translation_deferred_all_translation_fields(self):
+        """Make sure deferring all translation fields doesn't cause issues."""
+        translated_fields = [f.name for f in TranslatedModel._meta.translated_fields]
+        assert translated_fields
+        with self.assertNumQueries(1):
+            assert TranslatedModel.objects.defer(*translated_fields).get(pk=1).pk
 
     def test_fetch_translation_de_locale(self):
         """Check that locale fallbacks work."""

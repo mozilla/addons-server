@@ -962,19 +962,31 @@ class LocalFileStorage(FileSystemStorage):
 
 
 def attach_trans_dict(model, objs):
-    """Put all translations into a translations dict."""
+    """Put all translations from all non-deferred translated fields from objs
+    into a translations dict on each instance."""
     # Get the ids of all the translations we need to fetch.
-    fields = model._meta.translated_fields
+    try:
+        deferred_fields = objs[0].get_deferred_fields()
+    except IndexError:
+        return
+    fields = [
+        field
+        for field in model._meta.translated_fields
+        if field.attname not in deferred_fields
+    ]
     ids = [
-        getattr(obj, f.attname)
-        for f in fields
+        getattr(obj, field.attname)
+        for field in fields
         for obj in objs
-        if getattr(obj, f.attname, None) is not None
+        if getattr(obj, field.attname, None) is not None
     ]
 
-    # Get translations in a dict, ids will be the keys. It's important to
-    # consume the result of sorted_groupby, which is an iterator.
-    qs = Translation.objects.filter(id__in=ids, localized_string__isnull=False)
+    if ids:
+        # Get translations in a dict, ids will be the keys. It's important to
+        # consume the result of sorted_groupby, which is an iterator.
+        qs = Translation.objects.filter(id__in=ids, localized_string__isnull=False)
+    else:
+        qs = []
     all_translations = {
         field_id: sorted(list(translations), key=lambda t: t.locale)
         for field_id, translations in sorted_groupby(qs, lambda t: t.id)
