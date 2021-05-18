@@ -727,11 +727,11 @@ def resize_image(source, destination, size=None, *, format='png', quality=80):
             pngcrush_image(destination)
         else:
             # Create a white rgba background for transparency
-            white_background = Image.new('RGBA', im.size, 'WHITE')
-            white_background.paste(im, (0, 0), im)
-            white_background = white_background.convert('RGB')
-            white_background.save(dest_file, 'JPEG', quality=quality)
-            white_background.close()
+            final_im = Image.new('RGBA', im.size, 'WHITE')
+            final_im.paste(im, (0, 0), im)
+            final_im = final_im.convert('RGB')
+            final_im.save(dest_file, 'JPEG', quality=quality)
+            final_im.close()
     new_size = im.size
     im.close()
     return (new_size, original_size)
