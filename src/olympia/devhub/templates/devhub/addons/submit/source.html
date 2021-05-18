@@ -17,7 +17,7 @@
         {% endtrans %}
         </p>
         <p class="list-header">
-        {% trans a_attrs = 'href="https://extensionworkshop.com/documentation/publish/source-code-submission/" target="_blank" rel="noopener noreferrer"'|safe %}
+        {% trans a_attrs = 'href="{{ settings.EXTENSION_WORKSHOP_URL }}/documentation/publish/source-code-submission/" target="_blank" rel="noopener noreferrer"'|safe %}
             Please review the <a {{ a_attrs }}>source code submission policy</a>.
         {% endtrans %}
             <span class="instruction-emphasis">
@@ -51,7 +51,7 @@
     <div id="option_yes_source">
         <h3>{{ _('Your Submission Requires Source Code.') }}</h3>
         <p class="instruction-emphasis list-header">
-        {% trans a_attrs = 'href="https://extensionworkshop.com/documentation/publish/source-code-submission/" target="_blank" rel="noopener noreferrer"'|safe %}
+        {% trans a_attrs = 'href="{{ settings.EXTENSION_WORKSHOP_URL }}/documentation/publish/source-code-submission/" target="_blank" rel="noopener noreferrer"'|safe %}
             The source code must meet <a {{ a_attrs }}>policy requirements</a>, which includes:
         {% endtrans %}
         </p>
