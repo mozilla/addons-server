@@ -275,14 +275,17 @@ def test_get_sitemap_section_pages():
         ('users', 'firefox', 1),
         ('users', 'android', 1),
     ]
-    with mock.patch.object(AddonSitemap, 'limit', 5):
+    with mock.patch.object(AddonSitemap, 'limit', 40):
+        # 3 pages per addon * 3 addons * 10 locales = 90 urls for addons; 3 pages @ 40pp
         pages = get_sitemap_section_pages()
         assert pages == [
             ('amo', None, 1),
             ('addons', 'firefox', 1),
             ('addons', 'firefox', 2),
+            ('addons', 'firefox', 3),
             ('addons', 'android', 1),
             ('addons', 'android', 2),
+            ('addons', 'android', 3),
             ('categories', 'firefox', 1),
             ('collections', 'firefox', 1),
             ('collections', 'android', 1),
@@ -295,10 +298,11 @@ def test_get_sitemap_section_pages():
     def items_mock(self):
         return [
             AccountSitemap.item_tuple(datetime.now(), user_id, 7, 8)
-            for user_id in range(0, 2001)  # limit is 1000
+            for user_id in range(0, 201)
         ]
 
     with mock.patch.object(AccountSitemap, 'items', items_mock):
+        # 201 mock user pages * 10 locales = 2010 urls for addons; 3 pages @ 1000pp
         pages = get_sitemap_section_pages()
         assert pages == [
             ('amo', None, 1),
@@ -335,20 +339,38 @@ def test_build_sitemap():
     def items_mock(self):
         return [
             AddonSitemap.item_tuple(
-                datetime(2020, 10, 2, 0, 0, 0), 'delicious-pierogi', 'detail'
+                datetime(2020, 10, 2, 0, 0, 0), 'delicious-barbeque', 'detail'
             ),
             AddonSitemap.item_tuple(
-                datetime(2020, 10, 1, 0, 0, 0), 'swanky-curry', 'detail'
+                datetime(2020, 10, 1, 0, 0, 0), 'spicy-sandwich', 'detail'
             ),
             AddonSitemap.item_tuple(
-                datetime(2020, 9, 30, 0, 0, 0), 'spicy-pierogi', 'detail'
+                datetime(2020, 9, 30, 0, 0, 0), 'delicious-chocolate', 'detail'
+            ),
+            AddonSitemap.item_tuple(
+                datetime(2020, 10, 2, 0, 0, 0), 'delicious-barbeque', 'versions'
+            ),
+            AddonSitemap.item_tuple(
+                datetime(2020, 10, 1, 0, 0, 0), 'spicy-sandwich', 'versions'
+            ),
+            AddonSitemap.item_tuple(
+                datetime(2020, 9, 30, 0, 0, 0), 'delicious-chocolate', 'versions'
+            ),
+            AddonSitemap.item_tuple(
+                datetime(2020, 10, 2, 0, 0, 0), 'delicious-barbeque', 'ratings.list'
+            ),
+            AddonSitemap.item_tuple(
+                datetime(2020, 10, 1, 0, 0, 0), 'spicy-sandwich', 'ratings.list'
+            ),
+            AddonSitemap.item_tuple(
+                datetime(2020, 9, 30, 0, 0, 0), 'delicious-chocolate', 'ratings.list'
             ),
         ]
 
     with mock.patch.object(AddonSitemap, 'items', items_mock):
         firefox_built = build_sitemap('addons', 'firefox')
 
-        firefox_file = os.path.join(TEST_SITEMAPS_DIR, 'sitemap-addons-firefox-2.xml')
+        firefox_file = os.path.join(TEST_SITEMAPS_DIR, 'sitemap-addons-firefox.xml')
         with open(firefox_file) as sitemap:
             assert firefox_built == sitemap.read()
 

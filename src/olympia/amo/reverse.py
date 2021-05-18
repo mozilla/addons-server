@@ -71,10 +71,8 @@ def override_url_prefix(*, app_name=None, locale=None):
     request = HttpRequest()
     request.META['SCRIPT_NAME'] = ''
     new_prefixer = Prefixer(request)
-    if app_name:
-        new_prefixer.app = app_name
-    if locale:
-        new_prefixer.locale = locale
+    new_prefixer.app = app_name or (old_prefixer or new_prefixer).app
+    new_prefixer.locale = locale or (old_prefixer or new_prefixer).locale
     try:
         set_url_prefix(new_prefixer)
         yield
