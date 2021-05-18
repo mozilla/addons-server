@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-24 04:47+0000\n"
-"Last-Translator: 你我皆凡人 <eloli@foxmail.com>\n"
+"POT-Creation-Date: 2021-05-12 13:19+0000\n"
+"PO-Revision-Date: 2021-05-13 02:02+0000\n"
+"Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -3113,9 +3113,8 @@ msgstr "面向最终用户"
 msgid "Matrix"
 msgstr "Matrix"
 
-# The title for a user if they are a developer
-msgid "Add-on Developers Mailing List"
-msgstr "附加组件开发者邮件列表"
+msgid "Community forum"
+msgstr "社区论坛"
 
 msgid "Extensions Developers Newsletter"
 msgstr "扩展开发者订阅邮件"
@@ -4291,6 +4290,36 @@ msgstr "蓝色＆黄色"
 msgid "Forest Theme"
 msgstr "森林主题"
 
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Save batches of tabs as convenient bookmarks."
+msgstr "批量保存标签页为便捷的书签。"
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Tabs and bookmarks neatly organized in a Firefox side view."
+msgstr "将标签页和书签整齐地排列于 Firefox 侧栏。"
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Thousands of GIFs at your fingertips."
+msgstr "成千上万的 GIF 图触手可及。"
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "The easiest way to manage YouTube subscriptions."
+msgstr "轻松管理所有 YouTube 频道订阅。"
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Get the mouse scrollbar you've always wanted—specify width and color."
+msgstr "您一直想要的滚动条——可选择宽度和颜色。"
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Save and restore tabs. Includes auto-save and cloud sync features."
+msgstr "保存与恢复标签页，更有自动保存和云同步功能。"
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "某些网站无法在 Android 上正常播放视频，此扩展可修正此问题。"
@@ -4308,7 +4337,7 @@ msgid "Web pages read aloud. 40+ languages supported."
 msgstr "朗读网页给您听，支持 40 多种语言。"
 
 #. editorial content for the primary hero shelves.
-msgid "Removes those long and ugly tracking parameters from Google search result URL's."
+msgid "Removes those long tracking parameters from Google search result URL's."
 msgstr "移除 Google 搜索结果 URL 中又臭又长的跟踪参数。"
 
 #. editorial content for the primary hero shelves.
@@ -4324,36 +4353,12 @@ msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to you
 msgstr "是否厌倦了“视频已暂停，要继续观看吗？”的提示？让您在 YouTube 上畅听喜欢的音乐。"
 
 #. editorial content for the primary hero shelves.
-msgid "Thousands of GIFs at your fingertips."
-msgstr "成千上万的 GIF 图触手可及。"
-
-#. editorial content for the primary hero shelves.
 msgid "Begone, annoying cookie warnings!"
 msgstr "滚蛋吧，烦人的 Cookie 警告！"
 
 #. editorial content for the primary hero shelves.
-msgid "The easiest way to manage YouTube subscriptions."
-msgstr "轻松管理所有 YouTube 频道订阅。"
-
-#. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "返璞归真 — 将重要搜索结果列于广告的上方（适用于 Google、Bing 搜索引擎）。"
-
-#. editorial content for the primary hero shelves.
-msgid "Get the mouse scrollbar you've always wanted—specify width and color."
-msgstr "您一直想要的滚动条——可选择宽度和颜色。"
-
-#. editorial content for the primary hero shelves.
-msgid "Save and restore tabs. Includes auto-save and cloud sync features."
-msgstr "保存与恢复标签页，更有自动保存和云同步功能。"
-
-#. editorial content for the primary hero shelves.
-msgid "Save batches of tabs as convenient bookmarks."
-msgstr "批量保存标签页为便捷的书签。"
-
-#. editorial content for the primary hero shelves.
-msgid "Tabs and bookmarks neatly organized in a Firefox side view."
-msgstr "将标签页和书签整齐地排列于 Firefox 侧栏。"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."

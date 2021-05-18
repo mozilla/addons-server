@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-27 23:00+0000\n"
+"POT-Creation-Date: 2021-05-12 13:19+0000\n"
+"PO-Revision-Date: 2021-05-15 07:39+0000\n"
 "Last-Translator: Victor Bychek <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -3227,9 +3227,8 @@ msgstr "Для конечных пользователей"
 msgid "Matrix"
 msgstr "Matrix"
 
-# The title for a user if they are a developer
-msgid "Add-on Developers Mailing List"
-msgstr "Список рассылки для разработчиков дополнений"
+msgid "Community forum"
+msgstr "Форум сообщества"
 
 msgid "Extensions Developers Newsletter"
 msgstr "Новостная рассылка для разработчиков расширений"
@@ -4422,6 +4421,36 @@ msgstr "Синие и желтые"
 msgid "Forest Theme"
 msgstr "Лесная тема"
 
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Save batches of tabs as convenient bookmarks."
+msgstr "Сохраняйте группы вкладок в виде удобных закладок."
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Tabs and bookmarks neatly organized in a Firefox side view."
+msgstr "Вкладки и закладки аккуратно организованные в боковой панели Firefox."
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Thousands of GIFs at your fingertips."
+msgstr "Тысячи GIF-роликов у вас под рукой."
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "The easiest way to manage YouTube subscriptions."
+msgstr "Самый простой способ управлять подписками на YouTube."
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Get the mouse scrollbar you've always wanted—specify width and color."
+msgstr "Получите полосу прокрутки мышью, которую всегда хотели — выберите ширину и цвет."
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Save and restore tabs. Includes auto-save and cloud sync features."
+msgstr "Сохранение и восстановление вкладок. Включает функции автосохранения и облачной синхронизации."
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Некоторые веб-сайты испытывают затруднения при воспроизведении видео на Android. Вот как это исправить."
@@ -4439,8 +4468,8 @@ msgid "Web pages read aloud. 40+ languages supported."
 msgstr "Веб-страницы зачитываются вслух. Поддерживается более 40 языков."
 
 #. editorial content for the primary hero shelves.
-msgid "Removes those long and ugly tracking parameters from Google search result URL's."
-msgstr "Удаляет длинные и некрасивые параметры отслеживания из URL-адресов результатов поиска Google."
+msgid "Removes those long tracking parameters from Google search result URL's."
+msgstr "Удаляет длинные параметры отслеживания из URL-адресов результатов поиска Google."
 
 #. editorial content for the primary hero shelves.
 msgid "Get weather updates directly from Firefox."
@@ -4455,36 +4484,12 @@ msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to you
 msgstr "Устали от постоянного появления \"Видео приостановлено. Продолжить просмотр?\"? Слушайте любимую музыку на YouTube без перерыва."
 
 #. editorial content for the primary hero shelves.
-msgid "Thousands of GIFs at your fingertips."
-msgstr "Тысячи GIF-роликов у вас под рукой."
-
-#. editorial content for the primary hero shelves.
 msgid "Begone, annoying cookie warnings!"
 msgstr "Сгиньте, надоедливые предупреждения о куках!"
 
 #. editorial content for the primary hero shelves.
-msgid "The easiest way to manage YouTube subscriptions."
-msgstr "Самый простой способ управлять подписками на YouTube."
-
-#. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Вернитесь к более простым временам — когда первые результаты поиска стояли выше рекламы (совместимо с поисковыми системами Google и Bing)."
-
-#. editorial content for the primary hero shelves.
-msgid "Get the mouse scrollbar you've always wanted—specify width and color."
-msgstr "Получите полосу прокрутки мышью, которую всегда хотели — выберите ширину и цвет."
-
-#. editorial content for the primary hero shelves.
-msgid "Save and restore tabs. Includes auto-save and cloud sync features."
-msgstr "Сохранение и восстановление вкладок. Включает функции автосохранения и облачной синхронизации."
-
-#. editorial content for the primary hero shelves.
-msgid "Save batches of tabs as convenient bookmarks."
-msgstr "Сохраняйте группы вкладок в виде удобных закладок."
-
-#. editorial content for the primary hero shelves.
-msgid "Tabs and bookmarks neatly organized in a Firefox side view."
-msgstr "Вкладки и закладки аккуратно организованные в боковой панели Firefox."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."

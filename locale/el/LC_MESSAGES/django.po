@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-05-05 08:41+0000\n"
+"POT-Creation-Date: 2021-05-12 13:19+0000\n"
+"PO-Revision-Date: 2021-05-12 21:05+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -3239,9 +3239,8 @@ msgstr "Για τελικούς χρήστες"
 msgid "Matrix"
 msgstr "Matrix"
 
-# The title for a user if they are a developer
-msgid "Add-on Developers Mailing List"
-msgstr "Λίστα αλληλογραφίας δημιουργών προσθέτων"
+msgid "Community forum"
+msgstr "Φόρουμ κοινότητας"
 
 msgid "Extensions Developers Newsletter"
 msgstr "Newsletter προγραμματιστών επεκτάσεων"
@@ -4433,6 +4432,36 @@ msgstr "Μπλε & κίτρινα"
 msgid "Forest Theme"
 msgstr "Θέμα δάσους"
 
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Save batches of tabs as convenient bookmarks."
+msgstr "Αποθήκευση πολλαπλών καρτελών σε βολικούς σελιδοδείκτες."
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Tabs and bookmarks neatly organized in a Firefox side view."
+msgstr "Οργάνωση καρτελών και σελιδοδεικτών σε μια πλαϊνή προβολή του Firefox."
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Thousands of GIFs at your fingertips."
+msgstr "Χιλιάδες GIFs στα δάχτυλά σας."
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "The easiest way to manage YouTube subscriptions."
+msgstr "Ο πιο εύκολος τρόπος διαχείρισης συνδρομών στο YouTube."
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Get the mouse scrollbar you've always wanted—specify width and color."
+msgstr "Αποκτήστε τη γραμμή κύλισης που πάντα θέλατε—επιλέξτε πλάτος και χρώμα."
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Save and restore tabs. Includes auto-save and cloud sync features."
+msgstr "Αποθήκευση και επαναφορά καρτελών. Περιλαμβάνει λειτουργίες αυτόματης αποθήκευσης και συγχρονισμού cloud."
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Ορισμένες ιστοσελίδες δυσκολεύονται με την αναπαραγωγή βίντεο στο Firefox για Android. Ορίστε μια διόρθωση."
@@ -4450,7 +4479,7 @@ msgid "Web pages read aloud. 40+ languages supported."
 msgstr "Εκφώνηση ιστοσελίδων. Υποστήριξη για 40+ γλώσσες."
 
 #. editorial content for the primary hero shelves.
-msgid "Removes those long and ugly tracking parameters from Google search result URL's."
+msgid "Removes those long tracking parameters from Google search result URL's."
 msgstr "Αφαιρεί τις μεγάλες παραμέτρους καταγραφής από τα URL των αποτελεσμάτων αναζήτησης Google."
 
 #. editorial content for the primary hero shelves.
@@ -4466,36 +4495,12 @@ msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to you
 msgstr "Σας κούρασε το παράθυρο \"Το βίντεο διακόπηκε. Συνέχεια παρακολούθησης;\"; Ακούστε την αγαπημένη σας μουσική χωρίς διακοπή στο YouTube."
 
 #. editorial content for the primary hero shelves.
-msgid "Thousands of GIFs at your fingertips."
-msgstr "Χιλιάδες GIFs στα δάχτυλά σας."
-
-#. editorial content for the primary hero shelves.
 msgid "Begone, annoying cookie warnings!"
 msgstr "Εξαφανιστείτε, ενοχλητικές προειδοποιήσεις cookie!"
 
 #. editorial content for the primary hero shelves.
-msgid "The easiest way to manage YouTube subscriptions."
-msgstr "Ο πιο εύκολος τρόπος διαχείρισης συνδρομών στο YouTube."
-
-#. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Επιστρέψτε σε πιο απλές εποχές — όταν τα κορυφαία αποτελέσματα αναζήτησης βρίσκονταν πάνω από τις διαφημίσεις (συμβατό με τις μηχανές αναζήτησης Google και Bing)."
-
-#. editorial content for the primary hero shelves.
-msgid "Get the mouse scrollbar you've always wanted—specify width and color."
-msgstr "Αποκτήστε τη γραμμή κύλισης που πάντα θέλατε—επιλέξτε πλάτος και χρώμα."
-
-#. editorial content for the primary hero shelves.
-msgid "Save and restore tabs. Includes auto-save and cloud sync features."
-msgstr "Αποθήκευση και επαναφορά καρτελών. Περιλαμβάνει λειτουργίες αυτόματης αποθήκευσης και συγχρονισμού cloud."
-
-#. editorial content for the primary hero shelves.
-msgid "Save batches of tabs as convenient bookmarks."
-msgstr "Αποθήκευση πολλαπλών καρτελών σε βολικούς σελιδοδείκτες."
-
-#. editorial content for the primary hero shelves.
-msgid "Tabs and bookmarks neatly organized in a Firefox side view."
-msgstr "Οργάνωση καρτελών και σελιδοδεικτών σε μια πλαϊνή προβολή του Firefox."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."

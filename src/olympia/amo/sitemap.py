@@ -6,7 +6,8 @@ from urllib.parse import urlparse
 
 from django.conf import settings
 from django.contrib.sitemaps import Sitemap as DjangoSitemap
-from django.db.models import Count, F, Max, Q
+from django.core.paginator import EmptyPage
+from django.db.models import Count, Max, Q
 from django.template import loader
 from django.urls import reverse
 
@@ -17,7 +18,6 @@ from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.constants.categories import CATEGORIES
 from olympia.bandwagon.models import Collection
 from olympia.users.models import UserProfile
-from olympia.versions.models import License
 
 
 # These constants are from:
@@ -41,31 +41,9 @@ class AddonSitemap(Sitemap):
         addons = list(
             Addon.objects.public()
             .order_by('-last_updated')
-            .annotate(license_builtin=F('_current_version__license__builtin'))
-            .annotate(
-                has_eula=Count(
-                    'eula__localized_string',
-                    filter=Q(
-                        ~Q(eula__localized_string=''),
-                        eula__locale=F('default_locale'),
-                    ),
-                )
-            )
-            .annotate(
-                has_privacy=Count(
-                    'privacy_policy__localized_string',
-                    filter=Q(
-                        ~Q(privacy_policy__localized_string=''),
-                        privacy_policy__locale=F('default_locale'),
-                    ),
-                )
-            )
             .values_list(
                 'last_updated',
                 'slug',
-                'has_eula',
-                'has_privacy',
-                'license_builtin',
                 'text_ratings_count',
                 named=True,
             )
@@ -78,21 +56,6 @@ class AddonSitemap(Sitemap):
             *(
                 self.item_tuple(addon.last_updated, addon.slug, 'versions')
                 for addon in addons
-            ),
-            *(
-                self.item_tuple(addon.last_updated, addon.slug, 'privacy')
-                for addon in addons
-                if addon.has_privacy
-            ),
-            *(
-                self.item_tuple(addon.last_updated, addon.slug, 'eula')
-                for addon in addons
-                if addon.has_eula
-            ),
-            *(
-                self.item_tuple(addon.last_updated, addon.slug, 'license')
-                for addon in addons
-                if addon.license_builtin == License.OTHER  # i.e. custom license
             ),
         ]
         # add pages for ratings - and extra pages when needed to paginate
@@ -274,6 +237,10 @@ sitemaps = {
 }
 
 
+class InvalidSection(Exception):
+    pass
+
+
 def get_sitemap_section_pages():
     pages = []
     for section, site in sitemaps.items():
@@ -292,6 +259,8 @@ def get_sitemap_section_pages():
 def build_sitemap(section, app_name, page=1):
     if not section:
         # its the index
+        if page != 1:
+            raise EmptyPage
         sitemap_url = reverse('amo.sitemap')
         urls = (
             f'{sitemap_url}?section={section}'
@@ -306,6 +275,8 @@ def build_sitemap(section, app_name, page=1):
         )
     else:
         sitemap_object = sitemaps.get(section)
+        if not sitemap_object:
+            raise InvalidSection
         site_url = urlparse(settings.EXTERNAL_SITE_URL)
         # Sitemap.get_urls wants a Site instance to get the domain, so just fake it.
         site = namedtuple('FakeSite', 'domain')(site_url.netloc)

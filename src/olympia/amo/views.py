@@ -7,6 +7,7 @@ from django import http
 from django.conf import settings
 from django.contrib.sitemaps.views import x_robots_tag
 from django.core.exceptions import ViewDoesNotExist
+from django.core.paginator import EmptyPage, PageNotAnInteger
 from django.db.transaction import non_atomic_requests
 from django.http import Http404, HttpResponse, JsonResponse
 from django.utils.cache import patch_cache_control
@@ -25,7 +26,7 @@ from olympia.api.serializers import SiteStatusSerializer
 from olympia.users.models import UserProfile
 
 from . import monitors
-from .sitemap import build_sitemap, get_sitemap_path
+from .sitemap import build_sitemap, get_sitemap_path, InvalidSection
 
 
 sitemap_log = olympia.core.logger.getLogger('z.monitor')
@@ -189,7 +190,14 @@ def sitemap(request):
     app = request.GET.get('app_name')
     page = request.GET.get('p', 1)
     if 'debug' in request.GET and settings.SITEMAP_DEBUG_AVAILABLE:
-        content = build_sitemap(section, app, page)
+        try:
+            content = build_sitemap(section, app, page)
+        except EmptyPage:
+            raise Http404('Page %s empty' % page)
+        except PageNotAnInteger:
+            raise Http404('No page "%s"' % page)
+        except InvalidSection:
+            raise Http404('No sitemap available for section: %r' % section)
         response = HttpResponse(content, content_type='application/xml')
     else:
         path = get_sitemap_path(section, app, page)

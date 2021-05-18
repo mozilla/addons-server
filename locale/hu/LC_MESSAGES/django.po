@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-21 10:22+0000\n"
+"POT-Creation-Date: 2021-05-12 13:19+0000\n"
+"PO-Revision-Date: 2021-05-12 14:06+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -3219,9 +3219,8 @@ msgstr "Végfelhasználók számára"
 msgid "Matrix"
 msgstr "Matrix"
 
-# The title for a user if they are a developer
-msgid "Add-on Developers Mailing List"
-msgstr "Kiegészítőfejlesztői levelezőlista"
+msgid "Community forum"
+msgstr "Közösségi fórum"
 
 msgid "Extensions Developers Newsletter"
 msgstr "Mozilla fejlesztői hírlevél"
@@ -4406,6 +4405,36 @@ msgstr "Kékek és sárgák"
 msgid "Forest Theme"
 msgstr "Erdei téma"
 
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Save batches of tabs as convenient bookmarks."
+msgstr "Mentsen el lapcsoportokat kényelmes könyvjelzőkként."
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Tabs and bookmarks neatly organized in a Firefox side view."
+msgstr "Lapok és könyvjelzők szépen rendezve a Firefox oldalnézetében."
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Thousands of GIFs at your fingertips."
+msgstr "GIF-ek ezrei karnyújtásnyira."
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "The easiest way to manage YouTube subscriptions."
+msgstr "A YouTube-feliratkozások kezelésének legegyszerűbb módja."
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Get the mouse scrollbar you've always wanted—specify width and color."
+msgstr "Szerezze be a görgetősávot, amelyre mindig vágyott – adja meg a kívánt szélességet és színt."
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Save and restore tabs. Includes auto-save and cloud sync features."
+msgstr "Lapok mentése és visszaállítása. Támogatja az automatikus mentést és a felhős szinkronizálást."
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Egyes webhelyek nehezen tudnak videókat lejátszani Androidon. Itt egy javítás."
@@ -4423,8 +4452,8 @@ msgid "Web pages read aloud. 40+ languages supported."
 msgstr "Weboldalak hangos felolvasása. 40+ támogatott nyelven."
 
 #. editorial content for the primary hero shelves.
-msgid "Removes those long and ugly tracking parameters from Google search result URL's."
-msgstr "Eltávolítja ezeket a hosszú és csúnya nyomkövető paramétereket a Google-keresési eredmények URL-jéből."
+msgid "Removes those long tracking parameters from Google search result URL's."
+msgstr "Eltávolítja a hosszú nyomkövető paramétereket a Google keresési találatok URL-jéből."
 
 #. editorial content for the primary hero shelves.
 msgid "Get weather updates directly from Firefox."
@@ -4439,36 +4468,12 @@ msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to you
 msgstr "Unja a „Videó szüneteltetve. Folytatja a nézését?” üzenetet? Hallgassa kedvenc zenéit megszakítás nélkül a YouTube-on."
 
 #. editorial content for the primary hero shelves.
-msgid "Thousands of GIFs at your fingertips."
-msgstr "GIF-ek ezrei karnyújtásnyira."
-
-#. editorial content for the primary hero shelves.
 msgid "Begone, annoying cookie warnings!"
 msgstr "Bosszantó sütifigyelmeztetések, távozzatok!"
 
 #. editorial content for the primary hero shelves.
-msgid "The easiest way to manage YouTube subscriptions."
-msgstr "A YouTube-feliratkozások kezelésének legegyszerűbb módja."
-
-#. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Térjen vissza egy egyszerűbb időbe – amikor a keresési találatok a reklámok felett jelentek meg (a Google és a Bing keresővel kompatibilis)."
-
-#. editorial content for the primary hero shelves.
-msgid "Get the mouse scrollbar you've always wanted—specify width and color."
-msgstr "Szerezze be a görgetősávot, amelyre mindig vágyott – adja meg a kívánt szélességet és színt."
-
-#. editorial content for the primary hero shelves.
-msgid "Save and restore tabs. Includes auto-save and cloud sync features."
-msgstr "Lapok mentése és visszaállítása. Támogatja az automatikus mentést és a felhős szinkronizálást."
-
-#. editorial content for the primary hero shelves.
-msgid "Save batches of tabs as convenient bookmarks."
-msgstr "Mentsen el lapcsoportokat kényelmes könyvjelzőkként."
-
-#. editorial content for the primary hero shelves.
-msgid "Tabs and bookmarks neatly organized in a Firefox side view."
-msgstr "Lapok és könyvjelzők szépen rendezve a Firefox oldalnézetében."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."

@@ -595,3 +595,14 @@ class TestSitemap(TestCase):
         # ?debug should be ignored and the request treated as a nginx redirect
         assert result.content == b''
         assert result[settings.XSENDFILE_HEADER]
+
+    @override_settings(SITEMAP_DEBUG_AVAILABLE=True)
+    def test_exceptions(self):
+        # check that requesting an out of bounds page number 404s
+        assert self.client.get('/sitemap.xml?debug&p=10').status_code == 404
+        assert self.client.get('/sitemap.xml?debug&section=amo&p=10').status_code == 404
+        # and a non-integer page number
+        assert self.client.get('/sitemap.xml?debug&p=a').status_code == 404
+        assert self.client.get('/sitemap.xml?debug&p=1.3').status_code == 404
+        # invalid sections should also fail nicely
+        assert self.client.get('/sitemap.xml?debug&section=foo').status_code == 404

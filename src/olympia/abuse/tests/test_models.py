@@ -127,11 +127,11 @@ class TestAbuse(TestCase):
             (21, 'System Add-on (Profile)'),
             (22, 'System Add-on (Update)'),
             (23, 'System Add-on (Bundled)'),
-            (24, 'System Add-on (Builtin)'),
-            (25, 'System Add-on (User)'),
+            (24, 'Built-in Add-on'),
+            (25, 'System-wide Add-on (User)'),
             (26, 'Application Add-on'),
-            (27, 'System Add-on (OS Share)'),
-            (28, 'System Add-on (OS Local)'),
+            (27, 'System-wide Add-on (OS Share)'),
+            (28, 'System-wide Add-on (OS Local)'),
             (127, 'Other'),
         )
 

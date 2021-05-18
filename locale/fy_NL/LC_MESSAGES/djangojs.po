@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-20 19:23+0000\n"
-"PO-Revision-Date: 2020-12-09 10:59+0000\n"
+"POT-Creation-Date: 2021-05-12 13:19+0000\n"
+"PO-Revision-Date: 2021-05-15 19:16+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -119,7 +119,7 @@ msgid "Add-on submission checklist"
 msgstr "Checklist foar add-on-yntsjinning"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr "Controleer de folgjende punten voordat u uw inzending afrondt. Dit minimaliseert vertragingen of misvattingen tijdens het beoordelingsproces:"
+msgstr "Kontrolearje de folgjende punten eardat jo jo ynstjoering ôfmeitsje. Dit minimalisearret fertragingen of misfettingen wylst it beoardielingsproses:"
 
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "

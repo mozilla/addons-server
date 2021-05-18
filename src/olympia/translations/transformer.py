@@ -6,12 +6,12 @@ from olympia.translations.fields import TranslatedField
 from olympia.translations.models import Translation
 
 
-isnull = """IF(!ISNULL({t1}.localized_string), {t1}.{col}, {t2}.{col})
+isnull = """IF(!ISNULL({t1}.`localized_string`), {t1}.`{col}`, {t2}.`{col}`)
             AS {name}_{col}"""
-join = """LEFT OUTER JOIN translations {t}
-          ON ({t}.id={model}.{name} AND {t}.locale={locale})"""
-no_locale_join = """LEFT OUTER JOIN translations {t}
-                    ON {t}.id={model}.{name}"""
+join = """LEFT OUTER JOIN `translations` {t}
+          ON ({t}.`id`={model}.`{name}` AND {t}.`locale`={locale})"""
+no_locale_join = """LEFT OUTER JOIN `translations` {t}
+                    ON {t}.`id`={model}.`{name}`"""
 
 trans_fields = [f.name for f in Translation._meta.fields]
 
@@ -39,35 +39,35 @@ def build_query(model, connection):
             fallback_str = '%s'
 
         name = field.column
-        d = {
+        data = {
             't1': 't1_' + name,
             't2': 't2_' + name,
             'model': qn(model._meta.db_table),
             'name': name,
         }
 
-        selects.extend(isnull.format(col=f, **d) for f in trans_fields)
+        selects.extend(isnull.format(col=f, **data) for f in trans_fields)
 
-        joins.append(join.format(t=d['t1'], locale='%s', **d))
+        joins.append(join.format(t=data['t1'], locale='%s', **data))
         params.append(translation.get_language())
 
         if field.require_locale:
-            joins.append(join.format(t=d['t2'], locale=fallback_str, **d))
+            joins.append(join.format(t=data['t2'], locale=fallback_str, **data))
             if not isinstance(fallback, models.Field):
                 params.append(fallback)
         else:
-            joins.append(no_locale_join.format(t=d['t2'], **d))
+            joins.append(no_locale_join.format(t=data['t2'], **data))
 
     # ids will be added later on.
     sql = """SELECT {model}.{pk}, {selects} FROM {model} {joins}
              WHERE {model}.{pk} IN {{ids}}"""
-    s = sql.format(
+    query = sql.format(
         selects=','.join(selects),
         joins='\n'.join(joins),
         model=qn(model._meta.db_table),
-        pk=model._meta.pk.column,
+        pk=qn(model._meta.pk.column),
     )
-    return s, params
+    return query, params
 
 
 def get_trans(items):

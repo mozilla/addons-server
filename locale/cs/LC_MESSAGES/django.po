@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-05-07 15:09+0000\n"
-"Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
+"POT-Creation-Date: 2021-05-12 13:19+0000\n"
+"PO-Revision-Date: 2021-05-13 12:11+0000\n"
+"Last-Translator: David Walczysko <wal.davca@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -478,7 +478,7 @@ msgstr ""
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
-msgstr ""
+msgstr "Blokace s GUID %(guid)s nebyla nalezena"
 
 #, python-format
 msgid "Addon with GUID %(guid)s does not exist"
@@ -495,7 +495,7 @@ msgid "Invalid version"
 msgstr "Neplatná verze"
 
 msgid "Min version can not be greater than Max version"
-msgstr ""
+msgstr "Minimální verze nesmí být větší než maximální verze"
 
 msgid "Review Listed"
 msgstr ""
@@ -3154,9 +3154,8 @@ msgstr "Pro koncové uživatele"
 msgid "Matrix"
 msgstr ""
 
-# The title for a user if they are a developer
-msgid "Add-on Developers Mailing List"
-msgstr ""
+msgid "Community forum"
+msgstr "Komunitní fórum"
 
 msgid "Extensions Developers Newsletter"
 msgstr ""
@@ -4341,6 +4340,36 @@ msgstr "Modrožlutá"
 msgid "Forest Theme"
 msgstr ""
 
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Save batches of tabs as convenient bookmarks."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Tabs and bookmarks neatly organized in a Firefox side view."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Thousands of GIFs at your fingertips."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "The easiest way to manage YouTube subscriptions."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Get the mouse scrollbar you've always wanted—specify width and color."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Save and restore tabs. Includes auto-save and cloud sync features."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Některé weby mají potíže s přehráváním videí v systému Android. Tady je oprava."
@@ -4358,7 +4387,7 @@ msgid "Web pages read aloud. 40+ languages supported."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid "Removes those long and ugly tracking parameters from Google search result URL's."
+msgid "Removes those long tracking parameters from Google search result URL's."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4374,35 +4403,11 @@ msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to you
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid "Thousands of GIFs at your fingertips."
-msgstr ""
-
-#. editorial content for the primary hero shelves.
 msgid "Begone, annoying cookie warnings!"
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid "The easiest way to manage YouTube subscriptions."
-msgstr ""
-
-#. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
-msgstr ""
-
-#. editorial content for the primary hero shelves.
-msgid "Get the mouse scrollbar you've always wanted—specify width and color."
-msgstr ""
-
-#. editorial content for the primary hero shelves.
-msgid "Save and restore tabs. Includes auto-save and cloud sync features."
-msgstr ""
-
-#. editorial content for the primary hero shelves.
-msgid "Save batches of tabs as convenient bookmarks."
-msgstr ""
-
-#. editorial content for the primary hero shelves.
-msgid "Tabs and bookmarks neatly organized in a Firefox side view."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.

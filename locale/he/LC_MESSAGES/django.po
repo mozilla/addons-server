@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-21 09:02+0000\n"
+"POT-Creation-Date: 2021-05-12 13:19+0000\n"
+"PO-Revision-Date: 2021-05-12 18:00+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -3154,9 +3154,8 @@ msgstr "למשתמשי קצה"
 msgid "Matrix"
 msgstr "Matrix"
 
-# The title for a user if they are a developer
-msgid "Add-on Developers Mailing List"
-msgstr "רשימת תפוצה למפתחי תוספות"
+msgid "Community forum"
+msgstr "פורום הקהילה"
 
 #, fuzzy
 msgid "Extensions Developers Newsletter"
@@ -4352,6 +4351,37 @@ msgstr ""
 msgid "Forest Theme"
 msgstr "יצירת ערכת נושא"
 
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Save batches of tabs as convenient bookmarks."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Tabs and bookmarks neatly organized in a Firefox side view."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Thousands of GIFs at your fingertips."
+msgstr "אלפי קובצי GIF בקצות האצבעות שלך."
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+#, fuzzy
+msgid "The easiest way to manage YouTube subscriptions."
+msgstr "הדרך הקלה ביותר לנהל את כל המינויים לערוץ ה־YouTube שלך."
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Get the mouse scrollbar you've always wanted—specify width and color."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Save and restore tabs. Includes auto-save and cloud sync features."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "ישנם אתרים המתקשים בהפעלת סרטונים ב־Android. הרחבה זו מספקת את התיקון."
@@ -4369,7 +4399,7 @@ msgid "Web pages read aloud. 40+ languages supported."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid "Removes those long and ugly tracking parameters from Google search result URL's."
+msgid "Removes those long tracking parameters from Google search result URL's."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4385,36 +4415,11 @@ msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to you
 msgstr "נמאס לך מההודעה של \"הווידאו מושהה. להמשיך לצפות?\"? האזנה למוזיקה האהובה עליך ללא הפרעה ב־YouTube."
 
 #. editorial content for the primary hero shelves.
-msgid "Thousands of GIFs at your fingertips."
-msgstr "אלפי קובצי GIF בקצות האצבעות שלך."
-
-#. editorial content for the primary hero shelves.
 msgid "Begone, annoying cookie warnings!"
 msgstr "הסתלקו, אזהרות עוגיות מעצבנות!"
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
-msgid "The easiest way to manage YouTube subscriptions."
-msgstr "הדרך הקלה ביותר לנהל את כל המינויים לערוץ ה־YouTube שלך."
-
-#. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
-msgstr ""
-
-#. editorial content for the primary hero shelves.
-msgid "Get the mouse scrollbar you've always wanted—specify width and color."
-msgstr ""
-
-#. editorial content for the primary hero shelves.
-msgid "Save and restore tabs. Includes auto-save and cloud sync features."
-msgstr ""
-
-#. editorial content for the primary hero shelves.
-msgid "Save batches of tabs as convenient bookmarks."
-msgstr ""
-
-#. editorial content for the primary hero shelves.
-msgid "Tabs and bookmarks neatly organized in a Firefox side view."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.

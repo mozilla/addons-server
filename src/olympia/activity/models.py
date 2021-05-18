@@ -471,7 +471,7 @@ class ActivityLog(ModelBase):
                     # Most of the time, we're eventually going to call
                     # to_string() on each ActivityLog that we're processing
                     # here. For some of the models, that will result in a call
-                    # to <model>.get_url_path(), which in turn can cause an
+                    # to <model>.get_absolute_url(), which in turn can cause an
                     # extra SQL query because some parent model is needed to
                     # build the URL.
                     # It's difficult to predict what we'll need as ActivitLog
@@ -562,34 +562,36 @@ class ActivityLog(ModelBase):
             if isinstance(arg, Addon) and not addon:
                 if arg.has_listed_versions():
                     addon = self.f(
-                        '<a href="{0}">{1}</a>', arg.get_url_path(), arg.name
+                        '<a href="{0}">{1}</a>', arg.get_absolute_url(), arg.name
                     )
                 else:
                     addon = self.f('{0}', arg.name)
                 arguments.remove(arg)
             if isinstance(arg, Rating) and not rating:
                 rating = self.f(
-                    '<a href="{0}">{1}</a>', arg.get_url_path(), gettext('Review')
+                    '<a href="{0}">{1}</a>', arg.get_absolute_url(), gettext('Review')
                 )
                 arguments.remove(arg)
             if isinstance(arg, Version) and not version:
                 text = gettext('Version {0}')
                 if arg.channel == amo.RELEASE_CHANNEL_LISTED:
                     version = self.f(
-                        '<a href="{1}">%s</a>' % text, arg.version, arg.get_url_path()
+                        '<a href="{1}">%s</a>' % text,
+                        arg.version,
+                        arg.get_absolute_url(),
                     )
                 else:
                     version = self.f(text, arg.version)
                 arguments.remove(arg)
             if isinstance(arg, Collection) and not collection:
                 collection = self.f(
-                    '<a href="{0}">{1}</a>', arg.get_url_path(), arg.name
+                    '<a href="{0}">{1}</a>', arg.get_absolute_url(), arg.name
                 )
                 arguments.remove(arg)
             if isinstance(arg, Tag) and not tag:
                 if arg.can_reverse():
                     tag = self.f(
-                        '<a href="{0}">{1}</a>', arg.get_url_path(), arg.tag_text
+                        '<a href="{0}">{1}</a>', arg.get_absolute_url(), arg.tag_text
                     )
                 else:
                     tag = self.f('{0}', arg.tag_text)
@@ -606,7 +608,7 @@ class ActivityLog(ModelBase):
 
                 file_ = self.f(
                     '<a href="{0}">{1}</a> (validation {2})',
-                    arg.get_url_path(),
+                    arg.get_absolute_url(),
                     arg.filename,
                     validation,
                 )

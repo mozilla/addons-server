@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-05-06 17:33+0000\n"
-"Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
+"POT-Creation-Date: 2021-05-12 13:19+0000\n"
+"PO-Revision-Date: 2021-05-12 20:00+0000\n"
+"Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
@@ -3167,8 +3167,8 @@ msgstr "I yiseqdacen n taggara"
 msgid "Matrix"
 msgstr "Matrix"
 
-msgid "Add-on Developers Mailing List"
-msgstr "Umuɣ n tuzzna n yineflayen n yizegrar"
+msgid "Community forum"
+msgstr "Afuṛum n temɣiwent"
 
 msgid "Extensions Developers Newsletter"
 msgstr "Aɣmis n yineflayen n yisiɣzaf"
@@ -4347,6 +4347,36 @@ msgstr "Izegzawen & Iwraɣen"
 msgid "Forest Theme"
 msgstr "Asentel n teẓgi"
 
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Save batches of tabs as convenient bookmarks."
+msgstr "Sekles tigrummiwin n yiccaren s yisem n ticraḍ n yisebtar yelhan i usemres."
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Tabs and bookmarks neatly organized in a Firefox side view."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Thousands of GIFs at your fingertips."
+msgstr "D igimen n tugniwin GIF ɣef afus."
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "The easiest way to manage YouTube subscriptions."
+msgstr "Abrid afessas n usefrek n yijerriden-ik ɣer Youtube."
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Get the mouse scrollbar you've always wanted—specify width and color."
+msgstr "Afeggag n udrurem i tbeqquḍ yal tikkelt — fren tuzert-is akked yini i tebɣiḍ."
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Save and restore tabs. Includes auto-save and cloud sync features."
+msgstr "Sekles, daɣen err-d accaren. Llan twuriwin n usekles awurman akked umtawa ɣer usigna."
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Kra n yismal ur ssawaḍen ara ad d-ɣren tividyutin deg Android. Dagi i tella tifrat."
@@ -4364,8 +4394,8 @@ msgid "Web pages read aloud. 40+ languages supported."
 msgstr "Taɣuri n yisebtar web s taɣect εlayen. Ugar n 40 tutlayin i yettusefraken."
 
 #. editorial content for the primary hero shelves.
-msgid "Removes those long and ugly tracking parameters from Google search result URL's."
-msgstr "Ittekkes yir iɣewwaren-nni n uḍfar ɣezzifen seg URL n yigmaḍ n unadi deg Google."
+msgid "Removes those long tracking parameters from Google search result URL's."
+msgstr "Ittekkes iɣewwaren-ni ɣezzifen n uḍfar ɣezzifen n URL n yigmaḍ n unadi deg Google."
 
 #. editorial content for the primary hero shelves.
 msgid "Get weather updates directly from Firefox."
@@ -4380,36 +4410,12 @@ msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to you
 msgstr "Teɛyiḍ seg \"Seḥbes tavidyut-a. Kemmel awali?\" izen? Sell i uẓawan i tḥemmleḍ s war aneḥbus deg Youtube."
 
 #. editorial content for the primary hero shelves.
-msgid "Thousands of GIFs at your fingertips."
-msgstr "D igimen n tugniwin GIF ɣef afus."
-
-#. editorial content for the primary hero shelves.
 msgid "Begone, annoying cookie warnings!"
 msgstr "Kkes ilɣa-a n yinagan n uqqna i issennuɣnuyen!"
 
 #. editorial content for the primary hero shelves.
-msgid "The easiest way to manage YouTube subscriptions."
-msgstr "Abrid afessas n usefrek n yijerriden-ik ɣer Youtube."
-
-#. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Uɣal ɣer tallit tafessast — makken igmaḍ ufrinen n unadi ttbanen-d nnig n yiberriḥen (imṣada d yimseddayen n unadi Google akked Bing)."
-
-#. editorial content for the primary hero shelves.
-msgid "Get the mouse scrollbar you've always wanted—specify width and color."
-msgstr "Afeggag n udrurem i tbeqquḍ yal tikkelt — fren tuzert-is akked yini i tebɣiḍ."
-
-#. editorial content for the primary hero shelves.
-msgid "Save and restore tabs. Includes auto-save and cloud sync features."
-msgstr "Sekles, daɣen err-d accaren. Llan twuriwin n usekles awurman akked umtawa ɣer usigna."
-
-#. editorial content for the primary hero shelves.
-msgid "Save batches of tabs as convenient bookmarks."
-msgstr "Sekles tigrummiwin n yiccaren s yisem n ticraḍ n yisebtar yelhan i usemres."
-
-#. editorial content for the primary hero shelves.
-msgid "Tabs and bookmarks neatly organized in a Firefox side view."
-msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."

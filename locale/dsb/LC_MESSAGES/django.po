@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-20 19:22+0000\n"
-"PO-Revision-Date: 2021-04-21 18:00+0000\n"
+"POT-Creation-Date: 2021-05-12 13:19+0000\n"
+"PO-Revision-Date: 2021-05-12 14:19+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -3202,8 +3202,8 @@ msgstr "Za kóńcnych wužywarjow"
 msgid "Matrix"
 msgstr "Matriks"
 
-msgid "Add-on Developers Mailing List"
-msgstr "Rozpósłańska lisćina za dodankowe wuwijarje"
+msgid "Community forum"
+msgstr "Forum zgromaźeństwa"
 
 msgid "Extensions Developers Newsletter"
 msgstr "Powěsćowy list za wuwijarje rozšyrjenjow"
@@ -4392,6 +4392,36 @@ msgstr "Módre a žołte"
 msgid "Forest Theme"
 msgstr "Lěsna drastwa"
 
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Save batches of tabs as convenient bookmarks."
+msgstr "Składujśo kupki rejtarikow ako praktiske cytańske znamjenja."
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Tabs and bookmarks neatly organized in a Firefox side view."
+msgstr "Rejtariki a cytańske znamjenja se w bócnem naglěźe Firefox pórědnje organizěruju."
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Thousands of GIFs at your fingertips."
+msgstr "Tysace GIF-wobrazow ned k ruce"
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "The easiest way to manage YouTube subscriptions."
+msgstr "Nejlažčejša móžnosć, wše waše abonementy YouTube zastojaś."
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Get the mouse scrollbar you've always wanted—specify width and color."
+msgstr "Wobstarajśo se suwańsku rědku myški, kótaruž sćo južo pśecej kśył – wubjeŕśo šyrokosć a barwu. "
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Save and restore tabs. Includes auto-save and cloud sync features."
+msgstr "Składujśo a wótnowśo rejtariki. Wopśimujo funkcije za awtomatiske składowanje a synchronizěrowanje z mrokawu."
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Někotare sedła maju śěžkosći, wideo na Android wótgrawaś. How jo rozwězanje."
@@ -4409,8 +4439,8 @@ msgid "Web pages read aloud. 40+ languages supported."
 msgstr "Dajśo se webboki pśedcytaś. Pśez 40 rěcow se pódpěra."
 
 #. editorial content for the primary hero shelves.
-msgid "Removes those long and ugly tracking parameters from Google search result URL's."
-msgstr "Wótwónoźujo te dłujke a grozne slědowańske parametry z URL wuslědkow pytanja Google."
+msgid "Removes those long tracking parameters from Google search result URL's."
+msgstr "Wótwónoźujo te dłujke slědowańske parametry z URL wuslědkow pytanja Google."
 
 #. editorial content for the primary hero shelves.
 msgid "Get weather updates directly from Firefox."
@@ -4425,36 +4455,12 @@ msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to you
 msgstr "Sćo powěźeńku „Wideo zastajone. Cośo se jo dalej woglědowaś?“ syty? Słuchajśo swóju nejlubšu muziku mimo pśestanka na YouTube."
 
 #. editorial content for the primary hero shelves.
-msgid "Thousands of GIFs at your fingertips."
-msgstr "Tysace GIF-wobrazow ned k ruce"
-
-#. editorial content for the primary hero shelves.
 msgid "Begone, annoying cookie warnings!"
 msgstr "Pšec z wobuznymi cookiejowymi warnowanjami!"
 
 #. editorial content for the primary hero shelves.
-msgid "The easiest way to manage YouTube subscriptions."
-msgstr "Nejlažčejša móžnosć, wše waše abonementy YouTube zastojaś."
-
-#. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Slědk k jadnorjejšemu casoju – gaž wašo nejwažnjejše pytańske wuslědki su stojali nad wabjenim (kompatibelne z pytnicoma Google a Bing)."
-
-#. editorial content for the primary hero shelves.
-msgid "Get the mouse scrollbar you've always wanted—specify width and color."
-msgstr "Wobstarajśo se suwańsku rědku myški, kótaruž sćo južo pśecej kśył – wubjeŕśo šyrokosć a barwu. "
-
-#. editorial content for the primary hero shelves.
-msgid "Save and restore tabs. Includes auto-save and cloud sync features."
-msgstr "Składujśo a wótnowśo rejtariki. Wopśimujo funkcije za awtomatiske składowanje a synchronizěrowanje z mrokawu."
-
-#. editorial content for the primary hero shelves.
-msgid "Save batches of tabs as convenient bookmarks."
-msgstr "Składujśo kupki rejtarikow ako praktiske cytańske znamjenja."
-
-#. editorial content for the primary hero shelves.
-msgid "Tabs and bookmarks neatly organized in a Firefox side view."
-msgstr "Rejtariki a cytańske znamjenja se w bócnem naglěźe Firefox pórědnje organizěruju."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
