@@ -1359,14 +1359,14 @@ WIZARD_COLOR_FIELDS = [
             'The color of the text and icons in the header area, except the '
             'active tab. Manifest field:  tab_background_text.'
         ),
-        'rgba(0,0,0,1',
+        'rgba(0,0,0,1)',
     ),
     (
         'toolbar',
         _('Toolbar area background'),
         _(
             'The background color for the navigation bar, the bookmarks bar, and '
-            'the selected tab.  Manifest field:  toolbar.'
+            'the active tab.  Manifest field:  toolbar.'
         ),
         False,
     ),
@@ -1394,6 +1394,17 @@ WIZARD_COLOR_FIELDS = [
         _(
             'The color of text in fields in the toolbar, such as the URL bar. '
             'Manifest field:  toolbar_field_text.'
+        ),
+        False,
+    ),
+    (
+        'tab_line',
+        _('Tab color highlight'),
+        _(
+            'The highlight color of the active tab. Implemented as a '
+            'border around the tab on Firefox 89+ and line above the tab on older '
+            'Firefoxes. '
+            'Manifest field:  tab_line.'
         ),
         False,
     ),

@@ -18,7 +18,7 @@ from olympia.versions.utils import (
 )
 
 
-@pytest.mark.parametrize('filename', (('weta_theme_full'), ('weta_theme_list')))
+@pytest.mark.parametrize('filename', (('weta_theme_firefox'), ('weta_theme_amo')))
 def test_write_svg_to_png(filename):
     # If you want to regenerate these, e.g. the svg template has significantly
     # changed, you can grab the svg file from shared_storage/tmp - when
