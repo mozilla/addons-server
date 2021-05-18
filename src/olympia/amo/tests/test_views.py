@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import datetime
 import json
 import os
 import re
@@ -14,7 +13,6 @@ from django.conf import settings
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 from django.urls import reverse
-from django.utils.http import http_date
 
 import pytest
 
@@ -26,6 +24,7 @@ from olympia import amo, core
 from olympia.access import acl
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser, get_random_slug
+from olympia.amo.sitemap import get_sitemap_path
 from olympia.amo.tests import (
     APITestClient,
     TestCase,
@@ -535,69 +534,37 @@ class TestSitemap(TestCase):
         result = self.client.get('/sitemap.xml')
         assert result.status_code == 200
         assert result.get('Content-Type') == 'application/xml'
-        assert (
-            b'<sitemap><loc>http://testserver/sitemap.xml?section=amo</loc>'
-            in result.getvalue()
+        assert result[settings.XSENDFILE_HEADER] == os.path.normpath(
+            get_sitemap_path(None, None)
         )
+        assert result.get('Cache-Control') == 'max-age=3600'
 
     @override_settings(SITEMAP_STORAGE_PATH=TEST_SITEMAPS_DIR)
     def test_section(self):
         result = self.client.get('/sitemap.xml?section=amo')
         assert result.status_code == 200
         assert result.get('Content-Type') == 'application/xml'
-        assert (
-            b'<url><loc>http://testserver/en-US/about</loc><lastmod>2021-04-08<'
-            in result.getvalue()
+        assert result[settings.XSENDFILE_HEADER] == os.path.normpath(
+            get_sitemap_path('amo', None)
         )
+        assert result.get('Cache-Control') == 'max-age=3600'
 
         # a section with more than one page
         result = self.client.get('/sitemap.xml?section=addons&app_name=firefox&p=2')
         assert result.status_code == 200
         assert result.get('Content-Type') == 'application/xml'
-        assert (
-            b'<loc>http://testserver/en-US/firefox/addon/delicious-pierogi/</loc>'
-            in result.getvalue()
+        assert result[settings.XSENDFILE_HEADER] == os.path.normpath(
+            get_sitemap_path('addons', 'firefox', 2)
         )
+        assert result.get('Cache-Control') == 'max-age=3600'
 
         # and for android
         result = self.client.get('/sitemap.xml?section=addons&app_name=android')
         assert result.status_code == 200
         assert result.get('Content-Type') == 'application/xml'
-        assert (
-            b'<loc>http://testserver/en-US/android/addon/delicious-pierogi/</loc>'
-            in result.getvalue()
+        assert result[settings.XSENDFILE_HEADER] == os.path.normpath(
+            get_sitemap_path('addons', 'android')
         )
-
-    @override_settings(SITEMAP_STORAGE_PATH=TEST_SITEMAPS_DIR)
-    def test_headers(self):
-        file_timestamp = round(datetime.datetime.now().timestamp() - (60 * 60))
-
-        def stat_side_effect(path):
-            stat_list = list(os.stat(path))
-            # patch the modified timestamp
-            stat_list[8] = file_timestamp
-            return os.stat_result(stat_list)
-
-        with mock.patch('olympia.amo.views.os_stat') as stat_mock:
-            stat_mock.side_effect = stat_side_effect
-            result = self.client.get('/sitemap.xml')
-
-        assert result.status_code == 200
-        assert result.get('Content-Type') == 'application/xml'
-        assert result.get('Last-Modified') == http_date(file_timestamp)
-        assert result.get('Expires') == http_date(file_timestamp + (24 * 60 * 60))
-        assert not result.get('Cache-Control')
-
-        # Repeat when the file is older than a day
-        file_timestamp = file_timestamp - 24 * 60 * 60
-        with mock.patch('olympia.amo.views.os_stat') as stat_mock:
-            stat_mock.side_effect = stat_side_effect
-            result = self.client.get('/sitemap.xml')
-
-        assert result.status_code == 200
-        assert result.get('Content-Type') == 'application/xml'
-        assert result.get('Last-Modified') == http_date(file_timestamp)
-        assert not result.get('Expires')
         assert result.get('Cache-Control') == 'max-age=3600'
 
     @override_settings(SITEMAP_DEBUG_AVAILABLE=True)
@@ -625,8 +592,9 @@ class TestSitemap(TestCase):
     @override_settings(SITEMAP_DEBUG_AVAILABLE=False)
     def test_debug_unavailable_on_prod(self):
         result = self.client.get('/sitemap.xml?debug')
-        # it should 404 because debug is ignored andthe prebuilt sitemap.xml isn't there
-        assert result.status_code == 404
+        # ?debug should be ignored and the request treated as a nginx redirect
+        assert result.content == b''
+        assert result[settings.XSENDFILE_HEADER]
 
     @override_settings(SITEMAP_DEBUG_AVAILABLE=True)
     def test_exceptions(self):

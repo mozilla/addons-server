@@ -843,9 +843,7 @@ class HttpResponseXSendFile(HttpResponse):
         etag=None,
         attachment=False,
     ):
-        super(HttpResponseXSendFile, self).__init__(
-            '', status=status, content_type=content_type
-        )
+        super().__init__('', status=status, content_type=content_type)
         # We normalize the path because if it contains dots, nginx will flag
         # the URI as unsafe.
         self[settings.XSENDFILE_HEADER] = os.path.normpath(path)
