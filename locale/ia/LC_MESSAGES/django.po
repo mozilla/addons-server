@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-05-18 17:07+0000\n"
-"PO-Revision-Date: 2021-05-17 20:16+0000\n"
+"PO-Revision-Date: 2021-05-19 15:38+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4549,7 +4549,7 @@ msgstr "Impossibile trovar le ID del additivo."
 
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr ""
+msgstr "Le ID del additivo in tu manifest.json (%s) non concorda con le ID de tu additivo sur AMO (%s)"
 
 msgid "Duplicate add-on ID found."
 msgstr "ID de additivo trovate duplicate."
