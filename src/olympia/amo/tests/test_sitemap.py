@@ -12,11 +12,12 @@ from olympia.amo.sitemap import (
     AccountSitemap,
     AddonSitemap,
     AMOSitemap,
-    build_sitemap,
     CategoriesSitemap,
     CollectionSitemap,
     get_sitemap_path,
     get_sitemap_section_pages,
+    get_sitemaps,
+    render_index_xml,
 )
 from olympia.amo.tests import (
     addon_factory,
@@ -256,7 +257,8 @@ def test_get_sitemap_section_pages():
     addon_factory()
     addon_factory()
 
-    pages = get_sitemap_section_pages()
+    sitemaps = get_sitemaps()
+    pages = get_sitemap_section_pages(sitemaps)
     assert pages == [
         ('amo', None, 1),
         ('addons', 'firefox', 1),
@@ -269,7 +271,7 @@ def test_get_sitemap_section_pages():
     ]
     with mock.patch.object(AddonSitemap, 'limit', 40):
         # 3 pages per addon * 3 addons * 10 locales = 90 urls for addons; 3 pages @ 40pp
-        pages = get_sitemap_section_pages()
+        pages = get_sitemap_section_pages(sitemaps)
         assert pages == [
             ('amo', None, 1),
             ('addons', 'firefox', 1),
@@ -295,7 +297,7 @@ def test_get_sitemap_section_pages():
 
     with mock.patch.object(AccountSitemap, 'items', items_mock):
         # 201 mock user pages * 10 locales = 2010 urls for addons; 3 pages @ 1000pp
-        pages = get_sitemap_section_pages()
+        pages = get_sitemap_section_pages(sitemaps)
         assert pages == [
             ('amo', None, 1),
             ('addons', 'firefox', 1),
@@ -312,8 +314,7 @@ def test_get_sitemap_section_pages():
         ]
 
 
-def test_build_sitemap():
-    # test the index sitemap build first
+def test_render_index_xml():
     with mock.patch('olympia.amo.sitemap.get_sitemap_section_pages') as pages_mock:
         pages_mock.return_value = [
             ('amo', None, 1),
@@ -322,12 +323,13 @@ def test_build_sitemap():
             ('addons', 'android', 1),
             ('addons', 'android', 2),
         ]
-        built = build_sitemap(section=None, app_name=None)
+        built = render_index_xml(sitemaps={})
 
         with open(os.path.join(TEST_SITEMAPS_DIR, 'sitemap.xml')) as sitemap:
             assert built == sitemap.read()
 
-    # then a section build
+
+def test_sitemap_render_xml():
     def items_mock(self):
         return [
             AddonSitemap.item_tuple(
@@ -360,13 +362,13 @@ def test_build_sitemap():
         ]
 
     with mock.patch.object(AddonSitemap, 'items', items_mock):
-        firefox_built = build_sitemap('addons', 'firefox')
+        firefox_built = AddonSitemap().render_xml('firefox', 1)
 
         firefox_file = os.path.join(TEST_SITEMAPS_DIR, 'sitemap-addons-firefox.xml')
         with open(firefox_file) as sitemap:
             assert firefox_built == sitemap.read()
 
-        android_built = build_sitemap('addons', 'android')
+        android_built = AddonSitemap().render_xml('android', 1)
         android_file = os.path.join(TEST_SITEMAPS_DIR, 'sitemap-addons-android.xml')
         with open(android_file) as sitemap:
             assert android_built == sitemap.read()

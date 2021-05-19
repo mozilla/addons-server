@@ -26,7 +26,7 @@ from olympia.api.serializers import SiteStatusSerializer
 from olympia.users.models import UserProfile
 
 from . import monitors
-from .sitemap import build_sitemap, get_sitemap_path, InvalidSection
+from .sitemap import get_sitemap_path, get_sitemaps, render_index_xml
 
 
 sitemap_log = olympia.core.logger.getLogger('z.monitor')
@@ -183,6 +183,10 @@ class SiteStatusView(APIView):
         return Response(SiteStatusSerializer(object()).data)
 
 
+class InvalidSection(Exception):
+    pass
+
+
 @non_atomic_requests
 @x_robots_tag
 def sitemap(request):
@@ -191,7 +195,16 @@ def sitemap(request):
     page = request.GET.get('p', 1)
     if 'debug' in request.GET and settings.SITEMAP_DEBUG_AVAILABLE:
         try:
-            content = build_sitemap(section, app, page)
+            sitemaps = get_sitemaps()
+            if not section:
+                if page != 1:
+                    raise EmptyPage
+                content = render_index_xml(sitemaps)
+            else:
+                sitemap_object = sitemaps.get((section, amo.APPS.get(app)))
+                if not sitemap_object:
+                    raise InvalidSection
+                content = sitemap_object.render_xml(app, page)
         except EmptyPage:
             raise Http404('Page %s empty' % page)
         except PageNotAnInteger:

@@ -7,7 +7,6 @@ from urllib.parse import urlparse
 from django.conf import settings
 from django.core import paginator
 from django.core.exceptions import ImproperlyConfigured
-from django.core.paginator import EmptyPage
 from django.db.models import Count, Max, Q
 from django.template import loader
 from django.utils import translation
@@ -208,6 +207,21 @@ class Sitemap(DjangoSitemap):
     def items(self):
         return self._cached_items
 
+    def render_xml(self, app_name, page):
+        site_url = urlparse(settings.EXTERNAL_SITE_URL)
+        # Sitemap.get_urls wants a Site instance to get the domain, so just fake it.
+        site = namedtuple('FakeSite', 'domain')(site_url.netloc)
+        with override_url_prefix(app_name=app_name):
+            xml = loader.render_to_string(
+                'sitemap.xml',
+                {
+                    'urlset': self.get_urls(
+                        page=page, site=site, protocol=site_url.scheme
+                    )
+                },
+            )
+        return xml
+
 
 class AddonSitemap(Sitemap):
     item_tuple = namedtuple(
@@ -400,24 +414,22 @@ class AccountSitemap(Sitemap):
         return UserProfile.create_user_url(item.id) + (f'?{urlargs}' if urlargs else '')
 
 
-sitemaps = {
-    ('amo', None): AMOSitemap(),  # because some urls are app-less, we specify per item
-    ('addons', amo.FIREFOX): AddonSitemap(),
-    ('addons', amo.ANDROID): AddonSitemap(),
-    # category pages aren't supported on android, so firefox only
-    ('categories', amo.FIREFOX): CategoriesSitemap(),
-    ('collections', amo.FIREFOX): CollectionSitemap(),
-    ('collections', amo.ANDROID): CollectionSitemap(),
-    ('users', amo.FIREFOX): AccountSitemap(),
-    ('users', amo.ANDROID): AccountSitemap(),
-}
+def get_sitemaps():
+    return {
+        # because some urls are app-less, we specify per item, so don't specify an app
+        ('amo', None): AMOSitemap(),
+        ('addons', amo.FIREFOX): AddonSitemap(),
+        ('addons', amo.ANDROID): AddonSitemap(),
+        # category pages aren't supported on android, so firefox only
+        ('categories', amo.FIREFOX): CategoriesSitemap(),
+        ('collections', amo.FIREFOX): CollectionSitemap(),
+        ('collections', amo.ANDROID): CollectionSitemap(),
+        ('users', amo.FIREFOX): AccountSitemap(),
+        ('users', amo.ANDROID): AccountSitemap(),
+    }
 
 
-class InvalidSection(Exception):
-    pass
-
-
-def get_sitemap_section_pages():
+def get_sitemap_section_pages(sitemaps):
     pages = []
     for (section, app), site in sitemaps.items():
         if not app:
@@ -431,40 +443,19 @@ def get_sitemap_section_pages():
     return pages
 
 
-def build_sitemap(section, app_name, page=1):
-    if not section:
-        # its the index
-        if page != 1:
-            raise EmptyPage
-        sitemap_url = reverse('amo.sitemap')
-        urls = (
-            f'{sitemap_url}?section={section}'
-            + (f'&app_name={app_name}' if app_name else '')
-            + (f'&p={page}' if page != 1 else '')
-            for section, app_name, page in get_sitemap_section_pages()
-        )
+def render_index_xml(sitemaps):
+    sitemap_url = reverse('amo.sitemap')
+    urls = (
+        f'{sitemap_url}?section={section}'
+        + (f'&app_name={app_name}' if app_name else '')
+        + (f'&p={page}' if page != 1 else '')
+        for section, app_name, page in get_sitemap_section_pages(sitemaps)
+    )
 
-        return loader.render_to_string(
-            'sitemap_index.xml',
-            {'sitemaps': (absolutify(url) for url in urls)},
-        )
-    else:
-        sitemap_object = sitemaps.get((section, amo.APPS.get(app_name)))
-        if not sitemap_object:
-            raise InvalidSection
-        site_url = urlparse(settings.EXTERNAL_SITE_URL)
-        # Sitemap.get_urls wants a Site instance to get the domain, so just fake it.
-        site = namedtuple('FakeSite', 'domain')(site_url.netloc)
-        with override_url_prefix(app_name=app_name):
-            xml = loader.render_to_string(
-                'sitemap.xml',
-                {
-                    'urlset': sitemap_object.get_urls(
-                        page=page, site=site, protocol=site_url.scheme
-                    )
-                },
-            )
-        return xml
+    return loader.render_to_string(
+        'sitemap_index.xml',
+        {'sitemaps': (absolutify(url) for url in urls)},
+    )
 
 
 def get_sitemap_path(section, app, page=1):

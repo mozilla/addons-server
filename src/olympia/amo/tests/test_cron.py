@@ -6,7 +6,7 @@ from django.core import mail
 
 from olympia import amo
 from olympia.amo.cron import gc, write_sitemaps
-from olympia.amo.sitemap import sitemaps
+from olympia.amo.sitemap import get_sitemaps
 from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.constants.scanners import YARA
 from olympia.addons.models import Addon
@@ -119,6 +119,7 @@ def test_write_sitemaps():
     sitemaps_dir = settings.SITEMAP_STORAGE_PATH
     assert len(os.listdir(sitemaps_dir)) == 0
     write_sitemaps()
+    sitemaps = get_sitemaps()
     assert len(os.listdir(sitemaps_dir)) == len(sitemaps) + 1  # 1 is the index
 
     with open(os.path.join(sitemaps_dir, 'sitemap.xml')) as sitemap:
