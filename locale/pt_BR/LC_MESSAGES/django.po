@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-05-18 17:07+0000\n"
-"PO-Revision-Date: 2021-05-18 17:52+0000\n"
+"PO-Revision-Date: 2021-05-19 10:29+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -3647,7 +3647,7 @@ msgstr "Viu uma imagem interessante na web e quer saber mais sobre ela? Experime
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr "Baixe vídeos com facilidade. Funciona com YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope e centenas de outros sites de vídeos."
+msgstr "Baixe vídeos com facilidade. Funciona no YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope e centenas de outros sites de vídeos."
 
 #. editorial content for the discovery pane.
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
@@ -4946,7 +4946,7 @@ msgid "Needs Admin Static Theme Review"
 msgstr "Precisa de revisão de tema estático de administração"
 
 msgid "Requires Restart"
-msgstr "Requer reinicialização"
+msgstr "Requer reiniciar"
 
 msgid "Sources provided"
 msgstr "Fontes disponíveis"
