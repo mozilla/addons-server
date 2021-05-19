@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-05-18 17:07+0000\n"
-"PO-Revision-Date: 2021-05-18 17:43+0000\n"
+"PO-Revision-Date: 2021-05-19 00:10+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -4573,7 +4573,7 @@ msgstr "Не вдалося знайти ID додатка."
 
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr "Ідентифікатор додатка в файлі manifest.json або install.rdf (%s) не відповідає ідентифікатору вашого додатка на AMO (%s)"
+msgstr "Ідентифікатор додатка в файлі manifest.json (%s) відрізняється від ідентифікатора вашого додатка на AMO (%s)"
 
 msgid "Duplicate add-on ID found."
 msgstr "Знайдено дублікат ID додатка."
