@@ -65,8 +65,10 @@ def gc(test_result=True):
 def write_sitemaps():
     index_url = get_sitemap_path(None, None)
     with storage.open(index_url, 'w') as index_file:
+        log.info('Writing sitemap index')
         index_file.write(build_sitemap(None, None))
     for section, app_name, page in get_sitemap_section_pages():
+        log.info(f'Writing sitemap file for {section}, {app_name}, {page}')
         filename = get_sitemap_path(section, app_name, page)
         with storage.open(filename, 'w') as sitemap_file:
             content = build_sitemap(section, app_name, page)

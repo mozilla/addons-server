@@ -17,7 +17,6 @@ from olympia.amo.sitemap import (
     CollectionSitemap,
     get_sitemap_path,
     get_sitemap_section_pages,
-    sitemaps,
 )
 from olympia.amo.tests import (
     addon_factory,
@@ -47,7 +46,6 @@ def test_addon_sitemap():
     addon_b.update(last_updated=datetime(2020, 1, 1, 1, 1, 1))
     addon_c = addon_factory(slug='addon-c')
     addon_factory(status=amo.STATUS_NOMINATED)  # shouldn't show up
-    sitemap = AddonSitemap()
     expected = [
         it(addon_c.last_updated, addon_c.slug, 'detail', 1),
         it(addon_a.last_updated, addon_a.slug, 'detail', 1),
@@ -59,6 +57,7 @@ def test_addon_sitemap():
         it(addon_a.last_updated, addon_a.slug, 'ratings.list', 1),
         it(addon_b.last_updated, addon_b.slug, 'ratings.list', 1),
     ]
+    sitemap = AddonSitemap()
     items = list(sitemap.items())
     assert items == expected
     for item in sitemap.items():
@@ -77,6 +76,7 @@ def test_addon_sitemap():
     patched_drf_setting = dict(settings.REST_FRAMEWORK)
     patched_drf_setting['PAGE_SIZE'] = 2
 
+    sitemap = AddonSitemap()
     with override_settings(REST_FRAMEWORK=patched_drf_setting):
         items_with_ratings = list(sitemap.items())
     # only one extra url, for a second ratings page, because PAGE_SIZE = 2
@@ -100,9 +100,8 @@ def test_amo_sitemap():
 
 
 def test_categories_sitemap():
-    sitemap = CategoriesSitemap()
     # without any addons we should still generate a url for each category
-    empty_cats = list(sitemap.items())
+    empty_cats = list(CategoriesSitemap().items())
     assert empty_cats == [
         *(
             (category, 1)
@@ -133,7 +132,7 @@ def test_categories_sitemap():
     patched_drf_setting = dict(settings.REST_FRAMEWORK)
     patched_drf_setting['PAGE_SIZE'] = 2
     with override_settings(REST_FRAMEWORK=patched_drf_setting):
-        cats_with_addons = list(sitemap.items())
+        cats_with_addons = list(CategoriesSitemap().items())
     # only one extra url, for a second bookmarks category page, because PAGE_SIZE = 2
     extra = (bookmarks_category, 2)
     assert extra in cats_with_addons
@@ -211,8 +210,8 @@ def test_accounts_sitemap():
         'olympia.amo.sitemap.EXTENSIONS_BY_AUTHORS_PAGE_SIZE', 2
     ), mock.patch('olympia.amo.sitemap.THEMES_BY_AUTHORS_PAGE_SIZE', 3):
         extra_theme_a.update(status=amo.STATUS_NOMINATED)
-        sitemap = AccountSitemap()
-        assert list(sitemap.items()) == [
+        AccountSitemap()
+        assert list(AccountSitemap().items()) == [
             # now only one page of themes for both users
             (extra_theme_c.last_updated, user_with_both.id, 1, 1),
             (extra_theme_c.last_updated, user_with_both.id, 2, 1),
@@ -223,7 +222,7 @@ def test_accounts_sitemap():
         user_with_both.addonuser_set.filter(addon=extra_extension_a).update(
             listed=False
         )
-        assert list(sitemap.items()) == [
+        assert list(AccountSitemap().items()) == [
             (extra_theme_c.last_updated, user_with_both.id, 1, 1),
             (extra_theme_c.last_updated, user_with_themes.id, 1, 1),
             (extra_extension_b.last_updated, user_with_extensions.id, 1, 1),
@@ -231,7 +230,7 @@ def test_accounts_sitemap():
             (extra_extension_b.last_updated, user_with_extensions.id, 2, 1),
         ]
         extra_theme_c.delete()
-        assert list(sitemap.items()) == [
+        assert list(AccountSitemap().items()) == [
             # the date used for lastmod has changed
             (extra_theme_b.last_updated, user_with_both.id, 1, 1),
             (extra_theme_b.last_updated, user_with_themes.id, 1, 1),
@@ -243,7 +242,7 @@ def test_accounts_sitemap():
         user_with_both.addonuser_set.filter(addon=extra_theme_b).update(
             role=amo.AUTHOR_ROLE_DELETED
         )
-        assert list(sitemap.items()) == [
+        assert list(AccountSitemap().items()) == [
             # the date used for lastmod has changed, and the order too
             (extra_theme_b.last_updated, user_with_themes.id, 1, 1),
             (extra_extension_b.last_updated, user_with_both.id, 1, 1),
@@ -256,13 +255,6 @@ def test_get_sitemap_section_pages():
     addon_factory()
     addon_factory()
     addon_factory()
-    assert list(sitemaps.keys()) == [
-        'amo',
-        'addons',
-        'categories',
-        'collections',
-        'users',
-    ]
 
     pages = get_sitemap_section_pages()
     assert pages == [

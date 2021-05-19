@@ -119,25 +119,19 @@ def test_write_sitemaps():
     sitemaps_dir = settings.SITEMAP_STORAGE_PATH
     assert len(os.listdir(sitemaps_dir)) == 0
     write_sitemaps()
-    assert len(os.listdir(sitemaps_dir)) == (
-        sum(len(sitemap.apps or ('',)) for sitemap in sitemaps.values())
-        + 1  # 1 is the index
-    )
+    assert len(os.listdir(sitemaps_dir)) == len(sitemaps) + 1  # 1 is the index
 
     with open(os.path.join(sitemaps_dir, 'sitemap.xml')) as sitemap:
         contents = sitemap.read()
         entry = '<sitemap><loc>http://testserver/sitemap.xml?{params}</loc></sitemap>'
-        for section, sitemap in sitemaps.items():
-            if not sitemap.apps:
+        for (section, app), sitemap in sitemaps.items():
+            if not app:
                 assert entry.format(params=f'section={section}') in contents
             else:
-                for app in sitemap.apps:
-                    assert (
-                        entry.format(
-                            params=f'section={section}&amp;app_name={app.short}'
-                        )
-                        in contents
-                    )
+                assert (
+                    entry.format(params=f'section={section}&amp;app_name={app.short}')
+                    in contents
+                )
 
     with open(os.path.join(sitemaps_dir, 'sitemap-amo.xml')) as sitemap:
         contents = sitemap.read()
