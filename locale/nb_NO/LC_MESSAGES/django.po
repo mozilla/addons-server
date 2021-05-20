@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-05-18 17:07+0000\n"
-"PO-Revision-Date: 2021-05-20 11:44+0000\n"
+"PO-Revision-Date: 2021-05-20 11:49+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -4878,9 +4878,8 @@ msgstr ""
 msgid "Metadata Weight"
 msgstr ""
 
-#, fuzzy
 msgid "Total Weight"
-msgstr "Fremhevet"
+msgstr "Totalvekt"
 
 msgid "Maliciousness Score"
 msgstr ""
@@ -4897,9 +4896,8 @@ msgstr "Noen må ta en gjennomgang på listede versjoner ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Noen må ta en gjennomgang på ulistede versjoner ({0})"
 
-#, fuzzy
 msgid "Listed version"
-msgstr "Oppførte versjoner"
+msgstr "Oppført versjon"
 
 msgid "Unlisted versions ({0})"
 msgstr "Ikke-listede versjoner ({0})"
@@ -4976,11 +4974,9 @@ msgstr "Vurderingsretningslinjer for tillegg"
 msgid "Security Scanners"
 msgstr "Sikkerhetsskannere"
 
-#, fuzzy
 msgid "Flagged By Scanners"
-msgstr "Sikkerhetsskannere"
+msgstr "Flagget av skannere"
 
-#, fuzzy
 msgid "Flagged for Human Review"
 msgstr "Flagget for at noen skal ta en gjennomgang"
 
@@ -5351,9 +5347,8 @@ msgstr "Flere handlinger"
 msgid "Notify me about new listed versions"
 msgstr ""
 
-#, fuzzy
 msgid "Notify me about new unlisted versions"
-msgstr "Dette er den nyeste opplastede ikke-oppførte versjonen"
+msgstr "Gi meg beskjed om nye ulistede versjoner"
 
 msgid "Allow resubmission"
 msgstr "Tillat gjeninnsending"
@@ -5590,21 +5585,18 @@ msgstr ""
 msgid "[status:%s]"
 msgstr ""
 
-#, fuzzy
 msgid "Other Pending Review"
-msgstr "Annen pågående gjennomgang ({0})"
+msgstr "Annen pågående gjennomgang"
 
-#, fuzzy
 msgid "Updates"
-msgstr "Oppdater"
+msgstr "Oppdateringer"
 
 #, fuzzy
 msgid "Rating Reviews"
 msgstr "Venter på gjennomgang"
 
-#, fuzzy
 msgid "Auto Approved"
-msgstr "Automatisk godkjent ({0})"
+msgstr "Automatisk godkjent"
 
 msgid "Pending Rejection"
 msgstr "Venter på avslag"
