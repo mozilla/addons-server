@@ -12,7 +12,12 @@ from olympia.files.models import FileUpload
 from olympia.scanners.models import ScannerResult
 
 from . import tasks
-from .sitemap import build_sitemap, get_sitemap_path, get_sitemap_section_pages
+from .sitemap import (
+    get_sitemap_path,
+    get_sitemaps,
+    get_sitemap_section_pages,
+    render_index_xml,
+)
 
 
 log = olympia.core.logger.getLogger('z.cron')
@@ -64,10 +69,16 @@ def gc(test_result=True):
 
 def write_sitemaps():
     index_url = get_sitemap_path(None, None)
+    sitemaps = get_sitemaps()
     with storage.open(index_url, 'w') as index_file:
-        index_file.write(build_sitemap(None, None))
-    for section, app_name, page in get_sitemap_section_pages():
+        log.info('Writing sitemap index')
+        index_file.write(render_index_xml(sitemaps))
+    for section, app_name, page in get_sitemap_section_pages(sitemaps):
+        log.info(f'Writing sitemap file for {section}, {app_name}, {page}')
         filename = get_sitemap_path(section, app_name, page)
         with storage.open(filename, 'w') as sitemap_file:
-            content = build_sitemap(section, app_name, page)
+            sitemap_object = sitemaps.get((section, amo.APPS.get(app_name)))
+            if not sitemap_object:
+                continue
+            content = sitemap_object.render_xml(app_name, page)
             sitemap_file.write(content)

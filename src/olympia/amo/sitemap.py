@@ -7,10 +7,10 @@ from urllib.parse import urlparse
 from django.conf import settings
 from django.core import paginator
 from django.core.exceptions import ImproperlyConfigured
-from django.core.paginator import EmptyPage
 from django.db.models import Count, Max, Q
 from django.template import loader
 from django.utils import translation
+from django.utils.functional import cached_property
 from django.urls import reverse
 
 from olympia import amo
@@ -190,11 +190,11 @@ class DjangoSitemap:
 
 class Sitemap(DjangoSitemap):
     limit = 1000
-    apps = amo.APP_USAGE
     i18n = True
     languages = FRONTEND_LANGUAGES
     alternates = True
     # x_default = False  # TODO: enable this when we can validate it works well
+    _cached_items = []
 
     def _location(self, item, force_lang_code=None):
         if self.i18n:
@@ -204,13 +204,32 @@ class Sitemap(DjangoSitemap):
                 return self.location(obj)
         return self.location(item)
 
+    def items(self):
+        return self._cached_items
+
+    def render_xml(self, app_name, page):
+        site_url = urlparse(settings.EXTERNAL_SITE_URL)
+        # Sitemap.get_urls wants a Site instance to get the domain, so just fake it.
+        site = namedtuple('FakeSite', 'domain')(site_url.netloc)
+        with override_url_prefix(app_name=app_name):
+            xml = loader.render_to_string(
+                'sitemap.xml',
+                {
+                    'urlset': self.get_urls(
+                        page=page, site=site, protocol=site_url.scheme
+                    )
+                },
+            )
+        return xml
+
 
 class AddonSitemap(Sitemap):
     item_tuple = namedtuple(
         'Item', ['last_updated', 'slug', 'urlname', 'page'], defaults=(1,)
     )
 
-    def items(self):
+    @cached_property
+    def _cached_items(self):
         addons = list(
             Addon.objects.public()
             .order_by('-last_updated')
@@ -252,23 +271,21 @@ class AddonSitemap(Sitemap):
 
 class AMOSitemap(Sitemap):
     lastmod = datetime.datetime.now()
-    apps = None  # because some urls are app-less, we specify per item
 
-    def items(self):
-        return [
-            # frontend pages
-            ('home', amo.FIREFOX),
-            ('home', amo.ANDROID),
-            ('pages.about', None),
-            ('pages.review_guide', None),
-            ('browse.extensions', amo.FIREFOX),
-            ('browse.themes', amo.FIREFOX),
-            ('browse.language-tools', amo.FIREFOX),
-            # server pages
-            ('devhub.index', None),
-            ('apps.appversions', amo.FIREFOX),
-            ('apps.appversions', amo.ANDROID),
-        ]
+    _cached_items = [
+        # frontend pages
+        ('home', amo.FIREFOX),
+        ('home', amo.ANDROID),
+        ('pages.about', None),
+        ('pages.review_guide', None),
+        ('browse.extensions', amo.FIREFOX),
+        ('browse.themes', amo.FIREFOX),
+        ('browse.language-tools', amo.FIREFOX),
+        # server pages
+        ('devhub.index', None),
+        ('apps.appversions', amo.FIREFOX),
+        ('apps.appversions', amo.ANDROID),
+    ]
 
     def location(self, item):
         urlname, app = item
@@ -281,9 +298,9 @@ class AMOSitemap(Sitemap):
 
 class CategoriesSitemap(Sitemap):
     lastmod = datetime.datetime.now()
-    apps = (amo.FIREFOX,)  # category pages aren't supported on android
 
-    def items(self):
+    @cached_property
+    def _cached_items(self):
         def additems(type):
             items = []
             for category in CATEGORIES[current_app.id][type].values():
@@ -318,7 +335,8 @@ class CategoriesSitemap(Sitemap):
 
 
 class CollectionSitemap(Sitemap):
-    def items(self):
+    @cached_property
+    def _cached_items(self):
         return (
             Collection.objects.filter(author_id=settings.TASK_USER_ID)
             .order_by('-modified')
@@ -339,7 +357,8 @@ class AccountSitemap(Sitemap):
         defaults=(1, 1),
     )
 
-    def items(self):
+    @cached_property
+    def _cached_items(self):
         addon_q = Q(
             addons___current_version__isnull=False,
             addons__disabled_by_user=False,
@@ -395,68 +414,48 @@ class AccountSitemap(Sitemap):
         return UserProfile.create_user_url(item.id) + (f'?{urlargs}' if urlargs else '')
 
 
-sitemaps = {
-    'amo': AMOSitemap(),
-    'addons': AddonSitemap(),
-    'categories': CategoriesSitemap(),
-    'collections': CollectionSitemap(),
-    'users': AccountSitemap(),
-}
+def get_sitemaps():
+    return {
+        # because some urls are app-less, we specify per item, so don't specify an app
+        ('amo', None): AMOSitemap(),
+        ('addons', amo.FIREFOX): AddonSitemap(),
+        ('addons', amo.ANDROID): AddonSitemap(),
+        # category pages aren't supported on android, so firefox only
+        ('categories', amo.FIREFOX): CategoriesSitemap(),
+        ('collections', amo.FIREFOX): CollectionSitemap(),
+        ('collections', amo.ANDROID): CollectionSitemap(),
+        ('users', amo.FIREFOX): AccountSitemap(),
+        ('users', amo.ANDROID): AccountSitemap(),
+    }
 
 
-class InvalidSection(Exception):
-    pass
-
-
-def get_sitemap_section_pages():
+def get_sitemap_section_pages(sitemaps):
     pages = []
-    for section, site in sitemaps.items():
-        if not site.apps:
+    for (section, app), site in sitemaps.items():
+        if not app:
             pages.extend((section, None, page) for page in site.paginator.page_range)
             continue
-        for app in site.apps:
-            with override_url_prefix(app_name=app.short):
-                # Add all pages of the sitemap section.
-                pages.extend(
-                    (section, app.short, page) for page in site.paginator.page_range
-                )
+        with override_url_prefix(app_name=app.short):
+            # Add all pages of the sitemap section.
+            pages.extend(
+                (section, app.short, page) for page in site.paginator.page_range
+            )
     return pages
 
 
-def build_sitemap(section, app_name, page=1):
-    if not section:
-        # its the index
-        if page != 1:
-            raise EmptyPage
-        sitemap_url = reverse('amo.sitemap')
-        urls = (
-            f'{sitemap_url}?section={section}'
-            + (f'&app_name={app_name}' if app_name else '')
-            + (f'&p={page}' if page != 1 else '')
-            for section, app_name, page in get_sitemap_section_pages()
-        )
+def render_index_xml(sitemaps):
+    sitemap_url = reverse('amo.sitemap')
+    urls = (
+        f'{sitemap_url}?section={section}'
+        + (f'&app_name={app_name}' if app_name else '')
+        + (f'&p={page}' if page != 1 else '')
+        for section, app_name, page in get_sitemap_section_pages(sitemaps)
+    )
 
-        return loader.render_to_string(
-            'sitemap_index.xml',
-            {'sitemaps': (absolutify(url) for url in urls)},
-        )
-    else:
-        sitemap_object = sitemaps.get(section)
-        if not sitemap_object:
-            raise InvalidSection
-        site_url = urlparse(settings.EXTERNAL_SITE_URL)
-        # Sitemap.get_urls wants a Site instance to get the domain, so just fake it.
-        site = namedtuple('FakeSite', 'domain')(site_url.netloc)
-        with override_url_prefix(app_name=app_name):
-            xml = loader.render_to_string(
-                'sitemap.xml',
-                {
-                    'urlset': sitemap_object.get_urls(
-                        page=page, site=site, protocol=site_url.scheme
-                    )
-                },
-            )
-        return xml
+    return loader.render_to_string(
+        'sitemap_index.xml',
+        {'sitemaps': (absolutify(url) for url in urls)},
+    )
 
 
 def get_sitemap_path(section, app, page=1):

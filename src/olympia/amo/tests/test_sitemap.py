@@ -12,12 +12,12 @@ from olympia.amo.sitemap import (
     AccountSitemap,
     AddonSitemap,
     AMOSitemap,
-    build_sitemap,
     CategoriesSitemap,
     CollectionSitemap,
     get_sitemap_path,
     get_sitemap_section_pages,
-    sitemaps,
+    get_sitemaps,
+    render_index_xml,
 )
 from olympia.amo.tests import (
     addon_factory,
@@ -47,7 +47,6 @@ def test_addon_sitemap():
     addon_b.update(last_updated=datetime(2020, 1, 1, 1, 1, 1))
     addon_c = addon_factory(slug='addon-c')
     addon_factory(status=amo.STATUS_NOMINATED)  # shouldn't show up
-    sitemap = AddonSitemap()
     expected = [
         it(addon_c.last_updated, addon_c.slug, 'detail', 1),
         it(addon_a.last_updated, addon_a.slug, 'detail', 1),
@@ -59,6 +58,7 @@ def test_addon_sitemap():
         it(addon_a.last_updated, addon_a.slug, 'ratings.list', 1),
         it(addon_b.last_updated, addon_b.slug, 'ratings.list', 1),
     ]
+    sitemap = AddonSitemap()
     items = list(sitemap.items())
     assert items == expected
     for item in sitemap.items():
@@ -77,6 +77,7 @@ def test_addon_sitemap():
     patched_drf_setting = dict(settings.REST_FRAMEWORK)
     patched_drf_setting['PAGE_SIZE'] = 2
 
+    sitemap = AddonSitemap()
     with override_settings(REST_FRAMEWORK=patched_drf_setting):
         items_with_ratings = list(sitemap.items())
     # only one extra url, for a second ratings page, because PAGE_SIZE = 2
@@ -100,9 +101,8 @@ def test_amo_sitemap():
 
 
 def test_categories_sitemap():
-    sitemap = CategoriesSitemap()
     # without any addons we should still generate a url for each category
-    empty_cats = list(sitemap.items())
+    empty_cats = list(CategoriesSitemap().items())
     assert empty_cats == [
         *(
             (category, 1)
@@ -133,7 +133,7 @@ def test_categories_sitemap():
     patched_drf_setting = dict(settings.REST_FRAMEWORK)
     patched_drf_setting['PAGE_SIZE'] = 2
     with override_settings(REST_FRAMEWORK=patched_drf_setting):
-        cats_with_addons = list(sitemap.items())
+        cats_with_addons = list(CategoriesSitemap().items())
     # only one extra url, for a second bookmarks category page, because PAGE_SIZE = 2
     extra = (bookmarks_category, 2)
     assert extra in cats_with_addons
@@ -211,8 +211,8 @@ def test_accounts_sitemap():
         'olympia.amo.sitemap.EXTENSIONS_BY_AUTHORS_PAGE_SIZE', 2
     ), mock.patch('olympia.amo.sitemap.THEMES_BY_AUTHORS_PAGE_SIZE', 3):
         extra_theme_a.update(status=amo.STATUS_NOMINATED)
-        sitemap = AccountSitemap()
-        assert list(sitemap.items()) == [
+        AccountSitemap()
+        assert list(AccountSitemap().items()) == [
             # now only one page of themes for both users
             (extra_theme_c.last_updated, user_with_both.id, 1, 1),
             (extra_theme_c.last_updated, user_with_both.id, 2, 1),
@@ -223,7 +223,7 @@ def test_accounts_sitemap():
         user_with_both.addonuser_set.filter(addon=extra_extension_a).update(
             listed=False
         )
-        assert list(sitemap.items()) == [
+        assert list(AccountSitemap().items()) == [
             (extra_theme_c.last_updated, user_with_both.id, 1, 1),
             (extra_theme_c.last_updated, user_with_themes.id, 1, 1),
             (extra_extension_b.last_updated, user_with_extensions.id, 1, 1),
@@ -231,7 +231,7 @@ def test_accounts_sitemap():
             (extra_extension_b.last_updated, user_with_extensions.id, 2, 1),
         ]
         extra_theme_c.delete()
-        assert list(sitemap.items()) == [
+        assert list(AccountSitemap().items()) == [
             # the date used for lastmod has changed
             (extra_theme_b.last_updated, user_with_both.id, 1, 1),
             (extra_theme_b.last_updated, user_with_themes.id, 1, 1),
@@ -243,7 +243,7 @@ def test_accounts_sitemap():
         user_with_both.addonuser_set.filter(addon=extra_theme_b).update(
             role=amo.AUTHOR_ROLE_DELETED
         )
-        assert list(sitemap.items()) == [
+        assert list(AccountSitemap().items()) == [
             # the date used for lastmod has changed, and the order too
             (extra_theme_b.last_updated, user_with_themes.id, 1, 1),
             (extra_extension_b.last_updated, user_with_both.id, 1, 1),
@@ -256,15 +256,9 @@ def test_get_sitemap_section_pages():
     addon_factory()
     addon_factory()
     addon_factory()
-    assert list(sitemaps.keys()) == [
-        'amo',
-        'addons',
-        'categories',
-        'collections',
-        'users',
-    ]
 
-    pages = get_sitemap_section_pages()
+    sitemaps = get_sitemaps()
+    pages = get_sitemap_section_pages(sitemaps)
     assert pages == [
         ('amo', None, 1),
         ('addons', 'firefox', 1),
@@ -277,7 +271,7 @@ def test_get_sitemap_section_pages():
     ]
     with mock.patch.object(AddonSitemap, 'limit', 40):
         # 3 pages per addon * 3 addons * 10 locales = 90 urls for addons; 3 pages @ 40pp
-        pages = get_sitemap_section_pages()
+        pages = get_sitemap_section_pages(sitemaps)
         assert pages == [
             ('amo', None, 1),
             ('addons', 'firefox', 1),
@@ -303,7 +297,7 @@ def test_get_sitemap_section_pages():
 
     with mock.patch.object(AccountSitemap, 'items', items_mock):
         # 201 mock user pages * 10 locales = 2010 urls for addons; 3 pages @ 1000pp
-        pages = get_sitemap_section_pages()
+        pages = get_sitemap_section_pages(sitemaps)
         assert pages == [
             ('amo', None, 1),
             ('addons', 'firefox', 1),
@@ -320,8 +314,7 @@ def test_get_sitemap_section_pages():
         ]
 
 
-def test_build_sitemap():
-    # test the index sitemap build first
+def test_render_index_xml():
     with mock.patch('olympia.amo.sitemap.get_sitemap_section_pages') as pages_mock:
         pages_mock.return_value = [
             ('amo', None, 1),
@@ -330,12 +323,13 @@ def test_build_sitemap():
             ('addons', 'android', 1),
             ('addons', 'android', 2),
         ]
-        built = build_sitemap(section=None, app_name=None)
+        built = render_index_xml(sitemaps={})
 
         with open(os.path.join(TEST_SITEMAPS_DIR, 'sitemap.xml')) as sitemap:
             assert built == sitemap.read()
 
-    # then a section build
+
+def test_sitemap_render_xml():
     def items_mock(self):
         return [
             AddonSitemap.item_tuple(
@@ -368,13 +362,13 @@ def test_build_sitemap():
         ]
 
     with mock.patch.object(AddonSitemap, 'items', items_mock):
-        firefox_built = build_sitemap('addons', 'firefox')
+        firefox_built = AddonSitemap().render_xml('firefox', 1)
 
         firefox_file = os.path.join(TEST_SITEMAPS_DIR, 'sitemap-addons-firefox.xml')
         with open(firefox_file) as sitemap:
             assert firefox_built == sitemap.read()
 
-        android_built = build_sitemap('addons', 'android')
+        android_built = AddonSitemap().render_xml('android', 1)
         android_file = os.path.join(TEST_SITEMAPS_DIR, 'sitemap-addons-android.xml')
         with open(android_file) as sitemap:
             assert android_built == sitemap.read()
