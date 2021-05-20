@@ -12,6 +12,7 @@ from olympia.constants.scanners import YARA
 from olympia.addons.models import Addon
 from olympia.files.models import FileUpload
 from olympia.scanners.models import ScannerResult
+from olympia.amo.models import FakeEmail
 
 
 @mock.patch('olympia.amo.cron.storage')
@@ -54,6 +55,16 @@ class TestGC(TestCase):
         assert storage_mock.delete.call_count == 2
         assert storage_mock.delete.call_args_list[0][0][0] == fu_older.path
         assert storage_mock.delete.call_args_list[1][0][0] == fu_old.path
+
+    def test_delete_fake_emails(self, storage_mock):
+        fe_old = FakeEmail.objects.create(message='This is the oldest fake email')
+        fe_old.update(created=self.days_ago(360))
+        fe_new = FakeEmail.objects.create(message='This is the newest fake email')
+        fe_new.update(created=self.days_ago(45))
+
+        gc()
+        # FakeEmail which are older than 90 were deleted.
+        assert FakeEmail.objects.count() == 1
 
     def test_scanner_results_deletion(self, storage_mock):
         old_upload = FileUpload.objects.create(path='/tmp/old', name='old')
