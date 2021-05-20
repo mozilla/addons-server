@@ -19,12 +19,15 @@ from olympia.amo.sitemap import (
     get_sitemaps,
     render_index_xml,
 )
+from olympia.amo.reverse import override_url_prefix
 from olympia.amo.tests import (
     addon_factory,
     collection_factory,
+    TestCase,
     user_factory,
 )
 from olympia.constants.categories import CATEGORIES
+from olympia.constants.promoted import RECOMMENDED
 from olympia.ratings.models import Rating
 
 from .test_views import TEST_SITEMAPS_DIR
@@ -162,56 +165,63 @@ def test_collection_sitemap(mozilla_user):
         assert sitemap.lastmod(item) == item.modified
 
 
-def test_accounts_sitemap():
-    user_with_themes = user_factory()
-    user_with_extensions = user_factory()
-    user_with_both = user_factory()
-    user_factory()  # no addons
-    extension = addon_factory(users=(user_with_extensions, user_with_both))
-    theme = addon_factory(
-        type=amo.ADDON_STATICTHEME, users=(user_with_themes, user_with_both)
-    )
-    sitemap = AccountSitemap()
-    items = list(sitemap.items())
-    assert items == [
-        (theme.last_updated, user_with_both.id, 1, 1),
-        (theme.last_updated, user_with_themes.id, 1, 1),
-        (extension.last_updated, user_with_extensions.id, 1, 1),
-    ]
-    for item in sitemap.items():
-        assert sitemap.location(item) == reverse('users.profile', args=[item.id])
-    # add some extra extensions and themes to test pagination
-    extra_extension_a = addon_factory(users=(user_with_extensions, user_with_both))
-    extra_extension_b = addon_factory(users=(user_with_extensions, user_with_both))
-    extra_theme_a = addon_factory(
-        type=amo.ADDON_STATICTHEME, users=(user_with_themes, user_with_both)
-    )
-    extra_theme_b = addon_factory(
-        type=amo.ADDON_STATICTHEME, users=(user_with_themes, user_with_both)
-    )
-    extra_theme_c = addon_factory(
-        type=amo.ADDON_STATICTHEME, users=(user_with_themes, user_with_both)
-    )
-    with mock.patch(
-        'olympia.amo.sitemap.EXTENSIONS_BY_AUTHORS_PAGE_SIZE', 2
-    ), mock.patch('olympia.amo.sitemap.THEMES_BY_AUTHORS_PAGE_SIZE', 3):
+class TestAccountSitemap(TestCase):
+    def test_basic(self):
+        user_with_themes = user_factory()
+        user_with_extensions = user_factory()
+        user_with_both = user_factory()
+        user_factory(is_public=True)  # marked as public, but no addons.
+        extension = addon_factory(users=(user_with_extensions, user_with_both))
+        theme = addon_factory(
+            type=amo.ADDON_STATICTHEME, users=(user_with_themes, user_with_both)
+        )
+        sitemap = AccountSitemap()
+        items = list(sitemap.items())
+        assert items == [
+            (theme.last_updated, user_with_both.id, 1, 1),
+            (theme.last_updated, user_with_themes.id, 1, 1),
+            (extension.last_updated, user_with_extensions.id, 1, 1),
+        ]
+        for item in sitemap.items():
+            assert sitemap.location(item) == reverse('users.profile', args=[item.id])
+
+    @mock.patch('olympia.amo.sitemap.EXTENSIONS_BY_AUTHORS_PAGE_SIZE', 2)
+    @mock.patch('olympia.amo.sitemap.THEMES_BY_AUTHORS_PAGE_SIZE', 3)
+    def test_pagination(self):
+        user_with_themes = user_factory()
+        user_with_extensions = user_factory()
+        user_with_both = user_factory()
+        user_factory(is_public=True)  # marked as public, but no addons.
+        addon_factory(users=(user_with_extensions, user_with_both))
+        addon_factory(
+            type=amo.ADDON_STATICTHEME, users=(user_with_themes, user_with_both)
+        )
+
+        extra_extension_a = addon_factory(users=(user_with_extensions, user_with_both))
+        extra_extension_b = addon_factory(users=(user_with_extensions, user_with_both))
+        extra_theme_a = addon_factory(
+            type=amo.ADDON_STATICTHEME, users=(user_with_themes, user_with_both)
+        )
+        extra_theme_b = addon_factory(
+            type=amo.ADDON_STATICTHEME, users=(user_with_themes, user_with_both)
+        )
+        extra_theme_c = addon_factory(
+            type=amo.ADDON_STATICTHEME, users=(user_with_themes, user_with_both)
+        )
+
         sitemap = AccountSitemap()
         paginated_items = list(sitemap.items())
-    assert paginated_items == [
-        (extra_theme_c.last_updated, user_with_both.id, 1, 1),
-        (extra_theme_c.last_updated, user_with_both.id, 2, 1),
-        (extra_theme_c.last_updated, user_with_both.id, 1, 2),
-        (extra_theme_c.last_updated, user_with_themes.id, 1, 1),
-        (extra_theme_c.last_updated, user_with_themes.id, 1, 2),
-        (extra_extension_b.last_updated, user_with_extensions.id, 1, 1),
-        (extra_extension_b.last_updated, user_with_extensions.id, 2, 1),
-    ]
-    # repeat, but after changing some of the addons so they wouldn't be visible
-    with mock.patch(
-        'olympia.amo.sitemap.EXTENSIONS_BY_AUTHORS_PAGE_SIZE', 2
-    ), mock.patch('olympia.amo.sitemap.THEMES_BY_AUTHORS_PAGE_SIZE', 3):
+        assert paginated_items == [
+            (extra_theme_c.last_updated, user_with_both.id, 1, 1),
+            (extra_theme_c.last_updated, user_with_both.id, 2, 1),
+            (extra_theme_c.last_updated, user_with_both.id, 1, 2),
+            (extra_theme_c.last_updated, user_with_themes.id, 1, 1),
+            (extra_theme_c.last_updated, user_with_themes.id, 1, 2),
+            (extra_extension_b.last_updated, user_with_extensions.id, 1, 1),
+            (extra_extension_b.last_updated, user_with_extensions.id, 2, 1),
+        ]
+        # repeat, but after changing some of the addons so they wouldn't be visible
         extra_theme_a.update(status=amo.STATUS_NOMINATED)
-        AccountSitemap()
         assert list(AccountSitemap().items()) == [
             # now only one page of themes for both users
             (extra_theme_c.last_updated, user_with_both.id, 1, 1),
@@ -250,6 +260,73 @@ def test_accounts_sitemap():
             (extra_extension_b.last_updated, user_with_extensions.id, 1, 1),
             (extra_extension_b.last_updated, user_with_extensions.id, 2, 1),
         ]
+
+    @mock.patch('olympia.amo.sitemap.EXTENSIONS_BY_AUTHORS_PAGE_SIZE', 2)
+    @mock.patch('olympia.amo.sitemap.THEMES_BY_AUTHORS_PAGE_SIZE', 1)
+    def test_android(self):
+        # users with just themes on Android won't be included
+        user_with_themes = user_factory()
+        user_with_extensions = user_factory()
+        user_with_both = user_factory()
+        user_factory(is_public=True)  # marked as public, but no addons.
+        extension = addon_factory(
+            users=(user_with_extensions, user_with_both),
+            version_kw={'application': amo.ANDROID.id},
+        )
+        self.make_addon_promoted(extension, RECOMMENDED, approve_version=True)
+        extra_extension_a = addon_factory(
+            users=(user_with_extensions, user_with_both),
+            version_kw={'application': amo.ANDROID.id},
+        )
+        self.make_addon_promoted(extra_extension_a, RECOMMENDED, approve_version=True)
+        extra_extension_b = addon_factory(
+            users=(user_with_extensions, user_with_both),
+            version_kw={'application': amo.ANDROID.id},
+        )
+
+        # and some addons that should be ignored
+        addon_factory(
+            type=amo.ADDON_STATICTHEME,
+            users=(user_with_themes, user_with_both),
+            version_kw={'application': amo.ANDROID.id},
+        )
+        addon_factory(
+            type=amo.ADDON_STATICTHEME,
+            users=(user_with_themes, user_with_both),
+            version_kw={'application': amo.ANDROID.id},
+        )
+        firefox_addon = addon_factory(
+            type=amo.ADDON_EXTENSION,
+            users=(user_with_extensions, user_with_both),
+            version_kw={'application': amo.FIREFOX.id},
+        )
+        self.make_addon_promoted(firefox_addon, RECOMMENDED, approve_version=True)
+
+        # there would be 3 addons but one of them isn't promoted
+        with override_url_prefix(app_name='android'):
+            assert list(AccountSitemap().items()) == [
+                (extra_extension_a.last_updated, user_with_both.id, 1, 1),
+                (extra_extension_a.last_updated, user_with_extensions.id, 1, 1),
+            ]
+
+        self.make_addon_promoted(extra_extension_b, RECOMMENDED, approve_version=True)
+        with override_url_prefix(app_name='android'):
+            assert list(AccountSitemap().items()) == [
+                (extra_extension_b.last_updated, user_with_both.id, 1, 1),
+                (extra_extension_b.last_updated, user_with_both.id, 2, 1),
+                (extra_extension_b.last_updated, user_with_extensions.id, 1, 1),
+                (extra_extension_b.last_updated, user_with_extensions.id, 2, 1),
+            ]
+        # delete user_with_both from extra_extension_b
+        user_with_both.addonuser_set.filter(addon=extra_extension_b).update(
+            role=amo.AUTHOR_ROLE_DELETED
+        )
+        with override_url_prefix(app_name='android'):
+            assert list(AccountSitemap().items()) == [
+                (extra_extension_b.last_updated, user_with_extensions.id, 1, 1),
+                (extra_extension_b.last_updated, user_with_extensions.id, 2, 1),
+                (extra_extension_a.last_updated, user_with_both.id, 1, 1),
+            ]
 
 
 def test_get_sitemap_section_pages():

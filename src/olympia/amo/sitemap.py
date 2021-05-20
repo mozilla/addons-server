@@ -18,7 +18,9 @@ from olympia.addons.models import Addon, AddonCategory
 from olympia.amo.reverse import get_url_prefix, override_url_prefix
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.constants.categories import CATEGORIES
+from olympia.constants.promoted import RECOMMENDED
 from olympia.bandwagon.models import Collection
+from olympia.promoted.models import PromotedAddon
 from olympia.users.models import UserProfile
 
 
@@ -311,7 +313,7 @@ class CategoriesSitemap(Sitemap):
             return items
 
         page_size = settings.REST_FRAMEWORK['PAGE_SIZE']
-        current_app = amo.APPS[get_url_prefix().get_app()]
+        current_app = amo.APPS[get_url_prefix().app]
         counts_qs = (
             AddonCategory.objects.filter(
                 addon___current_version__isnull=False,
@@ -359,15 +361,30 @@ class AccountSitemap(Sitemap):
 
     @cached_property
     def _cached_items(self):
+        current_app = amo.APPS[get_url_prefix().app]
         addon_q = Q(
             addons___current_version__isnull=False,
+            addons___current_version__apps__application=current_app.id,
             addons__disabled_by_user=False,
             addons__status__in=amo.REVIEWED_STATUSES,
             addonuser__listed=True,
             addonuser__role__in=(amo.AUTHOR_ROLE_DEV, amo.AUTHOR_ROLE_OWNER),
         )
+        # android is currently limited to a small number of recommended addons, so get
+        # the list of those and filter further
+        if current_app == amo.ANDROID:
+            promoted_addon_ids = PromotedAddon.objects.filter(
+                Q(application_id=amo.ANDROID.id) | Q(application_id__isnull=True),
+                group_id=RECOMMENDED.id,
+                addon___current_version__promoted_approvals__application_id=(
+                    amo.ANDROID.id
+                ),
+                addon___current_version__promoted_approvals__group_id=RECOMMENDED.id,
+            ).values_list('addon_id', flat=True)
+            addon_q = addon_q & Q(addons__id__in=promoted_addon_ids)
+
         users = (
-            UserProfile.objects.filter(is_public=True)
+            UserProfile.objects.filter(is_public=True, deleted=False)
             .annotate(
                 theme_count=Count(
                     'addons', filter=Q(addon_q, addons__type=amo.ADDON_STATICTHEME)
@@ -386,6 +403,9 @@ class AccountSitemap(Sitemap):
         )
         items = []
         for user in users:
+            if not user.extension_count and not user.theme_count:
+                # some users have an empty page for various reasons, no need to include
+                continue
             extension_pages_needed = math.ceil(
                 (user.extension_count or 1) / EXTENSIONS_BY_AUTHORS_PAGE_SIZE
             )
