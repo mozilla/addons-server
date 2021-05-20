@@ -3,7 +3,6 @@ import mimetypes
 import os
 
 from datetime import datetime, timedelta
-from urllib.parse import urljoin
 from unittest.mock import Mock, patch
 
 from django.conf import settings
@@ -388,11 +387,24 @@ def test_jinja_trans_monkeypatch():
     render('{% trans come_on=1 %}%(come_on)z{% endtrans %}')
 
 
-def test_absolutify():
-    assert jinja_helpers.absolutify('/woo'), urljoin(settings.SITE_URL == '/woo')
-    assert jinja_helpers.absolutify('https://addons.mozilla.org') == (
-        'https://addons.mozilla.org'
-    )
+@pytest.mark.parametrize(
+    'url,site,expected',
+    [
+        ('', None, settings.EXTERNAL_SITE_URL),
+        ('', '', settings.EXTERNAL_SITE_URL),
+        (None, None, settings.EXTERNAL_SITE_URL),
+        ('foo', None, f'{settings.EXTERNAL_SITE_URL}/foo'),
+        ('foobar', 'http://amo.com', 'http://amo.com/foobar'),
+        ('abc', 'https://localhost', 'https://localhost/abc'),
+        ('http://addons.mozilla.org', None, 'http://addons.mozilla.org'),
+        ('https://addons.mozilla.org', None, 'https://addons.mozilla.org'),
+        ('https://amo.com', 'https://addons.mozilla.org', 'https://amo.com'),
+        ('woo', 'www', 'woo'),
+    ],
+)
+def test_absolutify(url, site, expected):
+    """Make sure we correct join a base URL and a possibly relative URL."""
+    assert jinja_helpers.absolutify(url, site) == expected
 
 
 def test_timesince():
