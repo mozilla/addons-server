@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-05-18 17:07+0000\n"
-"PO-Revision-Date: 2021-05-20 09:02+0000\n"
+"PO-Revision-Date: 2021-05-20 11:44+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -1555,9 +1555,8 @@ msgstr "Forsink automatisk godkjenning"
 msgid "Delay auto-approval indefinitely"
 msgstr "Forsink automatisk godkjenning på ubestemt tid"
 
-#, fuzzy
 msgid "Delay auto-approval indefinitely and add restrictions"
-msgstr "Forsink automatisk godkjenning på ubestemt tid"
+msgstr "Utsett automatisk godkjenning på ubestemt tid og legg til begrensninger"
 
 msgid "True positive"
 msgstr "Sann positiv"
@@ -2553,13 +2552,11 @@ msgstr "Send inn en ny versjon"
 msgid "Cancel and Disable Version"
 msgstr "Avbryt og deaktivere versjon"
 
-#, fuzzy
 msgid "Are you sure you wish to cancel and disable version?"
-msgstr "Er du sikker på at du vil slette denne versjonen?"
+msgstr "Er du sikker på at du vil avbryte og deaktivere denne versjonen?"
 
-#, fuzzy
 msgid "Yes, Cancel"
-msgstr "Avbryt"
+msgstr "Ja, avbryt"
 
 msgid "No, don't cancel"
 msgstr ""
@@ -3109,9 +3106,8 @@ msgstr ""
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
 
-#, fuzzy
 msgid "Visit the Firefox Extension Workshop"
-msgstr "Besøk utvidelsesverkstedet"
+msgstr "Besøk Firefox utvidelsesverkstedet"
 
 msgid "Connect with us"
 msgstr "Kontakt oss"
@@ -3128,9 +3124,8 @@ msgstr "For sluttbrukere"
 msgid "Matrix"
 msgstr "Matrix"
 
-#, fuzzy
 msgid "Community forum"
-msgstr "Felleskap og brukerstøtte"
+msgstr "Forum for felleskapet"
 
 msgid "Extensions Developers Newsletter"
 msgstr "Nyhetsbrev for tilleggsutviklere"
@@ -3301,9 +3296,8 @@ msgstr "Kildekode"
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
 msgstr ""
 
-#, fuzzy
 msgid "File {file_id}"
-msgstr "Fil {file_id} ({platform})"
+msgstr "Fil {file_id}"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
@@ -4305,9 +4299,8 @@ msgid "Blues & Yellows"
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Forest Theme"
-msgstr "Lag et tema"
+msgstr "Skogstema"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4348,9 +4341,8 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "For de øyeblikkene du trenger å fyre lasere ut av en katt."
+msgstr "For de øyeblikkene du trenger å fyre lasere ut av katteøyne."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4413,47 +4405,40 @@ msgid "Learn More"
 msgstr "Les mer"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended extensions"
-msgstr "Anbefalte utvidelsesprogram"
+msgstr "Anbefalte utvidelser"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more recommended extensions"
-msgstr "Anbefalte utvidelsesprogram"
+msgstr "Vis flere anbefalte utvidelser"
 
 #. editorial content for the homepage shelves.
 msgid "Popular themes"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular themes"
-msgstr "Velg farger for temaet ditt"
+msgstr "Vis flere populære tema"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Enhanced privacy extensions"
-msgstr "Se alle utvidelser"
+msgstr "Forbedret personvernutvidelser"
 
 #. editorial content for the homepage shelves.
 msgid "See more enhanced privacy extensions"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Popular extensions"
-msgstr "Utforsk utvidelser"
+msgstr "Populære utvidelser"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular extensions"
-msgstr "Se alle utvidelser"
+msgstr "Vis flere populære utvidelser"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended themes"
-msgstr "Anbefalt"
+msgstr "Anbefalte tema"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
@@ -4474,14 +4459,13 @@ msgid "Add-on ID is required for Firefox 47 and below."
 msgstr "Tilleggs-ID er nødvendig for Firefox 47 og nyere."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr "Laveste støttede \"strict_min_version\" er 42.0."
+msgstr "Laveste støttede «strict_min_version» er 42.0."
 
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
-msgstr "Ukjent \"strict_min_version\" {appver} for {app}"
+msgstr "Ukjent «strict_min_version» {appver} for {app}"
 
-#, fuzzy
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
-msgstr "Ukjent \"strict_min_version\" {appver} for {app}"
+msgstr "Ukjent «strict_max_version» {appver} for {app}"
 
 msgid "Unsupported archive type."
 msgstr ""
@@ -5622,9 +5606,8 @@ msgstr "Venter på gjennomgang"
 msgid "Auto Approved"
 msgstr "Automatisk godkjent ({0})"
 
-#, fuzzy
 msgid "Pending Rejection"
-msgstr "Venter på avslag ({0})"
+msgstr "Venter på avslag"
 
 msgid "presence of matched rules"
 msgstr ""
