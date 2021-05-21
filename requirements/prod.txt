@@ -153,9 +153,9 @@ bleach==3.3.0 \
     --hash=sha256:98b3170739e5e83dd9dc19633f074727ad848cbedb6026708c8ac2d3b697a433
 # REMEMBER: leave a few lines between boto3 and botocore requirements to avoid an
 # annoying merge conflict every day when pyup generates prs for both.
-boto3==1.17.74 \
-    --hash=sha256:c83a33fff7d20027386552967355508ce71fb7406ab0cc8e627e257c94754d43 \
-    --hash=sha256:0a21893db156c0938d0a06b622c3dd3d2da2dcd9d06d343c8f9536ac9de4ec7f
+boto3==1.17.77 \
+    --hash=sha256:b434170484348b870e3624069ca577d38e52ace0229d0619d8368454bb66ad3b \
+    --hash=sha256:02835bcad77a5fda1fc376a824323779301ddf88f04a0ac16044d980f350c4a3
 # see last comment - celery is in between boto3 and botocore on purpose.
 celery==4.4.7 \
     --hash=sha256:a92e1d56e650781fb747032a3997d16236d037c8199eacd5217d1a72893bca45 \
@@ -327,9 +327,9 @@ lxml==4.6.3 \
 # m2secret is required by django-aesfield
 m2secret-py3==1.3 \
     --hash=sha256:94dfae937e8a61bf48812fab6a0b8de300781c4e1dbee0cee3aa57cb01915864
-more-itertools==8.7.0 \
-    --hash=sha256:5652a9ac72209ed7df8d9c15daf4e1aa0e3d2ccd3c87f8265a0673cd9cbc9ced \
-    --hash=sha256:c5d6da9ca3ff65220c3bfd2a8db06d698f05d4d2b9be57e1deb2be5a45019713
+more-itertools==8.8.0 \
+    --hash=sha256:2cf89ec599962f2ddc4d568a05defc40e0a587fbc10d5989713638864c36be4d \
+    --hash=sha256:83f0308e05477c68f56ea3a888172c78ed5d5b3c282addb67508e7ba6c8f813a
 # mmh3 is required by filtercascade
 mmh3==3.0.0 \
     --hash=sha256:23912dde2ad4f701926948dd8e79a0e42b000f73962806f153931f52985e1e07 \
@@ -485,9 +485,9 @@ google-cloud-bigquery==2.16.1 \
 google-auth==1.30.0 \
     --hash=sha256:588bdb03a41ecb4978472b847881e5518b5d9ec6153d3d679aa127a55e13b39f \
     --hash=sha256:9ad25fba07f46a628ad4d0ca09f38dcb262830df2ac95b217f9b0129c9e42206
-google-api-core==1.27.0 \
-    --hash=sha256:edfca00d76081f359bed7b2efa2dc3a057309e55bf0a91628a0639730e31c357 \
-    --hash=sha256:407e3e52435a44f6d59d4fef7b5e115bed7b20d77cbdab79e00232bfff7bf912
+google-api-core==1.28.0 \
+    --hash=sha256:a658a4e367511a444c7daf2c58855ff6fd7f7d138c154e5b17186c1f8154c8cb \
+    --hash=sha256:02646803bd728e12dd1f45ee1dcc31c12614c9a1ac451b9a1ce26aa65df9b957
 google-cloud-core==1.6.0 \
     --hash=sha256:40d9c2da2d03549b5ac3dcccf289d4f15e6d1210044c6381ce45c92913e62904 \
     --hash=sha256:c6abb18527545379fc82efc4de75ce9a3772ccad2fc645adace593ba097cbb02
