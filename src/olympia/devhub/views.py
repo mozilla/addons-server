@@ -1399,11 +1399,10 @@ WIZARD_COLOR_FIELDS = [
     ),
     (
         'tab_line',
-        _('Tab color highlight'),
+        _('Tab highlight'),
         _(
-            'The highlight color of the active tab. Implemented as a '
-            'border around the tab on Firefox 89+ and line above the tab on older '
-            'Firefoxes. '
+            'The highlight color of the active tab. Implemented as a border around the '
+            'tab on Firefox 89+ and a line above the tab on older Firefoxes. '
             'Manifest field:  tab_line.'
         ),
         False,
