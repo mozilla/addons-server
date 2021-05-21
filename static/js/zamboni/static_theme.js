@@ -109,6 +109,7 @@ $(document).ready(function () {
         bookmark_text: colVal('bookmark_text'),
         toolbar_field: colVal('toolbar_field'),
         toolbar_field_text: colVal('toolbar_field_text'),
+        tab_line: colVal('tab_line'),
       };
       colors = _.omit(colors, function (value) {
         return value === '';
@@ -141,22 +142,25 @@ $(document).ready(function () {
     var $color = $wizard.find('input.color-picker');
     $color
       .change(function () {
-        var $this = $(this),
-          color_property_selector = '.' + $this[0].id,
-          $svg_element = $(color_property_selector),
-          // If there's no value set and we have a fallback color we can use that instead
-          $have_fallback = $(color_property_selector + '[data-fallback]').not(
-            '[data-fallback=' + $this[0].id + ']',
-          );
-        if (!$this.val()) {
-          $svg_element.attr('fill', $svg_element.data('fill'));
-          $have_fallback
-            .attr('fill', $('#' + $svg_element.data('fallback')).val())
-            .addClass($svg_element.data('fallback'));
-        } else {
-          $have_fallback.removeClass($svg_element.data('fallback'));
-          $svg_element.attr('fill', $this.val());
-        }
+        var $this = $(this);
+        ['fill', 'stroke'].forEach(function (prop) {
+          var color_property_selector = '.' + $this[0].id + '.' + prop,
+            $svg_element = $(color_property_selector),
+            // If there's no value set and we have a fallback color we can use that instead
+            $have_fallback = $(color_property_selector + '[data-fallback]').not(
+              '[data-fallback=' + $this[0].id + ']',
+            );
+          if (!$this.val()) {
+            $svg_element.attr(prop, $svg_element.data(prop));
+            $have_fallback
+              .attr(prop, $('#' + $svg_element.data('fallback')).val())
+              .addClass($svg_element.data('fallback'));
+          } else {
+            $have_fallback.removeClass($svg_element.data('fallback'));
+            $svg_element.attr(prop, $this.val());
+          }
+        });
+
         updateManifest();
       })
       .trigger('change');
