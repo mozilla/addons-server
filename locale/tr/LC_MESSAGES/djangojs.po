@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-05-18 17:08+0000\n"
-"PO-Revision-Date: 2020-12-22 09:06+0000\n"
-"Last-Translator: mstfaatesss <mstfaatesss@gmail.com>\n"
+"PO-Revision-Date: 2021-05-21 11:25+0000\n"
+"Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -495,27 +495,27 @@ msgstr "{0} - {1} Arası İndirme Kaynakları"
 
 #. L10n: {0} is an integer.
 msgid "Download Mediums, last {0} days"
-msgstr ""
+msgstr "Download Mediums, last {0} days"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Mediums from {0} to {1}"
-msgstr ""
+msgstr "Download Mediums from {0} to {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Contents, last {0} days"
-msgstr ""
+msgstr "Download Contents, last {0} days"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Contents from {0} to {1}"
-msgstr ""
+msgstr "Download Contents from {0} to {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Campaigns, last {0} days"
-msgstr ""
+msgstr "Download Campaigns, last {0} days"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Campaigns from {0} to {1}"
-msgstr ""
+msgstr "Download Campaigns from {0} to {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
