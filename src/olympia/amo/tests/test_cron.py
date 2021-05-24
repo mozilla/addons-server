@@ -65,6 +65,7 @@ class TestGC(TestCase):
         gc()
         # FakeEmail which are older than 90 were deleted.
         assert FakeEmail.objects.count() == 1
+        assert FakeEmail.objects.filter(pk=fe_new.pk).count() == 1
 
     def test_scanner_results_deletion(self, storage_mock):
         old_upload = FileUpload.objects.create(path='/tmp/old', name='old')
