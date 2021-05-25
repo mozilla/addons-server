@@ -442,6 +442,10 @@ class AuthenticateView(FxAConfigMixin, APIView):
 
 
 def logout_user(request, response):
+    if request.user and request.user.is_authenticated:
+        # Logging out invalidates *all* user sessions. A new auth_id will be
+        # generated during the next login.
+        request.user.update(auth_id=None)
     logout(request)
     response.delete_cookie(
         API_TOKEN_COOKIE,

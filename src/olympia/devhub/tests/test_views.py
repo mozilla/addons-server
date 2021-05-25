@@ -2033,6 +2033,7 @@ class TestLogout(UserViewBase):
     def test_success(self):
         user = UserProfile.objects.get(email='jbalogh@mozilla.com')
         self.client.login(email=user.email)
+        assert user.auth_id
         response = self.client.get(reverse('devhub.index'), follow=True)
         assert pq(response.content)('li a.avatar').attr('href') == (user.get_url_path())
         assert pq(response.content)('li a.avatar img').attr('src') == (user.picture_url)
@@ -2041,6 +2042,8 @@ class TestLogout(UserViewBase):
         self.assert3xx(response, '/en-US/firefox/', status_code=302)
         response = self.client.get(reverse('devhub.index'), follow=True)
         assert not pq(response.content)('li a.avatar')
+        user.reload()
+        assert not user.auth_id
 
     def test_redirect(self):
         self.client.login(email='jbalogh@mozilla.com')
