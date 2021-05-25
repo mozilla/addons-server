@@ -10,6 +10,7 @@ from olympia.addons.tasks import delete_addons
 from olympia.amo.utils import chunked
 from olympia.files.models import FileUpload
 from olympia.scanners.models import ScannerResult
+from olympia.amo.models import FakeEmail
 
 from . import tasks
 from .sitemap import (
@@ -65,6 +66,9 @@ def gc(test_result=True):
 
     # Delete stale ScannerResults.
     ScannerResult.objects.filter(upload=None, version=None).delete()
+
+    # Delete fake emails older than 90 days
+    FakeEmail.objects.filter(created__lte=days_ago(90)).delete()
 
 
 def write_sitemaps():
