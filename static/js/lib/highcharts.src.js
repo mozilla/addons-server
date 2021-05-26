@@ -1823,9 +1823,10 @@
      */
     function init(input) {
       // rgba
-      result = /rgba\(\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]?(?:\.[0-9]+)?)\s*\)/.exec(
-        input,
-      );
+      result =
+        /rgba\(\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]?(?:\.[0-9]+)?)\s*\)/.exec(
+          input,
+        );
       if (result) {
         rgba = [
           pInt(result[1]),
@@ -2929,7 +2930,11 @@
         i;
 
       // remove events
-      element.onclick = element.onmouseout = element.onmouseover = element.onmousemove = null;
+      element.onclick =
+        element.onmouseout =
+        element.onmouseover =
+        element.onmousemove =
+          null;
       stop(wrapper); // stop running animations
 
       if (wrapper.clipPath) {
@@ -4079,17 +4084,17 @@
       };
 
       // Various setters which rely on update transform
-      attrSetters.x = attrSetters.y = attrSetters.align = function (
-        value,
-        key,
-      ) {
-        if (key === 'align') {
-          key = 'textAlign'; // Do not overwrite the SVGElement.align method. Same as VML.
-        }
-        wrapper[key] = value;
-        wrapper.htmlUpdateTransform();
-        return false;
-      };
+      attrSetters.x =
+        attrSetters.y =
+        attrSetters.align =
+          function (value, key) {
+            if (key === 'align') {
+              key = 'textAlign'; // Do not overwrite the SVGElement.align method. Same as VML.
+            }
+            wrapper[key] = value;
+            wrapper.htmlUpdateTransform();
+            return false;
+          };
 
       // Set the default attributes
       wrapper
@@ -4418,16 +4423,16 @@
         boxAttr(key, value);
         return false;
       };
-      attrSetters.stroke = attrSetters.fill = attrSetters.r = function (
-        value,
-        key,
-      ) {
-        if (key === 'fill') {
-          needsBox = true;
-        }
-        boxAttr(key, value);
-        return false;
-      };
+      attrSetters.stroke =
+        attrSetters.fill =
+        attrSetters.r =
+          function (value, key) {
+            if (key === 'fill') {
+              needsBox = true;
+            }
+            boxAttr(key, value);
+            return false;
+          };
       attrSetters.anchorX = function (value, key) {
         anchorX = value;
         boxAttr(key, value + crispAdjust - wrapperX);
@@ -4524,7 +4529,13 @@
           SVGElement.prototype.destroy.call(wrapper);
 
           // Release local pointers (#1298)
-          wrapper = renderer = updateBoxSize = updateTextPadding = boxAttr = getSizeAfterAdd = null;
+          wrapper =
+            renderer =
+            updateBoxSize =
+            updateTextPadding =
+            boxAttr =
+            getSizeAfterAdd =
+              null;
         },
       });
     },
@@ -4808,7 +4819,8 @@
                     element,
                   );
                 strokeElem[key] = value || 'solid';
-                wrapper.dashstyle = value; /* because changing stroke-width will change the dash length
+                wrapper.dashstyle =
+                  value; /* because changing stroke-width will change the dash length
 							and cause an epileptic effect */
                 skipAttr = true;
 
@@ -7594,8 +7606,10 @@
       // secondary values
       axis.oldTransA = transA;
       //axis.translationSlope = axis.transA = transA = axis.len / ((range + (2 * minPointOffset)) || 1);
-      axis.translationSlope = axis.transA = transA =
-        axis.len / (range + pointRangePadding || 1);
+      axis.translationSlope =
+        axis.transA =
+        transA =
+          axis.len / (range + pointRangePadding || 1);
       axis.transB = axis.horiz ? axis.left : axis.bottom; // translation addend
       axis.minPixelPadding = transA * minPointOffset;
     },
@@ -8977,9 +8991,12 @@
           stroke: borderColor,
         });
 
-        placedTooltipPoint = (
-          options.positioner || tooltip.getPosition
-        ).call(tooltip, label.width, label.height, { plotX: x, plotY: y });
+        placedTooltipPoint = (options.positioner || tooltip.getPosition).call(
+          tooltip,
+          label.width,
+          label.height,
+          { plotX: x, plotY: y },
+        );
 
         // do the move
         tooltip.move(
@@ -9667,7 +9684,13 @@
         mouseTracker.hideTooltipOnMouseLeave,
       );
       removeEvent(doc, 'mousemove', mouseTracker.hideTooltipOnMouseMove);
-      container.onclick = container.onmousedown = container.onmousemove = container.ontouchstart = container.ontouchend = container.ontouchmove = null;
+      container.onclick =
+        container.onmousedown =
+        container.onmousemove =
+        container.ontouchstart =
+        container.ontouchend =
+        container.ontouchmove =
+          null;
 
       // memory and CPU leak
       clearInterval(this.tooltipTimeout);
@@ -15089,9 +15112,8 @@
           (groupPadding + colIndex * pointOffsetWidth - categoryWidth / 2) *
             (reversedXAxis ? -1 : 1),
         threshold = options.threshold,
-        translatedThreshold = (series.translatedThreshold = yAxis.getThreshold(
-          threshold,
-        )),
+        translatedThreshold = (series.translatedThreshold =
+          yAxis.getThreshold(threshold)),
         minPointLength = pick(options.minPointLength, 5);
 
       // record the new values
@@ -15126,14 +15148,15 @@
 
         // create shape type and shape args that are reused in drawPoints and drawTracker
         point.shapeType = 'rect';
-        point.shapeArgs = shapeArgs = chart.renderer.Element.prototype.crisp.call(
-          0,
-          borderWidth,
-          barX,
-          barY,
-          barW,
-          barH,
-        );
+        point.shapeArgs = shapeArgs =
+          chart.renderer.Element.prototype.crisp.call(
+            0,
+            borderWidth,
+            barX,
+            barY,
+            barW,
+            barH,
+          );
 
         if (borderWidth % 2) {
           // correct for shorting in crisp method, visible in stacked columns with 1px border
