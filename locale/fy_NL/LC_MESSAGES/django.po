@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-05-26 10:14+0000\n"
-"PO-Revision-Date: 2021-05-26 15:22+0000\n"
+"PO-Revision-Date: 2021-05-26 15:46+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -1944,9 +1944,8 @@ msgstr "De kleur fan de tekst en de piktogrammen yn it headergebied, behalve it 
 msgid "Toolbar area background"
 msgstr "Eftergrûn fan arkbalkegebied"
 
-#, fuzzy
 msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
-msgstr "De eftergrûnkleur foar de navigaasjebalke, de blêdwizerarkbalke en it selektearre ljepblêd. Manifestfjild: ·  ·  · toolbar."
+msgstr "De eftergrûnkleur foar de navigaasjebalke, de blêdwizerarkbalke en it aktive ljepblêd.  Manifestfjild:  toolbar."
 
 msgid "Toolbar area text and icons"
 msgstr "Tekst en piktogrammen fan it arkbalkegebied"
