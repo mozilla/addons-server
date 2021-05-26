@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-05-26 10:14+0000\n"
-"PO-Revision-Date: 2021-05-26 10:44+0000\n"
+"PO-Revision-Date: 2021-05-26 19:16+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -1964,10 +1964,10 @@ msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest
 msgstr "Колір тексту в полях в панелі інструментів, таких як рядок URL-адреси. Поле маніфесту:  toolbar_field_text."
 
 msgid "Tab highlight"
-msgstr ""
+msgstr "Виділення вкладки"
 
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
-msgstr ""
+msgstr "Колір виділення активної вкладки. Виконано у вигляді межі навколо вкладки у Firefox 89+ та лінії над вкладкою у давніших Firefox. Поле маніфесту:  tab_line."
 
 msgid "Review requested."
 msgstr "Запитано перевірку."
