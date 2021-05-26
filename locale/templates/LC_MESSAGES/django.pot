@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-18 17:07+0000\n"
+"POT-Creation-Date: 2021-05-26 10:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -132,7 +132,7 @@ msgstr ""
 msgid "Need help?"
 msgstr ""
 
-#: src/olympia/accounts/views.py:785
+#: src/olympia/accounts/views.py:789
 #, python-format
 msgid "Notification [%s] does not exist"
 msgstr ""
@@ -277,7 +277,7 @@ msgstr ""
 
 #: src/olympia/amo/context_processors.py:82
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20
-#: src/olympia/devhub/views.py:1926
+#: src/olympia/devhub/views.py:1936
 msgid "Manage API Keys"
 msgstr ""
 
@@ -2776,7 +2776,7 @@ msgstr ""
 #: src/olympia/devhub/views.py:1367
 msgid ""
 "The background color for the navigation bar, the bookmarks bar, and the "
-"selected tab.  Manifest field:  toolbar."
+"active tab.  Manifest field:  toolbar."
 msgstr ""
 
 #: src/olympia/devhub/views.py:1375
@@ -2809,23 +2809,34 @@ msgid ""
 "field:  toolbar_field_text."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1788
+#: src/olympia/devhub/views.py:1402
+msgid "Tab highlight"
+msgstr ""
+
+#: src/olympia/devhub/views.py:1403
+msgid ""
+"The highlight color of the active tab. Implemented as a border around the tab"
+" on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:"
+"  tab_line."
+msgstr ""
+
+#: src/olympia/devhub/views.py:1798
 msgid "Review requested."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1790
+#: src/olympia/devhub/views.py:1800
 msgid "You must provide further details to proceed."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1892
+#: src/olympia/devhub/views.py:1902
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1939
+#: src/olympia/devhub/views.py:1949
 msgid "New API key created"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1950
+#: src/olympia/devhub/views.py:1960
 msgid "API key revoked"
 msgstr ""
 

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-18 17:07+0000\n"
+"POT-Creation-Date: 2021-05-26 10:14+0000\n"
 "PO-Revision-Date: 2020-11-09 07:11+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -1963,7 +1963,8 @@ msgstr "Culoarea textului și a pictogramelor din zona antetului, cu excepția f
 msgid "Toolbar area background"
 msgstr "Fundalul zonei cu bara de unelte"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+#, fuzzy
+msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr "Culoarea de fundal pentru bara de navigare, bara de marcaje și fila selectată.  Câmp manifest:  toolbar."
 
 msgid "Toolbar area text and icons"
@@ -1983,6 +1984,12 @@ msgstr "Text din zona câmpului barei de unelte"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Culoarea textului din câmpurile barei de unelte, cum ar fi bara de adrese. Câmp manifest:  toolbar_field_text."
+
+msgid "Tab highlight"
+msgstr ""
+
+msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
+msgstr ""
 
 msgid "Review requested."
 msgstr "Recenzie solicitată."

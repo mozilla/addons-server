@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-18 17:07+0000\n"
+"POT-Creation-Date: 2021-05-26 10:14+0000\n"
 "PO-Revision-Date: 2020-05-24 16:34+0000\n"
 "Last-Translator: Teodor P. <teo0321@gmail.com>\n"
 "Language-Team: none\n"
@@ -1997,8 +1997,9 @@ msgstr "Това е цветът на текста в раздела."
 msgid "Toolbar area background"
 msgstr ""
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr ""
+#, fuzzy
+msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
+msgstr "Това е цветът на текста в раздела."
 
 msgid "Toolbar area text and icons"
 msgstr ""
@@ -2017,6 +2018,12 @@ msgid "Toolbar field area text"
 msgstr ""
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
+msgstr ""
+
+msgid "Tab highlight"
+msgstr ""
+
+msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr ""
 
 msgid "Review requested."

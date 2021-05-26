@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-18 17:07+0000\n"
+"POT-Creation-Date: 2021-05-26 10:14+0000\n"
 "PO-Revision-Date: 2021-05-13 05:19+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -1956,7 +1956,8 @@ msgstr "Màu của văn bản và biểu tượng trong vùng tiêu đề, ngo�
 msgid "Toolbar area background"
 msgstr "Nền khu vực thanh công cụ"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+#, fuzzy
+msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr "Màu nền cho thanh điều hướng, thanh dấu trang và thẻ đã chọn.  Trường kê khai:  toolbar."
 
 msgid "Toolbar area text and icons"
@@ -1976,6 +1977,12 @@ msgstr "Văn bản khu vực trường thanh công cụ"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Màu của văn bản trong các trường trên thanh công cụ, chẳng hạn như thanh URL. Trường kê khai:  toolbar_field_text."
+
+msgid "Tab highlight"
+msgstr ""
+
+msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
+msgstr ""
 
 msgid "Review requested."
 msgstr "Yêu cầu đánh giá."
