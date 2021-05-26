@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-05-26 10:14+0000\n"
-"PO-Revision-Date: 2021-05-26 11:33+0000\n"
+"PO-Revision-Date: 2021-05-26 11:37+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -1959,9 +1959,8 @@ msgstr "A cor do texto e dos ícones na área do cabeçalho, exceto a aba ativa.
 msgid "Toolbar area background"
 msgstr "Área de fundo da barra de ferramentas"
 
-#, fuzzy
 msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
-msgstr "A cor do fundo para a barra de navegação, a barra de favoritos e a aba selecionada.  Campo do manifesto:  toolbar."
+msgstr "A cor do fundo da barra de navegação, da barra de favoritos e da aba ativa. Campo do manifesto:  toolbar."
 
 msgid "Toolbar area text and icons"
 msgstr "Ícones e texto da área da barra de ferramentas"
@@ -1985,7 +1984,7 @@ msgid "Tab highlight"
 msgstr "Destaque de aba"
 
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
-msgstr ""
+msgstr "A cor de destaque da aba ativa. Implementado como uma borda ao redor da aba a partir do Firefox 89 e uma linha acima da aba em versões mais antigas. Campo de manifesto:  tab_line."
 
 msgid "Review requested."
 msgstr "Análise solicitada."
