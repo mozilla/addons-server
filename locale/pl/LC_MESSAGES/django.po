@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-18 17:07+0000\n"
+"POT-Creation-Date: 2021-05-26 10:14+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -2010,7 +2010,8 @@ msgstr "Kolor tekstu i ikon w obszarze nagłówka z wyjątkiem aktywnej karty. P
 msgid "Toolbar area background"
 msgstr "Tło obszaru paska narzędzi"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+#, fuzzy
+msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr "Kolor tła paska nawigacji, paska zakładek i wybranej karty. Pole manifestu: toolbar."
 
 msgid "Toolbar area text and icons"
@@ -2031,6 +2032,12 @@ msgstr "Tekst obszaru pól paska narzędzi"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Kolor tekstu w polach na pasku narzędzi, takich jak pasek adresu URL. Pole manifestu: toolbar_field_text."
+
+msgid "Tab highlight"
+msgstr ""
+
+msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
+msgstr ""
 
 msgid "Review requested."
 msgstr "Poproszono o sprawdzenie."

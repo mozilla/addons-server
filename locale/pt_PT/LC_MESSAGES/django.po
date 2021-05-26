@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-18 17:07+0000\n"
+"POT-Creation-Date: 2021-05-26 10:14+0000\n"
 "PO-Revision-Date: 2021-03-16 22:18+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -1956,7 +1956,8 @@ msgstr "A cor do texto e ícones na área do cabeçalho, exceto no separador ati
 msgid "Toolbar area background"
 msgstr "Fundo da área da barra de ferramentas"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+#, fuzzy
+msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr "A cor do fundo para a barra de navegação, a barra de marcadores e o separador selecionado.  Campo do manifesto:  toolbar."
 
 msgid "Toolbar area text and icons"
@@ -1976,6 +1977,12 @@ msgstr "Texto da área do campo da barra de ferramentas"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "A cor do texto em campos na barra de ferramentas, tais como a barra de URL. Campo do manifesto:  toolbar_field_text."
+
+msgid "Tab highlight"
+msgstr ""
+
+msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
+msgstr ""
 
 msgid "Review requested."
 msgstr "Revisão solicitada."

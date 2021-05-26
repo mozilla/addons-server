@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-18 17:07+0000\n"
+"POT-Creation-Date: 2021-05-26 10:14+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -2287,10 +2287,11 @@ msgstr "Ovo je boja teksta na jezičku."
 msgid "Toolbar area background"
 msgstr ""
 
+#, fuzzy
 msgid ""
 "The background color for the navigation bar, the bookmarks bar, and the "
-"selected tab.  Manifest field:  toolbar."
-msgstr ""
+"active tab.  Manifest field:  toolbar."
+msgstr "Ovo je boja teksta na jezičku."
 
 msgid "Toolbar area text and icons"
 msgstr ""
@@ -2315,6 +2316,15 @@ msgstr ""
 msgid ""
 "The color of text in fields in the toolbar, such as the URL bar. Manifest "
 "field:  toolbar_field_text."
+msgstr ""
+
+msgid "Tab highlight"
+msgstr ""
+
+msgid ""
+"The highlight color of the active tab. Implemented as a border around the "
+"tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest "
+"field:  tab_line."
 msgstr ""
 
 #, fuzzy

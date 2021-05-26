@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-18 17:07+0000\n"
+"POT-Creation-Date: 2021-05-26 10:14+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -2087,7 +2087,7 @@ msgid "Toolbar area background"
 msgstr "Toolbar area background (toolbar)."
 
 #, fuzzy
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr "The background color for the navigation bar, the bookmarks bar, and the selected tab."
 
 #, fuzzy
@@ -2113,6 +2113,12 @@ msgstr "Toolbar field area text (toolbar_field_text)."
 #, fuzzy
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "The color of text in fields in the toolbar, such as the URL bar"
+
+msgid "Tab highlight"
+msgstr "Tab highlight"
+
+msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
+msgstr "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 
 #, fuzzy
 msgid "Review requested."
