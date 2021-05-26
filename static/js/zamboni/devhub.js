@@ -1119,7 +1119,7 @@ var imageStatus = {
           }, 2500);
           self.polling();
           $this.attr('style', '').addClass('preview-error');
-          delete img;
+          img = null;
         };
         img.src = self.newurl($this.attr('data-url'));
       }

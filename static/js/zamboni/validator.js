@@ -151,9 +151,8 @@ function initValidator($doc) {
           gettext('Tests'),
         ),
       );
-      changeLink = this.app.versionChangeLinks[
-        this.app.guid + ' ' + this.app.version
-      ];
+      changeLink =
+        this.app.versionChangeLinks[this.app.guid + ' ' + this.app.version];
       if (changeLink) {
         this.$dom.prepend(
           format(
