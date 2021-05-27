@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-05-26 10:14+0000\n"
-"PO-Revision-Date: 2021-05-27 13:22+0000\n"
+"PO-Revision-Date: 2021-05-27 14:15+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -4258,7 +4258,7 @@ msgstr "Spremaj vlastite napomene bilo gdje na webu. Koristi bočnu traku za dod
 
 #. editorial content for the discovery pane.
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
-msgstr "Koristi prepoznavanje govora za omogućavanje pretrage na Google, Yahoo i DuckDuckGo."
+msgstr "Koristi prepoznavanje govora za aktiviranje pretrage na Google, Yahoo i DuckDuckGo."
 
 #. editorial content for the discovery pane.
 msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
