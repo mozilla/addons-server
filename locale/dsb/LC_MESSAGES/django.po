@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-05-26 10:14+0000\n"
-"PO-Revision-Date: 2021-05-26 16:52+0000\n"
+"PO-Revision-Date: 2021-05-27 18:32+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -1958,7 +1958,7 @@ msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest
 msgstr "Tekstowa barwa w pólach w symbolowej rědce, na pś. w adresowem pólu Pólo manifesta: toolbar_field_text."
 
 msgid "Tab highlight"
-msgstr ""
+msgstr "Wuzwignjenje rejtarika"
 
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr ""
