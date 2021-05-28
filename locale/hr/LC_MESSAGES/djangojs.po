@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-05-26 10:14+0000\n"
-"PO-Revision-Date: 2021-05-28 10:41+0000\n"
+"PO-Revision-Date: 2021-05-28 10:51+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -311,10 +311,10 @@ msgid "Homepage Featured"
 msgstr "Stranica odabranih"
 
 msgid "Homepage Up and Coming"
-msgstr "Perspektivna početna stranica"
+msgstr "Stranica perspektivnih"
 
 msgid "Homepage Most Popular"
-msgstr "Najpopularnija početna stranica"
+msgstr "Stranica najpopularnijih"
 
 msgid "Detail Page"
 msgstr "Stranica detalja"
@@ -323,7 +323,7 @@ msgid "Detail Page (bottom)"
 msgstr "Stranica detalja (dno)"
 
 msgid "Detail Page (Development Channel)"
-msgstr "Stranica detalja (Kanal za programiranje)"
+msgstr "Stranica detalja (kanal razvoja)"
 
 msgid "Often Used With"
 msgstr "Često korišteno sa"
@@ -338,7 +338,7 @@ msgid "Upsell"
 msgstr "Skuplje"
 
 msgid "Meet the Developer"
-msgstr "Upoznajte programera"
+msgstr "Upoznaj programera"
 
 msgid "User Profile"
 msgstr "Korisnički profil"
@@ -392,7 +392,7 @@ msgid "Browse Listing Up and Coming Sort"
 msgstr "Pretraži listu perspektivnih sortirano"
 
 msgid "Total Amount Contributed"
-msgstr "Ukupan iznos doprinesenog"
+msgstr "Ukupno doprineseno"
 
 msgid "Average Contribution"
 msgstr "Prosječni doprinos"
