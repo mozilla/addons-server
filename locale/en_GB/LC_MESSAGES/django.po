@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-05-26 10:14+0000\n"
-"PO-Revision-Date: 2021-05-29 20:14+0000\n"
+"PO-Revision-Date: 2021-05-29 20:18+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -1915,9 +1915,8 @@ msgstr "The colour of the text and icons in the header area, except the active t
 msgid "Toolbar area background"
 msgstr "Toolbar area background"
 
-#, fuzzy
 msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
-msgstr "The background colour for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+msgstr "The background colour for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 
 msgid "Toolbar area text and icons"
 msgstr "Toolbar area text and icons"
@@ -1941,7 +1940,7 @@ msgid "Tab highlight"
 msgstr "Tab highlight"
 
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
-msgstr ""
+msgstr "The highlight colour of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 
 msgid "Review requested."
 msgstr "Review requested."
