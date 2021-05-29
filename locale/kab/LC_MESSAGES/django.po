@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-05-26 10:14+0000\n"
-"PO-Revision-Date: 2021-05-29 20:39+0000\n"
+"PO-Revision-Date: 2021-05-29 20:55+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4541,9 +4541,9 @@ msgstr "Yir aɣbaṛ"
 msgid "Could not find an add-on ID."
 msgstr "Ur izmir ara ad d-yaf asulay ID n uzegrir."
 
-#, fuzzy, python-format
+#, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr "Asulay n uzegrir deg umeskan-ik manifest.json neɣ install.rdf (%s) ur yemṣada ara d usulay uzegrir-ik deg AMO (%s)"
+msgstr "Asulay n uzegrir deg umeskan-ik·im manifest.json (%s) ur yemṣada ara d usulay n uzegrir-ik·im deg AMO (%s)"
 
 msgid "Duplicate add-on ID found."
 msgstr "Asulay ID uslig n uzegrir yettwaf."
