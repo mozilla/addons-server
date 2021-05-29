@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-05-26 10:14+0000\n"
-"PO-Revision-Date: 2021-05-29 11:10+0000\n"
+"PO-Revision-Date: 2021-05-29 17:54+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -3185,7 +3185,7 @@ msgstr "E-posta adresi"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr ""
+msgstr "Mozilla’nın bilgilerimi bu %(link_open)sGizlilik Bildirimi’nde%(link_close)s açıklandığı şekilde kullanmasını kabul ediyorum."
 
 msgid "Sign Up"
 msgstr "Kaydol"
@@ -4004,7 +4004,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
-msgstr "Rrama sonuçlarınızda reklamların görünmesini engelleyin."
+msgstr "Arama sonuçlarınızda reklamların görünmesini engelleyin."
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
