@@ -14,7 +14,6 @@ Welcome to the Addons Server repository!  Please feel free to visit the web page
 Please report bugs here: https://github.com/mozilla/addons/issues or https://github.com/mozilla/addons-server/issues
 You can access the AMO dev environment at https://addons-dev.allizom.org/ and the AMO stage environment at https://addons.allizom.org/
 
-You can join our mailing list at https://mail.mozilla.org/listinfo/dev-addons
 
 .. _`addons.mozilla.org`: https://addons.mozilla.org
 .. _`install docs`: https://addons-server.readthedocs.io/en/latest/topics/install/docker.html
