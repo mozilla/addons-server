@@ -28,7 +28,7 @@ HOME=/tmp
 30 6 * * * %(z_cron)s update_addon_hotness
 30 9 * * * %(z_cron)s update_user_ratings
 0 22 * * * %(z_cron)s gc
-45 14 * * * %(z_cron)s write_sitemaps
+0 23 * * * %(z_cron)s write_sitemaps
 
 # Once per day after metrics import is done
 30 12 * * * %(z_cron)s update_addon_weekly_downloads
