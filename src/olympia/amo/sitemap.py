@@ -224,6 +224,19 @@ class Sitemap(DjangoSitemap):
             )
         return xml
 
+    @property
+    def _current_app(self):
+        return amo.APPS[get_url_prefix().app]
+
+
+def get_android_promoted_addons():
+    return PromotedAddon.objects.filter(
+        Q(application_id=amo.ANDROID.id) | Q(application_id__isnull=True),
+        group_id=RECOMMENDED.id,
+        addon___current_version__promoted_approvals__application_id=(amo.ANDROID.id),
+        addon___current_version__promoted_approvals__group_id=RECOMMENDED.id,
+    )
+
 
 class AddonSitemap(Sitemap):
     item_tuple = namedtuple(
@@ -232,10 +245,20 @@ class AddonSitemap(Sitemap):
 
     @cached_property
     def _cached_items(self):
+        current_app = self._current_app
+        addons_qs = Addon.objects.public().filter(
+            _current_version__apps__application=current_app.id
+        )
+
+        # android is currently limited to a small number of recommended addons, so get
+        # the list of those and filter further
+        if current_app == amo.ANDROID:
+            promoted_addon_ids = get_android_promoted_addons().values_list(
+                'addon_id', flat=True
+            )
+            addons_qs = addons_qs.filter(id__in=promoted_addon_ids)
         addons = list(
-            Addon.objects.public()
-            .order_by('-last_updated')
-            .values_list(
+            addons_qs.order_by('-last_updated').values_list(
                 'last_updated',
                 'slug',
                 'text_ratings_count',
@@ -313,7 +336,7 @@ class CategoriesSitemap(Sitemap):
             return items
 
         page_size = settings.REST_FRAMEWORK['PAGE_SIZE']
-        current_app = amo.APPS[get_url_prefix().app]
+        current_app = self._current_app
         counts_qs = (
             AddonCategory.objects.filter(
                 addon___current_version__isnull=False,
@@ -361,7 +384,7 @@ class AccountSitemap(Sitemap):
 
     @cached_property
     def _cached_items(self):
-        current_app = amo.APPS[get_url_prefix().app]
+        current_app = self._current_app
         addon_q = Q(
             addons___current_version__isnull=False,
             addons___current_version__apps__application=current_app.id,
@@ -373,14 +396,9 @@ class AccountSitemap(Sitemap):
         # android is currently limited to a small number of recommended addons, so get
         # the list of those and filter further
         if current_app == amo.ANDROID:
-            promoted_addon_ids = PromotedAddon.objects.filter(
-                Q(application_id=amo.ANDROID.id) | Q(application_id__isnull=True),
-                group_id=RECOMMENDED.id,
-                addon___current_version__promoted_approvals__application_id=(
-                    amo.ANDROID.id
-                ),
-                addon___current_version__promoted_approvals__group_id=RECOMMENDED.id,
-            ).values_list('addon_id', flat=True)
+            promoted_addon_ids = get_android_promoted_addons().values_list(
+                'addon_id', flat=True
+            )
             addon_q = addon_q & Q(addons__id__in=promoted_addon_ids)
 
         users = (
