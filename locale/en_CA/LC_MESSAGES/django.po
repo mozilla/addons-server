@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-26 10:14+0000\n"
+"POT-Creation-Date: 2021-06-01 17:51+0000\n"
 "PO-Revision-Date: 2021-05-23 19:39+0000\n"
 "Last-Translator: pdehaan <pdehaan@mozilla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4381,6 +4381,11 @@ msgstr "Get the mouse scrollbar you've always wanted—specify width and colour.
 #. editorial content for the primary hero shelves.
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr "Save and restore tabs. Includes auto-save and cloud sync features."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Goodbye, annoying cookie warnings!"
+msgstr "Begone, annoying cookie warnings!"
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
