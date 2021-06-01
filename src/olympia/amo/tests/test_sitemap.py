@@ -25,6 +25,7 @@ from olympia.amo.tests import (
     collection_factory,
     TestCase,
     user_factory,
+    version_factory,
 )
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.promoted import RECOMMENDED
@@ -43,53 +44,87 @@ def rating_factory(addon):
     )
 
 
-def test_addon_sitemap():
-    it = AddonSitemap.item_tuple
-    addon_a = addon_factory(slug='addon-a')
-    addon_b = addon_factory(slug='addon-b')
-    addon_b.update(last_updated=datetime(2020, 1, 1, 1, 1, 1))
-    addon_c = addon_factory(slug='addon-c')
-    addon_factory(status=amo.STATUS_NOMINATED)  # shouldn't show up
-    expected = [
-        it(addon_c.last_updated, addon_c.slug, 'detail', 1),
-        it(addon_a.last_updated, addon_a.slug, 'detail', 1),
-        it(addon_b.last_updated, addon_b.slug, 'detail', 1),
-        it(addon_c.last_updated, addon_c.slug, 'versions', 1),
-        it(addon_a.last_updated, addon_a.slug, 'versions', 1),
-        it(addon_b.last_updated, addon_b.slug, 'versions', 1),
-        it(addon_c.last_updated, addon_c.slug, 'ratings.list', 1),
-        it(addon_a.last_updated, addon_a.slug, 'ratings.list', 1),
-        it(addon_b.last_updated, addon_b.slug, 'ratings.list', 1),
-    ]
-    sitemap = AddonSitemap()
-    items = list(sitemap.items())
-    assert items == expected
-    for item in sitemap.items():
-        assert sitemap.location(item) == reverse(
-            'addons.' + item.urlname, args=[item.slug]
+class TestAddonSitemap(TestCase):
+    def setUp(self):
+        it = AddonSitemap.item_tuple
+        self.addon_a = addon_a = addon_factory(slug='addon-a')
+        self.addon_b = addon_b = addon_factory(slug='addon-b')
+        addon_b.update(last_updated=datetime(2020, 1, 1, 1, 1, 1))
+        self.addon_c = addon_c = addon_factory(slug='addon-c')
+        addon_factory(status=amo.STATUS_NOMINATED)  # shouldn't show up
+        self.android_addon = addon_factory(
+            version_kw={'application': amo.ANDROID.id}
+        )  # shouldn't show up in expected
+        self.make_addon_promoted(self.android_addon, RECOMMENDED, approve_version=True)
+        self.expected = [
+            it(addon_c.last_updated, addon_c.slug, 'detail', 1),
+            it(addon_a.last_updated, addon_a.slug, 'detail', 1),
+            it(addon_b.last_updated, addon_b.slug, 'detail', 1),
+            it(addon_c.last_updated, addon_c.slug, 'versions', 1),
+            it(addon_a.last_updated, addon_a.slug, 'versions', 1),
+            it(addon_b.last_updated, addon_b.slug, 'versions', 1),
+            it(addon_c.last_updated, addon_c.slug, 'ratings.list', 1),
+            it(addon_a.last_updated, addon_a.slug, 'ratings.list', 1),
+            it(addon_b.last_updated, addon_b.slug, 'ratings.list', 1),
+        ]
+
+    def test_basic(self):
+        sitemap = AddonSitemap()
+        items = list(sitemap.items())
+        assert items == self.expected
+        for item in sitemap.items():
+            assert sitemap.location(item) == reverse(
+                'addons.' + item.urlname, args=[item.slug]
+            )
+            assert '/en-US/firefox/' in sitemap.location(item)
+            assert sitemap.lastmod(item) == item.last_updated
+
+    def test_rating_pagination(self):
+        # add some ratings to test the rating page pagination
+        rating_factory(self.addon_c)
+        rating_factory(self.addon_c)
+        rating_factory(self.addon_c)
+        rating_factory(self.addon_a)
+        rating_factory(self.addon_a)  # only 2 for addon_a
+        patched_drf_setting = dict(settings.REST_FRAMEWORK)
+        patched_drf_setting['PAGE_SIZE'] = 2
+
+        sitemap = AddonSitemap()
+        with override_settings(REST_FRAMEWORK=patched_drf_setting):
+            items_with_ratings = list(sitemap.items())
+        # only one extra url, for a second ratings page, because PAGE_SIZE = 2
+        extra_rating = AddonSitemap.item_tuple(
+            self.addon_c.last_updated, self.addon_c.slug, 'ratings.list', 2
         )
-        assert '/en-US/firefox/' in sitemap.location(item)
+        assert extra_rating in items_with_ratings
+        assert set(items_with_ratings) - set(self.expected) == {extra_rating}
+        item = items_with_ratings[-3]
+        assert sitemap.location(item).endswith('/reviews/?page=2')
         assert sitemap.lastmod(item) == item.last_updated
 
-    # add some ratings to test the rating page pagination
-    rating_factory(addon_c)
-    rating_factory(addon_c)
-    rating_factory(addon_c)
-    rating_factory(addon_a)
-    rating_factory(addon_a)  # only 2 for addon_a
-    patched_drf_setting = dict(settings.REST_FRAMEWORK)
-    patched_drf_setting['PAGE_SIZE'] = 2
-
-    sitemap = AddonSitemap()
-    with override_settings(REST_FRAMEWORK=patched_drf_setting):
-        items_with_ratings = list(sitemap.items())
-    # only one extra url, for a second ratings page, because PAGE_SIZE = 2
-    extra_rating = it(addon_c.last_updated, addon_c.slug, 'ratings.list', 2)
-    assert extra_rating in items_with_ratings
-    assert set(items_with_ratings) - set(expected) == {extra_rating}
-    item = items_with_ratings[-3]
-    assert sitemap.location(item).endswith('/reviews/?page=2')
-    assert sitemap.lastmod(item) == item.last_updated
+    def test_android(self):
+        it = AddonSitemap.item_tuple
+        android_addon = self.android_addon
+        with override_url_prefix(app_name='android'):
+            assert list(AddonSitemap().items()) == [
+                it(android_addon.last_updated, android_addon.slug, 'detail', 1),
+                it(android_addon.last_updated, android_addon.slug, 'versions', 1),
+                it(android_addon.last_updated, android_addon.slug, 'ratings.list', 1),
+            ]
+            # make some of the Firefox add-ons be Android compatible
+            version_factory(addon=self.addon_a, application=amo.ANDROID.id)
+            self.make_addon_promoted(self.addon_a, RECOMMENDED, approve_version=True)
+            self.addon_a.reload()
+            version_factory(addon=self.addon_b, application=amo.ANDROID.id)
+            # don't make b recommended - should be ignored even though it's compatible
+            assert list(AddonSitemap().items()) == [
+                it(self.addon_a.last_updated, self.addon_a.slug, 'detail', 1),
+                it(android_addon.last_updated, android_addon.slug, 'detail', 1),
+                it(self.addon_a.last_updated, self.addon_a.slug, 'versions', 1),
+                it(android_addon.last_updated, android_addon.slug, 'versions', 1),
+                it(self.addon_a.last_updated, self.addon_a.slug, 'ratings.list', 1),
+                it(android_addon.last_updated, android_addon.slug, 'ratings.list', 1),
+            ]
 
 
 def test_amo_sitemap():
@@ -355,8 +390,6 @@ def test_get_sitemap_section_pages():
             ('addons', 'firefox', 2),
             ('addons', 'firefox', 3),
             ('addons', 'android', 1),
-            ('addons', 'android', 2),
-            ('addons', 'android', 3),
             ('categories', 'firefox', 1),
             ('collections', 'firefox', 1),
             ('collections', 'android', 1),

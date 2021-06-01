@@ -8,6 +8,7 @@ from olympia import amo
 from olympia.amo.cron import gc, write_sitemaps
 from olympia.amo.sitemap import get_sitemaps
 from olympia.amo.tests import TestCase, addon_factory, version_factory
+from olympia.constants.promoted import RECOMMENDED
 from olympia.constants.scanners import YARA
 from olympia.addons.models import Addon
 from olympia.files.models import FileUpload
@@ -128,6 +129,11 @@ class TestGC(TestCase):
 
 def test_write_sitemaps():
     addon_factory()
+    TestCase.make_addon_promoted(
+        addon_factory(version_kw={'application': amo.ANDROID.id}),
+        RECOMMENDED,
+        approve_version=True,
+    )
     sitemaps_dir = settings.SITEMAP_STORAGE_PATH
     assert len(os.listdir(sitemaps_dir)) == 0
     write_sitemaps()
