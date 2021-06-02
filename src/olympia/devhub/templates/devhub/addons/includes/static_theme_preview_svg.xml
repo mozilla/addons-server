@@ -35,7 +35,7 @@
         <rect class="toolbar fill" fill="{{ toolbar|d('rgba(255,255,255,0.6)') }}"
             width="{{ browser_width }}" height="48" y="44"
             data-fill="rgba(255,255,255,0.6)"/>
-        <rect id="svg-selected-tab" class="tab_selected fill" fill="{{ tab_selected|d(toolbar)|d('rgba(255,255,255,0.6)') }}"
+        <rect id="svg-selected-tab" class="tab_selected toolbar fill" fill="{{ tab_selected|d(toolbar)|d('rgba(255,255,255,0.6)') }}"
             width="166" height="34" x="28" y="5" rx="4"
             data-fill="rgba(255,255,255,0.6)" stroke="transparent" stroke-width="1.5"/>
         <rect class="tab_line stroke" stroke="{{ tab_line|d('rgba(0,0,0,0.25)') }}"
@@ -56,7 +56,7 @@
             data-stroke="rgba(0,0,0,1)" stroke-width="1.5" fill="transparent"/>
         <circle class="bookmark_text stroke" stroke="{{ icons|d(bookmark_text)|d(tab_background_text)|d('rgba(0,0,0,1)') }}"
             cx="24" cy="68" r="6.25"
-            data-strok="rgba(0,0,0,1)" data-fallback="tab_background_text" stroke-width="1.5" fill="transparent" />
+            data-stroke="rgba(0,0,0,1)" data-fallback="tab_background_text" stroke-width="1.5" fill="transparent" />
         <circle class="bookmark_text stroke" stroke="{{ icons|d(bookmark_text)|d(tab_background_text)|d('rgba(0,0,0,1)') }}"
             cx="60" cy="68" r="6.25"
             data-stroke="rgba(0,0,0,1)" data-fallback="tab_background_text" stroke-width="1.5" fill="transparent" />

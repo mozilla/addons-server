@@ -24,8 +24,8 @@ HEADER_ROOT = os.path.join(settings.ROOT, 'src/olympia/versions/tests/static_the
 transparent_colors = [
     'class="%(field)s %(prop)s" %(prop)s="rgb(0,0,0,0)"'
     % {'field': field, 'prop': 'stroke' if field == 'tab_line' else 'fill'}
-    for field in UI_FIELDS
-    if field != 'icons'  # bookmark_text class used instead
+    for field in UI_FIELDS + ('tab_selected toolbar',)
+    if field not in ('icons', 'tab_selected')  # bookmark_text class used instead
 ]
 
 
@@ -221,6 +221,10 @@ def test_generate_static_theme_preview(
     interim_amo_svg = write_svg_to_png_mock.call_args_list[1][0][0]
     with open(amo_preview.image_path) as svg:
         amo_svg = svg.read()
+    preview_colors = {
+        **theme_manifest['colors'],
+        'tab_selected toolbar': theme_manifest['colors']['tab_selected'],
+    }
     colors = [
         'class="%(field)s %(prop)s" %(prop)s="%(color)s"'
         % {
@@ -228,7 +232,8 @@ def test_generate_static_theme_preview(
             'prop': 'stroke' if key == 'tab_line' else 'fill',
             'color': color,
         }
-        for (key, color) in theme_manifest['colors'].items()
+        for (key, color) in preview_colors.items()
+        if key != 'tab_selected'
     ]
 
     preserve_aspect_ratio = (
@@ -308,7 +313,7 @@ def test_generate_static_theme_preview(
                 'frame': amo.THEME_FRAME_COLOR_DEFAULT,
                 'toolbar': 'rgba(255,255,255,0.6)',
                 'toolbar_field': 'rgba(255,255,255,1)',
-                'tab_selected': 'rgba(255,255,255,0.6)',
+                'tab_selected toolbar': 'rgba(255,255,255,0.6)',
                 'tab_line': 'rgba(0,0,0,0.25)',
                 'tab_background_text': '',
                 'bookmark_text': '#348923',  # icons have class bookmark_text
@@ -572,7 +577,7 @@ def test_generate_preview_with_additional_backgrounds(
         ('toolbar_field', 'fill', 'rgba(255,255,255,1)'),
         ('toolbar_field_text', 'fill', ''),
         ('tab_line', 'stroke', 'rgba(0,0,0,0.25)'),
-        ('tab_selected', 'fill', 'rgba(255,255,255,0.6)'),
+        ('tab_selected toolbar', 'fill', 'rgba(255,255,255,0.6)'),
     )
     colors = [
         f'class="{key} {prop}" {prop}="{color}"'
