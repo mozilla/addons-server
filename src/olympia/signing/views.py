@@ -88,11 +88,18 @@ class BurstUserAddonUploadThrottle(
     rate = '3/minute'
 
 
-class SustainedUserAddonUploadThrottle(
+class HourlyUserAddonUploadThrottle(
     ThrottleOnlyUnsafeMethodsMixin, GranularUserRateThrottle
 ):
-    scope = 'sustained_user_addon_upload'
+    scope = 'hourly_user_addon_upload'
     rate = '20/hour'
+
+
+class DailyUserAddonUploadThrottle(
+    ThrottleOnlyUnsafeMethodsMixin, GranularUserRateThrottle
+):
+    scope = 'daily_user_addon_upload'
+    rate = '24/day'
 
 
 class BurstIPAddonUploadThrottle(
@@ -102,10 +109,10 @@ class BurstIPAddonUploadThrottle(
     rate = '6/minute'
 
 
-class SustainedIPAddonUploadThrottle(
+class HourlyIPAddonUploadThrottle(
     ThrottleOnlyUnsafeMethodsMixin, GranularIPRateThrottle
 ):
-    scope = 'sustained_ip_addon_upload'
+    scope = 'hourly_ip_addon_upload'
     rate = '50/hour'
 
 
@@ -114,9 +121,10 @@ class VersionView(APIView):
     permission_classes = [IsAuthenticated, IsSubmissionAllowedFor]
     throttle_classes = (
         BurstUserAddonUploadThrottle,
-        SustainedUserAddonUploadThrottle,
+        HourlyUserAddonUploadThrottle,
+        DailyUserAddonUploadThrottle,
         BurstIPAddonUploadThrottle,
-        SustainedIPAddonUploadThrottle,
+        HourlyIPAddonUploadThrottle,
     )
 
     def check_throttles(self, request):
