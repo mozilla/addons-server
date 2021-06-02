@@ -1092,7 +1092,7 @@ class Addon(OnChangeMixin, ModelBase):
     def get_default_icon_url(self, size):
         # We don't update the default icon very frequently so there is no
         # automated query parameter for cachebusting...
-        return '{0}img/addon-icons/{1}-{2}.png?v=20210602'.format(
+        return '{0}img/addon-icons/{1}-{2}.png?v=20210601'.format(
             settings.STATIC_URL, 'default', size
         )
 

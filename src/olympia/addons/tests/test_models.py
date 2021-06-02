@@ -802,12 +802,12 @@ class TestAddonModels(TestCase):
 
         addon = Addon.objects.get(pk=3615)
         addon.icon_type = None
-        assert addon.get_icon_url(32).endswith('icons/default-32.png?v=20210602')
+        assert addon.get_icon_url(32).endswith('icons/default-32.png?v=20210601')
 
     def test_icon_url_default(self):
         a = Addon.objects.get(pk=3615)
         a.update(icon_type='')
-        default = 'icons/default-32.png?v=20210602'
+        default = 'icons/default-32.png?v=20210601'
         assert a.get_icon_url(32).endswith(default)
         assert a.get_icon_url(32).endswith(default)
         assert a.get_icon_url(32, use_default=True).endswith(default)
