@@ -564,7 +564,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             )
             assert response.status_code == expected_status
 
-    def _test_throttling_verb_ip_sustained(self, verb, url, expected_status=201):
+    def _test_throttling_verb_ip_hourly(self, verb, url, expected_status=201):
         # Bulk-create a bunch of users we'll need to make sure the user is
         # different every time, so that we test IP throttling specifically.
         users = [
@@ -596,7 +596,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             assert response.status_code == 429
 
             # One minute later, past the 'burst' throttling period, we're still
-            # blocked by the 'sustained' limit.
+            # blocked by the 'hourly' limit.
             frozen_time.tick(delta=timedelta(seconds=61))
             response = self.request(
                 verb,
@@ -607,7 +607,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             )
             assert response.status_code == 429
 
-            # 'Sustained' throttling is 1 hour, so 3601 seconds later we should
+            # 'hourly' throttling is 1 hour, so 3601 seconds later we should
             # be allowed again.
             frozen_time.tick(delta=timedelta(seconds=3601))
             response = self.request(
@@ -654,7 +654,54 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             )
             assert response.status_code == expected_status
 
-    def _test_throttling_verb_user_sustained(self, verb, url, expected_status=201):
+    def _test_throttling_verb_user_hourly(self, verb, url, expected_status=201):
+        with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
+            # 21 is above the hourly limit but below the daily one.
+            for x in range(0, 21):
+                # Make the IP different every time so that we test the user
+                # throttling.
+                self._add_fake_throttling_action(
+                    view_class=self.view_class,
+                    url=url,
+                    user=self.user,
+                    remote_addr=get_random_ip(),
+                )
+
+            # At this point we should be throttled since we're using the same
+            # user. (we're still inside the frozen time context).
+            response = self.request(
+                verb,
+                url=url,
+                guid='@create-webextension',
+                version='1.0',
+                extra_kwargs={'REMOTE_ADDR': get_random_ip()},
+            )
+            assert response.status_code == 429
+
+            # One minute later, past the 'burst' throttling period, we're still
+            # blocked by the 'hourly' limit.
+            frozen_time.tick(delta=timedelta(seconds=61))
+            response = self.request(
+                verb,
+                url=url,
+                guid='@create-webextension',
+                version='1.0',
+                extra_kwargs={'REMOTE_ADDR': get_random_ip()},
+            )
+            assert response.status_code == 429
+
+            # 3601 seconds later we should be allowed again.
+            frozen_time.tick(delta=timedelta(seconds=3601))
+            response = self.request(
+                verb,
+                url=url,
+                guid='@create-webextension',
+                version='1.0',
+                extra_kwargs={'REMOTE_ADDR': get_random_ip()},
+            )
+            assert response.status_code == expected_status
+
+    def _test_throttling_verb_user_daily(self, verb, url, expected_status=201):
         with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
             for x in range(0, 50):
                 # Make the IP different every time so that we test the user
@@ -678,7 +725,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             assert response.status_code == 429
 
             # One minute later, past the 'burst' throttling period, we're still
-            # blocked by the 'sustained' limit.
+            # blocked by the 'hourly' limit.
             frozen_time.tick(delta=timedelta(seconds=61))
             response = self.request(
                 verb,
@@ -689,9 +736,19 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             )
             assert response.status_code == 429
 
-            # 'Sustained' throttling is 1 hour, so 3601 seconds later we should
-            # be allowed again.
+            # After the hourly limit, still blocked.
             frozen_time.tick(delta=timedelta(seconds=3601))
+            response = self.request(
+                verb,
+                url=url,
+                guid='@create-webextension',
+                version='1.0',
+                extra_kwargs={'REMOTE_ADDR': get_random_ip()},
+            )
+            assert response.status_code == 429
+
+            # 86401 seconds later we should be allowed again (24h + 1s).
+            frozen_time.tick(delta=timedelta(seconds=86401))
             response = self.request(
                 verb,
                 url=url,
@@ -705,33 +762,41 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         url = reverse_ns('signing.version')
         self._test_throttling_verb_ip_burst('POST', url)
 
-    def test_throttling_post_ip_sustained(self):
+    def test_throttling_post_ip_hourly(self):
         url = reverse_ns('signing.version')
-        self._test_throttling_verb_ip_sustained('POST', url)
+        self._test_throttling_verb_ip_hourly('POST', url)
 
     def test_throttling_post_user_burst(self):
         url = reverse_ns('signing.version')
         self._test_throttling_verb_user_burst('POST', url)
 
-    def test_throttling_post_user_sustained(self):
+    def test_throttling_post_user_hourly(self):
         url = reverse_ns('signing.version')
-        self._test_throttling_verb_user_sustained('POST', url)
+        self._test_throttling_verb_user_hourly('POST', url)
+
+    def test_throttling_post_user_daily(self):
+        url = reverse_ns('signing.version')
+        self._test_throttling_verb_user_daily('POST', url)
 
     def test_throttling_put_ip_burst(self):
         url = self.url(self.guid, '1.0')
         self._test_throttling_verb_ip_burst('PUT', url, expected_status=202)
 
-    def test_throttling_put_ip_sustained(self):
+    def test_throttling_put_ip_hourly(self):
         url = self.url(self.guid, '1.0')
-        self._test_throttling_verb_ip_sustained('PUT', url, expected_status=202)
+        self._test_throttling_verb_ip_hourly('PUT', url, expected_status=202)
 
     def test_throttling_put_user_burst(self):
         url = self.url(self.guid, '1.0')
         self._test_throttling_verb_user_burst('PUT', url, expected_status=202)
 
-    def test_throttling_put_user_sustained(self):
+    def test_throttling_put_user_hourly(self):
         url = self.url(self.guid, '1.0')
-        self._test_throttling_verb_user_sustained('PUT', url, expected_status=202)
+        self._test_throttling_verb_user_hourly('PUT', url, expected_status=202)
+
+    def test_throttling_put_user_daily(self):
+        url = self.url(self.guid, '1.0')
+        self._test_throttling_verb_user_daily('PUT', url, expected_status=202)
 
     def test_throttling_ignored_for_special_users(self):
         self.grant_permission(self.user, ':'.join(amo.permissions.LANGPACK_SUBMIT))
