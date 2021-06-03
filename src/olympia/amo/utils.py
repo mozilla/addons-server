@@ -1157,6 +1157,8 @@ class AMOJSONEncoder(JSONEncoder):
 
 
 class StopWatch:
+    _timestamp = None
+
     def __init__(self, label_prefix=''):
         self.prefix = label_prefix
 
@@ -1164,6 +1166,8 @@ class StopWatch:
         self._timestamp = datetime.datetime.utcnow()
 
     def log_interval(self, label):
+        if not self._timestamp:
+            return
         now = datetime.datetime.utcnow()
         statsd.timing(self.prefix + label, now - self._timestamp)
         log.info('%s: %s', self.prefix + label, now - self._timestamp)
