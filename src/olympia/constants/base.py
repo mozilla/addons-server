@@ -363,6 +363,8 @@ ADDON_GUID_PATTERN = re.compile(
     re.IGNORECASE,
 )
 
+# Changes to this list need to be synced with the privileged add-ons signing pipeline.
+# Please reach out to the Operations Team (awagner) before making any changes!
 SYSTEM_ADDON_GUIDS = (
     '@mozilla.com',
     '@mozilla.org',
