@@ -1470,7 +1470,8 @@ class TestUploadDetail(BaseUploadTest):
                 '"@mozilla.com" or "@mozilla.org" or '
                 '"@pioneer.mozilla.org" or "@search.mozilla.org" or '
                 '"@shield.mozilla.com" or "@shield.mozilla.org" or '
-                '"@mozillaonline.com"',
+                '"@mozillaonline.com" or "@mozillafoundation.org" or '
+                '"@rally.mozilla.org"',
                 'fatal': True,
                 'type': 'error',
             }
