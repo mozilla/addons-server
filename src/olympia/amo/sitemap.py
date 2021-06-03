@@ -17,6 +17,7 @@ from olympia import amo
 from olympia.addons.models import Addon, AddonCategory
 from olympia.amo.reverse import get_url_prefix, override_url_prefix
 from olympia.amo.templatetags.jinja_helpers import absolutify
+from olympia.amo.utils import StopWatch
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.promoted import RECOMMENDED
 from olympia.bandwagon.models import Collection
@@ -190,6 +191,35 @@ class DjangoSitemap:
         return urls
 
 
+class LazyTupleList:
+    """Lazily emulates a generated list like:
+    [
+        (item_a, item_b)
+        for item_b in list_b
+        for item_a in list_a
+    ]
+    """
+
+    def __init__(self, list_a, list_b):
+        self.list_a = list_a
+        self.list_b = list_b
+
+    def __len__(self):
+        return len(self.list_a) * len(self.list_b)
+
+    def __getitem__(self, key):
+        a_len = len(self.list_a)
+
+        def get(index):
+            return (self.list_a[index % a_len], self.list_b[index // a_len])
+
+        return (
+            [get(idx) for idx in range(key.start, key.stop, key.step or 1)]
+            if isinstance(key, slice)
+            else get(key)
+        )
+
+
 class Sitemap(DjangoSitemap):
     limit = 1000
     i18n = True
@@ -197,6 +227,10 @@ class Sitemap(DjangoSitemap):
     alternates = True
     # x_default = False  # TODO: enable this when we can validate it works well
     _cached_items = []
+
+    def __init__(self, *args, **kwargs):
+        self.timer = StopWatch(f'amo.sitemap.{self.__class__.__name__}.render_xml')
+        super().__init__(*args, **kwargs)
 
     def _location(self, item, force_lang_code=None):
         if self.i18n:
@@ -206,14 +240,25 @@ class Sitemap(DjangoSitemap):
                 return self.location(obj)
         return self.location(item)
 
+    def _items(self):
+        items = self.items()
+        self.timer.log_interval('items')
+        if self.i18n:
+            # Create (item, lang_code) tuples for all items and languages.
+            # This is necessary to paginate with all languages already considered.
+            return LazyTupleList(items, self._languages())
+        return items
+
     def items(self):
         return self._cached_items
 
     def render_xml(self, app_name, page):
+        self.timer.start()
         site_url = urlparse(settings.EXTERNAL_SITE_URL)
         # Sitemap.get_urls wants a Site instance to get the domain, so just fake it.
         site = namedtuple('FakeSite', 'domain')(site_url.netloc)
         with override_url_prefix(app_name=app_name):
+            self.timer.log_interval('setup-done')
             xml = loader.render_to_string(
                 'sitemap.xml',
                 {
@@ -222,6 +267,7 @@ class Sitemap(DjangoSitemap):
                     )
                 },
             )
+        self.timer.log_interval('finish')
         return xml
 
     @property
@@ -258,12 +304,14 @@ class AddonSitemap(Sitemap):
             )
             addons_qs = addons_qs.filter(id__in=promoted_addon_ids)
         addons = list(
-            addons_qs.order_by('-last_updated').values_list(
+            addons_qs.order_by('-last_updated')
+            .values_list(
                 'last_updated',
                 'slug',
                 'text_ratings_count',
                 named=True,
             )
+            .iterator()
         )
         items = [
             *(
@@ -362,10 +410,11 @@ class CategoriesSitemap(Sitemap):
 class CollectionSitemap(Sitemap):
     @cached_property
     def _cached_items(self):
-        return (
+        return list(
             Collection.objects.filter(author_id=settings.TASK_USER_ID)
             .order_by('-modified')
             .values_list('modified', 'slug', 'author_id', named=True)
+            .iterator()
         )
 
     def lastmod(self, item):
@@ -418,6 +467,7 @@ class AccountSitemap(Sitemap):
             .values_list(
                 'addons_updated', 'id', 'extension_count', 'theme_count', named=True
             )
+            .iterator()
         )
         items = []
         for user in users:
