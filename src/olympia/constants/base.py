@@ -371,6 +371,8 @@ SYSTEM_ADDON_GUIDS = (
     '@shield.mozilla.com',
     '@shield.mozilla.org',
     '@mozillaonline.com',
+    '@mozillafoundation.org',
+    '@rally.mozilla.org',
 )
 
 MOZILLA_TRADEMARK_SYMBOLS = ('mozilla', 'firefox')
