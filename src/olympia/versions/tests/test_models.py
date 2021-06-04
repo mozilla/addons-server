@@ -40,7 +40,14 @@ from olympia.files.tests.test_models import UploadTest
 from olympia.files.utils import parse_addon
 from olympia.promoted.models import PromotedApproval
 from olympia.reviewers.models import AutoApprovalSummary
-from olympia.users.models import UserProfile
+from olympia.scanners.models import ScannerResult
+from olympia.users.models import (
+    EmailUserRestriction,
+    IPNetworkUserRestriction,
+    RESTRICTION_TYPES,
+    UserProfile,
+)
+from olympia.users.utils import get_task_user
 from olympia.versions.compare import version_int, VersionString
 from olympia.versions.models import (
     ApplicationsVersions,
@@ -51,8 +58,6 @@ from olympia.versions.models import (
     VersionReviewerFlags,
     source_upload_path,
 )
-from olympia.scanners.models import ScannerResult
-from olympia.users.utils import get_task_user
 
 
 pytestmark = pytest.mark.django_db
@@ -1609,6 +1614,67 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
 
         scanners_result.refresh_from_db()
         assert scanners_result.version is None
+
+    def test_auto_approval_not_disabled_if_not_restricted(self):
+        self.upload.user.update(last_login_ip='10.0.0.42')
+        # Set a submission time restriction: it shouldn't matter.
+        IPNetworkUserRestriction.objects.create(network='10.0.0.0/24')
+        assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
+        Version.from_upload(
+            self.upload,
+            self.addon,
+            [self.selected_app],
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=self.dummy_parsed_data,
+        )
+        assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
+
+    def test_auto_approval_disabled_if_restricted_by_email(self):
+        EmailUserRestriction.objects.create(
+            email_pattern=self.upload.user.email,
+            restriction_type=RESTRICTION_TYPES.APPROVAL,
+        )
+        assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
+        Version.from_upload(
+            self.upload,
+            self.addon,
+            [self.selected_app],
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=self.dummy_parsed_data,
+        )
+        assert self.addon.auto_approval_disabled
+
+    def test_auto_approval_disabled_if_restricted_by_ip(self):
+        self.upload.user.update(last_login_ip='10.0.0.42')
+        IPNetworkUserRestriction.objects.create(
+            network='10.0.0.0/24', restriction_type=RESTRICTION_TYPES.APPROVAL
+        )
+        assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
+        Version.from_upload(
+            self.upload,
+            self.addon,
+            [self.selected_app],
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=self.dummy_parsed_data,
+        )
+        assert self.addon.auto_approval_disabled
+        assert not self.addon.auto_approval_disabled_unlisted
+
+    def test_auto_approval_disabled_for_unlisted_if_restricted_by_ip(self):
+        self.upload.user.update(last_login_ip='10.0.0.42')
+        IPNetworkUserRestriction.objects.create(
+            network='10.0.0.0/24', restriction_type=RESTRICTION_TYPES.APPROVAL
+        )
+        assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
+        Version.from_upload(
+            self.upload,
+            self.addon,
+            [self.selected_app],
+            amo.RELEASE_CHANNEL_UNLISTED,
+            parsed_data=self.dummy_parsed_data,
+        )
+        assert not self.addon.auto_approval_disabled
+        assert self.addon.auto_approval_disabled_unlisted
 
 
 class TestExtensionVersionFromUploadTransactional(

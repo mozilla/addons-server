@@ -237,6 +237,7 @@ class Version(OnChangeMixin, ModelBase):
         validation results.
         """
         from olympia.addons.models import AddonReviewerFlags
+        from olympia.addons.utils import RestrictionChecker
         from olympia.git.utils import create_git_extraction_entry
 
         assert parsed_data is not None
@@ -251,6 +252,11 @@ class Version(OnChangeMixin, ModelBase):
 
         if not upload.user or not upload.ip_address or not upload.source:
             raise VersionCreateError('FileUpload does not have some required fields')
+
+        if not upload.user.last_login_ip or not upload.user.email:
+            raise VersionCreateError(
+                'FileUpload user does not have some required fields'
+            )
 
         license_id = None
         if channel == amo.RELEASE_CHANNEL_LISTED:
@@ -366,6 +372,15 @@ class Version(OnChangeMixin, ModelBase):
         if is_mozilla_signed and addon.type != amo.ADDON_LPAPP:
             reviewer_flags_defaults['needs_admin_code_review'] = True
             reviewer_flags_defaults['auto_approval_disabled'] = True
+
+        # Check if the approval should be restricted
+        if not RestrictionChecker(upload=upload).is_auto_approval_allowed():
+            flag = (
+                'auto_approval_disabled'
+                if channel == amo.RELEASE_CHANNEL_LISTED
+                else 'auto_approval_disabled_unlisted'
+            )
+            reviewer_flags_defaults[flag] = True
 
         if reviewer_flags_defaults:
             AddonReviewerFlags.objects.update_or_create(

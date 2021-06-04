@@ -22,11 +22,16 @@ from olympia.scanners.actions import (
     _delay_auto_approval,
     _delay_auto_approval_indefinitely,
     _delay_auto_approval_indefinitely_and_restrict,
+    _delay_auto_approval_indefinitely_and_restrict_future_approvals,
     _flag_for_human_review,
     _flag_for_human_review_by_scanner,
     _no_action,
 )
-from olympia.users.models import EmailUserRestriction, IPNetworkUserRestriction
+from olympia.users.models import (
+    EmailUserRestriction,
+    IPNetworkUserRestriction,
+    RESTRICTION_TYPES,
+)
 from olympia.versions.models import VersionReviewerFlags
 
 
@@ -82,15 +87,25 @@ class TestActions(TestCase):
         _delay_auto_approval_indefinitely_and_restrict(version)
         assert addon.auto_approval_delayed_until == datetime.max
         assert version.needs_human_review
-        assert EmailUserRestriction.objects.filter(email_pattern=user1.email).exists()
-        assert EmailUserRestriction.objects.filter(email_pattern=user2.email).exists()
-        assert EmailUserRestriction.objects.filter(email_pattern=user3.email).exists()
+        assert EmailUserRestriction.objects.filter(
+            email_pattern=user1.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+        ).exists()
+        assert EmailUserRestriction.objects.filter(
+            email_pattern=user2.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+        ).exists()
+        assert EmailUserRestriction.objects.filter(
+            email_pattern=user3.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+        ).exists()
         assert not EmailUserRestriction.objects.filter(
             email_pattern=user4.email
         ).exists()
 
-        assert IPNetworkUserRestriction.objects.filter(network='5.6.7.8/32').exists()
-        assert IPNetworkUserRestriction.objects.filter(network='1.2.3.4/32').exists()
+        assert IPNetworkUserRestriction.objects.filter(
+            network='5.6.7.8/32', restriction_type=RESTRICTION_TYPES.SUBMISSION
+        ).exists()
+        assert IPNetworkUserRestriction.objects.filter(
+            network='1.2.3.4/32', restriction_type=RESTRICTION_TYPES.SUBMISSION
+        ).exists()
         assert not IPNetworkUserRestriction.objects.filter(network=None).exists()
         assert not IPNetworkUserRestriction.objects.filter(network='').exists()
 
@@ -115,15 +130,151 @@ class TestActions(TestCase):
         _delay_auto_approval_indefinitely_and_restrict(version)
         assert addon.auto_approval_delayed_until == datetime.max
         assert version.needs_human_review
-        assert EmailUserRestriction.objects.filter(email_pattern=user1.email).exists()
-        assert EmailUserRestriction.objects.filter(email_pattern=user2.email).exists()
-        assert EmailUserRestriction.objects.filter(email_pattern=user3.email).exists()
+        assert EmailUserRestriction.objects.filter(
+            email_pattern=user1.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+        ).exists()
+        assert EmailUserRestriction.objects.filter(
+            email_pattern=user2.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+        ).exists()
+        assert EmailUserRestriction.objects.filter(
+            email_pattern=user3.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+        ).exists()
         assert not EmailUserRestriction.objects.filter(
             email_pattern=user4.email
         ).exists()
 
-        assert IPNetworkUserRestriction.objects.filter(network='5.6.7.8/32').exists()
-        assert IPNetworkUserRestriction.objects.filter(network='1.2.3.4/32').exists()
+        assert IPNetworkUserRestriction.objects.filter(
+            network='5.6.7.8/32', restriction_type=RESTRICTION_TYPES.SUBMISSION
+        ).exists()
+        assert IPNetworkUserRestriction.objects.filter(
+            network='1.2.3.4/32', restriction_type=RESTRICTION_TYPES.SUBMISSION
+        ).exists()
+        assert not IPNetworkUserRestriction.objects.filter(network=None).exists()
+        assert not IPNetworkUserRestriction.objects.filter(network='').exists()
+
+    def test_delay_auto_approval_indefinitely_and_restrict_already_restricted_other(
+        self,
+    ):
+        user1 = user_factory(last_login_ip='5.6.7.8')
+        user2 = user_factory(last_login_ip='')
+        user3 = user_factory()
+        user4 = user_factory(last_login_ip='4.8.15.16')
+        EmailUserRestriction.objects.create(
+            email_pattern=user1.email, restriction_type=RESTRICTION_TYPES.APPROVAL
+        )
+        EmailUserRestriction.objects.create(
+            email_pattern=user3.email, restriction_type=RESTRICTION_TYPES.APPROVAL
+        )
+        IPNetworkUserRestriction.objects.create(
+            network='5.6.7.8/32', restriction_type=RESTRICTION_TYPES.APPROVAL
+        )
+        addon = addon_factory(users=[user1, user2])
+        FileUpload.objects.create(
+            addon=addon,
+            user=user3,
+            version=addon.current_version.version,
+            ip_address='1.2.3.4',
+        )
+        version = addon.current_version
+        assert not version.needs_human_review
+        assert addon.auto_approval_delayed_until is None
+        _delay_auto_approval_indefinitely_and_restrict(version)
+        assert addon.auto_approval_delayed_until == datetime.max
+        assert version.needs_human_review
+        # We added a new restriction for submission without touching the existing one
+        # for approval for user1 and user3
+        assert EmailUserRestriction.objects.filter(
+            email_pattern=user1.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+        ).exists()
+        assert EmailUserRestriction.objects.filter(
+            email_pattern=user1.email, restriction_type=RESTRICTION_TYPES.APPROVAL
+        ).exists()
+        assert EmailUserRestriction.objects.filter(
+            email_pattern=user2.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+        ).exists()
+        assert EmailUserRestriction.objects.filter(
+            email_pattern=user3.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+        ).exists()
+        assert EmailUserRestriction.objects.filter(
+            email_pattern=user3.email, restriction_type=RESTRICTION_TYPES.APPROVAL
+        ).exists()
+        assert not EmailUserRestriction.objects.filter(
+            email_pattern=user4.email
+        ).exists()
+
+        # Like above, we added a new restriction for submission, this time for the ip,
+        # but we left the one for approval.
+        assert IPNetworkUserRestriction.objects.filter(
+            network='5.6.7.8/32', restriction_type=RESTRICTION_TYPES.SUBMISSION
+        ).exists()
+        assert IPNetworkUserRestriction.objects.filter(
+            network='5.6.7.8/32', restriction_type=RESTRICTION_TYPES.APPROVAL
+        ).exists()
+        assert IPNetworkUserRestriction.objects.filter(
+            network='1.2.3.4/32', restriction_type=RESTRICTION_TYPES.SUBMISSION
+        ).exists()
+        assert not IPNetworkUserRestriction.objects.filter(network=None).exists()
+        assert not IPNetworkUserRestriction.objects.filter(network='').exists()
+
+    def test_delay_auto_approval_indefinitely_and_restrict_future_approvals(self):
+        user1 = user_factory(last_login_ip='5.6.7.8')
+        user2 = user_factory(last_login_ip='')
+        user3 = user_factory()
+        user4 = user_factory(last_login_ip='4.8.15.16')
+        EmailUserRestriction.objects.create(
+            email_pattern=user1.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+        )
+        EmailUserRestriction.objects.create(
+            email_pattern=user3.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+        )
+        IPNetworkUserRestriction.objects.create(
+            network='5.6.7.8/32', restriction_type=RESTRICTION_TYPES.SUBMISSION
+        )
+        addon = addon_factory(users=[user1, user2])
+        FileUpload.objects.create(
+            addon=addon,
+            user=user3,
+            version=addon.current_version.version,
+            ip_address='1.2.3.4',
+        )
+        version = addon.current_version
+        assert not version.needs_human_review
+        assert addon.auto_approval_delayed_until is None
+        _delay_auto_approval_indefinitely_and_restrict_future_approvals(version)
+        assert addon.auto_approval_delayed_until == datetime.max
+        assert version.needs_human_review
+        # We added a new restriction for approval without touching the existing one
+        # for submission for user1 and user3
+        assert EmailUserRestriction.objects.filter(
+            email_pattern=user1.email, restriction_type=RESTRICTION_TYPES.APPROVAL
+        ).exists()
+        assert EmailUserRestriction.objects.filter(
+            email_pattern=user1.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+        ).exists()
+        assert EmailUserRestriction.objects.filter(
+            email_pattern=user2.email, restriction_type=RESTRICTION_TYPES.APPROVAL
+        ).exists()
+        assert EmailUserRestriction.objects.filter(
+            email_pattern=user3.email, restriction_type=RESTRICTION_TYPES.APPROVAL
+        ).exists()
+        assert EmailUserRestriction.objects.filter(
+            email_pattern=user3.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+        ).exists()
+        assert not EmailUserRestriction.objects.filter(
+            email_pattern=user4.email
+        ).exists()
+
+        # Like above, we added a new restriction for approval, this time for the ip,
+        # but we left the one for submission.
+        assert IPNetworkUserRestriction.objects.filter(
+            network='5.6.7.8/32', restriction_type=RESTRICTION_TYPES.APPROVAL
+        ).exists()
+        assert IPNetworkUserRestriction.objects.filter(
+            network='5.6.7.8/32', restriction_type=RESTRICTION_TYPES.SUBMISSION
+        ).exists()
+        assert IPNetworkUserRestriction.objects.filter(
+            network='1.2.3.4/32', restriction_type=RESTRICTION_TYPES.APPROVAL
+        ).exists()
         assert not IPNetworkUserRestriction.objects.filter(network=None).exists()
         assert not IPNetworkUserRestriction.objects.filter(network='').exists()
 

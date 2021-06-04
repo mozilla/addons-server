@@ -34,7 +34,7 @@ from olympia.addons.models import (
     DeniedSlug,
     Preview,
 )
-from olympia.addons.utils import verify_mozilla_trademark
+from olympia.addons.utils import RestrictionChecker, verify_mozilla_trademark
 from olympia.amo.fields import HttpHttpsOnlyURLField, ReCaptchaField
 from olympia.amo.forms import AMOModelForm
 from olympia.amo.messages import DoubleSafe
@@ -43,10 +43,7 @@ from olympia.amo.validators import OneOrMoreLetterOrNumberCharacterValidator
 from olympia.applications.models import AppVersion
 from olympia.blocklist.models import Block
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID, CATEGORIES_NO_APP
-from olympia.devhub.utils import (
-    fetch_existing_translations_from_addon,
-    UploadRestrictionChecker,
-)
+from olympia.devhub.utils import fetch_existing_translations_from_addon
 from olympia.devhub.widgets import CategoriesSelectMultiple, IconTypeSelect
 from olympia.files.models import FileUpload
 from olympia.files.utils import SafeZip, archive_member_validator, parse_addon
@@ -1416,7 +1413,7 @@ class AgreementForm(forms.Form):
 
     def clean(self):
         # Check if user ip or email is not supposed to be allowed to submit.
-        checker = UploadRestrictionChecker(self.request)
+        checker = RestrictionChecker(self.request)
         if not checker.is_submission_allowed(check_dev_agreement=False):
             raise forms.ValidationError(checker.get_error_message())
         return self.cleaned_data

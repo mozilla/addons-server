@@ -15,6 +15,7 @@ FLAG_FOR_HUMAN_REVIEW = 20
 DELAY_AUTO_APPROVAL = 100
 DELAY_AUTO_APPROVAL_INDEFINITELY = 200
 DELAY_AUTO_APPROVAL_INDEFINITELY_AND_RESTRICT = 300
+DELAY_AUTO_APPROVAL_INDEFINITELY_AND_RESTRICT_FUTURE_APPROVALS = 400
 
 ACTIONS = {
     NO_ACTION: _('No action'),
@@ -23,6 +24,9 @@ ACTIONS = {
     DELAY_AUTO_APPROVAL_INDEFINITELY: _('Delay auto-approval indefinitely'),
     DELAY_AUTO_APPROVAL_INDEFINITELY_AND_RESTRICT: _(
         'Delay auto-approval indefinitely and add restrictions'
+    ),
+    DELAY_AUTO_APPROVAL_INDEFINITELY_AND_RESTRICT_FUTURE_APPROVALS: _(
+        'Delay auto-approval indefinitely and add restrictions to future approvals'
     ),
 }
 

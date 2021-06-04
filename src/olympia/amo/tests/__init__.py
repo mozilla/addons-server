@@ -863,6 +863,8 @@ def user_factory(**kw):
     identifier = str(uuid.uuid4())
     username = kw.pop('username', 'factoryûser-%s' % identifier)
     email = kw.pop('email', '%s@mozîlla.com' % identifier)
+    if 'last_login_ip' not in kw:
+        kw['last_login_ip'] = '127.0.0.1'
     user = UserProfile.objects.create(username=username, email=email, **kw)
     return user
 
