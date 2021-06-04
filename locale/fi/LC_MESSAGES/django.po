@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-01 17:51+0000\n"
-"PO-Revision-Date: 2021-06-04 12:01+0000\n"
+"PO-Revision-Date: 2021-06-04 12:21+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -4609,7 +4609,7 @@ msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
 msgid "Uncompressed size is too large"
-msgstr ""
+msgstr "Pakkaamaton koko on liian suuri"
 
 msgid "Invalid archive."
 msgstr ""
@@ -4980,7 +4980,7 @@ msgid "Flags"
 msgstr ""
 
 msgid "moments ago"
-msgstr ""
+msgstr "hetkiä sitten"
 
 #. L10n: first argument is number of minutes
 msgid "{0} minute"
@@ -5114,7 +5114,7 @@ msgid "Pre-Review Add-ons"
 msgstr "Tarkista lisäosia"
 
 msgid "Recommended ({0})"
-msgstr ""
+msgstr "Suositeltu ({0})"
 
 # 100%
 #, fuzzy
@@ -5472,7 +5472,7 @@ msgid "There are currently no add-ons of this type to review."
 msgstr "Tällä hetkellä ei ole yhtään tarkastettavia in lisäosia."
 
 msgid "Helpful Links:"
-msgstr ""
+msgstr "Hyödylliset linkit:"
 
 msgid "Add-on Policy"
 msgstr "Lisäosakäytäntö"
@@ -5481,7 +5481,7 @@ msgid "Reviewer's Guide"
 msgstr "Arvioijan opas"
 
 msgid "{addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "{addon} – Lisäosia Firefoxiin"
 
 #. "Content Review [add-on name]"
 # 100%
@@ -6279,7 +6279,7 @@ msgstr ""
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr ""
+msgstr "Käyttäjälle \"%(user)s\" kuuluva kuva on poistettu."
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned."
