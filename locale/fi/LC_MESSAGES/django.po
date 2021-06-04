@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-01 17:51+0000\n"
-"PO-Revision-Date: 2021-06-04 11:53+0000\n"
+"PO-Revision-Date: 2021-06-04 12:01+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -3189,7 +3189,7 @@ msgid "Please include instructions on how to reproduce the final add-on file, ei
 msgstr ""
 
 msgid "Read more about the source code review policy."
-msgstr ""
+msgstr "Lue lisää lähdekoodin katselmointikäytännöstä."
 
 msgid "Build best-in-class extensions and themes"
 msgstr ""
@@ -3599,7 +3599,7 @@ msgstr "Onko sinulla paljon avoimia välilehtiä? Järjestä ne siistiin sivupal
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
-msgstr ""
+msgstr "Lopeta Facebook-seuranta. Eristä Facebook-identiteettisi erilliseen \"säilöön\", jotta Facebook ei voi seurata sinua ympäri verkkoa."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3955,7 +3955,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "A direct path to customizing the built-in privacy settings in Firefox."
-msgstr ""
+msgstr "Suora polku Firefoxiin sisäänrakennettujen yksityisyysasetusten muuttamiseen."
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations by highlighting text and clicking the button that pops up."
@@ -3996,7 +3996,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "A more efficient way to save bookmarks if you use multiple bookmark folders."
-msgstr ""
+msgstr "Aiempaa tehokkaampi tapa tallentaa kirjanmerkkejä, jos käytät useita kirjanmerkkikansioita."
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
