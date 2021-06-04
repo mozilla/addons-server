@@ -367,7 +367,8 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             'You cannot submit an add-on using an ID ending with '
             '"@mozilla.com" or "@mozilla.org" or "@pioneer.mozilla.org" or '
             '"@search.mozilla.org" or "@shield.mozilla.com" or '
-            '"@shield.mozilla.org" or "@mozillaonline.com"'
+            '"@shield.mozilla.org" or "@mozillaonline.com" or '
+            '"@mozillafoundation.org" or "@rally.mozilla.org"'
         )
 
     def test_system_addon_update_allowed(self):
