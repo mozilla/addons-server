@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-01 17:51+0000\n"
-"PO-Revision-Date: 2021-06-04 12:21+0000\n"
+"PO-Revision-Date: 2021-06-06 08:52+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -392,7 +392,7 @@ msgid "Email address not found."
 msgstr "Sähköpostiosoitetta ei löytynyt."
 
 msgid "Unavailable for legal reasons."
-msgstr ""
+msgstr "Ei saatavilla lainsäädännöllisistä syistä."
 
 msgid "The field must have a length of at least {num} characters."
 msgstr "Tämän kentän tulee sisältää vähintään {num} merkkiä."
@@ -675,16 +675,16 @@ msgid "Commented"
 msgstr "Kommentoitu"
 
 msgid "{tag} added to {addon}."
-msgstr ""
+msgstr "{tag} lisätty lisäosaan {addon}."
 
 msgid "{tag} removed from {addon}."
-msgstr ""
+msgstr "{tag} poistettu lisäosasta {addon}."
 
 msgid "{addon} added to {collection}."
-msgstr ""
+msgstr "{addon} lisätty kokoelmaan {collection}."
 
 msgid "{addon} removed from {collection}."
-msgstr ""
+msgstr "{addon} poistettu kokoelmasta {collection}."
 
 msgid "{rating} for {addon} written."
 msgstr ""
@@ -1718,13 +1718,13 @@ msgid "An author can only be present once."
 msgstr ""
 
 msgid "The account needs a display name before it can be added as an author."
-msgstr ""
+msgstr "Tili tarvitsee näyttönimen, ennen kuin se voidaan lisätä tekijäksi."
 
 msgid "Must have at least one owner."
 msgstr "On oltava vähintään yksi omistaja."
 
 msgid "At least one author must be listed."
-msgstr ""
+msgstr "Ainakin yksi tekijä tulee olla listattu."
 
 msgid "Slug incorrect."
 msgstr ""
@@ -1827,9 +1827,8 @@ msgstr ""
 msgid "Display Name"
 msgstr "Näyttönimi"
 
-#, fuzzy
 msgid "Invalid or corrupt add-on file."
-msgstr "Virheellinen tai rikkinäinen arkisto."
+msgstr "Virheellinen tai rikkinäinen lisäosatiedosto."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr ""
@@ -1932,9 +1931,8 @@ msgstr "Kuvakkeita ei voi animoida."
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "Kuvan on oltava vähintään {0} pikseliä leveä ja {1} pikseliä korkea."
 
-#, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
-msgstr "Kuvien pitää olla joko PNG- tai JPG-muodossa."
+msgstr "Kuvan mitat tulee olla suhteessa 4:3."
 
 msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "Kuvakkeen on oltava vähintään {0} pikseliä leveä ja korkea."
@@ -2235,7 +2233,7 @@ msgid "Preview still being generated - come back later or refresh the page."
 msgstr ""
 
 msgid "You have been invited to become an author of {addon_name}."
-msgstr ""
+msgstr "Sinut on kutsuttu lisäosan {addon_name} tekijän rooliin."
 
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
 msgstr ""
@@ -2501,7 +2499,7 @@ msgid "Add a Screenshot..."
 msgstr "Lisää kuvakaappaus..."
 
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
-msgstr ""
+msgstr "PNG ja JPG ovat tuettuja, PNG suositeltu. Kuvakaappausten suositeltu ja samalla enimmäiskoko on 2400x1800 pikseliä."
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "Vähimmäiskoko on 1000x750, kuvasuhde 4:3 vaaditaan."
