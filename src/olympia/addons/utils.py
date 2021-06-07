@@ -176,8 +176,9 @@ class RestrictionChecker:
             allowed = allowed_method(argument)
             if not allowed:
                 self.failed_restrictions.append(cls)
+                name = cls.__name__
                 statsd.incr(
-                    f'RestrictionChecker.is_{action_type}_allowed.{cls.__name__}.failure'
+                    f'RestrictionChecker.is_{action_type}_allowed.{name}.failure'
                 )
                 if self.user and self.user.is_authenticated:
                     UserRestrictionHistory.objects.create(

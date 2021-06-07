@@ -1413,7 +1413,7 @@ class AgreementForm(forms.Form):
 
     def clean(self):
         # Check if user ip or email is not supposed to be allowed to submit.
-        checker = RestrictionChecker(self.request)
+        checker = RestrictionChecker(request=self.request)
         if not checker.is_submission_allowed(check_dev_agreement=False):
             raise forms.ValidationError(checker.get_error_message())
         return self.cleaned_data

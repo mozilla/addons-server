@@ -170,7 +170,8 @@ class TestRestrictionChecker(TestCase):
         )
         assert incr_mock.call_count == 2
         assert incr_mock.call_args_list[0][0] == (
-            'RestrictionChecker.is_submission_allowed.DeveloperAgreementRestriction.failure',
+            'RestrictionChecker.is_submission_allowed.DeveloperAgreementRestriction.'
+            'failure',
         )
         assert incr_mock.call_args_list[1][0] == (
             'RestrictionChecker.is_submission_allowed.failure',

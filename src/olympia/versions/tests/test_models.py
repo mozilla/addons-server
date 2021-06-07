@@ -1281,6 +1281,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
     @mock.patch('olympia.versions.models.log')
     def test_logging(self, log_mock):
         user = UserProfile.objects.get(email='regular@mozilla.com')
+        user.update(last_login_ip='1.2.3.4')
         self.upload.update(
             user=user,
             ip_address='5.6.7.8',
