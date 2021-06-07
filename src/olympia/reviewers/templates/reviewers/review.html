@@ -297,6 +297,7 @@
                     data-toggle-button-selector="#disable_auto_approval_unlisted"
                     id="enable_auto_approval_unlisted" class="toggle" type="button">{{ _('Enable Unlisted Auto-Approval') }}</button>
           </li>
+          {% if channel == amo.RELEASE_CHANNEL_LISTED %}
           <li {% if addon.auto_approval_disabled_until_next_approval %}class="hidden"{% endif %}>
             <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
                     data-api-method="patch"
@@ -311,6 +312,22 @@
                     data-toggle-button-selector="#disable_auto_approval_until_next_approval"
                     id="enable_auto_approval_until_next_approval" class="toggle" type="button">{{ _('Enable Listed Auto-Approval Before Next Manual Approval') }}</button>
           </li>
+          {% else %}
+          <li {% if addon.auto_approval_disabled_until_next_approval_unlisted %}class="hidden"{% endif %}>
+            <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
+                    data-api-method="patch"
+                    data-api-data="{&quot;auto_approval_disabled_until_next_approval_unlisted&quot;: true}"
+                    data-toggle-button-selector="#enable_auto_approval_until_next_approval_unlisted"
+                    id="disable_auto_approval_until_next_approval_unlisted" class="toggle" type="button">{{ _('Disable Unlisted Auto-Approval Until Next Manual Approval') }}</button>
+          </li>
+          <li {% if not addon.auto_approval_disabled_until_next_approval_unlisted %}class="hidden"{% endif %}>
+            <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
+                    data-api-method="patch"
+                    data-api-data="{&quot;auto_approval_disabled_until_next_approval_unlisted&quot;: false}"
+                    data-toggle-button-selector="#disable_auto_approval_until_next_approval_unlisted"
+                    id="enable_auto_approval_until_next_approval_unlisted" class="toggle" type="button">{{ _('Enable Unlisted Auto-Approval Before Next Manual Approval') }}</button>
+          </li>
+          {% endif %}
           {% if addon.auto_approval_delayed_until and addon.auto_approval_delayed_until > now %}
             {# This flag is only meant to be enabled by scanners, but admins can still unset it. #}
             <li>

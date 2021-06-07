@@ -2014,6 +2014,31 @@ class TestAutoApprovalSummary(TestCase):
             AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is False
         )
 
+    def test_check_has_auto_approval_disabled_until_next_approval_unlisted(self):
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        assert (
+            AutoApprovalSummary.check_has_auto_approval_disabled_unlisted(self.version)
+            is False
+        )
+
+        flags = AddonReviewerFlags.objects.create(addon=self.addon)
+        assert (
+            AutoApprovalSummary.check_has_auto_approval_disabled_unlisted(self.version)
+            is False
+        )
+
+        flags.update(auto_approval_disabled_until_next_approval_unlisted=True)
+        assert (
+            AutoApprovalSummary.check_has_auto_approval_disabled_unlisted(self.version)
+            is True
+        )
+        # That flag only applies to unlisted.
+        self.version.update(channel=amo.RELEASE_CHANNEL_LISTED)
+        assert (
+            AutoApprovalSummary.check_has_auto_approval_disabled_unlisted(self.version)
+            is False
+        )
+
     def test_check_has_auto_approval_delayed_until(self):
         assert (
             AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is False
