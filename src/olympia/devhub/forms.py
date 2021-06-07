@@ -53,7 +53,12 @@ from olympia.translations.fields import LocaleErrorMessage, TransField, TransTex
 from olympia.translations.forms import TranslationFormMixin
 from olympia.translations.models import Translation, delete_translation
 from olympia.translations.widgets import TranslationTextarea, TranslationTextInput
-from olympia.users.models import EmailUserRestriction, UserEmailField, UserProfile
+from olympia.users.models import (
+    EmailUserRestriction,
+    RESTRICTION_TYPES,
+    UserEmailField,
+    UserProfile,
+)
 from olympia.versions.models import (
     VALID_SOURCE_EXTENSIONS,
     ApplicationsVersions,
@@ -476,7 +481,9 @@ class AuthorWaitingConfirmationForm(AuthorForm):
     def clean_user(self):
         user = self.cleaned_data.get('user')
         if user:
-            if not EmailUserRestriction.allow_email(user.email):
+            if not EmailUserRestriction.allow_email(
+                user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+            ):
                 raise forms.ValidationError(EmailUserRestriction.error_message)
 
             if self.addon.authors.filter(pk=user.pk).exists():

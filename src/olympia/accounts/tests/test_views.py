@@ -1381,8 +1381,8 @@ class TestAccountViewSetUpdate(TestCase):
         self.user = self.user.reload()
         # Confirm field hasn't been updated.
         response = json.loads(force_str(response.content))
-        assert response['last_login_ip'] == ''
-        assert self.user.last_login_ip == ''
+        assert response['last_login_ip'] == '127.0.0.1'
+        assert self.user.last_login_ip == '127.0.0.1'
         assert response['username'] == existing_username
         assert self.user.username == existing_username
 

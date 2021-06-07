@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from datetime import date, datetime, timedelta
 
 import django  # noqa
@@ -24,7 +23,7 @@ from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.tests import addon_factory, collection_factory, TestCase, user_factory
 from olympia.bandwagon.models import Collection
-from olympia.files.models import File
+from olympia.files.models import File, FileUpload
 from olympia.ratings.models import Rating
 from olympia.users.models import (
     DeniedName,
@@ -806,12 +805,8 @@ class TestIPNetworkUserRestriction(TestCase):
         # Submission is allowed.
         assert not IPNetworkUserRestriction.allow_submission(request)
         # Approval is blocked.
-        version = addon_factory().current_version
-        with core.override_remote_addr('192.168.0.1'):
-            ActivityLog.create(
-                amo.LOG.ADD_VERSION, version.addon, version, user=request.user
-            )
-        assert IPNetworkUserRestriction.allow_auto_approval(version)
+        upload = FileUpload.objects.create(ip_address='192.168.0.1', user=request.user)
+        assert IPNetworkUserRestriction.allow_auto_approval(upload)
 
     def test_blocked_approval_last_login_ip(self):
         request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
@@ -823,12 +818,8 @@ class TestIPNetworkUserRestriction(TestCase):
         assert IPNetworkUserRestriction.allow_submission(request)
         # Approval is blocked even though it was with a different ip, because
         # of the user last_login_ip.
-        version = addon_factory().current_version
-        with core.override_remote_addr('192.168.0.2'):
-            ActivityLog.create(
-                amo.LOG.ADD_VERSION, version.addon, version, user=request.user
-            )
-        assert not IPNetworkUserRestriction.allow_auto_approval(version)
+        upload = FileUpload.objects.create(ip_address='192.168.0.2', user=request.user)
+        assert not IPNetworkUserRestriction.allow_auto_approval(upload)
 
     def test_blocked_approval_while_allowing_submission(self):
         request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
@@ -839,12 +830,8 @@ class TestIPNetworkUserRestriction(TestCase):
         # Submission remains allowed.
         assert IPNetworkUserRestriction.allow_submission(request)
         # Approval is blocked.
-        version = addon_factory().current_version
-        with core.override_remote_addr('192.168.0.1'):
-            ActivityLog.create(
-                amo.LOG.ADD_VERSION, version.addon, version, user=request.user
-            )
-        assert not IPNetworkUserRestriction.allow_auto_approval(version)
+        upload = FileUpload.objects.create(ip_address='192.168.0.1', user=request.user)
+        assert not IPNetworkUserRestriction.allow_auto_approval(upload)
 
 
 class TestDisposableEmailDomainRestriction(TestCase):
@@ -874,12 +861,8 @@ class TestDisposableEmailDomainRestriction(TestCase):
         # Submission remains allowed.
         assert DisposableEmailDomainRestriction.allow_submission(request)
         # Approval is blocked.
-        version = addon_factory().current_version
-        with core.override_remote_addr('192.168.0.1'):
-            ActivityLog.create(
-                amo.LOG.ADD_VERSION, version.addon, version, user=request.user
-            )
-        assert not DisposableEmailDomainRestriction.allow_auto_approval(version)
+        upload = FileUpload.objects.create(ip_address='192.168.0.1', user=request.user)
+        assert not DisposableEmailDomainRestriction.allow_auto_approval(upload)
 
     def test_allowed_approval(self):
         request = RequestFactory().get('/')
@@ -888,12 +871,8 @@ class TestDisposableEmailDomainRestriction(TestCase):
         # Submission is blocked.
         assert not DisposableEmailDomainRestriction.allow_submission(request)
         # Approval is allowed.
-        version = addon_factory().current_version
-        with core.override_remote_addr('192.168.0.1'):
-            ActivityLog.create(
-                amo.LOG.ADD_VERSION, version.addon, version, user=request.user
-            )
-        assert DisposableEmailDomainRestriction.allow_auto_approval(version)
+        upload = FileUpload.objects.create(ip_address='192.168.0.1', user=request.user)
+        assert DisposableEmailDomainRestriction.allow_auto_approval(upload)
 
 
 class TestEmailUserRestriction(TestCase):
@@ -998,12 +977,8 @@ class TestEmailUserRestriction(TestCase):
         assert EmailUserRestriction.allow_email(
             request.user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
         )
-        version = addon_factory().current_version
-        with core.override_remote_addr('192.168.0.1'):
-            ActivityLog.create(
-                amo.LOG.ADD_VERSION, version.addon, version, user=request.user
-            )
-        assert not EmailUserRestriction.allow_auto_approval(version)
+        upload = FileUpload.objects.create(ip_address='192.168.0.1', user=request.user)
+        assert not EmailUserRestriction.allow_auto_approval(upload)
 
     def test_allowed_approval(self):
         EmailUserRestriction.objects.create(email_pattern='*.mail.com')
@@ -1013,12 +988,8 @@ class TestEmailUserRestriction(TestCase):
         assert not EmailUserRestriction.allow_email(
             request.user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
         )
-        version = addon_factory().current_version
-        with core.override_remote_addr('192.168.0.1'):
-            ActivityLog.create(
-                amo.LOG.ADD_VERSION, version.addon, version, user=request.user
-            )
-        assert EmailUserRestriction.allow_auto_approval(version)
+        upload = FileUpload.objects.create(ip_address='192.168.0.1', user=request.user)
+        assert EmailUserRestriction.allow_auto_approval(upload)
 
 
 @override_settings(
