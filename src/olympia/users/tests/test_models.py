@@ -17,9 +17,8 @@ import responses
 
 import olympia  # noqa
 
-from olympia import amo, core
+from olympia import amo
 from olympia.access.models import Group, GroupUser
-from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.tests import addon_factory, collection_factory, TestCase, user_factory
 from olympia.bandwagon.models import Collection
