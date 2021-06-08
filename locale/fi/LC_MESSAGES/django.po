@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-01 17:51+0000\n"
-"PO-Revision-Date: 2021-06-06 08:53+0000\n"
+"PO-Revision-Date: 2021-06-08 17:03+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -2980,7 +2980,7 @@ msgid "Please click the confirm button below to generate API credentials for use
 msgstr ""
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr ""
+msgstr "Vahvistuslinkki lähetetään sähköpostiosoitteeseesi. Vahvistuksen jälkeen löydät API-avaimesi tältä sivulta."
 
 msgid "You don't have any API credentials."
 msgstr "Sinulla ei ole API-kirjautumistietoja."
@@ -4385,7 +4385,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr ""
+msgstr "Estä kaikki mainokset — videot, ponnahdusikkunat, bannerit ja muut."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4446,9 +4446,8 @@ msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr "Tallenna ja palauta välilehtiä. Sisältää automaattisen tallennuksen ja pilvisynkronoinnin."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Goodbye, annoying cookie warnings!"
-msgstr "Menkää pois, inhottavat evästevaroitukset!"
+msgstr "Hyvästi, ärsyttävät evästevaroitukset!"
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4467,7 +4466,6 @@ msgid "Web pages read aloud. 40+ languages supported."
 msgstr "Luetuta verkkosivut ääneen. Yli 40 tuettua kieltä."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Removes those long tracking parameters from Google search result URL's."
 msgstr "Poista seurantaparametrit Google-hakutulosten osoitteista."
 
@@ -4774,7 +4772,7 @@ msgid "Misplaced bug report or support request"
 msgstr ""
 
 msgid "Other (please specify)"
-msgstr ""
+msgstr "Muu (täsmennä)"
 
 msgid "This field is required."
 msgstr "Tämä kenttä vaaditaan."
@@ -4963,7 +4961,7 @@ msgid "You can't submit a comment if `canned_response` is defined."
 msgstr ""
 
 msgid "You can't submit an empty comment."
-msgstr ""
+msgstr "Et voi lähettää tyhjää kommenttia."
 
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
