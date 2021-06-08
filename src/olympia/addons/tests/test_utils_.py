@@ -195,6 +195,7 @@ class TestRestrictionChecker(TestCase):
 
     def test_user_is_allowed_to_bypass_restrictions(self, incr_mock):
         IPNetworkUserRestriction.objects.create(network='10.0.0.0/24')
+        EmailUserRestriction.objects.create(email_pattern=self.request.user.email)
         self.request.user.update(bypass_upload_restrictions=True)
         checker = RestrictionChecker(request=self.request)
         assert checker.is_submission_allowed()

@@ -801,9 +801,9 @@ class TestIPNetworkUserRestriction(TestCase):
         request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
         request.user = user_factory(last_login_ip='10.0.0.1')
         IPNetworkUserRestriction.objects.create(network='192.168.0.0/28')
-        # Submission is allowed.
+        # Submission is not allowed.
         assert not IPNetworkUserRestriction.allow_submission(request)
-        # Approval is blocked.
+        # Approval is.
         upload = FileUpload.objects.create(ip_address='192.168.0.1', user=request.user)
         assert IPNetworkUserRestriction.allow_auto_approval(upload)
 
@@ -817,7 +817,7 @@ class TestIPNetworkUserRestriction(TestCase):
         assert IPNetworkUserRestriction.allow_submission(request)
         # Approval is blocked even though it was with a different ip, because
         # of the user last_login_ip.
-        upload = FileUpload.objects.create(ip_address='192.168.0.2', user=request.user)
+        upload = FileUpload.objects.create(ip_address='192.168.1.2', user=request.user)
         assert not IPNetworkUserRestriction.allow_auto_approval(upload)
 
     def test_blocked_approval_while_allowing_submission(self):
