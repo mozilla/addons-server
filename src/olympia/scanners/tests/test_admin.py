@@ -589,7 +589,6 @@ class TestScannerResultAdmin(TestCase):
         last_url, status_code = response.redirect_chain[-1]
         assert last_url == reverse('admin:scanners_scannerresult_changelist')
 
-    @override_settings(YARA_GIT_REPOSITORY='git/repo')
     def test_handle_yara_false_positive(self):
         # Create one entry with matches
         rule = ScannerRule.objects.create(name='some-rule', scanner=YARA)
@@ -602,30 +601,64 @@ class TestScannerResultAdmin(TestCase):
             reverse(
                 'admin:scanners_scannerresult_handlefalsepositive',
                 args=[result.pk],
-            )
+            ),
+            follow=True,
         )
 
         result.refresh_from_db()
         assert result.state == FALSE_POSITIVE
-        # This action should send a redirect to GitHub.
-        assert response.status_code == 302
-        # We create a GitHub issue draft by passing some query parameters to
-        # GitHub.
-        assert response['Location'].startswith(
-            'https://github.com/git/repo/issues/new?'
+        # The action should send a redirect.
+        last_url, status_code = response.redirect_chain[-1]
+        assert status_code == 302
+        # The action should redirect to the list view and the default list
+        # filters should hide the result (because its state is not UNKNOWN
+        # anymore).
+        html = pq(response.content)
+        assert html('#result_list tbody > tr').length == 0
+        # A confirmation message should also appear.
+        assert html('.messagelist .info').length == 1
+
+    def test_handle_yara_false_positive_uses_referer_if_available(self):
+        # Create one entry with matches
+        rule = ScannerRule.objects.create(name='some-rule', scanner=YARA)
+        result = ScannerResult(scanner=YARA)
+        result.add_yara_result(rule=rule.name)
+        result.save()
+        assert result.state == UNKNOWN
+
+        referer = '{}/en-US/firefox/previous/page'.format(settings.SITE_URL)
+        response = self.client.post(
+            reverse(
+                'admin:scanners_scannerresult_handlefalsepositive',
+                args=[result.pk],
+            ),
+            follow=True,
+            HTTP_REFERER=referer,
         )
-        assert (
-            urlencode(
-                {
-                    'title': 'False positive report for '
-                    'ScannerResult {}'.format(result.pk)
-                }
-            )
-            in response['Location']
+
+        last_url, status_code = response.redirect_chain[-1]
+        assert last_url == referer
+
+    def test_handle_yara_false_positive_with_invalid_referer(self):
+        # Create one entry with matches
+        rule = ScannerRule.objects.create(name='some-rule', scanner=YARA)
+        result = ScannerResult(scanner=YARA)
+        result.add_yara_result(rule=rule.name)
+        result.save()
+        assert result.state == UNKNOWN
+
+        referer = '{}/en-US/firefox/previous/page'.format('http://example.org')
+        response = self.client.post(
+            reverse(
+                'admin:scanners_scannerresult_handlefalsepositive',
+                args=[result.pk],
+            ),
+            follow=True,
+            HTTP_REFERER=referer,
         )
-        assert urlencode({'body': '### Report'}) in response['Location']
-        assert urlencode({'labels': 'false positive report'}) in response['Location']
-        assert 'Raw+scanner+results' in response['Location']
+
+        last_url, status_code = response.redirect_chain[-1]
+        assert last_url == reverse('admin:scanners_scannerresult_changelist')
 
     @override_settings(CUSTOMS_GIT_REPOSITORY='git/repo')
     def test_handle_customs_false_positive(self):
@@ -644,8 +677,22 @@ class TestScannerResultAdmin(TestCase):
 
         result.refresh_from_db()
         assert result.state == FALSE_POSITIVE
-        # This action should send a redirect to GitHub.
-        assert response.status_code == 302
+        # We create a GitHub issue draft by passing some query parameters to
+        # GitHub.
+        assert response['Location'].startswith(
+            'https://github.com/git/repo/issues/new?'
+        )
+        assert (
+            urlencode(
+                {
+                    'title': 'False positive report for '
+                    'ScannerResult {}'.format(result.pk)
+                }
+            )
+            in response['Location']
+        )
+        assert urlencode({'body': '### Report'}) in response['Location']
+        assert urlencode({'labels': 'false positive report'}) in response['Location']
         assert 'Raw+scanner+results' not in response['Location']
 
     def test_handle_revert_report(self):

@@ -130,7 +130,6 @@ class AbstractScannerResult(ModelBase):
     def get_git_repository(self):
         return {
             CUSTOMS: settings.CUSTOMS_GIT_REPOSITORY,
-            YARA: settings.YARA_GIT_REPOSITORY,
         }.get(self.scanner)
 
     @classmethod
