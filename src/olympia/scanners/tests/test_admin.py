@@ -120,15 +120,15 @@ class TestScannerResultAdmin(TestCase):
 
         formatted_addon = self.admin.formatted_addon(result)
         assert (
-            '<a href="{}">{}</a>'.format(
+            '<a href="{}">Link to review page</a>'.format(
                 urljoin(
                     settings.EXTERNAL_SITE_URL,
                     reverse('reviewers.review', args=['listed', addon.id]),
                 ),
-                addon.name,
             )
             in formatted_addon
         )
+        assert 'Name:</td><td>{}'.format(addon.name) in formatted_addon
         assert 'Version:</td><td>{}'.format(version.version) in formatted_addon
         assert (
             'Channel:</td><td>{}'.format(version.get_channel_display())
@@ -142,15 +142,15 @@ class TestScannerResultAdmin(TestCase):
 
         formatted_addon = self.admin.formatted_addon(result)
         assert (
-            '<a href="{}">{}</a>'.format(
+            '<a href="{}">Link to review page</a>'.format(
                 urljoin(
                     settings.EXTERNAL_SITE_URL,
                     reverse('reviewers.review', args=['unlisted', addon.id]),
                 ),
-                addon.name,
             )
             in formatted_addon
         )
+        assert 'Name:</td><td>{}'.format(addon.name) in formatted_addon
         assert 'Version:</td><td>{}'.format(version.version) in formatted_addon
         assert (
             'Channel:</td><td>{}'.format(version.get_channel_display())

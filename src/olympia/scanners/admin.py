@@ -315,12 +315,16 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
     def formatted_addon(self, obj):
         if obj.version:
             return format_html(
-                '<a href="{}">{}</a>'
-                '<br>'
                 '<table>'
+                '  <tr><td>Name:</td><td>{}</td></tr>'
                 '  <tr><td>Version:</td><td>{}</td></tr>'
                 '  <tr><td>Channel:</td><td>{}</td></tr>'
-                '</table>',
+                '</table>'
+                '<br>'
+                '<a href="{}">Link to review page</a>',
+                obj.version.addon.name,
+                obj.version.version,
+                obj.version.get_channel_display(),
                 # We use the add-on's ID to support deleted add-ons.
                 urljoin(
                     settings.EXTERNAL_SITE_URL,
@@ -336,9 +340,6 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
                         ],
                     ),
                 ),
-                obj.version.addon.name,
-                obj.version.version,
-                obj.version.get_channel_display(),
             )
         return '-'
 
