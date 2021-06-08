@@ -24,14 +24,3 @@ However, it is not correct for the following reasons:
 {% if not result.version %}
 :warning: Some information is missing because there is no version attached to these results.
 {% endif %}
-{% if result.scanner == YARA %}
-### Raw scanner results
-
-<details>
-<summary>show raw scanner results</summary>
-
-```json
-{{ result.get_pretty_results|safe }}
-```
-</details>
-{% endif %}
