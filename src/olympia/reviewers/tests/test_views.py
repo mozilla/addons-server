@@ -7228,6 +7228,7 @@ class TestAddonReviewerViewSet(TestCase):
             'auto_approval_disabled': False,
             'auto_approval_disabled_unlisted': False,
             'auto_approval_disabled_until_next_approval': True,
+            'auto_approval_disabled_until_next_approval_unlisted': True,
             'auto_approval_delayed_until': None,
             'needs_admin_code_review': True,
             'needs_admin_content_review': True,
@@ -7240,6 +7241,9 @@ class TestAddonReviewerViewSet(TestCase):
         assert reviewer_flags.auto_approval_disabled is False
         assert reviewer_flags.auto_approval_disabled_unlisted is False
         assert reviewer_flags.auto_approval_disabled_until_next_approval is True
+        assert (
+            reviewer_flags.auto_approval_disabled_until_next_approval_unlisted is True
+        )
         assert reviewer_flags.auto_approval_delayed_until is None
         assert reviewer_flags.needs_admin_code_review is True
         assert reviewer_flags.needs_admin_content_review is True

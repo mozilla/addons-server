@@ -1133,6 +1133,7 @@ class ReviewBase(object):
         # versions.
         status = self.addon.status
         latest_version = self.version
+        channel = self.version.channel if self.version else None
         self.version = None
         self.files = None
         now = datetime.now()
@@ -1181,8 +1182,13 @@ class ReviewBase(object):
 
         # A rejection (delayed or not) implies the next version should be
         # manually reviewed.
+        auto_approval_disabled_until_next_approval_flag = (
+            'auto_approval_disabled_until_next_approval'
+            if channel == amo.RELEASE_CHANNEL_LISTED
+            else 'auto_approval_disabled_until_next_approval_unlisted'
+        )
         addonreviewerflags = {
-            'auto_approval_disabled_until_next_approval': True,
+            auto_approval_disabled_until_next_approval_flag: True,
         }
         if pending_rejection_deadline:
             # Developers should be notified again once the deadline is close.
@@ -1302,6 +1308,12 @@ class ReviewUnlisted(ReviewBase):
 
         if self.human_review:
             self.clear_specific_needs_human_review_flags(self.version)
+
+            # An approval took place so we can reset this.
+            AddonReviewerFlags.objects.update_or_create(
+                addon=self.addon,
+                defaults={'auto_approval_disabled_until_next_approval_unlisted': False},
+            )
 
         self.notify_email(template, subject, perm_setting=None)
 

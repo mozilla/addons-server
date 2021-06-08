@@ -1360,7 +1360,10 @@ class AutoApprovalSummary(ModelBase):
                 or addon.auto_approval_disabled_until_next_approval
             )
         else:
-            auto_approval_disabled = bool(addon.auto_approval_disabled_unlisted)
+            auto_approval_disabled = bool(
+                addon.auto_approval_disabled_unlisted
+                or addon.auto_approval_disabled_until_next_approval_unlisted
+            )
         auto_approval_delayed = bool(
             addon.auto_approval_delayed_until
             and datetime.now() < addon.auto_approval_delayed_until

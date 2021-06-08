@@ -46,6 +46,7 @@ class AddonReviewerFlagsSerializer(serializers.ModelSerializer):
             'auto_approval_disabled',
             'auto_approval_disabled_unlisted',
             'auto_approval_disabled_until_next_approval',
+            'auto_approval_disabled_until_next_approval_unlisted',
             'needs_admin_code_review',
             'needs_admin_content_review',
             'needs_admin_theme_review',
