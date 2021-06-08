@@ -109,9 +109,11 @@ class TestActions(TestCase):
         assert not IPNetworkUserRestriction.objects.filter(network=None).exists()
         assert not IPNetworkUserRestriction.objects.filter(network='').exists()
         assert not IPNetworkUserRestriction.objects.filter(
-            restriction_type=RESTRICTION_TYPES.APPROVAL).exists()
+            restriction_type=RESTRICTION_TYPES.APPROVAL
+        ).exists()
         assert not EmailUserRestriction.objects.filter(
-            restriction_type=RESTRICTION_TYPES.APPROVAL).exists()
+            restriction_type=RESTRICTION_TYPES.APPROVAL
+        ).exists()
 
     def test_delay_auto_approval_indefinitely_and_restrict_already_restricted(self):
         user1 = user_factory(last_login_ip='5.6.7.8')
