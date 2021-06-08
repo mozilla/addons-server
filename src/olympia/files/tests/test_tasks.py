@@ -1,8 +1,10 @@
-# -*- coding: utf-8 -*-
-from unittest import mock
+import json
 import os
 import tempfile
 import zipfile
+
+from unittest import mock
+from waffle.testutils import override_switch
 
 from django.conf import settings
 
@@ -75,6 +77,68 @@ class TestRepackFileUpload(UploadTest, TestCase):
         # Check we cleaned up after ourselves: we shouldn't have left anything
         # in /tmp.
         assert tmp_dir_before_repacking == sorted(os.listdir(tempfile.gettempdir()))
+
+    @override_switch('enable-manifest-normalization', active=False)
+    def test_does_not_normalize_manifest_json_when_switch_is_inactive(self):
+        upload = self.get_upload('webextension.xpi')
+        fake_results = {'errors': 0}
+        with zipfile.ZipFile(upload.path, 'w') as z:
+            manifest_with_comments = """
+            {
+                // Required
+                "manifest_version": 2,
+                "name": "My Extension",
+                "version": "versionString",
+                // Recommended
+                "description": "haupt\u005fstra\u00dfe"
+            }
+            """
+            z.writestr('manifest.json', manifest_with_comments)
+
+        repack_fileupload(fake_results, upload.pk)
+        upload.reload()
+
+        with zipfile.ZipFile(upload.path) as z:
+            with z.open('manifest.json') as manifest:
+                assert manifest.read().decode() == manifest_with_comments
+
+    @override_switch('enable-manifest-normalization', active=True)
+    def test_normalize_manifest_json(self):
+        upload = self.get_upload('webextension.xpi')
+        fake_results = {'errors': 0}
+        with zipfile.ZipFile(upload.path, 'w') as z:
+            manifest_with_comments = """
+            {
+                // Required
+                "manifest_version": 2,
+                "name": "My Extension",
+                "version": "versionString",
+                // Recommended
+                "description": "haupt\u005fstra\u00dfe"
+            }
+            """
+            z.writestr('manifest.json', manifest_with_comments)
+
+        repack_fileupload(fake_results, upload.pk)
+        upload.reload()
+
+        with zipfile.ZipFile(upload.path) as z:
+            with z.open('manifest.json') as manifest:
+                # Make sure it is valid JSON
+                assert json.loads(manifest.read())
+                # Read the content again to make sure comments have been
+                # removed with a string comparison.
+                manifest.seek(0)
+                assert manifest.read().decode() == '\n'.join(
+                    [
+                        '{',
+                        '  "manifest_version": 2,',
+                        '  "name": "My Extension",',
+                        '  "version": "versionString",',
+                        '  "description": "haupt_stra\\u00dfe"',
+                        '}',
+                    ]
+                )
 
 
 class TestHideDisabledFile(TestCase):
