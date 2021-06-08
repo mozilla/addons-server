@@ -467,20 +467,23 @@ class DeniedNameAdmin(admin.ModelAdmin):
 
 @admin.register(IPNetworkUserRestriction)
 class IPNetworkUserRestrictionAdmin(admin.ModelAdmin):
-    list_display = ('network',)
+    list_display = ('network', 'restriction_type')
+    list_filter = ('restriction_type', )
     search_fields = ('=network',)
     form = forms.IPNetworkUserRestrictionForm
 
 
 @admin.register(EmailUserRestriction)
 class EmailUserRestrictionAdmin(admin.ModelAdmin):
-    list_display = ('email_pattern',)
+    list_display = ('email_pattern', 'restriction_type')
+    list_filter = ('restriction_type', )
     search_fields = ('^email_pattern',)
 
 
 @admin.register(DisposableEmailDomainRestriction)
 class DisposableEmailDomainRestrictionAdmin(admin.ModelAdmin):
-    list_display = ('domain',)
+    list_display = ('domain', 'restriction_type')
+    list_filter = ('restriction_type', )
     search_fields = ('^domain',)
 
 
