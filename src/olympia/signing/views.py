@@ -92,7 +92,7 @@ class HourlyUserAddonUploadThrottle(
     ThrottleOnlyUnsafeMethodsMixin, GranularUserRateThrottle
 ):
     scope = 'hourly_user_addon_upload'
-    rate = '20/hour'
+    rate = '10/hour'
 
 
 class DailyUserAddonUploadThrottle(
