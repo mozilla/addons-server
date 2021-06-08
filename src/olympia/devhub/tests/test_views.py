@@ -839,7 +839,7 @@ class TestAPIAgreement(TestCase):
         assert response.status_code == 200
         assert 'agreement_form' in response.context
 
-    @mock.patch('olympia.devhub.utils.UploadRestrictionChecker.is_submission_allowed')
+    @mock.patch('olympia.addons.utils.RestrictionChecker.is_submission_allowed')
     def test_cant_submit_agreement_if_restricted(self, is_submission_allowed_mock):
         is_submission_allowed_mock.return_value = False
         self.user.update(read_dev_agreement=None)
@@ -885,7 +885,7 @@ class TestAPIAgreement(TestCase):
             'More information on Developer Accounts'
         )
 
-    @mock.patch('olympia.devhub.utils.UploadRestrictionChecker.is_submission_allowed')
+    @mock.patch('olympia.addons.utils.RestrictionChecker.is_submission_allowed')
     def test_agreement_page_shown_if_restricted(self, is_submission_allowed_mock):
         # Like test_agreement_read() above, but with a restricted user: they
         # are shown the agreement page again instead of redirecting to the

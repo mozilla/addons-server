@@ -34,7 +34,7 @@ from olympia.addons.models import (
     DeniedSlug,
     Preview,
 )
-from olympia.addons.utils import verify_mozilla_trademark
+from olympia.addons.utils import RestrictionChecker, verify_mozilla_trademark
 from olympia.amo.fields import HttpHttpsOnlyURLField, ReCaptchaField
 from olympia.amo.forms import AMOModelForm
 from olympia.amo.messages import DoubleSafe
@@ -43,10 +43,7 @@ from olympia.amo.validators import OneOrMoreLetterOrNumberCharacterValidator
 from olympia.applications.models import AppVersion
 from olympia.blocklist.models import Block
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID, CATEGORIES_NO_APP
-from olympia.devhub.utils import (
-    fetch_existing_translations_from_addon,
-    UploadRestrictionChecker,
-)
+from olympia.devhub.utils import fetch_existing_translations_from_addon
 from olympia.devhub.widgets import CategoriesSelectMultiple, IconTypeSelect
 from olympia.files.models import FileUpload
 from olympia.files.utils import SafeZip, archive_member_validator, parse_addon
@@ -56,7 +53,12 @@ from olympia.translations.fields import LocaleErrorMessage, TransField, TransTex
 from olympia.translations.forms import TranslationFormMixin
 from olympia.translations.models import Translation, delete_translation
 from olympia.translations.widgets import TranslationTextarea, TranslationTextInput
-from olympia.users.models import EmailUserRestriction, UserEmailField, UserProfile
+from olympia.users.models import (
+    EmailUserRestriction,
+    RESTRICTION_TYPES,
+    UserEmailField,
+    UserProfile,
+)
 from olympia.versions.models import (
     VALID_SOURCE_EXTENSIONS,
     ApplicationsVersions,
@@ -479,7 +481,9 @@ class AuthorWaitingConfirmationForm(AuthorForm):
     def clean_user(self):
         user = self.cleaned_data.get('user')
         if user:
-            if not EmailUserRestriction.allow_email(user.email):
+            if not EmailUserRestriction.allow_email(
+                user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+            ):
                 raise forms.ValidationError(EmailUserRestriction.error_message)
 
             if self.addon.authors.filter(pk=user.pk).exists():
@@ -1416,7 +1420,7 @@ class AgreementForm(forms.Form):
 
     def clean(self):
         # Check if user ip or email is not supposed to be allowed to submit.
-        checker = UploadRestrictionChecker(self.request)
+        checker = RestrictionChecker(request=self.request)
         if not checker.is_submission_allowed(check_dev_agreement=False):
             raise forms.ValidationError(checker.get_error_message())
         return self.cleaned_data

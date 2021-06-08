@@ -1,7 +1,11 @@
 from datetime import datetime, timedelta
 
 from olympia.constants.scanners import MAD
-from olympia.users.models import EmailUserRestriction, IPNetworkUserRestriction
+from olympia.users.models import (
+    EmailUserRestriction,
+    IPNetworkUserRestriction,
+    RESTRICTION_TYPES,
+)
 
 
 def _no_action(version):
@@ -38,7 +42,9 @@ def _delay_auto_approval_indefinitely(version):
     )
 
 
-def _delay_auto_approval_indefinitely_and_restrict(version):
+def _delay_auto_approval_indefinitely_and_restrict(
+    version, restriction_type=RESTRICTION_TYPES.SUBMISSION
+):
     """Delay auto-approval for the whole add-on indefinitely, and restricts the
     user(s) and their IP(s)."""
     _delay_auto_approval_indefinitely(version)
@@ -59,10 +65,22 @@ def _delay_auto_approval_indefinitely_and_restrict(version):
 
     # Restrict all those IPs and users.
     for user in users:
-        EmailUserRestriction.objects.get_or_create(email_pattern=user.email)
+        EmailUserRestriction.objects.get_or_create(
+            email_pattern=user.email, restriction_type=restriction_type
+        )
 
     for ip in ips:
-        IPNetworkUserRestriction.objects.get_or_create(network=f'{ip}/32')
+        IPNetworkUserRestriction.objects.get_or_create(
+            network=f'{ip}/32', restriction_type=restriction_type
+        )
+
+
+def _delay_auto_approval_indefinitely_and_restrict_future_approvals(version):
+    """Delay auto-approval for the whole add-on indefinitely, and restricts future
+    approvals posted by the same user(s) and their IP(s)."""
+    _delay_auto_approval_indefinitely_and_restrict(
+        version, restriction_type=RESTRICTION_TYPES.APPROVAL
+    )
 
 
 def _flag_for_human_review_by_scanner(version, scanner):
