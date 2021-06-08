@@ -4195,6 +4195,10 @@ class TestReview(ReviewBase):
         assert not doc('#enable_auto_approval')
         assert not doc('#disable_auto_approval_unlisted')
         assert not doc('#enable_auto_approval_unlisted')
+        assert not doc('#disable_auto_approval_until_next_approval')
+        assert not doc('#enable_auto_approval_until_next_approval')
+        assert not doc('#disable_auto_approval_until_next_approval_unlisted')
+        assert not doc('#enable_auto_approval_until_next_approval_unlisted')
         assert not doc('#clear_auto_approval_delayed_until')
         assert not doc('#clear_pending_rejections')
         assert not doc('#deny_resubmission')
@@ -4468,6 +4472,75 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert not doc('#disable_auto_approval_unlisted')
         assert not doc('#enable_auto_approval_unlisted')
+
+    def test_disable_auto_approval_until_next_approval_unlisted_as_admin(self):
+        self.login_as_admin()
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, auto_approval_disabled_until_next_approval_unlisted=True
+        )
+        unlisted_url = reverse('reviewers.review', args=['unlisted', self.addon.slug])
+        response = self.client.get(unlisted_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        # Button to disable auto approval until next approval is hidden since
+        # the flag is already true.
+        assert doc('#disable_auto_approval_until_next_approval_unlisted')
+        elem = doc('#disable_auto_approval_until_next_approval_unlisted')[0]
+        assert 'hidden' in elem.getparent().attrib.get('class', '')
+
+        # Button to re-enable auto-approval is shown.
+        assert doc('#enable_auto_approval_until_next_approval_unlisted')
+        elem = doc('#enable_auto_approval_until_next_approval_unlisted')[0]
+        assert 'hidden' not in elem.getparent().attrib.get('class', '')
+
+        # They both should be absent on the listed review page, since those
+        # are for listed only.
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        # Button to disable auto approval until next approval is hidden since
+        # the flag is already true.
+        assert not doc('#disable_auto_approval_until_next_approval_unlisted')
+        assert not doc('#enable_auto_approval_until_next_approval_unlisted')
+
+    def test_disable_auto_approval_until_next_approval_as_admin(self):
+        self.login_as_admin()
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, auto_approval_disabled_until_next_approval=True
+        )
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        # Button to disable auto approval until next approval is hidden since
+        # the flag is already true.
+        assert doc('#disable_auto_approval_until_next_approval')
+        elem = doc('#disable_auto_approval_until_next_approval')[0]
+        assert 'hidden' in elem.getparent().attrib.get('class', '')
+
+        # Button to re-enable auto-approval is shown.
+        assert doc('#enable_auto_approval_until_next_approval')
+        elem = doc('#enable_auto_approval_until_next_approval')[0]
+        assert 'hidden' not in elem.getparent().attrib.get('class', '')
+
+        # They both should be absent on the unlisted review page, since those
+        # are for listed only.
+        unlisted_url = reverse('reviewers.review', args=['unlisted', self.addon.slug])
+        response = self.client.get(unlisted_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        # Button to disable auto approval until next approval is hidden since
+        # the flag is already true.
+        assert not doc('#disable_auto_approval_until_next_approval')
+        assert not doc('#enable_auto_approval_until_next_approval')
+
+        # They both should be absent on static themes, which are not
+        # auto-approved.
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#disable_auto_approval_until_next_approval')
+        assert not doc('#enable_auto_approval_until_next_approval')
 
     def test_clear_pending_rejections_as_admin(self):
         self.login_as_admin()

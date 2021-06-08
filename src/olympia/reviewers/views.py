@@ -1010,6 +1010,7 @@ def review(request, addon, channel=None):
         approvals_info=approvals_info,
         auto_approval_info=auto_approval_info,
         base_version=base_version,
+        channel=channel,
         content_review=content_review,
         count=count,
         deleted_addon_ids=deleted_addon_ids,
