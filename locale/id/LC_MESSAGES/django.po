@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-01 17:51+0000\n"
-"PO-Revision-Date: 2021-06-08 14:34+0000\n"
+"PO-Revision-Date: 2021-06-08 14:36+0000\n"
 "Last-Translator: Lidya Christina <id.lidya@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -2963,7 +2963,7 @@ msgid "Please click the confirm button below to generate API credentials for use
 msgstr "Silahkan klik tombol konfirmasi di bawah ini untuk mendapatkan kredensial API untuk pengguna <strong>%(name)s</strong>."
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr ""
+msgstr "Tautan konfirmasi akan dikirim ke alamat surel Anda. Setelah konfirmasi Anda akan mendapatkan kunci API Anda di halaman ini."
 
 msgid "You don't have any API credentials."
 msgstr "Anda tidak memiliki kredensial API apapun."
@@ -2974,9 +2974,8 @@ msgstr "Cabut"
 msgid "Revoke and regenerate credentials"
 msgstr "Mencabut dan menghasilkan ulang keterangan pengenal"
 
-#, fuzzy
 msgid "Confirm and generate new credentials"
-msgstr "Menghasilkan keterangan pengenal baru"
+msgstr "Konfirmasikan dan hasilkan kredensial baru"
 
 msgid "Generate new credentials"
 msgstr "Menghasilkan keterangan pengenal baru"
@@ -3152,11 +3151,8 @@ msgstr[0] "Pilih <b>hingga {0}</b> {1} kategori untuk pengaya ini:"
 msgid "End-User License Agreement"
 msgstr "Perjanjian Lisensi Pengguna Akhir"
 
-#, fuzzy
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
-msgstr ""
-"Harap memilih lisensi yang tepat bagi hak yang ingin anda berikan untuk kode sumber anda.\n"
-"                  Hanya relevan untuk pengaya yang terdaftar."
+msgstr "Harap dicatat bahwa EULA tidak sama dengan lisensi kode, seperti GPL atau MPL. Ini hanya relevan untuk pengaya yang terdaftar."
 
 msgid "Privacy Policy"
 msgstr "Kebijakan Privasi"
@@ -3562,12 +3558,12 @@ msgstr "Sorot teks apapun, klik kanan, dan terjemahkan seketika."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Perform reverse image searches from an array of engines."
-msgstr ""
+msgstr "Melakukan pencarian gambar terbalik dari serangkaian mesin-mesin."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "Pemblokiran iklan dan perlindungan privasi. Pengaturan sederhana memungkinkan Anda mengendalikan iklan yang Anda lihat dan bagaimana Anda dilacak di internet."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3577,17 +3573,17 @@ msgstr "Punya banyak tab terbuka? Kelola semuanya di bilah samping yang rapi."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
-msgstr ""
+msgstr "Hentikan pelacakan Facebook. Tampung identitas Facebook Anda ke dalam \"kontainer\" terpisah untuk mencegah Facebook melacak Anda di web."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "Sederhanakan pencarian dengan menyorot teks pada halaman web apa saja untuk mencari frase dari berbagai mesin."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Instant weather updates from around the world."
-msgstr ""
+msgstr "Pembaruan cuaca instan dari seluruh dunia."
 
 #. editorial content for the discovery pane.
 msgid "Choose the page you see every time you open a new tab."
@@ -3604,9 +3600,8 @@ msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, D
 msgstr "Unduh video dengan mudah. Berfungsi dengan Youtube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, dan ratusan situs video lainnya."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
-msgstr "Lusinan emoji keren untuk tiap kebutuhan—hanya dengan sekali klik saja."
+msgstr "Tingkatkan permainan emojimu. Ada puluhan emoji yang menarik untuk tiap kebutuhan—hanya dengan sekali klik saja."
 
 #. editorial content for the discovery pane.
 msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
@@ -3615,7 +3610,7 @@ msgstr "Pengelolaan sandi tersederhanakan. Sinkronkan seluruh log masuk Anda di 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr ""
+msgstr "Pemblokir iklan yang efektif dan ringan. uBlock Origin memberlakukan ribuan filter konten tanpa memakai banyak memori."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3665,9 +3660,8 @@ msgid "Easy translations. Highlight text on any webpage—or select the entire p
 msgstr "Mudah menerjemahkan. Sorot teks di bagian laman mana saja—atau pilih seluruh laman—untuk menerjemahkannya seketika."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Tap academic wisdom. Access 10+ million research papers for free."
-msgstr "Nikmati akses gratis ke 10+ juta makalah penelitian."
+msgstr "Ketuk kebijaksanaan akademis. Nikmati akses gratis ke 10+ juta makalah penelitian."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
