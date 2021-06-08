@@ -17,6 +17,7 @@ from urllib.parse import urljoin, urlparse
 from olympia import amo
 from olympia.access import acl
 from olympia.addons.models import Addon
+from olympia.constants import scanners
 from olympia.constants.scanners import (
     ABORTING,
     COMPLETED,
@@ -238,8 +239,8 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
         'created',
         'state',
         'formatted_matched_rules_with_files',
-        'formatted_results',
         'result_actions',
+        'formatted_results',
     )
 
     ordering = ('-pk',)
@@ -512,24 +513,29 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
             'Scanner result {} has been marked as false positive.'.format(pk),
         )
 
-        title = 'False positive report for ScannerResult {}'.format(pk)
-        body = render_to_string(
-            'admin/false_positive_report.md', {'result': result, 'YARA': YARA}
-        )
-        labels = ','.join(
-            [
-                # Default label added to all issues
-                'false positive report'
-            ]
-            + ['rule: {}'.format(rule.name) for rule in result.matched_rules.all()]
-        )
-
-        return redirect(
-            'https://github.com/{}/issues/new?{}'.format(
-                result.get_git_repository(),
-                urlencode({'title': title, 'body': body, 'labels': labels}),
+        if result.scanner == scanners.CUSTOMS:
+            title = 'False positive report for ScannerResult {}'.format(pk)
+            body = render_to_string(
+                'admin/false_positive_report.md', {'result': result, 'YARA': YARA}
             )
-        )
+            labels = ','.join(
+                [
+                    # Default label added to all issues
+                    'false positive report'
+                ]
+                + ['rule: {}'.format(rule.name) for rule in result.matched_rules.all()]
+            )
+
+            return redirect(
+                'https://github.com/{}/issues/new?{}'.format(
+                    result.get_git_repository(),
+                    urlencode({'title': title, 'body': body, 'labels': labels}),
+                )
+            )
+        else:
+            return self.safe_referer_redirect(
+                request, default_url='admin:scanners_scannerresult_changelist'
+            )
 
     def handle_revert(self, request, pk, *args, **kwargs):
         is_admin = acl.action_allowed(

@@ -1794,7 +1794,6 @@ MAD_API_URL = env('MAD_API_URL', default=None)
 MAD_API_TIMEOUT = 5  # seconds
 # Git(Hub) repository names, e.g., `owner/repo-name`
 CUSTOMS_GIT_REPOSITORY = env('CUSTOMS_GIT_REPOSITORY', default=None)
-YARA_GIT_REPOSITORY = env('YARA_GIT_REPOSITORY', default=None)
 
 # Addon.average_daily_user count that forces dual sign-off for Blocklist Blocks
 DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD = 100_000
