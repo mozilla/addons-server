@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-01 17:51+0000\n"
-"PO-Revision-Date: 2021-06-08 14:52+0000\n"
+"PO-Revision-Date: 2021-06-08 15:08+0000\n"
 "Last-Translator: Lidya Christina <id.lidya@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -168,7 +168,7 @@ msgid "My Themes"
 msgstr "Tema Saya"
 
 msgid "Git-Extract"
-msgstr ""
+msgstr "Ekstrak-Git"
 
 msgid "Tools"
 msgstr "Perangkat"
@@ -292,14 +292,14 @@ msgstr ""
 "kami memperbaiki hal ini dengan <a href=\"https://github.com/mozilla/addons/issues/new\">mengajukan masalah</a> dengan rincian bagaimana Anda sampai ke halaman ini. </p>"
 
 msgid "Register or Log in"
-msgstr ""
+msgstr "Daftar atau Masuk"
 
 #, fuzzy
 msgid "Email:"
 msgstr "Surel"
 
 msgid "OK"
-msgstr ""
+msgstr "Oke"
 
 msgid "No results found"
 msgstr "Tak ada hasil yang ditemukan"
@@ -404,7 +404,7 @@ msgid "Email address not found."
 msgstr "Alamat surel tidak ditemukan."
 
 msgid "Unavailable for legal reasons."
-msgstr ""
+msgstr "Tidak tersedia karena alasan hukum."
 
 msgid "The field must have a length of at least {num} characters."
 msgstr "Bidang harus memiliki panjang sekurangnya {num} karakter."
@@ -473,7 +473,7 @@ msgid "This add-on already belongs to the collection"
 msgstr "Pengaya ini sudah termasuk dalam koleksi ini"
 
 msgid "Signoff State"
-msgstr ""
+msgstr "Status Penandatanganan"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
@@ -489,7 +489,7 @@ msgstr ""
 
 #, python-format
 msgid "Addon with GUID %(guid)s does not exist"
-msgstr ""
+msgstr "Pengaya dengan GUID %(guid)s tidak ada"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr ""
@@ -538,7 +538,7 @@ msgid "Save"
 msgstr "Simpan"
 
 msgid "Save and add more"
-msgstr ""
+msgstr "Simpan dan tambahkan lainnya"
 
 msgid "Delete"
 msgstr "Hapus"
@@ -557,7 +557,7 @@ msgid "Add %(name)s"
 msgstr "Tambahkan %(name)s"
 
 msgid "Add-on GUIDs (one per line)"
-msgstr ""
+msgstr "Pengaya GUIDs (satu per baris)"
 
 msgid "Submit"
 msgstr "Mengajukan"
@@ -1007,7 +1007,7 @@ msgid "Unlisted"
 msgstr "Tidak terdaftar"
 
 msgid "API"
-msgstr ""
+msgstr "API"
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -1386,20 +1386,20 @@ msgid "Recommended"
 msgstr "Disarankan"
 
 msgid "Sponsored"
-msgstr ""
+msgstr "Bersponsor"
 
 msgid "Verified"
-msgstr ""
+msgstr "Diverifikasi"
 
 #, fuzzy
 msgid "By Firefox"
 msgstr "Firefox"
 
 msgid "Spotlight"
-msgstr ""
+msgstr "Sorotan"
 
 msgid "Strategic"
-msgstr ""
+msgstr "Strategis"
 
 msgid "Add-on"
 msgstr "Pengaya"
@@ -1579,16 +1579,16 @@ msgid "No action"
 msgstr "Tidak ada tindakan"
 
 msgid "Flag for human review"
-msgstr ""
+msgstr "Tandai untuk ditinjau manual"
 
 msgid "Delay auto-approval"
 msgstr "Tunda persetujuan otomatis"
 
 msgid "Delay auto-approval indefinitely"
-msgstr ""
+msgstr "Tunda persetujuan otomatis tanpa batas waktu"
 
 msgid "Delay auto-approval indefinitely and add restrictions"
-msgstr ""
+msgstr "Tunda persetujuan otomatis tanpa batas waktu dan tambahkan batasan"
 
 msgid "True positive"
 msgstr ""
@@ -1597,7 +1597,7 @@ msgid "False positive"
 msgstr ""
 
 msgid "Inconclusive"
-msgstr ""
+msgstr "Tidak meyakinkan"
 
 msgid "New"
 msgstr "Baru"
@@ -1882,9 +1882,8 @@ msgstr "Undangan penyusun untuk {addon_name}"
 msgid "A confirmation email has been sent to {email}"
 msgstr "Email konfirmasi telah dikirim ke {email}"
 
-#, fuzzy
 msgid "An author role has been changed on your add-on"
-msgstr "Seorang penulis telah diubah perannya pada pengaya anda"
+msgstr "Peran seorang penulis telah diubah pada pengaya Anda"
 
 msgid "An author has been removed from your add-on"
 msgstr "Seorang penulis telah dihapus dari pengaya anda"
