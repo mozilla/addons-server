@@ -1,5 +1,5 @@
 -r prod.txt
 
-Django==2.2.23 \
-    --hash=sha256:2710bff9dd480cf886e38947ee00aea3d6b9b04b77a748e352e3ce447b0fe17f \
-    --hash=sha256:12cfc045a4ccb2348719aaaa77b17e66a26bff9fc238b4c765a3e825ef92e414
+Django==2.2.24 \
+    --hash=sha256:f2084ceecff86b1e631c2cd4107d435daf4e12f1efcdf11061a73bf0b5e95f92 \
+    --hash=sha256:3339ff0e03dee13045aef6ae7b523edff75b6d726adf7a7a48f53d5a501f7db7
