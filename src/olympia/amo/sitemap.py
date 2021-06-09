@@ -314,14 +314,8 @@ class AddonSitemap(Sitemap):
             .iterator()
         )
         items = [
-            *(
-                self.item_tuple(addon.last_updated, addon.slug, 'detail')
-                for addon in addons
-            ),
-            *(
-                self.item_tuple(addon.last_updated, addon.slug, 'versions')
-                for addon in addons
-            ),
+            self.item_tuple(addon.last_updated, addon.slug, 'detail')
+            for addon in addons
         ]
         # add pages for ratings - and extra pages when needed to paginate
         page_size = settings.REST_FRAMEWORK['PAGE_SIZE']

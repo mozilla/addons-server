@@ -60,9 +60,6 @@ class TestAddonSitemap(TestCase):
             it(addon_c.last_updated, addon_c.slug, 'detail', 1),
             it(addon_a.last_updated, addon_a.slug, 'detail', 1),
             it(addon_b.last_updated, addon_b.slug, 'detail', 1),
-            it(addon_c.last_updated, addon_c.slug, 'versions', 1),
-            it(addon_a.last_updated, addon_a.slug, 'versions', 1),
-            it(addon_b.last_updated, addon_b.slug, 'versions', 1),
             it(addon_c.last_updated, addon_c.slug, 'ratings.list', 1),
             it(addon_a.last_updated, addon_a.slug, 'ratings.list', 1),
             it(addon_b.last_updated, addon_b.slug, 'ratings.list', 1),
@@ -108,7 +105,6 @@ class TestAddonSitemap(TestCase):
         with override_url_prefix(app_name='android'):
             assert list(AddonSitemap().items()) == [
                 it(android_addon.last_updated, android_addon.slug, 'detail', 1),
-                it(android_addon.last_updated, android_addon.slug, 'versions', 1),
                 it(android_addon.last_updated, android_addon.slug, 'ratings.list', 1),
             ]
             # make some of the Firefox add-ons be Android compatible
@@ -120,8 +116,6 @@ class TestAddonSitemap(TestCase):
             assert list(AddonSitemap().items()) == [
                 it(self.addon_a.last_updated, self.addon_a.slug, 'detail', 1),
                 it(android_addon.last_updated, android_addon.slug, 'detail', 1),
-                it(self.addon_a.last_updated, self.addon_a.slug, 'versions', 1),
-                it(android_addon.last_updated, android_addon.slug, 'versions', 1),
                 it(self.addon_a.last_updated, self.addon_a.slug, 'ratings.list', 1),
                 it(android_addon.last_updated, android_addon.slug, 'ratings.list', 1),
             ]
@@ -381,9 +375,10 @@ def test_get_sitemap_section_pages():
         ('users', 'firefox', 1),
         ('users', 'android', 1),
     ]
-    with mock.patch.object(AddonSitemap, 'limit', 40):
-        # 3 pages per addon * 3 addons * 10 locales = 90 urls for addons; 3 pages @ 40pp
+    with mock.patch.object(AddonSitemap, 'limit', 25):
         pages = get_sitemap_section_pages(sitemaps)
+        # 2 pages per addon * 3 addons * 10 locales = 60 urls for addons; 3 pages @ 25pp
+        assert len(sitemaps.get(('addons', amo.FIREFOX))._items()) == 60
         assert pages == [
             ('amo', None, 1),
             ('addons', 'firefox', 1),
@@ -450,15 +445,6 @@ def test_sitemap_render_xml():
             ),
             AddonSitemap.item_tuple(
                 datetime(2020, 9, 30, 0, 0, 0), 'delicious-chocolate', 'detail'
-            ),
-            AddonSitemap.item_tuple(
-                datetime(2020, 10, 2, 0, 0, 0), 'delicious-barbeque', 'versions'
-            ),
-            AddonSitemap.item_tuple(
-                datetime(2020, 10, 1, 0, 0, 0), 'spicy-sandwich', 'versions'
-            ),
-            AddonSitemap.item_tuple(
-                datetime(2020, 9, 30, 0, 0, 0), 'delicious-chocolate', 'versions'
             ),
             AddonSitemap.item_tuple(
                 datetime(2020, 10, 2, 0, 0, 0), 'delicious-barbeque', 'ratings.list'
