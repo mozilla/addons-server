@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-09 14:48+0000\n"
-"PO-Revision-Date: 2021-06-09 15:22+0000\n"
+"PO-Revision-Date: 2021-06-09 15:37+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -5377,12 +5377,11 @@ msgstr "禁用上架项目自动通过审核，直到下次人工审核通过"
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr "启用上架项目自动通过审核，在下次人工审核通过"
 
-#, fuzzy
 msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
-msgstr "禁用上架项目自动通过审核，直到下次人工审核通过"
+msgstr "禁用未上架项目自动通过审核，直到下次人工审核通过"
 
 msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
-msgstr ""
+msgstr "启用未上架项目自动通过审核，在下次人工审核通过"
 
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "已禁用“自动批准”到 {date} 为止"
