@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-01 17:51+0000\n"
+"POT-Creation-Date: 2021-06-09 14:48+0000\n"
 "PO-Revision-Date: 2021-05-12 18:00+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
@@ -1579,6 +1579,9 @@ msgid "Delay auto-approval indefinitely"
 msgstr ""
 
 msgid "Delay auto-approval indefinitely and add restrictions"
+msgstr ""
+
+msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
 msgstr ""
 
 msgid "True positive"
@@ -5487,6 +5490,14 @@ msgstr "השבתת אישור אוטומטי עבור תוספות מוצגות 
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr "הפעלת אישור אוטומטי עבור תוספות מוצגות לפני האישור הידני הבא"
 
+#, fuzzy
+msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
+msgstr "השבתת אישור אוטומטי עבור תוספות מוצגות עד האישור הידני הבא"
+
+#, fuzzy
+msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
+msgstr "הפעלת אישור אוטומטי עבור תוספות מוצגות לפני האישור הידני הבא"
+
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "האישור האוטומטי מושבת כרגע עד לתאריך {date}"
 
@@ -5772,13 +5783,6 @@ msgstr ""
 
 msgid "Run"
 msgstr ""
-
-msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
-
-#, fuzzy
-msgid "Revert report"
-msgstr "תגובת הסוקר"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."

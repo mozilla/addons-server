@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-01 17:51+0000\n"
+"POT-Creation-Date: 2021-06-09 14:48+0000\n"
 "PO-Revision-Date: 2021-04-12 00:29+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1569,6 +1569,9 @@ msgid "Delay auto-approval indefinitely"
 msgstr ""
 
 msgid "Delay auto-approval indefinitely and add restrictions"
+msgstr ""
+
+msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
 msgstr ""
 
 msgid "True positive"
@@ -5516,6 +5519,14 @@ msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr "ਆਟੋ-ਪ੍ਰਵਾਨਗੀ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ"
 
 #, fuzzy
+msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
+msgstr "ਸਵੈ-ਪ੍ਰਵਾਨਗੀ ਨੂੰ ਅਸਮਰੱਥ ਬਣਾਓ"
+
+#, fuzzy
+msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
+msgstr "ਆਟੋ-ਪ੍ਰਵਾਨਗੀ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ"
+
+#, fuzzy
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "ਸਵੈ-ਪ੍ਰਵਾਨਗੀ ਅਸਮਰਥਿਤ ਝੰਡੇ ਸੈਟ ਹੈ।"
 
@@ -5812,13 +5823,6 @@ msgstr "ਵਿੱਚੇ ਛੱਡੋ"
 
 msgid "Run"
 msgstr "ਚਲਾਓ"
-
-msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
-
-#, fuzzy
-msgid "Revert report"
-msgstr "ਸਮੀਖਿਅਕ ਜਵਾਬ"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."

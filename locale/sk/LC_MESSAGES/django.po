@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-01 17:51+0000\n"
+"POT-Creation-Date: 2021-06-09 14:48+0000\n"
 "PO-Revision-Date: 2020-11-12 22:41+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -1572,6 +1572,9 @@ msgid "Delay auto-approval indefinitely"
 msgstr ""
 
 msgid "Delay auto-approval indefinitely and add restrictions"
+msgstr ""
+
+msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
 msgstr ""
 
 msgid "True positive"
@@ -5433,6 +5436,12 @@ msgstr ""
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr ""
 
+msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
+msgstr ""
+
+msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
+msgstr ""
+
 msgid "Auto-Approval currently disabled until {date}"
 msgstr ""
 
@@ -5715,12 +5724,6 @@ msgid "Abort"
 msgstr ""
 
 msgid "Run"
-msgstr ""
-
-msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
-
-msgid "Revert report"
 msgstr ""
 
 #, python-format

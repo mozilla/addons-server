@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-01 17:51+0000\n"
+"POT-Creation-Date: 2021-06-09 14:48+0000\n"
 "PO-Revision-Date: 2021-03-31 07:46+0000\n"
 "Last-Translator: aefgh39622@gmail.com <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
@@ -1572,6 +1572,9 @@ msgid "Delay auto-approval indefinitely"
 msgstr ""
 
 msgid "Delay auto-approval indefinitely and add restrictions"
+msgstr ""
+
+msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
 msgstr ""
 
 msgid "True positive"
@@ -5452,6 +5455,12 @@ msgstr ""
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr ""
 
+msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
+msgstr ""
+
+msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
+msgstr ""
+
 msgid "Auto-Approval currently disabled until {date}"
 msgstr ""
 
@@ -5749,13 +5758,6 @@ msgstr ""
 
 msgid "Run"
 msgstr ""
-
-msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
-
-#, fuzzy
-msgid "Revert report"
-msgstr "การตอบกลับของผู้ตรวจสอบ"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."

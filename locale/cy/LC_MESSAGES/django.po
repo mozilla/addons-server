@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-01 17:51+0000\n"
+"POT-Creation-Date: 2021-06-09 14:48+0000\n"
 "PO-Revision-Date: 2020-10-21 10:59+0000\n"
 "Last-Translator: Rhoslyn Prys <rprys@posteo.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1575,6 +1575,9 @@ msgid "Delay auto-approval indefinitely"
 msgstr ""
 
 msgid "Delay auto-approval indefinitely and add restrictions"
+msgstr ""
+
+msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
 msgstr ""
 
 msgid "True positive"
@@ -5518,6 +5521,14 @@ msgstr "Galluogi Auto-Cymeradwyo"
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr "Galluogi Auto-Cymeradwyo"
 
+#, fuzzy
+msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
+msgstr "Galluogi Auto-Cymeradwyo"
+
+#, fuzzy
+msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
+msgstr "Galluogi Auto-Cymeradwyo"
+
 msgid "Auto-Approval currently disabled until {date}"
 msgstr ""
 
@@ -5810,13 +5821,6 @@ msgstr ""
 
 msgid "Run"
 msgstr ""
-
-msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
-
-#, fuzzy
-msgid "Revert report"
-msgstr "Ateb adolygwyr"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-01 17:51+0000\n"
+"POT-Creation-Date: 2021-06-09 14:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1552,6 +1552,9 @@ msgid "Delay auto-approval indefinitely"
 msgstr ""
 
 msgid "Delay auto-approval indefinitely and add restrictions"
+msgstr ""
+
+msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
 msgstr ""
 
 msgid "True positive"
@@ -5370,6 +5373,12 @@ msgstr ""
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr ""
 
+msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
+msgstr ""
+
+msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
+msgstr ""
+
 msgid "Auto-Approval currently disabled until {date}"
 msgstr ""
 
@@ -5647,13 +5656,6 @@ msgstr ""
 
 msgid "Run"
 msgstr ""
-
-msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
-
-#, fuzzy
-msgid "Revert report"
-msgstr "Алатки за пребарување"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-01 17:51+0000\n"
+"POT-Creation-Date: 2021-06-09 14:48+0000\n"
 "PO-Revision-Date: 2021-04-29 18:23+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1560,6 +1560,10 @@ msgstr "Forseink automatisk godkjenning på ubestemt tid"
 
 #, fuzzy
 msgid "Delay auto-approval indefinitely and add restrictions"
+msgstr "Forseink automatisk godkjenning på ubestemt tid"
+
+#, fuzzy
+msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
 msgstr "Forseink automatisk godkjenning på ubestemt tid"
 
 msgid "True positive"
@@ -5431,6 +5435,14 @@ msgstr "Slå på auto-godkjenning"
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr "Slå på auto-godkjenning"
 
+#, fuzzy
+msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
+msgstr "Slå på auto-godkjenning"
+
+#, fuzzy
+msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
+msgstr "Slå på auto-godkjenning"
+
 msgid "Auto-Approval currently disabled until {date}"
 msgstr ""
 
@@ -5712,12 +5724,6 @@ msgstr ""
 
 msgid "Run"
 msgstr ""
-
-msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
-
-msgid "Revert report"
-msgstr "Tilbakestill rapport"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
