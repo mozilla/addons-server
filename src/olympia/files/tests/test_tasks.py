@@ -82,17 +82,17 @@ class TestRepackFileUpload(UploadTest, TestCase):
     def test_does_not_normalize_manifest_json_when_switch_is_inactive(self):
         upload = self.get_upload('webextension.xpi')
         fake_results = {'errors': 0}
+        manifest_with_comments = """
+        {
+            // Required
+            "manifest_version": 2,
+            "name": "My Extension",
+            "version": "versionString",
+            // Recommended
+            "description": "haupt\\u005fstra\\u00dfe"
+        }
+        """
         with zipfile.ZipFile(upload.path, 'w') as z:
-            manifest_with_comments = """
-            {
-                // Required
-                "manifest_version": 2,
-                "name": "My Extension",
-                "version": "versionString",
-                // Recommended
-                "description": "haupt\u005fstra\u00dfe"
-            }
-            """
             z.writestr('manifest.json', manifest_with_comments)
 
         repack_fileupload(fake_results, upload.pk)
@@ -114,7 +114,7 @@ class TestRepackFileUpload(UploadTest, TestCase):
                 "name": "My Extension",
                 "version": "versionString",
                 // Recommended
-                "description": "haupt\u005fstra\u00dfe"
+                "description": "haupt\\u005fstra\\u00dfe"
             }
             """
             z.writestr('manifest.json', manifest_with_comments)
