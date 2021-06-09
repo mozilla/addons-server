@@ -127,46 +127,88 @@ class TestGC(TestCase):
         assert len(mail.outbox) == 0
 
 
-def test_write_sitemaps():
-    addon_factory()
-    TestCase.make_addon_promoted(
-        addon_factory(version_kw={'application': amo.ANDROID.id}),
-        RECOMMENDED,
-        approve_version=True,
-    )
-    sitemaps_dir = settings.SITEMAP_STORAGE_PATH
-    assert len(os.listdir(sitemaps_dir)) == 0
-    write_sitemaps()
-    sitemaps = get_sitemaps()
-    assert len(os.listdir(sitemaps_dir)) == len(sitemaps) + 1  # 1 is the index
-
-    with open(os.path.join(sitemaps_dir, 'sitemap.xml')) as sitemap:
-        contents = sitemap.read()
-        entry = '<sitemap><loc>http://testserver/sitemap.xml?{params}</loc></sitemap>'
-        for (section, app), sitemap in sitemaps.items():
-            if not app:
-                assert entry.format(params=f'section={section}') in contents
-            else:
-                assert (
-                    entry.format(params=f'section={section}&amp;app_name={app.short}')
-                    in contents
-                )
-
-    with open(os.path.join(sitemaps_dir, 'sitemap-amo.xml')) as sitemap:
-        contents = sitemap.read()
-        assert '<url><loc>http://testserver/en-US/about</loc>' in contents
-
-    with open(os.path.join(sitemaps_dir, 'sitemap-addons-firefox.xml')) as sitemap:
-        contents = sitemap.read()
-        assert '<url><loc>http://testserver/en-US/firefox/' in contents
-
-    with open(os.path.join(sitemaps_dir, 'sitemap-addons-android.xml')) as sitemap:
-        contents = sitemap.read()
-        assert '<url><loc>http://testserver/en-US/android/' in contents
-
-    with open(os.path.join(sitemaps_dir, 'sitemap-collections-firefox.xml')) as sitemap:
-        contents = sitemap.read()
-        assert (
-            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
-            'xmlns:xhtml="http://www.w3.org/1999/xhtml">\n\n</urlset>' in contents
+class TestWriteSitemaps(TestCase):
+    def setUp(self):
+        addon_factory()
+        TestCase.make_addon_promoted(
+            addon_factory(version_kw={'application': amo.ANDROID.id}),
+            RECOMMENDED,
+            approve_version=True,
         )
+        assert len(os.listdir(settings.SITEMAP_STORAGE_PATH)) == 0
+
+    def test_basic(self):
+        sitemaps_dir = settings.SITEMAP_STORAGE_PATH
+        write_sitemaps()
+        sitemaps = get_sitemaps()
+        assert len(os.listdir(sitemaps_dir)) == len(sitemaps) + 1  # 1 is the index
+
+        with open(os.path.join(sitemaps_dir, 'sitemap.xml')) as sitemap:
+            contents = sitemap.read()
+            entry = (
+                '<sitemap><loc>http://testserver/sitemap.xml?{params}</loc></sitemap>'
+            )
+            for (section, app), sitemap in sitemaps.items():
+                if not app:
+                    assert entry.format(params=f'section={section}') in contents
+                else:
+                    assert (
+                        entry.format(
+                            params=f'section={section}&amp;app_name={app.short}'
+                        )
+                        in contents
+                    )
+
+        with open(os.path.join(sitemaps_dir, 'sitemap-amo.xml')) as sitemap:
+            contents = sitemap.read()
+            assert '<url><loc>http://testserver/en-US/about</loc>' in contents
+
+        with open(os.path.join(sitemaps_dir, 'sitemap-addons-firefox.xml')) as sitemap:
+            contents = sitemap.read()
+            assert '<url><loc>http://testserver/en-US/firefox/' in contents
+
+        with open(os.path.join(sitemaps_dir, 'sitemap-addons-android.xml')) as sitemap:
+            contents = sitemap.read()
+            assert '<url><loc>http://testserver/en-US/android/' in contents
+
+        xml_path = os.path.join(sitemaps_dir, 'sitemap-collections-firefox.xml')
+        with open(xml_path) as sitemap:
+            contents = sitemap.read()
+            assert (
+                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
+                'xmlns:xhtml="http://www.w3.org/1999/xhtml">\n\n</urlset>' in contents
+            )
+
+    def test_with_args_sections(self):
+        sitemaps_dir = settings.SITEMAP_STORAGE_PATH
+        write_sitemaps(section='index')
+        assert len(os.listdir(sitemaps_dir)) == 1
+        assert os.path.exists(os.path.join(sitemaps_dir, 'sitemap.xml'))
+
+        os.remove(os.path.join(sitemaps_dir, 'sitemap.xml'))
+        write_sitemaps(section='amo')
+        assert len(os.listdir(sitemaps_dir)) == 1
+        assert os.path.exists(os.path.join(sitemaps_dir, 'sitemap-amo.xml'))
+
+        os.remove(os.path.join(sitemaps_dir, 'sitemap-amo.xml'))
+        write_sitemaps(section='addons')
+        assert len(os.listdir(sitemaps_dir)) == 2
+        assert os.path.exists(os.path.join(sitemaps_dir, 'sitemap-addons-firefox.xml'))
+        assert os.path.exists(os.path.join(sitemaps_dir, 'sitemap-addons-android.xml'))
+
+    def test_with_args_app_name(self):
+        sitemaps_dir = settings.SITEMAP_STORAGE_PATH
+        # typically app_name would be used in combination with a section
+        write_sitemaps(section='addons', app_name='firefox')
+        assert len(os.listdir(sitemaps_dir)) == 1
+        assert os.path.exists(os.path.join(sitemaps_dir, 'sitemap-addons-firefox.xml'))
+        os.remove(os.path.join(sitemaps_dir, 'sitemap-addons-firefox.xml'))
+
+        # but it does work on its own, to generate all relevant sitemaps
+        write_sitemaps(app_name='android')
+        assert len(os.listdir(sitemaps_dir)) == 3
+        assert os.path.exists(os.path.join(sitemaps_dir, 'sitemap-addons-android.xml'))
+        assert os.path.exists(
+            os.path.join(sitemaps_dir, 'sitemap-collections-android.xml')
+        )
+        assert os.path.exists(os.path.join(sitemaps_dir, 'sitemap-users-android.xml'))
