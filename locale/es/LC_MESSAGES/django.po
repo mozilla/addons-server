@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-01 17:51+0000\n"
+"POT-Creation-Date: 2021-06-09 14:48+0000\n"
 "PO-Revision-Date: 2021-04-21 14:47+0000\n"
 "Last-Translator: Paulina Rodriguez <pauli.rodriguez.c@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -1619,6 +1619,10 @@ msgstr "Retrasar la aprobación automática indefinidamente"
 
 #, fuzzy
 msgid "Delay auto-approval indefinitely and add restrictions"
+msgstr "Retrasar la aprobación automática indefinidamente"
+
+#, fuzzy
+msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
 msgstr "Retrasar la aprobación automática indefinidamente"
 
 msgid "True positive"
@@ -5683,6 +5687,14 @@ msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr "Habilitar autoaprobación"
 
 #, fuzzy
+msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
+msgstr "Deshabilitar autoaprobación"
+
+#, fuzzy
+msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
+msgstr "Habilitar autoaprobación"
+
+#, fuzzy
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "Tiene desactivada la marca de autoaprobación"
 
@@ -5982,13 +5994,6 @@ msgstr ""
 
 msgid "Run"
 msgstr "Ejecutar"
-
-msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
-
-#, fuzzy
-msgid "Revert report"
-msgstr "Respuesta del revisor"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-01 17:51+0000\n"
+"POT-Creation-Date: 2021-06-09 14:48+0000\n"
 "PO-Revision-Date: 2021-05-29 17:54+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -1579,6 +1579,10 @@ msgid "Delay auto-approval indefinitely"
 msgstr "Otomatik onaylamayı süresiz olarak ertele"
 
 msgid "Delay auto-approval indefinitely and add restrictions"
+msgstr "Otomatik onaylamayı süresiz ertele ve kısıtlama ekle"
+
+#, fuzzy
+msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
 msgstr "Otomatik onaylamayı süresiz ertele ve kısıtlama ekle"
 
 msgid "True positive"
@@ -5461,6 +5465,14 @@ msgstr ""
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr ""
 
+#, fuzzy
+msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
+msgstr "Listelenmemiş otomatik onaylamayı devre dışı bırak"
+
+#, fuzzy
+msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
+msgstr "Listelenmemiş otomatik onaylamayı etkinleştir"
+
 msgid "Auto-Approval currently disabled until {date}"
 msgstr ""
 
@@ -5746,12 +5758,6 @@ msgstr "Durdur"
 
 msgid "Run"
 msgstr "Çalıştır"
-
-msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
-
-msgid "Revert report"
-msgstr "Raporu geri al"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."

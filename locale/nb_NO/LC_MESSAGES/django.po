@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-01 17:51+0000\n"
+"POT-Creation-Date: 2021-06-09 14:48+0000\n"
 "PO-Revision-Date: 2021-05-20 11:49+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1555,6 +1555,10 @@ msgid "Delay auto-approval indefinitely"
 msgstr "Forsink automatisk godkjenning på ubestemt tid"
 
 msgid "Delay auto-approval indefinitely and add restrictions"
+msgstr "Utsett automatisk godkjenning på ubestemt tid og legg til begrensninger"
+
+#, fuzzy
+msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
 msgstr "Utsett automatisk godkjenning på ubestemt tid og legg til begrensninger"
 
 msgid "True positive"
@@ -5397,6 +5401,14 @@ msgstr ""
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr ""
 
+#, fuzzy
+msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
+msgstr "Forsink automatisk godkjenning"
+
+#, fuzzy
+msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
+msgstr "Forsink automatisk godkjenning"
+
 msgid "Auto-Approval currently disabled until {date}"
 msgstr ""
 
@@ -5674,12 +5686,6 @@ msgstr ""
 
 msgid "Run"
 msgstr ""
-
-msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
-
-msgid "Revert report"
-msgstr "Tilbakestill rapport"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."

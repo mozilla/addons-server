@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-01 17:51+0000\n"
+"POT-Creation-Date: 2021-06-09 14:48+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1674,6 +1674,9 @@ msgid "Delay auto-approval indefinitely"
 msgstr ""
 
 msgid "Delay auto-approval indefinitely and add restrictions"
+msgstr ""
+
+msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
 msgstr ""
 
 msgid "True positive"
@@ -5741,6 +5744,14 @@ msgstr "ਮਨਜ਼ੂਰੀ ਦਰਜਾ"
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr "ਮਨਜ਼ੂਰੀ ਦਰਜਾ"
 
+#, fuzzy
+msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
+msgstr "ਮਨਜ਼ੂਰੀ ਦਰਜਾ"
+
+#, fuzzy
+msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
+msgstr "ਮਨਜ਼ੂਰੀ ਦਰਜਾ"
+
 msgid "Auto-Approval currently disabled until {date}"
 msgstr ""
 
@@ -6041,13 +6052,6 @@ msgstr ""
 
 msgid "Run"
 msgstr ""
-
-msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
-
-#, fuzzy
-msgid "Revert report"
-msgstr "ਡਿਵੈਲਪਰ ਖਬਰਾਂ"
 
 #, fuzzy, python-format
 msgid "Invalid \"%s\" parameter."

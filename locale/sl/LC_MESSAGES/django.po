@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-01 17:51+0000\n"
+"POT-Creation-Date: 2021-06-09 14:48+0000\n"
 "PO-Revision-Date: 2021-04-07 08:03+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -1588,6 +1588,10 @@ msgstr "Odloži samodejno odobritev za nedoločen čas"
 
 msgid "Delay auto-approval indefinitely and add restrictions"
 msgstr ""
+
+#, fuzzy
+msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
+msgstr "Odloži samodejno odobritev za nedoločen čas"
 
 msgid "True positive"
 msgstr ""
@@ -5535,6 +5539,14 @@ msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr "Omogoči samodejno odobritev"
 
 #, fuzzy
+msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
+msgstr "Onemogoči samodejno odobritev"
+
+#, fuzzy
+msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
+msgstr "Omogoči samodejno odobritev"
+
+#, fuzzy
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "Nastavljena zastavica „samodejna odobritev onemogočena“"
 
@@ -5823,13 +5835,6 @@ msgstr "Prekini"
 
 msgid "Run"
 msgstr "Zaženi"
-
-msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
-
-#, fuzzy
-msgid "Revert report"
-msgstr "Odgovor pregledovalca"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."

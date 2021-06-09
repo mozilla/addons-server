@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-01 17:51+0000\n"
+"POT-Creation-Date: 2021-06-09 14:48+0000\n"
 "PO-Revision-Date: 2021-05-28 10:57+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
@@ -1580,6 +1580,10 @@ msgid "Delay auto-approval indefinitely"
 msgstr "Odgodi automatsko odobravanje u nedogled"
 
 msgid "Delay auto-approval indefinitely and add restrictions"
+msgstr "Odgodi automatsko odobravanje na neodređeno vrijeme i dodaj ograničenja"
+
+#, fuzzy
+msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
 msgstr "Odgodi automatsko odobravanje na neodređeno vrijeme i dodaj ograničenja"
 
 msgid "True positive"
@@ -5453,6 +5457,14 @@ msgstr "Deaktiviraj automatsko odobravanje popisa do sljedećeg ručnog odobrava
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr "Aktiviraj automatsko odobravanje popisa do sljedećeg ručnog odobravanja"
 
+#, fuzzy
+msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
+msgstr "Deaktiviraj automatsko odobravanje popisa do sljedećeg ručnog odobravanja"
+
+#, fuzzy
+msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
+msgstr "Aktiviraj automatsko odobravanje popisa do sljedećeg ručnog odobravanja"
+
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "Automatsko odobravanje je trenutačno deaktivirano do {date}"
 
@@ -5730,13 +5742,6 @@ msgstr "Prekini"
 
 msgid "Run"
 msgstr "Pokreni"
-
-msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
-
-# 100%
-msgid "Revert report"
-msgstr "Poništi izvještaj"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."

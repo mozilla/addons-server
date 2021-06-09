@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-01 17:51+0000\n"
+"POT-Creation-Date: 2021-06-09 14:48+0000\n"
 "PO-Revision-Date: 2021-03-16 22:18+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -1588,6 +1588,10 @@ msgid "Delay auto-approval indefinitely"
 msgstr "Atrasar a aprovação automática indefinidamente"
 
 msgid "Delay auto-approval indefinitely and add restrictions"
+msgstr "Atrasar a aprovação automática indefinidamente e adicionar restrições"
+
+#, fuzzy
+msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
 msgstr "Atrasar a aprovação automática indefinidamente e adicionar restrições"
 
 msgid "True positive"
@@ -5528,6 +5532,14 @@ msgstr "Desativar a aprovação automática para listagem até à próxima aprov
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr "Ativar aprovação automática para listagem antes da próxima aprovação manual"
 
+#, fuzzy
+msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
+msgstr "Desativar a aprovação automática para listagem até à próxima aprovação manual"
+
+#, fuzzy
+msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
+msgstr "Ativar aprovação automática para listagem antes da próxima aprovação manual"
+
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "A aprovação automática está atualmente desativada até {date}"
 
@@ -5803,12 +5815,6 @@ msgstr "Abortar"
 
 msgid "Run"
 msgstr "Executar"
-
-msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr "Útil quando o resultado do pesquisador é um positivo verdadeiro, mas o extra não é malicioso"
-
-msgid "Revert report"
-msgstr "Reverter relatório"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
