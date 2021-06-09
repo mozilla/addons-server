@@ -5381,9 +5381,8 @@ msgstr "启用上架项目自动通过审核，在下次人工审核通过"
 msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
 msgstr "禁用上架项目自动通过审核，直到下次人工审核通过"
 
-#, fuzzy
 msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
-msgstr "启用上架项目自动通过审核，在下次人工审核通过"
+msgstr ""
 
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "已禁用“自动批准”到 {date} 为止"
