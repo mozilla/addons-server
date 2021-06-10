@@ -89,5 +89,4 @@ def write_sitemaps(section=None, app_name=None):
             sitemap_object = sitemaps.get((_section, amo.APPS.get(_app_name)))
             if not sitemap_object:
                 continue
-            content = sitemap_object.render_xml(_app_name, _page)
-            sitemap_file.write(content)
+            sitemap_file.write(sitemap_object.render(app_name=_app_name, page=_page))

@@ -204,7 +204,7 @@ def sitemap(request):
                 sitemap_object = sitemaps.get((section, amo.APPS.get(app)))
                 if not sitemap_object:
                     raise InvalidSection
-                content = sitemap_object.render_xml(app, page)
+                content = sitemap_object.render(app, page)
         except EmptyPage:
             raise Http404('Page %s empty' % page)
         except PageNotAnInteger:
