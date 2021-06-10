@@ -46,7 +46,7 @@ def repack_fileupload(results, upload_pk):
                         # We don't need a `zip_file` because we are only
                         # interested in the extracted data.
                         json_data = ManifestJSONExtractor(
-                            zip_file=None, data=manifest.read_text()
+                            zip_file=None, data=manifest.read_bytes()
                         ).data
                         manifest.write_text(json.dumps(json_data, indent=2))
             except Exception as exc:
