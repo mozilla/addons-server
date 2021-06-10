@@ -942,7 +942,7 @@ def version_factory(file_kw=None, **kw):
 
 
 @pytest.mark.es_tests
-class ESTestCase(TestCase):
+class ESTestCaseMixin:
     @classmethod
     def get_index_name(cls, key):
         return get_es_index_name(key)
@@ -953,18 +953,14 @@ class ESTestCase(TestCase):
         # right before each test.
         stop_es_mocks()
         cls.es = amo_search.get_es(timeout=settings.ES_TIMEOUT)
-        super(ESTestCase, cls).setUpClass()
+        setup_es_test_data(cls.es)
+        super().setUpClass()
 
     def setUp(self):
         # Stop the mocks again, we stopped them in `setUpClass` but our
         # generic pytest fixture started the mocks in the meantime
         stop_es_mocks()
-        super(ESTestCase, self).setUp()
-
-    @classmethod
-    def setUpTestData(cls):
-        setup_es_test_data(cls.es)
-        super(ESTestCase, cls).setUpTestData()
+        super().setUp()
 
     @classmethod
     def refresh(cls, index='default'):
@@ -986,6 +982,10 @@ class ESTestCase(TestCase):
             body={'query': {'match_all': {}}},
             conflicts='proceed',
         )
+
+
+class ESTestCase(ESTestCaseMixin, TestCase):
+    pass
 
 
 class ESTestCaseWithAddons(ESTestCase):
