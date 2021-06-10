@@ -71,18 +71,23 @@ def gc(test_result=True):
     FakeEmail.objects.filter(created__lte=days_ago(90)).delete()
 
 
-def write_sitemaps():
+def write_sitemaps(section=None, app_name=None):
     index_url = get_sitemap_path(None, None)
     sitemaps = get_sitemaps()
-    with storage.open(index_url, 'w') as index_file:
-        log.info('Writing sitemap index')
-        index_file.write(render_index_xml(sitemaps))
-    for section, app_name, page in get_sitemap_section_pages(sitemaps):
-        log.info(f'Writing sitemap file for {section}, {app_name}, {page}')
-        filename = get_sitemap_path(section, app_name, page)
+    if (not section or section == 'index') and not app_name:
+        with storage.open(index_url, 'w') as index_file:
+            log.info('Writing sitemap index')
+            index_file.write(render_index_xml(sitemaps))
+    for _section, _app_name, _page in get_sitemap_section_pages(sitemaps):
+        if (section and section != _section) or (app_name and app_name != _app_name):
+            continue
+        if _page % 1000 == 1:
+            # log an info message every 1000 pages in a _section, _app_name
+            log.info(f'Writing sitemap file for {_section}, {_app_name}, {_page}')
+        filename = get_sitemap_path(_section, _app_name, _page)
         with storage.open(filename, 'w') as sitemap_file:
-            sitemap_object = sitemaps.get((section, amo.APPS.get(app_name)))
+            sitemap_object = sitemaps.get((_section, amo.APPS.get(_app_name)))
             if not sitemap_object:
                 continue
-            content = sitemap_object.render_xml(app_name, page)
+            content = sitemap_object.render_xml(_app_name, _page)
             sitemap_file.write(content)
