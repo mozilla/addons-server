@@ -227,6 +227,7 @@ class Sitemap(DjangoSitemap):
     alternates = True
     # x_default = False  # TODO: enable this when we can validate it works well
     _cached_items = []
+    protocol = urlparse(settings.EXTERNAL_SITE_URL).scheme
 
     def __init__(self, *args, **kwargs):
         self.timer = StopWatch(f'amo.sitemap.{self.__class__.__name__}.render_xml')
@@ -242,7 +243,7 @@ class Sitemap(DjangoSitemap):
 
     def _items(self):
         items = self.items()
-        self.timer.log_interval('items')
+        self.timer.log_interval('# items returned')
         if self.i18n:
             # Create (item, lang_code) tuples for all items and languages.
             # This is necessary to paginate with all languages already considered.
@@ -252,22 +253,28 @@ class Sitemap(DjangoSitemap):
     def items(self):
         return self._cached_items
 
-    def render_xml(self, app_name, page):
-        self.timer.start()
-        site_url = urlparse(settings.EXTERNAL_SITE_URL)
-        # Sitemap.get_urls wants a Site instance to get the domain, so just fake it.
-        site = namedtuple('FakeSite', 'domain')(site_url.netloc)
+    def get_domain(self, site):
+        if not site:
+            if not hasattr(self, 'domain'):
+                self.domain = urlparse(settings.EXTERNAL_SITE_URL).netloc
+            return self.domain
+        return super().get_domain(site=site)
+
+    def get_urls(self, page=1, site=None, protocol=None, *, app_name=None):
         with override_url_prefix(app_name=app_name):
-            self.timer.log_interval('setup-done')
-            xml = loader.render_to_string(
-                'sitemap.xml',
-                {
-                    'urlset': self.get_urls(
-                        page=page, site=site, protocol=site_url.scheme
-                    )
-                },
-            )
-        self.timer.log_interval('finish')
+            return super().get_urls(page=page, site=site, protocol=protocol)
+
+    @cached_property
+    def template(self):
+        return loader.get_template('sitemap.xml')
+
+    def render(self, app_name, page):
+        self.timer.start()
+        self.timer.log_interval('# setup done')
+        context = {'urlset': self.get_urls(page=page, app_name=app_name)}
+        self.timer.log_interval('# get_urls returned')
+        xml = self.template.render(context)
+        self.timer.log_interval('# finish')
         return xml
 
     @property

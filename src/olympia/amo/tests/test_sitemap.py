@@ -439,7 +439,7 @@ def test_render_index_xml():
             assert built == sitemap.read()
 
 
-def test_sitemap_render_xml():
+def test_sitemap_render():
     def items_mock(self):
         return [
             AddonSitemap.item_tuple(
@@ -472,13 +472,13 @@ def test_sitemap_render_xml():
         ]
 
     with mock.patch.object(AddonSitemap, 'items', items_mock):
-        firefox_built = AddonSitemap().render_xml('firefox', 1)
+        firefox_built = AddonSitemap().render('firefox', 1)
 
         firefox_file = os.path.join(TEST_SITEMAPS_DIR, 'sitemap-addons-firefox.xml')
         with open(firefox_file) as sitemap:
             assert firefox_built == sitemap.read()
 
-        android_built = AddonSitemap().render_xml('android', 1)
+        android_built = AddonSitemap().render('android', 1)
         android_file = os.path.join(TEST_SITEMAPS_DIR, 'sitemap-addons-android.xml')
         with open(android_file) as sitemap:
             assert android_built == sitemap.read()
