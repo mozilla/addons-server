@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-09 14:48+0000\n"
-"PO-Revision-Date: 2021-06-10 08:11+0000\n"
+"PO-Revision-Date: 2021-06-10 15:12+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4365,7 +4365,7 @@ msgstr "Sekles tigrummiwin n yiccaren s yisem n ticraḍ n yisebtar yelhan i use
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Tabs and bookmarks neatly organized in a Firefox side view."
-msgstr ""
+msgstr "Accaren d tecraḍ n yisebtar ddsen akken iwata deg yiwet n teskant tagalist n Firefox."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
