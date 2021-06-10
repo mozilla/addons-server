@@ -103,6 +103,31 @@ class TestRepackFileUpload(UploadTest, TestCase):
                 assert manifest.read().decode() == manifest_with_comments
 
     @override_switch('enable-manifest-normalization', active=True)
+    def test_normalize_manifest_json_with_bom(self):
+        upload = self.get_upload('webextension.xpi')
+        fake_results = {'errors': 0}
+        with zipfile.ZipFile(upload.path, 'w') as z:
+            manifest = b'\xef\xbb\xbf{"manifest_version": 2, "name": "..."}'
+            z.writestr('manifest.json', manifest)
+
+        repack_fileupload(fake_results, upload.pk)
+        upload.reload()
+
+        with zipfile.ZipFile(upload.path) as z:
+            with z.open('manifest.json') as manifest:
+                # Make sure it is valid JSON
+                assert json.loads(manifest.read())
+                manifest.seek(0)
+                assert manifest.read().decode() == '\n'.join(
+                    [
+                        '{',
+                        '  "manifest_version": 2,',
+                        '  "name": "..."',
+                        '}',
+                    ]
+                )
+
+    @override_switch('enable-manifest-normalization', active=True)
     def test_normalize_manifest_json(self):
         upload = self.get_upload('webextension.xpi')
         fake_results = {'errors': 0}
