@@ -397,11 +397,11 @@ def test_get_sitemap_section_pages():
     def items_mock(self):
         return [
             AccountSitemap.item_tuple(datetime.now(), user_id, 7, 8)
-            for user_id in range(0, 201)
+            for user_id in range(0, 401)
         ]
 
     with mock.patch.object(AccountSitemap, 'items', items_mock):
-        # 201 mock user pages * 10 locales = 2010 urls for addons; 3 pages @ 1000pp
+        # 401 mock user pages * 10 locales = 4010 urls for addons; 3 pages @ 2000pp
         pages = get_sitemap_section_pages(sitemaps)
         assert pages == [
             ('amo', None, 1),
