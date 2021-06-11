@@ -221,7 +221,7 @@ class LazyTupleList:
 
 
 class Sitemap(DjangoSitemap):
-    limit = 1000
+    limit = 2000
     i18n = True
     languages = FRONTEND_LANGUAGES
     alternates = True
