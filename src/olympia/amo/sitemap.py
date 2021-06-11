@@ -274,7 +274,7 @@ class Sitemap(DjangoSitemap):
         context = {'urlset': self.get_urls(page=page, app_name=app_name)}
         self.timer.log_interval('# get_urls returned')
         xml = self.template.render(context)
-        self.timer.log_interval('# finish')
+        self.timer.log_interval('# render finish')
         return xml
 
     @property
