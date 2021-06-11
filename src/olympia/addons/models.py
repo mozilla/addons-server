@@ -10,9 +10,9 @@ from datetime import datetime
 from urllib.parse import urlsplit
 
 from django.conf import settings
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
 from django.db import models, transaction
-from django.db.models import F, Max, Q, signals as dbsignals
+from django.db.models import F, Max, Min, Q, signals as dbsignals
 from django.dispatch import receiver
 from django.urls import reverse
 from django.utils import translation
@@ -237,6 +237,7 @@ class AddonManager(ManagerBase):
         admin_reviewer=False,
         admin_content_review=False,
         show_pending_rejection=False,
+        listed=True,
     ):
         qs = (
             self.get_queryset()
@@ -251,6 +252,12 @@ class AddonManager(ManagerBase):
             .select_related(
                 'addonapprovalscounter',
                 'reviewerflags',
+            )
+        )
+        if listed:
+            # We need those joins for the listed queues to work without making
+            # extra queries.
+            qs = qs.select_related(
                 '_current_version',
                 '_current_version__autoapprovalsummary',
                 '_current_version__reviewerflags',
@@ -258,8 +265,14 @@ class AddonManager(ManagerBase):
             ).prefetch_related(
                 '_current_version__files',
             )
-        )
         if not show_pending_rejection:
+            if not listed:
+                # Can't combine these, because the filter is on `_current_version`
+                # which doesn't make sense for unlisted. It needs to be manually added
+                # to the same filter/Q object that joins on `versions` for unlisted.
+                raise ImproperlyConfigured(
+                    'Can not combine show_pending_rejection=False with listed=False'
+                )
             qs = qs.filter(
                 _current_version__reviewerflags__pending_rejection__isnull=True
             )
@@ -269,6 +282,28 @@ class AddonManager(ManagerBase):
             else:
                 qs = qs.exclude(reviewerflags__needs_admin_code_review=True)
         return qs
+
+    def get_unlisted_pending_manual_approval_queue(self, admin_reviewer=False):
+        qs = self.get_base_queryset_for_queue(
+            listed=False, show_pending_rejection=True, admin_reviewer=admin_reviewer
+        )
+        filters = Q(
+            versions__channel=amo.RELEASE_CHANNEL_UNLISTED,
+            versions__files__status=amo.STATUS_AWAITING_REVIEW,
+            type__in=amo.GROUP_TYPE_ADDON,
+            versions__reviewerflags__pending_rejection__isnull=True,
+        ) & (
+            Q(reviewerflags__auto_approval_disabled_unlisted=True)
+            | Q(reviewerflags__auto_approval_disabled_until_next_approval_unlisted=True)
+            | Q(reviewerflags__auto_approval_delayed_until__gt=datetime.now())
+        )
+        return qs.filter(filters).annotate(
+            # These annotations should be applied to versions that match the
+            # filters above. They'll be used to sort the results or just
+            # display the data to reviewers in the queue.
+            first_version_created=Min('versions__created'),
+            worst_score=Max('versions__autoapprovalsummary__score'),
+        )
 
     def get_auto_approved_queue(self, admin_reviewer=False):
         """Return a queryset of Addon objects that have been auto-approved but
