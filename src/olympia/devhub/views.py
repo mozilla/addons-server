@@ -1397,6 +1397,7 @@ WIZARD_COLOR_FIELDS = [
         ),
         False,
     ),
+    ('', '', '', False),  # empty field
     (
         'tab_line',
         _('Tab highlight'),
@@ -1476,7 +1477,8 @@ def _submit_upload(request, addon, channel, next_view, wizard=False):
     )
     unsupported_properties = (
         wizard_unsupported_properties(
-            existing_properties, [field for field, _, _, _ in WIZARD_COLOR_FIELDS]
+            existing_properties,
+            [field for field, _, _, _ in WIZARD_COLOR_FIELDS if field],
         )
         if existing_properties
         else []
