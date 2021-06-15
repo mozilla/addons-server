@@ -59,5 +59,6 @@ class Command(BaseCommand):
         end_millis = datetime.now().timestamp() * 1000
         log.info(
             f'Ending job: {name} {args} {kwargs} '
-            f'(start timestamp: {start_millis}; milliseconds taken: {end_millis - start_millis})'
+            f'(start timestamp: {start_millis}; '
+            f'milliseconds taken: {end_millis - start_millis})'
         )
