@@ -12,9 +12,10 @@ from olympia.amo.tests import TestCase, addon_factory
 from olympia.files.tasks import repack_fileupload, hide_disabled_files
 from olympia.files.tests.test_models import UploadTest
 from olympia.files.utils import SafeZip
+from olympia.files.tests.test_utils import AppVersionsMixin
 
 
-class TestRepackFileUpload(UploadTest, TestCase):
+class TestRepackFileUpload(AppVersionsMixin, UploadTest, TestCase):
     @mock.patch('olympia.files.tasks.move_stored_file')
     @mock.patch('olympia.files.tasks.get_sha256')
     @mock.patch('olympia.files.tasks.shutil')
@@ -101,6 +102,21 @@ class TestRepackFileUpload(UploadTest, TestCase):
         with zipfile.ZipFile(upload.path) as z:
             with z.open('manifest.json') as manifest:
                 assert manifest.read().decode() == manifest_with_comments
+
+    @override_switch('enable-manifest-normalization', active=True)
+    def test_does_not_normalize_manifest_json_when_addon_is_signed(self):
+        upload = self.get_upload('webextension_signed_already.xpi')
+        fake_results = {'errors': 0}
+        with zipfile.ZipFile(upload.path, 'r') as z:
+            with z.open('manifest.json') as manifest:
+                original_manifest = manifest.read().decode()
+
+        repack_fileupload(fake_results, upload.pk)
+        upload.reload()
+
+        with zipfile.ZipFile(upload.path) as z:
+            with z.open('manifest.json') as manifest:
+                assert manifest.read().decode() == original_manifest
 
     @override_switch('enable-manifest-normalization', active=True)
     def test_normalize_manifest_json_with_bom(self):

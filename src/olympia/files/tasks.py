@@ -15,7 +15,12 @@ from olympia.amo.storage_utils import move_stored_file
 from olympia.amo.utils import StopWatch
 from olympia.devhub.tasks import validation_task
 from olympia.files.models import File, FileUpload
-from olympia.files.utils import extract_zip, get_sha256, ManifestJSONExtractor
+from olympia.files.utils import (
+    ManifestJSONExtractor,
+    extract_zip,
+    get_sha256,
+    parse_xpi,
+)
 
 
 log = olympia.core.logger.getLogger('z.files.task')
@@ -40,9 +45,13 @@ def repack_fileupload(results, upload_pk):
                 extract_zip(upload.path, tempdir=tempdir)
 
                 if waffle.switch_is_active('enable-manifest-normalization'):
+                    xpi_data = parse_xpi(upload.path, minimal=True)
                     manifest = Path(tempdir) / 'manifest.json'
 
-                    if manifest.exists():
+                    if (
+                        not xpi_data.get('is_mozilla_signed_extension', False)
+                        and manifest.exists()
+                    ):
                         # We don't need a `zip_file` because we are only
                         # interested in the extracted data.
                         json_data = ManifestJSONExtractor(
