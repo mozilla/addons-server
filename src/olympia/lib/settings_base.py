@@ -311,7 +311,6 @@ JINJA_EXCLUDE_TEMPLATE_PATHS = (
     r'debug_toolbar',
     r'^rangefilter\/',
     r'^registration\/',
-    r'sitemap.xml$',
 )
 
 TEMPLATES = [
@@ -353,6 +352,7 @@ TEMPLATES = [
                 'django_jinja.builtins.extensions.StaticFilesExtension',
                 'django_jinja.builtins.extensions.TimezoneExtension',
                 'django_jinja.builtins.extensions.UrlsExtension',
+                'olympia.amo.templatetags.jinja_helpers.Spaceless',
                 'puente.ext.i18n',
                 'waffle.jinja.WaffleExtension',
             ),
