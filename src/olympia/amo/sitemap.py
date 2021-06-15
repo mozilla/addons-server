@@ -234,11 +234,13 @@ class Sitemap(DjangoSitemap):
         super().__init__(*args, **kwargs)
 
     def _location(self, item, force_lang_code=None):
+        # modified from Django implementation - we don't rely on locale for urls
         if self.i18n:
             obj, lang_code = item
-            # modified from Django implementation - we don't rely on locale for urls
-            with override_url_prefix(locale=(force_lang_code or lang_code)):
-                return self.location(obj)
+            # Doing .replace is hacky, but `override_url_prefix` is slow at scale
+            return self.location(obj).replace(
+                settings.LANGUAGE_CODE, force_lang_code or lang_code, 1
+            )
         return self.location(item)
 
     def _items(self):
@@ -292,9 +294,7 @@ def get_android_promoted_addons():
 
 
 class AddonSitemap(Sitemap):
-    item_tuple = namedtuple(
-        'Item', ['last_updated', 'slug', 'urlname', 'page'], defaults=(1,)
-    )
+    item_tuple = namedtuple('Item', ['last_updated', 'url', 'page'], defaults=(1,))
 
     @cached_property
     def _cached_items(self):
@@ -321,7 +321,10 @@ class AddonSitemap(Sitemap):
             .iterator()
         )
         items = [
-            self.item_tuple(addon.last_updated, addon.slug, 'detail')
+            self.item_tuple(
+                addon.last_updated,
+                reverse('addons.detail', args=[addon.slug]),
+            )
             for addon in addons
         ]
         # add pages for ratings - and extra pages when needed to paginate
@@ -329,7 +332,11 @@ class AddonSitemap(Sitemap):
         for addon in addons:
             pages_needed = math.ceil((addon.text_ratings_count or 1) / page_size)
             items.extend(
-                self.item_tuple(addon.last_updated, addon.slug, 'ratings.list', page)
+                self.item_tuple(
+                    addon.last_updated,
+                    reverse('addons.ratings.list', args=[addon.slug]),
+                    page,
+                )
                 for page in range(1, pages_needed + 1)
             )
         return items
@@ -338,9 +345,7 @@ class AddonSitemap(Sitemap):
         return item.last_updated
 
     def location(self, item):
-        return reverse(f'addons.{item.urlname}', args=[item.slug]) + (
-            f'?page={item.page}' if item.page > 1 else ''
-        )
+        return item.url + (f'?page={item.page}' if item.page > 1 else '')
 
 
 class AMOSitemap(Sitemap):
@@ -428,7 +433,7 @@ class CollectionSitemap(Sitemap):
 class AccountSitemap(Sitemap):
     item_tuple = namedtuple(
         'AccountItem',
-        ['addons_updated', 'id', 'extension_page', 'theme_page'],
+        ['addons_updated', 'url', 'extension_page', 'theme_page'],
         defaults=(1, 1),
     )
 
@@ -482,12 +487,22 @@ class AccountSitemap(Sitemap):
                 (user.theme_count or 1) / THEMES_BY_AUTHORS_PAGE_SIZE
             )
             items.extend(
-                self.item_tuple(user.addons_updated, user.id, ext_page, 1)
+                self.item_tuple(
+                    user.addons_updated,
+                    reverse('users.profile', args=[user.id]),
+                    ext_page,
+                    1,
+                )
                 for ext_page in range(1, extension_pages_needed + 1)
             )
             # start themes at 2 because we don't want (1, 1) twice
             items.extend(
-                self.item_tuple(user.addons_updated, user.id, 1, theme_page)
+                self.item_tuple(
+                    user.addons_updated,
+                    reverse('users.profile', args=[user.id]),
+                    1,
+                    theme_page,
+                )
                 for theme_page in range(2, theme_pages_needed + 1)
             )
         return items
@@ -500,7 +515,7 @@ class AccountSitemap(Sitemap):
             ([f'page_e={item.extension_page}'] if item.extension_page > 1 else [])
             + ([f'page_t={item.theme_page}'] if item.theme_page > 1 else [])
         )
-        return UserProfile.create_user_url(item.id) + (f'?{urlargs}' if urlargs else '')
+        return item.url + (f'?{urlargs}' if urlargs else '')
 
 
 def get_sitemaps():

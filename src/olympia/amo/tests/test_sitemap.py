@@ -57,12 +57,24 @@ class TestAddonSitemap(TestCase):
         )  # shouldn't show up in expected
         self.make_addon_promoted(self.android_addon, RECOMMENDED, approve_version=True)
         self.expected = [
-            it(addon_c.last_updated, addon_c.slug, 'detail', 1),
-            it(addon_a.last_updated, addon_a.slug, 'detail', 1),
-            it(addon_b.last_updated, addon_b.slug, 'detail', 1),
-            it(addon_c.last_updated, addon_c.slug, 'ratings.list', 1),
-            it(addon_a.last_updated, addon_a.slug, 'ratings.list', 1),
-            it(addon_b.last_updated, addon_b.slug, 'ratings.list', 1),
+            it(addon_c.last_updated, reverse('addons.detail', args=[addon_c.slug]), 1),
+            it(addon_a.last_updated, reverse('addons.detail', args=[addon_a.slug]), 1),
+            it(addon_b.last_updated, reverse('addons.detail', args=[addon_b.slug]), 1),
+            it(
+                addon_c.last_updated,
+                reverse('addons.ratings.list', args=[addon_c.slug]),
+                1,
+            ),
+            it(
+                addon_a.last_updated,
+                reverse('addons.ratings.list', args=[addon_a.slug]),
+                1,
+            ),
+            it(
+                addon_b.last_updated,
+                reverse('addons.ratings.list', args=[addon_b.slug]),
+                1,
+            ),
         ]
 
     def test_basic(self):
@@ -70,9 +82,7 @@ class TestAddonSitemap(TestCase):
         items = list(sitemap.items())
         assert items == self.expected
         for item in sitemap.items():
-            assert sitemap.location(item) == reverse(
-                'addons.' + item.urlname, args=[item.slug]
-            )
+            assert sitemap.location(item) == item.url
             assert '/en-US/firefox/' in sitemap.location(item)
             assert sitemap.lastmod(item) == item.last_updated
 
@@ -91,7 +101,9 @@ class TestAddonSitemap(TestCase):
             items_with_ratings = list(sitemap.items())
         # only one extra url, for a second ratings page, because PAGE_SIZE = 2
         extra_rating = AddonSitemap.item_tuple(
-            self.addon_c.last_updated, self.addon_c.slug, 'ratings.list', 2
+            self.addon_c.last_updated,
+            reverse('addons.ratings.list', args=[self.addon_c.slug]),
+            2,
         )
         assert extra_rating in items_with_ratings
         assert set(items_with_ratings) - set(self.expected) == {extra_rating}
@@ -104,8 +116,16 @@ class TestAddonSitemap(TestCase):
         android_addon = self.android_addon
         with override_url_prefix(app_name='android'):
             assert list(AddonSitemap().items()) == [
-                it(android_addon.last_updated, android_addon.slug, 'detail', 1),
-                it(android_addon.last_updated, android_addon.slug, 'ratings.list', 1),
+                it(
+                    android_addon.last_updated,
+                    reverse('addons.detail', args=[android_addon.slug]),
+                    1,
+                ),
+                it(
+                    android_addon.last_updated,
+                    reverse('addons.ratings.list', args=[android_addon.slug]),
+                    1,
+                ),
             ]
             # make some of the Firefox add-ons be Android compatible
             version_factory(addon=self.addon_a, application=amo.ANDROID.id)
@@ -114,10 +134,26 @@ class TestAddonSitemap(TestCase):
             version_factory(addon=self.addon_b, application=amo.ANDROID.id)
             # don't make b recommended - should be ignored even though it's compatible
             assert list(AddonSitemap().items()) == [
-                it(self.addon_a.last_updated, self.addon_a.slug, 'detail', 1),
-                it(android_addon.last_updated, android_addon.slug, 'detail', 1),
-                it(self.addon_a.last_updated, self.addon_a.slug, 'ratings.list', 1),
-                it(android_addon.last_updated, android_addon.slug, 'ratings.list', 1),
+                it(
+                    self.addon_a.last_updated,
+                    reverse('addons.detail', args=[self.addon_a.slug]),
+                    1,
+                ),
+                it(
+                    android_addon.last_updated,
+                    reverse('addons.detail', args=[android_addon.slug]),
+                    1,
+                ),
+                it(
+                    self.addon_a.last_updated,
+                    reverse('addons.ratings.list', args=[self.addon_a.slug]),
+                    1,
+                ),
+                it(
+                    android_addon.last_updated,
+                    reverse('addons.ratings.list', args=[android_addon.slug]),
+                    1,
+                ),
             ]
 
 
@@ -207,12 +243,25 @@ class TestAccountSitemap(TestCase):
         sitemap = AccountSitemap()
         items = list(sitemap.items())
         assert items == [
-            (theme.last_updated, user_with_both.id, 1, 1),
-            (theme.last_updated, user_with_themes.id, 1, 1),
-            (extension.last_updated, user_with_extensions.id, 1, 1),
+            (
+                theme.last_updated,
+                reverse('users.profile', args=[user_with_both.id]),
+                1,
+                1,
+            ),
+            (
+                theme.last_updated,
+                reverse('users.profile', args=[user_with_themes.id]),
+                1,
+                1,
+            ),
+            (
+                extension.last_updated,
+                reverse('users.profile', args=[user_with_extensions.id]),
+                1,
+                1,
+            ),
         ]
-        for item in sitemap.items():
-            assert sitemap.location(item) == reverse('users.profile', args=[item.id])
 
     @mock.patch('olympia.amo.sitemap.EXTENSIONS_BY_AUTHORS_PAGE_SIZE', 2)
     @mock.patch('olympia.amo.sitemap.THEMES_BY_AUTHORS_PAGE_SIZE', 3)
@@ -241,42 +290,142 @@ class TestAccountSitemap(TestCase):
         sitemap = AccountSitemap()
         paginated_items = list(sitemap.items())
         assert paginated_items == [
-            (extra_theme_c.last_updated, user_with_both.id, 1, 1),
-            (extra_theme_c.last_updated, user_with_both.id, 2, 1),
-            (extra_theme_c.last_updated, user_with_both.id, 1, 2),
-            (extra_theme_c.last_updated, user_with_themes.id, 1, 1),
-            (extra_theme_c.last_updated, user_with_themes.id, 1, 2),
-            (extra_extension_b.last_updated, user_with_extensions.id, 1, 1),
-            (extra_extension_b.last_updated, user_with_extensions.id, 2, 1),
+            (
+                extra_theme_c.last_updated,
+                reverse('users.profile', args=[user_with_both.id]),
+                1,
+                1,
+            ),
+            (
+                extra_theme_c.last_updated,
+                reverse('users.profile', args=[user_with_both.id]),
+                2,
+                1,
+            ),
+            (
+                extra_theme_c.last_updated,
+                reverse('users.profile', args=[user_with_both.id]),
+                1,
+                2,
+            ),
+            (
+                extra_theme_c.last_updated,
+                reverse('users.profile', args=[user_with_themes.id]),
+                1,
+                1,
+            ),
+            (
+                extra_theme_c.last_updated,
+                reverse('users.profile', args=[user_with_themes.id]),
+                1,
+                2,
+            ),
+            (
+                extra_extension_b.last_updated,
+                reverse('users.profile', args=[user_with_extensions.id]),
+                1,
+                1,
+            ),
+            (
+                extra_extension_b.last_updated,
+                reverse('users.profile', args=[user_with_extensions.id]),
+                2,
+                1,
+            ),
         ]
         # repeat, but after changing some of the addons so they wouldn't be visible
         extra_theme_a.update(status=amo.STATUS_NOMINATED)
         assert list(AccountSitemap().items()) == [
             # now only one page of themes for both users
-            (extra_theme_c.last_updated, user_with_both.id, 1, 1),
-            (extra_theme_c.last_updated, user_with_both.id, 2, 1),
-            (extra_theme_c.last_updated, user_with_themes.id, 1, 1),
-            (extra_extension_b.last_updated, user_with_extensions.id, 1, 1),
-            (extra_extension_b.last_updated, user_with_extensions.id, 2, 1),
+            (
+                extra_theme_c.last_updated,
+                reverse('users.profile', args=[user_with_both.id]),
+                1,
+                1,
+            ),
+            (
+                extra_theme_c.last_updated,
+                reverse('users.profile', args=[user_with_both.id]),
+                2,
+                1,
+            ),
+            (
+                extra_theme_c.last_updated,
+                reverse('users.profile', args=[user_with_themes.id]),
+                1,
+                1,
+            ),
+            (
+                extra_extension_b.last_updated,
+                reverse('users.profile', args=[user_with_extensions.id]),
+                1,
+                1,
+            ),
+            (
+                extra_extension_b.last_updated,
+                reverse('users.profile', args=[user_with_extensions.id]),
+                2,
+                1,
+            ),
         ]
         user_with_both.addonuser_set.filter(addon=extra_extension_a).update(
             listed=False
         )
         assert list(AccountSitemap().items()) == [
-            (extra_theme_c.last_updated, user_with_both.id, 1, 1),
-            (extra_theme_c.last_updated, user_with_themes.id, 1, 1),
-            (extra_extension_b.last_updated, user_with_extensions.id, 1, 1),
+            (
+                extra_theme_c.last_updated,
+                reverse('users.profile', args=[user_with_both.id]),
+                1,
+                1,
+            ),
+            (
+                extra_theme_c.last_updated,
+                reverse('users.profile', args=[user_with_themes.id]),
+                1,
+                1,
+            ),
+            (
+                extra_extension_b.last_updated,
+                reverse('users.profile', args=[user_with_extensions.id]),
+                1,
+                1,
+            ),
             # user_with_extensions still has 2 pages of extensions though
-            (extra_extension_b.last_updated, user_with_extensions.id, 2, 1),
+            (
+                extra_extension_b.last_updated,
+                reverse('users.profile', args=[user_with_extensions.id]),
+                2,
+                1,
+            ),
         ]
         extra_theme_c.delete()
         assert list(AccountSitemap().items()) == [
             # the date used for lastmod has changed
-            (extra_theme_b.last_updated, user_with_both.id, 1, 1),
-            (extra_theme_b.last_updated, user_with_themes.id, 1, 1),
-            (extra_extension_b.last_updated, user_with_extensions.id, 1, 1),
+            (
+                extra_theme_b.last_updated,
+                reverse('users.profile', args=[user_with_both.id]),
+                1,
+                1,
+            ),
+            (
+                extra_theme_b.last_updated,
+                reverse('users.profile', args=[user_with_themes.id]),
+                1,
+                1,
+            ),
+            (
+                extra_extension_b.last_updated,
+                reverse('users.profile', args=[user_with_extensions.id]),
+                1,
+                1,
+            ),
             # user_with_extensions still has 2 pages of extensions though
-            (extra_extension_b.last_updated, user_with_extensions.id, 2, 1),
+            (
+                extra_extension_b.last_updated,
+                reverse('users.profile', args=[user_with_extensions.id]),
+                2,
+                1,
+            ),
         ]
         # and check that deleting roles works too
         user_with_both.addonuser_set.filter(addon=extra_theme_b).update(
@@ -284,10 +433,30 @@ class TestAccountSitemap(TestCase):
         )
         assert list(AccountSitemap().items()) == [
             # the date used for lastmod has changed, and the order too
-            (extra_theme_b.last_updated, user_with_themes.id, 1, 1),
-            (extra_extension_b.last_updated, user_with_both.id, 1, 1),
-            (extra_extension_b.last_updated, user_with_extensions.id, 1, 1),
-            (extra_extension_b.last_updated, user_with_extensions.id, 2, 1),
+            (
+                extra_theme_b.last_updated,
+                reverse('users.profile', args=[user_with_themes.id]),
+                1,
+                1,
+            ),
+            (
+                extra_extension_b.last_updated,
+                reverse('users.profile', args=[user_with_both.id]),
+                1,
+                1,
+            ),
+            (
+                extra_extension_b.last_updated,
+                reverse('users.profile', args=[user_with_extensions.id]),
+                1,
+                1,
+            ),
+            (
+                extra_extension_b.last_updated,
+                reverse('users.profile', args=[user_with_extensions.id]),
+                2,
+                1,
+            ),
         ]
 
     @mock.patch('olympia.amo.sitemap.EXTENSIONS_BY_AUTHORS_PAGE_SIZE', 2)
@@ -334,17 +503,47 @@ class TestAccountSitemap(TestCase):
         # there would be 3 addons but one of them isn't promoted
         with override_url_prefix(app_name='android'):
             assert list(AccountSitemap().items()) == [
-                (extra_extension_a.last_updated, user_with_both.id, 1, 1),
-                (extra_extension_a.last_updated, user_with_extensions.id, 1, 1),
+                (
+                    extra_extension_a.last_updated,
+                    reverse('users.profile', args=[user_with_both.id]),
+                    1,
+                    1,
+                ),
+                (
+                    extra_extension_a.last_updated,
+                    reverse('users.profile', args=[user_with_extensions.id]),
+                    1,
+                    1,
+                ),
             ]
 
         self.make_addon_promoted(extra_extension_b, RECOMMENDED, approve_version=True)
         with override_url_prefix(app_name='android'):
             assert list(AccountSitemap().items()) == [
-                (extra_extension_b.last_updated, user_with_both.id, 1, 1),
-                (extra_extension_b.last_updated, user_with_both.id, 2, 1),
-                (extra_extension_b.last_updated, user_with_extensions.id, 1, 1),
-                (extra_extension_b.last_updated, user_with_extensions.id, 2, 1),
+                (
+                    extra_extension_b.last_updated,
+                    reverse('users.profile', args=[user_with_both.id]),
+                    1,
+                    1,
+                ),
+                (
+                    extra_extension_b.last_updated,
+                    reverse('users.profile', args=[user_with_both.id]),
+                    2,
+                    1,
+                ),
+                (
+                    extra_extension_b.last_updated,
+                    reverse('users.profile', args=[user_with_extensions.id]),
+                    1,
+                    1,
+                ),
+                (
+                    extra_extension_b.last_updated,
+                    reverse('users.profile', args=[user_with_extensions.id]),
+                    2,
+                    1,
+                ),
             ]
         # delete user_with_both from extra_extension_b
         user_with_both.addonuser_set.filter(addon=extra_extension_b).update(
@@ -352,9 +551,24 @@ class TestAccountSitemap(TestCase):
         )
         with override_url_prefix(app_name='android'):
             assert list(AccountSitemap().items()) == [
-                (extra_extension_b.last_updated, user_with_extensions.id, 1, 1),
-                (extra_extension_b.last_updated, user_with_extensions.id, 2, 1),
-                (extra_extension_a.last_updated, user_with_both.id, 1, 1),
+                (
+                    extra_extension_b.last_updated,
+                    reverse('users.profile', args=[user_with_extensions.id]),
+                    1,
+                    1,
+                ),
+                (
+                    extra_extension_b.last_updated,
+                    reverse('users.profile', args=[user_with_extensions.id]),
+                    2,
+                    1,
+                ),
+                (
+                    extra_extension_a.last_updated,
+                    reverse('users.profile', args=[user_with_both.id]),
+                    1,
+                    1,
+                ),
             ]
 
 
@@ -438,22 +652,28 @@ def test_sitemap_render():
     def items_mock(self):
         return [
             AddonSitemap.item_tuple(
-                datetime(2020, 10, 2, 0, 0, 0), 'delicious-barbeque', 'detail'
+                datetime(2020, 10, 2, 0, 0, 0),
+                reverse('addons.detail', args=['delicious-barbeque']),
             ),
             AddonSitemap.item_tuple(
-                datetime(2020, 10, 1, 0, 0, 0), 'spicy-sandwich', 'detail'
+                datetime(2020, 10, 1, 0, 0, 0),
+                reverse('addons.detail', args=['spicy-sandwich']),
             ),
             AddonSitemap.item_tuple(
-                datetime(2020, 9, 30, 0, 0, 0), 'delicious-chocolate', 'detail'
+                datetime(2020, 9, 30, 0, 0, 0),
+                reverse('addons.detail', args=['delicious-chocolate']),
             ),
             AddonSitemap.item_tuple(
-                datetime(2020, 10, 2, 0, 0, 0), 'delicious-barbeque', 'ratings.list'
+                datetime(2020, 10, 2, 0, 0, 0),
+                reverse('addons.ratings.list', args=['delicious-barbeque']),
             ),
             AddonSitemap.item_tuple(
-                datetime(2020, 10, 1, 0, 0, 0), 'spicy-sandwich', 'ratings.list'
+                datetime(2020, 10, 1, 0, 0, 0),
+                reverse('addons.ratings.list', args=['spicy-sandwich']),
             ),
             AddonSitemap.item_tuple(
-                datetime(2020, 9, 30, 0, 0, 0), 'delicious-chocolate', 'ratings.list'
+                datetime(2020, 9, 30, 0, 0, 0),
+                reverse('addons.ratings.list', args=['delicious-chocolate']),
             ),
         ]
 
