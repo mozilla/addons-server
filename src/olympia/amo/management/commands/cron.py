@@ -55,7 +55,7 @@ class Command(BaseCommand):
         )
 
         getattr(module, name)(*args, **kwargs)
-        
+
         end_millis = datetime.now().timestamp() * 1000
         log.info(
             f'Ending job: {name} {args} {kwargs} '
