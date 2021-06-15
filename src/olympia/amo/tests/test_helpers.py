@@ -446,3 +446,35 @@ class TestMediaUrl(TestCase):
         settings.MEDIA_URL = '/mediapath/'
         url = jinja_helpers.user_media_url('userpics')
         assert url == '/mediapath/userpics/'
+
+
+SPACELESS_TEMPLATE = """
+<div>    <div>outside</div>
+
+    <b>tag</b>   <em>is fine</em>
+    {% spaceless %}
+    <div prop="   inside props is left alone   ">not</div>
+
+    <i>space </i>   <span>between
+    </span>
+
+    {% endspaceless %}
+<div>outside again </div>
+
+</div>
+"""
+
+
+SPACELESS_RESULT = """
+<div>    <div>outside</div>
+
+    <b>tag</b>   <em>is fine</em>
+    <div prop="   inside props is left alone   ">not</div><i>space </i><span>between
+    </span><div>outside again </div>
+
+</div>"""
+
+
+def test_spaceless_extension():
+
+    assert render(SPACELESS_TEMPLATE) == SPACELESS_RESULT
