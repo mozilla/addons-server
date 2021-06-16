@@ -17,7 +17,6 @@ from olympia import amo
 from olympia.addons.models import Addon, AddonCategory
 from olympia.amo.reverse import get_url_prefix, override_url_prefix
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.utils import StopWatch
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.promoted import RECOMMENDED
 from olympia.bandwagon.models import Collection
@@ -229,10 +228,6 @@ class Sitemap(DjangoSitemap):
     _cached_items = []
     protocol = urlparse(settings.EXTERNAL_SITE_URL).scheme
 
-    def __init__(self, *args, **kwargs):
-        self.timer = StopWatch(f'amo.sitemap.{self.__class__.__name__}.render_xml')
-        super().__init__(*args, **kwargs)
-
     def _location(self, item, force_lang_code=None):
         # modified from Django implementation - we don't rely on locale for urls
         if self.i18n:
@@ -245,7 +240,6 @@ class Sitemap(DjangoSitemap):
 
     def _items(self):
         items = self.items()
-        self.timer.log_interval('# items returned')
         if self.i18n:
             # Create (item, lang_code) tuples for all items and languages.
             # This is necessary to paginate with all languages already considered.
@@ -271,13 +265,8 @@ class Sitemap(DjangoSitemap):
         return loader.get_template('sitemap.xml')
 
     def render(self, app_name, page):
-        self.timer.start()
-        self.timer.log_interval('# setup done')
         context = {'urlset': self.get_urls(page=page, app_name=app_name)}
-        self.timer.log_interval('# get_urls returned')
-        xml = self.template.render(context)
-        self.timer.log_interval('# render finish')
-        return xml
+        return self.template.render(context)
 
     @property
     def _current_app(self):

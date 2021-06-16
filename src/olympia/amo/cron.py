@@ -91,4 +91,3 @@ def write_sitemaps(section=None, app_name=None):
                 continue
             content = sitemap_object.render(app_name=_app_name, page=_page)
             sitemap_file.write(content)
-            sitemap_object.timer.log_interval('# content written')
