@@ -522,6 +522,11 @@ def get_sitemaps():
     }
 
 
+OTHER_SITEMAPS = [
+    '/blog/sitemap.xml',
+]
+
+
 def get_sitemap_section_pages(sitemaps):
     pages = []
     for (section, app), site in sitemaps.items():
@@ -538,12 +543,13 @@ def get_sitemap_section_pages(sitemaps):
 
 def render_index_xml(sitemaps):
     sitemap_url = reverse('amo.sitemap')
-    urls = (
+    server_urls = (
         f'{sitemap_url}?section={section}'
         + (f'&app_name={app_name}' if app_name else '')
         + (f'&p={page}' if page != 1 else '')
         for section, app_name, page in get_sitemap_section_pages(sitemaps)
     )
+    urls = list(server_urls) + OTHER_SITEMAPS
 
     return loader.render_to_string(
         'sitemap_index.xml',
