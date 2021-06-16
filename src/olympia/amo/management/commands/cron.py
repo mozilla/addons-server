@@ -48,14 +48,13 @@ class Command(BaseCommand):
 
         module = import_module(path)
 
-        current_millis = datetime.now().timestamp() * 1000
+        start_ms = datetime.now().timestamp() * 1000
+        log.info(f'Beginning job: {name} {args} {kwargs} (start timestamp: {start_ms})')
 
-        log.info(
-            f'Beginning job: {name} {args} {kwargs} '
-            f'(start timestamp: {current_millis})'
-        )
         getattr(module, name)(*args, **kwargs)
+
+        end_ms = datetime.now().timestamp() * 1000
         log.info(
             f'Ending job: {name} {args} {kwargs} '
-            f'(start timestamp: {current_millis})'
+            f'(start timestamp: {start_ms}; milliseconds taken: {end_ms - start_ms})'
         )
