@@ -10,6 +10,7 @@ import socket
 from datetime import datetime
 
 import sentry_sdk
+from corsheaders.defaults import default_headers
 from kombu import Queue
 from sentry_sdk.integrations.celery import CeleryIntegration
 from sentry_sdk.integrations.django import DjangoIntegration
@@ -116,6 +117,10 @@ CORS_ALLOW_ALL_ORIGINS = True
 # Exclude the `accounts/session` endpoint, see:
 # https://github.com/mozilla/addons-server/issues/11100
 CORS_URLS_REGEX = r'{}(?!accounts/session/)'.format(DRF_API_REGEX)
+# https://github.com/mozilla/addons-server/issues/17364
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    'x-country-code',
+]
 
 
 def get_db_config(environ_var, atomic_requests=True):
