@@ -348,6 +348,9 @@ class TestCORS(TestCase):
     def get(self, url, **headers):
         return self.client.get(url, HTTP_ORIGIN='testserver', **headers)
 
+    def options(self, url, **headers):
+        return self.client.options(url, HTTP_ORIGIN='somewhere', **headers)
+
     def test_no_cors(self):
         response = self.get(reverse('devhub.index'))
         assert response.status_code == 200
@@ -369,6 +372,32 @@ class TestCORS(TestCase):
         assert response.status_code == 200
         assert not response.has_header('Access-Control-Allow-Credentials')
         assert response['Access-Control-Allow-Origin'] == '*'
+
+    def test_cors_api_v5(self):
+        url = reverse_ns('addon-detail', api_version='v4', args=(3615,))
+        assert '/api/v4/' in url
+        response = self.get(url)
+        assert response.status_code == 200
+        assert not response.has_header('Access-Control-Allow-Credentials')
+        assert response['Access-Control-Allow-Origin'] == '*'
+
+    def test_cors_preflight(self):
+        url = reverse_ns('addon-detail', args=(3615,))
+        response = self.options(url)
+        assert response.status_code == 200
+        assert response['Access-Control-Allow-Origin'] == '*'
+        assert sorted(response['Access-Control-Allow-Headers'].lower().split(', ')) == [
+            'accept',
+            'accept-encoding',
+            'authorization',
+            'content-type',
+            'dnt',
+            'origin',
+            'user-agent',
+            'x-country-code',
+            'x-csrftoken',
+            'x-requested-with',
+        ]
 
     def test_cors_excludes_accounts_session_endpoint(self):
         assert (
