@@ -5,8 +5,10 @@ from django.db import migrations, models
 
 def truncate_columns_to_70(apps, schema_editor):
     Shelf = apps.get_model('shelves', 'Shelf')
-    for shelf in Shelf.objects.all():
-        shelf.update(title=shelf.title[:70], footer_text=shelf.footer_text[:70])
+    Shelf.objects.update(
+        title=models.functions.Substr('title', 1, 70),
+        footer_text=models.functions.Substr('footer_text', 1, 70),
+    )
 
 
 class Migration(migrations.Migration):
