@@ -191,21 +191,31 @@ def test_categories_sitemap():
         addon=addon_factory(category=shopping_category), category=bookmarks_category
     )
     addon_factory(category=bookmarks_category)
+    addon_factory(category=bookmarks_category)
+    addon_factory(category=bookmarks_category)
     addon_factory(category=shopping_category, status=amo.STATUS_NOMINATED)
     addon_factory(
         category=shopping_category, version_kw={'application': amo.ANDROID.id}
     )
     # should be 4 addons in shopping (one not public, one not compatible with Firefox,
-    # so 2 public), and 3 in bookmarks
+    # so 2 public), and 5 in bookmarks
 
     patched_drf_setting = dict(settings.REST_FRAMEWORK)
     patched_drf_setting['PAGE_SIZE'] = 2
     with override_settings(REST_FRAMEWORK=patched_drf_setting):
         cats_with_addons = list(CategoriesSitemap().items())
-    # only one extra url, for a second bookmarks category page, because PAGE_SIZE = 2
-    extra = (bookmarks_category, 2)
-    assert extra in cats_with_addons
-    assert set(cats_with_addons) - set(empty_cats) == {extra}
+    # two extra urls, for second+third bookmarks category pages, because PAGE_SIZE = 2
+    extra_2 = (bookmarks_category, 2)
+    extra_3 = (bookmarks_category, 3)
+    assert extra_2 in cats_with_addons
+    assert extra_3 in cats_with_addons
+    assert set(cats_with_addons) - set(empty_cats) == {extra_2, extra_3}
+
+    # now limit the number of items that would be paginated over so bookmarks count == 4
+    with override_settings(REST_FRAMEWORK=patched_drf_setting, ES_MAX_RESULT_WINDOW=4):
+        cats_limited = list(CategoriesSitemap().items())
+    assert extra_3 not in cats_limited
+    assert set(cats_limited) - set(empty_cats) == {extra_2}
 
 
 def test_collection_sitemap(mozilla_user):

@@ -369,16 +369,21 @@ class CategoriesSitemap(Sitemap):
 
     @cached_property
     def _cached_items(self):
+        page_size = settings.REST_FRAMEWORK['PAGE_SIZE']
+        page_count_max = settings.ES_MAX_RESULT_WINDOW // page_size
+
         def additems(type):
             items = []
             for category in CATEGORIES[current_app.id][type].values():
                 items.append((category, 1))
-                pages_needed = math.ceil(addon_counts.get(category.id, 1) / page_size)
+                pages_needed = min(
+                    math.ceil(addon_counts.get(category.id, 1) / page_size),
+                    page_count_max,
+                )
                 for page in range(2, pages_needed + 1):
                     items.append((category, page))
             return items
 
-        page_size = settings.REST_FRAMEWORK['PAGE_SIZE']
         current_app = self._current_app
         counts_qs = (
             AddonCategory.objects.filter(
