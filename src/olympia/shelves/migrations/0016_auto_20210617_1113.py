@@ -3,6 +3,14 @@
 from django.db import migrations, models
 
 
+def truncate_columns_to_70(apps, schema_editor):
+    Shelf = apps.get_model('shelves', 'Shelf')
+    Shelf.objects.update(
+        title=models.functions.Substr('title', 1, 70),
+        footer_text=models.functions.Substr('footer_text', 1, 70),
+    )
+
+
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -10,6 +18,7 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        migrations.RunPython(truncate_columns_to_70),
         migrations.AlterField(
             model_name='shelf',
             name='footer_text',
