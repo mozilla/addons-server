@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-15 16:06+0000\n"
-"PO-Revision-Date: 2021-06-17 00:42+0000\n"
+"PO-Revision-Date: 2021-06-17 00:52+0000\n"
 "Last-Translator: Paulina Rodriguez <pauli.rodriguez.c@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -136,9 +136,8 @@ msgstr "Calificaciones"
 msgid "Reviewer Tools (listed)"
 msgstr "Herramientas de revisión"
 
-#, fuzzy
 msgid "Reviewer Tools (unlisted)"
-msgstr "Herramientas de revisión"
+msgstr ""
 
 msgid "Reviewer links"
 msgstr "Enlaces del revisor"
@@ -423,9 +422,8 @@ msgstr "Tienes que proporcionar un objeto de {lang-code:value}."
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Pk o URL \"%s\" inválida - el objeto no existe."
 
-#, fuzzy
 msgid "Confirmation for developer API keys"
-msgstr "Más información sobre las cuentas de desarrolladores"
+msgstr ""
 
 msgid "Application Versions"
 msgstr "Versiones de la aplicación"
@@ -509,13 +507,11 @@ msgstr "Versión no válida"
 msgid "Min version can not be greater than Max version"
 msgstr "La versión mínima no puede ser mayor que la versión máxima"
 
-#, fuzzy
 msgid "Review Listed"
-msgstr "Revisión solicitada"
+msgstr ""
 
-#, fuzzy
 msgid "Review Unlisted"
-msgstr "Nota de revisión"
+msgstr ""
 
 msgid "This block was imported from a regex based legacy Block."
 msgstr "Este bloque fue importado de un antiguo bloque de legado basado en regex."
@@ -523,9 +519,9 @@ msgstr "Este bloque fue importado de un antiguo bloque de legado basado en regex
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
 msgstr "Cualquier cambio realizado NO se actualizará en la lista de bloqueo heredada: debe realizar un cambio manual a través de Kinto Admin WebUI."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Multiple %(name)s"
-msgstr "Rechazar varias versiones"
+msgstr "Eliminar múltiples %(name)s"
 
 msgid "Home"
 msgstr "Inicio"
@@ -553,9 +549,8 @@ msgstr "Borrar"
 msgid "Update"
 msgstr "Actualizar"
 
-#, fuzzy
 msgid "Reject Submission"
-msgstr "Ir a Mis envíos"
+msgstr "Rechazar envío"
 
 msgid "Approve Submission"
 msgstr ""
@@ -570,9 +565,9 @@ msgstr "GUIDs adicionales (uno por línea)"
 msgid "Submit"
 msgstr "Enviar"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%(count)s Add-on GUIDs with %(adu)s users"
-msgstr "%(count)s complemento(s) GUIDs"
+msgstr "%(count)s GUIDs complementos con %(adu)s usuarios"
 
 msgid "Edit Block"
 msgstr "Editar bloque"
@@ -914,20 +909,17 @@ msgstr "Bloque para {0} editado en la lista de bloqueo."
 msgid "Block edited"
 msgstr "Bloque editado"
 
-#, fuzzy
 msgid "Block for {0} deleted from Blocklist."
-msgstr "La versión {0} se ha borrado de {addon}."
+msgstr "Bloquea para {0} eliminado de la lista de bloqueo."
 
-#, fuzzy
 msgid "Block deleted"
-msgstr "Complemento borrado."
+msgstr "Bloque eliminado"
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr "GUID para {addon} añadido a DeniedGuid."
 
-#, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "{addon} eliminado de {collection}."
+msgstr "GUID para {addon} eliminado de DeniedGuid."
 
 msgid "Block {1} action for {0} signed off."
 msgstr ""
@@ -943,21 +935,18 @@ msgstr "Restablecida la llave api del usuario {user}."
 msgid "User {user} throttled for scope \"{0}\""
 msgstr "Usuario {user} editado, razón: {1}"
 
-#, fuzzy
 msgid "{addon} {version} content reject scheduled."
-msgstr "Se rechazó el contenido de {addon} {version}."
+msgstr ""
 
-#, fuzzy
 msgid "Content reject scheduled"
-msgstr "Se rechazó el contenido"
+msgstr "Rechazo de contenido programado"
 
 #, fuzzy
 msgid "{addon} {version} reject scheduled."
 msgstr "{addon} {version} ha sido rechazado."
 
-#, fuzzy
 msgid "Rejection scheduled"
-msgstr "Plazo máximo de la solicitud de información"
+msgstr "Rechazo programado"
 
 #, fuzzy
 msgid "{addon} {version} re-signed (previously {0})."
@@ -967,13 +956,11 @@ msgstr "Se ha solicitado la revisión de {addon} {version}."
 msgid "Version re-signed"
 msgstr "Versión %s reactivada."
 
-#, fuzzy
 msgid "{user} force-disabled {addon}."
-msgstr "Forzar desactivación del complemento"
+msgstr ""
 
-#, fuzzy
 msgid "Force disabled"
-msgstr "Forzar desactivación del complemento"
+msgstr ""
 
 #, fuzzy
 msgid "{user} force-enabled {addon}."
@@ -1601,9 +1588,8 @@ msgstr "Imagen en blanco, deformada o de baja calidad"
 msgid "Header image alignment problem"
 msgstr "Problema de alineación de la imagen en el encabezado"
 
-#, fuzzy
 msgid "No action"
-msgstr "Más acciones"
+msgstr ""
 
 msgid "Flag for human review"
 msgstr "Marcar para revisión humana"
@@ -2677,9 +2663,8 @@ msgstr "Cancelar y deshabilitar versión"
 msgid "Are you sure you wish to cancel and disable version?"
 msgstr "¿Seguro que deseas eliminar esta versión?"
 
-#, fuzzy
 msgid "Yes, Cancel"
-msgstr "Cancelar"
+msgstr "Si, cancelar"
 
 msgid "No, don't cancel"
 msgstr "No, no cancelar"
@@ -2818,9 +2803,8 @@ msgstr "También puedes editar la versión que acabas de enviar agregando notas 
 msgid "Edit version {0}"
 msgstr "Editar versión {0}"
 
-#, fuzzy
 msgid "Version Signature Pending"
-msgstr "Versión firmada"
+msgstr "Firma de versión pendiente"
 
 #, fuzzy
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
@@ -4536,7 +4520,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Thousands of GIFs at your fingertips."
-msgstr ""
+msgstr "Miles de GIFs al alcance de tus dedos."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4551,11 +4535,11 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
-msgstr ""
+msgstr "Guarda y restaura pestaña. Incluye funciones de autoguardado y sincronización en la nube."
 
 #. editorial content for the discovery pane.
 msgid "Goodbye, annoying cookie warnings!"
-msgstr ""
+msgstr "¡Adiós, molestas advertencias de cookies!"
 
 #. editorial content for the primary hero shelves.
 #, fuzzy
@@ -4646,9 +4630,8 @@ msgid "Popular themes"
 msgstr "Temas populares"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular themes"
-msgstr "Selecciona colores para tu tema"
+msgstr "Ver más temas populares"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4666,14 +4649,12 @@ msgid "Popular extensions"
 msgstr "Explorar extensiones"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular extensions"
-msgstr "Ver todas las extensiones"
+msgstr "Ver más extensiones populares"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended themes"
-msgstr "Recomendado ({0})"
+msgstr "Temas recomendados"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
@@ -5700,9 +5681,8 @@ msgstr "Ver todos los envíos"
 
 # 80%
 # 100%
-#, fuzzy
 msgid "Block add-on"
-msgstr "Volver al complemento"
+msgstr "Bloquear el complemento"
 
 msgid "Update add-on block"
 msgstr "Actualizar bloqueadores de complementos"
@@ -5778,9 +5758,8 @@ msgstr "Comparar"
 msgid "Permissions:"
 msgstr "Permisos:"
 
-#, fuzzy
 msgid "Optional permissions:"
-msgstr "Permisos:"
+msgstr "Permisos opcionales:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -5894,9 +5873,8 @@ msgstr "[status:%s]"
 msgid "Other Pending Review"
 msgstr "Otras revisiones pendientes ({0})"
 
-#, fuzzy
 msgid "Updates"
-msgstr "Actualizar"
+msgstr "Actualizaciones"
 
 #, fuzzy
 msgid "Rating Reviews"
@@ -5970,7 +5948,7 @@ msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr ""
 
 msgid "Abort"
-msgstr ""
+msgstr "Abortar"
 
 msgid "Run"
 msgstr "Ejecutar"
@@ -6472,9 +6450,8 @@ msgstr "Notificaciones de usuario"
 msgid "Ban"
 msgstr "Expulsar"
 
-#, fuzzy
 msgid "Reset session(s)"
-msgstr "Borrar versión"
+msgstr "Restablecer sesión(es)"
 
 msgid "Delete picture"
 msgstr "Eliminar imagen"
