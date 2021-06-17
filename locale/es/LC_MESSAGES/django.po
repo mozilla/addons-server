@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-15 16:06+0000\n"
-"PO-Revision-Date: 2021-06-17 00:52+0000\n"
+"PO-Revision-Date: 2021-06-17 00:57+0000\n"
 "Last-Translator: Paulina Rodriguez <pauli.rodriguez.c@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -941,9 +941,8 @@ msgstr ""
 msgid "Content reject scheduled"
 msgstr "Rechazo de contenido programado"
 
-#, fuzzy
 msgid "{addon} {version} reject scheduled."
-msgstr "{addon} {version} ha sido rechazado."
+msgstr ""
 
 msgid "Rejection scheduled"
 msgstr "Rechazo programado"
@@ -952,9 +951,8 @@ msgstr "Rechazo programado"
 msgid "{addon} {version} re-signed (previously {0})."
 msgstr "Se ha solicitado la revisión de {addon} {version}."
 
-#, fuzzy
 msgid "Version re-signed"
-msgstr "Versión %s reactivada."
+msgstr ""
 
 msgid "{user} force-disabled {addon}."
 msgstr ""
@@ -1402,9 +1400,8 @@ msgstr "Patrocinado"
 msgid "Verified"
 msgstr "Verificado"
 
-#, fuzzy
 msgid "By Firefox"
-msgstr "Firefox"
+msgstr "Por Firefox"
 
 msgid "Spotlight"
 msgstr "Destacado"
@@ -1594,16 +1591,14 @@ msgstr ""
 msgid "Flag for human review"
 msgstr "Marcar para revisión humana"
 
-#, fuzzy
 msgid "Delay auto-approval"
-msgstr "Deshabilitar autoaprobación"
+msgstr "Retrasar aprobación automática"
 
 msgid "Delay auto-approval indefinitely"
 msgstr "Retrasar la aprobación automática indefinidamente"
 
-#, fuzzy
 msgid "Delay auto-approval indefinitely and add restrictions"
-msgstr "Retrasar la aprobación automática indefinidamente"
+msgstr "Retrasar la aprobación automática indefinidamente y agregar restricciones"
 
 #, fuzzy
 msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
@@ -2659,9 +2654,8 @@ msgstr "Envía una nueva versión"
 msgid "Cancel and Disable Version"
 msgstr "Cancelar y deshabilitar versión"
 
-#, fuzzy
 msgid "Are you sure you wish to cancel and disable version?"
-msgstr "¿Seguro que deseas eliminar esta versión?"
+msgstr "¿Estás seguro de que deseas cancelar y deshabilitar la versión?"
 
 msgid "Yes, Cancel"
 msgstr "Si, cancelar"
@@ -3262,9 +3256,8 @@ msgstr "Conéctate con nosotros"
 msgid "Twitter"
 msgstr "Twitter"
 
-#, fuzzy
 msgid "For developers"
-msgstr "Desarrollador"
+msgstr "Para desarrolladores"
 
 msgid "For end users"
 msgstr "Para usuarios finales"
@@ -3272,20 +3265,17 @@ msgstr "Para usuarios finales"
 msgid "Matrix"
 msgstr "Matrix"
 
-#, fuzzy
 msgid "Community forum"
-msgstr "Comunidad y ayuda"
+msgstr "Foro de la comunidad"
 
-#, fuzzy
 msgid "Extensions Developers Newsletter"
-msgstr "Desarrollo de extensiones"
+msgstr "Boletín para desarrolladores de extensiones"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr "Mantente al día con noticias y eventos para desarrolladores de extensiones Firefox."
 
-#, fuzzy
 msgid "Email Address"
-msgstr "Dirección IP"
+msgstr "Dirección de correo"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
@@ -4068,9 +4058,8 @@ msgid "Convert an entire webpage to your preferred language—with the click of 
 msgstr "Cambia el idioma de una página web completa a tu idioma preferido haciendo clic en un botón."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Instantly display all links from a web page in new tabs."
-msgstr "Muestra instantáneamente todos los enlaces de una página web en pestañas nuevas."
+msgstr "Mostrar instantáneamente todos los enlaces de una página web en pestañas nuevas."
 
 #. editorial content for the discovery pane.
 msgid "Strip away redirect pages and URL tracking parameters from web links. Works automatically."
@@ -4503,9 +4492,8 @@ msgid "Blues & Yellows"
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Forest Theme"
-msgstr "Crear un tema"
+msgstr "Tema forestal"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4644,9 +4632,8 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Popular extensions"
-msgstr "Explorar extensiones"
+msgstr "Extensiones populares"
 
 #. editorial content for the homepage shelves.
 msgid "See more popular extensions"
