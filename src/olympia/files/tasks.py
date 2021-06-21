@@ -48,15 +48,23 @@ def repack_fileupload(results, upload_pk):
                     manifest = Path(tempdir) / 'manifest.json'
 
                     if manifest.exists():
-                        xpi_data = parse_xpi(upload.path, minimal=True)
+                        try:
+                            xpi_data = parse_xpi(upload.path, minimal=True)
 
-                        if not xpi_data.get('is_mozilla_signed_extension', False):
-                            # We don't need a `zip_file` because we are only
-                            # interested in the extracted data.
-                            json_data = ManifestJSONExtractor(
-                                zip_file=None, data=manifest.read_bytes()
-                            ).data
-                            manifest.write_text(json.dumps(json_data, indent=2))
+                            if not xpi_data.get('is_mozilla_signed_extension', False):
+                                # We don't need a `zip_file` because we are only
+                                # interested in the extracted data.
+                                json_data = ManifestJSONExtractor(
+                                    zip_file=None, data=manifest.read_bytes()
+                                ).data
+                                manifest.write_text(json.dumps(json_data, indent=2))
+                        except Exception:
+                            # If we cannot normalize the manifest file, we skip
+                            # this step and let the linter catch the exact
+                            # cause in order to return a more appropriate error
+                            # than "unexpected error", which would happen if
+                            # this task was handling the error itself.
+                            pass
             except Exception as exc:
                 # Something bad happened, maybe we couldn't parse the zip file.
                 # @validation_task should ensure the exception is caught and
