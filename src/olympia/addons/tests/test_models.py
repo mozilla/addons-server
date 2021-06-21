@@ -3024,15 +3024,21 @@ class TestUnlistedPendingManualApprovalQueue(TestCase):
             version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
-        AddonReviewerFlags.objects.create(addon=addon_factory(
-            type=amo.ADDON_STATICTHEME,
-            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-        ), auto_approval_disabled_unlisted=True)
-        AddonReviewerFlags.objects.create(addon=addon_factory(
-            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-        ), auto_approval_disabled=True)
+        AddonReviewerFlags.objects.create(
+            addon=addon_factory(
+                type=amo.ADDON_STATICTHEME,
+                version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            ),
+            auto_approval_disabled_unlisted=True,
+        )
+        AddonReviewerFlags.objects.create(
+            addon=addon_factory(
+                version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            ),
+            auto_approval_disabled=True,
+        )
         deleted_addon = AddonReviewerFlags.objects.create(
             addon=addon_factory(
                 version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
@@ -3074,13 +3080,16 @@ class TestUnlistedPendingManualApprovalQueue(TestCase):
 
     def test_worst_score_and_first_created_ignores_versions_not_in_filter(self):
         expected_first_created_date = self.days_ago(2)
-        addon = AddonReviewerFlags.objects.create(addon=addon_factory(
-            version_kw={
-                'channel': amo.RELEASE_CHANNEL_UNLISTED,
-                'created': self.days_ago(1),
-            },
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-        ), auto_approval_disabled_unlisted=True).addon
+        addon = AddonReviewerFlags.objects.create(
+            addon=addon_factory(
+                version_kw={
+                    'channel': amo.RELEASE_CHANNEL_UNLISTED,
+                    'created': self.days_ago(1),
+                },
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            ),
+            auto_approval_disabled_unlisted=True,
+        ).addon
         AutoApprovalSummary.objects.create(version=addon.versions.all()[0], score=66)
         AutoApprovalSummary.objects.create(
             version=version_factory(
