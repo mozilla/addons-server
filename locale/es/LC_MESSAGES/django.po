@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-15 16:06+0000\n"
-"PO-Revision-Date: 2021-06-17 00:57+0000\n"
+"PO-Revision-Date: 2021-06-22 14:36+0000\n"
 "Last-Translator: Paulina Rodriguez <pauli.rodriguez.c@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -4586,7 +4586,7 @@ msgstr "Ver todas las extensiones"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
-msgstr ""
+msgstr "Organizadores de pestañas y herramientas"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
@@ -5048,12 +5048,11 @@ msgstr "Desglose del riesgo no disponible."
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "No puede enviar un comentario si la opción 'respuesta predeterminada' está definida."
 
-#, fuzzy
 msgid "You can't submit an empty comment."
-msgstr "No puedes enviar un paquete de idioma"
+msgstr "No puedes enviar un comentario vacío."
 
 msgid "You can't submit a line number without associating it to a filename."
-msgstr ""
+msgstr "No puedes ingresar un número de línea sin asociarlo a un nombre de archivo."
 
 msgid "Type"
 msgstr "Tipo"
@@ -5889,13 +5888,11 @@ msgstr ""
 msgid "presence of a version"
 msgstr "Vista previa de la versión listada"
 
-#, fuzzy
 msgid "version channel"
-msgstr "Versión firmada"
+msgstr "canal de versión"
 
-#, fuzzy
 msgid "add-on status"
-msgstr "Estado del complemento"
+msgstr "estado del complemento"
 
 #, fuzzy
 msgid "add-on listing visibility"
@@ -5916,7 +5913,7 @@ msgid "When unchecked, the scanner results will not be bound to this rule and th
 msgstr ""
 
 msgid "Yara rules should have a definition"
-msgstr ""
+msgstr "Las reglas de Yara deben tener una definición"
 
 msgid "The name of the rule in the definition should match the name of the scanner rule"
 msgstr ""
@@ -5929,7 +5926,7 @@ msgid "The definition is not valid: %(error)s"
 msgstr "La definición no es válida: %(error)s"
 
 msgid "An error occurred when compiling the definition"
-msgstr ""
+msgstr "Se produjo un error al compilar la definición"
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr ""
@@ -6340,9 +6337,8 @@ msgstr "Borrar versión"
 msgid "The users \"%(users)s\" had their API Key reset."
 msgstr "Se han expulsado a los usuarios \"%(users)s\"."
 
-#, fuzzy
 msgid "Reset API Key"
-msgstr "Administrar llaves API"
+msgstr "Restablecer clave de API"
 
 msgid "Profile Photo"
 msgstr "Foto del perfil"
