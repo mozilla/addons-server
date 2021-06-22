@@ -733,6 +733,7 @@ class TestDashboard(TestCase):
             reverse('reviewers.ratings_moderation_log'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
             reverse('reviewers.unlisted_queue_all'),
+            reverse('reviewers.unlisted_queue_pending_manual_approval'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.motd'),
             reverse('reviewers.queue_pending_rejection'),
@@ -752,7 +753,7 @@ class TestDashboard(TestCase):
         # user ratings moderation
         assert doc('.dashboard a')[18].text == 'Ratings Awaiting Moderation (1)'
         # admin tools
-        assert doc('.dashboard a')[24].text == 'Add-ons Pending Rejection (1)'
+        assert doc('.dashboard a')[25].text == 'Add-ons Pending Rejection (1)'
 
     def test_can_see_all_through_reviewer_view_all_permission(self):
         self.grant_permission(self.user, 'ReviewerTools:View')
@@ -782,6 +783,7 @@ class TestDashboard(TestCase):
             reverse('reviewers.ratings_moderation_log'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
             reverse('reviewers.unlisted_queue_all'),
+            reverse('reviewers.unlisted_queue_pending_manual_approval'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.motd'),
             reverse('reviewers.queue_pending_rejection'),
@@ -942,6 +944,7 @@ class TestDashboard(TestCase):
         assert len(doc('.dashboard h3')) == 1
         expected_links = [
             reverse('reviewers.unlisted_queue_all'),
+            reverse('reviewers.unlisted_queue_pending_manual_approval'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
@@ -958,6 +961,7 @@ class TestDashboard(TestCase):
         assert len(doc('.dashboard h3')) == 9
         expected_links = [
             reverse('reviewers.unlisted_queue_all'),
+            reverse('reviewers.unlisted_queue_pending_manual_approval'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
@@ -2202,6 +2206,61 @@ class TestUnlistedAllList(QueueTest):
         response = self.client.get(url)
         assert response.status_code == 200
         assert json.loads(response.content) == {'reviewtext': 'stish goin` down son'}
+
+
+class TestUnlistedPendingManualApproval(QueueTest):
+    listed = False
+
+    def setUp(self):
+        super().setUp()
+        self.url = reverse('reviewers.unlisted_queue_pending_manual_approval')
+        self.generate_files()
+        self.expected_addons = [
+            self.addons['Pending One'],
+            self.addons['Nominated Two'],
+            self.addons['Pending Two'],
+            self.addons['Nominated One'],
+        ]
+        for i, addon in enumerate(self.expected_addons):
+            AutoApprovalSummary.objects.create(
+                version=addon.versions.latest('pk'), score=100 - i
+            )
+            AddonReviewerFlags.objects.create(
+                addon=addon, auto_approval_disabled_unlisted=True
+            )
+
+    def test_results(self):
+        with self.assertNumQueries(14):
+            # - 2 for savepoints because we're in tests
+            # - 2 for user/groups
+            # - 1 for the current queue count for pagination purposes
+            # - 2 for config items (motd / site notice)
+            # - 1 for my add-ons in user menu
+            # - 4 for reviewer scores and user stuff displayed above the queue
+            # - 1 main queue query
+            # - 1 translations
+            self._test_results()
+
+    def test_queue_layout(self):
+        self._test_queue_layout(
+            'Unlisted Add-ons Pending Manual Approval',
+            tab_position=1,
+            total_addons=4,
+            total_queues=2,
+            per_page=1,
+        )
+
+    def test_only_viewable_with_specific_permission(self):
+        # Regular addon reviewer does not have access.
+        self.user.groupuser_set.all().delete()  # Remove all permissions
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+        # Regular user doesn't have access.
+        self.client.logout()
+        assert self.client.login(email='regular@mozilla.com')
+        response = self.client.get(self.url)
+        assert response.status_code == 403
 
 
 class TestAutoApprovedQueue(QueueTest):

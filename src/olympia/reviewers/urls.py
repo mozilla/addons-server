@@ -60,6 +60,11 @@ urlpatterns = (
         name='reviewers.unlisted_queue_all',
     ),
     re_path(
+        r'^unlisted_queue/pending_manual_approval$',
+        views.unlisted_pending_manual_approval,
+        name='reviewers.unlisted_queue_pending_manual_approval',
+    ),
+    re_path(
         r'^moderationlog$',
         views.ratings_moderation_log,
         name='reviewers.ratings_moderation_log',

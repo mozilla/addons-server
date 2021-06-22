@@ -117,6 +117,7 @@ from olympia.reviewers.utils import (
     ScannersReviewTable,
     ViewUnlistedAllListTable,
     view_table_factory,
+    UnlistedPendingManualApprovalQueueTable,
 )
 from olympia.scanners.models import ScannerResult
 from olympia.users.models import UserProfile
@@ -306,6 +307,10 @@ def dashboard(request):
     if view_all or acl.action_allowed(request, amo.permissions.ADDONS_REVIEW_UNLISTED):
         sections[gettext('Unlisted Add-ons')] = [
             (gettext('All Unlisted Add-ons'), reverse('reviewers.unlisted_queue_all')),
+            (
+                gettext('Unlisted Add-ons Pending Manual Approval'),
+                reverse('reviewers.unlisted_queue_pending_manual_approval'),
+            ),
             (
                 gettext('Review Guide'),
                 'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
@@ -1253,6 +1258,17 @@ def unlisted_list(request):
         'all',
         unlisted=True,
         SearchForm=AllAddonSearchForm,
+    )
+
+
+@permission_or_tools_unlisted_view_required(amo.permissions.ADDONS_REVIEW_UNLISTED)
+def unlisted_pending_manual_approval(request):
+    return _queue(
+        request,
+        UnlistedPendingManualApprovalQueueTable,
+        'pending_manual_approval',
+        unlisted=True,
+        SearchForm=None,
     )
 
 
