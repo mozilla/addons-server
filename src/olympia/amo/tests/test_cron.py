@@ -158,6 +158,10 @@ class TestWriteSitemaps(TestCase):
                         )
                         in contents
                     )
+            assert (
+                '<sitemap><loc>http://testserver/blog/sitemap.xml</loc></sitemap>'
+                in contents
+            )
 
         with open(os.path.join(sitemaps_dir, 'sitemap-amo.xml')) as sitemap:
             contents = sitemap.read()
