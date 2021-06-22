@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-15 16:07+0000\n"
-"PO-Revision-Date: 2021-03-02 15:12+0000\n"
+"PO-Revision-Date: 2021-06-22 14:32+0000\n"
 "Last-Translator: Paulina Rodriguez <pauli.rodriguez.c@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
@@ -21,7 +21,7 @@ msgstr[0] "{0} estrella"
 msgstr[1] "{0} estrellas"
 
 msgid "There was a problem contacting the server."
-msgstr "Ha habido un problema al contactar con el servidor."
+msgstr "Hubo un problema al contactar con el servidor."
 
 msgid "Select a file..."
 msgstr "Seleccionar un archivo..."
@@ -41,7 +41,7 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 msgid "Uploading {0}"
-msgstr "Subiendo {0}"
+msgstr "Cargando {0}"
 
 msgid "Error with {0}"
 msgstr "Error con {0}"
@@ -123,8 +123,8 @@ msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Los binarios compilados, así como los scripts minificados u ofuscados (excluyendo bibliotecas conocidas) deben ser enviados por separado para su revisión. Asegúrate de que utilizas el campo de "
-"subir código fuente para evitar que tu envío sea rechazado."
+"Los binarios compilados, así como los scripts minificados u ofuscados (excluyendo bibliotecas conocidas) deben ser enviados por separado para su revisión. Asegúrate de que utilizas el campo de subir"
+" código fuente para evitar que tu envío sea rechazado."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "El proceso de validación encontró estos problemas que pueden llevar a rechazos:"
