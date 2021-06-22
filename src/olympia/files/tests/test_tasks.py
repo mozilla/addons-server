@@ -144,6 +144,33 @@ class TestRepackFileUpload(AppVersionsMixin, UploadTest, TestCase):
                 )
 
     @override_switch('enable-manifest-normalization', active=True)
+    def test_normalize_manifest_json_with_missing_manifest(self):
+        # This file does not have a manifest.json at all but it does not matter
+        # since we expect the manifest file to be at the root of the archive.
+        upload = self.get_upload('directory-test.xpi')
+        fake_results = {'errors': 0}
+
+        results = repack_fileupload(fake_results, upload.pk)
+
+        # If there is an error raised somehow, the `@validation_task` decorator
+        # will catch it and return an error.
+        assert results['errors'] == 0
+
+    @override_switch('enable-manifest-normalization', active=True)
+    def test_normalize_manifest_json_with_syntax_error(self):
+        upload = self.get_upload('webextension.xpi')
+        fake_results = {'errors': 0}
+        with zipfile.ZipFile(upload.path, 'w') as z:
+            manifest = b'{"manifest_version": 2, THIS_IS_INVALID }'
+            z.writestr('manifest.json', manifest)
+
+        results = repack_fileupload(fake_results, upload.pk)
+
+        # If there is an error raised somehow, the `@validation_task` decorator
+        # will catch it and return an error.
+        assert results['errors'] == 0
+
+    @override_switch('enable-manifest-normalization', active=True)
     def test_normalize_manifest_json(self):
         upload = self.get_upload('webextension.xpi')
         fake_results = {'errors': 0}
