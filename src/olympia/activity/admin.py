@@ -22,6 +22,7 @@ class ActivityLogAdmin(admin.ModelAdmin):
         '__str__',
     )
     raw_id_fields = ('user',)
+    view_on_site = False
 
     def has_add_permission(self, request):
         return False
