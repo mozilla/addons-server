@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 16:06+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: 2019-09-08 11:41+0000\n"
 "Last-Translator: Ahsun Mahmud Riad <ahsunriad@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4466,6 +4466,15 @@ msgstr ""
 msgid "See more recommended password managers"
 msgstr ""
 
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "এড-অন ভার্সন"
+
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -5044,6 +5053,9 @@ msgid "Unlisted Add-ons"
 msgstr ""
 
 msgid "All Unlisted Add-ons"
+msgstr ""
+
+msgid "Unlisted Add-ons Pending Manual Approval"
 msgstr ""
 
 msgid "Announcement"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 16:06+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: 2021-05-20 11:49+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4472,6 +4472,16 @@ msgstr ""
 msgid "See more recommended password managers"
 msgstr ""
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Translation tools"
+msgstr "Fane-organisering og verktøy"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "Vis flere populære utvidelser"
+
 msgid "Could not parse the manifest file."
 msgstr "Kunne ikke analysere manifestfilen."
 
@@ -5044,6 +5054,10 @@ msgstr "Ulistede tillegg"
 
 msgid "All Unlisted Add-ons"
 msgstr ""
+
+#, fuzzy
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Forsink automatisk godkjenning"
 
 msgid "Announcement"
 msgstr ""

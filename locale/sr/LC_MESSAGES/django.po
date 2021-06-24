@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 16:06+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -4741,6 +4741,15 @@ msgstr ""
 msgid "See more recommended password managers"
 msgstr ""
 
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "по верзији додатка"
+
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -5366,6 +5375,10 @@ msgstr "Сви додаци"
 #, fuzzy
 msgid "All Unlisted Add-ons"
 msgstr "Сви додаци"
+
+#, fuzzy
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Статус дозволе"
 
 msgid "Announcement"
 msgstr "Саопштење"

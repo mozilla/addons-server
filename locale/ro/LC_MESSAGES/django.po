@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 16:06+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: 2021-06-07 13:08+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -4615,6 +4615,16 @@ msgstr ""
 msgid "See more recommended password managers"
 msgstr ""
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Translation tools"
+msgstr "Unelte și organizatoare de file"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "Traduceri ale denumirii suplimentului"
+
 msgid "Could not parse the manifest file."
 msgstr "Nu s-a reușit analizarea fișierului manifest."
 
@@ -5217,6 +5227,10 @@ msgstr "Suplimente nelistate"
 
 msgid "All Unlisted Add-ons"
 msgstr "Toate suplimentele nelistate"
+
+#, fuzzy
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Dezactivează aprobarea automată a versiunilor listate până la următoarea aprobare manuală"
 
 msgid "Announcement"
 msgstr "Anunț"

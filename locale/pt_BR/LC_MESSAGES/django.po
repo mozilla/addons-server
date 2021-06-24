@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 16:06+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: 2021-06-09 16:00+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4610,6 +4610,16 @@ msgstr "Gerenciadores de senhas recomendados"
 msgid "See more recommended password managers"
 msgstr "Mais gerenciadores de senhas recomendados"
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Translation tools"
+msgstr "Organizadores e ferramentas de abas"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "Traduções do nome da extensão"
+
 msgid "Could not parse the manifest file."
 msgstr "Não foi possível analisar o arquivo manifest."
 
@@ -5200,6 +5210,10 @@ msgstr "Extensões não-listadas"
 
 msgid "All Unlisted Add-ons"
 msgstr "Todos as extensões não listadas"
+
+#, fuzzy
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Desativar aprovação automática de não listados até a próxima aprovação manual"
 
 msgid "Announcement"
 msgstr "Anúncio"

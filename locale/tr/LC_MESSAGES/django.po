@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 16:06+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: 2021-06-09 16:48+0000\n"
 "Last-Translator: Grk <gu0townkg@relay.firefox.com>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -4517,6 +4517,16 @@ msgstr "Önerilen parola yöneticileri"
 msgid "See more recommended password managers"
 msgstr "Önerdiğimiz diğer parola yöneticilerine bakın"
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Translation tools"
+msgstr "Sekme düzenleyicileri ve araçları"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "Eklenti adı çevirileri"
+
 msgid "Could not parse the manifest file."
 msgstr "Manifest dosyası ayrıştırılamadı."
 
@@ -5102,6 +5112,10 @@ msgstr "Listelenmeyen Eklentiler"
 
 msgid "All Unlisted Add-ons"
 msgstr "Tüm Listelenmeyen Eklentiler"
+
+#, fuzzy
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Sonraki elle onaya kadar listelenmemiş otomatik onaylamayı devre dışı bırak"
 
 msgid "Announcement"
 msgstr "Duyuru"

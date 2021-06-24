@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 16:06+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: 2021-03-20 14:00+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
@@ -4569,6 +4569,16 @@ msgstr ""
 msgid "See more recommended password managers"
 msgstr ""
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Translation tools"
+msgstr "タブ管理ツール"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "アドオンのバージョン別"
+
 msgid "Could not parse the manifest file."
 msgstr "マニフェストファイルを解析できませんでした。"
 
@@ -5162,6 +5172,10 @@ msgstr "非掲載アドオン"
 
 msgid "All Unlisted Add-ons"
 msgstr "すべての未掲載のアドオン"
+
+#, fuzzy
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "自動承認を無効化"
 
 msgid "Announcement"
 msgstr "お知らせ"

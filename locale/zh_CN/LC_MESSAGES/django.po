@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 16:06+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: 2021-06-09 15:37+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -4469,6 +4469,16 @@ msgstr "推荐的密码管理器"
 msgid "See more recommended password managers"
 msgstr "看看更多推荐的密码管理器"
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Translation tools"
+msgstr "标签页管理器与工具"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "附加组件名称翻译"
+
 msgid "Could not parse the manifest file."
 msgstr "未能解析清单文件。"
 
@@ -5035,6 +5045,10 @@ msgstr "未上架的附加组件"
 
 msgid "All Unlisted Add-ons"
 msgstr "所有未上架的附加组件"
+
+#, fuzzy
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "禁用未上架项目自动通过审核，直到下次人工审核通过"
 
 msgid "Announcement"
 msgstr "公告"

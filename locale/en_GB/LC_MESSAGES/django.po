@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 16:06+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: 2021-06-12 10:33+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4530,6 +4530,16 @@ msgstr "Recommended password managers"
 msgid "See more recommended password managers"
 msgstr "See more recommended password managers"
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Translation tools"
+msgstr "Tab organisers and tools"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "Add-on name translations"
+
 msgid "Could not parse the manifest file."
 msgstr "Could not parse the manifest file."
 
@@ -5110,6 +5120,10 @@ msgstr "Unlisted Add-ons"
 
 msgid "All Unlisted Add-ons"
 msgstr "All Unlisted Add-ons"
+
+#, fuzzy
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Disable Unlisted Auto-Approval Until Next Manual Approval"
 
 msgid "Announcement"
 msgstr "Announcement"

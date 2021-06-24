@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 16:06+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: 2021-06-09 15:23+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
@@ -4551,6 +4551,16 @@ msgstr "Рекомендовані менеджери паролів"
 msgid "See more recommended password managers"
 msgstr "Більше рекомендованих менеджерів паролів"
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Translation tools"
+msgstr "Впорядкування та керування вкладками"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "Переклади назви додатка"
+
 msgid "Could not parse the manifest file."
 msgstr "Не вдалося обробити файл маніфесту."
 
@@ -5136,6 +5146,10 @@ msgstr "Неопубліковані додатки"
 
 msgid "All Unlisted Add-ons"
 msgstr "Всі неопубліковані додатки"
+
+#, fuzzy
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Вимкнути автоматичне схвалення переліченого до наступного схвалення вручну"
 
 msgid "Announcement"
 msgstr "Оголошення"

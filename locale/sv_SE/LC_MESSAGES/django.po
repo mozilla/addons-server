@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 16:06+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: 2021-06-09 15:50+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -4539,6 +4539,16 @@ msgstr "Rekommenderade lösenordshanterare"
 msgid "See more recommended password managers"
 msgstr "Se fler rekommenderade lösenordshanterare"
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Translation tools"
+msgstr "Flikarrangörer och verktyg"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "Översättningar tilläggsnamn"
+
 msgid "Could not parse the manifest file."
 msgstr "Kunde inte tolka manifest-filen."
 
@@ -5121,6 +5131,10 @@ msgstr "Olistade tillägg"
 
 msgid "All Unlisted Add-ons"
 msgstr "Alla olistade tillägg"
+
+#, fuzzy
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Inaktivera olistad automatisk godkännande tills nästa manuella godkännande"
 
 msgid "Announcement"
 msgstr "Meddelande"

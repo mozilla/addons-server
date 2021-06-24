@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 16:06+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: 2021-06-09 20:46+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4528,6 +4528,16 @@ msgstr "Gestores de contrasignos recommendate"
 msgid "See more recommended password managers"
 msgstr "Vide altere gestores de contrasignos recommendate"
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Translation tools"
+msgstr "Applicationes de organisation e gestion de schedas"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "Traductiones del nomine de additivo"
+
 msgid "Could not parse the manifest file."
 msgstr "Impossibile tractar le file manifesto."
 
@@ -5108,6 +5118,10 @@ msgstr "Additivos non listate"
 
 msgid "All Unlisted Add-ons"
 msgstr "Tote le additivos non listate"
+
+#, fuzzy
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Disactivar le auto-approbation de non listate usque le sequente approbation del manual"
 
 msgid "Announcement"
 msgstr "Annuncio"

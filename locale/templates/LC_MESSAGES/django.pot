@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 16:06+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -188,12 +188,12 @@ msgstr ""
 msgid "- Add-on not on AMO -"
 msgstr ""
 
-#: src/olympia/addons/models.py:1983 src/olympia/addons/models.py:2056
+#: src/olympia/addons/models.py:2018 src/olympia/addons/models.py:2091
 #: src/olympia/constants/base.py:67
 msgid "Listed"
 msgstr ""
 
-#: src/olympia/addons/models.py:2229
+#: src/olympia/addons/models.py:2264
 msgid "Addon and collection paths need to end with \"/\""
 msgstr ""
 
@@ -286,7 +286,7 @@ msgstr ""
 msgid "Reviewer Tools"
 msgstr ""
 
-#: src/olympia/amo/context_processors.py:94 src/olympia/reviewers/views.py:321
+#: src/olympia/amo/context_processors.py:94 src/olympia/reviewers/views.py:326
 msgid "Admin Tools"
 msgstr ""
 
@@ -1647,9 +1647,9 @@ msgid ""
 "versions."
 msgstr ""
 
-#: src/olympia/constants/categories.py:213 src/olympia/reviewers/views.py:231
-#: src/olympia/reviewers/views.py:257 src/olympia/reviewers/views.py:270
-#: src/olympia/reviewers/views.py:282
+#: src/olympia/constants/categories.py:213 src/olympia/reviewers/views.py:232
+#: src/olympia/reviewers/views.py:258 src/olympia/reviewers/views.py:271
+#: src/olympia/reviewers/views.py:283
 msgid "Performance"
 msgstr ""
 
@@ -1996,6 +1996,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/activity.html:60
 #: src/olympia/ratings/admin.py:115 src/olympia/reviewers/utils.py:56
 #: src/olympia/reviewers/utils.py:124 src/olympia/reviewers/utils.py:178
+#: src/olympia/reviewers/utils.py:254
 msgid "Add-on"
 msgstr ""
 
@@ -2183,11 +2184,11 @@ msgstr ""
 msgid "Duplicate"
 msgstr ""
 
-#: src/olympia/constants/reviewers.py:178 src/olympia/reviewers/utils.py:569
+#: src/olympia/constants/reviewers.py:178 src/olympia/reviewers/utils.py:605
 msgid "Reject"
 msgstr ""
 
-#: src/olympia/constants/reviewers.py:179 src/olympia/reviewers/utils.py:558
+#: src/olympia/constants/reviewers.py:179 src/olympia/reviewers/utils.py:594
 msgid "Approve"
 msgstr ""
 
@@ -2915,7 +2916,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/nav.html:40
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:11
 #: src/olympia/reviewers/templates/reviewers/performance.html:71
-#: src/olympia/reviewers/views.py:273
+#: src/olympia/reviewers/views.py:274
 msgid "Themes"
 msgstr ""
 
@@ -4544,7 +4545,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:3
-#: src/olympia/reviewers/views.py:1290
+#: src/olympia/reviewers/views.py:1306
 msgid "End-User License Agreement"
 msgstr ""
 
@@ -4556,7 +4557,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:21
 #: src/olympia/reviewers/templates/reviewers/addon_details_box.html:142
-#: src/olympia/reviewers/views.py:1302 src/olympia/templates/copyright.html:5
+#: src/olympia/reviewers/views.py:1318 src/olympia/templates/copyright.html:5
 msgid "Privacy Policy"
 msgstr ""
 
@@ -6552,6 +6553,16 @@ msgstr ""
 msgid "See more recommended password managers"
 msgstr ""
 
+#. editorial content for the homepage shelves.
+#: src/olympia/discovery/strings.jinja2:982
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#: src/olympia/discovery/strings.jinja2:984
+msgid "See more translation tools"
+msgstr ""
+
 #: src/olympia/files/utils.py:383 src/olympia/files/utils.py:962
 #: src/olympia/files/utils.py:966
 msgid "Could not parse the manifest file."
@@ -7095,7 +7106,7 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:58
+#: src/olympia/reviewers/utils.py:58 src/olympia/reviewers/utils.py:256
 msgid "Waiting Time"
 msgstr ""
 
@@ -7149,260 +7160,265 @@ msgstr ""
 msgid "Total Weight"
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:199
+#: src/olympia/reviewers/utils.py:199 src/olympia/reviewers/utils.py:258
 msgid "Maliciousness Score"
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:255
+#: src/olympia/reviewers/utils.py:291
 msgid "Pending Rejection Deadline"
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:286
+#: src/olympia/reviewers/utils.py:322
 msgid "Last Updated"
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:313
+#: src/olympia/reviewers/utils.py:349
 msgid "Listed versions needing human review ({0})"
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:314
+#: src/olympia/reviewers/utils.py:350
 msgid "Unlisted versions needing human review ({0})"
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:366
+#: src/olympia/reviewers/utils.py:402
 msgid "Listed version"
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:367
+#: src/olympia/reviewers/utils.py:403
 msgid "Unlisted versions ({0})"
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:553
+#: src/olympia/reviewers/utils.py:589
 msgid ""
 "This will approve, sign, and publish this version. The comments will be sent "
 "to the developer."
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:570
+#: src/olympia/reviewers/utils.py:606
 msgid ""
 "This will reject this version and remove it from the queue. The comments will"
 " be sent to the developer."
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:588
+#: src/olympia/reviewers/utils.py:624
 msgid "Approve Content"
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:589
+#: src/olympia/reviewers/utils.py:625
 msgid ""
 "This records your approbation of the content of the latest public version, "
 "without notifying the developer."
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:604
+#: src/olympia/reviewers/utils.py:640
 msgid "Confirm Approval"
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:605
+#: src/olympia/reviewers/utils.py:641
 msgid ""
 "The latest public version of this add-on was automatically approved. This "
 "records your confirmation of the approval of that version, without notifying "
 "the developer."
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:622
+#: src/olympia/reviewers/utils.py:658
 msgid "Reject Multiple Versions"
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:626
+#: src/olympia/reviewers/utils.py:662
 msgid ""
 "This will reject the selected versions. The comments will be sent to the "
 "developer."
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:634
+#: src/olympia/reviewers/utils.py:670
 msgid "Block Multiple Versions"
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:638
+#: src/olympia/reviewers/utils.py:674
 msgid ""
 "This will disable the selected approved versions silently, and open up the "
 "block creation admin page."
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:651
+#: src/olympia/reviewers/utils.py:687
 msgid "Confirm Multiple Versions"
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:654
+#: src/olympia/reviewers/utils.py:690
 msgid ""
 "This will confirm approval of the selected versions without notifying the "
 "developer."
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:667
+#: src/olympia/reviewers/utils.py:703
 msgid "Reviewer reply"
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:668
+#: src/olympia/reviewers/utils.py:704
 msgid ""
 "This will send a message to the developer. You will be notified when they "
 "reply."
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:681
+#: src/olympia/reviewers/utils.py:717
 msgid "Request super-review"
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:682
+#: src/olympia/reviewers/utils.py:718
 msgid ""
 "If you have concerns about this add-on that an admin reviewer should look "
 "into, enter your comments in the area below. They will not be sent to the "
 "developer."
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:693
+#: src/olympia/reviewers/utils.py:729
 msgid "Comment"
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:694
+#: src/olympia/reviewers/utils.py:730
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
 
-#: src/olympia/reviewers/views.py:215 src/olympia/reviewers/views.py:217
-#: src/olympia/reviewers/views.py:223
+#: src/olympia/reviewers/views.py:216 src/olympia/reviewers/views.py:218
+#: src/olympia/reviewers/views.py:224
 msgid "Pre-Review Add-ons"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:219
+#: src/olympia/reviewers/views.py:220
 msgid "Recommended ({0})"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:226
+#: src/olympia/reviewers/views.py:227
 msgid "Other Pending Review ({0})"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:232 src/olympia/reviewers/views.py:283
+#: src/olympia/reviewers/views.py:233 src/olympia/reviewers/views.py:284
 msgid "Review Log"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:234
+#: src/olympia/reviewers/views.py:235
 msgid "Add-on Review Guide"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:239
+#: src/olympia/reviewers/views.py:240
 msgid "Security Scanners"
 msgstr ""
 
 #: src/olympia/reviewers/templatetags/jinja_helpers.py:61
-#: src/olympia/reviewers/views.py:241
+#: src/olympia/reviewers/views.py:242
 msgid "Flagged By Scanners"
 msgstr ""
 
 #: src/olympia/reviewers/templatetags/jinja_helpers.py:63
-#: src/olympia/reviewers/views.py:245
+#: src/olympia/reviewers/views.py:246
 msgid "Flagged for Human Review"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:250
+#: src/olympia/reviewers/views.py:251
 msgid "Auto-Approved Add-ons"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:252
+#: src/olympia/reviewers/views.py:253
 msgid "Auto Approved Add-ons ({0})"
 msgstr ""
 
 #: src/olympia/reviewers/templates/reviewers/reviewlog.html:25
-#: src/olympia/reviewers/views.py:258
+#: src/olympia/reviewers/views.py:259
 msgid "Add-on Review Log"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:260 src/olympia/reviewers/views.py:310
+#: src/olympia/reviewers/views.py:261 src/olympia/reviewers/views.py:315
 msgid "Review Guide"
 msgstr ""
 
 #: src/olympia/reviewers/templatetags/jinja_helpers.py:89
-#: src/olympia/reviewers/views.py:265
+#: src/olympia/reviewers/views.py:266
 msgid "Content Review"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:267
+#: src/olympia/reviewers/views.py:268
 msgid "Content Review ({0})"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:275
+#: src/olympia/reviewers/views.py:276
 msgid "New ({0})"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:279
+#: src/olympia/reviewers/views.py:280
 msgid "Updates ({0})"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:285
+#: src/olympia/reviewers/views.py:286
 msgid "Theme Review Guide"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:290
+#: src/olympia/reviewers/views.py:291
 msgid "User Ratings Moderation"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:292
+#: src/olympia/reviewers/views.py:293
 msgid "Ratings Awaiting Moderation ({0})"
 msgstr ""
 
 #: src/olympia/reviewers/templates/reviewers/moderationlog.html:6
-#: src/olympia/reviewers/views.py:298
+#: src/olympia/reviewers/views.py:299
 msgid "Moderated Review Log"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:302
+#: src/olympia/reviewers/views.py:303
 msgid "Moderation Guide"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:307
+#: src/olympia/reviewers/views.py:308
 msgid "Unlisted Add-ons"
 msgstr ""
 
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:101
-#: src/olympia/reviewers/views.py:308
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:102
+#: src/olympia/reviewers/views.py:309
 msgid "All Unlisted Add-ons"
 msgstr ""
 
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:106
+#: src/olympia/reviewers/views.py:311
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr ""
+
 #: src/olympia/reviewers/templates/reviewers/includes/daily-message.html:4
-#: src/olympia/reviewers/views.py:317
+#: src/olympia/reviewers/views.py:322
 msgid "Announcement"
 msgstr ""
 
 #: src/olympia/reviewers/templates/reviewers/motd.html:8
-#: src/olympia/reviewers/views.py:318
+#: src/olympia/reviewers/views.py:323
 msgid "Update message of the day"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:323
+#: src/olympia/reviewers/views.py:328
 msgid "Add-ons Pending Rejection ({0})"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:648
+#: src/olympia/reviewers/views.py:653
 msgid "An unknown error occurred"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:762
+#: src/olympia/reviewers/views.py:767
 msgid "Self-reviews are not allowed."
 msgstr ""
 
-#: src/olympia/reviewers/views.py:852
+#: src/olympia/reviewers/views.py:857
 msgid "Review successfully processed."
 msgstr ""
 
-#: src/olympia/reviewers/views.py:1093
+#: src/olympia/reviewers/views.py:1098
 msgid "Review lock limit reached"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:1289
+#: src/olympia/reviewers/views.py:1305
 msgid "{addon} – EULA"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:1301
+#: src/olympia/reviewers/views.py:1317
 msgid "{addon} – Privacy Policy"
 msgstr ""
 

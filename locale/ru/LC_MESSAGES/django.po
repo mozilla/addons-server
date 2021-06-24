@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 16:06+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: 2021-06-10 10:02+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -4592,6 +4592,16 @@ msgstr "Рекомендуемые менеджеры паролей"
 msgid "See more recommended password managers"
 msgstr "Больше рекомендуемых менеджеров паролей"
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Translation tools"
+msgstr "Управление вкладками"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "Перевод имени дополнения"
+
 msgid "Could not parse the manifest file."
 msgstr "Не удалось распарсить файл манифеста."
 
@@ -5178,6 +5188,10 @@ msgstr "Скрытые дополнения"
 
 msgid "All Unlisted Add-ons"
 msgstr "Все скрытые дополнения"
+
+#, fuzzy
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Отключить автоодобрение неопубликованных до следующего утверждения вручную"
 
 msgid "Announcement"
 msgstr "Объявление"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 16:06+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: 2021-03-16 22:18+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -4591,6 +4591,16 @@ msgstr ""
 msgid "See more recommended password managers"
 msgstr ""
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Translation tools"
+msgstr "Organizadores de separadores e ferramentas"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "Traduções do nome do extra"
+
 msgid "Could not parse the manifest file."
 msgstr "Não foi possível analisar o ficheiro manifest."
 
@@ -5173,6 +5183,10 @@ msgstr "Extras não-listados"
 
 msgid "All Unlisted Add-ons"
 msgstr "Todos os extras não-listados"
+
+#, fuzzy
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Desativar a aprovação automática para listagem até à próxima aprovação manual"
 
 msgid "Announcement"
 msgstr "Anúncio"
