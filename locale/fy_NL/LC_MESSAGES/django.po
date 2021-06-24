@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 16:06+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: 2021-06-11 06:36+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4562,6 +4562,16 @@ msgstr "Oanrekommandearre wachtwurdbehearders"
 msgid "See more recommended password managers"
 msgstr "Mear oanrekommandearre wachtwurdbehearders besjen"
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Translation tools"
+msgstr "Ljepblêdorganisearders en helpmiddelen"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "Oersettingen fan add-on-namme"
+
 msgid "Could not parse the manifest file."
 msgstr "Kin it manifest-bestân net ferwurkje."
 
@@ -5143,6 +5153,10 @@ msgstr "Net-fermelde add-ons"
 
 msgid "All Unlisted Add-ons"
 msgstr "Alle net-fermelde add-ons"
+
+#, fuzzy
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Automatyske goedkarring fan net-fermelde items útskeakelje oant folgjende hânmjittige goedkarring"
 
 msgid "Announcement"
 msgstr "Meidieling"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 16:06+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: 2021-06-09 20:44+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4559,6 +4559,16 @@ msgstr "Doporučene zrjadowaki hesłow"
 msgid "See more recommended password managers"
 msgstr "Dalše doporučene zrjadowaki hesłow pokazać"
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Translation tools"
+msgstr "Organizowanje rajtarkow a nastroje"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "Přełožki přidatkoweho mjena"
+
 msgid "Could not parse the manifest file."
 msgstr "Manifestowa dataja njeda so analyzować."
 
@@ -5149,6 +5159,10 @@ msgstr "Njenalistowane přidatki"
 
 msgid "All Unlisted Add-ons"
 msgstr "Wšě njenalistowane přidatki"
+
+#, fuzzy
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Awtomatiske njenalistowane awtomatiske schwalenje hač do přichodneho manuelneho schwalenja znjemóžnić"
 
 msgid "Announcement"
 msgstr "Připowědźenje"

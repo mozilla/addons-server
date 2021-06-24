@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 16:06+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: 2021-04-12 00:29+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4547,6 +4547,15 @@ msgstr ""
 msgid "See more recommended password managers"
 msgstr ""
 
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "ਐਡ-ਆਨ ਨਾਂ ਉਲੱਥੇ"
+
 msgid "Could not parse the manifest file."
 msgstr "ਮੈਨੀਫੈਸਟ ਫਾਈਲ ਨੂੰ ਪਾਰਸ ਨਹੀਂ ਕਰ ਸਕਿਆ।"
 
@@ -5145,6 +5154,10 @@ msgstr "ਅਸੂਚੀਬੱਧ ਐਡਆਨ"
 
 msgid "All Unlisted Add-ons"
 msgstr "ਸਾਰੇ ਸੂਚੀਬੱਧ ਨਾ ਹੋਣ ਵਾਲੇ ਐਡ-ਆਨ"
+
+#, fuzzy
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "ਸਵੈ-ਪ੍ਰਵਾਨਗੀ ਨੂੰ ਅਸਮਰੱਥ ਬਣਾਓ"
 
 msgid "Announcement"
 msgstr "ਐਲਾਨ"

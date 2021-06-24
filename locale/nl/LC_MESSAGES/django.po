@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 16:06+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: 2021-06-10 05:48+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -4560,6 +4560,16 @@ msgstr "Aanbevolen wachtwoordbeheerders"
 msgid "See more recommended password managers"
 msgstr "Meer aanbevolen wachtwoordbeheerders bekijken"
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Translation tools"
+msgstr "Tabbladorganizers en hulpmiddelen"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "Vertalingen van add-on-naam"
+
 msgid "Could not parse the manifest file."
 msgstr "Kon het manifest-bestand niet verwerken."
 
@@ -5141,6 +5151,10 @@ msgstr "Niet-vermelde add-ons"
 
 msgid "All Unlisted Add-ons"
 msgstr "Alle niet-vermelde add-ons"
+
+#, fuzzy
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Automatische goedkeuring van niet-vermelde items uitschakelen tot volgende handmatige goedkeuring"
 
 msgid "Announcement"
 msgstr "Mededeling"

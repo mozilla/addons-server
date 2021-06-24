@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 16:06+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: 2021-06-09 20:45+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4561,6 +4561,16 @@ msgstr "Dopórucone zastojniki gronidłow"
 msgid "See more recommended password managers"
 msgstr "Dalšne dopórucone zastojniki gronidłow pokazaś"
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Translation tools"
+msgstr "Organizěrowanje rejtarikow a rědy"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "Pśełožki dodankowego mjenja"
+
 msgid "Could not parse the manifest file."
 msgstr "Manifestowa dataja njedajo se analyzěrowaś."
 
@@ -5150,6 +5160,10 @@ msgstr "Njenalicone dodanki"
 
 msgid "All Unlisted Add-ons"
 msgstr "Wšykne njenalicone dodanki"
+
+#, fuzzy
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Awtomatiske njenalicone awtomatiske pśizwólenje až do pśiducego manuelnego pśizwólenja znjemóžniś"
 
 msgid "Announcement"
 msgstr "Pśipowěźeńka"

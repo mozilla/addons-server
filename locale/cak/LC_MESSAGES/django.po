@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 16:06+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: 2021-05-04 00:37+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4591,6 +4591,15 @@ msgstr ""
 msgid "See more recommended password managers"
 msgstr ""
 
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "chi Ruwäch Tz'aqat"
+
 msgid "Could not parse the manifest file."
 msgstr "Man niq'ax ta ri runa'oj ri ruyakb'al tzijoxïk."
 
@@ -5193,6 +5202,10 @@ msgstr "Mecholajin taq Tz'aqat"
 
 msgid "All Unlisted Add-ons"
 msgstr "Ronojel Mecholajin taq Tz'aqat"
+
+#, fuzzy
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Tichup Ruyon-Ütz-Nitz'et"
 
 msgid "Announcement"
 msgstr "Eltzijol"

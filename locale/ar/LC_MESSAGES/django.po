@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 16:06+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: 2020-10-09 05:48+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -4635,6 +4635,16 @@ msgstr ""
 msgid "See more recommended password managers"
 msgstr ""
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Translation tools"
+msgstr "أدوات التحكم في الألسنة وتنظيمها"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "حسب إصدارة الإضافة"
+
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -5267,6 +5277,10 @@ msgstr "إضافات أندرويد"
 
 msgid "All Unlisted Add-ons"
 msgstr ""
+
+#, fuzzy
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "المحدّثة مؤخرًا"
 
 msgid "Announcement"
 msgstr ""

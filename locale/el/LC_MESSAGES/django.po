@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 16:06+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: 2021-06-09 16:57+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -4603,6 +4603,16 @@ msgstr "Προτεινόμενα πρόσθετα διαχείρισης κωδ�
 msgid "See more recommended password managers"
 msgstr "Περισσότερα προτεινόμενα πρόσθετα διαχείρισης κωδικών πρόσβασης"
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Translation tools"
+msgstr "Οργάνωση καρτελών"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "Μεταφράσεις ονόματος προσθέτου"
+
 msgid "Could not parse the manifest file."
 msgstr "Αδυναμία λήψης αρχείου manifest."
 
@@ -5190,6 +5200,10 @@ msgstr "Μη καταχωρημένα πρόσθετα"
 
 msgid "All Unlisted Add-ons"
 msgstr "Όλα τα μη καταχωρημένα πρόσθετα"
+
+#, fuzzy
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Απενεργοποίηση αυτόματης έγκρισης μη καταχωρημένων μέχρι την επόμενη χειροκίνητη έγκριση"
 
 msgid "Announcement"
 msgstr "Ανακοίνωση"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 16:06+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4634,6 +4634,15 @@ msgstr ""
 msgid "See more recommended password managers"
 msgstr ""
 
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "mengikut Versi Add-on"
+
 msgid "Could not parse the manifest file."
 msgstr "Tidak dapat menghuraikan manifes fail."
 
@@ -5240,6 +5249,10 @@ msgstr "Add-ons Tidak Disenaraikan"
 
 msgid "All Unlisted Add-ons"
 msgstr "Semua Add-ons Tiada-disenaraikan"
+
+#, fuzzy
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Nyahdaya Auto-Kelulusan"
 
 msgid "Announcement"
 msgstr "Pengumuman"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 16:06+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: 2021-06-12 15:05+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -4511,6 +4511,16 @@ msgstr ""
 msgid "See more recommended password managers"
 msgstr ""
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Translation tools"
+msgstr "Organizátory a nástroje pro panely."
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "Zobrazit více aplikací&hellip;"
+
 msgid "Could not parse the manifest file."
 msgstr "Nepodařilo se zpracovat manifest soubor."
 
@@ -5094,6 +5104,9 @@ msgstr "Neveřejné doplňky"
 
 msgid "All Unlisted Add-ons"
 msgstr "Všechny neveřejné doplňky"
+
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr ""
 
 msgid "Announcement"
 msgstr "Oznámení"

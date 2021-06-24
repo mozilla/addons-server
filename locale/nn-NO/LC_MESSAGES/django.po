@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 16:06+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: 2021-04-29 18:23+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4491,6 +4491,15 @@ msgstr "Tilrådde passordhandterarar"
 msgid "See more recommended password managers"
 msgstr "Vis fleire tilrådde passordhandterarar"
 
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "etter utvidingsversjon"
+
 msgid "Could not parse the manifest file."
 msgstr "Kunne ikkje tolke manifest-fila."
 
@@ -5068,6 +5077,10 @@ msgstr "Ulista utvidingar"
 
 msgid "All Unlisted Add-ons"
 msgstr "Alle ulista utvidingar"
+
+#, fuzzy
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Slå på auto-godkjenning"
 
 msgid "Announcement"
 msgstr "Kunngjering"

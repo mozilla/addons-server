@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 16:06+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: 2021-06-11 08:47+0000\n"
 "Last-Translator: Michele Rodaro <michele.rodaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -4627,6 +4627,16 @@ msgstr "Gestori di password consigliati"
 msgid "See more recommended password managers"
 msgstr "Visualizza altri gestori di password consigliati"
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Translation tools"
+msgstr "Strumenti di organizzazione e gestione schede"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "Traduzioni nome del componente aggiuntivo"
+
 msgid "Could not parse the manifest file."
 msgstr "Impossibile analizzare il file manifesto."
 
@@ -5214,6 +5224,10 @@ msgstr "Componenti aggiuntivi esterni"
 
 msgid "All Unlisted Add-ons"
 msgstr "Tutti i componenti aggiuntivi esterni"
+
+#, fuzzy
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Disattiva l’approvazione automatica dei componenti non elencati fino alla prossima approvazione manuale"
 
 msgid "Announcement"
 msgstr "Annuncio"

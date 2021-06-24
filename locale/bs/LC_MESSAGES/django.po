@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 16:06+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: 2018-05-28 12:04+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4561,6 +4561,15 @@ msgstr ""
 msgid "See more recommended password managers"
 msgstr ""
 
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "Sve verzije"
+
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -5142,6 +5151,9 @@ msgid "Unlisted Add-ons"
 msgstr ""
 
 msgid "All Unlisted Add-ons"
+msgstr ""
+
+msgid "Unlisted Add-ons Pending Manual Approval"
 msgstr ""
 
 msgid "Announcement"

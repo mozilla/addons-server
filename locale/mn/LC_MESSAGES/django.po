@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 16:06+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: 2018-06-01 00:24+0000\n"
 "Last-Translator: pchew <pchew@change.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4598,6 +4598,16 @@ msgstr ""
 msgid "See more recommended password managers"
 msgstr ""
 
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "Өргөтгөлүүд"
+
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -5219,6 +5229,10 @@ msgstr "%s нэмэгдэл"
 
 msgid "All Unlisted Add-ons"
 msgstr ""
+
+#, fuzzy
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Сүүлд шинэчлэгдсэн"
 
 msgid "Announcement"
 msgstr ""

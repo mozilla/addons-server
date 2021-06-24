@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-15 16:06+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -4936,6 +4936,16 @@ msgstr "Recommended password managers"
 msgid "See more recommended password managers"
 msgstr "See more recommended password managers"
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Translation tools"
+msgstr "Tab organizers and tools"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "by Add-on Version"
+
 msgid "Could not parse the manifest file."
 msgstr "Could not parse the manifest file."
 
@@ -5582,6 +5592,10 @@ msgstr "All Unlisted Add-ons"
 
 msgid "All Unlisted Add-ons"
 msgstr "All Unlisted Add-ons"
+
+#, fuzzy
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Disable Auto-Approval"
 
 msgid "Announcement"
 msgstr "Announcement"
