@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-24 14:01+0000\n"
-"PO-Revision-Date: 2021-03-23 21:40+0000\n"
+"PO-Revision-Date: 2021-06-25 09:53+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ca\n"
@@ -66,7 +66,7 @@ msgid "Validating {0}"
 msgstr "S'està validant {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "El vostre complement supera la mida màxima de {0}."
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr "S'ha rebut una resposta buida des del servidor; l'estat: {0}"
@@ -78,7 +78,7 @@ msgid "Finished validating {0}"
 msgstr "Ha finalitzat la validació de {0}"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
+msgstr "S'ha excedit el temps d'espera per a la validació del vostre complement; es revisarà manualment."
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
