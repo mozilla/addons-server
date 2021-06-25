@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-24 14:01+0000\n"
-"PO-Revision-Date: 2021-06-24 15:54+0000\n"
-"Last-Translator: Jenny <leanintocuriosity@gmx.com>\n"
+"PO-Revision-Date: 2021-06-25 08:00+0000\n"
+"Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -798,7 +798,7 @@ msgid "User {0.name} removed from {group}."
 msgstr "L’utente {0.name} è stato rimosso dal gruppo {group}."
 
 msgid "{addon} unlisted."
-msgstr "{addon} è esterno e non verrà visualizzato su AMO."
+msgstr "{addon} non elencato."
 
 msgid "{file} was signed."
 msgstr "Il file {file} è stato firmato digitalmente."
@@ -997,7 +997,7 @@ msgid "Deleted"
 msgstr "Cancellato"
 
 msgid "Unlisted"
-msgstr "Esterno"
+msgstr "Non elencato"
 
 msgid "API"
 msgstr "API"
@@ -3172,7 +3172,7 @@ msgid "Latest Version:"
 msgstr "Ultima versione:"
 
 msgid "This is the newest uploaded unlisted version"
-msgstr "È l’ultima versione caricata e non pubblica"
+msgstr "È l’ultima versione caricata e non elencata"
 
 msgid "Upload New Version"
 msgstr "Carica nuova versione"
@@ -3184,7 +3184,7 @@ msgid "Listed Review Page"
 msgstr "Pagina revisione componenti aggiuntivi su AMO"
 
 msgid "Unlisted Review Page"
-msgstr "Pagina revisione di un componente aggiuntivo esterno"
+msgstr "Pagina revisione non elencati"
 
 msgid "Admin Manage"
 msgstr "Amministra"
@@ -5082,13 +5082,13 @@ msgid "Listed versions needing human review ({0})"
 msgstr "Versioni pubblicate che richiedono revisione umana ({0})"
 
 msgid "Unlisted versions needing human review ({0})"
-msgstr "Versioni non pubblicate che richiedono revisione umana ({0})"
+msgstr "Versioni non elencate che richiedono revisione manuale ({0})"
 
 msgid "Listed version"
 msgstr "Versione visualizzata"
 
 msgid "Unlisted versions ({0})"
-msgstr "Versioni non visualizzate ({0})"
+msgstr "Versioni non elencate ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Questa azione approverà, firmerà digitalmente e renderà disponibile sul sito l’attuale versione. Il commento verrà inviato allo sviluppatore."
@@ -5212,13 +5212,13 @@ msgid "Moderation Guide"
 msgstr "Guida per i moderatori"
 
 msgid "Unlisted Add-ons"
-msgstr "Componenti aggiuntivi esterni"
+msgstr "Componenti aggiuntivi non elencati"
 
 msgid "All Unlisted Add-ons"
-msgstr "Tutti i componenti aggiuntivi esterni"
+msgstr "Tutti i componenti aggiuntivi non elencati"
 
 msgid "Unlisted Add-ons Pending Manual Approval"
-msgstr "Componenti aggiuntivi fuori elenco in attesa di approvazione manuale"
+msgstr "Componenti aggiuntivi non elencati in attesa di approvazione manuale"
 
 msgid "Announcement"
 msgstr "Annuncio"
@@ -5446,7 +5446,7 @@ msgid "Review Moderation – Add-ons for Firefox"
 msgstr "Moderazione delle revisioni – Componenti aggiuntivi per Firefox"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr "Componenti aggiuntivi fuori elenco – Componenti aggiuntivi per Firefox"
+msgstr "Componenti aggiuntivi non elencati – Componenti aggiuntivi per Firefox"
 
 msgid "Pending Rejection – Add-ons for Firefox"
 msgstr "In attesa di rifiuto – Componenti aggiuntivi per Firefox"
@@ -5568,10 +5568,10 @@ msgid "Enable Listed Auto-Approval"
 msgstr "Attiva l’approvazione automatica dei componenti elencati"
 
 msgid "Disable Unlisted Auto-Approval"
-msgstr "Disattiva l’approvazione automatica delle estensioni non in elenco"
+msgstr "Disattiva l’approvazione automatica delle estensioni non elencate"
 
 msgid "Enable Unlisted Auto-Approval"
-msgstr "Attiva l’approvazione automatica delle estensioni non in elenco"
+msgstr "Attiva l’approvazione automatica delle estensioni non elencate"
 
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
 msgstr "Disattiva l’approvazione automatica dei componenti elencati fino alla prossima approvazione manuale"
