@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-24 14:01+0000\n"
-"PO-Revision-Date: 2021-06-25 09:53+0000\n"
+"PO-Revision-Date: 2021-06-25 10:04+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ca\n"
@@ -82,19 +82,19 @@ msgstr "S'ha excedit el temps d'espera per a la validació del vostre complement
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "El vostre complement s'ha validat sense cap error i {0} avís."
+msgstr[1] "El vostre complement s'ha validat sense cap error i {0} avisos."
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "El vostre complement s'ha validat sense cap error i {0} missatge."
+msgstr[1] "El vostre complement s'ha validat sense cap error i {0} missatges."
 
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "El vostre complement s'ha validat sense cap error ni avís."
 
 msgid "Your submission will be automatically signed."
-msgstr ""
+msgstr "Se signarà automàticament l’enviament."
 
 msgid "WebExtension upgrade"
 msgstr ""
@@ -115,7 +115,7 @@ msgid "Add-on submission checklist"
 msgstr ""
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr ""
+msgstr "Verifiqueu els següents punts abans de finalitzar el vostre enviament. Això minimitzarà demores o malentesos durant el procés de revisió:"
 
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
@@ -129,7 +129,7 @@ msgid "The filetype you uploaded isn't recognized."
 msgstr "El tipus de fitxer que heu pujat no es pot reconèixer."
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "El fitxer supera la mida màxima de {0}."
 
 msgid "You cancelled the upload."
 msgstr "Heu cancel·lat la pujada."
@@ -138,7 +138,7 @@ msgid "Images must be either PNG or JPG."
 msgstr "Les imatges han de ser PNG o JPG."
 
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "Els vídeos han de ser en format WebM."
 
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Aquest tema és incompatible amb la vostra versió de {0}"
@@ -272,16 +272,16 @@ msgid "Add-ons Manager"
 msgstr "Gestor de complements"
 
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "Promoció del Gestor de complements"
 
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "Destacats del Gestor de complements"
 
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "Més informació del Gestor de complements"
 
 msgid "Search Suggestions"
-msgstr ""
+msgstr "Suggeriments de cerca"
 
 msgid "Search Results"
 msgstr "Resultats de cerca"
@@ -320,7 +320,7 @@ msgid "Upsell"
 msgstr "Promocions"
 
 msgid "Meet the Developer"
-msgstr ""
+msgstr "Contacta amb el desenvolupador"
 
 msgid "User Profile"
 msgstr "Perfil d’usuari"
@@ -444,14 +444,12 @@ msgid "Applications from {0} to {1}"
 msgstr "Aplicacions del {0} a {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Countries, last {0} days"
-msgstr "Contribucions, darrers {0} dies"
+msgstr "Països, darrers {0} dies"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Countries from {0} to {1}"
-msgstr "Contribucions des del {0} al {1}"
+msgstr "Contribucions des del {0} fins al {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
@@ -494,34 +492,28 @@ msgid "Download Sources from {0} to {1}"
 msgstr "Fonts de baixades des del {0} al {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Mediums, last {0} days"
-msgstr "Baixades, darrers {0} dies"
+msgstr "Mitjans de baixada, darrers {0} dies"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Mediums from {0} to {1}"
-msgstr "Baixades des del {0} al {1}"
+msgstr "Mitjans de baixada des del {0} al {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Contents, last {0} days"
-msgstr "Fonts de baixada, darrers {0} dies"
+msgstr "Continguts de baixada, darrers {0} dies"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Contents from {0} to {1}"
-msgstr "Baixades des del {0} al {1}"
+msgstr "Continguts de baixada des del {0} al {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Campaigns, last {0} days"
-msgstr "Baixades, darrers {0} dies"
+msgstr "Campanyes de baixada, darrers {0} dies"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Campaigns from {0} to {1}"
-msgstr "Baixades des del {0} al {1}"
+msgstr "Campanyes de baixada des del {0} al {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
@@ -792,7 +784,7 @@ msgid "These tests were not run."
 msgstr "Aquests tests no s'han executat."
 
 msgid "Tests"
-msgstr "Tests"
+msgstr "Proves"
 
 msgid "Error"
 msgstr "Error"
