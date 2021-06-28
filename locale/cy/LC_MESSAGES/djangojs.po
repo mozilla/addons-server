@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-24 14:01+0000\n"
-"PO-Revision-Date: 2020-06-04 08:47+0000\n"
+"PO-Revision-Date: 2021-06-28 10:43+0000\n"
 "Last-Translator: Rhoslyn Prys <rprys@posteo.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cy\n"
@@ -25,30 +25,30 @@ msgstr[4] "{0} seren"
 msgstr[5] ""
 
 msgid "There was a problem contacting the server."
-msgstr ""
+msgstr "Bu anhawster cysylltu â'r gweinydd."
 
 msgid "Select a file..."
-msgstr ""
+msgstr "Dewis ffeil..."
 
 msgid "Your add-on should end with .zip, .xpi or .crx"
-msgstr ""
+msgstr "Dylai eich ychwanegyn orffen gyda .zip, .xpi neu .crx"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
 msgid "{0}% complete"
-msgstr ""
+msgstr "{0}% wedi'i gwblhau"
 
 msgid "{0} of {1}"
-msgstr ""
+msgstr "{0} o {1}"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Diddymu"
 
 msgid "Uploading {0}"
-msgstr ""
+msgstr "Llwytho {0} i fyny"
 
 msgid "Error with {0}"
-msgstr ""
+msgstr "Gwall gyda {0}"
 
 msgid "Please make sure to report any linting related issues on GitHub"
 msgstr ""
@@ -191,25 +191,25 @@ msgid "Use original"
 msgstr ""
 
 msgid "Week of {0}"
-msgstr ""
+msgstr "Wythnos o {0}"
 
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "{0} llwythau"
+msgstr[1] "{0} llwyth"
+msgstr[2] "{0} llwyth"
+msgstr[3] "{0} llwyth"
+msgstr[4] "{0} llwyth"
+msgstr[5] "{0} llwyth"
 
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "{0} defnyddwyr"
+msgstr[1] "{0} defnyddiwr"
+msgstr[2] "{0} defnyddiwr"
+msgstr[3] "{0} defnyddiwr"
+msgstr[4] "{0} defnyddiwr"
+msgstr[5] "{0} defnyddiwr"
 
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
@@ -222,12 +222,12 @@ msgstr[5] ""
 
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "{0} casgliadiau"
+msgstr[1] "{0} casgliad"
+msgstr[2] "{0} casgliad"
+msgstr[3] "{0} casgliad"
+msgstr[4] "{0} casgliad"
+msgstr[5] "{0} casgliad"
 
 msgid "{0} review"
 msgid_plural "{0} reviews"
@@ -266,26 +266,26 @@ msgstr[4] ""
 msgstr[5] ""
 
 msgid "Downloads"
-msgstr ""
+msgstr "Llwythi"
 
 msgid "Daily Users"
-msgstr ""
+msgstr "Defnyddwyr Dyddiol"
 
 msgid "Amount, in USD"
-msgstr ""
+msgstr "Swm, mewn USD"
 
 msgid "Number of Contributions"
-msgstr ""
+msgstr "Nifer y Cyfraniadau"
 
 msgid "More Info..."
-msgstr ""
+msgstr "Rhagor o Wybodaeth..."
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"
-msgstr ""
+msgstr "Manylion ar gyfer {0}"
 
 msgid "Collections Created"
-msgstr ""
+msgstr "Casgliadau a Grëwyd"
 
 msgid "Add-ons in Use"
 msgstr ""
@@ -300,25 +300,25 @@ msgid "Add-ons Updated"
 msgstr ""
 
 msgid "Reviews Written"
-msgstr ""
+msgstr "Adolygiadau Ysgrifennwyd"
 
 msgid "User Signups"
 msgstr ""
 
 msgid "Subscribers"
-msgstr ""
+msgstr "Tanysgrifwyr"
 
 msgid "Ratings"
-msgstr ""
+msgstr "Graddau"
 
 msgid "Sales"
-msgstr ""
+msgstr "Gwerthiant"
 
 msgid "Installs"
-msgstr ""
+msgstr "Gosodiadau"
 
 msgid "Unknown"
-msgstr ""
+msgstr "Anhysbys"
 
 msgid "Add-ons Manager"
 msgstr ""
@@ -333,10 +333,10 @@ msgid "Add-ons Manager Learn More"
 msgstr ""
 
 msgid "Search Suggestions"
-msgstr ""
+msgstr "Awgrymiadau Chwilio"
 
 msgid "Search Results"
-msgstr ""
+msgstr "Canlyniadau Chwilio"
 
 msgid "Homepage Promo"
 msgstr ""
@@ -351,43 +351,43 @@ msgid "Homepage Most Popular"
 msgstr ""
 
 msgid "Detail Page"
-msgstr ""
+msgstr "Tudalen Manylion"
 
 msgid "Detail Page (bottom)"
-msgstr ""
+msgstr "Tudalen Manylion (gwaelod)"
 
 msgid "Detail Page (Development Channel)"
-msgstr ""
+msgstr "Tudalen Manylion (Sianel Datblygu)"
 
 msgid "Often Used With"
-msgstr ""
+msgstr "Yn cael eu Defnyddio'n Aml Gyda"
 
 msgid "Others By Author"
-msgstr ""
+msgstr "Eraill gan Awdur"
 
 msgid "Dependencies"
-msgstr ""
+msgstr "Dibyniaethau"
 
 msgid "Upsell"
 msgstr ""
 
 msgid "Meet the Developer"
-msgstr ""
+msgstr "Cyfarfod â'r Datblygwr"
 
 msgid "User Profile"
 msgstr ""
 
 msgid "Version History"
-msgstr ""
+msgstr "Hanes y Fersiwn"
 
 msgid "Sharing"
-msgstr ""
+msgstr "Rhannu"
 
 msgid "Category Pages"
-msgstr ""
+msgstr "Tudalennau Categori"
 
 msgid "Collections"
-msgstr ""
+msgstr "Casgliadau"
 
 msgid "Category Landing Featured Carousel"
 msgstr ""
