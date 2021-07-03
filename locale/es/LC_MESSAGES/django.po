@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-24 14:01+0000\n"
-"PO-Revision-Date: 2020-12-18 23:09+0000\n"
-"Last-Translator: sarah.hill0778 <sarah.hill0778@gmail.com>\n"
+"PO-Revision-Date: 2021-07-03 19:18+0000\n"
+"Last-Translator: Paulina Rodriguez <pauli.rodriguez.c@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -4366,9 +4366,8 @@ msgid "Measure web pages. Draw a digital ruler across any web page to check heig
 msgstr "Dibuja una regla digital en cualquier página para comprobar su altura, anchura y alineación de los elementos."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy the benefits of strong password management."
-msgstr "Consigue las ventanas de una buena gestión de contraseñas seguras."
+msgstr "Disfruta de los beneficios de una gestión segura de contraseñas."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4423,9 +4422,8 @@ msgid "Select, sort, and run your downloads faster."
 msgstr "Selecciona, ordena y ejecuta tus descargas más rápido."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get weather updates right in the browser."
-msgstr "Actualizaciones instantáneas del clima en todo el mundo."
+msgstr "Obtén actualizaciones meteorológicas directamente en el navegador."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
@@ -4452,9 +4450,8 @@ msgstr "Crear y personalizar grupos de pestañas."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Save an entire web page—including images and styling—as a single HTML file."
-msgstr "Guarda páginas al completo (o solo ciertas partes) como un único archivo HTML."
+msgstr "Guarda páginas completas —incluyendo imágenes y estilos— como un único archivo HTML."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4675,9 +4672,8 @@ msgstr "La \"strict_min_version\" admitida más antigua es la 42.0."
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr "{appver} \"strict_min_version\" desconocida para {app}"
 
-#, fuzzy
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
-msgstr "{appver} \"strict_min_version\" desconocida para {app}"
+msgstr ""
 
 msgid "Unsupported archive type."
 msgstr "Tipo de archivo no admitido."
@@ -4721,9 +4717,9 @@ msgstr "El tamaño máximo para los temas WebExtension es de {0}."
 msgid "You cannot submit this type of add-on"
 msgstr "No puedes enviar este tipo de complemento"
 
-#, fuzzy, python-format
+#, python-format
 msgid "You cannot submit an add-on using an ID ending with %s"
-msgstr "No puedes enviar un complemento con un guid acabado en %s"
+msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "No puedes enviar una extensión firmada de Mozilla"
