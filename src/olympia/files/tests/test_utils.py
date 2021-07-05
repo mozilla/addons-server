@@ -20,7 +20,7 @@ from django.test.utils import override_settings
 import lxml
 import pytest
 
-from defusedxml.common import EntitiesForbidden, NotSupportedError
+from defusedxml.common import NotSupportedError
 
 from olympia import amo
 from olympia.amo.tests import TestCase, user_factory
@@ -68,40 +68,9 @@ class TestExtractor(AppVersionsMixin, TestCase):
         assert exc.exception.message == ('No install.rdf or manifest.json found')
 
     @mock.patch('olympia.files.utils.ManifestJSONExtractor')
-    @mock.patch('olympia.files.utils.RDFExtractor')
-    def test_parse_install_rdf(self, rdf_extractor, manifest_json_extractor):
-        fake_zip = utils.make_xpi({'install.rdf': ''})
-        utils.Extractor.parse(fake_zip)
-        assert rdf_extractor.called
-        assert not manifest_json_extractor.called
-
-    @mock.patch('olympia.files.utils.ManifestJSONExtractor')
-    @mock.patch('olympia.files.utils.RDFExtractor')
-    def test_ignore_package_json(self, rdf_extractor, manifest_json_extractor):
-        # Previously we preferred `package.json` to `install.rdf` which
-        # we don't anymore since
-        # https://github.com/mozilla/addons-server/issues/2460
-        fake_zip = utils.make_xpi({'install.rdf': '', 'package.json': ''})
-        utils.Extractor.parse(fake_zip)
-        assert rdf_extractor.called
-        assert not manifest_json_extractor.called
-
-    @mock.patch('olympia.files.utils.ManifestJSONExtractor')
-    @mock.patch('olympia.files.utils.RDFExtractor')
-    def test_parse_manifest_json(self, rdf_extractor, manifest_json_extractor):
+    def test_parse_manifest_json(self, manifest_json_extractor):
         fake_zip = utils.make_xpi({'manifest.json': ''})
         utils.Extractor.parse(fake_zip)
-        assert not rdf_extractor.called
-        assert manifest_json_extractor.called
-
-    @mock.patch('olympia.files.utils.ManifestJSONExtractor')
-    @mock.patch('olympia.files.utils.RDFExtractor')
-    def test_prefers_manifest_to_install_rdf(
-        self, rdf_extractor, manifest_json_extractor
-    ):
-        fake_zip = utils.make_xpi({'install.rdf': '', 'manifest.json': ''})
-        utils.Extractor.parse(fake_zip)
-        assert not rdf_extractor.called
         assert manifest_json_extractor.called
 
     @mock.patch('olympia.files.utils.os.path.getsize')
@@ -122,37 +91,6 @@ class TestExtractor(AppVersionsMixin, TestCase):
         # dpuble check only static themes are limited
         manifest = utils.ManifestJSONExtractor('/fake_path', '{}').parse()
         assert utils.check_xpi_info(manifest, xpi_file=mock.Mock())
-
-
-class TestRDFExtractor(TestCase):
-    def setUp(self):
-        self.firefox_versions = [
-            AppVersion.objects.create(
-                application=amo.APPS['firefox'].id, version='38.0a1'
-            ),
-            AppVersion.objects.create(
-                application=amo.APPS['firefox'].id, version='43.0'
-            ),
-        ]
-        self.thunderbird_versions = [
-            AppVersion.objects.create(
-                application=amo.APPS['android'].id, version='42.0'
-            ),
-            AppVersion.objects.create(
-                application=amo.APPS['android'].id, version='45.0'
-            ),
-        ]
-
-    def test_apps_disallow_thunderbird_and_seamonkey(self):
-        zip_file = utils.SafeZip(
-            get_addon_file('valid_firefox_and_thunderbird_addon.xpi')
-        )
-        extracted = utils.RDFExtractor(zip_file).parse()
-        apps = extracted['apps']
-        assert len(apps) == 1
-        assert apps[0].appdata == amo.FIREFOX
-        assert apps[0].min.version == '38.0a1'
-        assert apps[0].max.version == '43.0'
 
 
 class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
@@ -362,39 +300,6 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
 
     def test_extensions_dont_have_strict_compatibility(self):
         assert self.parse({})['strict_compatibility'] is False
-
-    def test_moz_signed_extension_no_strict_compat(self):
-        addon = amo.tests.addon_factory()
-        user = amo.tests.user_factory()
-        self.grant_permission(user, 'SystemAddon:Submit')
-        file_obj = addon.current_version.all_files[0]
-        file_obj.update(is_mozilla_signed_extension=True)
-        fixture = (
-            'src/olympia/files/fixtures/files/legacy-addon-already-signed-0.1.0.xpi'
-        )
-
-        with amo.tests.copy_file(fixture, file_obj.file_path):
-            parsed = utils.parse_xpi(file_obj.file_path, user=user)
-            assert parsed['is_mozilla_signed_extension']
-            assert not parsed['strict_compatibility']
-
-    def test_moz_signed_extension_reuse_strict_compat(self):
-        addon = amo.tests.addon_factory()
-        user = amo.tests.user_factory()
-        self.grant_permission(user, 'SystemAddon:Submit')
-        file_obj = addon.current_version.all_files[0]
-        file_obj.update(is_mozilla_signed_extension=True)
-        fixture = (
-            'src/olympia/files/fixtures/files/'
-            'legacy-addon-already-signed-strict-compat-0.1.0.xpi'
-        )
-
-        with amo.tests.copy_file(fixture, file_obj.file_path):
-            parsed = utils.parse_xpi(file_obj.file_path, user=user)
-            assert parsed['is_mozilla_signed_extension']
-
-            # We set `strictCompatibility` in install.rdf
-            assert parsed['strict_compatibility']
 
     @mock.patch('olympia.addons.models.resolve_i18n_message')
     def test_mozilla_trademark_disallowed(self, resolve_message):
@@ -1088,28 +993,6 @@ class TestXMLVulnerabilities(TestCase):
     This doesn't replicate all defusedxml tests.
     """
 
-    def test_general_entity_expansion_is_disabled(self):
-        zip_file = utils.SafeZip(
-            os.path.join(
-                os.path.dirname(__file__),
-                '..',
-                'fixtures',
-                'files',
-                'xxe-example-install.zip',
-            )
-        )
-
-        # This asserts that the malicious install.rdf blows up with
-        # a parse error. If it gets as far as this specific parse error
-        # it means that the external entity was not processed.
-        #
-
-        # Before the patch in files/utils.py, this would raise an IOError
-        # from the test suite refusing to make an external HTTP request to
-        # the entity ref.
-        with pytest.raises(EntitiesForbidden):
-            utils.RDFExtractor(zip_file)
-
     def test_lxml_XMLParser_no_resolve_entities(self):
         with pytest.raises(NotSupportedError):
             lxml.etree.XMLParser(resolve_entities=True)
@@ -1215,8 +1098,8 @@ class TestSafeZip(TestCase):
     def test_raises_validation_error_when_uncompressed_size_is_too_large(self):
         with override_settings(MAX_ZIP_UNCOMPRESSED_SIZE=1000):
             with pytest.raises(forms.ValidationError):
-                # total uncompressed size of this xpi is: 2269 bytes
-                utils.SafeZip(get_addon_file('valid_firefox_and_thunderbird_addon.xpi'))
+                # total uncompressed size of this xpi is 126kb
+                utils.SafeZip(get_addon_file('mozilla_static_theme.zip'))
 
 
 class TestArchiveMemberValidator(TestCase):

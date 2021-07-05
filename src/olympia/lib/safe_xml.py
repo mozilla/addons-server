@@ -9,7 +9,6 @@ patched_modules = (
     'ElementTree',
     'minidom',
     'pulldom',
-    'rdflib',
     'sax',
     'expatbuilder',
     'expatreader',
@@ -28,7 +27,6 @@ defuse_stdlib()
 
 import lxml  # noqa
 import lxml.etree  # noqa
-from rdflib.plugins.parsers import rdfxml  # noqa
 from xml.sax.handler import (  # noqa
     feature_external_ges,
     feature_external_pes,
@@ -39,22 +37,3 @@ from olympia.lib import safe_lxml_etree  # noqa
 
 
 lxml.etree = safe_lxml_etree
-
-
-_rdfxml_create_parser = rdfxml.create_parser
-
-
-def create_rdf_parser_without_externals(target, store):
-    """
-    Create an RDF parser that does not support general entity expansion,
-    remote or local.
-
-    See https://bugzilla.mozilla.org/show_bug.cgi?id=1306954
-    """
-    parser = _rdfxml_create_parser(target, store)
-    parser.setFeature(feature_external_ges, 0)
-    parser.setFeature(feature_external_pes, 0)
-    return parser
-
-
-rdfxml.create_parser = create_rdf_parser_without_externals

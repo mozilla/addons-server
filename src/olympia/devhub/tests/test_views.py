@@ -261,17 +261,18 @@ class TestUpdateCompatibility(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
-        super(TestUpdateCompatibility, self).setUp()
+        super().setUp()
         assert self.client.login(email='del@icio.us')
         self.url = reverse('devhub.addons')
 
-        # These aren't realistic but work with existing tests and the 3615
-        # addon
+        # These aren't realistic but work with existing tests and the 3615 addon
         self.create_appversion('android', '3.7a1pre')
         self.create_appversion('android', '4.0')
 
     def create_appversion(self, name, version):
-        return AppVersion.objects.create(application=amo.APPS[name].id, version=version)
+        return AppVersion.objects.get_or_create(
+            application=amo.APPS[name].id, version=version
+        )
 
     def test_no_compat(self):
         addon = Addon.objects.get(pk=3615)
@@ -1517,46 +1518,6 @@ class TestUploadDetail(BaseUploadTest):
             }
         ]
 
-    def test_legacy_mozilla_signed_fx57_compat_allowed(self):
-        """Legacy add-ons that are signed with the mozilla certificate
-        should be allowed to be submitted ignoring most compatibility
-        checks.
-
-        See https://github.com/mozilla/addons-server/issues/6424 for more
-        information.
-
-        We also don't call amo-validator on them but we issue a warning
-        about being legacy add-ons.
-        """
-        user = user_factory()
-        self.grant_permission(user, 'SystemAddon:Submit')
-        assert self.client.login(email=user.email)
-        self.upload_file(
-            os.path.join(
-                settings.ROOT,
-                'src',
-                'olympia',
-                'files',
-                'fixtures',
-                'files',
-                'legacy-addon-already-signed-0.1.0.xpi',
-            )
-        )
-
-        upload = FileUpload.objects.get()
-        response = self.client.get(
-            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
-        )
-        data = json.loads(force_str(response.content))
-
-        msg = data['validation']['messages'][0]
-
-        assert msg['id'] == ['validation', 'messages', 'legacy_addons_unsupported']
-        assert msg['type'] == 'warning'
-        assert msg['message'] == (
-            'Legacy extensions are no longer supported in Firefox.'
-        )
-
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_system_addon_update_allowed(self, mock_validator):
         """Updates to system addons are allowed from anyone."""
@@ -1574,19 +1535,6 @@ class TestUploadDetail(BaseUploadTest):
         )
         data = json.loads(force_str(response.content))
         assert data['validation']['messages'] == []
-
-    def test_legacy_langpacks_disallowed(self):
-        self.upload_file('../../../files/fixtures/files/langpack.xpi')
-        upload = FileUpload.objects.get()
-        response = self.client.get(
-            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
-        )
-        data = json.loads(force_str(response.content))
-        assert data['validation']['messages'][0]['id'] == [
-            'validation',
-            'messages',
-            'legacy_addons_unsupported',
-        ]
 
     def test_no_redirect_for_metadata(self):
         user = UserProfile.objects.get(email='regular@mozilla.com')
