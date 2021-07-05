@@ -595,7 +595,6 @@ def test_get_sitemap_section_pages():
         ('addons', 'android', 1),
         ('categories', 'firefox', 1),
         ('collections', 'firefox', 1),
-        ('collections', 'android', 1),
         ('users', 'firefox', 1),
         ('users', 'android', 1),
     ]
@@ -611,7 +610,6 @@ def test_get_sitemap_section_pages():
             ('addons', 'android', 1),
             ('categories', 'firefox', 1),
             ('collections', 'firefox', 1),
-            ('collections', 'android', 1),
             ('users', 'firefox', 1),
             ('users', 'android', 1),
         ]
@@ -633,7 +631,6 @@ def test_get_sitemap_section_pages():
             ('addons', 'android', 1),
             ('categories', 'firefox', 1),
             ('collections', 'firefox', 1),
-            ('collections', 'android', 1),
             ('users', 'firefox', 1),
             ('users', 'firefox', 2),
             ('users', 'firefox', 3),
