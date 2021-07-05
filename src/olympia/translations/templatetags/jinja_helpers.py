@@ -113,16 +113,3 @@ def clean(string, strip_all_html=False):
         string = bleach.clean(str(string))
 
     return jinja2.Markup(clean_nl(string).strip())
-
-
-@library.filter
-def no_links(string):
-    """Leave text links untouched, keep only inner text on URLs."""
-    if not string:
-        return string
-    if hasattr(string, '__html__'):
-        string = string.__html__()
-    allowed_tags = bleach.ALLOWED_TAGS[:]
-    allowed_tags.remove('a')
-    no_links = bleach.clean(string, tags=allowed_tags, strip=True)
-    return jinja2.Markup(clean_nl(no_links).strip())

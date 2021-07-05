@@ -202,8 +202,8 @@ class LinkifiedField(TranslatedField):
     to = 'translations.LinkifiedTranslation'
 
 
-class NoLinksNoMarkupField(TranslatedField):
-    to = 'translations.NoLinksNoMarkupTranslation'
+class NoURLsField(TranslatedField):
+    to = 'translations.NoURLsTranslation'
 
 
 def switch(obj, new_model):

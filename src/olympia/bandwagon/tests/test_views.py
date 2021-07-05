@@ -384,7 +384,7 @@ class CollectionViewSetDataMixin(object):
         assert response.status_code == 400
         assert json.loads(response.content) == {'name': ['Name cannot be empty.']}
 
-    def test_biography_no_links(self):
+    def test_description_no_links(self):
         self.client.login_api(self.user)
         data = dict(self.data)
         data.update(description='<a href="https://google.com">google</a>')
@@ -402,7 +402,7 @@ class CollectionViewSetDataMixin(object):
         }
 
     @override_settings(DRF_API_GATES={'v5': ('l10n_flat_input_output',)})
-    def test_biography_no_links_flat_input(self):
+    def test_description_no_links_flat_input(self):
         self.client.login_api(self.user)
         data = dict(self.data)
         data.update(description='<a href="https://google.com">google</a>')
