@@ -520,8 +520,8 @@ def get_sitemaps():
         ('addons', amo.ANDROID): AddonSitemap(),
         # category pages aren't supported on android, so firefox only
         ('categories', amo.FIREFOX): CategoriesSitemap(),
+        # we don't expose collections on android, so firefox only
         ('collections', amo.FIREFOX): CollectionSitemap(),
-        ('collections', amo.ANDROID): CollectionSitemap(),
         ('users', amo.FIREFOX): AccountSitemap(),
         ('users', amo.ANDROID): AccountSitemap(),
     }
