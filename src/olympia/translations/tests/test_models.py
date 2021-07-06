@@ -21,7 +21,7 @@ from olympia.amo.tests import TestCase
 from olympia.translations.hold import translation_saved
 from olympia.translations.models import (
     LinkifiedTranslation,
-    NoLinksNoMarkupTranslation,
+    NoURLsTranslation,
     PurifiedTranslation,
     Translation,
     TranslationSequence,
@@ -734,37 +734,102 @@ class LinkifiedTranslationTest(TestCase):
         )
 
 
-class NoLinksNoMarkupTranslationTest(TestCase):
-    def test_forbidden_tags(self):
-        s = '<script>some naughty xss</script> <b>bold</b>'
-        x = NoLinksNoMarkupTranslation(localized_string=s)
-        assert x.__html__() == (
-            '&lt;script&gt;some naughty xss&lt;/script&gt; &lt;b&gt;bold&lt;/b&gt;'
-        )
+class NoURLsTranslationTest(TestCase):
+    def test_no_escaping(self):
+        # HTML is not escaped by this model as this is just storing as text.
+        value = '<script>some naughty xss</script> & <b>bold</b>'
+        translation = NoURLsTranslation(localized_string=value)
+        assert str(translation) == str(value)
 
-    def test_links_stripped(self):
-        # Link with markup.
-        s = 'a <a href="http://example.com">link</a> with markup'
-        x = NoLinksNoMarkupTranslation(localized_string=s)
-        assert x.__html__() == 'a  with markup'
+    def test_urls_stripped(self):
+        # Link with markup. Link text is preserved because it doesn't contain
+        # an URL.
+        value = 'a <a href="http://example.com">link</a> with markup'
+        translation = NoURLsTranslation(localized_string=value)
+        assert str(translation) == 'a <a href="">link</a> with markup'
+
+        # Link with markup but this time the text is also an URL. It's stripped
+        value = 'a <a href="http://example.com">example.com</a> with markup'
+        translation = NoURLsTranslation(localized_string=value)
+        assert str(translation) == 'a <a href=""></a> with markup'
 
         # Text link.
         s = 'a text http://example.com link'
-        x = NoLinksNoMarkupTranslation(localized_string=s)
-        assert x.__html__() == 'a text  link'
+        translation = NoURLsTranslation(localized_string=s)
+        assert str(translation) == 'a text  link'
 
-        # Text link, markup link, forbidden tags and bad markup.
-        s = (
+        # Test less obvious link
+        s = 'a text foo.is link'
+        translation = NoURLsTranslation(localized_string=s)
+        assert str(translation) == 'a text  link'
+
+        # Another.
+        s = 'a text t.to link'
+        translation = NoURLsTranslation(localized_string=s)
+        assert str(translation) == 'a text  link'
+
+    def test_uppercase(self):
+        value = (
             'a <a href="http://example.com">link</a> with markup, a text '
-            'http://example.com link, <b>with forbidden tags</b>, '
-            '<script>forbidden tags</script> and <http://bad.markup.com'
+            'http://example.com link, and some raw <b>html://</b>. I <3 HTTP!'
         )
-        x = NoLinksNoMarkupTranslation(localized_string=s)
-        assert x.__html__() == (
-            'a  with markup, a text  link, '
-            '&lt;b&gt;with forbidden tags&lt;/b&gt;, '
-            '&lt;script&gt;forbidden tags&lt;/script&gt; and'
+        translation = NoURLsTranslation(localized_string=value)
+        assert str(translation) == (
+            'a <a href="">link</a> with markup, a text '
+            ' link, and some raw <b>html://</b>. I <3 HTTP!'
         )
+
+    def test_with_newlines(self):
+        value = (
+            'a <a href="http://example.com">link</a> with markup \n, a text '
+            'http://example.com link, and some raw <b>HTML</b>. I <3 http!'
+        )
+        translation = NoURLsTranslation(localized_string=value)
+        assert str(translation) == (
+            'a <a href="">link</a> with markup \n, a text '
+            ' link, and some raw <b>HTML</b>. I <3 http!'
+        )
+
+    def test_bit_of_everything(self):
+        value = (
+            'a <a href="http://example.com">link</a> with markup,\n'
+            'a newline with a more complex link <a href="http://foo.is">lol.com</a>,\n'
+            'another http://example.com link, <b>with forbidden tags</b>,\n'
+            'and <script>forbidden tags</script> as well as <http:/bad.markup.com'
+        )
+        translation = NoURLsTranslation(localized_string=value)
+        assert str(translation) == (
+            'a <a href="">link</a> with markup,\n'
+            'a newline with a more complex link <a href=""></a>,\n'
+            'another  link, <b>with forbidden tags</b>,\n'
+            'and <script>forbidden tags</script> as well as <'
+        )
+
+    def test_clean_on_save(self):
+        translation = NoURLsTranslation.objects.create(id=1001, localized_string='foo')
+        assert (
+            translation.localized_string_clean == translation.localized_string == 'foo'
+        )
+
+        translation = NoURLsTranslation.objects.create(
+            id=1002, localized_string='foo', localized_string_clean='bar'
+        )
+        assert (
+            translation.localized_string_clean == translation.localized_string == 'foo'
+        )
+
+        translation = NoURLsTranslation.objects.create(
+            id=1003,
+            localized_string='foo http://example.com',
+            localized_string_clean=None,
+        )
+        assert translation.localized_string == 'foo http://example.com'
+        assert translation.localized_string_clean == 'foo'
+
+        translation.localized_string_clean = 'xaxaxa'
+        translation.save()
+        assert translation.localized_string == 'foo http://example.com'
+        assert translation.localized_string_clean == 'foo'
 
 
 def test_translation_bool():

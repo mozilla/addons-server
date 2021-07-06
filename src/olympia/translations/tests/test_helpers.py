@@ -93,22 +93,6 @@ def test_clean_strip_all_html():
     assert from_string('{{ s|clean(true) }}').render({'s': s}) == expected
 
 
-def test_no_links():
-    template = from_string('{{ s|no_links }}')
-
-    s = 'a <a href="http://url.link">http://example.com</a>, http://text.link'
-    expected = 'a http://example.com, http://text.link'
-    assert template.render({'s': s}) == expected
-
-    # Bad markup.
-    s = '<http://bad.markup.com'
-    assert template.render({'s': s}) == ''
-
-    # Bad markup.
-    s = 'some text <http://bad.markup.com'
-    assert template.render({'s': s}) == 'some text'
-
-
 def test_l10n_menu():
     # No remove_locale_url provided.
     menu = jinja_helpers.l10n_menu({})

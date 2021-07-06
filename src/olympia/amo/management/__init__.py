@@ -88,8 +88,9 @@ class ProcessObjectsCommand(BaseCommand):
             help=f'Split the {verbose_name_plural} into X size chunks. Default 100.',
         )
 
-    def get_pks(self, manager, q_objects, distinct=False):
-        pks = manager.filter(q_objects).values_list('pk', flat=True).order_by('id')
+    def get_pks(self, manager, q_objects, *, distinct=False):
+        qs = manager.filter(*q_objects)
+        pks = qs.values_list('pk', flat=True).order_by('pk')
         if distinct:
             pks = pks.distinct()
         return pks
@@ -115,7 +116,7 @@ class ProcessObjectsCommand(BaseCommand):
         base_qs = self.get_base_queryset(options)
         pks = self.get_pks(
             base_qs,
-            *task_info['queryset_filters'],
+            task_info['queryset_filters'],
             distinct=task_info.get('distinct'),
         )
         if options.get('limit'):

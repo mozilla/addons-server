@@ -4,6 +4,7 @@ from django.db import connections, models, router
 from django.db.models.deletion import Collector
 
 import bleach
+from bleach.linkifier import URL_RE  # build_url_re() with good defaults.
 
 import olympia.core.logger
 
@@ -233,26 +234,28 @@ class LinkifiedTranslation(PurifiedTranslation):
         proxy = True
 
 
-class NoLinksNoMarkupTranslation(LinkifiedTranslation):
-    """Run the string through bleach, escape markup and strip all the links."""
+class NoURLsTranslation(Translation):
+    """Regular translation model, but with URLs stripped."""
 
     class Meta:
         proxy = True
 
-    def clean_localized_string(self):
-        # First pass: bleach everything, but leave links untouched.
-        cleaned = super(LinkifiedTranslation, self).clean_localized_string()
+    def __str__(self):
+        # Clean string if that hasn't been done already, like
+        # PurifiedTranslation does. Unlike PurifiedTranslation though, this
+        # class doesn't implement __html__(), because it's designed to contain
+        # only text. This means that it should be escaped by templates and API
+        # clients, as it can contain raw HTML.
+        if not self.localized_string_clean and self.localized_string:
+            self.clean()
+        return str(self.localized_string_clean)
 
-        # Second pass: call linkify to empty the inner text of all links.
-        emptied_links = bleach.linkify(
-            cleaned, callbacks=[lambda attrs, new: {'_text': ''}]
-        )
-
-        # Third pass: now strip links (only links will be stripped, other
-        # forbidden tags are already bleached/escaped.
-        allowed_tags = self.allowed_tags[:]  # Make a copy.
-        allowed_tags.remove('a')
-        return bleach.clean(emptied_links, tags=allowed_tags, strip=True)
+    def clean(self):
+        # URL_RE is the regexp used by bleach to detect URLs to linkify them,
+        # in our case we use it to find them and replace them with nothing.
+        # It's more effective/aggressive than something like r'http\S+', it can
+        # also detect things like foo.com.
+        self.localized_string_clean = URL_RE.sub('', self.localized_string).strip()
 
 
 class TranslationSequence(models.Model):
