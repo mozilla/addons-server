@@ -10,9 +10,6 @@ from olympia.translations.management.commands.process_translations import (
 
 class TestTranslationCommands(TestCase):
     def setUp(self):
-        self.collection = Collection.objects.create(
-            name='foo_collection_name', description='foo_collection_description'
-        )
         # Orphaned translation: should not be touched.
         Translation.objects.create(
             id=667, localized_string='foo', localized_string_clean='bar', locale='de'
@@ -25,10 +22,6 @@ class TestTranslationCommands(TestCase):
             localized_string_clean='bar2',
             locale='fr',
         )
-
-        # Translation belonging to a collection name: should not be touched.
-        self.collection.name.localized_string_clean = 'bar_collection_name'
-        self.collection.name.save()
         # Translation belonging to an add-on: should not be touched.
         addon = addon_factory(name='foo_addon')
         addon.name.localized_string_clean = 'bar_addon'
@@ -41,7 +34,14 @@ class TestTranslationCommands(TestCase):
         )
         extra_collection.description.update(modified=self.days_ago(42))
 
-        # The command should fix this one.
+        self.collection = Collection.objects.create(
+            name='foo_collection_name', description='foo_collection_description'
+        )
+        # Translation belonging to a collection name: should not be touched.
+        self.collection.name.localized_string_clean = 'bar_collection_name'
+        self.collection.name.save()
+        # Translation belonging to the same collection, but this time the
+        # description. The command should fix this one.
         self.collection.description.update(
             localized_string_clean='bar_collection_description',
             modified=self.days_ago(42),
