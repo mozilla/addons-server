@@ -30,9 +30,9 @@ class Collection(ModelBase):
     name = TranslatedField(require_locale=False)
     slug = models.CharField(max_length=30, blank=True, null=True)
 
-    # biography can (and sometimes does) contain html and other unsanitized
+    # description can (and sometimes does) contain html and other unsanitized
     # content. It must be cleaned before display - NoURLsField just strips the
-    # URL without escaping.
+    # URL without doing any escaping.
     description = NoURLsField(require_locale=False)
     default_locale = models.CharField(
         max_length=10, default='en-US', db_column='defaultlocale'
