@@ -12,7 +12,8 @@ from django.test.testcases import TransactionTestCase
 from celery import group, task
 from celery.canvas import _chain
 
-from olympia.amo.tests import addon_factory, ESTestCase, reverse_ns
+from olympia.addons.models import Addon
+from olympia.amo.tests import addon_factory, ESTestCaseMixin, PatchMixin, reverse_ns
 from olympia.amo.utils import urlparams
 from olympia.lib.es.management.commands import reindex
 from olympia.lib.es.utils import is_reindexing_amo, unflag_reindexing_amo
@@ -23,7 +24,7 @@ def dummy_task():
     return None
 
 
-class TestIndexCommand(ESTestCase):
+class TestIndexCommand(ESTestCaseMixin, PatchMixin, TransactionTestCase):
     def setUp(self):
         super(TestIndexCommand, self).setUp()
         if is_reindexing_amo():
@@ -43,21 +44,21 @@ class TestIndexCommand(ESTestCase):
         # eager-mode) fixed.
         self.patch('celery.app.task.denied_join_result')
 
-    # Since this test plays with transactions, but we don't have (and don't
-    # really want to have) a ESTransactionTestCase class, use the fixture setup
-    # and teardown methods from TransactionTestCase.
-    def _fixture_setup(self):
-        return TransactionTestCase._fixture_setup(self)
-
-    def _fixture_teardown(self):
-        return TransactionTestCase._fixture_teardown(self)
-
     def tearDown(self):
         current_indices = self.es.indices.stats()['indices'].keys()
         for index in current_indices:
             if index not in self.indices:
                 self.es.indices.delete(index, ignore=404)
-        super(TestIndexCommand, self).tearDown()
+        super().tearDown()
+
+    @classmethod
+    def tearDownClass(cls):
+        super().tearDownClass()
+        try:
+            assert not Addon.objects.exists(), Addon.objects.values('id', 'slug')
+        except AssertionError as ae:
+            Addon.objects.all().delete()
+            raise ae
 
     def check_settings(self, new_indices):
         """Make sure the indices settings are properly set."""
@@ -123,7 +124,6 @@ class TestIndexCommand(ESTestCase):
         # commit.
         while t.is_alive() and not is_reindexing_amo():
             connection._commit()
-            connection.clean_savepoints()
 
         if not wipe:
             # We should still be able to search in the foreground while the
@@ -133,7 +133,6 @@ class TestIndexCommand(ESTestCase):
             while t.is_alive() and len(self.expected) < old_addons_count + 3:
                 self.expected.append(addon_factory())
                 connection._commit()
-                connection.clean_savepoints()
                 # We don't know where the search will happen, the reindexing
                 # could be over by now. So force a refresh on *all* indices.
                 self.refresh(None)
@@ -142,7 +141,7 @@ class TestIndexCommand(ESTestCase):
             if len(self.expected) == old_addons_count:
                 raise AssertionError(
                     'Could not index objects in foreground while reindexing '
-                    'in the background.'
+                    'in the background. (expected: %d)' % len(self.expected)
                 )
 
         t.join()  # Wait for the thread to finish.
@@ -152,7 +151,6 @@ class TestIndexCommand(ESTestCase):
 
         # The reindexation is done, let's double check we have all our docs.
         connection._commit()
-        connection.clean_savepoints()
         self.refresh()
         self.check_results(self.expected)
 
