@@ -821,13 +821,13 @@ class NoURLsTranslationTest(TestCase):
         translation = NoURLsTranslation.objects.create(
             id=1003,
             localized_string='foo http://example.com',
-            localized_string_clean='foo',
+            localized_string_clean=None,
         )
         assert translation.localized_string == 'foo http://example.com'
         assert translation.localized_string_clean == 'foo'
 
         translation.localized_string_clean = 'xaxaxa'
-        translation.save()  # Will overwrite localized_string_clean.
+        translation.save()
         assert translation.localized_string == 'foo http://example.com'
         assert translation.localized_string_clean == 'foo'
 
