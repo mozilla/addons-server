@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-24 14:01+0000\n"
-"PO-Revision-Date: 2021-07-06 20:13+0000\n"
+"PO-Revision-Date: 2021-07-06 20:18+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -440,9 +440,8 @@ msgid ""
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr "Ако поддържаното приложение не изисква файл-манифест, все пак трябва да включите такъв с нужните свойства, както е %(amo_manifests_mdn_link_open)sописано тук%(amo_manifests_mdn_link_close)s."
 
-#, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
-msgstr "Това име вече се използва от друг ваш списък."
+msgstr ""
 
 msgid "Name cannot be empty."
 msgstr "Името не може да е празно."
@@ -454,9 +453,8 @@ msgstr "Това име не може да бъде използвано."
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "Въведете валидно име, състоящо се то букви, цифри, долни черти или тирета."
 
-#, fuzzy
 msgid "This custom URL cannot be used."
-msgstr "Това потребителско име не може да бъде използвано."
+msgstr ""
 
 msgid "This add-on already belongs to the collection"
 msgstr "Добавката вече се принадлежи към този списък"
@@ -487,9 +485,8 @@ msgstr ""
 msgid "%(value)s contains *"
 msgstr ""
 
-#, fuzzy
 msgid "Invalid version"
-msgstr "Невалиден обхват на версиите."
+msgstr ""
 
 msgid "Min version can not be greater than Max version"
 msgstr ""
@@ -512,9 +509,8 @@ msgstr ""
 msgid "Delete Multiple %(name)s"
 msgstr ""
 
-#, fuzzy
 msgid "Home"
-msgstr "Начална страница"
+msgstr "Начало"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
@@ -554,7 +550,6 @@ msgstr ""
 msgid "Add-on GUIDs (one per line)"
 msgstr ""
 
-#, fuzzy
 msgid "Submit"
 msgstr "Изпращане"
 
@@ -922,16 +917,14 @@ msgstr ""
 msgid "Block for {0} deleted from Blocklist."
 msgstr "Издание {0} на {addon} изтрито."
 
-#, fuzzy
 msgid "Block deleted"
-msgstr "Добавката е изтрита."
+msgstr ""
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr ""
 
-#, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "{addon} премахната от {collection}."
+msgstr "GUID за {addon} е премахнат от DeniedGuid."
 
 msgid "Block {1} action for {0} signed off."
 msgstr ""
@@ -1027,7 +1020,7 @@ msgid "Unlisted"
 msgstr "Махната от списъка"
 
 msgid "API"
-msgstr ""
+msgstr "ППИ"
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -1104,6 +1097,8 @@ msgstr "Известия и обновяване"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
 msgstr ""
+"Изтеглете разширения на Firefox, които ви помагат да сте в крак с времето, да следвате задачи и да подобрите ефективността си. Намерете разширения които презареждат раздели, управляват "
+"производителността и др."
 
 msgid "Appearance"
 msgstr "Външен вид"
@@ -1122,6 +1117,7 @@ msgstr "Управление на изтегляния"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
 msgstr ""
+"Изтеглете разширения на Firefox които могат да помогнат за изтегляне на уеб, музика и видео съдържание. Можете също да намерите разширения за управление на изтегляния, споделяне на файлове и др."
 
 msgid "Feeds, News & Blogging"
 msgstr "Емисии, новини и блогове"
@@ -1779,7 +1775,7 @@ msgid "Invalid or broken archive."
 msgstr "Невалиден обхват на версиите."
 
 msgid "View current"
-msgstr ""
+msgstr "Текущо издание"
 
 msgid "Invalid version range."
 msgstr "Невалиден обхват на версиите."
@@ -1846,9 +1842,8 @@ msgstr ""
 msgid "Display Name"
 msgstr "Показвано име"
 
-#, fuzzy
 msgid "Invalid or corrupt add-on file."
-msgstr "Невалиден обхват на версиите."
+msgstr "Невалиден или повреден файл на добавка."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr ""
@@ -5183,9 +5178,8 @@ msgstr "Насоки за писане на отзиви"
 msgid "Content Review"
 msgstr "Изпращане на рецензия"
 
-#, fuzzy
 msgid "Content Review ({0})"
-msgstr "Модерирана рецензия ({0})"
+msgstr ""
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
