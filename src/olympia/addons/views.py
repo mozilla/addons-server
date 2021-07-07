@@ -472,7 +472,6 @@ class AddonSearchView(ListAPIView):
             Search(
                 using=amo.search.get_es(),
                 index=AddonIndexer.get_index_alias(),
-                doc_type=AddonIndexer.get_doctype_name(),
             )
             .extra(_source={'excludes': AddonIndexer.hidden_fields})
             .params(search_type='dfs_query_then_fetch')
@@ -524,7 +523,6 @@ class AddonAutoCompleteSearchView(AddonSearchView):
         qset = Search(
             using=amo.search.get_es(),
             index=AddonIndexer.get_index_alias(),
-            doc_type=AddonIndexer.get_doctype_name(),
         ).extra(_source={'includes': included_fields})
 
         return qset
