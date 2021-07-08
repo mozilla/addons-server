@@ -40,7 +40,7 @@ class Migration(migrations.Migration):
             options={
                 'db_table': 'licenses',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='Version',
@@ -70,7 +70,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'base_manager_name': 'unfiltered',
             },
-            bases=(olympia.amo.models.OnChangeMixin, olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.OnChangeMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
             managers=[
                 ('unfiltered', django.db.models.manager.Manager()),
             ],
@@ -90,7 +90,7 @@ class Migration(migrations.Migration):
                 'db_table': 'version_previews',
                 'ordering': ('position', 'created'),
             },
-            bases=(olympia.amo.models.BasePreview, olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.BasePreview, olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='ApplicationsVersions',

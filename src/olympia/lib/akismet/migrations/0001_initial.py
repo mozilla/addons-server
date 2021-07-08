@@ -48,6 +48,6 @@ class Migration(migrations.Migration):
             options={
                 'db_table': 'akismet_reports',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
     ]

@@ -31,7 +31,7 @@ class Migration(migrations.Migration):
             options={
                 'db_table': 'scanners_results',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.AddConstraint(
             model_name='scannersresult',

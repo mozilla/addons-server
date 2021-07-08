@@ -44,7 +44,7 @@ class Migration(migrations.Migration):
                 'ordering': ('-created',),
                 'base_manager_name': 'unfiltered',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
             managers=[
                 ('unfiltered', django.db.models.manager.Manager()),
             ],
@@ -63,7 +63,7 @@ class Migration(migrations.Migration):
             options={
                 'db_table': 'reviews_moderation_flags',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.AddIndex(
             model_name='ratingflag',

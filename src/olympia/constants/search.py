@@ -1,16 +1,14 @@
-# These two dicts are mapping between language codes in zamboni and language
-# analyzers in elasticsearch.
+# These two dicts are mapping between language codes in addons-server and
+# language analyzers in elasticsearch.
 #
-# Each key value of ANALYZER_MAP is language analyzer supported by
-# elasticsearch.  See
-# http://www.elasticsearch.org/guide/reference/index-modules/analysis/lang-analyzer.html
+# The keys are elasticsearch language analyzers while each value is a list of
+# language codes supported by AMO.
 #
-# Each value of ANALYZER_MAP is a list which is supported by the key analyzer.
-# All values are picked from AMO_LANGUAGES in settings.py.
-#
-# The rows commented out are that the language is not supported by
+# The lines commented out are that the language is not supported by
 # elasticsearch yet.  We should update it when elasticsearch supports new
 # analyzer for the language.
+#
+# http://www.elasticsearch.org/guide/reference/index-modules/analysis/lang-analyzer.html
 
 SEARCH_ANALYZER_MAP = {
     # '': ['af'],    # Afrikaans

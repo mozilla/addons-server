@@ -75,7 +75,7 @@ def index_addons(ids, **kw):
         ids,
         Addon,
         AddonIndexer.extract_document,
-        kw.pop('index', None),
+        kw.pop('index', AddonIndexer.get_index_alias()),
         transforms,
         Addon.unfiltered,
     )
@@ -108,7 +108,6 @@ def find_inconsistencies_between_es_and_db(ids, **kw):
     db_addons = Addon.unfiltered.in_bulk(ids)
     es_addons = (
         Search(
-            doc_type=AddonIndexer.get_doctype_name(),
             index=AddonIndexer.get_index_alias(),
             using=amo.search.get_es(),
         )

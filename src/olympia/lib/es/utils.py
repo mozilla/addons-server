@@ -25,10 +25,8 @@ get_indices = Reindexing.objects.get_indices
 
 
 def index_objects(ids, model, extract_func, index=None, transforms=None, objects=None):
-    if index is None:
-        index = model._get_index()
-    if objects is None:
-        objects = model.objects
+    assert index is not None
+    assert objects is not None
 
     indices = Reindexing.objects.get_indices(index)
 
@@ -47,7 +45,7 @@ def index_objects(ids, model, extract_func, index=None, transforms=None, objects
                 {
                     '_source': data,
                     '_id': ob.id,
-                    '_type': ob.get_mapping_type(),
+                    '_type': '_doc',
                     '_index': index,
                 }
             )
@@ -106,8 +104,7 @@ def create_index(index, config=None):
             'max_result_window': settings.ES_MAX_RESULT_WINDOW,
         }
     )
-
     if not es.indices.exists(index):
-        es.indices.create(index, body=config)
+        es.indices.create(index, body=config, include_type_name=False)
 
     return index

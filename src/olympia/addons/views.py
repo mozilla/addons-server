@@ -473,7 +473,9 @@ class AddonSearchView(ListAPIView):
                 using=amo.search.get_es(),
                 index=AddonIndexer.get_index_alias(),
             )
-            .extra(_source={'excludes': AddonIndexer.hidden_fields})
+            .extra(
+                _source={'excludes': AddonIndexer.hidden_fields}, track_total_hits=True
+            )
             .params(search_type='dfs_query_then_fetch')
         )
 

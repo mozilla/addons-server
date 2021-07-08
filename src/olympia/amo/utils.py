@@ -57,8 +57,7 @@ from rest_framework.utils.encoders import JSONEncoder
 from django.db.transaction import non_atomic_requests
 
 from olympia.core.logger import getLogger
-from olympia.amo import ADDON_ICON_SIZES, search
-from olympia.amo.pagination import ESPaginator
+from olympia.amo import ADDON_ICON_SIZES
 from olympia.amo.urlresolvers import linkify_with_outgoing
 from olympia.translations.models import Translation
 from olympia.users.models import UserNotification
@@ -181,10 +180,7 @@ def paginate(request, queryset, per_page=20, count=None):
     ``.count()`` on the queryset.  This can be good if the queryset would
     produce an expensive count query.
     """
-    if isinstance(queryset, search.ES):
-        paginator = ESPaginator(queryset, per_page, use_elasticsearch_dsl=False)
-    else:
-        paginator = DjangoPaginator(queryset, per_page)
+    paginator = DjangoPaginator(queryset, per_page)
 
     if count is not None:
         paginator.count = count

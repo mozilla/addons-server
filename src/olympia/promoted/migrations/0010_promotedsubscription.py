@@ -82,7 +82,6 @@ class Migration(migrations.Migration):
                 "base_manager_name": "objects",
             },
             bases=(
-                olympia.amo.models.SearchMixin,
                 olympia.amo.models.SaveUpdateMixin,
                 models.Model,
             ),

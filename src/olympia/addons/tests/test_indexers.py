@@ -7,7 +7,6 @@ from django.conf import settings
 from olympia import amo
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import Addon, Preview, attach_tags, attach_translations_dict
-from olympia.amo.models import SearchMixin
 from olympia.amo.tests import addon_factory, ESTestCase, TestCase, file_factory
 from olympia.bandwagon.models import Collection
 from olympia.constants.applications import FIREFOX
@@ -132,10 +131,7 @@ class TestAddonIndexer(TestCase):
         return fields
 
     def test_mapping(self):
-        doc_name = self.indexer.get_doctype_name()
-        assert doc_name
-
-        mapping_properties = self.indexer.get_mapping()[doc_name]['properties']
+        mapping_properties = self.indexer.get_mapping()['properties']
 
         # Make sure the get_mapping() method does not return fields we did
         # not expect to be present, or omitted fields we want.
@@ -185,10 +181,7 @@ class TestAddonIndexer(TestCase):
         Old versions of ElasticSearch allowed 'no' and 'yes' strings,
         this changed with ElasticSearch 5.x.
         """
-        doc_name = self.indexer.get_doctype_name()
-        assert doc_name
-
-        mapping_properties = self.indexer.get_mapping()[doc_name]['properties']
+        mapping_properties = self.indexer.get_mapping()['properties']
 
         assert all(
             isinstance(prop['index'], bool)
@@ -586,13 +579,11 @@ class TestAddonIndexerWithES(ESTestCase):
         self.reindex(Addon)
 
         indexer = AddonIndexer()
-        doc_name = indexer.get_doctype_name()
-        real_index_name = self.get_index_name(SearchMixin.ES_ALIAS_KEY)
-        mappings = self.es.indices.get_mapping(indexer.get_index_alias())[
-            real_index_name
-        ]['mappings']
+        real_index_name = self.get_index_name('default')
+        alias = indexer.get_index_alias()
+        mappings = self.es.indices.get_mapping(alias)[real_index_name]['mappings']
 
-        actual_properties = mappings[doc_name]['properties']
-        indexer_properties = indexer.get_mapping()[doc_name]['properties']
+        actual_properties = mappings['properties']
+        indexer_properties = indexer.get_mapping()['properties']
 
         assert set(actual_properties.keys()) == set(indexer_properties.keys())

@@ -37,7 +37,7 @@ class Migration(migrations.Migration):
                 'db_table': 'log_activity',
                 'ordering': ('-created',),
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='ActivityLogEmails',
@@ -50,7 +50,7 @@ class Migration(migrations.Migration):
             options={
                 'db_table': 'log_activity_emails',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='VersionLog',
@@ -65,7 +65,7 @@ class Migration(migrations.Migration):
                 'db_table': 'log_activity_version',
                 'ordering': ('-created',),
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='UserLog',
@@ -80,7 +80,7 @@ class Migration(migrations.Migration):
                 'db_table': 'log_activity_user',
                 'ordering': ('-created',),
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='GroupLog',
@@ -95,7 +95,7 @@ class Migration(migrations.Migration):
                 'db_table': 'log_activity_group',
                 'ordering': ('-created',),
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='DraftComment',
@@ -113,7 +113,7 @@ class Migration(migrations.Migration):
             options={
                 'db_table': 'log_activity_comment_draft',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='CommentLog',
@@ -128,7 +128,7 @@ class Migration(migrations.Migration):
                 'db_table': 'log_activity_comment',
                 'ordering': ('-created',),
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='AddonLog',
@@ -143,7 +143,7 @@ class Migration(migrations.Migration):
                 'db_table': 'log_activity_addon',
                 'ordering': ('-created',),
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='ActivityLogToken',
@@ -159,7 +159,7 @@ class Migration(migrations.Migration):
             options={
                 'db_table': 'log_activity_tokens',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.AddConstraint(
             model_name='activitylogtoken',
