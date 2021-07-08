@@ -3,8 +3,11 @@ from unittest import mock
 
 from django.core import mail
 
+from elasticsearch_dsl import Search
+
 from olympia import amo
 from olympia.activity.models import ActivityLog
+from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import Addon
 from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.tests import ESTestCase, TestCase, addon_factory, user_factory
@@ -312,8 +315,8 @@ class TestRefreshTest(ESTestCase):
         assert self.get_bayesian_rating() == 0.0
 
     def get_bayesian_rating(self):
-        qs = Addon.search().filter(id=self.addon.id)
-        return qs.values_dict('bayesian_rating')[0]['bayesian_rating']
+        qs = Search(using=amo.search.get_es(), index=AddonIndexer.get_index_alias())
+        return qs.filter('term', id=self.addon.pk).execute().hits[0]['bayesian_rating']
 
     def test_created(self):
         assert self.get_bayesian_rating() == 0.0
