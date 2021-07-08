@@ -20,6 +20,7 @@ class AddonIndexer:
     """
     Base Indexer class for add-ons.
     """
+
     @classmethod
     def attach_translation_mappings(cls, mapping, field_names):
         """
