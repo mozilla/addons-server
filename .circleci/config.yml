@@ -377,7 +377,7 @@ commands:
           command: |
             docker version
             docker login -u "${DOCKERHUB_USER}" -p "${DOCKERHUB_PASS}"
-            docker build -t app:build -f << parameters.dockerfile >> --label git.commit="$CIRCLE_SHA1" .
+            docker build -t app:build --build-arg DJANGO_VERSION -f << parameters.dockerfile >> --label git.commit="$CIRCLE_SHA1" .
             docker tag app:build "${DOCKERHUB_REPO}":<< parameters.image_tag >>
             docker push "${DOCKERHUB_REPO}":<< parameters.image_tag >>
 
@@ -636,6 +636,8 @@ jobs:
 
   release-master:
     <<: *defaults-release
+    environment:
+      DJANGO_VERSION: "django32"
     steps:
       - checkout
       - make_release:
