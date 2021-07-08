@@ -14,14 +14,11 @@ from django.urls.exceptions import Resolver404
 from django.utils import timezone, translation
 from django.utils.functional import cached_property
 
-import elasticsearch
 import multidb.pinning
 
 import olympia.core.logger
 
 from olympia.translations.hold import save_translations
-
-from . import search
 
 
 log = olympia.core.logger.getLogger('z.addons')
