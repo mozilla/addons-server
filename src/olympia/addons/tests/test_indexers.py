@@ -581,7 +581,9 @@ class TestAddonIndexerWithES(ESTestCase):
         indexer = AddonIndexer()
         real_index_name = self.get_index_name('default')
         alias = indexer.get_index_alias()
-        mappings = self.es.indices.get_mapping(alias)[real_index_name]['mappings']
+        mappings = self.es.indices.get_mapping(alias, include_type_name=False)[
+            real_index_name
+        ]['mappings']
 
         actual_properties = mappings['properties']
         indexer_properties = indexer.get_mapping()['properties']
