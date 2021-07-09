@@ -148,7 +148,7 @@ class Extractor(object):
                 minimal=minimal
             )
         else:
-            raise NoManifestFound('No install.rdf or manifest.json found')
+            raise NoManifestFound('No manifest.json found')
         return data
 
 
@@ -767,7 +767,7 @@ def parse_xpi(xpi, addon=None, minimal=False, user=None):
     Will raise ValidationError if something went wrong while parsing.
 
     If minimal is True, it avoids validation as much as possible (still raising
-    ValidationError for hard errors like I/O or invalid json/rdf) and returns
+    ValidationError for hard errors like I/O or invalid json) and returns
     only the minimal set of properties needed to decide what to do with the
     add-on: guid, version and is_webextension.
     """
@@ -901,7 +901,7 @@ def parse_addon(pkg, addon=None, user=None, minimal=False):
 
     If `minimal` parameter is True, it avoids validation as much as possible
     (still raising ValidationError for hard errors like I/O or invalid
-    json/rdf) and returns only the minimal set of properties needed to decide
+    json) and returns only the minimal set of properties needed to decide
     what to do with the add-on (the exact set depends on the add-on type, but
     it should always contain at least guid, type, version and is_webextension.
     """
@@ -950,7 +950,7 @@ def update_version_number(file_obj, new_version_number):
     """Update the manifest to have the new version number."""
     # Create a new xpi with the updated version.
     updated = '{0}.updated_version_number'.format(file_obj.file_path)
-    # Copy the original XPI, with the updated install.rdf or package.json.
+    # Copy the original XPI, with the updated manifest.json.
     with zipfile.ZipFile(file_obj.file_path, 'r') as source:
         file_list = source.infolist()
         with zipfile.ZipFile(updated, 'w', zipfile.ZIP_DEFLATED) as dest:

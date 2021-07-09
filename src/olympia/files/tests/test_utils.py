@@ -65,7 +65,7 @@ class TestExtractor(AppVersionsMixin, TestCase):
         with self.assertRaises(utils.NoManifestFound) as exc:
             utils.Extractor.parse(fake_zip)
         assert isinstance(exc.exception, forms.ValidationError)
-        assert exc.exception.message == ('No install.rdf or manifest.json found')
+        assert exc.exception.message == ('No manifest.json found')
 
     @mock.patch('olympia.files.utils.ManifestJSONExtractor')
     def test_parse_manifest_json(self, manifest_json_extractor):

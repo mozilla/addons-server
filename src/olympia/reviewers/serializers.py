@@ -96,7 +96,7 @@ class FileEntriesMixin(object):
         files = self._get_entries()
 
         if requested_file is None:
-            default_files = ('manifest.json', 'install.rdf', 'package.json')
+            default_files = ('manifest.json', )
 
             for manifest in default_files:
                 if manifest in files:
