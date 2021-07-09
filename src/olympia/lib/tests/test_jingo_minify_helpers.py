@@ -7,12 +7,6 @@ from unittest import mock
 
 from olympia.amo.utils import from_string
 
-try:
-    from build import BUILD_ID_CSS, BUILD_ID_JS, BUILD_ID_IMG, BUNDLE_HASHES
-except ImportError:
-    BUILD_ID_CSS = BUILD_ID_JS = BUILD_ID_IMG = 'dev'
-    BUNDLE_HASHES = {}
-
 
 TEST_MINIFY_BUNDLES = {
     'css': {
