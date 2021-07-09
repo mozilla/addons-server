@@ -45,7 +45,6 @@ urlpatterns = [
     ),
     re_path(
         r'^pioneer$',
-        TemplateView.as_view(template_name='pages/pioneer.html'),
-        name='pages.pioneer',
+        lambda req: perma_redirect(settings.SHIELD_STUDIES_SUPPORT_URL),
     ),
 ]

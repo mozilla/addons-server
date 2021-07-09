@@ -6,28 +6,28 @@ from olympia.amo.tests import TestCase
 
 class TestPages(TestCase):
     def _check(self, url, status):
-        resp = self.client.get(reverse(url))
-        assert resp.status_code == status
+        response = self.client.get(reverse(url))
+        assert response.status_code == status
 
     def test_status(self):
-        pages = ['pages.about', 'pages.review_guide', 'pages.pioneer']
+        pages = ['pages.about', 'pages.review_guide']
         for page in pages:
             self._check(page, 200)
 
     def test_search_console(self):
-        resp = self.client.get('/google231a41e803e464e9.html')
-        assert resp.status_code == 200
+        response = self.client.get('/google231a41e803e464e9.html')
+        assert response.status_code == 200
 
 
 class TestRedirects(TestCase):
     def _check(self, pages):
         for old, new in pages.items():
             if new.startswith('http'):
-                r = self.client.get(old)
-                assert r['Location'] == new
+                response = self.client.get(old)
+                assert response['Location'] == new
             else:
-                r = self.client.get(old, follow=True)
-                self.assert3xx(r, new, 302)
+                response = self.client.get(old, follow=True)
+                self.assert3xx(response, new, 302)
 
     def test_app_pages(self):
         self._check(
@@ -42,8 +42,12 @@ class TestRedirects(TestCase):
                 '/en-US/pages/review_guide': reverse('pages.review_guide'),
             }
         )
-        r = self.client.get('/en-US/firefox/pages/developer_agreement', follow=False)
-        self.assert3xx(r, reverse('devhub.docs', args=['policies/agreement']), 301)
+        response = self.client.get(
+            '/en-US/firefox/pages/developer_agreement', follow=False
+        )
+        self.assert3xx(
+            response, reverse('devhub.docs', args=['policies/agreement']), 301
+        )
 
     def test_shield_studies(self):
         pages = [
@@ -62,6 +66,7 @@ class TestRedirects(TestCase):
             'shield_study_14',
             'shield_study_15',
             'shield_study_16',
+            'pioneer',
         ]
         for page in pages:
             url = '/en-US/firefox/{}'.format(page)
