@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-24 14:01+0000\n"
-"PO-Revision-Date: 2021-06-28 04:41+0000\n"
-"Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
+"PO-Revision-Date: 2021-07-10 07:08+0000\n"
+"Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -1673,7 +1673,7 @@ msgid "An author can only be present once."
 msgstr "1 人の作者は一度だけ掲載できます。"
 
 msgid "The account needs a display name before it can be added as an author."
-msgstr ""
+msgstr "アカウントを作成者として追加するには、アカウントは表示名が必要です。"
 
 msgid "Must have at least one owner."
 msgstr "オーナーが最低 1 人は必要です。"
@@ -3140,7 +3140,7 @@ msgid "Sign Up"
 msgstr "アカウント登録"
 
 msgid "Thanks!"
-msgstr ""
+msgstr "ありがとうございます！"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr ""
@@ -4341,7 +4341,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Skip over sponsored portions of YouTube videos."
-msgstr ""
+msgstr "YouTube 動画の広告をスキップしましょう。"
 
 #. editorial content for the discovery pane.
 msgid "Have web pages read aloud to you. 40+ languages supported."
@@ -4350,7 +4350,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Double-click any word to instantly see its definition."
-msgstr ""
+msgstr "ダブルクリックして単語の意味をすぐに調べましょう。"
 
 #. editorial content for the discovery pane.
 msgid "Blues & Yellows"
@@ -4470,60 +4470,53 @@ msgid "Learn More"
 msgstr "詳細"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended extensions"
-msgstr "おすすめ"
+msgstr "おすすめの拡張機能"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more recommended extensions"
-msgstr "すべての拡張機能を見る"
+msgstr "おすすめの拡張機能をもっと見る"
 
 #. editorial content for the homepage shelves.
 msgid "Popular themes"
-msgstr ""
+msgstr "人気のテーマ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular themes"
-msgstr "テーマの配色を選択"
+msgstr "人気のテーマをもっと見る"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Enhanced privacy extensions"
-msgstr "すべての拡張機能を見る"
+msgstr "プライバシー向上拡張機能"
 
 #. editorial content for the homepage shelves.
 msgid "See more enhanced privacy extensions"
-msgstr ""
+msgstr "プライバシー向上拡張機能をもっと見る"
 
 #. editorial content for the homepage shelves.
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Popular extensions"
-msgstr "拡張機能を探す"
+msgstr "人気の拡張機能"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular extensions"
-msgstr "すべての拡張機能を見る"
+msgstr "人気の拡張機能をもっと見る"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended themes"
-msgstr "おすすめ"
+msgstr "おすすめのテーマ"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
-msgstr ""
+msgstr "おすすめのテーマをもっと見る"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended password managers"
-msgstr ""
+msgstr "おすすめのパスワードマネージャー"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended password managers"
-msgstr ""
+msgstr "おすすめのパスワードマネージャーをもっと見る"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4531,9 +4524,8 @@ msgid "Translation tools"
 msgstr "タブ管理ツール"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more translation tools"
-msgstr "アドオンのバージョン別"
+msgstr "翻訳ツールをもっと見る"
 
 msgid "Could not parse the manifest file."
 msgstr "マニフェストファイルを解析できませんでした。"
