@@ -79,6 +79,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 email=self.fxa_email,
                 fxa_id=self.fxa_id,
                 display_name='uitest',
+                last_login_ip='127.0.0.1',
             )
         except Exception as e:
             log.info(
@@ -361,6 +362,8 @@ class GenerateAddonsSerializer(serializers.Serializer):
             pk=settings.TASK_USER_ID,
             defaults={'email': 'admin@mozilla.com', 'username': 'admin'},
         )
+        if not user.last_login_ip:
+            user.update(last_login_ip='127.0.0.1')
         # Groups should have been created by loaddata initial.json at this
         # point, we need our user to be part of a group allowed to submit
         # extensions signed by Mozilla. Let's use Admins (pk=1) as a shortcut.

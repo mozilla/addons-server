@@ -1066,17 +1066,23 @@ class TestReviewHelper(TestReviewHelperBase):
         self.setup_data(amo.STATUS_NULL, channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.version.update(needs_human_review=True)
         flags = VersionReviewerFlags.objects.create(
-            version=self.version, needs_human_review_by_mad=True
+            version=self.version,
+            needs_human_review_by_mad=True,
+        )
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, auto_approval_disabled_until_next_approval_unlisted=True
         )
         self.helper.handler.approve_latest_version()
         self.addon.reload()
         self.version.reload()
         self.file.reload()
         flags.reload()
+        addon_flags = self.addon.reviewerflags.reload()
         assert self.addon.status == amo.STATUS_NULL
         assert self.file.status == amo.STATUS_APPROVED
         assert not self.version.needs_human_review
         assert not flags.needs_human_review_by_mad
+        assert not addon_flags.auto_approval_disabled_until_next_approval_unlisted
 
     def test_unlisted_approve_latest_version_need_human_review_not_human(self):
         self.request = None  # Not a human review
@@ -1085,15 +1091,22 @@ class TestReviewHelper(TestReviewHelperBase):
         flags = VersionReviewerFlags.objects.create(
             version=self.version, needs_human_review_by_mad=True
         )
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, auto_approval_disabled_until_next_approval_unlisted=True
+        )
         self.helper.handler.approve_latest_version()
         self.addon.reload()
         self.version.reload()
         self.file.reload()
         flags.reload()
+        addon_flags = self.addon.reviewerflags.reload()
         assert self.addon.status == amo.STATUS_NULL
         assert self.file.status == amo.STATUS_APPROVED
         assert self.version.needs_human_review
         assert flags.needs_human_review_by_mad
+
+        # Not changed this this is not a human approval.
+        assert addon_flags.auto_approval_disabled_until_next_approval_unlisted
 
     def test_nomination_to_public_with_version_reviewer_flags(self):
         flags = VersionReviewerFlags.objects.create(
@@ -1253,7 +1266,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
         self._check_score(amo.REVIEWED_ADDON_UPDATE)
         self.addon.reviewerflags.reload()
-        assert not (self.addon.reviewerflags.auto_approval_disabled_until_next_approval)
+        assert not self.addon.reviewerflags.auto_approval_disabled_until_next_approval
 
     @patch('olympia.reviewers.utils.sign_file')
     def test_public_addon_with_version_need_human_review_to_public(
@@ -1302,7 +1315,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.file.reload().status == amo.STATUS_APPROVED
         assert self.addon.current_version.files.all()[0].status == (amo.STATUS_APPROVED)
         self.addon.reviewerflags.reload()
-        assert not (self.addon.reviewerflags.auto_approval_disabled_until_next_approval)
+        assert not self.addon.reviewerflags.auto_approval_disabled_until_next_approval
 
     @patch('olympia.reviewers.utils.sign_file')
     def test_public_addon_with_version_awaiting_review_to_sandbox(self, sign_mock):
@@ -1911,9 +1924,10 @@ class TestReviewHelper(TestReviewHelperBase):
         # Check points awarded.
         self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
 
-        # auto approvals should be disabled until the next manual approval.
+        # listed auto approvals should be disabled until the next manual approval.
         flags = self.addon.reviewerflags
         flags.reload()
+        assert not flags.auto_approval_disabled_until_next_approval_unlisted
         assert flags.auto_approval_disabled_until_next_approval
 
         # The reviewer should have been automatically subscribed to new listed
@@ -2224,6 +2238,12 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.addon.current_version is None
         assert list(self.addon.versions.all()) == [self.version, old_version]
         assert self.file.status == amo.STATUS_DISABLED
+
+        # unlisted auto approvals should be disabled until the next manual approval.
+        flags = self.addon.reviewerflags
+        flags.reload()
+        assert not flags.auto_approval_disabled_until_next_approval
+        assert flags.auto_approval_disabled_until_next_approval_unlisted
 
         assert len(mail.outbox) == 1
         message = mail.outbox[0]

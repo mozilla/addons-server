@@ -151,7 +151,9 @@
   <h2>{{ addon.name }}</h2>
 </header>
 <section id="edit-addon" class="primary devhub-form" role="main">
-  {% if has_listed_versions %}
+  {# Only show listing visibility if there are listed versions... or if somehow the add-on is already invisible,
+     to allow developers to toggle it back so that they can upload listed versions #}
+  {% if has_listed_versions or addon.disabled_by_user %}
     <h3>{{ distro_tag(amo.RELEASE_CHANNEL_LISTED)}} {{ _('Listing visibility') }}</h3>
     <div class="item" id="addon-current-state">
       <div class="item_wrapper">

@@ -22,9 +22,10 @@ from olympia.versions.tasks import (
 HEADER_ROOT = os.path.join(settings.ROOT, 'src/olympia/versions/tests/static_themes/')
 
 transparent_colors = [
-    'class="%s" fill="rgb(0,0,0,0)"' % (field)
-    for field in UI_FIELDS
-    if field != 'icons'  # bookmark_text class used instead
+    'class="%(field)s %(prop)s" %(prop)s="rgb(0,0,0,0)"'
+    % {'field': field, 'prop': 'stroke' if field == 'tab_line' else 'fill'}
+    for field in UI_FIELDS + ('tab_selected toolbar',)
+    if field not in ('icons', 'tab_selected')  # bookmark_text class used instead
 ]
 
 
@@ -119,7 +120,7 @@ def write_empty_png(svg_content, out):
         ('weta.png', 200, 'xMaxYMin meet', 'image/png', True),
         ('wetalong.png', 200, 'xMaxYMin slice', 'image/png', True),
         (
-            'weta_theme_full.svg',
+            'weta_theme_firefox.svg',
             92,  # different value for 680 and 760/720
             ('xMaxYMin slice', 'xMaxYMin meet'),
             'image/svg+xml',
@@ -220,9 +221,19 @@ def test_generate_static_theme_preview(
     interim_amo_svg = write_svg_to_png_mock.call_args_list[1][0][0]
     with open(amo_preview.image_path) as svg:
         amo_svg = svg.read()
+    preview_colors = {
+        **theme_manifest['colors'],
+        'tab_selected toolbar': theme_manifest['colors']['tab_selected'],
+    }
     colors = [
-        'class="%s" fill="%s"' % (key, color)
-        for (key, color) in theme_manifest['colors'].items()
+        'class="%(field)s %(prop)s" %(prop)s="%(color)s"'
+        % {
+            'field': key,
+            'prop': 'stroke' if key == 'tab_line' else 'fill',
+            'color': color,
+        }
+        for (key, color) in preview_colors.items()
+        if key != 'tab_selected'
     ]
 
     preserve_aspect_ratio = (
@@ -302,7 +313,7 @@ def test_generate_static_theme_preview(
                 'frame': amo.THEME_FRAME_COLOR_DEFAULT,
                 'toolbar': 'rgba(255,255,255,0.6)',
                 'toolbar_field': 'rgba(255,255,255,1)',
-                'tab_selected': 'rgba(0,0,0,0)',
+                'tab_selected toolbar': 'rgba(255,255,255,0.6)',
                 'tab_line': 'rgba(0,0,0,0.25)',
                 'tab_background_text': '',
                 'bookmark_text': '#348923',  # icons have class bookmark_text
@@ -391,7 +402,13 @@ def test_generate_static_theme_preview_with_alternative_properties(
     )
 
     colors = [
-        'class="%s" fill="%s"' % (key, color) for (key, color) in svg_colors.items()
+        'class="%(field)s %(prop)s" %(prop)s="%(color)s"'
+        % {
+            'field': key,
+            'prop': 'stroke' if key == 'tab_line' else 'fill',
+            'color': color,
+        }
+        for (key, color) in svg_colors.items()
     ]
 
     firefox_svg = write_svg_to_png_mock.call_args_list[0][0][0]
@@ -553,17 +570,18 @@ def test_generate_preview_with_additional_backgrounds(
     )
 
     # These defaults are mostly defined in the xml template
-    default_colors = {
-        'frame': 'rgba(229,230,232,1)',  # amo.THEME_FRAME_COLOR_DEFAULT
-        'tab_background_text': '#123456',  # the only one defined in 'manifest'
-        'bookmark_text': '#123456',  # should default to tab_background_text
-        'toolbar_field': 'rgba(255,255,255,1)',
-        'toolbar_field_text': '',
-        'tab_line': 'rgba(0,0,0,0.25)',
-        'tab_selected': 'rgba(0,0,0,0)',
-    }
+    default_colors = (
+        ('frame', 'fill', 'rgba(229,230,232,1)'),  # amo.THEME_FRAME_COLOR_DEFAULT
+        ('tab_background_text', 'fill', '#123456'),  # the only one defined in manifest
+        ('bookmark_text', 'fill', '#123456'),  # should default to tab_background_text
+        ('toolbar_field', 'fill', 'rgba(255,255,255,1)'),
+        ('toolbar_field_text', 'fill', ''),
+        ('tab_line', 'stroke', 'rgba(0,0,0,0.25)'),
+        ('tab_selected toolbar', 'fill', 'rgba(255,255,255,0.6)'),
+    )
     colors = [
-        'class="%s" fill="%s"' % (key, color) for (key, color) in default_colors.items()
+        f'class="{key} {prop}" {prop}="{color}"'
+        for (key, prop, color) in default_colors
     ]
 
     firefox_svg = write_svg_to_png_mock.call_args_list[0][0][0]

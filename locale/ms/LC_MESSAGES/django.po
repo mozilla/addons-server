@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-12 13:19+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1604,6 +1604,9 @@ msgstr ""
 msgid "Delay auto-approval indefinitely and add restrictions"
 msgstr ""
 
+msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
+msgstr ""
+
 msgid "True positive"
 msgstr ""
 
@@ -1972,7 +1975,8 @@ msgstr "Warna teks yang dipaparkan dalam kawasan pengepala kecuali tab yang akti
 msgid "Toolbar area background"
 msgstr "Latar belakang kawasan bar alatan"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+#, fuzzy
+msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr "Warna latar belakang untuk bar navigasi, bar tandabuku dan tab dipilih.  Medan manifes:  toolbar."
 
 msgid "Toolbar area text and icons"
@@ -1993,6 +1997,12 @@ msgstr "Teks kawasan medan bar alatan"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Warna teks dalam medan bar alatan, seperti bar URL. Medan manifes:  toolbar_field_text."
+
+msgid "Tab highlight"
+msgstr ""
+
+msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
+msgstr ""
 
 msgid "Review requested."
 msgstr "Perlu semakan."
@@ -4489,6 +4499,10 @@ msgstr ""
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Goodbye, annoying cookie warnings!"
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4620,6 +4634,15 @@ msgstr ""
 msgid "See more recommended password managers"
 msgstr ""
 
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "mengikut Versi Add-on"
+
 msgid "Could not parse the manifest file."
 msgstr "Tidak dapat menghuraikan manifes fail."
 
@@ -4659,8 +4682,8 @@ msgstr "Arkib tidak sah."
 msgid "Could not find an add-on ID."
 msgstr "Tidak dapat menemukan ID add-on."
 
-#, python-format
-msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
+#, fuzzy, python-format
+msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
 msgstr "ID add-on dalam manifest.json anda atau install.rdf (%s) tidak sepadan ID anda dalam AMO (%s)"
 
 msgid "Duplicate add-on ID found."
@@ -5227,6 +5250,10 @@ msgstr "Add-ons Tidak Disenaraikan"
 msgid "All Unlisted Add-ons"
 msgstr "Semua Add-ons Tiada-disenaraikan"
 
+#, fuzzy
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Nyahdaya Auto-Kelulusan"
+
 msgid "Announcement"
 msgstr "Pengumuman"
 
@@ -5605,6 +5632,14 @@ msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr "Dayakan Auto-Kelulusan"
 
 #, fuzzy
+msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
+msgstr "Nyahdaya Auto-Kelulusan"
+
+#, fuzzy
+msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
+msgstr "Dayakan Auto-Kelulusan"
+
+#, fuzzy
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "Ada tetapan auto-kelulusan nyahdaya."
 
@@ -5903,13 +5938,6 @@ msgstr ""
 
 msgid "Run"
 msgstr ""
-
-msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
-
-#, fuzzy
-msgid "Revert report"
-msgstr "Jawapan penyemak"
 
 #, fuzzy, python-format
 msgid "Invalid \"%s\" parameter."

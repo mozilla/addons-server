@@ -2132,7 +2132,7 @@ class VersionSubmitUploadMixin(object):
                 'colors': {
                     'frame': '#123456',
                     'tab_background_text': 'rgba(1,2,3,0.4)',
-                    'tab_line': '#123',
+                    'icons': '#123',
                 },
                 'images': {
                     'additional_backgrounds': [],
@@ -2153,7 +2153,7 @@ class VersionSubmitUploadMixin(object):
         assert b'are unsupported in this wizard' in response.content
         unsupported_list = doc('.notification-box.error ul.note li')
         assert unsupported_list.length == 3
-        assert 'tab_line' in unsupported_list.text()
+        assert 'icons' in unsupported_list.text()
         assert 'additional_backgrounds' in unsupported_list.text()
         assert 'something_extra' in unsupported_list.text()
 

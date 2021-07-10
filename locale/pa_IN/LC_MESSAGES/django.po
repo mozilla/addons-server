@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-12 13:19+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: 2021-04-12 00:29+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1571,6 +1571,9 @@ msgstr ""
 msgid "Delay auto-approval indefinitely and add restrictions"
 msgstr ""
 
+msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
+msgstr ""
+
 msgid "True positive"
 msgstr ""
 
@@ -1932,7 +1935,8 @@ msgstr "ਐਕਟਿਵ ਟੈਬ ਨੂੰ ਛੱਡ ਕੇ ਸਿਰਲੇਖ 
 msgid "Toolbar area background"
 msgstr "ਟੂਲਬਾਰ ਖੇਤਰ ਦੀ ਬੈਕਗ੍ਰਾਉਂਡ"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+#, fuzzy
+msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr "ਨੇਵੀਗੇਸ਼ਨ ਪੱਟੀ ਲਈ ਬੈਕਗਰਾਊਂਡ ਰੰਗ, ਬੁੱਕਮਾਰਕਸ ਬਾਰ ਅਤੇ ਚੁਣੇ ਟੈਬ। ਮੈਨੀਫੈਸਟ ਫੀਲਡ: ਟੂਲਬਾਰ।  "
 
 msgid "Toolbar area text and icons"
@@ -1952,6 +1956,12 @@ msgstr "ਸੰਦ-ਪੱਟੀ ਇਲਾਕਾ ਖੇਤਰ ਲਿਖਤ"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "ਟੂਲਬਾਰ ਦੇ ਖੇਤਰਾਂ ਵਿੱਚ ਟੈਕਸਟ ਦਾ ਰੰਗ, ਜਿਵੇਂ ਕਿ URL ਬਾਰ। ਮੈਨੀਫੈਸਟ ਫੀਲਡ:  toolbar_field_text।"
+
+msgid "Tab highlight"
+msgstr ""
+
+msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
+msgstr ""
 
 msgid "Review requested."
 msgstr "ਸਮੀਖਿਆ ਦੀ ਬੇਨਤੀ ਕੀਤੀ ਗਈ।"
@@ -4402,6 +4412,10 @@ msgstr ""
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Goodbye, annoying cookie warnings!"
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4533,6 +4547,15 @@ msgstr ""
 msgid "See more recommended password managers"
 msgstr ""
 
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "ਐਡ-ਆਨ ਨਾਂ ਉਲੱਥੇ"
+
 msgid "Could not parse the manifest file."
 msgstr "ਮੈਨੀਫੈਸਟ ਫਾਈਲ ਨੂੰ ਪਾਰਸ ਨਹੀਂ ਕਰ ਸਕਿਆ।"
 
@@ -4573,8 +4596,8 @@ msgstr "ਗਲਤ ਅਕਾਈਵ।"
 msgid "Could not find an add-on ID."
 msgstr "ਐਡ-ਆਨ ਆਈਡੀ ਨਹੀਂ ਲੱਭ ਸਕਿਆ।"
 
-#, python-format
-msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
+#, fuzzy, python-format
+msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
 msgstr "ਤੁਹਾਡੇ manifest. Json ਜਾਂ install.rdf (%s) ਵਿੱਚ ਐਡਆਨ ਆਈਡੀ AMO (%s) ਤੇ ਤੁਹਾਡੇ ਐਡਆਨ ਦੇ ID ਨਾਲ ਮੇਲ ਨਹੀਂ ਖਾਂਦਾ ਹੈ"
 
 msgid "Duplicate add-on ID found."
@@ -5132,6 +5155,10 @@ msgstr "ਅਸੂਚੀਬੱਧ ਐਡਆਨ"
 msgid "All Unlisted Add-ons"
 msgstr "ਸਾਰੇ ਸੂਚੀਬੱਧ ਨਾ ਹੋਣ ਵਾਲੇ ਐਡ-ਆਨ"
 
+#, fuzzy
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "ਸਵੈ-ਪ੍ਰਵਾਨਗੀ ਨੂੰ ਅਸਮਰੱਥ ਬਣਾਓ"
+
 msgid "Announcement"
 msgstr "ਐਲਾਨ"
 
@@ -5505,6 +5532,14 @@ msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr "ਆਟੋ-ਪ੍ਰਵਾਨਗੀ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ"
 
 #, fuzzy
+msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
+msgstr "ਸਵੈ-ਪ੍ਰਵਾਨਗੀ ਨੂੰ ਅਸਮਰੱਥ ਬਣਾਓ"
+
+#, fuzzy
+msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
+msgstr "ਆਟੋ-ਪ੍ਰਵਾਨਗੀ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ"
+
+#, fuzzy
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "ਸਵੈ-ਪ੍ਰਵਾਨਗੀ ਅਸਮਰਥਿਤ ਝੰਡੇ ਸੈਟ ਹੈ।"
 
@@ -5801,13 +5836,6 @@ msgstr "ਵਿੱਚੇ ਛੱਡੋ"
 
 msgid "Run"
 msgstr "ਚਲਾਓ"
-
-msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
-
-#, fuzzy
-msgid "Revert report"
-msgstr "ਸਮੀਖਿਅਕ ਜਵਾਬ"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-12 13:19+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: 2021-04-07 08:03+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -1589,6 +1589,10 @@ msgstr "Odloži samodejno odobritev za nedoločen čas"
 msgid "Delay auto-approval indefinitely and add restrictions"
 msgstr ""
 
+#, fuzzy
+msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
+msgstr "Odloži samodejno odobritev za nedoločen čas"
+
 msgid "True positive"
 msgstr ""
 
@@ -1960,7 +1964,8 @@ msgstr "Barva besedila in ikon v območju glave, razen na dejavnem zavihku. Polj
 msgid "Toolbar area background"
 msgstr "Ozadje območja orodne vrstice"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+#, fuzzy
+msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr "Barva ozadja za vrstico za brskanje, vrstico zaznamkov in izbrani zavihek.  Polje manifesta:  toolbar."
 
 msgid "Toolbar area text and icons"
@@ -1980,6 +1985,12 @@ msgstr "Besedilo območja polja orodne vrstice"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Barva besedila v poljih orodne vrstice, kot je vrstica z naslovom. Polje manifesta:  toolbar_field_text."
+
+msgid "Tab highlight"
+msgstr ""
+
+msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
+msgstr ""
 
 msgid "Review requested."
 msgstr "Pregled zahtevan."
@@ -4423,6 +4434,11 @@ msgstr ""
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr ""
 
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Goodbye, annoying cookie warnings!"
+msgstr "Poberite se, obvestila o piškotkih!"
+
 #. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4551,6 +4567,16 @@ msgstr ""
 msgid "See more recommended password managers"
 msgstr ""
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Translation tools"
+msgstr "Organizatorji in orodja za zavihke"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "Prevodi imena dodatka"
+
 msgid "Could not parse the manifest file."
 msgstr "Datoteke manifesta ni bilo mogoče razčleniti."
 
@@ -4589,8 +4615,8 @@ msgstr "Neveljaven arhiv."
 msgid "Could not find an add-on ID."
 msgstr "ID-ja dodatka ni bilo mogoče najti."
 
-#, python-format
-msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
+#, fuzzy, python-format
+msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
 msgstr "ID dodatka v vaši datoteki manifest.json ali install.rdf (%s) se ne ujema z ID-jem vašega dodatka v AMO (%s)"
 
 msgid "Duplicate add-on ID found."
@@ -5150,6 +5176,10 @@ msgstr "Nenavedeni dodatki"
 msgid "All Unlisted Add-ons"
 msgstr "Vsi nenavedeni dodatki"
 
+#, fuzzy
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Onemogoči samodejno odobritev"
+
 msgid "Announcement"
 msgstr "Objava"
 
@@ -5523,6 +5553,14 @@ msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr "Omogoči samodejno odobritev"
 
 #, fuzzy
+msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
+msgstr "Onemogoči samodejno odobritev"
+
+#, fuzzy
+msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
+msgstr "Omogoči samodejno odobritev"
+
+#, fuzzy
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "Nastavljena zastavica „samodejna odobritev onemogočena“"
 
@@ -5811,13 +5849,6 @@ msgstr "Prekini"
 
 msgid "Run"
 msgstr "Zaženi"
-
-msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
-
-#, fuzzy
-msgid "Revert report"
-msgstr "Odgovor pregledovalca"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."

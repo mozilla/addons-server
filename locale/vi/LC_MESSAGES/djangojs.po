@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-12 13:19+0000\n"
-"PO-Revision-Date: 2021-03-13 08:09+0000\n"
-"Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
+"PO-Revision-Date: 2021-06-24 05:52+0000\n"
+"Last-Translator: Đặng Duy Thanh <thanhdd.it@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
@@ -560,11 +560,11 @@ msgstr "Tiện ích đã cập nhật từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
 msgid "Reviews Written, last {0} days"
-msgstr ""
+msgstr "Các bài đánh giá trong {0} ngày trước"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Reviews Written from {0} to {1}"
-msgstr ""
+msgstr "Các bài đánh giá từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"

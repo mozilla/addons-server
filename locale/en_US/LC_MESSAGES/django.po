@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-12 13:19+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1701,6 +1701,10 @@ msgstr "Delay auto-approval indefinitely"
 msgid "Delay auto-approval indefinitely and add restrictions"
 msgstr "Delay auto-approval indefinitely"
 
+#, fuzzy
+msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
+msgstr "Delay auto-approval indefinitely"
+
 msgid "True positive"
 msgstr "True positive"
 
@@ -2087,7 +2091,7 @@ msgid "Toolbar area background"
 msgstr "Toolbar area background (toolbar)."
 
 #, fuzzy
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr "The background color for the navigation bar, the bookmarks bar, and the selected tab."
 
 #, fuzzy
@@ -2113,6 +2117,12 @@ msgstr "Toolbar field area text (toolbar_field_text)."
 #, fuzzy
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "The color of text in fields in the toolbar, such as the URL bar"
+
+msgid "Tab highlight"
+msgstr "Tab highlight"
+
+msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
+msgstr "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 
 #, fuzzy
 msgid "Review requested."
@@ -4783,6 +4793,11 @@ msgstr "Get the scrollbar you always wanted—select width and your color of cho
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr "Save and restore tabs. Includes auto-save and cloud sync features."
 
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Goodbye, annoying cookie warnings!"
+msgstr "Begone, annoying cookie warnings!"
+
 #. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4921,6 +4936,16 @@ msgstr "Recommended password managers"
 msgid "See more recommended password managers"
 msgstr "See more recommended password managers"
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Translation tools"
+msgstr "Tab organizers and tools"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "by Add-on Version"
+
 msgid "Could not parse the manifest file."
 msgstr "Could not parse the manifest file."
 
@@ -4961,8 +4986,8 @@ msgstr "Invalid archive."
 msgid "Could not find an add-on ID."
 msgstr "Could not find an add-on ID."
 
-#, python-format
-msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
+#, fuzzy, python-format
+msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
 msgstr "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
 
 msgid "Duplicate add-on ID found."
@@ -5568,6 +5593,10 @@ msgstr "All Unlisted Add-ons"
 msgid "All Unlisted Add-ons"
 msgstr "All Unlisted Add-ons"
 
+#, fuzzy
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Disable Auto-Approval"
+
 msgid "Announcement"
 msgstr "Announcement"
 
@@ -5963,6 +5992,14 @@ msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr "Approval Status"
 
 #, fuzzy
+msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
+msgstr "Disable Auto-Approval"
+
+#, fuzzy
+msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
+msgstr "Approval Status"
+
+#, fuzzy
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "Has auto-approval disabled flag set."
 
@@ -6271,13 +6308,6 @@ msgstr "Abort"
 
 msgid "Run"
 msgstr "Run"
-
-msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr "Useful when the scanner result is a true positive but the add-on is not malicious"
-
-#, fuzzy
-msgid "Revert report"
-msgstr "Developer News"
 
 #, fuzzy, python-format
 msgid "Invalid \"%s\" parameter."

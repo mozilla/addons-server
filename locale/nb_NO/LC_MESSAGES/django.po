@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-12 13:19+0000\n"
-"PO-Revision-Date: 2021-01-04 18:23+0000\n"
-"Last-Translator: Odyssey346 <alej0hio2007@gmail.com>\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
+"PO-Revision-Date: 2021-05-20 11:49+0000\n"
+"Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
 "MIME-Version: 1.0\n"
@@ -929,29 +929,23 @@ msgstr "{addon} {version} avslag planlagt."
 msgid "Rejection scheduled"
 msgstr "Avslag planlagt"
 
-#, fuzzy
 msgid "{addon} {version} re-signed (previously {0})."
-msgstr "{addon} {version} gjennomgang er forespurt."
+msgstr "{addon} {version} signert på nytt (tidligere {0})."
 
-#, fuzzy
 msgid "Version re-signed"
-msgstr "Versjon %s slått på igjen."
+msgstr "Versjon er signert på nytt"
 
-#, fuzzy
 msgid "{user} force-disabled {addon}."
-msgstr "{version} redigert for {addon}."
+msgstr "{user} tvangsdeaktiverte {addon}."
 
-#, fuzzy
 msgid "Force disabled"
-msgstr "{addon} avslått."
+msgstr "Tvangsdeaktivert"
 
-#, fuzzy
 msgid "{user} force-enabled {addon}."
-msgstr "{addon} {version} aktivert på nytt."
+msgstr "{user} tvangsaktiverte {addon}."
 
-#, fuzzy
 msgid "Force enabled"
-msgstr "{addon} påslått."
+msgstr "Tvangsaktivert"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1362,13 +1356,11 @@ msgstr "Anbefalt"
 msgid "Sponsored"
 msgstr ""
 
-#, fuzzy
 msgid "Verified"
-msgstr "Bekreftet - nivå 1"
+msgstr "Bekreftet"
 
-#, fuzzy
 msgid "By Firefox"
-msgstr "Firefox"
+msgstr "Av Firefox"
 
 msgid "Spotlight"
 msgstr "Fremhevet"
@@ -1562,9 +1554,12 @@ msgstr "Forsink automatisk godkjenning"
 msgid "Delay auto-approval indefinitely"
 msgstr "Forsink automatisk godkjenning på ubestemt tid"
 
-#, fuzzy
 msgid "Delay auto-approval indefinitely and add restrictions"
-msgstr "Forsink automatisk godkjenning på ubestemt tid"
+msgstr "Utsett automatisk godkjenning på ubestemt tid og legg til begrensninger"
+
+#, fuzzy
+msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
+msgstr "Utsett automatisk godkjenning på ubestemt tid og legg til begrensninger"
 
 msgid "True positive"
 msgstr "Sann positiv"
@@ -1925,7 +1920,8 @@ msgstr ""
 msgid "Toolbar area background"
 msgstr "Bakgrunn for verktøylinjeområdet"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+#, fuzzy
+msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr "Bakgrunnsfargen for navigasjonslinjen, bokmerkefeltet og valgt fane.  Manifestfelt:  toolbar."
 
 msgid "Toolbar area text and icons"
@@ -1944,6 +1940,12 @@ msgid "Toolbar field area text"
 msgstr "Tekst på feltområdet i verktøylinjen"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
+msgstr ""
+
+msgid "Tab highlight"
+msgstr ""
+
+msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr ""
 
 msgid "Review requested."
@@ -2563,13 +2565,11 @@ msgstr "Send inn en ny versjon"
 msgid "Cancel and Disable Version"
 msgstr "Avbryt og deaktivere versjon"
 
-#, fuzzy
 msgid "Are you sure you wish to cancel and disable version?"
-msgstr "Er du sikker på at du vil slette denne versjonen?"
+msgstr "Er du sikker på at du vil avbryte og deaktivere denne versjonen?"
 
-#, fuzzy
 msgid "Yes, Cancel"
-msgstr "Avbryt"
+msgstr "Ja, avbryt"
 
 msgid "No, don't cancel"
 msgstr ""
@@ -3122,9 +3122,8 @@ msgstr ""
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
 
-#, fuzzy
 msgid "Visit the Firefox Extension Workshop"
-msgstr "Besøk utvidelsesverkstedet"
+msgstr "Besøk Firefox utvidelsesverkstedet"
 
 msgid "Connect with us"
 msgstr "Kontakt oss"
@@ -3141,9 +3140,8 @@ msgstr "For sluttbrukere"
 msgid "Matrix"
 msgstr "Matrix"
 
-#, fuzzy
 msgid "Community forum"
-msgstr "Felleskap og brukerstøtte"
+msgstr "Forum for felleskapet"
 
 msgid "Extensions Developers Newsletter"
 msgstr "Nyhetsbrev for tilleggsutviklere"
@@ -3314,9 +3312,8 @@ msgstr "Kildekode"
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
 msgstr ""
 
-#, fuzzy
 msgid "File {file_id}"
-msgstr "Fil {file_id} ({platform})"
+msgstr "Fil {file_id}"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
@@ -4318,9 +4315,8 @@ msgid "Blues & Yellows"
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Forest Theme"
-msgstr "Lag et tema"
+msgstr "Skogstema"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4352,6 +4348,10 @@ msgstr ""
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Goodbye, annoying cookie warnings!"
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4361,9 +4361,8 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "For de øyeblikkene du trenger å fyre lasere ut av en katt."
+msgstr "For de øyeblikkene du trenger å fyre lasere ut av katteøyne."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4426,47 +4425,40 @@ msgid "Learn More"
 msgstr "Les mer"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended extensions"
-msgstr "Anbefalte utvidelsesprogram"
+msgstr "Anbefalte utvidelser"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more recommended extensions"
-msgstr "Anbefalte utvidelsesprogram"
+msgstr "Vis flere anbefalte utvidelser"
 
 #. editorial content for the homepage shelves.
 msgid "Popular themes"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular themes"
-msgstr "Velg farger for temaet ditt"
+msgstr "Vis flere populære tema"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Enhanced privacy extensions"
-msgstr "Se alle utvidelser"
+msgstr "Forbedret personvernutvidelser"
 
 #. editorial content for the homepage shelves.
 msgid "See more enhanced privacy extensions"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Popular extensions"
-msgstr "Utforsk utvidelser"
+msgstr "Populære utvidelser"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular extensions"
-msgstr "Se alle utvidelser"
+msgstr "Vis flere populære utvidelser"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended themes"
-msgstr "Anbefalt"
+msgstr "Anbefalte tema"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
@@ -4480,6 +4472,16 @@ msgstr ""
 msgid "See more recommended password managers"
 msgstr ""
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Translation tools"
+msgstr "Fane-organisering og verktøy"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "Vis flere populære utvidelser"
+
 msgid "Could not parse the manifest file."
 msgstr "Kunne ikke analysere manifestfilen."
 
@@ -4487,14 +4489,13 @@ msgid "Add-on ID is required for Firefox 47 and below."
 msgstr "Tilleggs-ID er nødvendig for Firefox 47 og nyere."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr "Laveste støttede \"strict_min_version\" er 42.0."
+msgstr "Laveste støttede «strict_min_version» er 42.0."
 
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
-msgstr "Ukjent \"strict_min_version\" {appver} for {app}"
+msgstr "Ukjent «strict_min_version» {appver} for {app}"
 
-#, fuzzy
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
-msgstr "Ukjent \"strict_min_version\" {appver} for {app}"
+msgstr "Ukjent «strict_max_version» {appver} for {app}"
 
 msgid "Unsupported archive type."
 msgstr ""
@@ -4520,7 +4521,7 @@ msgid "Could not find an add-on ID."
 msgstr ""
 
 #, python-format
-msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
+msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
 msgstr ""
 
 msgid "Duplicate add-on ID found."
@@ -4907,9 +4908,8 @@ msgstr ""
 msgid "Metadata Weight"
 msgstr ""
 
-#, fuzzy
 msgid "Total Weight"
-msgstr "Fremhevet"
+msgstr "Totalvekt"
 
 msgid "Maliciousness Score"
 msgstr ""
@@ -4926,9 +4926,8 @@ msgstr "Noen må ta en gjennomgang på listede versjoner ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Noen må ta en gjennomgang på ulistede versjoner ({0})"
 
-#, fuzzy
 msgid "Listed version"
-msgstr "Oppførte versjoner"
+msgstr "Oppført versjon"
 
 msgid "Unlisted versions ({0})"
 msgstr "Ikke-listede versjoner ({0})"
@@ -5005,11 +5004,9 @@ msgstr "Vurderingsretningslinjer for tillegg"
 msgid "Security Scanners"
 msgstr "Sikkerhetsskannere"
 
-#, fuzzy
 msgid "Flagged By Scanners"
-msgstr "Sikkerhetsskannere"
+msgstr "Flagget av skannere"
 
-#, fuzzy
 msgid "Flagged for Human Review"
 msgstr "Flagget for at noen skal ta en gjennomgang"
 
@@ -5057,6 +5054,10 @@ msgstr "Ulistede tillegg"
 
 msgid "All Unlisted Add-ons"
 msgstr ""
+
+#, fuzzy
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Forsink automatisk godkjenning"
 
 msgid "Announcement"
 msgstr ""
@@ -5380,9 +5381,8 @@ msgstr "Flere handlinger"
 msgid "Notify me about new listed versions"
 msgstr ""
 
-#, fuzzy
 msgid "Notify me about new unlisted versions"
-msgstr "Dette er den nyeste opplastede ikke-oppførte versjonen"
+msgstr "Gi meg beskjed om nye ulistede versjoner"
 
 msgid "Allow resubmission"
 msgstr "Tillat gjeninnsending"
@@ -5414,6 +5414,14 @@ msgstr ""
 
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr ""
+
+#, fuzzy
+msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
+msgstr "Forsink automatisk godkjenning"
+
+#, fuzzy
+msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
+msgstr "Forsink automatisk godkjenning"
 
 msgid "Auto-Approval currently disabled until {date}"
 msgstr ""
@@ -5619,25 +5627,21 @@ msgstr ""
 msgid "[status:%s]"
 msgstr ""
 
-#, fuzzy
 msgid "Other Pending Review"
-msgstr "Annen pågående gjennomgang ({0})"
+msgstr "Annen pågående gjennomgang"
 
-#, fuzzy
 msgid "Updates"
-msgstr "Oppdater"
+msgstr "Oppdateringer"
 
 #, fuzzy
 msgid "Rating Reviews"
 msgstr "Venter på gjennomgang"
 
-#, fuzzy
 msgid "Auto Approved"
-msgstr "Automatisk godkjent ({0})"
+msgstr "Automatisk godkjent"
 
-#, fuzzy
 msgid "Pending Rejection"
-msgstr "Venter på avslag ({0})"
+msgstr "Venter på avslag"
 
 msgid "presence of matched rules"
 msgstr ""
@@ -5696,12 +5700,6 @@ msgstr ""
 
 msgid "Run"
 msgstr ""
-
-msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
-
-msgid "Revert report"
-msgstr "Tilbakestill rapport"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."

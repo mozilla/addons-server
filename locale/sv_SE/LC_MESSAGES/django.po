@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-12 13:19+0000\n"
-"PO-Revision-Date: 2021-05-12 14:32+0000\n"
-"Last-Translator: Andreas Pettersson <az@kth.se>\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
+"PO-Revision-Date: 2021-06-24 14:30+0000\n"
+"Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -1557,6 +1557,9 @@ msgstr "Försena automatisk godkännande på obestämd tid"
 msgid "Delay auto-approval indefinitely and add restrictions"
 msgstr "Försena automatisk godkännande på obestämd tid och lägg till begränsningar"
 
+msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
+msgstr "Fördröj automatisk godkännande på obestämd tid och lägg till begränsningar för framtida godkännanden"
+
 msgid "True positive"
 msgstr "Sann positiv"
 
@@ -1921,8 +1924,8 @@ msgstr "Färgen på texten och ikonerna i sidhuvudområdet, förutom den aktiva 
 msgid "Toolbar area background"
 msgstr "Bakgrund verktygsfältområde"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr "Bakgrundsfärgen för navigeringsfältet, bokmärkesfältet och den valda fliken. Manifest-fält:  toolbar."
+msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
+msgstr "Bakgrundsfärgen för navigeringsfältet, bokmärkesfältet och den aktiva fliken.   Manifest-fält:  toolbar."
 
 msgid "Toolbar area text and icons"
 msgstr "Text och ikoner i verktygsfältområde"
@@ -1941,6 +1944,12 @@ msgstr "Text på verktygsfältets fältområde"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Färgen på text i fält i verktygsfältet, till exempel URL-fältet. Manifest-fält:  toolbar_field_text."
+
+msgid "Tab highlight"
+msgstr "Flikmarkering"
+
+msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
+msgstr "Markeringsfärgen på den aktiva fliken. Implementerad som en ram runt fliken på Firefox 89+ och en rad ovanför fliken på äldre Firefox. Manifest-fält:  tab_line."
 
 msgid "Review requested."
 msgstr "Granskning begärd."
@@ -3189,7 +3198,7 @@ msgid "Matrix"
 msgstr "Matris"
 
 msgid "Community forum"
-msgstr ""
+msgstr "Community-forum"
 
 msgid "Extensions Developers Newsletter"
 msgstr "Nyhetsbrev tilläggsutvecklare"
@@ -4400,6 +4409,10 @@ msgstr "Få musrullningslisten som du alltid har velat—välj bredd och färg."
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr "Spara och återställ flikar. Inkluderar automatisk sparning och molnsynkroniseringsfunktioner."
 
+#. editorial content for the discovery pane.
+msgid "Goodbye, annoying cookie warnings!"
+msgstr "Hejdå, irriterande kakvarningar!"
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Vissa webbplatser har svårt att spela upp videor på Android. Här är en lösning."
@@ -4520,6 +4533,14 @@ msgstr "Rekommenderade lösenordshanterare"
 msgid "See more recommended password managers"
 msgstr "Se fler rekommenderade lösenordshanterare"
 
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Översättningsverktyg"
+
+#. editorial content for the homepage shelves.
+msgid "See more translation tools"
+msgstr "Se fler översättningsverktyg"
+
 msgid "Could not parse the manifest file."
 msgstr "Kunde inte tolka manifest-filen."
 
@@ -4559,8 +4580,8 @@ msgid "Could not find an add-on ID."
 msgstr "Kunde inte hitta ett tilläggs-ID."
 
 #, python-format
-msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr "Tilläggs-ID i manifest.json eller install.rdf (%s) matchar inte ID för ditt tillägg på AMO (%s)"
+msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
+msgstr "Tilläggs-ID i din manifest.json (%s) matchar inte ID för ditt tillägg på AMO (%s)"
 
 msgid "Duplicate add-on ID found."
 msgstr "Dubbla tilläggs-ID hittades."
@@ -5103,6 +5124,9 @@ msgstr "Olistade tillägg"
 msgid "All Unlisted Add-ons"
 msgstr "Alla olistade tillägg"
 
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Olistade tillägg som väntar på manuellt godkännande"
+
 msgid "Announcement"
 msgstr "Meddelande"
 
@@ -5458,6 +5482,12 @@ msgstr "Inaktivera listat automatisk godkännande tills nästa manuella godkänn
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr "Aktivera listat automatisk godkännande före nästa manuella godkännande"
 
+msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
+msgstr "Inaktivera olistad automatisk godkännande tills nästa manuella godkännande"
+
+msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
+msgstr "Aktivera olistad automatisk godkännande före nästa manuella godkännande"
+
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "Automatisk godkännande är för närvarande inaktiverad till {date}"
 
@@ -5733,12 +5763,6 @@ msgstr "Avbryt"
 
 msgid "Run"
 msgstr "Kör"
-
-msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr "Användbart när skannerresultatet är en sann positiv men tillägget är inte skadligt"
-
-msgid "Revert report"
-msgstr "Återställ rapport"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."

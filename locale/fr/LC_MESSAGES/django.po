@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-12 13:19+0000\n"
-"PO-Revision-Date: 2021-05-12 16:50+0000\n"
-"Last-Translator: Benoit Leseul <benoit.leseul@gmail.com>\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
+"PO-Revision-Date: 2021-07-04 12:45+0000\n"
+"Last-Translator: YD <ygda+fx@free.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -195,7 +195,7 @@ msgid "Submit a New Add-on"
 msgstr "Proposer un nouveau module"
 
 msgid "Submit a New Theme"
-msgstr "Envoyer un nouveau thème"
+msgstr "Proposer un nouveau thème"
 
 msgid "Developer Hub"
 msgstr "Pôle développeurs"
@@ -1611,6 +1611,9 @@ msgstr "Retarder l’approbation automatique indéfiniment"
 msgid "Delay auto-approval indefinitely and add restrictions"
 msgstr "Retarder indéfiniment l’approbation automatique et ajouter des restrictions"
 
+msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
+msgstr "Retarder indéfiniment l’approbation automatique et ajouter des restrictions aux approbations futures"
+
 msgid "True positive"
 msgstr "Vrai positif"
 
@@ -1979,7 +1982,7 @@ msgstr "La couleur du texte affiché dans la zone d’en-tête, sauf pour l’on
 msgid "Toolbar area background"
 msgstr "Arrière-plan de la barre d’outils"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr "La couleur d’arrière-plan pour la barre de navigation, la barre personnelle et l’onglet sélectionné. Champ du manifeste : toolbar."
 
 msgid "Toolbar area text and icons"
@@ -1999,6 +2002,14 @@ msgstr "Texte des champs de la barre d’outils"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "La couleur du texte des champs dans la barre d’outils, comme la barre d’adresse. Champ du manifeste : toolbar_field_text."
+
+msgid "Tab highlight"
+msgstr "Surlignage de l’onglet"
+
+msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
+msgstr ""
+"La couleur de mise en évidence de l’onglet actif. Mis en œuvre comme bordure autour de l’onglet sur Firefox 89+ et une ligne au-dessus de l’onglet sur les anciens Firefox. Champ du manifeste : "
+"tab_line."
 
 msgid "Review requested."
 msgstr "Revue demandée."
@@ -4471,6 +4482,10 @@ msgstr "La barre de défilement que vous avez toujours voulue — choisissez son
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr "Enregistrer et restaurer les onglets. Avec des fonctions d’enregistrement automatique et de synchronisation dans le cloud."
 
+#. editorial content for the discovery pane.
+msgid "Goodbye, annoying cookie warnings!"
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Certains sites web ont des difficultés pour lire les vidéos sur Android. Voici une solution."
@@ -4593,6 +4608,14 @@ msgstr "Gestionnaires de mots de passe recommandés"
 msgid "See more recommended password managers"
 msgstr "Voir plus de gestionnaires de mots de passe recommandés"
 
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Outils de traduction"
+
+#. editorial content for the homepage shelves.
+msgid "See more translation tools"
+msgstr "Voir plus d’outils de traduction"
+
 msgid "Could not parse the manifest file."
 msgstr "Impossible d’analyser le fichier manifeste."
 
@@ -4632,8 +4655,8 @@ msgid "Could not find an add-on ID."
 msgstr "Impossible de trouver un identifiant de module."
 
 #, python-format
-msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr "L’identifiant du module dans votre manifest.json ou install.rdf (%s) ne correspond pas à l’identifiant de votre module sur AMO (%s)"
+msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
+msgstr "L’identifiant du module dans votre manifest.json (%s) ne correspond pas à l’identifiant de votre module sur AMO (%s)"
 
 msgid "Duplicate add-on ID found."
 msgstr "Un identifiant identique a été trouvé."
@@ -5176,6 +5199,9 @@ msgstr "Modules non répertoriés"
 msgid "All Unlisted Add-ons"
 msgstr "Tous les modules non répertoriés"
 
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Modules complémentaires non répertoriés en attente d’approbation manuelle"
+
 msgid "Announcement"
 msgstr "Annonce"
 
@@ -5533,6 +5559,12 @@ msgstr "Désactiver l’approbation automatique répertoriée jusqu’à la proc
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr "Activer l’approbation automatique répertoriée avant la prochaine approbation manuelle"
 
+msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
+msgstr "Désactiver l’approbation automatique des modules non répertoriés jusqu’à la prochaine approbation manuelle"
+
+msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
+msgstr "Activer l’approbation automatique des modules non répertoriés avant la prochaine approbation manuelle"
+
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "L’approbation automatique est actuellement désactivée jusqu’au {date}"
 
@@ -5808,12 +5840,6 @@ msgstr "Annuler"
 
 msgid "Run"
 msgstr "Exécuter"
-
-msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr "Utile lorsque le résultat du scanner est réellement positif mais que le module complémentaire n’est pas malveillant"
-
-msgid "Revert report"
-msgstr "Rétablir le rapport"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-12 13:19+0000\n"
-"PO-Revision-Date: 2021-05-12 20:14+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
+"PO-Revision-Date: 2021-06-26 20:22+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -478,24 +478,24 @@ msgstr ""
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
-msgstr ""
+msgstr "Blokace s GUID %(guid)s nebyla nalezena"
 
 #, python-format
 msgid "Addon with GUID %(guid)s does not exist"
-msgstr ""
+msgstr "Doplněk s GUID %(guid)s neexistuje"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr ""
 
 #, python-format
 msgid "%(value)s contains *"
-msgstr ""
+msgstr "%(value)s obsahuje *"
 
 msgid "Invalid version"
 msgstr "Neplatná verze"
 
 msgid "Min version can not be greater than Max version"
-msgstr ""
+msgstr "Minimální verze nesmí být větší než maximální verze"
 
 msgid "Review Listed"
 msgstr ""
@@ -1570,6 +1570,9 @@ msgstr "Odložit automatické schvalování na dobu neurčitou"
 msgid "Delay auto-approval indefinitely and add restrictions"
 msgstr "Odložit automatické schvalování na dobu neurčitou a přidat omezení"
 
+msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
+msgstr "Odložit automatické schvalování na dobu neurčitou a přidat omezení pro budoucí schvalování"
+
 msgid "True positive"
 msgstr ""
 
@@ -1937,8 +1940,8 @@ msgstr "Barva textu a ikon v oblasti záhlaví, s výjimkou aktivního panelu. P
 msgid "Toolbar area background"
 msgstr "Pozadí nástrojových lišt"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr "Barva pozadí navigační lišty, lišty záložek a vybraného panelu.  Pole manifestu:  toolbar."
+msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
+msgstr "Barva pozadí navigační lišty, lišty záložek a aktivního panelu.  Pole manifestu:  toolbar."
 
 msgid "Toolbar area text and icons"
 msgstr "Text a ikony v nástrojové liště"
@@ -1957,6 +1960,12 @@ msgstr "Text polí v nástrojových lištách"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Barva textu v polích v nástrojových lištách, jako je např. adresní řádek. Pole manifestu:  toolbar_field_text."
+
+msgid "Tab highlight"
+msgstr ""
+
+msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
+msgstr ""
 
 msgid "Review requested."
 msgstr "Vyžádána kontrola."
@@ -4142,7 +4151,7 @@ msgstr "Využijte možnosti stahování videa a/nebo zvuku ve více formátech."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
-msgstr "Zjistěte, kde se geograficky nachází server kteréhokoli webu . Buďte informovaným webovým cestovatelem."
+msgstr "Zjistěte, kde se geograficky nachází server kteréhokoli webu. Buďte informovaným webovým cestovatelem."
 
 #. editorial content for the discovery pane.
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
@@ -4370,6 +4379,10 @@ msgstr ""
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Goodbye, annoying cookie warnings!"
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Některé weby mají potíže s přehráváním videí v systému Android. Tady je oprava."
@@ -4492,6 +4505,14 @@ msgstr ""
 msgid "See more recommended password managers"
 msgstr ""
 
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Jazykové překladače"
+
+#. editorial content for the homepage shelves.
+msgid "See more translation tools"
+msgstr "Další jazykové překladače"
+
 msgid "Could not parse the manifest file."
 msgstr "Nepodařilo se zpracovat manifest soubor."
 
@@ -4531,8 +4552,8 @@ msgid "Could not find an add-on ID."
 msgstr "ID doplňku nelze nalézt."
 
 #, python-format
-msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr "ID doplňku v souboru manifest.json nebo install.rdf (%s) je jiné, než ID doplňku na AMO (%s)"
+msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
+msgstr "ID doplňku v souboru manifest.json (%s) je jiné, než ID doplňku na AMO (%s)"
 
 msgid "Duplicate add-on ID found."
 msgstr "Nalezeno duplicitní ID doplňku."
@@ -5076,6 +5097,9 @@ msgstr "Neveřejné doplňky"
 msgid "All Unlisted Add-ons"
 msgstr "Všechny neveřejné doplňky"
 
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr ""
+
 msgid "Announcement"
 msgstr "Oznámení"
 
@@ -5433,6 +5457,12 @@ msgstr ""
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr ""
 
+msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
+msgstr ""
+
+msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
+msgstr ""
+
 msgid "Auto-Approval currently disabled until {date}"
 msgstr ""
 
@@ -5707,12 +5737,6 @@ msgid "Abort"
 msgstr ""
 
 msgid "Run"
-msgstr ""
-
-msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
-
-msgid "Revert report"
 msgstr ""
 
 #, python-format

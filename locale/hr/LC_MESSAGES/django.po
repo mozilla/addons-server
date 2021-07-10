@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-12 13:19+0000\n"
-"PO-Revision-Date: 2021-04-21 11:13+0000\n"
-"Last-Translator: Ivan <1vanhorvat@protonmail.com>\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
+"PO-Revision-Date: 2021-05-28 10:57+0000\n"
+"Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
@@ -97,13 +97,13 @@ msgid "You are already logged in."
 msgstr "Već ste prijavljeni."
 
 msgid "Your login attempt could not be parsed. Please try again."
-msgstr "Nije vas bilo moguće prijaviti. Molimo pokušajte ponovo."
+msgstr "Neuspjela obrada prijave. Pokušaj ponovo."
 
 msgid "Your Firefox Account could not be found. Please try again."
 msgstr "Tvoj Firefox račun nije pronađen. Pokušaj ponovo."
 
 msgid "You could not be logged in. Please try again."
-msgstr "Nije vas bilo moguće prijaviti. Molimo pokušajte ponovo."
+msgstr "Neuspjela prijava. Pokušaj ponovo."
 
 msgid "Need help?"
 msgstr "Trebate pomoć?"
@@ -430,7 +430,7 @@ msgid "Valid Application Versions"
 msgstr "Ispravne verzije aplikacije"
 
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr ""
+msgstr "Programi koji su poslani Mozillinim dodacima moraju imati datoteku manifesta s najmanje jednom od dolje podržanih programa. Za ove su programe dopuštene samo dolje navedene verzije."
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
@@ -897,10 +897,10 @@ msgid "User {user} api key reset."
 msgstr "Api ključ korisnika {user} resetiran."
 
 msgid "Block for {0} added to Blocklist."
-msgstr ""
+msgstr "Blokiranje za {0} je dodano u popis blokiranih."
 
 msgid "Block added"
-msgstr ""
+msgstr "Blokiranje je dodano"
 
 msgid "Block for {0} edited in Blocklist."
 msgstr ""
@@ -1409,7 +1409,7 @@ msgstr "Privatnost"
 
 # 100%
 msgid "Development Practices"
-msgstr "Razvojne praktike"
+msgstr "Razvojne prakse"
 
 msgid "No Reputation"
 msgstr "Bez reputacije"
@@ -1580,6 +1580,10 @@ msgid "Delay auto-approval indefinitely"
 msgstr "Odgodi automatsko odobravanje u nedogled"
 
 msgid "Delay auto-approval indefinitely and add restrictions"
+msgstr "Odgodi automatsko odobravanje na neodređeno vrijeme i dodaj ograničenja"
+
+#, fuzzy
+msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
 msgstr "Odgodi automatsko odobravanje na neodređeno vrijeme i dodaj ograničenja"
 
 msgid "True positive"
@@ -1950,7 +1954,7 @@ msgstr ""
 msgid "Toolbar area background"
 msgstr "Pozadina područja alatne trake"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr ""
 
 msgid "Toolbar area text and icons"
@@ -1969,6 +1973,12 @@ msgid "Toolbar field area text"
 msgstr "Tekst područja polja alatne trake"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
+msgstr ""
+
+msgid "Tab highlight"
+msgstr ""
+
+msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr ""
 
 msgid "Review requested."
@@ -4256,7 +4266,7 @@ msgstr "Spremaj vlastite napomene bilo gdje na webu. Koristi bočnu traku za dod
 
 #. editorial content for the discovery pane.
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
-msgstr "Koristi prepoznavanje govora za omogućavanje pretrage na Google, Yahoo i DuckDuckGo."
+msgstr "Koristi prepoznavanje govora za aktiviranje pretrage na Google, Yahoo i DuckDuckGo."
 
 #. editorial content for the discovery pane.
 msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
@@ -4375,6 +4385,10 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Goodbye, annoying cookie warnings!"
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4504,6 +4518,16 @@ msgstr ""
 msgid "See more recommended password managers"
 msgstr ""
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Translation tools"
+msgstr "Upravljanje karticama i alati"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "Prijevodi imena dodatka"
+
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -4543,7 +4567,7 @@ msgid "Could not find an add-on ID."
 msgstr ""
 
 #, python-format
-msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
+msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
 msgstr ""
 
 msgid "Duplicate add-on ID found."
@@ -5085,6 +5109,10 @@ msgstr "Nenavedeni dodaci"
 msgid "All Unlisted Add-ons"
 msgstr "Svi nenavedeni dodaci"
 
+#, fuzzy
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Deaktiviraj automatsko odobravanje popisa do sljedećeg ručnog odobravanja"
+
 msgid "Announcement"
 msgstr "Nagovještaj"
 
@@ -5443,6 +5471,14 @@ msgstr "Deaktiviraj automatsko odobravanje popisa do sljedećeg ručnog odobrava
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr "Aktiviraj automatsko odobravanje popisa do sljedećeg ručnog odobravanja"
 
+#, fuzzy
+msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
+msgstr "Deaktiviraj automatsko odobravanje popisa do sljedećeg ručnog odobravanja"
+
+#, fuzzy
+msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
+msgstr "Aktiviraj automatsko odobravanje popisa do sljedećeg ručnog odobravanja"
+
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "Automatsko odobravanje je trenutačno deaktivirano do {date}"
 
@@ -5720,13 +5756,6 @@ msgstr "Prekini"
 
 msgid "Run"
 msgstr "Pokreni"
-
-msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
-
-# 100%
-msgid "Revert report"
-msgstr "Poništi izvještaj"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."

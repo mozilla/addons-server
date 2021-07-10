@@ -1,6 +1,6 @@
 from rest_framework.permissions import BasePermission
 
-from olympia.devhub.utils import UploadRestrictionChecker
+from olympia.addons.utils import RestrictionChecker
 
 
 class IsSubmissionAllowedFor(BasePermission):
@@ -12,7 +12,7 @@ class IsSubmissionAllowedFor(BasePermission):
     """
 
     def has_permission(self, request, view):
-        checker = UploadRestrictionChecker(request)
+        checker = RestrictionChecker(request=request)
         if not checker.is_submission_allowed():
             self.message = checker.get_error_message()
             self.code = 'permission_denied_restriction'

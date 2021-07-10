@@ -98,7 +98,14 @@ def queue_tabnav(context):
                 )
             )
     else:
-        tabnav = [('all', 'unlisted_queue_all', gettext('All Unlisted Add-ons'))]
+        tabnav = [
+            ('all', 'unlisted_queue_all', gettext('All Unlisted Add-ons')),
+            (
+                'pending_manual_approval',
+                'unlisted_queue_pending_manual_approval',
+                gettext('Unlisted Add-ons Pending Manual Approval'),
+            ),
+        ]
 
     return tabnav
 

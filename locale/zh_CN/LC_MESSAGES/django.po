@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-12 13:19+0000\n"
-"PO-Revision-Date: 2021-05-13 02:02+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
+"PO-Revision-Date: 2021-06-25 09:59+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -1550,6 +1550,9 @@ msgstr "无限期推迟自动批准"
 msgid "Delay auto-approval indefinitely and add restrictions"
 msgstr "无限期推迟自动批准并添加限制"
 
+msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
+msgstr "无限期推迟自动批准并添加对未来批准的限制"
+
 msgid "True positive"
 msgstr "真阳性"
 
@@ -1903,8 +1906,8 @@ msgstr "标题区域所显示文字和图标的颜色。清单字段：tab_backg
 msgid "Toolbar area background"
 msgstr "工具栏区域背景色"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr "导航栏、书签栏和已选标签页的背景颜色。清单字段：toolbar。"
+msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
+msgstr "导航栏、书签栏和活动标签页的背景颜色。清单字段：toolbar。"
 
 msgid "Toolbar area text and icons"
 msgstr "工具栏区域文本和图标"
@@ -1923,6 +1926,12 @@ msgstr "工具栏文本框区域文本"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "工具栏中的文本框里面文字的颜色，例如网址栏。清单字段：toolbar_field_text。"
+
+msgid "Tab highlight"
+msgstr "标签页高亮"
+
+msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
+msgstr "高亮活动的标签页。在 Firefox 89+ 上显示为标签页周围的边框（旧版上会显示为顶端的横线）。清单字段：tab_line。"
 
 msgid "Review requested."
 msgstr "已请求审核。"
@@ -4320,6 +4329,10 @@ msgstr "您一直想要的滚动条——可选择宽度和颜色。"
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr "保存与恢复标签页，更有自动保存和云同步功能。"
 
+#. editorial content for the discovery pane.
+msgid "Goodbye, annoying cookie warnings!"
+msgstr "滚蛋吧，烦人的 Cookie 警告！"
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "某些网站无法在 Android 上正常播放视频，此扩展可修正此问题。"
@@ -4442,6 +4455,14 @@ msgstr "推荐的密码管理器"
 msgid "See more recommended password managers"
 msgstr "看看更多推荐的密码管理器"
 
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "翻译工具"
+
+#. editorial content for the homepage shelves.
+msgid "See more translation tools"
+msgstr "看看更多翻译工具"
+
 msgid "Could not parse the manifest file."
 msgstr "未能解析清单文件。"
 
@@ -4481,8 +4502,8 @@ msgid "Could not find an add-on ID."
 msgstr "无法找到附加组件 ID。"
 
 #, python-format
-msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr "您的 manifest.json 或 install.rdf (%s) 中的附加组件 ID 与您的附加组件在 AMO (%s) 上的 ID 不匹配。"
+msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
+msgstr "您的 manifest.json (%s) 中的附加组件 ID 与您的附加组件在 AMO (%s) 上的 ID 不匹配。"
 
 msgid "Duplicate add-on ID found."
 msgstr "发现重复的附加组件 ID。"
@@ -5009,6 +5030,9 @@ msgstr "未上架的附加组件"
 msgid "All Unlisted Add-ons"
 msgstr "所有未上架的附加组件"
 
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "未上架附加组件等待人工审核"
+
 msgid "Announcement"
 msgstr "公告"
 
@@ -5364,6 +5388,12 @@ msgstr "禁用上架项目自动通过审核，直到下次人工审核通过"
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr "启用上架项目自动通过审核，在下次人工审核通过"
 
+msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
+msgstr "禁用未上架项目自动通过审核，直到下次人工审核通过"
+
+msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
+msgstr "启用未上架项目自动通过审核，在下次人工审核通过"
+
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "已禁用“自动批准”到 {date} 为止"
 
@@ -5639,12 +5669,6 @@ msgstr "中止"
 
 msgid "Run"
 msgstr "执行"
-
-msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr "当扫描器结果为真阳性但附加组件非恶意时很有用"
-
-msgid "Revert report"
-msgstr "回复报告"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."

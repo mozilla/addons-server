@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-12 13:19+0000\n"
-"PO-Revision-Date: 2021-05-12 16:30+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
+"PO-Revision-Date: 2021-06-24 16:11+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -1591,6 +1591,9 @@ msgstr "Automatische Freischaltung auf unbestimmte Zeit verzögern"
 msgid "Delay auto-approval indefinitely and add restrictions"
 msgstr "Automatische Freischaltung auf unbestimmte Zeit verzögern und Beschränkungen hinzufügen"
 
+msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
+msgstr "Automatische Freischaltung auf unbestimmte Zeit verzögern und Beschränkungen für zukünftige Freischaltungen hinzufügen"
+
 msgid "True positive"
 msgstr "Richtig positiv"
 
@@ -1956,8 +1959,8 @@ msgstr "Die Farbe von Text und Symbolen im Kopfbereich, mit Ausnahme des aktiven
 msgid "Toolbar area background"
 msgstr "Hintergrund des Symbolleistenbereichs"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr "Die Hintergrundfarbe für die Navigations-Symbolleiste, die Lesezeichen-Symbolleiste und den ausgewählten Tab.  Feld im Manifest:  toolbar."
+msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
+msgstr "Die Hintergrundfarbe für die Navigations-Symbolleiste, die Lesezeichen-Symbolleiste und den aktiven Tab.  Feld im Manifest:  toolbar."
 
 msgid "Toolbar area text and icons"
 msgstr "Text und Symbole des Symbolleistenbereichs"
@@ -1976,6 +1979,12 @@ msgstr "Text des Feldbereichs der Symbolleisten"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Die Textfarbe für Felder in den Symbolleisten, wie der Adressleiste. Feld im Manifest:  toolbar_field_text."
+
+msgid "Tab highlight"
+msgstr "Tab-Hervorhebung"
+
+msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
+msgstr "Die Hervorhebungsfarbe des aktiven Tabs. Wird als Grenze um den Tab in Firefox 89+ und als Zeile über dem Tab in älteren Firefox-Versionen implementiert. Feld im Manifest:  tab_line."
 
 msgid "Review requested."
 msgstr "Überprüfung angefordert."
@@ -4436,6 +4445,10 @@ msgstr "Holen Sie sich die Maus-Bildlaufleiste, die Sie immer wollten –wählen
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr "Tabs speichern und wiederherstellen. Enthält Funktionen zum automatischen Speichern und zur Cloud-Synchronisation."
 
+#. editorial content for the discovery pane.
+msgid "Goodbye, annoying cookie warnings!"
+msgstr "Weg mit nervigen Cookie-Warnungen!"
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Einige Websites haben Schwierigkeiten, Videos auf Android abzuspielen. Hier ist eine Lösung."
@@ -4558,6 +4571,14 @@ msgstr "Empfohlene Passwort-Manager"
 msgid "See more recommended password managers"
 msgstr "Mehr empfohlene Passwort-Manager ansehen"
 
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Übersetzungswerkzeuge"
+
+#. editorial content for the homepage shelves.
+msgid "See more translation tools"
+msgstr "Weitere Übersetzungswerkzeuge ansehen"
+
 msgid "Could not parse the manifest file."
 msgstr "Manifest-Datei konnte nicht verarbeitet werden."
 
@@ -4597,8 +4618,8 @@ msgid "Could not find an add-on ID."
 msgstr "Es wurde keine Add-on-ID gefunden."
 
 #, python-format
-msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr "Die Add-on-ID in Ihrer manifest.json oder install.rdf (%s) stimmt nicht mit der ID Ihres Add-ons auf AMO (%s) überein."
+msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
+msgstr "Die Add-on-ID in Ihrer manifest.json (%s) stimmt nicht mit der ID Ihres Add-ons auf AMO (%s) überein."
 
 msgid "Duplicate add-on ID found."
 msgstr "Doppelte Add-on-ID gefunden."
@@ -5141,6 +5162,9 @@ msgstr "Ungelistete Add-ons"
 msgid "All Unlisted Add-ons"
 msgstr "Alle ungelisteten Add-ons"
 
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Ungelistete Add-ons, die auf manuelle Freischaltung warten"
+
 msgid "Announcement"
 msgstr "Ankündigung"
 
@@ -5496,6 +5520,12 @@ msgstr "Automatische gelistete Freischaltung bis zur nächsten manuellen Freisch
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr "Automatische gelistete Freischaltung vor nächster manueller Freischaltung aktivieren"
 
+msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
+msgstr "Automatische ungelistete Freischaltung bis zur nächsten manuellen Freischaltung deaktivieren"
+
+msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
+msgstr "Automatische ungelistete Freischaltung vor nächster manueller Freischaltung aktivieren"
+
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "Die automatische Freischaltung ist derzeit bis zum {date} deaktiviert"
 
@@ -5771,12 +5801,6 @@ msgstr "Abbrechen"
 
 msgid "Run"
 msgstr "Ausführen"
-
-msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr "Nützlich, wenn das Ergebnis des Scanners wirklich positiv ist, das Add-on jedoch nicht schädlich ist"
-
-msgid "Revert report"
-msgstr "Bericht zurücksetzen"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."

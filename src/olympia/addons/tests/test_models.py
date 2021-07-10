@@ -41,6 +41,7 @@ from olympia.files.utils import Extractor, parse_addon
 from olympia.git.models import GitExtractionEntry
 from olympia.promoted.models import PromotedAddon
 from olympia.ratings.models import Rating, RatingFlag
+from olympia.reviewers.models import AutoApprovalSummary
 from olympia.translations.models import (
     Translation,
     TranslationSequence,
@@ -802,12 +803,12 @@ class TestAddonModels(TestCase):
 
         addon = Addon.objects.get(pk=3615)
         addon.icon_type = None
-        assert addon.get_icon_url(32).endswith('icons/default-32.png')
+        assert addon.get_icon_url(32).endswith('icons/default-32.png?v=20210601')
 
     def test_icon_url_default(self):
         a = Addon.objects.get(pk=3615)
         a.update(icon_type='')
-        default = 'icons/default-32.png'
+        default = 'icons/default-32.png?v=20210601'
         assert a.get_icon_url(32).endswith(default)
         assert a.get_icon_url(32).endswith(default)
         assert a.get_icon_url(32, use_default=True).endswith(default)
@@ -1551,6 +1552,21 @@ class TestAddonModels(TestCase):
         # Flag present, value is False: False.
         flags.update(auto_approval_disabled_until_next_approval=False)
         assert addon.auto_approval_disabled_until_next_approval is False
+
+    def test_auto_approval_disabled_until_next_approval_unlisted_property(self):
+        addon = Addon.objects.get(pk=3615)
+        # No flags: None
+        assert addon.auto_approval_disabled_until_next_approval_unlisted is None
+        # Flag present, value is None (default): None.
+        flags = AddonReviewerFlags.objects.create(addon=addon)
+        assert flags.auto_approval_disabled_until_next_approval_unlisted is None
+        assert addon.auto_approval_disabled_until_next_approval_unlisted is None
+        # Flag present, value is True: True.
+        flags.update(auto_approval_disabled_until_next_approval_unlisted=True)
+        assert addon.auto_approval_disabled_until_next_approval_unlisted is True
+        # Flag present, value is False: False.
+        flags.update(auto_approval_disabled_until_next_approval_unlisted=False)
+        assert addon.auto_approval_disabled_until_next_approval_unlisted is False
 
     def test_auto_approval_delayed_until_property(self):
         addon = Addon.objects.get(pk=3615)
@@ -2997,6 +3013,126 @@ class TestGetMadQueue(TestCase):
         assert flagged_addon in addons
         assert other_addon not in addons
         assert addon_pending_rejection not in addons
+
+
+class TestUnlistedPendingManualApprovalQueue(TestCase):
+    def test_basic(self):
+        # Shouldn't be in the queue:
+        addon_factory()
+        addon_factory(version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
+        addon_factory(
+            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        AddonReviewerFlags.objects.create(
+            addon=addon_factory(
+                type=amo.ADDON_STATICTHEME,
+                version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            ),
+            auto_approval_disabled_unlisted=True,
+        )
+        AddonReviewerFlags.objects.create(
+            addon=addon_factory(
+                version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            ),
+            auto_approval_disabled=True,
+        )
+        deleted_addon = AddonReviewerFlags.objects.create(
+            addon=addon_factory(
+                version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            ),
+            auto_approval_disabled_until_next_approval_unlisted=True,
+        ).addon
+        deleted_addon.delete()
+
+        # Should be in the queue:
+        expected = [
+            AddonReviewerFlags.objects.create(
+                addon=version_factory(
+                    addon=addon_factory(),
+                    channel=amo.RELEASE_CHANNEL_UNLISTED,
+                    file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                ).addon,
+                auto_approval_disabled_unlisted=True,
+            ).addon,
+            AddonReviewerFlags.objects.create(
+                addon=addon_factory(
+                    version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+                    file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                ),
+                auto_approval_disabled_until_next_approval_unlisted=True,
+            ).addon,
+            AddonReviewerFlags.objects.create(
+                addon=addon_factory(
+                    version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+                    file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                ),
+                auto_approval_delayed_until=datetime.now() + timedelta(days=99),
+            ).addon,
+        ]
+
+        results = Addon.objects.get_unlisted_pending_manual_approval_queue()
+        assert len(results) == len(expected)
+        assert set(results) == set(expected)
+
+    def test_worst_score_and_first_created_ignores_versions_not_in_filter(self):
+        expected_first_created_date = self.days_ago(2)
+        addon = AddonReviewerFlags.objects.create(
+            addon=addon_factory(
+                version_kw={
+                    'channel': amo.RELEASE_CHANNEL_UNLISTED,
+                    'created': self.days_ago(1),
+                },
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            ),
+            auto_approval_disabled_unlisted=True,
+        ).addon
+        AutoApprovalSummary.objects.create(version=addon.versions.all()[0], score=66)
+        AutoApprovalSummary.objects.create(
+            version=version_factory(
+                addon=addon,
+                channel=amo.RELEASE_CHANNEL_UNLISTED,
+                created=expected_first_created_date,
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            ),
+            score=55,
+        )
+        # None of the following should matter:
+        AutoApprovalSummary.objects.create(
+            version=version_factory(
+                addon=addon,
+                created=self.days_ago(99),
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            ),
+            score=99,
+        )
+        AutoApprovalSummary.objects.create(
+            version=version_factory(
+                addon=addon,
+                channel=amo.RELEASE_CHANNEL_UNLISTED,
+                created=self.days_ago(98),
+                file_kw={'status': amo.STATUS_APPROVED},
+            ),
+            score=98,
+        )
+        AutoApprovalSummary.objects.create(
+            version=version_factory(
+                addon=addon,
+                created=self.days_ago(97),
+                file_kw={'status': amo.STATUS_DISABLED},
+            ),
+            score=97,
+        )
+
+        results = Addon.objects.get_unlisted_pending_manual_approval_queue()
+        assert len(results) == 1
+        result = results[0]
+        assert result == addon
+        assert result.worst_score == 66
+        assert result.first_version_created == expected_first_created_date
 
 
 class TestAddonGUID(TestCase):

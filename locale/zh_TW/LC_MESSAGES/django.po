@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-12 13:19+0000\n"
-"PO-Revision-Date: 2021-05-12 14:13+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
+"PO-Revision-Date: 2021-07-03 09:37+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -328,7 +328,7 @@ msgid "Jump to first page"
 msgstr "跳至第一頁"
 
 msgid "Previous"
-msgstr "之前"
+msgstr "上一頁"
 
 msgid "Jump to last page"
 msgstr "跳到最後一頁"
@@ -1561,6 +1561,9 @@ msgstr "無限期延後自動通過審查"
 msgid "Delay auto-approval indefinitely and add restrictions"
 msgstr "無限期延後自動通過審查並且加入限制"
 
+msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
+msgstr "無限期延後自動通過審查並且對未來的審核加入限制"
+
 msgid "True positive"
 msgstr "真陽性"
 
@@ -1914,8 +1917,8 @@ msgstr "標題區文字顏色與圖示，不含使用中的分頁。安裝資訊
 msgid "Toolbar area background"
 msgstr "工具列背景"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr "導航列、書籤列、被選擇分頁的背景色。安裝資訊欄位: toolbar。"
+msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
+msgstr "導航列、書籤列、使用中分頁的背景色。安裝資訊欄位: toolbar。"
 
 msgid "Toolbar area text and icons"
 msgstr "工具列文字與圖示"
@@ -1934,6 +1937,12 @@ msgstr "工具列欄位區文字"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "工具列中的欄位（例如網址列）的文字顏色。安裝資訊欄位: toolbar_field_text。"
+
+msgid "Tab highlight"
+msgstr "分頁標籤強調色"
+
+msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
+msgstr "使用中分頁標籤的強調色。在 Firefox 89+ 起的版本是標籤周圍的外框；在舊版 Firefox 當中則是標籤頂部的線條。Manifest 欄位: tab_line。"
 
 msgid "Review requested."
 msgstr "已要求審核。"
@@ -4018,7 +4027,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "For those moments when you need to fire lasers out of a cat."
-msgstr ""
+msgstr "需要一隻能在網頁上發射雷射死光的貓貓嗎？"
 
 #. editorial content for the discovery pane.
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
@@ -4338,13 +4347,17 @@ msgstr ""
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Goodbye, annoying cookie warnings!"
+msgstr "去去 Cookie 警告走！"
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "某些網站無法在 Android 上正常播放影片，此套件可修正此問題。"
 
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
-msgstr ""
+msgstr "在網路上看到有趣的圖片？使用 TinEye 來尋找圖片來源。"
 
 #. editorial content for the primary hero shelves.
 msgid "For those moments you need to fire lasers out of cat eyes."
@@ -4460,6 +4473,14 @@ msgstr "推薦的密碼管理員"
 msgid "See more recommended password managers"
 msgstr "看更多推薦密碼管理員"
 
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "翻譯工具"
+
+#. editorial content for the homepage shelves.
+msgid "See more translation tools"
+msgstr "看更多翻譯工具"
+
 msgid "Could not parse the manifest file."
 msgstr "無法剖析安裝資訊檔。"
 
@@ -4499,8 +4520,8 @@ msgid "Could not find an add-on ID."
 msgstr "無法找到附加元件 ID。"
 
 #, python-format
-msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr "您的 manifest.json 或 install.rdf 當中的附加元件 ID (%s) 與您在 AMO上架的附加元件 ID (%s) 不符"
+msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
+msgstr "您的 manifest.json 當中的附加元件 ID (%s) 與您在 AMO 上架的附加元件 ID (%s) 不符"
 
 msgid "Duplicate add-on ID found."
 msgstr "發現重複的附加元件 ID。"
@@ -5027,6 +5048,9 @@ msgstr "未上架的附加元件"
 msgid "All Unlisted Add-ons"
 msgstr "所有未上架的附加元件"
 
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "未上架附加元件等待人工審核"
+
 msgid "Announcement"
 msgstr "消息"
 
@@ -5384,6 +5408,12 @@ msgstr "停用上架項目自動通過審核，直到下次人工審核通過"
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr "啟用上架項目自動通過審核，直到下次人工審核通過"
 
+msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
+msgstr "停用未上架項目自動通過審核，直到下次人工審核通過"
+
+msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
+msgstr "啟用未上架項目自動通過審核，直到下次人工審核通過"
+
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "「自動通過審核」已關閉到 {date} 為止"
 
@@ -5661,12 +5691,6 @@ msgstr "中斷"
 
 msgid "Run"
 msgstr "執行"
-
-msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr "通常用於在掃描結果是真陽性，但附加元件本身的確不是惡意元件時"
-
-msgid "Revert report"
-msgstr "回覆報告"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."

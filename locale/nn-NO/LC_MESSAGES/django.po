@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-12 13:19+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: 2021-04-29 18:23+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1562,6 +1562,10 @@ msgstr "Forseink automatisk godkjenning på ubestemt tid"
 msgid "Delay auto-approval indefinitely and add restrictions"
 msgstr "Forseink automatisk godkjenning på ubestemt tid"
 
+#, fuzzy
+msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
+msgstr "Forseink automatisk godkjenning på ubestemt tid"
+
 msgid "True positive"
 msgstr "Sann positiv"
 
@@ -1922,7 +1926,8 @@ msgstr "Fargen på teksten som vert vist i overskriftsområdet."
 msgid "Toolbar area background"
 msgstr "Bakgrunn for verktøylinjeområdet"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+#, fuzzy
+msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr "Bakgrunnsfargen for navigasjonslinja, bokmerkefeltet og vald fane.  Manifestfelt:  toolbar."
 
 msgid "Toolbar area text and icons"
@@ -1942,6 +1947,12 @@ msgid "Toolbar field area text"
 msgstr "Tekst på feltområdet i verktøylinja"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
+msgstr ""
+
+msgid "Tab highlight"
+msgstr ""
+
+msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr ""
 
 msgid "Review requested."
@@ -4356,6 +4367,10 @@ msgstr ""
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Goodbye, annoying cookie warnings!"
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4476,6 +4491,15 @@ msgstr "Tilrådde passordhandterarar"
 msgid "See more recommended password managers"
 msgstr "Vis fleire tilrådde passordhandterarar"
 
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "etter utvidingsversjon"
+
 msgid "Could not parse the manifest file."
 msgstr "Kunne ikkje tolke manifest-fila."
 
@@ -4515,8 +4539,8 @@ msgstr "Ugyldig arkiv."
 msgid "Could not find an add-on ID."
 msgstr "Klarte ikkje å finne nokon utvidings-ID."
 
-#, python-format
-msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
+#, fuzzy, python-format
+msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
 msgstr "Utvidings-ID i manifest.json eller install.rdf (%s) matchar passar ikkje med ID-en for utvidinga di på AMO (%s)"
 
 msgid "Duplicate add-on ID found."
@@ -5054,6 +5078,10 @@ msgstr "Ulista utvidingar"
 msgid "All Unlisted Add-ons"
 msgstr "Alle ulista utvidingar"
 
+#, fuzzy
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Slå på auto-godkjenning"
+
 msgid "Announcement"
 msgstr "Kunngjering"
 
@@ -5420,6 +5448,14 @@ msgstr "Slå på auto-godkjenning"
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr "Slå på auto-godkjenning"
 
+#, fuzzy
+msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
+msgstr "Slå på auto-godkjenning"
+
+#, fuzzy
+msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
+msgstr "Slå på auto-godkjenning"
+
 msgid "Auto-Approval currently disabled until {date}"
 msgstr ""
 
@@ -5701,12 +5737,6 @@ msgstr ""
 
 msgid "Run"
 msgstr ""
-
-msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
-
-msgid "Revert report"
-msgstr "Tilbakestill rapport"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-12 13:19+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: 2018-05-28 12:04+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1581,6 +1581,9 @@ msgstr ""
 msgid "Delay auto-approval indefinitely and add restrictions"
 msgstr ""
 
+msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
+msgstr ""
+
 msgid "True positive"
 msgstr ""
 
@@ -1960,7 +1963,8 @@ msgstr "Boja teksta i ikona u području zaglavlja, osim aktivnog taba. Polje man
 msgid "Toolbar area background"
 msgstr "Pozadina područja alatne trake"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+#, fuzzy
+msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr "Boja pozadine za navigacijsku traku, traku zabilješki i odabranih tabova.  Polje manifesta:  toolbar."
 
 msgid "Toolbar area text and icons"
@@ -1981,6 +1985,12 @@ msgstr "Tekst područja polja alatne trake"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Boja teksta u poljima u alatnoj traci, kao što je URL traka. Polje manifesta:  toolbar_field_text."
+
+msgid "Tab highlight"
+msgstr ""
+
+msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
+msgstr ""
 
 msgid "Review requested."
 msgstr ""
@@ -4418,6 +4428,10 @@ msgstr ""
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Goodbye, annoying cookie warnings!"
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4547,6 +4561,15 @@ msgstr ""
 msgid "See more recommended password managers"
 msgstr ""
 
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "Sve verzije"
+
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -4586,7 +4609,7 @@ msgid "Could not find an add-on ID."
 msgstr ""
 
 #, python-format
-msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
+msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
 msgstr ""
 
 msgid "Duplicate add-on ID found."
@@ -5130,6 +5153,9 @@ msgstr ""
 msgid "All Unlisted Add-ons"
 msgstr ""
 
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr ""
+
 msgid "Announcement"
 msgstr ""
 
@@ -5492,6 +5518,12 @@ msgstr ""
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr ""
 
+msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
+msgstr ""
+
+msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
+msgstr ""
+
 msgid "Auto-Approval currently disabled until {date}"
 msgstr ""
 
@@ -5779,12 +5811,6 @@ msgid "Abort"
 msgstr ""
 
 msgid "Run"
-msgstr ""
-
-msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
-
-msgid "Revert report"
 msgstr ""
 
 #, fuzzy, python-format

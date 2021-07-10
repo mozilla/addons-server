@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-12 13:19+0000\n"
-"PO-Revision-Date: 2021-05-12 14:02+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
+"PO-Revision-Date: 2021-07-05 12:36+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -391,7 +391,7 @@ msgid "Error decoding signature."
 msgstr "Erro ao decodificar assinatura."
 
 msgid "Wrong type for one or more keys in payload"
-msgstr "Tipo incorreto de uma ou mais chaves na carga útil"
+msgstr "Tipo incorreto de uma ou mais chaves no conteúdo"
 
 msgid "Invalid JWT Token."
 msgstr "Token JWT inválido."
@@ -1590,6 +1590,9 @@ msgstr "Adiar aprovação automática indefinidamente"
 msgid "Delay auto-approval indefinitely and add restrictions"
 msgstr "Adiar aprovação automática indefinidamente e adicionar restrições"
 
+msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
+msgstr "Adiar aprovação automática indefinidamente e adicionar restrições a futuras aprovações"
+
 msgid "True positive"
 msgstr "Verdadeiro positivo"
 
@@ -1959,8 +1962,8 @@ msgstr "A cor do texto e dos ícones na área do cabeçalho, exceto a aba ativa.
 msgid "Toolbar area background"
 msgstr "Área de fundo da barra de ferramentas"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr "A cor do fundo para a barra de navegação, a barra de favoritos e a aba selecionada.  Campo do manifesto:  toolbar."
+msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
+msgstr "A cor do fundo da barra de navegação, da barra de favoritos e da aba ativa. Campo do manifesto:  toolbar."
 
 msgid "Toolbar area text and icons"
 msgstr "Ícones e texto da área da barra de ferramentas"
@@ -1979,6 +1982,12 @@ msgstr "Área do campo de texto da barra de ferramentas"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "A cor do texto em campos da barra de ferramentas, tais como a barra de URL. Campo do manifesto:  toolbar_field_text."
+
+msgid "Tab highlight"
+msgstr "Destaque de aba"
+
+msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
+msgstr "A cor de destaque da aba ativa. Implementado como uma borda ao redor da aba a partir do Firefox 89 e uma linha acima da aba em versões mais antigas. Campo de manifesto:  tab_line."
 
 msgid "Review requested."
 msgstr "Análise solicitada."
@@ -3647,7 +3656,7 @@ msgstr "Viu uma imagem interessante na web e quer saber mais sobre ela? Experime
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr "Baixe vídeos com facilidade. Funciona com YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope e centenas de outros sites de vídeos."
+msgstr "Baixe vídeos com facilidade. Funciona no YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope e centenas de outros sites de vídeos."
 
 #. editorial content for the discovery pane.
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
@@ -4471,6 +4480,10 @@ msgstr "Tenha a barra de rolagem que você sempre quis, selecione a espessura e 
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr "Salve e restaure abas. Inclui recursos de salvamento automático e sincronização na nuvem."
 
+#. editorial content for the discovery pane.
+msgid "Goodbye, annoying cookie warnings!"
+msgstr "Adeus, avisos irritantes sobre cookies!"
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Alguns sites têm dificuldade para reproduzir vídeos no Android. Aqui está uma correção."
@@ -4593,6 +4606,14 @@ msgstr "Gerenciadores de senhas recomendados"
 msgid "See more recommended password managers"
 msgstr "Mais gerenciadores de senhas recomendados"
 
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Ferramentas de tradução"
+
+#. editorial content for the homepage shelves.
+msgid "See more translation tools"
+msgstr "Mais ferramentas de tradução"
+
 msgid "Could not parse the manifest file."
 msgstr "Não foi possível analisar o arquivo manifest."
 
@@ -4632,8 +4653,8 @@ msgid "Could not find an add-on ID."
 msgstr "Não foi possível encontrar um ID da extensão."
 
 #, python-format
-msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr "O ID da extensão no seu manifest.json ou install.rdf (%s) não coincide com o ID da sua extensão na AMO (%s)"
+msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
+msgstr "O ID da extensão no seu manifest.json (%s) não coincide com o ID da sua extensão no AMO (%s)"
 
 msgid "Duplicate add-on ID found."
 msgstr "Foi encontrado um ID de extensão duplicado."
@@ -4946,7 +4967,7 @@ msgid "Needs Admin Static Theme Review"
 msgstr "Precisa de revisão de tema estático de administração"
 
 msgid "Requires Restart"
-msgstr "Requer reinicialização"
+msgstr "Requer reiniciar"
 
 msgid "Sources provided"
 msgstr "Fontes disponíveis"
@@ -5183,6 +5204,9 @@ msgstr "Extensões não-listadas"
 
 msgid "All Unlisted Add-ons"
 msgstr "Todos as extensões não listadas"
+
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Extensões não listadas com aprovação manual pendente"
 
 msgid "Announcement"
 msgstr "Anúncio"
@@ -5547,6 +5571,12 @@ msgstr "Desativar a aprovação automática de listados até a próxima aprovaç
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr "Ativar a aprovação automática de listados antes da próxima aprovação manual"
 
+msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
+msgstr "Desativar aprovação automática de não listados até a próxima aprovação manual"
+
+msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
+msgstr "Ativar aprovação automática de não listados antes da próxima aprovação manual"
+
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "Aprovação automática desativada no momento, até {date}"
 
@@ -5827,12 +5857,6 @@ msgstr "Interromper"
 
 msgid "Run"
 msgstr "Executar"
-
-msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr "Útil quando o resultado da verificação é um verdadeiro positivo, mas a extensão não é maliciosa"
-
-msgid "Revert report"
-msgstr "Reverter denúncia"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."

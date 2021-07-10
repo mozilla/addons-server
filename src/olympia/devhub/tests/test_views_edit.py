@@ -791,7 +791,7 @@ class TestEditMedia(BaseTestEdit):
         assert response.context['form'].errors == {}
         addon = self.get_addon()
 
-        assert addon.get_icon_url(64).endswith('icons/default-64.png')
+        assert addon.get_icon_url(64).endswith('icons/default-64.png?v=20210601')
 
         for k in data:
             assert str(getattr(addon, k)) == data[k]
@@ -1185,9 +1185,9 @@ class TagTestsMixin(object):
 
         assert result == ', '.join(sorted(self.tags))
         html = (
-            '<a href="/en-US/firefox/tag/tag4">tag4</a> added to '
-            '<a href="/en-US/firefox/addon/a3615/">Delicious Bookmarks</a>'
-            '.'
+            '<a href="http://testserver/en-US/firefox/tag/tag4">tag4</a> added to '
+            '<a href="http://testserver/en-US/firefox/addon/a3615/">'
+            'Delicious Bookmarks</a>.'
         )
         assert (
             ActivityLog.objects.for_addons(self.addon)

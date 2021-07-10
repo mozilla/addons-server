@@ -68,11 +68,11 @@ def test_resize_image_from_svg():
     src_folder = os.path.join(
         settings.ROOT, 'src', 'olympia', 'versions', 'tests', 'static_themes'
     )
-    src = os.path.join(src_folder, 'weta_theme_full.svg')
-    expected = os.path.join(src_folder, 'weta_theme_full.jpg')
+    src = os.path.join(src_folder, 'weta_theme_amo.svg')
+    expected = os.path.join(src_folder, 'weta_theme_amo.jpg')
     tmp_file_name = get_temp_filename()
     try:
-        resize_image(src, tmp_file_name, (680, 92), format='jpg')
+        resize_image(src, tmp_file_name, (720, 92), format='jpg', quality=35)
         with open(tmp_file_name, 'rb') as dfh:
             with open(expected, 'rb') as efh:
                 dd = dfh.read()

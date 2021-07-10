@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-12 13:19+0000\n"
-"PO-Revision-Date: 2021-05-12 14:06+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
+"PO-Revision-Date: 2021-06-24 16:40+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1590,6 +1590,9 @@ msgstr "Automatikus elfogadás késleltetése határozatlan ideig"
 msgid "Delay auto-approval indefinitely and add restrictions"
 msgstr "Automatikus elfogadás késleltetése határozatlan ideig, és korlátozások hozzáadása"
 
+msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
+msgstr "Automatikus elfogadás késleltetése határozatlan ideig, és korlátozások hozzáadása a jövőbeli elfogadásokhoz"
+
 msgid "True positive"
 msgstr "Valódi pozitív"
 
@@ -1956,8 +1959,8 @@ msgstr "A fejlécterületen megjelenített szöveg színe és ikonja, kivéve az
 msgid "Toolbar area background"
 msgstr "Az eszköztárterület háttere"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr "A navigációs sáv, a könyvjelző eszköztár és a kiválasztott lap háttérszíne. Leírófájl: toolbar."
+msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
+msgstr "A navigációs sáv, a könyvjelző eszköztár és az aktív lap háttérszíne.  Leírófájl mező:  toolbar."
 
 msgid "Toolbar area text and icons"
 msgstr "Az eszköztárterület szövege és ikonok"
@@ -1976,6 +1979,12 @@ msgstr "Az eszköztár mezőterületének szövege"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Az eszköztáron található mezők, mint a keresősáv, szövegszíne. Leírófájl mező: toolbar_field_text."
+
+msgid "Tab highlight"
+msgstr "Lapfül kiemelése"
+
+msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
+msgstr "Az aktív lap kiemelési színe. A Firefox 89-től kezdve szegélyként van megvalósítva, régebbi Firefoxokban pedig egy a lapfül feletti vonalként. Leírófájl mező:  tab_line."
 
 msgid "Review requested."
 msgstr "Értékelés kérve."
@@ -4435,6 +4444,10 @@ msgstr "Szerezze be a görgetősávot, amelyre mindig vágyott – adja meg a k�
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr "Lapok mentése és visszaállítása. Támogatja az automatikus mentést és a felhős szinkronizálást."
 
+#. editorial content for the discovery pane.
+msgid "Goodbye, annoying cookie warnings!"
+msgstr "Viszlát, bosszantó sütifigyelmeztetések!"
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Egyes webhelyek nehezen tudnak videókat lejátszani Androidon. Itt egy javítás."
@@ -4557,6 +4570,14 @@ msgstr "Ajánlott jelszókezelők"
 msgid "See more recommended password managers"
 msgstr "További ajánlott jelszókezelők megtekintése"
 
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Fordítási eszközök"
+
+#. editorial content for the homepage shelves.
+msgid "See more translation tools"
+msgstr "További fordítási eszközök megtekintése"
+
 msgid "Could not parse the manifest file."
 msgstr "Nem sikerült feldolgozni a jegyzékfájlt."
 
@@ -4596,8 +4617,8 @@ msgid "Could not find an add-on ID."
 msgstr "Nem található a kiegészítő azonosítója."
 
 #, python-format
-msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr "A kiegészítő azonosítója a manifest.json vagy install.rdf fájlban (%s) nem egyezik a kiegészítő AMO azonosítójával (%s)"
+msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
+msgstr "A kiegészítő azonosítója a manifest.json fájlban (%s) nem egyezik a kiegészítő AMO azonosítójával (%s)"
 
 msgid "Duplicate add-on ID found."
 msgstr "Kettőzött kiegészítő azonosító található."
@@ -5140,6 +5161,9 @@ msgstr "Nem listázott kiegészítők"
 msgid "All Unlisted Add-ons"
 msgstr "Minden nem listázott kiegészítő"
 
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Nem listázott kiegészítők kézi jóváhagyásra várva"
+
 msgid "Announcement"
 msgstr "Bejelentés"
 
@@ -5499,6 +5523,12 @@ msgstr "Automatikus jóváhagyás letiltása a következő kézi jóváhagyásig
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr "Automatikus jóváhagyás engedélyezése a következő kézi jóváhagyás előtt"
 
+msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
+msgstr "Nem listázott kiegészítők automatikus jóváhagyásának letiltása a következő kézi jóváhagyásig"
+
+msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
+msgstr "Nem listázott kiegészítők automatikus jóváhagyásának engedélyezése a következő kézi jóváhagyás előtt"
+
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "Az automatikus jóváhagyás eddig tiltott: {date}"
 
@@ -5776,12 +5806,6 @@ msgstr "Megszakítás"
 
 msgid "Run"
 msgstr "Futtatás"
-
-msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr "Hasznos, ha az átvizsgáló eredménye valódi pozitív, de a kiegészítő nem rosszindulatú"
-
-msgid "Revert report"
-msgstr "Jelentés visszaállítása"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."

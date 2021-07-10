@@ -250,6 +250,42 @@ class ModernAddonQueueTable(ReviewerQueueTable):
     render_last_content_review = render_last_human_review
 
 
+class UnlistedPendingManualApprovalQueueTable(tables.Table, ItemStateTable):
+    addon_name = tables.Column(verbose_name=_('Add-on'), accessor='name')
+    waiting_time = tables.Column(
+        verbose_name=_('Waiting Time'), accessor='first_version_created'
+    )
+    score = tables.Column(verbose_name=_('Maliciousness Score'), accessor='worst_score')
+
+    class Meta:
+        fields = (
+            'addon_name',
+            'waiting_time',
+            'score',
+        )
+
+    @classmethod
+    def get_queryset(cls, admin_reviewer=False):
+        return Addon.objects.get_unlisted_pending_manual_approval_queue()
+
+    def _get_addon_name_url(self, record):
+        return reverse('reviewers.review', args=['unlisted', record.slug])
+
+    def render_addon_name(self, record):
+        url = self._get_addon_name_url(record)
+        return '<a href="%s">%s</a>' % (
+            url,
+            jinja2.escape(record.name),
+        )
+
+    def render_waiting_time(self, record):
+        return jinja2.escape(naturaltime(record.first_version_created))
+
+    @classmethod
+    def default_order_by(cls):
+        return '-score'
+
+
 class PendingRejectionTable(ModernAddonQueueTable):
     deadline = tables.Column(
         verbose_name=_('Pending Rejection Deadline'),
@@ -1133,6 +1169,7 @@ class ReviewBase(object):
         # versions.
         status = self.addon.status
         latest_version = self.version
+        channel = self.version.channel if self.version else None
         self.version = None
         self.files = None
         now = datetime.now()
@@ -1181,8 +1218,13 @@ class ReviewBase(object):
 
         # A rejection (delayed or not) implies the next version should be
         # manually reviewed.
+        auto_approval_disabled_until_next_approval_flag = (
+            'auto_approval_disabled_until_next_approval'
+            if channel == amo.RELEASE_CHANNEL_LISTED
+            else 'auto_approval_disabled_until_next_approval_unlisted'
+        )
         addonreviewerflags = {
-            'auto_approval_disabled_until_next_approval': True,
+            auto_approval_disabled_until_next_approval_flag: True,
         }
         if pending_rejection_deadline:
             # Developers should be notified again once the deadline is close.
@@ -1302,6 +1344,12 @@ class ReviewUnlisted(ReviewBase):
 
         if self.human_review:
             self.clear_specific_needs_human_review_flags(self.version)
+
+            # An approval took place so we can reset this.
+            AddonReviewerFlags.objects.update_or_create(
+                addon=self.addon,
+                defaults={'auto_approval_disabled_until_next_approval_unlisted': False},
+            )
 
         self.notify_email(template, subject, perm_setting=None)
 

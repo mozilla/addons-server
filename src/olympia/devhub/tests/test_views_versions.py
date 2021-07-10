@@ -464,6 +464,28 @@ class TestVersion(TestCase):
         assert doc('.disable-addon').attr('checked') == 'checked'
         assert doc('.disable-addon').attr('disabled') == 'disabled'
 
+    def test_no_listed_versions_already_enabled(self):
+        self.addon.versions.all().delete()
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert not doc('.enable-addon')
+        assert not doc('.disable-addon')
+
+    def test_no_listed_versions_already_disabled(self):
+        # If somehow the add-on has no listed versions but is invisible, we
+        # allow them to switch back to visible so that they can submit listed
+        # versions.
+        self.addon.versions.all().delete()
+        self.addon.update(disabled_by_user=True)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert doc('.enable-addon')
+        assert doc('.disable-addon')
+        assert not doc('.enable-addon').attr('checked')
+        assert not doc('.enable-addon').attr('disabled')
+        assert doc('.disable-addon').attr('checked') == 'checked'
+        assert not doc('.disable-addon').attr('disabled')
+
     def test_cancel_get(self):
         cancel_url = reverse('devhub.addons.cancel', args=['a3615'])
         assert self.client.get(cancel_url).status_code == 405

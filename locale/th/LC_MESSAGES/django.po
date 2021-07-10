@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-12 13:19+0000\n"
-"PO-Revision-Date: 2021-03-31 07:46+0000\n"
-"Last-Translator: aefgh39622@gmail.com <aefgh39622@gmail.com>\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
+"PO-Revision-Date: 2021-05-26 05:07+0000\n"
+"Last-Translator: yotanutmaliwan <yotanutmaliwan@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
@@ -1369,10 +1369,10 @@ msgid "Recommended"
 msgstr "แสดงความคิดเห็นแล้ว"
 
 msgid "Sponsored"
-msgstr ""
+msgstr "ได้รับการสนับสนุน"
 
 msgid "Verified"
-msgstr ""
+msgstr "ผ่านการตรวจสอบ"
 
 #, fuzzy
 msgid "By Firefox"
@@ -1382,7 +1382,7 @@ msgid "Spotlight"
 msgstr "สปอตไลต์"
 
 msgid "Strategic"
-msgstr ""
+msgstr "กลยุทธ์"
 
 msgid "Add-on"
 msgstr "ส่วนเสริม"
@@ -1563,45 +1563,48 @@ msgid "No action"
 msgstr "การกระทำเพิ่มเติม"
 
 msgid "Flag for human review"
-msgstr ""
+msgstr "ปักธงให้มนุษย์ตรวจสอบ"
 
 msgid "Delay auto-approval"
-msgstr ""
+msgstr "ชะลอการอนุมัติอัตโนมัติ"
 
 msgid "Delay auto-approval indefinitely"
-msgstr ""
+msgstr "ชะลอการอนุมัติโดยอัตโนมัติอย่างไม่มีกำหนด"
 
 msgid "Delay auto-approval indefinitely and add restrictions"
+msgstr "ชะลอการอนุมัติอัตโนมัติอย่างไม่มีกำหนดและเพิ่มข้อจำกัด"
+
+msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
 msgstr ""
 
 msgid "True positive"
-msgstr ""
+msgstr "ผลบวกแท้จริง"
 
 msgid "False positive"
-msgstr ""
+msgstr "ผลบวกเท็จ"
 
 msgid "Inconclusive"
-msgstr ""
+msgstr "สรุปไม่ได้"
 
 #, fuzzy
 msgid "New"
 msgstr "ใหม่กว่า"
 
 msgid "Running"
-msgstr ""
+msgstr "กำลังทำงาน"
 
 msgid "Aborted"
-msgstr ""
+msgstr "ยุติอย่างล้มเหลว"
 
 msgid "Aborting"
-msgstr ""
+msgstr "กำลังยุติการทำงาน"
 
 #, fuzzy
 msgid "Completed"
 msgstr "ไม่สมบูรณ์"
 
 msgid "Scheduled"
-msgstr ""
+msgstr "นัดหมายแล้ว"
 
 msgid "Core"
 msgstr "แกน"
@@ -1937,7 +1940,7 @@ msgstr ""
 msgid "Toolbar area background"
 msgstr "พื้นหลังของพื้นที่แถบเครื่องมือ"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr ""
 
 msgid "Toolbar area text and icons"
@@ -1956,6 +1959,12 @@ msgid "Toolbar field area text"
 msgstr ""
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
+msgstr ""
+
+msgid "Tab highlight"
+msgstr ""
+
+msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr ""
 
 msgid "Review requested."
@@ -4355,6 +4364,10 @@ msgstr ""
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Goodbye, annoying cookie warnings!"
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4482,6 +4495,15 @@ msgstr ""
 msgid "See more recommended password managers"
 msgstr ""
 
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "ตัวตรวจสอบส่วนเสริม"
+
 msgid "Could not parse the manifest file."
 msgstr "ไม่สามารถแยกวิเคราะห์ไฟล์กำกับ"
 
@@ -4521,7 +4543,7 @@ msgid "Could not find an add-on ID."
 msgstr "ไม่พบ ID ส่วนเสริม"
 
 #, python-format
-msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
+msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
 msgstr ""
 
 msgid "Duplicate add-on ID found."
@@ -5071,6 +5093,9 @@ msgstr "ส่วนเสริมสำหรับระบบ Android"
 msgid "All Unlisted Add-ons"
 msgstr ""
 
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr ""
+
 msgid "Announcement"
 msgstr "ประกาศ"
 
@@ -5442,6 +5467,12 @@ msgstr ""
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr ""
 
+msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
+msgstr ""
+
+msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
+msgstr ""
+
 msgid "Auto-Approval currently disabled until {date}"
 msgstr ""
 
@@ -5739,13 +5770,6 @@ msgstr ""
 
 msgid "Run"
 msgstr ""
-
-msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
-
-#, fuzzy
-msgid "Revert report"
-msgstr "การตอบกลับของผู้ตรวจสอบ"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."

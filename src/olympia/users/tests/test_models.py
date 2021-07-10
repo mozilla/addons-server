@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from datetime import date, datetime, timedelta
 
 import django  # noqa
@@ -23,7 +22,7 @@ from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.tests import addon_factory, collection_factory, TestCase, user_factory
 from olympia.bandwagon.models import Collection
-from olympia.files.models import File
+from olympia.files.models import File, FileUpload
 from olympia.ratings.models import Rating
 from olympia.users.models import (
     DeniedName,
@@ -34,6 +33,7 @@ from olympia.users.models import (
     EmailUserRestriction,
     IPNetworkUserRestriction,
     IPReputationRestriction,
+    RESTRICTION_TYPES,
     UserEmailField,
     UserProfile,
 )
@@ -741,41 +741,41 @@ class TestIPNetworkUserRestriction(TestCase):
         request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
         request.user = user_factory(last_login_ip='192.168.0.5')
         IPNetworkUserRestriction.objects.create(network='192.168.1.0/28')
-        assert IPNetworkUserRestriction.allow_request(request)
+        assert IPNetworkUserRestriction.allow_submission(request)
 
         request = RequestFactory(REMOTE_ADDR='10.8.0.1').get('/')
         request.user = user_factory(last_login_ip='10.8.0.1')
         IPNetworkUserRestriction.objects.create(network='10.8.0.0/32')
-        assert IPNetworkUserRestriction.allow_request(request)
+        assert IPNetworkUserRestriction.allow_submission(request)
 
     def test_blocked_ip4_32_subnet(self):
         request = RequestFactory(REMOTE_ADDR='192.168.0.8').get('/')
         request.user = user_factory(last_login_ip='192.168.1.1')
         IPNetworkUserRestriction.objects.create(network='192.168.0.8/32')
-        assert not IPNetworkUserRestriction.allow_request(request)
+        assert not IPNetworkUserRestriction.allow_submission(request)
 
     def test_allowed_ip4_28_subnet(self):
         request = RequestFactory(REMOTE_ADDR='192.168.0.254').get('/')
         request.user = user_factory(last_login_ip='192.168.1.1')
         IPNetworkUserRestriction.objects.create(network='192.168.0.0/28')
-        assert IPNetworkUserRestriction.allow_request(request)
+        assert IPNetworkUserRestriction.allow_submission(request)
 
     def test_blocked_ip4_24_subnet(self):
         request = RequestFactory(REMOTE_ADDR='192.168.0.254').get('/')
         request.user = user_factory(last_login_ip='192.168.1.1')
         IPNetworkUserRestriction.objects.create(network='192.168.0.0/24')
-        assert not IPNetworkUserRestriction.allow_request(request)
+        assert not IPNetworkUserRestriction.allow_submission(request)
 
     def test_blocked_ip4_address(self):
         request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
         request.user = user_factory(last_login_ip='192.168.1.1')
         IPNetworkUserRestriction.objects.create(network='192.168.0.0/28')
-        assert not IPNetworkUserRestriction.allow_request(request)
+        assert not IPNetworkUserRestriction.allow_submission(request)
 
         request = RequestFactory(REMOTE_ADDR='10.8.0.1').get('/')
         request.user = user_factory(last_login_ip='192.168.1.1')
         IPNetworkUserRestriction.objects.create(network='10.8.0.0/28')
-        assert not IPNetworkUserRestriction.allow_request(request)
+        assert not IPNetworkUserRestriction.allow_submission(request)
 
     def test_ip4_address_validated(self):
         with pytest.raises(forms.ValidationError) as exc_info:
@@ -795,7 +795,42 @@ class TestIPNetworkUserRestriction(TestCase):
         request = RequestFactory(REMOTE_ADDR='192.168.0.8').get('/')
         request.user = user_factory(last_login_ip='192.168.1.1')
         IPNetworkUserRestriction.objects.create(network='192.168.1.1/32')
-        assert not IPNetworkUserRestriction.allow_request(request)
+        assert not IPNetworkUserRestriction.allow_submission(request)
+
+    def test_allowed_approval_while_blocking_submission(self):
+        request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
+        request.user = user_factory(last_login_ip='10.0.0.1')
+        IPNetworkUserRestriction.objects.create(network='192.168.0.0/28')
+        # Submission is not allowed.
+        assert not IPNetworkUserRestriction.allow_submission(request)
+        # Approval is.
+        upload = FileUpload.objects.create(ip_address='192.168.0.1', user=request.user)
+        assert IPNetworkUserRestriction.allow_auto_approval(upload)
+
+    def test_blocked_approval_last_login_ip(self):
+        request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
+        request.user = user_factory(last_login_ip='192.168.0.1')
+        IPNetworkUserRestriction.objects.create(
+            network='192.168.0.0/28', restriction_type=RESTRICTION_TYPES.APPROVAL
+        )
+        # Submission remains allowed.
+        assert IPNetworkUserRestriction.allow_submission(request)
+        # Approval is blocked even though it was with a different ip, because
+        # of the user last_login_ip.
+        upload = FileUpload.objects.create(ip_address='192.168.1.2', user=request.user)
+        assert not IPNetworkUserRestriction.allow_auto_approval(upload)
+
+    def test_blocked_approval_while_allowing_submission(self):
+        request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
+        request.user = user_factory(last_login_ip='10.0.0.1')
+        IPNetworkUserRestriction.objects.create(
+            network='192.168.0.0/28', restriction_type=RESTRICTION_TYPES.APPROVAL
+        )
+        # Submission remains allowed.
+        assert IPNetworkUserRestriction.allow_submission(request)
+        # Approval is blocked.
+        upload = FileUpload.objects.create(ip_address='192.168.0.1', user=request.user)
+        assert not IPNetworkUserRestriction.allow_auto_approval(upload)
 
 
 class TestDisposableEmailDomainRestriction(TestCase):
@@ -803,18 +838,40 @@ class TestDisposableEmailDomainRestriction(TestCase):
         DisposableEmailDomainRestriction.objects.create(domain='bar.com')
         request = RequestFactory().get('/')
         request.user = user_factory(email='bar@foo.com')
-        assert DisposableEmailDomainRestriction.allow_request(request)
+        assert DisposableEmailDomainRestriction.allow_submission(request)
 
     def test_email_domain_blocked(self):
         DisposableEmailDomainRestriction.objects.create(domain='bar.com')
         request = RequestFactory().get('/')
         request.user = user_factory(email='foo@bar.com')
-        assert not DisposableEmailDomainRestriction.allow_request(request)
+        assert not DisposableEmailDomainRestriction.allow_submission(request)
 
     def test_user_somehow_not_authenticated(self):
         request = RequestFactory().get('/')
         request.user = AnonymousUser()
-        assert not DisposableEmailDomainRestriction.allow_request(request)
+        assert not DisposableEmailDomainRestriction.allow_submission(request)
+
+    def test_blocked_approval(self):
+        request = RequestFactory().get('/')
+        request.user = user_factory(email='foo@bar.com')
+        DisposableEmailDomainRestriction.objects.create(
+            domain='bar.com', restriction_type=RESTRICTION_TYPES.APPROVAL
+        )
+        # Submission remains allowed.
+        assert DisposableEmailDomainRestriction.allow_submission(request)
+        # Approval is blocked.
+        upload = FileUpload.objects.create(ip_address='192.168.0.1', user=request.user)
+        assert not DisposableEmailDomainRestriction.allow_auto_approval(upload)
+
+    def test_allowed_approval(self):
+        request = RequestFactory().get('/')
+        request.user = user_factory(email='foo@bar.com')
+        DisposableEmailDomainRestriction.objects.create(domain='bar.com')
+        # Submission is blocked.
+        assert not DisposableEmailDomainRestriction.allow_submission(request)
+        # Approval is allowed.
+        upload = FileUpload.objects.create(ip_address='192.168.0.1', user=request.user)
+        assert DisposableEmailDomainRestriction.allow_auto_approval(upload)
 
 
 class TestEmailUserRestriction(TestCase):
@@ -826,72 +883,112 @@ class TestEmailUserRestriction(TestCase):
         EmailUserRestriction.objects.create(email_pattern='foo@bar.com')
         request = RequestFactory().get('/')
         request.user = user_factory(email='bar@foo.com')
-        assert EmailUserRestriction.allow_request(request)
-        assert EmailUserRestriction.allow_email(request.user.email)
+        assert EmailUserRestriction.allow_submission(request)
+        assert EmailUserRestriction.allow_email(
+            request.user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+        )
 
     def test_blocked_email(self):
         EmailUserRestriction.objects.create(email_pattern='foo@bar.com')
         request = RequestFactory().get('/')
         request.user = user_factory(email='foo@bar.com')
-        assert not EmailUserRestriction.allow_request(request)
-        assert not EmailUserRestriction.allow_email(request.user.email)
+        assert not EmailUserRestriction.allow_submission(request)
+        assert not EmailUserRestriction.allow_email(
+            request.user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+        )
 
         request.user.update(email='foo+something@bar.com')
-        assert not EmailUserRestriction.allow_request(request)
-        # allow_email() works, because the normalization is happening in
-        # allow_request() itself.
-        assert EmailUserRestriction.allow_email(request.user.email)
+        assert not EmailUserRestriction.allow_submission(request)
+        assert not EmailUserRestriction.allow_email(
+            request.user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+        )
 
         request.user.update(email='f.oo+else@bar.com')
-        assert not EmailUserRestriction.allow_request(request)
-        # allow_email() works, because the normalization is happening in
-        # allow_request() itself.
-        assert EmailUserRestriction.allow_email(request.user.email)
+        assert not EmailUserRestriction.allow_submission(request)
+        assert not EmailUserRestriction.allow_email(
+            request.user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+        )
 
         request.user.update(email='foo.different+something@bar.com')
-        assert EmailUserRestriction.allow_request(request)
-        assert EmailUserRestriction.allow_email(request.user.email)
+        assert EmailUserRestriction.allow_submission(request)
+        assert EmailUserRestriction.allow_email(
+            request.user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+        )
 
     def test_user_somehow_not_authenticated(self):
         EmailUserRestriction.objects.create(email_pattern='foo@bar.com')
         request = RequestFactory().get('/')
         request.user = AnonymousUser()
-        assert not EmailUserRestriction.allow_request(request)
+        assert not EmailUserRestriction.allow_submission(request)
 
     def test_blocked_subdomain(self):
         EmailUserRestriction.objects.create(email_pattern='*@faz.bar.com')
 
         request = RequestFactory().get('/')
         request.user = user_factory(email='foo@faz.bar.com')
-        assert not EmailUserRestriction.allow_request(request)
-        assert not EmailUserRestriction.allow_email(request.user.email)
+        assert not EmailUserRestriction.allow_submission(request)
+        assert not EmailUserRestriction.allow_email(
+            request.user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+        )
 
         request.user = user_factory(email='foo@raz.bar.com')
-        assert EmailUserRestriction.allow_request(request)
-        assert EmailUserRestriction.allow_email(request.user.email)
+        assert EmailUserRestriction.allow_submission(request)
+        assert EmailUserRestriction.allow_email(
+            request.user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+        )
 
     def test_blocked_subdomain_but_allow_parent(self):
         EmailUserRestriction.objects.create(email_pattern='*.mail.com')
 
         request = RequestFactory().get('/')
         request.user = user_factory(email='foo@faz.mail.com')
-        assert not EmailUserRestriction.allow_request(request)
-        assert not EmailUserRestriction.allow_email(request.user.email)
+        assert not EmailUserRestriction.allow_submission(request)
+        assert not EmailUserRestriction.allow_email(
+            request.user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+        )
 
         # We only block a subdomain pattern
         request.user = user_factory(email='foo@mail.com')
-        assert EmailUserRestriction.allow_request(request)
-        assert EmailUserRestriction.allow_email(request.user.email)
+        assert EmailUserRestriction.allow_submission(request)
+        assert EmailUserRestriction.allow_email(
+            request.user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+        )
 
         # Which also allows similar domains to work
         request.user = user_factory(email='foo@gmail.com')
-        assert EmailUserRestriction.allow_request(request)
-        assert EmailUserRestriction.allow_email(request.user.email)
+        assert EmailUserRestriction.allow_submission(request)
+        assert EmailUserRestriction.allow_email(
+            request.user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+        )
 
     def test_normalize_email_pattern_on_save(self):
         eur = EmailUserRestriction.objects.create(email_pattern='u.s.e.r@example.com')
 
         assert eur.email_pattern == 'user@example.com'
+
+    def test_blocked_approval(self):
+        EmailUserRestriction.objects.create(
+            email_pattern='*.mail.com', restriction_type=RESTRICTION_TYPES.APPROVAL
+        )
+        request = RequestFactory().get('/')
+        request.user = user_factory(email='foo@faz.mail.com')
+        assert EmailUserRestriction.allow_submission(request)
+        assert EmailUserRestriction.allow_email(
+            request.user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+        )
+        upload = FileUpload.objects.create(ip_address='192.168.0.1', user=request.user)
+        assert not EmailUserRestriction.allow_auto_approval(upload)
+
+    def test_allowed_approval(self):
+        EmailUserRestriction.objects.create(email_pattern='*.mail.com')
+        request = RequestFactory().get('/')
+        request.user = user_factory(email='foo@faz.mail.com')
+        assert not EmailUserRestriction.allow_submission(request)
+        assert not EmailUserRestriction.allow_email(
+            request.user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+        )
+        upload = FileUpload.objects.create(ip_address='192.168.0.1', user=request.user)
+        assert EmailUserRestriction.allow_auto_approval(upload)
 
 
 @override_settings(
@@ -908,7 +1005,7 @@ class TestIPReputationRestriction(TestCase):
         request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
         request.user = UserProfile(email='foo@bar.com')
 
-        assert self.restriction_class.allow_request(request)
+        assert self.restriction_class.allow_submission(request)
         assert len(responses.calls) == 0
 
     @override_settings(REPUTATION_SERVICE_TOKEN=None)
@@ -916,7 +1013,7 @@ class TestIPReputationRestriction(TestCase):
         request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
         request.user = UserProfile(email='foo@bar.com')
 
-        assert self.restriction_class.allow_request(request)
+        assert self.restriction_class.allow_submission(request)
         assert len(responses.calls) == 0
 
     @override_settings(REPUTATION_SERVICE_TIMEOUT=None)
@@ -924,7 +1021,7 @@ class TestIPReputationRestriction(TestCase):
         request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
         request.user = UserProfile(email='foo@bar.com')
 
-        assert self.restriction_class.allow_request(request)
+        assert self.restriction_class.allow_submission(request)
         assert len(responses.calls) == 0
 
     def test_allowed_response_not_200(self):
@@ -932,7 +1029,7 @@ class TestIPReputationRestriction(TestCase):
         request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
         request.user = UserProfile(email='foo@bar.com')
 
-        assert self.restriction_class.allow_request(request)
+        assert self.restriction_class.allow_submission(request)
         assert len(responses.calls) == 1
         http_call = responses.calls[0].request
         assert http_call.headers['Authorization'] == 'APIKey fancy_token'
@@ -948,7 +1045,7 @@ class TestIPReputationRestriction(TestCase):
         request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
         request.user = UserProfile(email='foo@bar.com')
 
-        assert self.restriction_class.allow_request(request)
+        assert self.restriction_class.allow_submission(request)
         assert len(responses.calls) == 1
         http_call = responses.calls[0].request
         assert http_call.headers['Authorization'] == 'APIKey fancy_token'
@@ -964,7 +1061,7 @@ class TestIPReputationRestriction(TestCase):
         request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
         request.user = UserProfile(email='foo@bar.com')
 
-        assert not self.restriction_class.allow_request(request)
+        assert not self.restriction_class.allow_submission(request)
         assert len(responses.calls) == 1
         http_call = responses.calls[0].request
         assert http_call.headers['Authorization'] == 'APIKey fancy_token'
@@ -980,7 +1077,7 @@ class TestIPReputationRestriction(TestCase):
         request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
         request.user = UserProfile(email='foo@bar.com')
 
-        assert self.restriction_class.allow_request(request)
+        assert self.restriction_class.allow_submission(request)
         assert len(responses.calls) == 1
         http_call = responses.calls[0].request
         assert http_call.headers['Authorization'] == 'APIKey fancy_token'
@@ -996,7 +1093,7 @@ class TestIPReputationRestriction(TestCase):
         request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
         request.user = UserProfile(email='foo@bar.com')
 
-        assert self.restriction_class.allow_request(request)
+        assert self.restriction_class.allow_submission(request)
         assert len(responses.calls) == 1
         http_call = responses.calls[0].request
         assert http_call.headers['Authorization'] == 'APIKey fancy_token'
@@ -1012,7 +1109,7 @@ class TestIPReputationRestriction(TestCase):
         request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
         request.user = UserProfile(email='foo@bar.com')
 
-        assert self.restriction_class.allow_request(request)
+        assert self.restriction_class.allow_submission(request)
         assert len(responses.calls) == 1
         http_call = responses.calls[0].request
         assert http_call.headers['Authorization'] == 'APIKey fancy_token'
@@ -1034,7 +1131,7 @@ class TestEmailReputationRestriction(TestIPReputationRestriction):
         request.user = UserProfile(email='f.oo+something@bar.com')
 
         # Still blocked as if it was foo@bar.com
-        assert not self.restriction_class.allow_request(request)
+        assert not self.restriction_class.allow_submission(request)
         assert len(responses.calls) == 1
         http_call = responses.calls[0].request
         assert http_call.headers['Authorization'] == 'APIKey fancy_token'

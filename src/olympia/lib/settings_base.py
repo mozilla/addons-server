@@ -10,6 +10,7 @@ import socket
 from datetime import datetime
 
 import sentry_sdk
+from corsheaders.defaults import default_headers
 from kombu import Queue
 from sentry_sdk.integrations.celery import CeleryIntegration
 from sentry_sdk.integrations.django import DjangoIntegration
@@ -116,6 +117,10 @@ CORS_ALLOW_ALL_ORIGINS = True
 # Exclude the `accounts/session` endpoint, see:
 # https://github.com/mozilla/addons-server/issues/11100
 CORS_URLS_REGEX = r'{}(?!accounts/session/)'.format(DRF_API_REGEX)
+# https://github.com/mozilla/addons-server/issues/17364
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    'x-country-code',
+]
 
 
 def get_db_config(environ_var, atomic_requests=True):
@@ -311,7 +316,6 @@ JINJA_EXCLUDE_TEMPLATE_PATHS = (
     r'debug_toolbar',
     r'^rangefilter\/',
     r'^registration\/',
-    r'sitemap.xml$',
 )
 
 TEMPLATES = [
@@ -353,6 +357,7 @@ TEMPLATES = [
                 'django_jinja.builtins.extensions.StaticFilesExtension',
                 'django_jinja.builtins.extensions.TimezoneExtension',
                 'django_jinja.builtins.extensions.UrlsExtension',
+                'olympia.amo.templatetags.jinja_helpers.Spaceless',
                 'puente.ext.i18n',
                 'waffle.jinja.WaffleExtension',
             ),
@@ -1131,6 +1136,7 @@ CELERY_TASK_ROUTES = {
     # A queue to be used for one-off tasks that could be resource intensive.
     'olympia.versions.tasks.delete_list_theme_previews': {'queue': 'adhoc'},
     'olympia.versions.tasks.hard_delete_versions': {'queue': 'adhoc'},
+    'olympia.translations.tasks.reclean_collection_descriptions': {'queue': 'adhoc'},
     # Crons
     'olympia.addons.tasks.update_addon_average_daily_users': {'queue': 'cron'},
     'olympia.addons.tasks.update_addon_hotness': {'queue': 'cron'},
@@ -1609,6 +1615,7 @@ DRF_API_GATES = {
         'disco-heading-and-description-shim',
         'wrap-outgoing-parameter',
         'platform-shim',
+        'keep-license-text-in-version-list',
     ),
     'v4': (
         'l10n_flat_input_output',
@@ -1617,6 +1624,7 @@ DRF_API_GATES = {
         'ratings-score-filter',
         'wrap-outgoing-parameter',
         'platform-shim',
+        'keep-license-text-in-version-list',
     ),
     'v5': (
         'addons-search-_score-field',
@@ -1792,7 +1800,6 @@ MAD_API_URL = env('MAD_API_URL', default=None)
 MAD_API_TIMEOUT = 5  # seconds
 # Git(Hub) repository names, e.g., `owner/repo-name`
 CUSTOMS_GIT_REPOSITORY = env('CUSTOMS_GIT_REPOSITORY', default=None)
-YARA_GIT_REPOSITORY = env('YARA_GIT_REPOSITORY', default=None)
 
 # Addon.average_daily_user count that forces dual sign-off for Blocklist Blocks
 DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD = 100_000

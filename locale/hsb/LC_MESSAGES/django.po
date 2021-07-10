@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-12 13:19+0000\n"
-"PO-Revision-Date: 2021-05-12 14:18+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
+"PO-Revision-Date: 2021-06-24 18:06+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -1562,6 +1562,9 @@ msgstr "Awtomatiske schwalenje na njewěsty čas wotstorčić"
 msgid "Delay auto-approval indefinitely and add restrictions"
 msgstr "Awtomatiske schwalenje na njewěsty čas wotstorčić a wobmjezowanja přidać"
 
+msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
+msgstr "Awtomatiske schwalenje na njewěsty čas wotstorčić a wobmjezowanja za přichodne schwalenja přidać"
+
 msgid "True positive"
 msgstr "Prawje pozitiwny"
 
@@ -1934,8 +1937,8 @@ msgstr "Barba teksta a symbole we hłowowym wobłuku, nimo aktiwneho rajtarka. P
 msgid "Toolbar area background"
 msgstr "Pozadk wobłuka symboloweje lajsty"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr "Pozadkowa barba za nawigacisku lajstu, lajstu zapołožkow a wubrany rajtark. Polo manifesta: toolbar."
+msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
+msgstr "Pozadkowa barba za nawigacisku lajstu, lajstu zapołožkow a aktiwny rajtark. Polo manifesta: toolbar."
 
 msgid "Toolbar area text and icons"
 msgstr "Tekst a symbole wobłuka symboloweje lajsty"
@@ -1954,6 +1957,12 @@ msgstr "Tekst pólneho wobłuka symboloweje lajsty"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Tekstowa barba w polach w symbolowej lajsće, na př. w adresowym polu. Polo manifesta: toolbar_field_text."
+
+msgid "Tab highlight"
+msgstr "Wuzběhnjenje rajtarka"
+
+msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
+msgstr "Wuzběhnjenska barba aktiwneho rajtarka. Jako ramik wokoło rajtarka w Firefox 89+ a linka nad rajtarkom w staršich wersijach Firefox implementowana. Polo w manifesće:  tab_line."
 
 msgid "Review requested."
 msgstr "Přepruwowanje je so požadało."
@@ -4420,6 +4429,10 @@ msgstr "Wobstarajće sej suwansku lajstu myški, kotruž sće hižo přeco chcy�
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr "Składujće a wobnowće rajtarki. Wobsahuje funkcije za awtomatiske składowanje a synchronizowanje z mróčelu."
 
+#. editorial content for the discovery pane.
+msgid "Goodbye, annoying cookie warnings!"
+msgstr "Mějće so rjenje, mjerzace plackowe warnowanja!"
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Někotre sydła maja ćežkosće, wideja na Android wothrawać. Tu je rozrisanje."
@@ -4540,6 +4553,14 @@ msgstr "Doporučene zrjadowaki hesłow"
 msgid "See more recommended password managers"
 msgstr "Dalše doporučene zrjadowaki hesłow pokazać"
 
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Přełožowanske nastroje"
+
+#. editorial content for the homepage shelves.
+msgid "See more translation tools"
+msgstr "Dalše přełožowanske nastroje pokazać"
+
 msgid "Could not parse the manifest file."
 msgstr "Manifestowa dataja njeda so analyzować."
 
@@ -4579,8 +4600,8 @@ msgid "Could not find an add-on ID."
 msgstr "Žadyn přidatkowy ID namakany."
 
 #, python-format
-msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr "ID přidatka we wašej dataji manifest.json abo install.rdf (%s) ID wašeho přidatka na AMO (%s) njewotpowěduje"
+msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
+msgstr "ID přidatka we wašej dataji manifest.json (%s) ID wašeho přidatka na AMO (%s) njewotpowěduje"
 
 msgid "Duplicate add-on ID found."
 msgstr "Dwójny přidatkowy ID namakany."
@@ -5131,6 +5152,9 @@ msgstr "Njenalistowane přidatki"
 msgid "All Unlisted Add-ons"
 msgstr "Wšě njenalistowane přidatki"
 
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Njenalistowane přidatki, kotrež na manuelne schwalenje čakaja"
+
 msgid "Announcement"
 msgstr "Připowědźenje"
 
@@ -5487,6 +5511,12 @@ msgstr "Awtomatiske nalistowane awtomatiske schwalenje hač do přichodneho manu
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr "Awtomatiske nalistowane awtomatiske schwalenje před přichodnym manuelnym schwalenjom zmóžnić"
 
+msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
+msgstr "Awtomatiske njenalistowane awtomatiske schwalenje hač do přichodneho manuelneho schwalenja znjemóžnić"
+
+msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
+msgstr "Awtomatiske njenalistowane awtomatiske schwalenje před přichodnym manuelnym schwalenjom zmóžnić"
+
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "Awtomatiske schwalenje je tuchwilu hač do {date} znjemóžnjene"
 
@@ -5762,12 +5792,6 @@ msgstr "Přetorhnyć"
 
 msgid "Run"
 msgstr "Wuwjesć"
-
-msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr "Wužitny, hdyž skenerowy wuslědk je prawje pozitiwny, ale přidatk škódny njeje"
-
-msgid "Revert report"
-msgstr "Rozprawu wróćo stajić"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."

@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-12 13:19+0000\n"
-"PO-Revision-Date: 2020-12-09 07:33+0000\n"
-"Last-Translator: వీవెన్ <veeven@gmail.com>\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
+"PO-Revision-Date: 2021-05-01 13:59+0000\n"
+"Last-Translator: satya6309614151 <satya6309614151@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgid "There was a problem contacting the server."
 msgstr "సర్వర్‌ని సంప్రదించడంలో సమస్య ఉంది."
 
 msgid "Select a file..."
-msgstr "ఫైలును ఎంచుకోండి..."
+msgstr "ఒక ఫైలును ఎంచుకోండి..."
 
 msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "మీ పొడగింతను .zip, .xpi లేదా .crxతో ముగించాలి"
@@ -41,10 +41,10 @@ msgid "Cancel"
 msgstr "రద్దుచేయి"
 
 msgid "Uploading {0}"
-msgstr "{0}‌‌ను ఎక్కిస్తున్నది"
+msgstr "{0}‌‌‌‌‌ను ఎక్కిస్తోంది"
 
 msgid "Error with {0}"
-msgstr "{0} లోపంతో"
+msgstr "{0}తో లోపం"
 
 msgid "Please make sure to report any linting related issues on GitHub"
 msgstr "ఏవైనా లింటింగ్ సంబంధిత సమస్యలను దయచేసి GitHubలో నివేదించండి"
@@ -326,7 +326,7 @@ msgid "User Profile"
 msgstr "వాడుకరి ప్రొఫైల్"
 
 msgid "Version History"
-msgstr "వెర్షన్ల చరిత్ర"
+msgstr "సంస్కరణ చరిత్ర"
 
 msgid "Sharing"
 msgstr "పంచుకోండి"
@@ -401,7 +401,7 @@ msgid "Fennec"
 msgstr "Fennec"
 
 msgid "Android"
-msgstr "Android"
+msgstr "ఆండ్రాయిడ్"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"

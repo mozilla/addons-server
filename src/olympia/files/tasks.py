@@ -1,6 +1,11 @@
+import json
 import os
 import shutil
 import tempfile
+
+from pathlib import Path
+
+import waffle
 
 import olympia.core.logger
 
@@ -10,7 +15,12 @@ from olympia.amo.storage_utils import move_stored_file
 from olympia.amo.utils import StopWatch
 from olympia.devhub.tasks import validation_task
 from olympia.files.models import File, FileUpload
-from olympia.files.utils import extract_zip, get_sha256
+from olympia.files.utils import (
+    ManifestJSONExtractor,
+    extract_zip,
+    get_sha256,
+    parse_xpi,
+)
 
 
 log = olympia.core.logger.getLogger('z.files.task')
@@ -33,6 +43,28 @@ def repack_fileupload(results, upload_pk):
         with tempfile.TemporaryDirectory(prefix='repack_fileupload_extract') as tempdir:
             try:
                 extract_zip(upload.path, tempdir=tempdir)
+
+                if waffle.switch_is_active('enable-manifest-normalization'):
+                    manifest = Path(tempdir) / 'manifest.json'
+
+                    if manifest.exists():
+                        try:
+                            xpi_data = parse_xpi(upload.path, minimal=True)
+
+                            if not xpi_data.get('is_mozilla_signed_extension', False):
+                                # We don't need a `zip_file` because we are only
+                                # interested in the extracted data.
+                                json_data = ManifestJSONExtractor(
+                                    zip_file=None, data=manifest.read_bytes()
+                                ).data
+                                manifest.write_text(json.dumps(json_data, indent=2))
+                        except Exception:
+                            # If we cannot normalize the manifest file, we skip
+                            # this step and let the linter catch the exact
+                            # cause in order to return a more appropriate error
+                            # than "unexpected error", which would happen if
+                            # this task was handling the error itself.
+                            pass
             except Exception as exc:
                 # Something bad happened, maybe we couldn't parse the zip file.
                 # @validation_task should ensure the exception is caught and

@@ -169,7 +169,7 @@ class TestActivityLog(TestCase):
         assert '>Review</a> for None written.' in activity_log.to_string()
         activity_log.action = amo.LOG.ADD_TO_COLLECTION.id
         activity_log.arguments = [activity_log, Collection.objects.create()]
-        assert 'None added to <a href="/' in activity_log.to_string()
+        assert 'None added to <a href="http://testserver/' in activity_log.to_string()
 
     def test_bad_arguments(self):
         activity_log = ActivityLog()
@@ -225,16 +225,15 @@ class TestActivityLog(TestCase):
             # - 1 for all ratings
             activities = ActivityLog.objects.for_addons([addon, addon2]).order_by('pk')
             assert len(activities) == 2
+            addon_url = 'http://testserver/en-US/firefox/addon/a3615/'
             assert activities[0].to_string() == (
-                f'<a href="/en-US/firefox/addon/a3615/reviews/{rating.pk}/">Review</a>'
-                ' for '
-                '<a href="/en-US/firefox/addon/a3615/">Delicious Bookmarks</a> written.'
+                f'<a href="{addon_url}reviews/{rating.pk}/">Review</a> for '
+                f'<a href="{addon_url}">Delicious Bookmarks</a> written.'
             )
+            addon2_url = f'http://testserver/en-US/firefox/addon/{addon2.slug}/'
             assert activities[1].to_string() == (
-                f'<a href="/en-US/firefox/addon/{addon2.slug}/reviews/{rating2.pk}/">'
-                'Review</a> for '
-                f'<a href="/en-US/firefox/addon/{addon2.slug}/">{addon2.name}</a> '
-                'written.'
+                f'<a href="{addon2_url}reviews/{rating2.pk}/">Review</a> for '
+                f'<a href="{addon2_url}">{addon2.name}</a> written.'
             )
 
     def test_no_arguments(self):
@@ -293,10 +292,10 @@ class TestActivityLog(TestCase):
             # - 1 for all versions translations
             activities = ActivityLog.objects.for_addons([addon, addon2]).order_by('pk')
             assert len(activities) == 2
+            addon_url = 'http://testserver/en-US/firefox/addon/a3615/'
             assert activities[0].to_string() == (
-                '<a href="/en-US/firefox/addon/a3615/versions/">Version 2.1.072</a>'
-                ' added to '
-                '<a href="/en-US/firefox/addon/a3615/">Delicious Bookmarks</a>.'
+                f'<a href="{addon_url}versions/">Version 2.1.072</a> added to '
+                f'<a href="{addon_url}">Delicious Bookmarks</a>.'
             )
             assert activities[1].to_string()
 
@@ -398,7 +397,7 @@ class TestActivityLog(TestCase):
         log = ActivityLog.objects.get()
 
         log_expected = (
-            'Yolo role changed to Owner for <a href="/en-US/'
+            'Yolo role changed to Owner for <a href="http://testserver/en-US/'
             'firefox/addon/a3615/">Delicious &lt;script src='
             '&#34;x.js&#34;&gt;Bookmarks</a>.'
         )
@@ -420,14 +419,14 @@ class TestActivityLog(TestCase):
         addon = Addon.objects.get()
         log = ActivityLog.create(amo.LOG.CHANGE_STATUS, addon, amo.STATUS_APPROVED)
         expected = (
-            '<a href="/en-US/firefox/addon/a3615/">'
+            '<a href="http://testserver/en-US/firefox/addon/a3615/">'
             'Delicious Bookmarks</a> status changed to Approved.'
         )
         assert str(log) == expected
 
         log.arguments = [amo.STATUS_DISABLED, addon]
         expected = (
-            '<a href="/en-US/firefox/addon/a3615/">'
+            '<a href="http://testserver/en-US/firefox/addon/a3615/">'
             'Delicious Bookmarks</a> status changed to '
             'Disabled by Mozilla.'
         )
@@ -435,21 +434,21 @@ class TestActivityLog(TestCase):
 
         log.arguments = [addon, amo.STATUS_NULL]
         expected = (
-            '<a href="/en-US/firefox/addon/a3615/">'
+            '<a href="http://testserver/en-US/firefox/addon/a3615/">'
             'Delicious Bookmarks</a> status changed to Incomplete.'
         )
         assert str(log) == expected
 
         log.arguments = [addon, 666]
         expected = (
-            '<a href="/en-US/firefox/addon/a3615/">'
+            '<a href="http://testserver/en-US/firefox/addon/a3615/">'
             'Delicious Bookmarks</a> status changed to 666.'
         )
         assert str(log) == expected
 
         log.arguments = [addon, 'Some String']
         expected = (
-            '<a href="/en-US/firefox/addon/a3615/">'
+            '<a href="http://testserver/en-US/firefox/addon/a3615/">'
             'Delicious Bookmarks</a> status changed to Some String.'
         )
         assert str(log) == expected
@@ -460,7 +459,7 @@ class TestActivityLog(TestCase):
             amo.LOG.UNLISTED_SIGNED, addon.current_version.current_file
         )
         assert str(log) == (
-            '<a href="/firefox/downloads/file/67442/'
+            '<a href="http://testserver/firefox/downloads/file/67442/'
             'delicious_bookmarks-2.1.072-fx.xpi">'
             'delicious_bookmarks-2.1.072-fx.xpi</a>'
             ' (validation ignored) was signed.'

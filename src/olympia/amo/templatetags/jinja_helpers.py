@@ -10,12 +10,16 @@ from django.forms import CheckboxInput
 from django.template import defaultfilters, Library, loader
 from django.urls import reverse
 from django.utils.encoding import smart_str
-from django.utils.html import format_html as django_format_html
+from django.utils.html import (
+    format_html as django_format_html,
+    strip_spaces_between_tags,
+)
 from django.utils.safestring import mark_safe
 from django.utils.translation import get_language, to_locale, trim_whitespace, gettext
 
 import jinja2
 import waffle
+from jinja2.ext import Extension
 
 from babel.support import Format
 from django_jinja import library
@@ -185,11 +189,11 @@ def json(s):
 
 @library.filter
 def absolutify(url, site=None):
-    """Takes a URL and prepends the EXTERNAL_SITE_URL"""
-    if url.startswith(('http://', 'http://')):
+    """Take an URL and prepend the EXTERNAL_SITE_URL."""
+    if url and url.startswith(('http://', 'https://')):
         return url
-    else:
-        return urljoin(site or settings.EXTERNAL_SITE_URL, url)
+
+    return urljoin(site or settings.EXTERNAL_SITE_URL, url)
 
 
 @library.filter
@@ -447,3 +451,20 @@ def format_datetime(value, format='DATETIME_FORMAT'):
 def class_selected(a, b):
     """Return ``'class="selected"'`` if ``a == b``."""
     return mark_safe('class="selected"' if a == b else '')
+
+
+class Spaceless(Extension):
+    tags = {'spaceless'}
+
+    def parse(self, parser):
+        lineno = next(parser.stream).lineno
+        body = parser.parse_statements(['name:endspaceless'], drop_needle=True)
+        return jinja2.nodes.CallBlock(
+            self.call_method('_strip_spaces'),
+            [],
+            [],
+            body,
+        ).set_lineno(lineno)
+
+    def _strip_spaces(self, *, caller):
+        return strip_spaces_between_tags(caller().strip())

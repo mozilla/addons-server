@@ -293,6 +293,12 @@ class VersionSerializer(SimpleVersionSerializer):
         )
 
 
+class VersionListSerializer(VersionSerializer):
+    # When we're listing versions, we don't want to include the full license
+    # text every time: we only do this for the version detail endpoint.
+    license = CompactLicenseSerializer()
+
+
 class CurrentVersionSerializer(SimpleVersionSerializer):
     def to_representation(self, obj):
         # If the add-on is a langpack, and `appversion` is passed, try to

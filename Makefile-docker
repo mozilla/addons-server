@@ -17,7 +17,7 @@ ifneq ($(NPM_CONFIG_PREFIX),)
 	NPM_ARGS := --prefix $(NPM_CONFIG_PREFIX)
 endif
 
-DJANGO_VERSION ?= django22
+DJANGO_VERSION ?= django32
 
 NODE_MODULES := $(NPM_CONFIG_PREFIX)node_modules/
 STATIC_CSS := static/css/node_lib/

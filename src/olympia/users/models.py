@@ -6,8 +6,9 @@ import time
 import ipaddress
 from urllib.parse import urljoin
 
-from fnmatch import fnmatchcase
 from datetime import datetime
+from extended_choices import Choices
+from fnmatch import fnmatchcase
 import requests
 
 from django import forms
@@ -653,13 +654,48 @@ class DeniedName(ModelBase):
         return any(n in name for n in blocked_list)
 
 
-class GetErrorMessageMixin:
+RESTRICTION_TYPES = Choices(
+    ('SUBMISSION', 1, 'Submission'),
+    ('APPROVAL', 2, 'Approval'),
+)
+
+
+class RestrictionAbstractBase:
+    """Base class for restrictions."""
+
+    @classmethod
+    def allow_submission(cls, request):
+        """
+        Return whether the specified request should be allowed to submit
+        add-ons.
+        """
+        return True
+
+    @classmethod
+    def allow_auto_approval(cls, upload):
+        """
+        Return whether the specified version should be allowed to be proceed
+        through auto-approval process.
+        """
+        return True
+
     @classmethod
     def get_error_message(cls, is_api):
         return cls.error_message
 
 
-class IPNetworkUserRestriction(GetErrorMessageMixin, ModelBase):
+class RestrictionAbstractBaseModel(ModelBase, RestrictionAbstractBase):
+    """Base class for restrictions that are backed by the database."""
+
+    restriction_type = models.PositiveSmallIntegerField(
+        default=RESTRICTION_TYPES.SUBMISSION, choices=RESTRICTION_TYPES.choices
+    )
+
+    class Meta:
+        abstract = True
+
+
+class IPNetworkUserRestriction(RestrictionAbstractBaseModel):
     id = PositiveAutoField(primary_key=True)
     network = CIDRField(
         blank=True,
@@ -680,7 +716,7 @@ class IPNetworkUserRestriction(GetErrorMessageMixin, ModelBase):
         return str(self.network)
 
     @classmethod
-    def allow_request(cls, request):
+    def allow_submission(cls, request):
         """
         Return whether the specified request should be allowed to submit
         add-ons.
@@ -696,8 +732,33 @@ class IPNetworkUserRestriction(GetErrorMessageMixin, ModelBase):
             # If we don't have a valid ip address, let's deny
             return False
 
-        restrictions = IPNetworkUserRestriction.objects.all()
+        return cls.allow_ips(
+            remote_addr,
+            user_last_login_ip,
+            restriction_type=RESTRICTION_TYPES.SUBMISSION,
+        )
 
+    @classmethod
+    def allow_auto_approval(cls, upload):
+        if not upload.user or not upload.ip_address:
+            return False
+
+        try:
+            remote_addr = ipaddress.ip_address(upload.ip_address)
+            user_last_login_ip = ipaddress.ip_address(upload.user.last_login_ip)
+        except ValueError:
+            # If we don't have a valid ip address, let's deny
+            return False
+
+        return cls.allow_ips(
+            remote_addr, user_last_login_ip, restriction_type=RESTRICTION_TYPES.APPROVAL
+        )
+
+    @classmethod
+    def allow_ips(self, remote_addr, user_last_login_ip, *, restriction_type):
+        restrictions = IPNetworkUserRestriction.objects.all().filter(
+            restriction_type=restriction_type
+        )
         for restriction in restrictions:
             if (
                 remote_addr in restriction.network
@@ -732,7 +793,7 @@ class NormalizeEmailMixin:
         return normalized_email
 
 
-class EmailUserRestriction(GetErrorMessageMixin, NormalizeEmailMixin, ModelBase):
+class EmailUserRestriction(RestrictionAbstractBaseModel, NormalizeEmailMixin):
     id = PositiveAutoField(primary_key=True)
     email_pattern = models.CharField(
         _('Email Pattern'),
@@ -763,7 +824,7 @@ class EmailUserRestriction(GetErrorMessageMixin, NormalizeEmailMixin, ModelBase)
         super().save(**kw)
 
     @classmethod
-    def allow_request(cls, request):
+    def allow_submission(cls, request):
         """
         Return whether the specified request should be allowed to submit
         add-ons.
@@ -771,14 +832,27 @@ class EmailUserRestriction(GetErrorMessageMixin, NormalizeEmailMixin, ModelBase)
         if not request.user.is_authenticated:
             return False
 
-        return cls.allow_email(cls.normalize_email(request.user.email))
+        return cls.allow_email(
+            request.user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+        )
 
     @classmethod
-    def allow_email(cls, email):
+    def allow_auto_approval(cls, upload):
+        if not upload.user:
+            return False
+        return cls.allow_email(
+            upload.user.email, restriction_type=RESTRICTION_TYPES.APPROVAL
+        )
+
+    @classmethod
+    def allow_email(cls, email, *, restriction_type):
         """
         Return whether the specified email should be allowed to submit add-ons.
         """
-        restrictions = EmailUserRestriction.objects.all()
+        email = cls.normalize_email(email)
+        restrictions = EmailUserRestriction.objects.all().filter(
+            restriction_type=restriction_type
+        )
 
         for restriction in restrictions:
             if fnmatchcase(email, restriction.email_pattern):
@@ -794,7 +868,7 @@ class EmailUserRestriction(GetErrorMessageMixin, NormalizeEmailMixin, ModelBase)
         return True
 
 
-class DisposableEmailDomainRestriction(GetErrorMessageMixin, ModelBase):
+class DisposableEmailDomainRestriction(RestrictionAbstractBaseModel):
     domain = models.CharField(
         unique=True,
         max_length=255,
@@ -815,7 +889,7 @@ class DisposableEmailDomainRestriction(GetErrorMessageMixin, ModelBase):
         return str(self.domain)
 
     @classmethod
-    def allow_request(cls, request):
+    def allow_submission(cls, request):
         """
         Return whether the specified request should be allowed to submit
         add-ons.
@@ -823,15 +897,38 @@ class DisposableEmailDomainRestriction(GetErrorMessageMixin, ModelBase):
         if not request.user.is_authenticated:
             return False
 
-        email_domain = request.user.email.rsplit('@', maxsplit=1)[-1]
+        return cls.allow_email(
+            request.user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+        )
+
+    @classmethod
+    def allow_auto_approval(cls, upload):
+        if not upload.user:
+            return False
+        return cls.allow_email(
+            upload.user.email, restriction_type=RESTRICTION_TYPES.APPROVAL
+        )
+
+    @classmethod
+    def allow_email(cls, email, *, restriction_type):
+        email_domain = email.rsplit('@', maxsplit=1)[-1]
 
         # Unlike EmailUserRestriction we can use .exists() directly. This
         # allows us to have thousands of entries without perf issues.
-        return not cls.objects.filter(domain=email_domain).exists()
+        return not cls.objects.filter(
+            domain=email_domain, restriction_type=restriction_type
+        ).exists()
 
 
 class ReputationRestrictionMixin:
     reputation_threshold = 50
+
+    @classmethod
+    def allow_auto_approval(cls, upload):
+        # Reputation-based restriction is only applied at submission, it's more
+        # an anti-spam measure than something applied after the fact at the
+        # moment.
+        return True
 
     @classmethod
     def allow_reputation(cls, reputation_type, target):
@@ -882,11 +979,11 @@ class ReputationRestrictionMixin:
         return True
 
 
-class IPReputationRestriction(GetErrorMessageMixin, ReputationRestrictionMixin):
+class IPReputationRestriction(RestrictionAbstractBase, ReputationRestrictionMixin):
     error_message = IPNetworkUserRestriction.error_message
 
     @classmethod
-    def allow_request(cls, request):
+    def allow_submission(cls, request):
         try:
             remote_addr = ipaddress.ip_address(request.META.get('REMOTE_ADDR'))
         except ValueError:
@@ -897,19 +994,19 @@ class IPReputationRestriction(GetErrorMessageMixin, ReputationRestrictionMixin):
 
 
 class EmailReputationRestriction(
-    GetErrorMessageMixin, NormalizeEmailMixin, ReputationRestrictionMixin
+    RestrictionAbstractBase, NormalizeEmailMixin, ReputationRestrictionMixin
 ):
     error_message = EmailUserRestriction.error_message
 
     @classmethod
-    def allow_request(cls, request):
+    def allow_submission(cls, request):
         if not request.user.is_authenticated:
             return False
 
         return cls.allow_reputation('email', cls.normalize_email(request.user.email))
 
 
-class DeveloperAgreementRestriction(GetErrorMessageMixin):
+class DeveloperAgreementRestriction(RestrictionAbstractBase):
     error_message = _(
         'Before starting, please read and accept our Firefox'
         ' Add-on Distribution Agreement as well as our Review'
@@ -933,7 +1030,7 @@ class DeveloperAgreementRestriction(GetErrorMessageMixin):
             return cls.error_message
 
     @classmethod
-    def allow_request(cls, request):
+    def allow_submission(cls, request):
         """
         Return whether the specified request should be allowed to submit
         add-ons.

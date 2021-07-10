@@ -35,8 +35,8 @@ describe(__filename, () => {
     let stats_stats;
 
     beforeEach(() => {
-      stats_stats = require('../../../static/js/zamboni/stats-all.js')
-        .stats_stats;
+      stats_stats =
+        require('../../../static/js/zamboni/stats-all.js').stats_stats;
     });
 
     describe('export links', () => {

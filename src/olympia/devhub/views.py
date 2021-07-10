@@ -38,6 +38,7 @@ from olympia.addons.models import (
     AddonUserPendingConfirmation,
 )
 from olympia.addons.views import BaseFilter
+from olympia.addons.utils import RestrictionChecker
 from olympia.amo import messages, utils as amo_utils
 from olympia.amo.decorators import json_view, login_required, post_required
 from olympia.amo.templatetags.jinja_helpers import absolutify, urlparams
@@ -49,7 +50,6 @@ from olympia.devhub.models import BlogPost, RssKey
 from olympia.devhub.utils import (
     add_dynamic_theme_tag,
     extract_theme_properties,
-    UploadRestrictionChecker,
     wizard_unsupported_properties,
 )
 from olympia.files.models import File, FileUpload
@@ -1329,14 +1329,14 @@ def _submit_distribution(request, addon, next_view):
 
 @login_required
 def submit_addon_distribution(request):
-    if not UploadRestrictionChecker(request).is_submission_allowed():
+    if not RestrictionChecker(request=request).is_submission_allowed():
         return redirect('devhub.submit.agreement')
     return _submit_distribution(request, None, 'devhub.submit.upload')
 
 
 @dev_required(submitting=True)
 def submit_version_distribution(request, addon_id, addon):
-    if not UploadRestrictionChecker(request).is_submission_allowed():
+    if not RestrictionChecker(request=request).is_submission_allowed():
         return redirect('devhub.submit.version.agreement', addon.slug)
     return _submit_distribution(request, addon, 'devhub.submit.version.upload')
 
@@ -1359,14 +1359,14 @@ WIZARD_COLOR_FIELDS = [
             'The color of the text and icons in the header area, except the '
             'active tab. Manifest field:  tab_background_text.'
         ),
-        'rgba(0,0,0,1',
+        'rgba(0,0,0,1)',
     ),
     (
         'toolbar',
         _('Toolbar area background'),
         _(
             'The background color for the navigation bar, the bookmarks bar, and '
-            'the selected tab.  Manifest field:  toolbar.'
+            'the active tab.  Manifest field:  toolbar.'
         ),
         False,
     ),
@@ -1394,6 +1394,17 @@ WIZARD_COLOR_FIELDS = [
         _(
             'The color of text in fields in the toolbar, such as the URL bar. '
             'Manifest field:  toolbar_field_text.'
+        ),
+        False,
+    ),
+    ('', '', '', False),  # empty field
+    (
+        'tab_line',
+        _('Tab highlight'),
+        _(
+            'The highlight color of the active tab. Implemented as a border around the '
+            'tab on Firefox 89+ and a line above the tab on older Firefoxes. '
+            'Manifest field:  tab_line.'
         ),
         False,
     ),
@@ -1466,7 +1477,8 @@ def _submit_upload(request, addon, channel, next_view, wizard=False):
     )
     unsupported_properties = (
         wizard_unsupported_properties(
-            existing_properties, [field for field, _, _, _ in WIZARD_COLOR_FIELDS]
+            existing_properties,
+            [field for field, _, _, _ in WIZARD_COLOR_FIELDS if field],
         )
         if existing_properties
         else []
@@ -1492,7 +1504,7 @@ def _submit_upload(request, addon, channel, next_view, wizard=False):
 
 @login_required
 def submit_addon_upload(request, channel):
-    if not UploadRestrictionChecker(request).is_submission_allowed():
+    if not RestrictionChecker(request=request).is_submission_allowed():
         return redirect('devhub.submit.agreement')
     channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
     return _submit_upload(request, None, channel_id, 'devhub.submit.source')
@@ -1501,7 +1513,7 @@ def submit_addon_upload(request, channel):
 @dev_required(submitting=True)
 @no_admin_disabled
 def submit_version_upload(request, addon_id, addon, channel):
-    if not UploadRestrictionChecker(request).is_submission_allowed():
+    if not RestrictionChecker(request=request).is_submission_allowed():
         return redirect('devhub.submit.version.agreement', addon.slug)
     channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
     return _submit_upload(request, addon, channel_id, 'devhub.submit.version.source')
@@ -1510,7 +1522,7 @@ def submit_version_upload(request, addon_id, addon, channel):
 @dev_required
 @no_admin_disabled
 def submit_version_auto(request, addon_id, addon):
-    if not UploadRestrictionChecker(request).is_submission_allowed():
+    if not RestrictionChecker(request=request).is_submission_allowed():
         return redirect('devhub.submit.version.agreement', addon.slug)
     # Choose the channel we need from the last upload, unless that channel
     # would be listed and addon is set to "Invisible".
@@ -1525,7 +1537,7 @@ def submit_version_auto(request, addon_id, addon):
 
 @login_required
 def submit_addon_theme_wizard(request, channel):
-    if not UploadRestrictionChecker(request).is_submission_allowed():
+    if not RestrictionChecker(request=request).is_submission_allowed():
         return redirect('devhub.submit.agreement')
     channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
     return _submit_upload(
@@ -1536,7 +1548,7 @@ def submit_addon_theme_wizard(request, channel):
 @dev_required
 @no_admin_disabled
 def submit_version_theme_wizard(request, addon_id, addon, channel):
-    if not UploadRestrictionChecker(request).is_submission_allowed():
+    if not RestrictionChecker(request=request).is_submission_allowed():
         return redirect('devhub.submit.version.agreement', addon.slug)
     channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
     return _submit_upload(
@@ -1841,7 +1853,7 @@ def render_agreement(request, template, next_step, **extra_context):
             data['display_name'] = form.cleaned_data['display_name']
         request.user.update(**data)
         return redirect(next_step)
-    elif not UploadRestrictionChecker(request).is_submission_allowed():
+    elif not RestrictionChecker(request=request).is_submission_allowed():
         # Developer has either posted an invalid form or just landed on the
         # page but haven't read the agreement yet, or isn't allowed to submit
         # for some other reason (denied ip/email): show the form (with
@@ -1862,7 +1874,7 @@ def render_agreement(request, template, next_step, **extra_context):
 @login_required
 @transaction.atomic
 def api_key(request):
-    if not UploadRestrictionChecker(request).is_submission_allowed():
+    if not RestrictionChecker(request=request).is_submission_allowed():
         return redirect(reverse('devhub.api_key_agreement'))
 
     try:

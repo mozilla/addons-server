@@ -10,7 +10,7 @@ from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ManagerBase, ModelBase
 from olympia.translations.fields import (
     LinkifiedField,
-    NoLinksNoMarkupField,
+    NoURLsField,
     TranslatedField,
     save_signal,
 )
@@ -30,7 +30,10 @@ class Collection(ModelBase):
     name = TranslatedField(require_locale=False)
     slug = models.CharField(max_length=30, blank=True, null=True)
 
-    description = NoLinksNoMarkupField(require_locale=False)
+    # description can (and sometimes does) contain html and other unsanitized
+    # content. It must be cleaned before display - NoURLsField just strips the
+    # URL without doing any escaping.
+    description = NoURLsField(require_locale=False)
     default_locale = models.CharField(
         max_length=10, default='en-US', db_column='defaultlocale'
     )

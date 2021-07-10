@@ -839,7 +839,7 @@ class TestAPIAgreement(TestCase):
         assert response.status_code == 200
         assert 'agreement_form' in response.context
 
-    @mock.patch('olympia.devhub.utils.UploadRestrictionChecker.is_submission_allowed')
+    @mock.patch('olympia.addons.utils.RestrictionChecker.is_submission_allowed')
     def test_cant_submit_agreement_if_restricted(self, is_submission_allowed_mock):
         is_submission_allowed_mock.return_value = False
         self.user.update(read_dev_agreement=None)
@@ -885,7 +885,7 @@ class TestAPIAgreement(TestCase):
             'More information on Developer Accounts'
         )
 
-    @mock.patch('olympia.devhub.utils.UploadRestrictionChecker.is_submission_allowed')
+    @mock.patch('olympia.addons.utils.RestrictionChecker.is_submission_allowed')
     def test_agreement_page_shown_if_restricted(self, is_submission_allowed_mock):
         # Like test_agreement_read() above, but with a restricted user: they
         # are shown the agreement page again instead of redirecting to the
@@ -1470,7 +1470,8 @@ class TestUploadDetail(BaseUploadTest):
                 '"@mozilla.com" or "@mozilla.org" or '
                 '"@pioneer.mozilla.org" or "@search.mozilla.org" or '
                 '"@shield.mozilla.com" or "@shield.mozilla.org" or '
-                '"@mozillaonline.com"',
+                '"@mozillaonline.com" or "@mozillafoundation.org" or '
+                '"@rally.mozilla.org"',
                 'fatal': True,
                 'type': 'error',
             }
@@ -2033,6 +2034,7 @@ class TestLogout(UserViewBase):
     def test_success(self):
         user = UserProfile.objects.get(email='jbalogh@mozilla.com')
         self.client.login(email=user.email)
+        assert user.auth_id
         response = self.client.get(reverse('devhub.index'), follow=True)
         assert pq(response.content)('li a.avatar').attr('href') == (user.get_url_path())
         assert pq(response.content)('li a.avatar img').attr('src') == (user.picture_url)
@@ -2041,6 +2043,8 @@ class TestLogout(UserViewBase):
         self.assert3xx(response, '/en-US/firefox/', status_code=302)
         response = self.client.get(reverse('devhub.index'), follow=True)
         assert not pq(response.content)('li a.avatar')
+        user.reload()
+        assert not user.auth_id
 
     def test_redirect(self):
         self.client.login(email='jbalogh@mozilla.com')

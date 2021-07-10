@@ -7,8 +7,6 @@ from django.conf import settings
 from django.forms import ValidationError
 from django.utils.translation import gettext
 
-from django_statsd.clients import statsd
-
 import olympia.core.logger
 
 from olympia import amo, core
@@ -19,7 +17,6 @@ from olympia.files.utils import parse_addon, parse_xpi
 from olympia.scanners.tasks import run_customs, run_wat, run_yara, call_mad_api
 from olympia.tags.models import Tag
 from olympia.translations.models import Translation
-from olympia.users.models import DeveloperAgreementRestriction, UserRestrictionHistory
 from olympia.versions.utils import process_color_value
 
 from . import tasks
@@ -323,72 +320,6 @@ def wizard_unsupported_properties(data, wizard_fields):
     unsupported += [key for key in data.get('images', {}) if key != 'theme_frame']
 
     return unsupported
-
-
-class UploadRestrictionChecker:
-    """
-    Wrapper around all our submission restriction classes.
-
-    To use, instantiate it with the request and call is_submission_allowed().
-    After this method has been called, the error message to show the user if
-    needed will be available through get_error_message()
-    """
-
-    # We use UserRestrictionHistory.RESTRICTION_CLASSES_CHOICES because it
-    # currently matches the order we want to check things. If that ever
-    # changes, keep RESTRICTION_CLASSES_CHOICES current order (to keep existing
-    # records intact) but change the `restriction_choices` definition below.
-    restriction_choices = UserRestrictionHistory.RESTRICTION_CLASSES_CHOICES
-
-    def __init__(self, request):
-        self.request = request
-        self.failed_restrictions = []
-
-    def is_submission_allowed(self, check_dev_agreement=True):
-        """
-        Check whether the `request` passed is allowed to submit add-ons.
-        Will check all classes declared in self.restriction_classes.
-
-        Pass check_dev_agreement=False to avoid checking
-        DeveloperAgreementRestriction class, which is useful only for the
-        developer agreement page itself, where the developer hasn't validated
-        the agreement yet but we want to do the other checks anyway.
-        """
-        if self.request.user and self.request.user.bypass_upload_restrictions:
-            return True
-
-        for restriction_number, cls in self.restriction_choices:
-            if check_dev_agreement is False and cls == DeveloperAgreementRestriction:
-                continue
-            allowed = cls.allow_request(self.request)
-            if not allowed:
-                self.failed_restrictions.append(cls)
-                statsd.incr('devhub.is_submission_allowed.%s.failure' % cls.__name__)
-                if self.request.user and self.request.user.is_authenticated:
-                    UserRestrictionHistory.objects.create(
-                        user=self.request.user,
-                        ip_address=self.request.META.get('REMOTE_ADDR', ''),
-                        last_login_ip=self.request.user.last_login_ip or '',
-                        restriction=restriction_number,
-                    )
-        suffix = 'success' if not self.failed_restrictions else 'failure'
-        statsd.incr('devhub.is_submission_allowed.%s' % suffix)
-        return not self.failed_restrictions
-
-    def get_error_message(self):
-        """
-        Return the error message to show to the user after a call to
-        is_submission_allowed_for_request() has been made. Will return the
-        message to be displayed to the user, or None if there is no specific
-        restriction applying.
-        """
-        try:
-            msg = self.failed_restrictions[0].get_error_message(
-                is_api=self.request.is_api
-            )
-        except IndexError:
-            msg = None
-        return msg
 
 
 def fetch_existing_translations_from_addon(addon, properties):

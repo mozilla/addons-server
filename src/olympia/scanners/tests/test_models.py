@@ -169,13 +169,6 @@ class TestScannerResultMixin:
         with override_settings(CUSTOMS_GIT_REPOSITORY=git_repo):
             assert result.get_git_repository() == git_repo
 
-    def test_get_yara_git_repository(self):
-        result = self.create_yara_result()
-        git_repo = 'some git repo'
-
-        with override_settings(YARA_GIT_REPOSITORY=git_repo):
-            assert result.get_git_repository() == git_repo
-
     def test_get_git_repository_returns_none_if_not_supported(self):
         result = self.create_wat_result()
         assert result.get_git_repository() is None

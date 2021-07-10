@@ -91,7 +91,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='collection',
             name='description',
-            field=olympia.translations.fields.NoLinksNoMarkupField(blank=True, db_column='description', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='Collection_description_set+', require_locale=False, short=True, to='translations.NoLinksNoMarkupTranslation', to_field='id', unique=True),
+            field=olympia.translations.fields.NoURLsField(blank=True, db_column='description', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='Collection_description_set+', require_locale=False, short=True, to='translations.NoURLsTranslation', to_field='id', unique=True),
         ),
         migrations.AddField(
             model_name='collection',

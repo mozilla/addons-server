@@ -66,7 +66,7 @@ class Migration(migrations.Migration):
             bases=('translations.purifiedtranslation',),
         ),
         migrations.CreateModel(
-            name='NoLinksNoMarkupTranslation',
+            name='NoURLsTranslation',
             fields=[
             ],
             options={

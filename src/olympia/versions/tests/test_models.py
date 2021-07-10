@@ -16,7 +16,13 @@ from waffle.testutils import override_switch
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonReviewerFlags
-from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
+from olympia.amo.tests import (
+    TestCase,
+    addon_factory,
+    license_factory,
+    user_factory,
+    version_factory,
+)
 from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
@@ -34,7 +40,14 @@ from olympia.files.tests.test_models import UploadTest
 from olympia.files.utils import parse_addon
 from olympia.promoted.models import PromotedApproval
 from olympia.reviewers.models import AutoApprovalSummary
-from olympia.users.models import UserProfile
+from olympia.scanners.models import ScannerResult
+from olympia.users.models import (
+    EmailUserRestriction,
+    IPNetworkUserRestriction,
+    RESTRICTION_TYPES,
+    UserProfile,
+)
+from olympia.users.utils import get_task_user
 from olympia.versions.compare import version_int, VersionString
 from olympia.versions.models import (
     ApplicationsVersions,
@@ -45,8 +58,6 @@ from olympia.versions.models import (
     VersionReviewerFlags,
     source_upload_path,
 )
-from olympia.scanners.models import ScannerResult
-from olympia.users.utils import get_task_user
 
 
 pytestmark = pytest.mark.django_db
@@ -802,6 +813,30 @@ class TestVersion(TestCase):
         del version.all_files  # Reset all_files cache.
         assert not version.was_auto_approved
 
+    def test_transformer_license(self):
+        addon = Addon.objects.get(id=3615)
+        version1 = version_factory(addon=addon)
+        license = license_factory(name='Second License', text='Second License Text')
+        version2 = version_factory(addon=addon, license=license)
+
+        qs = Version.objects.filter(pk__in=(version1.pk, version2.pk)).no_transforms()
+        with self.assertNumQueries(5):
+            # - 1 for the versions
+            # - 2 for the licenses (1 for each version)
+            # - 2 for the licenses translations (1 for each version)
+            for version in qs.all():
+                assert version.license.name
+
+        # Using the transformer should prefetch licenses and name translations.
+        # License text should be deferred.
+        with self.assertNumQueries(3):
+            # - 1 for the versions
+            # - 1 for the licenses
+            # - 1 for the licenses translations (name)
+            for version in qs.transform(Version.transformer_license).all():
+                assert 'text_id' in version.license.get_deferred_fields()
+                assert version.license.name
+
     @mock.patch('olympia.amo.tasks.trigger_sync_objects_to_basket')
     def test_version_field_changes_not_synced_to_basket(
         self, trigger_sync_objects_to_basket_mock
@@ -1246,6 +1281,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
     @mock.patch('olympia.versions.models.log')
     def test_logging(self, log_mock):
         user = UserProfile.objects.get(email='regular@mozilla.com')
+        user.update(last_login_ip='1.2.3.4')
         self.upload.update(
             user=user,
             ip_address='5.6.7.8',
@@ -1579,6 +1615,67 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
 
         scanners_result.refresh_from_db()
         assert scanners_result.version is None
+
+    def test_auto_approval_not_disabled_if_not_restricted(self):
+        self.upload.user.update(last_login_ip='10.0.0.42')
+        # Set a submission time restriction: it shouldn't matter.
+        IPNetworkUserRestriction.objects.create(network='10.0.0.0/24')
+        assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
+        Version.from_upload(
+            self.upload,
+            self.addon,
+            [self.selected_app],
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=self.dummy_parsed_data,
+        )
+        assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
+
+    def test_auto_approval_disabled_if_restricted_by_email(self):
+        EmailUserRestriction.objects.create(
+            email_pattern=self.upload.user.email,
+            restriction_type=RESTRICTION_TYPES.APPROVAL,
+        )
+        assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
+        Version.from_upload(
+            self.upload,
+            self.addon,
+            [self.selected_app],
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=self.dummy_parsed_data,
+        )
+        assert self.addon.auto_approval_disabled
+
+    def test_auto_approval_disabled_if_restricted_by_ip(self):
+        self.upload.user.update(last_login_ip='10.0.0.42')
+        IPNetworkUserRestriction.objects.create(
+            network='10.0.0.0/24', restriction_type=RESTRICTION_TYPES.APPROVAL
+        )
+        assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
+        Version.from_upload(
+            self.upload,
+            self.addon,
+            [self.selected_app],
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=self.dummy_parsed_data,
+        )
+        assert self.addon.auto_approval_disabled
+        assert not self.addon.auto_approval_disabled_unlisted
+
+    def test_auto_approval_disabled_for_unlisted_if_restricted_by_ip(self):
+        self.upload.user.update(last_login_ip='10.0.0.42')
+        IPNetworkUserRestriction.objects.create(
+            network='10.0.0.0/24', restriction_type=RESTRICTION_TYPES.APPROVAL
+        )
+        assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
+        Version.from_upload(
+            self.upload,
+            self.addon,
+            [self.selected_app],
+            amo.RELEASE_CHANNEL_UNLISTED,
+            parsed_data=self.dummy_parsed_data,
+        )
+        assert not self.addon.auto_approval_disabled
+        assert self.addon.auto_approval_disabled_unlisted
 
 
 class TestExtensionVersionFromUploadTransactional(

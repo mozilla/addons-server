@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-12 13:19+0000\n"
-"PO-Revision-Date: 2021-05-12 22:01+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
+"PO-Revision-Date: 2021-06-25 05:45+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -1578,6 +1578,9 @@ msgstr "Automatische goedkeuring voor onbepaalde tijd uitstellen"
 msgid "Delay auto-approval indefinitely and add restrictions"
 msgstr "Automatische goedkeuring voor onbepaalde tijd uitstellen en beperkingen toevoegen"
 
+msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
+msgstr "Automatische goedkeuring voor onbepaalde tijd uitstellen en beperkingen voor toekomstige goedkeuringen toevoegen"
+
 msgid "True positive"
 msgstr "Werkelijk positief"
 
@@ -1943,8 +1946,8 @@ msgstr "De kleur van de tekst en de pictogrammen in het headergebied, behalve he
 msgid "Toolbar area background"
 msgstr "Achtergrond van werkbalkgebied"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr "De achtergrondkleur voor de navigatiebalk, de bladwijzerwerkbalk en het geselecteerde tabblad.  Manifestveld:  toolbar."
+msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
+msgstr "De achtergrondkleur voor de navigatiebalk, de bladwijzerwerkbalk en het actieve tabblad.  Manifestveld:  toolbar."
 
 msgid "Toolbar area text and icons"
 msgstr "Tekst en pictogrammen van het werkbalkgebied"
@@ -1963,6 +1966,12 @@ msgstr "Tekst van werkbalkveldgebied"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "De kleur van tekst in velden in de werkbalk, zoals de URL-balk. Manifestveld:  toolbar_field_text."
+
+msgid "Tab highlight"
+msgstr "Tabbladmarkering"
+
+msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
+msgstr "De markeringskleur van het actieve tabblad. Geïmplementeerd als een rand rond het tabblad in Firefox 89+ en een lijn boven het tabblad in oudere versies van Firefox. Manifestveld:  tab_line."
 
 msgid "Review requested."
 msgstr "Beoordeling aangevraagd."
@@ -4419,6 +4428,10 @@ msgstr "Verkrijg de muisscrollbalk die u altijd al wilde – geef de breedte en 
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr "Tabbladen opslaan en herstellen. Inclusief functies voor automatisch opslaan en cloudsynchronisatie."
 
+#. editorial content for the discovery pane.
+msgid "Goodbye, annoying cookie warnings!"
+msgstr "Vaarwel, vervelende cookiewaarschuwingen!"
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Sommige websites hebben moeite met het afspelen van video’s op Android. Deze extensie biedt een oplossing."
@@ -4541,6 +4554,14 @@ msgstr "Aanbevolen wachtwoordbeheerders"
 msgid "See more recommended password managers"
 msgstr "Meer aanbevolen wachtwoordbeheerders bekijken"
 
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Vertaalhulpmiddelen"
+
+#. editorial content for the homepage shelves.
+msgid "See more translation tools"
+msgstr "Meer vertaalhulpmiddelen bekijken"
+
 msgid "Could not parse the manifest file."
 msgstr "Kon het manifest-bestand niet verwerken."
 
@@ -4580,8 +4601,8 @@ msgid "Could not find an add-on ID."
 msgstr "Kon geen add-on-ID vinden."
 
 #, python-format
-msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr "De add-on-ID in uw manifest.json of install.rdf (%s) komt niet overeen met de ID van uw add-on op AMO (%s)"
+msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
+msgstr "De add-on-ID in uw manifest.json (%s) komt niet overeen met de ID van uw add-on op AMO (%s)"
 
 msgid "Duplicate add-on ID found."
 msgstr "Dubbele add-on-ID gevonden."
@@ -5123,6 +5144,9 @@ msgstr "Niet-vermelde add-ons"
 msgid "All Unlisted Add-ons"
 msgstr "Alle niet-vermelde add-ons"
 
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Niet-vermelde add-ons in afwachting van handmatige goedkeuring"
+
 msgid "Announcement"
 msgstr "Mededeling"
 
@@ -5480,6 +5504,12 @@ msgstr "Automatische goedkeuring van vermeldingen uitschakelen tot volgende hand
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr "Automatische goedkeuring van vermeldingen inschakelen voor volgende handmatige goedkeuring"
 
+msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
+msgstr "Automatische goedkeuring van niet-vermelde items uitschakelen tot volgende handmatige goedkeuring"
+
+msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
+msgstr "Automatische goedkeuring van niet-vermelde items inschakelen voor volgende handmatige goedkeuring"
+
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "Automatische goedkeuring is momenteel tot {date} uitgeschakeld"
 
@@ -5755,12 +5785,6 @@ msgstr "Afbreken"
 
 msgid "Run"
 msgstr "Uitvoeren"
-
-msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr "Nuttig wanneer het scannerresultaat een echt positief resultaat is, maar de add-on geen kwaad kan"
-
-msgid "Revert report"
-msgstr "Rapport terugdraaien"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."

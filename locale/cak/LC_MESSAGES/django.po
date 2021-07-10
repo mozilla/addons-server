@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-12 13:19+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: 2021-05-04 00:37+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1590,6 +1590,9 @@ msgstr ""
 msgid "Delay auto-approval indefinitely and add restrictions"
 msgstr ""
 
+msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
+msgstr ""
+
 msgid "True positive"
 msgstr "Qitzij ütz"
 
@@ -1958,7 +1961,8 @@ msgstr "Ri rub'onil tz'ib'anïk chuqa' ruwachib'al ruk'ojlib'al b'i'aj, man ke t
 msgid "Toolbar area background"
 msgstr "Rupam ruk'ojlib'al rukajtz'ik samajib'äl"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+#, fuzzy
+msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr "Ri rub'onil rupam rukajtz'ik okem pa k'amaya'l, kikajtz'ik yaketal chuqa' ri ruwi' cha'on.  Ruk'ojlib'al manifiesto:  toolbar."
 
 msgid "Toolbar area text and icons"
@@ -1979,6 +1983,12 @@ msgstr "Kitz'ib'anik ruk'ojlib'al rukajtz'ik samajib'äl"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Ri rub'onil rutz'ib'anik ruk'ojlib'al rukajtz'ik samajib'äl, achi'el ri rukajtz'ik URL. Ruk'ojlib'al manifiesto:  toolbar:field_text."
+
+msgid "Tab highlight"
+msgstr ""
+
+msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
+msgstr ""
 
 msgid "Review requested."
 msgstr "Xk'utüx nik'oxïk."
@@ -4449,6 +4459,10 @@ msgstr ""
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Goodbye, annoying cookie warnings!"
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4577,6 +4591,15 @@ msgstr ""
 msgid "See more recommended password managers"
 msgstr ""
 
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "chi Ruwäch Tz'aqat"
+
 msgid "Could not parse the manifest file."
 msgstr "Man niq'ax ta ri runa'oj ri ruyakb'al tzijoxïk."
 
@@ -4616,8 +4639,8 @@ msgstr "Man okel ta yakb'äl."
 msgid "Could not find an add-on ID."
 msgstr "Man xilitäj ta jun rub'anikil ri tz'aqat."
 
-#, python-format
-msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
+#, fuzzy, python-format
+msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
 msgstr "Ri atz'aqat ID pa manifest.json or install.rdf (%s) man nikik'äm ta ki' rik'in ri Id richin ri atz'aqat pa AMO (%s)"
 
 msgid "Duplicate add-on ID found."
@@ -5180,6 +5203,10 @@ msgstr "Mecholajin taq Tz'aqat"
 msgid "All Unlisted Add-ons"
 msgstr "Ronojel Mecholajin taq Tz'aqat"
 
+#, fuzzy
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Tichup Ruyon-Ütz-Nitz'et"
+
 msgid "Announcement"
 msgstr "Eltzijol"
 
@@ -5557,6 +5584,14 @@ msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr "Titzij Ruyon-Ütz-Nitz'et"
 
 #, fuzzy
+msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
+msgstr "Tichup Ruyon-Ütz-Nitz'et"
+
+#, fuzzy
+msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
+msgstr "Titzij Ruyon-Ütz-Nitz'et"
+
+#, fuzzy
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "Achupun retal ruyon-ütz-nitz'et."
 
@@ -5855,13 +5890,6 @@ msgstr ""
 
 msgid "Run"
 msgstr "Tib'anatäj"
-
-msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
-
-#, fuzzy
-msgid "Revert report"
-msgstr "Tzolin rutzij nik'onel"
 
 #, fuzzy, python-format
 msgid "Invalid \"%s\" parameter."

@@ -10,9 +10,15 @@ from olympia.addons.tasks import delete_addons
 from olympia.amo.utils import chunked
 from olympia.files.models import FileUpload
 from olympia.scanners.models import ScannerResult
+from olympia.amo.models import FakeEmail
 
 from . import tasks
-from .sitemap import build_sitemap, get_sitemap_path, get_sitemap_section_pages
+from .sitemap import (
+    get_sitemap_path,
+    get_sitemaps,
+    get_sitemap_section_pages,
+    render_index_xml,
+)
 
 
 log = olympia.core.logger.getLogger('z.cron')
@@ -61,13 +67,27 @@ def gc(test_result=True):
     # Delete stale ScannerResults.
     ScannerResult.objects.filter(upload=None, version=None).delete()
 
+    # Delete fake emails older than 90 days
+    FakeEmail.objects.filter(created__lte=days_ago(90)).delete()
 
-def write_sitemaps():
+
+def write_sitemaps(section=None, app_name=None):
     index_url = get_sitemap_path(None, None)
-    with storage.open(index_url, 'w') as index_file:
-        index_file.write(build_sitemap(None, None))
-    for section, app_name, page in get_sitemap_section_pages():
-        filename = get_sitemap_path(section, app_name, page)
+    sitemaps = get_sitemaps()
+    if (not section or section == 'index') and not app_name:
+        with storage.open(index_url, 'w') as index_file:
+            log.info('Writing sitemap index')
+            index_file.write(render_index_xml(sitemaps))
+    for _section, _app_name, _page in get_sitemap_section_pages(sitemaps):
+        if (section and section != _section) or (app_name and app_name != _app_name):
+            continue
+        if _page % 1000 == 1:
+            # log an info message every 1000 pages in a _section, _app_name
+            log.info(f'Writing sitemap file for {_section}, {_app_name}, {_page}')
+        filename = get_sitemap_path(_section, _app_name, _page)
         with storage.open(filename, 'w') as sitemap_file:
-            content = build_sitemap(section, app_name, page)
+            sitemap_object = sitemaps.get((_section, amo.APPS.get(_app_name)))
+            if not sitemap_object:
+                continue
+            content = sitemap_object.render(app_name=_app_name, page=_page)
             sitemap_file.write(content)

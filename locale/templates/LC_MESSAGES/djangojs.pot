@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-12 13:19+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -975,7 +975,7 @@ msgstr ""
 msgid "Number of Reviews"
 msgstr ""
 
-#: static/js/zamboni/static_theme.js:203
+#: static/js/zamboni/static_theme.js:207
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr ""
 
@@ -1019,62 +1019,62 @@ msgstr ""
 msgid "All tests passed successfully."
 msgstr ""
 
-#: static/js/zamboni/validator.js:88 static/js/zamboni/validator.js:384
+#: static/js/zamboni/validator.js:88 static/js/zamboni/validator.js:383
 msgid "These tests were not run."
 msgstr ""
 
-#: static/js/zamboni/validator.js:151 static/js/zamboni/validator.js:174
+#: static/js/zamboni/validator.js:151 static/js/zamboni/validator.js:173
 msgid "Tests"
 msgstr ""
 
-#: static/js/zamboni/validator.js:256 static/js/zamboni/validator.js:488
-#: static/js/zamboni/validator.js:512
+#: static/js/zamboni/validator.js:255 static/js/zamboni/validator.js:487
+#: static/js/zamboni/validator.js:511
 msgid "Error"
 msgstr ""
 
-#: static/js/zamboni/validator.js:256
+#: static/js/zamboni/validator.js:255
 msgid "Warning"
 msgstr ""
 
-#: static/js/zamboni/validator.js:328
+#: static/js/zamboni/validator.js:327
 msgid "{0} line {1} column {2}"
 msgstr ""
 
-#: static/js/zamboni/validator.js:335
+#: static/js/zamboni/validator.js:334
 msgid "{0} line {1}"
 msgstr ""
 
-#: static/js/zamboni/validator.js:372
+#: static/js/zamboni/validator.js:371
 msgid "Add-on failed validation."
 msgstr ""
 
-#: static/js/zamboni/validator.js:374
+#: static/js/zamboni/validator.js:373
 msgid "Add-on passed validation."
 msgstr ""
 
-#: static/js/zamboni/validator.js:387
+#: static/js/zamboni/validator.js:386
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/zamboni/validator.js:390
+#: static/js/zamboni/validator.js:389
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/zamboni/validator.js:393
+#: static/js/zamboni/validator.js:392
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/zamboni/validator.js:490
+#: static/js/zamboni/validator.js:489
 msgid "Validation task could not complete or completed with errors"
 msgstr ""
 
-#: static/js/zamboni/validator.js:513
+#: static/js/zamboni/validator.js:512
 msgid "Internal server error"
 msgstr ""
 

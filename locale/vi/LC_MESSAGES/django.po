@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-12 13:19+0000\n"
-"PO-Revision-Date: 2021-05-13 05:19+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
+"PO-Revision-Date: 2021-07-06 23:06+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -37,7 +37,7 @@ msgid "Distribution"
 msgstr "Phân phối"
 
 msgid "Reporter's country"
-msgstr ""
+msgstr "Quốc gia của người báo cáo"
 
 msgid "Message excerpt"
 msgstr "Đoạn trích tin nhắn"
@@ -289,9 +289,8 @@ msgstr ""
 msgid "Register or Log in"
 msgstr "Đăng ký hoặc đăng nhập"
 
-#, fuzzy
 msgid "Email:"
-msgstr "Email"
+msgstr "Email:"
 
 msgid "OK"
 msgstr "Đồng ý"
@@ -467,7 +466,7 @@ msgid "This add-on already belongs to the collection"
 msgstr "Tiện ích này đã ở trong bộ sưu tập"
 
 msgid "Signoff State"
-msgstr ""
+msgstr "Trạng thái đăng xuất"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
@@ -490,7 +489,7 @@ msgstr "Các khối được cập nhật khác nhau vì phiên bản tối thi�
 
 #, python-format
 msgid "%(value)s contains *"
-msgstr ""
+msgstr "%(value)s chứa *"
 
 msgid "Invalid version"
 msgstr "Phiên bản không hợp lệ"
@@ -921,7 +920,7 @@ msgid "Block {1} action for {0} signed off."
 msgstr ""
 
 msgid "Block action signoff"
-msgstr ""
+msgstr "Chặn hành động đăng xuất"
 
 msgid "User {user} session(s) reset."
 msgstr "Đã đặt lại phiên người dùng {user}."
@@ -1300,7 +1299,7 @@ msgid "Download Firefox themes with animals and natural landscapes. This categor
 msgstr ""
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr ""
+msgstr "Tải xuống các chủ đề Firefox thú vị, sáng tạo và độc đáo."
 
 msgid "Scenery"
 msgstr "Phong cảnh"
@@ -1466,7 +1465,7 @@ msgid "Updated Language Pack Review"
 msgstr ""
 
 msgid "Theme Review"
-msgstr ""
+msgstr "Đánh giá chủ đề"
 
 msgid "Theme (Static) Review"
 msgstr "Đánh giá chủ đề (tĩnh)"
@@ -1553,13 +1552,13 @@ msgid "Approve"
 msgstr "Phê duyệt"
 
 msgid "Sexual or pornographic content"
-msgstr ""
+msgstr "Nội dung tình dục hoặc khiêu dâm"
 
 msgid "Inappropriate or offensive content"
-msgstr ""
+msgstr "Nội dung không phù hợp hoặc công kích"
 
 msgid "Violence, war, or weaponry images"
-msgstr ""
+msgstr "Hình ảnh bạo lực, chiến tranh hoặc vũ khí"
 
 msgid "Nazi or other hate content"
 msgstr ""
@@ -1593,6 +1592,9 @@ msgid "Delay auto-approval indefinitely"
 msgstr ""
 
 msgid "Delay auto-approval indefinitely and add restrictions"
+msgstr ""
+
+msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
 msgstr ""
 
 msgid "True positive"
@@ -1955,7 +1957,8 @@ msgstr "Màu của văn bản và biểu tượng trong vùng tiêu đề, ngo�
 msgid "Toolbar area background"
 msgstr "Nền khu vực thanh công cụ"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+#, fuzzy
+msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr "Màu nền cho thanh điều hướng, thanh dấu trang và thẻ đã chọn.  Trường kê khai:  toolbar."
 
 msgid "Toolbar area text and icons"
@@ -1975,6 +1978,12 @@ msgstr "Văn bản khu vực trường thanh công cụ"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Màu của văn bản trong các trường trên thanh công cụ, chẳng hạn như thanh URL. Trường kê khai:  toolbar_field_text."
+
+msgid "Tab highlight"
+msgstr ""
+
+msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
+msgstr ""
 
 msgid "Review requested."
 msgstr "Yêu cầu đánh giá."
@@ -2492,7 +2501,7 @@ msgid "Your Add-on will be released under the following license:"
 msgstr ""
 
 msgid "Select a different license."
-msgstr ""
+msgstr "Chọn giấy phép khác."
 
 msgid "More information on Creative Commons licenses"
 msgstr "Thông tin thêm về giấy phép Creative Commons"
@@ -2667,7 +2676,7 @@ msgid "Is there anything our reviewers should bear in mind when reviewing this a
 msgstr ""
 
 msgid "Remember"
-msgstr ""
+msgstr "Lưu lại"
 
 #, python-format
 msgid ""
@@ -4408,6 +4417,10 @@ msgstr ""
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Goodbye, annoying cookie warnings!"
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4531,6 +4544,16 @@ msgstr ""
 msgid "See more recommended password managers"
 msgstr ""
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Translation tools"
+msgstr "Công cụ và tổ chức thẻ"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tools"
+msgstr "Bản dịch tên tiện ích"
+
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -4570,7 +4593,7 @@ msgid "Could not find an add-on ID."
 msgstr ""
 
 #, python-format
-msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
+msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
 msgstr ""
 
 msgid "Duplicate add-on ID found."
@@ -5117,6 +5140,10 @@ msgstr "Tiện ích không công khai"
 msgid "All Unlisted Add-ons"
 msgstr ""
 
+#, fuzzy
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Bật tự động phê duyệt"
+
 msgid "Announcement"
 msgstr "Thông báo"
 
@@ -5482,6 +5509,14 @@ msgstr "Bật tự động phê duyệt"
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr "Bật tự động phê duyệt"
 
+#, fuzzy
+msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
+msgstr "Bật tự động phê duyệt"
+
+#, fuzzy
+msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
+msgstr "Bật tự động phê duyệt"
+
 msgid "Auto-Approval currently disabled until {date}"
 msgstr ""
 
@@ -5769,12 +5804,6 @@ msgstr ""
 
 msgid "Run"
 msgstr ""
-
-msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
-
-msgid "Revert report"
-msgstr "Hoàn nguyên báo cáo"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."

@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-12 13:19+0000\n"
-"PO-Revision-Date: 2021-05-12 18:54+0000\n"
+"POT-Creation-Date: 2021-06-24 14:01+0000\n"
+"PO-Revision-Date: 2021-06-24 16:24+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -1572,6 +1572,9 @@ msgstr "Відкласти автоматичне затвердження на 
 msgid "Delay auto-approval indefinitely and add restrictions"
 msgstr "Відкладайте автозатвердження на невизначений час та додайте обмеження"
 
+msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
+msgstr "Відкладайте автозатвердження на невизначений час та додайте обмеження"
+
 msgid "True positive"
 msgstr "Дійсно позитивний"
 
@@ -1942,7 +1945,7 @@ msgstr "Колір тексту і піктограм, що відображаю
 msgid "Toolbar area background"
 msgstr "Тло області панелі інструментів"
 
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr "Колір тла для панелі навігації, панелі закладок та вибраної вкладки.  Поле маніфесту:  toolbar."
 
 msgid "Toolbar area text and icons"
@@ -1962,6 +1965,12 @@ msgstr "Текст поля в області панелі інструмент�
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Колір тексту в полях в панелі інструментів, таких як рядок URL-адреси. Поле маніфесту:  toolbar_field_text."
+
+msgid "Tab highlight"
+msgstr "Виділення вкладки"
+
+msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
+msgstr "Колір виділення активної вкладки. Виконано у вигляді межі навколо вкладки у Firefox 89+ та лінії над вкладкою у давніших Firefox. Поле маніфесту:  tab_line."
 
 msgid "Review requested."
 msgstr "Запитано перевірку."
@@ -2079,7 +2088,7 @@ msgstr "Нещодавня активність для моїх додатків
 
 #. first parameter is the name of an Addon
 msgid "Recent Activity for {0}"
-msgstr "Остання активність для {0}"
+msgstr "Нещодавня активність для {0}"
 
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
@@ -4413,6 +4422,10 @@ msgstr "Отримайте панель прокрутки, яку ви завж
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr "Збереження та відновлення вкладок. Включає функції автозбереження та хмарної синхронізації."
 
+#. editorial content for the discovery pane.
+msgid "Goodbye, annoying cookie warnings!"
+msgstr "Прощавайте, надокучливі попередження про куки!"
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Деякі сайти мають труднощі з відтворенням відео на Android. Перед вами розв'язувок проблеми."
@@ -4533,6 +4546,14 @@ msgstr "Рекомендовані менеджери паролів"
 msgid "See more recommended password managers"
 msgstr "Більше рекомендованих менеджерів паролів"
 
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Засоби для перекладу"
+
+#. editorial content for the homepage shelves.
+msgid "See more translation tools"
+msgstr "Більше засобів для перекладу"
+
 msgid "Could not parse the manifest file."
 msgstr "Не вдалося обробити файл маніфесту."
 
@@ -4572,8 +4593,8 @@ msgid "Could not find an add-on ID."
 msgstr "Не вдалося знайти ID додатка."
 
 #, python-format
-msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr "Ідентифікатор додатка в файлі manifest.json або install.rdf (%s) не відповідає ідентифікатору вашого додатка на AMO (%s)"
+msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
+msgstr "Ідентифікатор додатка в файлі manifest.json (%s) відрізняється від ідентифікатора вашого додатка на AMO (%s)"
 
 msgid "Duplicate add-on ID found."
 msgstr "Знайдено дублікат ID додатка."
@@ -5119,6 +5140,9 @@ msgstr "Неопубліковані додатки"
 msgid "All Unlisted Add-ons"
 msgstr "Всі неопубліковані додатки"
 
+msgid "Unlisted Add-ons Pending Manual Approval"
+msgstr "Недоступні додатки, що очікують на затвердження вручну"
+
 msgid "Announcement"
 msgstr "Оголошення"
 
@@ -5474,6 +5498,12 @@ msgstr "Вимкнути автоматичне схвалення перелі�
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr "Увімкнути автоматичне схвалення переліченого до наступного схвалення вручну"
 
+msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
+msgstr "Вимкнути автоматичне схвалення переліченого до наступного схвалення вручну"
+
+msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
+msgstr "Увімкнути автоматичне схвалення переліченого до наступного схвалення вручну"
+
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "Автоматичне схвалення наразі вимкнено до {date}"
 
@@ -5749,12 +5779,6 @@ msgstr "Скасувати"
 
 msgid "Run"
 msgstr "Виконати"
-
-msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr "Корисно, коли результат сканування є дійсно позитивним, але додаток не є зловмисним"
-
-msgid "Revert report"
-msgstr "Відкликати звіт"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."

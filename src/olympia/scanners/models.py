@@ -24,6 +24,7 @@ from olympia.constants.scanners import (
     DELAY_AUTO_APPROVAL,
     DELAY_AUTO_APPROVAL_INDEFINITELY,
     DELAY_AUTO_APPROVAL_INDEFINITELY_AND_RESTRICT,
+    DELAY_AUTO_APPROVAL_INDEFINITELY_AND_RESTRICT_FUTURE_APPROVALS,
     FLAG_FOR_HUMAN_REVIEW,
     QUERY_RULE_STATES,
     MAD,
@@ -42,6 +43,7 @@ from olympia.scanners.actions import (
     _delay_auto_approval,
     _delay_auto_approval_indefinitely,
     _delay_auto_approval_indefinitely_and_restrict,
+    _delay_auto_approval_indefinitely_and_restrict_future_approvals,
     _flag_for_human_review,
     _flag_for_human_review_by_scanner,
     _no_action,
@@ -130,7 +132,6 @@ class AbstractScannerResult(ModelBase):
     def get_git_repository(self):
         return {
             CUSTOMS: settings.CUSTOMS_GIT_REPOSITORY,
-            YARA: settings.YARA_GIT_REPOSITORY,
         }.get(self.scanner)
 
     @classmethod
@@ -193,6 +194,9 @@ class AbstractScannerResult(ModelBase):
             DELAY_AUTO_APPROVAL_INDEFINITELY: _delay_auto_approval_indefinitely,
             DELAY_AUTO_APPROVAL_INDEFINITELY_AND_RESTRICT: (
                 _delay_auto_approval_indefinitely_and_restrict
+            ),
+            DELAY_AUTO_APPROVAL_INDEFINITELY_AND_RESTRICT_FUTURE_APPROVALS: (
+                _delay_auto_approval_indefinitely_and_restrict_future_approvals
             ),
         }
 

@@ -33,12 +33,13 @@ class TestCollections(TestCase):
         core.set_user(self.user)
 
     def test_description(self):
-        c = Collection.objects.create(
+        collection = Collection.objects.create(
             description='<a href="http://example.com">example.com</a> '
-            'http://example.com <b>foo</b> some text'
+            'http://example.com <b>foo</b> some text lol.com'
         )
-        # All markup escaped, links are stripped.
-        assert str(c.description) == '&lt;b&gt;foo&lt;/b&gt; some text'
+        # All markup kept (since this is a text field, not parsing HTML, clients will
+        # escape it), but URLs are removed.
+        assert str(collection.description) == '<a href=""></a>  <b>foo</b> some text'
 
     def test_translation_default(self):
         """Make sure we're getting strings from the default locale."""

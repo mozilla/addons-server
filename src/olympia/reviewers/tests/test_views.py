@@ -733,6 +733,7 @@ class TestDashboard(TestCase):
             reverse('reviewers.ratings_moderation_log'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
             reverse('reviewers.unlisted_queue_all'),
+            reverse('reviewers.unlisted_queue_pending_manual_approval'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.motd'),
             reverse('reviewers.queue_pending_rejection'),
@@ -752,7 +753,7 @@ class TestDashboard(TestCase):
         # user ratings moderation
         assert doc('.dashboard a')[18].text == 'Ratings Awaiting Moderation (1)'
         # admin tools
-        assert doc('.dashboard a')[24].text == 'Add-ons Pending Rejection (1)'
+        assert doc('.dashboard a')[25].text == 'Add-ons Pending Rejection (1)'
 
     def test_can_see_all_through_reviewer_view_all_permission(self):
         self.grant_permission(self.user, 'ReviewerTools:View')
@@ -782,6 +783,7 @@ class TestDashboard(TestCase):
             reverse('reviewers.ratings_moderation_log'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
             reverse('reviewers.unlisted_queue_all'),
+            reverse('reviewers.unlisted_queue_pending_manual_approval'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.motd'),
             reverse('reviewers.queue_pending_rejection'),
@@ -942,6 +944,7 @@ class TestDashboard(TestCase):
         assert len(doc('.dashboard h3')) == 1
         expected_links = [
             reverse('reviewers.unlisted_queue_all'),
+            reverse('reviewers.unlisted_queue_pending_manual_approval'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
@@ -958,6 +961,7 @@ class TestDashboard(TestCase):
         assert len(doc('.dashboard h3')) == 9
         expected_links = [
             reverse('reviewers.unlisted_queue_all'),
+            reverse('reviewers.unlisted_queue_pending_manual_approval'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
@@ -2202,6 +2206,61 @@ class TestUnlistedAllList(QueueTest):
         response = self.client.get(url)
         assert response.status_code == 200
         assert json.loads(response.content) == {'reviewtext': 'stish goin` down son'}
+
+
+class TestUnlistedPendingManualApproval(QueueTest):
+    listed = False
+
+    def setUp(self):
+        super().setUp()
+        self.url = reverse('reviewers.unlisted_queue_pending_manual_approval')
+        self.generate_files()
+        self.expected_addons = [
+            self.addons['Pending One'],
+            self.addons['Nominated Two'],
+            self.addons['Pending Two'],
+            self.addons['Nominated One'],
+        ]
+        for i, addon in enumerate(self.expected_addons):
+            AutoApprovalSummary.objects.create(
+                version=addon.versions.latest('pk'), score=100 - i
+            )
+            AddonReviewerFlags.objects.create(
+                addon=addon, auto_approval_disabled_unlisted=True
+            )
+
+    def test_results(self):
+        with self.assertNumQueries(14):
+            # - 2 for savepoints because we're in tests
+            # - 2 for user/groups
+            # - 1 for the current queue count for pagination purposes
+            # - 2 for config items (motd / site notice)
+            # - 1 for my add-ons in user menu
+            # - 4 for reviewer scores and user stuff displayed above the queue
+            # - 1 main queue query
+            # - 1 translations
+            self._test_results()
+
+    def test_queue_layout(self):
+        self._test_queue_layout(
+            'Unlisted Add-ons Pending Manual Approval',
+            tab_position=1,
+            total_addons=4,
+            total_queues=2,
+            per_page=1,
+        )
+
+    def test_only_viewable_with_specific_permission(self):
+        # Regular addon reviewer does not have access.
+        self.user.groupuser_set.all().delete()  # Remove all permissions
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+        # Regular user doesn't have access.
+        self.client.logout()
+        assert self.client.login(email='regular@mozilla.com')
+        response = self.client.get(self.url)
+        assert response.status_code == 403
 
 
 class TestAutoApprovedQueue(QueueTest):
@@ -4195,6 +4254,10 @@ class TestReview(ReviewBase):
         assert not doc('#enable_auto_approval')
         assert not doc('#disable_auto_approval_unlisted')
         assert not doc('#enable_auto_approval_unlisted')
+        assert not doc('#disable_auto_approval_until_next_approval')
+        assert not doc('#enable_auto_approval_until_next_approval')
+        assert not doc('#disable_auto_approval_until_next_approval_unlisted')
+        assert not doc('#enable_auto_approval_until_next_approval_unlisted')
         assert not doc('#clear_auto_approval_delayed_until')
         assert not doc('#clear_pending_rejections')
         assert not doc('#deny_resubmission')
@@ -4468,6 +4531,75 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert not doc('#disable_auto_approval_unlisted')
         assert not doc('#enable_auto_approval_unlisted')
+
+    def test_disable_auto_approval_until_next_approval_unlisted_as_admin(self):
+        self.login_as_admin()
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, auto_approval_disabled_until_next_approval_unlisted=True
+        )
+        unlisted_url = reverse('reviewers.review', args=['unlisted', self.addon.slug])
+        response = self.client.get(unlisted_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        # Button to disable auto approval until next approval is hidden since
+        # the flag is already true.
+        assert doc('#disable_auto_approval_until_next_approval_unlisted')
+        elem = doc('#disable_auto_approval_until_next_approval_unlisted')[0]
+        assert 'hidden' in elem.getparent().attrib.get('class', '')
+
+        # Button to re-enable auto-approval is shown.
+        assert doc('#enable_auto_approval_until_next_approval_unlisted')
+        elem = doc('#enable_auto_approval_until_next_approval_unlisted')[0]
+        assert 'hidden' not in elem.getparent().attrib.get('class', '')
+
+        # They both should be absent on the listed review page, since those
+        # are for listed only.
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        # Button to disable auto approval until next approval is hidden since
+        # the flag is already true.
+        assert not doc('#disable_auto_approval_until_next_approval_unlisted')
+        assert not doc('#enable_auto_approval_until_next_approval_unlisted')
+
+    def test_disable_auto_approval_until_next_approval_as_admin(self):
+        self.login_as_admin()
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, auto_approval_disabled_until_next_approval=True
+        )
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        # Button to disable auto approval until next approval is hidden since
+        # the flag is already true.
+        assert doc('#disable_auto_approval_until_next_approval')
+        elem = doc('#disable_auto_approval_until_next_approval')[0]
+        assert 'hidden' in elem.getparent().attrib.get('class', '')
+
+        # Button to re-enable auto-approval is shown.
+        assert doc('#enable_auto_approval_until_next_approval')
+        elem = doc('#enable_auto_approval_until_next_approval')[0]
+        assert 'hidden' not in elem.getparent().attrib.get('class', '')
+
+        # They both should be absent on the unlisted review page, since those
+        # are for listed only.
+        unlisted_url = reverse('reviewers.review', args=['unlisted', self.addon.slug])
+        response = self.client.get(unlisted_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        # Button to disable auto approval until next approval is hidden since
+        # the flag is already true.
+        assert not doc('#disable_auto_approval_until_next_approval')
+        assert not doc('#enable_auto_approval_until_next_approval')
+
+        # They both should be absent on static themes, which are not
+        # auto-approved.
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#disable_auto_approval_until_next_approval')
+        assert not doc('#enable_auto_approval_until_next_approval')
 
     def test_clear_pending_rejections_as_admin(self):
         self.login_as_admin()
@@ -7228,6 +7360,7 @@ class TestAddonReviewerViewSet(TestCase):
             'auto_approval_disabled': False,
             'auto_approval_disabled_unlisted': False,
             'auto_approval_disabled_until_next_approval': True,
+            'auto_approval_disabled_until_next_approval_unlisted': True,
             'auto_approval_delayed_until': None,
             'needs_admin_code_review': True,
             'needs_admin_content_review': True,
@@ -7240,6 +7373,9 @@ class TestAddonReviewerViewSet(TestCase):
         assert reviewer_flags.auto_approval_disabled is False
         assert reviewer_flags.auto_approval_disabled_unlisted is False
         assert reviewer_flags.auto_approval_disabled_until_next_approval is True
+        assert (
+            reviewer_flags.auto_approval_disabled_until_next_approval_unlisted is True
+        )
         assert reviewer_flags.auto_approval_delayed_until is None
         assert reviewer_flags.needs_admin_code_review is True
         assert reviewer_flags.needs_admin_content_review is True

@@ -1381,8 +1381,8 @@ class TestAccountViewSetUpdate(TestCase):
         self.user = self.user.reload()
         # Confirm field hasn't been updated.
         response = json.loads(force_str(response.content))
-        assert response['last_login_ip'] == ''
-        assert self.user.last_login_ip == ''
+        assert response['last_login_ip'] == '127.0.0.1'
+        assert self.user.last_login_ip == '127.0.0.1'
         assert response['username'] == existing_username
         assert self.user.username == existing_username
 
@@ -1803,11 +1803,14 @@ class TestSessionView(TestCase):
         user = user_factory(fxa_id='123123412')
         token = self.login_user(user)
         authorization = 'Bearer {token}'.format(token=token)
+        assert user.auth_id
         response = self.client.delete(
             reverse_ns('accounts.session'), HTTP_AUTHORIZATION=authorization
         )
         assert not response.cookies[views.API_TOKEN_COOKIE].value
         assert not self.client.session.get('_auth_user_id')
+        user.reload()
+        assert not user.auth_id  # Cleared at logout.
 
     def test_delete_when_unauthenticated(self):
         response = self.client.delete(reverse_ns('accounts.session'))
