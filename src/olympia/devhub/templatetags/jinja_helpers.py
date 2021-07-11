@@ -42,7 +42,7 @@ def dev_page_title(context, title=None, addon=None):
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def docs_page_title(context, title=None):
     """Wrapper for docs page titles."""
     devhub = gettext('Add-on Documentation :: Developer Hub')
