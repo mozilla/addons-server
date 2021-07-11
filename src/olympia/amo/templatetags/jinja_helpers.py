@@ -233,7 +233,7 @@ def field(field, label=None, **attrs):
 
 @library.global_function
 @library.render_with('amo/category-arrow.html')
-@jinja2.contextfunction
+@jinja2.pass_context
 def category_arrow(context, key, prefix):
     d = dict(context.items())
     d.update(key=key, prefix=prefix)
@@ -256,7 +256,7 @@ def timeuntil(time):
 
 @library.global_function
 @library.render_with('amo/recaptcha.html')
-@jinja2.contextfunction
+@jinja2.pass_context
 def recaptcha(context, form):
     d = dict(context.items())
     d.update(form=form)
@@ -272,7 +272,7 @@ def is_choice_field(value):
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def cache_buster(context, url):
     if 'BUILD_ID' in context:
         build = context['BUILD_ID']
@@ -287,14 +287,14 @@ def cache_buster(context, url):
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def media(context, url):
     """Get a MEDIA_URL link with a cache buster querystring."""
     return urljoin(settings.MEDIA_URL, cache_buster(context, url))
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def static(context, url):
     """Get a STATIC_URL link with a cache buster querystring."""
     return urljoin(settings.STATIC_URL, cache_buster(context, url))
@@ -313,7 +313,7 @@ def loc(s):
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def remora_url(context, url, lang=None, app=None, prefix=''):
     """Wrapper for urlresolvers.remora_url"""
     if lang is None:
@@ -329,7 +329,7 @@ def remora_url(context, url, lang=None, app=None, prefix=''):
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def hasOneToOne(context, obj, attr):
     try:
         getattr(obj, attr)
