@@ -112,7 +112,7 @@ def queue_tabnav(context):
 
 @library.global_function
 @library.render_with('reviewers/includes/reviewers_score_bar.html')
-@jinja2.contextfunction
+@jinja2.pass_context
 def reviewers_score_bar(context, types=None, addon_type=None):
     user = context.get('user')
 
@@ -181,7 +181,7 @@ def get_position(addon):
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def is_expired_lock(context, lock):
     return lock.expiry < datetime.datetime.now()
 
@@ -192,7 +192,7 @@ def code_manager_url(page, addon_id, version_id, base_version_id=None):
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def check_review_delete(context, rating):
     return user_can_delete_rating(context['request'], rating)
 
