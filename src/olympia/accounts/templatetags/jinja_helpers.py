@@ -18,6 +18,6 @@ def register_link(context):
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def fxa_config(context):
     return utils.fxa_config(context['request'])
