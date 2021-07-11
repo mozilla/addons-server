@@ -36,7 +36,7 @@ def version_status(addon, version):
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def queue_tabnav(context):
     """Returns tuple of tab navigation for the queue pages.
 
@@ -130,7 +130,7 @@ def reviewers_score_bar(context, types=None, addon_type=None):
 
 @library.global_function
 @library.render_with('reviewers/includes/files_view.html')
-@jinja2.contextfunction
+@jinja2.pass_context
 def all_files(context, version):
     return new_context(
         dict(
