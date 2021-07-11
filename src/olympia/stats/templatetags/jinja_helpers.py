@@ -8,7 +8,7 @@ from olympia.addons.models import Addon
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def report_menu(context, request, report, obj):
     """Renders navigation for the various statistic reports."""
     if isinstance(obj, Addon):
