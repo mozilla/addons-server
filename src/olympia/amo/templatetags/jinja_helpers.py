@@ -8,7 +8,7 @@ from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.forms import CheckboxInput
 from django.template import defaultfilters, Library, loader
-from django.templatetags.static import static as django_static
+from django.templatetags.static import static
 from django.urls import reverse
 from django.utils.encoding import smart_str
 from django.utils.html import (
@@ -41,6 +41,7 @@ library.filter(utils.epoch)
 library.filter(utils.isotime)
 library.global_function(dict)
 library.global_function(utils.randslice)
+library.global_function(static)
 
 
 @library.filter
@@ -261,11 +262,6 @@ def is_choice_field(value):
         return isinstance(value.field.widget, CheckboxInput)
     except AttributeError:
         pass
-
-
-@library.global_function
-def static(url):
-    return django_static(url)
 
 
 @library.global_function
