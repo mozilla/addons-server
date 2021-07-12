@@ -751,7 +751,7 @@ def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **k
     addon.status = status
 
     for tag in tags:
-        Tag(tag_text=tag).save_tag(addon)
+        Tag.objects.get_or_create(tag_text=tag)[0].add_tag(addon)
 
     for user in users:
         addon.addonuser_set.create(user=user)

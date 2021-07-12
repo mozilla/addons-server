@@ -308,12 +308,12 @@ class TestES(ESTestCaseWithAddons):
             Addon.search().extra(x=1)
 
     def test_aggregations(self):
-        Tag(tag_text='sky').save_tag(self._addons[0])
-        Tag(tag_text='sky').save_tag(self._addons[1])
-        Tag(tag_text='sky').save_tag(self._addons[2])
-        Tag(tag_text='earth').save_tag(self._addons[0])
-        Tag(tag_text='earth').save_tag(self._addons[1])
-        Tag(tag_text='ocean').save_tag(self._addons[0])
+        Tag.objects.get_or_create(tag_text='sky')[0].add_tag(self._addons[0])
+        Tag.objects.get_or_create(tag_text='sky')[0].add_tag(self._addons[1])
+        Tag.objects.get_or_create(tag_text='sky')[0].add_tag(self._addons[2])
+        Tag.objects.get_or_create(tag_text='earth')[0].add_tag(self._addons[0])
+        Tag.objects.get_or_create(tag_text='earth')[0].add_tag(self._addons[1])
+        Tag.objects.get_or_create(tag_text='ocean')[0].add_tag(self._addons[0])
         self.reindex(Addon)
 
         qs = Addon.search().aggregate(tags={'terms': {'field': 'tags'}})

@@ -824,123 +824,45 @@ class TestAdditionalDetailsForm(TestCase):
         form = forms.AdditionalDetailsForm(request=self.request, instance=self.addon)
         assert form.fields['default_locale'].choices[0][0] == 'af'
 
-    def add_tags(self, tags):
-        data = self.data.copy()
-        data.update({'tags': tags})
+    def _get_tag_text(self):
+        return [t.tag_text for t in self.addon.tags.all()]
+
+    def test_change_tags(self):
+        tag_old = Tag.objects.create(tag_text='old')
+        AddonTag.objects.create(tag=tag_old, addon=self.addon)
+        assert self._get_tag_text() == ['old']
+
+        tag_bar = Tag.objects.create(tag_text='bar')
+        tag_foo = Tag.objects.create(tag_text='foo')
+        data = {**self.data, 'tags': ['bar', 'foo']}
         form = forms.AdditionalDetailsForm(
             data=data, request=self.request, instance=self.addon
         )
         assert form.is_valid()
         form.save(self.addon)
-        return form
+        assert self._get_tag_text() == ['bar', 'foo']
+        assert tag_bar.reload().num_addons == 1
+        assert tag_foo.reload().num_addons == 1
+        assert tag_old.reload().num_addons == 0
 
-    def get_tag_text(self):
-        return [t.tag_text for t in self.addon.tags.all()]
-
-    def test_tags(self):
-        self.add_tags('foo, bar')
-        assert self.get_tag_text() == ['bar', 'foo']
-
-    def test_tags_xss(self):
-        self.add_tags('<script>alert("foo")</script>, bar')
-        assert self.get_tag_text() == ['bar', 'scriptalertfooscript']
-
-    def test_tags_case_spaces(self):
-        self.add_tags('foo, bar')
-        self.add_tags('foo,    bar   , Bar, BAR, b a r ')
-        assert self.get_tag_text() == ['b a r', 'bar', 'foo']
-
-    def test_tags_spaces(self):
-        self.add_tags('foo, bar beer')
-        assert self.get_tag_text() == ['bar beer', 'foo']
-
-    def test_tags_unicode(self):
-        self.add_tags('Österreich')
-        assert self.get_tag_text() == ['Österreich'.lower()]
-
-    def add_restricted(self, *args):
-        if not args:
-            args = ['i_am_a_restricted_tag']
-        for arg in args:
-            tag = Tag.objects.create(tag_text=arg, restricted=True)
-            AddonTag.objects.create(tag=tag, addon=self.addon)
-
-    def test_tags_restricted(self):
-        self.add_restricted()
-        self.add_tags('foo, bar')
-        form = forms.AdditionalDetailsForm(
-            data=self.data, request=self.request, instance=self.addon
-        )
-
-        assert form.fields['tags'].initial == 'bar, foo'
-        assert self.get_tag_text() == ['bar', 'foo', 'i_am_a_restricted_tag']
-        self.add_tags('')
-        assert self.get_tag_text() == ['i_am_a_restricted_tag']
-
-    def test_tags_error(self):
-        self.add_restricted('i_am_a_restricted_tag', 'sdk')
-        data = self.data.copy()
-        data.update({'tags': 'i_am_a_restricted_tag'})
-        form = forms.AdditionalDetailsForm(
-            data=data, request=self.request, instance=self.addon
-        )
-        assert form.errors['tags'][0] == (
-            '"i_am_a_restricted_tag" is a reserved tag and cannot be used.'
-        )
-        data.update({'tags': 'i_am_a_restricted_tag, sdk'})
-        form = forms.AdditionalDetailsForm(
-            data=data, request=self.request, instance=self.addon
-        )
-        assert form.errors['tags'][0] == (
-            '"i_am_a_restricted_tag", "sdk" are reserved tags and cannot be used.'
-        )
-
-    @mock.patch('olympia.access.acl.action_allowed')
-    def test_tags_admin_restricted(self, action_allowed):
-        action_allowed.return_value = True
-        self.add_restricted('i_am_a_restricted_tag')
-        self.add_tags('foo, bar')
-        assert self.get_tag_text() == ['bar', 'foo']
-        self.add_tags('foo, bar, i_am_a_restricted_tag')
-
-        assert self.get_tag_text() == ['bar', 'foo', 'i_am_a_restricted_tag']
-        form = forms.AdditionalDetailsForm(
-            data=self.data, request=self.request, instance=self.addon
-        )
-        assert form.fields['tags'].initial == 'bar, foo, i_am_a_restricted_tag'
-
-    @mock.patch('olympia.access.acl.action_allowed')
-    def test_tags_admin_restricted_count(self, action_allowed):
-        action_allowed.return_value = True
-        self.add_restricted()
-        self.add_tags(
-            'i_am_a_restricted_tag, %s'
-            % (', '.join('tag-test-%s' % i for i in range(0, 20)))
-        )
-
-    def test_tags_restricted_count(self):
-        self.add_restricted()
-        self.add_tags(', '.join('tag-test-%s' % i for i in range(0, 20)))
-
-    def test_tags_slugified_count(self):
-        self.add_tags(', '.join('tag-test' for i in range(0, 21)))
-        assert self.get_tag_text() == ['tag-test']
-
-    def test_tags_limit(self):
-        self.add_tags(' %s' % ('t' * 128))
-
-    def test_tags_long(self):
-        tag = ' -%s' % ('t' * 128)
-        data = self.data.copy()
-        data.update({'tags': tag})
+    def test_cannot_create_new_tags(self):
+        data = {**self.data, 'tags': ['bar']}
         form = forms.AdditionalDetailsForm(
             data=data, request=self.request, instance=self.addon
         )
         assert not form.is_valid()
         assert form.errors['tags'] == [
-            'All tags must be 128 characters or less after invalid characters'
-            ' are removed.'
+            'Select a valid choice. bar is not one of the available choices.'
         ]
+
+    def test_tags_limit(self):
+        extra = Tag.objects.count() - amo.MAX_TAGS
+        data = {**self.data, 'tags': [tag.tag_text for tag in Tag.objects.all()]}
+        form = forms.AdditionalDetailsForm(
+            data=data, request=self.request, instance=self.addon
+        )
+        assert not form.is_valid()
+        assert form.errors['tags'] == [f'You have {extra} too many tags.']
 
     def test_bogus_homepage(self):
         form = forms.AdditionalDetailsForm(

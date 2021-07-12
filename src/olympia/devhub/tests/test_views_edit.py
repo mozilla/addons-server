@@ -26,7 +26,7 @@ from olympia.amo.tests import (
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import image_size
 from olympia.devhub.forms import DescribeForm
-from olympia.tags.models import AddonTag, Tag
+from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
 from olympia.versions.models import VersionPreview
 
@@ -53,7 +53,7 @@ class BaseTestEdit(TestCase):
 
             self.tags = ['tag3', 'tag2', 'tag1']
             for t in self.tags:
-                Tag(tag_text=t).save_tag(addon)
+                Tag.objects.get_or_create(tag_text=t)[0].add_tag(addon)
         else:
             self.make_addon_unlisted(addon)
             addon.save()
@@ -1169,13 +1169,14 @@ class TestEditMedia(BaseTestEdit):
 
 class TagTestsMixin(object):
     def get_dict(self, **kw):
-        result = {'default_locale': 'en-US', 'tags': ', '.join(self.tags)}
+        result = {'default_locale': 'en-US', 'tags': self.tags}
         result.update(**kw)
         return result
 
     def test_edit_add_tag(self):
         count = ActivityLog.objects.all().count()
         self.tags.insert(0, 'tag4')
+        Tag.objects.get_or_create(tag_text='tag4')
         data = self.get_dict()
         response = self.client.post(self.details_edit_url, data)
         assert response.status_code == 200
@@ -1199,35 +1200,17 @@ class TagTestsMixin(object):
             ActivityLog.objects.filter(action=amo.LOG.ADD_TAG.id).count() == count + 1
         )
 
-    def test_edit_denied_tag(self):
-        Tag.objects.get_or_create(tag_text='blue', denied=True)
-        data = self.get_dict(tags='blue')
+    def test_cannot_create_new_tag(self):
+        start = Tag.objects.all().count()
+        data = self.get_dict(tags='create_tag')
         response = self.client.post(self.details_edit_url, data)
         assert response.status_code == 200
 
-        error = 'Invalid tag: blue'
+        error = 'Select a valid choice. create_tag is not one of the available choices.'
         self.assertFormError(response, 'form', 'tags', error)
 
-    def test_edit_denied_tags_2(self):
-        Tag.objects.get_or_create(tag_text='blue', denied=True)
-        Tag.objects.get_or_create(tag_text='darn', denied=True)
-        data = self.get_dict(tags='blue, darn, swearword')
-        response = self.client.post(self.details_edit_url, data)
-        assert response.status_code == 200
-
-        error = 'Invalid tags: blue, darn'
-        self.assertFormError(response, 'form', 'tags', error)
-
-    def test_edit_denied_tags_3(self):
-        Tag.objects.get_or_create(tag_text='blue', denied=True)
-        Tag.objects.get_or_create(tag_text='darn', denied=True)
-        Tag.objects.get_or_create(tag_text='swearword', denied=True)
-        data = self.get_dict(tags='blue, darn, swearword')
-        response = self.client.post(self.details_edit_url, data)
-        assert response.status_code == 200
-
-        error = 'Invalid tags: blue, darn, swearword'
-        self.assertFormError(response, 'form', 'tags', error)
+        # Check that the tag did not get created.
+        assert start == Tag.objects.all().count()
 
     def test_edit_remove_tag(self):
         self.tags.remove('tag2')
@@ -1247,24 +1230,11 @@ class TagTestsMixin(object):
             == count + 1
         )
 
-    def test_edit_minlength_tags(self):
-        tags = self.tags
-        tags.append('a' * (amo.MIN_TAG_LENGTH - 1))
-        data = self.get_dict()
-        response = self.client.post(self.details_edit_url, data)
-        assert response.status_code == 200
-
-        self.assertFormError(
-            response,
-            'form',
-            'tags',
-            'All tags must be at least %d characters.' % amo.MIN_TAG_LENGTH,
-        )
-
     def test_edit_max_tags(self):
         tags = self.tags
 
         for i in range(amo.MAX_TAGS + 1):
+            Tag.objects.get_or_create(tag_text='test%d' % i)
             tags.append('test%d' % i)
 
         data = self.get_dict()
@@ -1275,32 +1245,6 @@ class TagTestsMixin(object):
             'tags',
             'You have %d too many tags.' % (len(tags) - amo.MAX_TAGS),
         )
-
-    def test_edit_tag_empty_after_slug(self):
-        start = Tag.objects.all().count()
-        data = self.get_dict(tags='>>')
-        response = self.client.post(self.details_edit_url, data)
-        self.assertNoFormErrors(response)
-
-        # Check that the tag did not get created.
-        assert start == Tag.objects.all().count()
-
-    def test_edit_tag_slugified(self):
-        data = self.get_dict(tags='<script>alert("foo")</script>')
-        response = self.client.post(self.details_edit_url, data)
-        self.assertNoFormErrors(response)
-        tag = Tag.objects.all().order_by('-pk')[0]
-        assert tag.tag_text == 'scriptalertfooscript'
-
-    def test_edit_restricted_tags(self):
-        addon = self.get_addon()
-        tag = Tag.objects.create(tag_text='i_am_a_restricted_tag', restricted=True)
-        AddonTag.objects.create(tag=tag, addon=addon)
-
-        response = self.client.get(self.details_edit_url)
-        divs = pq(response.content)('#addon_tags_edit .edit-addon-details')
-        assert len(divs) == 2
-        assert 'i_am_a_restricted_tag' in divs.eq(1).text()
 
 
 class ContributionsTestsMixin(object):

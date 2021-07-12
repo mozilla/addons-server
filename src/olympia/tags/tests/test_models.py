@@ -5,14 +5,15 @@ from olympia.tags.models import AddonTag, Tag
 
 class TestTagManager(TestCase):
     def test_not_denied(self):
+        predefined_tag_count = Tag.objects.all().count()
         """Make sure Tag Manager filters right for not denied tags."""
         tag1 = Tag(tag_text='abc', denied=False)
         tag1.save()
         tag2 = Tag(tag_text='swearword', denied=True)
         tag2.save()
 
-        assert Tag.objects.all().count() == 2
-        assert Tag.objects.not_denied().count() == 1
+        assert Tag.objects.all().count() == predefined_tag_count + 2
+        assert Tag.objects.not_denied().count() == predefined_tag_count + 1
         assert Tag.objects.not_denied()[0] == tag1
 
 
@@ -32,8 +33,8 @@ class TestCount(TestCase):
         AddonTag.objects.create(addon_id=5369, tag_id=self.tag.pk)
         assert self.tag.reload().num_addons == 0
 
-    def test_save_tag(self):
-        self.tag.save_tag(addon=Addon.objects.get(pk=5369))
+    def test_add_tag(self):
+        self.tag.add_tag(addon=Addon.objects.get(pk=5369))
         assert self.tag.reload().num_addons == 2
 
     def test_remove_tag(self):

@@ -1484,14 +1484,6 @@ class Addon(OnChangeMixin, ModelBase):
         return None
 
     @cached_property
-    def tags_partitioned_by_developer(self):
-        """Returns a tuple of developer tags and user tags for this addon."""
-        tags = self.tags.not_denied()
-        user_tags = tags.exclude(addon_tags__user__in=self.listed_authors)
-        dev_tags = tags.exclude(id__in=[t.id for t in user_tags])
-        return dev_tags, user_tags
-
-    @cached_property
     def compatible_apps(self):
         """Shortcut to get compatible apps for the current version."""
         if self.current_version:

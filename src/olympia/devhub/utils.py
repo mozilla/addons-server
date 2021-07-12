@@ -284,7 +284,7 @@ def add_dynamic_theme_tag(version):
         return
     files = version.all_files
     if any('theme' in file_.permissions for file_ in files):
-        Tag(tag_text='dynamic theme').save_tag(version.addon)
+        Tag.objects.get_or_create(tag_text='dynamic theme')[0].add_tag(version.addon)
 
 
 def extract_theme_properties(addon, channel):

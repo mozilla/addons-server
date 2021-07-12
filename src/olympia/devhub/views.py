@@ -899,7 +899,7 @@ def addons_section(request, addon_id, addon, section, editable=False):
     if section not in models:
         raise http.Http404()
 
-    tags, previews, restricted_tags = [], [], []
+    tags, previews = [], []
     cat_form = dependency_form = whiteboard_form = None
     whiteboard = None
 
@@ -913,7 +913,6 @@ def addons_section(request, addon_id, addon, section, editable=False):
 
     elif section == 'additional_details' and show_listed:
         tags = addon.tags.not_denied().values_list('tag_text', flat=True)
-        restricted_tags = addon.tags.filter(restricted=True)
 
     elif section == 'media':
         previews = forms.PreviewFormSet(
@@ -980,7 +979,6 @@ def addons_section(request, addon_id, addon, section, editable=False):
         'form': form,
         'editable': editable,
         'tags': tags,
-        'restricted_tags': restricted_tags,
         'cat_form': cat_form,
         'preview_form': previews,
         'dependency_form': dependency_form,
