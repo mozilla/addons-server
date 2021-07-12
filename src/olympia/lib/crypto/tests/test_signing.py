@@ -155,7 +155,7 @@ class TestSigning(TestCase):
 
     def test_sign_file_non_ascii_filename(self):
         src = self.file_.file_path
-        self.file_.update(filename='jétpack.xpi')
+        self.file_.update(filename='wébextension.xpi')
         shutil.move(src, self.file_.file_path)
         self.assert_not_signed()
         signing.sign_file(self.file_)

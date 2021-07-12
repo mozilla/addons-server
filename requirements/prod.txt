@@ -396,10 +396,6 @@ pytz==2021.1 \
 sentry_sdk==1.1.0 \
     --hash=sha256:c7d380a21281e15be3d9f67a3c4fbb4f800c481d88ff8d8931f39486dd7b4ada \
     --hash=sha256:c1227d38dca315ba35182373f129c3e2722e8ed999e52584e6aca7d287870739
-# rdflib is required by amo-validator
-rdflib==5.0.0 \
-    --hash=sha256:78149dd49d385efec3b3adfbd61c87afaf1281c30d3fcaf1b323b34f603fb155 \
-    --hash=sha256:88208ea971a87886d60ae2b1a4b2cdc263527af0454c422118d43fe64b357877
 redis==3.5.3 \
     --hash=sha256:432b788c4530cfe16d8d943a09d40ca6c16149727e4afe8c2c9d5580c59d9f24 \
     --hash=sha256:0e7e0cfca8660dea8b7d5cd8c4f6c5e29e11f31158c0b0ae91a397f00e5a05a2

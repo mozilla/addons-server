@@ -262,9 +262,7 @@ def validate_file_path(path, channel):
     Search plugins don't call the linter but get linted by
     `annotate_search_plugin_validation`.
 
-    All legacy extensions (including dictionaries, themes etc) are disabled
-    via `annotate_legacy_addon_restrictions` except if they're signed by
-    Mozilla.
+    All legacy extensions (including dictionaries, themes etc) are unsupported.
     """
     if path.endswith('.xml'):
         # search plugins are validated directly by addons-server
@@ -277,27 +275,16 @@ def validate_file_path(path, channel):
 
     # Annotate results with potential legacy add-ons restrictions.
     try:
-        data = parse_addon(path, minimal=True)
+        parse_addon(path, minimal=True)
     except NoManifestFound:
-        # If no manifest is found, return empty data; the check below
-        # explicitly looks for is_webextension is False, so it will not be
-        # considered a legacy extension, and the linter will pick it up and
+        # If no manifest is found the linter will pick it up and
         # will know what message to return to the developer.
-        data = {}
+        pass
     except InvalidManifest:
         # Similarly, if we can't parse the manifest, let the linter pick that
         # up.
-        data = {}
+        pass
 
-    is_legacy_extension = data.get('is_webextension', None) is False
-    is_mozilla_signed = data.get('is_mozilla_signed_extension', None) is True
-
-    if is_legacy_extension:
-        results = deepcopy(amo.VALIDATOR_SKELETON_RESULTS)
-        annotations.annotate_legacy_addon_restrictions(
-            path=path, results=results, parsed_data=data, error=not is_mozilla_signed
-        )
-        return json.dumps(results)
     log.info('Running linter on %s', path)
     return run_addons_linter(path, channel=channel)
 

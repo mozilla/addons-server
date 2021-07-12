@@ -119,13 +119,11 @@ class TestRecalculateHash(TestCase):
     @mock.patch.object(
         File,
         'file_path',
-        amo.tests.AMOPaths().file_fixture_path('delicious_bookmarks-2.1.106-fx.xpi'),
+        amo.tests.AMOPaths().file_fixture_path('https-everywhere.xpi'),
     )
     def test_regenerate_hash(self):
         version = Version.objects.create(addon_id=3615)
-        file = File.objects.create(
-            filename='delicious_bookmarks-2.1.106-fx.xpi', version=version
-        )
+        file = File.objects.create(filename='https-everywhere.xpi', version=version)
 
         r = self.client.post(reverse('zadmin.recalc_hash', args=[file.id]))
         assert json.loads(r.content)['success'] == 1
@@ -138,14 +136,12 @@ class TestRecalculateHash(TestCase):
     @mock.patch.object(
         File,
         'file_path',
-        amo.tests.AMOPaths().file_fixture_path('delicious_bookmarks-2.1.106-fx.xpi'),
+        amo.tests.AMOPaths().file_fixture_path('https-everywhere.xpi'),
     )
     def test_regenerate_hash_get(self):
         """Don't allow GET"""
         version = Version.objects.create(addon_id=3615)
-        file = File.objects.create(
-            filename='delicious_bookmarks-2.1.106-fx.xpi', version=version
-        )
+        file = File.objects.create(filename='https-everywhere.xpi', version=version)
 
         r = self.client.get(reverse('zadmin.recalc_hash', args=[file.id]))
         assert r.status_code == 405  # GET out of here

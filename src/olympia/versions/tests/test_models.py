@@ -1163,29 +1163,31 @@ class TestVersionFromUpload(UploadTest, TestCase):
     @classmethod
     def setUpTestData(cls):
         versions = {
-            '3.0',
-            '3.6.*',
             amo.DEFAULT_WEBEXT_MIN_VERSION,
             amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
             amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
             amo.DEFAULT_WEBEXT_MAX_VERSION,
         }
         for version in versions:
-            AppVersion.objects.create(application=amo.FIREFOX.id, version=version)
-            AppVersion.objects.create(application=amo.ANDROID.id, version=version)
+            AppVersion.objects.get_or_create(
+                application=amo.FIREFOX.id, version=version
+            )
+            AppVersion.objects.get_or_create(
+                application=amo.ANDROID.id, version=version
+            )
 
     def setUp(self):
         super(TestVersionFromUpload, self).setUp()
         self.upload = self.get_upload(self.filename)
         self.addon = Addon.objects.get(id=3615)
-        self.addon.update(guid='guid@xpi')
+        self.addon.update(guid='@webextension-guid')
         self.selected_app = amo.FIREFOX.id
         self.dummy_parsed_data = {'version': '0.1'}
         self.fake_user = user_factory()
 
 
 class TestExtensionVersionFromUpload(TestVersionFromUpload):
-    filename = 'extension.xpi'
+    filename = 'webextension.xpi'
 
     def setUp(self):
         super(TestExtensionVersionFromUpload, self).setUp()
@@ -1363,30 +1365,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         )
         assert amo.FIREFOX in version.compatible_apps
         app = version.compatible_apps[amo.FIREFOX]
-        assert app.min.version == '3.0'
-        assert app.max.version == '3.6.*'
-
-    def test_duplicate_target_apps(self):
-        # Note: the validator prevents this, but we also need to make sure
-        # overriding failed validation is possible, so we need an extra check
-        # in addons-server code.
-        self.filename = 'duplicate_target_applications.xpi'
-        self.addon.update(guid='duplicatetargetapps@xpi')
-        self.upload = self.get_upload(self.filename)
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
-        version = Version.from_upload(
-            self.upload,
-            self.addon,
-            [self.selected_app],
-            amo.RELEASE_CHANNEL_LISTED,
-            parsed_data=parsed_data,
-        )
-        compatible_apps = version.compatible_apps
-        assert len(compatible_apps) == 1
-        assert amo.FIREFOX in version.compatible_apps
-        app = version.compatible_apps[amo.FIREFOX]
-        assert app.min.version == '3.0'
-        assert app.max.version == '3.6.*'
+        assert app.min.version == '42.0'
+        assert app.max.version == '*'
 
     def test_compatible_apps_is_pre_generated(self):
         parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
@@ -1418,8 +1398,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert amo.ANDROID not in version.compatible_apps
         assert amo.FIREFOX in version.compatible_apps
         app = version.compatible_apps[amo.FIREFOX]
-        assert app.min.version == '3.0'
-        assert app.max.version == '3.6.*'
+        assert app.min.version == '42.0'
+        assert app.max.version == '*'
 
     def test_version_number(self):
         parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
@@ -1430,7 +1410,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             amo.RELEASE_CHANNEL_LISTED,
             parsed_data=parsed_data,
         )
-        assert version.version == '0.1'
+        assert version.version == '0.0.1'
 
     def test_file_name(self):
         parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
@@ -1442,7 +1422,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             parsed_data=parsed_data,
         )
         files = version.all_files
-        assert files[0].filename == 'delicious_bookmarks-0.1-fx.xpi'
+        assert files[0].filename == 'delicious_bookmarks-0.0.1-fx.xpi'
 
     def test_track_upload_time(self):
         # Set created time back (just for sanity) otherwise the delta
@@ -1792,7 +1772,7 @@ class TestExtensionVersionFromUploadTransactional(
 
 
 class TestStatusFromUpload(TestVersionFromUpload):
-    filename = 'extension.xpi'
+    filename = 'webextension.xpi'
 
     def setUp(self):
         super(TestStatusFromUpload, self).setUp()

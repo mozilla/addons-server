@@ -95,10 +95,10 @@ class TestUploadErrors(BaseUploadTest):
     def test_dupe_uuid(self, flag_is_active):
         flag_is_active.return_value = True
         addon = Addon.objects.get(pk=3615)
-        data = parse_addon(self.get_upload('extension.xpi'), user=self.user)
+        data = parse_addon(self.get_upload('webextension.xpi'), user=self.user)
         addon.update(guid=data['guid'])
 
-        dupe_xpi = self.get_upload('extension.xpi')
+        dupe_xpi = self.get_upload('webextension.xpi')
         res = self.client.get(
             reverse('devhub.upload_detail', args=[dupe_xpi.uuid, 'json'])
         )

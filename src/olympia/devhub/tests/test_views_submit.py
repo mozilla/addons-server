@@ -585,7 +585,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
             'metadata': {},
             'messages': [],
         }
-        self.upload = self.get_upload('extension.xpi', validation=json.dumps(result))
+        self.upload = self.get_upload('webextension.xpi', validation=json.dumps(result))
         self.post(listed=False)
         addon = Addon.objects.get()
         version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -1917,10 +1917,10 @@ class VersionSubmitUploadMixin(object):
 
     def setUp(self):
         super(VersionSubmitUploadMixin, self).setUp()
-        self.upload = self.get_upload('extension.xpi')
+        self.upload = self.get_upload('webextension.xpi')
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.current_version
-        self.addon.update(guid='guid@xpi')
+        self.addon.update(guid='@webextension-guid')
         self.user = UserProfile.objects.get(email='del@icio.us')
         assert self.client.login(email=self.user.email)
         self.user.update(last_login_ip='192.168.1.1')
@@ -1966,39 +1966,39 @@ class VersionSubmitUploadMixin(object):
         )
 
     def test_unique_version_num(self):
-        self.version.update(version='0.1')
+        self.version.update(version='0.0.1')
         response = self.post(expected_status=200)
         assert pq(response.content)('ul.errorlist').text() == (
-            'Version 0.1 already exists.'
+            'Version 0.0.1 already exists.'
         )
 
     def test_same_version_if_previous_is_rejected(self):
         # We can't re-use the same version number, even if the previous
         # versions have been disabled/rejected.
-        self.version.update(version='0.1')
+        self.version.update(version='0.0.1')
         self.version.files.update(status=amo.STATUS_DISABLED)
         response = self.post(expected_status=200)
         assert pq(response.content)('ul.errorlist').text() == (
-            'Version 0.1 already exists.'
+            'Version 0.0.1 already exists.'
         )
 
     def test_same_version_if_previous_is_deleted(self):
         # We can't re-use the same version number if the previous
         # versions has been deleted either.
-        self.version.update(version='0.1')
+        self.version.update(version='0.0.1')
         self.version.delete()
         response = self.post(expected_status=200)
         assert pq(response.content)('ul.errorlist').text() == (
-            'Version 0.1 was uploaded before and deleted.'
+            'Version 0.0.1 was uploaded before and deleted.'
         )
 
     def test_same_version_if_previous_is_awaiting_review(self):
         # We can't re-use the same version number - offer to continue.
-        self.version.update(version='0.1')
+        self.version.update(version='0.0.1')
         self.version.files.update(status=amo.STATUS_AWAITING_REVIEW)
         response = self.post(expected_status=200)
         assert pq(response.content)('ul.errorlist').text() == (
-            'Version 0.1 already exists. Continue with existing upload instead?'
+            'Version 0.0.1 already exists. Continue with existing upload instead?'
         )
         # url is always to the details page even for unlisted (will redirect).
         assert pq(response.content)('ul.errorlist a').attr('href') == (
@@ -2011,7 +2011,7 @@ class VersionSubmitUploadMixin(object):
         block = Block.objects.create(guid=self.addon.guid, updated_by=user_factory())
         response = self.post(expected_status=200)
         assert pq(response.content)('ul.errorlist').text() == (
-            'Version 0.1 matches a blocklist entry for this add-on. '
+            'Version 0.0.1 matches a blocklist entry for this add-on. '
             'You can contact AMO Admins for additional information.'
         )
         assert pq(response.content)('ul.errorlist a').attr('href') == (
@@ -2333,7 +2333,7 @@ class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadTest):
             'metadata': {},
             'messages': [],
         }
-        self.upload = self.get_upload('extension.xpi', validation=json.dumps(result))
+        self.upload = self.get_upload('webextension.xpi', validation=json.dumps(result))
         response = self.post()
         version = self.addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert version.channel == amo.RELEASE_CHANNEL_UNLISTED

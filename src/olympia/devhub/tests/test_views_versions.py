@@ -693,22 +693,11 @@ class TestVersion(TestCase):
         assert doc('h3 span.distribution-tag-listed').length == 2
 
 
-class TestVersionEditMixin(object):
-    def get_addon(self):
-        return Addon.objects.get(id=3615)
-
-    def get_version(self):
-        return self.get_addon().current_version
-
-    def formset(self, *args, **kw):
-        return formset(*args, **kw)
-
-
-class TestVersionEditBase(TestVersionEditMixin, TestCase):
+class TestVersionEditBase(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
-        super(TestVersionEditBase, self).setUp()
+        super().setUp()
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.client.login(email=self.user.email)
         self.addon = self.get_addon()
@@ -721,18 +710,25 @@ class TestVersionEditBase(TestVersionEditMixin, TestCase):
             application=amo.FIREFOX.id, version='5.0'
         )
 
+    def get_addon(self):
+        return Addon.objects.get(id=3615)
+
+    def get_version(self):
+        return self.get_addon().current_version
+
+    def formset(self, *args, **kw):
+        return formset(*args, **kw)
+
 
 class TestVersionEditDetails(TestVersionEditBase):
     def setUp(self):
-        super(TestVersionEditDetails, self).setUp()
+        super().setUp()
         ctx = self.client.get(self.url).context
         compat = initial(ctx['compat_form'].forms[0])
         self.initial = formset(compat)
 
     def formset(self, *args, **kw):
-        defaults = dict(self.initial)
-        defaults.update(kw)
-        return super(TestVersionEditDetails, self).formset(*args, **defaults)
+        return super().formset(*args, **{**self.initial, **kw})
 
     def test_edit_notes(self):
         data = self.formset(release_notes='xx', approval_notes='yy')
@@ -1049,7 +1045,7 @@ class TestVersionEditCompat(TestVersionEditBase):
     def test_same_min_max(self):
         form = self.client.get(self.url).context['compat_form'].initial_forms[0]
         data = initial(form)
-        data['min'] = data['max']
+        data['max'] = data['min']
         response = self.client.post(self.url, self.formset(data, initial_count=1))
         assert response.status_code == 302
         av = self.version.apps.all()[0]

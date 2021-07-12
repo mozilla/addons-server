@@ -1259,11 +1259,6 @@ LOGGING = {
             'level': logging.WARNING,
             'propagate': False,
         },
-        'rdflib': {
-            'handlers': ['null'],
-            'level': logging.INFO,
-            'propagate': False,
-        },
         'request': {
             'handlers': ['mozlog'],
             'level': logging.WARNING,
