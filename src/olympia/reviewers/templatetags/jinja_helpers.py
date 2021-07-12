@@ -134,8 +134,6 @@ def reviewers_score_bar(context, types=None, addon_type=None):
 def all_files(context, version):
     return new_context(
         dict(
-            # This allows the template to call static().
-            BUILD_ID_IMG=context.get('BUILD_ID_IMG'),
             # We don't need the hashes in the template.
             all_files=version.all_files,
             amo=context.get('amo'),

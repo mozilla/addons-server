@@ -1,10 +1,10 @@
-from django.conf import settings
-
 from django import forms
+from django.templatetags.static import static
 from django.utils.encoding import force_str
 from django.utils.html import conditional_escape, format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext
+
 
 from olympia.constants.categories import CATEGORIES_BY_ID
 
@@ -13,7 +13,7 @@ class IconTypeSelect(forms.RadioSelect):
     base_html = (
         '<li>'
         '<a href="#" class="{active}">'
-        '<img src="{static}img/addon-icons/{icon_name}-32.png" alt="">'
+        '<img src="{icon_url}" alt="">'
         '</a>'
         '{original_widget}'
         '</li>'
@@ -49,7 +49,7 @@ class IconTypeSelect(forms.RadioSelect):
                     format_html(
                         self.base_html,
                         active='active' if option_value == value else '',
-                        static=settings.STATIC_URL,
+                        icon_url=static(f'img/addon-icons/{icon_name}-32.png'),
                         icon_name=icon_name,
                         original_widget=original_widget,
                     )
