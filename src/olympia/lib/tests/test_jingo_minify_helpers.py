@@ -50,9 +50,7 @@ def test_js_helper():
     template = from_string('{{ js("common", debug=False) }}')
     rendered = template.render()
 
-    expected = '<script src="%sjs/common-min.js"></script>' % (
-        settings.STATIC_URL,
-    )
+    expected = '<script src="%sjs/common-min.js"></script>' % (settings.STATIC_URL,)
     assert rendered == expected
 
     template = from_string('{{ js("common_bundle", debug=True) }}')
@@ -119,8 +117,7 @@ def test_css_helper():
 
     assert (
         rendered == '<link rel="stylesheet" media="all" '
-        'href="%scss/common_bundle-min.css" />'
-        % (settings.STATIC_URL,)
+        'href="%scss/common_bundle-min.css" />' % (settings.STATIC_URL,)
     )
 
 
