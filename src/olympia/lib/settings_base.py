@@ -40,9 +40,10 @@ ALLOWED_HOSTS = [
 INTERNAL_ROUTES_ALLOWED = env('INTERNAL_ROUTES_ALLOWED', default=False)
 
 try:
-    # If we have build id available, we'll grab them here and add them to our
-    # CACHE_KEY_PREFIX. This will let us not have to flush memcache during
-    # updates and it will let us preload data into it before a production push.
+    # If we have a build id (it should be generated in Dockerfile.deploy),
+    # we'll grab it here and add it to our CACHE_KEY_PREFIX. This will let us
+    # not have to flush memcache during updates and it will let us preload
+    # data into it before a production push.
     from build import BUILD_ID
 except ImportError:
     BUILD_ID = ''
