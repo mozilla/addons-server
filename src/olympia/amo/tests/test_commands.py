@@ -51,30 +51,6 @@ def test_cron_jobs_setting():
 
 
 @pytest.mark.static_assets
-def test_compress_assets_command_without_git():
-    settings.MINIFY_BUNDLES = {'css': {'zamboni/css': ['css/legacy/main.css']}}
-
-    # Capture output to avoid it being logged and allow us to validate it
-    # later if needed
-    out = io.StringIO()
-    call_command('compress_assets', stdout=out)
-
-    build_id_file = os.path.realpath(os.path.join(settings.ROOT, 'build.py'))
-    assert os.path.exists(build_id_file)
-
-    with open(build_id_file) as f:
-        contents_before = f.read()
-
-    # Call command a second time. We should get a different build id, since it
-    # depends on a uuid.
-    call_command('compress_assets', stdout=out)
-    with open(build_id_file) as f:
-        contents_after = f.read()
-
-    assert contents_before != contents_after
-
-
-@pytest.mark.static_assets
 def test_compress_assets_correctly_fetches_static_images(settings, tmpdir):
     """
     Make sure that `compress_assets` correctly fetches static assets

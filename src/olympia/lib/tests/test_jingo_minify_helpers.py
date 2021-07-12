@@ -11,49 +11,36 @@ from olympia.amo.utils import from_string
 TEST_MINIFY_BUNDLES = {
     'css': {
         'common': ['css/test.css'],
-        'common_url': ['http://example.com/test.css'],
-        'common_protocol_less_url': ['//example.com/test.css'],
         'common_bundle': [
             'css/test.css',
-            'http://example.com/test.css',
-            '//example.com/test.css',
-            'https://example.com/test.css',
+            'css/test2.css',
         ],
         'compiled': ['css/plain.css', 'css/less.less'],
     },
     'js': {
         'common': ['js/test.js'],
-        'common_url': ['http://example.com/test.js'],
-        'common_protocol_less_url': ['//example.com/test.js'],
         'common_bundle': [
             'js/test.js',
-            'http://example.com/test.js',
-            '//example.com/test.js',
-            'https://example.com/test.js',
+            'js/test2.js',
         ],
     },
 }
 
 
 @override_settings(MINIFY_BUNDLES=TEST_MINIFY_BUNDLES)
-@mock.patch('olympia.lib.jingo_minify_helpers.time.time')
-@mock.patch('olympia.lib.jingo_minify_helpers.os.path.getmtime')
-def test_js_helper(getmtime, time):
+def test_js_helper():
     """
     Given the js() tag if we return the assets that make up that bundle
     as defined in settings.MINIFY_BUNDLES.
 
     If we're not in debug mode, we just return a minified url
     """
-    getmtime.return_value = 1
-    time.return_value = 1
-
     template = from_string('{{ js("common", debug=True) }}')
     rendered = template.render()
 
     expected = '\n'.join(
         [
-            '<script src="%s?build=1"></script>' % (settings.STATIC_URL + j)
+            '<script src="%s"></script>' % (settings.STATIC_URL + j)
             for j in settings.MINIFY_BUNDLES['js']['common']
         ]
     )
@@ -63,38 +50,8 @@ def test_js_helper(getmtime, time):
     template = from_string('{{ js("common", debug=False) }}')
     rendered = template.render()
 
-    expected = '<script src="%sjs/common-min.js?build=%s"></script>' % (
+    expected = '<script src="%sjs/common-min.js"></script>' % (
         settings.STATIC_URL,
-        BUILD_ID_JS,
-    )
-    assert rendered == expected
-
-    template = from_string('{{ js("common_url", debug=True) }}')
-    rendered = template.render()
-
-    expected = '<script src="http://example.com/test.js?build=1"></script>'
-    assert rendered == expected
-
-    template = from_string('{{ js("common_url", debug=False) }}')
-    rendered = template.render()
-
-    expected = '<script src="%sjs/common_url-min.js?build=%s"></script>' % (
-        settings.STATIC_URL,
-        BUILD_ID_JS,
-    )
-    assert rendered == expected
-
-    template = from_string('{{ js("common_protocol_less_url", debug=True) }}')
-    rendered = template.render()
-
-    assert rendered == '<script src="//example.com/test.js?build=1"></script>'
-
-    template = from_string('{{ js("common_protocol_less_url", debug=False) }}')
-    rendered = template.render()
-
-    expected = (
-        '<script src="%sjs/common_protocol_less_url-min.js?build=%s"></script>'
-        % (settings.STATIC_URL, BUILD_ID_JS)
     )
     assert rendered == expected
 
@@ -102,42 +59,33 @@ def test_js_helper(getmtime, time):
     rendered = template.render()
 
     assert rendered == (
-        '<script src="%sjs/test.js?build=1"></script>\n'
-        '<script src="http://example.com/test.js?build=1"></script>\n'
-        '<script src="//example.com/test.js?build=1"></script>\n'
-        '<script src="https://example.com/test.js?build=1"></script>'
-        % settings.STATIC_URL
+        f'<script src="{settings.STATIC_URL}js/test.js"></script>\n'
+        f'<script src="{settings.STATIC_URL}js/test2.js"></script>'
     )
 
     template = from_string('{{ js("common_bundle", debug=False) }}')
     rendered = template.render()
 
-    assert rendered == '<script src="%sjs/common_bundle-min.js?build=%s"></script>' % (
+    assert rendered == '<script src="%sjs/common_bundle-min.js"></script>' % (
         settings.STATIC_URL,
-        BUILD_ID_JS,
     )
 
 
 @override_settings(MINIFY_BUNDLES=TEST_MINIFY_BUNDLES)
-@mock.patch('olympia.lib.jingo_minify_helpers.time.time')
-@mock.patch('olympia.lib.jingo_minify_helpers.os.path.getmtime')
-def test_css_helper(getmtime, time):
+def test_css_helper():
     """
     Given the css() tag if we return the assets that make up that bundle
     as defined in settings.MINIFY_BUNDLES.
 
     If we're not in debug mode, we just return a minified url
     """
-    getmtime.return_value = 1
-    time.return_value = 1
-
     template = from_string('{{ css("common", debug=True) }}')
     rendered = template.render()
 
     expected = '\n'.join(
         [
             '<link rel="stylesheet" media="all" '
-            'href="%s?build=1" />' % (settings.STATIC_URL + j)
+            'href="%s" />' % (settings.STATIC_URL + j)
             for j in settings.MINIFY_BUNDLES['css']['common']
         ]
     )
@@ -149,57 +97,21 @@ def test_css_helper(getmtime, time):
 
     expected = (
         '<link rel="stylesheet" media="all" '
-        'href="%scss/common-min.css?build=%s" />' % (settings.STATIC_URL, BUILD_ID_CSS)
+        'href="%scss/common-min.css" />' % (settings.STATIC_URL,)
     )
 
     assert rendered == expected
-
-    template = from_string('{{ css("common_url", debug=True) }}')
-    rendered = template.render()
-
-    expected = (
-        '<link rel="stylesheet" media="all" '
-        'href="http://example.com/test.css?build=1" />'
-    )
-    assert rendered == expected
-
-    template = from_string('{{ css("common_url", debug=False) }}')
-    rendered = template.render()
-
-    expected = (
-        '<link rel="stylesheet" media="all" '
-        'href="%scss/common_url-min.css?build=%s" />'
-        % (settings.STATIC_URL, BUILD_ID_CSS)
-    )
-    assert rendered == expected
-
-    template = from_string('{{ css("common_protocol_less_url", debug=True) }}')
-    rendered = template.render()
-
-    assert rendered == (
-        '<link rel="stylesheet" media="all" href="//example.com/test.css?build=1" />'
-    )
-
-    template = from_string('{{ css("common_protocol_less_url", debug=False) }}')
-    rendered = template.render()
-
-    expected = (
-        '<link rel="stylesheet" media="all" '
-        'href="%scss/common_protocol_less_url-min.css?build=%s" />'
-        % (settings.STATIC_URL, BUILD_ID_CSS)
-    )
 
     assert rendered == expected
 
     template = from_string('{{ css("common_bundle", debug=True) }}')
     rendered = template.render()
 
-    assert (
-        rendered
-        == '<link rel="stylesheet" media="all" href="http://testserver/static/css/test.css?build=1" />\n'  # noqa
-        '<link rel="stylesheet" media="all" href="http://example.com/test.css?build=1" />\n'  # noqa
-        '<link rel="stylesheet" media="all" href="//example.com/test.css?build=1" />\n'  # noqa
-        '<link rel="stylesheet" media="all" href="https://example.com/test.css?build=1" />'  # noqa
+    assert rendered == (
+        '<link rel="stylesheet" media="all" '
+        f'href="{settings.STATIC_URL}css/test.css" />\n'
+        '<link rel="stylesheet" media="all" '
+        f'href="{settings.STATIC_URL}css/test2.css" />'
     )
 
     template = from_string('{{ css("common_bundle", debug=False) }}')
@@ -207,8 +119,8 @@ def test_css_helper(getmtime, time):
 
     assert (
         rendered == '<link rel="stylesheet" media="all" '
-        'href="%scss/common_bundle-min.css?build=%s" />'
-        % (settings.STATIC_URL, BUILD_ID_CSS)
+        'href="%scss/common_bundle-min.css" />'
+        % (settings.STATIC_URL,)
     )
 
 
@@ -217,19 +129,14 @@ def test_css_helper(getmtime, time):
     MEDIA_URL='http://example.com/media/',
     MINIFY_BUNDLES=TEST_MINIFY_BUNDLES,
 )
-@mock.patch('olympia.lib.jingo_minify_helpers.time.time')
-@mock.patch('olympia.lib.jingo_minify_helpers.os.path.getmtime')
-def test_css(getmtime, time):
-    getmtime.return_value = 1
-    time.return_value = 1
-
+def test_css():
     template = from_string('{{ css("common", debug=True) }}')
     rendered = template.render()
 
     expected = '\n'.join(
         [
             '<link rel="stylesheet" media="all" '
-            'href="%s?build=1" />' % (settings.STATIC_URL + j)
+            'href="%s" />' % (settings.STATIC_URL + j)
             for j in settings.MINIFY_BUNDLES['css']['common']
         ]
     )
@@ -263,18 +170,13 @@ def test_compiled_css(open_mock, subprocess_mock, getmtime_mock):
 @override_settings(
     STATIC_URL='http://example.com/static/', MEDIA_URL='http://example.com/media/'
 )
-@mock.patch('olympia.lib.jingo_minify_helpers.time.time')
-@mock.patch('olympia.lib.jingo_minify_helpers.os.path.getmtime')
-def test_js(getmtime, time):
-    getmtime.return_value = 1
-    time.return_value = 1
-
+def test_js():
     template = from_string('{{ js("common", debug=True) }}')
     rendered = template.render()
 
     expected = '\n'.join(
         [
-            '<script src="%s?build=1"></script>' % (settings.STATIC_URL + j)
+            '<script src="%s"></script>' % (settings.STATIC_URL + j)
             for j in settings.MINIFY_BUNDLES['js']['common']
         ]
     )
