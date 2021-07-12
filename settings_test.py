@@ -36,6 +36,11 @@ INTERNAL_SITE_URL = 'http://testserver'
 STATIC_URL = '%s/static/' % CDN_HOST
 MEDIA_URL = '%s/user-media/' % CDN_HOST
 
+# Tests run with DEBUG=False but we don't want to have to run collectstatic
+# everytime, so reset STATICFILES_STORAGE to the default instead of
+# ManifestStaticFilesStorage
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+
 # Overrides whatever storage you might have put in local settings.
 DEFAULT_FILE_STORAGE = 'olympia.amo.utils.LocalFileStorage'
 
