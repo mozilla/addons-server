@@ -223,7 +223,7 @@ jinja2.bccache.Bucket class api.html
 jinja2.lexer.TokenStream.skip method extensions.html
 jinja2.clear_caches function api.html
 jinja2.runtime.Context.get_exported method api.html
-jinja2.contextfunction function api.html
+jinja2.pass_context function api.html
 escaped function templates.html
 jinja2.lexer.Token.test method extensions.html
 jinja2.lexer.TokenStream.eos attribute extensions.html

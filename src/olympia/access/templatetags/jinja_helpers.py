@@ -6,7 +6,7 @@ from .. import acl
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def check_ownership(
     context, obj, require_owner=False, require_author=False, ignore_disabled=True
 ):
@@ -20,6 +20,6 @@ def check_ownership(
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def action_allowed(context, permission):
     return acl.action_allowed(context['request'], permission)

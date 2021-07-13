@@ -56,7 +56,7 @@ def truncate(s, length=255, killwords=True, end='...'):
 
 @library.global_function
 @library.render_with('translations/trans-menu.html')
-@jinja2.contextfunction
+@jinja2.pass_context
 def l10n_menu(context, default_locale='en-us', remove_locale_url=''):
     """Generates the locale menu for zamboni l10n."""
     default_locale = default_locale.lower()

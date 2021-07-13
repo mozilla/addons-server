@@ -5,7 +5,7 @@ from django_jinja import library
 
 @library.global_function
 @library.render_with('addons/impala/listing/sorter.html')
-@jinja2.contextfunction
+@jinja2.pass_context
 def impala_addon_listing_header(
     context,
     url_base,

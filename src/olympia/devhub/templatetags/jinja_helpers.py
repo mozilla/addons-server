@@ -22,7 +22,7 @@ library.global_function(acl.check_addon_ownership)
 
 @library.global_function
 @library.render_with('devhub/addons/listing/items.html')
-@jinja2.contextfunction
+@jinja2.pass_context
 def dev_addon_listing_items(context, addons, src=None, notes=None):
     if notes is None:
         notes = {}
@@ -30,7 +30,7 @@ def dev_addon_listing_items(context, addons, src=None, notes=None):
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def dev_page_title(context, title=None, addon=None):
     """Wrapper for devhub page titles."""
     if addon:
@@ -42,7 +42,7 @@ def dev_page_title(context, title=None, addon=None):
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def docs_page_title(context, title=None):
     """Wrapper for docs page titles."""
     devhub = gettext('Add-on Documentation :: Developer Hub')

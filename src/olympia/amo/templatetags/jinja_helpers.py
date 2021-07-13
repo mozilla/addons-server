@@ -93,7 +93,7 @@ def url(viewname, *args, **kwargs):
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def drf_url(context, viewname, *args, **kwargs):
     """Helper for DjangoRestFramework's ``reverse`` in templates."""
     request = context.get('request')
@@ -174,7 +174,7 @@ def numberfmt(num, format=None):
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def page_title(context, title):
     title = smart_str(title)
     base_title = gettext('Add-ons for {0}').format(amo.FIREFOX.pretty)
@@ -249,7 +249,7 @@ def timeuntil(time):
 
 @library.global_function
 @library.render_with('amo/recaptcha.html')
-@jinja2.contextfunction
+@jinja2.pass_context
 def recaptcha(context, form):
     d = dict(context.items())
     d.update(form=form)
@@ -277,7 +277,7 @@ def loc(s):
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def remora_url(context, url, lang=None, app=None, prefix=''):
     """Wrapper for urlresolvers.remora_url"""
     if lang is None:
@@ -293,7 +293,7 @@ def remora_url(context, url, lang=None, app=None, prefix=''):
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def hasOneToOne(context, obj, attr):
     try:
         getattr(obj, attr)
