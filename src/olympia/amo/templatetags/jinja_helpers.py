@@ -263,7 +263,7 @@ def is_choice_field(value):
     except AttributeError:
         pass
 
-    
+
 @library.global_function
 @jinja2.evalcontextfunction
 def attrs(ctx, *args, **kw):
