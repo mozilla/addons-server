@@ -232,6 +232,7 @@ def field(field, label=None, **attrs):
         % (field.errors, field.label_tag(), field.as_widget(attrs=attrs))
     )
 
+
 @library.filter
 def timesince(time):
     if not time:
@@ -262,6 +263,7 @@ def is_choice_field(value):
     except AttributeError:
         pass
 
+@library.global_function
 @jinja2.evalcontextfunction
 def attrs(ctx, *args, **kw):
     return jinja2.filters.do_xmlattr(ctx, dict(*args, **kw))
