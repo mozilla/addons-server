@@ -646,6 +646,8 @@ jobs:
 
   release-tag:
     <<: *defaults-release
+    environment:
+      DJANGO_VERSION: "django32"
     steps:
       - checkout
       - make_release:
