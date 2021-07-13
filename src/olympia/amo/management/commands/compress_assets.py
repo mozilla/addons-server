@@ -1,14 +1,10 @@
 import hashlib
 import os
-import re
 import subprocess
-import time
-import uuid
 
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.contrib.staticfiles.finders import find as find_static_path
-from django.utils.encoding import force_bytes
 
 from olympia.lib.jingo_minify_helpers import ensure_path_exists
 
@@ -37,7 +33,6 @@ class Command(BaseCommand):
     requires_system_checks = False
 
     checked_hash = {}
-    bundle_hashes = {}
 
     missing_files = 0
     minify_skipped = 0
@@ -49,21 +44,6 @@ class Command(BaseCommand):
             action='store_true',
             help='Ignores modified/created dates and forces compression.',
         )
-
-    def generate_build_id(self):
-        return uuid.uuid4().hex[:8]
-
-    def update_hashes(self):
-        # Adds a time based hash on to the build id.
-        self.build_id = '%s-%s' % (self.generate_build_id(), hex(int(time.time()))[2:])
-
-        build_id_file = os.path.realpath(os.path.join(settings.ROOT, 'build.py'))
-
-        with open(build_id_file, 'w') as f:
-            f.write('BUILD_ID_CSS = "%s"\n' % self.build_id)
-            f.write('BUILD_ID_JS = "%s"\n' % self.build_id)
-            f.write('BUILD_ID_IMG = "%s"\n' % self.build_id)
-            f.write('BUNDLE_HASHES = %s\n' % self.bundle_hashes)
 
     def handle(self, **options):
         self.force_compress = options.get('force', False)
@@ -100,11 +80,14 @@ class Command(BaseCommand):
                 ensure_path_exists(compressed_file)
 
                 files_all = []
-                for fn in files:
-                    processed = self._preprocess_file(fn)
+                contents = []
+                for filename in files:
+                    processed = self._preprocess_file(filename)
                     # If the file can't be processed, we skip it.
                     if processed is not None:
                         files_all.append(processed)
+                    with open(processed) as f:
+                        contents.append(f.read())
 
                 # Concat all the files.
                 tmp_concatted = '%s.tmp' % concatted_file
@@ -113,16 +96,8 @@ class Command(BaseCommand):
                         'No input files specified in '
                         'MINIFY_BUNDLES["%s"]["%s"] in settings.py!' % (ftype, name)
                     )
-                run_command(
-                    'cat {files} > {tmp}'.format(
-                        files=' '.join(files_all), tmp=tmp_concatted
-                    )
-                )
-
-                # Cache bust individual images in the CSS.
-                if ftype == 'css':
-                    bundle_hash = self._cachebust(tmp_concatted, name)
-                    self.bundle_hashes['%s:%s' % (ftype, name)] = bundle_hash
+                with open(tmp_concatted, 'w') as f:
+                    f.write(''.join(contents))
 
                 # Compresses the concatenations.
                 is_changed = self._is_changed(concatted_file)
@@ -134,9 +109,6 @@ class Command(BaseCommand):
                         'File unchanged, skipping minification of %s' % (concatted_file)
                     )
                     self.minify_skipped += 1
-
-        # Write out the hashes
-        self.update_hashes()
 
         if self.minify_skipped:
             print(
@@ -179,37 +151,6 @@ class Command(BaseCommand):
             os.remove(concatted_file)
         os.rename(tmp_concatted, concatted_file)
 
-    def _cachebust(self, css_file, bundle_name):
-        """Cache bust images.  Return a new bundle hash."""
-        self.stdout.write(
-            'Cache busting images in %s\n' % re.sub('.tmp$', '', css_file)
-        )
-
-        if not os.path.exists(css_file):
-            return
-
-        css_content = ''
-        with open(css_file, 'r') as css_in:
-            css_content = css_in.read()
-
-        def _parse(url):
-            return self._cachebust_regex(url, css_file)
-
-        css_parsed = re.sub(r'url\(([^)]*?)\)', _parse, css_content)
-
-        with open(css_file, 'w') as css_out:
-            css_out.write(css_parsed)
-
-        # Return bundle hash for cachebusting JS/CSS files.
-        file_hash = hashlib.md5(force_bytes(css_parsed)).hexdigest()[0:7]
-        self.checked_hash[css_file] = file_hash
-
-        if self.missing_files:
-            self.stdout.write(' - Error finding %s images\n' % (self.missing_files,))
-            self.missing_files = 0
-
-        return file_hash
-
     def _minify(self, ftype, file_in, file_out):
         """Run the proper minifier on the file."""
         if ftype == 'js' and hasattr(settings, 'JS_MINIFIER_BIN'):
@@ -244,14 +185,3 @@ class Command(BaseCommand):
 
         self.checked_hash[url] = file_hash
         return file_hash
-
-    def _cachebust_regex(self, img, parent):
-        """Run over the regex; img is the structural regex object."""
-        url = img.group(1).strip('"\'')
-        if url.startswith('data:') or url.startswith('http'):
-            return 'url(%s)' % url
-
-        url = url.split('?')[0]
-        full_url = os.path.join(settings.ROOT, os.path.dirname(parent), url)
-
-        return 'url(%s?%s)' % (url, self._file_hash(full_url))

@@ -8,6 +8,7 @@ from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.forms import CheckboxInput
 from django.template import defaultfilters, Library, loader
+from django.templatetags.static import static
 from django.urls import reverse
 from django.utils.encoding import smart_str
 from django.utils.html import (
@@ -40,6 +41,7 @@ library.filter(utils.epoch)
 library.filter(utils.isotime)
 library.global_function(dict)
 library.global_function(utils.randslice)
+library.global_function(static)
 
 
 @library.filter
@@ -230,16 +232,6 @@ def field(field, label=None, **attrs):
         % (field.errors, field.label_tag(), field.as_widget(attrs=attrs))
     )
 
-
-@library.global_function
-@library.render_with('amo/category-arrow.html')
-@jinja2.pass_context
-def category_arrow(context, key, prefix):
-    d = dict(context.items())
-    d.update(key=key, prefix=prefix)
-    return d
-
-
 @library.filter
 def timesince(time):
     if not time:
@@ -270,37 +262,6 @@ def is_choice_field(value):
     except AttributeError:
         pass
 
-
-@library.global_function
-@jinja2.pass_context
-def cache_buster(context, url):
-    if 'BUILD_ID' in context:
-        build = context['BUILD_ID']
-    else:
-        if url.endswith('.js'):
-            build = context['BUILD_ID_JS']
-        elif url.endswith('.css'):
-            build = context['BUILD_ID_CSS']
-        else:
-            build = context['BUILD_ID_IMG']
-    return utils.urlparams(url, b=build)
-
-
-@library.global_function
-@jinja2.pass_context
-def media(context, url):
-    """Get a MEDIA_URL link with a cache buster querystring."""
-    return urljoin(settings.MEDIA_URL, cache_buster(context, url))
-
-
-@library.global_function
-@jinja2.pass_context
-def static(context, url):
-    """Get a STATIC_URL link with a cache buster querystring."""
-    return urljoin(settings.STATIC_URL, cache_buster(context, url))
-
-
-@library.global_function
 @jinja2.evalcontextfunction
 def attrs(ctx, *args, **kw):
     return jinja2.filters.do_xmlattr(ctx, dict(*args, **kw))
@@ -343,18 +304,6 @@ def no_results_amo():
     # This prints a "No results found" message. That's all. Carry on.
     t = loader.get_template('amo/no_results.html').render()
     return jinja2.Markup(t)
-
-
-def _relative_to_absolute(url):
-    """
-    Prepends relative URLs with STATIC_URL to turn those inline-able.
-    This method is intended to be used as a ``replace`` parameter of
-    ``re.sub``.
-    """
-    url = url.group(1).strip('"\'')
-    if not url.startswith(('data:', 'http:', 'https:', '//')):
-        url = url.replace('../../', settings.STATIC_URL)
-    return 'url(%s)' % url
 
 
 # A (temporary?) copy of this is in services/utils.py. See bug 1055654.
@@ -424,7 +373,7 @@ def css(bundle, media=False, debug=None):
     """
     urls = get_css_urls(bundle, debug)
     if not media:
-        media = getattr(settings, 'CSS_MEDIA_DEFAULT', 'screen,projection,tv')
+        media = 'all'
 
     return _build_html(urls, '<link rel="stylesheet" media="%s" href="%%s" />' % media)
 

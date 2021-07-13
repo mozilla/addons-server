@@ -23,8 +23,6 @@ from django.utils.encoding import force_str
 from django.utils.jslex import JsLexer
 from django.utils.translation import gettext
 
-import rdflib
-
 import olympia.core.logger
 
 from olympia import amo
@@ -149,15 +147,8 @@ class Extractor(object):
             data = ManifestJSONExtractor(zip_file, certinfo=certificate_info).parse(
                 minimal=minimal
             )
-        elif zip_file.exists('install.rdf'):
-            # Note that RDFExtractor is a misnomer, it receives the zip_file
-            # object because it might need to read other files than just
-            # the rdf to deal with dictionaries, complete themes etc.
-            data = RDFExtractor(zip_file, certinfo=certificate_info).parse(
-                minimal=minimal
-            )
         else:
-            raise NoManifestFound('No install.rdf or manifest.json found')
+            raise NoManifestFound('No manifest.json found')
         return data
 
 
@@ -183,171 +174,6 @@ def get_simple_version(version_string):
     if not version_string:
         version_string = ''
     return VersionString(re.sub('[<=>]', '', version_string))
-
-
-class RDFExtractor(object):
-    """Extract add-on info from an install.rdf."""
-
-    # https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#type
-    TYPES = {
-        '2': amo.ADDON_EXTENSION,
-        '4': amo.ADDON_EXTENSION,  # Really a XUL theme but now unsupported.
-        '8': amo.ADDON_LPAPP,
-        '64': amo.ADDON_DICT,
-        '128': amo.ADDON_EXTENSION,  # Telemetry Experiment
-        '256': amo.ADDON_EXTENSION,  # WebExtension Experiment
-    }
-    # Langpacks and dictionaries, if the type is properly set, are always
-    # considered restartless.
-    ALWAYS_RESTARTLESS_TYPES = ('8', '64', '128', '256')
-
-    # Telemetry and Web Extension Experiments types.
-    # See: bug 1220097 and https://github.com/mozilla/addons-server/issues/3315
-    EXPERIMENT_TYPES = ('128', '256')
-    manifest = 'urn:mozilla:install-manifest'
-    is_experiment = False  # Experiment extensions: bug 1220097.
-
-    def __init__(self, zip_file, certinfo=None):
-        self.zip_file = zip_file
-        self.certinfo = certinfo
-        self.rdf = rdflib.Graph().parse(data=force_str(zip_file.read('install.rdf')))
-        self.package_type = None
-        self.find_root()  # Will set self.package_type
-
-    def parse(self, minimal=False):
-        data = {
-            'guid': self.find('id'),
-            'type': self.find_type(),
-            'version': self.find('version'),
-            'is_webextension': False,
-            'name': self.find('name'),
-            'summary': self.find('description'),
-        }
-
-        # Populate certificate information (e.g signed by mozilla or not)
-        # early on to be able to verify compatibility based on it
-        if self.certinfo is not None:
-            data.update(self.certinfo.parse())
-
-        if not minimal:
-            data.update(
-                {
-                    'homepage': self.find('homepageURL'),
-                    'is_restart_required': (
-                        self.find('bootstrap') != 'true'
-                        and self.find('type') not in self.ALWAYS_RESTARTLESS_TYPES
-                    ),
-                    'apps': self.apps(),
-                }
-            )
-
-            # We used to simply use the value of 'strictCompatibility' in the
-            # rdf to set strict_compatibility, but now we enable it or not for
-            # all legacy add-ons depending on their type. This will prevent
-            # them from being marked as compatible with Firefox 57.
-            # This is not true for legacy add-ons already signed by Mozilla.
-            # For these add-ons we just re-use to whatever
-            # `strictCompatibility` is set.
-            if data['type'] not in amo.NO_COMPAT:
-                if self.certinfo and self.certinfo.is_mozilla_signed_ou:
-                    data['strict_compatibility'] = (
-                        self.find('strictCompatibility') == 'true'
-                    )
-                else:
-                    data['strict_compatibility'] = True
-            else:
-                data['strict_compatibility'] = False
-
-            # `experiment` is detected in in `find_type`.
-            data['is_experiment'] = self.is_experiment
-        return data
-
-    def find_type(self):
-        # If the extension declares a type that we know about, use
-        # that.
-        # https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#type
-        self.package_type = self.find('type')
-        if self.package_type and self.package_type in self.TYPES:
-            # If it's an experiment, we need to store that for later.
-            self.is_experiment = self.package_type in self.EXPERIMENT_TYPES
-            return self.TYPES[self.package_type]
-
-        # Look for dictionaries.
-        is_dictionary = self.zip_file.exists('dictionaries/') and any(
-            fname.endswith('.dic') for fname in self.zip_file.namelist()
-        )
-        if is_dictionary:
-            return amo.ADDON_DICT
-
-        # Consult <em:type>.
-        return self.TYPES.get(self.package_type, amo.ADDON_EXTENSION)
-
-    def uri(self, name):
-        namespace = 'http://www.mozilla.org/2004/em-rdf'
-        return rdflib.term.URIRef('%s#%s' % (namespace, name))
-
-    def find_root(self):
-        # If the install-manifest root is well-defined, it'll show up when we
-        # search for triples with it.  If not, we have to find the context that
-        # defines the manifest and use that as our root.
-        # http://www.w3.org/TR/rdf-concepts/#section-triples
-        manifest = rdflib.term.URIRef(self.manifest)
-        if list(self.rdf.triples((manifest, None, None))):
-            self.root = manifest
-        else:
-            self.root = next(self.rdf.subjects(None, self.manifest))
-
-    def find(self, name, ctx=None):
-        """Like $() for install.rdf, where name is the selector."""
-        if ctx is None:
-            ctx = self.root
-        # predicate it maps to <em:{name}>.
-        match = list(self.rdf.objects(ctx, predicate=self.uri(name)))
-        # These come back as rdflib.Literal, which subclasses unicode.
-        if match:
-            return str(match[0])
-
-    def apps(self):
-        rv = []
-        seen_apps = set()
-        for ctx in self.rdf.objects(None, self.uri('targetApplication')):
-            app = amo.APP_GUIDS.get(self.find('id', ctx))
-            if not app:
-                continue
-            if app.guid not in amo.APP_GUIDS or app.id in seen_apps:
-                continue
-            if app not in amo.APP_USAGE:
-                # Ignore non-firefoxes compatibility.
-                continue
-            seen_apps.add(app.id)
-
-            try:
-                min_appver_text = self.find('minVersion', ctx)
-                max_appver_text = self.find('maxVersion', ctx)
-
-                # Rewrite '*' as '56.*' in legacy extensions, since they
-                # are not compatible with higher versions.
-                # We don't do that for legacy add-ons that are already
-                # signed by Mozilla to allow them for Firefox 57 onwards.
-                needs_max_56_star = (
-                    app.id in (amo.FIREFOX.id, amo.ANDROID.id)
-                    and max_appver_text == '*'
-                    and not (self.certinfo and self.certinfo.is_mozilla_signed_ou)
-                )
-
-                if needs_max_56_star:
-                    max_appver_text = '56.*'
-
-                min_appver, max_appver = get_appversions(
-                    app, min_appver_text, max_appver_text
-                )
-            except AppVersion.DoesNotExist:
-                continue
-            rv.append(
-                Extractor.App(appdata=app, id=app.id, min=min_appver, max=max_appver)
-            )
-
-        return rv
 
 
 class ManifestJSONExtractor(object):
@@ -941,7 +767,7 @@ def parse_xpi(xpi, addon=None, minimal=False, user=None):
     Will raise ValidationError if something went wrong while parsing.
 
     If minimal is True, it avoids validation as much as possible (still raising
-    ValidationError for hard errors like I/O or invalid json/rdf) and returns
+    ValidationError for hard errors like I/O or invalid json) and returns
     only the minimal set of properties needed to decide what to do with the
     add-on: guid, version and is_webextension.
     """
@@ -1075,7 +901,7 @@ def parse_addon(pkg, addon=None, user=None, minimal=False):
 
     If `minimal` parameter is True, it avoids validation as much as possible
     (still raising ValidationError for hard errors like I/O or invalid
-    json/rdf) and returns only the minimal set of properties needed to decide
+    json) and returns only the minimal set of properties needed to decide
     what to do with the add-on (the exact set depends on the add-on type, but
     it should always contain at least guid, type, version and is_webextension.
     """
@@ -1124,7 +950,7 @@ def update_version_number(file_obj, new_version_number):
     """Update the manifest to have the new version number."""
     # Create a new xpi with the updated version.
     updated = '{0}.updated_version_number'.format(file_obj.file_path)
-    # Copy the original XPI, with the updated install.rdf or package.json.
+    # Copy the original XPI, with the updated manifest.json.
     with zipfile.ZipFile(file_obj.file_path, 'r') as source:
         file_list = source.infolist()
         with zipfile.ZipFile(updated, 'w', zipfile.ZIP_DEFLATED) as dest:

@@ -1,8 +1,5 @@
 from django.utils.translation import gettext
 
-from olympia import amo
-from olympia.files.utils import RDFExtractor, SafeZip, get_file
-
 
 def insert_validation_message(
     results,
@@ -33,54 +30,11 @@ def insert_validation_message(
     results['success'] = not results['errors']
 
 
-def annotate_legacy_addon_restrictions(path, results, parsed_data, error=True):
-    """
-    Annotate validation results to restrict uploads of legacy
-    (non-webextension) add-ons.
-    """
-    # We can be broad here. Search plugins are not validated through this
-    # path and as of right now (Jan 2019) there aren't any legacy type
-    # add-ons allowed to submit anymore.
-    msg = gettext('Legacy extensions are no longer supported in Firefox.')
-
-    description = gettext(
-        'Add-ons for Thunderbird and SeaMonkey are now listed and '
-        'maintained on addons.thunderbird.net. You can use the same '
-        'account to update your add-ons on the new site.'
-    )
-
-    # `parsed_data` only contains the most minimal amount of data because
-    # we aren't in the right context. Let's explicitly fetch the add-ons
-    # apps so that we can adjust the messaging to the user.
-    xpi = get_file(path)
-    extractor = RDFExtractor(SafeZip(xpi))
-
-    targets_thunderbird_or_seamonkey = False
-    thunderbird_or_seamonkey = {amo.THUNDERBIRD.guid, amo.SEAMONKEY.guid}
-
-    for ctx in extractor.rdf.objects(None, extractor.uri('targetApplication')):
-        if extractor.find('id', ctx) in thunderbird_or_seamonkey:
-            targets_thunderbird_or_seamonkey = True
-
-    description = description if targets_thunderbird_or_seamonkey else []
-
-    insert_validation_message(
-        results,
-        type_='error' if error else 'warning',
-        message=msg,
-        description=description,
-        msg_id='legacy_addons_unsupported',
-    )
-
-
 def annotate_search_plugin_restriction(results, file_path, channel):
     """
     Annotate validation results to restrict uploads of OpenSearch plugins
 
     https://github.com/mozilla/addons-server/issues/12462
-
-    Once this has settled for a while we may want to merge this with
-    `annotate_legacy_addon_restrictions`
     """
     if not file_path.endswith('.xml'):
         return

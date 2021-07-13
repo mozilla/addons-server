@@ -2408,8 +2408,6 @@ class TestAddonFromUpload(UploadTest):
     @classmethod
     def setUpTestData(self):
         versions = {
-            '3.0',
-            '3.6.*',
             amo.DEFAULT_WEBEXT_MIN_VERSION,
             amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
             amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
@@ -2429,13 +2427,16 @@ class TestAddonFromUpload(UploadTest):
             return Extractor.App(
                 appdata=application,
                 id=application.id,
-                min=AppVersion.objects.get(application=application.id, version='3.0'),
-                max=AppVersion.objects.get(application=application.id, version='3.6.*'),
+                min=AppVersion.objects.get(
+                    application=application.id,
+                    version=amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
+                ),
+                max=AppVersion.objects.get(application=application.id, version='*'),
             )
 
         self.dummy_parsed_data = {
-            'guid': 'guid@xpi',
-            'version': '0.1',
+            'guid': '@webextension-guid',
+            'version': '0.0.1',
             'apps': [_app(amo.FIREFOX)],
         }
 
@@ -2445,56 +2446,58 @@ class TestAddonFromUpload(UploadTest):
         )
 
     def test_denied_guid(self):
-        """Add-ons that have been disabled by Mozilla are added toDeniedGuid
+        """Add-ons that have been disabled by Mozilla are added to DeniedGuid
         in order to prevent resubmission after deletion"""
-        DeniedGuid.objects.create(guid='guid@xpi')
+        DeniedGuid.objects.create(guid='@webextension-guid')
         with self.assertRaises(forms.ValidationError) as e:
-            parse_addon(self.get_upload('extension.xpi'), user=self.user)
+            parse_addon(self.get_upload('webextension.xpi'), user=self.user)
         assert e.exception.messages == ['Duplicate add-on ID found.']
 
     def test_existing_guid(self):
         # Upload addon so we can delete it.
-        self.upload = self.get_upload('extension.xpi')
+        self.upload = self.get_upload('webextension.xpi')
         parsed_data = parse_addon(self.upload, user=self.user)
         deleted = Addon.from_upload(
             self.upload, [self.selected_app], parsed_data=parsed_data
         )
         deleted.update(status=amo.STATUS_APPROVED)
         deleted.delete()
-        assert deleted.guid == 'guid@xpi'
+        assert deleted.guid == '@webextension-guid'
 
         # Now upload the same add-on again (so same guid).
         with self.assertRaises(forms.ValidationError) as e:
-            self.upload = self.get_upload('extension.xpi')
+            self.upload = self.get_upload('webextension.xpi')
             parse_addon(self.upload, user=self.user)
         assert e.exception.messages == ['Duplicate add-on ID found.']
 
     def test_existing_guid_same_author(self):
         # Upload addon so we can delete it.
-        self.upload = self.get_upload('extension.xpi')
+        self.upload = self.get_upload('webextension.xpi')
         parsed_data = parse_addon(self.upload, user=self.user)
         deleted = Addon.from_upload(
             self.upload, [self.selected_app], parsed_data=parsed_data
         )
-        assert AddonGUID.objects.filter(guid='guid@xpi').count() == 1
+        assert AddonGUID.objects.filter(guid='@webextension-guid').count() == 1
         # Claim the add-on.
         AddonUser(addon=deleted, user=self.user).save()
         deleted.update(status=amo.STATUS_APPROVED)
         deleted.delete()
-        assert deleted.guid == 'guid@xpi'
+        assert deleted.guid == '@webextension-guid'
 
         # Now upload the same add-on again (so same guid), checking no
         # validationError is raised this time.
-        self.upload = self.get_upload('extension.xpi')
+        self.upload = self.get_upload('webextension.xpi')
         parsed_data = parse_addon(self.upload, user=self.user)
         addon = Addon.from_upload(
             self.upload, [self.selected_app], parsed_data=parsed_data
         )
         deleted.reload()
-        assert addon.guid == 'guid@xpi'
+        assert addon.guid == '@webextension-guid'
         assert deleted.guid == 'guid-reused-by-pk-%s' % addon.pk
-        assert AddonGUID.objects.filter(guid='guid@xpi').count() == 2
-        assert AddonGUID.objects.filter(guid='guid@xpi').first().addon == (deleted)
+        assert AddonGUID.objects.filter(guid='@webextension-guid').count() == 2
+        assert AddonGUID.objects.filter(guid='@webextension-guid').first().addon == (
+            deleted
+        )
 
     def test_old_soft_deleted_addons_and_upload_non_extension(self):
         """We used to just null out GUIDs on soft deleted addons. This test
@@ -2503,12 +2506,12 @@ class TestAddonFromUpload(UploadTest):
         See https://github.com/mozilla/addons-server/issues/1659."""
         # Upload a couple of addons so we can pretend they were soft deleted.
         deleted1 = Addon.from_upload(
-            self.get_upload('extension.xpi'),
+            self.get_upload('webextension.xpi'),
             [self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
         deleted2 = Addon.from_upload(
-            self.get_upload('alt-rdf.xpi'),
+            self.get_upload('webextension_no_id.xpi'),
             [self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
@@ -2520,44 +2523,36 @@ class TestAddonFromUpload(UploadTest):
         deleted2.update(status=amo.STATUS_APPROVED, guid=None)
 
     def test_xpi_attributes(self):
-        self.upload = self.get_upload('extension.xpi')
+        self.upload = self.get_upload('webextension.xpi')
         parsed_data = parse_addon(self.upload, user=self.user)
         addon = Addon.from_upload(
             self.upload, [self.selected_app], parsed_data=parsed_data
         )
-        assert addon.name == 'xpi name'
-        assert addon.guid == 'guid@xpi'
+        assert addon.name == 'My WebExtension Addon'
+        assert addon.guid == '@webextension-guid'
         assert addon.type == amo.ADDON_EXTENSION
         assert addon.status == amo.STATUS_NULL
-        assert addon.homepage == 'http://homepage.com'
-        assert addon.summary == 'xpi description'
+        assert addon.homepage is None
+        assert addon.summary == 'just a test addon with the manifest.json format'
         assert addon.description is None
-        assert addon.slug == 'xpi-name'
+        assert addon.slug == 'my-webextension-addon'
 
     def test_xpi_version(self):
         addon = Addon.from_upload(
-            self.get_upload('extension.xpi'),
+            self.get_upload('webextension.xpi'),
             [self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
         version = addon.versions.get()
-        assert version.version == '0.1'
+        assert version.version == '0.0.1'
         assert len(version.compatible_apps.keys()) == 1
         assert list(version.compatible_apps.keys())[0].id == self.selected_app
         assert version.files.get().status == amo.STATUS_AWAITING_REVIEW
 
-    def test_no_homepage(self):
-        addon = Addon.from_upload(
-            self.get_upload('extension-no-homepage.xpi'),
-            [self.selected_app],
-            parsed_data=self.dummy_parsed_data,
-        )
-        assert addon.homepage is None
-
     def test_default_locale(self):
         # Make sure default_locale follows the active translation.
         addon = Addon.from_upload(
-            self.get_upload('extension.xpi'),
+            self.get_upload('webextension.xpi'),
             [self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
@@ -2565,14 +2560,14 @@ class TestAddonFromUpload(UploadTest):
 
         translation.activate('es')
         addon = Addon.from_upload(
-            self.get_upload('extension.xpi'),
+            self.get_upload('webextension.xpi'),
             [self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
         assert addon.default_locale == 'es'
 
     def test_validation_completes(self):
-        upload = self.get_upload('extension.xpi')
+        upload = self.get_upload('webextension.xpi')
         assert not upload.validation_timeout
         addon = Addon.from_upload(
             upload, [self.selected_app], parsed_data=self.dummy_parsed_data
@@ -2581,7 +2576,7 @@ class TestAddonFromUpload(UploadTest):
         assert not addon.auto_approval_disabled
 
     def test_validation_timeout(self):
-        upload = self.get_upload('extension.xpi')
+        upload = self.get_upload('webextension.xpi')
         validation = json.loads(upload.validation)
         timeout_message = {
             'id': ['validator', 'unexpected_exception', 'validation_timeout'],
@@ -2596,7 +2591,7 @@ class TestAddonFromUpload(UploadTest):
         assert not addon.auto_approval_disabled
 
     def test_mozilla_signed(self):
-        upload = self.get_upload('extension.xpi')
+        upload = self.get_upload('webextension.xpi')
         assert not upload.validation_timeout
         self.dummy_parsed_data['is_mozilla_signed_extension'] = True
         addon = Addon.from_upload(
@@ -2606,7 +2601,7 @@ class TestAddonFromUpload(UploadTest):
         assert addon.auto_approval_disabled
 
     def test_mozilla_signed_langpack(self):
-        upload = self.get_upload('extension.xpi')
+        upload = self.get_upload('webextension.xpi')
         assert not upload.validation_timeout
         self.dummy_parsed_data['is_mozilla_signed_extension'] = True
         self.dummy_parsed_data['type'] = amo.ADDON_LPAPP

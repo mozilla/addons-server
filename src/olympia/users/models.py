@@ -20,6 +20,7 @@ from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 from django.db import models
 from django.template import loader
+from django.templatetags.static import static
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.crypto import salted_hmac
@@ -363,7 +364,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         from olympia.amo.templatetags.jinja_helpers import user_media_url
 
         if not self.picture_type:
-            return settings.STATIC_URL + '/img/zamboni/anon_user.png'
+            return static('img/zamboni/anon_user.png')
         else:
             split_id = re.match(r'((\d*?)(\d{0,3}?))\d{1,3}$', str(self.id))
             modified = int(time.mktime(self.modified.timetuple()))

@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-24 14:01+0000\n"
-"PO-Revision-Date: 2021-06-25 20:10+0000\n"
+"PO-Revision-Date: 2021-07-11 10:01+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -486,7 +486,7 @@ msgstr ""
 
 #, python-format
 msgid "Addon with GUID %(guid)s does not exist"
-msgstr ""
+msgstr "%(guid)s GUID'li eklenti mevcut değil"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr "Minimum veya maksimum sürüm değiştiği için güncellenecek engeller farklıdır."
@@ -505,13 +505,13 @@ msgid "Review Listed"
 msgstr "Listelenen inceleme"
 
 msgid "Review Unlisted"
-msgstr ""
+msgstr "İnceleme listeden kaldırıldı"
 
 msgid "This block was imported from a regex based legacy Block."
 msgstr "Bu engel, regex temelli eski engelden içe aktarıldı."
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
-msgstr ""
+msgstr "Yapılan değişiklikler eski engelleme listesinde GÜNCELLENMEYECEKTİR: kinto admin webui aracılığıyla manuel değişiklik yapmanız gerekir."
 
 # 78%
 # 100%
@@ -524,7 +524,7 @@ msgstr "Ana sayfa"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr ""
+msgstr "%(count)s eklenti GUID'si %(v_min)s ila %(v_max)s için zaten engellendi"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
@@ -1629,7 +1629,7 @@ msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on ad
 msgstr "Thunderbird ve SeaMonkey eklentileri artık addons.thunderbird.net adresinde listeleniyor. Mevcut hesabınızı kullanarak eklentilerinizi yeni sitede güncelleyebilirsiniz."
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
-msgstr ""
+msgstr "Open Search eklentileri {blog_link_open}artık AMO'da desteklenmiyor{blog_link_close}. Bunun yerine {doc_link_open}arama uzantısı{doc_link_close} oluşturabilirsiniz."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Bu kısa ad zaten kullanımda. Lütfen başka bir kısa ad seçin."
@@ -1678,7 +1678,7 @@ msgid "URL domain must be one of [%s], or a subdomain."
 msgstr "URL alan adı [%s] seçeneklerinden birisi veya alt alan adı olmalıdır."
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr ""
+msgstr "GitHub sponsorlarının URL yolu /sponsors/ içermelidir."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -2280,7 +2280,7 @@ msgid "Default Locale"
 msgstr "Varsayılan dil"
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Eklentinizle ilgili bilgiler, dile özel bir çeviriyle geçersiz kılmadığınız sürece bu dilde görüntülenir. Yalnızca listelenen eklentiler için geçerlidir."
 
 msgid "Homepage"
 msgstr "Ana Sayfa"
@@ -4201,7 +4201,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Save complete pages—or just portions—as a single HTML file."
-msgstr ""
+msgstr "Tüm sayfaları veya yalnızca belli bir bölümlerini tek bir HTML dosyası olarak kaydedin."
 
 #. editorial content for the discovery pane.
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
@@ -4359,7 +4359,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Tabs and bookmarks neatly organized in a Firefox side view."
-msgstr ""
+msgstr "Firefox’un yan tarafında temiz bir şekilde düzenlenmiş sekmeler ve yer imleri."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4379,7 +4379,7 @@ msgstr "Her zaman istediğiniz, genişliğini ve rengini değiştirebileceğiniz
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
-msgstr ""
+msgstr "Sekmeleri kaydedin ve geri yükleyin. Otomatik kaydetme ve bulutla eşitleme özelliklerini içerir."
 
 #. editorial content for the discovery pane.
 msgid "Goodbye, annoying cookie warnings!"
@@ -4411,7 +4411,7 @@ msgstr "Hava durumunu doğrudan Firefox'tan öğrenin."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
-msgstr ""
+msgstr "Çalışma aralıklarını gösteren bir tarayıcı saati ile zamanınızı daha iyi yönetin."
 
 #. editorial content for the primary hero shelves.
 msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
@@ -4449,7 +4449,7 @@ msgstr "Tarayıcı uzantılarının ötesinde gizlilik"
 
 #. editorial content for the secondary hero shelves.
 msgid "Media enhancers for Firefox"
-msgstr ""
+msgstr "Firefox için medya geliştiricileri"
 
 #. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
@@ -5333,7 +5333,7 @@ msgid "Back to review"
 msgstr "İncelemeye dön"
 
 msgid "Content Review – Add-ons for Firefox"
-msgstr ""
+msgstr "İçerik İnceleme – Firefox Eklentileri"
 
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
 msgstr "Otomatik Onaylanmış Eklentiler - Firefox Eklentileri"

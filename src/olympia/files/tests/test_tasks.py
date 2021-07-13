@@ -55,24 +55,13 @@ class TestRepackFileUpload(AppVersionsMixin, UploadTest, TestCase):
         with zipfile.ZipFile(upload.path) as z:
             contents = sorted(z.namelist())
             assert contents == [
-                'chrome.manifest',
-                'chrome/',
-                'chrome/content/',
-                'chrome/content/ff-overlay.js',
-                'chrome/content/ff-overlay.xul',
-                'chrome/content/overlay.js',
-                'chrome/locale/',
-                'chrome/locale/en-US/',
-                'chrome/locale/en-US/overlay.dtd',
-                'chrome/locale/en-US/overlay.properties',
-                'chrome/skin/',
-                'chrome/skin/overlay.css',
-                'install.rdf',
+                'index.js',
+                'manifest.json',
                 '삮',
             ]
         # Spot-check an individual file.
-        info = z.getinfo('install.rdf')
-        assert info.file_size == 717
+        info = z.getinfo('manifest.json')
+        assert info.file_size == 240
         assert info.compress_size < info.file_size
         assert info.compress_type == zipfile.ZIP_DEFLATED
         # Check we cleaned up after ourselves: we shouldn't have left anything

@@ -882,7 +882,7 @@ def create_default_webext_appversion():
         amo.DEFAULT_WEBEXT_MAX_VERSION,
     }
     for version in versions:
-        AppVersion.objects.create(application=amo.FIREFOX.id, version=version)
+        AppVersion.objects.get_or_create(application=amo.FIREFOX.id, version=version)
 
     versions = {
         amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
@@ -890,7 +890,7 @@ def create_default_webext_appversion():
         amo.DEFAULT_WEBEXT_MAX_VERSION,
     }
     for version in versions:
-        AppVersion.objects.create(application=amo.ANDROID.id, version=version)
+        AppVersion.objects.get_or_create(application=amo.ANDROID.id, version=version)
 
 
 def version_factory(file_kw=None, **kw):

@@ -39,20 +39,14 @@ ALLOWED_HOSTS = [
 # This variable should only be set to `True` for local env and internal hosts.
 INTERNAL_ROUTES_ALLOWED = env('INTERNAL_ROUTES_ALLOWED', default=False)
 
-# jingo-minify settings
-CACHEBUST_IMGS = True
 try:
-    # If we have build ids available, we'll grab them here and add them to our
-    # CACHE_KEY_PREFIX. This will let us not have to flush memcache during
-    # updates and it will let us preload data into it before a production push.
-    from build import BUILD_ID_CSS, BUILD_ID_JS
-
-    build_id = '%s%s' % (BUILD_ID_CSS[:2], BUILD_ID_JS[:2])
+    # If we have a build id (it should be generated in Dockerfile.deploy),
+    # we'll grab it here and add it to our CACHE_KEY_PREFIX. This will let us
+    # not have to flush memcache during updates and it will let us preload
+    # data into it before a production push.
+    from build import BUILD_ID
 except ImportError:
-    build_id = ''
-
-# jingo-minify: Style sheet media attribute default
-CSS_MEDIA_DEFAULT = 'all'
+    BUILD_ID = ''
 
 # Make filepaths relative to the root of olympia.
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -345,7 +339,6 @@ TEMPLATES = [
                 'olympia.amo.context_processors.i18n',
                 'olympia.amo.context_processors.global_settings',
                 'olympia.amo.context_processors.static_url',
-                'olympia.lib.jingo_minify_helpers.build_ids',
             ),
             'extensions': (
                 'jinja2.ext.autoescape',
@@ -921,7 +914,7 @@ MINIFY_BUNDLES = {
 
 # Prefix for cache keys (will prevent collisions when running parallel copies)
 # This value is being used by `conf/settings/{dev,stage,prod}.py
-CACHE_KEY_PREFIX = 'amo:%s:' % build_id
+CACHE_KEY_PREFIX = 'amo:%s:' % BUILD_ID
 
 CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_KEY_PREFIX
 FETCH_BY_ID = True
@@ -1259,11 +1252,6 @@ LOGGING = {
             'level': logging.WARNING,
             'propagate': False,
         },
-        'rdflib': {
-            'handlers': ['null'],
-            'level': logging.INFO,
-            'propagate': False,
-        },
         'request': {
             'handlers': ['mozlog'],
             'level': logging.WARNING,
@@ -1550,6 +1538,7 @@ STATIC_ROOT = path('site-static')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (path('static'),)
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
 # Path related settings. In dev/stage/prod `NETAPP_STORAGE_ROOT` environment
 # variable will be set and point to our NFS/EFS storage
