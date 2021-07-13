@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-24 14:01+0000\n"
-"PO-Revision-Date: 2021-07-04 12:45+0000\n"
+"PO-Revision-Date: 2021-06-01 18:08+0000\n"
 "Last-Translator: YD <ygda+fx@free.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -4484,7 +4484,7 @@ msgstr "Enregistrer et restaurer les onglets. Avec des fonctions d’enregistrem
 
 #. editorial content for the discovery pane.
 msgid "Goodbye, annoying cookie warnings!"
-msgstr ""
+msgstr "Débarrassez-vous de ces avertissements de cookies pénibles."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
