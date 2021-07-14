@@ -51,7 +51,7 @@ NEW_TAGS = [
 
 def drop_old_tags(apps, schema_editor):
     Tag = apps.get_model('tags', 'Tag')
-    Tag.objects.all().delete()
+    Tag.objects.exclude(tag_text='dynamic theme').delete()
 
 
 def add_new_tags(apps, schema_editor):
