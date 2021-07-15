@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-24 14:01+0000\n"
-"PO-Revision-Date: 2021-06-24 17:43+0000\n"
+"PO-Revision-Date: 2021-07-15 10:00+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1163,7 +1163,7 @@ msgstr "Προγραμματισμός web"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
-"Κάντε λήψη επεκτάσεων του Firefox που προσφέρουν εργαλεία προγραμματισμού ιστού. Αυτή η κατηγορία περιέχει επεκτάσεις για το GitHub, την εναλλαγή συσκευής χρήστη, τη διαχείριση cookies και πολλά "
+"Κάντε λήψη επεκτάσεων του Firefox που προσφέρουν εργαλεία προγραμματισμού ιστού. Αυτή η κατηγορία περιέχει επεκτάσεις για το GitHub, την εναλλαγή παράγοντα χρήστη, τη διαχείριση cookie και πολλά "
 "άλλα."
 
 #. Review points sources other than add-ons and themes.
