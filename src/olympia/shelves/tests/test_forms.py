@@ -6,6 +6,7 @@ from django.core.exceptions import ValidationError
 from olympia import amo
 from olympia.amo.tests import TestCase, reverse_ns
 from olympia.shelves.forms import ShelfForm
+from olympia.tags.models import Tag
 
 
 class TestShelfForm(TestCase):
@@ -16,6 +17,7 @@ class TestShelfForm(TestCase):
         self.criteria_col_thm = 'featured-personas'
         self.criteria_col_404 = 'passwordmanagers'
         self.criteria_not_200 = '?sort=user&type=extension'
+        tag_text = Tag.objects.create(tag_text='foo').tag_text
 
         responses.add(
             responses.GET,
@@ -55,6 +57,12 @@ class TestShelfForm(TestCase):
         )
         responses.add(
             responses.GET,
+            reverse_ns('addon-search') + f'?tag={tag_text}',
+            status=200,
+            json={'count': 45},
+        )
+        responses.add(
+            responses.GET,
             reverse_ns(
                 'collection-addon-list',
                 kwargs={
@@ -64,7 +72,7 @@ class TestShelfForm(TestCase):
             ),
             status=404,
             json={'detail': 'Not found.'},
-        ),
+        )
         responses.add(
             responses.GET,
             reverse_ns('addon-search') + self.criteria_not_200,
@@ -125,6 +133,19 @@ class TestShelfForm(TestCase):
         )
         assert form.is_valid(), form.errors
         assert form.cleaned_data['criteria'] == 'featured-personas'
+
+    def test_clean_tags(self):
+        form = ShelfForm(
+            {
+                'title': 'Show tags',
+                'endpoint': 'tags',
+                'addon_type': amo.ADDON_EXTENSION,
+                'criteria': '?',
+                'addon_count': '0',
+            },
+        )
+        assert form.is_valid(), form.errors
+        assert form.cleaned_data['criteria'] == ('?')
 
     def test_clean_form_is_missing_title_field(self):
         form = ShelfForm(
@@ -310,4 +331,20 @@ class TestShelfForm(TestCase):
             form.clean()
         assert exc.exception.message == (
             'Use "Theme (Static)" in Addon type field for type=statictheme.'
+        )
+
+    def test_clean_tag_shelf_specifies_tag_in_criteria(self):
+        data = {
+            'title': 'Tags!',
+            'endpoint': 'tags',
+            'addon_type': amo.ADDON_EXTENSION,
+            'criteria': '?tag=foo',
+            'addon_count': '0',
+        }
+        form = ShelfForm(data)
+        assert not form.is_valid()
+        with self.assertRaises(ValidationError) as exc:
+            form.clean()
+        assert exc.exception.message == (
+            'Omit `tag` param for tags shelf - a random tag will be chosen.'
         )

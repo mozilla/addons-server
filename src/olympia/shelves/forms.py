@@ -1,4 +1,5 @@
 import requests
+from urllib import parse
 
 from rest_framework.settings import api_settings
 
@@ -9,6 +10,7 @@ from django.urls import NoReverseMatch, reverse
 import olympia.core.logger
 from olympia import amo
 from olympia.shelves.models import Shelf
+from olympia.tags.models import Tag
 
 
 log = olympia.core.logger.getLogger('z.admin.shelves')
@@ -38,25 +40,38 @@ class ShelfForm(forms.ModelForm):
         if criteria is None:
             return
 
-        if endpoint == 'search':
+        if endpoint in (Shelf.Endpoints.SEARCH, Shelf.Endpoints.TAGS):
             if not criteria.startswith('?') or criteria.count('?') > 1:
                 raise forms.ValidationError('Check criteria field.')
-            params = criteria[1:].split('&')
-            if addon_type == amo.ADDON_EXTENSION and 'type=statictheme' in params:
+            params = dict(parse.parse_qsl(criteria.strip('?')))
+            if (
+                addon_type == amo.ADDON_EXTENSION
+                and params.get('type') == 'statictheme'
+            ):
                 raise forms.ValidationError(
                     'Use "Theme (Static)" in Addon type field for type=statictheme.'
                 )
             elif (
-                addon_type == amo.ADDON_STATICTHEME and 'type=statictheme' not in params
+                addon_type == amo.ADDON_STATICTHEME
+                and params.get('type') != 'statictheme'
             ):
                 raise forms.ValidationError(
                     'Check fields - for "Theme (Static)" addon type, use '
                     'type=statictheme. For non theme addons, use "Extension" in Addon '
                     'type field, not "Theme (Static)".'
                 )
+            if endpoint == Shelf.Endpoints.TAGS:
+                if 'tag' in params:
+                    raise forms.ValidationError(
+                        'Omit `tag` param for tags shelf - a random tag will be chosen.'
+                    )
+                params['tag'] = Tag.objects.first().tag_text
             api = reverse(f'{api_settings.DEFAULT_VERSION}:addon-search')
-            url = base_url + api + criteria
-        elif endpoint == 'collections':
+            url = (
+                f'{base_url}{api}?'
+                f'{"&".join(f"{key}={value}" for key, value in params.items())}'
+            )
+        elif endpoint == Shelf.Endpoints.COLLECTIONS:
             try:
                 api = reverse(
                     f'{api_settings.DEFAULT_VERSION}:collection-addon-list',
