@@ -478,6 +478,11 @@ def run_addons_linter(path, channel):
     if waffle.switch_is_active('disable-linter-xpi-autoclose'):
         args.append('--disable-xpi-autoclose')
 
+    if waffle.switch_is_active('enable-mv3-submissions'):
+        args.append('--max-manifest-version=3')
+    else:
+        args.append('--max-manifest-version=2')
+
     if not os.path.exists(path):
         raise ValueError(
             'Path "{}" is not a file or directory or does not exist.'.format(path)

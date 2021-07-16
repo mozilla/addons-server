@@ -539,6 +539,44 @@ class TestRunAddonsLinter(UploadTest, ValidatorTestCase):
 
         assert '--disable-xpi-autoclose' not in self.FakePopen.get_args()
 
+    @override_switch('enable-mv3-submissions', active=False)
+    def test_mv3_submissions_waffle_disabled(self):
+        with mock.patch('olympia.devhub.tasks.subprocess') as subprocess_mock:
+            subprocess_mock.Popen = self.FakePopen
+
+            tasks.run_addons_linter(
+                path=self.valid_path, channel=amo.RELEASE_CHANNEL_LISTED
+            )
+
+            assert '--max-manifest-version=3' not in self.FakePopen.get_args()
+            assert '--max-manifest-version=2' in self.FakePopen.get_args()
+
+        mv3_path = get_addon_file('webextension_mv3.xpi')
+        result = tasks.run_addons_linter(mv3_path, channel=amo.RELEASE_CHANNEL_LISTED)
+        assert json.loads(result or '{}').get('errors') == 1
+
+    @override_switch('enable-mv3-submissions', active=True)
+    def test_mv3_submission_enabled(self):
+        with mock.patch('olympia.devhub.tasks.subprocess') as subprocess_mock:
+            subprocess_mock.Popen = self.FakePopen
+
+            tasks.run_addons_linter(
+                path=self.valid_path, channel=amo.RELEASE_CHANNEL_LISTED
+            )
+
+            assert '--max-manifest-version=3' in self.FakePopen.get_args()
+            assert '--max-manifest-version=2' not in self.FakePopen.get_args()
+
+        mv3_path = get_addon_file('webextension_mv3.xpi')
+        result = tasks.run_addons_linter(mv3_path, channel=amo.RELEASE_CHANNEL_LISTED)
+        assert json.loads(result or '{}').get('errors') == 0
+
+        # double check v2 manifests still work
+        result = tasks.run_addons_linter(
+            self.valid_path, channel=amo.RELEASE_CHANNEL_LISTED
+        )
+        assert json.loads(result or '{}').get('errors') == 0
+
 
 class TestValidateFilePath(ValidatorTestCase):
     def test_success(self):
