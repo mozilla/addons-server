@@ -565,6 +565,7 @@ class TestRunAddonsLinter(UploadTest, ValidatorTestCase):
             )
 
             assert '--max-manifest-version=3' in self.FakePopen.get_args()
+            assert '--max-manifest-version=2' not in self.FakePopen.get_args()
 
         mv3_path = get_addon_file('webextension_mv3.xpi')
         result = tasks.run_addons_linter(mv3_path, channel=amo.RELEASE_CHANNEL_LISTED)
