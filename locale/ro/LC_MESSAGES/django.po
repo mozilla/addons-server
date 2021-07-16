@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-24 14:01+0000\n"
-"PO-Revision-Date: 2021-07-08 23:10+0000\n"
+"PO-Revision-Date: 2021-07-16 11:24+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -4500,9 +4500,8 @@ msgid "Removes those long tracking parameters from Google search result URL's."
 msgstr "Elimină acei parametri de urmărire lungi și urâți din adresele URL ale rezultatelor la căutările pe Google."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Get weather updates directly from Firefox."
-msgstr "Obține actualizări meteo direct în browser."
+msgstr "Obține actualizări meteo direct din Firefox."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
