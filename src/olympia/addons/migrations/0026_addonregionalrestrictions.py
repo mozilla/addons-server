@@ -3,7 +3,6 @@
 from django.db import migrations, models
 import django.db.models.deletion
 import django.utils.timezone
-import django_jsonfield_backport.models
 import olympia.amo.models
 
 
@@ -20,7 +19,7 @@ class Migration(migrations.Migration):
                 ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
                 ('addon', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, primary_key=True, related_name='regional_restrictions', serialize=False, to='addons.Addon')),
-                ('excluded_regions', django_jsonfield_backport.models.JSONField(default=list)),
+                ('excluded_regions', models.JSONField(default=list)),
             ],
             options={
                 'get_latest_by': 'created',

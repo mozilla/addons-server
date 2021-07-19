@@ -10,7 +10,6 @@ from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from django_jsonfield_backport.models import JSONField
 
 import olympia.core.logger
 
@@ -55,7 +54,7 @@ log = olympia.core.logger.getLogger('z.scanners.models')
 
 class AbstractScannerResult(ModelBase):
     # Store the "raw" results of a scanner.
-    results = JSONField(default=list)
+    results = models.JSONField(default=list)
     scanner = models.PositiveSmallIntegerField(choices=SCANNERS.items())
     has_matches = models.BooleanField(null=True)
     state = models.PositiveSmallIntegerField(
