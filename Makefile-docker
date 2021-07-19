@@ -17,8 +17,6 @@ ifneq ($(NPM_CONFIG_PREFIX),)
 	NPM_ARGS := --prefix $(NPM_CONFIG_PREFIX)
 endif
 
-DJANGO_VERSION ?= django32
-
 NODE_MODULES := $(NPM_CONFIG_PREFIX)node_modules/
 STATIC_CSS := static/css/node_lib/
 STATIC_JS := static/js/node_lib/
@@ -104,7 +102,7 @@ install_python_test_dependencies:
 	# Can't use --progress-bar=off for system packages as long as our docker image
 	# doesn't have pip 10 by default.
 	$(PIP_COMMAND) install --no-deps --exists-action=w -r requirements/system.txt
-	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/prod_$(DJANGO_VERSION).txt
+	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/prod.txt
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/prod_without_hash.txt
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/tests.txt
 
