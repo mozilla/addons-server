@@ -229,7 +229,7 @@ class TestShelvesSerializer(ESTestCase):
         assert data['url'] == self._get_result_url(tag_shelf, tag='foo')
         assert len(data['addons']) == 2
         assert data['addons'][0]['name'] == {'en-US': 'test addon test04'}
-        assert data['addons'][0]['name'] == {'en-US': 'test addon test04'}
+        assert data['addons'][1]['name'] == {'en-US': 'test addon test01'}
 
     def test_addon_count(self):
         shelf = Shelf(
