@@ -39,6 +39,7 @@ class TestFileAdmin(TestCase):
             'original_hash': 'xxx',
             'status': file_.status,
             'original_status': file_.original_status,
+            'manifest_version': 2,
         }
         post_data['is_webextension'] = 'on'
         response = self.client.post(detail_url, post_data, follow=True)
