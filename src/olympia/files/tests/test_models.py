@@ -503,6 +503,7 @@ class TestParseXpi(TestCase):
             'summary': 'just a test addon with the manifest.json format',
             'default_locale': None,
             'homepage': None,
+            'manifest_version': 2,
         }
         parsed = self.parse(minimal=True)
         assert parsed == expected
@@ -523,6 +524,7 @@ class TestParseXpi(TestCase):
             'summary': 'just a test addon with the manifest.json format',
             'default_locale': None,
             'homepage': None,
+            'manifest_version': 2,
         }
         parsed = self.parse(minimal=True, user=None)
         assert parsed == expected
@@ -691,6 +693,17 @@ class TestParseXpi(TestCase):
             check_xpi_info({'guid': 'guid', 'version': '1' * 33})
         msg = e.exception.messages[0]
         assert msg == 'Version numbers should have fewer than 32 characters.'
+
+    def test_manifest_version(self):
+        parsed = self.parse(filename='webextension_mv3.xpi')
+        assert parsed['type'] == amo.ADDON_EXTENSION
+        assert parsed['is_webextension']
+        assert parsed['manifest_version'] == 3
+
+        parsed = self.parse(filename='webextension.xpi')
+        assert parsed['type'] == amo.ADDON_EXTENSION
+        assert parsed['is_webextension']
+        assert parsed['manifest_version'] == 2
 
 
 class TestFileUpload(UploadTest):
@@ -1243,12 +1256,20 @@ class TestFileFromUpload(UploadTest):
         )
         assert not file_.is_mozilla_signed_extension
 
-    def test_webextension(self):
+    def test_webextension_mv2(self):
         upload = self.upload('webextension')
         file_ = File.from_upload(
             upload, self.version, parsed_data={'is_webextension': True}
         )
         assert file_.is_webextension
+        assert file_.manifest_version == 2
+
+    def test_webextension_mv3(self):
+        upload = self.upload('webextension_mv3.xpi')
+        file_ = File.from_upload(
+            upload, self.version, parsed_data={'manifest_version': 3}
+        )
+        assert file_.manifest_version == 3
 
     def test_permissions(self):
         upload = self.upload('webextension_no_id.xpi')

@@ -37,6 +37,7 @@ class FileAdmin(admin.ModelAdmin):
                     'original_hash',
                     'status',
                     'file_download_url',
+                    'manifest_version',
                 )
             },
         ),
