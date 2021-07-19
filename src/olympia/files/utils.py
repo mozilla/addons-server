@@ -377,6 +377,7 @@ class ManifestJSONExtractor(object):
             'summary': self.get('description'),
             'homepage': self.get('homepage_url'),
             'default_locale': self.get('default_locale'),
+            'manifest_version': self.get('manifest_version'),
         }
 
         # Populate certificate information (e.g signed by mozilla or not)

@@ -77,6 +77,8 @@ class File(OnChangeMixin, ModelBase):
     # The user has disabled this file and this was its status.
     # STATUS_NULL means the user didn't disable the File - i.e. Mozilla did.
     original_status = models.PositiveSmallIntegerField(default=amo.STATUS_NULL)
+    # The manifest_version defined in manifest.json
+    manifest_version = models.SmallIntegerField(default=2)
 
     class Meta(ModelBase.Meta):
         db_table = 'files'
@@ -156,6 +158,7 @@ class File(OnChangeMixin, ModelBase):
 
         file_.hash = file_.generate_hash(upload_path)
         file_.original_hash = file_.hash
+        file_.manifest_version = parsed_data.get('manifest_version', 2)
         file_.save()
 
         if file_.is_webextension:
