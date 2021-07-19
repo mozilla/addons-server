@@ -22,7 +22,7 @@ class Shelf(ModelBase):
     criteria = models.CharField(
         max_length=200,
         help_text='e.g., "?promoted=recommended&sort=random&type=extension" '
-        'or the collection slug. For non-collection shelves, for no criteria enter "?"',
+        'or the collection slug',
     )
     footer_text = models.CharField(
         max_length=70,
