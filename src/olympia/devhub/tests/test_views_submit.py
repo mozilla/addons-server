@@ -9,7 +9,6 @@ import zipfile
 from datetime import datetime, timedelta
 from urllib.parse import urlencode
 
-import django
 from django.conf import settings
 from django.core.files import temp
 from django.core.files.storage import default_storage as storage
@@ -44,10 +43,8 @@ from olympia.versions.models import License, VersionPreview
 from olympia.zadmin.models import Config, set_config
 
 
-IS_DJANGO_32 = django.VERSION[0] == 3
-# django3.2 uses fancy double quotes in its error strings
-STRING_QUOTE_OPEN = '“' if IS_DJANGO_32 else "'"
-STRING_QUOTE_CLOSE = '”' if IS_DJANGO_32 else "'"
+STRING_QUOTE_OPEN = '“'
+STRING_QUOTE_CLOSE = '”'
 
 
 def get_addon_count(name):

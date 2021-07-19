@@ -5,11 +5,9 @@ from collections import namedtuple
 from urllib.parse import urlparse
 
 from django.conf import settings
-from django.core import paginator
-from django.core.exceptions import ImproperlyConfigured
+from django.contrib.sitemaps import Sitemap as DjangoSitemap
 from django.db.models import Count, Max, Q
 from django.template import loader
-from django.utils import translation
 from django.utils.functional import cached_property
 from django.urls import reverse
 
@@ -41,153 +39,6 @@ FRONTEND_LANGUAGES = [
     'ru',
     'zh-CN',
 ]
-
-
-# Copied over from django because we want the 3.2 version in 2.2.
-# We can delete this after we upgrade to django3.2
-# https://github.com/django/django/blob/3.2/django/contrib/sitemaps/__init__.py
-class DjangoSitemap:
-    # This limit is defined by Google. See the index documentation at
-    # https://www.sitemaps.org/protocol.html#index.
-    limit = 50000
-
-    # If protocol is None, the URLs in the sitemap will use the protocol
-    # with which the sitemap was requested.
-    protocol = None
-
-    # Enables generating URLs for all languages.
-    i18n = False
-
-    # Override list of languages to use.
-    languages = None
-
-    # Enables generating alternate/hreflang links.
-    alternates = False
-
-    # Add an alternate/hreflang link with value 'x-default'.
-    x_default = False
-
-    def _get(self, name, item, default=None):
-        try:
-            attr = getattr(self, name)
-        except AttributeError:
-            return default
-        if callable(attr):
-            if self.i18n:
-                # Split the (item, lang_code) tuples again for the location,
-                # priority, lastmod and changefreq method calls.
-                item, lang_code = item
-            return attr(item)
-        return attr
-
-    def _languages(self):
-        if self.languages is not None:
-            return self.languages
-        return [lang_code for lang_code, _ in settings.LANGUAGES]
-
-    def _items(self):
-        if self.i18n:
-            # Create (item, lang_code) tuples for all items and languages.
-            # This is necessary to paginate with all languages already considered.
-            items = [
-                (item, lang_code)
-                for lang_code in self._languages()
-                for item in self.items()
-            ]
-            return items
-        return self.items()
-
-    def _location(self, item, force_lang_code=None):
-        if self.i18n:
-            obj, lang_code = item
-            # Activate language from item-tuple or forced one before calling location.
-            with translation.override(force_lang_code or lang_code):
-                return self._get('location', item)
-        return self._get('location', item)
-
-    @property
-    def paginator(self):
-        return paginator.Paginator(self._items(), self.limit)
-
-    def items(self):
-        return []
-
-    def location(self, item):
-        return item.get_absolute_url()
-
-    def get_protocol(self, protocol=None):
-        # Determine protocol
-        return self.protocol or protocol or 'http'
-
-    def get_domain(self, site=None):
-        # Determine domain
-        if site is None:
-            if site is None:
-                raise ImproperlyConfigured(
-                    'To use sitemaps, either enable the sites framework or pass '
-                    'a Site/RequestSite object in your view.'
-                )
-        return site.domain
-
-    def get_urls(self, page=1, site=None, protocol=None):
-        protocol = self.get_protocol(protocol)
-        domain = self.get_domain(site)
-        return self._urls(page, protocol, domain)
-
-    def _urls(self, page, protocol, domain):
-        urls = []
-        latest_lastmod = None
-        all_items_lastmod = True  # track if all items have a lastmod
-
-        paginator_page = self.paginator.page(page)
-        for item in paginator_page.object_list:
-            loc = f'{protocol}://{domain}{self._location(item)}'
-            priority = self._get('priority', item)
-            lastmod = self._get('lastmod', item)
-
-            if all_items_lastmod:
-                all_items_lastmod = lastmod is not None
-                if all_items_lastmod and (
-                    latest_lastmod is None or lastmod > latest_lastmod
-                ):
-                    latest_lastmod = lastmod
-
-            url_info = {
-                'item': item,
-                'location': loc,
-                'lastmod': lastmod,
-                'changefreq': self._get('changefreq', item),
-                'priority': str(priority if priority is not None else ''),
-            }
-
-            if self.i18n and self.alternates:
-                alternates = []
-                for lang_code in self._languages():
-                    loc = f'{protocol}://{domain}{self._location(item, lang_code)}'
-                    alternates.append(
-                        {
-                            'location': loc,
-                            'lang_code': lang_code,
-                        }
-                    )
-                if self.x_default:
-                    lang_code = settings.LANGUAGE_CODE
-                    loc = f'{protocol}://{domain}{self._location(item, lang_code)}'
-                    loc = loc.replace(f'/{lang_code}/', '/', 1)
-                    alternates.append(
-                        {
-                            'location': loc,
-                            'lang_code': 'x-default',
-                        }
-                    )
-                url_info['alternates'] = alternates
-
-            urls.append(url_info)
-
-        if all_items_lastmod and latest_lastmod:
-            self.latest_lastmod = latest_lastmod
-
-        return urls
 
 
 class LazyTupleList:

@@ -3,7 +3,6 @@ import json
 
 from unittest import mock
 
-import django
 from django.conf import settings
 from django.contrib.admin.models import LogEntry, ADDITION
 from django.contrib.contenttypes.models import ContentType
@@ -22,15 +21,9 @@ from olympia.constants.activity import BLOCKLIST_SIGNOFF
 from ..models import Block, BlocklistSubmission
 
 
-IS_DJANGO_32 = django.VERSION[0] == 3
-# django3.2 uses fancy double quotes in its admin logging too
-FANCY_QUOTE_OR_DOUBLE_OPEN = '“' if IS_DJANGO_32 else '"'
-FANCY_QUOTE_OR_DOUBLE_CLOSE = '”' if IS_DJANGO_32 else '"'
-# And sometimes it's a named entity instead, because reasons.
-FANCY_QUOTE_OR_ENTITY_OPEN = '“' if IS_DJANGO_32 else '&quot;'
-FANCY_QUOTE_OR_ENTITY_CLOSE = '”' if IS_DJANGO_32 else '&quot;'
-# Now with a 50% dash length improvement!
-LONG_DASH = '—' if IS_DJANGO_32 else '-'
+FANCY_QUOTE_OPEN = '“'
+FANCY_QUOTE_CLOSE = '”'
+LONG_DASH = '—'
 
 
 class TestBlockAdmin(TestCase):
@@ -321,8 +314,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert log == ActivityLog.objects.for_versions(deleted_addon_version).last()
         assert not ActivityLog.objects.for_versions(pending_version).exists()
         assert [msg.message for msg in response.context['messages']] == [
-            f'The blocklist submission {FANCY_QUOTE_OR_DOUBLE_OPEN}No Sign-off: guid@; '
-            f'dfd; some reason{FANCY_QUOTE_OR_DOUBLE_CLOSE} was added successfully.'
+            f'The blocklist submission {FANCY_QUOTE_OPEN}No Sign-off: guid@; '
+            f'dfd; some reason{FANCY_QUOTE_CLOSE} was added successfully.'
         ]
 
         response = self.client.get(
@@ -812,8 +805,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
 
         assert [msg.message for msg in response.context['messages']] == [
             'The blocklist submission '
-            f'{FANCY_QUOTE_OR_DOUBLE_OPEN}No Sign-off: any@new, partial@existing, '
-            f'full@exist...; dfd; some reason{FANCY_QUOTE_OR_DOUBLE_CLOSE} was added '
+            f'{FANCY_QUOTE_OPEN}No Sign-off: any@new, partial@existing, '
+            f'full@exist...; dfd; some reason{FANCY_QUOTE_CLOSE} was added '
             'successfully.'
         ]
 
@@ -1304,7 +1297,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
 
         response = self.client.get(multi_url, follow=True)
         assert (
-            f'Changed {FANCY_QUOTE_OR_ENTITY_OPEN}Pending: guid@, invalid@, '
+            f'Changed {FANCY_QUOTE_OPEN}Pending: guid@, invalid@, '
             'second@invalid; new.url; a new reason thats longer than 40 cha...'
             in response.content.decode('utf-8')
         )
@@ -1481,8 +1474,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
 
         response = self.client.get(multi_url, follow=True)
         assert (
-            f'Changed {FANCY_QUOTE_OR_ENTITY_OPEN}Approved: guid@, invalid@'
-            f'{FANCY_QUOTE_OR_ENTITY_CLOSE} {LONG_DASH} Sign-off Approval'
+            f'Changed {FANCY_QUOTE_OPEN}Approved: guid@, invalid@'
+            f'{FANCY_QUOTE_CLOSE} {LONG_DASH} Sign-off Approval'
             in response.content.decode('utf-8')
         )
         assert b'not a Block!' not in response.content
@@ -1562,8 +1555,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
         response = self.client.get(multi_url, follow=True)
         content = response.content.decode('utf-8')
         assert (
-            f'Changed {FANCY_QUOTE_OR_ENTITY_OPEN}Rejected: guid@, invalid@'
-            f'{FANCY_QUOTE_OR_ENTITY_CLOSE} {LONG_DASH} Sign-off Rejection' in content
+            f'Changed {FANCY_QUOTE_OPEN}Rejected: guid@, invalid@'
+            f'{FANCY_QUOTE_CLOSE} {LONG_DASH} Sign-off Rejection' in content
         )
         assert 'not a Block!' not in content
 
