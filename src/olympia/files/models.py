@@ -163,7 +163,8 @@ class File(OnChangeMixin, ModelBase):
         file_.hash = file_.generate_hash(upload_path)
         file_.original_hash = file_.hash
         file_.manifest_version = parsed_data.get(
-            'manifest_version', DEFAULT_MANIFEST_VERSION)
+            'manifest_version', DEFAULT_MANIFEST_VERSION
+        )
         file_.save()
 
         if file_.is_webextension:
