@@ -40,7 +40,7 @@ class ShelfForm(forms.ModelForm):
         if criteria is None:
             return
 
-        if endpoint in (Shelf.Endpoints.SEARCH, Shelf.Endpoints.TAGS):
+        if endpoint in (Shelf.Endpoints.SEARCH, Shelf.Endpoints.RANDOM_TAG):
             if not criteria.startswith('?') or criteria.count('?') > 1:
                 raise forms.ValidationError('Check criteria field.')
             params = dict(parse.parse_qsl(criteria.strip('?')))
@@ -60,7 +60,7 @@ class ShelfForm(forms.ModelForm):
                     'type=statictheme. For non theme addons, use "Extension" in Addon '
                     'type field, not "Theme (Static)".'
                 )
-            if endpoint == Shelf.Endpoints.TAGS:
+            if endpoint == Shelf.Endpoints.RANDOM_TAG:
                 if 'tag' in params:
                     raise forms.ValidationError(
                         'Omit `tag` param for tags shelf - a random tag will be chosen.'

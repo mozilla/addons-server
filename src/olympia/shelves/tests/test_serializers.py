@@ -150,7 +150,7 @@ class TestShelvesSerializer(ESTestCase):
                     'collection_slug': criteria,
                 },
             )
-        elif instance.endpoint == 'tags':
+        elif instance.endpoint == 'random-tag':
             return (
                 f'{reverse_ns("addon-search")}{criteria}'
                 f'{"&" if len(criteria)>1 else ""}tag={tag}'
@@ -212,7 +212,7 @@ class TestShelvesSerializer(ESTestCase):
     def test_tags_shelf(self):
         tag_shelf = Shelf.objects.create(
             title='Random tags',
-            endpoint='tags',
+            endpoint='random-tag',
             addon_type=amo.ADDON_EXTENSION,
             criteria='?',
             footer_text='See similar add-ons?',
@@ -220,7 +220,7 @@ class TestShelvesSerializer(ESTestCase):
         tag_shelf.tag = 'foo'
         data = self.serialize(tag_shelf)
         assert data['title'] == {'en-US': 'Random tags'}
-        assert data['endpoint'] == 'tags'
+        assert data['endpoint'] == 'random-tag'
         assert data['addon_type'] == 'extension'
         assert data['criteria'] == '?'
         assert data['footer']['text'] == {'en-US': 'See similar add-ons?'}

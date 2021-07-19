@@ -10,8 +10,8 @@ from olympia.tags.models import Tag
 
 
 class Shelf(ModelBase):
-    Endpoints = namedtuple('Endpoints', ['COLLECTIONS', 'SEARCH', 'TAGS'])(
-        'collections', 'search', 'tags'
+    Endpoints = namedtuple('Endpoints', ['COLLECTIONS', 'SEARCH', 'RANDOM_TAG'])(
+        'collections', 'search', 'random-tag'
     )
     ENDPOINT_CHOICES = tuple((endpoint, endpoint) for endpoint in Endpoints)
 
@@ -60,13 +60,13 @@ class Shelf(ModelBase):
     def tag(self):
         return (
             Tag.objects.order_by('?').first().tag_text
-            if self.endpoint == self.Endpoints.TAGS
+            if self.endpoint == self.Endpoints.RANDOM_TAG
             else None
         )
 
     def get_param_dict(self):
         params = dict(parse.parse_qsl(self.criteria.strip('?')))
-        if self.endpoint == self.Endpoints.TAGS:
+        if self.endpoint == self.Endpoints.RANDOM_TAG:
             params['tag'] = self.tag
         return params
 

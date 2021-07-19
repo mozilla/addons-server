@@ -42,7 +42,7 @@ class ShelfSerializer(serializers.ModelSerializer):
         ]
 
     def get_url(self, obj):
-        if obj.endpoint in (Shelf.Endpoints.SEARCH, Shelf.Endpoints.TAGS):
+        if obj.endpoint in (Shelf.Endpoints.SEARCH, Shelf.Endpoints.RANDOM_TAG):
             api = drf_reverse('addon-search', request=self.context.get('request'))
             params = obj.get_param_dict()
             url = f'{api}?{"&".join(f"{key}={value}" for key, value in params.items())}'
@@ -70,7 +70,7 @@ class ShelfSerializer(serializers.ModelSerializer):
         orginal_get = real_request.GET
         real_request.GET = real_request.GET.copy()
 
-        if obj.endpoint in (Shelf.Endpoints.SEARCH, Shelf.Endpoints.TAGS):
+        if obj.endpoint in (Shelf.Endpoints.SEARCH, Shelf.Endpoints.RANDOM_TAG):
             request.GET.update(obj.get_param_dict())
             addons = AddonSearchView(request=request).get_data(obj.get_count())
         elif obj.endpoint == Shelf.Endpoints.COLLECTIONS:

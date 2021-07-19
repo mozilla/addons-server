@@ -138,7 +138,7 @@ class TestShelfForm(TestCase):
         form = ShelfForm(
             {
                 'title': 'Show tags',
-                'endpoint': 'tags',
+                'endpoint': 'random-tag',
                 'addon_type': amo.ADDON_EXTENSION,
                 'criteria': '?',
                 'addon_count': '0',
@@ -336,7 +336,7 @@ class TestShelfForm(TestCase):
     def test_clean_tag_shelf_specifies_tag_in_criteria(self):
         data = {
             'title': 'Tags!',
-            'endpoint': 'tags',
+            'endpoint': 'random-tag',
             'addon_type': amo.ADDON_EXTENSION,
             'criteria': '?tag=foo',
             'addon_count': '0',
