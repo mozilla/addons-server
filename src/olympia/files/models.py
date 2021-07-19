@@ -34,6 +34,10 @@ from olympia.files.utils import get_sha256, InvalidOrUnsupportedCrx, write_crx_a
 
 log = olympia.core.logger.getLogger('z.files')
 
+# We should be able to drop the field default - so enforce it being required - once we
+# drop `is_webextension` and the fixtures and tests allow a File without manifest.json.
+DEFAULT_MANIFEST_VERSION = 2
+
 
 class File(OnChangeMixin, ModelBase):
     id = PositiveAutoField(primary_key=True)
@@ -78,7 +82,7 @@ class File(OnChangeMixin, ModelBase):
     # STATUS_NULL means the user didn't disable the File - i.e. Mozilla did.
     original_status = models.PositiveSmallIntegerField(default=amo.STATUS_NULL)
     # The manifest_version defined in manifest.json
-    manifest_version = models.SmallIntegerField(default=2)
+    manifest_version = models.SmallIntegerField(default=DEFAULT_MANIFEST_VERSION)
 
     class Meta(ModelBase.Meta):
         db_table = 'files'
@@ -158,7 +162,8 @@ class File(OnChangeMixin, ModelBase):
 
         file_.hash = file_.generate_hash(upload_path)
         file_.original_hash = file_.hash
-        file_.manifest_version = parsed_data.get('manifest_version', 2)
+        file_.manifest_version = parsed_data.get(
+            'manifest_version', DEFAULT_MANIFEST_VERSION)
         file_.save()
 
         if file_.is_webextension:
