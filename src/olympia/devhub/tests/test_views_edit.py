@@ -1181,14 +1181,22 @@ class TagTestsMixin(object):
         assert response.status_code == 200
         self.assertNoFormErrors(response)
 
-        assert set(AddonTag.objects.filter(addon=self.addon).values_list('tag__tag_text', flat=True)) == {
-            'tag1', 'tag2', 'tag3', 'tag4'}
+        assert set(
+            AddonTag.objects.filter(addon=self.addon).values_list(
+                'tag__tag_text', flat=True
+            )
+        ) == {'tag1', 'tag2', 'tag3', 'tag4'}
         result = pq(response.content)('#addon_tags_edit').eq(0).text()
 
         assert result == ', '.join(sorted(self.tags))
         html = (
             '<a href="http://testserver/en-US/firefox/tag/tag4">tag4</a> added to '
-            + ('<a href="http://testserver/en-US/firefox/addon/a3615/">Delicious Bookmarks</a>.' if self.listed else 'Delicious Bookmarks.')
+            + (
+                '<a href="http://testserver/en-US/firefox/addon/a3615/">'
+                'Delicious Bookmarks</a>.'
+                if self.listed
+                else 'Delicious Bookmarks.'
+            )
         )
         assert (
             ActivityLog.objects.for_addons(self.addon)
@@ -1221,8 +1229,11 @@ class TagTestsMixin(object):
         assert response.status_code == 200
         self.assertNoFormErrors(response)
 
-        assert set(AddonTag.objects.filter(addon=self.addon).values_list('tag__tag_text', flat=True)) == {
-            'tag1', 'tag3'}
+        assert set(
+            AddonTag.objects.filter(addon=self.addon).values_list(
+                'tag__tag_text', flat=True
+            )
+        ) == {'tag1', 'tag3'}
 
         result = pq(response.content)('#addon_tags_edit').eq(0).text()
 
