@@ -285,7 +285,7 @@ references:
     - &python "cimg/python:3.8"
     - &redis "redis:2.8"
     - &memcached "memcached:1.4"
-    - &mysql "circleci/mysql:8.0"
+    - &mysql "circleci/mysql:8.0.25"
 
   mysql-config: &mysql-config
     environment:
