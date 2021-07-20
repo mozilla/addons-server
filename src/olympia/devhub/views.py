@@ -911,7 +911,7 @@ def addons_section(request, addon_id, addon, section, editable=False):
             request.POST or None, addon=addon, request=request
         )
 
-    elif section == 'additional_details' and show_listed:
+    elif section == 'additional_details':
         tags = addon.tags.not_denied().values_list('tag_text', flat=True)
 
     elif section == 'media':

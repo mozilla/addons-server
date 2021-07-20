@@ -26,7 +26,7 @@ from olympia.amo.tests import (
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import image_size
 from olympia.devhub.forms import DescribeForm
-from olympia.tags.models import Tag
+from olympia.tags.models import AddonTag, Tag
 from olympia.users.models import UserProfile
 from olympia.versions.models import VersionPreview
 
@@ -45,15 +45,14 @@ class BaseTestEdit(TestCase):
         assert self.client.login(email='del@icio.us')
 
         addon = self.get_addon()
+        self.tags = ['tag3', 'tag2', 'tag1']
+        for t in self.tags:
+            Tag.objects.get_or_create(tag_text=t)[0].add_tag(addon)
         if self.listed:
             self.make_addon_listed(addon)
             ac = AddonCategory.objects.filter(addon=addon, category_id=22)[0]
             ac.save()
             AddonCategory.objects.filter(addon=addon, category_id__in=[1, 71]).delete()
-
-            self.tags = ['tag3', 'tag2', 'tag1']
-            for t in self.tags:
-                Tag.objects.get_or_create(tag_text=t)[0].add_tag(addon)
         else:
             self.make_addon_unlisted(addon)
             addon.save()
@@ -1174,7 +1173,7 @@ class TagTestsMixin(object):
         return result
 
     def test_edit_add_tag(self):
-        count = ActivityLog.objects.all().count()
+        count = ActivityLog.objects.filter(action=amo.LOG.ADD_TAG.id).count()
         self.tags.insert(0, 'tag4')
         Tag.objects.get_or_create(tag_text='tag4')
         data = self.get_dict()
@@ -1182,13 +1181,14 @@ class TagTestsMixin(object):
         assert response.status_code == 200
         self.assertNoFormErrors(response)
 
+        assert set(AddonTag.objects.filter(addon=self.addon).values_list('tag__tag_text', flat=True)) == {
+            'tag1', 'tag2', 'tag3', 'tag4'}
         result = pq(response.content)('#addon_tags_edit').eq(0).text()
 
         assert result == ', '.join(sorted(self.tags))
         html = (
             '<a href="http://testserver/en-US/firefox/tag/tag4">tag4</a> added to '
-            '<a href="http://testserver/en-US/firefox/addon/a3615/">'
-            'Delicious Bookmarks</a>.'
+            + ('<a href="http://testserver/en-US/firefox/addon/a3615/">Delicious Bookmarks</a>.' if self.listed else 'Delicious Bookmarks.')
         )
         assert (
             ActivityLog.objects.for_addons(self.addon)
@@ -1215,11 +1215,14 @@ class TagTestsMixin(object):
     def test_edit_remove_tag(self):
         self.tags.remove('tag2')
 
-        count = ActivityLog.objects.all().count()
+        count = ActivityLog.objects.filter(action=amo.LOG.ADD_TAG.id).count()
         data = self.get_dict()
         response = self.client.post(self.details_edit_url, data)
         assert response.status_code == 200
         self.assertNoFormErrors(response)
+
+        assert set(AddonTag.objects.filter(addon=self.addon).values_list('tag__tag_text', flat=True)) == {
+            'tag1', 'tag3'}
 
         result = pq(response.content)('#addon_tags_edit').eq(0).text()
 
@@ -1407,7 +1410,7 @@ class TestEditAdditionalDetailsListed(
         )
 
 
-class TestEditAdditionalDetailsUnlisted(BaseTestEditAdditionalDetails):
+class TestEditAdditionalDetailsUnlisted(TagTestsMixin, BaseTestEditAdditionalDetails):
     listed = False
     __test__ = True
 
