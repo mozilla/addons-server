@@ -37,6 +37,7 @@ class TestShelvesSerializer(ESTestCase):
             average_daily_users=46812,
             weekly_downloads=132,
             summary=None,
+            tags=('foo',),
         )
         addon_factory(
             name='test addon test02',
@@ -44,6 +45,7 @@ class TestShelvesSerializer(ESTestCase):
             average_daily_users=18981,
             weekly_downloads=145,
             summary=None,
+            tags=('baa',),
         )
         addon_factory(
             name='test addon test03',
@@ -52,6 +54,7 @@ class TestShelvesSerializer(ESTestCase):
             weekly_downloads=506,
             summary=None,
             promoted=RECOMMENDED,
+            tags=('baa',),
         )
         addon_factory(
             name='test addon test04',
@@ -60,6 +63,7 @@ class TestShelvesSerializer(ESTestCase):
             weekly_downloads=358,
             summary=None,
             promoted=RECOMMENDED,
+            tags=('foo',),
         )
 
         cls.mozilla_user = UserProfile.objects.create(pk=settings.TASK_USER_ID)
@@ -134,16 +138,22 @@ class TestShelvesSerializer(ESTestCase):
         context['request'] = self.request
         return ShelfSerializer(instance, context=context).data
 
-    def _get_result_url(self, instance):
+    def _get_result_url(self, instance, tag=None):
+        criteria = instance.criteria
         if instance.endpoint == 'search':
-            return reverse_ns('addon-search') + instance.criteria
+            return reverse_ns('addon-search') + criteria
         elif instance.endpoint == 'collections':
             return reverse_ns(
                 'collection-addon-list',
                 kwargs={
                     'user_pk': str(settings.TASK_USER_ID),
-                    'collection_slug': self.collections_shelf.criteria,
+                    'collection_slug': criteria,
                 },
+            )
+        elif instance.endpoint == 'random-tag':
+            return (
+                f'{reverse_ns("addon-search")}{criteria}'
+                f'{"&" if len(criteria)>1 else ""}tag={tag}'
             )
         else:
             return None
@@ -198,6 +208,28 @@ class TestShelvesSerializer(ESTestCase):
         assert data['footer']['outgoing'] == get_outgoing_url(
             'https://blog.mozilla.org/addons'
         )
+
+    def test_tags_shelf(self):
+        tag_shelf = Shelf.objects.create(
+            title='Random tags',
+            endpoint='random-tag',
+            addon_type=amo.ADDON_EXTENSION,
+            criteria='?',
+            footer_text='See similar add-ons?',
+        )
+        tag_shelf.tag = 'foo'
+        data = self.serialize(tag_shelf)
+        assert data['title'] == {'en-US': 'Random tags'}
+        assert data['endpoint'] == 'random-tag'
+        assert data['addon_type'] == 'extension'
+        assert data['criteria'] == '?'
+        assert data['footer']['text'] == {'en-US': 'See similar add-ons?'}
+        assert data['footer']['url'] is None
+        assert data['footer']['outgoing'] is None
+        assert data['url'] == self._get_result_url(tag_shelf, tag='foo')
+        assert len(data['addons']) == 2
+        assert data['addons'][0]['name'] == {'en-US': 'test addon test04'}
+        assert data['addons'][1]['name'] == {'en-US': 'test addon test01'}
 
     def test_addon_count(self):
         shelf = Shelf(

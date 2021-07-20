@@ -1,14 +1,20 @@
+from collections import namedtuple
+from urllib import parse
+
 from django.db import models
+from django.utils.functional import cached_property
 
 from olympia import amo
 from olympia.amo.models import ModelBase
-
-ENDPOINTS = ('collections', 'search')
-
-ENDPOINT_CHOICES = tuple((ty, ty) for ty in ENDPOINTS)
+from olympia.tags.models import Tag
 
 
 class Shelf(ModelBase):
+    Endpoints = namedtuple('Endpoints', ['COLLECTIONS', 'SEARCH', 'RANDOM_TAG'])(
+        'collections', 'search', 'random-tag'
+    )
+    ENDPOINT_CHOICES = tuple((endpoint, endpoint) for endpoint in Endpoints)
+
     title = models.CharField(max_length=70, help_text='Will be translated.')
     endpoint = models.CharField(
         max_length=200, choices=ENDPOINT_CHOICES, db_column='shelf_type'
@@ -49,6 +55,20 @@ class Shelf(ModelBase):
         return self.addon_count or (
             3 if self.addon_type == amo.ADDON_STATICTHEME else 4
         )
+
+    @cached_property
+    def tag(self):
+        return (
+            Tag.objects.order_by('?').first().tag_text
+            if self.endpoint == self.Endpoints.RANDOM_TAG
+            else None
+        )
+
+    def get_param_dict(self):
+        params = dict(parse.parse_qsl(self.criteria.strip('?')))
+        if self.endpoint == self.Endpoints.RANDOM_TAG:
+            params['tag'] = self.tag
+        return params
 
 
 class ShelfManagement(ModelBase):

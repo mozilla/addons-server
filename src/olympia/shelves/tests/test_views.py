@@ -56,6 +56,7 @@ class TestShelfViewSet(ESTestCase):
             average_daily_users=482,
             weekly_downloads=506,
             summary=None,
+            tags=('foo',),
         )
         addon_theme = addon_factory(
             name='test addon test04',
@@ -103,10 +104,17 @@ class TestShelfViewSet(ESTestCase):
             footer_text='See more popular themes',
             footer_pathname='http://foo.baa',
         )
+        shelf_d = Shelf.objects.create(
+            title='Random Tag',
+            endpoint='random-tag',
+            criteria='?',
+            footer_text='something something tags!',
+        )
 
         self.hpshelf_a = ShelfManagement.objects.create(shelf=shelf_a, position=3)
         self.hpshelf_b = ShelfManagement.objects.create(shelf=shelf_b, position=2)
         ShelfManagement.objects.create(shelf=shelf_c, position=1)
+        self.hpshelf_d = ShelfManagement.objects.create(shelf=shelf_d, position=4)
 
         self.search_url = (
             reverse_ns('addon-search', api_version='v5') + shelf_a.criteria
@@ -134,14 +142,15 @@ class TestShelfViewSet(ESTestCase):
         self.hpshelf_a.update(enabled=True)
         self.hpshelf_b.update(enabled=True)
         # don't enable shelf_c
+        self.hpshelf_d.update(enabled=True)
 
-        with self.assertNumQueries(25):
+        with self.assertNumQueries(26):
             response = self.client.get(self.url)
         assert response.status_code == 200
 
         result = json.loads(response.content)
 
-        assert len(result['results']) == 2
+        assert len(result['results']) == 3
 
         assert result['results'][0]['title'] == {'en-US': 'Enhanced privacy extensions'}
         assert result['results'][0]['url'] == self.collections_url
@@ -166,7 +175,10 @@ class TestShelfViewSet(ESTestCase):
             'en-US': 'See more recommended extensions'
         }
         assert result['results'][1]['footer']['url'] == 'http://testserver/extensions/'
-        assert result['results'][0]['footer']['outgoing'] is None
+        assert (
+            result['results'][1]['footer']['outgoing']
+            == 'http://testserver/extensions/'
+        )
         assert result['results'][1]['addons'][0]['name']['en-US'] == (
             'test addon test03'
         )
@@ -174,6 +186,22 @@ class TestShelfViewSet(ESTestCase):
             'recommended'
         )
         assert result['results'][1]['addons'][0]['type'] == 'extension'
+
+        assert result['results'][2]['title'] == {'en-US': 'Random Tag'}
+        assert result['results'][2]['url'] == (
+            reverse_ns('addon-search', api_version='v5') + '?tag=foo'
+        )
+        assert result['results'][2]['endpoint'] == 'random-tag'
+        assert result['results'][2]['criteria'] == ('?')
+        assert result['results'][2]['footer']['text'] == {
+            'en-US': 'something something tags!'
+        }
+        assert result['results'][2]['footer']['url'] is None
+        assert result['results'][2]['footer']['outgoing'] is None
+        assert result['results'][2]['addons'][0]['name']['en-US'] == (
+            'test addon test03'
+        )
+        assert result['results'][2]['addons'][0]['type'] == 'extension'
 
     # If we delete HeroShelvesView move all the TestHeroShelvesView tests here
     def test_only_hero_shelves_in_response(self):

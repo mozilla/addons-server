@@ -1,5 +1,3 @@
-from urllib import parse
-
 from django.conf import settings
 
 from rest_framework import serializers
@@ -44,10 +42,11 @@ class ShelfSerializer(serializers.ModelSerializer):
         ]
 
     def get_url(self, obj):
-        if obj.endpoint == 'search':
+        if obj.endpoint in (Shelf.Endpoints.SEARCH, Shelf.Endpoints.RANDOM_TAG):
             api = drf_reverse('addon-search', request=self.context.get('request'))
-            url = api + obj.criteria
-        elif obj.endpoint == 'collections':
+            params = obj.get_param_dict()
+            url = f'{api}?{"&".join(f"{key}={value}" for key, value in params.items())}'
+        elif obj.endpoint == Shelf.Endpoints.COLLECTIONS:
             url = drf_reverse(
                 'collection-addon-list',
                 request=self.context.get('request'),
@@ -71,12 +70,10 @@ class ShelfSerializer(serializers.ModelSerializer):
         orginal_get = real_request.GET
         real_request.GET = real_request.GET.copy()
 
-        if obj.endpoint == 'search':
-            criteria = obj.criteria.strip('?')
-            params = dict(parse.parse_qsl(criteria))
-            request.GET.update(params)
+        if obj.endpoint in (Shelf.Endpoints.SEARCH, Shelf.Endpoints.RANDOM_TAG):
+            request.GET.update(obj.get_param_dict())
             addons = AddonSearchView(request=request).get_data(obj.get_count())
-        elif obj.endpoint == 'collections':
+        elif obj.endpoint == Shelf.Endpoints.COLLECTIONS:
             kwargs = {
                 'user_pk': str(settings.TASK_USER_ID),
                 'collection_slug': obj.criteria,
