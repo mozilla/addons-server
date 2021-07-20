@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-24 14:01+0000\n"
-"PO-Revision-Date: 2021-07-20 23:10+0000\n"
+"PO-Revision-Date: 2021-07-20 23:15+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -1956,13 +1956,13 @@ msgid "Header area background"
 msgstr "Fundalul zonei de antet"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
-msgstr "Culoarea de fundal a antetului, afișată în partea de antet neacoperită sau vizibilă prin imaginea antetului. Câmp manifest:  cadru."
+msgstr "Culoarea fundalului pentru zona antetului, afișată în partea de antet neacoperită sau vizibilă prin imaginea antetului. Câmpul manifestului:  frame."
 
 msgid "Header area text and icons"
 msgstr "Text și pictograme în zona antetului"
 
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
-msgstr "Culoarea textului și a pictogramelor din zona antetului, cu excepția filei active. Câmp manifest:  tab_background_text."
+msgstr "Culoarea textului și a pictogramelor din zona antetului, cu excepția filei active. Câmpul manifestului:  tab_background_text."
 
 msgid "Toolbar area background"
 msgstr "Fundalul zonei barei de instrumente"
@@ -4533,7 +4533,7 @@ msgstr "Vezi toate extensiile"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
-msgstr "Unelte și organizatoare de file"
+msgstr "Instrumente și organizatoare de file"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
@@ -4609,9 +4609,8 @@ msgid "See more recommended password managers"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Translation tools"
-msgstr "Unelte și organizatoare de file"
+msgstr "Instrumente de traducere"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -5330,7 +5329,7 @@ msgstr "Unelte pentru recenzenți – Suplimente pentru Firefox"
 
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the Reviewer Tools dashboard"
-msgstr "Înapoi la tabloul de bord cu unelte pentru recenzenți"
+msgstr "Înapoi la tabloul de bord cu instrumente pentru recenzenți"
 
 msgid "Reviewer Leaderboard"
 msgstr "Clasament recenzenți de top"
