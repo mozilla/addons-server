@@ -579,15 +579,7 @@ class TranslationTestCase(TestCase):
 
 class TranslationMultiDbTests(TransactionTestCase):
     fixtures = ['testapp/test_models.json']
-    # ConnectionHandler has changed in django3.2 - databases is now a @property
-    patch_property = (
-        'databases'
-        if isinstance(
-            getattr(django.db.utils.ConnectionHandler, 'databases'),
-            django.utils.functional.cached_property,
-        )
-        else 'settings'
-    )
+    patch_property = 'settings'
 
     def setUp(self):
         super().setUp()

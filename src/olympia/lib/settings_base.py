@@ -509,7 +509,6 @@ INSTALLED_APPS = (
     'django_jinja',
     'puente',
     'rangefilter',
-    'django_jsonfield_backport',
     'nobot',
     # Django contrib apps
     'django.contrib.admin',

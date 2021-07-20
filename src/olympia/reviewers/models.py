@@ -11,8 +11,6 @@ from django.template import loader
 from django.urls import reverse
 from django.utils.translation import gettext, gettext_lazy as _
 
-from django_jsonfield_backport.models import JSONField
-
 import olympia.core.logger
 
 from olympia import amo
@@ -998,7 +996,7 @@ class AutoApprovalSummary(ModelBase):
     weight = models.IntegerField(default=0)
     metadata_weight = models.IntegerField(default=0)
     code_weight = models.IntegerField(default=0)
-    weight_info = JSONField(default=dict, null=True)
+    weight_info = models.JSONField(default=dict, null=True)
     confirmed = models.BooleanField(null=True, default=None)
     score = models.PositiveSmallIntegerField(default=None, null=True)
 

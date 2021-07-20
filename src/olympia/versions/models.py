@@ -19,7 +19,6 @@ import jinja2
 from olympia.constants.applications import APP_IDS
 import waffle
 
-from django_jsonfield_backport.models import JSONField
 from django_statsd.clients import statsd
 
 import olympia.core.logger
@@ -936,8 +935,8 @@ class VersionPreview(BasePreview, ModelBase):
         Version, related_name='previews', on_delete=models.CASCADE
     )
     position = models.IntegerField(default=0)
-    sizes = JSONField(default=dict)
-    colors = JSONField(default=None, null=True)
+    sizes = models.JSONField(default=dict)
+    colors = models.JSONField(default=None, null=True)
     media_folder = 'version-previews'
 
     class Meta:

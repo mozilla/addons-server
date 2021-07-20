@@ -19,7 +19,6 @@ from django.utils import translation
 from django.utils.functional import cached_property
 from django.utils.translation import trans_real, gettext_lazy as _
 
-from django_jsonfield_backport.models import JSONField
 from django_statsd.clients import statsd
 
 import olympia.core.logger
@@ -1932,7 +1931,7 @@ class AddonRegionalRestrictions(ModelBase):
         related_name='regional_restrictions',
         help_text='Add-on id this item will point to.',
     )
-    excluded_regions = JSONField(
+    excluded_regions = models.JSONField(
         default=list,
         help_text='JSON style list of ISO 3166-1 alpha-2 country (region) '
         'codes. Codes will be uppercased. E.g. `["CN"]`',
@@ -2198,7 +2197,7 @@ class Preview(BasePreview, ModelBase):
     addon = models.ForeignKey(Addon, related_name='previews', on_delete=models.CASCADE)
     caption = TranslatedField()
     position = models.IntegerField(default=0)
-    sizes = JSONField(default=dict)
+    sizes = models.JSONField(default=dict)
 
     class Meta:
         db_table = 'previews'
