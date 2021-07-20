@@ -221,7 +221,9 @@ class TestShelfForm(TestCase):
             },
         )
         assert not form.is_valid()
-        assert form.errors['criteria'] == ['Must start with a "?" and be a valid query string.']
+        assert form.errors['criteria'] == [
+            'Must start with a "?" and be a valid query string.'
+        ]
 
     def test_clean_search_criteria_has_multiple_qmark(self):
         form = ShelfForm(
@@ -234,7 +236,9 @@ class TestShelfForm(TestCase):
             },
         )
         assert not form.is_valid()
-        assert form.errors['criteria'] == ['Must start with a "?" and be a valid query string.']
+        assert form.errors['criteria'] == [
+            'Must start with a "?" and be a valid query string.'
+        ]
 
     def test_clean_empty_criteria_fixed_for_tag_shelves(self):
         tag_form = ShelfForm(
@@ -351,4 +355,5 @@ class TestShelfForm(TestCase):
         form = ShelfForm(data)
         assert not form.is_valid()
         assert form.errors['criteria'] == [
-            'Omit `tag` param for tags shelf - a random tag will be chosen.']
+            'Omit `tag` param for tags shelf - a random tag will be chosen.'
+        ]
