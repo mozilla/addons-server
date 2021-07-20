@@ -38,7 +38,7 @@ from olympia.addons.utils import RestrictionChecker, verify_mozilla_trademark
 from olympia.amo.fields import HttpHttpsOnlyURLField, ReCaptchaField
 from olympia.amo.forms import AMOModelForm
 from olympia.amo.messages import DoubleSafe
-from olympia.amo.utils import remove_icons, slug_validator, slugify
+from olympia.amo.utils import remove_icons, slug_validator
 from olympia.amo.validators import OneOrMoreLetterOrNumberCharacterValidator
 from olympia.applications.models import AppVersion
 from olympia.blocklist.models import Block
@@ -84,67 +84,6 @@ def clean_addon_slug(slug, instance):
     return slug
 
 
-def clean_tags(request, tags):
-    target = [slugify(t, spaces=True, lower=True) for t in tags.split(',')]
-    target = set(filter(None, target))
-
-    min_len = amo.MIN_TAG_LENGTH
-    max_len = Tag._meta.get_field('tag_text').max_length
-    max_tags = amo.MAX_TAGS
-    total = len(target)
-
-    denied = Tag.objects.values_list('tag_text', flat=True).filter(
-        tag_text__in=target, denied=True
-    )
-    if denied:
-        # L10n: {0} is a single tag or a comma-separated list of tags.
-        msg = ngettext('Invalid tag: {0}', 'Invalid tags: {0}', len(denied)).format(
-            ', '.join(denied)
-        )
-        raise forms.ValidationError(msg)
-
-    restricted = Tag.objects.values_list('tag_text', flat=True).filter(
-        tag_text__in=target, restricted=True
-    )
-    if not acl.action_allowed(request, amo.permissions.ADDONS_EDIT):
-        if restricted:
-            # L10n: {0} is a single tag or a comma-separated list of tags.
-            msg = ngettext(
-                '"{0}" is a reserved tag and cannot be used.',
-                '"{0}" are reserved tags and cannot be used.',
-                len(restricted),
-            ).format('", "'.join(restricted))
-            raise forms.ValidationError(msg)
-    else:
-        # Admin's restricted tags don't count towards the limit.
-        total = len(target - set(restricted))
-
-    if total > max_tags:
-        num = total - max_tags
-        msg = ngettext(
-            'You have {0} too many tags.', 'You have {0} too many tags.', num
-        ).format(num)
-        raise forms.ValidationError(msg)
-
-    if any(t for t in target if len(t) > max_len):
-        raise forms.ValidationError(
-            gettext(
-                'All tags must be %s characters or less after invalid '
-                'characters are removed.' % max_len
-            )
-        )
-
-    if any(t for t in target if len(t) < min_len):
-        msg = ngettext(
-            'All tags must be at least {0} character.',
-            'All tags must be at least {0} characters.',
-            min_len,
-        ).format(min_len)
-        raise forms.ValidationError(msg)
-
-    return target
-
-
 class AddonFormBase(TranslationFormMixin, forms.ModelForm):
     fields_to_trigger_content_review = ('name', 'summary')
 
@@ -160,7 +99,7 @@ class AddonFormBase(TranslationFormMixin, forms.ModelForm):
 
     class Meta:
         models = Addon
-        fields = ('name', 'slug', 'summary', 'tags')
+        fields = ('name', 'summary')
 
     def clean_slug(self):
         return clean_addon_slug(self.cleaned_data['slug'], self.instance)
@@ -171,17 +110,6 @@ class AddonFormBase(TranslationFormMixin, forms.ModelForm):
         name = verify_mozilla_trademark(self.cleaned_data['name'], user, form=self)
 
         return name
-
-    def clean_tags(self):
-        return clean_tags(self.request, self.cleaned_data['tags'])
-
-    def get_tags(self, addon):
-        if acl.action_allowed(self.request, amo.permissions.ADDONS_EDIT):
-            return list(addon.tags.values_list('tag_text', flat=True))
-        else:
-            return list(
-                addon.tags.filter(restricted=False).values_list('tag_text', flat=True)
-            )
 
     def save(self, *args, **kwargs):
         metadata_content_review = (
@@ -339,7 +267,9 @@ class AddonFormMedia(AddonFormBase):
 class AdditionalDetailsForm(AddonFormBase):
     default_locale = forms.TypedChoiceField(choices=LOCALES)
     homepage = TransField.adapt(HttpHttpsOnlyURLField)(required=False)
-    tags = forms.CharField(required=False)
+    tags = forms.MultipleChoiceField(
+        choices=(), widget=forms.CheckboxSelectMultiple, required=False
+    )
     contributions = HttpHttpsOnlyURLField(required=False, max_length=255)
 
     class Meta:
@@ -347,10 +277,14 @@ class AdditionalDetailsForm(AddonFormBase):
         fields = ('default_locale', 'homepage', 'tags', 'contributions')
 
     def __init__(self, *args, **kw):
-        super(AdditionalDetailsForm, self).__init__(*args, **kw)
+        super().__init__(*args, **kw)
 
-        if self.fields.get('tags'):
-            self.fields['tags'].initial = ', '.join(self.get_tags(self.instance))
+        if tags_field := self.fields.get('tags'):
+            self.all_tags = {t.tag_text: t for t in Tag.objects.all()}
+            tags_field.choices = ((t, t) for t in self.all_tags)
+            tags_field.initial = list(
+                self.instance.tags.all().values_list('tag_text', flat=True)
+            )
 
     def clean_contributions(self):
         if self.cleaned_data['contributions']:
@@ -370,6 +304,15 @@ class AdditionalDetailsForm(AddonFormBase):
                 )
 
         return self.cleaned_data['contributions']
+
+    def clean_tags(self):
+        tags = self.cleaned_data['tags']
+        if (over := len(tags) - amo.MAX_TAGS) > 0:
+            msg = ngettext(
+                'You have {0} too many tags.', 'You have {0} too many tags.', over
+            ).format(over)
+            raise forms.ValidationError(msg)
+        return tags
 
     def clean(self):
         # Make sure we have the required translations in the new locale.
@@ -391,24 +334,24 @@ class AdditionalDetailsForm(AddonFormBase):
                     )
                     % ', '.join(map(repr, missing))
                 )
-        return super(AdditionalDetailsForm, self).clean()
+        return super().clean()
 
     def save(self, addon, commit=False):
         if self.fields.get('tags'):
             tags_new = self.cleaned_data['tags']
-            tags_old = [slugify(t, spaces=True) for t in self.get_tags(addon)]
+            tags_old = self.fields['tags'].initial
 
             # Add new tags.
             for t in set(tags_new) - set(tags_old):
-                Tag(tag_text=t).save_tag(addon)
+                self.all_tags[t].add_tag(addon)
 
             # Remove old tags.
             for t in set(tags_old) - set(tags_new):
-                Tag(tag_text=t).remove_tag(addon)
+                self.all_tags[t].remove_tag(addon)
 
         # We ignore `commit`, since we need it to be `False` so we can save
         # the ManyToMany fields on our own.
-        addonform = super(AdditionalDetailsForm, self).save(commit=False)
+        addonform = super().save(commit=False)
         addonform.save()
 
         return addonform

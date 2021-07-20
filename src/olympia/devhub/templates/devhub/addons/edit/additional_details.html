@@ -26,17 +26,8 @@
                 {{ form.tags }}
                 {{ form.tags.errors }}
                 <div class="edit-addon-details">
-                  {{ ngettext('Comma-separated, minimum of {0} character.',
-                              'Comma-separated, minimum of {0} characters.',
-                              amo.MIN_TAG_LENGTH)|format_html(amo.MIN_TAG_LENGTH) }}
-                  {{ _('Example: dark, cinema, noir. Limit 20.') }}
+                  {{ _('Limit {0} tags.')|format_html(amo.MAX_TAGS) }}
                 </div>
-                {% if restricted_tags %}
-                <div class="edit-addon-details">
-                    {{ ngettext('Reserved tag:', 'Reserved tags:', restricted_tags|length) }}
-                    {{ restricted_tags|join(', ') }}
-                </div>
-                {% endif %}
               {% else %}
                 {% call empty_unless(tags) %}
                   {{ tags|join(', ') }}

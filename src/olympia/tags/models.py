@@ -51,17 +51,14 @@ class Tag(ModelBase):
     def get_url_path(self):
         return reverse('tags.detail', args=[self.tag_text])
 
-    def save_tag(self, addon):
-        tag, created = Tag.objects.get_or_create(tag_text=self.tag_text)
-        AddonTag.objects.get_or_create(addon=addon, tag=tag)
-        activity.log_create(amo.LOG.ADD_TAG, tag, addon)
-        return tag
+    def add_tag(self, addon):
+        AddonTag.objects.get_or_create(addon=addon, tag=self)
+        activity.log_create(amo.LOG.ADD_TAG, self, addon)
 
     def remove_tag(self, addon):
-        tag, created = Tag.objects.get_or_create(tag_text=self.tag_text)
-        for addon_tag in AddonTag.objects.filter(addon=addon, tag=tag):
+        for addon_tag in AddonTag.objects.filter(addon=addon, tag=self):
             addon_tag.delete()
-        activity.log_create(amo.LOG.REMOVE_TAG, tag, addon)
+        activity.log_create(amo.LOG.REMOVE_TAG, self, addon)
 
     def update_stat(self):
         if self.denied:

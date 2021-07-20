@@ -45,15 +45,14 @@ class BaseTestEdit(TestCase):
         assert self.client.login(email='del@icio.us')
 
         addon = self.get_addon()
+        self.tags = ['tag3', 'tag2', 'tag1']
+        for t in self.tags:
+            Tag.objects.get_or_create(tag_text=t)[0].add_tag(addon)
         if self.listed:
             self.make_addon_listed(addon)
             ac = AddonCategory.objects.filter(addon=addon, category_id=22)[0]
             ac.save()
             AddonCategory.objects.filter(addon=addon, category_id__in=[1, 71]).delete()
-
-            self.tags = ['tag3', 'tag2', 'tag1']
-            for t in self.tags:
-                Tag(tag_text=t).save_tag(addon)
         else:
             self.make_addon_unlisted(addon)
             addon.save()
@@ -1169,25 +1168,35 @@ class TestEditMedia(BaseTestEdit):
 
 class TagTestsMixin(object):
     def get_dict(self, **kw):
-        result = {'default_locale': 'en-US', 'tags': ', '.join(self.tags)}
+        result = {'default_locale': 'en-US', 'tags': self.tags}
         result.update(**kw)
         return result
 
     def test_edit_add_tag(self):
-        count = ActivityLog.objects.all().count()
+        count = ActivityLog.objects.filter(action=amo.LOG.ADD_TAG.id).count()
         self.tags.insert(0, 'tag4')
+        Tag.objects.get_or_create(tag_text='tag4')
         data = self.get_dict()
         response = self.client.post(self.details_edit_url, data)
         assert response.status_code == 200
         self.assertNoFormErrors(response)
 
+        assert set(
+            AddonTag.objects.filter(addon=self.addon).values_list(
+                'tag__tag_text', flat=True
+            )
+        ) == {'tag1', 'tag2', 'tag3', 'tag4'}
         result = pq(response.content)('#addon_tags_edit').eq(0).text()
 
         assert result == ', '.join(sorted(self.tags))
         html = (
             '<a href="http://testserver/en-US/firefox/tag/tag4">tag4</a> added to '
-            '<a href="http://testserver/en-US/firefox/addon/a3615/">'
-            'Delicious Bookmarks</a>.'
+            + (
+                '<a href="http://testserver/en-US/firefox/addon/a3615/">'
+                'Delicious Bookmarks</a>.'
+                if self.listed
+                else 'Delicious Bookmarks.'
+            )
         )
         assert (
             ActivityLog.objects.for_addons(self.addon)
@@ -1199,44 +1208,32 @@ class TagTestsMixin(object):
             ActivityLog.objects.filter(action=amo.LOG.ADD_TAG.id).count() == count + 1
         )
 
-    def test_edit_denied_tag(self):
-        Tag.objects.get_or_create(tag_text='blue', denied=True)
-        data = self.get_dict(tags='blue')
+    def test_cannot_create_new_tag(self):
+        start = Tag.objects.all().count()
+        data = self.get_dict(tags='create_tag')
         response = self.client.post(self.details_edit_url, data)
         assert response.status_code == 200
 
-        error = 'Invalid tag: blue'
+        error = 'Select a valid choice. create_tag is not one of the available choices.'
         self.assertFormError(response, 'form', 'tags', error)
 
-    def test_edit_denied_tags_2(self):
-        Tag.objects.get_or_create(tag_text='blue', denied=True)
-        Tag.objects.get_or_create(tag_text='darn', denied=True)
-        data = self.get_dict(tags='blue, darn, swearword')
-        response = self.client.post(self.details_edit_url, data)
-        assert response.status_code == 200
-
-        error = 'Invalid tags: blue, darn'
-        self.assertFormError(response, 'form', 'tags', error)
-
-    def test_edit_denied_tags_3(self):
-        Tag.objects.get_or_create(tag_text='blue', denied=True)
-        Tag.objects.get_or_create(tag_text='darn', denied=True)
-        Tag.objects.get_or_create(tag_text='swearword', denied=True)
-        data = self.get_dict(tags='blue, darn, swearword')
-        response = self.client.post(self.details_edit_url, data)
-        assert response.status_code == 200
-
-        error = 'Invalid tags: blue, darn, swearword'
-        self.assertFormError(response, 'form', 'tags', error)
+        # Check that the tag did not get created.
+        assert start == Tag.objects.all().count()
 
     def test_edit_remove_tag(self):
         self.tags.remove('tag2')
 
-        count = ActivityLog.objects.all().count()
+        count = ActivityLog.objects.filter(action=amo.LOG.ADD_TAG.id).count()
         data = self.get_dict()
         response = self.client.post(self.details_edit_url, data)
         assert response.status_code == 200
         self.assertNoFormErrors(response)
+
+        assert set(
+            AddonTag.objects.filter(addon=self.addon).values_list(
+                'tag__tag_text', flat=True
+            )
+        ) == {'tag1', 'tag3'}
 
         result = pq(response.content)('#addon_tags_edit').eq(0).text()
 
@@ -1247,24 +1244,11 @@ class TagTestsMixin(object):
             == count + 1
         )
 
-    def test_edit_minlength_tags(self):
-        tags = self.tags
-        tags.append('a' * (amo.MIN_TAG_LENGTH - 1))
-        data = self.get_dict()
-        response = self.client.post(self.details_edit_url, data)
-        assert response.status_code == 200
-
-        self.assertFormError(
-            response,
-            'form',
-            'tags',
-            'All tags must be at least %d characters.' % amo.MIN_TAG_LENGTH,
-        )
-
     def test_edit_max_tags(self):
         tags = self.tags
 
         for i in range(amo.MAX_TAGS + 1):
+            Tag.objects.get_or_create(tag_text='test%d' % i)
             tags.append('test%d' % i)
 
         data = self.get_dict()
@@ -1275,32 +1259,6 @@ class TagTestsMixin(object):
             'tags',
             'You have %d too many tags.' % (len(tags) - amo.MAX_TAGS),
         )
-
-    def test_edit_tag_empty_after_slug(self):
-        start = Tag.objects.all().count()
-        data = self.get_dict(tags='>>')
-        response = self.client.post(self.details_edit_url, data)
-        self.assertNoFormErrors(response)
-
-        # Check that the tag did not get created.
-        assert start == Tag.objects.all().count()
-
-    def test_edit_tag_slugified(self):
-        data = self.get_dict(tags='<script>alert("foo")</script>')
-        response = self.client.post(self.details_edit_url, data)
-        self.assertNoFormErrors(response)
-        tag = Tag.objects.all().order_by('-pk')[0]
-        assert tag.tag_text == 'scriptalertfooscript'
-
-    def test_edit_restricted_tags(self):
-        addon = self.get_addon()
-        tag = Tag.objects.create(tag_text='i_am_a_restricted_tag', restricted=True)
-        AddonTag.objects.create(tag=tag, addon=addon)
-
-        response = self.client.get(self.details_edit_url)
-        divs = pq(response.content)('#addon_tags_edit .edit-addon-details')
-        assert len(divs) == 2
-        assert 'i_am_a_restricted_tag' in divs.eq(1).text()
 
 
 class ContributionsTestsMixin(object):
@@ -1463,7 +1421,7 @@ class TestEditAdditionalDetailsListed(
         )
 
 
-class TestEditAdditionalDetailsUnlisted(BaseTestEditAdditionalDetails):
+class TestEditAdditionalDetailsUnlisted(TagTestsMixin, BaseTestEditAdditionalDetails):
     listed = False
     __test__ = True
 
