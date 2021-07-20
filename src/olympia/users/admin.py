@@ -161,9 +161,7 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     def get_list_display(self, request):
         search_term = request.GET.get('q')
         if search_term and self.ip_addresses_if_query_is_all_ip_addresses(search_term):
-            return list(self.list_display) + list(
-                self.extra_list_display_for_ip_searches
-            )
+            return (*self.list_display, *self.extra_list_display_for_ip_searches)
         return self.list_display
 
     def ip_addresses_if_query_is_all_ip_addresses(self, search_term):

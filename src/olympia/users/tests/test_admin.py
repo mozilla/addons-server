@@ -654,17 +654,15 @@ class TestUserAdmin(TestCase):
         doc = pq(model_admin.known_ip_adresses(self.user))
         result = doc('ul li').text().split()
         assert len(result) == 7
-        assert set(result) == set(
-            [
-                '130.1.2.4',
-                '128.1.2.3',
-                '129.1.2.4',
-                '127.1.2.3',
-                '15.16.23.42',
-                '172.0.0.2',
-                '4.8.15.16',
-            ]
-        )
+        assert set(result) == {
+            '130.1.2.4',
+            '128.1.2.3',
+            '129.1.2.4',
+            '127.1.2.3',
+            '15.16.23.42',
+            '172.0.0.2',
+            '4.8.15.16',
+        }
 
         # Duplicates are ignored
         Rating.objects.create(
@@ -682,17 +680,15 @@ class TestUserAdmin(TestCase):
         doc = pq(model_admin.known_ip_adresses(self.user))
         result = doc('ul li').text().split()
         assert len(result) == 7
-        assert set(result) == set(
-            [
-                '130.1.2.4',
-                '128.1.2.3',
-                '129.1.2.4',
-                '127.1.2.3',
-                '15.16.23.42',
-                '172.0.0.2',
-                '4.8.15.16',
-            ]
-        )
+        assert set(result) == {
+            '130.1.2.4',
+            '128.1.2.3',
+            '129.1.2.4',
+            '127.1.2.3',
+            '15.16.23.42',
+            '172.0.0.2',
+            '4.8.15.16',
+        }
 
     def test_last_known_activity_time(self):
         someone_else = user_factory(username='someone_else')

@@ -1,7 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
   'use strict';
 
+  /* Those variables are used in the functions below, and initialized a bit
+     later if we're on a userprofile changelist page */
+  var search_bar;
+  var original_search_terms;
+  var ip_fields;
+
   function are_set_equal(a, b) {
+    /** Return whether or not two sets contains the same values. */
     if (a.size !== b.size) {
       return false;
     }
@@ -81,10 +88,9 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  const search_bar = document.querySelector('#searchbar');
-  const original_search_terms = get_search_bar_terms();
-
-  const ip_fields = document.querySelectorAll(
+  search_bar = document.querySelector('#searchbar');
+  original_search_terms = get_search_bar_terms();
+  ip_fields = document.querySelectorAll(
     '.field-last_login_ip, \
     .field-restriction_history__last_login_ip, \
     .field-restriction_history__ip_address, \
