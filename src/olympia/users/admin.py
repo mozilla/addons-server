@@ -1,9 +1,11 @@
 import functools
+import ipaddress
+import itertools
 
 from django import http
 from django.contrib import admin, messages
 from django.contrib.admin.utils import unquote
-from django.db.models import Count, Q
+from django.db.models import Count, F, Q
 from django.db.utils import IntegrityError
 from django.http import (
     Http404,
@@ -20,7 +22,7 @@ from django.utils.translation import gettext, gettext_lazy as _
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.access import acl
-from olympia.activity.models import ActivityLog, UserLog
+from olympia.activity.models import ActivityLog, IPLog, UserLog
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.admin import CommaSearchInAdminMixin
 from olympia.api.models import APIKey, APIKeyConfirmation
@@ -47,7 +49,22 @@ class GroupUserInline(admin.TabularInline):
 
 @admin.register(UserProfile)
 class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
-    list_display = ('__str__', 'email', 'is_public', 'deleted')
+    list_display = ('__str__', 'email', 'last_login', 'is_public', 'deleted')
+    extra_list_display_for_ip_searches = (
+        'last_login_ip',
+        # Those fields don't exist, and the admin doesn't know how to traverse
+        # relations, especially reverse ones, so these are actually methods
+        # defined below that match the exact relation string, so the
+        # annotations and filter expressions needed are built directly from
+        # the strings defined here.
+        'restriction_history__last_login_ip',
+        'restriction_history__ip_address',
+        '_ratings_all__ip_address',
+        # FIXME: IPLog makes this query too slow in production, need to
+        # fix #17504 to enable.
+        # 'activitylog__iplog__ip_address',
+    )
+    # A custom ip address search is also implemented in get_search_results()
     search_fields = ('=id', '^email', '^username')
     # A custom field used in search json in zadmin, not django.admin.
     search_fields_response = 'email'
@@ -136,6 +153,86 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     )
 
     actions = ['ban_action', 'reset_api_key_action', 'reset_session_action']
+
+    class Media:
+        js = ('js/admin/userprofile.js',)
+        css = {'all': ('css/admin/userprofile.css',)}
+
+    def get_list_display(self, request):
+        search_term = request.GET.get('q')
+        if search_term and self.ip_addresses_if_query_is_all_ip_addresses(search_term):
+            return (*self.list_display, *self.extra_list_display_for_ip_searches)
+        return self.list_display
+
+    def ip_addresses_if_query_is_all_ip_addresses(self, search_term):
+        search_terms = search_term.split(',')
+        ips = []
+        for term in search_terms:
+            try:
+                ip = ipaddress.ip_address(term)
+                ip_str = str(ip)
+                if ip_str != term:
+                    raise ValueError
+                ips.append(ip_str)
+            except ValueError:
+                break
+        if search_terms == ips:
+            # If all we are searching for are IPs, we'll use our custom IP
+            # search.
+            # Note that this comparison relies on ips being stored as strings,
+            # if that were to change that it would break.
+            return ips
+        return None
+
+    def get_search_results(self, request, queryset, search_term):
+        ips = self.ip_addresses_if_query_is_all_ip_addresses(search_term)
+        if ips:
+            q_objects = Q()
+            annotations = {}
+            for arg in self.extra_list_display_for_ip_searches:
+                q_objects |= Q(**{f'{arg}__in': ips})
+                if '__' in arg:
+                    annotations[arg] = F(arg)
+            queryset = queryset.filter(q_objects).annotate(**annotations)
+            # We force the distinct() ourselves and tell Django there are no
+            # duplicates, otherwise the admin de-duplication logic, which
+            # doesn't use distinct() after Django 3.1, would break our
+            # annotations.
+            # This can cause some users to show up multiple times, but that's
+            # a feature: it will happen when the IPs returned are different
+            # (so technically the rows are not duplicates), since the
+            # annotations are part of the distinct().
+            queryset = queryset.distinct()
+            may_have_duplicates = False
+        else:
+            queryset, may_have_duplicates = super().get_search_results(
+                request,
+                queryset,
+                search_term,
+            )
+        return queryset, may_have_duplicates
+
+    def restriction_history__last_login_ip(self, obj):
+        return getattr(obj, 'restriction_history__last_login_ip', '-') or '-'
+
+    restriction_history__last_login_ip.short_description = (
+        'Restriction History Last Login IP'
+    )
+
+    def restriction_history__ip_address(self, obj):
+        return getattr(obj, 'restriction_history__ip_address', '-') or '-'
+
+    restriction_history__ip_address.short_description = 'Restriction History IP'
+
+    def activitylog__iplog__ip_address(self, obj):
+        return getattr(obj, 'activitylog__iplog__ip_address', '-') or '-'
+
+    activitylog__iplog__ip_address.short_description = 'Activity IP'
+
+    def _ratings_all__ip_address(self, obj):
+        return getattr(obj, '_ratings_all__ip_address', '-') or '-'
+
+    _ratings_all__ip_address.short_description = 'Rating IP'
 
     def get_urls(self):
         def wrap(view):
@@ -341,6 +438,20 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     def known_ip_adresses(self, obj):
         ip_adresses = set(
             Rating.objects.filter(user=obj)
+            .values_list('ip_address', flat=True)
+            .order_by()
+            .distinct()
+        )
+        ip_adresses.update(
+            itertools.chain(
+                *UserRestrictionHistory.objects.filter(user=obj)
+                .values_list('last_login_ip', 'ip_address')
+                .order_by()
+                .distinct()
+            )
+        )
+        ip_adresses.update(
+            IPLog.objects.filter(activity_log__user=obj)
             .values_list('ip_address', flat=True)
             .order_by()
             .distinct()

@@ -83,6 +83,136 @@ class TestUserAdmin(TestCase):
         assert str(self.user.pk) in doc('#result_list').text()
         assert str(another_user.pk) in doc('#result_list').text()
 
+    def test_search_ip_as_int_isnt_considered_an_ip(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Users:Edit')
+        self.client.login(email=user.email)
+        self.user.update(last_login_ip='127.0.0.1')
+        response = self.client.get(self.list_url, {'q': '2130706433'}, follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#result_list tbody tr')
+        assert not doc('.column-_ratings_all__ip_address')
+
+    def test_search_for_single_ip(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Users:Edit')
+        self.client.login(email=user.email)
+        user_factory(last_login_ip='127.0.0.1')  # Extra user that shouldn't match
+        self.user.update(email='foo@bar.com', last_login_ip='127.0.0.2')  # Will match
+        response = self.client.get(self.list_url, {'q': '127.0.0.2'}, follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        # Make sure it's the right user.
+        assert doc('.field-email').text() == self.user.email
+        # Make sure last login is now displayed, and has the right value.
+        assert doc('.field-last_login_ip').text() == '127.0.0.2'
+
+    def test_search_for_single_ip_multiple_results_for_different_reasons(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Users:Edit')
+        self.client.login(email=user.email)
+        extra_user = user_factory(
+            email='extra@bar.com', last_login_ip='127.0.0.1'
+        )  # Extra user that matches but not thanks to their last_login_ip...
+        UserRestrictionHistory.objects.create(user=extra_user, ip_address='127.0.0.2')
+        extra_extra_user = user_factory(email='extra_extra@bar.com')
+        UserRestrictionHistory.objects.create(
+            user=extra_extra_user, last_login_ip='127.0.0.2'
+        )
+        self.user.update(email='foo@bar.com', last_login_ip='127.0.0.2')
+        response = self.client.get(self.list_url, {'q': '127.0.0.2'}, follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        # Make sure it's the right users.
+        assert doc('.field-email').text() == ' '.join(
+            [
+                extra_extra_user.email,
+                extra_user.email,
+                self.user.email,
+            ]
+        )
+        # Make sure last login is now displayed, and has the right values.
+        assert doc('.field-last_login_ip').text() == '127.0.0.1 127.0.0.1 127.0.0.2'
+        # Same for the others that match
+        assert doc('.field-restriction_history__ip_address').text() == '- 127.0.0.2 -'
+        assert (
+            doc('.field-restriction_history__last_login_ip').text() == '127.0.0.2 - -'
+        )
+
+    def test_search_for_multiple_ips(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Users:Edit')
+        self.client.login(email=user.email)
+        self.user.update(email='foo@bar.com', last_login_ip='127.0.0.2')
+        response = self.client.get(
+            self.list_url, {'q': '127.0.0.2,127.0.0.3'}, follow=True
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        # Make sure it's the right user.
+        assert doc('.field-email').text() == self.user.email
+        # Make sure last login is now displayed, and has the right value.
+        assert doc('.field-last_login_ip').text() == '127.0.0.2'
+
+    def test_search_for_multiple_ips_with_deduplication(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Users:Edit')
+        self.client.login(email=user.email)
+        # Will match once with the last_login
+        self.user.update(email='foo@bar.com', last_login_ip='127.0.0.2')
+        # Will match twice: once with the last login, once with the restriction history
+        # ip_address. Only one result will be shown since the 2 rows would be the same.
+        extra_user = user_factory(email='extra@bar.com', last_login_ip='127.0.0.2')
+        UserRestrictionHistory.objects.create(user=extra_user, ip_address='127.0.0.2')
+        # Will match 4 times: last_login, restriction history (last_login_ip and
+        # ip_address), ratings ip_address. There will be 2 results shown because of the
+        # 2 different user restriction history matching.
+        extra_extra_user = user_factory(
+            email='extra_extra@bar.com', last_login_ip='127.0.0.3'
+        )
+        UserRestrictionHistory.objects.create(
+            user=extra_extra_user, last_login_ip='127.0.0.2', ip_address='10.0.0.42'
+        )
+        UserRestrictionHistory.objects.create(
+            user=extra_extra_user, ip_address='127.0.0.2', last_login_ip='10.0.0.36'
+        )
+        addon = addon_factory()
+        Rating.objects.create(
+            user=extra_extra_user,
+            rating=4,
+            ip_address='127.0.0.3',
+            addon=addon,
+            version=addon.current_version,
+        )
+        response = self.client.get(
+            self.list_url, {'q': '127.0.0.2,127.0.0.3'}, follow=True
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert len(doc('#result_list tbody tr')) == 4
+        # Make sure it's the right users.
+        assert doc('.field-email').text() == ' '.join(
+            [
+                extra_extra_user.email,
+                extra_extra_user.email,
+                extra_user.email,
+                self.user.email,
+            ]
+        )
+
+    def test_search_for_mixed_strings(self):
+        # IP search is deactivated if the search term don't all look like IPs
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Users:Edit')
+        self.client.login(email=user.email)
+        user_factory(last_login_ip='127.0.0.2')
+        self.user.update(email='foo@bar.com', last_login_ip='127.0.0.2')
+        response = self.client.get(self.list_url, {'q': 'blah,127.0.0.2'}, follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert len(doc('#result_list tbody tr')) == 0
+
     def test_can_not_edit_without_users_edit_permission(self):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
@@ -516,11 +646,49 @@ class TestUserAdmin(TestCase):
         Rating.objects.create(
             addon=dummy_addon, user=user_factory(), ip_address='255.255.0.0'
         )
+        with core.override_remote_addr('15.16.23.42'):
+            ActivityLog.create(amo.LOG.ADD_VERSION, dummy_addon, user=self.user)
+        UserRestrictionHistory.objects.create(user=self.user, last_login_ip='4.8.15.16')
+        UserRestrictionHistory.objects.create(user=self.user, ip_address='172.0.0.2')
         model_admin = UserAdmin(UserProfile, admin.site)
         doc = pq(model_admin.known_ip_adresses(self.user))
         result = doc('ul li').text().split()
-        assert len(result) == 4
-        assert set(result) == set(['130.1.2.4', '128.1.2.3', '129.1.2.4', '127.1.2.3'])
+        assert len(result) == 7
+        assert set(result) == {
+            '130.1.2.4',
+            '128.1.2.3',
+            '129.1.2.4',
+            '127.1.2.3',
+            '15.16.23.42',
+            '172.0.0.2',
+            '4.8.15.16',
+        }
+
+        # Duplicates are ignored
+        Rating.objects.create(
+            addon=dummy_addon,
+            version=version_factory(addon=dummy_addon),
+            user=self.user,
+            ip_address='127.1.2.3',
+        )
+        with core.override_remote_addr('172.0.0.2'):
+            ActivityLog.create(amo.LOG.ADD_VERSION, dummy_addon, user=self.user)
+        UserRestrictionHistory.objects.create(
+            user=self.user, last_login_ip='15.16.23.42'
+        )
+        UserRestrictionHistory.objects.create(user=self.user, ip_address='4.8.15.16')
+        doc = pq(model_admin.known_ip_adresses(self.user))
+        result = doc('ul li').text().split()
+        assert len(result) == 7
+        assert set(result) == {
+            '130.1.2.4',
+            '128.1.2.3',
+            '129.1.2.4',
+            '127.1.2.3',
+            '15.16.23.42',
+            '172.0.0.2',
+            '4.8.15.16',
+        }
 
     def test_last_known_activity_time(self):
         someone_else = user_factory(username='someone_else')

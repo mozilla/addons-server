@@ -84,13 +84,13 @@ class CommaSearchInAdminMixin:
             # Otherwise, use the field with icontains.
             return '%s__icontains' % field_name
 
-        use_distinct = False
+        may_have_duplicates = False
         search_fields = self.get_search_fields(request)
         filters = []
         joining_operator = operator.and_
         if not (search_fields and search_term):
             # return early if we have nothing special to do
-            return queryset, use_distinct
+            return queryset, may_have_duplicates
 
         if ' ' not in search_term and ',' in search_term:
             separator = ','
@@ -115,7 +115,7 @@ class CommaSearchInAdminMixin:
                 q_for_this_term = models.Q(functools.reduce(operator.or_, or_queries))
                 filters.append(q_for_this_term)
 
-            use_distinct |= any(
+            may_have_duplicates |= any(
                 # Use our own lookup_needs_distinct(), not django's.
                 self.lookup_needs_distinct(self.opts, search_spec)
                 for search_spec in orm_lookups
@@ -123,7 +123,7 @@ class CommaSearchInAdminMixin:
 
             if filters:
                 queryset = queryset.filter(functools.reduce(joining_operator, filters))
-        return queryset, use_distinct
+        return queryset, may_have_duplicates
 
 
 @admin.register(FakeEmail)

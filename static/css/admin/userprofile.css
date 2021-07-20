@@ -1,0 +1,28 @@
+.hasaddremoveip .deletelink {
+    position: relative;
+    top: -1px;
+}
+
+.hasaddremoveip .addlink, .hasaddremoveip .deletelink {
+    cursor: pointer;
+}
+
+.hasaddremoveip .addlink, .hasaddremoveip .deletelink {
+    visibility: hidden
+}
+
+.hasaddremoveip:hover .addlink, .hasaddremoveip:hover .deletelink {
+    visibility: visible;
+}
+
+.hasaddremoveip .addlink:hover, .hasaddremoveip .deletelink:hover {
+    outline: 1px dotted black;
+}
+
+.notinsearch {
+    border-bottom: 1px solid hotpink;
+}
+
+#toolbar #searchbar.dirty {
+    border-color: orange;
+}
