@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-24 14:01+0000\n"
-"PO-Revision-Date: 2021-07-16 11:24+0000\n"
+"PO-Revision-Date: 2021-07-20 23:10+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -126,13 +126,13 @@ msgid "Ratings"
 msgstr "Evaluări"
 
 msgid "Reviewer Tools (listed)"
-msgstr "Unelte pentru recenzenți (listate)"
+msgstr "Instrumente pentru recenzori (listate)"
 
 msgid "Reviewer Tools (unlisted)"
-msgstr "Unelte pentru recenzenți (nelistate)"
+msgstr "Instrumente pentru recenzori (nelistate)"
 
 msgid "Reviewer links"
-msgstr "Linkuri pentru recenzenți"
+msgstr "Linkuri pentru recenzori"
 
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
@@ -196,10 +196,10 @@ msgid "Manage API Keys"
 msgstr "Gestionează cheile API"
 
 msgid "Reviewer Tools"
-msgstr "Unelte pentru recenzenți"
+msgstr "Instrumente pentru recenzori"
 
 msgid "Admin Tools"
-msgstr "Unelte admin"
+msgstr "Instrumente de administare"
 
 msgid "Positive integer"
 msgstr "Număr întreg pozitiv"
@@ -1051,7 +1051,7 @@ msgid "Dictionaries"
 msgstr "Dicționare"
 
 msgid "Search Tools"
-msgstr "Unelte de căutare"
+msgstr "Instrumente pentru căutare"
 
 # Plural in this context means many of the add-on type
 msgid "Language Packs (Application)"
@@ -1965,28 +1965,28 @@ msgid "The color of the text and icons in the header area, except the active tab
 msgstr "Culoarea textului și a pictogramelor din zona antetului, cu excepția filei active. Câmp manifest:  tab_background_text."
 
 msgid "Toolbar area background"
-msgstr "Fundalul zonei cu bara de unelte"
+msgstr "Fundalul zonei barei de instrumente"
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
-msgstr "Culoarea de fundal pentru bara de navigare, bara de marcaje și fila activă.  Câmpul manifestului:  toolbar."
+msgstr "Culoarea fundalului pentru bara de navigare, bara de marcaje și fila activă.  Câmpul manifestului:  toolbar."
 
 msgid "Toolbar area text and icons"
-msgstr "Text și pictograme în zona barei de unelte"
+msgstr "Text și pictograme pentru zona barei de instrumente"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
-msgstr "Culoarea textului și a pictogramelor din bara de unelte și fila activă. Câmp manifest:  bookmark_text."
+msgstr "Culoarea textului și a pictogramelor din bara de instrumente și fila activă. Câmpul manifestului:  bookmark_text."
 
 msgid "Toolbar field area background"
-msgstr "Fundalul câmpului barei de unelte"
+msgstr "Fundalul câmpurilor pentru zona barei de instrumente"
 
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr "Culoarea de fundal pentru câmpurile din bara de unelte, cum ar fi bara de adrese. Câmp manifest:  toolbar_field."
+msgstr "Culoarea fundalului pentru câmpurile din bara de instrumente, cum ar fi bara de adrese. Câmpul manifestului:  toolbar_field."
 
 msgid "Toolbar field area text"
-msgstr "Text din zona câmpului barei de unelte"
+msgstr "Textul zonei câmpului din bara de instrumente"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr "Culoarea textului din câmpurile barei de unelte, cum ar fi bara de adrese. Câmp manifest:  toolbar_field_text."
+msgstr "Culoarea textului din câmpurile barei de instrumente, cum ar fi bara de adrese. Câmpul manifestului:  toolbar_field_text."
 
 msgid "Tab highlight"
 msgstr ""
