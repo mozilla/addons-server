@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-24 14:01+0000\n"
+"POT-Creation-Date: 2021-07-20 15:57+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1718,12 +1718,6 @@ msgstr "Alterações recentes para %s"
 msgid "Recent Changes for My Add-ons"
 msgstr "Alterações recentes aos meus extras"
 
-msgid "Legacy extensions are no longer supported in Firefox."
-msgstr ""
-
-msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr ""
-
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr ""
 
@@ -1733,32 +1727,6 @@ msgstr "Este identificador já está a ser utilizado. Por favor escolha outro."
 #, fuzzy, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
 msgstr "O identificador não pode ser \"%s\". Por favor escolha outro."
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "Invalid tag: {0}"
-msgid_plural "Invalid tags: {0}"
-msgstr[0] "Etiqueta inválida: {0}"
-msgstr[1] "Etiquetas inválidas: {0}"
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "\"{0}\" is a reserved tag and cannot be used."
-msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "\"{0}\" é uma etiqueta reservada e não pode ser utilizada."
-msgstr[1] "\"{0}\" são etiquetas reservadas e não podem ser utilizadas."
-
-msgid "You have {0} too many tags."
-msgid_plural "You have {0} too many tags."
-msgstr[0] "Tem {0} etiqueta a mais."
-msgstr[1] "Tem {0} etiquetas a mais."
-
-#, python-format
-msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr "Todas as etiquetas têm de ter %s caracteres ou menos depois dos caracteres inválidos serem removidos ."
-
-msgid "All tags must be at least {0} character."
-msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "Todas as etiquetas têm de ter pelo menos {0} caracter."
-msgstr[1] "Todas as etiquetas têm de ter pelo menos {0} caracteres."
 
 #. L10n: {0} is the number of categories.
 msgid "You can have only {0} category."
@@ -1775,6 +1743,11 @@ msgstr ""
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr ""
+
+msgid "You have {0} too many tags."
+msgid_plural "You have {0} too many tags."
+msgstr[0] "Tem {0} etiqueta a mais."
+msgstr[1] "Tem {0} etiquetas a mais."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -2364,18 +2337,8 @@ msgstr ""
 "As etiquetas ajudam os utilizadores a encontrar o seu extra e devem ser descritores curtos como separadores, barra de ferramenta, ou twitter. Pode ter um máximo de {0} etiquetas. Isto apenas é "
 "relevante para extras listados."
 
-msgid "Comma-separated, minimum of {0} character."
-msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] "Separado por vírgulas, mínimo de {0} caratere."
-msgstr[1] "Separado por vírgulas, mínimo de {0} carateres."
-
-msgid "Example: dark, cinema, noir. Limit 20."
-msgstr "Exemplo: escuro, cinema, preto. Limite 20."
-
-msgid "Reserved tag:"
-msgid_plural "Reserved tags:"
-msgstr[0] "Etiqueta reservada:"
-msgstr[1] "Etiquetas reservadas:"
+msgid "Limit {0} tags."
+msgstr ""
 
 #, fuzzy
 msgid "Contributions URL"

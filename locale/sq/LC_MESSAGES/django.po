@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-24 14:01+0000\n"
+"POT-Creation-Date: 2021-07-20 15:57+0000\n"
 "PO-Revision-Date: 2021-06-15 11:16+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -1614,12 +1614,6 @@ msgstr "Ndryshime Së Fundi për %s"
 msgid "Recent Changes for My Add-ons"
 msgstr "Ndryshime Së Fundi për Shtesat e Mia"
 
-msgid "Legacy extensions are no longer supported in Firefox."
-msgstr "Zgjerimet e dikurshme nuk mbulohen më në Firefox."
-
-msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr "Shtesat për Thunderbird-in dhe SeaMonkey-n tani shfaqen dhe mirëmbahen te addons.thunderbird.net. Mund të përdorni të njëjtën llogari që të përditësoni shtesat tuaja në sajtin e ri."
-
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Shtesat Open Search {blog_link_open}s’mbulohen më në AMO{blog_link_close}. Në vend të kësaj, mund të krijoni një {doc_link_open}zgjerim kërkimesh{doc_link_close}."
 
@@ -1629,32 +1623,6 @@ msgstr "Ky identifikues është i përdorur tashmë. Ju lutemi, zgjidhni një tj
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
 msgstr "Identifikuesi s’mund të jetë \"%(slug)s\". Ju lutemi, zgjidhni një tjetër."
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "Invalid tag: {0}"
-msgid_plural "Invalid tags: {0}"
-msgstr[0] "Etiketë e pavlefshme: {0}"
-msgstr[1] "Etiketa të pavlefshme: {0}"
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "\"{0}\" is a reserved tag and cannot be used."
-msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "\"{0}\" është etiketë e rezervuar dhe s’mund të përdoret."
-msgstr[1] "\"{0}\" janë etiketa të rezervuara dhe s’mund të përdoren."
-
-msgid "You have {0} too many tags."
-msgid_plural "You have {0} too many tags."
-msgstr[0] "Keni {0} etiketë të tepërt."
-msgstr[1] "Keni {0} etiketa të tepërta."
-
-#, python-format
-msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr "Krejt etiketat duhet të jenë %s ose më pak shenja të gjata, pas heqjes së shenjave të pavlefshme."
-
-msgid "All tags must be at least {0} character."
-msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "Krejt etiketat duhet të jenë të paktën {0} shenjë."
-msgstr[1] "Krejt etiketat duhet të jenë të paktën {0} shenja."
 
 #. L10n: {0} is the number of categories.
 msgid "You can have only {0} category."
@@ -1671,6 +1639,11 @@ msgstr "Përkatësia e URL-së duhet të jetë një nga [%s], ose një nënpërk
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr "Shtegu URL për GitHub Sponsors duhet të përmbajë /sponsors/."
+
+msgid "You have {0} too many tags."
+msgid_plural "You have {0} too many tags."
+msgstr[0] "Keni {0} etiketë të tepërt."
+msgstr[1] "Keni {0} etiketa të tepërta."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -2243,18 +2216,8 @@ msgstr "Etiketa"
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr "Etiketat i ndihmojnë përdoruesit të gjejnë shtesën tuaj dhe do të duhej të ishin përshkrues të shkurtër, fjala vjen, skeda, panel, ose Twitter. Mund të përdorni e shumta {0} etiketa."
 
-msgid "Comma-separated, minimum of {0} character."
-msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] "Ndarë me presje, e pakta {0} shenjë."
-msgstr[1] "Ndarë me presje, e pakta {0} shenja."
-
-msgid "Example: dark, cinema, noir. Limit 20."
-msgstr "Shembull: errësirë, kinema, e zezë. Limit 20."
-
-msgid "Reserved tag:"
-msgid_plural "Reserved tags:"
-msgstr[0] "Etiketë e rezervuar:"
-msgstr[1] "Etiketa të rezervuara:"
+msgid "Limit {0} tags."
+msgstr ""
 
 msgid "Contributions URL"
 msgstr "URL Kontributesh"

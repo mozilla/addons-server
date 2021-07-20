@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-24 14:01+0000\n"
+"POT-Creation-Date: 2021-07-20 15:57+0000\n"
 "PO-Revision-Date: 2021-04-07 08:03+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -1630,12 +1630,6 @@ msgstr "Nedavne spremembe za %s"
 msgid "Recent Changes for My Add-ons"
 msgstr "Nedavne spremembe za Moje dodatke"
 
-msgid "Legacy extensions are no longer supported in Firefox."
-msgstr "Stare razširitve niso več podprte v Firefoxu."
-
-msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr "Dodatki za Thunderbird in SeaMonkey so sedaj objavljeni in vzdrževani na addons.thunderbird.net. Za posodabljanje dodatkov na novi strani lahko uporabite isti račun."
-
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr ""
 
@@ -1645,40 +1639,6 @@ msgstr "Ta rekleta se že uporablja. Izberite kako drugo."
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
 msgstr "Rekleta ne more biti \"%(slug)s\". Izberite kako drugo."
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "Invalid tag: {0}"
-msgid_plural "Invalid tags: {0}"
-msgstr[0] "Neveljavna oznaka: {0}"
-msgstr[1] "Neveljavni oznaki: {0}"
-msgstr[2] "Neveljavne oznake: {0}"
-msgstr[3] "Neveljavne oznake: {0}"
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "\"{0}\" is a reserved tag and cannot be used."
-msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "\"{0}\" je rezervirana oznaka in se je ne more uporabiti."
-msgstr[1] "\"{0}\" sta rezervirani oznaki in se ju ne more uporabiti."
-msgstr[2] "\"{0}\" so rezervirane oznake in se jih ne more uporabiti."
-msgstr[3] "\"{0}\" so rezervirane oznake in se jih ne more uporabiti."
-
-msgid "You have {0} too many tags."
-msgid_plural "You have {0} too many tags."
-msgstr[0] "Imate {0} oznako preveč."
-msgstr[1] "Imate {0} oznaki preveč."
-msgstr[2] "Imate {0} oznake preveč."
-msgstr[3] "Imate {0} oznak preveč."
-
-#, python-format
-msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr "Potem ko se je odstranilo neveljavne znake, smejo vse oznake imeti največ %s znakov,"
-
-msgid "All tags must be at least {0} character."
-msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "Vse oznake morajo biti najmanj {0} znak."
-msgstr[1] "Vse oznake morajo imeti najmanj {0} znaka."
-msgstr[2] "Vse oznake morajo imeti najmanj {0} znake."
-msgstr[3] "Vse oznake morajo imeti najmanj {0} znakov."
 
 #. L10n: {0} is the number of categories.
 msgid "You can have only {0} category."
@@ -1697,6 +1657,13 @@ msgstr "Domena spletnega naslova mora biti ena od [%s] ali poddomena."
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr ""
+
+msgid "You have {0} too many tags."
+msgid_plural "You have {0} too many tags."
+msgstr[0] "Imate {0} oznako preveč."
+msgstr[1] "Imate {0} oznaki preveč."
+msgstr[2] "Imate {0} oznake preveč."
+msgstr[3] "Imate {0} oznak preveč."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -2266,22 +2233,8 @@ msgstr "Oznake"
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr "Oznake pomagajo uporabnikom najti dodatek, morajo pa biti kratke besede, povezane z delovanjem dodatka, npr. zavihki, orodna vrstica, twitter ... Imate lahko največ {0} oznak."
 
-msgid "Comma-separated, minimum of {0} character."
-msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] "Ločene z vejicami, najmanj {0} znak."
-msgstr[1] "Ločene z vejicami, najmanj {0} znaka."
-msgstr[2] "Ločene z vejicami, najmanj {0} znaki."
-msgstr[3] "Ločene z vejicami, najmanj {0} znakov."
-
-msgid "Example: dark, cinema, noir. Limit 20."
-msgstr "Na primer: pop, gotik, rok. Meja 20."
-
-msgid "Reserved tag:"
-msgid_plural "Reserved tags:"
-msgstr[0] "Rezervirana oznaka:"
-msgstr[1] "Rezervirani oznaki:"
-msgstr[2] "Rezervirane oznake:"
-msgstr[3] "Rezerviranih oznak:"
+msgid "Limit {0} tags."
+msgstr ""
 
 msgid "Contributions URL"
 msgstr "Naslov za prispevke"

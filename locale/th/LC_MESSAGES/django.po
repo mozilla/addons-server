@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-24 14:01+0000\n"
+"POT-Creation-Date: 2021-07-20 15:57+0000\n"
 "PO-Revision-Date: 2021-05-26 05:07+0000\n"
 "Last-Translator: yotanutmaliwan <yotanutmaliwan@gmail.com>\n"
 "Language-Team: Thai\n"
@@ -1616,12 +1616,6 @@ msgstr "การเปลี่ยนแปลงล่าสุดสำหร
 msgid "Recent Changes for My Add-ons"
 msgstr "การเปลี่ยนแปลงล่าสุดสำหรับส่วนเสริมของฉัน"
 
-msgid "Legacy extensions are no longer supported in Firefox."
-msgstr "ไม่รองรับส่วนขยายแบบเก่าใน Firefox อีกต่อไป"
-
-msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr ""
-
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr ""
 
@@ -1631,28 +1625,6 @@ msgstr "สลักนี้ถูกใช้แล้ว โปรดเล�
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
 msgstr "สลักไม่สามารถเป็น \"%(slug)s\" ได้ โปรดเลือกอันอื่น"
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "Invalid tag: {0}"
-msgid_plural "Invalid tags: {0}"
-msgstr[0] "ป้ายกำกับไม่ถูกต้อง: {0}"
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "\"{0}\" is a reserved tag and cannot be used."
-msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "\"{0}\" เป็นป้ายกำกับที่สงวนไว้และไม่สามารถใช้ได้"
-
-msgid "You have {0} too many tags."
-msgid_plural "You have {0} too many tags."
-msgstr[0] "คุณมี {0} ป้ายกำกับมากเกินไป"
-
-#, python-format
-msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr "ป้ายกำกับทั้งหมดต้องมี %s อักขระหรือน้อยกว่าหลังจากอักขระที่ไม่ถูกต้องถูกเอาออก"
-
-msgid "All tags must be at least {0} character."
-msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "ป้ายกำกับทั้งหมดต้องมีอย่างน้อย {0} อักขระ"
 
 #. L10n: {0} is the number of categories.
 msgid "You can have only {0} category."
@@ -1668,6 +1640,10 @@ msgstr "โดเมน URL ต้องเป็นโดเมนที่อ�
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr ""
+
+msgid "You have {0} too many tags."
+msgid_plural "You have {0} too many tags."
+msgstr[0] "คุณมี {0} ป้ายกำกับมากเกินไป"
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -2234,16 +2210,8 @@ msgstr "ป้ายกำกับ"
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr ""
 
-msgid "Comma-separated, minimum of {0} character."
-msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] "คั่นด้วยจุลภาค ขั้นต่ำ {0} ตัวอักษร"
-
-msgid "Example: dark, cinema, noir. Limit 20."
-msgstr "ตัวอย่าง: dark, cinema, noir จำนวนจำกัดคือ 20"
-
-msgid "Reserved tag:"
-msgid_plural "Reserved tags:"
-msgstr[0] "ป้ายกำกับที่สงวนไว้:"
+msgid "Limit {0} tags."
+msgstr ""
 
 msgid "Contributions URL"
 msgstr "URL การมีส่วนร่วม"

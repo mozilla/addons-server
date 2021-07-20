@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-24 14:01+0000\n"
+"POT-Creation-Date: 2021-07-20 15:57+0000\n"
 "PO-Revision-Date: 2021-05-04 00:37+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1630,12 +1630,6 @@ msgstr "K'ak'a' taq Jaloj pa %s"
 msgid "Recent Changes for My Add-ons"
 msgstr "K'ak'a' taq Jaloj pa Taq Nutz'aqat"
 
-msgid "Legacy extensions are no longer supported in Firefox."
-msgstr ""
-
-msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr "Wakami ri taq rutz'aqat Thunderbird chuqa' SeaMonkey xtiq'alajin pa addons.thunderbird.net. Yatikïr nawokisaj ri rub'i' taqoya'l richin ye'ak'ëx pa ri k'ak'a' ajk'amaya'l ruxaq."
-
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr ""
 
@@ -1645,32 +1639,6 @@ msgstr "Nokisäx re slug re'. Tacha' jun chik."
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
 msgstr "Re slug re' man tikirel ta nok \"%(slug)s\". Tacha' jun chik."
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "Invalid tag: {0}"
-msgid_plural "Invalid tags: {0}"
-msgstr[0] "Man okel ta ri etal: {0}"
-msgstr[1] "Man e okel ta ri taq etal: {0}"
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "\"{0}\" is a reserved tag and cannot be used."
-msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "\"{0}\" jun q'atapun etal chuqa' man tikirel ta nokisäx."
-msgstr[1] "\"{0}\" eq'atapun taq etal chuqa' man tikirel ta ye'okisäx."
-
-msgid "You have {0} too many tags."
-msgid_plural "You have {0} too many tags."
-msgstr[0] "E k'o {0} taq etal ruwi'."
-msgstr[1] "E k'o {0} taq etal ruwi'."
-
-#, python-format
-msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr "Ronojel ri taq etal k'o chi kik'wan %s taq tz'ib' o qajinäq toq xeyuj ri taq tz'ib' man e okel ta."
-
-msgid "All tags must be at least {0} character."
-msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "Ronojel etal k'o chi nik'o chi re {0} tz'ib'."
-msgstr[1] "Konojel taq etal k'o chi ye'ik'o chi re {0} taq tz'ib'."
 
 #. L10n: {0} is the number of categories.
 msgid "You can have only {0} category."
@@ -1687,6 +1655,11 @@ msgstr "URL ajk'amal k'o chi jun [%s], o jun achajk'amal."
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr ""
+
+msgid "You have {0} too many tags."
+msgid_plural "You have {0} too many tags."
+msgstr[0] "E k'o {0} taq etal ruwi'."
+msgstr[1] "E k'o {0} taq etal ruwi'."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -2259,18 +2232,8 @@ msgstr "Taq etal"
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr "Ri taq etal yeruto' ri okisanela' richin yekïl taq tz'aqat, k'o ta chi ko'öl kitzijol achi'el taq ruwi', kikajtz'ik samajib'äl o Twitter. E k'o {0} taq awetal."
 
-msgid "Comma-separated, minimum of {0} character."
-msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] "Jachon rik'in mixtuq', rik'in {0} taq tz'ib'."
-msgstr[1] "Ejachon rik'in mixtuq', rik'in {0} taq tz'ib'."
-
-msgid "Example: dark, cinema, noir. Limit 20."
-msgstr "Tz'eteb'äl: q'equ'm, silowäch, aq'a', Ruchi' 20."
-
-msgid "Reserved tag:"
-msgid_plural "Reserved tags:"
-msgstr[0] "Q'atapun etal:"
-msgstr[1] "Q'atapun taq etal:"
+msgid "Limit {0} tags."
+msgstr ""
 
 msgid "Contributions URL"
 msgstr "To'onela' URL"
