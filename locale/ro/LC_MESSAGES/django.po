@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-06-24 14:01+0000\n"
-"PO-Revision-Date: 2021-07-20 23:15+0000\n"
+"PO-Revision-Date: 2021-07-20 23:26+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -4553,48 +4553,41 @@ msgid "Learn More"
 msgstr "Află mai multe"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended extensions"
-msgstr "Program de extensii recomandate"
+msgstr "Extensii recomandate"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more recommended extensions"
-msgstr "Program de extensii recomandate"
+msgstr "Vezi mai multe extensii recomandate"
 
 #. editorial content for the homepage shelves.
 msgid "Popular themes"
-msgstr ""
+msgstr "Teme populare"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular themes"
-msgstr "Selectează culorile temei"
+msgstr "Vezi mai multe teme populare"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Enhanced privacy extensions"
-msgstr "Vezi toate extensiile"
+msgstr "Extensii care sporesc confidențialitatea"
 
 #. editorial content for the homepage shelves.
 msgid "See more enhanced privacy extensions"
-msgstr ""
+msgstr "Vezi mai multe extensii care sporesc confidențialitatea"
 
 #. editorial content for the homepage shelves.
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Popular extensions"
-msgstr "Explorează extensiile"
+msgstr "Extensii populare"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular extensions"
-msgstr "Vezi toate extensiile"
+msgstr "Vezi mai multe extensii populare"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended themes"
-msgstr "Recomandat"
+msgstr "Teme recomandate"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
