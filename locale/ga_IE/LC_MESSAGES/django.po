@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-24 14:01+0000\n"
+"POT-Creation-Date: 2021-07-21 08:49+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -1706,12 +1706,6 @@ msgstr ""
 msgid "Recent Changes for My Add-ons"
 msgstr ""
 
-msgid "Legacy extensions are no longer supported in Firefox."
-msgstr ""
-
-msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr ""
-
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr ""
 
@@ -1721,44 +1715,6 @@ msgstr "Tá an sluga seo in úsáid cheana. Roghaigh ceann eile."
 #, fuzzy, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
 msgstr "Ní féidir \"%s\" a úsáid mar shluga. Roghnaigh ceann eile."
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "Invalid tag: {0}"
-msgid_plural "Invalid tags: {0}"
-msgstr[0] "Clib neamhbhailí: {0}"
-msgstr[1] "Clibeanna neamhbhailí: {0}"
-msgstr[2] "Clibeanna neamhbhailí: {0}"
-msgstr[3] "Clibeanna neamhbhailí: {0}"
-msgstr[4] "Clibeanna neamhbhailí: {0}"
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "\"{0}\" is a reserved tag and cannot be used."
-msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "Tá an chlib \"{0}\" in áirithe agus níl cead agat é a úsáid."
-msgstr[1] "Tá na clibeanna \"{0}\" in áirithe agus níl cead agat iad a úsáid."
-msgstr[2] "Tá na clibeanna \"{0}\" in áirithe agus níl cead agat iad a úsáid."
-msgstr[3] "Tá na clibeanna \"{0}\" in áirithe agus níl cead agat iad a úsáid."
-msgstr[4] "Tá na clibeanna \"{0}\" in áirithe agus níl cead agat iad a úsáid."
-
-msgid "You have {0} too many tags."
-msgid_plural "You have {0} too many tags."
-msgstr[0] "Tá {0} chlib de bharraíocht agat."
-msgstr[1] "Tá {0} chlib de bharraíocht agat."
-msgstr[2] "Tá {0} chlib de bharraíocht agat."
-msgstr[3] "Tá {0} gclib de bharraíocht agat."
-msgstr[4] "Tá {0} clib de bharraíocht agat."
-
-#, python-format
-msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr "Ní cheadaítear níos mó ná %s carachtar i gclib tar éis carachtair neamhbhailí a bhaint amach."
-
-msgid "All tags must be at least {0} character."
-msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "Ní mór {0} charachtar ar a laghad a bheith i gclib."
-msgstr[1] "Ní mór {0} charachtar ar a laghad a bheith i gclib."
-msgstr[2] "Ní mór {0} charachtar ar a laghad a bheith i gclib."
-msgstr[3] "Ní mór {0} gcarachtar ar a laghad a bheith i gclib."
-msgstr[4] "Ní mór {0} carachtar ar a laghad a bheith i gclib."
 
 #. L10n: {0} is the number of categories.
 msgid "You can have only {0} category."
@@ -1778,6 +1734,14 @@ msgstr ""
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr ""
+
+msgid "You have {0} too many tags."
+msgid_plural "You have {0} too many tags."
+msgstr[0] "Tá {0} chlib de bharraíocht agat."
+msgstr[1] "Tá {0} chlib de bharraíocht agat."
+msgstr[2] "Tá {0} chlib de bharraíocht agat."
+msgstr[3] "Tá {0} gclib de bharraíocht agat."
+msgstr[4] "Tá {0} clib de bharraíocht agat."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -2365,24 +2329,8 @@ msgstr "Clibeanna"
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr ""
 
-msgid "Comma-separated, minimum of {0} character."
-msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] "Scartha ag camóga, {0} carachtar ar a laghad."
-msgstr[1] "Scartha ag camóga, {0} carachtar ar a laghad."
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-
-msgid "Example: dark, cinema, noir. Limit 20."
-msgstr "Sampla: dorcha, scannán, noir. 20 ar a mhéad."
-
-msgid "Reserved tag:"
-msgid_plural "Reserved tags:"
-msgstr[0] "Clib in áirithe:"
-msgstr[1] "Clibeanna in áirithe:"
-msgstr[2] "Clibeanna in áirithe:"
-msgstr[3] "Clibeanna in áirithe:"
-msgstr[4] "Clibeanna in áirithe:"
+msgid "Limit {0} tags."
+msgstr ""
 
 #, fuzzy
 msgid "Contributions URL"
