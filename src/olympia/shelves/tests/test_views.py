@@ -1,4 +1,5 @@
 import json
+from unittest import mock
 
 from django.conf import settings
 
@@ -23,6 +24,7 @@ from olympia.hero.serializers import (
 )
 from olympia.promoted.models import PromotedAddon
 from olympia.shelves.models import Shelf, ShelfManagement
+from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
 
 
@@ -35,6 +37,7 @@ class TestShelfViewSet(ESTestCase):
 
         # Shouldn't be necessary, but just in case.
         cls.empty_index('default')
+        cls.tag = Tag.objects.first().tag_text
 
         addon_factory(
             name='test addon test01',
@@ -56,7 +59,7 @@ class TestShelfViewSet(ESTestCase):
             average_daily_users=482,
             weekly_downloads=506,
             summary=None,
-            tags=('foo',),
+            tags=(cls.tag,),
         )
         addon_theme = addon_factory(
             name='test addon test04',
@@ -138,13 +141,16 @@ class TestShelfViewSet(ESTestCase):
             'secondary': None,
         }
 
-    def test_only_enabled_shelves_in_view(self):
+    @mock.patch.object(Shelf, 'tag', new_callable=mock.PropertyMock)
+    def test_only_enabled_shelves_in_view(self, tag_mock):
+        tag_mock.return_value = self.tag
         self.hpshelf_a.update(enabled=True)
         self.hpshelf_b.update(enabled=True)
         # don't enable shelf_c
         self.hpshelf_d.update(enabled=True)
 
-        with self.assertNumQueries(26):
+        # would be 26 but we mocked Shelf.tag that does a query.
+        with self.assertNumQueries(25):
             response = self.client.get(self.url)
         assert response.status_code == 200
 
@@ -189,7 +195,7 @@ class TestShelfViewSet(ESTestCase):
 
         assert result['results'][2]['title'] == {'en-US': 'Random Tag'}
         assert result['results'][2]['url'] == (
-            reverse_ns('addon-search', api_version='v5') + '?tag=foo'
+            reverse_ns('addon-search', api_version='v5') + f'?tag={self.tag}'
         )
         assert result['results'][2]['endpoint'] == 'random-tag'
         assert result['results'][2]['criteria'] == ('?')

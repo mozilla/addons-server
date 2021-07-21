@@ -16,7 +16,7 @@ class TestShelfForm(TestCase):
         self.criteria_col_thm = 'featured-personas'
         self.criteria_col_404 = 'passwordmanagers'
         self.criteria_not_200 = '?sort=user&type=extension'
-        tag_text = Tag.objects.create(tag_text='foo').tag_text
+        tag_text = Tag.objects.first().tag_text
 
         responses.add(
             responses.GET,
