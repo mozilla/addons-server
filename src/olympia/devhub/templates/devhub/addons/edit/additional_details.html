@@ -17,9 +17,8 @@
           <tr>
             <th>
               {{ tip(_("Tags"),
-                     _("Tags help users find your add-on and should be short "
-                       "descriptors such as tabs, toolbar, or twitter. You "
-                       "may have a maximum of {0} tags.").format(amo.MAX_TAGS)) }}
+                     _("Tags help users find your add-on. You may have a maximum of {0} tags. "
+                       "Only choose tags that are relevant to your add-on.").format(amo.MAX_TAGS)) }}
             </th>
             <td id="addon_tags_edit">
               {% if editable %}
