@@ -783,9 +783,7 @@ class TestRankingScenarios(ESTestCase):
         # but we now require all terms to be present through
         # minimum_should_match on the fuzzy name query (and it has nothing else
         # to match).
-        self._check_scenario(
-            'Menu Wizzard', (['Menu Wizard', 1523],)  # (fuzzy, typo)
-        )
+        self._check_scenario('Menu Wizzard', (['Menu Wizard', 1523],))  # (fuzzy, typo)
 
     def test_scenario_frame_demolition(self):
         self._check_scenario('Frame Demolition', (['Frame Demolition', 4601],))
