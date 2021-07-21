@@ -1884,11 +1884,7 @@ def attach_tags(addons):
     addon_dict = {addon.id: addon for addon in addons}
     for addon in addons:
         addon.tag_list = []  # make sure all the addons have the property set
-    qs = (
-        Tag.objects.not_denied()
-        .filter(addons__in=addon_dict)
-        .values_list('addons__id', 'tag_text')
-    )
+    qs = Tag.objects.filter(addons__in=addon_dict).values_list('addons__id', 'tag_text')
     for addon, tags in sorted_groupby(qs, lambda x: x[0]):
         addon_dict[addon].tag_list = [t[1] for t in tags]
 

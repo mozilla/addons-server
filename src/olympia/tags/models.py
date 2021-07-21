@@ -3,35 +3,20 @@ from django.urls import NoReverseMatch, reverse
 
 from olympia import activity, amo
 from olympia.amo.fields import PositiveAutoField
-from olympia.amo.models import ManagerBase, ModelBase
-
-
-class TagManager(ManagerBase):
-    def not_denied(self):
-        """Get allowed tags only"""
-        return self.filter(denied=False)
+from olympia.amo.models import ModelBase
 
 
 class Tag(ModelBase):
     id = PositiveAutoField(primary_key=True)
     tag_text = models.CharField(max_length=128)
-    denied = models.BooleanField(default=False)
-    restricted = models.BooleanField(default=False)
     addons = models.ManyToManyField(
         'addons.Addon', through='AddonTag', related_name='tags'
     )
     num_addons = models.IntegerField(default=0)
 
-    objects = TagManager()
-
     class Meta:
         db_table = 'tags'
         ordering = ('tag_text',)
-        indexes = [
-            models.Index(
-                fields=('denied', 'num_addons'), name='tag_blacklisted_num_addons_idx'
-            )
-        ]
         constraints = [models.UniqueConstraint(fields=('tag_text',), name='tag_text')]
 
     def __str__(self):
@@ -61,8 +46,6 @@ class Tag(ModelBase):
         activity.log_create(amo.LOG.REMOVE_TAG, self, addon)
 
     def update_stat(self):
-        if self.denied:
-            return
         self.num_addons = self.addons.count()
         self.save()
 

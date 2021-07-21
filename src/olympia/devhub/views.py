@@ -361,7 +361,7 @@ def edit(request, addon_id, addon):
         'editable': False,
         'show_listed_fields': addon.has_listed_versions(),
         'valid_slug': addon.slug,
-        'tags': addon.tags.not_denied().values_list('tag_text', flat=True),
+        'tags': addon.tags.values_list('tag_text', flat=True),
         'previews': previews,
         'header_preview': header_preview,
         'supported_image_types': amo.SUPPORTED_IMAGE_TYPES,
@@ -912,7 +912,7 @@ def addons_section(request, addon_id, addon, section, editable=False):
         )
 
     elif section == 'additional_details':
-        tags = addon.tags.not_denied().values_list('tag_text', flat=True)
+        tags = addon.tags.values_list('tag_text', flat=True)
 
     elif section == 'media':
         previews = forms.PreviewFormSet(
