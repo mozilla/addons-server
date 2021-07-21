@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-24 14:01+0000\n"
+"POT-Creation-Date: 2021-07-21 08:49+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1744,12 +1744,6 @@ msgstr "Recent Changes for %s"
 msgid "Recent Changes for My Add-ons"
 msgstr "Recent Changes for My Add-ons"
 
-msgid "Legacy extensions are no longer supported in Firefox."
-msgstr "Legacy extensions are no longer supported in Firefox."
-
-msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 
@@ -1759,32 +1753,6 @@ msgstr "This slug is already in use. Please choose another."
 #, fuzzy, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
 msgstr "The slug cannot be \"%s\". Please choose another."
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "Invalid tag: {0}"
-msgid_plural "Invalid tags: {0}"
-msgstr[0] "Invalid tag: {0}"
-msgstr[1] "Invalid tags: {0}"
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "\"{0}\" is a reserved tag and cannot be used."
-msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "\"{0}\" is a reserved tag and cannot be used."
-msgstr[1] "\"{0}\" are reserved tags and cannot be used."
-
-msgid "You have {0} too many tags."
-msgid_plural "You have {0} too many tags."
-msgstr[0] "You have {0} too many tags."
-msgstr[1] "You have {0} too many tags."
-
-#, python-format
-msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr "All tags must be %s characters or less after invalid characters are removed."
-
-msgid "All tags must be at least {0} character."
-msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "All tags must be at least {0} character."
-msgstr[1] "All tags must be at least {0} characters."
 
 #. L10n: {0} is the number of categories.
 msgid "You can have only {0} category."
@@ -1801,6 +1769,11 @@ msgstr "URL domain must be one of [%s], or a subdomain., "
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr "URL path for GitHub Sponsors must contain /sponsors/."
+
+msgid "You have {0} too many tags."
+msgid_plural "You have {0} too many tags."
+msgstr[0] "You have {0} too many tags."
+msgstr[1] "You have {0} too many tags."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -2409,18 +2382,8 @@ msgstr "Tags"
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter.  You may have a maximum of {0} tags. It is only relevant for listed add-ons."
 
-msgid "Comma-separated, minimum of {0} character."
-msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] "Comma-separated, minimum of {0} character."
-msgstr[1] "Comma-separated, minimum of {0} characters."
-
-msgid "Example: dark, cinema, noir. Limit 20."
-msgstr "Example: dark, cinema, noir. Limit 20."
-
-msgid "Reserved tag:"
-msgid_plural "Reserved tags:"
-msgstr[0] "Reserved tag:"
-msgstr[1] "Reserved tags:"
+msgid "Limit {0} tags."
+msgstr "Limit {0} tags."
 
 #, fuzzy
 msgid "Contributions URL"

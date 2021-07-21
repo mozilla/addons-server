@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-24 14:01+0000\n"
+"POT-Creation-Date: 2021-07-21 08:49+0000\n"
 "PO-Revision-Date: 2020-11-12 22:41+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -1614,12 +1614,6 @@ msgstr "Nedávne zmeny pre %s"
 msgid "Recent Changes for My Add-ons"
 msgstr "Nedávne zmeny pre moje doplmky"
 
-msgid "Legacy extensions are no longer supported in Firefox."
-msgstr "Zastarané rozšírenia už nie sú vo Firefoxe podporované."
-
-msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr "Doplnky pre Thunderbird a SeaMonkey sú odteraz na samostatnej stránke addons.thunderbird.net. Pre aktualizáciu svojho doplnku môžete použiť svoj terajší účet."
-
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr ""
 
@@ -1629,36 +1623,6 @@ msgstr "Táto URL adresa sa už používa. Vyberte inú."
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
 msgstr "URL adresa nemôže byť „%(slug)s“. Prosím, vyberte inú."
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "Invalid tag: {0}"
-msgid_plural "Invalid tags: {0}"
-msgstr[0] "Neplatná značka: {0}"
-msgstr[1] "Neplatné značky: {0}"
-msgstr[2] "Neplatné značky: {0}"
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "\"{0}\" is a reserved tag and cannot be used."
-msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "\"{0}\" je rezervovaná značka a nie je možné ju použiť."
-msgstr[1] "\"{0}\" sú rezervované značky a nie je možné ich použiť."
-msgstr[2] "\"{0}\" sú rezervované značky a nie je možné ich použiť."
-
-msgid "You have {0} too many tags."
-msgid_plural "You have {0} too many tags."
-msgstr[0] "Máte o {0} značku naviac."
-msgstr[1] "Máte o {0} značky naviac."
-msgstr[2] "Máte o {0} značiek naviac."
-
-#, python-format
-msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr "Po odstránení neplatných znakov musia mať všetky značka najviac %s znakov."
-
-msgid "All tags must be at least {0} character."
-msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "Každá značka musí mať aspoň {0} znak."
-msgstr[1] "Každá značka musí mať aspoň {0} znaky."
-msgstr[2] "Každá značka musí mať aspoň {0} znakov."
 
 #. L10n: {0} is the number of categories.
 msgid "You can have only {0} category."
@@ -1676,6 +1640,12 @@ msgstr "Doména v URL adrese musí byť jedna z týchto [%s], alebo ich subdomé
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr ""
+
+msgid "You have {0} too many tags."
+msgid_plural "You have {0} too many tags."
+msgstr[0] "Máte o {0} značku naviac."
+msgstr[1] "Máte o {0} značky naviac."
+msgstr[2] "Máte o {0} značiek naviac."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -2239,20 +2209,8 @@ msgstr "Značky"
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr ""
 
-msgid "Comma-separated, minimum of {0} character."
-msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] "Oddelené čiarkou, minimálne {0} znak."
-msgstr[1] "Oddelené čiarkou, minimálne {0} znaky."
-msgstr[2] "Oddelené čiarkou, minimálne {0} znakov."
-
-msgid "Example: dark, cinema, noir. Limit 20."
-msgstr "Príklad: dark, cinema, noir. Maximálne 20."
-
-msgid "Reserved tag:"
-msgid_plural "Reserved tags:"
-msgstr[0] "Rezervovaná značka:"
-msgstr[1] "Rezervované značky:"
-msgstr[2] "Rezervované značky:"
+msgid "Limit {0} tags."
+msgstr ""
 
 msgid "Contributions URL"
 msgstr ""

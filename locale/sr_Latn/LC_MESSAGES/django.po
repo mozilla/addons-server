@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-24 14:01+0000\n"
+"POT-Creation-Date: 2021-07-21 08:49+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -1909,15 +1909,6 @@ msgstr "Skorašnje izmene za %s"
 msgid "Recent Changes for My Add-ons"
 msgstr "Skorašnje izmene za Moji dodaci"
 
-msgid "Legacy extensions are no longer supported in Firefox."
-msgstr ""
-
-msgid ""
-"Add-ons for Thunderbird and SeaMonkey are now listed and maintained on "
-"addons.thunderbird.net. You can use the same account to update your add-ons "
-"on the new site."
-msgstr ""
-
 msgid ""
 "Open Search add-ons are {blog_link_open}no longer supported on "
 "AMO{blog_link_close}. You can create a {doc_link_open}search extension "
@@ -1930,35 +1921,6 @@ msgstr "Naziv url adrese je u upotrebi. Molimo Vas izaberite drugi."
 #, fuzzy, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
 msgstr "Naziv url adrese ne može biti \"%s\". Molimo Vas izaberite drugi."
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "Invalid tag: {0}"
-msgid_plural "Invalid tags: {0}"
-msgstr[0] "Neispravna oznaka: {0}"
-msgstr[1] "Neispravne oznake: {0}"
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "\"{0}\" is a reserved tag and cannot be used."
-msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "\"{0}\" je rezervisana oznaka koja se ne može koristiti."
-msgstr[1] "\"{0}\" su rezervisane oznake koje se ne mogu koristiti."
-
-msgid "You have {0} too many tags."
-msgid_plural "You have {0} too many tags."
-msgstr[0] "Imate {0} previše oznaka."
-msgstr[1] "Imate {0} previše oznaka."
-
-#, python-format
-msgid ""
-"All tags must be %s characters or less after invalid characters are removed."
-msgstr ""
-"Sve oznake moraju biti od %s kataktera ili manje nakon što su neispravni "
-"karakteri uklonjeni."
-
-msgid "All tags must be at least {0} character."
-msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "Sve oznake moraju sadržati najmanje {0} karakter."
-msgstr[1] "Sve oznake moraju sadržati najmanje {0} karaktera."
 
 #. L10n: {0} is the number of categories.
 msgid "You can have only {0} category."
@@ -1976,6 +1938,11 @@ msgstr ""
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr ""
+
+msgid "You have {0} too many tags."
+msgid_plural "You have {0} too many tags."
+msgstr[0] "Imate {0} previše oznaka."
+msgstr[1] "Imate {0} previše oznaka."
 
 #, python-format
 msgid ""
@@ -2645,18 +2612,8 @@ msgid ""
 "tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr ""
 
-msgid "Comma-separated, minimum of {0} character."
-msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] "Razdvojeno zarezima, najmanje {0} karakter."
-msgstr[1] "Razdvojeno zarezima, najmanje {0} karaktera."
-
-msgid "Example: dark, cinema, noir. Limit 20."
-msgstr "Primer: dark, cinema, noir. Ograničenje 20."
-
-msgid "Reserved tag:"
-msgid_plural "Reserved tags:"
-msgstr[0] "Rezervisana oznaka:"
-msgstr[1] "Rezervisane oznake:"
+msgid "Limit {0} tags."
+msgstr ""
 
 #, fuzzy
 msgid "Contributions URL"

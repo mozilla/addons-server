@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-24 14:01+0000\n"
+"POT-Creation-Date: 2021-07-21 08:49+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1718,12 +1718,6 @@ msgstr "%s ਲਈ ਹਾਲੀਆ ਬਦਲਾਵ"
 msgid "Recent Changes for My Add-ons"
 msgstr "ਮੇਰੇ ਐਡ-ਆਨ ਲਈ ਹਾਲੀਆ ਬਦਲਾਵ"
 
-msgid "Legacy extensions are no longer supported in Firefox."
-msgstr ""
-
-msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr ""
-
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr ""
 
@@ -1733,32 +1727,6 @@ msgstr "ਇਹ ਸਲੱਗ ਪਹਿਲਾਂ ਹੀ ਵਰਤਿਆ ਗਿਆ 
 #, fuzzy, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
 msgstr "\"%s\" ਸਲੱਗ ਨਹੀਂ ਕਰ ਸਕਦਾ| ਕ੍ਰਿਪਾ ਕਰਕੇ ਹੋਰ ਚੁਣੋ।"
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "Invalid tag: {0}"
-msgid_plural "Invalid tags: {0}"
-msgstr[0] "ਗਲਤ ਟੈਗ: {0}"
-msgstr[1] "ਗਲਤ ਟੈਗ: {0}"
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "\"{0}\" is a reserved tag and cannot be used."
-msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "\"{0}\" ਇੱਕ ਰਾਖਵਾਂ ਟੈਗ ਹੈ ਅਤੇ ਵਰਤਿਆ ਨਹੀਂਂ ਜਾ ਸਕਦਾ।"
-msgstr[1] "\"{0}\" ਰਾਖਵੇਂ ਟੈਗ ਹਨ ਅਤੇ ਵਰਤੇ ਨਹੀਂਂ ਜਾ ਸਕਦੇ।"
-
-msgid "You have {0} too many tags."
-msgid_plural "You have {0} too many tags."
-msgstr[0] "ਤੁਹਾਡੇ ਕੋਲ {0} ਬਹੁਤ ਸਾਰੇ ਟੈਗ ਹਨ।"
-msgstr[1] "ਤੁਹਾਡੇ ਕੋਲ {0} ਬਹੁਤ ਸਾਰੇ ਟੈਗ ਹਨ।"
-
-#, python-format
-msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr "ਗਲਤ ਅੱਖਰਾਂ ਨੂੰ ਹਟਾਉਣ ਤੋਂ ਬਾਅਦ ਸਾਰੇ ਟੈਗ ਕੋਲ %s ਜਾਂ ਇਸ ਤੋਂ ਘੱਟ ਅੱਖਰ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ।"
-
-msgid "All tags must be at least {0} character."
-msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "ਸਾਰੇ ਟੈਗ ਘੱਟੋ-ਘੱਟ {0} ਅੱਖਰ ਦੇ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ।"
-msgstr[1] "ਸਾਰੇ ਟੈਗ ਘੱਟੋ-ਘੱਟ {0} ਅੱਖਰਾਂ ਦੇ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ।"
 
 #. L10n: {0} is the number of categories.
 msgid "You can have only {0} category."
@@ -1775,6 +1743,11 @@ msgstr ""
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr ""
+
+msgid "You have {0} too many tags."
+msgid_plural "You have {0} too many tags."
+msgstr[0] "ਤੁਹਾਡੇ ਕੋਲ {0} ਬਹੁਤ ਸਾਰੇ ਟੈਗ ਹਨ।"
+msgstr[1] "ਤੁਹਾਡੇ ਕੋਲ {0} ਬਹੁਤ ਸਾਰੇ ਟੈਗ ਹਨ।"
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -2359,18 +2332,8 @@ msgstr "ਟੈਗ"
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr "ਟੈਗ ਵਰਤੋਂਕਾਰਾਂ ਦੀ ਤੁਹਾਡਾ ਐਡ-ਆਨ ਲੱਭਣ ਵਿੱਚ ਮਦਦ ਕਰਦੇ ਅਤੇ ਛੋਟੇ ਵਰਣਨ ਵਾਲੇ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ ਜਿਵੇਂ ਕਿ ਟੈਬਾਂ, ਟੂਲਬਾਰ, ਜਾਂ ਟਵਿੱਟਰ। ਤੁਹਾਡੇ ਕੋਲ ਵੱਧ ਤੋਂ ਵੱਧ {0} ਟੈਗ ਹੋ ਸਕਦੇ ਹਨ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵੇਂ ਹਨ।"
 
-msgid "Comma-separated, minimum of {0} character."
-msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] "ਕੋਮਾ-ਵੱਖ, {0} ਅੱਖਰ ਦਾ ਘੱਟੋ-ਘੱਟ"
-msgstr[1] "ਕੋਮਾ-ਵੱਖ, {0} ਅੱਖਰਾਂ ਦਾ ਘੱਟੋ-ਘੱਟ"
-
-msgid "Example: dark, cinema, noir. Limit 20."
-msgstr "ਉਦਾਹਰਨ: ਹਨੇਰਾ, ਸਿਨੇਮਾ, ਨੋਇਰ। ਹੱਦ 20।"
-
-msgid "Reserved tag:"
-msgid_plural "Reserved tags:"
-msgstr[0] "ਰਾਖਵਾਂ ਟੈਗ:"
-msgstr[1] "ਰਾਖਵੇਂ ਟੈਗ:"
+msgid "Limit {0} tags."
+msgstr ""
 
 #, fuzzy
 msgid "Contributions URL"
