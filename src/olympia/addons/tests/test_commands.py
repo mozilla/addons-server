@@ -25,7 +25,7 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.applications.models import AppVersion
-from olympia.files.models import FileValidation, WebextPermission
+from olympia.files.models import FileValidation
 from olympia.ratings.models import Rating, RatingAggregate
 from olympia.reviewers.models import AutoApprovalSummary
 from olympia.versions.models import ApplicationsVersions, Version, VersionPreview
@@ -151,44 +151,6 @@ def test_process_addons_batch_size(mock_get_pks):
         assert calls[0]['kwargs']['args'] == [addon_ids[:50]]
         assert calls[1]['kwargs']['args'] == [addon_ids[50:100]]
         assert calls[2]['kwargs']['args'] == [addon_ids[100:]]
-
-
-class TestAddDynamicThemeTagForThemeApiCommand(TestCase):
-    def test_affects_only_public_webextensions(self):
-        addon_factory()
-        addon_factory(
-            file_kw={'is_webextension': True, 'status': amo.STATUS_AWAITING_REVIEW},
-            status=amo.STATUS_NOMINATED,
-        )
-        public_webextension = addon_factory(file_kw={'is_webextension': True})
-
-        with count_subtask_calls(process_addons.add_dynamic_theme_tag) as calls:
-            call_command('process_addons', task='add_dynamic_theme_tag_for_theme_api')
-
-        assert len(calls) == 1
-        assert calls[0]['kwargs']['args'] == [[public_webextension.pk]]
-
-    def test_tag_added_for_is_dynamic_theme(self):
-        addon = addon_factory(file_kw={'is_webextension': True})
-        WebextPermission.objects.create(
-            file=addon.current_version.all_files[0], permissions=['theme']
-        )
-        assert addon.tags.all().count() == 0
-        # Add some more that shouldn't be tagged
-        no_perms = addon_factory(file_kw={'is_webextension': True})
-        not_a_theme = addon_factory(file_kw={'is_webextension': True})
-        WebextPermission.objects.create(
-            file=not_a_theme.current_version.all_files[0], permissions=['downloads']
-        )
-
-        call_command('process_addons', task='add_dynamic_theme_tag_for_theme_api')
-
-        assert list(addon.tags.all().values_list('tag_text', flat=True)) == [
-            'dynamic theme'
-        ]
-
-        assert not no_perms.tags.all().exists()
-        assert not not_a_theme.tags.all().exists()
 
 
 class RecalculateWeightTestCase(TestCase):

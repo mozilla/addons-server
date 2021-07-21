@@ -22,7 +22,6 @@ from olympia.amo.utils import LocalFileStorage, extract_colors_from_image
 from olympia.devhub.tasks import resize_image
 from olympia.files.utils import get_filepath, parse_addon
 from olympia.lib.es.utils import index_objects
-from olympia.tags.models import Tag
 from olympia.versions.models import Version, VersionPreview
 from olympia.versions.tasks import generate_static_theme_preview
 
@@ -141,22 +140,6 @@ def find_inconsistencies_between_es_and_db(ids, **kw):
                 db_status,
                 es_status,
             )
-
-
-@task
-@use_primary_db
-def add_dynamic_theme_tag(ids, **kw):
-    """Add dynamic theme tag to addons with the specified ids."""
-    log.info(
-        'Adding  dynamic theme tag to addons %d-%d [%d].', ids[0], ids[-1], len(ids)
-    )
-
-    addons = Addon.objects.filter(id__in=ids)
-    for addon in addons:
-        files = addon.current_version.all_files
-        if any('theme' in file_.permissions for file_ in files):
-            Tag.objects.get_or_create(tag_text='dynamic theme')[0].add_tag(addon)
-            index_addons.delay([addon.id])
 
 
 @task

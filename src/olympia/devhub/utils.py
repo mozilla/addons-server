@@ -15,7 +15,6 @@ from olympia.files.models import File, FileUpload
 from olympia.files.tasks import repack_fileupload
 from olympia.files.utils import parse_addon, parse_xpi
 from olympia.scanners.tasks import run_customs, run_wat, run_yara, call_mad_api
-from olympia.tags.models import Tag
 from olympia.translations.models import Translation
 from olympia.versions.utils import process_color_value
 
@@ -277,14 +276,6 @@ class Validator(object):
                 upload_pk, channel, is_mozilla_signed
             ),
         ]
-
-
-def add_dynamic_theme_tag(version):
-    if version.channel != amo.RELEASE_CHANNEL_LISTED:
-        return
-    files = version.all_files
-    if any('theme' in file_.permissions for file_ in files):
-        Tag.objects.get_or_create(tag_text='dynamic theme')[0].add_tag(version.addon)
 
 
 def extract_theme_properties(addon, channel):

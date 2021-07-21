@@ -144,7 +144,6 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert latest_version
         assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
-        assert not addon.tags.filter(tag_text='dynamic theme').exists()
 
     def test_new_addon_random_slug_unlisted_channel(self):
         guid = '@create-webextension'
@@ -227,7 +226,6 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert version.addon.status == amo.STATUS_APPROVED
         assert version.channel == amo.RELEASE_CHANNEL_LISTED
         assert not version.all_files[0].is_mozilla_signed_extension
-        assert not version.addon.tags.filter(tag_text='dynamic theme').exists()
 
     def test_version_already_uploaded(self):
         response = self.request('PUT', self.url(self.guid, '3.0'))
@@ -1171,41 +1169,6 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         )
         assert response.status_code == 201
         assert Addon.unfiltered.filter(guid=guid).exists()
-
-    def test_dynamic_theme_tag_added(self):
-        addon = Addon.objects.get(guid=self.guid)
-        addon.current_version.update(version='0.9')
-
-        def parse_addon_wrapper(*args, **kwargs):
-            from olympia.files.utils import parse_addon
-
-            parsed = parse_addon(*args, **kwargs)
-            parsed['permissions'] = parsed.get('permissions', []) + ['theme']
-            return parsed
-
-        with mock.patch('olympia.devhub.tasks.parse_addon', wraps=parse_addon_wrapper):
-            # But unlisted should be ignored
-            response = self.request(
-                'PUT',
-                self.url(self.guid, '1.0'),
-                version='1.0',
-                guid='@create-webextension',
-                channel='unlisted',
-            )
-            assert response.status_code == 202, response.data['error']
-            assert not addon.tags.filter(tag_text='dynamic theme').exists()
-            addon.versions.latest().delete(hard=True)
-
-            # Only listed version get the tag
-            response = self.request(
-                'PUT',
-                self.url(self.guid, '1.0'),
-                version='1.0',
-                guid='@create-webextension',
-                channel='listed',
-            )
-            assert response.status_code == 202, response.data['error']
-            assert addon.tags.filter(tag_text='dynamic theme').exists()
 
 
 class TestTestUploadVersionWebextensionTransactions(

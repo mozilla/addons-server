@@ -48,7 +48,6 @@ from olympia.api.models import APIKey, APIKeyConfirmation
 from olympia.devhub.decorators import dev_required, no_admin_disabled
 from olympia.devhub.models import BlogPost, RssKey
 from olympia.devhub.utils import (
-    add_dynamic_theme_tag,
     extract_theme_properties,
     wizard_unsupported_properties,
 )
@@ -1452,7 +1451,6 @@ def _submit_upload(request, addon, channel, next_view, wizard=False):
             and channel == amo.RELEASE_CHANNEL_LISTED
         ):
             addon.update(status=amo.STATUS_NOMINATED)
-        add_dynamic_theme_tag(version)
         return redirect(next_view, *url_args)
     is_admin = acl.action_allowed(request, amo.permissions.REVIEWS_ADMIN)
     if addon:
