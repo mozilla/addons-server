@@ -1276,29 +1276,60 @@ class TestRatingViewSetDelete(TestCase):
         assert response.status_code == 404
         assert Rating.objects.count() == 1
 
-    def test_no_throttle(self):
-        # Add two reviews for different versions.
+    @override_settings(CACHES=locmem_cache)
+    def test_throttle(self):
+        # Add ratings for different addons posted by the same user.
         rating_a = self.rating
-        version_b = version_factory(addon=self.addon)
+        addon_b = addon_factory()
         rating_b = Rating.objects.create(
-            addon=self.addon,
-            version=version_b,
+            addon=addon_b,
+            version=addon_b.current_version,
             rating=2,
             body='Second Review to delete',
             user=self.user,
         )
 
-        # And confirm we can rapidly delete them.
-        self.client.login_api(self.user)
-        response = self.client.delete(
-            reverse_ns(self.detail_url_name, kwargs={'pk': rating_a.pk})
-        )
-        assert response.status_code == 204
-        response = self.client.delete(
-            reverse_ns(self.detail_url_name, kwargs={'pk': rating_b.pk})
-        )
-        assert response.status_code == 204
-        assert Rating.objects.count() == 0
+        with freeze_time('2021-07-23') as frozen_time:
+            # And confirm we can rapidly delete them.
+            self.client.login_api(self.user)
+            response = self.client.delete(
+                reverse_ns(self.detail_url_name, kwargs={'pk': rating_a.pk})
+            )
+            assert response.status_code == 204
+            response = self.client.delete(
+                reverse_ns(self.detail_url_name, kwargs={'pk': rating_b.pk})
+            )
+            assert response.status_code == 204
+            assert Rating.objects.count() == 0
+
+            # Go over 5 requests and you get throttled though.
+            for x in range(0, 3):
+                response = self.client.delete(
+                    reverse_ns(self.detail_url_name, kwargs={'pk': rating_b.pk})
+                )
+                # We'll get a 404 because the rating doesn't exist anymore,
+                # but's that's irrelevant, throttling would be triggered
+                # earlier.
+                assert response.status_code == 404
+            response = self.client.delete(
+                reverse_ns(self.detail_url_name, kwargs={'pk': rating_b.pk})
+            )
+            assert response.status_code == 429
+
+            # You're free after a minute.
+            frozen_time.tick(delta=timedelta(minutes=1))
+            addon_c = addon_factory()
+            rating_c = Rating.objects.create(
+                addon=addon_c,
+                version=addon_c.current_version,
+                rating=3,
+                body='Third Review to delete',
+                user=self.user,
+            )
+            response = self.client.delete(
+                reverse_ns(self.detail_url_name, kwargs={'pk': rating_c.pk})
+            )
+            assert response.status_code == 204
 
 
 class TestRatingViewSetEdit(TestCase):
@@ -1444,21 +1475,40 @@ class TestRatingViewSetEdit(TestCase):
 
         assert len(mail.outbox) == 0
 
-    def test_no_throttle(self):
+    @override_settings(CACHES=locmem_cache)
+    def test_throttle(self):
         self.client.login_api(self.user)
-        response = self.client.patch(self.url, {'score': 2, 'body': 'nó!'})
-        assert response.status_code == 200
-        self.rating.reload()
-        assert str(self.rating.body) == 'nó!'
-        response = self.client.patch(self.url, {'score': 3, 'body': 'yés!'})
-        assert response.status_code == 200
-        self.rating.reload()
-        assert str(self.rating.body) == 'yés!'
+
+        with freeze_time('2021-07-23') as frozen_time:
+            for x in range(1, 6):
+                response = self.client.patch(
+                    self.url, {'score': x, 'body': f'Blâh {x}'}
+                )
+                assert response.status_code == 200
+                self.rating.reload()
+                assert str(self.rating.body) == f'Blâh {x}'
+                assert self.rating.rating == x
+
+            # Over the limit now...
+            response = self.client.patch(self.url, {'score': 1, 'body': 'Ooops'})
+            assert response.status_code == 429
+            self.rating.reload()
+            assert str(self.rating.body) == 'Blâh 5'
+            assert self.rating.rating == 5
+
+            # Everything back to normal after waiting a minute.
+            frozen_time.tick(delta=timedelta(minutes=1))
+            response = self.client.patch(self.url, {'score': 1, 'body': 'I did it'})
+            assert response.status_code == 200
+            self.rating.reload()
+            assert str(self.rating.body) == 'I did it'
+            assert self.rating.rating == 1
 
 
 class TestRatingViewSetPost(TestCase):
     client_class = APITestClient
     list_url_name = 'rating-list'
+    detail_url_name = 'rating-detail'
     abuse_report_url_name = 'abusereportaddon-list'
 
     def setUp(self):
@@ -2044,7 +2094,7 @@ class TestRatingViewSetPost(TestCase):
             assert response.status_code == 201, response.content
 
     @override_settings(CACHES=locmem_cache)
-    def test_rating_throttle_separated_from_abuse_throttle(self):
+    def test_rating_post_throttle_separated_from_other_throttles(self):
         with freeze_time('2017-11-01') as frozen_time:
             self.user = user_factory()
             self.client.login_api(self.user)
@@ -2091,6 +2141,13 @@ class TestRatingViewSetPost(TestCase):
                 REMOTE_ADDR='123.45.67.89',
             )
             assert response.status_code == 201
+
+            # We can still edit ratings (different throttle scope) as well
+            url = reverse_ns(
+                self.detail_url_name, kwargs={'pk': Rating.objects.latest('pk').pk}
+            )
+            response = self.client.patch(url, {'score': 2, 'body': 'Edited Reviêw!'})
+            assert response.status_code == 200
 
             # Throttle is 1 minute so check we can go again
             frozen_time.tick(delta=timedelta(seconds=60))
@@ -2258,7 +2315,8 @@ class TestRatingViewSetFlag(TestCase):
         assert response.status_code == 403
         assert self.rating.reload().editorreview is False
 
-    def test_no_throttle(self):
+    @override_settings(CACHES=locmem_cache)
+    def test_throttle(self):
         self.user = user_factory()
         self.client.login_api(self.user)
         # Create another addon for us to flag
@@ -2274,12 +2332,36 @@ class TestRatingViewSetFlag(TestCase):
         )
         url_b = reverse_ns(self.flag_url_name, kwargs={'pk': rating_b.pk})
 
-        response = self.client.post(self.url, data={'flag': 'review_flag_reason_spam'})
-        assert response.status_code == 202
-        response = self.client.post(url_b, data={'flag': 'review_flag_reason_spam'})
-        assert response.status_code == 202
-        # Both should have been flagged.
-        assert RatingFlag.objects.count() == 2
+        with freeze_time('2021-07-23') as frozen_time:
+            response = self.client.post(
+                self.url, data={'flag': 'review_flag_reason_spam'}
+            )
+            assert response.status_code == 202
+            response = self.client.post(url_b, data={'flag': 'review_flag_reason_spam'})
+            assert response.status_code == 202
+            # Both should have been flagged.
+            assert RatingFlag.objects.count() == 2
+
+            for x in range(0, 18):
+                # You can keep flagging up to 20 a day.
+                response = self.client.post(
+                    url_b, data={'flag': 'review_flag_reason_spam'}
+                )
+                assert response.status_code == 202
+
+            # Then it becomes too much
+            response = self.client.post(url_b, data={'flag': 'review_flag_reason_spam'})
+            assert response.status_code == 429
+
+            # Even waiting an hour doesn't let you continue.
+            frozen_time.tick(delta=timedelta(hours=1))
+            response = self.client.post(url_b, data={'flag': 'review_flag_reason_spam'})
+            assert response.status_code == 429
+
+            # Waiting 24 hours (total) does.
+            frozen_time.tick(delta=timedelta(hours=23))
+            response = self.client.post(url_b, data={'flag': 'review_flag_reason_spam'})
+            assert response.status_code == 202
 
 
 class TestRatingViewSetReply(TestCase):

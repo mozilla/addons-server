@@ -54,9 +54,36 @@ class RatingIPThrottle(GranularIPRateThrottle):
             return True
 
 
+class RatingEditDeleteUserThrottle(GranularUserRateThrottle):
+    rate = '5/minute'
+    scope = 'user_rating_edit_delete'
+
+    def allow_request(self, request, view):
+        if request.method.lower() in ('patch', 'delete'):
+            return super().allow_request(request, view)
+        else:
+            return True
+
+
+class RatingEditDeleteIPThrottle(GranularIPRateThrottle):
+    rate = '5/minute'
+    scope = 'ip_rating_edit_delete'
+
+    def allow_request(self, request, view):
+        if request.method.lower() in ('patch', 'delete'):
+            return super().allow_request(request, view)
+        else:
+            return True
+
+
 class RatingReplyThrottle(RatingUserThrottle):
     rate = '1/5second'
     scope = 'user_rating_reply'
+
+
+class RatingFlagThrottle(GranularUserRateThrottle):
+    rate = '20/day'
+    scope = 'user_rating_flag_throttle'
 
 
 class RatingViewSet(AddonChildMixin, ModelViewSet):
@@ -89,7 +116,12 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
     ]
     reply_serializer_class = RatingSerializerReply
     flag_permission_classes = [AllowNotOwner]
-    throttle_classes = (RatingUserThrottle, RatingIPThrottle)
+    throttle_classes = (
+        RatingUserThrottle,
+        RatingIPThrottle,
+        RatingEditDeleteIPThrottle,
+        RatingEditDeleteUserThrottle,
+    )
 
     def set_addon_object_from_rating(self, rating):
         """Set addon object on the instance from a rating object."""
@@ -369,7 +401,7 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
         detail=True,
         methods=['post'],
         permission_classes=flag_permission_classes,
-        throttle_classes=[],
+        throttle_classes=[RatingFlagThrottle],
     )
     def flag(self, request, *args, **kwargs):
         # We load the add-on object from the rating to trigger permission
