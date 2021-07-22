@@ -7,6 +7,7 @@ from django.contrib.auth.models import AnonymousUser
 
 from olympia import amo
 from olympia.addons.models import Addon
+from olympia.amo.reverse import reverse
 from olympia.amo.tests import (
     addon_factory,
     collection_factory,
@@ -115,6 +116,7 @@ class TestShelvesSerializer(ESTestCase):
             addon_type=amo.ADDON_EXTENSION,
             criteria='?promoted=recommended&sort=random&type=extension',
             footer_text='See more recommended extensions',
+            footer_pathname='/somewhere',
         )
 
         self.collections_shelf = Shelf.objects.create(
@@ -125,6 +127,15 @@ class TestShelvesSerializer(ESTestCase):
             footer_text='See more enhanced privacy extensions',
             footer_pathname='https://blog.mozilla.org/addons',
         )
+        self.tag_shelf = Shelf.objects.create(
+            title='Random tags',
+            endpoint='random-tag',
+            addon_type=amo.ADDON_EXTENSION,
+            criteria='?',
+            footer_text='See similar add-ons?',
+            footer_pathname='/',
+        )
+        self.tag_shelf.tag = 'foo'
 
         # Set up the request to support drf_reverse
         api_version = api_settings.DEFAULT_VERSION
@@ -165,8 +176,8 @@ class TestShelvesSerializer(ESTestCase):
         assert data['addon_type'] == 'extension'
         assert data['criteria'] == '?promoted=recommended&sort=random&type=extension'
         assert data['footer']['text'] == {'en-US': 'See more recommended extensions'}
-        assert data['footer']['url'] is None
-        assert data['footer']['outgoing'] is None
+        assert data['footer']['url'] == 'http://testserver/somewhere'
+        assert data['footer']['outgoing'] == 'http://testserver/somewhere'
 
     def test_basic_themes(self):
         data = self.serialize(self.search_pop_thm)
@@ -209,24 +220,49 @@ class TestShelvesSerializer(ESTestCase):
             'https://blog.mozilla.org/addons'
         )
 
-    def test_tags_shelf(self):
-        tag_shelf = Shelf.objects.create(
-            title='Random tags',
-            endpoint='random-tag',
-            addon_type=amo.ADDON_EXTENSION,
-            criteria='?',
-            footer_text='See similar add-ons?',
+    def test_footer_url(self):
+        # search
+        self.search_rec_ext.update(footer_pathname='')
+        data = self.serialize(self.search_rec_ext)
+        assert (
+            data['footer']['url']
+            == 'http://testserver'
+            + reverse('search.search')
+            + '?promoted=recommended&sort=random&type=extension'
         )
-        tag_shelf.tag = 'foo'
-        data = self.serialize(tag_shelf)
+        assert data['footer']['outgoing'] == data['footer']['url']
+
+        # collections
+        self.collections_shelf.update(footer_pathname='')
+        data = self.serialize(self.collections_shelf)
+        assert data['footer']['url'] == 'http://testserver' + reverse(
+            'collections.detail',
+            kwargs={
+                'user_id': str(settings.TASK_USER_ID),
+                'slug': 'privacy-matters',
+            },
+        )
+        assert data['footer']['outgoing'] == data['footer']['url']
+
+        # random-tag
+        self.tag_shelf.update(footer_pathname='')
+        data = self.serialize(self.tag_shelf)
+        assert (
+            data['footer']['url']
+            == 'http://testserver' + reverse('search.search') + '?tag=foo'
+        )
+        assert data['footer']['outgoing'] == data['footer']['url']
+
+    def test_tags_shelf(self):
+        data = self.serialize(self.tag_shelf)
         assert data['title'] == {'en-US': 'Random tags'}
         assert data['endpoint'] == 'random-tag'
         assert data['addon_type'] == 'extension'
         assert data['criteria'] == '?'
         assert data['footer']['text'] == {'en-US': 'See similar add-ons?'}
-        assert data['footer']['url'] is None
-        assert data['footer']['outgoing'] is None
-        assert data['url'] == self._get_result_url(tag_shelf, tag='foo')
+        assert data['footer']['url'] == 'http://testserver/'
+        assert data['footer']['outgoing'] == 'http://testserver/'
+        assert data['url'] == self._get_result_url(self.tag_shelf, tag='foo')
         assert len(data['addons']) == 2
         assert data['addons'][0]['name'] == {'en-US': 'test addon test04'}
         assert data['addons'][1]['name'] == {'en-US': 'test addon test01'}

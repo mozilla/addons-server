@@ -165,8 +165,15 @@ class TestShelfViewSet(ESTestCase):
         assert result['results'][0]['footer']['text'] == {
             'en-US': 'See more enhanced privacy extensions'
         }
-        assert result['results'][0]['footer']['url'] is None
-        assert result['results'][0]['footer']['outgoing'] is None
+        assert (
+            result['results'][0]['footer']['url']
+            == f'http://testserver/en-US/firefox/collections/{settings.TASK_USER_ID}/'
+            'privacy-matters/'
+        )
+        assert (
+            result['results'][0]['footer']['outgoing']
+            == result['results'][0]['footer']['url']
+        )
         assert result['results'][0]['addons'][0]['name']['en-US'] == (
             'test addon privacy01'
         )
@@ -202,8 +209,14 @@ class TestShelfViewSet(ESTestCase):
         assert result['results'][2]['footer']['text'] == {
             'en-US': 'something something tags!'
         }
-        assert result['results'][2]['footer']['url'] is None
-        assert result['results'][2]['footer']['outgoing'] is None
+        assert (
+            result['results'][2]['footer']['url']
+            == f'http://testserver/en-US/firefox/search/?tag={self.tag}'
+        )
+        assert (
+            result['results'][2]['footer']['outgoing']
+            == result['results'][2]['footer']['url']
+        )
         assert result['results'][2]['addons'][0]['name']['en-US'] == (
             'test addon test03'
         )
