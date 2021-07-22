@@ -318,3 +318,36 @@ def fetch_existing_translations_from_addon(addon, properties):
     translation_ids = [id_ for id_ in translation_ids_gen if id_]
     # Just get all the values together to make it simplier
     return {str(value) for value in Translation.objects.filter(id__in=translation_ids)}
+
+
+def add_manifest_version_error(validation):
+    mv = validation.get('metadata', {}).get('manifestVersion')
+    if (
+        mv != 3
+        or waffle.switch_is_active('enable-mv3-submissions')
+        or 'messages' not in validation
+    ):
+        return
+    msg = gettext(
+        'Manifest v3 is currently not supported for upload. You can read more '
+        'about the support timeline [{start_href}here{end_href}].'
+    )
+    url = 'https://blog.mozilla.org/addons/2021/05/27/manifest-v3-update/'
+
+    new_error_message = msg.format(start_href=f'<a href="{url}">', end_href='</a>')
+    for index, message in enumerate(validation['messages']):
+        if message.get('dataPath') == '/manifest_version':
+            # if we find the linter manifest_version=3 warning, replace it
+            validation['messages'][index]['message'] = new_error_message
+            break
+    else:
+        # otherwise insert a new error at the start of the errors
+        validation['messages'].insert(
+            0,
+            {
+                'type': 'error',
+                'message': new_error_message,
+                'tier': 1,
+                'fatal': True,
+            },
+        )
