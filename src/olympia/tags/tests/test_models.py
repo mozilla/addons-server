@@ -3,20 +3,6 @@ from olympia.amo.tests import TestCase
 from olympia.tags.models import AddonTag, Tag
 
 
-class TestTagManager(TestCase):
-    def test_not_denied(self):
-        predefined_tag_count = Tag.objects.all().count()
-        """Make sure Tag Manager filters right for not denied tags."""
-        tag1 = Tag(tag_text='abc', denied=False)
-        tag1.save()
-        tag2 = Tag(tag_text='swearword', denied=True)
-        tag2.save()
-
-        assert Tag.objects.all().count() == predefined_tag_count + 2
-        assert Tag.objects.not_denied().count() == predefined_tag_count + 1
-        assert Tag.objects.not_denied()[0] == tag1
-
-
 class TestCount(TestCase):
     fixtures = ['base/addon_3615', 'base/addon_5369', 'tags/tags.json']
     exempt_from_fixture_bundling = True
@@ -27,11 +13,6 @@ class TestCount(TestCase):
     def test_count(self):
         self.tag.update_stat()
         assert self.tag.num_addons == 1
-
-    def test_denied(self):
-        self.tag.update(denied=True, num_addons=0)
-        AddonTag.objects.create(addon_id=5369, tag_id=self.tag.pk)
-        assert self.tag.reload().num_addons == 0
 
     def test_add_tag(self):
         self.tag.add_tag(addon=Addon.objects.get(pk=5369))

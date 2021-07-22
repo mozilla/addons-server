@@ -119,9 +119,6 @@ def create_version_for_upload(addon, upload, channel):
             ' cause duplicate version'.format(upload_uuid=upload.uuid)
         )
     else:
-        # Import loop.
-        from olympia.devhub.utils import add_dynamic_theme_tag
-
         log.info(
             'Creating version for {upload_uuid} that passed '
             'validation'.format(upload_uuid=upload.uuid)
@@ -130,7 +127,7 @@ def create_version_for_upload(addon, upload, channel):
         # parse_addon() will raise ValidationError and the task will fail
         # loudly in sentry.
         parsed_data = parse_addon(upload, addon, user=upload.user)
-        version = Version.from_upload(
+        Version.from_upload(
             upload,
             addon,
             [x[0] for x in amo.APPS_CHOICES],
@@ -142,7 +139,6 @@ def create_version_for_upload(addon, upload, channel):
         # gets flagged as invalid. We need to manually set the status.
         if addon.status == amo.STATUS_NULL and channel == amo.RELEASE_CHANNEL_LISTED:
             addon.update(status=amo.STATUS_NOMINATED)
-        add_dynamic_theme_tag(version)
 
 
 @task

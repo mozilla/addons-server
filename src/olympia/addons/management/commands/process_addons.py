@@ -5,7 +5,6 @@ from django.db.models import Q, F
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.addons.tasks import (
-    add_dynamic_theme_tag,
     delete_addons,
     extract_colors_from_static_themes,
     find_inconsistencies_between_es_and_db,
@@ -111,15 +110,6 @@ class Command(ProcessObjectsCommand):
                 'queryset_filters': [
                     Q(
                         type=amo.ADDON_STATICTHEME,
-                    )
-                ],
-            },
-            'add_dynamic_theme_tag_for_theme_api': {
-                'task': add_dynamic_theme_tag,
-                'queryset_filters': [
-                    Q(
-                        status=amo.STATUS_APPROVED,
-                        _current_version__files__is_webextension=True,
                     )
                 ],
             },

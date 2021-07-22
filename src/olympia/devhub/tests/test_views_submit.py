@@ -570,7 +570,6 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert log_items.filter(
             action=amo.LOG.CREATE_ADDON.id
         ), 'New add-on creation never logged.'
-        assert not addon.tags.filter(tag_text='dynamic theme').exists()
 
     def test_success_unlisted(self):
         assert Addon.objects.count() == 0
@@ -590,7 +589,6 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert version.files.all()[0].status == amo.STATUS_AWAITING_REVIEW
         assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
         assert addon.status == amo.STATUS_NULL
-        assert not addon.tags.filter(tag_text='dynamic theme').exists()
 
     def test_missing_compatible_apps(self):
         url = reverse('devhub.submit.upload', args=['listed'])
@@ -714,34 +712,6 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert addon.type == amo.ADDON_STATICTHEME
         # Only listed submissions need a preview generated.
         assert latest_version.previews.all().count() == 0
-
-    @mock.patch(
-        'olympia.devhub.forms.parse_addon', wraps=_parse_addon_theme_permission_wrapper
-    )
-    def test_listed_dynamic_theme_is_tagged(self, parse_addon_mock):
-        assert Addon.objects.count() == 0
-        path = os.path.join(
-            settings.ROOT, 'src/olympia/files/fixtures/files/webextension.xpi'
-        )
-        self.upload = self.get_upload(abspath=path)
-        response = self.post()
-        addon = Addon.objects.get()
-        self.assert3xx(response, reverse('devhub.submit.source', args=[addon.slug]))
-        assert addon.tags.filter(tag_text='dynamic theme').exists()
-
-    @mock.patch(
-        'olympia.devhub.forms.parse_addon', wraps=_parse_addon_theme_permission_wrapper
-    )
-    def test_unlisted_dynamic_theme_isnt_tagged(self, parse_addon_mock):
-        assert Addon.objects.count() == 0
-        path = os.path.join(
-            settings.ROOT, 'src/olympia/files/fixtures/files/webextension.xpi'
-        )
-        self.upload = self.get_upload(abspath=path)
-        response = self.post(listed=False)
-        addon = Addon.objects.get()
-        self.assert3xx(response, reverse('devhub.submit.source', args=[addon.slug]))
-        assert not addon.tags.filter(tag_text='dynamic theme').exists()
 
 
 class TestAddonSubmitSource(TestSubmitBase):
@@ -2174,23 +2144,6 @@ class VersionSubmitUploadMixin(object):
             assert storage.exists(previews[1].image_path)
         else:
             assert version.previews.all().count() == 0
-
-    @mock.patch(
-        'olympia.devhub.forms.parse_addon', wraps=_parse_addon_theme_permission_wrapper
-    )
-    def test_dynamic_theme_tagging(self, parse_addon_mock):
-        self.addon.update(guid='beastify@mozilla.org')
-        path = os.path.join(
-            settings.ROOT, 'src/olympia/devhub/tests/addons/valid_webextension.xpi'
-        )
-        self.upload = self.get_upload(abspath=path)
-        response = self.post()
-        version = self.addon.find_latest_version(channel=self.channel)
-        self.assert3xx(response, self.get_next_url(version))
-        if self.channel == amo.RELEASE_CHANNEL_LISTED:
-            assert self.addon.tags.filter(tag_text='dynamic theme').exists()
-        else:
-            assert not self.addon.tags.filter(tag_text='dynamic theme').exists()
 
 
 class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):

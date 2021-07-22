@@ -47,7 +47,6 @@
         "model": "tags.tag",
         "fields": {
             "tag_text": "SEO",
-            "denied": 0,
             "modified": "2010-01-02 12:34:56",
             "created": "2009-07-16 07:03:03"
         }

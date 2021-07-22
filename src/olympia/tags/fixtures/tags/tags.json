@@ -4,7 +4,6 @@
         "model": "tags.tag",
         "fields": {
             "tag_text": "palm tree",
-            "denied": 0,
             "modified": "2010-01-02 12:34:56",
             "created": "2009-07-28 02:51:39"
         }
@@ -14,7 +13,6 @@
         "model": "tags.tag",
         "fields": {
             "tag_text": "sky",
-            "denied": 0,
             "modified": "2010-01-02 12:34:56",
             "created": "2009-07-15 11:00:46"
         }
@@ -24,7 +22,6 @@
         "model": "tags.tag",
         "fields": {
             "tag_text": "sun",
-            "denied": 0,
             "modified": "2010-01-02 12:34:56",
             "created": "2009-09-29 02:08:03"
         }
@@ -34,17 +31,6 @@
         "model": "tags.tag",
         "fields": {
             "tag_text": "beach",
-            "denied": 0,
-            "modified": "2010-01-02 12:34:56",
-            "created": "2009-07-30 04:57:19"
-        }
-    },
-    {
-        "pk": 2654,
-        "model": "tags.tag",
-        "fields": {
-            "tag_text": "swear word",
-            "denied": 1,
             "modified": "2010-01-02 12:34:56",
             "created": "2009-07-30 04:57:19"
         }
@@ -67,16 +53,6 @@
             "tag": 2652,
             "modified": "2010-01-02 12:34:56",
             "created": "2009-11-26 14:54:34"
-        }
-    },
-    {
-        "pk": 10106,
-        "model": "tags.addontag",
-        "fields": {
-            "addon": 3615,
-            "tag": 2654,
-            "modified": "2010-01-02 12:34:56",
-            "created": "2009-11-26 14:54:35"
         }
     },
     {
