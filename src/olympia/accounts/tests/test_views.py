@@ -85,6 +85,10 @@ class TestLoginStartBaseView(WithDynamicEndpoints, TestCase):
         ):
             response = self.client.get(self.url)
         assert response.status_code == 302
+        assert (
+            response['Cache-Control']
+            == 'max-age=0, no-cache, no-store, must-revalidate, private'
+        )
         url = urlparse(response['location'])
         redirect = '{scheme}://{netloc}{path}'.format(
             scheme=url.scheme, netloc=url.netloc, path=url.path
@@ -99,8 +103,13 @@ class TestLoginStartBaseView(WithDynamicEndpoints, TestCase):
 
     def test_state_is_not_overriden(self):
         self.initialize_session({'fxa_state': 'thisisthestate'})
-        self.client.get(self.url)
+        response = self.client.get(self.url)
         assert self.client.session['fxa_state'] == 'thisisthestate'
+        assert response.status_code == 302
+        assert (
+            response['Cache-Control']
+            == 'max-age=0, no-cache, no-store, must-revalidate, private'
+        )
 
     def test_to_is_included_in_redirect_state(self):
         path = b'/addons/unlisted-addon/'
@@ -836,6 +845,10 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
     def test_no_code_provided(self):
         response = self.client.get(self.url)
         assert response.status_code == 302
+        assert (
+            response['Cache-Control']
+            == 'max-age=0, no-cache, no-store, must-revalidate, private'
+        )
         # Messages seem to appear in the context for some reason.
         assert 'could not be parsed' in response.context['title']
         assert_url_equal(response['location'], '/')
@@ -846,6 +859,10 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
     def test_wrong_state(self):
         response = self.client.get(self.url, {'code': 'foo', 'state': '9f865be0'})
         assert response.status_code == 302
+        assert (
+            response['Cache-Control']
+            == 'max-age=0, no-cache, no-store, must-revalidate, private'
+        )
         assert 'could not be logged in' in response.context['title']
         assert_url_equal(response['location'], '/')
         assert not self.login_user.called
@@ -858,6 +875,10 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
             self.url, {'code': 'codes!!', 'state': self.fxa_state}
         )
         assert response.status_code == 302
+        assert (
+            response['Cache-Control']
+            == 'max-age=0, no-cache, no-store, must-revalidate, private'
+        )
         assert 'Your Firefox Account could not be found' in response.context['title']
         assert_url_equal(response['location'], '/')
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
@@ -874,6 +895,11 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
         self.reregister_user.side_effect = lambda user: user.update(deleted=False)
         response = self.client.get(
             self.url, {'code': 'codes!!', 'state': self.fxa_state}
+        )
+        assert response.status_code == 302
+        assert (
+            response['Cache-Control']
+            == 'max-age=0, no-cache, no-store, must-revalidate, private'
         )
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert self.login_user.called
@@ -897,6 +923,11 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
         )
         response = self.client.get(
             self.url, {'code': 'codes!!', 'state': self.fxa_state}
+        )
+        assert response.status_code == 302
+        assert (
+            response['Cache-Control']
+            == 'max-age=0, no-cache, no-store, must-revalidate, private'
         )
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert self.login_user.called
@@ -933,6 +964,10 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
             self.assertRedirects(
                 response, reverse('users.edit') + '?to=/go/here', target_status_code=200
             )
+            assert (
+                response['Cache-Control']
+                == 'max-age=0, no-cache, no-store, must-revalidate, private'
+            )
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert self.login_user.called
         self.register_user.assert_called_with(identity)
@@ -968,6 +1003,10 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
                 reverse('users.edit') + '?to=https://supersafe.com/go/here',
                 target_status_code=200,
             )
+            assert (
+                response['Cache-Control']
+                == 'max-age=0, no-cache, no-store, must-revalidate, private'
+            )
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert self.login_user.called
         self.register_user.assert_called_with(identity)
@@ -996,6 +1035,10 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
             self.assertRedirects(
                 response, reverse('users.edit'), target_status_code=200  # No '?to=...'
             )
+            assert (
+                response['Cache-Control']
+                == 'max-age=0, no-cache, no-store, must-revalidate, private'
+            )
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert self.login_user.called
         self.register_user.assert_called_with(identity)
@@ -1012,6 +1055,10 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
                 self.url, {'code': 'code', 'state': self.fxa_state}
             )
             self.assertRedirects(response, reverse('home'))
+            assert (
+                response['Cache-Control']
+                == 'max-age=0, no-cache, no-store, must-revalidate, private'
+            )
         token = response.cookies['frontend_auth_token'].value
         verify = WebTokenAuthentication().authenticate_token(token)
         assert verify[0] == user
@@ -1051,6 +1098,10 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
             },
         )
         self.assertRedirects(response, '/en-US/firefox/a/path', target_status_code=404)
+        assert (
+            response['Cache-Control']
+            == 'max-age=0, no-cache, no-store, must-revalidate, private'
+        )
         self.login_user.assert_called_with(
             views.AuthenticateView, mock.ANY, user, identity
         )
@@ -1073,7 +1124,15 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
                 ),
             },
         )
+        assert (
+            response['Cache-Control']
+            == 'max-age=0, no-cache, no-store, must-revalidate, private'
+        )
         self.assertRedirects(response, '/en-US/firefox/a/path', target_status_code=404)
+        assert (
+            response['Cache-Control']
+            == 'max-age=0, no-cache, no-store, must-revalidate, private'
+        )
         self.login_user.assert_called_with(
             views.AuthenticateView, mock.ANY, user, identity
         )
@@ -1127,6 +1186,10 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
                 },
             )
         self.assertRedirects(response, next_path, fetch_redirect_response=False)
+        assert (
+            response['Cache-Control']
+            == 'max-age=0, no-cache, no-store, must-revalidate, private'
+        )
 
     def test_log_in_requires_https_when_request_is_secure(self):
         email = 'real@yeahoo.com'
@@ -1152,6 +1215,10 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
                 },
             )
         self.assertRedirects(response, next_path, fetch_redirect_response=False)
+        assert (
+            response['Cache-Control']
+            == 'max-age=0, no-cache, no-store, must-revalidate, private'
+        )
 
     def test_log_in_redirects_to_home_when_request_is_secure_but_next_path_is_not(
         self,
@@ -1180,6 +1247,10 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
             )
         with mock.patch('olympia.amo.views._frontend_view', empty_view):
             self.assertRedirects(response, reverse('home'))
+        assert (
+            response['Cache-Control']
+            == 'max-age=0, no-cache, no-store, must-revalidate, private'
+        )
 
 
 class TestAuthenticateViewV3(TestAuthenticateView):
