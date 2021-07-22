@@ -15,6 +15,7 @@ from django.urls import reverse
 from django.utils.encoding import force_bytes, force_str
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
+from django.views.decorators.cache import never_cache
 
 import waffle
 
@@ -207,6 +208,7 @@ def render_error(request, error, next_path=None, format=None):
     else:
         if not _is_safe_url(next_path, request):
             next_path = None
+        log.error('Could not log the user in (%s)', error)
         messages.error(
             request,
             fxa_error_message(LOGIN_ERROR_MESSAGES[error], LOGIN_HELP_URL),
@@ -399,6 +401,7 @@ class FxAConfigMixin(object):
 
 
 class LoginStartView(FxAConfigMixin, APIView):
+    @never_cache
     def get(self, request):
         request.session.setdefault('fxa_state', generate_fxa_state())
         return HttpResponseRedirect(
@@ -416,6 +419,7 @@ class AuthenticateView(FxAConfigMixin, APIView):
 
     authentication_classes = (SessionAuthentication,)
 
+    @never_cache
     @with_user(format='html')
     def get(self, request, user, identity, next_path):
         # At this point @with_user guarantees that we have a valid fxa
