@@ -51,7 +51,6 @@ import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.access.models import GroupUser
-from olympia.amo import messages
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import fetch_subscribed_newsletters, use_fake_fxa
 from olympia.api.authentication import (

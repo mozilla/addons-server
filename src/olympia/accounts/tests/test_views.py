@@ -9,7 +9,6 @@ from urllib.parse import parse_qs, urlparse
 from django import http
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
-from django.contrib.messages import get_messages
 from django.urls import reverse
 from django.test import RequestFactory
 from django.test.utils import override_settings
