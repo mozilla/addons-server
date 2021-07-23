@@ -30,35 +30,36 @@ class ShelfFooterField(serializers.Serializer):
         is_flat_url = request and is_gate_active(request, 'wrap-outgoing-parameter')
 
         url = data.get('url')
-        if not url and obj.endpoint in (
-            Shelf.Endpoints.SEARCH,
-            Shelf.Endpoints.RANDOM_TAG,
-        ):
-            search_url = reverse('search.search')
-            query_string = '&'.join(
-                f'{key}={value}' for key, value in obj.get_param_dict().items()
-            )
-            fallback = absolutify(f'{search_url}?{query_string}')
-            url = (
-                {'url': fallback, 'outgoing': fallback} if not is_flat_url else fallback
-            )
-        elif not url and obj.endpoint == Shelf.Endpoints.COLLECTIONS:
-            fallback = absolutify(
-                reverse(
-                    'collections.detail',
-                    kwargs={
-                        'user_id': str(settings.TASK_USER_ID),
-                        'slug': obj.criteria,
-                    },
+        if not url:
+            if obj.endpoint in (Shelf.Endpoints.SEARCH, Shelf.Endpoints.RANDOM_TAG):
+                search_url = reverse('search.search')
+                query_string = '&'.join(
+                    f'{key}={value}' for key, value in obj.get_param_dict().items()
                 )
-            )
+                fallback = absolutify(f'{search_url}?{query_string}')
+            elif obj.endpoint == Shelf.Endpoints.COLLECTIONS:
+                fallback = absolutify(
+                    reverse(
+                        'collections.detail',
+                        kwargs={
+                            'user_id': str(settings.TASK_USER_ID),
+                            'slug': obj.criteria,
+                        },
+                    )
+                )
+            else:
+                # shouldn't happen
+                fallback = None
             url = (
                 {'url': fallback, 'outgoing': fallback} if not is_flat_url else fallback
             )
         # text = data.get('text')
 
         if is_flat_url:
-            return url
+            return {
+                **data,
+                'url': url,
+            }
         else:
             return {
                 **data,

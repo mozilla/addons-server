@@ -4,6 +4,7 @@ from rest_framework.test import APIRequestFactory
 
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
+from django.test.utils import override_settings
 
 from olympia import amo
 from olympia.addons.models import Addon
@@ -221,37 +222,67 @@ class TestShelvesSerializer(ESTestCase):
         )
 
     def test_footer_url(self):
+        wrap_outgoing_settings_override = {
+            'DRF_API_GATES': {
+                api_settings.DEFAULT_VERSION: ('wrap-outgoing-parameter',)
+            }
+        }
         # search
         self.search_rec_ext.update(footer_pathname='')
         data = self.serialize(self.search_rec_ext)
-        assert (
-            data['footer']['url']
-            == 'http://testserver'
+        url = (
+            'http://testserver'
             + reverse('search.search')
             + '?promoted=recommended&sort=random&type=extension'
         )
-        assert data['footer']['outgoing'] == data['footer']['url']
-
+        assert data['footer'] == {
+            'url': url,
+            'outgoing': url,
+            'text': {'en-US': 'See more recommended extensions'},
+        }
+        with override_settings(**wrap_outgoing_settings_override):
+            data = self.serialize(self.search_rec_ext)
+            assert data['footer'] == {
+                'url': url,
+                'text': {'en-US': 'See more recommended extensions'},
+            }
         # collections
         self.collections_shelf.update(footer_pathname='')
         data = self.serialize(self.collections_shelf)
-        assert data['footer']['url'] == 'http://testserver' + reverse(
+        url = 'http://testserver' + reverse(
             'collections.detail',
             kwargs={
                 'user_id': str(settings.TASK_USER_ID),
                 'slug': 'privacy-matters',
             },
         )
-        assert data['footer']['outgoing'] == data['footer']['url']
+        assert data['footer'] == {
+            'url': url,
+            'outgoing': url,
+            'text': {'en-US': 'See more enhanced privacy extensions'},
+        }
+        with override_settings(**wrap_outgoing_settings_override):
+            data = self.serialize(self.collections_shelf)
+            assert data['footer'] == {
+                'url': url,
+                'text': {'en-US': 'See more enhanced privacy extensions'},
+            }
 
         # random-tag
         self.tag_shelf.update(footer_pathname='')
         data = self.serialize(self.tag_shelf)
-        assert (
-            data['footer']['url']
-            == 'http://testserver' + reverse('search.search') + '?tag=foo'
-        )
-        assert data['footer']['outgoing'] == data['footer']['url']
+        url = 'http://testserver' + reverse('search.search') + '?tag=foo'
+        assert data['footer'] == {
+            'url': url,
+            'outgoing': url,
+            'text': {'en-US': 'See similar add-ons?'},
+        }
+        with override_settings(**wrap_outgoing_settings_override):
+            data = self.serialize(self.tag_shelf)
+            assert data['footer'] == {
+                'url': url,
+                'text': {'en-US': 'See similar add-ons?'},
+            }
 
     def test_tags_shelf(self):
         data = self.serialize(self.tag_shelf)
