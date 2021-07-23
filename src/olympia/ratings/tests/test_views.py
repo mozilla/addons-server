@@ -2142,7 +2142,7 @@ class TestRatingViewSetPost(TestCase):
             )
             assert response.status_code == 201
 
-            # We can still edit ratings (different throttle scope) as well
+            # We can still edit ratings (different throttle scope) as well.
             url = reverse_ns(
                 self.detail_url_name, kwargs={'pk': Rating.objects.latest('pk').pk}
             )
@@ -2349,7 +2349,7 @@ class TestRatingViewSetFlag(TestCase):
                 )
                 assert response.status_code == 202
 
-            # Then it becomes too much
+            # Then it becomes too much.
             response = self.client.post(url_b, data={'flag': 'review_flag_reason_spam'})
             assert response.status_code == 429
 
