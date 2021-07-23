@@ -579,11 +579,11 @@ def test_add_manifest_version_error():
     # When the linter error is already there, replace it
     validation['messages'] = [
         {
-            "message": "\"/manifest_version\" should be &lt;= 2",
-            "description": ["Your JSON file could not be parsed."],
-            "dataPath": "/manifest_version",
-            "type": "error",
-            "tier": 1,
+            'message': '"/manifest_version" should be &lt;= 2',
+            'description': ['Your JSON file could not be parsed.'],
+            'dataPath': '/manifest_version',
+            'type': 'error',
+            'tier': 1,
         }
     ]
     utils.add_manifest_version_error(validation)
