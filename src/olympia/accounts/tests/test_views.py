@@ -437,13 +437,13 @@ class TestWithUser(TestCase):
         self.fxa_identify.side_effect = verify.IdentificationError
         self.request.data = {'code': 'foo', 'state': 'some-blob'}
         response = self.fn(self.request)
-        self.assert3xx(response, '/en-US/firefox/')
+        self.assertRedirects(response, '/en-US/firefox/', fetch_redirect_response=False)
         assert not self.find_user.called
 
     def test_code_not_provided(self):
         self.request.data = {'hey': 'hi', 'state': 'some-blob'}
         response = self.fn(self.request)
-        self.assert3xx(response, '/en-US/firefox/')
+        self.assertRedirects(response, '/en-US/firefox/', fetch_redirect_response=False)
         assert not self.find_user.called
         assert not self.fxa_identify.called
 
@@ -460,7 +460,7 @@ class TestWithUser(TestCase):
         assert self.user.is_authenticated
         self.request.COOKIES = {views.API_TOKEN_COOKIE: 'foobar'}
         response = self.fn(self.request)
-        self.assert3xx(response, '/next')
+        self.assertRedirects(response, '/next', fetch_redirect_response=False)
         assert not response.cookies
         assert not self.find_user.called
         assert generate_api_token_mock.call_count == 0
@@ -479,7 +479,7 @@ class TestWithUser(TestCase):
         assert self.user.is_authenticated
         self.request.COOKIES = {}
         response = self.fn(self.request)
-        self.assert3xx(response, '/next')
+        self.assertRedirects(response, '/next', fetch_redirect_response=False)
         assert not self.find_user.called
         cookie = response.cookies.get(views.API_TOKEN_COOKIE)
         assert len(response.cookies) == 1
@@ -501,7 +501,7 @@ class TestWithUser(TestCase):
             ),
         }
         response = self.fn(self.request)
-        self.assert3xx(response, '/next')
+        self.assertRedirects(response, '/next', fetch_redirect_response=False)
 
     def test_dynamic_configuration(self):
         fxa_config = {'some': 'config'}
@@ -851,7 +851,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
                     ),
                 },
             )
-            self.assert3xx(
+            self.assertRedirects(
                 response, reverse('users.edit') + '?to=/go/here', target_status_code=200
             )
             assert (
@@ -888,7 +888,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
                         ),
                     },
                 )
-            self.assert3xx(
+            self.assertRedirects(
                 response,
                 reverse('users.edit') + '?to=https://supersafe.com/go/here',
                 target_status_code=200,
@@ -922,7 +922,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
                     ),
                 },
             )
-            self.assert3xx(
+            self.assertRedirects(
                 response, reverse('users.edit'), target_status_code=200  # No '?to=...'
             )
             assert (
@@ -944,7 +944,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
             response = self.client.get(
                 self.url, {'code': 'code', 'state': self.fxa_state}
             )
-            self.assert3xx(response, reverse('home'))
+            self.assertRedirects(response, reverse('home'))
             assert (
                 response['Cache-Control']
                 == 'max-age=0, no-cache, no-store, must-revalidate, private'
@@ -987,7 +987,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
                 ),
             },
         )
-        self.assert3xx(response, '/en-US/firefox/a/path', target_status_code=404)
+        self.assertRedirects(response, '/en-US/firefox/a/path', target_status_code=404)
         assert (
             response['Cache-Control']
             == 'max-age=0, no-cache, no-store, must-revalidate, private'
@@ -1018,7 +1018,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
             response['Cache-Control']
             == 'max-age=0, no-cache, no-store, must-revalidate, private'
         )
-        self.assert3xx(response, '/en-US/firefox/a/path', target_status_code=404)
+        self.assertRedirects(response, '/en-US/firefox/a/path', target_status_code=404)
         assert (
             response['Cache-Control']
             == 'max-age=0, no-cache, no-store, must-revalidate, private'
@@ -1051,7 +1051,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
                     ),
                 },
             )
-        self.assert3xx(response, next_path, fetch_redirect_response=False)
+        self.assertRedirects(response, next_path, fetch_redirect_response=False)
 
     def test_log_in_redirects_to_code_manager(self):
         email = 'real@yeahoo.com'
@@ -1075,7 +1075,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
                     ),
                 },
             )
-        self.assert3xx(response, next_path, fetch_redirect_response=False)
+        self.assertRedirects(response, next_path, fetch_redirect_response=False)
         assert (
             response['Cache-Control']
             == 'max-age=0, no-cache, no-store, must-revalidate, private'
@@ -1104,7 +1104,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
                     ),
                 },
             )
-        self.assert3xx(response, next_path, fetch_redirect_response=False)
+        self.assertRedirects(response, next_path, fetch_redirect_response=False)
         assert (
             response['Cache-Control']
             == 'max-age=0, no-cache, no-store, must-revalidate, private'
@@ -1136,7 +1136,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
                 },
             )
         with mock.patch('olympia.amo.views._frontend_view', empty_view):
-            self.assert3xx(response, reverse('home'))
+            self.assertRedirects(response, reverse('home'))
         assert (
             response['Cache-Control']
             == 'max-age=0, no-cache, no-store, must-revalidate, private'
