@@ -102,8 +102,8 @@ small number of shelves this endpoint is not paginated.
     :>json string results[].endpoint: The :ref:`endpoint type <shelf-endpoint-type>` selected for the shelf.
     :>json string results[].addon_type: The :ref:`add-on type <addon-detail-type>` selected for the shelf.
     :>json string results[].criteria: The criteria for the addons in the shelf.
-    :>json object|null results[].footer: The optional footer to be displayed with the shelf.
-    :>json string results[].footer.url: The optional url for the footer text.
+    :>json object results[].footer: The footer to be displayed with the shelf.
+    :>json string results[].footer.url: The url for the footer text.
     :>json string results[].footer.outgoing: url wrapped with outgoing (See :ref:`Outgoing Links <api-overview-outgoing>`)
     :>json object|null results[].footer.text: The optional text in the footer of the shelf. (See :ref:`translated fields <api-overview-translations>`.  Note: when ``lang`` is not specified, not all locales will be returned, unlike other translated fields).
     :>json array results[].addons: An array of :ref:`add-ons <addon-detail-object>`.

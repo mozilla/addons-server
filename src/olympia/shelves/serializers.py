@@ -6,20 +6,66 @@ from rest_framework.reverse import reverse as drf_reverse
 
 from olympia import amo
 from olympia.addons.views import AddonSearchView
+from olympia.amo.reverse import reverse
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.api.fields import (
     AbsoluteOutgoingURLField,
     GetTextTranslationSerializerField,
     ReverseChoiceField,
 )
+from olympia.api.utils import is_gate_active
 from olympia.bandwagon.views import CollectionAddonViewSet
-from olympia.hero.serializers import CTAField
 
 from .models import Shelf
 
 
-class ShelfFooterField(CTAField):
+class ShelfFooterField(serializers.Serializer):
     url = AbsoluteOutgoingURLField(source='footer_pathname')
     text = GetTextTranslationSerializerField(source='footer_text')
+
+    def to_representation(self, obj):
+        data = super().to_representation(obj)
+        request = self.context.get('request', None)
+        # when 'wrap-outgoing-parameter' is on url is a flat string already
+        is_flat_url = request and is_gate_active(request, 'wrap-outgoing-parameter')
+
+        url = data.get('url')
+        if not url:
+            if obj.endpoint in (Shelf.Endpoints.SEARCH, Shelf.Endpoints.RANDOM_TAG):
+                search_url = reverse('search.search')
+                query_string = '&'.join(
+                    f'{key}={value}' for key, value in obj.get_param_dict().items()
+                )
+                fallback = absolutify(f'{search_url}?{query_string}')
+            elif obj.endpoint == Shelf.Endpoints.COLLECTIONS:
+                fallback = absolutify(
+                    reverse(
+                        'collections.detail',
+                        kwargs={
+                            'user_id': str(settings.TASK_USER_ID),
+                            'slug': obj.criteria,
+                        },
+                    )
+                )
+            else:
+                # shouldn't happen
+                fallback = None
+            url = (
+                {'url': fallback, 'outgoing': fallback} if not is_flat_url else fallback
+            )
+        # text = data.get('text')
+
+        if is_flat_url:
+            return {
+                **data,
+                'url': url,
+            }
+        else:
+            return {
+                **data,
+                'url': (url or {}).get('url'),
+                'outgoing': (url or {}).get('outgoing'),
+            }
 
 
 class ShelfSerializer(serializers.ModelSerializer):
