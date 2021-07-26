@@ -17,7 +17,7 @@ from django.core.files.images import get_image_dimensions
 
 from olympia.discovery.models import DiscoveryItem
 from olympia.hero.models import PrimaryHeroImage, SecondaryHero, SecondaryHeroModule
-from olympia.shelves.models import Shelf, ShelfManagement
+from olympia.shelves.models import Shelf
 
 
 class TestDiscoveryAdmin(TestCase):
@@ -845,8 +845,8 @@ class TestSecondaryHeroShelfAdmin(TestCase):
 
 class TestShelfAdmin(TestCase):
     def setUp(self):
-        self.list_url = reverse('admin:discovery_shelfmodule_changelist')
-        self.detail_url_name = 'admin:discovery_shelfmodule_change'
+        self.list_url = reverse('admin:discovery_homepageshelves_changelist')
+        self.detail_url_name = 'admin:discovery_homepageshelves_change'
 
         criteria_sea = '?promoted=recommended&sort=random&type=extension'
         responses.add(
@@ -866,7 +866,7 @@ class TestShelfAdmin(TestCase):
 
         # Use django's reverse, since that's what the admin will use. Using our
         # own would fail the assertion because of the locale that gets added.
-        self.list_url = django_reverse('admin:discovery_shelfmodule_changelist')
+        self.list_url = django_reverse('admin:discovery_homepageshelves_changelist')
         assert self.list_url in response.content.decode('utf-8')
 
     def test_can_list_with_discovery_edit_permission(self):
@@ -905,6 +905,8 @@ class TestShelfAdmin(TestCase):
                 'footer_text': 'See more',
                 'footer_pathname': '/this/is/the/pathname',
                 'addon_count': 2,
+                'position': 0,
+                'enabled': False,
             }
 
             response = self.client.post(
@@ -939,6 +941,8 @@ class TestShelfAdmin(TestCase):
             'criteria': ('?promoted=recommended&sort=random&type=extension'),
             'footer_text': 'See more',
             'footer_pathname': '/this/is/the/pathname',
+            'position': 0,
+            'enabled': False,
             # addon_count is missing
         }
         response = self.client.post(detail_url, data, follow=False)
@@ -973,7 +977,7 @@ class TestShelfAdmin(TestCase):
             footer_text='See more',
             footer_pathname='/this/is/the/pathname',
         )
-        delete_url = reverse('admin:discovery_shelfmodule_delete', args=(item.pk,))
+        delete_url = reverse('admin:discovery_homepageshelves_delete', args=(item.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Discovery:Edit')
         self.client.login(email=user.email)
@@ -988,7 +992,7 @@ class TestShelfAdmin(TestCase):
         assert not Shelf.objects.filter(pk=item.pk).exists()
 
     def test_can_add_with_discovery_edit_permission(self):
-        add_url = reverse('admin:discovery_shelfmodule_add')
+        add_url = reverse('admin:discovery_homepageshelves_add')
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Discovery:Edit')
         self.client.login(email=user.email)
@@ -1005,6 +1009,8 @@ class TestShelfAdmin(TestCase):
                 'footer_text': 'See more',
                 'footer_pathname': '/this/is/the/pathname',
                 'addon_count': '0',
+                'position': 0,
+                'enabled': False,
             }
 
             response = self.client.post(add_url, mock_clean.return_value, follow=True)
@@ -1018,7 +1024,7 @@ class TestShelfAdmin(TestCase):
             assert item.criteria == ('?promoted=recommended&sort=random&type=extension')
 
     def test_can_not_add_without_discovery_edit_permission(self):
-        add_url = reverse('admin:discovery_shelfmodule_add')
+        add_url = reverse('admin:discovery_homepageshelves_add')
         user = user_factory(email='someone@mozilla.com')
         self.client.login(email=user.email)
         response = self.client.get(add_url, follow=True)
@@ -1033,6 +1039,8 @@ class TestShelfAdmin(TestCase):
                 'footer_text': 'See more',
                 'footer_pathname': '/this/is/the/pathname',
                 'addon_count': '0',
+                'position': 0,
+                'enabled': False,
             },
             follow=True,
         )
@@ -1048,7 +1056,7 @@ class TestShelfAdmin(TestCase):
             footer_text='See more',
             footer_pathname='/this/is/the/pathname',
         )
-        detail_url = reverse('admin:discovery_shelfmodule_change', args=(item.pk,))
+        detail_url = reverse('admin:discovery_homepageshelves_change', args=(item.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.client.login(email=user.email)
         response = self.client.get(detail_url, follow=True)
@@ -1064,6 +1072,8 @@ class TestShelfAdmin(TestCase):
                 'footer_text': 'See more',
                 'footer_pathname': '/this/is/the/pathname',
                 'addon_count': '0',
+                'position': 0,
+                'enabled': False,
             },
             follow=True,
         )
@@ -1081,7 +1091,7 @@ class TestShelfAdmin(TestCase):
             footer_text='See more',
             footer_pathname='/this/is/the/pathname',
         )
-        delete_url = reverse('admin:discovery_shelfmodule_delete', args=(item.pk,))
+        delete_url = reverse('admin:discovery_homepageshelves_delete', args=(item.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.client.login(email=user.email)
         # Can not access delete confirmation page.
@@ -1094,143 +1104,3 @@ class TestShelfAdmin(TestCase):
         assert response.status_code == 403
         assert Shelf.objects.filter(pk=item.pk).exists()
         assert item.title == 'Recommended extensions'
-
-
-class TestHomepageShelvesAdmin(TestCase):
-    def setUp(self):
-        self.list_url = reverse('admin:discovery_homepageshelves_changelist')
-        self.detail_url_name = 'admin:discovery_homepageshelves_change'
-        self.shelf = Shelf.objects.create(
-            title='Populâr themes',
-            endpoint='search',
-            addon_type=amo.ADDON_STATICTHEME,
-            criteria='?sort=users&type=statictheme',
-        )
-
-    def test_can_see_homepage_shelves_in_admin_with_discovery_edit(self):
-        user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
-        self.client.login(email=user.email)
-        url = reverse('admin:index')
-        response = self.client.get(url)
-        assert response.status_code == 200
-
-        # Use django's reverse, since that's what the admin will use. Using our
-        # own would fail the assertion because of the locale that gets added.
-        self.list_url = django_reverse('admin:discovery_homepageshelves_changelist')
-        assert self.list_url in response.content.decode('utf-8')
-
-    def test_can_list_with_discovery_edit_permission(self):
-        ShelfManagement.objects.create(shelf=self.shelf)
-        user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
-        self.client.login(email=user.email)
-        response = self.client.get(self.list_url, follow=True)
-        assert response.status_code == 200
-        assert 'Populâr themes' in response.content.decode('utf-8')
-
-    def test_can_edit_with_discovery_edit_permission(self):
-        hpshelf = ShelfManagement.objects.create(shelf=self.shelf, position=1)
-        detail_url = reverse(self.detail_url_name, args=(hpshelf.pk,))
-        user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
-        self.client.login(email=user.email)
-        response = self.client.get(detail_url, follow=True)
-        assert response.status_code == 200
-        content = response.content.decode('utf-8')
-        assert 'Populâr themes' in content
-
-        response = self.client.post(
-            detail_url, {'shelf': self.shelf.pk, 'position': 2}, follow=True
-        )
-        assert response.status_code == 200
-        hpshelf.reload()
-        assert ShelfManagement.objects.count() == 1
-        assert hpshelf.shelf.title == 'Populâr themes'
-        assert hpshelf.position == 2
-
-    def test_can_delete_with_discovery_edit_permission(self):
-        hpshelf = ShelfManagement.objects.create(shelf=self.shelf)
-        delete_url = reverse(
-            'admin:discovery_homepageshelves_delete', args=(hpshelf.pk,)
-        )
-        user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
-        self.client.login(email=user.email)
-        # Can access delete confirmation page.
-        response = self.client.get(delete_url, follow=True)
-        assert response.status_code == 200
-        assert ShelfManagement.objects.filter(pk=hpshelf.pk).exists()
-
-        # And can actually delete.
-        response = self.client.post(delete_url, data={'post': 'yes'}, follow=True)
-        assert response.status_code == 200
-        assert not ShelfManagement.objects.filter(pk=hpshelf.pk).exists()
-
-    def test_can_add_with_discovery_edit_permission(self):
-        add_url = reverse('admin:discovery_homepageshelves_add')
-        user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
-        self.client.login(email=user.email)
-        response = self.client.get(add_url, follow=True)
-        assert response.status_code == 200
-        assert ShelfManagement.objects.count() == 0
-        response = self.client.post(
-            add_url,
-            {
-                'shelf': self.shelf.pk,
-                'position': 0,
-            },
-            follow=True,
-        )
-        assert response.status_code == 200
-        assert ShelfManagement.objects.count() == 1
-        hpshelf = ShelfManagement.objects.get()
-        assert hpshelf.shelf == self.shelf
-        assert hpshelf.shelf.title == 'Populâr themes'
-
-    def test_can_not_add_without_discovery_edit_permission(self):
-        add_url = reverse('admin:discovery_homepageshelves_add')
-        user = user_factory(email='someone@mozilla.com')
-        self.client.login(email=user.email)
-        response = self.client.get(add_url, follow=True)
-        assert response.status_code == 403
-        response = self.client.post(add_url, {'shelf': self.shelf.pk}, follow=True)
-        assert response.status_code == 403
-        assert ShelfManagement.objects.count() == 0
-
-    def test_can_not_edit_without_discovery_edit_permission(self):
-        hpshelf = ShelfManagement.objects.create(shelf=self.shelf)
-        detail_url = reverse(
-            'admin:discovery_homepageshelves_change', args=(hpshelf.pk,)
-        )
-        user = user_factory(email='someone@mozilla.com')
-        self.client.login(email=user.email)
-        response = self.client.get(detail_url, follow=True)
-        assert response.status_code == 403
-
-        response = self.client.post(
-            detail_url, {'position': 1, 'shelf': self.shelf.pk}, follow=True
-        )
-        assert response.status_code == 403
-        hpshelf.reload()
-        assert ShelfManagement.objects.count() == 1
-        assert hpshelf.position == 0
-
-    def test_can_not_delete_without_discovery_edit_permission(self):
-        hpshelf = ShelfManagement.objects.create(shelf=self.shelf)
-        delete_url = reverse(
-            'admin:discovery_homepageshelves_delete', args=(hpshelf.pk,)
-        )
-        user = user_factory(email='someone@mozilla.com')
-        self.client.login(email=user.email)
-        # Can not access delete confirmation page.
-        response = self.client.get(delete_url, follow=True)
-        assert response.status_code == 403
-        assert ShelfManagement.objects.filter(pk=hpshelf.pk).exists()
-
-        # Can not actually delete either.
-        response = self.client.post(delete_url, data={'post': 'yes'}, follow=True)
-        assert response.status_code == 403
-        assert ShelfManagement.objects.filter(pk=hpshelf.pk).exists()
-        assert hpshelf.shelf.title == 'Populâr themes'

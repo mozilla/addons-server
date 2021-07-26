@@ -13,8 +13,8 @@ from olympia.discovery.models import DiscoveryItem
 from olympia.hero.admin import SecondaryHeroAdmin, PrimaryHeroImageAdmin
 from olympia.hero.models import SecondaryHero, PrimaryHeroImage
 from olympia.promoted.admin import PromotedAddonAdmin
-from olympia.shelves.admin import ShelfAdmin, ShelfManagementAdmin
-from olympia.shelves.models import Shelf, ShelfManagement
+from olympia.shelves.admin import ShelfAdmin
+from olympia.shelves.models import Shelf
 
 
 # Popular locales, we typically don't want to show a string if it's not
@@ -137,12 +137,6 @@ class DiscoveryItemAdmin(admin.ModelAdmin):
         return mark_safe(''.join(translations))
 
 
-class HomepageShelves(ShelfManagement):
-    class Meta:
-        proxy = True
-        verbose_name_plural = 'homepage shelves'
-
-
 class PromotedAddon(promoted.models.PromotedAddon):
     """Just a proxy class to have all the hero related objects in one
     place under Discovery in django admin."""
@@ -169,15 +163,14 @@ class SecondaryHeroShelf(SecondaryHero):
         verbose_name_plural = 'secondary hero shelves'
 
 
-class ShelfModule(Shelf):
+class HomepageShelves(Shelf):
     class Meta:
         proxy = True
-        verbose_name_plural = 'shelf modules'
+        verbose_name_plural = 'homepage shelves'
 
 
 admin.site.register(DiscoveryItem, DiscoveryItemAdmin)
-admin.site.register(HomepageShelves, ShelfManagementAdmin)
 admin.site.register(PromotedAddon, PromotedAddonAdmin)
 admin.site.register(PrimaryHeroImageUpload, PrimaryHeroImageAdmin)
 admin.site.register(SecondaryHeroShelf, SecondaryHeroAdmin)
-admin.site.register(ShelfModule, ShelfAdmin)
+admin.site.register(HomepageShelves, ShelfAdmin)

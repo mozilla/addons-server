@@ -23,7 +23,7 @@ from olympia.hero.serializers import (
     SecondaryHeroShelfSerializer,
 )
 from olympia.promoted.models import PromotedAddon
-from olympia.shelves.models import Shelf, ShelfManagement
+from olympia.shelves.models import Shelf
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
 
@@ -87,40 +87,39 @@ class TestShelfViewSet(ESTestCase):
     def setUp(self):
         self.url = reverse_ns('shelves-list', api_version='v5')
 
-        shelf_a = Shelf.objects.create(
+        self.shelf_a = Shelf.objects.create(
             title='Recommended extensions',
             endpoint='search',
             criteria='?promoted=recommended&sort=random&type=extension',
             footer_text='See more recommended extensions',
             footer_pathname='/extensions/',
+            position=3,
         )
-        shelf_b = Shelf.objects.create(
+        self.shelf_b = Shelf.objects.create(
             title='Enhanced privacy extensions',
             endpoint='collections',
             criteria='privacy-matters',
             footer_text='See more enhanced privacy extensions',
+            position=2,
         )
-        shelf_c = Shelf.objects.create(
+        self.shelf_c = Shelf.objects.create(
             title='Popular themes',
             endpoint='search',
             criteria='?sort=users&type=statictheme',
             footer_text='See more popular themes',
             footer_pathname='http://foo.baa',
+            position=1,
         )
-        shelf_d = Shelf.objects.create(
+        self.shelf_d = Shelf.objects.create(
             title='Random Tag',
             endpoint='random-tag',
             criteria='?',
             footer_text='something something tags!',
+            position=4,
         )
 
-        self.hpshelf_a = ShelfManagement.objects.create(shelf=shelf_a, position=3)
-        self.hpshelf_b = ShelfManagement.objects.create(shelf=shelf_b, position=2)
-        ShelfManagement.objects.create(shelf=shelf_c, position=1)
-        self.hpshelf_d = ShelfManagement.objects.create(shelf=shelf_d, position=4)
-
         self.search_url = (
-            reverse_ns('addon-search', api_version='v5') + shelf_a.criteria
+            reverse_ns('addon-search', api_version='v5') + self.shelf_a.criteria
         )
 
         self.collections_url = reverse_ns(
@@ -128,7 +127,7 @@ class TestShelfViewSet(ESTestCase):
             api_version='v5',
             kwargs={
                 'user_pk': settings.TASK_USER_ID,
-                'collection_slug': shelf_b.criteria,
+                'collection_slug': self.shelf_b.criteria,
             },
         )
 
@@ -144,10 +143,10 @@ class TestShelfViewSet(ESTestCase):
     @mock.patch.object(Shelf, 'tag', new_callable=mock.PropertyMock)
     def test_only_enabled_shelves_in_view(self, tag_mock):
         tag_mock.return_value = self.tag
-        self.hpshelf_a.update(enabled=True)
-        self.hpshelf_b.update(enabled=True)
+        self.shelf_a.update(enabled=True)
+        self.shelf_b.update(enabled=True)
         # don't enable shelf_c
-        self.hpshelf_d.update(enabled=True)
+        self.shelf_d.update(enabled=True)
 
         # would be 26 but we mocked Shelf.tag that does a query.
         with self.assertNumQueries(25):
@@ -271,7 +270,7 @@ class TestShelfViewSet(ESTestCase):
         SecondaryHeroModule.objects.create(shelf=shero)
         SecondaryHeroModule.objects.create(shelf=shero)
 
-        self.hpshelf_a.update(enabled=True)
+        self.shelf_a.update(enabled=True)
 
         with self.assertNumQueries(16):
             # 16 queries:
@@ -319,29 +318,29 @@ class TestEditorialShelfViewSet(TestCase):
     def test_basic(self):
         url = reverse_ns('shelves-editorial-list', api_version='v5')
 
-        shelf_a = Shelf.objects.create(
+        # we set position but it's not used for this endpoint
+        self.shelf_a = Shelf.objects.create(
             title='Recommended extensions',
             endpoint='search',
             criteria='?promoted=recommended&sort=random&type=extension',
             footer_text='See more!',
+            position=3,
         )
-        shelf_b = Shelf.objects.create(
+        self.shelf_b = Shelf.objects.create(
             title='Enhanced privacy extensions',
             endpoint='collections',
             criteria='privacy-matters',
             footer_text='',
+            position=6,
         )
-        shelf_c = Shelf.objects.create(
+        self.shelf_c = Shelf.objects.create(
             title='Popular themes',
             endpoint='search',
             criteria='?sort=users&type=statictheme',
             footer_text='See more popular themes',
+            position=1,
+            enabled=False,
         )
-
-        # we set position but it's not used for this endpoint
-        ShelfManagement.objects.create(shelf=shelf_a, position=3)
-        ShelfManagement.objects.create(shelf=shelf_b, position=6)
-        ShelfManagement.objects.create(shelf=shelf_c, position=1, enabled=False)
 
         response = self.client.get(url)
         assert response.status_code == 200
