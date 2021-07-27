@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-07-21 08:49+0000\n"
-"PO-Revision-Date: 2021-07-27 16:15+0000\n"
+"PO-Revision-Date: 2021-07-27 16:19+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -1580,9 +1580,8 @@ msgstr "Odgodi automatsko odobravanje u nedogled"
 msgid "Delay auto-approval indefinitely and add restrictions"
 msgstr "Odgodi automatsko odobravanje na neodređeno vrijeme i dodaj ograničenja"
 
-#, fuzzy
 msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
-msgstr "Odgodi automatsko odobravanje na neodređeno vrijeme i dodaj ograničenja"
+msgstr "Odgodi automatsko odobravanje na neodređeno vrijeme i dodaj ograničenja za buduća odobravanja"
 
 msgid "True positive"
 msgstr "Točno pozitivno"
@@ -4429,28 +4428,24 @@ msgid "See more popular themes"
 msgstr "Pogledaj još popularnih tema"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Enhanced privacy extensions"
-msgstr "Pogledaj sva proširenja"
+msgstr "Poboljšana proširenja za privatnost"
 
 #. editorial content for the homepage shelves.
 msgid "See more enhanced privacy extensions"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Popular extensions"
-msgstr "Istraži proširenja"
+msgstr "Popularna proširenja"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular extensions"
-msgstr "Pogledaj sva proširenja"
+msgstr "Pogledaj još popularnih proširenja"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended themes"
-msgstr "Preporučeno"
+msgstr "Preporučene teme"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
@@ -4465,14 +4460,12 @@ msgid "See more recommended password managers"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Translation tools"
-msgstr "Upravljanje karticama i alati"
+msgstr "Alati za prevođenje"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more translation tools"
-msgstr "Prijevodi imena dodatka"
+msgstr "Pogledaj još alata za prevođenje"
 
 msgid "Could not parse the manifest file."
 msgstr ""
