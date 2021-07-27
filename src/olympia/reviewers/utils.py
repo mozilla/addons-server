@@ -68,10 +68,13 @@ class ReviewerQueueTable(tables.Table, ItemStateTable):
     def render_addon_name(self, record):
         url = reverse('reviewers.review', args=[record.addon_slug])
         self.increment_item()
-        return '<a href="%s">%s <em>%s</em></a>' % (
-            url,
-            jinja2.escape(record.addon_name),
-            jinja2.escape(record.latest_version),
+        return jinja2.Markup(
+            '<a href="%s">%s <em>%s</em></a>'
+            % (
+                url,
+                jinja2.escape(record.addon_name),
+                jinja2.escape(record.latest_version),
+            )
         )
 
     def render_addon_type_id(self, record):
@@ -80,9 +83,11 @@ class ReviewerQueueTable(tables.Table, ItemStateTable):
     def render_flags(self, record):
         if not hasattr(record, 'flags'):
             record.flags = get_flags_for_row(record)
-        return ''.join(
-            '<div class="app-icon ed-sprite-%s" title="%s"></div>' % flag
-            for flag in record.flags
+        return jinja2.Markup(
+            ''.join(
+                '<div class="app-icon ed-sprite-%s" title="%s"></div>' % flag
+                for flag in record.flags
+            )
         )
 
     @classmethod
@@ -138,10 +143,12 @@ class ViewUnlistedAllListTable(tables.Table, ItemStateTable):
             ],
         )
         self.increment_item()
-        return safe_substitute('<a href="%s">%s</a>', url, record.addon_name)
+        return jinja2.Markup(
+            safe_substitute('<a href="%s">%s</a>', url, record.addon_name)
+        )
 
     def render_guid(self, record):
-        return safe_substitute('%s', record.guid)
+        return jinja2.Markup(safe_substitute('%s', record.guid))
 
     def render_authors(self, record):
         authors = record.authors
@@ -154,10 +161,13 @@ class ViewUnlistedAllListTable(tables.Table, ItemStateTable):
             )
             for (id_, uname) in authors[0:3]
         )
-        return '<span title="%s">%s%s</span>' % (
-            more,
-            author_links,
-            ' ...' if len(authors) > 3 else '',
+        return jinja2.Markup(
+            '<span title="%s">%s%s</span>'
+            % (
+                more,
+                author_links,
+                ' ...' if len(authors) > 3 else '',
+            )
         )
 
     @classmethod
@@ -227,21 +237,27 @@ class ModernAddonQueueTable(ReviewerQueueTable):
 
     def render_addon_name(self, record):
         url = self._get_addon_name_url(record)
-        return '<a href="%s">%s <em>%s</em></a>' % (
-            url,
-            jinja2.escape(record.name),
-            jinja2.escape(record.current_version),
+        return jinja2.Markup(
+            '<a href="%s">%s <em>%s</em></a>'
+            % (
+                url,
+                jinja2.escape(record.name),
+                jinja2.escape(record.current_version),
+            )
         )
 
     def render_last_human_review(self, value):
         return naturaltime(value) if value else ''
 
     def render_weight(self, *, record, value):
-        return '<span title="%s">%d</span>' % (
-            '\n'.join(
-                record.current_version.autoapprovalsummary.get_pretty_weight_info()
-            ),
-            value,
+        return jinja2.Markup(
+            '<span title="%s">%d</span>'
+            % (
+                '\n'.join(
+                    record.current_version.autoapprovalsummary.get_pretty_weight_info()
+                ),
+                value,
+            )
         )
 
     def render_score(self, value):
@@ -273,9 +289,12 @@ class UnlistedPendingManualApprovalQueueTable(tables.Table, ItemStateTable):
 
     def render_addon_name(self, record):
         url = self._get_addon_name_url(record)
-        return '<a href="%s">%s</a>' % (
-            url,
-            jinja2.escape(record.name),
+        return jinja2.Markup(
+            '<a href="%s">%s</a>'
+            % (
+                url,
+                jinja2.escape(record.name),
+            )
         )
 
     def render_waiting_time(self, record):
@@ -395,7 +414,7 @@ class ScannersReviewTable(AutoApprovedTable):
                 )
             )
 
-        return ''.join(rval)
+        return jinja2.Markup(''.join(rval))
 
 
 class MadReviewTable(ScannersReviewTable):

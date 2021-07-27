@@ -41,11 +41,6 @@ def render(s, context=None):
     return t.render(context)
 
 
-def test_strip_controls():
-    # We want control codes like \x0c to disappear.
-    assert 'I ove you' == jinja_helpers.strip_controls('I \x0cove you')
-
-
 def test_finalize():
     """We want None to show up as ''.  We do this in JINJA_CONFIG."""
     assert '' == render('{{ x }}', {'x': None})

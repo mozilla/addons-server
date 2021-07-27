@@ -41,6 +41,7 @@
               <td>{{ item.created|datetime }}</td>
               <td>
                 {% if item.arguments.0 %}
+                  <a href="{{ item.arguments.0.get_url_path() }}">{{ item.arguments.0.name }}</a>
                   {{ item.arguments.0|link }}
                   {% if item.arguments|count >= 2 %}
                     {{ item.arguments[1] }}

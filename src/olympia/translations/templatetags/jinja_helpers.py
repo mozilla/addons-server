@@ -4,13 +4,9 @@ from django.utils import translation
 from django.utils.encoding import force_str
 from django.utils.translation.trans_real import to_language
 
-import bleach
 import jinja2
 
 from django_jinja import library
-
-from olympia.amo.utils import clean_nl
-from olympia.translations.models import PurifiedTranslation
 
 
 library.filter(to_language)
@@ -90,26 +86,3 @@ def all_locales(addon, field_name, nl2br=False, prettify_empty=False):
     )
     t = loader.get_template('translations/all-locales.html')
     return jinja2.Markup(t.render(ctx))
-
-
-@library.filter
-def clean(string, strip_all_html=False):
-    """Clean html with bleach.
-
-    :param string string: The original string to clean.
-    :param bool strip_all_html: If given, remove all html code from `string`.
-    """
-    # Edgecase for PurifiedTranslation to avoid already-escaped html code
-    # to slip through. This isn't a problem if `strip_all_html` is `False`.
-    if isinstance(string, PurifiedTranslation) and strip_all_html:
-        string = string.localized_string
-
-    if hasattr(string, '__html__'):
-        string = string.__html__()
-
-    if strip_all_html:
-        string = bleach.clean(str(string), tags=[], strip=True)
-    else:
-        string = bleach.clean(str(string))
-
-    return jinja2.Markup(clean_nl(string).strip())

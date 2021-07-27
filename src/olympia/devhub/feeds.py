@@ -6,11 +6,13 @@ from django.shortcuts import get_object_or_404
 from django.utils.feedgenerator import Rss201rev2Feed
 from django.utils.translation import gettext
 
+import bleach
+
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.amo.templatetags.jinja_helpers import absolutify, url
+from olympia.amo.utils import clean_nl
 from olympia.devhub.models import RssKey
-from olympia.translations.templatetags.jinja_helpers import clean as clean_html
 
 
 class ActivityFeedRSS(Feed):
@@ -38,8 +40,11 @@ class ActivityFeedRSS(Feed):
             )
         )[:20]
 
+    def clean_html(string):
+        return clean_nl(bleach.clean(str(string), tags=[], strip=True)).strip()
+
     def item_title(self, item):
-        return clean_html(item.to_string(), True)
+        return self.clean_html(item.to_string())
 
     def title(self, key):
         """Title for the feed as a whole"""

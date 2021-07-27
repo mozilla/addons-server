@@ -1,8 +1,4 @@
-# -*- coding: utf-8 -*-
-from urllib.parse import quote
-
 from django.utils import translation
-from django.utils.encoding import force_bytes, force_str
 
 import pytest
 
@@ -68,21 +64,6 @@ def test_log_action_class():
         else:
             cls = ''
         assert render('{{ log_action_class(id) }}', {'id': v.id}) == cls
-
-
-class TestDisplayUrl(amo.tests.TestCase):
-    def setUp(self):
-        super(TestDisplayUrl, self).setUp()
-        self.raw_url = 'http://host/%s' % 'フォクすけといっしょ'
-
-    def test_utf8(self):
-        url = quote(self.raw_url.encode('utf8'))
-        assert render('{{ url|display_url }}', {'url': url}) == (self.raw_url)
-
-    def test_unicode(self):
-        url = quote(self.raw_url.encode('utf8'))
-        url = force_str(force_bytes(url, 'utf8'), 'utf8')
-        assert render('{{ url|display_url }}', {'url': url}) == (self.raw_url)
 
 
 class TestDevFilesStatus(TestCase):
