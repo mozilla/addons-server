@@ -231,6 +231,7 @@ ADDON_PREVIEW_SIZES = {
     'thumbnail': _dimensions(533, 400),
     'min': _dimensions(1000, 750),
     'full': _dimensions(2400, 1800),
+    'image_format': 'png',
     'thumbnail_format': 'jpg',
 }
 
