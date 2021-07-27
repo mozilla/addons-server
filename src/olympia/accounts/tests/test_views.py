@@ -9,7 +9,6 @@ from urllib.parse import parse_qs, urlparse
 from django import http
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
-from django.contrib.messages import get_messages
 from django.urls import reverse
 from django.test import RequestFactory
 from django.test.utils import override_settings
@@ -305,104 +304,10 @@ class TestFindUser(TestCase):
             views.find_user({'uid': task_user.fxa_id, 'email': 'doesnt@matta'})
 
 
-class TestRenderErrorHTML(TestCase):
-    api_version = 'auth'
-
-    def make_request(self):
-        request = APIRequestFactory().get(
-            reverse_ns('accounts.authenticate', api_version=self.api_version)
-        )
-        request.user = AnonymousUser()
-        return self.enable_messages(request)
-
-    def render_error(self, request, error, next_path=None):
-        return views.render_error(request, error, format='html', next_path=next_path)
-
-    def test_error_no_code_with_safe_path(self):
-        request = self.make_request()
-        assert len(get_messages(request)) == 0
-        response = self.render_error(
-            request, views.ERROR_NO_CODE, next_path='/over/here'
-        )
-        assert response.status_code == 302
-        messages = get_messages(request)
-        assert len(messages) == 1
-        assert 'could not be parsed' in next(iter(messages)).message
-        assert_url_equal(response['location'], absolutify('/over/here'))
-        response = self.render_error(request, views.ERROR_NO_CODE, next_path=None)
-        assert response.status_code == 302
-        messages = get_messages(request)
-        assert len(messages) == 1
-        assert 'could not be parsed' in next(iter(messages)).message
-        assert_url_equal(response['location'], '/')
-
-    def test_error_no_profile_with_no_path(self):
-        request = self.make_request()
-        assert len(get_messages(request)) == 0
-        response = self.render_error(request, views.ERROR_NO_PROFILE)
-        assert response.status_code == 302
-        messages = get_messages(request)
-        assert len(messages) == 1
-        assert 'Firefox Account could not be found' in next(iter(messages)).message
-        assert_url_equal(response['location'], '/')
-
-    def test_error_state_mismatch_with_unsafe_path(self):
-        request = self.make_request()
-        assert len(get_messages(request)) == 0
-        response = self.render_error(
-            request, views.ERROR_STATE_MISMATCH, next_path='https://www.google.com/'
-        )
-        assert response.status_code == 302
-        messages = get_messages(request)
-        assert len(messages) == 1
-        assert 'could not be logged in' in next(iter(messages)).message
-        assert_url_equal(response['location'], '/')
-
-
-class TestRenderErrorHTMLV3(TestRenderErrorHTML):
-    api_version = 'v3'
-
-
-class TestRenderErrorJSON(TestCase):
-    api_version = 'auth'
-
-    def setUp(self):
-        patcher = mock.patch('olympia.accounts.views.Response')
-        self.Response = patcher.start()
-        self.addCleanup(patcher.stop)
-
-    def make_request(self):
-        return APIRequestFactory().post(
-            reverse_ns('accounts.authenticate', api_version=self.api_version)
-        )
-
-    def render_error(self, error):
-        views.render_error(self.make_request(), error, format='json')
-
-    def test_unknown_error(self):
-        self.render_error('not-an-error')
-        self.Response.assert_called_with({'error': 'not-an-error'}, status=422)
-
-    def test_error_no_profile(self):
-        self.render_error(views.ERROR_NO_PROFILE)
-        self.Response.assert_called_with({'error': views.ERROR_NO_PROFILE}, status=401)
-
-    def test_error_state_mismatch(self):
-        self.render_error(views.ERROR_STATE_MISMATCH)
-        self.Response.assert_called_with(
-            {'error': views.ERROR_STATE_MISMATCH}, status=400
-        )
-
-
-class TestRenderErrorJSONV3(TestRenderErrorJSON):
-    api_version = 'v3'
-
-
 class TestWithUser(TestCase):
     def setUp(self):
         self.fxa_identify = self.patch('olympia.accounts.views.verify.fxa_identify')
         self.find_user = self.patch('olympia.accounts.views.find_user')
-        self.render_error = self.patch('olympia.accounts.views.render_error')
         self.request = mock.MagicMock()
         self.user = AnonymousUser()
         self.request.user = self.user
@@ -411,7 +316,7 @@ class TestWithUser(TestCase):
     def get_fxa_config(self, request):
         return settings.FXA_CONFIG[settings.DEFAULT_FXA_CONFIG_NAME]
 
-    @views.with_user(format='json')
+    @views.with_user
     def fn(*args, **kwargs):
         return args, kwargs
 
@@ -530,18 +435,14 @@ class TestWithUser(TestCase):
     def test_profile_does_not_exist(self):
         self.fxa_identify.side_effect = verify.IdentificationError
         self.request.data = {'code': 'foo', 'state': 'some-blob'}
-        self.fn(self.request)
-        self.render_error.assert_called_with(
-            self.request, views.ERROR_NO_PROFILE, next_path=None, format='json'
-        )
+        response = self.fn(self.request)
+        self.assertRedirects(response, '/en-US/firefox/', fetch_redirect_response=False)
         assert not self.find_user.called
 
     def test_code_not_provided(self):
         self.request.data = {'hey': 'hi', 'state': 'some-blob'}
-        self.fn(self.request)
-        self.render_error.assert_called_with(
-            self.request, views.ERROR_NO_CODE, next_path=None, format='json'
-        )
+        response = self.fn(self.request)
+        self.assertRedirects(response, '/en-US/firefox/', fetch_redirect_response=False)
         assert not self.find_user.called
         assert not self.fxa_identify.called
 
@@ -557,14 +458,13 @@ class TestWithUser(TestCase):
         self.request.user = self.user
         assert self.user.is_authenticated
         self.request.COOKIES = {views.API_TOKEN_COOKIE: 'foobar'}
-        self.fn(self.request)
-        self.render_error.assert_called_with(
-            self.request, views.ERROR_AUTHENTICATED, next_path='/next', format='json'
-        )
+        response = self.fn(self.request)
+        self.assertRedirects(response, '/next', fetch_redirect_response=False)
+        assert not response.cookies
         assert not self.find_user.called
-        assert self.render_error.return_value.set_cookie.call_count == 0
         assert generate_api_token_mock.call_count == 0
 
+    @override_settings(SESSION_COOKIE_SECURE=True, SESSION_COOKIE_DOMAIN='example.com')
     @mock.patch.object(views, 'generate_api_token', lambda u: 'fake-api-token')
     def test_already_logged_in_add_api_token_cookie_if_missing(self):
         self.request.data = {
@@ -577,22 +477,17 @@ class TestWithUser(TestCase):
         self.request.user = self.user
         assert self.user.is_authenticated
         self.request.COOKIES = {}
-        self.fn(self.request)
-        self.render_error.assert_called_with(
-            self.request, views.ERROR_AUTHENTICATED, next_path='/next', format='json'
-        )
+        response = self.fn(self.request)
+        self.assertRedirects(response, '/next', fetch_redirect_response=False)
         assert not self.find_user.called
-        response = self.render_error.return_value
-        assert response.set_cookie.call_count == 1
-        response.set_cookie.assert_called_with(
-            views.API_TOKEN_COOKIE,
-            'fake-api-token',
-            domain=settings.SESSION_COOKIE_DOMAIN,
-            max_age=settings.SESSION_COOKIE_AGE,
-            secure=settings.SESSION_COOKIE_SECURE,
-            httponly=settings.SESSION_COOKIE_HTTPONLY,
-            samesite=settings.SESSION_COOKIE_SAMESITE,
-        )
+        cookie = response.cookies.get(views.API_TOKEN_COOKIE)
+        assert len(response.cookies) == 1
+        assert cookie.value == 'fake-api-token'
+        assert cookie['domain'] == settings.SESSION_COOKIE_DOMAIN
+        assert cookie['max-age'] == settings.SESSION_COOKIE_AGE
+        assert cookie['secure'] == settings.SESSION_COOKIE_SECURE
+        assert cookie['httponly'] == settings.SESSION_COOKIE_HTTPONLY
+        assert cookie['samesite'] == settings.SESSION_COOKIE_SAMESITE
 
     def test_state_does_not_match(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
@@ -604,10 +499,8 @@ class TestWithUser(TestCase):
                 force_str(base64.urlsafe_b64encode(b'/next'))
             ),
         }
-        self.fn(self.request)
-        self.render_error.assert_called_with(
-            self.request, views.ERROR_STATE_MISMATCH, next_path='/next', format='json'
-        )
+        response = self.fn(self.request)
+        self.assertRedirects(response, '/next', fetch_redirect_response=False)
 
     def test_dynamic_configuration(self):
         fxa_config = {'some': 'config'}
@@ -616,7 +509,7 @@ class TestWithUser(TestCase):
             def get_fxa_config(self, request):
                 return fxa_config
 
-            @views.with_user(format='json')
+            @views.with_user
             def post(*args, **kwargs):
                 return args, kwargs
 
@@ -849,9 +742,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
             response['Cache-Control']
             == 'max-age=0, no-cache, no-store, must-revalidate, private'
         )
-        # Messages seem to appear in the context for some reason.
-        assert 'could not be parsed' in response.context['title']
-        assert_url_equal(response['location'], '/')
+        assert_url_equal(response['location'], '/en-US/firefox/')
         assert not self.login_user.called
         assert not self.register_user.called
         assert not self.reregister_user.called
@@ -863,8 +754,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
             response['Cache-Control']
             == 'max-age=0, no-cache, no-store, must-revalidate, private'
         )
-        assert 'could not be logged in' in response.context['title']
-        assert_url_equal(response['location'], '/')
+        assert_url_equal(response['location'], '/en-US/firefox/')
         assert not self.login_user.called
         assert not self.register_user.called
         assert not self.reregister_user.called
@@ -879,8 +769,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
             response['Cache-Control']
             == 'max-age=0, no-cache, no-store, must-revalidate, private'
         )
-        assert 'Your Firefox Account could not be found' in response.context['title']
-        assert_url_equal(response['location'], '/')
+        assert_url_equal(response['location'], '/en-US/firefox/')
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert not self.login_user.called
         assert not self.register_user.called

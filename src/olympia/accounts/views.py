@@ -51,7 +51,6 @@ import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.access.models import GroupUser
-from olympia.amo import messages
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import fetch_subscribed_newsletters, use_fake_fxa
 from olympia.api.authentication import (
@@ -104,7 +103,7 @@ LOGIN_ERROR_MESSAGES = {
 API_TOKEN_COOKIE = 'frontend_auth_token'
 
 
-def safe_redirect(url, action, request):
+def safe_redirect(request, url, action):
     if not _is_safe_url(url, request):
         url = reverse('home')
     log.info('Redirecting after {} to: {}'.format(action, url))
@@ -201,26 +200,6 @@ def fxa_error_message(message, login_help_url):
 LOGIN_HELP_URL = 'https://support.mozilla.org/kb/access-your-add-ons-firefox-accounts'
 
 
-def render_error(request, error, next_path=None, format=None):
-    if format == 'json':
-        status = ERROR_STATUSES.get(error, 422)
-        response = Response({'error': error}, status=status)
-    else:
-        if not _is_safe_url(next_path, request):
-            next_path = None
-        log.error('Could not log the user in (%s)', error)
-        messages.error(
-            request,
-            fxa_error_message(LOGIN_ERROR_MESSAGES[error], LOGIN_HELP_URL),
-            extra_tags='fxa',
-        )
-        if next_path is None:
-            response = HttpResponseRedirect('/')
-        else:
-            response = HttpResponseRedirect(next_path)
-    return response
-
-
 def parse_next_path(state_parts, request=None):
     next_path = None
     if len(state_parts) == 2:
@@ -239,119 +218,106 @@ def parse_next_path(state_parts, request=None):
     return next_path
 
 
-def with_user(format):
-    def outer(fn):
-        @functools.wraps(fn)
-        @use_primary_db
-        def inner(self, request):
-            fxa_config = self.get_fxa_config(request)
-            if request.method == 'GET':
-                data = request.query_params
-            else:
-                data = request.data
+def with_user(f):
+    @functools.wraps(f)
+    @use_primary_db
+    def inner(self, request):
+        fxa_config = self.get_fxa_config(request)
+        if request.method == 'GET':
+            data = request.query_params
+        else:
+            data = request.data
 
-            state_parts = data.get('state', '').split(':', 1)
-            state = state_parts[0]
-            next_path = parse_next_path(state_parts, request)
-            if not data.get('code'):
-                log.info('No code provided.')
-                return render_error(
-                    request, ERROR_NO_CODE, next_path=next_path, format=format
+        state_parts = data.get('state', '').split(':', 1)
+        state = state_parts[0]
+        next_path = parse_next_path(state_parts, request)
+        if not data.get('code'):
+            log.info('No code provided.')
+            return safe_redirect(request, next_path, ERROR_NO_CODE)
+        elif (
+            not request.session.get('fxa_state')
+            or request.session['fxa_state'] != state
+        ):
+            log.info(
+                'State mismatch. URL: {url} Session: {session}'.format(
+                    url=data.get('state'),
+                    session=request.session.get('fxa_state'),
                 )
-            elif (
-                not request.session.get('fxa_state')
-                or request.session['fxa_state'] != state
-            ):
+            )
+            return safe_redirect(request, next_path, ERROR_STATE_MISMATCH)
+        elif request.user.is_authenticated:
+            response = safe_redirect(request, next_path, ERROR_AUTHENTICATED)
+            # If the api token cookie is missing but we're still
+            # authenticated using the session, add it back.
+            if API_TOKEN_COOKIE not in request.COOKIES:
                 log.info(
-                    'State mismatch. URL: {url} Session: {session}'.format(
-                        url=data.get('state'),
-                        session=request.session.get('fxa_state'),
-                    )
+                    'User %s was already authenticated but did not '
+                    'have an API token cookie, adding one.',
+                    request.user.pk,
                 )
-                return render_error(
-                    request, ERROR_STATE_MISMATCH, next_path=next_path, format=format
-                )
-            elif request.user.is_authenticated:
-                response = render_error(
-                    request, ERROR_AUTHENTICATED, next_path=next_path, format=format
-                )
-                # If the api token cookie is missing but we're still
-                # authenticated using the session, add it back.
-                if API_TOKEN_COOKIE not in request.COOKIES:
-                    log.info(
-                        'User %s was already authenticated but did not '
-                        'have an API token cookie, adding one.',
-                        request.user.pk,
-                    )
-                    response = add_api_token_to_response(response, request.user)
-                return response
-            try:
-                if use_fake_fxa() and 'fake_fxa_email' in data:
-                    # Bypassing real authentication, we take the email provided
-                    # and generate a random fxa id.
-                    identity = {
-                        'email': data['fake_fxa_email'],
-                        'uid': 'fake_fxa_id-%s'
-                        % force_str(binascii.b2a_hex(os.urandom(16))),
-                    }
-                    id_token = identity['email']
-                else:
-                    identity, id_token = verify.fxa_identify(
-                        data['code'], config=fxa_config
-                    )
-            except verify.IdentificationError:
-                log.info('Profile not found. Code: {}'.format(data['code']))
-                return render_error(
-                    request, ERROR_NO_PROFILE, next_path=next_path, format=format
-                )
+                response = add_api_token_to_response(response, request.user)
+            return response
+        try:
+            if use_fake_fxa() and 'fake_fxa_email' in data:
+                # Bypassing real authentication, we take the email provided
+                # and generate a random fxa id.
+                identity = {
+                    'email': data['fake_fxa_email'],
+                    'uid': 'fake_fxa_id-%s'
+                    % force_str(binascii.b2a_hex(os.urandom(16))),
+                }
+                id_token = identity['email']
             else:
-                # The following log statement is used by foxsec-pipeline.
-                log.info('Logging in FxA user %s', identity['email'])
-                user = find_user(identity)
-                # We can't use waffle.flag_is_active() wrapper, because
-                # request.user isn't populated at this point (and we don't want
-                # it to be).
-                flag = waffle.get_waffle_flag_model().get(
-                    '2fa-enforcement-for-developers-and-special-users'
+                identity, id_token = verify.fxa_identify(
+                    data['code'], config=fxa_config
                 )
-                enforce_2fa_for_developers_and_special_users = flag.is_active(
-                    request
-                ) or (flag.pk and flag.is_active_for_user(user))
-                if (
-                    user
-                    and not identity.get('twoFactorAuthentication')
-                    and enforce_2fa_for_developers_and_special_users
-                    and (user.is_addon_developer or user.groups_list)
-                ):
-                    # https://github.com/mozilla/addons/issues/732
-                    # The user is an add-on developer (with other types of
-                    # add-ons than just themes) or part of any group (so they
-                    # are special in some way, may be an admin or a reviewer),
-                    # but hasn't logged in with a second factor. Immediately
-                    # redirect them to start the FxA flow again, this time
-                    # requesting 2FA to be present - they should be
-                    # automatically logged in FxA with the existing token, and
-                    # should be prompted to create the second factor before
-                    # coming back to AMO.
-                    log.info('Redirecting user %s to enforce 2FA', user)
-                    return HttpResponseRedirect(
-                        fxa_login_url(
-                            config=fxa_config,
-                            state=request.session['fxa_state'],
-                            next_path=next_path,
-                            action='signin',
-                            force_two_factor=True,
-                            request=request,
-                            id_token=id_token,
-                        )
+        except verify.IdentificationError:
+            log.info('Profile not found. Code: {}'.format(data['code']))
+            return safe_redirect(request, next_path, ERROR_NO_PROFILE)
+        else:
+            # The following log statement is used by foxsec-pipeline.
+            log.info('Logging in FxA user %s', identity['email'])
+            user = find_user(identity)
+            # We can't use waffle.flag_is_active() wrapper, because
+            # request.user isn't populated at this point (and we don't want
+            # it to be).
+            flag = waffle.get_waffle_flag_model().get(
+                '2fa-enforcement-for-developers-and-special-users'
+            )
+            enforce_2fa_for_developers_and_special_users = flag.is_active(request) or (
+                flag.pk and flag.is_active_for_user(user)
+            )
+            if (
+                user
+                and not identity.get('twoFactorAuthentication')
+                and enforce_2fa_for_developers_and_special_users
+                and (user.is_addon_developer or user.groups_list)
+            ):
+                # https://github.com/mozilla/addons/issues/732
+                # The user is an add-on developer (with other types of
+                # add-ons than just themes) or part of any group (so they
+                # are special in some way, may be an admin or a reviewer),
+                # but hasn't logged in with a second factor. Immediately
+                # redirect them to start the FxA flow again, this time
+                # requesting 2FA to be present - they should be
+                # automatically logged in FxA with the existing token, and
+                # should be prompted to create the second factor before
+                # coming back to AMO.
+                log.info('Redirecting user %s to enforce 2FA', user)
+                return HttpResponseRedirect(
+                    fxa_login_url(
+                        config=fxa_config,
+                        state=request.session['fxa_state'],
+                        next_path=next_path,
+                        action='signin',
+                        force_two_factor=True,
+                        request=request,
+                        id_token=id_token,
                     )
-                return fn(
-                    self, request, user=user, identity=identity, next_path=next_path
                 )
+            return f(self, request, user=user, identity=identity, next_path=next_path)
 
-        return inner
-
-    return outer
+    return inner
 
 
 def generate_api_token(user):
@@ -420,7 +386,7 @@ class AuthenticateView(FxAConfigMixin, APIView):
     authentication_classes = (SessionAuthentication,)
 
     @never_cache
-    @with_user(format='html')
+    @with_user
     def get(self, request, user, identity, next_path):
         # At this point @with_user guarantees that we have a valid fxa
         # identity. We are proceeding with either registering the user or
@@ -440,7 +406,7 @@ class AuthenticateView(FxAConfigMixin, APIView):
             action = 'login'
 
         login_user(self.__class__, request, user, identity)
-        response = safe_redirect(next_path, action, request)
+        response = safe_redirect(request, next_path, action)
         add_api_token_to_response(response, user)
         return response
 
