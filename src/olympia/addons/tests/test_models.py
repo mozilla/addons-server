@@ -820,7 +820,7 @@ class TestAddonModels(TestCase):
         url.
         """
         a = Addon.objects.get(pk=4664)
-        a.thumbnail_url.index('/previews/thumbs/20/20397.png?modified=')
+        a.thumbnail_url.index('/previews/thumbs/20/20397.jpg?modified=')
         a = Addon.objects.get(pk=5299)
         assert a.thumbnail_url.endswith('/icons/no-preview.png'), (
             'No match for %s' % a.thumbnail_url
@@ -2393,6 +2393,29 @@ class TestPreviewModel(BasePreviewMixin, TestCase):
 
     def get_object(self):
         return Preview.objects.get(pk=24)
+
+    def test_filename(self):
+        preview = self.get_object()
+        assert preview.thumbnail_path.endswith('.jpg')
+        assert preview.image_path.endswith('.png')
+        assert preview.original_path.endswith('.png')
+
+        # now set the format in .sizes. Set thumbnail_format to a weird one
+        # on purpose to make sure it's followed.
+        preview.update(sizes={'thumbnail_format': 'abc', 'image_format': 'gif'})
+        assert preview.thumbnail_path.endswith('.abc')
+        assert preview.image_path.endswith('.gif')
+        assert preview.original_path.endswith('.png')
+
+    def test_filename_in_url(self):
+        preview = self.get_object()
+        assert '.jpg?modified=' in preview.thumbnail_url
+        assert '.png?modified=' in preview.image_url
+
+        # now set the format in .sizes.
+        preview.update(sizes={'thumbnail_format': 'abc', 'image_format': 'gif'})
+        assert '.abc?modified=' in preview.thumbnail_url
+        assert '.gif?modified=' in preview.image_url
 
 
 class TestListedAddonTwoVersions(TestCase):

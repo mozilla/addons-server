@@ -2198,6 +2198,16 @@ class Preview(BasePreview, ModelBase):
             ),
         ]
 
+    def get_format(self, for_size):
+        return self.sizes.get(
+            f'{for_size}_format',
+            # If self.sizes doesn't contain the requested format, it's probably
+            # because the Preview was just created but not yet resized down.
+            # We try to guess the format if it's in ADDON_PREVIEW_SIZES,
+            # falling back to `png` like BasePreview does otherwise.
+            amo.ADDON_PREVIEW_SIZES.get(f'{for_size}_format', 'png'),
+        )
+
 
 dbsignals.pre_save.connect(
     save_signal, sender=Preview, dispatch_uid='preview_translations'
