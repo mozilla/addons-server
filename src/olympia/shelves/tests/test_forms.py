@@ -87,6 +87,8 @@ class TestShelfForm(TestCase):
                 'addon_type': amo.ADDON_EXTENSION,
                 'criteria': self.criteria_sea_ext,
                 'addon_count': '0',
+                'position': 0,
+                'enabled': False,
             },
         )
         assert form.is_valid(), form.errors
@@ -102,6 +104,8 @@ class TestShelfForm(TestCase):
                 'addon_type': amo.ADDON_STATICTHEME,
                 'criteria': self.criteria_sea_thm,
                 'addon_count': '0',
+                'position': 0,
+                'enabled': False,
             },
         )
         assert form.is_valid(), form.errors
@@ -115,6 +119,8 @@ class TestShelfForm(TestCase):
                 'addon_type': amo.ADDON_EXTENSION,
                 'criteria': self.criteria_col_ext,
                 'addon_count': '0',
+                'position': 0,
+                'enabled': False,
             },
         )
         assert form.is_valid(), form.errors
@@ -128,6 +134,8 @@ class TestShelfForm(TestCase):
                 'addon_type': amo.ADDON_STATICTHEME,
                 'criteria': self.criteria_col_thm,
                 'addon_count': '0',
+                'position': 0,
+                'enabled': False,
             },
         )
         assert form.is_valid(), form.errors
@@ -141,6 +149,8 @@ class TestShelfForm(TestCase):
                 'addon_type': amo.ADDON_EXTENSION,
                 'criteria': '?',
                 'addon_count': '0',
+                'position': 0,
+                'enabled': False,
             },
         )
         assert form.is_valid(), form.errors
@@ -154,6 +164,8 @@ class TestShelfForm(TestCase):
                 'addon_type': amo.ADDON_EXTENSION,
                 'criteria': self.criteria_sea_ext,
                 'addon_count': '0',
+                'position': 0,
+                'enabled': False,
             },
         )
         assert not form.is_valid()
@@ -167,6 +179,8 @@ class TestShelfForm(TestCase):
                 'addon_type': amo.ADDON_EXTENSION,
                 'criteria': self.criteria_sea_ext,
                 'addon_count': '0',
+                'position': 0,
+                'enabled': False,
             },
         )
         assert not form.is_valid()
@@ -180,6 +194,8 @@ class TestShelfForm(TestCase):
                 'addon_type': '',
                 'criteria': self.criteria_sea_ext,
                 'addon_count': '0',
+                'position': 0,
+                'enabled': False,
             },
         )
         assert not form.is_valid()
@@ -191,6 +207,8 @@ class TestShelfForm(TestCase):
             'endpoint': 'search',
             'addon_type': amo.ADDON_EXTENSION,
             'criteria': self.criteria_sea_ext,
+            'position': 0,
+            'enabled': False,
         }
         form = ShelfForm(data)
         assert not form.is_valid()
@@ -218,6 +236,8 @@ class TestShelfForm(TestCase):
                 'addon_type': amo.ADDON_EXTENSION,
                 'criteria': '..?recommended-true',
                 'addon_count': '0',
+                'position': 0,
+                'enabled': False,
             },
         )
         assert not form.is_valid()
@@ -233,6 +253,8 @@ class TestShelfForm(TestCase):
                 'addon_type': amo.ADDON_EXTENSION,
                 'criteria': '??recommended-true',
                 'addon_count': '0',
+                'position': 0,
+                'enabled': False,
             },
         )
         assert not form.is_valid()
@@ -248,6 +270,8 @@ class TestShelfForm(TestCase):
                 'addon_type': amo.ADDON_EXTENSION,
                 'criteria': '',
                 'addon_count': '0',
+                'position': 0,
+                'enabled': False,
             },
         )
         assert tag_form.is_valid(), tag_form.errors
@@ -260,6 +284,8 @@ class TestShelfForm(TestCase):
                 'addon_type': amo.ADDON_EXTENSION,
                 'criteria': '',
                 'addon_count': '0',
+                'position': 0,
+                'enabled': False,
             },
         )
         assert not search_form.is_valid()
@@ -272,6 +298,8 @@ class TestShelfForm(TestCase):
                 'addon_type': amo.ADDON_EXTENSION,
                 'criteria': '',
                 'addon_count': '0',
+                'position': 0,
+                'enabled': False,
             },
         )
         assert not collection_form.is_valid()
@@ -285,6 +313,8 @@ class TestShelfForm(TestCase):
                 'addon_type': amo.ADDON_EXTENSION,
                 'criteria': '/',
                 'addon_count': '0',
+                'position': 0,
+                'enabled': False,
             },
         )
         assert not form.is_valid()
@@ -297,6 +327,8 @@ class TestShelfForm(TestCase):
             'addon_type': amo.ADDON_EXTENSION,
             'criteria': self.criteria_col_404,
             'addon_count': '0',
+            'position': 0,
+            'enabled': False,
         }
         form = ShelfForm(data)
         assert not form.is_valid()
@@ -309,6 +341,8 @@ class TestShelfForm(TestCase):
             'addon_type': amo.ADDON_EXTENSION,
             'criteria': self.criteria_not_200,
             'addon_count': '0',
+            'position': 0,
+            'enabled': False,
         }
         form = ShelfForm(data)
         assert not form.is_valid()
@@ -321,6 +355,8 @@ class TestShelfForm(TestCase):
             'addon_type': amo.ADDON_STATICTHEME,
             'criteria': self.criteria_sea_ext,
             'addon_count': '0',
+            'position': 0,
+            'enabled': False,
         }
         form = ShelfForm(data)
         assert not form.is_valid()
@@ -337,6 +373,8 @@ class TestShelfForm(TestCase):
             'addon_type': amo.ADDON_EXTENSION,
             'criteria': self.criteria_sea_thm,
             'addon_count': '0',
+            'position': 0,
+            'enabled': False,
         }
         form = ShelfForm(data)
         assert not form.is_valid()
@@ -351,6 +389,8 @@ class TestShelfForm(TestCase):
             'addon_type': amo.ADDON_EXTENSION,
             'criteria': '?tag=foo',
             'addon_count': '0',
+            'position': 0,
+            'enabled': False,
         }
         form = ShelfForm(data)
         assert not form.is_valid()

@@ -17,7 +17,7 @@ class Shelf(ModelBase):
 
     title = models.CharField(max_length=70, help_text='Will be translated.')
     endpoint = models.CharField(
-        max_length=200, choices=ENDPOINT_CHOICES, db_column='shelf_type'
+        max_length=20, choices=ENDPOINT_CHOICES, db_column='shelf_type'
     )
     criteria = models.CharField(
         max_length=200,
@@ -44,6 +44,8 @@ class Shelf(ModelBase):
         db_column='addontype_id',
         default=amo.ADDON_EXTENSION,
     )
+    enabled = models.BooleanField(default=False)
+    position = models.PositiveIntegerField(default=0)
 
     class Meta:
         verbose_name_plural = 'shelves'
@@ -69,18 +71,3 @@ class Shelf(ModelBase):
         if self.endpoint == self.Endpoints.RANDOM_TAG:
             params['tag'] = self.tag
         return params
-
-
-class ShelfManagement(ModelBase):
-    shelf = models.OneToOneField(Shelf, on_delete=models.CASCADE)
-    enabled = models.BooleanField(default=False)
-    position = models.PositiveIntegerField(default=0)
-
-    def __str__(self):
-        return str(self.shelf)
-
-    class Meta:
-        verbose_name_plural = 'homepage shelves'
-        constraints = [
-            models.UniqueConstraint(fields=('enabled', 'position'), name='position_id')
-        ]

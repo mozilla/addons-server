@@ -11,9 +11,7 @@ from .serializers import ShelfSerializer, ShelfEditorialSerializer
 
 
 class ShelfViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
-    queryset = Shelf.objects.filter(shelfmanagement__enabled=True).order_by(
-        'shelfmanagement__position'
-    )
+    queryset = Shelf.objects.filter(enabled=True).order_by('position')
     permission_classes = []
     serializer_class = ShelfSerializer
     pagination_class = None
