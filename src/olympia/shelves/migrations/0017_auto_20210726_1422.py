@@ -7,8 +7,11 @@ def set_enabled_postion_from_management(apps, schema_editor):
     Shelf = apps.get_model('shelves', 'Shelf')
 
     for shelf in Shelf.objects.all():
-        shelf.enabled = shelf.shelfmanagement.enabled
-        shelf.position = shelf.shelfmanagement.position
+        try:
+            shelf.enabled = shelf.shelfmanagement.enabled
+            shelf.position = shelf.shelfmanagement.position
+        except Shelf.shelfmanagement.RelatedObjectDoesNotExist:
+            pass
         shelf.save()
 
 
