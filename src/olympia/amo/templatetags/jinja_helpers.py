@@ -85,13 +85,6 @@ def drf_url(context, viewname, *args, **kwargs):
     return drf_reverse(viewname, request=request, args=args, kwargs=kwargs)
 
 
-@library.global_function
-def services_url(viewname, *args, **kwargs):
-    """Helper for ``url`` with host=SERVICES_URL."""
-    kwargs.update({'host': settings.SERVICES_URL})
-    return url(viewname, *args, **kwargs)
-
-
 @library.filter
 def paginator(pager):
     return PaginationRenderer(pager).render()
@@ -197,27 +190,12 @@ def timeuntil(time):
     return defaultfilters.timeuntil(time)
 
 
-@library.global_function
-@library.render_with('amo/recaptcha.html')
-@jinja2.pass_context
-def recaptcha(context, form):
-    d = dict(context.items())
-    d.update(form=form)
-    return d
-
-
 @library.filter
 def is_choice_field(value):
     try:
         return isinstance(value.field.widget, CheckboxInput)
     except AttributeError:
         pass
-
-
-@library.global_function
-def loc(s):
-    """A noop function for strings that are not ready to be localized."""
-    return trim_whitespace(s)
 
 
 # A (temporary?) copy of this is in services/utils.py. See bug 1055654.
@@ -243,11 +221,6 @@ def user_media_url(what):
     default = '%s%s/' % (settings.MEDIA_URL, what)
     key = '{0}_URL'.format(what.upper().replace('-', '_'))
     return getattr(settings, key, default)
-
-
-@library.filter
-def hidden_field(field):
-    return field.as_widget(attrs={'style': 'display:none'})
 
 
 @library.filter

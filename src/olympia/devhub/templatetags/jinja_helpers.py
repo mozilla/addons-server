@@ -40,15 +40,6 @@ def dev_page_title(context, title=None, addon=None):
 
 
 @library.global_function
-@jinja2.pass_context
-def docs_page_title(context, title=None):
-    """Wrapper for docs page titles."""
-    devhub = gettext('Add-on Documentation :: Developer Hub')
-    title = '%s :: %s' % (title, devhub) if title else devhub
-    return page_title(context, title)
-
-
-@library.global_function
 @library.render_with('devhub/versions/file_status_message.html')
 def file_status_message(file):
     choices = File.STATUS_CHOICES
