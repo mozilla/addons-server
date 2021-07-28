@@ -265,14 +265,6 @@ def test_isotime():
     assert s == ''
 
 
-def test_epoch():
-    time = datetime(2009, 12, 25, 10, 11, 12)
-    s = render('{{ d|epoch }}', {'d': time})
-    assert s == '1261735872'
-    s = render('{{ d|epoch }}', {'d': None})
-    assert s == ''
-
-
 def test_locale_url():
     rf = RequestFactory()
     request = rf.get('/de', SCRIPT_NAME='/z')

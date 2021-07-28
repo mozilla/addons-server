@@ -40,7 +40,7 @@ class ActivityFeedRSS(Feed):
             )
         )[:20]
 
-    def clean_html(string):
+    def clean_html(self, string):
         return clean_nl(bleach.clean(str(string), tags=[], strip=True)).strip()
 
     def item_title(self, item):

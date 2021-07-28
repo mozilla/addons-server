@@ -14,7 +14,7 @@ from django.utils.html import (
     strip_spaces_between_tags,
 )
 from django.utils.safestring import mark_safe
-from django.utils.translation import get_language, trim_whitespace, gettext
+from django.utils.translation import get_language, gettext
 
 import jinja2
 import waffle

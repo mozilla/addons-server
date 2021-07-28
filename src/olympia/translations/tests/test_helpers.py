@@ -73,26 +73,6 @@ def test_truncate_purified_field_xss():
     assert actual == 'safe ...'
 
 
-def test_clean():
-    # Links are not mangled, bad HTML is escaped, newlines are slimmed.
-    s = '<ul><li><a href="#woo">\n\nyeah</a></li>\n\n<li><script></li></ul>'
-    assert jinja_helpers.clean(s) == (
-        '<ul><li><a href="#woo">\n\nyeah</a></li><li>&lt;script&gt;</li></ul>'
-    )
-
-
-def test_clean_in_template():
-    s = '<a href="#woo">yeah</a>'
-    assert from_string('{{ s|clean }}').render({'s': s}) == s
-
-
-def test_clean_strip_all_html():
-    s = '<a href="#woo">yeah</a>'
-
-    expected = 'yeah'
-    assert from_string('{{ s|clean(true) }}').render({'s': s}) == expected
-
-
 def test_l10n_menu():
     # No remove_locale_url provided.
     menu = jinja_helpers.l10n_menu({})
