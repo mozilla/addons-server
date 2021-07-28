@@ -20,8 +20,7 @@
 
     {% if recent_addons %}
       <div class="DevHub-MyAddons-list">
-        {% for item in recent_addons %}
-          {% set addon = item.addon %}
+        {% for addon in recent_addons %}
 
           <div class="DevHub-MyAddons-item">
             {% if addon.type == amo.ADDON_STATICTHEME and addon.current_previews %}

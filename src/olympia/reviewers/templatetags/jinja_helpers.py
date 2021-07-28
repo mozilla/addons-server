@@ -13,7 +13,6 @@ from olympia.addons.templatetags.jinja_helpers import new_context
 from olympia.ratings.permissions import user_can_delete_rating
 from olympia.reviewers.models import ReviewerScore
 from olympia.reviewers.templatetags import code_manager
-from olympia.versions.models import Version
 
 
 @library.global_function
@@ -145,37 +144,6 @@ def all_files(context, version):
             version=version,
         )
     )
-
-
-@library.global_function
-def get_position(addon):
-    if addon.status in amo.VALID_ADDON_STATUSES:
-        # Look at all add-on versions which have files awaiting review.
-        qs = Version.objects.filter(
-            addon__disabled_by_user=False,
-            files__status=amo.STATUS_AWAITING_REVIEW,
-            addon__status=addon.status,
-        )
-        if addon.type == amo.ADDON_STATICTHEME:
-            qs = qs.filter(addon__type=amo.ADDON_STATICTHEME)
-        else:
-            qs = qs.exclude(addon__type=amo.ADDON_STATICTHEME)
-        qs = (
-            qs.order_by('nomination', 'created')
-            .distinct()
-            .no_transforms()
-            .values_list('addon_id', flat=True)
-        )
-        position = 0
-        for idx, addon_id in enumerate(qs, start=1):
-            if addon_id == addon.id:
-                position = idx
-                break
-        total = qs.count()
-        if position:
-            return {'pos': position, 'total': total}
-
-    return False
 
 
 @library.global_function

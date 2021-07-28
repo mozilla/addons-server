@@ -82,18 +82,6 @@
         <span class="tip tooltip" title="{{ _('This is the newest uploaded version, however it isn’t live on the site yet') }}">?</span>
       </li>
     {% endif %}
-
-    {% with position = get_position(addon) %}
-      {% if position and position.pos and position.total %}
-        <li class="queue-position" title="{{ _('Queues are not reviewed strictly in order') }}">
-          <strong>{{ _('Queue Position:') }}</strong>
-          {% trans position=position.pos|numberfmt,
-                   total=position.total|numberfmt %}
-            {{ position }} of {{ total }}
-          {% endtrans %}
-        </li>
-      {% endif %}
-    {% endwith %}
 {% endif %}
 
 {% if addon.status == amo.STATUS_DISABLED and not addon.has_listed_versions() %}
