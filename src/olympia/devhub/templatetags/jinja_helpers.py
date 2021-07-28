@@ -1,7 +1,5 @@
 from collections import defaultdict
-from urllib.parse import unquote_to_bytes
 
-from django.utils.encoding import force_bytes
 from django.utils.translation import gettext, ngettext
 
 import jinja2
@@ -38,15 +36,6 @@ def dev_page_title(context, title=None, addon=None):
     else:
         devhub = gettext('Developer Hub')
         title = '%s :: %s' % (title, devhub) if title else devhub
-    return page_title(context, title)
-
-
-@library.global_function
-@jinja2.pass_context
-def docs_page_title(context, title=None):
-    """Wrapper for docs page titles."""
-    devhub = gettext('Add-on Documentation :: Developer Hub')
-    title = '%s :: %s' % (title, devhub) if title else devhub
     return page_title(context, title)
 
 
@@ -111,16 +100,6 @@ def summarize_validation(validation):
         validation.warnings
     )
     return '%s, %s' % (errors, warnings)
-
-
-@library.filter
-def display_url(url):
-    """Display a URL like the browser URL bar would.
-
-    Note: returns a Unicode object, not a valid URL.
-    """
-    url = force_bytes(url, errors='replace')
-    return unquote_to_bytes(url).decode('utf-8', errors='replace')
 
 
 @library.global_function

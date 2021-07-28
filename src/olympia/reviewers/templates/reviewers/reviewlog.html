@@ -41,7 +41,7 @@
               <td>{{ item.created|datetime }}</td>
               <td>
                 {% if item.arguments.0 %}
-                  {{ item.arguments.0|link }}
+                  <a href="{{ item.arguments.0.get_url_path() }}">{{ item.arguments.0.name }}</a>
                   {% if item.arguments|count >= 2 %}
                     {{ item.arguments[1] }}
                     {% set channel = item.arguments[1].channel %}

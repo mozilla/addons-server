@@ -1,9 +1,8 @@
 from django.urls import include, path, re_path
+from django.views.generic.base import TemplateView
 from django.views.decorators.cache import never_cache
 
 from . import views
-from .utils import render_xml
-
 
 services_patterns = [
     re_path(r'^monitor\.json$', never_cache(views.monitor), name='amo.monitor'),
@@ -24,8 +23,9 @@ urlpatterns = [
     re_path(r'^__version__$', views.version, name='version.json'),
     re_path(
         r'^opensearch\.xml$',
-        render_xml,
-        {'template': 'amo/opensearch.xml'},
+        TemplateView.as_view(
+            template_name='amo/opensearch.xml', content_type='text/xml'
+        ),
         name='amo.opensearch',
     ),
     re_path(

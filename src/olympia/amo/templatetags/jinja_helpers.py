@@ -1,11 +1,9 @@
 import json as jsonlib
 import os
-import random
 
 from urllib.parse import urljoin
 
 from django.conf import settings
-from django.core.exceptions import ObjectDoesNotExist
 from django.forms import CheckboxInput
 from django.template import defaultfilters, Library, loader
 from django.templatetags.static import static
@@ -16,7 +14,7 @@ from django.utils.html import (
     strip_spaces_between_tags,
 )
 from django.utils.safestring import mark_safe
-from django.utils.translation import get_language, to_locale, trim_whitespace, gettext
+from django.utils.translation import get_language, gettext
 
 import jinja2
 import waffle
@@ -37,10 +35,8 @@ register = Library()
 
 
 # Registering some utils as filters:
-library.filter(utils.epoch)
 library.filter(utils.isotime)
 library.global_function(dict)
-library.global_function(utils.randslice)
 library.global_function(static)
 
 
@@ -52,23 +48,6 @@ def urlparams(*args, **kwargs):
 @library.global_function
 def switch_is_active(switch_name):
     return waffle.switch_is_active(switch_name)
-
-
-@library.filter
-def link(item):
-    html = """<a href="%s">%s</a>""" % (item.get_url_path(), jinja2.escape(item.name))
-    return jinja2.Markup(html)
-
-
-@library.filter
-def xssafe(value):
-    """
-    Like |safe but for strings with interpolation.
-
-    By using |xssafe you assert that you have written tests proving an
-    XSS can't happen here.
-    """
-    return jinja2.Markup(value)
 
 
 @library.global_function
@@ -104,13 +83,6 @@ def drf_url(context, viewname, *args, **kwargs):
             request, *args, **kwargs
         )
     return drf_reverse(viewname, request=request, args=args, kwargs=kwargs)
-
-
-@library.global_function
-def services_url(viewname, *args, **kwargs):
-    """Helper for ``url`` with host=SERVICES_URL."""
-    kwargs.update({'host': settings.SERVICES_URL})
-    return url(viewname, *args, **kwargs)
 
 
 @library.filter
@@ -199,38 +171,9 @@ def absolutify(url, site=None):
 
 
 @library.filter
-def strip_controls(s):
-    """
-    Strips control characters from a string.
-    """
-    # Translation table of control characters.
-    control_trans = dict((n, None) for n in range(32) if n not in [10, 13])
-    rv = str(s).translate(control_trans)
-    return jinja2.Markup(rv) if isinstance(s, jinja2.Markup) else rv
-
-
-@library.filter
 def external_url(url):
     """Bounce a URL off outgoing.prod.mozaws.net."""
     return urlresolvers.get_outgoing_url(str(url))
-
-
-@library.filter
-def shuffle(sequence):
-    """Shuffle a sequence."""
-    random.shuffle(sequence)
-    return sequence
-
-
-@library.global_function
-def field(field, label=None, **attrs):
-    if label is not None:
-        field.label = label
-    # HTML from Django is already escaped.
-    return jinja2.Markup(
-        '%s<p>%s%s</p>'
-        % (field.errors, field.label_tag(), field.as_widget(attrs=attrs))
-    )
 
 
 @library.filter
@@ -247,66 +190,12 @@ def timeuntil(time):
     return defaultfilters.timeuntil(time)
 
 
-@library.global_function
-@library.render_with('amo/recaptcha.html')
-@jinja2.pass_context
-def recaptcha(context, form):
-    d = dict(context.items())
-    d.update(form=form)
-    return d
-
-
 @library.filter
 def is_choice_field(value):
     try:
         return isinstance(value.field.widget, CheckboxInput)
     except AttributeError:
         pass
-
-
-@library.global_function
-@jinja2.evalcontextfunction
-def attrs(ctx, *args, **kw):
-    return jinja2.filters.do_xmlattr(ctx, dict(*args, **kw))
-
-
-@library.global_function
-def loc(s):
-    """A noop function for strings that are not ready to be localized."""
-    return trim_whitespace(s)
-
-
-@library.global_function
-@jinja2.pass_context
-def remora_url(context, url, lang=None, app=None, prefix=''):
-    """Wrapper for urlresolvers.remora_url"""
-    if lang is None:
-        _lang = context['LANG']
-        if _lang:
-            lang = to_locale(_lang).replace('_', '-')
-    if app is None:
-        try:
-            app = context['APP'].short
-        except (AttributeError, KeyError):
-            pass
-    return urlresolvers.remora_url(url=url, lang=lang, app=app, prefix=prefix)
-
-
-@library.global_function
-@jinja2.pass_context
-def hasOneToOne(context, obj, attr):
-    try:
-        getattr(obj, attr)
-        return True
-    except ObjectDoesNotExist:
-        return False
-
-
-@library.global_function
-def no_results_amo():
-    # This prints a "No results found" message. That's all. Carry on.
-    t = loader.get_template('amo/no_results.html').render()
-    return jinja2.Markup(t)
 
 
 # A (temporary?) copy of this is in services/utils.py. See bug 1055654.
@@ -332,11 +221,6 @@ def user_media_url(what):
     default = '%s%s/' % (settings.MEDIA_URL, what)
     key = '{0}_URL'.format(what.upper().replace('-', '_'))
     return getattr(settings, key, default)
-
-
-@library.filter
-def hidden_field(field):
-    return field.as_widget(attrs={'style': 'display:none'})
 
 
 @library.filter

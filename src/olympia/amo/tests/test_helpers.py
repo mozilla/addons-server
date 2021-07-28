@@ -41,11 +41,6 @@ def render(s, context=None):
     return t.render(context)
 
 
-def test_strip_controls():
-    # We want control codes like \x0c to disappear.
-    assert 'I ove you' == jinja_helpers.strip_controls('I \x0cove you')
-
-
 def test_finalize():
     """We want None to show up as ''.  We do this in JINJA_CONFIG."""
     assert '' == render('{{ x }}', {'x': None})
@@ -267,14 +262,6 @@ def test_isotime():
     s = render('{{ d|isotime }}', {'d': time})
     assert s == '2009-12-25T10:11:12Z'
     s = render('{{ d|isotime }}', {'d': None})
-    assert s == ''
-
-
-def test_epoch():
-    time = datetime(2009, 12, 25, 10, 11, 12)
-    s = render('{{ d|epoch }}', {'d': time})
-    assert s == '1261735872'
-    s = render('{{ d|epoch }}', {'d': None})
     assert s == ''
 
 

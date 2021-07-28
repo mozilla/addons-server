@@ -7,7 +7,6 @@ import itertools
 import json
 import operator
 import os
-import random
 import re
 import scandir
 import shutil
@@ -54,8 +53,6 @@ from html5lib.serializer import HTMLSerializer
 from PIL import Image
 from rest_framework.utils.encoders import JSONEncoder
 
-from django.db.transaction import non_atomic_requests
-
 from olympia.core.logger import getLogger
 from olympia.amo import ADDON_ICON_SIZES, search
 from olympia.amo.pagination import ESPaginator
@@ -76,36 +73,6 @@ def render(request, template, ctx=None, status=None, content_type=None):
 
 def from_string(string):
     return engines['jinja2'].from_string(string)
-
-
-def render_xml_to_string(request, template, context=None):
-    from olympia.amo.templatetags.jinja_helpers import strip_controls
-
-    if context is None:
-        context = {}
-
-    xml_env = engines['jinja2'].env.overlay()
-    old_finalize = xml_env.finalize
-    xml_env.finalize = lambda x: strip_controls(old_finalize(x))
-
-    for processor in engines['jinja2'].context_processors:
-        context.update(processor(request))
-
-    template = xml_env.get_template(template)
-    return template.render(context)
-
-
-@non_atomic_requests
-def render_xml(request, template, context=None, **kwargs):
-    """Safely renders xml, stripping out nasty control characters."""
-    if context is None:
-        context = {}
-    rendered = render_xml_to_string(request, template, context)
-
-    if 'content_type' not in kwargs:
-        kwargs['content_type'] = 'text/xml'
-
-    return HttpResponse(rendered, **kwargs)
 
 
 def days_ago(n):
@@ -148,13 +115,6 @@ def isotime(t):
     if not hasattr(t, 'tzinfo'):
         return
     return _append_tz(t).astimezone(pytz.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
-
-
-def epoch(t):
-    """Date/Time converted to seconds since epoch"""
-    if not hasattr(t, 'tzinfo'):
-        return
-    return int(time.mktime(_append_tz(t).timetuple()))
 
 
 def _append_tz(t):
@@ -485,27 +445,6 @@ def urlencode(items):
         return urllib_urlencode(items)
     except UnicodeEncodeError:
         return urllib_urlencode([(k, force_bytes(v)) for k, v in items])
-
-
-def randslice(qs, limit, exclude=None):
-    """
-    Get a random slice of items from ``qs`` of size ``limit``.
-
-    There will be two queries.  One to find out how many elements are in ``qs``
-    and another to get a slice.  The count is so we don't go out of bounds.
-    If exclude is given, we make sure that pk doesn't show up in the slice.
-
-    This replaces qs.order_by('?')[:limit].
-    """
-    cnt = qs.count()
-    # Get one extra in case we find the element that should be excluded.
-    if exclude is not None:
-        limit += 1
-    rand = 0 if limit > cnt else random.randint(0, cnt - limit)
-    slice_ = list(qs[rand : rand + limit])
-    if exclude is not None:
-        slice_ = [o for o in slice_ if o.pk != exclude][: limit - 1]
-    return slice_
 
 
 # Extra characters outside of alphanumerics that we'll allow.
