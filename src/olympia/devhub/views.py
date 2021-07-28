@@ -123,9 +123,7 @@ def index(request):
     ctx = {}
     if request.user.is_authenticated:
         recent_addons = request.user.addons.all().order_by('-modified')[:3]
-        ctx['recent_addons'] = []
-        for addon in recent_addons:
-            ctx['recent_addons'].append({'addon': addon})
+        ctx['recent_addons'] = recent_addons
 
     return render(request, 'devhub/index.html', ctx)
 
