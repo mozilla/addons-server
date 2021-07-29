@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-07-29 17:13+0000\n"
-"PO-Revision-Date: 2021-07-29 21:50+0000\n"
+"PO-Revision-Date: 2021-07-29 21:58+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4460,9 +4460,8 @@ msgid "Social streaming"
 msgstr "Asuddem n tmetti"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more social streaming extensions"
-msgstr "Wali ugar n yisiɣzaf yettwasnen aṭas"
+msgstr "Wali ugar n yisiɣzaf n usuddem anmetti"
 
 msgid "Could not parse the manifest file."
 msgstr "Ur izmir ara ad isleḍ afaylu ameskan."
@@ -4521,9 +4520,8 @@ msgstr "Amḍan afellay i yisental WebExtension d {0}."
 msgid "You cannot submit this type of add-on"
 msgstr "Ur tezmireḍ ara ad tazneḍ anaw-agi n uzegrir"
 
-#, fuzzy
 msgid "You cannot submit an add-on using an ID ending with this suffix"
-msgstr "Ur tezmireḍ ara ad tazneḍ azegrir s useqdec n ID yettfakkan s %s"
+msgstr "Ur tezmireḍ ara ad tazneḍ azegrir s useqdec n usulay yettfakkan s udfir-a"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Ur tezmireḍ ara ad tazneḍ asiɣzef yettwazemlen sɣur Mozilla"
