@@ -375,6 +375,7 @@ RESERVED_ADDON_GUIDS = (
     '@mozillaonline.com',
     '@mozillafoundation.org',
     '@rally.mozilla.org',
+    # Temporary add-ons as defined in Firefox. Should not be submitted to AMO.
     '@temporary-addon',
 )
 
