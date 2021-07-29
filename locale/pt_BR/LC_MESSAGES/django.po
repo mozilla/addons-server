@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-07-29 17:13+0000\n"
-"PO-Revision-Date: 2021-07-29 20:20+0000\n"
+"PO-Revision-Date: 2021-07-29 20:30+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -2225,7 +2225,7 @@ msgid "Tags"
 msgstr "Etiquetas"
 
 msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
-msgstr ""
+msgstr "Etiquetas ajudam os usuários a encontrar sua extensão. Você pode ter no máximo {0} etiquetas. Escolha apenas etiquetas relevantes para sua extensão."
 
 msgid "Limit {0} tags."
 msgstr "Limite de {0} etiquetas."
@@ -4551,14 +4551,12 @@ msgid "See more translation tools"
 msgstr "Mais ferramentas de tradução"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Social streaming"
-msgstr "Redes sociais"
+msgstr "Transmissão para redes sociais"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more social streaming extensions"
-msgstr "Mais extensões populares"
+msgstr "Mais extensões de transmissão para redes sociais"
 
 msgid "Could not parse the manifest file."
 msgstr "Não foi possível analisar o arquivo manifest."
@@ -4618,9 +4616,8 @@ msgstr "O tamanho máximo de temas WebExtension é {0}."
 msgid "You cannot submit this type of add-on"
 msgstr "Você não pode submeter este tipo de extensão"
 
-#, fuzzy
 msgid "You cannot submit an add-on using an ID ending with this suffix"
-msgstr "Você não pode enviar uma extensão com um ID terminado em %s"
+msgstr "Você não pode enviar uma extensão com um ID terminado com este sufixo"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Você não pode submeter uma extensão assinada pela Mozilla"
