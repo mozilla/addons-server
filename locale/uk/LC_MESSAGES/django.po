@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-07-29 17:13+0000\n"
-"PO-Revision-Date: 2021-07-29 21:04+0000\n"
+"PO-Revision-Date: 2021-07-29 23:25+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -4486,14 +4486,12 @@ msgid "See more translation tools"
 msgstr "Більше засобів для перекладу"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Social streaming"
-msgstr "Соціальні мережі"
+msgstr "Стрічки з суспільних мереж"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more social streaming extensions"
-msgstr "Більше популярних розширень"
+msgstr "Більше розширень для стрічок суспільних мереж"
 
 msgid "Could not parse the manifest file."
 msgstr "Не вдалося обробити файл маніфесту."
@@ -4552,9 +4550,8 @@ msgstr "Максимальний розмір для тем WebExtension {0}."
 msgid "You cannot submit this type of add-on"
 msgstr "Не можна подавати додаток такого типу"
 
-#, fuzzy
 msgid "You cannot submit an add-on using an ID ending with this suffix"
-msgstr "Ви не можете подати додаток з ID, що завершується на %s"
+msgstr "Ви не можете подати додаток з ID, що завершується цим суфіксом"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Ви не можете надіслати розширення, підписане Mozilla"
