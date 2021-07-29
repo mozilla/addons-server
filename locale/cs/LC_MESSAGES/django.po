@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-21 08:49+0000\n"
+"POT-Creation-Date: 2021-07-29 17:13+0000\n"
 "PO-Revision-Date: 2021-06-26 20:22+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -298,9 +298,6 @@ msgstr "E-mail:"
 msgid "OK"
 msgstr "OK"
 
-msgid "No results found"
-msgstr "Nenalezeny žádné výsledky"
-
 #. abbreviation of 'previous'
 msgid "Prev"
 msgstr "Předchozí"
@@ -320,19 +317,6 @@ msgstr "Tato funkce je z důvodu údržby webu dočasně nedostupná. Použijte 
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Některé funkce této stránky jsou během údržby webu dočasně nedostupné. Zkuste to prosím později."
-
-msgid "Are you human?"
-msgstr "Jste člověk?"
-
-msgid "What's this?"
-msgstr "Co je to?"
-
-msgid ""
-"<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
-"different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
-msgstr ""
-"<p> Zadejte prosím <strong>všechna slova</strong> níže a <strong>oddělte je mezerami</strong>, pokud je to nutné. </p> <p> Pokud se nedají přečíst, můžete <a href=\"#\" id=\"recaptcha_different"
-"\">zkusit jiná slova</a> nebo <a href=\"#\" id=\"recaptcha_audio\">jiný typ ověření</a>. </p>"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -1781,6 +1765,9 @@ msgstr "Bezpečnostní upozornění Mozilly: Vaše přihlašovací údaje k API 
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Kontrola vygenerovala příliš mnoho chyb/varování a %s zpráv tak není zobrazeno. Po opravení zobrazených nedostatků budete moci vidět další."
 
+msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgstr ""
+
 msgid "Updated"
 msgstr "Aktualizováno"
 
@@ -2209,8 +2196,8 @@ msgstr "Další podrobnosti k {0}"
 msgid "Tags"
 msgstr "Štítky"
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr "Štítky pomáhají uživatelům najít doplněk. Měly by to být krátké popisky jako například panely, lišta nebo twitter. Můžete zadat maximálně {0} tagů."
+msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
+msgstr ""
 
 msgid "Limit {0} tags."
 msgstr ""
@@ -3011,16 +2998,6 @@ msgstr "Příští veřejná verze:"
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "Toto je nejnovější nahraná veze, nicméně zatím nebyla na stránkách uveřejněna"
 
-msgid "Queues are not reviewed strictly in order"
-msgstr "Fronty nejsou striktně procházeny dle pořadí"
-
-msgid "Queue Position:"
-msgstr "Pozice ve frontě:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(position)s z %(total)s"
-
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr "Podepsáno pro samostatnou distribuci. O aktualizace se staráte sami."
 
@@ -3442,9 +3419,6 @@ msgstr "Zrušením vaší žádosti o kontrolu označíte svůj doplněk jako ne
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Opravdu chcete zrušit vaši žádost o kontrolu?"
-
-msgid "Add-on Documentation :: Developer Hub"
-msgstr "Dokumentace k doplňku :: Centrum pro vývojáře doplňků"
 
 # {0} is a number
 #. L10n: first parameter is the number of errors
@@ -4477,6 +4451,16 @@ msgstr "Jazykové překladače"
 msgid "See more translation tools"
 msgstr "Další jazykové překladače"
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Social streaming"
+msgstr "Sociální sítě"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more social streaming extensions"
+msgstr "Další oblíbená rozšíření"
+
 msgid "Could not parse the manifest file."
 msgstr "Nepodařilo se zpracovat manifest soubor."
 
@@ -4534,8 +4518,7 @@ msgstr "Maximální velikost WebExtension motivů vzhledu je {0}."
 msgid "You cannot submit this type of add-on"
 msgstr "Přidávání tohoto typu doplňku není povoleno"
 
-#, python-format
-msgid "You cannot submit an add-on using an ID ending with %s"
+msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -5566,6 +5549,9 @@ msgstr "Obdrželi jste <span>{0}</span> bodů."
 
 msgid "Theme"
 msgstr "Motiv vzhledu"
+
+msgid "No results found"
+msgstr "Nenalezeny žádné výsledky"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"

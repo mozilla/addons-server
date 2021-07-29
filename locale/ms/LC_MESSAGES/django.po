@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-21 08:49+0000\n"
+"POT-Creation-Date: 2021-07-29 17:13+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -302,9 +302,6 @@ msgstr "E-mel"
 msgid "OK"
 msgstr ""
 
-msgid "No results found"
-msgstr "Tiada hasil ditemukan"
-
 #. abbreviation of 'previous'
 msgid "Prev"
 msgstr "Dulu"
@@ -324,19 +321,6 @@ msgstr "Ciri ini dinyahdayakan buat sementara waktu sementara kami membuat penye
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Sesetengah ciri pada halaman ini dinyahdayakan buat sementara waktu sementara kami melakukan penyelenggaraan laman web. Sila cuba semula sebentar nanti."
-
-msgid "Are you human?"
-msgstr "Adakah anda manusia?"
-
-msgid "What's this?"
-msgstr "Apa ini?"
-
-msgid ""
-"<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
-"different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
-msgstr ""
-"<p> Sila masukkan <strong>semua perkataan</strong> di bawah, <strong>diasingkan dengan ruang, jika perlu.</strong>. </p> <p> Jika sukar dibaca, anda boleh <a href=\"#\" id=\"recaptcha_different"
-"\">cuba perkataan lain</a> atau <a href=\"#\" id=\"recaptcha_audio\">cuba pula cabaran jenis lain</a>. </p>"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -1814,6 +1798,9 @@ msgstr "Notis Keselamatan Mozilla: Kelayakan AMO API anda telah dibatalkan"
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Pengesahan menghasilkan terlalu banyak ralat/warnings, maka %s mesej telah dicantas. Selepas menangani mesej yang ketara, anda akan boleh nampak yang lain."
 
+msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgstr ""
+
 msgid "Updated"
 msgstr "Dikemaskini"
 
@@ -2247,8 +2234,8 @@ msgstr "Butiran Tambahan untuk {0}"
 msgid "Tags"
 msgstr "Tag"
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr "Tag membantu pengguna mencari add-on anda, dan keterangannya perlu ringkas seperti tab, bar alatan, atau twitter. Anda boleh ada {0} tag maksimum."
+msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
+msgstr ""
 
 msgid "Limit {0} tags."
 msgstr ""
@@ -3064,16 +3051,6 @@ msgstr "Versi Berikut Disenaraikan:"
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "Inilah versi terbaru yang dimuat naik, tapi masih belum disiarkan lagi dalam laman."
 
-msgid "Queues are not reviewed strictly in order"
-msgstr "Baris gilir tidak disemak mengikut giliran"
-
-msgid "Queue Position:"
-msgstr "Kedudukan Giliran:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(position)s daripada %(total)s"
-
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr "Ditandatangani untuk mengedarkan-sendiri. Kemaskini diuruskan oleh anda."
 
@@ -3509,9 +3486,6 @@ msgstr "Membatalkan permintaan semakan anda akan mengakibatkan add-on anda ditan
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Adakah anda pasti mahu membatalkan permintaan semakan anda?"
-
-msgid "Add-on Documentation :: Developer Hub"
-msgstr "Dokumentasi Add-on :: Hab Pembangun"
 
 #. L10n: first parameter is the number of errors
 msgid "{0} error"
@@ -4611,6 +4585,16 @@ msgstr ""
 msgid "See more translation tools"
 msgstr "mengikut Versi Add-on"
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Social streaming"
+msgstr "Rangkaian Sosial"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more social streaming extensions"
+msgstr "Layari semua ekstensi"
+
 msgid "Could not parse the manifest file."
 msgstr "Tidak dapat menghuraikan manifes fail."
 
@@ -4669,8 +4653,8 @@ msgstr "Saiz maksimum bagi tema WebExtension ialah {0}."
 msgid "You cannot submit this type of add-on"
 msgstr "Anda tidak boleh kemukakan add-on jenis ini"
 
-#, fuzzy, python-format
-msgid "You cannot submit an add-on using an ID ending with %s"
+#, fuzzy
+msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr "Anda tidak boleh kemukakan add-on dengan guid yang berakhir dengan %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -5754,6 +5738,9 @@ msgstr "Anda ada <span>{0}</span> poin."
 
 msgid "Theme"
 msgstr "Tema"
+
+msgid "No results found"
+msgstr "Tiada hasil ditemukan"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"

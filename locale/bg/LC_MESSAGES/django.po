@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-21 08:49+0000\n"
+"POT-Creation-Date: 2021-07-29 17:13+0000\n"
 "PO-Revision-Date: 2021-07-06 20:18+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
@@ -291,9 +291,6 @@ msgstr "Ел. адрес:"
 msgid "OK"
 msgstr "Добре"
 
-msgid "No results found"
-msgstr "Няма резултати"
-
 #. abbreviation of 'previous'
 msgid "Prev"
 msgstr "Предишна"
@@ -313,17 +310,6 @@ msgstr "Това свойство е временно спряно докато 
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Някои свойства на тази страница са временно спрени, докато извършване работа по поддръжката на сайта. Моля, опитайте пак малко по-късно."
-
-msgid "Are you human?"
-msgstr "Човек ли си?"
-
-msgid "What's this?"
-msgstr "Какво е това?"
-
-msgid ""
-"<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
-"different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
-msgstr ""
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -1832,6 +1818,9 @@ msgstr ""
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr ""
 
+msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgstr ""
+
 msgid "Updated"
 msgstr "Обновяване"
 
@@ -2276,7 +2265,7 @@ msgstr "Детайли за {0}"
 msgid "Tags"
 msgstr "Етикети"
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
+msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
 msgstr ""
 
 msgid "Limit {0} tags."
@@ -3087,16 +3076,6 @@ msgstr "Следваща версия:"
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "Това е последното качено издание, което обаче все още не се вижда на сайта."
 
-msgid "Queues are not reviewed strictly in order"
-msgstr "Опашката се не обработва подред"
-
-msgid "Queue Position:"
-msgstr "Място в опашката:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(position)s от %(total)s"
-
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
 
@@ -3528,9 +3507,6 @@ msgstr ""
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr ""
-
-msgid "Add-on Documentation :: Developer Hub"
-msgstr "Документация на Добавки :: Център за разработчици"
 
 # {0} is a number
 #. L10n: first parameter is the number of errors
@@ -4570,6 +4546,16 @@ msgstr ""
 msgid "See more translation tools"
 msgstr "по издание"
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Social streaming"
+msgstr "Социални мрежи"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more social streaming extensions"
+msgstr "Преглед на всички разширения"
+
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -4627,8 +4613,8 @@ msgstr ""
 msgid "You cannot submit this type of add-on"
 msgstr "Не може да изпращате такъв вид добавки"
 
-#, fuzzy, python-format
-msgid "You cannot submit an add-on using an ID ending with %s"
+#, fuzzy
+msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr "Не може да публикувате добавки с guid, завършващ на „@mozilla.org“"
 
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -5713,6 +5699,9 @@ msgstr ""
 
 msgid "Theme"
 msgstr "Тема"
+
+msgid "No results found"
+msgstr "Няма резултати"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"

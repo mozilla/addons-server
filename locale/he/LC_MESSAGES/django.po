@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-21 08:49+0000\n"
+"POT-Creation-Date: 2021-07-29 17:13+0000\n"
 "PO-Revision-Date: 2021-05-12 18:00+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
@@ -288,9 +288,6 @@ msgstr "דוא״ל:"
 msgid "OK"
 msgstr "אישור"
 
-msgid "No results found"
-msgstr "לא נמצאו תוצאות"
-
 #. abbreviation of 'previous'
 msgid "Prev"
 msgstr "הקודם"
@@ -310,20 +307,6 @@ msgstr "תכונה זו מושבתת למשך פעילות תחזוקה באתר
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "חלק מהתכונות בדף זה מושבתות באופן זמני בזמן שאנו מבצעים עבודות התחזוקה על האתר. נא לנסות שוב בעוד זמן קצר."
-
-msgid "Are you human?"
-msgstr "האם אתה אנושי?"
-
-# 100%
-msgid "What's this?"
-msgstr "מה זה?"
-
-msgid ""
-"<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
-"different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
-msgstr ""
-"<p> נא להקליד את <strong>כל המילים</strong> שלהלן, <strong>עם רווחים ביניהם במקרה הצורך</strong>. </p> <p> אם קשה לך לקרוא את זה, ניתן <a href=\"#\" id=\"recaptcha_different\">לנסות עם מילים אחרות</"
-"a> או <a href=\"#\" id=\"recaptcha_audio\">לנסות אתגר מסוג אחר</a> במקום. </p>"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -1788,6 +1771,9 @@ msgstr "הודעת אבטחה של Mozilla: פרטי הגישה שלך ל־API �
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "בדיקת האימות ייצרה יותר מדי שגיאות/אזהרות כך ש־%s הודעות נחתכו. לאחר התייחסות להודעות שמופיעות, תינתן לך האפשרות לראות את השאר."
 
+msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgstr ""
+
 msgid "Updated"
 msgstr "תאריך עדכון"
 
@@ -2220,8 +2206,8 @@ msgstr "פרטים נוספים עבור {0}"
 msgid "Tags"
 msgstr "תגים"
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr "תגים מסייעים למשתמשים למצוא את התוספת שלך ואמורים להיות תיאורים קצרים כגון: tabs‏, toolbar או twitter. מותר להשתמש ב־{0} תגים לכל היותר."
+msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
+msgstr ""
 
 msgid "Limit {0} tags."
 msgstr ""
@@ -3018,16 +3004,6 @@ msgstr "הגרסה הבאה המוצגת:"
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "זוהי הגרסה העדכנית ביותר שהועלתה, אך עם זאת אינה זמינה באתר עדיין"
 
-msgid "Queues are not reviewed strictly in order"
-msgstr "התורים אינם נסקרים בדיוק לפי הסדר"
-
-msgid "Queue Position:"
-msgstr "מיקום בתור:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(position)s מתוך %(total)s"
-
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr "עם חתימה להפצה עצמית. העדכונים מנוהלים על ידיך."
 
@@ -3453,9 +3429,6 @@ msgstr "ביטול בקשת הסקירה שלך תסמן את התוספת כל�
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "האם ברצונך לבטל את בקשת הסקירה שלך?"
-
-msgid "Add-on Documentation :: Developer Hub"
-msgstr "תיעוד תוספות :: מרכז המפתחים"
 
 # {0} is a number
 #. L10n: first parameter is the number of errors
@@ -4497,6 +4470,16 @@ msgstr "כלים לארגון לשוניות"
 msgid "See more translation tools"
 msgstr "תרגומים לשם התוספת"
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Social streaming"
+msgstr "רשתות חברתיות"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more social streaming extensions"
+msgstr "הצגת הרחבות פופולריות נוספות"
+
 msgid "Could not parse the manifest file."
 msgstr "לא ניתן לפענח את קובץ ה־manifest."
 
@@ -4554,8 +4537,8 @@ msgstr "הגודל המירב עבור ערכות נושא WebExtension הוא {
 msgid "You cannot submit this type of add-on"
 msgstr "לא ניתן להגיש תוספת מסוג זה"
 
-#, python-format
-msgid "You cannot submit an add-on using an ID ending with %s"
+#, fuzzy
+msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr "לא ניתן להגיש תוספת עם המשתמשת במזהה שמסתיים ב־%s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -5614,6 +5597,9 @@ msgstr "יש לך <span>{0}</span> נקודות."
 
 msgid "Theme"
 msgstr "ערכת נושא"
+
+msgid "No results found"
+msgstr "לא נמצאו תוצאות"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"

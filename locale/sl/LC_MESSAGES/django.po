@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-21 08:49+0000\n"
+"POT-Creation-Date: 2021-07-29 17:13+0000\n"
 "PO-Revision-Date: 2021-04-07 08:03+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -290,9 +290,6 @@ msgstr "E-pošta:"
 msgid "OK"
 msgstr "V redu"
 
-msgid "No results found"
-msgstr "Ni zadetkov"
-
 #. abbreviation of 'previous'
 msgid "Prev"
 msgstr "Nazaj"
@@ -312,19 +309,6 @@ msgstr "Ta funkcija je trenutno onemogočena, ker teče spletno vzdrževanje. Pr
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Nekatere elemente na tej strani se je med postopkom spletnega vzdrževanja začasno onesposobilo. Prosimo, poskusite znova nekoliko kasneje."
-
-msgid "Are you human?"
-msgstr "Ste človek?"
-
-msgid "What's this?"
-msgstr "Kaj je to?"
-
-msgid ""
-"<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
-"different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
-msgstr ""
-"<p> Prosimo, vnesite <strong>vse spodnje besede</strong>, <strong>ki jih po potrebi ločite s presledkom</strong>. </p> <p> Če jih težko preberete, lahko <a href=\"#\" id=\"recaptcha_different"
-"\">poskusite z drugimi besedami</a> ali namesto tega <a href=\"#\" id=\"recaptcha_audio\">poskusite drugačen izziv</a>. </p>"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -1801,6 +1785,9 @@ msgstr "Mozillino varnostno obvestilo: Vaše poverilnice API za AMO so bile prek
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Med preverjanjem veljavnosti je prišlo do preveč napak/opozoril, tako da je bilo %s sporočil skrajšanih. Ko enkrat spravite v red vidna sporočila, boste lahko videli tudi preostala."
 
+msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgstr ""
+
 msgid "Updated"
 msgstr "Posodobljeno"
 
@@ -2230,8 +2217,8 @@ msgstr "Dodatne podrobnosti za {0}"
 msgid "Tags"
 msgstr "Oznake"
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr "Oznake pomagajo uporabnikom najti dodatek, morajo pa biti kratke besede, povezane z delovanjem dodatka, npr. zavihki, orodna vrstica, twitter ... Imate lahko največ {0} oznak."
+msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
+msgstr ""
 
 msgid "Limit {0} tags."
 msgstr ""
@@ -3043,16 +3030,6 @@ msgstr "Naslednja navedena različica:"
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "To je najnovejša naložena različica, ki pa še ni na voljo na strani za prenos"
 
-msgid "Queues are not reviewed strictly in order"
-msgstr "Čakalne vrste niso pregledane natanko po vrsti"
-
-msgid "Queue Position:"
-msgstr "Mesto v čakalni vrsti:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(position)s od skupaj %(total)s"
-
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr "Podpisano za samostojno distribucijo. Za posodobitve skrbite sami."
 
@@ -3479,9 +3456,6 @@ msgstr "Če svojo zahtevo za pregled prekličete, bo vaš dodatek označen kot n
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Res želite preklicati zahtevo za pregled?"
-
-msgid "Add-on Documentation :: Developer Hub"
-msgstr "Dokumentacija za dodatke:: Razvojni center"
 
 # {0} is a number
 #. L10n: first parameter is the number of errors
@@ -4530,6 +4504,16 @@ msgstr "Organizatorji in orodja za zavihke"
 msgid "See more translation tools"
 msgstr "Prevodi imena dodatka"
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Social streaming"
+msgstr "Družabnost na spletu"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more social streaming extensions"
+msgstr "Prikaži vse razširitve"
+
 msgid "Could not parse the manifest file."
 msgstr "Datoteke manifesta ni bilo mogoče razčleniti."
 
@@ -4587,8 +4571,8 @@ msgstr "Največja možna velikost za teme WebExtension je {0}."
 msgid "You cannot submit this type of add-on"
 msgstr "Te vrste dodatka ne morete oddati"
 
-#, python-format
-msgid "You cannot submit an add-on using an ID ending with %s"
+#, fuzzy
+msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr "Ne morete oddati dodatka, katerega ID se končuje z %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -5660,6 +5644,9 @@ msgstr "Imate <span>{0}</span> točk."
 
 msgid "Theme"
 msgstr "Tema"
+
+msgid "No results found"
+msgstr "Ni zadetkov"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"

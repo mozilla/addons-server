@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-21 08:49+0000\n"
+"POT-Creation-Date: 2021-07-29 17:13+0000\n"
 "PO-Revision-Date: 2021-05-04 00:37+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -295,9 +295,6 @@ msgstr "Taqoya'l:"
 msgid "OK"
 msgstr "ÜTZ"
 
-msgid "No results found"
-msgstr "Majun achike xilitäj"
-
 #. abbreviation of 'previous'
 msgid "Prev"
 msgstr "Chuwa"
@@ -317,19 +314,6 @@ msgstr "Chupül re b'anikil re' k'a niqab'än na ruk'ojlem re ajk'amaya'l ruxaq.
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "E chupül jujun taq b'anikil k'a niqab'än na ruk'ojlem re ajk'amaya'l ruxaq. Tatojtob'ej chik pa jun ti mej."
-
-msgid "Are you human?"
-msgstr "¿La at winäq?"
-
-msgid "What's this?"
-msgstr "¿Achike re'?"
-
-msgid ""
-"<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
-"different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
-msgstr ""
-"<p> Tatz'ib'aj <strong>ronojel taq tzij</strong> ikim, <strong>ejachon rik'in kikojol we k'atzinel</strong>. </p> <p> We man wachel ta, yatikïr <a href=\"#\" id=\"recaptcha_different\">natojtob'ej "
-"kik'in ch'aqa' chik taq tzij</a> o <a href=\"#\" id=\"recaptcha_audio\">natojtob'ej juley chik taq samaj</a> pa ruk'exel. </p>"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -1799,6 +1783,9 @@ msgstr "Rutzijol Rujikomal Mozilla: Xeyuj ri taq AMO API wujil"
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Ri junamanem ruya'on k'ïy taq sachoj//warnings ruma ri toq %s taq rutzijol xe'ewäx. Toq xesamajïx yan ri tz'etel taq rutzijol, xkatikïr xtatz'ët ri ch'aqa' chik."
 
+msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgstr ""
+
 msgid "Updated"
 msgstr "Xk'ex"
 
@@ -2229,8 +2216,8 @@ msgstr "Rutz'aqat Rub'anikil {0}"
 msgid "Tags"
 msgstr "Taq etal"
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr "Ri taq etal yeruto' ri okisanela' richin yekïl taq tz'aqat, k'o ta chi ko'öl kitzijol achi'el taq ruwi', kikajtz'ik samajib'äl o Twitter. E k'o {0} taq awetal."
+msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
+msgstr ""
 
 msgid "Limit {0} tags."
 msgstr ""
@@ -3034,16 +3021,6 @@ msgstr "Jun chik Cholajin Ruwäch:"
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "Ja ruk'isib'äl ruwäch re', xa xe chi k'a man wachel ta pa ri ruxaq"
 
-msgid "Queues are not reviewed strictly in order"
-msgstr "Man yenik'öx ta ri taq jey pa rub'eyal rucholajem"
-
-msgid "Queue Position:"
-msgstr "Ruk'ojlib'al Rujey:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(position)s richin %(total)s"
-
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr "Juxun richin ichin-jachoj. Ja rat ye'asamajij ri taq k'exoj."
 
@@ -3471,9 +3448,6 @@ msgstr "Naq'ät ri ruk'utuxik anik'oxik xtuya' retal ri atz'aqat chi man tz'aqä
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "¿La at jikïl chi nawajo' naq'ät ri ruk'utuxik anik'oxik?"
-
-msgid "Add-on Documentation :: Developer Hub"
-msgstr "Tz'aqat Wujinem :: Rochoch B'anonel"
 
 #. L10n: first parameter is the number of errors
 msgid "{0} error"
@@ -4563,6 +4537,16 @@ msgstr ""
 msgid "See more translation tools"
 msgstr "chi Ruwäch Tz'aqat"
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Social streaming"
+msgstr "K'amawinaqil"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more social streaming extensions"
+msgstr "Ketz'et ronojel ri taq k'amal"
+
 msgid "Could not parse the manifest file."
 msgstr "Man niq'ax ta ri runa'oj ri ruyakb'al tzijoxïk."
 
@@ -4621,8 +4605,8 @@ msgstr "Ri nïm rupalem WebExtension wachinel ja ri {0}."
 msgid "You cannot submit this type of add-on"
 msgstr "Man tikirel ta natäq re ruwäch tz'aqat re'"
 
-#, fuzzy, python-format
-msgid "You cannot submit an add-on using an ID ending with %s"
+#, fuzzy
+msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr "Man yatikïr ta natäq jun tz'aqat rik'in jun guid k'isinäq rik'in %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -5701,6 +5685,9 @@ msgstr "K'o <span>{0}</span> taq awajil."
 
 msgid "Theme"
 msgstr "Wachinel"
+
+msgid "No results found"
+msgstr "Majun achike xilitäj"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"

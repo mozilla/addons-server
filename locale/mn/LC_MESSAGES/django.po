@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-21 08:49+0000\n"
+"POT-Creation-Date: 2021-07-29 17:13+0000\n"
 "PO-Revision-Date: 2018-06-01 00:24+0000\n"
 "Last-Translator: pchew <pchew@change.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -298,9 +298,6 @@ msgstr ""
 msgid "OK"
 msgstr ""
 
-msgid "No results found"
-msgstr ""
-
 #. abbreviation of 'previous'
 #, fuzzy
 msgid "Prev"
@@ -321,18 +318,6 @@ msgid "This feature is temporarily disabled while we perform website maintenance
 msgstr ""
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
-msgstr ""
-
-#, fuzzy
-msgid "Are you human?"
-msgstr "Are you human?"
-
-msgid "What's this?"
-msgstr ""
-
-msgid ""
-"<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
-"different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
 
 #. This is a page range (e.g., Page 1 of 50).
@@ -1831,6 +1816,9 @@ msgstr ""
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr ""
 
+msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgstr ""
+
 msgid "Updated"
 msgstr "Шинэчлэгдлээ"
 
@@ -2264,7 +2252,7 @@ msgstr "{0} нэмэгдлүүд"
 msgid "Tags"
 msgstr ""
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
+msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
 msgstr ""
 
 msgid "Limit {0} tags."
@@ -3074,16 +3062,6 @@ msgstr "New Version"
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr ""
 
-msgid "Queues are not reviewed strictly in order"
-msgstr ""
-
-msgid "Queue Position:"
-msgstr ""
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr ""
-
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
 
@@ -3521,9 +3499,6 @@ msgid "Canceling your review request will mark your add-on incomplete, and any v
 msgstr ""
 
 msgid "Are you sure you wish to cancel your review request?"
-msgstr ""
-
-msgid "Add-on Documentation :: Developer Hub"
 msgstr ""
 
 # {0} is a number
@@ -4571,6 +4546,16 @@ msgstr ""
 msgid "See more translation tools"
 msgstr "Өргөтгөлүүд"
 
+#. editorial content for the homepage shelves.
+msgid "Social streaming"
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more social streaming extensions"
+msgstr "Өргөтгөлүүд"
+
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -4628,8 +4613,7 @@ msgstr ""
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
-#, python-format
-msgid "You cannot submit an add-on using an ID ending with %s"
+msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -5734,6 +5718,9 @@ msgid "You have <span>{0}</span> points."
 msgstr ""
 
 msgid "Theme"
+msgstr ""
+
+msgid "No results found"
 msgstr ""
 
 #, python-format
