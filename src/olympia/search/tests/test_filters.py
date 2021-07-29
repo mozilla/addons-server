@@ -997,6 +997,56 @@ class TestSearchParameterFilter(FilterTestsBase):
             {'range': {'colors.ratio': {'gte': 0.25}}},
         ]
 
+    def _test_threshold_filter(self, param, es_field):
+        qs = self._filter(data={param: '>3.56'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {es_field: {'gt': 3.56}}},
+        ]
+
+        qs = self._filter(data={param: '<3.56'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {es_field: {'lt': 3.56}}},
+        ]
+
+        qs = self._filter(data={param: '>=3.56'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {es_field: {'gte': 3.56}}},
+        ]
+
+        qs = self._filter(data={param: '<=3.56'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {es_field: {'lte': 3.56}}},
+        ]
+
+        qs = self._filter(data={param: '=3.56'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {es_field: {'lte': 3.56, 'gte': 3.56}}},
+        ]
+
+        with self.assertRaises(serializers.ValidationError) as context:
+            self._filter(data={param: ''})
+            assert context.exception.detail == [f'Invalid {param} parameter.']
+
+        with self.assertRaises(serializers.ValidationError) as context:
+            self._filter(data={param: '>4a'})
+            assert context.exception.detail == [f'Invalid {param} parameter.']
+
+    def test_ratings_filter(self):
+        self._test_threshold_filter('ratings', 'ratings.average')
+
+    def test_users_filter(self):
+        self._test_threshold_filter('users', 'average_daily_users')
+
 
 class TestCombinedFilter(FilterTestsBase):
     """

@@ -107,6 +107,38 @@ class AddonQueryMultiParam(object):
         return [Q(self.operator, **{self.es_field: values})]
 
 
+class AddonThresholdQueryParam(AddonQueryParam):
+    """Helper to allow queries against numeric values using comparison operators.
+
+    Supports:
+    * greater than > (query: ?foo=>10.1)
+    * less than < (query: ?foo=<10.1)
+    * greater than or equal to >= (query: ?foo=>=10.1)
+    * less than or equal to <= (query: ?foo=<=10.1)
+    * equal to = (not particulary useful in most cases) (query: ?foo==10.1)
+    """
+
+    operator = 'range'
+
+    def get_value(self):
+        value = self.query_data.get(self.query_param, '')
+        try:
+            if value[:2] == '>=':
+                return {'gte': float(value[2:])}
+            if value[:2] == '<=':
+                return {'lte': float(value[2:])}
+            elif value[:1] == '>':
+                return {'gt': float(value[1:])}
+            elif value[:1] == '<':
+                return {'lt': float(value[1:])}
+            elif value[:1] == '=':
+                return {'lte': float(value[1:]), 'gte': float(value[1:])}
+        except ValueError:
+            pass  # we're going to raise ValueError anyway
+
+        raise ValueError(gettext('Invalid "%s" parameter.' % self.query_param))
+
+
 class AddonAppQueryParam(AddonQueryParam):
     query_param = 'app'
     reverse_dict = amo.APPS
@@ -457,6 +489,16 @@ class AddonColorQueryParam(AddonQueryParam):
         clauses.append(Q('range', **{'colors.ratio': {'gte': 0.25}}))
 
         return [Q('nested', path='colors', query=query.Bool(filter=clauses))]
+
+
+class AddonRatingQueryParam(AddonThresholdQueryParam):
+    query_param = 'ratings'
+    es_field = 'ratings.average'
+
+
+class AddonUsersQueryParam(AddonThresholdQueryParam):
+    query_param = 'users'
+    es_field = 'average_daily_users'
 
 
 class SearchQueryFilter(BaseFilterBackend):
@@ -842,13 +884,15 @@ class SearchParameterFilter(BaseFilterBackend):
         AddonAppVersionQueryParam,
         AddonAuthorQueryParam,
         AddonCategoryQueryParam,
+        AddonColorQueryParam,
         AddonExcludeAddonsQueryParam,
         AddonFeaturedQueryParam,
         AddonGuidQueryParam,
         AddonPromotedQueryParam,
+        AddonRatingQueryParam,
         AddonTagQueryParam,
         AddonTypeQueryParam,
-        AddonColorQueryParam,
+        AddonUsersQueryParam,
     ]
 
     def get_applicable_clauses(self, request):
