@@ -363,9 +363,10 @@ ADDON_GUID_PATTERN = re.compile(
     re.IGNORECASE,
 )
 
-# Changes to this list need to be synced with the privileged add-ons signing pipeline.
-# Please reach out to the Operations Team (awagner) before making any changes!
-SYSTEM_ADDON_GUIDS = (
+# Changes to this list need to be coordinated with the Operations team to make
+# sure other systems like the privileged add-ons signing pipeline are in sync.
+# Please reach out to them before making changes.
+RESERVED_ADDON_GUIDS = (
     '@mozilla.com',
     '@mozilla.org',
     '@pioneer.mozilla.org',
@@ -375,6 +376,8 @@ SYSTEM_ADDON_GUIDS = (
     '@mozillaonline.com',
     '@mozillafoundation.org',
     '@rally.mozilla.org',
+    # Temporary add-ons as defined in Firefox. Should not be submitted to AMO.
+    '@temporary-addon',
 )
 
 MOZILLA_TRADEMARK_SYMBOLS = ('mozilla', 'firefox')
