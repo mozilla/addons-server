@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-21 08:49+0000\n"
+"POT-Creation-Date: 2021-07-29 17:13+0000\n"
 "PO-Revision-Date: 2021-06-24 14:30+0000\n"
 "Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -293,9 +293,6 @@ msgstr "E-postadress:"
 msgid "OK"
 msgstr "OK"
 
-msgid "No results found"
-msgstr "Inga träffar hittades"
-
 #. abbreviation of 'previous'
 msgid "Prev"
 msgstr "Föreg"
@@ -315,19 +312,6 @@ msgstr "Denna funktion är tillfälligt avstängd medan vi utför underhåll på
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Vissa funktioner på denna sida är för tillfället inaktiva eftersom vi utför underhåll av webbplatsen. Försök igen lite senare."
-
-msgid "Are you human?"
-msgstr "Är du en människa?"
-
-msgid "What's this?"
-msgstr "Vad är detta?"
-
-msgid ""
-"<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
-"different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
-msgstr ""
-"<p> Ange <strong>alla ord</strong> nedan <strong>med ett mellanslag vid behov</strong>. </p> <p> Om det är svårt att läsa kan du <a href=\"#\" id=\"recaptcha_different\">försöka med andra ord </a> "
-"eller <a href=\"#\" id=\"recaptcha_audio\">prova en annan typ av utmaning</a> istället. </p>"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -1767,6 +1751,9 @@ msgstr "Mozilla säkerhetsmeddelande: Din AMO API-behörighet har återkallats"
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Validering genererade för många fel/varningar så %s meddelanden trunkerades. Efter att ha tagit itu med de meddelande som visas, kommer du att kunna se de andra."
 
+msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgstr ""
+
 msgid "Updated"
 msgstr "Uppdaterad"
 
@@ -2192,8 +2179,8 @@ msgstr "Ytterligare detaljer för {0}"
 msgid "Tags"
 msgstr "Taggar"
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr "Taggar hjälper användarna att hitta ditt tillägg och bör vara korta beskrivningar som flikar, verktygsfält eller twitter. Du kan ha högst {0} taggar."
+msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
+msgstr ""
 
 msgid "Limit {0} tags."
 msgstr ""
@@ -3050,16 +3037,6 @@ msgstr "Nästa listade version:"
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "Detta är den senaste uppladdade versionen, men den är inte uppladdad på webbplatsen ännu"
 
-msgid "Queues are not reviewed strictly in order"
-msgstr "Köerna granskas inte i strikt ordning"
-
-msgid "Queue Position:"
-msgstr "Köplats:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(position)s av %(total)s"
-
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr "Signerad för självdistribution. Uppdateringar hanteras av dig."
 
@@ -3483,9 +3460,6 @@ msgstr "Att avbryta din begäran om granskning kommer att markera ditt tillägg 
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Är du säker på att du vill avbryta din begäran om granskning?"
-
-msgid "Add-on Documentation :: Developer Hub"
-msgstr "Tilläggsdokumentation :: Utvecklarcenter"
 
 #. L10n: first parameter is the number of errors
 msgid "{0} error"
@@ -4510,6 +4484,16 @@ msgstr "Översättningsverktyg"
 msgid "See more translation tools"
 msgstr "Se fler översättningsverktyg"
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Social streaming"
+msgstr "Sociala nätverk"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more social streaming extensions"
+msgstr "Se fler populära tillägg"
+
 msgid "Could not parse the manifest file."
 msgstr "Kunde inte tolka manifest-filen."
 
@@ -4567,8 +4551,8 @@ msgstr "Maximal storlek för WebExtension-teman är {0}."
 msgid "You cannot submit this type of add-on"
 msgstr "Du kan inte skicka in denna typ av tillägg"
 
-#, python-format
-msgid "You cannot submit an add-on using an ID ending with %s"
+#, fuzzy
+msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr "Du kan inte skicka in ett tillägg med ett ID som slutar med %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -5596,6 +5580,9 @@ msgstr "Du har <span>{0}</span> poäng."
 
 msgid "Theme"
 msgstr "Tema"
+
+msgid "No results found"
+msgstr "Inga träffar hittades"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"

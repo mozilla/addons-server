@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-21 08:49+0000\n"
+"POT-Creation-Date: 2021-07-29 17:13+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -304,9 +304,6 @@ msgstr "Е-пошта"
 msgid "OK"
 msgstr ""
 
-msgid "No results found"
-msgstr "Нема пронађених резултата"
-
 #. abbreviation of 'previous'
 msgid "Prev"
 msgstr "Претходно"
@@ -326,19 +323,6 @@ msgstr "Ова могућност је на одређено време онем
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Неке могућности на овој страници су на одређено време онемогућене док вршимо одржавање веб сајта. Молимо Вас, покушајте касније."
-
-msgid "Are you human?"
-msgstr "Да ли сте људско биће?"
-
-msgid "What's this?"
-msgstr "Шта је ово?"
-
-msgid ""
-"<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
-"different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
-msgstr ""
-"<p> Молимо Вас унесите <strong>све речи</strong> испод, <strong>раздвојене размаком ако је неопходно</strong>. </p> <p> Ако је ово тешко за читање, можете <a href=\"#\" id=\"recaptcha_different"
-"\">испробати различите речи</a> или <a href=\"#\" id=\"recaptcha_audio\">покушајте различите врсте изазова</a> уместо. </p>"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -1906,6 +1890,9 @@ msgstr ""
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Овера је створила превише грешака/упозорења па је %s порука скраћено. Након обраћања видљивим порукама, бићете у могућности да погледате остале."
 
+msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgstr ""
+
 msgid "Updated"
 msgstr "Ажурирано"
 
@@ -2351,7 +2338,7 @@ msgstr "Детаљи додатка за {0}"
 msgid "Tags"
 msgstr "Ознаке"
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
+msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
 msgstr ""
 
 msgid "Limit {0} tags."
@@ -3202,16 +3189,6 @@ msgstr "Следећа верзија:"
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "Ово је најновија верзија, али још увек није јавна на сајту."
 
-msgid "Queues are not reviewed strictly in order"
-msgstr "Редови нису строго прегледани у реду"
-
-msgid "Queue Position:"
-msgstr "Ред позиције:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(position)s од %(total)s"
-
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
 
@@ -3670,9 +3647,6 @@ msgstr "Прекидање Вашег захтева за преглед ће о
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Да ли сте сигурни да желите да прекинете Ваш захтев за преглед?"
-
-msgid "Add-on Documentation :: Developer Hub"
-msgstr "Документација додатка :: Центар за програмере"
 
 # {0} is a number
 #. L10n: first parameter is the number of errors
@@ -4713,6 +4687,15 @@ msgstr ""
 msgid "See more translation tools"
 msgstr "по верзији додатка"
 
+#. editorial content for the homepage shelves.
+msgid "Social streaming"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more social streaming extensions"
+msgstr "Погледајте све додатке"
+
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -4770,8 +4753,7 @@ msgstr ""
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
-#, python-format
-msgid "You cannot submit an add-on using an ID ending with %s"
+msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -5894,6 +5876,9 @@ msgstr "Имате <span>{0}</span> поена."
 
 msgid "Theme"
 msgstr "Тема"
+
+msgid "No results found"
+msgstr "Нема пронађених резултата"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"

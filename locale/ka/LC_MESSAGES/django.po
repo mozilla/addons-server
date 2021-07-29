@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-21 08:49+0000\n"
+"POT-Creation-Date: 2021-07-29 17:13+0000\n"
 "PO-Revision-Date: 2021-07-09 04:18+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -293,9 +293,6 @@ msgstr "ელფოსტა:"
 msgid "OK"
 msgstr "კარგი"
 
-msgid "No results found"
-msgstr "შედეგები ვერ მოიძებნა."
-
 #. abbreviation of 'previous'
 msgid "Prev"
 msgstr "წინა"
@@ -315,19 +312,6 @@ msgstr "ვებსაიტზე მიმდინარე ტექნი�
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "ვებსაიტზე მიმდინარე ტექნიკური სამუშაოების გამო, ეს შესაძლებლობა დროებით მიუწვდომელია. გთხოვთ, სცადოთ ხელახლა, ოდნავ მოგვიანებით."
-
-msgid "Are you human?"
-msgstr "ადამიანი ხართ?"
-
-msgid "What's this?"
-msgstr "რა არის ეს?"
-
-msgid ""
-"<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
-"different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
-msgstr ""
-"<p> გთხოვთ შეიყვანოთ <strong>ყველა სიტყვა</strong> ქვემოთ, <strong>ადგილების გამოტოვებით, საჭიროებისამებრ</strong>. </p> <p> თუ რთულად წასაკითხია, შეგიძლიათ <a href=\"#\" id=\"recaptcha_different"
-"\">სხვა სიტყვები სცადოთ,</a> ან <a href=\"#\" id=\"recaptcha_audio\">მთლიანად შეცვალოთ გამოსახულება</a>. </p>"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -1793,6 +1777,9 @@ msgstr "Mozilla-ს უსაფრთხოების განაცხა�
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "დამოწმებისას ზედმეტად ბევრი შეცდომა/გაფრთხილება აღინიშნა, ასე რომ, %s შეტყობინებები შეკვეცილად გამოჩნდება. ხილული შეტყობინებების გაცნობის შემდეგ, შეგეძლებათ დანარჩენების ნახვაც."
 
+msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgstr ""
+
 msgid "Updated"
 msgstr "განახლებული"
 
@@ -2216,8 +2203,8 @@ msgstr "{0} – დამატებითი მონაცემები"
 msgid "Tags"
 msgstr "ჭდეები"
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr "ჭდეები ეხმარება მომხმარებლებს დამატებების ძიებისას და უნდა წარმოადგენდეს მოკლე აღწერას, მაგალითად: „ჩანართები“, „ხელსაწყოები“, ან „twitter“. სულ შეგიძლიათ {0} ჭდის მითითება."
+msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
+msgstr ""
 
 msgid "Limit {0} tags."
 msgstr ""
@@ -3059,16 +3046,6 @@ msgstr "მომდევნო გამოსაქვეყნებელ�
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "ესაა ყველაზე ბოლოს ატვირთული ვერსია, სავარაუდოდ, ჯერ არ იქნება საიტზე გამოჩენილი"
 
-msgid "Queues are not reviewed strictly in order"
-msgstr "განსახილველად გადასაცემთა რიგში, თანმიმდევრობა მკაცრად არ მოწმდება"
-
-msgid "Queue Position:"
-msgstr "რიგის ნომერი:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(position)s %(total)s-დან"
-
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr "დამოწმებულია თვითგავრცელებისთვის. განახლებებიც თავად უნდა მართოთ."
 
@@ -3489,9 +3466,6 @@ msgstr "მიმოხილვის მოთხოვნის გაუქ�
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "ნამდვილად გსურთ, მიმოხილვის მოთხოვნის გაუქმება?"
-
-msgid "Add-on Documentation :: Developer Hub"
-msgstr "დამატების დოკუმენტაცია :: შემმუშავებელთა ცენტრი"
 
 #. L10n: first parameter is the number of errors
 msgid "{0} error"
@@ -4517,6 +4491,16 @@ msgstr "თარგმნის ხელსაწყოები"
 msgid "See more translation tools"
 msgstr "თარგმნის სხვა ხელსაწყოები"
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Social streaming"
+msgstr "სოციალური ქსელები"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more social streaming extensions"
+msgstr "სხვა ფართოდ გავრცელებული გაფართოებები"
+
 msgid "Could not parse the manifest file."
 msgstr "მანიფესტის ფაილის დამუშავება ვერ მოხერხდა."
 
@@ -4574,8 +4558,8 @@ msgstr "უმაღლესი დასაშვები ზომა WebExt
 msgid "You cannot submit this type of add-on"
 msgstr "ამ სახის დამატების წარდგენა, არ შეგიძლიათ"
 
-#, python-format
-msgid "You cannot submit an add-on using an ID ending with %s"
+#, fuzzy
+msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr "არ შეგიძლიათ დამატების წარდგენა, რომლის ID დაბოლოება არის %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -5601,6 +5585,9 @@ msgstr "თქვენ გაქვთ <span>{0}</span> ქულა."
 
 msgid "Theme"
 msgstr "თემა"
+
+msgid "No results found"
+msgstr "შედეგები ვერ მოიძებნა."
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"

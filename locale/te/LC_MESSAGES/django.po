@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-21 08:49+0000\n"
+"POT-Creation-Date: 2021-07-29 17:13+0000\n"
 "PO-Revision-Date: 2021-06-09 11:25+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -281,9 +281,6 @@ msgstr "ఈమెయిలు:"
 msgid "OK"
 msgstr "సరే"
 
-msgid "No results found"
-msgstr "ఫలితాలు కనుగొనబడలేదు"
-
 #. abbreviation of 'previous'
 msgid "Prev"
 msgstr "మునుపటి"
@@ -303,19 +300,6 @@ msgstr "మేము వెబ్‌సైటు నిర్వహణ పూ
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "మేము వెబ్‌సైటు నిర్వహణ పూర్తిచేసేవరకూ ఈ పేజీలోని కొన్ని విశేషాలు తాత్కాలికంగా నిలిపివేయబడ్డాయి. దయచేసి కొంత సేపటి తర్వాత ప్రయత్నించండి."
-
-msgid "Are you human?"
-msgstr "మీరు మనిషా?"
-
-msgid "What's this?"
-msgstr "ఏమిటిది?"
-
-msgid ""
-"<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
-"different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
-msgstr ""
-"<p>దయచేసి కింద ఇచ్చిన <strong>పదాలన్నిటినీ</strong> ఇవ్వండి, <strong>అవసరమైన చోట ఖాళీతో వేరుపరచండి</strong>. </p> <p> ఒకవేళ ఇవి చదవడం కష్టంగా ఉంటే, బదులుగా <a href=\"#\" id=\"recaptcha_different\">వేరే పదాలు ప్రయత్నించండి</a> లేదా "
-"<a href=\"#\" id=\"recaptcha_audio\">మరో విధమైన సవాలును ప్రయత్నించండి</a>. </p>"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -1746,6 +1730,9 @@ msgstr "మొజిల్లా భద్రతా నోటీసు: మీ A
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr ""
 
+msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgstr ""
+
 msgid "Updated"
 msgstr "నవీకరించబడింది"
 
@@ -2163,7 +2150,7 @@ msgstr "{0} కొరకు అదనపు వివరాలు"
 msgid "Tags"
 msgstr "ట్యాగులు"
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
+msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
 msgstr ""
 
 msgid "Limit {0} tags."
@@ -2940,16 +2927,6 @@ msgstr "తదుపరి జాబితా చేసిన వెర్షన
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr ""
 
-msgid "Queues are not reviewed strictly in order"
-msgstr "వరుసలు ఖచ్చితమైన క్రమంలో సమీక్షించబడవు"
-
-msgid "Queue Position:"
-msgstr "వరుస స్థానం:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(total)s యొక్క %(position)s"
-
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr "స్వీయ పంపిణీ కోసం సంతకం చేయబడింది. తాజాకరణలను మీరే చూసుకుంటారు."
 
@@ -3360,9 +3337,6 @@ msgstr ""
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "మీ సమీక్ష అభ్యర్థనను రద్దుచేసుకోవాలని అనుకుంటున్నారా?"
-
-msgid "Add-on Documentation :: Developer Hub"
-msgstr ""
 
 #. L10n: first parameter is the number of errors
 msgid "{0} error"
@@ -4388,6 +4362,16 @@ msgstr ""
 msgid "See more translation tools"
 msgstr "పొడగింత పేరు అనువాదాలు"
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Social streaming"
+msgstr "సామాజిక నెట్‌వర్కింగ్"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more social streaming extensions"
+msgstr "మరిన్ని ప్రాచుర్య పొడగింతలను చూడండి"
+
 msgid "Could not parse the manifest file."
 msgstr "మానిఫెస్ట్ ఫైల్‌ను చదవడం సాధ్యంకాలేదు."
 
@@ -4445,8 +4429,7 @@ msgstr "WebExtension అలంకారాలకు గరిష్ఠ పరి
 msgid "You cannot submit this type of add-on"
 msgstr "మీరు ఈ పొడిగింతపు రకాన్ని సమర్పించలేరు"
 
-#, python-format
-msgid "You cannot submit an add-on using an ID ending with %s"
+msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -5462,6 +5445,9 @@ msgstr "మీకు <span>{0}</span> పాయింట్లు ఉన్న�
 
 msgid "Theme"
 msgstr "అలంకారం"
+
+msgid "No results found"
+msgstr "ఫలితాలు కనుగొనబడలేదు"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"

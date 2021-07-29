@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-21 08:49+0000\n"
+"POT-Creation-Date: 2021-07-29 17:13+0000\n"
 "PO-Revision-Date: 2018-05-28 12:04+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -289,9 +289,6 @@ msgstr ""
 msgid "OK"
 msgstr ""
 
-msgid "No results found"
-msgstr ""
-
 #. abbreviation of 'previous'
 msgid "Prev"
 msgstr ""
@@ -310,17 +307,6 @@ msgid "This feature is temporarily disabled while we perform website maintenance
 msgstr ""
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
-msgstr ""
-
-msgid "Are you human?"
-msgstr ""
-
-msgid "What's this?"
-msgstr ""
-
-msgid ""
-"<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
-"different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
 
 #. This is a page range (e.g., Page 1 of 50).
@@ -1798,6 +1784,9 @@ msgstr ""
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Validacija je generirala previše grešaka/upozorenja tako da su poruke %s bile skraćene. Nakon adresiranja vidljivih poruka, bićete u mogućnosti da vidite ostale."
 
+msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgstr ""
+
 msgid "Updated"
 msgstr ""
 
@@ -2236,8 +2225,8 @@ msgstr "Detalji dodatka za {0}"
 msgid "Tags"
 msgstr ""
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr "Oznake pomažu korisnicima da pronađu vaš dodatak i trebaju imati katak opise kao što su tabovi, alatne trake ili twitter. Možete imati najviše {0} oznaka."
+msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
+msgstr ""
 
 msgid "Limit {0} tags."
 msgstr ""
@@ -3049,16 +3038,6 @@ msgstr "Sljedeća objavljena verzija:"
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "Ovo je najnovija verzija, koja još nije dostupna na stranici za preuzimanje."
 
-msgid "Queues are not reviewed strictly in order"
-msgstr "Redovi se ne razmatraju strogo po redoslijedu"
-
-msgid "Queue Position:"
-msgstr "Pozicija reda:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr ""
-
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr "Potpisan za samodistribuciju. Vi brinete o ažuriranju."
 
@@ -3488,9 +3467,6 @@ msgstr "Otkazivanjem zahtjeva za recenziju će označiti vaš dodatak nepotpunim
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Da li ste sigurni da želite otkazati vaš zahtjev za recenziju?"
-
-msgid "Add-on Documentation :: Developer Hub"
-msgstr "Dokumentacija dodatka :: Razvojni centar"
 
 #. L10n: first parameter is the number of errors
 msgid "{0} error"
@@ -4528,6 +4504,15 @@ msgstr ""
 msgid "See more translation tools"
 msgstr "Sve verzije"
 
+#. editorial content for the homepage shelves.
+msgid "Social streaming"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more social streaming extensions"
+msgstr "Sve verzije"
+
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -4585,8 +4570,8 @@ msgstr ""
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
-#, fuzzy, python-format
-msgid "You cannot submit an add-on using an ID ending with %s"
+#, fuzzy
+msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr "Ne možete poslati dodatak sa završnom vezom %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -5624,6 +5609,9 @@ msgid "You have <span>{0}</span> points."
 msgstr ""
 
 msgid "Theme"
+msgstr ""
+
+msgid "No results found"
 msgstr ""
 
 #, python-format

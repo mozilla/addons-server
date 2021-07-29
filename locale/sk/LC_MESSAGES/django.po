@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-21 08:49+0000\n"
+"POT-Creation-Date: 2021-07-29 17:13+0000\n"
 "PO-Revision-Date: 2020-11-12 22:41+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -291,9 +291,6 @@ msgstr "E-mailová adresa"
 msgid "OK"
 msgstr ""
 
-msgid "No results found"
-msgstr "Neboli nájdené žiadne výsledky."
-
 #. abbreviation of 'previous'
 msgid "Prev"
 msgstr "Predchádzajúca"
@@ -313,19 +310,6 @@ msgstr "Táto funkcia je počas údržby stránok vypnutá. Prosím, použite v 
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Niektoré funkcie sú na tejto stránke dočasne vypnuté kvôli údržbe. Prosím, skúste to znova neskôr."
-
-msgid "Are you human?"
-msgstr "Ste človek?"
-
-msgid "What's this?"
-msgstr "Čo je toto?"
-
-msgid ""
-"<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
-"different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
-msgstr ""
-"<p> Zadajte prosím <strong>všetky slová</strong> nižšie a <strong>oddeľte ich medzerami</strong>, ak je to nutné. </p> <p> Ak sa nedajú prečítať, môžete <a href=\"#\" id=\"recaptcha_different"
-"\">skúsiť iné slová</a> alebo <a href=\"#\" id=\"recaptcha_audio\">iný typ overenia</a>. </p>"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -1781,6 +1765,9 @@ msgstr ""
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Kontrola vygenerovala príliš veľa chýb/varovaní. %s správ tak nie je zobrazených. Po opravení zobrazených nedostatkov budete môcť vidieť ďalšie."
 
+msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgstr ""
+
 msgid "Updated"
 msgstr "Aktualizované"
 
@@ -2206,7 +2193,7 @@ msgstr "Podrobnosti o doplnku {0}"
 msgid "Tags"
 msgstr "Značky"
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
+msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
 msgstr ""
 
 msgid "Limit {0} tags."
@@ -2990,16 +2977,6 @@ msgstr ""
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "Toto je najnovšia nahraná verzia, no napriek tomu ešte nebola na stránkach zverejnená"
 
-msgid "Queues are not reviewed strictly in order"
-msgstr "Fronty nie sú striktne prechádzané podľa poradia"
-
-msgid "Queue Position:"
-msgstr "Pozícia vo fronte:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(position)s z %(total)s"
-
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
 
@@ -3421,9 +3398,6 @@ msgstr ""
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Naozaj chcete zrušiť vašu žiadosť o kontrolu?"
-
-msgid "Add-on Documentation :: Developer Hub"
-msgstr "Dokumentácia k doplnku :: Centrum vývojárov"
 
 # {0} is a number
 #. L10n: first parameter is the number of errors
@@ -4462,6 +4436,16 @@ msgstr ""
 msgid "See more translation tools"
 msgstr "Ďalšie aplikácie&hellip;"
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Social streaming"
+msgstr "Sociálne siete"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more social streaming extensions"
+msgstr "Zobraziť všetky rozšírenia"
+
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -4519,8 +4503,8 @@ msgstr ""
 msgid "You cannot submit this type of add-on"
 msgstr "Pridávanie takéhoto typu doplnku nie je povolené"
 
-#, python-format
-msgid "You cannot submit an add-on using an ID ending with %s"
+#, fuzzy
+msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr "Nemôžete nahrať rozšírenie, ktorého ID končí na %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -5553,6 +5537,9 @@ msgstr "Obdržali ste <span>{0}</span> bodov."
 
 msgid "Theme"
 msgstr "Téma vzhľadu"
+
+msgid "No results found"
+msgstr "Neboli nájdené žiadne výsledky."
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"

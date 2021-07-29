@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-21 08:49+0000\n"
+"POT-Creation-Date: 2021-07-29 17:13+0000\n"
 "PO-Revision-Date: 2021-07-06 23:06+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -295,9 +295,6 @@ msgstr "Email:"
 msgid "OK"
 msgstr "Đồng ý"
 
-msgid "No results found"
-msgstr "Không tìm thấy kết quả nào"
-
 #. abbreviation of 'previous'
 msgid "Prev"
 msgstr "Trước"
@@ -317,19 +314,6 @@ msgstr "Tính năng này tạm thời bị vô hiệu trong khi chúng tôi đan
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Một số tính năng trên trang này đang tạm thời bị vô hiệu trong khi chúng tôi thực hiện bảo dưỡng trang web. Vui lòng thử lại sau."
-
-msgid "Are you human?"
-msgstr "Bạn có phải là người?"
-
-msgid "What's this?"
-msgstr "Đây là gì?"
-
-msgid ""
-"<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
-"different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
-msgstr ""
-"<p> Vui lòng nhập <strong>tất cả các từ</strong> bên dưới, <strong>cách nhau bằng khoảng trắng nếu cần</strong>. </p> <p> Nếu khó đọc, bạn có thể <a href=\"#\" id=\"recaptcha_different\">thử các từ "
-"khác</a> hoặc <a href=\"#\" id=\"recaptcha_audio\">thay vào đó hãy thử một loại xác thực khác</a>. </p>"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -1801,6 +1785,9 @@ msgstr "Thông báo bảo mật của Mozilla: Thông tin đăng nhập API trê
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr ""
 
+msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgstr ""
+
 msgid "Updated"
 msgstr "Cập nhật"
 
@@ -2228,8 +2215,8 @@ msgstr "Chi tiết bổ sung cho {0}"
 msgid "Tags"
 msgstr "Nhãn"
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr "Các thẻ giúp người dùng tìm thấy tiện ích của bạn và phải là phần mô tả ngắn gọn như thẻ, thanh công cụ hoặc twitter. Bạn có thể có tối đa {0} thẻ."
+msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
+msgstr ""
 
 msgid "Limit {0} tags."
 msgstr ""
@@ -3058,16 +3045,6 @@ msgstr "Phiên bản được liệt kê tiếp theo:"
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr ""
 
-msgid "Queues are not reviewed strictly in order"
-msgstr ""
-
-msgid "Queue Position:"
-msgstr ""
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(position)s trong %(total)s"
-
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
 
@@ -3492,9 +3469,6 @@ msgstr "Hủy yêu cầu đánh giá của bạn sẽ đánh dấu tiện ích c
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Bạn có chắc chắn là bạn muốn hủy bỏ yêu cầu xét duyệt của mình không?"
-
-msgid "Add-on Documentation :: Developer Hub"
-msgstr "Tài liệu tiện ích :: Trung tâm nhà phát triển"
 
 # {0} is a number
 #. L10n: first parameter is the number of errors
@@ -4527,6 +4501,16 @@ msgstr "Công cụ và tổ chức thẻ"
 msgid "See more translation tools"
 msgstr "Bản dịch tên tiện ích"
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Social streaming"
+msgstr "Mạng xã hội"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more social streaming extensions"
+msgstr "Xem thêm các tiện ích phổ biến"
+
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -4584,8 +4568,7 @@ msgstr ""
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
-#, python-format
-msgid "You cannot submit an add-on using an ID ending with %s"
+msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -5631,6 +5614,9 @@ msgstr ""
 
 msgid "Theme"
 msgstr "Giao diện"
+
+msgid "No results found"
+msgstr "Không tìm thấy kết quả nào"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"

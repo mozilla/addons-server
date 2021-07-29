@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-21 08:49+0000\n"
+"POT-Creation-Date: 2021-07-29 17:13+0000\n"
 "PO-Revision-Date: 2021-07-14 12:45+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -293,9 +293,6 @@ msgstr "Imayl:"
 msgid "OK"
 msgstr "IH"
 
-msgid "No results found"
-msgstr "Ulac igmad yettwafen"
-
 #. abbreviation of 'previous'
 msgid "Prev"
 msgstr "Ɣer deffir"
@@ -315,19 +312,6 @@ msgstr "Tamahilt-agi taskudant ur termid ara di lawan anida nteddu deg useggem n
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Kra n tmahilin deg usebter-agi ttwasensent akka tura makken nettseggim asmel web. Ma ulac aɣlif,uɣal-d ticki."
-
-msgid "Are you human?"
-msgstr "D amdan kečč?"
-
-msgid "What's this?"
-msgstr "D acu-t wa?"
-
-msgid ""
-"<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
-"different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
-msgstr ""
-"<p> Ma ulac aɣilif sekcem<strong>akk awalen</strong> dagi, <strong>yettwabrez s isekkilen ilmawen</strong>. </p> <p> Ma yewɛeṛ i tɣuṛi, tzemreḍ <a href=\"#\" id=\"recaptcha_different\">ɛreḍ awalen "
-"nniḍen</a> ou <a href=\"#\" id=\"recaptcha_audio\">ɛreḍ anaw nniḍen</a> deg umdiq-is.</p>"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -1765,6 +1749,9 @@ msgstr "Ulqu n tɣellist n Mozilla: Inekcam-ik AMOAPI ttwaḥwin"
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Asentem yegla-d s ddeqs n tuccḍiwin /warnings ihi %s n yiznan ttwagezmen. Seld aseɣti n yiznan umanen, ad tizmireḍ ad twaliḍ wiyaḍ."
 
+msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgstr ""
+
 msgid "Updated"
 msgstr "Yettusnifel"
 
@@ -2187,8 +2174,8 @@ msgstr "Talqayt-nniḍen i {0}"
 msgid "Tags"
 msgstr "Tibzimin"
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr "Ticraḍ ttmuddunt-d afus i yiseqdacen akken ad d-afen azegrir-ik. D aglam wezzilen am twitter, iccaren, afeggag n yifecka. Tzemreḍ ad tesqedceḍ {0} n tibzimin ma aṭas."
+msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
+msgstr ""
 
 msgid "Limit {0} tags."
 msgstr ""
@@ -3033,16 +3020,6 @@ msgstr "Lqem yettwabedren d-iteddun:"
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "Wagi d lqem amaynut i yettwaznen, dacu mazal ur yelli ara yakan deg usmel"
 
-msgid "Queues are not reviewed strictly in order"
-msgstr "Idrasen ur ttwaceggren ara seg umezwaru ar uneggaru"
-
-msgid "Queue Position:"
-msgstr "Adig n wedras:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(position)s si %(total)s"
-
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr "Yettwasezmel i uzuzer udmawan. Ad tesferkeḍ ileqman."
 
@@ -3458,9 +3435,6 @@ msgstr "Asefsex n usuter n ucegger ad yecreḍ azegrir-ik am akken ur yemmid ara
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Tebɣiḍ ad tesfesxeḍ tuttra n ucegger?"
-
-msgid "Add-on Documentation :: Developer Hub"
-msgstr "Tasemlit n uzegrir :: Ammas n uneflay"
 
 #. L10n: first parameter is the number of errors
 msgid "{0} error"
@@ -4488,6 +4462,16 @@ msgstr "Ifecka n usuqel"
 msgid "See more translation tools"
 msgstr "Wali ugar n yifecka n usuqel"
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Social streaming"
+msgstr "Aẓeṭṭa n tmetti"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more social streaming extensions"
+msgstr "Wali ugar n yisiɣzaf yettwasnen aṭas"
+
 msgid "Could not parse the manifest file."
 msgstr "Ur izmir ara ad isleḍ afaylu ameskan."
 
@@ -4545,8 +4529,8 @@ msgstr "Amḍan afellay i yisental WebExtension d {0}."
 msgid "You cannot submit this type of add-on"
 msgstr "Ur tezmireḍ ara ad tazneḍ anaw-agi n uzegrir"
 
-#, python-format
-msgid "You cannot submit an add-on using an ID ending with %s"
+#, fuzzy
+msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr "Ur tezmireḍ ara ad tazneḍ azegrir s useqdec n ID yettfakkan s %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -5564,6 +5548,9 @@ msgstr "Ɣur-k <span> {0} </span> n tneqqiḍin."
 
 msgid "Theme"
 msgstr "Asentel"
+
+msgid "No results found"
+msgstr "Ulac igmad yettwafen"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
