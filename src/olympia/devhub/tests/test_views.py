@@ -1467,7 +1467,9 @@ class TestUploadDetail(BaseUploadTest):
         assert data['validation']['messages'] == [
             {
                 'tier': 1,
-                'message': 'You cannot submit an add-on using an ID ending with this suffix',
+                'message': (
+                    'You cannot submit an add-on using an ID ending with this suffix'
+                ),
                 'fatal': True,
                 'type': 'error',
             }
