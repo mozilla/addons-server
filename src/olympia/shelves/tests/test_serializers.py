@@ -175,7 +175,6 @@ class TestShelvesSerializer(ESTestCase):
         assert data['title'] == {'en-US': 'Recommended extensions'}
         assert data['endpoint'] == 'search'
         assert data['addon_type'] == 'extension'
-        assert data['criteria'] == '?promoted=recommended&sort=random&type=extension'
         assert data['footer']['text'] == {'en-US': 'See more recommended extensions'}
         assert data['footer']['url'] == 'http://testserver/somewhere'
         assert data['footer']['outgoing'] == 'http://testserver/somewhere'
@@ -185,7 +184,6 @@ class TestShelvesSerializer(ESTestCase):
         assert data['title'] == {'en-US': 'Populâr themes'}
         assert data['endpoint'] == 'search'
         assert data['addon_type'] == 'statictheme'
-        assert data['criteria'] == '?sort=users&type=statictheme'
         assert data['footer']['text'] == {'en-US': 'See more populâr themes'}
         assert data['footer']['url'] == 'http://testserver/themes/'
         assert data['footer']['outgoing'] == 'http://testserver/themes/'
@@ -289,7 +287,6 @@ class TestShelvesSerializer(ESTestCase):
         assert data['title'] == {'en-US': 'Random tags'}
         assert data['endpoint'] == 'random-tag'
         assert data['addon_type'] == 'extension'
-        assert data['criteria'] == '?'
         assert data['footer']['text'] == {'en-US': 'See similar add-ons?'}
         assert data['footer']['url'] == 'http://testserver/'
         assert data['footer']['outgoing'] == 'http://testserver/'

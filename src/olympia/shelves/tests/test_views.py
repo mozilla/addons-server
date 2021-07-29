@@ -160,7 +160,6 @@ class TestShelfViewSet(ESTestCase):
         assert result['results'][0]['title'] == {'en-US': 'Enhanced privacy extensions'}
         assert result['results'][0]['url'] == self.collections_url
         assert result['results'][0]['endpoint'] == 'collections'
-        assert result['results'][0]['criteria'] == 'privacy-matters'
         assert result['results'][0]['footer']['text'] == {
             'en-US': 'See more enhanced privacy extensions'
         }
@@ -180,9 +179,6 @@ class TestShelfViewSet(ESTestCase):
         assert result['results'][1]['title'] == {'en-US': 'Recommended extensions'}
         assert result['results'][1]['url'] == self.search_url
         assert result['results'][1]['endpoint'] == 'search'
-        assert result['results'][1]['criteria'] == (
-            '?promoted=recommended&sort=random&type=extension'
-        )
         assert result['results'][1]['footer']['text'] == {
             'en-US': 'See more recommended extensions'
         }
@@ -204,7 +200,6 @@ class TestShelfViewSet(ESTestCase):
             reverse_ns('addon-search', api_version='v5') + f'?tag={self.tag}'
         )
         assert result['results'][2]['endpoint'] == 'random-tag'
-        assert result['results'][2]['criteria'] == ('?')
         assert result['results'][2]['footer']['text'] == {
             'en-US': 'something something tags!'
         }

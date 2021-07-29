@@ -82,7 +82,6 @@ class ShelfSerializer(serializers.ModelSerializer):
             'url',
             'endpoint',
             'addon_type',
-            'criteria',
             'footer',
             'addons',
         ]
