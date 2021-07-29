@@ -6136,10 +6136,16 @@ class TestReview(ReviewBase):
             )
         )
 
-    def test_reused_guid_from_previous_deleted_addon(self):
+    def test_original_guid(self):
         response = self.client.get(self.url)
         assert response.status_code == 200
-        assert b'Previously deleted entries' not in response.content
+        assert b'Original Add-on ID' not in response.content
+
+    def test_addons_sharing_guid_shown(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert b'Add-on(s) sharing same ID' not in response.content
+        assert b'Original Add-on ID' not in response.content
 
         old_one = addon_factory(status=amo.STATUS_DELETED)
         old_two = addon_factory(status=amo.STATUS_DELETED)
@@ -6149,19 +6155,23 @@ class TestReview(ReviewBase):
         old_two.addonguid.update(guid='reuse@')
         old_other.addonguid.update(guid='other@')
         old_noguid.addonguid.update(guid='')
-        self.addon.update(guid='reuse@')
+        self.addon.addonguid.update(guid='reuse@')
 
         response = self.client.get(self.url)
         assert response.status_code == 200
-        assert b'Previously deleted entries' in response.content
+        assert b'Add-on(s) sharing same ID' in response.content
         expected = [
-            (f'{old_one.id}', reverse('reviewers.review', args=[old_one.id])),
-            (f'{old_two.id}', reverse('reviewers.review', args=[old_two.id])),
+            (f'{old_one}', reverse('reviewers.review', args=[old_one.id])),
+            (f'{old_two}', reverse('reviewers.review', args=[old_two.id])),
         ]
         doc = pq(response.content)
-        check_links(expected, doc('div.results table.item-history a'), verify=False)
+        check_links(expected, doc('.addon-addons-sharing-guid a'), verify=False)
 
-        # test unlisted review pages link to unlisted review pages
+        assert b'Original Add-on ID' in response.content
+        assert doc('.addon-guid td').text() == self.addon.guid
+        assert doc('.addon-original-guid td').text() == self.addon.addonguid.guid
+
+        # Test unlisted review pages link to unlisted review pages.
         self.make_addon_unlisted(self.addon)
         self.login_as_admin()
         response = self.client.get(
@@ -6170,26 +6180,23 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         expected = [
             (
-                f'{old_one.id}',
+                f'{old_one}',
                 reverse('reviewers.review', args=['unlisted', old_one.id]),
             ),
             (
-                f'{old_two.id}',
+                f'{old_two}',
                 reverse('reviewers.review', args=['unlisted', old_two.id]),
             ),
         ]
         doc = pq(response.content)
-        check_links(expected, doc('div.results table.item-history a'), verify=False)
+        check_links(expected, doc('.addon-addons-sharing-guid a'), verify=False)
 
-        # make sure an empty guid isn't considered (e.g. search plugins)
-        self.addon.update(guid=None)
+        # It shouldn't hahappen nowadays, but make sure an empty guid isn't
+        # considered.
+        self.addon.addonguid.update(guid='')
         response = self.client.get(self.url)
         assert response.status_code == 200
-        assert b'Previously deleted entries' not in response.content
-        self.addon.update(guid='')
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        assert b'Previously deleted entries' not in response.content
+        assert b'Add-on(s) sharing same ID' not in response.content
 
     def test_versions_that_are_flagged_by_scanners_are_highlighted(self):
         self.addon.current_version.update(created=self.days_ago(366))
@@ -6475,7 +6482,7 @@ class TestAbuseReportsView(ReviewerTest):
         AbuseReport.objects.create(addon=self.addon, message='Two')
         AbuseReport.objects.create(addon=self.addon, message='Three')
         AbuseReport.objects.create(user=self.addon_developer, message='Four')
-        with self.assertNumQueries(20):
+        with self.assertNumQueries(21):
             # - 2 savepoint/release savepoint
             # - 2 for user and groups
             # - 1 for the add-on
@@ -6484,6 +6491,7 @@ class TestAbuseReportsView(ReviewerTest):
             # - 1 for reviewer motd config
             # - 1 for site notice config
             # - 1 for add-ons from logged in user
+            # - 1 for finding the original guid
             # - 1 for abuse reports count (pagination)
             # - 1 for the abuse reports
             # - 2 for the add-on and its translations (duplicate, but it's
