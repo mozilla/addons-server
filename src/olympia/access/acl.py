@@ -69,12 +69,12 @@ def langpack_submission_allowed(user, parsed_addon_data):
     )
 
 
-def system_addon_submission_allowed(user, parsed_addon_data):
+def reserved_guid_addon_submission_allowed(user, parsed_addon_data):
     """Add-ons with a guid ending with reserved suffixes can only be submitted
     by people with the right permission.
     """
     guid = parsed_addon_data.get('guid') or ''
-    return not guid.lower().endswith(amo.SYSTEM_ADDON_GUIDS) or action_allowed_user(
+    return not guid.lower().endswith(amo.RESERVED_ADDON_GUIDS) or action_allowed_user(
         user, amo.permissions.SYSTEM_ADDON_SUBMIT
     )
 

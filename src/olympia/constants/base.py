@@ -364,7 +364,7 @@ ADDON_GUID_PATTERN = re.compile(
 
 # Changes to this list need to be synced with the privileged add-ons signing pipeline.
 # Please reach out to the Operations Team (awagner) before making any changes!
-SYSTEM_ADDON_GUIDS = (
+RESERVED_ADDON_GUIDS = (
     '@mozilla.com',
     '@mozilla.org',
     '@pioneer.mozilla.org',
@@ -374,6 +374,7 @@ SYSTEM_ADDON_GUIDS = (
     '@mozillaonline.com',
     '@mozillafoundation.org',
     '@rally.mozilla.org',
+    '@temporary-addon',
 )
 
 MOZILLA_TRADEMARK_SYMBOLS = ('mozilla', 'firefox')

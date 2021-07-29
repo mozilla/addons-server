@@ -870,8 +870,8 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
     if not acl.experiments_submission_allowed(user, xpi_info):
         raise forms.ValidationError(gettext('You cannot submit this type of add-on'))
 
-    if not addon and not acl.system_addon_submission_allowed(user, xpi_info):
-        guids = ' or '.join('"' + guid + '"' for guid in amo.SYSTEM_ADDON_GUIDS)
+    if not addon and not acl.reserved_guid_addon_submission_allowed(user, xpi_info):
+        guids = ' or '.join('"' + guid + '"' for guid in amo.RESERVED_ADDON_GUIDS)
         raise forms.ValidationError(
             gettext('You cannot submit an add-on using an ID ending with %s' % guids)
         )

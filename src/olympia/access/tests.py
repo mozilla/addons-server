@@ -20,7 +20,7 @@ from .acl import (
     is_reviewer,
     is_user_any_kind_of_reviewer,
     match_rules,
-    system_addon_submission_allowed,
+    reserved_guid_addon_submission_allowed,
 )
 
 
@@ -319,17 +319,17 @@ system_guids = pytest.mark.parametrize(
 
 @system_guids
 @pytest.mark.django_db
-def test_system_addon_submission_allowed_mozilla_allowed(guid):
+def test_reserved_guid_addon_submission_allowed_mozilla_allowed(guid):
     user = user_factory()
     group = Group.objects.create(name='Blah', rules='SystemAddon:Submit')
     GroupUser.objects.create(group=group, user=user)
     data = {'guid': guid}
-    assert system_addon_submission_allowed(user, data)
+    assert reserved_guid_addon_submission_allowed(user, data)
 
 
 @system_guids
 @pytest.mark.django_db
-def test_system_addon_submission_allowed_not_mozilla_not_allowed(guid):
+def test_reserved_guid_addon_submission_allowed_not_mozilla_not_allowed(guid):
     user = user_factory()
     data = {'guid': guid}
-    assert not system_addon_submission_allowed(user, data)
+    assert not reserved_guid_addon_submission_allowed(user, data)
