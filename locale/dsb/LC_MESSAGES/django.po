@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-07-29 17:13+0000\n"
-"PO-Revision-Date: 2021-07-29 18:16+0000\n"
+"PO-Revision-Date: 2021-07-29 18:23+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -1759,7 +1759,7 @@ msgid "Validation generated too many errors/warnings so %s messages were truncat
 msgstr "Pśeglědanje jo pśewjele zmólkow/warnowanjow wunjasło, togodla jo se %s powěsćow wótdźěliło. Pó wobźěłowanju widobnych powěsćow móžośo druge wiźeś."
 
 msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
-msgstr ""
+msgstr "Manifest v3 se tuchylu za nagrawanje njepódpěra. Móžośo [{start_href}how{end_href}] wěcej wó pódpěrańskem planje cytaś."
 
 msgid "Updated"
 msgstr "Aktualizěrowane"
@@ -2189,7 +2189,7 @@ msgid "Tags"
 msgstr "Wobznamjenja"
 
 msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
-msgstr ""
+msgstr "Wobznamjenja wužywarjam pomagaja, waš dodank namakaś. Móžośo maksimalnje {0} wobznamjenjow měś. Wubjeŕśo jano wobznamjenja, kótarež su relewantne za waš dodank."
 
 msgid "Limit {0} tags."
 msgstr "Wobgranicowanje licby wobznamjenjow: {0}."
@@ -4555,9 +4555,8 @@ msgstr "Maksimalna wjelikosć za drastwy Webextension jo {0}."
 msgid "You cannot submit this type of add-on"
 msgstr "Njamóžośo toś ten dodankowy typ zapódaś"
 
-#, fuzzy
 msgid "You cannot submit an add-on using an ID ending with this suffix"
-msgstr "Njamóžośo dodank z ID zapódaś, kótaryž kóńcy se na %s"
+msgstr "Njamóžośo dodank z ID zapódaś, kótaryž se z toś tym sufiksom kóńcy"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Njamóžośo signěrowane rozšyrjenje Mozilla zapódaś"
