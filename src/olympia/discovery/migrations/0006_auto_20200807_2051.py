@@ -11,16 +11,20 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.CreateModel(
-            name='HomepageShelves',
-            fields=[
-            ],
-            options={
-                'verbose_name_plural': 'homepage shelves',
-                'proxy': True,
-                'indexes': [],
-                'constraints': [],
-            },
-            bases=('shelves.shelfmanagement',),
-        ),
+        # Have to disable this because it broke the migration chain when we deleted the
+        # base shelves.shelfmanagement - django does seem to be able detect it changing.
+        # Its okay though - it's only a proxy model (no database table backing it).
+        #
+        # migrations.CreateModel(
+        #     name='HomepageShelves',
+        #     fields=[
+        #     ],
+        #     options={
+        #         'verbose_name_plural': 'homepage shelves',
+        #         'proxy': True,
+        #         'indexes': [],
+        #         'constraints': [],
+        #     },
+        #     bases=('shelves.shelfmanagement',),
+        # ),
     ]
