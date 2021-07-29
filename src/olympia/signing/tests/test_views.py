@@ -350,7 +350,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert latest_version
         assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
 
-    def test_system_addon_not_allowed(self):
+    def test_restricted_addon_not_allowed(self):
         guid = 'systemaddon@mozilla.com'
         qs = Addon.unfiltered.filter(guid=guid)
         assert not qs.exists()
@@ -362,15 +362,11 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         )
         assert response.status_code == 400
         assert response.data['error'] == (
-            'You cannot submit an add-on using an ID ending with '
-            '"@mozilla.com" or "@mozilla.org" or "@pioneer.mozilla.org" or '
-            '"@search.mozilla.org" or "@shield.mozilla.com" or '
-            '"@shield.mozilla.org" or "@mozillaonline.com" or '
-            '"@mozillafoundation.org" or "@rally.mozilla.org"'
+            'You cannot submit an add-on using an ID ending with this suffix'
         )
 
-    def test_system_addon_update_allowed(self):
-        """Updates to system addons are allowed from anyone."""
+    def test_restricted_addon_update_allowed(self):
+        """Updates to restricted IDs are allowed from anyone."""
         guid = 'systemaddon@mozilla.org'
         self.user.update(email='pinkpanda@notzilla.com')
         orig_addon = addon_factory(

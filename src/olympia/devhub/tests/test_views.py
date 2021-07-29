@@ -1440,7 +1440,7 @@ class TestUploadDetail(BaseUploadTest):
         ]
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
-    def test_system_addon_allowed(self, mock_validator):
+    def test_restricted_addon_allowed(self, mock_validator):
         user = user_factory()
         self.grant_permission(user, 'SystemAddon:Submit')
         assert self.client.login(email=user.email)
@@ -1454,7 +1454,7 @@ class TestUploadDetail(BaseUploadTest):
         assert data['validation']['messages'] == []
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
-    def test_system_addon_not_allowed_not_allowed(self, mock_validator):
+    def test_restricted_addon_not_allowed(self, mock_validator):
         user_factory(email='redpanda@mozilla.com')
         assert self.client.login(email='redpanda@mozilla.com')
         mock_validator.return_value = json.dumps(self.validation_ok())
@@ -1467,12 +1467,7 @@ class TestUploadDetail(BaseUploadTest):
         assert data['validation']['messages'] == [
             {
                 'tier': 1,
-                'message': 'You cannot submit an add-on using an ID ending with '
-                '"@mozilla.com" or "@mozilla.org" or '
-                '"@pioneer.mozilla.org" or "@search.mozilla.org" or '
-                '"@shield.mozilla.com" or "@shield.mozilla.org" or '
-                '"@mozillaonline.com" or "@mozillafoundation.org" or '
-                '"@rally.mozilla.org"',
+                'message': 'You cannot submit an add-on using an ID ending with this suffix',
                 'fatal': True,
                 'type': 'error',
             }
