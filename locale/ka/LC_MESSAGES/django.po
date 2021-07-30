@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-07-29 17:13+0000\n"
-"PO-Revision-Date: 2021-07-30 14:15+0000\n"
+"PO-Revision-Date: 2021-07-30 14:18+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4486,14 +4486,12 @@ msgid "See more translation tools"
 msgstr "თარგმნის სხვა ხელსაწყოები"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Social streaming"
-msgstr "სოციალური ქსელები"
+msgstr "სოციალური ნაკადი"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more social streaming extensions"
-msgstr "სხვა ფართოდ გავრცელებული გაფართოებები"
+msgstr "სოციალური ნაკადის სხვა გავრცელებული გაფართოებები"
 
 msgid "Could not parse the manifest file."
 msgstr "მანიფესტის ფაილის დამუშავება ვერ მოხერხდა."
@@ -4552,9 +4550,8 @@ msgstr "უმაღლესი დასაშვები ზომა WebExt
 msgid "You cannot submit this type of add-on"
 msgstr "ამ სახის დამატების წარდგენა, არ შეგიძლიათ"
 
-#, fuzzy
 msgid "You cannot submit an add-on using an ID ending with this suffix"
-msgstr "არ შეგიძლიათ დამატების წარდგენა, რომლის ID დაბოლოება არის %s"
+msgstr "არ შეგიძლიათ დამატების წარდგენა, რომლის ID ამ დაბოლოებითაა"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Mozilla-ს მიერ დამოწმებული გაფართოების წარდგენა არ შეგიძლიათ"
