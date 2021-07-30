@@ -899,7 +899,8 @@ def review(request, addon, channel=None):
             actions_delayable.append(key)
 
     addons_sharing_same_guid = (
-        Addon.unfiltered.all().only_translations()
+        Addon.unfiltered.all()
+        .only_translations()
         .filter(addonguid__guid=addon.addonguid_guid)
         .exclude(pk=addon.pk)
         .order_by('pk')
