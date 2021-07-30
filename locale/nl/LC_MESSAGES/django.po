@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-07-29 17:13+0000\n"
-"PO-Revision-Date: 2021-07-30 18:00+0000\n"
+"PO-Revision-Date: 2021-07-30 18:51+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -1772,7 +1772,7 @@ msgid "Validation generated too many errors/warnings so %s messages were truncat
 msgstr "De validatie leverde te veel fouten/waarschuwingen op, dus %s berichten zijn ingekort. Nadat de zichtbare berichten zijn geadresseerd kunt u de overige lezen."
 
 msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
-msgstr ""
+msgstr "Uploaden van Manifest v3 wordt momenteel niet ondersteund. U kunt [{start_href}hier{end_href}] meer lezen over de ondersteuningstijdlijn."
 
 msgid "Updated"
 msgstr "Bijgewerkt"
@@ -2201,7 +2201,7 @@ msgid "Tags"
 msgstr "Labels"
 
 msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
-msgstr ""
+msgstr "Labels helpen gebruikers uw add-on te vinden. U kunt maximaal {0} labels gebruiken. Kies alleen labels die relevant voor uw add-on zijn."
 
 msgid "Limit {0} tags."
 msgstr "Beperkt tot {0} labels."
