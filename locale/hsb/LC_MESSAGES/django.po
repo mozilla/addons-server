@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-07-29 17:13+0000\n"
-"PO-Revision-Date: 2021-07-30 11:13+0000\n"
+"PO-Revision-Date: 2021-07-30 12:52+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -1757,7 +1757,7 @@ msgid "Validation generated too many errors/warnings so %s messages were truncat
 msgstr "Přepruwowanje je přewjele zmylkow/warnowanjow wunjesło, tohodla je so %s powěsćow wotdźěliło. Po wobdźěłowanju widźomnych powěsćow móžeće druhe widźeć."
 
 msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
-msgstr ""
+msgstr "Manifest v3 so tuchwilu za nahrawanje njepodpěruje. Móžeće [{start_href}tu{end_href}] wjace wo podpěrowanskim planje čitać."
 
 msgid "Updated"
 msgstr "Zaktualizowany"
@@ -2187,7 +2187,7 @@ msgid "Tags"
 msgstr "Znački"
 
 msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
-msgstr ""
+msgstr "Znački wužiwarjam pomhaja, waš přidatk namakać. Móžeće maksimalnje {0} značkow měć. Wubjerće  jenož znački, kotrež su relewantne za waš přidatk."
 
 msgid "Limit {0} tags."
 msgstr "Wobmjezowanje ličby značkow: {0}."
