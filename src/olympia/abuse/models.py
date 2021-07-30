@@ -4,7 +4,6 @@ from django.contrib.gis.geoip2 import GeoIP2, GeoIP2Exception
 from django.core.validators import validate_ipv46_address
 from django.db import models
 from django.utils import translation
-from django.utils.functional import cached_property
 
 from extended_choices import Choices
 from geoip2.errors import GeoIP2Error

@@ -48,7 +48,6 @@ from olympia.addons.models import (
     Addon,
     AddonApprovalsCounter,
     AddonReviewerFlags,
-    AddonGUID,
 )
 from olympia.amo.decorators import (
     json_view,
