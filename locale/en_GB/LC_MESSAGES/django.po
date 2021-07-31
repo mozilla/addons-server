@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-07-29 17:13+0000\n"
-"PO-Revision-Date: 2021-07-30 20:12+0000\n"
+"PO-Revision-Date: 2021-07-31 22:03+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -4468,14 +4468,12 @@ msgid "See more translation tools"
 msgstr "See more translation tools"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Social streaming"
-msgstr "Social Networking"
+msgstr "Social streaming"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more social streaming extensions"
-msgstr "See more popular extensions"
+msgstr "See more social streaming extensions"
 
 msgid "Could not parse the manifest file."
 msgstr "Could not parse the manifest file."
@@ -4534,9 +4532,8 @@ msgstr "Maximum size for WebExtension themes is {0}."
 msgid "You cannot submit this type of add-on"
 msgstr "You cannot submit this type of add-on"
 
-#, fuzzy
 msgid "You cannot submit an add-on using an ID ending with this suffix"
-msgstr "You cannot submit an add-on using an ID ending with %s"
+msgstr "You cannot submit an add-on using an ID ending with this suffix"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "You cannot submit a Mozilla Signed Extension"
