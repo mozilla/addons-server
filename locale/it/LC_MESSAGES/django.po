@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-07-29 17:13+0000\n"
-"PO-Revision-Date: 2021-07-30 12:24+0000\n"
-"Last-Translator: Nicole <nicolecosen@gmail.com>\n"
+"PO-Revision-Date: 2021-07-31 13:26+0000\n"
+"Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -1810,7 +1810,7 @@ msgstr ""
 "resto."
 
 msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
-msgstr ""
+msgstr "Non è attualmente possibile caricare estensioni con manifesto v3. Ulteriori informazioni sui tempi previsti per l’implementazione sono disponibili [{start_href}qui{end_href}]."
 
 msgid "Updated"
 msgstr "Aggiornato"
@@ -4564,11 +4564,11 @@ msgstr "Visualizza altri strumenti di traduzione"
 
 #. editorial content for the homepage shelves.
 msgid "Social streaming"
-msgstr ""
+msgstr "Streaming di gruppo"
 
 #. editorial content for the homepage shelves.
 msgid "See more social streaming extensions"
-msgstr ""
+msgstr "Visualizza altre estensioni per lo streaming di gruppo"
 
 msgid "Could not parse the manifest file."
 msgstr "Impossibile analizzare il file manifesto."
@@ -4628,7 +4628,7 @@ msgid "You cannot submit this type of add-on"
 msgstr "Non è possibile caricare questo tipo di componente aggiuntivo."
 
 msgid "You cannot submit an add-on using an ID ending with this suffix"
-msgstr ""
+msgstr "Non è possibile caricare un componente aggiuntivo con un ID che termina con questo suffisso"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Impossibile caricare un’estensione già firmata digitalmente da Mozilla"
