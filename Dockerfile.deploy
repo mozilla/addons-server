@@ -1,4 +1,4 @@
-FROM python:2.7.14-slim-stretch
+FROM python:2.7.18-slim-stretch
 
 # need to compile swig
 ENV SWIG_FEATURES="-D__x86_64__"
@@ -99,5 +99,5 @@ RUN npm install \
     && make -f Makefile-docker copy_node_js \
     && DJANGO_SETTINGS_MODULE='settings_local' python manage.py compress_assets \
     && DJANGO_SETTINGS_MODULE='settings_local' python manage.py collectstatic --noinput
-
+RUN npm cache clean -f && npm install -g n && n 12.22.4
 RUN rm -f settings_local.py settings_local.pyc

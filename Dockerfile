@@ -1,4 +1,4 @@
-FROM python:2.7.15-slim-stretch
+FROM python:2.7.18-slim-stretch
 
 ENV PYTHONDONTWRITEBYTECODE=1
 
@@ -90,3 +90,4 @@ ENV CLEANCSS_BIN /deps/node_modules/.bin/cleancss
 ENV LESS_BIN /deps/node_modules/.bin/lessc
 ENV UGLIFY_BIN /deps/node_modules/.bin/uglifyjs
 ENV ADDONS_LINTER_BIN /deps/node_modules/.bin/addons-linter
+RUN npm cache clean -f && npm install -g n && n 12.22.4
