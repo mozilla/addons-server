@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-07-29 17:13+0000\n"
-"PO-Revision-Date: 2021-08-01 15:30+0000\n"
+"PO-Revision-Date: 2021-08-01 15:38+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -4480,11 +4480,11 @@ msgstr "Se fler översättningsverktyg"
 
 #. editorial content for the homepage shelves.
 msgid "Social streaming"
-msgstr ""
+msgstr "Social strömning"
 
 #. editorial content for the homepage shelves.
 msgid "See more social streaming extensions"
-msgstr ""
+msgstr "Se fler tillägg för social strömning"
 
 msgid "Could not parse the manifest file."
 msgstr "Kunde inte tolka manifest-filen."
@@ -4544,7 +4544,7 @@ msgid "You cannot submit this type of add-on"
 msgstr "Du kan inte skicka in denna typ av tillägg"
 
 msgid "You cannot submit an add-on using an ID ending with this suffix"
-msgstr ""
+msgstr "Du kan inte skicka in ett tillägg med ett ID som slutar med detta suffix"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Du kan inte skicka in ett Mozilla-signerat tillägg"
