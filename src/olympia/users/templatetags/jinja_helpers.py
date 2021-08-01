@@ -1,7 +1,7 @@
 from django.utils.encoding import force_str
 from django.utils.translation import pgettext
 
-import jinja2
+import markupsafe
 
 from django_jinja import library
 
@@ -10,7 +10,7 @@ from django_jinja import library
 def user_link(user):
     if not user:
         return ''
-    return jinja2.Markup(_user_link(user))
+    return markupsafe.Markup(_user_link(user))
 
 
 @library.global_function
@@ -28,7 +28,7 @@ def users_list(users, size=None, max_text_length=None):
     else:
         user_list = list(map(_user_link, users))
 
-    return jinja2.Markup(', '.join(user_list + tail))
+    return markupsafe.Markup(', '.join(user_list + tail))
 
 
 def _user_link(user, max_text_length=None):
@@ -42,6 +42,6 @@ def _user_link(user, max_text_length=None):
 
     return '<a href="%s" title="%s">%s</a>' % (
         user.get_absolute_url(),
-        jinja2.escape(user.name),
-        jinja2.escape(force_str(name)),
+        markupsafe.escape(user.name),
+        markupsafe.escape(force_str(name)),
     )

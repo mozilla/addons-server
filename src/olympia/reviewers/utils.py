@@ -34,7 +34,7 @@ from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
 from olympia.versions.models import VersionReviewerFlags
 
-import jinja2
+import markupsafe
 
 
 log = olympia.core.logger.getLogger('z.mailer')
@@ -49,7 +49,7 @@ class ItemStateTable(object):
 
 
 def safe_substitute(string, *args):
-    return string % tuple(jinja2.escape(arg) for arg in args)
+    return string % tuple(markupsafe.escape(arg) for arg in args)
 
 
 class ReviewerQueueTable(tables.Table, ItemStateTable):
@@ -68,12 +68,12 @@ class ReviewerQueueTable(tables.Table, ItemStateTable):
     def render_addon_name(self, record):
         url = reverse('reviewers.review', args=[record.addon_slug])
         self.increment_item()
-        return jinja2.Markup(
+        return markupsafe.Markup(
             '<a href="%s">%s <em>%s</em></a>'
             % (
                 url,
-                jinja2.escape(record.addon_name),
-                jinja2.escape(record.latest_version),
+                markupsafe.escape(record.addon_name),
+                markupsafe.escape(record.latest_version),
             )
         )
 
@@ -83,7 +83,7 @@ class ReviewerQueueTable(tables.Table, ItemStateTable):
     def render_flags(self, record):
         if not hasattr(record, 'flags'):
             record.flags = get_flags_for_row(record)
-        return jinja2.Markup(
+        return markupsafe.Markup(
             ''.join(
                 '<div class="app-icon ed-sprite-%s" title="%s"></div>' % flag
                 for flag in record.flags
@@ -117,7 +117,7 @@ class ReviewerQueueTable(tables.Table, ItemStateTable):
             r = ngettext('{0} day', '{0} days', record.waiting_time_days).format(
                 record.waiting_time_days
             )
-        return jinja2.escape(r)
+        return markupsafe.escape(r)
 
     @classmethod
     def default_order_by(cls):
@@ -143,12 +143,12 @@ class ViewUnlistedAllListTable(tables.Table, ItemStateTable):
             ],
         )
         self.increment_item()
-        return jinja2.Markup(
+        return markupsafe.Markup(
             safe_substitute('<a href="%s">%s</a>', url, record.addon_name)
         )
 
     def render_guid(self, record):
-        return jinja2.Markup(safe_substitute('%s', record.guid))
+        return markupsafe.Markup(safe_substitute('%s', record.guid))
 
     def render_authors(self, record):
         authors = record.authors
@@ -161,7 +161,7 @@ class ViewUnlistedAllListTable(tables.Table, ItemStateTable):
             )
             for (id_, uname) in authors[0:3]
         )
-        return jinja2.Markup(
+        return markupsafe.Markup(
             '<span title="%s">%s%s</span>'
             % (
                 more,
@@ -237,12 +237,12 @@ class ModernAddonQueueTable(ReviewerQueueTable):
 
     def render_addon_name(self, record):
         url = self._get_addon_name_url(record)
-        return jinja2.Markup(
+        return markupsafe.Markup(
             '<a href="%s">%s <em>%s</em></a>'
             % (
                 url,
-                jinja2.escape(record.name),
-                jinja2.escape(record.current_version),
+                markupsafe.escape(record.name),
+                markupsafe.escape(record.current_version),
             )
         )
 
@@ -250,7 +250,7 @@ class ModernAddonQueueTable(ReviewerQueueTable):
         return naturaltime(value) if value else ''
 
     def render_weight(self, *, record, value):
-        return jinja2.Markup(
+        return markupsafe.Markup(
             '<span title="%s">%d</span>'
             % (
                 '\n'.join(
@@ -289,16 +289,16 @@ class UnlistedPendingManualApprovalQueueTable(tables.Table, ItemStateTable):
 
     def render_addon_name(self, record):
         url = self._get_addon_name_url(record)
-        return jinja2.Markup(
+        return markupsafe.Markup(
             '<a href="%s">%s</a>'
             % (
                 url,
-                jinja2.escape(record.name),
+                markupsafe.escape(record.name),
             )
         )
 
     def render_waiting_time(self, record):
-        return jinja2.escape(naturaltime(record.first_version_created))
+        return markupsafe.escape(naturaltime(record.first_version_created))
 
     @classmethod
     def default_order_by(cls):
@@ -388,7 +388,7 @@ class ScannersReviewTable(AutoApprovedTable):
         )
 
     def render_addon_name(self, record):
-        rval = [jinja2.escape(record.name)]
+        rval = [markupsafe.escape(record.name)]
 
         if record.listed_versions_that_need_human_review:
             url = reverse('reviewers.review', args=[record.slug])
@@ -414,7 +414,7 @@ class ScannersReviewTable(AutoApprovedTable):
                 )
             )
 
-        return jinja2.Markup(''.join(rval))
+        return markupsafe.Markup(''.join(rval))
 
 
 class MadReviewTable(ScannersReviewTable):

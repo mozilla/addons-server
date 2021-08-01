@@ -5,6 +5,7 @@ from django.utils.encoding import force_str
 from django.utils.translation.trans_real import to_language
 
 import jinja2
+import markupsafe
 
 from django_jinja import library
 
@@ -25,8 +26,8 @@ def locale_html(translatedfield):
     else:
         rtl_locales = map(translation.to_locale, settings.LANGUAGES_BIDI)
         textdir = 'rtl' if locale in rtl_locales else 'ltr'
-        return jinja2.Markup(
-            ' lang="%s" dir="%s"' % (jinja2.escape(translatedfield.locale), textdir)
+        return markupsafe.Markup(
+            ' lang="%s" dir="%s"' % (markupsafe.escape(translatedfield.locale), textdir)
         )
 
 
@@ -85,4 +86,4 @@ def all_locales(addon, field_name, nl2br=False, prettify_empty=False):
         prettify_empty=prettify_empty,
     )
     t = loader.get_template('translations/all-locales.html')
-    return jinja2.Markup(t.render(ctx))
+    return markupsafe.Markup(t.render(ctx))

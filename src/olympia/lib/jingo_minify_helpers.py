@@ -6,14 +6,14 @@ from django.conf import settings
 from django.contrib.staticfiles.finders import find as find_static_path
 from django.templatetags.static import static
 
-import jinja2
+import markupsafe
 
 
 def _build_html(items, wrapping):
     """
     Wrap `items` in wrapping.
     """
-    return jinja2.Markup('\n'.join((wrapping % item for item in items)))
+    return markupsafe.Markup('\n'.join((wrapping % item for item in items)))
 
 
 def ensure_path_exists(path):

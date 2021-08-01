@@ -17,6 +17,7 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import get_language, gettext
 
 import jinja2
+import markupsafe
 import waffle
 from jinja2.ext import Extension
 
@@ -42,7 +43,7 @@ library.global_function(static)
 
 @library.filter
 def urlparams(*args, **kwargs):
-    return jinja2.Markup(utils.urlparams(*args, **kwargs))
+    return markupsafe.Markup(utils.urlparams(*args, **kwargs))
 
 
 @library.global_function
@@ -98,7 +99,7 @@ def dj_paginator(pager, autoescape=True):
 @library.filter
 def impala_paginator(pager):
     t = loader.get_template('amo/impala/paginator.html')
-    return jinja2.Markup(t.render({'pager': pager}))
+    return markupsafe.Markup(t.render({'pager': pager}))
 
 
 class PaginationRenderer(object):
@@ -132,7 +133,7 @@ class PaginationRenderer(object):
     def render(self):
         c = {'pager': self.pager, 'num_pages': self.num_pages, 'count': self.count}
         t = loader.get_template('amo/paginator.html').render(c)
-        return jinja2.Markup(t)
+        return markupsafe.Markup(t)
 
 
 def _get_format():
@@ -270,7 +271,7 @@ def nl2br(string):
     """Turn newlines into <br/>."""
     if not string:
         return ''
-    return jinja2.Markup('<br/>'.join(jinja2.escape(string).splitlines()))
+    return markupsafe.Markup('<br/>'.join(markupsafe.escape(string).splitlines()))
 
 
 @library.filter(name='date')
