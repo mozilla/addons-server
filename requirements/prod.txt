@@ -279,9 +279,9 @@ html5lib==1.1 \
     --hash=sha256:0d78f8fde1c230e99fe37986a60526d7049ed4bf8a9fadbad5f00e22e58e041d \
     --hash=sha256:b2e5b40261e20f354d198eae92afc10d750afb487ed5e50f9c4eaf07c184146f
 # importlib-metadata is required by kombu
-importlib-metadata==4.6.1 \
-    --hash=sha256:9f55f560e116f8643ecf2922d9cd3e1c7e8d52e683178fecd9d08f6aa357e11e \
-    --hash=sha256:079ada16b7fc30dfbb5d13399a5113110dab1aa7c2bc62f66af75f0b717c8cac
+importlib-metadata==4.6.3 \
+    --hash=sha256:51c6635429c77cf1ae634c997ff9e53ca3438b495f10a55ba28594dd69764a8b \
+    --hash=sha256:0645585859e9a6689c523927a5032f2ba5919f1f7d0e84bd4533312320de1ff9
 # isodate is required by rdflib
 isodate==0.6.0 \
     --hash=sha256:aa4d33c06640f5352aca96e4b81afd8ab3b47337cc12089822d6f322ac772c81 \
@@ -481,9 +481,9 @@ zipp==3.5.0 \
 google-cloud-bigquery==2.23.1 \
     --hash=sha256:bc4408601387e1666627052bd026d8b7015e49d8d54c2b5650f8a5a0017a763f \
     --hash=sha256:9cc1fca4e945b82f494188b7e453d8393c6b9e0cc6a5cabdec84432a21440f28
-google-auth==1.33.1 \
-    --hash=sha256:036dd68c1e8baa422b6b61619b8e02793da2e20f55e69514612de6c080468755 \
-    --hash=sha256:7665c04f2df13cc938dc7d9066cddb1f8af62b038bc8b2306848c1b23121865f
+google-auth==1.34.0 \
+    --hash=sha256:bd6aa5916970a823e76ffb3d5c3ad3f0bedafca0a7fa53bc15149ab21cb71e05 \
+    --hash=sha256:f1094088bae046fb06f3d1a3d7df14717e8d959e9105b79c57725bd4e17597a2
 google-api-core==1.31.1 \
     --hash=sha256:1d63e2b28057d79d64795c9a70abcecb5b7e96da732d011abf09606a39b48701 \
     --hash=sha256:108cf94336aed7e614eafc53933ef02adf63b9f0fd87e8f8212acaa09eaca456
