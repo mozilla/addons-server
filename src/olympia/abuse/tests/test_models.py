@@ -3,7 +3,7 @@ from unittest import mock
 
 from olympia.abuse.models import AbuseReport, GeoIP2Error, GeoIP2Exception
 from olympia.addons.models import Addon
-from olympia.amo.tests import addon_factory, TestCase
+from olympia.amo.tests import addon_factory, TestCase, user_factory
 
 
 class TestAbuse(TestCase):
@@ -244,3 +244,30 @@ class TestAbuseManager(TestCase):
         assert report in addon.abuse_reports.all()
         assert deleted_report not in addon.abuse_reports.all()
         assert addon.abuse_reports.count() == 1
+
+    def test_for_addon_finds_by_addon_fk(self):
+        addon = addon_factory()
+        report = AbuseReport.objects.create(addon=addon)
+        assert list(AbuseReport.objects.for_addon(addon)) == [report]
+
+    def test_for_addon_finds_by_author(self):
+        addon = addon_factory(users=[user_factory()])
+        report = AbuseReport.objects.create(user=addon.listed_authors[0])
+        assert list(AbuseReport.objects.for_addon(addon)) == [report]
+
+    def test_for_addon_finds_by_guid(self):
+        addon = addon_factory()
+        report = AbuseReport.objects.create(guid=addon.guid)
+        assert list(AbuseReport.objects.for_addon(addon)) == [report]
+
+    def test_for_addon_finds_by_original_guid(self):
+        addon = addon_factory(guid='foo@bar')
+        addon.update(guid='guid-reused-by-pk-42')
+        report = AbuseReport.objects.create(guid='foo@bar')
+        assert list(AbuseReport.objects.for_addon(addon)) == [report]
+
+    def test_for_addon_by_guid_and_fk_together_no_duplicate(self):
+        addon = addon_factory(guid='foo@bar')
+        addon.update(guid='guid-reused-by-pk-42')
+        report = AbuseReport.objects.create(guid='foo@bar', addon=addon)
+        assert list(AbuseReport.objects.for_addon(addon)) == [report]

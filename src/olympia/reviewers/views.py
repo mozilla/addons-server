@@ -48,7 +48,6 @@ from olympia.addons.models import (
     Addon,
     AddonApprovalsCounter,
     AddonReviewerFlags,
-    AddonGUID,
 )
 from olympia.amo.decorators import (
     json_view,
@@ -803,23 +802,7 @@ def review(request, addon, channel=None):
     is_admin = acl.action_allowed(request, amo.permissions.REVIEWS_ADMIN)
 
     approvals_info = None
-    reports = Paginator(
-        (
-            AbuseReport.objects.filter(
-                Q(addon=addon) | Q(user__in=addon.listed_authors)
-            )
-            .select_related('user')
-            .prefetch_related(
-                # Should only need translations for addons on abuse reports,
-                # so let's prefetch the add-on with them and avoid repeating
-                # a ton of potentially duplicate queries with all the useless
-                # Addon transforms.
-                Prefetch('addon', queryset=Addon.unfiltered.all().only_translations())
-            )
-            .order_by('-created')
-        ),
-        5,
-    ).page(1)
+    reports = Paginator(AbuseReport.objects.for_addon(addon), 5).page(1)
     user_ratings = Paginator(
         (
             Rating.without_replies.filter(
@@ -914,11 +897,13 @@ def review(request, addon, channel=None):
         if action.get('delayable', False):
             actions_delayable.append(key)
 
-    deleted_addon_ids = (
-        AddonGUID.objects.filter(guid=addon.guid)
-        .exclude(addon=addon)
-        .values_list('addon_id', flat=True)
-        if addon.guid
+    addons_sharing_same_guid = (
+        Addon.unfiltered.all()
+        .only_translations()
+        .filter(addonguid__guid=addon.addonguid_guid)
+        .exclude(pk=addon.pk)
+        .order_by('pk')
+        if addon.addonguid_guid
         else []
     )
 
@@ -1011,6 +996,7 @@ def review(request, addon, channel=None):
         actions_delayable=actions_delayable,
         actions_full=actions_full,
         addon=addon,
+        addons_sharing_same_guid=addons_sharing_same_guid,
         api_token=request.COOKIES.get(API_TOKEN_COOKIE, None),
         approvals_info=approvals_info,
         auto_approval_info=auto_approval_info,
@@ -1018,7 +1004,6 @@ def review(request, addon, channel=None):
         channel=channel,
         content_review=content_review,
         count=count,
-        deleted_addon_ids=deleted_addon_ids,
         flags=flags,
         form=form,
         has_versions_pending_rejection=has_versions_pending_rejection,
@@ -1196,17 +1181,7 @@ def reviewlog(request):
 @any_reviewer_required
 @reviewer_addon_view_factory
 def abuse_reports(request, addon):
-    developers = addon.listed_authors
-    reports = (
-        AbuseReport.objects.filter(Q(addon=addon) | Q(user__in=developers))
-        .select_related('user')
-        .prefetch_related(
-            # See review(): we only need the add-on objects and their translations.
-            Prefetch('addon', queryset=Addon.unfiltered.all().only_translations()),
-        )
-        .order_by('-created')
-    )
-    reports = amo.utils.paginate(request, reports)
+    reports = amo.utils.paginate(request, AbuseReport.objects.for_addon(addon))
     data = context(addon=addon, reports=reports, version=addon.current_version)
     return render(request, 'reviewers/abuse_reports.html', data)
 

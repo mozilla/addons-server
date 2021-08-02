@@ -36,6 +36,24 @@
             <th>{{ _('Add-on ID') }}</th>
             <td>{{ addon.guid }}</td>
           </tr>
+          {% if addon.addonguid_guid and addon.addonguid_guid != addon.guid %}
+            <tr class="addon-original-guid">
+            <th>{{ _('Original Add-on ID') }}</th>
+            <td>{{ addon.addonguid_guid }}</td>
+          </tr>
+          {% endif %}
+          {% if addons_sharing_same_guid %}
+          <tr class="addon-addons-sharing-guid">
+            <th>{{ _('Add-on(s) sharing same ID') }}</th>
+            <td>
+                {% for addon_sharing_same_guid in addons_sharing_same_guid %}
+                  {% set review_url = url('reviewers.review', 'unlisted', addon_sharing_same_guid.pk)
+                                      if unlisted else url('reviewers.review', addon_sharing_same_guid.pk) %}
+                  <a href="{{ review_url }}">{{ addon_sharing_same_guid }}</a>&nbsp;
+                {% endfor %}
+              </td>
+          </tr>
+          {% endif %}
           <tr class="addon-amo-id">
             <th>{{ _('Internal AMO ID') }}</th>
             <td>{{ addon.id }}</td>

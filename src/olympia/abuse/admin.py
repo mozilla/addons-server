@@ -216,11 +216,10 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         'report_entry_point',
         'addon_card',
     )
-    ADDON_METADATA_FIELDSET = 'Add-on metadata'
     fieldsets = (
-        (None, {'fields': ('state', 'reason', 'message')}),
+        ('Abuse Report Core Information', {'fields': ('state', 'reason', 'message')}),
         (
-            None,
+            'Abuse Report Data',
             {
                 'fields': (
                     'created',
@@ -249,12 +248,23 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     # using the fields below:
     dynamic_fieldset_fields = {
         # Known add-on in database
-        'addon': ('addon_card',),
+        'addon': (
+            ('Add-on', {'fields': ('addon_card',)}),
+            (
+                'Submitted Info',
+                {'fields': ('addon_name', 'addon_version', 'guid', 'addon_summary')},
+            ),
+        ),
         # User
-        'user': ('user',),
+        'user': (('User', {'fields': ('user',)}),),
         # Unknown add-on, we only have the guid and maybe some extra addon_*
         # fields that were submitted with the report.
-        'guid': ('addon_name', 'addon_version', 'guid', 'addon_summary'),
+        'guid': (
+            (
+                'Unknown Add-on',
+                {'fields': ('addon_name', 'addon_version', 'guid', 'addon_summary')},
+            ),
+        ),
     }
     view_on_site = False  # Abuse reports have no public page to link to.
 
@@ -364,8 +374,7 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
             target = 'user'
         else:
             target = 'guid'
-        dynamic_fieldset = ((None, {'fields': self.dynamic_fieldset_fields[target]}),)
-        return dynamic_fieldset + self.fieldsets
+        return self.dynamic_fieldset_fields[target] + self.fieldsets
 
     def target_name(self, obj):
         name = obj.target.name if obj.target else obj.addon_name
@@ -380,7 +389,6 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
             approvals_info = addon.addonapprovalscounter
         except AddonApprovalsCounter.DoesNotExist:
             approvals_info = None
-        developers = addon.listed_authors
 
         # Provide all the necessary context addon_details_box.html needs. Note
         # the use of Paginator() to match what the template expects.
@@ -389,12 +397,7 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
             'addon_name': addon.name,
             'approvals_info': approvals_info,
             'reports': Paginator(
-                (
-                    AbuseReport.objects.filter(
-                        Q(addon=addon) | Q(user__in=developers)
-                    ).order_by('-created')
-                ),
-                5,
+                AbuseReport.objects.all().for_addon(addon).exclude(pk=obj.pk), 5
             ).page(1),
             'user_ratings': Paginator(
                 (

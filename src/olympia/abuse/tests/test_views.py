@@ -71,10 +71,10 @@ class AddonAbuseViewSetTestBase(object):
         )
         assert response.status_code == 201
 
-        assert AbuseReport.objects.filter(addon_id=addon.id).exists()
-        report = AbuseReport.objects.get(addon_id=addon.id)
-        assert report.guid == addon.guid
-        self.check_report(report, '[Extension] Abuse Report for %s' % addon.name)
+        assert AbuseReport.objects.filter(guid=addon.guid).exists()
+        report = AbuseReport.objects.get(guid=addon.guid)
+        assert not report.addon
+        self.check_report(report, '[Addon] Abuse Report for %s' % addon.guid)
         assert report.message == 'abuse!'
 
     def test_report_addon_guid_not_on_amo(self):
@@ -105,11 +105,23 @@ class AddonAbuseViewSetTestBase(object):
             data={'addon': str(addon.id), 'message': 'abuse!'},
             REMOTE_ADDR='123.45.67.89',
         )
+        # Fails: for non public add-ons, you have to use the guid.
+        assert response.status_code == 404
+
+    def test_addon_not_public_by_guid(self):
+        addon = addon_factory(status=amo.STATUS_NULL)
+        response = self.client.post(
+            self.url,
+            data={'addon': str(addon.guid), 'message': 'abuse!'},
+            REMOTE_ADDR='123.45.67.89',
+        )
         assert response.status_code == 201
 
-        assert AbuseReport.objects.filter(addon_id=addon.id).exists()
-        report = AbuseReport.objects.get(addon_id=addon.id)
-        self.check_report(report, '[Extension] Abuse Report for %s' % addon.name)
+        assert AbuseReport.objects.filter(guid=addon.guid).exists()
+        report = AbuseReport.objects.get(guid=addon.guid)
+        # addon FK was not recorded - we can't guarantee it's the right one.
+        assert not report.addon
+        self.check_report(report, '[Addon] Abuse Report for %s' % addon.guid)
         assert report.message == 'abuse!'
 
     def test_no_addon_fails(self):
