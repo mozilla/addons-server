@@ -714,7 +714,7 @@ class Addon(OnChangeMixin, ModelBase):
                 try:
                     with transaction.atomic():
                         self.deny_resubmission()
-                except GuidAlreadyDeniedError:
+                except RuntimeError:
                     # If the guid is already in DeniedGuids, we are good.
                     pass
 
