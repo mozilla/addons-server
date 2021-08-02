@@ -85,6 +85,10 @@ SLUG_INCREMENT_SUFFIXES = set(range(1, MAX_SLUG_INCREMENT + 1))
 GUID_REUSE_FORMAT = 'guid-reused-by-pk-{}'
 
 
+class GuidAlreadyDeniedError(RuntimeError):
+    pass
+
+
 def get_random_slug():
     """Return a 20 character long random string"""
     return ''.join(str(uuid.uuid4()).split('-')[:-1])
@@ -597,7 +601,7 @@ class Addon(OnChangeMixin, ModelBase):
         if not self.guid:
             raise RuntimeError('No GUID on this add-on')
         if self.is_guid_denied:
-            raise RuntimeError('GUID already denied')
+            raise GuidAlreadyDeniedError('GUID already denied')
 
         activity.log_create(amo.LOG.DENIED_GUID_ADDED, self)
         log.info('Deny resubmission for addon "%s"', self.slug)
@@ -605,7 +609,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     def allow_resubmission(self):
         if not self.is_guid_denied:
-            raise RuntimeError('GUID already denied')
+            raise RuntimeError('GUID already allowed')
 
         activity.log_create(amo.LOG.DENIED_GUID_DELETED, self)
         log.info('Allow resubmission for addon "%s"', self.slug)
@@ -710,7 +714,7 @@ class Addon(OnChangeMixin, ModelBase):
                 try:
                     with transaction.atomic():
                         self.deny_resubmission()
-                except RuntimeError:
+                except GuidAlreadyDeniedError:
                     # If the guid is already in DeniedGuids, we are good.
                     pass
 

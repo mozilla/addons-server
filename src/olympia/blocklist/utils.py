@@ -209,6 +209,7 @@ def disable_addon_for_block(block):
     """Disable appropriate addon versions that are affected by the Block, and
     the addon too if 0 - *."""
     from .models import Block
+    from olympia.addons.models import GuidAlreadyDeniedError
     from olympia.reviewers.utils import ReviewBase
 
     review = ReviewBase(
@@ -237,7 +238,10 @@ def disable_addon_for_block(block):
 
     if block.min_version == Block.MIN and block.max_version == Block.MAX:
         if block.addon.status == amo.STATUS_DELETED:
-            block.addon.deny_resubmission()
+            try:
+                block.addon.deny_resubmission()
+            except GuidAlreadyDeniedError:
+                pass
         else:
             block.addon.update(status=amo.STATUS_DISABLED)
 
