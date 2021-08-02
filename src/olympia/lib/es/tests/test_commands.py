@@ -9,7 +9,7 @@ from django.core import management
 from django.db import connection
 from django.test.testcases import TransactionTestCase
 
-from celery import group, task
+from celery import group, shared_task
 from celery.canvas import _chain
 
 from olympia.addons.models import Addon
@@ -19,7 +19,7 @@ from olympia.lib.es.management.commands import reindex
 from olympia.lib.es.utils import is_reindexing_amo, unflag_reindexing_amo
 
 
-@task
+@shared_task
 def dummy_task():
     return None
 
