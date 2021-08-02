@@ -60,8 +60,8 @@ to if necessary.
     :>json string reporter.url: The link to the profile page for of the user who submitted the report.
     :>json object addon: The add-on reported for abuse.
     :>json string addon.guid: The add-on `extension identifier <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#id>`_.
-    :>json int|null addon.id: The add-on id on AMO, or null if the add-on submitted was a guid.
-    :>json string|null addon.slug: The add-on slug, or null if the add-on submitted was a guid.
+    :>json int|null addon.id: The add-on id on AMO, or ``null`` if the ``addon`` submitted was a guid.
+    :>json string|null addon.slug: The add-on slug, or ``null`` if the ``addon`` submitted was a guid.
     :>json string message: The body/content of the abuse report.
     :>json string|null report_entry_point: The report entry point.
     :>json string|null addon_install_method: The add-on install method.

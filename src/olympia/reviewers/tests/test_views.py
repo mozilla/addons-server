@@ -6191,7 +6191,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         check_links(expected, doc('.addon-addons-sharing-guid a'), verify=False)
 
-        # It shouldn't hahappen nowadays, but make sure an empty guid isn't
+        # It shouldn't happen nowadays, but make sure an empty guid isn't
         # considered.
         self.addon.addonguid.update(guid='')
         response = self.client.get(self.url)
