@@ -3,6 +3,7 @@ from django.utils.encoding import force_str
 
 import html5lib
 import jinja2
+import markupsafe
 
 
 def truncate_text(text, limit, killwords=False, end='...'):
@@ -68,7 +69,7 @@ def truncate(html, length, killwords=False, end='...'):
     """
     tree = html5lib.parseFragment(html)
     if text_length(tree) <= length:
-        return jinja2.Markup(html)
+        return markupsafe.Markup(html)
     else:
         # Get a truncated version of the tree.
         short, _ = trim(tree, length, killwords, end)
@@ -79,7 +80,7 @@ def truncate(html, length, killwords=False, end='...'):
         serializer = html5lib.serializer.HTMLSerializer(
             quote_attr_values='always', omit_optional_tags=False
         )
-        return jinja2.Markup(force_str(serializer.render(stream)))
+        return markupsafe.Markup(force_str(serializer.render(stream)))
 
 
 def transfield_changed(field, initial, data):

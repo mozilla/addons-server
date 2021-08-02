@@ -15,7 +15,7 @@ from django.utils.encoding import force_str
 from django.utils.functional import cached_property
 from django.utils.translation import gettext
 
-import jinja2
+import markupsafe
 from olympia.constants.applications import APP_IDS
 import waffle
 
@@ -222,7 +222,7 @@ class Version(OnChangeMixin, ModelBase):
         ]
 
     def __str__(self):
-        return jinja2.escape(self.version)
+        return markupsafe.escape(self.version)
 
     @classmethod
     def from_upload(cls, upload, addon, selected_apps, channel, parsed_data=None):
