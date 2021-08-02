@@ -22,6 +22,7 @@ from olympia.addons.models import (
     DeniedGuid,
     DeniedSlug,
     FrozenAddon,
+    GuidAlreadyDeniedError,
     MigratedLWT,
     Preview,
     AddonGUID,
@@ -2971,8 +2972,10 @@ class TestAddonAndDeniedGuid(TestCase):
     def test_deny_already_denied_guid(self):
         addon = addon_factory()
         addon.deny_resubmission()
-        with pytest.raises(RuntimeError):
+        with pytest.raises(GuidAlreadyDeniedError) as exc_info:
             addon.deny_resubmission()
+        # Exception raised is also a child of the more generic RuntimeError.
+        assert isinstance(exc_info.value, RuntimeError)
 
     def test_deny_empty_guid(self):
         addon = addon_factory(guid=None)
