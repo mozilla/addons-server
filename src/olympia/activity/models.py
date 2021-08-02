@@ -13,7 +13,7 @@ from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.translation import gettext
 
-import jinja2
+import markupsafe
 
 import olympia.core.logger
 
@@ -370,7 +370,7 @@ class SafeFormatter(string.Formatter):
     def get_field(self, *args, **kw):
         # obj is the value getting interpolated into the string.
         obj, used_key = super(SafeFormatter, self).get_field(*args, **kw)
-        return jinja2.escape(obj), used_key
+        return markupsafe.escape(obj), used_key
 
 
 class ActivityLog(ModelBase):
@@ -396,7 +396,7 @@ class ActivityLog(ModelBase):
     def f(self, *args, **kw):
         """Calls SafeFormatter.format and returns a Markup string."""
         # SafeFormatter escapes everything so this is safe.
-        return jinja2.Markup(self.formatter.format(*args, **kw))
+        return markupsafe.Markup(self.formatter.format(*args, **kw))
 
     @classmethod
     def arguments_builder(cls, activities):

@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-21 08:49+0000\n"
-"PO-Revision-Date: 2021-07-23 18:52+0000\n"
-"Last-Translator: Yi-Jyun Pan <pan93412@gmail.com>\n"
+"POT-Creation-Date: 2021-07-29 17:13+0000\n"
+"PO-Revision-Date: 2021-07-29 18:03+0000\n"
+"Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
@@ -285,9 +285,6 @@ msgstr "電子郵件:"
 msgid "OK"
 msgstr "確定"
 
-msgid "No results found"
-msgstr "搜尋沒有結果"
-
 #. abbreviation of 'previous'
 msgid "Prev"
 msgstr "上一頁"
@@ -307,17 +304,6 @@ msgstr "我們正在進行網站維護，這個功能暫時無法使用。請您
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "我們正在進行網站維護，本頁面中部分功能暫時無法使用。請稍後再試。"
-
-msgid "Are you human?"
-msgstr "您是人類嗎？"
-
-msgid "What's this?"
-msgstr "這是什麼？"
-
-msgid ""
-"<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
-"different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
-msgstr "<p>請輸入下方的<strong>所有文字</strong>，<strong>需要的話用空白隔開</strong>。</p><p>如果看不懂或很難閱讀，您可以<a href=\"#\" id=\"recaptcha_different\">換一組文字</a>或<a href=\"#\" id=\"recaptcha_audio\">改用不同方式驗證</a>。</p>"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -1763,6 +1749,9 @@ msgstr "Mozilla 安全性通知: 已註銷您的 AMO API"
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "驗證過程中產生太多錯誤或警告訊息，所以已審略了 %s 比訊息。在處理完這些訊息所提到的問題後，您將可以看到其他的錯誤或警告訊息。"
 
+msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgstr "目前不支援上傳 Manifest v3。您可以[{start_href}在此{end_href}]了解詳細的支援時間範圍。"
+
 msgid "Updated"
 msgstr "更新日期"
 
@@ -2179,8 +2168,8 @@ msgstr "{0} 的其他詳細資訊"
 msgid "Tags"
 msgstr "標籤"
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr "使用標籤能幫助使用者找到您的附加元件，這個欄位應該盡量縮短，例如輸入「twitter」就好。您最多可設定 {0} 個標籤。"
+msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
+msgstr ""
 
 msgid "Limit {0} tags."
 msgstr "最多 {0} 個標籤。"
@@ -2996,16 +2985,6 @@ msgstr "下個上架版本:"
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "這是最新上傳的版本，但還沒有在網站上公開發佈"
 
-msgid "Queues are not reviewed strictly in order"
-msgstr "我們並不完全按照等待審核區之先後順序來審核"
-
-msgid "Queue Position:"
-msgstr "佇列位置："
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "第 %(position)s 位，共 %(total)s 位"
-
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr "簽署後讓您自行發布，您需自行處理自動更新事宜。"
 
@@ -3420,9 +3399,6 @@ msgstr "若取消附加元件審核要求，元件將會停留在尚未完成狀
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "您是否確定要取消審核要求？"
-
-msgid "Add-on Documentation :: Developer Hub"
-msgstr "附加元件文件集 :: 開發者交流中心"
 
 #. L10n: first parameter is the number of errors
 # {0} is a number
@@ -4449,6 +4425,14 @@ msgstr "翻譯工具"
 msgid "See more translation tools"
 msgstr "看更多翻譯工具"
 
+#. editorial content for the homepage shelves.
+msgid "Social streaming"
+msgstr "社交串流"
+
+#. editorial content for the homepage shelves.
+msgid "See more social streaming extensions"
+msgstr "看看更多社交串流擴充套件"
+
 msgid "Could not parse the manifest file."
 msgstr "無法剖析安裝資訊檔。"
 
@@ -4506,9 +4490,8 @@ msgstr "WebExtension 佈景主題的最大大小為 {0}。"
 msgid "You cannot submit this type of add-on"
 msgstr "您無法送出此類型的附加元件。"
 
-#, python-format
-msgid "You cannot submit an add-on using an ID ending with %s"
-msgstr "您不得送出 ID 結尾為「%s」的附加元件"
+msgid "You cannot submit an add-on using an ID ending with this suffix"
+msgstr "您不得送出 ID 以此結尾的附加元件"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "您不能上傳已由 Mozilla 簽署過的擴充套件"
@@ -5523,6 +5506,9 @@ msgstr "您有 <span>{0}</span> 點。"
 
 msgid "Theme"
 msgstr "佈景主題"
+
+msgid "No results found"
+msgstr "搜尋沒有結果"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"

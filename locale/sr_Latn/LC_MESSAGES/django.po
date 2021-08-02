@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-21 08:49+0000\n"
+"POT-Creation-Date: 2021-07-29 17:13+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -342,9 +342,6 @@ msgstr "E-pošta"
 msgid "OK"
 msgstr ""
 
-msgid "No results found"
-msgstr "Nema pronađenih rezultata"
-
 #. abbreviation of 'previous'
 msgid "Prev"
 msgstr "Prethodno"
@@ -376,24 +373,6 @@ msgid ""
 msgstr ""
 "Neke mogućnosti na ovoj stranici su na određeno vreme onemogućene dok vršimo "
 "održavanje veb sajta. Molimo Vas, pokušajte kasnije."
-
-msgid "Are you human?"
-msgstr "Da li ste ljudsko biće?"
-
-msgid "What's this?"
-msgstr "Šta je ovo?"
-
-msgid ""
-"<p> Please enter <strong>all the words</strong> below, <strong>separated by "
-"a space if necessary</strong>. </p> <p> If this is hard to read, you can <a "
-"href=\"#\" id=\"recaptcha_different\">try different words</a> or <a href=\"#"
-"\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
-msgstr ""
-"<p> Molimo Vas unesite <strong>sve reči</strong> ispod, <strong>razdvojene "
-"razmakom ako je neophodno</strong>. </p> <p> Ako je ovo teško za čitanje, "
-"možete <a href=\"#\" id=\"recaptcha_different\">isprobati različite reči</a> "
-"ili <a href=\"#\" id=\"recaptcha_audio\">pokušajte različite vrste izazova</"
-"a> umesto. </p>"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -2111,6 +2090,11 @@ msgstr ""
 "Overa je stvorila previše grešaka/upozorenja pa je %s poruka skraćeno. Nakon "
 "obraćanja vidljivim porukama, bićete u mogućnosti da pogledate ostale."
 
+msgid ""
+"Manifest v3 is currently not supported for upload. You can read more about "
+"the support timeline [{start_href}here{end_href}]."
+msgstr ""
+
 msgid "Updated"
 msgstr "Ažurirano"
 
@@ -2608,8 +2592,8 @@ msgid "Tags"
 msgstr "Oznake"
 
 msgid ""
-"Tags help users find your add-on and should be short descriptors such as "
-"tabs, toolbar, or twitter. You may have a maximum of {0} tags."
+"Tags help users find your add-on. You may have a maximum of {0} tags. Only "
+"choose tags that are relevant to your add-on."
 msgstr ""
 
 msgid "Limit {0} tags."
@@ -3595,16 +3579,6 @@ msgid ""
 "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "Ovo je najnovija verzija, ali još uvek nije javna na sajtu."
 
-msgid "Queues are not reviewed strictly in order"
-msgstr "Redovi nisu strogo pregledani u redu"
-
-msgid "Queue Position:"
-msgstr "Red pozicije:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(position)s od %(total)s"
-
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
 
@@ -4130,9 +4104,6 @@ msgstr ""
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Da li ste sigurni da želite da prekinete Vaš zahtev za pregled?"
-
-msgid "Add-on Documentation :: Developer Hub"
-msgstr "Dokumentacija dodatka :: Centar za programere"
 
 # {0} is a number
 #. L10n: first parameter is the number of errors
@@ -5349,6 +5320,15 @@ msgstr ""
 msgid "See more translation tools"
 msgstr "po verziji dodatka"
 
+#. editorial content for the homepage shelves.
+msgid "Social streaming"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more social streaming extensions"
+msgstr "Pogledajte sve dodatke"
+
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -5414,8 +5394,7 @@ msgstr ""
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
-#, python-format
-msgid "You cannot submit an add-on using an ID ending with %s"
+msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -6614,6 +6593,9 @@ msgstr "Imate <span>{0}</span> poena."
 
 msgid "Theme"
 msgstr "Tema"
+
+msgid "No results found"
+msgstr "Nema pronađenih rezultata"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"

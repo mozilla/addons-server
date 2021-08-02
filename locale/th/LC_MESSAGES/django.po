@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-21 08:49+0000\n"
+"POT-Creation-Date: 2021-07-29 17:13+0000\n"
 "PO-Revision-Date: 2021-05-26 05:07+0000\n"
 "Last-Translator: yotanutmaliwan <yotanutmaliwan@gmail.com>\n"
 "Language-Team: Thai\n"
@@ -291,9 +291,6 @@ msgstr "อีเมล:"
 msgid "OK"
 msgstr "ตกลง"
 
-msgid "No results found"
-msgstr "ไม่พบผลลัพธ์"
-
 #. abbreviation of 'previous'
 msgid "Prev"
 msgstr "ก่อนหน้า"
@@ -313,19 +310,6 @@ msgstr "คุณสมบัตินี้ถูกปิดการใช้
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "คุณสมบัติบางอย่างในหน้านี้จะใช้ไม่ได้ชั่วคราวระหว่างที่เรากำลังปรับปรุงเว็บไซต์ กรุณาลองใหม่ในภายหลัง"
-
-msgid "Are you human?"
-msgstr "คุณใช่มนุษย์หรือเปล่า?"
-
-msgid "What's this?"
-msgstr "สิ่งนี้คืออะไร?"
-
-msgid ""
-"<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
-"different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
-msgstr ""
-"<p> โปรดป้อน<strong>คำทั้งหมด</strong>ที่อยู่ด้านล่างนี้ <strong>โดยคั่นด้วยวรรคหากจำเป็น</strong> </p> <p> หากคำเหล่านี้อ่านได้ยาก คุณสามารถ<a href=\"#\" id=\"recaptcha_different\">ลองคำอื่น</a>หรือ<a href=\"#\" id="
-"\"recaptcha_audio\">ลองการท้าทายแบบอื่น</a>แทนได้</p>"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -1782,6 +1766,9 @@ msgstr ""
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "เกิดข้อผิดพลาด/คำเตือนหลายข้อในการตรวจสอบความถูกต้อง %s ข้อความจึงถูกตัดทอน หลังจากที่จัดการกับข้อความที่มองเห็นได้แล้ว คุณจะสามารถเห็นข้อความอื่น ๆ ได้"
 
+msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgstr ""
+
 msgid "Updated"
 msgstr "อัปเดตแล้ว"
 
@@ -2207,7 +2194,7 @@ msgstr "ส่วนเสริมสำหรับ {0}"
 msgid "Tags"
 msgstr "ป้ายกำกับ"
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
+msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
 msgstr ""
 
 msgid "Limit {0} tags."
@@ -2994,16 +2981,6 @@ msgstr "รุ่นล่าสุด:"
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr ""
 
-msgid "Queues are not reviewed strictly in order"
-msgstr "ส่วนเสริมอาจไม่ถูกตรวจทานตามลำดับคิวเสมอไป"
-
-msgid "Queue Position:"
-msgstr "ตำแหน่งคิว:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(position)s จาก %(total)s"
-
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
 
@@ -3427,9 +3404,6 @@ msgstr "การยกเลิกคำขอตรวจทานของค
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "คุณแน่ใจหรือไม่ว่าต้องการยกเลิกคำขอตรวจทานของคุณ?"
-
-msgid "Add-on Documentation :: Developer Hub"
-msgstr "เอกสารประกอบส่วนเสริม :: ศูนย์กลางนักพัฒนา"
 
 #. L10n: first parameter is the number of errors
 msgid "{0} error"
@@ -4472,6 +4446,16 @@ msgstr ""
 msgid "See more translation tools"
 msgstr "ตัวตรวจสอบส่วนเสริม"
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Social streaming"
+msgstr "เครือข่ายสังคม"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more social streaming extensions"
+msgstr "ดูส่วนขยายทั้งหมด"
+
 msgid "Could not parse the manifest file."
 msgstr "ไม่สามารถแยกวิเคราะห์ไฟล์กำกับ"
 
@@ -4529,8 +4513,7 @@ msgstr ""
 msgid "You cannot submit this type of add-on"
 msgstr "คุณไม่สามารถส่งส่วนเสริมชนิดนี้ได้"
 
-#, python-format
-msgid "You cannot submit an add-on using an ID ending with %s"
+msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -5586,6 +5569,9 @@ msgstr ""
 
 msgid "Theme"
 msgstr "ชุดตกแต่ง"
+
+msgid "No results found"
+msgstr "ไม่พบผลลัพธ์"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"

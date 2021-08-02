@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-21 08:49+0000\n"
+"POT-Creation-Date: 2021-07-29 17:13+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -312,9 +312,6 @@ msgstr "E-mail"
 msgid "OK"
 msgstr ""
 
-msgid "No results found"
-msgstr "Nic nie znaleziono"
-
 #. abbreviation of 'previous'
 msgid "Prev"
 msgstr "Wstecz"
@@ -334,19 +331,6 @@ msgstr "W trakcie wykonywania serwisu witryny ta funkcja jest tymczasowo wyłąc
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "W trakcie wykonywania serwisu witryny niektóre funkcje na tej stronie są tymczasowo wyłączone. Proszę spróbować ponownie później."
-
-msgid "Are you human?"
-msgstr "Zabezpieczenie antyspamowe"
-
-msgid "What's this?"
-msgstr "Co to jest?"
-
-msgid ""
-"<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
-"different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
-msgstr ""
-"<p> Wprowadź <strong>wszystkie słowa</strong> poniżej, <strong>oddzielone spacją, jeśli to konieczne</strong>. </p> <p> Jeśli masz problem z odczytaniem, możesz <a href=\"#\" id="
-"\"recaptcha_different\">spróbować zamiast tego innych słów</a> lub <a href=\"#\" id=\"recaptcha_audio\">innego rodzaju weryfikacji</a>. </p>"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -1844,6 +1828,9 @@ msgstr "Powiadomienie Mozilli dotyczące bezpieczeństwa: Twoje poświadczenia A
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Sprawdzenie wygenerowało zbyt dużo błędów/ostrzeżeń, zatem przycięto komunikaty %s."
 
+msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgstr ""
+
 msgid "Updated"
 msgstr "Aktualizacja"
 
@@ -2288,8 +2275,8 @@ msgstr "Szczegółowe dane dodatku {0}"
 msgid "Tags"
 msgstr "Etykiety"
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr "Etykiety pomagają znaleźć Twój dodatek i powinny być krótkimi opisami, takimi jak karty (tabs), pasek narzędziowy (toolbar), twitter. Maksymalna liczba etykiet to {0}."
+msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
+msgstr ""
 
 msgid "Limit {0} tags."
 msgstr ""
@@ -3108,16 +3095,6 @@ msgstr "Następna najnowsza wersja:"
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "To jest najnowsza przesłana wersja, jednak nie jest jeszcze dostępna na stronie."
 
-msgid "Queues are not reviewed strictly in order"
-msgstr "Kolejki nie są sprawdzane dokładnie w kolejności"
-
-msgid "Queue Position:"
-msgstr "Pozycja w kolejce:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(position)s z %(total)s"
-
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr "Podpisany w celu samodzielnej dystrybucji. Aktualizacje są obsługiwane przez Ciebie."
 
@@ -3558,9 +3535,6 @@ msgstr "Anulowanie prośby o sprawdzenie spowoduje oznaczenie dodatku jako nieko
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Czy na pewno chcesz anulować prośbę o sprawdzenie?"
-
-msgid "Add-on Documentation :: Developer Hub"
-msgstr "Dokumentacja dodatku :: Strefa autora"
 
 #. L10n: first parameter is the number of errors
 msgid "{0} error"
@@ -4665,6 +4639,16 @@ msgstr ""
 msgid "See more translation tools"
 msgstr "wg wersji dodatku"
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Social streaming"
+msgstr "Sieci społecznościowe"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more social streaming extensions"
+msgstr "Przejrzyj wszystkie rozszerzenia"
+
 msgid "Could not parse the manifest file."
 msgstr "Nie można przetworzyć pliku manifestu."
 
@@ -4723,8 +4707,8 @@ msgstr ""
 msgid "You cannot submit this type of add-on"
 msgstr "Nie można przesłać dodatku tego typu"
 
-#, fuzzy, python-format
-msgid "You cannot submit an add-on using an ID ending with %s"
+#, fuzzy
+msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr "Nie można przesłać dodatku z GUID kończącym się %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -5814,6 +5798,9 @@ msgstr "Masz następującą liczbę punktów: <span>{0}</span>."
 
 msgid "Theme"
 msgstr "Motyw"
+
+msgid "No results found"
+msgstr "Nic nie znaleziono"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"

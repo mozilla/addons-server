@@ -4,7 +4,7 @@ from django.contrib import messages as django_messages
 from django.template import loader
 from django.utils import safestring
 
-import jinja2
+import markupsafe
 
 from rest_framework.request import Request
 
@@ -19,7 +19,7 @@ message title).
 """
 
 
-class DoubleSafe(safestring.SafeText, jinja2.Markup):
+class DoubleSafe(safestring.SafeText, markupsafe.Markup):
     """Double safe all the way: marks safe for django and jinja2.
 
     Even though we're using jinja2 for most of the template rendering, we may

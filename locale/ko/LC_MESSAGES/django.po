@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-21 08:49+0000\n"
+"POT-Creation-Date: 2021-07-29 17:13+0000\n"
 "PO-Revision-Date: 2021-05-02 18:58+0000\n"
 "Last-Translator: Kim YoungCheon <circcc@gmail.com>\n"
 "Language-Team: none\n"
@@ -294,9 +294,6 @@ msgstr "이메일:"
 msgid "OK"
 msgstr "확인"
 
-msgid "No results found"
-msgstr "결과 없음"
-
 #. abbreviation of 'previous'
 msgid "Prev"
 msgstr "이전"
@@ -316,19 +313,6 @@ msgstr "웹사이트 점검 관계로 이 기능은 잠시 사용하실 수 없�
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "웹사이트 점검 관계로 이 페이지의 일부 기능을 잠시동안 사용할 수 없습니다. 잠시 후 다시 시도해 주세요."
-
-msgid "Are you human?"
-msgstr "자동 등록 방지"
-
-msgid "What's this?"
-msgstr "이게 뭐죠?"
-
-msgid ""
-"<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
-"different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
-msgstr ""
-"<p> 아래 <strong>모든 단어들을</strong> 입력하시고, <strong>필요하다면 공백으로 구분하십시오</strong>. </p> <p> 만약 읽기 어렵다면 <a href=\"#\" id=\"recaptcha_different\">다른 단어들을 시도해 보시"
-"거나</a><a href=\"#\" id=\"recaptcha_audio\"> 다른 유형으로</a> 시도해 보시기 바랍니다.</p>"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -1794,6 +1778,9 @@ msgstr ""
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "검사 과정에서 너무 많은 오류/경고가 발생했으며 %s개의 메세지가 잘려져 있는 상태입니다. 현재 표시된 메세지부터 확인 후에 나머지 메세지를 확인하실 수 있습니다."
 
+msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgstr ""
+
 msgid "Updated"
 msgstr "최근 업데이트"
 
@@ -2229,7 +2216,7 @@ msgstr "{0} 부가 기능 세부 설명"
 msgid "Tags"
 msgstr "태그"
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
+msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
 msgstr ""
 
 msgid "Limit {0} tags."
@@ -3042,16 +3029,6 @@ msgstr "다음 버전:"
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "이 버전이 최신이지만 아직 사이트 상에 올라가지는 않았습니다."
 
-msgid "Queues are not reviewed strictly in order"
-msgstr "대기열 순서를 정확하게 지켜가며 검토되지는 않습니다."
-
-msgid "Queue Position:"
-msgstr "현재 대기열:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(position)s / %(total)s"
-
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
 
@@ -3489,9 +3466,6 @@ msgstr "검토 요청을 취소하면 부가 기능이 미완료 상태로 표�
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "정말 검토 요청을 취소하시겠습니까?"
-
-msgid "Add-on Documentation :: Developer Hub"
-msgstr "부가 기능 문서 자료 :: 개발자 허브"
 
 # {0} is a number
 #. L10n: first parameter is the number of errors
@@ -4523,6 +4497,16 @@ msgstr "탭 관리 도구"
 msgid "See more translation tools"
 msgstr "부가 기능 이름 번역"
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Social streaming"
+msgstr "소셜네트웍"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more social streaming extensions"
+msgstr "인기 확장 기능 더보기"
+
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -4580,8 +4564,7 @@ msgstr ""
 msgid "You cannot submit this type of add-on"
 msgstr "이런 종류의 부가 기능은 제출할 수 없음"
 
-#, python-format
-msgid "You cannot submit an add-on using an ID ending with %s"
+msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -5672,6 +5655,9 @@ msgstr "<span>{0}</span> 포인트가 있습니다."
 
 msgid "Theme"
 msgstr "테마"
+
+msgid "No results found"
+msgstr "결과 없음"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"

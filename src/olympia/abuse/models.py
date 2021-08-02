@@ -10,12 +10,36 @@ from geoip2.errors import GeoIP2Error
 
 from olympia import amo
 from olympia.addons.models import Addon
-from olympia.amo.models import ManagerBase, ModelBase
+from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
 from olympia.api.utils import APIChoicesWithNone
 from olympia.users.models import UserProfile
 
 
+class AbuseReportQuerySet(BaseQuerySet):
+    def for_addon(self, addon):
+        return (
+            self.filter(
+                models.Q(guid=addon.addonguid_guid)
+                | models.Q(addon=addon)
+                | models.Q(user__in=addon.listed_authors)
+            )
+            .select_related('user')
+            .prefetch_related(
+                # Should only need translations for addons on abuse reports,
+                # so let's prefetch the add-on with them and avoid repeating
+                # a ton of potentially duplicate queries with all the useless
+                # Addon transforms.
+                models.Prefetch(
+                    'addon', queryset=Addon.unfiltered.all().only_translations()
+                ),
+            )
+            .order_by('-created')
+        )
+
+
 class AbuseReportManager(ManagerBase):
+    _queryset_class = AbuseReportQuerySet
+
     def __init__(self, include_deleted=False):
         # DO NOT change the default value of include_deleted unless you've read
         # through the comment just above the Addon managers
@@ -28,6 +52,9 @@ class AbuseReportManager(ManagerBase):
         if not self.include_deleted:
             qs = qs.exclude(state=self.model.STATES.DELETED)
         return qs
+
+    def for_addon(self, addon):
+        return self.get_queryset().for_addon(addon)
 
 
 class AbuseReport(ModelBase):
@@ -237,6 +264,7 @@ class AbuseReport(ModelBase):
         base_manager_name = 'unfiltered'
         indexes = [
             models.Index(fields=('created',), name='created_idx'),
+            models.Index(fields=('guid',), name='guid_idx'),
         ]
 
     def delete(self, *args, **kwargs):

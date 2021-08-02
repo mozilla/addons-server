@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-21 08:49+0000\n"
-"PO-Revision-Date: 2021-07-22 19:15+0000\n"
+"POT-Creation-Date: 2021-07-29 17:13+0000\n"
+"PO-Revision-Date: 2021-07-29 20:30+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -299,9 +299,6 @@ msgstr "Email:"
 msgid "OK"
 msgstr "OK"
 
-msgid "No results found"
-msgstr "Nenhum resultado encontrado"
-
 #. abbreviation of 'previous'
 msgid "Prev"
 msgstr "Anterior"
@@ -321,20 +318,6 @@ msgstr "Este recurso foi temporariamente desativado enquanto realizamos uma manu
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Alguns recursos desta página foram temporariamente desativados enquanto realizamos uma manutenção no site. Tente novamente mais tarde."
-
-msgid "Are you human?"
-msgstr "Você é humano?"
-
-# 100%
-msgid "What's this?"
-msgstr "O que é isso?"
-
-msgid ""
-"<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
-"different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
-msgstr ""
-"<p>Digite <strong>todas as palavras</strong> abaixo, <strong>separadas por um espaço, se necessário</strong>.</p><p>Se estiver difícil de ler, você pode <a href=\"#\" "
-"id=\"recaptcha_different\">tentar palavras diferentes</a> ou <a href=\"#\" id=\"recaptcha_audio\">outro tipo de desafio</a>.</p>"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -1798,6 +1781,9 @@ msgstr "Aviso de segurança da Mozilla: As suas credenciais da API do AMO foram 
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "A validação gerou muitos erros/alertas então %s mensagens foram cortadas. Após corrigir as mensagens visíveis, você poderá ver as outras mensagens."
 
+msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgstr "O manifesto v3 atualmente não é suportado para envio. Você pode ler mais sobre o cronograma de suporte [{start_href}aqui{end_href}]."
+
 msgid "Updated"
 msgstr "Atualizado"
 
@@ -2238,8 +2224,8 @@ msgstr "Detalhes adicionais de {0}"
 msgid "Tags"
 msgstr "Etiquetas"
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr "As etiquetas ajudam os usuários a encontrar a sua extensão e devem ser descritores curtos como abas, barra de ferramenta, ou twitter. Você pode ter um máximo de {0} etiquetas."
+msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
+msgstr "Etiquetas ajudam os usuários a encontrar sua extensão. Você pode ter no máximo {0} etiquetas. Escolha apenas etiquetas relevantes para sua extensão."
 
 msgid "Limit {0} tags."
 msgstr "Limite de {0} etiquetas."
@@ -3099,16 +3085,6 @@ msgstr "Ver outras versões:"
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "Esta é a versão enviada mais recentemente, mas ainda não está disponível no site"
 
-msgid "Queues are not reviewed strictly in order"
-msgstr "Filas não são revisadas de forma rigorosa"
-
-msgid "Queue Position:"
-msgstr "Posição na fila:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(position)s de %(total)s"
-
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr "Marcado para distribuição. Atualizações serão gerenciadas por você."
 
@@ -3544,9 +3520,6 @@ msgstr "Cancelar sua solicitação de revisão marcará sua extensão como incom
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Você tem certeza de que deseja cancelar sua solicitação de análise?"
-
-msgid "Add-on Documentation :: Developer Hub"
-msgstr "Documentação de extensões :: Central do Desenvolvedor"
 
 #. L10n: first parameter is the number of errors
 # {0} is a number
@@ -4577,6 +4550,14 @@ msgstr "Ferramentas de tradução"
 msgid "See more translation tools"
 msgstr "Mais ferramentas de tradução"
 
+#. editorial content for the homepage shelves.
+msgid "Social streaming"
+msgstr "Transmissão para redes sociais"
+
+#. editorial content for the homepage shelves.
+msgid "See more social streaming extensions"
+msgstr "Mais extensões de transmissão para redes sociais"
+
 msgid "Could not parse the manifest file."
 msgstr "Não foi possível analisar o arquivo manifest."
 
@@ -4635,9 +4616,8 @@ msgstr "O tamanho máximo de temas WebExtension é {0}."
 msgid "You cannot submit this type of add-on"
 msgstr "Você não pode submeter este tipo de extensão"
 
-#, python-format
-msgid "You cannot submit an add-on using an ID ending with %s"
-msgstr "Você não pode enviar uma extensão com um ID terminado em %s"
+msgid "You cannot submit an add-on using an ID ending with this suffix"
+msgstr "Você não pode enviar uma extensão com um ID terminado com este sufixo"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Você não pode submeter uma extensão assinada pela Mozilla"
@@ -5682,6 +5662,9 @@ msgstr "Você possui <span>{0}</span> pontos."
 
 msgid "Theme"
 msgstr "Tema"
+
+msgid "No results found"
+msgstr "Nenhum resultado encontrado"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"

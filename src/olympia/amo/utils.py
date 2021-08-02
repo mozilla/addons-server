@@ -42,7 +42,7 @@ from django.utils.http import _urlparse as django_urlparse, quote_etag
 import bleach
 import colorgram
 import html5lib
-import jinja2
+import markupsafe
 import pytz
 import basket
 
@@ -839,7 +839,7 @@ def escape_all(value):
 
     """
     if isinstance(value, str):
-        value = jinja2.escape(force_str(value))
+        value = markupsafe.escape(force_str(value))
         value = linkify_with_outgoing(value)
         return value
     elif isinstance(value, list):
@@ -849,7 +849,7 @@ def escape_all(value):
         for k, lv in value.items():
             value[k] = escape_all(lv)
     elif isinstance(value, Translation):
-        value = jinja2.escape(force_str(value))
+        value = markupsafe.escape(force_str(value))
     return value
 
 

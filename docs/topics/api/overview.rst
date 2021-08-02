@@ -420,8 +420,11 @@ These are `v5` specific changes - `v4` changes apply also.
 * 2021-03-04: replaced ``footer_pathname`` and ``footer_text`` with ``footer`` object in shelves api response.  https://github.com/mozilla/addons-server/issues/16575
 * 2021-03-18: removed ``platform`` from file objects (it was always ``all``) in all endpoints. https://github.com/mozilla/addons-server/issues/16466
 * 2021-05-20: removed ``text`` from license objects in versions list endpoint. https://github.com/mozilla/addons-server/issues/17163
+* 2021-07-22: added ``random-tag`` to the possible values of ``endpoint`` in the shelves endpoint. https://github.com/mozilla/addons-server/issues/17482
 * 2021-07-29: updated docs shelves footer url to be non-optional. https://github.com/mozilla/addons-server/issues/17544
 * 2021-08-05: added ``ratings`` and ``users`` query parameters to addon search api. https://github.com/mozilla/addons-server/issues/17497
+* 2021-08-05: removed ``criteria`` from shelves endpoint. https://github.com/mozilla/addons-server/issues/17498
+
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-21 08:49+0000\n"
+"POT-Creation-Date: 2021-07-29 17:13+0000\n"
 "PO-Revision-Date: 2019-09-08 11:41+0000\n"
 "Last-Translator: Ahsun Mahmud Riad <ahsunriad@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -285,9 +285,6 @@ msgstr "ইমেইল"
 msgid "OK"
 msgstr ""
 
-msgid "No results found"
-msgstr "কোন ফলাফল পাওয়া যায় নি"
-
 #. abbreviation of 'previous'
 msgid "Prev"
 msgstr "আগের"
@@ -307,17 +304,6 @@ msgstr "ওয়েবসাইট মেইন্টেনেন্স এর দ
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "ওয়েবসাইট মেইন্টেনেন্স এর দরুন এই পেজের কিছু ফিচার সাময়িকভাবে বন্ধ আছে। দয়া করে কিছুক্ষন পর আবার চেষ্টা করুন।"
-
-msgid "Are you human?"
-msgstr "আপনি কি মানুষ?"
-
-msgid "What's this?"
-msgstr "এটা কী?"
-
-msgid ""
-"<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
-"different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
-msgstr ""
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -1778,6 +1764,9 @@ msgstr ""
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr ""
 
+msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgstr ""
+
 msgid "Updated"
 msgstr "হালনাগাদকৃত"
 
@@ -2195,7 +2184,7 @@ msgstr ""
 msgid "Tags"
 msgstr "ট্যাগসমূহ"
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
+msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
 msgstr ""
 
 msgid "Limit {0} tags."
@@ -2974,16 +2963,6 @@ msgstr ""
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr ""
 
-msgid "Queues are not reviewed strictly in order"
-msgstr ""
-
-msgid "Queue Position:"
-msgstr ""
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr ""
-
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
 
@@ -3402,9 +3381,6 @@ msgstr ""
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr ""
-
-msgid "Add-on Documentation :: Developer Hub"
-msgstr "অ্যাড-অন ডকুমেন্টেশন :: ডেভেলোপার হাব"
 
 #. L10n: first parameter is the number of errors
 msgid "{0} error"
@@ -4438,6 +4414,16 @@ msgstr ""
 msgid "See more translation tools"
 msgstr "এড-অন ভার্সন"
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Social streaming"
+msgstr "সামাজিক নেটওয়ার্কিং"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more social streaming extensions"
+msgstr "সকল এক্সটেনশন দেখুন"
+
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -4495,8 +4481,7 @@ msgstr ""
 msgid "You cannot submit this type of add-on"
 msgstr "আপনি এই ধরণের এড-অন জমা দিতে পারবেন না"
 
-#, python-format
-msgid "You cannot submit an add-on using an ID ending with %s"
+msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -5530,6 +5515,9 @@ msgstr ""
 
 msgid "Theme"
 msgstr "থিম"
+
+msgid "No results found"
+msgstr "কোন ফলাফল পাওয়া যায় নি"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"

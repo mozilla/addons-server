@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-21 08:49+0000\n"
-"PO-Revision-Date: 2021-07-21 13:18+0000\n"
+"POT-Creation-Date: 2021-07-29 17:13+0000\n"
+"PO-Revision-Date: 2021-07-30 12:52+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -292,9 +292,6 @@ msgstr "E-mejlowa adresa:"
 msgid "OK"
 msgstr "W porjadku"
 
-msgid "No results found"
-msgstr "Žane wuslědki namakane"
-
 #. abbreviation of 'previous'
 msgid "Prev"
 msgstr "Předchadna strona"
@@ -314,19 +311,6 @@ msgstr "Tuta funkcija je so nachwilu znjemóžniła, doniž wothladowanje websyd
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Někotre funkcije na tutej stronje su so nachwilu znjemóžnili, doniž wothladowanje websydła přewjedźemy. Prošu spytajće pozdźišo hišće raz."
-
-msgid "Are you human?"
-msgstr "Sće čłowjek?"
-
-msgid "What's this?"
-msgstr "Što to je?"
-
-msgid ""
-"<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
-"different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
-msgstr ""
-"<p>Prošu zapodajće <strong>wšě slědowace słowa</strong>, <strong>dźělene přez mjezota, jeli trěbne</strong>.</p> <p> Jeli to je lědma čitajomne, móžeće <a href=\"#\" id=\"recaptcha_different\">druhe"
-" słowa wupruwować</a> abo <a href=\"#\" id=\"recaptcha_audio\">druhi typ nadawka</a> město toho spytać.</p>"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -1772,6 +1756,9 @@ msgstr "Wěstotna zdźělenka Mozilla: Waše přizjewjenske daty za API AMO su s
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Přepruwowanje je přewjele zmylkow/warnowanjow wunjesło, tohodla je so %s powěsćow wotdźěliło. Po wobdźěłowanju widźomnych powěsćow móžeće druhe widźeć."
 
+msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgstr "Manifest v3 so tuchwilu za nahrawanje njepodpěruje. Móžeće [{start_href}tu{end_href}] wjace wo podpěrowanskim planje čitać."
+
 msgid "Updated"
 msgstr "Zaktualizowany"
 
@@ -2199,8 +2186,8 @@ msgstr "Dalše podrobnosće za {0}"
 msgid "Tags"
 msgstr "Znački"
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr "Znački wužiwarjam pomhaja, waš přidatk namakać a měli krótke pomjenjowanja kaž „rajtarki“, „symbolowa lajsta“ abo „Twitter“ być. Móžeće maksimalnje {0} značkow měć."
+msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
+msgstr "Znački wužiwarjam pomhaja, waš přidatk namakać. Móžeće maksimalnje {0} značkow měć. Wubjerće  jenož znački, kotrež su relewantne za waš přidatk."
 
 msgid "Limit {0} tags."
 msgstr "Wobmjezowanje ličby značkow: {0}."
@@ -3046,16 +3033,6 @@ msgstr "Přichodna nalistowana wersija:"
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "To je najnowša nahrata wersija, ale hišće njeje widźomny na websydle"
 
-msgid "Queues are not reviewed strictly in order"
-msgstr "Čakanske rynki so striktnje po porjedźe njepřepruwuja"
-
-msgid "Queue Position:"
-msgstr "Pozicija w čakanskim rynku:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(position)s z %(total)s"
-
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr "Za samorozdźělenje signowany. Aktualizacije so wot was rjaduja."
 
@@ -3478,9 +3455,6 @@ msgstr "Hdyž swoje přepruwowanske naprašowanje přetorhnjeće, budźe so waš
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Chceće swoje přepruwowanske naprašowanje woprawdźe anulować?"
-
-msgid "Add-on Documentation :: Developer Hub"
-msgstr "Dokumentacija přidatka :: Centrum wuwiwarjow"
 
 #. L10n: first parameter is the number of errors
 msgid "{0} error"
@@ -4514,6 +4488,14 @@ msgstr "Přełožowanske nastroje"
 msgid "See more translation tools"
 msgstr "Dalše přełožowanske nastroje pokazać"
 
+#. editorial content for the homepage shelves.
+msgid "Social streaming"
+msgstr "Socialne prudźenje"
+
+#. editorial content for the homepage shelves.
+msgid "See more social streaming extensions"
+msgstr "Dalše rozšěrjenja socialneho prudźenja pokazać"
+
 msgid "Could not parse the manifest file."
 msgstr "Manifestowa dataja njeda so analyzować."
 
@@ -4571,9 +4553,8 @@ msgstr "Maksimalna wulkosć za drasty Webextension je {0}."
 msgid "You cannot submit this type of add-on"
 msgstr "Njemóžeće tutón přidatkowy typ zapodać"
 
-#, python-format
-msgid "You cannot submit an add-on using an ID ending with %s"
-msgstr "Njemóžeće žadyn přidatk z ID zapodać, kotryž so na %s kónči"
+msgid "You cannot submit an add-on using an ID ending with this suffix"
+msgstr "Njemóžeće přidatk z ID zapodać, kotryž so z tutym sufiksom kónči"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Njemóžeće signowane rozšěrjenje Mozilla zapodać"
@@ -5609,6 +5590,9 @@ msgstr "Maće <span>{0}</span> dypkow."
 
 msgid "Theme"
 msgstr "Drasta"
+
+msgid "No results found"
+msgstr "Žane wuslědki namakane"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"

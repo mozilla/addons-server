@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-21 08:49+0000\n"
-"PO-Revision-Date: 2021-07-21 12:48+0000\n"
+"POT-Creation-Date: 2021-07-29 17:13+0000\n"
+"PO-Revision-Date: 2021-07-30 12:29+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -297,9 +297,6 @@ msgstr "Email:"
 msgid "OK"
 msgstr "OK"
 
-msgid "No results found"
-msgstr "Δεν βρέθηκαν αποτελέσματα"
-
 #. abbreviation of 'previous'
 msgid "Prev"
 msgstr "Προηγούμενο"
@@ -321,19 +318,6 @@ msgstr ""
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Μερικές λειτουργίες της σελίδας έχουν προς το παρόν απενεργοποιηθεί γιατί εκτελούμε εργασίες συντήρησης. Παρακαλούμε προσπαθήστε ξανά λίγο αργότερα."
-
-msgid "Are you human?"
-msgstr "Είστε άνθρωπος;"
-
-msgid "What's this?"
-msgstr "Τι είναι αυτό;"
-
-msgid ""
-"<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
-"different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
-msgstr ""
-"<p> Παρακαλώ εισαγάγετε <strong>όλες τις λέξεις</strong> παρακάτω, <strong>διαχωρισμένες με διάστημα αν χρειάζεται</strong>. </p> <p> Αν είναι δυσανάγνωστες, μπορείτε να <a href=\"#\" "
-"id=\"recaptcha_different\">δοκιμάσετε διαφορετικές λέξεις</a> ή να <a href=\"#\" id=\"recaptcha_audio\">δοκιμαστείτε με έναν άλλο τρόπο</a>. </p>"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -1820,6 +1804,9 @@ msgstr "Σημείωση ασφαλείας της Mozilla: Τα διαπιστ�
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Η επικύρωση παρήγαγε πάρα πολλά λάθη/προειδοποιήσεις έτσι %s μηνύματα περικόπηκαν. Αφού εντοπίσετε τα ορατά μηνύματα, θα μπορείτε να δείτε τα υπόλοιπα."
 
+msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgstr ""
+
 msgid "Updated"
 msgstr "Ενημερώσεις"
 
@@ -2248,8 +2235,8 @@ msgstr "Επιπρόσθετες λεπτομέρειες για το {0}"
 msgid "Tags"
 msgstr "Ετικέτες"
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr "Οι ετικέτες βοηθούν τους χρήστες να βρουν το πρόσθετό σας και θα πρέπει να είναι μικρές περιγραφικές φράσεις, όπως καρτέλες, γραμμές εργαλείων ή twitter. Έχετε το πολύ {0} ετικέτες."
+msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
+msgstr ""
 
 msgid "Limit {0} tags."
 msgstr "Περιορισμός {0} ετικετών."
@@ -3092,16 +3079,6 @@ msgstr "Επόμενη καταχωρημένη έκδοση:"
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "Αυτή είναι η νεότερη έκδοση που έχει μεταφορτωθεί, ωστόσο δεν έχει δημοσιευθεί στην ιστοσελίδα ακόμα"
 
-msgid "Queues are not reviewed strictly in order"
-msgstr "Οι ουρές δεν αξιολογούνται αυστηρά με σειρά"
-
-msgid "Queue Position:"
-msgstr "Θέση ουράς:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(position)s από %(total)s"
-
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr "Υπεγράφη για αυτό-διανομή. Εσείς χειρίζεστε τις ενημερώσεις."
 
@@ -3533,9 +3510,6 @@ msgstr "Η ακύρωση του αιτήματος αξιολόγησής σα�
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Θέλετε σίγουρα να ακυρωθεί η αίτηση σας για αξιολόγηση;"
-
-msgid "Add-on Documentation :: Developer Hub"
-msgstr "Τεκμηρίωση πρόσθετων :: Κέντρο δημιουργών"
 
 #. L10n: first parameter is the number of errors
 # {0} is a number
@@ -4566,6 +4540,14 @@ msgstr "Εργαλεία μετάφρασης"
 msgid "See more translation tools"
 msgstr "Περισσότερα εργαλεία μετάφρασης"
 
+#. editorial content for the homepage shelves.
+msgid "Social streaming"
+msgstr "Μετάδοση σε κοινωνικά δίκτυα"
+
+#. editorial content for the homepage shelves.
+msgid "See more social streaming extensions"
+msgstr "Περισσότερες επεκτάσεις μετάδοσης σε κοινωνικά δίκτυα"
+
 msgid "Could not parse the manifest file."
 msgstr "Αδυναμία λήψης αρχείου manifest."
 
@@ -4623,9 +4605,8 @@ msgstr "Το μέγιστο μέγεθος για θέματα WebExtension εί
 msgid "You cannot submit this type of add-on"
 msgstr "Δεν μπορείτε να υποβάλετε αυτό τον τύπο προσθέτου"
 
-#, python-format
-msgid "You cannot submit an add-on using an ID ending with %s"
-msgstr "Δεν μπορείτε να υποβάλετε πρόσθετο με ένα ID που λήγει σε %s"
+msgid "You cannot submit an add-on using an ID ending with this suffix"
+msgstr "Δεν μπορείτε να υποβάλετε πρόσθετο με ένα ID που λήγει με αυτή την κατάληξη"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Δεν μπορείτε να υποβάλετε υπογεγραμμένη επέκταση Mozilla"
@@ -5657,6 +5638,9 @@ msgstr "Έχετε <span>{0}</span> πόντους."
 
 msgid "Theme"
 msgstr "Θέμα"
+
+msgid "No results found"
+msgstr "Δεν βρέθηκαν αποτελέσματα"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"

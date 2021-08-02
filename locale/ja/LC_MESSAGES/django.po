@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-21 08:49+0000\n"
+"POT-Creation-Date: 2021-07-29 17:13+0000\n"
 "PO-Revision-Date: 2021-07-10 07:08+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -296,9 +296,6 @@ msgstr "メールアドレス:"
 msgid "OK"
 msgstr "OK"
 
-msgid "No results found"
-msgstr "該当するアイテムはありません"
-
 #. abbreviation of 'previous'
 msgid "Prev"
 msgstr "前ページ"
@@ -318,19 +315,6 @@ msgstr "この機能はサイトメンテナンスのため一時的に無効に
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "このページ内の一部の機能はサイトメンテナンスのため一時的に無効になっています。しばらく後にもう一度試してください。"
-
-msgid "Are you human?"
-msgstr "あなたは人間ですか？"
-
-msgid "What's this?"
-msgstr "これは何？"
-
-msgid ""
-"<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
-"different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
-msgstr ""
-"<p>以下に <strong>すべての単語</strong> を <strong>必要に応じ空白で区切って</strong> 入力してください。 </p> <p> もしこれが読みづらければ、<a href=\"#\" id=\"recaptcha_different\">他の単語に変える</"
-"a> か、代わりに <a href=\"#\" id=\"recaptcha_audio\">別の種類の課題を試す</a> こともできます。</p>"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -1784,6 +1768,9 @@ msgstr "Mozilla セキュリティ通知: AMO API 認証情報が取り消され
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "検証の結果、多数のエラーや警告が見つかったため、%s個のメッセージが省略されました。表示されているメッセージを解決すると、他のメッセージも表示されます。"
 
+msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgstr ""
+
 msgid "Updated"
 msgstr "更新日"
 
@@ -2209,8 +2196,8 @@ msgstr "アドオン {0} の詳細"
 msgid "Tags"
 msgstr "タグ"
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr "タグはユーザーがアドオンを探すのに役立つ、タブ、ツールバー、Twitter といった短いキーワードです。最大で {0}個のタグを指定できます。"
+msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
+msgstr ""
 
 msgid "Limit {0} tags."
 msgstr ""
@@ -3012,16 +2999,6 @@ msgstr "次の公開バージョン:"
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "これはアップロードされた最新バージョンですが、まだサイト上で公開されていません。"
 
-msgid "Queues are not reviewed strictly in order"
-msgstr "審査は待ち順にレビューされるとは限りません"
-
-msgid "Queue Position:"
-msgstr "審査待ちの順番:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(total)s 個中 %(position)s 個目"
-
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr "署名され自主配布可能となりました。更新はあなた自身で処理する必要があります。"
 
@@ -3447,9 +3424,6 @@ msgstr "審査リクエストをキャンセルすることで、このアドオ
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "本当にこの審査リクエストをキャンセルしますか？"
-
-msgid "Add-on Documentation :: Developer Hub"
-msgstr "アドオン開発ドキュメント :: 開発者センター"
 
 # {0} is a number
 #. L10n: first parameter is the number of errors
@@ -4539,6 +4513,16 @@ msgstr "タブ管理ツール"
 msgid "See more translation tools"
 msgstr "翻訳ツールをもっと見る"
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Social streaming"
+msgstr "ソーシャルネットワーキング"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more social streaming extensions"
+msgstr "人気の拡張機能をもっと見る"
+
 msgid "Could not parse the manifest file."
 msgstr "マニフェストファイルを解析できませんでした。"
 
@@ -4597,8 +4581,8 @@ msgstr "WebExtension テーマの最大サイズは {0} です。"
 msgid "You cannot submit this type of add-on"
 msgstr "この種類のアドオンを送信することはできません"
 
-#, fuzzy, python-format
-msgid "You cannot submit an add-on using an ID ending with %s"
+#, fuzzy
+msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr "%sで終わる GUID が設定されたアドオンを投稿することはできません"
 
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -5662,6 +5646,9 @@ msgstr "あなたは <span>{0}</span> ポイント獲得しています。"
 
 msgid "Theme"
 msgstr "テーマ"
+
+msgid "No results found"
+msgstr "該当するアイテムはありません"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"

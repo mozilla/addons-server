@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-21 08:49+0000\n"
+"POT-Creation-Date: 2021-07-29 17:13+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -299,9 +299,6 @@ msgstr "ਈਮੇਲ"
 msgid "OK"
 msgstr ""
 
-msgid "No results found"
-msgstr "ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਮਿਲਿਆ"
-
 #. abbreviation of 'previous'
 msgid "Prev"
 msgstr "ਪਿਛਲਾ"
@@ -321,19 +318,6 @@ msgstr "ਇਹ ਗੁਣ ਅਸਥਾਈ ਤੌਰ ਤੇ ਅਯੋਗ ਹੈ �
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "ਇਸ ਸਫ਼ੇ ਦੇ ਕੁੱਝ ਗੁਣ ਅਸਥਾਈ ਤੌਰ ਤੇ ਅਯੋਗ ਹਨ ਜਦੋਂ ਤੱਕ ਅਸੀਂ ਵੈਬਸਾਈਟ ਦੀ ਸਾਂਭ ਕਰ ਰਹੇ ਹਾਂ। ਕਿਰਪਾ ਕਰਕੇ ਕੁੱਝ ਦੇਰ ਬਾਅਦ ਕੋਸ਼ਿਸ ਕਰੋ।"
-
-msgid "Are you human?"
-msgstr "ਕੀ ਤੁਸੀਂ ਮਨੁੱਖ ਹੋ?"
-
-msgid "What's this?"
-msgstr "ਇਹ ਕੀ ਹੈ?"
-
-msgid ""
-"<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
-"different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
-msgstr ""
-"<p> ਕਿਰਪਾ ਕਰਕੇ ਹੇਠ ਦਿੱਤੇ<strong>ਸਾਰੇ ਸ਼ਬਦ</strong>ਐਂਟਰ ਕਰੋ, <strong>ਜੇਕਰ ਲੋੜ ਪਵੇ ਤਾਂ ਇਹਨਾਂ ਵਿੱਚ ਇੱਕ ਸਪੇਸ ਦਾ ਫ਼ਰਕ ਹੋਣਾ ਚਾਹੀਦਾ ਹਨ</strong>। </p> <p> ਜੇਕਰ ਇਹ ਪੜ੍ਹਣ ਵਿੱਚ ਔਖ ਹੋ ਰਹੀ ਹੈ, ਤੁਸੀਂ <a href=\"#\" id="
-"\"recaptcha_different\">ਹੋਰ ਸ਼ਬਦਾਂ ਨੂੰ ਅਜ਼ਮਾ</a> ਸਕਦੇ ਹੋ ਜਾਂ ਇਸ ਦੀ ਬਜਾਏ <a href=\"#\" id=\"recaptcha_audio\">ਇੱਕ ਵੱਖਰੇ ਤਰ੍ਹਾਂ ਦੀ ਚੁਣੌਤੀ</a> ਦੀ ਕੋਸ਼ਿਸ ਕਰੋ। </p>"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, fuzzy, python-format
@@ -1889,6 +1873,9 @@ msgstr ""
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "ਪ੍ਰਮਾਣਿਕਤਾ ਨੇ ਬਹੁਤ ਸਾਰੀਆਂ ਗਲਤੀਆਂ/ਚੇਤਾਵਨੀਆਂ ਪੈਦਾ ਕੀਤੀਆਂ ਇਸ ਲਈ %s ਸੁਨੇਹੇ ਛੋਟੇ ਹੋ ਗਏ। ਵੇਖਣਯੋਗ ਸੁਨੇਹਿਆਂ ਦਾ ਸੰਬੋਧਨ ਕਰਨ ਤੋਂ ਬਾਅਦ, ਤੁਸੀਂ ਹੋਰਾਂ ਨੂੰ ਵੇਖਣ ਦੇ ਯੋਗ ਹੋ ਜਾਵੋਗੇ।"
 
+msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgstr ""
+
 msgid "Updated"
 msgstr "ਅੱਪਡੇਟ ਹੋਇਆ"
 
@@ -2328,9 +2315,8 @@ msgstr "{0} ਲਈ ਐਡ-ਆਨ ਵੇਰਵਾ"
 msgid "Tags"
 msgstr "ਟੈਗ"
 
-#, fuzzy
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr "ਟੈਗ ਵਰਤੋਂਕਾਰਾਂ ਦੀ ਤੁਹਾਡਾ ਐਡ-ਆਨ ਲੱਭਣ ਵਿੱਚ ਮਦਦ ਕਰਦੇ ਅਤੇ ਛੋਟੇ ਵਰਣਨ ਵਾਲੇ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ ਜਿਵੇਂ ਕਿ ਟੈਬਾਂ, ਟੂਲਬਾਰ, ਜਾਂ ਟਵਿੱਟਰ। ਤੁਹਾਡੇ ਕੋਲ ਵੱਧ ਤੋਂ ਵੱਧ {0} ਟੈਗ ਹੋ ਸਕਦੇ ਹਨ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵੇਂ ਹਨ।"
+msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
+msgstr ""
 
 msgid "Limit {0} tags."
 msgstr ""
@@ -3187,16 +3173,6 @@ msgstr "ਅਗਲਾ ਵਰਜਨ:"
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "ਇਹ ਬਿਲਕੁਲ ਨਵਾਂ ਅੱਪਲੋਡਿਡ ਵਰਜਨ ਹੈ, ਹਾਲਾਂਕਿ ਇਹ ਹਾਲੇ ਤੱਕ ਇਸ ਸਾਈਟ ਤੇ ਠਹਿਰਾਓ ਨਹੀਂ।"
 
-msgid "Queues are not reviewed strictly in order"
-msgstr "ਕਤਾਰਾਂ ਦੀ ਕਸਵੇਂ ਤੌਰ ਤੇ ਸਮੀਖਿਆ ਨਹੀਂ ਹੁੰਦੀ"
-
-msgid "Queue Position:"
-msgstr "ਕਤਾਰ ਸਥਿਤੀ:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(total)s ਦੀ %(position)s"
-
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
 
@@ -3651,9 +3627,6 @@ msgstr "ਆਪਣੀ ਸਮੀਖਿਆ ਬੇਨਤੀ ਨੂੰ ਰੱਦ ਕ�
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "ਕੀ ਤੁਸੀਂ ਆਪਣੀ ਸਮੀਖਿਆ ਬੇਨਤੀ ਨੂੰ ਰੱਦ ਕਰਨ ਦੀ ਪੁਸ਼ਟੀ ਕਰਦੇ ਹੋ?"
-
-msgid "Add-on Documentation :: Developer Hub"
-msgstr "ਐਡ-ਆਨ ਦਸਤਾਵੇਜ਼ :: ਡਿਵੈਲਪਰ ਹਬ"
 
 #. L10n: first parameter is the number of errors
 msgid "{0} error"
@@ -4690,6 +4663,15 @@ msgstr ""
 msgid "See more translation tools"
 msgstr "ਐਡ-ਆਨ ਵਰਜਨ ਦੁਆਰਾ"
 
+#. editorial content for the homepage shelves.
+msgid "Social streaming"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more social streaming extensions"
+msgstr "ਸਾਰੇ ਐਡ-ਆਨਾਂ ਦੀ ਝਲਕ ਵੇਖੋ"
+
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -4747,8 +4729,7 @@ msgstr ""
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
-#, python-format
-msgid "You cannot submit an add-on using an ID ending with %s"
+msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -5878,6 +5859,9 @@ msgstr "ਤੁਹਾਡੇ <span>{0}</span> ਅੰਕ ਹਨ।"
 
 msgid "Theme"
 msgstr "ਥੀਮ"
+
+msgid "No results found"
+msgstr "ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਮਿਲਿਆ"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"

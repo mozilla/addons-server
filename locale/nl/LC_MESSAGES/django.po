@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-21 08:49+0000\n"
-"PO-Revision-Date: 2021-07-21 18:40+0000\n"
+"POT-Creation-Date: 2021-07-29 17:13+0000\n"
+"PO-Revision-Date: 2021-07-30 18:51+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -299,9 +299,6 @@ msgstr "E-mailadres:"
 msgid "OK"
 msgstr "OK"
 
-msgid "No results found"
-msgstr "Geen resultaten gevonden"
-
 #. abbreviation of 'previous'
 msgid "Prev"
 msgstr "Vorige"
@@ -321,19 +318,6 @@ msgstr "Deze functie is tijdelijk uitgeschakeld vanwege onderhoud aan de website
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Enkele functies op deze pagina zijn tijdelijk uitgeschakeld vanwege onderhoud aan de website. Probeer het later nog eens."
-
-msgid "Are you human?"
-msgstr "Bent u een mens?"
-
-msgid "What's this?"
-msgstr "Wat is dit?"
-
-msgid ""
-"<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
-"different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
-msgstr ""
-"<p> Voer <strong>alle onderstaande woorden in</strong>, <strong>zo nodig gescheiden door een spatie</strong>. </p> <p> Als dit moeilijk leesbaar is, kunt u <a href=\"#\" "
-"id=\"recaptcha_different\">andere woorden proberen</a> of <a href=\"#\" id=\"recaptcha_audio\">een ander soort captcha proberen</a>. </p>"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -1787,6 +1771,9 @@ msgstr "Mozilla-beveiligingsmelding: uw API-referenties voor AMO zijn ingetrokke
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "De validatie leverde te veel fouten/waarschuwingen op, dus %s berichten zijn ingekort. Nadat de zichtbare berichten zijn geadresseerd kunt u de overige lezen."
 
+msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgstr "Uploaden van Manifest v3 wordt momenteel niet ondersteund. U kunt [{start_href}hier{end_href}] meer lezen over de ondersteuningstijdlijn."
+
 msgid "Updated"
 msgstr "Bijgewerkt"
 
@@ -2213,8 +2200,8 @@ msgstr "Aanvullende details voor {0}"
 msgid "Tags"
 msgstr "Labels"
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr "Labels helpen gebruikers om uw add-on te vinden en dienen korte beschrijvingen te zijn, zoals tabbladen, werkbalk of twitter. U kunt maximaal {0} labels gebruiken."
+msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
+msgstr "Labels helpen gebruikers uw add-on te vinden. U kunt maximaal {0} labels gebruiken. Kies alleen labels die relevant voor uw add-on zijn."
 
 msgid "Limit {0} tags."
 msgstr "Beperkt tot {0} labels."
@@ -3056,16 +3043,6 @@ msgstr "Volgende vermelde versie:"
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "Dit is de nieuwste geüploade versie, echter deze is op de website nog niet live"
 
-msgid "Queues are not reviewed strictly in order"
-msgstr "Wachtrijen worden niet op strikte volgorde beoordeeld"
-
-msgid "Queue Position:"
-msgstr "Positie in wachtrij:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(position)s van %(total)s"
-
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr "Ondertekend voor eigen distributie. Updates worden door u verzorgd."
 
@@ -3493,9 +3470,6 @@ msgstr "Door uw beoordelingsverzoek te annuleren, wordt uw add-on als onvolledig
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Weet u zeker dat u uw beoordelingsverzoek wilt annuleren?"
-
-msgid "Add-on Documentation :: Developer Hub"
-msgstr "Add-ondocumentatie :: Ontwikkelaarshub"
 
 #. L10n: first parameter is the number of errors
 msgid "{0} error"
@@ -4525,6 +4499,14 @@ msgstr "Vertaalhulpmiddelen"
 msgid "See more translation tools"
 msgstr "Meer vertaalhulpmiddelen bekijken"
 
+#. editorial content for the homepage shelves.
+msgid "Social streaming"
+msgstr "Sociale streaming"
+
+#. editorial content for the homepage shelves.
+msgid "See more social streaming extensions"
+msgstr "Meer sociale-streamingextensies bekijken"
+
 msgid "Could not parse the manifest file."
 msgstr "Kon het manifest-bestand niet verwerken."
 
@@ -4582,9 +4564,8 @@ msgstr "De maximale grootte voor WebExtension-thema’s is {0}."
 msgid "You cannot submit this type of add-on"
 msgstr "U kunt dit type add-on niet indienen"
 
-#, python-format
-msgid "You cannot submit an add-on using an ID ending with %s"
-msgstr "U kunt geen add-on indienen met een ID die op %s eindigt"
+msgid "You cannot submit an add-on using an ID ending with this suffix"
+msgstr "U kunt geen add-on indienen met een ID die op dit achtervoegsel eindigt"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "U kunt geen door Mozilla ondertekende extensie indienen"
@@ -5612,6 +5593,9 @@ msgstr "U hebt <span>{0}</span> punten."
 
 msgid "Theme"
 msgstr "Thema"
+
+msgid "No results found"
+msgstr "Geen resultaten gevonden"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"

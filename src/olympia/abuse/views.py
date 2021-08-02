@@ -48,6 +48,8 @@ class AddonAbuseViewSet(CreateModelMixin, GenericViewSet):
             return self.addon_object
 
         self.addon_object = self.get_addon_viewset().get_object()
+        if self.addon_object and not self.addon_object.is_public():
+            raise Http404
         return self.addon_object
 
     def get_guid_and_addon(self):
@@ -55,17 +57,12 @@ class AddonAbuseViewSet(CreateModelMixin, GenericViewSet):
             'guid': None,
             'addon': None,
         }
-        # See if the addon input is guid-like first. It doesn't have to exist
-        # in our database.
+        # See if the addon parameter looks like a guid. If it does, record the
+        # guid without trying linking to an add-on in the database.
         if self.get_addon_viewset().get_lookup_field(self.kwargs['addon_pk']) == 'guid':
             data['guid'] = self.kwargs['addon_pk']
-            try:
-                # But see if it's also in our database.
-                self.get_addon_object()
-            except Http404:
-                # If it isn't, that's okay, we have a guid.  Setting
-                # addon_object=None here means get_addon_object won't raise 404
-                self.addon_object = None
+            # So that get_addon_object() doesn't raise a 404.
+            self.addon_object = None
         # At this point get_addon_object() will either return None because we
         # set self.addon_object earlier, or find an add-on with its pk/slug,
         # or raise a 404.

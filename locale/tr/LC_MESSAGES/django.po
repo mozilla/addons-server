@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-21 08:49+0000\n"
+"POT-Creation-Date: 2021-07-29 17:13+0000\n"
 "PO-Revision-Date: 2021-07-11 10:01+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -297,9 +297,6 @@ msgstr "E-posta:"
 msgid "OK"
 msgstr "Tamam"
 
-msgid "No results found"
-msgstr "Sonuç bulunamadı"
-
 #. abbreviation of 'previous'
 msgid "Prev"
 msgstr "Önceki"
@@ -319,20 +316,6 @@ msgstr "Web sitemizde bakım çalışması yapıldığından şu anda bu özelli
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Web sitemizde bakım çalışması yapıldığından şu anda bu özellik devre dışıdır Lütfen biraz sonra tekrar deneyin."
-
-msgid "Are you human?"
-msgstr "İnsan mısınız?"
-
-# 100%
-msgid "What's this?"
-msgstr "Bu nedir?"
-
-msgid ""
-"<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
-"different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
-msgstr ""
-"<p> Lütfen <strong>tüm kelimeleri</strong> aşağıya girin ve <strong>gerekirse kelimeleri boşlukla ayırın</strong>. </p> <p> Eğer kelimeyi okumak zorsa <a href=\"#\" id=\"recaptcha_different"
-"\">farklı kelimeler deneyebilir</a> veya onun yerine <a href=\"#\" id=\"recaptcha_audio\">farklı bir doğrulama türünü deneyebilirsiniz</a>. </p>"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -1789,6 +1772,9 @@ msgstr "Mozilla Güvenlik Bildirimi: AMO API kimlik bilgileriniz iptal edildi"
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Doğrulama çok fazla hata/uyarı üretti, %s iletileri kesildi. Görünen iletileri ele aldıktan sonra, diğerlerini görebilirsiniz."
 
+msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgstr ""
+
 msgid "Updated"
 msgstr "Güncelleme"
 
@@ -2228,8 +2214,8 @@ msgstr "{0} için Ek Ayrıntılar"
 msgid "Tags"
 msgstr "Etiketler"
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr "Etiketler kullanıcıların eklentinizi bulmalarına yardımcı olur ve sekmeler, araç çubuğu veya twitter gibi kısa açıklamalar olmalıdır. En fazla {0} etiketiniz olabilir."
+msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
+msgstr ""
 
 msgid "Limit {0} tags."
 msgstr ""
@@ -3026,16 +3012,6 @@ msgstr "Sonraki listelenmiş sürüm:"
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "Bu en yeni yüklenen sürüm, ancak henüz sitede yayımlanmıyor"
 
-msgid "Queues are not reviewed strictly in order"
-msgstr "Kuyruklar sırayla incelenmeyebilir"
-
-msgid "Queue Position:"
-msgstr "Sıradaki konum:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(total)s içinde %(position)s."
-
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr "Kendi kendine dağıtım için imzalandı. Güncellemeler sizin tarafınızdan yapılacak."
 
@@ -3453,9 +3429,6 @@ msgstr "İnceleme isteğinizi iptal ederseniz, eklentiniz tamamlanmamış olarak
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "İnceleme isteğinizi iptal etmek istediğinizden emin misiniz?"
-
-msgid "Add-on Documentation :: Developer Hub"
-msgstr "Eklenti Belgeleri :: Geliştirici Merkezi"
 
 #. L10n: first parameter is the number of errors
 msgid "{0} error"
@@ -4488,6 +4461,18 @@ msgstr "Çeviri araçları"
 msgid "See more translation tools"
 msgstr "Diğer çeviri araçlarına bakın"
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Social streaming"
+msgstr "Sosyal Ağlar"
+
+# 95%
+# 100%
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more social streaming extensions"
+msgstr "Diğer popüler uzantılara bakın"
+
 msgid "Could not parse the manifest file."
 msgstr "Manifest dosyası ayrıştırılamadı."
 
@@ -4545,8 +4530,8 @@ msgstr "WebExtension temaları için maksimum boyut {0}."
 msgid "You cannot submit this type of add-on"
 msgstr "Bu türden eklenti gönderemezsiniz"
 
-#, python-format
-msgid "You cannot submit an add-on using an ID ending with %s"
+#, fuzzy
+msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr "%s ile biten bir ID ile eklenti gönderemezsiniz"
 
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -5590,6 +5575,9 @@ msgstr "<span>{0}</span> puanınız var."
 
 msgid "Theme"
 msgstr "Tema"
+
+msgid "No results found"
+msgstr "Sonuç bulunamadı"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"

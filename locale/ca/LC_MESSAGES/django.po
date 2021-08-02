@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-21 08:49+0000\n"
+"POT-Creation-Date: 2021-07-29 17:13+0000\n"
 "PO-Revision-Date: 2021-06-25 10:04+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -310,9 +310,6 @@ msgstr "Email"
 msgid "OK"
 msgstr ""
 
-msgid "No results found"
-msgstr ""
-
 #. abbreviation of 'previous'
 msgid "Prev"
 msgstr "Anterior"
@@ -332,17 +329,6 @@ msgstr "Aquesta funcionalitat està inhabilitada temporalment mentre es realitze
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Algunes funcionalitats d'aquesta pàgina estan inhabilitades temporalment mentre es realitzen tasques de manteniment. Torneu-ho a provar més tard."
-
-msgid "Are you human?"
-msgstr "Sou humà?"
-
-msgid "What's this?"
-msgstr "Què és això?"
-
-msgid ""
-"<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
-"different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
-msgstr ""
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -1887,6 +1873,9 @@ msgstr ""
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr ""
 
+msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgstr ""
+
 msgid "Updated"
 msgstr "Actualitzat"
 
@@ -2332,7 +2321,7 @@ msgstr "Detalls del complement {0}"
 msgid "Tags"
 msgstr "Etiquetes"
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
+msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
 msgstr ""
 
 msgid "Limit {0} tags."
@@ -3170,16 +3159,6 @@ msgstr "Suprimeix la versió"
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr ""
 
-msgid "Queues are not reviewed strictly in order"
-msgstr ""
-
-msgid "Queue Position:"
-msgstr ""
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr ""
-
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
 
@@ -3629,9 +3608,6 @@ msgstr "Si cancel·leu la vostra petició de revisió, el vostre complement qued
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Voleu cancel·lar la vostra petició de revisió?"
-
-msgid "Add-on Documentation :: Developer Hub"
-msgstr "Documentació de complements :: Centre de desenvolupadors"
 
 # {0} is a number
 #. L10n: first parameter is the number of errors
@@ -4671,6 +4647,16 @@ msgstr ""
 msgid "See more translation tools"
 msgstr "per la versió del complement"
 
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Social streaming"
+msgstr "Xarxes socials"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more social streaming extensions"
+msgstr "Mostra tots els complements"
+
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -4728,8 +4714,7 @@ msgstr ""
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
-#, python-format
-msgid "You cannot submit an add-on using an ID ending with %s"
+msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -5847,6 +5832,9 @@ msgstr ""
 
 msgid "Theme"
 msgstr "Tema"
+
+msgid "No results found"
+msgstr ""
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"

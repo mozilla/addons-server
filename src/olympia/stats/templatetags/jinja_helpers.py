@@ -1,6 +1,7 @@
 from django.template import loader
 
 import jinja2
+import markupsafe
 
 from django_jinja import library
 
@@ -16,4 +17,4 @@ def report_menu(context, request, report, obj):
         ctx = {
             'addon': obj,
         }
-        return jinja2.Markup(tpl.render(ctx))
+        return markupsafe.Markup(tpl.render(ctx))

@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-21 08:49+0000\n"
-"PO-Revision-Date: 2021-07-23 13:35+0000\n"
+"POT-Creation-Date: 2021-07-29 17:13+0000\n"
+"PO-Revision-Date: 2021-08-02 07:56+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -298,9 +298,6 @@ msgstr "E-mail:"
 msgid "OK"
 msgstr "OK"
 
-msgid "No results found"
-msgstr "Nincs találat"
-
 #. abbreviation of 'previous'
 msgid "Prev"
 msgstr "Vissza"
@@ -320,19 +317,6 @@ msgstr "Ez a funkció a karbantartás ideje alatt átmenetileg le van tiltva. Ha
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Néhány funkció a karbantartás ideje alatt átmenetileg le van tiltva. Használja a böngésző Vissza gombját és próbálja meg kicsit később."
-
-msgid "Are you human?"
-msgstr "Valóban ember?"
-
-msgid "What's this?"
-msgstr "Mi ez?"
-
-msgid ""
-"<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
-"different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
-msgstr ""
-"<p> Kérjük, írja be <strong>mind</strong> az alábbi szavakat, szükség esetén <strong>szóközzel elválasztva</strong>. </p> <p>Ha ezt nehéz elolvasni, akkor <a href=\"#\" "
-"id=\"recaptcha_different\">próbálkozhat más szavakkal</a> vagy <a href=\"#\" id=\"recaptcha_audio\">próbáljon ki más típusú ellenőrzést</a> helyette. </p>"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -1798,6 +1782,9 @@ msgstr "Mozilla biztonsági közlemény: Az AMO API engedélyei vissza lettek vo
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Az ellenőrzés túl sok hibát/figyelmeztetést generált, így %s üzenet csonkítva lett. A látható üzenetek megoldása után láthatja a többit is."
 
+msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgstr "A Manifest v3 jelenleg nem támogatott a feltöltésnél. [{start_href}Itt{end_href}] olvashat többet a támogatási ütemtervről."
+
 msgid "Updated"
 msgstr "Frissítve"
 
@@ -2226,8 +2213,8 @@ msgstr "A(z) {0} további részletei"
 msgid "Tags"
 msgstr "Címkék"
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr "A címkék segítenek a felhasználóknak hogy megtalálják a kiegészítőjét és rövid leírásként is működnek mint pl. „lapok”, az „eszköztár” vagy a „twitter”. Legfeljebb {0} címkét használhat."
+msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
+msgstr "A címkék segítenek a felhasználóknak megtalálni a kiegészítőt. Legfeljebb {0} címkéje lehet. Csak olyan címkéket válasszon, amelyek relevánsak a kiegészítőhöz."
 
 msgid "Limit {0} tags."
 msgstr "Legfeljebb {0} címke."
@@ -3069,16 +3056,6 @@ msgstr "Következő listázott verzió:"
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "Ez a legújabb feltöltött változat, azonban még nem él az oldalon"
 
-msgid "Queues are not reviewed strictly in order"
-msgstr "A sorok nem feltétlen szigorú sorrendben értékeltek"
-
-msgid "Queue Position:"
-msgstr "Sorbeli pozíció:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(position)s / %(total)s"
-
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr "Saját terjesztésre aláírva. A frissítéseket Ön kezeli."
 
@@ -3510,9 +3487,6 @@ msgstr "Az értékelési kérelem megszakításával a kiegészítő befejezetle
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Biztos megszakítja az értékelési kérést?"
-
-msgid "Add-on Documentation :: Developer Hub"
-msgstr "Kiegészítődokumentáció :: Fejlesztőközpont"
 
 #. L10n: first parameter is the number of errors
 msgid "{0} error"
@@ -4539,6 +4513,14 @@ msgstr "Fordítási eszközök"
 msgid "See more translation tools"
 msgstr "További fordítási eszközök megtekintése"
 
+#. editorial content for the homepage shelves.
+msgid "Social streaming"
+msgstr "Közösségi közvetítés"
+
+#. editorial content for the homepage shelves.
+msgid "See more social streaming extensions"
+msgstr "További közösségi közvetítési bővítmények"
+
 msgid "Could not parse the manifest file."
 msgstr "Nem sikerült feldolgozni a jegyzékfájlt."
 
@@ -4596,9 +4578,8 @@ msgstr "A WebExtension témák maximális mérete {0}."
 msgid "You cannot submit this type of add-on"
 msgstr "Ilyen típusú kiegészítőt nem küldhet be"
 
-#, python-format
-msgid "You cannot submit an add-on using an ID ending with %s"
-msgstr "Nem küldhet be %s szöveggel végződő azonosítójú kiegészítőt"
+msgid "You cannot submit an add-on using an ID ending with this suffix"
+msgstr "Nem küldhet be ilyen utótaggal végződő azonosítójú kiegészítőt"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Nem küldhet be Mozilla által aláírt kiegészítőt"
@@ -5631,6 +5612,9 @@ msgstr "Önnek <span>{0}</span> pontja van."
 
 msgid "Theme"
 msgstr "Téma"
+
+msgid "No results found"
+msgstr "Nincs találat"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"

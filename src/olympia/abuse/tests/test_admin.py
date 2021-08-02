@@ -59,8 +59,13 @@ class TestAbuse(TestCase):
             created=days_ago(100),
         )
         AbuseReport.objects.create(
-            addon=cls.addon1, guid='@guid1', message='', reporter=user_factory()
+            addon=cls.addon1,
+            guid='@guid1',
+            message='With Addon',
+            reporter=user_factory(),
         )
+        # This one is against addon1 but without a FK, just the guid.
+        AbuseReport.objects.create(guid='@guid1', message='', reporter=user_factory())
         # This is a report for an addon not in the database.
         cls.report2 = AbuseReport.objects.create(
             guid='@unknown_guid', addon_name='Mysterious Addon', message='Doo'
@@ -100,7 +105,7 @@ class TestAbuse(TestCase):
         response = self.client.get(self.list_url, {'type': 'addon'}, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#result_list tbody tr').length == 5
+        assert doc('#result_list tbody tr').length == 6
         assert 'Ehehehehe' not in doc('#result_list').text()
 
         response = self.client.get(self.list_url, {'type': 'user'}, follow=True)
@@ -119,7 +124,7 @@ class TestAbuse(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert not doc('#changelist-search')
-        assert doc('#result_list tbody tr').length == 6  # No searching
+        assert doc('#result_list tbody tr').length == AbuseReport.objects.count()
 
     def test_search_user(self):
         response = self.client.get(
@@ -295,7 +300,7 @@ class TestAbuse(TestCase):
         response = self.client.get(self.list_url, data, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#result_list tbody tr').length == 4
+        assert doc('#result_list tbody tr').length == 5
         result_list_text = doc('#result_list').text()
         assert 'Soap' not in result_list_text
         assert 'Foo' not in result_list_text
@@ -338,7 +343,7 @@ class TestAbuse(TestCase):
         response = self.client.get(self.list_url, data, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#result_list tbody tr').length == 2
+        assert doc('#result_list tbody tr').length == 3
         result_list_text = doc('#result_list').text()
         assert 'Soap' not in result_list_text
         assert 'Foo' in result_list_text
@@ -493,15 +498,15 @@ class TestAbuse(TestCase):
         request._messages = default_messages_storage(request)
         reports = AbuseReport.objects.filter(guid__in=('@guid3', '@unknown_guid'))
         assert reports.count() == 2
-        assert AbuseReport.objects.count() == 6
-        assert AbuseReport.unfiltered.count() == 6
+        assert AbuseReport.objects.count() == 7
+        assert AbuseReport.unfiltered.count() == 7
 
         action_callback = abuse_report_admin.get_actions(request)['delete_selected'][0]
         rval = action_callback(abuse_report_admin, request, reports)
         assert rval is None  # successful actions return None
         assert reports.count() == 0  # All should have been soft-deleted.
-        assert AbuseReport.objects.count() == 4  # Should have 1 unaffected.
-        assert AbuseReport.unfiltered.count() == 6  # We're only soft-deleting.
+        assert AbuseReport.objects.count() == 5  # Should have 1 unaffected.
+        assert AbuseReport.unfiltered.count() == 7  # We're only soft-deleting.
 
     def test_detail_addon_report(self):
         AddonApprovalsCounter.objects.create(
