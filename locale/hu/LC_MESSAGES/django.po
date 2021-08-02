@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-07-29 17:13+0000\n"
-"PO-Revision-Date: 2021-07-29 17:54+0000\n"
+"PO-Revision-Date: 2021-08-02 07:56+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1783,7 +1783,7 @@ msgid "Validation generated too many errors/warnings so %s messages were truncat
 msgstr "Az ellenőrzés túl sok hibát/figyelmeztetést generált, így %s üzenet csonkítva lett. A látható üzenetek megoldása után láthatja a többit is."
 
 msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
-msgstr ""
+msgstr "A Manifest v3 jelenleg nem támogatott a feltöltésnél. [{start_href}Itt{end_href}] olvashat többet a támogatási ütemtervről."
 
 msgid "Updated"
 msgstr "Frissítve"
@@ -2214,7 +2214,7 @@ msgid "Tags"
 msgstr "Címkék"
 
 msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
-msgstr ""
+msgstr "A címkék segítenek a felhasználóknak megtalálni a kiegészítőt. Legfeljebb {0} címkéje lehet. Csak olyan címkéket válasszon, amelyek relevánsak a kiegészítőhöz."
 
 msgid "Limit {0} tags."
 msgstr "Legfeljebb {0} címke."
