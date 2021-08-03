@@ -359,7 +359,7 @@ DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX = '61.0'
 # This will probably have to be adjusted later.
 DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX = '100.0'
 # We don't know if the Android min version will be different, but assume it might be.
-DEFAULT_WEBEXT_MIN_VERSION_MV3_ANDROID = '100.0'
+DEFAULT_WEBEXT_MIN_VERSION_MV3_ANDROID = DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX
 
 ADDON_GUID_PATTERN = re.compile(
     # Match {uuid} or something@host.tld ("something" being optional)
