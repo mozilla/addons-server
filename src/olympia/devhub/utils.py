@@ -329,12 +329,13 @@ def add_manifest_version_error(validation):
     ):
         return
     msg = gettext(
-        'Manifest v3 is currently not supported for upload. You can read more '
-        'about the support timeline [{start_href}here{end_href}].'
+        'Manifest V3 is currently not supported for upload. '
+        '{start_href}Read more about the support timeline{end_href}.'
     )
     url = 'https://blog.mozilla.org/addons/2021/05/27/manifest-v3-update/'
+    start_href = f'<a href="{url}" target="_blank" rel="noopener">'
 
-    new_error_message = msg.format(start_href=f'<a href="{url}">', end_href='</a>')
+    new_error_message = msg.format(start_href=start_href, end_href='</a>')
     for index, message in enumerate(validation['messages']):
         if message.get('dataPath') == '/manifest_version':
             # if we find the linter manifest_version=3 warning, replace it
