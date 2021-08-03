@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Tests for SQL Model.
 
 Currently these tests are coupled tighly with MySQL
@@ -118,7 +117,7 @@ class TestSQLModel(TestCase):
         request.addfinalizer(teardown)
 
     def test_all(self):
-        assert sorted([s.category for s in Summary.objects.all()]) == (
+        assert sorted(s.category for s in Summary.objects.all()) == (
             ['apparel', 'safety']
         )
 
@@ -156,11 +155,11 @@ class TestSQLModel(TestCase):
 
     def test_slice3(self):
         qs = Summary.objects.all().order_by('category')[:2]
-        assert sorted([c.category for c in qs]) == ['apparel', 'safety']
+        assert sorted(c.category for c in qs) == ['apparel', 'safety']
 
     def test_slice4(self):
         qs = Summary.objects.all().order_by('category')[0:]
-        assert sorted([c.category for c in qs]) == ['apparel', 'safety']
+        assert sorted(c.category for c in qs) == ['apparel', 'safety']
 
     def test_slice5(self):
         assert ['defilbrilator'] == [
@@ -222,20 +221,20 @@ class TestSQLModel(TestCase):
         qs = ProductDetail.objects.all().filter(
             Q(product='life jacket') | Q(product='defilbrilator')
         )
-        assert sorted([r.product for r in qs]) == ['defilbrilator', 'life jacket']
+        assert sorted(r.product for r in qs) == ['defilbrilator', 'life jacket']
 
     def test_combining_raw_filters_with_or(self):
         qs = ProductDetail.objects.all().filter_raw(
             Q('product =', 'life jacket') | Q('product =', 'defilbrilator')
         )
-        assert sorted([r.product for r in qs]) == ['defilbrilator', 'life jacket']
+        assert sorted(r.product for r in qs) == ['defilbrilator', 'life jacket']
 
     def test_nested_raw_filters_with_or(self):
         qs = ProductDetail.objects.all().filter_raw(
             Q('category =', 'apparel', 'product =', 'defilbrilator')
             | Q('product =', 'life jacket')
         )
-        assert sorted([r.product for r in qs]) == ['life jacket']
+        assert sorted(r.product for r in qs) == ['life jacket']
 
     def test_crazy_nesting(self):
         qs = ProductDetail.objects.all().filter_raw(
@@ -249,7 +248,7 @@ class TestSQLModel(TestCase):
                 'safety',
             )
         )
-        assert sorted([r.product for r in qs]) == ['life jacket']
+        assert sorted(r.product for r in qs) == ['life jacket']
 
     def test_having_gte(self):
         c = Summary.objects.all().having('total >=', 2)[0]
@@ -289,7 +288,7 @@ class TestSQLModel(TestCase):
         )
 
     def check_type(self, val, types):
-        assert isinstance(val, types), 'Unexpected type: %s for %s' % (type(val), val)
+        assert isinstance(val, types), f'Unexpected type: {type(val)} for {val}'
 
     def test_types(self):
         row = Summary.objects.all().order_by('category')[0]

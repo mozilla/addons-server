@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import hashlib
 import os
 import shutil
@@ -445,7 +444,7 @@ class TestTasks(TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
-        super(TestTasks, self).setUp()
+        super().setUp()
         self.addon = amo.tests.addon_factory(
             name='Rændom add-on', version_kw={'version': '0.0.1'}
         )
@@ -458,10 +457,10 @@ class TestTasks(TestCase):
     def tearDown(self):
         if os.path.exists(self.get_backup_file_path()):
             os.unlink(self.get_backup_file_path())
-        super(TestTasks, self).tearDown()
+        super().tearDown()
 
     def get_backup_file_path(self):
-        return '{0}.backup_signature'.format(self.file_.file_path)
+        return f'{self.file_.file_path}.backup_signature'
 
     def set_max_appversion(self, version):
         """Set self.max_appversion to the given version."""
@@ -496,7 +495,7 @@ class TestTasks(TestCase):
         # We want to make sure each file has been signed.
         self.file2 = amo.tests.file_factory(version=self.version)
         self.file2.update(filename='webextension-b.xpi')
-        backup_file2_path = '{0}.backup_signature'.format(self.file2.file_path)
+        backup_file2_path = f'{self.file2.file_path}.backup_signature'
         try:
             fpath = 'src/olympia/files/fixtures/files/webextension.xpi'
             with amo.tests.copy_file(fpath, self.file_.file_path):
@@ -706,7 +705,7 @@ def test_get_new_version_number(old, new):
     assert tasks.get_new_version_number(old) == new
 
 
-class TestSignatureInfo(object):
+class TestSignatureInfo:
     @pytest.fixture(autouse=True)
     def setup(self):
         fixture_path = (

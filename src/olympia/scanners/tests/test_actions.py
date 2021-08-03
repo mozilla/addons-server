@@ -322,7 +322,7 @@ class TestActions(TestCase):
 
 class TestRunAction(TestCase):
     def setUp(self):
-        super(TestRunAction, self).setUp()
+        super().setUp()
 
         self.scanner = YARA
         self.version = version_factory(addon=addon_factory())

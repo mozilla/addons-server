@@ -18,7 +18,7 @@ class MiddlewareTest(TestCase):
     """Tests that the locale and app redirection work properly."""
 
     def setUp(self):
-        super(MiddlewareTest, self).setUp()
+        super().setUp()
         self.rf = RequestFactory()
         self.middleware = LocaleAndAppURLMiddleware()
 
@@ -159,7 +159,7 @@ class TestPrefixer(TestCase):
     def tearDown(self):
         clean_url_prefixes()
         set_script_prefix('/')
-        super(TestPrefixer, self).tearDown()
+        super().tearDown()
 
     def test_split_path(self):
         def split_eq(url, locale, app, path):

@@ -16,7 +16,7 @@ from .models import PrimaryHero, SecondaryHeroModule, PrimaryHeroImage
 class ImageChoiceField(forms.ModelChoiceField):
     def label_from_instance(self, obj):
         return mark_safe(
-            '<img class="select-image-preview" src="{}" />'.format(obj.preview_url)
+            f'<img class="select-image-preview" src="{obj.preview_url}" />'
         )
 
 

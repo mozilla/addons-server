@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from django import test
 from django.test.client import RequestFactory
 from django.urls import reverse

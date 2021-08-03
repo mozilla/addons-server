@@ -42,6 +42,6 @@ def do_adduser(user, group):
     except IntegrityError as e:
         raise CommandError('User is already in that group? %s' % e)
     except UserProfile.DoesNotExist:
-        raise CommandError('User ({user}) does not exist.'.format(user=user))
+        raise CommandError(f'User ({user}) does not exist.')
     except Group.DoesNotExist:
-        raise CommandError('Group ({group}) does not exist.'.format(group=group))
+        raise CommandError(f'Group ({group}) does not exist.')

@@ -30,7 +30,7 @@ class Command(BaseCommand):
                 t.expire()
                 for t in ActivityLogToken.objects.filter(uuid__in=token_uuids)
             ]
-            log.info('%s tokens (%s) expired' % (len(done), ','.join(token_uuids)))
+            log.info('{} tokens ({}) expired'.format(len(done), ','.join(token_uuids)))
             if version_pk:
                 print('Warning: --version_id ignored as tokens provided too')
         elif version_pk:
@@ -38,7 +38,7 @@ class Command(BaseCommand):
                 t.expire()
                 for t in ActivityLogToken.objects.filter(version__pk=version_pk)
             ]
-            log.info('%s tokens for version %s expired' % (len(done), version_pk))
+            log.info(f'{len(done)} tokens for version {version_pk} expired')
         else:
             raise CommandError(
                 'Please provide either at least one token, or a version id.'

@@ -39,7 +39,7 @@ def memcache():
                 s.connect((ip, int(port)))
             except Exception as e:
                 result = False
-                status = 'Failed to connect to memcached (%s): %s' % (host, e)
+                status = f'Failed to connect to memcached ({host}): {e}'
                 monitor_log.critical(status)
             else:
                 result = True
@@ -140,7 +140,7 @@ def rabbitmq():
             rabbitmq_results.append((hostname, True))
         except Exception as e:
             rabbitmq_results.append((hostname, False))
-            status = 'Failed to chat with rabbitmq %s: %s' % (hostname, e)
+            status = f'Failed to chat with rabbitmq {hostname}: {e}'
             monitor_log.critical(status)
 
     return status, rabbitmq_results
@@ -155,7 +155,7 @@ def signer():
     if autograph_url:
         try:
             response = requests.get(
-                '{host}/__heartbeat__'.format(host=autograph_url),
+                f'{autograph_url}/__heartbeat__',
                 timeout=settings.SIGNING_SERVER_MONITORING_TIMEOUT,
             )
             if response.status_code != 200:

@@ -26,7 +26,7 @@ def dummy_task():
 
 class TestIndexCommand(ESTestCaseMixin, PatchMixin, TransactionTestCase):
     def setUp(self):
-        super(TestIndexCommand, self).setUp()
+        super().setUp()
         if is_reindexing_amo():
             unflag_reindexing_amo()
 
@@ -77,7 +77,7 @@ class TestIndexCommand(ESTestCaseMixin, PatchMixin, TransactionTestCase):
         got = self.get_results(response)
 
         for addon in expected:
-            assert addon.pk in got, '%s is not in %s' % (addon.pk, got)
+            assert addon.pk in got, f'{addon.pk} is not in {got}'
         return response
 
     def get_results(self, response):
@@ -105,7 +105,7 @@ class TestIndexCommand(ESTestCaseMixin, PatchMixin, TransactionTestCase):
         class ReindexThread(threading.Thread):
             def __init__(self):
                 self.stdout = io.StringIO()
-                super(ReindexThread, self).__init__()
+                super().__init__()
 
             def run(self):
                 # We need to wait at least a second, to make sure the alias

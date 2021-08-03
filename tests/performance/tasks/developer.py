@@ -19,7 +19,7 @@ FXA_CONFIG = settings.FXA_CONFIG[settings.DEFAULT_FXA_CONFIG_NAME]
 class DeveloperTaskSet(BaseUserTaskSet):
     def submit_form(self, form=None, url=None, extra_values=None):
         if form is None:
-            raise ValueError('form cannot be None; url={}'.format(url))
+            raise ValueError(f'form cannot be None; url={url}')
 
         def submit(method, form_action_url, values):
             values = dict(values)
@@ -59,9 +59,7 @@ class DeveloperTaskSet(BaseUserTaskSet):
             more_info = ''
             if response.status_code in (301, 302):
                 more_info = 'Location: {}'.format(response.headers['Location'])
-            response.failure(
-                'Unexpected status: {}; {}'.format(response.status_code, more_info)
-            )
+            response.failure(f'Unexpected status: {response.status_code}; {more_info}')
 
     def upload_addon(self, form):
         url = helpers.submit_url('upload-unlisted')
@@ -72,7 +70,7 @@ class DeveloperTaskSet(BaseUserTaskSet):
                 '/en-US/developers/upload/',
                 {'csrfmiddlewaretoken': csrfmiddlewaretoken},
                 files={'upload': addon_file},
-                name='devhub.upload {}'.format(os.path.basename(addon_file.name)),
+                name=f'devhub.upload {os.path.basename(addon_file.name)}',
                 allow_redirects=False,
                 catch_response=True,
             )
@@ -84,7 +82,7 @@ class DeveloperTaskSet(BaseUserTaskSet):
                     form.fields['upload'] = upload_uuid
                     self.submit_form(form=form, url=url)
             else:
-                response.failure('Unexpected status: {}'.format(response.status_code))
+                response.failure(f'Unexpected status: {response.status_code}')
 
     @task(1)
     def upload(self):
@@ -124,11 +122,9 @@ class DeveloperTaskSet(BaseUserTaskSet):
                     response.success()
                     return data['upload']
             else:
-                return response.failure(
-                    'Unexpected status: {}'.format(response.status_code)
-                )
+                return response.failure(f'Unexpected status: {response.status_code}')
             gevent.sleep(1)
         else:
             response.failure(
-                'Upload did not complete in {} tries'.format(MAX_UPLOAD_POLL_ATTEMPTS)
+                f'Upload did not complete in {MAX_UPLOAD_POLL_ATTEMPTS} tries'
             )

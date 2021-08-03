@@ -59,7 +59,7 @@ def _delay_auto_approval_indefinitely_and_restrict(
     users = set(version.addon.authors.all())
     if upload:
         users.add(upload.user)
-    ips = set(user.last_login_ip for user in users if user.last_login_ip)
+    ips = {user.last_login_ip for user in users if user.last_login_ip}
     if upload and upload.ip_address:
         ips.add(upload.ip_address)
 

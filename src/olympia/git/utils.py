@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import mimetypes
 import os
 import shutil
@@ -123,7 +122,7 @@ def get_mime_type_for_blob(tree_or_blob, name):
     )
 
 
-class TemporaryWorktree(object):
+class TemporaryWorktree:
     def __init__(self, repository):
         self.git_repository = repository
         self.name = uuid.uuid4().hex
@@ -162,7 +161,7 @@ class TemporaryWorktree(object):
         self.git_repository.lookup_branch(self.name).delete()
 
 
-class AddonGitRepository(object):
+class AddonGitRepository:
 
     GIT_DESCRIPTION = '.git/description'
 
@@ -256,7 +255,7 @@ class AddonGitRepository(object):
                 master_ref = 'refs/heads/master'
                 git_repository.lookup_reference(master_ref)
             except KeyError:
-                message = 'Reference "{}" not found'.format(master_ref)
+                message = f'Reference "{master_ref}" not found'
                 log.exception(message)
                 raise MissingMasterBranchError(message)
 
@@ -343,7 +342,7 @@ class AddonGitRepository(object):
             repo = cls(version.addon.id, package_type='addon')
             file_obj = version.all_files[0] if version.all_files else None
             branch = repo.find_or_create_branch(BRANCHES[version.channel])
-            note = ' ({})'.format(note) if note else ''
+            note = f' ({note})' if note else ''
 
             commit = repo._commit_through_worktree(
                 file_obj=file_obj,
@@ -381,7 +380,7 @@ class AddonGitRepository(object):
         try:
             branch = self.git_repository.branches.get(name)
         except pygit2.GitError:
-            message = 'Reference for branch "{}" is broken'.format(name)
+            message = f'Reference for branch "{name}" is broken'
             log.exception(message)
             raise BrokenRefError(message)
 
@@ -441,7 +440,7 @@ class AddonGitRepository(object):
             files.sort(key=len, reverse=True)
             for filename in files:
                 if os.path.basename(filename) in files_to_rename:
-                    renamed = '{}.{}'.format(filename, uuid.uuid4().hex[:8])
+                    renamed = f'{filename}.{uuid.uuid4().hex[:8]}'
                     shutil.move(
                         os.path.join(worktree.path, filename),
                         os.path.join(worktree.path, renamed),

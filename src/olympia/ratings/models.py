@@ -36,7 +36,7 @@ class RatingQuerySet(models.QuerySet):
 
     def delete(self, user_responsible=None, hard_delete=False):
         if hard_delete:
-            return super(RatingQuerySet, self).delete()
+            return super().delete()
         else:
             for rating in self:
                 rating.delete(user_responsible=user_responsible)
@@ -49,11 +49,11 @@ class RatingManager(ManagerBase):
         # DO NOT change the default value of include_deleted unless you've read
         # through the comment just above the Addon managers
         # declaration/instantiation and understand the consequences.
-        super(RatingManager, self).__init__()
+        super().__init__()
         self.include_deleted = include_deleted
 
     def get_queryset(self):
-        qs = super(RatingManager, self).get_queryset()
+        qs = super().get_queryset()
         if not self.include_deleted:
             qs = qs.exclude(deleted=True).exclude(reply_to__deleted=True)
         return qs
@@ -65,7 +65,7 @@ class WithoutRepliesRatingManager(ManagerBase):
     _queryset_class = RatingQuerySet
 
     def get_queryset(self):
-        qs = super(WithoutRepliesRatingManager, self).get_queryset()
+        qs = super().get_queryset()
         qs = qs.exclude(deleted=True)
         return qs.filter(reply_to__isnull=True)
 
@@ -149,7 +149,7 @@ class Rating(ModelBase):
 
     def __init__(self, *args, **kwargs):
         user_responsible = kwargs.pop('user_responsible', None)
-        super(Rating, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         if user_responsible is not None:
             self.user_responsible = user_responsible
 
@@ -246,7 +246,7 @@ class Rating(ModelBase):
     def get_replies(cls, ratings):
         ratings = [r.id for r in ratings]
         qs = Rating.objects.filter(reply_to__in=ratings)
-        return dict((r.reply_to_id, r) for r in qs)
+        return {r.reply_to_id: r for r in qs}
 
     def send_notification_email(self):
         if self.reply_to:
@@ -308,11 +308,9 @@ class Rating(ModelBase):
             # change.
             action = 'New' if created else 'Edited'
             if instance.reply_to:
-                log.info(
-                    '%s reply to %s: %s' % (action, instance.reply_to_id, instance.pk)
-                )
+                log.info(f'{action} reply to {instance.reply_to_id}: {instance.pk}')
             else:
-                log.info('%s rating: %s' % (action, instance.pk))
+                log.info(f'{action} rating: {instance.pk}')
 
             # For new ratings - not replies - and all edits (including replies
             # this time) by users we want to insert a new ActivityLog.

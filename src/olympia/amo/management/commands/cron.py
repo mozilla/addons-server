@@ -32,11 +32,9 @@ class Command(BaseCommand):
         name, args_and_kwargs = options['name'], options['cron_args']
         args = [arg for arg in args_and_kwargs if '=' not in arg]
         kwargs = dict(
-            (
-                kwarg.split('=', maxsplit=1)
-                for kwarg in args_and_kwargs
-                if kwarg not in args
-            )
+            kwarg.split('=', maxsplit=1)
+            for kwarg in args_and_kwargs
+            if kwarg not in args
         )
 
         path = settings.CRON_JOBS.get(name)

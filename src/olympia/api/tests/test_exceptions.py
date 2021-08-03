@@ -50,7 +50,7 @@ class TestExceptionHandlerWithViewSet(TestCase):
             response = self.client.get(url)
             assert response.status_code == 500
             data = response.data
-            assert set(data.keys()) == set(['detail', 'traceback'])
+            assert set(data.keys()) == {'detail', 'traceback'}
             assert data['detail'] == 'Internal Server Error'
             assert 'Traceback (most recent call last):' in data['traceback']
 

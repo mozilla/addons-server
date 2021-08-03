@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import os
 
 from celery import group
@@ -45,7 +44,7 @@ class TestHideDisabledFiles(TestCase):
     msg = 'Moving disabled file: {source} => {destination}'
 
     def setUp(self):
-        super(TestHideDisabledFiles, self).setUp()
+        super().setUp()
         self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
         self.version = Version.objects.create(addon=self.addon)
         self.f1 = File.objects.create(version=self.version, filename='f1')
@@ -144,7 +143,7 @@ class TestUnhideDisabledFiles(TestCase):
     msg = 'Moving undisabled file: {source} => {destination}'
 
     def setUp(self):
-        super(TestUnhideDisabledFiles, self).setUp()
+        super().setUp()
         self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
         self.version = Version.objects.create(addon=self.addon)
         self.file_ = File.objects.create(version=self.version, filename='fé')

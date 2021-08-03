@@ -28,7 +28,7 @@ def _build_query(*, model, connection, fields):
     # Add the selects and joins for each field on the model passed to this function.
     for field in fields:
         if isinstance(fallback, models.Field):
-            fallback_str = '%s.%s' % (qn(model._meta.db_table), qn(fallback.column))
+            fallback_str = f'{qn(model._meta.db_table)}.{qn(fallback.column)}'
         else:
             fallback_str = '%s'
 

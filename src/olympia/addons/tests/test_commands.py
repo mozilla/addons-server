@@ -44,7 +44,7 @@ def id_function(fixture_value):
     unreviewed.
     """
     addon_status, file_status, review_type = fixture_value
-    return '{0}-{1}-{2}'.format(
+    return '{}-{}-{}'.format(
         amo.STATUS_CHOICES_API[addon_status],
         amo.STATUS_CHOICES_API[file_status],
         review_type,

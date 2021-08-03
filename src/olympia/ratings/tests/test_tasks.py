@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from unittest import mock
 
 from olympia.amo.tests import TestCase, addon_factory, user_factory

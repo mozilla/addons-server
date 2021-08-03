@@ -33,7 +33,7 @@ from olympia.scanners.models import (
 )
 
 
-class FakeYaraMatch(object):
+class FakeYaraMatch:
     def __init__(self, rule, tags, meta):
         self.rule = rule
         self.tags = tags

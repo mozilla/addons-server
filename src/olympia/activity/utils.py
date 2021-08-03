@@ -55,7 +55,7 @@ class ActivityEmailToNotificationsError(ActivityEmailError):
     pass
 
 
-class ActivityEmailParser(object):
+class ActivityEmailParser:
     """Utility to parse email replies."""
 
     address_prefix = REPLY_TO_PREFIX
@@ -274,7 +274,7 @@ def notify_about_activity_log(
 
     # Not being localised because we don't know the recipients locale.
     with translation.override('en-US'):
-        subject = reviewer_subject = 'Mozilla Add-ons: %s %s' % (
+        subject = reviewer_subject = 'Mozilla Add-ons: {} {}'.format(
             addon.name,
             version.version,
         )
@@ -353,7 +353,7 @@ def notify_about_activity_log(
 def send_activity_mail(
     subject, message, version, recipients, from_email, unique_id, perm_setting=None
 ):
-    thread_id = '{addon}/{version}'.format(addon=version.addon.id, version=version.id)
+    thread_id = f'{version.addon.id}/{version.id}'
     reference_header = '<{thread}@{site}>'.format(
         thread=thread_id, site=settings.INBOUND_EMAIL_DOMAIN
     )
@@ -373,10 +373,8 @@ def send_activity_mail(
         if not created:
             token.update(use_count=0)
         else:
-            log.info(
-                'Created token with UUID %s for user: %s.' % (token.uuid, recipient.id)
-            )
-        reply_to = '%s%s@%s' % (
+            log.info(f'Created token with UUID {token.uuid} for user: {recipient.id}.')
+        reply_to = '{}{}@{}'.format(
             REPLY_TO_PREFIX,
             token.uuid.hex,
             settings.INBOUND_EMAIL_DOMAIN,

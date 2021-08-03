@@ -32,7 +32,7 @@ class TranslationTextarea(forms.widgets.Textarea):
     def render(self, name, value, attrs=None, renderer=None):
         if isinstance(value, int):
             value = get_string(value)
-        return super(TranslationTextarea, self).render(name, value, attrs)
+        return super().render(name, value, attrs)
 
     def has_changed(self, initial, data):
         return not (
@@ -59,9 +59,7 @@ class TransMulti(forms.widgets.MultiWidget):
         # We do need self.widgets to be non-empty in order for is_hidden to
         # work, so we create a dummy one. It will also serve as fallback when
         # there is no value set already.
-        super(TransMulti, self).__init__(
-            widgets=[self.widget(attrs=attrs)], attrs=attrs
-        )
+        super().__init__(widgets=[self.widget(attrs=attrs)], attrs=attrs)
 
     def render(self, name, value, attrs=None, renderer=None):
         self.name = name
@@ -94,7 +92,7 @@ class TransMulti(forms.widgets.MultiWidget):
             except IndexError:
                 widget_value = None
             if id_:
-                final_attrs = dict(final_attrs, id='%s_%s' % (id_, i))
+                final_attrs = dict(final_attrs, id=f'{id_}_{i}')
             output.append(widget.render(name + '_%s' % i, widget_value, final_attrs))
 
         return mark_safe(self.format_output(output))
@@ -146,7 +144,7 @@ class TransMulti(forms.widgets.MultiWidget):
             {'class': 'trans-init hidden'},
         )
         # Wrap it all inside a div that the javascript will look for.
-        return '<div id="trans-%s" class="trans" data-name="%s">%s%s</div>' % (
+        return '<div id="trans-{}" class="trans" data-name="{}">{}{}</div>'.format(
             self.name,
             self.name,
             formatted,
@@ -154,7 +152,7 @@ class TransMulti(forms.widgets.MultiWidget):
         )
 
 
-class _TransWidget(object):
+class _TransWidget:
     """
     Widget mixin that adds a Translation locale to the lang attribute and the
     input name.
@@ -170,12 +168,12 @@ class _TransWidget(object):
         lang = to_language(value.locale)
         attrs.update(lang=lang)
         # Use rsplit to drop django's name_idx numbering.  (name_0 => name)
-        name = '%s_%s' % (name.rsplit('_', 1)[0], lang)
+        name = '{}_{}'.format(name.rsplit('_', 1)[0], lang)
         # Make sure we don't get a Linkified/Purified Translation. We don't
         # want people editing a bleached value.
         if value.__class__ != Translation:
             value = switch(value, Translation)
-        return super(_TransWidget, self).render(name, str(value), attrs)
+        return super().render(name, str(value), attrs)
 
 
 # TransInput and TransTextarea are MultiWidgets that know how to set up our

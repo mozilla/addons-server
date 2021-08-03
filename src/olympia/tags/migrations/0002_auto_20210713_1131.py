@@ -56,7 +56,7 @@ def drop_old_tags(apps, schema_editor):
 
 def add_new_tags(apps, schema_editor):
     Tag = apps.get_model('tags', 'Tag')
-    Tag.objects.bulk_create((Tag(tag_text=tag) for tag in NEW_TAGS))
+    Tag.objects.bulk_create(Tag(tag_text=tag) for tag in NEW_TAGS)
 
 
 class Migration(migrations.Migration):

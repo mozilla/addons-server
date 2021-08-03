@@ -1,4 +1,3 @@
-# coding=utf-8
 from django.conf import settings
 from django.urls import reverse
 
@@ -15,7 +14,7 @@ binary = 'dictionaries/ar.dic'
 
 class TestServeFileUpload(UploadTest, TestCase):
     def setUp(self):
-        super(TestServeFileUpload, self).setUp()
+        super().setUp()
 
         self.upload = self.get_upload('webextension.xpi')
         self.url = reverse('files.serve_file_upload', args=[self.upload.uuid.hex])
@@ -26,7 +25,7 @@ class TestServeFileUpload(UploadTest, TestCase):
         assert resp.status_code == 403
 
     def test_returns_error_when_access_token_is_invalid(self):
-        resp = self.client.get('{}?access_token=nope'.format(self.url))
+        resp = self.client.get(f'{self.url}?access_token=nope')
 
         assert resp.status_code == 403
 

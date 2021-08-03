@@ -20,12 +20,12 @@ fake_task_func = mock.Mock()
 
 
 def test_celery_routes_in_queues():
-    queues_in_queues = set([q.name for q in settings.CELERY_TASK_QUEUES])
+    queues_in_queues = {q.name for q in settings.CELERY_TASK_QUEUES}
 
     # check the default queue is defined in CELERY_QUEUES
     assert settings.CELERY_TASK_DEFAULT_QUEUE in queues_in_queues
 
-    queues_in_routes = set([c['queue'] for c in settings.CELERY_TASK_ROUTES.values()])
+    queues_in_routes = {c['queue'] for c in settings.CELERY_TASK_ROUTES.values()}
     assert queues_in_queues == queues_in_routes
 
 

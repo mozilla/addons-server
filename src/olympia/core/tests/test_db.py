@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import pytest
 
 from olympia.core.tests.db_tests_testapp.models import TestRegularCharField

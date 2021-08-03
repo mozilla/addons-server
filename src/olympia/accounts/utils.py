@@ -86,8 +86,8 @@ def fxa_login_url(
     if use_fake_fxa():
         base_url = reverse('fake-fxa-authorization')
     else:
-        base_url = '{host}/authorization'.format(host=settings.FXA_OAUTH_HOST)
-    return '{base_url}?{query}'.format(base_url=base_url, query=urlencode(query))
+        base_url = f'{settings.FXA_OAUTH_HOST}/authorization'
+    return f'{base_url}?{urlencode(query)}'
 
 
 def default_fxa_register_url(request):
@@ -122,7 +122,7 @@ def path_with_query(request):
     next_path = request.path
     qs = request.GET.urlencode()
     if qs:
-        return '{next_path}?{qs}'.format(next_path=next_path, qs=qs)
+        return f'{next_path}?{qs}'
     else:
         return next_path
 

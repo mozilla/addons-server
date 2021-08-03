@@ -64,7 +64,7 @@ class Collection(ModelBase):
         ]
 
     def __str__(self):
-        return '%s (%s)' % (self.name, self.addon_count)
+        return f'{self.name} ({self.addon_count})'
 
     def save(self, **kw):
         if not self.uuid:
@@ -75,17 +75,17 @@ class Collection(ModelBase):
             self.slug = str(self.uuid).replace('-', '')[:30]
         self.clean_slug()
 
-        super(Collection, self).save(**kw)
+        super().save(**kw)
 
     def clean_slug(self):
         if not self.author:
             return
 
         qs = self.author.collections.using('default')
-        slugs = dict((slug, id) for slug, id in qs.values_list('slug', 'id'))
+        slugs = {slug: id for slug, id in qs.values_list('slug', 'id')}
         if self.slug in slugs and slugs[self.slug] != self.id:
             for idx in range(len(slugs)):
-                new = '%s-%s' % (self.slug, idx + 1)
+                new = f'{self.slug}-{idx + 1}'
                 if new not in slugs:
                     self.slug = new
                     return
@@ -113,8 +113,8 @@ class Collection(ModelBase):
     def transformer(collections):
         if not collections:
             return
-        author_ids = set(c.author_id for c in collections)
-        authors = dict((u.id, u) for u in UserProfile.objects.filter(id__in=author_ids))
+        author_ids = {c.author_id for c in collections}
+        authors = {u.id: u for u in UserProfile.objects.filter(id__in=author_ids)}
         for c in collections:
             c.author = authors.get(c.author_id)
 

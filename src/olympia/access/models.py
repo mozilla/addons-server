@@ -60,7 +60,7 @@ def groupuser_post_save(sender, instance, **kw):
         return
 
     activity.log_create(amo.LOG.GROUP_USER_ADDED, instance.group, instance.user)
-    log.info('Added %s to %s' % (instance.user, instance.group))
+    log.info(f'Added {instance.user} to {instance.group}')
     instance.invalidate_groups_list()
 
 
@@ -72,5 +72,5 @@ def groupuser_post_delete(sender, instance, **kw):
         return
 
     activity.log_create(amo.LOG.GROUP_USER_REMOVED, instance.group, instance.user)
-    log.info('Removed %s from %s' % (instance.user, instance.group))
+    log.info(f'Removed {instance.user} from {instance.group}')
     instance.invalidate_groups_list()

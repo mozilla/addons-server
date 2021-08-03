@@ -454,7 +454,7 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
             return '-'
         if obj.score < 0:
             return 'n/a'
-        return '{:0.0f}%'.format(obj.score * 100)
+        return f'{obj.score * 100:0.0f}%'
 
     formatted_score.short_description = 'Score'
 
@@ -475,7 +475,7 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
         messages.add_message(
             request,
             messages.INFO,
-            'Scanner result {} has been marked as true positive.'.format(pk),
+            f'Scanner result {pk} has been marked as true positive.',
         )
 
         return self.safe_referer_redirect(
@@ -493,7 +493,7 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
         messages.add_message(
             request,
             messages.INFO,
-            'Scanner result {} has been marked as inconclusive.'.format(pk),
+            f'Scanner result {pk} has been marked as inconclusive.',
         )
 
         return self.safe_referer_redirect(
@@ -511,11 +511,11 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
         messages.add_message(
             request,
             messages.INFO,
-            'Scanner result {} has been marked as false positive.'.format(pk),
+            f'Scanner result {pk} has been marked as false positive.',
         )
 
         if result.scanner == scanners.CUSTOMS:
-            title = 'False positive report for ScannerResult {}'.format(pk)
+            title = f'False positive report for ScannerResult {pk}'
             body = render_to_string(
                 'admin/false_positive_report.md', {'result': result, 'YARA': YARA}
             )
@@ -524,7 +524,7 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
                     # Default label added to all issues
                     'false positive report'
                 ]
-                + ['rule: {}'.format(rule.name) for rule in result.matched_rules.all()]
+                + [f'rule: {rule.name}' for rule in result.matched_rules.all()]
             )
 
             return redirect(
@@ -551,7 +551,7 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
         messages.add_message(
             request,
             messages.INFO,
-            'Scanner result {} report has been reverted.'.format(pk),
+            f'Scanner result {pk} report has been reverted.',
         )
 
         return self.safe_referer_redirect(
@@ -891,7 +891,7 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
             messages.add_message(
                 request,
                 messages.INFO,
-                'Scanner Query Rule {} is being aborted.'.format(rule.pk),
+                f'Scanner Query Rule {rule.pk} is being aborted.',
             )
         except ImproperScannerQueryRuleStateError:
             # We messed up somewhere.

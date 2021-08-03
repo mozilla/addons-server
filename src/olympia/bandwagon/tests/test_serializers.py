@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from unittest import mock
 
 from olympia.amo.templatetags.jinja_helpers import absolutify
@@ -15,7 +14,7 @@ class TestCollectionSerializer(TestCase):
     serializer = CollectionSerializer
 
     def setUp(self):
-        super(TestCollectionSerializer, self).setUp()
+        super().setUp()
         self.user = user_factory()
         self.collection = collection_factory()
         self.collection.update(author=self.user)
@@ -64,7 +63,7 @@ class TestCollectionWithAddonsSerializer(TestCollectionSerializer):
     serializer = CollectionWithAddonsSerializer
 
     def setUp(self):
-        super(TestCollectionWithAddonsSerializer, self).setUp()
+        super().setUp()
         self.addon = addon_factory()
         self.collection.add_addon(self.addon)
 
@@ -77,7 +76,7 @@ class TestCollectionWithAddonsSerializer(TestCollectionSerializer):
         return self.serializer(self.collection, context={'view': mock_viewset}).data
 
     def test_basic(self):
-        super(TestCollectionWithAddonsSerializer, self).test_basic()
+        super().test_basic()
         collection_addon = CollectionAddon.objects.get(
             addon=self.addon, collection=self.collection
         )

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import datetime
 import hashlib
 import json
@@ -327,9 +326,7 @@ def handle_upload_validation_result(results, upload_pk, channel, is_mozilla_sign
 
     # Stash separate metrics for small / large files.
     quantifier = 'over' if size > megabyte else 'under'
-    statsd.timing(
-        'devhub.validation_results_processed_{}_1mb'.format(quantifier), delta
-    )
+    statsd.timing(f'devhub.validation_results_processed_{quantifier}_1mb', delta)
 
     # Scale the upload / processing time by package size (in MB)
     # so we can normalize large XPIs which naturally take longer to validate.
@@ -428,7 +425,7 @@ def check_for_api_keys_in_file(results, upload_pk):
                                 kwargs={'key_id': key.id}, countdown=120
                             )
             zipfile.close()
-    except (ValidationError, BadZipFile, IOError):
+    except (ValidationError, BadZipFile, OSError):
         pass
 
     return results
@@ -480,9 +477,7 @@ def run_addons_linter(path, channel):
         args.append('--max-manifest-version=2')
 
     if not os.path.exists(path):
-        raise ValueError(
-            'Path "{}" is not a file or directory or does not exist.'.format(path)
-        )
+        raise ValueError(f'Path "{path}" is not a file or directory or does not exist.')
 
     stdout, stderr = (tempfile.TemporaryFile(), tempfile.TemporaryFile())
 
@@ -524,12 +519,12 @@ def track_validation_stats(json_result):
     """
     result = json.loads(force_str(json_result))
     result_kind = 'success' if result['errors'] == 0 else 'failure'
-    statsd.incr('devhub.linter.results.all.{}'.format(result_kind))
+    statsd.incr(f'devhub.linter.results.all.{result_kind}')
 
     listed_tag = 'listed' if result['metadata']['listed'] else 'unlisted'
 
     # Track listed/unlisted success/fail.
-    statsd.incr('devhub.linter.results.{}.{}'.format(listed_tag, result_kind))
+    statsd.incr(f'devhub.linter.results.{listed_tag}.{result_kind}')
 
 
 @task
@@ -580,7 +575,7 @@ def resize_icon(source, dest_folder, target_sizes, **kw):
         # Resize in every size we want.
         dest_file = None
         for size in target_sizes:
-            dest_file = '%s-%s.png' % (dest_folder, size)
+            dest_file = f'{dest_folder}-{size}.png'
             resize_image(source, dest_file, (size, size))
 
         # Store the original hash, we'll return it to update the corresponding
@@ -596,7 +591,7 @@ def resize_icon(source, dest_folder, target_sizes, **kw):
 
         return {'icon_hash': icon_hash}
     except Exception as e:
-        log.error('Error saving addon icon (%s): %s' % (dest_file, e))
+        log.error(f'Error saving addon icon ({dest_file}): {e}')
 
 
 @task
@@ -695,7 +690,7 @@ def get_preview_sizes(ids, **kw):
 
     for addon in addons:
         previews = addon.previews.all()
-        log.info('Found %s previews for: %s' % (previews.count(), addon.pk))
+        log.info(f'Found {previews.count()} previews for: {addon.pk}')
         for preview in previews:
             try:
                 log.info('Getting size for preview: %s' % preview.pk)
@@ -705,9 +700,7 @@ def get_preview_sizes(ids, **kw):
                 }
                 preview.update(sizes=sizes)
             except Exception as err:
-                log.error(
-                    'Failed to find size of preview: %s, error: %s' % (addon.pk, err)
-                )
+                log.error(f'Failed to find size of preview: {addon.pk}, error: {err}')
 
 
 def failed_validation(*messages):
@@ -740,7 +733,7 @@ def get_content_and_check_size(response, max_size, error_message):
 
 @task
 def send_welcome_email(addon_pk, emails, context, **kw):
-    log.info('[1@None] Sending welcome email for %s to %s.' % (addon_pk, emails))
+    log.info(f'[1@None] Sending welcome email for {addon_pk} to {emails}.')
     subject = (
         'Mozilla Add-ons: %s has been submitted to addons.mozilla.org!'
         % context.get('addon_name', 'Your add-on')

@@ -31,7 +31,7 @@ class BaseESSerializer(serializers.ModelSerializer):
     datetime_fields = ()
 
     def __init__(self, *args, **kwargs):
-        super(BaseESSerializer, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
         # Set all fields as read_only just in case.
         for field_name in self.fields:
@@ -42,7 +42,7 @@ class BaseESSerializer(serializers.ModelSerializer):
         Return all fields as normal, with one exception: replace every instance
         of TranslationSerializerField with ESTranslationSerializerField.
         """
-        fields = super(BaseESSerializer, self).get_fields()
+        fields = super().get_fields()
         for key, field in fields.items():
             if isinstance(field, OutgoingTranslationField):
                 fields[key] = OutgoingESTranslationField(source=field.source)
@@ -60,7 +60,7 @@ class BaseESSerializer(serializers.ModelSerializer):
 
         obj = self.fake_object(data)
         obj._es_meta = es_meta
-        result = super(BaseESSerializer, self).to_representation(obj)
+        result = super().to_representation(obj)
         return result
 
     def fake_object(self, data):

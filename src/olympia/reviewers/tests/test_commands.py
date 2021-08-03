@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import json
 from datetime import datetime, timedelta
 from unittest import mock
@@ -42,7 +41,7 @@ from olympia.scanners.models import ScannerResult, ScannerRule
 from olympia.versions.models import Version, VersionReviewerFlags
 
 
-class AutoApproveTestsMixin(object):
+class AutoApproveTestsMixin:
     def setUp(self):
         user_factory(
             id=settings.TASK_USER_ID, username='taskuser', email='taskuser@mozilla.com'
@@ -310,7 +309,7 @@ class AutoApproveTestsMixin(object):
 class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
     def setUp(self):
         self.create_base_test_addon()
-        super(TestAutoApproveCommand, self).setUp()
+        super().setUp()
 
     def test_fetch_candidates(self):
         # Create the candidates and extra addons & versions that should not be
@@ -634,7 +633,7 @@ class TestAutoApproveCommandTransactions(AutoApproveTestsMixin, TransactionTestC
         FileValidation.objects.create(
             file=self.versions[1].all_files[0], validation='{}'
         )
-        super(TestAutoApproveCommandTransactions, self).setUp()
+        super().setUp()
 
     @mock.patch('olympia.reviewers.utils.sign_file')
     def test_signing_error_roll_back(self, sign_file_mock):
@@ -664,7 +663,7 @@ class TestAutoApproveCommandTransactions(AutoApproveTestsMixin, TransactionTestC
         msg = mail.outbox[0]
         assert msg.to == [self.addons[1].authors.all()[0].email]
         assert msg.from_email == settings.ADDONS_EMAIL
-        assert msg.subject == 'Mozilla Add-ons: %s %s Updated' % (
+        assert msg.subject == 'Mozilla Add-ons: {} {} Updated'.format(
             str(self.addons[1].name),
             self.versions[1].version,
         )

@@ -26,7 +26,7 @@ class BaseAbuseReportSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError({target_name: [msg]})
 
     def to_internal_value(self, data):
-        output = super(BaseAbuseReportSerializer, self).to_internal_value(data)
+        output = super().to_internal_value(data)
         request = self.context['request']
         output['country_code'] = AbuseReport.lookup_country_code_from_ip(
             request.META.get('REMOTE_ADDR')
@@ -157,7 +157,7 @@ class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
         # Pop 'addon' from data before passing that data to super(), we already
         # have it in the output value.
         data.pop('addon')
-        output.update(super(AddonAbuseReportSerializer, self).to_internal_value(data))
+        output.update(super().to_internal_value(data))
         return output
 
     def get_addon(self, obj):
@@ -188,5 +188,5 @@ class UserAbuseReportSerializer(BaseAbuseReportSerializer):
         # Pop 'user' before passing it to super(), we already have the
         # output value and did the validation above.
         data.pop('user')
-        output.update(super(UserAbuseReportSerializer, self).to_internal_value(data))
+        output.update(super().to_internal_value(data))
         return output

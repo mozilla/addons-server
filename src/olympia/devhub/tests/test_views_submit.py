@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import json
 import os
 import io
@@ -62,7 +61,7 @@ class TestSubmitBase(TestCase):
     fixtures = ['base/addon_3615', 'base/addon_5579', 'base/users']
 
     def setUp(self):
-        super(TestSubmitBase, self).setUp()
+        super().setUp()
         assert self.client.login(email='del@icio.us')
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.user.update(last_login_ip='192.168.1.1')
@@ -361,7 +360,7 @@ class TestAddonSubmitDistribution(TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
-        super(TestAddonSubmitDistribution, self).setUp()
+        super().setUp()
         self.client.login(email='regular@mozilla.com')
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
         self.user.update(last_login_ip='192.168.1.1')
@@ -439,7 +438,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         create_default_webext_appversion()
 
     def setUp(self):
-        super(TestAddonSubmitUpload, self).setUp()
+        super().setUp()
         self.upload = self.get_upload('webextension_no_id.xpi')
         assert self.client.login(email='regular@mozilla.com')
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
@@ -632,7 +631,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         response = self.post()
         addon = Addon.objects.get()
         self.assert3xx(response, reverse('devhub.submit.details', args=[addon.slug]))
-        all_ = sorted([f.filename for f in addon.current_version.all_files])
+        all_ = sorted(f.filename for f in addon.current_version.all_files)
         assert all_ == ['weta_fade-1.0-an+fx.xpi']  # A single XPI for all.
         assert addon.type == amo.ADDON_STATICTHEME
         previews = list(addon.current_version.previews.all())
@@ -650,7 +649,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         addon = Addon.unfiltered.get()
         latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.assert3xx(response, reverse('devhub.submit.finish', args=[addon.slug]))
-        all_ = sorted([f.filename for f in latest_version.all_files])
+        all_ = sorted(f.filename for f in latest_version.all_files)
         assert all_ == ['weta_fade-1.0-an+fx.xpi']  # A single XPI for all.
         assert addon.type == amo.ADDON_STATICTHEME
         # Only listed submissions need a preview generated.
@@ -677,7 +676,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         addon = Addon.objects.get()
         # Next step is same as non-wizard flow too.
         self.assert3xx(response, reverse('devhub.submit.details', args=[addon.slug]))
-        all_ = sorted([f.filename for f in addon.current_version.all_files])
+        all_ = sorted(f.filename for f in addon.current_version.all_files)
         assert all_ == ['weta_fade-1.0-an+fx.xpi']  # A single XPI for all.
         assert addon.type == amo.ADDON_STATICTHEME
         previews = list(addon.current_version.previews.all())
@@ -707,7 +706,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
         # Next step is same as non-wizard flow too.
         self.assert3xx(response, reverse('devhub.submit.finish', args=[addon.slug]))
-        all_ = sorted([f.filename for f in latest_version.all_files])
+        all_ = sorted(f.filename for f in latest_version.all_files)
         assert all_ == ['weta_fade-1.0-an+fx.xpi']  # A single XPI for all.
         assert addon.type == amo.ADDON_STATICTHEME
         # Only listed submissions need a preview generated.
@@ -716,7 +715,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
 
 class TestAddonSubmitSource(TestSubmitBase):
     def setUp(self):
-        super(TestAddonSubmitSource, self).setUp()
+        super().setUp()
         assert not self.get_version().source
         self.url = reverse('devhub.submit.source', args=[self.addon.slug])
         self.next_url = reverse('devhub.submit.details', args=[self.addon.slug])
@@ -927,7 +926,7 @@ class TestAddonSubmitSource(TestSubmitBase):
         self.assert3xx(response, self.next_url)
 
 
-class DetailsPageMixin(object):
+class DetailsPageMixin:
     """Some common methods between TestAddonSubmitDetails and
     TestStaticThemeSubmitDetails."""
 
@@ -1169,7 +1168,7 @@ class DetailsPageMixin(object):
 
 class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
     def setUp(self):
-        super(TestAddonSubmitDetails, self).setUp()
+        super().setUp()
         self.url = reverse('devhub.submit.details', args=['a3615'])
 
         AddonCategory.objects.filter(addon=self.get_addon(), category_id=1).delete()
@@ -1343,7 +1342,7 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
 
     def test_submit_categories_addandremove(self):
         AddonCategory(addon=self.addon, category_id=1).save()
-        assert sorted([cat.id for cat in self.get_addon().all_categories]) == [1, 22]
+        assert sorted(cat.id for cat in self.get_addon().all_categories) == [1, 22]
 
         self.cat_initial['categories'] = [22, 71]
         self.client.post(self.url, self.get_dict(cat_initial=self.cat_initial))
@@ -1352,7 +1351,7 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
 
     def test_submit_categories_remove(self):
         AddonCategory(addon=self.addon, category_id=1).save()
-        assert sorted([cat.id for cat in self.get_addon().all_categories]) == [1, 22]
+        assert sorted(cat.id for cat in self.get_addon().all_categories) == [1, 22]
 
         self.cat_initial['categories'] = [22]
         self.client.post(self.url, self.get_dict(cat_initial=self.cat_initial))
@@ -1431,7 +1430,7 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
 
 class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
     def setUp(self):
-        super(TestStaticThemeSubmitDetails, self).setUp()
+        super().setUp()
         self.url = reverse('devhub.submit.details', args=['a3615'])
 
         AddonCategory.objects.filter(addon=self.get_addon(), category_id=1).delete()
@@ -1510,7 +1509,7 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
     def test_submit_categories_change(self):
         AddonCategory(addon=self.addon, category_id=300).save()
         AddonCategory(addon=self.addon, category_id=400).save()
-        assert sorted([cat.id for cat in self.get_addon().all_categories]) == [300, 400]
+        assert sorted(cat.id for cat in self.get_addon().all_categories) == [300, 400]
 
         self.client.post(self.url, self.get_dict(category='firefox'))
         category_ids_new = [cat.id for cat in self.get_addon().all_categories]
@@ -1554,7 +1553,7 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
 
 class TestAddonSubmitFinish(TestSubmitBase):
     def setUp(self):
-        super(TestAddonSubmitFinish, self).setUp()
+        super().setUp()
         self.url = reverse('devhub.submit.finish', args=[self.addon.slug])
 
     @mock.patch.object(settings, 'EXTERNAL_SITE_URL', 'http://b.ro')
@@ -1732,7 +1731,7 @@ class TestAddonSubmitResume(TestSubmitBase):
 
 class TestVersionSubmitDistribution(TestSubmitBase):
     def setUp(self):
-        super(TestVersionSubmitDistribution, self).setUp()
+        super().setUp()
         self.url = reverse('devhub.submit.version.distribution', args=[self.addon.slug])
 
     def test_listed_redirects_to_next_step(self):
@@ -1831,7 +1830,7 @@ class TestVersionSubmitAutoChannel(TestSubmitBase):
     themselves are in other tests."""
 
     def setUp(self):
-        super(TestVersionSubmitAutoChannel, self).setUp()
+        super().setUp()
         self.url = reverse('devhub.submit.version', args=[self.addon.slug])
 
     @mock.patch('olympia.devhub.views._submit_upload', side_effect=views._submit_upload)
@@ -1874,7 +1873,7 @@ class TestVersionSubmitAutoChannel(TestSubmitBase):
         )
 
 
-class VersionSubmitUploadMixin(object):
+class VersionSubmitUploadMixin:
     channel = None
     fixtures = ['base/users', 'base/addon_3615']
 
@@ -1883,7 +1882,7 @@ class VersionSubmitUploadMixin(object):
         create_default_webext_appversion()
 
     def setUp(self):
-        super(VersionSubmitUploadMixin, self).setUp()
+        super().setUp()
         self.upload = self.get_upload('webextension.xpi')
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.current_version
@@ -2304,7 +2303,7 @@ class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadTest):
 
 class TestVersionSubmitSource(TestAddonSubmitSource):
     def setUp(self):
-        super(TestVersionSubmitSource, self).setUp()
+        super().setUp()
         addon = self.get_addon()
         self.version = version_factory(
             addon=addon,
@@ -2322,7 +2321,7 @@ class TestVersionSubmitSource(TestAddonSubmitSource):
 
 class TestVersionSubmitDetails(TestSubmitBase):
     def setUp(self):
-        super(TestVersionSubmitDetails, self).setUp()
+        super().setUp()
         addon = self.get_addon()
         self.version = version_factory(
             addon=addon,
@@ -2459,7 +2458,7 @@ class TestVersionSubmitDetailsFirstListed(TestAddonSubmitDetails):
     previously only had unlisted versions - so is missing metadata."""
 
     def setUp(self):
-        super(TestVersionSubmitDetailsFirstListed, self).setUp()
+        super().setUp()
         self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.version = version_factory(
             addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED
@@ -2475,7 +2474,7 @@ class TestVersionSubmitDetailsFirstListed(TestAddonSubmitDetails):
 
 class TestVersionSubmitFinish(TestAddonSubmitFinish):
     def setUp(self):
-        super(TestVersionSubmitFinish, self).setUp()
+        super().setUp()
         addon = self.get_addon()
         self.version = version_factory(
             addon=addon,

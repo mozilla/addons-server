@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import json
 import os
 from datetime import datetime, timedelta
@@ -227,7 +226,7 @@ class TestAddonManager(TestCase):
     ]
 
     def setUp(self):
-        super(TestAddonManager, self).setUp()
+        super().setUp()
         core.set_user(None)
         self.addon = Addon.objects.get(pk=3615)
 
@@ -331,7 +330,7 @@ class TestAddonModels(TestCase):
     ]
 
     def setUp(self):
-        super(TestAddonModels, self).setUp()
+        super().setUp()
         TranslationSequence.objects.create(id=99243)
 
     def test_current_version(self):
@@ -593,7 +592,7 @@ class TestAddonModels(TestCase):
         log = AddonLog.objects.order_by('-id').first().activity_log
         assert log.action == amo.LOG.DELETE_ADDON.id
         assert log.to_string() == (
-            'Addon id {0} with GUID {1} has been deleted'.format(addon_id, guid)
+            f'Addon id {addon_id} with GUID {guid} has been deleted'
         )
 
     def test_delete(self):
@@ -2300,7 +2299,7 @@ class TestGetVersion(TestCase):
     ]
 
     def setUp(self):
-        super(TestGetVersion, self).setUp()
+        super().setUp()
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.current_version
 
@@ -2348,7 +2347,7 @@ class TestBackupVersion(TestCase):
     fixtures = ['addons/update', 'base/appversion']
 
     def setUp(self):
-        super(TestBackupVersion, self).setUp()
+        super().setUp()
         self.version_1_2_0 = 105387
         self.addon = Addon.objects.get(pk=1865)
         core.set_user(None)
@@ -2442,7 +2441,7 @@ class TestAddonFromUpload(UploadTest):
             AppVersion.objects.create(application=amo.ANDROID.id, version=version)
 
     def setUp(self):
-        super(TestAddonFromUpload, self).setUp()
+        super().setUp()
         self.selected_app = amo.FIREFOX.id
         self.user = UserProfile.objects.get(pk=999)
         self.addCleanup(translation.deactivate)
@@ -2781,7 +2780,7 @@ class TestRemoveLocale(TestCase):
 
 class TestAddonWatchDisabled(TestCase):
     def setUp(self):
-        super(TestAddonWatchDisabled, self).setUp()
+        super().setUp()
         self.addon = Addon(
             type=amo.ADDON_DICT, disabled_by_user=False, status=amo.STATUS_APPROVED
         )
@@ -2844,14 +2843,14 @@ class TestTrackAddonStatusChange(TestCase):
         addon = self.create_addon()
         with patch('olympia.addons.models.track_addon_status_change') as mock_:
             addon.update(type=amo.ADDON_DICT)
-        assert not mock_.called, 'Unexpected call: {}'.format(self.mock_incr.call_args)
+        assert not mock_.called, f'Unexpected call: {self.mock_incr.call_args}'
 
     def test_increment_all_addon_statuses(self):
         addon = self.create_addon(status=amo.STATUS_APPROVED)
         with patch('olympia.addons.models.statsd.incr') as mock_incr:
             track_addon_status_change(addon)
         mock_incr.assert_any_call(
-            'addon_status_change.all.status_{}'.format(amo.STATUS_APPROVED)
+            f'addon_status_change.all.status_{amo.STATUS_APPROVED}'
         )
 
 

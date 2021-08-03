@@ -120,7 +120,7 @@ class MLBF:
     def write_blocked_items(self):
         blocked_path = self._blocked_path
         with storage.open(blocked_path, 'w') as json_file:
-            log.info('Writing to file {}'.format(blocked_path))
+            log.info(f'Writing to file {blocked_path}')
             json.dump(self.blocked_items, json_file)
 
     @property
@@ -134,7 +134,7 @@ class MLBF:
     def write_not_blocked_items(self):
         not_blocked_path = self._not_blocked_path
         with storage.open(not_blocked_path, 'w') as json_file:
-            log.info('Writing to file {}'.format(not_blocked_path))
+            log.info(f'Writing to file {not_blocked_path}')
             json.dump(self.not_blocked_items, json_file)
 
     @property
@@ -163,7 +163,7 @@ class MLBF:
         # write bloomfilter
         mlbf_path = self.filter_path
         with storage.open(mlbf_path, 'wb') as filter_file:
-            log.info('Writing to file {}'.format(mlbf_path))
+            log.info(f'Writing to file {mlbf_path}')
             bloomfilter.tofile(filter_file)
             stats['mlbf_filesize'] = os.stat(mlbf_path).st_size
 
@@ -192,7 +192,7 @@ class MLBF:
         # write stash
         stash_path = self._stash_path
         with storage.open(stash_path, 'w') as json_file:
-            log.info('Writing to file {}'.format(stash_path))
+            log.info(f'Writing to file {stash_path}')
             json.dump(self.stash_json, json_file)
 
     def should_reset_base_filter(self, previous_bloom_filter):

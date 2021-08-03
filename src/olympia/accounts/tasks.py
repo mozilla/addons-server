@@ -55,7 +55,7 @@ def delete_user_event(user, deleted_date):
     """Process the delete user event."""
     if switch_is_active('fxa-account-delete'):
         user.delete(addon_msg='Deleted via FxA account deletion')
-        log.info('Account pk [%s] deleted from FxA on %s' % (user.id, deleted_date))
+        log.info(f'Account pk [{user.id}] deleted from FxA on {deleted_date}')
     else:
         log.info(
             f'Skipping deletion from FxA for account [{user.id}] because '

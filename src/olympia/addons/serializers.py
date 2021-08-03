@@ -204,7 +204,7 @@ class LicenseSerializer(serializers.ModelSerializer):
         return None
 
     def to_representation(self, instance):
-        data = super(LicenseSerializer, self).to_representation(instance)
+        data = super().to_representation(instance)
         request = self.context.get('request', None)
         if request and is_gate_active(request, 'del-version-license-is-custom'):
             data.pop('is_custom', None)
@@ -251,7 +251,7 @@ class SimpleVersionSerializer(MinimalVersionSerializer):
         # serializing.
         if 'license' in self.fields and instance.license:
             instance.license.version_instance = instance
-        return super(SimpleVersionSerializer, self).to_representation(instance)
+        return super().to_representation(instance)
 
     def get_compatibility(self, obj):
         return {
@@ -315,7 +315,7 @@ class CurrentVersionSerializer(SimpleVersionSerializer):
             and addon.type == amo.ADDON_LPAPP
         ):
             obj = self.get_current_compatible_version(addon)
-        return super(CurrentVersionSerializer, self).to_representation(obj)
+        return super().to_representation(obj)
 
     def get_current_compatible_version(self, addon):
         """
@@ -496,7 +496,7 @@ class AddonSerializer(serializers.ModelSerializer):
         )
 
     def to_representation(self, obj):
-        data = super(AddonSerializer, self).to_representation(obj)
+        data = super().to_representation(obj)
         request = self.context.get('request', None)
 
         if request and is_gate_active(request, 'del-addons-created-field'):
@@ -805,7 +805,7 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         }
 
     def to_representation(self, obj):
-        data = super(ESAddonSerializer, self).to_representation(obj)
+        data = super().to_representation(obj)
         request = self.context.get('request')
         if (
             request
@@ -885,7 +885,7 @@ class LanguageToolsSerializer(AddonSerializer):
         return None
 
     def to_representation(self, obj):
-        data = super(LanguageToolsSerializer, self).to_representation(obj)
+        data = super().to_representation(obj)
         request = self.context['request']
         if (
             AddonAppVersionQueryParam.query_param not in request.GET

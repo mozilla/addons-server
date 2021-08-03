@@ -40,7 +40,9 @@ def call_recommendation_server(server, client_id_or_guid, data, verb='get'):
         params = OrderedDict(sorted(data.items(), key=lambda t: t[0]))
         endpoint = urljoin(
             server,
-            '%s/%s%s' % (client_id_or_guid, '?' if params else '', urlencode(params)),
+            '{}/{}{}'.format(
+                client_id_or_guid, '?' if params else '', urlencode(params)
+            ),
         )
 
     else:

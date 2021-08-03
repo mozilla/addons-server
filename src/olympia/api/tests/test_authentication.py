@@ -51,13 +51,13 @@ class TestJWTKeyAuthentication(JWTAuthKeyTester, TestCase):
     client_class = APITestClient
 
     def setUp(self):
-        super(TestJWTKeyAuthentication, self).setUp()
+        super().setUp()
         self.factory = RequestFactory()
         self.auth = JWTKeyAuthentication()
         self.user = user_factory(read_dev_agreement=datetime.now())
 
     def request(self, token):
-        return self.factory.get('/', HTTP_AUTHORIZATION='JWT {}'.format(token))
+        return self.factory.get('/', HTTP_AUTHORIZATION=f'JWT {token}')
 
     def _create_token(self, api_key=None):
         if api_key is None:
@@ -178,7 +178,7 @@ class TestJWTKeyAuthProtectedView(WithDynamicEndpoints, JWTAuthKeyTester, TestCa
     client_class = APITestClient
 
     def setUp(self):
-        super(TestJWTKeyAuthProtectedView, self).setUp()
+        super().setUp()
         self.endpoint(JWTKeyAuthTestView)
         self.client.logout_api()  # just to be sure!
         self.user = user_factory(read_dev_agreement=datetime.now())
@@ -188,9 +188,7 @@ class TestJWTKeyAuthProtectedView(WithDynamicEndpoints, JWTAuthKeyTester, TestCa
         return handler(reverse('test-dynamic-endpoint'), *args, **kw)
 
     def jwt_request(self, token, method, *args, **kw):
-        return self.request(
-            method, HTTP_AUTHORIZATION='JWT {}'.format(token), *args, **kw
-        )
+        return self.request(method, HTTP_AUTHORIZATION=f'JWT {token}', *args, **kw)
 
     def test_get_requires_auth(self):
         res = self.request('get')
@@ -220,7 +218,7 @@ class TestWebTokenAuthentication(TestCase):
     client_class = APITestClient
 
     def setUp(self):
-        super(TestWebTokenAuthentication, self).setUp()
+        super().setUp()
         self.auth = WebTokenAuthentication()
         self.factory = RequestFactory()
         self.user = user_factory(read_dev_agreement=datetime.now())
@@ -231,7 +229,7 @@ class TestWebTokenAuthentication(TestCase):
         request = self.factory.post(
             url,
             HTTP_HOST='testserver',
-            HTTP_AUTHORIZATION='{0} {1}'.format(prefix, token),
+            HTTP_AUTHORIZATION=f'{prefix} {token}',
         )
 
         return self.auth.authenticate(request)

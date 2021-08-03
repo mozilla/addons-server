@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from datetime import timedelta
 
 from django import forms
@@ -60,7 +59,7 @@ class ReviewLogForm(forms.Form):
     search = forms.CharField(required=False, label=_('containing'))
 
     def __init__(self, *args, **kw):
-        super(ReviewLogForm, self).__init__(*args, **kw)
+        super().__init__(*args, **kw)
 
         # L10n: start, as in "start date"
         self.fields['start'].widget.attrs = {
@@ -108,7 +107,7 @@ class QueueSearchForm(forms.Form):
     )
 
     def __init__(self, *args, **kw):
-        super(QueueSearchForm, self).__init__(*args, **kw)
+        super().__init__(*args, **kw)
 
     def clean_addon_type_ids(self):
         if self.cleaned_data['addon_type_ids']:
@@ -199,7 +198,7 @@ class AllAddonSearchForm(forms.Form):
     )
 
     def __init__(self, *args, **kw):
-        super(AllAddonSearchForm, self).__init__(*args, **kw)
+        super().__init__(*args, **kw)
         widget = self.fields['application_id'].widget
         # Get the URL after the urlconf has loaded.
         widget.attrs['data-url'] = reverse('reviewers.application_versions_json')
@@ -411,14 +410,14 @@ class ReviewForm(forms.Form):
                 self.fields['comments'].required = False
             if action.get('versions', False):
                 self.fields['versions'].required = True
-        result = super(ReviewForm, self).is_valid()
+        result = super().is_valid()
         if result:
             self.helper.set_data(self.cleaned_data)
         return result
 
     def __init__(self, *args, **kw):
         self.helper = kw.pop('helper')
-        super(ReviewForm, self).__init__(*args, **kw)
+        super().__init__(*args, **kw)
 
         # Delayed rejection period needs to be readonly unless we're an admin.
         user = self.helper.handler.user
@@ -536,7 +535,7 @@ class ModerateRatingFlagForm(forms.ModelForm):
 class BaseRatingFlagFormSet(BaseModelFormSet):
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
-        super(BaseRatingFlagFormSet, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     def save(self):
         for form in self.forms:

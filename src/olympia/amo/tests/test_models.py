@@ -46,7 +46,7 @@ class TestModelBase(TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
-        super(TestModelBase, self).setUp()
+        super().setUp()
         self.saved_cb = amo_models._on_change_callbacks.copy()
         amo_models._on_change_callbacks.clear()
         self.cb = Mock()
@@ -55,7 +55,7 @@ class TestModelBase(TestCase):
 
     def tearDown(self):
         amo_models._on_change_callbacks = self.saved_cb
-        super(TestModelBase, self).tearDown()
+        super().tearDown()
 
     def test_multiple_ignored(self):
         cb = Mock()
@@ -351,7 +351,7 @@ class TestModelBase(TestCase):
             )
 
 
-class BasePreviewMixin(object):
+class BasePreviewMixin:
     def get_object(self):
         raise NotImplementedError
 

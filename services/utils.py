@@ -27,7 +27,7 @@ def user_media_path(what):
 
     """
     default = os.path.join(settings.MEDIA_ROOT, what)
-    key = '{0}_PATH'.format(what.upper())
+    key = f'{what.upper()}_PATH'
     return getattr(settings, key, default)
 
 
@@ -40,8 +40,8 @@ def user_media_url(what):
     Generate default media url, and make possible to override it from
     settings.
     """
-    default = '%s%s/' % (settings.MEDIA_URL, what)
-    key = '{0}_URL'.format(what.upper().replace('-', '_'))
+    default = f'{settings.MEDIA_URL}{what}/'
+    key = '{}_URL'.format(what.upper().replace('-', '_'))
     return getattr(settings, key, default)
 
 
@@ -63,7 +63,7 @@ def get_cdn_url(id, row):
     host = user_media_url('addons')
     url = posixpath.join(host, str(id), row['filename'])
     params = urlencode({'filehash': row['hash']})
-    return '{0}?{1}'.format(url, params)
+    return f'{url}?{params}'
 
 
 def getconn():
@@ -107,4 +107,4 @@ def log_exception(data):
     # on prod, we log at the error level and result in no logs on prod.
     typ, value, discard = sys.exc_info()
     error_log = olympia.core.logger.getLogger('z.update')
-    error_log.exception('Type: %s, %s. Data: %s' % (typ, value, data))
+    error_log.exception(f'Type: {typ}, {value}. Data: {data}')

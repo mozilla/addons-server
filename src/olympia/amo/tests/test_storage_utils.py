@@ -40,21 +40,21 @@ def test_storage_walk():
             for dir, subdirs, files in sorted(walk_storage(tmp))
         ]
 
-        assert results.pop(0) == (tmp, set(['four', 'one']), set(['file1.txt']))
-        assert results.pop(0) == (jn('four'), set(['five', 'kristi\u2603']), set([]))
-        assert results.pop(0) == (jn('four/five'), set([]), set(['file1.txt']))
+        assert results.pop(0) == (tmp, {'four', 'one'}, {'file1.txt'})
+        assert results.pop(0) == (jn('four'), {'five', 'kristi\u2603'}, set())
+        assert results.pop(0) == (jn('four/five'), set(), {'file1.txt'})
         assert results.pop(0) == (
             jn('four/kristi\u2603'),
-            set([]),
-            set(['kristi\u2603.txt']),
+            set(),
+            {'kristi\u2603.txt'},
         )
         assert results.pop(0) == (
             jn('one'),
-            set(['three', 'two']),
-            set(['file1.txt', 'file2.txt']),
+            {'three', 'two'},
+            {'file1.txt', 'file2.txt'},
         )
-        assert results.pop(0) == (jn('one/three'), set([]), set(['file1.txt']))
-        assert results.pop(0) == (jn('one/two'), set([]), set(['file1.txt']))
+        assert results.pop(0) == (jn('one/three'), set(), {'file1.txt'})
+        assert results.pop(0) == (jn('one/two'), set(), {'file1.txt'})
         assert len(results) == 0
     finally:
         rm_local_tmp_dir(tmp)
@@ -83,12 +83,12 @@ def test_rm_stored_dir():
 
 class TestFileOps(TestCase):
     def setUp(self):
-        super(TestFileOps, self).setUp()
+        super().setUp()
         self.tmp = tempfile.mkdtemp(dir=settings.TMP_PATH)
 
     def tearDown(self):
         rm_local_tmp_dir(self.tmp)
-        super(TestFileOps, self).tearDown()
+        super().tearDown()
 
     def path(self, path):
         return os.path.join(self.tmp, path)
@@ -122,7 +122,7 @@ class TestFileOps(TestCase):
         assert not storage.exists(src)
 
     def test_non_ascii(self):
-        src = self.newfile('kristi\u0107.txt', 'ivan kristi\u0107'.encode('utf8'))
+        src = self.newfile('kristi\u0107.txt', 'ivan kristi\u0107'.encode())
         dest = self.path('somedir/kristi\u0107.txt')
         copy_stored_file(src, dest)
         assert self.contents(dest) == b'ivan kristi\xc4\x87'

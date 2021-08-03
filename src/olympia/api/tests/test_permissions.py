@@ -51,7 +51,7 @@ class TestGroupPermissionOnView(WithDynamicEndpoints):
     # relies on UserProfile.groups_list, which is cached on the UserProfile
     # instance.
     def setUp(self):
-        super(TestGroupPermissionOnView, self).setUp()
+        super().setUp()
         self.endpoint(ProtectedView)
         self.url = reverse('test-dynamic-endpoint')
         self.user = user_factory(email='regular@mozilla.com')

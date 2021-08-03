@@ -26,7 +26,7 @@ class ReverseChoiceField(fields.ChoiceField):
 
     def __init__(self, *args, **kwargs):
         self.reversed_choices = {v: k for k, v in kwargs['choices']}
-        super(ReverseChoiceField, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     def to_representation(self, value):
         """
@@ -34,7 +34,7 @@ class ReverseChoiceField(fields.ChoiceField):
         the "actual" one.
         """
         value = self.choices.get(value, None)
-        return super(ReverseChoiceField, self).to_representation(value)
+        return super().to_representation(value)
 
     def to_internal_value(self, value):
         """
@@ -45,7 +45,7 @@ class ReverseChoiceField(fields.ChoiceField):
             value = self.reversed_choices[value]
         except KeyError:
             self.fail('invalid_choice', input=value)
-        return super(ReverseChoiceField, self).to_internal_value(value)
+        return super().to_internal_value(value)
 
 
 class TranslationSerializerField(fields.Field):
@@ -227,8 +227,8 @@ class ESTranslationSerializerField(TranslationSerializerField):
         """
         if target_name is None:
             target_name = source_name
-        target_key = '%s%s' % (target_name, self.suffix)
-        source_key = '%s%s' % (source_name, self.suffix)
+        target_key = f'{target_name}{self.suffix}'
+        source_key = f'{source_name}{self.suffix}'
         target_translations = {
             v.get('lang', ''): v.get('string', '')
             for v in data.get(source_key, {}) or {}
@@ -329,7 +329,7 @@ class SlugOrPrimaryKeyRelatedField(serializers.RelatedField):
                 'not %r' % (self.render_as,)
             )
         self.slug_field = kwargs.pop('slug_field', 'slug')
-        super(SlugOrPrimaryKeyRelatedField, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     def to_representation(self, obj):
         if self.render_as == 'slug':

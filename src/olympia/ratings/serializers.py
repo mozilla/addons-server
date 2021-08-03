@@ -60,14 +60,14 @@ class BaseRatingSerializer(serializers.ModelSerializer):
         )
 
     def __init__(self, *args, **kwargs):
-        super(BaseRatingSerializer, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.request = kwargs.get('context', {}).get('request')
 
     def get_is_developer_reply(self, obj):
         return obj.reply_to_id is not None
 
     def validate(self, data):
-        data = super(BaseRatingSerializer, self).validate(data)
+        data = super().validate(data)
         request = self.context['request']
 
         data['user_responsible'] = request.user
@@ -125,7 +125,7 @@ class BaseRatingSerializer(serializers.ModelSerializer):
         return None
 
     def to_representation(self, instance):
-        out = super(BaseRatingSerializer, self).to_representation(instance)
+        out = super().to_representation(instance)
         if self.request and is_gate_active(self.request, 'ratings-title-shim'):
             out['title'] = None
         if not self.context['view'].should_include_flags():
@@ -144,7 +144,7 @@ class RatingSerializerReply(BaseRatingSerializer):
         )
         if obj.deleted and not should_access_deleted:
             return None
-        return super(RatingSerializerReply, self).to_representation(obj)
+        return super().to_representation(obj)
 
     def validate(self, data):
         # rating_object is set on the view by the reply() method.
@@ -160,7 +160,7 @@ class RatingSerializerReply(BaseRatingSerializer):
             msg = gettext("You can't reply to a review that is already a reply.")
             raise serializers.ValidationError(msg)
 
-        data = super(RatingSerializerReply, self).validate(data)
+        data = super().validate(data)
         return data
 
 
@@ -188,7 +188,7 @@ class RatingSerializer(BaseRatingSerializer):
         fields = BaseRatingSerializer.Meta.fields + ('score', 'reply', 'version')
 
     def __init__(self, *args, **kwargs):
-        super(RatingSerializer, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         score_to_rating = self.request and is_gate_active(
             self.request, 'ratings-rating-shim'
         )
@@ -219,7 +219,7 @@ class RatingSerializer(BaseRatingSerializer):
         return version
 
     def validate(self, data):
-        data = super(RatingSerializer, self).validate(data)
+        data = super().validate(data)
         if not self.partial:
             if data['addon'].authors.filter(pk=data['user'].pk).exists():
                 raise serializers.ValidationError(
@@ -248,7 +248,7 @@ class RatingSerializer(BaseRatingSerializer):
         if 'version' in validated_data:
             # Flatten this because create can't handle nested serializers
             validated_data['version'] = validated_data['version'].get('version')
-        return super(RatingSerializer, self).create(validated_data)
+        return super().create(validated_data)
 
 
 class RatingFlagSerializer(serializers.ModelSerializer):
@@ -270,7 +270,9 @@ class RatingFlagSerializer(serializers.ModelSerializer):
         if flag not in flags:
             raise serializers.ValidationError(
                 gettext(
-                    'Invalid flag [%s] - must be one of [%s]' % (flag, ','.join(flags))
+                    'Invalid flag [{}] - must be one of [{}]'.format(
+                        flag, ','.join(flags)
+                    )
                 )
             )
         return flag

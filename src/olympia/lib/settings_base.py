@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Django settings for addons-server project.
 
 import environ
@@ -110,7 +109,7 @@ DRF_API_REGEX = r'^/?api/(?:auth|v3|v4|v5)/'
 CORS_ALLOW_ALL_ORIGINS = True
 # Exclude the `accounts/session` endpoint, see:
 # https://github.com/mozilla/addons-server/issues/11100
-CORS_URLS_REGEX = r'{}(?!accounts/session/)'.format(DRF_API_REGEX)
+CORS_URLS_REGEX = fr'{DRF_API_REGEX}(?!accounts/session/)'
 # https://github.com/mozilla/addons-server/issues/17364
 CORS_ALLOW_HEADERS = list(default_headers) + [
     'x-country-code',
@@ -223,7 +222,7 @@ SERVICES_URL = 'http://%s' % SERVICES_DOMAIN
 
 # URL of the code-manager site, see:
 # https://github.com/mozilla/addons-code-manager
-CODE_MANAGER_URL = 'https://code.{}'.format(DOMAIN)
+CODE_MANAGER_URL = f'https://code.{DOMAIN}'
 
 # Filter IP addresses of allowed clients that can post email through the API.
 ALLOWED_CLIENTS_EMAIL_API = env.list('ALLOWED_CLIENTS_EMAIL_API', default=[])
@@ -1666,17 +1665,17 @@ def get_sentry_release():
 
     if os.path.exists(version_json):
         try:
-            with open(version_json, 'r') as fobj:
+            with open(version_json) as fobj:
                 contents = fobj.read()
                 data = json.loads(contents)
                 version = data.get('version') or data.get('commit')
-        except (IOError, KeyError):
+        except (OSError, KeyError):
             version = None
 
     if not version or version == 'origin/master':
         try:
             head_path = os.path.join(ROOT, '.git', 'HEAD')
-            with open(head_path, 'r') as fp:
+            with open(head_path) as fp:
                 head = str(fp.read()).strip()
 
             if head.startswith('ref: '):
@@ -1686,7 +1685,7 @@ def get_sentry_release():
                 return head
             with open(revision_file) as fh:
                 version = str(fh.read()).strip()
-        except IOError:
+        except OSError:
             version = None
     return version
 

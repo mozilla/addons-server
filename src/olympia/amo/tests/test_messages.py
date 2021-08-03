@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import django.contrib.messages as django_messages
 
 from django.contrib.messages.storage import default_storage

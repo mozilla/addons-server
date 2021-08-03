@@ -69,5 +69,5 @@ class TestRedirects(TestCase):
             'pioneer',
         ]
         for page in pages:
-            url = '/en-US/firefox/{}'.format(page)
+            url = f'/en-US/firefox/{page}'
             self._check({url: settings.SHIELD_STUDIES_SUPPORT_URL})

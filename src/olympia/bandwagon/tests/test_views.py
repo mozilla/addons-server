@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import json
 
 import django.test
@@ -30,7 +29,7 @@ class TestCollectionViewSetList(TestCase):
     def setUp(self):
         self.user = user_factory()
         self.url = reverse_ns('collection-list', kwargs={'user_pk': self.user.pk})
-        super(TestCollectionViewSetList, self).setUp()
+        super().setUp()
 
     def test_basic(self):
         collection_factory(author=self.user)
@@ -121,7 +120,7 @@ class TestCollectionViewSetDetail(TestCase):
         self.user = user_factory()
         self.collection = collection_factory(author=self.user)
         self.url = self._get_url(self.user, self.collection)
-        super(TestCollectionViewSetDetail, self).setUp()
+        super().setUp()
 
     def _get_url(self, user, collection):
         return reverse_ns(
@@ -310,7 +309,7 @@ class TestCollectionViewSetDetail(TestCase):
             assert addon_data['support_url'] == get_outgoing_url(str(addon.support_url))
 
 
-class CollectionViewSetDataMixin(object):
+class CollectionViewSetDataMixin:
     client_class = APITestClient
     data = {
         'name': {'fr': 'lé $túff', 'en-US': '$tuff'},
@@ -322,7 +321,7 @@ class CollectionViewSetDataMixin(object):
 
     def setUp(self):
         self.url = self.get_url(self.user)
-        super(CollectionViewSetDataMixin, self).setUp()
+        super().setUp()
 
     def send(self, url=None, data=None):
         raise NotImplementedError
@@ -549,7 +548,7 @@ class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
 class TestCollectionViewSetPatch(CollectionViewSetDataMixin, TestCase):
     def setUp(self):
         self.collection = collection_factory(author=self.user)
-        super(TestCollectionViewSetPatch, self).setUp()
+        super().setUp()
 
     def send(self, url=None, data=None):
         return self.client.patch(url or self.url, data or self.data)
@@ -629,7 +628,7 @@ class TestCollectionViewSetDelete(TestCase):
         self.user = user_factory()
         self.collection = collection_factory(author=self.user)
         self.url = self.get_url(self.user)
-        super(TestCollectionViewSetDelete, self).setUp()
+        super().setUp()
 
     def get_url(self, user):
         return reverse_ns(
@@ -695,7 +694,7 @@ class TestCollectionViewSetDelete(TestCase):
             assert response.status_code == 403
 
 
-class CollectionAddonViewSetMixin(object):
+class CollectionAddonViewSetMixin:
     def check_response(self, response):
         raise NotImplementedError
 
@@ -798,7 +797,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
             'collection-addon-list',
             kwargs={'user_pk': self.user.pk, 'collection_slug': self.collection.slug},
         )
-        super(TestCollectionAddonViewSetList, self).setUp()
+        super().setUp()
 
     def check_response(self, response):
         assert response.status_code == 200, self.url
@@ -1204,7 +1203,7 @@ class TestCollectionAddonViewSetDetail(CollectionAddonViewSetMixin, TestCase):
                 'addon': self.addon.id,
             },
         )
-        super(TestCollectionAddonViewSetDetail, self).setUp()
+        super().setUp()
 
     def check_response(self, response):
         assert response.status_code == 200, self.url
@@ -1238,7 +1237,7 @@ class TestCollectionAddonViewSetCreate(CollectionAddonViewSetMixin, TestCase):
             kwargs={'user_pk': self.user.pk, 'collection_slug': self.collection.slug},
         )
         self.addon = addon_factory()
-        super(TestCollectionAddonViewSetCreate, self).setUp()
+        super().setUp()
 
     def check_response(self, response):
         assert response.status_code == 201, response.content
@@ -1351,7 +1350,7 @@ class TestCollectionAddonViewSetPatch(CollectionAddonViewSetMixin, TestCase):
                 'addon': self.addon.id,
             },
         )
-        super(TestCollectionAddonViewSetPatch, self).setUp()
+        super().setUp()
 
     def check_response(self, response, notes=empty):
         notes = notes if notes != empty else 'it does things'
@@ -1412,7 +1411,7 @@ class TestCollectionAddonViewSetDelete(CollectionAddonViewSetMixin, TestCase):
                 'addon': self.addon.id,
             },
         )
-        super(TestCollectionAddonViewSetDelete, self).setUp()
+        super().setUp()
 
     def check_response(self, response):
         assert response.status_code == 204

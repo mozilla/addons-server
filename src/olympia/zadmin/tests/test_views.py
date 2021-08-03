@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import json
 
 from unittest import mock
@@ -19,7 +18,7 @@ class TestHomeAndIndex(TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
-        super(TestHomeAndIndex, self).setUp()
+        super().setUp()
         self.client.login(email='admin@mozilla.com')
 
     def test_get_home(self):

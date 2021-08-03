@@ -21,7 +21,7 @@ class AmoLoggerAdapter(logging.LoggerAdapter):
     """
 
     def __init__(self, logger, extra=None):
-        super(AmoLoggerAdapter, self).__init__(logger, extra or {})
+        super().__init__(logger, extra or {})
 
     def process(self, msg, kwargs):
         kwargs.setdefault('extra', {}).update(

@@ -31,7 +31,7 @@ class AppVersion(ModelBase):
     def save(self, *args, **kw):
         if not self.version_int:
             self.version_int = compare.version_int(self.version)
-        return super(AppVersion, self).save(*args, **kw)
+        return super().save(*args, **kw)
 
     def __str__(self):
         return self.version

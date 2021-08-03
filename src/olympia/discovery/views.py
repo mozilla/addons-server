@@ -84,7 +84,7 @@ class DiscoveryViewSet(ListModelMixin, GenericViewSet):
 
     @classonlymethod
     def as_view(cls, actions=None, **initkwargs):
-        view = super(DiscoveryViewSet, cls).as_view(actions=actions, **initkwargs)
+        view = super().as_view(actions=actions, **initkwargs)
         return non_atomic_requests(view)
 
 
@@ -114,5 +114,5 @@ class DiscoveryItemViewSet(ListModelMixin, GenericViewSet):
 
     @classonlymethod
     def as_view(cls, actions=None, **initkwargs):
-        view = super(DiscoveryItemViewSet, cls).as_view(actions=actions, **initkwargs)
+        view = super().as_view(actions=actions, **initkwargs)
         return non_atomic_requests(view)

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import os
 
 from django.conf import settings
@@ -35,7 +34,7 @@ def decode_http_header_value(value):
 
 class TestViews(TestCase):
     def setUp(self):
-        super(TestViews, self).setUp()
+        super().setUp()
         self.addon = addon_factory(
             slug='my-addôn', file_kw={'size': 1024}, version_kw={'version': '1.0'}
         )
@@ -123,7 +122,7 @@ class TestDownloadsBase(TestCase):
     fixtures = ['base/addon_5299_gcal', 'base/users']
 
     def setUp(self):
-        super(TestDownloadsBase, self).setUp()
+        super().setUp()
         self.addon = Addon.objects.get(id=5299)
         self.file = File.objects.get(id=33046)
         self.file_url = reverse('downloads.file', args=[self.file.id])
@@ -135,7 +134,7 @@ class TestDownloadsBase(TestCase):
         assert response.status_code == 302
         assert response.url == (
             urlparams(
-                '%s%s/%s' % (host, self.addon.id, urlquote(file_.filename)),
+                f'{host}{self.addon.id}/{urlquote(file_.filename)}',
                 filehash=file_.hash,
             )
         )
@@ -171,7 +170,7 @@ class TestDownloadsBase(TestCase):
 
 class TestDownloadsUnlistedVersions(TestDownloadsBase):
     def setUp(self):
-        super(TestDownloadsUnlistedVersions, self).setUp()
+        super().setUp()
         self.make_addon_unlisted(self.addon)
 
     @mock.patch.object(acl, 'is_reviewer', lambda request, addon: False)
@@ -458,7 +457,9 @@ class TestDownloadsLatest(TestDownloadsBase):
     def test_type_none(self):
         response = self.client.get(self.latest_url)
         assert response.status_code == 302
-        url = '%s?%s' % (self.file.filename, urlencode({'filehash': self.file.hash}))
+        url = '{}?{}'.format(
+            self.file.filename, urlencode({'filehash': self.file.hash})
+        )
         assert response['Location'].endswith(url), response['Location']
 
     def test_success(self):
@@ -493,7 +494,7 @@ class TestDownloadSource(TestCase):
     fixtures = ['base/addon_3615', 'base/admin']
 
     def setUp(self):
-        super(TestDownloadSource, self).setUp()
+        super().setUp()
         self.addon = Addon.objects.get(pk=3615)
         # Make sure non-ascii is ok.
         self.addon.update(slug='crosswarpex-확장')

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from django.urls import reverse
 
 from pyquery import PyQuery as pq

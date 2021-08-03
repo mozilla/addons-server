@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import os
 import io
 
@@ -83,13 +82,13 @@ def test_compress_assets_correctly_fetches_static_images(settings, tmpdir):
     call_command('compress_assets', force=True, stdout=out)
     call_command('collectstatic', interactive=False, stdout=out)
 
-    with open(css_all, 'r') as fobj:
+    with open(css_all) as fobj:
         expected = 'background-image: url(../../img/icons/stars.png'
         assert expected in fobj.read()
 
     # Compressed doesn't have any whitespace between `background-image:` and
     # the url and the path is slightly different
-    with open(css_min, 'r') as fobj:
+    with open(css_min) as fobj:
         data = fobj.read()
         assert 'background-image:url(' in data
         assert 'img/icons/stars.png' in data

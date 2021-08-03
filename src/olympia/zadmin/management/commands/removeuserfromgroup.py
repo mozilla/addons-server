@@ -39,6 +39,6 @@ def do_removeuser(user, group):
         # Doesn't actually check if the user was in the group or not.
         GroupUser.objects.filter(user=user, group=group).delete()
     except UserProfile.DoesNotExist:
-        raise CommandError('User ({user}) does not exist.'.format(user=user))
+        raise CommandError(f'User ({user}) does not exist.')
     except Group.DoesNotExist:
-        raise CommandError('Group ({group}) does not exist.'.format(group=group))
+        raise CommandError(f'Group ({group}) does not exist.')

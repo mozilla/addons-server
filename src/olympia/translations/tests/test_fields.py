@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import django  # noqa
 
 from django.db import migrations, models
@@ -21,7 +20,7 @@ def test_translated_field_supports_migration():
     }
 
     migration = type(
-        str('Migration'),
+        'Migration',
         (migrations.Migration,),
         {
             'operations': [

@@ -257,7 +257,7 @@ class AbstractScannerRule(ModelBase):
                 {'definition': _('Yara rules should have a definition')}
             )
 
-        if 'rule {}'.format(self.name) not in self.definition:
+        if f'rule {self.name}' not in self.definition:
             raise ValidationError(
                 {
                     'definition': _(
@@ -390,7 +390,7 @@ class ScannerQueryRule(AbstractScannerRule):
             completed_tasks_count = self._get_completed_tasks_count()
             if completed_tasks_count is not None and self.task_count:
                 rate = (completed_tasks_count / self.task_count) * 100
-                return '{:.2f}%'.format(rate)
+                return f'{rate:.2f}%'
         return None
 
 

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import json
 
 from django.core.cache import cache
@@ -37,7 +36,7 @@ from olympia.versions.models import License
 
 class TestFileInfoSerializer(TestCase):
     def setUp(self):
-        super(TestFileInfoSerializer, self).setUp()
+        super().setUp()
 
         self.addon = addon_factory(
             file_kw={'filename': 'notify-link-clicks-i18n.xpi', 'is_webextension': True}
@@ -164,7 +163,7 @@ class TestFileInfoSerializer(TestCase):
 
 class TestFileInfoDiffSerializer(TestCase):
     def setUp(self):
-        super(TestFileInfoDiffSerializer, self).setUp()
+        super().setUp()
 
         self.addon = addon_factory(
             name='My Addôn',
@@ -362,7 +361,7 @@ class TestFileInfoDiffSerializer(TestCase):
 
 class TestAddonBrowseVersionSerializerFileOnly(TestCase):
     def setUp(self):
-        super(TestAddonBrowseVersionSerializerFileOnly, self).setUp()
+        super().setUp()
 
         self.addon = addon_factory(
             file_kw={'filename': 'notify-link-clicks-i18n.xpi', 'is_webextension': True}
@@ -389,7 +388,7 @@ class TestAddonBrowseVersionSerializerFileOnly(TestCase):
 
 class TestAddonBrowseVersionSerializer(TestCase):
     def setUp(self):
-        super(TestAddonBrowseVersionSerializer, self).setUp()
+        super().setUp()
 
         license = License.objects.create(
             name={
@@ -527,7 +526,7 @@ class TestAddonBrowseVersionSerializer(TestCase):
 
         assert serializer._trim_entries(serializer._entries) == data['file_entries']
 
-        key = 'reviewers:fileentriesserializer:entries:{}'.format(commit.hex)
+        key = f'reviewers:fileentriesserializer:entries:{commit.hex}'
         cached_data = cache.get(key)
 
         # We exclude `manifest.json` here to test that in a separate step
@@ -580,7 +579,7 @@ class TestAddonBrowseVersionSerializer(TestCase):
 
 class TestAddonCompareVersionSerializerFileOnly(TestCase):
     def setUp(self):
-        super(TestAddonCompareVersionSerializerFileOnly, self).setUp()
+        super().setUp()
 
         self.addon = addon_factory(
             file_kw={'filename': 'notify-link-clicks-i18n.xpi', 'is_webextension': True}
@@ -609,7 +608,7 @@ class TestAddonCompareVersionSerializerFileOnly(TestCase):
 
 class TestAddonCompareVersionSerializer(TestCase):
     def setUp(self):
-        super(TestAddonCompareVersionSerializer, self).setUp()
+        super().setUp()
 
         self.addon = addon_factory(
             name='My Addôn',

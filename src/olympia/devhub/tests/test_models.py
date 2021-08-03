@@ -10,7 +10,7 @@ class TestVersion(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
-        super(TestVersion, self).setUp()
+        super().setUp()
         self.addon = Addon.objects.get(pk=3615)
         self.version = Version.objects.get(pk=81551)
         self.file = File.objects.get(pk=67442)

@@ -77,7 +77,7 @@ log = olympia.core.logger.getLogger('z.addons')
 addon_view = addon_view_factory(qs=Addon.objects.valid)
 
 
-class BaseFilter(object):
+class BaseFilter:
     """
     Filters help generate querysets for add-on listings.
 
@@ -116,11 +116,11 @@ class BaseFilter(object):
 
     def all(self):
         """Get a full mapping of {option: queryset}."""
-        return dict((field, self.filter(field)) for field in dict(self.opts))
+        return {field: self.filter(field) for field in dict(self.opts)}
 
     def filter(self, field):
         """Get the queryset for the given field."""
-        return getattr(self, 'filter_{0}'.format(field))()
+        return getattr(self, f'filter_{field}')()
 
     def filter_popular(self):
         return self.base_queryset.order_by('-weekly_downloads')
@@ -233,7 +233,7 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
         identifier = self.kwargs.get('pk')
         self.lookup_field = self.get_lookup_field(identifier)
         self.kwargs[self.lookup_field] = identifier
-        self.instance = super(AddonViewSet, self).get_object()
+        self.instance = super().get_object()
         return self.instance
 
     def check_permissions(self, request):
@@ -258,7 +258,7 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
                 raise UnavailableForLegalReasons()
 
         try:
-            super(AddonViewSet, self).check_object_permissions(request, obj)
+            super().check_object_permissions(request, obj)
         except exceptions.APIException as exc:
             # Override exc.detail with a dict so that it's returned as-is in
             # the response. The base implementation for exc.get_codes() does
@@ -286,7 +286,7 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
         return Response(serializer.data)
 
 
-class AddonChildMixin(object):
+class AddonChildMixin:
     """Mixin containing method to retrieve the parent add-on object."""
 
     def get_addon_object(
@@ -371,10 +371,8 @@ class AddonVersionViewSet(
             # do the actual permission check. To work around that, we call
             # super + check_object_permission() ourselves, passing down the
             # addon object directly.
-            return super(AddonVersionViewSet, self).check_object_permissions(
-                request, self.get_addon_object()
-            )
-        super(AddonVersionViewSet, self).check_permissions(request)
+            return super().check_object_permissions(request, self.get_addon_object())
+        super().check_permissions(request)
 
     def check_object_permissions(self, request, obj):
         # If the instance is marked as deleted and the client is not allowed to
@@ -400,7 +398,7 @@ class AddonVersionViewSet(
                     'addon', [AnyOf(AllowListedViewerOrReviewer, AllowAddonAuthor)]
                 )
             ]
-        super(AddonVersionViewSet, self).check_object_permissions(request, obj)
+        super().check_object_permissions(request, obj)
 
     def get_queryset(self):
         """Return the right base queryset depending on the situation."""
@@ -481,7 +479,7 @@ class AddonSearchView(ListAPIView):
 
     @classmethod
     def as_view(cls, **kwargs):
-        view = super(AddonSearchView, cls).as_view(**kwargs)
+        view = super().as_view(**kwargs)
         return non_atomic_requests(view)
 
     def get_data(self, count=None):
@@ -578,13 +576,11 @@ class StaticCategoryView(ListAPIView):
 
     @classmethod
     def as_view(cls, **kwargs):
-        view = super(StaticCategoryView, cls).as_view(**kwargs)
+        view = super().as_view(**kwargs)
         return non_atomic_requests(view)
 
     def finalize_response(self, request, response, *args, **kwargs):
-        response = super(StaticCategoryView, self).finalize_response(
-            request, response, *args, **kwargs
-        )
+        response = super().finalize_response(request, response, *args, **kwargs)
         patch_cache_control(response, max_age=60 * 60 * 6)
         return response
 
@@ -598,7 +594,7 @@ class LanguageToolsView(ListAPIView):
     @classmethod
     def as_view(cls, **initkwargs):
         """The API is read-only so we can turn off atomic requests."""
-        return non_atomic_requests(super(LanguageToolsView, cls).as_view(**initkwargs))
+        return non_atomic_requests(super().as_view(**initkwargs))
 
     def get_query_params(self):
         """
@@ -743,7 +739,7 @@ class LanguageToolsView(ListAPIView):
 
     @method_decorator(cache_page(60 * 60 * 24))
     def dispatch(self, *args, **kwargs):
-        return super(LanguageToolsView, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
     def list(self, request, *args, **kwargs):
         # Ignore pagination (return everything) but do wrap the data in a
@@ -797,7 +793,7 @@ class AddonRecommendationView(AddonSearchView):
         )
 
     def filter_queryset(self, qs):
-        qs = super(AddonRecommendationView, self).filter_queryset(qs)
+        qs = super().filter_queryset(qs)
         guid_param = self.request.GET.get('guid')
         taar_enable = self.request.GET.get('recommended', '').lower() == 'true'
         guids, self.ab_outcome, self.fallback_reason = get_addon_recommendations(

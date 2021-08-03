@@ -22,9 +22,7 @@ def update_denorm(*pairs, **kw):
     Takes a bunch of (addon, user) pairs and sets the denormalized fields for
     all reviews matching that pair.
     """
-    log.info(
-        '[%s@%s] Updating review denorms.' % (len(pairs), update_denorm.rate_limit)
-    )
+    log.info(f'[{len(pairs)}@{update_denorm.rate_limit}] Updating review denorms.')
     for addon, user in pairs:
         reviews = list(
             Rating.without_replies.all()

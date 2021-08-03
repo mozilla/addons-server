@@ -360,7 +360,8 @@ class ActivityLogManager(ManagerBase):
         qs = self.get_queryset()
         table = 'log_activity_addon'
         return qs.extra(
-            tables=[table], where=['%s.activity_log_id=%s.id' % (table, 'log_activity')]
+            tables=[table],
+            where=['{}.activity_log_id={}.id'.format(table, 'log_activity')],
         )
 
 
@@ -369,13 +370,13 @@ class SafeFormatter(string.Formatter):
 
     def get_field(self, *args, **kw):
         # obj is the value getting interpolated into the string.
-        obj, used_key = super(SafeFormatter, self).get_field(*args, **kw)
+        obj, used_key = super().get_field(*args, **kw)
         return markupsafe.escape(obj), used_key
 
 
 class ActivityLog(ModelBase):
     TYPES = sorted(
-        [(value.id, key) for key, value in constants.activity.LOG_BY_ID.items()]
+        (value.id, key) for key, value in constants.activity.LOG_BY_ID.items()
     )
     user = models.ForeignKey('users.UserProfile', null=True, on_delete=models.SET_NULL)
     action = models.SmallIntegerField(choices=TYPES)

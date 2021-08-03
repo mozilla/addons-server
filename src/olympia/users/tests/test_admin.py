@@ -54,7 +54,7 @@ class TestUserAdmin(TestCase):
         another_user = user_factory()
         response = self.client.get(
             self.list_url,
-            {'q': '%s,%s,foobaa' % (self.user.pk, another_user.pk)},
+            {'q': f'{self.user.pk},{another_user.pk},foobaa'},
             follow=True,
         )
         assert response.status_code == 200
@@ -71,7 +71,7 @@ class TestUserAdmin(TestCase):
         with CaptureQueriesContext(connection) as queries:
             response = self.client.get(
                 self.list_url,
-                {'q': '%s,%s' % (self.user.pk, another_user.pk)},
+                {'q': f'{self.user.pk},{another_user.pk}'},
                 follow=True,
             )
             queries_str = '; '.join(q['sql'] for q in queries.captured_queries)

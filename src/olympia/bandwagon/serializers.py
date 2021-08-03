@@ -93,7 +93,7 @@ class CollectionSerializer(serializers.ModelSerializer):
         return value
 
 
-class ThisCollectionDefault(object):
+class ThisCollectionDefault:
     requires_context = True
 
     def __call__(self, serializer_field):
@@ -130,11 +130,11 @@ class CollectionAddonSerializer(serializers.ModelSerializer):
             # addon is read_only but SplitField messes with the initialization.
             # DRF normally ignores updates to read_only fields, so do the same.
             data.pop('addon', None)
-        return super(CollectionAddonSerializer, self).validate(data)
+        return super().validate(data)
 
     def to_representation(self, instance):
         request = self.context.get('request')
-        out = super(CollectionAddonSerializer, self).to_representation(instance)
+        out = super().to_representation(instance)
         if request and is_gate_active(request, 'collections-downloads-shim'):
             out['downloads'] = 0
         return out

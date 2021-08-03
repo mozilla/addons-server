@@ -15,7 +15,7 @@ RAW_FILTER_PATTERN = re.compile(
 )
 
 
-class LazyRawSQLManager(object):
+class LazyRawSQLManager:
     """A deferred manager to work around metaclass lameness."""
 
     def __init__(self, sql_model_class):
@@ -30,7 +30,7 @@ class LazyRawSQLManager(object):
         return getattr(self.__manager, name)
 
 
-class RawSQLManager(object):
+class RawSQLManager:
     """Raw SQL Manager for a Raw SQL Model.
 
     This provides a very minimal set of features in the Query Set API.
@@ -56,8 +56,7 @@ class RawSQLManager(object):
 
     def __iter__(self):
         self._build_cursor()
-        for row in self._iter_cursor_results():
-            yield row
+        yield from self._iter_cursor_results()
 
     def __getitem__(self, key):
         if isinstance(key, slice):
@@ -203,9 +202,7 @@ class RawSQLManager(object):
             dir = 'ASC'
             field = spec
         clone = self._clone()
-        clone.base_query['order_by'].append(
-            '%s %s' % (clone._resolve_alias(field), dir)
-        )
+        clone.base_query['order_by'].append(f'{clone._resolve_alias(field)} {dir}')
         return clone
 
     def as_sql(self):
@@ -264,10 +261,10 @@ class RawSQLManager(object):
             raise ValueError('Not a valid field for where clause: %r' % field)
         field = self._resolve_alias(field)
         if val is None:
-            return '%s IS NULL' % (field,)
+            return f'{field} IS NULL'
         else:
             param_k = self._param(val)
-            return '%s = %%(%s)s' % (field, param_k)
+            return f'{field} = %({param_k})s'
 
     def _filter_to_clause(self, *specs, **kw):
         """Makes a WHERE clause out of filter_raw() arguments."""
@@ -293,7 +290,7 @@ class RawSQLManager(object):
                 param = '(%s)' % ', '.join(parts)
             else:
                 param = '%%(%s)s' % self._param(val)
-            full_clause.append('%s %s %s' % (field, clause.group('op'), param))
+            full_clause.append('{} {} {}'.format(field, clause.group('op'), param))
         c = (' %s ' % connector).join(full_clause)
         if len(full_clause) > 1:
             # Protect OR clauses
@@ -309,18 +306,20 @@ class RawSQLManager(object):
     def _compile(self, parts):
         sep = ',\n'
         and_ = ' %s\n' % AND
-        select = ['%s AS `%s`' % (v, k) for k, v in parts['select'].items()]
-        stmt = 'SELECT\n%s\nFROM\n%s' % (sep.join(select), '\n'.join(parts['from']))
+        select = [f'{v} AS `{k}`' for k, v in parts['select'].items()]
+        stmt = 'SELECT\n{}\nFROM\n{}'.format(sep.join(select), '\n'.join(parts['from']))
         if parts.get('where'):
-            stmt = '%s\nWHERE\n%s' % (stmt, and_.join(parts['where']))
+            stmt = '{}\nWHERE\n{}'.format(stmt, and_.join(parts['where']))
         if parts.get('group_by'):
-            stmt = '%s\nGROUP BY\n%s' % (stmt, parts['group_by'])
+            stmt = '{}\nGROUP BY\n{}'.format(stmt, parts['group_by'])
         if parts.get('having'):
-            stmt = '%s\nHAVING\n%s' % (stmt, and_.join(parts['having']))
+            stmt = '{}\nHAVING\n{}'.format(stmt, and_.join(parts['having']))
         if parts.get('order_by'):
-            stmt = '%s\nORDER BY\n%s' % (stmt, sep.join(parts['order_by']))
+            stmt = '{}\nORDER BY\n{}'.format(stmt, sep.join(parts['order_by']))
         if len(parts['limit']):
-            stmt = '%s\nLIMIT %s' % (stmt, ', '.join([str(i) for i in parts['limit']]))
+            stmt = '{}\nLIMIT {}'.format(
+                stmt, ', '.join([str(i) for i in parts['limit']])
+            )
         return stmt
 
     def _execute(self, sql):
@@ -362,13 +361,13 @@ class RawSQLManager(object):
 
 class RawSQLModelMeta(type):
     def __new__(cls, name, bases, attrs):
-        super_new = super(RawSQLModelMeta, cls).__new__
+        super_new = super().__new__
         cls = super_new(cls, name, bases, attrs)
         cls.objects = LazyRawSQLManager(cls)
         return cls
 
 
-class RawSQLModel(object, metaclass=RawSQLModelMeta):
+class RawSQLModel(metaclass=RawSQLModelMeta):
     """Very minimal model-like object based on a SQL query.
 
     It supports barely enough for django-tables and the Django paginator.
@@ -379,7 +378,7 @@ class RawSQLModel(object, metaclass=RawSQLModelMeta):
     """
 
     # django-tables2 looks for this to decide what Columns to add.
-    class _meta(object):
+    class _meta:
         fields = []
 
     class DoesNotExist(ObjectDoesNotExist):

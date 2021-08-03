@@ -13,7 +13,7 @@ from olympia.users.models import UserProfile
 log = olympia.core.logger.getLogger('z.users')
 
 
-class UnsubscribeCode(object):
+class UnsubscribeCode:
     @classmethod
     def create(cls, email):
         """Encode+Hash an email for an unsubscribe code."""

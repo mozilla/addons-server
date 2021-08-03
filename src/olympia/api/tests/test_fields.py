@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from django.core.exceptions import ValidationError
 from django.test.utils import override_settings
 
@@ -61,7 +60,7 @@ class TestTranslationSerializerField(TestCase):
     field_class = TranslationSerializerField
 
     def setUp(self):
-        super(TestTranslationSerializerField, self).setUp()
+        super().setUp()
         self.factory = APIRequestFactory()
         self.addon = addon_factory(description='Descrîption...')
         Translation.objects.create(

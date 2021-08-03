@@ -29,7 +29,7 @@ def get_random():
 
 
 def submit_url(step):
-    return '/en-US/developers/addon/submit/{step}/'.format(step=step)
+    return f'/en-US/developers/addon/submit/{step}/'
 
 
 def get_xpi():
@@ -64,7 +64,7 @@ def uniqueify_xpi(path):
         rmtree(output_dir)
 
 
-class EventMarker(object):
+class EventMarker:
     """
     Simple event marker that logs on every call.
     """
@@ -73,7 +73,7 @@ class EventMarker(object):
         self.name = name
 
     def _generate_log_message(self):
-        log.info('locust event: {}'.format(self.name))
+        log.info(f'locust event: {self.name}')
 
     def __call__(self, *args, **kwargs):
         self._generate_log_message()
@@ -141,6 +141,6 @@ def get_the_only_form_without_id(response_content):
             target_form = form
     if target_form is None:
         raise ValueError(
-            'Could not find only one form without an ID; found: {}'.format(html.forms)
+            f'Could not find only one form without an ID; found: {html.forms}'
         )
     return target_form

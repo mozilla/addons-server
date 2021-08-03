@@ -53,7 +53,7 @@ def update_aliases(actions):
 
 @task(ignore_result=False)
 def create_new_index(alias, new_index):
-    logger.info('Create the index {0}, for alias: {1}'.format(new_index, alias))
+    logger.info(f'Create the index {new_index}, for alias: {alias}')
     get_indexer(alias).create_new_index(new_index)
 
 
@@ -75,7 +75,7 @@ def gather_index_data_tasks(alias, index):
     """
     Return a group of indexing tasks for that index.
     """
-    logger.info('Returning reindexing group for {0}'.format(index))
+    logger.info(f'Returning reindexing group for {index}')
     return get_indexer(alias).reindex_tasks_group(index)
 
 

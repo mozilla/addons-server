@@ -33,7 +33,7 @@ def generate_version(addon, app=None):
             application=app.id, version=v, min=av_min, max=av_max
         )
     File.objects.create(
-        filename='%s-%s' % (v.addon_id, v.id),
+        filename=f'{v.addon_id}-{v.id}',
         version=v,
         status=amo.STATUS_APPROVED,
     )

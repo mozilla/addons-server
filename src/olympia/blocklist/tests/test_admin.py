@@ -486,7 +486,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         # meta data for new blocks and existing ones needing update:
         assert 'Add-on GUIDs (one per line)' not in content
         total_adu = new_addon_adu + partial_addon_adu
-        assert '2 Add-on GUIDs with {:,} users:'.format(total_adu) in content
+        assert f'2 Add-on GUIDs with {total_adu:,} users:' in content
         assert 'any@new' in content
         assert 'New Danger' in content
         assert str(new_addon.average_daily_users) in content
@@ -1053,7 +1053,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             reverse('admin:blocklist_block_change', args=(existing_block.pk,))
         )
         assert pq(response.content)('.existing_block').text() == (
-            '[Edit Block: %s - %s]' % (existing_block.min_version, '*')
+            '[Edit Block: {} - {}]'.format(existing_block.min_version, '*')
         )
 
         # And an unlisted version
@@ -1067,7 +1067,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             reverse('admin:blocklist_block_change', args=(existing_block.pk,))
         )
         assert pq(response.content)('.existing_block').text() == (
-            '[Edit Block: %s - %s]' % (existing_block.min_version, '*')
+            '[Edit Block: {} - {}]'.format(existing_block.min_version, '*')
         )
 
         # And delete the block again

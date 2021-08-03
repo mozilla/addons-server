@@ -12,7 +12,7 @@ from olympia.reviewers.models import AutoApprovalSummary, ReviewerScore
 
 
 @pytest.mark.django_db
-class TestReviewReports(object):
+class TestReviewReports:
 
     # Dates are chosen on purpose:
     # 2019-01-07: part of the reported week is previous quarter (year even)
@@ -203,7 +203,7 @@ class TestReviewReports(object):
         assert 'Deleted' not in html
 
         to = 'addon-reviewers@mozilla.org'
-        subject = '%s %s-%s' % (
+        subject = '{} {}-{}'.format(
             'Weekly Add-on Reviews Report',
             self.last_week_begin,
             self.last_week_end,
@@ -225,7 +225,7 @@ class TestReviewReports(object):
                 'Weekly Content Reviews, 10 Reviews or More',
                 ['Name', 'Staff', 'Points', 'Add-ons Reviewed'],
                 (
-                    ('Firefox user {}'.format(self.reviewer3.id), '', '140', '14'),
+                    (f'Firefox user {self.reviewer3.id}', '', '140', '14'),
                     ('Staff Content D', '*', '-', '10'),
                 ),
             ),
@@ -248,19 +248,19 @@ class TestReviewReports(object):
             expected[2] = (
                 'Quarterly contributions',
                 ['Name', 'Points', 'Add-ons Reviewed'],
-                (('Firefox user {}'.format(self.reviewer3.id), '140', '14'),),
+                ((f'Firefox user {self.reviewer3.id}', '140', '14'),),
             )
         assert data == expected
 
         html = command.generate_report_html('content', data)
 
         assert 'Weekly Add-on Content Reviews Report' in html
-        assert 'Firefox user {}'.format(self.reviewer3.id) in html
+        assert f'Firefox user {self.reviewer3.id}' in html
         assert 'Staff Content D' in html
         assert 'Deleted' not in html
 
         to = 'addon-content-reviewers@mozilla.com'
-        subject = '%s %s-%s' % (
+        subject = '{} {}-{}'.format(
             'Weekly Add-on Content Reviews Report',
             self.last_week_begin,
             self.last_week_end,
@@ -312,7 +312,7 @@ class TestReviewReports(object):
         assert 'Deleted' not in html
 
         to = 'addon-reviewers@mozilla.org'
-        subject = '%s %s-%s' % (
+        subject = '{} {}-{}'.format(
             'Weekly Add-on Reviews Report',
             self.last_week_begin,
             self.last_week_end,
@@ -350,7 +350,7 @@ class TestReviewReports(object):
         assert 'Deleted' not in html
 
         to = 'addon-content-reviewers@mozilla.org'
-        subject = '%s %s-%s' % (
+        subject = '{} {}-{}'.format(
             'Weekly Add-on Content Reviews Report',
             self.last_week_begin,
             self.last_week_end,

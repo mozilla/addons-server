@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import json
 import os
 
@@ -52,7 +51,7 @@ class HubTest(TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
-        super(HubTest, self).setUp()
+        super().setUp()
         self.url = reverse('devhub.index')
         assert self.client.login(email='regular@mozilla.com')
         assert self.client.get(self.url).status_code == 200
@@ -69,7 +68,7 @@ class HubTest(TestCase):
             data = {
                 'type': source.type,
                 'status': source.status,
-                'name': 'cloned-addon-%s-%s' % (addon_id, i),
+                'name': f'cloned-addon-{addon_id}-{i}',
                 'users': [self.user_profile],
             }
             addons.append(addon_factory(**data))
@@ -78,7 +77,7 @@ class HubTest(TestCase):
 
 class TestDashboard(HubTest):
     def setUp(self):
-        super(TestDashboard, self).setUp()
+        super().setUp()
         self.url = reverse('devhub.addons')
         self.themes_url = reverse('devhub.themes')
         assert self.client.get(self.url).status_code == 200
@@ -343,7 +342,7 @@ class TestDevRequired(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
-        super(TestDevRequired, self).setUp()
+        super().setUp()
         self.addon = Addon.objects.get(id=3615)
         self.edit_page_url = self.addon.get_dev_url('edit')
         self.get_url = self.addon.get_dev_url('versions')
@@ -380,7 +379,7 @@ class TestVersionStats(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
-        super(TestVersionStats, self).setUp()
+        super().setUp()
         assert self.client.login(email='admin@mozilla.com')
 
     def test_counts(self):
@@ -407,7 +406,7 @@ class TestDelete(TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
-        super(TestDelete, self).setUp()
+        super().setUp()
         self.get_addon = lambda: Addon.objects.filter(id=3615)
         assert self.client.login(email='del@icio.us')
         self.user = UserProfile.objects.get(email='del@icio.us')
@@ -472,7 +471,7 @@ class TestHome(TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
-        super(TestHome, self).setUp()
+        super().setUp()
         assert self.client.login(email='del@icio.us')
         self.url = reverse('devhub.index')
         self.addon = Addon.objects.get(pk=3615)
@@ -611,7 +610,7 @@ class TestActivityFeed(TestCase):
     fixtures = ('base/users', 'base/addon_3615')
 
     def setUp(self):
-        super(TestActivityFeed, self).setUp()
+        super().setUp()
         assert self.client.login(email='del@icio.us')
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.versions.first()
@@ -745,7 +744,7 @@ class TestAPIAgreement(TestCase):
     fixtures = ['base/addon_3615', 'base/addon_5579', 'base/users']
 
     def setUp(self):
-        super(TestAPIAgreement, self).setUp()
+        super().setUp()
         assert self.client.login(email='del@icio.us')
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.user.update(last_login_ip='192.168.1.1')
@@ -902,7 +901,7 @@ class TestAPIKeyPage(TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
-        super(TestAPIKeyPage, self).setUp()
+        super().setUp()
         self.url = reverse('devhub.api_key')
         assert self.client.login(email='del@icio.us')
         self.user = UserProfile.objects.get(email='del@icio.us')
@@ -1144,7 +1143,7 @@ class TestUpload(BaseUploadTest):
     fixtures = ['base/users']
 
     def setUp(self):
-        super(TestUpload, self).setUp()
+        super().setUp()
         assert self.client.login(email='regular@mozilla.com')
         self.url = reverse('devhub.upload')
         self.image_path = get_image_path('animated.png')
@@ -1232,7 +1231,7 @@ class TestUploadDetail(BaseUploadTest):
             cls.create_appversion('android', version)
 
     def setUp(self):
-        super(TestUploadDetail, self).setUp()
+        super().setUp()
         assert self.client.login(email='regular@mozilla.com')
 
     @classmethod
@@ -1554,7 +1553,7 @@ def assert_json_error(request, field, msg):
     assert request['Content-Type'] == 'application/json'
     field = '__all__' if field is None else field
     content = json.loads(request.content)
-    assert field in content, '%r not in %r' % (field, content)
+    assert field in content, f'{field!r} not in {content!r}'
     assert content[field] == [msg]
 
 
@@ -1562,7 +1561,7 @@ def assert_json_field(request, field, msg):
     assert request.status_code == 200
     assert request['Content-Type'] == 'application/json'
     content = json.loads(request.content)
-    assert field in content, '%r not in %r' % (field, content)
+    assert field in content, f'{field!r} not in {content!r}'
     assert content[field] == msg
 
 
@@ -1570,7 +1569,7 @@ class TestVersionXSS(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
-        super(TestVersionXSS, self).setUp()
+        super().setUp()
         self.version = Addon.objects.get(id=3615).current_version
         assert self.client.login(email='del@icio.us')
 
@@ -1589,7 +1588,7 @@ class TestDeleteAddon(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
-        super(TestDeleteAddon, self).setUp()
+        super().setUp()
         self.addon = Addon.objects.get(id=3615)
         self.url = self.addon.get_dev_url('delete')
         self.client.login(email='admin@mozilla.com')
@@ -1613,7 +1612,7 @@ class TestRequestReview(TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
-        super(TestRequestReview, self).setUp()
+        super().setUp()
         self.addon = addon_factory()
         self.version = self.addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED
@@ -1659,7 +1658,7 @@ class TestRedirects(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
-        super(TestRedirects, self).setUp()
+        super().setUp()
         self.base = reverse('devhub.index')
         assert self.client.login(email='admin@mozilla.com')
         self.user = UserProfile.objects.get(email='admin@mozilla.com')
@@ -1697,7 +1696,7 @@ class TestHasCompleteMetadataRedirects(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
-        super(TestHasCompleteMetadataRedirects, self).setUp()
+        super().setUp()
         self.f = mock.Mock()
         self.f.__name__ = 'function'
         self.request = RequestFactory().get('developers/addon/a3615/edit')
@@ -1769,7 +1768,7 @@ class TestRemoveLocale(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
-        super(TestRemoveLocale, self).setUp()
+        super().setUp()
         self.addon = Addon.objects.get(id=3615)
         self.url = reverse('devhub.addons.remove-locale', args=['a3615'])
         assert self.client.login(email='del@icio.us')

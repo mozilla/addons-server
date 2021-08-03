@@ -43,7 +43,7 @@ class WebTokenAuthentication(BaseAuthentication):
         header in a `401 Unauthenticated` response, or `None` if the
         authentication scheme should return `403 Permission Denied` responses.
         """
-        return '{0} realm="{1}"'.format(
+        return '{} realm="{}"'.format(
             self.auth_header_prefix, self.www_authenticate_realm
         )
 
@@ -126,12 +126,12 @@ class WebTokenAuthentication(BaseAuthentication):
         phase.
         """
         if 'user_id' not in payload:
-            log.info('No user_id in token payload {}'.format(payload))
+            log.info(f'No user_id in token payload {payload}')
             raise exceptions.AuthenticationFailed()
         try:
             user = UserProfile.objects.filter(deleted=False).get(pk=payload['user_id'])
         except UserProfile.DoesNotExist:
-            log.info('User not found from token payload {}'.format(payload))
+            log.info(f'User not found from token payload {payload}')
             raise exceptions.AuthenticationFailed()
 
         # Check get_session_auth_hash like django's get_user() does.
@@ -176,7 +176,7 @@ class JWTKeyAuthentication(BaseAuthentication):
         header in a `401 Unauthenticated` response, or `None` if the
         authentication scheme should return `403 Permission Denied` responses.
         """
-        return '{0} realm="{1}"'.format(
+        return '{} realm="{}"'.format(
             self.auth_header_prefix, self.www_authenticate_realm
         )
 

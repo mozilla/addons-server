@@ -91,7 +91,7 @@ class TestHasPerm(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
-        super(TestHasPerm, self).setUp()
+        super().setUp()
         assert self.client.login(email='del@icio.us')
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.addon = Addon.objects.get(id=3615)
@@ -192,7 +192,7 @@ class TestCheckReviewer(TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
-        super(TestCheckReviewer, self).setUp()
+        super().setUp()
         self.user = UserProfile.objects.get()
         self.addon = Addon.objects.get(pk=3615)
         self.statictheme = addon_factory(type=amo.ADDON_STATICTHEME)

@@ -31,7 +31,7 @@ class PositiveAutoField(models.AutoField):
 
 class HttpHttpsOnlyURLField(fields.URLField):
     def __init__(self, *args, **kwargs):
-        super(HttpHttpsOnlyURLField, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
         self.validators = [
             URLValidator(schemes=('http', 'https')),
@@ -114,4 +114,4 @@ class CIDRField(models.Field):
     def formfield(self, **kwargs):
         defaults = {'form_class': fields.CharField, 'validators': self.validators}
         defaults.update(kwargs)
-        return super(CIDRField, self).formfield(**defaults)
+        return super().formfield(**defaults)

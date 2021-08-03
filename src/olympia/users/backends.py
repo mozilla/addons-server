@@ -3,7 +3,7 @@ from django.db.models import Q
 from .models import UserProfile
 
 
-class TestUserBackend(object):
+class TestUserBackend:
     """Authentication backend to easily log in a user while testing."""
 
     def authenticate(self, request=None, username=None, email=None, password=None):
@@ -24,7 +24,7 @@ class TestUserBackend(object):
             return None
 
 
-class NoAuthForYou(object):
+class NoAuthForYou:
     """An authentication backend for read-only mode."""
 
     supports_anonymous_user = False

@@ -1161,7 +1161,7 @@ class TestUserEmailField(TestCase):
 
 class TestOnChangeName(TestCase):
     def setUp(self):
-        super(TestOnChangeName, self).setUp()
+        super().setUp()
 
         # We're in a regular TestCase class so index_addons should have been
         # mocked.

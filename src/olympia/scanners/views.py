@@ -102,4 +102,4 @@ class ScannerResultView(ListAPIView):
     @classmethod
     def as_view(cls, **initkwargs):
         """The API is read-only so we can turn off atomic requests."""
-        return non_atomic_requests(super(ScannerResultView, cls).as_view(**initkwargs))
+        return non_atomic_requests(super().as_view(**initkwargs))

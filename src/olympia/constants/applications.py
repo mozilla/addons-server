@@ -13,7 +13,7 @@ from .base import (
 from olympia.versions.compare import version_int as vint
 
 
-class App(object):
+class App:
     @classmethod
     def matches_user_agent(cls, user_agent):
         return cls.user_agent_string in user_agent

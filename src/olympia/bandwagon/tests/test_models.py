@@ -27,7 +27,7 @@ class TestCollections(TestCase):
     fixtures = ('base/addon_3615', 'bandwagon/test_models', 'base/user_4043307')
 
     def setUp(self):
-        super(TestCollections, self).setUp()
+        super().setUp()
         self.user = UserProfile.objects.create(username='uhhh', email='uh@hh')
         self.other = UserProfile.objects.exclude(id=self.user.id)[0]
         core.set_user(self.user)

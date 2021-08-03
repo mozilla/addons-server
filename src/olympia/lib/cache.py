@@ -11,7 +11,7 @@ from django.utils.encoding import force_bytes, force_str
 def make_key(key, with_locale=True, normalize=False):
     """Generate the full key for ``k``, with a prefix."""
     if with_locale:
-        key = '{key}:{lang}'.format(key=key, lang=translation.get_language())
+        key = f'{key}:{translation.get_language()}'
 
     if normalize:
         return force_str(hashlib.md5(force_bytes(key)).hexdigest())
@@ -33,7 +33,7 @@ def memoize_key(prefix, *args, **kwargs):
     key = hashlib.md5()
     for arg in itertools.chain(args, sorted(kwargs.items())):
         key.update(force_bytes(arg))
-    return 'memoize:{prefix}:{key}'.format(prefix=prefix, key=key.hexdigest())
+    return f'memoize:{prefix}:{key.hexdigest()}'
 
 
 def memoize(prefix, timeout=60):

@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-
-
 def generate_translations(item):
     """Generate French and Spanish translations for the given `item`."""
     fr_prefix = '(français) '

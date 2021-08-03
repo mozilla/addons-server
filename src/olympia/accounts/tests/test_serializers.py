@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from django.test.utils import override_settings
 
 from rest_framework import serializers
@@ -21,7 +20,7 @@ from olympia.users.notifications import NOTIFICATIONS_BY_SHORT
 from olympia.zadmin.models import Config, set_config
 
 
-class BaseTestUserMixin(object):
+class BaseTestUserMixin:
     def serialize(self):
         # Manually reload the user first to clear any cached properties.
         self.user = UserProfile.objects.get(pk=self.user.pk)
@@ -161,7 +160,7 @@ class TestPublicUserProfileSerializer(TestCase):
         self.test_basic()
 
 
-class PermissionsTestMixin(object):
+class PermissionsTestMixin:
     def test_permissions(self):
         assert self.serializer(self.user).data['permissions'] == []
 
@@ -209,12 +208,12 @@ class TestUserProfileSerializer(TestPublicUserProfileSerializer, PermissionsTest
                 'last_login_ip': '123.45.67.89',
             }
         )
-        super(TestUserProfileSerializer, self).setUp()
+        super().setUp()
 
     def test_basic(self):
         # Have to update these separately as dates as tricky.  As are bools.
         self.user.update(last_login=self.now, read_dev_agreement=self.now)
-        data = super(TestUserProfileSerializer, self).test_basic()
+        data = super().test_basic()
         assert data['last_login'] == (self.now.replace(microsecond=0).isoformat() + 'Z')
         assert data['read_dev_agreement'] == data['last_login']
 
@@ -234,19 +233,19 @@ class TestUserProfileSerializer(TestPublicUserProfileSerializer, PermissionsTest
 
         with override_settings(FXA_CONTENT_HOST=fxa_host):
             expected_url = urlparams(
-                '{}/settings'.format(fxa_host),
+                f'{fxa_host}/settings',
                 uid=user_fxa_id,
                 email=self.user_email,
                 entrypoint='addons',
             )
 
-            data = super(TestUserProfileSerializer, self).test_basic()
+            data = super().test_basic()
             assert data['fxa_edit_email_url'] == expected_url
 
         # And to make sure it's not present in v3
         gates = {None: ('del-accounts-fxa-edit-email-url',)}
         with override_settings(DRF_API_GATES=gates):
-            data = super(TestUserProfileSerializer, self).test_basic()
+            data = super().test_basic()
             assert 'fxa_edit_email_url' not in data
 
     def test_validate_homepage(self):
@@ -256,26 +255,26 @@ class TestUserProfileSerializer(TestPublicUserProfileSerializer, PermissionsTest
 
         with override_settings(DOMAIN=domain):
             with self.assertRaises(serializers.ValidationError):
-                serializer.validate_homepage('http://{}'.format(domain))
+                serializer.validate_homepage(f'http://{domain}')
             # It should not raise when value is allowed.
             assert serializer.validate_homepage(allowed_url) == allowed_url
 
     def test_site_status(self):
-        data = super(TestUserProfileSerializer, self).test_basic()
+        data = super().test_basic()
         assert data['site_status'] == {
             'read_only': False,
             'notice': None,
         }
 
         set_config('site_notice', 'THIS is NOT Á TEST!')
-        data = super(TestUserProfileSerializer, self).test_basic()
+        data = super().test_basic()
         assert data['site_status'] == {
             'read_only': False,
             'notice': 'THIS is NOT Á TEST!',
         }
 
         with override_settings(READ_ONLY=True):
-            data = super(TestUserProfileSerializer, self).test_basic()
+            data = super().test_basic()
         assert data['site_status'] == {
             'read_only': True,
             'notice': 'THIS is NOT Á TEST!',
@@ -283,7 +282,7 @@ class TestUserProfileSerializer(TestPublicUserProfileSerializer, PermissionsTest
 
         Config.objects.get(key='site_notice').delete()
         with override_settings(READ_ONLY=True):
-            data = super(TestUserProfileSerializer, self).test_basic()
+            data = super().test_basic()
         assert data['site_status'] == {
             'read_only': True,
             'notice': None,

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from rest_framework.test import APIRequestFactory
 
 from olympia import amo
@@ -7,7 +6,7 @@ from olympia.activity.serializers import ActivityLogSerializer
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 
 
-class LogMixin(object):
+class LogMixin:
     def log(self, comments, action, created=None):
         version = self.addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
         details = {'comments': comments, 'version': version.version}

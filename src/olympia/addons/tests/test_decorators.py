@@ -10,7 +10,7 @@ from olympia.amo.tests import TestCase, addon_factory
 
 class TestAddonView(TestCase):
     def setUp(self):
-        super(TestAddonView, self).setUp()
+        super().setUp()
         self.addon = addon_factory()
         self.func = mock.Mock()
         self.func.return_value = mock.sentinel.OK
@@ -141,7 +141,7 @@ class TestAddonView(TestCase):
 
 class TestAddonViewWithUnlisted(TestAddonView):
     def setUp(self):
-        super(TestAddonViewWithUnlisted, self).setUp()
+        super().setUp()
         self.view = dec.addon_view_factory(qs=Addon.objects.all)(self.func)
 
     @mock.patch(

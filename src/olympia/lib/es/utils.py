@@ -73,7 +73,7 @@ def raise_if_reindex_in_progress(site):
 
 def timestamp_index(index):
     """Return index-YYYYMMDDHHMMSS with the current time."""
-    return '%s-%s' % (index, datetime.datetime.now().strftime('%Y%m%d%H%M%S'))
+    return '{}-{}'.format(index, datetime.datetime.now().strftime('%Y%m%d%H%M%S'))
 
 
 def create_index(index, config=None):

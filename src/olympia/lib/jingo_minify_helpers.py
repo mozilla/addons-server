@@ -13,7 +13,7 @@ def _build_html(items, wrapping):
     """
     Wrap `items` in wrapping.
     """
-    return markupsafe.Markup('\n'.join((wrapping % item for item in items)))
+    return markupsafe.Markup('\n'.join(wrapping % item for item in items))
 
 
 def ensure_path_exists(path):

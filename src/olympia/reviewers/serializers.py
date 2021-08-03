@@ -53,7 +53,7 @@ class AddonReviewerFlagsSerializer(serializers.ModelSerializer):
         )
 
 
-class FileEntriesMixin(object):
+class FileEntriesMixin:
     def _get_version(self):
         """If neither the current instance nor the parent instance is a Version,
         check the context for a version, otherwise raise an exception."""
@@ -190,7 +190,7 @@ class FileEntriesMixin(object):
             return result
 
         self._entries = cache.get_or_set(
-            'reviewers:fileentriesserializer:entries:{}'.format(commit.hex),
+            f'reviewers:fileentriesserializer:entries:{commit.hex}',
             _fetch_entries,
             # Store information about this commit for 24h which should be
             # enough to cover regular review-times but not overflow our

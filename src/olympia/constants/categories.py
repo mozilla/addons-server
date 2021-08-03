@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import copy
 
 from functools import total_ordering
@@ -21,7 +20,7 @@ from olympia.constants.base import (
 
 
 @total_ordering
-class StaticCategory(object):
+class StaticCategory:
     """Helper to populate `CATEGORIES` and provide some helpers.
 
     Note that any instance is immutable to avoid changing values
@@ -40,7 +39,7 @@ class StaticCategory(object):
         return str(self.name)
 
     def __repr__(self):
-        return '<%s: %s (%s)>' % (
+        return '<{}: {} ({})>'.format(
             self.__class__.__name__,
             force_bytes(self),
             self.application,

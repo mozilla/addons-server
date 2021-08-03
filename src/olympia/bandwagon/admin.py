@@ -58,9 +58,9 @@ class CollectionAdmin(admin.ModelAdmin):
     # collections as well as their own (allowing them to transfer them to
     # the mozilla user) through the admin, as well as create new ones.
     def has_module_permission(self, request):
-        return acl.action_allowed(request, amo.permissions.ADMIN_CURATION) or super(
-            CollectionAdmin, self
-        ).has_module_permission(request)
+        return acl.action_allowed(
+            request, amo.permissions.ADMIN_CURATION
+        ) or super().has_module_permission(request)
 
     def has_change_permission(self, request, obj=None):
         user = request.user
@@ -75,13 +75,13 @@ class CollectionAdmin(admin.ModelAdmin):
         return (
             should_allow_curators
             and acl.action_allowed(request, amo.permissions.ADMIN_CURATION)
-            or super(CollectionAdmin, self).has_change_permission(request, obj=obj)
+            or super().has_change_permission(request, obj=obj)
         )
 
     def has_add_permission(self, request):
-        return acl.action_allowed(request, amo.permissions.ADMIN_CURATION) or super(
-            CollectionAdmin, self
-        ).has_add_permission(request)
+        return acl.action_allowed(
+            request, amo.permissions.ADMIN_CURATION
+        ) or super().has_add_permission(request)
 
 
 admin.site.register(Collection, CollectionAdmin)

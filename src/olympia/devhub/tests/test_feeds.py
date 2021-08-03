@@ -22,7 +22,7 @@ class TestActivity(HubTest):
 
     def setUp(self):
         """Start with one user, two add-ons."""
-        super(TestActivity, self).setUp()
+        super().setUp()
         self.clone_addon(2)
         core.set_user(self.user_profile)
         self.addon, self.addon2 = list(self.user_profile.addons.all())

@@ -14,7 +14,7 @@ from olympia.files.decorators import allowed
 
 class AllowedTest(TestCase):
     def setUp(self):
-        super(AllowedTest, self).setUp()
+        super().setUp()
 
         request_factory = RequestFactory()
         self.request = request_factory.get('/')

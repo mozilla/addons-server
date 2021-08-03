@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import pytest
 
 from olympia.users.models import UserProfile
@@ -11,7 +10,7 @@ pytestmark = pytest.mark.django_db
 def test_user_link():
     user = UserProfile(username='jconnor', display_name='John Connor', pk=1)
     assert user_link(user) == (
-        '<a href="%s" title="%s">John Connor</a>' % (user.get_absolute_url(), user.name)
+        f'<a href="{user.get_absolute_url()}" title="{user.name}">John Connor</a>'
     )
 
     # handle None gracefully
@@ -23,7 +22,7 @@ def test_user_link_xss():
         username='jconnor', display_name='<script>alert(1)</script>', pk=1
     )
     html = '&lt;script&gt;alert(1)&lt;/script&gt;'
-    assert user_link(user) == '<a href="%s" title="%s">%s</a>' % (
+    assert user_link(user) == '<a href="{}" title="{}">{}</a>'.format(
         user.get_absolute_url(),
         html,
         html,
@@ -33,7 +32,7 @@ def test_user_link_xss():
         username='jconnor', display_name="""xss"'><iframe onload=alert(3)>""", pk=1
     )
     html = 'xss&#34;&#39;&gt;&lt;iframe onload=alert(3)&gt;'
-    assert user_link(user) == '<a href="%s" title="%s">%s</a>' % (
+    assert user_link(user) == '<a href="{}" title="{}">{}</a>'.format(
         user.get_absolute_url(),
         html,
         html,

@@ -49,7 +49,7 @@ def jwt_decode_handler(token, get_api_key=APIKey.get_jwt_key):
     )
 
     if 'iss' not in token_data:
-        log.info('No issuer in JWT auth token: {}'.format(token_data))
+        log.info(f'No issuer in JWT auth token: {token_data}')
         raise exceptions.AuthenticationFailed(
             detail='JWT iss (issuer) claim is missing.'
         )
@@ -95,7 +95,7 @@ def jwt_decode_handler(token, get_api_key=APIKey.get_jwt_key):
             'Missing required claim during JWT authentication: '
             '{e.__class__.__name__}: {e}'.format(e=exc)
         )
-        raise exceptions.AuthenticationFailed(detail='Invalid JWT: {}.'.format(exc))
+        raise exceptions.AuthenticationFailed(detail=f'Invalid JWT: {exc}.')
     except jwt.InvalidIssuedAtError as exc:
         log.info(
             'Invalid iat during JWT authentication: '

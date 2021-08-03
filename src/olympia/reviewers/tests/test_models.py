@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import json
 import time
 from datetime import datetime, timedelta
@@ -432,7 +431,7 @@ class TestReviewerSubscription(TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
-        super(TestReviewerSubscription, self).setUp()
+        super().setUp()
         self.addon = addon_factory(name='SubscribingTest')
         self.listed_version = version_factory(addon=self.addon)
         self.unlisted_version = version_factory(
@@ -494,7 +493,7 @@ class TestReviewerSubscription(TestCase):
 
         send_notifications(sender=Version, instance=self.listed_version)
         assert len(mail.outbox) == 2
-        emails = sorted([o.to for o in mail.outbox])
+        emails = sorted(o.to for o in mail.outbox)
         assert emails == [['listed2@reviewer'], ['listed@reviewer']]
 
     def test_notifications_setting_persists(self):
@@ -543,7 +542,7 @@ class TestReviewerSubscription(TestCase):
         )
         version_uploaded.send(sender=Version, instance=self.listed_version)
         assert len(mail.outbox) == 2
-        emails = sorted([o.to for o in mail.outbox])
+        emails = sorted(o.to for o in mail.outbox)
         assert emails == [['admin@reviewer'], ['listed@reviewer']]
 
         mail.outbox = []
@@ -560,7 +559,7 @@ class TestReviewerSubscription(TestCase):
         )
         version_uploaded.send(sender=Version, instance=self.unlisted_version)
         assert len(mail.outbox) == 2
-        emails = sorted([o.to for o in mail.outbox])
+        emails = sorted(o.to for o in mail.outbox)
         assert emails == [['admin@reviewer'], ['unlisted@reviewer']]
 
         mail.outbox = []
@@ -583,7 +582,7 @@ class TestReviewerSubscription(TestCase):
         version_uploaded.send(sender=Version, instance=self.listed_version)
         version_uploaded.send(sender=Version, instance=self.unlisted_version)
         assert len(mail.outbox) == 4
-        emails = sorted([o.to for o in mail.outbox])
+        emails = sorted(o.to for o in mail.outbox)
         assert emails == [
             ['admin@reviewer'],
             ['admin@reviewer'],
@@ -630,7 +629,7 @@ class TestReviewerScore(TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
-        super(TestReviewerScore, self).setUp()
+        super().setUp()
         self.addon = amo.tests.addon_factory(status=amo.STATUS_NOMINATED)
         self.user = UserProfile.objects.get(email='reviewer@mozilla.com')
 
@@ -666,7 +665,7 @@ class TestReviewerScore(TestCase):
         for tk, tv in types.items():
             for sk, sv in statuses.items():
                 try:
-                    event = getattr(amo, 'REVIEWED_%s_%s' % (tv, sv))
+                    event = getattr(amo, f'REVIEWED_{tv}_{sv}')
                 except AttributeError:
                     try:
                         event = getattr(amo, 'REVIEWED_%s' % tv)

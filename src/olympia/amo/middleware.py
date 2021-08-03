@@ -79,7 +79,7 @@ class LocaleAndAppURLMiddleware(MiddlewareMixin):
 
             if query_string:
                 query_string = force_str(query_string, errors='ignore')
-                full_path = '%s?%s' % (full_path, query_string)
+                full_path = f'{full_path}?{query_string}'
 
             response = redirect_type(full_path)
             # Cache the redirect for a year.
@@ -113,9 +113,7 @@ class AuthenticationMiddlewareWithoutAPI(AuthenticationMiddleware):
         if request.is_api and not auth_path.match(request.path):
             request.user = AnonymousUser()
         else:
-            return super(AuthenticationMiddlewareWithoutAPI, self).process_request(
-                request
-            )
+            return super().process_request(request)
 
 
 class NoVarySessionMiddleware(SessionMiddleware):
@@ -139,9 +137,7 @@ class NoVarySessionMiddleware(SessionMiddleware):
         if hasattr(response, 'get'):
             vary = response.get('Vary', None)
 
-        new_response = super(NoVarySessionMiddleware, self).process_response(
-            request, response
-        )
+        new_response = super().process_response(request, response)
 
         if vary:
             new_response['Vary'] = vary
@@ -194,7 +190,7 @@ def safe_query_string(request):
 class CommonMiddleware(common.CommonMiddleware):
     def process_request(self, request):
         with safe_query_string(request):
-            return super(CommonMiddleware, self).process_request(request)
+            return super().process_request(request)
 
 
 class NonAtomicRequestsForSafeHttpMethodsMiddleware(MiddlewareMixin):
@@ -267,7 +263,7 @@ class SetRemoteAddrFromForwardedFor(MiddlewareMixin):
             try:
                 socket.inet_pton(af, ip)
                 return True
-            except socket.error:
+            except OSError:
                 pass
         return False
 

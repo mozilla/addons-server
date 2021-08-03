@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import json
 from unittest import mock
 
@@ -19,7 +18,7 @@ from olympia.files.models import File
 from olympia.versions.models import ApplicationsVersions, Version
 
 
-class VersionCheckMixin(object):
+class VersionCheckMixin:
     def get_update_instance(self, data):
         instance = update.Update(data)
         instance.cursor = connection.cursor()
@@ -30,7 +29,7 @@ class TestDataValidate(VersionCheckMixin, TestCase):
     fixtures = ['base/addon_3615', 'base/appversion']
 
     def setUp(self):
-        super(TestDataValidate, self).setUp()
+        super().setUp()
         self.data = {
             'id': '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}',
             'version': '2.0.58',
@@ -107,7 +106,7 @@ class TestLookup(VersionCheckMixin, TestCase):
     fixtures = ['addons/update', 'base/appversion']
 
     def setUp(self):
-        super(TestLookup, self).setUp()
+        super().setUp()
         self.addon = Addon.objects.get(id=1865)
         self.platform = None
         self.version_int = 3069900200100
@@ -130,7 +129,7 @@ class TestLookup(VersionCheckMixin, TestCase):
         # Allow version to be optional.
         if args[0]:
             data['version'] = args[0]
-        instance = super(TestLookup, self).get_update_instance(data)
+        instance = super().get_update_instance(data)
         assert instance.is_valid()
         instance.data['version_int'] = args[1]
         instance.get_update()
@@ -312,7 +311,7 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
     fixtures = ['addons/default-to-compat']
 
     def setUp(self):
-        super(TestDefaultToCompat, self).setUp()
+        super().setUp()
         self.addon = Addon.objects.get(id=337203)
         self.platform = None
         self.app = amo.APP_IDS[1]
@@ -354,7 +353,7 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
                 file.update(**kw)
 
     def get_update_instance(self, **kw):
-        instance = super(TestDefaultToCompat, self).get_update_instance(
+        instance = super().get_update_instance(
             {
                 'reqVersion': 1,
                 'id': self.addon.guid,
@@ -433,7 +432,7 @@ class TestResponse(VersionCheckMixin, TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
-        super(TestResponse, self).setUp()
+        super().setUp()
         self.addon_one = Addon.objects.get(pk=3615)
         self.data = {
             'id': '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}',

@@ -31,7 +31,7 @@ def verify_mozilla_trademark(name, user, form=None):
 
         for symbol in amo.MOZILLA_TRADEMARK_SYMBOLS:
             violates_trademark = name.count(symbol) > 1 or (
-                name.count(symbol) >= 1 and not name.endswith(' for {}'.format(symbol))
+                name.count(symbol) >= 1 and not name.endswith(f' for {symbol}')
             )
 
             if violates_trademark:

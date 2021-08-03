@@ -19,7 +19,7 @@ class BaseUserTaskSet(TaskSet):
     def on_start(self):
         self.fxa_account, self.email_account = helpers.get_fxa_account()
 
-        log.info('Created {account} for load-tests'.format(account=self.fxa_account))
+        log.info(f'Created {self.fxa_account} for load-tests')
 
     def is_legacy_page(self, app):
         return app in ('thunderbird', 'seamonkey')
@@ -39,9 +39,7 @@ class BaseUserTaskSet(TaskSet):
         return url.format(app=app, language=user_language)
 
     def on_stop(self):
-        log.info(
-            'Cleaning up and destroying {account}'.format(account=self.fxa_account)
-        )
+        log.info(f'Cleaning up and destroying {self.fxa_account}')
         helpers.destroy_fxa_account(self.fxa_account, self.email_account)
 
     def login(self, fxa_account):
@@ -78,7 +76,7 @@ class BaseUserTaskSet(TaskSet):
         )
 
     def logout(self, account):
-        log.info('Logging out {}'.format(account))
+        log.info(f'Logging out {account}')
         self.client.get('/en-US/firefox/users/logout/')
 
 
@@ -132,7 +130,7 @@ class UserTaskSet(BaseUserTaskSet):
             self.client.get(url, **kwargs)
             response.success()
         else:
-            response.failure('Unexpected status code {}'.format(response.status_code))
+            response.failure(f'Unexpected status code {response.status_code}')
 
     @task(8)
     def browse(self):

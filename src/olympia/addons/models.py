@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import hashlib
 import itertools
 import os
@@ -164,9 +163,9 @@ def clean_slug(instance, slug_field='slug'):
             # After that, {verylongslug}-100 will be trimmed down to
             # {verylongslug}-10, which is already assigned, but it's the last
             # solution tested.
-            raise RuntimeError('No suitable slug increment for {} found'.format(slug))
+            raise RuntimeError(f'No suitable slug increment for {slug} found')
 
-        slug = '{slug}{postfix}'.format(slug=slug, postfix=num)
+        slug = f'{slug}{num}'
 
     setattr(instance, slug_field, slug)
 
@@ -214,7 +213,7 @@ class AddonManager(ManagerBase):
         self.include_deleted = include_deleted
 
     def get_queryset(self):
-        qs = super(AddonManager, self).get_queryset()
+        qs = super().get_queryset()
         if not self.include_deleted:
             qs = qs.exclude(status=amo.STATUS_DELETED)
         return qs.transform(Addon.transformer)
@@ -561,14 +560,14 @@ class Addon(OnChangeMixin, ModelBase):
         ]
 
     def __str__(self):
-        return '%s: %s' % (self.id, self.name)
+        return f'{self.id}: {self.name}'
 
     def __init__(self, *args, **kw):
-        super(Addon, self).__init__(*args, **kw)
+        super().__init__(*args, **kw)
 
     def save(self, **kw):
         self.clean_slug()
-        super(Addon, self).save(**kw)
+        super().save(**kw)
 
     @use_primary_db
     def clean_slug(self, slug_field='slug'):
@@ -644,7 +643,7 @@ class Addon(OnChangeMixin, ModelBase):
             'weekly_downloads': self.weekly_downloads,
             'url': jinja_helpers.absolutify(self.get_url_path()),
             'user_str': (
-                '%s, %s (%s)' % (user.name, user.email, user.id) if user else 'Unknown'
+                f'{user.name}, {user.email} ({user.id})' if user else 'Unknown'
             ),
         }
 
@@ -746,7 +745,7 @@ class Addon(OnChangeMixin, ModelBase):
                 send_mail(subject, email_msg, recipient_list=email_to)
         else:
             # Real deletion path.
-            super(Addon, self).delete()
+            super().delete()
 
         for preview in previews:
             tasks.delete_preview_files.delay(preview)
@@ -845,7 +844,7 @@ class Addon(OnChangeMixin, ModelBase):
         )
 
         activity.log_create(amo.LOG.CREATE_ADDON, addon)
-        log.info('New addon %r from %r' % (addon, upload))
+        log.info(f'New addon {addon!r} from {upload!r}')
 
         return addon
 
@@ -891,7 +890,7 @@ class Addon(OnChangeMixin, ModelBase):
         prefix = 'devhub'
         if not prefix_only:
             prefix += '.addons'
-        view_name = '{prefix}.{action}'.format(prefix=prefix, action=action)
+        view_name = f'{prefix}.{action}'
         return reverse(view_name, args=[self.slug] + args)
 
     def get_detail_url(self, action='detail', args=None):
@@ -1122,7 +1121,7 @@ class Addon(OnChangeMixin, ModelBase):
             path = '/'.join(
                 [
                     split_id.group(2) or '0',
-                    '{0}-{1}.png?modified={2}'.format(self.id, size, suffix),
+                    f'{self.id}-{size}.png?modified={suffix}',
                 ]
             )
             return jinja_helpers.user_media_url('addon_icons') + path
@@ -1130,7 +1129,7 @@ class Addon(OnChangeMixin, ModelBase):
     def get_default_icon_url(self, size):
         # We don't update the default icon very frequently so there is no
         # automated query parameter for cachebusting...
-        return '{0}img/addon-icons/{1}-{2}.png?v=20210601'.format(
+        return '{}img/addon-icons/{}-{}.png?v=20210601'.format(
             settings.STATIC_URL, 'default', size
         )
 
@@ -1305,7 +1304,7 @@ class Addon(OnChangeMixin, ModelBase):
         for addon_id, cats_iter in itertools.groupby(qs, key=lambda x: x[0]):
             # The second value of each tuple in cats_iter are the category ids
             # we want.
-            addon_dict[addon_id].category_ids = sorted([c[1] for c in cats_iter])
+            addon_dict[addon_id].category_ids = sorted(c[1] for c in cats_iter)
             addon_dict[addon_id].all_categories = [
                 CATEGORIES_BY_ID[cat_id]
                 for cat_id in addon_dict[addon_id].category_ids
@@ -2302,7 +2301,7 @@ def track_status_change(old_attr=None, new_attr=None, **kw):
 
 
 def track_addon_status_change(addon):
-    statsd.incr('addon_status_change.all.status_{}'.format(addon.status))
+    statsd.incr(f'addon_status_change.all.status_{addon.status}')
 
 
 class AddonGUID(ModelBase):

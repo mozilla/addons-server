@@ -42,7 +42,7 @@ def walk_storage(
             yield root, dirs, files
             for dn in dirs:
                 dn = force_str(dn)
-                new_roots.append('%s/%s' % (root, dn))
+                new_roots.append(f'{root}/{dn}')
         roots[:] = new_roots
 
 
@@ -88,7 +88,7 @@ def rm_stored_dir(dir_path, storage=default_storage):
     # Delete all files first then all empty directories.
     for root, dirs, files in walk_storage(dir_path):
         for fn in files:
-            storage.delete('%s/%s' % (root, fn))
+            storage.delete(f'{root}/{fn}')
         empty_dirs.insert(0, root)
     empty_dirs.append(dir_path)
     for dn in empty_dirs:

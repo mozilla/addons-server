@@ -20,7 +20,7 @@ from olympia.stats.utils import (
 )
 
 
-class BigQueryTestMixin(object):
+class BigQueryTestMixin:
     def create_mock_client(self, results=None):
         client = mock.Mock()
         result_mock = mock.Mock()
