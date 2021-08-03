@@ -12,9 +12,6 @@ updates:
   - dependency-name: celery
     versions:
     - ">= 5"
-  - dependency-name: Django
-    versions:
-    - ">= 3.0"
   - dependency-name: elasticsearch
     versions:
     - ">= 7"
