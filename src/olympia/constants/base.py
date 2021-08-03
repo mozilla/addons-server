@@ -355,6 +355,12 @@ DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID = '65.0'
 # Dicts are not compatible with Firefox for Android, only desktop is relevant.
 DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX = '61.0'
 
+# The default version of Firefox that (is planned to) support manifest version 3 (MV3)
+# This will probably have to be adjusted later.
+DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX = '100.0'
+# We don't know if the Android min version will be different, but assume it might be.
+DEFAULT_WEBEXT_MIN_VERSION_MV3_ANDROID = '100.0'
+
 ADDON_GUID_PATTERN = re.compile(
     # Match {uuid} or something@host.tld ("something" being optional)
     # guids. Copied from mozilla-central XPIProvider.jsm.

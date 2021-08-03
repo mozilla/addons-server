@@ -44,7 +44,9 @@ class AppVersionsMixin(object):
 
     @classmethod
     def create_appversion(cls, name, version):
-        return AppVersion.objects.create(application=amo.APPS[name].id, version=version)
+        return AppVersion.objects.get_or_create(
+            application=amo.APPS[name].id, version=version
+        )[0]
 
     @classmethod
     def create_webext_default_versions(cls):
@@ -56,6 +58,8 @@ class AppVersionsMixin(object):
         cls.create_appversion('android', amo.DEFAULT_WEBEXT_MAX_VERSION)
         cls.create_appversion('firefox', amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX)
         cls.create_appversion('android', amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID)
+        cls.create_appversion('firefox', amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX)
+        cls.create_appversion('android', amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_ANDROID)
 
 
 class TestExtractor(AppVersionsMixin, TestCase):
@@ -286,6 +290,20 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         app = apps[1]
         assert app.appdata == amo.ANDROID
         assert app.min.version == (amo.DEFAULT_WEBEXT_MIN_VERSION_BROWSER_SPECIFIC)
+        assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
+
+        # And if mv3 then a higher min version again
+        data['manifest_version'] = 3
+        apps = self.parse(data)['apps']
+        assert len(apps) == 2
+        app = apps[0]
+        assert app.appdata == amo.FIREFOX
+        assert app.min.version == (amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX)
+        assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
+
+        app = apps[1]
+        assert app.appdata == amo.ANDROID
+        assert app.min.version == (amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_ANDROID)
         assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
     def test_is_webextension(self):
