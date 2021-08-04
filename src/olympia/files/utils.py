@@ -287,6 +287,17 @@ class ManifestJSONExtractor(object):
                 (amo.ANDROID, amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID),
             )
 
+        if self.get('manifest_version') == 3:
+            # Update minimum supported versions if it's an mv3 addon.
+            mv3_mins = {
+                amo.FIREFOX: amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX,
+                amo.ANDROID: amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_ANDROID,
+            }
+            apps = (
+                (app, max(VersionString(ver), mv3_mins.get(app, mv3_mins[amo.FIREFOX])))
+                for app, ver in apps
+            )
+
         doesnt_support_no_id = (
             self.strict_min_version
             and self.strict_min_version

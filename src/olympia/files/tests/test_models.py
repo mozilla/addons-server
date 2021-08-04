@@ -52,6 +52,7 @@ class UploadTest(TestCase, amo.tests.AMOPaths):
             amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
             amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
             amo.DEFAULT_WEBEXT_MAX_VERSION,
+            amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX,
         }
         for version in versions:
             AppVersion.objects.get_or_create(
@@ -456,6 +457,7 @@ class TestParseXpi(TestCase):
             amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID,
             amo.DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX,
             amo.DEFAULT_WEBEXT_MAX_VERSION,
+            amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX,
         }
         for version in versions:
             AppVersion.objects.create(application=amo.FIREFOX.id, version=version)
