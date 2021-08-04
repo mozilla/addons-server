@@ -8,10 +8,10 @@ updates:
   ignore:
   - dependency-name: billiard
     versions:
-    - ">= 5"
+    - ">= 4"
   - dependency-name: celery
     versions:
-    - ">= 5"
+    - ">= 6"
   - dependency-name: elasticsearch
     versions:
     - ">= 7"
@@ -20,13 +20,16 @@ updates:
     - ">= 7"
   - dependency-name: kombu
     versions:
-    - ">= 5"
+    - ">= 6"
   - dependency-name: pygit2
     versions:
     - ">= 1.2.0"
   - dependency-name: vine
     versions:
-    - ">= 5"
+    - ">= 6"
   - dependency-name: idna
     versions:
     - ">= 3"
+  - dependency-name: amqp
+    versions:
+    - ">= 6"
