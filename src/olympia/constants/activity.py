@@ -1,6 +1,3 @@
-# The absolute import feature is required so that we get the root celery
-# module rather than `amo.celery`.
-
 from collections import namedtuple
 from inspect import isclass
 
