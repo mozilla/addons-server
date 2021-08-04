@@ -33,3 +33,6 @@ updates:
   - dependency-name: amqp
     versions:
     - ">= 6"
+  - dependency-name: click
+    versions:
+    - ">= 8"
