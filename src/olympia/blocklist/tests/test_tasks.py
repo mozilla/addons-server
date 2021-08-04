@@ -1,9 +1,17 @@
 import os
 from datetime import datetime, timedelta
 
-from django.conf import settings
+from unittest import mock
 
-from ..tasks import cleanup_old_files
+from django.conf import settings
+from django.contrib.admin.models import LogEntry
+from django.core.exceptions import SuspiciousOperation
+from django.test.testcases import TransactionTestCase
+
+from olympia.amo.tests import addon_factory, user_factory
+
+from ..models import BlocklistSubmission
+from ..tasks import cleanup_old_files, process_blocklistsubmission
 from ..utils import datetime_to_ts
 
 
@@ -48,3 +56,26 @@ def test_cleanup_old_files():
     assert os.path.exists(under_six_month_dir)
     assert os.path.exists(over_six_month_dir)
     assert not os.path.exists(after_base_date_dir)
+
+
+class TestProcessBlocklistSubmission(TransactionTestCase):
+    def test_state_reset(self):
+        addon_factory(guid='guid@')
+        user_factory(id=settings.TASK_USER_ID)
+
+        submission = BlocklistSubmission.objects.create(
+            input_guids='guid@', signoff_state=BlocklistSubmission.SIGNOFF_APPROVED
+        )
+        with mock.patch.object(
+            BlocklistSubmission,
+            'save_to_block_objects',
+            side_effect=SuspiciousOperation('Something happened!'),
+        ):
+            with self.assertRaises(SuspiciousOperation):
+                # we know it's going to raise, we just want to capture it safely
+                process_blocklistsubmission.delay(submission.id)
+        submission.reload()
+        assert submission.signoff_state == BlocklistSubmission.SIGNOFF_PENDING
+        log_entry = LogEntry.objects.get()
+        assert log_entry.user.id == settings.TASK_USER_ID
+        assert log_entry.change_message == 'Exception in task: Something happened!'

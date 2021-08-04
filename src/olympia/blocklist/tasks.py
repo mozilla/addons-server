@@ -3,6 +3,8 @@ import re
 from datetime import datetime, timedelta
 
 from django.conf import settings
+from django.contrib.admin.models import CHANGE, LogEntry
+from django.contrib.admin.options import get_content_type_for_model
 from django.core.files.storage import default_storage as storage
 from django.db import transaction
 from django.utils.encoding import force_str
@@ -48,12 +50,27 @@ BLOCKLIST_RECORD_MLBF_BASE = 'bloomfilter-base'
 @use_primary_db
 def process_blocklistsubmission(multi_block_submit_id, **kw):
     obj = BlocklistSubmission.objects.get(pk=multi_block_submit_id)
-    if obj.action == BlocklistSubmission.ACTION_ADDCHANGE:
-        # create the blocks from the guids in the multi_block
-        obj.save_to_block_objects()
-    elif obj.action == BlocklistSubmission.ACTION_DELETE:
-        # delete the blocks
-        obj.delete_block_objects()
+    try:
+        with transaction.atomic():
+            if obj.action == BlocklistSubmission.ACTION_ADDCHANGE:
+                # create the blocks from the guids in the multi_block
+                obj.save_to_block_objects()
+            elif obj.action == BlocklistSubmission.ACTION_DELETE:
+                # delete the blocks
+                obj.delete_block_objects()
+    except Exception as exc:
+        # If something failed reset the submission back to Pending.
+        obj.update(signoff_state=BlocklistSubmission.SIGNOFF_PENDING)
+        message = f'Exception in task: {exc}'
+        LogEntry.objects.log_action(
+            user_id=settings.TASK_USER_ID,
+            content_type_id=get_content_type_for_model(obj).pk,
+            object_id=obj.pk,
+            object_repr=str(obj),
+            action_flag=CHANGE,
+            change_message=message,
+        )
+        raise exc
 
 
 @task
