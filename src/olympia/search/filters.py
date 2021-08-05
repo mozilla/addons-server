@@ -107,6 +107,65 @@ class AddonQueryMultiParam:
         return [Q(self.operator, **{self.es_field: values})]
 
 
+class AddonThresholdQueryParam(AddonQueryParam):
+    """Helper to allow queries against numeric values using comparison operators.
+    To generate all the necessary QueryParam classes expand .get_classes(), e.g.
+
+    class FooAddonThresholdQueryParam(AddonThresholdQueryParam):
+        query_param = 'foo'
+        es_field = 'baa.foo'
+
+    then
+    SearchParameterFilter.available_clauses = [
+        ...
+        *FooAddonThresholdQueryParam.get_classes(),
+        ...
+    ]
+
+    Supports:
+    * greater than > (query: ?foo__gt=10.1)
+    * less than < (query: ?foo__lt=10.1)
+    * greater than or equal to >= (query: ?foo__gte=10.1)
+    * less than or equal to <= (query: ?foo__lte=10.1)
+    * equal to = (query: ?foo=10.1)
+    """
+
+    operator = 'range'
+    VALID_QUERY_OPERATORS = {
+        '__lt': 'lt',
+        '__lte': 'lte',
+        '__gt': 'gt',
+        '__gte': 'gte',
+        '': 'eq',
+    }
+
+    def get_value(self):
+        _, sep, op = self.query_param.partition('__')
+        if query_op := self.VALID_QUERY_OPERATORS.get(f'{sep}{op}'):
+            try:
+                value = float(self.query_data.get(self.query_param, ''))
+                return (
+                    {'lte': value, 'gte': value}
+                    if query_op == 'eq'
+                    else {query_op: value}
+                )
+            except ValueError:
+                pass  # we're going to raise ValueError anyway
+
+        raise ValueError(gettext('Invalid "%s" parameter.' % self.query_param))
+
+    @classmethod
+    def get_classes(cls):
+        return (
+            type(
+                f'{cls.__name__}{op.upper()}',
+                (cls,),
+                {'query_param': f'{cls.query_param}{query_end}'},
+            )
+            for query_end, op in cls.VALID_QUERY_OPERATORS.items()
+        )
+
+
 class AddonAppQueryParam(AddonQueryParam):
     query_param = 'app'
     reverse_dict = amo.APPS
@@ -457,6 +516,16 @@ class AddonColorQueryParam(AddonQueryParam):
         clauses.append(Q('range', **{'colors.ratio': {'gte': 0.25}}))
 
         return [Q('nested', path='colors', query=query.Bool(filter=clauses))]
+
+
+class AddonRatingQueryParam(AddonThresholdQueryParam):
+    query_param = 'ratings'
+    es_field = 'ratings.average'
+
+
+class AddonUsersQueryParam(AddonThresholdQueryParam):
+    query_param = 'users'
+    es_field = 'average_daily_users'
 
 
 class SearchQueryFilter(BaseFilterBackend):
@@ -842,13 +911,15 @@ class SearchParameterFilter(BaseFilterBackend):
         AddonAppVersionQueryParam,
         AddonAuthorQueryParam,
         AddonCategoryQueryParam,
+        AddonColorQueryParam,
         AddonExcludeAddonsQueryParam,
         AddonFeaturedQueryParam,
         AddonGuidQueryParam,
         AddonPromotedQueryParam,
+        *AddonRatingQueryParam.get_classes(),
         AddonTagQueryParam,
         AddonTypeQueryParam,
-        AddonColorQueryParam,
+        *AddonUsersQueryParam.get_classes(),
     ]
 
     def get_applicable_clauses(self, request):

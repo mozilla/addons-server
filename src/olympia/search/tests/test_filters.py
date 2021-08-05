@@ -23,6 +23,8 @@ from olympia.constants.promoted import (
     VERIFIED,
 )
 from olympia.search.filters import (
+    AddonRatingQueryParam,
+    AddonUsersQueryParam,
     ReviewedContentFilter,
     SearchParameterFilter,
     SearchQueryFilter,
@@ -995,6 +997,71 @@ class TestSearchParameterFilter(FilterTestsBase):
             {'range': {'colors.l': {'gte': 249.9}}},
             {'range': {'colors.ratio': {'gte': 0.25}}},
         ]
+
+    def _test_threshold_filter(self, param, es_field, ThresholdClass):
+        qs = self._filter(data={f'{param}__gt': '3.56'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {es_field: {'gt': 3.56}}},
+        ]
+
+        qs = self._filter(data={f'{param}__lt': '3.56'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {es_field: {'lt': 3.56}}},
+        ]
+
+        qs = self._filter(data={f'{param}__gte': '3.56'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {es_field: {'gte': 3.56}}},
+        ]
+
+        qs = self._filter(data={f'{param}__lte': '3.56'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {es_field: {'lte': 3.56}}},
+        ]
+
+        qs = self._filter(data={param: '3.56'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {es_field: {'lte': 3.56, 'gte': 3.56}}},
+        ]
+
+        with self.assertRaises(serializers.ValidationError) as context:
+            qs = self._filter(data={param: ''})
+        assert context.exception.detail == [f'Invalid "{param}" parameter.']
+
+        with self.assertRaises(serializers.ValidationError) as context:
+            qs = self._filter(data={f'{param}__lt': ''})
+        assert context.exception.detail == [f'Invalid "{param}__lt" parameter.']
+
+        with self.assertRaises(serializers.ValidationError) as context:
+            qs = self._filter(data={f'{param}__gt': '4a'})
+        assert context.exception.detail == [f'Invalid "{param}__gt" parameter.']
+
+        classes = ThresholdClass.get_classes()
+        assert [cls.query_param for cls in classes] == [
+            f'{param}__lt',
+            f'{param}__lte',
+            f'{param}__gt',
+            f'{param}__gte',
+            f'{param}',
+        ]
+
+    def test_ratings_filter(self):
+        self._test_threshold_filter('ratings', 'ratings.average', AddonRatingQueryParam)
+
+    def test_users_filter(self):
+        self._test_threshold_filter(
+            'users', 'average_daily_users', AddonUsersQueryParam
+        )
 
 
 class TestCombinedFilter(FilterTestsBase):

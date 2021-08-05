@@ -33,9 +33,11 @@ This endpoint allows you to search through public add-ons.
     :query int page: 1-based page number. Defaults to 1.
     :query int page_size: Maximum number of results to return for the requested page. Defaults to 25.
     :query string promoted: Filter to add-ons in a specific :ref:`promoted category <addon-detail-promoted-category>`.  Can be combined with `app`.   Multiple promoted categories can be specified, separated by comma(s), in which case any add-ons in any of the promotions will be returned.
+    :query string ratings: Filter to add-ons that have average ratings of a :ref:`threshold value <addon-threshold-param>`.
+    :query string sort: The sort parameter. The available parameters are documented in the :ref:`table below <addon-search-sort>`.
     :query string tag: Filter by exact tag name. Multiple tag names can be specified, separated by comma(s), in which case add-ons containing *all* specified tags are returned.
     :query string type: Filter by :ref:`add-on type <addon-detail-type>`.  Multiple types can be specified, separated by comma(s), in which case add-ons that are any of the matching types are returned.
-    :query string sort: The sort parameter. The available parameters are documented in the :ref:`table below <addon-search-sort>`.
+    :query string users: Filter to add-ons that have average daily users of a :ref:`threshold value <addon-threshold-param>`.
     :>json int count: The number of results for this query.
     :>json string next: The URL of the next page of results.
     :>json string previous: The URL of the previous page of results.
@@ -74,6 +76,18 @@ This endpoint allows you to search through public add-ons.
     For instance, to sort search results by downloads and then by creation
     date, use ``sort=downloads,created``. The only exception is the ``random``
     sort parameter, which is only available alone.
+
+
+.. _addon-threshold-param:
+
+    Threshold style parameters allow queries against numeric values using comparison.
+
+    The following is supported (examples for query parameter `foo`):
+        * greater than ``foo__gt`` (example query: ?foo__gt=10.1)
+        * less than ``foo__lt`` (example query: ?foo__lt=10.1)
+        * greater than or equal to ``foo__gte`` (example query: ?foo__gte=10.1)
+        * less than or equal to ``foo__lte`` (example query: ?foo__lte=10.1)
+        * equal to ``foo`` (example query: ?foo=10.1)
 
 
 ------------

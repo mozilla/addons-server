@@ -352,7 +352,7 @@ class AddonIndexer(BaseSearchIndexer):
                         'type': 'object',
                         'properties': {
                             'count': {'type': 'short', 'index': False},
-                            'average': {'type': 'float', 'index': False},
+                            'average': {'type': 'float'},
                         },
                     },
                     'slug': {'type': 'keyword'},
