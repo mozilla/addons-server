@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from datetime import date, datetime
 from urllib.parse import parse_qsl, urlparse
 
@@ -206,7 +205,7 @@ class TestAbuse(TestCase):
     def test_search_multiple_addons(self):
         response = self.client.get(
             self.list_url,
-            {'q': '%s,%s' % (self.addon1.pk, self.addon2.pk), 'type': 'addon'},
+            {'q': f'{self.addon1.pk},{self.addon2.pk}', 'type': 'addon'},
             follow=True,
         )
         assert response.status_code == 200
@@ -222,7 +221,7 @@ class TestAbuse(TestCase):
 
         response = self.client.get(
             self.list_url,
-            {'q': '%s,%s' % (user1.pk, user2.pk), 'type': 'user'},
+            {'q': f'{user1.pk},{user2.pk}', 'type': 'user'},
             follow=True,
         )
         assert response.status_code == 200

@@ -12,7 +12,7 @@ import olympia.core.logger
 log = olympia.core.logger.getLogger('lib.remote_settings')
 
 
-class RemoteSettings(object):
+class RemoteSettings:
     username = None
     password = None
     bucket = None
@@ -104,7 +104,9 @@ class RemoteSettings(object):
             log.info('Creating record for [%s]' % data.get('guid'))
             response = requests.post(add_url, json=json_data, headers=self.headers)
         else:
-            log.info('Updating record [%s] for [%s]' % (legacy_id, data.get('guid')))
+            log.info(
+                'Updating record [{}] for [{}]'.format(legacy_id, data.get('guid'))
+            )
             update_url = f'{add_url}/{legacy_id}'
             response = requests.put(update_url, json=json_data, headers=self.headers)
         if response.status_code not in (200, 201):
@@ -143,7 +145,7 @@ class RemoteSettings(object):
         )
         if response.status_code not in (200, 201):
             log.error(
-                'Creating record for [%s] failed: %s' % (legacy_id, response.content),
+                f'Creating record for [{legacy_id}] failed: {response.content}',
                 stack_info=True,
             )
             raise ConnectionError('Remote settings record not created/updated')

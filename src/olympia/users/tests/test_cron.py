@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.ratings.models import Rating
 from olympia.users.cron import update_user_ratings

@@ -29,9 +29,7 @@ def _yield_name_and_cat(num, app=None, type=None):
     categories = list(CATEGORIES[app.id][type].values())
     if num > len(generate_names()):
         base_names = islice(cycle(generate_names()), num)
-        addons = [
-            '{name} {i}'.format(name=name, i=i) for i, name in enumerate(base_names)
-        ]
+        addons = [f'{name} {i}' for i, name in enumerate(base_names)]
     else:
         addons = random.sample(generate_names(), num)
     num_cats = len(categories)

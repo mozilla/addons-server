@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import collections
 
 from olympia import amo
@@ -11,13 +10,13 @@ from olympia.landfill.generators import _yield_name_and_cat, create_addon
 from olympia.versions.models import Version
 
 
-class _BaseAddonGeneratorMixin(object):
+class _BaseAddonGeneratorMixin:
     def test_tinyset(self):
         size = 4
         data = list(_yield_name_and_cat(size, self.app, self.type))
         assert len(data) == size
         # Names are unique.
-        assert len(set(addonname for addonname, cat in data)) == size
+        assert len({addonname for addonname, cat in data}) == size
         # Size is smaller than name list, so no names end in numbers.
         assert not any(addonname[-1].isdigit() for addonname, cat in data)
 
@@ -30,8 +29,8 @@ class _BaseAddonGeneratorMixin(object):
         for addonname, category in data:
             categories[category.slug] += 1
         length = len(CATEGORIES[self.app.id][self.type])
-        assert set(categories.values()) == set([size / length])
-        assert len(set(addonname for addonname, cat in data)) == size
+        assert set(categories.values()) == {size / length}
+        assert len({addonname for addonname, cat in data}) == size
         assert not any(addonname[-1].isdigit() for addonname, cat in data)
 
     def test_bigset(self):
@@ -44,7 +43,7 @@ class _BaseAddonGeneratorMixin(object):
         # Addons are spread between categories evenly - the difference
         # between the largest and smallest category is less than 2.
         assert max(categories.values()) - min(categories.values()) < 2
-        assert len(set(addonname for addonname, cat in data)) == size
+        assert len({addonname for addonname, cat in data}) == size
 
 
 class FirefoxAddonGeneratorTests(_BaseAddonGeneratorMixin, TestCase):

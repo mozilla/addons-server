@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import json
 
 from django.conf import settings
@@ -59,7 +58,7 @@ class BaseAPIParser:
         return ''.join(output)
 
     def build_output_for_single_value(self, value):
-        output = '{# L10n: %s #}\n{%% trans %%}%s{%% endtrans %%}\n' % (
+        output = '{{# L10n: {} #}}\n{{% trans %}}{}{{% endtrans %}}\n'.format(
             self.l10n_comment,
             value,
         )

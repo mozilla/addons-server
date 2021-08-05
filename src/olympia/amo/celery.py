@@ -6,7 +6,6 @@ Please note that this module should not import model-related code because
 Django may not be properly set-up during import time (e.g if this module
 is directly being run/imported by Celery)
 """
-from __future__ import absolute_import
 
 import datetime
 
@@ -137,11 +136,11 @@ def track_task_run_time(task_id, task, **kw):
                 run_time=run_time,
             )
         )
-        statsd.timing('tasks.{}'.format(task.name), run_time)
+        statsd.timing(f'tasks.{task.name}', run_time)
         cache.delete(timer.cache_key(task_id))
 
 
-class TaskTimer(object):
+class TaskTimer:
     def __init__(self):
         from olympia.amo.utils import utc_millesecs_from_epoch
 
@@ -149,7 +148,7 @@ class TaskTimer(object):
         self.current_epoch_ms = utc_millesecs_from_epoch(self.current_datetime)
 
     def cache_key(self, task_id):
-        return 'task_start_time.{}'.format(task_id)
+        return f'task_start_time.{task_id}'
 
 
 def create_chunked_tasks_signatures(

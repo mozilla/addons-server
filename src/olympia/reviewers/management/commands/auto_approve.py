@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collections import Counter
 
 from django.conf import settings
@@ -143,7 +142,7 @@ class Command(BaseCommand):
                     self.stats['auto_approved'] += 1
                     verdict_string = summary.get_verdict_display()
                 else:
-                    verdict_string = '%s (%s)' % (
+                    verdict_string = '{} ({})'.format(
                         summary.get_verdict_display(),
                         ', '.join(summary.verdict_info_prettifier(info)),
                     )

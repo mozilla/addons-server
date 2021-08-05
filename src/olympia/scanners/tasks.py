@@ -79,11 +79,11 @@ def run_scanner(results, upload_pk, scanner, api_url, api_key):
 
     try:
         if not os.path.exists(upload.path):
-            raise ValueError('File "{}" does not exist.'.format(upload.path))
+            raise ValueError(f'File "{upload.path}" does not exist.')
 
         scanner_result = ScannerResult(upload=upload, scanner=scanner)
 
-        with statsd.timer('devhub.{}'.format(scanner_name)):
+        with statsd.timer(f'devhub.{scanner_name}'):
             _run_scanner_for_url(
                 scanner_result,
                 upload.get_authenticated_download_url(),
@@ -95,16 +95,14 @@ def run_scanner(results, upload_pk, scanner, api_url, api_key):
         scanner_result.save()
 
         if scanner_result.has_matches:
-            statsd.incr('devhub.{}.has_matches'.format(scanner_name))
+            statsd.incr(f'devhub.{scanner_name}.has_matches')
             for scanner_rule in scanner_result.matched_rules.all():
-                statsd.incr(
-                    'devhub.{}.rule.{}.match'.format(scanner_name, scanner_rule.id)
-                )
+                statsd.incr(f'devhub.{scanner_name}.rule.{scanner_rule.id}.match')
 
-        statsd.incr('devhub.{}.success'.format(scanner_name))
+        statsd.incr(f'devhub.{scanner_name}.success')
         log.info('Ending scanner "%s" task for FileUpload %s.', scanner_name, upload_pk)
     except Exception as exc:
-        statsd.incr('devhub.{}.failure'.format(scanner_name))
+        statsd.incr(f'devhub.{scanner_name}.failure')
         log.exception(
             'Error in scanner "%s" task for FileUpload %s.', scanner_name, upload_pk
         )
@@ -228,7 +226,7 @@ def _run_yara(results, upload_pk):
         if scanner_result.has_matches:
             statsd.incr('devhub.yara.has_matches')
             for scanner_rule in scanner_result.matched_rules.all():
-                statsd.incr('devhub.yara.rule.{}.match'.format(scanner_rule.id))
+                statsd.incr(f'devhub.yara.rule.{scanner_rule.id}.match')
 
         statsd.incr('devhub.yara.success')
         log.info('Ending scanner "yara" task for FileUpload %s.', upload_pk)

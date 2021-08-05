@@ -6,7 +6,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 @deconstructible
-class OneOrMorePrintableCharacterValidator(object):
+class OneOrMorePrintableCharacterValidator:
     """Validate that the value contains at least one printable character."""
 
     message = _('Must contain at least one printable character.')

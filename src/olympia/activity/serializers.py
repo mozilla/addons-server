@@ -27,7 +27,7 @@ class ActivityLogSerializer(serializers.ModelSerializer):
         )
 
     def __init__(self, *args, **kwargs):
-        super(ActivityLogSerializer, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.to_highlight = kwargs.get('context', []).get('to_highlight', [])
 
     def get_comments(self, obj):

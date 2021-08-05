@@ -73,7 +73,7 @@ VIEW_QUEUE_FLAGS = (
 
 
 def get_reviewing_cache_key(addon_id):
-    return 'review_viewing:{id}'.format(id=addon_id)
+    return f'review_viewing:{addon_id}'
 
 
 def clear_reviewing_cache(addon_id):
@@ -560,7 +560,7 @@ class ReviewerScore(ModelBase):
         else:
             # Using cache_ns_key so each cache val is invalidated together.
             ns_key = cache_ns_key(namespace, invalidate)
-            return '%s:%s' % (ns_key, key)
+            return f'{ns_key}:{key}'
 
     @classmethod
     def get_event(
@@ -799,7 +799,7 @@ class ReviewerScore(ModelBase):
         """
         Returns points broken down by addon type since the given datetime.
         """
-        key = cls.get_key('get_breakdown:%s:%s' % (user.id, since.isoformat()))
+        key = cls.get_key(f'get_breakdown:{user.id}:{since.isoformat()}')
         val = cache.get(key)
         if val is not None:
             return val
@@ -1018,7 +1018,7 @@ class AutoApprovalSummary(ModelBase):
     )
 
     def __str__(self):
-        return '%s %s' % (self.version.addon.name, self.version)
+        return f'{self.version.addon.name} {self.version}'
 
     def calculate_weight(self):
         """Calculate the weight value for this version according to various
@@ -1173,7 +1173,7 @@ class AutoApprovalSummary(ModelBase):
         """Returns a list of strings containing weight information."""
         if self.weight_info:
             weight_info = sorted(
-                ['%s: %d' % (k, v) for k, v in self.weight_info.items() if v]
+                '%s: %d' % (k, v) for k, v in self.weight_info.items() if v
             )
         else:
             weight_info = [gettext('Weight breakdown not available.')]
@@ -1460,7 +1460,7 @@ class Whiteboard(ModelBase):
         db_table = 'review_whiteboard'
 
     def __str__(self):
-        return '[%s] private: |%s| public: |%s|' % (
+        return '[{}] private: |{}| public: |{}|'.format(
             self.addon.name,
             self.private,
             self.public,

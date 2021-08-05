@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from itertools import chain
 from unittest import mock
 
@@ -47,7 +46,7 @@ class TestAddonIndexer(TestCase):
     ]
 
     def setUp(self):
-        super(TestAddonIndexer, self).setUp()
+        super().setUp()
         self.transforms = (attach_tags, attach_translations_dict)
         self.indexer = AddonIndexer()
         self.addon = Addon.objects.get(pk=3615)
@@ -94,7 +93,7 @@ class TestAddonIndexer(TestCase):
             chain.from_iterable(
                 [
                     [
-                        '%s_l10n_%s' % (field, lang)
+                        f'{field}_l10n_{lang}'
                         for lang, analyzer in SEARCH_LANGUAGE_TO_ANALYZER.items()
                     ]
                     for field in _indexed_translated_fields

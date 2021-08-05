@@ -62,7 +62,7 @@ class Command(BaseCommand):
 
         addon_report_data = self.fetch_report_data('addon')
         addon_report_html = self.generate_report_html('addon', addon_report_data)
-        addon_report_subject = '%s %s-%s' % (
+        addon_report_subject = '{} {}-{}'.format(
             'Weekly Add-on Reviews Report',
             self.week_begin,
             self.week_end,
@@ -74,7 +74,7 @@ class Command(BaseCommand):
         log.info('Generating content reviews report...')
         content_report_data = self.fetch_report_data('content')
         content_report_html = self.generate_report_html('content', content_report_data)
-        content_report_subject = '%s %s-%s' % (
+        content_report_subject = '{} {}-{}'.format(
             'Weekly Add-on Content Reviews Report',
             self.week_begin,
             self.week_end,
@@ -128,10 +128,7 @@ class Command(BaseCommand):
                         table_header.append(descr[0])
                     table_content = cursor.fetchall()
                     table_content = tuple(
-                        (
-                            tuple((force_str(item) for item in row))
-                            for row in table_content
-                        )
+                        tuple(force_str(item) for item in row) for row in table_content
                     )
                     report_data.append((header, table_header, table_content))
 
@@ -141,16 +138,16 @@ class Command(BaseCommand):
         # Pre-set email with style information and header
         all_html = """
             <style>
-            h1 { margin: 0; padding: 0; }
-            h2 { margin: 0; padding: 30px 0 10px 0; }
-            th { text-align: left; }
-            th, td { padding: 0 12px; }
-            td { text-align: right; white-space: nowrap; }
-            td:first-child { text-align: left; white-space: nowrap; }
+            h1 {{ margin: 0; padding: 0; }}
+            h2 {{ margin: 0; padding: 30px 0 10px 0; }}
+            th {{ text-align: left; }}
+            th, td {{ padding: 0 12px; }}
+            td {{ text-align: right; white-space: nowrap; }}
+            td:first-child {{ text-align: left; white-space: nowrap; }}
             </style>
-            <h1>Weekly Add-on %sReviews Report</h1>
-            <h3>%s - %s</h3>
-            """ % (
+            <h1>Weekly Add-on {}Reviews Report</h1>
+            <h3>{} - {}</h3>
+            """.format(
             ('Content ' if group == 'content' else ''),
             self.week_begin,
             self.week_end,
@@ -183,7 +180,7 @@ class Command(BaseCommand):
         return transform(all_html)
 
     def mail_report(self, recipient, subject, content):
-        log.info("Sending report '%s' to %s." % (subject, recipient))
+        log.info(f"Sending report '{subject}' to {recipient}.")
 
         send_mail(
             subject,

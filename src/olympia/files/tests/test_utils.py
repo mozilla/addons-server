@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import json
 import os
 import shutil
@@ -37,7 +36,7 @@ def _touch(fname):
     os.utime(fname, None)
 
 
-class AppVersionsMixin(object):
+class AppVersionsMixin:
     @classmethod
     def setUpTestData(cls):
         cls.create_webext_default_versions()
@@ -576,7 +575,7 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
     def parse(self, base_data):
         if 'theme' not in base_data.keys():
             base_data.update(theme={})
-        return super(TestManifestJSONExtractorStaticTheme, self).parse(base_data)
+        return super().parse(base_data)
 
     def test_type(self):
         assert self.parse({})['type'] == amo.ADDON_STATICTHEME
@@ -725,7 +724,7 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
     ],
 )
 def test_extract_extension_to_dest(filename, expected_files):
-    extension_file = 'src/olympia/files/fixtures/files/{fname}'.format(fname=filename)
+    extension_file = f'src/olympia/files/fixtures/files/{filename}'
 
     with mock.patch('olympia.files.utils.os.fsync') as fsync_mock:
         temp_folder = utils.extract_extension_to_dest(extension_file)
@@ -746,7 +745,7 @@ def test_extract_extension_to_dest(filename, expected_files):
     ],
 )
 def test_extract_extension_to_dest_call_fsync(filename):
-    extension_file = 'src/olympia/files/fixtures/files/{fname}'.format(fname=filename)
+    extension_file = f'src/olympia/files/fixtures/files/{filename}'
 
     with mock.patch('olympia.files.utils.os.fsync') as fsync_mock:
         utils.extract_extension_to_dest(extension_file, force_fsync=True)
@@ -954,7 +953,7 @@ def test_lock_timeout():
             assert not lock_attained
 
 
-class TestResolvei18nMessage(object):
+class TestResolvei18nMessage:
     def test_no_match(self):
         assert utils.resolve_i18n_message('foo', {}, '') == 'foo'
 

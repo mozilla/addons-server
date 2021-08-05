@@ -169,7 +169,7 @@ def fix_addons_linter_output(validation, channel):
     }
 
 
-class Validator(object):
+class Validator:
     """
     Class which handles creating or fetching validation results for File
     and FileUpload instances.
@@ -241,7 +241,7 @@ class Validator(object):
         # Create a cache key for the task, so multiple requests to validate the
         # same object do not result in duplicate tasks.
         opts = file_._meta
-        self.cache_key = 'validation-task:{0}.{1}:{2}:{3}'.format(
+        self.cache_key = 'validation-task:{}.{}:{}:{}'.format(
             opts.app_label, opts.object_name, file_.pk, listed
         )
 

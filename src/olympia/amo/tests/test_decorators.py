@@ -82,7 +82,7 @@ def test_json_view_response_status():
 
 class TestLoginRequired(TestCase):
     def setUp(self):
-        super(TestLoginRequired, self).setUp()
+        super().setUp()
         self.f = mock.Mock()
         self.f.__name__ = 'function'
         self.request = RequestFactory().get('/path')
@@ -144,7 +144,7 @@ class TestPermissionRequired(TestCase):
     empty_permission = amo.permissions.NONE
 
     def setUp(self):
-        super(TestPermissionRequired, self).setUp()
+        super().setUp()
         self.f = mock.Mock()
         self.f.__name__ = 'function'
         self.request = mock.Mock()

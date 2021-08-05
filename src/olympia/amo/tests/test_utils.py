@@ -144,16 +144,14 @@ class TestAttachTransDict(TestCase):
         addon2.save()
         attach_trans_dict(Addon, [addon, addon2, None])
         assert set(addon.translations[addon.description_id]) == (
-            set([('en-us', 'English Description'), ('fr', 'French Description')])
+            {('en-us', 'English Description'), ('fr', 'French Description')}
         )
         assert set(addon2.translations[addon2.name_id]) == (
-            set(
-                [
-                    ('en-us', 'English 2 Name'),
-                    ('es', 'Spanish 2 Name'),
-                    ('fr', 'French 2 Name'),
-                ]
-            )
+            {
+                ('en-us', 'English 2 Name'),
+                ('es', 'Spanish 2 Name'),
+                ('fr', 'French 2 Name'),
+            }
         )
 
 
@@ -183,13 +181,13 @@ def test_walkfiles():
     # All files.
     all_files = list(walkfiles(basedir))
     assert len(all_files) == 3
-    assert set(all_files) == set([file1path, file2path, file3path])
+    assert set(all_files) == {file1path, file2path, file3path}
 
 
 def test_cached_property():
     callme = mock.Mock()
 
-    class Foo(object):
+    class Foo:
         @cached_property
         def bar(self):
             callme()
@@ -207,7 +205,7 @@ def test_cached_property():
 def test_set_writable_cached_property():
     callme = mock.Mock()
 
-    class Foo(object):
+    class Foo:
         @cached_property
         def bar(self):
             callme()

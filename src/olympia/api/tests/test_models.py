@@ -13,7 +13,7 @@ class TestAPIKey(TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
-        super(TestAPIKey, self).setUp()
+        super().setUp()
         self.user = UserProfile.objects.get(email='del@icio.us')
 
     def test_new_jwt_credentials(self):

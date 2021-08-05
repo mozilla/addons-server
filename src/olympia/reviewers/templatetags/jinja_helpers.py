@@ -165,4 +165,4 @@ def check_review_delete(context, rating):
 
 @library.filter
 def format_score(value):
-    return '{:0.0f}%'.format(value) if value and value >= 0 else 'n/a'
+    return f'{value:0.0f}%' if value and value >= 0 else 'n/a'

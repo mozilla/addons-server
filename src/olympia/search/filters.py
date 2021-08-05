@@ -22,7 +22,7 @@ from olympia.constants.promoted import (
 from olympia.versions.compare import version_int
 
 
-class AddonQueryParam(object):
+class AddonQueryParam:
     """Helper to build a simple ES query from a request.GET param."""
 
     operator = 'term'  # ES filter to use when filtering.
@@ -67,7 +67,7 @@ class AddonQueryParam(object):
         return [Q(self.operator, **{self.es_field: self.get_value()})]
 
 
-class AddonQueryMultiParam(object):
+class AddonQueryMultiParam:
     """Helper to build a ES query from a request.GET param that's
     comma separated."""
 
@@ -242,7 +242,7 @@ class AddonCategoryQueryParam(AddonQueryParam):
     operator = 'terms'
 
     def __init__(self, request):
-        super(AddonCategoryQueryParam, self).__init__(request)
+        super().__init__(request)
         # Category slugs are only unique for a given type+app combination.
         # Once we have that, it's just a matter of selecting the corresponding
         # dict in the categories constants and use that as the reverse dict,
@@ -264,7 +264,7 @@ class AddonCategoryQueryParam(AddonQueryParam):
             )
 
     def get_value(self):
-        value = super(AddonCategoryQueryParam, self).get_value()
+        value = super().get_value()
         # if API gets an int rather than string get_value won't return a list.
         return [value] if isinstance(value, int) else value
 
@@ -697,12 +697,12 @@ class SearchQueryFilter(BaseFilterBackend):
                 fields = [field_name]
                 fields.extend(
                     [
-                        '%s_l10n_%s' % (field_name, lang)
+                        f'{field_name}_l10n_{lang}'
                         for lang in amo.SEARCH_ANALYZER_MAP[analyzer]
                     ]
                 )
                 query_name = 'MultiMatch(%s)' % ', '.join(
-                    ['%s(%s)' % (query_class_name, field) for field in fields]
+                    [f'{query_class_name}({field})' for field in fields]
                 )
                 should.append(
                     # When *not* doing a rescore, we do regular non-phrase
@@ -723,7 +723,7 @@ class SearchQueryFilter(BaseFilterBackend):
                 should.append(
                     query_class(
                         summary=dict(
-                            _name='%s(%s)' % (query_class_name, field_name),
+                            _name=f'{query_class_name}({field_name})',
                             query=search_query,
                             boost=boost,
                             **query_kwargs,

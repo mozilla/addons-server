@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase
@@ -11,7 +10,7 @@ from olympia.versions.models import ApplicationsVersions, Version
 
 class VersionsTests(TestCase):
     def setUp(self):
-        super(VersionsTests, self).setUp()
+        super().setUp()
         self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
 
     def test_versions_themes_generation(self):

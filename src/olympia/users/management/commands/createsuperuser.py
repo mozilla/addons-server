@@ -113,7 +113,7 @@ and email address and that's it.
         field = get_user_model()._meta.get_field(field_name)
         value = None
         while value is None:
-            raw_value = input('{}: '.format(capfirst(field_name)))
+            raw_value = input(f'{capfirst(field_name)}: ')
             try:
                 value = field.clean(raw_value, None)
             except exceptions.ValidationError as exc:

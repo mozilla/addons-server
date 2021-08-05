@@ -69,11 +69,11 @@ def order_by_translation(qs, fieldname, model=None):
 
     f1, f2 = '%s.`localized_string`' % t1, '%s.`localized_string`' % t2
     name = 'translated_%s' % field.column
-    ifnull = 'IFNULL(%s, %s)' % (f1, f2)
+    ifnull = f'IFNULL({f1}, {f2})'
     prefix = '-' if desc else ''
     return qs.extra(
         select={name: ifnull},
-        where=['(%s IS NOT NULL OR %s IS NOT NULL)' % (f1, f2)],
+        where=[f'({f1} IS NOT NULL OR {f2} IS NOT NULL)'],
         order_by=[prefix + name],
     )
 
@@ -86,13 +86,13 @@ class TranslationQuery(models.sql.query.Query):
 
     def clone(self):
         # Maintain translation_aliases across clones.
-        c = super(TranslationQuery, self).clone()
+        c = super().clone()
         c.translation_aliases = self.translation_aliases
         return c
 
     def get_compiler(self, using=None, connection=None):
         # Call super to figure out using and connection.
-        c = super(TranslationQuery, self).get_compiler(using, connection)
+        c = super().get_compiler(using, connection)
         return SQLCompiler(self, c.connection, c.using)
 
 
@@ -111,7 +111,7 @@ class SQLCompiler(compiler.SQLCompiler):
                     self.query.tables.remove(table)
                 del self.query.alias_map[table]
 
-        joins, params = super(SQLCompiler, self).get_from_clause()
+        joins, params = super().get_from_clause()
 
         # fallback could be a string locale or a model field.
         params.append(translation_utils.get_language())
@@ -149,11 +149,11 @@ class SQLCompiler(compiler.SQLCompiler):
         )
 
         if isinstance(fallback, models.Field):
-            fallback_str = '%s.%s' % (qn(model._meta.db_table), qn(fallback.column))
+            fallback_str = f'{qn(model._meta.db_table)}.{qn(fallback.column)}'
         else:
             fallback_str = '%s'
 
-        return '%s %s%s ON (%s.%s = %s.%s AND %s.%s = %s)' % (
+        return '{} {}{} ON ({}.{} = {}.{} AND {}.{} = {})'.format(
             join.join_type,
             qn(join.table_name),
             alias_str,

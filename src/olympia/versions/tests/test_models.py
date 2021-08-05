@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import os.path
 import json
 
@@ -237,7 +236,7 @@ class TestVersion(TestCase):
     fixtures = ['base/addon_3615', 'base/admin']
 
     def setUp(self):
-        super(TestVersion, self).setUp()
+        super().setUp()
         self.version = Version.objects.get(pk=81551)
 
     def target_mobile(self):
@@ -1177,7 +1176,7 @@ class TestVersionFromUpload(UploadTest, TestCase):
             )
 
     def setUp(self):
-        super(TestVersionFromUpload, self).setUp()
+        super().setUp()
         self.upload = self.get_upload(self.filename)
         self.addon = Addon.objects.get(id=3615)
         self.addon.update(guid='@webextension-guid')
@@ -1190,7 +1189,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
     filename = 'webextension.xpi'
 
     def setUp(self):
-        super(TestExtensionVersionFromUpload, self).setUp()
+        super().setUp()
         self.dummy_parsed_data['is_webextension'] = True
 
     def test_notified_about_auto_approval_delay_flag_is_reset(self):
@@ -1298,7 +1297,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         )
         assert log_mock.info.call_count == 2
         assert log_mock.info.call_args_list[0][0] == (
-            ('New version: %r (%s) from %r' % (version, version.pk, self.upload)),
+            (f'New version: {version!r} ({version.pk}) from {self.upload!r}'),
         )
         assert log_mock.info.call_args_list[0][1] == {
             'extra': {
@@ -1664,7 +1663,7 @@ class TestExtensionVersionFromUploadTransactional(
     filename = 'webextension_no_id.xpi'
 
     def setUp(self):
-        super(TestExtensionVersionFromUploadTransactional, self).setUp()
+        super().setUp()
         # We can't use `setUpTestData` here because it doesn't play well with
         # the behavior of `TransactionTestCase`
         amo.tests.create_default_webext_appversion()
@@ -1775,7 +1774,7 @@ class TestStatusFromUpload(TestVersionFromUpload):
     filename = 'webextension.xpi'
 
     def setUp(self):
-        super(TestStatusFromUpload, self).setUp()
+        super().setUp()
         self.current = self.addon.current_version
 
     def test_status(self):
@@ -1796,7 +1795,7 @@ class TestPermissionsFromUpload(TestVersionFromUpload):
     filename = 'webextension_all_perms.xpi'
 
     def setUp(self):
-        super(TestPermissionsFromUpload, self).setUp()
+        super().setUp()
         self.addon.update(guid='allPermissions1@mozilla.com')
         self.current = self.addon.current_version
 
@@ -1890,7 +1889,7 @@ class TestStaticThemeFromUpload(UploadTest):
 
 class TestApplicationsVersions(TestCase):
     def setUp(self):
-        super(TestApplicationsVersions, self).setUp()
+        super().setUp()
         self.version_kw = dict(min_app_version='5.0', max_app_version='6.*')
 
     def test_repr_when_compatible(self):

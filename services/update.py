@@ -30,7 +30,7 @@ log_configure()
 log = olympia.core.logger.getLogger('z.services')
 
 
-class Update(object):
+class Update:
     def __init__(self, data, compat_mode='strict'):
         self.conn, self.cursor = None, None
         self.data = data.copy()
@@ -220,7 +220,7 @@ class Update(object):
         if data['hash']:
             update['update_hash'] = data['hash']
         if data['releasenotes']:
-            update['update_info_url'] = '%s%s%s/%%APP_LOCALE%%/' % (
+            update['update_info_url'] = '{}{}{}/%APP_LOCALE%/'.format(
                 settings.SITE_URL,
                 '/versions/updateInfo/',
                 data['version_id'],

@@ -14,7 +14,7 @@ class UserFormBase(TestCase):
     fixtures = ['users/test_backends']
 
     def setUp(self):
-        super(UserFormBase, self).setUp()
+        super().setUp()
         self.user = UserProfile.objects.get(pk=4043307)
 
 

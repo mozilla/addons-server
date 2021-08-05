@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import json
 import os
 import re
@@ -41,7 +40,7 @@ from olympia.zadmin.models import set_config
 @pytest.mark.django_db
 @pytest.mark.parametrize('locale_pair', settings.LANGUAGES)
 def test_locale_switcher(client, locale_pair):
-    response = client.get('/{}/developers/'.format(locale_pair[0]))
+    response = client.get(f'/{locale_pair[0]}/developers/')
     assert response.status_code == 200
 
 
@@ -49,7 +48,7 @@ class Test403(TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
-        super(Test403, self).setUp()
+        super().setUp()
         assert self.client.login(email='clouserw@gmail.com')
 
     def test_403_no_app(self):
@@ -138,12 +137,12 @@ class TestCommon(TestCase):
     fixtures = ('base/users', 'base/addon_3615')
 
     def setUp(self):
-        super(TestCommon, self).setUp()
+        super().setUp()
         self.url = reverse('apps.appversions')
 
     def login(self, user=None, get=False):
         email = '%s@mozilla.com' % user
-        super(TestCommon, self).login(email)
+        super().login(email)
         if get:
             return UserProfile.objects.get(email=email)
 
@@ -472,7 +471,7 @@ def test_fake_fxa_authorization_deactivated():
 
 class TestAtomicRequests(WithDynamicEndpointsAndTransactions):
     def setUp(self):
-        super(TestAtomicRequests, self).setUp()
+        super().setUp()
         self.slug = get_random_slug()
 
     def _generate_view(self, method_that_will_be_tested):
@@ -521,11 +520,11 @@ class TestVersion(TestCase):
         assert result.status_code == 200
         assert result.get('Content-Type') == 'application/json'
         content = result.json()
-        assert content['python'] == '%s.%s' % (
+        assert content['python'] == '{}.{}'.format(
             sys.version_info.major,
             sys.version_info.minor,
         )
-        assert content['django'] == '%s.%s' % (django.VERSION[0], django.VERSION[1])
+        assert content['django'] == f'{django.VERSION[0]}.{django.VERSION[1]}'
 
 
 class TestSiteStatusAPI(TestCase):

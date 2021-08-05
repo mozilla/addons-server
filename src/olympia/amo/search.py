@@ -27,7 +27,7 @@ def get_es(hosts=None, timeout=None, **settings):
     return Elasticsearch(hosts, timeout=timeout, **settings)
 
 
-class ES(object):
+class ES:
     def __init__(self, type_, index):
         self.type = type_
         self.index = index
@@ -247,7 +247,7 @@ class ES(object):
             raise
 
         statsd.timing('search.es.took', hits['took'])
-        log.info('[%s] [%s] %s' % (hits['took'], timer.ms, build_body))
+        log.info('[{}] [{}] {}'.format(hits['took'], timer.ms, build_body))
         return hits
 
     def __iter__(self):
@@ -265,7 +265,7 @@ class ES(object):
         return aggregations
 
 
-class SearchResults(object):
+class SearchResults:
     def __init__(self, type, results, source):
         self.type = type
         self.took = results['took']
@@ -307,5 +307,5 @@ class ObjectSearchResults(SearchResults):
         self.objects = self.type.objects.filter(id__in=self.ids)
 
     def __iter__(self):
-        objs = dict((obj.id, obj) for obj in self.objects)
+        objs = {obj.id: obj for obj in self.objects}
         return (objs[id] for id in self.ids if id in objs)

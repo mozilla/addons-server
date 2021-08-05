@@ -241,7 +241,7 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
 
             return functools.update_wrapper(wrapper, view)
 
-        urlpatterns = super(UserAdmin, self).get_urls()
+        urlpatterns = super().get_urls()
         custom_urlpatterns = [
             re_path(
                 r'^(?P<object_id>.+)/ban/$',
@@ -267,7 +267,7 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         return custom_urlpatterns + urlpatterns
 
     def get_actions(self, request):
-        actions = super(UserAdmin, self).get_actions(request)
+        actions = super().get_actions(request)
         if not acl.action_allowed(request, amo.permissions.USERS_EDIT):
             # You need Users:Edit to be able to ban users and reset their api
             # key confirmation.
@@ -294,7 +294,7 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
                 url += '?' + request.GET.urlencode()
             return http.HttpResponsePermanentRedirect(url)
 
-        return super(UserAdmin, self).change_view(
+        return super().change_view(
             request,
             object_id,
             form_url,

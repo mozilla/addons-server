@@ -43,9 +43,7 @@ class GranularUserRateThrottle(UserRateThrottle):
 
     def allow_request(self, request, view):
         if settings.API_THROTTLING:
-            request_allowed = super(GranularUserRateThrottle, self).allow_request(
-                request, view
-            )
+            request_allowed = super().allow_request(request, view)
 
             if not request_allowed:
                 user = getattr(request, 'user', None)

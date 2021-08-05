@@ -14,7 +14,7 @@ class CoreConfig(AppConfig):
     verbose_name = _('Core')
 
     def ready(self):
-        super(CoreConfig, self).ready()
+        super().ready()
 
         # Ignore Python warnings unless we're running in debug mode.
         if not settings.DEBUG:

@@ -185,7 +185,7 @@ class File(OnChangeMixin, ModelBase):
                     file=file_,
                 )
 
-        log.info('New file: %r from %r' % (file_, upload))
+        log.info(f'New file: {file_!r} from {upload!r}')
 
         # Move the uploaded file from the temp location.
         copy_stored_file(upload_path, file_.current_file_path)
@@ -199,7 +199,7 @@ class File(OnChangeMixin, ModelBase):
     def generate_hash(self, filename=None):
         """Generate a hash for a file."""
         with open(filename or self.current_file_path, 'rb') as fobj:
-            return 'sha256:{}'.format(get_sha256(fobj))
+            return f'sha256:{get_sha256(fobj)}'
 
     def generate_filename(self, extension=None):
         """
@@ -218,9 +218,7 @@ class File(OnChangeMixin, ModelBase):
         parts.append(self.version.version)
 
         if addon.type not in amo.NO_COMPAT and self.version.compatible_apps:
-            apps = '+'.join(
-                sorted([a.shortername for a in self.version.compatible_apps])
-            )
+            apps = '+'.join(sorted(a.shortername for a in self.version.compatible_apps))
             parts.append(apps)
 
         self.filename = '-'.join(parts) + extension
@@ -238,7 +236,7 @@ class File(OnChangeMixin, ModelBase):
             return self.filename
         if len(m.group('slug')) < maxlen:
             return self.filename
-        return '%s...%s' % (m.group('slug')[0 : (maxlen - 3)], m.group('suffix'))
+        return '{}...{}'.format(m.group('slug')[0 : (maxlen - 3)], m.group('suffix'))
 
     def latest_xpi_url(self, attachment=False):
         addon = self.version.addon
@@ -247,7 +245,7 @@ class File(OnChangeMixin, ModelBase):
             kw['type'] = 'attachment'
         return os.path.join(
             reverse('downloads.latest', kwargs=kw),
-            'addon-%s-latest%s' % (addon.pk, self.extension),
+            f'addon-{addon.pk}-latest{self.extension}',
         )
 
     @property
@@ -317,8 +315,8 @@ class File(OnChangeMixin, ModelBase):
                 remaining_dirs, remaining_files = storage.listdir(source_parent_path)
                 if len(remaining_dirs) == len(remaining_files) == 0:
                     storage.delete(source_parent_path)
-        except (UnicodeEncodeError, IOError):
-            msg = 'Move Failure: {} {}'.format(source_path, destination_path)
+        except (UnicodeEncodeError, OSError):
+            msg = f'Move Failure: {source_path} {destination_path}'
             log.exception(msg)
 
     def hide_disabled_file(self):
@@ -411,7 +409,7 @@ def cleanup_file(sender, instance, **kw):
         except models.ObjectDoesNotExist:
             return
         if storage.exists(filename):
-            log.info('Removing filename: %s for file: %s' % (filename, instance.pk))
+            log.info(f'Removing filename: {filename} for file: {instance.pk}')
             storage.delete(filename)
 
 
@@ -464,7 +462,7 @@ def track_status_change(old_attr=None, new_attr=None, **kwargs):
 
 
 def track_file_status_change(file_):
-    statsd.incr('file_status_change.all.status_{}'.format(file_.status))
+    statsd.incr(f'file_status_change.all.status_{file_.status}')
 
 
 class FileUpload(ModelBase):
@@ -507,7 +505,7 @@ class FileUpload(ModelBase):
                 self.valid = True
         if not self.access_token:
             self.access_token = self.generate_access_token()
-        super(FileUpload, self).save(*args, **kw)
+        super().save(*args, **kw)
 
     def write_data_to_path(self, chunks):
         hash_obj = hashlib.sha256()
@@ -524,7 +522,7 @@ class FileUpload(ModelBase):
         _base, ext = os.path.splitext(filename)
         was_crx = ext == '.crx'
         # Filename we'll expose (but not use for storage).
-        self.name = force_str('{0}_{1}'.format(self.uuid.hex, filename))
+        self.name = force_str(f'{self.uuid.hex}_{filename}')
 
         # Final path on our filesystem. If it had a valid extension we change
         # it to .xpi (CRX files are converted before validation, so they will
@@ -535,7 +533,7 @@ class FileUpload(ModelBase):
         if ext in amo.VALID_ADDON_FILE_EXTENSIONS:
             ext = '.xpi'
         self.path = os.path.join(
-            user_media_path('addons'), 'temp', '{0}{1}'.format(uuid.uuid4().hex, ext)
+            user_media_path('addons'), 'temp', f'{uuid.uuid4().hex}{ext}'
         )
 
         hash_obj = None
@@ -553,7 +551,7 @@ class FileUpload(ModelBase):
 
         # The following log statement is used by foxsec-pipeline.
         log.info(
-            'UPLOAD: %r (%s bytes) to %r' % (self.name, size, self.path),
+            f'UPLOAD: {self.name!r} ({size} bytes) to {self.path!r}',
             extra={
                 'email': (self.user.email if self.user and self.user.email else ''),
                 'upload_hash': self.hash,
@@ -575,7 +573,7 @@ class FileUpload(ModelBase):
             settings.EXTERNAL_SITE_URL,
             reverse('files.serve_file_upload', kwargs={'uuid': self.uuid.hex}),
         )
-        return '{}?access_token={}'.format(absolute_url, self.access_token)
+        return f'{absolute_url}?access_token={self.access_token}'
 
     @classmethod
     def from_post(cls, chunks, filename, size, **params):

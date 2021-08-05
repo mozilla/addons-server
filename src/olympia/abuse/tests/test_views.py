@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import json
 from datetime import datetime
 
@@ -15,7 +14,7 @@ from olympia.amo.tests import (
 )
 
 
-class AddonAbuseViewSetTestBase(object):
+class AddonAbuseViewSetTestBase:
     client_class = APITestClient
 
     def setUp(self):
@@ -351,7 +350,7 @@ class TestAddonAbuseViewSetLoggedOut(AddonAbuseViewSetTestBase, TestCase):
 
 class TestAddonAbuseViewSetLoggedIn(AddonAbuseViewSetTestBase, TestCase):
     def setUp(self):
-        super(TestAddonAbuseViewSetLoggedIn, self).setUp()
+        super().setUp()
         self.user = user_factory()
         self.client.login_api(self.user)
 
@@ -381,7 +380,7 @@ class TestAddonAbuseViewSetLoggedIn(AddonAbuseViewSetTestBase, TestCase):
         assert response.status_code == 429
 
 
-class UserAbuseViewSetTestBase(object):
+class UserAbuseViewSetTestBase:
     client_class = APITestClient
 
     def setUp(self):
@@ -471,7 +470,7 @@ class TestUserAbuseViewSetLoggedOut(UserAbuseViewSetTestBase, TestCase):
 
 class TestUserAbuseViewSetLoggedIn(UserAbuseViewSetTestBase, TestCase):
     def setUp(self):
-        super(TestUserAbuseViewSetLoggedIn, self).setUp()
+        super().setUp()
         self.user = user_factory()
         self.client.login_api(self.user)
 

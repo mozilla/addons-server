@@ -27,7 +27,7 @@ def locale_html(translatedfield):
         rtl_locales = map(translation.to_locale, settings.LANGUAGES_BIDI)
         textdir = 'rtl' if locale in rtl_locales else 'ltr'
         return markupsafe.Markup(
-            ' lang="%s" dir="%s"' % (markupsafe.escape(translatedfield.locale), textdir)
+            f' lang="{markupsafe.escape(translatedfield.locale)}" dir="{textdir}"'
         )
 
 

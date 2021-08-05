@@ -25,6 +25,6 @@ class MultiPartParser(MultiPartParser):
         _request = request._request
         if _request.method == 'POST':
             return DataAndFiles(_request.POST, _request.FILES)
-        return super(MultiPartParser, self).parse(
+        return super().parse(
             stream, media_type=media_type, parser_context=parser_context
         )

@@ -62,7 +62,7 @@ class AppversionsFeed(BaseFeed):
 
     def item_title(self, item):
         app, version = item
-        return '%s %s' % (app.pretty, version)
+        return f'{app.pretty} {version}'
 
     item_description = ''
 

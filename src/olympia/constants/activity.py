@@ -1,7 +1,3 @@
-# The absolute import feature is required so that we get the root celery
-# module rather than `amo.celery`.
-from __future__ import absolute_import
-
 from collections import namedtuple
 from inspect import isclass
 
@@ -15,7 +11,7 @@ __all__ = (
 )
 
 
-class _LOG(object):
+class _LOG:
     action_class = None
 
 
@@ -794,10 +790,10 @@ class FORCE_ENABLE(_LOG):
 
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
-assert len(LOGS) == len(set(log.id for log in LOGS))
+assert len(LOGS) == len({log.id for log in LOGS})
 
-LOG_BY_ID = dict((log.id, log) for log in LOGS)
-LOG = namedtuple('LogTuple', [log.__name__ for log in LOGS])(*[log for log in LOGS])
+LOG_BY_ID = {log.id: log for log in LOGS}
+LOG = namedtuple('LogTuple', [log.__name__ for log in LOGS])(*(log for log in LOGS))
 LOG_ADMINS = [log.id for log in LOGS if hasattr(log, 'admin_event')]
 LOG_KEEP = [log.id for log in LOGS if hasattr(log, 'keep')]
 LOG_RATING_MODERATION = [log.id for log in LOGS if hasattr(log, 'reviewer_event')]

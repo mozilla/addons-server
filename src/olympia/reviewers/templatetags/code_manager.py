@@ -7,13 +7,13 @@ register = template.Library()
 @register.simple_tag
 def code_manager_url(page, addon_id, version_id, base_version_id=None, file=None):
     # Always return URLs in en-US because the Code Manager is not localized.
-    url = '{}/en-US'.format(settings.CODE_MANAGER_URL)
+    url = f'{settings.CODE_MANAGER_URL}/en-US'
     if page == 'browse':
-        url = '{}/browse/{}/versions/{}/'.format(url, addon_id, version_id)
+        url = f'{url}/browse/{addon_id}/versions/{version_id}/'
     else:
         url = '{}/compare/{}/versions/{}...{}/'.format(
             url, addon_id, base_version_id, version_id
         )
     if file:
-        url = '{}?path={}'.format(url, file)
+        url = f'{url}?path={file}'
     return url

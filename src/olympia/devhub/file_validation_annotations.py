@@ -26,7 +26,7 @@ def insert_validation_message(
     )
     # Need to increment 'errors' or 'warnings' count, so add an extra 's' after
     # the type_ to increment the right entry.
-    results['{}s'.format(type_)] += 1
+    results[f'{type_}s'] += 1
     results['success'] = not results['errors']
 
 

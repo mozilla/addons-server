@@ -124,7 +124,7 @@ class PrimaryHeroImage(ModelBase):
     def preview_image(self):
         if self.custom_image:
             return mark_safe(
-                '<img class="prmhero-preview" src="{}" />'.format(self.preview_url)
+                f'<img class="prmhero-preview" src="{self.preview_url}" />'
             )
         else:
             return None

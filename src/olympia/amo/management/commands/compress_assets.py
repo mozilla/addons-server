@@ -168,7 +168,7 @@ class Command(BaseCommand):
                 )
             )
 
-        self.stdout.write('Minifying %s (using %s)\n' % (file_in, opts['method']))
+        self.stdout.write('Minifying {} (using {})\n'.format(file_in, opts['method']))
 
     def _file_hash(self, url):
         """Open the file and get a hash of it."""
@@ -179,7 +179,7 @@ class Command(BaseCommand):
         try:
             with open(url, 'rb') as f:
                 file_hash = hashlib.md5(f.read()).hexdigest()[0:7]
-        except IOError:
+        except OSError:
             self.missing_files += 1
             self.stdout.write(' - Could not find file %s\n' % url)
 

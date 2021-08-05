@@ -113,7 +113,7 @@ class TranslationAwareOrderingAliasFilter(OrderingAliasFilter):
         if order_by in ('name', '-name'):
             return order_by_translation(queryset, order_by, Addon)
 
-        sup = super(TranslationAwareOrderingAliasFilter, self)
+        sup = super()
         return sup.filter_queryset(request, queryset, view)
 
 

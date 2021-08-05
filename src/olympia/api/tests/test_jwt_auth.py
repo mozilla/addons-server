@@ -12,7 +12,7 @@ from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
 from olympia.users.models import UserProfile
 
 
-class JWTAuthKeyTester(object):
+class JWTAuthKeyTester:
     def create_api_key(
         self,
         user,
@@ -55,7 +55,7 @@ class TestJWTKeyAuthDecodeHandler(JWTAuthKeyTester, TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
-        super(TestJWTKeyAuthDecodeHandler, self).setUp()
+        super().setUp()
         self.user = UserProfile.objects.get(email='del@icio.us')
 
     def test_report_unknown_issuer(self):

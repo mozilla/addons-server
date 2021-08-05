@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import collections
 import mimetypes
 import os
@@ -68,7 +66,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
             and session.uid == m['headers']['x-uid']
         )
         session.verify_email_code(message['headers']['x-verify-code'])
-        log.info('fxa account created: {}'.format(fxa_account))
+        log.info(f'fxa account created: {fxa_account}')
         return session.uid
 
     def _create_addon_user(self):
@@ -141,8 +139,8 @@ class GenerateAddonsSerializer(serializers.Serializer):
             addon = addon_factory(
                 status=amo.STATUS_APPROVED,
                 users=[UserProfile.objects.get(username=author)],
-                name='{}'.format(name),
-                slug='{}'.format(name),
+                name=f'{name}',
+                slug=f'{name}',
                 version_kw={'nomination': days_ago(6)},
                 promoted=RECOMMENDED,
             )
@@ -152,8 +150,8 @@ class GenerateAddonsSerializer(serializers.Serializer):
             addon = addon_factory(
                 status=amo.STATUS_APPROVED,
                 users=[UserProfile.objects.get(username=author.username)],
-                name='{}'.format(name),
-                slug='{}'.format(name),
+                name=f'{name}',
+                slug=f'{name}',
                 version_kw={'nomination': days_ago(6)},
                 promoted=RECOMMENDED,
             )
@@ -203,7 +201,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
         )
         addon.save()
         generate_collection(addon, app=FIREFOX)
-        print('Created addon {0} for testing successfully'.format(addon.name))
+        print(f'Created addon {addon.name} for testing successfully')
 
     def create_featured_android_addon(self):
         """Creates a custom addon named 'Ui-Addon-Android'.
@@ -250,7 +248,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
         )
         addon.save()
         generate_collection(addon, app=FIREFOX)
-        print('Created addon {0} for testing successfully'.format(addon.name))
+        print(f'Created addon {addon.name} for testing successfully')
 
     def create_featured_addon_with_version_for_install(self):
         """Creates a custom addon named 'Ui-Addon'.
@@ -283,7 +281,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
             )
             addon.save()
             generate_collection(addon, app=FIREFOX)
-            print('Created addon {0} for testing successfully'.format(addon.name))
+            print(f'Created addon {addon.name} for testing successfully')
         return addon
 
     def create_featured_theme(self):
@@ -318,7 +316,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
         )
         addon.save()
         generate_collection(addon, app=FIREFOX)
-        print('Created Theme {0} for testing successfully'.format(addon.name))
+        print(f'Created Theme {addon.name} for testing successfully')
 
     def create_featured_themes(self):
         """Creates exactly 6 themes that will be not featured.

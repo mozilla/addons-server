@@ -68,7 +68,7 @@ def delete_preview_files(id, **kw):
 @task(acks_late=True)
 @use_primary_db
 def index_addons(ids, **kw):
-    log.info('Indexing addons %s-%s. [%s]' % (ids[0], ids[-1], len(ids)))
+    log.info(f'Indexing addons {ids[0]}-{ids[-1]}. [{len(ids)}]')
     transforms = (attach_tags, attach_translations_dict)
     index_objects(
         ids,
@@ -221,7 +221,7 @@ def recreate_theme_previews(addon_ids, **kw):
             generate_static_theme_preview.apply_async(
                 args=(theme_data, version.id), queue='adhoc'
             )
-        except IOError:
+        except OSError:
             pass
     index_addons.delay(addon_ids)
 

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from django.test.utils import override_settings
 
 from unittest import mock
@@ -14,7 +13,7 @@ from olympia.discovery.models import DiscoveryItem
 from olympia.discovery.utils import replace_extensions
 
 
-class DiscoveryTestMixin(object):
+class DiscoveryTestMixin:
     def _check_disco_addon_version(self, data, version):
         assert data['compatibility']
         assert len(data['compatibility']) == len(version.compatible_apps)
@@ -91,7 +90,7 @@ class DiscoveryTestMixin(object):
 
 class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
     def setUp(self):
-        super(TestDiscoveryViewList, self).setUp()
+        super().setUp()
         self.url = reverse_ns('discovery-list', api_version='v5')
         self.addons = []
 
@@ -254,7 +253,7 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
 @override_switch('disco-recommendations', active=True)
 class TestDiscoveryRecommendations(DiscoveryTestMixin, TestCase):
     def setUp(self):
-        super(TestDiscoveryRecommendations, self).setUp()
+        super().setUp()
 
         self.addons = []
 

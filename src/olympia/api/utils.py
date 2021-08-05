@@ -32,8 +32,8 @@ class APIChoicesWithNone(APIChoices):
 
     @property
     def choices(self):
-        return ((None, 'None'),) + super(APIChoicesWithNone, self).choices
+        return ((None, 'None'),) + super().choices
 
     @property
     def api_choices(self):
-        return ((None, None),) + super(APIChoicesWithNone, self).api_choices
+        return ((None, None),) + super().api_choices

@@ -50,7 +50,7 @@ def test_js_helper():
     template = from_string('{{ js("common", debug=False) }}')
     rendered = template.render()
 
-    expected = '<script src="%sjs/common-min.js"></script>' % (settings.STATIC_URL,)
+    expected = f'<script src="{settings.STATIC_URL}js/common-min.js"></script>'
     assert rendered == expected
 
     template = from_string('{{ js("common_bundle", debug=True) }}')
@@ -64,7 +64,7 @@ def test_js_helper():
     template = from_string('{{ js("common_bundle", debug=False) }}')
     rendered = template.render()
 
-    assert rendered == '<script src="%sjs/common_bundle-min.js"></script>' % (
+    assert rendered == '<script src="{}js/common_bundle-min.js"></script>'.format(
         settings.STATIC_URL,
     )
 

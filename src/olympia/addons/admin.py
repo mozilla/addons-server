@@ -294,7 +294,7 @@ class AddonAdmin(admin.ModelAdmin):
 
             return functools.update_wrapper(wrapper, view)
 
-        urlpatterns = super(AddonAdmin, self).get_urls()
+        urlpatterns = super().get_urls()
         custom_urlpatterns = [
             re_path(
                 r'^(?P<object_id>.+)/git_extract/$',
@@ -512,13 +512,11 @@ class ReplacementAddonAdmin(admin.ModelAdmin):
         # looking at the list, we also allow users with Addons:Edit - they
         # won't be able to make any changes but they can see the list.
         if obj is not None:
-            return super(ReplacementAddonAdmin, self).has_change_permission(
-                request, obj=obj
-            )
+            return super().has_change_permission(request, obj=obj)
         else:
-            return acl.action_allowed(request, amo.permissions.ADDONS_EDIT) or super(
-                ReplacementAddonAdmin, self
-            ).has_change_permission(request, obj=obj)
+            return acl.action_allowed(
+                request, amo.permissions.ADDONS_EDIT
+            ) or super().has_change_permission(request, obj=obj)
 
 
 @admin.register(models.AddonRegionalRestrictions)

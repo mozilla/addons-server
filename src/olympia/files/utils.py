@@ -128,7 +128,7 @@ class InvalidManifest(forms.ValidationError):
     pass
 
 
-class Extractor(object):
+class Extractor:
     """Extract add-on info from a manifest file."""
 
     App = collections.namedtuple('App', 'appdata id min max')
@@ -176,7 +176,7 @@ def get_simple_version(version_string):
     return VersionString(re.sub('[<=>]', '', version_string))
 
 
-class ManifestJSONExtractor(object):
+class ManifestJSONExtractor:
     def __init__(self, zip_file, data='', certinfo=None):
         self.zip_file = zip_file
         self.certinfo = certinfo
@@ -428,7 +428,7 @@ class ManifestJSONExtractor(object):
         return data
 
 
-class SigningCertificateInformation(object):
+class SigningCertificateInformation:
     """Process the signature to determine the addon is a Mozilla Signed
     extension, so is signed already with a special certificate.  We want to
     know this so we don't write over it later, and stop unauthorised people
@@ -446,7 +446,7 @@ class SigningCertificateInformation(object):
         return {'is_mozilla_signed_extension': self.is_mozilla_signed_ou}
 
 
-class FSyncMixin(object):
+class FSyncMixin:
     """Mixin that implements fsync for file extractions.
 
     This mixin uses the `_extract_member` interface used by `ziplib` and
@@ -485,7 +485,7 @@ class FSyncMixin(object):
         This is inspired by https://github.com/2ndquadrant-it/barman/
         (see backup.py -> backup_fsync_and_set_sizes and utils.py)
         """
-        super(FSyncMixin, self)._extract_member(member, targetpath, *args, **kwargs)
+        super()._extract_member(member, targetpath, *args, **kwargs)
 
         parent_dir = os.path.dirname(os.path.normpath(targetpath))
         if parent_dir:
@@ -536,15 +536,13 @@ def _validate_archive_member_name_and_size(filename, filesize):
         raise forms.ValidationError(msg.format(filename))
 
     if filesize > settings.FILE_UNZIP_SIZE_LIMIT:
-        log.error(
-            'Extraction error, file too big for file (%s): %s' % (filename, filesize)
-        )
+        log.error(f'Extraction error, file too big for file ({filename}): {filesize}')
         # L10n: {0} is the name of the invalid file.
         msg = gettext('File exceeding size limit in archive: {0}')
         raise forms.ValidationError(msg.format(filename))
 
 
-class SafeZip(object):
+class SafeZip:
     def __init__(self, source, mode='r', force_fsync=False):
         self.source = source
         self.info_list = None
@@ -693,7 +691,7 @@ def extract_extension_to_dest(source, dest=None, force_fsync=False):
                 archive.extractall(target)
         else:
             raise FileNotFoundError  # Unsupported file, shouldn't be reached
-    except (zipfile.BadZipFile, tarfile.ReadError, IOError, forms.ValidationError) as e:
+    except (zipfile.BadZipFile, tarfile.ReadError, OSError, forms.ValidationError) as e:
         if tempdir is not None:
             rm_local_tmp_dir(tempdir)
         if isinstance(e, (FileNotFoundError, forms.ValidationError)):
@@ -788,12 +786,12 @@ def parse_xpi(xpi, addon=None, minimal=False, user=None):
         xpi_info = Extractor.parse(xpi, minimal=minimal)
     except forms.ValidationError:
         raise
-    except IOError as e:
+    except OSError as e:
         if len(e.args) < 2:
             err, strerror = None, e.args[0]
         else:
             err, strerror = e.args
-        log.error('I/O error({0}): {1}'.format(err, strerror))
+        log.error(f'I/O error({err}): {strerror}')
         # Note: we don't really know what happened, so even though we return a
         # generic message about the manifest, don't raise InvalidManifest. We
         # want the validation to stop there.
@@ -960,7 +958,7 @@ def get_sha256(file_obj, block_size=io.DEFAULT_BUFFER_SIZE):
 def update_version_number(file_obj, new_version_number):
     """Update the manifest to have the new version number."""
     # Create a new xpi with the updated version.
-    updated = '{0}.updated_version_number'.format(file_obj.file_path)
+    updated = f'{file_obj.file_path}.updated_version_number'
     # Copy the original XPI, with the updated manifest.json.
     with zipfile.ZipFile(file_obj.file_path, 'r') as source:
         file_list = source.infolist()
@@ -1078,7 +1076,7 @@ def extract_translations(file_obj):
                 if not corrected_locale:
                     continue
 
-                fname = '_locales/{0}/messages.json'.format(locale)
+                fname = f'_locales/{locale}/messages.json'
 
                 try:
                     data = source.read(fname)
@@ -1089,7 +1087,7 @@ def extract_translations(file_obj):
                     # usually means the file doesn't exist for some reason,
                     # we fail silently
                     continue
-    except IOError:
+    except OSError:
         pass
 
     return messages
@@ -1170,7 +1168,7 @@ def get_background_images(file_obj, theme_data, header_only=False):
                     images[url] = source.read(url)
                 except KeyError:
                     pass
-    except IOError as ioerror:
+    except OSError as ioerror:
         log.info(ioerror)
     return images
 

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import copy
 
 from unittest.mock import Mock, patch
@@ -36,7 +35,7 @@ class FilterTestsBase(TestCase):
     # queries will never actually be executed.
 
     def setUp(self):
-        super(FilterTestsBase, self).setUp()
+        super().setUp()
         self.req = RequestFactory().get('/')
         self.view_class = Mock()
 
@@ -632,7 +631,7 @@ class TestSearchParameterFilter(FilterTestsBase):
 
     def test_return_to_amo(self):
         self.create_switch('return-to-amo', active=True)
-        param = 'rta:{}'.format(urlsafe_base64_encode('@foobar'.encode()))
+        param = 'rta:{}'.format(urlsafe_base64_encode(b'@foobar'))
         qs = self._filter(data={'guid': param})
         assert 'must' not in qs['query']['bool']
         assert 'must_not' not in qs['query']['bool']

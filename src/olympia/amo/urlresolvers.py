@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import hashlib
 import hmac
 import re
@@ -16,7 +15,7 @@ import jinja2
 from olympia import amo
 
 
-class Prefixer(object):
+class Prefixer:
     def __init__(self, request):
         self.request = request
         split = self.split_path(request.path_info)

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import hashlib
 import json
 import os
@@ -435,14 +434,14 @@ class TestTrackFileStatusChange(TestCase):
         f = self.create_file()
         with patch('olympia.files.models.track_file_status_change') as mock_:
             f.update(size=1024)
-        assert not mock_.called, 'Unexpected call: {}'.format(self.mock_.call_args)
+        assert not mock_.called, f'Unexpected call: {self.mock_.call_args}'
 
     def test_increment_file_status(self):
         f = self.create_file(status=amo.STATUS_APPROVED)
         with patch('olympia.files.models.statsd.incr') as mock_incr:
             track_file_status_change(f)
         mock_incr.assert_any_call(
-            'file_status_change.all.status_{}'.format(amo.STATUS_APPROVED)
+            f'file_status_change.all.status_{amo.STATUS_APPROVED}'
         )
 
 
@@ -712,7 +711,7 @@ class TestFileUpload(UploadTest):
     fixtures = ['base/appversion', 'base/addon_3615']
 
     def setUp(self):
-        super(TestFileUpload, self).setUp()
+        super().setUp()
         self.data = b'file contents'
 
     def upload(self, **params):
@@ -726,7 +725,7 @@ class TestFileUpload(UploadTest):
     def test_from_post_filename(self):
         upload = self.upload()
         assert upload.uuid
-        assert upload.name == '{0}_filenamé.xpi'.format(force_str(upload.uuid.hex))
+        assert upload.name == f'{force_str(upload.uuid.hex)}_filenamé.xpi'
         # Actual path on filesystem is different, fully random
         assert upload.name not in upload.path
         assert re.match(r'.*/temp/[a-f0-9]{32}\.xpi$', upload.path)
@@ -1115,7 +1114,7 @@ class TestFileFromUpload(UploadTest):
             )
 
     def setUp(self):
-        super(TestFileFromUpload, self).setUp()
+        super().setUp()
         self.addon = Addon.objects.create(
             guid='@webextension-guid', type=amo.ADDON_EXTENSION, name='xxx'
         )

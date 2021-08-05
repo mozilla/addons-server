@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import re
 
 import django
@@ -91,7 +90,7 @@ class TranslationTestCase(TestCase):
     fixtures = ['testapp/test_models.json']
 
     def setUp(self):
-        super(TranslationTestCase, self).setUp()
+        super().setUp()
         self.redirect_url = settings.REDIRECT_URL
         self.redirect_secret_key = settings.REDIRECT_SECRET_KEY
         settings.REDIRECT_URL = None
@@ -101,28 +100,24 @@ class TranslationTestCase(TestCase):
     def tearDown(self):
         settings.REDIRECT_URL = self.redirect_url
         settings.REDIRECT_SECRET_KEY = self.redirect_secret_key
-        super(TranslationTestCase, self).tearDown()
+        super().tearDown()
 
     def test_meta_translated_fields(self):
         assert not hasattr(UntranslatedModel._meta, 'translated_fields')
 
         assert set(TranslatedModel._meta.translated_fields) == (
-            set(
-                [
-                    TranslatedModel._meta.get_field('no_locale'),
-                    TranslatedModel._meta.get_field('name'),
-                    TranslatedModel._meta.get_field('description'),
-                ]
-            )
+            {
+                TranslatedModel._meta.get_field('no_locale'),
+                TranslatedModel._meta.get_field('name'),
+                TranslatedModel._meta.get_field('description'),
+            }
         )
 
         assert set(FancyModel._meta.translated_fields) == (
-            set(
-                [
-                    FancyModel._meta.get_field('purified'),
-                    FancyModel._meta.get_field('linkified'),
-                ]
-            )
+            {
+                FancyModel._meta.get_field('purified'),
+                FancyModel._meta.get_field('linkified'),
+            }
         )
 
     def test_fetch_translations(self):
@@ -492,7 +487,7 @@ class TranslationTestCase(TestCase):
         env = jinja2.Environment()
         t = env.from_string('{{ m.purified }}=={{ m.linkified }}')
         s = t.render({'m': m})
-        assert s == '%s==%s' % (
+        assert s == '{}=={}'.format(
             m.purified.localized_string_clean,
             m.linkified.localized_string_clean,
         )

@@ -21,13 +21,13 @@ class BaseFeed(Feed):
     # decorator.
     @method_decorator(non_atomic_requests)
     def __call__(self, *args, **kwargs):
-        return super(BaseFeed, self).__call__(*args, **kwargs)
+        return super().__call__(*args, **kwargs)
 
     # When the feed is being built we go through this method for each attribute
     # we're returning, so we can use it to strip XML control chars before they
     # are being used. This avoid raising UnserializableContentError later.
     def _get_dynamic_attr(self, attname, obj, default=None):
-        data = super(BaseFeed, self)._get_dynamic_attr(attname, obj, default=default)
+        data = super()._get_dynamic_attr(attname, obj, default=default)
 
         # Limite the search to the item types we know can potentially contain
         # some weird characters.

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Check all our redirects from remora to zamboni."""
 from olympia.amo.tests import TestCase
 

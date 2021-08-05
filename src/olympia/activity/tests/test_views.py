@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import json
 import io
 from unittest import mock
@@ -183,7 +182,7 @@ class TestReviewNotesViewSetDetail(ReviewNotesViewSetDetailMixin, TestCase):
     client_class = APITestClient
 
     def setUp(self):
-        super(TestReviewNotesViewSetDetail, self).setUp()
+        super().setUp()
         self.addon = addon_factory(
             guid=generate_addon_guid(), name='My Addôn', slug='my-addon'
         )
@@ -224,7 +223,7 @@ class TestReviewNotesViewSetList(ReviewNotesViewSetDetailMixin, TestCase):
     client_class = APITestClient
 
     def setUp(self):
-        super(TestReviewNotesViewSetList, self).setUp()
+        super().setUp()
         self.addon = addon_factory(
             guid=generate_addon_guid(), name='My Addôn', slug='my-addon'
         )
@@ -303,7 +302,7 @@ class TestReviewNotesViewSetCreate(TestCase):
     client_class = APITestClient
 
     def setUp(self):
-        super(TestReviewNotesViewSetCreate, self).setUp()
+        super().setUp()
         self.addon = addon_factory(
             guid=generate_addon_guid(), name='My Addôn', slug='my-addon'
         )

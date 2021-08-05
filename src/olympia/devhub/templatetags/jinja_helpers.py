@@ -32,10 +32,10 @@ def dev_addon_listing_items(context, addons, src=None, notes=None):
 def dev_page_title(context, title=None, addon=None):
     """Wrapper for devhub page titles."""
     if addon:
-        title = '%s :: %s' % (title, addon.name)
+        title = f'{title} :: {addon.name}'
     else:
         devhub = gettext('Developer Hub')
-        title = '%s :: %s' % (title, devhub) if title else devhub
+        title = f'{title} :: {devhub}' if title else devhub
     return page_title(context, title)
 
 
@@ -99,7 +99,7 @@ def summarize_validation(validation):
     warnings = ngettext('{0} warning', '{0} warnings', validation.warnings).format(
         validation.warnings
     )
-    return '%s, %s' % (errors, warnings)
+    return f'{errors}, {warnings}'
 
 
 @library.global_function

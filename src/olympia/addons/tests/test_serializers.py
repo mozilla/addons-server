@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from django.conf import settings
 from django.test.utils import override_settings
 from django.urls import reverse
@@ -59,12 +58,12 @@ from olympia.versions.models import (
 )
 
 
-class AddonSerializerOutputTestMixin(object):
+class AddonSerializerOutputTestMixin:
     """Mixin containing tests to execute on both the regular and the ES Addon
     serializer."""
 
     def setUp(self):
-        super(AddonSerializerOutputTestMixin, self).setUp()
+        super().setUp()
         self.request = self.get_request('/')
 
     def get_request(self, path, data=None, **extra):
@@ -760,7 +759,7 @@ class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
     serializer_class = AddonSerializer
 
     def setUp(self):
-        super(TestAddonSerializerOutput, self).setUp()
+        super().setUp()
         self.action = 'retrieve'
 
     def serialize(self):
@@ -969,7 +968,7 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
     serializer_class = ESAddonSerializer
 
     def tearDown(self):
-        super(TestESAddonSerializerOutput, self).tearDown()
+        super().tearDown()
         self.empty_index('default')
         self.refresh()
 
@@ -1030,7 +1029,7 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
 
 class TestVersionSerializerOutput(TestCase):
     def setUp(self):
-        super(TestVersionSerializerOutput, self).setUp()
+        super().setUp()
         self.request = APIRequestFactory().get('/')
         self.request.version = 'v5'
 
@@ -1393,11 +1392,11 @@ class TestLanguageToolsSerializerOutput(TestCase):
 
 class TestESAddonAutoCompleteSerializer(ESTestCase):
     def setUp(self):
-        super(TestESAddonAutoCompleteSerializer, self).setUp()
+        super().setUp()
         self.request = APIRequestFactory().get('/')
 
     def tearDown(self):
-        super(TestESAddonAutoCompleteSerializer, self).tearDown()
+        super().tearDown()
         self.empty_index('default')
         self.refresh()
 

@@ -20,7 +20,5 @@ class OrderingAliasFilter(OrderingFilter):
         )
         # Replace field aliases with their actual field names.
         fields = [aliases.get(field, field) for field in fields]
-        out = super(OrderingAliasFilter, self).remove_invalid_fields(
-            queryset, fields, view, request
-        )
+        out = super().remove_invalid_fields(queryset, fields, view, request)
         return out

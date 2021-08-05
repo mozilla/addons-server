@@ -52,7 +52,7 @@ def generate_auth_id():
 
 def get_anonymized_username():
     """Gets an anonymized username."""
-    return 'anonymous-{}'.format(force_str(binascii.b2a_hex(os.urandom(16))))
+    return f'anonymous-{force_str(binascii.b2a_hex(os.urandom(16)))}'
 
 
 class UserEmailField(forms.ModelChoiceField):
@@ -99,9 +99,7 @@ class UserManager(BaseUserManager, ManagerBase):
     def create_user(self, email, fxa_id=None, **kwargs):
         now = timezone.now()
         user = self.model(email=email, fxa_id=fxa_id, last_login=now, **kwargs)
-        log.info(
-            'Creating user with email {} and username {}'.format(email, user.username)
-        )
+        log.info(f'Creating user with email {email} and username {user.username}')
         user.save(using=self._db)
         return user
 
@@ -206,12 +204,12 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         ]
 
     def __init__(self, *args, **kw):
-        super(UserProfile, self).__init__(*args, **kw)
+        super().__init__(*args, **kw)
         if self.username:
             self.username = force_str(self.username)
 
     def __str__(self):
-        return '%s: %s' % (self.id, self.display_name or self.username)
+        return f'{self.id}: {self.display_name or self.username}'
 
     @classmethod
     def get_lookup_field(cls, identifier):
@@ -372,7 +370,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
                 [
                     split_id.group(2) or '0',
                     split_id.group(1) or '0',
-                    '%s.png?modified=%s' % (self.id, modified),
+                    f'{self.id}.png?modified={modified}',
                 ]
             )
             return user_media_url('userpics') + path
@@ -414,10 +412,10 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             addon__status=amo.STATUS_APPROVED,
         ).exists()
         if is_public != pre:
-            log.info('Updating %s.is_public from %s to %s' % (self.pk, pre, is_public))
+            log.info(f'Updating {self.pk}.is_public from {pre} to {is_public}')
             self.update(is_public=is_public)
         else:
-            log.info('Not changing %s.is_public from %s' % (self.pk, pre))
+            log.info(f'Not changing {self.pk}.is_public from {pre}')
 
     @property
     def name(self):
@@ -479,7 +477,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             for field_name in cls.ANONYMIZED_FIELDS
         }
         for user in users:
-            log.info('Anonymizing username for {}'.format(user.pk))
+            log.info(f'Anonymizing username for {user.pk}')
             for field_name, field in fields.items():
                 setattr(user, field_name, field.get_default())
             user.delete_picture()
@@ -788,7 +786,7 @@ class NormalizeEmailMixin:
         """
         local_part, _, domain = email.rpartition('@')
         local_part = local_part.partition('+')[0].replace('.', '')
-        normalized_email = '%s@%s' % (local_part, domain)
+        normalized_email = f'{local_part}@{domain}'
         if normalized_email != email:
             log.info('Normalized email from %s to %s', email, normalized_email)
         return normalized_email

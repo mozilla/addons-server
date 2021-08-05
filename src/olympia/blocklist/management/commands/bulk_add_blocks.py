@@ -26,7 +26,7 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **options):
-        with open(options.get('guids_input'), 'r') as guid_file:
+        with open(options.get('guids_input')) as guid_file:
             input_guids = guid_file.read()
         guids = splitlines(input_guids)
 

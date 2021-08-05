@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import datetime
 import os
 
@@ -76,7 +75,7 @@ class VersionManager(ManagerBase):
         self.include_deleted = include_deleted
 
     def get_queryset(self):
-        qs = super(VersionManager, self).get_queryset()
+        qs = super().get_queryset()
         if not self.include_deleted:
             qs = qs.exclude(deleted=True)
         return qs.transform(Version.transformer)
@@ -156,7 +155,7 @@ def source_upload_path(instance, filename):
     return os.path.join(
         'version_source',
         utils.id_to_path(instance.pk),
-        '{0}-{1}-src{2}'.format(instance.addon.slug, instance.version, ext),
+        f'{instance.addon.slug}-{instance.version}-src{ext}',
     )
 
 
@@ -280,7 +279,7 @@ class Version(OnChangeMixin, ModelBase):
             # We override the IP because it might be called from a task and we
             # want the original IP from the submitter.
             log.info(
-                'New version: %r (%s) from %r' % (version, version.id, upload),
+                f'New version: {version!r} ({version.id}) from {upload!r}',
                 extra={
                     'email': email,
                     'guid': addon.guid,
@@ -419,11 +418,11 @@ class Version(OnChangeMixin, ModelBase):
         # To avoid a circular import
         from .tasks import delete_preview_files
 
-        log.info('Version deleted: %r (%s)' % (self, self.id))
+        log.info(f'Version deleted: {self!r} ({self.id})')
         activity.log_create(amo.LOG.DELETE_VERSION, self.addon, str(self.version))
 
         if hard:
-            super(Version, self).delete()
+            super().delete()
         else:
             # By default we soft delete so we can keep the files for comparison
             # and a record of the version number.
@@ -639,7 +638,7 @@ class Version(OnChangeMixin, ModelBase):
         if not versions:
             return
 
-        ids = set(v.id for v in versions)
+        ids = {v.id for v in versions}
         avs = ApplicationsVersions.objects.filter(version__in=ids).select_related(
             'min', 'max'
         )
@@ -647,7 +646,7 @@ class Version(OnChangeMixin, ModelBase):
 
         def rollup(xs):
             groups = sorted_groupby(xs, 'version_id')
-            return dict((k, list(vs)) for k, vs in groups)
+            return {k: list(vs) for k, vs in groups}
 
         av_dict, file_dict = rollup(avs), rollup(files)
 
@@ -666,7 +665,7 @@ class Version(OnChangeMixin, ModelBase):
 
         PromotedApproval = versions[0].promoted_approvals.model
 
-        ids = set(v.id for v in versions)
+        ids = {v.id for v in versions}
 
         approvals = list(
             PromotedApproval.objects.filter(version_id__in=ids).values_list(
@@ -695,7 +694,7 @@ class Version(OnChangeMixin, ModelBase):
         """Attach all the activity to the versions."""
         from olympia.activity.models import VersionLog
 
-        ids = set(v.id for v in versions)
+        ids = {v.id for v in versions}
         if not versions:
             return
 
@@ -748,7 +747,7 @@ class Version(OnChangeMixin, ModelBase):
     @classmethod
     def transformer_auto_approvable(cls, versions):
         """Attach  auto-approvability information to the versions."""
-        ids = set(v.id for v in versions)
+        ids = {v.id for v in versions}
         if not ids:
             return
 
@@ -1141,4 +1140,4 @@ class ApplicationsVersions(models.Model):
             return gettext('{app} {min} and later').format(
                 app=self.get_application_display(), min=self.min
             )
-        return '%s %s - %s' % (self.get_application_display(), self.min, self.max)
+        return f'{self.get_application_display()} {self.min} - {self.max}'

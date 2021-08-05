@@ -18,7 +18,7 @@ patched_modules = (
 if any(module in sys.modules for module in patched_modules):
     existing_modules = [(module, module in sys.modules) for module in patched_modules]
     raise ImportError(
-        'this monkey patch was not applied early enough. {0}'.format(existing_modules)
+        f'this monkey patch was not applied early enough. {existing_modules}'
     )
 
 from defusedxml import defuse_stdlib  # noqa

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import os
 import tarfile
 import zipfile
@@ -90,7 +89,7 @@ class AddonFormBase(TranslationFormMixin, forms.ModelForm):
     def __init__(self, *args, **kw):
         self.request = kw.pop('request')
         self.version = kw.pop('version', None)
-        super(AddonFormBase, self).__init__(*args, **kw)
+        super().__init__(*args, **kw)
         for field in ('name', 'summary'):
             if field in self.fields:
                 self.fields[field].validators.append(
@@ -195,7 +194,7 @@ class BaseCategoryFormSet(BaseFormSet):
     def __init__(self, *args, **kw):
         self.addon = kw.pop('addon')
         self.request = kw.pop('request', None)
-        super(BaseCategoryFormSet, self).__init__(*args, **kw)
+        super().__init__(*args, **kw)
         self.initial = []
         apps = sorted(self.addon.compatible_apps.keys(), key=lambda x: x.id)
 
@@ -318,7 +317,7 @@ class AdditionalDetailsForm(AddonFormBase):
         # Make sure we have the required translations in the new locale.
         required = 'name', 'summary', 'description'
         if not self.errors and 'default_locale' in self.changed_data:
-            fields = dict((k, getattr(self.instance, k + '_id')) for k in required)
+            fields = {k: getattr(self.instance, k + '_id') for k in required}
             locale = self.cleaned_data['default_locale']
             ids = filter(None, fields.values())
             qs = Translation.objects.filter(
@@ -458,7 +457,7 @@ class BaseModelFormSet(BaseModelFormSet):
     def is_valid(self):
         # clean() won't get called in is_valid() if all the rows are getting
         # deleted. We can't allow deleting everything.
-        rv = super(BaseModelFormSet, self).is_valid()
+        rv = super().is_valid()
         return rv and not any(self.errors) and not bool(self.non_form_errors())
 
 
@@ -523,7 +522,7 @@ class DeleteForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         self.addon = kwargs.pop('addon')
-        super(DeleteForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     def clean_slug(self):
         data = self.cleaned_data
@@ -533,7 +532,7 @@ class DeleteForm(forms.Form):
 
 class LicenseRadioSelect(forms.RadioSelect):
     def get_context(self, name, value, attrs):
-        context = super(LicenseRadioSelect, self).get_context(name, value, attrs)
+        context = super().get_context(name, value, attrs)
 
         # Make sure the `class` is only set on the radio fields and
         # not on the `ul`. This avoids style issues among other things.
@@ -546,7 +545,7 @@ class LicenseRadioSelect(forms.RadioSelect):
     def create_option(
         self, name, value, label, selected, index, subindex=None, attrs=None
     ):
-        context = super(LicenseRadioSelect, self).create_option(
+        context = super().create_option(
             name=name,
             value=value,
             label=label,
@@ -608,7 +607,7 @@ class LicenseForm(AMOModelForm):
         else:
             self.cc_licenses = kwargs.pop('cc', False)
 
-        super(LicenseForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         licenses = License.objects.builtins(cc=self.cc_licenses).filter(on_form=True)
         cs = [(x.builtin, x) for x in licenses]
         if not self.cc_licenses:
@@ -672,7 +671,7 @@ class LicenseForm(AMOModelForm):
         else:
             # We're not dealing with a builtin license, so save it to the
             # database.
-            license = super(LicenseForm, self).save(*args, **kw)
+            license = super().save(*args, **kw)
 
         if self.version:
             if (changed and is_other) or license != self.version.license:
@@ -712,7 +711,7 @@ class PolicyForm(TranslationFormMixin, AMOModelForm):
         kw['initial'] = dict(
             has_priv=self._has_field('privacy_policy'), has_eula=self._has_field('eula')
         )
-        super(PolicyForm, self).__init__(*args, **kw)
+        super().__init__(*args, **kw)
 
     def _has_field(self, name):
         # If there's a eula in any language, this addon has a eula.
@@ -724,7 +723,7 @@ class PolicyForm(TranslationFormMixin, AMOModelForm):
         fields = ('eula', 'privacy_policy')
 
     def save(self, commit=True):
-        ob = super(PolicyForm, self).save(commit)
+        ob = super().save(commit)
         for k, field in (('has_eula', 'eula'), ('has_priv', 'privacy_policy')):
             if not self.cleaned_data[k]:
                 delete_translation(self.instance, field)
@@ -735,7 +734,7 @@ class PolicyForm(TranslationFormMixin, AMOModelForm):
         return ob
 
 
-class WithSourceMixin(object):
+class WithSourceMixin:
     def get_invalid_source_file_type_message(self):
         valid_extensions_string = '(%s)' % ', '.join(VALID_SOURCE_EXTENSIONS)
         return gettext(
@@ -767,7 +766,7 @@ class WithSourceMixin(object):
                     raise forms.ValidationError(
                         self.get_invalid_source_file_type_message()
                     )
-            except (zipfile.BadZipFile, tarfile.ReadError, IOError, EOFError):
+            except (zipfile.BadZipFile, tarfile.ReadError, OSError, EOFError):
                 raise forms.ValidationError(gettext('Invalid or broken archive.'))
         return source
 
@@ -783,7 +782,7 @@ class SourceFileInput(forms.widgets.ClearableFileInput):
     template_name = 'devhub/addons/includes/source_file_input.html'
 
     def get_context(self, name, value, attrs):
-        context = super(SourceFileInput, self).get_context(name, value, attrs)
+        context = super().get_context(name, value, attrs)
         if value and hasattr(value, 'instance'):
             context['download_url'] = reverse(
                 'downloads.source', args=(value.instance.pk,)
@@ -828,7 +827,7 @@ class CompatForm(forms.ModelForm):
         # absent, it probably means form_kwargs={'version': version} is missing
         # from the instantiation of the formset.
         version = kwargs.pop('version')
-        super(CompatForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         if self.initial:
             app = self.initial['application']
         else:
@@ -860,7 +859,7 @@ class CompatForm(forms.ModelForm):
 
 class BaseCompatFormSet(BaseModelFormSet):
     def __init__(self, *args, **kwargs):
-        super(BaseCompatFormSet, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         # We always want a form for each app, so force extras for apps
         # the add-on does not already have.
         version = self.form_kwargs.get('version')
@@ -945,7 +944,7 @@ class CompatAppSelectWidget(forms.CheckboxSelectMultiple):
     def create_option(
         self, name, value, label, selected, index, subindex=None, attrs=None
     ):
-        data = super(CompatAppSelectWidget, self).create_option(
+        data = super().create_option(
             name=name,
             value=value,
             label=label,
@@ -989,7 +988,7 @@ class NewUploadForm(forms.Form):
     def __init__(self, *args, **kw):
         self.request = kw.pop('request')
         self.addon = kw.pop('addon', None)
-        super(NewUploadForm, self).__init__(*args, **kw)
+        super().__init__(*args, **kw)
 
         # Preselect compatible apps based on the current version
         if self.addon and self.addon.current_version:
@@ -1115,7 +1114,7 @@ class SourceForm(WithSourceMixin, forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request')
-        super(SourceForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     def clean_source(self):
         source = self.cleaned_data.get('source')
@@ -1128,7 +1127,7 @@ class SourceForm(WithSourceMixin, forms.ModelForm):
             )
         # At this point we know we can proceed with the actual archive
         # validation.
-        return super(SourceForm, self).clean_source()
+        return super().clean_source()
 
 
 class DescribeForm(AddonFormBase):
@@ -1155,7 +1154,7 @@ class DescribeForm(AddonFormBase):
         )
 
     def __init__(self, *args, **kw):
-        super(DescribeForm, self).__init__(*args, **kw)
+        super().__init__(*args, **kw)
         content_waffle = waffle.switch_is_active('content-optimization')
         if not content_waffle or self.instance.type != amo.ADDON_EXTENSION:
             description = self.fields['description']
@@ -1169,12 +1168,12 @@ class DescribeForm(AddonFormBase):
             description.required = False
 
 
-class CombinedNameSummaryCleanMixin(object):
+class CombinedNameSummaryCleanMixin:
     MAX_LENGTH = 70
 
     def __init__(self, *args, **kw):
         self.should_auto_crop = kw.pop('should_auto_crop', False)
-        super(CombinedNameSummaryCleanMixin, self).__init__(*args, **kw)
+        super().__init__(*args, **kw)
         # We need the values for the template but not the MaxLengthValidators
         self.fields['name'].max_length = (
             self.MAX_LENGTH - self.fields['summary'].min_length
@@ -1188,7 +1187,7 @@ class CombinedNameSummaryCleanMixin(object):
             'Ensure name and summary combined are at most '
             '{limit_value} characters (they have {show_value}).'
         )
-        super(CombinedNameSummaryCleanMixin, self).clean()
+        super().clean()
         name_summary_locales = set(
             list(self.cleaned_data.get('name', {}).keys())
             + list(self.cleaned_data.get('summary', {}).keys())
@@ -1273,7 +1272,7 @@ class PreviewForm(forms.ModelForm):
                 # User has no desire to save this preview.
                 return
 
-            super(PreviewForm, self).save(commit=commit)
+            super().save(commit=commit)
             if self.cleaned_data['upload_hash']:
                 upload_hash = self.cleaned_data['upload_hash']
                 upload_path = os.path.join(settings.TMP_PATH, 'preview', upload_hash)
@@ -1377,7 +1376,7 @@ class SingleCategoryForm(forms.Form):
         self.request = kw.pop('request', None)
         if len(self.addon.all_categories) > 0:
             kw['initial'] = {'category': self.addon.all_categories[0].slug}
-        super(SingleCategoryForm, self).__init__(*args, **kw)
+        super().__init__(*args, **kw)
 
         sorted_cats = sorted(
             CATEGORIES_NO_APP[self.addon.type].items(), key=lambda slug_cat: slug_cat[0]

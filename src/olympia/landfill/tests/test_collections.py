@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase
@@ -9,7 +8,7 @@ from olympia.landfill.collection import generate_collection
 
 class CollectionsTests(TestCase):
     def setUp(self):
-        super(CollectionsTests, self).setUp()
+        super().setUp()
         self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
 
     def test_collections_themes_generation(self):

@@ -130,7 +130,7 @@ class TestLoginStartBaseView(WithDynamicEndpoints, TestCase):
     def test_to_is_excluded_when_unsafe(self):
         path = 'https://www.google.com'
         self.initialize_session({})
-        response = self.client.get('{url}?to={path}'.format(path=path, url=self.url))
+        response = self.client.get(f'{self.url}?to={path}')
         url = urlparse(response['location'])
         query = parse_qs(url.query)
         assert ':' not in query['state'][0]
@@ -138,9 +138,9 @@ class TestLoginStartBaseView(WithDynamicEndpoints, TestCase):
     def test_allows_code_manager_url(self):
         self.initialize_session({})
         code_manager_url = 'https://code.example.org'
-        to = '{}/foobar'.format(code_manager_url)
+        to = f'{code_manager_url}/foobar'
         with override_settings(CODE_MANAGER_URL=code_manager_url):
-            response = self.client.get('{url}?to={to}'.format(to=to, url=self.url))
+            response = self.client.get(f'{self.url}?to={to}')
         url = urlparse(response['location'])
         query = parse_qs(url.query)
         state_parts = query['state'][0].split(':')
@@ -149,9 +149,9 @@ class TestLoginStartBaseView(WithDynamicEndpoints, TestCase):
     def test_allows_absolute_urls(self):
         self.initialize_session({})
         domain = 'example.org'
-        to = 'https://{}/foobar'.format(domain)
+        to = f'https://{domain}/foobar'
         with override_settings(DOMAIN=domain):
-            response = self.client.get('{url}?to={to}'.format(to=to, url=self.url))
+            response = self.client.get(f'{self.url}?to={to}')
         url = urlparse(response['location'])
         query = parse_qs(url.query)
         state_parts = query['state'][0].split(':')
@@ -505,7 +505,7 @@ class TestWithUser(TestCase):
     def test_dynamic_configuration(self):
         fxa_config = {'some': 'config'}
 
-        class LoginView(object):
+        class LoginView:
             def get_fxa_config(self, request):
                 return fxa_config
 
@@ -555,7 +555,7 @@ class TestWithUser(TestCase):
             'id_token_hint': ['someopenidtoken'],
             'prompt': ['none'],
             'scope': ['profile openid'],
-            'state': ['some-blob:{next_path}'.format(next_path=force_str(next_path))],
+            'state': [f'some-blob:{force_str(next_path)}'],
         }
 
     def _test_should_continue_without_redirect_for_two_factor_auth(
@@ -1036,7 +1036,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
             None,
         )
         domain = 'example.org'
-        next_path = 'https://{}/path'.format(domain)
+        next_path = f'https://{domain}/path'
         with override_settings(DOMAIN=domain):
             response = self.client.get(
                 self.url,
@@ -1060,7 +1060,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
             None,
         )
         code_manager_url = 'https://example.org'
-        next_path = '{}/path'.format(code_manager_url)
+        next_path = f'{code_manager_url}/path'
         with override_settings(CODE_MANAGER_URL=code_manager_url):
             response = self.client.get(
                 self.url,
@@ -1088,7 +1088,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
             None,
         )
         domain = 'example.org'
-        next_path = 'https://{}/path'.format(domain)
+        next_path = f'https://{domain}/path'
         with override_settings(DOMAIN=domain):
             response = self.client.get(
                 self.url,
@@ -1119,7 +1119,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
             None,
         )
         domain = 'example.org'
-        next_path = 'http://{}/path'.format(domain)
+        next_path = f'http://{domain}/path'
         with override_settings(DOMAIN=domain):
             response = self.client.get(
                 self.url,
@@ -1152,7 +1152,7 @@ class TestAccountViewSet(TestCase):
     def setUp(self):
         self.user = user_factory()
         self.url = reverse_ns('account-detail', kwargs={'pk': self.user.pk})
-        super(TestAccountViewSet, self).setUp()
+        super().setUp()
 
     def test_profile_url(self):
         self.client.login_api(self.user)
@@ -1286,7 +1286,7 @@ class TestAccountViewSetUpdate(TestCase):
     def setUp(self):
         self.user = user_factory()
         self.url = reverse_ns('account-detail', kwargs={'pk': self.user.pk})
-        super(TestAccountViewSetUpdate, self).setUp()
+        super().setUp()
 
     def patch(self, url=None, data=None):
         return self.client.patch(url or self.url, data or self.update_data)
@@ -1501,7 +1501,7 @@ class TestAccountViewSetDelete(TestCase):
     def setUp(self):
         self.user = user_factory()
         self.url = reverse_ns('account-detail', kwargs={'pk': self.user.pk})
-        super(TestAccountViewSetDelete, self).setUp()
+        super().setUp()
 
     def test_delete(self):
         self.client.login_api(self.user)
@@ -1584,7 +1584,7 @@ class TestAccountViewSetDelete(TestCase):
 
 class TestAccountSuperCreate(APIKeyAuthTestMixin, TestCase):
     def setUp(self):
-        super(TestAccountSuperCreate, self).setUp()
+        super().setUp()
         create_switch('super-create-accounts', active=True)
         self.create_api_user()
         self.url = reverse_ns('accounts.super-create')
@@ -1762,7 +1762,7 @@ class TestSessionView(TestCase):
     def test_delete_when_authenticated(self):
         user = user_factory(fxa_id='123123412')
         token = self.login_user(user)
-        authorization = 'Bearer {token}'.format(token=token)
+        authorization = f'Bearer {token}'
         assert user.auth_id
         response = self.client.delete(
             reverse_ns('accounts.session'), HTTP_AUTHORIZATION=authorization
@@ -1779,7 +1779,7 @@ class TestSessionView(TestCase):
     def test_cors_headers_are_exposed(self):
         user = user_factory(fxa_id='123123412')
         token = self.login_user(user)
-        authorization = 'Bearer {token}'.format(token=token)
+        authorization = f'Bearer {token}'
         origin = 'http://example.org'
         response = self.client.delete(
             reverse_ns('accounts.session'),
@@ -1792,7 +1792,7 @@ class TestSessionView(TestCase):
     def test_delete_omits_cors_headers_when_there_is_no_origin(self):
         user = user_factory(fxa_id='123123412')
         token = self.login_user(user)
-        authorization = 'Bearer {token}'.format(token=token)
+        authorization = f'Bearer {token}'
         response = self.client.delete(
             reverse_ns('accounts.session'),
             HTTP_AUTHORIZATION=authorization,
@@ -1834,7 +1834,7 @@ class TestAccountNotificationViewSetList(TestCase):
         self.user = user_factory()
         addon_factory(users=[self.user])  # Developers get all notifications.
         self.url = reverse_ns('notification-list', kwargs={'user_pk': self.user.pk})
-        super(TestAccountNotificationViewSetList, self).setUp()
+        super().setUp()
 
     def test_defaults_only(self):
         self.client.login_api(self.user)
@@ -1995,7 +1995,7 @@ class TestAccountNotificationViewSetUpdate(TestCase):
         self.list_url = reverse_ns(
             'notification-list', kwargs={'user_pk': self.user.pk}
         )
-        super(TestAccountNotificationViewSetUpdate, self).setUp()
+        super().setUp()
 
     def test_new_notification(self):
         reply_notification = NOTIFICATIONS_BY_ID[3]
@@ -2131,7 +2131,7 @@ class TestAccountNotificationUnsubscribe(TestCase):
     def setUp(self):
         self.user = user_factory()
         self.url = reverse_ns('account-unsubscribe')
-        super(TestAccountNotificationUnsubscribe, self).setUp()
+        super().setUp()
 
     def test_unsubscribe_user(self):
         notification_const = NOTIFICATIONS_COMBINED[0]

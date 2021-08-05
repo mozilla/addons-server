@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from datetime import datetime, timedelta
 from unittest import mock
 from unittest.mock import Mock, patch
@@ -133,7 +132,7 @@ class TestViewExtensionQueueTable(TestCase):
 
 class TestUnlistedViewAllListTable(TestCase):
     def setUp(self):
-        super(TestUnlistedViewAllListTable, self).setUp()
+        super().setUp()
         self.table = ViewUnlistedAllListTable([])
 
     def test_addon_name(self):
@@ -894,7 +893,7 @@ class TestReviewHelper(TestReviewHelperBase):
         user = self.addon.listed_authors[0]
         ActivityLogToken.objects.create(version=self.version, user=user)
         uuid = self.version.token.get(user=user).uuid.hex
-        reply_email = 'reviewreply+%s@%s' % (uuid, settings.INBOUND_EMAIL_DOMAIN)
+        reply_email = f'reviewreply+{uuid}@{settings.INBOUND_EMAIL_DOMAIN}'
 
         templates = (
             'extension_nominated_to_approved',

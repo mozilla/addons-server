@@ -46,7 +46,7 @@ class FileUploadSerializer(serializers.ModelSerializer):
 
     def __init__(self, *args, **kwargs):
         self.version = kwargs.pop('version', None)
-        super(FileUploadSerializer, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     def get_url(self, instance):
         return absolutify(

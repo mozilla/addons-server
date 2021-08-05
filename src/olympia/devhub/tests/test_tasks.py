@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import json
 import os
 import shutil
@@ -98,7 +97,7 @@ def _uploader(resize_size, final_size):
 
         with mock.patch('olympia.amo.utils.pngcrush_image') as pngcrush_mock:
             return_value = tasks.resize_icon(src.name, dest_name, [rsize])
-        dest_image = '%s-%s.png' % (dest_name, rsize)
+        dest_image = f'{dest_name}-{rsize}.png'
         assert pngcrush_mock.call_count == 1
         assert pngcrush_mock.call_args_list[0][0][0] == dest_image
         assert image_size(dest_image) == expected_size
@@ -199,7 +198,7 @@ class ValidatorTestCase(TestCase):
 
 class TestMeasureValidationTime(UploadTest, TestCase):
     def setUp(self):
-        super(TestMeasureValidationTime, self).setUp()
+        super().setUp()
         # Set created time back (just for sanity) otherwise the delta
         # would be in the microsecond range.
         self.upload = self.get_upload(
@@ -309,7 +308,7 @@ class TestMeasureValidationTime(UploadTest, TestCase):
 
 class TestTrackValidatorStats(TestCase):
     def setUp(self):
-        super(TestTrackValidatorStats, self).setUp()
+        super().setUp()
         patch = mock.patch('olympia.devhub.tasks.statsd.incr')
         self.mock_incr = patch.start()
         self.addCleanup(patch.stop)
@@ -363,7 +362,7 @@ class TestRunAddonsLinter(UploadTest, ValidatorTestCase):
     )
 
     def setUp(self):
-        super(TestRunAddonsLinter, self).setUp()
+        super().setUp()
 
         self.valid_path = get_addon_file('valid_webextension.xpi')
         self.invalid_path = get_addon_file('invalid_webextension_invalid_id.xpi')
@@ -657,7 +656,7 @@ class TestSubmitFile(UploadTest, TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
-        super(TestSubmitFile, self).setUp()
+        super().setUp()
         self.addon = Addon.objects.get(pk=3615)
         patcher = mock.patch('olympia.devhub.tasks.create_version_for_upload')
         self.create_version_for_upload = patcher.start()
@@ -684,7 +683,7 @@ class TestCreateVersionForUpload(UploadTest, TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
-        super(TestCreateVersionForUpload, self).setUp()
+        super().setUp()
         self.addon = Addon.objects.get(pk=3615)
         self.mocks = {}
         for key in ['Version.from_upload', 'parse_addon']:

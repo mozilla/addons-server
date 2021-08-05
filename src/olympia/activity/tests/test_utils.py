@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import copy
 import datetime
 import json
@@ -307,7 +306,7 @@ class TestLogAndNotify(TestCase):
     def _check_email(self, call, url, reason_text):
         subject = call[0][0]
         body = call[0][1]
-        assert subject == 'Mozilla Add-ons: %s %s' % (
+        assert subject == 'Mozilla Add-ons: {} {}'.format(
             self.addon.name,
             self.version.version,
         )
@@ -663,5 +662,5 @@ def test_send_activity_mail():
     assert mail.outbox[0].extra_headers['References'] == reference_header
     assert mail.outbox[0].extra_headers['Message-ID'] == message_id
 
-    reply_email = 'reviewreply+%s@%s' % (uuid, settings.INBOUND_EMAIL_DOMAIN)
+    reply_email = f'reviewreply+{uuid}@{settings.INBOUND_EMAIL_DOMAIN}'
     assert mail.outbox[0].reply_to == [reply_email]

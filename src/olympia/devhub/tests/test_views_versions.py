@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import datetime
 import os.path
 import zipfile
@@ -37,7 +36,7 @@ class TestVersion(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
-        super(TestVersion, self).setUp()
+        super().setUp()
         self.client.login(email='del@icio.us')
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.addon = self.get_addon()
@@ -853,9 +852,11 @@ class TestVersionEditDetails(TestVersionEditBase):
 
         # Check each message was sent separately to who we are meant to notify.
         assert mail.outbox[0].to != mail.outbox[1].to != mail.outbox[2].to
-        assert set(mail.outbox[0].to + mail.outbox[1].to + mail.outbox[2].to) == set(
-            [reviewer.email, extra_author.email, staff_user.email]
-        )
+        assert set(mail.outbox[0].to + mail.outbox[1].to + mail.outbox[2].to) == {
+            reviewer.email,
+            extra_author.email,
+            staff_user.email,
+        }
 
     def test_should_not_accept_exe_source_file(self):
         with temp.NamedTemporaryFile(
@@ -898,7 +899,7 @@ class TestVersionEditDetails(TestVersionEditBase):
 
 class TestVersionEditStaticTheme(TestVersionEditBase):
     def setUp(self):
-        super(TestVersionEditStaticTheme, self).setUp()
+        super().setUp()
         self.addon.update(type=amo.ADDON_STATICTHEME)
 
     def test_no_compat(self):
@@ -914,7 +915,7 @@ class TestVersionEditStaticTheme(TestVersionEditBase):
 
 class TestVersionEditCompat(TestVersionEditBase):
     def setUp(self):
-        super(TestVersionEditCompat, self).setUp()
+        super().setUp()
         self.android_32pre, _created = AppVersion.objects.get_or_create(
             application=amo.ANDROID.id, version='3.2a1pre'
         )
@@ -934,7 +935,7 @@ class TestVersionEditCompat(TestVersionEditBase):
     def formset(self, *args, **kw):
         defaults = formset(prefix='files')
         defaults.update(kw)
-        return super(TestVersionEditCompat, self).formset(*args, **defaults)
+        return super().formset(*args, **defaults)
 
     def test_add_appversion(self):
         form = self.client.get(self.url).context['compat_form'].initial_forms[0]

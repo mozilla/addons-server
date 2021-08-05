@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from unittest import mock
 
 from django.core import mail
@@ -304,7 +303,7 @@ class TestRefreshTest(ESTestCase):
     fixtures = ['base/users']
 
     def setUp(self):
-        super(TestRefreshTest, self).setUp()
+        super().setUp()
         self.addon = addon_factory()
         self.user = UserProfile.objects.all()[0]
         self.refresh()

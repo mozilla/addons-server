@@ -51,7 +51,7 @@ class VersionReviewNotesViewSet(
         return alog.filter(action__in=amo.LOG_REVIEW_QUEUE_DEVELOPER)
 
     def get_addon_object(self):
-        return super(VersionReviewNotesViewSet, self).get_addon_object(
+        return super().get_addon_object(
             permission_classes=self.permission_classes, georestriction_classes=[]
         )
 
@@ -75,7 +75,7 @@ class VersionReviewNotesViewSet(
         self.get_addon_object()
 
     def get_serializer_context(self):
-        ctx = super(VersionReviewNotesViewSet, self).get_serializer_context()
+        ctx = super().get_serializer_context()
         ctx['to_highlight'] = list(
             filter_queryset_to_pending_replies(self.get_queryset()).values_list(
                 'pk', flat=True
@@ -105,7 +105,7 @@ class VersionReviewNotesViewSet(
 log = olympia.core.logger.getLogger('z.amo.activity')
 
 
-class EmailCreationPermission(object):
+class EmailCreationPermission:
     """Permit if client's IP address is allowed."""
 
     def has_permission(self, request, view):
@@ -118,13 +118,13 @@ class EmailCreationPermission(object):
 
         secret_key = data.get('SecretKey', '')
         if not secret_key == settings.INBOUND_EMAIL_SECRET_KEY:
-            log.info('Invalid secret key [%s] provided; data [%s]' % (secret_key, data))
+            log.info(f'Invalid secret key [{secret_key}] provided; data [{data}]')
             return False
 
         remote_ip = request.META.get('REMOTE_ADDR', '')
         allowed_ips = settings.ALLOWED_CLIENTS_EMAIL_API
         if allowed_ips and remote_ip not in allowed_ips:
-            log.info('Request from invalid ip address [%s]' % (remote_ip,))
+            log.info(f'Request from invalid ip address [{remote_ip}]')
             return False
 
         return True

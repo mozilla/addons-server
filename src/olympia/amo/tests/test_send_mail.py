@@ -26,13 +26,13 @@ class TestSendMail(TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
-        super(TestSendMail, self).setUp()
+        super().setUp()
         self._email_deny = list(getattr(settings, 'EMAIL_DENY_LIST', []))
 
     def tearDown(self):
         translation.activate('en_US')
         settings.EMAIL_DENY_LIST = self._email_deny
-        super(TestSendMail, self).tearDown()
+        super().tearDown()
 
     def test_send_string(self):
         to = 'f@f.com'
@@ -293,7 +293,7 @@ class TestSendMail(TestCase):
         def make_backend(*args, **kwargs):
             if next(throw_error):
 
-                class BrokenMessage(object):
+                class BrokenMessage:
                     def __init__(*args, **kwargs):
                         pass
 

@@ -106,7 +106,7 @@ API_TOKEN_COOKIE = 'frontend_auth_token'
 def safe_redirect(request, url, action):
     if not _is_safe_url(url, request):
         url = reverse('home')
-    log.info('Redirecting after {} to: {}'.format(action, url))
+    log.info(f'Redirecting after {action} to: {url}')
     return HttpResponseRedirect(url)
 
 
@@ -149,14 +149,14 @@ def register_user(identity):
     user = UserProfile.objects.create_user(
         email=identity['email'], fxa_id=identity['uid']
     )
-    log.info('Created user {} from FxA'.format(user))
+    log.info(f'Created user {user} from FxA')
     statsd.incr('accounts.account_created_from_fxa')
     return user
 
 
 def reregister_user(user):
     user.update(deleted=False)
-    log.info('Re-created deleted user {} from FxA'.format(user))
+    log.info(f'Re-created deleted user {user} from FxA')
     statsd.incr('accounts.account_created_from_fxa')
 
 
@@ -183,7 +183,7 @@ def update_user(user, identity):
 
 def login_user(sender, request, user, identity):
     update_user(user, identity)
-    log.info('Logging in user {} from FxA'.format(user))
+    log.info(f'Logging in user {user} from FxA')
     user_logged_in.send(sender=sender, request=request, user=user)
     login(request, user)
 
@@ -211,7 +211,7 @@ def parse_next_path(state_parts, request=None):
                 'utf-8'
             )
         except (TypeError, ValueError):
-            log.info('Error decoding next_path {}'.format(encoded_path))
+            log.info(f'Error decoding next_path {encoded_path}')
             pass
     if not _is_safe_url(next_path, request):
         next_path = None
@@ -351,14 +351,14 @@ def add_api_token_to_response(response, user):
     return response
 
 
-class FxAConfigMixin(object):
+class FxAConfigMixin:
     DEFAULT_FXA_CONFIG_NAME = settings.DEFAULT_FXA_CONFIG_NAME
     ALLOWED_FXA_CONFIGS = settings.ALLOWED_FXA_CONFIGS
 
     def get_config_name(self, request):
         config_name = request.GET.get('config', self.DEFAULT_FXA_CONFIG_NAME)
         if config_name not in self.ALLOWED_FXA_CONFIGS:
-            log.info('Using default FxA config instead of {}'.format(config_name))
+            log.info(f'Using default FxA config instead of {config_name}')
             config_name = self.DEFAULT_FXA_CONFIG_NAME
         return config_name
 
@@ -502,7 +502,7 @@ class AccountViewSet(
         identifier = self.kwargs.get('pk')
         self.lookup_field = self.get_lookup_field(identifier)
         self.kwargs[self.lookup_field] = identifier
-        self.instance = super(AccountViewSet, self).get_object()
+        self.instance = super().get_object()
         # action won't exist for other classes that are using this ViewSet.
         can_view_instance = (
             not getattr(self, 'action', None)
@@ -593,15 +593,15 @@ class AccountSuperCreate(APIView):
 
         group = serializer.validated_data.get('group', None)
         user_token = force_str(binascii.b2a_hex(os.urandom(4)))
-        username = data.get('username', 'super-created-{}'.format(user_token))
+        username = data.get('username', f'super-created-{user_token}')
         fxa_id = data.get('fxa_id', None)
-        email = data.get('email', '{}@addons.mozilla.org'.format(username))
+        email = data.get('email', f'{username}@addons.mozilla.org')
 
         user = UserProfile.objects.create(
             username=username,
             email=email,
             fxa_id=fxa_id,
-            display_name='Super Created {}'.format(user_token),
+            display_name=f'Super Created {user_token}',
             notes='auto-generated from API',
         )
         user.save()
@@ -640,7 +640,7 @@ class AccountSuperCreate(APIView):
         )
 
 
-class AccountNotificationMixin(object):
+class AccountNotificationMixin:
     def get_user(self):
         raise NotImplementedError
 

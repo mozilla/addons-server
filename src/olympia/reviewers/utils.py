@@ -40,7 +40,7 @@ import markupsafe
 log = olympia.core.logger.getLogger('z.mailer')
 
 
-class ItemStateTable(object):
+class ItemStateTable:
     def increment_item(self):
         self.item_number += 1
 
@@ -230,7 +230,7 @@ class ModernAddonQueueTable(ReviewerQueueTable):
     def render_flags(self, record):
         if not hasattr(record, 'flags'):
             record.flags = get_flags(record, record.current_version)
-        return super(ModernAddonQueueTable, self).render_flags(record)
+        return super().render_flags(record)
 
     def _get_addon_name_url(self, record):
         return reverse('reviewers.review', args=[record.slug])
@@ -437,7 +437,7 @@ class MadReviewTable(ScannersReviewTable):
         )
 
 
-class ReviewHelper(object):
+class ReviewHelper:
     """
     A class that builds enough to render the form back to the user and
     process off to the correct handler.
@@ -765,7 +765,7 @@ class ReviewHelper(object):
         return self.actions[action]['method']()
 
 
-class ReviewBase(object):
+class ReviewBase:
     def __init__(
         self, request, addon, version, review_type, content_review=False, user=None
     ):
@@ -873,7 +873,7 @@ class ReviewBase(object):
         data['tested'] = ''
         os, app = data.get('operating_systems'), data.get('applications')
         if os and app:
-            data['tested'] = 'Tested on %s with %s' % (os, app)
+            data['tested'] = f'Tested on {os} with {app}'
         elif os and not app:
             data['tested'] = 'Tested on %s' % os
         elif not os and app:
@@ -1086,7 +1086,7 @@ class ReviewBase(object):
         )
 
         self.log_action(log_action_type)
-        log.info('%s for %s' % (log_action_type.short, self.addon))
+        log.info(f'{log_action_type.short} for {self.addon}')
 
     def approve_content(self):
         """Approve content of an add-on."""

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from olympia.versions.compare import (
     MAX_VERSION_PART,
     version_dict,

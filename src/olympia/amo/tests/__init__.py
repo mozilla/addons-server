@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import os
 import random
 import shutil
@@ -99,7 +98,7 @@ def get_es_index_name(key):
     ES_INDEXES will give the aliases, and this method will give the indices
     the aliases point to."""
     value = settings.ES_INDEXES[key]
-    return '%s%s' % (value, ES_INDEX_SUFFIXES[key])
+    return f'{value}{ES_INDEX_SUFFIXES[key]}'
 
 
 def setup_es_test_data(es):
@@ -166,7 +165,7 @@ def formset(*args, **kw):
         prefix + '-INITIAL_FORMS': initial_count,
     }
     for idx, d in enumerate(args):
-        data.update(('%s-%s-%s' % (prefix, idx, k), v) for k, v in d.items())
+        data.update((f'{prefix}-{idx}-{k}', v) for k, v in d.items())
     data.update(kw)
     return data
 
@@ -237,7 +236,7 @@ def assert_url_equal(url, expected, compare_host=False):
 
 
 def compare_url_part(part, expected):
-    assert part == expected, 'Expected %s, got %s' % (expected, part)
+    assert part == expected, f'Expected {expected}, got {part}'
 
 
 def create_sample(name=None, **kw):
@@ -279,7 +278,7 @@ def create_flag(name=None, **kw):
     return flag
 
 
-class PatchMixin(object):
+class PatchMixin:
     def patch(self, thing):
         patcher = mock.patch(thing, autospec=True)
         self.addCleanup(patcher.stop)
@@ -296,7 +295,7 @@ def initialize_session(request, session_data):
     request.session.save()
 
 
-class InitializeSessionMixin(object):
+class InitializeSessionMixin:
     def initialize_session(self, session_data):
         request = HttpRequest()
         initialize_session(request, session_data)
@@ -347,7 +346,7 @@ class APITestClient(APIClient):
         """
         prefix = WebTokenAuthentication.auth_header_prefix
         token = self.generate_api_token(user)
-        self.defaults['HTTP_AUTHORIZATION'] = '{0} {1}'.format(prefix, token)
+        self.defaults['HTTP_AUTHORIZATION'] = f'{prefix} {token}'
 
     def logout_api(self):
         """
@@ -416,7 +415,7 @@ def activate_locale(locale=None, app=None):
     old_locale = translation.get_language()
     if locale:
         rf = RequestFactory()
-        prefixer = Prefixer(rf.get('/%s/' % (locale,)))
+        prefixer = Prefixer(rf.get(f'/{locale}/'))
         translation.activate(locale)
     if app:
         prefixer.app = app
@@ -438,7 +437,7 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
     client_class = TestClient
 
     def _pre_setup(self):
-        super(TestCase, self)._pre_setup()
+        super()._pre_setup()
         self.client = self.client_class()
 
     def trans_eq(self, trans, localized_string, locale):
@@ -482,7 +481,7 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
                         msg = v.errors.as_text()
                     msg = msg.strip()
                     if msg != '':
-                        self.fail('form %r had the following error(s):\n%s' % (k, msg))
+                        self.fail(f'form {k!r} had the following error(s):\n{msg}')
                     if hasattr(v, 'non_field_errors'):
                         assert v.non_field_errors() == []
                     if hasattr(v, 'non_form_errors'):
@@ -506,7 +505,7 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
             try:
                 dt = dateutil_parser(dt)
             except ValueError as e:
-                raise AssertionError('Expected valid date; got %s\n%s' % (dt, e))
+                raise AssertionError(f'Expected valid date; got {dt}\n{e}')
 
         if not dt:
             raise AssertionError('Expected datetime; got %s' % dt)
@@ -519,7 +518,7 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
 
         assert (
             dt_earlier_ts < now_ts < dt_later_ts
-        ), 'Expected datetime to be within a minute of %s. Got %r.' % (now, dt)
+        ), f'Expected datetime to be within a minute of {now}. Got {dt!r}.'
 
     def assertQuerySetEqual(self, qs1, qs2):
         """
@@ -631,7 +630,7 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
                 throttle.throttle_success()
 
 
-class AMOPaths(object):
+class AMOPaths:
     """Mixin for getting common AMO Paths."""
 
     def file_fixture_path(self, name):
@@ -827,7 +826,7 @@ def license_factory(**kw):
 
 def file_factory(**kw):
     version = kw['version']
-    filename = kw.pop('filename', '%s-%s.xpi' % (version.addon_id, version.id))
+    filename = kw.pop('filename', f'{version.addon_id}-{version.id}.xpi')
     status = kw.pop('status', amo.STATUS_APPROVED)
 
     file_ = File.objects.create(filename=filename, status=status, **kw)
@@ -995,7 +994,7 @@ class ESTestCase(ESTestCaseMixin, TestCase):
 class ESTestCaseWithAddons(ESTestCase):
     @classmethod
     def setUpTestData(cls):
-        super(ESTestCaseWithAddons, cls).setUpTestData()
+        super().setUpTestData()
         # Load the fixture here, to not be overloaded by a child class'
         # fixture attribute.
         call_command('loaddata', 'addons/base_es')
@@ -1013,7 +1012,7 @@ class ESTestCaseWithAddons(ESTestCase):
             unindex_addons([a.id for a in cls._addons])
             cls._addons = []
         finally:
-            super(ESTestCaseWithAddons, cls).tearDownClass()
+            super().tearDownClass()
 
 
 class TestXss(TestCase):
@@ -1023,7 +1022,7 @@ class TestXss(TestCase):
     ]
 
     def setUp(self):
-        super(TestXss, self).setUp()
+        super().setUp()
         self.addon = Addon.objects.get(id=3615)
         self.name = "<script>alert('hé')</script>"
         self.escaped = (
@@ -1074,7 +1073,7 @@ def copy_file_to_temp(source):
         yield temp_filename
 
 
-class WithDynamicEndpointsMixin(object):
+class WithDynamicEndpointsMixin:
     """
     Mixin to allow registration of ad-hoc views. The class using it *must* be
     decorated with:
@@ -1131,10 +1130,10 @@ def safe_exec(string, value=None, globals_=None, locals_=None):
     except Exception as e:
         if value:
             raise AssertionError(
-                'Could not exec %r (from value %r): %s' % (string.strip(), value, e)
+                f'Could not exec {string.strip()!r} (from value {value!r}): {e}'
             )
         else:
-            raise AssertionError('Could not exec %r: %s' % (string.strip(), e))
+            raise AssertionError(f'Could not exec {string.strip()!r}: {e}')
     return locals_
 
 

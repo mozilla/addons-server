@@ -21,7 +21,7 @@ def default_locale(obj):
         return settings.LANGUAGE_CODE
 
 
-class TranslationFormMixin(object):
+class TranslationFormMixin:
     """
     A mixin for forms with translations that tells fields about the object's
     default locale.
@@ -36,7 +36,7 @@ class TranslationFormMixin(object):
 
     def __init__(self, *args, **kwargs):
         kwargs['error_class'] = LocaleErrorList
-        super(TranslationFormMixin, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.set_locale_field_defaults()
 
     def set_locale_field_defaults(self):
@@ -57,11 +57,11 @@ class TranslationFormMixin(object):
         else:
             # Didn't come from a translation field, forward
             # to original implementation.
-            super(TranslationFormMixin, self).add_error(field, error)
+            super().add_error(field, error)
 
     def full_clean(self):
         self.set_locale_field_defaults()
-        return super(TranslationFormMixin, self).full_clean()
+        return super().full_clean()
 
 
 class LocaleErrorList(ErrorList):

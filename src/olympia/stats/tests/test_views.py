@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import csv
 import json
 
@@ -102,8 +101,7 @@ class StatsTestCase(TestCase):
 
     def public_views_gen(self, **kwargs):
         # all views are potentially public
-        for view, args in self.views_gen(**kwargs):
-            yield (view, args)
+        yield from self.views_gen(**kwargs)
 
     def _check_it(self, views, status):
         for view, kwargs in views:

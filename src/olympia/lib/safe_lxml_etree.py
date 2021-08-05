@@ -21,4 +21,4 @@ class XMLParser(_XMLParser):
                 'resolve_entities is forbidden for security reasons.'
             )
 
-        super(XMLParser, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)

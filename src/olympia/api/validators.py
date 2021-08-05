@@ -11,6 +11,6 @@ class OneOrMorePrintableCharacterAPIValidator(OneOrMorePrintableCharacterValidat
 
     def __call__(self, value):
         try:
-            return super(OneOrMorePrintableCharacterAPIValidator, self).__call__(value)
+            return super().__call__(value)
         except DjangoValidationError:
             raise serializers.ValidationError(self.message)

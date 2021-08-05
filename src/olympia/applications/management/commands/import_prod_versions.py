@@ -19,7 +19,7 @@ class Command(BaseCommand):
             except KeyError:
                 # Unknown app, ignore.
                 continue
-            log('Import versions for {0}'.format(app.short))
+            log(f'Import versions for {app.short}')
             versions = codes[i + 1].text.split(', ')
             for version in versions:
                 AppVersion.objects.get_or_create(application=app.id, version=version)

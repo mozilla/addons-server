@@ -26,7 +26,7 @@ class APIKeyAuthTestMixin(TestCase, JWTAuthKeyTester):
         token = self.create_auth_token(
             self.api_key.user, self.api_key.key, self.api_key.secret
         )
-        return 'JWT {}'.format(token)
+        return f'JWT {token}'
 
     def head(self, url, **client_kwargs):
         return self.client.head(
@@ -65,6 +65,6 @@ class APIKeyAuthTestMixin(TestCase, JWTAuthKeyTester):
         Tests that the verbs you expect on the class are present and no more.
         Options is added if you don't pass it.
         """
-        verbs = set(v.upper() for v in verbs)
+        verbs = {v.upper() for v in verbs}
         verbs.add('OPTIONS')
         assert not set(cls._allowed_methods(cls())).difference(verbs)

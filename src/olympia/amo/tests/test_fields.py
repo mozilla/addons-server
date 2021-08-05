@@ -12,7 +12,7 @@ class HttpHttpsOnlyURLFieldTestCase(TestCase):
     domain = 'example.com'
 
     def setUp(self):
-        super(HttpHttpsOnlyURLFieldTestCase, self).setUp()
+        super().setUp()
 
         with override_settings(DOMAIN=self.domain):
             self.field = HttpHttpsOnlyURLField()

@@ -58,7 +58,7 @@ class TestRunScanner(UploadTest, TestCase):
     API_KEY = 'api-key'
 
     def setUp(self):
-        super(TestRunScanner, self).setUp()
+        super().setUp()
 
         self.upload = self.get_upload('webextension.xpi')
         self.results = {
@@ -107,9 +107,9 @@ class TestRunScanner(UploadTest, TestCase):
         assert incr_mock.call_count == 3
         incr_mock.assert_has_calls(
             [
-                mock.call('devhub.{}.has_matches'.format(scanner_name)),
-                mock.call('devhub.{}.rule.{}.match'.format(scanner_name, rule.id)),
-                mock.call('devhub.{}.success'.format(scanner_name)),
+                mock.call(f'devhub.{scanner_name}.has_matches'),
+                mock.call(f'devhub.{scanner_name}.rule.{rule.id}.match'),
+                mock.call(f'devhub.{scanner_name}.success'),
             ]
         )
         assert returned_results == self.results
@@ -169,7 +169,7 @@ class TestRunScanner(UploadTest, TestCase):
 
         scanner_name = self.MOCK_SCANNERS.get(self.FAKE_SCANNER)
         assert incr_mock.called
-        incr_mock.assert_called_with('devhub.{}.failure'.format(scanner_name))
+        incr_mock.assert_called_with(f'devhub.{scanner_name}.failure')
         assert returned_results == self.results
 
     @mock.patch('olympia.scanners.tasks.SCANNERS', MOCK_SCANNERS)
@@ -188,7 +188,7 @@ class TestRunScanner(UploadTest, TestCase):
 
         assert timer_mock.called
         scanner_name = self.MOCK_SCANNERS.get(self.FAKE_SCANNER)
-        timer_mock.assert_called_with('devhub.{}'.format(scanner_name))
+        timer_mock.assert_called_with(f'devhub.{scanner_name}')
         assert returned_results == self.results
 
     @mock.patch('olympia.scanners.tasks.SCANNERS', MOCK_SCANNERS)
@@ -218,7 +218,7 @@ class TestRunCustoms(TestCase):
     API_KEY = 'some-api-key'
 
     def setUp(self):
-        super(TestRunCustoms, self).setUp()
+        super().setUp()
 
         self.upload_pk = 1234
         self.results = {**amo.VALIDATOR_SKELETON_RESULTS}
@@ -256,7 +256,7 @@ class TestRunWat(TestCase):
     API_KEY = 'some-api-key'
 
     def setUp(self):
-        super(TestRunWat, self).setUp()
+        super().setUp()
 
         self.upload_pk = 1234
         self.results = {**amo.VALIDATOR_SKELETON_RESULTS}
@@ -291,7 +291,7 @@ class TestRunWat(TestCase):
 
 class TestRunYara(UploadTest, TestCase):
     def setUp(self):
-        super(TestRunYara, self).setUp()
+        super().setUp()
 
         self.upload = self.get_upload('webextension.xpi')
         self.results = {
@@ -822,7 +822,7 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
 
 class TestCallMadApi(UploadTest, TestCase):
     def setUp(self):
-        super(TestCallMadApi, self).setUp()
+        super().setUp()
 
         self.upload = self.get_upload('webextension.xpi')
         self.results = [

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase
@@ -9,7 +8,7 @@ from olympia.users.models import UserProfile
 
 class RatingsTests(TestCase):
     def setUp(self):
-        super(RatingsTests, self).setUp()
+        super().setUp()
         self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
 
     def test_ratings_generation(self):

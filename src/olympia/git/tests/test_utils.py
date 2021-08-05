@@ -204,7 +204,7 @@ def test_extract_and_commit_from_version(settings):
     assert expected in output
 
     # Check that the files are there.
-    expected = set(['extracted/README.md', 'extracted/manifest.json'])
+    expected = {'extracted/README.md', 'extracted/manifest.json'}
     output = _run_process('git ls-tree -r --name-only listed', repo)
     assert set(output.split()) == expected
 
@@ -255,7 +255,7 @@ def test_extract_and_commit_from_version_fallback_file_path(settings):
     assert expected in output
 
     # Check that the files are there.
-    expected = set(['extracted/README.md', 'extracted/manifest.json'])
+    expected = {'extracted/README.md', 'extracted/manifest.json'}
     output = _run_process('git ls-tree -r --name-only listed', repo)
     assert set(output.split()) == expected
 

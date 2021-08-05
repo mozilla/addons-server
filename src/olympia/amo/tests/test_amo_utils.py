@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import os
 import tempfile
 
@@ -174,13 +173,13 @@ def test_find_language(test_input, expected):
 
 class TestLocalFileStorage(TestCase):
     def setUp(self):
-        super(TestLocalFileStorage, self).setUp()
+        super().setUp()
         self.tmp = tempfile.mkdtemp(dir=settings.TMP_PATH)
         self.stor = LocalFileStorage()
 
     def tearDown(self):
         rm_local_tmp_dir(self.tmp)
-        super(TestLocalFileStorage, self).tearDown()
+        super().tearDown()
 
     def test_read_write(self):
         fn = os.path.join(self.tmp, 'somefile.txt')
@@ -199,7 +198,7 @@ class TestLocalFileStorage(TestCase):
     def test_non_ascii_content(self):
         fn = os.path.join(self.tmp, 'somefile.txt')
         with self.stor.open(fn, 'wb') as fd:
-            fd.write('Ivan Krsti\u0107.txt'.encode('utf8'))
+            fd.write('Ivan Krsti\u0107.txt'.encode())
         with self.stor.open(fn, 'rb') as fd:
             assert fd.read().decode('utf8') == 'Ivan Krsti\u0107.txt'
 
@@ -249,7 +248,7 @@ class TestLocalFileStorage(TestCase):
 
 class TestCacheNamespaces(TestCase):
     def setUp(self):
-        super(TestCacheNamespaces, self).setUp()
+        super().setUp()
         self.namespace = 'redis-is-dead'
 
     @mock.patch('olympia.amo.utils.utc_millesecs_from_epoch')

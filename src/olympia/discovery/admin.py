@@ -32,7 +32,7 @@ class SlugOrPkChoiceField(forms.ModelChoiceField):
                 value = self.queryset.values_list('pk', flat=True).get(slug=value)
             except self.queryset.model.DoesNotExist:
                 value = value
-        return super(SlugOrPkChoiceField, self).clean(value)
+        return super().clean(value)
 
 
 class PositionFilter(admin.SimpleListFilter):
@@ -113,9 +113,7 @@ class DiscoveryItemAdmin(admin.ModelAdmin):
             kwargs['queryset'] = Addon.objects.all()
             kwargs['help_text'] = db_field.help_text
             return SlugOrPkChoiceField(**kwargs)
-        return super(DiscoveryItemAdmin, self).formfield_for_foreignkey(
-            db_field, request, **kwargs
-        )
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
     def build_preview(self, obj, locale):
         return format_html(

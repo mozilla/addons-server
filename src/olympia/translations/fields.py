@@ -54,9 +54,9 @@ class TranslationDescriptor(related.ForwardManyToOneDescriptor):
             # class.
             if not isinstance(value, self.field.related_model):
                 value = switch(value, self.field.related_model)
-            super(TranslationDescriptor, self).__set__(instance, value)
+            super().__set__(instance, value)
         elif getattr(instance, self.field.name, None) is None:
-            super(TranslationDescriptor, self).__set__(instance, None)
+            super().__set__(instance, None)
 
     def translation_from_string(self, instance, lang, string):
         """Create, save, and return a Translation from a string."""
@@ -145,10 +145,10 @@ class TranslatedField(models.ForeignKey):
         # "to" is passed here from the migration framework; we ignore it
         # since it's the same for every instance.
         kwargs.pop('to', None)
-        super(TranslatedField, self).__init__(self.to, **kwargs)
+        super().__init__(self.to, **kwargs)
 
     def deconstruct(self):
-        name, path, args, kwargs = super(TranslatedField, self).deconstruct()
+        name, path, args, kwargs = super().deconstruct()
         kwargs['to'] = self.to
         kwargs['short'] = self.short
         kwargs['require_locale'] = self.require_locale
@@ -169,9 +169,7 @@ class TranslatedField(models.ForeignKey):
 
     def contribute_to_class(self, cls, name, private_only=False, **kwargs):
         """Add this Translation to ``cls._meta.translated_fields``."""
-        super(TranslatedField, self).contribute_to_class(
-            cls, name, private_only=private_only, **kwargs
-        )
+        super().contribute_to_class(cls, name, private_only=private_only, **kwargs)
 
         # Add self to the list of translated fields.
         if hasattr(cls._meta, 'translated_fields'):
@@ -180,13 +178,13 @@ class TranslatedField(models.ForeignKey):
             cls._meta.translated_fields = [self]
 
         # Set up a unique related name.  The + means it's hidden.
-        self.remote_field.related_name = '%s_%s_set+' % (cls.__name__, name)
+        self.remote_field.related_name = f'{cls.__name__}_{name}_set+'
 
     def formfield(self, **kw):
         widget = TransInput if self.short else TransTextarea
         defaults = {'form_class': TransField, 'widget': widget}
         defaults.update(kw)
-        return super(TranslatedField, self).formfield(**defaults)
+        return super().formfield(**defaults)
 
     def validate(self, value, model_instance):
         # Skip ForeignKey.validate since that expects only one Translation when
@@ -212,7 +210,7 @@ def switch(obj, new_model):
     return new_model(**dict(fields))
 
 
-class _TransField(object):
+class _TransField:
     def __init__(self, *args, **kwargs):
         self.default_locale = settings.LANGUAGE_CODE
         self.widget = kwargs.pop('widget', TransInput)
@@ -249,8 +247,8 @@ class _TransField(object):
                 # Only the default locale can be required; all non-default
                 # fields are automatically optional.
                 if self.default_locale.lower() == locale:
-                    super(_TransField, self).validate(val)
-                super(_TransField, self).run_validators(val)
+                    super().validate(val)
+                super().run_validators(val)
             except forms.ValidationError as e:
                 for message in e.messages:
                     self.parent_form.add_error(

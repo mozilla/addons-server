@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import json
 
 from olympia import amo, core
@@ -9,7 +8,7 @@ from olympia.users.models import UserProfile
 
 class LogTest(TestCase):
     def setUp(self):
-        super(LogTest, self).setUp()
+        super().setUp()
         u = UserProfile.objects.create(username='foo')
         core.set_user(u)
 

@@ -2,7 +2,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 # Built-in Licenses
-class _LicenseBase(object):
+class _LicenseBase:
     """Base class for built-in licenses."""
 
     icons = ''  # CSS classes. See zamboni.css for a list.

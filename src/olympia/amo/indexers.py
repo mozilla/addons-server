@@ -10,7 +10,7 @@ from .utils import to_language
 log = olympia.core.logger.getLogger('z.es')
 
 
-class BaseSearchIndexer(object):
+class BaseSearchIndexer:
     """
     Base Indexer class for all search-related things (as opposed to
     stats-related things).
@@ -103,7 +103,7 @@ class BaseSearchIndexer(object):
 
         for lang, analyzer in SEARCH_LANGUAGE_TO_ANALYZER.items():
             for field in field_names:
-                property_name = '%s_l10n_%s' % (field, lang)
+                property_name = f'{field}_l10n_{lang}'
                 mapping[doc_name]['properties'][property_name] = {
                     'type': 'text',
                     'analyzer': analyzer,
@@ -119,7 +119,7 @@ class BaseSearchIndexer(object):
 
         for lang, analyzer in SEARCH_LANGUAGE_TO_ANALYZER.items():
             for field in field_names:
-                property_name = '%s_l10n_%s' % (field, lang)
+                property_name = f'{field}_l10n_{lang}'
                 mapping[doc_name]['properties'][property_name] = {
                     'type': 'text',
                     'analyzer': analyzer,
@@ -179,6 +179,6 @@ class BaseSearchIndexer(object):
         translations = dict(obj.translations[getattr(obj, db_field)])
 
         return {
-            '%s_l10n_%s' % (field, lang): translations.get(lang) or ''
+            f'{field}_l10n_{lang}': translations.get(lang) or ''
             for lang in SEARCH_LANGUAGE_TO_ANALYZER
         }

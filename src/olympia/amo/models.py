@@ -40,12 +40,12 @@ def use_primary_db():
 
 class BaseQuerySet(models.QuerySet):
     def __init__(self, *args, **kwargs):
-        super(BaseQuerySet, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self._transform_fns = []
 
     def _fetch_all(self):
         if self._result_cache is None:
-            super(BaseQuerySet, self)._fetch_all()
+            super()._fetch_all()
             # At this point, _result_cache should have been filled up. If we
             # are dealing with a "regular" queryset (not values() etc) then we
             # call the transformers.
@@ -54,7 +54,7 @@ class BaseQuerySet(models.QuerySet):
                     func(self._result_cache)
 
     def _clone(self, **kwargs):
-        clone = super(BaseQuerySet, self)._clone(**kwargs)
+        clone = super()._clone(**kwargs)
         clone._transform_fns = self._transform_fns[:]
         return clone
 
@@ -87,12 +87,12 @@ class RawQuerySet(models.query.RawQuerySet):
     """A RawQuerySet with __len__."""
 
     def __init__(self, *args, **kw):
-        super(RawQuerySet, self).__init__(*args, **kw)
+        super().__init__(*args, **kw)
         self._result_cache = None
 
     def __iter__(self):
         if self._result_cache is None:
-            self._result_cache = list(super(RawQuerySet, self).__iter__())
+            self._result_cache = list(super().__iter__())
         return iter(self._result_cache)
 
     def __len__(self):
@@ -137,7 +137,7 @@ class ManagerBase(models.Manager):
         )
 
 
-class _NoChangeInstance(object):
+class _NoChangeInstance:
     """A proxy for object instances to make safe operations within an
     OnChangeMixin.on_change() callback.
     """
@@ -146,7 +146,7 @@ class _NoChangeInstance(object):
         self.__instance = instance
 
     def __repr__(self):
-        return '<%s for %r>' % (self.__class__.__name__, self.__instance)
+        return f'<{self.__class__.__name__} for {self.__instance!r}>'
 
     def __getattr__(self, attr):
         return getattr(self.__instance, attr)
@@ -170,7 +170,7 @@ class _NoChangeInstance(object):
 _on_change_callbacks = {}
 
 
-class OnChangeMixin(object):
+class OnChangeMixin:
     """Mixin for a Model that allows you to observe attribute changes.
 
     Register change observers with::
@@ -185,7 +185,7 @@ class OnChangeMixin(object):
     """
 
     def __init__(self, *args, **kw):
-        super(OnChangeMixin, self).__init__(*args, **kw)
+        super().__init__(*args, **kw)
         self._reset_initial_attrs()
 
     def _reset_initial_attrs(self, attrs=None):
@@ -286,14 +286,14 @@ class OnChangeMixin(object):
                 # Never include primary key field - it might be set to None
                 # initially in _initial_attrs right after a call to create()
                 # even though self.pk is set.
-                - set(((self._meta.pk.name, self.pk),))
+                - {(self._meta.pk.name, self.pk)}
             )
             auto_now_fields = [
                 f.name for f in self._meta.fields if getattr(f, 'auto_now', False)
             ]
             kwargs['update_fields'] = [k for k, v in changed_attrs] + auto_now_fields
         signal = kwargs.pop('_signal', True)
-        result = super(OnChangeMixin, self).save(*args, **kwargs)
+        result = super().save(*args, **kwargs)
         if signal and self.__class__ in _on_change_callbacks:
             self._send_changes(self._initial_attrs.copy(), dict(self.__dict__))
         # Reset initial_attr to be ready for the next save.
@@ -313,7 +313,7 @@ class OnChangeMixin(object):
         """
         signal = kwargs.pop('_signal', True)
         old_attr = dict(self.__dict__)
-        result = super(OnChangeMixin, self).update(_signal=signal, **kwargs)
+        result = super().update(_signal=signal, **kwargs)
         if signal and self.__class__ in _on_change_callbacks:
             self._send_changes(old_attr, kwargs)
         # Reset initial_attr to be ready for the next save. We only reset the
@@ -325,7 +325,7 @@ class OnChangeMixin(object):
         return result
 
 
-class SearchMixin(object):
+class SearchMixin:
 
     ES_ALIAS_KEY = 'default'
 
@@ -364,7 +364,7 @@ class SearchMixin(object):
         return cls._meta.db_table
 
 
-class SaveUpdateMixin(object):
+class SaveUpdateMixin:
     def reload(self):
         """Reloads the instance from the database."""
         from_db = self.__class__.get_unfiltered_manager().get(pk=self.pk)
@@ -416,7 +416,7 @@ class SaveUpdateMixin(object):
         # https://docs.djangoproject.com/en/1.9/topics/db/examples/one_to_one/
         if hasattr(self._meta, 'translated_fields'):
             save_translations(self)
-        return super(SaveUpdateMixin, self).save(**kwargs)
+        return super().save(**kwargs)
 
 
 class ModelBase(SearchMixin, SaveUpdateMixin, models.Model):
@@ -460,7 +460,7 @@ class ModelBase(SearchMixin, SaveUpdateMixin, models.Model):
         """
         Return the relative URL pointing to the instance admin change page.
         """
-        urlname = 'admin:%s_%s_change' % (self._meta.app_label, self._meta.model_name)
+        urlname = f'admin:{self._meta.app_label}_{self._meta.model_name}_change'
         return reverse(urlname, args=(self.pk,))
 
     def get_admin_absolute_url(self):
@@ -484,7 +484,7 @@ def manual_order(qs, pks, pk_name='id'):
     if not pks:
         return qs.none()
     return qs.filter(id__in=pks).extra(
-        select={'_manual': 'FIELD(%s, %s)' % (pk_name, ','.join(map(str, pks)))},
+        select={'_manual': 'FIELD({}, {})'.format(pk_name, ','.join(map(str, pks)))},
         order_by=['_manual'],
     )
 
@@ -505,7 +505,7 @@ class FakeEmail(ModelBase):
         db_table = 'fake_email'
 
 
-class BasePreview(object):
+class BasePreview:
     media_folder = 'previews'
 
     def _image_url(self, folder, file_ext):
@@ -575,12 +575,10 @@ class BasePreview(object):
         ]
         for filename in image_paths:
             try:
-                log.info(
-                    'Removing filename: %s for preview: %s' % (filename, instance.pk)
-                )
+                log.info(f'Removing filename: {filename} for preview: {instance.pk}')
                 storage.delete(filename)
             except Exception as e:
-                log.error('Error deleting preview file (%s): %s' % (filename, e))
+                log.error(f'Error deleting preview file ({filename}): {e}')
 
 
 class LongNameIndex(models.Index):

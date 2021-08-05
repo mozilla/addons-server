@@ -30,7 +30,7 @@ from olympia.versions.models import Version
 
 class TestActivityLogToken(TestCase):
     def setUp(self):
-        super(TestActivityLogToken, self).setUp()
+        super().setUp()
         self.addon = addon_factory()
         self.version = self.addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED
@@ -99,7 +99,7 @@ class TestActivityLog(TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
-        super(TestActivityLog, self).setUp()
+        super().setUp()
         self.user = UserProfile.objects.create(username='yolo', display_name='Yolo')
         self.request = Mock()
         self.request.user = self.user
@@ -107,7 +107,7 @@ class TestActivityLog(TestCase):
 
     def tearDown(self):
         core.set_user(None)
-        super(TestActivityLog, self).tearDown()
+        super().tearDown()
 
     def test_basic(self):
         addon = Addon.objects.get()
@@ -470,7 +470,7 @@ class TestActivityLogCount(TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
-        super(TestActivityLogCount, self).setUp()
+        super().setUp()
         now = datetime.now()
         bom = datetime(now.year, now.month, 1)
         self.lm = bom - timedelta(days=1)

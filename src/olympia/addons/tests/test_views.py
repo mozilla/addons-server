@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import json
 
 from unittest import mock
@@ -61,7 +60,7 @@ class TestStatus(TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
-        super(TestStatus, self).setUp()
+        super().setUp()
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.current_version
         self.file = self.version.all_files[0]
@@ -145,7 +144,7 @@ class TestFindReplacement(TestCase):
         self.assert3xx(response, get_outgoing_url('https://mozilla.org/'))
 
 
-class AddonAndVersionViewSetDetailMixin(object):
+class AddonAndVersionViewSetDetailMixin:
     """Tests that play with addon state and permissions. Shared between addon
     and version viewset detail tests since both need to react the same way."""
 
@@ -477,7 +476,7 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
     client_class = APITestClient
 
     def setUp(self):
-        super(TestAddonViewSetDetail, self).setUp()
+        super().setUp()
         self.addon = addon_factory(
             guid=generate_addon_guid(), name='My Addôn', slug='my-addon'
         )
@@ -690,7 +689,7 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
     client_class = APITestClient
 
     def setUp(self):
-        super(TestVersionViewSetDetail, self).setUp()
+        super().setUp()
         self.addon = addon_factory(
             guid=generate_addon_guid(), name='My Addôn', slug='my-addon'
         )
@@ -848,7 +847,7 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
     client_class = APITestClient
 
     def setUp(self):
-        super(TestVersionViewSetList, self).setUp()
+        super().setUp()
         self.addon = addon_factory(
             guid=generate_addon_guid(), name='My Addôn', slug='my-addon'
         )
@@ -1160,7 +1159,7 @@ class TestAddonViewSetEulaPolicy(TestCase):
     client_class = APITestClient
 
     def setUp(self):
-        super(TestAddonViewSetEulaPolicy, self).setUp()
+        super().setUp()
         self.addon = addon_factory(
             guid=generate_addon_guid(), name='My Addôn', slug='my-addon'
         )
@@ -1168,7 +1167,7 @@ class TestAddonViewSetEulaPolicy(TestCase):
 
     def test_url(self):
         self.detail_url = reverse_ns('addon-detail', kwargs={'pk': self.addon.pk})
-        assert self.url == '%s%s' % (self.detail_url, 'eula_policy/')
+        assert self.url == '{}{}'.format(self.detail_url, 'eula_policy/')
 
     def test_disabled_anonymous(self):
         self.addon.update(disabled_by_user=True)
@@ -1199,13 +1198,13 @@ class TestAddonSearchView(ESTestCase):
     fixtures = ['base/users']
 
     def setUp(self):
-        super(TestAddonSearchView, self).setUp()
+        super().setUp()
         self.url = reverse_ns('addon-search')
         self.create_switch('return-to-amo', active=True)
         switch_is_active('return-to-amo')
 
     def tearDown(self):
-        super(TestAddonSearchView, self).tearDown()
+        super().tearDown()
         self.empty_index('default')
         self.refresh()
 
@@ -1218,20 +1217,18 @@ class TestAddonSearchView(ESTestCase):
         view.request = APIRequestFactory().get('/')
         qset = view.get_queryset()
 
-        assert set(qset.to_dict()['_source']['excludes']) == set(
-            (
-                '*.raw',
-                'boost',
-                'colors',
-                'hotness',
-                'name',
-                'description',
-                'name_l10n_*',
-                'description_l10n_*',
-                'summary',
-                'summary_l10n_*',
-            )
-        )
+        assert set(qset.to_dict()['_source']['excludes']) == {
+            '*.raw',
+            'boost',
+            'colors',
+            'hotness',
+            'name',
+            'description',
+            'name_l10n_*',
+            'description_l10n_*',
+            'summary',
+            'summary_l10n_*',
+        }
 
         response = qset.execute()
 
@@ -1873,9 +1870,7 @@ class TestAddonSearchView(ESTestCase):
         assert result['slug'] == addon2.slug
 
         # repeat with author ids
-        data = self.perform_search(
-            self.url, {'author': '%s,%s' % (author.pk, author2.pk)}
-        )
+        data = self.perform_search(self.url, {'author': f'{author.pk},{author2.pk}'})
         assert data['count'] == 2
         assert len(data['results']) == 2
 
@@ -1888,7 +1883,7 @@ class TestAddonSearchView(ESTestCase):
 
         # and mixed username and ids
         data = self.perform_search(
-            self.url, {'author': '%s,%s' % (author.pk, author2.username)}
+            self.url, {'author': f'{author.pk},{author2.username}'}
         )
         assert data['count'] == 2
         assert len(data['results']) == 2
@@ -2160,11 +2155,11 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
     fixtures = ['base/users']
 
     def setUp(self):
-        super(TestAddonAutoCompleteSearchView, self).setUp()
+        super().setUp()
         self.url = reverse_ns('addon-autocomplete', api_version='v5')
 
     def tearDown(self):
-        super(TestAddonAutoCompleteSearchView, self).tearDown()
+        super().tearDown()
         self.empty_index('default')
         self.refresh()
 
@@ -2262,19 +2257,17 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
         view.request = APIRequestFactory().get('/')
         qset = view.get_queryset()
 
-        includes = set(
-            (
-                'current_version',
-                'default_locale',
-                'icon_type',
-                'id',
-                'modified',
-                'name_translations',
-                'promoted',
-                'slug',
-                'type',
-            )
-        )
+        includes = {
+            'current_version',
+            'default_locale',
+            'icon_type',
+            'id',
+            'modified',
+            'name_translations',
+            'promoted',
+            'slug',
+            'type',
+        }
 
         assert set(qset.to_dict()['_source']['includes']) == includes
 
@@ -2425,7 +2418,7 @@ class TestStaticCategoryView(TestCase):
     client_class = APITestClient
 
     def setUp(self):
-        super(TestStaticCategoryView, self).setUp()
+        super().setUp()
         self.url = reverse_ns('category-list')
 
     def test_basic(self):
@@ -2499,7 +2492,7 @@ class TestLanguageToolsView(TestCase):
     client_class = APITestClient
 
     def setUp(self):
-        super(TestLanguageToolsView, self).setUp()
+        super().setUp()
         self.url = reverse_ns('addon-language-tools')
 
     def test_wrong_app(self):
@@ -2545,9 +2538,9 @@ class TestLanguageToolsView(TestCase):
         assert len(data['results']) == 3
         expected = [dictionary, dictionary_spelling_variant, language_pack]
         assert len(data['results']) == len(expected)
-        assert set(item['id'] for item in data['results']) == set(
+        assert {item['id'] for item in data['results']} == {
             item.pk for item in expected
-        )
+        }
 
         assert 'locale_disambiguation' not in data['results'][0]
         assert 'target_locale' in data['results'][0]
@@ -2599,9 +2592,9 @@ class TestLanguageToolsView(TestCase):
         expected = [addon1, addon2]
 
         assert len(data['results']) == len(expected)
-        assert set(item['id'] for item in data['results']) == set(
+        assert {item['id'] for item in data['results']} == {
             item.pk for item in expected
-        )
+        }
 
     def test_with_multiple_authors_filtering(self):
         user1 = user_factory(username='mozillä')
@@ -2625,9 +2618,9 @@ class TestLanguageToolsView(TestCase):
         data = json.loads(force_str(response.content))
         expected = [addon1, addon2]
         assert len(data['results']) == len(expected)
-        assert set(item['id'] for item in data['results']) == set(
+        assert {item['id'] for item in data['results']} == {
             item.pk for item in expected
-        )
+        }
 
     def test_with_appversion_filtering(self):
         # Add compatible add-ons. We're going to request language packs
@@ -2777,18 +2770,14 @@ class TestLanguageToolsView(TestCase):
         assert results[0]['current_compatible_version']
         assert results[1]['current_compatible_version']
 
-        expected_versions = set(
-            (
-                (compatible_pack1.pk, compatible_version1.pk),
-                (compatible_pack2.pk, compatible_version2.pk),
-            )
-        )
-        returned_versions = set(
-            (
-                (results[0]['id'], results[0]['current_compatible_version']['id']),
-                (results[1]['id'], results[1]['current_compatible_version']['id']),
-            )
-        )
+        expected_versions = {
+            (compatible_pack1.pk, compatible_version1.pk),
+            (compatible_pack2.pk, compatible_version2.pk),
+        }
+        returned_versions = {
+            (results[0]['id'], results[0]['current_compatible_version']['id']),
+            (results[1]['id'], results[1]['current_compatible_version']['id']),
+        }
         assert expected_versions == returned_versions
 
     def test_memoize(self):
@@ -2885,14 +2874,14 @@ class TestAddonRecommendationView(ESTestCase):
     fixtures = ['base/users']
 
     def setUp(self):
-        super(TestAddonRecommendationView, self).setUp()
+        super().setUp()
         self.url = reverse_ns('addon-recommendations')
         patcher = mock.patch('olympia.addons.views.get_addon_recommendations')
         self.get_addon_recommendations_mock = patcher.start()
         self.addCleanup(patcher.stop)
 
     def tearDown(self):
-        super(TestAddonRecommendationView, self).tearDown()
+        super().tearDown()
         self.empty_index('default')
         self.refresh()
 

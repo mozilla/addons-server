@@ -53,7 +53,7 @@ class AbuseReportTypeFilter(admin.SimpleListFilter):
         return queryset
 
 
-class FakeChoicesMixin(object):
+class FakeChoicesMixin:
     def choices(self, changelist):
         """
         Fake choices method (we don't need one, we don't really have choices
@@ -378,7 +378,7 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
 
     def target_name(self, obj):
         name = obj.target.name if obj.target else obj.addon_name
-        return '%s %s' % (name, obj.addon_version or '')
+        return '{} {}'.format(name, obj.addon_version or '')
 
     target_name.short_description = gettext('User / Add-on')
 

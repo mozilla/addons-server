@@ -65,7 +65,7 @@ def url(viewname, *args, **kwargs):
     """Helper for Django's ``reverse`` in templates."""
     add_prefix = kwargs.pop('add_prefix', True)
     host = kwargs.pop('host', '')
-    url = '%s%s' % (
+    url = '{}{}'.format(
         host,
         reverse(viewname, args=args, kwargs=kwargs, add_prefix=add_prefix),
     )
@@ -102,7 +102,7 @@ def impala_paginator(pager):
     return markupsafe.Markup(t.render({'pager': pager}))
 
 
-class PaginationRenderer(object):
+class PaginationRenderer:
     def __init__(self, pager):
         self.pager = pager
 
@@ -209,7 +209,7 @@ def user_media_path(what):
 
     """
     default = os.path.join(settings.MEDIA_ROOT, what)
-    key = '{0}_PATH'.format(what.upper())
+    key = f'{what.upper()}_PATH'
     return getattr(settings, key, default)
 
 
@@ -219,8 +219,8 @@ def user_media_url(what):
     Generate default media url, and make possible to override it from
     settings.
     """
-    default = '%s%s/' % (settings.MEDIA_URL, what)
-    key = '{0}_URL'.format(what.upper().replace('-', '_'))
+    default = f'{settings.MEDIA_URL}{what}/'
+    key = '{}_URL'.format(what.upper().replace('-', '_'))
     return getattr(settings, key, default)
 
 

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import json
 import time
 
@@ -78,7 +77,7 @@ def test_default_fxa_login_url_with_state():
         'action': ['signin'],
         'client_id': ['foo'],
         'scope': ['profile openid'],
-        'state': ['myfxastate:{next_path}'.format(next_path=force_str(next_path))],
+        'state': [f'myfxastate:{force_str(next_path)}'],
     }
 
 
@@ -100,7 +99,7 @@ def test_default_fxa_register_url_with_state():
         'action': ['signup'],
         'client_id': ['foo'],
         'scope': ['profile openid'],
-        'state': ['myfxastate:{next_path}'.format(next_path=force_str(next_path))],
+        'state': [f'myfxastate:{force_str(next_path)}'],
     }
 
 
@@ -130,7 +129,7 @@ def test_fxa_login_url_without_requiring_two_factor_auth():
         'action': ['signin'],
         'client_id': ['foo'],
         'scope': ['profile openid'],
-        'state': ['myfxastate:{next_path}'.format(next_path=force_str(next_path))],
+        'state': [f'myfxastate:{force_str(next_path)}'],
     }
 
 
@@ -161,7 +160,7 @@ def test_fxa_login_url_requiring_two_factor_auth():
         'action': ['signin'],
         'client_id': ['foo'],
         'scope': ['profile openid'],
-        'state': ['myfxastate:{next_path}'.format(next_path=force_str(next_path))],
+        'state': [f'myfxastate:{force_str(next_path)}'],
     }
 
 
@@ -195,7 +194,7 @@ def test_fxa_login_url_requiring_two_factor_auth_passing_token():
         'id_token_hint': ['YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXo='],
         'prompt': ['none'],
         'scope': ['profile openid'],
-        'state': ['myfxastate:{next_path}'.format(next_path=force_str(next_path))],
+        'state': [f'myfxastate:{force_str(next_path)}'],
     }
 
 
@@ -240,7 +239,7 @@ def test_fxa_login_url_when_faking_fxa_auth():
         'action': ['signin'],
         'client_id': ['foo'],
         'scope': ['profile openid'],
-        'state': ['myfxastate:{next_path}'.format(next_path=force_str(next_path))],
+        'state': [f'myfxastate:{force_str(next_path)}'],
     }
 
 

@@ -132,22 +132,22 @@ class TestScannerResultViewInternal(TestCase):
         response = self.client.get(self.url)
         self.assert_json_results(response, expected_results=2)
 
-        response = self.client.get('{}?scanner=yara'.format(self.url))
+        response = self.client.get(f'{self.url}?scanner=yara')
         results = self.assert_json_results(response, expected_results=1)
         assert results[0].get('scanner') == 'yara'
 
-        response = self.client.get('{}?scanner=customs'.format(self.url))
+        response = self.client.get(f'{self.url}?scanner=customs')
         results = self.assert_json_results(response, expected_results=1)
         assert results[0].get('scanner') == 'customs'
 
     def test_get_by_scanner_with_empty_value(self):
         invalid_scanner = ''
-        response = self.client.get('{}?scanner={}'.format(self.url, invalid_scanner))
+        response = self.client.get(f'{self.url}?scanner={invalid_scanner}')
         assert response.status_code == 400
 
     def test_get_by_scanner_with_unknown_scanner(self):
         invalid_scanner = 'yaraaaa'
-        response = self.client.get('{}?scanner={}'.format(self.url, invalid_scanner))
+        response = self.client.get(f'{self.url}?scanner={invalid_scanner}')
         assert response.status_code == 400
 
     def test_get_by_label(self):
@@ -171,22 +171,22 @@ class TestScannerResultViewInternal(TestCase):
         response = self.client.get(self.url)
         self.assert_json_results(response, expected_results=2)
 
-        response = self.client.get('{}?label=good'.format(self.url))
+        response = self.client.get(f'{self.url}?label=good')
         results = self.assert_json_results(response, expected_results=1)
         assert results[0].get('label') == 'good'
 
-        response = self.client.get('{}?label=bad'.format(self.url))
+        response = self.client.get(f'{self.url}?label=bad')
         results = self.assert_json_results(response, expected_results=1)
         assert results[0].get('label') == 'bad'
 
     def test_get_by_label_with_empty_value(self):
         invalid_label = ''
-        response = self.client.get('{}?label={}'.format(self.url, invalid_label))
+        response = self.client.get(f'{self.url}?label={invalid_label}')
         assert response.status_code == 400
 
     def test_get_by_label_with_unknown_label(self):
         invalid_label = 'gooda'
-        response = self.client.get('{}?label={}'.format(self.url, invalid_label))
+        response = self.client.get(f'{self.url}?label={invalid_label}')
         assert response.status_code == 400
 
     def test_get_by_label_and_scanner(self):
@@ -210,22 +210,14 @@ class TestScannerResultViewInternal(TestCase):
         response = self.client.get(self.url)
         self.assert_json_results(response, expected_results=2)
 
-        response = self.client.get(
-            '{}'.format('{}?scanner=yara&label=good'.format(self.url))
-        )
+        response = self.client.get('{}'.format(f'{self.url}?scanner=yara&label=good'))
         self.assert_json_results(response, expected_results=0)
-        response = self.client.get(
-            '{}'.format('{}?scanner=yara&label=bad'.format(self.url))
-        )
+        response = self.client.get('{}'.format(f'{self.url}?scanner=yara&label=bad'))
         self.assert_json_results(response, expected_results=1)
 
-        response = self.client.get(
-            '{}'.format('{}?scanner=wat&label=bad'.format(self.url))
-        )
+        response = self.client.get('{}'.format(f'{self.url}?scanner=wat&label=bad'))
         self.assert_json_results(response, expected_results=0)
-        response = self.client.get(
-            '{}'.format('{}?scanner=wat&label=good'.format(self.url))
-        )
+        response = self.client.get('{}'.format(f'{self.url}?scanner=wat&label=good'))
         self.assert_json_results(response, expected_results=1)
 
     def test_get_results_with_blocked_versions(self):
@@ -292,7 +284,7 @@ class TestScannerResultViewInternal(TestCase):
         ActivityLog.create(amo.LOG.BLOCKLIST_BLOCK_ADDED, version_2, user=self.user)
         ActivityLog.create(amo.LOG.BLOCKLIST_BLOCK_EDITED, version_2, user=self.user)
 
-        response = self.client.get('{}?label=bad'.format(self.url))
+        response = self.client.get(f'{self.url}?label=bad')
         results = self.assert_json_results(response, expected_results=2)
         assert results[0]['id'] != results[1]['id']
 
@@ -308,7 +300,7 @@ class TestScannerResultViewInternal(TestCase):
         ActivityLog.create(amo.LOG.CONFIRM_AUTO_APPROVED, version_2, user=self.user)
         ActivityLog.create(amo.LOG.CONFIRM_AUTO_APPROVED, version_2, user=self.user)
 
-        response = self.client.get('{}?label=good'.format(self.url))
+        response = self.client.get(f'{self.url}?label=good')
         results = self.assert_json_results(response, expected_results=2)
         assert results[0]['id'] != results[1]['id']
 

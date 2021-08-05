@@ -255,7 +255,7 @@ class BlocklistSubmissionAdmin(admin.ModelAdmin):
         is ignored)"""
         opts = self.opts
         codename = auth.get_permission_codename('signoff', opts)
-        has_perm = request.user.has_perm('%s.%s' % (opts.app_label, codename))
+        has_perm = request.user.has_perm(f'{opts.app_label}.{codename}')
         return has_perm and (not obj or obj.can_user_signoff(request.user))
 
     def has_signoff_reject_permission(self, request, obj=None):
@@ -264,7 +264,7 @@ class BlocklistSubmissionAdmin(admin.ModelAdmin):
         regardless."""
         opts = self.opts
         codename = auth.get_permission_codename('signoff', opts)
-        has_perm = request.user.has_perm('%s.%s' % (opts.app_label, codename))
+        has_perm = request.user.has_perm(f'{opts.app_label}.{codename}')
         is_own_submission = obj and obj.updated_by == request.user
         return has_perm or is_own_submission
 

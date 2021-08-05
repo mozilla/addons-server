@@ -132,7 +132,7 @@ class UserProfileSerializer(PublicUserProfileSerializer):
             self.fields.pop('reviewer_name', None)
 
     def get_fxa_edit_email_url(self, user):
-        base_url = '{}/settings'.format(settings.FXA_CONTENT_HOST)
+        base_url = f'{settings.FXA_CONTENT_HOST}/settings'
         return urlparams(
             base_url, uid=user.fxa_id, email=user.email, entrypoint='addons'
         )
@@ -188,7 +188,7 @@ class UserProfileSerializer(PublicUserProfileSerializer):
         return value
 
     def update(self, instance, validated_data):
-        instance = super(UserProfileSerializer, self).update(instance, validated_data)
+        instance = super().update(instance, validated_data)
 
         photo = validated_data.get('picture_upload')
         if photo:
@@ -206,7 +206,7 @@ class UserProfileSerializer(PublicUserProfileSerializer):
         return instance
 
     def to_representation(self, obj):
-        data = super(UserProfileSerializer, self).to_representation(obj)
+        data = super().to_representation(obj)
         request = self.context.get('request', None)
 
         if request and is_gate_active(request, 'del-accounts-fxa-edit-email-url'):

@@ -63,17 +63,17 @@ def encode_header(header_blob, file_ext):
             with Image.open(io.BytesIO(header_blob)) as header_image:
                 (width, height) = header_image.size
                 img_format = header_image.format.lower()
-        src = 'data:image/%s;base64,%s' % (
+        src = 'data:image/{};base64,{}'.format(
             img_format,
             force_str(b64encode(header_blob)),
         )
-    except (IOError, ValueError, TypeError, lxml.etree.XMLSyntaxError) as err:
+    except (OSError, ValueError, TypeError, lxml.etree.XMLSyntaxError) as err:
         log.info(err)
         return (None, 0, 0)
     return (src, width, height)
 
 
-class AdditionalBackground(object):
+class AdditionalBackground:
     @classmethod
     def split_alignment(cls, alignment):
         alignments = alignment.split()

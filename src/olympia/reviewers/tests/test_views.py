@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import json
 import os
 import time
@@ -124,7 +123,7 @@ class ReviewerTest(TestCase):
 
 class TestRatingsModerationLog(ReviewerTest):
     def setUp(self):
-        super(TestRatingsModerationLog, self).setUp()
+        super().setUp()
         user = user_factory()
         self.grant_permission(user, 'Ratings:Moderate')
         self.client.login(email=user.email)
@@ -185,7 +184,7 @@ class TestReviewLog(ReviewerTest):
     fixtures = ReviewerTest.fixtures + ['base/addon_3615']
 
     def setUp(self):
-        super(TestReviewLog, self).setUp()
+        super().setUp()
         self.user = UserProfile.objects.get(email='reviewer@mozilla.com')
         self.login_as_reviewer()
         self.url = reverse('reviewers.reviewlog')
@@ -1077,7 +1076,7 @@ class QueueTest(ReviewerTest):
     listed = True
 
     def setUp(self):
-        super(QueueTest, self).setUp()
+        super().setUp()
         self.user = UserProfile.objects.get(email='reviewer@mozilla.com')
         self.login_as_reviewer()
         if self.listed is False:
@@ -1225,7 +1224,7 @@ class QueueTest(ReviewerTest):
         assert link.attr('href') == self.url
         if per_page:
             assert doc('.data-grid-top .num-results').text() == (
-                'Results %s\u20131 of %s' % (per_page, total_addons)
+                f'Results {per_page}\u20131 of {total_addons}'
             )
 
     def _test_results(self):
@@ -1244,7 +1243,7 @@ class QueueTest(ReviewerTest):
             else:
                 latest_version = self.get_addon_latest_version(addon)
                 assert latest_version
-                name = '%s %s' % (str(addon.name), latest_version.version)
+                name = f'{str(addon.name)} {latest_version.version}'
             url = reverse('reviewers.review', args=channel + [addon.slug])
             expected.append((name, url))
         doc = pq(response.content)
@@ -1532,7 +1531,7 @@ class TestQueueBasics(QueueTest):
 
 class TestThemePendingQueue(QueueTest):
     def setUp(self):
-        super(TestThemePendingQueue, self).setUp()
+        super().setUp()
         # These should be the only ones present.
         self.expected_addons = self.get_expected_addons_by_names(
             ['Pending One', 'Pending Two']
@@ -1797,7 +1796,7 @@ class TestExtensionQueue(QueueTest):
 
 class TestThemeNominatedQueue(QueueTest):
     def setUp(self):
-        super(TestThemeNominatedQueue, self).setUp()
+        super().setUp()
         # These should be the only ones present.
         self.expected_addons = self.get_expected_addons_by_names(
             ['Nominated One', 'Nominated Two']
@@ -1949,7 +1948,7 @@ class TestModeratedQueue(QueueTest):
     fixtures = ['base/users', 'ratings/dev-reply']
 
     def setUp(self):
-        super(TestModeratedQueue, self).setUp()
+        super().setUp()
 
         self.url = reverse('reviewers.queue_moderated')
 
@@ -2176,7 +2175,7 @@ class TestUnlistedAllList(QueueTest):
     listed = False
 
     def setUp(self):
-        super(TestUnlistedAllList, self).setUp()
+        super().setUp()
         self.url = reverse('reviewers.unlisted_queue_all')
         # We should have all add-ons, sorted by id desc.
         self.generate_files()
@@ -2265,7 +2264,7 @@ class TestUnlistedPendingManualApproval(QueueTest):
 
 class TestAutoApprovedQueue(QueueTest):
     def setUp(self):
-        super(TestAutoApprovedQueue, self).setUp()
+        super().setUp()
         self.url = reverse('reviewers.queue_auto_approved')
 
     def login_with_permission(self):
@@ -2440,7 +2439,7 @@ class TestAutoApprovedQueue(QueueTest):
 
 class TestContentReviewQueue(QueueTest):
     def setUp(self):
-        super(TestContentReviewQueue, self).setUp()
+        super().setUp()
         self.url = reverse('reviewers.queue_content_review')
         self.channel_name = 'content'
 
@@ -2901,7 +2900,7 @@ class SearchTest(ReviewerTest):
     listed = True
 
     def setUp(self):
-        super(SearchTest, self).setUp()
+        super().setUp()
         self.user = UserProfile.objects.get(email='reviewer@mozilla.com')
         self.login_as_reviewer()
         if self.listed is False:
@@ -3213,7 +3212,7 @@ class TestQueueSearch(BaseTestQueueSearch):
     __test__ = True
 
     def setUp(self):
-        super(TestQueueSearch, self).setUp()
+        super().setUp()
         self.url = reverse('reviewers.queue_extension')
 
     def test_search_by_addon_type(self):
@@ -3291,7 +3290,7 @@ class TestQueueSearchUnlistedAllList(BaseTestQueueSearch):
     __test__ = True
 
     def setUp(self):
-        super(TestQueueSearchUnlistedAllList, self).setUp()
+        super().setUp()
         self.url = reverse('reviewers.unlisted_queue_all')
 
     def test_search_deleted(self):
@@ -4891,7 +4890,7 @@ class TestReview(ReviewBase):
     def test_viewing_review_unlocks(self):
         reviewing_url = reverse('reviewers.review_viewing')
         self.client.post(reviewing_url, {'addon_id': self.addon.id})
-        key = 'review_viewing:{id}'.format(id=self.addon.id)
+        key = f'review_viewing:{self.addon.id}'
         assert cache.get(key) == self.reviewer.id
 
         self.client.post(self.url, {'action': 'comment', 'comments': 'hello sailor'})
@@ -5109,9 +5108,7 @@ class TestReview(ReviewBase):
         self.addon.save()
         response = self.client.get(self.url)
         doc = pq(response.content)
-        translations = sorted(
-            [li.text_content() for li in doc('#name-translations li')]
-        )
+        translations = sorted(li.text_content() for li in doc('#name-translations li'))
         expected = [
             'English (Canadian), English (British): English Translation',
             'English (US): Public',
@@ -5557,7 +5554,7 @@ class TestReview(ReviewBase):
 
         new_block_url = reverse(
             'admin:blocklist_blocklistsubmission_add'
-        ) + '?guids=%s&min_version=%s&max_version=%s' % (
+        ) + '?guids={}&min_version={}&max_version={}'.format(
             self.addon.guid,
             old_version.version,
             self.version.version,
@@ -6503,7 +6500,7 @@ class TestAbuseReportsView(ReviewerTest):
 
 class TestReviewPending(ReviewBase):
     def setUp(self):
-        super(TestReviewPending, self).setUp()
+        super().setUp()
         self.file = file_factory(
             version=self.version,
             status=amo.STATUS_AWAITING_REVIEW,
@@ -6804,7 +6801,7 @@ class TestWhiteboard(ReviewBase):
 
 class TestWhiteboardDeleted(TestWhiteboard):
     def setUp(self):
-        super(TestWhiteboardDeleted, self).setUp()
+        super().setUp()
         self.addon.delete()
 
 
@@ -6812,7 +6809,7 @@ class TestLeaderboard(ReviewerTest):
     fixtures = ['base/users']
 
     def setUp(self):
-        super(TestLeaderboard, self).setUp()
+        super().setUp()
         self.url = reverse('reviewers.leaderboard')
 
         self.user = UserProfile.objects.get(email='reviewer@mozilla.com')
@@ -6905,7 +6902,7 @@ class TestXssOnAddonName(amo.tests.TestXss):
 
 class TestPolicyView(ReviewerTest):
     def setUp(self):
-        super(TestPolicyView, self).setUp()
+        super().setUp()
         self.addon = addon_factory()
         self.eula_url = reverse('reviewers.eula', args=[self.addon.slug])
         self.privacy_url = reverse('reviewers.privacy', args=[self.addon.slug])
@@ -6928,7 +6925,7 @@ class TestPolicyView(ReviewerTest):
         assert bool(self.addon.eula)
         response = self.client.get(self.eula_url)
         assert response.status_code == 200
-        self.assertContains(response, '{addon} – EULA'.format(addon=self.addon.name))
+        self.assertContains(response, f'{self.addon.name} – EULA')
         self.assertContains(response, 'End-User License Agreement')
         self.assertContains(response, 'Eulá!')
         self.assertContains(response, str(self.review_url))
@@ -6966,9 +6963,7 @@ class TestPolicyView(ReviewerTest):
         assert bool(self.addon.privacy_policy)
         response = self.client.get(self.privacy_url)
         assert response.status_code == 200
-        self.assertContains(
-            response, '{addon} – Privacy Policy'.format(addon=self.addon.name)
-        )
+        self.assertContains(response, f'{self.addon.name} – Privacy Policy')
         self.assertContains(response, 'Privacy Policy')
         self.assertContains(response, 'Prívacy Pólicy?')
         self.assertContains(response, str(self.review_url))
@@ -7001,7 +6996,7 @@ class TestAddonReviewerViewSet(TestCase):
     client_class = APITestClient
 
     def setUp(self):
-        super(TestAddonReviewerViewSet, self).setUp()
+        super().setUp()
         self.user = user_factory()
         self.addon = addon_factory()
         self.subscribe_url_listed = reverse_ns(
@@ -7442,7 +7437,7 @@ class TestAddonReviewerViewSetJsonValidation(TestCase):
     fixtures = ['devhub/addon-validation-1']
 
     def setUp(self):
-        super(TestAddonReviewerViewSetJsonValidation, self).setUp()
+        super().setUp()
         self.user = user_factory()
         file_validation = FileValidation.objects.get(pk=1)
         self.file = file_validation.file
@@ -7493,7 +7488,7 @@ class TestAddonReviewerViewSetJsonValidation(TestCase):
         assert self.client.get(self.url).status_code == 403
 
 
-class AddonReviewerViewSetPermissionMixin(object):
+class AddonReviewerViewSetPermissionMixin:
     __test__ = False
 
     def test_disabled_version_reviewer(self):
@@ -7590,7 +7585,7 @@ class TestReviewAddonVersionViewSetDetail(
     __test__ = True
 
     def setUp(self):
-        super(TestReviewAddonVersionViewSetDetail, self).setUp()
+        super().setUp()
 
         # TODO: Most of the initial setup could be moved to
         # setUpTestData but unfortunately paths are setup in pytest via a
@@ -7807,7 +7802,7 @@ class TestReviewAddonVersionViewSetList(TestCase):
     client_class = APITestClient
 
     def setUp(self):
-        super(TestReviewAddonVersionViewSetList, self).setUp()
+        super().setUp()
 
         self.addon = addon_factory(
             name='My Addôn',
@@ -8581,7 +8576,7 @@ class TestReviewAddonVersionCompareViewSet(
     __test__ = True
 
     def setUp(self):
-        super(TestReviewAddonVersionCompareViewSet, self).setUp()
+        super().setUp()
 
         self.addon = addon_factory(
             name='My Addôn',
@@ -8888,7 +8883,7 @@ class TestReviewAddonVersionCompareViewSet(
 
 class TestDownloadGitFileView(TestCase):
     def setUp(self):
-        super(TestDownloadGitFileView, self).setUp()
+        super().setUp()
 
         self.addon = addon_factory(
             name='My Addôn',
@@ -9098,7 +9093,7 @@ class TestCannedResponseViewSet(TestCase):
     client_class = APITestClient
 
     def setUp(self):
-        super(TestCannedResponseViewSet, self).setUp()
+        super().setUp()
 
         self.canned_response = CannedResponse.objects.create(
             name='Terms of services',
@@ -9160,7 +9155,7 @@ class TestCannedResponseViewSet(TestCase):
 
 class TestThemeBackgroundImages(ReviewBase):
     def setUp(self):
-        super(TestThemeBackgroundImages, self).setUp()
+        super().setUp()
         self.url = reverse(
             'reviewers.theme_background_images', args=[self.addon.current_version.id]
         )

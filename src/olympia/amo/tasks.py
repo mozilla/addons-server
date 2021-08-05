@@ -67,17 +67,17 @@ def set_modified_on_object(app_label, model_name, pk, **kw):
     model = apps.get_model(app_label, model_name)
     obj = model.objects.get(pk=pk)
     try:
-        log.info('Setting modified on object: %s, %s' % (model_name, pk))
+        log.info(f'Setting modified on object: {model_name}, {pk}')
         obj.update(modified=datetime.datetime.now(), **kw)
     except Exception as e:
-        log.error('Failed to set modified on: %s, %s - %s' % (model_name, pk, e))
+        log.error(f'Failed to set modified on: {model_name}, {pk} - {e}')
 
 
 @task
 def delete_logs(items, **kw):
     from olympia.activity.models import ActivityLog
 
-    log.info('[%s@%s] Deleting logs' % (len(items), delete_logs.rate_limit))
+    log.info(f'[{len(items)}@{delete_logs.rate_limit}] Deleting logs')
     ActivityLog.objects.filter(pk__in=items).exclude(action__in=amo.LOG_KEEP).delete()
 
 

@@ -80,7 +80,7 @@ class APIKey(ModelBase):
         This method must be run within a db transaction.
         Returns an instance of APIKey.
         """
-        key = cls.get_unique_key('user:{}:'.format(user.pk))
+        key = cls.get_unique_key(f'user:{user.pk}:')
         return cls.objects.create(
             key=key,
             secret=cls.generate_secret(32),
@@ -93,10 +93,10 @@ class APIKey(ModelBase):
     def get_unique_key(cls, prefix, try_count=1, max_tries=1000):
         if try_count >= max_tries:
             raise RuntimeError(
-                'a unique API key could not be found after {} tries'.format(max_tries)
+                f'a unique API key could not be found after {max_tries} tries'
             )
 
-        key = '{}{}'.format(prefix, random.randint(0, 999))
+        key = f'{prefix}{random.randint(0, 999)}'
         if cls.objects.filter(key=key).exists():
             return cls.get_unique_key(
                 prefix, try_count=try_count + 1, max_tries=max_tries

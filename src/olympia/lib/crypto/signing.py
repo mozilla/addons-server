@@ -150,15 +150,11 @@ def sign_file(file_obj):
     from olympia.git.utils import create_git_extraction_entry
 
     if not settings.ENABLE_ADDON_SIGNING:
-        raise SigningError(
-            'Not signing file {0}: no active endpoint'.format(file_obj.pk)
-        )
+        raise SigningError(f'Not signing file {file_obj.pk}: no active endpoint')
 
     # No file? No signature.
     if not os.path.exists(file_obj.current_file_path):
-        raise SigningError(
-            "File {0} doesn't exist on disk".format(file_obj.current_file_path)
-        )
+        raise SigningError(f"File {file_obj.current_file_path} doesn't exist on disk")
 
     # Don't sign Mozilla signed extensions (they're already signed).
     if file_obj.is_mozilla_signed_extension:
@@ -166,7 +162,7 @@ def sign_file(file_obj):
         # though we didn't sign, it's not an error - we just don't need to do
         # anything in this case.
         log.info(
-            'Not signing file {0}: mozilla signed extension is already '
+            'Not signing file {}: mozilla signed extension is already '
             'signed'.format(file_obj.pk)
         )
         return file_obj
@@ -174,7 +170,7 @@ def sign_file(file_obj):
     # We only sign files that are compatible with Firefox.
     if not supports_firefox(file_obj):
         raise SigningError(
-            'Not signing version {0}: not for a Firefox version we support'.format(
+            'Not signing version {}: not for a Firefox version we support'.format(
                 file_obj.version.pk
             )
         )
@@ -192,7 +188,7 @@ def sign_file(file_obj):
         is_signed=True,
         size=size,
     )
-    log.info('Signing complete for file {0}'.format(file_obj.pk))
+    log.info(f'Signing complete for file {file_obj.pk}')
 
     if waffle.switch_is_active('enable-uploads-commit-to-git-storage'):
         # Schedule this version for git extraction.
@@ -219,14 +215,16 @@ def is_signed(file_path):
     try:
         with zipfile.ZipFile(file_path, mode='r') as zf:
             filenames = set(zf.namelist())
-    except (zipfile.BadZipFile, IOError):
+    except (zipfile.BadZipFile, OSError):
         filenames = set()
-    return set(
-        ['META-INF/mozilla.rsa', 'META-INF/mozilla.sf', 'META-INF/manifest.mf']
-    ).issubset(filenames)
+    return {
+        'META-INF/mozilla.rsa',
+        'META-INF/mozilla.sf',
+        'META-INF/manifest.mf',
+    }.issubset(filenames)
 
 
-class SignatureInfo(object):
+class SignatureInfo:
     def __init__(self, pkcs7):
         if isinstance(pkcs7, SignatureInfo):
             # Allow passing around SignatureInfo objects to avoid

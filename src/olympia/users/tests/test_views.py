@@ -15,7 +15,7 @@ class UserViewBase(TestCase):
     fixtures = ['users/test_backends']
 
     def setUp(self):
-        super(UserViewBase, self).setUp()
+        super().setUp()
         self.client = amo.tests.TestClient()
         self.client.get('/')
         self.user = UserProfile.objects.get(id='4043307')

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import json
 import os
 from unittest import mock
@@ -41,7 +40,7 @@ class BaseTestEdit(TestCase):
     __test__ = False  # this is an abstract test case
 
     def setUp(self):
-        super(BaseTestEdit, self).setUp()
+        super().setUp()
         assert self.client.login(email='del@icio.us')
 
         addon = self.get_addon()
@@ -75,7 +74,7 @@ class BaseTestEditDescribe(BaseTestEdit):
     __test__ = False  # this is an abstract test case
 
     def setUp(self):
-        super(BaseTestEditDescribe, self).setUp()
+        super().setUp()
         self.describe_edit_url = self.get_url('describe', edit=True)
         if self.listed:
             ctx = self.client.get(self.describe_edit_url).context
@@ -489,7 +488,7 @@ class BaseTestEditDescribe(BaseTestEdit):
         assert response.status_code == 200
 
 
-class L10nTestsMixin(object):
+class L10nTestsMixin:
     def get_l10n_urls(self):
         paths = ('devhub.addons.edit', 'devhub.addons.owner')
         return [reverse(p, args=['a3615']) for p in paths]
@@ -539,13 +538,13 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
 
         # Make sure the categories list we display to the user in the response
         # has been updated.
-        assert set(cat.id for cat in response.context['addon'].all_categories) == set(
+        assert {cat.id for cat in response.context['addon'].all_categories} == {
             cat.id for cat in self.addon.all_categories
-        )
+        }
 
     def test_edit_categories_addandremove(self):
         AddonCategory(addon=self.addon, category_id=1).save()
-        assert sorted([c.id for c in self.get_addon().all_categories]) == [1, 22]
+        assert sorted(c.id for c in self.get_addon().all_categories) == [1, 22]
 
         self.cat_initial['categories'] = [22, 71]
         response = self.client.post(self.describe_edit_url, self.get_dict())
@@ -555,13 +554,13 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
 
         # Make sure the categories list we display to the user in the response
         # has been updated.
-        assert set(cat.id for cat in response.context['addon'].all_categories) == set(
+        assert {cat.id for cat in response.context['addon'].all_categories} == {
             cat.id for cat in self.addon.all_categories
-        )
+        }
 
     def test_edit_categories_remove(self):
         AddonCategory(addon=self.addon, category_id=1).save()
-        assert sorted([cat.id for cat in self.get_addon().all_categories]) == [1, 22]
+        assert sorted(cat.id for cat in self.get_addon().all_categories) == [1, 22]
 
         self.cat_initial['categories'] = [22]
         response = self.client.post(self.describe_edit_url, self.get_dict())
@@ -752,7 +751,7 @@ class TestEditMedia(BaseTestEdit):
     __test__ = True
 
     def setUp(self):
-        super(TestEditMedia, self).setUp()
+        super().setUp()
         self.media_edit_url = self.get_url('media', True)
         self.icon_upload = reverse('devhub.addons.upload_icon', args=[self.addon.slug])
         self.preview_upload = reverse(
@@ -1166,7 +1165,7 @@ class TestEditMedia(BaseTestEdit):
         assert len(self.get_addon().previews.all()) == 2
 
 
-class TagTestsMixin(object):
+class TagTestsMixin:
     def get_dict(self, **kw):
         result = {'default_locale': 'en-US', 'tags': self.tags}
         result.update(**kw)
@@ -1261,7 +1260,7 @@ class TagTestsMixin(object):
         )
 
 
-class ContributionsTestsMixin(object):
+class ContributionsTestsMixin:
     def test_contributions_url_not_url(self):
         data = self.get_dict(default_locale='en-US', contributions='foooo')
         response = self.client.post(self.details_edit_url, data)
@@ -1332,7 +1331,7 @@ class BaseTestEditAdditionalDetails(BaseTestEdit):
     __test__ = False
 
     def setUp(self):
-        super(BaseTestEditAdditionalDetails, self).setUp()
+        super().setUp()
         self.details_url = self.get_url('additional_details')
         self.details_edit_url = self.get_url('additional_details', edit=True)
 
@@ -1437,7 +1436,7 @@ class TestEditTechnical(BaseTestEdit):
     ]
 
     def setUp(self):
-        super(TestEditTechnical, self).setUp()
+        super().setUp()
         self.technical_url = self.get_url('technical')
         self.technical_edit_url = self.get_url('technical', edit=True)
 
@@ -1494,9 +1493,9 @@ class TestEditTechnicalUnlisted(BaseTestEdit):
         assert addon.whiteboard.public == ''
 
 
-class StaticMixin(object):
+class StaticMixin:
     def setUp(self):
-        super(StaticMixin, self).setUp()
+        super().setUp()
         addon = self.get_addon()
         addon.update(type=amo.ADDON_STATICTHEME)
         if self.listed:
@@ -1535,7 +1534,7 @@ class TestEditDescribeStaticThemeListed(
     def test_edit_categories_change(self):
         AddonCategory(addon=self.addon, category_id=300).save()
         AddonCategory(addon=self.addon, category_id=400).save()
-        assert sorted([cat.id for cat in self.get_addon().all_categories]) == [300, 400]
+        assert sorted(cat.id for cat in self.get_addon().all_categories) == [300, 400]
 
         self.client.post(self.describe_edit_url, self.get_dict(category='firefox'))
         category_ids_new = [cat.id for cat in self.get_addon().all_categories]

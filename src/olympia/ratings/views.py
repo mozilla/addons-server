@@ -158,9 +158,7 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
         # When loading the add-on, pass a specific permission class - the
         # default from AddonViewSet is too restrictive, we are not modifying
         # the add-on itself so we don't need all the permission checks it does.
-        return super(RatingViewSet, self).get_addon_object(
-            permission_classes=[AllowIfPublic]
-        )
+        return super().get_addon_object(permission_classes=[AllowIfPublic])
 
     def should_include_flags(self):
         if not hasattr(self, '_should_include_flags'):
@@ -193,7 +191,7 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
         self.get_addon_object()
 
         # Proceed with the regular permission checks.
-        return super(RatingViewSet, self).check_permissions(request)
+        return super().check_permissions(request)
 
     def get_serializer(self, *args, **kwargs):
         if self.action in ('partial_update', 'update'):
@@ -201,7 +199,7 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
             if instance.reply_to is not None:
                 self.rating_object = instance.reply_to
                 self.serializer_class = self.reply_serializer_class
-        return super(RatingViewSet, self).get_serializer(*args, **kwargs)
+        return super().get_serializer(*args, **kwargs)
 
     def filter_queryset(self, qs):
         if self.action == 'list':
@@ -265,7 +263,7 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
                         '(separated by a comma).'
                     )
                 qs = qs.exclude(pk__in=exclude_ratings)
-        return super(RatingViewSet, self).filter_queryset(qs)
+        return super().filter_queryset(qs)
 
     def get_paginated_response(self, data):
         request = self.request
@@ -295,7 +293,7 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
         # Call this here so the validation checks on the `show_flags_for` are
         # carried out even when there are no results to serialize.
         self.should_include_flags()
-        response = super(RatingViewSet, self).get_paginated_response(data)
+        response = super().get_paginated_response(data)
         if extra_data:
             response.data.update(extra_data)
         return response

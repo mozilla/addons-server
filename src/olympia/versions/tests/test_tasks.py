@@ -57,7 +57,7 @@ def check_render(
     if valid_img:
         with storage.open(HEADER_ROOT + header_url, 'rb') as header_file:
             header_blob = header_file.read()
-            base_64_uri = 'data:%s;base64,%s' % (
+            base_64_uri = 'data:{};base64,{}'.format(
                 mimetype,
                 force_str(b64encode(header_blob)),
             )
@@ -465,7 +465,7 @@ def check_render_additional(svg_content, inner_svg_width, colors):
         % (image_width, image_height, pattern_x_offset, 0)
     )
     assert pattern_tag in svg_content, svg_content
-    image_tag = '<image width="%s" height="%s"' % (image_width, image_height)
+    image_tag = f'<image width="{image_width}" height="{image_height}"'
     assert image_tag in svg_content, svg_content
     rect_tag = (
         '<rect width="100%" height="100%" fill="url(#AdditionalBackground1)"></rect>'
@@ -475,7 +475,7 @@ def check_render_additional(svg_content, inner_svg_width, colors):
     additional = os.path.join(HEADER_ROOT, 'weta_for_tiling.png')
     with storage.open(additional, 'rb') as header_file:
         header_blob = header_file.read()
-    base_64_uri = 'data:%s;base64,%s' % (
+    base_64_uri = 'data:{};base64,{}'.format(
         'image/png',
         force_str(b64encode(header_blob)),
     )

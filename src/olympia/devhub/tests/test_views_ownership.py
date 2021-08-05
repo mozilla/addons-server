@@ -19,7 +19,7 @@ class TestOwnership(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
-        super(TestOwnership, self).setUp()
+        super().setUp()
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.current_version
         self.url = self.addon.get_dev_url('owner')
@@ -111,7 +111,7 @@ class TestEditPolicy(TestOwnership):
 
 class TestEditLicense(TestOwnership):
     def setUp(self):
-        super(TestEditLicense, self).setUp()
+        super().setUp()
         self.version.license = None
         self.version.save()
         self.license = License.objects.create(
@@ -798,7 +798,7 @@ class TestEditAuthor(TestOwnership):
 
 class TestEditAuthorStaticTheme(TestEditAuthor):
     def setUp(self):
-        super(TestEditAuthorStaticTheme, self).setUp()
+        super().setUp()
         self.addon.update(type=amo.ADDON_STATICTHEME)
         self.cc_license = License.objects.create(
             builtin=11, url='license.url', creative_commons=True, on_form=True

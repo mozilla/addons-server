@@ -82,7 +82,7 @@ class Translation(ModelBase):
 
     def save(self, **kwargs):
         self.clean()
-        return super(Translation, self).save(**kwargs)
+        return super().save(**kwargs)
 
     def delete(self, using=None):
         # FIXME: if the Translation is the one used as default/fallback,
@@ -112,7 +112,7 @@ class Translation(ModelBase):
             # If no other Translations with that id exist, then we should let
             # django behave normally. It should find the related model and set
             # the FKs to NULL.
-            return super(Translation, self).delete(using=using)
+            return super().delete(using=using)
 
     delete.alters_data = True
 
@@ -205,7 +205,7 @@ class PurifiedTranslation(Translation):
     def clean(self):
         from olympia.amo.utils import clean_nl
 
-        super(PurifiedTranslation, self).clean()
+        super().clean()
         cleaned = self.clean_localized_string()
         self.localized_string_clean = clean_nl(cleaned).strip()
 

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import os
 import shutil
 import tempfile
@@ -182,7 +181,7 @@ class TestCompatForm(TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
-        super(TestCompatForm, self).setUp()
+        super().setUp()
         AppVersion.objects.create(application=amo.ANDROID.id, version='50.0')
         AppVersion.objects.create(application=amo.ANDROID.id, version='56.0')
         AppVersion.objects.create(application=amo.FIREFOX.id, version='56.0')
@@ -320,7 +319,7 @@ class TestPreviewForm(TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
-        super(TestPreviewForm, self).setUp()
+        super().setUp()
         self.dest = os.path.join(settings.TMP_PATH, 'preview')
         if not os.path.exists(self.dest):
             os.makedirs(self.dest)
@@ -441,7 +440,7 @@ class TestDescribeForm(TestCase):
     fixtures = ('base/addon_3615', 'addons/denied')
 
     def setUp(self):
-        super(TestDescribeForm, self).setUp()
+        super().setUp()
         self.existing_name = 'Delicious Bookmarks'
         self.non_existing_name = 'Does Not Exist'
         self.error_msg = 'This name is already in use. Please choose another.'
@@ -808,7 +807,7 @@ class TestAdditionalDetailsForm(TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
-        super(TestAdditionalDetailsForm, self).setUp()
+        super().setUp()
         self.addon = Addon.objects.get(pk=3615)
 
         self.data = {
@@ -891,7 +890,7 @@ class TestIconForm(TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
-        super(TestIconForm, self).setUp()
+        super().setUp()
         self.temp_dir = tempfile.mkdtemp(dir=settings.TMP_PATH)
         self.addon = Addon.objects.get(pk=3615)
 
@@ -905,11 +904,11 @@ class TestIconForm(TestCase):
 
     def tearDown(self):
         rm_local_tmp_dir(self.temp_dir)
-        super(TestIconForm, self).tearDown()
+        super().tearDown()
 
     def get_icon_paths(self):
         path = os.path.join(self.addon.get_icon_dir(), str(self.addon.id))
-        return ['%s-%s.png' % (path, size) for size in amo.ADDON_ICON_SIZES]
+        return [f'{path}-{size}.png' for size in amo.ADDON_ICON_SIZES]
 
     @mock.patch('olympia.amo.models.ModelBase.update')
     def test_icon_modified(self, update_mock):

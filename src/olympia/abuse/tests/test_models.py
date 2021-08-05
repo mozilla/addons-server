@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from unittest import mock
 
 from olympia.abuse.models import AbuseReport, GeoIP2Error, GeoIP2Exception

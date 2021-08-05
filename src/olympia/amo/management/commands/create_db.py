@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import logging
 
 from django.conf import settings
@@ -14,7 +13,7 @@ class Command(BaseCommand):
     help = 'Creates the database for this project.'
 
     def add_arguments(self, parser):
-        super(Command, self).add_arguments(parser)
+        super().add_arguments(parser)
         parser.add_argument(
             '--force', action='store_true', help='Drops any existing database first.'
         )
@@ -45,7 +44,7 @@ class Command(BaseCommand):
             drop_query = None
 
         character_set = db_info.get('OPTIONS').get('charset', 'utf8mb4')
-        create_query = 'CREATE DATABASE `%s` CHARACTER SET %s' % (
+        create_query = 'CREATE DATABASE `{}` CHARACTER SET {}'.format(
             database_name,
             character_set,
         )

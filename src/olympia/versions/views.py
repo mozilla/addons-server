@@ -211,7 +211,7 @@ def download_source(request, version_id):
     if not isinstance(path, str):
         path = path.decode('utf8')
     name = os.path.basename(path.replace('"', ''))
-    disposition = 'attachment; filename="{0}"'.format(name).encode('utf8')
+    disposition = f'attachment; filename="{name}"'.encode()
     response['Content-Disposition'] = disposition
     response['Access-Control-Allow-Origin'] = '*'
     return response

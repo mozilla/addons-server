@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import json
 import os
 from datetime import datetime, timedelta
@@ -56,7 +55,7 @@ class BaseUploadVersionTestMixin(SigningAPITestMixin):
         create_default_webext_appversion()
 
     def setUp(self):
-        super(BaseUploadVersionTestMixin, self).setUp()
+        super().setUp()
         self.guid = '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}'
         addon_factory(
             guid=self.guid,
@@ -86,7 +85,7 @@ class BaseUploadVersionTestMixin(SigningAPITestMixin):
             'olympia',
             'signing',
             'fixtures',
-            '{addon}-{version}.xpi'.format(addon=guid, version=version),
+            f'{guid}-{version}.xpi',
         )
 
     def request(
@@ -1320,7 +1319,7 @@ class TestCheckVersion(BaseUploadVersionTestMixin, TestCase):
         file_ = qs.get()
         assert response.data['files'][0]['download_url'] == absolutify(
             reverse_ns('signing.file', kwargs={'file_id': file_.id})
-            + '/{fname}'.format(fname=file_.filename)
+            + f'/{file_.filename}'
         )
 
     def test_file_hash(self):
@@ -1369,7 +1368,7 @@ class TestCheckVersion(BaseUploadVersionTestMixin, TestCase):
 
 class TestSignedFile(SigningAPITestMixin, TestCase):
     def setUp(self):
-        super(TestSignedFile, self).setUp()
+        super().setUp()
         self.file_ = self.create_file()
 
     def url(self):

@@ -125,7 +125,7 @@ ADDITIONAL_PRODUCT_LANGUAGES = {
     },
     'bm': {'english': 'Bambara', 'native': 'Bamanankan'},
     'br': {'english': 'Breton', 'native': 'Brezhoneg'},
-    'brx': {'english': 'Bodo', 'native': u"\u092c\u0930'"},
+    'brx': {'english': 'Bodo', 'native': "\u092c\u0930'"},
     'ca-valencia': {
         'english': 'Catalan (Valencian)',
         'native': 'catal\xe0 (valenci\xe0)',
@@ -153,7 +153,7 @@ ADDITIONAL_PRODUCT_LANGUAGES = {
     'ga': {'english': 'Irish', 'native': 'Gaeilge'},
     'gd': {'english': 'Gaelic (Scotland)', 'native': 'G\xe0idhlig'},
     'gl': {'english': 'Galician', 'native': 'Galego'},
-    'gn': {'english': 'Guarani', 'native': u"Ava\xf1e'\u1ebd"},
+    'gn': {'english': 'Guarani', 'native': "Ava\xf1e'\u1ebd"},
     'gu-IN': {
         'english': 'Gujarati (India)',
         'native': '\u0a97\u0ac1\u0a9c\u0ab0\u0abe\u0aa4\u0ac0 (\u0aad\u0abe\u0ab0\u0aa4)',  # noqa

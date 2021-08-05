@@ -86,7 +86,7 @@ class CategoriesSelectMultiple(forms.CheckboxSelectMultiple):
         if other:
             groups.append([(choices_size, other)])
 
-        str_values = set([force_str(v) for v in value])
+        str_values = {force_str(v) for v in value}
 
         output = []
         for (k, group) in enumerate(groups):
@@ -95,7 +95,7 @@ class CategoriesSelectMultiple(forms.CheckboxSelectMultiple):
 
             for i, (option_value, option_label) in group:
                 if has_id:
-                    final_attrs = dict(final_attrs, id='%s_%s' % (attrs['id'], i))
+                    final_attrs = dict(final_attrs, id='{}_{}'.format(attrs['id'], i))
                     label_for = ' for="%s"' % final_attrs['id']
                 else:
                     label_for = ''
