@@ -83,11 +83,11 @@ This endpoint allows you to search through public add-ons.
     Threshold style parameters allow queries against numeric values using comparison.
 
     The following is supported (examples for query parameter `foo`):
-    * greater than ``foo__gt`` (example query: ?foo__gt=10.1)
-    * less than ``foo__lt`` (example query: ?foo__lt=10.1)
-    * greater than or equal to ``foo__gte`` (example query: ?foo__gte=10.1)
-    * less than or equal to ``foo__lte`` (example query: ?foo__lte=10.1)
-    * equal to ``foo`` (example query: ?foo=10.1)
+        * greater than ``foo__gt`` (example query: ?foo__gt=10.1)
+        * less than ``foo__lt`` (example query: ?foo__lt=10.1)
+        * greater than or equal to ``foo__gte`` (example query: ?foo__gte=10.1)
+        * less than or equal to ``foo__lte`` (example query: ?foo__lte=10.1)
+        * equal to ``foo`` (example query: ?foo=10.1)
 
 
 ------------
