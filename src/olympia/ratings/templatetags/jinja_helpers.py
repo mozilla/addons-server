@@ -13,7 +13,7 @@ def stars(num, large=False):
     if num is None or num == 0.0:
         return gettext('Not yet rated')
     else:
-        num = min(5, int(round(num)))
+        num = min(5, round(num * 2) / 2)
         t = get_template('ratings/impala/reviews_rating.html')
         # These are getting renamed for contextual sense in the template.
         return markupsafe.Markup(t.render({'rating': num, 'detailpage': large}))

@@ -30,7 +30,11 @@ class HelpersTest(TestCase):
 
     def test_stars_max(self):
         doc = pq(self.render('{{ num|stars }}', {'num': 5.3}))
-        assert doc.attr('class') == 'stars stars-5'
+        assert doc.attr('class') == 'stars stars-5-0'
+
+    def test_stars_css(self):
+        doc = pq(self.render('{{ num|stars }}', {'num': 3.3}))
+        assert doc.attr('class') == 'stars stars-3.5'
 
     def test_reviews_link(self):
         addon = addon_factory(average_rating=4, total_ratings=37, id=1, slug='xx')
