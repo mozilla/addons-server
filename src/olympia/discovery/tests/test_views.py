@@ -34,7 +34,6 @@ class DiscoveryTestMixin:
             file_.created.replace(microsecond=0).isoformat() + 'Z'
         )
         assert result_file['hash'] == file_.hash
-        assert result_file['is_restart_required'] == file_.is_restart_required
         assert result_file['is_webextension'] == file_.is_webextension
         assert (
             result_file['is_mozilla_signed_extension']

@@ -402,7 +402,6 @@ class ManifestJSONExtractor:
         if not minimal:
             data.update(
                 {
-                    'is_restart_required': False,
                     'apps': list(self.apps()),
                     # Langpacks have strict compatibility enabled, rest of
                     # webextensions don't.

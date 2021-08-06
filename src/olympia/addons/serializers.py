@@ -49,7 +49,7 @@ class FileSerializer(serializers.ModelSerializer):
     status = ReverseChoiceField(choices=list(amo.STATUS_CHOICES_API.items()))
     permissions = serializers.ListField(child=serializers.CharField())
     optional_permissions = serializers.ListField(child=serializers.CharField())
-    is_restart_required = serializers.BooleanField()
+    is_restart_required = serializers.SerializerMethodField()
 
     class Meta:
         model = File
@@ -76,12 +76,19 @@ class FileSerializer(serializers.ModelSerializer):
         request = self.context.get('request', None)
         if request and not is_gate_active(request, 'platform-shim'):
             data.pop('platform', None)
+        if request and not is_gate_active(request, 'is-restart-required-shim'):
+            data.pop('is_restart_required', None)
         return data
 
     def get_platform(self, obj):
         # platform is gone, but we need to keep the API backwards compatible so
         # fake it by just returning 'all' all the time.
         return 'all'
+
+    def get_is_restart_required(self, obj):
+        # is_restart_required is gone from the model and all addons are restartless now
+        # so fake it for older API clients with False
+        return False
 
 
 class PreviewSerializer(serializers.ModelSerializer):
@@ -638,7 +645,6 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
             filename=data['filename'],
             is_webextension=data.get('is_webextension'),
             is_mozilla_signed_extension=data.get('is_mozilla_signed_extension'),
-            is_restart_required=data.get('is_restart_required', False),
             size=data['size'],
             status=data['status'],
             strict_compatibility=data.get('strict_compatibility', False),

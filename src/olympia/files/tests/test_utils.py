@@ -132,10 +132,6 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         """manifest.json addons are always ADDON_EXTENSION."""
         assert self.parse({})['type'] == amo.ADDON_EXTENSION
 
-    def test_is_restart_required(self):
-        """manifest.json addons never requires restart."""
-        assert self.parse({})['is_restart_required'] is False
-
     def test_name(self):
         """Use name for the name."""
         assert self.parse({'name': 'addon-name'})['name'] == 'addon-name'

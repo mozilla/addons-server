@@ -116,10 +116,7 @@ class TestExtensionQueueWithAwaitingReview(TestQueue):
             addon=addon,
             version=version,
             channel=self.channel,
-            file_kw={
-                'status': amo.STATUS_AWAITING_REVIEW,
-                'is_restart_required': False,
-            },
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         return addon
 
@@ -167,14 +164,6 @@ class TestExtensionQueueWithAwaitingReview(TestQueue):
 
         queue = self.Queue.objects.get()
         assert queue.flags == [('needs-admin-code-review', 'Needs Admin Code Review')]
-
-    def test_flags_is_restart_required(self):
-        self.new_addon().find_latest_version(self.channel).all_files[0].update(
-            is_restart_required=True
-        )
-
-        queue = self.Queue.objects.get()
-        assert queue.flags == [('is_restart_required', 'Requires Restart')]
 
     def test_flags_promoted(self):
         addon = self.new_addon()

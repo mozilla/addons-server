@@ -168,7 +168,6 @@ class TestAddonIndexer(TestCase):
             'filename',
             'hash',
             'is_webextension',
-            'is_restart_required',
             'is_mozilla_signed_extension',
             'size',
             'status',
@@ -330,7 +329,6 @@ class TestAddonIndexer(TestCase):
             assert extracted_file['filename'] == file_.filename
             assert extracted_file['hash'] == file_.hash
             assert extracted_file['is_webextension'] == file_.is_webextension
-            assert extracted_file['is_restart_required'] == (file_.is_restart_required)
             assert extracted_file['is_mozilla_signed_extension'] == (
                 file_.is_mozilla_signed_extension
             )

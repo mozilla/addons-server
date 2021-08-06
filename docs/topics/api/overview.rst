@@ -424,6 +424,7 @@ These are `v5` specific changes - `v4` changes apply also.
 * 2021-07-29: updated docs shelves footer url to be non-optional. https://github.com/mozilla/addons-server/issues/17544
 * 2021-08-05: added ``ratings`` and ``users`` query parameters to addon search api. https://github.com/mozilla/addons-server/issues/17497
 * 2021-08-05: removed ``criteria`` from shelves endpoint. https://github.com/mozilla/addons-server/issues/17498
+* 2021-08-12: removed ``is_restart_required`` from addons endpoints. https://github.com/mozilla/addons-server/issues/17390
 
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/

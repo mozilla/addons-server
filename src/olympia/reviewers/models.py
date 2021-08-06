@@ -56,7 +56,6 @@ VIEW_QUEUE_FLAGS = (
         'needs-admin-theme-review',
         _('Needs Admin Static Theme Review'),
     ),
-    ('is_restart_required', 'is_restart_required', _('Requires Restart')),
     ('sources_provided', 'sources-provided', _('Sources provided')),
     ('is_webextension', 'webextension', _('WebExtension')),
     (
@@ -148,7 +147,6 @@ class ViewQueue(RawSQLModel):
     addon_type_id = models.IntegerField()
     auto_approval_delayed_temporarily = models.BooleanField(null=True)
     auto_approval_delayed_indefinitely = models.BooleanField(null=True)
-    is_restart_required = models.BooleanField()
     is_webextension = models.BooleanField()
     latest_version = models.CharField(max_length=255)
     needs_admin_code_review = models.BooleanField(null=True)
@@ -189,7 +187,6 @@ class ViewQueue(RawSQLModel):
                             'auto_approval_delayed_until) = 9999'
                         ),
                     ),
-                    ('is_restart_required', 'MAX(files.is_restart_required)'),
                     ('is_webextension', 'MAX(files.is_webextension)'),
                     ('latest_version', 'versions.version'),
                     (

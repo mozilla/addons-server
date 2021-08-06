@@ -579,10 +579,6 @@ class Version(OnChangeMixin, ModelBase):
             return False
 
     @property
-    def is_restart_required(self):
-        return any(file_.is_restart_required for file_ in self.all_files)
-
-    @property
     def is_webextension(self):
         return any(file_.is_webextension for file_ in self.all_files)
 

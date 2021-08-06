@@ -631,13 +631,11 @@ class TestParseXpi(TestCase):
         # See #3315: webextension experiments (type 256) map to extensions.
         assert parsed['type'] == amo.ADDON_EXTENSION
         assert parsed['is_experiment']
-        assert not parsed['is_restart_required']
 
     def test_match_type_extension_for_webextensions(self):
         parsed = self.parse(filename='webextension.xpi')
         assert parsed['type'] == amo.ADDON_EXTENSION
         assert parsed['is_webextension']
-        assert not parsed['is_restart_required']
         assert not parsed['is_experiment']
 
     def test_experiment_inside_webextension(self):
@@ -645,7 +643,6 @@ class TestParseXpi(TestCase):
         parsed = self.parse(filename='experiment_inside_webextension.xpi')
         assert parsed['type'] == amo.ADDON_EXTENSION
         assert parsed['is_webextension']
-        assert not parsed['is_restart_required']
         assert parsed['is_experiment']
 
     def test_theme_experiment_inside_webextension(self):
@@ -653,7 +650,6 @@ class TestParseXpi(TestCase):
         parsed = self.parse(filename='theme_experiment_inside_webextension.xpi')
         assert parsed['type'] == amo.ADDON_STATICTHEME
         assert parsed['is_webextension']
-        assert not parsed['is_restart_required']
         assert parsed['is_experiment']
 
     def test_match_mozilla_signed_extension(self):
@@ -676,7 +672,6 @@ class TestParseXpi(TestCase):
         self.grant_permission(self.user, 'LanguagePack:Submit')
         result = self.parse(filename='webextension_langpack.xpi')
         assert result['type'] == amo.ADDON_LPAPP
-        assert not result['is_restart_required']
         assert result['strict_compatibility']
 
     def test_good_version_number(self):
@@ -1169,12 +1164,6 @@ class TestFileFromUpload(UploadTest):
         assert file_.hash.startswith('sha256:')
         assert len(file_.hash) == 64 + 7  # 64 for hash, 7 for 'sha256:'
 
-    def test_does_not_require_a_restart(self):
-        upload = self.upload('webextension.xpi')
-        parsed_data = parse_addon(upload.path, addon=self.addon, user=user_factory())
-        file_ = File.from_upload(upload, self.version, parsed_data=parsed_data)
-        assert not file_.is_restart_required
-
     def test_utf8(self):
         upload = self.upload('wébextension.xpi')
         self.version.addon.name = 'jéts!'
@@ -1223,7 +1212,6 @@ class TestFileFromUpload(UploadTest):
         upload = self.upload('webextension_langpack.xpi')
         file_ = File.from_upload(upload, self.version, parsed_data={})
         assert file_.filename.endswith('.xpi')
-        assert not file_.is_restart_required
 
     def test_experiment(self):
         upload = self.upload('experiment_inside_webextension')

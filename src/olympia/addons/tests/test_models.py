@@ -845,19 +845,6 @@ class TestAddonModels(TestCase):
         addon.disabled_by_user = True
         assert not addon.is_public()
 
-    def test_is_restart_required(self):
-        addon = Addon.objects.get(pk=3615)
-        file_ = addon.current_version.all_files[0]
-        assert not file_.is_restart_required
-        assert not addon.is_restart_required
-
-        file_.update(is_restart_required=True)
-        assert Addon.objects.get(pk=3615).is_restart_required
-
-        addon.versions.all().delete()
-        addon._current_version = None
-        assert not addon.is_restart_required
-
     def newlines_helper(self, string_before):
         addon = Addon.objects.get(pk=3615)
         addon.privacy_policy = string_before
