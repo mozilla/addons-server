@@ -5863,7 +5863,7 @@ msgid "Back to Add-ons"
 msgstr ""
 
 msgid "Footer logo"
-msgstr "Logu del pie"
+msgstr "Logotipu del pie"
 
 msgid "Legal Notices"
 msgstr ""
@@ -6002,7 +6002,7 @@ msgid "Collections"
 msgstr "Coleiciones"
 
 msgid "Activity Logs"
-msgstr "Rexistros d'actividá"
+msgstr ""
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr ""

@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-07-29 17:14+0000\n"
-"PO-Revision-Date: 2021-07-05 03:58+0000\n"
+"PO-Revision-Date: 2021-08-08 05:42+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ast\n"
@@ -25,7 +25,7 @@ msgid "There was a problem contacting the server."
 msgstr ""
 
 msgid "Select a file..."
-msgstr "Esbillar un ficheru..."
+msgstr ""
 
 msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr ""
@@ -33,7 +33,7 @@ msgstr ""
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
 msgid "{0}% complete"
-msgstr "{0}% completáu"
+msgstr ""
 
 msgid "{0} of {1}"
 msgstr "{0} de {1}"
@@ -45,7 +45,7 @@ msgid "Uploading {0}"
 msgstr "Xubiendo {0}"
 
 msgid "Error with {0}"
-msgstr "Fallu con {0}"
+msgstr "Hebo un fallu con {0}"
 
 msgid "Please make sure to report any linting related issues on GitHub"
 msgstr ""
@@ -73,13 +73,13 @@ msgid "Received an empty response from the server; status: {0}"
 msgstr "Recibióse una rempuesta balera del sirvidor. Estáu: {0}"
 
 msgid "Unexpected server error while validating."
-msgstr "Nun s'esperaba'l fallu del sirvidor mentanto la validación."
+msgstr "Nun s'esperaba'l fallu del sirvidor mentanto se validaba."
 
 msgid "Finished validating {0}"
 msgstr ""
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr "Escosó'l tiempu d'espera de la validación del complementu, va revisase a mano."
+msgstr "Escosó'l tiempu d'espera de la validación del complementu, va revisase manualmente."
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
@@ -124,10 +124,10 @@ msgid ""
 msgstr ""
 
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr "El procesu de validación alcontró estos problemes que puen orixinar refugos:"
+msgstr ""
 
 msgid "The filetype you uploaded isn't recognized."
-msgstr "Nun se reconoz la triba del ficheru que xubiesti."
+msgstr "Nun se reconoz el tipu del ficheru que xubiesti."
 
 msgid "Your file exceeds the maximum size of {0}."
 msgstr "El ficheru perpasa'l tamañu máximu de {0}."
@@ -142,7 +142,7 @@ msgid "Videos must be in WebM."
 msgstr "Los vídeos han tar en WebM."
 
 msgid "This theme is incompatible with your version of {0}"
-msgstr "Esti tema ye incompatible cola to versión de {0}"
+msgstr "Esti estilu ye incompatible cola to versión de {0}"
 
 msgid "Flagged for review"
 msgstr ""
@@ -154,7 +154,7 @@ msgid "Marked for deletion"
 msgstr ""
 
 msgid "Updating results&hellip;"
-msgstr "Anovando resultaos&hellip;"
+msgstr "Anovando los resultaos&hellip;"
 
 msgid "Category"
 msgstr "Estaya"
@@ -227,7 +227,7 @@ msgid "Number of Contributions"
 msgstr "Númberu de collaboraciones"
 
 msgid "More Info..."
-msgstr "Más información..."
+msgstr "Más información…"
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"
@@ -470,27 +470,27 @@ msgstr "Llingües dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Versions, last {0} days"
-msgstr "Versiones del complementu nos últimos {0} díes"
+msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Versions from {0} to {1}"
-msgstr "Versiones del complementu dende'l {0} hasta'l {1}"
+msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Add-on Status, last {0} days"
-msgstr "Estáu del complementu nos últimos {0} díes"
+msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Status from {0} to {1}"
-msgstr "Estáu del complementu dende'l {0} hasta'l {1}"
+msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
-msgstr "Descarga de les fontes nos últimos {0} díes"
+msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
-msgstr "Fontes baxaes dende'l {0} hasta'l {1}"
+msgstr ""
 
 #. L10n: {0} is an integer.
 #, fuzzy
