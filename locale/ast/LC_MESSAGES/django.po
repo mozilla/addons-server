@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-07-29 17:13+0000\n"
-"PO-Revision-Date: 2021-08-08 05:35+0000\n"
+"PO-Revision-Date: 2021-08-08 06:18+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ast\n"
@@ -4296,7 +4296,7 @@ msgstr "Amiesten carauterístiques a Firefox pa restolar más rápido, más segu
 
 #. editorial content for the secondary hero shelves.
 msgid "See all extensions"
-msgstr ""
+msgstr "Ver toles estensiones"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
@@ -4316,7 +4316,7 @@ msgstr "Esplorar les estensiones"
 
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
-msgstr "Saber más"
+msgstr "Lleer más"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended extensions"
