@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-07-29 17:14+0000\n"
-"PO-Revision-Date: 2021-08-08 05:42+0000\n"
+"PO-Revision-Date: 2021-08-08 05:53+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ast\n"
@@ -493,34 +493,28 @@ msgid "Download Sources from {0} to {1}"
 msgstr ""
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Mediums, last {0} days"
-msgstr "Descargues nos últimos {0} díes"
+msgstr "Medios de descarga nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Mediums from {0} to {1}"
-msgstr "Descargues dende'l {0} hasta'l {1}"
+msgstr "Medios de descarga dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Contents, last {0} days"
-msgstr "Descarga de les fontes nos últimos {0} díes"
+msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Contents from {0} to {1}"
-msgstr "Descargues dende'l {0} hasta'l {1}"
+msgstr ""
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Campaigns, last {0} days"
-msgstr "Descargues nos últimos {0} díes"
+msgstr "Campañes de descarga nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Campaigns from {0} to {1}"
-msgstr "Descargues dende'l {0} hasta'l {1}"
+msgstr "Campañes de descarga dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
@@ -580,11 +574,11 @@ msgstr "Reseñes escrites dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
-msgstr "Rexistros d'usuarios nos últimos {0} díes"
+msgstr "Rexistros d'usuariu nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "User Signups from {0} to {1}"
-msgstr "Rexistros d'usuarios dende'l {0} hasta'l {1}"
+msgstr "Rexistros d'usuariu dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Collections Created, last {0} days"
@@ -677,7 +671,7 @@ msgid "Works with {app}"
 msgstr "Funciona con {app}"
 
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Namás con Firefox - ¡Consigui Firefox agora!"
+msgstr "Namás con Firefox — ¡Consigui Firefox agora!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr ""
@@ -689,7 +683,7 @@ msgid "Enter a new author's email address"
 msgstr ""
 
 msgid "There was an error uploading your file."
-msgstr "Hebo un fallu xubiendo'l ficheru."
+msgstr "Hebo un fallu al xubir el ficheru."
 
 msgid "{files} file"
 msgid_plural "{files} files"
@@ -703,10 +697,10 @@ msgid "Select an application first"
 msgstr ""
 
 msgid "No results found."
-msgstr "Nun s'alcontraron resultaos."
+msgstr "Nun s'atoparon resultaos."
 
 msgid "Loading..."
-msgstr "Cargando..."
+msgstr "Cargando…"
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
@@ -740,7 +734,7 @@ msgid "Notes for Reviewers"
 msgstr ""
 
 msgid "No version notes found"
-msgstr "Nun s'alcontraron les notes de la versión"
+msgstr "Nun s'atoparon les notes de la versión"
 
 msgid "Review Text"
 msgstr ""
@@ -773,7 +767,7 @@ msgid "Approved"
 msgstr "Aprobóse"
 
 msgid "No results found"
-msgstr "Nun s'alcontraron resultaos"
+msgstr "Nun s'atoparon resultaos"
 
 msgid "Theme"
 msgstr "Estilu"
