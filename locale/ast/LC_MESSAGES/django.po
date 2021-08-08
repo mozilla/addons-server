@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-07-29 17:13+0000\n"
-"PO-Revision-Date: 2021-08-08 06:24+0000\n"
+"PO-Revision-Date: 2021-08-08 06:29+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ast\n"
@@ -267,18 +267,17 @@ msgstr ""
 msgid "Oops"
 msgstr "Meca"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
-msgstr "<h1>¡Ups!  Tuviemos un fallu.</h1> <p>Vamos igualu ceo.</p> <p> Pues tentar de refrescar la páxina o volver a la <a href=\"%(home)s\">páxina d'aniciu de los complementos</a>. </p>"
+msgstr "<h1>¡Meca!  Tuviemos un fallu.</h1> <p>Vamos igualu ceo.</p> <p> Pues tentar de refrescar la páxina o volver pa la <a href=\"%(home)s\">páxina d'aniciu de los complementos</a>. </p>"
 
 msgid "Register or Log in"
 msgstr ""
 
-#, fuzzy
 msgid "Email:"
-msgstr "Corréu"
+msgstr "Corréu:"
 
 msgid "OK"
 msgstr ""
@@ -457,20 +456,17 @@ msgstr ""
 msgid "%(value)s contains *"
 msgstr ""
 
-#, fuzzy
 msgid "Invalid version"
-msgstr "Toles versiones"
+msgstr "La versión nun ye válida"
 
 msgid "Min version can not be greater than Max version"
 msgstr ""
 
-#, fuzzy
 msgid "Review Listed"
-msgstr "Guia pa reseñar"
+msgstr ""
 
-#, fuzzy
 msgid "Review Unlisted"
-msgstr "Guia pa reseñar"
+msgstr ""
 
 msgid "This block was imported from a regex based legacy Block."
 msgstr ""
@@ -482,9 +478,8 @@ msgstr ""
 msgid "Delete Multiple %(name)s"
 msgstr ""
 
-#, fuzzy
 msgid "Home"
-msgstr "Páxina d'aniciu"
+msgstr ""
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
@@ -512,9 +507,8 @@ msgstr ""
 msgid "Reject Submission"
 msgstr ""
 
-#, fuzzy
 msgid "Approve Submission"
-msgstr "Estáu de l'aprobación"
+msgstr ""
 
 #, python-format
 msgid "Add %(name)s"
@@ -533,9 +527,8 @@ msgstr ""
 msgid "Edit Block"
 msgstr ""
 
-#, fuzzy
 msgid "versions"
-msgstr "Versiones"
+msgstr "versiones"
 
 msgid "Included in legacy blocklist."
 msgstr ""
@@ -908,9 +901,8 @@ msgstr ""
 msgid "{addon} {version} re-signed (previously {0})."
 msgstr ""
 
-#, fuzzy
 msgid "Version re-signed"
-msgstr "Notes de la versión"
+msgstr ""
 
 msgid "{user} force-disabled {addon}."
 msgstr ""
@@ -1324,9 +1316,8 @@ msgstr "Creative Commons Reconocencia-EnsinObresDerivaes 3.0"
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Reconocencia-CompartirIgual 3.0"
 
-#, fuzzy
 msgid "Not Promoted"
-msgstr "Entá nun se valoró"
+msgstr ""
 
 msgid "Recommended"
 msgstr ""
@@ -1520,9 +1511,8 @@ msgstr ""
 msgid "Header image alignment problem"
 msgstr ""
 
-#, fuzzy
 msgid "No action"
-msgstr "Más aiciones"
+msgstr ""
 
 msgid "Flag for human review"
 msgstr ""
@@ -2497,13 +2487,11 @@ msgstr ""
 msgid "Cancel and Disable Version"
 msgstr ""
 
-#, fuzzy
 msgid "Are you sure you wish to cancel and disable version?"
-msgstr "¿De xuru que deseyes desaniciar esta versión?"
+msgstr ""
 
-#, fuzzy
 msgid "Yes, Cancel"
-msgstr "Encaboxar"
+msgstr ""
 
 msgid "No, don't cancel"
 msgstr ""
@@ -3020,9 +3008,8 @@ msgstr ""
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
 
-#, fuzzy
 msgid "Visit the Firefox Extension Workshop"
-msgstr "Estensiones"
+msgstr ""
 
 msgid "Connect with us"
 msgstr ""
@@ -3048,9 +3035,8 @@ msgstr ""
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
 
-#, fuzzy
 msgid "Email Address"
-msgstr "Direición IP"
+msgstr "Direición de corréu"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
@@ -3068,9 +3054,8 @@ msgstr ""
 msgid "Resources"
 msgstr "Recursos"
 
-#, fuzzy
 msgid "WebExtensions API"
-msgstr "WebExtension"
+msgstr "API de WebExtension"
 
 msgid "Web-Ext: build & test extensions"
 msgstr ""
@@ -3157,9 +3142,8 @@ msgstr ""
 msgid "User Photo"
 msgstr ""
 
-#, fuzzy
 msgid "Profile"
-msgstr "El mio perfil"
+msgstr "Perfil"
 
 msgid "Submit or Manage Extensions"
 msgstr ""
@@ -4375,14 +4359,12 @@ msgid "See more translation tools"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Social streaming"
-msgstr "Redes sociales"
+msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more social streaming extensions"
-msgstr "Ver más estensiones aconseyaes"
+msgstr ""
 
 msgid "Could not parse the manifest file."
 msgstr ""
@@ -4759,9 +4741,8 @@ msgstr ""
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr ""
 
-#, fuzzy
 msgid "You can't submit an empty comment."
-msgstr "Nun pues unviar un paquete de llingua"
+msgstr "Nun pues unviar un comentariu baleru."
 
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
@@ -4808,9 +4789,8 @@ msgstr ""
 msgid "Metadata Weight"
 msgstr ""
 
-#, fuzzy
 msgid "Total Weight"
-msgstr "Reseñes totales"
+msgstr ""
 
 msgid "Maliciousness Score"
 msgstr ""
@@ -4827,13 +4807,11 @@ msgstr ""
 msgid "Unlisted versions needing human review ({0})"
 msgstr ""
 
-#, fuzzy
 msgid "Listed version"
-msgstr "Otres versiones"
+msgstr ""
 
-#, fuzzy
 msgid "Unlisted versions ({0})"
-msgstr "Toles versiones"
+msgstr ""
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
@@ -4865,9 +4843,8 @@ msgstr ""
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
 msgstr ""
 
-#, fuzzy
 msgid "Confirm Multiple Versions"
-msgstr "Versiones sofitaes"
+msgstr ""
 
 msgid "This will confirm approval of the selected versions without notifying the developer."
 msgstr ""
@@ -4905,13 +4882,11 @@ msgstr ""
 msgid "Add-on Review Guide"
 msgstr ""
 
-#, fuzzy
 msgid "Security Scanners"
-msgstr "Pruebes de seguranza"
+msgstr ""
 
-#, fuzzy
 msgid "Flagged By Scanners"
-msgstr "Pruebes de seguranza"
+msgstr ""
 
 msgid "Flagged for Human Review"
 msgstr ""
@@ -5010,9 +4985,8 @@ msgstr ""
 msgid "Internal AMO ID"
 msgstr ""
 
-#, fuzzy
 msgid "Support Website"
-msgstr "Versiones sofitaes"
+msgstr ""
 
 msgid "Visibility"
 msgstr "Visibilidá"
@@ -5290,13 +5264,11 @@ msgstr ""
 msgid "Notify me about new unlisted versions"
 msgstr ""
 
-#, fuzzy
 msgid "Allow resubmission"
-msgstr "Toles versiones"
+msgstr ""
 
-#, fuzzy
 msgid "Deny resubmission"
-msgstr "Permisos:"
+msgstr ""
 
 msgid "Force-disable add-on"
 msgstr ""
@@ -5397,9 +5369,8 @@ msgstr ""
 msgid "Source:"
 msgstr ""
 
-#, fuzzy
 msgid "Source URL:"
-msgstr "Códigu fonte"
+msgstr ""
 
 msgid "Dismiss this announcement"
 msgstr ""
@@ -5410,9 +5381,8 @@ msgstr "Ficheros nesta versión:"
 msgid "All Platforms"
 msgstr "Toles plataformes"
 
-#, fuzzy
 msgid "Browse all files in this version"
-msgstr "Ficheros nesta versión:"
+msgstr ""
 
 msgid "Contents"
 msgstr ""
