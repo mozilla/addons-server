@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-07-29 17:13+0000\n"
-"PO-Revision-Date: 2021-08-08 06:29+0000\n"
+"PO-Revision-Date: 2021-08-08 06:40+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ast\n"
@@ -4340,7 +4340,7 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
-msgstr ""
+msgstr "Ver más estilos aconseyaos"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended password managers"
@@ -4356,7 +4356,7 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "See more translation tools"
-msgstr ""
+msgstr "Ver más ferramientes de traducción"
 
 #. editorial content for the homepage shelves.
 msgid "Social streaming"
@@ -5791,19 +5791,19 @@ msgid "Top Applications"
 msgstr ""
 
 msgid "See more applications&hellip;"
-msgstr ""
+msgstr "Ver más aplicaciones&hellip;"
 
 msgid "Top Languages"
 msgstr ""
 
 msgid "See more languages&hellip;"
-msgstr ""
+msgstr "Ver más llingües&hellip;"
 
 msgid "Top Platforms"
 msgstr ""
 
 msgid "See more platforms&hellip;"
-msgstr ""
+msgstr "Ver más plataformes&hellip;"
 
 msgid "Download sources by Date"
 msgstr ""
