@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-07-29 17:13+0000\n"
-"PO-Revision-Date: 2021-08-08 06:18+0000\n"
+"PO-Revision-Date: 2021-08-08 06:24+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ast\n"
@@ -4336,20 +4336,19 @@ msgstr "Ver más estilos populares"
 
 #. editorial content for the homepage shelves.
 msgid "Enhanced privacy extensions"
-msgstr ""
+msgstr "Estensiones qu'ameyoren la privacidá"
 
 #. editorial content for the homepage shelves.
 msgid "See more enhanced privacy extensions"
-msgstr ""
+msgstr "Ver más estensiones qu'ameyoren la privacidá"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Popular extensions"
-msgstr "Estensiones"
+msgstr "Estensiones populares"
 
 #. editorial content for the homepage shelves.
 msgid "See more popular extensions"
-msgstr ""
+msgstr "Ver más estensiones populares"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended themes"
@@ -4361,11 +4360,11 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "Recommended password managers"
-msgstr ""
+msgstr "Xestores de contraseñes aconseyaos"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended password managers"
-msgstr ""
+msgstr "Ver más xestores de contraseñes aconseyaos"
 
 #. editorial content for the homepage shelves.
 msgid "Translation tools"
