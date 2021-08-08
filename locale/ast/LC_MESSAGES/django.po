@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-07-29 17:13+0000\n"
-"PO-Revision-Date: 2021-08-08 05:22+0000\n"
+"PO-Revision-Date: 2021-08-08 05:35+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ast\n"
@@ -2388,7 +2388,7 @@ msgid "The licensor permits others to distribute derivativeworks only under the 
 msgstr ""
 
 msgid "Your Add-on will be released under the following license:"
-msgstr "El complementu va llanzase so la llicencia de darréu:"
+msgstr "El complementu va espublizase baxo la llicencia de darréu:"
 
 msgid "Select a different license."
 msgstr ""
@@ -2477,7 +2477,7 @@ msgid "This add-on is missing some required information before it can be submitt
 msgstr ""
 
 msgid "This add-on doesn't have any versions."
-msgstr "Esti complementu nun tien denguna versión."
+msgstr "Esti complementu nun tien nenguna versión."
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
@@ -2617,7 +2617,7 @@ msgid "Version Submitted"
 msgstr ""
 
 msgid "You’re done! This version will be available on our site shortly."
-msgstr "¡Acabesti! Nun momentu esta versión va tar disponible nel nuesu sitiu."
+msgstr "¡Acabesti! Nun momentu esta versión va tar disponible nel sitiu."
 
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
 msgstr ""
@@ -2714,7 +2714,7 @@ msgid "Upload source code:"
 msgstr ""
 
 msgid "Add-on Distribution Agreement"
-msgstr "Alcuerdu de la distribución de complementos"
+msgstr ""
 
 msgid "Upload Add-on"
 msgstr ""
@@ -3109,7 +3109,7 @@ msgid "More Ways to Participate"
 msgstr "Más formes de participar"
 
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
-msgstr "¡Nun precises saber programar p'ayudar a que Firefox seya'l restolador más personalizable anguaño!"
+msgstr "¡Nun tienes de saber programación p'ayudar a que Firefox siga siendo'l restolador más personalizable!"
 
 msgid "See how"
 msgstr ""
@@ -3319,7 +3319,7 @@ msgid "<strong>Important:</strong> Once a version has been deleted, you may not 
 msgstr ""
 
 msgid "Are you sure you wish to delete this version?"
-msgstr "¿De xuru que deseyes desaniciar esta versión?"
+msgstr "¿De xuru que quies desaniciar esta versión?"
 
 msgid "Delete Version"
 msgstr ""
@@ -3391,7 +3391,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr "¿Tienen munches llingüetes abiertes? Organízales con una barra llateral."
+msgstr "¿Tienes munches llingüetes abiertes? Organízales con una barra llateral."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4288,7 +4288,7 @@ msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
-msgstr "Les estensiones son como aplicaciones pa Firefox"
+msgstr "Les estensiones son como aplicaciones pa Firefox."
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
@@ -4440,7 +4440,7 @@ msgid "Maximum size for WebExtension themes is {0}."
 msgstr ""
 
 msgid "You cannot submit this type of add-on"
-msgstr "Nun pues unviar esta triba de complementu"
+msgstr "Nun pues unviar esti tipu de complementu"
 
 msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr ""
@@ -4471,7 +4471,7 @@ msgid "Some tips for writing a great review"
 msgstr "Dalgunos conseyos pa escribir una reseña bona"
 
 msgid "Frequently Asked Questions about Reviews"
-msgstr "Entugues frecuentes tocante a les reseñes"
+msgstr "Entrugues frecuentes tocante a les reseñes"
 
 msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
@@ -4551,14 +4551,14 @@ msgid ""
 msgstr ""
 
 msgid "I’m an add-on author, can I respond to reviews?"
-msgstr "Soi l'autor del complementu, ¿pueo responder a les reseñes?"
+msgstr "Soi l'autor del complementu, ¿puedo responder a les reseñes?"
 
 #, python-format
 msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
 msgstr ""
 
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr "Soi l'autor del complementu, ¿pueo desaniciar les reseñes y valoraciones desfavoratibles?"
+msgstr "Soi l'autor del complementu, ¿puedo desaniciar les reseñes y valoraciones desfavoratibles?"
 
 msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
@@ -4877,7 +4877,7 @@ msgid "Reviewer reply"
 msgstr ""
 
 msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr "Esto va unviar un mensaxe al desendolcador. Vamos avisate cuando respuenda."
+msgstr "Esto unvia un mensaxe al desendolcador. Avisámoste cuando respuenda."
 
 msgid "Request super-review"
 msgstr ""
@@ -5198,7 +5198,7 @@ msgid "Pending Rejection – Add-ons for Firefox"
 msgstr ""
 
 msgid "Advanced Search"
-msgstr "Gueta avanzada"
+msgstr "Busca avanzada"
 
 msgid "clear search"
 msgstr ""
@@ -5450,7 +5450,7 @@ msgid "{num} versions pending rejection on other pages."
 msgstr ""
 
 msgid "Recent Points"
-msgstr "Puntos recientes"
+msgstr "Puntos de recién"
 
 msgid "No points awarded yet."
 msgstr ""
@@ -5813,7 +5813,7 @@ msgid "<b>{0}</b> Weekly Downloads"
 msgstr "<b>{0}</b> descargues selmanales"
 
 msgid "Loading..."
-msgstr "Cargando..."
+msgstr "Cargando…"
 
 msgid "<b>{0}</b> Average Daily Users"
 msgstr ""
