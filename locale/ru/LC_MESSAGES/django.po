@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-07-29 17:13+0000\n"
-"PO-Revision-Date: 2021-07-31 10:53+0000\n"
+"PO-Revision-Date: 2021-08-08 13:05+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -2209,7 +2209,7 @@ msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Onl
 msgstr ""
 
 msgid "Limit {0} tags."
-msgstr ""
+msgstr "Не более {0} меток."
 
 msgid "Contributions URL"
 msgstr "URL для взносов"
