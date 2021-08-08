@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-07-29 17:13+0000\n"
-"PO-Revision-Date: 2021-08-08 05:17+0000\n"
+"PO-Revision-Date: 2021-08-08 05:22+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ast\n"
@@ -1669,7 +1669,7 @@ msgid "Invalid version range."
 msgstr ""
 
 msgid "Need at least one compatible application."
-msgstr "Precísase una aplicación compatible."
+msgstr ""
 
 msgid "There was an error with your upload. Please try again."
 msgstr "Hebo un fallu cola xuba. Volvi tentalo, por favor."
@@ -1819,7 +1819,7 @@ msgid "Validate Add-on"
 msgstr ""
 
 msgid "Icons must be either PNG or JPG."
-msgstr "Les imáxenes han ser PNG o JPG."
+msgstr "Los iconos han ser PNG o JPG."
 
 msgid "Icons cannot be animated."
 msgstr "Los iconos nun puen ser animaos."
@@ -1916,7 +1916,7 @@ msgid "API key revoked"
 msgstr ""
 
 msgid "My add-on doesn't fit into any of the categories"
-msgstr "El mio complementu nun encaxa dientro de denguna estaya"
+msgstr "El mio complementu nun encaxa en nenguna estaya"
 
 msgid "Firefox Add-on Distribution Agreement"
 msgstr ""
@@ -1925,7 +1925,7 @@ msgid "Review Policies and Rules"
 msgstr ""
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Lleí y aceuto esti alcuerdu y les regles y polítiques"
+msgstr ""
 
 msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
 msgstr ""
@@ -1951,7 +1951,7 @@ msgid "<small>Add-on</small> Developer Hub"
 msgstr ""
 
 msgid "more add-ons..."
-msgstr "más complementos..."
+msgstr "más complementos…"
 
 msgid "Extension Workshop"
 msgstr ""
@@ -1963,7 +1963,7 @@ msgid "Extension Development"
 msgstr ""
 
 msgid "Themes"
-msgstr "Temes"
+msgstr "Estilos"
 
 msgid "Developer Policies"
 msgstr ""
