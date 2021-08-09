@@ -10,7 +10,7 @@ from django.utils.http import _urlparse as django_urlparse
 from django.utils.translation.trans_real import parse_accept_lang_header
 
 import bleach
-import jinja2
+import markupsafe
 
 from olympia import amo
 
@@ -137,7 +137,7 @@ def get_outgoing_url(url):
     ):
         return url
 
-    url = force_bytes(jinja2.utils.Markup(url).unescape())
+    url = force_bytes(markupsafe.Markup(url).unescape())
     sig = hmac.new(
         force_bytes(settings.REDIRECT_SECRET_KEY), msg=url, digestmod=hashlib.sha256
     ).hexdigest()
