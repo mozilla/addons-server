@@ -619,10 +619,10 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
         doc = pq(response.content)('#edit-addon-nav')
         links = doc('ul:last').find('li a')
         assert links.eq(1).attr('href') == reverse(
-            'reviewers.review', args=[self.addon.slug]
+            'reviewers.review', args=[self.addon.pk]
         )
         assert links.eq(2).attr('href') == reverse(
-            'reviewers.review', args=['unlisted', self.addon.slug]
+            'reviewers.review', args=['unlisted', self.addon.pk]
         )
         assert links.eq(3).attr('href') == reverse(
             'admin:addons_addon_change', args=[self.addon.id]

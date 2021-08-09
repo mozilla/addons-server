@@ -1,4 +1,3 @@
-import functools
 import json
 import time
 
@@ -43,7 +42,7 @@ from olympia.abuse.models import AbuseReport
 from olympia.access import acl
 from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import ActivityLog, CommentLog, DraftComment
-from olympia.addons.decorators import addon_view, owner_or_unlisted_viewer_or_reviewer
+from olympia.addons.decorators import owner_or_unlisted_viewer_or_reviewer
 from olympia.addons.models import (
     Addon,
     AddonApprovalsCounter,
@@ -128,14 +127,8 @@ from .decorators import (
     any_reviewer_required,
     permission_or_tools_listed_view_required,
     permission_or_tools_unlisted_view_required,
+    reviewer_addon_view_factory,
 )
-
-
-def reviewer_addon_view_factory(f):
-    decorator = functools.partial(
-        addon_view, qs=Addon.unfiltered.all, include_deleted_when_checking_versions=True
-    )
-    return decorator(f)
 
 
 def context(**kw):
@@ -725,7 +718,7 @@ def determine_channel(channel_as_text):
 def review(request, addon, channel=None):
     whiteboard_url = reverse(
         'reviewers.whiteboard',
-        args=(channel or 'listed', addon.slug if addon.slug else addon.pk),
+        args=(channel or 'listed', addon.pk),
     )
     channel, content_review = determine_channel(channel)
 
@@ -1219,9 +1212,7 @@ def whiteboard(request, addon, channel):
         else:
             whiteboard.delete()
 
-        return redirect(
-            'reviewers.review', channel_as_text, addon.slug if addon.slug else addon.pk
-        )
+        return redirect('reviewers.review', channel_as_text, addon.pk)
     raise PermissionDenied
 
 
@@ -1248,6 +1239,10 @@ def unlisted_pending_manual_approval(request):
 
 
 def policy_viewer(request, addon, eula_or_privacy, page_title, long_title):
+    unlisted_only = not addon.has_listed_versions(include_deleted=True)
+    if unlisted_only and not acl.check_unlisted_addons_viewer_or_reviewer(request):
+        raise PermissionDenied
+
     if not eula_or_privacy:
         raise http.Http404
     channel_text = request.GET.get('channel')
@@ -1255,7 +1250,7 @@ def policy_viewer(request, addon, eula_or_privacy, page_title, long_title):
 
     review_url = reverse(
         'reviewers.review',
-        args=(channel_text or 'listed', addon.slug if addon.slug else addon.pk),
+        args=(channel_text or 'listed', addon.pk),
     )
     return render(
         request,

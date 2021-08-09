@@ -74,14 +74,12 @@ class TestViewExtensionQueueTable(TestCase):
         page.start_index = Mock()
         page.start_index.return_value = 1
         row.addon_name = 'フォクすけといっしょ'
-        row.addon_slug = 'test'
+        row.id = 12345
         row.latest_version = '0.12'
         self.table.set_page(page)
         a = pq(self.table.render_addon_name(row))
 
-        assert a.attr('href') == (
-            reverse('reviewers.review', args=[str(row.addon_slug)])
-        )
+        assert a.attr('href') == (reverse('reviewers.review', args=[str(row.id)]))
         assert a.text() == 'フォクすけといっしょ 0.12'
 
     def test_addon_type_id(self):
@@ -141,12 +139,12 @@ class TestUnlistedViewAllListTable(TestCase):
         page.start_index = Mock()
         page.start_index.return_value = 1
         row.addon_name = 'フォクすけといっしょ'
-        row.addon_slug = 'test'
+        row.id = 12345
         self.table.set_page(page)
         a = pq(self.table.render_addon_name(row))
 
         assert a.attr('href') == reverse(
-            'reviewers.review', args=['unlisted', str(row.addon_slug)]
+            'reviewers.review', args=['unlisted', str(row.id)]
         )
         assert a.text() == 'フォクすけといっしょ'
 

@@ -468,7 +468,7 @@ class TestReviewLog(ReviewerTest):
         response = self.client.get(self.url)
         assert response.status_code == 200
         link = pq(response.content)('#log-listing tbody td a').eq(1)[0]
-        assert link.attrib['href'] == '/en-US/reviewers/review-content/a3615'
+        assert link.attrib['href'] == '/en-US/reviewers/review-content/3615'
         assert link.text_content().strip() == 'Content approved'
 
     def test_content_rejection(self):
@@ -476,7 +476,7 @@ class TestReviewLog(ReviewerTest):
         response = self.client.get(self.url)
         assert response.status_code == 200
         link = pq(response.content)('#log-listing tbody td a').eq(1)[0]
-        assert link.attrib['href'] == '/en-US/reviewers/review-content/a3615'
+        assert link.attrib['href'] == '/en-US/reviewers/review-content/3615'
         assert link.text_content().strip() == 'Content rejected'
 
     @freeze_time('2017-08-03')
@@ -497,7 +497,7 @@ class TestReviewLog(ReviewerTest):
 
         response = self.client.get(self.url)
         assert response.status_code == 200
-        url = reverse('reviewers.review', args=[addon.slug])
+        url = reverse('reviewers.review', args=[addon.pk])
 
         link = pq(response.content)('#log-listing tbody tr[data-addonid] a').eq(1)
         assert link.attr('href') == url
@@ -515,7 +515,7 @@ class TestReviewLog(ReviewerTest):
         entry.update(created=datetime.now() + timedelta(days=1))
 
         response = self.client.get(self.url)
-        url = reverse('reviewers.review', args=['unlisted', addon.slug])
+        url = reverse('reviewers.review', args=['unlisted', addon.pk])
         assert pq(response.content)('#log-listing tr td a').eq(1).attr('href') == url
 
     def test_review_url_force_disable(self):
@@ -530,7 +530,7 @@ class TestReviewLog(ReviewerTest):
 
         response = self.client.get(self.url)
         assert response.status_code == 200
-        url = reverse('reviewers.review', args=[addon.slug])
+        url = reverse('reviewers.review', args=[addon.pk])
 
         link = pq(response.content)('#log-listing tbody tr[data-addonid] a').eq(1)
         assert link.attr('href') == url
@@ -1244,7 +1244,7 @@ class QueueTest(ReviewerTest):
                 latest_version = self.get_addon_latest_version(addon)
                 assert latest_version
                 name = f'{str(addon.name)} {latest_version.version}'
-            url = reverse('reviewers.review', args=channel + [addon.slug])
+            url = reverse('reviewers.review', args=channel + [addon.pk])
             expected.append((name, url))
         doc = pq(response.content)
         links = doc('#addon-queue tr.addon-row td a:not(.app-icon)')
@@ -1603,11 +1603,11 @@ class TestExtensionQueue(QueueTest):
         expected = [
             (
                 'Nominated One 0.1',
-                reverse('reviewers.review', args=[version1.addon.slug]),
+                reverse('reviewers.review', args=[version1.addon.pk]),
             ),
             (
                 'Nominated Two 0.2',
-                reverse('reviewers.review', args=[version2.addon.slug]),
+                reverse('reviewers.review', args=[version2.addon.pk]),
             ),
         ]
         doc = pq(response.content)
@@ -1838,11 +1838,11 @@ class TestThemeNominatedQueue(QueueTest):
         expected = [
             (
                 'Nominated One 0.1',
-                reverse('reviewers.review', args=[version1.addon.slug]),
+                reverse('reviewers.review', args=[version1.addon.pk]),
             ),
             (
                 'Nominated Two 0.2',
-                reverse('reviewers.review', args=[version2.addon.slug]),
+                reverse('reviewers.review', args=[version2.addon.pk]),
             ),
         ]
         doc = pq(response.content)
@@ -1910,11 +1910,11 @@ class TestRecommendedQueue(QueueTest):
         expected = [
             (
                 'Nominated One 0.1',
-                reverse('reviewers.review', args=[version1.addon.slug]),
+                reverse('reviewers.review', args=[version1.addon.pk]),
             ),
             (
                 'Nominated Two 0.2',
-                reverse('reviewers.review', args=[version2.addon.slug]),
+                reverse('reviewers.review', args=[version2.addon.pk]),
             ),
         ]
         doc = pq(response.content)
@@ -2676,7 +2676,7 @@ class TestScannersReviewQueue(QueueTest):
         expected.append(
             (
                 'Listed versions needing human review (2)',
-                reverse('reviewers.review', args=[addon.slug]),
+                reverse('reviewers.review', args=[addon.pk]),
             )
         )
         # addon2
@@ -2684,13 +2684,13 @@ class TestScannersReviewQueue(QueueTest):
         expected.append(
             (
                 'Listed versions needing human review (1)',
-                reverse('reviewers.review', args=[addon.slug]),
+                reverse('reviewers.review', args=[addon.pk]),
             )
         )
         expected.append(
             (
                 'Unlisted versions needing human review (1)',
-                reverse('reviewers.review', args=['unlisted', addon.slug]),
+                reverse('reviewers.review', args=['unlisted', addon.pk]),
             )
         )
         # addon3
@@ -2698,7 +2698,7 @@ class TestScannersReviewQueue(QueueTest):
         expected.append(
             (
                 'Unlisted versions needing human review (1)',
-                reverse('reviewers.review', args=['unlisted', addon.slug]),
+                reverse('reviewers.review', args=['unlisted', addon.pk]),
             )
         )
 
@@ -3324,7 +3324,7 @@ class ReviewBase(QueueTest):
         self.file = self.version.files.get()
         self.reviewer = UserProfile.objects.get(username='reviewer')
         self.reviewer.update(display_name='A Reviêwer')
-        self.url = reverse('reviewers.review', args=[self.addon.slug])
+        self.url = reverse('reviewers.review', args=[self.addon.pk])
 
         AddonUser.objects.create(addon=self.addon, user_id=999)
 
@@ -3362,7 +3362,7 @@ class TestReview(ReviewBase):
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         self.addon.update(status=amo.STATUS_NOMINATED, slug='awaiting')
-        self.url = reverse('reviewers.review', args=('unlisted', self.addon.slug))
+        self.url = reverse('reviewers.review', args=('unlisted', self.addon.pk))
         self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
         assert self.client.get(self.url).status_code == 200
 
@@ -3374,15 +3374,15 @@ class TestReview(ReviewBase):
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         self.addon.update(status=amo.STATUS_NOMINATED, slug='awaiting')
-        self.url = reverse('reviewers.review', args=('unlisted', self.addon.slug))
+        self.url = reverse('reviewers.review', args=('unlisted', self.addon.pk))
         self.grant_permission(self.reviewer, 'ReviewerTools:ViewUnlisted')
         assert self.client.get(self.url).status_code == 200
 
     def test_needs_unlisted_reviewer_for_only_unlisted(self):
         self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.addon.update_version()
-        self.url = reverse('reviewers.review', args=('unlisted', self.addon.slug))
-        assert self.client.head(self.url).status_code == 404
+        self.url = reverse('reviewers.review', args=('unlisted', self.addon.pk))
+        assert self.client.head(self.url).status_code == 403
 
         # Adding a listed version makes it pass @reviewer_addon_view_factory
         # decorator that only depends on the addon being purely unlisted or
@@ -3401,8 +3401,8 @@ class TestReview(ReviewBase):
     def test_needs_unlisted_viewer_for_only_unlisted(self):
         self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.addon.update_version()
-        self.url = reverse('reviewers.review', args=('unlisted', self.addon.slug))
-        assert self.client.head(self.url).status_code == 404
+        self.url = reverse('reviewers.review', args=('unlisted', self.addon.pk))
+        assert self.client.head(self.url).status_code == 403
 
         # Adding a listed version makes it pass @reviewer_addon_view_factory
         # decorator that only depends on the addon being purely unlisted or
@@ -3532,7 +3532,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert (
             doc('#whiteboard_form').attr('action')
-            == '/en-US/reviewers/whiteboard/listed/public'
+            == f'/en-US/reviewers/whiteboard/listed/{self.addon.pk}'
         )
         assert doc('#id_whiteboard-public')
         assert doc('#id_whiteboard-private')
@@ -3542,25 +3542,25 @@ class TestReview(ReviewBase):
         AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED
         )
-        self.url = reverse('reviewers.review', args=['content', self.addon.slug])
+        self.url = reverse('reviewers.review', args=['content', self.addon.pk])
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
         assert (
             doc('#whiteboard_form').attr('action')
-            == '/en-US/reviewers/whiteboard/content/public'
+            == f'/en-US/reviewers/whiteboard/content/{self.addon.pk}'
         )
 
         # Unlisted review.
         self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
         version_factory(addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
-        self.url = reverse('reviewers.review', args=['unlisted', self.addon.slug])
+        self.url = reverse('reviewers.review', args=['unlisted', self.addon.pk])
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
         assert (
             doc('#whiteboard_form').attr('action')
-            == '/en-US/reviewers/whiteboard/unlisted/public'
+            == f'/en-US/reviewers/whiteboard/unlisted/{self.addon.pk}'
         )
 
         # Listed review, but deleted.
@@ -3571,7 +3571,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert (
             doc('#whiteboard_form').attr('action')
-            == '/en-US/reviewers/whiteboard/listed/%d' % self.addon.pk
+            == f'/en-US/reviewers/whiteboard/listed/{self.addon.pk}'
         )
 
     def test_whiteboard_for_static_themes(self):
@@ -3582,7 +3582,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert (
             doc('#whiteboard_form').attr('action')
-            == '/en-US/reviewers/whiteboard/listed/public'
+            == f'/en-US/reviewers/whiteboard/listed/{self.addon.pk}'
         )
         assert doc('#id_whiteboard-public')
         assert not doc('#id_whiteboard-private')
@@ -3822,7 +3822,7 @@ class TestReview(ReviewBase):
             channel=amo.RELEASE_CHANNEL_LISTED,
             file_kw={'status': amo.STATUS_APPROVED},
         )
-        self.url = reverse('reviewers.review', args=['unlisted', self.addon.slug])
+        self.url = reverse('reviewers.review', args=['unlisted', self.addon.pk])
         self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
         self.test_item_history(channel=amo.RELEASE_CHANNEL_UNLISTED)
 
@@ -3836,7 +3836,7 @@ class TestReview(ReviewBase):
             channel=amo.RELEASE_CHANNEL_LISTED,
             file_kw={'status': amo.STATUS_APPROVED},
         )
-        self.url = reverse('reviewers.review', args=['unlisted', self.addon.slug])
+        self.url = reverse('reviewers.review', args=['unlisted', self.addon.pk])
         self.grant_permission(self.reviewer, 'ReviewerTools:ViewUnlisted')
         self.test_item_history(channel=amo.RELEASE_CHANNEL_UNLISTED)
 
@@ -3850,7 +3850,7 @@ class TestReview(ReviewBase):
         )
 
         assert self.addon.versions.count() == 1
-        url = reverse('reviewers.review', args=[self.addon.slug])
+        url = reverse('reviewers.review', args=[self.addon.pk])
 
         response = self.client.get(url)
         assert response.status_code == 200
@@ -3870,7 +3870,7 @@ class TestReview(ReviewBase):
             weight_info={'fôo': 42, 'bär': 84, 'oof': 105, 'rab': 95},
         )
         self.grant_permission(self.reviewer, 'Addons:Review')
-        url = reverse('reviewers.review', args=[self.addon.slug])
+        url = reverse('reviewers.review', args=[self.addon.pk])
         response = self.client.get(url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -3880,7 +3880,7 @@ class TestReview(ReviewBase):
 
     def test_maliciousness_score(self):
         self.grant_permission(self.reviewer, 'Addons:Review')
-        url = reverse('reviewers.review', args=[self.addon.slug])
+        url = reverse('reviewers.review', args=[self.addon.pk])
         # Without a score.
         response = self.client.get(url)
         assert response.status_code == 200
@@ -4108,7 +4108,7 @@ class TestReview(ReviewBase):
         )
         self.addon.update(status=amo.STATUS_NOMINATED)
         self.login_as_admin()
-        self.url = reverse('reviewers.review', args=('unlisted', self.addon.slug))
+        self.url = reverse('reviewers.review', args=('unlisted', self.addon.pk))
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -4536,7 +4536,7 @@ class TestReview(ReviewBase):
         AddonReviewerFlags.objects.create(
             addon=self.addon, auto_approval_disabled_until_next_approval_unlisted=True
         )
-        unlisted_url = reverse('reviewers.review', args=['unlisted', self.addon.slug])
+        unlisted_url = reverse('reviewers.review', args=['unlisted', self.addon.pk])
         response = self.client.get(unlisted_url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -4582,7 +4582,7 @@ class TestReview(ReviewBase):
 
         # They both should be absent on the unlisted review page, since those
         # are for listed only.
-        unlisted_url = reverse('reviewers.review', args=['unlisted', self.addon.slug])
+        unlisted_url = reverse('reviewers.review', args=['unlisted', self.addon.pk])
         response = self.client.get(unlisted_url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -4694,7 +4694,7 @@ class TestReview(ReviewBase):
         # Now they need unlisted permission cause we can't find a listed
         # version, even deleted.
         self.version.delete(hard=True)
-        assert self.client.get(self.url).status_code == 404
+        assert self.client.get(self.url).status_code == 403
 
         # Unlisted viewers can view but not submit reviews.
         self.grant_permission(self.reviewer, 'ReviewerTools:ViewUnlisted')
@@ -4758,16 +4758,16 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         self.assertContains(response, 'View End-User License Agreement')
-        eula_url = reverse('reviewers.eula', args=(self.addon.slug,))
+        eula_url = reverse('reviewers.eula', args=(self.addon.pk,))
         self.assertContains(response, eula_url + '"')
 
         # The url should pass on the channel param so the backlink works
         self.make_addon_unlisted(self.addon)
         self.login_as_admin()
-        unlisted_url = reverse('reviewers.review', args=['unlisted', self.addon.slug])
+        unlisted_url = reverse('reviewers.review', args=['unlisted', self.addon.pk])
         response = self.client.get(unlisted_url)
         assert response.status_code == 200
-        eula_url = reverse('reviewers.eula', args=(self.addon.slug,))
+        eula_url = reverse('reviewers.eula', args=(self.addon.pk,))
         self.assertContains(response, eula_url + '?channel=unlisted"')
 
     def test_privacy_policy_displayed(self):
@@ -4781,15 +4781,15 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         self.assertContains(response, 'View Privacy Policy')
-        privacy_url = reverse('reviewers.privacy', args=(self.addon.slug,))
+        privacy_url = reverse('reviewers.privacy', args=(self.addon.pk,))
         self.assertContains(response, privacy_url + '"')
 
         self.make_addon_unlisted(self.addon)
         self.login_as_admin()
-        unlisted_url = reverse('reviewers.review', args=['unlisted', self.addon.slug])
+        unlisted_url = reverse('reviewers.review', args=['unlisted', self.addon.pk])
         response = self.client.get(unlisted_url)
         assert response.status_code == 200
-        privacy_url = reverse('reviewers.privacy', args=(self.addon.slug,))
+        privacy_url = reverse('reviewers.privacy', args=(self.addon.pk,))
         self.assertContains(response, privacy_url + '?channel=unlisted"')
 
     def test_requires_payment_indicator(self):
@@ -5200,7 +5200,7 @@ class TestReview(ReviewBase):
         )
         GroupUser.objects.filter(user=self.reviewer).all().delete()
         self.grant_permission(self.reviewer, 'Addons:ContentReview')
-        self.url = reverse('reviewers.review', args=['content', self.addon.slug])
+        self.url = reverse('reviewers.review', args=['content', self.addon.pk])
         response = self.client.post(self.url, self.get_dict(action='approve_content'))
         assert response.status_code == 302
         summary.reload()
@@ -5219,7 +5219,7 @@ class TestReview(ReviewBase):
 
     def test_approve_content_content_review(self):
         GroupUser.objects.filter(user=self.reviewer).all().delete()
-        self.url = reverse('reviewers.review', args=['content', self.addon.slug])
+        self.url = reverse('reviewers.review', args=['content', self.addon.pk])
         summary = AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED
         )
@@ -5248,7 +5248,7 @@ class TestReview(ReviewBase):
 
     def test_cant_contentreview_if_admin_content_review_flag_is_set(self):
         GroupUser.objects.filter(user=self.reviewer).all().delete()
-        self.url = reverse('reviewers.review', args=['content', self.addon.slug])
+        self.url = reverse('reviewers.review', args=['content', self.addon.pk])
         AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED
         )
@@ -5378,7 +5378,7 @@ class TestReview(ReviewBase):
 
     def test_admin_can_contentreview_if_admin_content_review_flag_is_set(self):
         GroupUser.objects.filter(user=self.reviewer).all().delete()
-        self.url = reverse('reviewers.review', args=['content', self.addon.slug])
+        self.url = reverse('reviewers.review', args=['content', self.addon.pk])
         summary = AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED
         )
@@ -5533,7 +5533,7 @@ class TestReview(ReviewBase):
             self.assertCloseToNow(version.pending_rejection, now=in_the_future)
 
     def test_block_multiple_versions(self):
-        self.url = reverse('reviewers.review', args=('unlisted', self.addon.slug))
+        self.url = reverse('reviewers.review', args=('unlisted', self.addon.pk))
         old_version = self.version
         old_version.update(needs_human_review=True)
         self.version = version_factory(addon=self.addon, version='3.0')
@@ -5663,11 +5663,9 @@ class TestReview(ReviewBase):
         assert not validate.called
 
     def test_review_is_review_listed(self):
-        review_page = self.client.get(
-            reverse('reviewers.review', args=[self.addon.slug])
-        )
+        review_page = self.client.get(reverse('reviewers.review', args=[self.addon.pk]))
         listed_review_page = self.client.get(
-            reverse('reviewers.review', args=['listed', self.addon.slug])
+            reverse('reviewers.review', args=['listed', self.addon.pk])
         )
         assert (
             pq(review_page.content)('#versions-history').text()
@@ -5956,7 +5954,7 @@ class TestReview(ReviewBase):
             verdict=amo.AUTO_APPROVED, version=self.version
         )
         self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
-        unlisted_url = reverse('reviewers.review', args=['unlisted', self.addon.slug])
+        unlisted_url = reverse('reviewers.review', args=['unlisted', self.addon.pk])
         response = self.client.get(unlisted_url)
 
         assert response.status_code == 200
@@ -6003,7 +6001,7 @@ class TestReview(ReviewBase):
         self.grant_permission(unlisted_viewer, 'ReviewerTools:ViewUnlisted')
         self.client.logout()
         self.client.login(email='unlisted_viewer@mozilla.com')
-        unlisted_url = reverse('reviewers.review', args=['unlisted', self.addon.slug])
+        unlisted_url = reverse('reviewers.review', args=['unlisted', self.addon.pk])
         response = self.client.get(unlisted_url)
 
         assert response.status_code == 200
@@ -6106,7 +6104,7 @@ class TestReview(ReviewBase):
         )
         version_factory(addon=self.addon, file_kw={'status': amo.STATUS_DISABLED})
         self.grant_permission(self.reviewer, 'Addons:ContentReview')
-        self.url = reverse('reviewers.review', args=['content', self.addon.slug])
+        self.url = reverse('reviewers.review', args=['content', self.addon.pk])
         response = self.client.get(self.url)
         assert response.status_code == 200
         expected_actions = [
@@ -6172,7 +6170,7 @@ class TestReview(ReviewBase):
         self.make_addon_unlisted(self.addon)
         self.login_as_admin()
         response = self.client.get(
-            reverse('reviewers.review', args=['unlisted', self.addon.slug])
+            reverse('reviewers.review', args=['unlisted', self.addon.pk])
         )
         assert response.status_code == 200
         expected = [
@@ -6392,7 +6390,7 @@ class TestReview(ReviewBase):
         )
 
     def test_redirect_after_review_unlisted(self):
-        self.url = reverse('reviewers.review', args=('unlisted', self.addon.slug))
+        self.url = reverse('reviewers.review', args=('unlisted', self.addon.pk))
         self.version = version_factory(addon=self.addon, version='3.0')
         self.make_addon_unlisted(self.addon)
         self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
@@ -6413,7 +6411,7 @@ class TestAbuseReportsView(ReviewerTest):
     def setUp(self):
         self.addon_developer = user_factory()
         self.addon = addon_factory(name='Flôp', users=[self.addon_developer])
-        self.url = reverse('reviewers.abuse_reports', args=[self.addon.slug])
+        self.url = reverse('reviewers.abuse_reports', args=[self.addon.pk])
         self.login_as_reviewer()
 
     def test_abuse_reports(self):
@@ -6644,14 +6642,10 @@ class TestStatusFile(ReviewBase):
 
 
 class TestWhiteboard(ReviewBase):
-    @property
-    def addon_param(self):
-        return self.addon.pk if self.addon.is_deleted else self.addon.slug
-
     def test_whiteboard_addition(self):
         public_whiteboard_info = 'Public whiteboard info.'
         private_whiteboard_info = 'Private whiteboard info.'
-        url = reverse('reviewers.whiteboard', args=['listed', self.addon_param])
+        url = reverse('reviewers.whiteboard', args=['listed', self.addon.pk])
         self.client.login(email='regular@mozilla.com')  # No permissions.
         response = self.client.post(
             url,
@@ -6671,7 +6665,7 @@ class TestWhiteboard(ReviewBase):
             },
         )
         self.assert3xx(
-            response, reverse('reviewers.review', args=('listed', self.addon_param))
+            response, reverse('reviewers.review', args=('listed', self.addon.pk))
         )
 
         whiteboard = self.addon.whiteboard.reload()
@@ -6681,7 +6675,7 @@ class TestWhiteboard(ReviewBase):
     def test_whiteboard_addition_content_review(self):
         public_whiteboard_info = 'Public whiteboard info for content.'
         private_whiteboard_info = 'Private whiteboard info for content.'
-        url = reverse('reviewers.whiteboard', args=['content', self.addon_param])
+        url = reverse('reviewers.whiteboard', args=['content', self.addon.pk])
         self.client.login(email='regular@mozilla.com')  # No permissions.
         response = self.client.post(
             url,
@@ -6702,7 +6696,7 @@ class TestWhiteboard(ReviewBase):
             },
         )
         self.assert3xx(
-            response, reverse('reviewers.review', args=('content', self.addon_param))
+            response, reverse('reviewers.review', args=('content', self.addon.pk))
         )
         addon = self.addon.reload()
         assert addon.whiteboard.public == public_whiteboard_info
@@ -6720,7 +6714,7 @@ class TestWhiteboard(ReviewBase):
             },
         )
         self.assert3xx(
-            response, reverse('reviewers.review', args=('content', self.addon_param))
+            response, reverse('reviewers.review', args=('content', self.addon.pk))
         )
 
         whiteboard = self.addon.whiteboard.reload()
@@ -6731,7 +6725,7 @@ class TestWhiteboard(ReviewBase):
         self.make_addon_unlisted(self.addon)
         public_whiteboard_info = 'Public whiteboard info unlisted.'
         private_whiteboard_info = 'Private whiteboard info unlisted.'
-        url = reverse('reviewers.whiteboard', args=['unlisted', self.addon_param])
+        url = reverse('reviewers.whiteboard', args=['unlisted', self.addon.pk])
 
         self.client.login(email='regular@mozilla.com')  # No permissions.
         response = self.client.post(
@@ -6751,10 +6745,8 @@ class TestWhiteboard(ReviewBase):
                 'whiteboard-public': public_whiteboard_info,
             },
         )
-        # Not an unlisted reviewer, we'll get a 404 from the
-        # @reviewer_addon_view_factory decorator as it uses addon_view
-        # under the hood.
-        assert response.status_code == 404  # Not an unlisted reviewer.
+        # Not an unlisted reviewer, raise PermissionDenied
+        assert response.status_code == 403  # Not an unlisted reviewer.
 
         # Now the addon is not purely unlisted, but because we've requested the
         # unlisted channel we'll still get an error - this time it's a 403 from
@@ -6782,19 +6774,19 @@ class TestWhiteboard(ReviewBase):
             },
         )
         self.assert3xx(
-            response, reverse('reviewers.review', args=('unlisted', self.addon_param))
+            response, reverse('reviewers.review', args=('unlisted', self.addon.pk))
         )
         whiteboard = self.addon.whiteboard.reload()
         assert whiteboard.public == public_whiteboard_info
         assert whiteboard.private == private_whiteboard_info
 
     def test_delete_empty(self):
-        url = reverse('reviewers.whiteboard', args=['listed', self.addon_param])
+        url = reverse('reviewers.whiteboard', args=['listed', self.addon.pk])
         response = self.client.post(
             url, {'whiteboard-private': '', 'whiteboard-public': ''}
         )
         self.assert3xx(
-            response, reverse('reviewers.review', args=('listed', self.addon_param))
+            response, reverse('reviewers.review', args=('listed', self.addon.pk))
         )
         assert not Whiteboard.objects.filter(pk=self.addon.pk)
 
@@ -6892,11 +6884,11 @@ class TestLeaderboard(ReviewerTest):
 
 class TestXssOnAddonName(amo.tests.TestXss):
     def test_reviewers_abuse_report_page(self):
-        url = reverse('reviewers.abuse_reports', args=[self.addon.slug])
+        url = reverse('reviewers.abuse_reports', args=[self.addon.pk])
         self.assertNameAndNoXSS(url)
 
     def test_reviewers_review_page(self):
-        url = reverse('reviewers.review', args=[self.addon.slug])
+        url = reverse('reviewers.review', args=[self.addon.pk])
         self.assertNameAndNoXSS(url)
 
 
@@ -6904,14 +6896,14 @@ class TestPolicyView(ReviewerTest):
     def setUp(self):
         super().setUp()
         self.addon = addon_factory()
-        self.eula_url = reverse('reviewers.eula', args=[self.addon.slug])
-        self.privacy_url = reverse('reviewers.privacy', args=[self.addon.slug])
+        self.eula_url = reverse('reviewers.eula', args=[self.addon.pk])
+        self.privacy_url = reverse('reviewers.privacy', args=[self.addon.pk])
         self.login_as_reviewer()
         self.review_url = reverse(
             'reviewers.review',
             args=(
                 'listed',
-                self.addon.slug,
+                self.addon.pk,
             ),
         )
 
@@ -6936,14 +6928,14 @@ class TestPolicyView(ReviewerTest):
             'reviewers.review',
             args=(
                 'unlisted',
-                self.addon.slug,
+                self.addon.pk,
             ),
         )
         self.addon.eula = 'Eulá!'
         self.addon.save()
         assert bool(self.addon.eula)
         response = self.client.get(self.eula_url + '?channel=unlisted')
-        assert response.status_code == 404
+        assert response.status_code == 403
 
         user = UserProfile.objects.get(email='regular@mozilla.com')
         self.grant_permission(user, 'Addons:ReviewUnlisted')
@@ -6974,14 +6966,14 @@ class TestPolicyView(ReviewerTest):
             'reviewers.review',
             args=(
                 'unlisted',
-                self.addon.slug,
+                self.addon.pk,
             ),
         )
         self.addon.privacy_policy = 'Prívacy Pólicy?'
         self.addon.save()
         assert bool(self.addon.privacy_policy)
         response = self.client.get(self.privacy_url + '?channel=unlisted')
-        assert response.status_code == 404
+        assert response.status_code == 403
 
         user = UserProfile.objects.get(email='regular@mozilla.com')
         self.grant_permission(user, 'Addons:ReviewUnlisted')
@@ -9347,14 +9339,14 @@ class TestMadQueue(QueueTest):
         expected = []
         addon = self.expected_addons[0]
         expected.append(
-            ('Listed version', reverse('reviewers.review', args=[addon.slug]))
+            ('Listed version', reverse('reviewers.review', args=[addon.pk]))
         )
         # unlisted
         addon = self.expected_addons[1]
         expected.append(
             (
                 'Unlisted versions (2)',
-                reverse('reviewers.review', args=['unlisted', addon.slug]),
+                reverse('reviewers.review', args=['unlisted', addon.pk]),
             )
         )
         # mixed, only unlisted flagged
@@ -9362,18 +9354,18 @@ class TestMadQueue(QueueTest):
         expected.append(
             (
                 'Unlisted versions (1)',
-                reverse('reviewers.review', args=['unlisted', addon.slug]),
+                reverse('reviewers.review', args=['unlisted', addon.pk]),
             )
         )
         # mixed, both channels flagged
         addon = self.expected_addons[3]
         expected.append(
-            ('Listed version', reverse('reviewers.review', args=[addon.slug]))
+            ('Listed version', reverse('reviewers.review', args=[addon.pk]))
         )
         expected.append(
             (
                 'Unlisted versions (1)',
-                reverse('reviewers.review', args=['unlisted', addon.slug]),
+                reverse('reviewers.review', args=['unlisted', addon.pk]),
             )
         )
 

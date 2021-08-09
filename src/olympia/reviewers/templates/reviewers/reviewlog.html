@@ -49,11 +49,11 @@
                     {% set channel = 0 %}
                   {% endif %}
                   {% if item.action == amo.LOG.REJECT_CONTENT.id or item.action == amo.LOG.APPROVE_CONTENT.id %}
-                    {% set review_url = url('reviewers.review', 'content', item.arguments[0].slug ) %}
+                    {% set review_url = url('reviewers.review', 'content', item.arguments[0].pk ) %}
                   {% elif channel == amo.RELEASE_CHANNEL_UNLISTED %}
-                    {% set review_url = url('reviewers.review', 'unlisted', item.arguments[0].slug) %}
+                    {% set review_url = url('reviewers.review', 'unlisted', item.arguments[0].pk) %}
                   {% else %}
-                    {% set review_url = url('reviewers.review', item.arguments[0].slug) %}
+                    {% set review_url = url('reviewers.review', item.arguments[0].pk) %}
                   {% endif %}
                   <a href="{{ review_url }}">
                     {{ item.log.short }}

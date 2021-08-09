@@ -66,7 +66,7 @@ class ReviewerQueueTable(tables.Table, ItemStateTable):
         return cls.Meta.model.objects.all()
 
     def render_addon_name(self, record):
-        url = reverse('reviewers.review', args=[record.addon_slug])
+        url = reverse('reviewers.review', args=[record.id])
         self.increment_item()
         return markupsafe.Markup(
             '<a href="%s">%s <em>%s</em></a>'
@@ -139,7 +139,7 @@ class ViewUnlistedAllListTable(tables.Table, ItemStateTable):
             'reviewers.review',
             args=[
                 'unlisted',
-                record.addon_slug if record.addon_slug is not None else record.id,
+                record.id,
             ],
         )
         self.increment_item()
@@ -233,7 +233,7 @@ class ModernAddonQueueTable(ReviewerQueueTable):
         return super().render_flags(record)
 
     def _get_addon_name_url(self, record):
-        return reverse('reviewers.review', args=[record.slug])
+        return reverse('reviewers.review', args=[record.id])
 
     def render_addon_name(self, record):
         url = self._get_addon_name_url(record)
@@ -285,7 +285,7 @@ class UnlistedPendingManualApprovalQueueTable(tables.Table, ItemStateTable):
         return Addon.objects.get_unlisted_pending_manual_approval_queue()
 
     def _get_addon_name_url(self, record):
-        return reverse('reviewers.review', args=['unlisted', record.slug])
+        return reverse('reviewers.review', args=['unlisted', record.id])
 
     def render_addon_name(self, record):
         url = self._get_addon_name_url(record)
@@ -361,7 +361,7 @@ class ContentReviewTable(AutoApprovedTable):
         return naturaltime(value) if value else ''
 
     def _get_addon_name_url(self, record):
-        return reverse('reviewers.review', args=['content', record.slug])
+        return reverse('reviewers.review', args=['content', record.id])
 
 
 class ScannersReviewTable(AutoApprovedTable):
@@ -391,7 +391,7 @@ class ScannersReviewTable(AutoApprovedTable):
         rval = [markupsafe.escape(record.name)]
 
         if record.listed_versions_that_need_human_review:
-            url = reverse('reviewers.review', args=[record.slug])
+            url = reverse('reviewers.review', args=[record.id])
             rval.append(
                 '<a href="%s">%s</a>'
                 % (
@@ -403,7 +403,7 @@ class ScannersReviewTable(AutoApprovedTable):
             )
 
         if record.unlisted_versions_that_need_human_review:
-            url = reverse('reviewers.review', args=['unlisted', record.slug])
+            url = reverse('reviewers.review', args=['unlisted', record.id])
             rval.append(
                 '<a href="%s">%s</a>'
                 % (
