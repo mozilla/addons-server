@@ -62,6 +62,9 @@ USERS_EDIT = AclPermission('Users', 'Edit')
 # Can moderate add-on ratings submitted by users.
 RATINGS_MODERATE = AclPermission('Ratings', 'Moderate')
 
+# Can bypass ratings throttling
+RATINGS_BYPASS_THROTTLING = AclPermission('Ratings', 'BypassThrottling')
+
 # Can access advanced reviewer features meant for admins, such as disabling an
 # add-on or clearing needs admin review flags.
 REVIEWS_ADMIN = AclPermission('Reviews', 'Admin')
