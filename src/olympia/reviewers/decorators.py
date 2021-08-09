@@ -7,7 +7,6 @@ from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 
 from olympia.access import acl
-from olympia.addons.decorators import owner_or_unlisted_viewer_or_reviewer
 from olympia.addons.models import Addon
 from olympia.amo.decorators import login_required
 from olympia.constants import permissions

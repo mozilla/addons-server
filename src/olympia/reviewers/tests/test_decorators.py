@@ -5,7 +5,6 @@ from urllib.parse import quote
 
 from olympia.amo.tests import TestCase, addon_factory
 from olympia.reviewers import decorators as dec
-from olympia.reviewers.views import reviewer_addon_view_factory
 
 
 class TestReviewerAddonView(TestCase):
@@ -69,31 +68,3 @@ class TestReviewerAddonView(TestCase):
         assert res == mock.sentinel.OK
         request, addon_ = self.func.call_args[0]
         assert addon_ == addon
-
-
-class TestReviewerAddonViewWithUnlisted(TestReviewerAddonView):
-    def setUp(self):
-        super().setUp()
-        self.view = reviewer_addon_view_factory(self.func)
-
-    @mock.patch(
-        'olympia.access.acl.check_unlisted_addons_viewer_or_reviewer', lambda r: False
-    )
-    @mock.patch(
-        'olympia.access.acl.check_addon_ownership', lambda *args, **kwargs: False
-    )
-    def test_unlisted_addon(self):
-        """Return a 404 for non authorized access."""
-        self.make_addon_unlisted(self.addon)
-        with self.assertRaises(http.Http404):
-            self.view(self.request, str(self.addon.id))
-
-    @mock.patch(
-        'olympia.access.acl.check_unlisted_addons_viewer_or_reviewer', lambda r: True
-    )
-    def test_unlisted_addon_unlisted_reviewer(self):
-        """Unlisted addon reviewers have access."""
-        self.make_addon_unlisted(self.addon)
-        assert self.view(self.request, str(self.addon.id)) == mock.sentinel.OK
-        request, addon = self.func.call_args[0]
-        assert addon == self.addon
