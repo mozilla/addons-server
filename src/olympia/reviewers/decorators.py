@@ -98,17 +98,17 @@ def any_reviewer_or_moderator_required(f):
     return wrapper
 
 
-def reviewer_addon_view(
-    f, qs=Addon.objects.all, include_deleted_when_checking_versions=False
-):
-    """Use a separate view decorator here so we can make the AMO ID the canonical
-    identifier in reviewer tools urls."""
+def reviewer_addon_view(f):
+    """A view decorator for reviewers. The AMO add-on ID is the canonical identifier.
+    Passing the Add-on GUID or slug will redirect to the page using the ID."""
 
     @functools.wraps(f)
     def wrapper(request, addon_id=None, *args, **kw):
         """Provides an addon instance to the view given addon_id, which can be
         an Addon pk, guid or a slug."""
         assert addon_id, 'Must provide addon id, guid or slug'
+
+        qs = Addon.unfiltered.all
 
         lookup_field = Addon.get_lookup_field(addon_id)
         if lookup_field == 'pk':
@@ -125,15 +125,11 @@ def reviewer_addon_view(
                 url += '?' + request.GET.urlencode()
             return http.HttpResponsePermanentRedirect(url)
 
-        # If the addon has no listed versions it needs either an author
-        # (owner/viewer/dev/support) or an unlisted addon reviewer.
-        has_listed_versions = addon.has_listed_versions(
-            include_deleted=include_deleted_when_checking_versions
-        )
-        if not (
-            has_listed_versions or owner_or_unlisted_viewer_or_reviewer(request, addon)
-        ):
-            raise http.Http404
         return f(request, addon, *args, **kw)
 
     return wrapper
+
+
+def reviewer_addon_view_factory(f):
+    decorator = functools.partial(reviewer_addon_view)
+    return decorator(f)

@@ -3382,7 +3382,7 @@ class TestReview(ReviewBase):
         self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.addon.update_version()
         self.url = reverse('reviewers.review', args=('unlisted', self.addon.pk))
-        assert self.client.head(self.url).status_code == 404
+        assert self.client.head(self.url).status_code == 403
 
         # Adding a listed version makes it pass @reviewer_addon_view_factory
         # decorator that only depends on the addon being purely unlisted or
@@ -3402,7 +3402,7 @@ class TestReview(ReviewBase):
         self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.addon.update_version()
         self.url = reverse('reviewers.review', args=('unlisted', self.addon.pk))
-        assert self.client.head(self.url).status_code == 404
+        assert self.client.head(self.url).status_code == 403
 
         # Adding a listed version makes it pass @reviewer_addon_view_factory
         # decorator that only depends on the addon being purely unlisted or
@@ -4694,7 +4694,7 @@ class TestReview(ReviewBase):
         # Now they need unlisted permission cause we can't find a listed
         # version, even deleted.
         self.version.delete(hard=True)
-        assert self.client.get(self.url).status_code == 404
+        assert self.client.get(self.url).status_code == 403
 
         # Unlisted viewers can view but not submit reviews.
         self.grant_permission(self.reviewer, 'ReviewerTools:ViewUnlisted')
@@ -6745,10 +6745,8 @@ class TestWhiteboard(ReviewBase):
                 'whiteboard-public': public_whiteboard_info,
             },
         )
-        # Not an unlisted reviewer, we'll get a 404 from the
-        # @reviewer_addon_view_factory decorator as it uses addon_view
-        # under the hood.
-        assert response.status_code == 404  # Not an unlisted reviewer.
+        # Not an unlisted reviewer, raise PermissionDenied
+        assert response.status_code == 403  # Not an unlisted reviewer.
 
         # Now the addon is not purely unlisted, but because we've requested the
         # unlisted channel we'll still get an error - this time it's a 403 from
@@ -6937,7 +6935,7 @@ class TestPolicyView(ReviewerTest):
         self.addon.save()
         assert bool(self.addon.eula)
         response = self.client.get(self.eula_url + '?channel=unlisted')
-        assert response.status_code == 404
+        assert response.status_code == 403
 
         user = UserProfile.objects.get(email='regular@mozilla.com')
         self.grant_permission(user, 'Addons:ReviewUnlisted')
@@ -6975,7 +6973,7 @@ class TestPolicyView(ReviewerTest):
         self.addon.save()
         assert bool(self.addon.privacy_policy)
         response = self.client.get(self.privacy_url + '?channel=unlisted')
-        assert response.status_code == 404
+        assert response.status_code == 403
 
         user = UserProfile.objects.get(email='regular@mozilla.com')
         self.grant_permission(user, 'Addons:ReviewUnlisted')

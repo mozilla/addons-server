@@ -128,17 +128,8 @@ from .decorators import (
     any_reviewer_required,
     permission_or_tools_listed_view_required,
     permission_or_tools_unlisted_view_required,
-    reviewer_addon_view,
+    reviewer_addon_view_factory,
 )
-
-
-def reviewer_addon_view_factory(f):
-    decorator = functools.partial(
-        reviewer_addon_view,
-        qs=Addon.unfiltered.all,
-        include_deleted_when_checking_versions=True,
-    )
-    return decorator(f)
 
 
 def context(**kw):
@@ -1249,6 +1240,10 @@ def unlisted_pending_manual_approval(request):
 
 
 def policy_viewer(request, addon, eula_or_privacy, page_title, long_title):
+    unlisted_only = not addon.has_listed_versions(include_deleted=True)
+    if unlisted_only and not acl.check_unlisted_addons_viewer_or_reviewer(request):
+        raise PermissionDenied
+
     if not eula_or_privacy:
         raise http.Http404
     channel_text = request.GET.get('channel')
