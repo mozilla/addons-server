@@ -340,10 +340,8 @@ TEMPLATES = [
                 'olympia.amo.context_processors.static_url',
             ),
             'extensions': (
-                'jinja2.ext.autoescape',
                 'jinja2.ext.do',
                 'jinja2.ext.loopcontrols',
-                'jinja2.ext.with_',
                 'django_jinja.builtins.extensions.CsrfExtension',
                 'django_jinja.builtins.extensions.DjangoFiltersExtension',
                 'django_jinja.builtins.extensions.StaticFilesExtension',
