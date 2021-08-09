@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-07-29 17:13+0000\n"
-"PO-Revision-Date: 2021-08-09 07:50+0000\n"
+"PO-Revision-Date: 2021-08-09 08:08+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1760,7 +1760,7 @@ msgid "Validation generated too many errors/warnings so %s messages were truncat
 msgstr "Le validation ha producite troppo de errores/avisos, dunque %s messages ha essite truncate. Post haber corrigite le messages visibile, tu potera vider le alteres."
 
 msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
-msgstr ""
+msgstr "Manifesto v3 non es actualmente supportate pro cargamento. Tu pote leger plus re le classification temporal del supporto [{start_href}hic{end_href}]."
 
 msgid "Updated"
 msgstr "Actualisate"
@@ -2188,7 +2188,7 @@ msgid "Tags"
 msgstr "Tags"
 
 msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
-msgstr ""
+msgstr "Le tags adjuta le usatores a trovar tu additivo. Tu pote haber un maximo de {0} tags. Solo elige tags que es pertinente a tu additivo."
 
 msgid "Limit {0} tags."
 msgstr "Limitar {0} tags."
