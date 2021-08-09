@@ -135,7 +135,9 @@ def version(request):
     contents['django'] = '{major}.{minor}'.format(
         major=django.VERSION[0], minor=django.VERSION[1]
     )
-    return HttpResponse(json.dumps(contents), content_type='application/json')
+    res = HttpResponse(json.dumps(contents), content_type='application/json')
+    res.headers['Access-Control-Allow-Origin'] = '*'
+    return res
 
 
 def _frontend_view(*args, **kwargs):

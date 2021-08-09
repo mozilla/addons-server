@@ -519,6 +519,7 @@ class TestVersion(TestCase):
         result = self.client.get('/__version__')
         assert result.status_code == 200
         assert result.get('Content-Type') == 'application/json'
+        assert result.get('Access-Control-Allow-Origin') == '*'
         content = result.json()
         assert content['python'] == '{}.{}'.format(
             sys.version_info.major,
