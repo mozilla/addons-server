@@ -81,9 +81,9 @@ ipaddress==1.0.23 \
 packaging==21.0 \
     --hash=sha256:c86254f9220d55e31cc94d69bade760f0847da8000def4dfe1c6b872fd14ff14 \
     --hash=sha256:7dc96269f53a4ccec5c0670940a4281106dd0bb343f47b7471f779df49c2fbe7
-pip==21.2.2 \
-    --hash=sha256:b02a9d345f913e03fde2ed41896687cc1a2053c6adbe142ec03cff6b0827233d \
-    --hash=sha256:38e9250dfb0d7fa842492bede9259d4b3289a936ce454f7c58f059f28a94c01d
+pip==21.2.3 \
+    --hash=sha256:895df6014c2f02f9d278a8ad6e31cdfd312952b4a93c3068d0556964f4490057 \
+    --hash=sha256:91e66f2a2702e7d2dcc092ed8c5ebe923e69b9997ea28ba25823943bcd3bf820
 # pycparser is required by cffi
 pycparser==2.20 \
     --hash=sha256:2d475327684562c3a96cc71adf7dc8c4f0565175cf86b6d7a404ff4c771f15f0 \
