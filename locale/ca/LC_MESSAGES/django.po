@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:13+0000\n"
+"POT-Creation-Date: 2021-08-10 17:02+0000\n"
 "PO-Revision-Date: 2021-06-25 10:04+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -1873,7 +1873,7 @@ msgstr ""
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr ""
 
-msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
 msgstr ""
 
 msgid "Updated"
@@ -4657,6 +4657,15 @@ msgstr "Xarxes socials"
 msgid "See more social streaming extensions"
 msgstr "Mostra tots els complements"
 
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more tab management extensions"
+msgstr "Mostra tots els complements"
+
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -4879,8 +4888,7 @@ msgstr ""
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "No podeu pujar més fitxers per a aquesta versió."
 
-#, python-format
-msgid "Invalid flag [%s] - must be one of [%s]"
+msgid "Invalid flag [{}] - must be one of [{}]"
 msgstr ""
 
 msgid "This rating can't be flagged because it has no review text."
@@ -5003,10 +5011,6 @@ msgstr "No s'ha revisat"
 #, fuzzy
 msgid "Needs Admin Static Theme Review"
 msgstr "Revisió d'admin"
-
-#, fuzzy
-msgid "Requires Restart"
-msgstr "Camps obligatoris"
 
 msgid "Sources provided"
 msgstr ""
@@ -5331,6 +5335,13 @@ msgstr "Informació del complement {0}"
 msgid "Add-on ID"
 msgstr "Complement"
 
+#, fuzzy
+msgid "Original Add-on ID"
+msgstr "Envia el complement"
+
+msgid "Add-on(s) sharing same ID"
+msgstr ""
+
 msgid "Internal AMO ID"
 msgstr ""
 
@@ -5588,9 +5599,6 @@ msgstr ""
 
 msgid "Add-on History"
 msgstr "Historial del complement"
-
-msgid "Previously deleted entries"
-msgstr ""
 
 msgid "You don't have permission to review it."
 msgstr ""

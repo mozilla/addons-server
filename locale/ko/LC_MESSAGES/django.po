@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:13+0000\n"
+"POT-Creation-Date: 2021-08-10 17:02+0000\n"
 "PO-Revision-Date: 2021-05-02 18:58+0000\n"
 "Last-Translator: Kim YoungCheon <circcc@gmail.com>\n"
 "Language-Team: none\n"
@@ -1778,7 +1778,7 @@ msgstr ""
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "검사 과정에서 너무 많은 오류/경고가 발생했으며 %s개의 메세지가 잘려져 있는 상태입니다. 현재 표시된 메세지부터 확인 후에 나머지 메세지를 확인하실 수 있습니다."
 
-msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
 msgstr ""
 
 msgid "Updated"
@@ -4507,6 +4507,15 @@ msgstr "소셜네트웍"
 msgid "See more social streaming extensions"
 msgstr "인기 확장 기능 더보기"
 
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more tab management extensions"
+msgstr "추천 확장 기능 더보기"
+
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -4730,8 +4739,7 @@ msgstr "자신의 부가 기능에는 검토 의견을 남길 수 없습니다."
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "이 버전엔 이이상 많은 파일을 업로드 할 수 없습니다."
 
-#, python-format
-msgid "Invalid flag [%s] - must be one of [%s]"
+msgid "Invalid flag [{}] - must be one of [{}]"
 msgstr ""
 
 msgid "This rating can't be flagged because it has no review text."
@@ -4851,9 +4859,6 @@ msgstr "관리자 콘텐츠 검토가 필요"
 
 msgid "Needs Admin Static Theme Review"
 msgstr "관리자 정적 테마 검토 필요"
-
-msgid "Requires Restart"
-msgstr "다시 시작 필요"
 
 msgid "Sources provided"
 msgstr "원본 제공됨"
@@ -5164,6 +5169,13 @@ msgstr "{0}의 부가 기능 정보"
 msgid "Add-on ID"
 msgstr "부가 기능 ID"
 
+#, fuzzy
+msgid "Original Add-on ID"
+msgstr "부가 기능 사인"
+
+msgid "Add-on(s) sharing same ID"
+msgstr ""
+
 msgid "Internal AMO ID"
 msgstr ""
 
@@ -5418,9 +5430,6 @@ msgstr "부가 기능 사용자 변경 내역"
 
 msgid "Add-on History"
 msgstr "부가 기능 변경 내역"
-
-msgid "Previously deleted entries"
-msgstr "이전에 삭제한 항목"
 
 msgid "You don't have permission to review it."
 msgstr "검토 권한이 없습니다."

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:13+0000\n"
+"POT-Creation-Date: 2021-08-10 17:02+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1798,7 +1798,7 @@ msgstr "Notis Keselamatan Mozilla: Kelayakan AMO API anda telah dibatalkan"
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Pengesahan menghasilkan terlalu banyak ralat/warnings, maka %s mesej telah dicantas. Selepas menangani mesej yang ketara, anda akan boleh nampak yang lain."
 
-msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
 msgstr ""
 
 msgid "Updated"
@@ -4595,6 +4595,15 @@ msgstr "Rangkaian Sosial"
 msgid "See more social streaming extensions"
 msgstr "Layari semua ekstensi"
 
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more tab management extensions"
+msgstr "Layari semua ekstensi"
+
 msgid "Could not parse the manifest file."
 msgstr "Tidak dapat menghuraikan manifes fail."
 
@@ -4832,8 +4841,7 @@ msgstr "Anda tidak boleh semak add-on anda sendiri."
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Anda tidak boleh tertinggal lebih daripada satu semakan untuk add-on versi yang sama."
 
-#, python-format
-msgid "Invalid flag [%s] - must be one of [%s]"
+msgid "Invalid flag [{}] - must be one of [{}]"
 msgstr ""
 
 msgid "This rating can't be flagged because it has no review text."
@@ -4951,9 +4959,6 @@ msgstr "Perlu Semakan Kandungan Pentadbir"
 
 msgid "Needs Admin Static Theme Review"
 msgstr "Perlu Semakan Pentadbir Tema Statik"
-
-msgid "Requires Restart"
-msgstr "Perlukan Mula semula"
 
 msgid "Sources provided"
 msgstr "Sumber disediakan"
@@ -5253,6 +5258,13 @@ msgstr "Maklumat Add-on untuk {0}"
 msgid "Add-on ID"
 msgstr "Add-on"
 
+#, fuzzy
+msgid "Original Add-on ID"
+msgstr "Tandatangan Add-on"
+
+msgid "Add-on(s) sharing same ID"
+msgstr ""
+
 msgid "Internal AMO ID"
 msgstr ""
 
@@ -5498,10 +5510,6 @@ msgstr "Sejarah perubahan pengguna add-on"
 
 msgid "Add-on History"
 msgstr "Sejarah Add-on"
-
-#, fuzzy
-msgid "Previously deleted entries"
-msgstr "Nota dahulu"
 
 #, fuzzy
 msgid "You don't have permission to review it."

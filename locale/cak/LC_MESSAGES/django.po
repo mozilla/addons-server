@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:13+0000\n"
+"POT-Creation-Date: 2021-08-10 17:02+0000\n"
 "PO-Revision-Date: 2021-05-04 00:37+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1783,7 +1783,7 @@ msgstr "Rutzijol Rujikomal Mozilla: Xeyuj ri taq AMO API wujil"
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Ri junamanem ruya'on k'ïy taq sachoj//warnings ruma ri toq %s taq rutzijol xe'ewäx. Toq xesamajïx yan ri tz'etel taq rutzijol, xkatikïr xtatz'ët ri ch'aqa' chik."
 
-msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
 msgstr ""
 
 msgid "Updated"
@@ -4547,6 +4547,15 @@ msgstr "K'amawinaqil"
 msgid "See more social streaming extensions"
 msgstr "Ketz'et ronojel ri taq k'amal"
 
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more tab management extensions"
+msgstr "Kinuk'samaj Chilab'en taq K'amal"
+
 msgid "Could not parse the manifest file."
 msgstr "Man niq'ax ta ri runa'oj ri ruyakb'al tzijoxïk."
 
@@ -4782,8 +4791,7 @@ msgstr "Man yatikïr ta natz'ib'aj jun runik'oxik atz'aqat."
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Man yatikïr ta natz'ib'aj ka'i' oxi' runik'oxik jun ruwäch tz'aqat."
 
-#, python-format
-msgid "Invalid flag [%s] - must be one of [%s]"
+msgid "Invalid flag [{}] - must be one of [{}]"
 msgstr ""
 
 msgid "This rating can't be flagged because it has no review text."
@@ -4902,9 +4910,6 @@ msgstr "Nrajo' Runik'oxik Ka'i' Oxi' Rutzij Nuk'samajel"
 
 msgid "Needs Admin Static Theme Review"
 msgstr "K'atzinel Ninik'öx ri Mesilon Wachinel Ruma ri Nuk'samajel"
-
-msgid "Requires Restart"
-msgstr "Nrajo' chi Nitikirisäx chik"
 
 msgid "Sources provided"
 msgstr "Ya'on taq xe'el"
@@ -5201,6 +5206,13 @@ msgstr "Retamab'al Tz'aqat richin {0}"
 msgid "Add-on ID"
 msgstr "Tz'aqat"
 
+#, fuzzy
+msgid "Original Add-on ID"
+msgstr "Tijux Tz'aqat"
+
+msgid "Add-on(s) sharing same ID"
+msgstr ""
+
 msgid "Internal AMO ID"
 msgstr ""
 
@@ -5445,10 +5457,6 @@ msgstr "Jalon runatab'al rokisanel tz'aqat"
 
 msgid "Add-on History"
 msgstr "Runatab'al Tz'aqat"
-
-#, fuzzy
-msgid "Previously deleted entries"
-msgstr "Jun kan ch'utitzijol"
 
 #, fuzzy
 msgid "You don't have permission to review it."

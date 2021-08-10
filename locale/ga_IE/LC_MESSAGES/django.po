@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:13+0000\n"
+"POT-Creation-Date: 2021-08-10 17:02+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -1869,7 +1869,7 @@ msgstr ""
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr ""
 
-msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
 msgstr ""
 
 msgid "Updated"
@@ -4639,6 +4639,15 @@ msgstr "Líonrú Sóisialta"
 msgid "See more social streaming extensions"
 msgstr "Brabhsáil gach breiseán"
 
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more tab management extensions"
+msgstr "Brabhsáil gach breiseán"
+
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -4861,8 +4870,7 @@ msgstr ""
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Níl cead agat níos mó ná léirmheas amháin a dhéanamh ar leagan amháin de bhreiseán."
 
-#, python-format
-msgid "Invalid flag [%s] - must be one of [%s]"
+msgid "Invalid flag [{}] - must be one of [{}]"
 msgstr ""
 
 msgid "This rating can't be flagged because it has no review text."
@@ -4989,9 +4997,6 @@ msgstr "Gan Léirmheas"
 #, fuzzy
 msgid "Needs Admin Static Theme Review"
 msgstr "Níl aon léirmheasanna ar bhreiseáin fós."
-
-msgid "Requires Restart"
-msgstr "Atosú de dhíth"
 
 msgid "Sources provided"
 msgstr ""
@@ -5316,6 +5321,13 @@ msgstr "Eolas faoi Bhreiseán {0}"
 msgid "Add-on ID"
 msgstr "Breiseán"
 
+#, fuzzy
+msgid "Original Add-on ID"
+msgstr "Sínigh Breiseán"
+
+msgid "Add-on(s) sharing same ID"
+msgstr ""
+
 msgid "Internal AMO ID"
 msgstr ""
 
@@ -5571,9 +5583,6 @@ msgstr ""
 
 msgid "Add-on History"
 msgstr "Stair an Bhreiseáin"
-
-msgid "Previously deleted entries"
-msgstr ""
 
 msgid "You don't have permission to review it."
 msgstr ""
