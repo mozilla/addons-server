@@ -1437,12 +1437,6 @@ class Addon(OnChangeMixin, ModelBase):
             manager = self.versions
         return manager.filter(channel=amo.RELEASE_CHANNEL_UNLISTED).exists()
 
-    @property
-    def is_restart_required(self):
-        """Whether the add-on current version requires a browser restart to
-        work."""
-        return self.current_version and self.current_version.is_restart_required
-
     def _is_recommended_theme(self):
         from olympia.bandwagon.models import CollectionAddon
 

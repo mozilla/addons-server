@@ -116,7 +116,6 @@ class AddonSerializerOutputTestMixin:
             file_.created.replace(microsecond=0).isoformat() + 'Z'
         )
         assert result_file['hash'] == file_.hash
-        assert result_file['is_restart_required'] == file_.is_restart_required
         assert result_file['is_webextension'] == file_.is_webextension
         assert (
             result_file['is_mozilla_signed_extension']
@@ -156,7 +155,6 @@ class AddonSerializerOutputTestMixin:
             developer_comments='Dévelopers Addôn comments',
             file_kw={
                 'hash': 'fakehash',
-                'is_restart_required': False,
                 'is_webextension': True,
                 'size': 42,
             },
@@ -651,10 +649,17 @@ class AddonSerializerOutputTestMixin:
         )
 
     def test_is_restart_required(self):
-        self.addon = addon_factory(file_kw={'is_restart_required': True})
+        self.addon = addon_factory()
         result = self.serialize()
+        file_data = result['current_version']['files'][0]
+        assert 'is_restart_required' not in file_data
 
-        self._test_version(self.addon.current_version, result['current_version'])
+        # Test with shim
+        gates = {self.request.version: ('is-restart-required-shim',)}
+        with override_settings(DRF_API_GATES=gates):
+            result = self.serialize()
+        file_data = result['current_version']['files'][0]
+        assert file_data['is_restart_required'] is False
 
     def test_special_compatibility_cases(self):
         # Test an add-on with strict compatibility enabled.

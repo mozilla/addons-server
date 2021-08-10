@@ -1369,41 +1369,6 @@ class TestQueueBasics(QueueTest):
             assert response.status_code == 200
             assert pq(response.content)('th.ordered a').text() == text
 
-    def test_flags_is_restart_required(self):
-        addon = addon_factory(
-            status=amo.STATUS_NOMINATED,
-            name='Some Add-on',
-            version_kw={'version': '0.1'},
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_restart_required': True},
-        )
-
-        r = self.client.get(reverse('reviewers.queue_extension'))
-
-        rows = pq(r.content)('#addon-queue tr.addon-row')
-        assert rows.length == 1
-        assert rows.attr('data-addon') == str(addon.id)
-        assert rows.find('td').eq(1).text() == 'Some Add-on 0.1'
-        assert rows.find('.ed-sprite-is_restart_required').length == 1
-
-    def test_flags_is_restart_required_false(self):
-        addon = addon_factory(
-            status=amo.STATUS_NOMINATED,
-            name='Restartless',
-            version_kw={'version': '0.1'},
-            file_kw={
-                'status': amo.STATUS_AWAITING_REVIEW,
-                'is_restart_required': False,
-            },
-        )
-
-        r = self.client.get(reverse('reviewers.queue_extension'))
-
-        rows = pq(r.content)('#addon-queue tr.addon-row')
-        assert rows.length == 1
-        assert rows.attr('data-addon') == str(addon.id)
-        assert rows.find('td').eq(1).text() == 'Restartless 0.1'
-        assert rows.find('.ed-sprite-is_restart_required').length == 0
-
     def test_flags_promoted(self):
         addon = addon_factory(name='Firefox Fún')
         version_factory(
@@ -3505,13 +3470,11 @@ class TestReview(ReviewBase):
         assert not doc('.is_promoted')
 
     def test_not_flags(self):
-        self.addon.current_version.files.update(is_restart_required=False)
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert len(response.context['flags']) == 0
 
     def test_flag_needs_admin_code_review(self):
-        self.addon.current_version.files.update(is_restart_required=False)
         AddonReviewerFlags.objects.create(
             addon=self.addon, needs_admin_code_review=True
         )

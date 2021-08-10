@@ -55,7 +55,6 @@ class File(OnChangeMixin, ModelBase):
         choices=STATUS_CHOICES.items(), default=amo.STATUS_AWAITING_REVIEW
     )
     datestatuschanged = models.DateTimeField(null=True, auto_now_add=True)
-    is_restart_required = models.BooleanField(default=False)
     strict_compatibility = models.BooleanField(default=False)
     reviewed = models.DateTimeField(null=True, blank=True)
     # The `binary` field is used to store the flags from amo-validator when it
@@ -151,7 +150,6 @@ class File(OnChangeMixin, ModelBase):
         file_.filename = file_.generate_filename(extension=ext or '.xpi')
         # Size in bytes.
         file_.size = storage.size(upload_path)
-        file_.is_restart_required = parsed_data.get('is_restart_required', False)
         file_.strict_compatibility = parsed_data.get('strict_compatibility', False)
         file_.is_experiment = parsed_data.get('is_experiment', False)
         file_.is_webextension = parsed_data.get('is_webextension', False)

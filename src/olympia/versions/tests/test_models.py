@@ -255,16 +255,6 @@ class TestVersion(TestCase):
         # ApplicationsVersions loaded from <Version>._compat_map().
         assert id(version) == id(version.compatible_apps[amo.FIREFOX].version)
 
-    def test_is_restart_required(self):
-        version = Version.objects.get(pk=81551)
-        file_ = version.all_files[0]
-        assert not file_.is_restart_required
-        assert not version.is_restart_required
-
-        file_.update(is_restart_required=True)
-        version = Version.objects.get(pk=81551)
-        assert version.is_restart_required
-
     def test_is_webextension(self):
         version = Version.objects.get(pk=81551)
         file_ = version.all_files[0]

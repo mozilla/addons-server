@@ -246,7 +246,6 @@ class AddonIndexer(BaseSearchIndexer):
                         'filename': {'type': 'keyword', 'index': False},
                         'is_webextension': {'type': 'boolean'},
                         'is_mozilla_signed_extension': {'type': 'boolean'},
-                        'is_restart_required': {'type': 'boolean', 'index': False},
                         'size': {'type': 'long', 'index': False},
                         'strict_compatibility': {'type': 'boolean', 'index': False},
                         'status': {'type': 'byte'},
@@ -407,7 +406,6 @@ class AddonIndexer(BaseSearchIndexer):
                         'is_mozilla_signed_extension': (
                             file_.is_mozilla_signed_extension
                         ),
-                        'is_restart_required': file_.is_restart_required,
                         'size': file_.size,
                         'status': file_.status,
                         'strict_compatibility': file_.strict_compatibility,

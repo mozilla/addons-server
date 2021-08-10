@@ -20,12 +20,6 @@
 
     <div class="addon-info object-lead">
       <p{{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
-      {% if version and version.is_restart_required %}
-        <div>
-          <span>{{ _('Requires Restart') }}</span>
-        </div>
-      {% endif %}
-
       <table itemscope itemtype="http://data-vocabulary.org/Review-aggregate">
         {% with addon_name='<span itemprop="itemreviewed">{0}</span>'|format_html(addon.name) %}
           {# L10n: This is a caption for a table. {0} is an add-on name. #}

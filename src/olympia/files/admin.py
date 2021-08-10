@@ -51,7 +51,6 @@ class FileAdmin(admin.ModelAdmin):
             'Flags',
             {
                 'fields': (
-                    'is_restart_required',
                     'strict_compatibility',
                     'binary',
                     'binary_components',
