@@ -1,7 +1,5 @@
 import functools
 
-from urllib.parse import quote
-
 from django import http
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
@@ -119,7 +117,7 @@ def reviewer_addon_view(f):
             # break the redirect.
             # Maybe instead resolve() it and replace the first parameter with
             # addon.pk, then reverse() the url ?
-            url = request.path.replace(quote(addon_id), str(addon.pk), 1)
+            url = request.path.replace(addon_id, str(addon.pk), 1)
             if request.GET:
                 url += '?' + request.GET.urlencode()
             return http.HttpResponsePermanentRedirect(url)
