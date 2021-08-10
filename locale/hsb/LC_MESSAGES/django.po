@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-10 17:02+0000\n"
-"PO-Revision-Date: 2021-08-10 18:29+0000\n"
+"PO-Revision-Date: 2021-08-10 18:31+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -1757,7 +1757,7 @@ msgid "Validation generated too many errors/warnings so %s messages were truncat
 msgstr "Přepruwowanje je přewjele zmylkow/warnowanjow wunjesło, tohodla je so %s powěsćow wotdźěliło. Po wobdźěłowanju widźomnych powěsćow móžeće druhe widźeć."
 
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr "Manifest V3 so tuchwilu za nahrawanje njepodpěruje. [{start_href}Čitajće wjace wo podpěrowanskim planje{end_href}."
+msgstr "Manifest V3 so tuchwilu za nahrawanje njepodpěruje. {start_href}Čitajće wjace wo podpěrowanskim planje{end_href}."
 
 msgid "Updated"
 msgstr "Zaktualizowany"
