@@ -1510,7 +1510,9 @@ class TestRatingViewSetEdit(TestCase):
         with freeze_time('2021-08-09') as frozen_time:
             for x in range(1, 6):
                 response = self.client.patch(
-                    self.url, {'score': x, 'body': f'Blâh {x}'}
+                    self.url,
+                    {'score': x, 'body': f'Blâh {x}'},
+                    REMOTE_ADDR='127.0.0.42',
                 )
                 assert response.status_code == 200
                 self.rating.reload()
@@ -1518,7 +1520,11 @@ class TestRatingViewSetEdit(TestCase):
                 assert self.rating.rating == x
 
             # Over the limit now...
-            response = self.client.patch(self.url, {'score': 1, 'body': 'Ooops'})
+            response = self.client.patch(
+                self.url,
+                {'score': 1, 'body': 'Ooops'},
+                REMOTE_ADDR='127.0.0.42',
+            )
             assert response.status_code == 429
             self.rating.reload()
             assert str(self.rating.body) == 'Blâh 5'
@@ -1526,7 +1532,11 @@ class TestRatingViewSetEdit(TestCase):
 
             # Now with the permission we should be ok.
             self.grant_permission(self.user, 'Ratings:BypassThrottling')
-            response = self.client.patch(self.url, {'score': 1, 'body': 'Eheheh'})
+            response = self.client.patch(
+                self.url,
+                {'score': 1, 'body': 'Eheheh'},
+                REMOTE_ADDR='127.0.0.42',
+            )
             assert response.status_code == 200
             self.rating.reload()
             assert str(self.rating.body) == 'Eheheh'
@@ -1543,7 +1553,11 @@ class TestRatingViewSetEdit(TestCase):
             )
             new_url = reverse_ns(self.detail_url_name, kwargs={'pk': new_rating.pk})
             self.client.login_api(new_user)
-            response = self.client.patch(new_url, {'score': 2, 'body': 'Ooops'})
+            response = self.client.patch(
+                new_url,
+                {'score': 2, 'body': 'Ooops'},
+                REMOTE_ADDR='127.0.0.42',
+            )
             assert response.status_code == 429
             new_rating.reload()
             assert str(new_rating.body) == 'Another'
@@ -1551,7 +1565,11 @@ class TestRatingViewSetEdit(TestCase):
 
             # Everything back to normal after waiting a minute.
             frozen_time.tick(delta=timedelta(minutes=1))
-            response = self.client.patch(new_url, {'score': 1, 'body': 'I did it'})
+            response = self.client.patch(
+                new_url,
+                {'score': 1, 'body': 'I did it'},
+                REMOTE_ADDR='127.0.0.42',
+            )
             assert response.status_code == 200
             new_rating.reload()
             assert str(new_rating.body) == 'I did it'
