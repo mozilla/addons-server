@@ -1503,6 +1503,78 @@ class TestRatingViewSetEdit(TestCase):
             assert str(self.rating.body) == 'I did it'
             assert self.rating.rating == 1
 
+    @override_settings(CACHES=locmem_cache)
+    def test_no_throttling_with_relevant_permission(self):
+        self.client.login_api(self.user)
+
+        with freeze_time('2021-08-09') as frozen_time:
+            for x in range(1, 6):
+                response = self.client.patch(
+                    self.url,
+                    {'score': x, 'body': f'Blâh {x}'},
+                    REMOTE_ADDR='127.0.0.42',
+                )
+                assert response.status_code == 200
+                self.rating.reload()
+                assert str(self.rating.body) == f'Blâh {x}'
+                assert self.rating.rating == x
+
+            # Over the limit now...
+            response = self.client.patch(
+                self.url,
+                {'score': 1, 'body': 'Ooops'},
+                REMOTE_ADDR='127.0.0.42',
+            )
+            assert response.status_code == 429
+            self.rating.reload()
+            assert str(self.rating.body) == 'Blâh 5'
+            assert self.rating.rating == 5
+
+            # Now with the permission we should be ok.
+            self.grant_permission(self.user, 'Ratings:BypassThrottling')
+            response = self.client.patch(
+                self.url,
+                {'score': 1, 'body': 'Eheheh'},
+                REMOTE_ADDR='127.0.0.42',
+            )
+            assert response.status_code == 200
+            self.rating.reload()
+            assert str(self.rating.body) == 'Eheheh'
+            assert self.rating.rating == 1
+
+            # Someone else with the same IP would still be stuck.
+            new_user = user_factory()
+            new_rating = Rating.objects.create(
+                addon=self.addon,
+                version=self.addon.current_version,
+                body='Another',
+                rating=4,
+                user=new_user,
+            )
+            new_url = reverse_ns(self.detail_url_name, kwargs={'pk': new_rating.pk})
+            self.client.login_api(new_user)
+            response = self.client.patch(
+                new_url,
+                {'score': 2, 'body': 'Ooops'},
+                REMOTE_ADDR='127.0.0.42',
+            )
+            assert response.status_code == 429
+            new_rating.reload()
+            assert str(new_rating.body) == 'Another'
+            assert new_rating.rating == 4
+
+            # Everything back to normal after waiting a minute.
+            frozen_time.tick(delta=timedelta(minutes=1))
+            response = self.client.patch(
+                new_url,
+                {'score': 1, 'body': 'I did it'},
+                REMOTE_ADDR='127.0.0.42',
+            )
+            assert response.status_code == 200
+            new_rating.reload()
+            assert str(new_rating.body) == 'I did it'
+            assert new_rating.rating == 1
+
 
 class TestRatingViewSetPost(TestCase):
     client_class = APITestClient
