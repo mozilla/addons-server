@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:13+0000\n"
+"POT-Creation-Date: 2021-08-10 17:02+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1873,7 +1873,7 @@ msgstr ""
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "A validação gerou muitos erros/alertas pelo que %s mensagens foram cortadas. Após corrigir as mensagens visíveis, poderá ver as outras mensagens."
 
-msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
 msgstr ""
 
 msgid "Updated"
@@ -4697,6 +4697,15 @@ msgstr ""
 msgid "See more social streaming extensions"
 msgstr "Navegar em todos os extras"
 
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more tab management extensions"
+msgstr "Navegar em todos os extras"
+
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -4934,8 +4943,7 @@ msgstr "alguém escreveu um comentário sobre o meu extra"
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Não pode carregar mais ficheiros para esta versão."
 
-#, python-format
-msgid "Invalid flag [%s] - must be one of [%s]"
+msgid "Invalid flag [{}] - must be one of [{}]"
 msgstr ""
 
 msgid "This rating can't be flagged because it has no review text."
@@ -5059,10 +5067,6 @@ msgstr "Submeter revisão"
 #, fuzzy
 msgid "Needs Admin Static Theme Review"
 msgstr "Revisão administrativa"
-
-#, fuzzy
-msgid "Requires Restart"
-msgstr "Campos necessários"
 
 msgid "Sources provided"
 msgstr "Fontes fornecidas"
@@ -5387,6 +5391,13 @@ msgstr "Informação do extra para {0}"
 msgid "Add-on ID"
 msgstr "Extra"
 
+#, fuzzy
+msgid "Original Add-on ID"
+msgstr "Submeter extra"
+
+msgid "Add-on(s) sharing same ID"
+msgstr ""
+
 msgid "Internal AMO ID"
 msgstr ""
 
@@ -5645,10 +5656,6 @@ msgstr "Histórico de alterações do utilizador para o extra"
 
 msgid "Add-on History"
 msgstr "Histórico do extra"
-
-#, fuzzy
-msgid "Previously deleted entries"
-msgstr "Nota anterior"
 
 #, fuzzy
 msgid "You don't have permission to review it."

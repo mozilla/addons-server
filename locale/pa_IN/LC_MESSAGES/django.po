@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:13+0000\n"
+"POT-Creation-Date: 2021-08-10 17:02+0000\n"
 "PO-Revision-Date: 2021-04-12 00:29+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1762,7 +1762,7 @@ msgstr "ਮੋਜ਼ੀਲਾ ਸੁਰੱਖਿਆ ਸੂਚਨਾ: ਤੁਹ�
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "ਪ੍ਰਮਾਣਿਕਤਾ ਨੇ ਬਹੁਤ ਸਾਰੀਆਂ ਗਲਤੀਆਂ/ਚੇਤਾਵਨੀਆਂ ਪੈਦਾ ਕੀਤੀਆਂ ਇਸ ਲਈ %s ਸੁਨੇਹੇ ਛੋਟੇ ਹੋ ਗਏ। ਵੇਖਣਯੋਗ ਸੁਨੇਹਿਆਂ ਦਾ ਸੰਬੋਧਨ ਕਰਨ ਤੋਂ ਬਾਅਦ, ਤੁਸੀਂ ਹੋਰਾਂ ਨੂੰ ਵੇਖਣ ਦੇ ਯੋਗ ਹੋ ਜਾਵੋਗੇ।"
 
-msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
 msgstr ""
 
 msgid "Updated"
@@ -4503,6 +4503,15 @@ msgstr "ਸਮਾਜਕ ਮੇਲ ਮਿਲਾਪ"
 msgid "See more social streaming extensions"
 msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
 
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more tab management extensions"
+msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
+
 msgid "Could not parse the manifest file."
 msgstr "ਮੈਨੀਫੈਸਟ ਫਾਈਲ ਨੂੰ ਪਾਰਸ ਨਹੀਂ ਕਰ ਸਕਿਆ।"
 
@@ -4732,8 +4741,8 @@ msgstr "ਤੁਸੀਂ ਆਪਣੀ ਖੁਦ ਦੀ ਐਡ-ਆਨ ਤੇ ਸ�
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "ਤੁਸੀਂ ਐਡਆਨ ਦੇ ਉਸੇ ਵਰਜਨ ਲਈ ਇਕ ਤੋਂ ਵੱਧ ਸਮੀਖਿਆ ਨਹੀਂ ਛੱਡ ਸਕਦੇ।"
 
-#, python-format
-msgid "Invalid flag [%s] - must be one of [%s]"
+#, fuzzy
+msgid "Invalid flag [{}] - must be one of [{}]"
 msgstr "ਅਵੈਧ flag [%s] - ਇੱਕ [%s] ਵਿੱਚ ਹੋਣਾ ਜਰੂਰੀ ਹੈ"
 
 msgid "This rating can't be flagged because it has no review text."
@@ -4852,9 +4861,6 @@ msgstr "ਸਮੀਖਿਆ ਕਬੂਲੋ"
 
 msgid "Needs Admin Static Theme Review"
 msgstr "ਪ੍ਰਬੰਧਕ ਸਮੀਖਿਆ"
-
-msgid "Requires Restart"
-msgstr "ਮੁੜ ਤੋਂ ਚਾਲੂ ਕਰਨ ਦੀ ਲੋੜ ਹੈ"
 
 msgid "Sources provided"
 msgstr "ਸੋਰਸ ਮੁਹੱਇਆ ਕਰਵਾਏ"
@@ -5150,6 +5156,13 @@ msgstr "{0} ਲਈ ਐਡ-ਆਨ ਦੀ ਜਾਣਕਾਰੀ"
 msgid "Add-on ID"
 msgstr "ਐਡ-ਆਨ ID"
 
+#, fuzzy
+msgid "Original Add-on ID"
+msgstr "ਐਡ-ਆਨ ਦਾਖਲ ਕਰੋ"
+
+msgid "Add-on(s) sharing same ID"
+msgstr ""
+
 msgid "Internal AMO ID"
 msgstr "ਅੰਦਰੂਨੀ AMO ID"
 
@@ -5394,9 +5407,6 @@ msgstr "ਐਡ-ਆਨ ਉਪਭੋਗੀ ਨੇ ਇਤਿਹਾਸ ਬਦਲਿ�
 
 msgid "Add-on History"
 msgstr "ਐਡ-ਆਨ ਇਤਿਹਾਸ"
-
-msgid "Previously deleted entries"
-msgstr "ਪਹਿਲਾਂ ਮਿਟਾਏ ਗਏ ਐਂਟਰੀਆਂ"
 
 #, fuzzy
 msgid "You don't have permission to review it."

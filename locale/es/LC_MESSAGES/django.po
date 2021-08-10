@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:13+0000\n"
+"POT-Creation-Date: 2021-08-10 17:02+0000\n"
 "PO-Revision-Date: 2021-07-03 19:18+0000\n"
 "Last-Translator: Paulina Rodriguez <pauli.rodriguez.c@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -1793,7 +1793,7 @@ msgstr "Aviso de seguridad de Mozilla: se han anulado tus credenciales API de AM
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "La validación ha generado demasiados errores/advertencias de modo que %s mensajes han sido ocultados. Una vez tratados los mensajes visibles, podrás ver el resto."
 
-msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
 msgstr ""
 
 msgid "Updated"
@@ -4613,6 +4613,15 @@ msgstr "Redes sociales"
 msgid "See more social streaming extensions"
 msgstr "Ver más extensiones populares"
 
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more tab management extensions"
+msgstr "Ver más extensiones recomendadas"
+
 msgid "Could not parse the manifest file."
 msgstr "No se pudo analizar el archivo de manifiesto."
 
@@ -4845,8 +4854,8 @@ msgstr "No puedes escribir una revisión de tu propio complemento."
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "No puedes escribir más de una revisión para la misma versión del complemento."
 
-#, python-format
-msgid "Invalid flag [%s] - must be one of [%s]"
+#, fuzzy
+msgid "Invalid flag [{}] - must be one of [{}]"
 msgstr "Etiqueta no válida [%s]: debe ser una de [%s]"
 
 msgid "This rating can't be flagged because it has no review text."
@@ -4965,9 +4974,6 @@ msgstr "Se necesita revisión de contenido de administrador"
 
 msgid "Needs Admin Static Theme Review"
 msgstr "Necesita revisión de tema estático por parte de un administrador"
-
-msgid "Requires Restart"
-msgstr "Necesita reiniciarse"
 
 msgid "Sources provided"
 msgstr "Fuentes facilitadas"
@@ -5261,6 +5267,13 @@ msgstr "Información del complemento para {0}"
 msgid "Add-on ID"
 msgstr "ID del complemento"
 
+#, fuzzy
+msgid "Original Add-on ID"
+msgstr "Firmar complemento"
+
+msgid "Add-on(s) sharing same ID"
+msgstr ""
+
 msgid "Internal AMO ID"
 msgstr "ID interno de AMO"
 
@@ -5506,9 +5519,6 @@ msgstr "Historial de cambios de usuario de complemento"
 
 msgid "Add-on History"
 msgstr "Historial de complementos"
-
-msgid "Previously deleted entries"
-msgstr "Notas anteriores eliminadas"
 
 #, fuzzy
 msgid "You don't have permission to review it."

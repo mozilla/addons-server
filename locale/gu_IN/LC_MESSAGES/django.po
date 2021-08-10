@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:13+0000\n"
+"POT-Creation-Date: 2021-08-10 17:02+0000\n"
 "PO-Revision-Date: 2020-05-22 17:03+0000\n"
 "Last-Translator: Siddhi Dave <siddhi_dave@yahoo.in>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1741,7 +1741,7 @@ msgstr ""
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr ""
 
-msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
 msgstr ""
 
 msgid "Updated"
@@ -4393,6 +4393,15 @@ msgstr ""
 msgid "See more social streaming extensions"
 msgstr "તમામ એક્સટેન્શન્સને બ્રાઉઝ કરો"
 
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more tab management extensions"
+msgstr "તમામ એક્સટેન્શન્સને બ્રાઉઝ કરો"
+
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -4612,8 +4621,7 @@ msgstr ""
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr ""
 
-#, python-format
-msgid "Invalid flag [%s] - must be one of [%s]"
+msgid "Invalid flag [{}] - must be one of [{}]"
 msgstr ""
 
 msgid "This rating can't be flagged because it has no review text."
@@ -4730,9 +4738,6 @@ msgid "Needs Admin Content Review"
 msgstr ""
 
 msgid "Needs Admin Static Theme Review"
-msgstr ""
-
-msgid "Requires Restart"
 msgstr ""
 
 msgid "Sources provided"
@@ -5013,6 +5018,13 @@ msgstr "{0} માટે એડ-ઓન માહિતી"
 msgid "Add-on ID"
 msgstr "એડ-ઑન ક્રમાંક"
 
+#, fuzzy
+msgid "Original Add-on ID"
+msgstr "એડ-ઑન ક્રમાંક"
+
+msgid "Add-on(s) sharing same ID"
+msgstr ""
+
 msgid "Internal AMO ID"
 msgstr ""
 
@@ -5252,9 +5264,6 @@ msgid "Add-on important changes history"
 msgstr ""
 
 msgid "Add-on History"
-msgstr ""
-
-msgid "Previously deleted entries"
 msgstr ""
 
 msgid "You don't have permission to review it."

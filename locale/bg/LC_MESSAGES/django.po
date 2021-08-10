@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:13+0000\n"
+"POT-Creation-Date: 2021-08-10 17:02+0000\n"
 "PO-Revision-Date: 2021-07-06 20:18+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
@@ -1818,7 +1818,7 @@ msgstr ""
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr ""
 
-msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
 msgstr ""
 
 msgid "Updated"
@@ -4556,6 +4556,15 @@ msgstr "Социални мрежи"
 msgid "See more social streaming extensions"
 msgstr "Преглед на всички разширения"
 
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more tab management extensions"
+msgstr "Преглед на всички разширения"
+
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -4779,8 +4788,7 @@ msgstr "Не може да оставяте отзив за собственат
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr ""
 
-#, python-format
-msgid "Invalid flag [%s] - must be one of [%s]"
+msgid "Invalid flag [{}] - must be one of [{}]"
 msgstr ""
 
 msgid "This rating can't be flagged because it has no review text."
@@ -4903,9 +4911,6 @@ msgstr "Изпращане на рецензия"
 #, fuzzy
 msgid "Needs Admin Static Theme Review"
 msgstr "Административна рецензия"
-
-msgid "Requires Restart"
-msgstr "Изисква рестартиране"
 
 msgid "Sources provided"
 msgstr ""
@@ -5218,6 +5223,13 @@ msgstr "Информация за {0}"
 msgid "Add-on ID"
 msgstr "Добавка"
 
+#, fuzzy
+msgid "Original Add-on ID"
+msgstr "Подписване на добавката"
+
+msgid "Add-on(s) sharing same ID"
+msgstr ""
+
 msgid "Internal AMO ID"
 msgstr ""
 
@@ -5466,10 +5478,6 @@ msgstr ""
 
 msgid "Add-on History"
 msgstr ""
-
-#, fuzzy
-msgid "Previously deleted entries"
-msgstr "Предишна бележка"
 
 #, fuzzy
 msgid "You don't have permission to review it."
