@@ -912,6 +912,8 @@ MINIFY_BUNDLES = {
 # This value is being used by `conf/settings/{dev,stage,prod}.py
 CACHE_KEY_PREFIX = 'amo:%s:' % BUILD_ID
 
+CACHE_BACKEND = 'django.core.cache.backends.memcached.PyMemcacheCache'
+
 CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_KEY_PREFIX
 FETCH_BY_ID = True
 
