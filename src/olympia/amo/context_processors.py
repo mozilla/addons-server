@@ -1,11 +1,12 @@
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
-from django.utils.http import urlquote
 from django.urls import reverse
 from django.utils.translation import get_language, get_language_bidi, gettext
 
 from olympia import amo
 from olympia.access import acl
+
+from urllib.parse import quote
 
 
 def static_url(request):
@@ -52,7 +53,7 @@ def global_settings(request):
         account_links.append(
             {
                 'text': gettext('Log out'),
-                'href': reverse('devhub.logout') + '?to=' + urlquote(request.path),
+                'href': reverse('devhub.logout') + '?to=' + quote(request.path),
             }
         )
 

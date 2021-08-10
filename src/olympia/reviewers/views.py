@@ -14,11 +14,12 @@ from django.db.transaction import non_atomic_requests
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse
-from django.utils.http import urlquote
 from django.utils.translation import gettext
 from django.views.decorators.cache import never_cache
 
 import pygit2
+
+from urllib.parse import quote
 
 from csp.decorators import csp as set_csp
 from rest_framework import status
@@ -1345,7 +1346,7 @@ def download_git_stored_file(request, version_id, filename):
         selected_filename.encode('ascii')
         file_expr = f'filename="{selected_filename}"'
     except UnicodeEncodeError:
-        file_expr = f"filename*=utf-8''{urlquote(selected_filename)}"
+        file_expr = f"filename*=utf-8''{quote(selected_filename)}"
 
     response['Content-Disposition'] = f'attachment; {file_expr}'
     response['Content-Length'] = actual_blob.size

@@ -5,7 +5,8 @@ from django.utils.encoding import smart_str
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
 from django.urls import reverse
-from django.utils.http import urlquote
+
+from urllib.parse import quote
 
 from unittest import mock
 
@@ -134,7 +135,7 @@ class TestDownloadsBase(TestCase):
         assert response.status_code == 302
         assert response.url == (
             urlparams(
-                f'{host}{self.addon.id}/{urlquote(file_.filename)}',
+                f'{host}{self.addon.id}/{quote(file_.filename)}',
                 filehash=file_.hash,
             )
         )
