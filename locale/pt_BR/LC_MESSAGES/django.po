@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-10 17:02+0000\n"
-"PO-Revision-Date: 2021-08-10 20:24+0000\n"
+"PO-Revision-Date: 2021-08-10 20:27+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -1781,9 +1781,8 @@ msgstr "Aviso de segurança da Mozilla: As suas credenciais da API do AMO foram 
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "A validação gerou muitos erros/alertas então %s mensagens foram cortadas. Após corrigir as mensagens visíveis, você poderá ver as outras mensagens."
 
-#, fuzzy
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr "O manifesto v3 atualmente não é suportado para envio. Você pode ler mais sobre o cronograma de suporte [{start_href}aqui{end_href}]."
+msgstr "O manifest V3 atualmente não é suportado para envio. {start_href}Saiba mais sobre o cronograma de suporte{end_href}."
 
 msgid "Updated"
 msgstr "Atualizado"
@@ -4564,9 +4563,8 @@ msgid "Tab managers"
 msgstr "Gerenciadores de abas"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more tab management extensions"
-msgstr "Mais extensões recomendadas"
+msgstr "Mais extensões de gerenciamento de abas"
 
 msgid "Could not parse the manifest file."
 msgstr "Não foi possível analisar o arquivo manifest."
@@ -4798,9 +4796,8 @@ msgstr "Você não pode deixar uma analise na sua própria extensão."
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Você não pode deixar mais do que uma análise para a mesma versão de uma extensão."
 
-#, fuzzy
 msgid "Invalid flag [{}] - must be one of [{}]"
-msgstr "Flag inválido [%s] - deve ser um desses [%s]"
+msgstr "Flag inválido [{}] - deve ser um desses [{}]"
 
 msgid "This rating can't be flagged because it has no review text."
 msgstr "Esta avaliação não pode ser marcada porque ela não possui texto de análise."
@@ -5202,9 +5199,8 @@ msgstr "Informações da extensão {0}"
 msgid "Add-on ID"
 msgstr "ID da extensão"
 
-#, fuzzy
 msgid "Original Add-on ID"
-msgstr "Assinar extensão"
+msgstr "ID original da extensão"
 
 msgid "Add-on(s) sharing same ID"
 msgstr "Extensões com o mesmo ID"
