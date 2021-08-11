@@ -128,7 +128,7 @@ class ShelfSerializer(serializers.ModelSerializer):
             ).get_data(obj.get_count())
             addons = [item['addon'] for item in collection_addons if 'addon' in item]
         else:
-            addons = None
+            addons = []
 
         real_request.GET = orginal_get
         return addons

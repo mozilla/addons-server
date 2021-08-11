@@ -219,6 +219,12 @@ class TestShelvesSerializer(ESTestCase):
             'https://blog.mozilla.org/addons'
         )
 
+    def test_invalid_endpoint(self):
+        self.search_pop_thm.update(endpoint='invalid')
+        pop_data = self.serialize(self.search_pop_thm)
+        assert pop_data['url'] is None
+        assert pop_data['addons'] == []
+
     def test_footer_url(self):
         wrap_outgoing_settings_override = {
             'DRF_API_GATES': {
