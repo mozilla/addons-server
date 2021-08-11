@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-10 17:03+0000\n"
-"PO-Revision-Date: 2020-12-07 13:06+0000\n"
-"Last-Translator: 你我皆凡人 <eloli@foxmail.com>\n"
+"PO-Revision-Date: 2018-12-05 16:56+0000\n"
+"Last-Translator: frankoy123 <frankoy123@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 
 msgid "{0} star"
 msgid_plural "{0} stars"
-msgstr[0] "{0} 星"
+msgstr[0] "{0} 颗星"
 
 msgid "There was a problem contacting the server."
 msgstr "连接服务器时发生错误。"
