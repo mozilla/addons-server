@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-10 17:02+0000\n"
-"PO-Revision-Date: 2021-08-11 14:10+0000\n"
+"PO-Revision-Date: 2021-08-11 14:11+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -5472,13 +5472,11 @@ msgstr "Desativar a aprovação automática para listagem até à próxima aprov
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr "Ativar aprovação automática para listagem antes da próxima aprovação manual"
 
-#, fuzzy
 msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
-msgstr "Desativar a aprovação automática para listagem até à próxima aprovação manual"
+msgstr "Desativar a aprovação automática até à próxima aprovação manual"
 
-#, fuzzy
 msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
-msgstr "Ativar aprovação automática para listagem antes da próxima aprovação manual"
+msgstr "Ativar aprovação automática antes da próxima aprovação manual"
 
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "A aprovação automática está atualmente desativada até {date}"
