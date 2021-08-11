@@ -27,7 +27,7 @@ import olympia.core.logger
 
 from olympia import amo, core
 from olympia.access import acl
-from olympia.accounts.utils import redirect_for_login, _is_safe_url
+from olympia.accounts.utils import redirect_for_login
 from olympia.accounts.views import API_TOKEN_COOKIE, logout_user
 from olympia.activity.models import ActivityLog, VersionLog
 from olympia.activity.utils import log_and_notify
@@ -43,7 +43,7 @@ from olympia.amo import messages, utils as amo_utils
 from olympia.amo.decorators import json_view, login_required, post_required
 from olympia.amo.templatetags.jinja_helpers import absolutify, urlparams
 from olympia.amo.reverse import get_url_prefix
-from olympia.amo.utils import MenuItem, escape_all, render, send_mail
+from olympia.amo.utils import MenuItem, escape_all, is_safe_url, render, send_mail
 from olympia.api.models import APIKey, APIKeyConfirmation
 from olympia.devhub.decorators import dev_required, no_admin_disabled
 from olympia.devhub.models import BlogPost, RssKey
@@ -1968,7 +1968,7 @@ def logout(request):
     if not user.is_anonymous:
         log.info('User (%s) logged out' % user)
 
-    if 'to' in request.GET and not _is_safe_url(request.GET['to'], request):
+    if 'to' in request.GET and not is_safe_url(request.GET['to'], request):
         log.info('Unsafe redirect to %s' % request.GET['to'])
         gets = request.GET.copy()
         gets['to'] = settings.LOGIN_REDIRECT_URL

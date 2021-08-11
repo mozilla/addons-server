@@ -52,7 +52,7 @@ from olympia import amo
 from olympia.access import acl
 from olympia.access.models import GroupUser
 from olympia.amo.decorators import use_primary_db
-from olympia.amo.utils import fetch_subscribed_newsletters, use_fake_fxa
+from olympia.amo.utils import fetch_subscribed_newsletters, is_safe_url, use_fake_fxa
 from olympia.api.authentication import (
     JWTKeyAuthentication,
     UnsubscribeTokenAuthentication,
@@ -72,7 +72,7 @@ from .serializers import (
     UserNotificationSerializer,
     UserProfileSerializer,
 )
-from .utils import _is_safe_url, fxa_login_url, generate_fxa_state
+from .utils import fxa_login_url, generate_fxa_state
 
 
 log = olympia.core.logger.getLogger('accounts')
@@ -104,7 +104,7 @@ API_TOKEN_COOKIE = 'frontend_auth_token'
 
 
 def safe_redirect(request, url, action):
-    if not _is_safe_url(url, request):
+    if not is_safe_url(url, request):
         url = reverse('home')
     log.info(f'Redirecting after {action} to: {url}')
     return HttpResponseRedirect(url)
@@ -213,7 +213,7 @@ def parse_next_path(state_parts, request=None):
         except (TypeError, ValueError):
             log.info(f'Error decoding next_path {encoded_path}')
             pass
-    if not _is_safe_url(next_path, request):
+    if not is_safe_url(next_path, request):
         next_path = None
     return next_path
 
@@ -398,7 +398,7 @@ class AuthenticateView(FxAConfigMixin, APIView):
             else:
                 reregister_user(user)
             edit_page = reverse('users.edit')
-            if _is_safe_url(next_path, request):
+            if is_safe_url(next_path, request):
                 next_path = f'{edit_page}?to={quote_plus(next_path)}'
             else:
                 next_path = edit_page

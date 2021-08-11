@@ -12,7 +12,7 @@ from django.utils.html import format_html
 from django.utils.http import urlencode
 
 from pyquery import PyQuery as pq
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urljoin
 
 from olympia import amo
 from olympia.amo.tests import (
@@ -47,7 +47,6 @@ from olympia.scanners.admin import (
     ScannerRuleAdmin,
     StateFilter,
     WithVersionFilter,
-    _is_safe_url,
 )
 from olympia.scanners.models import (
     ScannerQueryResult,
@@ -1764,25 +1763,3 @@ class TestScannerQueryResultAdmin(TestCase):
             ),
         ]
         assert [link.attrib['href'] for link in links] == expected
-
-
-class TestIsSafeUrl(TestCase):
-    def test_enforces_https_when_request_is_secure(self):
-        request = RequestFactory().get('/', secure=True)
-        assert _is_safe_url(f'https://{settings.DOMAIN}', request)
-        assert not _is_safe_url(f'http://{settings.DOMAIN}', request)
-
-    def test_does_not_require_https_when_request_is_not_secure(self):
-        request = RequestFactory().get('/', secure=False)
-        assert _is_safe_url(f'https://{settings.DOMAIN}', request)
-        assert _is_safe_url(f'http://{settings.DOMAIN}', request)
-
-    def test_allows_domain(self):
-        request = RequestFactory().get('/', secure=True)
-        assert _is_safe_url(f'https://{settings.DOMAIN}/foo', request)
-        assert not _is_safe_url('https://not-olympia.dev', request)
-
-    def test_allows_external_site_url(self):
-        request = RequestFactory().get('/', secure=True)
-        external_domain = urlparse(settings.EXTERNAL_SITE_URL).netloc
-        assert _is_safe_url(f'https://{external_domain}/foo', request)

@@ -21,6 +21,7 @@ from urllib.parse import (
     ParseResult,
     unquote_to_bytes,
     urlencode as urllib_urlencode,
+    urlparse,
 )
 
 import django.core.mail
@@ -37,7 +38,11 @@ from django.template import engines, loader
 from django.urls import reverse
 from django.utils import translation
 from django.utils.encoding import force_bytes, force_str
-from django.utils.http import _urlparse as django_urlparse, quote_etag
+from django.utils.http import (
+    _urlparse as django_urlparse,
+    quote_etag,
+    url_has_allowed_host_and_scheme,
+)
 
 import bleach
 import colorgram
@@ -1118,3 +1123,16 @@ class HttpResponseTemporaryRedirect(HttpResponseRedirectBase):
     redirect POSTs too."""
 
     status_code = 307
+
+
+def is_safe_url(url, request, allowed_hosts=None):
+    """Use Django's `url_has_allowed_host_and_scheme()` and pass a configured
+    list of allowed hosts and enforce HTTPS.  `allowed_hosts` can be specified."""
+    allowed_hosts = allowed_hosts or (
+        settings.DOMAIN,
+        urlparse(settings.CODE_MANAGER_URL).netloc,
+    )
+    require_https = request.is_secure() if request else False
+    return url_has_allowed_host_and_scheme(
+        url, allowed_hosts=allowed_hosts, require_https=require_https
+    )
