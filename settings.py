@@ -57,7 +57,7 @@ FILESYSTEM_CACHE_ROOT = os.path.join(TMP_PATH, 'cache')
 # to our production system as possible.
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'BACKEND': CACHE_BACKEND,
         'LOCATION': os.environ.get('MEMCACHE_LOCATION', 'localhost:11211'),
     },
 }

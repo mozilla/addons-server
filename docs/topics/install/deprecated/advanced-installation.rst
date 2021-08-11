@@ -39,21 +39,6 @@ On Mac OS X with homebrew, put my.cnf in ``/usr/local/Cellar/mysql/5.5.15/my.cnf
 
 Here are `more tips for optimizing MySQL <http://bonesmoses.org/2011/02/28/mysql-isnt-yoursql/>`_ on your dev machine.
 
----------
-Memcached
----------
-
-We slipped this in with the basic install.  The package was
-``memcached`` on Ubuntu and ``libmemcached`` on OS X.  Your default
-settings already use the following, so you shouldn't need to change anything::
-
-    CACHES = {
-        'default': {
-            'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-            'LOCATION': ['localhost:11211'],
-            'TIMEOUT': 500,
-        }
-    }
 
 -------------------
 RabbitMQ and Celery
