@@ -295,6 +295,12 @@ class TestShelvesSerializer(ESTestCase):
         assert data['addons'][0]['name'] == {'en-US': 'test addon test04'}
         assert data['addons'][1]['name'] == {'en-US': 'test addon test01'}
 
+    def test_tag_token_substitution(self):
+        self.tag_shelf.update(title='Title for {tag}', footer_text='footer with {tag}')
+        data = self.serialize(self.tag_shelf)
+        assert data['title'] == {'en-US': 'Title for foo'}
+        assert data['footer']['text'] == {'en-US': 'footer with foo'}
+
     def test_addon_count(self):
         shelf = Shelf(
             title='Populâr stuff',

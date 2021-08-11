@@ -86,6 +86,22 @@ class ShelfSerializer(serializers.ModelSerializer):
             'addons',
         ]
 
+    def to_representation(self, obj):
+        data = super().to_representation(obj)
+        if obj.endpoint == Shelf.Endpoints.RANDOM_TAG:
+            # Replace {tag} token in title and footer text
+            data['title'] = {
+                locale: value.replace('{tag}', obj.tag)
+                for locale, value in (data.get('title') or {}).items()
+            } or None
+            data['footer']['text'] = {
+                locale: value.replace('{tag}', obj.tag)
+                for locale, value in (
+                    (data.get('footer') or {}).get('text') or {}
+                ).items()
+            } or None
+        return data
+
     def get_url(self, obj):
         if obj.endpoint in (Shelf.Endpoints.SEARCH, Shelf.Endpoints.RANDOM_TAG):
             api = drf_reverse('addon-search', request=self.context.get('request'))
