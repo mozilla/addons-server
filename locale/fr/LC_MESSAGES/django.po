@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-10 17:02+0000\n"
-"PO-Revision-Date: 2021-08-11 07:52+0000\n"
+"PO-Revision-Date: 2021-08-11 09:34+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -4564,9 +4564,8 @@ msgid "Tab managers"
 msgstr "Gestionnaires d’onglets"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more tab management extensions"
-msgstr "Voir plus d’extensions recommandées"
+msgstr ""
 
 msgid "Could not parse the manifest file."
 msgstr "Impossible d’analyser le fichier manifeste."
@@ -4799,9 +4798,8 @@ msgstr "Vous ne pouvez pas laisser de critique de votre propre module."
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Vous ne pouvez pas laisser plus d’une critique de la même version d’une extension."
 
-#, fuzzy
 msgid "Invalid flag [{}] - must be one of [{}]"
-msgstr "Drapeau invalide [%s] – il doit faire partie de [%s]"
+msgstr "Drapeau invalide [{}] – il doit faire partie de [{}]"
 
 msgid "This rating can't be flagged because it has no review text."
 msgstr "Cette critique ne peut pas être signalée, car elle ne contient aucun texte."
@@ -5193,9 +5191,8 @@ msgstr "Information pour le module {0}"
 msgid "Add-on ID"
 msgstr "Identifiant du module"
 
-#, fuzzy
 msgid "Original Add-on ID"
-msgstr "Signer le module"
+msgstr ""
 
 msgid "Add-on(s) sharing same ID"
 msgstr ""
