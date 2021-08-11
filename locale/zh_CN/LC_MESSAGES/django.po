@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-10 17:02+0000\n"
-"PO-Revision-Date: 2021-08-11 12:55+0000\n"
+"PO-Revision-Date: 2021-08-11 12:56+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -4417,7 +4417,7 @@ msgstr "看看更多社交流媒体扩展"
 
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
-msgstr ""
+msgstr "标签页管理器"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management extensions"
@@ -5035,7 +5035,7 @@ msgid "Original Add-on ID"
 msgstr "原始附加组件 ID"
 
 msgid "Add-on(s) sharing same ID"
-msgstr ""
+msgstr "共享相同 ID 的附加组件"
 
 msgid "Internal AMO ID"
 msgstr "AMO 内部 ID"
