@@ -112,11 +112,10 @@ def reviewer_addon_view(f):
             addon = get_object_or_404(qs(), pk=addon_id)
         else:
             addon = get_object_or_404(qs(), **{lookup_field: addon_id})
-            # FIXME: what about a slug called 'addon' ? And are we sure that
-            # request.path will always already be quoted ? If not that would
-            # break the redirect.
-            # Maybe instead resolve() it and replace the first parameter with
-            # addon.pk, then reverse() the url ?
+            # FIXME: this replace() is fragile, if the add-on slug appears
+            # elsewhere in the URL it will break. Instead, we should probably
+            # use `request.resolver_match` to rebuild the URL, replacing
+            # `kwargs['addon_id']` if present by `addon.pk`.
             url = request.path.replace(addon_id, str(addon.pk), 1)
             if request.GET:
                 url += '?' + request.GET.urlencode()

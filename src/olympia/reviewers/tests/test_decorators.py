@@ -16,7 +16,6 @@ class TestReviewerAddonView(TestCase):
         self.func.__name__ = 'mock_function'
         self.view = dec.reviewer_addon_view(self.func)
         self.request = mock.Mock()
-        self.slug_path = f'http://testserver/addon/{self.addon.slug}/reviews'
         self.request.path = self.id_path = (
             'http://testserver/addon/%s/reviews' % self.addon.id
         )
@@ -27,7 +26,7 @@ class TestReviewerAddonView(TestCase):
         assert res == mock.sentinel.OK
 
     def test_301_by_slug(self):
-        self.request.path = self.slug_path
+        self.request.path = f'http://testserver/addon/{self.addon.slug}/reviews'
         res = self.view(self.request, self.addon.slug)
         self.assert3xx(res, self.id_path, 301)
 
@@ -41,6 +40,8 @@ class TestReviewerAddonView(TestCase):
         self.request.path = f'http://testserver/addon/{slug}/reviews/{slug}/path'
 
         res = self.view(self.request, self.addon.slug)
+        # We only replace the part of the URL that matters to look up the
+        # add-on (in this case, the slug, only once).
         redirection = (
             f'http://testserver/addon/{self.addon.id}/reviews/{quote(slug)}/path'
         )
