@@ -150,10 +150,9 @@ class ShelfSerializer(serializers.ModelSerializer):
         return addons
 
 
-class ShelfEditorialSerializer(ShelfSerializer):
+class ShelfEditorialSerializer(serializers.ModelSerializer):
     title = serializers.CharField()
     footer_text = serializers.CharField()
-    addons = None  # we don't the results for this serializer
 
     class Meta:
         model = Shelf
