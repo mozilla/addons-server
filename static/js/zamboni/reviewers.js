@@ -38,10 +38,6 @@
     initBackgroundImagesForTheme();
   }
 
-  if ($('#monthly.highcharts-container').length) {
-    initPerformanceStats();
-  }
-
   if (
     $('#scroll_sidebar').length &&
     !$('body.mobile, body.tablet').length &&
@@ -505,89 +501,4 @@ function initScrollingSidebar() {
       setSticky(window.scrollY > addon_top);
     }, 20),
   );
-}
-
-function initPerformanceStats() {
-  var container = $('#monthly'),
-    groups = {
-      usercount: $('#reviews_user').text(),
-      teamavg: gettext('Average Reviews'),
-    };
-
-  /* View Other User Stats */
-  $('#select_user').change(function () {
-    var $this = $(this),
-      user = $this.val();
-
-    if (user !== '') {
-      window.location.href = $this.attr('data-url') + user;
-    }
-  });
-
-  /* Create Charts */
-
-  createChart(container, groups, JSON.parse(container.attr('data-chart')));
-
-  function createChart(container, groups, data) {
-    var labels = [],
-      data_points = {},
-      chart_series = [];
-
-    $.each(groups, function (key, name) {
-      data_points[key] = { name: name, data: [] };
-    });
-
-    $.each(data, function (k, vals) {
-      labels.push(vals.label);
-      $.each(vals, function (group, amount) {
-        if (groups[group]) {
-          data_points[group].data.push(parseFloat(amount));
-        }
-      });
-    });
-
-    $.each(data_points, function (k, vals) {
-      chart_series.push(vals);
-    });
-
-    new Highcharts.Chart({
-      chart: {
-        renderTo: container[0],
-        defaultSeriesType: 'line',
-        marginRight: 130,
-        marginBottom: 25,
-      },
-      title: {
-        text: ' ',
-        x: 0, //center
-      },
-      xAxis: {
-        categories: labels,
-      },
-      yAxis: {
-        title: { text: gettext('Number of Reviews') },
-        plotLines: [{ value: 0, width: 1, color: '#808080' }],
-        min: 0,
-      },
-      tooltip: {
-        formatter: function () {
-          return (
-            '<b>' + this.series.name + '</b><br/>' + this.x + ': ' + this.y
-          );
-        },
-      },
-      legend: {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'top',
-        x: -10,
-        y: 100,
-        borderWidth: 0,
-      },
-      series: chart_series,
-      credits: {
-        enabled: false,
-      },
-    });
-  }
 }

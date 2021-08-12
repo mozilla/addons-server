@@ -396,39 +396,6 @@ class ViewUnlistedAllList(RawSQLModel):
         return list(set(zip(ids, usernames)))
 
 
-class PerformanceGraph(RawSQLModel):
-    id = models.IntegerField()
-    yearmonth = models.CharField(max_length=7)
-    approval_created = models.DateTimeField()
-    user_id = models.IntegerField()
-    total = models.IntegerField()
-
-    def base_query(self):
-        request_ver = amo.LOG.REQUEST_VERSION.id
-        review_ids = [
-            str(r) for r in amo.LOG_REVIEWER_REVIEW_ACTION if r != request_ver
-        ]
-
-        return {
-            'select': OrderedDict(
-                [
-                    ('yearmonth', "DATE_FORMAT(`log_activity`.`created`, '%%Y-%%m')"),
-                    ('approval_created', '`log_activity`.`created`'),
-                    ('user_id', '`log_activity`.`user_id`'),
-                    ('total', 'COUNT(*)'),
-                ]
-            ),
-            'from': [
-                'log_activity',
-            ],
-            'where': [
-                'log_activity.action in (%s)' % ','.join(review_ids),
-                'user_id <> %s' % settings.TASK_USER_ID,  # No auto-approvals.
-            ],
-            'group_by': 'yearmonth, user_id',
-        }
-
-
 class ReviewerSubscription(ModelBase):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     addon = models.ForeignKey(Addon, on_delete=models.CASCADE)

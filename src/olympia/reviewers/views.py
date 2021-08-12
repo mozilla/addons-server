@@ -1,8 +1,5 @@
-import json
-import time
-
 from collections import OrderedDict
-from datetime import date, datetime, timedelta
+from datetime import date, datetime
 
 from django import http
 from django.conf import settings
@@ -82,7 +79,6 @@ from olympia.reviewers.forms import (
 from olympia.reviewers.models import (
     AutoApprovalSummary,
     CannedResponse,
-    PerformanceGraph,
     ReviewerScore,
     ReviewerSubscription,
     ViewExtensionQueue,
@@ -222,7 +218,6 @@ def dashboard(request):
                     ),
                     reverse('reviewers.queue_extension'),
                 ),
-                (gettext('Performance'), reverse('reviewers.performance')),
                 (gettext('Review Log'), reverse('reviewers.reviewlog')),
                 (
                     gettext('Add-on Review Guide'),
@@ -248,7 +243,6 @@ def dashboard(request):
                 ),
                 reverse('reviewers.queue_auto_approved'),
             ),
-            (gettext('Performance'), reverse('reviewers.performance')),
             (gettext('Add-on Review Log'), reverse('reviewers.reviewlog')),
             (
                 gettext('Review Guide'),
@@ -261,7 +255,6 @@ def dashboard(request):
                 gettext('Content Review ({0})').format(queue_counts['content_review']),
                 reverse('reviewers.queue_content_review'),
             ),
-            (gettext('Performance'), reverse('reviewers.performance')),
         ]
     if view_all or acl.action_allowed(request, amo.permissions.STATIC_THEMES_REVIEW):
         sections[gettext('Themes')] = [
@@ -273,7 +266,6 @@ def dashboard(request):
                 gettext('Updates ({0})').format(queue_counts['theme_pending']),
                 reverse('reviewers.queue_theme_pending'),
             ),
-            (gettext('Performance'), reverse('reviewers.performance')),
             (gettext('Review Log'), reverse('reviewers.reviewlog')),
             (
                 gettext('Theme Review Guide'),
@@ -334,149 +326,6 @@ def dashboard(request):
             }
         ),
     )
-
-
-@any_reviewer_required
-def performance(request, user_id=False):
-    user = request.user
-    reviewers = _recent_reviewers()
-
-    is_admin = acl.action_allowed(request, amo.permissions.REVIEWS_ADMIN)
-
-    if is_admin and user_id:
-        try:
-            user = UserProfile.objects.get(pk=user_id)
-        except UserProfile.DoesNotExist:
-            pass  # Use request.user from above.
-
-    monthly_data = _performance_by_month(user.id)
-    performance_total = _performance_total(monthly_data)
-
-    # Incentive point breakdown.
-    today = date.today()
-    month_ago = today - timedelta(days=30)
-    year_ago = today - timedelta(days=365)
-    point_total = ReviewerScore.get_total(user)
-    totals = ReviewerScore.get_breakdown(user)
-    months = ReviewerScore.get_breakdown_since(user, month_ago)
-    years = ReviewerScore.get_breakdown_since(user, year_ago)
-
-    def _sum(iter, types, exclude=False):
-        """Sum the `total` property for items in `iter` that have an `atype`
-        that is included in `types` when `exclude` is False (default) or not in
-        `types` when `exclude` is True."""
-        return sum(s.total for s in iter if (s.atype in types) == (not exclude))
-
-    breakdown = {
-        'month': {
-            'addons': _sum(months, amo.GROUP_TYPE_ADDON),
-            'themes': _sum(months, amo.GROUP_TYPE_THEME),
-            'other': _sum(
-                months, amo.GROUP_TYPE_ADDON + amo.GROUP_TYPE_THEME, exclude=True
-            ),
-        },
-        'year': {
-            'addons': _sum(years, amo.GROUP_TYPE_ADDON),
-            'themes': _sum(years, amo.GROUP_TYPE_THEME),
-            'other': _sum(
-                years, amo.GROUP_TYPE_ADDON + amo.GROUP_TYPE_THEME, exclude=True
-            ),
-        },
-        'total': {
-            'addons': _sum(totals, amo.GROUP_TYPE_ADDON),
-            'themes': _sum(totals, amo.GROUP_TYPE_THEME),
-            'other': _sum(
-                totals, amo.GROUP_TYPE_ADDON + amo.GROUP_TYPE_THEME, exclude=True
-            ),
-        },
-    }
-
-    data = context(
-        monthly_data=json.dumps(monthly_data),
-        performance_month=performance_total['month'],
-        performance_year=performance_total['year'],
-        breakdown=breakdown,
-        point_total=point_total,
-        reviewers=reviewers,
-        current_user=user,
-        is_admin=is_admin,
-        is_user=(request.user.id == user.id),
-    )
-
-    return render(request, 'reviewers/performance.html', data)
-
-
-def _recent_reviewers(days=90):
-    since_date = datetime.now() - timedelta(days=days)
-    reviewers = (
-        UserProfile.objects.filter(
-            activitylog__action__in=amo.LOG_REVIEWER_REVIEW_ACTION,
-            activitylog__created__gt=since_date,
-        )
-        .exclude(id=settings.TASK_USER_ID)
-        .order_by('display_name')
-        .distinct()
-    )
-    return reviewers
-
-
-def _performance_total(data):
-    # TODO(gkoberger): Fix this so it's the past X, rather than this X to date.
-    # (ex: March 15-April 15, not April 1 - April 15)
-    total_yr = dict(usercount=0, teamamt=0, teamcount=0, teamavg=0)
-    total_month = dict(usercount=0, teamamt=0, teamcount=0, teamavg=0)
-    current_year = datetime.now().year
-
-    for k, val in data.items():
-        if k.startswith(str(current_year)):
-            total_yr['usercount'] = total_yr['usercount'] + val['usercount']
-            total_yr['teamamt'] = total_yr['teamamt'] + val['teamamt']
-            total_yr['teamcount'] = total_yr['teamcount'] + val['teamcount']
-
-    current_label_month = datetime.now().isoformat()[:7]
-    if current_label_month in data:
-        total_month = data[current_label_month]
-
-    return dict(month=total_month, year=total_yr)
-
-
-def _performance_by_month(user_id, months=12, end_month=None, end_year=None):
-    monthly_data = OrderedDict()
-
-    now = datetime.now()
-    if not end_month:
-        end_month = now.month
-    if not end_year:
-        end_year = now.year
-
-    end_time = time.mktime((end_year, end_month + 1, 1, 0, 0, 0, 0, 0, -1))
-    start_time = time.mktime((end_year, end_month + 1 - months, 1, 0, 0, 0, 0, 0, -1))
-
-    sql = PerformanceGraph.objects.filter_raw(
-        'log_activity.created >=', date.fromtimestamp(start_time).isoformat()
-    ).filter_raw('log_activity.created <', date.fromtimestamp(end_time).isoformat())
-
-    for row in sql.all():
-        label = row.approval_created.isoformat()[:7]
-
-        if label not in monthly_data:
-            xaxis = row.approval_created.strftime('%b %Y')
-            monthly_data[label] = dict(teamcount=0, usercount=0, teamamt=0, label=xaxis)
-
-        monthly_data[label]['teamamt'] = monthly_data[label]['teamamt'] + 1
-        monthly_data_count = monthly_data[label]['teamcount']
-        monthly_data[label]['teamcount'] = monthly_data_count + row.total
-
-        if row.user_id == user_id:
-            user_count = monthly_data[label]['usercount']
-            monthly_data[label]['usercount'] = user_count + row.total
-
-    # Calculate averages
-    for i, vals in monthly_data.items():
-        average = round(vals['teamcount'] / float(vals['teamamt']), 1)
-        monthly_data[i]['teamavg'] = str(average)  # floats aren't valid json
-
-    return monthly_data
 
 
 @permission_required(amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
