@@ -106,8 +106,8 @@ small number of shelves this endpoint is not paginated.
     :>json string results[].footer.outgoing: url wrapped with outgoing (See :ref:`Outgoing Links <api-overview-outgoing>`)
     :>json object|null results[].footer.text: The optional text in the footer of the shelf. (See :ref:`translated fields <api-overview-translations>`.  Note: when ``lang`` is not specified, not all locales will be returned, unlike other translated fields).
     :>json array results[].addons: An array of :ref:`add-ons <addon-detail-object>`.
-    :>json object primary: A :ref:`primary hero shelf <primary-hero-shelf>`.
-    :>json object secondary: A :ref:`secondary hero shelf <secondary-hero-shelf>`.
+    :>json object|null primary: A :ref:`primary hero shelf <primary-hero-shelf>`.
+    :>json object|null secondary: A :ref:`secondary hero shelf <secondary-hero-shelf>`.
 
 .. _shelf-endpoint-type:
 
