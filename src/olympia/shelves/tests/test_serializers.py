@@ -301,6 +301,12 @@ class TestShelvesSerializer(ESTestCase):
         assert data['title'] == {'en-US': 'Title for foo'}
         assert data['footer']['text'] == {'en-US': 'footer with foo'}
 
+        # The is only a thing with the random-tag shelf though
+        self.tag_shelf.update(endpoint=Shelf.Endpoints.SEARCH)
+        data = self.serialize(self.tag_shelf)
+        assert data['title'] == {'en-US': 'Title for {tag}'}
+        assert data['footer']['text'] == {'en-US': 'footer with {tag}'}
+
     def test_addon_count(self):
         shelf = Shelf(
             title='Populâr stuff',
