@@ -203,7 +203,9 @@ def dashboard(request):
 
     if view_all or acl.action_allowed(request, amo.permissions.ADDONS_REVIEW):
         sections[gettext('Pre-Review Add-ons')] = []
-        if acl.action_allowed(request, amo.permissions.ADDONS_RECOMMENDED_REVIEW):
+        if view_all or acl.action_allowed(
+            request, amo.permissions.ADDONS_RECOMMENDED_REVIEW
+        ):
             sections[gettext('Pre-Review Add-ons')].append(
                 (
                     gettext('Recommended ({0})').format(queue_counts['recommended']),
