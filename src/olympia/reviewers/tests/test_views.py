@@ -757,6 +757,7 @@ class TestDashboard(TestCase):
         doc = pq(response.content)
         assert len(doc('.dashboard h3')) == 9  # All sections are present.
         expected_links = [
+            reverse('reviewers.queue_recommended'),
             reverse('reviewers.queue_extension'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
