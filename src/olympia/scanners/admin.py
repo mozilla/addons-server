@@ -8,7 +8,7 @@ from django.shortcuts import redirect
 from django.template.loader import render_to_string
 from django.urls import re_path, reverse
 from django.utils.html import format_html, format_html_join
-from django.utils.http import urlencode, is_safe_url
+from django.utils.http import urlencode
 from django.utils.translation import gettext, gettext_lazy as _
 
 
@@ -17,6 +17,7 @@ from urllib.parse import urljoin, urlparse
 from olympia import amo
 from olympia.access import acl
 from olympia.addons.models import Addon
+from olympia.amo.utils import is_safe_url
 from olympia.constants import scanners
 from olympia.constants.scanners import (
     ABORTING,
@@ -42,17 +43,6 @@ from .models import (
     ScannerRule,
 )
 from .tasks import run_yara_query_rule
-
-
-def _is_safe_url(url, request):
-    """Override the Django `is_safe_url()` to pass a configured list of allowed
-    hosts and enforce HTTPS."""
-    allowed_hosts = (
-        settings.DOMAIN,
-        urlparse(settings.EXTERNAL_SITE_URL).netloc,
-    )
-    require_https = request.is_secure() if request else False
-    return is_safe_url(url, allowed_hosts=allowed_hosts, require_https=require_https)
 
 
 class PresenceFilter(SimpleListFilter):
@@ -460,7 +450,11 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
 
     def safe_referer_redirect(self, request, default_url):
         referer = request.META.get('HTTP_REFERER')
-        if referer and _is_safe_url(referer, request):
+        allowed_hosts = (
+            settings.DOMAIN,
+            urlparse(settings.EXTERNAL_SITE_URL).netloc,
+        )
+        if referer and is_safe_url(referer, request, allowed_hosts):
             return redirect(referer)
         return redirect(default_url)
 

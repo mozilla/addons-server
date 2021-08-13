@@ -3,30 +3,18 @@ import json
 import os
 
 from base64 import urlsafe_b64encode
-from urllib.parse import urlencode, urlparse
+from urllib.parse import urlencode
 
 from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils.encoding import force_str
-from django.utils.http import is_safe_url
 
 import boto3
 
 from olympia.accounts.tasks import delete_user_event, primary_email_change_event
-from olympia.amo.utils import use_fake_fxa
+from olympia.amo.utils import is_safe_url, use_fake_fxa
 from olympia.core.logger import getLogger
-
-
-def _is_safe_url(url, request):
-    """Override the Django `is_safe_url()` to pass a configured list of allowed
-    hosts and enforce HTTPS."""
-    allowed_hosts = (
-        settings.DOMAIN,
-        urlparse(settings.CODE_MANAGER_URL).netloc,
-    )
-    require_https = request.is_secure() if request else False
-    return is_safe_url(url, allowed_hosts=allowed_hosts, require_https=require_https)
 
 
 def fxa_config(request):
@@ -60,7 +48,7 @@ def fxa_login_url(
     request=None,
     id_token=None,
 ):
-    if next_path and _is_safe_url(next_path, request):
+    if next_path and is_safe_url(next_path, request):
         state += ':' + force_str(urlsafe_b64encode(next_path.encode('utf-8'))).rstrip(
             '='
         )
