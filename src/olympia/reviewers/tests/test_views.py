@@ -712,20 +712,16 @@ class TestDashboard(TestCase):
         expected_links = [
             reverse('reviewers.queue_recommended'),
             reverse('reviewers.queue_extension'),
-            reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_scanners'),
             reverse('reviewers.queue_mad'),
             reverse('reviewers.queue_auto_approved'),
-            reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_content_review'),
-            reverse('reviewers.performance'),
             reverse('reviewers.queue_theme_nominated'),
             reverse('reviewers.queue_theme_pending'),
-            reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Themes/Guidelines',
             reverse('reviewers.queue_moderated'),
@@ -743,16 +739,16 @@ class TestDashboard(TestCase):
         assert doc('.dashboard a')[0].text == 'Recommended (2)'
         assert doc('.dashboard a')[1].text == 'Other Pending Review (3)'
         # auto-approved addons
-        assert doc('.dashboard a')[7].text == 'Auto Approved Add-ons (4)'
+        assert doc('.dashboard a')[6].text == 'Auto Approved Add-ons (4)'
         # content review
-        assert doc('.dashboard a')[11].text == 'Content Review (11)'
+        assert doc('.dashboard a')[9].text == 'Content Review (11)'
         # themes
-        assert doc('.dashboard a')[13].text == 'New (1)'
-        assert doc('.dashboard a')[14].text == 'Updates (1)'
+        assert doc('.dashboard a')[10].text == 'New (1)'
+        assert doc('.dashboard a')[11].text == 'Updates (1)'
         # user ratings moderation
-        assert doc('.dashboard a')[18].text == 'Ratings Awaiting Moderation (1)'
+        assert doc('.dashboard a')[14].text == 'Ratings Awaiting Moderation (1)'
         # admin tools
-        assert doc('.dashboard a')[25].text == 'Add-ons Pending Rejection (1)'
+        assert doc('.dashboard a')[21].text == 'Add-ons Pending Rejection (1)'
 
     def test_can_see_all_through_reviewer_view_all_permission(self):
         self.grant_permission(self.user, 'ReviewerTools:View')
@@ -762,20 +758,16 @@ class TestDashboard(TestCase):
         assert len(doc('.dashboard h3')) == 9  # All sections are present.
         expected_links = [
             reverse('reviewers.queue_extension'),
-            reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_scanners'),
             reverse('reviewers.queue_mad'),
             reverse('reviewers.queue_auto_approved'),
-            reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_content_review'),
-            reverse('reviewers.performance'),
             reverse('reviewers.queue_theme_nominated'),
             reverse('reviewers.queue_theme_pending'),
-            reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Themes/Guidelines',
             reverse('reviewers.queue_moderated'),
@@ -850,20 +842,18 @@ class TestDashboard(TestCase):
         assert len(doc('.dashboard h3')) == 3
         expected_links = [
             reverse('reviewers.queue_extension'),
-            reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_scanners'),
             reverse('reviewers.queue_mad'),
             reverse('reviewers.queue_auto_approved'),
-            reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
         assert doc('.dashboard a')[0].text == 'Other Pending Review (3)'
-        assert doc('.dashboard a')[6].text == 'Auto Approved Add-ons (1)'
+        assert doc('.dashboard a')[5].text == 'Auto Approved Add-ons (1)'
 
     def test_content_reviewer(self):
         # Create an add-on to test the queue count. It's under admin code
@@ -894,7 +884,6 @@ class TestDashboard(TestCase):
         assert len(doc('.dashboard h3')) == 1
         expected_links = [
             reverse('reviewers.queue_content_review'),
-            reverse('reviewers.performance'),
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
@@ -1018,7 +1007,6 @@ class TestDashboard(TestCase):
         expected_links = [
             reverse('reviewers.queue_theme_nominated'),
             reverse('reviewers.queue_theme_pending'),
-            reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Themes/Guidelines',
         ]
@@ -1040,13 +1028,11 @@ class TestDashboard(TestCase):
         assert len(doc('.dashboard h3')) == 4
         expected_links = [
             reverse('reviewers.queue_extension'),
-            reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_scanners'),
             reverse('reviewers.queue_mad'),
             reverse('reviewers.queue_auto_approved'),
-            reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_moderated'),
@@ -1057,11 +1043,11 @@ class TestDashboard(TestCase):
         assert links == expected_links
         assert doc('.dashboard a')[0].text == 'Other Pending Review (0)'
         assert 'target' not in doc('.dashboard a')[0].attrib
-        assert doc('.dashboard a')[10].text == ('Ratings Awaiting Moderation (0)')
+        assert doc('.dashboard a')[8].text == ('Ratings Awaiting Moderation (0)')
         assert 'target' not in doc('.dashboard a')[5].attrib
-        assert doc('.dashboard a')[12].text == 'Moderation Guide'
-        assert doc('.dashboard a')[12].attrib['target'] == '_blank'
-        assert doc('.dashboard a')[12].attrib['rel'] == 'noopener noreferrer'
+        assert doc('.dashboard a')[10].text == 'Moderation Guide'
+        assert doc('.dashboard a')[10].attrib['target'] == '_blank'
+        assert doc('.dashboard a')[10].attrib['rel'] == 'noopener noreferrer'
 
     def test_view_mobile_site_link_hidden(self):
         self.grant_permission(self.user, 'ReviewerTools:View')
@@ -2759,106 +2745,6 @@ class TestPendingRejectionReviewQueue(QueueTest):
         self.login_as_admin()
         self.generate_files()
         self._test_results()
-
-
-class TestPerformance(QueueTest):
-    fixtures = ['base/users', 'base/addon_3615']
-
-    """Test the page at /reviewers/performance."""
-
-    def setUpReviewer(self):
-        self.login_as_reviewer()
-        core.set_user(UserProfile.objects.get(username='reviewer'))
-        self.create_logs()
-
-    def setUpAdmin(self):
-        self.login_as_admin()
-        core.set_user(UserProfile.objects.get(username='admin'))
-        self.create_logs()
-
-    def get_url(self, args=None):
-        if args is None:
-            args = []
-        return reverse('reviewers.performance', args=args)
-
-    def create_logs(self):
-        addon = Addon.objects.all()[0]
-        version = addon.versions.all()[0]
-        for i in amo.LOG_REVIEWER_REVIEW_ACTION:
-            ActivityLog.create(amo.LOG_BY_ID[i], addon, version)
-        # Throw in an automatic approval - should be ignored.
-        ActivityLog.create(
-            amo.LOG.APPROVE_VERSION,
-            addon,
-            version,
-            user=UserProfile.objects.get(id=settings.TASK_USER_ID),
-        )
-
-    def _test_chart(self):
-        r = self.client.get(self.get_url())
-        assert r.status_code == 200
-        doc = pq(r.content)
-
-        num = len(amo.LOG_REVIEWER_REVIEW_ACTION)
-        label = datetime.now().strftime('%Y-%m')
-        data = {
-            label: {
-                'teamcount': num,
-                'teamavg': '%s.0' % num,
-                'usercount': num,
-                'teamamt': 1,
-                'label': datetime.now().strftime('%b %Y'),
-            }
-        }
-
-        assert json.loads(doc('#monthly').attr('data-chart')) == data
-
-    def test_performance_chart_reviewer(self):
-        self.setUpReviewer()
-        self._test_chart()
-
-    def test_performance_chart_as_admin(self):
-        self.setUpAdmin()
-        self._test_chart()
-
-    def test_usercount_with_more_than_one_reviewer(self):
-        self.client.login(email='clouserw@gmail.com')
-        core.set_user(UserProfile.objects.get(username='clouserw'))
-        self.create_logs()
-        self.setUpReviewer()
-        r = self.client.get(self.get_url())
-        assert r.status_code == 200
-        doc = pq(r.content)
-        data = json.loads(doc('#monthly').attr('data-chart'))
-        label = datetime.now().strftime('%Y-%m')
-        assert data[label]['usercount'] == len(amo.LOG_REVIEWER_REVIEW_ACTION)
-
-    def _test_performance_other_user_as_admin(self):
-        userid = core.get_user().pk
-
-        r = self.client.get(self.get_url([10482]))
-        doc = pq(r.content)
-
-        assert doc('#select_user').length == 1  # Let them choose reviewers.
-        options = doc('#select_user option')
-        assert options.length == 3
-        assert options.eq(2).val() == str(userid)
-
-        assert 'clouserw' in doc('#reviews_user').text()
-
-    def test_performance_other_user_as_admin(self):
-        self.setUpAdmin()
-
-        self._test_performance_other_user_as_admin()
-
-    def test_performance_other_user_not_admin(self):
-        self.setUpReviewer()
-
-        r = self.client.get(self.get_url([10482]))
-        doc = pq(r.content)
-
-        assert doc('#select_user').length == 0  # Don't let them choose.
-        assert doc('#reviews_user').text() == 'Your Reviews'
 
 
 class SearchTest(ReviewerTest):

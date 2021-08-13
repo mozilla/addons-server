@@ -101,11 +101,6 @@ urlpatterns = (
     ),
     re_path(r'^eula/%s$' % ADDON_ID, views.eula, name='reviewers.eula'),
     re_path(r'^privacy/%s$' % ADDON_ID, views.privacy, name='reviewers.privacy'),
-    re_path(
-        r'^performance/(?P<user_id>\d+)?$',
-        views.performance,
-        name='reviewers.performance',
-    ),
     re_path(r'^motd$', views.motd, name='reviewers.motd'),
     re_path(r'^motd/save$', views.save_motd, name='reviewers.save_motd'),
     re_path(
