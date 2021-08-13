@@ -1449,7 +1449,7 @@ GRAPHITE_TIMEOUT = 1
 KNOWN_PROXIES = []
 
 # Blog URL
-DEVELOPER_BLOG_URL = 'http://blog.mozilla.com/addons/feed/'
+DEVELOPER_BLOG_URL = 'https://blog.mozilla.org/addons/wp-json/wp/v2/posts'
 
 LOGIN_RATELIMIT_USER = 5
 LOGIN_RATELIMIT_ALL_USERS = '15/m'

@@ -1,8 +1,8 @@
+from datetime import datetime
+
 from django.conf import settings
 
-import feedparser
-
-from dateutil import parser
+import requests
 
 import olympia.core.logger
 
@@ -14,17 +14,17 @@ log = olympia.core.logger.getLogger('z.cron')
 
 def update_blog_posts():
     """Update the blog post cache."""
-    items = feedparser.parse(settings.DEVELOPER_BLOG_URL)['items']
+    items = requests.get(settings.DEVELOPER_BLOG_URL, timeout=10).json()
     if not items:
         return
 
     BlogPost.objects.all().delete()
 
     for item in items[:5]:
-        post = {}
-        post['title'] = item.title
-        post['date_posted'] = parser.parse(item.published)
-        post['permalink'] = item.link
-        BlogPost.objects.create(**post)
+        BlogPost.objects.create(
+            title=item['title']['rendered'],
+            date_posted=datetime.strptime(item['date'], '%Y-%m-%dT%H:%M:%S'),
+            permalink=item['link'],
+        )
 
-    log.info('Adding %d blog posts.' % BlogPost.objects.count())
+    log.info(f'Adding {BlogPost.objects.count():d} blog posts.')
