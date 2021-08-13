@@ -15,7 +15,11 @@ class Shelf(ModelBase):
     )
     ENDPOINT_CHOICES = tuple((endpoint, endpoint) for endpoint in Endpoints)
 
-    title = models.CharField(max_length=70, help_text='Will be translated.')
+    title = models.CharField(
+        max_length=70,
+        help_text='Will be translated. `random-tag` shelves can use {tag} in the text, '
+        'which will be substituted for the random tag selected.',
+    )
     endpoint = models.CharField(
         max_length=20, choices=ENDPOINT_CHOICES, db_column='shelf_type'
     )
@@ -27,7 +31,9 @@ class Shelf(ModelBase):
     footer_text = models.CharField(
         max_length=70,
         blank=True,
-        help_text='e.g., See more recommended extensions. Will be translated.',
+        help_text='e.g., See more recommended extensions. Will be translated. '
+        '`random-tag` shelves can use {tag} in the text, which will be substituted for '
+        'the random tag selected.',
     )
     footer_pathname = models.CharField(
         max_length=255,

@@ -111,7 +111,7 @@ class TestShelfViewSet(ESTestCase):
             position=1,
         )
         self.shelf_d = Shelf.objects.create(
-            title='Random Tag',
+            title='Random {tag}',
             endpoint='random-tag',
             criteria='?',
             footer_text='something something tags!',
@@ -195,7 +195,7 @@ class TestShelfViewSet(ESTestCase):
         )
         assert result['results'][1]['addons'][0]['type'] == 'extension'
 
-        assert result['results'][2]['title'] == {'en-US': 'Random Tag'}
+        assert result['results'][2]['title'] == {'en-US': f'Random {self.tag}'}
         assert result['results'][2]['url'] == (
             reverse_ns('addon-search', api_version='v5') + f'?tag={self.tag}'
         )
