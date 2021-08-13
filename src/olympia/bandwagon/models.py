@@ -55,9 +55,9 @@ class Collection(ModelBase):
     class Meta(ModelBase.Meta):
         db_table = 'collections'
         indexes = [
-            models.Index(fields=('created',), name='created_idx'),
-            models.Index(fields=('listed',), name='listed'),
-            models.Index(fields=('slug',), name='slug_idx'),
+            models.Index(fields=('created',), name='collections_created_idx'),
+            models.Index(fields=('listed',), name='collections_listed_idx'),
+            models.Index(fields=('slug',), name='collections_slug_idx'),
         ]
         constraints = [
             models.UniqueConstraint(fields=('author', 'slug'), name='author_id'),
@@ -162,10 +162,12 @@ class CollectionAddon(ModelBase):
     class Meta(ModelBase.Meta):
         db_table = 'addons_collections'
         indexes = [
-            models.Index(fields=('collection', 'created'), name='created_idx'),
-            models.Index(fields=('addon',), name='addon_id'),
+            models.Index(
+                fields=('collection', 'created'), name='addons_collections_created_idx'
+            ),
+            models.Index(fields=('addon',), name='addons_collections_addon_idx'),
             models.Index(fields=('collection',), name='collection_id'),
-            models.Index(fields=('user',), name='user_id'),
+            models.Index(fields=('user',), name='addons_collections_user_id'),
         ]
         constraints = [
             models.UniqueConstraint(fields=('addon', 'collection'), name='addon_id_2'),

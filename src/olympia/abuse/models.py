@@ -263,7 +263,7 @@ class AbuseReport(ModelBase):
         # saving already deleted objects.
         base_manager_name = 'unfiltered'
         indexes = [
-            models.Index(fields=('created',), name='created_idx'),
+            models.Index(fields=('created',), name='abuse_reports_created_idx'),
             models.Index(fields=('guid',), name='guid_idx'),
         ]
 

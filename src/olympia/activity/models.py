@@ -391,7 +391,7 @@ class ActivityLog(ModelBase):
         ordering = ('-created',)
         indexes = [
             models.Index(fields=('action',), name='log_activity_1bd4707b'),
-            models.Index(fields=('created',), name='created_idx'),
+            models.Index(fields=('created',), name='log_activity_created_idx'),
         ]
 
     def f(self, *args, **kw):

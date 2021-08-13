@@ -61,7 +61,7 @@ class AddonTag(ModelBase):
         db_table = 'users_tags_addons'
         indexes = [
             models.Index(fields=('tag',), name='tag_id'),
-            models.Index(fields=('addon',), name='addon_id'),
+            models.Index(fields=('addon',), name='users_tags_addons_addon_idx'),
         ]
         constraints = [
             models.UniqueConstraint(fields=('tag', 'addon'), name='tag_id_2'),
