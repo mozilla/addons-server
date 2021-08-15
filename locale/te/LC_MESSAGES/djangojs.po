@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-10 17:03+0000\n"
-"PO-Revision-Date: 2021-05-01 13:59+0000\n"
-"Last-Translator: satya6309614151 <satya6309614151@gmail.com>\n"
+"PO-Revision-Date: 2021-08-15 12:43+0000\n"
+"Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
 "MIME-Version: 1.0\n"
@@ -63,7 +63,7 @@ msgid "See full validation report"
 msgstr "పూర్తి ధ్రువీకరణ నివేదికను చూడండి"
 
 msgid "Validating {0}"
-msgstr "{0} ధృవీకరిస్తోంది"
+msgstr "{0} సరిచూస్తోంది"
 
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr "మీ పొడిగింత {0} గరిష్ఠ పరిమాణాన్ని మించిపోయింది."
