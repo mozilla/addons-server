@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-10 17:02+0000\n"
-"PO-Revision-Date: 2021-08-15 13:24+0000\n"
+"PO-Revision-Date: 2021-08-15 13:26+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -2206,7 +2206,7 @@ msgid "Tags"
 msgstr "Метки"
 
 msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
-msgstr ""
+msgstr "Метки помогают пользователям найти ваше дополнение. У вас может быть максимум {0} меток. Выбирайте только те метки, которые имеют отношение к вашему дополнению."
 
 msgid "Limit {0} tags."
 msgstr "Не более {0} меток."
@@ -4536,12 +4536,11 @@ msgstr "Больше расширений для вещания в социал�
 
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
-msgstr ""
+msgstr "Менеджеры вкладок"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more tab management extensions"
-msgstr "Больше рекомендуемых расширений"
+msgstr "Больше расширений для управления вкладками"
 
 msgid "Could not parse the manifest file."
 msgstr "Не удалось распарсить файл манифеста."
@@ -4774,9 +4773,8 @@ msgstr "Нельзя оставить отзыв на свое дополнен�
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Нельзя оставить более одного отзыва для одной версии дополнения."
 
-#, fuzzy
 msgid "Invalid flag [{}] - must be one of [{}]"
-msgstr "Некорректный флаг [%s] - должен быть одним из [%s]"
+msgstr "Некорректный флаг [{}] - должен быть одним из [{}]"
 
 msgid "This rating can't be flagged because it has no review text."
 msgstr "Этот рейтинг невозможно отметить, потому что у него нет текста отзыва."
@@ -5172,12 +5170,11 @@ msgstr "Информация о дополнении для {0}"
 msgid "Add-on ID"
 msgstr "ID дополнения"
 
-#, fuzzy
 msgid "Original Add-on ID"
-msgstr "Подписать дополнение"
+msgstr "Исходный идентификатор дополнения"
 
 msgid "Add-on(s) sharing same ID"
-msgstr ""
+msgstr "Дополнения с одинаковым идентификатором"
 
 msgid "Internal AMO ID"
 msgstr "Внутренний ID AMO"
