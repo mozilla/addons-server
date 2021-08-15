@@ -112,9 +112,7 @@
           {% block footer_extras %}
           <img class="footerlogo" src="{{ static('img/zamboni/footer-logo-med.png') }}" alt="{{ _('Footer logo') }}">
           {% endblock %}
-          {% with hide_mobile_link=hide_mobile_link %}
-            {% include 'footer.html' %}
-          {% endwith %}
+          {% include 'footer.html' %}
         </div> {# section #}
       </div> {# footer #}
     {% endblock %}

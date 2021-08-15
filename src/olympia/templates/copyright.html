@@ -11,9 +11,6 @@
         {{ _('Report Trademark Abuse') }}
       </a>
       {% block extra_footer_links %}
-        {% if not hide_mobile_link %}
-          &nbsp;|&nbsp;<a class="mobile-link" href="#" title="{{ _('The new website supports mobile and desktop clients') }}">{{ _('View the new site') }}</a>
-        {% endif %}
         &nbsp;|&nbsp;<a href="https://status.mozilla.org">{{ _('Site Status')}}</a>
         &nbsp;|&nbsp;<a href="https://addons.mozilla.org/about">{{ _('Report a bug')}}</a>
       {% endblock %}
