@@ -1,21 +1,18 @@
 from datetime import timedelta
 
 from django import forms
-from django.db.models import Q
 from django.forms import widgets
 from django.forms.models import (
     BaseModelFormSet,
     ModelMultipleChoiceField,
     modelformset_factory,
 )
-from django.urls import reverse
-from django.utils.translation import get_language, gettext, gettext_lazy as _
+from django.utils.translation import gettext, gettext_lazy as _
 
 import olympia.core.logger
 
 from olympia import amo, ratings
 from olympia.access import acl
-from olympia.applications.models import AppVersion
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.ratings.models import Rating
 from olympia.ratings.permissions import user_can_delete_rating
@@ -81,206 +78,6 @@ class ReviewLogForm(forms.Form):
             data['end'] += timedelta(days=1)
 
         return data
-
-
-class QueueSearchForm(forms.Form):
-    text_query = forms.CharField(
-        required=False, label=_('Search by add-on name / author email')
-    )
-    searching = forms.BooleanField(
-        widget=forms.HiddenInput, required=False, initial=True
-    )
-    needs_admin_code_review = forms.ChoiceField(
-        required=False,
-        label=_('Needs Admin Code Review'),
-        choices=[('', ''), ('1', _('yes')), ('0', _('no'))],
-    )
-    application_id = forms.ChoiceField(
-        required=False,
-        label=_('Application'),
-        choices=([('', '')] + [(a.id, a.pretty) for a in amo.APPS_ALL.values()]),
-    )
-    addon_type_ids = forms.MultipleChoiceField(
-        required=False,
-        label=_('Add-on Types'),
-        choices=[(amo.ADDON_ANY, _('Any'))] + list(amo.ADDON_TYPES.items()),
-    )
-
-    def __init__(self, *args, **kw):
-        super().__init__(*args, **kw)
-
-    def clean_addon_type_ids(self):
-        if self.cleaned_data['addon_type_ids']:
-            # Remove "Any Addon Extension" from the list so that no filter
-            # is applied in that case.
-            ids = set(self.cleaned_data['addon_type_ids'])
-            self.cleaned_data['addon_type_ids'] = ids - set(str(amo.ADDON_ANY))
-        return self.cleaned_data['addon_type_ids']
-
-    def filter_qs(self, qs):
-        data = self.cleaned_data
-        if data['needs_admin_code_review']:
-            qs = qs.filter(needs_admin_code_review=data['needs_admin_code_review'])
-        if data['addon_type_ids']:
-            qs = qs.filter_raw('addon_type_id IN', data['addon_type_ids'])
-        if data['application_id']:
-            qs = qs.filter_raw('apps_match.application_id =', data['application_id'])
-            # We join twice so it includes all apps, and not just the ones
-            # filtered by the search criteria.
-            app_join = (
-                'LEFT JOIN applications_versions apps_match ON '
-                '(versions.id = apps_match.version_id)'
-            )
-            qs.base_query['from'].extend([app_join])
-
-        if data['text_query']:
-            lang = get_language()
-            joins = [
-                'LEFT JOIN addons_users au on (au.addon_id = addons.id)',
-                'LEFT JOIN users u on (u.id = au.user_id)',
-                """LEFT JOIN translations AS supportemail_default ON
-                        (supportemail_default.id = addons.supportemail AND
-                         supportemail_default.locale=addons.defaultlocale)""",
-                """LEFT JOIN translations AS supportemail_local ON
-                        (supportemail_local.id = addons.supportemail AND
-                         supportemail_local.locale=%%(%s)s)"""
-                % qs._param(lang),
-                """LEFT JOIN translations AS ad_name_local ON
-                        (ad_name_local.id = addons.name AND
-                         ad_name_local.locale=%%(%s)s)"""
-                % qs._param(lang),
-            ]
-            qs.base_query['from'].extend(joins)
-            fuzzy_q = '%' + data['text_query'] + '%'
-            qs = qs.filter_raw(
-                Q('addon_name LIKE', fuzzy_q)
-                # Search translated add-on names / support emails in
-                # the reviewer's locale:
-                | Q('ad_name_local.localized_string LIKE', fuzzy_q)
-                | Q('supportemail_default.localized_string LIKE', fuzzy_q)
-                | Q('supportemail_local.localized_string LIKE', fuzzy_q)
-                | Q(
-                    'au.role IN',
-                    [amo.AUTHOR_ROLE_OWNER, amo.AUTHOR_ROLE_DEV],
-                    'u.email LIKE',
-                    fuzzy_q,
-                )
-            )
-        return qs
-
-
-class AllAddonSearchForm(forms.Form):
-    text_query = forms.CharField(
-        required=False, label=_('Search by add-on name / author email / guid')
-    )
-    searching = forms.BooleanField(
-        widget=forms.HiddenInput, required=False, initial=True
-    )
-    needs_admin_code_review = forms.ChoiceField(
-        required=False,
-        label=_('Needs Admin Code Review'),
-        choices=[('', ''), ('1', _('yes')), ('0', _('no'))],
-    )
-    application_id = forms.ChoiceField(
-        required=False,
-        label=_('Application'),
-        choices=([('', '')] + [(a.id, a.pretty) for a in amo.APPS_ALL.values()]),
-    )
-    max_version = forms.ChoiceField(
-        required=False,
-        label=_('Max. Version'),
-        choices=[('', _('Select an application first'))],
-    )
-    deleted = forms.ChoiceField(
-        required=False,
-        choices=[('', ''), ('1', _('yes')), ('0', _('no'))],
-        label=_('Deleted'),
-    )
-
-    def __init__(self, *args, **kw):
-        super().__init__(*args, **kw)
-        widget = self.fields['application_id'].widget
-        # Get the URL after the urlconf has loaded.
-        widget.attrs['data-url'] = reverse('reviewers.application_versions_json')
-
-    def version_choices_for_app_id(self, app_id):
-        versions = AppVersion.objects.filter(application=app_id)
-        return [('', '')] + [(v.version, v.version) for v in versions]
-
-    def clean_application_id(self):
-        if self.cleaned_data['application_id']:
-            choices = self.version_choices_for_app_id(
-                self.cleaned_data['application_id']
-            )
-            self.fields['max_version'].choices = choices
-        return self.cleaned_data['application_id']
-
-    def clean_max_version(self):
-        if self.cleaned_data['max_version']:
-            if not self.cleaned_data['application_id']:
-                raise forms.ValidationError('No application selected')
-        return self.cleaned_data['max_version']
-
-    def filter_qs(self, qs):
-        data = self.cleaned_data
-        if data['needs_admin_code_review']:
-            qs = qs.filter(needs_admin_code_review=data['needs_admin_code_review'])
-        if data['deleted']:
-            qs = qs.filter(is_deleted=data['deleted'])
-        if data['application_id']:
-            qs = qs.filter_raw('apps_match.application_id =', data['application_id'])
-            # We join twice so it includes all apps, and not just the ones
-            # filtered by the search criteria.
-            app_join = (
-                'LEFT JOIN applications_versions apps_match ON '
-                '(versions.id = apps_match.version_id)'
-            )
-            qs.base_query['from'].extend([app_join])
-
-            if data['max_version']:
-                joins = [
-                    """JOIN applications_versions vs
-                            ON (versions.id = vs.version_id)""",
-                    """JOIN appversions max_version
-                            ON (max_version.id = vs.max)""",
-                ]
-                qs.base_query['from'].extend(joins)
-                qs = qs.filter_raw('max_version.version =', data['max_version'])
-        if data['text_query']:
-            lang = get_language()
-            joins = [
-                'LEFT JOIN addons_users au on (au.addon_id = addons.id)',
-                'LEFT JOIN users u on (u.id = au.user_id)',
-                """LEFT JOIN translations AS supportemail_default ON
-                        (supportemail_default.id = addons.supportemail AND
-                         supportemail_default.locale=addons.defaultlocale)""",
-                """LEFT JOIN translations AS supportemail_local ON
-                        (supportemail_local.id = addons.supportemail AND
-                         supportemail_local.locale=%%(%s)s)"""
-                % qs._param(lang),
-                """LEFT JOIN translations AS ad_name_local ON
-                        (ad_name_local.id = addons.name AND
-                         ad_name_local.locale=%%(%s)s)"""
-                % qs._param(lang),
-            ]
-            qs.base_query['from'].extend(joins)
-            fuzzy_q = '%' + data['text_query'] + '%'
-            qs = qs.filter_raw(
-                Q('addon_name LIKE', fuzzy_q)
-                | Q('guid LIKE', fuzzy_q)
-                # Search translated add-on names / support emails in
-                # the reviewer's locale:
-                | Q('ad_name_local.localized_string LIKE', fuzzy_q)
-                | Q('supportemail_default.localized_string LIKE', fuzzy_q)
-                | Q('supportemail_local.localized_string LIKE', fuzzy_q)
-                | Q(
-                    'au.role IN',
-                    [amo.AUTHOR_ROLE_OWNER, amo.AUTHOR_ROLE_DEV],
-                    'u.email LIKE',
-                    fuzzy_q,
-                )
-            )
-        return qs
 
 
 class NonValidatingChoiceField(forms.ChoiceField):

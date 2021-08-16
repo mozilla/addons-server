@@ -66,10 +66,8 @@ from olympia.devhub import tasks as devhub_tasks
 from olympia.files.models import File
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.forms import (
-    AllAddonSearchForm,
     MOTDForm,
     PublicWhiteboardForm,
-    QueueSearchForm,
     RatingFlagFormSet,
     RatingModerationLogForm,
     ReviewForm,
@@ -360,28 +358,16 @@ def filter_admin_review_for_legacy_queue(qs):
     )
 
 
-def _queue(request, TableObj, tab, unlisted=False, SearchForm=QueueSearchForm):
+def _queue(request, TableObj, tab, unlisted=False):
     admin_reviewer = is_admin_reviewer(request)
     qs = TableObj.get_queryset(admin_reviewer=admin_reviewer)
-
-    if SearchForm:
-        if request.GET:
-            search_form = SearchForm(request.GET)
-            if search_form.is_valid():
-                qs = search_form.filter_qs(qs)
-        else:
-            search_form = SearchForm()
-        is_searching = search_form.data.get('searching')
-    else:
-        search_form = None
-        is_searching = False
 
     admin_reviewer = is_admin_reviewer(request)
 
     # Those restrictions will only work with our RawSQLModel, so we need to
     # make sure we're not dealing with a regular Django ORM queryset first.
     if hasattr(qs, 'sql_model'):
-        if not is_searching and not admin_reviewer:
+        if not admin_reviewer:
             qs = filter_admin_review_for_legacy_queue(qs)
 
     order_by = request.GET.get('sort', TableObj.default_order_by())
@@ -405,7 +391,6 @@ def _queue(request, TableObj, tab, unlisted=False, SearchForm=QueueSearchForm):
             table=table,
             page=page,
             tab=tab,
-            search_form=search_form,
             point_types=amo.REVIEWED_AMO,
             unlisted=unlisted,
         ),
@@ -508,43 +493,34 @@ def queue_moderated(request):
             tab='moderated',
             page=page,
             flags=flags,
-            search_form=None,
             point_types=amo.REVIEWED_AMO,
         ),
     )
 
 
-@any_reviewer_required
-@json_view
-def application_versions_json(request):
-    app_id = request.GET.get('application_id', amo.FIREFOX.id)
-    form = QueueSearchForm()
-    return {'choices': form.version_choices_for_app_id(app_id)}
-
-
 @permission_or_tools_listed_view_required(amo.permissions.ADDONS_CONTENT_REVIEW)
 def queue_content_review(request):
-    return _queue(request, ContentReviewTable, 'content_review', SearchForm=None)
+    return _queue(request, ContentReviewTable, 'content_review')
 
 
 @permission_or_tools_listed_view_required(amo.permissions.ADDONS_REVIEW)
 def queue_auto_approved(request):
-    return _queue(request, AutoApprovedTable, 'auto_approved', SearchForm=None)
+    return _queue(request, AutoApprovedTable, 'auto_approved')
 
 
 @permission_or_tools_listed_view_required(amo.permissions.ADDONS_REVIEW)
 def queue_scanners(request):
-    return _queue(request, ScannersReviewTable, 'scanners', SearchForm=None)
+    return _queue(request, ScannersReviewTable, 'scanners')
 
 
 @permission_or_tools_listed_view_required(amo.permissions.ADDONS_REVIEW)
 def queue_mad(request):
-    return _queue(request, MadReviewTable, 'mad', SearchForm=None)
+    return _queue(request, MadReviewTable, 'mad')
 
 
 @permission_or_tools_listed_view_required(amo.permissions.REVIEWS_ADMIN)
 def queue_pending_rejection(request):
-    return _queue(request, PendingRejectionTable, 'pending_rejection', SearchForm=None)
+    return _queue(request, PendingRejectionTable, 'pending_rejection')
 
 
 def determine_channel(channel_as_text):
@@ -1075,7 +1051,6 @@ def unlisted_list(request):
         ViewUnlistedAllListTable,
         'all',
         unlisted=True,
-        SearchForm=AllAddonSearchForm,
     )
 
 
@@ -1086,7 +1061,6 @@ def unlisted_pending_manual_approval(request):
         UnlistedPendingManualApprovalQueueTable,
         'pending_manual_approval',
         unlisted=True,
-        SearchForm=None,
     )
 
 
