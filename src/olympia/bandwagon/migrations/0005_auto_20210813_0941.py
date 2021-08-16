@@ -2,6 +2,8 @@
 
 from django.db import migrations, models
 
+from olympia.amo.migrations import RenameIndexesOperation
+
 
 class Migration(migrations.Migration):
 
@@ -10,52 +12,56 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddIndex(
-            model_name='collection',
-            index=models.Index(fields=['created'], name='collections_created_idx'),
+        RenameIndexesOperation(
+            'collections',
+            [
+                (
+                    migrations.AddIndex(
+                        model_name='collection',
+                        index=models.Index(fields=['created'], name='collections_created_idx'),
+                    ),
+                    'created_idx',
+                ),
+                (
+                    migrations.AddIndex(
+                        model_name='collection',
+                        index=models.Index(fields=['listed'], name='collections_listed_idx'),
+                    ),
+                    'listed',
+                ),
+                (
+                    migrations.AddIndex(
+                        model_name='collection',
+                        index=models.Index(fields=['slug'], name='collections_slug_idx'),
+                    ),
+                    'slug_idx',
+                ),
+            ],
         ),
-        migrations.AddIndex(
-            model_name='collection',
-            index=models.Index(fields=['listed'], name='collections_listed_idx'),
-        ),
-        migrations.AddIndex(
-            model_name='collection',
-            index=models.Index(fields=['slug'], name='collections_slug_idx'),
-        ),
-        migrations.AddIndex(
-            model_name='collectionaddon',
-            index=models.Index(fields=['collection', 'created'], name='addons_collections_created_idx'),
-        ),
-        migrations.AddIndex(
-            model_name='collectionaddon',
-            index=models.Index(fields=['addon'], name='addons_collections_addon_idx'),
-        ),
-        migrations.AddIndex(
-            model_name='collectionaddon',
-            index=models.Index(fields=['user'], name='addons_collections_user_id'),
-        ),
-        migrations.RemoveIndex(
-            model_name='collection',
-            name='created_idx',
-        ),
-        migrations.RemoveIndex(
-            model_name='collection',
-            name='listed',
-        ),
-        migrations.RemoveIndex(
-            model_name='collection',
-            name='slug_idx',
-        ),
-        migrations.RemoveIndex(
-            model_name='collectionaddon',
-            name='created_idx',
-        ),
-        migrations.RemoveIndex(
-            model_name='collectionaddon',
-            name='addon_id',
-        ),
-        migrations.RemoveIndex(
-            model_name='collectionaddon',
-            name='user_id',
+        RenameIndexesOperation(
+            'addons_collections',
+            [
+                (
+                    migrations.AddIndex(
+                        model_name='collectionaddon',
+                        index=models.Index(fields=['collection', 'created'], name='addons_collections_created_idx'),
+                    ),
+                    'created_idx',
+                ),
+                (
+                    migrations.AddIndex(
+                        model_name='collectionaddon',
+                        index=models.Index(fields=['addon'], name='addons_collections_addon_idx'),
+                    ),
+                    'addon_id',
+                ),
+                (
+                    migrations.AddIndex(
+                        model_name='collectionaddon',
+                        index=models.Index(fields=['user'], name='addons_collections_user_id'),
+                    ),
+                    'user_id',
+                ),
+            ],
         ),
     ]

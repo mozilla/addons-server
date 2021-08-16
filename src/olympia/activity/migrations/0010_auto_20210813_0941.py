@@ -2,6 +2,8 @@
 
 from django.db import migrations, models
 
+from olympia.amo.migrations import RenameIndexesOperation
+
 
 class Migration(migrations.Migration):
 
@@ -10,12 +12,16 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddIndex(
-            model_name='activitylog',
-            index=models.Index(fields=['created'], name='log_activity_created_idx'),
-        ),
-        migrations.RemoveIndex(
-            model_name='activitylog',
-            name='created_idx',
+        RenameIndexesOperation(
+            'log_activity',
+            [
+                (
+                    migrations.AddIndex(
+                        model_name='activitylog',
+                        index=models.Index(fields=['created'], name='log_activity_created_idx'),
+                    ),
+                    'created_idx',
+                )
+            ],
         ),
     ]
