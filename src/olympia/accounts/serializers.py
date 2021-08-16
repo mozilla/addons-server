@@ -91,12 +91,6 @@ class UserProfileSerializer(PublicUserProfileSerializer):
     picture_upload = serializers.ImageField(use_url=True, write_only=True)
     permissions = serializers.SerializerMethodField()
     fxa_edit_email_url = serializers.SerializerMethodField()
-    reviewer_name = serializers.CharField(
-        min_length=2,
-        max_length=50,
-        allow_blank=True,
-        validators=[OneOrMorePrintableCharacterAPIValidator()],
-    )
     # Just Need to specify any field for the source - '*' is the entire obj.
     site_status = SiteStatusSerializer(source='*')
 
@@ -111,7 +105,6 @@ class UserProfileSerializer(PublicUserProfileSerializer):
             'permissions',
             'picture_upload',
             'read_dev_agreement',
-            'reviewer_name',
             'site_status',
             'username',
         )
@@ -122,14 +115,11 @@ class UserProfileSerializer(PublicUserProfileSerializer):
             'location',
             'occupation',
             'picture_upload',
-            'reviewer_name',
         )
         read_only_fields = tuple(set(fields) - set(writeable_fields))
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        if not self.instance or not acl.is_user_any_kind_of_reviewer(self.instance):
-            self.fields.pop('reviewer_name', None)
 
     def get_fxa_edit_email_url(self, user):
         base_url = f'{settings.FXA_CONTENT_HOST}/settings'
@@ -147,13 +137,6 @@ class UserProfileSerializer(PublicUserProfileSerializer):
         if DeniedName.blocked(value):
             raise serializers.ValidationError(
                 gettext('This display name cannot be used.')
-            )
-        return value
-
-    def validate_reviewer_name(self, value):
-        if DeniedName.blocked(value):
-            raise serializers.ValidationError(
-                gettext('This reviewer name cannot be used.')
             )
         return value
 

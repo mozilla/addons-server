@@ -6,10 +6,6 @@ Please see the reviewer's comments below for more information.
 ********
 Details:
 {{ comments }}
-
-Reviewer:
-{{ reviewer }}
-
 ********
 
 Please address the issues raised in the reviewer's notes and inquire about any unclear items. Afterwards, please upload a new version of your add-on at {{ dev_versions_url }}.

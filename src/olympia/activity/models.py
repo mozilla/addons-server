@@ -14,6 +14,7 @@ from django.utils.functional import cached_property
 from django.utils.translation import gettext
 
 import markupsafe
+from olympia.access.acl import is_user_any_kind_of_reviewer
 
 import olympia.core.logger
 
@@ -655,11 +656,11 @@ class ActivityLog(ModelBase):
     def author_name(self):
         """Name of the user that triggered the activity.
 
-        If it's a reviewer action that will be shown to developers, the
-        `reviewer_name` property is used if present, otherwise `name` is
-        used."""
+        If it's a reviewer action that will be shown to developers, use a generic
+        Review team name"""
         if self.action in constants.activity.LOG_REVIEW_QUEUE_DEVELOPER:
-            return self.user.reviewer_name or self.user.name
+            if is_user_any_kind_of_reviewer(self.user):
+                return 'Firefox Add-on Review Team'
         return self.user.name
 
     @classmethod

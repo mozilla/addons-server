@@ -1,9 +1,6 @@
 {% extends "reviewers/emails/base.ltxt" %}{% block content %}
 Your add-on, {{ name }} {{ number }}, has been reviewed and did not meet the criteria for being hosted in our gallery.
 
-Reviewer:
-{{ reviewer }}
-
 Comments:
 {{ comments }}
 

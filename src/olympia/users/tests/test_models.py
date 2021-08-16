@@ -112,7 +112,6 @@ class TestUserProfile(TestCase):
             location='some where',
             occupation='some job',
             read_dev_agreement=datetime.now(),
-            reviewer_name='QA',
         )
 
         old_auth_id = user.auth_id
@@ -135,7 +134,6 @@ class TestUserProfile(TestCase):
         assert user.location == ''
         assert user.occupation == ''
         assert user.read_dev_agreement is None
-        assert user.reviewer_name == ''
         assert not storage.exists(user.picture_path)
         assert not storage.exists(user.picture_path_original)
         assert len(mail.outbox) == 1

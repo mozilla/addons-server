@@ -244,9 +244,9 @@ class TestReviewNotesViewSetList(ReviewNotesViewSetDetailMixin, TestCase):
             'fiiiine', amo.LOG.REVIEWER_REPLY_VERSION, self.days_ago(0)
         )
         self._login_developer()
-        with self.assertNumQueries(17):
+        with self.assertNumQueries(18):
             # - 2 savepoints because of tests
-            # - 2 user and groups
+            # - 3 user and groups
             # - 2 addon and its translations
             # - 1 addon author lookup (permission check)
             # - 1 version (no transforms at all)
@@ -375,9 +375,10 @@ class TestReviewNotesViewSetCreate(TestCase):
             str(reply.details['comments']) == rdata['comments'] == 'comménty McCómm€nt'
         )
         assert reply.user == self.user
-        assert reply.user.name == rdata['user']['name'] == self.user.name
+        assert reply.user.name == self.user.name
         assert reply.action == amo.LOG.REVIEWER_REPLY_VERSION.id
         assert rdata['highlight']  # reviewer replies are highlighted.
+        assert rdata['user']['name'] == 'Firefox Add-on Review Team'
 
     def test_reviewer_reply_listed(self):
         self._test_reviewer_reply('Addons:Review')

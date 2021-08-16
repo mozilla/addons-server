@@ -271,7 +271,7 @@ class TestLogAndNotify(TestCase):
     def setUp(self):
         self.developer = user_factory()
         self.developer2 = user_factory()
-        self.reviewer = user_factory(reviewer_name='Revîewer')
+        self.reviewer = user_factory()
         self.grant_permission(self.reviewer, 'Addons:Review', 'Addon Reviewers')
 
         self.addon = addon_factory()
@@ -370,7 +370,7 @@ class TestLogAndNotify(TestCase):
         assert logs[0].details['comments'] == 'Thîs ïs a revïewer replyîng'
 
         assert send_mail_mock.call_count == 2  # Both authors.
-        sender = formataddr((self.reviewer.reviewer_name, NOTIFICATIONS_FROM_EMAIL))
+        sender = formataddr(('Firefox Add-on Review Team', NOTIFICATIONS_FROM_EMAIL))
         assert sender == send_mail_mock.call_args_list[0][1]['from_email']
         recipients = self._recipients(send_mail_mock)
         assert len(recipients) == 2
@@ -572,13 +572,11 @@ class TestLogAndNotify(TestCase):
 
     @mock.patch('olympia.activity.utils.send_mail')
     def test_from_name_escape(self, send_mail_mock):
-        self.reviewer.update(reviewer_name='mr "quote" escape')
+        self.developer.update(display_name='mr "quote" escape')
 
-        # One from the reviewer.
-        self._create(amo.LOG.REJECT_VERSION, self.reviewer)
-        action = amo.LOG.REVIEWER_REPLY_VERSION
-        comments = 'Thîs ïs a revïewer replyîng'
-        log_and_notify(action, comments, self.reviewer, self.version)
+        action = amo.LOG.DEVELOPER_REPLY_VERSION
+        comments = 'Thîs ïs a devëloper replyîng'
+        log_and_notify(action, comments, self.developer, self.version)
 
         sender = r'"mr \"quote\" escape" <notifications@%s>' % (
             settings.INBOUND_EMAIL_DOMAIN
@@ -605,7 +603,7 @@ class TestLogAndNotify(TestCase):
         assert ActivityLog.objects.count() == 1  # No new activity created.
 
         assert send_mail_mock.call_count == 2  # Both authors.
-        sender = formataddr((self.reviewer.reviewer_name, NOTIFICATIONS_FROM_EMAIL))
+        sender = formataddr(('Firefox Add-on Review Team', NOTIFICATIONS_FROM_EMAIL))
         assert sender == send_mail_mock.call_args_list[0][1]['from_email']
         recipients = self._recipients(send_mail_mock)
         assert len(recipients) == 2

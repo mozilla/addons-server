@@ -693,20 +693,20 @@ class TestActivityFeed(TestCase):
         doc = pq(res.content)
         assert len(doc('#recent-activity .item')) == 2
 
-    def test_reviewer_name_is_used_for_reviewer_actions(self):
-        self.action_user.update(display_name='HîdeMe', reviewer_name='ShöwMe')
+    def test_generic_review_team_name_is_used_for_reviewer_actions(self):
+        self.action_user.update(display_name='HîdeMe')
         self.add_log(action=amo.LOG.APPROVE_VERSION)
         response = self.client.get(reverse('devhub.feed', args=[self.addon.slug]))
         doc = pq(response.content)
         assert len(doc('#recent-activity .item')) == 1
 
         content = force_str(response.content)
-        assert self.action_user.reviewer_name in content
+        assert 'Firefox Add-on Review Team' in content
         assert self.action_user.name not in content
 
     def test_regular_name_is_used_for_non_reviewer_actions(self):
         # Fields are inverted compared to the test above.
-        self.action_user.update(reviewer_name='HîdeMe', display_name='ShöwMe')
+        self.action_user.update(display_name='ShöwMe')
         self.add_log(action=amo.LOG.ADD_RATING)  # not a reviewer action.
         response = self.client.get(reverse('devhub.feed', args=[self.addon.slug]))
         doc = pq(response.content)
@@ -714,7 +714,7 @@ class TestActivityFeed(TestCase):
 
         content = force_str(response.content)
         # Assertions are inverted compared to the test above.
-        assert self.action_user.reviewer_name not in content
+        assert 'Firefox Add-on Review Team' not in content
         assert self.action_user.name in content
 
     def test_addons_dashboard_name(self):
@@ -725,18 +725,6 @@ class TestActivityFeed(TestCase):
         assert len(timestamp) == 1
         assert self.action_user.name
         assert self.action_user.name in timestamp.html()
-        assert '<a href=' not in timestamp.html()
-
-    def test_addons_dashboard_reviewer_name(self):
-        self.action_user.update(reviewer_name='bob')
-        self.add_log(action=amo.LOG.APPROVE_VERSION)
-        res = self.client.get(reverse('devhub.addons'))
-        doc = pq(res.content)
-        timestamp = doc('.recent-activity li.item span.activity-timestamp')
-        assert len(timestamp) == 1
-        assert self.action_user.name
-        assert self.action_user.name not in timestamp.html()
-        assert self.action_user.reviewer_name in timestamp.html()
         assert '<a href=' not in timestamp.html()
 
 

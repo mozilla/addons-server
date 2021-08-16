@@ -75,13 +75,10 @@ class TestPublicUserProfileSerializer(TestCase):
         'location': 'everywhere',
         'occupation': 'job',
     }
-    user_private_kwargs = {
-        'reviewer_name': 'batman',
-    }
 
     def setUp(self):
         self.request = APIRequestFactory().get('/')
-        self.user = user_factory(**self.user_kwargs, **self.user_private_kwargs)
+        self.user = user_factory(**self.user_kwargs)
 
     def serialize(self):
         return self.serializer(
@@ -103,8 +100,6 @@ class TestPublicUserProfileSerializer(TestCase):
         data = self.serialize()
         for prop, val in self.user_kwargs.items():
             assert data[prop] == str(val), prop
-        for prop, val in self.user_private_kwargs.items():
-            assert prop not in data
         return data
 
     def test_addons(self):
@@ -221,9 +216,6 @@ class TestUserProfileSerializer(TestPublicUserProfileSerializer, PermissionsTest
         self.grant_permission(self.user, 'Addons:Review')
         data = self.serialize()
         for prop, val in self.user_kwargs.items():
-            assert data[prop] == str(val), prop
-        # We can also see private stuff, it's the same user.
-        for prop, val in self.user_private_kwargs.items():
             assert data[prop] == str(val), prop
 
     def test_expose_fxa_edit_email_url(self):

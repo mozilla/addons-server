@@ -20,7 +20,8 @@ class LogMixin:
 class TestReviewNotesSerializerOutput(TestCase, LogMixin):
     def setUp(self):
         self.request = APIRequestFactory().get('/')
-        self.user = user_factory(reviewer_name='fôo')
+        self.user = user_factory()
+        self.grant_permission(self.user, 'Addons:Review')
         self.addon = addon_factory()
         self.now = self.days_ago(0)
         self.entry = self.log('Oh nøes!', amo.LOG.REJECT_VERSION, self.now)
@@ -41,10 +42,10 @@ class TestReviewNotesSerializerOutput(TestCase, LogMixin):
         assert result['action_label'] == 'Rejected'
         assert result['comments'] == 'Oh nøes!'
         # To allow reviewers to stay anonymous the user object only contains
-        # the author name, which can use the reviewer name alias if present
+        # the author name, which can use the generic review team name
         # depending on the action.
         assert result['user'] == {
-            'name': self.user.reviewer_name,
+            'name': 'Firefox Add-on Review Team',
         }
 
     def test_basic_v3(self):
@@ -63,12 +64,12 @@ class TestReviewNotesSerializerOutput(TestCase, LogMixin):
             'id': None,
             'url': None,
             'username': None,
-            'name': self.user.reviewer_name,
+            'name': 'Firefox Add-on Review Team',
         }
 
     def test_basic_somehow_not_a_reviewer_action(self):
         """Like test_basic(), but somehow the action is not a reviewer action
-        and therefore shouldn't use the reviewer_name."""
+        and therefore shouldn't use the generic review team name"""
         self.entry.update(action=amo.LOG.ADD_RATING.id)
         result = self.serialize()
         assert result['user'] == {
