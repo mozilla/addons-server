@@ -307,7 +307,7 @@ class PendingManualApprovalQueueTable(tables.Table, ItemStateTable):
             % (
                 url,
                 markupsafe.escape(record.name),
-                markupsafe.escape(record.latest_version),
+                markupsafe.escape(getattr(record, 'latest_version', '')),
             )
         )
 
@@ -368,8 +368,10 @@ class UnlistedPendingManualApprovalQueueTable(PendingManualApprovalQueueTable):
             'addon_name',
             'addon_type',
             'waiting_time',
-            'flags',
             'score',
+        )
+        exclude = (
+            'flags',
         )
 
     def _get_addon_name_url(self, record):
