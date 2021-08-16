@@ -1,7 +1,6 @@
 import json
 import os
 import time
-from urllib.parse import parse_qs
 
 from collections import OrderedDict
 from datetime import datetime, timedelta
@@ -1423,9 +1422,7 @@ class TestQueueBasics(QueueTest):
         full_query = connection.queries[0]['sql']
 
         reset_queries()
-        response = _queue(
-            request, ContentReviewTable, 'content_review'
-        )
+        response = _queue(request, ContentReviewTable, 'content_review')
         assert connection.queries
         assert full_query not in [item['sql'] for item in connection.queries]
         assert response.status_code == 200
@@ -1435,9 +1432,7 @@ class TestQueueBasics(QueueTest):
         request = RequestFactory().get('/', {'per_page': 2})
         request.user = self.user
         reset_queries()
-        response = _queue(
-            request, ContentReviewTable, 'content_review'
-        )
+        response = _queue(request, ContentReviewTable, 'content_review')
         assert connection.queries
         assert full_query not in [item['sql'] for item in connection.queries]
         assert response.status_code == 200
@@ -1447,9 +1442,7 @@ class TestQueueBasics(QueueTest):
         request = RequestFactory().get('/', {'per_page': 2, 'page': 2})
         request.user = self.user
         reset_queries()
-        response = _queue(
-            request, ContentReviewTable, 'content_review'
-        )
+        response = _queue(request, ContentReviewTable, 'content_review')
         assert connection.queries
         assert full_query not in [item['sql'] for item in connection.queries]
         assert response.status_code == 200
