@@ -91,11 +91,11 @@ class ShelfSerializer(serializers.ModelSerializer):
         if obj.endpoint == Shelf.Endpoints.RANDOM_TAG:
             # Replace {tag} token in title and footer text
             data['title'] = {
-                locale: value.replace('{tag}', obj.tag)
+                locale: (value.replace('{tag}', obj.tag) if value is not None else None)
                 for locale, value in (data.get('title') or {}).items()
             } or None
             data['footer']['text'] = {
-                locale: value.replace('{tag}', obj.tag)
+                locale: (value.replace('{tag}', obj.tag) if value is not None else None)
                 for locale, value in (
                     (data.get('footer') or {}).get('text') or {}
                 ).items()

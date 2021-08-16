@@ -307,8 +307,28 @@ class TestShelvesSerializer(ESTestCase):
         assert data['title'] == {'en-US': 'Title for foo'}
         assert data['footer']['text'] == {'en-US': 'footer with foo'}
 
+        # Check this works when locale is requested we don't have - i.e. value is None
+        self.request.GET = self.request.GET.copy()
+        self.request.GET['lang'] = 'baa'
+        data = self.serialize(self.tag_shelf)
+        assert data['title'] == {
+            '_default': 'en-US',
+            'en-US': 'Title for foo',
+            'baa': None,
+        }
+        assert data['footer']['text'] == {
+            '_default': 'en-US',
+            'en-US': 'footer with foo',
+            'baa': None,
+        }
+
+    def test_tag_token_substitution_not_tag_shelf(self):
         # The is only a thing with the random-tag shelf though
-        self.tag_shelf.update(endpoint=Shelf.Endpoints.SEARCH)
+        self.tag_shelf.update(
+            title='Title for {tag}',
+            footer_text='footer with {tag}',
+            endpoint=Shelf.Endpoints.SEARCH,
+        )
         data = self.serialize(self.tag_shelf)
         assert data['title'] == {'en-US': 'Title for {tag}'}
         assert data['footer']['text'] == {'en-US': 'footer with {tag}'}
