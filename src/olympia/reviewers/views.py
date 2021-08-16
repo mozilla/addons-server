@@ -105,12 +105,15 @@ from olympia.reviewers.utils import (
     AutoApprovedTable,
     ContentReviewTable,
     MadReviewTable,
+    NewThemesQueueTable,
+    PendingManualApprovalQueueTable,
     PendingRejectionTable,
+    RecommendedPendingManualApprovalQueueTable,
     ReviewHelper,
     ScannersReviewTable,
-    ViewUnlistedAllListTable,
-    view_table_factory,
     UnlistedPendingManualApprovalQueueTable,
+    UpdatedThemesQueueTable,
+    ViewUnlistedAllListTable,
 )
 from olympia.scanners.models import ScannerResult
 from olympia.users.models import UserProfile
@@ -441,24 +444,24 @@ def fetch_queue_counts(admin_reviewer):
 
 @permission_or_tools_listed_view_required(amo.permissions.ADDONS_REVIEW)
 def queue_extension(request):
-    return _queue(request, view_table_factory(ViewExtensionQueue), 'extension')
+    return _queue(request, PendingManualApprovalQueueTable, 'extension')
 
 
 @permission_or_tools_listed_view_required(amo.permissions.ADDONS_RECOMMENDED_REVIEW)
 def queue_recommended(request):
-    return _queue(request, view_table_factory(ViewRecommendedQueue), 'recommended')
+    return _queue(request, RecommendedPendingManualApprovalQueueTable, 'extension')
 
 
 @permission_or_tools_listed_view_required(amo.permissions.STATIC_THEMES_REVIEW)
 def queue_theme_nominated(request):
     return _queue(
-        request, view_table_factory(ViewThemeFullReviewQueue), 'theme_nominated'
+        request, NewThemesQueueTable, 'theme_nominated'
     )
 
 
 @permission_or_tools_listed_view_required(amo.permissions.STATIC_THEMES_REVIEW)
 def queue_theme_pending(request):
-    return _queue(request, view_table_factory(ViewThemePendingQueue), 'theme_pending')
+    return _queue(request, UpdatedThemesQueueTable, 'theme_pending')
 
 
 @permission_or_tools_listed_view_required(amo.permissions.RATINGS_MODERATE)

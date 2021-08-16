@@ -266,26 +266,38 @@ class ModernAddonQueueTable(ReviewerQueueTable):
     render_last_content_review = render_last_human_review
 
 
-class UnlistedPendingManualApprovalQueueTable(tables.Table, ItemStateTable):
+class PendingManualApprovalQueueTable(tables.Table, ItemStateTable):
     addon_name = tables.Column(verbose_name=_('Add-on'), accessor='name')
+    addon_type = tables.Column(verbose_name=_('Type'), empty_values=())
     waiting_time = tables.Column(
-        verbose_name=_('Waiting Time'), accessor='first_version_created'
+        verbose_name=_('Waiting Time'), accessor='first_version_nominated'
     )
-    score = tables.Column(verbose_name=_('Maliciousness Score'), accessor='worst_score')
+    flags = tables.Column(verbose_name=_('Flags'), empty_values=(), orderable=False)
 
     class Meta:
-        fields = (
-            'addon_name',
-            'waiting_time',
-            'score',
-        )
+        fields = ('addon_name', 'addon_type', 'waiting_time', 'flags')
 
     @classmethod
     def get_queryset(cls, admin_reviewer=False):
-        return Addon.objects.get_unlisted_pending_manual_approval_queue()
+        return Addon.objects.get_listed_pending_manual_approval_queue(
+            admin_reviewer=admin_reviewer
+        )
+
+    def render_flags(self, record):
+        if not hasattr(record, 'flags'):
+            record.flags = get_flags(record, record.current_version)
+        return markupsafe.Markup(
+            ''.join(
+                '<div class="app-icon ed-sprite-%s" title="%s"></div>' % flag
+                for flag in record.flags
+            )
+        )
 
     def _get_addon_name_url(self, record):
-        return reverse('reviewers.review', args=['unlisted', record.id])
+        return reverse('reviewers.review', args=[record.id])
+
+    def _get_waiting_time(self, record):
+        return record.first_version_nominated
 
     def render_addon_name(self, record):
         url = self._get_addon_name_url(record)
@@ -297,8 +309,76 @@ class UnlistedPendingManualApprovalQueueTable(tables.Table, ItemStateTable):
             )
         )
 
+    def render_addon_type(self, record):
+        return record.get_type_display()
+
     def render_waiting_time(self, record):
-        return markupsafe.escape(naturaltime(record.first_version_created))
+        return markupsafe.Markup(
+            f'<span title="{markupsafe.escape(self._get_waiting_time(record))}">'
+            f'{markupsafe.escape(naturaltime(self._get_waiting_time(record)))}</span>'
+        )
+
+    @classmethod
+    def default_order_by(cls):
+        # waiting_time column is actually the date from the minimum version
+        # creation/nomination date. We want to display the add-ons which have
+        # waited the longest at the top by default, so we return waiting_time
+        # in ascending order.
+        return 'waiting_time'
+
+
+class RecommendedPendingManualApprovalQueueTable(PendingManualApprovalQueueTable):
+    @classmethod
+    def get_queryset(cls, admin_reviewer=False):
+        return Addon.objects.get_listed_pending_manual_approval_queue(
+            admin_reviewer=admin_reviewer, recommendable=True
+        )
+
+
+class NewThemesQueueTable(PendingManualApprovalQueueTable):
+    @classmethod
+    def get_queryset(cls, admin_reviewer=False):
+        return Addon.objects.get_listed_pending_manual_approval_queue(
+            admin_reviewer=admin_reviewer,
+            statuses=(amo.STATUS_NOMINATED,),
+            types=amo.GROUP_TYPE_THEME,
+        )
+
+
+class UpdatedThemesQueueTable(NewThemesQueueTable):
+    @classmethod
+    def get_queryset(cls, admin_reviewer=False):
+        return Addon.objects.get_listed_pending_manual_approval_queue(
+            admin_reviewer=admin_reviewer,
+            statuses=(amo.STATUS_APPROVED,),
+            types=amo.GROUP_TYPE_THEME,
+        )
+
+
+class UnlistedPendingManualApprovalQueueTable(PendingManualApprovalQueueTable):
+    waiting_time = tables.Column(
+        verbose_name=_('Waiting Time'), accessor='first_version_created'
+    )
+    score = tables.Column(verbose_name=_('Maliciousness Score'), accessor='worst_score')
+
+    class Meta(PendingManualApprovalQueueTable.Meta):
+        fields = (
+            'addon_name',
+            'addon_type',
+            'waiting_time',
+            'flags',
+            'score',
+        )
+
+    def _get_addon_name_url(self, record):
+        return reverse('reviewers.review', args=['unlisted', record.id])
+
+    def _get_waiting_time(self, record):
+        return record.first_version_created
+
+    @classmethod
+    def get_queryset(cls, admin_reviewer=False):
+        return Addon.objects.get_unlisted_pending_manual_approval_queue()
 
     @classmethod
     def default_order_by(cls):

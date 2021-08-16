@@ -12,6 +12,7 @@ from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
 from django.db import models, transaction
 from django.db.models import F, Max, Min, Q, signals as dbsignals
+from django.db.models.expressions import Func
 from django.dispatch import receiver
 from django.urls import reverse
 from django.utils import translation
@@ -49,7 +50,7 @@ from olympia.amo.utils import (
     to_language,
 )
 from olympia.constants.categories import CATEGORIES_BY_ID
-from olympia.constants.promoted import NOT_PROMOTED, RECOMMENDED
+from olympia.constants.promoted import NOT_PROMOTED, PRE_REVIEW_GROUPS, RECOMMENDED
 from olympia.constants.reviewers import REPUTATION_CHOICES
 from olympia.files.models import File
 from olympia.files.utils import extract_translations, resolve_i18n_message
@@ -284,6 +285,47 @@ class AddonManager(ManagerBase):
             else:
                 qs = qs.exclude(reviewerflags__needs_admin_code_review=True)
         return qs
+
+    def get_listed_pending_manual_approval_queue(
+        self,
+        admin_reviewer=False,
+        recommendable=False,
+        statuses=amo.VALID_ADDON_STATUSES,
+        types=amo.GROUP_TYPE_ADDON,
+    ):
+        qs = self.get_base_queryset_for_queue(admin_reviewer=admin_reviewer)
+        filters = (
+            Q(
+                status__in=statuses,
+                type__in=types,
+                versions__channel=amo.RELEASE_CHANNEL_LISTED,
+                versions__files__status=amo.STATUS_AWAITING_REVIEW,
+                versions__reviewerflags__pending_rejection=None,
+            )
+            & ~Q(disabled_by_user=True)
+        )
+        if recommendable:
+            filters &= Q(promotedaddon__group_id=RECOMMENDED.id)
+        elif amo.ADDON_STATICTHEME not in types:
+            filters &= ~Q(promotedaddon__group_id=RECOMMENDED.id) & (
+                Q(reviewerflags__auto_approval_disabled=True)
+                | Q(reviewerflags__auto_approval_disabled_until_next_approval=True)
+                | Q(reviewerflags__auto_approval_delayed_until__gt=datetime.now())
+                | Q(
+                    promotedaddon__group_id__in=(
+                        group.id for group in PRE_REVIEW_GROUPS
+                    )
+                )
+            )
+
+        return (
+            qs.filter(filters)
+            .annotate(
+                first_version_nominated=Min('versions__nomination'),
+                latest_version=Func(F('versions__version'), function='LOWER'),
+            )
+            .defer(*[x.name for x in Addon._meta.translated_fields if x.name != 'name'])
+        )
 
     def get_unlisted_pending_manual_approval_queue(self, admin_reviewer=False):
         qs = self.get_base_queryset_for_queue(
