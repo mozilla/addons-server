@@ -301,11 +301,13 @@ class PendingManualApprovalQueueTable(tables.Table, ItemStateTable):
 
     def render_addon_name(self, record):
         url = self._get_addon_name_url(record)
+        self.increment_item()
         return markupsafe.Markup(
-            '<a href="%s">%s</a>'
+            '<a href="%s">%s <em>%s</em></a>'
             % (
                 url,
                 markupsafe.escape(record.name),
+                markupsafe.escape(record.latest_version),
             )
         )
 
