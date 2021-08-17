@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-17 16:44+0000\n"
-"PO-Revision-Date: 2021-08-17 20:13+0000\n"
+"PO-Revision-Date: 2021-08-17 22:09+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -458,7 +458,7 @@ msgstr ""
 
 #, python-format
 msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
-msgstr ""
+msgstr "Blokace pro GUID %(guid)s je v režimu „pouze pro čtení“ - je třeba ji upravovat prostřednictvím starší sady seznamu blokací."
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -469,7 +469,7 @@ msgid "Addon with GUID %(guid)s does not exist"
 msgstr "Doplněk s GUID %(guid)s neexistuje"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr ""
+msgstr "Blokace, které mají být aktualizovány, jsou rozdílné, protože se změnila minimální nebo maximální verze."
 
 #, python-format
 msgid "%(value)s contains *"
