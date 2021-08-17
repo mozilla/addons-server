@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-17 16:44+0000\n"
-"PO-Revision-Date: 2021-08-17 19:09+0000\n"
+"PO-Revision-Date: 2021-08-17 19:22+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4445,18 +4445,16 @@ msgid "See more translation tools"
 msgstr "Další jazykové překladače"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Social streaming"
-msgstr "Sociální sítě"
+msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more social streaming extensions"
-msgstr "Další oblíbená rozšíření"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
-msgstr ""
+msgstr "Správa panelů"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management extensions"
@@ -4690,9 +4688,8 @@ msgstr "Nemůžete hodnotit svůj vlastní doplněk."
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Nemůžete zanechat více než jednu recenzi ke stejné verzi doplňku."
 
-#, fuzzy
 msgid "Invalid flag [{}] - must be one of [{}]"
-msgstr "Neplatné označení [%s] – musí být jedno z těchto: [%s]"
+msgstr "Neplatné označení [{}] – musí být jedno z těchto: [{}]"
 
 msgid "This rating can't be flagged because it has no review text."
 msgstr "Toto hodnocení nelze nahlásit, protože k němu není žádný text."
@@ -5064,9 +5061,8 @@ msgstr "Informace o doplňku {0}"
 msgid "Add-on ID"
 msgstr "ID doplňku"
 
-#, fuzzy
 msgid "Original Add-on ID"
-msgstr "Podepsat doplněk"
+msgstr ""
 
 msgid "Add-on(s) sharing same ID"
 msgstr ""
