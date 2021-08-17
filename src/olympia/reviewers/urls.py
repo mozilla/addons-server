@@ -33,11 +33,6 @@ urlpatterns = (
         r'^queue/reviews$', views.queue_moderated, name='reviewers.queue_moderated'
     ),
     re_path(
-        r'^queue/application_versions\.json$',
-        views.application_versions_json,
-        name='reviewers.application_versions_json',
-    ),
-    re_path(
         r'^queue/auto_approved',
         views.queue_auto_approved,
         name='reviewers.queue_auto_approved',
