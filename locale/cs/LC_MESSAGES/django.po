@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-17 16:44+0000\n"
-"PO-Revision-Date: 2021-08-17 22:29+0000\n"
+"PO-Revision-Date: 2021-08-17 22:50+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -992,7 +992,7 @@ msgid "Extension"
 msgstr "Rozšíření"
 
 msgid "Deprecated Complete Theme"
-msgstr ""
+msgstr "Zastaralý plný motiv vzhledu"
 
 msgid "Dictionary"
 msgstr "Slovník"
@@ -1020,7 +1020,7 @@ msgid "Extensions"
 msgstr "Rozšíření"
 
 msgid "Deprecated Complete Themes"
-msgstr ""
+msgstr "Zastaralé plné motivy vzhledu"
 
 # Plural in this context means many of the add-on type
 msgid "Dictionaries"
@@ -3086,7 +3086,7 @@ msgid "Connect with us"
 msgstr "Spojte se s námi"
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 msgid "For developers"
 msgstr "Pro vývojáře"
@@ -3095,7 +3095,7 @@ msgid "For end users"
 msgstr "Pro koncové uživatele"
 
 msgid "Matrix"
-msgstr ""
+msgstr "Matrix"
 
 msgid "Community forum"
 msgstr "Komunitní fórum"
@@ -3138,7 +3138,7 @@ msgid "\"Get The Add-on\" button"
 msgstr "Tlačítko \"Získat doplněk\""
 
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "Program doporučených rozšíření"
 
 msgid "Contribute"
 msgstr "Přispějte"
@@ -3171,7 +3171,7 @@ msgid "See how"
 msgstr "Zjistěte jak"
 
 msgid "Get involved"
-msgstr ""
+msgstr "Zapojte se"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
