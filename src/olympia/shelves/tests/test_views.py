@@ -205,7 +205,7 @@ class TestShelfViewSet(ESTestCase):
         }
         assert (
             result['results'][2]['footer']['url']
-            == f'http://testserver/en-US/firefox/search/?tag={self.tag}'
+            == f'http://testserver/en-US/firefox/tag/{self.tag}/'
         )
         assert (
             result['results'][2]['footer']['outgoing']
