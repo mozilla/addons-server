@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:03+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2020-12-07 12:00+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -106,15 +106,6 @@ msgstr "Waš přidatk je přepruwowanje bjeze zmylkow a bjez warnowanjow wobsta�
 
 msgid "Your submission will be automatically signed."
 msgstr "Waše zapodaće budźe so awtomatisce signować."
-
-msgid "WebExtension upgrade"
-msgstr "WebExtension - Aktualizacija"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Dowolujemy a poručamy aktualizaciju, ale njemóžeće tutón proces wobroćić. Hdyž waši wužiarjo su WebExtension instalowali, njemóža hižo přidatk stareho typa instalować."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Přidatk Firefox stareho typa na MDN přenošować"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Nadrobne wersijowe informacije zapřijeć (to hodźi so w přichodnym kroku činić)."
@@ -775,12 +766,6 @@ msgstr "Tekst přepruwować"
 
 msgid "Review notes found"
 msgstr "Namakane připisy přepruwować"
-
-msgid "Average Reviews"
-msgstr "Přerězne pohódnoćenja"
-
-msgid "Number of Reviews"
-msgstr "Ličba pohódnoćenjow"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "Maksimalna nahraćowa wulkosć je {0} - wubjerće mjeńši pozadkowy wobraz."

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:03+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2017-07-04 16:04+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -111,15 +111,6 @@ msgstr "D'éirigh le do bhreiseán sa bhailíochtú gan earráidí gan rabhaidh.
 
 msgid "Your submission will be automatically signed."
 msgstr "Síneofar do bhreiseán go huathoibríoch."
-
-msgid "WebExtension upgrade"
-msgstr "Uasghrádú WebExtension"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Breiseán sean-nóis a uasghrádú, ar MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Cuir nótaí eisiúna mionsonraithe leis (is féidir é seo a dhéanamh sa chéad chéim eile)."
@@ -805,12 +796,6 @@ msgid "Review Text"
 msgstr ""
 
 msgid "Review notes found"
-msgstr ""
-
-msgid "Average Reviews"
-msgstr ""
-
-msgid "Number of Reviews"
 msgstr ""
 
 msgid "Maximum upload size is {0} - choose a smaller background image."

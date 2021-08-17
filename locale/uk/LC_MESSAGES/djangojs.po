@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:03+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2021-02-13 02:14+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -100,15 +100,6 @@ msgstr "Ваш додаток пройшов перевірку без поми�
 
 msgid "Your submission will be automatically signed."
 msgstr "Ваше подання буде автоматично підписане."
-
-msgid "WebExtension upgrade"
-msgstr "Оновлення WebExtension"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Ми дозволяємо і заохочуємо оновлення, але вам не вдасться скасувати цей процес. Після того, як ваші користувачі встановлять WebExtension, вони не зможуть встановити застарілий додаток."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Портування застарілого додатка Firefox на MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Включити детальні примітки до випуску (це може бути зроблено в наступному кроці)."
@@ -758,12 +749,6 @@ msgstr "Огляд тексту"
 
 msgid "Review notes found"
 msgstr "Огляд зйдених нонататок"
-
-msgid "Average Reviews"
-msgstr "В середньому відгуків"
-
-msgid "Number of Reviews"
-msgstr "Кількість відгуків"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "Максимальний розмір завантаження {0} - виберіть зображення меншого розміру."

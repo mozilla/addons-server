@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:03+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2020-11-08 13:13+0000\n"
 "Last-Translator: tjddn0197 <tjddn0197@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -91,15 +91,6 @@ msgstr "부가 기능이 오류와 경고 없이 검증되었습니다."
 
 msgid "Your submission will be automatically signed."
 msgstr "제출은 자동으로 서명됩니다."
-
-msgid "WebExtension upgrade"
-msgstr "WebExtension 업그레이드"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "업그레이드를 허용하고 장려하지만 이 순서를 거꾸로 할 수는 없습니다. WebExtension을 설치한 사용자는 이전의 부가 기능을 설치할 수 없습니다."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "오래된 Firefox 추가 기능을 MDN에 포팅"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "자세한 버전 정보를 포함합니다(다음 단계에서 할 수 있습니다)."
@@ -730,12 +721,6 @@ msgstr "검토 내용"
 
 msgid "Review notes found"
 msgstr "검토 메모가 발견됨"
-
-msgid "Average Reviews"
-msgstr "평균 검토 횟수"
-
-msgid "Number of Reviews"
-msgstr "검토 횟수"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "사용 가능한 최대 업로드 크키는 {0}입니다. - 더 작은 배경 이미지를 선택해주세요."

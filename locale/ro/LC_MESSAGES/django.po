@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:02+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2017-12-25 01:31+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -1142,7 +1142,6 @@ msgstr "Dezvoltare web"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr "Descarcă extensii Firefox care includ unelte de dezvoltare web. Această categorie include extensii pentru GitHub, comutarea agentului utilizator, gestionarea cookie-urilor și multe altele."
 
-#. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "Altele"
 
@@ -4853,33 +4852,6 @@ msgstr "sfârșit"
 msgid "add-on, reviewer or comment"
 msgstr "supliment, recenzent sau comentariu"
 
-msgid "Search by add-on name / author email"
-msgstr "Caută după denumirea suplimentului / e-mailul autorului"
-
-msgid "Needs Admin Code Review"
-msgstr "Necesită recenzia codului de către un administrator"
-
-msgid "yes"
-msgstr "da"
-
-msgid "no"
-msgstr "nu"
-
-msgid "Add-on Types"
-msgstr "Tipuri de suplimente"
-
-msgid "Any"
-msgstr "Oricare"
-
-msgid "Search by add-on name / author email / guid"
-msgstr "Caută după denumirea suplimentului / e-mailul autorului / guid"
-
-msgid "Max. Version"
-msgstr "Versiune max."
-
-msgid "Select an application first"
-msgstr "Selectează o aplicație mai întâi"
-
 msgid "Comments:"
 msgstr "Comentarii:"
 
@@ -4912,6 +4884,9 @@ msgstr "Treci peste deocamdată"
 
 msgid "Delete review"
 msgstr "Șterge recenzia"
+
+msgid "Needs Admin Code Review"
+msgstr "Necesită recenzia codului de către un administrator"
 
 msgid "Needs Admin Content Review"
 msgstr "Necesită recenzia conținutului de către un administrator"
@@ -5335,57 +5310,6 @@ msgstr "Recenzia a fost marcată înainte de ștergere."
 
 msgid "Undelete"
 msgstr "Anulează ștergerea"
-
-msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr "Performanța recenzenților – Suplimente pentru Firefox"
-
-msgid "Add-on Reviewer Performance"
-msgstr "Performanța recenzorilor de suplimente"
-
-msgid "View statistics for user"
-msgstr "Vezi statisticile utilizatorului"
-
-msgid "Range"
-msgstr "Domeniu"
-
-msgid "Your Reviews"
-msgstr "Recenziile tale"
-
-msgid "By {user_name}"
-msgstr "De {user_name}"
-
-msgid "Total Reviews"
-msgstr "Total recenzii"
-
-msgid "Active Contributors"
-msgstr "Colaboratori activi"
-
-msgid "This Month"
-msgstr "Luna curentă"
-
-msgid "This Year"
-msgstr "Anul curent"
-
-msgid "Monthly Performance"
-msgstr "Performanță lunară"
-
-msgid "All-time Point Breakdown by Type"
-msgstr "Desfășurător punctaje totale după tip"
-
-msgid "Add-ons"
-msgstr "Suplimente"
-
-msgid "Total"
-msgstr "Total"
-
-msgid "Month"
-msgstr "Lună"
-
-msgid "Year"
-msgstr "An"
-
-msgid "All-Time"
-msgstr "Dintotdeauna"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr "– Unelte pentru recenzenți – Suplimente pentru Firefox"
@@ -6095,12 +6019,6 @@ msgstr "Mențiuni legale"
 msgid "Report Trademark Abuse"
 msgstr "Raportează abuzul mărcilor înregistrate"
 
-msgid "The new website supports mobile and desktop clients"
-msgstr "Noul site web are suport pentru clienți dispozitive mobile și desktop"
-
-msgid "View the new site"
-msgstr "Vezi noul site"
-
 msgid "Site Status"
 msgstr "Starea site-ului"
 
@@ -6153,6 +6071,9 @@ msgstr "Înapoi la pagina de start a suplimentelor {0}"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Suplimente"
+
+msgid "Add-ons"
+msgstr "Suplimente"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"

@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:03+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2021-08-17 13:54+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
@@ -95,17 +95,6 @@ msgstr "Το πρόσθετό σας επαληθεύτηκε χωρίς σφά�
 
 msgid "Your submission will be automatically signed."
 msgstr "Η υποβολή σας θα υπογραφεί αυτόματα."
-
-msgid "WebExtension upgrade"
-msgstr "Αναβάθμιση επέκτασης ιστού"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-"Επιτρέπουμε και ενθαρρύνουμε να κάνετε μια αναβάθμιση, αλλά δεν μπορείτε να αναστρέψετε τη διαδικασία. Μόλις οι χρήστες σας αποκτήσουν το WebExtension, δεν θα μπορούν να εγκαταστήσουν ένα παλιό "
-"πρόσθετο."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Διαδικασία port ενός παλιού προσθέτου Firefox στο MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Συμπεριλάβετε λεπτομερή σημειώματα της έκδοσης (αυτό μπορεί να γίνει στο επόμενο βήμα)."
@@ -746,12 +735,6 @@ msgstr "Κείμενο αξιολόγησης"
 
 msgid "Review notes found"
 msgstr "Βρέθηκαν σημειώσεις αξιολόγησης"
-
-msgid "Average Reviews"
-msgstr "Μέσες αξιολογήσεις"
-
-msgid "Number of Reviews"
-msgstr "Αριθμός αξιολογήσεων"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "Το μέγιστο μέγεθος μεταφόρτωσης είναι {0} - επιλέξτε μια μικρότερη εικόνα φόντου."

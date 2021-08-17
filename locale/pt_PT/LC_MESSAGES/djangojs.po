@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:03+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2020-12-17 21:36+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: \n"
@@ -95,15 +95,6 @@ msgstr "O seu extra foi validado sem erros ou avisos."
 
 msgid "Your submission will be automatically signed."
 msgstr "A sua submissão será assinada automaticamente."
-
-msgid "WebExtension upgrade"
-msgstr "Atualização WebExtension"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Nós permitimos e encorajamos uma atualização mas não pode reverter este processo. Assim que os seus utilizadores tenham instalado WebExtension, estes não poderão instalar um extra legado."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Portabilidade de um extra legado do Firefox na MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Inclua notas detalhadas da versão (isto pode ser feito no próximo passo)."
@@ -743,12 +734,6 @@ msgstr "Rever texto"
 
 msgid "Review notes found"
 msgstr "Notas de revisão encontradas"
-
-msgid "Average Reviews"
-msgstr "Pontuação média"
-
-msgid "Number of Reviews"
-msgstr "Número de análises"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "Tamanho de carregamento máximo é de {0} - escolha uma imagem de fundo mais pequena."

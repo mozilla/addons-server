@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:02+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1221,7 +1221,6 @@ msgstr "Extension Development"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 
-#. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "Other"
 
@@ -5199,34 +5198,6 @@ msgstr "end"
 msgid "add-on, reviewer or comment"
 msgstr "add-on, editor or comment"
 
-msgid "Search by add-on name / author email"
-msgstr "Search by add-on name / author email"
-
-#, fuzzy
-msgid "Needs Admin Code Review"
-msgstr "Admin Review"
-
-msgid "yes"
-msgstr "yes"
-
-msgid "no"
-msgstr "no"
-
-msgid "Add-on Types"
-msgstr "Add-on Types"
-
-msgid "Any"
-msgstr "Any"
-
-msgid "Search by add-on name / author email / guid"
-msgstr "Search by add-on name / author email / guid"
-
-msgid "Max. Version"
-msgstr "Max. Version"
-
-msgid "Select an application first"
-msgstr "Select an application first"
-
 msgid "Comments:"
 msgstr "Comments:"
 
@@ -5262,6 +5233,10 @@ msgstr "Skip for now"
 
 msgid "Delete review"
 msgstr "Delete review"
+
+#, fuzzy
+msgid "Needs Admin Code Review"
+msgstr "Admin Review"
 
 #, fuzzy
 msgid "Needs Admin Content Review"
@@ -5731,58 +5706,6 @@ msgstr "Review was flagged prior to deletion."
 
 msgid "Undelete"
 msgstr "Undelete"
-
-msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr "Reviewer Performance – Add-ons for Firefox"
-
-#, fuzzy
-msgid "Add-on Reviewer Performance"
-msgstr "Add-on Editor Performance"
-
-msgid "View statistics for user"
-msgstr "View statistics for user"
-
-msgid "Range"
-msgstr "Range"
-
-msgid "Your Reviews"
-msgstr "Your Reviews"
-
-msgid "By {user_name}"
-msgstr "By {user_name}"
-
-msgid "Total Reviews"
-msgstr "Total Reviews"
-
-msgid "Active Contributors"
-msgstr "Active Contributors"
-
-msgid "This Month"
-msgstr "This Month"
-
-msgid "This Year"
-msgstr "This Year"
-
-msgid "Monthly Performance"
-msgstr "Monthly Performance"
-
-msgid "All-time Point Breakdown by Type"
-msgstr "All-time Point Breakdown by Type"
-
-msgid "Add-ons"
-msgstr "Add-ons"
-
-msgid "Total"
-msgstr "Total"
-
-msgid "Month"
-msgstr "Month"
-
-msgid "Year"
-msgstr "Year"
-
-msgid "All-Time"
-msgstr "All-Time"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr " – Reviewer Tools – Add-ons for Firefox"
@@ -6544,13 +6467,6 @@ msgstr "Legal Notices"
 msgid "Report Trademark Abuse"
 msgstr "Report Abuse"
 
-msgid "The new website supports mobile and desktop clients"
-msgstr "The new website supports mobile and desktop clients"
-
-#, fuzzy
-msgid "View the new site"
-msgstr "Visit the new site"
-
 msgid "Site Status"
 msgstr "Site Status "
 
@@ -6607,6 +6523,9 @@ msgstr "Return to the {0} Add-ons homepage"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
+
+msgid "Add-ons"
+msgstr "Add-ons"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"

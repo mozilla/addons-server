@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:03+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2021-05-21 11:25+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -95,15 +95,6 @@ msgstr "Eklentiniz hatasız ve uyarısız olarak doğrulanmıştır."
 
 msgid "Your submission will be automatically signed."
 msgstr "Gönderiminiz otomatik olarak imzalanacak."
-
-msgid "WebExtension upgrade"
-msgstr "WebExtension yükseltmesi"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Yükseltmeye izin veriyoruz ve hatta öneriyoruz ama bu işlemi geri alamazsınız. Kullanıcılarınız WebExtension'ı yükledikten sonra eski nesil eklentiyi yükleyemezler."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "MDN'de eski bir Firefox eklentisini dönüştürme ile ilgili bilgiler"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Ayrıntılı sürüm notlarını yazın. (Bu, sonraki adımda da yapılabilir.)"
@@ -742,12 +733,6 @@ msgstr "İnceleme Metni"
 
 msgid "Review notes found"
 msgstr "İnceleme notları bulundu"
-
-msgid "Average Reviews"
-msgstr "İncelemelerin Ortalaması"
-
-msgid "Number of Reviews"
-msgstr "İncelemelerin Sayısı"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "Maksimum yükleme boyutu {0}. Daha küçük bir arka plan resmi seçin."

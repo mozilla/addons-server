@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:02+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2021-07-06 20:18+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
@@ -1162,7 +1162,6 @@ msgstr "Разработване за уеб"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
 
-#. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "Друго"
 
@@ -4842,34 +4841,6 @@ msgstr "край"
 msgid "add-on, reviewer or comment"
 msgstr "Все още няма отзиви към добавки."
 
-msgid "Search by add-on name / author email"
-msgstr "Търсене по име на добавката / имейл на автора"
-
-#, fuzzy
-msgid "Needs Admin Code Review"
-msgstr "Административна рецензия"
-
-msgid "yes"
-msgstr "да"
-
-msgid "no"
-msgstr "но"
-
-msgid "Add-on Types"
-msgstr "Видове добавки"
-
-msgid "Any"
-msgstr "Всички"
-
-msgid "Search by add-on name / author email / guid"
-msgstr ""
-
-msgid "Max. Version"
-msgstr "Макс. версия"
-
-msgid "Select an application first"
-msgstr "Първо изберете приложение"
-
 msgid "Comments:"
 msgstr "Коментари:"
 
@@ -4903,6 +4874,10 @@ msgstr ""
 
 msgid "Delete review"
 msgstr "Изтриване на рецензия"
+
+#, fuzzy
+msgid "Needs Admin Code Review"
+msgstr "Административна рецензия"
 
 #, fuzzy
 msgid "Needs Admin Content Review"
@@ -5351,57 +5326,6 @@ msgstr ""
 
 msgid "Undelete"
 msgstr ""
-
-msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
-
-msgid "Add-on Reviewer Performance"
-msgstr ""
-
-msgid "View statistics for user"
-msgstr ""
-
-msgid "Range"
-msgstr "Диапазон"
-
-msgid "Your Reviews"
-msgstr "Вашите отзиви"
-
-msgid "By {user_name}"
-msgstr "От {user_name}"
-
-msgid "Total Reviews"
-msgstr "Общо рецензии"
-
-msgid "Active Contributors"
-msgstr "Активни сътрудници"
-
-msgid "This Month"
-msgstr "Този месец"
-
-msgid "This Year"
-msgstr "Тази година"
-
-msgid "Monthly Performance"
-msgstr "Месечно представяне"
-
-msgid "All-time Point Breakdown by Type"
-msgstr "Разбивка по тип за всички времена"
-
-msgid "Add-ons"
-msgstr "Добавки"
-
-msgid "Total"
-msgstr "Общо"
-
-msgid "Month"
-msgstr "Месец"
-
-msgid "Year"
-msgstr "Година"
-
-msgid "All-Time"
-msgstr "Всички времена"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr ""
@@ -6134,13 +6058,6 @@ msgstr "Правни бележки"
 msgid "Report Trademark Abuse"
 msgstr "Доклад на злоупотреба със запазена марка"
 
-msgid "The new website supports mobile and desktop clients"
-msgstr ""
-
-#, fuzzy
-msgid "View the new site"
-msgstr "Мобилна версия"
-
 msgid "Site Status"
 msgstr "Състояние на страницата"
 
@@ -6194,6 +6111,9 @@ msgstr "Назад към страницата на {0}"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr ""
+
+msgid "Add-ons"
+msgstr "Добавки"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"

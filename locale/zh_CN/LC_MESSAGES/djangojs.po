@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:03+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2018-12-05 16:56+0000\n"
 "Last-Translator: frankoy123 <frankoy123@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -90,15 +90,6 @@ msgstr "您的附加组件已通过验证，没有错误或警告。"
 
 msgid "Your submission will be automatically signed."
 msgstr "您的提交将被自动签名。"
-
-msgid "WebExtension upgrade"
-msgstr "升级为 WebExtension"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Mozilla 为您提供了升级的途径，也鼓励您升级，但您将无法撤销此过程。一旦您的用户安装了 WebExtension 版本，他们将无法再安装旧式附加组件。"
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "到 MDN 了解如何移植旧式 Firefox 附加组件"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "包括详细的版本说明（这可以在下一步骤中完成）。"
@@ -724,12 +715,6 @@ msgstr "审核文本"
 
 msgid "Review notes found"
 msgstr "未找到审核记录"
-
-msgid "Average Reviews"
-msgstr "平均评价"
-
-msgid "Number of Reviews"
-msgstr "评价数量"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "最大上传大小为 {0} - 请选择较小的背景图片。"

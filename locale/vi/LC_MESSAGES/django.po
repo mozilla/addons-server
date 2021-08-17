@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:02+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2021-07-06 23:06+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -1146,7 +1146,6 @@ msgstr "Phát triển Web"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr "Tải xuống các tiện ích mở rộng Firefox có các công cụ phát triển web. Danh mục này bao gồm các tiện ích mở rộng cho GitHub, chuyển đổi tác nhân người dùng, quản lý cookie và hơn thế nữa."
 
-#. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "Khác"
 
@@ -4795,33 +4794,6 @@ msgstr ""
 msgid "add-on, reviewer or comment"
 msgstr "tiện ích, đánh giá hoặc nhận xét"
 
-msgid "Search by add-on name / author email"
-msgstr "Tìm kiếm theo tên tiện ích / email tác giả"
-
-msgid "Needs Admin Code Review"
-msgstr "Cần xem lại đoạn mã của quản trị"
-
-msgid "yes"
-msgstr "có"
-
-msgid "no"
-msgstr "không"
-
-msgid "Add-on Types"
-msgstr "Kiểu tiện ích"
-
-msgid "Any"
-msgstr "Bất kì"
-
-msgid "Search by add-on name / author email / guid"
-msgstr ""
-
-msgid "Max. Version"
-msgstr "Phiên bản Tối đa"
-
-msgid "Select an application first"
-msgstr "Trước tiên hãy chọn một ứng dụng"
-
 msgid "Comments:"
 msgstr "Bình luận:"
 
@@ -4854,6 +4826,9 @@ msgstr "Bỏ qua"
 
 msgid "Delete review"
 msgstr "Xóa đánh giá"
+
+msgid "Needs Admin Code Review"
+msgstr "Cần xem lại đoạn mã của quản trị"
 
 msgid "Needs Admin Content Review"
 msgstr "Cần xem lại nội dung của quản trị"
@@ -5271,57 +5246,6 @@ msgstr ""
 
 msgid "Undelete"
 msgstr ""
-
-msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
-
-msgid "Add-on Reviewer Performance"
-msgstr ""
-
-msgid "View statistics for user"
-msgstr ""
-
-msgid "Range"
-msgstr ""
-
-msgid "Your Reviews"
-msgstr ""
-
-msgid "By {user_name}"
-msgstr ""
-
-msgid "Total Reviews"
-msgstr "Tổng số Bài đánh giá"
-
-msgid "Active Contributors"
-msgstr ""
-
-msgid "This Month"
-msgstr ""
-
-msgid "This Year"
-msgstr ""
-
-msgid "Monthly Performance"
-msgstr ""
-
-msgid "All-time Point Breakdown by Type"
-msgstr ""
-
-msgid "Add-ons"
-msgstr "Tiện ích"
-
-msgid "Total"
-msgstr ""
-
-msgid "Month"
-msgstr ""
-
-msgid "Year"
-msgstr ""
-
-msgid "All-Time"
-msgstr "Từ Trước đến Nay"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr ""
@@ -6038,12 +5962,6 @@ msgstr "Lưu ý Pháp lí"
 msgid "Report Trademark Abuse"
 msgstr "Báo cáo lạm dụng nhãn hiệu"
 
-msgid "The new website supports mobile and desktop clients"
-msgstr ""
-
-msgid "View the new site"
-msgstr "Xem trang mới"
-
 msgid "Site Status"
 msgstr "Trạng thái trang"
 
@@ -6096,6 +6014,9 @@ msgstr "Trở lại trang chủ Tiện ích {0}"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Tiện ích"
+
+msgid "Add-ons"
+msgstr "Tiện ích"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"

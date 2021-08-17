@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:02+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2020-10-09 05:48+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -1141,7 +1141,6 @@ msgstr "تطوير الوب"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
 
-#. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "أخرى"
 
@@ -4861,34 +4860,6 @@ msgstr "الانتهاء"
 msgid "add-on, reviewer or comment"
 msgstr "تعليقات المطور"
 
-msgid "Search by add-on name / author email"
-msgstr "بحث باسم الإضافة أو البريد الإلكتروني للمؤلف"
-
-#, fuzzy
-msgid "Needs Admin Code Review"
-msgstr "أضِف تعليقًا"
-
-msgid "yes"
-msgstr "نعم"
-
-msgid "no"
-msgstr "لا"
-
-msgid "Add-on Types"
-msgstr "أنواع الإضافات"
-
-msgid "Any"
-msgstr "أي"
-
-msgid "Search by add-on name / author email / guid"
-msgstr ""
-
-msgid "Max. Version"
-msgstr ""
-
-msgid "Select an application first"
-msgstr "اختر تطبيقًا أولًا"
-
 msgid "Comments:"
 msgstr "التعليقات:"
 
@@ -4922,6 +4893,10 @@ msgstr ""
 
 msgid "Delete review"
 msgstr "احذف التعليق"
+
+#, fuzzy
+msgid "Needs Admin Code Review"
+msgstr "أضِف تعليقًا"
 
 #, fuzzy
 msgid "Needs Admin Content Review"
@@ -5392,58 +5367,6 @@ msgstr ""
 
 msgid "Undelete"
 msgstr "ألغِ حذفها"
-
-msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
-
-msgid "Add-on Reviewer Performance"
-msgstr ""
-
-msgid "View statistics for user"
-msgstr ""
-
-msgid "Range"
-msgstr ""
-
-msgid "Your Reviews"
-msgstr ""
-
-msgid "By {user_name}"
-msgstr "كتبها {user_name}"
-
-msgid "Total Reviews"
-msgstr "كل التعليقات"
-
-msgid "Active Contributors"
-msgstr ""
-
-msgid "This Month"
-msgstr "هذا الشهر"
-
-msgid "This Year"
-msgstr "هذه السنة"
-
-msgid "Monthly Performance"
-msgstr "الأداء الشهري"
-
-msgid "All-time Point Breakdown by Type"
-msgstr ""
-
-msgid "Add-ons"
-msgstr "الإضافات"
-
-msgid "Total"
-msgstr "المجموع"
-
-msgid "Month"
-msgstr "الشهر"
-
-#, fuzzy
-msgid "Year"
-msgstr "العام الماضي"
-
-msgid "All-Time"
-msgstr "كل الأوقات"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr ""
@@ -6186,13 +6109,6 @@ msgstr "ملاحظات قانونية"
 msgid "Report Trademark Abuse"
 msgstr "إبلاغ عن إساءة استخدام"
 
-msgid "The new website supports mobile and desktop clients"
-msgstr ""
-
-#, fuzzy
-msgid "View the new site"
-msgstr "عرض موقع الهواتف الذكية"
-
 msgid "Site Status"
 msgstr "حالة الموقع"
 
@@ -6245,6 +6161,9 @@ msgstr "عُد إلى صفحة بداية إضافات {0}"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "إضافات <img alt=\"Firefox\" src=\"{0}\">"
+
+msgid "Add-ons"
+msgstr "الإضافات"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"

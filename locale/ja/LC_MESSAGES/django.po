@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:02+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2021-07-10 07:08+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -1136,7 +1136,6 @@ msgstr "ウェブ開発"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
 
-#. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "その他"
 
@@ -4812,33 +4811,6 @@ msgstr "終了日"
 msgid "add-on, reviewer or comment"
 msgstr "アドオン、審査担当者、またはコメント"
 
-msgid "Search by add-on name / author email"
-msgstr "アドオンの名前、作者のメールアドレスで検索"
-
-msgid "Needs Admin Code Review"
-msgstr "管理者コード審査が必要"
-
-msgid "yes"
-msgstr "はい"
-
-msgid "no"
-msgstr "いいえ"
-
-msgid "Add-on Types"
-msgstr "アドオンの種類"
-
-msgid "Any"
-msgstr "すべて"
-
-msgid "Search by add-on name / author email / guid"
-msgstr "アドオンの名前 / 作者のメールアドレス / GUID で検索"
-
-msgid "Max. Version"
-msgstr "最大対応バージョン"
-
-msgid "Select an application first"
-msgstr "まずアプリケーションを選択してください"
-
 msgid "Comments:"
 msgstr "コメント:"
 
@@ -4872,6 +4844,9 @@ msgstr "今はスキップ"
 
 msgid "Delete review"
 msgstr "レビューを削除"
+
+msgid "Needs Admin Code Review"
+msgstr "管理者コード審査が必要"
 
 msgid "Needs Admin Content Review"
 msgstr "管理者コンテンツ審査が必要"
@@ -5297,57 +5272,6 @@ msgstr "レビューは削除前にフラグが立てられました。"
 
 msgid "Undelete"
 msgstr "削除を取り消し"
-
-msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
-
-msgid "Add-on Reviewer Performance"
-msgstr "アドオン審査担当者の成績"
-
-msgid "View statistics for user"
-msgstr "ユーザー統計を表示"
-
-msgid "Range"
-msgstr "範囲"
-
-msgid "Your Reviews"
-msgstr "あなたの審査"
-
-msgid "By {user_name}"
-msgstr "{user_name} の審査"
-
-msgid "Total Reviews"
-msgstr "合計審査回数"
-
-msgid "Active Contributors"
-msgstr "活動中の貢献者"
-
-msgid "This Month"
-msgstr "今月"
-
-msgid "This Year"
-msgstr "今年"
-
-msgid "Monthly Performance"
-msgstr "月別パフォーマンス"
-
-msgid "All-time Point Breakdown by Type"
-msgstr "全期間ポイントの種類別内訳"
-
-msgid "Add-ons"
-msgstr "アドオン"
-
-msgid "Total"
-msgstr "合計"
-
-msgid "Month"
-msgstr "月別"
-
-msgid "Year"
-msgstr "年別"
-
-msgid "All-Time"
-msgstr "全期間"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr ""
@@ -6086,12 +6010,6 @@ msgstr "法的通知"
 msgid "Report Trademark Abuse"
 msgstr "商標の不正利用を報告"
 
-msgid "The new website supports mobile and desktop clients"
-msgstr "新しいウェブサイトはモバイルとデスクトップのクライアントに対応"
-
-msgid "View the new site"
-msgstr "新しいサイトを見る"
-
 msgid "Site Status"
 msgstr "サイトステータス"
 
@@ -6145,6 +6063,9 @@ msgstr "{0}アドオンのホームページへ戻る"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\">アドオン"
+
+msgid "Add-ons"
+msgstr "アドオン"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"

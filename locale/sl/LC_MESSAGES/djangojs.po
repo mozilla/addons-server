@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:03+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2021-01-27 11:55+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -105,15 +105,6 @@ msgstr "Veljavnost vašega dodatka je bila preverjena brez napak ali opozoril."
 
 msgid "Your submission will be automatically signed."
 msgstr "Vaša oddaja bo samodejno podpisana."
-
-msgid "WebExtension upgrade"
-msgstr "Nadgradnja na WebExtension"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Nadgradnjo omogočamo in spodbujamo, vendar procesa ne morete povrniti. Ko bodo ljudje namestili razširitev WebExtension, ne bodo več mogli namestiti stare različice."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Nadgradnja starega dodatka za Firefox na MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Vključite podrobne opombe o različici (to lahko storite v naslednjem koraku)."
@@ -780,12 +771,6 @@ msgstr "Besedilo pregleda"
 
 msgid "Review notes found"
 msgstr "Najdene opombe pregleda"
-
-msgid "Average Reviews"
-msgstr "Povprečno število ocen"
-
-msgid "Number of Reviews"
-msgstr "Število ocen"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "Največja dovoljena velikost je {0} – izberite manjšo sliko ozadja."

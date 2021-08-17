@@ -1,10 +1,10 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:02+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2021-08-13 17:11+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -262,17 +262,17 @@ msgstr "Non trovate"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
-"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
-"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
-"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
+"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
+"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
+"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Nos lo regretta, ma nos non pote trovar lo que tu cerca.</h1> <p> Le pagina o file que tu requestava non ha essite trovate sur nostre sito. Il es possibile que tu ha cliccate sur un ligamine "
 "obsolete, o ha inserite un adresse incorrecte. </p> <ul> <li>Si tu ha dactylographate le adresse, re-verifica le orthographia.</li> <li> Si tu ha sequite un ligamine sur un altere pagina, per favor "
-"%(open_bug_link)ssignala un problema%(close_bug_link)s. Indica ab ubi tu veniva e lo que tu cercava, e nos facera nostre melior pro remediar le problema. </li> </ul> <p>O tu pote simplemente visitar"
-" un del paginas popular sur nostre sito web.</p> <ul> <li>Es tu interessate a un <a href=\"%(rec)s\">lista de additivos promovite</a>?</li> <li> Vole tu <a href=\"%(search)s\">cercar additivos</a>? "
-"Tu pote ir al <a href=\"%(search)s\">pagina de recerca</a> o usar le campo de recerca supra. </li> <li> Si tu prefere recomenciar, reveni al <a href=\"%(home)s\">pagina initial de additivos</a>. "
-"</li> </ul>"
+"%(open_bug_link)ssignala un problema%(close_bug_link)s. Indica ab ubi tu veniva e lo que tu cercava, e nos facera nostre melior pro remediar le problema. </li> </ul> <p>O tu pote simplemente "
+"visitar un del paginas popular sur nostre sito web.</p> <ul> <li>Es tu interessate a un <a href=\"%(rec)s\">lista de additivos promovite</a>?</li> <li> Vole tu <a href=\"%(search)s\">cercar "
+"additivos</a>? Tu pote ir al <a href=\"%(search)s\">pagina de recerca</a> o usar le campo de recerca supra. </li> <li> Si tu prefere recomenciar, reveni al <a href=\"%(home)s\">pagina initial de "
+"additivos</a>. </li> </ul>"
 
 msgid "Oops"
 msgstr "Ups"
@@ -422,11 +422,11 @@ msgstr "Versiones"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
+"%(amo_manifests_mdn_link_close)s."
 msgstr ""
-"Si tu application supportate non require un file de manifesto, tu debe totevia includer un con le proprietates requirite como specificate "
-"%(amo_manifests_mdn_link_open)shic%(amo_manifests_mdn_link_close)s."
+"Si tu application supportate non require un file de manifesto, tu debe totevia includer un con le proprietates requirite como specificate %(amo_manifests_mdn_link_open)shic"
+"%(amo_manifests_mdn_link_close)s."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Iste URL personalisate es jam usate per un altere de tu collectiones."
@@ -1125,7 +1125,6 @@ msgstr "Disveloppamento del Web"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr "Discarga extensiones de Firefox que offere utensiles pro disveloppatores web. Iste categoria include extensiones pro GitHub, commutation del agente usator, gestion de cookies e multo plus."
 
-#. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "Altere"
 
@@ -1735,7 +1734,8 @@ msgstr ""
 "Sur iste sito. <span class=\"helptext\">Tu submission essera listate sur iste sito e le Gestor de additivos de Firefox pro milliones de usatores, post que illo passa le revision del codice. Le "
 "actualisationes automatic es tractate per iste sito. Iste additivo essera alsi considerate pro promotiones e contextos de Mozilla. Le auto-distribution del files revidite es alsi possibile.</span>"
 
-msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid ""
+"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 "Sur tu proprie. <span class=\"helptext\">Tu submission essera immediatemente signate pro auto-distribution. Le actualisationes debe esser tractate per te per un updateURL o per un application "
 "externe dedicate.</span>"
@@ -2066,7 +2066,9 @@ msgstr ""
 "plus recente."
 
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
 msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Actualisar compatibilitate</a> <a href=\"%(version_url)s\" class=\"button\">Incargar nove version</a> o <a href=\"#\" "
 "class=\"close\">Ignorar</a>"
@@ -2287,8 +2289,8 @@ msgid "Email"
 msgstr "Email"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 "Si tu vole monstrar un adresse de e-mail pro demandas de supporto, insere lo ci. Si tu ha differente adresses pro cata lingua, es possibile adder plure traductiones de iste campo. Illo es relevante "
 "solmente pro le additivos listate."
@@ -2320,8 +2322,8 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
-"Tote le informationes que le usatores final pote desirar saper que non es necessarimente applicabile al summario o al description del additivo. Le usos commun include listas del major defectos note,"
-" informationes sur como reportar defectos, data de publication anticipate de un nove version, et cetera. Illo es pertinente solo pro le additivos listate."
+"Tote le informationes que le usatores final pote desirar saper que non es necessarimente applicabile al summario o al description del additivo. Le usos commun include listas del major defectos "
+"note, informationes sur como reportar defectos, data de publication anticipate de un nove version, et cetera. Illo es pertinente solo pro le additivos listate."
 
 msgid "Universally unique identifier"
 msgstr "Identificator unic universal - UUID"
@@ -2352,8 +2354,8 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
-"Incarga un icone pro tu additivo o elige un del nostres. Le icone appare in quasi tote partes ubi se trova tu additivo. Le imagines incargate debe esser de un del sequente typos: .png, .jpg. Isto es"
-" solmente relevante pro le additivos listate."
+"Incarga un icone pro tu additivo o elige un del nostres. Le icone appare in quasi tote partes ubi se trova tu additivo. Le imagines incargate debe esser de un del sequente typos: .png, .jpg. Isto "
+"es solmente relevante pro le additivos listate."
 
 msgid "Select an icon for your add-on:"
 msgstr "Elige un icone pro tu additivo:"
@@ -2562,8 +2564,8 @@ msgid ""
 "Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
 "submission process is complete."
 msgstr ""
-"Attention: tu ha valores de nomine/summario in altere linguas que essera automaticamente truncate pro restar sub le limite de %(max_length)s characteres.  Pro modificar istes, va al pagina Modificar"
-" Producto post que le processo de submission es concludite."
+"Attention: tu ha valores de nomine/summario in altere linguas que essera automaticamente truncate pro restar sub le limite de %(max_length)s characteres.  Pro modificar istes, va al pagina "
+"Modificar Producto post que le processo de submission es concludite."
 
 msgid "Add-on URL:"
 msgstr "URL del additivo:"
@@ -2742,11 +2744,11 @@ msgid "Operating system and build environment requirements."
 msgstr "Requisitos de systema operative e ambiente de compilation."
 
 msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
-"emphasis\">npm</span> version used)."
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
+"\">npm</span> version used)."
 msgstr ""
-"Detalios (includite le version requirite e instructiones de installation), de omne programmas usate in le processo de compilation (per exemplo: le versiones usate de <span class=\"tech-"
-"emphasis\">node</span> e <span class=\"tech-emphasis\">npm</span>)."
+"Detalios (includite le version requirite e instructiones de installation), de omne programmas usate in le processo de compilation (per exemplo: le versiones usate de <span class=\"tech-emphasis"
+"\">node</span> e <span class=\"tech-emphasis\">npm</span>)."
 
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
 msgstr ""
@@ -2864,11 +2866,11 @@ msgstr "Secreto JWT"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
-"Pro facer requestas de API, invia un <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> como titulo de autorisation. Tu debera generar un JWT pro cata requesta como explicate in le <a "
-"href=\"%(docs_url)s\">Documentation API</a>."
+"Pro facer requestas de API, invia un <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> como titulo de autorisation. Tu debera generar un JWT pro cata requesta como explicate in le <a href="
+"\"%(docs_url)s\">Documentation API</a>."
 
 #, python-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
@@ -2963,7 +2965,8 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
+"your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
@@ -4572,8 +4575,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr "Folio a questiones sur le recensiones"
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
-" with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
+"comply with these guidelines."
 msgstr ""
 "Le recensiones del additivos es un maniera de compartir tu opinion sur le additivos que tu ha installate e usate. Nostre equipa de moderation del recensiones se reserva le derecto de refusar o "
 "remover omne recension que non respecta iste directivas."
@@ -4765,33 +4768,6 @@ msgstr "finir"
 msgid "add-on, reviewer or comment"
 msgstr "additivo, revisor o commento"
 
-msgid "Search by add-on name / author email"
-msgstr "Recercar per nomine de additivo / email de autor"
-
-msgid "Needs Admin Code Review"
-msgstr "Il es necesse revision del codice per un administrator"
-
-msgid "yes"
-msgstr "si"
-
-msgid "no"
-msgstr "no"
-
-msgid "Add-on Types"
-msgstr "Typos de additivo"
-
-msgid "Any"
-msgstr "Qualcunque"
-
-msgid "Search by add-on name / author email / guid"
-msgstr "Recerca per nomine de additivo / email de autor / guida"
-
-msgid "Max. Version"
-msgstr "Maxime version"
-
-msgid "Select an application first"
-msgstr "Elige antea un application"
-
 msgid "Comments:"
 msgstr "Commentos:"
 
@@ -4824,6 +4800,9 @@ msgstr "Saltar pro iste momento"
 
 msgid "Delete review"
 msgstr "Deler recension"
+
+msgid "Needs Admin Code Review"
+msgstr "Il es necesse revision del codice per un administrator"
 
 msgid "Needs Admin Content Review"
 msgstr "Il es necesse revision de contento per administrator"
@@ -5226,57 +5205,6 @@ msgstr "Le revision esseva signalate ante le deletion."
 
 msgid "Undelete"
 msgstr "Restabilir"
-
-msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr "Prestation de revisores – Additivos pro Firefox"
-
-msgid "Add-on Reviewer Performance"
-msgstr "Rendimento del revisor del additivo"
-
-msgid "View statistics for user"
-msgstr "Vider le statistica del usator"
-
-msgid "Range"
-msgstr "Campo"
-
-msgid "Your Reviews"
-msgstr "Tu recensiones"
-
-msgid "By {user_name}"
-msgstr "Per {user_name}"
-
-msgid "Total Reviews"
-msgstr "Total de recensiones"
-
-msgid "Active Contributors"
-msgstr "Contributores active"
-
-msgid "This Month"
-msgstr "Iste mense"
-
-msgid "This Year"
-msgstr "Iste anno"
-
-msgid "Monthly Performance"
-msgstr "Rendimento mensual"
-
-msgid "All-time Point Breakdown by Type"
-msgstr "Punctuationes maxime per typo"
-
-msgid "Add-ons"
-msgstr "Additivos"
-
-msgid "Total"
-msgstr "Total"
-
-msgid "Month"
-msgstr "Mense"
-
-msgid "Year"
-msgstr "Anno"
-
-msgid "All-Time"
-msgstr "De sempre"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr "– Applicationes de revisores – Additivos pro Firefox"
@@ -5968,12 +5896,6 @@ msgstr "Notas legal"
 msgid "Report Trademark Abuse"
 msgstr "Reportar un abuso de marca de fabrica"
 
-msgid "The new website supports mobile and desktop clients"
-msgstr "Le nove sito web supporta clientes de mobile e de scriptorio"
-
-msgid "View the new site"
-msgstr "Vide le nove sito"
-
 msgid "Site Status"
 msgstr "Stato del sito"
 
@@ -6025,6 +5947,9 @@ msgstr "Retornar al {0} pagina principal del additivos"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "Additivos de <img alt=\"Firefox\" src=\"{0}\">"
+
+msgid "Add-ons"
+msgstr "Additivos"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -6138,12 +6063,12 @@ msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
 msgstr ""
-"Insere le complete dominio de e-mail jectabile a blocar. Le metacharacteres non es supportate: si tu los require, o si tu vole facer corresponder le adresse de e-mail integre e non solmente le parte"
-" de dominio, usa \"Restrictiones de e-mail del usator\" in loco de isto."
+"Insere le complete dominio de e-mail jectabile a blocar. Le metacharacteres non es supportate: si tu los require, o si tu vole facer corresponder le adresse de e-mail integre e non solmente le "
+"parte de dominio, usa \"Restrictiones de e-mail del usator\" in loco de isto."
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr ""
 "Ante de initiar, per favor lege e accepta nostre Accordo de distribution del additivos de Firefox assi como nostre Politicas e regulas de revision. Le Accordo de distribution del additivos de "
 "Firefox etiam se refere a nostre Aviso de confidentialitate que explica como nos gere tu informationes."
@@ -6204,7 +6129,8 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
+"website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"
@@ -6217,7 +6143,8 @@ msgid ""
 msgstr ""
 "Salute %(author_name)s,\n"
 "\n"
-"Tu ha essite invitate a devenir un autor de %(addon_name)s sur %(domain)s. Le acceptation del invitation te dara accesso a rediger le additivo e potera monstrar tu nomine in le lista de autores sur le sito web.\n"
+"Tu ha essite invitate a devenir un autor de %(addon_name)s sur %(domain)s. Le acceptation del invitation te dara accesso a rediger le additivo e potera monstrar tu nomine in le lista de autores sur "
+"le sito web.\n"
 "\n"
 "Clicca sur le ligamine infra pro responder si tu desira esser addite como autor pro %(addon_name)s.\n"
 "\n"

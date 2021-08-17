@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:03+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2021-06-24 05:52+0000\n"
 "Last-Translator: Đặng Duy Thanh <thanhdd.it@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -90,15 +90,6 @@ msgstr "Tiện ích của bạn đã được xác thực không có lỗi hay c
 
 msgid "Your submission will be automatically signed."
 msgstr "Bản đệ trình của bạn sẽ được chứng thực tự động."
-
-msgid "WebExtension upgrade"
-msgstr "Nâng cấp WebExtension"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Chúng tôi cho phép và khuyến khích nâng cấp nhưng bạn không thể đảo ngược quá trình này. Một khi người dùng của bạn đã cài đặt WebExtension, họ sẽ không thể cài đặt tiện ích cũ."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Chuyển đổi tiện ích Firefox cũ trên MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Bao gồm các ghi chú chi tiết (điều này có thể hoàn tất trong bước tiếp theo)."
@@ -732,12 +723,6 @@ msgstr "Xem lại văn bản"
 
 msgid "Review notes found"
 msgstr "Xem lại ghi chú"
-
-msgid "Average Reviews"
-msgstr "Đánh giá trung bình"
-
-msgid "Number of Reviews"
-msgstr "Số lượng review"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "Kích thước tải lên tối đa là {0} - chọn hình nền nhỏ hơn."

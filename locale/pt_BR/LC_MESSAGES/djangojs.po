@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:03+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2021-05-19 10:28+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -95,16 +95,6 @@ msgstr "Sua extensão foi validada sem erros ou avisos."
 
 msgid "Your submission will be automatically signed."
 msgstr "Sua submissão será automaticamente assinada."
-
-msgid "WebExtension upgrade"
-msgstr "Atualização para WebExtension"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-"Nós permitimos e encorajamos a atualização, mas você não poderá reverter este processo. Uma vez que seus usuários tenham a WebExtension instalada, não conseguirão instalar uma extensão legada."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Portando uma extensão legada do Firefox na MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Incluir notas detalhadas da versão (isto pode ser feito no próximo passo)."
@@ -743,12 +733,6 @@ msgstr "Revisar texto"
 
 msgid "Review notes found"
 msgstr "Notas de análises encontradas"
-
-msgid "Average Reviews"
-msgstr "Pontuação média"
-
-msgid "Number of Reviews"
-msgstr "Número de análises"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "O tamanho de carregamento máximo é de {0} - escolha uma imagem de fundo menor."

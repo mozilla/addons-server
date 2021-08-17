@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:03+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2021-06-25 10:04+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -95,15 +95,6 @@ msgstr "El vostre complement s'ha validat sense cap error ni avís."
 
 msgid "Your submission will be automatically signed."
 msgstr "Se signarà automàticament l’enviament."
-
-msgid "WebExtension upgrade"
-msgstr ""
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr ""
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
@@ -739,12 +730,6 @@ msgid "Review Text"
 msgstr ""
 
 msgid "Review notes found"
-msgstr ""
-
-msgid "Average Reviews"
-msgstr ""
-
-msgid "Number of Reviews"
 msgstr ""
 
 msgid "Maximum upload size is {0} - choose a smaller background image."

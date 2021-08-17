@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:02+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2021-07-03 19:18+0000\n"
 "Last-Translator: Paulina Rodriguez <pauli.rodriguez.c@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -1151,7 +1151,6 @@ msgstr "Desarrollo web"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr "Descarga extensiones de Firefox que promocionan herramientas de desarrollo web. Esta categoría incluye extensiones para GitHub, gestión de cookies y mucho más."
 
-#. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "Otro"
 
@@ -4908,33 +4907,6 @@ msgstr "límite"
 msgid "add-on, reviewer or comment"
 msgstr "complemento, editor o comentario"
 
-msgid "Search by add-on name / author email"
-msgstr "Buscar por nombre del complemento / correo electrónico del autor"
-
-msgid "Needs Admin Code Review"
-msgstr "Se necesita revisión de código de administrador"
-
-msgid "yes"
-msgstr "sí"
-
-msgid "no"
-msgstr "no"
-
-msgid "Add-on Types"
-msgstr "Tipos de complemento"
-
-msgid "Any"
-msgstr "Cualquiera"
-
-msgid "Search by add-on name / author email / guid"
-msgstr "Buscar por nombre del complemento /correo del autor / guía"
-
-msgid "Max. Version"
-msgstr "Versión máxima"
-
-msgid "Select an application first"
-msgstr "Primero selecciona una aplicación"
-
 msgid "Comments:"
 msgstr "Comentarios:"
 
@@ -4968,6 +4940,9 @@ msgstr "Saltar de momento"
 
 msgid "Delete review"
 msgstr "Borrar valoración"
+
+msgid "Needs Admin Code Review"
+msgstr "Se necesita revisión de código de administrador"
 
 msgid "Needs Admin Content Review"
 msgstr "Se necesita revisión de contenido de administrador"
@@ -5390,59 +5365,6 @@ msgstr "La revisión ha sido marcada previamente para su eliminación."
 
 msgid "Undelete"
 msgstr "Deshacer borrar"
-
-msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
-
-msgid "Add-on Reviewer Performance"
-msgstr "Rendimiento del revisor del complemento"
-
-msgid "View statistics for user"
-msgstr "Ver estadísticas del usuario"
-
-msgid "Range"
-msgstr "Rango"
-
-msgid "Your Reviews"
-msgstr "Tus revisiones"
-
-msgid "By {user_name}"
-msgstr "Por {user_name}"
-
-msgid "Total Reviews"
-msgstr "Valoraciones totales"
-
-# 81%
-# 100%
-msgid "Active Contributors"
-msgstr "Colaboradores activos"
-
-msgid "This Month"
-msgstr "Este mes"
-
-msgid "This Year"
-msgstr "Este año"
-
-msgid "Monthly Performance"
-msgstr "Rendimiento mensual"
-
-msgid "All-time Point Breakdown by Type"
-msgstr "Desglose de puntuaciones máximas por tipo"
-
-msgid "Add-ons"
-msgstr "Complementos"
-
-msgid "Total"
-msgstr "Total"
-
-msgid "Month"
-msgstr "Mes"
-
-msgid "Year"
-msgstr "Año"
-
-msgid "All-Time"
-msgstr "Todos los tiempos"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr ""
@@ -6177,12 +6099,6 @@ msgstr "Avisos legales"
 msgid "Report Trademark Abuse"
 msgstr "Informar de uso indebido de la marca"
 
-msgid "The new website supports mobile and desktop clients"
-msgstr "El nuevo sitio admite clientes móviles y de escritorio"
-
-msgid "View the new site"
-msgstr "Visita la nueva página"
-
 msgid "Site Status"
 msgstr "Estado del sitio"
 
@@ -6235,6 +6151,9 @@ msgstr "Volver a la página de inicio de Complementos para {0}"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Complementos"
+
+msgid "Add-ons"
+msgstr "Complementos"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"

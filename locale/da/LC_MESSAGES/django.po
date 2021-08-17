@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:02+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2021-01-17 14:18+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
@@ -1149,7 +1149,6 @@ msgstr "Webudvikling"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
 
-#. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "Andre"
 
@@ -4786,34 +4785,6 @@ msgstr ""
 msgid "add-on, reviewer or comment"
 msgstr "tilføjelse, anmelder eller kommentar"
 
-msgid "Search by add-on name / author email"
-msgstr ""
-
-#, fuzzy
-msgid "Needs Admin Code Review"
-msgstr "Ikke godkendt"
-
-msgid "yes"
-msgstr "ja"
-
-msgid "no"
-msgstr "nej"
-
-msgid "Add-on Types"
-msgstr "Tilføjelse-typer"
-
-msgid "Any"
-msgstr "Alle"
-
-msgid "Search by add-on name / author email / guid"
-msgstr ""
-
-msgid "Max. Version"
-msgstr ""
-
-msgid "Select an application first"
-msgstr ""
-
 msgid "Comments:"
 msgstr "Kommentarer:"
 
@@ -4846,6 +4817,10 @@ msgstr ""
 
 msgid "Delete review"
 msgstr "Slet anmeldelse"
+
+#, fuzzy
+msgid "Needs Admin Code Review"
+msgstr "Ikke godkendt"
 
 #, fuzzy
 msgid "Needs Admin Content Review"
@@ -5281,57 +5256,6 @@ msgid "Review was flagged prior to deletion."
 msgstr ""
 
 msgid "Undelete"
-msgstr ""
-
-msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
-
-msgid "Add-on Reviewer Performance"
-msgstr ""
-
-msgid "View statistics for user"
-msgstr "Vis statisitik for bruger"
-
-msgid "Range"
-msgstr ""
-
-msgid "Your Reviews"
-msgstr ""
-
-msgid "By {user_name}"
-msgstr ""
-
-msgid "Total Reviews"
-msgstr "Anmeldelser i alt"
-
-msgid "Active Contributors"
-msgstr ""
-
-msgid "This Month"
-msgstr "Denne måned"
-
-msgid "This Year"
-msgstr "Dette år"
-
-msgid "Monthly Performance"
-msgstr ""
-
-msgid "All-time Point Breakdown by Type"
-msgstr ""
-
-msgid "Add-ons"
-msgstr "Tilføjelser"
-
-msgid "Total"
-msgstr "I alt"
-
-msgid "Month"
-msgstr "Måned"
-
-msgid "Year"
-msgstr "År"
-
-msgid "All-Time"
 msgstr ""
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
@@ -6060,12 +5984,6 @@ msgstr "Juridiske betingelser"
 msgid "Report Trademark Abuse"
 msgstr "Rapportér misbrug af varemærke"
 
-msgid "The new website supports mobile and desktop clients"
-msgstr ""
-
-msgid "View the new site"
-msgstr "Se det nye websted"
-
 msgid "Site Status"
 msgstr "Webstedsstatus"
 
@@ -6118,6 +6036,9 @@ msgstr "Tilbage til startsiden for tilføjelser til {0}"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Tilføjelser"
+
+msgid "Add-ons"
+msgstr "Tilføjelser"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"

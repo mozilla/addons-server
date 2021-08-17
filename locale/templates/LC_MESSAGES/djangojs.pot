@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:03+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -69,7 +69,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/common/upload-addon.js:283 static/js/common/upload-addon.js:663
+#: static/js/common/upload-addon.js:283 static/js/common/upload-addon.js:636
 msgid "See full validation report"
 msgstr ""
 
@@ -118,42 +118,27 @@ msgid "Your submission will be automatically signed."
 msgstr ""
 
 #: static/js/common/upload-addon.js:555
-msgid "WebExtension upgrade"
-msgstr ""
-
-#: static/js/common/upload-addon.js:559
-msgid ""
-"We allow and encourage an upgrade but you cannot reverse this process. Once "
-"your users have the WebExtension installed, they will not be able to install "
-"a legacy add-on."
-msgstr ""
-
-#: static/js/common/upload-addon.js:566
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr ""
-
-#: static/js/common/upload-addon.js:582
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
 
-#: static/js/common/upload-addon.js:585
+#: static/js/common/upload-addon.js:558
 msgid ""
 "If your add-on requires an account to a website in order to be fully tested, "
 "include a test username and password in the Notes to Reviewer (this can be "
 "done in the next step)."
 msgstr ""
 
-#: static/js/common/upload-addon.js:609
+#: static/js/common/upload-addon.js:582
 msgid "Add-on submission checklist"
 msgstr ""
 
-#: static/js/common/upload-addon.js:613
+#: static/js/common/upload-addon.js:586
 msgid ""
 "Please verify the following points before finalizing your submission. This "
 "will minimize delays or misunderstanding during the review process:"
 msgstr ""
 
-#: static/js/common/upload-addon.js:620
+#: static/js/common/upload-addon.js:593
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding "
 "known libraries) need to have their sources submitted separately for review. "
@@ -161,7 +146,7 @@ msgid ""
 "submission rejected."
 msgstr ""
 
-#: static/js/common/upload-addon.js:643
+#: static/js/common/upload-addon.js:616
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
 
@@ -901,7 +886,7 @@ msgstr[1] ""
 msgid "Image changes being processed"
 msgstr ""
 
-#: static/js/zamboni/devhub.js:1240 static/js/zamboni/reviewers.js:475
+#: static/js/zamboni/devhub.js:1240
 msgid "Select an application first"
 msgstr ""
 
@@ -935,44 +920,36 @@ msgstr ""
 msgid "Remove this localization"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:143
+#: static/js/zamboni/reviewers.js:135
 msgid "{name} was viewing this page first."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:392
+#: static/js/zamboni/reviewers.js:384
 msgid "{name} was viewing this add-on first."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:405 static/js/zamboni/reviewers.js:431
+#: static/js/zamboni/reviewers.js:397 static/js/zamboni/reviewers.js:423
 msgid "Loading&hellip;"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:410
+#: static/js/zamboni/reviewers.js:402
 msgid "Version Notes"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:417
+#: static/js/zamboni/reviewers.js:409
 msgid "Notes for Reviewers"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:424
+#: static/js/zamboni/reviewers.js:416
 msgid "No version notes found"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:436
+#: static/js/zamboni/reviewers.js:428
 msgid "Review Text"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:443
+#: static/js/zamboni/reviewers.js:435
 msgid "Review notes found"
-msgstr ""
-
-#: static/js/zamboni/reviewers.js:514
-msgid "Average Reviews"
-msgstr ""
-
-#: static/js/zamboni/reviewers.js:568
-msgid "Number of Reviews"
 msgstr ""
 
 #: static/js/zamboni/static_theme.js:207

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:03+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2018-12-13 01:24+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -101,15 +101,6 @@ msgstr "Suplimentul a fost validat fără erori sau avertismente."
 
 msgid "Your submission will be automatically signed."
 msgstr "Propunerea ta va fi semnată automat."
-
-msgid "WebExtension upgrade"
-msgstr "Actualizare WebExtension"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Acceptăm și încurajăm actualizările, dar procesul este ireversibil. Odată ce utilizatorii au instalat WebExtension, nu vor mai putea instala un supliment perimat."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Se portează pe MDN un supliment Firefox perimat"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Include note detaliate despre versiune (se poate face la pasul următor)."
@@ -759,12 +750,6 @@ msgstr "Recenzează textul"
 
 msgid "Review notes found"
 msgstr "Note de recenzie găsite"
-
-msgid "Average Reviews"
-msgstr "Număr mediu de recenzii"
-
-msgid "Number of Reviews"
-msgstr "Număr de recenzii"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "Mărimea maximă de încărcare este {0} - alege o imagine de fundal mai mică."

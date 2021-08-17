@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:03+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2020-12-14 19:42+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -96,15 +96,6 @@ msgstr "Azegrir yettwasentem s war tuccḍiwin neɣ ilɣa."
 
 msgid "Your submission will be automatically signed."
 msgstr "Tuzna-inek ad tettwazmel s wudem awurman."
-
-msgid "WebExtension upgrade"
-msgstr "Aleqqem n WebExtension"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Nessirig udiɣ nettmuddu tabɣest n lqem-a, maca ticki yemmed, ulac tuɣalin ɣer deffir. Ticki iseqdace-ik sbedden WebExtension, ur ttizmiren ara ad sbedden izegrar iqbuṛen."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Awi-d izegrar iqbuṛen n Firefox ɣer MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Seddu tizmilin n lqem leqqayen (aya yezmer ad yettwag deg umecwaṛ i d-itteddun)."
@@ -743,12 +734,6 @@ msgstr "Wali tikelt nniḍen aḍris"
 
 msgid "Review notes found"
 msgstr "Tizmilin n ucegger ttwafent"
-
-msgid "Average Reviews"
-msgstr "Icegggiren ilemmasen"
-
-msgid "Number of Reviews"
-msgstr "Amḍan n iceggiren"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "Teɣzi taddayt n tuzna d {0} - Fren tugna n ugilal meẓẓiyen ugar."

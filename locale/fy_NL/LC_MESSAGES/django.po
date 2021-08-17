@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:02+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2021-07-23 08:23+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1135,7 +1135,6 @@ msgstr "Webûntwikkeling"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr "Download Firefox-útwreidingen mei webûntwikkelhelpmiddelen. Dizze kategory omfettet útwreidingen foar GitHub, wikseljen fan user agent, cookiebehear, en mear."
 
-#. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "Oars"
 
@@ -4809,33 +4808,6 @@ msgstr "ein"
 msgid "add-on, reviewer or comment"
 msgstr "add-on, editor of opmerking"
 
-msgid "Search by add-on name / author email"
-msgstr "Sykje op add-onnamme / e-mailadres skriuwer"
-
-msgid "Needs Admin Code Review"
-msgstr "Koadebeoardieling troch behearder fereaske"
-
-msgid "yes"
-msgstr "ja"
-
-msgid "no"
-msgstr "nee"
-
-msgid "Add-on Types"
-msgstr "Add-ontypen"
-
-msgid "Any"
-msgstr "Alle"
-
-msgid "Search by add-on name / author email / guid"
-msgstr "Sykje op add-onnamme / e-mailadres skriuwer / guid"
-
-msgid "Max. Version"
-msgstr "Maks. ferzje"
-
-msgid "Select an application first"
-msgstr "Selektearje earst in tapassing"
-
 msgid "Comments:"
 msgstr "Opmerkingen:"
 
@@ -4868,6 +4840,9 @@ msgstr "Foarearst oerslaan"
 
 msgid "Delete review"
 msgstr "Beoardieling fuortsmite"
+
+msgid "Needs Admin Code Review"
+msgstr "Koadebeoardieling troch behearder fereaske"
 
 msgid "Needs Admin Content Review"
 msgstr "Ynhâldsbeoardieling troch behearder fereaske"
@@ -5273,57 +5248,6 @@ msgstr "Beoardieling is foar fuortsmiten labele."
 
 msgid "Undelete"
 msgstr "Fuortsmiten ûngedien meitsje"
-
-msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr "Beoardielersprestaasjes – Add-ons foar Firefox"
-
-msgid "Add-on Reviewer Performance"
-msgstr "Prestaasjes fan add-on-beoardieler"
-
-msgid "View statistics for user"
-msgstr "Statistiken foar brûker besjen"
-
-msgid "Range"
-msgstr "Berik"
-
-msgid "Your Reviews"
-msgstr "Jo beoardielingen"
-
-msgid "By {user_name}"
-msgstr "Troch {user_name}"
-
-msgid "Total Reviews"
-msgstr "Totale oantal beoardielingen"
-
-msgid "Active Contributors"
-msgstr "Aktive meiwurkers"
-
-msgid "This Month"
-msgstr "Dizze moanne"
-
-msgid "This Year"
-msgstr "Dit jier"
-
-msgid "Monthly Performance"
-msgstr "Moanlikse prestaasjes"
-
-msgid "All-time Point Breakdown by Type"
-msgstr "Puntenopbou op type"
-
-msgid "Add-ons"
-msgstr "Add-ons"
-
-msgid "Total"
-msgstr "Totaal"
-
-msgid "Month"
-msgstr "Moanne"
-
-msgid "Year"
-msgstr "Jier"
-
-msgid "All-Time"
-msgstr "Alles"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr "– Helpmiddelen foar beoardielers – Add-ons foar Firefox"
@@ -6017,12 +5941,6 @@ msgstr "Juridyske betingsten"
 msgid "Report Trademark Abuse"
 msgstr "Misbrûk fan hannelsmerk melde"
 
-msgid "The new website supports mobile and desktop clients"
-msgstr "De nije website stipet mobile en desktopclients"
-
-msgid "View the new site"
-msgstr "De nije website besjen"
-
 msgid "Site Status"
 msgstr "Websitesteat"
 
@@ -6075,6 +5993,9 @@ msgstr "Tebek nei de {0}-add-ons-startside"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\">-add-ons"
+
+msgid "Add-ons"
+msgstr "Add-ons"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"

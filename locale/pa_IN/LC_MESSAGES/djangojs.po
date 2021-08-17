@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:03+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2020-08-31 08:36+0000\n"
 "Last-Translator: Satnam S Virdi <pika10singh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -96,15 +96,6 @@ msgstr "ਤੁਹਾਡੀ ਐਡ-ਆਨ ਬਿਨਾਂ ਕਿਸੇ ਗ਼ਲ�
 
 msgid "Your submission will be automatically signed."
 msgstr "ਤੁਹਾਡੀ ਪੇਸ਼ਕਸ਼ ਉੱਤੇ ਆਪਣੇ-ਆਪ ਦਸਤਖ਼ਤ ਹੋ ਜਾਣਗੇ।"
-
-msgid "WebExtension upgrade"
-msgstr "WebExtension ਅੱਪਗਰੇਡ ਕਰੋ"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "ਅਸੀਂ ਇੱਕ ਅੱਪਗਰੇਡ ਦੀ ਇਜ਼ਾਜ਼ਤ ਅਤੇ ਪ੍ਰੇਰਿਤ ਕਰਦੇ ਹਾਂ ਪਰ ਤੁਸੀਂ ਇਸ ਪ੍ਰਕਿਰਿਆ ਨੂੰ ਉਲਟਾ ਨਹੀਂ ਕਰ ਸਕਦੇ । ਇੱਕ ਵਾਰ ਤੁਹਾਡੇ ਵਰਤੋਂਕਾਰ ਕੋਲ ਵੈਬ ਇਕਸਟੈਨਸ਼ਨ ਹੋਵੇ, ਉਹ ਇੱਕ ਪੁਰਾਣੇ ਐਡ-ਆਨ ਸਥਾਪਿਤ ਕਰਨ ਦੇ ਯੋਗ ਨਹੀਂ ਹੋਣਗੇ।"
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "MDN ਉੱਤੇ ਪੁਰਾਣੀ ਫਾਇਰਫਾਕਸ ਐਡ-ਆਨ ਪੋਰਟ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "ਵਰਜ਼ਨ ਨੋਟਾਂ ਦਾ ਵੇਰਵਾ ਸ਼ਾਮਲ (ਇਹ ਅਗਲੇ ਕਦਮ ਵਿੱਚ ਕੀਤਾ ਜਾ ਸਕਦਾ)।"
@@ -752,12 +743,6 @@ msgstr "ਲਿਖਤ ਦੀ ਪੜਤਾਲ ਕਰੋ"
 
 msgid "Review notes found"
 msgstr "ਪੜਤਾਲ ਨੋਟਿਸ ਮਿਲੇ"
-
-msgid "Average Reviews"
-msgstr "ਔਸਤ ਪੜਤਾਲਾਂ"
-
-msgid "Number of Reviews"
-msgstr "ਪੜਤਾਲਾਂ ਦੀ ਗਿਣਤੀ"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "ਅਧਿਕਤਮ ਅਪਲੋਡ ਅਕਾਰ ਹੈ {0} - ਛੋਟਾ ਬੈਕਗਰਾਊਂਡ ਚਿੱਤਰ ਚੁਣੋ।"

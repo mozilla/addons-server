@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:02+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2021-06-26 20:22+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -1128,7 +1128,6 @@ msgstr "Vývoj webu"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr "Stáhněte si nástroje pro Firefox a vývoj webových aplikací. Tato kategorie zahrnuje rozšíření pro GitHub, nastavení user agenta, správu cookies a další."
 
-#. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "Ostatní"
 
@@ -4753,33 +4752,6 @@ msgstr "konec"
 msgid "add-on, reviewer or comment"
 msgstr "doplněk, recenze nebo komentář"
 
-msgid "Search by add-on name / author email"
-msgstr "Hledat dle názvu doplňku / e-mailu autora"
-
-msgid "Needs Admin Code Review"
-msgstr "Čeká na kontrolu kódu administrátorem"
-
-msgid "yes"
-msgstr "ano"
-
-msgid "no"
-msgstr "ne"
-
-msgid "Add-on Types"
-msgstr "Typy doplňků"
-
-msgid "Any"
-msgstr "Nezáleží"
-
-msgid "Search by add-on name / author email / guid"
-msgstr "Hledat dle názvu doplňku / e-mailu autora / guid"
-
-msgid "Max. Version"
-msgstr "Max. verze"
-
-msgid "Select an application first"
-msgstr "Prvně zvolte aplikaci"
-
 msgid "Comments:"
 msgstr "Komentář:"
 
@@ -4812,6 +4784,9 @@ msgstr "Přeskočit"
 
 msgid "Delete review"
 msgstr "Smazat recenzi"
+
+msgid "Needs Admin Code Review"
+msgstr "Čeká na kontrolu kódu administrátorem"
 
 msgid "Needs Admin Content Review"
 msgstr "Čeká na kontrolu obsahu administrátorem"
@@ -5220,57 +5195,6 @@ msgstr "Recenze byla označena k odstranění."
 
 msgid "Undelete"
 msgstr "Vrátit zpět odstranění"
-
-msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
-
-msgid "Add-on Reviewer Performance"
-msgstr "Aktivita redaktora"
-
-msgid "View statistics for user"
-msgstr "Zobrazit statistiky uživatele"
-
-msgid "Range"
-msgstr "Rozsah"
-
-msgid "Your Reviews"
-msgstr "Vaše kontroly"
-
-msgid "By {user_name}"
-msgstr "Od {user_name}"
-
-msgid "Total Reviews"
-msgstr "Celkový počet kontrol"
-
-msgid "Active Contributors"
-msgstr "Aktivní přispěvatelé"
-
-msgid "This Month"
-msgstr "Tento měsíc"
-
-msgid "This Year"
-msgstr "Tento rok"
-
-msgid "Monthly Performance"
-msgstr "Měsíční aktivita"
-
-msgid "All-time Point Breakdown by Type"
-msgstr "All-time Point Breakdown by Type"
-
-msgid "Add-ons"
-msgstr "Doplňky"
-
-msgid "Total"
-msgstr "Celkem"
-
-msgid "Month"
-msgstr "Měsíce"
-
-msgid "Year"
-msgstr "Rok"
-
-msgid "All-Time"
-msgstr "Po celou dobu"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr ""
@@ -5962,12 +5886,6 @@ msgstr "Právní omezení"
 msgid "Report Trademark Abuse"
 msgstr "Nahlásit zneužití ochranné známky"
 
-msgid "The new website supports mobile and desktop clients"
-msgstr "Nová stránka funguje na mobilech i počítačích"
-
-msgid "View the new site"
-msgstr "Zobrazit novou verzi"
-
 msgid "Site Status"
 msgstr "Stav webu"
 
@@ -6020,6 +5938,9 @@ msgstr "Návrat na titulní stránku doplňků aplikace {0}"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Doplňky"
+
+msgid "Add-ons"
+msgstr "Doplňky"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"

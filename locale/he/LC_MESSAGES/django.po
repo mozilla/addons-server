@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:02+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2021-07-29 19:00+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
@@ -1136,7 +1136,6 @@ msgstr "פיתוח הרשת"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
 
-#. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "אחר"
 
@@ -4769,33 +4768,6 @@ msgstr "סיום"
 msgid "add-on, reviewer or comment"
 msgstr "תוספת, סוקר או תגובה"
 
-msgid "Search by add-on name / author email"
-msgstr "חיפוש לפי שם תוספת / כתובת הדוא״ל של היוצר"
-
-msgid "Needs Admin Code Review"
-msgstr "נדרשת סקירת קוד של מנהל"
-
-msgid "yes"
-msgstr "כן"
-
-msgid "no"
-msgstr "לא"
-
-msgid "Add-on Types"
-msgstr "סוגי תוספות"
-
-msgid "Any"
-msgstr ""
-
-msgid "Search by add-on name / author email / guid"
-msgstr "חיפוש לפי שם תוספת / כתובת הדוא״ל של היוצר / guid"
-
-msgid "Max. Version"
-msgstr "גרסה מרבית"
-
-msgid "Select an application first"
-msgstr "נא לבחור תחילה ביישום"
-
 msgid "Comments:"
 msgstr "תגובות:"
 
@@ -4829,6 +4801,9 @@ msgstr "דילוג לבינתיים"
 
 msgid "Delete review"
 msgstr "מחיקת סקירה"
+
+msgid "Needs Admin Code Review"
+msgstr "נדרשת סקירת קוד של מנהל"
 
 msgid "Needs Admin Content Review"
 msgstr "נדרשת סקירת תוכן של מנהל"
@@ -5259,57 +5234,6 @@ msgstr "הסקירה סומנה בדגל לפי המחיקה."
 
 msgid "Undelete"
 msgstr "ביטול מחיקה"
-
-msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr "ביצועי סוקר – תוספות עבור Firefox"
-
-msgid "Add-on Reviewer Performance"
-msgstr "ביצועי סוקר התוספות"
-
-msgid "View statistics for user"
-msgstr "הצגת סטטיסטיקה למשתמש"
-
-msgid "Range"
-msgstr "טווח"
-
-msgid "Your Reviews"
-msgstr "הסקירות שלך"
-
-msgid "By {user_name}"
-msgstr "מאת {user_name}"
-
-msgid "Total Reviews"
-msgstr "סה״כ סקירות"
-
-msgid "Active Contributors"
-msgstr "תורמים פעילים"
-
-msgid "This Month"
-msgstr "החודש הזה"
-
-msgid "This Year"
-msgstr "השנה הזו"
-
-msgid "Monthly Performance"
-msgstr "ביצועים חודשיים"
-
-msgid "All-time Point Breakdown by Type"
-msgstr "כל הנקודות שהוענקו אי פעם לפי סוג"
-
-msgid "Add-ons"
-msgstr "תוספות"
-
-msgid "Total"
-msgstr "סה״כ"
-
-msgid "Month"
-msgstr "חודש"
-
-msgid "Year"
-msgstr "שנה"
-
-msgid "All-Time"
-msgstr "כל הזמנים"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr " – כלי סקירה – תוספות עבור Firefox"
@@ -6023,12 +5947,6 @@ msgstr "הצהרה משפטית"
 msgid "Report Trademark Abuse"
 msgstr "דיווח על שימוש לרעה בסימן מסחרי"
 
-msgid "The new website supports mobile and desktop clients"
-msgstr ""
-
-msgid "View the new site"
-msgstr "הצגת האתר החדש"
-
 msgid "Site Status"
 msgstr "מצב האתר"
 
@@ -6082,6 +6000,9 @@ msgstr "חזרה לדף הבית של תוספות עבור {0}"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "תוספות עבור <img alt=\"Firefox\" src=\"{0}\">"
+
+msgid "Add-ons"
+msgstr "תוספות"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
