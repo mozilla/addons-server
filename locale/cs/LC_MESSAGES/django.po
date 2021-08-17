@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-17 16:44+0000\n"
-"PO-Revision-Date: 2021-08-17 19:35+0000\n"
+"PO-Revision-Date: 2021-08-17 20:13+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -871,19 +871,19 @@ msgid "User {user} api key reset."
 msgstr "API klíč uživatele {user} byl obnoven."
 
 msgid "Block for {0} added to Blocklist."
-msgstr ""
+msgstr "Blokace pro {0} byla přidána na seznam blokací."
 
 msgid "Block added"
-msgstr "Blok přidán"
+msgstr "Blokace byla přidána"
 
 msgid "Block for {0} edited in Blocklist."
-msgstr ""
+msgstr "Blokace pro {0} byla v seznamu blokací upravena."
 
 msgid "Block edited"
-msgstr "Blok upraven"
+msgstr "Blokace byla upravena"
 
 msgid "Block for {0} deleted from Blocklist."
-msgstr ""
+msgstr "Blokace pro {0} byla odstraněna ze seznamu blokací."
 
 msgid "Block deleted"
 msgstr "Blok odstraněn"
