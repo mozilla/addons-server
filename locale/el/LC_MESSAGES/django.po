@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-10 17:02+0000\n"
-"PO-Revision-Date: 2021-08-12 13:31+0000\n"
+"PO-Revision-Date: 2021-08-17 09:28+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -136,7 +136,7 @@ msgstr "Σύνδεσμοι ελεγκτή"
 
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
-msgstr "Ενεργοποιήθηκε εξαγωγή Git για το \"%(addons)s\"."
+msgstr "Ενεργοποιήθηκε εξαγωγή Git για το «%(addons)s»."
 
 msgid "- Add-on not on AMO -"
 msgstr "- Το πρόσθετο δεν είναι στο AMO -"
@@ -146,7 +146,7 @@ msgid "Listed"
 msgstr "Δηλωμένοι"
 
 msgid "Addon and collection paths need to end with \"/\""
-msgstr "Οι διαδρομές των προσθέτων και των συλλογών πρέπει να τελειώνουν με \"/\""
+msgstr "Οι διαδρομές των προσθέτων και των συλλογών πρέπει να τελειώνουν με «/»"
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Τα ονόματα προσθέτων δεν μπορούν να περιέχουν τα εμπορικά σήματα της Mozilla ή του Firefox."
