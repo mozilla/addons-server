@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:03+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2018-10-19 21:53+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -92,15 +92,6 @@ msgstr "Add-on anda telah disahkan dengan tiada ralat atau amaran."
 
 msgid "Your submission will be automatically signed."
 msgstr "Serahan anda akan ditandatangani secara automatik."
-
-msgid "WebExtension upgrade"
-msgstr "kemaskini WebExtension"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Kami izin dan menggalakkan kemas kini tetapi anda tidak boleh undurkan proses ini. Sebaik sahaja WebExtension dipasang oleh pengguna, mereka tidak akan boleh pasang add-on legasi."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Pemindahan add-on Firefox legasi di MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Sertakan nota butiran versi (ini boleh dilakukan dalam langkah seterusnya)."
@@ -739,12 +730,6 @@ msgstr "Teks Semakan"
 
 msgid "Review notes found"
 msgstr "Nota semakan ditemui"
-
-msgid "Average Reviews"
-msgstr "Purata Ulasan"
-
-msgid "Number of Reviews"
-msgstr "Bilangan Ulasan"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "Saiz maksimum muat naik {0} - pilih imej latar belakang yang lebih kecil."

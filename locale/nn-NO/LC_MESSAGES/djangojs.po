@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:03+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2021-04-09 00:33+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -96,15 +96,6 @@ msgstr "Utvidinga di vart validert utan feil og meldingar."
 
 msgid "Your submission will be automatically signed."
 msgstr "Bidraget ditt vert automatisk signert."
-
-msgid "WebExtension upgrade"
-msgstr "WebExtension-oppgradering"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Vi tillèt og oppmuntrar ei oppgradering, men du kan ikkje angra denne prosessen. Når brukarane dine har WebExtension installert, vil dei ikkje kunna installera ei utviding med arv."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Flyttar ei Firefox-utviding med arv på MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Inkluder detaljerte versjonsmerknadar (dette kan gjerast i neste steg)."
@@ -749,12 +740,6 @@ msgstr "Evaluer tekst"
 
 msgid "Review notes found"
 msgstr "Fann ingen evalueringar"
-
-msgid "Average Reviews"
-msgstr "Gjennomsnittlege vurderingar"
-
-msgid "Number of Reviews"
-msgstr "Tal på vurderingar"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "Maksimum opplastingsstorleik er {0} - vel eit mindre bakgrunnsbilde."

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:02+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2021-08-06 17:22+0000\n"
 "Last-Translator: KAHINA <kahinamessaoudi03@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1117,7 +1117,6 @@ msgstr "Taneflit Web"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr "Sider isiɣzaf Firefox yesnernayessumuren ifecka n tneflit web. Taggayt-a tegber isiɣzaf i GitHub, akken ad tbeddleḍ imeggi aseqdac, asefrek n yinagan n tuqqna d wayen-nniḍen."
 
-#. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "Wiyaḍ"
 
@@ -4754,33 +4753,6 @@ msgstr "tagara"
 msgid "add-on, reviewer or comment"
 msgstr "azegrir, imcegger neɣ awennit"
 
-msgid "Search by add-on name / author email"
-msgstr "Nadi s yisem n uzegrir / imayl n umeskar"
-
-msgid "Needs Admin Code Review"
-msgstr "Yesra acegger n tengalt n unedbal"
-
-msgid "yes"
-msgstr "ih"
-
-msgid "no"
-msgstr "ala"
-
-msgid "Add-on Types"
-msgstr "anawen n uzegrir"
-
-msgid "Any"
-msgstr "Win illan"
-
-msgid "Search by add-on name / author email / guid"
-msgstr "Nadi s yisem n uzegrir / imayl n umeskar / guid"
-
-msgid "Max. Version"
-msgstr "Lqem afellay"
-
-msgid "Select an application first"
-msgstr "Di tazwara, fren asnas"
-
 msgid "Comments:"
 msgstr "Iwenniten:"
 
@@ -4813,6 +4785,9 @@ msgstr "Suref akka tura"
 
 msgid "Delete review"
 msgstr "Kkes acegger"
+
+msgid "Needs Admin Code Review"
+msgstr "Yesra acegger n tengalt n unedbal"
 
 msgid "Needs Admin Content Review"
 msgstr "Yesra acegger n ugbur n unedbal"
@@ -5216,57 +5191,6 @@ msgstr "Aceggir yettwacreḍ send tukksa-is."
 
 msgid "Undelete"
 msgstr "Sefsex tukksa"
-
-msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr "Tamlellit n usenqed – Izegrar i Firefox"
-
-msgid "Add-on Reviewer Performance"
-msgstr "Timellit n imcegger n uzegrir"
-
-msgid "View statistics for user"
-msgstr "Sken tidaddanin i useqdac"
-
-msgid "Range"
-msgstr "Azilal"
-
-msgid "Your Reviews"
-msgstr "Iceggiren inek"
-
-msgid "By {user_name}"
-msgstr "Sɣur {user_name}"
-
-msgid "Total Reviews"
-msgstr "Amḍan amatu n iceggiren"
-
-msgid "Active Contributors"
-msgstr "Iceggiren inek"
-
-msgid "This Month"
-msgstr "Aggur-agi"
-
-msgid "This Year"
-msgstr "Aseggass-agi"
-
-msgid "Monthly Performance"
-msgstr "Timellit n waggur"
-
-msgid "All-time Point Breakdown by Type"
-msgstr "Fru gar tneqqiḍin s wanaw ɣef tenzagt meṛṛa"
-
-msgid "Add-ons"
-msgstr "Izegrar"
-
-msgid "Total"
-msgstr "Asemday"
-
-msgid "Month"
-msgstr "Aggur"
-
-msgid "Year"
-msgstr "Aseggwass"
-
-msgid "All-Time"
-msgstr "Yal tikelt"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr "– Ifecka n usenqed – Izegrar i Firefox"
@@ -5958,12 +5882,6 @@ msgstr "Alγu usḍif"
 msgid "Report Trademark Abuse"
 msgstr "Mmel yir aseqdec n tecreṭ"
 
-msgid "The new website supports mobile and desktop clients"
-msgstr "Asmel-a web amaynut ur yessefrak ara tunigin deg yiselkimen akked izirazen"
-
-msgid "View the new site"
-msgstr "Wali asmel amaynut"
-
 msgid "Site Status"
 msgstr "Addad n usmel"
 
@@ -6015,6 +5933,9 @@ msgstr "Uɣal ar usebter n uzegrir n {0}"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Izegrar"
+
+msgid "Add-ons"
+msgstr "Izegrar"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"

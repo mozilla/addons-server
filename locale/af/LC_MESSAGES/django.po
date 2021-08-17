@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:02+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2015-03-16 11:24+0000\n"
 "Last-Translator: Friedel <friedel@translate.org.za>\n"
 "Language-Team: translate-discuss-af@lists.sourceforge.net\n"
@@ -1185,7 +1185,6 @@ msgstr "Webontwikkeling"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
 
-#. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "Ander"
 
@@ -4887,34 +4886,6 @@ msgstr ""
 msgid "add-on, reviewer or comment"
 msgstr "Opmerkings van die ontwikkelaar"
 
-msgid "Search by add-on name / author email"
-msgstr ""
-
-#, fuzzy
-msgid "Needs Admin Code Review"
-msgstr "Nog geen resensies oor byvoegings nie."
-
-msgid "yes"
-msgstr "ja"
-
-msgid "no"
-msgstr "nee"
-
-msgid "Add-on Types"
-msgstr ""
-
-msgid "Any"
-msgstr ""
-
-msgid "Search by add-on name / author email / guid"
-msgstr ""
-
-msgid "Max. Version"
-msgstr ""
-
-msgid "Select an application first"
-msgstr ""
-
 msgid "Comments:"
 msgstr ""
 
@@ -4948,6 +4919,10 @@ msgstr ""
 
 msgid "Delete review"
 msgstr "Skrap resensie"
+
+#, fuzzy
+msgid "Needs Admin Code Review"
+msgstr "Nog geen resensies oor byvoegings nie."
 
 #, fuzzy
 msgid "Needs Admin Content Review"
@@ -5406,57 +5381,6 @@ msgid "Review was flagged prior to deletion."
 msgstr ""
 
 msgid "Undelete"
-msgstr ""
-
-msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
-
-msgid "Add-on Reviewer Performance"
-msgstr ""
-
-msgid "View statistics for user"
-msgstr ""
-
-msgid "Range"
-msgstr ""
-
-msgid "Your Reviews"
-msgstr ""
-
-msgid "By {user_name}"
-msgstr ""
-
-msgid "Total Reviews"
-msgstr ""
-
-msgid "Active Contributors"
-msgstr ""
-
-msgid "This Month"
-msgstr ""
-
-msgid "This Year"
-msgstr ""
-
-msgid "Monthly Performance"
-msgstr ""
-
-msgid "All-time Point Breakdown by Type"
-msgstr ""
-
-msgid "Add-ons"
-msgstr "Byvoegings"
-
-msgid "Total"
-msgstr ""
-
-msgid "Month"
-msgstr ""
-
-msgid "Year"
-msgstr ""
-
-msgid "All-Time"
 msgstr ""
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
@@ -6203,13 +6127,6 @@ msgstr "Regskennisgewings"
 msgid "Report Trademark Abuse"
 msgstr "Rapporteer misbruik"
 
-msgid "The new website supports mobile and desktop clients"
-msgstr ""
-
-#, fuzzy
-msgid "View the new site"
-msgstr "Sien Selfoon-werf"
-
 msgid "Site Status"
 msgstr ""
 
@@ -6264,6 +6181,9 @@ msgstr "Terug na {0} se byvoegingsblad"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Byvoegings"
+
+msgid "Add-ons"
+msgstr "Byvoegings"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"

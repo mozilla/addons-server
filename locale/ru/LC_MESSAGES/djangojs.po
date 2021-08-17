@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:03+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2020-12-13 13:16+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -100,16 +100,6 @@ msgstr "Ваше дополнение прошло проверку без ош�
 
 msgid "Your submission will be automatically signed."
 msgstr "Ваше представление будет автоматически подписано."
-
-msgid "WebExtension upgrade"
-msgstr "Обновление до WebExtension"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-"Мы позволяем и поощряем обновления, но вы не сможете обратить этот процесс вспять. После того, как ваши пользователи установят WebExtension, они больше не смогут установить устаревшее дополнение."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Портирование устаревшего дополнения Firefox на MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Включить подробные примечания к версии (можно сделать на следующем шаге)."
@@ -759,12 +749,6 @@ msgstr "Текст проверки"
 
 msgid "Review notes found"
 msgstr "Найдены замечания при проверке"
-
-msgid "Average Reviews"
-msgstr "Средняя оценка"
-
-msgid "Number of Reviews"
-msgstr "Количество отзывов"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "Максимальный размер загружаемого файла {0} - выберите фоновое изображение поменьше."

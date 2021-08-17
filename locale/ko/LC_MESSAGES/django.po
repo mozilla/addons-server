@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:02+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2021-05-02 18:58+0000\n"
 "Last-Translator: Kim YoungCheon <circcc@gmail.com>\n"
 "Language-Team: none\n"
@@ -1142,7 +1142,6 @@ msgstr "웹 개발 도구"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
 
-#. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "기타"
 
@@ -4791,33 +4790,6 @@ msgstr "종료"
 msgid "add-on, reviewer or comment"
 msgstr "부가 기능, 검토자나 의견"
 
-msgid "Search by add-on name / author email"
-msgstr "검색 (부가 기능 이름 / 제작자 이메일)"
-
-msgid "Needs Admin Code Review"
-msgstr "관리자 코드 검토 필요"
-
-msgid "yes"
-msgstr "예"
-
-msgid "no"
-msgstr "아니오"
-
-msgid "Add-on Types"
-msgstr "부가 기능 종류"
-
-msgid "Any"
-msgstr "모든 종류"
-
-msgid "Search by add-on name / author email / guid"
-msgstr ""
-
-msgid "Max. Version"
-msgstr "최대 버전"
-
-msgid "Select an application first"
-msgstr "먼저 지원할 애플리케이션 선택"
-
 msgid "Comments:"
 msgstr "코멘트:"
 
@@ -4853,6 +4825,9 @@ msgstr "지금은 접어두기"
 
 msgid "Delete review"
 msgstr "검토 삭제"
+
+msgid "Needs Admin Code Review"
+msgstr "관리자 코드 검토 필요"
 
 msgid "Needs Admin Content Review"
 msgstr "관리자 콘텐츠 검토가 필요"
@@ -5300,59 +5275,6 @@ msgstr ""
 
 msgid "Undelete"
 msgstr "삭제 취소"
-
-msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
-
-msgid "Add-on Reviewer Performance"
-msgstr "부가 기능 검토자 활동 내역"
-
-msgid "View statistics for user"
-msgstr "사용자 통계 보기"
-
-msgid "Range"
-msgstr "범위"
-
-msgid "Your Reviews"
-msgstr "내 검토 내역"
-
-msgid "By {user_name}"
-msgstr "작성자: {user_name}"
-
-msgid "Total Reviews"
-msgstr "총 검토 수"
-
-# 81%
-# 100%
-msgid "Active Contributors"
-msgstr "기부 제도 사용하기"
-
-msgid "This Month"
-msgstr "이번달"
-
-msgid "This Year"
-msgstr "올해"
-
-msgid "Monthly Performance"
-msgstr "월간 활동"
-
-msgid "All-time Point Breakdown by Type"
-msgstr "부가 기능 종류별 전체 시간 점수 내역"
-
-msgid "Add-ons"
-msgstr "부가 기능"
-
-msgid "Total"
-msgstr "전체"
-
-msgid "Month"
-msgstr "월"
-
-msgid "Year"
-msgstr "년도"
-
-msgid "All-Time"
-msgstr "전체 시간"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr ""
@@ -6102,12 +6024,6 @@ msgstr "법적 고지"
 msgid "Report Trademark Abuse"
 msgstr "상표권 침해 신고"
 
-msgid "The new website supports mobile and desktop clients"
-msgstr ""
-
-msgid "View the new site"
-msgstr "새로운 사이트 방문"
-
 msgid "Site Status"
 msgstr "사이트 상태"
 
@@ -6161,6 +6077,9 @@ msgstr "{0} 부가 기능 대문으로 돌아가기"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> 부가 기능"
+
+msgid "Add-ons"
+msgstr "부가 기능"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"

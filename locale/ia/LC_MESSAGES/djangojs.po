@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:03+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2020-12-21 13:37+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -96,15 +96,6 @@ msgstr "Tu additivo ha essite validate sin errores o avisos."
 
 msgid "Your submission will be automatically signed."
 msgstr "Tu submission essera signate automaticamente."
-
-msgid "WebExtension upgrade"
-msgstr "Actualisation de WebExtension"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Nos permitte e incoragia un actualisation, ma le processo es irreversibile. Un vice que tu usatores ha WebExtension installate, illes non potera plus installar un additivo de typo ancian."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Converter un additivo ancian a WebExtension MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Includer notas de version detaliate (il es possibile facer isto in le proxime passo)."
@@ -745,12 +736,6 @@ msgstr "Texto pro revision"
 
 msgid "Review notes found"
 msgstr "Notas de revision trovate"
-
-msgid "Average Reviews"
-msgstr "Media de recensiones"
-
-msgid "Number of Reviews"
-msgstr "Numero de recensiones"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "Le maxime dimension de incargamento es {0} - elige un imagine de fundo plus micre."

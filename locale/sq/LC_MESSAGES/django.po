@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:02+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2021-07-31 08:16+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -1132,7 +1132,6 @@ msgstr "Zhvillim Web"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr "Shkarkoni zgjerime Firefox-i që merren me mjete zhvillimi web. Kjo kategori përfshin zgjerime për punën në GitHub, këmbyes agjenti përdoruesi, administrim cookie-sh, etj."
 
-#. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "Tjetër"
 
@@ -4809,33 +4808,6 @@ msgstr "fund"
 msgid "add-on, reviewer or comment"
 msgstr "shtesë, shqyrtues, ose koment"
 
-msgid "Search by add-on name / author email"
-msgstr "Kërkoni sipas emrash / email-esh autorësh të shtesës"
-
-msgid "Needs Admin Code Review"
-msgstr "Lyp Shqyrtim Kodi Nga Një Përgjegjës"
-
-msgid "yes"
-msgstr "po"
-
-msgid "no"
-msgstr "jo"
-
-msgid "Add-on Types"
-msgstr "Lloje Shtesash"
-
-msgid "Any"
-msgstr "Çfarëdo"
-
-msgid "Search by add-on name / author email / guid"
-msgstr "Kërkoni për emër / email autori / guid shtese"
-
-msgid "Max. Version"
-msgstr "Version Maksimum"
-
-msgid "Select an application first"
-msgstr "Përzgjidhni së pari një aplikacion"
-
 msgid "Comments:"
 msgstr "Komente:"
 
@@ -4868,6 +4840,9 @@ msgstr "Hëpërhë anashkaloje"
 
 msgid "Delete review"
 msgstr "Fshije shqyrtimin"
+
+msgid "Needs Admin Code Review"
+msgstr "Lyp Shqyrtim Kodi Nga Një Përgjegjës"
 
 msgid "Needs Admin Content Review"
 msgstr "Lyp Shqyrtim Lënde Nga Përgjegjës"
@@ -5271,57 +5246,6 @@ msgstr "Shqyrtimit i ishte vënë shenjë para fshirjes."
 
 msgid "Undelete"
 msgstr "Çfshije"
-
-msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr "Suksesshmëri Shqyrtuesi – Shtesa për Firefox"
-
-msgid "Add-on Reviewer Performance"
-msgstr "Suksesshmëri Shqyrtuesi Shtesash"
-
-msgid "View statistics for user"
-msgstr "Shihni statistikat për përdorues"
-
-msgid "Range"
-msgstr "Interval"
-
-msgid "Your Reviews"
-msgstr "Shqyrtimet Tuaja"
-
-msgid "By {user_name}"
-msgstr "Nga {user_name}"
-
-msgid "Total Reviews"
-msgstr "Shqyrtime Gjithsej"
-
-msgid "Active Contributors"
-msgstr "Pjesëmarrës Aktivë"
-
-msgid "This Month"
-msgstr "Këtë Muaj"
-
-msgid "This Year"
-msgstr "Këtë Vit"
-
-msgid "Monthly Performance"
-msgstr "Suksesshmëri Mujore"
-
-msgid "All-time Point Breakdown by Type"
-msgstr "Shpërndarje Pikësh Sipas Llojeve, Që Prej Fillimeve"
-
-msgid "Add-ons"
-msgstr "Shtesa"
-
-msgid "Total"
-msgstr "Gjithsej"
-
-msgid "Month"
-msgstr "Muaj"
-
-msgid "Year"
-msgstr "Vit"
-
-msgid "All-Time"
-msgstr "Tërë Kohën"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr " – Mjete Shqyrtuesi - Shtesa për Firefox"
@@ -6013,12 +5937,6 @@ msgstr "Shënime Ligjore"
 msgid "Report Trademark Abuse"
 msgstr "Njoftoni Shpërdorim Shenjash Tregtare"
 
-msgid "The new website supports mobile and desktop clients"
-msgstr "Sajti i ri mbulon klientë celularë dhe desktop"
-
-msgid "View the new site"
-msgstr "Shihni sajtin e ri"
-
 msgid "Site Status"
 msgstr "Gjendje Sajti"
 
@@ -6071,6 +5989,9 @@ msgstr "Kthehuni te faqja hyrëse e Shtesave {0}"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "Shtesa për <img alt=\"Firefox\" src=\"{0}\">"
+
+msgid "Add-ons"
+msgstr "Shtesa"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"

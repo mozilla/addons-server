@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:02+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1200,7 +1200,6 @@ msgstr "Desenvolvimento de extensões"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
 
-#. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "Outro"
 
@@ -4997,34 +4996,6 @@ msgstr "fim"
 msgid "add-on, reviewer or comment"
 msgstr "extra, editor ou comentário"
 
-msgid "Search by add-on name / author email"
-msgstr "Procurar por nome do extra / correio eletrónico do autor"
-
-#, fuzzy
-msgid "Needs Admin Code Review"
-msgstr "Revisão administrativa"
-
-msgid "yes"
-msgstr "sim"
-
-msgid "no"
-msgstr "não"
-
-msgid "Add-on Types"
-msgstr "Tipos de extras"
-
-msgid "Any"
-msgstr "Qualquer"
-
-msgid "Search by add-on name / author email / guid"
-msgstr ""
-
-msgid "Max. Version"
-msgstr "Versão máxima"
-
-msgid "Select an application first"
-msgstr "Selecione uma aplicação primeiro"
-
 msgid "Comments:"
 msgstr "Comentários:"
 
@@ -5059,6 +5030,10 @@ msgstr "Saltar por agora"
 
 msgid "Delete review"
 msgstr "Eliminar comentário"
+
+#, fuzzy
+msgid "Needs Admin Code Review"
+msgstr "Revisão administrativa"
 
 #, fuzzy
 msgid "Needs Admin Content Review"
@@ -5526,58 +5501,6 @@ msgstr "A revisão foi marcada antes para eliminação."
 
 msgid "Undelete"
 msgstr "Não eliminar"
-
-msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
-
-#, fuzzy
-msgid "Add-on Reviewer Performance"
-msgstr "Processo de revisão de extras"
-
-msgid "View statistics for user"
-msgstr "Ver estatísticas para o utilizador"
-
-msgid "Range"
-msgstr "Intervalo"
-
-msgid "Your Reviews"
-msgstr "As suas revisões"
-
-msgid "By {user_name}"
-msgstr "Por {user_name}"
-
-msgid "Total Reviews"
-msgstr "Total de revisões"
-
-msgid "Active Contributors"
-msgstr "Colaboradores ativos"
-
-msgid "This Month"
-msgstr "Este mês"
-
-msgid "This Year"
-msgstr "Este ano"
-
-msgid "Monthly Performance"
-msgstr "Performance mensal"
-
-msgid "All-time Point Breakdown by Type"
-msgstr "Resumo de todos pontos por tipo"
-
-msgid "Add-ons"
-msgstr "Extras"
-
-msgid "Total"
-msgstr "Total"
-
-msgid "Month"
-msgstr "Mês"
-
-msgid "Year"
-msgstr "Ano"
-
-msgid "All-Time"
-msgstr "Desde sempre"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr ""
@@ -6324,13 +6247,6 @@ msgstr "Informações legais"
 msgid "Report Trademark Abuse"
 msgstr "Denunciar abuso"
 
-msgid "The new website supports mobile and desktop clients"
-msgstr ""
-
-#, fuzzy
-msgid "View the new site"
-msgstr "Ver versão móvel"
-
 msgid "Site Status"
 msgstr ""
 
@@ -6386,6 +6302,9 @@ msgstr "Voltar à página inicial dos extras de {0}"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Extras"
+
+msgid "Add-ons"
+msgstr "Extras"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"

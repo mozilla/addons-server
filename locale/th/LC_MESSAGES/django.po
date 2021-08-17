@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:02+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2021-05-26 05:07+0000\n"
 "Last-Translator: yotanutmaliwan <yotanutmaliwan@gmail.com>\n"
 "Language-Team: Thai\n"
@@ -1130,7 +1130,6 @@ msgstr "การพัฒนาเว็บ"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
 
-#. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "อื่น ๆ"
 
@@ -4737,33 +4736,6 @@ msgstr "จบ"
 msgid "add-on, reviewer or comment"
 msgstr ""
 
-msgid "Search by add-on name / author email"
-msgstr ""
-
-msgid "Needs Admin Code Review"
-msgstr "ต้องการการตรวจสอบรหัสโดยผู้ดูแล"
-
-msgid "yes"
-msgstr "ใช่"
-
-msgid "no"
-msgstr "ไม่"
-
-msgid "Add-on Types"
-msgstr ""
-
-msgid "Any"
-msgstr "ใด ๆ"
-
-msgid "Search by add-on name / author email / guid"
-msgstr ""
-
-msgid "Max. Version"
-msgstr ""
-
-msgid "Select an application first"
-msgstr "เลือกแอปพลิเคชันก่อน"
-
 msgid "Comments:"
 msgstr "ความคิดเห็น:"
 
@@ -4796,6 +4768,9 @@ msgstr "ข้ามไปก่อนตอนนี้"
 
 msgid "Delete review"
 msgstr "ลบบทวิจารณ์"
+
+msgid "Needs Admin Code Review"
+msgstr "ต้องการการตรวจสอบรหัสโดยผู้ดูแล"
 
 msgid "Needs Admin Content Review"
 msgstr "ต้องการการตรวจสอบเนื้อหาโดยผู้ดูแล"
@@ -5227,57 +5202,6 @@ msgstr ""
 
 msgid "Undelete"
 msgstr "เลิกลบ"
-
-msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
-
-msgid "Add-on Reviewer Performance"
-msgstr ""
-
-msgid "View statistics for user"
-msgstr ""
-
-msgid "Range"
-msgstr ""
-
-msgid "Your Reviews"
-msgstr ""
-
-msgid "By {user_name}"
-msgstr "โดย {user_name}"
-
-msgid "Total Reviews"
-msgstr ""
-
-msgid "Active Contributors"
-msgstr ""
-
-msgid "This Month"
-msgstr "เดือนนี้"
-
-msgid "This Year"
-msgstr "ปีนี้"
-
-msgid "Monthly Performance"
-msgstr ""
-
-msgid "All-time Point Breakdown by Type"
-msgstr ""
-
-msgid "Add-ons"
-msgstr "ส่วนเสริม"
-
-msgid "Total"
-msgstr "รวมทั้งหมด"
-
-msgid "Month"
-msgstr "เดือน"
-
-msgid "Year"
-msgstr "ปี"
-
-msgid "All-Time"
-msgstr ""
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr ""
@@ -6000,12 +5924,6 @@ msgstr "ข้อกฎหมาย"
 msgid "Report Trademark Abuse"
 msgstr "รายงานการละเมิดเครื่องหมายการค้า"
 
-msgid "The new website supports mobile and desktop clients"
-msgstr ""
-
-msgid "View the new site"
-msgstr "ดูไซต์แบบใหม่"
-
 msgid "Site Status"
 msgstr "สถานะไซต์"
 
@@ -6055,6 +5973,9 @@ msgstr "กลับไปที่หน้าแรกของส่วนเ
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> ส่วนเสริม"
+
+msgid "Add-ons"
+msgstr "ส่วนเสริม"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"

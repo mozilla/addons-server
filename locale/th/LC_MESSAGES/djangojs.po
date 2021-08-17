@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:03+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2021-01-19 01:42+0000\n"
 "Last-Translator: Jabont <jabont@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -90,15 +90,6 @@ msgstr "ส่วนเสริมของคุณผ่านการตร
 
 msgid "Your submission will be automatically signed."
 msgstr "การส่งข้อมูลของคุณจะได้รับการลงทะเบียนไว้โดยอัตโนมัติ"
-
-msgid "WebExtension upgrade"
-msgstr "การอัปเกรด WebExtension"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "เราอนุญาตและสนับสนุนให้อัปเกรด แต่คุณจะไม่สามารถย้อนกลับไปได้อีก เมื่อคุณติดตั้ง WebExtension คุณจะไม่สามารถติดตั้งส่วนเสริมแบบเดิมได้อีก"
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "การโอนย้ายส่วนเสริม Firefox แบบเก่าบน MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "รวมหมายเหตุรายละเอียดรุ่น (สามารถยกไปทำในขั้นตอนถัดไปได้)"
@@ -733,12 +724,6 @@ msgstr "ข้อความการตรวจทาน"
 
 msgid "Review notes found"
 msgstr "พบบันทึกการตรวจทาน"
-
-msgid "Average Reviews"
-msgstr "คำวิจารณ์เฉลี่ย"
-
-msgid "Number of Reviews"
-msgstr "จำนวนบทวิจารณ์"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "ขนาดการอัปโหลดสูงสุดคือ {0} - เลือกภาพพื้นหลังที่เล็กกว่า"

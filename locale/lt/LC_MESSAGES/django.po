@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:02+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2017-08-10 14:20+0000\n"
 "Last-Translator: Paulius <paulius@mozilla.lt>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1143,7 +1143,6 @@ msgstr "Rodyti negalutinę versiją"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
 
-#. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr ""
 
@@ -4784,34 +4783,6 @@ msgstr ""
 msgid "add-on, reviewer or comment"
 msgstr ""
 
-msgid "Search by add-on name / author email"
-msgstr ""
-
-#, fuzzy
-msgid "Needs Admin Code Review"
-msgstr "Neperžiūrėtas"
-
-msgid "yes"
-msgstr ""
-
-msgid "no"
-msgstr ""
-
-msgid "Add-on Types"
-msgstr ""
-
-msgid "Any"
-msgstr ""
-
-msgid "Search by add-on name / author email / guid"
-msgstr ""
-
-msgid "Max. Version"
-msgstr ""
-
-msgid "Select an application first"
-msgstr ""
-
 msgid "Comments:"
 msgstr ""
 
@@ -4844,6 +4815,10 @@ msgstr ""
 
 msgid "Delete review"
 msgstr ""
+
+#, fuzzy
+msgid "Needs Admin Code Review"
+msgstr "Neperžiūrėtas"
 
 #, fuzzy
 msgid "Needs Admin Content Review"
@@ -5288,57 +5263,6 @@ msgid "Review was flagged prior to deletion."
 msgstr ""
 
 msgid "Undelete"
-msgstr ""
-
-msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
-
-msgid "Add-on Reviewer Performance"
-msgstr ""
-
-msgid "View statistics for user"
-msgstr ""
-
-msgid "Range"
-msgstr ""
-
-msgid "Your Reviews"
-msgstr ""
-
-msgid "By {user_name}"
-msgstr ""
-
-msgid "Total Reviews"
-msgstr ""
-
-msgid "Active Contributors"
-msgstr ""
-
-msgid "This Month"
-msgstr ""
-
-msgid "This Year"
-msgstr ""
-
-msgid "Monthly Performance"
-msgstr ""
-
-msgid "All-time Point Breakdown by Type"
-msgstr ""
-
-msgid "Add-ons"
-msgstr "Priedai"
-
-msgid "Total"
-msgstr ""
-
-msgid "Month"
-msgstr ""
-
-msgid "Year"
-msgstr ""
-
-msgid "All-Time"
 msgstr ""
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
@@ -6058,12 +5982,6 @@ msgstr ""
 msgid "Report Trademark Abuse"
 msgstr "Pranešti apie piktnaudžiavimą"
 
-msgid "The new website supports mobile and desktop clients"
-msgstr ""
-
-msgid "View the new site"
-msgstr ""
-
 msgid "Site Status"
 msgstr ""
 
@@ -6115,6 +6033,9 @@ msgstr ""
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr ""
+
+msgid "Add-ons"
+msgstr "Priedai"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"

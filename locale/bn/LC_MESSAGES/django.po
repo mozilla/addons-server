@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:02+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2019-09-08 11:41+0000\n"
 "Last-Translator: Ahsun Mahmud Riad <ahsunriad@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1128,7 +1128,6 @@ msgstr "ওয়েব ডেভেলপমেন্ট"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
 
-#. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "অন্যান্য"
 
@@ -4705,33 +4704,6 @@ msgstr "শেষ"
 msgid "add-on, reviewer or comment"
 msgstr ""
 
-msgid "Search by add-on name / author email"
-msgstr ""
-
-msgid "Needs Admin Code Review"
-msgstr ""
-
-msgid "yes"
-msgstr "হ্যাঁ"
-
-msgid "no"
-msgstr "না"
-
-msgid "Add-on Types"
-msgstr ""
-
-msgid "Any"
-msgstr "যে কোনো"
-
-msgid "Search by add-on name / author email / guid"
-msgstr ""
-
-msgid "Max. Version"
-msgstr "সর্বোচ্চ সংস্করণ"
-
-msgid "Select an application first"
-msgstr "প্রথমে একটি অ্যাপ্লিকেশন নির্বাচন করুন"
-
 msgid "Comments:"
 msgstr "মন্তব্যগুলো:"
 
@@ -4764,6 +4736,9 @@ msgstr "এখকার জন্য স্কিপ করুন"
 
 msgid "Delete review"
 msgstr "পর্যালোচনা মুছে ফেলুন"
+
+msgid "Needs Admin Code Review"
+msgstr ""
 
 msgid "Needs Admin Content Review"
 msgstr ""
@@ -5180,57 +5155,6 @@ msgstr ""
 
 msgid "Undelete"
 msgstr ""
-
-msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
-
-msgid "Add-on Reviewer Performance"
-msgstr ""
-
-msgid "View statistics for user"
-msgstr ""
-
-msgid "Range"
-msgstr "সীমানা"
-
-msgid "Your Reviews"
-msgstr "আপনার পর্যালোচনা"
-
-msgid "By {user_name}"
-msgstr "{user_name} দ্বারা"
-
-msgid "Total Reviews"
-msgstr "মোট পর্যালোচনা"
-
-msgid "Active Contributors"
-msgstr "সক্রিয় অবদানকারী"
-
-msgid "This Month"
-msgstr "এই মাসে"
-
-msgid "This Year"
-msgstr "এই বছর"
-
-msgid "Monthly Performance"
-msgstr ""
-
-msgid "All-time Point Breakdown by Type"
-msgstr ""
-
-msgid "Add-ons"
-msgstr "অ্যাড-অন"
-
-msgid "Total"
-msgstr "সর্বমোট"
-
-msgid "Month"
-msgstr "মাস"
-
-msgid "Year"
-msgstr "বছর"
-
-msgid "All-Time"
-msgstr "সব-সময়"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr ""
@@ -5937,12 +5861,6 @@ msgstr "আইনগত বিজ্ঞপ্তি"
 msgid "Report Trademark Abuse"
 msgstr ""
 
-msgid "The new website supports mobile and desktop clients"
-msgstr ""
-
-msgid "View the new site"
-msgstr ""
-
 msgid "Site Status"
 msgstr "সাইট এর অবস্থা"
 
@@ -5992,6 +5910,9 @@ msgstr "{0} অ্যাড-অনের হোম পেজে ফিরে য
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> অ্যাড-অন"
+
+msgid "Add-ons"
+msgstr "অ্যাড-অন"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"

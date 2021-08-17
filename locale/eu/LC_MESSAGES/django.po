@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:02+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -1187,7 +1187,6 @@ msgstr "Web garapena"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
 
-#. Review points sources other than add-ons and themes.
 #, fuzzy
 msgid "Other"
 msgstr ""
@@ -4917,34 +4916,6 @@ msgstr ""
 msgid "add-on, reviewer or comment"
 msgstr "Garatzailearen iruzkinak"
 
-msgid "Search by add-on name / author email"
-msgstr ""
-
-#, fuzzy
-msgid "Needs Admin Code Review"
-msgstr "Kudeatzailearen berrikuspena"
-
-msgid "yes"
-msgstr "bai"
-
-msgid "no"
-msgstr "ez"
-
-msgid "Add-on Types"
-msgstr "Gehigarri motak"
-
-msgid "Any"
-msgstr "Edozein"
-
-msgid "Search by add-on name / author email / guid"
-msgstr ""
-
-msgid "Max. Version"
-msgstr ""
-
-msgid "Select an application first"
-msgstr "Hautatu aplikazioa lehenik"
-
 msgid "Comments:"
 msgstr "Iruzkinak:"
 
@@ -4977,6 +4948,10 @@ msgstr "Saltatu oraingoz"
 
 msgid "Delete review"
 msgstr "Ezabatu berrikuspena"
+
+#, fuzzy
+msgid "Needs Admin Code Review"
+msgstr "Kudeatzailearen berrikuspena"
 
 #, fuzzy
 msgid "Needs Admin Content Review"
@@ -5442,57 +5417,6 @@ msgid "Review was flagged prior to deletion."
 msgstr ""
 
 msgid "Undelete"
-msgstr ""
-
-msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
-
-msgid "Add-on Reviewer Performance"
-msgstr ""
-
-msgid "View statistics for user"
-msgstr ""
-
-msgid "Range"
-msgstr ""
-
-msgid "Your Reviews"
-msgstr ""
-
-msgid "By {user_name}"
-msgstr ""
-
-msgid "Total Reviews"
-msgstr "Berrikuspenak guztira"
-
-msgid "Active Contributors"
-msgstr ""
-
-msgid "This Month"
-msgstr ""
-
-msgid "This Year"
-msgstr ""
-
-msgid "Monthly Performance"
-msgstr ""
-
-msgid "All-time Point Breakdown by Type"
-msgstr ""
-
-msgid "Add-ons"
-msgstr "Gehigarriak"
-
-msgid "Total"
-msgstr ""
-
-msgid "Month"
-msgstr ""
-
-msgid "Year"
-msgstr ""
-
-msgid "All-Time"
 msgstr ""
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
@@ -6238,13 +6162,6 @@ msgstr "Lege-oharrak"
 msgid "Report Trademark Abuse"
 msgstr ""
 
-msgid "The new website supports mobile and desktop clients"
-msgstr ""
-
-#, fuzzy
-msgid "View the new site"
-msgstr "Ikusi mugikorretarako gunea"
-
 msgid "Site Status"
 msgstr ""
 
@@ -6297,6 +6214,9 @@ msgstr "Itzuli {0}erako gehigarrien hasiera orrira"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> gehigarriak"
+
+msgid "Add-ons"
+msgstr "Gehigarriak"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"

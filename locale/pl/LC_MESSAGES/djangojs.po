@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:03+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2018-08-10 17:55+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -102,16 +102,6 @@ msgstr "Dodatek przeszedł weryfikację bez błędów i ostrzeżeń."
 
 msgid "Your submission will be automatically signed."
 msgstr "Zgłoszenie zostanie automatycznie podpisany."
-
-msgid "WebExtension upgrade"
-msgstr "Aktualizacja rozszerzenia WebExtension"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-"Zezwalamy na aktualizację i zachęcamy do niej, ale tego procesu nie można odwrócić. Kiedy użytkownicy zainstalują rozszerzenie WebExtension, nie będą mogli zainstalować przestarzałego dodatku."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Portowanie przestarzałego dodatku Firefoksa na stronie MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Dołącz szczegółowe informacje o wersji dodatku (można zrobić to w kolejnym kroku)."
@@ -780,12 +770,6 @@ msgstr "Treść opinii"
 
 msgid "Review notes found"
 msgstr "Znaleziono uwagi do opinii"
-
-msgid "Average Reviews"
-msgstr "Średnia opinia"
-
-msgid "Number of Reviews"
-msgstr "Liczba opinii"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr ""

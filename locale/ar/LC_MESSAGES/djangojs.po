@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:03+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2020-10-09 05:46+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: <doc@arabeyes.org>\n"
@@ -116,15 +116,6 @@ msgstr "اكتمل التثبّت من إضافتك بدون أي أخطاء أ�
 
 msgid "Your submission will be automatically signed."
 msgstr "سيُوقّع ما تُرسله تلقائيًا."
-
-msgid "WebExtension upgrade"
-msgstr "الترقية إلى WebExtension"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "نتيح ونشجّع على إجراء ترقية إلا أنك لا تستطيع عكس العملية. ما إن يُثبّت المستخدمون WebExtension، لن يقدروا على تثبيت إضافة عتيقة بعد الآن."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "”نقل إضافة فَيَرفُكس عتيقة“ على MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "فيه ملاحظات الإصدارة المفصّلة (يمكنك تأجيل هذا للخطوة القادمة)."
@@ -815,12 +806,6 @@ msgstr "نصّ المراجعة"
 
 msgid "Review notes found"
 msgstr "وجدنا على ملاحظات مراجعة"
-
-msgid "Average Reviews"
-msgstr "معدّل المراجعات"
-
-msgid "Number of Reviews"
-msgstr "عدد المراجعات"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "أقصى حجم للرفع هو {0}. اختر صورة خلفية أصغر من هذه."

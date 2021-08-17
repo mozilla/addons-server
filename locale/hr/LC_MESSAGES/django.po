@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:02+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2021-07-27 16:19+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
@@ -1135,7 +1135,6 @@ msgstr "Razvoj weba"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr "Preuzmi Firefox proširenja koja sadrže alate za web razvoj. Ova kategorija uključuje proširenja za GitHub, prebacivanje korisničkih agenata, upravljanje kolačićima, itd."
 
-#. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "Ostalo"
 
@@ -4738,33 +4737,6 @@ msgstr "kraj"
 msgid "add-on, reviewer or comment"
 msgstr "dodatak, recenzent ili komentar"
 
-msgid "Search by add-on name / author email"
-msgstr "Traži po imenu/e-adresi autora"
-
-msgid "Needs Admin Code Review"
-msgstr "Potreban je administratorski pregled koda"
-
-msgid "yes"
-msgstr "da"
-
-msgid "no"
-msgstr "ne"
-
-msgid "Add-on Types"
-msgstr "Vrste dodataka"
-
-msgid "Any"
-msgstr "Bilo koja"
-
-msgid "Search by add-on name / author email / guid"
-msgstr "Traži po imenu/e-adresi autora/guid oznaci"
-
-msgid "Max. Version"
-msgstr "Maks. inačica"
-
-msgid "Select an application first"
-msgstr "Najprije odaberi program"
-
 # 77%
 msgid "Comments:"
 msgstr "Komentari:"
@@ -4799,6 +4771,9 @@ msgstr "Za sada preskoči"
 
 msgid "Delete review"
 msgstr "Izbriši recenziju"
+
+msgid "Needs Admin Code Review"
+msgstr "Potreban je administratorski pregled koda"
 
 msgid "Needs Admin Content Review"
 msgstr "Potreban je administratorski pregled sadržaja"
@@ -5211,57 +5186,6 @@ msgstr "Recenzija je označena prije brisanja."
 
 msgid "Undelete"
 msgstr "Poništi brisanje"
-
-msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
-
-msgid "Add-on Reviewer Performance"
-msgstr "Učinkovitost recenzenta dodatka"
-
-msgid "View statistics for user"
-msgstr "Pogledaj statistiku o korisniku"
-
-msgid "Range"
-msgstr "Raspon"
-
-msgid "Your Reviews"
-msgstr "Tvoje recenzije"
-
-msgid "By {user_name}"
-msgstr "Od {user_name}"
-
-msgid "Total Reviews"
-msgstr "Recenzija ukupno"
-
-msgid "Active Contributors"
-msgstr "Aktivni doprinositelji"
-
-msgid "This Month"
-msgstr "Ovaj mjesec"
-
-msgid "This Year"
-msgstr "Ove godine"
-
-msgid "Monthly Performance"
-msgstr "Mjesečni učinak"
-
-msgid "All-time Point Breakdown by Type"
-msgstr ""
-
-msgid "Add-ons"
-msgstr "Dodaci"
-
-msgid "Total"
-msgstr "Ukupno"
-
-msgid "Month"
-msgstr "Mjesec"
-
-msgid "Year"
-msgstr "Godina"
-
-msgid "All-Time"
-msgstr ""
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr ""
@@ -5960,12 +5884,6 @@ msgstr "Pravne napomene"
 msgid "Report Trademark Abuse"
 msgstr "Prijavi zloupotrebu trgovačkog znaka"
 
-msgid "The new website supports mobile and desktop clients"
-msgstr "Nova web stranica podržava klijente za mobilne i desktop uređaje"
-
-msgid "View the new site"
-msgstr "Pogledaj novu web stranicu"
-
 msgid "Site Status"
 msgstr "Stanje stranice"
 
@@ -6017,6 +5935,9 @@ msgstr "Natrag na {0} početnu stranicu dodataka"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> dodaci"
+
+msgid "Add-ons"
+msgstr "Dodaci"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"

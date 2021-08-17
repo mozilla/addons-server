@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:02+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1200,7 +1200,6 @@ msgstr "ਐਕਸਟੇਸ਼ਨ ਵਿਕਾਸ"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
 
-#. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "ਦੂਜੇ"
 
@@ -4969,34 +4968,6 @@ msgstr "ਅੰਤ"
 msgid "add-on, reviewer or comment"
 msgstr "ਐਡ-ਆਨ, ਸੰਪਾਦਕ ਜਾਂ ਟਿੱਪਣੀ"
 
-msgid "Search by add-on name / author email"
-msgstr "ਐਡ-ਆਨ ਨਾਂ/ ਲੇਖਕ ਈਮੇਲ ਦੁਅਾਰਾ ਖੋਜ ਕਰੋ"
-
-#, fuzzy
-msgid "Needs Admin Code Review"
-msgstr "ਪ੍ਰਬੰਧਕ ਸਮੀਖਿਆ"
-
-msgid "yes"
-msgstr "ਹਾਂ"
-
-msgid "no"
-msgstr "ਨਹੀਂ"
-
-msgid "Add-on Types"
-msgstr "ਐਡ-ਆਨ ਕਿਸਮਾਂ"
-
-msgid "Any"
-msgstr "ਕੋਈ"
-
-msgid "Search by add-on name / author email / guid"
-msgstr ""
-
-msgid "Max. Version"
-msgstr "ਮੈਕਸ. ਵਰਜਨ"
-
-msgid "Select an application first"
-msgstr "ਪਹਿਲਾਂ ਇੱਕ ਐਪਲੀਕੇਸ਼ਨ ਚੁਣੋ"
-
 msgid "Comments:"
 msgstr "ਟਿੱਪਣੀਆਂ:"
 
@@ -5031,6 +5002,10 @@ msgstr "ਹੁਣ ਲਈ ਛੱਡੋ"
 
 msgid "Delete review"
 msgstr "ਸਮੀਖਿਆ ਹਟਾਓ"
+
+#, fuzzy
+msgid "Needs Admin Code Review"
+msgstr "ਪ੍ਰਬੰਧਕ ਸਮੀਖਿਆ"
 
 #, fuzzy
 msgid "Needs Admin Content Review"
@@ -5494,58 +5469,6 @@ msgstr "ਸਮੀਖਿਆ ਨੂੰ ਹਟਾਉਣ ਤੋਂ ਪਹਿਲਾ�
 
 msgid "Undelete"
 msgstr "ਬਿਨਾਂ-ਹਟਾਏ"
-
-msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
-
-#, fuzzy
-msgid "Add-on Reviewer Performance"
-msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ ਕਾਰਜ"
-
-msgid "View statistics for user"
-msgstr "ਉਪਭੋਗੀ ਦੇ ਅੰਕੜੇ ਵਿਖਾਓ"
-
-msgid "Range"
-msgstr "ਸੀਮਾ"
-
-msgid "Your Reviews"
-msgstr "ਤੁਹਾਡੀਆਂ ਸਮੀਖਿਆਵਾਂ"
-
-msgid "By {user_name}"
-msgstr "ਵੱਲੋਂ {user_name}"
-
-msgid "Total Reviews"
-msgstr "ਕੁੱਲ ਸਮੀਖਿਆਵਾਂ"
-
-msgid "Active Contributors"
-msgstr "ਸਰਗਰਮ ਹਿੱਸੇਦਾਰ"
-
-msgid "This Month"
-msgstr "ਇਸ ਮਹੀਨੇ"
-
-msgid "This Year"
-msgstr "ਇਸ ਸਾਲ"
-
-msgid "Monthly Performance"
-msgstr "ਮਹੀਨਾਵਾਰ ਕਾਰਗੁਜ਼ਾਰੀ"
-
-msgid "All-time Point Breakdown by Type"
-msgstr "ਕਿਸਮ ਦੁਆਰਾ ਹਰ ਵੇਲੇ ਬਿੰਦੂ ਟੁੱਟਣਾ"
-
-msgid "Add-ons"
-msgstr "ਐਡ-ਆਨ"
-
-msgid "Total"
-msgstr "ਕੁੱਲ"
-
-msgid "Month"
-msgstr "ਮਹੀਨਾ"
-
-msgid "Year"
-msgstr "ਸਾਲ"
-
-msgid "All-Time"
-msgstr "ਹਰ-ਵੇਲੇ"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr ""
@@ -6291,13 +6214,6 @@ msgstr "ਕਾਨੂੰਨੀ ਨੋਟਿਸ"
 msgid "Report Trademark Abuse"
 msgstr "ਦੁਰਵਿਹਾਰ ਸੂਚਨਾ"
 
-msgid "The new website supports mobile and desktop clients"
-msgstr ""
-
-#, fuzzy
-msgid "View the new site"
-msgstr "ਮੋਬਾਈਲ ਸਾਈਟ ਵੇਖੋ"
-
 msgid "Site Status"
 msgstr ""
 
@@ -6353,6 +6269,9 @@ msgstr "{0} ਐਡ-ਆਨ ਮੁੱਖ ਸਫ਼ੇ ਤੇ ਵਾਪਸ ਜਾਓ"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> ਐਡ-ਆਨ"
+
+msgid "Add-ons"
+msgstr "ਐਡ-ਆਨ"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:02+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2021-05-04 00:37+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1143,7 +1143,6 @@ msgstr "Ajk'amaya'l Nuk'unem"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr "Ke'aqasaj taq ruk'amal Firefox ri nikiya' kitzijol kisamajib'al kib'anik taq ajk'amaya'l. Re ruwäch re' eruk'wan taq kik'amal GitHub, kinuk'samajel taq kuki chuqa' ch'aqa' chik."
 
-#. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "Juley chik"
 
@@ -4844,33 +4843,6 @@ msgstr "ruchi'"
 msgid "add-on, reviewer or comment"
 msgstr "tz'aqat, nuk'unel o tzijoxïk"
 
-msgid "Search by add-on name / author email"
-msgstr "Tikanöx rik'in rub'i' tz'aqat / rutaqoya'l b'anel"
-
-msgid "Needs Admin Code Review"
-msgstr "Nrajo' Runik'oxik Rub'itz'ib' Nuk'samajel"
-
-msgid "yes"
-msgstr "ja'"
-
-msgid "no"
-msgstr "manäq"
-
-msgid "Add-on Types"
-msgstr "Kiwäch Tz'aqat"
-
-msgid "Any"
-msgstr "Xab'achike"
-
-msgid "Search by add-on name / author email / guid"
-msgstr "Tikanöx rik'in rub'i' tz'aqat / rutaqoya'l b'anel / k'wab'äl"
-
-msgid "Max. Version"
-msgstr "Nïm Ruwäch"
-
-msgid "Select an application first"
-msgstr "Nab'ey ticha' jun chokoy"
-
 msgid "Comments:"
 msgstr "Taq tzijoxïk"
 
@@ -4904,6 +4876,9 @@ msgstr "Wakami tuk'owisaj"
 
 msgid "Delete review"
 msgstr "Tiyuj tzijoxïk"
+
+msgid "Needs Admin Code Review"
+msgstr "Nrajo' Runik'oxik Rub'itz'ib' Nuk'samajel"
 
 msgid "Needs Admin Content Review"
 msgstr "Nrajo' Runik'oxik Ka'i' Oxi' Rutzij Nuk'samajel"
@@ -5330,57 +5305,6 @@ msgstr "Ri nik'oxik ya'on retal richin niyuj."
 
 msgid "Undelete"
 msgstr "Man tiyuj"
-
-msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
-
-msgid "Add-on Reviewer Performance"
-msgstr "Rub'eyal Nisamäj Runik'onel Tz'aqat"
-
-msgid "View statistics for user"
-msgstr "Ketz'et rumolob'a' okisanel"
-
-msgid "Range"
-msgstr "Rajilab'al"
-
-msgid "Your Reviews"
-msgstr "Taq Atzijoxik"
-
-msgid "By {user_name}"
-msgstr "Ruma {user_name}"
-
-msgid "Total Reviews"
-msgstr "Ronojel taq Tzijoxïk"
-
-msgid "Active Contributors"
-msgstr "Samajel To'onela'"
-
-msgid "This Month"
-msgstr "Re ik' re'"
-
-msgid "This Year"
-msgstr "Re Juna' Re'"
-
-msgid "Monthly Performance"
-msgstr "Rub'eyal Nisamäj Richin ri Ik'"
-
-msgid "All-time Point Breakdown by Type"
-msgstr "Rucholik Nïm Ejqalem ruma Ruwäch"
-
-msgid "Add-ons"
-msgstr "Taq tz'aqat"
-
-msgid "Total"
-msgstr "Ronojel"
-
-msgid "Month"
-msgstr "Ik'"
-
-msgid "Year"
-msgstr "Juna'"
-
-msgid "All-Time"
-msgstr "Ronojel-Q'ij"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr ""
@@ -6124,12 +6048,6 @@ msgstr "Taqanel Rutzijol"
 msgid "Report Trademark Abuse"
 msgstr "Taya' Rutzijol Itzel Rokisaxik ri Retal B'i'aj"
 
-msgid "The new website supports mobile and desktop clients"
-msgstr "Ri k'ak'a' ajk'amaya'l ruxaq nuköch' oyonib'äl chuqa' ajch'atal taq okisanela'"
-
-msgid "View the new site"
-msgstr "Titz'et ri k'ak'a' ruxaq"
-
 msgid "Site Status"
 msgstr "Rub'anikil Ruxaq K'amaya'l"
 
@@ -6181,6 +6099,9 @@ msgstr "Titzolin pa ri ruxaq {0} Tz'aqat"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Taq Tz'aqat"
+
+msgid "Add-ons"
+msgstr "Taq tz'aqat"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"

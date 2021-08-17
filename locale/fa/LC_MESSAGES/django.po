@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:02+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2020-07-17 11:46+0000\n"
 "Last-Translator: abtin <abtin@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1175,7 +1175,6 @@ msgstr "توسعهٔ وب"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
 
-#. Review points sources other than add-ons and themes.
 #, fuzzy
 msgid "Other"
 msgstr ""
@@ -4858,34 +4857,6 @@ msgstr "پایان"
 msgid "add-on, reviewer or comment"
 msgstr "توضیحات توسعه دهنده"
 
-msgid "Search by add-on name / author email"
-msgstr ""
-
-#, fuzzy
-msgid "Needs Admin Code Review"
-msgstr "بازبینی نشده"
-
-msgid "yes"
-msgstr "بله"
-
-msgid "no"
-msgstr "خیر"
-
-msgid "Add-on Types"
-msgstr ""
-
-msgid "Any"
-msgstr ""
-
-msgid "Search by add-on name / author email / guid"
-msgstr ""
-
-msgid "Max. Version"
-msgstr ""
-
-msgid "Select an application first"
-msgstr ""
-
 msgid "Comments:"
 msgstr ""
 
@@ -4918,6 +4889,10 @@ msgstr ""
 
 msgid "Delete review"
 msgstr "حذف بررسی"
+
+#, fuzzy
+msgid "Needs Admin Code Review"
+msgstr "بازبینی نشده"
 
 #, fuzzy
 msgid "Needs Admin Content Review"
@@ -5371,57 +5346,6 @@ msgid "Review was flagged prior to deletion."
 msgstr ""
 
 msgid "Undelete"
-msgstr ""
-
-msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
-
-msgid "Add-on Reviewer Performance"
-msgstr ""
-
-msgid "View statistics for user"
-msgstr ""
-
-msgid "Range"
-msgstr ""
-
-msgid "Your Reviews"
-msgstr ""
-
-msgid "By {user_name}"
-msgstr ""
-
-msgid "Total Reviews"
-msgstr ""
-
-msgid "Active Contributors"
-msgstr ""
-
-msgid "This Month"
-msgstr "این ماه"
-
-msgid "This Year"
-msgstr "امسال"
-
-msgid "Monthly Performance"
-msgstr ""
-
-msgid "All-time Point Breakdown by Type"
-msgstr ""
-
-msgid "Add-ons"
-msgstr ""
-
-msgid "Total"
-msgstr ""
-
-msgid "Month"
-msgstr "ماه"
-
-msgid "Year"
-msgstr "سال"
-
-msgid "All-Time"
 msgstr ""
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
@@ -6158,12 +6082,6 @@ msgstr "یادداشت‌های قانونی"
 msgid "Report Trademark Abuse"
 msgstr "گزارش سوء استفاده"
 
-msgid "The new website supports mobile and desktop clients"
-msgstr ""
-
-msgid "View the new site"
-msgstr ""
-
 msgid "Site Status"
 msgstr ""
 
@@ -6216,6 +6134,9 @@ msgid "Return to the {0} Add-ons homepage"
 msgstr "بازگشت به صفحه‌ی آغازه‌ی افزودنی‌های {0}"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
+msgstr ""
+
+msgid "Add-ons"
 msgstr ""
 
 #, python-format

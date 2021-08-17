@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:02+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2021-06-08 15:09+0000\n"
 "Last-Translator: Lidya Christina <id.lidya@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -1143,7 +1143,6 @@ msgstr "Pengembangan Web"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr "Unduh ekstensi Firefox yang menampilkan perangkat pengembangan web. Kategori ini termasuk ekstensi untuk GitHub, peralihan agen pengguna, pengelolaan kuki, dan banyak lagi."
 
-#. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "Lainnya"
 
@@ -4828,33 +4827,6 @@ msgstr "akhir"
 msgid "add-on, reviewer or comment"
 msgstr "pengaya, peninjau atau komentar"
 
-msgid "Search by add-on name / author email"
-msgstr "Pencarian berdasarkan nama pengaya / surel penulis"
-
-msgid "Needs Admin Code Review"
-msgstr "Perlu Tinjauan Kode Admin"
-
-msgid "yes"
-msgstr "ya"
-
-msgid "no"
-msgstr "tidak"
-
-msgid "Add-on Types"
-msgstr "Tipe Pengaya"
-
-msgid "Any"
-msgstr "Будь-який"
-
-msgid "Search by add-on name / author email / guid"
-msgstr "Pencarian berdasarkan nama pengaya / surel penulis / guid"
-
-msgid "Max. Version"
-msgstr "Versi Max."
-
-msgid "Select an application first"
-msgstr "Pilih aplikasi terlebih dahulu"
-
 msgid "Comments:"
 msgstr "Komentar:"
 
@@ -4888,6 +4860,9 @@ msgstr "Lewatkan untuk sekarang"
 
 msgid "Delete review"
 msgstr "Hapus ulasan"
+
+msgid "Needs Admin Code Review"
+msgstr "Perlu Tinjauan Kode Admin"
 
 msgid "Needs Admin Content Review"
 msgstr "Perlu Tinjauan Konten Admin"
@@ -5314,57 +5289,6 @@ msgstr "Ulasan telah ditandai sebelum dihapus."
 
 msgid "Undelete"
 msgstr "Tidak dihapus"
-
-msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
-
-msgid "Add-on Reviewer Performance"
-msgstr "Performa Peninjau Pengaya"
-
-msgid "View statistics for user"
-msgstr "Tampilkan statistik untuk pengguna"
-
-msgid "Range"
-msgstr "Rentang"
-
-msgid "Your Reviews"
-msgstr "Ulasan Anda"
-
-msgid "By {user_name}"
-msgstr "Oleh {user_name}"
-
-msgid "Total Reviews"
-msgstr "Ulasan Total"
-
-msgid "Active Contributors"
-msgstr "Kontributor Aktif"
-
-msgid "This Month"
-msgstr "Bulan Ini"
-
-msgid "This Year"
-msgstr "Tahun Ini"
-
-msgid "Monthly Performance"
-msgstr "Kinerja Bulanan"
-
-msgid "All-time Point Breakdown by Type"
-msgstr "Poin Perincian Sepanjang Masa berdasarkan Jenis"
-
-msgid "Add-ons"
-msgstr "Pengaya"
-
-msgid "Total"
-msgstr "Total"
-
-msgid "Month"
-msgstr "Bulan"
-
-msgid "Year"
-msgstr "Tahun"
-
-msgid "All-Time"
-msgstr "Setiap-Waktu"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr ""
@@ -6107,12 +6031,6 @@ msgstr "Pernyataan Hukum"
 msgid "Report Trademark Abuse"
 msgstr "Laporkan Penyalahgunaan Merek Dagang"
 
-msgid "The new website supports mobile and desktop clients"
-msgstr "Situs baru ini mendukung gawai seluler maupun desktop"
-
-msgid "View the new site"
-msgstr "Tampilkan situs yang baru"
-
 msgid "Site Status"
 msgstr "Status Situs "
 
@@ -6165,6 +6083,9 @@ msgstr "Kembali ke Beranda Pengaya {0}"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Pengaya"
+
+msgid "Add-ons"
+msgstr "Pengaya"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"

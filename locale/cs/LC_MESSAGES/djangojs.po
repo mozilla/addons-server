@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:03+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2021-01-16 21:15+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -100,17 +100,6 @@ msgstr "Váš doplněk byl zkontrolován bez chyb či varování."
 
 msgid "Your submission will be automatically signed."
 msgstr "Odeslaný doplněk bude automaticky podepsán."
-
-msgid "WebExtension upgrade"
-msgstr "Povýšení na WebExtension"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-"Dovolujeme a doporučujeme povýšení doplňku, ale tento proces již nebudete moci zvrátit. Jakmile budou mít uživatelé nainstalovánu WebExtension verzi, nebudou schopni nainstalovat předchozí verze "
-"vašeho doplňku."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Portování zastaralých Firefox doplňků na MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Zahrnout podrobné poznámky k verzi (lze nastavit v příštím kroku)."
@@ -760,12 +749,6 @@ msgstr "Text recenze"
 
 msgid "Review notes found"
 msgstr "Nalezeny poznámky k recenzi"
-
-msgid "Average Reviews"
-msgstr "Průměrné hodnocení"
-
-msgid "Number of Reviews"
-msgstr "Počet hodnocení"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "Maximální povolená velikost pro nahrání je {0}. Vyberte menší obrázek pozadí."

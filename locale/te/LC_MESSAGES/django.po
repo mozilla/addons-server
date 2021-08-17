@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:02+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2021-08-03 14:43+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -1101,7 +1101,6 @@ msgstr "జాల అభివృద్ధి"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
 
-#. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "ఇతర"
 
@@ -4652,33 +4651,6 @@ msgstr "ముగింపు"
 msgid "add-on, reviewer or comment"
 msgstr "యాడ్-ఆన్, సమీక్షకులు లేదా వ్యాఖ్య"
 
-msgid "Search by add-on name / author email"
-msgstr "పొడగింత పేరు / రచయిత ఈమెయిలు ద్వారా వెతకండి"
-
-msgid "Needs Admin Code Review"
-msgstr "నిర్వాహక కోడు సమీక్ష అవసరం"
-
-msgid "yes"
-msgstr "అవును"
-
-msgid "no"
-msgstr "కాదు"
-
-msgid "Add-on Types"
-msgstr "పొడగింతల రకాలు"
-
-msgid "Any"
-msgstr "ఏదైనా"
-
-msgid "Search by add-on name / author email / guid"
-msgstr ""
-
-msgid "Max. Version"
-msgstr "గరిష్ఠ వెర్షన్"
-
-msgid "Select an application first"
-msgstr "మొదట అనువర్తనాన్ని ఎంచుకోండి"
-
 msgid "Comments:"
 msgstr "వ్యాఖ్యలు:"
 
@@ -4711,6 +4683,9 @@ msgstr "ప్రస్తుతం దాటవేయి"
 
 msgid "Delete review"
 msgstr "సమీక్షను తొలగించండి"
+
+msgid "Needs Admin Code Review"
+msgstr "నిర్వాహక కోడు సమీక్ష అవసరం"
 
 msgid "Needs Admin Content Review"
 msgstr ""
@@ -5114,57 +5089,6 @@ msgstr ""
 
 msgid "Undelete"
 msgstr "తొలగించనిది"
-
-msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
-
-msgid "Add-on Reviewer Performance"
-msgstr ""
-
-msgid "View statistics for user"
-msgstr "వినియోగదారుల గణాంకాలను వీక్షించండి"
-
-msgid "Range"
-msgstr "స్థాయి"
-
-msgid "Your Reviews"
-msgstr "మీ సమీక్షలు"
-
-msgid "By {user_name}"
-msgstr "{user_name} ద్వారా"
-
-msgid "Total Reviews"
-msgstr "మొత్తం సమీక్షలు"
-
-msgid "Active Contributors"
-msgstr "క్రియాశీల తోడ్పాటుదార్లు"
-
-msgid "This Month"
-msgstr "ఈ నెల"
-
-msgid "This Year"
-msgstr "ఈ సంవత్సరం"
-
-msgid "Monthly Performance"
-msgstr "నెలవారీ పనితనం"
-
-msgid "All-time Point Breakdown by Type"
-msgstr ""
-
-msgid "Add-ons"
-msgstr "పొడిగింతలు"
-
-msgid "Total"
-msgstr "మొత్తం"
-
-msgid "Month"
-msgstr "నెల"
-
-msgid "Year"
-msgstr "సంవత్సరం"
-
-msgid "All-Time"
-msgstr "అన్ని సమయాలలో"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr ""
@@ -5854,12 +5778,6 @@ msgstr "చట్టపరమైన గమనికలు"
 msgid "Report Trademark Abuse"
 msgstr "ట్రేడ్‌మార్క్ దుర్వినియోగాన్ని నివేదించండి"
 
-msgid "The new website supports mobile and desktop clients"
-msgstr "కొత్త వెబ్‌సైటు మొబైల్, డెస్క్‌టాప్ క్లయింట్లకు తోడ్పాటునిస్తుంది"
-
-msgid "View the new site"
-msgstr "కొత్త సైటును చూడండి"
-
 msgid "Site Status"
 msgstr "సైటు స్థితి"
 
@@ -5909,6 +5827,9 @@ msgstr "తిరిగి {0} పొడగింతల ముంగిలి �
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> పొడిగింతలు"
+
+msgid "Add-ons"
+msgstr "పొడిగింతలు"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"

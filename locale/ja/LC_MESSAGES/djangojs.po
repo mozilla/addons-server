@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:03+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2020-12-30 01:55+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
@@ -90,15 +90,6 @@ msgstr "このアドオンの検証が完了しました。エラーも警告も
 
 msgid "Your submission will be automatically signed."
 msgstr "あなたのアドオンは自動的に署名されます。"
-
-msgid "WebExtension upgrade"
-msgstr "WebExtension へのアップグレード"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Mozilla ではアップグレードを可能にし、推奨していますが、この手順は取り消せません。ユーザーは、一度 WebExtension をインストールしたら、旧式のアドオンをインストールすることはできなくなります。"
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "旧式 Firefox アドオンの移植に関する MDN の記事"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "詳しいバージョンノートを含める (これは次のステップで行えます)。"
@@ -726,12 +717,6 @@ msgstr "レビューテキスト"
 
 msgid "Review notes found"
 msgstr "レビューノートが見つかりました"
-
-msgid "Average Reviews"
-msgstr "レビュー平均"
-
-msgid "Number of Reviews"
-msgstr "レビュー数"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "最大アップロードサイズは {0} です。小さいサイズの背景画像を選んでください。"

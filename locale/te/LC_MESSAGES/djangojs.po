@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:03+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2021-08-15 12:43+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -95,15 +95,6 @@ msgstr "లోపాలు లేదా హెచ్చరికలతో మీ
 
 msgid "Your submission will be automatically signed."
 msgstr "మీ సమర్పణ స్వయంచాలకంగా సంతకం చేయబడుతుంది."
-
-msgid "WebExtension upgrade"
-msgstr "WebExtension నవీకరణ"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "ఒక లెగసీ Firefox పొడిగింతను MDNకు పోర్ట్ చేస్తున్నాము"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "వివరణాత్మక వెర్షన్ గమనికలను చేర్చండి (ఇది తరువాతి దశలో చేయవచ్చు)."
@@ -740,12 +731,6 @@ msgstr "సమీక్షా పాఠ్యం"
 
 msgid "Review notes found"
 msgstr "సమీక్ష గమనికలు కనబడ్డాయి"
-
-msgid "Average Reviews"
-msgstr "సగటు సమీక్షలు"
-
-msgid "Number of Reviews"
-msgstr "సమీక్షల సంఖ్య"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "గరిష్ట ఎక్కింపు పరిమాణం {0} - చిన్న నేపథ్య చిత్రాన్ని ఎంచుకోండి."

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:02+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2021-08-08 10:55+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -1137,7 +1137,6 @@ msgstr "Web Geliştirme"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
 
-#. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "Diğer"
 
@@ -4757,33 +4756,6 @@ msgstr "bitiş"
 msgid "add-on, reviewer or comment"
 msgstr "eklenti, inceleyen veya yorum"
 
-msgid "Search by add-on name / author email"
-msgstr "Eklenti adıyla veya yazar e-postasıyla ara"
-
-msgid "Needs Admin Code Review"
-msgstr "Yönetici kod incelemesi gerekiyor"
-
-msgid "yes"
-msgstr "evet"
-
-msgid "no"
-msgstr "hayır"
-
-msgid "Add-on Types"
-msgstr "Eklenti türleri"
-
-msgid "Any"
-msgstr "Hepsi"
-
-msgid "Search by add-on name / author email / guid"
-msgstr "Eklenti adı / sahip e-posta adresi / guid ile ara"
-
-msgid "Max. Version"
-msgstr "En yüksek sürüm"
-
-msgid "Select an application first"
-msgstr "Önce bir uygulama seçin"
-
 # 87%
 # 100%
 msgid "Comments:"
@@ -4818,6 +4790,9 @@ msgstr "Şimdilik geç"
 
 msgid "Delete review"
 msgstr "İncelemeyi sil"
+
+msgid "Needs Admin Code Review"
+msgstr "Yönetici kod incelemesi gerekiyor"
 
 msgid "Needs Admin Content Review"
 msgstr "Yönetici içerik incelemesi gerekiyor"
@@ -5235,57 +5210,6 @@ msgstr ""
 
 msgid "Undelete"
 msgstr "Silmeyi geri al"
-
-msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr "İnceleyici Performansı – Firefox Eklentileri"
-
-msgid "Add-on Reviewer Performance"
-msgstr "Eklenti inceleme performansı"
-
-msgid "View statistics for user"
-msgstr "Kullanıcı istatistiklerini göster"
-
-msgid "Range"
-msgstr "Aralık"
-
-msgid "Your Reviews"
-msgstr "İncelemeleriniz"
-
-msgid "By {user_name}"
-msgstr "{user_name} tarafından"
-
-msgid "Total Reviews"
-msgstr "Toplam inceleme"
-
-msgid "Active Contributors"
-msgstr "Etkin Katkıda Bulunanlar"
-
-msgid "This Month"
-msgstr "Bu ay"
-
-msgid "This Year"
-msgstr "Bu yıl"
-
-msgid "Monthly Performance"
-msgstr "Aylık performans"
-
-msgid "All-time Point Breakdown by Type"
-msgstr ""
-
-msgid "Add-ons"
-msgstr "Eklentiler"
-
-msgid "Total"
-msgstr "Toplam"
-
-msgid "Month"
-msgstr "Ay"
-
-msgid "Year"
-msgstr "Yıl"
-
-msgid "All-Time"
-msgstr "Tüm zamanlar"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr " – İnceleyici Araçları – Firefox Eklentileri"
@@ -5996,12 +5920,6 @@ msgstr "Yasal uyarılar"
 msgid "Report Trademark Abuse"
 msgstr "Marka ihlali bildir"
 
-msgid "The new website supports mobile and desktop clients"
-msgstr "Yeni web sitesi mobil ve masaüstü istemcileri destekliyor"
-
-msgid "View the new site"
-msgstr "Yeni siteye bak"
-
 msgid "Site Status"
 msgstr "Site durumu"
 
@@ -6054,6 +5972,9 @@ msgstr "{0} Eklentileri ana sayfasına dön"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Eklentiler"
+
+msgid "Add-ons"
+msgstr "Eklentiler"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"

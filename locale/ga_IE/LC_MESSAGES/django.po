@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:02+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -1202,7 +1202,6 @@ msgstr "Forbairt Ghréasáin"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
 
-#. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "Eile"
 
@@ -4927,34 +4926,6 @@ msgstr "deireadh"
 msgid "add-on, reviewer or comment"
 msgstr "breiseán, eagarthóir nó nóta tráchta"
 
-msgid "Search by add-on name / author email"
-msgstr "Cuardaigh ainm an bhreiseáin / seoladh ríomhphoist an údair"
-
-#, fuzzy
-msgid "Needs Admin Code Review"
-msgstr "Níl aon léirmheasanna ar bhreiseáin fós."
-
-msgid "yes"
-msgstr "tá"
-
-msgid "no"
-msgstr "níl"
-
-msgid "Add-on Types"
-msgstr "Cineálacha Breiseáin"
-
-msgid "Any"
-msgstr "Ar bith"
-
-msgid "Search by add-on name / author email / guid"
-msgstr ""
-
-msgid "Max. Version"
-msgstr "Leagan Is Mó"
-
-msgid "Select an application first"
-msgstr "Roghnaigh feidhmchlár i dtosach báire"
-
 msgid "Comments:"
 msgstr "Nótaí:"
 
@@ -4989,6 +4960,10 @@ msgstr ""
 
 msgid "Delete review"
 msgstr "Scrios an léirmheas"
+
+#, fuzzy
+msgid "Needs Admin Code Review"
+msgstr "Níl aon léirmheasanna ar bhreiseáin fós."
 
 #, fuzzy
 msgid "Needs Admin Content Review"
@@ -5454,57 +5429,6 @@ msgstr ""
 
 msgid "Undelete"
 msgstr "Díscrios"
-
-msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
-
-msgid "Add-on Reviewer Performance"
-msgstr ""
-
-msgid "View statistics for user"
-msgstr ""
-
-msgid "Range"
-msgstr "Raon"
-
-msgid "Your Reviews"
-msgstr ""
-
-msgid "By {user_name}"
-msgstr "Le {user_name}"
-
-msgid "Total Reviews"
-msgstr "Líon iomlán léirmheasanna"
-
-msgid "Active Contributors"
-msgstr ""
-
-msgid "This Month"
-msgstr "An Mhí Seo"
-
-msgid "This Year"
-msgstr "An Bhliain Seo"
-
-msgid "Monthly Performance"
-msgstr ""
-
-msgid "All-time Point Breakdown by Type"
-msgstr ""
-
-msgid "Add-ons"
-msgstr "Breiseáin"
-
-msgid "Total"
-msgstr "Iomlán"
-
-msgid "Month"
-msgstr "Mí"
-
-msgid "Year"
-msgstr "Bliain"
-
-msgid "All-Time"
-msgstr "Go Brách"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr ""
@@ -6250,13 +6174,6 @@ msgstr "Fógraí Dlí"
 msgid "Report Trademark Abuse"
 msgstr "Déan Tuairisc ar Dhrochúsáid"
 
-msgid "The new website supports mobile and desktop clients"
-msgstr ""
-
-#, fuzzy
-msgid "View the new site"
-msgstr "Suíomh Soghluaiste"
-
 msgid "Site Status"
 msgstr ""
 
@@ -6313,6 +6230,9 @@ msgstr "Fill ar leathanach baile na mbreiseán {0}"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "Breiseáin <img alt=\"Firefox\" src=\"{0}\">"
+
+msgid "Add-ons"
+msgstr "Breiseáin"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"

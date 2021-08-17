@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:03+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2020-12-07 12:06+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -106,15 +106,6 @@ msgstr "Waš dodank jo pśeglědowanje bźeze zmólkow a bźez warnowanjow wobst
 
 msgid "Your submission will be automatically signed."
 msgstr "Wašo zapódaśe buźo se awtomatiski signěrowaś."
-
-msgid "WebExtension upgrade"
-msgstr "WebExtension - Aktualizacija"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Dowólujomy a pśiraźujomy aktualizaciju, ale njamóžośo toś ten proces pśewobrośiś. Gaž waše wužywarje su WebExtension zainstalěrowali, njamógu wěcej dodank starego typa instalěrowaś."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Dodank Firefox starego typa na MDN pśenosowaś"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Nadrobne wersijowe informacije zapśimjeś (to dajo se w pśiducem kšacu cyniś)."
@@ -775,12 +766,6 @@ msgstr "Tekst pśeglědowaś"
 
 msgid "Review notes found"
 msgstr "Namakane pśipiski pśeglědowaś"
-
-msgid "Average Reviews"
-msgstr "Pśerězne pógódnośenja"
-
-msgid "Number of Reviews"
-msgstr "Licba pógódnośenjow"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "Maksimalna nagraśowa wjelikosć jo {0} - wubjeŕśo mjeńšy slězynowy wobraz."

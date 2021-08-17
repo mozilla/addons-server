@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:02+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2021-06-25 10:04+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -1212,7 +1212,6 @@ msgstr "Desenvolupament web"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
 
-#. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "Altres"
 
@@ -4942,34 +4941,6 @@ msgstr ""
 msgid "add-on, reviewer or comment"
 msgstr "Punts de revisors manuals"
 
-msgid "Search by add-on name / author email"
-msgstr "Cerca per nom de complement o adreça electrònica de l'autor"
-
-#, fuzzy
-msgid "Needs Admin Code Review"
-msgstr "Revisió d'admin"
-
-msgid "yes"
-msgstr "sí"
-
-msgid "no"
-msgstr "no"
-
-msgid "Add-on Types"
-msgstr "Tipus de complements"
-
-msgid "Any"
-msgstr "Qualsevol"
-
-msgid "Search by add-on name / author email / guid"
-msgstr ""
-
-msgid "Max. Version"
-msgstr "Versió màx."
-
-msgid "Select an application first"
-msgstr "Primer cal que seleccioneu una aplicació"
-
 msgid "Comments:"
 msgstr "Comentaris:"
 
@@ -5003,6 +4974,10 @@ msgstr "Passa'l per ara"
 
 msgid "Delete review"
 msgstr "Suprimeix el comentari"
+
+#, fuzzy
+msgid "Needs Admin Code Review"
+msgstr "Revisió d'admin"
 
 #, fuzzy
 msgid "Needs Admin Content Review"
@@ -5468,59 +5443,6 @@ msgid "Review was flagged prior to deletion."
 msgstr ""
 
 msgid "Undelete"
-msgstr ""
-
-msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
-
-msgid "Add-on Reviewer Performance"
-msgstr ""
-
-msgid "View statistics for user"
-msgstr "Mostra les estadístiques de l'usuari"
-
-msgid "Range"
-msgstr "Interval"
-
-msgid "Your Reviews"
-msgstr ""
-
-msgid "By {user_name}"
-msgstr ""
-
-msgid "Total Reviews"
-msgstr "Total de revisions"
-
-# 81%
-# 100%
-msgid "Active Contributors"
-msgstr "Col·laboradors actius"
-
-msgid "This Month"
-msgstr "Aquest mes"
-
-msgid "This Year"
-msgstr ""
-
-msgid "Monthly Performance"
-msgstr ""
-
-msgid "All-time Point Breakdown by Type"
-msgstr ""
-
-msgid "Add-ons"
-msgstr "Complements"
-
-msgid "Total"
-msgstr ""
-
-msgid "Month"
-msgstr ""
-
-msgid "Year"
-msgstr ""
-
-msgid "All-Time"
 msgstr ""
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
@@ -6263,13 +6185,6 @@ msgstr "Avís legal"
 msgid "Report Trademark Abuse"
 msgstr "Denuncieu un abús"
 
-msgid "The new website supports mobile and desktop clients"
-msgstr ""
-
-#, fuzzy
-msgid "View the new site"
-msgstr "Vés al web per a Mòbils"
-
 msgid "Site Status"
 msgstr ""
 
@@ -6327,6 +6242,9 @@ msgstr "Torna a la pàgina principal dels complements {0}"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Complements"
+
+msgid "Add-ons"
+msgstr "Complements"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"

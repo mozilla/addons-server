@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:03+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2020-12-07 11:10+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -95,17 +95,6 @@ msgstr "Uw add-on is gevalideerd zonder fouten of waarschuwingen."
 
 msgid "Your submission will be automatically signed."
 msgstr "Uw inzending zal automatisch worden ondertekend."
-
-msgid "WebExtension upgrade"
-msgstr "WebExtension-upgrade"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-"We staan een upgrade toe en raden dit ook aan, maar u kunt dit proces niet ongedaan maken. Als uw gebruikers de WebExtension eenmaal hebben geïnstalleerd, kunnen ze geen verouderde add-on meer "
-"installeren."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Een verouderde Firefox-add-on porteren op MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Neem gedetailleerde versieopmerkingen op (dit kunt u in de volgende stap doen)."
@@ -748,12 +737,6 @@ msgstr "Tekst beoordelen"
 
 msgid "Review notes found"
 msgstr "Beoordelingsopmerkingen gevonden"
-
-msgid "Average Reviews"
-msgstr "Gemiddelde beoordelingen"
-
-msgid "Number of Reviews"
-msgstr "Aantal beoordelingen"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "De maximale uploadgrootte is {0} - kies een kleinere achtergrondafbeelding."

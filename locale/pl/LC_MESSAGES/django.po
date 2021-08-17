@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:02+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -1172,7 +1172,6 @@ msgstr "Narzędzia twórców witryn"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
 
-#. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "Inny"
 
@@ -4947,33 +4946,6 @@ msgstr "koniec"
 msgid "add-on, reviewer or comment"
 msgstr "dodatek, recenzent lub komentarz"
 
-msgid "Search by add-on name / author email"
-msgstr "Szukaj wg nazwy dodatku/e-maila autora"
-
-msgid "Needs Admin Code Review"
-msgstr "Wymaga sprawdzenia kodu przez administratora"
-
-msgid "yes"
-msgstr "tak"
-
-msgid "no"
-msgstr "nie"
-
-msgid "Add-on Types"
-msgstr "Typy dodatku"
-
-msgid "Any"
-msgstr "Wszystkie"
-
-msgid "Search by add-on name / author email / guid"
-msgstr "Szukaj według nazwy dodatku / adresu e-mail autora / GUID"
-
-msgid "Max. Version"
-msgstr "Maks. wersja"
-
-msgid "Select an application first"
-msgstr "Wybierz najpierw program"
-
 msgid "Comments:"
 msgstr "Komentarze:"
 
@@ -5007,6 +4979,9 @@ msgstr "Pomiń teraz"
 
 msgid "Delete review"
 msgstr "Usuń opinię"
+
+msgid "Needs Admin Code Review"
+msgstr "Wymaga sprawdzenia kodu przez administratora"
 
 msgid "Needs Admin Content Review"
 msgstr "Wymaga sprawdzenia zawartości przez administratora"
@@ -5443,57 +5418,6 @@ msgstr "Recenzja została oznaczona przed usunięciem."
 
 msgid "Undelete"
 msgstr "Cofnij usunięcie"
-
-msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
-
-msgid "Add-on Reviewer Performance"
-msgstr "Wyniki recenzenta dodatku"
-
-msgid "View statistics for user"
-msgstr "Statystyki dla użytkownika"
-
-msgid "Range"
-msgstr "Zakres"
-
-msgid "Your Reviews"
-msgstr "Twoje sprawdzenia"
-
-msgid "By {user_name}"
-msgstr "Autorstwa {user_name}"
-
-msgid "Total Reviews"
-msgstr "Ogólna liczba sprawdzeń"
-
-msgid "Active Contributors"
-msgstr "Aktywni uczestnicy"
-
-msgid "This Month"
-msgstr "Ten miesiąc"
-
-msgid "This Year"
-msgstr "Ten rok"
-
-msgid "Monthly Performance"
-msgstr "Miesięczna aktywność"
-
-msgid "All-time Point Breakdown by Type"
-msgstr "Podział punktów wg rodzaju"
-
-msgid "Add-ons"
-msgstr "Dodatki"
-
-msgid "Total"
-msgstr "Razem"
-
-msgid "Month"
-msgstr "Miesiąc"
-
-msgid "Year"
-msgstr "Rok"
-
-msgid "All-Time"
-msgstr "Wszystkie"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr ""
@@ -6238,12 +6162,6 @@ msgstr "Informacje prawne"
 msgid "Report Trademark Abuse"
 msgstr "Zgłoś nadużycie znaku towarowego"
 
-msgid "The new website supports mobile and desktop clients"
-msgstr "Nowa witryna obsługuje klienty mobilne i komputerowe"
-
-msgid "View the new site"
-msgstr "Wyświetl nową witrynę"
-
 msgid "Site Status"
 msgstr "Status witryny"
 
@@ -6296,6 +6214,9 @@ msgstr "Wróć do głównej strony {0} — dodatki"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Dodatki"
+
+msgid "Add-ons"
+msgstr "Dodatki"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"

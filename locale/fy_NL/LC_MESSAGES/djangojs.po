@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-10 17:03+0000\n"
+"POT-Creation-Date: 2021-08-17 16:44+0000\n"
 "PO-Revision-Date: 2021-05-15 19:16+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -95,17 +95,6 @@ msgstr "Jo add-on is falidearre sûnder flaters of warskôgingen."
 
 msgid "Your submission will be automatically signed."
 msgstr "Jo ynstjoering sil automatysk ûndertekene wurde."
-
-msgid "WebExtension upgrade"
-msgstr "WebExtension-fernijing"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-"Wy stean in fernijing ta en rekommandearje dit ek oan, mar jo kinne dit proses net ûngedien meitsje. As jo brûkers de WebExtension ien kear ynstallearre hawwe, kinne se gjin ferâldere add-on mear "
-"ynstallearje."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "In ferâldere Firefox-add-on portearje op MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Nim detaillearre ferzjeopmerkingen op (dit kinne jo yn de folgjende stap dwaan)."
@@ -746,12 +735,6 @@ msgstr "Tekst beoardiele"
 
 msgid "Review notes found"
 msgstr "Beoardielingsopmerkingen fûn"
-
-msgid "Average Reviews"
-msgstr "Gemiddelde beoardielingen"
-
-msgid "Number of Reviews"
-msgstr "Oantal beoardielingen"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "De maksimale oplaadgrutte is {0} - kies in lytsere eftergrûnôfbylding."
