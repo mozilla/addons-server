@@ -273,11 +273,11 @@ class SetRemoteAddrFromForwardedFor(MiddlewareMixin):
         )
 
     def process_request(self, request):
-        HTTP_X_FORWARDED_FOR = request.META.get('HTTP_X_FORWARDED_FOR')
-        if HTTP_X_FORWARDED_FOR and self.is_request_from_cdn(request):
+        x_forwarded_for_header = request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forwarded_for_header and self.is_request_from_cdn(request):
             # We only have to split twice from the right to find what we're looking for.
             split = [
-                ip.strip() for ip in HTTP_X_FORWARDED_FOR.rsplit(sep=',', maxsplit=2)
+                ip.strip() for ip in x_forwarded_for_header.rsplit(sep=',', maxsplit=2)
             ]
             try:
                 value = split[-2]
