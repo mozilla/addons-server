@@ -1446,9 +1446,6 @@ GRAPHITE_PREFIX = env('GRAPHITE_PREFIX', default='amo')
 GRAPHITE_PORT = 2003
 GRAPHITE_TIMEOUT = 1
 
-# IP addresses of servers we use as proxies.
-KNOWN_PROXIES = []
-
 # Blog URL
 DEVELOPER_BLOG_URL = 'https://blog.mozilla.org/addons/wp-json/wp/v2/posts'
 
