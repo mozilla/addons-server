@@ -556,30 +556,34 @@ def test_client_info():
     from django.test.client import Client
 
     response = Client().get(reverse('amo.client_info'))
-    assert response.status_code == 200
-    assert response.json() == {
-        'HTTP_USER_AGENT': None,
-        'HTTP_X_COUNTRY_CODE': None,
-        'HTTP_X_FORWARDED_FOR': None,
-        'HTTP_X_REQUEST_VIA_CDN': None,
-        'REMOTE_ADDR': '127.0.0.1',
-    }
+    assert response.status_code == 403
 
-    response = Client().get(
-        reverse('amo.client_info'),
-        HTTP_USER_AGENT='Foo/5.0',
-        HTTP_X_FORWARDED_FOR='192.0.0.2,193.0.0.1',
-        HTTP_X_REQUEST_VIA_CDN='4815162342',
-        HTTP_X_COUNTRY_CODE='FR',
-    )
-    assert response.status_code == 200
-    assert response.json() == {
-        'HTTP_USER_AGENT': 'Foo/5.0',
-        'HTTP_X_COUNTRY_CODE': 'FR',
-        'HTTP_X_FORWARDED_FOR': '192.0.0.2,193.0.0.1',
-        'HTTP_X_REQUEST_VIA_CDN': '4815162342',
-        'REMOTE_ADDR': '127.0.0.1',
-    }
+    with override_settings(ENV='dev'):
+        response = Client().get(reverse('amo.client_info'))
+        assert response.status_code == 200
+        assert response.json() == {
+            'HTTP_USER_AGENT': None,
+            'HTTP_X_COUNTRY_CODE': None,
+            'HTTP_X_FORWARDED_FOR': None,
+            'HTTP_X_REQUEST_VIA_CDN': None,
+            'REMOTE_ADDR': '127.0.0.1',
+        }
+
+        response = Client().get(
+            reverse('amo.client_info'),
+            HTTP_USER_AGENT='Foo/5.0',
+            HTTP_X_FORWARDED_FOR='192.0.0.2,193.0.0.1',
+            HTTP_X_REQUEST_VIA_CDN='4815162342',
+            HTTP_X_COUNTRY_CODE='FR',
+        )
+        assert response.status_code == 200
+        assert response.json() == {
+            'HTTP_USER_AGENT': 'Foo/5.0',
+            'HTTP_X_COUNTRY_CODE': 'FR',
+            'HTTP_X_FORWARDED_FOR': '192.0.0.2,193.0.0.1',
+            'HTTP_X_REQUEST_VIA_CDN': '4815162342',
+            'REMOTE_ADDR': '127.0.0.1',
+        }
 
 
 TEST_SITEMAPS_DIR = os.path.join(
