@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-17 16:44+0000\n"
-"PO-Revision-Date: 2021-08-17 22:09+0000\n"
+"PO-Revision-Date: 2021-08-17 22:26+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -488,10 +488,10 @@ msgid "Review Unlisted"
 msgstr ""
 
 msgid "This block was imported from a regex based legacy Block."
-msgstr ""
+msgstr "Tato blokace byla naimportována ze staré blokace na základě regulárního výrazu."
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
-msgstr ""
+msgstr "Jakákoli provedená změna NEBUDE aktualizována ve starším seznamu blokací – změnu musíte provést ručně přes webové rozhraní pro správu Kinto."
 
 #, python-format
 msgid "Delete Multiple %(name)s"
@@ -509,7 +509,7 @@ msgid "%(count)s Add-on GUIDs were not found"
 msgstr ""
 
 msgid "The following block(s) were imported from a regex based legacy Block."
-msgstr ""
+msgstr "Následující blokace byly naimportovány ze staré blokace na základě regulárního výrazu."
 
 msgid "Save"
 msgstr "Uložit"
@@ -524,10 +524,10 @@ msgid "Update"
 msgstr "Aktualizovat"
 
 msgid "Reject Submission"
-msgstr ""
+msgstr "Odmítnout"
 
 msgid "Approve Submission"
-msgstr ""
+msgstr "Schválit"
 
 #, python-format
 msgid "Add %(name)s"
