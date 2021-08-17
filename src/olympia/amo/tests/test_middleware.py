@@ -1,5 +1,7 @@
 from django import test
+from django.core.exceptions import ImproperlyConfigured
 from django.test.client import RequestFactory
+from django.test.utils import override_settings
 from django.urls import reverse
 
 import pytest
@@ -10,6 +12,7 @@ from pyquery import PyQuery as pq
 from olympia.amo.middleware import (
     AuthenticationMiddlewareWithoutAPI,
     RequestIdMiddleware,
+    SetRemoteAddrFromForwardedFor,
 )
 from olympia.amo.tests import TestCase
 from olympia.zadmin.models import Config
@@ -124,3 +127,72 @@ def test_request_id_middleware(client):
     request = RequestFactory().get('/')
     RequestIdMiddleware().process_request(request)
     assert request.request_id
+
+
+class TestSetRemoteAddrFromForwardedFor(TestCase):
+    def setUp(self):
+        self.middleware = SetRemoteAddrFromForwardedFor()
+
+    def test_no_special_headers(self):
+        request = RequestFactory().get('/', REMOTE_ADDR='4.8.15.16')
+        assert not self.middleware.is_request_from_cdn(request)
+        self.middleware.process_request(request)
+        assert request.META['REMOTE_ADDR'] == '4.8.15.16'
+
+    def test_request_not_from_cdn(self):
+        request = RequestFactory().get(
+            '/', REMOTE_ADDR='4.8.15.16', HTTP_X_FORWARDED_FOR='2.3.4.2,4.8.15.16'
+        )
+        assert not self.middleware.is_request_from_cdn(request)
+        self.middleware.process_request(request)
+        assert request.META['REMOTE_ADDR'] == '4.8.15.16'
+
+    @override_settings(SECRET_CDN_TOKEN=None)
+    def test_request_not_from_cdn_because_setting_is_none(self):
+        request = RequestFactory().get(
+            '/', REMOTE_ADDR='4.8.15.16', HTTP_X_FORWARDED_FOR='2.3.4.2,4.8.15.16',
+            HTTP_X_REQUEST_VIA_CDN=None,
+        )
+        assert not self.middleware.is_request_from_cdn(request)
+        self.middleware.process_request(request)
+        assert request.META['REMOTE_ADDR'] == '4.8.15.16'
+
+    @override_settings(SECRET_CDN_TOKEN='foo')
+    def test_request_not_from_cdn_because_header_secret_is_invalid(self):
+        request = RequestFactory().get(
+            '/', REMOTE_ADDR='4.8.15.16', HTTP_X_FORWARDED_FOR='2.3.4.2,4.8.15.16',
+            HTTP_X_REQUEST_VIA_CDN='not-foo'
+        )
+        assert not self.middleware.is_request_from_cdn(request)
+        self.middleware.process_request(request)
+        assert request.META['REMOTE_ADDR'] == '4.8.15.16'
+
+    @override_settings(SECRET_CDN_TOKEN='foo')
+    def test_request_from_cdn_but_only_one_ip_in_x_forwarded_for(self):
+        request = RequestFactory().get(
+            '/', REMOTE_ADDR='4.8.15.16', HTTP_X_FORWARDED_FOR='4.8.15.16',
+            HTTP_X_REQUEST_VIA_CDN='foo'
+        )
+        assert self.middleware.is_request_from_cdn(request)
+        with self.assertRaises(ImproperlyConfigured):
+            self.middleware.process_request(request)
+
+    @override_settings(SECRET_CDN_TOKEN='foo')
+    def test_request_from_cdn_but_empty_values_in_x_forwarded_for(self):
+        request = RequestFactory().get(
+            '/', REMOTE_ADDR='4.8.15.16', HTTP_X_FORWARDED_FOR=',',
+            HTTP_X_REQUEST_VIA_CDN='foo'
+        )
+        assert self.middleware.is_request_from_cdn(request)
+        with self.assertRaises(ImproperlyConfigured):
+            self.middleware.process_request(request)
+
+    @override_settings(SECRET_CDN_TOKEN='foo')
+    def test_request_from_cdn_pick_second_to_last_ip_in_x_forwarded_for(self):
+        request = RequestFactory().get(
+            '/', REMOTE_ADDR='4.8.15.16', HTTP_X_FORWARDED_FOR=',, 2.3.4.2,  4.8.15.16',
+            HTTP_X_REQUEST_VIA_CDN='foo'
+        )
+        assert self.middleware.is_request_from_cdn(request)
+        self.middleware.process_request(request)
+        assert request.META['REMOTE_ADDR'] == '2.3.4.2'

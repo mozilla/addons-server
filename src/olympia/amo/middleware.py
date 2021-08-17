@@ -1,6 +1,5 @@
 import contextlib
 import re
-import socket
 import uuid
 
 from urllib.parse import quote
@@ -9,8 +8,8 @@ from django.conf import settings
 from django.contrib.auth.middleware import AuthenticationMiddleware
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.sessions.middleware import SessionMiddleware
+from django.core.exceptions import ImproperlyConfigured
 from django.db import transaction
-from django.urls import is_valid_path
 from django.http import (
     HttpResponsePermanentRedirect,
     HttpResponseRedirect,
@@ -18,9 +17,11 @@ from django.http import (
 )
 from django.middleware import common
 from django.utils.cache import patch_cache_control, patch_vary_headers
+from django.utils.crypto import constant_time_compare
 from django.utils.deprecation import MiddlewareMixin
 from django.utils.encoding import force_str, iri_to_uri
 from django.utils.translation import activate, gettext_lazy as _
+from django.urls import is_valid_path
 
 from rest_framework import permissions
 
@@ -252,39 +253,41 @@ class ReadOnlyMiddleware(MiddlewareMixin):
 
 class SetRemoteAddrFromForwardedFor(MiddlewareMixin):
     """
-    Set request.META['REMOTE_ADDR'] from request.META['HTTP_X_FORWARDED_FOR'].
+    Set REMOTE_ADDR from HTTP_X_FORWARDED_FOR if the request came from the CDN.
 
-    Our application servers should always be behind a load balancer that sets
-    this header correctly.
+    If the request came from the CDN, the client IP will always be in
+    HTTP_X_FORWARDED_FOR in second to last position (CDN puts it last, but the
+    load balancer then appends the IP from where it saw the request come from,
+    which is the CDN server that forwarded the request). In addition, the CDN
+    will set HTTP_X_REQUEST_VIA_CDN to a secret value known to us so we can
+    verify the request did originate from the CDN.
+
+    If the request didn't come from the CDN and is a direct origin request, the
+    client IP will be in last position in HTTP_X_FORWARDED_FOR but in this case
+    nginx already sets REMOTE_ADDR so we don't need to use it.
     """
 
-    def is_valid_ip(self, ip):
-        for af in (socket.AF_INET, socket.AF_INET6):
-            try:
-                socket.inet_pton(af, ip)
-                return True
-            except OSError:
-                pass
-        return False
+    def is_request_from_cdn(self, request):
+        return settings.SECRET_CDN_TOKEN and constant_time_compare(
+            request.META.get('HTTP_X_REQUEST_VIA_CDN'), settings.SECRET_CDN_TOKEN
+        )
 
     def process_request(self, request):
-        ips = []
-
-        if 'HTTP_X_FORWARDED_FOR' in request.META:
-            xff = [i.strip() for i in request.META['HTTP_X_FORWARDED_FOR'].split(',')]
-            ips = [ip for ip in xff if self.is_valid_ip(ip)]
-        else:
-            return
-
-        ips.append(request.META['REMOTE_ADDR'])
-
-        known = getattr(settings, 'KNOWN_PROXIES', [])
-        ips.reverse()
-
-        for ip in ips:
-            request.META['REMOTE_ADDR'] = ip
-            if ip not in known:
-                break
+        HTTP_X_FORWARDED_FOR = request.META.get('HTTP_X_FORWARDED_FOR')
+        if HTTP_X_FORWARDED_FOR and self.is_request_from_cdn(request):
+            # We only have to split twice from the right to find what we're looking for.
+            split = [
+                ip.strip() for ip in HTTP_X_FORWARDED_FOR.rsplit(sep=',', maxsplit=2)
+            ]
+            try:
+                value = split[-2]
+                if not value:
+                    raise IndexError
+                request.META['REMOTE_ADDR'] = value
+            except IndexError:
+                # Shouldn't happen, must be a misconfiguration, raise an error
+                # rather than potentially use/record incorrect IPs.
+                raise ImproperlyConfigured('Invalid HTTP_X_FORWARDED_FOR')
 
 
 class RequestIdMiddleware(MiddlewareMixin):

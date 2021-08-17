@@ -314,16 +314,19 @@ class TestOtherStuff(TestCase):
         assert doc('input[type=hidden][name=foo]').attr('value') == 'fooval'
         assert doc('input[type=hidden][name=bar]').attr('value') == 'barval'
 
-    @patch.object(settings, 'KNOWN_PROXIES', ['127.0.0.1'])
+    @override_settings(SECRET_CDN_TOKEN='foo')
     @patch.object(core, 'set_remote_addr')
-    def test_remote_addr(self, set_remote_addr_mock):
-        """Make sure we're setting REMOTE_ADDR from X_FORWARDED_FOR."""
+    def test_remote_addr_from_cdn(self, set_remote_addr_mock):
+        """Make sure we're setting REMOTE_ADDR from X_FORWARDED_FOR correctly
+        if request came from the CDN."""
         client = test.Client()
-        # Send X-Forwarded-For as it shows up in a wsgi request.
+        # Send X-Forwarded-For and X-Request-Via-CDN as it shows up in a wsgi
+        # request.
         client.get(
             '/en-US/developers/',
             follow=True,
-            HTTP_X_FORWARDED_FOR='1.1.1.1',
+            HTTP_X_FORWARDED_FOR='1.1.1.1,2.2.2.2',
+            HTTP_X_REQUEST_VIA_CDN=settings.SECRET_CDN_TOKEN,
             REMOTE_ADDR='127.0.0.1',
         )
         assert set_remote_addr_mock.call_count == 2
@@ -565,7 +568,6 @@ def test_client_info():
             'HTTP_USER_AGENT': None,
             'HTTP_X_COUNTRY_CODE': None,
             'HTTP_X_FORWARDED_FOR': None,
-            'HTTP_X_REQUEST_VIA_CDN': None,
             'REMOTE_ADDR': '127.0.0.1',
         }
 
@@ -573,7 +575,6 @@ def test_client_info():
             reverse('amo.client_info'),
             HTTP_USER_AGENT='Foo/5.0',
             HTTP_X_FORWARDED_FOR='192.0.0.2,193.0.0.1',
-            HTTP_X_REQUEST_VIA_CDN='4815162342',
             HTTP_X_COUNTRY_CODE='FR',
         )
         assert response.status_code == 200
@@ -581,7 +582,6 @@ def test_client_info():
             'HTTP_USER_AGENT': 'Foo/5.0',
             'HTTP_X_COUNTRY_CODE': 'FR',
             'HTTP_X_FORWARDED_FOR': '192.0.0.2,193.0.0.1',
-            'HTTP_X_REQUEST_VIA_CDN': '4815162342',
             'REMOTE_ADDR': '127.0.0.1',
         }
 

@@ -64,7 +64,6 @@ def client_info(request):
         'HTTP_USER_AGENT',
         'HTTP_X_COUNTRY_CODE',
         'HTTP_X_FORWARDED_FOR',
-        'HTTP_X_REQUEST_VIA_CDN',
         'REMOTE_ADDR',
     )
     data = {key: request.META.get(key) for key in keys}
