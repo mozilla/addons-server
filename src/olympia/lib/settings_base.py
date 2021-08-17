@@ -69,10 +69,6 @@ SILENCED_SYSTEM_CHECKS = (
     # Recommendation to use OneToOneField instead of ForeignKey(unique=True)
     # but our translations are the way they are...
     'fields.W342',
-    # We have some non-unique constraint/index names.
-    # See https://github.com/mozilla/addons-server/issues/16497
-    'models.E030',
-    'models.E032',
 )
 
 # LESS CSS OPTIONS (Debug only).

@@ -132,7 +132,7 @@ class Rating(ModelBase):
         indexes = [
             models.Index(fields=('version',), name='version_id'),
             models.Index(fields=('user',), name='reviews_ibfk_2'),
-            models.Index(fields=('addon',), name='addon_id'),
+            models.Index(fields=('addon',), name='reviews_addon_idx'),
             models.Index(
                 fields=('reply_to', 'is_latest', 'addon', 'created'),
                 name='latest_reviews',

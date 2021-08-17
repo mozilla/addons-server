@@ -530,13 +530,13 @@ class Addon(OnChangeMixin, ModelBase):
         base_manager_name = 'unfiltered'
         indexes = [
             models.Index(fields=('bayesian_rating',), name='bayesianrating'),
-            models.Index(fields=('created',), name='created_idx'),
+            models.Index(fields=('created',), name='addons_created_idx'),
             models.Index(fields=('_current_version',), name='current_version'),
             models.Index(fields=('disabled_by_user',), name='inactive'),
             models.Index(fields=('hotness',), name='hotness_idx'),
             models.Index(fields=('last_updated',), name='last_updated'),
             models.Index(fields=('modified',), name='modified_idx'),
-            models.Index(fields=('status',), name='status'),
+            models.Index(fields=('status',), name='addons_status_idx'),
             models.Index(fields=('target_locale',), name='target_locale'),
             models.Index(fields=('type',), name='addontype_id'),
             models.Index(fields=('weekly_downloads',), name='weeklydownloads_idx'),
@@ -1964,7 +1964,10 @@ class AddonCategory(models.Model):
             models.Index(fields=('category_id', 'addon'), name='category_addon_idx'),
         ]
         constraints = [
-            models.UniqueConstraint(fields=('addon', 'category_id'), name='addon_id'),
+            models.UniqueConstraint(
+                fields=('addon', 'category_id'),
+                name='addons_categories_addon_category_id',
+            ),
         ]
 
     def __init__(self, *args, **kwargs):
@@ -2014,14 +2017,19 @@ class AddonUser(OnChangeMixin, SaveUpdateMixin, models.Model):
         base_manager_name = 'unfiltered'
         db_table = 'addons_users'
         indexes = [
-            models.Index(fields=('listed',), name='listed'),
-            models.Index(
-                fields=('addon', 'user', 'listed'), name='addon_user_listed_idx'
+            models.Index(fields=('listed',), name='addons_users_listed_idx'),
+            LongNameIndex(
+                fields=('addon', 'user', 'listed'),
+                name='addons_users_addon_user_listed_idx',
             ),
-            models.Index(fields=('addon', 'listed'), name='addon_listed_idx'),
+            models.Index(
+                fields=('addon', 'listed'), name='addons_users_addon_listed_idx'
+            ),
         ]
         constraints = [
-            models.UniqueConstraint(fields=('addon', 'user'), name='addon_id'),
+            models.UniqueConstraint(
+                fields=('addon', 'user'), name='addons_users_addon_user'
+            ),
         ]
 
     def delete(self):
@@ -2188,7 +2196,7 @@ class Preview(BasePreview, ModelBase):
         db_table = 'previews'
         ordering = ('position', 'created')
         indexes = [
-            models.Index(fields=('addon',), name='addon_id'),
+            models.Index(fields=('addon',), name='previews_addon_idx'),
             models.Index(
                 fields=('addon', 'position', 'created'),
                 name='addon_position_created_idx',
