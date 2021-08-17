@@ -150,7 +150,9 @@ class TestSetRemoteAddrFromForwardedFor(TestCase):
     @override_settings(SECRET_CDN_TOKEN=None)
     def test_request_not_from_cdn_because_setting_is_none(self):
         request = RequestFactory().get(
-            '/', REMOTE_ADDR='4.8.15.16', HTTP_X_FORWARDED_FOR='2.3.4.2,4.8.15.16',
+            '/',
+            REMOTE_ADDR='4.8.15.16',
+            HTTP_X_FORWARDED_FOR='2.3.4.2,4.8.15.16',
             HTTP_X_REQUEST_VIA_CDN=None,
         )
         assert not self.middleware.is_request_from_cdn(request)
@@ -160,8 +162,10 @@ class TestSetRemoteAddrFromForwardedFor(TestCase):
     @override_settings(SECRET_CDN_TOKEN='foo')
     def test_request_not_from_cdn_because_header_secret_is_invalid(self):
         request = RequestFactory().get(
-            '/', REMOTE_ADDR='4.8.15.16', HTTP_X_FORWARDED_FOR='2.3.4.2,4.8.15.16',
-            HTTP_X_REQUEST_VIA_CDN='not-foo'
+            '/',
+            REMOTE_ADDR='4.8.15.16',
+            HTTP_X_FORWARDED_FOR='2.3.4.2,4.8.15.16',
+            HTTP_X_REQUEST_VIA_CDN='not-foo',
         )
         assert not self.middleware.is_request_from_cdn(request)
         self.middleware.process_request(request)
@@ -170,8 +174,10 @@ class TestSetRemoteAddrFromForwardedFor(TestCase):
     @override_settings(SECRET_CDN_TOKEN='foo')
     def test_request_from_cdn_but_only_one_ip_in_x_forwarded_for(self):
         request = RequestFactory().get(
-            '/', REMOTE_ADDR='4.8.15.16', HTTP_X_FORWARDED_FOR='4.8.15.16',
-            HTTP_X_REQUEST_VIA_CDN='foo'
+            '/',
+            REMOTE_ADDR='4.8.15.16',
+            HTTP_X_FORWARDED_FOR='4.8.15.16',
+            HTTP_X_REQUEST_VIA_CDN='foo',
         )
         assert self.middleware.is_request_from_cdn(request)
         with self.assertRaises(ImproperlyConfigured):
@@ -180,8 +186,10 @@ class TestSetRemoteAddrFromForwardedFor(TestCase):
     @override_settings(SECRET_CDN_TOKEN='foo')
     def test_request_from_cdn_but_empty_values_in_x_forwarded_for(self):
         request = RequestFactory().get(
-            '/', REMOTE_ADDR='4.8.15.16', HTTP_X_FORWARDED_FOR=',',
-            HTTP_X_REQUEST_VIA_CDN='foo'
+            '/',
+            REMOTE_ADDR='4.8.15.16',
+            HTTP_X_FORWARDED_FOR=',',
+            HTTP_X_REQUEST_VIA_CDN='foo',
         )
         assert self.middleware.is_request_from_cdn(request)
         with self.assertRaises(ImproperlyConfigured):
@@ -190,8 +198,10 @@ class TestSetRemoteAddrFromForwardedFor(TestCase):
     @override_settings(SECRET_CDN_TOKEN='foo')
     def test_request_from_cdn_pick_second_to_last_ip_in_x_forwarded_for(self):
         request = RequestFactory().get(
-            '/', REMOTE_ADDR='4.8.15.16', HTTP_X_FORWARDED_FOR=',, 2.3.4.2,  4.8.15.16',
-            HTTP_X_REQUEST_VIA_CDN='foo'
+            '/',
+            REMOTE_ADDR='4.8.15.16',
+            HTTP_X_FORWARDED_FOR=',, 2.3.4.2,  4.8.15.16',
+            HTTP_X_REQUEST_VIA_CDN='foo',
         )
         assert self.middleware.is_request_from_cdn(request)
         self.middleware.process_request(request)
