@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-10 17:03+0000\n"
-"PO-Revision-Date: 2021-05-01 09:28+0000\n"
+"PO-Revision-Date: 2021-08-17 13:54+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
 "Language: el\n"
@@ -132,7 +132,7 @@ msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Η διαδικασία επικύρωσης βρήκε προβλήματα που μπορούν να οδηγήσουν σε απόρριψη."
 
 msgid "The filetype you uploaded isn't recognized."
-msgstr "Δεν αναγνωρίζεται η μορφή αρχείου που αποστείλατε."
+msgstr "Ο τύπος αρχείου που μεταφορτώσατε δεν αναγνωρίζεται."
 
 msgid "Your file exceeds the maximum size of {0}."
 msgstr "Το αρχείο σας ξεπερνά το μέγιστο μέγεθος των {0}."

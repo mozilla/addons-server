@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-10 17:02+0000\n"
-"PO-Revision-Date: 2021-08-17 09:28+0000\n"
+"PO-Revision-Date: 2021-08-17 14:05+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -377,10 +377,10 @@ msgid "Wrong type for one or more keys in payload"
 msgstr "Λάθος τύπος για ένα ή περισσότερα κλειδιά στο φορτίο"
 
 msgid "Invalid JWT Token."
-msgstr "Μη έγκυρο σύμβολο JWT."
+msgstr "Μη έγκυρο διακριτικό JWT."
 
 msgid "Invalid token or hash."
-msgstr "Άκυρο token ή hash."
+msgstr "Μη έγκυρο διακριτικό ή hash."
 
 msgid "Email address not found."
 msgstr "Η διεύθυνση email δεν βρέθηκε."
@@ -5790,11 +5790,11 @@ msgstr "Εκτέλεση"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
-msgstr "Άκυρη παράμετρος \"%s\"."
+msgstr "Μη έγκυρη παράμετρος «%s»."
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
-msgstr "Άκυρος συνδυασμός των παραμέτρων \"%s\" και \"%s\"."
+msgstr "Μη έγκυρος συνδυασμός των παραμέτρων «%s» και «%s»."
 
 msgid "Return To AMO is currently disabled"
 msgstr "Η επιστροφή στο AMO είναι ανενεργή αυτή τη στιγμή"
