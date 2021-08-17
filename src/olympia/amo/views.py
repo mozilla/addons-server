@@ -6,7 +6,7 @@ import django
 from django import http
 from django.conf import settings
 from django.contrib.sitemaps.views import x_robots_tag
-from django.core.exceptions import ViewDoesNotExist
+from django.core.exceptions import PermissionDenied, ViewDoesNotExist
 from django.core.paginator import EmptyPage, PageNotAnInteger
 from django.db.transaction import non_atomic_requests
 from django.http import Http404, HttpResponse, JsonResponse
@@ -53,6 +53,22 @@ def monitor(request):
     status_code = 200 if all(a['state'] for a in status_summary.values()) else 500
 
     return http.HttpResponse(json.dumps(status_summary), status=status_code)
+
+
+@never_cache
+@non_atomic_requests
+def client_info(request):
+    if getattr(settings, 'ENV', None) != 'dev':
+        raise PermissionDenied
+    keys = (
+        'HTTP_USER_AGENT',
+        'HTTP_X_COUNTRY_CODE',
+        'HTTP_X_FORWARDED_FOR',
+        'HTTP_X_REQUEST_VIA_CDN',
+        'REMOTE_ADDR',
+    )
+    data = {key: request.META.get(key) for key in keys}
+    return JsonResponse(data)
 
 
 @non_atomic_requests
