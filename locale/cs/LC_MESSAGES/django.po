@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-17 16:44+0000\n"
-"PO-Revision-Date: 2021-08-17 22:50+0000\n"
+"PO-Revision-Date: 2021-08-17 22:55+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -3174,10 +3174,10 @@ msgid "Get involved"
 msgstr "Zapojte se"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
-msgstr ""
+msgstr "Spojte se s tisícovkami vývojářů a objevte další způsoby, jak můžete přispět k rozšíření ekosystému."
 
 msgid "Learn more about the developer community"
-msgstr ""
+msgstr "Zjistěte více o komunitě vývojářů"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Zveřejněno na této stránce, jakmile úspěšně projde kontrolou. O aktualizace se automaticky stará tato stránka."
@@ -3219,16 +3219,16 @@ msgid "Profile"
 msgstr "Profil"
 
 msgid "Submit or Manage Extensions"
-msgstr ""
+msgstr "Odeslat nebo spravovat rozšíření"
 
 msgid "Customize Firefox"
 msgstr "Přizpůsobte si Firefox"
 
 msgid "Learn how to make an extension"
-msgstr ""
+msgstr "Naučte se vytvářet doplňky"
 
 msgid "Ready to submit or manage your extension?"
-msgstr ""
+msgstr "Jste připraveni odeslat nebo spravovat své rozšíření?"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
 msgstr ""
