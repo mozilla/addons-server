@@ -290,6 +290,11 @@ SECRET_KEY = env(
     'SECRET_KEY', default='this-is-a-dummy-key-and-its-overridden-for-prod-servers'
 )
 
+# This is a unique key shared between us and the CDN to prove that a request
+# came from the CDN. It will be passed as a HTTP_X_REQUEST_VIA_CDN header to
+# all requests from the CDN
+SECRET_CDN_TOKEN = env('SECRET_CDN_TOKEN', default=None)
+
 # Templates configuration.
 # List of path patterns for which we should be using Django Template Language.
 # If you add things here, don't forget to also change PUENTE config below.
@@ -1440,9 +1445,6 @@ GRAPHITE_HOST = env('GRAPHITE_HOST', default='localhost')
 GRAPHITE_PREFIX = env('GRAPHITE_PREFIX', default='amo')
 GRAPHITE_PORT = 2003
 GRAPHITE_TIMEOUT = 1
-
-# IP addresses of servers we use as proxies.
-KNOWN_PROXIES = []
 
 # Blog URL
 DEVELOPER_BLOG_URL = 'https://blog.mozilla.org/addons/wp-json/wp/v2/posts'
