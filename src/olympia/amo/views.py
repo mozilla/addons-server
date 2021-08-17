@@ -55,6 +55,20 @@ def monitor(request):
     return http.HttpResponse(json.dumps(status_summary), status=status_code)
 
 
+@never_cache
+@non_atomic_requests
+def client_info(request):
+    keys = (
+        'REMOTE_ADDR',
+        'HTTP_USER_AGENT',
+        'HTTP_X_FORWARDED_FOR',
+        'HTTP_X_REQUEST_VIA_CDN',
+        'HTTP_X_COUNTRY_CODE',
+    )
+    data = {key: request.META.get(key) for key in keys}
+    return JsonResponse(data)
+
+
 @non_atomic_requests
 def robots(request):
     """Generate a robots.txt"""
