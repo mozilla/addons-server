@@ -12,23 +12,12 @@ def test_rename_constraints_operation():
     )
     add_constraint2 = migrations.AddConstraint(
         model_name='somemodel',
-        constraint=models.UniqueConstraint(
-            fields=('addon',), name='somename'
-        ),
+        constraint=models.UniqueConstraint(fields=('addon',), name='somename'),
     )
 
     op = RenameConstraintsOperation(
         'table_foo',
-        [
-            (
-                add_constraint,
-                'addon_id',
-            ),
-            (
-                add_constraint2,
-                'someoldname'
-            )
-        ],
+        [(add_constraint, 'addon_id'), (add_constraint2, 'someoldname')],
     )
     assert op.sql == (
         'ALTER TABLE `table_foo` '
@@ -63,16 +52,7 @@ def test_rename_indexes_operation():
 
     op = RenameIndexesOperation(
         'table_foo',
-        [
-            (
-                add_index,
-                'addon_id',
-            ),
-            (
-                add_index2,
-                'someoldname'
-            )
-        ],
+        [(add_index, 'addon_id'), (add_index2, 'someoldname')],
     )
     assert op.sql == (
         'ALTER TABLE `table_foo` '
