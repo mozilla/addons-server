@@ -276,11 +276,8 @@ class SetRemoteAddrFromForwardedFor(MiddlewareMixin):
         x_forwarded_for_header = request.META.get('HTTP_X_FORWARDED_FOR')
         if x_forwarded_for_header and self.is_request_from_cdn(request):
             # We only have to split twice from the right to find what we're looking for.
-            split = [
-                ip.strip() for ip in x_forwarded_for_header.rsplit(sep=',', maxsplit=2)
-            ]
             try:
-                value = split[-2]
+                value = x_forwarded_for_header.rsplit(sep=',', maxsplit=2)[-2].strip()
                 if not value:
                     raise IndexError
                 request.META['REMOTE_ADDR'] = value
