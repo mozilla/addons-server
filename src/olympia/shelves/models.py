@@ -38,7 +38,8 @@ class Shelf(ModelBase):
     footer_pathname = models.CharField(
         max_length=255,
         blank=True,
-        help_text='e.g., collections/4757633/privacy-matters',
+        help_text='Can be set to override the default generated footer url/path to see '
+        'more of the add-ons shown on the shelf. Leave blank otherwise',
     )
     addon_count = models.PositiveSmallIntegerField(
         default=0,
