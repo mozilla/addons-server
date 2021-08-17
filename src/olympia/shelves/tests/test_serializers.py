@@ -307,7 +307,7 @@ class TestShelvesSerializer(ESTestCase):
         assert data['title'] == {'en-US': 'Title for foo'}
         assert data['footer']['text'] == {'en-US': 'footer with foo'}
 
-        # Check this works when locale is requested we don't have - i.e. value is None
+        # Check this works when we don't have the requested locale - i.e. value is None
         self.request.GET = self.request.GET.copy()
         self.request.GET['lang'] = 'baa'
         data = self.serialize(self.tag_shelf)
