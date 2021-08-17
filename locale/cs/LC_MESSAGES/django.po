@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-17 16:44+0000\n"
-"PO-Revision-Date: 2021-08-17 19:22+0000\n"
+"PO-Revision-Date: 2021-08-17 19:35+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4381,7 +4381,7 @@ msgstr "Vylepšení médií ve Firefoxu"
 #. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
 msgid "Explore extensions"
-msgstr "Podívejte se na další rozšíření"
+msgstr "Prozkoumat rozšíření"
 
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
@@ -4397,7 +4397,7 @@ msgstr "Další doporučená rozšíření"
 
 #. editorial content for the homepage shelves.
 msgid "Popular themes"
-msgstr ""
+msgstr "Oblíbené vzhledy"
 
 #. editorial content for the homepage shelves.
 msgid "See more popular themes"
@@ -4409,7 +4409,7 @@ msgstr "Rozšíření zaměřená na zvýšení soukromí"
 
 #. editorial content for the homepage shelves.
 msgid "See more enhanced privacy extensions"
-msgstr ""
+msgstr "Další rozšíření zaměřená na zvýšení soukromí"
 
 #. editorial content for the homepage shelves.
 # Plural in this context means many of the add-on type
@@ -4426,7 +4426,7 @@ msgstr "Doporučené motivy vzhledu"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
-msgstr ""
+msgstr "Další doporučené vzhledy"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended password managers"
@@ -4434,7 +4434,7 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended password managers"
-msgstr ""
+msgstr "Další doporučení správci hesel"
 
 #. editorial content for the homepage shelves.
 msgid "Translation tools"
@@ -4446,11 +4446,11 @@ msgstr "Další jazykové překladače"
 
 #. editorial content for the homepage shelves.
 msgid "Social streaming"
-msgstr ""
+msgstr "Streamování na sociálních sítích"
 
 #. editorial content for the homepage shelves.
 msgid "See more social streaming extensions"
-msgstr ""
+msgstr "Další rozšíření pro streamování na sociálních sítích"
 
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
