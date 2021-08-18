@@ -71,7 +71,6 @@ from olympia.reviewers.models import (
     Whiteboard,
 )
 from olympia.reviewers.templatetags.jinja_helpers import code_manager_url
-from olympia.reviewers.utils import ContentReviewTable
 from olympia.reviewers.views import _queue
 from olympia.reviewers.serializers import CannedResponseSerializer
 from olympia.scanners.models import ScannerResult, ScannerRule
