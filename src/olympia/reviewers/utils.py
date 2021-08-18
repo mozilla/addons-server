@@ -173,7 +173,13 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
 
     class Meta:
         fields = ('addon_name', 'addon_type', 'waiting_time', 'flags')
-        exclude = ('last_human_review', 'code_weight', 'metadata_weight', 'weight', 'score',)
+        exclude = (
+            'last_human_review',
+            'code_weight',
+            'metadata_weight',
+            'weight',
+            'score',
+        )
 
     @classmethod
     def get_queryset(cls, admin_reviewer=False):
@@ -256,7 +262,13 @@ class UnlistedPendingManualApprovalQueueTable(PendingManualApprovalQueueTable):
             'waiting_time',
             'score',
         )
-        exclude = PendingManualApprovalQueueTable.Meta.exclude + ('flags',)
+        exclude = (
+            'last_human_review',
+            'code_weight',
+            'metadata_weight',
+            'weight',
+            'flags',
+        )
 
     def _get_addon_name_url(self, record):
         return reverse('reviewers.review', args=['unlisted', record.id])

@@ -371,11 +371,11 @@ def _queue(request, tab, unlisted=False):
             qs = filter_admin_review_for_legacy_queue(qs)
 
     params = {}
-    sort = request.GET.get('sort')
-    if sort is None and hasattr(TableObj, 'default_order_by'):
-        sort = TableObj.default_order_by()
-    if sort is not None:
-        params['order_by'] = sort
+    order_by = request.GET.get('sort')
+    if order_by is None and hasattr(TableObj, 'default_order_by'):
+        order_by = TableObj.default_order_by()
+    if order_by is not None:
+        params['order_by'] = order_by
     table = TableObj(data=qs, **params)
     per_page = request.GET.get('per_page', REVIEWS_PER_PAGE)
     try:
