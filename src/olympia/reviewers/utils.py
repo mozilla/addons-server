@@ -10,7 +10,7 @@ from django.db.models import Count, F, Q
 from django.template import loader
 from django.urls import reverse
 from django.utils import translation
-from django.utils.translation import gettext_lazy as _, ngettext
+from django.utils.translation import gettext_lazy as _
 
 from olympia import amo
 from olympia.access import acl
@@ -25,12 +25,9 @@ from olympia.reviewers.models import (
     AutoApprovalSummary,
     ReviewerScore,
     ReviewerSubscription,
-    ViewUnlistedAllList,
     get_flags,
-    get_flags_for_row,
 )
 from olympia.reviewers.templatetags.jinja_helpers import format_score
-from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
 from olympia.versions.models import VersionReviewerFlags
 
@@ -50,78 +47,6 @@ class ItemStateTable:
 
 def safe_substitute(string, *args):
     return string % tuple(markupsafe.escape(arg) for arg in args)
-
-
-class ReviewerQueueTable(tables.Table, ItemStateTable):
-    addon_name = tables.Column(verbose_name=_('Add-on'))
-    addon_type_id = tables.Column(verbose_name=_('Type'))
-    waiting_time_min = tables.Column(verbose_name=_('Waiting Time'))
-    flags = tables.Column(verbose_name=_('Flags'), orderable=False)
-
-    class Meta:
-        orderable = True
-
-    @classmethod
-    def get_queryset(cls, admin_reviewer=False):
-        return cls.Meta.model.objects.all()
-
-    def render_addon_name(self, record):
-        url = reverse('reviewers.review', args=[record.id])
-        self.increment_item()
-        return markupsafe.Markup(
-            '<a href="%s">%s <em>%s</em></a>'
-            % (
-                url,
-                markupsafe.escape(record.addon_name),
-                markupsafe.escape(record.latest_version),
-            )
-        )
-
-    def render_addon_type_id(self, record):
-        return amo.ADDON_TYPE[record.addon_type_id]
-
-    def render_flags(self, record):
-        if not hasattr(record, 'flags'):
-            record.flags = get_flags_for_row(record)
-        return markupsafe.Markup(
-            ''.join(
-                '<div class="app-icon ed-sprite-%s" title="%s"></div>' % flag
-                for flag in record.flags
-            )
-        )
-
-    @classmethod
-    def translate_sort_cols(cls, colname):
-        legacy_sorts = {
-            'name': 'addon_name',
-            'age': 'waiting_time_min',
-            'type': 'addon_type_id',
-        }
-        return legacy_sorts.get(colname, colname)
-
-    def render_waiting_time_min(self, record):
-        if record.waiting_time_min == 0:
-            r = _('moments ago')
-        elif record.waiting_time_hours == 0:
-            # L10n: first argument is number of minutes
-            r = ngettext('{0} minute', '{0} minutes', record.waiting_time_min).format(
-                record.waiting_time_min
-            )
-        elif record.waiting_time_days == 0:
-            # L10n: first argument is number of hours
-            r = ngettext('{0} hour', '{0} hours', record.waiting_time_hours).format(
-                record.waiting_time_hours
-            )
-        else:
-            # L10n: first argument is number of days
-            r = ngettext('{0} day', '{0} days', record.waiting_time_days).format(
-                record.waiting_time_days
-            )
-        return markupsafe.escape(r)
-
-    @classmethod
-    def default_order_by(cls):
-        return '-waiting_time_min'
 
 
 class ViewUnlistedAllListTable(tables.Table, ItemStateTable):
@@ -156,16 +81,7 @@ class ViewUnlistedAllListTable(tables.Table, ItemStateTable):
         return '-id'
 
 
-def view_table_factory(viewqueue):
-    class ViewQueueTable(ReviewerQueueTable):
-        @classmethod
-        def get_queryset(cls, admin_reviewer=False):
-            return viewqueue.objects.all()
-
-    return ViewQueueTable
-
-
-class ModernAddonQueueTable(ReviewerQueueTable):
+class AddonQueueTable(tables.Table, ItemStateTable):
     addon_name = tables.Column(verbose_name=_('Add-on'), accessor='name')
     # Override empty_values for flags so that they can be displayed even if the
     # model does not have a flags attribute.
@@ -191,7 +107,7 @@ class ModernAddonQueueTable(ReviewerQueueTable):
         accessor='_current_version__autoapprovalsummary__score',
     )
 
-    class Meta(ReviewerQueueTable.Meta):
+    class Meta:
         fields = (
             'addon_name',
             'flags',
@@ -200,11 +116,6 @@ class ModernAddonQueueTable(ReviewerQueueTable):
             'metadata_weight',
             'weight',
             'score',
-        )
-        # Exclude base fields ReviewerQueueTable has that we don't want.
-        exclude = (
-            'addon_type_id',
-            'waiting_time_min',
         )
         orderable = False
 
@@ -368,13 +279,13 @@ class UnlistedPendingManualApprovalQueueTable(PendingManualApprovalQueueTable):
         return '-score'
 
 
-class PendingRejectionTable(ModernAddonQueueTable):
+class PendingRejectionTable(AddonQueueTable):
     deadline = tables.Column(
         verbose_name=_('Pending Rejection Deadline'),
         accessor='_current_version__reviewerflags__pending_rejection',
     )
 
-    class Meta(ModernAddonQueueTable.Meta):
+    class Meta(AddonQueueTable.Meta):
         fields = (
             'addon_name',
             'flags',
@@ -394,7 +305,7 @@ class PendingRejectionTable(ModernAddonQueueTable):
         return naturaltime(value) if value else ''
 
 
-class AutoApprovedTable(ModernAddonQueueTable):
+class AutoApprovedTable(AddonQueueTable):
     @classmethod
     def get_queryset(cls, admin_reviewer=False):
         return Addon.objects.get_auto_approved_queue(admin_reviewer=admin_reviewer)
@@ -403,13 +314,11 @@ class AutoApprovedTable(ModernAddonQueueTable):
 class ContentReviewTable(AutoApprovedTable):
     last_updated = tables.DateTimeColumn(verbose_name=_('Last Updated'))
 
-    class Meta(ReviewerQueueTable.Meta):
+    class Meta(AutoApprovedTable.Meta):
         fields = ('addon_name', 'flags', 'last_updated')
-        # Exclude base fields ReviewerQueueTable has that we don't want.
+        # Exclude base fields AutoApprovedTable has that we don't want.
         exclude = (
-            'addon_type_id',
             'last_human_review',
-            'waiting_time_min',
             'code_weight',
             'metadata_weight',
             'weight',
