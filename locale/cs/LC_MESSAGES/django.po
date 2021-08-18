@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-17 16:44+0000\n"
-"PO-Revision-Date: 2021-08-18 13:13+0000\n"
+"PO-Revision-Date: 2021-08-18 16:03+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -1557,10 +1557,10 @@ msgid "Delay auto-approval indefinitely and add restrictions to future approvals
 msgstr "Odložit automatické schvalování na dobu neurčitou a přidat omezení pro budoucí schvalování"
 
 msgid "True positive"
-msgstr ""
+msgstr "Pravdivě pozitivní"
 
 msgid "False positive"
-msgstr ""
+msgstr "Falešně pozitivní"
 
 msgid "Inconclusive"
 msgstr ""
