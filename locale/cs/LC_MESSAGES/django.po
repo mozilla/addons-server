@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-17 16:44+0000\n"
-"PO-Revision-Date: 2021-08-18 20:15+0000\n"
+"PO-Revision-Date: 2021-08-18 20:33+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4315,7 +4315,7 @@ msgstr "Modrožlutá"
 
 #. editorial content for the discovery pane.
 msgid "Forest Theme"
-msgstr ""
+msgstr "Motiv vzhledu Forest"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
