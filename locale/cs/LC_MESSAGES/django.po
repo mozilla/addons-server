@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-17 16:44+0000\n"
-"PO-Revision-Date: 2021-08-18 20:33+0000\n"
+"PO-Revision-Date: 2021-08-18 21:20+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4320,7 +4320,7 @@ msgstr "Motiv vzhledu Forest"
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
-msgstr ""
+msgstr "Ukládejte si sady panelů jako pohodlné záložky."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
