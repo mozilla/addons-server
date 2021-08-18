@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-17 16:44+0000\n"
-"PO-Revision-Date: 2021-08-18 22:31+0000\n"
+"PO-Revision-Date: 2021-08-18 22:40+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4252,7 +4252,7 @@ msgstr "Vybírejte, seřazujte a zahajujte svá stahování rychleji."
 
 #. editorial content for the discovery pane.
 msgid "Get weather updates right in the browser."
-msgstr "Mějte aktuální předpověď počasí přímo v prohlížeči."
+msgstr "Mějte aktuální informace o počasí přímo v prohlížeči."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
@@ -4369,11 +4369,11 @@ msgstr "Webové stránky se sami předčítají. Podporováno více než 40 jazy
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long tracking parameters from Google search result URL's."
-msgstr ""
+msgstr "Odstraňuje z adres URL výsledků vyhledávání Google ony dlouhé sledovací parametry."
 
 #. editorial content for the primary hero shelves.
 msgid "Get weather updates directly from Firefox."
-msgstr ""
+msgstr "Mějte aktuální informace o počasí přímo ve Firefoxu."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
