@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-17 16:44+0000\n"
-"PO-Revision-Date: 2021-08-18 18:33+0000\n"
+"PO-Revision-Date: 2021-08-18 18:39+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -1757,7 +1757,7 @@ msgid "The developer API key of a coauthor was found in the submitted file. To p
 msgstr "Vývojářšký API klíč spoluautora byl nalezen v nahraném souboru. Pro ochranu vašeho doplňku bude tento klíč zneplatněn."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
-msgstr "Bezpečnostní upozornění Mozilly: Vaše přihlašovací údaje k API server AMO byly zneplatněny"
+msgstr "Bezpečnostní upozornění Mozilly: Vaše přihlašovací údaje k API serveru AMO byly zneplatněny"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
