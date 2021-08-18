@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-17 16:44+0000\n"
-"PO-Revision-Date: 2021-08-18 11:06+0000\n"
+"PO-Revision-Date: 2021-08-18 11:14+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -3064,7 +3064,7 @@ msgid "If your add-on transmits any data from the user's computer, a privacy pol
 msgstr "Přenáší-li doplněk data z počítače uživatele, je nutné v zásadách ochrany osobních údajů vysvětlit, jaká data jsou odesílána a jak jsou použita. Relevantní pouze pro zveřejněné doplňky."
 
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
-msgstr ""
+msgstr "Pokud váš doplněk obsahuje minifikovaný, obfuskovaný nebo jinak strojově generovaný kód, a nejedná se o známou knihovnu, nahrajte jeho zdrojové kódy ke kontrole."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr "Přiložte prosím instrukce, jak reprodukovat vytvoření finálního souboru doplňku, buďto v souboru README nebo v poznámkách pro redaktora pro tuto verzi."
@@ -3271,7 +3271,7 @@ msgid "Source code"
 msgstr "Zdrojový kód"
 
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr "Pokud váš doplněk obsahuje minifikovaný, obfuskovaný nebo jinak strojově generovaný kód, zpřístupněte zdrojový kód pro kontrolu redaktorům."
+msgstr "Pokud váš doplněk obsahuje minifikovaný, obfuskovaný nebo jinak strojově generovaný kód, zpřístupněte zdrojový kód ke kontrole redaktorům."
 
 msgid "File {file_id}"
 msgstr "Soubor {file_id}"
