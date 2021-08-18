@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-17 16:44+0000\n"
-"PO-Revision-Date: 2021-08-18 09:50+0000\n"
+"PO-Revision-Date: 2021-08-18 09:49+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -1805,7 +1805,7 @@ msgid "Validation generated too many errors/warnings so %s messages were truncat
 msgstr "La validation a généré trop d’erreurs ou d’avertissements, et %s messages ont été tronqués. Après avoir corrigé les messages visibles, vous pourrez voir les autres."
 
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr ""
+msgstr "La version 3 du fichier Manifest n’est actuellement pas prise en charge pour la mise en ligne. {start_href}En savoir plus sur la chronologie de la prise en charge{end_href}."
 
 msgid "Updated"
 msgstr "Mis à jour"
