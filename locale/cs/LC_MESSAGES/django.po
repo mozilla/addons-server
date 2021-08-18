@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-17 16:44+0000\n"
-"PO-Revision-Date: 2021-08-18 10:37+0000\n"
+"PO-Revision-Date: 2021-08-18 10:51+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -1971,7 +1971,7 @@ msgstr "Zpět do Centra pro vývojáře"
 
 #. Text in small tag is smaller and on its own line.
 msgid "<small>Add-on</small> Developer Hub"
-msgstr "<small>Centrum pro</small> vývojáře doplňků"
+msgstr "Centrum pro vývojáře <small>doplňků</small>"
 
 msgid "more add-ons..."
 msgstr "více doplňků..."
@@ -3232,10 +3232,10 @@ msgid "Ready to submit or manage your extension?"
 msgstr "Jste připraveni odeslat nebo spravovat své rozšíření?"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
-msgstr ""
+msgstr "Chcete-li odesílat nebo spravovat rozšíření a motivy vzhledu, přihlaste se do centra pro vývojáře."
 
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr ""
+msgstr "Založte si účet vývojáře nebo se přihlaste do centra pro vývojáře."
 
 msgid "Manage Version {0}"
 msgstr "Správa verze {0}"
