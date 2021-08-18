@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-17 16:44+0000\n"
-"PO-Revision-Date: 2021-08-18 19:27+0000\n"
+"PO-Revision-Date: 2021-08-18 19:49+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -3112,7 +3112,7 @@ msgid "Build best-in-class extensions and themes"
 msgstr "Vytvářejte prvotřídní rozšíření a motivy vzhledu"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
-msgstr ""
+msgstr "Ať už s vývojem rozšíření začínáte, nebo vylepšujete či portujete své již hotové rozšíření či motiv vzhledu, anebo vytváříte vlastní podnikové řešení, máme zdroje, které vám pomohou."
 
 # Plural in this context means many of the add-on type
 msgid "Visit the Firefox Extension Workshop"
