@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-17 16:44+0000\n"
-"PO-Revision-Date: 2021-08-18 22:40+0000\n"
+"PO-Revision-Date: 2021-08-18 23:00+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4377,7 +4377,7 @@ msgstr "Mějte aktuální informace o počasí přímo ve Firefoxu."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
-msgstr ""
+msgstr "Lépe hospodařte se svým časem díky hodinám v prohlížeči, které vyznačují pracovní přestávky."
 
 #. editorial content for the primary hero shelves.
 msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
@@ -4385,7 +4385,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Begone, annoying cookie warnings!"
-msgstr ""
+msgstr "Sbohem, otravná upozornění na cookies!"
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
@@ -4467,7 +4467,7 @@ msgstr "Další doporučené vzhledy"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended password managers"
-msgstr ""
+msgstr "Doporučení správci hesel"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended password managers"
