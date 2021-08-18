@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-17 16:44+0000\n"
-"PO-Revision-Date: 2021-08-18 16:13+0000\n"
+"PO-Revision-Date: 2021-08-18 16:47+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -1594,7 +1594,7 @@ msgid "Recent Changes for My Add-ons"
 msgstr "Nedávné změny pro mé doplňky"
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
-msgstr ""
+msgstr "Doplňky ve formátu Open Search {blog_link_open}již nejsou na webu doplňků podporovány{blog_link_close}. Místo nich můžete vytvořit {doc_link_open}rozšíření pro vyhledávání{doc_link_close}."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Toto URL je již používáno. Zvolte prosím jiné."
@@ -1918,7 +1918,7 @@ msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest
 msgstr "Barva textu v polích v nástrojových lištách, jako je např. adresní řádek. Pole manifestu:  toolbar_field_text."
 
 msgid "Tab highlight"
-msgstr ""
+msgstr "Zvýraznění panelu"
 
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr ""
