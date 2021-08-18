@@ -251,8 +251,9 @@ class AddonManager(ManagerBase):
             # select_related('_current_version__autoapprovalsummary') from
             # working, because it overrides the _current_version with the one
             # it fetches. We want translations though, but only for the name.
-            .only_translations()
-            .defer(*[x.name for x in Addon._meta.translated_fields if x.name != 'name'])
+            .only_translations().defer(
+                *[x.name for x in Addon._meta.translated_fields if x.name != 'name']
+            )
         )
         # Useful joins to avoid extra queries.
         select_related_fields = [
@@ -297,8 +298,10 @@ class AddonManager(ManagerBase):
         types=amo.GROUP_TYPE_ADDON,
     ):
         if types not in (amo.GROUP_TYPE_ADDON, amo.GROUP_TYPE_THEME):
-            raise ImproperlyConfigured('types needs to be either GROUP_TYPE_ADDON or GROUP_TYPE_THEME')
-        theme_review = (types == amo.GROUP_TYPE_THEME)
+            raise ImproperlyConfigured(
+                'types needs to be either GROUP_TYPE_ADDON or GROUP_TYPE_THEME'
+            )
+        theme_review = types == amo.GROUP_TYPE_THEME
         qs = self.get_base_queryset_for_queue(
             admin_reviewer=admin_reviewer,
             # The select related needed to avoid extra queries in other queues
