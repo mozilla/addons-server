@@ -53,6 +53,7 @@ class ViewUnlistedAllListTable(tables.Table, ItemStateTable):
     id = tables.Column(verbose_name=_('ID'))
     addon_name = tables.Column(verbose_name=_('Add-on'), accessor='name')
     guid = tables.Column(verbose_name=_('GUID'))
+    show_count_in_dashboard = False
 
     @classmethod
     def get_queryset(cls, admin_reviewer=False):
@@ -106,6 +107,7 @@ class AddonQueueTable(tables.Table, ItemStateTable):
         verbose_name=_('Maliciousness Score'),
         accessor='_current_version__autoapprovalsummary__score',
     )
+    show_count_in_dashboard = True
 
     class Meta:
         fields = (
@@ -122,7 +124,12 @@ class AddonQueueTable(tables.Table, ItemStateTable):
     def render_flags(self, record):
         if not hasattr(record, 'flags'):
             record.flags = get_flags(record, record.current_version)
-        return super().render_flags(record)
+        return markupsafe.Markup(
+            ''.join(
+                '<div class="app-icon ed-sprite-%s" title="%s"></div>' % flag
+                for flag in record.flags
+            )
+        )
 
     def _get_addon_name_url(self, record):
         return reverse('reviewers.review', args=[record.id])
@@ -158,35 +165,21 @@ class AddonQueueTable(tables.Table, ItemStateTable):
     render_last_content_review = render_last_human_review
 
 
-class PendingManualApprovalQueueTable(tables.Table, ItemStateTable):
-    addon_name = tables.Column(verbose_name=_('Add-on'), accessor='name')
+class PendingManualApprovalQueueTable(AddonQueueTable):
     addon_type = tables.Column(verbose_name=_('Type'), empty_values=())
     waiting_time = tables.Column(
         verbose_name=_('Waiting Time'), accessor='first_version_nominated'
     )
-    flags = tables.Column(verbose_name=_('Flags'), empty_values=(), orderable=False)
 
     class Meta:
         fields = ('addon_name', 'addon_type', 'waiting_time', 'flags')
+        exclude = ('last_human_review', 'code_weight', 'metadata_weight', 'weight', 'score',)
 
     @classmethod
     def get_queryset(cls, admin_reviewer=False):
         return Addon.objects.get_listed_pending_manual_approval_queue(
             admin_reviewer=admin_reviewer
         )
-
-    def render_flags(self, record):
-        if not hasattr(record, 'flags'):
-            record.flags = get_flags(record, record.current_version)
-        return markupsafe.Markup(
-            ''.join(
-                '<div class="app-icon ed-sprite-%s" title="%s"></div>' % flag
-                for flag in record.flags
-            )
-        )
-
-    def _get_addon_name_url(self, record):
-        return reverse('reviewers.review', args=[record.id])
 
     def _get_waiting_time(self, record):
         return record.first_version_nominated
@@ -254,6 +247,7 @@ class UnlistedPendingManualApprovalQueueTable(PendingManualApprovalQueueTable):
         verbose_name=_('Waiting Time'), accessor='first_version_created'
     )
     score = tables.Column(verbose_name=_('Maliciousness Score'), accessor='worst_score')
+    show_count_in_dashboard = False
 
     class Meta(PendingManualApprovalQueueTable.Meta):
         fields = (
@@ -262,7 +256,7 @@ class UnlistedPendingManualApprovalQueueTable(PendingManualApprovalQueueTable):
             'waiting_time',
             'score',
         )
-        exclude = ('flags',)
+        exclude = PendingManualApprovalQueueTable.Meta.exclude + ('flags',)
 
     def _get_addon_name_url(self, record):
         return reverse('reviewers.review', args=['unlisted', record.id])
@@ -285,7 +279,7 @@ class PendingRejectionTable(AddonQueueTable):
         accessor='_current_version__reviewerflags__pending_rejection',
     )
 
-    class Meta(AddonQueueTable.Meta):
+    class Meta(PendingManualApprovalQueueTable.Meta):
         fields = (
             'addon_name',
             'flags',
@@ -296,6 +290,7 @@ class PendingRejectionTable(AddonQueueTable):
             'weight',
             'score',
         )
+        exclude = ('waiting_time',)
 
     @classmethod
     def get_queryset(cls, admin_reviewer=False):
@@ -339,6 +334,7 @@ class ContentReviewTable(AutoApprovedTable):
 class ScannersReviewTable(AutoApprovedTable):
     listed_text = _('Listed versions needing human review ({0})')
     unlisted_text = _('Unlisted versions needing human review ({0})')
+    show_count_in_dashboard = False
 
     @classmethod
     def get_queryset(cls, admin_reviewer=False):
@@ -392,6 +388,7 @@ class ScannersReviewTable(AutoApprovedTable):
 class MadReviewTable(ScannersReviewTable):
     listed_text = _('Listed version')
     unlisted_text = _('Unlisted versions ({0})')
+    show_count_in_dashboard = False
 
     @classmethod
     def get_queryset(cls, admin_reviewer=False):

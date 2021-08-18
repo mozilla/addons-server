@@ -9,7 +9,7 @@ from datetime import datetime
 from urllib.parse import urlsplit
 
 from django.conf import settings
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
 from django.db import models, transaction
 from django.db.models import F, Max, Min, Q, signals as dbsignals
 from django.db.models.expressions import Func
@@ -238,7 +238,8 @@ class AddonManager(ManagerBase):
     def get_base_queryset_for_queue(
         self,
         admin_reviewer=False,
-        admin_content_review=False,
+        content_review=False,
+        theme_review=False,
         exclude_listed_pending_rejection=True,
         select_related_fields_for_listed=True,
         select_related=True,
@@ -280,8 +281,10 @@ class AddonManager(ManagerBase):
                 _current_version__reviewerflags__pending_rejection__isnull=True
             )
         if not admin_reviewer:
-            if admin_content_review:
+            if content_review:
                 qs = qs.exclude(reviewerflags__needs_admin_content_review=True)
+            elif theme_review:
+                qs = qs.exclude(reviewerflags__needs_admin_theme_review=True)
             else:
                 qs = qs.exclude(reviewerflags__needs_admin_code_review=True)
         return qs
@@ -293,6 +296,9 @@ class AddonManager(ManagerBase):
         statuses=amo.VALID_ADDON_STATUSES,
         types=amo.GROUP_TYPE_ADDON,
     ):
+        if types not in (amo.GROUP_TYPE_ADDON, amo.GROUP_TYPE_THEME):
+            raise ImproperlyConfigured('types needs to be either GROUP_TYPE_ADDON or GROUP_TYPE_THEME')
+        theme_review = (types == amo.GROUP_TYPE_THEME)
         qs = self.get_base_queryset_for_queue(
             admin_reviewer=admin_reviewer,
             # The select related needed to avoid extra queries in other queues
@@ -303,6 +309,7 @@ class AddonManager(ManagerBase):
             # We'll filter on pending_rejection below without limiting
             # ourselves to the current_version.
             exclude_listed_pending_rejection=False,
+            theme_review=theme_review,
         )
         filters = (
             Q(
@@ -316,7 +323,7 @@ class AddonManager(ManagerBase):
         )
         if recommendable:
             filters &= Q(promotedaddon__group_id=RECOMMENDED.id)
-        elif amo.ADDON_STATICTHEME not in types:
+        elif not theme_review:
             filters &= ~Q(promotedaddon__group_id=RECOMMENDED.id) & (
                 Q(versions__files__is_webextension=False)
                 | Q(reviewerflags__auto_approval_disabled=True)
@@ -400,7 +407,7 @@ class AddonManager(ManagerBase):
         """Return a queryset of Addon objects that need content review."""
         qs = (
             self.get_base_queryset_for_queue(
-                admin_reviewer=admin_reviewer, admin_content_review=True
+                admin_reviewer=admin_reviewer, content_review=True
             )
             .valid()
             .filter(
