@@ -9,7 +9,7 @@ from datetime import datetime
 from urllib.parse import urlsplit
 
 from django.conf import settings
-from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import models, transaction
 from django.db.models import F, Max, Min, Q, signals as dbsignals
 from django.db.models.expressions import Func
