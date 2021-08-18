@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-17 16:44+0000\n"
-"PO-Revision-Date: 2021-08-18 22:13+0000\n"
+"PO-Revision-Date: 2021-08-18 22:31+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4340,12 +4340,12 @@ msgstr "Nejjednodušší způsob, jak spravovat odběry na YouTube."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Get the mouse scrollbar you've always wanted—specify width and color."
-msgstr ""
+msgstr "Pořiďte si posuvník, který jste vždycky chtěli – určete si šířku a barvu."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
-msgstr ""
+msgstr "Uložení a obnovení panelů. Obsahuje funkce automatického ukládání a synchronizace s cloudem."
 
 #. editorial content for the discovery pane.
 msgid "Goodbye, annoying cookie warnings!"
@@ -4365,7 +4365,7 @@ msgstr "Někdy prostě potřebujete kočky, co z očí střílejí lasery."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
-msgstr ""
+msgstr "Webové stránky se sami předčítají. Podporováno více než 40 jazyků."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long tracking parameters from Google search result URL's."
