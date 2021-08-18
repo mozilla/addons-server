@@ -126,13 +126,14 @@ class ReviewerQueueTable(tables.Table, ItemStateTable):
 
 class ViewUnlistedAllListTable(tables.Table, ItemStateTable):
     id = tables.Column(verbose_name=_('ID'))
-    addon_name = tables.Column(verbose_name=_('Add-on'))
+    addon_name = tables.Column(verbose_name=_('Add-on'), accessor='name')
     guid = tables.Column(verbose_name=_('GUID'))
-    authors = tables.Column(verbose_name=_('Authors'), orderable=False)
 
     @classmethod
     def get_queryset(cls, admin_reviewer=False):
-        return ViewUnlistedAllList.objects.all()
+        return Addon.unfiltered.get_addons_with_unlisted_versions_queue(
+            admin_reviewer=True
+        )
 
     def render_addon_name(self, record):
         url = reverse(
@@ -144,31 +145,11 @@ class ViewUnlistedAllListTable(tables.Table, ItemStateTable):
         )
         self.increment_item()
         return markupsafe.Markup(
-            safe_substitute('<a href="%s">%s</a>', url, record.addon_name)
+            safe_substitute('<a href="%s">%s</a>', url, record.name)
         )
 
     def render_guid(self, record):
         return markupsafe.Markup(safe_substitute('%s', record.guid))
-
-    def render_authors(self, record):
-        authors = record.authors
-        if not len(authors):
-            return ''
-        more = ' '.join(safe_substitute('%s', uname) for (_, uname) in authors)
-        author_links = ' '.join(
-            safe_substitute(
-                '<a href="%s">%s</a>', UserProfile.create_user_url(id_), uname
-            )
-            for (id_, uname) in authors[0:3]
-        )
-        return markupsafe.Markup(
-            '<span title="%s">%s%s</span>'
-            % (
-                more,
-                author_links,
-                ' ...' if len(authors) > 3 else '',
-            )
-        )
 
     @classmethod
     def default_order_by(cls):

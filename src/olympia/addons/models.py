@@ -249,8 +249,9 @@ class AddonManager(ManagerBase):
             # crucially, it prevents the
             # select_related('_current_version__autoapprovalsummary') from
             # working, because it overrides the _current_version with the one
-            # it fetches. We want translations though.
+            # it fetches. We want translations though, but only for the name.
             .only_translations()
+            .defer(*[x.name for x in Addon._meta.translated_fields if x.name != 'name'])
         )
         # Useful joins to avoid extra queries.
         select_related_fields = [
@@ -339,7 +340,18 @@ class AddonManager(ManagerBase):
                 first_version_nominated=Min('versions__nomination'),
                 latest_version=Func(F('versions__version'), function='LOWER'),
             )
-            .defer(*[x.name for x in Addon._meta.translated_fields if x.name != 'name'])
+        )
+
+    def get_addons_with_unlisted_versions_queue(self, admin_reviewer=False):
+        qs = self.get_base_queryset_for_queue(
+            select_related_fields_for_listed=False,
+            exclude_listed_pending_rejection=False,
+            admin_reviewer=admin_reviewer,
+        )
+        return (
+            qs.filter(versions__channel=amo.RELEASE_CHANNEL_UNLISTED)
+            .exclude(status=amo.STATUS_DISABLED)
+            .select_related(None)
         )
 
     def get_unlisted_pending_manual_approval_queue(self, admin_reviewer=False):
