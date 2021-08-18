@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-17 16:44+0000\n"
-"PO-Revision-Date: 2021-08-18 10:26+0000\n"
+"PO-Revision-Date: 2021-08-18 10:33+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -3111,13 +3111,13 @@ msgstr "E-mailová adresa"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr ""
+msgstr "Souhlasím s tím, aby Mozilla zpracovávala mé údaje tak, jak je popsáno v %(link_open)sZásadách ochrany soukromí%(link_close)s."
 
 msgid "Sign Up"
 msgstr "Registrace"
 
 msgid "Thanks!"
-msgstr ""
+msgstr "Děkujeme!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr ""
@@ -4324,7 +4324,7 @@ msgstr "Narazili jste na webu na zajímavý obrázek? S TinEye zjistíte, odkud 
 
 #. editorial content for the primary hero shelves.
 msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr ""
+msgstr "Někdy prostě potřebujete kočky, co z očí střílejí lasery."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
