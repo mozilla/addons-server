@@ -239,8 +239,8 @@ class AddonManager(ManagerBase):
         self,
         admin_reviewer=False,
         admin_content_review=False,
-        show_pending_rejection=False,
-        listed=True,
+        exclude_listed_pending_rejection=True,
+        select_related_fields_for_listed=True,
         select_related=True,
     ):
         qs = (
@@ -252,34 +252,29 @@ class AddonManager(ManagerBase):
             # it fetches. We want translations though.
             .only_translations()
         )
-        if select_related:
-            # Useful joins to avoid extra queries.
-            select_related_fields = [
-                'reviewerflags',
-            ]
-            if listed:
-                # Most listed queues need these to avoid extra queries because
-                # they display the score, flags, promoted status, link to files
-                # etc.
-                select_related_fields.extend((
+        # Useful joins to avoid extra queries.
+        select_related_fields = [
+            'reviewerflags',
+            'addonapprovalscounter',
+        ]
+        if select_related_fields_for_listed:
+            # Most listed queues need these to avoid extra queries because
+            # they display the score, flags, promoted status, link to files
+            # etc.
+            select_related_fields.extend(
+                (
                     '_current_version',
                     '_current_version__autoapprovalsummary',
                     '_current_version__reviewerflags',
                     'promotedaddon',
-                ))
-                qs = qs.prefetch_related(
-                    '_current_version__files',
                 )
-            qs = qs.select_related(*select_related_fields)
+            )
+            qs = qs.prefetch_related(
+                '_current_version__files',
+            )
+        qs = qs.select_related(*select_related_fields)
 
-        if not show_pending_rejection:
-            if not listed:
-                # Can't combine these, because the filter is on `_current_version`
-                # which doesn't make sense for unlisted. It needs to be manually added
-                # to the same filter/Q object that joins on `versions` for unlisted.
-                raise ImproperlyConfigured(
-                    'Can not combine show_pending_rejection=False with listed=False'
-                )
+        if exclude_listed_pending_rejection:
             qs = qs.filter(
                 _current_version__reviewerflags__pending_rejection__isnull=True
             )
@@ -300,12 +295,13 @@ class AddonManager(ManagerBase):
         qs = self.get_base_queryset_for_queue(
             admin_reviewer=admin_reviewer,
             # The select related needed to avoid extra queries in other queues
-            # typically depend on current_version, but we don't care here, as it's a
-            # pre-review queue. We'll make the select_related() calls we need ourselves.
-            select_related=False,
-            # We'll filter on pending_rejection below without limiting ourselves to the
-            # current_version.
-            show_pending_rejection=True,
+            # typically depend on current_version, but we don't care here, as
+            # it's a pre-review queue. We'll make the select_related() calls we
+            # need ourselves.
+            select_related_fields_for_listed=False,
+            # We'll filter on pending_rejection below without limiting
+            # ourselves to the current_version.
+            exclude_listed_pending_rejection=False,
         )
         filters = (
             Q(
@@ -321,9 +317,7 @@ class AddonManager(ManagerBase):
             filters &= Q(promotedaddon__group_id=RECOMMENDED.id)
         elif amo.ADDON_STATICTHEME not in types:
             filters &= ~Q(promotedaddon__group_id=RECOMMENDED.id) & (
-                # FIXME: the is_webextension=False is just to keep existing
-                # tests happy, and should be removed.
-                Q(_current_version__files__is_webextension=False)
+                Q(versions__files__is_webextension=False)
                 | Q(reviewerflags__auto_approval_disabled=True)
                 | Q(reviewerflags__auto_approval_disabled_until_next_approval=True)
                 | Q(reviewerflags__auto_approval_delayed_until__gt=datetime.now())
@@ -335,7 +329,11 @@ class AddonManager(ManagerBase):
             )
 
         return (
-            qs.filter(filters)
+            # We passed select_related_fields_for_listed=False but there are
+            # still base select_related() fields in that queryset that are
+            # applied in all cases that we don't want.
+            qs.select_related(None)
+            .filter(filters)
             .select_related('reviewerflags')
             .annotate(
                 first_version_nominated=Min('versions__nomination'),
@@ -346,7 +344,9 @@ class AddonManager(ManagerBase):
 
     def get_unlisted_pending_manual_approval_queue(self, admin_reviewer=False):
         qs = self.get_base_queryset_for_queue(
-            listed=False, show_pending_rejection=True, admin_reviewer=admin_reviewer
+            select_related_fields_for_listed=False,
+            exclude_listed_pending_rejection=False,
+            admin_reviewer=admin_reviewer,
         )
         filters = Q(
             versions__channel=amo.RELEASE_CHANNEL_UNLISTED,
@@ -375,7 +375,6 @@ class AddonManager(ManagerBase):
             .public()
             .filter(_current_version__autoapprovalsummary__verdict=success_verdict)
             .exclude(_current_version__autoapprovalsummary__confirmed=True)
-            .select_related('addonapprovalscounter')
             .order_by(
                 '-_current_version__autoapprovalsummary__score',
                 '-_current_version__autoapprovalsummary__weight',
@@ -392,7 +391,6 @@ class AddonManager(ManagerBase):
                 admin_reviewer=admin_reviewer, admin_content_review=True
             )
             .valid()
-            .select_related('addonapprovalscounter')
             .filter(
                 addonapprovalscounter__last_content_review=None,
                 # Only content review extensions and dictionaries. See
@@ -474,9 +472,8 @@ class AddonManager(ManagerBase):
         return (
             self.get_base_queryset_for_queue(
                 admin_reviewer=admin_reviewer,
-                show_pending_rejection=True,
+                exclude_listed_pending_rejection=False,
             )
-            .select_related('addonapprovalscounter')
             .filter(**filter_kwargs)
             .order_by('_current_version__reviewerflags__pending_rejection')
         )
