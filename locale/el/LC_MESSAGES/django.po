@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-17 16:44+0000\n"
-"PO-Revision-Date: 2021-08-18 10:18+0000\n"
+"PO-Revision-Date: 2021-08-18 10:27+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -871,7 +871,7 @@ msgid "Admin theme-review requested"
 msgstr "Ζητήθηκε αξιολόγηση θέματος από διαχειριστή"
 
 msgid "{addon} was migrated from a lightweight theme."
-msgstr "Το {addon} μεταφέρθηκε από \"ελαφρύ\" θέμα."
+msgstr "Το {addon} μεταφέρθηκε από «ελαφρύ» θέμα."
 
 msgid "User {user} api key reset."
 msgstr "Έγινε επαναφορά του κλειδιού api του χρήστη {user}."
@@ -910,7 +910,7 @@ msgid "User {user} session(s) reset."
 msgstr "Έγινε επαναφορά των συνεδριών του χρήστη {user}."
 
 msgid "User {user} throttled for scope \"{0}\""
-msgstr "Ο χρήστης {user} περιορίζεται από το πεδίο \"{0}\""
+msgstr "Ο χρήστης {user} περιορίζεται από το πεδίο «{0}»"
 
 msgid "{addon} {version} content reject scheduled."
 msgstr "Προγραμματίστηκε η απόρριψη του περιεχομένου του {addon} {version}."
@@ -1644,7 +1644,7 @@ msgstr "Αυτό το slug χρησιμοποιείται ήδη. Παρακαλ
 
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "Το slug δεν μπορεί να είναι \"%(slug)s\". Παρακαλούμε διαλέξτε κάποιο άλλο."
+msgstr "Το slug δεν μπορεί να είναι «%(slug)s». Παρακαλώ επιλέξτε κάποιο άλλο."
 
 #. L10n: {0} is the number of categories.
 msgid "You can have only {0} category."
@@ -1702,7 +1702,7 @@ msgid "Provide the text of your license."
 msgstr "Παραθέστε το κείμενο της άδειας σας."
 
 msgid "License text is required when choosing Other."
-msgstr "Απαιτείται το κείμενο της άδειας αν επιλέξατε \"Άλλη\"."
+msgstr "Απαιτείται το κείμενο της άδειας αν επιλέξατε «Άλλη»."
 
 msgid "This add-on has an End-User License Agreement"
 msgstr "Αυτό το πρόσθετο έχει μια άδεια χρήσης Τελικού Χρήστη"
@@ -1777,12 +1777,12 @@ msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
-"Σε αυτή την ιστοσελίδα. <span class=\"helptext\">Η υποβολή σας θα συμπεριληφθεί σε αυτή την ιστοσελίδα και τη Διαχείριση προσθέτων του Firefox για εκατομμύρια χρήστες, αφού περάσει την αξιολόγηση "
-"κώδικα. Οι αυτόματες ενημερώσεις διαχειρίζονται από αυτή την ιστοσελίδα. Αυτό το πρόσθετο θα είναι υποψήφιο και για τους διαγωνισμούς προώθησης της Mozilla. Η αυτοδιανομή αξιολογημένων αρχείων είναι"
-" επίσης δυνατή.</span>"
+"Σε αυτό τον ιστότοπο. <span class=\"helptext\">Η υποβολή σας θα αναρτηθεί στον ιστότοπο και τη Διαχείριση προσθέτων του Firefox για εκατομμύρια χρήστες, αφού περάσει την αξιολόγηση κώδικα. Ο παρόν "
+"ιστότοπος χειρίζεται τις αυτόματες ενημερώσεις. Το πρόσθετο θα είναι επίσης υποψήφιο για τους διαγωνισμούς και τις προωθητικές ενέργειες της Mozilla. Τέλος, παρέχεται και η δυνατότητα αυτοδιανομής "
+"αξιολογημένων αρχείων.</span>"
 
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
-msgstr "Προσωπικά. <span class=\"helptext\">Η υποβολή σας θα υπογραφεί άμεσα για αυτοδιανομή. Οι ενημερώσεις θα διαχειρίζονται από εσάς μέσω updateURL ή εξωτερικών ενημερώσεων εφαρμογής.</span>"
+msgstr "Προσωπικά. <span class=\"helptext\">Η υποβολή σας θα υπογραφεί άμεσα για αυτοδιανομή. Η διαχείριση των ενημερώσεων θα γίνεται από εσάς μέσω updateURL ή εξωτερικών ενημερώσεων εφαρμογής.</span>"
 
 msgid "Display Name"
 msgstr "Προβαλλόμενο όνομα"
@@ -2198,7 +2198,7 @@ msgid "Accepting the invitation will give you access to edit the add-on, and may
 msgstr "Η αποδοχή της πρόσκλησης θα σας δώσει πρόσβαση για επεξεργασία του πρόσθετου και ενδέχεται να εμφανίσει το όνομά σας στη λίστα συντακτών στην ιστοσελίδα."
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
-msgstr "Κάντε κλικ στο κουμπί \"Αποδοχή\" παρακάτω για να επιβεβαιώσετε ότι θέλετε να προστεθείτε ως δημιουργός του {addon_name}."
+msgstr "Κάντε κλικ στο κουμπί «Αποδοχή» παρακάτω για να επιβεβαιώσετε ότι θέλετε να προστεθείτε ως δημιουργός του {addon_name}."
 
 msgid "Decline"
 msgstr "Απόρριψη"
@@ -2487,10 +2487,10 @@ msgid "More information on Creative Commons licenses"
 msgstr "Περισσότερες πληροφορίες για τις άδειες Creative Commons"
 
 msgid "Your add-on is currently set to \"Invisible\"."
-msgstr "Το πρόσθετό σας έχει οριστεί σε \"Αόρατο\"."
+msgstr "Το πρόσθετό σας έχει οριστεί σε «Αόρατο»."
 
 msgid "While in this state, \"On your own\" is the only distribution method available."
-msgstr "Σε αυτή την κατάσταση, το \"Προσωπικά\" είναι η μόνη διαθέσιμη μέθοδος διανομής."
+msgstr "Σε αυτή την κατάσταση, το «Προσωπικά» είναι η μόνη διαθέσιμη μέθοδος διανομής."
 
 msgid "General Tests"
 msgstr "Γενικές δοκιμές"
@@ -5762,7 +5762,7 @@ msgid "Invalid Add-on ID in URL or package"
 msgstr "Μη έγκυρο ID προσθέτου στο URL ή στο πακέτο"
 
 msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
-msgstr "Δεν μπορείτε να προσθέσετε αναρτημένες εκδόσεις σε πρόσθετο με κατάσταση \"Αόρατο\"."
+msgstr "Δεν μπορείτε να προσθέσετε αναρτημένες εκδόσεις σε πρόσθετο με κατάσταση «Αόρατο»."
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
 msgstr "Δεν μπορείτε να προσθέσετε μια καταχωρημένη έκδοση σε αυτό το πρόσθετο μέσω του API λόγω ελλιπών μεταδεδομένων. Παρακαλούμε κάντε υποβολή μέσω της ιστοσελίδας"
@@ -6076,11 +6076,11 @@ msgstr "Διαγραφή γλώσσας"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
-msgstr "Ο χρήστης \"%(user)s\" έχει αποκλειστεί."
+msgstr "Ο χρήστης «%(user)s» έχει αποκλειστεί."
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr "Η εικόνα που ανήκει στο χρήστη \"%(user)s\" έχει διαγραφεί."
+msgstr "Η εικόνα που ανήκει στον χρήστη «%(user)s» έχει διαγραφεί."
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned."
@@ -6098,7 +6098,7 @@ msgstr "Επαναφορά συνεδρίας"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
-msgstr "Τα κλειδιά API των χρηστών \"%(users)s\" έχουν επαναφερθεί."
+msgstr "Έγινε επαναφορά των κλειδιών API των χρηστών «%(users)s»."
 
 msgid "Reset API Key"
 msgstr "Επαναφορά κλειδιού API"
