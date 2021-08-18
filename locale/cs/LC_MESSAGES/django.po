@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-17 16:44+0000\n"
-"PO-Revision-Date: 2021-08-18 19:49+0000\n"
+"PO-Revision-Date: 2021-08-18 19:56+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -3116,7 +3116,7 @@ msgstr "Ať už s vývojem rozšíření začínáte, nebo vylepšujete či port
 
 # Plural in this context means many of the add-on type
 msgid "Visit the Firefox Extension Workshop"
-msgstr ""
+msgstr "Navštivte workshop tvorby rozšíření pro Firefox"
 
 msgid "Connect with us"
 msgstr "Spojte se s námi"
@@ -3137,7 +3137,7 @@ msgid "Community forum"
 msgstr "Komunitní fórum"
 
 msgid "Extensions Developers Newsletter"
-msgstr ""
+msgstr "Zpravodaj pro vývojáře rozšíření"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
