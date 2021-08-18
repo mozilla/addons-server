@@ -370,9 +370,7 @@ class UnlistedPendingManualApprovalQueueTable(PendingManualApprovalQueueTable):
             'waiting_time',
             'score',
         )
-        exclude = (
-            'flags',
-        )
+        exclude = ('flags',)
 
     def _get_addon_name_url(self, record):
         return reverse('reviewers.review', args=['unlisted', record.id])

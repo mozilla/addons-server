@@ -1320,17 +1320,6 @@ class TestQueueBasics(QueueTest):
         assert doc('.data-grid-top .num-results').text() == ('Results 1\u20131 of 4')
         assert doc('.data-grid-bottom .num-results').text() == ('Results 1\u20131 of 4')
 
-    def test_legacy_queue_sort(self):
-        sorts = (
-            ['age', 'Waiting Time'],
-            ['name', 'Add-on'],
-            ['type', 'Type'],
-        )
-        for key, text in sorts:
-            response = self.client.get(self.url, {'sort': key})
-            assert response.status_code == 200
-            assert pq(response.content)('th.ordered a').text() == text
-
     def test_flags_promoted(self):
         addon = addon_factory(name='Firefox Fún')
         version_factory(

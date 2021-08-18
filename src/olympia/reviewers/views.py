@@ -454,9 +454,7 @@ def queue_recommended(request):
 
 @permission_or_tools_listed_view_required(amo.permissions.STATIC_THEMES_REVIEW)
 def queue_theme_nominated(request):
-    return _queue(
-        request, NewThemesQueueTable, 'theme_nominated'
-    )
+    return _queue(request, NewThemesQueueTable, 'theme_nominated')
 
 
 @permission_or_tools_listed_view_required(amo.permissions.STATIC_THEMES_REVIEW)
