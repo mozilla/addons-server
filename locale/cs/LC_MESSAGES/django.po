@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-17 16:44+0000\n"
-"PO-Revision-Date: 2021-08-18 12:19+0000\n"
+"PO-Revision-Date: 2021-08-18 12:32+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4072,7 +4072,7 @@ msgstr "Zavřete otravná vyskakovací okna jedním prostým kliknutím."
 
 #. editorial content for the discovery pane.
 msgid "Find an interesting image on the web? Want to learn more about it?"
-msgstr ""
+msgstr "Našli jste na webu zajímavý obrázek? Chcete se o tom dozvědět více?"
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
@@ -4218,7 +4218,7 @@ msgstr "Vybírejte, seřazujte a zahajujte svá stahování rychleji."
 
 #. editorial content for the discovery pane.
 msgid "Get weather updates right in the browser."
-msgstr ""
+msgstr "Mějte aktuální předpověď počasí přímo v prohlížeči."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
