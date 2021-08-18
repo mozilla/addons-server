@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-17 16:44+0000\n"
-"PO-Revision-Date: 2021-08-18 10:31+0000\n"
+"PO-Revision-Date: 2021-08-18 13:14+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1804,7 +1804,7 @@ msgid "Validation generated too many errors/warnings so %s messages were truncat
 msgstr "Η επικύρωση παρήγαγε πάρα πολλά λάθη/προειδοποιήσεις έτσι %s μηνύματα περικόπηκαν. Αφού εντοπίσετε τα ορατά μηνύματα, θα μπορείτε να δείτε τα υπόλοιπα."
 
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr ""
+msgstr "Προς το παρόν, δεν υποστηρίζεται η μεταφόρτωση του Manifest V3. {start_href}Διαβάστε περισσότερα σχετικά με το χρονοδιάγραμμα υποστήριξης{end_href}."
 
 msgid "Updated"
 msgstr "Ενημερώσεις"
@@ -2235,7 +2235,7 @@ msgid "Tags"
 msgstr "Ετικέτες"
 
 msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
-msgstr ""
+msgstr "Οι ετικέτες βοηθούν τους χρήστες να βρουν το πρόσθετό σας. Μπορείτε να προσθέσετε έως και {0} ετικέτες. Επιλέξτε μόνο ετικέτες που σχετίζονται με το πρόσθετό σας."
 
 msgid "Limit {0} tags."
 msgstr "Περιορισμός {0} ετικετών."
@@ -4549,7 +4549,7 @@ msgstr "Περισσότερες επεκτάσεις μετάδοσης σε κ
 
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
-msgstr ""
+msgstr "Εργαλεία διαχείρισης καρτελών"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management extensions"
@@ -5163,7 +5163,7 @@ msgid "Original Add-on ID"
 msgstr "Πρωτότυπο ID προσθέτου"
 
 msgid "Add-on(s) sharing same ID"
-msgstr ""
+msgstr "Πρόσθετα με το ίδιο ID"
 
 msgid "Internal AMO ID"
 msgstr "Εσωτερικό AMO ID"
