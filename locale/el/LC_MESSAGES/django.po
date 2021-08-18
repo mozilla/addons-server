@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-17 16:44+0000\n"
-"PO-Revision-Date: 2021-08-18 10:27+0000\n"
+"PO-Revision-Date: 2021-08-18 10:31+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -2763,7 +2763,7 @@ msgid "Code generators or minifiers"
 msgstr "Παραγωγοί ή ελαχιστοποιητές κώδικα"
 
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
-msgstr "Εργαλεία που συνδυάζουν πολλαπλά αρχεία σε ένα αρχείο, όπως το <span class=\"tech-emphasis\">webpack</span>"
+msgstr "Εργαλεία που συνδυάζουν πολλαπλά αρχεία σε ένα, όπως το <span class=\"tech-emphasis\">webpack</span>"
 
 msgid "Web template engines, both for HTML and CSS"
 msgstr "Μηχανές διαδικτυακών προτύπων, για HTML και CSS"
@@ -2794,7 +2794,7 @@ msgid ""
 "Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
 "emphasis\">npm</span> version used)."
 msgstr ""
-"Λεπτομέρειες (περιλαμβάνονται η απαιτούμενη έκδοση και οι οδηγίες εγκατάστασης) των προγραμμάτων που χρησιμοποιήθηκαν στη διαδικασία ανάπτυξης (για παράδειγμα: οι εκδόσεις των <span class=\"tech-"
+"Λεπτομέρειες (όπως η απαιτούμενη έκδοση και οι οδηγίες εγκατάστασης) των προγραμμάτων που χρησιμοποιήθηκαν στη διαδικασία ανάπτυξης (για παράδειγμα: οι εκδόσεις των <span class=\"tech-"
 "emphasis\">node</span> και <span class=\"tech-emphasis\">npm</span> που χρησιμοποιήθηκαν)."
 
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
@@ -3225,7 +3225,7 @@ msgid "Promote"
 msgstr "Προώθηση"
 
 msgid "\"Get The Add-on\" button"
-msgstr "Κουμπί \"Λήψη προσθέτου\""
+msgstr "Κουμπί «Λήψη προσθέτου»"
 
 msgid "Recommended Extensions program"
 msgstr "Πρόγραμμα προτεινόμενων επεκτάσεων"
@@ -3278,8 +3278,8 @@ msgstr "Προβολή όλων των υποβολών"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
 msgstr ""
-"Εδώ μπορείτε να δείτε και να διαχειριστείτε τα πρόσθετα και τα θέματά σας. Για να δημοσιεύσετε το πρώτο σας πρόσθετο, κάντε κλικ στο \"Υποβολή του πρώτου σας προσθέτου\" ή στο \"Υποβολή του πρώτου "
-"σας θέματος\"."
+"Εδώ μπορείτε να δείτε και να διαχειριστείτε τα πρόσθετα και τα θέματά σας. Για να δημοσιεύσετε το πρώτο σας πρόσθετο, κάντε κλικ στο «Υποβολή του πρώτου σας προσθέτου» ή στο «Υποβολή του πρώτου σας "
+"θέματος»."
 
 msgid "Submit Your First Add-on"
 msgstr "Υποβολή του πρώτου σας προσθέτου"
@@ -3886,7 +3886,7 @@ msgstr "Λήψη λεπτομερών πληροφοριών κίνησης κα
 
 #. editorial content for the discovery pane.
 msgid "Applies a fresh, modern appearance to Wikipedia."
-msgstr "Εφαρμόζει μια \"φρέσκια\" και μοντέρνα εμφάνιση στο Wikipedia."
+msgstr "Εφαρμόζει μια ανανεωμένη και μοντέρνα εμφάνιση στο Wikipedia."
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to get to things done quicker."
@@ -4791,7 +4791,7 @@ msgid "This rating can't be flagged because it has no review text."
 msgstr "Αυτή η αξιολόγηση δεν μπορεί να επισημανθεί, επειδή δεν έχει κείμενο αξιολόγησης."
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr "Πρέπει να παρέχεται μια σύντομη εξήγηση όταν γίνεται επιλογή του \"Άλλο\" ως αιτία αναφοράς."
+msgstr "Πρέπει να παρέχεται μια σύντομη εξήγηση όταν γίνεται επιλογή του «Άλλο» ως αιτίας αναφοράς."
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
@@ -5320,7 +5320,7 @@ msgstr "από τον/την  %(user)s στις %(date)s %(stars)s (%(locale)s)"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr "<strong>%(reason)s</strong> <span class=\"light\">Επισημάνθηκε από το χρήστη %(user)s στις %(date)s</span>"
+msgstr "<strong>%(reason)s</strong> <span class=\"light\">Επισημάνθηκε από τον/την %(user)s στις %(date)s</span>"
 
 msgid "All reviews have been moderated. Good work!"
 msgstr "Όλες οι κριτικές έχουν περάσει από έλεγχο. Συγχαρητήρια!"
