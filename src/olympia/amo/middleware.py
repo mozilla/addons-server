@@ -16,7 +16,7 @@ from django.http import (
     JsonResponse,
 )
 from django.middleware import common
-from django.utils.cache import patch_cache_control, patch_vary_headers
+from django.utils.cache import get_max_age, patch_cache_control, patch_vary_headers
 from django.utils.crypto import constant_time_compare
 from django.utils.deprecation import MiddlewareMixin
 from django.utils.encoding import force_str, iri_to_uri
@@ -305,4 +305,39 @@ class RequestIdMiddleware(MiddlewareMixin):
         if request_id:
             response['X-AMO-Request-ID'] = request.request_id
 
+        return response
+
+
+class CacheControlMiddleware:
+    """Middleware to add Cache-Control: max-age=xxx header to responses that
+    should be cached, Cache-Control: s-maxage:0 to responses that should not.
+
+    The only responses that should be cached are API, unauthenticated responses
+    from "safe" HTTP verbs, or responses that already had a max-age set before
+    being processed by this middleware. In that last case, the Cache-Control
+    header already present is left intact.
+    """
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        response = self.get_response(request)
+        max_age_from_response = get_max_age(response)
+        request_conditions = (
+            request.is_api
+            and request.method in ('GET', 'HEAD')
+            and 'HTTP_AUTHORIZATION' not in request.META
+            and 'disable_caching' not in request.GET
+        )
+        response_conditions = (
+            not response.cookies
+            and response.status_code >= 200
+            and response.status_code < 400
+            and not max_age_from_response
+        )
+        if request_conditions and response_conditions:
+            patch_cache_control(response, max_age=settings.API_CACHE_DURATION)
+        elif max_age_from_response is None:
+            patch_cache_control(response, s_maxage=0)
         return response

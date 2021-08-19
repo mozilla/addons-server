@@ -1,5 +1,6 @@
 from django import test
 from django.core.exceptions import ImproperlyConfigured
+from django.http import HttpResponse
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 from django.urls import reverse
@@ -11,10 +12,11 @@ from pyquery import PyQuery as pq
 
 from olympia.amo.middleware import (
     AuthenticationMiddlewareWithoutAPI,
+    CacheControlMiddleware,
     RequestIdMiddleware,
     SetRemoteAddrFromForwardedFor,
 )
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import reverse_ns, TestCase
 from olympia.zadmin.models import Config
 
 
@@ -206,3 +208,95 @@ class TestSetRemoteAddrFromForwardedFor(TestCase):
         assert self.middleware.is_request_from_cdn(request)
         self.middleware.process_request(request)
         assert request.META['REMOTE_ADDR'] == '2.3.4.2'
+
+
+class TestCacheControlMiddleware(TestCase):
+    def setUp(self):
+        self.request_factory = RequestFactory()
+
+    def test_not_api_should_not_cache(self):
+        request = self.request_factory.get('/bar')
+        request.is_api = False
+        response = HttpResponse()
+        response = CacheControlMiddleware(lambda x: response)(request)
+        assert response['Cache-Control'] == 's-maxage=0'
+
+    def test_authenticated_should_not_cache(self):
+        request = self.request_factory.get('/api/v5/foo')
+        request.is_api = True
+        request.META = {'HTTP_AUTHORIZATION': 'foo'}
+        response = HttpResponse()
+        response = CacheControlMiddleware(lambda x: response)(request)
+        assert response['Cache-Control'] == 's-maxage=0'
+
+    def test_non_read_only_http_method_should_not_cache(self):
+        request = self.request_factory.get('/api/v5/foo')
+        request.is_api = True
+        for method in ('POST', 'DELETE', 'PUT', 'PATCH'):
+            request.method = method
+            response = HttpResponse()
+            response = CacheControlMiddleware(lambda x: response)(request)
+            assert response['Cache-Control'] == 's-maxage=0'
+
+    def test_disable_caching_arg_should_not_cache(self):
+        request = self.request_factory.get('/api/v5/foo')
+        request.is_api = True
+        request.GET = {'disable_caching': '1'}
+        response = HttpResponse()
+        response = CacheControlMiddleware(lambda x: response)(request)
+        assert response['Cache-Control'] == 's-maxage=0'
+
+    def test_cookies_in_response_should_not_cache(self):
+        request = self.request_factory.get('/api/v5/foo')
+        request.is_api = True
+        response = HttpResponse()
+        response.set_cookie('foo', 'bar')
+        response = CacheControlMiddleware(lambda x: response)(request)
+        assert response['Cache-Control'] == 's-maxage=0'
+
+    def test_cache_control_already_set_should_not_override(self):
+        request = self.request_factory.get('/api/v5/foo')
+        request.is_api = True
+        response = HttpResponse()
+        response['Cache-Control'] = 'max-age=3600'
+        response = CacheControlMiddleware(lambda x: response)(request)
+        assert response['Cache-Control'] == 'max-age=3600'
+
+    def test_cache_control_already_set_to_0_should_not_set_s_maxage(self):
+        request = self.request_factory.get('/api/v5/foo')
+        request.is_api = True
+        response = HttpResponse()
+        response['Cache-Control'] = 'max-age=0'
+        response = CacheControlMiddleware(lambda x: response)(request)
+        assert response['Cache-Control'] == 'max-age=0'
+
+    def test_non_success_status_code_should_not_cache(self):
+        request = self.request_factory.get('/api/v5/foo')
+        request.is_api = True
+        response = HttpResponse()
+        for status_code in (400, 401, 403, 404, 429, 500, 502, 503, 504):
+            response.status_code = status_code
+            response = CacheControlMiddleware(lambda x: response)(request)
+            assert response['Cache-Control'] == 's-maxage=0'
+
+    def test_everything_ok_should_cache_for_3_minutes(self):
+        request = self.request_factory.get('/api/v5/foo')
+        request.is_api = True
+        response = HttpResponse()
+        for status_code in (200, 201, 202, 204, 301, 302, 303, 304):
+            response.status_code = status_code
+            response = CacheControlMiddleware(lambda x: response)(request)
+            assert response['Cache-Control'] == 'max-age=180'
+
+    def test_functional_should_cache(self):
+        response = self.client.get(reverse_ns('amo-site-status'))
+        assert response.status_code == 200
+        assert 'Cache-Control' in response
+        assert response['Cache-Control'] == 'max-age=180'
+
+    def test_functional_should_not_cache(self):
+        response = self.client.get(
+            reverse_ns('amo-site-status'), HTTP_AUTHORIZATION='blah'
+        )
+        assert response.status_code == 200
+        assert response['Cache-Control'] == 's-maxage=0'
