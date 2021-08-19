@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-17 16:44+0000\n"
-"PO-Revision-Date: 2021-08-18 23:22+0000\n"
+"PO-Revision-Date: 2021-08-19 15:34+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4389,7 +4389,7 @@ msgstr "Sbohem, otravná upozornění na cookies!"
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
-msgstr ""
+msgstr "Vraťte se do jednodušších časů, kdy se nejlepší výsledky vyhledávání nacházely nad reklamami (kompatibilní s vyhledávači Google a Bing)."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
