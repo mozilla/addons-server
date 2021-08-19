@@ -112,8 +112,8 @@ _ADDON_WEBAPP = 11  # Deprecated.  Marketplace cruft.
 
 # Addon type groupings
 
-GROUP_TYPE_ADDON = [ADDON_EXTENSION, ADDON_DICT, ADDON_LPAPP]
-GROUP_TYPE_THEME = [ADDON_STATICTHEME]
+GROUP_TYPE_ADDON = (ADDON_EXTENSION, ADDON_DICT, ADDON_LPAPP)
+GROUP_TYPE_THEME = (ADDON_STATICTHEME,)
 
 # Singular
 ADDON_TYPE = {
@@ -142,7 +142,7 @@ ADDON_TYPES = {
 }
 
 # Searchable Add-on Types
-ADDON_SEARCH_TYPES = [
+ADDON_SEARCH_TYPES = (
     ADDON_ANY,
     ADDON_EXTENSION,
     _ADDON_THEME,
@@ -151,7 +151,7 @@ ADDON_SEARCH_TYPES = [
     ADDON_LPAPP,
     _ADDON_PERSONA,
     ADDON_STATICTHEME,
-]
+)
 
 # We use these slugs in browse page urls.
 ADDON_SLUGS = {
@@ -198,7 +198,7 @@ ADDON_TYPE_CHOICES_API = {
     ADDON_STATICTHEME: 'statictheme',
 }
 
-ADDON_TYPES_WITH_STATS = [ADDON_EXTENSION, ADDON_STATICTHEME, ADDON_DICT, ADDON_LPAPP]
+ADDON_TYPES_WITH_STATS = (ADDON_EXTENSION, ADDON_STATICTHEME, ADDON_DICT, ADDON_LPAPP)
 
 # Edit addon information
 MAX_TAGS = 10
@@ -223,7 +223,7 @@ VALID_CONTRIBUTION_DOMAINS = (
 )
 
 # Icon upload sizes
-ADDON_ICON_SIZES = [32, 64, 128]
+ADDON_ICON_SIZES = (32, 64, 128)
 
 _dimensions = namedtuple('SizeTuple', 'width height')
 # Preview upload sizes - see mozilla/addons-server#9487 & #16717 for background.

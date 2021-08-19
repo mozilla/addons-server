@@ -12,6 +12,7 @@ from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
 from django.db import models, transaction
 from django.db.models import F, Max, Min, Q, signals as dbsignals
+from django.db.models.expressions import Func
 from django.dispatch import receiver
 from django.urls import reverse
 from django.utils import translation
@@ -49,7 +50,7 @@ from olympia.amo.utils import (
     to_language,
 )
 from olympia.constants.categories import CATEGORIES_BY_ID
-from olympia.constants.promoted import NOT_PROMOTED, RECOMMENDED
+from olympia.constants.promoted import NOT_PROMOTED, PRE_REVIEW_GROUPS, RECOMMENDED
 from olympia.constants.reviewers import REPUTATION_CHOICES
 from olympia.files.models import File
 from olympia.files.utils import extract_translations, resolve_i18n_message
@@ -237,9 +238,10 @@ class AddonManager(ManagerBase):
     def get_base_queryset_for_queue(
         self,
         admin_reviewer=False,
-        admin_content_review=False,
-        show_pending_rejection=False,
-        listed=True,
+        content_review=False,
+        theme_review=False,
+        exclude_listed_pending_rejection=True,
+        select_related_fields_for_listed=True,
     ):
         qs = (
             self.get_queryset()
@@ -247,47 +249,134 @@ class AddonManager(ManagerBase):
             # crucially, it prevents the
             # select_related('_current_version__autoapprovalsummary') from
             # working, because it overrides the _current_version with the one
-            # it fetches. We want translations though.
-            .only_translations()
-            # We need those joins for the queue to work without making extra
-            # queries.
-            .select_related(
-                'addonapprovalscounter',
-                'reviewerflags',
+            # it fetches. We want translations though, but only for the name.
+            .only_translations().defer(
+                *[x.name for x in Addon._meta.translated_fields if x.name != 'name']
             )
         )
-        if listed:
-            # We need those joins for the listed queues to work without making
-            # extra queries.
-            qs = qs.select_related(
-                '_current_version',
-                '_current_version__autoapprovalsummary',
-                '_current_version__reviewerflags',
-                'promotedaddon',
-            ).prefetch_related(
+        # Useful joins to avoid extra queries.
+        select_related_fields = [
+            'reviewerflags',
+            'addonapprovalscounter',
+        ]
+        if select_related_fields_for_listed:
+            # Most listed queues need these to avoid extra queries because
+            # they display the score, flags, promoted status, link to files
+            # etc.
+            select_related_fields.extend(
+                (
+                    '_current_version',
+                    '_current_version__autoapprovalsummary',
+                    '_current_version__reviewerflags',
+                    'promotedaddon',
+                )
+            )
+            qs = qs.prefetch_related(
                 '_current_version__files',
             )
-        if not show_pending_rejection:
-            if not listed:
-                # Can't combine these, because the filter is on `_current_version`
-                # which doesn't make sense for unlisted. It needs to be manually added
-                # to the same filter/Q object that joins on `versions` for unlisted.
-                raise ImproperlyConfigured(
-                    'Can not combine show_pending_rejection=False with listed=False'
-                )
+        qs = qs.select_related(*select_related_fields)
+
+        if exclude_listed_pending_rejection:
             qs = qs.filter(
                 _current_version__reviewerflags__pending_rejection__isnull=True
             )
         if not admin_reviewer:
-            if admin_content_review:
+            if content_review:
                 qs = qs.exclude(reviewerflags__needs_admin_content_review=True)
+            elif theme_review:
+                qs = qs.exclude(reviewerflags__needs_admin_theme_review=True)
             else:
                 qs = qs.exclude(reviewerflags__needs_admin_code_review=True)
         return qs
 
+    def get_listed_pending_manual_approval_queue(
+        self,
+        admin_reviewer=False,
+        recommendable=False,
+        statuses=amo.VALID_ADDON_STATUSES,
+        types=amo.GROUP_TYPE_ADDON,
+    ):
+        if types not in (amo.GROUP_TYPE_ADDON, amo.GROUP_TYPE_THEME):
+            raise ImproperlyConfigured(
+                'types needs to be either GROUP_TYPE_ADDON or GROUP_TYPE_THEME'
+            )
+        theme_review = types == amo.GROUP_TYPE_THEME
+        qs = self.get_base_queryset_for_queue(
+            admin_reviewer=admin_reviewer,
+            # The select related needed to avoid extra queries in other queues
+            # typically depend on current_version, but we don't care here, as
+            # it's a pre-review queue. We'll make the select_related() calls we
+            # need ourselves.
+            select_related_fields_for_listed=False,
+            # We'll filter on pending_rejection below without limiting
+            # ourselves to the current_version.
+            exclude_listed_pending_rejection=False,
+            theme_review=theme_review,
+        )
+        filters = (
+            Q(
+                status__in=statuses,
+                type__in=types,
+                versions__channel=amo.RELEASE_CHANNEL_LISTED,
+                versions__files__status=amo.STATUS_AWAITING_REVIEW,
+                versions__reviewerflags__pending_rejection=None,
+            )
+            & ~Q(disabled_by_user=True)
+        )
+        if recommendable:
+            filters &= Q(promotedaddon__group_id=RECOMMENDED.id)
+        elif not theme_review:
+            filters &= ~Q(promotedaddon__group_id=RECOMMENDED.id) & (
+                Q(versions__files__is_webextension=False)
+                | Q(reviewerflags__auto_approval_disabled=True)
+                | Q(reviewerflags__auto_approval_disabled_until_next_approval=True)
+                | Q(reviewerflags__auto_approval_delayed_until__gt=datetime.now())
+                | Q(
+                    promotedaddon__group_id__in=(
+                        group.id for group in PRE_REVIEW_GROUPS
+                    )
+                )
+            )
+
+        return (
+            # We passed select_related_fields_for_listed=False but there are
+            # still base select_related() fields in that queryset that are
+            # applied in all cases that we don't want, so reset them away.
+            qs.select_related(None)
+            .filter(filters)
+            .select_related('reviewerflags')
+            .annotate(
+                first_version_nominated=Min('versions__nomination'),
+                # Because of the Min(), a GROUP BY addon.id is created.
+                # Unfortunately if we were to annotate with just
+                # F('versions__version') Django would add version.version to
+                # the GROUP BY, ruining it. To prevent that, we wrap it into
+                # a harmless Func() - we need a no-op function to do that,
+                # hence the LOWER().
+                latest_version=Func(F('versions__version'), function='LOWER'),
+            )
+        )
+
+    def get_addons_with_unlisted_versions_queue(self, admin_reviewer=False):
+        qs = self.get_base_queryset_for_queue(
+            select_related_fields_for_listed=False,
+            exclude_listed_pending_rejection=False,
+            admin_reviewer=admin_reviewer,
+        )
+        return (
+            qs.filter(versions__channel=amo.RELEASE_CHANNEL_UNLISTED).exclude(
+                status=amo.STATUS_DISABLED
+            )
+            # Reset select_related() made by get_base_queryset_for_queue(), we
+            # don't want them for the unlisted queue.
+            .select_related(None)
+        )
+
     def get_unlisted_pending_manual_approval_queue(self, admin_reviewer=False):
         qs = self.get_base_queryset_for_queue(
-            listed=False, show_pending_rejection=True, admin_reviewer=admin_reviewer
+            select_related_fields_for_listed=False,
+            exclude_listed_pending_rejection=False,
+            admin_reviewer=admin_reviewer,
         )
         filters = Q(
             versions__channel=amo.RELEASE_CHANNEL_UNLISTED,
@@ -329,7 +418,7 @@ class AddonManager(ManagerBase):
         """Return a queryset of Addon objects that need content review."""
         qs = (
             self.get_base_queryset_for_queue(
-                admin_reviewer=admin_reviewer, admin_content_review=True
+                admin_reviewer=admin_reviewer, content_review=True
             )
             .valid()
             .filter(
@@ -413,7 +502,7 @@ class AddonManager(ManagerBase):
         return (
             self.get_base_queryset_for_queue(
                 admin_reviewer=admin_reviewer,
-                show_pending_rejection=True,
+                exclude_listed_pending_rejection=False,
             )
             .filter(**filter_kwargs)
             .order_by('_current_version__reviewerflags__pending_rejection')

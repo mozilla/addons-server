@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 from unittest import mock
-from unittest.mock import Mock, patch
+from unittest.mock import patch
 
 from django.conf import settings
 from django.core import mail
@@ -42,130 +42,21 @@ from olympia.reviewers.models import (
     AutoApprovalSummary,
     ReviewerScore,
     ReviewerSubscription,
-    ViewExtensionQueue,
 )
 from olympia.reviewers.utils import (
     ReviewAddon,
     ReviewFiles,
     ReviewHelper,
     ReviewUnlisted,
-    ViewUnlistedAllListTable,
-    view_table_factory,
 )
 from olympia.users.models import UserProfile
 from olympia.versions.models import VersionReviewerFlags
-from pyquery import PyQuery as pq
 
 
 pytestmark = pytest.mark.django_db
 
 
 REVIEW_FILES_STATUSES = (amo.STATUS_APPROVED, amo.STATUS_DISABLED)
-
-
-class TestViewExtensionQueueTable(TestCase):
-    def setUp(self):
-        super().setUp()
-        self.table = view_table_factory(ViewExtensionQueue)([])
-
-    def test_addon_name(self):
-        row = Mock()
-        page = Mock()
-        page.start_index = Mock()
-        page.start_index.return_value = 1
-        row.addon_name = 'フォクすけといっしょ'
-        row.id = 12345
-        row.latest_version = '0.12'
-        self.table.set_page(page)
-        a = pq(self.table.render_addon_name(row))
-
-        assert a.attr('href') == (reverse('reviewers.review', args=[str(row.id)]))
-        assert a.text() == 'フォクすけといっしょ 0.12'
-
-    def test_addon_type_id(self):
-        row = Mock()
-        row.addon_type_id = amo.ADDON_EXTENSION
-        assert str(self.table.render_addon_type_id(row)) == 'Extension'
-
-    def test_waiting_time_in_days(self):
-        row = Mock()
-        row.waiting_time_days = 10
-        row.waiting_time_hours = 10 * 24
-        assert self.table.render_waiting_time_min(row) == '10 days'
-
-    def test_waiting_time_one_day(self):
-        row = Mock()
-        row.waiting_time_days = 1
-        row.waiting_time_hours = 24
-        row.waiting_time_min = 60 * 24
-        assert self.table.render_waiting_time_min(row) == '1 day'
-
-    def test_waiting_time_in_hours(self):
-        row = Mock()
-        row.waiting_time_days = 0
-        row.waiting_time_hours = 22
-        row.waiting_time_min = 60 * 22
-        assert self.table.render_waiting_time_min(row) == '22 hours'
-
-    def test_waiting_time_in_min(self):
-        row = Mock()
-        row.waiting_time_days = 0
-        row.waiting_time_hours = 0
-        row.waiting_time_min = 11
-        assert self.table.render_waiting_time_min(row) == '11 minutes'
-
-    def test_waiting_time_in_secs(self):
-        row = Mock()
-        row.waiting_time_days = 0
-        row.waiting_time_hours = 0
-        row.waiting_time_min = 0
-        assert self.table.render_waiting_time_min(row) == 'moments ago'
-
-    def test_flags(self):
-        row = Mock()
-        row.flags = [('admin-review', 'Admin Review')]
-        doc = pq(self.table.render_flags(row))
-        assert doc('div.ed-sprite-admin-review').length
-
-
-class TestUnlistedViewAllListTable(TestCase):
-    def setUp(self):
-        super().setUp()
-        self.table = ViewUnlistedAllListTable([])
-
-    def test_addon_name(self):
-        row = Mock()
-        page = Mock()
-        page.start_index = Mock()
-        page.start_index.return_value = 1
-        row.addon_name = 'フォクすけといっしょ'
-        row.id = 12345
-        self.table.set_page(page)
-        a = pq(self.table.render_addon_name(row))
-
-        assert a.attr('href') == reverse(
-            'reviewers.review', args=['unlisted', str(row.id)]
-        )
-        assert a.text() == 'フォクすけといっしょ'
-
-    def test_authors_few(self):
-        row = Mock()
-        row.authors = [(123, 'bob'), (456, 'steve')]
-        doc = pq(self.table.render_authors(row))
-        assert doc('span').text() == 'bob steve'
-        assert doc('span a:eq(0)').attr('href') == UserProfile.create_user_url(123)
-        assert doc('span a:eq(1)').attr('href') == UserProfile.create_user_url(456)
-        assert doc('span').attr('title') == 'bob steve'
-
-    def test_authors_four(self):
-        row = Mock()
-        row.authors = [(123, 'bob'), (456, 'steve'), (789, 'cvan'), (999, 'basta')]
-        doc = pq(self.table.render_authors(row))
-        assert doc.text() == 'bob steve cvan ...'
-        assert doc('span a:eq(0)').attr('href') == UserProfile.create_user_url(123)
-        assert doc('span a:eq(1)').attr('href') == UserProfile.create_user_url(456)
-        assert doc('span a:eq(2)').attr('href') == UserProfile.create_user_url(789)
-        assert doc('span').attr('title') == 'bob steve cvan basta', doc.html()
 
 
 yesterday = datetime.today() - timedelta(days=1)

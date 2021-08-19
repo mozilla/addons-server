@@ -71,7 +71,6 @@ from olympia.reviewers.models import (
     Whiteboard,
 )
 from olympia.reviewers.templatetags.jinja_helpers import code_manager_url
-from olympia.reviewers.utils import ContentReviewTable
 from olympia.reviewers.views import _queue
 from olympia.reviewers.serializers import CannedResponseSerializer
 from olympia.scanners.models import ScannerResult, ScannerRule
@@ -1320,17 +1319,6 @@ class TestQueueBasics(QueueTest):
         assert doc('.data-grid-top .num-results').text() == ('Results 1\u20131 of 4')
         assert doc('.data-grid-bottom .num-results').text() == ('Results 1\u20131 of 4')
 
-    def test_legacy_queue_sort(self):
-        sorts = (
-            ['age', 'Waiting Time'],
-            ['name', 'Add-on'],
-            ['type', 'Type'],
-        )
-        for key, text in sorts:
-            response = self.client.get(self.url, {'sort': key})
-            assert response.status_code == 200
-            assert pq(response.content)('th.ordered a').text() == text
-
     def test_flags_promoted(self):
         addon = addon_factory(name='Firefox Fún')
         version_factory(
@@ -1422,7 +1410,7 @@ class TestQueueBasics(QueueTest):
         full_query = connection.queries[0]['sql']
 
         reset_queries()
-        response = _queue(request, ContentReviewTable, 'content_review')
+        response = _queue(request, 'content_review')
         assert connection.queries
         assert full_query not in [item['sql'] for item in connection.queries]
         assert response.status_code == 200
@@ -1432,7 +1420,7 @@ class TestQueueBasics(QueueTest):
         request = RequestFactory().get('/', {'per_page': 2})
         request.user = self.user
         reset_queries()
-        response = _queue(request, ContentReviewTable, 'content_review')
+        response = _queue(request, 'content_review')
         assert connection.queries
         assert full_query not in [item['sql'] for item in connection.queries]
         assert response.status_code == 200
@@ -1442,7 +1430,7 @@ class TestQueueBasics(QueueTest):
         request = RequestFactory().get('/', {'per_page': 2, 'page': 2})
         request.user = self.user
         reset_queries()
-        response = _queue(request, ContentReviewTable, 'content_review')
+        response = _queue(request, 'content_review')
         assert connection.queries
         assert full_query not in [item['sql'] for item in connection.queries]
         assert response.status_code == 200

@@ -79,10 +79,6 @@ from olympia.reviewers.models import (
     CannedResponse,
     ReviewerScore,
     ReviewerSubscription,
-    ViewExtensionQueue,
-    ViewRecommendedQueue,
-    ViewThemeFullReviewQueue,
-    ViewThemePendingQueue,
     Whiteboard,
     clear_reviewing_cache,
     get_flags,
@@ -105,12 +101,15 @@ from olympia.reviewers.utils import (
     AutoApprovedTable,
     ContentReviewTable,
     MadReviewTable,
+    NewThemesQueueTable,
+    PendingManualApprovalQueueTable,
     PendingRejectionTable,
+    RecommendedPendingManualApprovalQueueTable,
     ReviewHelper,
     ScannersReviewTable,
-    ViewUnlistedAllListTable,
-    view_table_factory,
     UnlistedPendingManualApprovalQueueTable,
+    UpdatedThemesQueueTable,
+    ViewUnlistedAllListTable,
 )
 from olympia.scanners.models import ScannerResult
 from olympia.users.models import UserProfile
@@ -358,8 +357,9 @@ def filter_admin_review_for_legacy_queue(qs):
     )
 
 
-def _queue(request, TableObj, tab, unlisted=False):
+def _queue(request, tab, unlisted=False):
     admin_reviewer = is_admin_reviewer(request)
+    TableObj = reviewer_tables_registry[tab]
     qs = TableObj.get_queryset(admin_reviewer=admin_reviewer)
 
     admin_reviewer = is_admin_reviewer(request)
@@ -370,10 +370,13 @@ def _queue(request, TableObj, tab, unlisted=False):
         if not admin_reviewer:
             qs = filter_admin_review_for_legacy_queue(qs)
 
-    order_by = request.GET.get('sort', TableObj.default_order_by())
-    if hasattr(TableObj, 'translate_sort_cols'):
-        order_by = TableObj.translate_sort_cols(order_by)
-    table = TableObj(data=qs, order_by=order_by)
+    params = {}
+    order_by = request.GET.get('sort')
+    if order_by is None and hasattr(TableObj, 'default_order_by'):
+        order_by = TableObj.default_order_by()
+    if order_by is not None:
+        params['order_by'] = order_by
+    table = TableObj(data=qs, **params)
     per_page = request.GET.get('per_page', REVIEWS_PER_PAGE)
     try:
         per_page = int(per_page)
@@ -397,68 +400,65 @@ def _queue(request, TableObj, tab, unlisted=False):
     )
 
 
+reviewer_tables_registry = {
+    'extension': PendingManualApprovalQueueTable,
+    'recommended': RecommendedPendingManualApprovalQueueTable,
+    'theme_pending': UpdatedThemesQueueTable,
+    'theme_nominated': NewThemesQueueTable,
+    'auto_approved': AutoApprovedTable,
+    'content_review': ContentReviewTable,
+    'mad': MadReviewTable,
+    'scanners': ScannersReviewTable,
+    'pending_rejection': PendingRejectionTable,
+    'unlisted_pending_manual_approval': UnlistedPendingManualApprovalQueueTable,
+    'unlisted': ViewUnlistedAllListTable,
+}
+
+
 def fetch_queue_counts(admin_reviewer):
-    def construct_count_queryset_from_sql_model(sqlmodel):
-        # FIXME: ideally here we'd prevent sqlmodel.objects from including
-        # all the columns in the query for the count like it's done below with
-        # actual querysets...
-        qs = sqlmodel.objects
-
-        if not admin_reviewer:
-            qs = filter_admin_review_for_legacy_queue(qs)
-        return qs.count
-
     def construct_count_queryset_from_queryset(qs):
-        # Our querysets can have distinct, which causes django to run the full
-        # select in a subquery and then count() on it. That's tracked in
-        # https://code.djangoproject.com/ticket/30685
+        # Some of our querysets can have distinct, which causes django to run
+        # the full select in a subquery and then count() on it. That's tracked
+        # in https://code.djangoproject.com/ticket/30685
         # We can't easily fix the fact that there is a subquery, but we can
         # avoid selecting all fields and ordering needlessly.
         return qs.values('pk').order_by().count
 
+    def count_from_registered_table(table, *, admin_reviewer):
+        return construct_count_queryset_from_queryset(
+            table.get_queryset(admin_reviewer=admin_reviewer)
+        )
+
     counts = {
-        'extension': construct_count_queryset_from_sql_model(ViewExtensionQueue),
-        'theme_pending': construct_count_queryset_from_sql_model(ViewThemePendingQueue),
-        'theme_nominated': construct_count_queryset_from_sql_model(
-            ViewThemeFullReviewQueue
-        ),
-        'recommended': construct_count_queryset_from_sql_model(ViewRecommendedQueue),
-        'moderated': construct_count_queryset_from_queryset(
-            Rating.objects.all().to_moderate()
-        ),
-        'auto_approved': construct_count_queryset_from_queryset(
-            Addon.objects.get_auto_approved_queue(admin_reviewer=admin_reviewer)
-        ),
-        'content_review': construct_count_queryset_from_queryset(
-            Addon.objects.get_content_review_queue(admin_reviewer=admin_reviewer)
-        ),
-        'pending_rejection': construct_count_queryset_from_queryset(
-            Addon.objects.get_pending_rejection_queue(admin_reviewer=admin_reviewer)
-        ),
+        key: count_from_registered_table(table, admin_reviewer=admin_reviewer)
+        for key, table in reviewer_tables_registry.items()
+        if table.show_count_in_dashboard
     }
+
+    counts['moderated'] = construct_count_queryset_from_queryset(
+        Rating.objects.all().to_moderate()
+    )
     return {queue: count() for (queue, count) in counts.items()}
 
 
 @permission_or_tools_listed_view_required(amo.permissions.ADDONS_REVIEW)
 def queue_extension(request):
-    return _queue(request, view_table_factory(ViewExtensionQueue), 'extension')
+    return _queue(request, 'extension')
 
 
 @permission_or_tools_listed_view_required(amo.permissions.ADDONS_RECOMMENDED_REVIEW)
 def queue_recommended(request):
-    return _queue(request, view_table_factory(ViewRecommendedQueue), 'recommended')
+    return _queue(request, 'recommended')
 
 
 @permission_or_tools_listed_view_required(amo.permissions.STATIC_THEMES_REVIEW)
 def queue_theme_nominated(request):
-    return _queue(
-        request, view_table_factory(ViewThemeFullReviewQueue), 'theme_nominated'
-    )
+    return _queue(request, 'theme_nominated')
 
 
 @permission_or_tools_listed_view_required(amo.permissions.STATIC_THEMES_REVIEW)
 def queue_theme_pending(request):
-    return _queue(request, view_table_factory(ViewThemePendingQueue), 'theme_pending')
+    return _queue(request, 'theme_pending')
 
 
 @permission_or_tools_listed_view_required(amo.permissions.RATINGS_MODERATE)
@@ -500,27 +500,27 @@ def queue_moderated(request):
 
 @permission_or_tools_listed_view_required(amo.permissions.ADDONS_CONTENT_REVIEW)
 def queue_content_review(request):
-    return _queue(request, ContentReviewTable, 'content_review')
+    return _queue(request, 'content_review')
 
 
 @permission_or_tools_listed_view_required(amo.permissions.ADDONS_REVIEW)
 def queue_auto_approved(request):
-    return _queue(request, AutoApprovedTable, 'auto_approved')
+    return _queue(request, 'auto_approved')
 
 
 @permission_or_tools_listed_view_required(amo.permissions.ADDONS_REVIEW)
 def queue_scanners(request):
-    return _queue(request, ScannersReviewTable, 'scanners')
+    return _queue(request, 'scanners')
 
 
 @permission_or_tools_listed_view_required(amo.permissions.ADDONS_REVIEW)
 def queue_mad(request):
-    return _queue(request, MadReviewTable, 'mad')
+    return _queue(request, 'mad')
 
 
 @permission_or_tools_listed_view_required(amo.permissions.REVIEWS_ADMIN)
 def queue_pending_rejection(request):
-    return _queue(request, PendingRejectionTable, 'pending_rejection')
+    return _queue(request, 'pending_rejection')
 
 
 def determine_channel(channel_as_text):
@@ -1048,8 +1048,7 @@ def whiteboard(request, addon, channel):
 def unlisted_list(request):
     return _queue(
         request,
-        ViewUnlistedAllListTable,
-        'all',
+        'unlisted',
         unlisted=True,
     )
 
@@ -1058,8 +1057,7 @@ def unlisted_list(request):
 def unlisted_pending_manual_approval(request):
     return _queue(
         request,
-        UnlistedPendingManualApprovalQueueTable,
-        'pending_manual_approval',
+        'unlisted_pending_manual_approval',
         unlisted=True,
     )
 

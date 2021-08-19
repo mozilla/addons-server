@@ -3142,6 +3142,174 @@ class TestUnlistedPendingManualApprovalQueue(TestCase):
         assert result.first_version_created == expected_first_created_date
 
 
+class TestListedPendingManualApprovalQueue(TestCase):
+    def test_basic(self):
+        # Shouldn't be in the queue:
+        addon_factory()
+        addon_factory(
+            type=amo.ADDON_STATICTHEME,
+            status=amo.STATUS_NOMINATED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        addon_factory(
+            status=amo.STATUS_NULL,
+            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        version_factory(
+            addon=addon_factory(),
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        addon_factory(
+            status=amo.STATUS_NOMINATED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+        ),
+        version_factory(
+            addon=addon_factory(),
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+        )
+        VersionReviewerFlags.objects.create(
+            version=version_factory(
+                addon=addon_factory(), file_kw={'status': amo.STATUS_AWAITING_REVIEW}
+            ),
+            pending_rejection=datetime.now() + timedelta(days=1),
+        )
+        PromotedAddon.objects.create(
+            addon=version_factory(
+                addon=addon_factory(), file_kw={'status': amo.STATUS_AWAITING_REVIEW}
+            ).addon,
+            group_id=RECOMMENDED.id,
+        ).addon
+        AddonReviewerFlags.objects.create(
+            addon=addon_factory(
+                status=amo.STATUS_NOMINATED,
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+            ),
+            auto_approval_delayed_until=datetime.now() - timedelta(days=1),
+        )
+
+        # Should be in the queue:
+        expected = [
+            addon_factory(
+                status=amo.STATUS_NOMINATED,
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            ),
+            version_factory(
+                addon=addon_factory(), file_kw={'status': amo.STATUS_AWAITING_REVIEW}
+            ).addon,
+            version_factory(
+                addon=addon_factory(
+                    status=amo.STATUS_NOMINATED,
+                    file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                ),
+                channel=amo.RELEASE_CHANNEL_UNLISTED,
+            ).addon,
+            AddonReviewerFlags.objects.create(
+                addon=addon_factory(
+                    status=amo.STATUS_NOMINATED,
+                    file_kw={
+                        'status': amo.STATUS_AWAITING_REVIEW,
+                        'is_webextension': True,
+                    },
+                ),
+                auto_approval_disabled=True,
+            ).addon,
+            AddonReviewerFlags.objects.create(
+                addon=addon_factory(
+                    status=amo.STATUS_NOMINATED,
+                    file_kw={
+                        'status': amo.STATUS_AWAITING_REVIEW,
+                        'is_webextension': True,
+                    },
+                ),
+                auto_approval_disabled_until_next_approval=True,
+            ).addon,
+            AddonReviewerFlags.objects.create(
+                addon=addon_factory(
+                    status=amo.STATUS_NOMINATED,
+                    file_kw={
+                        'status': amo.STATUS_AWAITING_REVIEW,
+                        'is_webextension': True,
+                    },
+                ),
+                auto_approval_delayed_until=datetime.now() + timedelta(days=1),
+            ).addon,
+        ]
+
+        qs = Addon.objects.get_listed_pending_manual_approval_queue().order_by('pk')
+        assert list(qs) == expected
+
+    def test_versions_annotations(self):
+        nomination_1 = self.days_ago(2)
+        addon_factory(
+            status=amo.STATUS_NOMINATED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            version_kw={'nomination': nomination_1},
+        ),
+        nomination_2 = self.days_ago(1)
+        version_factory(
+            addon=addon_factory(version_kw={'nomination': self.days_ago(4)}),
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            nomination=nomination_2,
+        ).addon
+        expected = [nomination_1, nomination_2]
+        qs = Addon.objects.get_listed_pending_manual_approval_queue().order_by('pk')
+        result = [addon.first_version_nominated for addon in qs]
+        assert result == expected
+
+    def test_staticthemes(self):
+        expected = [
+            addon_factory(
+                type=amo.ADDON_STATICTHEME,
+                status=amo.STATUS_NOMINATED,
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            )
+        ]
+        addon_factory(
+            status=amo.STATUS_NOMINATED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        qs = Addon.objects.get_listed_pending_manual_approval_queue(
+            types=amo.GROUP_TYPE_THEME
+        ).order_by('pk')
+        assert list(qs) == expected
+
+    def test_status(self):
+        expected = [
+            version_factory(
+                addon=addon_factory(), file_kw={'status': amo.STATUS_AWAITING_REVIEW}
+            ).addon,
+        ]
+        addon_factory(
+            status=amo.STATUS_NOMINATED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        qs = Addon.objects.get_listed_pending_manual_approval_queue(
+            statuses=[amo.STATUS_APPROVED]
+        ).order_by('pk')
+        assert list(qs) == expected
+
+    def test_with_recommended(self):
+        expected = [
+            PromotedAddon.objects.create(
+                addon=version_factory(
+                    addon=addon_factory(),
+                    file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                ).addon,
+                group_id=RECOMMENDED.id,
+            ).addon
+        ]
+        qs = Addon.objects.get_listed_pending_manual_approval_queue(
+            recommendable=True
+        ).order_by('pk')
+        assert list(qs) == expected
+
+    def test_query_only_group_by_on_addon_id(self):
+        sql = str(Addon.objects.get_listed_pending_manual_approval_queue().query)
+        assert sql.endswith('GROUP BY `addons`.`id` ORDER BY NULL')
+
+
 class TestAddonGUID(TestCase):
     def test_creates_hashed_guid_on_save(self):
         guid = '@exquisite-sandwich-1'
