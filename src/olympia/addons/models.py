@@ -242,7 +242,6 @@ class AddonManager(ManagerBase):
         theme_review=False,
         exclude_listed_pending_rejection=True,
         select_related_fields_for_listed=True,
-        select_related=True,
     ):
         qs = (
             self.get_queryset()
@@ -342,12 +341,18 @@ class AddonManager(ManagerBase):
         return (
             # We passed select_related_fields_for_listed=False but there are
             # still base select_related() fields in that queryset that are
-            # applied in all cases that we don't want.
+            # applied in all cases that we don't want, so reset them away.
             qs.select_related(None)
             .filter(filters)
             .select_related('reviewerflags')
             .annotate(
                 first_version_nominated=Min('versions__nomination'),
+                # Because of the Min(), a GROUP BY addon.id is created.
+                # Unfortunately if we were to annotate with just
+                # F('versions__version') Django would add version.version to
+                # the GROUP BY, ruining it. To prevent that, we wrap it into
+                # a harmless Func() - we need a no-op function to do that,
+                # hence the LOWER().
                 latest_version=Func(F('versions__version'), function='LOWER'),
             )
         )
@@ -361,6 +366,8 @@ class AddonManager(ManagerBase):
         return (
             qs.filter(versions__channel=amo.RELEASE_CHANNEL_UNLISTED)
             .exclude(status=amo.STATUS_DISABLED)
+            # Reset select_related() made by get_base_queryset_for_queue(), we
+            # don't want them for the unlisted queue.
             .select_related(None)
         )
 

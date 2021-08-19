@@ -3305,6 +3305,10 @@ class TestListedPendingManualApprovalQueue(TestCase):
         ).order_by('pk')
         assert list(qs) == expected
 
+    def test_query_only_group_by_on_addon_id(self):
+        sql = str(Addon.objects.get_listed_pending_manual_approval_queue().query)
+        assert sql.endswith('GROUP BY `addons`.`id` ORDER BY NULL')
+
 
 class TestAddonGUID(TestCase):
     def test_creates_hashed_guid_on_save(self):
