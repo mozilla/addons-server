@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-17 16:44+0000\n"
-"PO-Revision-Date: 2021-08-19 18:13+0000\n"
+"PO-Revision-Date: 2021-08-19 18:21+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -5162,7 +5162,7 @@ msgid "Add-on name translations"
 msgstr "Překlady názvu doplňku"
 
 msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr "Nástroje pro redaktory – Doplňky pro Firefox"
+msgstr ""
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Zpět na nástěnku s nástroji redaktora"
@@ -5223,13 +5223,13 @@ msgid "Undelete"
 msgstr "Vrátit zpět odstranění"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr " – Nástroje pro redaktory – Doplňky pro Firefox"
+msgstr ""
 
 msgid "Back to review"
 msgstr "Zpět na recenzi"
 
 msgid "Content Review – Add-ons for Firefox"
-msgstr "Kontrola obsahu – Doplňky pro Firefox"
+msgstr ""
 
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
 msgstr "Automaticky schválené doplňky – Doplňky pro Firefox"
@@ -5290,7 +5290,7 @@ msgid "Review {0}"
 msgstr "Kontrola {0}"
 
 msgid "Add-on important changes history"
-msgstr ""
+msgstr "Historie důležitých změn doplňku"
 
 msgid "Add-on History"
 msgstr "Historie doplňku"
@@ -5299,7 +5299,7 @@ msgid "You don't have permission to review it."
 msgstr ""
 
 msgid "Please select one or more versions in the list below."
-msgstr ""
+msgstr "Vyberte prosím z níže uvedeného seznamu jednu nebo více verzí."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr "Stále můžete tento formulář odeslat, ale udělejte to pouze tehdy, když víte, že to nezpůsobí konflikt."
