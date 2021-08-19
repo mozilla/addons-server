@@ -364,8 +364,9 @@ class AddonManager(ManagerBase):
             admin_reviewer=admin_reviewer,
         )
         return (
-            qs.filter(versions__channel=amo.RELEASE_CHANNEL_UNLISTED)
-            .exclude(status=amo.STATUS_DISABLED)
+            qs.filter(versions__channel=amo.RELEASE_CHANNEL_UNLISTED).exclude(
+                status=amo.STATUS_DISABLED
+            )
             # Reset select_related() made by get_base_queryset_for_queue(), we
             # don't want them for the unlisted queue.
             .select_related(None)
