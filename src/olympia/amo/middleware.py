@@ -317,6 +317,7 @@ class CacheControlMiddleware:
     being processed by this middleware. In that last case, the Cache-Control
     header already present is left intact.
     """
+
     def __init__(self, get_response):
         self.get_response = get_response
 
