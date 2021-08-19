@@ -323,7 +323,7 @@ class CacheControlMiddleware:
 
     def __call__(self, request):
         response = self.get_response(request)
-        already_set = get_max_age(response)
+        max_age_from_response = get_max_age(response)
         request_conditions = (
             request.is_api
             and request.method in ('GET', 'HEAD')
@@ -334,10 +334,10 @@ class CacheControlMiddleware:
             not response.cookies
             and response.status_code >= 200
             and response.status_code < 400
-            and not already_set
+            and not max_age_from_response
         )
         if request_conditions and response_conditions:
             patch_cache_control(response, max_age=settings.API_CACHE_DURATION)
-        elif not already_set:
+        elif max_age_from_response is None:
             patch_cache_control(response, s_maxage=0)
         return response
