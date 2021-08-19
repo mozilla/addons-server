@@ -275,7 +275,7 @@ class TestShelvesSerializer(ESTestCase):
         # random-tag
         self.tag_shelf.update(footer_pathname='')
         data = self.serialize(self.tag_shelf)
-        url = 'http://testserver' + reverse('search.search') + '?tag=foo'
+        url = 'http://testserver' + reverse('tags.detail', args=('foo',))
         assert data['footer'] == {
             'url': url,
             'outgoing': url,

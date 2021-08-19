@@ -31,12 +31,19 @@ class ShelfFooterField(serializers.Serializer):
 
         url = data.get('url')
         if not url:
-            if obj.endpoint in (Shelf.Endpoints.SEARCH, Shelf.Endpoints.RANDOM_TAG):
-                search_url = reverse('search.search')
+            if obj.endpoint == Shelf.Endpoints.SEARCH:
                 query_string = '&'.join(
                     f'{key}={value}' for key, value in obj.get_param_dict().items()
                 )
-                fallback = absolutify(f'{search_url}?{query_string}')
+                fallback = absolutify(f'{reverse("search.search")}?{query_string}')
+            elif obj.endpoint == Shelf.Endpoints.RANDOM_TAG:
+                tag_page_url = reverse('tags.detail', kwargs={'tag_name': obj.tag})
+                query_string = '&'.join(
+                    f'{key}={value}'
+                    for key, value in obj.get_param_dict().items()
+                    if key != 'tag'
+                )
+                fallback = absolutify(f'{tag_page_url}?{query_string}')
             elif obj.endpoint == Shelf.Endpoints.COLLECTIONS:
                 fallback = absolutify(
                     reverse(
