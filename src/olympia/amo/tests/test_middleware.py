@@ -262,6 +262,14 @@ class TestCacheControlMiddleware(TestCase):
         response = CacheControlMiddleware(lambda x: response)(request)
         assert response['Cache-Control'] == 'max-age=3600'
 
+    def test_cache_control_already_set_to_0_should_not_set_s_maxage(self):
+        request = self.request_factory.get('/api/v5/foo')
+        request.is_api = True
+        response = HttpResponse()
+        response['Cache-Control'] = 'max-age=0'
+        response = CacheControlMiddleware(lambda x: response)(request)
+        assert response['Cache-Control'] == 'max-age=0'
+
     def test_non_success_status_code_should_not_cache(self):
         request = self.request_factory.get('/api/v5/foo')
         request.is_api = True
