@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-17 16:44+0000\n"
-"PO-Revision-Date: 2021-08-19 15:34+0000\n"
+"PO-Revision-Date: 2021-08-19 15:55+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4846,7 +4846,7 @@ msgid "Delayed because it's the first listed version"
 msgstr "Zpožděno pro kontrolu první zveřejněné verze"
 
 msgid "Version string and guid match a blocklist Block"
-msgstr ""
+msgstr "Řetězec verze a guid odpovídají blokaci v seznamu blokací"
 
 msgid "Weight breakdown not available."
 msgstr ""
@@ -4954,16 +4954,16 @@ msgid "This will reject the selected versions. The comments will be sent to the 
 msgstr ""
 
 msgid "Block Multiple Versions"
-msgstr ""
+msgstr "Zablokovat více verzí"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
 msgstr ""
 
 msgid "Confirm Multiple Versions"
-msgstr ""
+msgstr "Potvrdit více verzí"
 
 msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr ""
+msgstr "Tímto potvrdíte schválení vybraných verzí bez uvědomění vývojáře."
 
 msgid "Reviewer reply"
 msgstr "Odpověď redaktora"
@@ -4999,7 +4999,7 @@ msgid "Add-on Review Guide"
 msgstr "Příručka pro kontrolu doplňků"
 
 msgid "Security Scanners"
-msgstr ""
+msgstr "Bezpečnostní skenery"
 
 msgid "Flagged By Scanners"
 msgstr ""
