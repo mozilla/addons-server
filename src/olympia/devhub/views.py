@@ -25,7 +25,7 @@ from django_statsd.clients import statsd
 
 import olympia.core.logger
 
-from olympia import amo, core
+from olympia import amo
 from olympia.access import acl
 from olympia.accounts.utils import redirect_for_login
 from olympia.accounts.views import API_TOKEN_COOKIE, logout_user
@@ -649,22 +649,16 @@ def handle_upload(
     submit=False,
     source=amo.UPLOAD_SOURCE_DEVHUB,
 ):
-    automated_signing = channel == amo.RELEASE_CHANNEL_UNLISTED
-
     user = request.user if request.user.is_authenticated else None
-    max_ip_length = FileUpload._meta.get_field('ip_address').max_length
     upload = FileUpload.from_post(
         filedata,
         filedata.name,
         filedata.size,
         addon=addon,
-        automated_signing=automated_signing,
-        ip_address=(core.get_remote_addr() or '')[:max_ip_length],
+        channel=channel,
         source=source,
         user=user,
     )
-    # The following log statement is used by foxsec-pipeline.
-    log.info('FileUpload created: %s' % upload.uuid.hex)
 
     if submit:
         tasks.validate_and_submit(addon, upload, channel=channel)
@@ -738,7 +732,6 @@ def file_validation(request, addon_id, addon, file_id):
         'filename': file_.filename,
         'timestamp': file_.created,
         'addon': addon,
-        'automated_signing': file_.automated_signing,
     }
 
     if file_.has_been_validated:
@@ -849,7 +842,6 @@ def upload_detail(request, uuid, format='html'):
     context = {
         'validate_url': validate_url,
         'filename': upload.pretty_name,
-        'automated_signing': upload.automated_signing,
         'timestamp': upload.created,
     }
 

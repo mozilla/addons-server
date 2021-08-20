@@ -214,7 +214,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert 'processed' in response.data
 
         upload = FileUpload.objects.latest('pk')
-        assert upload.source == amo.UPLOAD_SOURCE_API
+        assert upload.source == amo.UPLOAD_SOURCE_SIGNING_API
         assert upload.user == self.user
         assert upload.ip_address == '127.0.2.1'
 
@@ -908,7 +908,7 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         upload = FileUpload.objects.latest('pk')
         assert upload.version == '1.0'
         assert upload.user == self.user
-        assert upload.source == amo.UPLOAD_SOURCE_API
+        assert upload.source == amo.UPLOAD_SOURCE_SIGNING_API
         assert upload.ip_address == '127.0.3.1'
 
         version = Version.objects.get(addon__guid=guid, version='1.0')
@@ -1165,7 +1165,7 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
 
 
 class TestTestUploadVersionWebextensionTransactions(
-    BaseUploadVersionTestMixin, TransactionTestCase
+    BaseUploadVersionTestMixin, TestCase, TransactionTestCase
 ):
     # Tests to make sure transactions don't prevent
     # ActivityLog/UserRestrictionHistory objects to be saved.

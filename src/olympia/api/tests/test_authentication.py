@@ -28,7 +28,7 @@ from olympia.amo.tests import (
     user_factory,
 )
 from olympia.api.authentication import JWTKeyAuthentication, WebTokenAuthentication
-from olympia.api.tests.test_jwt_auth import JWTAuthKeyTester
+from olympia.api.tests import JWTAuthKeyTester
 
 
 class JWTKeyAuthTestView(APIView):

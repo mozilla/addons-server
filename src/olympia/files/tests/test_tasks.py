@@ -10,12 +10,12 @@ from django.conf import settings
 
 from olympia.amo.tests import TestCase, addon_factory
 from olympia.files.tasks import repack_fileupload, hide_disabled_files
-from olympia.files.tests.test_models import UploadTest
+from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import SafeZip
 from olympia.files.tests.test_utils import AppVersionsMixin
 
 
-class TestRepackFileUpload(AppVersionsMixin, UploadTest, TestCase):
+class TestRepackFileUpload(AppVersionsMixin, UploadMixin, TestCase):
     @mock.patch('olympia.files.tasks.move_stored_file')
     @mock.patch('olympia.files.tasks.get_sha256')
     @mock.patch('olympia.files.tasks.shutil')
