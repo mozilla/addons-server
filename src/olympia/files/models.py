@@ -577,6 +577,10 @@ class FileUpload(ModelBase):
         return bool(self.valid or self.validation)
 
     @property
+    def submitted(self):
+        return bool(self.addon)
+
+    @property
     def validation_timeout(self):
         if self.processed:
             validation = self.load_validation()
