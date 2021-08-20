@@ -17,11 +17,11 @@ from olympia.amo.tests import addon_factory, TestCase, version_factory
 from olympia.applications.models import AppVersion
 from olympia.devhub import tasks, utils
 from olympia.files.tasks import repack_fileupload
-from olympia.files.tests.test_models import UploadTest
+from olympia.files.tests.test_models import UploadMixin
 from olympia.scanners.tasks import run_customs, run_wat, run_yara, call_mad_api
 
 
-class TestAddonsLinterListed(UploadTest, TestCase):
+class TestAddonsLinterListed(UploadMixin, TestCase):
     def setUp(self):
         # Create File objects for version 1.0 and 1.1.
         self.addon = addon_factory(
@@ -307,7 +307,7 @@ def test_process_validation_ending_tier_is_preserved():
     assert data['ending_tier'] == 5
 
 
-class TestValidator(UploadTest, TestCase):
+class TestValidator(UploadMixin, TestCase):
     @mock.patch('olympia.devhub.utils.chain')
     def test_appends_final_task_for_file_uploads(self, mock_chain):
         final_task = mock.Mock()

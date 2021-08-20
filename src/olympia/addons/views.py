@@ -12,17 +12,20 @@ from elasticsearch_dsl import Q, query, Search
 from rest_framework import exceptions, serializers
 from rest_framework.decorators import action
 from rest_framework.generics import ListAPIView
-from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
+from rest_framework.mixins import CreateModelMixin, ListModelMixin, RetrieveModelMixin
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.settings import api_settings
 from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
+
 
 import olympia.core.logger
 
 from olympia import amo
 from olympia.access import acl
 from olympia.amo.urlresolvers import get_outgoing_url
+from olympia.api.authentication import JWTKeyAuthentication, WebTokenAuthentication
 from olympia.api.exceptions import UnavailableForLegalReasons
 from olympia.api.pagination import ESPageNumberPagination
 from olympia.api.permissions import (
@@ -32,11 +35,14 @@ from olympia.api.permissions import (
     AllowListedViewerOrReviewer,
     AllowUnlistedViewerOrReviewer,
     AnyOf,
+    APIGatePermission,
     GroupPermission,
     RegionalRestriction,
 )
+
 from olympia.api.utils import is_gate_active
 from olympia.constants.categories import CATEGORIES_BY_ID
+from olympia.devhub.permissions import IsSubmissionAllowedFor
 from olympia.search.filters import (
     AddonAppQueryParam,
     AddonAppVersionQueryParam,
@@ -174,7 +180,7 @@ def find_replacement_addon(request):
     return redirect(replace_url, permanent=False)
 
 
-class AddonViewSet(RetrieveModelMixin, GenericViewSet):
+class AddonViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
     permission_classes = [
         AnyOf(
             AllowReadOnlyIfPublic,
@@ -183,6 +189,7 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
             AllowUnlistedViewerOrReviewer,
         ),
     ]
+    authentication_classes = [JWTKeyAuthentication, WebTokenAuthentication]
     georestriction_classes = [
         RegionalRestriction | GroupPermission(amo.permissions.ADDONS_EDIT)
     ]
@@ -216,7 +223,7 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
     def get_serializer_class(self):
         # Override serializer to use serializer_class_with_unlisted_data if
         # we are allowed to access unlisted data.
-        obj = getattr(self, 'instance')
+        obj = getattr(self, 'instance', None)
         request = self.request
         if acl.check_unlisted_addons_viewer_or_reviewer(request) or (
             obj
@@ -240,7 +247,12 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
         for restriction in self.get_georestrictions():
             if not restriction.has_permission(request, self):
                 raise UnavailableForLegalReasons()
-
+        if self.action == 'create':
+            self.permission_classes = [
+                APIGatePermission('addon-submission-api'),
+                IsAuthenticated,
+                IsSubmissionAllowedFor,
+            ]
         super().check_permissions(request)
 
     def check_object_permissions(self, request, obj):
@@ -285,6 +297,13 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
         )
         return Response(serializer.data)
 
+    def create(self, request, *args, **kwargs):
+        from olympia.signing.views import VersionView  # circular import
+
+        # TODO: consolidate/replicate this behaviour.
+        VersionView().check_throttles(request)
+        return super().create(request, *args, **kwargs)
+
 
 class AddonChildMixin:
     """Mixin containing method to retrieve the parent add-on object."""
@@ -322,7 +341,11 @@ class AddonChildMixin:
 
 
 class AddonVersionViewSet(
-    AddonChildMixin, RetrieveModelMixin, ListModelMixin, GenericViewSet
+    AddonChildMixin,
+    CreateModelMixin,
+    RetrieveModelMixin,
+    ListModelMixin,
+    GenericViewSet,
 ):
     # Permissions are always checked against the parent add-on in
     # get_addon_object() using AddonViewSet.permission_classes so we don't need
@@ -330,6 +353,7 @@ class AddonVersionViewSet(
     # below in check_permissions() and check_object_permissions() depending on
     # what the client is requesting to see.
     permission_classes = []
+    authentication_classes = [JWTKeyAuthentication, WebTokenAuthentication]
 
     def get_serializer_class(self):
         if (
@@ -342,9 +366,14 @@ class AddonVersionViewSet(
             serializer_class = VersionSerializer
         return serializer_class
 
+    def get_serializer(self, *args, **kwargs):
+        return super().get_serializer(
+            *args, **{**kwargs, 'addon': self.get_addon_object()}
+        )
+
     def check_permissions(self, request):
-        requested = self.request.GET.get('filter')
         if self.action == 'list':
+            requested = self.request.GET.get('filter')
             if requested == 'all_with_deleted':
                 # To see deleted versions, you need Addons:ViewDeleted.
                 self.permission_classes = [
@@ -372,6 +401,12 @@ class AddonVersionViewSet(
             # super + check_object_permission() ourselves, passing down the
             # addon object directly.
             return super().check_object_permissions(request, self.get_addon_object())
+        elif self.action == 'create':
+            self.permission_classes = [
+                APIGatePermission('addon-submission-api'),
+                IsAuthenticated,
+                IsSubmissionAllowedFor,
+            ]
         super().check_permissions(request)
 
     def check_object_permissions(self, request, obj):
@@ -451,6 +486,13 @@ class AddonVersionViewSet(
             # doesn't scale as nicely in those versions.
             queryset = queryset.transform(Version.transformer_license)
         return queryset
+
+    def create(self, request, *args, **kwargs):
+        from olympia.signing.views import VersionView  # circular import
+
+        # TODO: consolidate/replicate this behaviour.
+        VersionView().check_throttles(request)
+        return super().create(request, *args, **kwargs)
 
 
 class AddonSearchView(ListAPIView):

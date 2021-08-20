@@ -41,9 +41,9 @@ from olympia.versions.models import Version
 pytestmark = pytest.mark.django_db
 
 
-class UploadTest(TestCase, amo.tests.AMOPaths):
+class UploadMixin(amo.tests.AMOPaths):
     """
-    Base for tests that mess with file uploads, safely using temp directories.
+    Mixin for tests that mess with file uploads, safely using temp directories.
     """
 
     def setUp(self):
@@ -74,6 +74,7 @@ class UploadTest(TestCase, amo.tests.AMOPaths):
         user=None,
         version=None,
         with_validation=True,
+        source=amo.UPLOAD_SOURCE_DEVHUB,
     ):
         if user is None:
             user = user_factory()
@@ -84,7 +85,7 @@ class UploadTest(TestCase, amo.tests.AMOPaths):
         upload.user = user
         upload.version = version
         upload.ip_address = '127.0.0.42'
-        upload.source = amo.UPLOAD_SOURCE_DEVHUB
+        upload.source = source
         if with_validation:
             # Simulate what fetch_manifest() does after uploading an app.
             upload.validation = validation or json.dumps(
@@ -704,7 +705,7 @@ class TestParseXpi(TestCase):
         assert parsed['manifest_version'] == 2
 
 
-class TestFileUpload(UploadTest):
+class TestFileUpload(UploadMixin, TestCase):
     fixtures = ['base/appversion', 'base/addon_3615']
 
     def setUp(self):
@@ -1045,7 +1046,7 @@ def test_file_upload_passed_all_validations_invalid():
     assert not upload.passed_all_validations
 
 
-class TestFileFromUpload(UploadTest):
+class TestFileFromUpload(UploadMixin, TestCase):
     @classmethod
     def setUpTestData(cls):
         versions = {

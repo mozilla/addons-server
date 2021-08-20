@@ -14,13 +14,13 @@ from olympia.addons.models import Addon, AddonUser
 from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.devhub.tests.test_tasks import ValidatorTestCase
 from olympia.files.models import File, FileUpload, FileValidation
-from olympia.files.tests.test_models import UploadTest as BaseUploadTest
+from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import check_xpi_info, parse_addon
 from olympia.reviewers.templatetags.code_manager import code_manager_url
 from olympia.users.models import UserProfile
 
 
-class TestUploadValidation(ValidatorTestCase, BaseUploadTest):
+class TestUploadValidation(ValidatorTestCase, UploadMixin, TestCase):
     fixtures = ['base/users', 'devhub/invalid-id-uploaded-xpi.json']
 
     def setUp(self):
@@ -83,7 +83,7 @@ class TestUploadValidation(ValidatorTestCase, BaseUploadTest):
         assert self.client.head(url).status_code == 200
 
 
-class TestUploadErrors(BaseUploadTest):
+class TestUploadErrors(UploadMixin, TestCase):
     fixtures = ('base/addon_3615', 'base/users')
 
     def setUp(self):

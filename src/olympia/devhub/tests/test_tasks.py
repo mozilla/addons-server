@@ -29,7 +29,7 @@ from olympia.constants.base import VALIDATOR_SKELETON_RESULTS
 from olympia.devhub import tasks
 from olympia.files.models import File
 from olympia.files.utils import NoManifestFound
-from olympia.files.tests.test_models import UploadTest
+from olympia.files.tests.test_models import UploadMixin
 from olympia.versions.models import Version
 
 
@@ -196,7 +196,7 @@ class ValidatorTestCase(TestCase):
         return AppVersion.objects.create(application=amo.APPS[name].id, version=version)
 
 
-class TestMeasureValidationTime(UploadTest, TestCase):
+class TestMeasureValidationTime(UploadMixin, TestCase):
     def setUp(self):
         super().setUp()
         # Set created time back (just for sanity) otherwise the delta
@@ -335,7 +335,7 @@ class TestTrackValidatorStats(TestCase):
         self.mock_incr.assert_any_call('devhub.linter.results.unlisted.success')
 
 
-class TestRunAddonsLinter(UploadTest, ValidatorTestCase):
+class TestRunAddonsLinter(UploadMixin, ValidatorTestCase):
     mock_sign_addon_warning = json.dumps(
         {
             'warnings': 1,
@@ -630,7 +630,7 @@ def test_send_welcome_email(send_html_mail_jinja_mock):
     )
 
 
-class TestSubmitFile(UploadTest, TestCase):
+class TestSubmitFile(UploadMixin, TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
@@ -657,7 +657,7 @@ class TestSubmitFile(UploadTest, TestCase):
         assert not self.create_version_for_upload.called
 
 
-class TestCreateVersionForUpload(UploadTest, TestCase):
+class TestCreateVersionForUpload(UploadMixin, TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
@@ -777,7 +777,7 @@ class TestCreateVersionForUpload(UploadTest, TestCase):
         )
 
 
-class TestAPIKeyInSubmission(UploadTest, TestCase):
+class TestAPIKeyInSubmission(UploadMixin, TestCase):
     def setUp(self):
         self.user = user_factory()
 

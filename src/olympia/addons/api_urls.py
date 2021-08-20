@@ -4,6 +4,7 @@ from rest_framework.routers import SimpleRouter
 from rest_framework_nested.routers import NestedSimpleRouter
 
 from olympia.activity.views import VersionReviewNotesViewSet
+from olympia.files.views import FileUploadViewSet
 
 from .views import (
     AddonAutoCompleteSearchView,
@@ -29,6 +30,9 @@ sub_versions = NestedSimpleRouter(sub_addons, r'versions', lookup='version')
 sub_versions.register(
     r'reviewnotes', VersionReviewNotesViewSet, basename='version-reviewnotes'
 )
+
+submissions = SimpleRouter()
+submissions.register(r'submission', FileUploadViewSet, basename='addon-submission')
 
 urls = [
     re_path(r'', include(addons.urls)),
@@ -66,3 +70,7 @@ addons_v3 = urls + [
 ]
 
 addons_v4 = urls
+
+addons_v5 = addons_v4 + [
+    re_path(r'', include(submissions.urls)),
+]

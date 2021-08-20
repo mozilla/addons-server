@@ -35,7 +35,7 @@ from olympia.amo.tests import (
 from olympia.blocklist.models import Block
 from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.devhub import views
-from olympia.files.tests.test_models import UploadTest
+from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
 from olympia.users.models import IPNetworkUserRestriction, UserProfile
 from olympia.versions.models import License, VersionPreview
@@ -430,7 +430,7 @@ class TestAddonSubmitDistribution(TestCase):
 
 
 @override_settings(REPUTATION_SERVICE_URL=None)
-class TestAddonSubmitUpload(UploadTest, TestCase):
+class TestAddonSubmitUpload(UploadMixin, TestCase):
     fixtures = ['base/users']
 
     @classmethod
@@ -2163,7 +2163,7 @@ class VersionSubmitUploadMixin:
             assert version.previews.all().count() == 0
 
 
-class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
+class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadMixin, TestCase):
     channel = amo.RELEASE_CHANNEL_LISTED
 
     def test_success(self):
@@ -2288,7 +2288,7 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
         )
 
 
-class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadTest):
+class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadMixin, TestCase):
     channel = amo.RELEASE_CHANNEL_UNLISTED
 
     def test_success(self):

@@ -256,8 +256,8 @@ class Version(OnChangeMixin, ModelBase):
                 'FileUpload user does not have some required fields'
             )
 
-        license_id = None
-        if channel == amo.RELEASE_CHANNEL_LISTED:
+        license_id = parsed_data.get('license_id')
+        if not license_id and channel == amo.RELEASE_CHANNEL_LISTED:
             previous_version = addon.find_latest_version(channel=channel, exclude=())
             if previous_version and previous_version.license_id:
                 license_id = previous_version.license_id
@@ -272,6 +272,7 @@ class Version(OnChangeMixin, ModelBase):
             version=parsed_data['version'],
             license_id=license_id,
             channel=channel,
+            release_notes=parsed_data.get('release_notes'),
         )
         email = upload.user.email if upload.user and upload.user.email else ''
         with core.override_remote_addr(upload.ip_address):
@@ -285,7 +286,7 @@ class Version(OnChangeMixin, ModelBase):
                     'guid': addon.guid,
                     'upload': upload.uuid.hex,
                     'user_id': upload.user_id,
-                    'from_api': upload.source == amo.UPLOAD_SOURCE_API,
+                    'from_api': upload.source == amo.UPLOAD_SOURCE_SIGNING_API,
                 },
             )
             activity.log_create(
@@ -490,11 +491,6 @@ class Version(OnChangeMixin, ModelBase):
         return self._compat_map(self.apps.all().select_related('min', 'max'))
 
     @cached_property
-    def compatible_apps_ordered(self):
-        apps = self.compatible_apps.items()
-        return sorted(apps, key=lambda v: v[0].short)
-
-    @cached_property
     def is_compatible_by_default(self):
         """Returns whether or not the add-on is considered compatible by
         default."""
@@ -510,29 +506,6 @@ class Version(OnChangeMixin, ModelBase):
                 amo.D2C_MIN_VERSIONS.get(app.id, '*')
             )
         return False
-
-    def compat_override_app_versions(self):
-        """Returns the incompatible app versions range(s).
-
-        If not ranges, returns empty list.  Otherwise, this will return all
-        the app version ranges that this particular version is incompatible
-        with.
-        """
-        overrides = list(self.addon.compatoverride_set.all())
-
-        if not overrides:
-            return []
-
-        app_versions = []
-        for co in overrides:
-            for range in co.collapsed_ranges():
-                if (
-                    version_int(range.min)
-                    <= version_int(self.version)
-                    <= version_int(range.max)
-                ):
-                    app_versions.extend([(a.min, a.max) for a in range.apps])
-        return app_versions
 
     def is_public(self):
         # To be public, a version must not be deleted, must belong to a public

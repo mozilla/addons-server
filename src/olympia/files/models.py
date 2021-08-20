@@ -22,7 +22,7 @@ from django_statsd.clients import statsd
 
 import olympia.core.logger
 
-from olympia import amo
+from olympia import amo, core
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
@@ -93,12 +93,6 @@ class File(OnChangeMixin, ModelBase):
             return False
         else:
             return True
-
-    @property
-    def automated_signing(self):
-        """True if this file is eligible for automated signing. This currently
-        means that either its version is unlisted."""
-        return self.version.channel == amo.RELEASE_CHANNEL_UNLISTED
 
     def get_file_cdn_url(self, attachment=False):
         """Return the URL for the file corresponding to this instance
@@ -564,13 +558,27 @@ class FileUpload(ModelBase):
 
     @classmethod
     def from_post(cls, chunks, filename, size, **params):
+        max_ip_length = cls._meta.get_field('ip_address').max_length
+        params['ip_address'] = (core.get_remote_addr() or '')[:max_ip_length]
+        if 'channel' in params:
+            params['automated_signing'] = (
+                params.pop('channel') == amo.RELEASE_CHANNEL_UNLISTED
+            )
         upload = FileUpload(**params)
         upload.add_file(chunks, filename, size)
+
+        # The following log statement is used by foxsec-pipeline.
+        log.info('FileUpload created: %s' % upload.uuid.hex)
+
         return upload
 
     @property
     def processed(self):
         return bool(self.valid or self.validation)
+
+    @property
+    def submitted(self):
+        return bool(self.addon)
 
     @property
     def validation_timeout(self):
@@ -606,6 +614,14 @@ class FileUpload(ModelBase):
         if len(parts) > 1:
             return parts[1]
         return self.name
+
+    @property
+    def channel(self):
+        return (
+            amo.RELEASE_CHANNEL_UNLISTED
+            if self.automated_signing
+            else amo.RELEASE_CHANNEL_LISTED
+        )
 
 
 class FileValidation(ModelBase):
