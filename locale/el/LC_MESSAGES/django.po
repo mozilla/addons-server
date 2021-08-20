@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-17 16:44+0000\n"
-"PO-Revision-Date: 2021-08-18 13:14+0000\n"
+"PO-Revision-Date: 2021-08-20 07:52+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -3675,7 +3675,7 @@ msgstr "Μετακινήστε τον κέρσορα πάνω σε μια εικ
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Automatically erase cookies after you close a tab."
-msgstr "Αυτόματη διαγραφή cookies αφού κλείσετε μια καρτέλα."
+msgstr "Αυτόματη διαγραφή cookie αφού κλείσετε μια καρτέλα."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3690,7 +3690,7 @@ msgstr "Σταματήστε τους ιχνηλάτες και μάθετε π�
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr "Αφήστε καθαρό ψηφιακό μονοπάτι. Κάντε το Firefox να ξεχάσει τα δεδομένα ιστοσελίδων, όπως cookies και τοπική αποθήκευση, αλλά μόνο για τους τομείς που θα επιλέξετε."
+msgstr "Αφήστε καθαρό ψηφιακό μονοπάτι. Κάντε το Firefox να ξεχάσει τα δεδομένα ιστοτόπων, όπως cookie και τοπική αποθήκευση, αλλά μόνο για τους τομείς που θα επιλέξετε."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4143,7 +4143,7 @@ msgstr "Επιτρέψτε την εκτέλεση περιεχομένου ισ
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Take full control of the cookies you've accumulated while browsing."
-msgstr "Πάρτε τον πλήρη έλεγχο των cookies που συγκεντρώνετε κατά την περιήγηση."
+msgstr "Πάρτε τον πλήρη έλεγχο των cookie που συγκεντρώνετε κατά την περιήγηση."
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
@@ -4212,7 +4212,7 @@ msgstr "Απλοποίηση καρτελών. Οργανώστε τις ανο�
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete unwanted cookies. Offers white and blacklist support."
-msgstr "Αυτόματη διαγραφή των ανεπιθύμητων cookies. Υποστηρίζονται λίστες επιτρεπόμενων και αποκλεισμού."
+msgstr "Αυτόματη διαγραφή των ανεπιθύμητων cookie. Υποστηρίζονται λίστες αποδοχής και φραγής."
 
 #. editorial content for the discovery pane.
 msgid "With a simple click of the mouse you can watch videos in full screen glory."
@@ -4314,7 +4314,7 @@ msgstr "Λάβετε ενημερώσεις καιρού απευθείας στ
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr "Διαγράψτε τα cookies, το ιστορικό περιήγησης και τα προσωρινά αρχεία με ένα μόνο κλικ."
+msgstr "Διαγράψτε τα cookie, το ιστορικό περιήγησης και τα προσωρινά αρχεία με ένα μόνο κλικ."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
