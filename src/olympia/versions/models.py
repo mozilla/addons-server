@@ -256,8 +256,8 @@ class Version(OnChangeMixin, ModelBase):
                 'FileUpload user does not have some required fields'
             )
 
-        license_id = None
-        if channel == amo.RELEASE_CHANNEL_LISTED:
+        license_id = parsed_data.get('license_id')
+        if not license_id and channel == amo.RELEASE_CHANNEL_LISTED:
             previous_version = addon.find_latest_version(channel=channel, exclude=())
             if previous_version and previous_version.license_id:
                 license_id = previous_version.license_id
@@ -272,6 +272,7 @@ class Version(OnChangeMixin, ModelBase):
             version=parsed_data['version'],
             license_id=license_id,
             channel=channel,
+            release_notes=parsed_data.get('release_notes'),
         )
         email = upload.user.email if upload.user and upload.user.email else ''
         with core.override_remote_addr(upload.ip_address):
