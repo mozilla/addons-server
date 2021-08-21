@@ -3996,7 +3996,7 @@ msgstr "Gain an Amazon edge. When looking at product pages on other online shops
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
+msgstr "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title and more."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
@@ -4016,7 +4016,7 @@ msgstr "For those moments when you need to fire lasers out of a cat."
 
 #. editorial content for the discovery pane.
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
-msgstr "Search Firefox by easily accessing your open tabs, bookmarks, and history."
+msgstr "Search Firefox by easily accessing your open tabs, bookmarks and history."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
@@ -4056,7 +4056,7 @@ msgstr "Shop with confidence. This extension provides an extra check to ensure y
 
 #. editorial content for the discovery pane.
 msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
+msgstr "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub and many more."
 
 #. editorial content for the discovery pane.
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
