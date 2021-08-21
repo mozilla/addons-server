@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-17 16:44+0000\n"
-"PO-Revision-Date: 2021-08-21 11:57+0000\n"
+"PO-Revision-Date: 2021-08-21 12:06+0000\n"
 "Last-Translator: Waldo Luis Ribeiro <waldoribeiro@sapo.pt>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -1106,13 +1106,13 @@ msgid "Tabs"
 msgstr "Tabs"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
-msgstr "Download Firefox extension to customise tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
+msgstr "Download Firefox extension to customise tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them and more."
 
 msgid "Web Development"
 msgstr "Web Development"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
-msgstr "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
+msgstr "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management and more."
 
 msgid "Other"
 msgstr "Other"
@@ -1124,7 +1124,7 @@ msgid "Device Features & Location"
 msgstr "Device Features & Location"
 
 msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
+msgstr "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes and more."
 
 msgid "Experimental"
 msgstr "Experimental"
@@ -1142,31 +1142,31 @@ msgid "Photos & Media"
 msgstr "Photos & Media"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
+msgstr "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots and more."
 
 msgid "Security & Privacy"
 msgstr "Security & Privacy"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
-msgstr "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
+msgstr "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history and more."
 
 msgid "Social Networking"
 msgstr "Social Networking"
 
 msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
+msgstr "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit and more."
 
 msgid "Sports & Games"
 msgstr "Sports & Games"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
+msgstr "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates and more."
 
 msgid "User Interface"
 msgstr "User Interface"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
+msgstr "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing and more."
 
 msgid "Animals"
 msgstr "Animals"
@@ -1205,19 +1205,19 @@ msgid "Causes"
 msgstr "Causes"
 
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
-msgstr "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
+msgstr "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities and much more."
 
 msgid "Fashion"
 msgstr "Fashion"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
+msgstr "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models and more."
 
 msgid "Film and TV"
 msgstr "Film and TV"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
+msgstr "Download Firefox themes with films and television. This category includes anime like \"Uchiha Madara\", films like \"The Matrix\", shows like \"Game of Thrones\" and more."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
 msgstr "Download Firefox themes with the Firefox browser theme. This category includes colourful, diverse depictions of the Firefox logo, including more general fox themes."
@@ -1232,46 +1232,46 @@ msgid "Holiday"
 msgstr "Holiday"
 
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
+msgstr "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St Patrick’s Day, Easter, Fourth of July and more."
 
 msgid "Music"
 msgstr "Music"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
+msgstr "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos and much more."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
+msgstr "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds and more."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr "Download Firefox themes that are interesting, creative, and unique."
+msgstr "Download Firefox themes that are interesting, creative and unique."
 
 msgid "Scenery"
 msgstr "Scenery"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
+msgstr "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines and more."
 
 msgid "Seasonal"
 msgstr "Seasonal"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr "Download Firefox themes for all four seasons—autumn, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
+msgstr "Download Firefox themes for all four seasons—autumn, winter, spring and summer. Autumn leaves, snowy mountain peaks, sunny summer days and spring flowers."
 
 msgid "Solid"
 msgstr "Solid"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr "Download Firefox themes with solid and gradient colours to personalise your browser. This category includes bold reds, pastels, soft greys, and much more."
+msgstr "Download Firefox themes with solid and gradient colours to personalise your browser. This category includes bold reds, pastels, soft greys and much more."
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, football, hockey, and more."
+msgstr "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, football, hockey and more."
 
 msgid "Websites"
 msgstr "Web Sites"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
+msgstr "Download Firefox themes that capture the essence of the web—captivating, unusual and distinctive."
 
 msgid "General"
 msgstr "General"
@@ -1610,7 +1610,7 @@ msgstr[1] "You have {0} too many tags."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
-msgstr "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
+msgstr "Before changing your default locale you must have a name, summary and description in that locale. You are missing %s."
 
 msgid "Users can not be added directly"
 msgstr "Users can not be added directly"
@@ -1860,7 +1860,7 @@ msgid "Version %s re-enabled."
 msgstr "Version %s re-enabled."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
-msgstr "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
+msgstr "This upload has failed validation and may lack complete validation results. Please take due care when reviewing it."
 
 msgid "Header area background"
 msgstr "Header area background"
@@ -1878,7 +1878,7 @@ msgid "Toolbar area background"
 msgstr "Toolbar area background"
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
-msgstr "The background colour for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
+msgstr "The background colour for the navigation bar, the bookmarks bar and the active tab.  Manifest field:  toolbar."
 
 msgid "Toolbar area text and icons"
 msgstr "Toolbar area text and icons"
@@ -2127,7 +2127,7 @@ msgid "You have been invited to become an author of {addon_name}."
 msgstr "You have been invited to become an author of {addon_name}."
 
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
-msgstr "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the web site. "
+msgstr "Accepting the invitation will give you access to edit the add-on and may show your name in the authors list on the web site."
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
@@ -2331,8 +2331,8 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
 msgstr ""
-"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
-" help. This whiteboard is also editable by reviewers."
+"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on and any additional information that may "
+"help. This whiteboard is also editable by reviewers."
 
 msgid "Add-on Media for {0}"
 msgstr "Add-on Media for {0}"
@@ -2563,7 +2563,7 @@ msgid "Add-on URL:"
 msgstr "Add-on URL:"
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
-msgstr "Please use only letters, numbers, underscores, and dashes in your URL."
+msgstr "Please use only letters, numbers, underscores and dashes in your URL."
 
 msgid "Name:"
 msgstr "Name:"
@@ -2713,7 +2713,7 @@ msgid "Web template engines, both for HTML and CSS"
 msgstr "Web template engines, both for HTML and CSS"
 
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
-msgstr "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
+msgstr "Any other tool that takes code or files, applies processing and generates code or file(s) to include in the add-on"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
 msgstr "You do not need to submit Source Code, and you’re ready for the next step."
@@ -3280,10 +3280,8 @@ msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
 "updating."
 msgstr ""
-"Information about changes in this release, new features,\n"
-"                              known bugs, and other useful information specific to this\n"
-"                              release/version. This information is also shown in the\n"
-"                              Add-ons Manager when updating."
+"Information about changes in this release, new features, known bugs and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
+"updating."
 
 msgid "Approval Status"
 msgstr "Approval Status"
@@ -3463,12 +3461,12 @@ msgstr "Block invisible trackers and spying ads that follow you around the web."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
-msgstr "Enjoy a beautiful new page with customisable backgrounds, local weather info, and more."
+msgstr "Enjoy a beautiful new page with customisable backgrounds, local weather info and more."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Highlight any text, right-click, and translate instantly."
-msgstr "Highlight any text, right-click, and translate instantly."
+msgstr "Highlight any text, right-click and translate instantly."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3512,7 +3510,7 @@ msgstr "See an interesting picture on the web and want to learn more about it? T
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
+msgstr "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope and hundreds of other video sites."
 
 #. editorial content for the discovery pane.
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
@@ -3530,7 +3528,7 @@ msgstr "Effective, lightweight ad blocker. uBlock Origin enforces thousands of c
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control and more."
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
@@ -3550,7 +3548,7 @@ msgstr "Block annoying ads and annotations from appearing on YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr "Send news articles, stories, blog posts, and more to your Kindle."
+msgstr "Send news articles, stories, blog posts and more to your Kindle."
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
@@ -3563,7 +3561,7 @@ msgstr "Stop malicious web sites from using your computer power to mine for cryp
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
-msgstr "Get grammar help anywhere you write on the web—social media, email, docs, and more."
+msgstr "Get grammar help anywhere you write on the web—social media, email, docs and more."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3658,12 +3656,12 @@ msgstr "Gain an additional layer of tracking protection as you browse the web."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr "Read ePub files right in Firefox—increase font size, page dimensions, and more."
+msgstr "Read ePub files right in Firefox—increase font size, page dimensions and more."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
-msgstr "Play YouTube videos by default in the highest quality, turn off annotations, and more."
+msgstr "Play YouTube videos by default in the highest quality, turn off annotations and more."
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
@@ -3692,7 +3690,7 @@ msgstr "Change the way you surf Reddit by using tags and more."
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
-msgstr "Screenshot web pages, make edits, and share."
+msgstr "Screenshot web pages, make edits and share."
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
@@ -3708,7 +3706,7 @@ msgstr "Surf anonymously. Browse the web with disguised identity—even appear a
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr "Enjoy visual bookmarks. Access your favourite sites, recently closed tabs, and more—all from a gorgeous tile layout."
+msgstr "Enjoy visual bookmarks. Access your favourite sites, recently closed tabs and more—all from a gorgeous tile layout."
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
@@ -3722,11 +3720,11 @@ msgstr "Convert all your open tabs into a list to easily manage them and speed u
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
-msgstr "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
+msgstr "Robust download management. Check the state of your downloads through a status bar, download history page and more."
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
-msgstr "Save information from the internet to OneNote so you can edit, annotate, and more."
+msgstr "Save information from the internet to OneNote so you can edit, annotate and more."
 
 #. editorial content for the discovery pane.
 msgid "Stop ad trackers when you click Google and Yandex search returns."
@@ -3735,7 +3733,7 @@ msgstr "Stop ad trackers when you click Google and Yandex search returns."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
-msgstr "Use mouse gestures to close tabs, navigate pages, and more."
+msgstr "Use mouse gestures to close tabs, navigate pages and more."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3754,11 +3752,11 @@ msgstr "Block all pop-ups by default, then decide which ones you'd like to open.
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
-msgstr "Customise the look of any web site. Shift colours, page backgrounds, and more."
+msgstr "Customise the look of any web site. Shift colours, page backgrounds and more."
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
-msgstr "Customise your new tab page to display a preferred number of tiles, background image, and more."
+msgstr "Customise your new tab page to display a preferred number of tiles, background image and more."
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
@@ -3783,7 +3781,7 @@ msgstr "Access recently closed tabs by right-clicking the icon in your toolbar."
 
 #. editorial content for the discovery pane.
 msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
+msgstr "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus and more."
 
 #. editorial content for the discovery pane.
 msgid "Block time-wasting sites so you can focus on the task at hand."
@@ -3795,7 +3793,7 @@ msgstr "Automatically reload tabs based on time intervals."
 
 #. editorial content for the discovery pane.
 msgid "Find and resolve broken bookmarks, duplicates, and more."
-msgstr "Find and resolve broken bookmarks, duplicates, and more."
+msgstr "Find and resolve broken bookmarks, duplicates and more."
 
 #. editorial content for the discovery pane.
 msgid "Get things done with a helpful to-do list that syncs across devices."
@@ -3803,12 +3801,12 @@ msgstr "Get things done with a helpful to-do list that synchronises across devic
 
 #. editorial content for the discovery pane.
 msgid "Track historical pricing, find competing products, know the seller's ratings, and more."
-msgstr "Track historical pricing, find competing products, know the seller's ratings, and more."
+msgstr "Track historical pricing, find competing products, know the seller's ratings and more."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
+msgstr "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots and so much more."
 
 #. editorial content for the discovery pane.
 msgid "Get in-depth engagement and traffic information for any website."
@@ -3860,7 +3858,7 @@ msgstr "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel
 
 #. editorial content for the discovery pane.
 msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr "Get expert German translations between English, French, Spanish, and other languages."
+msgstr "Get expert German translations between English, French, Spanish and other languages."
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
