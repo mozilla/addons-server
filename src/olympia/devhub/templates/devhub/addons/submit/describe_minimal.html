@@ -4,6 +4,7 @@
 {% block title %}{{ dev_page_title(_('Describe Add-on'), addon) }}{% endblock %}
 
 {% block primary %}
+  {% set channel_param = 'listed' if version.channel == amo.RELEASE_CHANNEL_LISTED else 'unlisted' %}
   <h3>{{ _('Describe Version') }}</h3>
   <form method="post" id="submit-describe" class="item">
     {% csrf_token %}
@@ -43,7 +44,7 @@
       <button class="button delete-button confirm-submission-cancel"
               formnovalidate
               type="button"
-              formaction="{{ url('devhub.addons.cancel', addon.slug) }}">
+              formaction="{{ url('devhub.addons.cancel', addon.slug, channel_param) }}">
           {{ _('Cancel and Disable Version') }}
       </button>
     </div>

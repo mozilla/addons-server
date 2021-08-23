@@ -486,11 +486,11 @@ class TestVersion(TestCase):
         assert not doc('.disable-addon').attr('disabled')
 
     def test_cancel_get(self):
-        cancel_url = reverse('devhub.addons.cancel', args=['a3615'])
+        cancel_url = reverse('devhub.addons.cancel', args=['a3615', 'listed'])
         assert self.client.get(cancel_url).status_code == 405
 
     def test_cancel_wrong_status(self):
-        cancel_url = reverse('devhub.addons.cancel', args=['a3615'])
+        cancel_url = reverse('devhub.addons.cancel', args=['a3615', 'listed'])
         for status in Addon.STATUS_CHOICES:
             if status in (amo.STATUS_NOMINATED, amo.STATUS_DELETED):
                 continue
@@ -500,14 +500,52 @@ class TestVersion(TestCase):
             assert Addon.objects.get(id=3615).status == status
 
     def test_cancel(self):
-        cancel_url = reverse('devhub.addons.cancel', args=['a3615'])
+        cancel_url = reverse('devhub.addons.cancel', args=['a3615', 'listed'])
         self.addon.update(status=amo.STATUS_NOMINATED)
         self.client.post(cancel_url)
         assert Addon.objects.get(id=3615).status == amo.STATUS_NULL
 
+    def test_cancel_obey_channel_listed(self):
+        addon = Addon.objects.get(id=3615)
+        file_ = addon.current_version.current_file
+        file_.update(status=amo.STATUS_AWAITING_REVIEW)
+        unlisted_file = version_factory(
+            addon=addon,
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        ).current_file
+        cancel_url = reverse('devhub.addons.cancel', args=['a3615', 'listed'])
+        self.client.post(cancel_url)
+        file_.reload()
+        assert file_.status == amo.STATUS_DISABLED
+        unlisted_file.reload()
+        assert unlisted_file.status == amo.STATUS_AWAITING_REVIEW
+        addon.reload()
+        assert addon.status == amo.STATUS_NULL
+
+    def test_cancel_obey_channel_unlisted(self):
+        addon = Addon.objects.get(id=3615)
+        version = addon.current_version
+        version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        file_ = version.current_file
+        file_.update(status=amo.STATUS_AWAITING_REVIEW)
+        listed_file = version_factory(
+            addon=addon,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        ).current_file
+        addon.update(status=amo.STATUS_NOMINATED)
+        cancel_url = reverse('devhub.addons.cancel', args=['a3615', 'unlisted'])
+        self.client.post(cancel_url)
+        file_.reload()
+        assert file_.status == amo.STATUS_DISABLED
+        listed_file.reload()
+        assert listed_file.status == amo.STATUS_AWAITING_REVIEW
+        addon.reload()
+        assert addon.status == amo.STATUS_NOMINATED
+
     def test_not_cancel(self):
         self.client.logout()
-        cancel_url = reverse('devhub.addons.cancel', args=['a3615'])
+        cancel_url = reverse('devhub.addons.cancel', args=['a3615', 'listed'])
         assert self.addon.status == amo.STATUS_APPROVED
         response = self.client.post(cancel_url)
         assert response.status_code == 302

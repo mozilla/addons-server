@@ -1047,7 +1047,7 @@ class DetailsPageMixin:
         addon = self.get_addon()
         addon.versions.latest().files.update(status=amo.STATUS_AWAITING_REVIEW)
 
-        cancel_url = reverse('devhub.addons.cancel', args=['a3615'])
+        cancel_url = reverse('devhub.addons.cancel', args=['a3615', 'listed'])
         versions_url = reverse('devhub.addons.versions', args=['a3615'])
         response = self.client.post(cancel_url)
         self.assert3xx(response, versions_url)
@@ -2391,7 +2391,7 @@ class TestVersionSubmitDetails(TestSubmitBase):
         addon_status = addon.status
         addon.versions.latest().files.update(status=amo.STATUS_AWAITING_REVIEW)
 
-        cancel_url = reverse('devhub.addons.cancel', args=['a3615'])
+        cancel_url = reverse('devhub.addons.cancel', args=['a3615', 'listed'])
         versions_url = reverse('devhub.addons.versions', args=['a3615'])
         response = self.client.post(cancel_url)
         self.assert3xx(response, versions_url)
