@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-17 16:44+0000\n"
-"PO-Revision-Date: 2019-08-30 15:36+0000\n"
-"Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
+"PO-Revision-Date: 2021-08-21 12:06+0000\n"
+"Last-Translator: Waldo Luis Ribeiro <waldoribeiro@sapo.pt>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
 "MIME-Version: 1.0\n"
@@ -4060,7 +4060,7 @@ msgstr "Track productivity. Measure the amount of time you spend on the computer
 
 #. editorial content for the discovery pane.
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr "Save your favourite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
+msgstr "Save your favourite stuff on the web. Clip content like articles, videos, images and more to save and use for individual projects or real-time team collaboration."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
