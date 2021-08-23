@@ -1071,7 +1071,7 @@ class UserRestrictionHistory(ModelBase):
             (num, klass.__name__) for num, klass in RESTRICTION_CLASSES_CHOICES
         ),
     )
-    ip_address = models.CharField(default='', max_length=45, db_index=True)
+    ip_address = models.CharField(default='', max_length=45)
     last_login_ip = models.CharField(default='', max_length=45)
 
     class Meta:
