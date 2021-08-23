@@ -137,10 +137,7 @@ class Rating(ModelBase):
                 fields=('reply_to', 'is_latest', 'addon', 'created'),
                 name='latest_reviews',
             ),
-            models.Index(
-                fields=('ip_address',),
-                name='reviews_ip_address_057fddfa'
-            )
+            models.Index(fields=('ip_address',), name='reviews_ip_address_057fddfa'),
         ]
         constraints = [
             models.UniqueConstraint(
