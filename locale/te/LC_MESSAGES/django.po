@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-17 16:44+0000\n"
-"PO-Revision-Date: 2021-08-23 16:57+0000\n"
+"PO-Revision-Date: 2021-08-23 17:43+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -4595,9 +4595,8 @@ msgstr ""
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "ఒకే పొడగింత యొక్క అదే వెర్షనుకు ఒకటికంటే ఎక్కువ సమీక్షలు ఇవ్వలేరు."
 
-#, fuzzy
 msgid "Invalid flag [{}] - must be one of [{}]"
-msgstr "చెల్లని ఫ్లాగు [%s] - తప్పనిసరిగా [%s] లో ఒకటిగా ఉండాలి"
+msgstr "చెల్లని ఫ్లాగు [{}] - తప్పనిసరిగా [{}] లో ఒకటిగా ఉండాలి"
 
 msgid "This rating can't be flagged because it has no review text."
 msgstr "ఈ రేటింగ్ ఫ్లాగ్ చేయబడదు ఎందుకంటే దీనికి సమీక్ష పాఠ్యం లేదు."
@@ -4965,9 +4964,8 @@ msgstr "పొడిగింత సమాచారం కోసం {0}"
 msgid "Add-on ID"
 msgstr "పొడగింత ID"
 
-#, fuzzy
 msgid "Original Add-on ID"
-msgstr "పొడిగింతని ప్రవేశించూ"
+msgstr ""
 
 msgid "Add-on(s) sharing same ID"
 msgstr ""
