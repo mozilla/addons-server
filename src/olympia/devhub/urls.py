@@ -20,7 +20,11 @@ detail_patterns = [
     re_path(r'^delete$', views.delete, name='devhub.addons.delete'),
     re_path(r'^disable$', views.disable, name='devhub.addons.disable'),
     re_path(r'^enable$', views.enable, name='devhub.addons.enable'),
-    re_path(r'^cancel$', views.cancel, name='devhub.addons.cancel'),
+    re_path(
+        r'^cancel-latest-(?P<channel>listed|unlisted)$',
+        views.cancel,
+        name='devhub.addons.cancel',
+    ),
     re_path(r'^ownership$', views.ownership, name='devhub.addons.owner'),
     re_path(r'^invitation$', views.invitation, name='devhub.addons.invitation'),
     re_path(
@@ -102,7 +106,7 @@ detail_patterns = [
         name='devhub.submit.version.wizard',
     ),
     re_path(
-        '^versions/submit/wizard-(?P<channel>listed|unlisted)/background$',
+        r'^versions/submit/wizard-(?P<channel>listed|unlisted)/background$',
         views.theme_background_image,
         name='devhub.submit.version.previous_background',
     ),

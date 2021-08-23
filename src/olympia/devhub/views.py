@@ -404,12 +404,16 @@ def enable(request, addon_id, addon):
 
 @dev_required(owner_for_post=True)
 @post_required
-def cancel(request, addon_id, addon):
-    if addon.status == amo.STATUS_NOMINATED:
-        addon.update(status=amo.STATUS_NULL)
-        ActivityLog.create(amo.LOG.CHANGE_STATUS, addon, addon.status)
-    latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
+def cancel(request, addon_id, addon, channel):
+    channel = amo.CHANNEL_CHOICES_LOOKUP[channel]
+    latest_version = addon.find_latest_version(channel=channel)
     if latest_version:
+        if (
+            addon.status == amo.STATUS_NOMINATED
+            and channel == amo.RELEASE_CHANNEL_LISTED
+        ):
+            addon.update(status=amo.STATUS_NULL)
+            ActivityLog.create(amo.LOG.CHANGE_STATUS, addon, addon.status)
         for file_ in latest_version.files.filter(status=amo.STATUS_AWAITING_REVIEW):
             file_.update(status=amo.STATUS_DISABLED)
     return redirect(addon.get_dev_url('versions'))

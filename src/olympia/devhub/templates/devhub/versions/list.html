@@ -97,7 +97,7 @@
   </tr>
   {% set can_request_review=addon.can_request_review() %}
   {% set can_cancel=(not addon.is_disabled and addon.status==amo.STATUS_NOMINATED) %}
-  {% if full_info and check_addon_ownership(request, addon, dev=True) and (can_request_review or can_cancel) %}
+  {% if full_info and check_addon_ownership(request, addon, dev=True) and version.channel == amo.RELEASE_CHANNEL_LISTED and (can_request_review or can_cancel) %}
     <tr>
       <td colspan="0" class="version-status-actions item-actions">
         {% if can_request_review %}
@@ -348,8 +348,11 @@
   {% endif %}
 
   {% if not addon.is_disabled and addon.status == amo.STATUS_NOMINATED %}
+  {# Note: devhub.addons.cancel will cancel the latest version in the specified channel.
+   # This particular modal is only shown for listed versions though, so we can safely
+   # hardcode the channel parameter. #}
   <div id="modal-cancel" class="modal">
-    <form method="post" action="{{ url('devhub.addons.cancel', addon.slug) }}">
+    <form method="post" action="{{ url('devhub.addons.cancel', addon.slug, 'listed') }}">
       <h3>{{ _('Cancel Review Request') }}</h3>
       <p>
         {% trans %}
