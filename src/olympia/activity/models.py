@@ -21,7 +21,7 @@ from olympia import amo, constants
 from olympia.access.models import Group
 from olympia.addons.models import Addon
 from olympia.amo.fields import PositiveAutoField
-from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
+from olympia.amo.models import BaseQuerySet, LongNameIndex, ManagerBase, ModelBase
 from olympia.bandwagon.models import Collection
 from olympia.blocklist.models import Block
 from olympia.files.models import File
@@ -206,9 +206,9 @@ class IPLog(ModelBase):
         db_table = 'log_activity_ip'
         ordering = ('-created',)
         indexes = [
-            models.Index(
+            LongNameIndex(
                 fields=('ip_address',),
-                name='log_activity_ip_ip_ba36172a',
+                name='log_activity_ip_ip_address_ba36172a',
             ),
         ]
 
