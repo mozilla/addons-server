@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-17 16:44+0000\n"
-"PO-Revision-Date: 2021-08-17 13:54+0000\n"
+"PO-Revision-Date: 2021-08-23 13:20+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
 "Language: el\n"
@@ -101,7 +101,7 @@ msgstr "Συμπεριλάβετε λεπτομερή σημειώματα τη�
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
-"Αν το πρόσθετό σας απαιτεί λογαριασμό σε ιστοσελίδα με σκοπό να δοκιμαστεί πλήρως, παραθέστε ένα όνομα χρήστη και κωδικό πρόσβασης για δοκιμή, στις σημειώσεις ελεγκτή (αυτό μπορεί να γίνει στο "
+"Αν το πρόσθετό σας απαιτεί λογαριασμό σε κάποιο ιστότοπο με σκοπό να δοκιμαστεί πλήρως, παραθέστε ένα όνομα χρήστη και κωδικό πρόσβασης για δοκιμή, στις σημειώσεις ελεγκτή (αυτό μπορεί να γίνει στο "
 "επόμενο βήμα)."
 
 msgid "Add-on submission checklist"
@@ -707,7 +707,7 @@ msgstr[0] "Απομένει <b>{0}</b> χαρακτήρας"
 msgstr[1] "Απομένουν <b>{0}</b> χαρακτήρες"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Αυτό το χαρακτηριστικό έχει απενεργοποιηθεί προς το παρόν λόγω εκτέλεσης εργασιών συντήρησης. Παρακαλούμε προσπαθήστε ξανά αργότερα."
+msgstr "Αυτή η λειτουργία έχει απενεργοποιηθεί προσωρινά λόγω εκτέλεσης εργασιών συντήρησης στον ιστότοπο. Παρακαλούμε δοκιμάστε ξανά αργότερα."
 
 msgid "Remove this localization"
 msgstr "Αφαίρεση αυτής της μετάφρασης"

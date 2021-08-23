@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-17 16:44+0000\n"
-"PO-Revision-Date: 2021-08-20 07:52+0000\n"
+"PO-Revision-Date: 2021-08-23 13:23+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -76,7 +76,7 @@ msgid "This reviewer name cannot be used."
 msgstr "Αυτό το όνομα ελεγκτή δεν μπορεί να χρησιμοποιηθεί."
 
 msgid "The homepage field can only be used to link to external websites."
-msgstr "Το πεδίο αρχικής σελίδας μπορεί να χρησιμοποιηθεί μόνο για σύνδεση σε εξωτερικές ιστοσελίδες."
+msgstr "Το πεδίο αρχικής σελίδας μπορεί να χρησιμοποιηθεί μόνο για σύνδεση σε εξωτερικούς ιστοτόπους."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Οι εικόνες θα πρέπει να είναι σε μορφή αρχείου PNG ή JPG."
@@ -207,7 +207,7 @@ msgstr "Θετικός ακέραιος"
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr "Αυτό το πεδίο μπορεί να χρησιμοποιηθεί μόνο για σύνδεση σε εξωτερικές ιστοσελίδες. Δεν επιτρέπονται URLs στο %(domain)s."
+msgstr "Αυτό το πεδίο μπορεί να χρησιμοποιηθεί μόνο για σύνδεση σε εξωτερικούς ιστοτόπους. Δεν επιτρέπονται URL του %(domain)s."
 
 msgid "Incorrect, please try again."
 msgstr "Λάθος, παρακαλούμε δοκιμάστε ξανά."
@@ -222,7 +222,7 @@ msgid "CIDR"
 msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr "Μερικές λειτουργίες έχουν προς το παρόν απενεργοποιηθεί λόγω εργασιών συντήρησης. Η πλήρης λειτουργικότητα θα επανέλθει σύντομα."
+msgstr "Ορισμένες λειτουργίες έχουν απενεργοποιηθεί προσωρινά λόγω εκτέλεσης εργασιών συντήρησης στον ιστότοπο. Η πλήρης λειτουργικότητα θα επανέλθει σύντομα."
 
 msgid "Must contain at least one printable character."
 msgstr "Πρέπει να περιέχει τουλάχιστον έναν εκτυπώσιμο χαρακτήρα."
