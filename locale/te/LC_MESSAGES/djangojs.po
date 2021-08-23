@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-17 16:44+0000\n"
-"PO-Revision-Date: 2021-08-15 12:43+0000\n"
+"PO-Revision-Date: 2021-08-23 17:29+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -69,7 +69,7 @@ msgid "Your add-on exceeds the maximum size of {0}."
 msgstr "మీ పొడిగింత {0} గరిష్ఠ పరిమాణాన్ని మించిపోయింది."
 
 msgid "Received an empty response from the server; status: {0}"
-msgstr "సర్వర్ నుండి ఖాళీ స్పందన అందుకుంది; స్థితి: {0}"
+msgstr "సర్వరు నుండి ఖాళీ స్పందన వచ్చింది; స్థితి: {0}"
 
 msgid "Unexpected server error while validating."
 msgstr "ధృవీకరిస్తున్నప్పుడు ఊహించని సర్వర్ లోపం ఏర్పడింది."
