@@ -205,6 +205,12 @@ class IPLog(ModelBase):
     class Meta:
         db_table = 'log_activity_ip'
         ordering = ('-created',)
+        indexes = [
+            models.Index(
+                fields=('ip_address',),
+                name='log_activity_ip_ip_ba36172a',
+            ),
+        ]
 
 
 class DraftComment(ModelBase):

@@ -201,6 +201,9 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         indexes = [
             models.Index(fields=('created',), name='created'),
             models.Index(fields=('fxa_id',), name='users_fxa_id_index'),
+            models.Index(
+                fields=('last_login_ip',), name='users_last_login_ip_2cfbbfbd'
+            ),
         ]
 
     def __init__(self, *args, **kw):
@@ -1073,6 +1076,16 @@ class UserRestrictionHistory(ModelBase):
 
     class Meta:
         verbose_name_plural = _('User Restriction History')
+        indexes = [
+            models.Index(
+                fields=('ip_address',),
+                name='u_restrict_hist_ip_4376df32',
+            ),
+            models.Index(
+                fields=('last_login_ip',),
+                name='u_restrict_hist_la_ip_d58d95ff',
+            ),
+        ]
 
 
 class UserHistory(ModelBase):
