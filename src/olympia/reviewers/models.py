@@ -648,10 +648,6 @@ class ReviewerScore(ModelBase):
         return scores
 
 
-class AutoApprovalNotEnoughFilesError(Exception):
-    pass
-
-
 class AutoApprovalNoValidationResultError(Exception):
     pass
 
@@ -772,9 +768,9 @@ class AutoApprovalSummary(ModelBase):
             'past_rejection_history': min(
                 Version.objects.filter(
                     addon=addon,
-                    files__reviewed__gte=one_year_ago,
-                    files__original_status=amo.STATUS_NULL,
-                    files__status=amo.STATUS_DISABLED,
+                    file__reviewed__gte=one_year_ago,
+                    file__original_status=amo.STATUS_NULL,
+                    file__status=amo.STATUS_DISABLED,
                 )
                 .distinct()
                 .count()
@@ -1114,9 +1110,6 @@ class AutoApprovalSummary(ModelBase):
         If not using dry_run it's the caller responsability to approve the
         version to make sure the AutoApprovalSummary is not overwritten later
         when the auto-approval process fires again."""
-        if len(version.all_files) == 0:
-            raise AutoApprovalNotEnoughFilesError()
-
         data = {
             field: getattr(cls, f'check_{field}')(version)
             for field in cls.auto_approval_verdict_fields

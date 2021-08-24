@@ -1304,15 +1304,12 @@ class TestAddonModels(TestCase):
         version.save()
         assert addon.status == amo.STATUS_NOMINATED
 
-    def test_can_request_review_no_files(self):
-        addon = Addon.objects.get(pk=3615)
-        addon.versions.all()[0].files.all().delete()
-        assert addon.can_request_review() is False
-
     def test_can_request_review_rejected(self):
         addon = Addon.objects.get(pk=3615)
         latest_version = addon.find_latest_version(amo.RELEASE_CHANNEL_LISTED)
-        latest_version.files.update(status=amo.STATUS_DISABLED)
+        latest_version.file.update(
+            status=amo.STATUS_DISABLED, reviewed=datetime.today()
+        )
         assert addon.can_request_review() is False
 
     def check_can_request_review(self, status, expected, extra_update_kw=None):
@@ -2545,7 +2542,7 @@ class TestAddonFromUpload(UploadTest):
         assert version.version == '0.0.1'
         assert len(version.compatible_apps.keys()) == 1
         assert list(version.compatible_apps.keys())[0].id == self.selected_app
-        assert version.files.get().status == amo.STATUS_AWAITING_REVIEW
+        assert version.file.status == amo.STATUS_AWAITING_REVIEW
 
     def test_default_locale(self):
         # Make sure default_locale follows the active translation.

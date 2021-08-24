@@ -332,7 +332,7 @@ def run_yara_query_rule(query_rule_pk):
     # Build a huge list of all pks we're going to run the tasks on.
     qs = Version.unfiltered.filter(
         addon__type=amo.ADDON_EXTENSION,
-        files__is_webextension=True,
+        file__is_webextension=True,
     )
     if not rule.run_on_disabled_addons:
         qs = qs.exclude(addon__status=amo.STATUS_DISABLED)

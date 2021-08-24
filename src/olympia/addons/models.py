@@ -272,7 +272,7 @@ class AddonManager(ManagerBase):
                 )
             )
             qs = qs.prefetch_related(
-                '_current_version__files',
+                '_current_version__file',
             )
         qs = qs.select_related(*select_related_fields)
 
@@ -318,7 +318,7 @@ class AddonManager(ManagerBase):
                 status__in=statuses,
                 type__in=types,
                 versions__channel=amo.RELEASE_CHANNEL_LISTED,
-                versions__files__status=amo.STATUS_AWAITING_REVIEW,
+                versions__file__status=amo.STATUS_AWAITING_REVIEW,
                 versions__reviewerflags__pending_rejection=None,
             )
             & ~Q(disabled_by_user=True)
@@ -327,7 +327,7 @@ class AddonManager(ManagerBase):
             filters &= Q(promotedaddon__group_id=RECOMMENDED.id)
         elif not theme_review:
             filters &= ~Q(promotedaddon__group_id=RECOMMENDED.id) & (
-                Q(versions__files__is_webextension=False)
+                Q(versions__file__is_webextension=False)
                 | Q(reviewerflags__auto_approval_disabled=True)
                 | Q(reviewerflags__auto_approval_disabled_until_next_approval=True)
                 | Q(reviewerflags__auto_approval_delayed_until__gt=datetime.now())
@@ -380,7 +380,7 @@ class AddonManager(ManagerBase):
         )
         filters = Q(
             versions__channel=amo.RELEASE_CHANNEL_UNLISTED,
-            versions__files__status=amo.STATUS_AWAITING_REVIEW,
+            versions__file__status=amo.STATUS_AWAITING_REVIEW,
             type__in=amo.GROUP_TYPE_ADDON,
             versions__reviewerflags__pending_rejection__isnull=True,
         ) & (
@@ -445,7 +445,7 @@ class AddonManager(ManagerBase):
             # returning incomplete ones is acceptable.
             .filter(
                 status__in=[amo.STATUS_APPROVED, amo.STATUS_NOMINATED, amo.STATUS_NULL],
-                versions__files__status__in=[
+                versions__file__status__in=[
                     amo.STATUS_APPROVED,
                     amo.STATUS_AWAITING_REVIEW,
                 ],
@@ -473,7 +473,7 @@ class AddonManager(ManagerBase):
                     ]
                 ),
                 Q(
-                    versions__files__status__in=[
+                    versions__file__status__in=[
                         amo.STATUS_APPROVED,
                         amo.STATUS_AWAITING_REVIEW,
                     ]
@@ -1031,7 +1031,7 @@ class Addon(OnChangeMixin, ModelBase):
             status_list = ','.join(map(str, statuses))
             fltr = {
                 'channel': amo.RELEASE_CHANNEL_LISTED,
-                'files__status__in': statuses,
+                'file__status__in': statuses,
             }
             return self.versions.filter(**fltr).extra(
                 where=[
@@ -1061,12 +1061,13 @@ class Addon(OnChangeMixin, ModelBase):
         # have a latest version.
         if not self.id or self.status == amo.STATUS_DELETED:
             return None
-        # We can't use .exclude(files__status=excluded_statuses) because that
+        # We can't use .exclude(file__status=excluded_statuses) because that
         # would exclude a version if *any* of its files match but if there is
         # only one file that doesn't have one of the excluded statuses it
         # should be enough for that version to be considered.
+        # TODO: rework this function and update this comment now that .files is gone.
         params = {
-            'files__status__in': (set(amo.STATUS_CHOICES_FILE.keys()) - set(exclude))
+            'file__status__in': (set(amo.STATUS_CHOICES_FILE.keys()) - set(exclude))
         }
         if channel is not None:
             params['channel'] = channel
@@ -1220,14 +1221,14 @@ class Addon(OnChangeMixin, ModelBase):
         if not versions.exists():
             status = amo.STATUS_NULL
             reason = 'no listed versions'
-        elif not versions.filter(files__status__in=amo.VALID_FILE_STATUSES).exists():
+        elif not versions.filter(file__status__in=amo.VALID_FILE_STATUSES).exists():
             status = amo.STATUS_NULL
             reason = 'no listed version with valid file'
         elif (
             self.status == amo.STATUS_APPROVED
-            and not versions.filter(files__status=amo.STATUS_APPROVED).exists()
+            and not versions.filter(file__status=amo.STATUS_APPROVED).exists()
         ):
-            if versions.filter(files__status=amo.STATUS_AWAITING_REVIEW).exists():
+            if versions.filter(file__status=amo.STATUS_AWAITING_REVIEW).exists():
                 status = amo.STATUS_NOMINATED
                 reason = 'only an unreviewed file'
             else:
@@ -1239,8 +1240,7 @@ class Addon(OnChangeMixin, ModelBase):
             )
             if (
                 latest_version
-                and latest_version.has_files
-                and (latest_version.all_files[0].status == amo.STATUS_AWAITING_REVIEW)
+                and latest_version.file.status == amo.STATUS_AWAITING_REVIEW
             ):
                 # Addon is public, but its latest file is not (it's the case on
                 # a new file upload). So, call update, to trigger watch_status,
@@ -1430,11 +1430,7 @@ class Addon(OnChangeMixin, ModelBase):
             amo.RELEASE_CHANNEL_LISTED, exclude=()
         )
 
-        return (
-            latest_version is not None
-            and latest_version.files.exists()
-            and not any(file.reviewed for file in latest_version.all_files)
-        )
+        return latest_version is not None and not latest_version.file.reviewed
 
     @property
     def is_disabled(self):
@@ -1591,10 +1587,10 @@ class Addon(OnChangeMixin, ModelBase):
         """
         Get the queries used to calculate addon.last_updated.
         """
-        status_change = Max('versions__files__datestatuschanged')
+        status_change = Max('versions__file__datestatuschanged')
         public = (
             Addon.objects.filter(
-                status=amo.STATUS_APPROVED, versions__files__status=amo.STATUS_APPROVED
+                status=amo.STATUS_APPROVED, versions__file__status=amo.STATUS_APPROVED
             )
             .values('id')
             .annotate(last_updated=status_change)
@@ -1603,9 +1599,9 @@ class Addon(OnChangeMixin, ModelBase):
         stati = amo.VALID_ADDON_STATUSES
         exp = (
             Addon.objects.exclude(status__in=stati)
-            .filter(versions__files__status__in=amo.VALID_FILE_STATUSES)
+            .filter(versions__file__status__in=amo.VALID_FILE_STATUSES)
             .values('id')
-            .annotate(last_updated=Max('versions__files__created'))
+            .annotate(last_updated=Max('versions__file__created'))
         )
 
         return {'public': public, 'exp': exp}
@@ -1871,7 +1867,7 @@ def watch_status(old_attr=None, new_attr=None, instance=None, sender=None, **kwa
     if old_status not in amo.UNREVIEWED_ADDON_STATUSES:
         # New: will (re)set nomination only if it's None.
         latest_version.reset_nomination_time()
-    elif latest_version.has_files:
+    else:
         # Updating: inherit nomination from last nominated version.
         # Calls `inherit_nomination` manually given that signals are
         # deactivated to avoid circular calls.

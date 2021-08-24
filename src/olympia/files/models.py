@@ -42,9 +42,7 @@ class File(OnChangeMixin, ModelBase):
     id = PositiveAutoField(primary_key=True)
     STATUS_CHOICES = amo.STATUS_CHOICES_FILE
 
-    version = models.ForeignKey(
-        'versions.Version', related_name='files', on_delete=models.CASCADE
-    )
+    version = models.OneToOneField('versions.Version', on_delete=models.CASCADE)
     filename = models.CharField(max_length=255, default='')
     size = models.PositiveIntegerField(default=0)  # In bytes.
     hash = models.CharField(max_length=255, default='')

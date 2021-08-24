@@ -31,7 +31,7 @@ def update_info(request, addon, version_num):
     version = Version.objects.filter(
         addon=addon,
         version=version_num,
-        files__status__in=amo.VALID_FILE_STATUSES,
+        file__status__in=amo.VALID_FILE_STATUSES,
         channel=amo.RELEASE_CHANNEL_LISTED,
     ).last()
     if not version:
@@ -194,7 +194,7 @@ def download_source(request, version_id):
 
     if (
         addon.status != amo.STATUS_DISABLED
-        and not version.files.filter(status=amo.STATUS_DISABLED).exists()
+        and not version.file.status == amo.STATUS_DISABLED
         and not version.deleted
         and not addon.is_deleted
     ):

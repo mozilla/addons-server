@@ -97,4 +97,4 @@ class Command(BaseCommand):
 
             # Download the file to the right path.
             print('Downloading file for version %s' % data['version'])
-            self._download_file(files_data['url'], version.files.all()[0])
+            self._download_file(files_data['url'], version.file)

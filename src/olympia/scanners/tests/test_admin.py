@@ -1355,7 +1355,7 @@ class TestScannerQueryResultAdmin(TestCase):
         assert html('.field-download a')[0].attrib['href'] == download_link
         assert '/icon-no.svg' in html('.field-is_file_signed img')[0].attrib['src']
 
-        addon.versions.all()[0].files.all()[0].update(is_signed=True)
+        addon.versions.all()[0].file.update(is_signed=True)
         response = self.client.get(self.list_url)
         html = pq(response.content)
         assert '/icon-yes.svg' in html('.field-is_file_signed img')[0].attrib['src']
@@ -1406,12 +1406,12 @@ class TestScannerQueryResultAdmin(TestCase):
             ('Invisible', '?version__addon__disabled_by_user__exact=1'),
             ('Visible', '?version__addon__disabled_by_user__exact=0'),
             ('All', '?'),
-            ('Awaiting Review', '?version__files__status__exact=1'),
-            ('Approved', '?version__files__status__exact=4'),
-            ('Disabled by Mozilla', '?version__files__status__exact=5'),
+            ('Awaiting Review', '?version__file__status__exact=1'),
+            ('Approved', '?version__file__status__exact=4'),
+            ('Disabled by Mozilla', '?version__file__status__exact=5'),
             ('All', '?'),
-            ('Yes', '?version__files__is_signed__exact=1'),
-            ('No', '?version__files__is_signed__exact=0'),
+            ('Yes', '?version__file__is_signed__exact=1'),
+            ('No', '?version__file__is_signed__exact=0'),
             ('All', '?'),
             ('Yes', '?was_blocked__exact=1'),
             ('No', '?was_blocked__exact=0'),
@@ -1551,7 +1551,7 @@ class TestScannerQueryResultAdmin(TestCase):
         response = self.client.get(
             self.list_url,
             {
-                'version__files__status': '5',
+                'version__file__status': '5',
             },
         )
         assert response.status_code == 200
@@ -1562,7 +1562,7 @@ class TestScannerQueryResultAdmin(TestCase):
         response = self.client.get(
             self.list_url,
             {
-                'version__files__status': '4',
+                'version__file__status': '4',
             },
         )
         assert response.status_code == 200
@@ -1583,7 +1583,7 @@ class TestScannerQueryResultAdmin(TestCase):
         response = self.client.get(
             self.list_url,
             {
-                'version__files__is_signed': '1',
+                'version__file__is_signed': '1',
             },
         )
         assert response.status_code == 200
@@ -1594,7 +1594,7 @@ class TestScannerQueryResultAdmin(TestCase):
         response = self.client.get(
             self.list_url,
             {
-                'version__files__is_signed': '0',
+                'version__file__is_signed': '0',
             },
         )
         assert response.status_code == 200

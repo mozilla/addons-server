@@ -1960,9 +1960,9 @@ class TestRatingViewSetPost(TestCase):
 
     def test_post_disabled_version(self):
         self.addon.current_version.update(created=self.days_ago(1))
-        new_version = version_factory(addon=self.addon)
         old_version = self.addon.current_version
-        old_version.files.update(status=amo.STATUS_DISABLED)
+        new_version = version_factory(addon=self.addon)
+        old_version.file.update(status=amo.STATUS_DISABLED)
         assert self.addon.current_version == new_version
         assert self.addon.status == amo.STATUS_APPROVED
 

@@ -244,9 +244,9 @@ class ReviewForm(forms.Form):
             self.fields['versions'].widget.versions_actions = versions_actions
             self.fields['versions'].queryset = (
                 self.helper.addon.versions(manager='unfiltered_for_relations')
-                .filter(channel=channel, files__status__in=statuses)
+                .filter(channel=channel, file__status__in=statuses)
                 .no_transforms()
-                .prefetch_related('files')
+                .prefetch_related('file')
                 .distinct()
                 .order_by('created')
             )
@@ -292,7 +292,12 @@ class ReviewForm(forms.Form):
 
     @property
     def unreviewed_files(self):
-        return self.helper.version.unreviewed_files if self.helper.version else []
+        return (
+            (self.helper.version.file,)
+            if self.helper.version
+            and self.helper.version.file.status == amo.STATUS_AWAITING_REVIEW
+            else ()
+        )
 
 
 class MOTDForm(forms.Form):

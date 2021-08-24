@@ -241,9 +241,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         self.create_version('3.0')
         version = Version.objects.get(addon__guid=self.guid, version='3.0')
         version.update(reviewed=datetime.today())
-        version.files.get().update(
-            reviewed=datetime.today(), status=amo.STATUS_DISABLED
-        )
+        version.file.update(reviewed=datetime.today(), status=amo.STATUS_DISABLED)
 
         response = self.request('PUT', self.url(self.guid, '3.0'))
         assert response.status_code == 409
@@ -914,7 +912,7 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         assert upload.ip_address == '127.0.3.1'
 
         version = Version.objects.get(addon__guid=guid, version='1.0')
-        assert version.files.all()[0].is_webextension is True
+        assert version.file.is_webextension is True
         assert addon.has_author(self.user)
         assert addon.status == amo.STATUS_NULL
         latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -1037,7 +1035,7 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         assert addon.guid == '@custom-guid-provided'
 
         version = Version.objects.get(addon__guid=guid, version='1.0')
-        assert version.files.all()[0].is_webextension is True
+        assert version.file.is_webextension is True
         assert addon.has_author(self.user)
         assert addon.status == amo.STATUS_NULL
         latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)

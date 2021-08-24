@@ -140,7 +140,7 @@ class TestLookup(VersionCheckMixin, TestCase):
 
     def change_status(self, version, status):
         version = Version.objects.get(pk=version)
-        file = version.files.all()[0]
+        file = version.file
         file.status = status
         file.save()
         return version
@@ -263,24 +263,6 @@ class TestLookup(VersionCheckMixin, TestCase):
 
         assert version == self.version_1_2_1
 
-    def test_public_pending_no_file_beta(self):
-        """
-        If the addon status is public and you are asking
-        for a beta version we look up a version based on the
-        file version at that point. If there are no files,
-        find a public version.
-        """
-        self.change_version(self.version_1_2_0, '1.2beta')
-        Version.objects.get(pk=self.version_1_2_0).files.all().delete()
-
-        version, file = self.get_update_instance(
-            '1.2beta', self.version_int, self.app, self.platform
-        )
-        dest = Version.objects.get(pk=self.version_1_2_2)
-        assert dest.addon.status == amo.STATUS_APPROVED
-        assert dest.files.all()[0].status == amo.STATUS_APPROVED
-        assert version == dest.pk
-
     def test_not_public(self):
         """
         If the addon status is not public, then the update only
@@ -349,8 +331,7 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
 
     def update_files(self, **kw):
         for version in self.addon.versions.all():
-            for file in version.files.all():
-                file.update(**kw)
+            version.file.update(**kw)
 
     def get_update_instance(self, **kw):
         instance = super().get_update_instance(

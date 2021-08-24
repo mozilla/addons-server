@@ -70,14 +70,13 @@ class FileUploadSerializer(serializers.ModelSerializer):
         return absolutify(url)
 
     def get_files(self, instance):
-        if self.version is not None:
+        if self.version is not None and (f := self.version.file):
             return [
                 {
                     'download_url': self._get_download_url(f),
                     'hash': f.hash,
                     'signed': f.is_signed,
                 }
-                for f in self.version.files.all()
             ]
         else:
             return []

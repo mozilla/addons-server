@@ -251,7 +251,7 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
                 # including the deleted ones.
                 queryset=Addon.unfiltered.all().only_translations(),
             ),
-            'version__files',
+            'version__file',
             'version__addon__authors',
             'matched_rules',
         )
@@ -702,8 +702,8 @@ class ScannerQueryResultAdmin(AbstractScannerResultAdminMixin, admin.ModelAdmin)
         ('version__channel', VersionChannelFilter),
         ('version__addon__status', AddonStatusFilter),
         ('version__addon__disabled_by_user', AddonVisibilityFilter),
-        ('version__files__status', FileStatusFiler),
-        ('version__files__is_signed', FileIsSigned),
+        ('version__file__status', FileStatusFiler),
+        ('version__file__is_signed', FileIsSigned),
         ('was_blocked', admin.BooleanFieldListFilter),
     )
 

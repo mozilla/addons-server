@@ -332,7 +332,7 @@ class TestValidator(UploadTest, TestCase):
     @mock.patch('olympia.devhub.utils.chain')
     def test_appends_final_task_for_files(self, mock_chain):
         final_task = mock.Mock()
-        file = version_factory(addon=addon_factory()).files.get()
+        file = version_factory(addon=addon_factory()).file
 
         utils.Validator(file, final_task=final_task)
 

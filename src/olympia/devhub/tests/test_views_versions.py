@@ -330,7 +330,7 @@ class TestVersion(TestCase):
         assert hide_mock.called
 
         # Check we didn't change the status of the files.
-        assert version.files.all()[0].status == amo.STATUS_APPROVED
+        assert version.file.status == amo.STATUS_APPROVED
 
         entry = ActivityLog.objects.get()
         assert entry.action == amo.LOG.USER_DISABLE.id
@@ -354,7 +354,8 @@ class TestVersion(TestCase):
         assert hide_mock.called
 
         # Check we disabled the file pending review.
-        assert new_version.all_files[0].status == amo.STATUS_DISABLED
+        new_version.file.reload()
+        assert new_version.file.status == amo.STATUS_DISABLED
         # latest version should be reset when the file/version was disabled.
         assert (
             self.addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
@@ -584,8 +585,7 @@ class TestVersion(TestCase):
         latest_version = self.addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED
         )
-        for file_ in latest_version.files.all():
-            file_.update(status=amo.STATUS_DISABLED)
+        latest_version.file.update(status=amo.STATUS_DISABLED)
         version_factory(addon=self.addon, file_kw={'status': amo.STATUS_DISABLED})
         doc = pq(self.client.get(self.url).content)
         buttons = doc('.version-status-actions form button')
@@ -598,8 +598,9 @@ class TestVersion(TestCase):
         latest_version = self.addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED
         )
-        for file_ in latest_version.files.all():
-            file_.update(reviewed=datetime.datetime.now(), status=amo.STATUS_DISABLED)
+        latest_version.file.update(
+            reviewed=datetime.datetime.now(), status=amo.STATUS_DISABLED
+        )
         version_factory(
             addon=self.addon,
             file_kw={
@@ -790,11 +791,6 @@ class TestVersionEditDetails(TestVersionEditBase):
         assert response.status_code == 404
 
     def test_cant_upload(self):
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert not doc('a.add-file')
-
-        self.version.files.all().delete()
         response = self.client.get(self.url)
         doc = pq(response.content)
         assert not doc('a.add-file')

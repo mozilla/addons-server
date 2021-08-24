@@ -492,31 +492,16 @@ class TestTasks(TestCase):
 
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_bump_version_in_model(self, mock_sign_file):
-        # We want to make sure each file has been signed.
-        self.file2 = amo.tests.file_factory(version=self.version)
-        self.file2.update(filename='webextension-b.xpi')
-        backup_file2_path = f'{self.file2.file_path}.backup_signature'
-        try:
-            fpath = 'src/olympia/files/fixtures/files/webextension.xpi'
-            with amo.tests.copy_file(fpath, self.file_.file_path):
-                with amo.tests.copy_file(
-                    'src/olympia/files/fixtures/files/webextension.xpi',
-                    self.file2.file_path,
-                ):
-                    file_hash = self.file_.generate_hash()
-                    file2_hash = self.file2.generate_hash()
-                    assert self.version.version == '0.0.1'
-                    tasks.sign_addons([self.addon.pk])
-                    assert mock_sign_file.call_count == 2
-                    self.version.reload()
-                    assert self.version.version == '0.0.1.1-signed'
-                    assert file_hash != self.file_.generate_hash()
-                    assert file2_hash != self.file2.generate_hash()
-                    self.assert_backup()
-                    assert os.path.exists(backup_file2_path)
-        finally:
-            if os.path.exists(backup_file2_path):
-                os.unlink(backup_file2_path)
+        fpath = 'src/olympia/files/fixtures/files/webextension.xpi'
+        with amo.tests.copy_file(fpath, self.file_.file_path):
+            file_hash = self.file_.generate_hash()
+            assert self.version.version == '0.0.1'
+            tasks.sign_addons([self.addon.pk])
+            assert mock_sign_file.call_count == 1
+            self.version.reload()
+            assert self.version.version == '0.0.1.1-signed'
+            assert file_hash != self.file_.generate_hash()
+            self.assert_backup()
 
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_sign_full(self, mock_sign_file):

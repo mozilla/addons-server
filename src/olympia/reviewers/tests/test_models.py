@@ -12,7 +12,6 @@ from olympia.addons.models import AddonApprovalsCounter, AddonReviewerFlags, Add
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
-    file_factory,
     user_factory,
     version_factory,
 )
@@ -27,7 +26,6 @@ from olympia.files.models import FileValidation, WebextPermission
 from olympia.promoted.models import PromotedAddon
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import (
-    AutoApprovalNotEnoughFilesError,
     AutoApprovalNoValidationResultError,
     AutoApprovalSummary,
     CannedResponse,
@@ -1006,18 +1004,13 @@ class TestAutoApprovalSummary(TestCase):
             file_kw={'reviewed': self.days_ago(14), 'status': amo.STATUS_DISABLED},
         )
 
-        # Another rejected version, with multiple files. Only counts once.
-        version_with_multiple_files = version_factory(
+        # Another rejected version
+        version_factory(
             addon=self.addon,
             file_kw={
                 'reviewed': self.days_ago(13),
                 'status': amo.STATUS_DISABLED,
             },
-        )
-        file_factory(
-            reviewed=self.days_ago(13),
-            version=version_with_multiple_files,
-            status=amo.STATUS_DISABLED,
         )
 
         # Rejected version on a different add-on, does not count.
@@ -1506,16 +1499,8 @@ class TestAutoApprovalSummary(TestCase):
 
     def test_count_uses_custom_csp_file_validation_missing(self):
         self.file_validation.delete()
+        self.version.file.refresh_from_db()
         del self.version.all_files
-        with self.assertRaises(AutoApprovalNoValidationResultError):
-            AutoApprovalSummary.count_uses_custom_csp(self.version)
-
-        # Also happens if only one file is missing validation info.
-        self.file_validation = FileValidation.objects.create(
-            file=self.version.all_files[0], validation='{}'
-        )
-        del self.version.all_files
-        file_factory(version=self.version, status=amo.STATUS_AWAITING_REVIEW)
         with self.assertRaises(AutoApprovalNoValidationResultError):
             AutoApprovalSummary.count_uses_custom_csp(self.version)
 
@@ -1905,12 +1890,6 @@ class TestAutoApprovalSummary(TestCase):
             'should_be_delayed': False,
             'is_blocked': False,
         }
-
-    def test_create_summary_no_files(self):
-        self.file.delete()
-        del self.version.all_files
-        with self.assertRaises(AutoApprovalNotEnoughFilesError):
-            AutoApprovalSummary.create_summary_for_version(self.version)
 
     def test_calculate_verdict_failure_dry_run(self):
         summary = AutoApprovalSummary.objects.create(

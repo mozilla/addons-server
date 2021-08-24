@@ -13,7 +13,7 @@ from olympia.addons.tasks import (
     update_addon_weekly_downloads,
 )
 from olympia.addons.models import Addon, FrozenAddon
-from olympia.amo.tests import addon_factory, file_factory, TestCase
+from olympia.amo.tests import addon_factory, TestCase, version_factory
 from olympia.files.models import File
 from olympia.versions.models import Version
 
@@ -45,10 +45,14 @@ class TestHideDisabledFiles(TestCase):
 
     def setUp(self):
         super().setUp()
-        self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
-        self.version = Version.objects.create(addon=self.addon)
-        self.f1 = File.objects.create(version=self.version, filename='f1')
-        self.f2 = File.objects.create(version=self.version, filename='f2')
+        self.addon = addon_factory(
+            version_kw={'version': '1'}, file_kw={'filename': 'f1'}
+        )
+        self.f1 = self.addon.current_version.file
+        version2 = version_factory(
+            addon=self.addon, version='2', file_kw={'filename': 'f2'}
+        )
+        self.f2 = version2.file
 
     @mock.patch('olympia.files.models.os')
     def test_leave_nondisabled_files(self, os_mock):
@@ -194,34 +198,6 @@ class TestUnhideDisabledFiles(TestCase):
         assert not storage.exists(self.file_.guarded_file_path)
         # Empty dir also removed:
         assert not storage.exists(os.path.dirname(self.file_.guarded_file_path))
-
-    def test_doesnt_remove_non_empty_directories(self):
-        # Add an extra disabled file. The approved one should move, but not the
-        # other, so the directory should be left intact.
-        self.disabled_file = file_factory(
-            version=self.version, status=amo.STATUS_DISABLED
-        )
-        self.addon.update(status=amo.STATUS_APPROVED)
-        self.file_.update(status=amo.STATUS_APPROVED)
-        with storage.open(self.file_.guarded_file_path, 'wb') as fp:
-            fp.write(b'content')
-        assert not storage.exists(self.file_.file_path)
-        assert storage.exists(self.file_.guarded_file_path)
-        with storage.open(self.disabled_file.guarded_file_path, 'wb') as fp:
-            fp.write(b'disabled content')
-        assert not storage.exists(self.disabled_file.file_path)
-        assert storage.exists(self.disabled_file.guarded_file_path)
-
-        cron.unhide_disabled_files()
-
-        assert storage.exists(self.file_.file_path)
-        assert not storage.exists(self.file_.guarded_file_path)
-
-        # The disabled file shouldn't have moved.
-        assert not storage.exists(self.disabled_file.file_path)
-        assert storage.exists(self.disabled_file.guarded_file_path)
-        # The directory in guarded file path should still exist.
-        assert storage.exists(os.path.dirname(self.file_.guarded_file_path))
 
     @override_settings(GUARDED_ADDONS_PATH='/tmp/guarded-addons')
     @mock.patch('olympia.files.models.File.unhide_disabled_file')
