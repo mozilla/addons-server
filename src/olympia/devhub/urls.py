@@ -123,7 +123,11 @@ detail_patterns = [
     re_path(
         r'^submit/$', lambda r, addon_id: redirect('devhub.submit.finish', addon_id)
     ),
-    re_path(r'^submit/source$', views.submit_addon_source, name='devhub.submit.source'),
+    re_path(
+        r'^submit/source-(?P<channel>listed|unlisted)$',
+        views.submit_addon_source,
+        name='devhub.submit.source',
+    ),
     re_path(
         r'^submit/details$', views.submit_addon_details, name='devhub.submit.details'
     ),

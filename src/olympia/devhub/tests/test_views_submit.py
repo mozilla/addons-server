@@ -564,7 +564,9 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
         assert version
         assert version.channel == amo.RELEASE_CHANNEL_LISTED
-        self.assert3xx(response, reverse('devhub.submit.source', args=[addon.slug]))
+        self.assert3xx(
+            response, reverse('devhub.submit.source', args=[addon.slug, 'listed'])
+        )
         log_items = ActivityLog.objects.for_addons(addon)
         assert log_items.filter(
             action=amo.LOG.CREATE_ADDON.id
@@ -581,13 +583,16 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
             'messages': [],
         }
         self.upload = self.get_upload('webextension.xpi', validation=json.dumps(result))
-        self.post(listed=False)
+        response = self.post(listed=False)
         addon = Addon.objects.get()
         version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert version
         assert version.files.all()[0].status == amo.STATUS_AWAITING_REVIEW
         assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
         assert addon.status == amo.STATUS_NULL
+        self.assert3xx(
+            response, reverse('devhub.submit.source', args=[addon.slug, 'unlisted'])
+        )
 
     def test_missing_compatible_apps(self):
         url = reverse('devhub.submit.upload', args=['listed'])
@@ -717,7 +722,7 @@ class TestAddonSubmitSource(TestSubmitBase):
     def setUp(self):
         super().setUp()
         assert not self.get_version().source
-        self.url = reverse('devhub.submit.source', args=[self.addon.slug])
+        self.url = reverse('devhub.submit.source', args=[self.addon.slug, 'listed'])
         self.next_url = reverse('devhub.submit.details', args=[self.addon.slug])
 
     def post(self, has_source, source, expect_errors=False, status_code=200):
@@ -924,6 +929,22 @@ class TestAddonSubmitSource(TestSubmitBase):
         self.addon.update(type=amo.ADDON_DICT)
         response = self.client.get(self.url)
         self.assert3xx(response, self.next_url)
+
+    def test_cancel_button_present_listed(self):
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert doc('.confirm-submission-cancel')[0].attrib['formaction'] == reverse(
+            'devhub.addons.cancel', args=(self.addon.slug, 'listed')
+        )
+
+    def test_cancel_button_present_unlisted(self):
+        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.url = reverse('devhub.submit.source', args=[self.addon.slug, 'unlisted'])
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert doc('.confirm-submission-cancel')[0].attrib['formaction'] == reverse(
+            'devhub.addons.cancel', args=(self.addon.slug, 'unlisted')
+        )
 
 
 class DetailsPageMixin:
@@ -1402,7 +1423,7 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
         self.is_success(self.get_dict(has_priv=True))
 
     def test_source_submission_notes_not_shown_by_default(self):
-        url = reverse('devhub.submit.source', args=[self.addon.slug])
+        url = reverse('devhub.submit.source', args=[self.addon.slug, 'listed'])
         response = self.client.post(url, {'has_source': 'no'}, follow=True)
 
         assert response.status_code == 200
@@ -1411,7 +1432,7 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
         assert 'Remember: ' not in doc('.source-submission-note').text()
 
     def test_source_submission_notes_shown(self):
-        url = reverse('devhub.submit.source', args=[self.addon.slug])
+        url = reverse('devhub.submit.source', args=[self.addon.slug, 'listed'])
 
         response = self.client.post(
             url,
