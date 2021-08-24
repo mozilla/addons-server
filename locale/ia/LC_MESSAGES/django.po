@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-17 16:44+0000\n"
+"POT-Creation-Date: 2021-08-24 16:50+0000\n"
 "PO-Revision-Date: 2021-08-13 17:11+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4849,38 +4849,11 @@ msgstr "Tu non pote inviar un commento vacue."
 msgid "You can't submit a line number without associating it to a filename."
 msgstr "Tu non pote inviar un numero de riga sin associar lo a un nomine de file."
 
-msgid "Type"
-msgstr "Typo"
-
-msgid "Waiting Time"
-msgstr "Tempore de expectativa"
+msgid "ID"
+msgstr "ID"
 
 msgid "Flags"
 msgstr "Flags"
-
-msgid "moments ago"
-msgstr "momentos retro"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} minuta"
-msgstr[1] "{0} minutas"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} hora"
-msgstr[1] "{0} horas"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} die"
-msgstr[1] "{0} dies"
-
-msgid "ID"
-msgstr "ID"
 
 msgid "Last Review"
 msgstr "Ultime revision"
@@ -4896,6 +4869,12 @@ msgstr "Peso total"
 
 msgid "Maliciousness Score"
 msgstr "Grado de malignitate"
+
+msgid "Type"
+msgstr "Typo"
+
+msgid "Waiting Time"
+msgstr "Tempore de expectativa"
 
 msgid "Pending Rejection Deadline"
 msgstr "Data expiration del rejection pendente"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-17 16:44+0000\n"
+"POT-Creation-Date: 2021-08-24 16:50+0000\n"
 "PO-Revision-Date: 2021-06-25 10:04+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -5026,39 +5026,12 @@ msgstr ""
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
 
-msgid "Type"
-msgstr "Tipus"
-
-msgid "Waiting Time"
-msgstr "Temps d'espera"
-
-msgid "Flags"
-msgstr "Indicadors"
-
-msgid "moments ago"
-msgstr "fa uns moments"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} minut"
-msgstr[1] "{0} minuts"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} hora"
-msgstr[1] "{0} hores"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} dia"
-msgstr[1] "{0} dies"
-
 #, fuzzy
 msgid "ID"
 msgstr "GUID"
+
+msgid "Flags"
+msgstr "Indicadors"
 
 msgid "Last Review"
 msgstr ""
@@ -5075,6 +5048,12 @@ msgstr "Total de revisions"
 
 msgid "Maliciousness Score"
 msgstr ""
+
+msgid "Type"
+msgstr "Tipus"
+
+msgid "Waiting Time"
+msgstr "Temps d'espera"
 
 #, fuzzy
 msgid "Pending Rejection Deadline"

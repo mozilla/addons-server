@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-17 16:44+0000\n"
+"POT-Creation-Date: 2021-08-24 16:50+0000\n"
 "PO-Revision-Date: 2021-07-03 19:18+0000\n"
 "Last-Translator: Paulina Rodriguez <pauli.rodriguez.c@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -4990,38 +4990,11 @@ msgstr "No puedes enviar un comentario vacío."
 msgid "You can't submit a line number without associating it to a filename."
 msgstr "No puedes ingresar un número de línea sin asociarlo a un nombre de archivo."
 
-msgid "Type"
-msgstr "Tipo"
-
-msgid "Waiting Time"
-msgstr "Tiempo en espera"
+msgid "ID"
+msgstr "ID"
 
 msgid "Flags"
 msgstr "Marcas"
-
-msgid "moments ago"
-msgstr "hace unos instantes"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} minuto"
-msgstr[1] "{0} minutos"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} hora"
-msgstr[1] "{0} horas"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} día"
-msgstr[1] "{0} días"
-
-msgid "ID"
-msgstr "ID"
 
 msgid "Last Review"
 msgstr "Última revisión"
@@ -5037,6 +5010,12 @@ msgstr ""
 
 msgid "Maliciousness Score"
 msgstr ""
+
+msgid "Type"
+msgstr "Tipo"
+
+msgid "Waiting Time"
+msgstr "Tiempo en espera"
 
 #, fuzzy
 msgid "Pending Rejection Deadline"

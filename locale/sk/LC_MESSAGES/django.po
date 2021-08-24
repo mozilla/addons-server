@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-17 16:44+0000\n"
+"POT-Creation-Date: 2021-08-24 16:50+0000\n"
 "PO-Revision-Date: 2020-11-12 22:41+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -4811,41 +4811,11 @@ msgstr "Nemôžete pridať prázdny komentár."
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
 
-msgid "Type"
-msgstr "Typ"
-
-msgid "Waiting Time"
-msgstr "Doba čakania"
+msgid "ID"
+msgstr "ID"
 
 msgid "Flags"
 msgstr "Označenia"
-
-msgid "moments ago"
-msgstr "pred chvíľou"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} minúta"
-msgstr[1] "{0} minúty"
-msgstr[2] "{0} minút"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} hodina"
-msgstr[1] "{0} hodiny"
-msgstr[2] "{0} hodín"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} deň"
-msgstr[1] "{0} dni"
-msgstr[2] "{0} dní"
-
-msgid "ID"
-msgstr "ID"
 
 msgid "Last Review"
 msgstr "Posledná recenzia"
@@ -4862,6 +4832,12 @@ msgstr "Recenzie celkom"
 
 msgid "Maliciousness Score"
 msgstr ""
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Waiting Time"
+msgstr "Doba čakania"
 
 msgid "Pending Rejection Deadline"
 msgstr ""

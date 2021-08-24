@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-17 16:44+0000\n"
+"POT-Creation-Date: 2021-08-24 16:50+0000\n"
 "PO-Revision-Date: 2021-08-10 18:33+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4877,44 +4877,11 @@ msgstr "Njamóžośo prozny komentar zapódaś."
 msgid "You can't submit a line number without associating it to a filename."
 msgstr "Njamóžośo smužkowy numer zapódaś, bźez togo aby jen datajowemu mjenoju pśipokazał."
 
-msgid "Type"
-msgstr "Typ"
-
-msgid "Waiting Time"
-msgstr "Čakański cas"
+msgid "ID"
+msgstr "ID"
 
 msgid "Flags"
 msgstr "Markěrowanja"
-
-msgid "moments ago"
-msgstr "pśed chylu"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} minuta"
-msgstr[1] "{0} minuśe"
-msgstr[2] "{0} minuty"
-msgstr[3] "{0} minutow"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} góźina"
-msgstr[1] "{0} góźinje"
-msgstr[2] "{0} góźiny"
-msgstr[3] "{0} góźin"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} źeń"
-msgstr[1] "{0} dnja"
-msgstr[2] "{0} dny"
-msgstr[3] "{0} dnjow"
-
-msgid "ID"
-msgstr "ID"
 
 msgid "Last Review"
 msgstr "Slědne pśeglědanje"
@@ -4930,6 +4897,12 @@ msgstr "Cełkowna wažnosć"
 
 msgid "Maliciousness Score"
 msgstr "Wuslědk złosniwosći"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Waiting Time"
+msgstr "Čakański cas"
 
 msgid "Pending Rejection Deadline"
 msgstr "Termin za felujuce wótpokazanje"

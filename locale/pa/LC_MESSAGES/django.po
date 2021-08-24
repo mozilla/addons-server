@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-17 16:44+0000\n"
+"POT-Creation-Date: 2021-08-24 16:50+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5055,39 +5055,12 @@ msgstr ""
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
 
-msgid "Type"
-msgstr "ਕਿਸਮ"
-
-msgid "Waiting Time"
-msgstr "ਉਡੀਕ ਸਮਾਂ"
-
-msgid "Flags"
-msgstr "ਝੰਡੇ"
-
-msgid "moments ago"
-msgstr "ਪਲ ਪਹਿਲਾਂ"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} ਮਿੰਟ"
-msgstr[1] "{0} ਮਿੰਟਾਂ"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} ਘੰਟਾ"
-msgstr[1] "{0} ਘੰਟੇ"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} ਦਿਨ"
-msgstr[1] "{0} ਦਿਨਾਂ"
-
 #, fuzzy
 msgid "ID"
 msgstr "GUID"
+
+msgid "Flags"
+msgstr "ਝੰਡੇ"
 
 msgid "Last Review"
 msgstr ""
@@ -5104,6 +5077,12 @@ msgstr "ਕੁੱਲ ਸਮੀਖਿਆਵਾਂ"
 
 msgid "Maliciousness Score"
 msgstr ""
+
+msgid "Type"
+msgstr "ਕਿਸਮ"
+
+msgid "Waiting Time"
+msgstr "ਉਡੀਕ ਸਮਾਂ"
 
 #, fuzzy
 msgid "Pending Rejection Deadline"

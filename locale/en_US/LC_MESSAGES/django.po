@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-17 16:44+0000\n"
+"POT-Creation-Date: 2021-08-24 16:50+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -5289,39 +5289,12 @@ msgstr "You cannot submit a Mozilla Signed Extension"
 msgid "You can't submit a line number without associating it to a filename."
 msgstr "You can't submit a line number without associating it to a filename."
 
-msgid "Type"
-msgstr "Type"
-
-msgid "Waiting Time"
-msgstr "Waiting Time"
-
-msgid "Flags"
-msgstr "Flags"
-
-msgid "moments ago"
-msgstr "moments ago"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} minute"
-msgstr[1] "{0} minutes"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} hour"
-msgstr[1] "{0} hours"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} day"
-msgstr[1] "{0} days"
-
 #, fuzzy
 msgid "ID"
 msgstr "CIDR"
+
+msgid "Flags"
+msgstr "Flags"
 
 msgid "Last Review"
 msgstr "Last Review"
@@ -5339,6 +5312,12 @@ msgstr "Weight"
 
 msgid "Maliciousness Score"
 msgstr "Maliciousness Score"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Waiting Time"
+msgstr "Waiting Time"
 
 #, fuzzy
 msgid "Pending Rejection Deadline"

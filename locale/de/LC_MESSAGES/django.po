@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-17 16:44+0000\n"
+"POT-Creation-Date: 2021-08-24 16:50+0000\n"
 "PO-Revision-Date: 2021-08-10 18:27+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4900,38 +4900,11 @@ msgstr "Sie können keinen leeren Kommentar abgeben."
 msgid "You can't submit a line number without associating it to a filename."
 msgstr "Sie können eine Zeilennummer nicht senden, ohne sie einem Dateinamen zuzuordnen."
 
-msgid "Type"
-msgstr "Typ"
-
-msgid "Waiting Time"
-msgstr "Wartezeit"
+msgid "ID"
+msgstr "ID"
 
 msgid "Flags"
 msgstr "Markierungen"
-
-msgid "moments ago"
-msgstr "Vor wenigen Augenblicken"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} Minute"
-msgstr[1] "{0} Minuten"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} Stunde"
-msgstr[1] "{0} Stunden"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} Tag"
-msgstr[1] "{0} Tage"
-
-msgid "ID"
-msgstr "ID"
 
 msgid "Last Review"
 msgstr "Letzte Überprüfung"
@@ -4947,6 +4920,12 @@ msgstr "Gesamtgewicht"
 
 msgid "Maliciousness Score"
 msgstr "Bösartigkeits-Wert"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Waiting Time"
+msgstr "Wartezeit"
 
 msgid "Pending Rejection Deadline"
 msgstr "Ausstehende Ablehnungsfrist"

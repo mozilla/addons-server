@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-17 16:44+0000\n"
+"POT-Creation-Date: 2021-08-24 16:50+0000\n"
 "PO-Revision-Date: 2021-05-04 00:37+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4927,38 +4927,11 @@ msgstr "Man yatikïr ta natäq jun Juch'un Ruk'amal Mozilla"
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
 
-msgid "Type"
-msgstr "Ruwäch"
-
-msgid "Waiting Time"
-msgstr "Ramaj Xtoyob'ëx"
+msgid "ID"
+msgstr "ID"
 
 msgid "Flags"
 msgstr "Tiya' ketal"
-
-msgid "moments ago"
-msgstr "nimakol"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} ch'utiramaj"
-msgstr[1] "{0} taq ch'utiramaj"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} ramaj"
-msgstr[1] "{0} taq ramaj"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} q'ij"
-msgstr[1] "{0} taq q'ij"
-
-msgid "ID"
-msgstr "ID"
 
 msgid "Last Review"
 msgstr "Ruk'isib'äl nik'oxïk"
@@ -4976,6 +4949,12 @@ msgstr "Ralal"
 
 msgid "Maliciousness Score"
 msgstr ""
+
+msgid "Type"
+msgstr "Ruwäch"
+
+msgid "Waiting Time"
+msgstr "Ramaj Xtoyob'ëx"
 
 #, fuzzy
 msgid "Pending Rejection Deadline"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-17 16:44+0000\n"
+"POT-Creation-Date: 2021-08-24 16:50+0000\n"
 "PO-Revision-Date: 2021-08-13 13:14+0000\n"
 "Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
@@ -4949,38 +4949,11 @@ msgstr "Non è consentito inviare un commento vuoto."
 msgid "You can't submit a line number without associating it to a filename."
 msgstr "Non è possibile inviare un numero di riga senza associarlo al nome di un file."
 
-msgid "Type"
-msgstr "Tipologia"
-
-msgid "Waiting Time"
-msgstr "Tempo di attesa"
+msgid "ID"
+msgstr "ID"
 
 msgid "Flags"
 msgstr "Flag"
-
-msgid "moments ago"
-msgstr "poco fa"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} minuto"
-msgstr[1] "{0} minuti"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} ora"
-msgstr[1] "{0} ore"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} giorno"
-msgstr[1] "{0} giorni"
-
-msgid "ID"
-msgstr "ID"
 
 msgid "Last Review"
 msgstr "Ultima revisione"
@@ -4996,6 +4969,12 @@ msgstr "Dimensione totale"
 
 msgid "Maliciousness Score"
 msgstr "Punteggio di pericolosità"
+
+msgid "Type"
+msgstr "Tipologia"
+
+msgid "Waiting Time"
+msgstr "Tempo di attesa"
 
 msgid "Pending Rejection Deadline"
 msgstr "Scadenza per il rifiuto in sospeso"

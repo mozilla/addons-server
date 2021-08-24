@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-17 16:44+0000\n"
+"POT-Creation-Date: 2021-08-24 16:50+0000\n"
 "PO-Revision-Date: 2021-08-11 12:56+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -4786,35 +4786,11 @@ msgstr "您不能提交无内容的评论。"
 msgid "You can't submit a line number without associating it to a filename."
 msgstr "您不能提交尚未与文件名关联的行号。"
 
-msgid "Type"
-msgstr "类型"
-
-msgid "Waiting Time"
-msgstr "等待时间"
+msgid "ID"
+msgstr "ID"
 
 msgid "Flags"
 msgstr "标记"
-
-msgid "moments ago"
-msgstr "刚刚"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} 分钟"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} 小时"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} 天"
-
-msgid "ID"
-msgstr "ID"
 
 msgid "Last Review"
 msgstr "上次审核"
@@ -4830,6 +4806,12 @@ msgstr "总权重"
 
 msgid "Maliciousness Score"
 msgstr "恶意评分"
+
+msgid "Type"
+msgstr "类型"
+
+msgid "Waiting Time"
+msgstr "等待时间"
 
 msgid "Pending Rejection Deadline"
 msgstr "待驳回期限"

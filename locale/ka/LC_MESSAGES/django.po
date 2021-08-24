@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-17 16:44+0000\n"
+"POT-Creation-Date: 2021-08-24 16:50+0000\n"
 "PO-Revision-Date: 2021-08-15 19:07+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4869,38 +4869,11 @@ msgstr "ცარიელ გამოხმაურებას ვერ გ
 msgid "You can't submit a line number without associating it to a filename."
 msgstr "თქვენ ვერ წარადგენთ ხაზის ნომერს, დაკავშირებული ფაილის სახელის გარეშე."
 
-msgid "Type"
-msgstr "სახეობა"
-
-msgid "Waiting Time"
-msgstr "ლოდინის დრო"
+msgid "ID"
+msgstr "ID"
 
 msgid "Flags"
 msgstr "მონიშვნები"
-
-msgid "moments ago"
-msgstr "წინ"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} წუთი"
-msgstr[1] "{0} წუთი"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} საათი"
-msgstr[1] "{0} საათი"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} დღე"
-msgstr[1] "{0} დღე"
-
-msgid "ID"
-msgstr "ID"
 
 msgid "Last Review"
 msgstr "ბოლო მიმოხილვა"
@@ -4916,6 +4889,12 @@ msgstr "საერთო მოცულობა"
 
 msgid "Maliciousness Score"
 msgstr "მავნებლობის ქულა"
+
+msgid "Type"
+msgstr "სახეობა"
+
+msgid "Waiting Time"
+msgstr "ლოდინის დრო"
 
 msgid "Pending Rejection Deadline"
 msgstr "უარყოფის ვადის მომლოდინე"

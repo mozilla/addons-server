@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-17 16:44+0000\n"
+"POT-Creation-Date: 2021-08-24 16:50+0000\n"
 "PO-Revision-Date: 2017-12-25 01:31+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -4934,41 +4934,11 @@ msgstr "Nu poți trimite un comentariu gol."
 msgid "You can't submit a line number without associating it to a filename."
 msgstr "Nu poți trimite un număr de linie fără să îl asociezi la o denumire de fișier."
 
-msgid "Type"
-msgstr "Tip"
-
-msgid "Waiting Time"
-msgstr "Timp de așteptare"
+msgid "ID"
+msgstr "ID"
 
 msgid "Flags"
 msgstr "Semnalizări"
-
-msgid "moments ago"
-msgstr "momente în urmă"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} minut"
-msgstr[1] "{0} minute"
-msgstr[2] "{0} de minute"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} oră"
-msgstr[1] "{0} ore"
-msgstr[2] "{0} de ore"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} zi"
-msgstr[1] "{0} zile"
-msgstr[2] "{0} de zile"
-
-msgid "ID"
-msgstr "ID"
 
 msgid "Last Review"
 msgstr "Ultima recenzie"
@@ -4986,6 +4956,12 @@ msgstr "Greutate"
 
 msgid "Maliciousness Score"
 msgstr ""
+
+msgid "Type"
+msgstr "Tip"
+
+msgid "Waiting Time"
+msgstr "Timp de așteptare"
 
 msgid "Pending Rejection Deadline"
 msgstr "În termenul-limită pentru respingere"

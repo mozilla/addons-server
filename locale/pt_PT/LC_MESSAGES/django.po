@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-17 16:44+0000\n"
+"POT-Creation-Date: 2021-08-24 16:50+0000\n"
 "PO-Revision-Date: 2021-08-11 14:11+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -4902,38 +4902,11 @@ msgstr "Não pode submeter um comentário vazio."
 msgid "You can't submit a line number without associating it to a filename."
 msgstr "Não pode submeter um número de linha sem o associar a um nome de ficheiro."
 
-msgid "Type"
-msgstr "Tipo"
-
-msgid "Waiting Time"
-msgstr "Tempo de espera"
+msgid "ID"
+msgstr "ID."
 
 msgid "Flags"
 msgstr "Etiquetas"
-
-msgid "moments ago"
-msgstr "à instantes"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} minuto"
-msgstr[1] "{0} minutos"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} hora"
-msgstr[1] "{0} horas"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} dia"
-msgstr[1] "{0} dias"
-
-msgid "ID"
-msgstr "ID."
 
 msgid "Last Review"
 msgstr "Última revisão"
@@ -4949,6 +4922,12 @@ msgstr "Peso total"
 
 msgid "Maliciousness Score"
 msgstr "Pontuação de malícia"
+
+msgid "Type"
+msgstr "Tipo"
+
+msgid "Waiting Time"
+msgstr "Tempo de espera"
 
 msgid "Pending Rejection Deadline"
 msgstr "Prazo limite da rejeição"

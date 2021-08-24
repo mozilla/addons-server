@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-17 16:44+0000\n"
+"POT-Creation-Date: 2021-08-24 16:50+0000\n"
 "PO-Revision-Date: 2019-09-08 11:41+0000\n"
 "Last-Translator: Ahsun Mahmud Riad <ahsunriad@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4786,39 +4786,12 @@ msgstr "আপনি এই ধরণের এড-অন জমা দিতে
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
 
-msgid "Type"
-msgstr "ধরণ"
-
-msgid "Waiting Time"
-msgstr "অপেক্ষার সময়"
-
-msgid "Flags"
-msgstr ""
-
-msgid "moments ago"
-msgstr "কিছুক্ষণ আগে"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} মিনিট"
-msgstr[1] ""
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} ঘন্টা"
-msgstr[1] ""
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} দিন"
-msgstr[1] ""
-
 #, fuzzy
 msgid "ID"
 msgstr "CIDR"
+
+msgid "Flags"
+msgstr ""
 
 msgid "Last Review"
 msgstr "শেষ পর্যালোচনা"
@@ -4836,6 +4809,12 @@ msgstr "ওজন"
 
 msgid "Maliciousness Score"
 msgstr ""
+
+msgid "Type"
+msgstr "ধরণ"
+
+msgid "Waiting Time"
+msgstr "অপেক্ষার সময়"
 
 msgid "Pending Rejection Deadline"
 msgstr ""
