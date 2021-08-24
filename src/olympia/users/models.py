@@ -34,7 +34,7 @@ from olympia import amo, core
 from olympia.access.models import Group, GroupUser
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField, CIDRField
-from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
+from olympia.amo.models import LongNameIndex, ManagerBase, ModelBase, OnChangeMixin
 from olympia.amo.validators import OneOrMorePrintableCharacterValidator
 from olympia.translations.query import order_by_translation
 from olympia.users.notifications import NOTIFICATIONS_BY_ID
@@ -201,6 +201,9 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         indexes = [
             models.Index(fields=('created',), name='created'),
             models.Index(fields=('fxa_id',), name='users_fxa_id_index'),
+            LongNameIndex(
+                fields=('last_login_ip',), name='users_last_login_ip_2cfbbfbd'
+            ),
         ]
 
     def __init__(self, *args, **kw):
@@ -1073,6 +1076,16 @@ class UserRestrictionHistory(ModelBase):
 
     class Meta:
         verbose_name_plural = _('User Restriction History')
+        indexes = [
+            LongNameIndex(
+                fields=('ip_address',),
+                name='users_userrestrictionhistory_ip_address_4376df32',
+            ),
+            LongNameIndex(
+                fields=('last_login_ip',),
+                name='users_userrestrictionhistory_last_login_ip_d58d95ff',
+            ),
+        ]
 
 
 class UserHistory(ModelBase):
