@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-17 16:44+0000\n"
+"POT-Creation-Date: 2021-08-24 16:50+0000\n"
 "PO-Revision-Date: 2021-07-31 08:16+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -4889,38 +4889,11 @@ msgstr "S’mund të parashtroni një koment të zbrazët."
 msgid "You can't submit a line number without associating it to a filename."
 msgstr "S’mund të parashtroni një numër rreshti pa e përshoqëruar me një emër kartele."
 
-msgid "Type"
-msgstr "Lloj"
-
-msgid "Waiting Time"
-msgstr "Kohë Pritjeje"
+msgid "ID"
+msgstr "ID"
 
 msgid "Flags"
 msgstr "Flamurka"
-
-msgid "moments ago"
-msgstr "çaste më parë"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} minutë"
-msgstr[1] "{0} minuta"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} orë"
-msgstr[1] "{0} orë"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} ditë"
-msgstr[1] "{0} ditë"
-
-msgid "ID"
-msgstr "ID"
 
 msgid "Last Review"
 msgstr "Shqyrtimi Më i RI"
@@ -4936,6 +4909,12 @@ msgstr "Peshë Gjithsej"
 
 msgid "Maliciousness Score"
 msgstr "Vlerë Rrezikshmërie"
+
+msgid "Type"
+msgstr "Lloj"
+
+msgid "Waiting Time"
+msgstr "Kohë Pritjeje"
 
 msgid "Pending Rejection Deadline"
 msgstr "Me Afat Hedhje Poshtë Pezull"

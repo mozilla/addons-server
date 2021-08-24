@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-17 16:44+0000\n"
+"POT-Creation-Date: 2021-08-24 16:50+0000\n"
 "PO-Revision-Date: 2021-08-14 12:57+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -4906,39 +4906,12 @@ msgstr "Et voi lähettää tyhjää kommenttia."
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
 
-msgid "Type"
-msgstr "Tyyppi"
-
-msgid "Waiting Time"
-msgstr "Odotusaika"
-
-msgid "Flags"
-msgstr ""
-
-msgid "moments ago"
-msgstr "hetkiä sitten"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} minuutti"
-msgstr[1] "{0} minuuttia"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} tunti"
-msgstr[1] "{0} tuntia"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} päivä"
-msgstr[1] "{0} päivää"
-
 #, fuzzy
 msgid "ID"
 msgstr "GUID"
+
+msgid "Flags"
+msgstr ""
 
 msgid "Last Review"
 msgstr ""
@@ -4955,6 +4928,12 @@ msgstr "Tarkastuksia yhteensä"
 
 msgid "Maliciousness Score"
 msgstr ""
+
+msgid "Type"
+msgstr "Tyyppi"
+
+msgid "Waiting Time"
+msgstr "Odotusaika"
 
 msgid "Pending Rejection Deadline"
 msgstr ""

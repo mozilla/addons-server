@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-17 16:44+0000\n"
+"POT-Creation-Date: 2021-08-24 16:50+0000\n"
 "PO-Revision-Date: 2021-05-02 18:58+0000\n"
 "Last-Translator: Kim YoungCheon <circcc@gmail.com>\n"
 "Language-Team: none\n"
@@ -4876,35 +4876,11 @@ msgstr "이런 종류의 부가 기능은 제출할 수 없음"
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
 
-msgid "Type"
-msgstr "종류"
-
-msgid "Waiting Time"
-msgstr "대기 시간"
+msgid "ID"
+msgstr "ID"
 
 msgid "Flags"
 msgstr "표시"
-
-msgid "moments ago"
-msgstr "방금"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} 분"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} 시간"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} 일"
-
-msgid "ID"
-msgstr "ID"
 
 msgid "Last Review"
 msgstr "최신 리뷰"
@@ -4922,6 +4898,12 @@ msgstr "무게"
 
 msgid "Maliciousness Score"
 msgstr ""
+
+msgid "Type"
+msgstr "종류"
+
+msgid "Waiting Time"
+msgstr "대기 시간"
 
 #, fuzzy
 msgid "Pending Rejection Deadline"

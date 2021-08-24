@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-17 16:44+0000\n"
+"POT-Creation-Date: 2021-08-24 16:50+0000\n"
 "PO-Revision-Date: 2020-05-22 17:03+0000\n"
 "Last-Translator: Siddhi Dave <siddhi_dave@yahoo.in>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4754,38 +4754,11 @@ msgstr ""
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
 
-msgid "Type"
-msgstr ""
-
-msgid "Waiting Time"
-msgstr ""
+msgid "ID"
+msgstr "ID"
 
 msgid "Flags"
 msgstr ""
-
-msgid "moments ago"
-msgstr ""
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] ""
-msgstr[1] ""
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] ""
-msgstr[1] ""
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "ID"
-msgstr "ID"
 
 msgid "Last Review"
 msgstr ""
@@ -4800,6 +4773,12 @@ msgid "Total Weight"
 msgstr ""
 
 msgid "Maliciousness Score"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Waiting Time"
 msgstr ""
 
 msgid "Pending Rejection Deadline"

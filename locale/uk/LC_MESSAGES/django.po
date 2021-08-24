@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-17 16:44+0000\n"
+"POT-Creation-Date: 2021-08-24 16:50+0000\n"
 "PO-Revision-Date: 2021-08-10 18:32+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
@@ -4870,41 +4870,11 @@ msgstr "Ви не можете надіслати порожній комент�
 msgid "You can't submit a line number without associating it to a filename."
 msgstr "Ви не можете надіслати номер рядка, без пов’язування його з назвою файлу."
 
-msgid "Type"
-msgstr "Тип"
-
-msgid "Waiting Time"
-msgstr "Час очікування"
+msgid "ID"
+msgstr "ID"
 
 msgid "Flags"
 msgstr "Позначки"
-
-msgid "moments ago"
-msgstr "щойно"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} хвилина"
-msgstr[1] "{0} хвилини"
-msgstr[2] "{0} хвилин"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} година"
-msgstr[1] "{0} години"
-msgstr[2] "{0} годин"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} день"
-msgstr[1] "{0} дні"
-msgstr[2] "{0} днів"
-
-msgid "ID"
-msgstr "ID"
 
 msgid "Last Review"
 msgstr "Остання перевірка"
@@ -4920,6 +4890,12 @@ msgstr "Загальна вага"
 
 msgid "Maliciousness Score"
 msgstr "Оцінка зловмисності"
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "Waiting Time"
+msgstr "Час очікування"
 
 msgid "Pending Rejection Deadline"
 msgstr "Кінцевий термін очікування на відхилення"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-17 16:44+0000\n"
+"POT-Creation-Date: 2021-08-24 16:50+0000\n"
 "PO-Revision-Date: 2021-07-23 08:23+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4889,38 +4889,11 @@ msgstr "Jo kinne gjin lege opmerking yntsjinje."
 msgid "You can't submit a line number without associating it to a filename."
 msgstr "Jo kinne gjin rigelnûmer yntsjinje sûnder it oan in bestânsnamme te keppeljen."
 
-msgid "Type"
-msgstr "Type"
-
-msgid "Waiting Time"
-msgstr "Wachttiid"
+msgid "ID"
+msgstr "ID"
 
 msgid "Flags"
 msgstr "Labels"
-
-msgid "moments ago"
-msgstr "koartlyn"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} minút"
-msgstr[1] "{0} minuten"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} oer"
-msgstr[1] "{0} oer"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} dei"
-msgstr[1] "{0} dagen"
-
-msgid "ID"
-msgstr "ID"
 
 msgid "Last Review"
 msgstr "Lêste beoardieling"
@@ -4936,6 +4909,12 @@ msgstr "Totaal gewicht"
 
 msgid "Maliciousness Score"
 msgstr "Skealikheidsskoare"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Waiting Time"
+msgstr "Wachttiid"
 
 msgid "Pending Rejection Deadline"
 msgstr "Deadline foar wachtrige foar ôfwizing"

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-17 16:44+0000\n"
+"POT-Creation-Date: 2021-08-24 16:50+0000\n"
 "PO-Revision-Date: 2020-10-09 05:48+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -4946,52 +4946,13 @@ msgstr ""
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
 
-msgid "Type"
-msgstr "النوع"
-
-msgid "Waiting Time"
-msgstr "وقت الانتظار"
+#, fuzzy
+msgid "ID"
+msgstr "المعرّف الفريد"
 
 #, fuzzy
 msgid "Flags"
 msgstr "Flags"
-
-msgid "moments ago"
-msgstr "لحظات مضت"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "أقل من دقيقة"
-msgstr[1] "دقيقة واحدة"
-msgstr[2] "دقيقتان"
-msgstr[3] "{0} دقائق"
-msgstr[4] "{0} دقيقة"
-msgstr[5] "{0} دقيقة"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "أقل من ساعة"
-msgstr[1] "ساعة واحدة"
-msgstr[2] "ساعتان"
-msgstr[3] "{0} ساعات"
-msgstr[4] "{0} ساعة"
-msgstr[5] "{0} ساعة"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "أقل من يوم"
-msgstr[1] "يوم واحد"
-msgstr[2] "يومان"
-msgstr[3] "{0} أيام"
-msgstr[4] "{0} يومًا"
-msgstr[5] "{0} يوم"
-
-#, fuzzy
-msgid "ID"
-msgstr "المعرّف الفريد"
 
 msgid "Last Review"
 msgstr "آخر مراجعة"
@@ -5009,6 +4970,12 @@ msgstr "الوزن"
 
 msgid "Maliciousness Score"
 msgstr ""
+
+msgid "Type"
+msgstr "النوع"
+
+msgid "Waiting Time"
+msgstr "وقت الانتظار"
 
 msgid "Pending Rejection Deadline"
 msgstr ""

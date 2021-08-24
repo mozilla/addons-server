@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-17 16:44+0000\n"
+"POT-Creation-Date: 2021-08-24 16:50+0000\n"
 "PO-Revision-Date: 2021-08-11 03:29+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -4804,35 +4804,11 @@ msgstr "您送出的註解不能空白。"
 msgid "You can't submit a line number without associating it to a filename."
 msgstr "您不能單純送出行號，但不指出檔案名稱。"
 
-msgid "Type"
-msgstr "類型"
-
-msgid "Waiting Time"
-msgstr "等待時間"
+msgid "ID"
+msgstr "ID"
 
 msgid "Flags"
 msgstr "旗標"
-
-msgid "moments ago"
-msgstr "不久前"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} 分鐘"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} 小時"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} 天"
-
-msgid "ID"
-msgstr "ID"
 
 msgid "Last Review"
 msgstr "最後評論"
@@ -4848,6 +4824,12 @@ msgstr "總權重"
 
 msgid "Maliciousness Score"
 msgstr "惡意程度評分"
+
+msgid "Type"
+msgstr "類型"
+
+msgid "Waiting Time"
+msgstr "等待時間"
 
 msgid "Pending Rejection Deadline"
 msgstr "待拒絕期限"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-17 16:44+0000\n"
+"POT-Creation-Date: 2021-08-24 16:50+0000\n"
 "PO-Revision-Date: 2021-07-10 07:08+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -4895,36 +4895,12 @@ msgstr "あなたは言語パックを登録できません"
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
 
-msgid "Type"
-msgstr "種類"
-
-msgid "Waiting Time"
-msgstr "待ち時間"
-
-msgid "Flags"
-msgstr "フラグ"
-
-msgid "moments ago"
-msgstr "たった今"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0}分"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0}時間"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0}日"
-
 #, fuzzy
 msgid "ID"
 msgstr "CIDR"
+
+msgid "Flags"
+msgstr "フラグ"
 
 msgid "Last Review"
 msgstr "最後のレビュー"
@@ -4942,6 +4918,12 @@ msgstr "重み"
 
 msgid "Maliciousness Score"
 msgstr ""
+
+msgid "Type"
+msgstr "種類"
+
+msgid "Waiting Time"
+msgstr "待ち時間"
 
 #, fuzzy
 msgid "Pending Rejection Deadline"

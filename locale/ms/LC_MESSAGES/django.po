@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-17 16:44+0000\n"
+"POT-Creation-Date: 2021-08-24 16:50+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4977,36 +4977,12 @@ msgstr "Anda tidak boleh kemukakan Ekstensi Ditandatangani Mozilla"
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
 
-msgid "Type"
-msgstr "Jenis"
-
-msgid "Waiting Time"
-msgstr "Tempoh Menunggu"
-
-msgid "Flags"
-msgstr "Tanda"
-
-msgid "moments ago"
-msgstr "sebentar tadi"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} minit"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} jam"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} hari"
-
 #, fuzzy
 msgid "ID"
 msgstr "GUID"
+
+msgid "Flags"
+msgstr "Tanda"
 
 msgid "Last Review"
 msgstr "Semakan Terakhir"
@@ -5024,6 +5000,12 @@ msgstr "Pertimbangkan"
 
 msgid "Maliciousness Score"
 msgstr ""
+
+msgid "Type"
+msgstr "Jenis"
+
+msgid "Waiting Time"
+msgstr "Tempoh Menunggu"
 
 #, fuzzy
 msgid "Pending Rejection Deadline"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-17 16:44+0000\n"
+"POT-Creation-Date: 2021-08-24 16:50+0000\n"
 "PO-Revision-Date: 2018-06-01 00:24+0000\n"
 "Last-Translator: pchew <pchew@change.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4929,40 +4929,13 @@ msgstr ""
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
 
-msgid "Type"
-msgstr ""
-
-msgid "Waiting Time"
-msgstr ""
+#, fuzzy
+msgid "ID"
+msgstr "GUID"
 
 #, fuzzy
 msgid "Flags"
 msgstr "Flags"
-
-msgid "moments ago"
-msgstr ""
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] ""
-msgstr[1] ""
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] ""
-msgstr[1] ""
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] ""
-msgstr[1] ""
-
-#, fuzzy
-msgid "ID"
-msgstr "GUID"
 
 msgid "Last Review"
 msgstr ""
@@ -4978,6 +4951,12 @@ msgid "Total Weight"
 msgstr "Нийт үнэлгээ"
 
 msgid "Maliciousness Score"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Waiting Time"
 msgstr ""
 
 msgid "Pending Rejection Deadline"

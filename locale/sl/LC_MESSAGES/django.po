@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-17 16:44+0000\n"
+"POT-Creation-Date: 2021-08-24 16:50+0000\n"
 "PO-Revision-Date: 2021-08-14 11:06+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -4869,44 +4869,11 @@ msgstr "Ne morete oddati praznega komentarja."
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
 
-msgid "Type"
-msgstr "Vrsta"
-
-msgid "Waiting Time"
-msgstr "Čakalni čas"
+msgid "ID"
+msgstr "ID"
 
 msgid "Flags"
 msgstr "Zastave"
-
-msgid "moments ago"
-msgstr "pred nekaj trenutki"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} minuta"
-msgstr[1] "{0} minuti"
-msgstr[2] "{0} minute"
-msgstr[3] "{0} minut"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} ura"
-msgstr[1] "{0} uri"
-msgstr[2] "{0} ure"
-msgstr[3] "{0} ur"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} dan"
-msgstr[1] "{0} dneva"
-msgstr[2] "{0} dnevi"
-msgstr[3] "{0} dni"
-
-msgid "ID"
-msgstr "ID"
 
 msgid "Last Review"
 msgstr "Zadnji pregled"
@@ -4922,6 +4889,12 @@ msgstr "Skupna teža"
 
 msgid "Maliciousness Score"
 msgstr ""
+
+msgid "Type"
+msgstr "Vrsta"
+
+msgid "Waiting Time"
+msgstr "Čakalni čas"
 
 #, fuzzy
 msgid "Pending Rejection Deadline"

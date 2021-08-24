@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-17 16:44+0000\n"
+"POT-Creation-Date: 2021-08-24 16:50+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -5012,48 +5012,12 @@ msgstr ""
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
 
-msgid "Type"
-msgstr "Cineál"
-
-msgid "Waiting Time"
-msgstr "Am Feithimh"
-
-msgid "Flags"
-msgstr "Bratacha"
-
-msgid "moments ago"
-msgstr "soicindí ó shin"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} nóiméad"
-msgstr[1] "{0} nóiméad"
-msgstr[2] "{0} nóiméad"
-msgstr[3] "{0} nóiméad"
-msgstr[4] "{0} nóiméad"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} uair"
-msgstr[1] "{0} uair"
-msgstr[2] "{0} huaire"
-msgstr[3] "{0} n-uaire"
-msgstr[4] "{0} uair"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} lá"
-msgstr[1] "{0} lá"
-msgstr[2] "{0} lá"
-msgstr[3] "{0} lá"
-msgstr[4] "{0} lá"
-
 #, fuzzy
 msgid "ID"
 msgstr "GUID"
+
+msgid "Flags"
+msgstr "Bratacha"
 
 msgid "Last Review"
 msgstr ""
@@ -5070,6 +5034,12 @@ msgstr "Líon iomlán léirmheasanna"
 
 msgid "Maliciousness Score"
 msgstr ""
+
+msgid "Type"
+msgstr "Cineál"
+
+msgid "Waiting Time"
+msgstr "Am Feithimh"
 
 msgid "Pending Rejection Deadline"
 msgstr ""

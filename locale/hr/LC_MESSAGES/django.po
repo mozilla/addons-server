@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-17 16:44+0000\n"
+"POT-Creation-Date: 2021-08-24 16:50+0000\n"
 "PO-Revision-Date: 2021-07-27 16:19+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
@@ -4820,41 +4820,11 @@ msgstr ""
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
 
-msgid "Type"
-msgstr "Vrsta"
-
-msgid "Waiting Time"
-msgstr "Vrijeme čekanja"
+msgid "ID"
+msgstr "ID"
 
 msgid "Flags"
 msgstr "Oznake"
-
-msgid "moments ago"
-msgstr "prije nekoliko trenutaka"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} minuta"
-msgstr[1] "{0} minute"
-msgstr[2] "{0} minuta"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} sat"
-msgstr[1] "{0} sata"
-msgstr[2] "{0} sati"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} dan"
-msgstr[1] "{0} dana"
-msgstr[2] "{0} dana"
-
-msgid "ID"
-msgstr "ID"
 
 msgid "Last Review"
 msgstr "Zadnja recenzija"
@@ -4870,6 +4840,12 @@ msgstr "Ukupna težina"
 
 msgid "Maliciousness Score"
 msgstr ""
+
+msgid "Type"
+msgstr "Vrsta"
+
+msgid "Waiting Time"
+msgstr "Vrijeme čekanja"
 
 msgid "Pending Rejection Deadline"
 msgstr "Rok za odbijanje na čekanju"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-17 16:44+0000\n"
+"POT-Creation-Date: 2021-08-24 16:50+0000\n"
 "PO-Revision-Date: 2021-04-29 18:23+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4813,38 +4813,11 @@ msgstr "Du kan ikkje sende inn ein tom kommentar."
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
 
-msgid "Type"
-msgstr "Type"
-
-msgid "Waiting Time"
-msgstr "Ventetid"
+msgid "ID"
+msgstr "ID"
 
 msgid "Flags"
 msgstr "Flagg"
-
-msgid "moments ago"
-msgstr "nettopp"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} minutt"
-msgstr[1] "{0} minutt"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} time"
-msgstr[1] "{0} timar"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} dag"
-msgstr[1] "{0} dagar"
-
-msgid "ID"
-msgstr "ID"
 
 msgid "Last Review"
 msgstr "Siste vurdering"
@@ -4860,6 +4833,12 @@ msgstr "Totalvekt"
 
 msgid "Maliciousness Score"
 msgstr ""
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Waiting Time"
+msgstr "Ventetid"
 
 msgid "Pending Rejection Deadline"
 msgstr "Frist for ventande avslag"
