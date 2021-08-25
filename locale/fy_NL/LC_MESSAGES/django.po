@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-24 16:50+0000\n"
-"PO-Revision-Date: 2021-08-25 07:55+0000\n"
+"PO-Revision-Date: 2021-08-25 07:56+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4573,9 +4573,8 @@ msgstr "De maksimale grutte foar WebExtension-tema’s is {0}."
 msgid "You cannot submit this type of add-on"
 msgstr "Jo kinne dit type add-on net yntsjinje"
 
-#, fuzzy
 msgid "You cannot submit an add-on using an ID ending with this suffix"
-msgstr "Jo kinne gjin add-on yntsjinje mei in ID dy't op %s einiget"
+msgstr "Jo kinne gjin add-on yntsjinje mei in ID dy't op ditachterfochsel einiget"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Jo kinne gjin troch Mozilla ûndertekene útwreidingen yntsjinje"
@@ -4745,9 +4744,8 @@ msgstr "Jo kinne gjin beoardieling foar jo eigen add-on skriuwe."
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Jo kinne net mear beoardielingen foar deselde ferzje fan in add-on skriuwe."
 
-#, fuzzy
 msgid "Invalid flag [{}] - must be one of [{}]"
-msgstr "Unjildich label [%s] – moat der ien fan [%s] wêze"
+msgstr "Unjildich label [{}] – moat der ien fan [{}] wêze"
 
 msgid "This rating can't be flagged because it has no review text."
 msgstr "Dizze wurdearring kin net markearre wurde, omdat hy gjin beoardielingstekst befettet."
