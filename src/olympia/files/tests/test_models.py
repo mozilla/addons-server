@@ -9,6 +9,7 @@ import shutil
 from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.core.files.uploadedfile import SimpleUploadedFile
 from django.forms import ValidationError
 from django.test.utils import override_settings
 from django.urls import reverse
@@ -474,7 +475,8 @@ class TestParseXpi(TestCase):
         parse_addon_kwargs.update(**kwargs)
 
         with open(xpi, 'rb') as fobj:
-            return parse_addon(fobj, addon, **parse_addon_kwargs)
+            file_ = SimpleUploadedFile(filename, fobj.read())
+            return parse_addon(file_, addon, **parse_addon_kwargs)
 
     def test_parse_basics(self):
         # Basic test for key properties (more advanced testing is done in other
