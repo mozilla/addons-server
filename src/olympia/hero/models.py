@@ -6,6 +6,7 @@ from django.core.files.storage import default_storage as storage
 from django.db import models
 from django.db.models.fields import BLANK_CHOICE_DASH
 from django.forms.widgets import RadioSelect
+from django.templatetags.static import static
 from django.utils.safestring import mark_safe
 
 from olympia.amo.models import LongNameIndex, ModelBase
@@ -24,7 +25,7 @@ GRADIENT_COLORS = {
     '#592ACB': 'color-violet-70',
 }
 MODULE_ICON_PATH = os.path.join(settings.ROOT, 'static', 'img', 'hero', 'icons')
-MODULE_ICON_URL = f'{settings.STATIC_URL}img/hero/icons/'
+MODULE_ICON_BASE_URL = 'img/hero/icons/'
 HERO_PREVIEW_URL = f'{settings.MEDIA_URL}hero-featured-image/thumbs/'
 
 
@@ -51,12 +52,12 @@ class GradientChoiceWidget(RadioSelect):
 class IconChoiceWidget(RadioSelect):
     option_template_name = 'hero/image_option.html'
     option_inherits_attrs = True
-    image_url_base = MODULE_ICON_URL
+    image_url_base = MODULE_ICON_BASE_URL
 
     def create_option(
         self, name, value, label, selected, index, subindex=None, attrs=None
     ):
-        attrs['image_url'] = f'{self.image_url_base}{value}'
+        attrs['image_url'] = static(f'{self.image_url_base}{value}')
         return super().create_option(
             name=name,
             value=value,
@@ -117,9 +118,13 @@ class PrimaryHeroImage(ModelBase):
         return path + b'/thumbs/' + fn
 
     @property
+    def image_url(self):
+        return f'{self.custom_image.url}?modified={int(self.modified.timestamp())}'
+
+    @property
     def preview_url(self):
         fn = os.path.basename(self.custom_image.path).decode('utf-8')
-        return f'{HERO_PREVIEW_URL}{fn}'
+        return f'{HERO_PREVIEW_URL}{fn}?modified={int(self.modified.timestamp())}'
 
     def preview_image(self):
         if self.custom_image:
@@ -168,7 +173,7 @@ class PrimaryHero(ModelBase):
 
     @property
     def image_url(self):
-        return f'{self.select_image.custom_image.url}' if self.select_image else None
+        return self.select_image.image_url if self.select_image else None
 
     @property
     def gradient(self):
@@ -271,4 +276,4 @@ class SecondaryHeroModule(CTACheckMixin, ModelBase):
 
     @property
     def icon_url(self):
-        return f'{MODULE_ICON_URL}{self.icon}'
+        return static(f'{MODULE_ICON_BASE_URL}{self.icon}')
