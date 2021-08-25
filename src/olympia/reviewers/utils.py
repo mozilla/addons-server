@@ -51,7 +51,9 @@ def safe_substitute(string, *args):
 
 class ViewUnlistedAllListTable(tables.Table, ItemStateTable):
     id = tables.Column(verbose_name=_('ID'))
-    addon_name = tables.Column(verbose_name=_('Add-on'), accessor='name')
+    addon_name = tables.Column(
+        verbose_name=_('Add-on'), accessor='name', orderable=False
+    )
     guid = tables.Column(verbose_name=_('GUID'))
     show_count_in_dashboard = False
 
@@ -83,7 +85,9 @@ class ViewUnlistedAllListTable(tables.Table, ItemStateTable):
 
 
 class AddonQueueTable(tables.Table, ItemStateTable):
-    addon_name = tables.Column(verbose_name=_('Add-on'), accessor='name')
+    addon_name = tables.Column(
+        verbose_name=_('Add-on'), accessor='name', orderable=False
+    )
     # Override empty_values for flags so that they can be displayed even if the
     # model does not have a flags attribute.
     flags = tables.Column(verbose_name=_('Flags'), empty_values=(), orderable=False)
@@ -166,7 +170,7 @@ class AddonQueueTable(tables.Table, ItemStateTable):
 
 
 class PendingManualApprovalQueueTable(AddonQueueTable):
-    addon_type = tables.Column(verbose_name=_('Type'), empty_values=())
+    addon_type = tables.Column(verbose_name=_('Type'), accessor='type', orderable=False)
     waiting_time = tables.Column(
         verbose_name=_('Waiting Time'), accessor='first_version_nominated'
     )

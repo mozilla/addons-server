@@ -32,42 +32,6 @@
 
 <div class="queue-outer">
   <div class="queue-inner">
-    {% if search_form %}
-    <div class="queue-search">
-      <form method="get" data-no-csrf>
-        <input type="hidden" id="id_searching" name="searching" value="True" />
-        <label for="id_text_query">{{ search_form['text_query'].label }}</label>
-        {{ search_form['text_query'] }}
-        <button type="submit">{{ _('Search') }}</button>
-        <a class="toggle-queue-search" href="#">{{ _('Advanced Search') }}</a>
-        {% if search_form.data and search_form.data['searching'] %}
-        (<a class="clear-queue-search" href="{{ url('reviewers.{0}queue_{1}'.format('unlisted_' if unlisted else '', tab)) }}">{{ _('clear search') }}</a>)
-        {% endif %}
-        <div class="advanced-search">
-          <div class="column1">
-            <div class="form-row">
-              {% for elem in ('needs_admin_code_review', 'application_id') %}
-                {% if search_form[elem] %}
-                    <label for="id_{{ elem }}">{{ search_form[elem].label }}</label>
-                    <div class="form-elem">{{ search_form[elem] }}</div>
-                {% endif %}
-              {% endfor %}
-            </div>
-          </div>
-          <div class="column2">
-            <div class="form-row">
-              {% for elem in ('addon_type_ids', 'deleted') %}
-                {% if search_form[elem] %}
-                    <label for="id_{{ elem }}">{{ search_form[elem].label }}</label>
-                    <div class="form-elem">{{ search_form[elem] }}</div>
-                {% endif %}
-              {% endfor %}
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
-    {% endif %}
     {% if page.has_other_pages() %}
       <div class="data-grid-content data-grid-top">
       {{ page|paginator }}
