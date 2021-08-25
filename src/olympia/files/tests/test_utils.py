@@ -76,24 +76,23 @@ class TestExtractor(AppVersionsMixin, TestCase):
         utils.Extractor.parse(fake_zip)
         assert manifest_json_extractor.called
 
-    @mock.patch('olympia.files.utils.os.path.getsize')
-    def test_static_theme_max_size(self, getsize_mock):
-        getsize_mock.return_value = settings.MAX_STATICTHEME_SIZE
+    def test_static_theme_max_size(self):
+        xpi_file = mock.Mock(size=settings.MAX_STATICTHEME_SIZE - 1)
         manifest = utils.ManifestJSONExtractor('/fake_path', '{"theme": {}}').parse()
 
         # Calling to check it doesn't raise.
-        assert utils.check_xpi_info(manifest, xpi_file=mock.Mock())
+        assert utils.check_xpi_info(manifest, xpi_file=xpi_file)
 
         # Increase the size though and it should raise an error.
-        getsize_mock.return_value = settings.MAX_STATICTHEME_SIZE + 1
+        xpi_file.size = settings.MAX_STATICTHEME_SIZE + 1
         with pytest.raises(forms.ValidationError) as exc:
-            utils.check_xpi_info(manifest, xpi_file=mock.Mock())
+            utils.check_xpi_info(manifest, xpi_file=xpi_file)
 
         assert exc.value.message == 'Maximum size for WebExtension themes is 7.0 MB.'
 
         # dpuble check only static themes are limited
         manifest = utils.ManifestJSONExtractor('/fake_path', '{}').parse()
-        assert utils.check_xpi_info(manifest, xpi_file=mock.Mock())
+        assert utils.check_xpi_info(manifest, xpi_file=xpi_file)
 
 
 class TestManifestJSONExtractor(AppVersionsMixin, TestCase):

@@ -861,7 +861,7 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
 
     if is_webextension and xpi_info.get('type') == amo.ADDON_STATICTHEME:
         max_size = settings.MAX_STATICTHEME_SIZE
-        if xpi_file and os.path.getsize(xpi_file.name) > max_size:
+        if xpi_file and xpi_file.size > max_size:
             raise forms.ValidationError(
                 gettext('Maximum size for WebExtension themes is {0}.').format(
                     filesizeformat(max_size)
