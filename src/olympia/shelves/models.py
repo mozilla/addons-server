@@ -67,9 +67,10 @@ class Shelf(ModelBase):
 
     @cached_property
     def tag(self):
+        tag_qs = Tag.objects.filter(enable_for_random_shelf=True).order_by('?')
         return (
-            Tag.objects.order_by('?').first().tag_text
-            if self.endpoint == self.Endpoints.RANDOM_TAG
+            tag.tag_text
+            if self.endpoint == self.Endpoints.RANDOM_TAG and (tag := tag_qs.first())
             else None
         )
 
