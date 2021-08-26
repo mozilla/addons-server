@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.core.exceptions import ValidationError
 
 from olympia.amo.tests import addon_factory, TestCase
@@ -16,6 +18,7 @@ class TestPrimaryHero(TestCase):
     def setUp(self):
         uploaded_photo = get_uploaded_file('transparent.png')
         self.phi = PrimaryHeroImage.objects.create(custom_image=uploaded_photo)
+        self.phi.update(modified=datetime(2021, 4, 8, 15, 16, 23, 42))
 
     def test_image_url(self):
         ph = PrimaryHero.objects.create(
@@ -23,7 +26,8 @@ class TestPrimaryHero(TestCase):
             select_image=self.phi,
         )
         assert ph.image_url == (
-            'http://testserver/user-media/hero-featured-image/transparent.jpg'
+            'http://testserver/user-media/'
+            'hero-featured-image/transparent.jpg?modified=1617894983'
         )
         ph.update(select_image=None)
         assert ph.image_url is None

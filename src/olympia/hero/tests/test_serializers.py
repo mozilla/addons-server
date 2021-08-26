@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from olympia import amo
 from olympia.amo.tests import addon_factory, TestCase
 from olympia.amo.tests.test_helpers import get_uploaded_file
@@ -24,7 +26,11 @@ class TestPrimaryHeroShelfSerializer(TestCase):
     def setUp(self):
         uploaded_photo = get_uploaded_file('transparent.png')
         self.phi = PrimaryHeroImage.objects.create(custom_image=uploaded_photo)
-        self.image = 'http://testserver/user-media/hero-featured-image/transparent.jpg'
+        self.phi.update(modified=datetime(2021, 4, 8, 15, 16, 23, 42))
+        self.expected_image_url = (
+            'http://testserver/user-media/hero-featured-image/transparent.jpg'
+            '?modified=1617894983'
+        )
 
     def test_basic(self):
         addon = addon_factory(promoted=RECOMMENDED)
@@ -36,7 +42,7 @@ class TestPrimaryHeroShelfSerializer(TestCase):
         )
         data = PrimaryHeroShelfSerializer(instance=hero).data
         assert data == {
-            'featured_image': self.image,
+            'featured_image': self.expected_image_url,
             'description': {'en-US': 'Déscription'},
             'gradient': {'start': GRADIENT_START_COLOR[1], 'end': 'color-green-70'},
             'addon': HeroAddonSerializer(instance=addon).data,
@@ -78,7 +84,7 @@ class TestPrimaryHeroShelfSerializer(TestCase):
             is_external=True,
         )
         assert PrimaryHeroShelfSerializer(instance=hero).data == {
-            'featured_image': self.image,
+            'featured_image': self.expected_image_url,
             'description': {'en-US': 'Summary'},
             'gradient': {'start': GRADIENT_START_COLOR[1], 'end': 'color-green-70'},
             'external': ExternalAddonSerializer(instance=addon).data,
