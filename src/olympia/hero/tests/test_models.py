@@ -17,14 +17,13 @@ from olympia.promoted.models import PromotedAddon
 class TestPrimaryHero(TestCase):
     def setUp(self):
         uploaded_photo = get_uploaded_file('transparent.png')
-        self.phi = PrimaryHeroImage.objects.create(
-            custom_image=uploaded_photo)
+        self.phi = PrimaryHeroImage.objects.create(custom_image=uploaded_photo)
         self.phi.update(modified=datetime(2021, 4, 8, 15, 16, 23, 42))
 
     def test_image_url(self):
         ph = PrimaryHero.objects.create(
             promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
-            select_image=self.phi
+            select_image=self.phi,
         )
         assert ph.image_url == (
             'http://testserver/user-media/'
