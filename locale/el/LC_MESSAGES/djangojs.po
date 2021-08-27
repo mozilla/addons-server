@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-24 16:51+0000\n"
-"PO-Revision-Date: 2021-08-23 13:20+0000\n"
+"PO-Revision-Date: 2021-08-27 06:20+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
 "Language: el\n"
@@ -136,7 +136,7 @@ msgid "Videos must be in WebM."
 msgstr "Τα βίντεο πρέπει να είναι τύπου WebM."
 
 msgid "This theme is incompatible with your version of {0}"
-msgstr "Δεν είναι συμβατό αυτό το θέμα με την έκδοση του {0} που έχετε"
+msgstr "Αυτό το θέμα δεν είναι συμβατό με την έκδοση του {0} σας"
 
 msgid "Flagged for review"
 msgstr "Επισημάνθηκε για αξιολόγηση"
