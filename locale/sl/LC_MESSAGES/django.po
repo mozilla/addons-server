@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-24 16:50+0000\n"
-"PO-Revision-Date: 2021-08-28 10:17+0000\n"
+"PO-Revision-Date: 2021-08-28 10:23+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -485,7 +485,7 @@ msgid "This block was imported from a regex based legacy Block."
 msgstr ""
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
-msgstr ""
+msgstr "Nobena sprememba NE bo posodobljena v zastarelem seznamu blokad – spremembe morate opraviti ročno preko kinto admin webui."
 
 #, fuzzy, python-format
 msgid "Delete Multiple %(name)s"
@@ -496,11 +496,11 @@ msgstr "Domov"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr ""
+msgstr "%(count)s GUID-jev dodatkov je že blokiranih za %(v_min)s do %(v_max)s"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
-msgstr ""
+msgstr "%(count)s GUID-jev dodatkov ni bilo najdenih"
 
 msgid "The following block(s) were imported from a regex based legacy Block."
 msgstr ""
@@ -528,7 +528,7 @@ msgid "Add %(name)s"
 msgstr "Dodaj %(name)s"
 
 msgid "Add-on GUIDs (one per line)"
-msgstr ""
+msgstr "GUID-ji dodatkov (po en na vrstico)"
 
 msgid "Submit"
 msgstr "Pošlji"
@@ -882,9 +882,8 @@ msgstr ""
 msgid "Block edited"
 msgstr "Blokada urejena"
 
-#, fuzzy
 msgid "Block for {0} deleted from Blocklist."
-msgstr "Različica {0} za {addon} zbrisana."
+msgstr "Blokada za {0} je izbrisana s seznama blokad."
 
 msgid "Block deleted"
 msgstr "Blokada izbrisana"
@@ -1559,16 +1558,16 @@ msgid "Delay auto-approval indefinitely"
 msgstr "Odloži samodejno odobritev za nedoločen čas"
 
 msgid "Delay auto-approval indefinitely and add restrictions"
-msgstr ""
+msgstr "Odloži samodejno odobritev za nedoločen čas in dodaj omejitve"
 
 msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
 msgstr "Odloži samodejno odobritev za nedoločen čas in omeji prihodnje odobritve"
 
 msgid "True positive"
-msgstr ""
+msgstr "Resnično pozitivno"
 
 msgid "False positive"
-msgstr ""
+msgstr "Lažno pozitivno"
 
 msgid "Inconclusive"
 msgstr ""
@@ -4136,7 +4135,7 @@ msgstr "Zaščitite se pred najzahrbtnejšimi sledilci."
 
 #. editorial content for the discovery pane.
 msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
-msgstr "Iskanje z izboljšanim zavračanjem sledilcev, pametnim šifriranjem in drugimi prednostmi zasebnosti."
+msgstr "Iskanje z izboljšanim blokiranjem sledilcev, pametnim šifriranjem in drugimi izboljšavami zasebnosti."
 
 #. editorial content for the discovery pane.
 msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
@@ -4171,7 +4170,7 @@ msgstr "Berite z več jasnosti in enostavnosti. Odstranite nered okoli besedila 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Block ads and get enhanced protection against malware and ad tracking."
-msgstr "Zavrnite oglase in si zagotovite izboljšano zaščito pred zlonamerno programsko opremo in sledilci oglasov."
+msgstr "Blokirajte oglase in izboljšajte zaščito pred zlonamerno programsko opremo in oglaševalskimi sledilci."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4199,7 +4198,7 @@ msgstr "Prilagodite svetle in temne odtenke, da bodo spletne strani bolj vizualn
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
-msgstr ""
+msgstr "Blokirajte moteča spletna mesta. Preprosto naštejte spletna mesta, za katera želite, da jih razširitev blokira. V trenutku ustvarite red!"
 
 #. editorial content for the discovery pane.
 msgid "Find archived, dead, or otherwise disappeared web pages."
@@ -4278,7 +4277,7 @@ msgstr "Samodejno zamenjajte ponižujoče besede povsod na spletu."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr ""
+msgstr "Blokirajte vse oglase – videe, pojavna okna, pasice in več."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4842,7 +4841,7 @@ msgid "Delayed because it's the first listed version"
 msgstr "Zakasnjeno, ker je to prva navedena različica"
 
 msgid "Version string and guid match a blocklist Block"
-msgstr ""
+msgstr "Niz različice in guid se ujemata z blokado iz seznama blokad"
 
 #, fuzzy
 msgid "Weight breakdown not available."
@@ -4929,10 +4928,10 @@ msgid "This will reject the selected versions. The comments will be sent to the 
 msgstr "S tem boste zavrnili izbrane različice. Komentarji bodo poslani razvijalcu."
 
 msgid "Block Multiple Versions"
-msgstr "Zavrni več različic"
+msgstr "Blokiraj več različic"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr ""
+msgstr "To bo potihoma onemogočilo izbrane odobrene različice in odprlo skrbniško stran za ustvarjanje blokad."
 
 msgid "Confirm Multiple Versions"
 msgstr "Potrdi več različic"
@@ -5378,9 +5377,8 @@ msgstr "Izbriši zastavico za skrbnikov pregled vsebine"
 msgid "Clear Admin Static Theme Review Flag"
 msgstr "Izbriši zastavico za skrbnikov pregled statične teme"
 
-#, fuzzy
 msgid "View Blocklist Submission"
-msgstr "Ogled vseh prispevkov"
+msgstr "Prikaži prispevek na seznamu blokad"
 
 # 80%
 # 100%
