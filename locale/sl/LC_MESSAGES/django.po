@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-24 16:50+0000\n"
-"PO-Revision-Date: 2021-08-28 10:08+0000\n"
+"PO-Revision-Date: 2021-08-28 10:17+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -450,18 +450,18 @@ msgstr ""
 
 #, python-format
 msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
-msgstr ""
+msgstr "Blokada za GUID %(guid)s je samo za branje – urediti jo je treba preko zastarele zbirke seznamov blokad"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
-msgstr ""
+msgstr "Blokada z GUID %(guid)s ni bila najdena"
 
 #, python-format
 msgid "Addon with GUID %(guid)s does not exist"
 msgstr "Razširitev z GUID %(guid)s ne obstaja"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr ""
+msgstr "Blokade za posodobitev se razlikujejo, ker se je spremenila najnižja ali najvišja različica."
 
 #, python-format
 msgid "%(value)s contains *"
@@ -538,13 +538,13 @@ msgid "%(count)s Add-on GUIDs with %(adu)s users"
 msgstr "%(count)s GUID-jev dodatkov"
 
 msgid "Edit Block"
-msgstr ""
+msgstr "Uredi blokado"
 
 msgid "versions"
 msgstr "različice"
 
 msgid "Included in legacy blocklist."
-msgstr ""
+msgstr "Vključeno v zastarelem seznamu blokad."
 
 msgid "{addon} was created."
 msgstr "{addon} je bil ustvarjen."
@@ -871,24 +871,23 @@ msgid "User {user} api key reset."
 msgstr "Ključ api uporabnika {user} ponastavljen."
 
 msgid "Block for {0} added to Blocklist."
-msgstr ""
+msgstr "Blokada za {0} je dodana na seznam blokad."
 
 msgid "Block added"
-msgstr ""
+msgstr "Blokada dodana"
 
 msgid "Block for {0} edited in Blocklist."
 msgstr ""
 
 msgid "Block edited"
-msgstr ""
+msgstr "Blokada urejena"
 
 #, fuzzy
 msgid "Block for {0} deleted from Blocklist."
 msgstr "Različica {0} za {addon} zbrisana."
 
-#, fuzzy
 msgid "Block deleted"
-msgstr "Dodatek izbrisan."
+msgstr "Blokada izbrisana"
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr ""
@@ -1562,9 +1561,8 @@ msgstr "Odloži samodejno odobritev za nedoločen čas"
 msgid "Delay auto-approval indefinitely and add restrictions"
 msgstr ""
 
-#, fuzzy
 msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
-msgstr "Odloži samodejno odobritev za nedoločen čas"
+msgstr "Odloži samodejno odobritev za nedoločen čas in omeji prihodnje odobritve"
 
 msgid "True positive"
 msgstr ""
@@ -1718,7 +1716,7 @@ msgid "Version {version} matches {block_link} for this add-on. You can contact {
 msgstr ""
 
 msgid "a blocklist entry"
-msgstr ""
+msgstr "vnos v seznam blokad"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Različica {version} je bila v preteklosti že naložena in izbrisana."
@@ -4340,9 +4338,8 @@ msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Goodbye, annoying cookie warnings!"
-msgstr "Poberite se, obvestila o piškotkih!"
+msgstr "Zbogom, nadležna obvestila o piškotkih!"
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4901,9 +4898,8 @@ msgstr "Različice na seznamu, ki potrebujejo človeški pregled ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Drugi čakajoči na pregled ({0})"
 
-#, fuzzy
 msgid "Listed version"
-msgstr "Navedene različice"
+msgstr "Navedena različica"
 
 msgid "Unlisted versions ({0})"
 msgstr "Nenavedene različice ({0})"
@@ -5082,12 +5078,11 @@ msgstr "Informacije o dodatku za {0}"
 msgid "Add-on ID"
 msgstr "ID dodatka"
 
-#, fuzzy
 msgid "Original Add-on ID"
-msgstr "Podpiši dodatek"
+msgstr "Prvotni ID dodatka"
 
 msgid "Add-on(s) sharing same ID"
-msgstr ""
+msgstr "Dodatki, ki imajo enak ID"
 
 msgid "Internal AMO ID"
 msgstr "Notranji ID AMO"
@@ -5101,9 +5096,8 @@ msgstr "Vidnost"
 msgid "Visible"
 msgstr "Viden"
 
-#, fuzzy
 msgid "Weekly Downloads"
-msgstr "Prenosi"
+msgstr "Prenosov na teden"
 
 msgid "Average Daily Users"
 msgstr "Povprečno dnevni uporabniki"
@@ -5226,9 +5220,8 @@ msgstr ""
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr ""
 
-#, fuzzy
 msgid "Pending Rejection – Add-ons for Firefox"
-msgstr "Dnevnik pregledov dodatkov – Dodatki za Firefox"
+msgstr "Čakajoči na zavrnitev – Dodatki za Firefox"
 
 msgid "Advanced Search"
 msgstr "Napredno iskanje"
@@ -5276,9 +5269,8 @@ msgstr "Pregled vsebine {0}"
 msgid "Review {0}"
 msgstr "Preglej {0}"
 
-#, fuzzy
 msgid "Add-on important changes history"
-msgstr "Zgodovina uporabniških sprememb dodatka"
+msgstr "Zgodovina pomembnih sprememb dodatka"
 
 msgid "Add-on History"
 msgstr "Zgodovina dodatka"
@@ -5286,9 +5278,8 @@ msgstr "Zgodovina dodatka"
 msgid "You don't have permission to review it."
 msgstr "Nimate dovoljenja za pregled."
 
-#, fuzzy
 msgid "Please select one or more versions in the list below."
-msgstr "Izberite eno ali več različic na zgornjem seznamu."
+msgstr "Izberite eno ali več različic na spodnjem seznamu."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr "Ta obrazec lahko še vedno uporabite, vendar le v primeru, če veste, da ne bo sporov."
@@ -5320,16 +5311,14 @@ msgstr "Več dejanj"
 msgid "Notify me about new listed versions"
 msgstr "Obvesti me o novih dodatkih na seznamu"
 
-#, fuzzy
 msgid "Notify me about new unlisted versions"
-msgstr "Obvesti me o novih dodatkih na seznamu"
+msgstr "Obvesti me o novih nenavedenih različicah"
 
 msgid "Allow resubmission"
 msgstr "Dovoli ponovno oddajo"
 
-#, fuzzy
 msgid "Deny resubmission"
-msgstr "Urejaj moje prispevke"
+msgstr "Zavrni ponovno oddajo"
 
 msgid "Force-disable add-on"
 msgstr "Prisilno onemogoči dodatek"
@@ -5396,10 +5385,10 @@ msgstr "Ogled vseh prispevkov"
 # 80%
 # 100%
 msgid "Block add-on"
-msgstr "Zavrni dodatek"
+msgstr "Blokiraj dodatek"
 
 msgid "Update add-on block"
-msgstr ""
+msgstr "Posodobi blokado dodatka"
 
 msgid "(admin)"
 msgstr "(admin)"
@@ -5456,15 +5445,14 @@ msgstr "Datoteke v tej različici:"
 msgid "All Platforms"
 msgstr "Vse platforme"
 
-#, fuzzy
 msgid "Browse all files in this version"
-msgstr "Datoteke v tej različici:"
+msgstr "Prebrskaj vse datoteke v tej različici"
 
 msgid "Contents"
 msgstr "Vsebina"
 
 msgid "Compare this version to the last reviewed version"
-msgstr ""
+msgstr "Primerjaj to različico z zadnjo pregledano različico"
 
 msgid "Compare"
 msgstr "Primerjaj"
@@ -5472,9 +5460,8 @@ msgstr "Primerjaj"
 msgid "Permissions:"
 msgstr "Dovoljenja:"
 
-#, fuzzy
 msgid "Optional permissions:"
-msgstr "Dovoljenja:"
+msgstr "Neobvezna dovoljenja:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -5730,13 +5717,13 @@ msgid "by Source"
 msgstr "po izvoru"
 
 msgid "by Medium"
-msgstr ""
+msgstr "po mediju"
 
 msgid "by Content"
 msgstr "po vsebini"
 
 msgid "by Campaign"
-msgstr ""
+msgstr "po kampanji"
 
 msgid "Daily Users"
 msgstr "Dnevnih uporabnikov"
@@ -5754,7 +5741,7 @@ msgid "by Platform"
 msgstr "po platformi"
 
 msgid "by Country"
-msgstr ""
+msgstr "po državi"
 
 msgid "close"
 msgstr "zapri"
@@ -6108,6 +6095,8 @@ msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
 msgstr ""
+"Vnesite celotno e-poštno domeno, ki naj bo blokirana. Nadomestni znaki niso podprti: če jih potrebujete ali bi radi primerjavo s celotnim elektronskim sporočilom in ne le z domeno, uporabite "
+"\"Omejitve elektronske pošte\"."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
