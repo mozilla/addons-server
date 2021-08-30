@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-24 16:50+0000\n"
-"PO-Revision-Date: 2021-08-30 09:15+0000\n"
+"PO-Revision-Date: 2021-08-30 09:23+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1668,7 +1668,7 @@ msgstr[1] "Έχετε {0} πλεονάζουσες ετικέτες."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
-msgstr "Για να αλλάξετε την αρχική γλώσσα, θα πρέπει πρώτα να διαθέτετε το όνομα, την περιγραφή, και τη σύνοψη σ' αυτή τη γλώσσα. Σας λείπει %s."
+msgstr "Πριν αλλάξετε την προεπιλεγμένη σας γλώσσα, πρέπει να έχετε ορίσει όνομα, περίληψη και περιγραφή σε αυτή. Λείπουν: %s."
 
 msgid "Users can not be added directly"
 msgstr "Δεν είναι δυνατή η απευθείας προσθήκη χρηστών"
@@ -1989,7 +1989,7 @@ msgid "Review Policies and Rules"
 msgstr "Πολιτικές και κανόνες αξιολόγησης"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Έχω διαβάσει και αποδεχθεί αυτή τη συμφωνία, τους κανόνες και τις πολιτικές"
+msgstr "Έχω διαβάσει και αποδεχθεί αυτήν τη συμφωνία, τους κανόνες και τις πολιτικές"
 
 msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
 msgstr "Ο λογαριασμός σας απαιτεί ένα εμφανιζόμενο όνομα, ώστε να γνωρίζουν οι χρήστες από ποιον προέρχεται το πρόσθετό σας. Παρακαλούμε εισαγάγετε ένα όνομα παρακάτω."
@@ -2064,7 +2064,7 @@ msgid "After upload, a series of automated validation tests will be run on your 
 msgstr "Μετά τη μεταφόρτωση, μια σειρά από αυτόματους ελέγχους εγκυρότητας θα εκτελεστεί στο αρχείο σας."
 
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr "Θέλετε το πρόσθετό σας να διανεμηθεί σε αυτή την ιστοσελίδα;"
+msgstr "Θέλετε το πρόσθετό σας να διανεμηθεί σε αυτόν τον ιστότοπο;"
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 msgid "Validation Results for {0}"
@@ -2249,7 +2249,7 @@ msgid "Default Locale"
 msgstr "Προεπιλεγμένη γλώσσα"
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr "Οι πληροφορίες σχετικά με το πρόσθετό σας εμφανίζονται σε αυτή τη γλώσσα, εκτός κι αν την παρακάμψετε με μια μετάφραση για μια ορισμένη γλώσσα. Είναι σχετικό μόνο με αναγραφόμενα πρόσθετα."
+msgstr "Οι πληροφορίες σχετικά με το πρόσθετό σας εμφανίζονται σε αυτήν τη γλώσσα, εκτός κι αν την παρακάμψετε με μια μετάφραση για μια συγκεκριμένη γλώσσα. Αυτό αφορά μόνο τα καταχωρημένα πρόσθετα."
 
 msgid "Homepage"
 msgstr "Αρχική σελίδα"
@@ -2327,7 +2327,7 @@ msgid "Categories"
 msgstr "Κατηγορίες"
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
-msgstr "Οι κατηγορίες είναι ο κύριος τρόπος με τον οποίο οι χρήστες περιηγούνται στα πρόσθετα. Επιλέξτε αυτή που ταιριάζει στη λειτουργία του προσθέτου σας για μέγιστη προβολή."
+msgstr "Οι κατηγορίες είναι ο κύριος τρόπος με τον οποίο οι χρήστες περιηγούνται στα πρόσθετα. Επιλέξτε αυτήν που ταιριάζει στη λειτουργία του προσθέτου σας για μέγιστη προβολή."
 
 msgid "Email"
 msgstr "Email"
@@ -2474,7 +2474,7 @@ msgid "Yes, as long as they share alike"
 msgstr "Ναι, εφόσον μοιράζονται την ίδια"
 
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
-msgstr "Ο αδειοδότης επιτρέπει σε άλλους να διανέμουν παράγωγα έργα μόνο υπό την ίδια άδεια ή μια συμβατή με αυτή του έργου."
+msgstr "Ο δικαιοπάροχος επιτρέπει σε άλλους να διανέμουν παράγωγα έργα μόνο υπό την ίδια άδεια ή μια συμβατή με αυτήν του έργου."
 
 msgid "Your Add-on will be released under the following license:"
 msgstr "Το πρόσθετό σας θα εκδοθεί υπό την ακόλουθη άδεια:"
@@ -2489,7 +2489,7 @@ msgid "Your add-on is currently set to \"Invisible\"."
 msgstr "Το πρόσθετό σας έχει οριστεί σε «Αόρατο»."
 
 msgid "While in this state, \"On your own\" is the only distribution method available."
-msgstr "Σε αυτή την κατάσταση, το «Προσωπικά» είναι η μόνη διαθέσιμη μέθοδος διανομής."
+msgstr "Σε αυτήν την κατάσταση, το «Προσωπικά» είναι η μόνη διαθέσιμη μέθοδος διανομής."
 
 msgid "General Tests"
 msgstr "Γενικές δοκιμές"
@@ -2544,7 +2544,7 @@ msgid "Delete this add-on."
 msgstr "Διαγραφή του πρόσθετου."
 
 msgid "Edit details on this add-on's product page"
-msgstr "Επεξεργασία λεπτομερειών σχετικά με αυτή τη σελίδα προϊόντος προσθέτου"
+msgstr "Επεξεργασία λεπτομερειών σχετικά με αυτήν τη σελίδα προϊόντος του προσθέτου"
 
 msgid "Upload a new version of this add-on"
 msgstr "Μεταφόρτωση νέας έκδοσης αυτού του προσθέτου"
@@ -2589,7 +2589,7 @@ msgid "Cancel and Disable Version"
 msgstr "Ακύρωση και απενεργοποίηση έκδοσης"
 
 msgid "Are you sure you wish to cancel and disable version?"
-msgstr "Θέλετε σίγουρα να ακυρώσετε και να απενεργοποιήσετε αυτή την έκδοση;"
+msgstr "Θέλετε σίγουρα να ακυρώσετε και να απενεργοποιήσετε την έκδοση;"
 
 msgid "Yes, Cancel"
 msgstr "Ναι, ακύρωση"
@@ -2634,7 +2634,7 @@ msgstr "Αυτό το πρόσθετο είναι πειραματικό"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
-"Ενεργοποιήστε αυτή την επιλογή αν το πρόσθετό σας είναι πειραματικό ή όχι έτοιμο για γενική χρήση. Το πρόσθετο θα αναγράφεται, αλλά με μειωμένη ορατότητα. Μπορείτε να αλλάξετε αργότερα αυτή τη "
+"Ενεργοποιήστε αυτήν την επιλογή αν το πρόσθετό σας είναι πειραματικό ή όχι έτοιμο για γενική χρήση. Το πρόσθετο θα καταχωρηθεί, αλλά με μειωμένη ορατότητα. Μπορείτε να αλλάξετε αργότερα αυτήν τη "
 "ρύθμιση."
 
 msgid "Select a category for this add-on:"
@@ -2685,7 +2685,7 @@ msgid "Release Notes:"
 msgstr "Σημειώσεις έκδοσης:"
 
 msgid "Let your users know what's new and what's changed in this version."
-msgstr "Οι χρήστες ενημερώνονται για οποιεσδήποτε αλλαγές και προσθήκες σε αυτή την έκδοση."
+msgstr "Ενημερώστε τους χρήστες για ό,τι νέο υπάρχει και έχει αλλάξει σε αυτήν την έκδοση."
 
 msgid "These notes will appear on the detail page."
 msgstr "Αυτές οι σημειώσεις θα εμφανίζονται στη σελίδα λεπτομερειών."
@@ -2728,7 +2728,7 @@ msgstr "Διαχείριση καταχώρησης"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
 msgstr ""
-"Μπορείτε επίσης να επεξεργαστείτε αυτή την έκδοση για να προσθέσετε σημειώσεις έκδοσης ή πηγαίο κώδικα, αν η υποβολή σας περιέχει ελαχιστοποιημένο, συνενωμένο ή με άλλο τρόπο δημιουργημένο κώδικα."
+"Μπορείτε επίσης να επεξεργαστείτε αυτήν την έκδοση για να προσθέσετε σημειώσεις έκδοσης ή πηγαίο κώδικα, αν η υποβολή σας περιέχει ελαχιστοποιημένο, συνενωμένο ή με άλλο τρόπο δημιουργημένο κώδικα."
 
 msgid "Edit version {0}"
 msgstr "Επεξεργασία έκδοσης {0}"
@@ -2737,7 +2737,7 @@ msgid "Version Signature Pending"
 msgstr "Εκκρεμεί η υπογραφή έκδοσης"
 
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
-msgstr "Τελειώσατε! Αυτή η έκδοση θα υπογραφεί σύντομα για αυτόματη διανομή. Θα ειδοποιηθείτε μέσω email όταν το υπογεγγραμμένο αρχείο είναι έτοιμο προς λήψη."
+msgstr "Τελειώσατε! Αυτή η έκδοση θα υπογραφεί σύντομα για αυτόματη διανομή. Θα ειδοποιηθείτε μέσω email όταν το υπογεγραμμένο αρχείο είναι έτοιμο προς λήψη."
 
 msgid "Go to My Submissions"
 msgstr "Μετάβαση στις υποβολές μου"
@@ -2923,7 +2923,7 @@ msgid "Please click the confirm button below to generate API credentials for use
 msgstr "Παρακαλούμε κάντε κλικ στο κουμπί επιβεβαίωσης παρακάτω για να δημιουργήσετε διαπιστευτήρια API για το χρήστη <strong>%(name)s</strong>."
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr "Θα αποσταλεί ένας σύνδεσμος επιβεβαίωσης στη διεύθυνση email σας. Μετά την επιβεβαίωση, θα βρείτε τα κλειδιά API σε αυτή τη σελίδα."
+msgstr "Θα αποσταλεί ένας σύνδεσμος επιβεβαίωσης στη διεύθυνση email σας. Μετά την επιβεβαίωση, θα βρείτε τα κλειδιά API σε αυτήν τη σελίδα."
 
 msgid "You don't have any API credentials."
 msgstr "Δεν έχετε κανένα διαπιστευτήριο API."
