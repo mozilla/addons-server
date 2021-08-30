@@ -836,7 +836,7 @@ def upload_detail(request, uuid, format='html'):
     if upload.user_id and not request.user.is_authenticated:
         return redirect_for_login(request)
 
-    if format == 'json' or request.is_ajax():
+    if format == 'json':
         try:
             response = json_upload_detail(request, upload)
             statsd.incr('devhub.upload_detail.success')
