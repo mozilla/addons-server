@@ -52,8 +52,6 @@ class FileAdmin(admin.ModelAdmin):
             {
                 'fields': (
                     'strict_compatibility',
-                    'binary',
-                    'binary_components',
                     'is_signed',
                     'is_experiment',
                     'is_webextension',

@@ -1429,18 +1429,6 @@ class TestAddonModels(TestCase):
         appname = getattr(amo.APP_IDS.get(amo.FIREFOX.id), 'short', '')
         assert addon.app_categories.get(appname)[0].name in names
 
-    def test_binary_property(self):
-        addon = Addon.objects.get(id=3615)
-        file = addon.current_version.files.all()[0]
-        file.update(binary=True)
-        assert addon.binary
-
-    def test_binary_components_property(self):
-        addon = Addon.objects.get(id=3615)
-        file = addon.current_version.files.all()[0]
-        file.update(binary_components=True)
-        assert addon.binary_components
-
     def test_listed_has_complete_metadata_no_categories(self):
         addon = Addon.objects.get(id=3615)
         assert addon.has_complete_metadata()  # Confirm complete already.

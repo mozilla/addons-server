@@ -383,17 +383,7 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
                 )
 
     def test_baseline(self):
-        # Tests simple add-on (non-binary-components, non-strict).
-        self.check(self.expected)
-
-    def test_binary_components(self):
-        # Tests add-on with binary_components flag.
-        self.update_files(binary_components=True)
-        self.expected.update(
-            {
-                '8.0-normal': None,
-            }
-        )
+        # Tests simple add-on (non-strict_compatibility).
         self.check(self.expected)
 
     def test_strict_opt_in(self):

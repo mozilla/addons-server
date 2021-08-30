@@ -57,14 +57,6 @@ class File(OnChangeMixin, ModelBase):
     datestatuschanged = models.DateTimeField(null=True, auto_now_add=True)
     strict_compatibility = models.BooleanField(default=False)
     reviewed = models.DateTimeField(null=True, blank=True)
-    # The `binary` field is used to store the flags from amo-validator when it
-    # finds files with binary extensions or files that may contain binary
-    # content.
-    binary = models.BooleanField(default=False)
-    # The `binary_components` field is used to store the flag from
-    # amo-validator when it finds "binary-components" in the chrome manifest
-    # file, used for default to compatible.
-    binary_components = models.BooleanField(default=False)
     # Serial number of the certificate use for the signature.
     cert_serial_num = models.TextField(blank=True)
     # Is the file signed by Mozilla?
@@ -86,7 +78,6 @@ class File(OnChangeMixin, ModelBase):
         db_table = 'files'
         indexes = [
             models.Index(fields=('created', 'version'), name='created_idx'),
-            models.Index(fields=('binary_components',), name='files_cedd2560'),
             models.Index(
                 fields=('datestatuschanged', 'version'), name='statuschanged_idx'
             ),
@@ -637,15 +628,6 @@ class FileValidation(ModelBase):
     def from_json(cls, file, validation):
         if isinstance(validation, str):
             validation = json.loads(validation)
-
-        if 'metadata' in validation:
-            if validation['metadata'].get('contains_binary_extension') or validation[
-                'metadata'
-            ].get('contains_binary_content'):
-                file.update(binary=True)
-
-            if validation['metadata'].get('binary_components'):
-                file.update(binary_components=True)
 
         # Delete any past results.
         # We most often wind up with duplicate results when multiple requests

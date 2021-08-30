@@ -506,7 +506,7 @@ class Version(OnChangeMixin, ModelBase):
             [
                 file
                 for file in self.all_files
-                if file.binary_components or file.strict_compatibility
+                if file.strict_compatibility
             ]
         )
 

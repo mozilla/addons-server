@@ -297,7 +297,6 @@ def test_process_validation_ending_tier_is_preserved():
         'messages': [],
         'ending_tier': 5,
         'metadata': {
-            'contains_binary_extension': True,
             'version': '1.0',
             'name': 'gK0Bes Bot',
             'id': 'gkobes@gkobes',
