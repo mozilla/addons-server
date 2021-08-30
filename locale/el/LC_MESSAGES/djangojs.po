@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-24 16:51+0000\n"
-"PO-Revision-Date: 2021-08-30 09:11+0000\n"
+"PO-Revision-Date: 2021-08-30 11:32+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
 "Language: el\n"
@@ -520,11 +520,11 @@ msgstr "Συνεισφορές από {0} έως {1}"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
-msgstr "Μετρήσεις ιστοσελίδας, τελευταίες {0} ημέρες"
+msgstr "Δείκτες ιστοτόπου, τελευταίες {0} ημέρες"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Site Metrics from {0} to {1}"
-msgstr "Μετρήσεις ιστοσελίδας από {0} έως {1}"
+msgstr "Δείκτες ιστοτόπου από {0} έως {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons in Use, last {0} days"
