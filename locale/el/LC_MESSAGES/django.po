@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-24 16:50+0000\n"
-"PO-Revision-Date: 2021-08-27 06:19+0000\n"
+"PO-Revision-Date: 2021-08-30 09:15+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -284,9 +284,8 @@ msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
 msgstr ""
-"<h1>Ωχ! Προέκυψε σφάλμα.</h1> <p>Θα το διορθώσουμε το συντομότερο δυνατό.</p> <p> Μπορείτε να δοκιμάσετε να ανανεώσετε τη σελίδα, ή να επιστρέψετε στην <a href=\"%(home)s\">αρχική σελίδα των "
-"προσθέτων</a>. Μπορείτε επίσης να μας βοήθησετε να διορθώσουμε αυτό το ζήτημα, <a href=\"https://github.com/mozilla/addons/issues/new\">αναφέροντας το πρόβλημα</a> με λεπτομέρειες σχετικά με το πώς "
-"φτάσατε σε αυτή τη σελιδα. </p>"
+"<h1>Ωχ! Προέκυψε σφάλμα.</h1> <p>Θα το διορθώσουμε σύντομα.</p> <p>Δοκιμάστε να ανανεώσετε τη σελίδα ή επιστρέψτε στην <a href=\"%(home)s\">αρχική σελίδα των προσθέτων</a>. Μπορείτε επίσης να μας "
+"βοηθήσετε να επιλύσουμε αυτό το ζήτημα <a href=\"https://github.com/mozilla/addons/issues/new\">αναφέροντας το πρόβλημα</a> με λεπτομέρειες σχετικά με το πώς φτάσατε σε αυτήν τη σελίδα.</p>"
 
 msgid "Register or Log in"
 msgstr "Εγγραφή ή σύνδεση"
@@ -558,7 +557,7 @@ msgid "Included in legacy blocklist."
 msgstr "Περιλαμβάνεται στη λίστα μπλοκ παλαιού τύπου."
 
 msgid "{addon} was created."
-msgstr "Δημιουργήθηκε το {addon}."
+msgstr "Το {addon} δημιουργήθηκε."
 
 msgid "{addon} properties edited."
 msgstr "Έγινε επεξεργασία των ιδιοτήτων του {addon}."
@@ -735,13 +734,13 @@ msgid "{addon} {version} approved but waiting to be made public."
 msgstr "Το {addon} {version} επικυρώθηκε αλλά αναμένεται να γίνει δημόσιο."
 
 msgid "Approved but waiting"
-msgstr "Επικυρώθηκε αλλά αναμένεται"
+msgstr "Εγκρίθηκε αλλά αναμένεται"
 
 msgid "Account updated."
-msgstr "Ο λογαριασμός ανανεώθηκε."
+msgstr "Ο λογαριασμός ενημερώθηκε."
 
 msgid "Created: {0}."
-msgstr "Δημιουργήθηκε: {0}."
+msgstr "Δημιουργία: {0}."
 
 msgid "Edited field: {2} set to: {0}."
 msgstr "Επεξεργάστηκε το πεδίο: {2} ορίστηκε ως: {0}."
@@ -759,13 +758,13 @@ msgid "User {user} restricted."
 msgstr "Ο χρήστης {user} περιορίστηκε."
 
 msgid "Admin {0} viewed activity log for {user}."
-msgstr "Ο διαχειριστής {0} προέβαλε την καταγραφή δραστηριότητας για τον χρήστη {user}."
+msgstr "Ο διαχειριστής {0} είδε το αρχείο δραστηριότητας του/της {user}."
 
 msgid "{rating} for {addon} updated."
 msgstr "Ενημερώθηκε η βαθμολογία {rating} για το {addon}."
 
 msgid "{addon} reviewed."
-msgstr "{addon} αξιολογήθηκε."
+msgstr "Το {addon} ελέγχθηκε."
 
 msgid "User {user} banned."
 msgstr "Ο χρήστης {user} έχει αποκλειστεί."
@@ -1106,8 +1105,8 @@ msgstr "Εικόνες & πολυμέσα"
 
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 msgstr ""
-"Κάντε λήψη επεκτάσεων του Firefox που βελτιώνουν τις φωτογραφίες, τη μουσική και τα βίντεο. Οι επεκτάσεις σε αυτή την κατηγορία τροποποιούν τον ήχο και τα βίντεο, αντιστρέφουν την αναζήτηση εικόνων "
-"και πολλά άλλα."
+"Κάντε λήψη επεκτάσεων του Firefox που βελτιώνουν τις φωτογραφίες, τη μουσική και τα βίντεο. Οι επεκτάσεις σε αυτήν την κατηγορία τροποποιούν τον ήχο και τα βίντεο, κάνουν αντίστροφή αναζήτηση "
+"εικόνων και πολλά άλλα."
 
 msgid "Privacy & Security"
 msgstr "Απόρρητο & ασφάλεια"
@@ -4026,7 +4025,7 @@ msgstr "Αυτόματη πλοήγηση στην ασφαλή έκδοση μ�
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr "Διαγράψτε το ιστορικό περιήγησής σας. Καθορίστε έναν αριθμό ημερών που θα διατηρείται το ιστορικό του προγράμματος περιήγησης σας πριν την αυτόματη διαγραφή."
+msgstr "Διαγράψτε το ιστορικό περιήγησής σας. Καθορίστε έναν αριθμό ημερών που θα διατηρείται το ιστορικό του προγράμματος περιήγησης σας πριν από την αυτόματη διαγραφή."
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
@@ -4186,7 +4185,7 @@ msgstr "Διόρθωση ενοχλητικού ήχου. Είναι πολύ χ
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
-msgstr "Επεξεργασία ιστοσελίδας πριν την εκτύπωση. Πραγματοποιήστε οπτικές αλλαγές — καταργήστε τις διαφημίσεις ή το ανεπιθύμητο περιεχόμενο — από οποιαδήποτε ιστοσελίδα θέλετε να εκτυπώσετε."
+msgstr "Επεξεργασία ιστοσελίδας πριν από την εκτύπωση. Πραγματοποιήστε οπτικές αλλαγές — αφαιρέστε τις διαφημίσεις ή το ανεπιθύμητο περιεχόμενο — από οποιαδήποτε ιστοσελίδα θέλετε να εκτυπώσετε."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
@@ -4678,7 +4677,7 @@ msgid "Will you continue to use this add-on?"
 msgstr "Θα συνεχίσετε να χρησιμοποιείτε αυτό το πρόσθετο;"
 
 msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr "Αφιερώνετε λίγο χρόνο για να διαβάζετε την κριτική σας πριν την υποβολή, ώστε να ελαχιστοποιήσετε τα ορθογραφικά λάθη."
+msgstr "Αφιερώνετε λίγο χρόνο για να διαβάζετε την κριτική σας πριν από την υποβολή, ώστε να ελαχιστοποιήσετε τα ορθογραφικά λάθη."
 
 msgid "Don’t:"
 msgstr "Να μην:"
@@ -5255,7 +5254,7 @@ msgid "Review Text"
 msgstr "Κείμενο κριτικής"
 
 msgid "Review was flagged prior to deletion."
-msgstr "Η αξιολόγηση αναφέρθηκε πριν τη διαγραφή."
+msgstr "Η αξιολόγηση αναφέρθηκε πριν από τη διαγραφή."
 
 msgid "Undelete"
 msgstr "Αναίρεση διαγραφής"

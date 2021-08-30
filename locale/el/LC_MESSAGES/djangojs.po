@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-24 16:51+0000\n"
-"PO-Revision-Date: 2021-08-27 06:20+0000\n"
+"PO-Revision-Date: 2021-08-30 09:11+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
 "Language: el\n"
@@ -69,7 +69,7 @@ msgid "Your add-on exceeds the maximum size of {0}."
 msgstr "Το πρόσθετό σας ξεπερνά το μέγιστο μέγεθος των {0}."
 
 msgid "Received an empty response from the server; status: {0}"
-msgstr "Η απάντηση του εξυπηρετητή ήταν κενή; κατάσταση: {0}"
+msgstr "Ελήφθη κενή απάντηση από τον διακομιστή· κατάσταση: {0}"
 
 msgid "Unexpected server error while validating."
 msgstr "Απρόσμενο σφάλμα διακομιστή κατά την επικύρωση."
@@ -108,7 +108,7 @@ msgid "Add-on submission checklist"
 msgstr "Λίστα καταχωρήσεων προσθέτων"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr "Παρακαλούμε επιβεβαιώστε τα παρακάτω σημεία πριν την ολοκλήρωση της υποβολής σας. Αυτό θα μειώσει τυχόν καθυστερήσεις ή ασάφειες κατά τη διαδικασία της αξιολόγησης:"
+msgstr "Παρακαλούμε επιβεβαιώστε τα παρακάτω σημεία πριν από την ολοκλήρωση της υποβολής σας. Αυτό θα μειώσει τυχόν καθυστερήσεις ή ασάφειες κατά τη διαδικασία της αξιολόγησης:"
 
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
@@ -710,13 +710,13 @@ msgid "This feature is temporarily disabled while we perform website maintenance
 msgstr "Αυτή η λειτουργία έχει απενεργοποιηθεί προσωρινά λόγω εκτέλεσης εργασιών συντήρησης στον ιστότοπο. Παρακαλούμε δοκιμάστε ξανά αργότερα."
 
 msgid "Remove this localization"
-msgstr "Αφαίρεση αυτής της μετάφρασης"
+msgstr "Αφαίρεση μετάφρασης"
 
 msgid "{name} was viewing this page first."
 msgstr "Ο/Η {name} είχε φορτώσει τη σελίδα πριν από εσάς."
 
 msgid "{name} was viewing this add-on first."
-msgstr "Ο χρήστης {name} είδε αυτό το πρόσθετο πρώτος."
+msgstr "Ο/Η {name} είδε αυτό το πρόσθετο πρώτα."
 
 msgid "Loading&hellip;"
 msgstr "Γίνεται φόρτωση&hellip;"
@@ -788,7 +788,7 @@ msgid "{0} line {1}"
 msgstr "{0} γραμμή {1}"
 
 msgid "Add-on failed validation."
-msgstr "Το πρόσθετο απέτυχε να επικυρωθεί."
+msgstr "Αποτυχία επικύρωσης προσθέτου."
 
 msgid "Add-on passed validation."
 msgstr "Το πρόσθετο επικυρώθηκε."
