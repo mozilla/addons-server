@@ -502,13 +502,7 @@ class Version(OnChangeMixin, ModelBase):
         default."""
         # Use self.all_files directly since that's cached and more potentially
         # prefetched through a transformer already
-        return not any(
-            [
-                file
-                for file in self.all_files
-                if file.strict_compatibility
-            ]
-        )
+        return not any([file for file in self.all_files if file.strict_compatibility])
 
     def is_compatible_app(self, app):
         """Returns True if the provided app passes compatibility conditions."""
