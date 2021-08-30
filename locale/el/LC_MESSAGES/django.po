@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-24 16:50+0000\n"
-"PO-Revision-Date: 2021-08-30 11:34+0000\n"
+"PO-Revision-Date: 2021-08-30 11:35+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4146,7 +4146,7 @@ msgstr "Πάρτε τον πλήρη έλεγχο των cookie που συγκ�
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
-msgstr "Διαγράψτε αυτόματα το ιστορικό περιήγησης για τις επιλεγμένες σας ιστοσελίδες."
+msgstr "Διαγράψτε αυτόματα το ιστορικό περιήγησης για τους επιλεγμένους σας ιστοτόπους."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4176,11 +4176,11 @@ msgstr "Αξιοποιήστε τη δυνατότητα λήψης βίντεο
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
-msgstr "Μάθετε πού βρίσκεται γεωγραφικά ο διακομιστής κάθε ιστοσελίδας. Γίνετε ενημερωμένοι ταξιδιώτες του web."
+msgstr "Μάθετε πού βρίσκεται γεωγραφικά ο διακομιστής κάθε ιστοτόπου. Γίνετε ενημερωμένοι ταξιδιώτες του ιστού."
 
 #. editorial content for the discovery pane.
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr "Διόρθωση ενοχλητικού ήχου. Είναι πολύ χαμηλή η ένταση σε κάποια ιστοσελίδα; Πολύ υψηλή; Το SoundFixer μπορεί να βοηθήσει."
+msgstr "Διόρθωση ενοχλητικού ήχου. Είναι πολύ χαμηλή η ένταση σε κάποιον ιστότοπο; Πολύ υψηλή; Το SoundFixer μπορεί να βοηθήσει."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
