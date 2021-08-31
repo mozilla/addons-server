@@ -13,7 +13,7 @@ class Tag(ModelBase):
         'addons.Addon', through='AddonTag', related_name='tags'
     )
     num_addons = models.IntegerField(default=0)
-    enable_for_random_shelf = models.BooleanField(default=True)
+    enable_for_random_shelf = models.BooleanField(default=True, db_index=True)
 
     class Meta:
         db_table = 'tags'

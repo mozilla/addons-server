@@ -67,12 +67,12 @@ class Shelf(ModelBase):
 
     @cached_property
     def tag(self):
-        tag_qs = Tag.objects.filter(enable_for_random_shelf=True).order_by('?')
-        return (
-            tag.tag_text
-            if self.endpoint == self.Endpoints.RANDOM_TAG and (tag := tag_qs.first())
-            else None
+        tag_qs = (
+            Tag.objects.filter(enable_for_random_shelf=True)
+            .order_by('?')
+            .values_list('tag_text', flat=True)
         )
+        return tag_qs.first() if self.endpoint == self.Endpoints.RANDOM_TAG else None
 
     def get_param_dict(self):
         params = dict(parse.parse_qsl(self.criteria.strip('?')))
