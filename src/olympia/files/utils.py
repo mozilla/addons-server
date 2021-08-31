@@ -452,6 +452,11 @@ class ManifestJSONExtractor(object):
                 ugettext('GUID is required for Thunderbird Mail Extensions, including Themes.')
             )
 
+        if self.is_experiment and not self.strict_max_version:
+            raise forms.ValidationError(
+                ugettext('A "strict_max_version" is required for Thunderbird Mail Experiments.')
+            )
+
         # If a minimum strict version is specified, it needs to be higher
         # than the version when Firefox started supporting WebExtensions
         # (We silently ignore apps that the add-on is not compatible with
@@ -532,18 +537,23 @@ class ManifestJSONExtractor(object):
         if self.certinfo is not None:
             data.update(self.certinfo.parse())
 
+        # Langpacks, legacy add-ons, and experiments have strict compatibility
+        # enabled, rest of webextensions don't.
+        strict_compatibility = (
+            self.get('legacy') is not None
+            or data['type'] == amo.ADDON_LPAPP
+            or self.is_experiment
+        )
         if not minimal:
             data.update({
                 'name': self.get('name'),
                 'homepage': self.get('homepage_url'),
                 'summary': self.get('description'),
-                'is_restart_required': self.get('legacy') is not None, 
+                'is_restart_required': self.get('legacy') is not None,
                 'apps': list(self.apps()),
                 'e10s_compatibility': amo.E10S_COMPATIBLE_WEBEXTENSION,
-                # Langpacks and legacy add-ons have strict compatibility enabled, rest of
-                # webextensions don't.
-                'strict_compatibility': self.get('legacy') is not None or data['type'] == amo.ADDON_LPAPP,
-                'default_locale': self.get('default_locale'),     
+                'strict_compatibility': strict_compatibility,
+                'default_locale': self.get('default_locale'),
                 'is_experiment': self.is_experiment,
             })
             if self.type == amo.ADDON_EXTENSION:
