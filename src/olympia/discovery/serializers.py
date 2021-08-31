@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from olympia.addons.models import Addon
 from olympia.addons.serializers import AddonSerializer, VersionSerializer
+from olympia.constants.applications import THUNDERBIRD
 from olympia.discovery.models import DiscoveryItem
 from olympia.versions.models import Version
 
@@ -34,6 +35,12 @@ class DiscoveryVersionSerializer(VersionSerializer):
     class Meta:
         fields = ('compatibility', 'is_strict_compatibility_enabled', 'files',)
         model = Version
+
+    def to_representation(self, obj):
+        addon = obj.addon
+        request = self.context.get('request')
+        version = addon.latest_compatible_version(request, THUNDERBIRD)[0]
+        return super(VersionSerializer, self).to_representation(version)
 
 
 class DiscoveryAddonSerializer(AddonSerializer):
