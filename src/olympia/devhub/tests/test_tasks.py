@@ -425,28 +425,6 @@ class TestRunAddonsLinter(UploadTest, ValidatorTestCase):
         self.file = File.objects.get(pk=self.file.pk)
         assert self.file.has_been_validated
 
-    def test_binary_flag_set_on_addon_for_binary_extensions(self):
-        results = {
-            'errors': 0,
-            'success': True,
-            'warnings': 0,
-            'notices': 0,
-            'message_tree': {},
-            'messages': [],
-            'metadata': {
-                'contains_binary_extension': True,
-                'version': '1.0',
-                'name': 'gK0Bes Bot',
-                'id': 'gkobes@gkobes',
-            },
-        }
-        self.addon = addon_factory()
-        self.file = self.addon.current_version.all_files[0]
-        assert not self.addon.binary
-        tasks.handle_file_validation_result(results, self.file.pk)
-        self.addon = Addon.objects.get(pk=self.addon.pk)
-        assert self.addon.binary
-
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_calls_run_linter(self, run_addons_linter_mock):
         run_addons_linter_mock.return_value = '{"errors": 0}'

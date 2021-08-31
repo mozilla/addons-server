@@ -81,7 +81,7 @@ class TestSigning(TestCase):
 
         # Old, and not default to compatible.
         max_appversion.update(version='4', version_int=version_int('4'))
-        self.file_.update(binary_components=True, strict_compatibility=True)
+        self.file_.update(strict_compatibility=True)
         self.assert_not_signed()
         signing.sign_file(self.file_)
         self.assert_signed()
@@ -93,7 +93,7 @@ class TestSigning(TestCase):
         max_appversion.update(
             application=amo.ANDROID.id, version='4', version_int=version_int('4')
         )
-        self.file_.update(binary_components=True, strict_compatibility=True)
+        self.file_.update(strict_compatibility=True)
         self.assert_not_signed()
         signing.sign_file(self.file_)
         self.assert_signed()
@@ -103,7 +103,7 @@ class TestSigning(TestCase):
 
         # Old, and default to compatible.
         max_appversion.update(version='4', version_int=version_int('4'))
-        self.file_.update(binary_components=False, strict_compatibility=False)
+        self.file_.update(strict_compatibility=False)
         self.assert_not_signed()
         signing.sign_file(self.file_)
         self.assert_signed()
@@ -115,7 +115,7 @@ class TestSigning(TestCase):
         max_appversion.update(
             application=amo.ANDROID.id, version='4', version_int=version_int('4')
         )
-        self.file_.update(binary_components=False, strict_compatibility=False)
+        self.file_.update(strict_compatibility=False)
         self.assert_not_signed()
         signing.sign_file(self.file_)
         self.assert_signed()
@@ -125,7 +125,7 @@ class TestSigning(TestCase):
 
         # Recent, default to compatible.
         max_appversion.update(version='37', version_int=version_int('37'))
-        self.file_.update(binary_components=False, strict_compatibility=False)
+        self.file_.update(strict_compatibility=False)
         self.assert_not_signed()
         signing.sign_file(self.file_)
         self.assert_signed()
@@ -137,7 +137,7 @@ class TestSigning(TestCase):
         max_appversion.update(
             application=amo.ANDROID.id, version='37', version_int=version_int('37')
         )
-        self.file_.update(binary_components=True, strict_compatibility=True)
+        self.file_.update(strict_compatibility=True)
         self.assert_not_signed()
         signing.sign_file(self.file_)
         self.assert_signed()

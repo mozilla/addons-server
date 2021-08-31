@@ -478,15 +478,6 @@ class TestVersion(TestCase):
         assert not version.is_compatible_by_default
         assert version.is_compatible_app(amo.FIREFOX)
 
-    def test_is_compatible_by_default_binary_components(self):
-        # Add-ons using binary components should not be compatible by default.
-        addon = Addon.objects.get(id=3615)
-        version = version_factory(addon=addon)
-        file = version.all_files[0]
-        file.update(binary_components=True)
-        assert not version.is_compatible_by_default
-        assert version.is_compatible_app(amo.FIREFOX)
-
     def test_is_compatible_app_max_version(self):
         # Add-ons with max app version < 4.0 should not be compatible.
         addon = Addon.objects.get(id=3615)
@@ -1880,7 +1871,7 @@ class TestStaticThemeFromUpload(UploadTest):
 class TestApplicationsVersions(TestCase):
     def setUp(self):
         super().setUp()
-        self.version_kw = dict(min_app_version='5.0', max_app_version='6.*')
+        self.version_kw = {'min_app_version': '5.0', 'max_app_version': '6.*'}
 
     def test_repr_when_compatible(self):
         addon = addon_factory(version_kw=self.version_kw)
@@ -1889,14 +1880,7 @@ class TestApplicationsVersions(TestCase):
 
     def test_repr_when_strict(self):
         addon = addon_factory(
-            version_kw=self.version_kw, file_kw=dict(strict_compatibility=True)
-        )
-        version = addon.current_version
-        assert str(version.apps.all()[0]) == 'Firefox 5.0 - 6.*'
-
-    def test_repr_when_binary(self):
-        addon = addon_factory(
-            version_kw=self.version_kw, file_kw=dict(binary_components=True)
+            version_kw=self.version_kw, file_kw={'strict_compatibility': True}
         )
         version = addon.current_version
         assert str(version.apps.all()[0]) == 'Firefox 5.0 - 6.*'
@@ -1912,13 +1896,15 @@ class TestApplicationsVersions(TestCase):
 
     def test_repr_when_low_app_support(self):
         addon = addon_factory(
-            version_kw=dict(min_app_version='3.0', max_app_version='3.5')
+            version_kw={'min_app_version': '3.0', 'max_app_version': '3.5'}
         )
         version = addon.current_version
         assert str(version.apps.all()[0]) == 'Firefox 3.0 - 3.5'
 
     def test_repr_when_unicode(self):
-        addon = addon_factory(version_kw=dict(min_app_version='ك', max_app_version='ك'))
+        addon = addon_factory(
+            version_kw={'min_app_version': 'ك', 'max_app_version': 'ك'}
+        )
         version = addon.current_version
         assert str(version.apps.all()[0]) == 'Firefox ك - ك'
 

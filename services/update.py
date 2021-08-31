@@ -136,12 +136,11 @@ class Update:
             pass  # no further SQL modification required.
 
         elif self.compat_mode == 'normal':
-            # When file has strict_compatibility enabled, or file has binary
-            # components, default to compatible is disabled.
+            # When file has strict_compatibility enabled, default to compatible
+            # is disabled.
             sql.append(
                 """AND
-                CASE WHEN `files`.`strict_compatibility` = 1 OR
-                          `files`.`binary_components` = 1
+                CASE WHEN `files`.`strict_compatibility` = 1
                 THEN `appmax`.`version_int` >= %(version_int)s ELSE 1 END
             """
             )

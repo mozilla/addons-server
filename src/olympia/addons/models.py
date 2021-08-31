@@ -1161,22 +1161,6 @@ class Addon(OnChangeMixin, ModelBase):
         channel=RELEASE_CHANNEL_UNLISTED)."""
         return self.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
 
-    @cached_property
-    def binary(self):
-        """Returns if the current version has binary files."""
-        version = self.current_version
-        if version:
-            return version.files.filter(binary=True).exists()
-        return False
-
-    @cached_property
-    def binary_components(self):
-        """Returns if the current version has files with binary_components."""
-        version = self.current_version
-        if version:
-            return version.files.filter(binary_components=True).exists()
-        return False
-
     def get_icon_dir(self):
         return os.path.join(
             jinja_helpers.user_media_path('addon_icons'), '%s' % (self.id // 1000)

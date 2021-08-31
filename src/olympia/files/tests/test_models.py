@@ -778,54 +778,6 @@ class TestFileUpload(UploadTest):
         upload = FileUpload.from_post(b'', '\u05d0\u05d5\u05e1\u05e3.xpi', 0)
         assert 'xpi' in upload.name
 
-    def test_validator_sets_binary_via_extensions(self):
-        validation = json.dumps(
-            {
-                'errors': 0,
-                'success': True,
-                'warnings': 0,
-                'notices': 0,
-                'message_tree': {},
-                'messages': [],
-                'metadata': {
-                    'contains_binary_extension': True,
-                    'version': '1.0',
-                    'name': 'gK0Bes Bot',
-                    'id': 'gkobes@gkobes',
-                },
-            }
-        )
-        upload = self.get_upload(filename='webextension.xpi', validation=validation)
-        addon = Addon.objects.get(pk=3615)
-        addon.update(guid='@webextension-guid')
-        parsed_data = parse_addon(upload, addon=addon, user=user_factory())
-        file_ = File.from_upload(upload, addon.current_version, parsed_data=parsed_data)
-        assert file_.binary
-
-    def test_validator_sets_binary_via_content(self):
-        validation = json.dumps(
-            {
-                'errors': 0,
-                'success': True,
-                'warnings': 0,
-                'notices': 0,
-                'message_tree': {},
-                'messages': [],
-                'metadata': {
-                    'contains_binary_content': True,
-                    'version': '1.0',
-                    'name': 'gK0Bes Bot',
-                    'id': 'gkobes@gkobes',
-                },
-            }
-        )
-        upload = self.get_upload(filename='webextension.xpi', validation=validation)
-        addon = Addon.objects.get(pk=3615)
-        addon.update(guid='@webextension-guid')
-        parsed_data = parse_addon(upload, addon=addon, user=user_factory())
-        file_ = File.from_upload(upload, addon.current_version, parsed_data=parsed_data)
-        assert file_.binary
-
     @override_settings(VALIDATOR_MESSAGE_LIMIT=10)
     def test_limit_validator_warnings(self):
         data = {
