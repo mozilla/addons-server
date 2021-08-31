@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "@claviska/jquery-minicolors": "2.3.5",
-    "addons-linter": "3.12.0",
+    "addons-linter": "3.13.0",
     "clean-css": "5.1.5",
     "clean-css-cli": "5.3.3",
     "jqmodal": "1.4.2",
