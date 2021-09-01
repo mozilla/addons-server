@@ -210,6 +210,7 @@ class TestWriteSitemaps(TestCase):
 
         # but it does work on its own, to generate all relevant sitemaps
         write_sitemaps(app_name='android')
-        assert len(os.listdir(sitemaps_dir)) == 2
+        assert len(os.listdir(sitemaps_dir)) == 3
         assert os.path.exists(os.path.join(sitemaps_dir, 'sitemap-addons-android.xml'))
         assert os.path.exists(os.path.join(sitemaps_dir, 'sitemap-users-android.xml'))
+        assert os.path.exists(os.path.join(sitemaps_dir, 'sitemap-tags-android.xml'))

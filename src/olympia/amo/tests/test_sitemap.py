@@ -18,6 +18,7 @@ from olympia.amo.sitemap import (
     get_sitemap_section_pages,
     get_sitemaps,
     render_index_xml,
+    TagPagesSitemap,
 )
 from olympia.amo.reverse import override_url_prefix
 from olympia.amo.tests import (
@@ -30,6 +31,7 @@ from olympia.amo.tests import (
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.promoted import RECOMMENDED
 from olympia.ratings.models import Rating
+from olympia.tags.models import Tag
 
 from .test_views import TEST_SITEMAPS_DIR
 
@@ -582,6 +584,44 @@ class TestAccountSitemap(TestCase):
             ]
 
 
+def test_tag_pages_sitemap():
+    # without any addons we should still generate a url for each tag page
+    empty_tag_pages = list(TagPagesSitemap().items())
+    assert empty_tag_pages == [(tag, 1) for tag in Tag.objects.all()]
+    # add some addons and check we generate extra pages when frontend would paginate
+    zoom_tag = Tag.objects.get(tag_text='zoom')
+    shopping_tag = Tag.objects.get(tag_text='shopping')
+    addon_factory(tags=(zoom_tag.tag_text, shopping_tag.tag_text))
+    addon_factory(tags=(zoom_tag.tag_text, shopping_tag.tag_text))
+
+    addon_factory(tags=(zoom_tag.tag_text,))
+    addon_factory(tags=(zoom_tag.tag_text,))
+    addon_factory(tags=(zoom_tag.tag_text,))
+    addon_factory(tags=(shopping_tag.tag_text,), status=amo.STATUS_NOMINATED)
+    addon_factory(
+        tags=(shopping_tag.tag_text,), version_kw={'application': amo.ANDROID.id}
+    )
+    # should be 4 addons tagged with shopping (one not public, one not compatible with
+    # Firefox, so 2 public), and 5 tagged with zoom
+
+    patched_drf_setting = dict(settings.REST_FRAMEWORK)
+    patched_drf_setting['PAGE_SIZE'] = 2
+    with override_settings(REST_FRAMEWORK=patched_drf_setting):
+        tag_pages_with_addons = list(TagPagesSitemap().items())
+    # two extra urls, for second+third zoom tag pages, because PAGE_SIZE = 2
+    extra_2 = (zoom_tag, 2)
+    extra_3 = (zoom_tag, 3)
+    assert extra_2 in tag_pages_with_addons
+    assert extra_3 in tag_pages_with_addons
+    assert set(tag_pages_with_addons) - set(empty_tag_pages) == {extra_2, extra_3}
+
+    # now limit the number of items that would be paginated over so zoom count == 4
+    with override_settings(REST_FRAMEWORK=patched_drf_setting, ES_MAX_RESULT_WINDOW=4):
+        tag_pages_limited = list(TagPagesSitemap().items())
+    assert extra_3 not in tag_pages_limited
+    assert set(tag_pages_limited) - set(empty_tag_pages) == {extra_2}
+
+
 def test_get_sitemap_section_pages():
     addon_factory()
     addon_factory()
@@ -597,6 +637,8 @@ def test_get_sitemap_section_pages():
         ('collections', 'firefox', 1),
         ('users', 'firefox', 1),
         ('users', 'android', 1),
+        ('tags', 'firefox', 1),
+        ('tags', 'android', 1),
     ]
     with mock.patch.object(AddonSitemap, 'limit', 25):
         pages = get_sitemap_section_pages(sitemaps)
@@ -612,6 +654,8 @@ def test_get_sitemap_section_pages():
             ('collections', 'firefox', 1),
             ('users', 'firefox', 1),
             ('users', 'android', 1),
+            ('tags', 'firefox', 1),
+            ('tags', 'android', 1),
         ]
 
     # test the default pagination limit
@@ -637,6 +681,8 @@ def test_get_sitemap_section_pages():
             ('users', 'android', 1),
             ('users', 'android', 2),
             ('users', 'android', 3),
+            ('tags', 'firefox', 1),
+            ('tags', 'android', 1),
         ]
 
 

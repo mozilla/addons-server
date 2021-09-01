@@ -19,6 +19,7 @@ from olympia.constants.categories import CATEGORIES
 from olympia.constants.promoted import RECOMMENDED
 from olympia.bandwagon.models import Collection
 from olympia.promoted.models import PromotedAddon
+from olympia.tags.models import AddonTag, Tag
 from olympia.users.models import UserProfile
 
 
@@ -363,6 +364,43 @@ class AccountSitemap(Sitemap):
         return item.url + (f'?{urlargs}' if urlargs else '')
 
 
+class TagPagesSitemap(Sitemap):
+    lastmod = datetime.datetime.now()
+
+    @cached_property
+    def _cached_items(self):
+        page_size = settings.REST_FRAMEWORK['PAGE_SIZE']
+        page_count_max = settings.ES_MAX_RESULT_WINDOW // page_size
+
+        current_app = self._current_app
+        counts_qs = (
+            AddonTag.objects.filter(
+                addon___current_version__isnull=False,
+                addon___current_version__apps__application=current_app.id,
+                addon__disabled_by_user=False,
+                addon__status__in=amo.REVIEWED_STATUSES,
+            )
+            .values('tag_id')
+            .annotate(count=Count('addon_id'))
+        )
+        addon_counts = {tag['tag_id']: tag['count'] for tag in counts_qs}
+
+        items = []
+        for tag in Tag.objects.all():
+            items.append((tag, 1))
+            pages_needed = min(
+                math.ceil(addon_counts.get(tag.id, 1) / page_size),
+                page_count_max,
+            )
+            for page in range(2, pages_needed + 1):
+                items.append((tag, page))
+        return items
+
+    def location(self, item):
+        (tag, page) = item
+        return tag.get_url_path() + (f'?page={page}' if page > 1 else '')
+
+
 def get_sitemaps():
     return {
         # because some urls are app-less, we specify per item, so don't specify an app
@@ -375,6 +413,8 @@ def get_sitemaps():
         ('collections', amo.FIREFOX): CollectionSitemap(),
         ('users', amo.FIREFOX): AccountSitemap(),
         ('users', amo.ANDROID): AccountSitemap(),
+        ('tags', amo.FIREFOX): TagPagesSitemap(),
+        ('tags', amo.ANDROID): TagPagesSitemap(),
     }
 
 
