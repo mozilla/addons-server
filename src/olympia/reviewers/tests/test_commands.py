@@ -14,7 +14,6 @@ from olympia.addons.models import AddonApprovalsCounter, AddonReviewerFlags
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
-    file_factory,
     user_factory,
     version_factory,
 )
@@ -31,7 +30,6 @@ from olympia.reviewers.management.commands import (
     notify_about_auto_approve_delay,
 )
 from olympia.reviewers.models import (
-    AutoApprovalNotEnoughFilesError,
     AutoApprovalNoValidationResultError,
     AutoApprovalSummary,
     get_reviewing_cache,
@@ -78,12 +76,6 @@ class AutoApproveTestsMixin:
         # be considered. Make sure its nomination and creation date is in the
         # past to test ordering.
         self.version.update(created=self.days_ago(1), nomination=self.days_ago(1))
-        # Add a second file to self.version to test the distinct().
-        file_factory(
-            version=self.version,
-            status=amo.STATUS_AWAITING_REVIEW,
-            is_webextension=True,
-        )
         # Add reviewer flags disabling auto-approval for this add-on. It would
         # still be fetched as a candidate, just rejected later on when
         # calculating the verdict.
@@ -440,14 +432,6 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         assert clear_reviewing_cache_mock.call_count == 0
 
     @mock.patch.object(AutoApprovalSummary, 'create_summary_for_version')
-    def test_not_enough_files_error(self, create_summary_for_version_mock):
-        create_summary_for_version_mock.side_effect = AutoApprovalNotEnoughFilesError
-        call_command('auto_approve')
-        assert get_reviewing_cache(self.addon.pk) is None
-        assert create_summary_for_version_mock.call_count == 1
-        self._check_stats({'total': 1, 'error': 1})
-
-    @mock.patch.object(AutoApprovalSummary, 'create_summary_for_version')
     def test_no_validation_result(self, create_summary_for_version_mock):
         create_summary_for_version_mock.side_effect = (
             AutoApprovalNoValidationResultError
@@ -623,16 +607,12 @@ class TestAutoApproveCommandTransactions(AutoApproveTestsMixin, TransactionTestC
             ),
         ]
         self.files = [
-            self.versions[0].all_files[0],
-            self.versions[1].all_files[0],
+            self.versions[0].file,
+            self.versions[1].file,
         ]
         self.versions[0].update(nomination=days_ago(1))
-        FileValidation.objects.create(
-            file=self.versions[0].all_files[0], validation='{}'
-        )
-        FileValidation.objects.create(
-            file=self.versions[1].all_files[0], validation='{}'
-        )
+        FileValidation.objects.create(file=self.versions[0].file, validation='{}')
+        FileValidation.objects.create(file=self.versions[1].file, validation='{}')
         super().setUp()
 
     @mock.patch('olympia.reviewers.utils.sign_file')
@@ -769,9 +749,9 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
                 details={'comments': 'fôo'},
                 user=self.user,
             )
-            # Disable files: we should be left with no versions to notify the
+            # Disable file: we should be left with no versions to notify the
             # developers about, since they have already been disabled.
-            version.files.update(status=amo.STATUS_DISABLED)
+            version.file.update(status=amo.STATUS_DISABLED)
         call_command('send_pending_rejection_last_warning_notifications')
         assert len(mail.outbox) == 0
 
@@ -1181,7 +1161,7 @@ class TestNotifyAboutAutoApproveDelay(AutoApproveTestsMixin, TestCase):
         # If the new version is approved but not the old one, then the old one
         # is returned, the new version no longer prevents the old one from
         # being considered.
-        new_version.files.update(status=amo.STATUS_APPROVED)
+        new_version.file.update(status=amo.STATUS_APPROVED)
         command = notify_about_auto_approve_delay.Command()
         qs = command.fetch_versions_waiting_for_approval_for_too_long()
         assert qs.count() == 1
@@ -1518,6 +1498,7 @@ class TestAutoReject(TestCase):
 
         # Third one should still be public, only its newer version rejected.
         new_pending_rejection.refresh_from_db()
+        new_pending_rejection_new_version.refresh_from_db()
         assert new_pending_rejection.is_public()
         assert (
             new_pending_rejection.current_version != new_pending_rejection_new_version

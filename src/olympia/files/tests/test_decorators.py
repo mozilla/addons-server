@@ -23,7 +23,7 @@ class AllowedTest(TestCase):
         self.addon = amo.tests.addon_factory(
             version_kw={'channel': amo.RELEASE_CHANNEL_LISTED}
         )
-        self.file = self.addon.versions.get().files.get()
+        self.file = self.addon.versions.get().file
 
     @patch.object(acl, 'is_reviewer', lambda request, addon: False)
     @patch.object(acl, 'check_unlisted_addons_viewer_or_reviewer', lambda x: False)
@@ -56,7 +56,7 @@ class AllowedTest(TestCase):
         addon = amo.tests.addon_factory(
             version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED}
         )
-        return addon, addon.versions.get().files.get()
+        return addon, addon.versions.get().file
 
     @patch.object(acl, 'is_reviewer', lambda request, addon: False)
     @patch.object(acl, 'check_unlisted_addons_viewer_or_reviewer', lambda x: False)

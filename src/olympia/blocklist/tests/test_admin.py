@@ -329,12 +329,13 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert 'Included in legacy blocklist' not in content
 
         addon.reload()
-        first_version.reload()
-        pending_version.reload()
+        first_version.file.reload()
+        second_version.file.reload()
+        pending_version.file.reload()
         assert addon.status != amo.STATUS_DISABLED  # not 0 - * so no change
-        assert first_version.files.all()[0].status == amo.STATUS_DISABLED
-        assert second_version.files.all()[0].status == amo.STATUS_DISABLED
-        assert pending_version.files.all()[0].status == (
+        assert first_version.file.status == amo.STATUS_DISABLED
+        assert second_version.file.status == amo.STATUS_DISABLED
+        assert pending_version.file.status == (
             amo.STATUS_AWAITING_REVIEW
         )  # no change because not in Block
 
@@ -666,14 +667,14 @@ class TestBlocklistSubmissionAdmin(TestCase):
 
         new_addon_version = new_addon.current_version
         new_addon.reload()
-        new_addon_version.reload()
+        new_addon_version.file.reload()
         assert new_addon.status == amo.STATUS_DISABLED
-        assert new_addon_version.files.all()[0].status == amo.STATUS_DISABLED
+        assert new_addon_version.file.status == amo.STATUS_DISABLED
         partial_addon_version = partial_addon.current_version
         partial_addon.reload()
-        partial_addon_version.reload()
+        partial_addon_version.file.reload()
         assert partial_addon.status == amo.STATUS_DISABLED
-        assert partial_addon_version.files.all()[0].status == (amo.STATUS_DISABLED)
+        assert partial_addon_version.file.status == (amo.STATUS_DISABLED)
 
     def test_submit_no_dual_signoff(self):
         addon_adu = settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD
@@ -902,10 +903,12 @@ class TestBlocklistSubmissionAdmin(TestCase):
         new_addon.reload()
         zero_to_max_version = existing_zero_to_max.addon.current_version
         existing_zero_to_max.addon.reload()
+        zero_to_max_version.file.reload()
+        new_addon_version.file.reload()
         assert new_addon.status != amo.STATUS_DISABLED
         assert existing_zero_to_max.addon.status != amo.STATUS_DISABLED
-        assert new_addon_version.files.all()[0].status == amo.STATUS_DISABLED
-        assert zero_to_max_version.files.all()[0].status == amo.STATUS_DISABLED
+        assert new_addon_version.file.status == amo.STATUS_DISABLED
+        assert zero_to_max_version.file.status == amo.STATUS_DISABLED
 
     @mock.patch('olympia.blocklist.admin.GUID_FULL_LOAD_LIMIT', 1)
     def test_add_multiple_bulk_so_fake_block_objects(self):
@@ -1482,9 +1485,9 @@ class TestBlocklistSubmissionAdmin(TestCase):
 
         # we disabled versions and the addon (because 0 - *)
         addon.reload()
-        version.reload()
+        version.file.reload()
         assert addon.status == amo.STATUS_DISABLED
-        assert version.files.all()[0].status == amo.STATUS_DISABLED
+        assert version.file.status == amo.STATUS_DISABLED
 
     @override_switch('blocklist_legacy_submit', active=True)
     @mock.patch('olympia.blocklist.models.legacy_publish_blocks')
@@ -1564,7 +1567,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         addon.reload()
         version.reload()
         assert addon.status != amo.STATUS_DISABLED
-        assert version.files.all()[0].status != amo.STATUS_DISABLED
+        assert version.file.status != amo.STATUS_DISABLED
 
     def test_cannot_approve_with_only_block_create_permission(self):
         addon = addon_factory(guid='guid@', name='Danger Danger')

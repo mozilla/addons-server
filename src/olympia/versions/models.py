@@ -81,7 +81,7 @@ class VersionManager(ManagerBase):
         return qs.transform(Version.transformer)
 
     def valid(self):
-        return self.filter(files__status__in=amo.VALID_FILE_STATUSES).distinct()
+        return self.filter(file__status__in=amo.VALID_FILE_STATUSES).distinct()
 
     def latest_public_compatible_with(self, application, appversions):
         """Return a queryset filtering the versions so that they are public,
@@ -97,14 +97,14 @@ class VersionManager(ManagerBase):
             apps__min__version_int__lte=appversions['min'],
             apps__max__version_int__gte=appversions['max'],
             channel=amo.RELEASE_CHANNEL_LISTED,
-            files__status=amo.STATUS_APPROVED,
+            file__status=amo.STATUS_APPROVED,
         ).order_by('-created')
 
     def auto_approvable(self):
         """Returns a queryset filtered with just the versions that should
         attempted for auto-approval by the cron job."""
         qs = self.filter(
-            files__status=amo.STATUS_AWAITING_REVIEW, files__is_webextension=True
+            file__status=amo.STATUS_AWAITING_REVIEW, file__is_webextension=True
         ).filter(
             # For listed, add-on can't be incomplete, deleted or disabled.
             # It also cannot be disabled by user ("invisible"), and can not
@@ -314,15 +314,12 @@ class Version(OnChangeMixin, ModelBase):
         # triggering queries with that instance later.
         version._compatible_apps = compatible_apps
 
-        # Create relevant file and update the all_files cached property on the
-        # Version, because we might need it afterwards.
-        version.all_files = [
-            File.from_upload(
-                upload=upload,
-                version=version,
-                parsed_data=parsed_data,
-            )
-        ]
+        # Create relevant file.
+        File.from_upload(
+            upload=upload,
+            version=version,
+            parsed_data=parsed_data,
+        )
 
         version.inherit_nomination(from_statuses=[amo.STATUS_AWAITING_REVIEW])
         version.disable_old_files()
@@ -426,7 +423,9 @@ class Version(OnChangeMixin, ModelBase):
         else:
             # By default we soft delete so we can keep the files for comparison
             # and a record of the version number.
-            self.files.update(status=amo.STATUS_DISABLED)
+            if hasattr(self, 'file'):
+                # .file should always exist but we don't want to break delete regardless
+                self.file.update(status=amo.STATUS_DISABLED)
             self.deleted = True
             self.save()
 
@@ -449,9 +448,8 @@ class Version(OnChangeMixin, ModelBase):
     @property
     def is_user_disabled(self):
         return (
-            self.files.filter(status=amo.STATUS_DISABLED)
-            .exclude(original_status=amo.STATUS_NULL)
-            .exists()
+            self.file.status == amo.STATUS_DISABLED
+            and self.file.original_status != amo.STATUS_NULL
         )
 
     @is_user_disabled.setter
@@ -459,14 +457,14 @@ class Version(OnChangeMixin, ModelBase):
         # User wants to disable (and the File isn't already).
         if disable:
             activity.log_create(amo.LOG.DISABLE_VERSION, self.addon, self)
-            for file in self.files.exclude(status=amo.STATUS_DISABLED).all():
-                file.update(original_status=file.status, status=amo.STATUS_DISABLED)
+            if (file_ := self.file) and file_.status != amo.STATUS_DISABLED:
+                file_.update(original_status=file_.status, status=amo.STATUS_DISABLED)
         # User wants to re-enable (and user did the disable, not Mozilla).
         else:
             activity.log_create(amo.LOG.ENABLE_VERSION, self.addon, self)
-            for file in self.files.exclude(original_status=amo.STATUS_NULL).all():
-                file.update(
-                    status=file.original_status, original_status=amo.STATUS_NULL
+            if (file_ := self.file) and file_.original_status != amo.STATUS_NULL:
+                file_.update(
+                    status=file_.original_status, original_status=amo.STATUS_NULL
                 )
 
     @cached_property
@@ -540,13 +538,11 @@ class Version(OnChangeMixin, ModelBase):
 
     @cached_property
     def all_files(self):
-        """Shortcut for list(self.files.all()). Cached."""
-        return list(self.files.all())
+        return [self.file]
 
     @property
     def current_file(self):
-        """Shortcut for selecting the first file from self.all_files"""
-        return self.all_files[0]
+        return self.file
 
     @property
     def status(self):
@@ -562,12 +558,12 @@ class Version(OnChangeMixin, ModelBase):
 
     def is_public(self):
         # To be public, a version must not be deleted, must belong to a public
-        # addon, and all its attached files must have public status.
+        # addon, and its attached file must have a public status.
         try:
             return (
                 not self.deleted
                 and self.addon.is_public()
-                and all(f.status == amo.STATUS_APPROVED for f in self.all_files)
+                and self.file.status == amo.STATUS_APPROVED
             )
         except ObjectDoesNotExist:
             return False
@@ -783,14 +779,9 @@ class Version(OnChangeMixin, ModelBase):
             .order_by('-nomination')
         )
         if from_statuses:
-            last_ver = last_ver.filter(files__status__in=from_statuses)
+            last_ver = last_ver.filter(file__status__in=from_statuses)
         if last_ver.exists():
             self.reset_nomination_time(nomination=last_ver[0].nomination)
-
-    @property
-    def unreviewed_files(self):
-        """A File is unreviewed if its status is amo.STATUS_AWAITING_REVIEW."""
-        return self.files.filter(status=amo.STATUS_AWAITING_REVIEW)
 
     @cached_property
     def is_ready_for_auto_approval(self):
@@ -818,8 +809,6 @@ class Version(OnChangeMixin, ModelBase):
         return False
 
     def get_background_images_encoded(self, header_only=False):
-        if not self.has_files:
-            return {}
         file_obj = self.all_files[0]
         return {
             name: force_str(b64encode(background))
@@ -985,8 +974,8 @@ def cleanup_version(sender, instance, **kw):
     """On delete of the version object call the file delete and signals."""
     if kw.get('raw'):
         return
-    for file_ in instance.files.all():
-        cleanup_file(file_.__class__, file_)
+    if hasattr(instance, 'file'):
+        cleanup_file(instance.file.__class__, instance.file)
 
 
 @Version.on_change

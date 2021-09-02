@@ -448,7 +448,7 @@ class AddonIndexer(BaseSearchIndexer):
             if appver:
                 min_, max_ = appver.min.version_int, appver.max.version_int
                 min_human, max_human = appver.min.version, appver.max.version
-                if not version_obj.files.filter(strict_compatibility=True).exists():
+                if not version_obj.file.strict_compatibility:
                     # The files attached to this version are not using strict
                     # compatibility, so the max version essentially needs to be
                     # ignored - let's fake a super high one. We leave max_human

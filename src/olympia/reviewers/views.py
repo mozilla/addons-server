@@ -692,9 +692,9 @@ def review(request, addon, channel=None):
             )
             .filter(
                 channel=channel,
-                files__isnull=False,
+                file__isnull=False,
                 created__lt=version.created,
-                files__status=amo.STATUS_APPROVED,
+                file__status=amo.STATUS_APPROVED,
             )
             .latest()
         )
@@ -1550,7 +1550,7 @@ class ReviewAddonVersionCompareViewSet(
     ReviewAddonVersionMixin, RetrieveModelMixin, GenericViewSet
 ):
     def filter_queryset(self, qs):
-        return qs.prefetch_related('files__validation')
+        return qs.prefetch_related('file__validation')
 
     def get_objects(self):
         """Return a dict with both versions needed for the comparison,

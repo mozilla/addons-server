@@ -4,7 +4,7 @@ from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.addons.models import Addon, AddonReviewerFlags
-from olympia.amo.tests import TestCase, addon_factory, file_factory, version_factory
+from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.reviewers.forms import ReviewForm
 from olympia.reviewers.models import AutoApprovalSummary, CannedResponse
@@ -25,7 +25,7 @@ class TestReviewForm(TestCase):
             user = UserProfile.objects.get(pk=10482)
 
         self.request = FakeRequest()
-        self.file = self.version.files.all()[0]
+        self.file = self.version.file
 
     def get_form(self, data=None):
         return ReviewForm(
@@ -167,7 +167,6 @@ class TestReviewForm(TestCase):
         self.grant_permission(self.request.user, 'Addons:Review')
         # Add a bunch of extra data that shouldn't be picked up.
         addon_factory()
-        file_factory(version=self.addon.current_version)
         version_factory(addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
         # auto-approve everything (including self.addon.current_version)
         for version in Version.unfiltered.all():

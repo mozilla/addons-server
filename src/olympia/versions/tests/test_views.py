@@ -49,13 +49,6 @@ class TestViews(TestCase):
         }
         self.version.save()
 
-        file_ = self.version.files.all()[0]
-
-        # Copy the file to create a new one attached to the same version.
-        # This tests https://github.com/mozilla/addons-server/issues/8950
-        file_.pk = None
-        file_.save()
-
         response = self.client.get(
             reverse(
                 'addons.versions.update_info',
@@ -611,7 +604,7 @@ class TestDownloadSource(TestCase):
         assert self.client.get(self.url).status_code == 200
 
         # Even disabled (bis).
-        self.version.files.all().update(status=amo.STATUS_DISABLED)
+        self.version.file.update(status=amo.STATUS_DISABLED)
         assert self.client.get(self.url).status_code == 200
 
         # Even disabled (ter).

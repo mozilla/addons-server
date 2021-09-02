@@ -435,7 +435,7 @@ class AddonVersionViewSet(
             queryset = addon.versions.filter(channel=amo.RELEASE_CHANNEL_LISTED)
         else:
             queryset = addon.versions.filter(
-                files__status=amo.STATUS_APPROVED, channel=amo.RELEASE_CHANNEL_LISTED
+                file__status=amo.STATUS_APPROVED, channel=amo.RELEASE_CHANNEL_LISTED
             ).distinct()
         if (
             self.action == 'list'
@@ -732,7 +732,7 @@ class LanguageToolsView(ListAPIView):
                 versions__apps__min__version_int__lte=appversions['min'],
                 versions__apps__max__version_int__gte=appversions['max'],
                 versions__channel=amo.RELEASE_CHANNEL_LISTED,
-                versions__files__status=amo.STATUS_APPROVED,
+                versions__file__status=amo.STATUS_APPROVED,
             )
             .distinct()
         )

@@ -730,32 +730,32 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
         self.client.login_api(user)
-        self.version.files.update(status=amo.STATUS_DISABLED)
+        self.version.file.update(status=amo.STATUS_DISABLED)
         self._test_url()
 
     def test_disabled_version_author(self):
         user = UserProfile.objects.create(username='author')
         AddonUser.objects.create(user=user, addon=self.addon)
         self.client.login_api(user)
-        self.version.files.update(status=amo.STATUS_DISABLED)
+        self.version.file.update(status=amo.STATUS_DISABLED)
         self._test_url()
 
     def test_disabled_version_admin(self):
         user = UserProfile.objects.create(username='admin')
         self.grant_permission(user, '*:*')
         self.client.login_api(user)
-        self.version.files.update(status=amo.STATUS_DISABLED)
+        self.version.file.update(status=amo.STATUS_DISABLED)
         self._test_url()
 
     def test_disabled_version_anonymous(self):
-        self.version.files.update(status=amo.STATUS_DISABLED)
+        self.version.file.update(status=amo.STATUS_DISABLED)
         response = self.client.get(self.url)
         assert response.status_code == 401
 
     def test_disabled_version_user_but_not_author(self):
         user = UserProfile.objects.create(username='simpleuser')
         self.client.login_api(user)
-        self.version.files.update(status=amo.STATUS_DISABLED)
+        self.version.file.update(status=amo.STATUS_DISABLED)
         response = self.client.get(self.url)
         assert response.status_code == 403
 
@@ -971,7 +971,7 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
         self.client.login_api(user)
-        self.version.files.update(status=amo.STATUS_DISABLED)
+        self.version.file.update(status=amo.STATUS_DISABLED)
         self._test_url_only_contains_old_version()
 
         # A reviewer can see disabled versions when explicitly asking for them.
@@ -981,7 +981,7 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         user = UserProfile.objects.create(username='author')
         AddonUser.objects.create(user=user, addon=self.addon)
         self.client.login_api(user)
-        self.version.files.update(status=amo.STATUS_DISABLED)
+        self.version.file.update(status=amo.STATUS_DISABLED)
         self._test_url_only_contains_old_version()
 
         # An author can see disabled versions when explicitly asking for them.
@@ -991,14 +991,14 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         user = UserProfile.objects.create(username='admin')
         self.grant_permission(user, '*:*')
         self.client.login_api(user)
-        self.version.files.update(status=amo.STATUS_DISABLED)
+        self.version.file.update(status=amo.STATUS_DISABLED)
         self._test_url_only_contains_old_version()
 
         # An admin can see disabled versions when explicitly asking for them.
         self._test_url(filter='all_without_unlisted')
 
     def test_disabled_version_anonymous(self):
-        self.version.files.update(status=amo.STATUS_DISABLED)
+        self.version.file.update(status=amo.STATUS_DISABLED)
         self._test_url_only_contains_old_version()
         response = self.client.get(self.url, data={'filter': 'all_without_unlisted'})
         assert response.status_code == 401
@@ -1008,7 +1008,7 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
     def test_disabled_version_user_but_not_author(self):
         user = UserProfile.objects.create(username='simpleuser')
         self.client.login_api(user)
-        self.version.files.update(status=amo.STATUS_DISABLED)
+        self.version.file.update(status=amo.STATUS_DISABLED)
         self._test_url_only_contains_old_version()
         response = self.client.get(self.url, data={'filter': 'all_without_unlisted'})
         assert response.status_code == 403

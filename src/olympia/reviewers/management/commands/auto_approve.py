@@ -21,7 +21,6 @@ from olympia.amo.decorators import use_primary_db
 from olympia.files.utils import lock
 from olympia.lib.crypto.signing import SigningError
 from olympia.reviewers.models import (
-    AutoApprovalNotEnoughFilesError,
     AutoApprovalNoValidationResultError,
     AutoApprovalSummary,
     clear_reviewing_cache,
@@ -158,7 +157,7 @@ class Command(BaseCommand):
         # should have been rolled back. This ensures that, for instance, a
         # signing error doesn't leave the version and its autoapprovalsummary
         # in conflicting states.
-        except (AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError):
+        except (AutoApprovalNoValidationResultError):
             log.info(
                 'Version %s was skipped either because it had no '
                 'files or because it had no validation attached.',

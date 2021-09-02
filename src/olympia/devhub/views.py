@@ -414,8 +414,8 @@ def cancel(request, addon_id, addon, channel):
         ):
             addon.update(status=amo.STATUS_NULL)
             ActivityLog.create(amo.LOG.CHANGE_STATUS, addon, addon.status)
-        for file_ in latest_version.files.filter(status=amo.STATUS_AWAITING_REVIEW):
-            file_.update(status=amo.STATUS_DISABLED)
+        if latest_version.file.status == amo.STATUS_AWAITING_REVIEW:
+            latest_version.file.update(status=amo.STATUS_DISABLED)
     return redirect(addon.get_dev_url('versions'))
 
 
@@ -425,10 +425,8 @@ def disable(request, addon_id, addon):
     # Also set the latest listed version to STATUS_DISABLED if it was
     # AWAITING_REVIEW, to not waste reviewers time.
     latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
-    if latest_version:
-        latest_version.files.filter(status=amo.STATUS_AWAITING_REVIEW).update(
-            status=amo.STATUS_DISABLED
-        )
+    if latest_version and latest_version.file.status == amo.STATUS_AWAITING_REVIEW:
+        latest_version.file.update(status=amo.STATUS_DISABLED)
     addon.update_version()
     addon.update_status()
     addon.update(disabled_by_user=True)
@@ -1165,7 +1163,7 @@ def version_edit(request, addon_id, addon, version_id):
             'version': version,
             'is_admin': is_admin,
             'choices': File.STATUS_CHOICES,
-            'files': version.files.all(),
+            'files': (version.file,),
         }
     )
 
@@ -1267,10 +1265,9 @@ def version_stats(request, addon_id, addon):
         'id', 'version', 'review_count'
     )
     data = {v['id']: v for v in reviews}
-    files = qs.annotate(file_count=Count('files')).values_list('id', 'file_count')
-    for id_, file_count in files:
+    for id_ in qs.values_list('id', flat=True):
         # For backwards compatibility
-        data[id_]['files'] = file_count
+        data[id_]['files'] = 1
         data[id_]['reviews'] = data[id_].pop('review_count')
     return data
 
@@ -1793,8 +1790,8 @@ def request_review(request, addon_id, addon):
 
     latest_version = addon.find_latest_version(amo.RELEASE_CHANNEL_LISTED, exclude=())
     if latest_version:
-        for f in latest_version.files.filter(status=amo.STATUS_DISABLED):
-            f.update(status=amo.STATUS_AWAITING_REVIEW)
+        if latest_version.file.status == amo.STATUS_DISABLED:
+            latest_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         # Clear the nomination date so it gets set again in Addon.watch_status.
         latest_version.update(nomination=None)
     if addon.has_complete_metadata():

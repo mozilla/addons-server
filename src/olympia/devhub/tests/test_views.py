@@ -299,7 +299,7 @@ class TestUpdateCompatibility(TestCase):
         cu = doc('.item[data-addonid="3615"] .tooltip.compat-update')
         assert not cu
 
-        addon.current_version.files.update(strict_compatibility=True)
+        addon.current_version.file.update(strict_compatibility=True)
         response = self.client.get(self.url)
         doc = pq(response.content)
         cu = doc('.item[data-addonid="3615"] .tooltip.compat-update')
@@ -318,7 +318,7 @@ class TestUpdateCompatibility(TestCase):
 
     def test_incompat_firefox(self):
         addon = Addon.objects.get(pk=3615)
-        addon.current_version.files.update(strict_compatibility=True)
+        addon.current_version.file.update(strict_compatibility=True)
         versions = ApplicationsVersions.objects.all()[0]
         versions.max = AppVersion.objects.get(version='2.0')
         versions.save()
@@ -327,7 +327,7 @@ class TestUpdateCompatibility(TestCase):
 
     def test_incompat_android(self):
         addon = Addon.objects.get(pk=3615)
-        addon.current_version.files.update(strict_compatibility=True)
+        addon.current_version.file.update(strict_compatibility=True)
         appver = AppVersion.objects.get(version='2.0')
         appver.update(application=amo.ANDROID.id)
         av = ApplicationsVersions.objects.all()[0]
@@ -517,7 +517,7 @@ class TestHome(TestCase):
         ]
 
         latest_version = self.addon.find_latest_version(amo.RELEASE_CHANNEL_LISTED)
-        latest_file = latest_version.files.all()[0]
+        latest_file = latest_version.file
 
         for addon_status, file_status, status_str in statuses:
             latest_file.update(status=file_status)
@@ -546,7 +546,7 @@ class TestHome(TestCase):
     def test_my_addons_recommended(self):
         self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
         latest_version = self.addon.find_latest_version(amo.RELEASE_CHANNEL_LISTED)
-        latest_file = latest_version.files.all()[0]
+        latest_file = latest_version.file
         statuses = [
             (amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW, 'Awaiting Review'),
             (

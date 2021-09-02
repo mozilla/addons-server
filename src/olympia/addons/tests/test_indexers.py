@@ -7,7 +7,7 @@ from olympia import amo
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import Addon, Preview, attach_tags, attach_translations_dict
 from olympia.amo.models import SearchMixin
-from olympia.amo.tests import addon_factory, ESTestCase, TestCase, file_factory
+from olympia.amo.tests import addon_factory, ESTestCase, TestCase
 from olympia.bandwagon.models import Collection
 from olympia.constants.applications import FIREFOX
 from olympia.constants.promoted import RECOMMENDED
@@ -277,8 +277,6 @@ class TestAddonIndexer(TestCase):
         # Make the version a webextension and add a bunch of things to it to
         # test different scenarios.
         version.all_files[0].update(is_webextension=True)
-        file_factory(version=version, is_webextension=True)
-        del version.all_files
         version.license = License.objects.create(
             name='My licensé', url='http://example.com/', builtin=0
         )
@@ -339,7 +337,7 @@ class TestAddonIndexer(TestCase):
 
     def test_version_compatibility_with_strict_compatibility_enabled(self):
         version = self.addon.current_version
-        file_factory(version=version, strict_compatibility=True)
+        version.file.update(strict_compatibility=True)
         extracted = self._extract()
 
         assert extracted['current_version']['compatible_apps'] == {

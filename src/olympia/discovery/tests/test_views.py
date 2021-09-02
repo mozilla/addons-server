@@ -28,7 +28,7 @@ class DiscoveryTestMixin:
         assert data['id'] == version.id
 
         result_file = data['files'][0]
-        file_ = version.files.latest('pk')
+        file_ = version.file
         assert result_file['id'] == file_.pk
         assert result_file['created'] == (
             file_.created.replace(microsecond=0).isoformat() + 'Z'

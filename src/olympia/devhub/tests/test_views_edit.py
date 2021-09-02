@@ -298,7 +298,7 @@ class BaseTestEditDescribe(BaseTestEdit):
         assert links == doc_links
 
     def test_nav_links_webextensions(self):
-        self.addon.find_latest_version(None).files.update(is_webextension=True)
+        self.addon.find_latest_version(None).file.update(is_webextension=True)
         self.test_nav_links()
 
     def test_nav_links_uri_match(self):

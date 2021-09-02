@@ -127,6 +127,19 @@
         }
     },
     {
+        "pk": 118897,
+        "model": "versions.version",
+        "fields": {
+            "license": 1377,
+            "created": "2010-12-16 13:04:57",
+            "release_notes": null,
+            "approval_notes": "",
+            "modified": "2010-12-16 13:04:57",
+            "version": "20101216",
+            "addon": 235891
+        }
+    },
+    {
         "pk": 118898,
         "model": "versions.version",
         "fields": {
@@ -162,7 +175,7 @@
             "created": "2010-12-17 13:04:57",
             "modified": "2010-12-17 13:04:57",
             "filename": "testaddon-20101217.xpi",
-            "version": 118898,
+            "version": 118897,
             "datestatuschanged": "2010-12-17 13:04:57",
             "size": 782336
         }

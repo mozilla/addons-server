@@ -20,7 +20,6 @@ from olympia.abuse.models import AbuseReport
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
-    file_factory,
     user_factory,
     version_factory,
 )
@@ -29,60 +28,6 @@ from olympia.files.models import FileValidation
 from olympia.ratings.models import Rating, RatingAggregate
 from olympia.reviewers.models import AutoApprovalSummary
 from olympia.versions.models import ApplicationsVersions, Version, VersionPreview
-
-
-def id_function(fixture_value):
-    """Convert a param from the use_case fixture to a nicer name.
-
-    By default, the name (used in the test generated from the parameterized
-    fixture) will use the fixture name and a number.
-    Eg: test_foo[use_case0]
-
-    Providing explicit 'ids' (either as strings, or as a function) will use
-    those names instead. Here the name will be something like
-    test_foo[public-unreviewed-full], for the status values, and if the file is
-    unreviewed.
-    """
-    addon_status, file_status, review_type = fixture_value
-    return '{}-{}-{}'.format(
-        amo.STATUS_CHOICES_API[addon_status],
-        amo.STATUS_CHOICES_API[file_status],
-        review_type,
-    )
-
-
-@pytest.fixture(
-    params=[
-        (amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW, 'full'),
-        (amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW, 'full'),
-    ],
-    # ids are used to build better names for the tests using this fixture.
-    ids=id_function,
-)
-def use_case(request, db):
-    """This fixture will return quadruples for different use cases.
-
-    Addon                   | File1 and 2        | Review type
-    ==============================================================
-    awaiting review         | awaiting review    | approved
-    approved                | awaiting review    | approved
-    """
-    addon_status, file_status, review_type = request.param
-
-    addon = addon_factory(status=addon_status, guid='foo')
-    version = addon.find_latest_version(amo.RELEASE_CHANNEL_LISTED)
-    file1 = version.files.get()
-    file1.update(status=file_status)
-    # A second file for good measure.
-    file2 = file_factory(version=version, status=file_status)
-    # If the addon is public, and we change its only file to something else
-    # than public, it'll change to unreviewed.
-    addon.update(status=addon_status)
-    assert addon.reload().status == addon_status
-    assert file1.reload().status == file_status
-    assert file2.reload().status == file_status
-
-    return (addon, file1, file2, review_type)
 
 
 def test_process_addons_invalid_task():

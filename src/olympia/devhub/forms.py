@@ -1066,7 +1066,7 @@ class NewUploadForm(forms.Form):
                 version = existing_versions[0]
                 if version.deleted:
                     msg = gettext('Version {version} was uploaded before and deleted.')
-                elif version.unreviewed_files:
+                elif version.file.status == amo.STATUS_AWAITING_REVIEW:
                     next_url = reverse(
                         'devhub.submit.version.details',
                         args=[self.addon.slug, version.pk],

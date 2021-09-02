@@ -587,7 +587,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         addon = Addon.objects.get()
         version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert version
-        assert version.files.all()[0].status == amo.STATUS_AWAITING_REVIEW
+        assert version.file.status == amo.STATUS_AWAITING_REVIEW
         assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
         assert addon.status == amo.STATUS_NULL
         self.assert3xx(
@@ -1066,7 +1066,7 @@ class DetailsPageMixin:
 
     def test_can_cancel_review(self):
         addon = self.get_addon()
-        addon.versions.latest().files.update(status=amo.STATUS_AWAITING_REVIEW)
+        addon.versions.latest().file.update(status=amo.STATUS_AWAITING_REVIEW)
 
         cancel_url = reverse('devhub.addons.cancel', args=['a3615', 'listed'])
         versions_url = reverse('devhub.addons.versions', args=['a3615'])
@@ -1963,7 +1963,7 @@ class VersionSubmitUploadMixin:
         # We can't re-use the same version number, even if the previous
         # versions have been disabled/rejected.
         self.version.update(version='0.0.1')
-        self.version.files.update(status=amo.STATUS_DISABLED)
+        self.version.file.update(status=amo.STATUS_DISABLED)
         response = self.post(expected_status=200)
         assert pq(response.content)('ul.errorlist').text() == (
             'Version 0.0.1 already exists.'
@@ -1982,7 +1982,7 @@ class VersionSubmitUploadMixin:
     def test_same_version_if_previous_is_awaiting_review(self):
         # We can't re-use the same version number - offer to continue.
         self.version.update(version='0.0.1')
-        self.version.files.update(status=amo.STATUS_AWAITING_REVIEW)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         response = self.post(expected_status=200)
         assert pq(response.content)('ul.errorlist').text() == (
             'Version 0.0.1 already exists. Continue with existing upload instead?'
@@ -2231,7 +2231,7 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
     def test_incomplete_addon_now_nominated(self):
         """Uploading a new version for an incomplete addon should set it to
         nominated."""
-        self.addon.current_version.files.update(status=amo.STATUS_DISABLED)
+        self.addon.current_version.file.update(status=amo.STATUS_DISABLED)
         self.addon.update_status()
         # Deleting all the versions should make it null.
         assert self.addon.status == amo.STATUS_NULL
@@ -2410,7 +2410,7 @@ class TestVersionSubmitDetails(TestSubmitBase):
     def test_can_cancel_review(self):
         addon = self.get_addon()
         addon_status = addon.status
-        addon.versions.latest().files.update(status=amo.STATUS_AWAITING_REVIEW)
+        addon.versions.latest().file.update(status=amo.STATUS_AWAITING_REVIEW)
 
         cancel_url = reverse('devhub.addons.cancel', args=['a3615', 'listed'])
         versions_url = reverse('devhub.addons.versions', args=['a3615'])

@@ -120,12 +120,12 @@ class ReviewNotesViewSetDetailMixin(LogMixin):
         assert response.status_code == 200
 
     def test_disabled_version_reviewer(self):
-        self.version.files.update(status=amo.STATUS_DISABLED)
+        self.version.file.update(status=amo.STATUS_DISABLED)
         self._login_reviewer()
         self._test_url()
 
     def test_disabled_version_developer(self):
-        self.version.files.update(status=amo.STATUS_DISABLED)
+        self.version.file.update(status=amo.STATUS_DISABLED)
         self._login_developer()
         self._test_url()
 
@@ -439,16 +439,16 @@ class TestReviewNotesViewSetCreate(TestCase):
         assert self.get_review_activity_queryset().count() == 1
 
     def test_developer_can_reply_to_disabled_version(self):
-        self.version.files.update(status=amo.STATUS_DISABLED)
+        self.version.file.update(status=amo.STATUS_DISABLED)
         self.test_developer_reply()
 
     def test_reviewer_can_reply_to_disabled_version_listed(self):
-        self.version.files.update(status=amo.STATUS_DISABLED)
+        self.version.file.update(status=amo.STATUS_DISABLED)
         self._test_reviewer_reply('Addons:Review')
 
     def test_reviewer_can_reply_to_disabled_version_unlisted(self):
         self.make_addon_unlisted(self.addon)
-        self.version.files.update(status=amo.STATUS_DISABLED)
+        self.version.file.update(status=amo.STATUS_DISABLED)
         self._test_reviewer_reply('Addons:ReviewUnlisted')
 
 

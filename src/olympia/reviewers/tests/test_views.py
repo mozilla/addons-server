@@ -47,7 +47,6 @@ from olympia.amo.tests import (
     TestCase,
     addon_factory,
     check_links,
-    file_factory,
     formset,
     initial,
     reverse_ns,
@@ -59,7 +58,7 @@ from olympia.blocklist.utils import block_activity_log_save
 from olympia.constants.promoted import LINE, RECOMMENDED, SPOTLIGHT, STRATEGIC
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.constants.scanners import CUSTOMS, MAD, YARA
-from olympia.files.models import File, FileValidation, WebextPermission
+from olympia.files.models import FileValidation, WebextPermission
 from olympia.git.utils import AddonGitRepository, extract_version_to_git
 from olympia.git.tests.test_utils import apply_changes
 from olympia.ratings.models import Rating, RatingFlag
@@ -1486,7 +1485,7 @@ class TestExtensionQueue(QueueTest):
     def test_results_two_versions(self):
         version1 = self.addons['Nominated One'].versions.all()[0]
         version2 = self.addons['Nominated Two'].versions.all()[0]
-        file_ = version2.files.get()
+        file_ = version2.file
 
         # Create another version for Nominated Two, v0.2, by "cloning" v0.1.
         # Its creation date must be more recent than v0.1 for version ordering
@@ -1532,10 +1531,10 @@ class TestExtensionQueue(QueueTest):
     def test_webextensions_filtered_out_because_of_post_review(self):
         self.addons['Nominated Two'].find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED
-        ).files.update(is_webextension=True)
+        ).file.update(is_webextension=True)
         self.addons['Pending Two'].find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED
-        ).files.update(is_webextension=True)
+        ).file.update(is_webextension=True)
 
         # Webextensions are filtered out from the queue since auto_approve is
         # taking care of them.
@@ -1548,13 +1547,13 @@ class TestExtensionQueue(QueueTest):
     def test_webextension_with_auto_approval_disabled_false_filtered_out(self):
         self.addons['Pending Two'].find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED
-        ).files.update(is_webextension=True)
+        ).file.update(is_webextension=True)
         AddonReviewerFlags.objects.create(
             addon=self.addons['Pending Two'], auto_approval_disabled=False
         )
         self.addons['Nominated Two'].find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED
-        ).files.update(is_webextension=True)
+        ).file.update(is_webextension=True)
         AddonReviewerFlags.objects.create(
             addon=self.addons['Nominated Two'],
             auto_approval_disabled_until_next_approval=False,
@@ -1569,20 +1568,20 @@ class TestExtensionQueue(QueueTest):
     def test_webextension_with_auto_approval_disabled_does_show_up(self):
         self.addons['Pending Two'].find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED
-        ).files.update(is_webextension=True)
+        ).file.update(is_webextension=True)
         self.addons['Nominated Two'].find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED
-        ).files.update(is_webextension=True)
+        ).file.update(is_webextension=True)
 
         self.addons['Pending One'].find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED
-        ).files.update(is_webextension=True)
+        ).file.update(is_webextension=True)
         AddonReviewerFlags.objects.create(
             addon=self.addons['Pending One'], auto_approval_disabled=True
         )
         self.addons['Nominated One'].find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED
-        ).files.update(is_webextension=True)
+        ).file.update(is_webextension=True)
         AddonReviewerFlags.objects.create(
             addon=self.addons['Nominated One'],
             auto_approval_disabled_until_next_approval=True,
@@ -1597,14 +1596,14 @@ class TestExtensionQueue(QueueTest):
     def test_webextension_with_auto_approval_delayed_until_past_filtered_out(self):
         self.addons['Pending Two'].find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED
-        ).files.update(is_webextension=True)
+        ).file.update(is_webextension=True)
         AddonReviewerFlags.objects.create(
             addon=self.addons['Pending Two'],
             auto_approval_delayed_until=datetime.now() - timedelta(hours=24),
         )
         self.addons['Nominated Two'].find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED
-        ).files.update(is_webextension=True)
+        ).file.update(is_webextension=True)
         AddonReviewerFlags.objects.create(
             addon=self.addons['Nominated Two'],
             auto_approval_delayed_until=datetime.now() - timedelta(hours=24),
@@ -1619,21 +1618,21 @@ class TestExtensionQueue(QueueTest):
     def test_webextension_with_auto_approval_delayed_until_does_show_up(self):
         self.addons['Pending Two'].find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED
-        ).files.update(is_webextension=True)
+        ).file.update(is_webextension=True)
         self.addons['Nominated Two'].find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED
-        ).files.update(is_webextension=True)
+        ).file.update(is_webextension=True)
 
         self.addons['Pending One'].find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED
-        ).files.update(is_webextension=True)
+        ).file.update(is_webextension=True)
         AddonReviewerFlags.objects.create(
             addon=self.addons['Pending One'],
             auto_approval_delayed_until=datetime.now() + timedelta(hours=24),
         )
         self.addons['Nominated One'].find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED
-        ).files.update(is_webextension=True)
+        ).file.update(is_webextension=True)
         AddonReviewerFlags.objects.create(
             addon=self.addons['Nominated One'],
             auto_approval_delayed_until=datetime.now() + timedelta(hours=24),
@@ -1648,16 +1647,16 @@ class TestExtensionQueue(QueueTest):
     def test_promoted_addon_in_pre_review_group_does_show_up(self):
         self.addons['Pending Two'].find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED
-        ).files.update(is_webextension=True)
+        ).file.update(is_webextension=True)
         self.addons['Nominated Two'].find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED
-        ).files.update(is_webextension=True)
+        ).file.update(is_webextension=True)
         self.addons['Pending One'].find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED
-        ).files.update(is_webextension=True)
+        ).file.update(is_webextension=True)
         self.addons['Nominated One'].find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED
-        ).files.update(is_webextension=True)
+        ).file.update(is_webextension=True)
 
         self.make_addon_promoted(self.addons['Pending One'], group=LINE)
         self.make_addon_promoted(self.addons['Nominated One'], group=SPOTLIGHT)
@@ -1721,7 +1720,7 @@ class TestThemeNominatedQueue(QueueTest):
     def test_results_two_versions(self):
         version1 = self.addons['Nominated One'].versions.all()[0]
         version2 = self.addons['Nominated Two'].versions.all()[0]
-        file_ = version2.files.get()
+        file_ = version2.file
 
         # Create another version for Nominated Two, v0.2, by "cloning" v0.1.
         # Its creation date must be more recent than v0.1 for version ordering
@@ -1793,7 +1792,7 @@ class TestRecommendedQueue(QueueTest):
     def test_results_two_versions(self):
         version1 = self.addons['Nominated One'].versions.all()[0]
         version2 = self.addons['Nominated Two'].versions.all()[0]
-        file_ = version2.files.get()
+        file_ = version2.file
 
         # Create another version for Nominated Two, v0.2, by "cloning" v0.1.
         # Its creation date must be more recent than v0.1 for version ordering
@@ -1840,12 +1839,12 @@ class TestRecommendedQueue(QueueTest):
         version = self.addons['Nominated One'].find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED
         )
-        version.files.update(is_webextension=True)
+        version.file.update(is_webextension=True)
 
         version = self.addons['Pending Two'].find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED
         )
-        version.files.update(is_webextension=True)
+        version.file.update(is_webextension=True)
         AddonReviewerFlags.objects.create(
             addon=self.addons['Pending Two'], auto_approval_disabled=False
         )
@@ -2713,7 +2712,7 @@ class ReviewBase(QueueTest):
 
         self.addon = self.generate_file('Public')
         self.version = self.addon.current_version
-        self.file = self.version.files.get()
+        self.file = self.version.file
         self.reviewer = UserProfile.objects.get(username='reviewer')
         self.reviewer.update(display_name='A Reviêwer')
         self.url = reverse('reviewers.review', args=[self.addon.pk])
@@ -3101,7 +3100,7 @@ class TestReview(ReviewBase):
             str(author.get_role_display()),
             self.addon,
         )
-        with self.assertNumQueries(62):
+        with self.assertNumQueries(61):
             # FIXME: obviously too high, but it's a starting point.
             # Potential further optimizations:
             # - Remove trivial... and not so trivial duplicates
@@ -3169,9 +3168,8 @@ class TestReview(ReviewBase):
             # 57. reusedguid (repeated)
             # 58. select all versions in channel for versions dropdown widget
             # 59. select files for those versions
-            # 60. select files waiting for review for particular version
-            # 61. select users by role for this add-on (?)
-            # 62. savepoint
+            # 60. select users by role for this add-on (?)
+            # 61. savepoint
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -4006,8 +4004,7 @@ class TestReview(ReviewBase):
         assert doc('#clear_pending_rejections')
 
     def test_no_public(self):
-        has_public = self.version.files.filter(status=amo.STATUS_APPROVED).exists()
-        assert has_public
+        assert self.version.file.status == amo.STATUS_APPROVED
 
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -4118,7 +4115,7 @@ class TestReview(ReviewBase):
     @mock.patch('olympia.reviewers.utils.sign_file')
     def review_version(self, version, url, mock_sign):
         if version.channel == amo.RELEASE_CHANNEL_LISTED:
-            version.files.all()[0].update(status=amo.STATUS_AWAITING_REVIEW)
+            version.file.update(status=amo.STATUS_AWAITING_REVIEW)
             action = 'public'
         else:
             action = 'reply'
@@ -4327,7 +4324,7 @@ class TestReview(ReviewBase):
         assert b'Compatibility' not in response.content
 
     def test_compare_link(self):
-        first_file = self.addon.current_version.files.all()[0]
+        first_file = self.addon.current_version.file
         first_file.update(status=amo.STATUS_APPROVED)
         self.addon.current_version.update(created=self.days_ago(2))
         first_version_pk = self.addon.current_version.pk
@@ -4354,7 +4351,7 @@ class TestReview(ReviewBase):
         check_links(expected, links, verify=False)
 
     def test_compare_link_auto_approved_ignored(self):
-        first_file = self.addon.current_version.files.all()[0]
+        first_file = self.addon.current_version.file
         first_file.update(status=amo.STATUS_APPROVED)
         self.addon.current_version.update(created=self.days_ago(3))
         first_version_pk = self.addon.current_version.pk
@@ -4389,7 +4386,7 @@ class TestReview(ReviewBase):
         check_links(expected, links, verify=False)
 
     def test_compare_link_auto_approved_but_confirmed_not_ignored(self):
-        first_file = self.addon.current_version.files.all()[0]
+        first_file = self.addon.current_version.file
         first_file.update(status=amo.STATUS_APPROVED)
         self.addon.current_version.update(created=self.days_ago(3))
 
@@ -4430,7 +4427,7 @@ class TestReview(ReviewBase):
         check_links(expected, links, verify=False)
 
     def test_compare_link_not_auto_approved_but_confirmed(self):
-        first_file = self.addon.current_version.files.all()[0]
+        first_file = self.addon.current_version.file
         first_file.update(status=amo.STATUS_APPROVED)
         self.addon.current_version.update(created=self.days_ago(3))
 
@@ -4508,7 +4505,7 @@ class TestReview(ReviewBase):
 
     @mock.patch('olympia.reviewers.utils.sign_file')
     def test_approve_recommended_addon(self, mock_sign_file):
-        self.version.files.update(status=amo.STATUS_AWAITING_REVIEW)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         self.addon.update(status=amo.STATUS_NOMINATED)
         self.make_addon_promoted(self.addon, RECOMMENDED)
         self.grant_permission(self.reviewer, 'Addons:RecommendedReview')
@@ -4528,7 +4525,7 @@ class TestReview(ReviewBase):
 
     @mock.patch('olympia.reviewers.utils.sign_file')
     def test_admin_flagged_addon_actions_as_admin(self, mock_sign_file):
-        self.version.files.update(status=amo.STATUS_AWAITING_REVIEW)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         self.addon.update(status=amo.STATUS_NOMINATED)
         AddonReviewerFlags.objects.create(
             addon=self.addon, needs_admin_code_review=True
@@ -4541,12 +4538,12 @@ class TestReview(ReviewBase):
         addon = self.get_addon()
         assert self.version == addon.current_version
         assert addon.status == amo.STATUS_APPROVED
-        assert addon.current_version.files.all()[0].status == (amo.STATUS_APPROVED)
+        assert addon.current_version.file.status == (amo.STATUS_APPROVED)
 
         assert mock_sign_file.called
 
     def test_admin_flagged_addon_actions_as_reviewer(self):
-        self.version.files.update(status=amo.STATUS_AWAITING_REVIEW)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         self.addon.update(status=amo.STATUS_NOMINATED)
         AddonReviewerFlags.objects.create(
             addon=self.addon, needs_admin_code_review=True
@@ -4559,9 +4556,7 @@ class TestReview(ReviewBase):
         addon = self.get_addon()
         assert addon.status == amo.STATUS_NOMINATED
         assert self.version == addon.current_version
-        assert addon.current_version.files.all()[0].status == (
-            amo.STATUS_AWAITING_REVIEW
-        )
+        assert addon.current_version.file.status == (amo.STATUS_AWAITING_REVIEW)
         assert response.context['form'].errors['action'] == (
             ['Select a valid choice. public is not one of the available choices.']
         )
@@ -4574,9 +4569,7 @@ class TestReview(ReviewBase):
         addon = self.get_addon()
         assert addon.status == amo.STATUS_NOMINATED
         assert self.version == addon.current_version
-        assert addon.current_version.files.all()[0].status == (
-            amo.STATUS_AWAITING_REVIEW
-        )
+        assert addon.current_version.file.status == (amo.STATUS_AWAITING_REVIEW)
         assert response.context['form'].errors['action'] == (
             ['Select a valid choice. public is not one of the available choices.']
         )
@@ -4693,7 +4686,7 @@ class TestReview(ReviewBase):
             addon = self.get_addon()
             assert addon.status == amo.STATUS_APPROVED
             assert self.version == addon.current_version
-            assert addon.current_version.files.all()[0].status == (amo.STATUS_APPROVED)
+            assert addon.current_version.file.status == (amo.STATUS_APPROVED)
             assert response.context['form'].errors['action'] == (
                 [
                     'Select a valid choice. %s is not one of the available '
@@ -4716,7 +4709,7 @@ class TestReview(ReviewBase):
             )
 
     def test_cant_review_static_theme_if_admin_theme_review_flag_is_set(self):
-        self.version.files.update(status=amo.STATUS_AWAITING_REVIEW)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         self.addon.update(type=amo.ADDON_STATICTHEME, status=amo.STATUS_NOMINATED)
         AddonReviewerFlags.objects.create(
             addon=self.addon, needs_admin_theme_review=True
@@ -4730,9 +4723,7 @@ class TestReview(ReviewBase):
             addon = self.get_addon()
             assert addon.status == amo.STATUS_NOMINATED
             assert self.version == addon.current_version
-            assert addon.current_version.files.all()[0].status == (
-                amo.STATUS_AWAITING_REVIEW
-            )
+            assert addon.current_version.file.status == (amo.STATUS_AWAITING_REVIEW)
             assert response.context['form'].errors['action'] == (
                 [
                     'Select a valid choice. %s is not one of the available '
@@ -4752,7 +4743,7 @@ class TestReview(ReviewBase):
     def test_admin_can_review_statictheme_if_admin_theme_review_flag_set(
         self, mock_sign_file
     ):
-        self.version.files.update(status=amo.STATUS_AWAITING_REVIEW)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         self.addon.update(type=amo.ADDON_STATICTHEME, status=amo.STATUS_NOMINATED)
         AddonReviewerFlags.objects.create(
             addon=self.addon, needs_admin_theme_review=True
@@ -4849,7 +4840,7 @@ class TestReview(ReviewBase):
         for version in [old_version, self.version]:
             version.reload()
             assert not version.needs_human_review
-            file_ = version.files.all().get()
+            file_ = version.file.reload()
             assert file_.status == amo.STATUS_DISABLED
             assert not version.pending_rejection
 
@@ -4880,7 +4871,7 @@ class TestReview(ReviewBase):
         for version in [old_version, self.version]:
             version.reload()
             assert not version.needs_human_review
-            file_ = version.files.all().get()
+            file_ = version.file.reload()
             assert file_.status == amo.STATUS_DISABLED
             assert not version.pending_rejection
 
@@ -4915,7 +4906,7 @@ class TestReview(ReviewBase):
             version.reload()
             # The versions no longer need human review...
             assert not version.needs_human_review
-            file_ = version.files.all().get()
+            file_ = version.file
             # ... But their status shouldn't have changed yet ...
             assert file_.status == amo.STATUS_APPROVED
             # ... Because they are now pending rejection.
@@ -5613,7 +5604,7 @@ class TestReview(ReviewBase):
         # Delete ActivityLog to make the query count easier to follow. We have
         # other tests for the ActivityLog related stuff.
         ActivityLog.objects.for_addons(self.addon).delete()
-        with self.assertNumQueries(58):
+        with self.assertNumQueries(57):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.
@@ -5672,7 +5663,7 @@ class TestReview(ReviewBase):
                     results={'matchedResults': [customs_rule.name]},
                 )
 
-        with self.assertNumQueries(60):
+        with self.assertNumQueries(59):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.
@@ -5889,8 +5880,8 @@ class TestAbuseReportsView(ReviewerTest):
 class TestReviewPending(ReviewBase):
     def setUp(self):
         super().setUp()
-        self.file = file_factory(
-            version=self.version,
+        self.file = self.version.file
+        self.file.update(
             status=amo.STATUS_AWAITING_REVIEW,
             is_webextension=True,
         )
@@ -5901,39 +5892,13 @@ class TestReviewPending(ReviewBase):
 
     @mock.patch('olympia.reviewers.utils.sign_file')
     def test_pending_to_public(self, mock_sign):
-        statuses = self.version.files.values_list('status', flat=True).order_by(
-            'status'
-        )
-        assert list(statuses) == [amo.STATUS_AWAITING_REVIEW, amo.STATUS_APPROVED]
+        assert self.version.file.status == amo.STATUS_AWAITING_REVIEW
 
         response = self.client.post(self.url, self.pending_dict())
         assert self.get_addon().status == amo.STATUS_APPROVED
         self.assert3xx(response, reverse('reviewers.queue_extension'))
 
-        statuses = self.version.files.values_list('status', flat=True).order_by(
-            'status'
-        )
-        assert list(statuses) == [amo.STATUS_APPROVED, amo.STATUS_APPROVED]
-
-        assert mock_sign.called
-
-    @mock.patch('olympia.reviewers.utils.sign_file')
-    def test_review_unreviewed_files(self, mock_sign):
-        """Review all the unreviewed files when submitting a review."""
-        reviewed = File.objects.create(version=self.version, status=amo.STATUS_APPROVED)
-        disabled = File.objects.create(version=self.version, status=amo.STATUS_DISABLED)
-        unreviewed = File.objects.create(
-            version=self.version, status=amo.STATUS_AWAITING_REVIEW
-        )
-        self.login_as_admin()
-        response = self.client.post(self.url, self.pending_dict())
-        self.assert3xx(response, reverse('reviewers.queue_extension'))
-
-        assert self.addon.reload().status == amo.STATUS_APPROVED
-        assert reviewed.reload().status == amo.STATUS_APPROVED
-        assert disabled.reload().status == amo.STATUS_DISABLED
-        assert unreviewed.reload().status == amo.STATUS_APPROVED
-        assert self.file.reload().status == amo.STATUS_APPROVED
+        assert self.version.file.reload().status == amo.STATUS_APPROVED
 
         assert mock_sign.called
 
@@ -6011,7 +5976,7 @@ class TestReviewerMOTD(ReviewerTest):
 
 class TestStatusFile(ReviewBase):
     def get_file(self):
-        return self.version.files.all()[0]
+        return self.version.file
 
     def check_status(self, expected):
         response = self.client.get(self.url)
@@ -6655,7 +6620,7 @@ class TestAddonReviewerViewSet(TestCase):
     def test_enable_version_is_awaiting_review_fall_back_to_nominated(self):
         self.grant_permission(self.user, 'Reviews:Admin')
         self.client.login_api(self.user)
-        self.addon.current_version.files.all().update(status=amo.STATUS_AWAITING_REVIEW)
+        self.addon.current_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         self.addon.update(status=amo.STATUS_DISABLED)
         response = self.client.post(self.enable_url)
         assert response.status_code == 202
@@ -6877,7 +6842,7 @@ class AddonReviewerViewSetPermissionMixin:
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
         self.client.login_api(user)
-        self.version.files.update(status=amo.STATUS_DISABLED)
+        self.version.file.update(status=amo.STATUS_DISABLED)
         self._test_url()
 
     def test_author(self):
@@ -6891,13 +6856,13 @@ class AddonReviewerViewSetPermissionMixin:
         user = UserProfile.objects.create(username='admin')
         self.grant_permission(user, '*:*')
         self.client.login_api(user)
-        self.version.files.update(status=amo.STATUS_DISABLED)
+        self.version.file.update(status=amo.STATUS_DISABLED)
         self._test_url()
 
     def test_disabled_version_user(self):
         user = UserProfile.objects.create(username='simpleuser')
         self.client.login_api(user)
-        self.version.files.update(status=amo.STATUS_DISABLED)
+        self.version.file.update(status=amo.STATUS_DISABLED)
         response = self.client.get(self.url)
         assert response.status_code == 403
 
@@ -7237,13 +7202,13 @@ class TestReviewAddonVersionViewSetList(TestCase):
         user = UserProfile.objects.create(username='admin')
         self.grant_permission(user, '*:*')
         self.client.login_api(user)
-        self.version.files.update(status=amo.STATUS_DISABLED)
+        self.version.file.update(status=amo.STATUS_DISABLED)
         self._test_url()
 
     def test_permissions_disabled_version_user(self):
         user = UserProfile.objects.create(username='simpleuser')
         self.client.login_api(user)
-        self.version.files.update(status=amo.STATUS_DISABLED)
+        self.version.file.update(status=amo.STATUS_DISABLED)
         response = self.client.get(self.url)
         assert response.status_code == 403
 
@@ -7736,7 +7701,7 @@ class TestDraftCommentViewSet(TestCase):
     def test_disabled_version_user(self):
         user = user_factory(username='simpleuser')
         self.client.login_api(user)
-        self.version.files.update(status=amo.STATUS_DISABLED)
+        self.version.file.update(status=amo.STATUS_DISABLED)
 
         data = {
             'comment': 'Some really fancy comment',
@@ -8385,27 +8350,27 @@ class TestDownloadGitFileView(TestCase):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
         self.client.login(email=user.email)
-        self.version.files.update(status=amo.STATUS_DISABLED)
+        self.version.file.update(status=amo.STATUS_DISABLED)
         self._test_url_success()
 
     def test_disabled_version_author(self):
         user = UserProfile.objects.create(username='author')
         AddonUser.objects.create(user=user, addon=self.addon)
         self.client.login(email=user.email)
-        self.version.files.update(status=amo.STATUS_DISABLED)
+        self.version.file.update(status=amo.STATUS_DISABLED)
         self._test_url_success()
 
     def test_disabled_version_admin(self):
         user = UserProfile.objects.create(username='admin')
         self.grant_permission(user, '*:*')
         self.client.login(email=user.email)
-        self.version.files.update(status=amo.STATUS_DISABLED)
+        self.version.file.update(status=amo.STATUS_DISABLED)
         self._test_url_success()
 
     def test_disabled_version_user_but_not_author(self):
         user = UserProfile.objects.create(username='simpleuser')
         self.client.login(email=user.email)
-        self.version.files.update(status=amo.STATUS_DISABLED)
+        self.version.file.update(status=amo.STATUS_DISABLED)
 
         url = reverse(
             'reviewers.download_git_file',

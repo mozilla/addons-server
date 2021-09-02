@@ -265,14 +265,6 @@ class TestVersion(TestCase):
         version = Version.objects.get(pk=81551)
         assert version.is_webextension
 
-    def test_has_files(self):
-        version = Version.objects.get(pk=81551)
-        assert version.has_files, 'Version with files not recognized.'
-
-        version.files.all().delete()
-        version = Version.objects.get(pk=81551)
-        assert not version.has_files, 'Version without files not recognized.'
-
     def _get_version(self, status):
         version = Version()
         version.all_files = [mock.Mock()]
@@ -287,13 +279,13 @@ class TestVersion(TestCase):
     def test_version_delete(self, delete_preview_files_mock):
         version = Version.objects.get(pk=81551)
         version_preview = VersionPreview.objects.create(version=version)
-        assert version.files.count() == 1
+        assert version.file
         version.delete()
 
         addon = Addon.objects.get(pk=3615)
         assert not Version.objects.filter(addon=addon).exists()
         assert Version.unfiltered.filter(addon=addon).exists()
-        assert version.files.count() == 1
+        assert File.objects.filter(version=version).exists()
         delete_preview_files_mock.assert_called_with(
             sender=None, instance=version_preview
         )
@@ -306,13 +298,13 @@ class TestVersion(TestCase):
     def test_version_hard_delete(self):
         version = Version.objects.get(pk=81551)
         VersionPreview.objects.create(version=version)
-        assert version.files.count() == 1
+        assert version.file
         version.delete(hard=True)
 
         addon = Addon.objects.get(pk=3615)
         assert not Version.objects.filter(addon=addon).exists()
         assert not Version.unfiltered.filter(addon=addon).exists()
-        assert version.files.count() == 0
+        assert not File.objects.filter(version=version).exists()
         assert not VersionPreview.objects.filter(version=version).exists()
 
     def test_version_delete_logs(self):
@@ -397,7 +389,7 @@ class TestVersion(TestCase):
         )
         new_version = Version.objects.create(addon=addon)
         new_version.disable_old_files()
-        assert old_version.files.all()[0].status == amo.STATUS_AWAITING_REVIEW
+        assert old_version.file.status == amo.STATUS_AWAITING_REVIEW
         assert not hide_disabled_file_mock.called
 
         # Doesn't happen even if the new version is also unlisted.
@@ -405,7 +397,7 @@ class TestVersion(TestCase):
             addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED, version='0.54'
         )
         new_version.disable_old_files()
-        assert old_version.files.all()[0].status == amo.STATUS_AWAITING_REVIEW
+        assert old_version.file.status == amo.STATUS_AWAITING_REVIEW
         assert not hide_disabled_file_mock.called
 
     @mock.patch('olympia.files.models.File.hide_disabled_file')
@@ -414,13 +406,13 @@ class TestVersion(TestCase):
     ):
         addon = Addon.objects.get(id=3615)
         old_version = addon.current_version
-        old_version.files.all().update(status=amo.STATUS_AWAITING_REVIEW)
+        old_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
 
         version = version_factory(addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
         version.disable_old_files()
 
         old_version.reload()
-        assert old_version.files.all()[0].status == amo.STATUS_AWAITING_REVIEW
+        assert old_version.file.status == amo.STATUS_AWAITING_REVIEW
         assert not hide_disabled_file_mock.called
 
     def _reset_version(self, version):
@@ -494,7 +486,6 @@ class TestVersion(TestCase):
     def test_valid_versions(self):
         addon = Addon.objects.get(id=3615)
         additional_version = version_factory(addon=addon, version='0.1')
-        amo.tests.file_factory(version=additional_version)
         version_factory(
             addon=addon, version='0.2', file_kw={'status': amo.STATUS_DISABLED}
         )
@@ -538,9 +529,7 @@ class TestVersion(TestCase):
         assert 'is_ready_for_auto_approval' in version.__dict__
 
         del version.is_ready_for_auto_approval
-        version.files.all().update(
-            status=amo.STATUS_AWAITING_REVIEW, is_webextension=True
-        )
+        version.file.update(status=amo.STATUS_AWAITING_REVIEW, is_webextension=True)
         version.update(channel=amo.RELEASE_CHANNEL_LISTED)
         # Ensure the cached_property has not been set yet
         assert 'is_ready_for_auto_approval' not in version.__dict__
@@ -550,7 +539,7 @@ class TestVersion(TestCase):
         assert 'is_ready_for_auto_approval' in version.__dict__
 
         del version.is_ready_for_auto_approval
-        version.files.all().update(is_webextension=False)
+        version.file.update(is_webextension=False)
         # Ensure the cached_property has not been set yet
         assert 'is_ready_for_auto_approval' not in version.__dict__
         # Test it.
@@ -559,7 +548,7 @@ class TestVersion(TestCase):
         assert 'is_ready_for_auto_approval' in version.__dict__
 
         del version.is_ready_for_auto_approval
-        version.files.all().update(is_webextension=True)
+        version.file.update(is_webextension=True)
         # Ensure the cached_property has not been set yet
         assert 'is_ready_for_auto_approval' not in version.__dict__
         # Test it.
@@ -641,9 +630,7 @@ class TestVersion(TestCase):
         addon = Addon.objects.get(id=3615)
         addon.status = amo.STATUS_NOMINATED
         version = addon.current_version
-        version.files.all().update(
-            status=amo.STATUS_AWAITING_REVIEW, is_webextension=True
-        )
+        version.file.update(status=amo.STATUS_AWAITING_REVIEW, is_webextension=True)
         # Ensure the cached_property has not been set yet
         assert 'is_ready_for_auto_approval' not in version.__dict__
         # Test it.
@@ -668,9 +655,7 @@ class TestVersion(TestCase):
         assert 'is_ready_for_auto_approval' in version.__dict__
 
         del version.is_ready_for_auto_approval
-        version.files.all().update(
-            status=amo.STATUS_AWAITING_REVIEW, is_webextension=True
-        )
+        version.file.update(status=amo.STATUS_AWAITING_REVIEW, is_webextension=True)
         version.update(channel=amo.RELEASE_CHANNEL_LISTED)
         # Ensure the cached_property has not been set yet
         assert 'is_ready_for_auto_approval' not in version.__dict__
@@ -680,7 +665,7 @@ class TestVersion(TestCase):
         assert 'is_ready_for_auto_approval' in version.__dict__
 
         del version.is_ready_for_auto_approval
-        version.files.all().update(is_webextension=False)
+        version.file.update(is_webextension=False)
         # Ensure the cached_property has not been set yet
         assert 'is_ready_for_auto_approval' not in version.__dict__
         # Test it.
@@ -689,7 +674,7 @@ class TestVersion(TestCase):
         assert 'is_ready_for_auto_approval' in version.__dict__
 
         del version.is_ready_for_auto_approval
-        version.files.all().update(is_webextension=True)
+        version.file.update(is_webextension=True)
         # Ensure the cached_property has not been set yet
         assert 'is_ready_for_auto_approval' not in version.__dict__
         # Test it.
@@ -789,8 +774,7 @@ class TestVersion(TestCase):
         AutoApprovalSummary.objects.create(version=version, verdict=amo.AUTO_APPROVED)
         assert version.was_auto_approved
 
-        version.files.update(status=amo.STATUS_AWAITING_REVIEW)
-        del version.all_files  # Reset all_files cache.
+        version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         assert not version.was_auto_approved
 
     def test_transformer_license(self):
@@ -1122,13 +1106,10 @@ class TestVersion(TestCase):
     ],
 )
 def test_unreviewed_files(db, addon_status, file_status, is_unreviewed):
-    """Files that need to be reviewed are returned by version.unreviewed_files.
-
-    Use cases are triples taken from the "use_case" fixture above.
-    """
+    """Files that need to be reviewed are returned by version.unreviewed_files."""
     addon = amo.tests.addon_factory(status=addon_status, guid='foo')
     version = addon.current_version
-    file_ = version.files.get()
+    file_ = version.file
     file_.update(status=file_status)
     # If the addon is public, and we change its only file to something else
     # than public, it'll change to unreviewed.
@@ -1353,7 +1334,11 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         # We mock File.from_upload() to prevent it from accessing
         # version.compatible_apps early - we want to test that the cache has
         # been generated regardless.
-        with mock.patch('olympia.files.models.File.from_upload'):
+
+        def fake_file(*args, **kwargs):
+            return File(version=kwargs['version'])
+
+        with mock.patch('olympia.files.models.File.from_upload', side_effect=fake_file):
             version = Version.from_upload(
                 self.upload,
                 self.addon,
@@ -1759,7 +1744,7 @@ class TestStatusFromUpload(TestVersionFromUpload):
         self.current = self.addon.current_version
 
     def test_status(self):
-        self.current.files.all().update(status=amo.STATUS_AWAITING_REVIEW)
+        self.current.file.update(status=amo.STATUS_AWAITING_REVIEW)
         Version.from_upload(
             self.upload,
             self.addon,

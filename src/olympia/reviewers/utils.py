@@ -768,7 +768,11 @@ class ReviewBase:
         self.review_type = (
             'theme_%s' if addon.type == amo.ADDON_STATICTHEME else 'extension_%s'
         ) % review_type
-        self.files = self.version.unreviewed_files if self.version else []
+        self.file = (
+            self.version.file
+            if self.version and self.version.file.status == amo.STATUS_AWAITING_REVIEW
+            else None
+        )
         self.content_review = content_review
         self.redirect_url = None
 
@@ -780,15 +784,14 @@ class ReviewBase:
     def set_data(self, data):
         self.data = data
 
-    def set_files(self, status, files, hide_disabled_file=False):
-        """Change the files to be the new status."""
-        for file in files:
-            file.datestatuschanged = datetime.now()
-            file.reviewed = datetime.now()
-            if hide_disabled_file:
-                file.hide_disabled_file()
-            file.status = status
-            file.save()
+    def set_file(self, status, file, hide_disabled_file=False):
+        """Change the file to be the new status."""
+        file.datestatuschanged = datetime.now()
+        file.reviewed = datetime.now()
+        if hide_disabled_file:
+            file.hide_disabled_file()
+        file.status = status
+        file.save()
 
     def set_promoted(self):
         group = self.addon.promoted_group(currently_approved=False)
@@ -825,15 +828,15 @@ class ReviewBase:
         if version.needs_human_review_by_mad:
             version.reviewerflags.update(needs_human_review_by_mad=False)
 
-    def log_action(self, action, version=None, files=None, timestamp=None):
+    def log_action(self, action, version=None, file=None, timestamp=None):
         details = {
             'comments': self.data.get('comments', ''),
             'reviewtype': self.review_type.split('_')[1],
         }
-        if files is None and self.files:
-            files = self.files
-        if files is not None:
-            details['files'] = [f.id for f in files]
+        if file is None and self.file:
+            file = self.file
+        if file is not None:
+            details['files'] = [file.id]
         if version is None and self.version:
             version = self.version
         if version is not None:
@@ -937,12 +940,12 @@ class ReviewBase:
             detail_kwargs={'reviewtype': self.review_type.split('_')[1]},
         )
 
-    def sign_files(self):
+    def sign_file(self):
         assert not (self.version and self.version.is_blocked)
-        for file_ in self.files:
-            if file_.is_experiment:
-                ActivityLog.create(amo.LOG.EXPERIMENT_SIGNED, file_, user=self.user)
-            sign_file(file_)
+        if self.file:
+            if self.file.is_experiment:
+                ActivityLog.create(amo.LOG.EXPERIMENT_SIGNED, self.file, user=self.user)
+            sign_file(self.file)
 
     def process_comment(self):
         self.log_action(amo.LOG.COMMENT_VERSION)
@@ -966,14 +969,14 @@ class ReviewBase:
         assert not self.content_review
 
         # Sign addon.
-        self.sign_files()
+        self.sign_file()
 
         # Hold onto the status before we change it.
         status = self.addon.status
 
         # Save files first, because set_addon checks to make sure there
         # is at least one public file or it won't make the addon public.
-        self.set_files(amo.STATUS_APPROVED, self.files)
+        self.set_file(amo.STATUS_APPROVED, self.file)
         self.set_promoted()
         if self.set_addon_status:
             self.set_addon(status=amo.STATUS_APPROVED)
@@ -1031,7 +1034,7 @@ class ReviewBase:
 
         if self.set_addon_status:
             self.set_addon(status=amo.STATUS_NULL)
-        self.set_files(amo.STATUS_DISABLED, self.files, hide_disabled_file=True)
+        self.set_file(amo.STATUS_DISABLED, self.file, hide_disabled_file=True)
 
         if self.human_review:
             # Clear needs human review flags, but only on the latest version:
@@ -1168,14 +1171,14 @@ class ReviewBase:
         """Reject a list of versions.
         Note: this is used in blocklist.utils.disable_addon_for_block for both
         listed and unlisted versions (human_review=False)."""
-        # self.version and self.files won't point to the versions we want to
+        # self.version and self.file won't point to the versions we want to
         # modify in this action, so set them to None before finding the right
         # versions.
         status = self.addon.status
         latest_version = self.version
         channel = self.version.channel if self.version else None
         self.version = None
-        self.files = None
+        self.file = None
         now = datetime.now()
         if self.data.get('delayed_rejection'):
             pending_rejection_deadline = now + timedelta(
@@ -1205,10 +1208,10 @@ class ReviewBase:
             )
 
         for version in self.data['versions']:
-            files = version.files.all()
+            file = version.file
             if not pending_rejection_deadline:
-                self.set_files(amo.STATUS_DISABLED, files, hide_disabled_file=True)
-            self.log_action(action_id, version=version, files=files, timestamp=now)
+                self.set_file(amo.STATUS_DISABLED, file, hide_disabled_file=True)
+            self.log_action(action_id, version=version, file=file, timestamp=now)
             if self.human_review:
                 # Clear needs human review flags on rejected versions, we
                 # consider that the reviewer looked at them before rejecting.
@@ -1320,13 +1323,13 @@ class ReviewFiles(ReviewBase):
     def log_public_message(self):
         log.info(
             'Making %s files %s public'
-            % (self.addon, ', '.join([f.filename for f in self.files]))
+            % (self.addon, self.file.filename if self.file else '')
         )
 
     def log_sandbox_message(self):
         log.info(
             'Making %s files %s disabled'
-            % (self.addon, ', '.join([f.filename for f in self.files]))
+            % (self.addon, self.file.filename if self.file else '')
         )
 
 
@@ -1336,11 +1339,11 @@ class ReviewUnlisted(ReviewBase):
         assert self.version.channel == amo.RELEASE_CHANNEL_UNLISTED
 
         # Sign addon.
-        self.sign_files()
-        for file_ in self.files:
-            ActivityLog.create(amo.LOG.UNLISTED_SIGNED, file_, user=self.user)
+        self.sign_file()
+        if self.file:
+            ActivityLog.create(amo.LOG.UNLISTED_SIGNED, self.file, user=self.user)
 
-        self.set_files(amo.STATUS_APPROVED, self.files)
+        self.set_file(amo.STATUS_APPROVED, self.file)
 
         template = 'unlisted_to_reviewed_auto'
         subject = 'Mozilla Add-ons: %s %s signed and ready to download'
@@ -1359,7 +1362,7 @@ class ReviewUnlisted(ReviewBase):
 
         log.info(
             'Making %s files %s public'
-            % (self.addon, ', '.join([f.filename for f in self.files]))
+            % (self.addon, self.file.filename if self.file else '')
         )
         log.info('Sending email for %s' % (self.addon))
 

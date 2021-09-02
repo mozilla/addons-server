@@ -152,24 +152,24 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         """Test that version (soft)delete doesn't delete the file."""
         f = File.objects.get(pk=67442)
         try:
-            with storage.open(f.file_path, 'w') as fi:
+            with storage.open(f.current_file_path, 'w') as fi:
                 fi.write('sample data\n')
-            assert storage.exists(f.file_path)
+            assert storage.exists(f.current_file_path)
             f.version.delete()
-            assert storage.exists(f.file_path)
+            assert storage.exists(f.current_file_path)
         finally:
-            if storage.exists(f.file_path):
-                storage.delete(f.file_path)
+            if storage.exists(f.current_file_path):
+                storage.delete(f.current_file_path)
 
     def test_delete_file_path(self):
         f = File.objects.get(pk=67442)
-        self.check_delete(f, f.file_path)
+        self.check_delete(f, f.current_file_path)
 
     def test_delete_no_file(self):
         # test that the file object can be deleted without the file
         # being present
         file = File.objects.get(pk=74797)
-        filename = file.file_path
+        filename = file.current_file_path
         assert not os.path.exists(filename), 'File exists at: %s' % filename
         file.delete()
 
