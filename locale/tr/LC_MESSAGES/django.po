@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-24 16:50+0000\n"
-"PO-Revision-Date: 2021-08-08 10:55+0000\n"
+"PO-Revision-Date: 2021-09-02 10:12+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -2237,6 +2237,7 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
+"Eklentinizin başka bir ana sayfası varsa adresini buraya girin. Web siteniz başka dillere çevirilmişse, bu alanın birden çok çevirisi eklenebilir. Yalnızca listelenen eklentiler için geçerlidir."
 
 # 75%
 # 100%
@@ -2402,7 +2403,7 @@ msgid "128x128px"
 msgstr "128x128 px"
 
 msgid "Will be the standard in future add-on detail pages."
-msgstr ""
+msgstr "Gelecekteki eklenti detay sayfalarında standart olacak."
 
 msgid "Upload a Custom Icon..."
 msgstr "Özel simge yükle..."
@@ -2468,7 +2469,7 @@ msgid "Your add-on is currently set to \"Invisible\"."
 msgstr "Eklentiniz şu anda \"Görünmez\" olarak ayarlanmış."
 
 msgid "While in this state, \"On your own\" is the only distribution method available."
-msgstr ""
+msgstr "Bu durumdayken dağıtım yöntemi olarak sadece \"Kendi başınıza\"yı kullanabilirsiniz."
 
 msgid "General Tests"
 msgstr "Genel testler"
@@ -2545,7 +2546,7 @@ msgid "View Recent Changes"
 msgstr "Son Değişikliklere Bak"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
-msgstr ""
+msgstr "Bu eklentide, yayımlanmak üzere gönderilmeden önce gerekli olan bazı bilgiler eksik."
 
 msgid "This add-on doesn't have any versions."
 msgstr "Bu eklentinin hiç sürümü yok."
@@ -4472,7 +4473,7 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management extensions"
-msgstr ""
+msgstr "Diğer sekme yönetimi uzantılarına bakın"
 
 msgid "Could not parse the manifest file."
 msgstr "Manifest dosyası ayrıştırılamadı."
@@ -5059,7 +5060,7 @@ msgid "Add-on ID"
 msgstr "Eklenti ID'si"
 
 msgid "Original Add-on ID"
-msgstr ""
+msgstr "Orijinal uzantı kimliği"
 
 msgid "Add-on(s) sharing same ID"
 msgstr ""
