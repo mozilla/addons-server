@@ -12,9 +12,16 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
-            model_name='file',
-            name='version',
-            field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='versions.version'),
+        migrations.RunSQL(
+            # We're changing a ForeignKey to OneToOneField but django doesn't know how
+            # to do that efficiently.
+            "ALTER TABLE `files` ADD CONSTRAINT `files_version_id_44ed234d_uniq` UNIQUE (`version_id`);",
+            state_operations=[
+                migrations.AlterField(
+                    model_name='file',
+                    name='version',
+                    field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='versions.version'),
+                ),
+            ],
         ),
     ]

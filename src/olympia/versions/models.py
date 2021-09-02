@@ -314,8 +314,7 @@ class Version(OnChangeMixin, ModelBase):
         # triggering queries with that instance later.
         version._compatible_apps = compatible_apps
 
-        # Create relevant file and update the all_files cached property on the
-        # Version, because we might need it afterwards.
+        # Create relevant file.
         File.from_upload(
             upload=upload,
             version=version,
