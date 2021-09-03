@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-24 16:50+0000\n"
-"PO-Revision-Date: 2021-09-03 09:23+0000\n"
+"PO-Revision-Date: 2021-09-03 09:36+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -2282,7 +2282,7 @@ msgid "Summary"
 msgstr "Σύνοψη"
 
 msgid "Add-on URL"
-msgstr "URL πρόσθετου"
+msgstr "URL προσθέτου"
 
 msgid "Choose a short, unique URL slug for your add-on."
 msgstr "Επιλέξτε ένα σύντομο και μοναδικό URL slug για το πρόσθετο σας."
@@ -2376,7 +2376,7 @@ msgid "UUID"
 msgstr "UUID"
 
 msgid "The UUID of your add-on is specified in its install manifest and uniquely identifies it. You cannot change your UUID once it has been submitted."
-msgstr "Το UUID του πρόσθετου σας ορίζεται στο install manifest του πρόσθετου και είναι το μοναδιαίο αναγνωριστικό του. Δεν μπορείτε να αλλάξετε το UUID μετά την υποβολή του πρόσθετου."
+msgstr "Το UUID του προσθέτου σας ορίζεται στη διακήρυξη εγκατάστασής του και είναι το μοναδικό αναγνωριστικό του. Δεν μπορείτε να αλλάξετε το UUID μετά την υποβολή του προσθέτου."
 
 msgid "Whiteboard"
 msgstr "Πίνακας"
@@ -2392,7 +2392,7 @@ msgid "Add-on Media for {0}"
 msgstr "Αρχεία πολυμέσων για το {0}"
 
 msgid "Add-on icon"
-msgstr "Εικονίδιο πρόσθετου"
+msgstr "Εικονίδιο προσθέτου"
 
 msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
@@ -2416,14 +2416,14 @@ msgid "64x64px"
 msgstr "64x64px"
 
 msgid "Used in add-on detail pages."
-msgstr "Χρησιμοποιείται στις σελίδες λεπτομερειών του πρόσθετου."
+msgstr "Χρησιμοποιείται στις σελίδες λεπτομερειών του προσθέτου."
 
 #. The size of the icon
 msgid "128x128px"
 msgstr "128x128px"
 
 msgid "Will be the standard in future add-on detail pages."
-msgstr "Θα είναι το πρότυπο στις μελλοντικές σελίδες λεπτομερειών πρόσθετου."
+msgstr "Θα είναι το πρότυπο στις μελλοντικές σελίδες λεπτομερειών του προσθέτου."
 
 msgid "Upload a Custom Icon..."
 msgstr "Αποστολή προσαρμοσμένου εικονιδίου..."
@@ -2516,7 +2516,7 @@ msgid "Top"
 msgstr "Κορυφή"
 
 msgid "Delete Add-on"
-msgstr "Διαγραφή πρόσθετου"
+msgstr "Διαγραφή προσθέτου"
 
 msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
@@ -2535,13 +2535,13 @@ msgid "Actions"
 msgstr "Ενέργειες"
 
 msgid "Resume the submission process for this add-on"
-msgstr "Συνέχεια της διαδικασίας υποβολής του πρόσθετου"
+msgstr "Συνέχεια της διαδικασίας υποβολής του προσθέτου"
 
 msgid "Resume"
 msgstr "Συνέχιση"
 
 msgid "Delete this add-on."
-msgstr "Διαγραφή του πρόσθετου."
+msgstr "Διαγραφή του προσθέτου."
 
 msgid "Edit details on this add-on's product page"
 msgstr "Επεξεργασία λεπτομερειών σχετικά με αυτήν τη σελίδα προϊόντος του προσθέτου"
@@ -2829,7 +2829,7 @@ msgid "Upload Version"
 msgstr "Μεταφόρτωση έκδοσης"
 
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
-msgstr "Χρησιμοποιήστε τα παρακάτω πεδία για να μεταφορτώσετε το πακέτου του πρόσθετου σας. Μετά τη μεταφόρτωση, θα διεξαχθεί στο αρχείο σας μια σειρά αυτοματοποιημένων δοκιμών και ελέγχων."
+msgstr "Χρησιμοποιήστε τα παρακάτω πεδία για να μεταφορτώσετε το πακέτου του προσθέτου σας. Μετά τη μεταφόρτωση, θα διεξαχθεί στο αρχείο σας μια σειρά αυτοματοποιημένων δοκιμών και ελέγχων."
 
 msgid "Which applications is this version compatible with?"
 msgstr "Με ποιες εφαρμογές είναι συμβατή αυτή η έκδοση;"
@@ -2844,7 +2844,7 @@ msgid "Create a Theme"
 msgstr "Δημιουργία θέματος"
 
 msgid "Sign Add-on"
-msgstr "Υπογραφή πρόσθετου"
+msgstr "Υπογραφή προσθέτου"
 
 msgid "Theme generate"
 msgstr "Δημιουργία θέματος"
@@ -3152,7 +3152,7 @@ msgid "If your add-on contains minified, concatenated or otherwise machine-gener
 msgstr "Αν το πρόσθετό σας περιέχει ελαχιστοποιημένο, συνενωμένο ή γραμμένο από μηχανή κώδικα εκτός από γνωστές βιβλιοθήκες, ανεβάστε τις πηγές του προς αξιολόγηση."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
-msgstr "Παρακαλούμε συμπεριλάβετε οδηγίες για τον τρόπο δημιουργίας του τελικού αρχείου πρόσθετου, είτε σε αρχείο οδηγιών είτε σε μια σημείωση προς τους ελεγκτές αυτής της έκδοσης."
+msgstr "Παρακαλούμε συμπεριλάβετε οδηγίες για τον τρόπο δημιουργίας του τελικού αρχείου του προσθέτου, είτε σε αρχείο README είτε στις «Σημειώσεις προς ελεγκτές» αυτής της έκδοσης."
 
 msgid "Read more about the source code review policy."
 msgstr "Διαβάστε περισσότερα σχετικά με τη πολιτική κριτικής πηγαίου κώδικα."
@@ -3495,7 +3495,7 @@ msgid "Hide Add-on"
 msgstr "Απόκρυψη προσθέτου"
 
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
-msgstr "Η απόκρυψη του πρόσθετου σας θα εμποδίσει την εμφάνισή του σε οποιοδήποτε σημείο της συλλογής μας και θα διακόψει τις αυτόματες ενημερώσεις για τους χρήστες."
+msgstr "Η απόκρυψη του προσθέτου σας θα εμποδίσει την εμφάνισή του σε οποιοδήποτε σημείο της συλλογής μας και θα διακόψει τις αυτόματες ενημερώσεις για τους χρήστες."
 
 msgid "The files awaiting review will be disabled and you will need to upload new versions."
 msgstr "Τα αρχεία που αναμένουν αξιολόγηση θα απενεργοποιηθούν και θα χρειαστεί να μεταφορτώσετε νέες εκδόσεις."
@@ -5132,7 +5132,7 @@ msgstr "Αναφορές κατάχρησης"
 
 #. This is a caption for a table. {0} is an add-on name.
 msgid "Add-on Information for {0}"
-msgstr "Πληροφορίες πρόσθετου για το {0}"
+msgstr "Πληροφορίες προσθέτου για το {0}"
 
 msgid "Add-on ID"
 msgstr "ID προσθέτου"
@@ -5310,7 +5310,7 @@ msgid "Helpful Links:"
 msgstr "Χρήσιμοι σύνδεσμοι:"
 
 msgid "Add-on Policy"
-msgstr "Πολιτική πρόσθετου"
+msgstr "Πολιτική προσθέτου"
 
 msgid "Reviewer's Guide"
 msgstr "Οδηγός ελεγκτή"
@@ -5441,7 +5441,7 @@ msgid "Admin Page"
 msgstr "Σελίδα διαχειριστή"
 
 msgid "Review This Add-on"
-msgstr "Αξιολόγηση αυτού του πρόσθετου"
+msgstr "Αξιολόγηση προσθέτου"
 
 msgid "More Information"
 msgstr "Περισσότερες πληροφορίες"
@@ -5767,7 +5767,7 @@ msgid "Daily Users"
 msgstr "Ημερήσιοι χρήστες"
 
 msgid "by Add-on Version"
-msgstr "κατά έκδοση πρόσθετου"
+msgstr "κατά έκδοση προσθέτου"
 
 msgid "by Application"
 msgstr "κατά εφαρμογή"
@@ -5919,7 +5919,7 @@ msgid "Download sources by Date"
 msgstr "Πηγές λήψεων κατά ημερομηνία"
 
 msgid "Add-on Status by Date"
-msgstr "Κατάσταση πρόσθετου κατά ημερομηνία"
+msgstr "Κατάσταση προσθέτου κατά ημερομηνία"
 
 msgid "Daily Users by Date"
 msgstr "Ημερήσιοι χρήστες κατά ημερομηνία"
