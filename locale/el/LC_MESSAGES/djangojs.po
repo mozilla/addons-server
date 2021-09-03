@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-24 16:51+0000\n"
-"PO-Revision-Date: 2021-09-03 23:16+0000\n"
+"PO-Revision-Date: 2021-09-03 23:18+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
 "Language: el\n"
@@ -285,10 +285,10 @@ msgid "Homepage Promo"
 msgstr "Προωθητική ενέργεια αρχικής σελίδας"
 
 msgid "Homepage Featured"
-msgstr "Προβεβλημένη Αρχική Σελίδα"
+msgstr "Προτεινόμενα πρόσθετα αρχικής σελίδας"
 
 msgid "Homepage Up and Coming"
-msgstr "Προσεχής Αρχική Σελίδα"
+msgstr "Προσεχή πρόσθετα αρχικής σελίδας"
 
 msgid "Homepage Most Popular"
 msgstr "Δημοφιλέστερη Αρχική Σελίδα"
@@ -300,13 +300,13 @@ msgid "Detail Page (bottom)"
 msgstr "Σελίδα λεπτομερειών (κάτω μέρος)"
 
 msgid "Detail Page (Development Channel)"
-msgstr "Σελίδα λεπτομερειών (Κανάλι Ανάπτυξης)"
+msgstr "Σελίδα λεπτομερειών (Κανάλι ανάπτυξης)"
 
 msgid "Often Used With"
 msgstr "Χρησιμοποιείται συχνά μαζί με"
 
 msgid "Others By Author"
-msgstr "Άλλα από τον ίδιο"
+msgstr "Από τον ίδιο δημιουργό"
 
 msgid "Dependencies"
 msgstr "Εξαρτήσεις"
