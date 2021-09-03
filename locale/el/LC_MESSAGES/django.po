@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-24 16:50+0000\n"
-"PO-Revision-Date: 2021-09-03 22:35+0000\n"
+"PO-Revision-Date: 2021-09-03 22:46+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -312,8 +312,8 @@ msgstr "Έργα συντήρησης σε εξέλιξη"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
 msgstr ""
-"Αυτή η λειτουργία είναι προσωρινά απενεργοποιημένη καθώς εκτελούμε εργασίες συντήρησης στην ιστοσελίδα. Χρησιμοποιήστε το κουμπί επιστροφής του προγράμματος περιήγησής σας και δοκιμάστε ξανά "
-"αργότερα."
+"Αυτή η λειτουργία είναι προσωρινά απενεργοποιημένη καθώς εκτελούμε εργασίες συντήρησης στον ιστότοπο. Παρακαλούμε χρησιμοποιήστε το κουμπί επιστροφής του προγράμματος περιήγησής σας και δοκιμάστε "
+"ξανά αργότερα."
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Μερικές λειτουργίες της σελίδας έχουν προς το παρόν απενεργοποιηθεί γιατί εκτελούμε εργασίες συντήρησης. Παρακαλούμε προσπαθήστε ξανά λίγο αργότερα."
@@ -1063,7 +1063,7 @@ msgstr "Εμφάνιση"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
 msgstr ""
-"Κάντε λήψη επεκτάσεων που τροποποιούν την εμφάνιση των ιστοσελίδων και του προγράμματος περιήγησης του Firefox. Αυτή η κατηγορία περιλαμβάνει επεκτάσεις για σκοτεινά θέματα, διαχείριση καρτελών και "
+"Κάντε λήψη επεκτάσεων που τροποποιούν την εμφάνιση των ιστοτόπων και του προγράμματος περιήγησης Firefox. Αυτή η κατηγορία περιλαμβάνει επεκτάσεις για σκουρόχρωμα θέματα, διαχείριση καρτελών και "
 "πολλά άλλα."
 
 msgid "Bookmarks"
@@ -1195,7 +1195,7 @@ msgid "Social Networking"
 msgstr "Κοινωνική δικτύωση"
 
 msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr "Κάντε λήψη επεκτάσεων του Firefox για βελτίωση της εμπειρίας σας σε δημοφιλείς ιστοσελίδες κοινωνικής δικτύωσης, όπως το YouTube, το GitHub, το Reddit και πολλά άλλα."
+msgstr "Κάντε λήψη επεκτάσεων του Firefox για βελτίωση της εμπειρίας σας σε δημοφιλείς ιστοτόπους κοινωνικής δικτύωσης, όπως το YouTube, το GitHub, το Reddit και πολλά άλλα."
 
 msgid "Sports & Games"
 msgstr "Αθλητισμός & παιχνίδια"
@@ -1207,7 +1207,7 @@ msgid "User Interface"
 msgstr "Περιβάλλον χρήστη"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr "Κάντε λήψη επεκτάσεων περιβάλλοντος χρήσης του Firefox για αλλαγή ιστοσελίδων για ευκολότερη ανάγνωση, αναζήτηση, περιήγηση και πολλά άλλα."
+msgstr "Κάντε λήψη επεκτάσεων για το περιβάλλον χρήσης του Firefox για αλλαγή ιστοσελίδων για ευκολότερη ανάγνωση, αναζήτηση, περιήγηση και πολλά άλλα."
 
 msgid "Animals"
 msgstr "Ζώα"
@@ -1326,7 +1326,7 @@ msgid "Download Firefox themes that feature a variety of sports. This category i
 msgstr "Κάντε λήψη θεμάτων για το Firefox, που απεικονίζουν διάφορα αθλήματα. Αυτή η κατηγορία περιέχει θέματα με εθνικές σημαίες, ομάδες αθλημάτων, ποδόσφαιρο, χόκεϊ και πολλά άλλα."
 
 msgid "Websites"
-msgstr "Ιστοσελίδες"
+msgstr "Ιστότοποι"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
 msgstr "Κάντε λήψη θεμάτων για το Firefox, που αποτυπώνουν την ουσία του διαδικτύου — μαγευτικό, ασυνήθιστο και ιδιαίτερο."
@@ -2258,7 +2258,7 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
-"Αν το πρόσθετό σας έχει άλλη αρχική σελίδα, εισαγάγετε τη διεύθυνση εδώ. Αν η ιστοσελίδα σας μεταφράζεται σε άλλες γλώσσες, μπορούν να προστεθούν πολλαπλές μεταφράσεις του πεδίου. Αφορά μόνο "
+"Αν το πρόσθετό σας έχει άλλη αρχική σελίδα, εισαγάγετε τη διεύθυνσή της εδώ. Αν ο ιστότοπός σας μεταφράζεται σε άλλες γλώσσες, μπορούν να προστεθούν πολλαπλές μεταφράσεις του πεδίου. Αφορά μόνο "
 "καταχωρημένα πρόσθετα."
 
 msgid "Describe Add-on"
@@ -2340,13 +2340,13 @@ msgstr ""
 "ισχύει μόνο για τα καταχωρημένα πρόσθετα."
 
 msgid "Website"
-msgstr "Ιστοσελίδα"
+msgstr "Ιστότοπος"
 
 msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr ""
-"Αν το πρόσθετό σας διαθέτει μία ιστοσελίδα υποστήριξης ή φόρουμ, εισαγάγετε εδώ τη διεύθυνσή του. Αν η ιστοσελίδα σας έχει μεταφραστεί σε άλλες γλώσσες, μπορείτε να προσθέσετε πολλαπλές μεταφράσεις "
+"Αν το πρόσθετό σας διαθέτει έναν ιστότοπο ή φόρουμ υποστήριξης, εισαγάγετε εδώ τη διεύθυνσή του. Αν ο ιστότοπός σας έχει μεταφραστεί σε άλλες γλώσσες, μπορείτε να προσθέσετε πολλαπλές μεταφράσεις "
 "αυτού του πεδίου. Αυτό ισχύει μόνο για τα καταχωρημένα πρόσθετα."
 
 msgid "Images"
@@ -2621,7 +2621,7 @@ msgid "Name:"
 msgstr "Όνομα:"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr "Όνομα αναγραφής στην ιστοσελίδα. Μπορεί να είναι διαφορετικό από το όνομα εντός του προσθέτου, που εμφανίζεται μέσα στο Firefox"
+msgstr "Όνομα καταχώρησης στον ιστότοπο. Μπορεί να είναι διαφορετικό από το όνομα εντός του προσθέτου, που εμφανίζεται μέσα στο Firefox"
 
 msgid "Summary:"
 msgstr "Σύνοψη:"
@@ -2644,7 +2644,7 @@ msgid "Support email:"
 msgstr "Email υποστήριξης:"
 
 msgid "Support website:"
-msgstr "Ιστοσελίδα υποστήριξης:"
+msgstr "Ιστότοπος υποστήριξης:"
 
 msgid "License:"
 msgstr "Άδεια:"
@@ -2712,7 +2712,7 @@ msgid "Version Submitted"
 msgstr "Η έκδοση υπεβλήθη"
 
 msgid "You’re done! This version will be available on our site shortly."
-msgstr "Τελειώσατε! Αυτή η έκδοση θα είναι σύντομα διαθέσιμη στην ιστοσελίδα μας."
+msgstr "Τελειώσατε! Αυτή η έκδοση θα είναι σύντομα διαθέσιμη στον ιστότοπό μας."
 
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
 msgstr "Τέλος! Αυτή η έκδοση έχει υποβληθεί για έλεγχο. Θα ειδοποιηθείτε όταν ολοκληρωθεί η αξιολόγηση, ή αν τυχόν οι ελεγκτές μας έχουν απορίες για την υποβολή σας."
@@ -2749,7 +2749,7 @@ msgid "Do You Need to Submit Source Code?"
 msgstr "Χρειάζεται να υποβάλετε πηγαίο κώδικα;"
 
 msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
-msgstr "Ίσως χρειαστεί να υποβάλετε τον πηγαίο κώδικα. Αν δεν κάνετε υποβολή, το πρόσθετό σας ενδέχεται να αφαιρεθεί από την ιστοσελίδα!"
+msgstr "Ίσως χρειαστεί να υποβάλετε τον πηγαίο κώδικα. Αν δεν κάνετε υποβολή, το πρόσθετό σας ενδέχεται να αφαιρεθεί από τον ιστότοπο!"
 
 #, python-format
 msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
@@ -3043,7 +3043,7 @@ msgid "Your add-on is displayed in our gallery and users are receiving automatic
 msgstr "Το πρόσθετο σας εμφανίζεται κανονικά στις σελίδες μας κι οι χρήστες θα λαμβάνουν αυτόματα ενημερώσεις."
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr "Το πρόσθετό σας απενεργοποιήθηκε από ένα διαχειριστή ιστοσελίδας και δεν εμφανίζεται πλέον στη συλλογή μας. Αν έχετε απορίες, παρακαλούμε επικοινωνήστε μαζί στο amo-admins@mozilla.com."
+msgstr "Το πρόσθετό σας απενεργοποιήθηκε από έναν διαχειριστή του ιστοτόπου και δεν εμφανίζεται πλέον στη συλλογή μας. Αν έχετε απορίες, παρακαλούμε επικοινωνήστε μαζί μας στο amo-admins@mozilla.com."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
@@ -3060,7 +3060,7 @@ msgstr "Τελευταία ενημέρωση:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
-msgstr "Καταχωρήθηκε σε αυτή την ιστοσελίδα αφού πέρασε την αξιολόγηση κώδικα. Οι αυτόματες ενημερώσεις διαχειρίζονται από αυτή την ιστοσελίδα"
+msgstr "Καταχωρήθηκε σε αυτόν τον ιστότοπο αφού πέρασε την αξιολόγηση κώδικα. Οι αυτόματες ενημερώσεις διαχειρίζονται από τον ιστότοπο"
 
 msgid "Status:"
 msgstr "Κατάσταση:"
@@ -3075,7 +3075,7 @@ msgid "Next Listed Version:"
 msgstr "Επόμενη καταχωρημένη έκδοση:"
 
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
-msgstr "Αυτή είναι η νεότερη έκδοση που έχει μεταφορτωθεί, ωστόσο δεν έχει δημοσιευθεί στην ιστοσελίδα ακόμα"
+msgstr "Αυτή είναι η νεότερη έκδοση που έχει μεταφορτωθεί, ωστόσο δεν έχει δημοσιευθεί στον ιστότοπο ακόμα"
 
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr "Υπεγράφη για αυτό-διανομή. Εσείς χειρίζεστε τις ενημερώσεις."
@@ -3269,7 +3269,7 @@ msgid "Learn more about the developer community"
 msgstr "Μάθετε περισσότερα για την κοινότητα των προγραμματιστών"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
-msgstr "Καταχωρήθηκε σε αυτή την ιστοσελίδα αφού πέρασε την αξιολόγηση κώδικα. Οι αυτόματες ενημερώσεις διαχειρίζονται από αυτή την ιστοσελίδα."
+msgstr "Καταχωρήθηκε σε αυτόν τον ιστότοπο αφού πέρασε την αξιολόγηση κώδικα. Οι αυτόματες ενημερώσεις διαχειρίζονται από τον ιστότοπο."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -3581,7 +3581,7 @@ msgstr "Βλέπετε μια ενδιαφέρουσα εικόνα στο δι�
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr "Κάντε λήψη βίντεο με άνεση. Λειτουργεί με YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope και εκατοντάδες άλλες ιστοσελίδες βίντεο."
+msgstr "Κάντε λήψη βίντεο με άνεση. Λειτουργεί με YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope και εκατοντάδες άλλους ιστοτόπους βίντεο."
 
 #. editorial content for the discovery pane.
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
@@ -3607,7 +3607,7 @@ msgstr "Επισημάνετε οποιοδήποτε κείμενο και κά
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
-msgstr "Απολαύστε οπτικούς σελιδοδείκτες. Προσπελάστε αγαπημένες ιστοσελίδες από μια διάταξη πλακιδίων."
+msgstr "Απολαύστε οπτικούς σελιδοδείκτες. Προσπελάστε τους αγαπημένους σας ιστοτόπους από μια διάταξη πλακιδίων."
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
@@ -3627,7 +3627,7 @@ msgstr "Οργάνωση των καρτελών σας σε ομάδες χρω
 
 #. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
-msgstr "Σταματήστε τη χρήση ισχύος του υπολογιστή σας από κακόβουλες ιστοσελίδες με σκοπό την εξόρυξη κρυπτονομισμάτων."
+msgstr "Σταματήστε τη χρήση ισχύος του υπολογιστή σας από κακόβουλους ιστοτόπους με σκοπό την εξόρυξη κρυπτονομισμάτων."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3749,7 +3749,7 @@ msgstr "Βελτίωση εμπειρίας θέασης με προσαρμογ
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
-msgstr "Προσθήκη κρυπτογραφημένης ασφάλειας σε κάθε ιστοσελίδα που υποστηρίζει HTTPS. Ασφαλής περιήγηση."
+msgstr "Προσθήκη κρυπτογραφημένης ασφάλειας σε κάθε ιστότοπο που υποστηρίζει HTTPS. Ασφαλής περιήγηση."
 
 #. editorial content for the discovery pane.
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
@@ -3777,7 +3777,7 @@ msgstr "Σερφάρετε ανώνυμα. Περιηγηθείτε στο δι�
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr "Απολαύστε οπτικούς σελιδοδείκτες. Πρόσβαση σε αγαπημένες ιστοσελίδες, καρτέλες που κλείσατε πρόσφατα και πολλά άλλα—όλα από μια πανέμορφη διάταξη πλακιδίων."
+msgstr "Απολαύστε οπτικούς σελιδοδείκτες. Πρόσβαση σε αγαπημένους ιστοτόπους, καρτέλες που κλείσατε πρόσφατα και πολλά άλλα—όλα από μια πανέμορφη διάταξη πλακιδίων."
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
@@ -3809,7 +3809,7 @@ msgstr "Χρησιμοποιήστε κινήσεις ποντικιού για 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr "Απολαύστε μικρογραφίες ιστοσελίδων δίπλα στα αποτελέσματα αναζήτησής σας."
+msgstr "Απολαύστε μικρογραφίες ιστοτόπων δίπλα στα αποτελέσματα αναζήτησής σας."
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
@@ -3823,7 +3823,7 @@ msgstr "Αποκλείστε όλα τα αναδυόμενα από προεπ�
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
-msgstr "Προσαρμόστε την εμφάνιση όλων των ιστοσελίδων! Αλλάξτε χρώματα, φόντα σελίδων και πολλά άλλα."
+msgstr "Προσαρμόστε την εμφάνιση όλων των ιστοτόπων! Αλλάξτε χρώματα, φόντα σελίδων και πολλά άλλα."
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
@@ -3835,7 +3835,7 @@ msgstr "Αποθηκεύστε με ασφάλεια κωδικούς πρόσβ
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
-msgstr "Μάθετε πού πηγαίνετε στο διαδίκτυο. Βρείτε τη χώρα των ιστοσελίδων που επισκέπτεστε. Γίνετε ένας ενημερωμένος ταξιδιώτης του διαδικτύου."
+msgstr "Μάθετε πού πηγαίνετε στο διαδίκτυο. Βρείτε τη χώρα των ιστοτόπων που επισκέπτεστε. Γίνετε ένας ενημερωμένος ταξιδιώτης του διαδικτύου."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience. Make the text you're reading more appealing by removing the clutter around it."
