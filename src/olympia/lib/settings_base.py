@@ -1056,10 +1056,6 @@ CELERY_TASK_ROUTES = {
     'olympia.addons.tasks.index_addons': {'queue': 'priority'},
     'olympia.addons.tasks.unindex_addons': {'queue': 'priority'},
     'olympia.blocklist.tasks.process_blocklistsubmission': {'queue': 'priority'},
-    'olympia.blocklist.tasks.import_block_from_blocklist': {'queue': 'priority'},
-    'olympia.blocklist.tasks.delete_imported_block_from_blocklist': {
-        'queue': 'priority'
-    },
     'olympia.blocklist.tasks.upload_filter': {'queue': 'priority'},
     'olympia.versions.tasks.generate_static_theme_preview': {'queue': 'priority'},
     # Other queues we prioritize below.
@@ -1732,7 +1728,6 @@ CRON_JOBS = {
     'update_addon_hotness': 'olympia.addons.cron',
     'gc': 'olympia.amo.cron',
     'write_sitemaps': 'olympia.amo.cron',
-    'auto_import_blocklist': 'olympia.blocklist.cron',
     'upload_mlbf_to_remote_settings': 'olympia.blocklist.cron',
     'update_blog_posts': 'olympia.devhub.cron',
     'update_user_ratings': 'olympia.users.cron',
