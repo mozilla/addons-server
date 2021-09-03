@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-24 16:51+0000\n"
-"PO-Revision-Date: 2021-08-30 11:32+0000\n"
+"PO-Revision-Date: 2021-09-03 23:16+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
 "Language: el\n"
@@ -97,7 +97,7 @@ msgid "Your submission will be automatically signed."
 msgstr "Η υποβολή σας θα υπογραφεί αυτόματα."
 
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr "Συμπεριλάβετε λεπτομερή σημειώματα της έκδοσης (αυτό μπορεί να γίνει στο επόμενο βήμα)."
+msgstr "Συμπεριλάβετε λεπτομερείς σημειώσεις της έκδοσης (αυτό μπορεί να γίνει στο επόμενο βήμα)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
@@ -105,7 +105,7 @@ msgstr ""
 "επόμενο βήμα)."
 
 msgid "Add-on submission checklist"
-msgstr "Λίστα καταχωρήσεων προσθέτων"
+msgstr "Λίστα ελέγχου υποβολής προσθέτων"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Παρακαλούμε επιβεβαιώστε τα παρακάτω σημεία πριν από την ολοκλήρωση της υποβολής σας. Αυτό θα μειώσει τυχόν καθυστερήσεις ή ασάφειες κατά τη διαδικασία της αξιολόγησης:"
@@ -118,7 +118,7 @@ msgstr ""
 "χρησιμοποιείτε το πεδίο μεταφόρτωσης πηγαίου κώδικα για να αποφύγετε την απόρριψη της υποβολής σας."
 
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr "Η διαδικασία επικύρωσης βρήκε προβλήματα που μπορούν να οδηγήσουν σε απόρριψη."
+msgstr "Η διαδικασία επικύρωσης βρήκε προβλήματα που μπορούν να οδηγήσουν σε απόρριψη:"
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Ο τύπος αρχείου που μεταφορτώσατε δεν αναγνωρίζεται."
@@ -127,13 +127,13 @@ msgid "Your file exceeds the maximum size of {0}."
 msgstr "Το αρχείο σας ξεπερνά το μέγιστο μέγεθος των {0}."
 
 msgid "You cancelled the upload."
-msgstr "Ακυρώσατε την μεταφόρτωση."
+msgstr "Ακυρώσατε τη μεταφόρτωση."
 
 msgid "Images must be either PNG or JPG."
-msgstr "Οι εικόνες πρέπει να είναι είτε PNG είτε JPG"
+msgstr "Οι εικόνες πρέπει να είναι είτε PNG είτε JPG."
 
 msgid "Videos must be in WebM."
-msgstr "Τα βίντεο πρέπει να είναι τύπου WebM."
+msgstr "Τα βίντεο πρέπει να είναι σε μορφή WebM."
 
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Αυτό το θέμα δεν είναι συμβατό με την έκδοση του {0} σας"
@@ -252,7 +252,7 @@ msgid "Subscribers"
 msgstr "Συνδρομητές"
 
 msgid "Ratings"
-msgstr "Αξιολογήσεις"
+msgstr "Βαθμολογίες"
 
 msgid "Sales"
 msgstr "Πωλήσεις"
@@ -282,7 +282,7 @@ msgid "Search Results"
 msgstr "Αποτελέσματα αναζήτησης"
 
 msgid "Homepage Promo"
-msgstr "Promo Αρχικής Σελίδας"
+msgstr "Προωθητική ενέργεια αρχικής σελίδας"
 
 msgid "Homepage Featured"
 msgstr "Προβεβλημένη Αρχική Σελίδα"
