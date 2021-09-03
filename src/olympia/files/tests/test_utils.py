@@ -318,7 +318,7 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         resolve_message.return_value = 'Notify Mozilla'
 
         addon = amo.tests.addon_factory()
-        file_obj = addon.current_version.all_files[0]
+        file_obj = addon.current_version.file
         fixture = 'src/olympia/files/fixtures/files/notify-link-clicks-i18n.xpi'
 
         with amo.tests.copy_file(fixture, file_obj.file_path):
@@ -333,7 +333,7 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         resolve_message.return_value = 'Notify for Mozilla'
 
         addon = amo.tests.addon_factory()
-        file_obj = addon.current_version.all_files[0]
+        file_obj = addon.current_version.file
         fixture = 'src/olympia/files/fixtures/files/notify-link-clicks-i18n.xpi'
 
         with amo.tests.copy_file(fixture, file_obj.file_path):
@@ -776,7 +776,7 @@ def file_obj():
     addon = amo.tests.addon_factory()
     addon.update(guid='xxxxx')
     version = addon.current_version
-    return version.all_files[0]
+    return version.file
 
 
 @pytestmark

@@ -276,17 +276,16 @@ class TestAddonIndexer(TestCase):
         version = self.addon.current_version
         # Make the version a webextension and add a bunch of things to it to
         # test different scenarios.
-        version.all_files[0].update(is_webextension=True)
+        version.file.update(is_webextension=True)
         version.license = License.objects.create(
             name='My licensé', url='http://example.com/', builtin=0
         )
         [
             WebextPermission.objects.create(
-                file=file_,
+                file=version.file,
                 permissions=permissions,
                 optional_permissions=optional_permissions,
             )
-            for file_ in version.all_files
         ]
         version.save()
 
@@ -320,20 +319,19 @@ class TestAddonIndexer(TestCase):
         ]
         assert extracted['current_version']['reviewed'] == version.reviewed
         assert extracted['current_version']['version'] == version.version
-        for index, file_ in enumerate(version.all_files):
-            extracted_file = extracted['current_version']['files'][index]
-            assert extracted_file['id'] == file_.pk
-            assert extracted_file['created'] == file_.created
-            assert extracted_file['filename'] == file_.filename
-            assert extracted_file['hash'] == file_.hash
-            assert extracted_file['is_webextension'] == file_.is_webextension
-            assert extracted_file['is_mozilla_signed_extension'] == (
-                file_.is_mozilla_signed_extension
-            )
-            assert extracted_file['size'] == file_.size
-            assert extracted_file['status'] == file_.status
-            assert extracted_file['permissions'] == permissions
-            assert extracted_file['optional_permissions'] == optional_permissions
+        extracted_file = extracted['current_version']['files'][0]
+        assert extracted_file['id'] == version.file.pk
+        assert extracted_file['created'] == version.file.created
+        assert extracted_file['filename'] == version.file.filename
+        assert extracted_file['hash'] == version.file.hash
+        assert extracted_file['is_webextension'] == version.file.is_webextension
+        assert extracted_file['is_mozilla_signed_extension'] == (
+            version.file.is_mozilla_signed_extension
+        )
+        assert extracted_file['size'] == version.file.size
+        assert extracted_file['status'] == version.file.status
+        assert extracted_file['permissions'] == permissions
+        assert extracted_file['optional_permissions'] == optional_permissions
 
     def test_version_compatibility_with_strict_compatibility_enabled(self):
         version = self.addon.current_version

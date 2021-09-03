@@ -63,7 +63,7 @@ class TestStatus(TestCase):
         super().setUp()
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.current_version
-        self.file = self.version.all_files[0]
+        self.file = self.version.file
         assert self.addon.status == amo.STATUS_APPROVED
         self.url = reverse_ns(
             'addon-detail', api_version='v5', kwargs={'pk': self.addon.pk}

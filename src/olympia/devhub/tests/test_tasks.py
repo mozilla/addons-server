@@ -417,7 +417,7 @@ class TestRunAddonsLinter(UploadTest, ValidatorTestCase):
 
     def test_handle_file_validation_result_task_result_is_serializable(self):
         addon = addon_factory()
-        self.file = addon.current_version.all_files[0]
+        self.file = addon.current_version.file
         assert not self.file.has_been_validated
         file_validation_id = tasks.validate(self.file).get()
         assert json.dumps(file_validation_id)

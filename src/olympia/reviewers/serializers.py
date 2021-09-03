@@ -378,7 +378,7 @@ class MinimalVersionSerializerWithChannel(MinimalVersionSerializer):
 
 
 class AddonBrowseVersionSerializerFileOnly(MinimalVersionSerializerWithChannel):
-    file = FileInfoSerializer(source='current_file')
+    file = FileInfoSerializer()
 
     class Meta:
         model = Version
@@ -431,17 +431,17 @@ class AddonBrowseVersionSerializer(
             drf_reverse(
                 'reviewers-addon-json-file-validation',
                 request=self.context.get('request'),
-                args=[obj.addon.pk, obj.current_file.id],
+                args=[obj.addon.pk, obj.file.id],
             )
         )
 
     def get_validation_url(self, obj):
         return absolutify(
-            reverse('devhub.file_validation', args=[obj.addon.pk, obj.current_file.id])
+            reverse('devhub.file_validation', args=[obj.addon.pk, obj.file.id])
         )
 
     def get_has_been_validated(self, obj):
-        return obj.current_file.has_been_validated
+        return obj.file.has_been_validated
 
 
 class DiffableVersionSerializer(MinimalVersionSerializerWithChannel):
@@ -498,7 +498,7 @@ class FileInfoDiffSerializer(FileInfoSerializer, FileEntriesDiffMixin):
         parent = self.context['parent_version']
         selected_file = self._get_selected_file()
 
-        for file in [parent.current_file, obj]:
+        for file in [parent.file, obj]:
             try:
                 data = json.loads(file.validation.validation)
             except FileValidation.DoesNotExist:
@@ -513,12 +513,12 @@ class FileInfoDiffSerializer(FileInfoSerializer, FileEntriesDiffMixin):
     def get_base_file(self, obj):
         # We can't directly use `source=` in the file definitions above
         # because the parent version gets passed through the `context`
-        base_file = self.context['parent_version'].current_file
+        base_file = self.context['parent_version'].file
         return MinimalBaseFileSerializer(instance=base_file).data
 
 
 class AddonCompareVersionSerializerFileOnly(AddonBrowseVersionSerializer):
-    file = FileInfoDiffSerializer(source='current_file')
+    file = FileInfoDiffSerializer()
 
     class Meta:
         model = Version

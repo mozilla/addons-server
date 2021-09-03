@@ -1716,7 +1716,7 @@ class TestAddonModels(TestCase):
         assert addon.promoted_group() == SPONSORED
 
         # check it doesn't error if there's no current_version
-        addon.current_version.all_files[0].update(status=amo.STATUS_DISABLED)
+        addon.current_version.file.update(status=amo.STATUS_DISABLED)
         addon.update_version()
         assert not addon.current_version
         assert not addon.promoted_group()
@@ -2015,9 +2015,8 @@ class TestShouldRedirectToSubmitFlow(TestCase):
         addon.update(status=amo.STATUS_NULL)
         assert addon.should_redirect_to_submit_flow()
 
-        for ver in addon.versions.all():
-            for file_ in ver.all_files:
-                file_.update(status=amo.STATUS_DISABLED)
+        for version in addon.versions.all():
+            version.file.update(status=amo.STATUS_DISABLED)
         assert not addon.should_redirect_to_submit_flow()
 
     def test_only_null_redirects(self):

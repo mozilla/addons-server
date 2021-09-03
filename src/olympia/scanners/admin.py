@@ -423,7 +423,7 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
             {
                 'rule_change_urlname': 'admin:%s_%s_change' % info,
                 'external_site_url': settings.EXTERNAL_SITE_URL,
-                'file_id': (obj.version.all_files[0].id if obj.version else None),
+                'file_id': (obj.version.file.id if obj.version else None),
                 'matched_rules': [
                     {
                         'pk': rule.pk,
@@ -753,8 +753,8 @@ class ScannerQueryResultAdmin(AbstractScannerResultAdminMixin, admin.ModelAdmin)
     version_number.short_description = 'Version'
 
     def is_file_signed(self, obj):
-        if obj.version and obj.version.current_file:
-            return obj.version.current_file.is_signed
+        if obj.version and obj.version.file:
+            return obj.version.file.is_signed
         return False
 
     is_file_signed.short_description = 'Is Signed'
@@ -769,11 +769,11 @@ class ScannerQueryResultAdmin(AbstractScannerResultAdminMixin, admin.ModelAdmin)
         )
 
     def download(self, obj):
-        if obj.version and obj.version.current_file:
+        if obj.version and obj.version.file:
             return format_html(
                 '<a href="{}">{}</a>',
-                obj.version.current_file.get_absolute_url(attachment=True),
-                obj.version.current_file.pk,
+                obj.version.file.get_absolute_url(attachment=True),
+                obj.version.file.pk,
             )
         return '-'
 

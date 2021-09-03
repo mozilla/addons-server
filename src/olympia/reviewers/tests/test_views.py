@@ -3022,7 +3022,7 @@ class TestReview(ReviewBase):
         items = pq(response.content)('#versions-history .files .file-info')
         assert items.length == 1
 
-        file_ = self.version.all_files[0]
+        file_ = self.version.file
         expected = [
             (file_.get_absolute_url(attachment=True)),
             (
@@ -3354,7 +3354,7 @@ class TestReview(ReviewBase):
         # If the latest version is not pending rejection and unreviewed, we
         # won't automatically reject versions pending rejection even if the
         # deadline has passed - so the message changes.
-        latest_version.current_file.update(status=amo.STATUS_AWAITING_REVIEW)
+        latest_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)('#versions-history .review-files')
@@ -4517,7 +4517,7 @@ class TestReview(ReviewBase):
         addon = self.get_addon()
         assert addon.status == amo.STATUS_APPROVED
         assert addon.current_version
-        assert addon.current_version.all_files[0].status == amo.STATUS_APPROVED
+        assert addon.current_version.file.status == amo.STATUS_APPROVED
         assert addon.current_version.promoted_approvals.filter(
             group_id=RECOMMENDED.id
         ).exists()
@@ -6956,7 +6956,7 @@ class TestReviewAddonVersionViewSetDetail(
         assert response.status_code == 200
         result = json.loads(response.content)
         assert result['id'] == self.version.pk
-        assert result['file']['id'] == self.version.current_file.pk
+        assert result['file']['id'] == self.version.file.pk
 
         # part of manifest.json
         assert '"name": "Beastify"' in result['file']['content']
@@ -7047,7 +7047,7 @@ class TestReviewAddonVersionViewSetDetail(
         self.client.login_api(user)
         self.url = reverse_ns(
             'reviewers-versions-detail',
-            kwargs={'addon_pk': self.addon.pk, 'pk': self.version.current_file.pk + 42},
+            kwargs={'addon_pk': self.addon.pk, 'pk': self.version.file.pk + 42},
         )
         response = self.client.get(self.url)
         assert response.status_code == 404
@@ -7947,7 +7947,7 @@ class TestReviewAddonVersionCompareViewSet(
         result = json.loads(response.content)
 
         assert result['id'] == self.version.pk
-        assert result['file']['id'] == self.version.current_file.pk
+        assert result['file']['id'] == self.version.file.pk
         assert result['file']['diff']['path'] == 'manifest.json'
 
         change = result['file']['diff']['hunks'][0]['changes'][3]
@@ -8520,7 +8520,7 @@ class TestThemeBackgroundImages(ReviewBase):
         assert data == {}
 
     def test_header_images(self):
-        destination = self.addon.current_version.all_files[0].current_file_path
+        destination = self.addon.current_version.file.current_file_path
         zip_file = os.path.join(
             settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme_tiled.zip'
         )

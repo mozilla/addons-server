@@ -50,7 +50,7 @@ class TestSigning(TestCase):
         self.addon = amo.tests.addon_factory(file_kw={'filename': 'webextension.xpi'})
         self.addon.update(guid='xxxxx')
         self.version = self.addon.current_version
-        self.file_ = self.version.all_files[0]
+        self.file_ = self.version.file
 
         responses.add_passthru(settings.AUTOGRAPH_CONFIG['server_url'])
 
@@ -419,7 +419,7 @@ class TestTransactionRelatedSigning(TransactionTestCase):
     @override_switch('enable-uploads-commit-to-git-storage', active=True)
     def test_creates_git_extraction_entry_after_signing(self, create_entry_mock):
         with transaction.atomic():
-            signing.sign_file(self.version.current_file)
+            signing.sign_file(self.version.file)
 
         create_entry_mock.assert_called_once_with(version=self.version)
 
@@ -427,7 +427,7 @@ class TestTransactionRelatedSigning(TransactionTestCase):
     @override_switch('enable-uploads-commit-to-git-storage', active=True)
     def test_does_not_create_git_extraction_entry_on_error(self, create_entry_mock):
         def call_sign_file():
-            signing.sign_file(self.version.current_file)
+            signing.sign_file(self.version.file)
             # raise ValueError after the sign_file call so that
             # the extraction is queued via the on_commit hook
             # but the atomic block won't complete.
@@ -451,7 +451,7 @@ class TestTasks(TestCase):
         self.version = self.addon.current_version
         self.max_appversion = self.version.apps.first().max
         self.set_max_appversion('48')
-        self.file_ = self.version.all_files[0]
+        self.file_ = self.version.file
         self.file_.update(filename='webextension.xpi')
 
     def tearDown(self):
@@ -629,7 +629,7 @@ class TestTasks(TestCase):
         new_current_version = amo.tests.version_factory(
             addon=self.addon, version='0.0.2'
         )
-        new_file = new_current_version.current_file
+        new_file = new_current_version.file
 
         with amo.tests.copy_file(fname, new_file.file_path):
             with amo.tests.copy_file(fname, self.file_.file_path):

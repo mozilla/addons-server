@@ -216,7 +216,7 @@ def recreate_theme_previews(addon_ids, **kw):
                     continue
                 # else carry on with a full preview generation
             log.info('Recreating previews for theme: %s' % version.addon_id)
-            xpi = get_filepath(version.all_files[0])
+            xpi = get_filepath(version.file)
             theme_data = parse_addon(xpi, minimal=True).get('theme', {})
             generate_static_theme_preview.apply_async(
                 args=(theme_data, version.id), queue='adhoc'

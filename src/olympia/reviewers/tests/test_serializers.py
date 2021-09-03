@@ -46,12 +46,9 @@ class TestFileInfoSerializer(TestCase):
 
         extract_version_to_git(self.addon.current_version.pk)
         self.addon.current_version.reload()
-        assert (
-            self.addon.current_version.current_file.filename
-            == 'notify-link-clicks-i18n.xpi'
-        )
+        assert self.addon.current_version.file.filename == 'notify-link-clicks-i18n.xpi'
         self.version = self.addon.current_version
-        self.file = self.addon.current_version.current_file
+        self.file = self.addon.current_version.file
 
         # Set up the request to support drf_reverse
         api_version = api_settings.DEFAULT_VERSION
@@ -69,7 +66,7 @@ class TestFileInfoSerializer(TestCase):
         return self.get_serializer(**extra_context).data
 
     def test_raises_without_version(self):
-        file = self.addon.current_version.current_file
+        file = self.addon.current_version.file
         serializer = FileInfoSerializer(instance=file)
 
         with self.assertRaises(RuntimeError):
@@ -80,7 +77,7 @@ class TestFileInfoSerializer(TestCase):
             instance=self.addon.current_version, context={'request': self.request}
         )
         file = serializer.data['file']
-        assert file['id'] == self.addon.current_version.current_file.pk
+        assert file['id'] == self.addon.current_version.file.pk
 
     def test_basic(self):
         expected_file_type = 'text'
@@ -93,7 +90,7 @@ class TestFileInfoSerializer(TestCase):
 
         data = self.serialize()
 
-        assert data['id'] == self.addon.current_version.current_file.pk
+        assert data['id'] == self.addon.current_version.file.pk
         assert data['selected_file'] == 'manifest.json'
         assert data['download_url'] == absolutify(
             reverse(
@@ -117,7 +114,7 @@ class TestFileInfoSerializer(TestCase):
     def test_requested_file(self):
         data = self.serialize(file='icons/LICENSE')
 
-        assert data['id'] == self.addon.current_version.current_file.pk
+        assert data['id'] == self.addon.current_version.file.pk
         assert data['selected_file'] == 'icons/LICENSE'
         assert data['content'].startswith(
             'The "link-48.png" icon is taken from the Geomicons'
@@ -150,7 +147,7 @@ class TestFileInfoSerializer(TestCase):
     def test_uses_unknown_minified_code(self):
         validation_data = {'metadata': {'unknownMinifiedFiles': ['content-script.js']}}
 
-        fobj = self.addon.current_version.current_file
+        fobj = self.addon.current_version.file
 
         FileValidation.objects.create(file=fobj, validation=json.dumps(validation_data))
 
@@ -174,7 +171,7 @@ class TestFileInfoDiffSerializer(TestCase):
         extract_version_to_git(self.addon.current_version.pk)
         self.addon.current_version.refresh_from_db()
         self.version = self.addon.current_version
-        self.file = self.addon.current_version.current_file
+        self.file = self.addon.current_version.file
 
         # Set up the request to support drf_reverse
         api_version = api_settings.DEFAULT_VERSION
@@ -192,7 +189,7 @@ class TestFileInfoDiffSerializer(TestCase):
         return self.get_serializer(**extra_context).data
 
     def test_raises_without_version(self):
-        file = self.addon.current_version.current_file
+        file = self.addon.current_version.file
         serializer = FileInfoDiffSerializer(instance=file)
 
         with self.assertRaises(RuntimeError):
@@ -216,7 +213,7 @@ class TestFileInfoDiffSerializer(TestCase):
             context={'parent_version': parent_version, 'request': self.request},
         )
         file = serializer.data['file']
-        assert file['id'] == new_version.current_file.pk
+        assert file['id'] == new_version.file.pk
 
     def test_basic(self):
         expected_file_type = 'text'
@@ -243,11 +240,11 @@ class TestFileInfoDiffSerializer(TestCase):
         apply_changes(repo, new_version, '', 'README.md', delete=True)
 
         self.version = new_version
-        self.file = new_version.current_file
+        self.file = new_version.file
         data = self.serialize(parent_version=parent_version)
 
-        assert data['id'] == new_version.current_file.pk
-        assert data['base_file'] == {'id': parent_version.current_file.pk}
+        assert data['id'] == new_version.file.pk
+        assert data['base_file'] == {'id': parent_version.file.pk}
         assert data['selected_file'] == 'manifest.json'
         assert data['download_url'] == absolutify(
             reverse(
@@ -283,7 +280,7 @@ class TestFileInfoDiffSerializer(TestCase):
         apply_changes(repo, new_version, '', expected_filename, delete=True)
 
         self.version = new_version
-        self.file = new_version.current_file
+        self.file = new_version.file
         data = self.serialize(parent_version=parent_version)
 
         assert data['download_url'] is None
@@ -309,10 +306,10 @@ class TestFileInfoDiffSerializer(TestCase):
         AddonGitRepository.extract_and_commit_from_version(new_version)
 
         self.version = new_version
-        self.file = new_version.current_file
+        self.file = new_version.file
         data = self.serialize(parent_version=parent_version)
 
-        assert data['id'] == self.addon.current_version.current_file.pk
+        assert data['id'] == self.addon.current_version.file.pk
         assert data['filename'] == 'manifest.json'
         assert data['diff'] is not None
 
@@ -334,11 +331,11 @@ class TestFileInfoDiffSerializer(TestCase):
         # which will result in us notifying the frontend of a minified file
         # as well
         current_validation = FileValidation.objects.create(
-            file=parent_version.current_file, validation=json.dumps(validation_data)
+            file=parent_version.file, validation=json.dumps(validation_data)
         )
 
         self.version = new_version
-        self.file = new_version.current_file
+        self.file = new_version.file
         data = self.serialize(parent_version=parent_version, file='README.md')
         assert data['uses_unknown_minified_code']
 
@@ -349,7 +346,7 @@ class TestFileInfoDiffSerializer(TestCase):
 
         # Creating a validation object for the current one works as well
         FileValidation.objects.create(
-            file=self.version.current_file, validation=json.dumps(validation_data)
+            file=self.version.file, validation=json.dumps(validation_data)
         )
 
         data = self.serialize(parent_version=parent_version, file='README.md')
@@ -454,13 +451,13 @@ class TestAddonBrowseVersionSerializer(TestCase):
         validation_url_json = absolutify(
             reverse_ns(
                 'reviewers-addon-json-file-validation',
-                kwargs={'pk': self.addon.pk, 'file_id': self.version.current_file.id},
+                kwargs={'pk': self.addon.pk, 'file_id': self.version.file.id},
             )
         )
         validation_url = absolutify(
             reverse(
                 'devhub.file_validation',
-                args=[self.addon.pk, self.version.current_file.id],
+                args=[self.addon.pk, self.version.file.id],
             )
         )
 

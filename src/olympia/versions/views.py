@@ -166,7 +166,7 @@ def download_latest(request, addon, type='xpi', platform=None):
     Requires same permissions as download_file() does for this file.
     """
     try:
-        file_ = addon.current_version.current_file
+        file_ = addon.current_version.file
     except IndexError:
         raise http.Http404()
     return download_file(request, file_.id, type=type, file_=file_, addon=addon)

@@ -33,7 +33,7 @@
 
 {% macro version_details(version, full_info=False) %}
 {% set latest_version_in_channel_including_disabled = latest_listed_version_including_disabled if version.channel == amo.RELEASE_CHANNEL_LISTED else latest_unlisted_version_including_disabled %}
-  <tr{% if version_disabled(version) %} class="version-disabled"{% endif %}>
+  <tr{% if version.file.status == amo.STATUS_DISABLED %} class="version-disabled"{% endif %}>
     <td>
       <strong>
         <a href="{{ url('devhub.versions.edit', addon.slug, version.id) }}"
@@ -45,13 +45,9 @@
       </span>
     </td>
     <td class="file-status">
-      {% for count, status in dev_files_status(version.all_files) %}
-          <div>
-            {{ distro_tag(version.channel)}} {{ status }}
-          </div>
-      {% else %}
-          {{ _('0 files') }}
-      {% endfor %}
+      <div>
+        {{ distro_tag(version.channel)}} {{ version.file.get_status_display() }}
+      </div>
       {% if version.is_user_disabled %}
         <div>
         <form method="post" action="{{ url('devhub.versions.reenable', addon.slug) }}">
@@ -76,17 +72,15 @@
     </td>
     <td class="file-validation">
       <ul>
-        {% for file in version.all_files %}
           <li>
-          {% if file.has_been_validated %}
+          {% if version.file.has_been_validated %}
             <ul>
-              <li><a href="{{ url('devhub.file_validation', addon.slug, file.id) }}">
-                {{ summarize_validation(file.validation) }}</a>
+              <li><a href="{{ url('devhub.file_validation', addon.slug, version.file.id) }}">
+                {{ summarize_validation(version.file.validation) }}</a>
               </li>
             </ul>
           {% endif %}
           </li>
-        {% endfor %}
       </ul>
     </td>
     <td class="version-delete">

@@ -6,13 +6,10 @@ from unittest.mock import Mock
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
-from olympia.addons.models import Addon
 from olympia.amo import LOG
-from olympia.amo.tests import TestCase, addon_factory, days_ago, user_factory
+from olympia.amo.tests import addon_factory, days_ago, user_factory
 from olympia.amo.tests.test_helpers import render
 from olympia.devhub.templatetags import jinja_helpers
-from olympia.files.models import File
-from olympia.versions.models import Version
 
 
 pytestmark = pytest.mark.django_db
@@ -64,47 +61,6 @@ def test_log_action_class():
         else:
             cls = ''
         assert render('{{ log_action_class(id) }}', {'id': v.id}) == cls
-
-
-class TestDevFilesStatus(TestCase):
-    def setUp(self):
-        super().setUp()
-        self.addon = Addon.objects.create(type=1, status=amo.STATUS_NOMINATED)
-        self.version = Version.objects.create(addon=self.addon)
-        self.file = File.objects.create(
-            version=self.version,
-            status=amo.STATUS_AWAITING_REVIEW,
-        )
-
-    def expect(self, expected):
-        cnt, msg = jinja_helpers.dev_files_status([self.file])[0]
-        assert cnt == 1
-        assert msg == str(expected)
-
-    def test_unreviewed_public(self):
-        self.addon.status = amo.STATUS_APPROVED
-        self.file.status = amo.STATUS_AWAITING_REVIEW
-        self.expect(File.STATUS_CHOICES[amo.STATUS_AWAITING_REVIEW])
-
-    def test_unreviewed_nominated(self):
-        self.addon.status = amo.STATUS_NOMINATED
-        self.file.status = amo.STATUS_AWAITING_REVIEW
-        self.expect(File.STATUS_CHOICES[amo.STATUS_AWAITING_REVIEW])
-
-    def test_reviewed_public(self):
-        self.addon.status = amo.STATUS_APPROVED
-        self.file.status = amo.STATUS_APPROVED
-        self.expect(File.STATUS_CHOICES[amo.STATUS_APPROVED])
-
-    def test_reviewed_null(self):
-        self.addon.status = amo.STATUS_NULL
-        self.file.status = amo.STATUS_AWAITING_REVIEW
-        self.expect(File.STATUS_CHOICES[amo.STATUS_AWAITING_REVIEW])
-
-    def test_disabled(self):
-        self.addon.status = amo.STATUS_APPROVED
-        self.file.status = amo.STATUS_DISABLED
-        self.expect(File.STATUS_CHOICES[amo.STATUS_DISABLED])
 
 
 @pytest.mark.parametrize(

@@ -88,19 +88,13 @@ class FileUploadSerializer(serializers.ModelSerializer):
             return None
 
     def get_reviewed(self, instance):
-        if self.version is not None:
-            return all(file_.reviewed for file_ in self.version.all_files)
-        else:
-            return False
+        return self.version is not None and self.version.file.reviewed
 
     def get_active(self, instance):
-        if self.version is not None:
-            return all(
-                file_.status in amo.REVIEWED_STATUSES
-                for file_ in self.version.all_files
-            )
-        else:
-            return False
+        return (
+            self.version is not None
+            and self.version.file.status in amo.REVIEWED_STATUSES
+        )
 
     def get_passed_review(self, instance):
         return self.get_reviewed(instance) and self.get_active(instance)

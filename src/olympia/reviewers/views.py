@@ -667,9 +667,8 @@ def review(request, addon, channel=None):
     # them. But only if we're not running in eager mode, since that could mean
     # blocking page load for several minutes.
     if version and not getattr(settings, 'CELERY_TASK_ALWAYS_EAGER', False):
-        for file_ in version.all_files:
-            if not file_.has_been_validated:
-                devhub_tasks.validate(file_)
+        if not version.file.has_been_validated:
+            devhub_tasks.validate(version.file)
 
     actions = form.helper.actions.items()
 
@@ -1139,7 +1138,7 @@ def download_git_stored_file(request, version_id, filename):
         if not owner_or_unlisted_viewer_or_reviewer(request, addon):
             raise http.Http404
 
-    file = version.current_file
+    file = version.file
 
     serializer = FileInfoSerializer(
         instance=file,

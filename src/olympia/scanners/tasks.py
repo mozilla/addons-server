@@ -410,7 +410,7 @@ def _run_yara_query_rule_on_version(version, rule):
     """
     Run a specific ScannerQueryRule on a Version.
     """
-    file_ = version.all_files[0]
+    file_ = version.file
     scanner_result = ScannerQueryResult(version=version, scanner=YARA)
     try:
         _run_yara_for_path(

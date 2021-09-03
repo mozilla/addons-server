@@ -25,13 +25,9 @@ def test_recreate_theme_previews():
     )
 
     addon_without_previews = addon_factory(type=amo.ADDON_STATICTHEME)
-    copy_stored_file(
-        xpi_path, addon_without_previews.current_version.all_files[0].file_path
-    )
+    copy_stored_file(xpi_path, addon_without_previews.current_version.file.file_path)
     addon_with_previews = addon_factory(type=amo.ADDON_STATICTHEME)
-    copy_stored_file(
-        xpi_path, addon_with_previews.current_version.all_files[0].file_path
-    )
+    copy_stored_file(xpi_path, addon_with_previews.current_version.file.file_path)
     VersionPreview.objects.create(
         version=addon_with_previews.current_version,
         sizes={'image': [123, 456], 'thumbnail': [34, 45]},

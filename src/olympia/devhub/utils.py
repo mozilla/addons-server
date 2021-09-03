@@ -280,11 +280,11 @@ class Validator:
 
 def extract_theme_properties(addon, channel):
     version = addon.find_latest_version(channel)
-    if not version or not version.all_files:
+    if not version:
         return {}
     try:
         parsed_data = parse_xpi(
-            version.all_files[0].file_path, addon=addon, user=core.get_user()
+            version.file.file_path, addon=addon, user=core.get_user()
         )
     except ValidationError:
         # If we can't parse the existing manifest safely return.

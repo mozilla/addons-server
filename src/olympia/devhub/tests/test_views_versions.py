@@ -27,7 +27,6 @@ from olympia.amo.tests import (
 )
 from olympia.applications.models import AppVersion
 from olympia.constants.promoted import RECOMMENDED
-from olympia.files.models import File
 from olympia.users.models import Group, UserProfile
 from olympia.versions.models import ApplicationsVersions, Version
 
@@ -273,7 +272,7 @@ class TestVersion(TestCase):
         )
 
     def test_reenable_version(self):
-        Version.objects.get(pk=81551).all_files[0].update(
+        Version.objects.get(pk=81551).file.update(
             status=amo.STATUS_DISABLED, original_status=amo.STATUS_APPROVED
         )
         self.reenable_url = reverse('devhub.versions.reenable', args=['a3615'])
@@ -292,14 +291,13 @@ class TestVersion(TestCase):
     def _extra_version_and_file(self, status):
         version = Version.objects.get(id=81551)
 
-        version_two = Version(
-            addon=self.addon, license=version.license, version='1.2.3'
+        version_two = version_factory(
+            addon=self.addon,
+            license=version.license,
+            version='1.2.3',
+            file_kw={'status': status},
         )
-        version_two.save()
-
-        file_two = File(status=status, version=version_two)
-        file_two.save()
-        return version_two, file_two
+        return version_two, version_two.file
 
     def test_version_delete_status(self):
         self._extra_version_and_file(amo.STATUS_APPROVED)
@@ -370,7 +368,7 @@ class TestVersion(TestCase):
     @mock.patch('olympia.files.models.File.hide_disabled_file')
     def test_disabling_addon_awaiting_review_disables_version(self, hide_mock):
         self.addon.update(status=amo.STATUS_AWAITING_REVIEW, disabled_by_user=False)
-        self.version.all_files[0].update(status=amo.STATUS_AWAITING_REVIEW)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
 
         res = self.client.post(self.disable_url)
         assert res.status_code == 302
@@ -381,7 +379,7 @@ class TestVersion(TestCase):
 
         # Check we disabled the file pending review.
         self.version = Version.objects.get(id=self.version.id)
-        assert self.version.all_files[0].status == amo.STATUS_DISABLED
+        assert self.version.file.status == amo.STATUS_DISABLED
 
     def test_user_get(self):
         assert self.client.get(self.enable_url).status_code == 405
@@ -508,13 +506,13 @@ class TestVersion(TestCase):
 
     def test_cancel_obey_channel_listed(self):
         addon = Addon.objects.get(id=3615)
-        file_ = addon.current_version.current_file
+        file_ = addon.current_version.file
         file_.update(status=amo.STATUS_AWAITING_REVIEW)
         unlisted_file = version_factory(
             addon=addon,
             channel=amo.RELEASE_CHANNEL_UNLISTED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-        ).current_file
+        ).file
         cancel_url = reverse('devhub.addons.cancel', args=['a3615', 'listed'])
         self.client.post(cancel_url)
         file_.reload()
@@ -528,12 +526,12 @@ class TestVersion(TestCase):
         addon = Addon.objects.get(id=3615)
         version = addon.current_version
         version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        file_ = version.current_file
+        file_ = version.file
         file_.update(status=amo.STATUS_AWAITING_REVIEW)
         listed_file = version_factory(
             addon=addon,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-        ).current_file
+        ).file
         addon.update(status=amo.STATUS_NOMINATED)
         cancel_url = reverse('devhub.addons.cancel', args=['a3615', 'unlisted'])
         self.client.post(cancel_url)
@@ -718,7 +716,7 @@ class TestVersion(TestCase):
 
         # Make one of the versions listed.
         v2.update(channel=amo.RELEASE_CHANNEL_LISTED)
-        v2.all_files[0].update(status=amo.STATUS_AWAITING_REVIEW)
+        v2.file.update(status=amo.STATUS_AWAITING_REVIEW)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)

@@ -149,9 +149,7 @@ class RecalculateWeightTestCase(TestCase):
 
     def test_task_works_correctly(self):
         addon = addon_factory(average_daily_users=100000)
-        FileValidation.objects.create(
-            file=addon.current_version.all_files[0], validation='{}'
-        )
+        FileValidation.objects.create(file=addon.current_version.file, validation='{}')
         addon = Addon.objects.get(pk=addon.pk)
         summary = AutoApprovalSummary.objects.create(
             version=addon.current_version, verdict=amo.AUTO_APPROVED

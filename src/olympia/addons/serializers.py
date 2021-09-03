@@ -225,17 +225,26 @@ class CompactLicenseSerializer(LicenseSerializer):
 
 
 class MinimalVersionSerializer(serializers.ModelSerializer):
-    files = FileSerializer(source='all_files', many=True)
+    files = FileSerializer(source='file')
 
     class Meta:
         model = Version
         fields = ('id', 'files', 'reviewed', 'version')
 
+    def to_representation(self, instance):
+        repr = super().to_representation(instance)
+        if 'files' in repr:
+            # files is expected to be a list but now we only have one file so fake it.
+            repr['files'] = [repr['files']]
+        return repr
+
 
 class SimpleVersionSerializer(MinimalVersionSerializer):
     compatibility = serializers.SerializerMethodField()
     edit_url = serializers.SerializerMethodField()
-    is_strict_compatibility_enabled = serializers.SerializerMethodField()
+    is_strict_compatibility_enabled = serializers.BooleanField(
+        source='file.strict_compatibility'
+    )
     license = CompactLicenseSerializer()
     release_notes = TranslationSerializerField()
 
@@ -275,9 +284,6 @@ class SimpleVersionSerializer(MinimalVersionSerializer):
         return absolutify(
             obj.addon.get_dev_url('versions.edit', args=[obj.pk], prefix_only=True)
         )
-
-    def get_is_strict_compatibility_enabled(self, obj):
-        return any(file_.strict_compatibility for file_ in obj.all_files)
 
 
 class VersionSerializer(SimpleVersionSerializer):
@@ -665,10 +671,7 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
                 version=data['version'],
                 channel=channel,
             )
-            version.all_files = [
-                self.fake_file_object(version, file_data)
-                for file_data in data.get('files', [])
-            ]
+            version.file = self.fake_file_object(version, data['files'][0])
 
             # In ES we store integers for the appversion info, we need to
             # convert it back to strings.

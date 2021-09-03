@@ -26,7 +26,7 @@
 <tr class="listing-body">
   <td class="files">
     {% if addon.type != amo.ADDON_STATICTHEME %}
-      {{ all_files(version) }}
+      {{ file_view(version) }}
       {% if version.compatible_apps_ordered %}
         <div><strong>{{ _('Compatibility:') }}</strong></div>
         <ul>
@@ -80,10 +80,10 @@
       <ul>
         <li class="file-info">
           <span class="light">
-            <strong><a href="{{ version.all_files[0].get_url_path() }}" class="reviewers-install"
+            <strong><a href="{{ version.file.get_url_path() }}" class="reviewers-install"
               data-type="{{ amo.ADDON_SLUGS[addon.type] }}">{{ _('Download') }}</a></strong>
             <div>
-              {{ file_review_status(addon, version.all_files[0]) }}
+              {{ file_review_status(addon, version.file) }}
             </div>
           </span>
         </li>

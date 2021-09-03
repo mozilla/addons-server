@@ -208,8 +208,8 @@ class TestMLBF(TestCase):
         assert self.addon_deleted_before_2_5_ver.id in (blocked_versions)
 
         # doublecheck if the versions were signed & webextensions they'd be in.
-        self.not_signed_version.all_files[0].update(is_signed=True)
-        self.not_webext_version.all_files[0].update(is_webextension=True)
+        self.not_signed_version.file.update(is_signed=True)
+        self.not_webext_version.file.update(is_webextension=True)
         assert len(fetch_blocked_from_db()) == 10
 
     def test_hash_filter_inputs(self):

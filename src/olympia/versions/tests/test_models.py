@@ -257,7 +257,7 @@ class TestVersion(TestCase):
 
     def test_is_webextension(self):
         version = Version.objects.get(pk=81551)
-        file_ = version.all_files[0]
+        file_ = version.file
         assert not file_.is_webextension
         assert not version.is_webextension
 
@@ -266,10 +266,7 @@ class TestVersion(TestCase):
         assert version.is_webextension
 
     def _get_version(self, status):
-        version = Version()
-        version.all_files = [mock.Mock()]
-        version.all_files[0].status = status
-        return version
+        return addon_factory(file_kw={'status': status}).current_version
 
     def test_is_unreviewed(self):
         assert self._get_version(amo.STATUS_AWAITING_REVIEW).is_unreviewed
@@ -334,32 +331,32 @@ class TestVersion(TestCase):
 
     def test_version_disable_and_reenable(self):
         version = Version.objects.get(pk=81551)
-        assert version.all_files[0].status == amo.STATUS_APPROVED
+        assert version.file.status == amo.STATUS_APPROVED
 
         version.is_user_disabled = True
-        version.all_files[0].reload()
-        assert version.all_files[0].status == amo.STATUS_DISABLED
-        assert version.all_files[0].original_status == amo.STATUS_APPROVED
+        version.file.reload()
+        assert version.file.status == amo.STATUS_DISABLED
+        assert version.file.original_status == amo.STATUS_APPROVED
 
         version.is_user_disabled = False
-        version.all_files[0].reload()
-        assert version.all_files[0].status == amo.STATUS_APPROVED
-        assert version.all_files[0].original_status == amo.STATUS_NULL
+        version.file.reload()
+        assert version.file.status == amo.STATUS_APPROVED
+        assert version.file.original_status == amo.STATUS_NULL
 
     def test_version_disable_after_mozila_disabled(self):
         # Check that a user disable doesn't override mozilla disable
         version = Version.objects.get(pk=81551)
-        version.all_files[0].update(status=amo.STATUS_DISABLED)
+        version.file.update(status=amo.STATUS_DISABLED)
 
         version.is_user_disabled = True
-        version.all_files[0].reload()
-        assert version.all_files[0].status == amo.STATUS_DISABLED
-        assert version.all_files[0].original_status == amo.STATUS_NULL
+        version.file.reload()
+        assert version.file.status == amo.STATUS_DISABLED
+        assert version.file.original_status == amo.STATUS_NULL
 
         version.is_user_disabled = False
-        version.all_files[0].reload()
-        assert version.all_files[0].status == amo.STATUS_DISABLED
-        assert version.all_files[0].original_status == amo.STATUS_NULL
+        version.file.reload()
+        assert version.file.status == amo.STATUS_DISABLED
+        assert version.file.original_status == amo.STATUS_NULL
 
     @mock.patch('olympia.files.models.File.hide_disabled_file')
     def test_new_version_disable_old_unreviewed(self, hide_disabled_file_mock):
@@ -416,7 +413,7 @@ class TestVersion(TestCase):
         assert not hide_disabled_file_mock.called
 
     def _reset_version(self, version):
-        version.all_files[0].status = amo.STATUS_APPROVED
+        version.file.status = amo.STATUS_APPROVED
         version.deleted = False
 
     def test_version_is_public(self):
@@ -428,7 +425,7 @@ class TestVersion(TestCase):
 
         # Non-public file.
         self._reset_version(version)
-        version.all_files[0].status = amo.STATUS_DISABLED
+        version.file.status = amo.STATUS_DISABLED
         assert not version.is_public()
 
         # Deleted version.
@@ -465,7 +462,7 @@ class TestVersion(TestCase):
         # by default.
         addon = Addon.objects.get(id=3615)
         version = version_factory(addon=addon)
-        file = version.all_files[0]
+        file = version.file
         file.update(strict_compatibility=True)
         assert not version.is_compatible_by_default
         assert version.is_compatible_app(amo.FIREFOX)
@@ -508,15 +505,6 @@ class TestVersion(TestCase):
         version = version_factory(addon=addon, version='0.1')
         uploaded_name = source_upload_path(version, 'crosswarpex-확장.tar.gz')
         assert uploaded_name.endswith('crosswarpex-확장-0.1-src.tar.gz')
-
-    def test_status_handles_invalid_status_id(self):
-        version = Addon.objects.get(id=3615).current_version
-        # When status is a valid one, one of STATUS_CHOICES_FILE return label.
-        assert version.status == [amo.STATUS_CHOICES_FILE[version.all_files[0].status]]
-
-        version.all_files[0].update(status=99)  # 99 isn't a valid status.
-        # otherwise return the status code for reference.
-        assert version.status == ['[status:99]']
 
     def test_is_ready_for_auto_approval(self):
         addon = Addon.objects.get(id=3615)
@@ -1386,8 +1374,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             amo.RELEASE_CHANNEL_LISTED,
             parsed_data=parsed_data,
         )
-        files = version.all_files
-        assert files[0].filename == 'delicious_bookmarks-0.0.1-fx.xpi'
+        assert version.file.filename == 'delicious_bookmarks-0.0.1-fx.xpi'
 
     def test_track_upload_time(self):
         # Set created time back (just for sanity) otherwise the delta
@@ -1774,7 +1761,7 @@ class TestPermissionsFromUpload(TestVersionFromUpload):
             amo.RELEASE_CHANNEL_UNLISTED,
             parsed_data=parsed_data,
         )
-        file = version.all_files[0]
+        file = version.file
 
         permissions = file.permissions
 
@@ -1808,28 +1795,26 @@ class TestStaticThemeFromUpload(UploadTest):
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         parsed_data = parse_addon(self.upload, self.addon, user=self.user)
-        version = Version.from_upload(
+        Version.from_upload(
             self.upload,
             self.addon,
             [],
             amo.RELEASE_CHANNEL_LISTED,
             parsed_data=parsed_data,
         )
-        assert len(version.all_files) == 1
         assert generate_static_theme_preview_mock.call_count == 1
 
     @mock.patch('olympia.versions.models.generate_static_theme_preview')
     def test_new_version_while_public(self, generate_static_theme_preview_mock):
         self.addon = addon_factory(type=amo.ADDON_STATICTHEME)
         parsed_data = parse_addon(self.upload, self.addon, user=self.user)
-        version = Version.from_upload(
+        Version.from_upload(
             self.upload,
             self.addon,
             [],
             amo.RELEASE_CHANNEL_LISTED,
             parsed_data=parsed_data,
         )
-        assert len(version.all_files) == 1
         assert generate_static_theme_preview_mock.call_count == 1
 
     @mock.patch('olympia.versions.models.generate_static_theme_preview')
@@ -1842,14 +1827,13 @@ class TestStaticThemeFromUpload(UploadTest):
             abspath=os.path.join(settings.ROOT, path), user=self.user
         )
         parsed_data = parse_addon(self.upload, self.addon, user=self.user)
-        version = Version.from_upload(
+        Version.from_upload(
             self.upload,
             self.addon,
             [],
             amo.RELEASE_CHANNEL_LISTED,
             parsed_data=parsed_data,
         )
-        assert len(version.all_files) == 1
         assert generate_static_theme_preview_mock.call_count == 1
 
 

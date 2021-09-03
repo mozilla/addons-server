@@ -613,7 +613,7 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         super().setUp()
 
         self.version = addon_factory(file_kw={'is_webextension': True}).current_version
-        self.xpi_copy_over(self.version.all_files[0], 'webextension.xpi')
+        self.xpi_copy_over(self.version.file, 'webextension.xpi')
 
         # This rule will match for all files in the xpi.
         self.rule = ScannerQueryRule.objects.create(
@@ -668,7 +668,7 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         addon_factory(file_kw={'is_webextension': False}).current_version
 
         for version in Version.unfiltered.all():
-            self.xpi_copy_over(version.all_files[0], 'webextension.xpi')
+            self.xpi_copy_over(version.file, 'webextension.xpi')
 
         # Run the task.
         run_yara_query_rule.delay(self.rule.pk)
@@ -794,9 +794,7 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         # other path).
         # We avoid triggering the on_change callback that would move the file
         # when the status is updated by doing an update() on the queryset.
-        File.objects.filter(pk=self.version.all_files[0].pk).update(
-            status=amo.STATUS_DISABLED
-        )
+        File.objects.filter(pk=self.version.file.pk).update(status=amo.STATUS_DISABLED)
         self.test_run_on_chunk()
 
     def test_run_on_chunk_fallback_file_path_guarded(self):
@@ -804,7 +802,7 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         # public File instance that somehow still has its file in the guarded
         # path (Would happen if the whole add-on was disabled then re-enabled
         # and the files haven't been moved back to the public location yet).
-        file_ = self.version.all_files[0]
+        file_ = self.version.file
         if not os.path.exists(os.path.dirname(file_.guarded_file_path)):
             os.makedirs(os.path.dirname(file_.guarded_file_path))
         shutil.move(file_.file_path, file_.guarded_file_path)

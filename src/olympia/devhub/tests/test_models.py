@@ -1,6 +1,6 @@
 from olympia import amo
 from olympia.addons.models import Addon
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import TestCase, version_factory
 from olympia.devhub.models import BlogPost
 from olympia.files.models import File
 from olympia.versions.models import Version
@@ -23,14 +23,13 @@ class TestVersion(TestCase):
     def _extra_version_and_file(self, status):
         version = Version.objects.get(pk=81551)
 
-        version_two = Version(
-            addon=self.addon, license=version.license, version='1.2.3'
+        version_two = version_factory(
+            addon=self.addon,
+            license=version.license,
+            version='1.2.3',
+            file_kw={'status': status},
         )
-        version_two.save()
-
-        file_two = File(status=status, version=version_two)
-        file_two.save()
-        return version_two, file_two
+        return version_two, version_two.file
 
     def test_version_delete_status_unreviewed(self):
         self._extra_version_and_file(amo.STATUS_AWAITING_REVIEW)
