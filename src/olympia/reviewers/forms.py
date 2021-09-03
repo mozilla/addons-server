@@ -246,8 +246,7 @@ class ReviewForm(forms.Form):
                 self.helper.addon.versions(manager='unfiltered_for_relations')
                 .filter(channel=channel, file__status__in=statuses)
                 .no_transforms()
-                .prefetch_related('file')
-                .distinct()
+                .select_related('file')
                 .order_by('created')
             )
             # Reset data-value depending on widget depending on actions

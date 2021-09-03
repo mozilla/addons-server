@@ -267,12 +267,10 @@ class AddonManager(ManagerBase):
                 (
                     '_current_version',
                     '_current_version__autoapprovalsummary',
+                    '_current_version__file',
                     '_current_version__reviewerflags',
                     'promotedaddon',
                 )
-            )
-            qs = qs.prefetch_related(
-                '_current_version__file',
             )
         qs = qs.select_related(*select_related_fields)
 
@@ -1048,23 +1046,22 @@ class Addon(OnChangeMixin, ModelBase):
         # have a latest version.
         if not self.id or self.status == amo.STATUS_DELETED:
             return None
-        params = {'channel': channel} if channel is not None else {}
 
-        try:
-            # Avoid most transformers - keep translations because they don't
-            # get automatically fetched if you just access the field without
-            # having made the query beforehand, and we don't know what callers
-            # will want ; but for the rest of them, since it's a single
-            # instance there is no reason to call the default transformers.
-            latest_qs = (
-                self.versions.exclude(file__status__in=exclude)
-                .filter(**params)
-                .only_translations()
+        # Avoid most transformers - keep translations because they don't
+        # get automatically fetched if you just access the field without
+        # having made the query beforehand, and we don't know what callers
+        # will want ; but for the rest of them, since it's a single
+        # instance there is no reason to call the default transformers.
+        return (
+            self.versions.exclude(file__status__in=exclude)
+            .filter(
+                **{'channel': channel} if channel is not None else {},
+                file__isnull=False,
             )
-            latest = latest_qs.latest()
-        except Version.DoesNotExist:
-            latest = None
-        return latest
+            .only_translations()
+            .order_by('created')
+            .last()
+        )
 
     @use_primary_db
     def update_version(self, ignore=None, _signal=True):

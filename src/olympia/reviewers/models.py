@@ -771,9 +771,7 @@ class AutoApprovalSummary(ModelBase):
                     file__reviewed__gte=one_year_ago,
                     file__original_status=amo.STATUS_NULL,
                     file__status=amo.STATUS_DISABLED,
-                )
-                .distinct()
-                .count()
+                ).count()
                 * 10,
                 100,
             ),

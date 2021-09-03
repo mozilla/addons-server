@@ -2292,11 +2292,11 @@ class TestAutoApprovedQueue(QueueTest):
     def test_results(self):
         self.login_with_permission()
         self.generate_files()
-        with self.assertNumQueries(15):
+        with self.assertNumQueries(14):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
-            # - 3 for the addons in the queues and their files (regardless of
+            # - 2 for the addons in the queues and their files (regardless of
             #     how many are in the queue - that's the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
@@ -2474,11 +2474,11 @@ class TestContentReviewQueue(QueueTest):
     def test_results(self):
         self.login_with_permission()
         self.generate_files()
-        with self.assertNumQueries(15):
+        with self.assertNumQueries(14):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
-            # - 3 for the addons in the queues and their files (regardless of
+            # - 2 for the addons in the queues and their files (regardless of
             #     how many are in the queue - that's the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
@@ -2574,7 +2574,7 @@ class TestScannersReviewQueue(QueueTest):
 
     def test_results(self):
         self.generate_files()
-        with self.assertNumQueries(15):
+        with self.assertNumQueries(14):
             response = self.client.get(self.url)
         assert response.status_code == 200
 
@@ -3100,7 +3100,7 @@ class TestReview(ReviewBase):
             str(author.get_role_display()),
             self.addon,
         )
-        with self.assertNumQueries(61):
+        with self.assertNumQueries(60):
             # FIXME: obviously too high, but it's a starting point.
             # Potential further optimizations:
             # - Remove trivial... and not so trivial duplicates
@@ -3167,9 +3167,8 @@ class TestReview(ReviewBase):
             # 56. translation for the add-on for the activity
             # 57. reusedguid (repeated)
             # 58. select all versions in channel for versions dropdown widget
-            # 59. select files for those versions
-            # 60. select users by role for this add-on (?)
-            # 61. savepoint
+            # 59. select users by role for this add-on (?)
+            # 60. savepoint
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -5604,7 +5603,7 @@ class TestReview(ReviewBase):
         # Delete ActivityLog to make the query count easier to follow. We have
         # other tests for the ActivityLog related stuff.
         ActivityLog.objects.for_addons(self.addon).delete()
-        with self.assertNumQueries(57):
+        with self.assertNumQueries(56):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.
@@ -5663,7 +5662,7 @@ class TestReview(ReviewBase):
                     results={'matchedResults': [customs_rule.name]},
                 )
 
-        with self.assertNumQueries(59):
+        with self.assertNumQueries(58):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.
@@ -8055,13 +8054,11 @@ class TestReviewAddonVersionCompareViewSet(
             },
         )
 
-        with self.assertNumQueries(10):
+        with self.assertNumQueries(8):
             # - 2 savepoints because of tests
             # - 2 user and groups
             # - 2 add-on and translations
             # - 1 add-on author check
-            # - 1 all versions
-            # - 1 all files
             # - 1 all file validation
             response = self.client.get(self.url + '?file=README.md&lang=en-US')
         assert response.status_code == 200
@@ -8675,13 +8672,13 @@ class TestMadQueue(QueueTest):
         ]
 
     def test_results(self):
-        with self.assertNumQueries(15):
+        with self.assertNumQueries(14):
             # That's a lot of queries. Some of them are unfortunately scaling
             # with the number of add-ons in the queue.
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
-            # - 3 for the addons in the queue, their files and the number of
+            # - 2 for the addons in the queue, their files and the number of
             #     flagged versions they have in each channel (regardless of
             #     how many are in the queue - that's the important bit)
             # - 2 for config items (motd / site notice)

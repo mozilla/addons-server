@@ -1549,7 +1549,7 @@ class ReviewAddonVersionCompareViewSet(
     ReviewAddonVersionMixin, RetrieveModelMixin, GenericViewSet
 ):
     def filter_queryset(self, qs):
-        return qs.prefetch_related('file__validation')
+        return qs.select_related('file__validation')
 
     def get_objects(self):
         """Return a dict with both versions needed for the comparison,

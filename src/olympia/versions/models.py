@@ -596,13 +596,15 @@ class Version(OnChangeMixin, ModelBase):
             groups = sorted_groupby(xs, 'version_id')
             return {k: list(vs) for k, vs in groups}
 
-        av_dict, file_dict = rollup(avs), rollup(files)
+        av_dict = rollup(avs)
+        version_id_to_file = {file_.version_id: file_ for file_ in files}
 
         for version in versions:
             v_id = version.id
             version._compatible_apps = version._compat_map(av_dict.get(v_id, []))
-            version.file = file_dict.get(v_id, [None])[0]
-            if hasattr(version, 'file'):
+
+            if file_ := version_id_to_file.get(v_id):
+                version.file = file_
                 version.file.version = version
 
     @classmethod

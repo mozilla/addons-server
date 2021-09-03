@@ -436,7 +436,7 @@ class AddonVersionViewSet(
         else:
             queryset = addon.versions.filter(
                 file__status=amo.STATUS_APPROVED, channel=amo.RELEASE_CHANNEL_LISTED
-            ).distinct()
+            )
         if (
             self.action == 'list'
             and self.request
