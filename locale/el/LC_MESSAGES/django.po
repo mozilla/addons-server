@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-24 16:50+0000\n"
-"PO-Revision-Date: 2021-08-30 11:35+0000\n"
+"PO-Revision-Date: 2021-09-03 09:23+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -185,7 +185,7 @@ msgid "Manage My Submissions"
 msgstr "Διαχείριση των υποβολών μου"
 
 msgid "Submit a New Add-on"
-msgstr "Υποβολή νέου πρόσθετου"
+msgstr "Υποβολή νέου προσθέτου"
 
 msgid "Submit a New Theme"
 msgstr "Υποβολή νέου θέματος"
@@ -1713,7 +1713,7 @@ msgid "This add-on has a Privacy Policy"
 msgstr "Αυτό το πρόσθετο συνοδεύεται από πολιτική απορρήτου"
 
 msgid "Please specify your add-on's Privacy Policy:"
-msgstr "Παρακαλούμε ορίστε την πολιτική απορρήτου του πρόσθετου σας:"
+msgstr "Παρακαλούμε ορίστε την πολιτική απορρήτου του προσθέτου σας:"
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Μη υποστηριζόμενος τύπος αρχείου, παρακαλούμε μεταφορτώστε ένα αρχείο {extensions}."
@@ -1827,10 +1827,10 @@ msgid "All Activity"
 msgstr "Όλες οι δραστηριότητες"
 
 msgid "Add-on Updates"
-msgstr "Ενημερώσεις πρόσθετου"
+msgstr "Ενημερώσεις προσθέτου"
 
 msgid "Add-on Status"
-msgstr "Κατάσταση πρόσθετου"
+msgstr "Κατάσταση προσθέτου"
 
 msgid "User Collections"
 msgstr "Συλλογές χρήστη"
@@ -1878,7 +1878,7 @@ msgid "Changes successfully saved."
 msgstr "Οι αλλαγές αποθηκεύτηκαν με επιτυχία. "
 
 msgid "Validate Add-on"
-msgstr "Επικύρωση πρόσθετου"
+msgstr "Επικύρωση προσθέτου"
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Τα εικονίδια θα πρέπει να είναι σε μορφή αρχείου PNG ή JPG."
