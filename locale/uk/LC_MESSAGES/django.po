@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-24 16:50+0000\n"
-"PO-Revision-Date: 2021-09-03 20:23+0000\n"
+"PO-Revision-Date: 2021-09-03 20:31+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -2209,7 +2209,7 @@ msgid "Default Locale"
 msgstr "Типова Локаль"
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr "Інформація про ваш додаток відображається цією мовою, якщо ви не заміните її перекладом іншою мовою. Це стосується тільки додатків, що знаходяться в списку."
+msgstr "Інформацію про ваш додаток показано цією мовою, якщо ви не заміните її перекладом іншою мовою. Це стосується лише перелічених додатків."
 
 msgid "Homepage"
 msgstr "Домашня сторінка"
@@ -2358,7 +2358,7 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
-"Завантажте значок для вашого додатка або виберіть один з наших. Значок відображається майже скрізь, де є ваш додаток. Завантажені зображення повинні мати один з наступних типів: .png, .jpg. Це "
+"Вивантажте піктограму для вашого додатка або виберіть один з наших. Піктограму буде показано майже скрізь, де є ваш додаток. Вивантажені зображення повинні бути одного з цих типів: .png, .jpg. Це "
 "стосується тільки додатків, що знаходяться в списку."
 
 msgid "Select an icon for your add-on:"
@@ -2998,11 +2998,11 @@ msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Будь ласка, завершіть ваш додаток, додаючи версію або відсутні метадані."
 
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
-msgstr "По завершенні процесу перевірки ви отримаєте лист. Поки що ваш додаток не буде відображений в галереї, але буде доступний зі своєї сторінки. "
+msgstr "Після завершення процесу перевірки ви отримаєте лист. Поки що ваш додаток не буде показано в галереї, але він буде доступний зі своєї сторінки. "
 
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr ""
-"Ваш додаток відображається в нашій галереї та користувачі\n"
+"Ваш додаток показано в нашій галереї, а користувачі\n"
 "                             отримують автоматичні оновлення."
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
@@ -3584,7 +3584,7 @@ msgstr "Допомога з граматики всюди, де ви пишет�
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Display current worldwide times in Firefox's status bar."
-msgstr "Відображення світового часу в панелі стану Firefox."
+msgstr "Показ світового часу в панелі стану Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
@@ -3774,7 +3774,7 @@ msgstr "Змінюйте вигляд будь-якого вебсайту. Зм
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
-msgstr "Змініть сторінку нової вкладки для відображення бажаної кількості плиток, зображення тла та інших елементів."
+msgstr "Налаштуйте показ бажаної кількості плиток, зображення тла та інших елементів сторінки нової вкладки."
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
@@ -4062,7 +4062,7 @@ msgstr "Надійно зберігайте паролі й автоматичн
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
-msgstr "Простий блокувальник реклами, зосереджений на відображенні лише необхідного вам вмісту."
+msgstr "Простий блокувальник реклами, зосереджений на показі лише необхідного вам вмісту."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make informed shopping decisions."
