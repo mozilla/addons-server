@@ -211,9 +211,9 @@ defusedxml==0.7.1 \
 dennis==0.9 \
     --hash=sha256:f6487392ac91800c5f0684a99b404b7fd0f72ceb48faeb5a0ce4e2c24fb62d3f \
     --hash=sha256:8c942dd5da7d03c65daebc069c5ee5c7f1374ac9b0c8c89c627caa66fe822604
-Deprecated==1.2.12 \
-    --hash=sha256:08452d69b6b5bc66e8330adde0a4f8642e969b9e1702904d137eeb29c8ffc771 \
-    --hash=sha256:6d2de2de7931a968874481ef30208fd4e08da39177d61d3d4ebdf4366e7dbca1
+Deprecated==1.2.13 \
+    --hash=sha256:64756e3e14c8c5eea9795d93c524551432a0be75629f8f29e67ab8caf076c76d \
+    --hash=sha256:43ac5335da90c31c24ba028af536a91d41d53f9e6901ddb021bcc572ce44e38d
 django-aesfield==3.0.1 \
     --hash=sha256:d06a44ef3fe0abbdfc7af293f5799a3ef4f776440c7df1978b9de1f124744dbe \
     --hash=sha256:c2b85b5089cdce482bcd79fc0c0dcad29f13b4efca58cb4bd7dcdd2993880821
