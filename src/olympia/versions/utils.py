@@ -2,6 +2,7 @@ import copy
 import json
 import os
 import io
+import re
 import tempfile
 import zipfile
 
@@ -14,7 +15,6 @@ from PIL import Image
 
 from olympia.amo.utils import convert_svg_to_png
 from olympia.core import logger
-from olympia.lib.safe_xml import lxml
 
 from . import compare
 from .models import Version
@@ -52,12 +52,15 @@ def write_svg_to_png(svg_content, out):
         return convert_svg_to_png(temporary_svg.name, out)
 
 
+SVG_DIMENSIONS_REGEX = rb'(?=.* width="(?P<width>\d+)")(?=.* height="(?P<height>\d+)")'
+
+
 def encode_header(header_blob, file_ext):
     try:
         if file_ext == '.svg':
-            tree = lxml.etree.fromstring(header_blob)
-            width = int(tree.get('width'))
-            height = int(tree.get('height'))
+            dimensions = re.search(SVG_DIMENSIONS_REGEX, header_blob).groupdict()
+            width = int(dimensions['width'])
+            height = int(dimensions['height'])
             img_format = 'svg+xml'
         else:
             with Image.open(io.BytesIO(header_blob)) as header_image:
@@ -67,7 +70,7 @@ def encode_header(header_blob, file_ext):
             img_format,
             force_str(b64encode(header_blob)),
         )
-    except (OSError, ValueError, TypeError, lxml.etree.XMLSyntaxError) as err:
+    except (OSError, ValueError, TypeError) as err:
         log.info(err)
         return (None, 0, 0)
     return (src, width, height)
