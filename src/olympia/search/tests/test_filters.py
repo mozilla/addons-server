@@ -633,6 +633,7 @@ class TestSearchParameterFilter(FilterTestsBase):
 
     def test_return_to_amo(self):
         self.create_switch('return-to-amo', active=True)
+        self.create_switch('return-to-amo-for-all-listed', active=False)
         param = 'rta:{}'.format(urlsafe_base64_encode(b'@foobar'))
         qs = self._filter(data={'guid': param})
         assert 'must' not in qs['query']['bool']
@@ -642,6 +643,19 @@ class TestSearchParameterFilter(FilterTestsBase):
         assert {
             'terms': {'promoted.group_id': [group.id for group in BADGED_GROUPS]}
         } in filter_
+
+    def test_return_to_amo_for_all_listed(self):
+        self.create_switch('return-to-amo', active=True)
+        self.create_switch('return-to-amo-for-all-listed', active=True)
+        param = 'rta:{}'.format(urlsafe_base64_encode(b'@foobar'))
+        qs = self._filter(data={'guid': param})
+        assert 'must' not in qs['query']['bool']
+        assert 'must_not' not in qs['query']['bool']
+        filter_ = qs['query']['bool']['filter']
+        assert {'terms': {'guid': ['@foobar']}} in filter_
+        assert {
+            'terms': {'promoted.group_id': [group.id for group in BADGED_GROUPS]}
+        } not in filter_
 
     def test_search_by_app_invalid(self):
         with self.assertRaises(serializers.ValidationError) as context:
