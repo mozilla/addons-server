@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-24 16:50+0000\n"
-"PO-Revision-Date: 2021-09-06 14:25+0000\n"
+"PO-Revision-Date: 2021-09-06 14:40+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -912,29 +912,23 @@ msgstr "{addon} {version} の却下が予定されました。"
 msgid "Rejection scheduled"
 msgstr "却下が予定されました"
 
-#, fuzzy
 msgid "{addon} {version} re-signed (previously {0})."
-msgstr "{addon} {version} の審査が申請されました。"
+msgstr "{addon} {version} が再署名されました (以前は {0})。"
 
-#, fuzzy
 msgid "Version re-signed"
-msgstr "バージョン %sを再び有効にしました。"
+msgstr "バージョンが再署名されました"
 
-#, fuzzy
 msgid "{user} force-disabled {addon}."
-msgstr "アドオンを強制無効化"
+msgstr "{user} が {addon} を強制的に無効化しました。"
 
-#, fuzzy
 msgid "Force disabled"
-msgstr "アドオンを強制無効化"
+msgstr "強制無効化"
 
-#, fuzzy
 msgid "{user} force-enabled {addon}."
-msgstr "アドオンを強制有効化"
+msgstr "{user} が {addon} を強制的に有効化しました。"
 
-#, fuzzy
 msgid "Force enabled"
-msgstr "アドオンを強制有効化"
+msgstr "強制有効化"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1626,7 +1620,6 @@ msgstr "既定のロケールを変更する前に、そのロケールでアド
 msgid "Users can not be added directly"
 msgstr "ユーザーを直接追加することはできません"
 
-#, fuzzy
 msgid "An author can only be present once."
 msgstr "1 人の作者は一度だけ掲載できます。"
 
@@ -1813,16 +1806,14 @@ msgstr "招待を辞退しました。"
 msgid "An author has been added to your add-on"
 msgstr "このアドオンの作者が追加されました"
 
-#, fuzzy
 msgid "Author invitation for {addon_name}"
-msgstr "{addon} への寄付。"
+msgstr "{addon_name} への招待"
 
 msgid "A confirmation email has been sent to {email}"
 msgstr "確認メールを {email} に送信しました"
 
-#, fuzzy
 msgid "An author role has been changed on your add-on"
-msgstr "このアドオンの作者の役割が変更されました"
+msgstr "あなたのアドオンの作者の役割が変更されました"
 
 msgid "An author has been removed from your add-on"
 msgstr "このアドオンの作者が削除されました"
@@ -2514,13 +2505,11 @@ msgstr "新しいバージョンを登録"
 msgid "Cancel and Disable Version"
 msgstr "キャンセルしてバージョンを無効化"
 
-#, fuzzy
 msgid "Are you sure you wish to cancel and disable version?"
-msgstr "本当にこのバージョンを削除しますか？"
+msgstr "このバージョンをキャンセルして削除してもよろしいですか？"
 
-#, fuzzy
 msgid "Yes, Cancel"
-msgstr "キャンセル"
+msgstr "キャンセルする"
 
 msgid "No, don't cancel"
 msgstr ""
@@ -2655,13 +2644,11 @@ msgstr "このバージョンを編集して、バージョンノートを追加
 msgid "Edit version {0}"
 msgstr "バージョン {0}を編集"
 
-#, fuzzy
 msgid "Version Signature Pending"
-msgstr "署名済みバージョン"
+msgstr "バージョンの署名保留中"
 
-#, fuzzy
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
-msgstr "設定完了！ このバージョンは審査終了後に公開されます。その際は通知をお送りします。"
+msgstr "完了です。このバージョンはまもなく自己配布用に署名されます。署名されたファイルのダウンロードが準備できたらメールで通知されます。"
 
 msgid "Go to My Submissions"
 msgstr "自分の登録アイテムを見る"
@@ -3016,9 +3003,8 @@ msgstr[0] "このアドオンの {1}用カテゴリーを <b>{0} 個まで</b> �
 msgid "End-User License Agreement"
 msgstr "エンドユーザー使用許諾契約書"
 
-#, fuzzy
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
-msgstr "あなたのソースコードに付与する権利のための適切なライセンスを選んでください。これは、掲載中のアドオンにのみ関連付けられます。"
+msgstr "EULA は GPL や MPL などのコードライセンスと同じではないことに注意してください。掲載中のアドオンにのみ関連します。"
 
 msgid "Privacy Policy"
 msgstr "プライバシーポリシー"
@@ -3043,9 +3029,8 @@ msgid "Whether you’re new to extension development, polishing up or porting an
 msgstr ""
 
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Visit the Firefox Extension Workshop"
-msgstr "拡張機能ワークショップを訪れる"
+msgstr "Firefox 拡張機能ワークショップを訪れる"
 
 msgid "Connect with us"
 msgstr ""
@@ -3062,9 +3047,8 @@ msgstr "利用者向け"
 msgid "Matrix"
 msgstr "Matrix"
 
-#, fuzzy
 msgid "Community forum"
-msgstr "コミュニティとサポート"
+msgstr "コミュニティフォーラム"
 
 msgid "Extensions Developers Newsletter"
 msgstr "拡張機能開発者ニュースレター"
@@ -3238,9 +3222,8 @@ msgstr "ソースコード"
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
 msgstr "アドオンにバイナリコードや不明瞭なコードが含まれる場合は、審査担当者が確認するためのソースコードをここにアップロードしてください。"
 
-#, fuzzy
 msgid "File {file_id}"
-msgstr "ファイル {file_id} ({platform})"
+msgstr "ファイル {file_id}"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
@@ -4843,9 +4826,8 @@ msgstr "あなたは言語パックを登録できません"
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
 
-#, fuzzy
 msgid "ID"
-msgstr "CIDR"
+msgstr "ID"
 
 msgid "Flags"
 msgstr "フラグ"
@@ -4888,13 +4870,11 @@ msgstr "その他の保留中のレビュー ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "その他の保留中のレビュー ({0})"
 
-#, fuzzy
 msgid "Listed version"
-msgstr "公開バージョン"
+msgstr "掲載バージョン"
 
-#, fuzzy
 msgid "Unlisted versions ({0})"
-msgstr "公開バージョン"
+msgstr "非掲載バージョン ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "これにより、このバージョンを承認、署名、公開します。コメントは開発者へ送られます。"
@@ -4921,16 +4901,14 @@ msgstr "複数のバージョンを却下"
 msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr "これにより、選択された公開バージョンを却下します。コメントは開発者へ送られます。"
 
-#, fuzzy
 msgid "Block Multiple Versions"
-msgstr "複数のバージョンを却下"
+msgstr "複数のバージョンをブロック"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
 msgstr ""
 
-#, fuzzy
 msgid "Confirm Multiple Versions"
-msgstr "複数のバージョンを却下"
+msgstr "複数のバージョンを確認"
 
 #, fuzzy
 msgid "This will confirm approval of the selected versions without notifying the developer."
@@ -5053,13 +5031,11 @@ msgstr "審査処理が完了しました。"
 msgid "Review lock limit reached"
 msgstr "審査ロックの限度に達しました"
 
-#, fuzzy
 msgid "{addon} – EULA"
-msgstr "{addon} :: EULA"
+msgstr "{addon} – EULA"
 
-#, fuzzy
 msgid "{addon} – Privacy Policy"
-msgstr "{addon} :: プライバシーポリシー"
+msgstr "{addon} – プライバシーポリシー"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
 msgstr ""
@@ -5077,9 +5053,8 @@ msgstr "{0}のアドオン情報"
 msgid "Add-on ID"
 msgstr "アドオン ID"
 
-#, fuzzy
 msgid "Original Add-on ID"
-msgstr "アドオンを署名"
+msgstr "元のアドオン ID"
 
 msgid "Add-on(s) sharing same ID"
 msgstr ""
@@ -5087,9 +5062,8 @@ msgstr ""
 msgid "Internal AMO ID"
 msgstr "内部 AMO ID"
 
-#, fuzzy
 msgid "Support Website"
-msgstr "サポートサイト:"
+msgstr "サポートサイト"
 
 msgid "Visibility"
 msgstr "公開状態"
@@ -5097,9 +5071,8 @@ msgstr "公開状態"
 msgid "Visible"
 msgstr "公開"
 
-#, fuzzy
 msgid "Weekly Downloads"
-msgstr "ダウンロード数"
+msgstr "週間ダウンロード数"
 
 msgid "Average Daily Users"
 msgstr "平均日別ユーザー数"
@@ -5140,9 +5113,8 @@ msgstr "イメージギャラリー"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "表示できる情報が何もありません。開発者が詳細情報を提供していません。"
 
-#, fuzzy
 msgid "Add-on name translations"
-msgstr "アドオンのバージョン別"
+msgstr "アドオン名の翻訳"
 
 msgid "Reviewer Tools – Add-ons for Firefox"
 msgstr ""
@@ -5212,9 +5184,8 @@ msgstr "レビューのページへ戻る"
 msgid "Content Review – Add-ons for Firefox"
 msgstr ""
 
-#, fuzzy
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr "自動承認されたアドオン"
+msgstr "自動承認されたアドオン – Firefox 用のアドオン"
 
 msgid "Review Moderation – Add-ons for Firefox"
 msgstr ""
@@ -5614,25 +5585,20 @@ msgstr ""
 msgid "presence of a version"
 msgstr "公開バージョンのプレビュー"
 
-#, fuzzy
 msgid "version channel"
-msgstr "署名済みバージョン"
+msgstr "バージョンチャネル"
 
-#, fuzzy
 msgid "add-on status"
-msgstr "アドオンのステータス"
+msgstr "アドオンの状態"
 
-#, fuzzy
 msgid "add-on listing visibility"
-msgstr "公開状態"
+msgstr "アドオン掲載の可視性"
 
-#, fuzzy
 msgid "file status"
-msgstr "サイトステータス"
+msgstr "ファイルの状態"
 
-#, fuzzy
 msgid "file signature"
-msgstr "{file} が署名されました。"
+msgstr "ファイル署名"
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
@@ -5686,9 +5652,8 @@ msgstr ""
 msgid "Maximum query length exceeded."
 msgstr "クエリの最長文字数を超過しました。"
 
-#, fuzzy
 msgid "Could not find Add-on with ID \"{}\"."
-msgstr "GUID が \"{}\" のアドオンは見つかりませんでした。"
+msgstr "ID \"{}\" のアドオンが見つかりませんでした"
 
 msgid "You do not own this addon."
 msgstr "このアドオンの所有者ではありません。"
@@ -5707,17 +5672,14 @@ msgstr "バージョンがマニフェストファイルと一致しません。
 msgid "Version already exists. Latest version is: %s."
 msgstr "このバージョンは既に存在します。最新バージョンは %s です。"
 
-#, fuzzy
 msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr "GUID を省略できるのは WebExtensions のみです"
+msgstr "アドオン ID を省略できるのは WebExtensionsのみです"
 
-#, fuzzy
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
-msgstr "64 文字を超える場合は、マニフェストでアドオン GUID を指定してください。"
+msgstr "64 文字を超える場合は、マニフェストでアドオン ID を指定してください。"
 
-#, fuzzy
 msgid "Invalid Add-on ID in URL or package"
-msgstr "URL 内の不正な GUID"
+msgstr "URL またはパッケージ内の不正なアドオン ID"
 
 #, fuzzy
 msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
@@ -5840,9 +5802,8 @@ msgstr "最新データを読み込み中&hellip;"
 msgid "No data available."
 msgstr "データがありません。"
 
-#, fuzzy
 msgid "This dashboard is <b>private</b>."
-msgstr "このダッシュボードは現在 <b>非公開</b> です。"
+msgstr "このダッシュボードは <b>非公開</b> です。"
 
 msgid "Application usage by Date"
 msgstr "日別アプリケーション使用回数"
@@ -6053,9 +6014,8 @@ msgstr "選択したユーザーのアカウントを停止"
 msgid "The users \"%(users)s\" had their session(s) reset."
 msgstr "ユーザー「%(users)s」のアカウントが停止されました。"
 
-#, fuzzy
 msgid "Reset session"
-msgstr "バージョンを削除"
+msgstr "セッションをリセット"
 
 #, fuzzy, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
@@ -6116,9 +6076,8 @@ msgstr "始める前に、Firefox アドオン配布規約と審査ポリシー�
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr "始める前に、Firefox アドオン配布規約と審査ポリシー・ルールを読んでその内容に同意してください。個人情報の取り扱いについて説明したプライバシー通知も Firefox アドオン配布規約からリンクされています。"
 
-#, fuzzy
 msgid "User Restriction History"
-msgstr "審査履歴を閉じる"
+msgstr "ユーザー制限履歴"
 
 msgid "an add-on developer replies to my review"
 msgstr "自分のレビューに対してアドオンの開発者から返信があったとき"
