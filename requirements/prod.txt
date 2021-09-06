@@ -220,9 +220,9 @@ django-cors-headers==3.8.0 \
 django-csp==3.7 \
     --hash=sha256:01443a07723f9a479d498bd7bb63571aaa771e690f64bde515db6cdb76e8041a \
     --hash=sha256:01eda02ad3f10261c74131cdc0b5a6a62b7c7ad4fd017fbefb7a14776e0a9727
-django-environ==0.5.0 \
-    --hash=sha256:027797af03258931f16c5491cab32e6b386d52f041eb582f1e30f7b5abc22e04 \
-    --hash=sha256:a8726675c1ebefa4706b36398c4d3c5c790d335ffe55c4a10378f6bfd57ad8d0
+django-environ==0.6.0 \
+    --hash=sha256:f63b6489ee2113239fe60cdf94efc93a2b42ac07aefb5b5182d401b4fa820374 \
+    --hash=sha256:6b3ce447f31c5a5144671d754baa0819c9bde2fb34dcdc05ba619a97f4567e5a
 django-extended-choices==1.3.3 \
     --hash=sha256:13c1edfb5fe8da112720f1b006866aa7142e0f62a828728e5afa638da5980387 \
     --hash=sha256:609cafc2feaf352cb92b3978a6e71fcb267dd2d3281ffa964d736b9bf71ec34b
@@ -506,9 +506,9 @@ google-api-core==2.0.0 \
 google-cloud-core==2.0.0 \
     --hash=sha256:31785d1e1d02f90ad3f1b020d4aed63db4865c3394ff7c128a296b6995eef31f \
     --hash=sha256:90ee99648ccf9e11a16781a7fc58d13e58f662b439c737d48c24ef18662c2702
-google-resumable-media==2.0.0 \
-    --hash=sha256:c65f9e08a4fe1df532138c8f00eeafcd7fe0d4db35dff70d7428b6ea659b2888 \
-    --hash=sha256:094c0381734649ac939083ea3833bd239b7fba904d246342d1268984029f2167
+google-resumable-media==2.0.2 \
+    --hash=sha256:91f41314433601f94d485c1f56adfa2a7db538d53c95e0994be68cd1a17314b5 \
+    --hash=sha256:36d682161fdcbfa29681212c210fabecbf6849a505a0cbc54b7f70a10a5278a2
 proto-plus==1.19.0 \
     --hash=sha256:df7c71c08dc06403bdb0fba58cf9bf5f217198f6488c26b768f81e03a738c059 \
     --hash=sha256:ce6695ce804383ad6f392c4bb1874c323896290a1f656560de36416ba832d91e
