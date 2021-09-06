@@ -155,8 +155,8 @@ billiard==3.6.4.0 \
     --hash=sha256:87103ea78fa6ab4d5c751c4909bcff74617d985de7fa8b672cf8618afd5a875b \
     --hash=sha256:299de5a8da28a783d51b197d496bef4f1595dd023a93a4f59dde1886ae905547
 # bitarray is required by filtercascade
-bitarray == 2.3.2 \
-    --hash=sha256:4bee3ba9164b66cef64f1099e9a3b88e99ddcd0c943807e99443613e184b48b4
+bitarray == 2.3.3 \
+    --hash=sha256:0edf630a4471a48627aec0b840cf3b8e10901191d328f6511560420459de282e
 bleach==4.1.0 \
     --hash=sha256:4d2651ab93271d1129ac9cbc679f524565cc8a1b791909c4a51eac4446a15994 \
     --hash=sha256:0900d8b37eba61a802ee40ac0061f8c2b5dee29c1927dd1d233e075ebf5a71da
@@ -506,9 +506,9 @@ google-api-core==2.0.0 \
 google-cloud-core==2.0.0 \
     --hash=sha256:31785d1e1d02f90ad3f1b020d4aed63db4865c3394ff7c128a296b6995eef31f \
     --hash=sha256:90ee99648ccf9e11a16781a7fc58d13e58f662b439c737d48c24ef18662c2702
-google-resumable-media==2.0.0 \
-    --hash=sha256:c65f9e08a4fe1df532138c8f00eeafcd7fe0d4db35dff70d7428b6ea659b2888 \
-    --hash=sha256:094c0381734649ac939083ea3833bd239b7fba904d246342d1268984029f2167
+google-resumable-media==2.0.2 \
+    --hash=sha256:91f41314433601f94d485c1f56adfa2a7db538d53c95e0994be68cd1a17314b5 \
+    --hash=sha256:36d682161fdcbfa29681212c210fabecbf6849a505a0cbc54b7f70a10a5278a2
 proto-plus==1.19.0 \
     --hash=sha256:df7c71c08dc06403bdb0fba58cf9bf5f217198f6488c26b768f81e03a738c059 \
     --hash=sha256:ce6695ce804383ad6f392c4bb1874c323896290a1f656560de36416ba832d91e
