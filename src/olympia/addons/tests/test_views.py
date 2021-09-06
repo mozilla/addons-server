@@ -15,6 +15,7 @@ from elasticsearch import Elasticsearch
 from unittest.mock import patch
 from rest_framework.test import APIRequestFactory
 from waffle import switch_is_active
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.addons.models import (
@@ -1200,8 +1201,12 @@ class TestAddonSearchView(ESTestCase):
     def setUp(self):
         super().setUp()
         self.url = reverse_ns('addon-search')
+        # Create return to AMO waffle switches used for rta: guid search, then
+        # fetch them once to get them in the cache.
         self.create_switch('return-to-amo', active=True)
+        self.create_switch('return-to-amo-for-all-listed', active=False)
         switch_is_active('return-to-amo')
+        switch_is_active('return-to-amo-for-all-listed')
 
     def tearDown(self):
         super().tearDown()
@@ -1953,10 +1958,7 @@ class TestAddonSearchView(ESTestCase):
         addon_factory()
         self.reindex(Addon)
 
-        # We need to keep force_str because urlsafe_base64_encode only starts
-        # returning a string from Django 2.2 onwards, before that a bytestring.
-        param = 'rta:%s' % force_str(urlsafe_base64_encode(force_bytes(addon.guid)))
-
+        param = 'rta:%s' % urlsafe_base64_encode(force_bytes(addon.guid))
         data = self.perform_search(self.url, {'guid': param})
         assert data['count'] == 1
         assert len(data['results']) == 1
@@ -1965,26 +1967,38 @@ class TestAddonSearchView(ESTestCase):
         assert result['id'] == addon.pk
         assert result['slug'] == addon.slug
 
-    def test_filter_by_guid_return_to_amo_not_part_of_safe_list(self):
+    def test_filter_by_guid_return_to_amo_not_promoted(self):
         addon = addon_factory(
             slug='my-addon', name='My Addôn', guid='random@guid', popularity=999
         )
         addon_factory()
         self.reindex(Addon)
 
-        # We need to keep force_str because urlsafe_base64_encode only starts
-        # returning a string from Django 2.2 onwards, before that a bytestring.
-        param = 'rta:%s' % force_str(urlsafe_base64_encode(force_bytes(addon.guid)))
-
+        param = 'rta:%s' % urlsafe_base64_encode(force_bytes(addon.guid))
         data = self.perform_search(self.url, {'guid': param})
         assert data['count'] == 0
         assert data['results'] == []
 
-    def test_filter_by_guid_return_to_amo_wrong_format(self):
-        # We need to keep force_str because urlsafe_base64_encode only starts
-        # returning a string from Django 2.2 onwards, before that a bytestring.
-        param = 'rta:%s' % force_str(urlsafe_base64_encode(b'foo@bar')[:-1])
+    @override_switch('return-to-amo-for-all-listed', active=True)
+    def test_filter_by_guid_return_to_amo_all_listed_enabled(self):
+        assert switch_is_active('return-to-amo-for-all-listed')
+        addon = addon_factory(
+            slug='my-addon', name='My Addôn', guid='random@guid', popularity=999
+        )
+        addon_factory()
+        self.reindex(Addon)
 
+        param = 'rta:%s' % urlsafe_base64_encode(force_bytes(addon.guid))
+        data = self.perform_search(self.url, {'guid': param})
+        assert data['count'] == 1
+        assert len(data['results']) == 1
+
+        result = data['results'][0]
+        assert result['id'] == addon.pk
+        assert result['slug'] == addon.slug
+
+    def test_filter_by_guid_return_to_amo_wrong_format(self):
+        param = 'rta:%s' % urlsafe_base64_encode(b'foo@bar')[:-1]
         data = self.perform_search(self.url, {'guid': param}, expected_status=400)
         assert data == ['Invalid Return To AMO guid (not in base64url format?)']
 
@@ -2009,10 +2023,7 @@ class TestAddonSearchView(ESTestCase):
         addon_factory()
         self.reindex(Addon)
 
-        # We need to keep force_str because urlsafe_base64_encode only starts
-        # returning a string from Django 2.2 onwards, before that a bytestring.
-        param = 'rta:%s' % force_str(urlsafe_base64_encode(force_bytes(addon.guid)))
-
+        param = 'rta:%s' % urlsafe_base64_encode(force_bytes(addon.guid))
         data = self.perform_search(self.url, {'guid': param}, expected_status=400)
         assert data == ['Return To AMO is currently disabled']
 
