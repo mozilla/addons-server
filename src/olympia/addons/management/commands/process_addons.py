@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from django.db.models import Q, F
+from django.db.models import Count, Q, F
 
 from olympia import amo
 from olympia.addons.models import Addon
@@ -8,6 +8,7 @@ from olympia.addons.tasks import (
     delete_addons,
     extract_colors_from_static_themes,
     find_inconsistencies_between_es_and_db,
+    hard_delete_extra_files,
     recreate_theme_previews,
 )
 from olympia.abuse.models import AbuseReport
@@ -17,6 +18,7 @@ from olympia.devhub.tasks import get_preview_sizes, recreate_previews
 from olympia.lib.crypto.tasks import sign_addons
 from olympia.ratings.tasks import addon_rating_aggregates
 from olympia.reviewers.tasks import recalculate_post_review_weight
+from olympia.versions.models import Version
 from olympia.versions.tasks import delete_list_theme_previews
 
 
@@ -131,6 +133,17 @@ class Command(ProcessObjectsCommand):
                     )
                 ],
                 'allowed_kwargs': ('with_deleted',),
+            },
+            'hard_delete_extra_files': {
+                'task': hard_delete_extra_files,
+                'queryset_filters': [
+                    Q(
+                        versions__in=Version.unfiltered.annotate(
+                            nb_files=Count('files')
+                        ).filter(nb_files__gt=1)
+                    )
+                ],
+                'distinct': True,
             },
             'update_rating_aggregates': {
                 'task': addon_rating_aggregates,

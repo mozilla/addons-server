@@ -25,7 +25,7 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.applications.models import AppVersion
-from olympia.files.models import FileValidation
+from olympia.files.models import File, FileValidation
 from olympia.ratings.models import Rating, RatingAggregate
 from olympia.reviewers.models import AutoApprovalSummary
 from olympia.versions.models import ApplicationsVersions, Version, VersionPreview
@@ -627,3 +627,44 @@ def test_delete_list_theme_previews():
     assert VersionPreview.objects.filter(id=other_firefox_preview.id).exists()
     assert VersionPreview.objects.filter(id=other_amo_preview.id).exists()
     assert not VersionPreview.objects.filter(id=other_old_list_preview.id).exists()
+
+
+class TestHardDeleteExtraFiles(TestCase):
+    def setUp(self):
+        # Has multiple files for the same version
+        self.addon = addon_factory(file_kw={'is_webextension': True})
+        file_factory(
+            version=self.addon.current_version,
+            is_webextension=True,
+        )
+
+        # Same, but add-on and versions are soft-deleted. Shouldn't matter as
+        # long as with_deleted is True.
+        self.deleted_addon = addon_factory(file_kw={'is_webextension': True})
+        file_factory(
+            version=self.deleted_addon.current_version,
+            is_webextension=True,
+        )
+        self.deleted_addon.delete()
+
+        # Only has a single file for each version, shouldn't be affected
+        self.extra_addon = addon_factory(file_kw={'is_webextension': True})
+        version_factory(addon=self.extra_addon, file_kw={'is_webextension': True})
+
+        # Has multiple files but shouldn't be affected because they
+        # are not webextensions.
+        self.extra_extra_addon = addon_factory()
+        file_factory(version=self.extra_extra_addon.current_version)
+
+    def test_basic(self):
+        assert Addon.unfiltered.count() == 4
+        assert Version.unfiltered.count() == 5
+        assert File.objects.count() == 8
+
+        call_command(
+            'process_addons', task='hard_delete_extra_files', with_deleted=True
+        )
+
+        assert Addon.unfiltered.count() == 4
+        assert Version.unfiltered.count() == 5
+        assert File.objects.count() == 6

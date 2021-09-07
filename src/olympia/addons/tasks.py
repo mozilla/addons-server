@@ -1,6 +1,7 @@
 import hashlib
 
 from django.db import transaction
+from django.db.models import Count
 
 from elasticsearch_dsl import Search
 
@@ -20,6 +21,7 @@ from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import LocalFileStorage, extract_colors_from_image
 from olympia.devhub.tasks import resize_image
+from olympia.files.models import File
 from olympia.files.utils import get_filepath, parse_addon
 from olympia.lib.es.utils import index_objects
 from olympia.versions.models import Version, VersionPreview
@@ -265,6 +267,40 @@ def delete_addons(addon_ids, with_deleted=False, **kw):
     else:
         for addon in addons:
             addon.delete(send_delete_email=False)
+
+
+@task
+@use_primary_db
+def hard_delete_extra_files(addon_ids, **kw):
+    """Hard delete files after the first one for each version of each add-on
+    passed.
+
+    The first file, which is kept, will have its platform updated to `all`.
+    """
+    log.info(
+        'Hard Deleting extra files belonging to %d addons starting at id: %s...',
+        len(addon_ids),
+        addon_ids[0],
+    )
+    addons = Addon.unfiltered.filter(pk__in=addon_ids).no_transforms()
+    for addon in addons:
+        # Find all versions with extra files for that add-on.
+        with transaction.atomic():
+            versions = (
+                addon.versions(manager='unfiltered_for_relations')
+                .annotate(nb_files=Count('files'))
+                .filter(nb_files__gt=1)
+                .filter(files__is_webextension=True)
+                .no_transforms()
+            )
+            for version in versions:
+                # Gather pks for all files except the first one, then delete them.
+                pks = list(version.files.all().values_list('pk', flat=True)[1:])
+                log.info(
+                    'Hard Deleting extraneous files %s',
+                    ', '.join(str(pk) for pk in pks),
+                )
+                File.objects.filter(pk__in=pks).delete()
 
 
 @task
