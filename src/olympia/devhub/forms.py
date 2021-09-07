@@ -12,6 +12,7 @@ from django.forms.formsets import BaseFormSet, formset_factory
 from django.forms.models import BaseModelFormSet, modelformset_factory
 from django.forms.widgets import RadioSelect
 from django.urls import reverse
+from django.utils.functional import keep_lazy_text
 from django.utils.html import escape, format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext, gettext_lazy as _, ngettext
@@ -66,6 +67,9 @@ from olympia.versions.models import (
 )
 
 from . import tasks
+
+
+format_html_lazy = keep_lazy_text(format_html)
 
 
 def clean_addon_slug(slug, instance):
@@ -1299,20 +1303,30 @@ PreviewFormSet = modelformset_factory(
 
 
 class DistributionChoiceForm(forms.Form):
-    LISTED_LABEL = _(
-        'On this site. <span class="helptext">'
-        'Your submission will be listed on this site and the Firefox '
-        'Add-ons Manager for millions of users, after it passes code '
-        'review. Automatic updates are handled by this site. This '
-        'add-on will also be considered for Mozilla promotions and '
-        'contests. Self-distribution of the reviewed files is also '
-        'possible.</span>'
+    # Gotta keep the format_html call lazy, otherwise these would be evaluated
+    # to a string right away and never translated.
+    LISTED_LABEL = format_html_lazy(
+        _(
+            'On this site. <span class="helptext">'
+            'Your submission is publicly listed on {site_domain}.</span>'
+        ),
+        site_domain=settings.DOMAIN,
     )
-    UNLISTED_LABEL = _(
-        'On your own. <span class="helptext">'
-        'Your submission will be immediately signed for '
-        'self-distribution. Updates should be handled by you via an '
-        'updateURL or external application updates.</span>'
+    UNLISTED_LABEL = format_html_lazy(
+        _(
+            'On your own. <span class="helptext">'
+            'After your submission is signed by Mozilla, you can download the .xpi '
+            'file from the Developer Hub and distribute it to your audience. Please '
+            'make sure the add-on manifest’s <a {a_attrs}>update_url</a> is provided, '
+            'as this is the URL where Firefox finds updates for automatic deployment '
+            'to your users.</span>'
+        ),
+        a_attrs=mark_safe(
+            'target="_blank" rel="noopener noreferrer"'
+            f'href="{settings.EXTENSION_WORKSHOP_URL}'
+            '/documentation/manage/updating-your-extension/'
+            '?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=submission"'
+        ),
     )
 
     channel = forms.ChoiceField(
