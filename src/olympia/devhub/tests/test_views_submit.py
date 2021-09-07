@@ -2515,6 +2515,26 @@ class TestVersionSubmitFinish(TestAddonSubmitFinish):
         self.client.get(self.url)
         assert not send_welcome_email_mock.called
 
+    def test_finish_submitting_listed_addon(self):
+        version = self.addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+
+        content = doc('.addon-submission-process')
+        links = content('a')
+        assert len(links) == 3
+        # First link is to edit listing
+        assert links[0].attrib['href'] == self.addon.get_dev_url()
+        # Then to edit the version
+        assert links[1].attrib['href'] == reverse(
+            'devhub.versions.edit', args=[self.addon.slug, version.id]
+        )
+        assert links[1].text == ('Edit version %s' % version.version)
+        # And finally back to my submissions.
+        assert links[2].attrib['href'] == reverse('devhub.addons')        
+
     def test_addon_no_versions_redirects_to_versions(self):
         # No versions makes getting to this step difficult!
         pass
