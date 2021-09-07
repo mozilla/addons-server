@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-24 16:50+0000\n"
+"POT-Creation-Date: 2021-09-07 16:30+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -4508,11 +4508,6 @@ msgid "Blues & Yellows"
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
-msgid "Forest Theme"
-msgstr "Направи нову тему"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
 msgstr ""
@@ -5488,12 +5483,6 @@ msgstr ""
 #, fuzzy
 msgid "Pending Rejection – Add-ons for Firefox"
 msgstr "Захтеване додатне информације"
-
-msgid "Advanced Search"
-msgstr "Напредна претрага"
-
-msgid "clear search"
-msgstr "очисти претрагу"
 
 msgid "Process Reviews"
 msgstr "Процесирај рецензије"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-24 16:50+0000\n"
+"POT-Creation-Date: 2021-09-07 16:30+0000\n"
 "PO-Revision-Date: 2021-08-13 17:11+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4305,10 +4305,6 @@ msgid "Blues & Yellows"
 msgstr "Blaus e jalnes"
 
 #. editorial content for the discovery pane.
-msgid "Forest Theme"
-msgstr "Thema de foresta"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
 msgstr "Salva gruppos de schedas como marcapaginas favorite"
@@ -5205,12 +5201,6 @@ msgstr "Additivos non publicate – Additivos pro Firefox"
 
 msgid "Pending Rejection – Add-ons for Firefox"
 msgstr "Attendente rejection – Additivos pro Firefox"
-
-msgid "Advanced Search"
-msgstr "Recerca avantiate"
-
-msgid "clear search"
-msgstr "rader le recerca"
 
 msgid "Process Reviews"
 msgstr "Processar recensiones"

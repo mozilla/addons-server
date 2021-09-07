@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-24 16:50+0000\n"
+"POT-Creation-Date: 2021-09-07 16:30+0000\n"
 "PO-Revision-Date: 2021-07-03 19:18+0000\n"
 "Last-Translator: Paulina Rodriguez <pauli.rodriguez.c@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -4429,10 +4429,6 @@ msgid "Blues & Yellows"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Forest Theme"
-msgstr "Tema forestal"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
 msgstr ""
@@ -5367,12 +5363,6 @@ msgstr ""
 #, fuzzy
 msgid "Pending Rejection – Add-ons for Firefox"
 msgstr "La solicitud de información ha expirado"
-
-msgid "Advanced Search"
-msgstr "Búsqueda avanzada"
-
-msgid "clear search"
-msgstr "borrar búsqueda"
 
 msgid "Process Reviews"
 msgstr "Procesar revisiones"

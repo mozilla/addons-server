@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-24 16:50+0000\n"
+"POT-Creation-Date: 2021-09-07 16:30+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -4435,12 +4435,6 @@ msgstr ""
 msgid "Blues & Yellows"
 msgstr ""
 
-# "Me" in this context is the user shown on the User Info page
-#. editorial content for the discovery pane.
-#, fuzzy
-msgid "Forest Theme"
-msgstr "Nik sortua"
-
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
@@ -5419,12 +5413,6 @@ msgstr ""
 #, fuzzy
 msgid "Pending Rejection – Add-ons for Firefox"
 msgstr "Informazio gehiago"
-
-msgid "Advanced Search"
-msgstr "Bilaketa aurreratua"
-
-msgid "clear search"
-msgstr ""
 
 msgid "Process Reviews"
 msgstr "Prozesatu berrikuspenak"

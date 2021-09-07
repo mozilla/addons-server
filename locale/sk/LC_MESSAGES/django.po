@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-24 16:50+0000\n"
+"POT-Creation-Date: 2021-09-07 16:30+0000\n"
 "PO-Revision-Date: 2020-11-12 22:41+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -4260,11 +4260,6 @@ msgid "Blues & Yellows"
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
-msgid "Forest Theme"
-msgstr "Dokončiť tému vzhľadu"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
 msgstr ""
@@ -5176,12 +5171,6 @@ msgstr ""
 
 msgid "Pending Rejection – Add-ons for Firefox"
 msgstr ""
-
-msgid "Advanced Search"
-msgstr "Rozšírené vyhľadávanie"
-
-msgid "clear search"
-msgstr "vymazať vyhľadávanie"
 
 msgid "Process Reviews"
 msgstr "Spracovať recenzie"

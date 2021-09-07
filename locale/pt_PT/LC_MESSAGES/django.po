@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-24 16:50+0000\n"
+"POT-Creation-Date: 2021-09-07 16:30+0000\n"
 "PO-Revision-Date: 2021-08-11 14:11+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -4354,10 +4354,6 @@ msgid "Blues & Yellows"
 msgstr "Azuis e amarelos"
 
 #. editorial content for the discovery pane.
-msgid "Forest Theme"
-msgstr "Tema da floresta"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
 msgstr "Guarde conjuntos de marcadores como marcadores convenientes."
@@ -5258,12 +5254,6 @@ msgstr "Extras não listados – Extras para o Firefox"
 
 msgid "Pending Rejection – Add-ons for Firefox"
 msgstr "Rejeição pendente – Extras para o Firefox"
-
-msgid "Advanced Search"
-msgstr "Pesquisa avançada"
-
-msgid "clear search"
-msgstr "limpar pesquisa"
 
 msgid "Process Reviews"
 msgstr "Processar revisões"

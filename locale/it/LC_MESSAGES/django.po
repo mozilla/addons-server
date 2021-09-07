@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-24 16:50+0000\n"
+"POT-Creation-Date: 2021-09-07 16:30+0000\n"
 "PO-Revision-Date: 2021-08-13 13:14+0000\n"
 "Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
@@ -4400,10 +4400,6 @@ msgid "Blues & Yellows"
 msgstr "Blu e giallo"
 
 #. editorial content for the discovery pane.
-msgid "Forest Theme"
-msgstr "A tema foresta"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
 msgstr "Salva gruppi di schede come comodi segnalibri."
@@ -5309,12 +5305,6 @@ msgstr "Componenti aggiuntivi non elencati – Componenti aggiuntivi per Firefox
 
 msgid "Pending Rejection – Add-ons for Firefox"
 msgstr "In attesa di rifiuto – Componenti aggiuntivi per Firefox"
-
-msgid "Advanced Search"
-msgstr "Ricerca avanzata"
-
-msgid "clear search"
-msgstr "reimposta ricerca"
 
 msgid "Process Reviews"
 msgstr "Elabora revisioni"

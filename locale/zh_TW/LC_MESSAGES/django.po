@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-24 16:50+0000\n"
+"POT-Creation-Date: 2021-09-07 16:30+0000\n"
 "PO-Revision-Date: 2021-08-11 03:29+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -4269,10 +4269,6 @@ msgid "Blues & Yellows"
 msgstr "藍色與黃色"
 
 #. editorial content for the discovery pane.
-msgid "Forest Theme"
-msgstr "森林系佈景主題"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
 msgstr ""
@@ -5160,12 +5156,6 @@ msgstr "未公開上架的附加元件 – Firefox 附加元件站"
 
 msgid "Pending Rejection – Add-ons for Firefox"
 msgstr "待拒絕 – Firefox 附加元件站"
-
-msgid "Advanced Search"
-msgstr "進階搜尋"
-
-msgid "clear search"
-msgstr "清除搜尋"
 
 msgid "Process Reviews"
 msgstr "審核處理"

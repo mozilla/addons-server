@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-24 16:50+0000\n"
+"POT-Creation-Date: 2021-09-07 16:30+0000\n"
 "PO-Revision-Date: 2021-08-23 17:43+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -4195,10 +4195,6 @@ msgid "Blues & Yellows"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Forest Theme"
-msgstr "అడవి అలంకారం"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
 msgstr ""
@@ -5085,12 +5081,6 @@ msgstr ""
 
 msgid "Pending Rejection – Add-ons for Firefox"
 msgstr "తిరస్కరణకు వేచివున్నవి – Firefox కొరకు పొడగింతలు"
-
-msgid "Advanced Search"
-msgstr "అధునాతన శోధన"
-
-msgid "clear search"
-msgstr "శోధనను తుడువు"
 
 msgid "Process Reviews"
 msgstr "ప్రక్రియలో సమీక్షలు"
