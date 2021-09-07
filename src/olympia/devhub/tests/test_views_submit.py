@@ -2018,7 +2018,7 @@ class VersionSubmitUploadMixin:
             'devhub.submit.version.distribution', args=[self.addon.slug]
         )
         doc = pq(response.content)
-        assert doc('.addon-submit-distribute a').attr('href') == (
+        assert doc('.addon-submit-distribute a:contains("Change")').attr('href') == (
             distribution_url + '?channel=' + channel_text
         )
         assert not doc('p.status-disabled')
