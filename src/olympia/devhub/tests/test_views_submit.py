@@ -2533,7 +2533,7 @@ class TestVersionSubmitFinish(TestAddonSubmitFinish):
         )
         assert links[1].text == ('Edit version %s' % version.version)
         # And finally back to my submissions.
-        assert links[2].attrib['href'] == reverse('devhub.addons')        
+        assert links[2].attrib['href'] == reverse('devhub.addons')
 
     def test_addon_no_versions_redirects_to_versions(self):
         # No versions makes getting to this step difficult!
