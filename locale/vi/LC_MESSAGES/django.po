@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-24 16:50+0000\n"
+"POT-Creation-Date: 2021-09-07 16:30+0000\n"
 "PO-Revision-Date: 2021-07-06 23:06+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -4327,12 +4327,6 @@ msgstr ""
 msgid "Blues & Yellows"
 msgstr ""
 
-# "Me" in this context is the user shown on the User Info page
-#. editorial content for the discovery pane.
-#, fuzzy
-msgid "Forest Theme"
-msgstr "Tạo một chủ đề"
-
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
@@ -5250,12 +5244,6 @@ msgstr ""
 #, fuzzy
 msgid "Pending Rejection – Add-ons for Firefox"
 msgstr "Yêu cầu thông tin đã hết hạn"
-
-msgid "Advanced Search"
-msgstr "Tìm kiếm nâng cao"
-
-msgid "clear search"
-msgstr "xóa trắng tìm kiếm"
 
 msgid "Process Reviews"
 msgstr "Tiến hành Xét duyệt"

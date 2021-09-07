@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-24 16:50+0000\n"
+"POT-Creation-Date: 2021-09-07 16:30+0000\n"
 "PO-Revision-Date: 2021-08-12 00:33+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -4318,10 +4318,6 @@ msgid "Blues & Yellows"
 msgstr "Blå & gul"
 
 #. editorial content for the discovery pane.
-msgid "Forest Theme"
-msgstr "Skogstema"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
 msgstr "Spara grupper av flikar som praktiska bokmärken."
@@ -5220,12 +5216,6 @@ msgstr "Olistade tillägg - Tillägg för Firefox"
 
 msgid "Pending Rejection – Add-ons for Firefox"
 msgstr "Väntande avslag – Tillägg för Firefox"
-
-msgid "Advanced Search"
-msgstr "Avancerad sökning"
-
-msgid "clear search"
-msgstr "rensa sökning"
 
 msgid "Process Reviews"
 msgstr "Behandla granskningar"

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-24 16:50+0000\n"
+"POT-Creation-Date: 2021-09-07 16:30+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -4459,11 +4459,6 @@ msgid "Blues & Yellows"
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
-msgid "Forest Theme"
-msgstr "Utwórz motyw"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
 msgstr ""
@@ -5417,12 +5412,6 @@ msgstr ""
 #, fuzzy
 msgid "Pending Rejection – Add-ons for Firefox"
 msgstr "Wygasła prośba o informacje"
-
-msgid "Advanced Search"
-msgstr "Szukanie zaawansowane"
-
-msgid "clear search"
-msgstr "wyczyść"
 
 msgid "Process Reviews"
 msgstr "Przetwórz sprawdzenia"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-24 16:50+0000\n"
+"POT-Creation-Date: 2021-09-07 16:30+0000\n"
 "PO-Revision-Date: 2021-07-31 08:16+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -4341,10 +4341,6 @@ msgid "Blues & Yellows"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Forest Theme"
-msgstr "Tema Pyll"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
 msgstr "Ruani grupe skedash si faqerojtës të leverdishëm."
@@ -5246,12 +5242,6 @@ msgstr "Shtesa të Pashfaqura – Shtesa për Firefox"
 
 msgid "Pending Rejection – Add-ons for Firefox"
 msgstr "Me Hedhje Poshtë Pezull – Shtesa për Firefox"
-
-msgid "Advanced Search"
-msgstr "Kërkim i Mëtejshëm"
-
-msgid "clear search"
-msgstr "spastro kërkimin"
 
 msgid "Process Reviews"
 msgstr "Përpunoni Shqyrtime"

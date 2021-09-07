@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-24 16:50+0000\n"
+"POT-Creation-Date: 2021-09-07 16:30+0000\n"
 "PO-Revision-Date: 2021-08-11 12:56+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -4251,10 +4251,6 @@ msgid "Blues & Yellows"
 msgstr "蓝色＆黄色"
 
 #. editorial content for the discovery pane.
-msgid "Forest Theme"
-msgstr "森林主题"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
 msgstr "批量保存标签页为便捷的书签。"
@@ -5142,12 +5138,6 @@ msgstr "未上架的附加组件 – Firefox 附加组件库"
 
 msgid "Pending Rejection – Add-ons for Firefox"
 msgstr "待驳回 – Firefox 附加组件库"
-
-msgid "Advanced Search"
-msgstr "高级搜索"
-
-msgid "clear search"
-msgstr "清除搜索"
 
 msgid "Process Reviews"
 msgstr "处理评价"

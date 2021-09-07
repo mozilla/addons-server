@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-24 16:50+0000\n"
+"POT-Creation-Date: 2021-09-07 16:30+0000\n"
 "PO-Revision-Date: 2021-04-12 00:29+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4314,11 +4314,6 @@ msgid "Blues & Yellows"
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
-msgid "Forest Theme"
-msgstr "ਨਵਾਂ ਥੀਮ ਰਚੋ"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
 msgstr ""
@@ -5257,12 +5252,6 @@ msgstr ""
 #, fuzzy
 msgid "Pending Rejection – Add-ons for Firefox"
 msgstr "ਮਿਆਦ ਪੁੱਗੇ ਜਾਣਕਾਰੀ ਬੇਨਤੀ"
-
-msgid "Advanced Search"
-msgstr "ਤਕਨੀਕੀ ਖੋਜ"
-
-msgid "clear search"
-msgstr "ਖੋਜ ਮਿਟਾਓ"
 
 msgid "Process Reviews"
 msgstr "ਸਮੀਖਿਆਵਾਂ ਤੇ ਕਾਰਵਾਈ"
