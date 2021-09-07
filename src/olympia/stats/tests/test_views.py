@@ -187,6 +187,23 @@ class TestListedAddons(StatsTestCase):
         self.login_as_admin()
         self._check_it(self.public_views_gen(format='json'), 200)
 
+    def test_stats_for_deleted_addon(self):
+        self.addon_4.update(status=amo.STATUS_DELETED)
+
+        # Public users should not see stats
+        self.client.logout()
+        # It is a 404 (and not a 403) before the decorator first tries to
+        # retrieve the add-on.
+        self._check_it(self.public_views_gen(format='json'), 404)
+
+        # Developers should not see stats
+        self.client.login(email=self.someuser.email)
+        self._check_it(self.public_views_gen(format='json'), 404)
+
+        # Admins should see stats
+        self.login_as_admin()
+        self._check_it(self.public_views_gen(format='json'), 200)
+
 
 class TestSeriesSecurity(StatsTestCase):
     """Tests to make sure all restricted data remains restricted."""
