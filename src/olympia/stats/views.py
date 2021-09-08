@@ -334,7 +334,8 @@ def check_stats_permission(request, addon):
 @non_atomic_requests
 def stats_report(request, addon, report):
     check_stats_permission(request, addon)
-    stats_base_url = reverse('stats.overview', args=[addon.slug])
+    slug_or_id = addon.id if addon.is_deleted else addon.slug
+    stats_base_url = reverse('stats.overview', args=[slug_or_id])
     view = get_report_view(request)
 
     return render(
