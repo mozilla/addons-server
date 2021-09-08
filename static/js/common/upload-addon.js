@@ -539,13 +539,6 @@
 
           $('<strong>').text(message).appendTo(upload_results);
 
-          // Specific messages for unlisted addons.
-          if (isUnlisted()) {
-            $('<p>')
-              .text(gettext('Your submission will be automatically signed.'))
-              .appendTo(upload_results);
-          }
-
           if (messageCount > 0) {
             // Validation checklist
             var checklist_box = $('<div>')

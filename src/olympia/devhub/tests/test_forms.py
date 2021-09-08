@@ -398,11 +398,11 @@ class TestDistributionChoiceForm(TestCase):
             label = str(label)
             assert label.startswith(expected)
 
-        with translation.override('de'):
+        with translation.override('fr'):
             form = forms.DistributionChoiceForm()
             label = form.fields['channel'].choices[0][1]
 
-            expected = 'Auf dieser Website.'
+            expected = 'Gestion via le site.'
             label = str(label)
             assert label.startswith(expected)
 

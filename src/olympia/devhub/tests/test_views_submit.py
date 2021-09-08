@@ -1654,16 +1654,18 @@ class TestAddonSubmitFinish(TestSubmitBase):
 
         content = doc('.addon-submission-process')
         links = content('a')
-        assert len(links) == 3
-        # First link is to edit listing
-        assert links[0].attrib['href'] == self.addon.get_dev_url()
-        # Second link is to edit the version
-        assert links[1].attrib['href'] == reverse(
+        assert len(links) == 4
+        # First link is to extensionworkshop
+        assert links[0].attrib['href'].startswith(settings.EXTENSION_WORKSHOP_URL)
+        # Then edit listing
+        assert links[1].attrib['href'] == self.addon.get_dev_url()
+        # Then to edit the version
+        assert links[2].attrib['href'] == reverse(
             'devhub.versions.edit', args=[self.addon.slug, version.id]
         )
-        assert links[1].text == ('Edit version %s' % version.version)
-        # Third back to my submissions.
-        assert links[2].attrib['href'] == reverse('devhub.addons')
+        assert links[2].text == ('Edit version %s' % version.version)
+        # And finally back to my submissions.
+        assert links[3].attrib['href'] == reverse('devhub.addons')
 
     def test_finish_submitting_unlisted_addon(self):
         self.make_addon_unlisted(self.addon)
@@ -2018,7 +2020,7 @@ class VersionSubmitUploadMixin:
             'devhub.submit.version.distribution', args=[self.addon.slug]
         )
         doc = pq(response.content)
-        assert doc('.addon-submit-distribute a').attr('href') == (
+        assert doc('.addon-submit-distribute a:contains("Change")').attr('href') == (
             distribution_url + '?channel=' + channel_text
         )
         assert not doc('p.status-disabled')
@@ -2319,7 +2321,7 @@ class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadTest):
         # since the add-on is "invisible".
         assert doc('p.status-disabled')
         # The link to select another distribution channel should be absent.
-        assert not doc('.addon-submit-distribute a')
+        assert not doc('.addon-submit-distribute a:contains("Change")')
 
 
 class TestVersionSubmitSource(TestAddonSubmitSource):
@@ -2512,6 +2514,26 @@ class TestVersionSubmitFinish(TestAddonSubmitFinish):
         """No emails for version finish."""
         self.client.get(self.url)
         assert not send_welcome_email_mock.called
+
+    def test_finish_submitting_listed_addon(self):
+        version = self.addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+
+        content = doc('.addon-submission-process')
+        links = content('a')
+        assert len(links) == 3
+        # First link is to edit listing
+        assert links[0].attrib['href'] == self.addon.get_dev_url()
+        # Then to edit the version
+        assert links[1].attrib['href'] == reverse(
+            'devhub.versions.edit', args=[self.addon.slug, version.id]
+        )
+        assert links[1].text == ('Edit version %s' % version.version)
+        # And finally back to my submissions.
+        assert links[2].attrib['href'] == reverse('devhub.addons')
 
     def test_addon_no_versions_redirects_to_versions(self):
         # No versions makes getting to this step difficult!

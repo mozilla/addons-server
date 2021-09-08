@@ -7,8 +7,8 @@
 {% block primary %}
 {% set version_edit_url = url('devhub.versions.edit', addon.slug, uploaded_version.id) %}
 {% if uploaded_version.channel == amo.RELEASE_CHANNEL_LISTED %}
+  <h3>{{ _("Version Submitted") }}</h3>
   {% if addon.type == amo.ADDON_STATICTHEME %}
-    <h3>{{ _("Version Submitted for Review") }}</h3>
     <p>
       {% if preview %}
         <img src="{{ preview.image_url }}" title="{{ _('Preview of the version submitted') }}"
@@ -19,17 +19,11 @@
       {{ _("You’re done! This version will be available after it passes review. "
            "You will be notified when it is reviewed.") }}
     </p>
-  {% elif uploaded_version.is_ready_for_auto_approval %}
-    <h3>{{ _("Version Submitted") }}</h3>
-    <p>
-      {{ _("You’re done! This version will be available on our site shortly.") }}
-    </p>
   {% else %}
-    <h3>{{ _("Version Submitted for Review") }}</h3>
     <p>
-      {{ _("You’re done! This version has been submitted for review. You will be "
-           "notified when the review has been completed, or if our reviewers have "
-           "any questions about your submission.") }}
+      {% trans site_domain=settings.DOMAIN %}
+        You’re done! ✨ You will receive a confirmation email when this version is published on {{ site_domain }}. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is selected for manual review. If you do not see an email after 24 hours, please check your spam folder.
+      {% endtrans %}
     </p>
   {% endif %}
   {% if submit_page == 'addon' and addon.type == amo.ADDON_STATICTHEME %}
@@ -39,8 +33,9 @@
     </p>
   {% elif submit_page == 'addon'  %}
     <p>
-      {{ _("Your listing will be more successful by adding a detailed description "
-           "and screenshots. Get your listing ready for publication:") }}
+      {% trans a_attrs='target="_blank" rel="noopener noreferrer" href="%s/documentation/publish/create-an-appealing-listing?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=submission"'|format(settings.EXTENSION_WORKSHOP_URL)|safe %}
+        You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a {{ a_attrs }}>creating an appealing listing</a> on Firefox Extension Workshop.
+      {% endtrans %}
     </p>
   {% endif %}
   <p>
@@ -60,9 +55,9 @@
 {% else %}
   <h3>{{ _("Version Signature Pending") }}</h3>
   <p>
-    {{ _("You’re done! This version will be signed for self-distribution shortly. "
-         "You will be notified by email when the signed file is ready for download.") }}
+    {{ _("You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder.") }}
   </p>
+  <p> {{ _('As a reminder, your add-on is subject to manual review at any time.') }} </p>
 {% endif %}
 
 <p>

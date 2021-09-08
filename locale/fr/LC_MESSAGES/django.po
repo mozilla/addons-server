@@ -6268,3 +6268,8 @@ msgstr "autres"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} et supérieures"
+
+msgid ""
+"On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
+msgstr ""
+"Gestion via le site. <span class=\"helptext\">Votre proposition sera publiée sur {site_domain}.</span>"
