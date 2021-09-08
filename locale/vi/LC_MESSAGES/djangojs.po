@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-07 16:30+0000\n"
-"PO-Revision-Date: 2021-06-24 05:52+0000\n"
-"Last-Translator: Đặng Duy Thanh <thanhdd.it@gmail.com>\n"
+"PO-Revision-Date: 2021-08-27 02:59+0000\n"
+"Last-Translator: BunNotFound <ledangngocanh2010@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
@@ -34,7 +34,7 @@ msgid "{0}% complete"
 msgstr "{0}% hoàn thành"
 
 msgid "{0} of {1}"
-msgstr "{0} của {1}"
+msgstr "{0} trong số {1}"
 
 msgid "Cancel"
 msgstr "Hủy bỏ"
