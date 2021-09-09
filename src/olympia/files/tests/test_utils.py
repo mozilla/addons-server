@@ -123,6 +123,17 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
             == 'some-id'
         )
 
+    def test_non_string_guid(self):
+        """Test that guid is converted to a string (or None)"""
+        assert (
+            self.parse({'browser_specific_settings': {'gecko': {'id': 12345}}})['guid']
+            == '12345'
+        )
+        assert (
+            self.parse({'browser_specific_settings': {'gecko': {'id': None}}})['guid']
+            is None
+        )
+
     def test_name_for_guid_if_no_id(self):
         """Don't use the name for the guid if there is no id."""
         assert self.parse({'name': 'addon-name'})['guid'] is None
