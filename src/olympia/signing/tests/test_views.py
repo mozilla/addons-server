@@ -221,10 +221,10 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         version = qs.get()
         assert version.addon.guid == self.guid
         assert version.version == '3.0'
-        assert version.statuses[0][1] == amo.STATUS_AWAITING_REVIEW
+        assert version.file.status == amo.STATUS_AWAITING_REVIEW
         assert version.addon.status == amo.STATUS_APPROVED
         assert version.channel == amo.RELEASE_CHANNEL_LISTED
-        assert not version.all_files[0].is_mozilla_signed_extension
+        assert not version.file.is_mozilla_signed_extension
 
     def test_version_already_uploaded(self):
         response = self.request('PUT', self.url(self.guid, '3.0'))
@@ -309,7 +309,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert latest_version
         assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
-        assert latest_version.all_files[0].is_mozilla_signed_extension
+        assert latest_version.file.is_mozilla_signed_extension
 
     def test_mozilla_signed_not_allowed(self):
         guid = '@webextension-guid'
@@ -1378,7 +1378,7 @@ class TestSignedFile(SigningAPITestMixin, TestCase):
             version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
             users=[self.user],
         )
-        return addon.latest_unlisted_version.all_files[0]
+        return addon.latest_unlisted_version.file
 
     def test_can_download_once_authenticated(self):
         response = self.get(self.url())

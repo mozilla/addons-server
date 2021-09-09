@@ -31,7 +31,7 @@ class TestAddonsLinterListed(UploadTest, TestCase):
             file_kw={'filename': 'webextension.xpi'},
         )
         self.version = self.addon.current_version
-        self.file = self.version.current_file
+        self.file = self.version.file
 
         # Create a FileUpload object for an XPI containing version 1.1.
         self.file_upload = self.get_upload(
@@ -99,7 +99,7 @@ class TestAddonsLinterListed(UploadTest, TestCase):
         assert get_task_mock.return_value.delay.call_count == 1
 
         new_version = version_factory(addon=self.addon, version='0.0.2')
-        assert isinstance(tasks.validate(new_version.current_file), mock.Mock)
+        assert isinstance(tasks.validate(new_version.file), mock.Mock)
         assert get_task_mock.return_value.delay.call_count == 2
 
     @mock.patch.object(utils.Validator, 'get_task')
@@ -258,7 +258,7 @@ def test_extract_theme_properties(zip_file):
 
     # Add the zip in the right place
     zip_file = os.path.join(settings.ROOT, zip_file)
-    copy_stored_file(zip_file, addon.current_version.all_files[0].file_path)
+    copy_stored_file(zip_file, addon.current_version.file.file_path)
     result = utils.extract_theme_properties(addon, addon.current_version.channel)
     assert result == {
         'colors': {'frame': '#adb09f', 'tab_background_text': '#000'},

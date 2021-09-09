@@ -636,8 +636,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         response = self.post()
         addon = Addon.objects.get()
         self.assert3xx(response, reverse('devhub.submit.details', args=[addon.slug]))
-        all_ = sorted(f.filename for f in addon.current_version.all_files)
-        assert all_ == ['weta_fade-1.0-an+fx.xpi']  # A single XPI for all.
+        assert addon.current_version.file.filename == 'weta_fade-1.0-an+fx.xpi'
         assert addon.type == amo.ADDON_STATICTHEME
         previews = list(addon.current_version.previews.all())
         assert len(previews) == 2
@@ -654,8 +653,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         addon = Addon.unfiltered.get()
         latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.assert3xx(response, reverse('devhub.submit.finish', args=[addon.slug]))
-        all_ = sorted(f.filename for f in latest_version.all_files)
-        assert all_ == ['weta_fade-1.0-an+fx.xpi']  # A single XPI for all.
+        assert latest_version.file.filename == 'weta_fade-1.0-an+fx.xpi'
         assert addon.type == amo.ADDON_STATICTHEME
         # Only listed submissions need a preview generated.
         assert latest_version.previews.all().count() == 0
@@ -681,8 +679,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         addon = Addon.objects.get()
         # Next step is same as non-wizard flow too.
         self.assert3xx(response, reverse('devhub.submit.details', args=[addon.slug]))
-        all_ = sorted(f.filename for f in addon.current_version.all_files)
-        assert all_ == ['weta_fade-1.0-an+fx.xpi']  # A single XPI for all.
+        assert addon.current_version.file.filename == 'weta_fade-1.0-an+fx.xpi'
         assert addon.type == amo.ADDON_STATICTHEME
         previews = list(addon.current_version.previews.all())
         assert len(previews) == 2
@@ -711,8 +708,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
         # Next step is same as non-wizard flow too.
         self.assert3xx(response, reverse('devhub.submit.finish', args=[addon.slug]))
-        all_ = sorted(f.filename for f in latest_version.all_files)
-        assert all_ == ['weta_fade-1.0-an+fx.xpi']  # A single XPI for all.
+        assert latest_version.file.filename == 'weta_fade-1.0-an+fx.xpi'
         assert addon.type == amo.ADDON_STATICTHEME
         # Only listed submissions need a preview generated.
         assert latest_version.previews.all().count() == 0
@@ -1076,8 +1072,7 @@ class DetailsPageMixin:
         addon = self.get_addon()
         assert addon.status == amo.STATUS_NULL
         version = addon.versions.latest()
-        del version.all_files
-        assert version.statuses == [(version.all_files[0].id, amo.STATUS_DISABLED)]
+        assert version.file.status == amo.STATUS_DISABLED
 
     @override_switch('content-optimization', active=False)
     def test_name_summary_lengths_short(self):
@@ -2096,7 +2091,7 @@ class VersionSubmitUploadMixin:
 
         version = self.addon.find_latest_version(channel=self.channel)
         assert version.channel == self.channel
-        assert version.all_files[0].status == amo.STATUS_AWAITING_REVIEW
+        assert version.file.status == amo.STATUS_AWAITING_REVIEW
         self.assert3xx(response, self.get_next_url(version))
         log_items = ActivityLog.objects.for_addons(self.addon)
         assert log_items.filter(action=amo.LOG.ADD_VERSION.id)
@@ -2155,7 +2150,7 @@ class VersionSubmitUploadMixin:
 
         version = self.addon.find_latest_version(channel=self.channel)
         assert version.channel == self.channel
-        assert version.all_files[0].status == amo.STATUS_AWAITING_REVIEW
+        assert version.file.status == amo.STATUS_AWAITING_REVIEW
         self.assert3xx(response, self.get_next_url(version))
         log_items = ActivityLog.objects.for_addons(self.addon)
         assert log_items.filter(action=amo.LOG.ADD_VERSION.id)
@@ -2175,7 +2170,7 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
         response = self.post()
         version = self.addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
         assert version.channel == amo.RELEASE_CHANNEL_LISTED
-        assert version.all_files[0].status == amo.STATUS_AWAITING_REVIEW
+        assert version.file.status == amo.STATUS_AWAITING_REVIEW
         self.assert3xx(response, self.get_next_url(version))
         logs_qs = ActivityLog.objects.for_addons(self.addon).filter(
             action=amo.LOG.ADD_VERSION.id
@@ -2309,7 +2304,7 @@ class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadTest):
         response = self.post()
         version = self.addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
-        assert version.all_files[0].status == amo.STATUS_AWAITING_REVIEW
+        assert version.file.status == amo.STATUS_AWAITING_REVIEW
         self.assert3xx(response, self.get_next_url(version))
 
     def test_show_warning_and_remove_change_link_if_addon_is_invisible(self):
@@ -2422,8 +2417,7 @@ class TestVersionSubmitDetails(TestSubmitBase):
         addon = self.get_addon()
         assert addon.status == addon_status  # No change.
         version = addon.versions.latest()
-        del version.all_files
-        assert version.statuses == [(version.all_files[0].id, amo.STATUS_DISABLED)]
+        assert version.file.status == amo.STATUS_DISABLED
 
     def test_public_addon_stays_public_even_if_had_missing_metadata(self):
         """Posting details for a new version for a public add-on that somehow

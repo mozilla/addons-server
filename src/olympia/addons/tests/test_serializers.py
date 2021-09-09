@@ -481,25 +481,6 @@ class AddonSerializerOutputTestMixin:
         assert result['id'] == self.addon.pk
         assert result['current_version'] is None
 
-    def test_no_current_version_files(self):
-        self.addon = addon_factory(name='lol')
-        # Just removing the last file deletes the version, so we have to be
-        # creative and replace the version manually with one that has no files.
-        self.addon.current_version.delete()
-        version = self.addon.versions.create(version='0.42')
-        self.addon._current_version = version
-        self.addon.save()
-        result = self.serialize()
-
-        assert result['id'] == self.addon.pk
-        assert result['current_version']
-        result_version = result['current_version']
-        assert result_version['reviewed'] == version.reviewed
-        assert result_version['version'] == version.version
-        assert result_version['files'] == []
-        assert result_version['is_strict_compatibility_enabled'] is False
-        assert result_version['compatibility'] == {}
-
     def test_deleted(self):
         self.addon = addon_factory(name='My Deleted Addôn')
         self.addon.delete()
@@ -633,7 +614,7 @@ class AddonSerializerOutputTestMixin:
         optional_permissions = ['cookies', 'optional permission']
         # Give one of the versions some webext permissions to test that.
         WebextPermission.objects.create(
-            file=self.addon.current_version.all_files[0],
+            file=self.addon.current_version.file,
             permissions=permissions,
             optional_permissions=optional_permissions,
         )
@@ -671,7 +652,7 @@ class AddonSerializerOutputTestMixin:
         assert result_version['is_strict_compatibility_enabled'] is True
 
         # Test with no compatibility info.
-        file_ = self.addon.current_version.all_files[0]
+        file_ = self.addon.current_version.file
         file_.update(strict_compatibility=False)
         ApplicationsVersions.objects.filter(version=self.addon.current_version).delete()
 
@@ -1074,7 +1055,7 @@ class TestVersionSerializerOutput(TestCase):
         )
 
         self.version = addon.current_version
-        current_file = self.version.current_file
+        current_file = self.version.file
 
         result = self.serialize()
         assert result['id'] == self.version.pk
@@ -1248,9 +1229,7 @@ class TestVersionSerializerOutput(TestCase):
 
         self.version = addon_factory(file_kw={'is_webextension': True}).current_version
         permissions = ['dangerdanger', 'high', 'voltage']
-        WebextPermission.objects.create(
-            permissions=permissions, file=self.version.all_files[0]
-        )
+        WebextPermission.objects.create(permissions=permissions, file=self.version.file)
         result = self.serialize()
         assert result['files'][0]['permissions'] == permissions
 
@@ -1263,7 +1242,7 @@ class TestVersionSerializerOutput(TestCase):
         self.version = addon_factory(file_kw={'is_webextension': True}).current_version
         optional_permissions = ['dangerdanger', 'high', 'voltage']
         WebextPermission.objects.create(
-            optional_permissions=optional_permissions, file=self.version.all_files[0]
+            optional_permissions=optional_permissions, file=self.version.file
         )
         result = self.serialize()
         assert result['files'][0]['optional_permissions'] == (optional_permissions)

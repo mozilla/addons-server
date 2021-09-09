@@ -267,12 +267,10 @@ class AddonManager(ManagerBase):
                 (
                     '_current_version',
                     '_current_version__autoapprovalsummary',
+                    '_current_version__file',
                     '_current_version__reviewerflags',
                     'promotedaddon',
                 )
-            )
-            qs = qs.prefetch_related(
-                '_current_version__file',
             )
         qs = qs.select_related(*select_related_fields)
 
@@ -1026,27 +1024,14 @@ class Addon(OnChangeMixin, ModelBase):
 
         If the add-on is not public, it can return a listed version awaiting
         review (since non-public add-ons should not have public versions)."""
-        try:
-            statuses = self.valid_file_statuses
-            status_list = ','.join(map(str, statuses))
-            fltr = {
-                'channel': amo.RELEASE_CHANNEL_LISTED,
-                'file__status__in': statuses,
-            }
-            return self.versions.filter(**fltr).extra(
-                where=[
-                    """
-                    NOT EXISTS (
-                        SELECT 1 FROM files AS f2
-                        WHERE f2.version_id = versions.id AND
-                              f2.status NOT IN (%s))
-                    """
-                    % status_list
-                ]
-            )[0]
-
-        except (IndexError, Version.DoesNotExist):
-            return None
+        return (
+            self.versions.filter(
+                channel=amo.RELEASE_CHANNEL_LISTED,
+                file__status__in=self.valid_file_statuses,
+            )
+            .order_by('created')
+            .last()
+        )
 
     def find_latest_version(self, channel, exclude=((amo.STATUS_DISABLED,))):
         """Retrieve the latest version of an add-on for the specified channel.
@@ -1061,27 +1046,22 @@ class Addon(OnChangeMixin, ModelBase):
         # have a latest version.
         if not self.id or self.status == amo.STATUS_DELETED:
             return None
-        # We can't use .exclude(file__status=excluded_statuses) because that
-        # would exclude a version if *any* of its files match but if there is
-        # only one file that doesn't have one of the excluded statuses it
-        # should be enough for that version to be considered.
-        # TODO: rework this function and update this comment now that .files is gone.
-        params = {
-            'file__status__in': (set(amo.STATUS_CHOICES_FILE.keys()) - set(exclude))
-        }
-        if channel is not None:
-            params['channel'] = channel
-        try:
-            # Avoid most transformers - keep translations because they don't
-            # get automatically fetched if you just access the field without
-            # having made the query beforehand, and we don't know what callers
-            # will want ; but for the rest of them, since it's a single
-            # instance there is no reason to call the default transformers.
-            latest_qs = self.versions.filter(**params).only_translations()
-            latest = latest_qs.latest()
-        except Version.DoesNotExist:
-            latest = None
-        return latest
+
+        # Avoid most transformers - keep translations because they don't
+        # get automatically fetched if you just access the field without
+        # having made the query beforehand, and we don't know what callers
+        # will want ; but for the rest of them, since it's a single
+        # instance there is no reason to call the default transformers.
+        return (
+            self.versions.exclude(file__status__in=exclude)
+            .filter(
+                **{'channel': channel} if channel is not None else {},
+                file__isnull=False,
+            )
+            .only_translations()
+            .order_by('created')
+            .last()
+        )
 
     @use_primary_db
     def update_version(self, ignore=None, _signal=True):
@@ -1670,11 +1650,11 @@ class Addon(OnChangeMixin, ModelBase):
         return (
             self.type == amo.ADDON_EXTENSION
             and version
-            and version.all_files[0]
+            and version.file
             and (
-                not version.all_files[0].is_webextension
-                or version.all_files[0].permissions
-                or version.all_files[0].optional_permissions
+                not version.file.is_webextension
+                or version.file.permissions
+                or version.file.optional_permissions
             )
         )
 

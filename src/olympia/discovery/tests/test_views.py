@@ -56,7 +56,7 @@ class DiscoveryTestMixin:
         assert result['addon']['icon_url'] == absolutify(addon.get_icon_url(64))
         assert (
             result['addon']['current_version']['files'][0]['id']
-            == addon.current_version.all_files[0].pk
+            == addon.current_version.file.pk
         )
 
         description_text = (

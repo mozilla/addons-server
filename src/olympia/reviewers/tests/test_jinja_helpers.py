@@ -1,26 +1,21 @@
 import pytest
 
 from olympia import amo
-from olympia.addons.models import Addon
+from olympia.amo.tests import addon_factory
 from olympia.files.models import File
 from olympia.reviewers.templatetags import code_manager, jinja_helpers
-from olympia.versions.models import Version
 
 
 pytestmark = pytest.mark.django_db
 
 
 def test_version_status():
-    addon = Addon()
-    version = Version()
-    version.all_files = [
-        File(status=amo.STATUS_APPROVED),
-        File(status=amo.STATUS_AWAITING_REVIEW),
-    ]
-    assert 'Approved,Awaiting Review' == (jinja_helpers.version_status(addon, version))
+    addon = addon_factory(file_kw={'status': amo.STATUS_APPROVED})
+    version = addon.current_version
+    assert 'Approved' == (jinja_helpers.version_status(addon, version))
 
-    version.all_files = [File(status=amo.STATUS_AWAITING_REVIEW)]
-    assert 'Awaiting Review' == jinja_helpers.version_status(addon, version)
+    version.file = File(status=amo.STATUS_AWAITING_REVIEW)
+    assert 'Awaiting Review' == (jinja_helpers.version_status(addon, version))
 
 
 def test_file_review_status_handles_invalid_status_id():

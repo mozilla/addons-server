@@ -38,8 +38,6 @@ class TestReviewForm(TestCase):
     def set_statuses_and_get_actions(self, addon_status, file_status):
         self.file.update(status=file_status)
         self.addon.update(status=addon_status)
-        # Need to clear self.version.all_files cache since we updated the file.
-        del self.version.all_files
         form = self.get_form()
         return form.helper.get_actions(self.request)
 

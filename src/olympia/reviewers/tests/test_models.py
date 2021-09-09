@@ -744,16 +744,16 @@ class TestAutoApprovalSummary(TestCase):
             confirmed=True,
         )
         self.current_file_validation = FileValidation.objects.create(
-            file=self.addon.current_version.all_files[0], validation='{}'
+            file=self.addon.current_version.file, validation='{}'
         )
         self.version = version_factory(
             addon=self.addon,
             version='1.1',
             file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
         )
-        self.file = self.version.all_files[0]
+        self.file = self.version.file
         self.file_validation = FileValidation.objects.create(
-            file=self.version.all_files[0], validation='{}'
+            file=self.version.file, validation='{}'
         )
         AddonApprovalsCounter.objects.create(addon=self.addon, counter=1)
 
@@ -1023,9 +1023,7 @@ class TestAutoApprovalSummary(TestCase):
         new_approved_version = version_factory(
             addon=self.addon, file_kw={'reviewed': self.days_ago(11)}
         )
-        FileValidation.objects.create(
-            file=new_approved_version.all_files[0], validation='{}'
-        )
+        FileValidation.objects.create(file=new_approved_version.file, validation='{}')
 
         summary = AutoApprovalSummary(version=self.version)
         weight_info = summary.calculate_weight()
@@ -1400,7 +1398,7 @@ class TestAutoApprovalSummary(TestCase):
             }
         }
         FileValidation.objects.create(
-            file=new_version.all_files[0], validation=json.dumps(new_validation_data)
+            file=new_version.file, validation=json.dumps(new_validation_data)
         )
 
         summary = AutoApprovalSummary(version=self.version)
@@ -1500,7 +1498,6 @@ class TestAutoApprovalSummary(TestCase):
     def test_count_uses_custom_csp_file_validation_missing(self):
         self.file_validation.delete()
         self.version.file.refresh_from_db()
-        del self.version.all_files
         with self.assertRaises(AutoApprovalNoValidationResultError):
             AutoApprovalSummary.count_uses_custom_csp(self.version)
 

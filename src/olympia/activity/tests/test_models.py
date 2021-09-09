@@ -89,8 +89,7 @@ class TestActivityLogToken(TestCase):
         assert self.token.is_valid()
 
     def test_rejected_version_still_valid(self):
-        for file_ in self.version.all_files:
-            file_.update(status=amo.STATUS_DISABLED)
+        self.version.file.update(status=amo.STATUS_DISABLED)
         # Being a rejected version shouldn't mean you can't reply
         assert self.token.is_valid()
 
@@ -369,8 +368,9 @@ class TestActivityLog(TestCase):
             amo.LOG.REJECT_VERSION, addon, version, user=self.request.user
         )
 
-        version_two = Version(addon=addon, license=version.license, version='1.2.3')
-        version_two.save()
+        version_two = version_factory(
+            addon=addon, license=version.license, version='1.2.3'
+        )
 
         ActivityLog.create(
             amo.LOG.REJECT_VERSION, addon, version_two, user=self.request.user
@@ -455,9 +455,7 @@ class TestActivityLog(TestCase):
 
     def test_str_activity_file(self):
         addon = Addon.objects.get()
-        log = ActivityLog.create(
-            amo.LOG.UNLISTED_SIGNED, addon.current_version.current_file
-        )
+        log = ActivityLog.create(amo.LOG.UNLISTED_SIGNED, addon.current_version.file)
         assert str(log) == (
             '<a href="http://testserver/firefox/downloads/file/67442/'
             'delicious_bookmarks-2.1.072-fx.xpi">'

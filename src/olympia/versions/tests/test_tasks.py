@@ -165,7 +165,7 @@ def test_generate_static_theme_preview(
     if header_url is not None:
         theme_manifest['images']['theme_frame'] = header_url
     addon = addon_factory()
-    destination = addon.current_version.all_files[0].current_file_path
+    destination = addon.current_version.file.current_file_path
     zip_file = os.path.join(HEADER_ROOT, 'theme_images.zip')
     copy_stored_file(zip_file, destination)
     # existing previews should be deleted if they exist
@@ -355,7 +355,7 @@ def test_generate_static_theme_preview_with_alternative_properties(
         'colors': manifest_colors,
     }
     addon = addon_factory()
-    destination = addon.current_version.all_files[0].current_file_path
+    destination = addon.current_version.file.current_file_path
     zip_file = os.path.join(HEADER_ROOT, 'theme_images.zip')
     copy_stored_file(zip_file, destination)
     generate_static_theme_preview(theme_manifest, addon.current_version.pk)
@@ -521,7 +521,7 @@ def test_generate_preview_with_additional_backgrounds(
         },
     }
     addon = addon_factory()
-    destination = addon.current_version.all_files[0].current_file_path
+    destination = addon.current_version.file.current_file_path
     zip_file = os.path.join(
         settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme_tiled.zip'
     )

@@ -212,9 +212,6 @@ class TestReviewHelper(TestReviewHelperBase):
     def get_review_actions(self, addon_status, file_status, content_review=False):
         self.file.update(status=file_status)
         self.addon.update(status=addon_status)
-        # Need to clear self.version.all_files cache since we updated the file.
-        if self.version:
-            del self.version.all_files
         return self.get_helper(content_review=content_review).actions
 
     def test_actions_full_nominated(self):
@@ -697,7 +694,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'comment',
         ]
         self.version = version_factory(addon=self.addon)
-        self.file = self.version.all_files[0]
+        self.file = self.version.file
 
         assert (
             list(
@@ -751,7 +748,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'comment',
         ]
         self.version = version_factory(addon=self.addon)
-        self.file = self.version.all_files[0]
+        self.file = self.version.file
         assert (
             list(
                 self.get_review_actions(

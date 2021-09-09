@@ -119,7 +119,7 @@ class VersionsChoiceWidget(forms.SelectMultiple):
         # label_from_instance() on VersionsChoiceField returns the full object,
         # not a label, this is what makes this work.
         obj = option['label']
-        status = obj.current_file.status if obj.current_file else None
+        status = obj.file.status if obj.file else None
         versions_actions = getattr(self, 'versions_actions', None)
         if versions_actions and obj.channel == amo.RELEASE_CHANNEL_UNLISTED:
             # For unlisted, some actions should only apply to approved/pending
@@ -246,8 +246,7 @@ class ReviewForm(forms.Form):
                 self.helper.addon.versions(manager='unfiltered_for_relations')
                 .filter(channel=channel, file__status__in=statuses)
                 .no_transforms()
-                .prefetch_related('file')
-                .distinct()
+                .select_related('file')
                 .order_by('created')
             )
             # Reset data-value depending on widget depending on actions

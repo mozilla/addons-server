@@ -65,9 +65,9 @@ class AutoApproveTestsMixin:
             addon=self.addon,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
         )
-        self.file = self.version.all_files[0]
+        self.file = self.version.file
         self.file_validation = FileValidation.objects.create(
-            file=self.version.all_files[0], validation='{}'
+            file=self.version.file, validation='{}'
         )
         AddonApprovalsCounter.objects.create(addon=self.addon, counter=1)
 
@@ -1236,7 +1236,7 @@ class TestAutoReject(TestCase):
             version_kw={'version': '1.0', 'created': self.days_ago(2)}
         )
         self.version = self.addon.current_version
-        self.file = self.version.all_files[0]
+        self.file = self.version.file
         self.yesterday = self.days_ago(1)
         VersionReviewerFlags.objects.create(
             version=self.version, pending_rejection=self.yesterday

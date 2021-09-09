@@ -789,7 +789,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         # Set up our filtered-out-by-default addons
         self.addon_disabled.update(disabled_by_user=True)
         self.addon_deleted.delete()
-        self.addon_pending.current_version.all_files[0].update(
+        self.addon_pending.current_version.file.update(
             status=amo.STATUS_AWAITING_REVIEW
         )
 

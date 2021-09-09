@@ -398,21 +398,20 @@ class AddonIndexer(BaseSearchIndexer):
                 'compatible_apps': cls.extract_compatibility_info(obj, version_obj),
                 'files': [
                     {
-                        'id': file_.id,
-                        'created': file_.created,
-                        'filename': file_.filename,
-                        'hash': file_.hash,
-                        'is_webextension': file_.is_webextension,
+                        'id': version_obj.file.id,
+                        'created': version_obj.file.created,
+                        'filename': version_obj.file.filename,
+                        'hash': version_obj.file.hash,
+                        'is_webextension': version_obj.file.is_webextension,
                         'is_mozilla_signed_extension': (
-                            file_.is_mozilla_signed_extension
+                            version_obj.file.is_mozilla_signed_extension
                         ),
-                        'size': file_.size,
-                        'status': file_.status,
-                        'strict_compatibility': file_.strict_compatibility,
-                        'permissions': file_.permissions,
-                        'optional_permissions': file_.optional_permissions,
+                        'size': version_obj.file.size,
+                        'status': version_obj.file.status,
+                        'strict_compatibility': version_obj.file.strict_compatibility,
+                        'permissions': version_obj.file.permissions,
+                        'optional_permissions': version_obj.file.optional_permissions,
                     }
-                    for file_ in version_obj.all_files
                 ],
                 'reviewed': version_obj.reviewed,
                 'version': version_obj.version,

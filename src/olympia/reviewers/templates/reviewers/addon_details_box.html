@@ -56,7 +56,7 @@
           <tr class="addon-status">
             <th>{{ _('Status') }}</th>
             <td>
-                <strong>{{ addon.STATUS_CHOICES[addon.status] }}</strong>
+                <strong>{{ addon.get_status_display() }}</strong>
             </td>
           </tr>
           {% endif %}

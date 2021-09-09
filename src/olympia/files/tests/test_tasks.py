@@ -204,7 +204,7 @@ class TestHideDisabledFile(TestCase):
     def setUp(self):
         self.addon1 = addon_factory()
         self.addon2 = addon_factory()
-        self.file1 = self.addon1.current_version.all_files[0]
+        self.file1 = self.addon1.current_version.file
 
     @mock.patch('olympia.files.models.File.move_file')
     def test_hide_disabled_files(self, move_file_mock):

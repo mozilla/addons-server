@@ -234,27 +234,23 @@ class TestCompatForm(TestCase):
     def test_form_choices(self):
         version = Addon.objects.get(id=3615).current_version
         version.file.update(is_webextension=True)
-        del version.all_files
         self._test_form_choices_expect_all_versions(version)
 
     def test_form_choices_no_compat(self):
         version = Addon.objects.get(id=3615).current_version
         version.file.update(is_webextension=False)
         version.addon.update(type=amo.ADDON_DICT)
-        del version.all_files
         self._test_form_choices_expect_all_versions(version)
 
     def test_form_choices_language_pack(self):
         version = Addon.objects.get(id=3615).current_version
         version.file.update(is_webextension=False)
         version.addon.update(type=amo.ADDON_LPAPP)
-        del version.all_files
         self._test_form_choices_expect_all_versions(version)
 
     def test_form_choices_legacy(self):
         version = Addon.objects.get(id=3615).current_version
         version.file.update(is_webextension=False)
-        del version.all_files
 
         firefox_57 = AppVersion.objects.get(application=amo.FIREFOX.id, version='57.0')
         firefox_57_s = AppVersion.objects.get(
@@ -296,14 +292,12 @@ class TestCompatForm(TestCase):
     def test_form_choices_mozilla_signed_legacy(self):
         version = Addon.objects.get(id=3615).current_version
         version.file.update(is_webextension=False, is_mozilla_signed_extension=True)
-        del version.all_files
         self._test_form_choices_expect_all_versions(version)
 
     def test_static_theme(self):
         version = Addon.objects.get(id=3615).current_version
         version.file.update(is_webextension=True)
         version.addon.update(type=amo.ADDON_STATICTHEME)
-        del version.all_files
         self._test_form_choices_expect_all_versions(version)
 
         formset = forms.CompatFormSet(

@@ -53,11 +53,7 @@ class Command(BaseCommand):
     def fetch_candidates(self):
         """Return a queryset with the Version instances that should be
         considered for auto approval."""
-        return (
-            Version.objects.auto_approvable()
-            .order_by('nomination', 'created')
-            .distinct()
-        )
+        return Version.objects.auto_approvable().order_by('nomination', 'created')
 
     @use_primary_db
     def handle(self, *args, **options):

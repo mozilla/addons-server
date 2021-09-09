@@ -219,7 +219,7 @@ class TestScannerResultAdmin(TestCase):
         result.add_yara_result(rule=rule.name, meta={'filename': filename})
         result.save()
 
-        file_id = version.all_files[0].id
+        file_id = version.file.id
         assert file_id is not None
 
         expect_file_item = code_manager_url(
@@ -1166,7 +1166,7 @@ class TestScannerQueryRuleAdmin(AMOPaths, TestCase):
 
     def test_run_action_functional(self):
         version = addon_factory(file_kw={'is_webextension': True}).current_version
-        self.xpi_copy_over(version.all_files[0], 'webextension.xpi')
+        self.xpi_copy_over(version.file, 'webextension.xpi')
         rule = ScannerQueryRule.objects.create(
             name='always_true',
             scanner=YARA,
@@ -1349,9 +1349,7 @@ class TestScannerQueryResultAdmin(TestCase):
             ','.join(str(author.pk) for author in addon.authors.all())
         )
         assert expected_querystring in link_to_addons[1]
-        download_link = addon.current_version.current_file.get_absolute_url(
-            attachment=True
-        )
+        download_link = addon.current_version.file.get_absolute_url(attachment=True)
         assert html('.field-download a')[0].attrib['href'] == download_link
         assert '/icon-no.svg' in html('.field-is_file_signed img')[0].attrib['src']
 
@@ -1705,7 +1703,7 @@ class TestScannerQueryResultAdmin(TestCase):
 
         rule_url = reverse('admin:scanners_scannerqueryrule_change', args=(rule.pk,))
 
-        file_id = version.all_files[0].id
+        file_id = version.file.id
         assert file_id is not None
         expect_file_item = code_manager_url(
             'browse', version.addon.pk, version.pk, file=filename

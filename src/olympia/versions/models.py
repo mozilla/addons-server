@@ -498,9 +498,7 @@ class Version(OnChangeMixin, ModelBase):
     def is_compatible_by_default(self):
         """Returns whether or not the add-on is considered compatible by
         default."""
-        # Use self.all_files directly since that's cached and more potentially
-        # prefetched through a transformer already
-        return not any([file for file in self.all_files if file.strict_compatibility])
+        return not self.file.strict_compatibility
 
     def is_compatible_app(self, app):
         """Returns True if the provided app passes compatibility conditions."""
@@ -536,26 +534,6 @@ class Version(OnChangeMixin, ModelBase):
                     app_versions.extend([(a.min, a.max) for a in range.apps])
         return app_versions
 
-    @cached_property
-    def all_files(self):
-        return [self.file]
-
-    @property
-    def current_file(self):
-        return self.file
-
-    @property
-    def status(self):
-        return [
-            f.STATUS_CHOICES.get(f.status, gettext('[status:%s]') % f.status)
-            for f in self.all_files
-        ]
-
-    @property
-    def statuses(self):
-        """Unadulterated statuses, good for an API."""
-        return [(f.id, f.status) for f in self.all_files]
-
     def is_public(self):
         # To be public, a version must not be deleted, must belong to a public
         # addon, and its attached file must have a public status.
@@ -570,7 +548,7 @@ class Version(OnChangeMixin, ModelBase):
 
     @property
     def is_webextension(self):
-        return any(file_.is_webextension for file_ in self.all_files)
+        return self.file.is_webextension
 
     @property
     def is_mozilla_signed(self):
@@ -583,27 +561,11 @@ class Version(OnChangeMixin, ModelBase):
 
         See https://github.com/mozilla/addons-server/issues/6424
         """
-        return all(file_.is_mozilla_signed_extension for file_ in self.all_files)
-
-    @property
-    def has_files(self):
-        return bool(self.all_files)
+        return self.file.is_mozilla_signed_extension
 
     @property
     def is_unreviewed(self):
-        return bool(
-            list(
-                filter(
-                    lambda f: f.status in amo.UNREVIEWED_FILE_STATUSES, self.all_files
-                )
-            )
-        )
-
-    @property
-    def is_all_unreviewed(self):
-        return not bool(
-            [f for f in self.all_files if f.status not in amo.UNREVIEWED_FILE_STATUSES]
-        )
+        return self.file.status in amo.UNREVIEWED_FILE_STATUSES
 
     @property
     def sources_provided(self):
@@ -620,7 +582,7 @@ class Version(OnChangeMixin, ModelBase):
 
     @classmethod
     def transformer(cls, versions):
-        """Attach all the compatible apps and files to the versions."""
+        """Attach all the compatible apps and the file to the versions."""
         if not versions:
             return
 
@@ -634,14 +596,16 @@ class Version(OnChangeMixin, ModelBase):
             groups = sorted_groupby(xs, 'version_id')
             return {k: list(vs) for k, vs in groups}
 
-        av_dict, file_dict = rollup(avs), rollup(files)
+        av_dict = rollup(avs)
+        version_id_to_file = {file_.version_id: file_ for file_ in files}
 
         for version in versions:
             v_id = version.id
             version._compatible_apps = version._compat_map(av_dict.get(v_id, []))
-            version.all_files = file_dict.get(v_id, [])
-            for f in version.all_files:
-                f.version = version
+
+            if file_ := version_id_to_file.get(v_id):
+                version.file = file_
+                version.file.version = version
 
     @classmethod
     def transformer_promoted(cls, versions):
@@ -809,7 +773,7 @@ class Version(OnChangeMixin, ModelBase):
         return False
 
     def get_background_images_encoded(self, header_only=False):
-        file_obj = self.all_files[0]
+        file_obj = self.file
         return {
             name: force_str(b64encode(background))
             for name, background in utils.get_background_images(

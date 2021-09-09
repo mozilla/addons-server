@@ -199,7 +199,7 @@ def test_extract_and_commit_from_version(settings):
         repr(addon.current_version),
         addon.current_version.id,
         repr(addon),
-        repr(addon.current_version.all_files[0]),
+        repr(addon.current_version.file),
     )
     assert expected in output
 
@@ -217,8 +217,8 @@ def test_extract_and_commit_from_version_fallback_file_path(settings):
     # after the add-on/file status has changed but before the file has been
     # moved.
     move_stored_file(
-        addon.current_version.current_file.current_file_path,
-        addon.current_version.current_file.fallback_file_path,
+        addon.current_version.file.current_file_path,
+        addon.current_version.file.fallback_file_path,
     )
 
     # Everything should still be processed normally.
@@ -250,7 +250,7 @@ def test_extract_and_commit_from_version_fallback_file_path(settings):
         repr(addon.current_version),
         addon.current_version.id,
         repr(addon),
-        repr(addon.current_version.all_files[0]),
+        repr(addon.current_version.file),
     )
     assert expected in output
 
@@ -373,7 +373,7 @@ def test_extract_and_commit_from_version_multiple_versions(settings):
         repr(addon.current_version),
         addon.current_version.id,
         repr(addon),
-        repr(addon.current_version.all_files[0]),
+        repr(addon.current_version.file),
     )
     assert expected in output
 
@@ -452,7 +452,7 @@ def test_extract_and_commit_from_version_support_custom_note():
         repr(addon.current_version),
         addon.current_version.id,
         repr(addon),
-        repr(addon.current_version.all_files[0]),
+        repr(addon.current_version.file),
     )
     assert expected in output
 
@@ -490,7 +490,7 @@ def test_extract_and_commit_from_version_valid_extensions(settings, filename):
         repr(addon.current_version),
         addon.current_version.id,
         repr(addon),
-        repr(addon.current_version.all_files[0]),
+        repr(addon.current_version.file),
     )
     assert expected in output
 
@@ -534,20 +534,6 @@ def test_extract_and_commit_from_version_commits_files(settings, filename, expec
 
 
 @pytest.mark.django_db
-def test_extract_and_commit_without_files():
-    addon = addon_factory()
-    # Simulate no files for the current version. We cannot delete the file
-    # because of the ON_DELETE constraint.
-    addon.current_version.all_files = []
-
-    repo = AddonGitRepository.extract_and_commit_from_version(addon.current_version)
-
-    output = _run_process('git rev-list --count listed', repo)
-    # 1 initial commit + 1 for the commit created above.
-    assert output == '2\n'
-
-
-@pytest.mark.django_db
 def test_extract_and_commit_from_version_reverts_active_locale():
     from django.utils.translation import get_language
 
@@ -564,7 +550,7 @@ def test_extract_and_commit_from_version_reverts_active_locale():
         repr(addon.current_version),
         addon.current_version.id,
         repr(addon),
-        repr(addon.current_version.all_files[0]),
+        repr(addon.current_version.file),
     )
     assert expected in output
 

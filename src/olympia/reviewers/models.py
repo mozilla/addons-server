@@ -771,9 +771,7 @@ class AutoApprovalSummary(ModelBase):
                     file__reviewed__gte=one_year_ago,
                     file__original_status=amo.STATUS_NULL,
                     file__status=amo.STATUS_DISABLED,
-                )
-                .distinct()
-                .count()
+                ).count()
                 * 10,
                 100,
             ),
@@ -882,16 +880,9 @@ class AutoApprovalSummary(ModelBase):
         approved and the previous public one."""
 
         def find_code_size(version):
-            # There could be multiple files: if that's the case, take the
-            # total for all files and divide it by the number of files.
-            number_of_files = len(version.all_files) or 1
-            total_code_size = 0
-            for file_ in version.all_files:
-                data = json.loads(file_.validation.validation)
-                total_code_size += data.get('metadata', {}).get(
-                    'totalScannedFileSize', 0
-                )
-            return total_code_size // number_of_files
+            data = json.loads(version.file.validation.validation)
+            total_code_size = data.get('metadata', {}).get('totalScannedFileSize', 0)
+            return total_code_size
 
         try:
             old_version = self.find_previous_confirmed_version()
@@ -943,32 +934,23 @@ class AutoApprovalSummary(ModelBase):
 
     @classmethod
     def _count_linter_flag(cls, version, flag):
-        def _count_linter_flag_in_file(file_):
-            try:
-                validation = file_.validation
-            except FileValidation.DoesNotExist:
-                raise AutoApprovalNoValidationResultError()
-            validation_data = json.loads(validation.validation)
-            return sum(
-                flag in message['id'] for message in validation_data.get('messages', [])
-            )
-
-        return max(_count_linter_flag_in_file(file_) for file_ in version.all_files)
+        try:
+            validation = version.file.validation
+        except FileValidation.DoesNotExist:
+            raise AutoApprovalNoValidationResultError()
+        validation_data = json.loads(validation.validation)
+        return sum(
+            flag in message['id'] for message in validation_data.get('messages', [])
+        )
 
     @classmethod
     def _count_metadata_property(cls, version, prop):
-        def _count_property_in_linter_metadata_in_file(file_):
-            try:
-                validation = file_.validation
-            except FileValidation.DoesNotExist:
-                raise AutoApprovalNoValidationResultError()
-            validation_data = json.loads(validation.validation)
-            return len(validation_data.get('metadata', {}).get(prop, []))
-
-        return max(
-            _count_property_in_linter_metadata_in_file(file_)
-            for file_ in version.all_files
-        )
+        try:
+            validation = version.file.validation
+        except FileValidation.DoesNotExist:
+            raise AutoApprovalNoValidationResultError()
+        validation_data = json.loads(validation.validation)
+        return len(validation_data.get('metadata', {}).get(prop, []))
 
     @classmethod
     def count_uses_unknown_minified_code(cls, version):
@@ -1006,9 +988,7 @@ class AutoApprovalSummary(ModelBase):
 
     @classmethod
     def check_uses_native_messaging(cls, version):
-        return any(
-            'nativeMessaging' in file_.permissions for file_ in version.all_files
-        )
+        return 'nativeMessaging' in version.file.permissions
 
     @classmethod
     def check_is_locked(cls, version):

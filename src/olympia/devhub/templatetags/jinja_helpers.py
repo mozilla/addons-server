@@ -1,5 +1,3 @@
-from collections import defaultdict
-
 from django.utils.translation import gettext, ngettext
 
 import jinja2
@@ -53,18 +51,6 @@ def file_status_message(file):
 
 
 @library.global_function
-def dev_files_status(files):
-    """Group files by their status (and files per status)."""
-    status_count = defaultdict(int)
-    choices = File.STATUS_CHOICES
-
-    for file in files:
-        status_count[file.status] += 1
-
-    return [(count, str(choices[status])) for (status, count) in status_count.items()]
-
-
-@library.global_function
 def status_class(addon):
     classes = {
         amo.STATUS_NULL: 'incomplete',
@@ -100,13 +86,6 @@ def summarize_validation(validation):
         validation.warnings
     )
     return f'{errors}, {warnings}'
-
-
-@library.global_function
-def version_disabled(version):
-    """Return True if all the files are disabled."""
-    disabled = [status == amo.STATUS_DISABLED for _id, status in version.statuses]
-    return all(disabled)
 
 
 @library.global_function
