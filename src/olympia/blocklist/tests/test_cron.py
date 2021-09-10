@@ -1,20 +1,17 @@
 import datetime
 import json
 import os
-import pytest
 from datetime import timedelta
 from unittest import mock
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
-from django.core.management.base import CommandError
 
 from freezegun import freeze_time
 from waffle.testutils import override_switch
 
 from olympia.amo.tests import addon_factory, TestCase, user_factory, version_factory
 from olympia.blocklist.cron import (
-    auto_import_blocklist,
     get_blocklist_last_modified_time,
     upload_mlbf_to_remote_settings,
 )
@@ -370,28 +367,3 @@ class TestUploadToRemoteSettings(TestCase):
         with override_switch('blocklist_mlbf_submit', active=True):
             upload_mlbf_to_remote_settings()
             self.statsd_incr_mock.assert_called()
-
-
-@pytest.mark.django_db
-@mock.patch('olympia.blocklist.cron.call_command')
-def test_auto_import_blocklist_waffle(call_command_mock):
-    with override_switch('blocklist_auto_import', active=False):
-        with mock.patch('django_statsd.clients.statsd.incr') as incr_mock:
-            auto_import_blocklist()
-            incr_mock.assert_not_called()
-            call_command_mock.assert_not_called()
-
-    with override_switch('blocklist_auto_import', active=True):
-        with mock.patch('django_statsd.clients.statsd.incr') as incr_mock:
-            auto_import_blocklist()
-            incr_mock.assert_called_with('blocklist.cron.import_blocklist.success')
-            call_command_mock.assert_called()
-
-    call_command_mock.side_effect = CommandError('foo')
-    with override_switch('blocklist_auto_import', active=True):
-        with mock.patch('django_statsd.clients.statsd.incr') as incr_mock:
-            try:
-                auto_import_blocklist()
-            except CommandError:
-                pass
-            incr_mock.assert_called_with('blocklist.cron.import_blocklist.failure')

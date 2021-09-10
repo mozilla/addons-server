@@ -9,7 +9,6 @@ from olympia.blocklist.utils import (
     datetime_to_ts,
     legacy_delete_blocks,
     legacy_publish_blocks,
-    split_regex_to_list,
 )
 from olympia.lib.remote_settings import RemoteSettings
 
@@ -63,40 +62,6 @@ def test_legacy_delete_blocks(delete_record_mock):
     assert delete_record_mock.call_args_list == [mock.call('legacy')]
     assert block.legacy_id == ''
     assert block_regex.legacy_id == ''  # cleared anyway
-
-
-def test_split_regex_to_list():
-    regex_list = (
-        '^('
-        '(\\{df59cc82-3d49-4d2c-8069-70a7d71d387a\\})|'
-        '(\\{ef78ae03-b232-46c0-8715-d562db1ace23\\})|'
-        '(\\{98f556db-837c-489e-9c45-a06a6997492c\\})'
-        ')$'
-    )
-    assert split_regex_to_list(regex_list) == [
-        '{df59cc82-3d49-4d2c-8069-70a7d71d387a}',
-        '{ef78ae03-b232-46c0-8715-d562db1ace23}',
-        '{98f556db-837c-489e-9c45-a06a6997492c}',
-    ]
-
-    regex_no_outer_brackets_list = (
-        '^'
-        '(\\{df59cc82-3d49-4d2c-8069-70a7d71d387a\\})|'
-        '(\\{ef78ae03-b232-46c0-8715-d562db1ace23\\})|'
-        '(\\{98f556db-837c-489e-9c45-a06a6997492c\\})'
-        '$'
-    )
-    assert split_regex_to_list(regex_no_outer_brackets_list) == [
-        '{df59cc82-3d49-4d2c-8069-70a7d71d387a}',
-        '{ef78ae03-b232-46c0-8715-d562db1ace23}',
-        '{98f556db-837c-489e-9c45-a06a6997492c}',
-    ]
-
-    real_regex = '^pink@.*\\.info$'
-    assert split_regex_to_list(real_regex) is None
-
-    real_regex_brackets = '^(pink@.*\\.info)$'
-    assert split_regex_to_list(real_regex_brackets) is None
 
 
 def test_datetime_to_ts():

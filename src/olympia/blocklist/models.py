@@ -525,31 +525,3 @@ class BlocklistSubmission(ModelBase):
         return cls.objects.exclude(signoff_state__in=excludes).filter(
             to_block__contains={'guid': guid}
         )
-
-
-class LegacyImport(ModelBase):
-    OUTCOME_INCOMPLETE = 0
-    OUTCOME_MISSINGGUID = 1
-    OUTCOME_NOTFIREFOX = 2
-    OUTCOME_BLOCK = 3
-    OUTCOME_REGEXBLOCKS = 4
-    OUTCOME_NOMATCH = 5
-    OUTCOMES = {
-        OUTCOME_INCOMPLETE: 'Incomplete',
-        OUTCOME_MISSINGGUID: 'Missing GUID',
-        OUTCOME_NOTFIREFOX: 'Wrong target application',
-        OUTCOME_BLOCK: 'Added block',
-        OUTCOME_REGEXBLOCKS: 'Added blocks from regex',
-        OUTCOME_NOMATCH: 'No matches',
-    }
-    legacy_id = models.CharField(
-        unique=True, max_length=255, null=False, default='', db_column='kinto_id'
-    )
-    record = models.JSONField(default=dict)
-    outcome = models.SmallIntegerField(
-        default=OUTCOME_INCOMPLETE, choices=OUTCOMES.items()
-    )
-    timestamp = models.BigIntegerField()
-
-    class Meta:
-        db_table = 'blocklist_kintoimport'

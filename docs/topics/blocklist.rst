@@ -171,6 +171,8 @@ Legacy Blocklist
 
 To populate the blocklist on AMO the legacy blocklist on Remote Settings was imported; all guids that matched addons on AMO (and that had at least one webextension version) were added; any guids that were :ref:`regular expressions<blocklist-doc-regex>` were "expanded" to individual records for each addon present in the AMO database.
 
+Support for importing the legacy blocklist into AMO has now been removed; it is no longer possible to propagate changes made to the v2 blocklist via the remote-settings to the v3 blocklist held on AMO.
+
 If the `In legacy blocklist` checkbox is selected in AMO's admin tool the block will also be saved to the legacy blocklist.
 Edits to Blocks will propagate to the legacy blocklist too (apart from :ref:`regular expression based blocks<blocklist-doc-regex>`).
 An existing Block in the legacy blocklist can be removed (while keeping it in the current v3 blocklist) by deselecting the `In legacy blocklist` checkbox; or added to the legacy blocklist too by enabling the `In legacy blocklist` checkbox.
