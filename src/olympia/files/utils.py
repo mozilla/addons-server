@@ -232,7 +232,7 @@ class ManifestJSONExtractor:
 
     @property
     def guid(self):
-        return self.gecko.get('id', None)
+        return str(self.gecko.get('id', None) or '') or None
 
     @property
     def type(self):
