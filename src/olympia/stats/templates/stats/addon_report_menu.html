@@ -1,45 +1,45 @@
 <nav id="side-nav" class="report-menu">
   <ul>
     <li data-report="overview" data-layout="overview">
-      <a href="{{ url('stats.overview', addon.slug) }}">{{ _('Overview') }}</a>
+      <a href="{{ url('stats.overview', slug_or_id) }}">{{ _('Overview') }}</a>
     </li>
-    {% if addon.has_listed_versions(include_deleted=True) %}
+    {% if has_listed_versions %}
     <li data-report="downloads">
-      <a href="{{ url('stats.downloads', addon.slug) }}">{{ _('Downloads') }}</a>
+      <a href="{{ url('stats.downloads', slug_or_id) }}">{{ _('Downloads') }}</a>
     </li>
     <ul>
       <li data-report="sources">
-        <a href="{{ url('stats.sources', addon.slug) }}">{{ _('by Source') }}</a>
+        <a href="{{ url('stats.sources', slug_or_id) }}">{{ _('by Source') }}</a>
       </li>
       <li data-report="mediums">
-        <a href="{{ url('stats.mediums', addon.slug) }}">{{ _('by Medium') }}</a>
+        <a href="{{ url('stats.mediums', slug_or_id) }}">{{ _('by Medium') }}</a>
       </li>
       <li data-report="contents">
-        <a href="{{ url('stats.contents', addon.slug) }}">{{ _('by Content') }}</a>
+        <a href="{{ url('stats.contents', slug_or_id) }}">{{ _('by Content') }}</a>
       </li>
       <li data-report="campaigns">
-        <a href="{{ url('stats.campaigns', addon.slug) }}">{{ _('by Campaign') }}</a>
+        <a href="{{ url('stats.campaigns', slug_or_id) }}">{{ _('by Campaign') }}</a>
       </li>
     </ul>
     {% endif %}
     <li data-report="usage">
-      <a href="{{ url('stats.usage', addon.slug) }}">{{ _('Daily Users') }}</a>
+      <a href="{{ url('stats.usage', slug_or_id) }}">{{ _('Daily Users') }}</a>
     </li>
     <ul>
       <li data-report="versions">
-        <a href="{{ url('stats.versions', addon.slug) }}">{{ _('by Add-on Version') }}</a>
+        <a href="{{ url('stats.versions', slug_or_id) }}">{{ _('by Add-on Version') }}</a>
       </li>
       <li data-report="apps">
-        <a href="{{ url('stats.apps', addon.slug) }}">{{ _('by Application') }}</a>
+        <a href="{{ url('stats.apps', slug_or_id) }}">{{ _('by Application') }}</a>
       </li>
       <li data-report="locales">
-        <a href="{{ url('stats.locales', addon.slug) }}">{{ _('by Language') }}</a>
+        <a href="{{ url('stats.locales', slug_or_id) }}">{{ _('by Language') }}</a>
       </li>
       <li data-report="os">
-        <a href="{{ url('stats.os', addon.slug) }}">{{ _('by Platform') }}</a>
+        <a href="{{ url('stats.os', slug_or_id) }}">{{ _('by Platform') }}</a>
       </li>
       <li data-report="countries">
-        <a href="{{ url('stats.countries', addon.slug) }}">{{ _('by Country') }}</a>
+        <a href="{{ url('stats.countries', slug_or_id) }}">{{ _('by Country') }}</a>
       </li>
     </ul>
   </ul>

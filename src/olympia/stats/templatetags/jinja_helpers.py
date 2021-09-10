@@ -15,6 +15,7 @@ def report_menu(context, request, report, obj):
     if isinstance(obj, Addon):
         tpl = loader.get_template('stats/addon_report_menu.html')
         ctx = {
-            'addon': obj,
+            'has_listed_versions': obj.has_listed_versions(include_deleted=True),
+            'slug_or_id': obj.id if obj.is_deleted else obj.slug,
         }
         return markupsafe.Markup(tpl.render(ctx))
