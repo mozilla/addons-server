@@ -399,14 +399,16 @@
     {% elif not unlisted and acl_check_unlisted_addons_viewer_or_reviewer and addon.has_unlisted_versions(include_deleted=True) %}
       <li><a href="{{ url('reviewers.review', 'unlisted', addon.id) }}">{{ _('Unlisted Review Page') }}</a></li>
     {% endif %}
+
     {% if is_admin %}
       {% if not addon.is_deleted %}
         <li><a href="{{ addon.get_dev_url() }}">{{ _('Edit') }}</a> <em>{{ _('(admin)') }}</em></li>
       {% endif %}
-    <li><a href="{{ url('admin:addons_addon_change', addon.id) }}">{{ _('Admin Page') }}</a> <em>{{ _('(admin)') }}</em></li>
+
+      <li><a href="{{ url('admin:addons_addon_change', addon.id) }}">{{ _('Admin Page') }}</a> <em>{{ _('(admin)') }}</em></li>
+      <li><a href="{{ url('stats.overview', addon.id) }}">{{ _('Statistics') }}</a></li>
     {% endif %}
   </ul>
-
 
   <strong>{{ _('Review This Add-on') }}</strong>
   <ul>
