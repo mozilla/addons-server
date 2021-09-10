@@ -16,10 +16,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from django.forms import ValidationError
 from django.test.utils import override_settings
 
-import lxml
 import pytest
-
-from defusedxml.common import NotSupportedError
 
 from olympia import amo
 from olympia.amo.tests import TestCase, user_factory
@@ -1007,24 +1004,6 @@ class TestResolvei18nMessage:
 
         result = utils.resolve_i18n_message('__MSG_foo__', messages, 'en')
         assert result == '__MSG_foo__'
-
-
-class TestXMLVulnerabilities(TestCase):
-    """Test a few known vulnerabilities to make sure
-    our defusedxml patching is applied automatically.
-
-    This doesn't replicate all defusedxml tests.
-    """
-
-    def test_lxml_XMLParser_no_resolve_entities(self):
-        with pytest.raises(NotSupportedError):
-            lxml.etree.XMLParser(resolve_entities=True)
-
-        # not setting it works
-        lxml.etree.XMLParser()
-
-        # Setting it explicitly to `False` is fine too.
-        lxml.etree.XMLParser(resolve_entities=False)
 
 
 class TestGetBackgroundImages(TestCase):
