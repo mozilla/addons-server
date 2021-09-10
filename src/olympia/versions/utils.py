@@ -70,7 +70,7 @@ def encode_header(header_blob, file_ext):
             img_format,
             force_str(b64encode(header_blob)),
         )
-    except (OSError, ValueError, TypeError) as err:
+    except (OSError, ValueError, TypeError, AttributeError) as err:
         log.info(err)
         return (None, 0, 0)
     return (src, width, height)
