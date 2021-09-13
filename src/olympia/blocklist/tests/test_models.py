@@ -1,7 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.test.utils import override_settings
 
-from waffle.testutils import override_switch
 from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.versions.compare import MAX_VERSION_PART
 
@@ -30,17 +29,6 @@ class TestBlock(TestCase):
         assert block.is_version_blocked('10.1')
         assert block.is_version_blocked('10.%s' % (MAX_VERSION_PART + 1))
 
-    def test_is_imported_from_legacy_regex(self):
-        block = Block.objects.create(guid='foo@baa', updated_by=user_factory())
-        # no legacy_id
-        assert not block.is_imported_from_legacy_regex
-        # from a regex legacy_id
-        block.update(legacy_id='*123456789')
-        assert block.is_imported_from_legacy_regex
-        # and a normal one
-        block.update(legacy_id='1234567890')
-        assert not block.is_imported_from_legacy_regex
-
     def test_is_readonly(self):
         block = Block.objects.create(guid='foo@baa', updated_by=user_factory())
         # not read only by default
@@ -49,18 +37,8 @@ class TestBlock(TestCase):
         block.active_submissions = [object()]  # just needs to be non-empty
         assert block.is_readonly
 
-        # otherwise legacy_id being non-false means it's imported, so readonly
-        del block.active_submissions
-        assert not block.is_readonly
-        block.legacy_id = 'something'
-        assert block.is_readonly
-        # except when legacy submissions are enabled to keep it in-sync.
-        with override_switch('blocklist_legacy_submit', active=True):
-            assert not block.is_readonly
-
     def test_no_asterisk_in_min_version(self):
         non_user_writeable_fields = (
-            'legacy_id',
             'average_daily_users_snapshot',
             'guid',
         )

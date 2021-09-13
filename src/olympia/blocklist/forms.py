@@ -2,17 +2,13 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
-import waffle
-
 from .models import Block, BlocklistSubmission
 from .utils import splitlines
 
 
 def _get_matching_guids_and_errors(guids):
     error_list = []
-    matching = dict(
-        Block.objects.filter(guid__in=guids).values_list('guid', 'legacy_id')
-    )
+    matching = list(Block.objects.filter(guid__in=guids).values_list('guid', flat=True))
     for guid in guids:
         if BlocklistSubmission.get_submissions_from_guid(guid):
             error_list.append(
@@ -20,20 +16,7 @@ def _get_matching_guids_and_errors(guids):
                     _('GUID %(guid)s is in a pending Submission'), params={'guid': guid}
                 )
             )
-    legacy_submit_off = not waffle.switch_is_active('blocklist_legacy_submit')
-    if legacy_submit_off:
-        v2_imported = (guid for guid, legacy_id in matching.items() if legacy_id != '')
-        for guid in v2_imported:
-            error_list.append(
-                ValidationError(
-                    _(
-                        'The block for GUID %(guid)s is readonly '
-                        '- it must be edited via the legacy blocklist collection'
-                    ),
-                    params={'guid': guid},
-                )
-            )
-    return matching.keys(), error_list
+    return matching, error_list
 
 
 class MultiGUIDInputForm(forms.Form):
@@ -150,11 +133,3 @@ class BlocklistSubmissionForm(forms.ModelForm):
                 )
         if errors:
             raise ValidationError(errors)
-
-
-class BlockForm(forms.ModelForm):
-    legacy_id = forms.fields.BooleanField(
-        label='In legacy blocklist',
-        required=False,
-        help_text='Include in legacy xml blocklist too, as well as new v3',
-    )

@@ -13,9 +13,6 @@
             , {% trans 'versions' %} {{ log.details.min_version }} - {{ log.details.max_version }}.
         {% else %}.
         {% endif %}
-        {% if log.details.include_in_legacy %}
-            {% trans 'Included in legacy blocklist.' %}
-        {% endif %}
         <ul>
             <li>{{ log.details.reason }}</li>
         </ul>

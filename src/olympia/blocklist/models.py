@@ -8,7 +8,6 @@ from django.utils.html import format_html
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 
-import waffle
 from multidb import get_replica
 
 from olympia import amo
@@ -23,8 +22,6 @@ from olympia.versions.models import Version
 
 from .utils import (
     block_activity_log_delete,
-    legacy_delete_blocks,
-    legacy_publish_blocks,
     save_guids_to_blocks,
     splitlines,
 )
@@ -47,9 +44,6 @@ class Block(ModelBase):
     url = models.CharField(max_length=255, blank=True)
     reason = models.TextField(blank=True)
     updated_by = models.ForeignKey(UserProfile, null=True, on_delete=models.SET_NULL)
-    legacy_id = models.CharField(
-        max_length=255, null=False, default='', db_index=True, db_column='kinto_id'
-    )
     submission = models.ManyToManyField('BlocklistSubmission')
     average_daily_users_snapshot = models.IntegerField(null=True)
 
@@ -74,14 +68,6 @@ class Block(ModelBase):
     def save(self, **kwargs):
         assert self.updated_by
         return super().save(**kwargs)
-
-    @property
-    def is_imported_from_legacy_regex(self):
-        return self.legacy_id.startswith('*')
-
-    @property
-    def in_legacy_blocklist(self):
-        return bool(self.legacy_id)
 
     @classmethod
     def get_addons_for_guids_qs(cls, guids):
@@ -168,8 +154,7 @@ class Block(ModelBase):
 
     @property
     def is_readonly(self):
-        legacy_submit_off = not waffle.switch_is_active('blocklist_legacy_submit')
-        return (legacy_submit_off and self.legacy_id) or self.active_submissions
+        return self.active_submissions
 
     @classmethod
     def get_blocks_from_guids(cls, guids):
@@ -229,7 +214,6 @@ class BlocklistSubmission(ModelBase):
             'guid',
             'min_version',
             'max_version',
-            'is_imported_from_legacy_regex',
             'current_adu',
         ),
     )
@@ -245,12 +229,6 @@ class BlocklistSubmission(ModelBase):
     url = models.CharField(max_length=255, blank=True)
     reason = models.TextField(blank=True)
     updated_by = models.ForeignKey(UserProfile, null=True, on_delete=models.SET_NULL)
-    legacy_id = models.BooleanField(
-        default=False,
-        help_text='Include in legacy xml blocklist too, as well as new v3',
-        db_column='include_in_legacy',
-        verbose_name='In legacy blocklist',
-    )
     signoff_by = models.ForeignKey(
         UserProfile, null=True, on_delete=models.SET_NULL, related_name='+'
     )
@@ -273,11 +251,6 @@ class BlocklistSubmission(ModelBase):
         trimmed = [rep if len(rep) < 40 else rep[0:37] + '...' for rep in repr]
         return f'{self.get_signoff_state_display()}: {"; ".join(trimmed)}'
 
-    @property
-    def in_legacy_blocklist(self):
-        # This is for consitency with Block.  Should be a boolean anyway.
-        return bool(self.legacy_id)
-
     def get_changes_from_block(self, block):
         # return a dict with properties that are different from a given block,
         # as a dict of property_name: (old_value, new_value).
@@ -287,7 +260,6 @@ class BlocklistSubmission(ModelBase):
             'max_version',
             'url',
             'reason',
-            'in_legacy_blocklist',
         )
         for prop in properties:
             if getattr(self, prop) != getattr(block, prop):
@@ -309,7 +281,6 @@ class BlocklistSubmission(ModelBase):
                     guid=block.guid,
                     min_version=None,
                     max_version=None,
-                    is_imported_from_legacy_regex=None,
                     current_adu=None,
                 )
                 for block in blocks
@@ -391,7 +362,7 @@ class BlocklistSubmission(ModelBase):
 
         # And then any existing block instances
         block_qs = Block.objects.filter(guid__in=guids).values_list(
-            'id', 'guid', 'min_version', 'max_version', 'legacy_id', named=True
+            'id', 'guid', 'min_version', 'max_version', named=True
         )
         blocks = {
             block.guid: cls.FakeBlock(
@@ -399,7 +370,6 @@ class BlocklistSubmission(ModelBase):
                 guid=block.guid,
                 min_version=block.min_version,
                 max_version=block.max_version,
-                is_imported_from_legacy_regex=block.legacy_id.startswith('*'),
                 current_adu=adu_lookup.get(block.guid, -1),
             )
             for block in block_qs
@@ -416,7 +386,6 @@ class BlocklistSubmission(ModelBase):
                 guid=addon.guid,
                 min_version=Block.MIN,
                 max_version=Block.MAX,
-                is_imported_from_legacy_regex=False,
                 current_adu=adu_lookup.get(addon.guid, -1),
             )
             blocks[addon.guid] = block
@@ -438,7 +407,6 @@ class BlocklistSubmission(ModelBase):
         Block.current_adu,
         Block.min_version,
         Block.max_version,
-        Block.is_imported_from_legacy_regex
         """
         all_guids = set(splitlines(input_guids))
 
@@ -480,7 +448,6 @@ class BlocklistSubmission(ModelBase):
         assert self.is_submission_ready
         assert self.action == self.ACTION_ADDCHANGE
 
-        submit_legacy_switch = waffle.switch_is_active('blocklist_legacy_submit')
         fields_to_set = [
             'min_version',
             'max_version',
@@ -491,14 +458,7 @@ class BlocklistSubmission(ModelBase):
         all_guids_to_block = [block['guid'] for block in self.to_block]
 
         for guids_chunk in chunked(all_guids_to_block, 100):
-            blocks = save_guids_to_blocks(
-                guids_chunk, self, fields_to_set=fields_to_set
-            )
-            if submit_legacy_switch:
-                if self.in_legacy_blocklist:
-                    legacy_publish_blocks(blocks)
-                else:
-                    legacy_delete_blocks(blocks)
+            save_guids_to_blocks(guids_chunk, self, fields_to_set=fields_to_set)
             self.save()
 
         self.update(signoff_state=self.SIGNOFF_PUBLISHED)
@@ -507,14 +467,11 @@ class BlocklistSubmission(ModelBase):
         assert self.is_submission_ready
         assert self.action == self.ACTION_DELETE
         block_ids_to_delete = [block['id'] for block in self.to_block]
-        submit_legacy_switch = waffle.switch_is_active('blocklist_legacy_submit')
         for ids_chunk in chunked(block_ids_to_delete, 100):
             blocks = list(Block.objects.filter(id__in=ids_chunk))
             Block.preload_addon_versions(blocks)
             for block in blocks:
                 block_activity_log_delete(block, submission_obj=self)
-            if submit_legacy_switch:
-                legacy_delete_blocks(blocks)
             self.save()
             Block.objects.filter(id__in=ids_chunk).delete()
 

@@ -5,5 +5,4 @@ BASE_REPLACE_THRESHOLD = 5_000
 MLBF_TIME_CONFIG_KEY = 'blocklist_mlbf_generation_time'
 MLBF_BASE_ID_CONFIG_KEY = 'blocklist_mlbf_base_id'
 
-REMOTE_SETTINGS_COLLECTION_LEGACY = 'addons'
 REMOTE_SETTINGS_COLLECTION_MLBF = 'addons-bloomfilters'
