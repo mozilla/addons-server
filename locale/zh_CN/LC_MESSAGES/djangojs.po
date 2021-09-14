@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-07 16:30+0000\n"
+"POT-Creation-Date: 2021-09-14 15:25+0000\n"
 "PO-Revision-Date: 2018-12-05 16:56+0000\n"
 "Last-Translator: frankoy123 <frankoy123@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -87,9 +87,6 @@ msgstr[0] "您的附加组件已通过验证，无错误，有 {0} 条消息。"
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "您的附加组件已通过验证，没有错误或警告。"
-
-msgid "Your submission will be automatically signed."
-msgstr "您的提交将被自动签名。"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "包括详细的版本说明（这可以在下一步骤中完成）。"

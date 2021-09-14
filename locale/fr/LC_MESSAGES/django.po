@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-07 16:30+0000\n"
+"POT-Creation-Date: 2021-09-14 15:24+0000\n"
 "PO-Revision-Date: 2021-08-24 13:45+0000\n"
 "Last-Translator: Benoit Leseul <benoit.leseul@gmail.com>\n"
 "Language-Team: français <>\n"
@@ -469,10 +469,6 @@ msgid "GUID %(guid)s is in a pending Submission"
 msgstr "Le GUID %(guid)s est dans une soumission en attente"
 
 #, python-format
-msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
-msgstr "Le blocage pour le GUID %(guid)s est en lecture seule - Il ne peut-être modifié que via la collection de listes de blocage héritées."
-
-#, python-format
 msgid "Block with GUID %(guid)s not found"
 msgstr "Le blocage avec le GUID %(guid)s est introuvable"
 
@@ -499,12 +495,6 @@ msgstr "Revue listée"
 msgid "Review Unlisted"
 msgstr "Revue non listée"
 
-msgid "This block was imported from a regex based legacy Block."
-msgstr "Ce blocage a été importé d’un blocage hérité basé sur des expressions régulières."
-
-msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
-msgstr "Toute modification apportée ne sera PAS mise à jour dans la liste de blocage héritée – vous devez effectuer une modification manuelle via kinto admin webui."
-
 #, python-format
 msgid "Delete Multiple %(name)s"
 msgstr "Supprimer plusieurs %(name)s"
@@ -519,9 +509,6 @@ msgstr "%(count)s GUID de modules sont déjà bloqués pour les versions %(v_min
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr "%(count)s GUID de modules sont introuvables"
-
-msgid "The following block(s) were imported from a regex based legacy Block."
-msgstr "Le·s blocage·s suivant·s ont été importés d’un blocage hérité basé sur une expression régulière."
 
 msgid "Save"
 msgstr "Sauvegarder"
@@ -560,9 +547,6 @@ msgstr "Modifier le blocage"
 
 msgid "versions"
 msgstr "versions"
-
-msgid "Included in legacy blocklist."
-msgstr "Inclus dans la liste de blocage héritée."
 
 msgid "{addon} was created."
 msgstr "{addon} a été créé."
@@ -1772,19 +1756,13 @@ msgstr "Vous avez indiqué que le fichier source n’était pas nécessaire, cep
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
 msgstr "Assurez-vous que le nom et le résumé totalisent au maximum {limit_value} caractères (ils en ont {show_value})."
 
-msgid ""
-"On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
-"by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
-msgstr ""
-"Gestion via le site. <span class=\"helptext\">Votre proposition sera publiée sur ce site et dans le gestionnaire de modules de Firefox pour des millions d’utilisateurs, une fois la revue de code "
-"effectuée. Les mises à jour automatiques seront gérées par ce site. Ce module sera également pris en considération pour que Mozilla en fasse la promotion et pour les concours. La distribution "
-"personnelle des fichiers revus est aussi possible.</span>"
+msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
+msgstr "Gestion via le site. <span class=\"helptext\">Votre proposition sera publiée sur {site_domain}.</span>"
 
 msgid ""
-"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+"On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
+"on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
-"Gestion personnelle. <span class=\"helptext\">Votre envoi sera immédiatement signé pour une distribution personnelle. Vous devrez gérer les mises à jour via une updateURL ou des mises à jour "
-"d’application externe.</span>"
 
 msgid "Display Name"
 msgstr "Nom à afficher"
@@ -2707,14 +2685,22 @@ msgstr "Ces notes apparaîtront sur la page détaillée."
 msgid "How to Distribute this Version"
 msgstr "Comment distribuer cette version"
 
-msgid "More information on Add-on Distribution and Signing"
-msgstr "Informations supplémentaires sur la distribution et la signature des modules"
+msgid "To get started, select how you would like to distribute this version."
+msgstr ""
+
+#, python-format
+msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing on Firefox Extension Workshop</a>."
+msgstr ""
+
+#, python-format
+msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
+msgstr ""
 
 msgid "Submission Complete"
 msgstr "Envoi terminé"
 
-msgid "Version Submitted for Review"
-msgstr "Revue demandée pour cette version"
+msgid "Version Submitted"
+msgstr "Version soumise"
 
 msgid "Preview of the version submitted"
 msgstr "Aperçu de la version envoyée"
@@ -2722,20 +2708,19 @@ msgstr "Aperçu de la version envoyée"
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "C’est tout ! Cette version sera bientôt disponible sur notre site, une fois la revue effectuée. Vous recevrez une notification lorsque ce sera le cas."
 
-msgid "Version Submitted"
-msgstr "Version soumise"
-
-msgid "You’re done! This version will be available on our site shortly."
-msgstr "C’est tout ! Cette version sera bientôt disponible sur notre site."
-
-msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr "C’est terminé ! Une revue a été demandée pour cette version. Vous serez informé une fois la revue terminée, ou lorsque nos testeurs auront des questions concernant votre proposition."
+#, python-format
+msgid ""
+"You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
+"selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr "La page de votre module aura plus de succès si vous ajoutez une description détaillée. Préparez votre page pour sa publication :"
 
-msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr "La page de votre module aura plus de succès si vous ajoutez une description détaillée et des captures d’écran. Préparez votre page pour sa publication :"
+#, python-format
+msgid ""
+"You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a %(a_attrs)s>creating an appealing listing</a> on Firefox Extension Workshop."
+msgstr ""
 
 msgid "Manage Listing"
 msgstr "Gérer la page de l’application"
@@ -2749,8 +2734,11 @@ msgstr "Modifier la version {0}"
 msgid "Version Signature Pending"
 msgstr "Signature de version en attente"
 
-msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
-msgstr "C’est tout ! Cette version sera bientôt signée et disponible pour une distribution personnelle. Vous recevrez une notification par courriel lorsque votre fichier aura été signé."
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
+
+msgid "As a reminder, your add-on is subject to manual review at any time."
+msgstr ""
 
 msgid "Go to My Submissions"
 msgstr "Accéder à mes propositions"
@@ -2761,14 +2749,11 @@ msgstr "Envoi du code source"
 msgid "Do You Need to Submit Source Code?"
 msgstr "Devez-vous communiquer votre code source ?"
 
-msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
-msgstr "Vous devez peut-être communiquer le code source. Sinon, votre module complémentaire pourrait être supprimé du site !"
+msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
+msgstr ""
 
-#, python-format
-msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
-msgstr "Veuillez consulter <a %(a_attrs)s>les règles d’envoi de code source</a>."
-
-msgid "Do you use any of the following?"
+#, fuzzy
+msgid "Do you use any of the following in your extension?"
 msgstr "Utilisez-vous l’un des outils suivants ?"
 
 msgid "Code generators or minifiers"
@@ -2780,18 +2765,19 @@ msgstr "Outils de concaténation de fichiers tel <span class=\"tech-emphasis\">w
 msgid "Web template engines, both for HTML and CSS"
 msgstr "Moteurs de modèles web pour HTML et CSS"
 
-msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
+#, fuzzy
+msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the extension"
 msgstr "Tout autre outil traitant du code ou des fichiers et générant du code ou des fichiers à inclure dans le module"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
 msgstr "Vous n’avez pas besoin de communiquer le code source et vous pouvez passer à l’étape suivante."
 
-msgid "Your Submission Requires Source Code."
-msgstr "Le code source est nécessaire pour votre envoi."
+msgid "You must submit your extension's source code."
+msgstr ""
 
-#, python-format
-msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
-msgstr "Le code source doit se conformer aux <a %(a_attrs)s>exigences de notre politique</a>, ce qui comprend :"
+#, fuzzy
+msgid "Your source code must include:"
+msgstr "Code source envoyé"
 
 msgid "Step-by-step build instructions to create an exact copy of the add-on code."
 msgstr "Des instructions de construction détaillées permettant de créer une copie exacte du code du module."
@@ -2802,17 +2788,24 @@ msgstr "Un script d’installation qui exécute l’ensemble des étapes techniq
 msgid "Operating system and build environment requirements."
 msgstr "Système d’exploitation et environnement d’installation requis."
 
-msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
-"\">npm</span> version used)."
+#, fuzzy
+msgid "The required version and installation instructions of any programs used in the build process (such as <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis\">npm</span>)."
 msgstr ""
 "Des informations (ce qui comprend la version requise et les instructions d’installation) sur tous les programmes utilisés dans le processus de compilation (par exemple : les versions de <span class="
 "\"tech-emphasis\">node</span> et de <span class=\"tech-emphasis\">npm</span> utilisées)."
 
-msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
+#, fuzzy
+msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
 msgstr ""
 "<span class=\"instruction-emphasis\">Remarque :</span> les fichiers source (à l’exception des bibliothèques open-source tierces) ne peuvent pas être transpilés, concaténés, minifiés ou générés "
 "automatiquement de quelque façon."
+
+msgid "<strong>You can include build instructions in a README file in your source code</strong>, or in the reviewer notes on the next page."
+msgstr ""
+
+#, python-format
+msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
+msgstr ""
 
 msgid "How to Submit:"
 msgstr "Comment envoyer :"
@@ -2855,9 +2848,6 @@ msgstr "Créer une version de thème"
 
 msgid "Create a Theme"
 msgstr "Créer un thème"
-
-msgid "Sign Add-on"
-msgstr "Signer le module"
 
 msgid "Theme generate"
 msgstr "Générer un thème"
@@ -3393,9 +3383,6 @@ msgstr "État et versions"
 
 msgid "Edit this version"
 msgstr "Modifier cette version"
-
-msgid "0 files"
-msgstr "0 fichier"
 
 msgid "Re-enable Version"
 msgstr "Réactiver la version"
@@ -6268,8 +6255,3 @@ msgstr "autres"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} et supérieures"
-
-msgid ""
-"On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
-msgstr ""
-"Gestion via le site. <span class=\"helptext\">Votre proposition sera publiée sur {site_domain}.</span>"

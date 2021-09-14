@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-07 16:30+0000\n"
+"POT-Creation-Date: 2021-09-14 15:25+0000\n"
 "PO-Revision-Date: 2021-05-28 10:51+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
@@ -100,9 +100,6 @@ msgstr[2] "Tvoj dodatak je prošao provjeru bez grešaka i s {0} poruka."
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Tvoj dodatak je prošao provjeru bez grešaka ili upozorenja."
-
-msgid "Your submission will be automatically signed."
-msgstr "Tvoj podnesak je automatski potpisan."
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Uključite detaljne napomene o verziji (ovo se može uraditi u sljedećem koraku)."

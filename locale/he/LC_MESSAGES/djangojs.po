@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-07 16:30+0000\n"
+"POT-Creation-Date: 2021-09-14 15:25+0000\n"
 "PO-Revision-Date: 2020-12-07 12:57+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -92,9 +92,6 @@ msgstr[1] "התוספת שלך אומתה ללא שגיאות אך עם {0} הו
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "התוספת שלך אומתה ללא כל שגיאות או אזהרות."
-
-msgid "Your submission will be automatically signed."
-msgstr "ההגשה שלך תיחתם אוטומטית."
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "יש להוסיף הערות גרסה מפורטות (ניתן לביצוע בשלב הבא)."

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-07 16:30+0000\n"
+"POT-Creation-Date: 2021-09-14 15:25+0000\n"
 "PO-Revision-Date: 2021-01-02 16:25+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <besnik@programeshqip.org>\n"
@@ -95,9 +95,6 @@ msgstr[1] "Shtesa juaj e kaloi vleftësimin pa gabime dhe {0} mesazhe."
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Shtesa juaj e kaloi vleftësimin pa gabime apo sinjalizime."
-
-msgid "Your submission will be automatically signed."
-msgstr "Parashtrimi juaj do të nënshkruhet vetvetiu."
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Përfshini shënime të hollësishme versioni (kjo mund të kryhet në hapin pasues)."

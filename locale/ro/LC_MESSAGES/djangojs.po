@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-07 16:30+0000\n"
+"POT-Creation-Date: 2021-09-14 15:25+0000\n"
 "PO-Revision-Date: 2018-12-13 01:24+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -98,9 +98,6 @@ msgstr[2] "Suplimentul tău a fost validat fără nicio eroare și cu {0} de mes
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Suplimentul a fost validat fără erori sau avertismente."
-
-msgid "Your submission will be automatically signed."
-msgstr "Propunerea ta va fi semnată automat."
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Include note detaliate despre versiune (se poate face la pasul următor)."

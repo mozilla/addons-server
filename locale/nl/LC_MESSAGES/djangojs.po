@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-07 16:30+0000\n"
+"POT-Creation-Date: 2021-09-14 15:25+0000\n"
 "PO-Revision-Date: 2020-12-07 11:10+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -92,9 +92,6 @@ msgstr[1] "Uw add-on is gevalideerd zonder fouten en met {0} berichten."
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Uw add-on is gevalideerd zonder fouten of waarschuwingen."
-
-msgid "Your submission will be automatically signed."
-msgstr "Uw inzending zal automatisch worden ondertekend."
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Neem gedetailleerde versieopmerkingen op (dit kunt u in de volgende stap doen)."

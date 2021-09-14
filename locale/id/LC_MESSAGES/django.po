@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-07 16:30+0000\n"
+"POT-Creation-Date: 2021-09-14 15:24+0000\n"
 "PO-Revision-Date: 2021-06-08 15:09+0000\n"
 "Last-Translator: Lidya Christina <id.lidya@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -464,10 +464,6 @@ msgid "GUID %(guid)s is in a pending Submission"
 msgstr ""
 
 #, python-format
-msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
-msgstr ""
-
-#, python-format
 msgid "Block with GUID %(guid)s not found"
 msgstr ""
 
@@ -494,12 +490,6 @@ msgstr "Tinjauan Terdaftar"
 msgid "Review Unlisted"
 msgstr "Ulasan Tidak Terdaftar"
 
-msgid "This block was imported from a regex based legacy Block."
-msgstr ""
-
-msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
-msgstr ""
-
 #, python-format
 msgid "Delete Multiple %(name)s"
 msgstr "Hapus Beberapa% (nama) s"
@@ -513,9 +503,6 @@ msgstr ""
 
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
-msgstr ""
-
-msgid "The following block(s) were imported from a regex based legacy Block."
 msgstr ""
 
 msgid "Save"
@@ -555,9 +542,6 @@ msgstr ""
 
 msgid "versions"
 msgstr "versi"
-
-msgid "Included in legacy blocklist."
-msgstr ""
 
 msgid "{addon} was created."
 msgstr "{addon} dibuat."
@@ -1751,18 +1735,13 @@ msgstr "File sumber telah diunggah tetapi Anda menyatakan tidak ada sumber yang 
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
 msgstr "Pastikan gabungan jumlah karakter nama dan ringkasan paling banyak {limit_value} karakter, (ini mengandung {show_value}) karakter."
 
-msgid ""
-"On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
-"by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
+msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
 msgstr ""
-"Di situs ini. <span class=\"helptext\">Kiriman Anda akan terdaftar di situs ini dan Pengelola Pengaya Firefox bagi jutaan pengguna, setelah melewati peninjauan kode. Pembaruan otomatis ditangani "
-"oleh situs ini. Pengaya ini juga harus dipertimbangkan untuk Mozilla promosi dan kontes. Pendistribusian mandiri berkas yang telah ditinjau juga dimungkinkan.</span>"
 
 msgid ""
-"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+"On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
+"on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
-"Anda sendiri. <Span class=\"helptext\"> Pengajuan Anda akan segera ditandatangani untuk pendistribusian mandiri. Pembaruan harus ditangani oleh Anda melalui updateURL atau aplikasi pembaruan "
-"eksternal. </Span>"
 
 msgid "Display Name"
 msgstr "Nama Tampilan"
@@ -2690,14 +2669,22 @@ msgstr "Catatan ini akan muncul pada halaman rincian."
 msgid "How to Distribute this Version"
 msgstr "Cara Mendistribusikan Versi ini"
 
-msgid "More information on Add-on Distribution and Signing"
-msgstr "Informasi lebih lanjut tentang Penandatanganan dan Distribusi Pengaya"
+msgid "To get started, select how you would like to distribute this version."
+msgstr ""
+
+#, python-format
+msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing on Firefox Extension Workshop</a>."
+msgstr ""
+
+#, python-format
+msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
+msgstr ""
 
 msgid "Submission Complete"
 msgstr "Penyerahan Lengkap"
 
-msgid "Version Submitted for Review"
-msgstr "Versi Diajukan untuk Peninjauan"
+msgid "Version Submitted"
+msgstr "Pengajuan Versi"
 
 msgid "Preview of the version submitted"
 msgstr "Pratinjau versi yang diajukan"
@@ -2705,20 +2692,19 @@ msgstr "Pratinjau versi yang diajukan"
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "Selesai! Versi ini akan tersedia setelah melewati peninjauan. Anda akan diberi tahu setelah selesai ditinjau."
 
-msgid "Version Submitted"
-msgstr "Pengajuan Versi"
-
-msgid "You’re done! This version will be available on our site shortly."
-msgstr "Selesai! Versi ini akan segera tersedia di situs kami."
-
-msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr "Selesai! Versi ini telah dikirim untuk ditinjau. Anda akan diberitahu bila peninjauan telah selesai, atau jika peninjau kami memiliki pertanyaan tentang pengajuan Anda."
+#, python-format
+msgid ""
+"You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
+"selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr "Daftar Anda akan lebih berhasil dengan menambahkan keterangan rinci. Siapkan daftar untuk diterbitkan:"
 
-msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr "Daftar anda akan lebih sukses dengan menambahkan penjelasan rinci dan tangkapan layar. Pastikan daftar Anda siap dipublikasikan:"
+#, python-format
+msgid ""
+"You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a %(a_attrs)s>creating an appealing listing</a> on Firefox Extension Workshop."
+msgstr ""
 
 msgid "Manage Listing"
 msgstr "Kelola Daftar"
@@ -2734,9 +2720,11 @@ msgstr "Ubah versi {0}"
 msgid "Version Signature Pending"
 msgstr "Versi Bertandatangan"
 
-#, fuzzy
-msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
-msgstr "Selesai! Versi ini akan tersedia setelah melewati peninjauan. Anda akan diberi tahu setelah selesai ditinjau."
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
+
+msgid "As a reminder, your add-on is subject to manual review at any time."
+msgstr ""
 
 msgid "Go to My Submissions"
 msgstr "Menuju Pengajuan Saya"
@@ -2747,14 +2735,11 @@ msgstr "Unggah Kode Sumber"
 msgid "Do You Need to Submit Source Code?"
 msgstr "Apakah Anda Perlu Mengajukan Kode Sumber?"
 
-msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
-msgstr "Anda mungkin perlu mengirimkan kode sumber. Jika tidak, pengaya Anda mungkin akan dihapus dari situs!"
+msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
+msgstr ""
 
-#, python-format
-msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
-msgstr "Silahkan meninjau <a %(a_attrs)s kebijakan pengajuan kode sumber</a>."
-
-msgid "Do you use any of the following?"
+#, fuzzy
+msgid "Do you use any of the following in your extension?"
 msgstr "Apakah Anda menggunakan hal-hal berikut?"
 
 msgid "Code generators or minifiers"
@@ -2766,18 +2751,19 @@ msgstr "Peralatan yang menggabungkan beberapa berkas ke dalam satu berkas tungga
 msgid "Web template engines, both for HTML and CSS"
 msgstr "Template mesin web, baik untuk HTML maupun CSS"
 
-msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
+#, fuzzy
+msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the extension"
 msgstr "Setiap alat apapun yang mengambil kode atau berkas, menerapkan pemrosesan, dan menghasilkan kode atau berkas untuk disertakan dalam pengaya"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
 msgstr "Anda tidak perlu mengajukan Kode Sumber, dan Anda siap menuju langkah berikutnya."
 
-msgid "Your Submission Requires Source Code."
-msgstr "Pengajuan Anda Memerlukan Kode Sumber."
+msgid "You must submit your extension's source code."
+msgstr ""
 
-#, python-format
-msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
-msgstr "Kode sumber harus memenuhi <a %(a_attrs)s>persyaratan kebijakan</a>, yang mencakup:"
+#, fuzzy
+msgid "Your source code must include:"
+msgstr "KOde sumber diunggah"
 
 msgid "Step-by-step build instructions to create an exact copy of the add-on code."
 msgstr "Langkah-langkah perakitan untuk menciptakan salinan kode pengaya yang sama persis."
@@ -2788,14 +2774,20 @@ msgstr "Skrip build yang mengeksekusi semua langkah teknis yang diperlukan."
 msgid "Operating system and build environment requirements."
 msgstr "Sistem operasi dan persyaratan pembangun lingkungan."
 
-msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
-"\">npm</span> version used)."
+#, fuzzy
+msgid "The required version and installation instructions of any programs used in the build process (such as <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis\">npm</span>)."
 msgstr ""
 "Detail (termasuk versi yang diperlukan dan instruksi instalasi), dari semua program yang digunakan dalam proses build (misalnya: <span class=\"tech-emphasis\">node</span> dan <span class=\"tech-"
 "emphasis\">npm</span> versi yang digunakan)."
 
-msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
+msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
+msgstr ""
+
+msgid "<strong>You can include build instructions in a README file in your source code</strong>, or in the reviewer notes on the next page."
+msgstr ""
+
+#, python-format
+msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
 msgstr ""
 
 msgid "How to Submit:"
@@ -2839,9 +2831,6 @@ msgstr "Membuat Tema Versi"
 
 msgid "Create a Theme"
 msgstr "Membuat Tema"
-
-msgid "Sign Add-on"
-msgstr "Tandai Pengaya"
 
 msgid "Theme generate"
 msgstr "Tema dihasilkan"
@@ -3345,9 +3334,6 @@ msgstr "Status & Versi"
 
 msgid "Edit this version"
 msgstr "Edit versi ini"
-
-msgid "0 files"
-msgstr "0 berkas"
 
 msgid "Re-enable Version"
 msgstr "Versi yang dihidupkan kembali"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-07 16:30+0000\n"
+"POT-Creation-Date: 2021-09-14 15:25+0000\n"
 "PO-Revision-Date: 2021-01-27 11:55+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -102,9 +102,6 @@ msgstr[3] "Veljavnost vašega dodatka je bila preverjena brez napak in z {0} spo
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Veljavnost vašega dodatka je bila preverjena brez napak ali opozoril."
-
-msgid "Your submission will be automatically signed."
-msgstr "Vaša oddaja bo samodejno podpisana."
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Vključite podrobne opombe o različici (to lahko storite v naslednjem koraku)."

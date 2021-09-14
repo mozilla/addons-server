@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-07 16:30+0000\n"
+"POT-Creation-Date: 2021-09-14 15:25+0000\n"
 "PO-Revision-Date: 2021-05-21 11:25+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -92,9 +92,6 @@ msgstr[1] "Eklentiniz hatasız olarak ve {0} mesajla doğrulandı."
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Eklentiniz hatasız ve uyarısız olarak doğrulanmıştır."
-
-msgid "Your submission will be automatically signed."
-msgstr "Gönderiminiz otomatik olarak imzalanacak."
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Ayrıntılı sürüm notlarını yazın. (Bu, sonraki adımda da yapılabilir.)"

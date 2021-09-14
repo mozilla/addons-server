@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-07 16:30+0000\n"
+"POT-Creation-Date: 2021-09-14 15:25+0000\n"
 "PO-Revision-Date: 2020-11-08 13:13+0000\n"
 "Last-Translator: tjddn0197 <tjddn0197@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -88,9 +88,6 @@ msgstr[0] "부가 기능이 오류 없이 {0}개의 메시지로 검증되었습
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "부가 기능이 오류와 경고 없이 검증되었습니다."
-
-msgid "Your submission will be automatically signed."
-msgstr "제출은 자동으로 서명됩니다."
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "자세한 버전 정보를 포함합니다(다음 단계에서 할 수 있습니다)."

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-07 16:30+0000\n"
+"POT-Creation-Date: 2021-09-14 15:24+0000\n"
 "PO-Revision-Date: 2021-08-19 23:37+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -451,10 +451,6 @@ msgid "GUID %(guid)s is in a pending Submission"
 msgstr "Guid %(guid)s ha-t-an deg tuzzna yettraǧu"
 
 #, python-format
-msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
-msgstr "Iḥder n UMNIR %(guid)s i tɣuri kan - ilaq ad yettusnifel s ulqaḍ n wumuɣen n usewḥel iqburen"
-
-#, python-format
 msgid "Block with GUID %(guid)s not found"
 msgstr "Ur yettwaf ara yiḥder s GUID %(guid)s"
 
@@ -481,12 +477,6 @@ msgstr "Aceggir yettwabder"
 msgid "Review Unlisted"
 msgstr "Aceggir ur yettwabder ara"
 
-msgid "This block was imported from a regex based legacy Block."
-msgstr "Iḥder-agi yettwakter-d seg yiḥder aqdim yebnan ɣef regex."
-
-msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
-msgstr "Asnifel akk ara yettwaxedmen ur yettwaleqqam ara deg wumuɣ n yiḥder aqdim - ilaq ad tgeḍ asnifel s ufus s kinto admin webui."
-
 #, python-format
 msgid "Delete Multiple %(name)s"
 msgstr "Kkes aṭas %(name)s"
@@ -501,9 +491,6 @@ msgstr "%(count)s Izegrar GUIDs ttusweḥlen yakan i %(v_min)s ɣer %(v_max)s"
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr "%(count)s Izegrar GUIDs ur ttwafen ara"
-
-msgid "The following block(s) were imported from a regex based legacy Block."
-msgstr "Iḥedren-agi i d-iteddun ttwaktaren-d seg yiḥder aqdim yebnan ɣef regex."
 
 msgid "Save"
 msgstr "Sekles"
@@ -542,9 +529,6 @@ msgstr "Ẓreg asewḥel"
 
 msgid "versions"
 msgstr "Ileqman"
-
-msgid "Included in legacy blocklist."
-msgstr "Yella deg wumuɣ n yiḥder aqdim."
 
 msgid "{addon} was created."
 msgstr "{addon} yettwarna."
@@ -1717,17 +1701,13 @@ msgstr "Afaylu aɣbalu dayen yettwasuder-d, maca tenniḍ-d belli aɣbalu ur ila
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
 msgstr "Ḍmen d dakken isem akked ugzul gebren ma aṭas {limit_value} n yisekkilen (ɣur-sen meṛṛa {show_value})."
 
-msgid ""
-"On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
-"by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
+msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
 msgstr ""
-"Asekrek deg usmel. <span class=\"helptext\">Asumer inek ad yeffeɣ ɣef usmel-agi  akked umsefrak n izegrar n  Firefox  i yefḍan n iseqdacen, ticki yettwag ucegger n tengakt. Ileqman iwurmanen ad "
-"ttwasferken deg usmel-agi. Azegrir-agi ad tt-awi-t Mozillaakken ad tesnerni-t neq ad tger-it deg temzizliyin. Azuzer udmawan n ifuyal yzmer daɣen a yili..</span>"
 
 msgid ""
-"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+"On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
+"on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
-"Asekrek udmawan. <span class=\"helptext\">Tuzna yinek ad tettwazmel imiren kan deg uzuzer udmawan. D kečč ara yesferken ileqman s useqdec n tensa updateURL neɣ ileqman n yesnasen izɣarayen.</span>"
 
 msgid "Display Name"
 msgstr "Sken-d Isem"
@@ -2634,14 +2614,22 @@ msgstr "Tizmilin-agi ad d-banent deg usebter n telqayt."
 msgid "How to Distribute this Version"
 msgstr "Amek ara zuzreq lqem-agi"
 
-msgid "More information on Add-on Distribution and Signing"
-msgstr "Ugar n telɣut ɣef uzuzer akked uzmul n izegrar"
+msgid "To get started, select how you would like to distribute this version."
+msgstr ""
+
+#, python-format
+msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing on Firefox Extension Workshop</a>."
+msgstr ""
+
+#, python-format
+msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
+msgstr ""
 
 msgid "Submission Complete"
 msgstr "Tuzna temmed"
 
-msgid "Version Submitted for Review"
-msgstr "Lqem yettwazen akken ad ittucegger"
+msgid "Version Submitted"
+msgstr "Lqem yettwazmel"
 
 msgid "Preview of the version submitted"
 msgstr "Taskant n lqem tettwazen"
@@ -2649,20 +2637,19 @@ msgstr "Taskant n lqem tettwazen"
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "Dayen tfukeḍ! Lqem-agi ur yettɛeṭṭil ara ad yili deg usmel-nneɣ, ticki yettwacegger. Ad tizmireḍ ad tremseḍ alɣu ticki yeḍra-d."
 
-msgid "Version Submitted"
-msgstr "Lqem yettwazmel"
-
-msgid "You’re done! This version will be available on our site shortly."
-msgstr "Dayen tfukeḍ! Lqem-agi ur yettɛeṭṭil ara ad yili deg usmel-nneɣ."
-
-msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr "Ifuk! Acegger yettusuter i lqem-agi. Ak-id-yaweḍ isalli ticki ifuk ucegger, neɣ ticki imsekyaden ɣur-sen isteqsiyen itezzin ɣef usumer inek."
+#, python-format
+msgid ""
+"You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
+"selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr "Asebter n uzegrir ad yettwassen aṭas ùa terniḍ aglam leqqayen. Heggi asebter-ik i tuffɣa-is:"
 
-msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr "Asebter n uzegrir ad yettwassen aṭas ùa terniḍ aglam leqqayen akken tuṭṭfiwin n ugdil. Heggi asebter-ik i tuffɣa-is:"
+#, python-format
+msgid ""
+"You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a %(a_attrs)s>creating an appealing listing</a> on Firefox Extension Workshop."
+msgstr ""
 
 msgid "Manage Listing"
 msgstr "Sefrek asebter n usnas"
@@ -2678,8 +2665,11 @@ msgstr "Ẓreg lqem {0}"
 msgid "Version Signature Pending"
 msgstr "Azmul n lqem yettraǧu"
 
-msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
-msgstr "Dayen tfukeḍ! Lqem-agi ur yettɛeṭṭil ara ad yettwazmel i uzuzer udmawan. Ad tizmireḍ ad tremseḍ alɣu ticki afaylu yettwazemlen ihegga i usider."
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
+
+msgid "As a reminder, your add-on is subject to manual review at any time."
+msgstr ""
 
 msgid "Go to My Submissions"
 msgstr "Ddu ar isumar inu"
@@ -2690,14 +2680,11 @@ msgstr "Tuzna n tengalt aɣbalu"
 msgid "Do You Need to Submit Source Code?"
 msgstr "Tesriḍ ad tazneḍ tangalt aɣbalu?"
 
-msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
-msgstr "Ahat tesriḍ ad tazneḍ tangalt aɣbalu. Ma yella ala, azegrir-ik/im yezmer ad yettwakkes seg usmel!"
+msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
+msgstr ""
 
-#, python-format
-msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
-msgstr "Ma ulac aɣilif, cegger <a%(a_attrs)s>tasertit n tuzna n tangalt aɣbalu</a>."
-
-msgid "Do you use any of the following?"
+#, fuzzy
+msgid "Do you use any of the following in your extension?"
 msgstr "Tseqdaceḍ yiwen seg wigi?"
 
 msgid "Code generators or minifiers"
@@ -2709,18 +2696,19 @@ msgstr "Ifecka yessemlilin ifuyla yemgaraden deg yiwen ufaylu am <span class = \
 msgid "Web template engines, both for HTML and CSS"
 msgstr "Amsedday n tneɣrufin web i HTML akked CSS"
 
-msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
+#, fuzzy
+msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the extension"
 msgstr "Yal afecku-nniden i yessesfaren tangalt neɣ ifuyla daɣen wid yessiriwen tangalt neɣ ifuyla ara tsedduḍ deg uzegrir"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
 msgstr "Ur tesriḍ ara ad tazneḍ tangalt aɣbalu daɣen ad tizmireḍ ad tedduḍ ɣer umecwaṛ i d-iteddun."
 
-msgid "Your Submission Requires Source Code."
-msgstr "Tuzzna-inek tesra tangalt taqbalut.Tangalt-ik aɣbalu tlaq i tuzna-ik."
+msgid "You must submit your extension's source code."
+msgstr ""
 
-#, python-format
-msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
-msgstr "Tangalt aɣbalu issefk ad tqadeṛ <a %(a_attrs)s>ilugan n tsertit-nneɣ</a>, ayen i igebren:"
+#, fuzzy
+msgid "Your source code must include:"
+msgstr "Tangalt aɣbalu tuli"
 
 msgid "Step-by-step build instructions to create an exact copy of the add-on code."
 msgstr "Iwellihen d bennu leqqyen ara yeǧǧen ad ternuḍ anɣel usdid n tengalt n uzegrir."
@@ -2731,17 +2719,24 @@ msgstr "Askript n usbeddi ara i uselkem n meṛṛa imecwaṛen itiknikanen n ta
 msgid "Operating system and build environment requirements."
 msgstr "Anagraw n wammud akked twennaḍt n usbeddi i ilaqen."
 
-msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
-"\">npm</span> version used)."
+#, fuzzy
+msgid "The required version and installation instructions of any programs used in the build process (such as <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis\">npm</span>)."
 msgstr ""
 "Talɣut (ayen i igebren lqem ilaqen akked iwellihen n usbeddi), ɣef wahilen meṛṛa yettwasqedcen deg ukala n usdukel (amedya: lqem n <span class=\"tech-emphasis\">node</span>akked <span class=\"tech-"
 "emphasis\">npm</span>)."
 
-msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
+#, fuzzy
+msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
 msgstr ""
 "<span class=\"instruction-emphasis\">Tamawt:</span> Ifuyla iɣbula (ala wid n temkarḍiyin n uɣbalu yeldin n wis kraḍ) ur zmiren ara ad ttwasuqqlen, ad ttwassden, ad ttwasemẓin neɣ ttwarnan s wudem "
 "awurman s kra n tarrayt."
+
+msgid "<strong>You can include build instructions in a README file in your source code</strong>, or in the reviewer notes on the next page."
+msgstr ""
+
+#, python-format
+msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
+msgstr ""
 
 msgid "How to Submit:"
 msgstr "Amek ara tazneḍ:"
@@ -2784,9 +2779,6 @@ msgstr "Rnu Lqem n usentel"
 
 msgid "Create a Theme"
 msgstr "Rnu asentel"
-
-msgid "Sign Add-on"
-msgstr "Zmel azegrir"
 
 msgid "Theme generate"
 msgstr "Sirew asentel"
@@ -3308,9 +3300,6 @@ msgstr "Addaden & Ileqman"
 
 msgid "Edit this version"
 msgstr "Ẓreg lqem-agi"
-
-msgid "0 files"
-msgstr "0 ifuyla"
 
 msgid "Re-enable Version"
 msgstr "Rmed tikelt nniḍen lqem-agi"

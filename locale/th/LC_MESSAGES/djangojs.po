@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-07 16:30+0000\n"
+"POT-Creation-Date: 2021-09-14 15:25+0000\n"
 "PO-Revision-Date: 2021-01-19 01:42+0000\n"
 "Last-Translator: Jabont <jabont@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -87,9 +87,6 @@ msgstr[0] "ส่วนเสริมของคุณผ่านการต
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "ส่วนเสริมของคุณผ่านการตรวจสอบโดยไม่มีข้อผิดพลาดหรือคำเตือนใด"
-
-msgid "Your submission will be automatically signed."
-msgstr "การส่งข้อมูลของคุณจะได้รับการลงทะเบียนไว้โดยอัตโนมัติ"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "รวมหมายเหตุรายละเอียดรุ่น (สามารถยกไปทำในขั้นตอนถัดไปได้)"

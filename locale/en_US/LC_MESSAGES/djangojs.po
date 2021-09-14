@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-07 16:30+0000\n"
+"POT-Creation-Date: 2021-09-14 15:25+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -90,9 +90,6 @@ msgstr[1] "Your add-on was validated with no errors and {0} messages."
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Your add-on was validated with no errors or warnings."
-
-msgid "Your submission will be automatically signed."
-msgstr "Your submission will be automatically signed."
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Include detailed version notes (this can be done in the next step)."

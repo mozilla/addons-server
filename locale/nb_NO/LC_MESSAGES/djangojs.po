@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-07 16:30+0000\n"
+"POT-Creation-Date: 2021-09-14 15:25+0000\n"
 "PO-Revision-Date: 2021-02-19 11:26+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -92,9 +92,6 @@ msgstr[1] "Din utvidelse ble validert som feilfri og {0} meldinger."
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Din utvidelse ble validert uten feil eller advarsler."
-
-msgid "Your submission will be automatically signed."
-msgstr "Bidraget ditt blir automatisk signert."
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Inkluder detaljerte versjonsmerkander (dette kan gjøres i det neste steget)."

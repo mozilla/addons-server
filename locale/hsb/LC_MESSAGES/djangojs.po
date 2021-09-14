@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-07 16:30+0000\n"
+"POT-Creation-Date: 2021-09-14 15:25+0000\n"
 "PO-Revision-Date: 2020-12-07 12:00+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -103,9 +103,6 @@ msgstr[3] "Waš přidatk je přepruwowanje bjeze zmylkow a z {0} zdźělenkami w
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Waš přidatk je přepruwowanje bjeze zmylkow a bjez warnowanjow wobstał."
-
-msgid "Your submission will be automatically signed."
-msgstr "Waše zapodaće budźe so awtomatisce signować."
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Nadrobne wersijowe informacije zapřijeć (to hodźi so w přichodnym kroku činić)."

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-07 16:30+0000\n"
+"POT-Creation-Date: 2021-09-14 15:24+0000\n"
 "PO-Revision-Date: 2021-09-06 14:40+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
@@ -459,10 +459,6 @@ msgid "GUID %(guid)s is in a pending Submission"
 msgstr "GUID %(guid)s の送信が保留中です。"
 
 #, python-format
-msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
-msgstr "GUID %(guid)s のブロックは読み取り専用です。従来のブロックリストコレクションから編集してください。"
-
-#, python-format
 msgid "Block with GUID %(guid)s not found"
 msgstr "GUID %(guid)s のブロックが見つかりませんでした"
 
@@ -491,12 +487,6 @@ msgstr "審査が申請されました"
 msgid "Review Unlisted"
 msgstr "審査担当者へのメモ"
 
-msgid "This block was imported from a regex based legacy Block."
-msgstr "このブロックは、正規表現ベースの従来のブロックからインポートされました。"
-
-msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
-msgstr "加えられた変更は、従来のブロックリストでは更新されません。kinto 管理 webui から手動で変更してください。"
-
 #, python-format
 msgid "Delete Multiple %(name)s"
 msgstr "重複した %(name)s を削除"
@@ -511,9 +501,6 @@ msgstr "%(count)s 件のアドオン GUID は %(v_min)s から %(v_max)s まで�
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr "%(count)s 件の アドオン GUID が見つかりませんでした"
-
-msgid "The following block(s) were imported from a regex based legacy Block."
-msgstr "次のブロックは、正規表現ベースの従来のブロックからインポートされました。"
 
 msgid "Save"
 msgstr "保存"
@@ -552,9 +539,6 @@ msgstr "ブロックを編集"
 
 msgid "versions"
 msgstr "バージョン"
-
-msgid "Included in legacy blocklist."
-msgstr "従来のブロックリストに含まれています。"
 
 msgid "{addon} was created."
 msgstr "{addon} が作成されました。"
@@ -1728,17 +1712,13 @@ msgstr "ソースファイルがアップロードされましたが、あなた
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
 msgstr ""
 
-msgid ""
-"On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
-"by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
+msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
 msgstr ""
-"当サイト上で。<span class=\"helptext\">あなたのアドオンは、コード審査を通った後、当サイトや大勢のユーザーが利用する Firefox のアドオンマネージャーに掲載されます。自動更新は当サイトによって処理されま"
-"す。このアドオンは Mozilla によるプロモーションやコンテストの対象となる可能性もあります。審査済みファイルの自主配布も可能です。</span>"
 
 msgid ""
-"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+"On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
+"on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
-"自分自身で。<span class=\"helptext\">あなたのアドオンは即座に署名され自主配布可能となります。更新は、updateURL もしくは外部アプリケーションの更新を通じて、あなた自身で処理する必要があります。</span>"
 
 msgid "Display Name"
 msgstr "表示名"
@@ -2639,14 +2619,22 @@ msgstr "これらのメモは詳細ページに表示されます。"
 msgid "How to Distribute this Version"
 msgstr "このバージョンの配布手段"
 
-msgid "More information on Add-on Distribution and Signing"
-msgstr "アドオンの配布と署名に関する詳しい情報"
+msgid "To get started, select how you would like to distribute this version."
+msgstr ""
+
+#, python-format
+msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing on Firefox Extension Workshop</a>."
+msgstr ""
+
+#, python-format
+msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
+msgstr ""
 
 msgid "Submission Complete"
 msgstr "登録完了"
 
-msgid "Version Submitted for Review"
-msgstr "審査が申請されているバージョン"
+msgid "Version Submitted"
+msgstr "登録済みバージョン"
 
 msgid "Preview of the version submitted"
 msgstr "投稿バージョンのプレビュー"
@@ -2654,20 +2642,19 @@ msgstr "投稿バージョンのプレビュー"
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "設定完了！ このバージョンは審査終了後に公開されます。その際は通知をお送りします。"
 
-msgid "Version Submitted"
-msgstr "登録済みバージョン"
-
-msgid "You’re done! This version will be available on our site shortly."
-msgstr "設定完了！ このバージョンはまもなくサイト上で公開されます。"
-
-msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr "登録完了！ このバージョンは審査に出されました。審査完了時、あるいは審査担当者がこのアドオンに関して何か質問がある場合は、メールでご連絡します。"
+#, python-format
+msgid ""
+"You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
+"selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr "あなたのアドオン情報は、詳しい説明を追加することでより良いものとなります。詳細ページを公開する準備をしましょう。"
 
-msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr "あなたのアドオン情報は、詳しい説明やスクリーンショットを追加することでより良いものとなります。詳細ページを公開する準備をしましょう。"
+#, python-format
+msgid ""
+"You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a %(a_attrs)s>creating an appealing listing</a> on Firefox Extension Workshop."
+msgstr ""
 
 msgid "Manage Listing"
 msgstr "掲載ページを管理"
@@ -2682,8 +2669,11 @@ msgstr "バージョン {0}を編集"
 msgid "Version Signature Pending"
 msgstr "バージョンの署名保留中"
 
-msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
-msgstr "完了です。このバージョンはまもなく自己配布用に署名されます。署名されたファイルのダウンロードが準備できたらメールで通知されます。"
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
+
+msgid "As a reminder, your add-on is subject to manual review at any time."
+msgstr ""
 
 msgid "Go to My Submissions"
 msgstr "自分の登録アイテムを見る"
@@ -2694,14 +2684,11 @@ msgstr "ソースコードのアップロード"
 msgid "Do You Need to Submit Source Code?"
 msgstr "ソースコードを提出する必要がありますか？"
 
-msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
-msgstr "ソースコードの提出は必要となるかもしれません。提出しなかった場合、あなたのアドオンはサイトから削除される可能性があります！"
+msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
+msgstr ""
 
-#, python-format
-msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
-msgstr "<a %(a_attrs)s>ソースコード提出ポリシー</a> を確認してください。"
-
-msgid "Do you use any of the following?"
+#, fuzzy
+msgid "Do you use any of the following in your extension?"
 msgstr "以下のいずれかを使っていますか？"
 
 msgid "Code generators or minifiers"
@@ -2713,18 +2700,19 @@ msgstr "<span class=\"tech-emphasis\">webpack</span> など、複数のファイ
 msgid "Web template engines, both for HTML and CSS"
 msgstr "HTML や CSS 向けのウェブテンプレートエンジン"
 
-msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
+#, fuzzy
+msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the extension"
 msgstr "コードやファイルに対して何らかの処理を行い、最終的にアドオンに含めるコードやファイルを生成する、その他何らかのツール"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
 msgstr "あなたはソースコードを提出する必要はなく、次のステップへ向けた準備が整いました。"
 
-msgid "Your Submission Requires Source Code."
-msgstr "あなたはソースコードを提出する必要があります。"
+msgid "You must submit your extension's source code."
+msgstr ""
 
-#, python-format
-msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
-msgstr "ソースコードは、以下に示すものを含め、<a %(a_attrs)s>ポリシー要件</a> を満たす必要があります。"
+#, fuzzy
+msgid "Your source code must include:"
+msgstr "ソースコードがアップロードされました"
 
 msgid "Step-by-step build instructions to create an exact copy of the add-on code."
 msgstr "アドオンのコードと完全に同一のものを生成するための順を追ったビルド方法。"
@@ -2735,16 +2723,22 @@ msgstr "すべての必要な技術的手順を実行するビルドスクリプ
 msgid "Operating system and build environment requirements."
 msgstr "オペレーティングシステムとビルド環境の要件。"
 
-msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
-"\">npm</span> version used)."
+#, fuzzy
+msgid "The required version and installation instructions of any programs used in the build process (such as <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis\">npm</span>)."
 msgstr ""
 "ビルドプロセスで何らかのプログラムを使っている場合はその詳細 (必須バージョンやインストール手順など) (例: 使用している <span class=\"tech-emphasis\">node</span> と <span class=\"tech-emphasis\">npm</"
 "span> のバージョン)。"
 
 #, fuzzy
-msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
+msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
 msgstr "<span class=\"instruction-emphasis\">注:</span> トランスパイル、難読化、最小化、その他自動生成されたソースファイルは受け入れられません (オープンソースのサードパーティライブラリを除く)。"
+
+msgid "<strong>You can include build instructions in a README file in your source code</strong>, or in the reviewer notes on the next page."
+msgstr ""
+
+#, python-format
+msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
+msgstr ""
 
 msgid "How to Submit:"
 msgstr "提出方法:"
@@ -2787,9 +2781,6 @@ msgstr "テーマのバージョンを作成"
 
 msgid "Create a Theme"
 msgstr "テーマを作成"
-
-msgid "Sign Add-on"
-msgstr "アドオンを署名"
 
 msgid "Theme generate"
 msgstr "テーマ作成ツール"
@@ -3280,9 +3271,6 @@ msgstr "ステータスとバージョン"
 
 msgid "Edit this version"
 msgstr "このバージョンを編集"
-
-msgid "0 files"
-msgstr "0 個のファイル"
 
 msgid "Re-enable Version"
 msgstr "バージョンを再度有効化"

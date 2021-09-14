@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-07 16:30+0000\n"
+"POT-Creation-Date: 2021-09-14 15:24+0000\n"
 "PO-Revision-Date: 2021-08-11 12:56+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -447,10 +447,6 @@ msgid "GUID %(guid)s is in a pending Submission"
 msgstr "GUID %(guid)s 仍在准备提交中"
 
 #, python-format
-msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
-msgstr "对 GUID %(guid)s 的屏蔽是只读的 - 必须通过旧版屏蔽列表集，才可对其进行编辑"
-
-#, python-format
 msgid "Block with GUID %(guid)s not found"
 msgstr "找不到对应 GUID %(guid)s 的屏蔽记录"
 
@@ -477,12 +473,6 @@ msgstr "审核上架项目"
 msgid "Review Unlisted"
 msgstr "审核未上架项目"
 
-msgid "This block was imported from a regex based legacy Block."
-msgstr "此屏蔽项目导入自基于正则的旧有屏蔽列表。"
-
-msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
-msgstr "任何变更不会应用到旧有屏蔽列表，您必须回到 kinto 的管理界面手动更新。"
-
 #, python-format
 msgid "Delete Multiple %(name)s"
 msgstr "删除多个 %(name)s"
@@ -497,9 +487,6 @@ msgstr "有 %(count)s 个附加组件 GUID 已针对 %(v_min)s~%(v_max)s 版本�
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr "未找到 %(count)s 个附加组件 GUID"
-
-msgid "The following block(s) were imported from a regex based legacy Block."
-msgstr "下列屏蔽项目导入自基于正则的旧有屏蔽列表。"
 
 msgid "Save"
 msgstr "保存"
@@ -538,9 +525,6 @@ msgstr "编辑屏蔽项"
 
 msgid "versions"
 msgstr "版本"
-
-msgid "Included in legacy blocklist."
-msgstr "包含于旧有屏蔽列表中。"
 
 msgid "{addon} was created."
 msgstr "{addon} 已创建。"
@@ -1713,16 +1697,13 @@ msgstr "源文件已上传，但您标明无需源文件。"
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
 msgstr "名称与摘要合计不得超过 {limit_value} 个字符（目前有 {show_value} 个字符）。"
 
-msgid ""
-"On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
-"by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
+msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
 msgstr ""
-"在本网站上。<span class=\"helptext\">您提交的作品将在通过代码审核后，在本网站以及 Firefox 附加组件管理器中向无数用户展示。自动更新由本网站处理。此附加组件也将被纳入 Mozilla 的促销推广和竞赛之中。经"
-"过审核的文件也可以自行分发。</span>"
 
 msgid ""
-"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
-msgstr "我自己托管。<span class=\"helptext\">您的提交将被立即签名以供自行分发。更新应该由您通过 updateURL 或外部应用的更新来处理。</span>"
+"On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
+"on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
+msgstr ""
 
 msgid "Display Name"
 msgstr "显示名称"
@@ -2603,14 +2584,22 @@ msgstr "这些说明将在详细信息页面上出现。"
 msgid "How to Distribute this Version"
 msgstr "如何分发此版本"
 
-msgid "More information on Add-on Distribution and Signing"
-msgstr "附加组件分发和签名的更多信息"
+msgid "To get started, select how you would like to distribute this version."
+msgstr ""
+
+#, python-format
+msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing on Firefox Extension Workshop</a>."
+msgstr ""
+
+#, python-format
+msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
+msgstr ""
 
 msgid "Submission Complete"
 msgstr "提交完成"
 
-msgid "Version Submitted for Review"
-msgstr "已提交进行审核的版本"
+msgid "Version Submitted"
+msgstr "已提交的版本"
 
 msgid "Preview of the version submitted"
 msgstr "提交版本预览"
@@ -2618,20 +2607,19 @@ msgstr "提交版本预览"
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "完成！此版本在审核通过后就会在网站上出现。您将在审核完成后收到我们的通知。"
 
-msgid "Version Submitted"
-msgstr "已提交的版本"
-
-msgid "You’re done! This version will be available on our site shortly."
-msgstr "完工！此版本将在我们的网站上发布。"
-
-msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr "大功告成！此版本已提交审核。您将在审核完成时收到通知，如果审核发现任何问题也会给您通知。"
+#, python-format
+msgid ""
+"You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
+"selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr "添加更详细的描述可以使您上架的项目更加成功。请准备您要公布的内容："
 
-msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr "添加详细的描述和截图，您的上架将更加成功。准备要公布的内容吧："
+#, python-format
+msgid ""
+"You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a %(a_attrs)s>creating an appealing listing</a> on Firefox Extension Workshop."
+msgstr ""
 
 msgid "Manage Listing"
 msgstr "管理上架"
@@ -2645,8 +2633,11 @@ msgstr "编辑版本 {0}"
 msgid "Version Signature Pending"
 msgstr "等待版本签名"
 
-msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
-msgstr "大功告成！此版本很快就会完成签名，让您自行发布。签名好的文件可供下载会发邮件通知您。"
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
+
+msgid "As a reminder, your add-on is subject to manual review at any time."
+msgstr ""
 
 msgid "Go to My Submissions"
 msgstr "转至我的提交"
@@ -2657,14 +2648,11 @@ msgstr "源代码上传"
 msgid "Do You Need to Submit Source Code?"
 msgstr "您需要提交源代码吗？"
 
-msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
-msgstr "您可能需要提交源代码。如果您不提交正确的源代码，您的附加组件可能在本网站上下架！"
+msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
+msgstr ""
 
-#, python-format
-msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
-msgstr "请查阅<a %(a_attrs)s>源代码提交政策</a>。"
-
-msgid "Do you use any of the following?"
+#, fuzzy
+msgid "Do you use any of the following in your extension?"
 msgstr "您使用了下列任何一种工具吗？"
 
 msgid "Code generators or minifiers"
@@ -2676,18 +2664,19 @@ msgstr "将多个文件合并为一的工具，例如 <span class=\"tech-emphasi
 msgid "Web template engines, both for HTML and CSS"
 msgstr "Web 模板引擎，对于 HTML 和 CSS"
 
-msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
+#, fuzzy
+msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the extension"
 msgstr "任何对代码或文件二次处理，并生成附加组件中的代码或文件的其他工具"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
 msgstr "您不需要提交源代码，可以直接进行下一步。"
 
-msgid "Your Submission Requires Source Code."
-msgstr "您的提交必须包含源代码。"
+msgid "You must submit your extension's source code."
+msgstr ""
 
-#, python-format
-msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
-msgstr "源代码必须符合<a %(a_attrs)s>政策的要求</a>，包含下列项目："
+#, fuzzy
+msgid "Your source code must include:"
+msgstr "源代码已上传"
 
 msgid "Step-by-step build instructions to create an exact copy of the add-on code."
 msgstr "创建附加组件精确副本的代码逐步构建说明。"
@@ -2698,13 +2687,20 @@ msgstr "一个可以执行所有必要技术步骤的构建脚本。"
 msgid "Operating system and build environment requirements."
 msgstr "操作系统与构建环境要求。"
 
-msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
-"\">npm</span> version used)."
+#, fuzzy
+msgid "The required version and installation instructions of any programs used in the build process (such as <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis\">npm</span>)."
 msgstr "构建过程中会使用到的任何程序的详细信息（包含需要使用的版本与安装步骤，例如：所用的 <span class=\"tech-emphasis\">node</span> 与 <span class=\"tech-emphasis\">npm</span> 的版本）。"
 
-msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
+#, fuzzy
+msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
 msgstr "<span class=\"instruction-emphasis\">注意：</span>源文件（不含第三方开源库）请勿转译（transpile）、拼接（concatenate）、压缩（minify）或使用机器生成源代码。"
+
+msgid "<strong>You can include build instructions in a README file in your source code</strong>, or in the reviewer notes on the next page."
+msgstr ""
+
+#, python-format
+msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
+msgstr ""
 
 msgid "How to Submit:"
 msgstr "如何提交："
@@ -2747,9 +2743,6 @@ msgstr "创建新版主题"
 
 msgid "Create a Theme"
 msgstr "创建一个主题"
-
-msgid "Sign Add-on"
-msgstr "签名附加组件"
 
 msgid "Theme generate"
 msgstr "主题生成"
@@ -3269,9 +3262,6 @@ msgstr "状态和版本"
 
 msgid "Edit this version"
 msgstr "编辑此版本"
-
-msgid "0 files"
-msgstr "0 个文件"
 
 msgid "Re-enable Version"
 msgstr "重新启用版本"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-07 16:30+0000\n"
+"POT-Creation-Date: 2021-09-14 15:25+0000\n"
 "PO-Revision-Date: 2020-12-08 17:08+0000\n"
 "Last-Translator: Michele Rodaro <michele.rodaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -92,9 +92,6 @@ msgstr[1] "Il componente aggiuntivo ha superato il processo di validazione senza
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Il componente aggiuntivo ha superato il processo di validazione senza alcun errore o avviso."
-
-msgid "Your submission will be automatically signed."
-msgstr "Il componente aggiuntivo inviato verrà firmato digitalmente in modo automatico."
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Includi note di versione dettagliate (è possibile inserirle nel prossimo passaggio)."

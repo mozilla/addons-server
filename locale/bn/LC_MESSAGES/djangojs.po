@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-07 16:30+0000\n"
+"POT-Creation-Date: 2021-09-14 15:25+0000\n"
 "PO-Revision-Date: 2017-09-28 10:22+0000\n"
 "Last-Translator: Shahriar Shanto <shahriar083@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -93,9 +93,6 @@ msgstr[1] "আপনার অ্যাডঅন কোন ভুল এবং {
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "আপনার অ্যাডঅন্সটি সমর্থিত হয়েছে কোনপ্রকার ভুল অথবা সাবধানবাণী ছাড়াই।"
-
-msgid "Your submission will be automatically signed."
-msgstr "আপনার জমা স্বয়ংক্রিয়ভাবে স্বাক্ষরিত হবে।"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""

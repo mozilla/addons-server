@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-07 16:30+0000\n"
+"POT-Creation-Date: 2021-09-14 15:25+0000\n"
 "PO-Revision-Date: 2020-12-09 23:25+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -93,9 +93,6 @@ msgstr[1] "A kiegészítő hiba nélkül és {0} üzenettel átment az ellenőrz
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "A kiegészítő hiba és figyelmeztetés nélkül átment az ellenőrzésen."
-
-msgid "Your submission will be automatically signed."
-msgstr "A benyújtása aláírására automatikusan sor kerül."
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Adjon meg részletes verzióinformációt (ezt a következő lépésben is megteheti)."

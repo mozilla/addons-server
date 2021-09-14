@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-07 16:30+0000\n"
+"POT-Creation-Date: 2021-09-14 15:25+0000\n"
 "PO-Revision-Date: 2021-06-22 14:34+0000\n"
 "Last-Translator: Paulina Rodriguez <pauli.rodriguez.c@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -92,9 +92,6 @@ msgstr[1] "Tu complemento fue validado sin errores y {0} mensajes."
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Tu complemento fue validado sin errores ni advertencias."
-
-msgid "Your submission will be automatically signed."
-msgstr "Tu envío se firmará automáticamente."
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Incluye notas detalladas de la versión (esto puede hacerse en el siguiente paso)."
