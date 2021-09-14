@@ -1,9 +1,11 @@
 from django.conf import settings
 from django.contrib import admin, messages
 from django.contrib.admin import SimpleListFilter
+from django.contrib.admin.views.main import ChangeList, ERROR_FLAG, PAGE_VAR
 from django.core.exceptions import FieldDoesNotExist
 from django.db.models import Count, Prefetch
 from django.http import Http404
+from django.http.request import QueryDict
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
 from django.urls import re_path, reverse
@@ -108,12 +110,29 @@ class ScannerRuleListFilter(admin.RelatedOnlyFieldListFilter):
         ]
 
 
-class ExcludeMatchedRuleFilter(SimpleListFilter):
-    title = gettext('all but results matching only this rule')
+class ExcludeMatchedRulesFilter(SimpleListFilter):
+    title = gettext('Excluding results solely matching these rules')
     parameter_name = 'exclude_rule'
+    template = 'admin/scanners/multiple_filter.html'
+
+    def __init__(self, request, params, *args):
+        # Django's implementation builds self.used_parameters by pop()ing keys
+        # from params, so we would normally only get a single value.
+        # We want the full list if a parameter is passed twice, to allow
+        # multiple values to be selected, so we rebuild self.used_parameters
+        # from request.GET ourselves, using .getlist() to get all values.
+        used_parameters = {}
+        if self.parameter_name in params:
+            used_parameters[self.parameter_name] = (
+                request.GET.getlist(self.parameter_name) or None
+            )
+        super().__init__(request, params, *args)
+        self.used_parameters = used_parameters
 
     def lookups(self, request, model_admin):
-        return [(None, 'No excluded rule')] + [
+        # None is not included, since it's a <select multiple> to remove all
+        # rules the user should deselect all <option> from the dropdown.
+        return [
             (rule.pk, f'{rule.name} ({rule.get_scanner_display()})')
             for rule in ScannerRule.objects.only('pk', 'scanner', 'name').order_by(
                 'scanner', 'name'
@@ -123,21 +142,23 @@ class ExcludeMatchedRuleFilter(SimpleListFilter):
     def choices(self, cl):
         for lookup, title in self.lookup_choices:
             selected = (
-                lookup is None if self.value() is None else self.value() == str(lookup)
+                lookup is None if self.value() is None else str(lookup) in self.value()
             )
             yield {
                 'selected': selected,
-                'query_string': cl.get_query_string({self.parameter_name: lookup}, []),
+                'value': lookup,
                 'display': title,
+                'params': cl.get_filters_params()
             }
 
     def queryset(self, request, queryset):
-        if self.value() is None:
+        value = self.value()
+        if value is None:
             return queryset
         # We want to exclude results that *only* matched the given rule, so
         # we know they'll have exactly one matched rule.
         return queryset.annotate(num_matches=Count('matched_rules')).exclude(
-            matched_rules=self.value(), num_matches=1
+            matched_rules__in=value, num_matches=1
         )
 
 
@@ -200,6 +221,52 @@ class FileIsSigned(admin.BooleanFieldListFilter):
         self.title = gettext('file signature')
 
 
+class ScannerResultChangeList(ChangeList):
+    def __init__(self, request, *args, **kwargs):
+        super().__init__(request, *args, **kwargs)
+        # django's ChangeList does:
+        # self.params = dict(request.GET.items())
+        # But we want to keep a QueryDict to not lose parameters present
+        # multiple times.
+        self.params = request.GET.copy()
+        # We have to re-apply what django does to self.params:
+        if PAGE_VAR in self.params:
+            del self.params[PAGE_VAR]
+        if ERROR_FLAG in self.params:
+            del self.params[ERROR_FLAG]
+
+    def get_query_string(self, new_params=None, remove=None):
+        # django's ChangeList.get_query_string() doesn't respect parameters
+        # that are present multiple times, e.g. ?foo=1&foo=2 - it expects
+        # self.params to be a dict.
+        # We set self.params to a QueryDict in __init__, and if it is a
+        # QueryDict, then we use a copy of django's implementation with just
+        # the last line changed to p.urlencode().
+        # We have to keep compatibility for when self.params is not a QueryDict
+        # yet, because this method is called once in __init__() before we have
+        # the chance to set self.params to a QueryDict. It doesn't matter for
+        # our use case (it's to generate an url with no filters at all but we
+        # have to support it.
+        if not isinstance(self.params, QueryDict):
+            return super().get_query_string(new_params=new_params, remove=remove)
+        if new_params is None:
+            new_params = {}
+        if remove is None:
+            remove = []
+        p = self.params.copy()
+        for r in remove:
+            for k in list(p):
+                if k.startswith(r):
+                    del p[k]
+        for k, v in new_params.items():
+            if v is None:
+                if k in p:
+                    del p[k]
+            else:
+                p[k] = v
+        return '?%s' % p.urlencode()
+
+
 class AbstractScannerResultAdminMixin(admin.ModelAdmin):
     actions = None
     view_on_site = False
@@ -237,6 +304,9 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
 
     class Media:
         css = {'all': ('css/admin/scannerresult.css',)}
+
+    def get_changelist(self, request, **kwargs):
+        return ScannerResultChangeList
 
     def get_queryset(self, request):
         # We already set list_select_related() so we don't need to repeat that.
@@ -676,7 +746,7 @@ class ScannerResultAdmin(AbstractScannerResultAdminMixin, admin.ModelAdmin):
         StateFilter,
         ('matched_rules', ScannerRuleListFilter),
         WithVersionFilter,
-        ExcludeMatchedRuleFilter,
+        ExcludeMatchedRulesFilter,
     )
 
 
