@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-14 15:24+0000\n"
-"PO-Revision-Date: 2021-09-14 18:57+0000\n"
+"PO-Revision-Date: 2021-09-14 19:08+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -2665,6 +2665,8 @@ msgid ""
 "You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
 "selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
+"Усе готово! ✨ Коли ви оприлюдните цю версію на %(site_domain)s, ви отримаєте електронний лист із підтвердженням. Зауважте, що до публікації може минути 24 години, або більше, якщо ваш додаток "
+"вибрано для перегляду вручну. Якщо ви не бачите електронного листа через 24 години, перевірте теку зі спамом."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr "Сторінка вашого додатка буде більш успішною, якщо додати детальний опис. Зробіть її готовою до публікації:"
@@ -2673,6 +2675,8 @@ msgstr "Сторінка вашого додатка буде більш усп�
 msgid ""
 "You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a %(a_attrs)s>creating an appealing listing</a> on Firefox Extension Workshop."
 msgstr ""
+"Ви можете розширити користувацьку бузу свого розширення, додавши детальний опис та знімки екрана на свою сторінку. Отримайте допомогу <a %(a_attrs)s>створивши принадний список</a> у центрі розширень"
+" Firefox."
 
 msgid "Manage Listing"
 msgstr "Керування опублікованими"
@@ -2688,9 +2692,11 @@ msgstr "Очікується підписання версії"
 
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
+"Усе готово! ✨ Ви отримаєте сповіщення електронною поштою, коли підписаний файл буде готовий для завантаження з Центру розробників. Якщо ви не бачите електронного листа через 24 години, перевірте "
+"теку зі спамом."
 
 msgid "As a reminder, your add-on is subject to manual review at any time."
-msgstr ""
+msgstr "Нагадуємо, що ваш додаток у будь-який час підлягає ручному огляду."
 
 msgid "Go to My Submissions"
 msgstr "Перейти в мої подання"
@@ -2702,7 +2708,7 @@ msgid "Do You Need to Submit Source Code?"
 msgstr "Вам необхідно відправити програмний код?"
 
 msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
-msgstr ""
+msgstr "Рецензенти додатків із Mozilla повинні мати змогу читати та відтворювати код вашого розширення. Якщо вони не матимуть такої змоги, ваше розширення може бути відхилено."
 
 msgid "Do you use any of the following in your extension?"
 msgstr "Чи використовуєте ви щось із наведеного у своєму розширенні?"
@@ -2723,7 +2729,7 @@ msgid "You do not need to submit Source Code, and you’re ready for the next st
 msgstr "Вам не треба відправляти програмний код і ви готові до наступного кроку."
 
 msgid "You must submit your extension's source code."
-msgstr ""
+msgstr "Ви повинні надіслати джерельний код розширення."
 
 msgid "Your source code must include:"
 msgstr "Ваш джерельний код повинен містити:"
@@ -2746,11 +2752,11 @@ msgid "Source files (aside from open-source third party libraries) cannot be tra
 msgstr "Початкові файли (окрім сторонніх бібліотек з відкритим джерельним кодом) не можна перетворювати, об'єднувати, зменшувати або іншим чином генерувати машиною."
 
 msgid "<strong>You can include build instructions in a README file in your source code</strong>, or in the reviewer notes on the next page."
-msgstr ""
+msgstr "<strong>Ви можете включити настанови зі збирання у файл README джерельного коду</strong> або у примітки для рецензентів на наступній сторінці."
 
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Для отримання додаткових відомостей прочитайте про <a %(a_attrs)s>Подання джерельного коду</a> у центрі розширень Firefox."
 
 msgid "How to Submit:"
 msgstr "Як подавати:"
