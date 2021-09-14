@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-14 15:24+0000\n"
-"PO-Revision-Date: 2021-09-14 18:37+0000\n"
+"PO-Revision-Date: 2021-09-14 18:57+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -2642,11 +2642,11 @@ msgstr "Для початку оберіть спосіб розповсюдже
 
 #, python-format
 msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing on Firefox Extension Workshop</a>."
-msgstr ""
+msgstr "Ви можете дізнатися більше про ці параметри, прочитавши <a %(a_attrs)s>Розповсюдження та підпис додатка у центрі розширень Firefox</a>."
 
 #, python-format
 msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
-msgstr ""
+msgstr "Усі додатки повинні відповідати <a %(a_attrs)s>Політиці щодо додатків Mozilla</a> і підлягають перегляду вручну в будь-який час після надсилання."
 
 msgid "Submission Complete"
 msgstr "Відправлення завершене"
