@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-07 16:30+0000\n"
+"POT-Creation-Date: 2021-09-14 15:25+0000\n"
 "PO-Revision-Date: 2021-04-09 00:33+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -93,9 +93,6 @@ msgstr[1] "Utvidinga di vart validert utan feil og {0} meldingar."
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Utvidinga di vart validert utan feil og meldingar."
-
-msgid "Your submission will be automatically signed."
-msgstr "Bidraget ditt vert automatisk signert."
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Inkluder detaljerte versjonsmerknadar (dette kan gjerast i neste steg)."

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-07 16:30+0000\n"
+"POT-Creation-Date: 2021-09-14 15:25+0000\n"
 "PO-Revision-Date: 2017-07-04 16:04+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -108,9 +108,6 @@ msgstr[4] "D'éirigh le do bhreiseán sa bhailíochtú gan earráid ar bith agus
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "D'éirigh le do bhreiseán sa bhailíochtú gan earráidí gan rabhaidh."
-
-msgid "Your submission will be automatically signed."
-msgstr "Síneofar do bhreiseán go huathoibríoch."
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Cuir nótaí eisiúna mionsonraithe leis (is féidir é seo a dhéanamh sa chéad chéim eile)."

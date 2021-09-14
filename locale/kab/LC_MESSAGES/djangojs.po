@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-07 16:30+0000\n"
+"POT-Creation-Date: 2021-09-14 15:25+0000\n"
 "PO-Revision-Date: 2020-12-14 19:42+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -93,9 +93,6 @@ msgstr[1] "Azegrir yettwasentem s war tuccḍiwin akked yeznan {0}."
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Azegrir yettwasentem s war tuccḍiwin neɣ ilɣa."
-
-msgid "Your submission will be automatically signed."
-msgstr "Tuzna-inek ad tettwazmel s wudem awurman."
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Seddu tizmilin n lqem leqqayen (aya yezmer ad yettwag deg umecwaṛ i d-itteddun)."

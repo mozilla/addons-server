@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-07 16:30+0000\n"
+"POT-Creation-Date: 2021-09-14 15:24+0000\n"
 "PO-Revision-Date: 2021-05-04 00:37+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -453,10 +453,6 @@ msgid "GUID %(guid)s is in a pending Submission"
 msgstr "GUID %(guid)s nitaq na"
 
 #, python-format
-msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
-msgstr "Ri peraj GUID %(guid)s xa xe ütz nisik'ïx, k'o chi ninuk' rik'in ri rumol rucholajem sipan taq q'aton."
-
-#, python-format
 msgid "Block with GUID %(guid)s not found"
 msgstr "Man xilitäj ta GUID %(guid)s"
 
@@ -483,12 +479,6 @@ msgstr "Xcholajïx Nik'oxïk"
 msgid "Review Unlisted"
 msgstr "Man Xcholajïx Ta Nik'oxïk"
 
-msgid "This block was imported from a regex based legacy Block."
-msgstr ""
-
-msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
-msgstr ""
-
 #, python-format
 msgid "Delete Multiple %(name)s"
 msgstr "Keyuj K'ïy Ruwäch %(name)s"
@@ -503,9 +493,6 @@ msgstr ""
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr "%(count)s Tz'aqat GUIDs man xilitäj ta"
-
-msgid "The following block(s) were imported from a regex based legacy Block."
-msgstr ""
 
 msgid "Save"
 msgstr "Tiyak"
@@ -544,9 +531,6 @@ msgstr "Tinuk' Peraj"
 
 msgid "versions"
 msgstr "Taq ruwäch"
-
-msgid "Included in legacy blocklist."
-msgstr ""
 
 msgid "{addon} was created."
 msgstr "{addon} xtz'uk."
@@ -1752,16 +1736,13 @@ msgstr ""
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
 msgstr ""
 
-msgid ""
-"On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
-"by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
+msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
 msgstr ""
-"Pa re ruxaq re'. <span class=\"helptext\">Chi rij ninik'öx ri b'itz'ib', t'ijtäq okisanela' xketikïr xkekitz'ët ri taq atzijol pa re ruxaq re' chuqa' pa ri Kinuk'samajel Kitz'aqat Firefox. Ja ri "
-"ruxaq xkesamajin ri yonil taq k'exoj. Ri t'zaqat xtichap chuqa' richin kitalunem chuqa' ch'akoj kimoloj ri Mozilla. Chuqa' ri taq yakb'äl enik'on xketalüx achi'el kichin.</span>"
 
 msgid ""
-"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
-msgstr "Awuma rat. <span class=\"helptext\">Re ruwäch re' xtijuch' richin nitalüx awuma. Ri taq k'exoj xkesamajïx chi q'ab'aj rik'in jun updateURL o chi kij taq ruk'exoj ri chokoy.</span>"
+"On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
+"on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
+msgstr ""
 
 msgid "Display Name"
 msgstr "Tik'ut B'i'aj"
@@ -2674,14 +2655,22 @@ msgstr "Re taq ch'utitzijol re' xkewachin pa ri tzijoxkil ruxaq."
 msgid "How to Distribute this Version"
 msgstr "Achike Rub'eyal Nitalüx re Ruwäch re'"
 
-msgid "More information on Add-on Distribution and Signing"
-msgstr "Ch'aqa' chik Etamab'äl chi rij ri Juch' chuqa' Rutaluxik Tz'aqat"
+msgid "To get started, select how you would like to distribute this version."
+msgstr ""
+
+#, python-format
+msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing on Firefox Extension Workshop</a>."
+msgstr ""
+
+#, python-format
+msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
+msgstr ""
 
 msgid "Submission Complete"
 msgstr "Xtaq Ronojel"
 
-msgid "Version Submitted for Review"
-msgstr "Xtaq Ruwäch richin Ninik'öx"
+msgid "Version Submitted"
+msgstr "Ruwäch Xtaq"
 
 msgid "Preview of the version submitted"
 msgstr "Nab'ey rutzub'al ri ruwäch xtaq"
@@ -2689,20 +2678,19 @@ msgstr "Nab'ey rutzub'al ri ruwäch xtaq"
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "¡Xk'achoj! Re ruwäch re' okel chik toq xtinik'öx. Xtitaq rutzijol chawe toq xtinik'öx."
 
-msgid "Version Submitted"
-msgstr "Ruwäch Xtaq"
-
-msgid "You’re done! This version will be available on our site shortly."
-msgstr "¡Xk'achoj! Re ruwäch re' xtiwachin yan pa ri ruxaq qak'amaya'l."
-
-msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr "¡Xk'achoj! Xtaq re ruwäch re' richin ninik'öx. Xtitzijöx chawe toq xtitz'aqatisäx runik'oxik o jun chi ke ri nik'onela' k'o ruk'utunik."
+#, python-format
+msgid ""
+"You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
+"selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr "Xtik'oje' ruchuqa' ri acholb'al we natz'aqatisaj jun jeb'ël rutzijoxkil. Tatz'ib'aj ri acholb'al richin nataluj:"
 
-msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr "Xtik'oje' ruchuqa' ri acholb'al we natz'aqatisaj jun jeb'ël rutzijoxkil chuqa' chapoj taq ruwäch. Tatz'ib'aj ri acholb'al richin nataluj:"
+#, python-format
+msgid ""
+"You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a %(a_attrs)s>creating an appealing listing</a> on Firefox Extension Workshop."
+msgstr ""
 
 msgid "Manage Listing"
 msgstr "Tinuk'samajïx Cholb'äl"
@@ -2718,9 +2706,11 @@ msgstr "Tinuk' ruwäch {0}"
 msgid "Version Signature Pending"
 msgstr "Ruwäch Juch'un"
 
-#, fuzzy
-msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
-msgstr "¡Xk'achoj! Re ruwäch re' okel chik toq xtinik'öx. Xtitaq rutzijol chawe toq xtinik'öx."
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
+
+msgid "As a reminder, your add-on is subject to manual review at any time."
+msgstr ""
 
 msgid "Go to My Submissions"
 msgstr "Kib'e pa Taq Nutaqoj"
@@ -2731,14 +2721,11 @@ msgstr "Tijotob'äx Ruxe'el B'itz'ib'"
 msgid "Do You Need to Submit Source Code?"
 msgstr ""
 
-msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
+msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
 msgstr ""
 
-#, python-format
-msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
-msgstr ""
-
-msgid "Do you use any of the following?"
+#, fuzzy
+msgid "Do you use any of the following in your extension?"
 msgstr "¿La xawokisaj jun chi ke re re'?"
 
 msgid "Code generators or minifiers"
@@ -2750,18 +2737,18 @@ msgstr ""
 msgid "Web template engines, both for HTML and CSS"
 msgstr ""
 
-msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
+msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the extension"
 msgstr ""
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
 msgstr ""
 
-msgid "Your Submission Requires Source Code."
+msgid "You must submit your extension's source code."
 msgstr ""
 
-#, python-format
-msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
-msgstr ""
+#, fuzzy
+msgid "Your source code must include:"
+msgstr "Xk'ex ri ruxe'el b'itz'ib'"
 
 msgid "Step-by-step build instructions to create an exact copy of the add-on code."
 msgstr ""
@@ -2772,12 +2759,17 @@ msgstr ""
 msgid "Operating system and build environment requirements."
 msgstr ""
 
-msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
-"\">npm</span> version used)."
+msgid "The required version and installation instructions of any programs used in the build process (such as <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis\">npm</span>)."
 msgstr ""
 
-msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
+msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
+msgstr ""
+
+msgid "<strong>You can include build instructions in a README file in your source code</strong>, or in the reviewer notes on the next page."
+msgstr ""
+
+#, python-format
+msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
 msgstr ""
 
 msgid "How to Submit:"
@@ -2822,9 +2814,6 @@ msgstr "Titz'uk jun Ruwäch Wachinel"
 
 msgid "Create a Theme"
 msgstr "Titz'uk jun Wachinel"
-
-msgid "Sign Add-on"
-msgstr "Tijux Tz'aqat"
 
 msgid "Theme generate"
 msgstr "Tib'an wachinel"
@@ -3322,9 +3311,6 @@ msgstr "Taq B'anikil & Taq Ruwäch"
 
 msgid "Edit this version"
 msgstr "Tinuk' re ruwäch re'"
-
-msgid "0 files"
-msgstr "0 taq yakb'äl"
 
 msgid "Re-enable Version"
 msgstr "Titzij-chik Ruwäch"

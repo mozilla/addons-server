@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-07 16:30+0000\n"
+"POT-Creation-Date: 2021-09-14 15:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -69,7 +69,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/common/upload-addon.js:283 static/js/common/upload-addon.js:636
+#: static/js/common/upload-addon.js:283 static/js/common/upload-addon.js:629
 msgid "See full validation report"
 msgstr ""
 
@@ -113,32 +113,28 @@ msgstr[1] ""
 msgid "Your add-on was validated with no errors or warnings."
 msgstr ""
 
-#: static/js/common/upload-addon.js:545
-msgid "Your submission will be automatically signed."
-msgstr ""
-
-#: static/js/common/upload-addon.js:555
+#: static/js/common/upload-addon.js:548
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
 
-#: static/js/common/upload-addon.js:558
+#: static/js/common/upload-addon.js:551
 msgid ""
 "If your add-on requires an account to a website in order to be fully tested, "
 "include a test username and password in the Notes to Reviewer (this can be "
 "done in the next step)."
 msgstr ""
 
-#: static/js/common/upload-addon.js:582
+#: static/js/common/upload-addon.js:575
 msgid "Add-on submission checklist"
 msgstr ""
 
-#: static/js/common/upload-addon.js:586
+#: static/js/common/upload-addon.js:579
 msgid ""
 "Please verify the following points before finalizing your submission. This "
 "will minimize delays or misunderstanding during the review process:"
 msgstr ""
 
-#: static/js/common/upload-addon.js:593
+#: static/js/common/upload-addon.js:586
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding "
 "known libraries) need to have their sources submitted separately for review. "
@@ -146,7 +142,7 @@ msgid ""
 "submission rejected."
 msgstr ""
 
-#: static/js/common/upload-addon.js:616
+#: static/js/common/upload-addon.js:609
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
 

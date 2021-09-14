@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-07 16:30+0000\n"
+"POT-Creation-Date: 2021-09-14 15:25+0000\n"
 "PO-Revision-Date: 2020-12-07 11:02+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
@@ -96,9 +96,6 @@ msgstr[1] "Votre module a été validé sans erreur et avec {0} messages."
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "La validation de votre extension s’est déroulée sans erreur ni avertissement."
-
-msgid "Your submission will be automatically signed."
-msgstr "Votre envoi sera signé automatiquement."
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Ajouter des notes de version détaillées (cela peut être fait à l’étape suivante)."

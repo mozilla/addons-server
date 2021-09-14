@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-07 16:30+0000\n"
+"POT-Creation-Date: 2021-09-14 15:25+0000\n"
 "PO-Revision-Date: 2021-06-28 10:43+0000\n"
 "Last-Translator: Rhoslyn Prys <rprys@posteo.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -111,9 +111,6 @@ msgstr[4] ""
 msgstr[5] ""
 
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
-
-msgid "Your submission will be automatically signed."
 msgstr ""
 
 msgid "Include detailed version notes (this can be done in the next step)."

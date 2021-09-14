@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-07 16:30+0000\n"
+"POT-Creation-Date: 2021-09-14 15:25+0000\n"
 "PO-Revision-Date: 2020-12-07 11:05+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -87,9 +87,6 @@ msgstr[0] "已驗證您的附加元件，無錯誤，有 {0} 條訊息。"
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "已驗證您的附加元件，無錯誤或警告。"
-
-msgid "Your submission will be automatically signed."
-msgstr "已自動簽署您送出的項目。"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "包含詳細的版本資訊（可以在下一步完成）。"

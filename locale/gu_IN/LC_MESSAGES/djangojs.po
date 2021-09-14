@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-07 16:30+0000\n"
+"POT-Creation-Date: 2021-09-14 15:25+0000\n"
 "PO-Revision-Date: 2020-05-22 16:38+0000\n"
 "Last-Translator: Siddhi Dave <siddhi_dave@yahoo.in>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -94,9 +94,6 @@ msgstr[1] "તમારા ઍડ-ઑનને કોઈ ભૂલો અને 
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "તમારા ઍડ-ઑનને કોઈ ભૂલો અથવા ચેતવણીઓ વગર માન્ય કરવામાં આવી હતી."
-
-msgid "Your submission will be automatically signed."
-msgstr "તમારું સબમિશન આપમેળે સાઇન થશે."
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "વિગતવાર આવૃત્તિ નોંધો શામેલ કરો(આ આગળના પગલામાં કરી શકાય છે)."

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-07 16:30+0000\n"
+"POT-Creation-Date: 2021-09-14 15:24+0000\n"
 "PO-Revision-Date: 2021-05-02 18:58+0000\n"
 "Last-Translator: Kim YoungCheon <circcc@gmail.com>\n"
 "Language-Team: none\n"
@@ -453,10 +453,6 @@ msgid "GUID %(guid)s is in a pending Submission"
 msgstr "GUID %(guid)s가 제출 보류 중"
 
 #, python-format
-msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
-msgstr "GUID %(guid)s 에 대한 블록은 읽기 전용입니다 - 기존 블록리스트 컬렉션을 통해 수정해야합니다."
-
-#, python-format
 msgid "Block with GUID %(guid)s not found"
 msgstr "GUID %(guid)s 가 있는 블록을 찾을 수 없음"
 
@@ -483,12 +479,6 @@ msgstr "검토목록"
 msgid "Review Unlisted"
 msgstr "미등록 검토"
 
-msgid "This block was imported from a regex based legacy Block."
-msgstr "이 블록은 정규식 기반 레거시 블록에서 가져오기 했습니다."
-
-msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
-msgstr "변경 사항은 레거시 차단 목록에서 업데이트되지 않습니다. kinto 관리 webui를 통해 수동으로 변경 해주시기 바랍니다."
-
 #, python-format
 msgid "Delete Multiple %(name)s"
 msgstr "여러 %(name)s 삭제하기"
@@ -503,9 +493,6 @@ msgstr "%(count)s 추가 기능 GUIDs가 %(v_min)s에서 %(v_max)s까지 이미 
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr "%(count)s 부가기능 GUIDs 찾을 수 없음"
-
-msgid "The following block(s) were imported from a regex based legacy Block."
-msgstr "이 블록은 정규식 기반의 레거시 블록에서 가져오기 했습니다."
 
 msgid "Save"
 msgstr "저장"
@@ -546,9 +533,6 @@ msgstr "블록 편집"
 #, fuzzy
 msgid "versions"
 msgstr "버전"
-
-msgid "Included in legacy blocklist."
-msgstr "기존 블록리스트에 포함됩니다."
 
 msgid "{addon} was created."
 msgstr "{addon}이(가) 제작되었습니다."
@@ -1749,13 +1733,12 @@ msgstr ""
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
 msgstr ""
 
-msgid ""
-"On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
-"by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
+msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
 msgstr ""
 
 msgid ""
-"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+"On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
+"on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
 
 msgid "Display Name"
@@ -2676,14 +2659,22 @@ msgstr "이 노트는 상세정보 페이지에 노출됩니다."
 msgid "How to Distribute this Version"
 msgstr "이 버전을 배포하는 방법"
 
-msgid "More information on Add-on Distribution and Signing"
-msgstr "부가 기능 배포와 등록에 대한 더 많은 정보"
+msgid "To get started, select how you would like to distribute this version."
+msgstr ""
+
+#, python-format
+msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing on Firefox Extension Workshop</a>."
+msgstr ""
+
+#, python-format
+msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
+msgstr ""
 
 msgid "Submission Complete"
 msgstr "등록 완료"
 
-msgid "Version Submitted for Review"
-msgstr "검토를 위해 제출된 버전"
+msgid "Version Submitted"
+msgstr "버전 제출됨"
 
 msgid "Preview of the version submitted"
 msgstr "제출된 버전 미리보기"
@@ -2691,21 +2682,20 @@ msgstr "제출된 버전 미리보기"
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr ""
 
-msgid "Version Submitted"
-msgstr "버전 제출됨"
-
-msgid "You’re done! This version will be available on our site shortly."
+#, python-format
+msgid ""
+"You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
+"selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
-
-msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr "다 되었습니다! 이 버전은 검토를 위해 제출되었으며, 검토가 끝난 뒤 혹은 검토자들이 제출물에 대해 질문이 있을 시 알려드리게 될 것입니다."
 
 #, fuzzy
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr "자세한 설명과 스크린샷이 추가된다면 목록에서 더 성공적일 것입니다. 게시를 위한 목록을 준비하세요:"
 
-msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr "자세한 설명과 스크린샷이 추가된다면 목록에서 더 성공적일 것입니다. 게시를 위한 목록을 준비하세요:"
+#, python-format
+msgid ""
+"You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a %(a_attrs)s>creating an appealing listing</a> on Firefox Extension Workshop."
+msgstr ""
 
 msgid "Manage Listing"
 msgstr "목록 관리"
@@ -2721,7 +2711,10 @@ msgstr "버전 {0} 수정"
 msgid "Version Signature Pending"
 msgstr "버전 사인됨"
 
-msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
+
+msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr ""
 
 msgid "Go to My Submissions"
@@ -2733,14 +2726,11 @@ msgstr "소스 코드 업로드"
 msgid "Do You Need to Submit Source Code?"
 msgstr ""
 
-msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
+msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
 msgstr ""
 
-#, python-format
-msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
-msgstr ""
-
-msgid "Do you use any of the following?"
+#, fuzzy
+msgid "Do you use any of the following in your extension?"
 msgstr "다음 중 하나라도 사용합니까?"
 
 msgid "Code generators or minifiers"
@@ -2752,18 +2742,18 @@ msgstr ""
 msgid "Web template engines, both for HTML and CSS"
 msgstr "HTML 및 CSS 용 웹 템플릿 엔진"
 
-msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
+msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the extension"
 msgstr ""
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
 msgstr ""
 
-msgid "Your Submission Requires Source Code."
+msgid "You must submit your extension's source code."
 msgstr ""
 
-#, python-format
-msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
-msgstr ""
+#, fuzzy
+msgid "Your source code must include:"
+msgstr "소스 코드가 업로드 됨"
 
 msgid "Step-by-step build instructions to create an exact copy of the add-on code."
 msgstr ""
@@ -2774,12 +2764,17 @@ msgstr ""
 msgid "Operating system and build environment requirements."
 msgstr ""
 
-msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
-"\">npm</span> version used)."
+msgid "The required version and installation instructions of any programs used in the build process (such as <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis\">npm</span>)."
 msgstr ""
 
-msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
+msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
+msgstr ""
+
+msgid "<strong>You can include build instructions in a README file in your source code</strong>, or in the reviewer notes on the next page."
+msgstr ""
+
+#, python-format
+msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
 msgstr ""
 
 msgid "How to Submit:"
@@ -2826,9 +2821,6 @@ msgstr "테마 버전 만들기"
 
 msgid "Create a Theme"
 msgstr "테마 만들기"
-
-msgid "Sign Add-on"
-msgstr "부가 기능 사인"
 
 msgid "Theme generate"
 msgstr "테마 생성"
@@ -3336,9 +3328,6 @@ msgstr "상태 및 버전"
 
 msgid "Edit this version"
 msgstr "이 버전 편집하기"
-
-msgid "0 files"
-msgstr "파일 0개"
 
 #, fuzzy
 msgid "Re-enable Version"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-07 16:30+0000\n"
+"POT-Creation-Date: 2021-09-14 15:25+0000\n"
 "PO-Revision-Date: 2021-08-23 17:29+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -92,9 +92,6 @@ msgstr[1] "మీ పొడిగింత లోపాలు మరియు {0
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "లోపాలు లేదా హెచ్చరికలతో మీ పొడిగింత ధృవీకరించబడింది."
-
-msgid "Your submission will be automatically signed."
-msgstr "మీ సమర్పణ స్వయంచాలకంగా సంతకం చేయబడుతుంది."
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "వివరణాత్మక వెర్షన్ గమనికలను చేర్చండి (ఇది తరువాతి దశలో చేయవచ్చు)."

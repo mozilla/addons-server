@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-07 16:30+0000\n"
+"POT-Creation-Date: 2021-09-14 15:25+0000\n"
 "PO-Revision-Date: 2021-05-11 07:16+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -92,9 +92,6 @@ msgstr[1] "Lisäosasi tarkistus suoritettiin virheittä ja ilmeni {0} ilmoitusta
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Lisäosasi tarkistus suoritettiin ilman virheitä tai varoituksia."
-
-msgid "Your submission will be automatically signed."
-msgstr "Hakemuksesi allekirjoitetaan automaattisesti."
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""

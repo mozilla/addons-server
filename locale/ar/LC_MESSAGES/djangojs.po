@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-07 16:30+0000\n"
+"POT-Creation-Date: 2021-09-14 15:25+0000\n"
 "PO-Revision-Date: 2020-10-09 05:46+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: <doc@arabeyes.org>\n"
@@ -113,9 +113,6 @@ msgstr[5] "اكتمل التثبّت من إضافتك بدون أي أخطاء�
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "اكتمل التثبّت من إضافتك بدون أي أخطاء أو رسائل."
-
-msgid "Your submission will be automatically signed."
-msgstr "سيُوقّع ما تُرسله تلقائيًا."
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "فيه ملاحظات الإصدارة المفصّلة (يمكنك تأجيل هذا للخطوة القادمة)."

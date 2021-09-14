@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-07 16:30+0000\n"
+"POT-Creation-Date: 2021-09-14 15:25+0000\n"
 "PO-Revision-Date: 2021-02-13 02:14+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -97,9 +97,6 @@ msgstr[2] "Ваш додаток пройшов перевірку без пом
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Ваш додаток пройшов перевірку без помилок чи застережень."
-
-msgid "Your submission will be automatically signed."
-msgstr "Ваше подання буде автоматично підписане."
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Включити детальні примітки до випуску (це може бути зроблено в наступному кроці)."

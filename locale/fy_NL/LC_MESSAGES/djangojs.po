@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-07 16:30+0000\n"
+"POT-Creation-Date: 2021-09-14 15:25+0000\n"
 "PO-Revision-Date: 2021-05-15 19:16+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -92,9 +92,6 @@ msgstr[1] "Jo add-on is falidearre sûnder flaters en mei {0} berjochten."
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Jo add-on is falidearre sûnder flaters of warskôgingen."
-
-msgid "Your submission will be automatically signed."
-msgstr "Jo ynstjoering sil automatysk ûndertekene wurde."
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Nim detaillearre ferzjeopmerkingen op (dit kinne jo yn de folgjende stap dwaan)."
