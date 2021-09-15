@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-14 15:24+0000\n"
-"PO-Revision-Date: 2021-09-15 12:27+0000\n"
+"PO-Revision-Date: 2021-09-15 12:36+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2632,11 +2632,11 @@ msgstr "Pro comenciar, elige como tu vole distribuer iste version."
 
 #, python-format
 msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing on Firefox Extension Workshop</a>."
-msgstr ""
+msgstr "Tu pote saper plus re iste optiones legente <a %(a_attrs)s>Distribution de additivo e signatura sur Seminario de extensiones de Firefox</a>."
 
 #, python-format
 msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
-msgstr ""
+msgstr "Tote le additivos debe se conformar con con le <a %(a_attrs)s> Criterios de additivo de Mozilla</a> e sempre es subjecte al revision manual post le invio."
 
 msgid "Submission Complete"
 msgstr "Submission complete"
@@ -2655,6 +2655,8 @@ msgid ""
 "You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
 "selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
+"Tu ha finite! ✨Tu recipera un e-mail de confirmation quando iste version es publicate sur %(site_domain)s. Nota que il pote prender fin 24 horas ante que le publication occurre, o plus tempore si tu"
+" additivo es seligite pro revision manual. Si tu non vide un e-mail post 24 horas, verifica tu plica de SPAM."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr "Tu lista de presentation habera plus successo per le addition de un detaliate description. Rende tu lista de presentation preste pro le publication:"
