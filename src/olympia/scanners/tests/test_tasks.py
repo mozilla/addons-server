@@ -30,7 +30,7 @@ from olympia.constants.scanners import (
     YARA,
 )
 from olympia.files.models import File
-from olympia.files.tests.test_models import UploadTest
+from olympia.files.tests.test_models import UploadMixin
 from olympia.scanners.models import (
     ScannerQueryResult,
     ScannerQueryRule,
@@ -51,7 +51,7 @@ from olympia.scanners.tasks import (
 from olympia.versions.models import Version
 
 
-class TestRunScanner(UploadTest, TestCase):
+class TestRunScanner(UploadMixin, TestCase):
     FAKE_SCANNER = 1
     MOCK_SCANNERS = {FAKE_SCANNER: 'fake-scanner'}
     API_URL = 'http://scanner.example.org'
@@ -289,7 +289,7 @@ class TestRunWat(TestCase):
         assert returned_results == self.results
 
 
-class TestRunYara(UploadTest, TestCase):
+class TestRunYara(UploadMixin, TestCase):
     def setUp(self):
         super().setUp()
 
@@ -818,7 +818,7 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         assert self.rule.state == NEW  # Not touched by this task.
 
 
-class TestCallMadApi(UploadTest, TestCase):
+class TestCallMadApi(UploadMixin, TestCase):
     def setUp(self):
         super().setUp()
 

@@ -285,7 +285,7 @@ class Version(OnChangeMixin, ModelBase):
                     'guid': addon.guid,
                     'upload': upload.uuid.hex,
                     'user_id': upload.user_id,
-                    'from_api': upload.source == amo.UPLOAD_SOURCE_API,
+                    'from_api': upload.source == amo.UPLOAD_SOURCE_SIGNING_API,
                 },
             )
             activity.log_create(
@@ -510,29 +510,6 @@ class Version(OnChangeMixin, ModelBase):
                 amo.D2C_MIN_VERSIONS.get(app.id, '*')
             )
         return False
-
-    def compat_override_app_versions(self):
-        """Returns the incompatible app versions range(s).
-
-        If not ranges, returns empty list.  Otherwise, this will return all
-        the app version ranges that this particular version is incompatible
-        with.
-        """
-        overrides = list(self.addon.compatoverride_set.all())
-
-        if not overrides:
-            return []
-
-        app_versions = []
-        for co in overrides:
-            for range in co.collapsed_ranges():
-                if (
-                    version_int(range.min)
-                    <= version_int(self.version)
-                    <= version_int(range.max)
-                ):
-                    app_versions.extend([(a.min, a.max) for a in range.apps])
-        return app_versions
 
     def is_public(self):
         # To be public, a version must not be deleted, must belong to a public

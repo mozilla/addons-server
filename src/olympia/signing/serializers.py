@@ -11,7 +11,7 @@ from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.files.models import FileUpload
 
 
-class FileUploadSerializer(serializers.ModelSerializer):
+class SigningFileUploadSerializer(serializers.ModelSerializer):
     guid = serializers.CharField(source='addon.guid')
     active = serializers.SerializerMethodField()
     url = serializers.SerializerMethodField()

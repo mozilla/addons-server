@@ -36,7 +36,7 @@ from olympia.constants.categories import CATEGORIES
 from olympia.constants.promoted import LINE, NOT_PROMOTED, RECOMMENDED, SPONSORED
 from olympia.devhub.models import RssKey
 from olympia.files.models import File
-from olympia.files.tests.test_models import UploadTest
+from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import Extractor, parse_addon
 from olympia.git.models import GitExtractionEntry
 from olympia.promoted.models import PromotedAddon
@@ -2396,7 +2396,7 @@ class TestListedAddonTwoVersions(TestCase):
         Addon.objects.get(id=2795)  # bug 563967
 
 
-class TestAddonFromUpload(UploadTest):
+class TestAddonFromUpload(UploadMixin, TestCase):
     fixtures = ['base/users']
 
     @classmethod

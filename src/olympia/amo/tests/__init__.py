@@ -52,6 +52,7 @@ from olympia.amo.reverse import get_url_prefix, set_url_prefix
 from olympia.amo.urlresolvers import Prefixer
 from olympia.amo.storage_utils import copy_stored_file
 from olympia.addons.tasks import compute_last_updated, unindex_addons
+from olympia.api.tests import JWTAuthKeyTester
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES
@@ -353,6 +354,30 @@ class APITestClient(APIClient):
         Removes the Authorization header from future requests.
         """
         self.defaults.pop('HTTP_AUTHORIZATION', None)
+
+
+class JWTAPITestClient(JWTAuthKeyTester, APIClient):
+    api_key = None
+
+    @property
+    def _credentials(self):
+        if not self.api_key:
+            return {}
+        token = self.create_auth_token(
+            self.api_key.user, self.api_key.key, self.api_key.secret
+        )
+        return {'HTTP_AUTHORIZATION': f'JWT {token}'}
+
+    @_credentials.setter
+    def _credentials(self, value):
+        # ignore setting the value
+        pass
+
+    def login_api(self, user):
+        self.api_key = self.create_api_key(user, str(user.pk) + ':f')
+
+    def logout_api(self):
+        self.api_key = None
 
 
 def days_ago(days):

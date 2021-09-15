@@ -35,7 +35,7 @@ from olympia.constants.promoted import (
 )
 from olympia.constants.scanners import CUSTOMS, WAT, YARA, MAD
 from olympia.files.models import File, FileUpload
-from olympia.files.tests.test_models import UploadTest
+from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
 from olympia.promoted.models import PromotedApproval
 from olympia.reviewers.models import AutoApprovalSummary
@@ -1106,7 +1106,7 @@ def test_unreviewed_files(db, addon_status, file_status, is_unreviewed):
     assert file_.reload().status == file_status
 
 
-class TestVersionFromUpload(UploadTest, TestCase):
+class TestVersionFromUpload(UploadMixin, TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     @classmethod
@@ -1236,7 +1236,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         self.upload.update(
             user=user,
             ip_address='5.6.7.8',
-            source=amo.UPLOAD_SOURCE_API,
+            source=amo.UPLOAD_SOURCE_SIGNING_API,
         )
         version = Version.from_upload(
             self.upload,
@@ -1768,7 +1768,7 @@ class TestPermissionsFromUpload(TestVersionFromUpload):
         assert 'devtools' in permissions
 
 
-class TestStaticThemeFromUpload(UploadTest):
+class TestStaticThemeFromUpload(UploadMixin, TestCase):
     @classmethod
     def setUpTestData(cls):
         versions = {

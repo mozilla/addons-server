@@ -38,7 +38,7 @@ from olympia.devhub.decorators import dev_required
 from olympia.devhub.models import BlogPost
 from olympia.devhub.views import get_next_version_number
 from olympia.files.models import FileUpload
-from olympia.files.tests.test_models import UploadTest as BaseUploadTest
+from olympia.files.tests.test_models import UploadMixin
 from olympia.ratings.models import Rating
 from olympia.translations.models import Translation, delete_translation
 from olympia.users.models import IPNetworkUserRestriction, UserProfile
@@ -1139,7 +1139,7 @@ class TestAPIKeyPage(TestCase):
         assert 'revoked' in mail.outbox[0].body
 
 
-class TestUpload(BaseUploadTest):
+class TestUpload(UploadMixin, TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
@@ -1215,7 +1215,7 @@ class TestUpload(BaseUploadTest):
         assert not validate_mock.call_args[1]['listed']
 
 
-class TestUploadDetail(BaseUploadTest):
+class TestUploadDetail(UploadMixin, TestCase):
     fixtures = ['base/appversion', 'base/users']
 
     @classmethod

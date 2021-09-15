@@ -27,7 +27,7 @@ from olympia.devhub.views import handle_upload as devhub_handle_upload
 from olympia.devhub.permissions import IsSubmissionAllowedFor
 from olympia.files.models import FileUpload
 from olympia.files.utils import parse_addon
-from olympia.signing.serializers import FileUploadSerializer
+from olympia.signing.serializers import SigningFileUploadSerializer
 from olympia.versions import views as version_views
 from olympia.versions.models import Version
 
@@ -145,7 +145,9 @@ class VersionView(APIView):
                 {'error': exc.message}, status=exc.code or status.HTTP_400_BAD_REQUEST
             )
 
-        serializer = FileUploadSerializer(file_upload, context={'request': request})
+        serializer = SigningFileUploadSerializer(
+            file_upload, context={'request': request}
+        )
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     @with_addon(allow_missing=True)
@@ -161,7 +163,9 @@ class VersionView(APIView):
 
         status_code = status.HTTP_201_CREATED if created else status.HTTP_202_ACCEPTED
 
-        serializer = FileUploadSerializer(file_upload, context={'request': request})
+        serializer = SigningFileUploadSerializer(
+            file_upload, context={'request': request}
+        )
         return Response(serializer.data, status=status_code)
 
     @use_primary_db
@@ -304,7 +308,7 @@ class VersionView(APIView):
             addon=addon,
             submit=True,
             channel=channel,
-            source=amo.UPLOAD_SOURCE_API,
+            source=amo.UPLOAD_SOURCE_SIGNING_API,
         )
 
         return file_upload, created
@@ -343,7 +347,7 @@ class VersionView(APIView):
         except Version.DoesNotExist:
             version = None
 
-        serializer = FileUploadSerializer(
+        serializer = SigningFileUploadSerializer(
             file_upload, version=version, context={'request': request}
         )
         return Response(serializer.data)

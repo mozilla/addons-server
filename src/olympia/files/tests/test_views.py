@@ -3,7 +3,7 @@ from django.urls import reverse
 
 from olympia.amo.tests import TestCase
 
-from .test_models import UploadTest
+from .test_models import UploadMixin
 
 
 files_fixtures = 'src/olympia/files/fixtures/files/'
@@ -12,7 +12,7 @@ not_binary = 'install.js'
 binary = 'dictionaries/ar.dic'
 
 
-class TestServeFileUpload(UploadTest, TestCase):
+class TestServeFileUpload(UploadMixin, TestCase):
     def setUp(self):
         super().setUp()
 
