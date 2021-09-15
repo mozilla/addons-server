@@ -73,7 +73,7 @@ class Command(BaseCommand):
             print('Skipping %s (version already exists' % data['version'])
             return
 
-        files_data = data['files'][0]
+        files_data = data['file']
         file_kw = {
             'hash': files_data['hash'],
             'filename': basename(urlparse(files_data['url']).path),

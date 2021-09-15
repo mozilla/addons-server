@@ -425,6 +425,7 @@ These are `v5` specific changes - `v4` changes apply also.
 * 2021-08-05: added ``ratings`` and ``users`` query parameters to addon search api. https://github.com/mozilla/addons-server/issues/17497
 * 2021-08-05: removed ``criteria`` from shelves endpoint. https://github.com/mozilla/addons-server/issues/17498
 * 2021-08-12: removed ``is_restart_required`` from addons endpoints. https://github.com/mozilla/addons-server/issues/17390
+* 2021-09-23: flattened ``files`` in version detail from an array to a single ``file``. https://github.com/mozilla/addons-server/issues/17839
 
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/

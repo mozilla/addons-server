@@ -7119,7 +7119,7 @@ class TestReviewAddonVersionViewSetDetail(
         )
 
         # make sure we only returned `id` and `file` properties
-        assert len(result.keys()) == 2
+        assert len(result.keys()) == 3  # temporarily we have an extra 'files' item
 
     def test_file_only_false(self):
         user = UserProfile.objects.create(username='reviewer')
@@ -8214,7 +8214,7 @@ class TestReviewAddonVersionCompareViewSet(
         assert change['type'] == 'insert'
 
         # make sure we only returned `id` and `file` properties
-        assert len(result.keys()) == 2
+        assert len(result.keys()) == 3  # temporarily we have an extra 'files' item
 
     def test_file_only_false(self):
         user = UserProfile.objects.create(username='reviewer')
