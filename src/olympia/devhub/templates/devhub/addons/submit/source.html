@@ -53,7 +53,7 @@
         {% endtrans %}
         </p>
         <ul>
-            <li>{% trans %}Step-by-step build instructions to create an exact copy of the add-on code.{% endtrans %}</li>
+            <li>{% trans %}Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page.{% endtrans %}</li>
             <li>{% trans %}A build script that executes all necessary technical steps.{% endtrans %}</li>
             <li>{% trans %}Operating system and build environment requirements.{% endtrans %}</li>
             <li>{% trans %}The required version and installation instructions of any programs used in the build process (such as <span class="tech-emphasis">node</span> and <span class="tech-emphasis">npm</span>).{% endtrans %}</li>
@@ -64,24 +64,8 @@
             {% endtrans %}
         </p>
         <p>
-            {% trans %}
-                <strong>You can include build instructions in a README file in your source code</strong>, or in the reviewer notes on the next page.
-            {% endtrans %}
-        </p>
-        <p>
             {% trans a_attrs='href="%s/documentation/publish/source-code-submission?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=submission" target="_blank" rel="noopener noreferrer"'|format(settings.EXTENSION_WORKSHOP_URL)|safe %}
                 For more information, please read <a {{a_attrs}}>Source Code Submission</a> on Firefox Extension Workshop.
-            {% endtrans %}
-        </p>
-        <h3>{{ _('How to Submit:') }}</h3>
-        <p>
-            <span class="instruction-emphasis">
-            {% trans %}
-                Include instructions in a README file in the source code,
-            {% endtrans %}
-            </span>
-            {% trans %}
-                or in reviewer notes on the next page (if applicable).
             {% endtrans %}
         </p>
         <p>
