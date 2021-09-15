@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-14 15:24+0000\n"
-"PO-Revision-Date: 2021-09-15 02:13+0000\n"
+"PO-Revision-Date: 2021-09-15 02:25+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -2629,7 +2629,7 @@ msgid "You’re done! ✨ You will be notified by email when the signed file is 
 msgstr ""
 
 msgid "As a reminder, your add-on is subject to manual review at any time."
-msgstr ""
+msgstr "提醒一下，您的附加组件会随时接受人工审核。"
 
 msgid "Go to My Submissions"
 msgstr "转至我的提交"
