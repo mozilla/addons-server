@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-14 15:24+0000\n"
-"PO-Revision-Date: 2021-09-15 02:25+0000\n"
+"PO-Revision-Date: 2021-09-15 15:15+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -2577,7 +2577,7 @@ msgid "How to Distribute this Version"
 msgstr "如何分发此版本"
 
 msgid "To get started, select how you would like to distribute this version."
-msgstr ""
+msgstr "首先，请选择您要如何分发此版本。"
 
 #, python-format
 msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing on Firefox Extension Workshop</a>."
@@ -2641,7 +2641,7 @@ msgid "Do You Need to Submit Source Code?"
 msgstr "您需要提交源代码吗？"
 
 msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
-msgstr ""
+msgstr "Mozilla 的附加组件审核者需能够阅读和复现您扩展的代码。若不能，您的扩展可能会被驳回。"
 
 msgid "Do you use any of the following in your extension?"
 msgstr "是否在扩展开发中使用过下列任一工具？"
@@ -2683,11 +2683,11 @@ msgid "Source files (aside from open-source third party libraries) cannot be tra
 msgstr "源文件（不含第三方开源库）请勿转译（transpile）、拼接（concatenate）、压缩（minify）或使用机器生成源代码。"
 
 msgid "<strong>You can include build instructions in a README file in your source code</strong>, or in the reviewer notes on the next page."
-msgstr ""
+msgstr "<strong>您可以在源代码里的 README 文件包含构建步骤信息</strong>，或是在下一步的审核者备注中说明。"
 
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "若需更多信息，请阅读 Firefox 扩展工坊的 <a %(a_attrs)s>Source Code Submission</a> 一文。"
 
 msgid "How to Submit:"
 msgstr "如何提交："
