@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-14 15:24+0000\n"
-"PO-Revision-Date: 2021-09-15 12:41+0000\n"
+"PO-Revision-Date: 2021-09-15 12:53+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2697,11 +2697,10 @@ msgid "Do You Need to Submit Source Code?"
 msgstr "Debe tu inviar codice fonte?"
 
 msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
-msgstr ""
+msgstr "Le  revisores del additivos de Mozilla besonia de poter leger e reproducer le codice in tu extension. Si illes non pote, tu extension pote esser rejectate."
 
-#, fuzzy
 msgid "Do you use any of the following in your extension?"
-msgstr "Usa tu alcun del sequentes?"
+msgstr "Usa tu ulle del sequente in tu extension?"
 
 msgid "Code generators or minifiers"
 msgstr "Generatores de codice o minificatores"
@@ -2712,15 +2711,14 @@ msgstr "Applicationes que combina plure files in un singule file, tal como <span
 msgid "Web template engines, both for HTML and CSS"
 msgstr "Motores de modellos de web, ambe pro HTML e CSS"
 
-#, fuzzy
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the extension"
-msgstr "Omne altere application que prende codice o files, processa los, e genera codice o file(s) a includer in le additivo"
+msgstr "Omne altere application que prende codice o files, processa los, e genera codice o file(s) a includer in le extension"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
 msgstr "Tu non necessita de inviar codice fonte, e tu es preste pro le grado successive."
 
 msgid "You must submit your extension's source code."
-msgstr ""
+msgstr "Tu debe inviar tu codification fonte del extension."
 
 #, fuzzy
 msgid "Your source code must include:"
@@ -2748,11 +2746,11 @@ msgstr ""
 "generate automaticamente."
 
 msgid "<strong>You can include build instructions in a README file in your source code</strong>, or in the reviewer notes on the next page."
-msgstr ""
+msgstr "<strong>Tu pote includer instructiones pro construer  in un file LEGE_ME in tu codification fonte</strong>, o in le notas de revisor sur le pagina sequente."
 
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "<strong>Tu pote includer instructiones pro construer  in un file LEGE_ME in tu codification fonte</strong>, o in le notas de revisor sur le pagina sequente."
 
 msgid "How to Submit:"
 msgstr "Como submitter:"
