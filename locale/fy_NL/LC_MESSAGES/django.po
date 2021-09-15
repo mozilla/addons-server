@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-14 15:24+0000\n"
-"PO-Revision-Date: 2021-09-15 07:10+0000\n"
+"PO-Revision-Date: 2021-09-15 10:31+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -1724,7 +1724,7 @@ msgid "Ensure name and summary combined are at most {limit_value} characters (th
 msgstr "Soargje derfoar dat namme en gearfetting tegearre op syn heechst {limit_value} tekens bestiet (se hawwe no {show_value})."
 
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
-msgstr ""
+msgstr "Op dizze website. <span class=\"helptext\">Jo ynstjoering wurdt iepenbier fermeld op {site_domain}.</span>"
 
 msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
