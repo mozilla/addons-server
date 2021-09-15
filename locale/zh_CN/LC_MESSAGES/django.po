@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-14 15:24+0000\n"
-"PO-Revision-Date: 2021-09-15 15:26+0000\n"
+"PO-Revision-Date: 2021-09-15 15:28+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -2611,7 +2611,7 @@ msgstr "添加更详细的描述可以使您上架的项目更加成功。请准
 #, python-format
 msgid ""
 "You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a %(a_attrs)s>creating an appealing listing</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "可在上架信息中添加更多描述和屏幕截图吸引更多用户。若需更多帮助。请参考 Firefox 扩展工坊的 <a %(a_attrs)s>creating an appealing listing</a>一文。"
 
 msgid "Manage Listing"
 msgstr "管理上架"
