@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-14 15:24+0000\n"
-"PO-Revision-Date: 2021-09-15 05:01+0000\n"
+"PO-Revision-Date: 2021-09-15 07:11+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -2152,7 +2152,7 @@ msgid "Tags"
 msgstr "標籤"
 
 msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
-msgstr ""
+msgstr "使用標籤，可幫助使用者找到您的附加元件。您可以設定最多 {0} 組標籤。請只輸入與您的附加元件相關的標籤名稱。"
 
 msgid "Limit {0} tags."
 msgstr "最多 {0} 個標籤。"
@@ -2594,15 +2594,15 @@ msgid "How to Distribute this Version"
 msgstr "如何散布此版本"
 
 msgid "To get started, select how you would like to distribute this version."
-msgstr ""
+msgstr "要開始上架，請先選擇您要如何發布此版本。"
 
 #, python-format
 msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing on Firefox Extension Workshop</a>."
-msgstr ""
+msgstr "請閱讀 Firefox Extension Workshop 的 <a %(a_attrs)s>Add-on Distribution and Signing</a> 一文來了解更多這些選項間的差異。"
 
 #, python-format
 msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
-msgstr ""
+msgstr "所有附加元件必須遵守 <a %(a_attrs)s>Mozilla 的附加元件政策</a>，上架後隨時皆有可能被要求進行人工審核。"
 
 msgid "Submission Complete"
 msgstr "送出完成"
@@ -2620,7 +2620,7 @@ msgstr "搞定！此版本通過審核後就會在網站上出現。您將會在
 msgid ""
 "You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
 "selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
+msgstr "完成了！✨此版本於 %(site_domain)s 發布後，您將會收到確認郵件。請注意：可能需要 24 小時才能正式發布；此附加元件需進行人工審核的話，則可能需要更多時間。若您沒有在 24 小時內收到確認信的話，請到您信箱的垃圾信件匣確認。"
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr "加上詳細的描述可讓您的上架項目更加成功。準備好上架資訊後即可公開:"
@@ -2628,7 +2628,7 @@ msgstr "加上詳細的描述可讓您的上架項目更加成功。準備好上
 #, python-format
 msgid ""
 "You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a %(a_attrs)s>creating an appealing listing</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "可在上架資訊中加入更多描述與畫面擷圖來吸引更多使用者。若需更多幫助，請參考 Firefox Extension Workshop 的 <a %(a_attrs)s>creating an appealing listing</a>一文。"
 
 msgid "Manage Listing"
 msgstr "管理上架資訊"
@@ -2643,10 +2643,10 @@ msgid "Version Signature Pending"
 msgstr "等待版本簽名"
 
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
+msgstr "完成了！✨當簽署好的檔案可於開發者交流中心下載時，您將會收到確認郵件。請注意：若您沒有在 24 小時內收到確認信的話，請到您信箱的垃圾信件匣確認。"
 
 msgid "As a reminder, your add-on is subject to manual review at any time."
-msgstr ""
+msgstr "再次提醒：我們得隨時要求您的附加元件進行人工審核。"
 
 msgid "Go to My Submissions"
 msgstr "前往我上架的項目"
@@ -2658,7 +2658,7 @@ msgid "Do You Need to Submit Source Code?"
 msgstr "您需要上傳原始碼嗎？"
 
 msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
-msgstr ""
+msgstr "需要讓 Mozilla 的附加元件審核者閱讀並重現您擴充套件的程式碼。若他們沒辦法這麼做的話，您的擴充套件可能會被拒絕。"
 
 msgid "Do you use any of the following in your extension?"
 msgstr "您的擴充套件中有使用了下列任何項目嗎？"
@@ -2672,9 +2672,8 @@ msgstr "將多個檔案合併為一的工具，例如 <span class=\"tech-emphasi
 msgid "Web template engines, both for HTML and CSS"
 msgstr "網頁排版引擎，包含 HTML 與 CSS"
 
-#, fuzzy
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the extension"
-msgstr "任何在附加元件中透過對程式碼或檔案進行額外處理，並再產生程式碼或檔案的工具"
+msgstr "任何在擴充套件中透過對程式碼或檔案進行額外處理，並再產生程式碼或檔案的工具"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
 msgstr "您不需要送出原始碼，可以直接前進下一步。"
@@ -2701,11 +2700,11 @@ msgid "Source files (aside from open-source third party libraries) cannot be tra
 msgstr "除了開源的第三方程式庫之外，請勿轉譯（transpile）、串接（concatenate）、最小化（minify）或使用機器產生的原始碼。"
 
 msgid "<strong>You can include build instructions in a README file in your source code</strong>, or in the reviewer notes on the next page."
-msgstr ""
+msgstr "<strong>您可以在原始碼裡面的 README 檔案包含編譯步驟資訊</strong>，或是在下一步的審核者說明當中加入。"
 
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "若需更多資訊，請閱讀 Firefox Extension Workshop 的 <a %(a_attrs)s>Source Code Submission</a> 一文。"
 
 msgid "How to Submit:"
 msgstr "如何上傳:"
