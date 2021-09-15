@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-14 15:24+0000\n"
-"PO-Revision-Date: 2021-09-15 01:52+0000\n"
+"PO-Revision-Date: 2021-09-15 02:06+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -2643,9 +2643,8 @@ msgstr "您需要提交源代码吗？"
 msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
 msgstr ""
 
-#, fuzzy
 msgid "Do you use any of the following in your extension?"
-msgstr "您使用了下列任何一种工具吗？"
+msgstr ""
 
 msgid "Code generators or minifiers"
 msgstr "代码生成或压缩工具"
@@ -2656,9 +2655,8 @@ msgstr "将多个文件合并为一的工具，例如 <span class=\"tech-emphasi
 msgid "Web template engines, both for HTML and CSS"
 msgstr "Web 模板引擎，对于 HTML 和 CSS"
 
-#, fuzzy
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the extension"
-msgstr "任何对代码或文件二次处理，并生成附加组件中的代码或文件的其他工具"
+msgstr "任何对代码或文件二次处理，并生成扩展中的代码或文件的其他工具"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
 msgstr "您不需要提交源代码，可以直接进行下一步。"
@@ -2678,9 +2676,8 @@ msgstr "一个可以执行所有必要技术步骤的构建脚本。"
 msgid "Operating system and build environment requirements."
 msgstr "操作系统与构建环境要求。"
 
-#, fuzzy
 msgid "The required version and installation instructions of any programs used in the build process (such as <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis\">npm</span>)."
-msgstr "构建过程中会使用到的任何程序的详细信息（包含需要使用的版本与安装步骤，例如：所用的 <span class=\"tech-emphasis\">node</span> 与 <span class=\"tech-emphasis\">npm</span> 的版本）。"
+msgstr "构建过程中会使用到的任何程序（包含需要使用的版本与安装步骤，例如：所用的 <span class=\"tech-emphasis\">node</span> 与 <span class=\"tech-emphasis\">npm</span> 的版本）。"
 
 #, fuzzy
 msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
