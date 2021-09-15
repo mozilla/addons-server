@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-14 15:24+0000\n"
-"PO-Revision-Date: 2021-09-15 07:10+0000\n"
+"PO-Revision-Date: 2021-09-15 08:03+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -1723,12 +1723,14 @@ msgid "Ensure name and summary combined are at most {limit_value} characters (th
 msgstr "Zorg ervoor dat de naam en de samenvatting samen uit ten hoogste {limit_value} tekens bestaan (ze bestaan nu uit {show_value} tekens)."
 
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
-msgstr ""
+msgstr "Op deze website. <span class=\"helptext\">Uw inzending wordt openbaar vermeld op {site_domain}.</span>"
 
 msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
 "on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
+"Zelf. <span class=\"helptext\">Nadat uw inzending is ondertekend door Mozilla, kunt u het .xpi-bestand downloaden in de Ontwikkelaarshub en deze voor uw publiek beschikbaar stellen. Zorg ervoor dat "
+"in het add-onmanifest de <a {a_attrs}>update_url</a> wordt vermeld, aangezien dit de URL is waar Firefox updates vindt voor automatische implementatie bij uw gebruikers.</span>"
 
 msgid "Display Name"
 msgstr "Weergavenaam"
@@ -2639,15 +2641,15 @@ msgid "How to Distribute this Version"
 msgstr "Deze versie distribueren"
 
 msgid "To get started, select how you would like to distribute this version."
-msgstr ""
+msgstr "Selecteer om te beginnen hoe u deze versie wilt distribueren."
 
 #, python-format
 msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing on Firefox Extension Workshop</a>."
-msgstr ""
+msgstr "U kunt meer over deze opties te weten komen door <a %(a_attrs)s>Add-ondistributie en -ondertekening op Firefox Extension Workshop</a> te lezen."
 
 #, python-format
 msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
-msgstr ""
+msgstr "Alle add-ons moeten voldoen aan <a %(a_attrs)s>Mozilla’s add-onbeleid</a> en kunnen op elk moment na indiening handmatig worden beoordeeld."
 
 msgid "Submission Complete"
 msgstr "Indiening voltooid"
@@ -2666,6 +2668,8 @@ msgid ""
 "You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
 "selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
+"U bent klaar! ✨ U ontvangt een bevestigings-e-mail wanneer deze versie is gepubliceerd op %(site_domain)s. Houd er rekening mee dat het tot 24 uur kan duren voordat publicatie plaatsvindt, of langer"
+" als uw add-on is geselecteerd voor handmatige beoordeling. Als u na 24 uur geen e-mail ontvangt, controleer dan uw spammap."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr "Uw vermelding heeft meer succes als u een gedetailleerde beschrijving toevoegt. Maak uw vermelding klaar voor publicatie:"
@@ -2674,6 +2678,8 @@ msgstr "Uw vermelding heeft meer succes als u een gedetailleerde beschrijving to
 msgid ""
 "You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a %(a_attrs)s>creating an appealing listing</a> on Firefox Extension Workshop."
 msgstr ""
+"U kunt interesse van gebruikers voor uw extensie opwekken door een gedetailleerde beschrijving en schermafbeeldingen aan uw vermelding toe te voegen. Krijg hulp <a %(a_attrs)s>bij het maken van een "
+"aantrekkelijke vermelding</a> in de Firefox Extension Workshop."
 
 msgid "Manage Listing"
 msgstr "Vermelding beheren"
@@ -2689,9 +2695,11 @@ msgstr "Versieondertekening in behandeling"
 
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
+"U bent klaar! ✨ U ontvangt een e-mailbericht wanneer het ondertekende bestand klaar is om te worden gedownload vanuit de Ontwikkelaarshub. Als u na 24 uur geen e-mail ontvangt, controleer dan uw "
+"spammap."
 
 msgid "As a reminder, your add-on is subject to manual review at any time."
-msgstr ""
+msgstr "Ter herinnering: uw add-on kan op elk moment handmatig worden beoordeeld."
 
 msgid "Go to My Submissions"
 msgstr "Naar mijn bijdragen"
@@ -2703,7 +2711,7 @@ msgid "Do You Need to Submit Source Code?"
 msgstr "Moet u broncode indienen?"
 
 msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
-msgstr ""
+msgstr "De add-onbeoordelaars van Mozilla moeten de code in uw extensie kunnen lezen en reproduceren. Als ze dat niet kunnen, kan uw extensie worden afgewezen."
 
 msgid "Do you use any of the following in your extension?"
 msgstr "Gebruikt u een van de volgende zaken in uw extensie?"
@@ -2724,10 +2732,10 @@ msgid "You do not need to submit Source Code, and you’re ready for the next st
 msgstr "U hoeft geen broncode in te dienen, en u bent klaar voor de volgende stap."
 
 msgid "You must submit your extension's source code."
-msgstr ""
+msgstr "U moet de broncode van uw extensie indienen."
 
 msgid "Your source code must include:"
-msgstr ""
+msgstr "Uw broncode moet het volgende bevatten:"
 
 msgid "Step-by-step build instructions to create an exact copy of the add-on code."
 msgstr "Stapsgewijze buildinstructies om een exacte kopie van de add-oncode te creëren."
