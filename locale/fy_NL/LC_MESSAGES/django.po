@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-14 15:24+0000\n"
-"PO-Revision-Date: 2021-09-15 10:44+0000\n"
+"PO-Revision-Date: 2021-09-15 13:35+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -2679,6 +2679,8 @@ msgstr "Jo fermelding hat mear sukses as jo in detaillearre beskriuwing tafoegje
 msgid ""
 "You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a %(a_attrs)s>creating an appealing listing</a> on Firefox Extension Workshop."
 msgstr ""
+"Jo kinne ynteresse fan brûkers foar jo útwreiding opwekke troch in detaillearre beskriuwing en skermôfbyldingen oan jo fermelding ta te foegjen. Krij help <a %(a_attrs)s>by it meitsjen fan in "
+"oantreklike fermelding</a> yn de Firefox Extension Workshop."
 
 msgid "Manage Listing"
 msgstr "Fermelding beheare"
@@ -2694,9 +2696,11 @@ msgstr "Ferzjeûndetekening yn behanneling"
 
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
+"Jo binne klear! ✨ Jo ûntfange in e-mailberjocht wannear't it ûndertekene bestân klear is om download te wurden fan de Untwikkelershub út. As jo nei 24 oeren gjin e-mail ûntfange, kontrolearje dan jo"
+" spammap."
 
 msgid "As a reminder, your add-on is subject to manual review at any time."
-msgstr ""
+msgstr "As omtinken: jo add-on kin op elk momint hânmjittich beoardiele wurde."
 
 msgid "Go to My Submissions"
 msgstr "Nei myn bydragen"
@@ -2708,7 +2712,7 @@ msgid "Do You Need to Submit Source Code?"
 msgstr "Moatte jo boarnekoade yntsjinje?"
 
 msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
-msgstr ""
+msgstr "De add-onbeoardielers fan Mozilla moatte de koade yn jo útwreiding lêze en reprodusearje kinne. As se dat net kinne, kin jo útwreiding ôfwizen wurde."
 
 msgid "Do you use any of the following in your extension?"
 msgstr "Brûke jo ien fan de folgjende saken yn jo útwreiding?"
@@ -2729,7 +2733,7 @@ msgid "You do not need to submit Source Code, and you’re ready for the next st
 msgstr "Jo hoege gjin boarnekoade yn te tsjinjen en jo binne ree foar de folgjende stap."
 
 msgid "You must submit your extension's source code."
-msgstr ""
+msgstr "Jo moatte de boarnekoade fan jo útwreiding yntsjinje."
 
 msgid "Your source code must include:"
 msgstr "Jo boarnekoade moat befetsje:"
