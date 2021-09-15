@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-14 15:24+0000\n"
-"PO-Revision-Date: 2021-09-15 08:03+0000\n"
-"Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
+"PO-Revision-Date: 2021-09-15 08:13+0000\n"
+"Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -2755,11 +2755,11 @@ msgid "Source files (aside from open-source third party libraries) cannot be tra
 msgstr "Bronbestanden (afgezien van opensource-bibliotheken van derden) mogen niet worden getranspileerd, gekoppeld, verkleind of anderszins door een machine worden bewerkt."
 
 msgid "<strong>You can include build instructions in a README file in your source code</strong>, or in the reviewer notes on the next page."
-msgstr ""
+msgstr "<strong>U kunt buildinstructies opnemen in een README-bestand in uw broncode</strong> of in de beoordelaarsopmerkingen op de volgende pagina."
 
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Lees voor meer informatie <a %(a_attrs)s>Broncode indienen</a> op Firefox Extension Workshop."
 
 msgid "How to Submit:"
 msgstr "Indienen:"
