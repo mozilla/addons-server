@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-14 15:24+0000\n"
-"PO-Revision-Date: 2021-09-15 10:31+0000\n"
+"PO-Revision-Date: 2021-09-15 10:40+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -1730,6 +1730,8 @@ msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
 "on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
+"Sels. <span class=\"helptext\">Neidat jo ynstjoering ûndertekene is troch Mozilla, kinne jo it .xpi-bestân downloade yn de Untwikkelershub en dizze foar jo publyk beskikber stelle. Soargje derfoar "
+"dat yn it add-onmanifest de <a {a_attrs}>update_url</a> fermeld wurdt, omdat dit de URL is wêr't Firefox fernijingen fynt foar automatyske ymplemintaasje by jo brûkers.</span>"
 
 msgid "Display Name"
 msgstr "Werjeftenamme"
@@ -2640,15 +2642,15 @@ msgid "How to Distribute this Version"
 msgstr "Dizze ferzje distribuearje"
 
 msgid "To get started, select how you would like to distribute this version."
-msgstr ""
+msgstr "Selektearje om te begjinnen hoe't jo dizze ferzje distribuearje wolle."
 
 #, python-format
 msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing on Firefox Extension Workshop</a>."
-msgstr ""
+msgstr "Jo kinne mear oer dizze opsjes te witten komme troch <a %(a_attrs)s>Add-ondistribúsje en -ûndertekening op Firefox Extension Workshop</a> te lêzen."
 
 #, python-format
 msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
-msgstr ""
+msgstr "Alle add-ons moatte foldwaan oan <a %(a_attrs)s>Mozilla’s add-onbelied</a> en kinne op elk momint nei yntsjinning hânmjittich beoardiele wurde."
 
 msgid "Submission Complete"
 msgstr "Yntsjinning foltôge"
