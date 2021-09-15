@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-14 15:24+0000\n"
-"PO-Revision-Date: 2021-09-15 15:39+0000\n"
+"PO-Revision-Date: 2021-09-15 17:19+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -1695,12 +1695,12 @@ msgid "Ensure name and summary combined are at most {limit_value} characters (th
 msgstr "名称与摘要合计不得超过 {limit_value} 个字符（目前有 {show_value} 个字符）。"
 
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
-msgstr ""
+msgstr "在此网站上。<span class=\"helptext\">您提交的内容已在 {site_domain} 公开上架。</span>"
 
 msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
 "on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
-msgstr ""
+msgstr "由您自己托管。<span class=\"helptext\">提交的内容由 Mozilla 签名后，可在开发者中心下载 .xpi 文件，自行分发给您的用户。请确保附加组件中指定了 <a {a_attrs}>update_url</a>，Firefox 会定期连接到此网址检查并自动更新。</span>"
 
 msgid "Display Name"
 msgstr "显示名称"
