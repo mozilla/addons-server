@@ -106,10 +106,8 @@ class AddonSerializerOutputTestMixin:
                 'max': compat.max.version,
             }
         assert data['is_strict_compatibility_enabled'] is False
-        assert data['files']
-        assert len(data['files']) == 1
 
-        result_file = data['files'][0]
+        result_file = data['file']
         file_ = version.file
         assert result_file['id'] == file_.pk
         assert result_file['created'] == (
@@ -623,23 +621,23 @@ class AddonSerializerOutputTestMixin:
 
         self._test_version(self.addon.current_version, result['current_version'])
         # Double check the permissions got correctly set.
-        assert result['current_version']['files'][0]['permissions'] == permissions
+        assert result['current_version']['file']['permissions'] == permissions
         assert (
-            result['current_version']['files'][0]['optional_permissions']
+            result['current_version']['file']['optional_permissions']
             == optional_permissions
         )
 
     def test_is_restart_required(self):
         self.addon = addon_factory()
         result = self.serialize()
-        file_data = result['current_version']['files'][0]
+        file_data = result['current_version']['file']
         assert 'is_restart_required' not in file_data
 
         # Test with shim
         gates = {self.request.version: ('is-restart-required-shim',)}
         with override_settings(DRF_API_GATES=gates):
             result = self.serialize()
-        file_data = result['current_version']['files'][0]
+        file_data = result['current_version']['file']
         assert file_data['is_restart_required'] is False
 
     def test_special_compatibility_cases(self):
@@ -1062,21 +1060,18 @@ class TestVersionSerializerOutput(TestCase):
 
         assert result['compatibility'] == {'firefox': {'max': '*', 'min': '50.0'}}
 
-        assert result['files']
-        assert len(result['files']) == 1
-
-        assert result['files'][0]['id'] == current_file.pk
-        assert result['files'][0]['created'] == (
+        assert result['file']['id'] == current_file.pk
+        assert result['file']['created'] == (
             current_file.created.replace(microsecond=0).isoformat() + 'Z'
         )
-        assert result['files'][0]['hash'] == current_file.hash
-        assert result['files'][0]['is_webextension'] == (current_file.is_webextension)
-        assert result['files'][0]['is_mozilla_signed_extension'] == (
+        assert result['file']['hash'] == current_file.hash
+        assert result['file']['is_webextension'] == (current_file.is_webextension)
+        assert result['file']['is_mozilla_signed_extension'] == (
             current_file.is_mozilla_signed_extension
         )
-        assert result['files'][0]['size'] == current_file.size
-        assert result['files'][0]['status'] == 'public'
-        assert result['files'][0]['url'] == current_file.get_absolute_url()
+        assert result['file']['size'] == current_file.size
+        assert result['file']['status'] == 'public'
+        assert result['file']['url'] == current_file.get_absolute_url()
 
         assert result['channel'] == 'listed'
         assert result['edit_url'] == absolutify(
@@ -1101,14 +1096,14 @@ class TestVersionSerializerOutput(TestCase):
     def test_platform(self):
         self.version = addon_factory().current_version
         result = self.serialize()
-        file_data = result['files'][0]
+        file_data = result['file']
         assert 'platform' not in file_data
 
         # Test with shim
         gates = {self.request.version: ('platform-shim',)}
         with override_settings(DRF_API_GATES=gates):
             result = self.serialize()
-        file_data = result['files'][0]
+        file_data = result['file']
         assert file_data['platform'] == 'all'
 
     def test_unlisted(self):
@@ -1225,19 +1220,19 @@ class TestVersionSerializerOutput(TestCase):
         self.version = addon_factory().current_version
         result = self.serialize()
         # No permissions.
-        assert result['files'][0]['permissions'] == []
+        assert result['file']['permissions'] == []
 
         self.version = addon_factory(file_kw={'is_webextension': True}).current_version
         permissions = ['dangerdanger', 'high', 'voltage']
         WebextPermission.objects.create(permissions=permissions, file=self.version.file)
         result = self.serialize()
-        assert result['files'][0]['permissions'] == permissions
+        assert result['file']['permissions'] == permissions
 
     def test_file_optional_permissions(self):
         self.version = addon_factory().current_version
         result = self.serialize()
         # No permissions.
-        assert result['files'][0]['optional_permissions'] == []
+        assert result['file']['optional_permissions'] == []
 
         self.version = addon_factory(file_kw={'is_webextension': True}).current_version
         optional_permissions = ['dangerdanger', 'high', 'voltage']
@@ -1245,7 +1240,20 @@ class TestVersionSerializerOutput(TestCase):
             optional_permissions=optional_permissions, file=self.version.file
         )
         result = self.serialize()
-        assert result['files'][0]['optional_permissions'] == (optional_permissions)
+        assert result['file']['optional_permissions'] == (optional_permissions)
+
+    def test_version_files_or_file(self):
+        self.version = addon_factory().current_version
+        result = self.serialize()
+        # default case, both file and files (until frontend supports file in v5)
+        assert 'file' in result
+        assert 'files' in result
+        assert result['files'] == [result['file']]
+
+        with override_settings(DRF_API_GATES={self.request.version: ['version-files']}):
+            result = self.serialize()
+            assert 'file' not in result
+            assert 'files' in result
 
 
 class TestVersionListSerializerOutput(TestCase):
@@ -1358,6 +1366,7 @@ class TestLanguageToolsSerializerOutput(TestCase):
         assert result['current_compatible_version'] is not None
         assert set(result['current_compatible_version'].keys()) == {
             'id',
+            'file',
             'files',
             'reviewed',
             'version',

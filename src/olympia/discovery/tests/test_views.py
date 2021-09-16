@@ -23,11 +23,9 @@ class DiscoveryTestMixin:
                 'max': compat.max.version,
             }
         assert data['is_strict_compatibility_enabled'] is False
-        assert data['files']
-        assert len(data['files']) == 1
         assert data['id'] == version.id
 
-        result_file = data['files'][0]
+        result_file = data['file']
         file_ = version.file
         assert result_file['id'] == file_.pk
         assert result_file['created'] == (
@@ -55,7 +53,7 @@ class DiscoveryTestMixin:
         assert result['addon']['slug'] == addon.slug
         assert result['addon']['icon_url'] == absolutify(addon.get_icon_url(64))
         assert (
-            result['addon']['current_version']['files'][0]['id']
+            result['addon']['current_version']['file']['id']
             == addon.current_version.file.pk
         )
 

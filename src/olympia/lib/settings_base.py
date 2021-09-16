@@ -1597,6 +1597,7 @@ DRF_API_GATES = {
         'platform-shim',
         'keep-license-text-in-version-list',
         'is-restart-required-shim',
+        'version-files',
     ),
     'v4': (
         'l10n_flat_input_output',
@@ -1607,6 +1608,7 @@ DRF_API_GATES = {
         'platform-shim',
         'keep-license-text-in-version-list',
         'is-restart-required-shim',
+        'version-files',
     ),
     'v5': (
         'addons-search-_score-field',

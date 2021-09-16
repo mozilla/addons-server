@@ -225,17 +225,22 @@ class CompactLicenseSerializer(LicenseSerializer):
 
 
 class MinimalVersionSerializer(serializers.ModelSerializer):
-    files = FileSerializer(source='file')
+    file = FileSerializer()
 
     class Meta:
         model = Version
-        fields = ('id', 'files', 'reviewed', 'version')
+        fields = ('id', 'file', 'reviewed', 'version')
 
     def to_representation(self, instance):
         repr = super().to_representation(instance)
-        if 'files' in repr:
-            # files is expected to be a list but now we only have one file so fake it.
-            repr['files'] = [repr['files']]
+        request = self.context.get('request', None)
+        if 'file' in repr:
+            # TODO: rewrite this after once frontend supports file in v5 only include
+            # file, and files otherwise.
+            # In v3/v4 files is expected to be a list but now we only have one file.
+            repr['files'] = [repr['file']]
+            if request and is_gate_active(request, 'version-files'):
+                del repr['file']
         return repr
 
 
@@ -254,7 +259,7 @@ class SimpleVersionSerializer(MinimalVersionSerializer):
             'id',
             'compatibility',
             'edit_url',
-            'files',
+            'file',
             'is_strict_compatibility_enabled',
             'license',
             'release_notes',
@@ -297,7 +302,7 @@ class VersionSerializer(SimpleVersionSerializer):
             'channel',
             'compatibility',
             'edit_url',
-            'files',
+            'file',
             'is_strict_compatibility_enabled',
             'license',
             'release_notes',

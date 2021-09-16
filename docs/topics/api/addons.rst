@@ -379,17 +379,16 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     :>json object compatibility[app_name].max: Maximum version of the corresponding app the version is compatible with. Should only be enforced by clients if ``is_strict_compatibility_enabled`` is ``true``.
     :>json object compatibility[app_name].min: Minimum version of the corresponding app the version is compatible with.
     :>json string edit_url: The URL to the developer edit page for the version.
-    :>json array files: Array holding information about the files for the version.
-    :>json int files[].id: The id for a file.
-    :>json string files[].created: The creation date for a file.
-    :>json string files[].hash: The hash for a file.
-    :>json boolean files[].is_mozilla_signed_extension: Whether the file was signed with a Mozilla internal certificate or not.
-    :>json boolean files[].is_webextension: Whether the file is a WebExtension or not.
-    :>json array files[].optional_permissions[]: Array of the optional webextension permissions for this File, as strings. Empty for non-webextensions.
-    :>json array files[].permissions[]: Array of the webextension permissions for this File, as strings. Empty for non-webextensions.
-    :>json int files[].size: The size for a file, in bytes.
-    :>json int files[].status: The :ref:`status <addon-detail-status>` for a file.
-    :>json string files[].url: The (absolute) URL to download a file.
+    :>json int file.id: The id for the file.
+    :>json string file.created: The creation date for the file.
+    :>json string file.hash: The hash for the file.
+    :>json boolean file.is_mozilla_signed_extension: Whether the file was signed with a Mozilla internal certificate or not.
+    :>json boolean file.is_webextension: Whether the file is a WebExtension or not.
+    :>json array file.optional_permissions[]: Array of the optional webextension permissions for this File, as strings. Empty for non-webextensions.
+    :>json array file.permissions[]: Array of the webextension permissions for this File, as strings. Empty for non-webextensions.
+    :>json int file.size: The size for the file, in bytes.
+    :>json int file.status: The :ref:`status <addon-detail-status>` for the file.
+    :>json string file.url: The (absolute) URL to download the file.
     :>json object license: Object holding information about the license for the version.
     :>json boolean license.is_custom: Whether the license text has been provided by the developer, or not.  (When ``false`` the license is one of the common, predefined, licenses).
     :>json object|null license.name: The name of the license (See :ref:`translated fields <api-overview-translations>`).
@@ -450,7 +449,7 @@ on AMO.
     :query string type: Mandatory when ``appversion`` is present. Filter by :ref:`add-on type <addon-detail-type>`. The default is to return both Language Packs or Dictionaries.
     :>json array results: An array of language tools.
     :>json int results[].id: The add-on id on AMO.
-    :>json object results[].current_compatible_version: Object holding the latest publicly available :ref:`version <version-detail-object>` of the add-on compatible with the ``appversion`` parameter used. Only present when ``appversion`` is passed and valid. For performance reasons, only the following version properties are returned on the object: ``id``, ``files``, ``reviewed``, and ``version``.
+    :>json object results[].current_compatible_version: Object holding the latest publicly available :ref:`version <version-detail-object>` of the add-on compatible with the ``appversion`` parameter used. Only present when ``appversion`` is passed and valid. For performance reasons, only the following version properties are returned on the object: ``id``, ``file``, ``reviewed``, and ``version``.
     :>json string results[].default_locale: The add-on default locale for translations.
     :>json object|null results[].name: The add-on name (See :ref:`translated fields <api-overview-translations>`).
     :>json string results[].guid: The add-on `extension identifier <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#id>`_.
