@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-14 15:24+0000\n"
-"PO-Revision-Date: 2021-09-14 21:17+0000\n"
+"PO-Revision-Date: 2021-09-16 19:37+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -2638,7 +2638,7 @@ msgstr "Prjedy hač započnjeće, wubjerće, kak chceće tutu wersiju rozdźěli
 
 #, python-format
 msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing on Firefox Extension Workshop</a>."
-msgstr ""
+msgstr "Čitajće <a %(a_attrs)s>rozdźělenje a signowanje přidatkow w dźěłarničce rozšěrjenjow Firefox</a>, zo byšće wjace wo tutych nastajenjach zhonił."
 
 #, python-format
 msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
@@ -2686,7 +2686,7 @@ msgid "You’re done! ✨ You will be notified by email when the signed file is 
 msgstr ""
 
 msgid "As a reminder, your add-on is subject to manual review at any time."
-msgstr ""
+msgstr "Na dopomnjeće, waš přidatk sej kóždy čas manuelne přepruwowanje wužaduje."
 
 msgid "Go to My Submissions"
 msgstr "Moje zapodaća sej wobhladać"
@@ -2740,7 +2740,7 @@ msgid "Source files (aside from open-source third party libraries) cannot be tra
 msgstr "Žórłowe dataje (nimo bibliotekow wotewrjeneho žórła třećich poskićowarjow) njedadźa so transkompilować, zwjazać, minifikować abo na druhe wašnje přez mašinu wutworić."
 
 msgid "<strong>You can include build instructions in a README file in your source code</strong>, or in the reviewer notes on the next page."
-msgstr ""
+msgstr "<strong>Móžeće wersijowe instrukcije do dataje README w  swojim žórłowym kodźe zapisać</strong>. abo do přispomnjenkow za přepruwowarjow na přichodnej stronje."
 
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
