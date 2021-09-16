@@ -148,7 +148,7 @@ class ExcludeMatchedRulesFilter(SimpleListFilter):
                 'selected': selected,
                 'value': lookup,
                 'display': title,
-                'params': cl.get_filters_params()
+                'params': cl.get_filters_params(),
             }
 
     def queryset(self, request, queryset):
