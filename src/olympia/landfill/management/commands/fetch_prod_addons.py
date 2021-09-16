@@ -68,15 +68,16 @@ class Command(BaseCommand):
 
     def _handle_addon(self, addon_data):
         version = addon_data['current_version']
+        file_data = version['file']
 
         try:
             file_kw = {
-                'hash': version['file']['hash'],
-                'status': amo.STATUS_CHOICES_API_LOOKUP[version['file']['status']],
-                'size': version['file']['size'],
-                'is_webextension': version['file']['is_webextension'],
+                'hash': file_data['hash'],
+                'status': amo.STATUS_CHOICES_API_LOOKUP[file_data['status']],
+                'size': file_data['size'],
+                'is_webextension': file_data['is_webextension'],
                 'is_mozilla_signed_extension': (
-                    version['file']['is_mozilla_signed_extension']
+                    file_data['is_mozilla_signed_extension']
                 ),
                 'strict_compatibility': (version['is_strict_compatibility_enabled']),
             }
