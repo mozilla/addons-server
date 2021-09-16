@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-14 15:24+0000\n"
-"PO-Revision-Date: 2021-09-16 19:37+0000\n"
+"PO-Revision-Date: 2021-09-16 19:41+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -2642,7 +2642,7 @@ msgstr "Čitajće <a %(a_attrs)s>rozdźělenje a signowanje přidatkow w dźěł
 
 #, python-format
 msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
-msgstr ""
+msgstr "Wšě přidatki dyrbja <a %(a_attrs)s>prawidłam přidatkow Mozilla</a> wotpowědować a wužaduja sej kóždy čas manuelne přepruwowanje po zapodaću."
 
 msgid "Submission Complete"
 msgstr "Zapodaće dokónčene"
@@ -2698,7 +2698,7 @@ msgid "Do You Need to Submit Source Code?"
 msgstr "Dyrbiće žórłowy kod zapodać?"
 
 msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
-msgstr ""
+msgstr "Přepruwowarjo přidatkow Mozilla dyrbja kod we wašim rozšěrjenju čitać a reprodukować móc. Jeli to njemóža, so waše rozšěrjenje wotpokaza."
 
 msgid "Do you use any of the following in your extension?"
 msgstr "Wužiwaće jedyn ze slědowaceho w swojim rozšěrjenju?"
