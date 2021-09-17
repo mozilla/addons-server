@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-14 15:24+0000\n"
-"PO-Revision-Date: 2021-09-17 23:24+0000\n"
+"PO-Revision-Date: 2021-09-17 23:29+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -1708,6 +1708,8 @@ msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
 "on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
+"På egen hand. <span class=\"helptext\">När din ansökan är signerad av Mozilla kan du ladda ner .xpi-filen från Developer Hub och sprida den till din publik. Se till att tilläggsmanifestets <a "
+"{a_attrs}>update_url</a> finns, eftersom det är webbadressen där Firefox hittar uppdateringar för automatisk distribution till dina användare.</span>"
 
 msgid "Display Name"
 msgstr "Visningsnamn"
@@ -2630,15 +2632,15 @@ msgid "How to Distribute this Version"
 msgstr "Hur du distribuerar denna version"
 
 msgid "To get started, select how you would like to distribute this version."
-msgstr ""
+msgstr "För att komma igång väljer du hur du vill distribuera den här versionen."
 
 #, python-format
 msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing on Firefox Extension Workshop</a>."
-msgstr ""
+msgstr "Du kan lära dig mer om dessa alternativ genom att läsa <a %(a_attrs)s>Tilläggsdistribution och logga in på Firefox Extension Workshop</a>."
 
 #, python-format
 msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
-msgstr ""
+msgstr "Alla tillägg måste följa <a %(a_attrs)s>Mozillas tilläggspolicyer</a> och kan manuellt granskas när som helst efter inlämning."
 
 msgid "Submission Complete"
 msgstr "Inskickning komplett"
@@ -2657,6 +2659,8 @@ msgid ""
 "You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
 "selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
+"Du är klar! ✨ Du får ett bekräftelsemejl när denna version publiceras på %(site_domain)s. Observera att det kan ta upp till 24 timmar innan publicering sker eller längre om tillägget är valt för "
+"manuell granskning. Om du inte ser ett e-postmeddelande inom 24 timmar, kontrollera din skräppostmapp."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr "Din listning kommer att bli mer framgångsrika genom att lägga till en detaljerad beskrivning. Gör din listning redo för publicering:"
@@ -2665,6 +2669,8 @@ msgstr "Din listning kommer att bli mer framgångsrika genom att lägga till en 
 msgid ""
 "You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a %(a_attrs)s>creating an appealing listing</a> on Firefox Extension Workshop."
 msgstr ""
+"Du kan locka användare till ditt tillägg genom att lägga till en detaljerad beskrivning och skärmdumpar i din lista. Få hjälp <a %(a_attrs)s>att skapa en tilltalande lista</a> i Firefox Extension "
+"Workshop."
 
 msgid "Manage Listing"
 msgstr "Hantera listning"
@@ -2680,9 +2686,10 @@ msgstr "Väntande versionssignatur"
 
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
+"Du är klar! ✨ Du kommer att meddelas via e-post när den signerade filen är redo att laddas ner från Developer Hub. Om du inte ser ett e-postmeddelande inom 24 timmar, kontrollera din skräppostmapp."
 
 msgid "As a reminder, your add-on is subject to manual review at any time."
-msgstr ""
+msgstr "Som en påminnelse är ditt tillägg föremål för manuell granskning när som helst."
 
 msgid "Go to My Submissions"
 msgstr "Gå till mina bidrag"
@@ -2694,7 +2701,7 @@ msgid "Do You Need to Submit Source Code?"
 msgstr "Behöver du skicka in källkod?"
 
 msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
-msgstr ""
+msgstr "Mozillas tilläggsgranskare måste kunna läsa och reproducera koden i ditt tillägg. Om de inte kan det, kan ditt tillägg avvisas."
 
 msgid "Do you use any of the following in your extension?"
 msgstr "Använder du något av följande i ditt tillägg?"
