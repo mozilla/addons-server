@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-14 15:24+0000\n"
-"PO-Revision-Date: 2021-09-15 17:48+0000\n"
+"PO-Revision-Date: 2021-09-17 17:47+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -2765,7 +2765,7 @@ msgid "You do not need to submit Source Code, and you’re ready for the next st
 msgstr "Você não precisa enviar o código fonte, está pronto para o próximo passo."
 
 msgid "You must submit your extension's source code."
-msgstr ""
+msgstr "Você deve enviar o código-fonte de sua extensão."
 
 #, fuzzy
 msgid "Your source code must include:"
