@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-14 15:24+0000\n"
-"PO-Revision-Date: 2021-09-17 18:15+0000\n"
+"PO-Revision-Date: 2021-09-17 18:21+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2722,7 +2722,7 @@ msgid "You must submit your extension's source code."
 msgstr "Tu debe inviar le codice fonte de tu extension."
 
 msgid "Your source code must include:"
-msgstr "Tu codification fonte debe includer:"
+msgstr "Tu codice fonte debe includer:"
 
 msgid "Step-by-step build instructions to create an exact copy of the add-on code."
 msgstr "Instructiones detaliate de compilation pro crear un copia exacte del codice del additivo."
@@ -2742,11 +2742,11 @@ msgid "Source files (aside from open-source third party libraries) cannot be tra
 msgstr "Le files fonte (a exception del bibliothecas open-source de tertie parte) non pote esser trans-compilate, concatenate, minimisate o alteremente generate automaticamente."
 
 msgid "<strong>You can include build instructions in a README file in your source code</strong>, or in the reviewer notes on the next page."
-msgstr "<strong>Tu pote includer instructiones pro construer  in un file LEGE_ME in tu codification fonte</strong>, o in le notas de revisor sur le pagina sequente."
+msgstr "<strong>Tu pote includer instructiones de compilation in un file README in tu codice fonte</strong>, o in le notas pro le revisor sur le pagina sequente."
 
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
-msgstr "<strong>Tu pote includer instructiones pro construer  in un file LEGE_ME in tu codification fonte</strong>, o in le notas de revisor sur le pagina sequente."
+msgstr "Pro plus information, per favor lege <a %(a_attrs)s>Invio de codice fonte</a> in le Seminario de extensiones de Firefox."
 
 msgid "How to Submit:"
 msgstr "Como submitter:"
