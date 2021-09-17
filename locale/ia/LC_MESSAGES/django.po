@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-14 15:24+0000\n"
-"PO-Revision-Date: 2021-09-17 19:48+0000\n"
+"PO-Revision-Date: 2021-09-17 20:31+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3508,7 +3508,7 @@ msgstr "Dozenas de stupende emojis pro cata occasiones: sempre a portata de un c
 
 #. editorial content for the discovery pane.
 msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
-msgstr "Gestion de contrasignos simplificate. Synchronisa tote tu accessos sur plure apparatos con un sol contrasigno pro gerer los tote."
+msgstr "Gestion de contrasignos simplificate. Synchronisa tote tu credentiales inter apparatos con un sol contrasigno commun."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
