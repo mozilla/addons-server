@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-14 15:24+0000\n"
-"PO-Revision-Date: 2021-09-17 15:49+0000\n"
+"PO-Revision-Date: 2021-09-17 18:15+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1712,14 +1712,14 @@ msgid "Ensure name and summary combined are at most {limit_value} characters (th
 msgstr "Cura que nomine e summario combinate non supera {limit_value} characteres total (il ha {show_value})."
 
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
-msgstr "Sur iste sito. <span classe=\"helptext\">Tu invio es publicate in le lista de presentation sur {site_domain}.</span>"
+msgstr "Sur iste sito. <span classe=\"helptext\">Tu invio es listate publicamente sur {site_domain}.</span>"
 
 msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
 "on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
-"Sur tu proprie. <span classe=\"helptext\">Post que tu invio es signate per Mozilla, tu pote discargar le file .xpi ab le Centro de disveloppamento e distribuer lo a tu auditorio. Per favor verifica "
-"que le additivo file <a {a_attrs}>update_url</a>  del manifesto es fornite, pois que isto es le URL ubi Firefox trova actualisationes pro distribution automatic a tu usatores."
+"Pro conto proprie. <span class=\"helptext\">Post que tu invio es signate per Mozilla, tu pote discargar le file .xpi ab le Centro de disveloppamento e distribuer lo a tu auditorio. Per favor "
+"verifica que le <a {a_attrs}>update_url</a> del manifesto del additivo es fornite, pois que isto es le URL ubi Firefox trova actualisationes pro distribution automatic a tu usatores.</span>"
 
 msgid "Display Name"
 msgstr "Nomine monstrate"
@@ -2632,11 +2632,11 @@ msgstr "Pro comenciar, elige como tu vole distribuer iste version."
 
 #, python-format
 msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing on Firefox Extension Workshop</a>."
-msgstr "Tu pote saper plus re iste optiones legente <a %(a_attrs)s>Distribution de additivo e signatura sur Seminario de extensiones de Firefox</a>."
+msgstr "Tu pote saper plus sur iste optiones legente <a %(a_attrs)s>Distribution e signatura de additivos</a> sur le Seminario de extensiones de Firefox."
 
 #, python-format
 msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
-msgstr "Tote le additivos debe se conformar con con le <a %(a_attrs)s> Criterios de additivo de Mozilla</a> e sempre es subjecte al revision manual post le invio."
+msgstr "Tote le additivos debe conformar se al <a %(a_attrs)s>politica de additivos de Mozilla</a> e pote esser subjecte a un revision manual a omne momento post le invio."
 
 msgid "Submission Complete"
 msgstr "Submission complete"
@@ -2665,8 +2665,8 @@ msgstr "Tu lista de presentation habera plus successo per le addition de un deta
 msgid ""
 "You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a %(a_attrs)s>creating an appealing listing</a> on Firefox Extension Workshop."
 msgstr ""
-"Tu pote attraher usatores a tu extension addente un detaliate description e instantaneos a tu lista de presentation. Obtener auxilio <a %(a_attrs)s>creation del un attrahente lista de "
-"presentation</a> sur Seminario de extensiones de Firefox."
+"Tu pote attraher usatores a tu extension addente un description detaliate e instantaneos a tu presentation public. Obtene adjuta pro <a %(a_attrs)s>crear un presentation attrahente</a> in le "
+"Seminario de extensiones de Firefox."
 
 msgid "Manage Listing"
 msgstr "Gerer le lista de presentation"
@@ -2682,11 +2682,11 @@ msgstr "Firma de version pendente"
 
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
-"Tu ha finite! ✨ Tu recipera un notification per e-mail quando le file signate es preste a esser discargate del Centro de disveloppamento. Si tu non vide un e-mail post 24 horas, verifica tu dossier "
+"Tu ha finite! ✨ Tu recipera un notification in e-mail quando le file signate es preste a esser discargate del Centro de disveloppamento. Si tu non vide un e-mail post 24 horas, verifica tu dossier "
 "de spam."
 
 msgid "As a reminder, your add-on is subject to manual review at any time."
-msgstr "Como un memento, tu additivo sempre es subjecto a revision manual."
+msgstr "Non oblida que tu additivo pote esser subjecte a un revision manual a omne momento."
 
 msgid "Go to My Submissions"
 msgstr "Ir a mi submissiones"
@@ -2698,10 +2698,10 @@ msgid "Do You Need to Submit Source Code?"
 msgstr "Debe tu inviar codice fonte?"
 
 msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
-msgstr "Le  revisores del additivos de Mozilla besonia de poter leger e reproducer le codice in tu extension. Si illes non pote, tu extension pote esser rejectate."
+msgstr "Le revisores de additivos de Mozilla debe poter leger e reproducer le codice in tu extension. Si illes non lo pote, tu extension pote esser rejectate."
 
 msgid "Do you use any of the following in your extension?"
-msgstr "Usa tu ulle del sequente in tu extension?"
+msgstr "Usa tu alcun del sequentes in tu extension?"
 
 msgid "Code generators or minifiers"
 msgstr "Generatores de codice o minificatores"
@@ -2713,13 +2713,13 @@ msgid "Web template engines, both for HTML and CSS"
 msgstr "Motores de modellos de web, ambe pro HTML e CSS"
 
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the extension"
-msgstr "Omne altere application que prende codice o files, processa los, e genera codice o file(s) a includer in le extension"
+msgstr "Omne altere utensile que prende codice o files, processa los, e genera codice o file(s) a includer in le extension"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
 msgstr "Tu non necessita de inviar codice fonte, e tu es preste pro le grado successive."
 
 msgid "You must submit your extension's source code."
-msgstr "Tu debe inviar tu codification fonte del extension."
+msgstr "Tu debe inviar le codice fonte de tu extension."
 
 msgid "Your source code must include:"
 msgstr "Tu codification fonte debe includer:"
