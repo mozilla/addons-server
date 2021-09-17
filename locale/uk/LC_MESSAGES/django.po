@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-14 15:24+0000\n"
-"PO-Revision-Date: 2021-09-14 19:08+0000\n"
+"PO-Revision-Date: 2021-09-17 22:26+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -4101,7 +4101,7 @@ msgstr "Закрийте дратівливі спливні вікна в од�
 
 #. editorial content for the discovery pane.
 msgid "Find an interesting image on the web? Want to learn more about it?"
-msgstr "Знайшли цікаве зображення в інтернеті? Хочете дізнатись більше про нього?"
+msgstr "Знайшли цікаве зображення в інтернеті? Хочете дізнатися більше про нього?"
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
@@ -4412,7 +4412,7 @@ msgstr "Знайдіть більше розширень"
 
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
-msgstr "Дізнатись більше"
+msgstr "Докладніше"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended extensions"
