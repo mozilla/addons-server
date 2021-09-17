@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-14 15:24+0000\n"
-"PO-Revision-Date: 2021-09-17 15:15+0000\n"
+"PO-Revision-Date: 2021-09-17 15:49+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3495,7 +3495,7 @@ msgstr "Eliger le pagina que tu vide cata vice que tu aperi un nove scheda."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
-msgstr "Vide un interessante pictura sur le web e desira saper plus re illo? Prova iste application de recerca imagine."
+msgstr "Vide un imagine interessante sur le web e vole saper plus sur illo? Prova iste instrumento de recerca de imagines."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
