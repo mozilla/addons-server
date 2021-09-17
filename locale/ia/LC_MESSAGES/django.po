@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-14 15:24+0000\n"
-"PO-Revision-Date: 2021-09-17 18:21+0000\n"
+"PO-Revision-Date: 2021-09-17 19:48+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -90,7 +90,7 @@ msgid "Please use images smaller than %dMB."
 msgstr "Per favor usa imagines minor que %dMB."
 
 msgid "You are already logged in."
-msgstr "Tu es ja authenticate."
+msgstr "Tu ha ja aperite session."
 
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Tu tentativa de aperir session non poteva esser processate. Per favor prova de novo."
@@ -3952,7 +3952,7 @@ msgstr "Impedi que le annuncios appare in tu resultatos de recerca."
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
-msgstr "Immagazina tu contrasignos con securitate e authentica te automaticamente pro le sitos web note."
+msgstr "Immagazina tu contrasignos con securitate e aperi session automaticamente in sitos web cognoscite."
 
 #. editorial content for the discovery pane.
 msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
@@ -4032,7 +4032,7 @@ msgstr "Modifica tu marcapaginas per un quadro facilemente accessibile."
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr "Immagazina contrasignos con securitate e authentica te automaticamente al sitos web note."
+msgstr "Immagazina tu contrasignos con securitate e aperi session automaticamente in sitos web cognoscite."
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
