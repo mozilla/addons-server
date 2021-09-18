@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-14 15:24+0000\n"
-"PO-Revision-Date: 2021-09-16 13:29+0000\n"
+"PO-Revision-Date: 2021-09-16 13:31+0000\n"
 "Last-Translator: Jenny <leanintocuriosity@gmx.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -2806,7 +2806,7 @@ msgid "Source files (aside from open-source third party libraries) cannot be tra
 msgstr ""
 
 msgid "<strong>You can include build instructions in a README file in your source code</strong>, or in the reviewer notes on the next page."
-msgstr ""
+msgstr "<strong>Puoi includere le istruzioni di compilazione in un file README all’interno del tuo codice sorgente</strong> o nelle note per il revisore nella pagina successiva."
 
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
