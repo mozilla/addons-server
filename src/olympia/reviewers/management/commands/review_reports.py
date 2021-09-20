@@ -16,7 +16,6 @@ from olympia.constants.reviewers import (
     POST_REVIEW_WEIGHT_MEDIUM_RISK,
 )
 
-from premailer import transform
 
 SQL_DIR = os.path.join(
     settings.ROOT, 'src/olympia/reviewers/management/commands/review_reports_sql/'
@@ -137,47 +136,40 @@ class Command(BaseCommand):
     def generate_report_html(self, group, report_data):
         # Pre-set email with style information and header
         all_html = """
-            <style>
-            h1 {{ margin: 0; padding: 0; }}
-            h2 {{ margin: 0; padding: 30px 0 10px 0; }}
-            th {{ text-align: left; }}
-            th, td {{ padding: 0 12px; }}
-            td {{ text-align: right; white-space: nowrap; }}
-            td:first-child {{ text-align: left; white-space: nowrap; }}
-            </style>
-            <h1>Weekly Add-on {}Reviews Report</h1>
+            <h1 style="margin: 0; padding: 0;">Weekly Add-on {}Reviews Report</h1>
             <h3>{} - {}</h3>
             """.format(
             ('Content ' if group == 'content' else ''),
             self.week_begin,
             self.week_end,
         )
+        h2 = '<h2 style="margin: 0; padding: 30px 0 10px 0;">'
+        th = '<th style="text-align: left; padding: 0 12px;">'
+        td_first = '<td style="padding: 0 12px; text-align: left; white-space: nowrap">'
+        td_rest = '<td style="padding: 0 12px; text-align: right; white-space: nowrap">'
 
         # For each group, execute the individual SQL reports
         # and build the HTML email.
 
         for section in report_data:
-            all_html += '<h2>%s</h2>\n' % section[0]
+            all_html += f'{h2}{section[0]}</h2>\n'
 
             table_html = '<table>\n'
             table_html += (
-                '<tr><th>'
-                + '</th><th>'.join([header for header in section[1]])
+                f'<tr>{th}'
+                + f'</th>{th}'.join([header for header in section[1]])
                 + '</th></tr>\n'
             )
             for row in section[2]:
                 table_html += (
-                    '<tr><td>'
-                    + '</td><td>'.join([entry for entry in row])
+                    f'<tr>{td_first}'
+                    + f'</td>{td_rest}'.join([entry for entry in row])
                     + '</td></tr>\n'
                 )
             table_html += '</table>\n'
             all_html += table_html
 
-        # Some email clients (e.g. GMail) require all styles to be inline.
-        # 'transform' takes the file-wide styles defined above and transforms
-        # them to be inline styles.
-        return transform(all_html)
+        return all_html
 
     def mail_report(self, recipient, subject, content):
         log.info(f"Sending report '{subject}' to {recipient}.")
