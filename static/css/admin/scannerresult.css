@@ -19,6 +19,16 @@
   font-family: monospace;
 }
 
+#changelist-filter form {
+  margin: 5px 0;
+  padding: 0 15px 15px;
+  border-bottom: 1px solid var(--hairline-color);
+}
+
+#changelist-filter select {
+  width:  100%;
+}
+
 .field-result_actions .button {
   padding: 4px 6px;
 }
