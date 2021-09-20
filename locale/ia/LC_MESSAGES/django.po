@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-14 15:24+0000\n"
-"PO-Revision-Date: 2021-09-20 05:37+0000\n"
+"PO-Revision-Date: 2021-09-20 05:52+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4354,7 +4354,7 @@ msgstr "Gere melio tu tempore con un horologio del navigator que delinea le inte
 
 #. editorial content for the primary hero shelves.
 msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
-msgstr "Fatigate de ille \"Video pausate. Continuar observar?\" message? Ascolta tu musica favorite non interrumpite sur YouTube."
+msgstr "Fatigate de ille message \"Video pausate. Continuar a spectar?\"? Ascolta tu musica favorite sin interruptiones sur YouTube."
 
 #. editorial content for the primary hero shelves.
 msgid "Begone, annoying cookie warnings!"
