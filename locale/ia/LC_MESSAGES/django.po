@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-14 15:24+0000\n"
-"PO-Revision-Date: 2021-09-20 06:09+0000\n"
+"PO-Revision-Date: 2021-09-20 06:33+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4225,7 +4225,7 @@ msgstr "Alcun sitos ha difficultate a reproducer videos sur Firefox pro Android.
 
 #. editorial content for the discovery pane.
 msgid "Select, sort, and run your downloads faster."
-msgstr "Elige, ordina, e face fluer tu discargamentos plus velocemente."
+msgstr "Elige, ordina e exeque tu discargamentos plus rapidemente."
 
 #. editorial content for the discovery pane.
 msgid "Get weather updates right in the browser."
