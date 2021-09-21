@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-14 15:24+0000\n"
+"POT-Creation-Date: 2021-09-21 16:47+0000\n"
 "PO-Revision-Date: 2021-09-02 09:29+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -952,8 +952,12 @@ msgstr "წაიშალა"
 msgid "Unlisted"
 msgstr "გამოუქვეყნებელი"
 
-msgid "API"
-msgstr "API"
+msgid "Signing API"
+msgstr ""
+
+#, fuzzy
+msgid "Addon API"
+msgstr "დამატებები"
 
 msgid "Owner"
 msgstr "მფლობელი"
@@ -2643,7 +2647,7 @@ msgid "To get started, select how you would like to distribute this version."
 msgstr ""
 
 #, python-format
-msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing on Firefox Extension Workshop</a>."
+msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
 msgstr ""
 
 #, python-format
@@ -2733,7 +2737,8 @@ msgstr ""
 msgid "Your source code must include:"
 msgstr "პირველწყარო კოდი ატვირთულია"
 
-msgid "Step-by-step build instructions to create an exact copy of the add-on code."
+#, fuzzy
+msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
 msgstr "აწყობის ნაბიჯ-ნაბიჯ მითითებებს დამატების კოდის ზუსტი ასლის შესაქმნელად."
 
 msgid "A build script that executes all necessary technical steps."
@@ -2754,21 +2759,9 @@ msgstr ""
 "<span class=\"instruction-emphasis\">შენიშვნა:</span> წყაროს ფაილები (გარდა ღია წყაროს მქონე ცალკეული ბიბლიოთეკებისა) არ უნდა იყოს ერთი ენიდან სხვაზე გადმოტანილი, შერწყმული, შეკუმშული ან სხვა "
 "მანქანური გზით წარმოებული."
 
-msgid "<strong>You can include build instructions in a README file in your source code</strong>, or in the reviewer notes on the next page."
-msgstr ""
-
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
 msgstr ""
-
-msgid "How to Submit:"
-msgstr "როგორ ხდება წარდგენა:"
-
-msgid "Include instructions in a README file in the source code,"
-msgstr "მითითებები README ფაილის სახით უნდა დაერთოს პირველწყარო კოდს,"
-
-msgid "or in reviewer notes on the next page (if applicable)."
-msgstr "ან მიმომხილველის შენიშვნები მომდევნო გვერდზე (საჭიროების შემთხვევაში)"
 
 msgid "Upload source code:"
 msgstr "პირველწყარო კოდის ატვირთვა:"
@@ -4489,6 +4482,15 @@ msgstr "ჩანართის მმართველები"
 msgid "See more tab management extensions"
 msgstr "ჩანართის მმართველი სხვა გაფართოებები"
 
+#. editorial content for the homepage shelves.
+msgid "“{tag}” tagged extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more extensions tagged \"{tag}\""
+msgstr "სხვა ფართოდ გავრცელებული გაფართოებები"
+
 msgid "Could not parse the manifest file."
 msgstr "მანიფესტის ფაილის დამუშავება ვერ მოხერხდა."
 
@@ -5557,7 +5559,8 @@ msgstr "შესაბამისი წესების არსებო�
 msgid "result state"
 msgstr "შედეგის მდგომარეობა"
 
-msgid "all but results matching only this rule"
+#, fuzzy
+msgid "Excluding results solely matching these rules"
 msgstr "ყველა, გარდა ამ წესის შესაბამისი შედეგებისა"
 
 msgid "presence of a version"

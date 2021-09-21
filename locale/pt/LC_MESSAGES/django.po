@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-14 15:24+0000\n"
+"POT-Creation-Date: 2021-09-21 16:47+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1026,7 +1026,10 @@ msgstr "Eliminado"
 msgid "Unlisted"
 msgstr "Não listada"
 
-msgid "API"
+msgid "Signing API"
+msgstr ""
+
+msgid "Addon API"
 msgstr ""
 
 msgid "Owner"
@@ -2801,7 +2804,7 @@ msgid "To get started, select how you would like to distribute this version."
 msgstr ""
 
 #, python-format
-msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing on Firefox Extension Workshop</a>."
+msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
 msgstr ""
 
 #, python-format
@@ -2896,7 +2899,7 @@ msgstr ""
 msgid "Your source code must include:"
 msgstr "Código fonte"
 
-msgid "Step-by-step build instructions to create an exact copy of the add-on code."
+msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
 msgstr ""
 
 msgid "A build script that executes all necessary technical steps."
@@ -2911,21 +2914,8 @@ msgstr ""
 msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
 msgstr ""
 
-msgid "<strong>You can include build instructions in a README file in your source code</strong>, or in the reviewer notes on the next page."
-msgstr ""
-
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
-msgstr ""
-
-#, fuzzy
-msgid "How to Submit:"
-msgstr "Submeter"
-
-msgid "Include instructions in a README file in the source code,"
-msgstr ""
-
-msgid "or in reviewer notes on the next page (if applicable)."
 msgstr ""
 
 #, fuzzy
@@ -4684,6 +4674,15 @@ msgstr ""
 msgid "See more tab management extensions"
 msgstr "Navegar em todos os extras"
 
+#. editorial content for the homepage shelves.
+msgid "“{tag}” tagged extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more extensions tagged \"{tag}\""
+msgstr "Navegar em todos os extras"
+
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -5870,7 +5869,7 @@ msgstr ""
 msgid "result state"
 msgstr "Começar"
 
-msgid "all but results matching only this rule"
+msgid "Excluding results solely matching these rules"
 msgstr ""
 
 #, fuzzy
