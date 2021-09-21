@@ -336,7 +336,7 @@ def run_yara_query_rule(query_rule_pk):
     )
     if not rule.run_on_disabled_addons:
         qs = qs.exclude(addon__status=amo.STATUS_DISABLED)
-    qs = qs.values_list('id', flat=True).order_by('pk')
+    qs = qs.values_list('id', flat=True).order_by('-pk')
     # Build the workflow using a group of tasks dealing with 250 files at a
     # time, chained to a task that marks the query as completed.
     chunk_size = 250
