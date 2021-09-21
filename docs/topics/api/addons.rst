@@ -383,7 +383,6 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     :>json string file.created: The creation date for the file.
     :>json string file.hash: The hash for the file.
     :>json boolean file.is_mozilla_signed_extension: Whether the file was signed with a Mozilla internal certificate or not.
-    :>json boolean file.is_webextension: Whether the file is a WebExtension or not.
     :>json array file.optional_permissions[]: Array of the optional webextension permissions for this File, as strings. Empty for non-webextensions.
     :>json array file.permissions[]: Array of the webextension permissions for this File, as strings. Empty for non-webextensions.
     :>json int file.size: The size for the file, in bytes.

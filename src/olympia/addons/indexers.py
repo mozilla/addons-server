@@ -244,7 +244,6 @@ class AddonIndexer(BaseSearchIndexer):
                         'created': {'type': 'date', 'index': False},
                         'hash': {'type': 'keyword', 'index': False},
                         'filename': {'type': 'keyword', 'index': False},
-                        'is_webextension': {'type': 'boolean'},
                         'is_mozilla_signed_extension': {'type': 'boolean'},
                         'size': {'type': 'long', 'index': False},
                         'strict_compatibility': {'type': 'boolean', 'index': False},
@@ -402,7 +401,6 @@ class AddonIndexer(BaseSearchIndexer):
                         'created': version_obj.file.created,
                         'filename': version_obj.file.filename,
                         'hash': version_obj.file.hash,
-                        'is_webextension': version_obj.file.is_webextension,
                         'is_mozilla_signed_extension': (
                             version_obj.file.is_mozilla_signed_extension
                         ),

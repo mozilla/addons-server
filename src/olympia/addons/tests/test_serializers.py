@@ -114,7 +114,6 @@ class AddonSerializerOutputTestMixin:
             file_.created.replace(microsecond=0).isoformat() + 'Z'
         )
         assert result_file['hash'] == file_.hash
-        assert result_file['is_webextension'] == file_.is_webextension
         assert (
             result_file['is_mozilla_signed_extension']
             == file_.is_mozilla_signed_extension
@@ -640,6 +639,19 @@ class AddonSerializerOutputTestMixin:
         file_data = result['current_version']['file']
         assert file_data['is_restart_required'] is False
 
+    def test_is_webextension(self):
+        self.addon = addon_factory()
+        result = self.serialize()
+        file_data = result['current_version']['file']
+        assert 'is_webextension' not in file_data
+
+        # Test with shim
+        gates = {self.request.version: ('is-webextension-shim',)}
+        with override_settings(DRF_API_GATES=gates):
+            result = self.serialize()
+        file_data = result['current_version']['file']
+        assert file_data['is_webextension'] is True
+
     def test_special_compatibility_cases(self):
         # Test an add-on with strict compatibility enabled.
         self.addon = addon_factory(file_kw={'strict_compatibility': True})
@@ -1065,7 +1077,6 @@ class TestVersionSerializerOutput(TestCase):
             current_file.created.replace(microsecond=0).isoformat() + 'Z'
         )
         assert result['file']['hash'] == current_file.hash
-        assert result['file']['is_webextension'] == (current_file.is_webextension)
         assert result['file']['is_mozilla_signed_extension'] == (
             current_file.is_mozilla_signed_extension
         )

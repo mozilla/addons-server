@@ -426,7 +426,7 @@ These are `v5` specific changes - `v4` changes apply also.
 * 2021-08-05: removed ``criteria`` from shelves endpoint. https://github.com/mozilla/addons-server/issues/17498
 * 2021-08-12: removed ``is_restart_required`` from addons endpoints. https://github.com/mozilla/addons-server/issues/17390
 * 2021-09-23: flattened ``files`` in version detail from an array to a single ``file``. https://github.com/mozilla/addons-server/issues/17839
-
+* 2021-09-39: removed ``is_webextesion`` from file objects (all addons have been webextensions for a while now) in all endpoints. https://github.com/mozilla/addons-server/issues/17658
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/
