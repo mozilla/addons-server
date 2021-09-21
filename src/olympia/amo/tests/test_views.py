@@ -529,6 +529,8 @@ class TestVersion(TestCase):
             sys.version_info.minor,
         )
         assert content['django'] == f'{django.VERSION[0]}.{django.VERSION[1]}'
+        assert 'addons-linter' in content
+        assert '.' in content['addons-linter']
 
 
 class TestSiteStatusAPI(TestCase):
