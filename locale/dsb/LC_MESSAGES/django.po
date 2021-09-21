@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-21 16:47+0000\n"
-"PO-Revision-Date: 2021-09-21 19:12+0000\n"
+"PO-Revision-Date: 2021-09-21 19:23+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -957,9 +957,8 @@ msgstr "Njenalicone"
 msgid "Signing API"
 msgstr "Signěrowański API"
 
-#, fuzzy
 msgid "Addon API"
-msgstr "Dodanki"
+msgstr "Dodankowy API"
 
 msgid "Owner"
 msgstr "Swójstwownik"
@@ -2692,10 +2691,10 @@ msgid "Version Signature Pending"
 msgstr "Wersijowe signěrowanje hyšći faluje"
 
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
+msgstr "Sćo gótowy! ✨ Dostanjośo mejlku, gaž signěrowana dataja jo za ześěgnjenje z wuwijaŕskego rožka k dispozciji. Pśeglědajśo swój spamowy zarědnik, jolic mejlku pó 24 góźin njedostanjośo."
 
 msgid "As a reminder, your add-on is subject to manual review at any time."
-msgstr ""
+msgstr "K dopominanju, waš dodank se kuždy cas manuelne pśeglědowanje pomina."
 
 msgid "Go to My Submissions"
 msgstr "Móje zapódaśa se woglědaś"
@@ -2707,7 +2706,7 @@ msgid "Do You Need to Submit Source Code?"
 msgstr "Musyśo žrědłowy kod zapódaś?"
 
 msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
-msgstr ""
+msgstr "Pśeglědowarjo dodankow Mozilla muse kod we wašom rozšyrjenju cytaś a reproducěrowaś móc. Jolic to njamógu, se waše rozšyrjenje wótpokažo."
 
 msgid "Do you use any of the following in your extension?"
 msgstr "Wužywaśo jaden ze slědujucego w swójom rozšyrjenju?"
@@ -4484,9 +4483,8 @@ msgid "“{tag}” tagged extensions"
 msgstr "Rozšyrjenja z wobznamjenim „{tag}“"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more extensions tagged \"{tag}\""
-msgstr "Dalšne woblubowane rozšyrjenja se woglědaś"
+msgstr "Dalšne rozšyrjenja z wobznamjenim „{tag}“"
 
 msgid "Could not parse the manifest file."
 msgstr "Manifestowa dataja njedajo se analyzěrowaś."
@@ -5560,9 +5558,8 @@ msgstr "eksistenca wótpowědujucych pšawidłow"
 msgid "result state"
 msgstr "wuslědkowy status"
 
-#, fuzzy
 msgid "Excluding results solely matching these rules"
-msgstr "wšykne mimo wuslědkow, kótarež toś tomu pšawidłoju wótpowěduju"
+msgstr "Mimo wuslědkow, kótarež jano toś tym pšawidłam wótpowěduju"
 
 msgid "presence of a version"
 msgstr "eksistenca wersije"
