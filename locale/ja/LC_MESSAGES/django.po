@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-14 15:24+0000\n"
+"POT-Creation-Date: 2021-09-21 16:47+0000\n"
 "PO-Revision-Date: 2021-09-06 14:40+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
@@ -962,8 +962,12 @@ msgstr "削除済み"
 msgid "Unlisted"
 msgstr "リスト掲載中止"
 
-msgid "API"
-msgstr "API"
+msgid "Signing API"
+msgstr ""
+
+#, fuzzy
+msgid "Addon API"
+msgstr "アドオン"
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -2623,7 +2627,7 @@ msgid "To get started, select how you would like to distribute this version."
 msgstr ""
 
 #, python-format
-msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing on Firefox Extension Workshop</a>."
+msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
 msgstr ""
 
 #, python-format
@@ -2714,7 +2718,8 @@ msgstr ""
 msgid "Your source code must include:"
 msgstr "ソースコードがアップロードされました"
 
-msgid "Step-by-step build instructions to create an exact copy of the add-on code."
+#, fuzzy
+msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
 msgstr "アドオンのコードと完全に同一のものを生成するための順を追ったビルド方法。"
 
 msgid "A build script that executes all necessary technical steps."
@@ -2733,21 +2738,9 @@ msgstr ""
 msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
 msgstr "<span class=\"instruction-emphasis\">注:</span> トランスパイル、難読化、最小化、その他自動生成されたソースファイルは受け入れられません (オープンソースのサードパーティライブラリを除く)。"
 
-msgid "<strong>You can include build instructions in a README file in your source code</strong>, or in the reviewer notes on the next page."
-msgstr ""
-
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
 msgstr ""
-
-msgid "How to Submit:"
-msgstr "提出方法:"
-
-msgid "Include instructions in a README file in the source code,"
-msgstr "ソースコード内の README ファイルか、"
-
-msgid "or in reviewer notes on the next page (if applicable)."
-msgstr "(該当する場合) 次のページの「審査担当者へのメモ」に手順を含めてください。"
 
 msgid "Upload source code:"
 msgstr "ソースコードをアップロード:"
@@ -4496,6 +4489,15 @@ msgstr ""
 msgid "See more tab management extensions"
 msgstr "おすすめの拡張機能をもっと見る"
 
+#. editorial content for the homepage shelves.
+msgid "“{tag}” tagged extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more extensions tagged \"{tag}\""
+msgstr "人気の拡張機能をもっと見る"
+
 msgid "Could not parse the manifest file."
 msgstr "マニフェストファイルを解析できませんでした。"
 
@@ -5606,7 +5608,7 @@ msgstr ""
 msgid "result state"
 msgstr "ここからスタート"
 
-msgid "all but results matching only this rule"
+msgid "Excluding results solely matching these rules"
 msgstr ""
 
 #, fuzzy

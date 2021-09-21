@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-14 15:24+0000\n"
+"POT-Creation-Date: 2021-09-21 16:47+0000\n"
 "PO-Revision-Date: 2021-07-31 08:16+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -964,8 +964,12 @@ msgstr "Fshirë"
 msgid "Unlisted"
 msgstr "Të pashfaqura"
 
-msgid "API"
-msgstr "API"
+msgid "Signing API"
+msgstr ""
+
+#, fuzzy
+msgid "Addon API"
+msgstr "Shtesa"
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -2643,7 +2647,7 @@ msgid "To get started, select how you would like to distribute this version."
 msgstr ""
 
 #, python-format
-msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing on Firefox Extension Workshop</a>."
+msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
 msgstr ""
 
 #, python-format
@@ -2733,7 +2737,8 @@ msgstr ""
 msgid "Your source code must include:"
 msgstr "U ngarkua kod burim"
 
-msgid "Step-by-step build instructions to create an exact copy of the add-on code."
+#, fuzzy
+msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
 msgstr "Udhëzime montimi hap pas hapi për të krijuar një kopje të përpiktë të kodit të shtesës."
 
 msgid "A build script that executes all necessary technical steps."
@@ -2754,21 +2759,9 @@ msgstr ""
 "<span class=\"instruction-emphasis\">Shënim:</span> Kartelat burim (ndaras nga librari me burim të hapët, prej palësh të treta) s’mund të ndërpërpilohen, vihen në varg, minimizohen apo të preken në "
 "rrugë të tjera nga makina."
 
-msgid "<strong>You can include build instructions in a README file in your source code</strong>, or in the reviewer notes on the next page."
-msgstr ""
-
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
 msgstr ""
-
-msgid "How to Submit:"
-msgstr "Si të Parashtrohet:"
-
-msgid "Include instructions in a README file in the source code,"
-msgstr "Përfshini udhëzime në një kartelë README te kodi burim,"
-
-msgid "or in reviewer notes on the next page (if applicable)."
-msgstr "ose te shënimet e shqyrtuesit në faqen pasuese (nëse duhet)."
 
 msgid "Upload source code:"
 msgstr "Ngarko kod burim:"
@@ -4509,6 +4502,15 @@ msgstr ""
 msgid "See more tab management extensions"
 msgstr "Shihni më tepër zgjerime të rekomanduara"
 
+#. editorial content for the homepage shelves.
+msgid "“{tag}” tagged extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more extensions tagged \"{tag}\""
+msgstr "Shihni më tepër zgjerime popullore"
+
 msgid "Could not parse the manifest file."
 msgstr "S’përtypi dot kartelën manifest."
 
@@ -5579,7 +5581,8 @@ msgstr "prani rregullash me përputhje"
 msgid "result state"
 msgstr "gjendje përfundim"
 
-msgid "all but results matching only this rule"
+#, fuzzy
+msgid "Excluding results solely matching these rules"
 msgstr "krejt, hiq përfundime që kanë përputhje vetëm me këtë rregull"
 
 msgid "presence of a version"

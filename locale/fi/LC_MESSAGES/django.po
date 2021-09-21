@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-14 15:24+0000\n"
+"POT-Creation-Date: 2021-09-21 16:47+0000\n"
 "PO-Revision-Date: 2021-08-14 12:57+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -980,8 +980,12 @@ msgstr "Poistettu"
 msgid "Unlisted"
 msgstr "Ei listattu"
 
-msgid "API"
-msgstr "API"
+msgid "Signing API"
+msgstr ""
+
+#, fuzzy
+msgid "Addon API"
+msgstr "Lisäosat"
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -2682,7 +2686,7 @@ msgid "To get started, select how you would like to distribute this version."
 msgstr ""
 
 #, python-format
-msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing on Firefox Extension Workshop</a>."
+msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
 msgstr ""
 
 #, python-format
@@ -2776,7 +2780,7 @@ msgstr ""
 msgid "Your source code must include:"
 msgstr "Lähdekoodi ladattu"
 
-msgid "Step-by-step build instructions to create an exact copy of the add-on code."
+msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
 msgstr ""
 
 msgid "A build script that executes all necessary technical steps."
@@ -2791,20 +2795,8 @@ msgstr ""
 msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
 msgstr ""
 
-msgid "<strong>You can include build instructions in a README file in your source code</strong>, or in the reviewer notes on the next page."
-msgstr ""
-
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
-msgstr ""
-
-msgid "How to Submit:"
-msgstr ""
-
-msgid "Include instructions in a README file in the source code,"
-msgstr ""
-
-msgid "or in reviewer notes on the next page (if applicable)."
 msgstr ""
 
 msgid "Upload source code:"
@@ -4523,6 +4515,15 @@ msgstr "Välilehtien hallinta"
 msgid "See more tab management extensions"
 msgstr "Katso lisää välilehtien hallinnan laajennuksia"
 
+#. editorial content for the homepage shelves.
+msgid "“{tag}” tagged extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more extensions tagged \"{tag}\""
+msgstr "Katso lisää suosittuja laajennuksia"
+
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -5688,7 +5689,7 @@ msgstr ""
 msgid "result state"
 msgstr "Aloittaminen"
 
-msgid "all but results matching only this rule"
+msgid "Excluding results solely matching these rules"
 msgstr ""
 
 #, fuzzy

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-14 15:24+0000\n"
+"POT-Creation-Date: 2021-09-21 16:47+0000\n"
 "PO-Revision-Date: 2021-08-19 19:09+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -959,8 +959,12 @@ msgstr "Smazáno"
 msgid "Unlisted"
 msgstr "Není v seznamu"
 
-msgid "API"
-msgstr "API"
+msgid "Signing API"
+msgstr ""
+
+#, fuzzy
+msgid "Addon API"
+msgstr "Doplňky"
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -2637,7 +2641,7 @@ msgid "To get started, select how you would like to distribute this version."
 msgstr ""
 
 #, python-format
-msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing on Firefox Extension Workshop</a>."
+msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
 msgstr ""
 
 #, python-format
@@ -2727,7 +2731,8 @@ msgstr ""
 msgid "Your source code must include:"
 msgstr "Zdrojový kód nahrán"
 
-msgid "Step-by-step build instructions to create an exact copy of the add-on code."
+#, fuzzy
+msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
 msgstr "Podrobný postup, jak vytvořit přesnou kopii kódu doplňku."
 
 msgid "A build script that executes all necessary technical steps."
@@ -2748,21 +2753,9 @@ msgstr ""
 "<span class=\"instruction-emphasis\">Poznámka:</span> Zdrojové soubory (s výjimkou open-source knihoven třetích stran) nemohou být transpilované, obfuskované, minifikované nebo jinak strojově "
 "vygenerované."
 
-msgid "<strong>You can include build instructions in a README file in your source code</strong>, or in the reviewer notes on the next page."
-msgstr ""
-
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
 msgstr ""
-
-msgid "How to Submit:"
-msgstr "Jak odeslat:"
-
-msgid "Include instructions in a README file in the source code,"
-msgstr "Instrukce zapište ve zdrojovém kódu do souboru README,"
-
-msgid "or in reviewer notes on the next page (if applicable)."
-msgstr "nebo v poznámkách recenzenta na další straně (je-li k dispozici)."
 
 msgid "Upload source code:"
 msgstr "Nahrání zdrojového kódu:"
@@ -4489,6 +4482,15 @@ msgstr "Správa panelů"
 msgid "See more tab management extensions"
 msgstr "Další rozšíření pro správu panelů"
 
+#. editorial content for the homepage shelves.
+msgid "“{tag}” tagged extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more extensions tagged \"{tag}\""
+msgstr "Další oblíbená rozšíření"
+
 msgid "Could not parse the manifest file."
 msgstr "Nepodařilo se zpracovat manifest soubor."
 
@@ -5559,7 +5561,7 @@ msgstr ""
 msgid "result state"
 msgstr ""
 
-msgid "all but results matching only this rule"
+msgid "Excluding results solely matching these rules"
 msgstr ""
 
 msgid "presence of a version"

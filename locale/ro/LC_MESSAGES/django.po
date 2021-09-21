@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-14 15:24+0000\n"
+"POT-Creation-Date: 2021-09-21 16:47+0000\n"
 "PO-Revision-Date: 2021-08-26 13:24+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -966,8 +966,12 @@ msgstr "Șters"
 msgid "Unlisted"
 msgstr "Nelistat"
 
-msgid "API"
-msgstr "API"
+msgid "Signing API"
+msgstr ""
+
+#, fuzzy
+msgid "Addon API"
+msgstr "Suplimente"
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -2670,7 +2674,7 @@ msgid "To get started, select how you would like to distribute this version."
 msgstr ""
 
 #, python-format
-msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing on Firefox Extension Workshop</a>."
+msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
 msgstr ""
 
 #, python-format
@@ -2760,7 +2764,8 @@ msgstr ""
 msgid "Your source code must include:"
 msgstr "Cod sursă încărcat"
 
-msgid "Step-by-step build instructions to create an exact copy of the add-on code."
+#, fuzzy
+msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
 msgstr "Instrucțiuni de compilare pas cu pas pentru crearea unei copii exacte a codului suplimentului."
 
 msgid "A build script that executes all necessary technical steps."
@@ -2781,21 +2786,9 @@ msgstr ""
 "<span class=\"instruction-emphasis\">Notă:</span> Fișierele sursă (în afara bibliotecilor de la terți cu sursă deschisă) nu pot fi transcompilate, legate în lanț, minificate sau generate altminteri "
 "de mașini."
 
-msgid "<strong>You can include build instructions in a README file in your source code</strong>, or in the reviewer notes on the next page."
-msgstr ""
-
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
 msgstr ""
-
-msgid "How to Submit:"
-msgstr "Cum se transmit propunerile:"
-
-msgid "Include instructions in a README file in the source code,"
-msgstr "Include instrucțiuni într-un fișier README la interiorul codului sursă,"
-
-msgid "or in reviewer notes on the next page (if applicable)."
-msgstr "sau în notele recenzentului de pe pagina următoare (dacă este cazul)."
 
 msgid "Upload source code:"
 msgstr "Încarcă codul sursă:"
@@ -4545,6 +4538,15 @@ msgstr ""
 msgid "See more tab management extensions"
 msgstr "Vezi mai multe extensii recomandate"
 
+#. editorial content for the homepage shelves.
+msgid "“{tag}” tagged extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more extensions tagged \"{tag}\""
+msgstr "Vezi mai multe extensii populare"
+
 msgid "Could not parse the manifest file."
 msgstr "Nu s-a reușit analizarea fișierului manifest."
 
@@ -5655,7 +5657,8 @@ msgstr "există reguli corelate"
 msgid "result state"
 msgstr "stare rezultată"
 
-msgid "all but results matching only this rule"
+#, fuzzy
+msgid "Excluding results solely matching these rules"
 msgstr "toate, în afară de rezultatele numai pentru această regulă"
 
 msgid "presence of a version"
