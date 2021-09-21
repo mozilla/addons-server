@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-21 16:47+0000\n"
-"PO-Revision-Date: 2021-09-21 17:31+0000\n"
+"PO-Revision-Date: 2021-09-21 17:51+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -2599,9 +2599,9 @@ msgstr "如何散布此版本"
 msgid "To get started, select how you would like to distribute this version."
 msgstr "要開始上架，請先選擇您要如何發布此版本。"
 
-#, fuzzy, python-format
+#, python-format
 msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
-msgstr "請閱讀 Firefox Extension Workshop 的 <a %(a_attrs)s>Add-on Distribution and Signing</a> 一文來了解更多這些選項間的差異。"
+msgstr "請閱讀 Firefox Extension Workshop 的 <a %(a_attrs)s>Add-on Distribution and Signing</a> 一文來更加了解這些選項間的差異。"
 
 #, python-format
 msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
