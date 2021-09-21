@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-21 16:47+0000\n"
-"PO-Revision-Date: 2021-09-21 19:04+0000\n"
+"PO-Revision-Date: 2021-09-21 19:12+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -2667,6 +2667,8 @@ msgid ""
 "You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
 "selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
+"Sćo gótowy! ✨ Dostanjośo wobkšuśeńsku mejlku, gaž se toś ta wersija na %(site_domain)s wózjawja. Źiwajśo na to, až móžo až do 24 góźin traś, nježli až sr wózjawjenje stawa, abo dlej, jolic waš "
+"dodank jo za manuelne pśeglědowanje wubrany. Pśeglědajśo swój spamowy zarědnik, jolic pó 24 góźin mejlku njedostanjośo."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr "Waš lisćinowy zapisk buźo wuspěšnjejšy, gaž pśidawaśo nadrobne wopisanje. Pśigótujśo swój lisćinowy zapisk za wózjawjenje:"
@@ -2675,6 +2677,7 @@ msgstr "Waš lisćinowy zapisk buźo wuspěšnjejšy, gaž pśidawaśo nadrobne 
 msgid ""
 "You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a %(a_attrs)s>creating an appealing listing</a> on Firefox Extension Workshop."
 msgstr ""
+"Pśidajśo swójomu zapiskoju pódrobne wopisanje a fota wobrazowki, aby wužywarje pśiwabił. Wobstarajśo se pomoc za <a %(a_attrs)s>napóranje spódobnego zapiska</a> w źěłarni rozšyrjenjow Firefox."
 
 msgid "Manage Listing"
 msgstr "Lisćinowy zapisk zastojaś"
@@ -4478,7 +4481,7 @@ msgstr "Dalšne rozšyrjenja wó zastojanju rejtarikow pokazaś"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
-msgstr ""
+msgstr "Rozšyrjenja z wobznamjenim „{tag}“"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
