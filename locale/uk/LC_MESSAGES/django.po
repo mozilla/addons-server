@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-21 16:47+0000\n"
-"PO-Revision-Date: 2021-09-21 22:15+0000\n"
+"PO-Revision-Date: 2021-09-21 22:19+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -2643,9 +2643,9 @@ msgstr "Як розповсюджувати цю версію"
 msgid "To get started, select how you would like to distribute this version."
 msgstr "Для початку оберіть спосіб розповсюдження цієї версії."
 
-#, fuzzy, python-format
+#, python-format
 msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
-msgstr "Ви можете дізнатися більше про ці параметри, прочитавши <a %(a_attrs)s>Розповсюдження та підпис додатка у центрі розширень Firefox</a>."
+msgstr "Ви можете дізнатися більше про ці параметри, прочитавши <a %(a_attrs)s>Розповсюдження та підпис додатка</a> у центрі розширень Firefox."
 
 #, python-format
 msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
@@ -2737,9 +2737,8 @@ msgstr "Ви повинні надіслати джерельний код ро�
 msgid "Your source code must include:"
 msgstr "Ваш джерельний код повинен містити:"
 
-#, fuzzy
 msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
-msgstr "<strong>Ви можете включити настанови зі збирання у файл README джерельного коду</strong> або у примітки для рецензентів на наступній сторінці."
+msgstr "Покрокові настанови щодо створення точної копії коду додатка у файлі README у вашому джерельному коді або у примітках рецензента на наступній сторінці."
 
 msgid "A build script that executes all necessary technical steps."
 msgstr "Вбудований скрипт, що виконує всі необхідні технічні кроки."
@@ -4483,9 +4482,8 @@ msgid "“{tag}” tagged extensions"
 msgstr "Розширення з мітками “{tag}”"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more extensions tagged \"{tag}\""
-msgstr "Більше популярних розширень"
+msgstr "Переглянути інші розширення з міткою \"{tag}\""
 
 msgid "Could not parse the manifest file."
 msgstr "Не вдалося обробити файл маніфесту."
@@ -5557,9 +5555,8 @@ msgstr "наявність відповідних правил"
 msgid "result state"
 msgstr "результат"
 
-#, fuzzy
 msgid "Excluding results solely matching these rules"
-msgstr "всі, крім результатів які відповідають лише цьому правилу"
+msgstr "Виключити результати, які відповідають виключно цим правилам"
 
 msgid "presence of a version"
 msgstr "наявність версії"
