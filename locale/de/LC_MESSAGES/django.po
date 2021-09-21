@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-21 16:47+0000\n"
-"PO-Revision-Date: 2021-09-21 19:05+0000\n"
+"PO-Revision-Date: 2021-09-21 19:07+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -2759,9 +2759,8 @@ msgstr "Sie müssen den Quelltext Ihrer Erweiterung einreichen."
 msgid "Your source code must include:"
 msgstr "Ihr Quellcode muss Folgendes enthalten:"
 
-#, fuzzy
 msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
-msgstr "<strong>Sie können Build-Anweisungen in eine README-Datei in Ihren Quellcode einfügen</strong> oder in die Hinweise für Überprüfer auf der nächsten Seite."
+msgstr "Schritt-für-Schritt-Anleitung zum Erstellen einer exakten Kopie des Add-on-Quelltextes in einer README-Datei in Ihrem Quelltext oder in den Anmerkungen für Überprüfer auf der nächsten Seite."
 
 msgid "A build script that executes all necessary technical steps."
 msgstr "Ein Build-Skript, das alle notwendigen technischen Schritte ausführt."
@@ -4516,9 +4515,8 @@ msgid "“{tag}” tagged extensions"
 msgstr "Erweiterungen mit dem Schlagwort „{tag}“"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more extensions tagged \"{tag}\""
-msgstr "Mehr beliebte Erweiterungen ansehen"
+msgstr "Weitere Erweiterungen mit dem Schlagwort „{tag}“ anzeigen"
 
 msgid "Could not parse the manifest file."
 msgstr "Manifest-Datei konnte nicht verarbeitet werden."
@@ -5590,9 +5588,8 @@ msgstr "Vorhandensein übereinstimmender Regeln"
 msgid "result state"
 msgstr "Ergebniszustand"
 
-#, fuzzy
 msgid "Excluding results solely matching these rules"
-msgstr "Alle mit Ausnahme der Ergebnisse, die nur dieser Regel entsprechen"
+msgstr "Alle mit Ausnahme der Ergebnisse, die nur diesen Regeln entsprechen"
 
 msgid "presence of a version"
 msgstr "Vorhandensein einer Version"
