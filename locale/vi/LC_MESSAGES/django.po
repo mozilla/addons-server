@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-21 16:47+0000\n"
-"PO-Revision-Date: 2021-09-21 23:22+0000\n"
+"PO-Revision-Date: 2021-09-21 23:24+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -921,21 +921,17 @@ msgstr "{addon} {version} yêu cầu xét duyệt."
 msgid "Version re-signed"
 msgstr "Phiên bản %s đã bật lại."
 
-#, fuzzy
 msgid "{user} force-disabled {addon}."
-msgstr "{version} được chỉnh cho {addon}."
+msgstr "{user} đã buộc vô hiệu hóa {addon}."
 
-#, fuzzy
 msgid "Force disabled"
-msgstr "{addon} bị vô hiệu hóa."
+msgstr "Đã buộc vô hiệu hóa"
 
-#, fuzzy
 msgid "{user} force-enabled {addon}."
-msgstr "Buộc kích hoạt tiện ích mở rộng"
+msgstr "{user} đã buộc kích hoạt {addon}."
 
-#, fuzzy
 msgid "Force enabled"
-msgstr "Buộc kích hoạt tiện ích mở rộng"
+msgstr "Đã buộc kích hoạt"
 
 msgid "Firefox"
 msgstr "Firefox"
