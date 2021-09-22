@@ -492,7 +492,7 @@ Four recommendations are fetched, but only valid, publicly available addons are 
 
 .. http:get:: /api/v5/addons/recommendations/
 
-    :query string app: Set the :ref:`add-on application <addon-detail-application>` for that query. This won't filter the results.
+    :query string app: Set the :ref:`add-on application <addon-detail-application>` for that query. This won't filter the results. Defaults to `firefox`.
     :query string guid: Fetch recommendations for this add-on guid.
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :query boolean recommended: Fetch recommendations from the recommendation service, or return a curated fallback list instead.
