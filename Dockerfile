@@ -35,6 +35,7 @@ RUN touch /addons-server-docker-container \
         build-essential \
         curl \
         libcap-dev \
+        libgit2-dev \
         libjpeg-dev \
         libpcre3-dev \
         libsasl2-dev \

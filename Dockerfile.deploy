@@ -31,6 +31,7 @@ RUN touch /addons-server-docker-container \
         bash-completion \
         build-essential \
         curl \
+        libgit2-dev \
         libjpeg-dev \
         libsasl2-dev \
         libxml2-dev \
