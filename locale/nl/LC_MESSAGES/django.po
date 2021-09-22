@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-21 16:47+0000\n"
-"PO-Revision-Date: 2021-09-22 05:36+0000\n"
+"PO-Revision-Date: 2021-09-22 06:05+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -4492,11 +4492,11 @@ msgstr "Meer extensies voor tabbladbeheer bekijken"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
-msgstr ""
+msgstr "Met ‘{tag}’ gelabelde extensies"
 
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
-msgstr ""
+msgstr "Meer met ‘{tag}’ gelabelde extensies bekijken"
 
 msgid "Could not parse the manifest file."
 msgstr "Kon het manifest-bestand niet verwerken."
@@ -5569,7 +5569,7 @@ msgid "result state"
 msgstr "resulterende status"
 
 msgid "Excluding results solely matching these rules"
-msgstr ""
+msgstr "Exclusief resultaten die alleen met deze regels overeenkomen"
 
 msgid "presence of a version"
 msgstr "aanwezigheid van een versie"
