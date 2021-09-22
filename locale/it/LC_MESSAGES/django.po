@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-21 16:47+0000\n"
-"PO-Revision-Date: 2021-09-22 05:41+0000\n"
+"PO-Revision-Date: 2021-09-22 05:32+0000\n"
 "Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -968,7 +968,7 @@ msgid "Unlisted"
 msgstr "Non elencato"
 
 msgid "Signing API"
-msgstr ""
+msgstr "API per la firma"
 
 #, fuzzy
 msgid "Addon API"
