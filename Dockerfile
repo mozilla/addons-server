@@ -1,4 +1,4 @@
-FROM python:3.8-slim-buster
+FROM python:3.9-slim-buster
 
 ENV PYTHONDONTWRITEBYTECODE=1
 
@@ -35,6 +35,7 @@ RUN touch /addons-server-docker-container \
         build-essential \
         curl \
         libcap-dev \
+        libgit2-dev \
         libjpeg-dev \
         libpcre3-dev \
         libsasl2-dev \

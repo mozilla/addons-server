@@ -282,7 +282,7 @@ references:
 
   docker-images:
     # This is the python version we run in production.
-    - &python "cimg/python:3.8"
+    - &python "cimg/python:3.9"
     - &redis "redis:2.8"
     - &memcached "memcached:1.4"
     - &mysql "circleci/mysql:8.0.25"
@@ -471,7 +471,7 @@ commands:
             curl -sL https://dev.mysql.com/get/mysql-apt-config_0.8.15-1_all.deb --output mysql-apt-config.deb
             sudo dpkg -i mysql-apt-config.deb
             sudo apt-get update -q
-            sudo apt-get install -y gettext pngcrush librsvg2-bin libmysqlclient-dev
+            sudo apt-get install -y gettext pngcrush librsvg2-bin libmysqlclient-dev libgit2-dev
             sudo cp ./docker/etc/mime.types /etc/mime.types
             sudo touch /addons-server-docker-container
       - node/install:
