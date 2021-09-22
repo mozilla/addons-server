@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-21 16:47+0000\n"
-"PO-Revision-Date: 2021-09-22 05:37+0000\n"
+"PO-Revision-Date: 2021-09-22 05:41+0000\n"
 "Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -1763,7 +1763,7 @@ msgid "Ensure name and summary combined are at most {limit_value} characters (th
 msgstr "Nome e riepilogo non devono superare complessivamente {limit_value} caratteri (caratteri attuali: {show_value})."
 
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
-msgstr ""
+msgstr "Su questo sito. <span class=\"helptext\">Il tuo componente aggiuntivo è elencato pubblicamente su {site_domain}.</span>"
 
 msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
@@ -2786,9 +2786,8 @@ msgstr "Strumenti che combinano più file in uno singolo, come <span class=\"tec
 msgid "Web template engines, both for HTML and CSS"
 msgstr "Motori per web template, sia per HTML che per CSS"
 
-#, fuzzy
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the extension"
-msgstr "Qualsiasi altro strumento utilizzato per processare codice sorgente o file, e generare codice o file inclusi nel componente aggiuntivo"
+msgstr "Qualsiasi altro strumento utilizzato per processare codice sorgente o file, e generare codice o file inclusi nell’estensione"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
 msgstr "Non è necessario inviare il codice sorgente, è tutto pronto per il passo successivo."
@@ -2815,11 +2814,11 @@ msgstr ""
 "emphasis\">npm</span>)."
 
 msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
-msgstr ""
+msgstr "I file sorgenti non possono essere convertiti tramite transpiler, concatenati, minimizzati o generati automaticamente in altro modo, fatta eccezione per librerie open source di terze parti."
 
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Per ulteriori informazioni, puoi consultare <a %(a_attrs)s>Invio del codice sorgente</a> nel Laboratorio estensioni di Firefox."
 
 msgid "Upload source code:"
 msgstr "Carica il codice sorgente:"
@@ -4559,7 +4558,7 @@ msgstr "Visualizza altre estensioni per la gestione delle schede"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
-msgstr ""
+msgstr "Estensioni con etichetta “{tag}”"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
