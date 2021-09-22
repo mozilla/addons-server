@@ -40,7 +40,7 @@ from olympia.constants.scanners import (
 from olympia.files.models import FileUpload
 from olympia.reviewers.templatetags.code_manager import code_manager_url
 from olympia.scanners.admin import (
-    ExcludeMatchedRuleFilter,
+    ExcludeMatchedRulesFilter,
     MatchesFilter,
     ScannerQueryResultAdmin,
     ScannerResultAdmin,
@@ -334,12 +334,20 @@ class TestScannerResultAdmin(TestCase):
             ('hello (yara)', f'?matched_rules__id__exact={rule_hello.pk}'),
             ('All', '?has_version=all'),
             (' With version only', '?'),
-            ('No excluded rule', '?'),
-            ('foo (customs)', f'?exclude_rule={rule_foo.pk}'),
-            ('bar (yara)', f'?exclude_rule={rule_bar.pk}'),
-            ('hello (yara)', f'?exclude_rule={rule_hello.pk}'),
         ]
         filters = [(x.text, x.attrib['href']) for x in doc('#changelist-filter a')]
+        assert filters == expected
+
+        # Exclude rules is a form, needs a separate check.
+        expected = [
+            ('foo (customs)', str(rule_foo.pk)),
+            ('bar (yara)', str(rule_bar.pk)),
+            ('hello (yara)', str(rule_hello.pk)),
+        ]
+        filters = [
+            (option.text, option.attrib['value'])
+            for option in doc('#changelist-filter option')
+        ]
         assert filters == expected
 
     def test_list_filter_matched_rules(self):
@@ -370,7 +378,7 @@ class TestScannerResultAdmin(TestCase):
             'bar (yara), hello (yara)'
         )
 
-    def test_exclude_matched_rule_filter(self):
+    def test_exclude_matched_rules_filter(self):
         rule_bar = ScannerRule.objects.create(name='bar', scanner=YARA)
         rule_hello = ScannerRule.objects.create(name='hello', scanner=YARA)
         rule_foo = ScannerRule.objects.create(name='foo', scanner=CUSTOMS)
@@ -395,7 +403,7 @@ class TestScannerResultAdmin(TestCase):
         response = self.client.get(
             self.list_url,
             {
-                ExcludeMatchedRuleFilter.parameter_name: rule_bar.pk,
+                ExcludeMatchedRulesFilter.parameter_name: rule_bar.pk,
                 WithVersionFilter.parameter_name: 'all',
             },
         )
@@ -416,7 +424,7 @@ class TestScannerResultAdmin(TestCase):
         response = self.client.get(
             self.list_url,
             {
-                ExcludeMatchedRuleFilter.parameter_name: rule_hello.pk,
+                ExcludeMatchedRulesFilter.parameter_name: rule_hello.pk,
                 WithVersionFilter.parameter_name: 'all',
             },
         )
@@ -435,7 +443,7 @@ class TestScannerResultAdmin(TestCase):
         response = self.client.get(
             self.list_url,
             {
-                ExcludeMatchedRuleFilter.parameter_name: rule_foo.pk,
+                ExcludeMatchedRulesFilter.parameter_name: rule_foo.pk,
                 WithVersionFilter.parameter_name: 'all',
             },
         )
@@ -448,6 +456,126 @@ class TestScannerResultAdmin(TestCase):
         ]
         ids = list(map(int, doc('#result_list .field-id').text().split(' ')))
         assert ids == expected_ids
+
+    def test_multiple_exclude_matched_rules_filter(self):
+        rule_bar = ScannerRule.objects.create(name='bar', scanner=YARA)
+        rule_hello = ScannerRule.objects.create(name='hello', scanner=YARA)
+        rule_foo = ScannerRule.objects.create(name='foo', scanner=CUSTOMS)
+
+        with_bar_and_hello_matches = ScannerResult(scanner=YARA)
+        with_bar_and_hello_matches.add_yara_result(rule=rule_bar.name)
+        with_bar_and_hello_matches.add_yara_result(rule=rule_hello.name)
+        with_bar_and_hello_matches.save()
+        with_bar_and_hello_matches.update(created=self.days_ago(3))
+        with_foo_match = ScannerResult(
+            scanner=CUSTOMS,
+            results={'matchedRules': [rule_foo.name]},
+        )
+        with_foo_match.save()
+        with_foo_match.update(created=self.days_ago(2))
+        with_hello_match = ScannerResult(scanner=YARA)
+        with_hello_match.add_yara_result(rule=rule_hello.name)
+        with_hello_match.save()
+        with_hello_match.update(created=self.days_ago(1))
+
+        # Exclude 'bar' and 'hello'. Because exclude excludes results that
+        # *only* match the target rules, we should get 2 results (with_hello
+        # should be absent).
+        response = self.client.get(
+            self.list_url,
+            {
+                ExcludeMatchedRulesFilter.parameter_name: [rule_bar.pk, rule_hello.pk],
+                WithVersionFilter.parameter_name: 'all',
+            },
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 2
+        expected_ids = [
+            with_foo_match.pk,
+            with_bar_and_hello_matches.pk,
+        ]
+        ids = list(map(int, doc('#result_list .field-id').text().split(' ')))
+        assert ids == expected_ids
+
+        # Exclude 'foo' and 'hello'. Because exclude excludes results that
+        # *only* match the target rules again, only with_bar_and_hello_matches
+        # should be present. Just to add another filter into the mix to test
+        # links, set the state of all results to inconclusive.
+        ScannerResult.objects.update(state=INCONCLUSIVE)
+        response = self.client.get(
+            self.list_url,
+            {
+                ExcludeMatchedRulesFilter.parameter_name: [rule_hello.pk, rule_foo.pk],
+                WithVersionFilter.parameter_name: 'all',
+                StateFilter.parameter_name: INCONCLUSIVE,
+            },
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 1
+        expected_ids = [
+            with_bar_and_hello_matches.pk,
+        ]
+        ids = list(map(int, doc('#result_list .field-id').text().split(' ')))
+        assert ids == expected_ids
+
+        # Check the links to other filters/form for the exclude rules filter
+        # are pre-populated with the current active filters correctly.
+        links = [x.attrib['href'] for x in doc('#changelist-filter a')]
+        expected = [
+            '?',
+            f'?exclude_rule={rule_hello.pk}&exclude_rule={rule_foo.pk}&has_version=all'
+            '&state=3',
+            f'?exclude_rule={rule_hello.pk}&exclude_rule={rule_foo.pk}&has_version=all'
+            '&state=3&scanner__exact=1',
+            f'?exclude_rule={rule_hello.pk}&exclude_rule={rule_foo.pk}&has_version=all'
+            '&state=3&scanner__exact=2',
+            f'?exclude_rule={rule_hello.pk}&exclude_rule={rule_foo.pk}&has_version=all'
+            '&state=3&scanner__exact=3',
+            f'?exclude_rule={rule_hello.pk}&exclude_rule={rule_foo.pk}&has_version=all'
+            '&state=3&scanner__exact=4',
+            f'?exclude_rule={rule_hello.pk}&exclude_rule={rule_foo.pk}&has_version=all'
+            '&state=3&has_matched_rules=all',
+            f'?exclude_rule={rule_hello.pk}&exclude_rule={rule_foo.pk}&has_version=all'
+            '&state=3',
+            f'?exclude_rule={rule_hello.pk}&exclude_rule={rule_foo.pk}&has_version=all'
+            '&state=all',
+            f'?exclude_rule={rule_hello.pk}&exclude_rule={rule_foo.pk}&has_version=all',
+            f'?exclude_rule={rule_hello.pk}&exclude_rule={rule_foo.pk}&has_version=all'
+            '&state=1',
+            f'?exclude_rule={rule_hello.pk}&exclude_rule={rule_foo.pk}&has_version=all'
+            '&state=2',
+            f'?exclude_rule={rule_hello.pk}&exclude_rule={rule_foo.pk}&has_version=all'
+            '&state=3',
+            f'?exclude_rule={rule_hello.pk}&exclude_rule={rule_foo.pk}&has_version=all'
+            '&state=3',
+            f'?exclude_rule={rule_hello.pk}&exclude_rule={rule_foo.pk}&has_version=all'
+            f'&state=3&matched_rules__id__exact={rule_foo.pk}',
+            f'?exclude_rule={rule_hello.pk}&exclude_rule={rule_foo.pk}&has_version=all'
+            f'&state=3&matched_rules__id__exact={rule_bar.pk}',
+            f'?exclude_rule={rule_hello.pk}&exclude_rule={rule_foo.pk}&has_version=all'
+            f'&state=3&matched_rules__id__exact={rule_hello.pk}',
+            f'?exclude_rule={rule_hello.pk}&exclude_rule={rule_foo.pk}&has_version=all'
+            '&state=3',
+            f'?exclude_rule={rule_hello.pk}&exclude_rule={rule_foo.pk}&state=3',
+        ]
+        assert links == expected
+
+        # Check the existing filters are passed as hidden fields in the form...
+        hidden = [
+            (x.attrib['name'], x.attrib['value'])
+            for x in doc('#changelist-filter form input[type=hidden]')
+        ]
+        expected = [('has_version', 'all'), ('state', '3')]
+        assert hidden == expected
+
+        # And finally check that the correct options are selected.
+        options = [
+            x.attrib['value'] for x in doc('#changelist-filter form option[selected]')
+        ]
+        expected = [str(rule_foo.pk), str(rule_hello.pk)]
+        assert options == expected
 
     def test_list_default(self):
         # Create one entry without matches, it will not be shown by default

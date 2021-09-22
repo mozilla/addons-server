@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-14 15:24+0000\n"
+"POT-Creation-Date: 2021-09-21 16:47+0000\n"
 "PO-Revision-Date: 2021-08-15 13:26+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -962,8 +962,12 @@ msgstr "Удалено"
 msgid "Unlisted"
 msgstr "Скрытое"
 
-msgid "API"
-msgstr "API"
+msgid "Signing API"
+msgstr ""
+
+#, fuzzy
+msgid "Addon API"
+msgstr "Дополнения"
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -2664,7 +2668,7 @@ msgid "To get started, select how you would like to distribute this version."
 msgstr ""
 
 #, python-format
-msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing on Firefox Extension Workshop</a>."
+msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
 msgstr ""
 
 #, python-format
@@ -2756,7 +2760,8 @@ msgstr ""
 msgid "Your source code must include:"
 msgstr "Исходный код загружен"
 
-msgid "Step-by-step build instructions to create an exact copy of the add-on code."
+#, fuzzy
+msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
 msgstr "Пошаговые инструкции о том, как создать точную копию кода дополнения."
 
 msgid "A build script that executes all necessary technical steps."
@@ -2777,21 +2782,9 @@ msgstr ""
 "<span class=\"instruction-emphasis\">Примечание:</span> Исходные файлы (кроме сторонних библиотек с открытым исходных кодом) не могут быть транспайлированы, объединены, минифицированы или каким-"
 "либо другим образом сгенерированы машиной."
 
-msgid "<strong>You can include build instructions in a README file in your source code</strong>, or in the reviewer notes on the next page."
-msgstr ""
-
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
 msgstr ""
-
-msgid "How to Submit:"
-msgstr "Как отправить:"
-
-msgid "Include instructions in a README file in the source code,"
-msgstr "Включите инструкции в файл README в исходном коде"
-
-msgid "or in reviewer notes on the next page (if applicable)."
-msgstr "или в примечаниях для проверяющих на следующей странице (если возможно)."
 
 msgid "Upload source code:"
 msgstr "Выгрузить исходный код:"
@@ -4531,6 +4524,15 @@ msgstr "Менеджеры вкладок"
 msgid "See more tab management extensions"
 msgstr "Больше расширений для управления вкладками"
 
+#. editorial content for the homepage shelves.
+msgid "“{tag}” tagged extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more extensions tagged \"{tag}\""
+msgstr "Больше популярных расширений"
+
 msgid "Could not parse the manifest file."
 msgstr "Не удалось распарсить файл манифеста."
 
@@ -5602,7 +5604,8 @@ msgstr "наличие совпадающих правил"
 msgid "result state"
 msgstr "результат состояния"
 
-msgid "all but results matching only this rule"
+#, fuzzy
+msgid "Excluding results solely matching these rules"
 msgstr "все, кроме результатов, соответствующих только этому правилу"
 
 msgid "presence of a version"

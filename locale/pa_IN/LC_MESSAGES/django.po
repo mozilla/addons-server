@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-14 15:24+0000\n"
+"POT-Creation-Date: 2021-09-21 16:47+0000\n"
 "PO-Revision-Date: 2021-04-12 00:29+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -960,8 +960,12 @@ msgstr "ਹਟਾਇਆ"
 msgid "Unlisted"
 msgstr "ਸੂਚੀ ਤੋਂ ਹਟਾਏ"
 
-msgid "API"
-msgstr "API"
+msgid "Signing API"
+msgstr ""
+
+#, fuzzy
+msgid "Addon API"
+msgstr "ਐਡਆਨ"
 
 msgid "Owner"
 msgstr "ਮਾਲਕ"
@@ -2621,7 +2625,7 @@ msgid "To get started, select how you would like to distribute this version."
 msgstr ""
 
 #, python-format
-msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing on Firefox Extension Workshop</a>."
+msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
 msgstr ""
 
 #, python-format
@@ -2713,7 +2717,8 @@ msgstr ""
 msgid "Your source code must include:"
 msgstr "ਸਰੋਤ ਕੋਡ ਲੱਦਿਆ ਗਿਆ"
 
-msgid "Step-by-step build instructions to create an exact copy of the add-on code."
+#, fuzzy
+msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
 msgstr "ਐਡ-ਆਨ ਕੋਡ ਦੀ ਸਹੀ ਨਕਲ ਬਣਾਉਣ ਲਈ ਕਦਮ-ਦਰ-ਕਦਮ ਦੀ ਹਦਾਇਤਾਂ।"
 
 msgid "A build script that executes all necessary technical steps."
@@ -2732,21 +2737,9 @@ msgstr ""
 msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
 msgstr "<span class=\"instruction-emphasis\">ਨੋਟ:</span> ਸ੍ਰੋਤ ਫਾਈਲਾਂ (ਇੱਕ ਪਾਸੇ ਤੋਂ ਓਪਨ-ਸਰੋਤ ਥਰਡ ਪਾਰਟੀ ਲਾਇਬਰੇਰੀਆਂ) ਨੂੰ ਟਰਾਂਸਪਾਈਜ਼ਡ, ਓਫਫਸਕੇਟਡ, ਮਾਈਮਿਫਿਡ ਜਾਂ ਮਸ਼ੀਨ ਦੁਆਰਾ ਤਿਆਰ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ।"
 
-msgid "<strong>You can include build instructions in a README file in your source code</strong>, or in the reviewer notes on the next page."
-msgstr ""
-
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
 msgstr ""
-
-msgid "How to Submit:"
-msgstr "ਕਿਵੇਂ ਪੇਸ਼ ਕਰਨਾ ਹੈ:"
-
-msgid "Include instructions in a README file in the source code,"
-msgstr "ਸੋਰਸ ਕੋਡ ਵਿੱਚ README ਫਾਈਲ ਵਿੱਚ ਨਿਰਦੇਸ਼ ਸ਼ਾਮਲ ਕਰੋ,"
-
-msgid "or in reviewer notes on the next page (if applicable)."
-msgstr "ਜਾਂ ਅਗਲੇ ਪੰਨੇ ਤੇ ਸਮੀਖਿਅਕ ਨੋਟਾਂ ਵਿੱਚ (ਜੇ ਲਾਗੂ ਹੋਵੇ)।"
 
 msgid "Upload source code:"
 msgstr "ਸਰੋਤ ਕੋਡ ਅਪਲੋਡ ਕਰੋ:"
@@ -4494,6 +4487,15 @@ msgstr ""
 msgid "See more tab management extensions"
 msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
 
+#. editorial content for the homepage shelves.
+msgid "“{tag}” tagged extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more extensions tagged \"{tag}\""
+msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
+
 msgid "Could not parse the manifest file."
 msgstr "ਮੈਨੀਫੈਸਟ ਫਾਈਲ ਨੂੰ ਪਾਰਸ ਨਹੀਂ ਕਰ ਸਕਿਆ।"
 
@@ -5619,7 +5621,7 @@ msgstr ""
 msgid "result state"
 msgstr "ਸ਼ੁਰੂ ਕਰੋ"
 
-msgid "all but results matching only this rule"
+msgid "Excluding results solely matching these rules"
 msgstr ""
 
 #, fuzzy

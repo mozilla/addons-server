@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-14 15:24+0000\n"
-"PO-Revision-Date: 2021-09-14 18:27+0000\n"
+"POT-Creation-Date: 2021-09-21 16:47+0000\n"
+"PO-Revision-Date: 2021-09-21 19:07+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -964,8 +964,11 @@ msgstr "Gelöscht"
 msgid "Unlisted"
 msgstr "Nicht gelistet"
 
-msgid "API"
-msgstr "API"
+msgid "Signing API"
+msgstr "Signierungs-API"
+
+msgid "Addon API"
+msgstr "Add-on-API"
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -2660,8 +2663,8 @@ msgid "To get started, select how you would like to distribute this version."
 msgstr "Wählen Sie zunächst aus, wie Sie diese Version verteilen möchten."
 
 #, python-format
-msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing on Firefox Extension Workshop</a>."
-msgstr "Weitere Informationen zu diesen Optionen finden Sie unter <a %(a_attrs)s>Add-on-Verteilung und Signieren im Firefox-Erweiterungs-Workshop</a>."
+msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
+msgstr "Weitere Informationen zu diesen Optionen finden Sie unter <a %(a_attrs)s>Add-on-Verteilung und Signieren</a> im Firefox-Erweiterungs-Workshop."
 
 #, python-format
 msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
@@ -2756,8 +2759,8 @@ msgstr "Sie müssen den Quelltext Ihrer Erweiterung einreichen."
 msgid "Your source code must include:"
 msgstr "Ihr Quellcode muss Folgendes enthalten:"
 
-msgid "Step-by-step build instructions to create an exact copy of the add-on code."
-msgstr "Schritt-für-Schritt-Anweisungen zum Erstellen einer exakten Kopie des Add-on-Quelltextes."
+msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
+msgstr "Schritt-für-Schritt-Anleitung zum Erstellen einer exakten Kopie des Add-on-Quelltextes in einer README-Datei in Ihrem Quelltext oder in den Anmerkungen für Überprüfer auf der nächsten Seite."
 
 msgid "A build script that executes all necessary technical steps."
 msgstr "Ein Build-Skript, das alle notwendigen technischen Schritte ausführt."
@@ -2773,21 +2776,9 @@ msgstr ""
 msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
 msgstr "Quelltext-Dateien (außer externen Open-Source-Bibliotheken) dürfen nicht querübersetzt, verkürzt, minifiziert oder anderweitig maschinengeneriert sein."
 
-msgid "<strong>You can include build instructions in a README file in your source code</strong>, or in the reviewer notes on the next page."
-msgstr "<strong>Sie können Build-Anweisungen in eine README-Datei in Ihren Quellcode einfügen</strong> oder in die Hinweise für Überprüfer auf der nächsten Seite."
-
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
 msgstr "Weitere Informationen finden Sie im Artikel <a %(a_attrs)s>Quelltext-Einreichung</a> im Firefox-Erweiterungs-Workshop."
-
-msgid "How to Submit:"
-msgstr "Anleitung zum Übermitteln:"
-
-msgid "Include instructions in a README file in the source code,"
-msgstr "Fügen Sie die Anweisungen in einer README-Datei im Quelltext ein"
-
-msgid "or in reviewer notes on the next page (if applicable)."
-msgstr "oder in den Notizen für Überprüfer auf der nächsten Seite (falls zutreffend)."
 
 msgid "Upload source code:"
 msgstr "Quelltext hochladen:"
@@ -4519,6 +4510,14 @@ msgstr "Tab-Verwaltung"
 msgid "See more tab management extensions"
 msgstr "Mehr Erweiterungen zur Tab-Vewaltung ansehen"
 
+#. editorial content for the homepage shelves.
+msgid "“{tag}” tagged extensions"
+msgstr "Erweiterungen mit dem Schlagwort „{tag}“"
+
+#. editorial content for the homepage shelves.
+msgid "See more extensions tagged \"{tag}\""
+msgstr "Weitere Erweiterungen mit dem Schlagwort „{tag}“ anzeigen"
+
 msgid "Could not parse the manifest file."
 msgstr "Manifest-Datei konnte nicht verarbeitet werden."
 
@@ -5589,8 +5588,8 @@ msgstr "Vorhandensein übereinstimmender Regeln"
 msgid "result state"
 msgstr "Ergebniszustand"
 
-msgid "all but results matching only this rule"
-msgstr "Alle mit Ausnahme der Ergebnisse, die nur dieser Regel entsprechen"
+msgid "Excluding results solely matching these rules"
+msgstr "Alle mit Ausnahme der Ergebnisse, die nur diesen Regeln entsprechen"
 
 msgid "presence of a version"
 msgstr "Vorhandensein einer Version"

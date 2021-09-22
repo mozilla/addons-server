@@ -1,0 +1,18 @@
+{% load i18n %}
+<h3>{{ title }} {% if spec.value %}({{ spec.value|length }}){% endif %}</h3>
+<form>
+    {# Use .params.lists to properly support multiple values - so that if a filter using this template is present multiple times on the page, its current values are all passed to the new page when submitting this form #}
+    {% for key, values in choices.0.params.lists %}
+        {% for value in values %}
+            {% if key != spec.parameter_name %}
+                {{ key }} : <input type="hidden" name="{{ key }}" value="{{ value }}" />
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+    <select name="{{ spec.parameter_name }}" multiple>
+        {% for choice in choices %}
+            <option {% if choice.selected %}selected="selected"{% endif %} value="{{ choice.value|iriencode }}" title="{{ choice.display }}">{{ choice.display }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" />
+</form>

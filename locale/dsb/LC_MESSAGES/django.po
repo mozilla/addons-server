@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-14 15:24+0000\n"
-"PO-Revision-Date: 2021-09-16 14:10+0000\n"
+"POT-Creation-Date: 2021-09-21 16:47+0000\n"
+"PO-Revision-Date: 2021-09-21 19:23+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -954,8 +954,11 @@ msgstr "Wulašowane"
 msgid "Unlisted"
 msgstr "Njenalicone"
 
-msgid "API"
-msgstr "API"
+msgid "Signing API"
+msgstr "Signěrowański API"
+
+msgid "Addon API"
+msgstr "Dodankowy API"
 
 msgid "Owner"
 msgstr "Swójstwownik"
@@ -2638,13 +2641,13 @@ msgstr "Kak toś ta wersija dajo se rozdźěliś"
 msgid "To get started, select how you would like to distribute this version."
 msgstr "Nježli až zachopijośo, wubjeŕśo, kak cośo toś tu wersiju rozdźěliś."
 
-#, python-format
-msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing on Firefox Extension Workshop</a>."
-msgstr ""
+#, fuzzy, python-format
+msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
+msgstr "Dalšne informacije namakajośo w nastawku <a %(a_attrs)s>Zapódaśe žrědłowego koda</a> (engelski) w źěłarni rozšyrjenjow Firefox."
 
 #, python-format
 msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
-msgstr ""
+msgstr "Wšykne dodanki muse <a %(a_attrs)s>pšawidłam dodankow Mozilla</a> wótpowědowas a pominaju se kuždy cas manuelne pśeglědowanje pó zapódaśu."
 
 msgid "Submission Complete"
 msgstr "Zapódaśe dokóńcone"
@@ -2663,6 +2666,8 @@ msgid ""
 "You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
 "selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
+"Sćo gótowy! ✨ Dostanjośo wobkšuśeńsku mejlku, gaž se toś ta wersija na %(site_domain)s wózjawja. Źiwajśo na to, až móžo až do 24 góźin traś, nježli až sr wózjawjenje stawa, abo dlej, jolic waš "
+"dodank jo za manuelne pśeglědowanje wubrany. Pśeglědajśo swój spamowy zarědnik, jolic pó 24 góźin mejlku njedostanjośo."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr "Waš lisćinowy zapisk buźo wuspěšnjejšy, gaž pśidawaśo nadrobne wopisanje. Pśigótujśo swój lisćinowy zapisk za wózjawjenje:"
@@ -2671,6 +2676,7 @@ msgstr "Waš lisćinowy zapisk buźo wuspěšnjejšy, gaž pśidawaśo nadrobne 
 msgid ""
 "You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a %(a_attrs)s>creating an appealing listing</a> on Firefox Extension Workshop."
 msgstr ""
+"Pśidajśo swójomu zapiskoju pódrobne wopisanje a fota wobrazowki, aby wužywarje pśiwabił. Wobstarajśo se pomoc za <a %(a_attrs)s>napóranje spódobnego zapiska</a> w źěłarni rozšyrjenjow Firefox."
 
 msgid "Manage Listing"
 msgstr "Lisćinowy zapisk zastojaś"
@@ -2685,10 +2691,10 @@ msgid "Version Signature Pending"
 msgstr "Wersijowe signěrowanje hyšći faluje"
 
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
+msgstr "Sćo gótowy! ✨ Dostanjośo mejlku, gaž signěrowana dataja jo za ześěgnjenje z wuwijaŕskego rožka k dispozciji. Pśeglědajśo swój spamowy zarědnik, jolic mejlku pó 24 góźin njedostanjośo."
 
 msgid "As a reminder, your add-on is subject to manual review at any time."
-msgstr ""
+msgstr "K dopominanju, waš dodank se kuždy cas manuelne pśeglědowanje pomina."
 
 msgid "Go to My Submissions"
 msgstr "Móje zapódaśa se woglědaś"
@@ -2700,7 +2706,7 @@ msgid "Do You Need to Submit Source Code?"
 msgstr "Musyśo žrědłowy kod zapódaś?"
 
 msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
-msgstr ""
+msgstr "Pśeglědowarjo dodankow Mozilla muse kod we wašom rozšyrjenju cytaś a reproducěrowaś móc. Jolic to njamógu, se waše rozšyrjenje wótpokažo."
 
 msgid "Do you use any of the following in your extension?"
 msgstr "Wužywaśo jaden ze slědujucego w swójom rozšyrjenju?"
@@ -2726,7 +2732,8 @@ msgstr "Musýso žrědłowy kod swójogo rozšyrjenja zapódaś."
 msgid "Your source code must include:"
 msgstr "Waš žrědłowy kod musy wopśimowaś:"
 
-msgid "Step-by-step build instructions to create an exact copy of the add-on code."
+#, fuzzy
+msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
 msgstr "Instrukcije kšać pó kšacu za napóranje eksaktneje kopije dodankowego koda."
 
 msgid "A build script that executes all necessary technical steps."
@@ -2741,21 +2748,9 @@ msgstr "Trjebna wersija a instalaciske instrukcije programow, kótarež se w tw�
 msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
 msgstr "Žrědłowe dataje (mimo bibliotekow wótwórjonego žrědła tśeśich póbitowarjow) njedaju se transkompilěrowaś, zwězaś, minificěrowaś abo hynac pśez mašinu generěrowaś."
 
-msgid "<strong>You can include build instructions in a README file in your source code</strong>, or in the reviewer notes on the next page."
-msgstr ""
-
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
 msgstr "Dalšne informacije namakajośo w nastawku <a %(a_attrs)s>Zapódaśe žrědłowego koda</a> (engelski) w źěłarni rozšyrjenjow Firefox."
-
-msgid "How to Submit:"
-msgstr "Kak zapódaś:"
-
-msgid "Include instructions in a README file in the source code,"
-msgstr "Zasajźćo instrukcije w dataji README w žrědłowem koźe"
-
-msgid "or in reviewer notes on the next page (if applicable)."
-msgstr "abo w noticach pśepytowarjow na pśiducem boku (jolic nałožujobne)."
 
 msgid "Upload source code:"
 msgstr "Žrědłowy kod nagraś:"
@@ -4483,6 +4478,14 @@ msgstr "Zastojniki rejtarikow"
 msgid "See more tab management extensions"
 msgstr "Dalšne rozšyrjenja wó zastojanju rejtarikow pokazaś"
 
+#. editorial content for the homepage shelves.
+msgid "“{tag}” tagged extensions"
+msgstr "Rozšyrjenja z wobznamjenim „{tag}“"
+
+#. editorial content for the homepage shelves.
+msgid "See more extensions tagged \"{tag}\""
+msgstr "Dalšne rozšyrjenja z wobznamjenim „{tag}“"
+
 msgid "Could not parse the manifest file."
 msgstr "Manifestowa dataja njedajo se analyzěrowaś."
 
@@ -5555,8 +5558,8 @@ msgstr "eksistenca wótpowědujucych pšawidłow"
 msgid "result state"
 msgstr "wuslědkowy status"
 
-msgid "all but results matching only this rule"
-msgstr "wšykne mimo wuslědkow, kótarež toś tomu pšawidłoju wótpowěduju"
+msgid "Excluding results solely matching these rules"
+msgstr "Mimo wuslědkow, kótarež jano toś tym pšawidłam wótpowěduju"
 
 msgid "presence of a version"
 msgstr "eksistenca wersije"

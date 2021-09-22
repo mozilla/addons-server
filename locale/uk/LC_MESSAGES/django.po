@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-14 15:24+0000\n"
-"PO-Revision-Date: 2021-09-17 22:26+0000\n"
+"POT-Creation-Date: 2021-09-21 16:47+0000\n"
+"PO-Revision-Date: 2021-09-21 22:19+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -957,8 +957,11 @@ msgstr "Видалено"
 msgid "Unlisted"
 msgstr "Не в списку"
 
-msgid "API"
-msgstr "API"
+msgid "Signing API"
+msgstr "API підпису"
+
+msgid "Addon API"
+msgstr "API додатка"
 
 msgid "Owner"
 msgstr "Власник"
@@ -2641,8 +2644,8 @@ msgid "To get started, select how you would like to distribute this version."
 msgstr "Для початку оберіть спосіб розповсюдження цієї версії."
 
 #, python-format
-msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing on Firefox Extension Workshop</a>."
-msgstr "Ви можете дізнатися більше про ці параметри, прочитавши <a %(a_attrs)s>Розповсюдження та підпис додатка у центрі розширень Firefox</a>."
+msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
+msgstr "Ви можете дізнатися більше про ці параметри, прочитавши <a %(a_attrs)s>Розповсюдження та підпис додатка</a> у центрі розширень Firefox."
 
 #, python-format
 msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
@@ -2734,8 +2737,8 @@ msgstr "Ви повинні надіслати джерельний код ро�
 msgid "Your source code must include:"
 msgstr "Ваш джерельний код повинен містити:"
 
-msgid "Step-by-step build instructions to create an exact copy of the add-on code."
-msgstr "Покрокова інструкція зі створення точної копії коду додатка."
+msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
+msgstr "Покрокові настанови щодо створення точної копії коду додатка у файлі README у вашому джерельному коді або у примітках рецензента на наступній сторінці."
 
 msgid "A build script that executes all necessary technical steps."
 msgstr "Вбудований скрипт, що виконує всі необхідні технічні кроки."
@@ -2751,21 +2754,9 @@ msgstr ""
 msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
 msgstr "Початкові файли (окрім сторонніх бібліотек з відкритим джерельним кодом) не можна перетворювати, об'єднувати, зменшувати або іншим чином генерувати машиною."
 
-msgid "<strong>You can include build instructions in a README file in your source code</strong>, or in the reviewer notes on the next page."
-msgstr "<strong>Ви можете включити настанови зі збирання у файл README джерельного коду</strong> або у примітки для рецензентів на наступній сторінці."
-
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
 msgstr "Для отримання додаткових відомостей прочитайте про <a %(a_attrs)s>Подання джерельного коду</a> у центрі розширень Firefox."
-
-msgid "How to Submit:"
-msgstr "Як подавати:"
-
-msgid "Include instructions in a README file in the source code,"
-msgstr "Включити інструкції в файл README програмного коду,"
-
-msgid "or in reviewer notes on the next page (if applicable)."
-msgstr "або до приміток для редактора на наступній сторінці (при необхідності)."
 
 msgid "Upload source code:"
 msgstr "Вивантажити програмний код:"
@@ -4486,6 +4477,14 @@ msgstr "Менеджери вкладок"
 msgid "See more tab management extensions"
 msgstr "Переглянути інші розширення для керування вкладками"
 
+#. editorial content for the homepage shelves.
+msgid "“{tag}” tagged extensions"
+msgstr "Розширення з мітками “{tag}”"
+
+#. editorial content for the homepage shelves.
+msgid "See more extensions tagged \"{tag}\""
+msgstr "Переглянути інші розширення з міткою \"{tag}\""
+
 msgid "Could not parse the manifest file."
 msgstr "Не вдалося обробити файл маніфесту."
 
@@ -5556,8 +5555,8 @@ msgstr "наявність відповідних правил"
 msgid "result state"
 msgstr "результат"
 
-msgid "all but results matching only this rule"
-msgstr "всі, крім результатів які відповідають лише цьому правилу"
+msgid "Excluding results solely matching these rules"
+msgstr "Виключити результати, які відповідають виключно цим правилам"
 
 msgid "presence of a version"
 msgstr "наявність версії"

@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-14 15:24+0000\n"
-"PO-Revision-Date: 2021-09-17 20:31+0000\n"
-"Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
+"POT-Creation-Date: 2021-09-21 16:47+0000\n"
+"PO-Revision-Date: 2021-09-21 20:14+0000\n"
+"Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
 "MIME-Version: 1.0\n"
@@ -957,8 +957,11 @@ msgstr "Delite"
 msgid "Unlisted"
 msgstr "Non listate"
 
-msgid "API"
-msgstr "API"
+msgid "Signing API"
+msgstr "Signante API"
+
+msgid "Addon API"
+msgstr "Additivos API"
 
 msgid "Owner"
 msgstr "Proprietario"
@@ -1511,7 +1514,7 @@ msgid "Online gambling"
 msgstr "Jocos de hasardo in linea"
 
 msgid "Spam content"
-msgstr "Contento SPAM"
+msgstr "Contento spam"
 
 msgid "Low-quality, stretched, or blank image"
 msgstr "Imagine de basse qualitate, deformate o vacue"
@@ -1682,7 +1685,7 @@ msgid "You have submitted too many uploads recently. Please try again after some
 msgstr "Tu ha incargate troppo de files recentemente. Reproba post alcun tempore."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "Version {version} concorda con {block_link} pro iste additivo. Tu pote continger {amo_admins} pro altere informationes."
+msgstr "Version {version} corresponde a {block_link} pro iste additivo. Tu pote contactar {amo_admins} pro plus informationes."
 
 msgid "a blocklist entry"
 msgstr "un entrata de lista del blocadas"
@@ -2631,8 +2634,8 @@ msgid "To get started, select how you would like to distribute this version."
 msgstr "Pro comenciar, elige como tu vole distribuer iste version."
 
 #, python-format
-msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing on Firefox Extension Workshop</a>."
-msgstr "Tu pote saper plus sur iste optiones legente <a %(a_attrs)s>Distribution e signatura de additivos</a> sur le Seminario de extensiones de Firefox."
+msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
+msgstr "Tu pote saper plus re iste optiones legente <a %(a_attrs)ss>Distribution e signatura de additivos</a> sur le Seminario de extensiones de Firefox."
 
 #, python-format
 msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
@@ -2724,8 +2727,8 @@ msgstr "Tu debe inviar le codice fonte de tu extension."
 msgid "Your source code must include:"
 msgstr "Tu codice fonte debe includer:"
 
-msgid "Step-by-step build instructions to create an exact copy of the add-on code."
-msgstr "Instructiones detaliate de compilation pro crear un copia exacte del codice del additivo."
+msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
+msgstr "Instructiones de fabrication passo-passo pro crear un copia exacte del codification del additivo, in un file README in tu codice fonte o in le notas de revisor sur le pagina sequente."
 
 msgid "A build script that executes all necessary technical steps."
 msgstr "Un script de compilation que exeque tote le necessari grados technic."
@@ -2741,21 +2744,9 @@ msgstr ""
 msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
 msgstr "Le files fonte (a exception del bibliothecas open-source de tertie parte) non pote esser trans-compilate, concatenate, minimisate o alteremente generate automaticamente."
 
-msgid "<strong>You can include build instructions in a README file in your source code</strong>, or in the reviewer notes on the next page."
-msgstr "<strong>Tu pote includer instructiones de compilation in un file README in tu codice fonte</strong>, o in le notas pro le revisor sur le pagina sequente."
-
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
 msgstr "Pro plus information, per favor lege <a %(a_attrs)s>Invio de codice fonte</a> in le Seminario de extensiones de Firefox."
-
-msgid "How to Submit:"
-msgstr "Como submitter:"
-
-msgid "Include instructions in a README file in the source code,"
-msgstr "Includer le instructiones in un file README in le codice fonte,"
-
-msgid "or in reviewer notes on the next page (if applicable)."
-msgstr "o in le notas de revisor sur le pagina successive (si applicabile)."
 
 msgid "Upload source code:"
 msgstr "Incargar codice fonte:"
@@ -3982,8 +3973,8 @@ msgstr "Marca texto de qualcunque sito web e face clic a dextra pro cercar video
 #. editorial content for the discovery pane.
 msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
 msgstr ""
-"Obtene avantages de Amazon. Quando tu recerca le paginas de un producto sur altere botecas online, si illo es alsi disponibile sur Amazon, tu pote simplemente cliccar un button pro consultar su "
-"lista de presentation de Amazon."
+"Obtene avantages de Amazon. Quando tu explora paginas de producto sur altere botecas in linea, si le producto es equalmente disponibile sur Amazon, tu pote simplemente cliccar sur un button pro "
+"vider le pagina Amazon que presenta le producto."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4225,7 +4216,7 @@ msgstr "Alcun sitos ha difficultate a reproducer videos sur Firefox pro Android.
 
 #. editorial content for the discovery pane.
 msgid "Select, sort, and run your downloads faster."
-msgstr "Elige, ordina, e face fluer tu discargamentos plus velocemente."
+msgstr "Elige, ordina e exeque tu discargamentos plus rapidemente."
 
 #. editorial content for the discovery pane.
 msgid "Get weather updates right in the browser."
@@ -4354,7 +4345,7 @@ msgstr "Gere melio tu tempore con un horologio del navigator que delinea le inte
 
 #. editorial content for the primary hero shelves.
 msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
-msgstr "Fatigate de ille \"Video pausate. Continuar observar?\" message? Ascolta tu musica favorite non interrumpite sur YouTube."
+msgstr "Fatigate de ille message \"Video pausate. Continuar a spectar?\"? Ascolta tu musica favorite sin interruptiones sur YouTube."
 
 #. editorial content for the primary hero shelves.
 msgid "Begone, annoying cookie warnings!"
@@ -4467,6 +4458,14 @@ msgstr "Gestores de scheda"
 #. editorial content for the homepage shelves.
 msgid "See more tab management extensions"
 msgstr "Vide altere extensiones de gestion schedas"
+
+#. editorial content for the homepage shelves.
+msgid "“{tag}” tagged extensions"
+msgstr "Extensiones con le etiquetta \"{tag}\" "
+
+#. editorial content for the homepage shelves.
+msgid "See more extensions tagged \"{tag}\""
+msgstr "Vide altere extensiones etiquettate \"{tag}\""
 
 msgid "Could not parse the manifest file."
 msgstr "Impossibile tractar le file manifesto."
@@ -5536,8 +5535,8 @@ msgstr "presentia de regulas concordate"
 msgid "result state"
 msgstr "stato de resultato"
 
-msgid "all but results matching only this rule"
-msgstr "toto salvo le resultatos que concorda solo iste regula"
+msgid "Excluding results solely matching these rules"
+msgstr "Salvo le resultatos que concorda solo iste regulas"
 
 msgid "presence of a version"
 msgstr "presentia de un version"
@@ -5580,7 +5579,7 @@ msgid "An error occurred when compiling the definition"
 msgstr "Un error occurreva durante le implementation del definition"
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
-msgstr "Exeque tam ben iste regula sur additivos que ha essite disactivate a fortia."
+msgstr "Exequer tamben iste regula sur additivos que ha essite disactivate a fortia."
 
 msgid "Abort"
 msgstr "Abortar"
@@ -6140,15 +6139,15 @@ msgid ""
 "\n"
 "The Firefox Add-ons Team"
 msgstr ""
-"Hallo,\n"
+"Salute,\n"
 "\n"
 "Tu recipe iste message perque tu conto de usator %(name)s sur %(site_url)s ha essite delite. Isto poterea haber essite facite automaticamente si tu ha recentemente delite tu conto Firefox.\n"
 "\n"
-"Si tu non ha facite isto o crede que un persona non autorisate ha accedite tu conto, per favor replica a iste email. Alteremente, il ha nulle altere action a prender.\n"
+"Si tu non ha facite isto o crede que un persona non autorisate ha accedite a tu conto, per favor responde a iste email. Alteremente, il ha nulle altere action a prender.\n"
 "\n"
-"Salutationes,\n"
+"Cordialmente,\n"
 "\n"
-"Le equipa del additivos de Firefox"
+"Le equipa de additivos de Firefox"
 
 msgctxt "user_list_others"
 msgid "others"

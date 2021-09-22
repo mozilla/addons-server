@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-14 15:24+0000\n"
+"POT-Creation-Date: 2021-09-21 16:47+0000\n"
 "PO-Revision-Date: 2021-08-11 14:11+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -966,8 +966,12 @@ msgstr "Eliminado"
 msgid "Unlisted"
 msgstr "Não listada"
 
-msgid "API"
-msgstr "API"
+msgid "Signing API"
+msgstr ""
+
+#, fuzzy
+msgid "Addon API"
+msgstr "Extras"
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -2660,7 +2664,7 @@ msgid "To get started, select how you would like to distribute this version."
 msgstr ""
 
 #, python-format
-msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing on Firefox Extension Workshop</a>."
+msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
 msgstr ""
 
 #, python-format
@@ -2750,7 +2754,8 @@ msgstr ""
 msgid "Your source code must include:"
 msgstr "Código fonte enviado"
 
-msgid "Step-by-step build instructions to create an exact copy of the add-on code."
+#, fuzzy
+msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
 msgstr "Instruções de construção, passo a passo, para criar uma cópia exata do código do extra."
 
 msgid "A build script that executes all necessary technical steps."
@@ -2771,21 +2776,9 @@ msgstr ""
 "<span class=\"instruction-emphasis\">Nota:</span> Os ficheiros fonte (à parte das bibliotecas de código aberto de terceiros) não podem ser transformados, concatenados, minificados ou de outro modo, "
 "gerados por máquina."
 
-msgid "<strong>You can include build instructions in a README file in your source code</strong>, or in the reviewer notes on the next page."
-msgstr ""
-
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
 msgstr ""
-
-msgid "How to Submit:"
-msgstr "Como submeter:"
-
-msgid "Include instructions in a README file in the source code,"
-msgstr "Inclua instruções num ficheiro README no código fonte,"
-
-msgid "or in reviewer notes on the next page (if applicable)."
-msgstr "ou nas notas de revisão na próxima página (se aplicável)."
 
 msgid "Upload source code:"
 msgstr "Enviar código fonte:"
@@ -4521,6 +4514,15 @@ msgstr "Gestores de marcadores"
 msgid "See more tab management extensions"
 msgstr "Ver mais extensões de gestão de separadores"
 
+#. editorial content for the homepage shelves.
+msgid "“{tag}” tagged extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more extensions tagged \"{tag}\""
+msgstr "Ver mais extensões populares"
+
 msgid "Could not parse the manifest file."
 msgstr "Não foi possível analisar o ficheiro manifest."
 
@@ -5591,7 +5593,8 @@ msgstr "presença de regras correspondentes"
 msgid "result state"
 msgstr "estado do resultado"
 
-msgid "all but results matching only this rule"
+#, fuzzy
+msgid "Excluding results solely matching these rules"
 msgstr "todos, exceto resultados que correspondem apenas a esta regra"
 
 msgid "presence of a version"

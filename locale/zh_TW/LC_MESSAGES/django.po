@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-14 15:24+0000\n"
-"PO-Revision-Date: 2021-09-15 07:11+0000\n"
+"POT-Creation-Date: 2021-09-21 16:47+0000\n"
+"PO-Revision-Date: 2021-09-21 17:51+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -956,8 +956,11 @@ msgstr "已刪除"
 msgid "Unlisted"
 msgstr "未上架"
 
-msgid "API"
-msgstr "API"
+msgid "Signing API"
+msgstr "Signing API"
+
+msgid "Addon API"
+msgstr "Addon API"
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -2597,8 +2600,8 @@ msgid "To get started, select how you would like to distribute this version."
 msgstr "要開始上架，請先選擇您要如何發布此版本。"
 
 #, python-format
-msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing on Firefox Extension Workshop</a>."
-msgstr "請閱讀 Firefox Extension Workshop 的 <a %(a_attrs)s>Add-on Distribution and Signing</a> 一文來了解更多這些選項間的差異。"
+msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
+msgstr "請閱讀 Firefox Extension Workshop 的 <a %(a_attrs)s>Add-on Distribution and Signing</a> 一文來更加了解這些選項間的差異。"
 
 #, python-format
 msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
@@ -2684,8 +2687,8 @@ msgstr "您必須提供擴充套件的原始碼。"
 msgid "Your source code must include:"
 msgstr "原始碼當中必須包含："
 
-msgid "Step-by-step build instructions to create an exact copy of the add-on code."
-msgstr "能夠產生相同附加元件程式碼的逐步建構步驟。"
+msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
+msgstr "您可以在原始碼裡面的 README 檔案包含逐步的編譯方式資訊，或是在下一步的審核者說明當中加入。"
 
 msgid "A build script that executes all necessary technical steps."
 msgstr "會執行所有必須的技術指令的編譯指令碼或腳本。"
@@ -2699,21 +2702,9 @@ msgstr "編譯過程中使用到的任何程式的詳細資訊（包含版本與
 msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
 msgstr "除了開源的第三方程式庫之外，請勿轉譯（transpile）、串接（concatenate）、最小化（minify）或使用機器產生的原始碼。"
 
-msgid "<strong>You can include build instructions in a README file in your source code</strong>, or in the reviewer notes on the next page."
-msgstr "<strong>您可以在原始碼裡面的 README 檔案包含編譯步驟資訊</strong>，或是在下一步的審核者說明當中加入。"
-
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
 msgstr "若需更多資訊，請閱讀 Firefox Extension Workshop 的 <a %(a_attrs)s>Source Code Submission</a> 一文。"
-
-msgid "How to Submit:"
-msgstr "如何上傳:"
-
-msgid "Include instructions in a README file in the source code,"
-msgstr "在原始碼中的 README 檔案包含步驟教學，"
-
-msgid "or in reviewer notes on the next page (if applicable)."
-msgstr "或是紀錄在下一頁給審核者的留言中（若可行）。"
 
 msgid "Upload source code:"
 msgstr "上傳原始碼:"
@@ -4424,6 +4415,14 @@ msgstr "分頁管理員"
 msgid "See more tab management extensions"
 msgstr "看更多分頁管理擴充套件"
 
+#. editorial content for the homepage shelves.
+msgid "“{tag}” tagged extensions"
+msgstr "含有「{tag}」標籤的擴充套件"
+
+#. editorial content for the homepage shelves.
+msgid "See more extensions tagged \"{tag}\""
+msgstr "看看更多含有「{tag}」標籤的擴充套件"
+
 msgid "Could not parse the manifest file."
 msgstr "無法剖析安裝資訊檔。"
 
@@ -5485,8 +5484,8 @@ msgstr "存在符合的規則"
 msgid "result state"
 msgstr "結果狀態"
 
-msgid "all but results matching only this rule"
-msgstr "全部，但只符合這條規則的結果"
+msgid "Excluding results solely matching these rules"
+msgstr "排除只符合下列規則的結果"
 
 msgid "presence of a version"
 msgstr "版本存在"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-14 15:24+0000\n"
+"POT-Creation-Date: 2021-09-21 16:47+0000\n"
 "PO-Revision-Date: 2021-06-08 15:09+0000\n"
 "Last-Translator: Lidya Christina <id.lidya@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -974,8 +974,12 @@ msgstr "Dihapus"
 msgid "Unlisted"
 msgstr "Tidak terdaftar"
 
-msgid "API"
-msgstr "API"
+msgid "Signing API"
+msgstr ""
+
+#, fuzzy
+msgid "Addon API"
+msgstr "Pengaya"
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -2673,7 +2677,7 @@ msgid "To get started, select how you would like to distribute this version."
 msgstr ""
 
 #, python-format
-msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing on Firefox Extension Workshop</a>."
+msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
 msgstr ""
 
 #, python-format
@@ -2765,7 +2769,8 @@ msgstr ""
 msgid "Your source code must include:"
 msgstr "KOde sumber diunggah"
 
-msgid "Step-by-step build instructions to create an exact copy of the add-on code."
+#, fuzzy
+msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
 msgstr "Langkah-langkah perakitan untuk menciptakan salinan kode pengaya yang sama persis."
 
 msgid "A build script that executes all necessary technical steps."
@@ -2783,21 +2788,9 @@ msgstr ""
 msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
 msgstr ""
 
-msgid "<strong>You can include build instructions in a README file in your source code</strong>, or in the reviewer notes on the next page."
-msgstr ""
-
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
 msgstr ""
-
-msgid "How to Submit:"
-msgstr "Cara Mengajukan:"
-
-msgid "Include instructions in a README file in the source code,"
-msgstr "Sertakan instruksi ke dalam berkas README di dalam sumber kode,"
-
-msgid "or in reviewer notes on the next page (if applicable)."
-msgstr "atau di dalam catatan peninjau di laman selanjutnya (jika berlaku)."
 
 msgid "Upload source code:"
 msgstr "Unggah kode sumber:"
@@ -4523,6 +4516,15 @@ msgstr ""
 msgid "See more tab management extensions"
 msgstr "Lihat semua ekstensi"
 
+#. editorial content for the homepage shelves.
+msgid "“{tag}” tagged extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more extensions tagged \"{tag}\""
+msgstr "Lihat semua ekstensi"
+
 msgid "Could not parse the manifest file."
 msgstr "Tidak bisa mengurai berkas manifest."
 
@@ -5655,7 +5657,7 @@ msgstr ""
 msgid "result state"
 msgstr "Bersiap"
 
-msgid "all but results matching only this rule"
+msgid "Excluding results solely matching these rules"
 msgstr ""
 
 #, fuzzy
