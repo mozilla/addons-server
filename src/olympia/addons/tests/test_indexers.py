@@ -167,7 +167,6 @@ class TestAddonIndexer(TestCase):
             'created',
             'filename',
             'hash',
-            'is_webextension',
             'is_mozilla_signed_extension',
             'size',
             'status',
@@ -324,7 +323,6 @@ class TestAddonIndexer(TestCase):
         assert extracted_file['created'] == version.file.created
         assert extracted_file['filename'] == version.file.filename
         assert extracted_file['hash'] == version.file.hash
-        assert extracted_file['is_webextension'] == version.file.is_webextension
         assert extracted_file['is_mozilla_signed_extension'] == (
             version.file.is_mozilla_signed_extension
         )

@@ -75,7 +75,7 @@ class Command(BaseCommand):
                 'hash': file_data['hash'],
                 'status': amo.STATUS_CHOICES_API_LOOKUP[file_data['status']],
                 'size': file_data['size'],
-                'is_webextension': file_data['is_webextension'],
+                'is_webextension': True,
                 'is_mozilla_signed_extension': (
                     file_data['is_mozilla_signed_extension']
                 ),

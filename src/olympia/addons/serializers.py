@@ -50,6 +50,7 @@ class FileSerializer(serializers.ModelSerializer):
     permissions = serializers.ListField(child=serializers.CharField())
     optional_permissions = serializers.ListField(child=serializers.CharField())
     is_restart_required = serializers.SerializerMethodField()
+    is_webextension = serializers.SerializerMethodField()
 
     class Meta:
         model = File
@@ -78,6 +79,8 @@ class FileSerializer(serializers.ModelSerializer):
             data.pop('platform', None)
         if request and not is_gate_active(request, 'is-restart-required-shim'):
             data.pop('is_restart_required', None)
+        if request and not is_gate_active(request, 'is-webextension-shim'):
+            data.pop('is_webextension', None)
         return data
 
     def get_platform(self, obj):
@@ -89,6 +92,11 @@ class FileSerializer(serializers.ModelSerializer):
         # is_restart_required is gone from the model and all addons are restartless now
         # so fake it for older API clients with False
         return False
+
+    def get_is_webextension(self, obj):
+        # is_webextension is always True these days because all addons are webextensions
+        # but fake it for older API clients.
+        return True
 
 
 class PreviewSerializer(serializers.ModelSerializer):
@@ -654,7 +662,7 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
             created=self.handle_date(data['created']),
             hash=data['hash'],
             filename=data['filename'],
-            is_webextension=data.get('is_webextension'),
+            is_webextension=True,
             is_mozilla_signed_extension=data.get('is_mozilla_signed_extension'),
             size=data['size'],
             status=data['status'],

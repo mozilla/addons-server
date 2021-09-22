@@ -1597,6 +1597,7 @@ DRF_API_GATES = {
         'platform-shim',
         'keep-license-text-in-version-list',
         'is-restart-required-shim',
+        'is-webextension-shim',
         'version-files',
     ),
     'v4': (
@@ -1608,6 +1609,7 @@ DRF_API_GATES = {
         'platform-shim',
         'keep-license-text-in-version-list',
         'is-restart-required-shim',
+        'is-webextension-shim',
         'version-files',
     ),
     'v5': (
