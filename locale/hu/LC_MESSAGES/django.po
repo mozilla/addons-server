@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-21 16:47+0000\n"
-"PO-Revision-Date: 2021-09-22 08:43+0000\n"
+"PO-Revision-Date: 2021-09-22 08:46+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -2698,7 +2698,7 @@ msgid ""
 "You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a %(a_attrs)s>creating an appealing listing</a> on Firefox Extension Workshop."
 msgstr ""
 "Ha részletes leírást és képernyőképeket ad hozzá az adatlaphoz, akkor jobban a kiegészítőhöz vonzhatja a felhasználókat. Kérjen segítséget a <a %(a_attrs)s>vonzó listázás létrehozásához</a> a "
-"Firefox Kiegészítőműhelyben."
+"Firefox Kiegészítő-műhelyben."
 
 msgid "Manage Listing"
 msgstr "Listázás kezelése"
@@ -2755,9 +2755,9 @@ msgstr "Be kell küldenie a kiegészítő forráskódját."
 msgid "Your source code must include:"
 msgstr "A forráskódnak tartalmaznia kell:"
 
-#, fuzzy
 msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
-msgstr "<strong>Az összeállítási utasításokat megadhatja egy README fájlban a forráskódban</strong>, vagy az ellenőrzőknek szóló jegyzetekben a következő oldalon."
+msgstr ""
+"A lépésenkénti összeállítási utasítások a kiegészítő kódjának pontos másolatának létrehozásához, a README fájlban a forráskódban vagy a következő oldalon található ellenőrzőknek szóló megjegyzésben."
 
 msgid "A build script that executes all necessary technical steps."
 msgstr "Összeállítási parancsfájl, amely végrehajta a szükséges műszaki lépéseket."
@@ -2774,7 +2774,7 @@ msgstr ""
 
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
-msgstr "További információkért olvassa el a <a %(a_attrs)s>Forráskód beküldése</a> leírást a Firefox Kiegészítőműhelyben."
+msgstr "További információkért olvassa el a <a %(a_attrs)s>Forráskód beküldése</a> leírást a Firefox Kiegészítő-műhelyben."
 
 msgid "Upload source code:"
 msgstr "Forráskód feltöltése:"
@@ -5586,9 +5586,8 @@ msgstr "megfelelő szabályok jelenléte"
 msgid "result state"
 msgstr "eredmény állapota"
 
-#, fuzzy
 msgid "Excluding results solely matching these rules"
-msgstr "az e szabálynak megfelelő találatokat kivéve mindegyik"
+msgstr "A kizárólag ezeknek a szabályoknak megfelelő találatok kizárása"
 
 msgid "presence of a version"
 msgstr "verzió jelenléte"
