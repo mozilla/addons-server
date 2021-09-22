@@ -242,13 +242,9 @@ class MinimalVersionSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         repr = super().to_representation(instance)
         request = self.context.get('request', None)
-        if 'file' in repr:
-            # TODO: rewrite this after once frontend supports file in v5 only include
-            # file, and files otherwise.
+        if 'file' in repr and request and is_gate_active(request, 'version-files'):
             # In v3/v4 files is expected to be a list but now we only have one file.
-            repr['files'] = [repr['file']]
-            if request and is_gate_active(request, 'version-files'):
-                del repr['file']
+            repr['files'] = [repr.pop('file')]
         return repr
 
 
