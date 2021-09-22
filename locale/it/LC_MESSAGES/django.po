@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-21 16:47+0000\n"
-"PO-Revision-Date: 2021-09-22 05:32+0000\n"
+"PO-Revision-Date: 2021-09-22 09:14+0000\n"
 "Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -970,9 +970,8 @@ msgstr "Non elencato"
 msgid "Signing API"
 msgstr "API per la firma"
 
-#, fuzzy
 msgid "Addon API"
-msgstr "Componenti aggiuntivi"
+msgstr "API per i componenti aggiuntivi"
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -2798,9 +2797,10 @@ msgstr "Devi inviare il codice sorgente della tua estensione."
 msgid "Your source code must include:"
 msgstr "Il tuo codice sorgente deve includere:"
 
-#, fuzzy
 msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
-msgstr "<strong>Puoi includere le istruzioni di compilazione in un file README all’interno del tuo codice sorgente</strong> o nelle note per il revisore nella pagina successiva."
+msgstr ""
+"Istruzioni di compilazione passo per passo per creare una copia esatta del codice del componente aggiuntivo, in un file README all’interno del codice sorgente o nelle note per i revisori nella "
+"pagina successiva."
 
 msgid "A build script that executes all necessary technical steps."
 msgstr "Uno script per la compilazione che esegua tutti i passaggi tecnici richiesti."
@@ -4561,9 +4561,8 @@ msgid "“{tag}” tagged extensions"
 msgstr "Estensioni con etichetta “{tag}”"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more extensions tagged \"{tag}\""
-msgstr "Visualizza altre estensioni popolari"
+msgstr "Visualizza altre estensioni con etichetta “{tag}”"
 
 msgid "Could not parse the manifest file."
 msgstr "Impossibile analizzare il file manifesto."
@@ -5644,9 +5643,8 @@ msgstr "presenza di regole corrispondenti"
 msgid "result state"
 msgstr "stato del risultato"
 
-#, fuzzy
 msgid "Excluding results solely matching these rules"
-msgstr "tutti i risultati eccetto quelli che corrispondono a questa regola"
+msgstr "Escludi i risultati che corrispondono esclusivamente a queste regole"
 
 msgid "presence of a version"
 msgstr "presenza di una versione"
