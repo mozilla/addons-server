@@ -970,9 +970,8 @@ msgstr "Niet vermeld"
 msgid "Signing API"
 msgstr ""
 
-#, fuzzy
 msgid "Addon API"
-msgstr "Add-ons"
+msgstr ""
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -4496,9 +4495,8 @@ msgid "“{tag}” tagged extensions"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more extensions tagged \"{tag}\""
-msgstr "Meer populaire extensies bekijken"
+msgstr ""
 
 msgid "Could not parse the manifest file."
 msgstr "Kon het manifest-bestand niet verwerken."
@@ -5570,9 +5568,8 @@ msgstr "aanwezigheid van overeenkomende regels"
 msgid "result state"
 msgstr "resulterende status"
 
-#, fuzzy
 msgid "Excluding results solely matching these rules"
-msgstr "alles behalve resultaten die alleen met deze regel overeenkomen"
+msgstr ""
 
 msgid "presence of a version"
 msgstr "aanwezigheid van een versie"
