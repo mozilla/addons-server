@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-21 16:47+0000\n"
-"PO-Revision-Date: 2021-09-23 20:46+0000\n"
+"PO-Revision-Date: 2021-09-23 21:02+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -977,9 +977,8 @@ msgstr "Não listado"
 msgid "Signing API"
 msgstr "API de assinatura"
 
-#, fuzzy
 msgid "Addon API"
-msgstr "Extensões"
+msgstr "API de extensões"
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -2689,11 +2688,11 @@ msgstr "Para começar, selecione como você quer distribuir esta versão."
 
 #, python-format
 msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Você pode aprender mais sobre essas opções em <a %(a_attrs)s>Assinatura e distribuição de extensões</a> no workshop de extensão do Firefox."
 
 #, python-format
 msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
-msgstr ""
+msgstr "Todas as extensões devem cumprir as <a %(a_attrs)s>Diretivas de extensões da Mozilla</a> e estão sujeitas à revisão manual a qualquer momento após o envio."
 
 msgid "Submission Complete"
 msgstr "Submissão concluída"
@@ -2768,9 +2767,8 @@ msgstr "Ferramentas que combinam múltiplos arquivos em um único como, por exem
 msgid "Web template engines, both for HTML and CSS"
 msgstr "Mecanismos de modelos da web, tanto para HTML quanto para CSS"
 
-#, fuzzy
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the extension"
-msgstr "Qualquer outra ferramenta que aceita código ou arquivos, aplica processamento e gera código ou arquivo(s) para incluir na extensão"
+msgstr "Qualquer outra ferramenta que lê código ou arquivos, aplica processamento e gera código ou arquivo(s) para incluir na extensão"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
 msgstr "Você não precisa enviar o código fonte, está pronto para o próximo passo."
@@ -2778,9 +2776,8 @@ msgstr "Você não precisa enviar o código fonte, está pronto para o próximo 
 msgid "You must submit your extension's source code."
 msgstr "Você deve enviar o código-fonte de sua extensão."
 
-#, fuzzy
 msgid "Your source code must include:"
-msgstr "Código-fonte enviado"
+msgstr "Seu código-fonte deve incluir:"
 
 #, fuzzy
 msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
@@ -2806,7 +2803,7 @@ msgstr ""
 
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Consulte mais informações em <a %(a_attrs)s>Envio de código-fonte</a> no workshop de extensões do Firefox."
 
 msgid "Upload source code:"
 msgstr "Enviar código fonte:"
