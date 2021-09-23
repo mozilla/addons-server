@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-21 16:47+0000\n"
-"PO-Revision-Date: 2021-09-21 19:23+0000\n"
+"PO-Revision-Date: 2021-09-23 16:39+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -2641,9 +2641,9 @@ msgstr "Kak toś ta wersija dajo se rozdźěliś"
 msgid "To get started, select how you would like to distribute this version."
 msgstr "Nježli až zachopijośo, wubjeŕśo, kak cośo toś tu wersiju rozdźěliś."
 
-#, fuzzy, python-format
+#, python-format
 msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
-msgstr "Dalšne informacije namakajośo w nastawku <a %(a_attrs)s>Zapódaśe žrědłowego koda</a> (engelski) w źěłarni rozšyrjenjow Firefox."
+msgstr "Cytajśo <a %(a_attrs)s>rozdźělenje a signěrowanje dodankow</a> w źěłarni rozšyrjenjow Firefox, aby wěcej wó toś tych nastajenjach zgónił."
 
 #, python-format
 msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
@@ -2732,9 +2732,8 @@ msgstr "Musýso žrědłowy kod swójogo rozšyrjenja zapódaś."
 msgid "Your source code must include:"
 msgstr "Waš žrědłowy kod musy wopśimowaś:"
 
-#, fuzzy
 msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
-msgstr "Instrukcije kšać pó kšacu za napóranje eksaktneje kopije dodankowego koda."
+msgstr "Wersijowe instrukcije kšac pó kšacu, aby se eksaktna kopija dodankowego koda napórała, w dataju README w  swójom žrědłowem koźe abo w pśipiskach za pśglědowarje na pśiducem boku."
 
 msgid "A build script that executes all necessary technical steps."
 msgstr "Twórjeński skript, kótaryž wšykne trěbne techniske kšace wuwjeźo."
