@@ -127,7 +127,7 @@ class FileUploadTestMixin:
 
         assert response.status_code == 201
 
-        assert FileUpload.objects.count() != upload_count_before
+        assert FileUpload.objects.count() == upload_count_before + 1
         upload = FileUpload.objects.last()
 
         assert upload.name == f'{upload.uuid.hex}_@upload-version-3.0.xpi'

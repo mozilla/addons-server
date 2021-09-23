@@ -65,7 +65,6 @@ class FileUploadViewSet(CreateModelMixin, ReadOnlyModelViewSet):
         return super().get_queryset().filter(user=self.request.user)
 
     def create(self, request):
-        # TODO: move most/all of this logic to the serializer
         if 'upload' in request.FILES:
             filedata = request.FILES['upload']
         else:
