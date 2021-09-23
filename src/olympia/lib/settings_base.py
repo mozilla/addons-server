@@ -1616,6 +1616,7 @@ DRF_API_GATES = {
         'addons-search-_score-field',
         'ratings-can_reply',
         'ratings-score-filter',
+        'addon-submission-api',
     ),
 }
 
