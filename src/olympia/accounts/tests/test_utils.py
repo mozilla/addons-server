@@ -405,3 +405,40 @@ class TestProcessFxAEventDelete(TestCase):
         delete_user_event_mock.assert_called_with(
             self.fxa_id, totimestamp(self.email_changed_date)
         )
+
+
+class TestProcessFxAEventResetTestCase(TestCase):
+    fxa_id = 'ABCDEF012345689'
+    event = 'reset'
+
+    def setUp(self):
+        self.event_date = self.days_ago(42)
+        self.body = json.dumps(
+            {
+                'Message': json.dumps(
+                    {
+                        'event': self.event,
+                        'uid': self.fxa_id,
+                        'ts': totimestamp(self.event_date),
+                    }
+                )
+            }
+        )
+
+    def test_success_integration(self):
+        user = user_factory(fxa_id=self.fxa_id)
+        process_fxa_event(self.body)
+        user.reload()
+        assert user.auth_id is None
+
+    @mock.patch('olympia.accounts.utils.clear_sessions_event.delay')
+    def test_success(self, clear_sessions_event_mock):
+        process_fxa_event(self.body)
+        clear_sessions_event_mock.assert_called()
+        clear_sessions_event_mock.assert_called_with(
+            self.fxa_id, totimestamp(self.event_date), self.event
+        )
+
+
+class TestProcessFxAEventPasswordChangeTestCase(TestCase):
+    event = 'passwordChange'
