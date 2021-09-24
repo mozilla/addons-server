@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-21 16:47+0000\n"
-"PO-Revision-Date: 2021-09-23 16:49+0000\n"
+"PO-Revision-Date: 2021-09-24 15:05+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4528,7 +4528,7 @@ msgstr "Περισσότερες επεκτάσεις διαχείρισης κ�
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
-msgstr ""
+msgstr "Επεκτάσεις με ετικέτα «{tag}»"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
