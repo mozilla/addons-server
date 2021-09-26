@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-21 16:47+0000\n"
-"PO-Revision-Date: 2021-09-26 14:39+0000\n"
+"PO-Revision-Date: 2021-09-26 14:51+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -2637,9 +2637,9 @@ msgstr "Hur du distribuerar denna version"
 msgid "To get started, select how you would like to distribute this version."
 msgstr "För att komma igång väljer du hur du vill distribuera den här versionen."
 
-#, fuzzy, python-format
+#, python-format
 msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
-msgstr "Du kan lära dig mer om dessa alternativ genom att läsa <a %(a_attrs)s>Tilläggsdistribution och logga in på Firefox Extension Workshop</a>."
+msgstr "Du kan lära dig mer om dessa alternativ genom att läsa <a %(a_attrs)s>Tilläggsdistribution och signering</a> i Firefox Extension Workshop."
 
 #, python-format
 msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
