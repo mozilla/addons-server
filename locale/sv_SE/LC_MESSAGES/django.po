@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-21 16:47+0000\n"
-"PO-Revision-Date: 2021-09-26 14:51+0000\n"
+"PO-Revision-Date: 2021-09-26 14:53+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -2730,9 +2730,8 @@ msgstr "Du måste skicka in tilläggets källkod."
 msgid "Your source code must include:"
 msgstr "Din källkod måste innehålla:"
 
-#, fuzzy
 msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
-msgstr "<strong>Du kan inkludera bygginstruktioner i en README-fil i källkoden</strong> eller i granskarens anteckningar på nästa sida."
+msgstr "Bygginstruktioner steg-för-steg för att skapa en exakt kopia av tilläggskoden, i en README-fil i din källkod eller i granskarens anteckningar på nästa sida."
 
 msgid "A build script that executes all necessary technical steps."
 msgstr "Ett byggskript som utför alla nödvändiga tekniska steg."
@@ -4472,7 +4471,7 @@ msgstr "Se fler flikhanteringstillägg"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
-msgstr ""
+msgstr "\"{tag}\" taggade tillägg"
 
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
@@ -5548,9 +5547,8 @@ msgstr "närvaro av matchade regler"
 msgid "result state"
 msgstr "resultattillstånd"
 
-#, fuzzy
 msgid "Excluding results solely matching these rules"
-msgstr "alla utom resultat som matchar denna regel"
+msgstr "Utesluter resultat som enbart matchar dessa regler"
 
 msgid "presence of a version"
 msgstr "närvaro av en version"
