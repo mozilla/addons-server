@@ -443,9 +443,9 @@ yara-python==4.1.2 \
 zipp==3.5.0 \
     --hash=sha256:957cfda87797e389580cb8b9e3870841ca991e2125350677b2ca83a0e99390a3 \
     --hash=sha256:f5812b1e007e48cff63449a5e9f4e7ebea716b4111f9c4f9a645f91d579bf0c4
-google-cloud-bigquery==2.26.0 \
-    --hash=sha256:8431da4c3f9b6a5aca1b811ef64e452d53536160b26252e4d132969ef3e4f173 \
-    --hash=sha256:15ca1f9c8165b584c2d593620354cd3b17c007e87cfd1abd1eebd2c08eb5d109
+google-cloud-bigquery==2.27.0 \
+    --hash=sha256:436a9378089839a474adef1c65a11bc2ef1d1e7661c7852cb7873843b21dfc1b \
+    --hash=sha256:98dd424093c3e2fbc515b69227872c86cd2ccec54f45c3333b382de70cc5a545
 google-auth==2.1.0 \
     --hash=sha256:bde03220ed56e4e147dec92339c90ce95159dce657e2cccd0ac1fe82f6a96284 \
     --hash=sha256:7ae5eda089d393ca01658b550df24913cbbbdd34e9e6dedc1cea747485ae0c04
