@@ -380,7 +380,7 @@ class TestAddonBrowseVersionSerializerFileOnly(TestCase):
         data = self.serialize()
         assert data['id'] == self.version.pk
         assert 'file' in data
-        assert len(data.keys()) == 3  # temporarily we have an extra 'files' item
+        assert len(data.keys()) == 2
 
 
 class TestAddonBrowseVersionSerializer(TestCase):
@@ -600,7 +600,7 @@ class TestAddonCompareVersionSerializerFileOnly(TestCase):
         data = self.serialize(parent_version=parent_version)
         assert data['id'] == self.version.pk
         assert 'file' in data
-        assert len(data.keys()) == 3  # temporarily we have an extra 'files' item
+        assert len(data.keys()) == 2
 
 
 class TestAddonCompareVersionSerializer(TestCase):

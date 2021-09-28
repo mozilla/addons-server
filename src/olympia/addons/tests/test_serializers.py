@@ -1256,15 +1256,16 @@ class TestVersionSerializerOutput(TestCase):
     def test_version_files_or_file(self):
         self.version = addon_factory().current_version
         result = self.serialize()
-        # default case, both file and files (until frontend supports file in v5)
+        # default case, file
         assert 'file' in result
-        assert 'files' in result
-        assert result['files'] == [result['file']]
+        assert 'files' not in result
+        default_file_result = result['file']
 
         with override_settings(DRF_API_GATES={self.request.version: ['version-files']}):
             result = self.serialize()
             assert 'file' not in result
             assert 'files' in result
+            assert result['files'] == [default_file_result]
 
 
 class TestVersionListSerializerOutput(TestCase):
@@ -1378,7 +1379,6 @@ class TestLanguageToolsSerializerOutput(TestCase):
         assert set(result['current_compatible_version'].keys()) == {
             'id',
             'file',
-            'files',
             'reviewed',
             'version',
         }
