@@ -1577,9 +1577,7 @@ def test_is_recent_with_oldish_repo(settings):
 @mock.patch('olympia.git.utils.statsd.timer')
 @mock.patch('olympia.git.utils.statsd.incr')
 def test_extract_version_to_git(incr_mock, timer_mock):
-    addon = addon_factory(
-        file_kw={'filename': 'webextension_no_id.xpi', 'is_webextension': True}
-    )
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
 
     extract_version_to_git(addon.current_version.pk)
 
@@ -1595,9 +1593,7 @@ def test_extract_version_to_git(incr_mock, timer_mock):
 
 @pytest.mark.django_db
 def test_extract_version_to_git_deleted_version():
-    addon = addon_factory(
-        file_kw={'filename': 'webextension_no_id.xpi', 'is_webextension': True}
-    )
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
 
     version = addon.current_version
     version.delete()
@@ -1615,16 +1611,6 @@ def test_extract_version_to_git_deleted_version():
 
 
 @pytest.mark.django_db
-def test_extract_version_to_git_with_non_webextension():
-    addon = addon_factory(type=amo.ADDON_EXTENSION, file_kw={'is_webextension': False})
-
-    extract_version_to_git(addon.current_version.pk)
-
-    repo = AddonGitRepository(addon.pk)
-    assert not repo.is_extracted
-
-
-@pytest.mark.django_db
 def test_extract_version_to_git_with_not_extension_type():
     addon = addon_factory(type=amo.ADDON_STATICTHEME)
 
@@ -1638,9 +1624,7 @@ def test_extract_version_to_git_with_not_extension_type():
 @mock.patch('olympia.git.utils.AddonGitRepository.extract_and_commit_from_version')
 @mock.patch('olympia.git.utils.statsd.incr')
 def test_extract_version_to_git_with_error(incr_mock, extract_and_commit_mock):
-    addon = addon_factory(
-        file_kw={'filename': 'webextension_no_id.xpi', 'is_webextension': True}
-    )
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
     extract_and_commit_mock.side_effect = Exception()
 
     with pytest.raises(Exception):
@@ -1651,9 +1635,7 @@ def test_extract_version_to_git_with_error(incr_mock, extract_and_commit_mock):
 
 @pytest.mark.django_db
 def test_extract_and_commit_no_dotgit_clash(settings):
-    addon = addon_factory(
-        file_kw={'filename': 'webextension_dotgit.xpi', 'is_webextension': True}
-    )
+    addon = addon_factory(file_kw={'filename': 'webextension_dotgit.xpi'})
 
     with mock.patch('olympia.git.utils.uuid.uuid4') as uuid4_mock:
         uuid4_mock.return_value = mock.Mock(hex='b236f5994773477bbcd2d1b75ab1458f')
@@ -1671,9 +1653,7 @@ def test_extract_and_commit_no_dotgit_clash(settings):
 
 @pytest.mark.django_db
 def test_extract_and_commit_source_from_version_rename_dotgit_files(settings):
-    addon = addon_factory(
-        file_kw={'filename': 'webextension_dotgit_2.xpi', 'is_webextension': True}
-    )
+    addon = addon_factory(file_kw={'filename': 'webextension_dotgit_2.xpi'})
 
     with mock.patch('olympia.git.utils.uuid.uuid4') as uuid4_mock:
         uuid4_mock.return_value = mock.Mock(hex='b236f5994773477bbcd2d1b75ab1458f')

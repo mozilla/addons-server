@@ -383,7 +383,6 @@ class ManifestJSONExtractor:
             'guid': self.guid,
             'type': self.type,
             'version': str(self.get('version', '')),
-            'is_webextension': True,
             'name': self.get('name'),
             'summary': self.get('description'),
             'homepage': self.get('homepage_url'),
@@ -778,7 +777,7 @@ def parse_xpi(xpi, addon=None, minimal=False, user=None):
     If minimal is True, it avoids validation as much as possible (still raising
     ValidationError for hard errors like I/O or invalid json) and returns
     only the minimal set of properties needed to decide what to do with the
-    add-on: guid, version and is_webextension.
+    add-on: guid and version.
     """
     try:
         xpi = get_file(xpi)
@@ -809,17 +808,14 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
     from olympia.addons.models import Addon, DeniedGuid
 
     guid = xpi_info['guid']
-    is_webextension = xpi_info.get('is_webextension', False)
 
     # If we allow the guid to be omitted we assume that one was generated
     # or existed before and use that one.
     # An example are WebExtensions that don't require a guid but we generate
     # one once they're uploaded. Now, if you update that WebExtension we
     # just use the original guid.
-    if addon and not guid and is_webextension:
+    if addon and not guid:
         xpi_info['guid'] = guid = addon.guid
-    if not guid and not is_webextension:
-        raise forms.ValidationError(gettext('Could not find an add-on ID.'))
 
     if guid:
         if user:
@@ -859,7 +855,7 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
             )
         )
 
-    if is_webextension and xpi_info.get('type') == amo.ADDON_STATICTHEME:
+    if xpi_info.get('type') == amo.ADDON_STATICTHEME:
         max_size = settings.MAX_STATICTHEME_SIZE
         if xpi_file and xpi_file.size > max_size:
             raise forms.ValidationError(
@@ -911,7 +907,7 @@ def parse_addon(pkg, addon=None, user=None, minimal=False):
     (still raising ValidationError for hard errors like I/O or invalid
     json) and returns only the minimal set of properties needed to decide
     what to do with the add-on (the exact set depends on the add-on type, but
-    it should always contain at least guid, type, version and is_webextension.
+    it should always contain at least guid, type and version.
     """
     name = getattr(pkg, 'name', pkg)
     if name.endswith(amo.VALID_ADDON_FILE_EXTENSIONS):

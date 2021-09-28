@@ -2669,7 +2669,6 @@ class TestAddonFromUpload(UploadMixin, TestCase):
             'default_locale': 'sv',
             'guid': 'notify-link-clicks-i18n@notzilla.org',
             'name': '__MSG_extensionName__',
-            'is_webextension': True,
             'type': 1,
             'apps': [],
             'summary': '__MSG_extensionDescription__',
@@ -2694,7 +2693,6 @@ class TestAddonFromUpload(UploadMixin, TestCase):
             'default_locale': 'xxx',
             'guid': 'notify-link-clicks-i18n@notzilla.org',
             'name': '__MSG_extensionName__',
-            'is_webextension': True,
             'type': 1,
             'apps': [],
             'summary': '__MSG_extensionDescription__',
@@ -3146,12 +3144,10 @@ class TestListedPendingManualApprovalQueue(TestCase):
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         addon_factory(
-            status=amo.STATUS_NOMINATED,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+            status=amo.STATUS_NOMINATED, file_kw={'status': amo.STATUS_AWAITING_REVIEW}
         ),
         version_factory(
-            addon=addon_factory(),
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+            addon=addon_factory(), file_kw={'status': amo.STATUS_AWAITING_REVIEW}
         )
         VersionReviewerFlags.objects.create(
             version=version_factory(
@@ -3168,33 +3164,18 @@ class TestListedPendingManualApprovalQueue(TestCase):
         AddonReviewerFlags.objects.create(
             addon=addon_factory(
                 status=amo.STATUS_NOMINATED,
-                file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             ),
             auto_approval_delayed_until=datetime.now() - timedelta(days=1),
         )
 
         # Should be in the queue:
         expected = [
-            addon_factory(
-                status=amo.STATUS_NOMINATED,
-                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-            ),
-            version_factory(
-                addon=addon_factory(), file_kw={'status': amo.STATUS_AWAITING_REVIEW}
-            ).addon,
-            version_factory(
-                addon=addon_factory(
-                    status=amo.STATUS_NOMINATED,
-                    file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-                ),
-                channel=amo.RELEASE_CHANNEL_UNLISTED,
-            ).addon,
             AddonReviewerFlags.objects.create(
                 addon=addon_factory(
                     status=amo.STATUS_NOMINATED,
                     file_kw={
                         'status': amo.STATUS_AWAITING_REVIEW,
-                        'is_webextension': True,
                     },
                 ),
                 auto_approval_disabled=True,
@@ -3204,7 +3185,6 @@ class TestListedPendingManualApprovalQueue(TestCase):
                     status=amo.STATUS_NOMINATED,
                     file_kw={
                         'status': amo.STATUS_AWAITING_REVIEW,
-                        'is_webextension': True,
                     },
                 ),
                 auto_approval_disabled_until_next_approval=True,
@@ -3214,7 +3194,6 @@ class TestListedPendingManualApprovalQueue(TestCase):
                     status=amo.STATUS_NOMINATED,
                     file_kw={
                         'status': amo.STATUS_AWAITING_REVIEW,
-                        'is_webextension': True,
                     },
                 ),
                 auto_approval_delayed_until=datetime.now() + timedelta(days=1),
@@ -3226,17 +3205,23 @@ class TestListedPendingManualApprovalQueue(TestCase):
 
     def test_versions_annotations(self):
         nomination_1 = self.days_ago(2)
-        addon_factory(
-            status=amo.STATUS_NOMINATED,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-            version_kw={'nomination': nomination_1},
-        ),
+        AddonReviewerFlags.objects.create(
+            addon=addon_factory(
+                status=amo.STATUS_NOMINATED,
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                version_kw={'nomination': nomination_1},
+            ),
+            auto_approval_disabled=True,
+        )
         nomination_2 = self.days_ago(1)
-        version_factory(
-            addon=addon_factory(version_kw={'nomination': self.days_ago(4)}),
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-            nomination=nomination_2,
-        ).addon
+        AddonReviewerFlags.objects.create(
+            addon=version_factory(
+                addon=addon_factory(version_kw={'nomination': self.days_ago(4)}),
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                nomination=nomination_2,
+            ).addon,
+            auto_approval_disabled=True,
+        )
         expected = [nomination_1, nomination_2]
         qs = Addon.objects.get_listed_pending_manual_approval_queue().order_by('pk')
         result = [addon.first_version_nominated for addon in qs]
@@ -3256,21 +3241,6 @@ class TestListedPendingManualApprovalQueue(TestCase):
         )
         qs = Addon.objects.get_listed_pending_manual_approval_queue(
             types=amo.GROUP_TYPE_THEME
-        ).order_by('pk')
-        assert list(qs) == expected
-
-    def test_status(self):
-        expected = [
-            version_factory(
-                addon=addon_factory(), file_kw={'status': amo.STATUS_AWAITING_REVIEW}
-            ).addon,
-        ]
-        addon_factory(
-            status=amo.STATUS_NOMINATED,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-        )
-        qs = Addon.objects.get_listed_pending_manual_approval_queue(
-            statuses=[amo.STATUS_APPROVED]
         ).order_by('pk')
         assert list(qs) == expected
 

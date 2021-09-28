@@ -67,14 +67,6 @@ def run_scanner(results, upload_pk, scanner, api_url, api_key):
     scanner_name = SCANNERS.get(scanner)
     log.info('Starting scanner "%s" task for FileUpload %s.', scanner_name, upload_pk)
 
-    if not results['metadata']['is_webextension']:
-        log.info(
-            'Not running scanner "%s" for FileUpload %s, it is not a webextension.',
-            scanner_name,
-            upload_pk,
-        )
-        return results
-
     upload = FileUpload.objects.get(pk=upload_pk)
 
     try:
@@ -210,13 +202,6 @@ def run_yara(results, upload_pk):
 def _run_yara(results, upload_pk):
     log.info('Starting yara task for FileUpload %s.', upload_pk)
 
-    if not results['metadata']['is_webextension']:
-        log.info(
-            'Not running yara for FileUpload %s, it is not a webextension.',
-            upload_pk,
-        )
-        return results
-
     try:
         upload = FileUpload.objects.get(pk=upload_pk)
         scanner_result = ScannerResult(upload=upload, scanner=YARA)
@@ -330,10 +315,7 @@ def run_yara_query_rule(query_rule_pk):
         return
     log.info('Fetching versions for run_yara_query_rule on rule %s', rule.pk)
     # Build a huge list of all pks we're going to run the tasks on.
-    qs = Version.unfiltered.filter(
-        addon__type=amo.ADDON_EXTENSION,
-        file__is_webextension=True,
-    )
+    qs = Version.unfiltered.filter(addon__type=amo.ADDON_EXTENSION)
     if not rule.run_on_disabled_addons:
         qs = qs.exclude(addon__status=amo.STATUS_DISABLED)
     qs = qs.values_list('id', flat=True).order_by('-pk')
@@ -463,13 +445,6 @@ def call_mad_api(all_results, upload_pk):
         upload_pk,
         request_id,
     )
-
-    if not results['metadata']['is_webextension']:
-        log.info(
-            'Not calling scanner "mad" for FileUpload %s, it is not a webextension.',
-            upload_pk,
-        )
-        return results
 
     try:
         # TODO: retrieve all scanner results and pass each result to the API.

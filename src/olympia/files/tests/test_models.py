@@ -288,7 +288,6 @@ class TestFile(TestCase, amo.tests.AMOPaths):
 
     def test_webext_permissions_list_string_only(self):
         file_ = File.objects.get(pk=67442)
-        file_.update(is_webextension=True)
         permissions = [
             'iamstring',
             'iamnutherstring',
@@ -308,7 +307,6 @@ class TestFile(TestCase, amo.tests.AMOPaths):
 
     def test_optional_permissions_list_string_only(self):
         file_ = File.objects.get(pk=67442)
-        file_.update(is_webextension=True)
         optional_permissions = [
             'iamstring',
             'iamnutherstring',
@@ -489,7 +487,6 @@ class TestParseXpi(TestCase):
             'version': '0.0.1',
             'homepage': None,
             'type': 1,
-            'is_webextension': True,
         }
         parsed = self.parse()
         for key, value in expected.items():
@@ -502,7 +499,6 @@ class TestParseXpi(TestCase):
             'guid': '@webextension-guid',
             'version': '0.0.1',
             'type': amo.ADDON_EXTENSION,
-            'is_webextension': True,
             'name': 'My WebExtension Addon',
             'summary': 'just a test addon with the manifest.json format',
             'default_locale': None,
@@ -523,7 +519,6 @@ class TestParseXpi(TestCase):
             'guid': '@webextension-guid',
             'version': '0.0.1',
             'type': amo.ADDON_EXTENSION,
-            'is_webextension': True,
             'name': 'My WebExtension Addon',
             'summary': 'just a test addon with the manifest.json format',
             'default_locale': None,
@@ -638,21 +633,18 @@ class TestParseXpi(TestCase):
     def test_match_type_extension_for_webextensions(self):
         parsed = self.parse(filename='webextension.xpi')
         assert parsed['type'] == amo.ADDON_EXTENSION
-        assert parsed['is_webextension']
         assert not parsed['is_experiment']
 
     def test_experiment_inside_webextension(self):
         self.grant_permission(self.user, 'Experiments:submit')
         parsed = self.parse(filename='experiment_inside_webextension.xpi')
         assert parsed['type'] == amo.ADDON_EXTENSION
-        assert parsed['is_webextension']
         assert parsed['is_experiment']
 
     def test_theme_experiment_inside_webextension(self):
         self.grant_permission(self.user, 'Experiments:submit')
         parsed = self.parse(filename='theme_experiment_inside_webextension.xpi')
         assert parsed['type'] == amo.ADDON_STATICTHEME
-        assert parsed['is_webextension']
         assert parsed['is_experiment']
 
     def test_match_mozilla_signed_extension(self):
@@ -696,12 +688,10 @@ class TestParseXpi(TestCase):
     def test_manifest_version(self):
         parsed = self.parse(filename='webextension_mv3.xpi')
         assert parsed['type'] == amo.ADDON_EXTENSION
-        assert parsed['is_webextension']
         assert parsed['manifest_version'] == 3
 
         parsed = self.parse(filename='webextension.xpi')
         assert parsed['type'] == amo.ADDON_EXTENSION
-        assert parsed['is_webextension']
         assert parsed['manifest_version'] == 2
 
 
@@ -1202,10 +1192,7 @@ class TestFileFromUpload(UploadMixin, TestCase):
 
     def test_webextension_mv2(self):
         upload = self.upload('webextension')
-        file_ = File.from_upload(
-            upload, self.version, parsed_data={'is_webextension': True}
-        )
-        assert file_.is_webextension
+        file_ = File.from_upload(upload, self.version, parsed_data={})
         assert file_.manifest_version == 2
 
     def test_webextension_mv3(self):
@@ -1258,9 +1245,7 @@ class TestFileFromUpload(UploadMixin, TestCase):
 
     def test_file_is_copied_to_current_path_at_upload(self):
         upload = self.upload('webextension')
-        file_ = File.from_upload(
-            upload, self.version, parsed_data={'is_webextension': True}
-        )
+        file_ = File.from_upload(upload, self.version, parsed_data={})
         assert os.path.exists(file_.file_path)
         assert not os.path.exists(file_.guarded_file_path)
         assert os.path.exists(file_.current_file_path)
@@ -1268,9 +1253,7 @@ class TestFileFromUpload(UploadMixin, TestCase):
     def test_file_is_copied_to_current_path_at_upload_if_disabled(self):
         self.addon.update(disabled_by_user=True)
         upload = self.upload('webextension')
-        file_ = File.from_upload(
-            upload, self.version, parsed_data={'is_webextension': True}
-        )
+        file_ = File.from_upload(upload, self.version, parsed_data={})
         assert not os.path.exists(file_.file_path)
         assert os.path.exists(file_.guarded_file_path)
         assert os.path.exists(file_.current_file_path)

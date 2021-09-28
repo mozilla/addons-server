@@ -746,7 +746,7 @@ class AddonGitRepository:
 
 
 def skip_git_extraction(version):
-    return version.addon.type != amo.ADDON_EXTENSION or not version.file.is_webextension
+    return version.addon.type != amo.ADDON_EXTENSION
 
 
 def create_git_extraction_entry(version):

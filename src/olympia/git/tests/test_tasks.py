@@ -159,21 +159,18 @@ class TestExtractVersionsToGit(TestCase):
             addon=addon_factory(),
             file_kw={
                 'filename': 'webextension_no_id.xpi',
-                'is_webextension': True,
             },
         )
         v2 = version_factory(
             addon=addon_factory(),
             file_kw={
                 'filename': 'webextension_no_id.xpi',
-                'is_webextension': True,
             },
         )
         v3 = version_factory(
             addon=addon_factory(),
             file_kw={
                 'filename': 'webextension_no_id.xpi',
-                'is_webextension': True,
             },
         )
 

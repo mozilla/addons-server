@@ -59,7 +59,6 @@ class BaseUploadVersionTestMixin(SigningAPITestMixin):
         self.guid = '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}'
         addon_factory(
             guid=self.guid,
-            file_kw={'is_webextension': True},
             version_kw={'version': '2.1.072'},
             users=[self.user],
         )
@@ -911,8 +910,6 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         assert upload.source == amo.UPLOAD_SOURCE_SIGNING_API
         assert upload.ip_address == '127.0.3.1'
 
-        version = Version.objects.get(addon__guid=guid, version='1.0')
-        assert version.file.is_webextension is True
         assert addon.has_author(self.user)
         assert addon.status == amo.STATUS_NULL
         latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -1034,8 +1031,6 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         addon = Addon.unfiltered.get(guid=response.data['guid'])
         assert addon.guid == '@custom-guid-provided'
 
-        version = Version.objects.get(addon__guid=guid, version='1.0')
-        assert version.file.is_webextension is True
         assert addon.has_author(self.user)
         assert addon.status == amo.STATUS_NULL
         latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)

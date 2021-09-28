@@ -63,7 +63,8 @@ class PrimaryHeroShelfViewSet(ShelfViewSet):
                 promoted_addon__addon__disabled_by_user=False,
             )
         qs = qs.select_related('promoted_addon', 'select_image').prefetch_related(
-            'promoted_addon__addon___current_version__previews'
+            'promoted_addon__addon___current_version__previews',
+            'promoted_addon__addon___current_version__file___webext_permissions',
         )
         return qs
 

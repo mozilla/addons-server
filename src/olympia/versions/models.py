@@ -103,9 +103,7 @@ class VersionManager(ManagerBase):
     def auto_approvable(self):
         """Returns a queryset filtered with just the versions that should
         attempted for auto-approval by the cron job."""
-        qs = self.filter(
-            file__status=amo.STATUS_AWAITING_REVIEW, file__is_webextension=True
-        ).filter(
+        qs = self.filter(file__status=amo.STATUS_AWAITING_REVIEW).filter(
             # For listed, add-on can't be incomplete, deleted or disabled.
             # It also cannot be disabled by user ("invisible"), and can not
             # be a theme either.
@@ -336,15 +334,12 @@ class Version(OnChangeMixin, ModelBase):
 
         version_uploaded.send(instance=version, sender=Version)
 
-        if version.is_webextension:
-            if (
-                waffle.switch_is_active('enable-yara')
-                or waffle.switch_is_active('enable-customs')
-                or waffle.switch_is_active('enable-wat')
-            ):
-                ScannerResult.objects.filter(upload_id=upload.id).update(
-                    version=version
-                )
+        if (
+            waffle.switch_is_active('enable-yara')
+            or waffle.switch_is_active('enable-customs')
+            or waffle.switch_is_active('enable-wat')
+        ):
+            ScannerResult.objects.filter(upload_id=upload.id).update(version=version)
 
         if waffle.switch_is_active('enable-uploads-commit-to-git-storage'):
             # Schedule this version for git extraction.
@@ -522,10 +517,6 @@ class Version(OnChangeMixin, ModelBase):
             )
         except ObjectDoesNotExist:
             return False
-
-    @property
-    def is_webextension(self):
-        return self.file.is_webextension
 
     @property
     def is_mozilla_signed(self):

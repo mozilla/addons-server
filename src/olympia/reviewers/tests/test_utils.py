@@ -891,6 +891,9 @@ class TestReviewHelper(TestReviewHelperBase):
         """Make sure new add-ons can be made public (bug 637959)"""
         status = amo.STATUS_NOMINATED
         self.setup_data(status)
+        AutoApprovalSummary.objects.create(
+            version=self.version, verdict=amo.AUTO_APPROVED, weight=101
+        )
 
         # Make sure we have no public files
         for version in self.addon.versions.all():
@@ -919,7 +922,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
 
-        self._check_score(amo.REVIEWED_ADDON_FULL)
+        self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
 
     def test_nomination_to_public_need_human_review(self):
         self.setup_data(amo.STATUS_NOMINATED)
@@ -1009,6 +1012,9 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_nomination_to_public(self, sign_mock):
         sign_mock.reset()
         self.setup_data(amo.STATUS_NOMINATED)
+        AutoApprovalSummary.objects.update_or_create(
+            version=self.version, defaults={'verdict': amo.AUTO_APPROVED, 'weight': 101}
+        )
 
         self.helper.handler.approve_latest_version()
 
@@ -1029,12 +1035,12 @@ class TestReviewHelper(TestReviewHelperBase):
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
 
-        self._check_score(amo.REVIEWED_ADDON_FULL)
+        self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
 
     @patch('olympia.reviewers.utils.sign_file')
     def test_old_nomination_to_public_bonus_score(self, sign_mock):
         sign_mock.reset()
-        self.setup_data(amo.STATUS_NOMINATED)
+        self.setup_data(amo.STATUS_NOMINATED, type=amo.ADDON_PLUGIN)
         self.version.update(nomination=self.days_ago(9))
 
         self.helper.handler.approve_latest_version()
@@ -1105,6 +1111,9 @@ class TestReviewHelper(TestReviewHelperBase):
         self.preamble = 'Mozilla Add-ons: Delicious Bookmarks 3.0.42'
         self.file = self.version.file
         self.setup_data(amo.STATUS_APPROVED)
+        AutoApprovalSummary.objects.create(
+            version=self.version, verdict=amo.AUTO_APPROVED, weight=101
+        )
         self.create_paths()
         AddonApprovalsCounter.objects.create(
             addon=self.addon, counter=1, last_human_review=self.days_ago(42)
@@ -1140,7 +1149,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
 
-        self._check_score(amo.REVIEWED_ADDON_UPDATE)
+        self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
         self.addon.reviewerflags.reload()
         assert not self.addon.reviewerflags.auto_approval_disabled_until_next_approval
 
@@ -1206,6 +1215,9 @@ class TestReviewHelper(TestReviewHelperBase):
         self.preamble = 'Mozilla Add-ons: Delicious Bookmarks 3.0.42'
         self.file = self.version.file
         self.setup_data(amo.STATUS_APPROVED)
+        AutoApprovalSummary.objects.create(
+            version=self.version, verdict=amo.AUTO_APPROVED, weight=101
+        )
         self.create_paths()
         AddonApprovalsCounter.objects.create(addon=self.addon, counter=1)
 
@@ -1236,7 +1248,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert not storage.exists(self.file.file_path)
         assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 1
 
-        self._check_score(amo.REVIEWED_ADDON_UPDATE)
+        self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
 
     def test_public_addon_with_version_need_human_review_to_sandbox(self):
         self.old_version = self.addon.current_version
@@ -1475,7 +1487,6 @@ class TestReviewHelper(TestReviewHelperBase):
             addon=self.addon,
             version='3.0',
             channel=amo.RELEASE_CHANNEL_UNLISTED,
-            file_kw={'is_webextension': True},
             created=self.days_ago(7),
         )
         summary = AutoApprovalSummary.objects.create(
@@ -1485,7 +1496,6 @@ class TestReviewHelper(TestReviewHelperBase):
             addon=self.addon,
             version='4.0',
             channel=amo.RELEASE_CHANNEL_UNLISTED,
-            file_kw={'is_webextension': True},
             needs_human_review=True,
             created=self.days_ago(6),
         )
@@ -1494,7 +1504,6 @@ class TestReviewHelper(TestReviewHelperBase):
             version='5.0',
             channel=amo.RELEASE_CHANNEL_UNLISTED,
             needs_human_review=True,
-            file_kw={'is_webextension': True},
             created=self.days_ago(5),
         )
         self.file = self.version.file

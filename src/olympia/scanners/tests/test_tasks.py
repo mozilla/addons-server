@@ -63,7 +63,6 @@ class TestRunScanner(UploadMixin, TestCase):
         self.upload = self.get_upload('webextension.xpi')
         self.results = {
             **amo.VALIDATOR_SKELETON_RESULTS,
-            'metadata': {'is_webextension': True},
         }
 
     def create_response(self, status_code=200, data=None):
@@ -296,7 +295,6 @@ class TestRunYara(UploadMixin, TestCase):
         self.upload = self.get_upload('webextension.xpi')
         self.results = {
             **amo.VALIDATOR_SKELETON_RESULTS,
-            'metadata': {'is_webextension': True},
         }
 
     @mock.patch('olympia.scanners.tasks.statsd.incr')
@@ -500,7 +498,6 @@ class TestRunYara(UploadMixin, TestCase):
         upload = self.get_upload('webextension_signed_already.xpi')
         results = {
             **amo.VALIDATOR_SKELETON_RESULTS,
-            'metadata': {'is_webextension': True},
         }
         # This rule will match for all files in the xpi.
         ScannerRule.objects.create(
@@ -612,7 +609,7 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
     def setUp(self):
         super().setUp()
 
-        self.version = addon_factory(file_kw={'is_webextension': True}).current_version
+        self.version = addon_factory().current_version
         self.xpi_copy_over(self.version.file, 'webextension.xpi')
 
         # This rule will match for all files in the xpi.
@@ -633,7 +630,6 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         # Similar to test_run_on_chunk() except it needs to find the versions
         # by itself.
         other_addon = addon_factory(
-            file_kw={'is_webextension': True},
             version_kw={'created': self.days_ago(1)},
         )
         other_addon_previous_current_version = other_addon.current_version
@@ -643,7 +639,6 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
             # Unlisted webextension version of this add-on.
             addon_factory(
                 disabled_by_user=True,  # Doesn't matter.
-                file_kw={'is_webextension': True},
                 version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
             ).versions.get(),
             # Unlisted webextension version of an add-on that has multiple
@@ -652,20 +647,15 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
                 addon=other_addon,
                 created=self.days_ago(42),
                 channel=amo.RELEASE_CHANNEL_UNLISTED,
-                file_kw={'is_webextension': True},
             ),
             # Listed webextension versions of an add-on that has multiple
             # versions.
             other_addon_previous_current_version,
-            version_factory(addon=other_addon, file_kw={'is_webextension': True}),
+            version_factory(addon=other_addon),
         ]
-        # Ignored versions:
+        # Ignored version:
         # Listed Webextension version belonging to mozilla disabled add-on.
-        addon_factory(
-            file_kw={'is_webextension': True}, status=amo.STATUS_DISABLED
-        ).current_version
-        # Non-Webextension
-        addon_factory(file_kw={'is_webextension': False}).current_version
+        addon_factory(status=amo.STATUS_DISABLED).current_version
 
         for version in Version.unfiltered.all():
             self.xpi_copy_over(version.file, 'webextension.xpi')
@@ -826,7 +816,6 @@ class TestCallMadApi(UploadMixin, TestCase):
         self.results = [
             {
                 **amo.VALIDATOR_SKELETON_RESULTS,
-                'metadata': {'is_webextension': True},
             }
         ]
         self.customs_result = ScannerResult.objects.create(

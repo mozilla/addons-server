@@ -255,16 +255,6 @@ class TestVersion(TestCase):
         # ApplicationsVersions loaded from <Version>._compat_map().
         assert id(version) == id(version.compatible_apps[amo.FIREFOX].version)
 
-    def test_is_webextension(self):
-        version = Version.objects.get(pk=81551)
-        file_ = version.file
-        assert not file_.is_webextension
-        assert not version.is_webextension
-
-        file_.update(is_webextension=True)
-        version = Version.objects.get(pk=81551)
-        assert version.is_webextension
-
     def _get_version(self, status):
         return addon_factory(file_kw={'status': status}).current_version
 
@@ -517,26 +507,8 @@ class TestVersion(TestCase):
         assert 'is_ready_for_auto_approval' in version.__dict__
 
         del version.is_ready_for_auto_approval
-        version.file.update(status=amo.STATUS_AWAITING_REVIEW, is_webextension=True)
+        version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         version.update(channel=amo.RELEASE_CHANNEL_LISTED)
-        # Ensure the cached_property has not been set yet
-        assert 'is_ready_for_auto_approval' not in version.__dict__
-        # Test it.
-        assert version.is_ready_for_auto_approval
-        # It should now be set
-        assert 'is_ready_for_auto_approval' in version.__dict__
-
-        del version.is_ready_for_auto_approval
-        version.file.update(is_webextension=False)
-        # Ensure the cached_property has not been set yet
-        assert 'is_ready_for_auto_approval' not in version.__dict__
-        # Test it.
-        assert not version.is_ready_for_auto_approval
-        # It should now be set
-        assert 'is_ready_for_auto_approval' in version.__dict__
-
-        del version.is_ready_for_auto_approval
-        version.file.update(is_webextension=True)
         # Ensure the cached_property has not been set yet
         assert 'is_ready_for_auto_approval' not in version.__dict__
         # Test it.
@@ -618,7 +590,7 @@ class TestVersion(TestCase):
         addon = Addon.objects.get(id=3615)
         addon.status = amo.STATUS_NOMINATED
         version = addon.current_version
-        version.file.update(status=amo.STATUS_AWAITING_REVIEW, is_webextension=True)
+        version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         # Ensure the cached_property has not been set yet
         assert 'is_ready_for_auto_approval' not in version.__dict__
         # Test it.
@@ -643,26 +615,8 @@ class TestVersion(TestCase):
         assert 'is_ready_for_auto_approval' in version.__dict__
 
         del version.is_ready_for_auto_approval
-        version.file.update(status=amo.STATUS_AWAITING_REVIEW, is_webextension=True)
+        version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         version.update(channel=amo.RELEASE_CHANNEL_LISTED)
-        # Ensure the cached_property has not been set yet
-        assert 'is_ready_for_auto_approval' not in version.__dict__
-        # Test it.
-        assert version.is_ready_for_auto_approval
-        # It should now be set
-        assert 'is_ready_for_auto_approval' in version.__dict__
-
-        del version.is_ready_for_auto_approval
-        version.file.update(is_webextension=False)
-        # Ensure the cached_property has not been set yet
-        assert 'is_ready_for_auto_approval' not in version.__dict__
-        # Test it.
-        assert not version.is_ready_for_auto_approval
-        # It should now be set
-        assert 'is_ready_for_auto_approval' in version.__dict__
-
-        del version.is_ready_for_auto_approval
-        version.file.update(is_webextension=True)
         # Ensure the cached_property has not been set yet
         assert 'is_ready_for_auto_approval' not in version.__dict__
         # Test it.
@@ -1140,7 +1094,6 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
 
     def setUp(self):
         super().setUp()
-        self.dummy_parsed_data['is_webextension'] = True
 
     def test_notified_about_auto_approval_delay_flag_is_reset(self):
         flags = AddonReviewerFlags.objects.create(
@@ -1470,8 +1423,6 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             amo.RELEASE_CHANNEL_LISTED,
             parsed_data=self.dummy_parsed_data,
         )
-
-        assert version.is_webextension
         scanners_result.refresh_from_db()
         assert scanners_result.version == version
 
@@ -1487,8 +1438,6 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             amo.RELEASE_CHANNEL_LISTED,
             parsed_data=self.dummy_parsed_data,
         )
-
-        assert version.is_webextension
         scanners_result.refresh_from_db()
         assert scanners_result.version == version
 
@@ -1505,7 +1454,6 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             parsed_data=self.dummy_parsed_data,
         )
 
-        assert version.is_webextension
         scanners_result.refresh_from_db()
         assert scanners_result.version == version
 
@@ -1518,25 +1466,6 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         )
         assert scanners_result.version is None
 
-        Version.from_upload(
-            self.upload,
-            self.addon,
-            [self.selected_app],
-            amo.RELEASE_CHANNEL_LISTED,
-            parsed_data=self.dummy_parsed_data,
-        )
-
-        scanners_result.refresh_from_db()
-        assert scanners_result.version is None
-
-    def test_does_not_update_scanners_results_when_not_a_webextension(self):
-        self.create_switch('enable-customs', active=True)
-        scanners_result = ScannerResult.objects.create(
-            upload=self.upload, scanner=CUSTOMS
-        )
-        assert scanners_result.version is None
-
-        self.dummy_parsed_data['is_webextension'] = False
         Version.from_upload(
             self.upload,
             self.addon,

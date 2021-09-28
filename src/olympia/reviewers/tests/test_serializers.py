@@ -38,9 +38,7 @@ class TestFileInfoSerializer(TestCase):
     def setUp(self):
         super().setUp()
 
-        self.addon = addon_factory(
-            file_kw={'filename': 'notify-link-clicks-i18n.xpi', 'is_webextension': True}
-        )
+        self.addon = addon_factory(file_kw={'filename': 'notify-link-clicks-i18n.xpi'})
         extract_version_to_git(self.addon.current_version.pk)
         self.addon.current_version.refresh_from_db()
 
@@ -165,7 +163,7 @@ class TestFileInfoDiffSerializer(TestCase):
         self.addon = addon_factory(
             name='My Addôn',
             slug='my-addon',
-            file_kw={'filename': 'webextension_no_id.xpi', 'is_webextension': True},
+            file_kw={'filename': 'webextension_no_id.xpi'},
         )
 
         extract_version_to_git(self.addon.current_version.pk)
@@ -202,7 +200,6 @@ class TestFileInfoDiffSerializer(TestCase):
             addon=self.addon,
             file_kw={
                 'filename': 'webextension_no_id.xpi',
-                'is_webextension': True,
             },
         )
 
@@ -230,7 +227,6 @@ class TestFileInfoDiffSerializer(TestCase):
             addon=self.addon,
             file_kw={
                 'filename': 'webextension_no_id.xpi',
-                'is_webextension': True,
             },
         )
 
@@ -272,7 +268,6 @@ class TestFileInfoDiffSerializer(TestCase):
             addon=self.addon,
             file_kw={
                 'filename': 'webextension_no_id.xpi',
-                'is_webextension': True,
             },
         )
 
@@ -300,7 +295,6 @@ class TestFileInfoDiffSerializer(TestCase):
             addon=self.addon,
             file_kw={
                 'filename': 'webextension_no_id.xpi',
-                'is_webextension': True,
             },
         )
         AddonGitRepository.extract_and_commit_from_version(new_version)
@@ -320,7 +314,6 @@ class TestFileInfoDiffSerializer(TestCase):
             addon=self.addon,
             file_kw={
                 'filename': 'webextension_no_id.xpi',
-                'is_webextension': True,
             },
         )
         AddonGitRepository.extract_and_commit_from_version(new_version)
@@ -360,9 +353,7 @@ class TestAddonBrowseVersionSerializerFileOnly(TestCase):
     def setUp(self):
         super().setUp()
 
-        self.addon = addon_factory(
-            file_kw={'filename': 'notify-link-clicks-i18n.xpi', 'is_webextension': True}
-        )
+        self.addon = addon_factory(file_kw={'filename': 'notify-link-clicks-i18n.xpi'})
 
         extract_version_to_git(self.addon.current_version.pk)
         self.addon.current_version.reload()
@@ -404,7 +395,6 @@ class TestAddonBrowseVersionSerializer(TestCase):
                 'is_mozilla_signed_extension': True,
                 'size': 42,
                 'filename': 'notify-link-clicks-i18n.xpi',
-                'is_webextension': True,
             },
             version_kw={
                 'license': license,
@@ -578,9 +568,7 @@ class TestAddonCompareVersionSerializerFileOnly(TestCase):
     def setUp(self):
         super().setUp()
 
-        self.addon = addon_factory(
-            file_kw={'filename': 'notify-link-clicks-i18n.xpi', 'is_webextension': True}
-        )
+        self.addon = addon_factory(file_kw={'filename': 'notify-link-clicks-i18n.xpi'})
 
         extract_version_to_git(self.addon.current_version.pk)
         self.addon.current_version.reload()
@@ -610,7 +598,7 @@ class TestAddonCompareVersionSerializer(TestCase):
         self.addon = addon_factory(
             name='My Addôn',
             slug='my-addon',
-            file_kw={'filename': 'webextension_no_id.xpi', 'is_webextension': True},
+            file_kw={'filename': 'webextension_no_id.xpi'},
         )
 
         extract_version_to_git(self.addon.current_version.pk)
@@ -627,7 +615,7 @@ class TestAddonCompareVersionSerializer(TestCase):
         addon = addon_factory(
             name='My Addôn',
             slug='my-addon',
-            file_kw={'filename': xpi_filename, 'is_webextension': True},
+            file_kw={'filename': xpi_filename},
         )
 
         extract_version_to_git(addon.current_version.pk)
@@ -639,7 +627,6 @@ class TestAddonCompareVersionSerializer(TestCase):
             addon=addon,
             file_kw={
                 'filename': xpi_filename,
-                'is_webextension': True,
             },
         )
 
@@ -666,7 +653,6 @@ class TestAddonCompareVersionSerializer(TestCase):
             addon=self.addon,
             file_kw={
                 'filename': 'webextension_no_id.xpi',
-                'is_webextension': True,
             },
         )
 

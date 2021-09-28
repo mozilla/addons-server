@@ -437,6 +437,7 @@ class AddonVersionViewSet(
             queryset = addon.versions.filter(
                 file__status=amo.STATUS_APPROVED, channel=amo.RELEASE_CHANNEL_LISTED
             )
+        # FIXME: we want to prefetch file.webext_permission instances in here
         if (
             self.action == 'list'
             and self.request
@@ -696,6 +697,7 @@ class LanguageToolsView(ListAPIView):
             # we don't need, but some language packs or dictionaries have
             # custom names, so we can't use a generic one for them...
             .only_translations()
+            # FIXME: we want to prefetch file.webext_permission instances in here
             # Since we're fetching everything with no pagination, might as well
             # not order it.
             .order_by()

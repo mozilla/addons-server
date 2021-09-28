@@ -79,7 +79,6 @@ class Command(BaseCommand):
             'filename': basename(urlparse(file_data['url']).path),
             'status': amo.STATUS_CHOICES_API_LOOKUP[file_data['status']],
             'size': file_data['size'],
-            'is_webextension': True,
             'is_mozilla_signed_extension': (file_data['is_mozilla_signed_extension']),
             'strict_compatibility': (data['is_strict_compatibility_enabled']),
         }

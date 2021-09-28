@@ -788,7 +788,6 @@ class TestAPIKeyInSubmission(UploadMixin, TestCase):
         self.addon = addon_factory(
             users=[self.user],
             version_kw={'version': '0.1'},
-            file_kw={'is_webextension': True},
         )
         self.file = get_addon_file('webextension_containing_api_key.xpi')
 

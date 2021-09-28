@@ -241,7 +241,15 @@ class TestReviewerScore(TestCase):
 
     def setUp(self):
         super().setUp()
-        self.addon = amo.tests.addon_factory(status=amo.STATUS_NOMINATED)
+        self.addon = AddonReviewerFlags.objects.create(
+            addon=addon_factory(status=amo.STATUS_NOMINATED),
+            auto_approval_disabled=True,
+        ).addon
+        self.summary = AutoApprovalSummary.objects.create(
+            version=self.addon.current_version,
+            verdict=amo.NOT_AUTO_APPROVED,
+            weight=101,
+        )
         self.user = UserProfile.objects.get(email='reviewer@mozilla.com')
 
     def _give_points(self, user=None, addon=None, status=None):
@@ -292,17 +300,8 @@ class TestReviewerScore(TestCase):
             ReviewerScore.get_event(*base_args, version=None, post_review=True)
             == amo.REVIEWED_EXTENSION_LOW_RISK
         )
-        # No autoapprovalsummary.
-        assert (
-            ReviewerScore.get_event(
-                *base_args, version=self.addon.current_version, post_review=True
-            )
-            == amo.REVIEWED_EXTENSION_LOW_RISK
-        )
         # Now with a summary... low risk.
-        summary = AutoApprovalSummary.objects.create(
-            version=self.addon.current_version, verdict=amo.AUTO_APPROVED, weight=-10
-        )
+        self.summary.update(verdict=amo.AUTO_APPROVED, weight=-10)
         assert (
             ReviewerScore.get_event(
                 *base_args, version=self.addon.current_version, post_review=True
@@ -310,7 +309,7 @@ class TestReviewerScore(TestCase):
             is amo.REVIEWED_EXTENSION_LOW_RISK
         )
         # Medium risk.
-        summary.update(weight=91)
+        self.summary.update(weight=91)
         assert (
             ReviewerScore.get_event(
                 *base_args, version=self.addon.current_version, post_review=True
@@ -318,7 +317,7 @@ class TestReviewerScore(TestCase):
             is amo.REVIEWED_EXTENSION_MEDIUM_RISK
         )
         # High risk.
-        summary.update(weight=176)
+        self.summary.update(weight=176)
         assert (
             ReviewerScore.get_event(
                 *base_args, version=self.addon.current_version, post_review=True
@@ -326,7 +325,7 @@ class TestReviewerScore(TestCase):
             is amo.REVIEWED_EXTENSION_HIGH_RISK
         )
         # Highest risk.
-        summary.update(weight=276)
+        self.summary.update(weight=276)
         assert (
             ReviewerScore.get_event(
                 *base_args, version=self.addon.current_version, post_review=True
@@ -334,7 +333,7 @@ class TestReviewerScore(TestCase):
             is amo.REVIEWED_EXTENSION_HIGHEST_RISK
         )
         # Highest risk again.
-        summary.update(weight=65535)
+        self.summary.update(weight=65535)
         assert (
             ReviewerScore.get_event(
                 *base_args, version=self.addon.current_version, post_review=True
@@ -355,7 +354,7 @@ class TestReviewerScore(TestCase):
     def test_award_points(self):
         self._give_points()
         assert ReviewerScore.objects.all()[0].score == (
-            amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL]
+            amo.REVIEWED_SCORES[amo.REVIEWED_EXTENSION_MEDIUM_RISK]
         )
 
     def test_award_points_with_extra_note(self):
@@ -363,8 +362,10 @@ class TestReviewerScore(TestCase):
             self.user, self.addon, self.addon.status, extra_note='ÔMG!'
         )
         reviewer_score = ReviewerScore.objects.all()[0]
-        assert reviewer_score.note_key == amo.REVIEWED_ADDON_FULL
-        assert reviewer_score.score == (amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL])
+        assert reviewer_score.note_key == amo.REVIEWED_EXTENSION_LOW_RISK
+        assert reviewer_score.score == (
+            amo.REVIEWED_SCORES[amo.REVIEWED_EXTENSION_LOW_RISK]
+        )
         assert reviewer_score.note == 'ÔMG!'
 
     def test_award_points_bonus(self):
@@ -373,14 +374,17 @@ class TestReviewerScore(TestCase):
         days = amo.REVIEWED_OVERDUE_LIMIT + bonus_days
 
         bonus_addon = addon_factory(
-            status=amo.STATUS_NOMINATED, file_kw={'status': amo.STATUS_AWAITING_REVIEW}
+            status=amo.STATUS_NOMINATED,
+            type=amo.ADDON_STATICTHEME,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         bonus_addon.current_version.update(
             nomination=(datetime.now() - timedelta(days=days, minutes=5))
         )
+
         self._give_points(user2, bonus_addon, amo.STATUS_NOMINATED)
         score = ReviewerScore.objects.get(user=user2)
-        expected = amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL] + (
+        expected = amo.REVIEWED_SCORES[amo.REVIEWED_STATICTHEME] + (
             amo.REVIEWED_OVERDUE_BONUS * bonus_days
         )
 
@@ -389,9 +393,7 @@ class TestReviewerScore(TestCase):
     def test_award_points_no_bonus_for_content_review(self):
         self.addon.update(status=amo.STATUS_APPROVED)
         self.addon.current_version.update(nomination=self.days_ago(28))
-        AutoApprovalSummary.objects.create(
-            version=self.addon.current_version, verdict=amo.AUTO_APPROVED, weight=100
-        )
+        self.summary.update(verdict=amo.AUTO_APPROVED, weight=100)
         ReviewerScore.award_points(
             self.user,
             self.addon,
@@ -406,9 +408,7 @@ class TestReviewerScore(TestCase):
     def test_award_points_no_bonus_for_post_review(self):
         self.addon.update(status=amo.STATUS_APPROVED)
         self.addon.current_version.update(nomination=self.days_ago(29))
-        AutoApprovalSummary.objects.create(
-            version=self.addon.current_version, verdict=amo.AUTO_APPROVED, weight=101
-        )
+        self.summary.update(verdict=amo.AUTO_APPROVED, weight=101)
         ReviewerScore.award_points(
             self.user,
             self.addon,
@@ -425,7 +425,7 @@ class TestReviewerScore(TestCase):
         self.version = version_factory(
             addon=self.addon,
             version='1.1',
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         AutoApprovalSummary.objects.create(
             version=self.addon.current_version,
@@ -451,7 +451,7 @@ class TestReviewerScore(TestCase):
         self.version = version_factory(
             addon=langpack,
             version='1.1',
-            file_kw={'status': amo.STATUS_APPROVED, 'is_webextension': True},
+            file_kw={'status': amo.STATUS_APPROVED},
         )
         AutoApprovalSummary.objects.create(
             version=langpack.current_version, verdict=amo.AUTO_APPROVED, weight=101
@@ -475,7 +475,7 @@ class TestReviewerScore(TestCase):
         self.version = version_factory(
             addon=langpack,
             version='1.1',
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         AutoApprovalSummary.objects.create(
             version=langpack.current_version, verdict=amo.NOT_AUTO_APPROVED, weight=101
@@ -499,7 +499,7 @@ class TestReviewerScore(TestCase):
         self.version = version_factory(
             addon=dictionary,
             version='1.1',
-            file_kw={'status': amo.STATUS_APPROVED, 'is_webextension': True},
+            file_kw={'status': amo.STATUS_APPROVED},
         )
         AutoApprovalSummary.objects.create(
             version=dictionary.current_version, verdict=amo.AUTO_APPROVED, weight=101
@@ -523,7 +523,7 @@ class TestReviewerScore(TestCase):
         self.version = version_factory(
             addon=dictionary,
             version='1.1',
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         AutoApprovalSummary.objects.create(
             version=dictionary.current_version,
@@ -553,30 +553,38 @@ class TestReviewerScore(TestCase):
         user2 = UserProfile.objects.get(email='admin@mozilla.com')
         self._give_points()
         self._give_points(status=amo.STATUS_APPROVED)
+        self.summary.update(weight=176)
         self._give_points(user=user2, status=amo.STATUS_NOMINATED)
         assert ReviewerScore.get_total(self.user) == (
-            amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL]
-            + amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_UPDATE]
+            amo.REVIEWED_SCORES[amo.REVIEWED_EXTENSION_MEDIUM_RISK]
+            + amo.REVIEWED_SCORES[amo.REVIEWED_EXTENSION_MEDIUM_RISK]
         )
         assert ReviewerScore.get_total(user2) == (
-            amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL]
+            amo.REVIEWED_SCORES[amo.REVIEWED_EXTENSION_HIGH_RISK]
         )
 
     def test_get_recent(self):
-        user2 = UserProfile.objects.get(email='admin@mozilla.com')
         self._give_points()
         time.sleep(1)  # Wait 1 sec so ordering by created is checked.
+        self.summary.update(weight=176)
         self._give_points(status=amo.STATUS_APPROVED)
+        self.summary.update(weight=1)
+        user2 = UserProfile.objects.get(email='admin@mozilla.com')
         self._give_points(user=user2)
         scores = ReviewerScore.get_recent(self.user)
         assert len(scores) == 2
-        assert scores[0].score == (amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_UPDATE])
-        assert scores[1].score == (amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL])
+        assert scores[0].score == (
+            amo.REVIEWED_SCORES[amo.REVIEWED_EXTENSION_HIGH_RISK]
+        )
+        assert scores[1].score == (
+            amo.REVIEWED_SCORES[amo.REVIEWED_EXTENSION_MEDIUM_RISK]
+        )
 
     def test_get_leaderboards(self):
         user2 = UserProfile.objects.get(email='theme_reviewer@mozilla.com')
         self._give_points()
         self._give_points(status=amo.STATUS_APPROVED)
+        self.summary.update(weight=176)
         self._give_points(user=user2, status=amo.STATUS_NOMINATED)
         leaders = ReviewerScore.get_leaderboards(self.user)
         assert leaders['user_rank'] == 1
@@ -584,13 +592,13 @@ class TestReviewerScore(TestCase):
         assert leaders['leader_top'][0]['rank'] == 1
         assert leaders['leader_top'][0]['user_id'] == self.user.id
         assert leaders['leader_top'][0]['total'] == (
-            amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL]
-            + amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_UPDATE]
+            amo.REVIEWED_SCORES[amo.REVIEWED_EXTENSION_MEDIUM_RISK]
+            + amo.REVIEWED_SCORES[amo.REVIEWED_EXTENSION_MEDIUM_RISK]
         )
         assert leaders['leader_top'][1]['rank'] == 2
         assert leaders['leader_top'][1]['user_id'] == user2.id
         assert leaders['leader_top'][1]['total'] == (
-            amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL]
+            amo.REVIEWED_SCORES[amo.REVIEWED_EXTENSION_HIGH_RISK]
         )
 
         self._give_points(
@@ -658,9 +666,7 @@ class TestReviewerScore(TestCase):
         GroupUser.objects.create(group=group_reviewers, user=self.user)
         GroupUser.objects.create(group=group_content_reviewers, user=self.user)
 
-        AutoApprovalSummary.objects.create(
-            version=self.addon.current_version, verdict=amo.AUTO_APPROVED, weight=101
-        )
+        self.summary.update(verdict=amo.AUTO_APPROVED, weight=101)
         ReviewerScore.award_points(
             self.user,
             self.addon,
@@ -689,11 +695,11 @@ class TestReviewerScore(TestCase):
         users = ReviewerScore.all_users_by_score()
         assert len(users) == 2
         # First user.
-        assert users[0]['total'] == 200
+        assert users[0]['total'] == 180
         assert users[0]['user_id'] == self.user.id
         assert users[0]['level'] == amo.REVIEWED_LEVELS[0]['name']
         # Second user.
-        assert users[1]['total'] == 120
+        assert users[1]['total'] == 90
         assert users[1]['user_id'] == user2.id
         assert users[1]['level'] == ''
 
@@ -749,7 +755,7 @@ class TestAutoApprovalSummary(TestCase):
         self.version = version_factory(
             addon=self.addon,
             version='1.1',
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         self.file = self.version.file
         self.file_validation = FileValidation.objects.create(

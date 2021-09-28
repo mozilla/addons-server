@@ -49,7 +49,6 @@ VIEW_QUEUE_FLAGS = (
         _('Needs Admin Static Theme Review'),
     ),
     ('sources_provided', 'sources-provided', _('Sources provided')),
-    ('is_webextension', 'webextension', _('WebExtension')),
     (
         'auto_approval_delayed_temporarily',
         'auto-approval-delayed-temporarily',
@@ -352,7 +351,7 @@ class ReviewerScore(ModelBase):
         # still a webextension and should treated as such, regardless of
         # auto-approval being disabled or not.
         # As a hack, we set 'post_review' to True.
-        if version and version.is_webextension and addon.type in amo.GROUP_TYPE_ADDON:
+        if addon.type in amo.GROUP_TYPE_ADDON:
             post_review = True
 
         user_log.info(

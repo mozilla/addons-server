@@ -615,11 +615,15 @@ class TestDashboard(TestCase):
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         # Nominated and pending extensions.
-        version_factory(
-            addon=addon_factory(), file_kw={'status': amo.STATUS_AWAITING_REVIEW}
+        AddonReviewerFlags.objects.create(
+            auto_approval_disabled=True,
+            addon=version_factory(
+                addon=addon_factory(), file_kw={'status': amo.STATUS_AWAITING_REVIEW}
+            ).addon,
         )
         AddonReviewerFlags.objects.create(
             needs_admin_code_review=True,
+            auto_approval_disabled=True,
             addon=addon_factory(
                 status=amo.STATUS_NOMINATED,
                 file_kw={'status': amo.STATUS_AWAITING_REVIEW},
@@ -627,19 +631,21 @@ class TestDashboard(TestCase):
         )
         under_admin_review_and_pending = addon_factory()
         AddonReviewerFlags.objects.create(
-            addon=under_admin_review_and_pending, needs_admin_theme_review=True
+            addon=under_admin_review_and_pending,
+            needs_admin_theme_review=True,
+            auto_approval_disabled=True,
         )
         version_factory(
             addon=under_admin_review_and_pending,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         # Auto-approved and Content Review.
-        addon1 = addon_factory(file_kw={'is_webextension': True})
+        addon1 = addon_factory()
         AddonApprovalsCounter.reset_for_addon(addon=addon1)
         AutoApprovalSummary.objects.create(
             version=addon1.current_version, verdict=amo.AUTO_APPROVED
         )
-        under_content_review = addon_factory(file_kw={'is_webextension': True})
+        under_content_review = addon_factory()
         AddonApprovalsCounter.reset_for_addon(addon=under_content_review)
         AutoApprovalSummary.objects.create(
             version=under_content_review.current_version, verdict=amo.AUTO_APPROVED
@@ -647,13 +653,13 @@ class TestDashboard(TestCase):
         AddonReviewerFlags.objects.create(
             addon=under_content_review, needs_admin_content_review=True
         )
-        addon2 = addon_factory(file_kw={'is_webextension': True})
+        addon2 = addon_factory()
         AddonApprovalsCounter.reset_for_addon(addon=addon2)
         AutoApprovalSummary.objects.create(
             version=addon2.current_version, verdict=amo.AUTO_APPROVED
         )
         AddonReviewerFlags.objects.create(addon=addon2, needs_admin_content_review=True)
-        under_code_review = addon_factory(file_kw={'is_webextension': True})
+        under_code_review = addon_factory()
         AddonApprovalsCounter.reset_for_addon(addon=under_code_review)
         AutoApprovalSummary.objects.create(
             version=under_code_review.current_version, verdict=amo.AUTO_APPROVED
@@ -782,14 +788,24 @@ class TestDashboard(TestCase):
 
     def test_regular_reviewer(self):
         # Create some add-ons to test the queue counts.
-        addon_factory(
-            status=amo.STATUS_NOMINATED, file_kw={'status': amo.STATUS_AWAITING_REVIEW}
+        AddonReviewerFlags.objects.create(
+            auto_approval_disabled=True,
+            addon=addon_factory(
+                status=amo.STATUS_NOMINATED,
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            ),
         )
-        version_factory(
-            addon=addon_factory(), file_kw={'status': amo.STATUS_AWAITING_REVIEW}
+        AddonReviewerFlags.objects.create(
+            auto_approval_disabled=True,
+            addon=version_factory(
+                addon=addon_factory(), file_kw={'status': amo.STATUS_AWAITING_REVIEW}
+            ).addon,
         )
-        version_factory(
-            addon=addon_factory(), file_kw={'status': amo.STATUS_AWAITING_REVIEW}
+        AddonReviewerFlags.objects.create(
+            auto_approval_disabled=True,
+            addon=version_factory(
+                addon=addon_factory(), file_kw={'status': amo.STATUS_AWAITING_REVIEW}
+            ).addon,
         )
         # These two are under admin review and will be ignored.
         under_admin_review = addon_factory(
@@ -814,14 +830,14 @@ class TestDashboard(TestCase):
         )
         # Create an add-on to test the post-review queue count.
         # It's under admin content review but that does not have an impact.
-        addon = addon_factory(file_kw={'is_webextension': True})
+        addon = addon_factory()
         AddonApprovalsCounter.reset_for_addon(addon=addon)
         AutoApprovalSummary.objects.create(
             version=addon.current_version, verdict=amo.AUTO_APPROVED
         )
         AddonReviewerFlags.objects.create(addon=addon, needs_admin_content_review=True)
         # This one however is under admin code review, it's ignored.
-        under_code_review = addon_factory(file_kw={'is_webextension': True})
+        under_code_review = addon_factory()
         AddonApprovalsCounter.reset_for_addon(addon=under_code_review)
         AutoApprovalSummary.objects.create(
             version=under_code_review.current_version, verdict=amo.AUTO_APPROVED
@@ -856,14 +872,14 @@ class TestDashboard(TestCase):
     def test_content_reviewer(self):
         # Create an add-on to test the queue count. It's under admin code
         # review but that does not have an impact.
-        addon = addon_factory(file_kw={'is_webextension': True})
+        addon = addon_factory()
         AddonApprovalsCounter.reset_for_addon(addon=addon)
         AutoApprovalSummary.objects.create(
             version=addon.current_version, verdict=amo.AUTO_APPROVED
         )
         AddonReviewerFlags.objects.create(addon=addon, needs_admin_code_review=True)
         # This one is under admin *content* review so it's ignored.
-        under_content_review = addon_factory(file_kw={'is_webextension': True})
+        under_content_review = addon_factory()
         AddonApprovalsCounter.reset_for_addon(addon=under_content_review)
         AutoApprovalSummary.objects.create(
             version=under_content_review.current_version, verdict=amo.AUTO_APPROVED
@@ -1071,7 +1087,7 @@ class QueueTest(ReviewerTest):
         self.expected_addons = []
         self.channel_name = 'listed' if self.listed else 'unlisted'
 
-    def generate_files(self, subset=None, files=None):
+    def generate_files(self, subset=None, files=None, auto_approve_disabled=False):
         if subset is None:
             subset = []
         channel = (
@@ -1160,6 +1176,11 @@ class QueueTest(ReviewerTest):
                 results[name] = addon_factory(
                     name=name, version_kw=version_kw, file_kw=file_kw, **attrs
                 )
+                if auto_approve_disabled:
+                    AddonReviewerFlags.objects.create(
+                        addon=results[name],
+                        auto_approval_disabled=True,
+                    )
                 # status might be wrong because we want to force a particular
                 # status without necessarily having the requirements for it.
                 # So update it if we didn't end up with the one we want.
@@ -1183,9 +1204,9 @@ class QueueTest(ReviewerTest):
             channel = amo.RELEASE_CHANNEL_UNLISTED
         return addon.find_latest_version(channel=channel)
 
-    def get_expected_addons_by_names(self, names):
+    def get_expected_addons_by_names(self, names, auto_approve_disabled=False):
         expected_addons = []
-        files = self.generate_files()
+        files = self.generate_files(auto_approve_disabled=auto_approve_disabled)
         for name in sorted(names):
             if name in files:
                 expected_addons.append(files[name])
@@ -1269,7 +1290,7 @@ class TestQueueBasics(QueueTest):
         'olympia.reviewers.views', REVIEWS_PER_PAGE_MAX=1, REVIEWS_PER_PAGE=1
     )
     def test_max_per_page(self):
-        self.generate_files()
+        self.generate_files(auto_approve_disabled=True)
 
         response = self.client.get(self.url, {'per_page': '2'})
         assert response.status_code == 200
@@ -1278,7 +1299,7 @@ class TestQueueBasics(QueueTest):
 
     @mock.patch('olympia.reviewers.views.REVIEWS_PER_PAGE', new=1)
     def test_reviews_per_page(self):
-        self.generate_files()
+        self.generate_files(auto_approve_disabled=True)
 
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -1310,7 +1331,7 @@ class TestQueueBasics(QueueTest):
     def test_paginator_when_many_pages(self):
         # 'Pending One' and 'Pending Two' should be the only add-ons in
         # the pending queue, but we'll generate them all for good measure.
-        self.generate_files()
+        self.generate_files(auto_approve_disabled=True)
 
         response = self.client.get(self.url, {'per_page': 1})
         assert response.status_code == 200
@@ -1474,15 +1495,24 @@ class TestExtensionQueue(QueueTest):
     def setUp(self):
         super().setUp()
         # These should be the only ones present.
-        self.expected_addons = self.get_expected_addons_by_names(
+        self.get_expected_addons_by_names(
             ['Pending One', 'Pending Two', 'Nominated One', 'Nominated Two']
         )
+        self.expected_addons = []
         self.url = reverse('reviewers.queue_extension')
 
     def test_results(self):
+        self.expected_addons = self.get_expected_addons_by_names(
+            ['Pending One', 'Pending Two', 'Nominated One', 'Nominated Two'],
+            auto_approve_disabled=True,
+        )
         self._test_results()
 
     def test_results_two_versions(self):
+        self.expected_addons = self.get_expected_addons_by_names(
+            ['Pending One', 'Pending Two', 'Nominated One', 'Nominated Two'],
+            auto_approve_disabled=True,
+        )
         version1 = self.addons['Nominated One'].versions.all()[0]
         version2 = self.addons['Nominated Two'].versions.all()[0]
         file_ = version2.file
@@ -1528,35 +1558,20 @@ class TestExtensionQueue(QueueTest):
             '🛠️ Other Pending Review', tab_position=0, total_addons=4, total_queues=4
         )
 
-    def test_webextensions_filtered_out_because_of_post_review(self):
-        self.addons['Nominated Two'].find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED
-        ).file.update(is_webextension=True)
-        self.addons['Pending Two'].find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED
-        ).file.update(is_webextension=True)
-
-        # Webextensions are filtered out from the queue since auto_approve is
-        # taking care of them.
-        self.expected_addons = [
-            self.addons['Nominated One'],
-            self.addons['Pending One'],
-        ]
-        self._test_results()
-
     def test_webextension_with_auto_approval_disabled_false_filtered_out(self):
-        self.addons['Pending Two'].find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED
-        ).file.update(is_webextension=True)
         AddonReviewerFlags.objects.create(
             addon=self.addons['Pending Two'], auto_approval_disabled=False
         )
-        self.addons['Nominated Two'].find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED
-        ).file.update(is_webextension=True)
         AddonReviewerFlags.objects.create(
             addon=self.addons['Nominated Two'],
             auto_approval_disabled_until_next_approval=False,
+        )
+
+        AddonReviewerFlags.objects.create(
+            addon=self.addons['Nominated One'], auto_approval_disabled=True
+        )
+        AddonReviewerFlags.objects.create(
+            addon=self.addons['Pending One'], auto_approval_disabled=True
         )
 
         self.expected_addons = [
@@ -1566,22 +1581,9 @@ class TestExtensionQueue(QueueTest):
         self._test_results()
 
     def test_webextension_with_auto_approval_disabled_does_show_up(self):
-        self.addons['Pending Two'].find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED
-        ).file.update(is_webextension=True)
-        self.addons['Nominated Two'].find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED
-        ).file.update(is_webextension=True)
-
-        self.addons['Pending One'].find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED
-        ).file.update(is_webextension=True)
         AddonReviewerFlags.objects.create(
             addon=self.addons['Pending One'], auto_approval_disabled=True
         )
-        self.addons['Nominated One'].find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED
-        ).file.update(is_webextension=True)
         AddonReviewerFlags.objects.create(
             addon=self.addons['Nominated One'],
             auto_approval_disabled_until_next_approval=True,
@@ -1593,17 +1595,19 @@ class TestExtensionQueue(QueueTest):
         ]
         self._test_results()
 
-    def test_webextension_with_auto_approval_delayed_until_past_filtered_out(self):
-        self.addons['Pending Two'].find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED
-        ).file.update(is_webextension=True)
+    def test_webextension_with_auto_approval_delayed(self):
+        AddonReviewerFlags.objects.create(
+            addon=self.addons['Pending One'],
+            auto_approval_delayed_until=datetime.now() + timedelta(hours=24),
+        )
+        AddonReviewerFlags.objects.create(
+            addon=self.addons['Nominated One'],
+            auto_approval_delayed_until=datetime.now() + timedelta(hours=24),
+        )
         AddonReviewerFlags.objects.create(
             addon=self.addons['Pending Two'],
             auto_approval_delayed_until=datetime.now() - timedelta(hours=24),
         )
-        self.addons['Nominated Two'].find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED
-        ).file.update(is_webextension=True)
         AddonReviewerFlags.objects.create(
             addon=self.addons['Nominated Two'],
             auto_approval_delayed_until=datetime.now() - timedelta(hours=24),
@@ -1615,49 +1619,7 @@ class TestExtensionQueue(QueueTest):
         ]
         self._test_results()
 
-    def test_webextension_with_auto_approval_delayed_until_does_show_up(self):
-        self.addons['Pending Two'].find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED
-        ).file.update(is_webextension=True)
-        self.addons['Nominated Two'].find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED
-        ).file.update(is_webextension=True)
-
-        self.addons['Pending One'].find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED
-        ).file.update(is_webextension=True)
-        AddonReviewerFlags.objects.create(
-            addon=self.addons['Pending One'],
-            auto_approval_delayed_until=datetime.now() + timedelta(hours=24),
-        )
-        self.addons['Nominated One'].find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED
-        ).file.update(is_webextension=True)
-        AddonReviewerFlags.objects.create(
-            addon=self.addons['Nominated One'],
-            auto_approval_delayed_until=datetime.now() + timedelta(hours=24),
-        )
-
-        self.expected_addons = [
-            self.addons['Nominated One'],
-            self.addons['Pending One'],
-        ]
-        self._test_results()
-
     def test_promoted_addon_in_pre_review_group_does_show_up(self):
-        self.addons['Pending Two'].find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED
-        ).file.update(is_webextension=True)
-        self.addons['Nominated Two'].find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED
-        ).file.update(is_webextension=True)
-        self.addons['Pending One'].find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED
-        ).file.update(is_webextension=True)
-        self.addons['Nominated One'].find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED
-        ).file.update(is_webextension=True)
-
         self.make_addon_promoted(self.addons['Pending One'], group=LINE)
         self.make_addon_promoted(self.addons['Nominated One'], group=SPOTLIGHT)
         # STRATEGIC isn't a pre_review group so won't show up
@@ -1672,6 +1634,8 @@ class TestExtensionQueue(QueueTest):
         self._test_results()
 
     def test_static_theme_filtered_out(self):
+        for addon in self.addons.values():
+            AddonReviewerFlags.objects.create(addon=addon, auto_approval_disabled=True)
         self.addons['Pending Two'].update(type=amo.ADDON_STATICTHEME)
         self.addons['Nominated Two'].update(type=amo.ADDON_STATICTHEME)
 
@@ -1687,6 +1651,8 @@ class TestExtensionQueue(QueueTest):
         self._test_results()
 
     def test_pending_rejection_filtered_out(self):
+        for addon in self.addons.values():
+            AddonReviewerFlags.objects.create(addon=addon, auto_approval_disabled=True)
         VersionReviewerFlags.objects.create(
             version=self.addons['Nominated Two'].current_version,
             pending_rejection=datetime.now(),
@@ -1836,15 +1802,6 @@ class TestRecommendedQueue(QueueTest):
         )
 
     def test_nothing_recommended_filtered_out(self):
-        version = self.addons['Nominated One'].find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED
-        )
-        version.file.update(is_webextension=True)
-
-        version = self.addons['Pending Two'].find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED
-        )
-        version.file.update(is_webextension=True)
         AddonReviewerFlags.objects.create(
             addon=self.addons['Pending Two'], auto_approval_disabled=False
         )
@@ -3074,8 +3031,9 @@ class TestReview(ReviewBase):
             td = comments.eq(idx)
             assert td.find('.history-comment').text() == 'something'
             assert (
-                td.find('th').text()
-                == {'public': 'Approved', 'reply': 'Reviewer Reply'}[action]
+                td.find('th')
+                .text()
+                .startswith({'public': 'Approved', 'reply': 'Reviewer Reply'}[action])
             )
             reviewer_name = td.find('td a').text()
             assert (reviewer_name == self.reviewer.name) or (
@@ -3100,7 +3058,7 @@ class TestReview(ReviewBase):
             str(author.get_role_display()),
             self.addon,
         )
-        with self.assertNumQueries(60):
+        with self.assertNumQueries(70):
             # FIXME: obviously too high, but it's a starting point.
             # Potential further optimizations:
             # - Remove trivial... and not so trivial duplicates
@@ -3169,6 +3127,7 @@ class TestReview(ReviewBase):
             # 58. select all versions in channel for versions dropdown widget
             # 59. select users by role for this add-on (?)
             # 60. savepoint
+            # + 10! queries for webext_permissions - FIXME - there should only be 1
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -5062,7 +5021,6 @@ class TestReview(ReviewBase):
         approval_info = AddonApprovalsCounter.objects.create(
             addon=self.addon, last_human_review=datetime.now(), counter=42
         )
-        self.file.update(is_webextension=True)
         AutoApprovalSummary.objects.create(
             version=self.version, verdict=amo.AUTO_APPROVED
         )
@@ -5089,7 +5047,6 @@ class TestReview(ReviewBase):
     def test_permissions_display(self):
         permissions = ['bookmarks', 'high', 'voltage']
         optional_permissions = ['optional', 'high', 'voltage']
-        self.file.update(is_webextension=True)
         WebextPermission.objects.create(
             optional_permissions=optional_permissions,
             permissions=permissions,
@@ -5609,7 +5566,7 @@ class TestReview(ReviewBase):
         # Delete ActivityLog to make the query count easier to follow. We have
         # other tests for the ActivityLog related stuff.
         ActivityLog.objects.for_addons(self.addon).delete()
-        with self.assertNumQueries(56):
+        with self.assertNumQueries(66):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.
@@ -5668,7 +5625,7 @@ class TestReview(ReviewBase):
                     results={'matchedResults': [customs_rule.name]},
                 )
 
-        with self.assertNumQueries(58):
+        with self.assertNumQueries(68):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.
@@ -5888,7 +5845,6 @@ class TestReviewPending(ReviewBase):
         self.file = self.version.file
         self.file.update(
             status=amo.STATUS_AWAITING_REVIEW,
-            is_webextension=True,
         )
         self.addon.update(status=amo.STATUS_APPROVED)
 
@@ -5987,7 +5943,9 @@ class TestStatusFile(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#versions-history .file-info div').text() == expected
+        assert doc('#versions-history .file-info div').text() == (
+            f'{expected} Permissions: None Optional permissions: None'
+        )
 
     def test_status_full(self):
         self.get_file().update(status=amo.STATUS_AWAITING_REVIEW)
@@ -6946,7 +6904,7 @@ class TestReviewAddonVersionViewSetDetail(
         self.addon = addon_factory(
             name='My Addôn',
             slug='my-addon',
-            file_kw={'filename': 'webextension_no_id.xpi', 'is_webextension': True},
+            file_kw={'filename': 'webextension_no_id.xpi'},
         )
 
         extract_version_to_git(self.addon.current_version.pk)
@@ -7016,7 +6974,7 @@ class TestReviewAddonVersionViewSetDetail(
     def test_requested_file_contains_whitespace(self):
         new_version = version_factory(
             addon=self.addon,
-            file_kw={'filename': 'webextension_no_id.xpi', 'is_webextension': True},
+            file_kw={'filename': 'webextension_no_id.xpi'},
         )
 
         repo = AddonGitRepository.extract_and_commit_from_version(new_version)
@@ -7159,7 +7117,7 @@ class TestReviewAddonVersionViewSetList(TestCase):
         self.addon = addon_factory(
             name='My Addôn',
             slug='my-addon',
-            file_kw={'filename': 'webextension_no_id.xpi', 'is_webextension': True},
+            file_kw={'filename': 'webextension_no_id.xpi'},
         )
 
         extract_version_to_git(self.addon.current_version.pk)
@@ -7288,7 +7246,7 @@ class TestDraftCommentViewSet(TestCase):
         self.addon = addon_factory(
             name='My Addôn',
             slug='my-addon',
-            file_kw={'filename': 'webextension_no_id.xpi', 'is_webextension': True},
+            file_kw={'filename': 'webextension_no_id.xpi'},
         )
 
         extract_version_to_git(self.addon.current_version.pk)
@@ -7933,7 +7891,7 @@ class TestReviewAddonVersionCompareViewSet(
         self.addon = addon_factory(
             name='My Addôn',
             slug='my-addon',
-            file_kw={'filename': 'webextension_no_id.xpi', 'is_webextension': True},
+            file_kw={'filename': 'webextension_no_id.xpi'},
         )
 
         extract_version_to_git(self.addon.current_version.pk)
@@ -7992,7 +7950,7 @@ class TestReviewAddonVersionCompareViewSet(
     def test_requested_file_contains_whitespace(self):
         new_version = version_factory(
             addon=self.addon,
-            file_kw={'filename': 'webextension_no_id.xpi', 'is_webextension': True},
+            file_kw={'filename': 'webextension_no_id.xpi'},
         )
 
         repo = AddonGitRepository.extract_and_commit_from_version(new_version)
@@ -8039,7 +7997,7 @@ class TestReviewAddonVersionCompareViewSet(
     def test_compare_basic(self):
         new_version = version_factory(
             addon=self.addon,
-            file_kw={'filename': 'webextension_no_id.xpi', 'is_webextension': True},
+            file_kw={'filename': 'webextension_no_id.xpi'},
         )
 
         repo = AddonGitRepository.extract_and_commit_from_version(new_version)
@@ -8093,7 +8051,7 @@ class TestReviewAddonVersionCompareViewSet(
     def test_compare_with_deleted_file(self):
         new_version = version_factory(
             addon=self.addon,
-            file_kw={'filename': 'webextension_no_id.xpi', 'is_webextension': True},
+            file_kw={'filename': 'webextension_no_id.xpi'},
         )
 
         repo = AddonGitRepository.extract_and_commit_from_version(new_version)
@@ -8126,7 +8084,6 @@ class TestReviewAddonVersionCompareViewSet(
             addon=self.addon,
             file_kw={
                 'filename': 'webextension_no_id.xpi',
-                'is_webextension': True,
             },
         )
 
@@ -8137,7 +8094,6 @@ class TestReviewAddonVersionCompareViewSet(
             addon=self.addon,
             file_kw={
                 'filename': 'webextension_no_id.xpi',
-                'is_webextension': True,
             },
         )
 
@@ -8165,7 +8121,7 @@ class TestReviewAddonVersionCompareViewSet(
     def test_compare_with_deleted_version(self):
         new_version = version_factory(
             addon=self.addon,
-            file_kw={'filename': 'webextension_no_id.xpi', 'is_webextension': True},
+            file_kw={'filename': 'webextension_no_id.xpi'},
         )
 
         # We need to run extraction first and delete afterwards, otherwise
@@ -8238,7 +8194,7 @@ class TestDownloadGitFileView(TestCase):
         self.addon = addon_factory(
             name='My Addôn',
             slug='my-addon',
-            file_kw={'filename': 'webextension_no_id.xpi', 'is_webextension': True},
+            file_kw={'filename': 'webextension_no_id.xpi'},
         )
 
         extract_version_to_git(self.addon.current_version.pk)
@@ -8300,7 +8256,7 @@ class TestDownloadGitFileView(TestCase):
     def test_download_emoji_filename(self):
         new_version = version_factory(
             addon=self.addon,
-            file_kw={'filename': 'webextension_no_id.xpi', 'is_webextension': True},
+            file_kw={'filename': 'webextension_no_id.xpi'},
         )
 
         repo = AddonGitRepository.extract_and_commit_from_version(new_version)

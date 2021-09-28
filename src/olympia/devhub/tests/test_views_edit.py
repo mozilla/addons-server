@@ -297,10 +297,6 @@ class BaseTestEditDescribe(BaseTestEdit):
         ]
         assert links == doc_links
 
-    def test_nav_links_webextensions(self):
-        self.addon.find_latest_version(None).file.update(is_webextension=True)
-        self.test_nav_links()
-
     def test_nav_links_uri_match(self):
         self.get_addon().update(slug='모질라')
 

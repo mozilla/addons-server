@@ -63,7 +63,7 @@ class AutoApproveTestsMixin:
         self.addon = addon_factory(name='Basic Addøn', average_daily_users=666)
         self.version = version_factory(
             addon=self.addon,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         self.file = self.version.file
         self.file_validation = FileValidation.objects.create(
@@ -85,7 +85,7 @@ class AutoApproveTestsMixin:
         new_addon = addon_factory(
             name='New Addon',
             status=amo.STATUS_NOMINATED,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         new_addon_version = new_addon.versions.all()[0]
         new_addon_version.update(created=self.days_ago(2), nomination=self.days_ago(2))
@@ -97,7 +97,7 @@ class AutoApproveTestsMixin:
             name='Langpack',
             type=amo.ADDON_LPAPP,
             status=amo.STATUS_NOMINATED,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         langpack_version = langpack.versions.all()[0]
         langpack_version.update(created=self.days_ago(3), nomination=self.days_ago(3))
@@ -107,7 +107,7 @@ class AutoApproveTestsMixin:
             name='Dictionary',
             type=amo.ADDON_DICT,
             status=amo.STATUS_NOMINATED,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         dictionary_version = dictionary.versions.all()[0]
         dictionary_version.update(created=self.days_ago(4), nomination=self.days_ago(4))
@@ -124,7 +124,7 @@ class AutoApproveTestsMixin:
                 'nomination': self.days_ago(6),
                 'created': self.days_ago(6),
             },
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
 
         recommended_addon = addon_factory(
@@ -137,44 +137,22 @@ class AutoApproveTestsMixin:
             promotion_approved=True,
             nomination=self.days_ago(7),
             created=self.days_ago(7),
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
 
-        # Add-on with 3 versions:
-        # - one webext, listed, public.
-        # - one non-listed webext version awaiting review.
-        # - one listed non-webext awaiting review (should be ignored)
-        complex_addon = addon_factory(
-            name='Complex Addon', file_kw={'is_webextension': True}
-        )
+        # Add-on with 2 versions:
+        # - one listed, public.
+        # - one non-listed version awaiting review.
+        complex_addon = addon_factory(name='Complex Addon')
         complex_addon_version = version_factory(
             nomination=self.days_ago(8),
             created=self.days_ago(8),
             addon=complex_addon,
             channel=amo.RELEASE_CHANNEL_UNLISTED,
-            file_kw={'is_webextension': True, 'status': amo.STATUS_AWAITING_REVIEW},
-        )
-        version_factory(
-            nomination=self.days_ago(9),
-            created=self.days_ago(9),
-            addon=complex_addon,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
 
-        # Add-on with an already public version and an unlisted webext
-        # awaiting review.
-        complex_addon_2 = addon_factory(
-            name='Second Complex Addon', file_kw={'is_webextension': True}
-        )
-        complex_addon_2_version = version_factory(
-            addon=complex_addon_2,
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
-            nomination=self.days_ago(10),
-            created=self.days_ago(10),
-            file_kw={'is_webextension': True, 'status': amo.STATUS_AWAITING_REVIEW},
-        )
-
-        # Disabled version with a webext waiting review (Still has to be
+        # Disabled version with a file waiting review (Still has to be
         # considered because unlisted doesn't care about disabled by user
         # state.
         user_disabled_addon = addon_factory(
@@ -185,7 +163,7 @@ class AutoApproveTestsMixin:
             created=self.days_ago(11),
             channel=amo.RELEASE_CHANNEL_UNLISTED,
             addon=user_disabled_addon,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
 
         # Pure unlisted upload. Addon status is "incomplete" as a result, but
@@ -198,7 +176,7 @@ class AutoApproveTestsMixin:
                 'nomination': self.days_ago(12),
                 'created': self.days_ago(12),
             },
-            file_kw={'is_webextension': True, 'status': amo.STATUS_AWAITING_REVIEW},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             status=amo.STATUS_NULL,
         )
         pure_unlisted_version = pure_unlisted.versions.get()
@@ -211,7 +189,7 @@ class AutoApproveTestsMixin:
                 'nomination': self.days_ago(13),
                 'created': self.days_ago(13),
             },
-            file_kw={'is_webextension': True, 'status': amo.STATUS_AWAITING_REVIEW},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             status=amo.STATUS_NULL,
             type=amo.ADDON_STATICTHEME,
         )
@@ -220,7 +198,7 @@ class AutoApproveTestsMixin:
         # ---------------------------------------------------------------------
         # Add a bunch of add-ons in various states that should not be returned.
         # Public add-on with no updates.
-        addon_factory(name='Already Public', file_kw={'is_webextension': True})
+        addon_factory(name='Already Public')
 
         # Mozilla Disabled add-on with updates.
         disabled_addon = addon_factory(
@@ -229,7 +207,7 @@ class AutoApproveTestsMixin:
         )
         version_factory(
             addon=disabled_addon,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
 
         # Add-on with deleted version.
@@ -238,15 +216,9 @@ class AutoApproveTestsMixin:
         )
         deleted_version = version_factory(
             addon=addon_with_deleted_version,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         deleted_version.delete()
-
-        # Add-on with a non-webextension update.
-        non_webext_addon = addon_factory(name='Non Webext waiting review')
-        version_factory(
-            addon=non_webext_addon, file_kw={'status': amo.STATUS_AWAITING_REVIEW}
-        )
 
         # Somehow deleted add-on with a file still waiting for review.
         deleted_addon = addon_factory(
@@ -255,27 +227,27 @@ class AutoApproveTestsMixin:
         )
         version_factory(
             addon=deleted_addon,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
 
         # listed version belonging to an add-on disabled by user
         addon_factory(
             name='Listed Disabled by user',
             disabled_by_user=True,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
 
         # Incomplete listed addon
         addon_factory(
             name='Incomplete listed',
             status=amo.STATUS_NULL,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
 
         # Listed static theme
         addon_factory(
             name='Listed theme',
-            file_kw={'is_webextension': True, 'status': amo.STATUS_AWAITING_REVIEW},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             status=amo.STATUS_NOMINATED,
             type=amo.ADDON_STATICTHEME,
         )
@@ -286,7 +258,6 @@ class AutoApproveTestsMixin:
                 unlisted_theme_version,
                 pure_unlisted_version,
                 user_disabled_addon_version,
-                complex_addon_2_version,
                 complex_addon_version,
                 recommended_addon_version,
                 recommendable_addon_nominated.current_version,
@@ -599,11 +570,11 @@ class TestAutoApproveCommandTransactions(AutoApproveTestsMixin, TransactionTestC
         self.versions = [
             version_factory(
                 addon=self.addons[0],
-                file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             ),
             version_factory(
                 addon=self.addons[1],
-                file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             ),
         ]
         self.files = [
@@ -1143,7 +1114,7 @@ class TestNotifyAboutAutoApproveDelay(AutoApproveTestsMixin, TestCase):
         new_version = version_factory(
             addon=self.addon,
             channel=amo.RELEASE_CHANNEL_UNLISTED,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
 
         command = notify_about_auto_approve_delay.Command()
@@ -1177,19 +1148,18 @@ class TestNotifyAboutAutoApproveDelay(AutoApproveTestsMixin, TestCase):
 
     def test_notify_authors(self):
         # Not awaiting review.
-        addon_factory(
-            file_kw={'is_webextension': True}, version_kw={'created': self.days_ago(1)}
-        ).authors.add(user_factory())
+        addon_factory(version_kw={'created': self.days_ago(1)}).authors.add(
+            user_factory()
+        )
         # Not awaiting review for long enough.
         addon_factory(
             file_kw={
-                'is_webextension': True,
                 'status': amo.STATUS_AWAITING_REVIEW,
             }
         ).authors.add(user_factory())
         # Valid.
         addon = addon_factory(
-            file_kw={'is_webextension': True, 'status': amo.STATUS_AWAITING_REVIEW},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             version_kw={'created': self.days_ago(1)},
         )
         users = [user_factory(), user_factory()]

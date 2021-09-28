@@ -35,7 +35,7 @@ class TestUploadToRemoteSettings(TestCase):
         self.block = Block.objects.create(
             addon=addon_factory(
                 version_kw={'version': '1.2b3'},
-                file_kw={'is_signed': True, 'is_webextension': True},
+                file_kw={'is_signed': True},
             ),
             updated_by=user_factory(),
         )
@@ -324,7 +324,7 @@ class TestUploadToRemoteSettings(TestCase):
 
         # But if we add a new Block a new filter is needed
         Block.objects.create(
-            addon=addon_factory(file_kw={'is_signed': True, 'is_webextension': True}),
+            addon=addon_factory(file_kw={'is_signed': True}),
             updated_by=user_factory(),
         )
         upload_mlbf_to_remote_settings()
