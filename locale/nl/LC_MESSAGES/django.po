@@ -968,10 +968,10 @@ msgid "Unlisted"
 msgstr "Niet vermeld"
 
 msgid "Signing API"
-msgstr ""
+msgstr "Ondertekenings-API"
 
 msgid "Addon API"
-msgstr ""
+msgstr "Add-on-API"
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -2741,7 +2741,7 @@ msgid "Your source code must include:"
 msgstr "Uw broncode moet het volgende bevatten:"
 
 msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
-msgstr ""
+msgstr "Stap-voor-stap-buildinstructies om een exacte kopie van de add-on-code te maken, in een README-bestand in uw broncode of in de beoordelaarsopmerkingen op de volgende pagina."
 
 msgid "A build script that executes all necessary technical steps."
 msgstr "Een buildscript dat alle benodigde technische stappen uitvoert."
