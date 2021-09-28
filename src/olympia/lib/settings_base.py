@@ -1149,10 +1149,11 @@ CELERY_TASK_ROUTES = {
     'olympia.tags.tasks.update_all_tag_stats': {'queue': 'tags'},
     'olympia.tags.tasks.update_tag_stat': {'queue': 'tags'},
     # Users
+    'olympia.accounts.tasks.clear_sessions_event': {'queue': 'users'},
+    'olympia.accounts.tasks.delete_user_event': {'queue': 'users'},
     'olympia.accounts.tasks.primary_email_change_event': {'queue': 'users'},
     'olympia.users.tasks.delete_photo': {'queue': 'users'},
     'olympia.users.tasks.update_user_ratings_task': {'queue': 'users'},
-    'olympia.accounts.tasks.delete_user_event': {'queue': 'users'},
     # Zadmin
     'olympia.scanners.tasks.run_yara_query_rule': {'queue': 'zadmin'},
     'olympia.scanners.tasks.run_yara_query_rule_on_versions_chunk': {'queue': 'zadmin'},
