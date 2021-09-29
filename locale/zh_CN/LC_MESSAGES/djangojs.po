@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-29 09:08+0000\n"
-"PO-Revision-Date: 2018-12-05 16:56+0000\n"
-"Last-Translator: frankoy123 <frankoy123@gmail.com>\n"
+"PO-Revision-Date: 2021-09-29 16:44+0000\n"
+"Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -684,7 +684,7 @@ msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "剩余 <b>{0}</b> 个字符"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "我们正在进行网站维护，此功能暂时无法使用。请您稍后再试。"
+msgstr "我们正在维护网站，此功能暂时无法使用。请您稍后再试。"
 
 msgid "Remove this localization"
 msgstr "移除此本地化"
