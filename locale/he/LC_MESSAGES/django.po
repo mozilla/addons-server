@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-21 16:47+0000\n"
+"POT-Creation-Date: 2021-09-29 09:08+0000\n"
 "PO-Revision-Date: 2021-07-29 19:00+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
@@ -4312,6 +4312,11 @@ msgstr ""
 #, fuzzy
 msgid "Goodbye, annoying cookie warnings!"
 msgstr "הסתלקו, אזהרות עוגיות מעצבנות!"
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "All your emoji needs—always just a click away."
+msgstr "עשרות אימוג׳ים מדהימים—תמיד במרחק נגיעה."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."

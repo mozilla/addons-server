@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-21 16:47+0000\n"
+"POT-Creation-Date: 2021-09-29 09:08+0000\n"
 "PO-Revision-Date: 2021-06-25 10:04+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -4476,6 +4476,10 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Goodbye, annoying cookie warnings!"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "All your emoji needs—always just a click away."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
