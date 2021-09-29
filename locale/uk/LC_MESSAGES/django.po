@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-29 09:08+0000\n"
-"PO-Revision-Date: 2021-09-29 20:35+0000\n"
+"PO-Revision-Date: 2021-09-29 20:36+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -2452,10 +2452,10 @@ msgid "Compatibility Tests"
 msgstr "Тести сумісності"
 
 msgid "Hide messages not required for automated signing"
-msgstr "Приховати повідомлення, які необов'язкові для автоматичного входу"
+msgstr "Сховати повідомлення, які необов'язкові для автоматичного входу"
 
 msgid "Hide messages present in previous version and ignored"
-msgstr "Приховати повідомлення, які присутні у попередніх версіях та ігноруються"
+msgstr "Сховати повідомлення, які присутні у попередніх версіях та ігноруються"
 
 msgid "Top"
 msgstr "Нагору"
@@ -3421,7 +3421,7 @@ msgstr ""
 " з адміністраторами AMO, якщо вам необхідна допомога з цим."
 
 msgid "Hide Add-on"
-msgstr "Приховати додаток"
+msgstr "Сховати додаток"
 
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
 msgstr "Приховування вашого додатка дозволить запобігти його появі в будь-якому місці в нашій галереї і заборонить користувачам отримувати автоматичні оновлення."
@@ -3430,7 +3430,7 @@ msgid "The files awaiting review will be disabled and you will need to upload ne
 msgstr "Файли, що очікують на перевірку, будуть відключені і вам треба буде завантажити нові версії."
 
 msgid "Are you sure you wish to hide your add-on?"
-msgstr "Ви впевнені, що хочете приховати свій додаток?"
+msgstr "Ви впевнені, що хочете сховати свій додаток?"
 
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
 msgstr "Скасування вашого запиту перевірки позначить ваш додаток, як незавершений, а будь-які версії, що очікують на перевірку, будуть вимкнені."
