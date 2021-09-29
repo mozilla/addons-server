@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-21 16:47+0000\n"
+"POT-Creation-Date: 2021-09-29 09:08+0000\n"
 "PO-Revision-Date: 2021-08-26 13:24+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -4384,6 +4384,11 @@ msgstr ""
 #. editorial content for the discovery pane.
 msgid "Goodbye, annoying cookie warnings!"
 msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "All your emoji needs—always just a click away."
+msgstr "Excelează în jocul emojiurilor. Zeci de emojiuri pentru orice ocazie—mereu la un clic distanță."
 
 #. editorial content for the primary hero shelves.
 #, fuzzy

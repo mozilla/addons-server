@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-21 16:47+0000\n"
+"POT-Creation-Date: 2021-09-29 09:08+0000\n"
 "PO-Revision-Date: 2021-07-03 19:18+0000\n"
 "Last-Translator: Paulina Rodriguez <pauli.rodriguez.c@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -4439,6 +4439,11 @@ msgstr "Guarda y restaura pestaña. Incluye funciones de autoguardado y sincroni
 #. editorial content for the discovery pane.
 msgid "Goodbye, annoying cookie warnings!"
 msgstr "¡Adiós, molestas advertencias de cookies!"
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "All your emoji needs—always just a click away."
+msgstr "Mejora tus emojis. Elige entre decenas de sorprendentes emojis para cada ocasión con un solo clic."
 
 #. editorial content for the primary hero shelves.
 #, fuzzy

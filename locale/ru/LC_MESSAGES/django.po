@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-21 16:47+0000\n"
+"POT-Creation-Date: 2021-09-29 09:08+0000\n"
 "PO-Revision-Date: 2021-08-15 13:26+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -4377,6 +4377,11 @@ msgstr "Сохранение и восстановление вкладок. В�
 #. editorial content for the discovery pane.
 msgid "Goodbye, annoying cookie warnings!"
 msgstr "Пока пока, надоедливые предупреждения о куках!"
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "All your emoji needs—always just a click away."
+msgstr "Выйдите на новый уровень. Десятки удивительных эмодзи для любого случая — всегда на расстоянии одного щелчка."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
