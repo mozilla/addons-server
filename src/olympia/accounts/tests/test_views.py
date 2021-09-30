@@ -729,6 +729,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
         self.login_user = self.patch('olympia.accounts.views.login_user')
         self.register_user = self.patch('olympia.accounts.views.register_user')
         self.reregister_user = self.patch('olympia.accounts.views.reregister_user')
+        self.user_edit_url = reverse('users.edit')
 
     def test_write_is_used(self, **params):
         with mock.patch('olympia.amo.models.use_primary_db') as use_primary_db:
@@ -851,7 +852,67 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
                 },
             )
             self.assertRedirects(
-                response, reverse('users.edit') + '?to=/go/here', target_status_code=200
+                response, self.user_edit_url + '?to=/go/here', target_status_code=200
+            )
+            assert (
+                response['Cache-Control']
+                == 'max-age=0, no-cache, no-store, must-revalidate, private'
+            )
+        self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
+        assert self.login_user.called
+        self.register_user.assert_called_with(identity)
+        assert not self.reregister_user.called
+
+    def test_register_redirects_no_next_path(self):
+        user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
+        assert not user_qs.exists()
+        identity = {'email': 'me@yeahoo.com', 'uid': 'e0b6f'}
+        self.fxa_identify.return_value = identity, 'someopenidtoken'
+        user = UserProfile(username='foo', email='me@yeahoo.com')
+        self.register_user.return_value = user
+        with mock.patch('olympia.amo.views._frontend_view', empty_view):
+            response = self.client.get(
+                self.url,
+                {
+                    'code': 'codes!!',
+                    'state': self.fxa_state,
+                },
+            )
+            self.assertRedirects(response, self.user_edit_url, target_status_code=200)
+            assert (
+                response['Cache-Control']
+                == 'max-age=0, no-cache, no-store, must-revalidate, private'
+            )
+        self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
+        assert self.login_user.called
+        self.register_user.assert_called_with(identity)
+        assert not self.reregister_user.called
+
+    def test_register_redirects_extract_locale_and_app_from_next_path(self):
+        user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
+        assert not user_qs.exists()
+        identity = {'email': 'me@yeahoo.com', 'uid': 'e0b6f'}
+        self.fxa_identify.return_value = identity, 'someopenidtoken'
+        user = UserProfile(username='foo', email='me@yeahoo.com')
+        self.register_user.return_value = user
+        with mock.patch('olympia.amo.views._frontend_view', empty_view):
+            response = self.client.get(
+                self.url,
+                {
+                    'code': 'codes!!',
+                    'state': ':'.join(
+                        [
+                            self.fxa_state,
+                            force_str(base64.urlsafe_b64encode(b'/fr/android/')),
+                        ]
+                    ),
+                },
+            )
+            self.assertRedirects(
+                # Not self.user_edit_url, which would start with /en-US/firefox/
+                response,
+                '/fr/android/users/edit?to=/fr/android/',
+                target_status_code=200,
             )
             assert (
                 response['Cache-Control']
@@ -889,7 +950,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
                 )
             self.assertRedirects(
                 response,
-                reverse('users.edit') + '?to=https://supersafe.com/go/here',
+                self.user_edit_url + '?to=https://supersafe.com/go/here',
                 target_status_code=200,
             )
             assert (
@@ -922,7 +983,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
                 },
             )
             self.assertRedirects(
-                response, reverse('users.edit'), target_status_code=200  # No '?to=...'
+                response, self.user_edit_url, target_status_code=200  # No '?to=...'
             )
             assert (
                 response['Cache-Control']
