@@ -104,4 +104,6 @@ REMOTE_SETTINGS_WRITER_BUCKET = 'staging'
 BIGQUERY_AMO_DATASET = 'amo_prod'
 
 # We don't want to enable the new addon submission on prod yet
-DRF_API_GATES['v5'].pop('addon-submission-api', None)
+DRF_API_GATES['v5'] = tuple(
+    gate for gate in DRF_API_GATES['v5'] if gate != 'addon-submission-api'
+)
