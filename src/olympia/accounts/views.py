@@ -407,11 +407,11 @@ class AuthenticateView(FxAConfigMixin, APIView):
             # on, we extract that information from the next_path if present
             # and set locale/app on the prefixer instance that reverse() will
             # use automatically.
-            prefixer = get_url_prefix()
-            if prefixer and next_path:
-                splitted = prefixer.split_path(next_path)
-                prefixer.locale = splitted[0]
-                prefixer.app = splitted[1]
+            if next_path:
+                if prefixer := get_url_prefix():
+                    splitted = prefixer.split_path(next_path)
+                    prefixer.locale = splitted[0]
+                    prefixer.app = splitted[1]
             edit_page = reverse('users.edit')
             if next_path:
                 next_path = f'{edit_page}?to={quote_plus(next_path)}'
