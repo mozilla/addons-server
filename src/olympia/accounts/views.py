@@ -52,6 +52,7 @@ from olympia import amo
 from olympia.access import acl
 from olympia.access.models import GroupUser
 from olympia.amo.decorators import use_primary_db
+from olympia.amo.reverse import get_url_prefix
 from olympia.amo.utils import fetch_subscribed_newsletters, is_safe_url, use_fake_fxa
 from olympia.api.authentication import (
     JWTKeyAuthentication,
@@ -397,8 +398,22 @@ class AuthenticateView(FxAConfigMixin, APIView):
                 user = register_user(identity)
             else:
                 reregister_user(user)
+            if not is_safe_url(next_path, request):
+                next_path = None
+            # If we just reverse() directly, we'd use a prefixer instance
+            # initialized from the current view, which would not contain the
+            # app information since it's a generic callback, the same for
+            # everyone. To ensure the user stays on the app/locale they were
+            # on, we extract that information from the next_path if present
+            # and set locale/app on the prefixer instance that reverse() will
+            # use automatically.
+            if next_path:
+                if prefixer := get_url_prefix():
+                    splitted = prefixer.split_path(next_path)
+                    prefixer.locale = splitted[0]
+                    prefixer.app = splitted[1]
             edit_page = reverse('users.edit')
-            if is_safe_url(next_path, request):
+            if next_path:
                 next_path = f'{edit_page}?to={quote_plus(next_path)}'
             else:
                 next_path = edit_page
