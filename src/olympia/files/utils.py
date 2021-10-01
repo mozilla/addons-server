@@ -528,7 +528,12 @@ def _validate_archive_member_name_and_size(filename, filesize):
         )
         raise forms.ValidationError(msg)
 
-    if '../' in filename or '..' == filename or filename.startswith('/'):
+    if (
+        '\\' in filename
+        or '../' in filename
+        or '..' == filename
+        or filename.startswith('/')
+    ):
         log.error('Extraction error, invalid file name: %s' % (filename))
         # L10n: {0} is the name of the invalid file.
         msg = gettext('Invalid file name in archive: {0}')

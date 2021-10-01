@@ -1097,6 +1097,14 @@ class TestSafeZip(TestCase):
         with pytest.raises(zipfile.BadZipFile):
             utils.SafeZip(get_addon_file('invalid_webextension.xpi'))
 
+    def test_raises_error_for_archive_with_backslashes_in_filenames(self):
+        filename = (
+            'src/olympia/files/'
+            'fixtures/files/archive-with-invalid-chars-in-filenames.zip'
+        )
+        with pytest.raises(forms.ValidationError):
+            utils.SafeZip(filename)
+
     def test_raises_validation_error_when_uncompressed_size_is_too_large(self):
         with override_settings(MAX_ZIP_UNCOMPRESSED_SIZE=1000):
             with pytest.raises(forms.ValidationError):
@@ -1123,6 +1131,10 @@ class TestArchiveMemberValidator(TestCase):
     def test_raises_when_filename_starts_with_slash(self):
         with pytest.raises(forms.ValidationError):
             utils._validate_archive_member_name_and_size('/..', 123)
+
+    def test_raises_when_filename_contains_backslashes(self):
+        with pytest.raises(forms.ValidationError):
+            utils._validate_archive_member_name_and_size('path\\to\\file.txt', 123)
 
     def test_raises_when_filename_is_dot_dot(self):
         with pytest.raises(forms.ValidationError):
