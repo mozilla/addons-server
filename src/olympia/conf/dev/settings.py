@@ -1,18 +1,6 @@
 from olympia.lib.settings_base import *  # noqa
 
 
-# Allow addons-dev CDN for CSP.
-CSP_BASE_URI += (
-    # Required for the legacy discovery pane.
-    'https://addons-dev.allizom.org',
-)
-CDN_HOST = 'https://addons-dev-cdn.allizom.org'
-CSP_CONNECT_SRC += (CDN_HOST,)
-CSP_FONT_SRC += (CDN_HOST,)
-CSP_IMG_SRC += (CDN_HOST,)
-CSP_SCRIPT_SRC += (CDN_HOST,)
-CSP_STYLE_SRC += (CDN_HOST,)
-
 ENGAGE_ROBOTS = False
 
 EMAIL_URL = env.email_url('EMAIL_URL')
@@ -36,8 +24,15 @@ SERVICES_URL = env('SERVICES_URL', default='https://services.addons-dev.allizom.
 CODE_MANAGER_URL = env(
     'CODE_MANAGER_URL', default='https://code.addons-dev.allizom.org'
 )
-STATIC_URL = '%s/static/' % CDN_HOST
+CDN_HOST = 'https://addons-dev-cdn.allizom.org'
+STATIC_URL = '%s/static-server/' % SITE_URL
 MEDIA_URL = '%s/user-media/' % CDN_HOST
+
+CSP_CONNECT_SRC += (SITE_URL,)
+CSP_FONT_SRC += (STATIC_URL,)
+CSP_IMG_SRC += (MEDIA_URL, STATIC_URL)
+CSP_SCRIPT_SRC += (STATIC_URL,)
+CSP_STYLE_SRC += (STATIC_URL,)
 
 SESSION_COOKIE_DOMAIN = '.%s' % DOMAIN
 
