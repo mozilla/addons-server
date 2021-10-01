@@ -25,7 +25,7 @@ CODE_MANAGER_URL = env(
     'CODE_MANAGER_URL', default='https://code.addons-dev.allizom.org'
 )
 CDN_HOST = 'https://addons-dev-cdn.allizom.org'
-STATIC_URL = '%s/static-server/' % SITE_URL
+STATIC_URL = '%s/static-server/' % EXTERNAL_SITE_URL
 MEDIA_URL = '%s/user-media/' % CDN_HOST
 
 CSP_CONNECT_SRC += (SITE_URL,)
