@@ -191,13 +191,6 @@ click-plugins==1.1.1 \
 colorgram.py==1.2.0 \
     --hash=sha256:e990769fa6df7261a450c7d5bef3a1a062f09ba1214bff67b4d6f02970a1a27b \
     --hash=sha256:e77766a5f9de7207bdef8f1c22a702cbf09630eae3bc46a450b9d9f12a7bfdbf
-# cssselect is required by pyquery
-cssselect==1.1.0 \
-    --hash=sha256:f612ee47b749c877ebae5bb77035d8f4202c6ad0f0fc1271b3c18ad6c4468ecf \
-    --hash=sha256:f95f8dedd925fd8f54edb3d2dfb44c190d9d18512377d3c1e2388d16126879bc
-cssutils==2.3.0 \
-    --hash=sha256:0cf1f6086b020dee18048ff3999339499f725934017ef9ae2cd5bb77f9ab5f46 \
-    --hash=sha256:b2d3b16047caae82e5c590036935bafa1b621cf45c2f38885af4be4838f0fd00
 defusedxml==0.7.1 \
     --hash=sha256:a352e7e428770286cc899e2542b6cdaedb2b4953ff269a210103ec58f6198a61 \
     --hash=sha256:1bb3032db185915b62d7c6209c5a8792be6a32ab2fedacc84e01b52c51aa3e69
@@ -369,9 +362,6 @@ prompt_toolkit==3.0.20 \
 puente==0.5.0 \
     --hash=sha256:7ba1d07f9cee9657adf874bd94879b343fea81a783fdfa8e53885520477bf1ea \
     --hash=sha256:4a17958f7d6a83cb9ff92593c40f34911abafaec6ad959916b754aaa3869f11f
-pyquery==1.4.3 \
-    --hash=sha256:1fc33b7699455ed25c75282bc8f80ace1ac078b0dda5a933dacbd8b1c1f83963 \
-    --hash=sha256:a388eefb6bc4a55350de0316fbd97cda999ae669b6743ae5b99102ba54f5aa72
 # python-dateutil is required by elasticsearch-dsl
 python-dateutil==2.8.2 \
     --hash=sha256:961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9 \
