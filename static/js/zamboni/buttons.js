@@ -110,7 +110,12 @@ var installButton = function() {
     }
 
     var addWarning = function(msg, type) {
-        $this.parent().append(format(type || notavail, [msg]));
+        $button = $this.parent();
+        $button.append(format(type || notavail, [msg]));
+        if (!z.appMatchesUserAgent) {
+            $warning = $button.find('.extra .not-available');
+            $warning.addClass('remove-no');
+        }
     };
 
     // Change the button text to "Add to Firefox".
@@ -182,7 +187,7 @@ var installButton = function() {
         var $visibleButton = $button.filter(':visible')
         var $installShell = $visibleButton.parents('.install-shell');
         var $downloadAnyway = $visibleButton.next('.download-anyway');
-        if ($downloadAnyway.length) {
+        if ($downloadAnyway.length && !z.appMatchesUserAgent) {
             // We want to be able to add the download anyway link regardless
             // of what is already shown. There could be just an error message,
             // or an error message plus a link to more versions. We also want
