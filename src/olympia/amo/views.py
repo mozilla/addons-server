@@ -5,6 +5,7 @@ import sys
 import django
 from django import http
 from django.conf import settings
+from django.contrib.auth.models import AnonymousUser
 from django.contrib.sitemaps.views import x_robots_tag
 from django.core.exceptions import PermissionDenied, ViewDoesNotExist
 from django.core.paginator import EmptyPage, PageNotAnInteger
@@ -108,6 +109,11 @@ def handler404(request, exception=None, **kwargs):
 
 @non_atomic_requests
 def handler500(request, **kwargs):
+    # To avoid database queries, the handler500() cannot evaluate the user - so
+    # we need to avoid making log calls (our custom adapter would fetch the
+    # user from the current thread) and set request.user to anonymous to avoid
+    # its usage in context processors.
+    request.user = AnonymousUser()
     if getattr(request, 'is_api', False):
         # API exceptions happening in DRF code would be handled with by our
         # custom_exception_handler function in olympia.api.exceptions, but in

@@ -92,22 +92,23 @@ class Test404(TestCase):
 
 
 class Test500(TestCase):
-    def test_500_logged_in(self):
-        self.client.login(email=user_factory().email)
-        response = self.client.get('/services/500')
-        assert response.status_code == 500
-        self.assertTemplateUsed(response, 'amo/500.html')
-        content = response.content.decode('utf-8')
-        assert 'data-anonymous="false"' in content
-        assert 'Log in' not in content
-
-    def test_500_logged_out(self):
-        response = self.client.get('/services/500')
+    def test_500_renders_correctly_with_no_queries_or_auth(self):
+        with self.assertNumQueries(0):
+            response = self.client.get('/services/500')
         assert response.status_code == 500
         self.assertTemplateUsed(response, 'amo/500.html')
         content = response.content.decode('utf-8')
         assert 'data-anonymous="true"' in content
-        assert 'Log in' in content
+        # We don't even want to show the log in link.
+        assert 'Log in' not in content
+        return content
+
+    def test_500_renders_correctly_with_no_queries_or_auth_even_when_logged_in(self):
+        # Being logged in shouldn't matter for the 500 page.
+        user = user_factory()
+        self.client.login(email=user.email)
+        content = self.test_500_renders_correctly_with_no_queries_or_auth()
+        assert user.email not in content
 
     def test_500_api(self):
         # Simulate an early API 500 not caught by DRF
