@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-29 09:08+0000\n"
-"PO-Revision-Date: 2021-10-04 09:37+0000\n"
+"PO-Revision-Date: 2021-10-04 09:40+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -2682,7 +2682,7 @@ msgstr "Για να ξεκινήσετε, επιλέξτε πώς επιθυμε
 
 #, python-format
 msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Μπορείτε να μάθετε περισσότερα σχετικά με αυτές τις επιλογές διαβάζοντας το <a %(a_attrs)s>Διανομή και υπογραφή προσθέτων</a> στο εργαστήριο επεκτάσεων του Firefox."
 
 #, python-format
 msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
@@ -2793,7 +2793,7 @@ msgstr ""
 
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Για περισσότερες πληροφορίες, παρακαλούμε διαβάστε το <a %(a_attrs)s>Υποβολή πηγαίου κώδικα</a> στο εργαστήριο επεκτάσεων του Firefox."
 
 msgid "Upload source code:"
 msgstr "Μεταφόρτωση πηγαίου κώδικα:"
