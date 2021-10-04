@@ -475,7 +475,7 @@ commands:
             sudo cp ./docker/etc/mime.types /etc/mime.types
             sudo touch /addons-server-docker-container
       - node/install:
-        node-version: '14'
+          node-version: '14'
       - run:
           name: Install dockerize
           command: |
