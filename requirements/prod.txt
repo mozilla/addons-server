@@ -54,18 +54,6 @@ mysqlclient==2.0.3 \
     --hash=sha256:71c4b330cf2313bbda0307fc858cc9055e64493ba9bf28454d25cf8b3ee8d7f5 \
     --hash=sha256:fc575093cf81b6605bed84653e48b277318b880dc9becf42dd47fa11ffd3e2b6 \
     --hash=sha256:f6ebea7c008f155baeefe16c56cd3ee6239f7a5a9ae42396c2f1860f08a7c432
-scandir==1.10.0 \
-    --hash=sha256:2586c94e907d99617887daed6c1d102b5ca28f1085f90446554abf1faf73123e \
-    --hash=sha256:2ae41f43797ca0c11591c0c35f2f5875fa99f8797cb1a1fd440497ec0ae4b022 \
-    --hash=sha256:2b8e3888b11abb2217a32af0766bc06b65cc4a928d8727828ee68af5a967fa6f \
-    --hash=sha256:2c712840c2e2ee8dfaf36034080108d30060d759c7b73a01a52251cc8989f11f \
-    --hash=sha256:4d4631f6062e658e9007ab3149a9b914f3548cb38bfb021c64f39a025ce578ae \
-    --hash=sha256:67f15b6f83e6507fdc6fca22fedf6ef8b334b399ca27c6b568cbfaa82a364173 \
-    --hash=sha256:7d2d7a06a252764061a020407b997dd036f7bd6a175a5ba2b345f0a357f0b3f4 \
-    --hash=sha256:8c5922863e44ffc00c5c693190648daa6d15e7c1207ed02d6f46a8dcc2869d32 \
-    --hash=sha256:92c85ac42f41ffdc35b6da57ed991575bdbe69db895507af88b9f499b701c188 \
-    --hash=sha256:b24086f2375c4a094a6b51e78b4cf7ca16c721dcee2eddd7aa6494b42d6d519d \
-    --hash=sha256:cb925555f43060a1745d0a321cca94bcea927c50114b623d73179189a4e100ac
 Pillow==8.3.2 \
     --hash=sha256:c691b26283c3a31594683217d746f1dad59a7ae1d4cfc24626d7a064a11197d4 \
     --hash=sha256:f514c2717012859ccb349c97862568fdc0479aad85b0270d6b5a6509dbc142e2 \
@@ -198,9 +186,6 @@ cssselect==1.1.0 \
 cssutils==2.3.0 \
     --hash=sha256:0cf1f6086b020dee18048ff3999339499f725934017ef9ae2cd5bb77f9ab5f46 \
     --hash=sha256:b2d3b16047caae82e5c590036935bafa1b621cf45c2f38885af4be4838f0fd00
-defusedxml==0.7.1 \
-    --hash=sha256:a352e7e428770286cc899e2542b6cdaedb2b4953ff269a210103ec58f6198a61 \
-    --hash=sha256:1bb3032db185915b62d7c6209c5a8792be6a32ab2fedacc84e01b52c51aa3e69
 dennis==0.9 \
     --hash=sha256:f6487392ac91800c5f0684a99b404b7fd0f72ceb48faeb5a0ce4e2c24fb62d3f \
     --hash=sha256:8c942dd5da7d03c65daebc069c5ee5c7f1374ac9b0c8c89c627caa66fe822604
@@ -274,14 +259,9 @@ feedparser==6.0.8 \
     --hash=sha256:5ce0410a05ab248c8c7cfca3a0ea2203968ee9ff4486067379af4827a59f9661
 filtercascade==0.4.1 \
     --hash=sha256:1db4c2f1f628e3e399a6f3437738bdb304eb11521bf37684b56addaa5576a89f
-# funcsigs is required by mock
-funcsigs==1.0.2 \
-    --hash=sha256:330cc27ccbf7f1e992e69fef78261dc7c6569012cf397db8d3de0234e6c937ca \
-    --hash=sha256:a7bb0f2cf3a3fd1ab2732cb49eba4252c2af4240442415b4abce3b87022a8f50
 geoip2==4.3.0 \
     --hash=sha256:7ad10942e9fd6c54bc850d8311618f04dacd3fff5b55ba48b7ad83502fc884bd \
     --hash=sha256:599914784cea08b50fb50c22ed6a59143b5ff2d027ba782d2d5b6f3668293821
-# html5lib is required by rdflib
 html5lib==1.1 \
     --hash=sha256:0d78f8fde1c230e99fe37986a60526d7049ed4bf8a9fadbad5f00e22e58e041d \
     --hash=sha256:b2e5b40261e20f354d198eae92afc10d750afb487ed5e50f9c4eaf07c184146f
@@ -289,7 +269,7 @@ html5lib==1.1 \
 importlib-metadata==4.8.1 \
     --hash=sha256:b618b6d2d5ffa2f16add5697cf57a46c76a56229b0ed1c438322e4e95645bd15 \
     --hash=sha256:f284b3e11256ad1e5d03ab86bb2ccd6f5339688ff17a4d797a0fe7df326f23b1
-# isodate is required by rdflib
+# isodate is required by kombu
 isodate==0.6.0 \
     --hash=sha256:aa4d33c06640f5352aca96e4b81afd8ab3b47337cc12089822d6f322ac772c81 \
     --hash=sha256:2e364a3d5759479cdb2d37cce6b9376ea504db2ff90252a2e5b7cc89cc9ff2d8
@@ -304,9 +284,6 @@ kombu==5.1.0 \
 # m2secret is required by django-aesfield
 m2secret-py3==1.3 \
     --hash=sha256:94dfae937e8a61bf48812fab6a0b8de300781c4e1dbee0cee3aa57cb01915864
-more-itertools==8.10.0 \
-    --hash=sha256:56ddac45541718ba332db05f464bebfb0768110111affd27f66e0051f276fa43 \
-    --hash=sha256:1debcabeb1df793814859d64a81ad7cb10504c24349368ccf214c664c474f41f
 # mmh3 is required by filtercascade
 mmh3==3.0.0 \
     --hash=sha256:23912dde2ad4f701926948dd8e79a0e42b000f73962806f153931f52985e1e07 \
@@ -355,10 +332,6 @@ newrelic==7.0.0.166 \
 nobot==0.7 \
     --hash=sha256:a724b877bbb6ad2c9614a6461c86125ab950c4e8a9ce27355d39703409dedb6a \
     --hash=sha256:12c0ad7d62ad0eb65456ba88e796a5dcb21b13d940f71f4bcb28d4f84cb0106a
-# pbr is required by mock
-pbr==5.6.0 \
-    --hash=sha256:c68c661ac5cc81058ac94247278eeda6d2e6aecb3e227b0387c30d277e7ef8d4 \
-    --hash=sha256:42df03e7797b796625b1029c0400279c7c34fd7df24a7d7818a1abb5b38710dd
 # polib is required by dennis
 polib==1.1.1 \
     --hash=sha256:d3ee85e0c6788f789353416b1612c6c92d75fe6ccfac0029711974d6abd0f86d \
