@@ -959,6 +959,13 @@ class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
             self.addon.latest_unlisted_version, result['latest_unlisted_version']
         )
 
+    def test_readonly_fields(self):
+        serializer = self.serializer_class()
+        fields_read_only = {
+            name for name, field in serializer.get_fields().items() if field.read_only
+        }
+        assert fields_read_only == set(serializer.Meta.read_only_fields)
+
 
 class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
     serializer_class = ESAddonSerializer

@@ -18,22 +18,10 @@ from waffle import switch_is_active
 from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.addons.models import (
-    Addon,
-    AddonRegionalRestrictions,
-    AddonUser,
-    ReplacementAddon,
-)
-from olympia.addons.utils import generate_addon_guid
-from olympia.addons.views import (
-    DEFAULT_FIND_REPLACEMENT_PATH,
-    FIND_REPLACEMENT_SRC,
-    AddonAutoCompleteSearchView,
-    AddonSearchView,
-)
 from olympia.amo.tests import (
     APITestClient,
     ESTestCase,
+    JWTAPITestClient,
     TestCase,
     addon_factory,
     collection_factory,
@@ -43,6 +31,7 @@ from olympia.amo.tests import (
 )
 from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.bandwagon.models import CollectionAddon
+from olympia.blocklist.models import Block
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.constants.promoted import (
     LINE,
@@ -52,8 +41,24 @@ from olympia.constants.promoted import (
     SPONSORED,
     VERIFIED,
 )
+from olympia.files.tests.test_models import UploadMixin
 from olympia.users.models import UserProfile
-from olympia.versions.models import ApplicationsVersions, AppVersion
+from olympia.versions.models import ApplicationsVersions, AppVersion, License
+
+from ..models import (
+    Addon,
+    AddonRegionalRestrictions,
+    AddonUser,
+    ReplacementAddon,
+)
+from ..serializers import AddonSerializer, LicenseSerializer, VersionSerializer
+from ..utils import generate_addon_guid
+from ..views import (
+    DEFAULT_FIND_REPLACEMENT_PATH,
+    FIND_REPLACEMENT_SRC,
+    AddonAutoCompleteSearchView,
+    AddonSearchView,
+)
 
 
 class TestStatus(TestCase):
@@ -686,6 +691,143 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         assert data == {'detail': 'show_grouped_ratings parameter should be a boolean'}
 
 
+class TestAddonViewSetCreate(UploadMixin, TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        super().setUp()
+        self.user = user_factory(read_dev_agreement=self.days_ago(0))
+        self.upload = self.get_upload(
+            'webextension.xpi', user=self.user, source=amo.UPLOAD_SOURCE_ADDON_API
+        )
+        self.url = reverse_ns('addon-list', api_version='v5')
+        self.client.login_api(self.user)
+        self.license = License.objects.create(builtin=1)
+        self.minimal_data = {
+            'version': {'upload': self.upload.uuid, 'license': self.license.id},
+            'categories': {'firefox': ['bookmarks']},
+        }
+
+    def test_basic(self):
+        response = self.client.post(
+            self.url,
+            data=self.minimal_data,
+        )
+        assert response.status_code == 201, response.content
+        data = response.data
+        assert data['name'] == {'en-US': 'My WebExtension Addon'}
+        assert data['status'] == 'nominated'
+        addon = Addon.objects.get()
+        request = APIRequestFactory().get('/')
+        request.version = 'v5'
+        request.user = self.user
+        assert data == AddonSerializer(context={'request': request}).to_representation(
+            addon
+        )
+
+    def test_not_authenticated(self):
+        self.client.logout_api()
+        response = self.client.post(
+            self.url,
+            data=self.minimal_data,
+        )
+        assert response.status_code == 401
+        assert response.data == {
+            'detail': 'Authentication credentials were not provided.'
+        }
+        assert not Addon.objects.all()
+
+    def test_not_read_agreement(self):
+        self.user.update(read_dev_agreement=None)
+        response = self.client.post(
+            self.url,
+            data=self.minimal_data,
+        )
+        assert response.status_code in [401, 403]  # JWT auth is a 401; web auth is 401
+        assert 'agreement' in response.data['detail'].lower()
+        assert not Addon.objects.all()
+
+    def test_waffle_flag_disabled(self):
+        gates = {
+            'v5': (
+                gate
+                for gate in settings.DRF_API_GATES['v5']
+                if gate != 'addon-submission-api'
+            )
+        }
+        with override_settings(DRF_API_GATES=gates):
+            response = self.client.post(
+                self.url,
+                data=self.minimal_data,
+            )
+        assert response.status_code == 403
+        assert response.data == {
+            'detail': 'You do not have permission to perform this action.'
+        }
+        assert not Addon.objects.all()
+
+    def test_missing_version(self):
+        response = self.client.post(
+            self.url,
+            data={'categories': {'firefox': ['bookmarks']}},
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {'version': ['This field is required.']}
+        assert not Addon.objects.all()
+
+    def test_invalid_categories(self):
+        data = {**self.minimal_data, 'categories': {'firefox': ['performance']}}
+        response = self.client.post(
+            self.url,
+            data=data,
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {'categories': ['Invalid app or category name.']}
+        assert not Addon.objects.all()
+
+    def test_set_extra_data(self):
+        data = {
+            **self.minimal_data,
+            'description': {'en-US': 'new description'},
+            'developer_comments': {'en-US': 'comments'},
+            'homepage': {'en-US': 'https://my.home.page/'},
+            # 'name'  # don't update - should retain name from the manifest
+            'slug': 'addon-slug',
+            'summary': {'en-US': 'new summary'},
+            'support_email': {'en-US': 'email@me'},
+            'support_url': {'en-US': 'https://my.home.page/support/'},
+        }
+        response = self.client.post(
+            self.url,
+            data=data,
+        )
+        addon = Addon.objects.get()
+
+        assert response.status_code == 201, response.content
+        data = response.data
+        assert data['description'] == {'en-US': 'new description'}
+        assert addon.description == 'new description'
+        assert data['developer_comments'] == {'en-US': 'comments'}
+        assert addon.developer_comments == 'comments'
+        assert data['homepage']['url'] == {'en-US': 'https://my.home.page/'}
+        assert addon.homepage == 'https://my.home.page/'
+        assert data['name'] == {'en-US': 'My WebExtension Addon'}
+        assert addon.name == 'My WebExtension Addon'
+        assert data['slug'] == 'addon-slug' == addon.slug
+        assert data['summary'] == {'en-US': 'new summary'}
+        assert addon.summary == 'new summary'
+        assert data['support_email'] == {'en-US': 'email@me'}
+        assert addon.support_email == 'email@me'
+        assert data['support_url']['url'] == {'en-US': 'https://my.home.page/support/'}
+        assert addon.support_url == 'https://my.home.page/support/'
+        assert data['status'] == 'nominated'
+        assert addon.status == amo.STATUS_NOMINATED
+
+
+class TestAddonViewSetCreateJWTAuth(TestAddonViewSetCreate):
+    client_class = JWTAPITestClient
+
+
 class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
     client_class = APITestClient
 
@@ -842,6 +984,149 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         response = self.client.get(self.url)
         assert response.status_code == 403
+
+
+class TestVersionViewSetCreate(UploadMixin, TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        super().setUp()
+        self.user = user_factory(read_dev_agreement=self.days_ago(0))
+        self.upload = self.get_upload(
+            'webextension.xpi', user=self.user, source=amo.UPLOAD_SOURCE_ADDON_API
+        )
+        self.addon = addon_factory(users=(self.user,), guid='@webextension-guid')
+        self.url = reverse_ns(
+            'addon-version-list',
+            kwargs={'addon_pk': self.addon.slug},
+            api_version='v5',
+        )
+        self.client.login_api(self.user)
+        self.license = License.objects.create(builtin=1)
+        self.minimal_data = {'upload': self.upload.uuid, 'license': self.license.id}
+
+    def test_basic(self):
+        response = self.client.post(
+            self.url,
+            data=self.minimal_data,
+        )
+        assert response.status_code == 201, response.content
+        data = response.data
+        assert data['license'] == LicenseSerializer().to_representation(self.license)
+        assert data['compatibility'] == {
+            'firefox': {'max': '*', 'min': '42.0'},
+        }
+        self.addon.reload()
+        assert self.addon.versions.count() == 2
+        version = self.addon.find_latest_version(channel=None)
+        request = APIRequestFactory().get('/')
+        request.version = 'v5'
+        request.user = self.user
+        assert data == VersionSerializer(
+            context={'request': request}
+        ).to_representation(version)
+
+    def test_not_authenticated(self):
+        self.client.logout_api()
+        response = self.client.post(
+            self.url,
+            data=self.minimal_data,
+        )
+        assert response.status_code == 401
+        assert response.data == {
+            'detail': 'Authentication credentials were not provided.'
+        }
+        assert self.addon.reload().versions.count() == 1
+
+    def test_not_your_addon(self):
+        self.addon.addonuser_set.get(user=self.user).update(
+            role=amo.AUTHOR_ROLE_DELETED
+        )
+        response = self.client.post(
+            self.url,
+            data=self.minimal_data,
+        )
+        assert response.status_code == 403
+        assert response.data['detail'] == (
+            'You do not have permission to perform this action.'
+        )
+        assert self.addon.reload().versions.count() == 1
+
+    def test_not_read_agreement(self):
+        self.user.update(read_dev_agreement=None)
+        response = self.client.post(
+            self.url,
+            data=self.minimal_data,
+        )
+        assert response.status_code in [401, 403]  # JWT auth is a 401; web auth is 403
+        assert 'agreement' in response.data['detail'].lower()
+        assert self.addon.reload().versions.count() == 1
+
+    def test_waffle_flag_disabled(self):
+        gates = {
+            'v5': (
+                gate
+                for gate in settings.DRF_API_GATES['v5']
+                if gate != 'addon-submission-api'
+            )
+        }
+        with override_settings(DRF_API_GATES=gates):
+            response = self.client.post(
+                self.url,
+                data=self.minimal_data,
+            )
+        assert response.status_code == 403
+        assert response.data == {
+            'detail': 'You do not have permission to perform this action.'
+        }
+        assert self.addon.reload().versions.count() == 1
+
+    def test_missing_license(self):
+        response = self.client.post(
+            self.url,
+            data={'upload': self.upload.uuid},
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {'license': ['This field is required.']}
+        assert self.addon.reload().versions.count() == 1
+
+    def test_set_extra_data(self):
+        data = {
+            **self.minimal_data,
+            'compatibility': ['firefox', 'android'],
+            'release_notes': {'en-US': 'dsdsdsd'},
+        }
+        response = self.client.post(
+            self.url,
+            data=data,
+        )
+
+        assert response.status_code == 201, response.content
+        data = response.data
+        self.addon.reload()
+        assert self.addon.versions.count() == 2
+        version = self.addon.find_latest_version(channel=None)
+        assert data['compatibility'] == {
+            'android': {'max': '*', 'min': '48.0'},
+            'firefox': {'max': '*', 'min': '42.0'},
+        }
+        assert list(version.compatible_apps.keys()) == [amo.FIREFOX, amo.ANDROID]
+        assert data['release_notes'] == {'en-US': 'dsdsdsd'}
+        assert version.release_notes == 'dsdsdsd'
+
+    def test_check_blocklist(self):
+        Block.objects.create(guid=self.addon.guid, updated_by=self.user)
+        response = self.client.post(
+            self.url,
+            data=self.minimal_data,
+        )
+        assert response.status_code == 400
+        assert 'Version 0.0.1 matches ' in str(response.data['non_field_errors'])
+        assert self.addon.reload().versions.count() == 1
+
+
+class TestVersionViewSetCreateJWTAuth(TestVersionViewSetCreate):
+    client_class = JWTAPITestClient
 
 
 class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
