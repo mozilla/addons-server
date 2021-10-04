@@ -8,7 +8,7 @@ version: 2.1
 orbs:
   # This is needed to be able to install Node.js in the primary container,
   # which provides python only.
-  node: circleci/node@4.1.0
+  node: circleci/node@4.7.0
 
 references:
   # We declare the autograph configuration here to be able to fully leverage
@@ -475,7 +475,7 @@ commands:
             sudo cp ./docker/etc/mime.types /etc/mime.types
             sudo touch /addons-server-docker-container
       - node/install:
-        node-version: 14
+        node-version: '14'
       - run:
           name: Install dockerize
           command: |
