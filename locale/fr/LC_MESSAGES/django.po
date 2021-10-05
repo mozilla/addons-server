@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-29 09:08+0000\n"
-"PO-Revision-Date: 2021-10-04 19:25+0000\n"
+"PO-Revision-Date: 2021-10-05 16:32+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -976,7 +976,7 @@ msgid "Signing API"
 msgstr ""
 
 msgid "Addon API"
-msgstr ""
+msgstr "API des modules complémentaire"
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -2744,6 +2744,8 @@ msgstr "Signature de version en attente"
 
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
+"Vous avez terminé ! ✨ Vous recevrez un e-mail lorsque le fichier signé sera prêt à être téléchargé depuis le Pôle développeurs. Si vous ne voyez pas d’e-mail après 24 heures, veuillez vérifier vos "
+"messages indésirables."
 
 msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr ""
