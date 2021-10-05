@@ -252,7 +252,7 @@ class TestVersion(TestCase):
         assert amo.FIREFOX in version.compatible_apps, 'Missing Firefox >_<'
 
         # We should be re-using the same Version instance in
-        # ApplicationsVersions loaded from <Version>._compat_map().
+        # ApplicationsVersions loaded from <Version>._create_compatible_apps().
         assert id(version) == id(version.compatible_apps[amo.FIREFOX].version)
 
     def _get_version(self, status):

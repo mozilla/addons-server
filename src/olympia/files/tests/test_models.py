@@ -245,7 +245,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
 
     def test_generate_filename_many_apps(self):
         f = File.objects.get(id=67442)
-        f.version._compatible_apps = {amo.FIREFOX: None, amo.ANDROID: None}
+        f.version.compatible_apps = {amo.FIREFOX: None, amo.ANDROID: None}
         # After adding sorting for compatible_apps, above becomes
         # (amo.ANDROID, amo.FIREFOX) so 'an+fx' is appended to filename
         # instead of 'fx+an'
@@ -255,7 +255,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
     def test_generate_filename_ja(self):
         f = File()
         f.version = Version(version='0.1.7')
-        f.version._compatible_apps = {amo.FIREFOX: None}
+        f.version.compatible_apps = {amo.FIREFOX: None}
         f.version.addon = Addon(name=' フォクすけ  といっしょ')
         assert f.generate_filename() == 'addon-0.1.7-fx.xpi'
 

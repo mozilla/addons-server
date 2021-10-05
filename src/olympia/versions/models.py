@@ -309,9 +309,9 @@ class Version(OnChangeMixin, ModelBase):
             )
             compatible_apps[app.appdata].save()
 
-        # Pre-generate _compatible_apps property to avoid accidentally
+        # Pre-generate compatible_apps property to avoid accidentally
         # triggering queries with that instance later.
-        version._compatible_apps = compatible_apps
+        version.compatible_apps = compatible_apps
 
         # Create relevant file.
         File.from_upload(
@@ -469,26 +469,33 @@ class Version(OnChangeMixin, ModelBase):
         # sure its transformer is called.
         return self.versionlog_set.prefetch_related('activity_log').order_by('created')
 
+    def _create_compatible_apps(self, avs):
+        apps = {}
+        for av in avs:
+            av.version = self
+            app_id = av.application
+            if app_id in amo.APP_IDS:
+                apps[amo.APP_IDS[app_id]] = av
+        return apps
+
     @property
     def compatible_apps(self):
+        """Returns a mapping of {APP: ApplicationsVersions}.  This may have been filled
+        by the transformer already."""
         # Dicts and search providers don't have compatibility info.
         # Fake one for them.
         if self.addon and self.addon.type in amo.NO_COMPAT:
             return {app: None for app in amo.APP_TYPE_SUPPORT[self.addon.type]}
-        # Otherwise, return _compatible_apps which is a cached property that
-        # is filled by the transformer, or simply calculated from the related
-        # compat instances.
+        # Otherwise calculate from the related compat instances.
+        if not hasattr(self, '_compatible_apps'):
+            self._compatible_apps = self._create_compatible_apps(
+                self.apps.all().select_related('min', 'max')
+            )
         return self._compatible_apps
 
-    @cached_property
-    def _compatible_apps(self):
-        """Get a mapping of {APP: ApplicationsVersions}."""
-        return self._compat_map(self.apps.all().select_related('min', 'max'))
-
-    @cached_property
-    def compatible_apps_ordered(self):
-        apps = self.compatible_apps.items()
-        return sorted(apps, key=lambda v: v[0].short)
+    @compatible_apps.setter
+    def compatible_apps(self, value):
+        self._compatible_apps = value
 
     @cached_property
     def is_compatible_by_default(self):
@@ -540,15 +547,6 @@ class Version(OnChangeMixin, ModelBase):
     def sources_provided(self):
         return bool(self.source)
 
-    def _compat_map(self, avs):
-        apps = {}
-        for av in avs:
-            av.version = self
-            app_id = av.application
-            if app_id in amo.APP_IDS:
-                apps[amo.APP_IDS[app_id]] = av
-        return apps
-
     @classmethod
     def transformer(cls, versions):
         """Attach all the compatible apps and the file to the versions."""
@@ -570,7 +568,9 @@ class Version(OnChangeMixin, ModelBase):
 
         for version in versions:
             v_id = version.id
-            version._compatible_apps = version._compat_map(av_dict.get(v_id, []))
+            version.compatible_apps = version._create_compatible_apps(
+                av_dict.get(v_id, [])
+            )
 
             if file_ := version_id_to_file.get(v_id):
                 version.file = file_
