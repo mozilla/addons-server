@@ -21,9 +21,9 @@ class UserAndAddrMiddleware(MiddlewareMixin):
         request.check_ownership = partial(acl.check_ownership, request)
 
         # Persist the user and remote addr in the thread to make it accessible
-        # in log() statements etc.
-        if request.user.is_authenticated:
-            core.set_user(request.user)
+        # in log() statements etc. `user` could be anonymous here, it's kept
+        # lazy to avoid early database queries.
+        core.set_user(request.user)
         core.set_remote_addr(request.META.get('REMOTE_ADDR'))
 
     def process_response(self, request, response):

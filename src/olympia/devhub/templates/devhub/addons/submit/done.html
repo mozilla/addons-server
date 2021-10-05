@@ -57,6 +57,8 @@
   <p>
     {{ _("You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder.") }}
   </p>
+{% endif %}
+{% if addon.type != amo.ADDON_STATICTHEME %}
   <p> {{ _('As a reminder, your add-on is subject to manual review at any time.') }} </p>
 {% endif %}
 

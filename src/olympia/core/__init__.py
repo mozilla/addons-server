@@ -11,7 +11,12 @@ _locals.remote_addr = None
 
 
 def get_user():
-    return getattr(_locals, 'user', None)
+    user = getattr(_locals, 'user', None)
+    # The user is kept lazy, triggering no database queries until the first
+    # access.
+    if user and user.is_authenticated:
+        return user
+    return None
 
 
 def set_user(user):

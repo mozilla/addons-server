@@ -2,6 +2,10 @@
 
 {% block title %}{{ _('Oops') }}{% endblock %}
 
+{% block site_notice %}{# Don't try loading the site notice, that does a db query #}{% endblock %}
+{% block user_login_include %}{# 500 page should be anonymous #}{% endblock %}
+{% block aux_nav %}{% endblock %}
+
 {% block content %}
 {% trans home="/" %}
 <h1>Oops! We had an error.</h1>

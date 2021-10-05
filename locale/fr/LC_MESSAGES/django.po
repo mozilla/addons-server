@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-29 09:08+0000\n"
-"PO-Revision-Date: 2021-09-16 07:12+0000\n"
+"PO-Revision-Date: 2021-10-04 19:25+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -4399,7 +4399,7 @@ msgstr "Débarrassez-vous de ces avertissements de cookies pénibles."
 
 #. editorial content for the discovery pane.
 msgid "All your emoji needs—always just a click away."
-msgstr ""
+msgstr "Tous les émojis dont vous avez besoin — toujours à portée de clic."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4549,11 +4549,11 @@ msgstr "Voir plus d’extensions pour la gestion des onglets"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
-msgstr ""
+msgstr "Extensions marquées « {tag} »"
 
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
-msgstr ""
+msgstr "Voir plus d’extensions marquées « {tag} »"
 
 msgid "Could not parse the manifest file."
 msgstr "Impossible d’analyser le fichier manifeste."
