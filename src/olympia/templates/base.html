@@ -54,17 +54,19 @@
         {% block bodyattrs %}{% endblock %}>
 
     <div id="main-wrapper">
-      {% set admin_message = get_config('site_notice') %}
-      {% if admin_message or settings.READ_ONLY %}
-        <div id="site-notice">
-          {% if admin_message %}
-            <p>{{ admin_message|safe }}</p>
-          {% endif %}
-          {% if settings.READ_ONLY %}
-            <p>{{ _("Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly.") }}</p>
-          {% endif %}
-        </div>
-      {% endif %}
+      {% block site_notice %}
+        {% set admin_message = get_config('site_notice') %}
+        {% if admin_message or settings.READ_ONLY %}
+          <div id="site-notice">
+            {% if admin_message %}
+              <p>{{ admin_message|safe }}</p>
+            {% endif %}
+            {% if settings.READ_ONLY %}
+              <p>{{ _("Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly.") }}</p>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endblock %}
       <div class="section">
         {% block site_header %}
           <div class="header-bg">
