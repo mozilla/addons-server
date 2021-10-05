@@ -38,6 +38,7 @@ from olympia.api.permissions import (
     GroupPermission,
     RegionalRestriction,
 )
+from olympia.api.throttling import addon_upload_throttles
 from olympia.api.utils import is_gate_active
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.devhub.permissions import IsSubmissionAllowedFor
@@ -194,6 +195,7 @@ class AddonViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
     serializer_class = AddonSerializer
     serializer_class_with_unlisted_data = AddonSerializerWithUnlistedData
     lookup_value_regex = '[^/]+'  # Allow '.' for email-like guids.
+    throttle_classes = addon_upload_throttles
 
     def get_queryset(self):
         """Return queryset to be used for the view."""
@@ -295,13 +297,6 @@ class AddonViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
         )
         return Response(serializer.data)
 
-    def create(self, request, *args, **kwargs):
-        from olympia.signing.views import VersionView  # circular import
-
-        # TODO: consolidate/replicate this behaviour.
-        VersionView().check_throttles(request)
-        return super().create(request, *args, **kwargs)
-
 
 class AddonChildMixin:
     """Mixin containing method to retrieve the parent add-on object."""
@@ -352,6 +347,7 @@ class AddonVersionViewSet(
     # what the client is requesting to see.
     permission_classes = []
     authentication_classes = [JWTKeyAuthentication, WebTokenAuthentication]
+    throttle_classes = addon_upload_throttles
 
     def get_serializer_class(self):
         if (
@@ -484,13 +480,6 @@ class AddonVersionViewSet(
             # doesn't scale as nicely in those versions.
             queryset = queryset.transform(Version.transformer_license)
         return queryset
-
-    def create(self, request, *args, **kwargs):
-        from olympia.signing.views import VersionView  # circular import
-
-        # TODO: consolidate/replicate this behaviour.
-        VersionView().check_throttles(request)
-        return super().create(request, *args, **kwargs)
 
 
 class AddonSearchView(ListAPIView):

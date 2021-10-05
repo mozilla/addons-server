@@ -94,3 +94,47 @@ class ThrottleOnlyUnsafeMethodsMixin:
             return super().allow_request(request, view)
         else:
             return True
+
+
+class BurstUserAddonUploadThrottle(
+    ThrottleOnlyUnsafeMethodsMixin, GranularUserRateThrottle
+):
+    scope = 'burst_user_addon_upload'
+    rate = '3/minute'
+
+
+class HourlyUserAddonUploadThrottle(
+    ThrottleOnlyUnsafeMethodsMixin, GranularUserRateThrottle
+):
+    scope = 'hourly_user_addon_upload'
+    rate = '10/hour'
+
+
+class DailyUserAddonUploadThrottle(
+    ThrottleOnlyUnsafeMethodsMixin, GranularUserRateThrottle
+):
+    scope = 'daily_user_addon_upload'
+    rate = '24/day'
+
+
+class BurstIPAddonUploadThrottle(
+    ThrottleOnlyUnsafeMethodsMixin, GranularIPRateThrottle
+):
+    scope = 'burst_ip_addon_upload'
+    rate = '6/minute'
+
+
+class HourlyIPAddonUploadThrottle(
+    ThrottleOnlyUnsafeMethodsMixin, GranularIPRateThrottle
+):
+    scope = 'hourly_ip_addon_upload'
+    rate = '50/hour'
+
+
+addon_upload_throttles = (
+    BurstUserAddonUploadThrottle,
+    HourlyUserAddonUploadThrottle,
+    DailyUserAddonUploadThrottle,
+    BurstIPAddonUploadThrottle,
+    HourlyIPAddonUploadThrottle,
+)

@@ -17,11 +17,7 @@ from olympia.addons.models import Addon
 from olympia.amo.decorators import use_primary_db
 from olympia.api.authentication import JWTKeyAuthentication
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.api.throttling import (
-    GranularIPRateThrottle,
-    GranularUserRateThrottle,
-    ThrottleOnlyUnsafeMethodsMixin,
-)
+from olympia.api.throttling import addon_upload_throttles
 from olympia.blocklist.models import Block
 from olympia.devhub.views import handle_upload as devhub_handle_upload
 from olympia.devhub.permissions import IsSubmissionAllowedFor
@@ -81,51 +77,10 @@ def with_addon(allow_missing=False):
     return wrapper
 
 
-class BurstUserAddonUploadThrottle(
-    ThrottleOnlyUnsafeMethodsMixin, GranularUserRateThrottle
-):
-    scope = 'burst_user_addon_upload'
-    rate = '3/minute'
-
-
-class HourlyUserAddonUploadThrottle(
-    ThrottleOnlyUnsafeMethodsMixin, GranularUserRateThrottle
-):
-    scope = 'hourly_user_addon_upload'
-    rate = '10/hour'
-
-
-class DailyUserAddonUploadThrottle(
-    ThrottleOnlyUnsafeMethodsMixin, GranularUserRateThrottle
-):
-    scope = 'daily_user_addon_upload'
-    rate = '24/day'
-
-
-class BurstIPAddonUploadThrottle(
-    ThrottleOnlyUnsafeMethodsMixin, GranularIPRateThrottle
-):
-    scope = 'burst_ip_addon_upload'
-    rate = '6/minute'
-
-
-class HourlyIPAddonUploadThrottle(
-    ThrottleOnlyUnsafeMethodsMixin, GranularIPRateThrottle
-):
-    scope = 'hourly_ip_addon_upload'
-    rate = '50/hour'
-
-
 class VersionView(APIView):
     authentication_classes = [JWTKeyAuthentication]
     permission_classes = [IsAuthenticated, IsSubmissionAllowedFor]
-    throttle_classes = (
-        BurstUserAddonUploadThrottle,
-        HourlyUserAddonUploadThrottle,
-        DailyUserAddonUploadThrottle,
-        BurstIPAddonUploadThrottle,
-        HourlyIPAddonUploadThrottle,
-    )
+    throttle_classes = addon_upload_throttles
 
     def check_throttles(self, request):
         # Let users with LanguagePack:Submit permission bypass throttles.
