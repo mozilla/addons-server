@@ -218,7 +218,10 @@ class CollectionAddonViewSet(ModelViewSet):
     def get_queryset(self):
         qs = (
             CollectionAddon.objects.filter(collection=self.get_collection())
-            .prefetch_related('addon__promotedaddon')
+            .prefetch_related(
+                'addon__promotedaddon',
+                'addon___current_version__file___webext_permissions',
+            )
             .transform(self._transformer)
         )
 

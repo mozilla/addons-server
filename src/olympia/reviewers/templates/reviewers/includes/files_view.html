@@ -25,10 +25,8 @@
       {{ _('Compare') }}
     </a>
     {% endif %}
-    {% if file.is_webextension %}
     <div class="file-permissions"><strong>{{ _('Permissions:') }}</strong> {{ ', '.join(file.permissions) or _('None') }}</div>
     <div class="file-permissions"><strong>{{ _('Optional permissions:') }}</strong> {{ ', '.join(file.optional_permissions) or _('None') }}</div>
-    {% endif %}
   </span>
 </li>
 </ul>

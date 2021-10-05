@@ -839,7 +839,6 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
             created=self.handle_date(data['created']),
             hash=data['hash'],
             filename=data['filename'],
-            is_webextension=True,
             is_mozilla_signed_extension=data.get('is_mozilla_signed_extension'),
             size=data['size'],
             status=data['status'],

@@ -58,7 +58,6 @@ def fetch_blocked_from_db():
         File.objects.filter(
             version__addon__addonguid__guid__in=blocks_guids,
             is_signed=True,
-            is_webextension=True,
         )
         .order_by('version_id')
         .values('version__addon__addonguid__guid', 'version__version', 'version_id')

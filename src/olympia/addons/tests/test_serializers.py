@@ -152,7 +152,6 @@ class AddonSerializerOutputTestMixin:
             developer_comments='Dévelopers Addôn comments',
             file_kw={
                 'hash': 'fakehash',
-                'is_webextension': True,
                 'size': 42,
             },
             guid=generate_addon_guid(),
@@ -606,7 +605,7 @@ class AddonSerializerOutputTestMixin:
         )
 
     def test_webextension(self):
-        self.addon = addon_factory(file_kw={'is_webextension': True})
+        self.addon = addon_factory()
         permissions = ['bookmarks', 'random permission']
         optional_permissions = ['cookies', 'optional permission']
         # Give one of the versions some webext permissions to test that.
@@ -1055,7 +1054,6 @@ class TestVersionSerializerOutput(TestCase):
         addon = addon_factory(
             file_kw={
                 'hash': 'fakehash',
-                'is_webextension': True,
                 'is_mozilla_signed_extension': True,
                 'size': 42,
             },
@@ -1240,7 +1238,7 @@ class TestVersionSerializerOutput(TestCase):
         # No permissions.
         assert result['file']['permissions'] == []
 
-        self.version = addon_factory(file_kw={'is_webextension': True}).current_version
+        self.version = addon_factory().current_version
         permissions = ['dangerdanger', 'high', 'voltage']
         WebextPermission.objects.create(permissions=permissions, file=self.version.file)
         result = self.serialize()
@@ -1252,7 +1250,7 @@ class TestVersionSerializerOutput(TestCase):
         # No permissions.
         assert result['file']['optional_permissions'] == []
 
-        self.version = addon_factory(file_kw={'is_webextension': True}).current_version
+        self.version = addon_factory().current_version
         optional_permissions = ['dangerdanger', 'high', 'voltage']
         WebextPermission.objects.create(
             optional_permissions=optional_permissions, file=self.version.file

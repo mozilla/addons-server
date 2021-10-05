@@ -29,7 +29,7 @@ class TestFileAdmin(TestCase):
         assert response.status_code == 200
         assert str(file_.id) in force_str(response.content)
 
-        assert not file_.is_webextension
+        assert file_.manifest_version == 2
 
         post_data = {
             'version': file_.version.pk,
@@ -39,13 +39,12 @@ class TestFileAdmin(TestCase):
             'original_hash': 'xxx',
             'status': file_.status,
             'original_status': file_.original_status,
-            'manifest_version': 2,
+            'manifest_version': 3,
         }
-        post_data['is_webextension'] = 'on'
         response = self.client.post(detail_url, post_data, follow=True)
         assert response.status_code == 200
         file_.refresh_from_db()
-        assert file_.is_webextension
+        assert file_.manifest_version == 3
 
     def test_can_not_list_without_admin_advanced_permission(self):
         user = user_factory(email='someone@mozilla.com')

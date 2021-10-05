@@ -375,7 +375,7 @@ class TestExtractColorsFromStaticThemes(TestCase):
 class TestResignAddonsForCose(TestCase):
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_basic(self, sign_file_mock):
-        file_kw = {'is_webextension': True, 'filename': 'webextension.xpi'}
+        file_kw = {'filename': 'webextension.xpi'}
         user_factory(id=settings.TASK_USER_ID)
 
         with freeze_time('2019-04-01'):

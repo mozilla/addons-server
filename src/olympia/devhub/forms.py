@@ -830,7 +830,6 @@ class CompatForm(forms.ModelForm):
         # 'version' should always be passed as a kwarg to this form. If it's
         # absent, it probably means form_kwargs={'version': version} is missing
         # from the instantiation of the formset.
-        version = kwargs.pop('version')
         super().__init__(*args, **kwargs)
         if self.initial:
             app = self.initial['application']
@@ -839,17 +838,6 @@ class CompatForm(forms.ModelForm):
         self.app = amo.APPS_ALL[int(app)]
         qs = AppVersion.objects.filter(application=app).order_by('version_int')
 
-        # Legacy extensions can't set compatibility higher than 56.* for
-        # Firefox and Firefox for Android.
-        # This does not concern Mozilla Signed Legacy extensions which
-        # are shown the same version choice as WebExtensions.
-        if (
-            self.app in (amo.FIREFOX, amo.ANDROID)
-            and not version.is_webextension
-            and not version.is_mozilla_signed
-            and version.addon.type not in amo.NO_COMPAT + (amo.ADDON_LPAPP,)
-        ):
-            qs = qs.filter(version_int__lt=57000000000000)
         self.fields['min'].queryset = qs.filter(~Q(version__contains='*'))
         self.fields['max'].queryset = qs.all()
 
@@ -866,7 +854,7 @@ class BaseCompatFormSet(BaseModelFormSet):
         super().__init__(*args, **kwargs)
         # We always want a form for each app, so force extras for apps
         # the add-on does not already have.
-        version = self.form_kwargs.get('version')
+        version = self.form_kwargs.pop('version')
         static_theme = version and version.addon.type == amo.ADDON_STATICTHEME
         available_apps = amo.APP_USAGE
         self.can_delete = not static_theme  # No tinkering with apps please.

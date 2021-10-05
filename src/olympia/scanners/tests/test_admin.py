@@ -1293,7 +1293,7 @@ class TestScannerQueryRuleAdmin(AMOPaths, TestCase):
         assert rule.state == SCHEDULED
 
     def test_run_action_functional(self):
-        version = addon_factory(file_kw={'is_webextension': True}).current_version
+        version = addon_factory().current_version
         self.xpi_copy_over(version.file, 'webextension.xpi')
         rule = ScannerQueryRule.objects.create(
             name='always_true',

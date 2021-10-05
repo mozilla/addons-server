@@ -606,6 +606,7 @@ def review(request, addon, channel=None):
                 queryset=ScannerResult.objects.defer('results'),
             )
         )
+        # FIXME: we want to prefetch file.webext_permission instances in here
         # Add activity transformer to prefetch all related activity logs on
         # top of the regular transformers.
         .transform(Version.transformer_activity)

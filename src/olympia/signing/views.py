@@ -209,18 +209,6 @@ class VersionView(APIView):
 
         package_guid = parsed_data.get('guid', None)
 
-        dont_allow_no_guid = (
-            not addon
-            and not package_guid
-            and not parsed_data.get('is_webextension', False)
-        )
-
-        if dont_allow_no_guid:
-            raise forms.ValidationError(
-                gettext('Only WebExtensions are allowed to omit the Add-on ID'),
-                status.HTTP_400_BAD_REQUEST,
-            )
-
         if guid is not None and not addon and not package_guid:
             # No guid was present in the package, but one was provided in the
             # URL, so we take it instead of generating one ourselves. There is

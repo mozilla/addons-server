@@ -33,8 +33,8 @@ from olympia.files.utils import get_sha256, InvalidOrUnsupportedCrx, write_crx_a
 
 log = olympia.core.logger.getLogger('z.files')
 
-# We should be able to drop the field default - so enforce it being required - once we
-# drop `is_webextension` and the fixtures and tests allow a File without manifest.json.
+# We should be able to drop the field default - so enforce it being required - now we've
+# dropped `is_webextension`, but the fixtures need updating to include it.
 DEFAULT_MANIFEST_VERSION = 2
 
 
@@ -61,8 +61,6 @@ class File(OnChangeMixin, ModelBase):
     is_signed = models.BooleanField(default=False)
     # Is the file an experiment (see bug 1220097)?
     is_experiment = models.BooleanField(default=False)
-    # Is the file a WebExtension?
-    is_webextension = models.BooleanField(default=False)
     # Is the file a special "Mozilla Signed Extension"
     # see https://wiki.mozilla.org/Add-ons/InternalSigning
     is_mozilla_signed_extension = models.BooleanField(default=False)
@@ -135,7 +133,6 @@ class File(OnChangeMixin, ModelBase):
         file_.size = storage.size(upload_path)
         file_.strict_compatibility = parsed_data.get('strict_compatibility', False)
         file_.is_experiment = parsed_data.get('is_experiment', False)
-        file_.is_webextension = parsed_data.get('is_webextension', False)
         file_.is_mozilla_signed_extension = parsed_data.get(
             'is_mozilla_signed_extension', False
         )
@@ -147,24 +144,23 @@ class File(OnChangeMixin, ModelBase):
         )
         file_.save()
 
-        if file_.is_webextension:
-            permissions = list(parsed_data.get('permissions', []))
-            optional_permissions = list(parsed_data.get('optional_permissions', []))
+        permissions = list(parsed_data.get('permissions', []))
+        optional_permissions = list(parsed_data.get('optional_permissions', []))
 
-            # devtools_page isn't in permissions block but treated as one
-            # if a custom devtools page is added by an addon
-            if 'devtools_page' in parsed_data:
-                permissions.append('devtools')
+        # devtools_page isn't in permissions block but treated as one
+        # if a custom devtools page is added by an addon
+        if 'devtools_page' in parsed_data:
+            permissions.append('devtools')
 
-            # Add content_scripts host matches too.
-            for script in parsed_data.get('content_scripts', []):
-                permissions.extend(script.get('matches', []))
-            if permissions or optional_permissions:
-                WebextPermission.objects.create(
-                    permissions=permissions,
-                    optional_permissions=optional_permissions,
-                    file=file_,
-                )
+        # Add content_scripts host matches too.
+        for script in parsed_data.get('content_scripts', []):
+            permissions.extend(script.get('matches', []))
+        if permissions or optional_permissions:
+            WebextPermission.objects.create(
+                permissions=permissions,
+                optional_permissions=optional_permissions,
+                file=file_,
+            )
 
         log.info(f'New file: {file_!r} from {upload!r}')
 
@@ -316,8 +312,6 @@ class File(OnChangeMixin, ModelBase):
 
     @cached_property
     def permissions(self):
-        if not self.is_webextension:
-            return []
         try:
             # Filter out any errant non-strings included in the manifest JSON.
             # Remove any duplicate permissions.
@@ -334,8 +328,6 @@ class File(OnChangeMixin, ModelBase):
 
     @cached_property
     def optional_permissions(self):
-        if not self.is_webextension:
-            return []
         try:
             # Filter out any errant non-strings included in the manifest JSON.
             # Remove any duplicate optional permissions.

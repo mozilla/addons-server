@@ -148,7 +148,6 @@ def fix_addons_linter_output(validation, channel):
     metadata = {
         'listed': channel == amo.RELEASE_CHANNEL_LISTED,
         'identified_files': identified_files,
-        'is_webextension': True,
     }
     # Add metadata already set by the linter.
     metadata.update(validation.get('metadata', {}))

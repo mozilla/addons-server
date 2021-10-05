@@ -24,12 +24,12 @@ class TestExportBlocklist(TestCase):
             addon_factory()
         # one version, 0 - *
         Block.objects.create(
-            addon=addon_factory(file_kw={'is_signed': True, 'is_webextension': True}),
+            addon=addon_factory(file_kw={'is_signed': True}),
             updated_by=user_factory(),
         )
         # one version, 0 - 9999
         Block.objects.create(
-            addon=addon_factory(file_kw={'is_signed': True, 'is_webextension': True}),
+            addon=addon_factory(file_kw={'is_signed': True}),
             updated_by=user_factory(),
             max_version='9999',
         )
@@ -37,7 +37,7 @@ class TestExportBlocklist(TestCase):
         Block.objects.create(
             addon=addon_factory(
                 version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
-                file_kw={'is_signed': True, 'is_webextension': True},
+                file_kw={'is_signed': True},
             ),
             updated_by=user_factory(),
         )

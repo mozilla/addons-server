@@ -106,7 +106,7 @@ class Command(BaseCommand):
         # Retrieve all the version pks to extract, sorted by creation date.
         versions_to_extract = (
             addon.versions(manager='unfiltered_for_relations')
-            .filter(file__is_webextension=True, git_hash='')
+            .filter(git_hash='')
             .order_by('created')
             .values_list('pk', flat=True)
         )

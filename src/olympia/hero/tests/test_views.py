@@ -74,8 +74,8 @@ class TestPrimaryHeroShelfViewSet(TestCase):
         hero_b.update(enabled=True)
         hero_external.update(enabled=True)
         # don't enable the 3rd PrimaryHero object
-        with self.assertNumQueries(11):
-            # 11 queries:
+        with self.assertNumQueries(12):
+            # 12 queries:
             # - 1 to fetch the primaryhero/discoveryitem items
             # - 1 to fetch the add-ons (can't be joined with the previous one
             #   because we want to hit the Addon transformer)
@@ -88,6 +88,7 @@ class TestPrimaryHeroShelfViewSet(TestCase):
             # - 1 to fetch the add-ons authors
             # - 1 to fetch the add-ons version previews (for static themes)
             # - 1 to fetch the add-ons previews
+            # - 1 to fetch the permissions for the files
             response = self.client.get(self.url, {'lang': 'en-US'})
         assert response.status_code == 200
         assert response.json() == {
@@ -399,9 +400,9 @@ class TestHeroShelvesView(TestCase):
         request = APIRequestFactory().get('/')
         request.version = api_settings.DEFAULT_VERSION
 
-        with self.assertNumQueries(13):
-            # 13 queries:
-            # - 11 as TestPrimaryHeroShelfViewSet.test_basic above
+        with self.assertNumQueries(14):
+            # 14 queries:
+            # - 12 as TestPrimaryHeroShelfViewSet.test_basic above
             # - 2 as TestSecondaryHeroShelfViewSet.test_basic above
             response = self.client.get(self.url, {'lang': 'en-US'})
         assert response.status_code == 200

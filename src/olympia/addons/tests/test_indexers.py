@@ -273,9 +273,7 @@ class TestAddonIndexer(TestCase):
         permissions = ['bookmarks', 'random permission']
         optional_permissions = ['cookies', 'optional permission']
         version = self.addon.current_version
-        # Make the version a webextension and add a bunch of things to it to
-        # test different scenarios.
-        version.file.update(is_webextension=True)
+        # Add a bunch of things to it to test different scenarios.
         version.license = License.objects.create(
             name='My licensé', url='http://example.com/', builtin=0
         )

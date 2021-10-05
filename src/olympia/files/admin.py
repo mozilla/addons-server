@@ -54,7 +54,6 @@ class FileAdmin(admin.ModelAdmin):
                     'strict_compatibility',
                     'is_signed',
                     'is_experiment',
-                    'is_webextension',
                     'is_mozilla_signed_extension',
                 )
             },

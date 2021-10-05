@@ -38,7 +38,6 @@ class TestGitExtraction(TestCase):
         self.addon = addon_factory(
             file_kw={
                 'filename': 'webextension_no_id.xpi',
-                'is_webextension': True,
             }
         )
 
@@ -64,9 +63,7 @@ class TestGitExtraction(TestCase):
         # Create a duplicate add-on.
         e2 = GitExtractionEntry.objects.create(addon=self.addon)
         # Create another add-on.
-        e3 = GitExtractionEntry.objects.create(
-            addon=addon_factory(file_kw={'is_webextension': True})
-        )
+        e3 = GitExtractionEntry.objects.create(addon=addon_factory())
         self.command.extract_addon = mock.Mock()
 
         self.command.handle()
@@ -82,12 +79,8 @@ class TestGitExtraction(TestCase):
         # Create a duplicate add-on.
         GitExtractionEntry.objects.create(addon=self.addon)
         # Create another add-on.
-        e3 = GitExtractionEntry.objects.create(
-            addon=addon_factory(file_kw={'is_webextension': True})
-        )
-        e4 = GitExtractionEntry.objects.create(
-            addon=addon_factory(file_kw={'is_webextension': True})
-        )
+        e3 = GitExtractionEntry.objects.create(addon=addon_factory())
+        e4 = GitExtractionEntry.objects.create(addon=addon_factory())
         self.command.extract_addon = mock.Mock()
 
         self.command.handle(None, limit=2)
@@ -163,12 +156,13 @@ class TestGitExtraction(TestCase):
     @mock.patch('olympia.git.management.commands.git_extraction.chain')
     def test_extract_addon_with_multiple_versions(self, chain_mock):
         version1 = self.addon.current_version
-        version2 = version_factory(addon=self.addon, file_kw={'is_webextension': True})
-        version_deleted = version_factory(
-            addon=self.addon, deleted=True, file_kw={'is_webextension': True}
+        version2 = version_factory(
+            addon=self.addon,
         )
-        # This version should be ignored because it is not a web-extension.
-        version_factory(addon=self.addon, file_kw={'is_webextension': False})
+        version_deleted = version_factory(
+            addon=self.addon,
+            deleted=True,
+        )
         entry = GitExtractionEntry.objects.create(addon=self.addon)
 
         self.command.extract_addon(entry)
@@ -184,8 +178,12 @@ class TestGitExtraction(TestCase):
     @mock.patch('olympia.git.management.commands.git_extraction.chain')
     def test_extract_addon_continues_git_extraction(self, chain_mock):
         version1 = self.addon.current_version
-        version2 = version_factory(addon=self.addon, file_kw={'is_webextension': True})
-        version_factory(addon=self.addon, file_kw={'is_webextension': True})
+        version2 = version_factory(
+            addon=self.addon,
+        )
+        version_factory(
+            addon=self.addon,
+        )
         entry = GitExtractionEntry.objects.create(addon=self.addon)
 
         self.command.extract_addon(entry, batch_size=2)
@@ -236,15 +234,10 @@ class TestGitExtraction(TestCase):
 
     def test_extract_addon_with_more_versions_than_batch_size(self):
         version_1 = self.addon.current_version
-        # This version should be ignored because it is not a web-extension.
-        skipped_version = version_factory(
-            addon=self.addon, file_kw={'is_webextension': False}
-        )
         version_2 = version_factory(
             addon=self.addon,
             file_kw={
                 'filename': 'webextension_no_id.xpi',
-                'is_webextension': True,
             },
         )
         repo = AddonGitRepository(self.addon)
@@ -253,13 +246,11 @@ class TestGitExtraction(TestCase):
         assert not version_1.git_hash
         assert not version_2.git_hash
         assert not repo.is_extracted
-        assert not skipped_version.git_hash
 
         # First execution of the CRON task.
         self.command.extract_addon(entry, batch_size=1)
         version_1.refresh_from_db()
         version_2.refresh_from_db()
-        skipped_version.refresh_from_db()
         entry.refresh_from_db()
 
         assert repo.is_extracted
@@ -270,17 +261,14 @@ class TestGitExtraction(TestCase):
         # still need to extract the second version.
         assert not entry.in_progress
         assert GitExtractionEntry.objects.filter(pk=entry.pk).exists()
-        assert not skipped_version.git_hash
 
         # Second execution of the CRON task.
         self.command.extract_addon(entry, batch_size=1)
         version_2.refresh_from_db()
-        skipped_version.refresh_from_db()
 
         assert repo.is_extracted
         assert version_2.git_hash
         assert not GitExtractionEntry.objects.filter(pk=entry.pk).exists()
-        assert not skipped_version.git_hash
 
     # Overriding this setting is needed to tell Celery to run the error handler
     # (because we run Celery in eager mode in the test env). That being said,

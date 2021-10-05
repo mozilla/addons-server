@@ -325,8 +325,7 @@ class AddonManager(ManagerBase):
             filters &= Q(promotedaddon__group_id=RECOMMENDED.id)
         elif not theme_review:
             filters &= ~Q(promotedaddon__group_id=RECOMMENDED.id) & (
-                Q(versions__file__is_webextension=False)
-                | Q(reviewerflags__auto_approval_disabled=True)
+                Q(reviewerflags__auto_approval_disabled=True)
                 | Q(reviewerflags__auto_approval_disabled_until_next_approval=True)
                 | Q(reviewerflags__auto_approval_delayed_until__gt=datetime.now())
                 | Q(
@@ -856,11 +855,7 @@ class Addon(OnChangeMixin, ModelBase):
             except ObjectDoesNotExist:
                 pass
 
-        generate_guid = not data.get('guid', None) and data.get(
-            'is_webextension', False
-        )
-
-        if generate_guid:
+        if not data.get('guid'):
             data['guid'] = guid = generate_addon_guid()
         timer.log_interval('1.guids')
 
@@ -944,7 +939,7 @@ class Addon(OnChangeMixin, ModelBase):
         """
         default_locale = find_language(data.get('default_locale'))
 
-        if not data.get('is_webextension') or not default_locale:
+        if not default_locale:
             # Don't change anything if we don't meet the requirements
             return data
 
@@ -1651,11 +1646,7 @@ class Addon(OnChangeMixin, ModelBase):
             self.type == amo.ADDON_EXTENSION
             and version
             and version.file
-            and (
-                not version.file.is_webextension
-                or version.file.permissions
-                or version.file.optional_permissions
-            )
+            and (version.file.permissions or version.file.optional_permissions)
         )
 
     # Aliases for reviewerflags below are not just useful in case

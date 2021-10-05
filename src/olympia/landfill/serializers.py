@@ -175,7 +175,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
             users=[self.user],
             average_rating=5,
             description='My Addon description',
-            file_kw={'is_webextension': True},
             guid=generate_addon_guid(),
             name='Ui-Addon',
             slug='ui-test-2',
@@ -221,7 +220,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
             users=[self.user],
             average_rating=5,
             description='My Addon description about ANDROID',
-            file_kw={'is_webextension': True},
             guid=generate_addon_guid(),
             name='Ui-Addon-Android',
             slug='ui-test-addon-android',
@@ -299,7 +297,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
             users=[self.user],
             average_rating=5,
             description='My UI Theme description',
-            file_kw={'is_webextension': True},
             guid=generate_addon_guid(),
             homepage='https://www.example.org/',
             name='Ui-Test Theme',
@@ -330,7 +327,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
             addon = addon_factory(
                 status=amo.STATUS_APPROVED,
                 type=ADDON_STATICTHEME,
-                file_kw={'is_webextension': True},
                 version_kw={'nomination': days_ago(6)},
                 promoted=RECOMMENDED,
             )

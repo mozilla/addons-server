@@ -233,70 +233,20 @@ class TestCompatForm(TestCase):
 
     def test_form_choices(self):
         version = Addon.objects.get(id=3615).current_version
-        version.file.update(is_webextension=True)
         self._test_form_choices_expect_all_versions(version)
 
     def test_form_choices_no_compat(self):
         version = Addon.objects.get(id=3615).current_version
-        version.file.update(is_webextension=False)
         version.addon.update(type=amo.ADDON_DICT)
         self._test_form_choices_expect_all_versions(version)
 
     def test_form_choices_language_pack(self):
         version = Addon.objects.get(id=3615).current_version
-        version.file.update(is_webextension=False)
         version.addon.update(type=amo.ADDON_LPAPP)
-        self._test_form_choices_expect_all_versions(version)
-
-    def test_form_choices_legacy(self):
-        version = Addon.objects.get(id=3615).current_version
-        version.file.update(is_webextension=False)
-
-        firefox_57 = AppVersion.objects.get(application=amo.FIREFOX.id, version='57.0')
-        firefox_57_s = AppVersion.objects.get(
-            application=amo.FIREFOX.id, version='57.*'
-        )
-
-        expected_min_choices = [('', '---------')] + list(
-            AppVersion.objects.filter(application=amo.FIREFOX.id)
-            .exclude(version__contains='*')
-            .exclude(pk__in=(firefox_57.pk, firefox_57_s.pk))
-            .values_list('pk', 'version')
-            .order_by('version_int')
-        )
-        expected_max_choices = [('', '---------')] + list(
-            AppVersion.objects.filter(application=amo.FIREFOX.id)
-            .exclude(pk__in=(firefox_57.pk, firefox_57_s.pk))
-            .values_list('pk', 'version')
-            .order_by('version_int')
-        )
-
-        formset = forms.CompatFormSet(
-            None, queryset=version.apps.all(), form_kwargs={'version': version}
-        )
-        form = formset.forms[0]
-        assert form.app == amo.FIREFOX
-        assert list(form.fields['min'].choices) == expected_min_choices
-        assert list(form.fields['max'].choices) == expected_max_choices
-
-        expected_an_choices = [('', '---------')] + list(
-            AppVersion.objects.filter(application=amo.ANDROID.id)
-            .values_list('pk', 'version')
-            .order_by('version_int')
-        )
-        form = formset.forms[1]
-        assert form.app == amo.ANDROID
-        assert list(form.fields['min'].choices) == expected_an_choices
-        assert list(form.fields['max'].choices) == expected_an_choices
-
-    def test_form_choices_mozilla_signed_legacy(self):
-        version = Addon.objects.get(id=3615).current_version
-        version.file.update(is_webextension=False, is_mozilla_signed_extension=True)
         self._test_form_choices_expect_all_versions(version)
 
     def test_static_theme(self):
         version = Addon.objects.get(id=3615).current_version
-        version.file.update(is_webextension=True)
         version.addon.update(type=amo.ADDON_STATICTHEME)
         self._test_form_choices_expect_all_versions(version)
 

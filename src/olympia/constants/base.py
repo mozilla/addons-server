@@ -299,10 +299,7 @@ VALIDATOR_SKELETON_EXCEPTION_WEBEXT = {
     'notices': 0,
     'success': False,
     'compatibility_summary': {'notices': 0, 'errors': 0, 'warnings': 0},
-    'metadata': {
-        'listed': True,
-        'is_webextension': True,
-    },
+    'metadata': {'listed': True},
     'messages': [
         {
             'id': ['validator', 'unexpected_exception'],

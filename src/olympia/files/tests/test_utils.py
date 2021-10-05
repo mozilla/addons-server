@@ -308,9 +308,6 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         assert app.min.version == (amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_ANDROID)
         assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
-    def test_is_webextension(self):
-        assert self.parse({})['is_webextension']
-
     def test_allow_static_theme_waffle(self):
         manifest = utils.ManifestJSONExtractor('/fake_path', '{"theme": {}}').parse()
 
@@ -406,7 +403,6 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         """
         manifest = utils.ManifestJSONExtractor('/fake_path', json_string).parse()
 
-        assert manifest['is_webextension'] is True
         assert manifest.get('name') == 'My Extension'
 
     def test_dont_skip_apps_because_of_strict_version_incompatibility(self):
@@ -493,7 +489,6 @@ class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
         ).parse()
         assert parsed_data['type'] == amo.ADDON_LPAPP
         assert parsed_data['strict_compatibility'] is True
-        assert parsed_data['is_webextension'] is True
 
         apps = parsed_data['apps']
         assert len(apps) == 1  # Langpacks are not compatible with android.
@@ -509,7 +504,6 @@ class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
         ).parse()
         assert parsed_data['type'] == amo.ADDON_LPAPP
         assert parsed_data['strict_compatibility'] is True
-        assert parsed_data['is_webextension'] is True
 
         apps = parsed_data['apps']
         assert len(apps) == 1  # Langpacks are not compatible with android.
@@ -531,7 +525,6 @@ class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
         ).parse()
         assert parsed_data['type'] == amo.ADDON_DICT
         assert parsed_data['strict_compatibility'] is False
-        assert parsed_data['is_webextension'] is True
         assert parsed_data['target_locale'] == 'en-US'
 
         apps = parsed_data['apps']
