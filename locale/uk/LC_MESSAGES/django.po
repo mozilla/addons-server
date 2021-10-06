@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-06 15:42+0000\n"
-"PO-Revision-Date: 2021-10-06 18:43+0000\n"
+"PO-Revision-Date: 2021-10-06 21:12+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -4403,7 +4403,7 @@ msgstr "Налаштування YouTube"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
-msgstr ""
+msgstr "Переглянути розширення відібрані персоналом"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended extensions"
@@ -4458,27 +4458,24 @@ msgid "Translation tools"
 msgstr "Засоби для перекладу"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more translation tool staff picks"
-msgstr "Більше засобів для перекладу"
+msgstr "Переглянути більше засобів перекладу відібрані персоналом"
 
 #. editorial content for the homepage shelves.
 msgid "Social streaming"
 msgstr "Стрічки з суспільних мереж"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more social streaming staff picks"
-msgstr "Більше розширень для стрічок суспільних мереж"
+msgstr "Переглянути більше розширень для стрічок суспільних мереж відібраних персоналом"
 
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
 msgstr "Менеджери вкладок"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more tab management staff picks"
-msgstr "Переглянути інші розширення для керування вкладками"
+msgstr "Переглянути більше розширень для керування вкладками відібраних персоналом"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
