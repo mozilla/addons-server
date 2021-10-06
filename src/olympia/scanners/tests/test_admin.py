@@ -572,8 +572,10 @@ class TestScannerResultAdmin(TestCase):
 
         # And finally check that the correct options are selected.
         options = [
-            x.attrib['value'] for x in doc(
-                '#changelist-filter form select[name=exclude_rule] option[selected]')
+            x.attrib['value']
+            for x in doc(
+                '#changelist-filter form select[name=exclude_rule] option[selected]'
+            )
         ]
         expected = [str(rule_bar.pk), str(rule_hello.pk)]
         assert options == expected
