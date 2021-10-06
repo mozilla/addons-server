@@ -1404,6 +1404,28 @@ class TestUploadDetail(UploadMixin, TestCase):
         ]
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
+    def test_invalid_zip_file(self, run_addons_linter_mock):
+        run_addons_linter_mock.return_value = json.dumps(self.validation_ok())
+        self.upload_file(
+            '../../../files/fixtures/files/archive-with-invalid-chars-in-filenames.zip'
+        )
+        # We never even reach the linter (we can't: because we're repacking zip
+        # files, we should raise an error if the zip is invalid before calling
+        # the linter, even though the linter has a perfectly good error message
+        # for this kind of situation).
+        assert not run_addons_linter_mock.called
+        upload = FileUpload.objects.get()
+        response = self.client.get(
+            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
+        )
+        data = json.loads(force_str(response.content))
+        message = [
+            (m['message'], m.get('fatal', False))
+            for m in data['validation']['messages']
+        ]
+        assert message == [('Invalid file name in archive: path\\to\\file.txt', False)]
+
+    @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_experiment_xpi_allowed(self, mock_validator):
         user = UserProfile.objects.get(email='regular@mozilla.com')
         self.grant_permission(user, 'Experiments:submit')
