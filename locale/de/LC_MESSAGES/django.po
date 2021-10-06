@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-06 15:42+0000\n"
-"PO-Revision-Date: 2021-10-06 18:59+0000\n"
+"PO-Revision-Date: 2021-10-06 19:00+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -4427,15 +4427,15 @@ msgstr "Höchstbewertete Erweiterungen gegen Tracking"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity boosters"
-msgstr ""
+msgstr "Verbesserung der Produktivität"
 
 #. editorial content for the secondary hero shelves.
 msgid "YouTube customization"
-msgstr ""
+msgstr "YouTube-Anpassungen"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
-msgstr ""
+msgstr "Von Mitarbeitern ausgewählte Erweiterungen ansehen"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended extensions"
@@ -4458,9 +4458,8 @@ msgid "Enhanced privacy extensions"
 msgstr "Erweiterungen für verbesserten Datenschutz"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more recommended privacy extensions"
-msgstr "Mehr empfohlene Erweiterungen ansehen"
+msgstr "Mehr empfohlene Datenschutz-Erweiterungen ansehen"
 
 #. editorial content for the homepage shelves.
 # Plural in this context means many of the add-on type
@@ -4492,27 +4491,24 @@ msgid "Translation tools"
 msgstr "Übersetzungswerkzeuge"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more translation tool staff picks"
-msgstr "Weitere Übersetzungswerkzeuge ansehen"
+msgstr "Weitere von Mitarbeitern ausgewählte Übersetzungswerkzeuge ansehen"
 
 #. editorial content for the homepage shelves.
 msgid "Social streaming"
 msgstr "Social-Streaming"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more social streaming staff picks"
-msgstr "Mehr soziale Streaming-Erweiterungen ansehen"
+msgstr "Mehr von Mitarbeitern ausgewählte soziale Streaming-Erweiterungen ansehen"
 
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
 msgstr "Tab-Verwaltung"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more tab management staff picks"
-msgstr "Mehr Erweiterungen zur Tab-Vewaltung ansehen"
+msgstr "Mehr von Mitarbeitern ausgewählte Erweiterungen zur Tab-Vewaltung ansehen"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
