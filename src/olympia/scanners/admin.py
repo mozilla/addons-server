@@ -155,11 +155,14 @@ class ExcludeMatchedRulesFilter(SimpleListFilter):
         value = self.value()
         if value is None:
             return queryset
-        # We want to exclude results that *only* matched the given rule, so
-        # we know they'll have exactly one matched rule.
-        return queryset.annotate(num_matches=Count('matched_rules')).exclude(
-            matched_rules__in=value, num_matches=1
-        )
+        # We can't just exclude the list of rules, because then it would hide
+        # results even if they match another rule. So we reverse the logic and
+        # filter results on all rules except those passed. Unfortunately
+        # because that can cause a result to appear several times we need a
+        # distinct().
+        return queryset.filter(
+            matched_rules__in=ScannerRule.objects.exclude(pk__in=value)
+        ).distinct()
 
 
 class WithVersionFilter(PresenceFilter):

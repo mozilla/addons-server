@@ -388,18 +388,20 @@ class TestScannerResultAdmin(TestCase):
         with_bar_and_hello_matches.add_yara_result(rule=rule_hello.name)
         with_bar_and_hello_matches.save()
         with_bar_and_hello_matches.update(created=self.days_ago(3))
+
         with_foo_match = ScannerResult(
             scanner=CUSTOMS, results={'matchedRules': [rule_foo.name]}
         )
         with_foo_match.save()
         with_foo_match.update(created=self.days_ago(2))
+
         with_hello_match = ScannerResult(scanner=YARA)
         with_hello_match.add_yara_result(rule=rule_hello.name)
         with_hello_match.save()
         with_hello_match.update(created=self.days_ago(1))
 
-        # Exclude 'bar'. Because exclude excludes results that *only* match
-        # the target rule, we should still get 3 results.
+        # Exclude 'bar'. We should get 3 results, because they all match other
+        # rules as well, so they wouldn't be excluded.
         response = self.client.get(
             self.list_url,
             {
@@ -439,7 +441,8 @@ class TestScannerResultAdmin(TestCase):
         assert ids == expected_ids
 
         # Exclude 'foo'. with_bar_and_hello_matches and with_hello_match should
-        # still be present.
+        # still be present, and with_foo only should be gone as it only matches
+        # an excluded rule.
         response = self.client.get(
             self.list_url,
             {
@@ -478,9 +481,9 @@ class TestScannerResultAdmin(TestCase):
         with_hello_match.save()
         with_hello_match.update(created=self.days_ago(1))
 
-        # Exclude 'bar' and 'hello'. Because exclude excludes results that
-        # *only* match the target rules, we should get 2 results (with_hello
-        # should be absent).
+        # Exclude 'bar' and 'hello'. One result should be left: with_hello
+        # and with_bar_and_hello both only matches rules that have been
+        # excluded.
         response = self.client.get(
             self.list_url,
             {
@@ -490,23 +493,20 @@ class TestScannerResultAdmin(TestCase):
         )
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#result_list tbody > tr').length == 2
+        assert doc('#result_list tbody > tr').length == 1
         expected_ids = [
             with_foo_match.pk,
-            with_bar_and_hello_matches.pk,
         ]
         ids = list(map(int, doc('#result_list .field-id').text().split(' ')))
         assert ids == expected_ids
 
-        # Exclude 'foo' and 'hello'. Because exclude excludes results that
-        # *only* match the target rules again, only with_bar_and_hello_matches
-        # should be present. Just to add another filter into the mix to test
-        # links, set the state of all results to inconclusive.
+        # Repeat with another filter into the mix to test links.
+        # Set the state of all results to inconclusive first...
         ScannerResult.objects.update(state=INCONCLUSIVE)
         response = self.client.get(
             self.list_url,
             {
-                ExcludeMatchedRulesFilter.parameter_name: [rule_hello.pk, rule_foo.pk],
+                ExcludeMatchedRulesFilter.parameter_name: [rule_bar.pk, rule_hello.pk],
                 WithVersionFilter.parameter_name: 'all',
                 StateFilter.parameter_name: INCONCLUSIVE,
             },
@@ -515,7 +515,7 @@ class TestScannerResultAdmin(TestCase):
         doc = pq(response.content)
         assert doc('#result_list tbody > tr').length == 1
         expected_ids = [
-            with_bar_and_hello_matches.pk,
+            with_foo_match.pk,
         ]
         ids = list(map(int, doc('#result_list .field-id').text().split(' ')))
         assert ids == expected_ids
@@ -525,40 +525,40 @@ class TestScannerResultAdmin(TestCase):
         links = [x.attrib['href'] for x in doc('#changelist-filter a')]
         expected = [
             '?',
-            f'?exclude_rule={rule_hello.pk}&exclude_rule={rule_foo.pk}&has_version=all'
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
             '&state=3',
-            f'?exclude_rule={rule_hello.pk}&exclude_rule={rule_foo.pk}&has_version=all'
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
             '&state=3&scanner__exact=1',
-            f'?exclude_rule={rule_hello.pk}&exclude_rule={rule_foo.pk}&has_version=all'
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
             '&state=3&scanner__exact=2',
-            f'?exclude_rule={rule_hello.pk}&exclude_rule={rule_foo.pk}&has_version=all'
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
             '&state=3&scanner__exact=3',
-            f'?exclude_rule={rule_hello.pk}&exclude_rule={rule_foo.pk}&has_version=all'
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
             '&state=3&scanner__exact=4',
-            f'?exclude_rule={rule_hello.pk}&exclude_rule={rule_foo.pk}&has_version=all'
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
             '&state=3&has_matched_rules=all',
-            f'?exclude_rule={rule_hello.pk}&exclude_rule={rule_foo.pk}&has_version=all'
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
             '&state=3',
-            f'?exclude_rule={rule_hello.pk}&exclude_rule={rule_foo.pk}&has_version=all'
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
             '&state=all',
-            f'?exclude_rule={rule_hello.pk}&exclude_rule={rule_foo.pk}&has_version=all',
-            f'?exclude_rule={rule_hello.pk}&exclude_rule={rule_foo.pk}&has_version=all'
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all',
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
             '&state=1',
-            f'?exclude_rule={rule_hello.pk}&exclude_rule={rule_foo.pk}&has_version=all'
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
             '&state=2',
-            f'?exclude_rule={rule_hello.pk}&exclude_rule={rule_foo.pk}&has_version=all'
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
             '&state=3',
-            f'?exclude_rule={rule_hello.pk}&exclude_rule={rule_foo.pk}&has_version=all'
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
             '&state=3',
-            f'?exclude_rule={rule_hello.pk}&exclude_rule={rule_foo.pk}&has_version=all'
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
             f'&state=3&matched_rules__id__exact={rule_foo.pk}',
-            f'?exclude_rule={rule_hello.pk}&exclude_rule={rule_foo.pk}&has_version=all'
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
             f'&state=3&matched_rules__id__exact={rule_bar.pk}',
-            f'?exclude_rule={rule_hello.pk}&exclude_rule={rule_foo.pk}&has_version=all'
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
             f'&state=3&matched_rules__id__exact={rule_hello.pk}',
-            f'?exclude_rule={rule_hello.pk}&exclude_rule={rule_foo.pk}&has_version=all'
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
             '&state=3',
-            f'?exclude_rule={rule_hello.pk}&exclude_rule={rule_foo.pk}&state=3',
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&state=3',
         ]
         assert links == expected
 
@@ -572,9 +572,10 @@ class TestScannerResultAdmin(TestCase):
 
         # And finally check that the correct options are selected.
         options = [
-            x.attrib['value'] for x in doc('#changelist-filter form option[selected]')
+            x.attrib['value'] for x in doc(
+                '#changelist-filter form select[name=exclude_rule] option[selected]')
         ]
-        expected = [str(rule_foo.pk), str(rule_hello.pk)]
+        expected = [str(rule_bar.pk), str(rule_hello.pk)]
         assert options == expected
 
     def test_list_default(self):
