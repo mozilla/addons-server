@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-29 09:08+0000\n"
+"POT-Creation-Date: 2021-10-06 15:42+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -4502,27 +4502,23 @@ msgstr ""
 msgid "See all extensions"
 msgstr "Arakatu gehigarri guztiak"
 
-#. editorial content for the secondary hero shelves.
-msgid "Tab organizers and tools"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Privacy beyond browser extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Media enhancers for Firefox"
-msgstr ""
-
 # Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
 #, fuzzy
-msgid "Explore extensions"
+msgid "Top anti-tracking extensions"
 msgstr "Hedapenak"
 
 #. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "Argibide gehiago"
+msgid "Productivity boosters"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "YouTube customization"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "See staff picks"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4550,8 +4546,9 @@ msgid "Enhanced privacy extensions"
 msgstr "Arakatu gehigarri guztiak"
 
 #. editorial content for the homepage shelves.
-msgid "See more enhanced privacy extensions"
-msgstr ""
+#, fuzzy
+msgid "See more recommended privacy extensions"
+msgstr "Arakatu gehigarri guztiak"
 
 # Plural in this context means many of the add-on type
 #. editorial content for the homepage shelves.
@@ -4587,7 +4584,7 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "See more translation tools"
+msgid "See more translation tool staff picks"
 msgstr "Arakatu gehigarri guztiak"
 
 #. editorial content for the homepage shelves.
@@ -4597,7 +4594,7 @@ msgstr "Sare sozialak"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "See more social streaming extensions"
+msgid "See more social streaming staff picks"
 msgstr "Arakatu gehigarri guztiak"
 
 #. editorial content for the homepage shelves.
@@ -4606,7 +4603,7 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "See more tab management extensions"
+msgid "See more tab management staff picks"
 msgstr "Arakatu gehigarri guztiak"
 
 #. editorial content for the homepage shelves.
@@ -4652,9 +4649,6 @@ msgstr ""
 
 msgid "Invalid archive."
 msgstr "Artxibo baliogabea."
-
-msgid "Could not find an add-on ID."
-msgstr ""
 
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4945,9 +4939,6 @@ msgid "Needs Admin Static Theme Review"
 msgstr "Kudeatzailearen berrikuspena"
 
 msgid "Sources provided"
-msgstr ""
-
-msgid "WebExtension"
 msgstr ""
 
 msgid "Auto-approval delayed temporarily"
@@ -5892,9 +5883,6 @@ msgstr ""
 
 #, python-format
 msgid "Version already exists. Latest version is: %s."
-msgstr ""
-
-msgid "Only WebExtensions are allowed to omit the Add-on ID"
 msgstr ""
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-29 09:08+0000\n"
+"POT-Creation-Date: 2021-10-06 15:42+0000\n"
 "PO-Revision-Date: 2021-09-24 08:19+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -4396,26 +4396,23 @@ msgstr "Firefox에 다양한 기능을 추가하여 더 빠르고, 안전하고,
 msgid "See all extensions"
 msgstr "모든 확장기능 보기"
 
-#. editorial content for the secondary hero shelves.
-msgid "Tab organizers and tools"
-msgstr "탭 관리 도구"
-
-#. editorial content for the secondary hero shelves.
-msgid "Privacy beyond browser extensions"
-msgstr "확장 기능 이상의 개인 정보 보호 제품"
-
-#. editorial content for the secondary hero shelves.
-msgid "Media enhancers for Firefox"
-msgstr "미디어 기능 향상"
-
 # Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
-msgid "Explore extensions"
-msgstr "확장 기능 탐색하기"
+#, fuzzy
+msgid "Top anti-tracking extensions"
+msgstr "인기 확장 기능"
 
 #. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "더 알아보기"
+msgid "Productivity boosters"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "YouTube customization"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "See staff picks"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "Recommended extensions"
@@ -4438,8 +4435,9 @@ msgid "Enhanced privacy extensions"
 msgstr "향상된 개인 정보 보호 확장 기능"
 
 #. editorial content for the homepage shelves.
-msgid "See more enhanced privacy extensions"
-msgstr "향상된 개인 정보 보호 확장 기능 더보기"
+#, fuzzy
+msgid "See more recommended privacy extensions"
+msgstr "추천 확장 기능 더보기"
 
 # Plural in this context means many of the add-on type
 #. editorial content for the homepage shelves.
@@ -4473,7 +4471,7 @@ msgstr "탭 관리 도구"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "See more translation tools"
+msgid "See more translation tool staff picks"
 msgstr "부가 기능 이름 번역"
 
 #. editorial content for the homepage shelves.
@@ -4483,7 +4481,7 @@ msgstr "소셜네트웍"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "See more social streaming extensions"
+msgid "See more social streaming staff picks"
 msgstr "인기 확장 기능 더보기"
 
 #. editorial content for the homepage shelves.
@@ -4492,7 +4490,7 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "See more tab management extensions"
+msgid "See more tab management staff picks"
 msgstr "추천 확장 기능 더보기"
 
 #. editorial content for the homepage shelves.
@@ -4538,9 +4536,6 @@ msgstr ""
 
 msgid "Invalid archive."
 msgstr "잘못된 압축 파일입니다."
-
-msgid "Could not find an add-on ID."
-msgstr ""
 
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4826,9 +4821,6 @@ msgstr "관리자 정적 테마 검토 필요"
 
 msgid "Sources provided"
 msgstr "원본 제공됨"
-
-msgid "WebExtension"
-msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
 msgstr ""
@@ -5747,9 +5739,6 @@ msgstr ""
 
 #, python-format
 msgid "Version already exists. Latest version is: %s."
-msgstr ""
-
-msgid "Only WebExtensions are allowed to omit the Add-on ID"
 msgstr ""
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."

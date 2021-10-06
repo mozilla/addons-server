@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-29 09:08+0000\n"
+"POT-Creation-Date: 2021-10-06 15:42+0000\n"
 "PO-Revision-Date: 2021-08-26 13:24+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -4446,26 +4446,23 @@ msgstr "Acestea adaugă funcționalități în Firefox pentru a face navigarea m
 msgid "See all extensions"
 msgstr "Vezi toate extensiile"
 
-#. editorial content for the secondary hero shelves.
-msgid "Tab organizers and tools"
-msgstr "Instrumente și organizatoare de file"
-
-#. editorial content for the secondary hero shelves.
-msgid "Privacy beyond browser extensions"
-msgstr "Confidențialitate dincolo de extensiile browserului"
-
-#. editorial content for the secondary hero shelves.
-msgid "Media enhancers for Firefox"
-msgstr "Îmbogățește-ți experiența multimedia pe Firefox"
-
 # Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
-msgid "Explore extensions"
-msgstr "Explorează extensiile"
+#, fuzzy
+msgid "Top anti-tracking extensions"
+msgstr "Extensii populare"
 
 #. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "Află mai multe"
+msgid "Productivity boosters"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "YouTube customization"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "See staff picks"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "Recommended extensions"
@@ -4488,8 +4485,9 @@ msgid "Enhanced privacy extensions"
 msgstr "Extensii care sporesc confidențialitatea"
 
 #. editorial content for the homepage shelves.
-msgid "See more enhanced privacy extensions"
-msgstr "Vezi mai multe extensii care sporesc confidențialitatea"
+#, fuzzy
+msgid "See more recommended privacy extensions"
+msgstr "Vezi mai multe extensii recomandate"
 
 # Plural in this context means many of the add-on type
 #. editorial content for the homepage shelves.
@@ -4521,7 +4519,8 @@ msgid "Translation tools"
 msgstr "Instrumente de traducere"
 
 #. editorial content for the homepage shelves.
-msgid "See more translation tools"
+#, fuzzy
+msgid "See more translation tool staff picks"
 msgstr "Vezi mai multe instrumente de traducere"
 
 #. editorial content for the homepage shelves.
@@ -4531,7 +4530,7 @@ msgstr "Rețele sociale"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "See more social streaming extensions"
+msgid "See more social streaming staff picks"
 msgstr "Vezi mai multe extensii populare"
 
 #. editorial content for the homepage shelves.
@@ -4540,7 +4539,7 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "See more tab management extensions"
+msgid "See more tab management staff picks"
 msgstr "Vezi mai multe extensii recomandate"
 
 #. editorial content for the homepage shelves.
@@ -4587,9 +4586,6 @@ msgstr "Dimensiunea necomprimată este prea mare"
 
 msgid "Invalid archive."
 msgstr "Arhivă nevalidă."
-
-msgid "Could not find an add-on ID."
-msgstr "Nu s-a găsit un ID al suplimentului."
 
 #, fuzzy, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4884,9 +4880,6 @@ msgstr "Necestită recenzia temei statice de către un administrator"
 
 msgid "Sources provided"
 msgstr "Surse furnizate"
-
-msgid "WebExtension"
-msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
 msgstr "Aprobare automată întârziată temporar"
@@ -5755,9 +5748,6 @@ msgstr "Versiunea nu corespunde cu fișierul manifest."
 #, python-format
 msgid "Version already exists. Latest version is: %s."
 msgstr "Versiunea deja există. Ultima versiune este: %s."
-
-msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr "Numai WebExtensions pot omite ID-ul de supliment"
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr "Te rugăm să specifici ID-ul suplimentului în manifest dacă are mai mult de 64 de caractere."

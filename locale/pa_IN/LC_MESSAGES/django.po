@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-29 09:08+0000\n"
+"POT-Creation-Date: 2021-10-06 15:42+0000\n"
 "PO-Revision-Date: 2021-04-12 00:29+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4390,24 +4390,21 @@ msgid "See all extensions"
 msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
 
 #. editorial content for the secondary hero shelves.
-msgid "Tab organizers and tools"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Privacy beyond browser extensions"
-msgstr "ਬਰਾਊਜ਼ਰ ਇਕਟੈਨਸ਼ਨਾਂ ਤੋਂ ਪਾਰ ਪਰਦੇਦਾਰੀ"
-
-#. editorial content for the secondary hero shelves.
-msgid "Media enhancers for Firefox"
-msgstr "ਫਾਇਰਫਾਕਸ ਲਈ ਮੀਡਿਆ ਵਧਾ-ਕਰਤੇ"
-
-#. editorial content for the secondary hero shelves.
-msgid "Explore extensions"
+#, fuzzy
+msgid "Top anti-tracking extensions"
 msgstr "ਐਕਸਟੈਂਸ਼ਨਾਂ ਦੀ ਪੜਚੋਲ ਕਰੋ"
 
 #. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "ਹੋਰ ਜਾਣੋ"
+msgid "Productivity boosters"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "YouTube customization"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "See staff picks"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4434,8 +4431,9 @@ msgid "Enhanced privacy extensions"
 msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
-msgid "See more enhanced privacy extensions"
-msgstr ""
+#, fuzzy
+msgid "See more recommended privacy extensions"
+msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4470,7 +4468,7 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "See more translation tools"
+msgid "See more translation tool staff picks"
 msgstr "ਐਡ-ਆਨ ਨਾਂ ਉਲੱਥੇ"
 
 #. editorial content for the homepage shelves.
@@ -4480,7 +4478,7 @@ msgstr "ਸਮਾਜਕ ਮੇਲ ਮਿਲਾਪ"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "See more social streaming extensions"
+msgid "See more social streaming staff picks"
 msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
@@ -4489,7 +4487,7 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "See more tab management extensions"
+msgid "See more tab management staff picks"
 msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
@@ -4537,9 +4535,6 @@ msgstr "ਬੇਮਿਸਾਲ ਆਕਾਰ ਬਹੁਤ ਵੱਡਾ ਹੈ"
 
 msgid "Invalid archive."
 msgstr "ਗਲਤ ਅਕਾਈਵ।"
-
-msgid "Could not find an add-on ID."
-msgstr "ਐਡ-ਆਨ ਆਈਡੀ ਨਹੀਂ ਲੱਭ ਸਕਿਆ।"
 
 #, fuzzy, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4829,9 +4824,6 @@ msgstr "ਪ੍ਰਬੰਧਕ ਸਮੀਖਿਆ"
 
 msgid "Sources provided"
 msgstr "ਸੋਰਸ ਮੁਹੱਇਆ ਕਰਵਾਏ"
-
-msgid "WebExtension"
-msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
 msgstr ""
@@ -5725,10 +5717,6 @@ msgstr "ਵਰਜਨ ਮੈਨੀਫੈਸਟ ਫਾਈਲ ਨਾਲ ਮੇਲ �
 #, python-format
 msgid "Version already exists. Latest version is: %s."
 msgstr "ਵਰਜਨ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ। ਨਵਾਂ ਵਰਜਨ ਹੈ: %s।"
-
-#, fuzzy
-msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr "ਕੇਵਲ ਵੈਬ WebExtensions ਨੂੰ ਹੀ GUID ਛੱਡਣ ਦੀ ਆਗਿਆ ਹੈ"
 
 #, fuzzy
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."

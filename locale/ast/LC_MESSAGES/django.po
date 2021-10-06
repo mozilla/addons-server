@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-29 09:08+0000\n"
+"POT-Creation-Date: 2021-10-06 15:42+0000\n"
 "PO-Revision-Date: 2021-09-06 00:04+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4265,24 +4265,21 @@ msgid "See all extensions"
 msgstr "Ver toles estensiones"
 
 #. editorial content for the secondary hero shelves.
-msgid "Tab organizers and tools"
+#, fuzzy
+msgid "Top anti-tracking extensions"
+msgstr "Estensiones populares"
+
+#. editorial content for the secondary hero shelves.
+msgid "Productivity boosters"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy beyond browser extensions"
+msgid "YouTube customization"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Media enhancers for Firefox"
+msgid "See staff picks"
 msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Explore extensions"
-msgstr "Esplorar les estensiones"
-
-#. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "Lleer más"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended extensions"
@@ -4305,8 +4302,9 @@ msgid "Enhanced privacy extensions"
 msgstr "Estensiones qu'ameyoren la privacidá"
 
 #. editorial content for the homepage shelves.
-msgid "See more enhanced privacy extensions"
-msgstr "Ver más estensiones qu'ameyoren la privacidá"
+#, fuzzy
+msgid "See more recommended privacy extensions"
+msgstr "Ver más estensiones aconseyaes"
 
 #. editorial content for the homepage shelves.
 msgid "Popular extensions"
@@ -4337,7 +4335,8 @@ msgid "Translation tools"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-msgid "See more translation tools"
+#, fuzzy
+msgid "See more translation tool staff picks"
 msgstr "Ver más ferramientes de traducción"
 
 #. editorial content for the homepage shelves.
@@ -4345,7 +4344,7 @@ msgid "Social streaming"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-msgid "See more social streaming extensions"
+msgid "See more social streaming staff picks"
 msgstr ""
 
 #. editorial content for the homepage shelves.
@@ -4353,7 +4352,8 @@ msgid "Tab managers"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-msgid "See more tab management extensions"
+#, fuzzy
+msgid "See more tab management staff picks"
 msgstr "Ver más estensiones pa xestionar llingüetes"
 
 #. editorial content for the homepage shelves.
@@ -4398,9 +4398,6 @@ msgid "Uncompressed size is too large"
 msgstr ""
 
 msgid "Invalid archive."
-msgstr ""
-
-msgid "Could not find an add-on ID."
 msgstr ""
 
 #, python-format
@@ -4681,9 +4678,6 @@ msgstr ""
 
 msgid "Sources provided"
 msgstr ""
-
-msgid "WebExtension"
-msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
 msgstr ""
@@ -5514,9 +5508,6 @@ msgstr ""
 
 #, python-format
 msgid "Version already exists. Latest version is: %s."
-msgstr ""
-
-msgid "Only WebExtensions are allowed to omit the Add-on ID"
 msgstr ""
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."

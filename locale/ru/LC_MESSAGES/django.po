@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-29 09:08+0000\n"
+"POT-Creation-Date: 2021-10-06 15:42+0000\n"
 "PO-Revision-Date: 2021-08-15 13:26+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -4435,26 +4435,23 @@ msgstr "Они добавляют функции в Firefox, чтобы сдел
 msgid "See all extensions"
 msgstr "Посмотреть все расширения"
 
-#. editorial content for the secondary hero shelves.
-msgid "Tab organizers and tools"
-msgstr "Управление вкладками"
-
-#. editorial content for the secondary hero shelves.
-msgid "Privacy beyond browser extensions"
-msgstr "Приватность за пределами расширений браузера"
-
-#. editorial content for the secondary hero shelves.
-msgid "Media enhancers for Firefox"
-msgstr "Улучшатели медиа для Firefox"
-
 # Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
-msgid "Explore extensions"
-msgstr "Откройте для себя расширения"
+#, fuzzy
+msgid "Top anti-tracking extensions"
+msgstr "Популярные расширения"
 
 #. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "Подробнее"
+msgid "Productivity boosters"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "YouTube customization"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "See staff picks"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "Recommended extensions"
@@ -4477,8 +4474,9 @@ msgid "Enhanced privacy extensions"
 msgstr "Расширения для повышения приватности"
 
 #. editorial content for the homepage shelves.
-msgid "See more enhanced privacy extensions"
-msgstr "Больше расширений для повышения приватности"
+#, fuzzy
+msgid "See more recommended privacy extensions"
+msgstr "Больше рекомендуемых расширений"
 
 # Plural in this context means many of the add-on type
 #. editorial content for the homepage shelves.
@@ -4510,7 +4508,8 @@ msgid "Translation tools"
 msgstr "Инструменты перевода"
 
 #. editorial content for the homepage shelves.
-msgid "See more translation tools"
+#, fuzzy
+msgid "See more translation tool staff picks"
 msgstr "Больше инструментов перевода"
 
 #. editorial content for the homepage shelves.
@@ -4518,7 +4517,8 @@ msgid "Social streaming"
 msgstr "Вещание в социальных сетях"
 
 #. editorial content for the homepage shelves.
-msgid "See more social streaming extensions"
+#, fuzzy
+msgid "See more social streaming staff picks"
 msgstr "Больше расширений для вещания в социальных сетях"
 
 #. editorial content for the homepage shelves.
@@ -4526,7 +4526,8 @@ msgid "Tab managers"
 msgstr "Менеджеры вкладок"
 
 #. editorial content for the homepage shelves.
-msgid "See more tab management extensions"
+#, fuzzy
+msgid "See more tab management staff picks"
 msgstr "Больше расширений для управления вкладками"
 
 #. editorial content for the homepage shelves.
@@ -4572,9 +4573,6 @@ msgstr "Несжатый размер слишком велик"
 
 msgid "Invalid archive."
 msgstr "Некорректный архив."
-
-msgid "Could not find an add-on ID."
-msgstr "Не удалось найти ID дополнения."
 
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4867,9 +4865,6 @@ msgstr "Требуется проверка статической темы ад
 
 msgid "Sources provided"
 msgstr "Предоставленные исходники"
-
-msgid "WebExtension"
-msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
 msgstr "Автоодобрение временно отложено"
@@ -5702,9 +5697,6 @@ msgstr "Версия не соответствует манифесту."
 #, python-format
 msgid "Version already exists. Latest version is: %s."
 msgstr "Версия уже существует. Последняя версия: %s."
-
-msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr "Только WebExtensions разрешено не указывать идентификатор дополнения"
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr "Пожалуйста, укажите идентификатор вашего дополнения в манифесте, если он длиннее 64 символов."

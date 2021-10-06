@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-29 09:08+0000\n"
+"POT-Creation-Date: 2021-10-06 15:42+0000\n"
 "PO-Revision-Date: 2021-07-03 19:18+0000\n"
 "Last-Translator: Paulina Rodriguez <pauli.rodriguez.c@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -4500,26 +4500,23 @@ msgstr "Agregan funciones a Firefox para que la navegación sea más rápida, se
 msgid "See all extensions"
 msgstr "Ver todas las extensiones"
 
-#. editorial content for the secondary hero shelves.
-msgid "Tab organizers and tools"
-msgstr "Organizadores de pestañas y herramientas"
-
-#. editorial content for the secondary hero shelves.
-msgid "Privacy beyond browser extensions"
-msgstr "Privacidad más allá de las extensiones del navegador"
-
-#. editorial content for the secondary hero shelves.
-msgid "Media enhancers for Firefox"
-msgstr "Mejoradores de medios para Firefox"
-
 # Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
-msgid "Explore extensions"
-msgstr "Explorar extensiones"
+#, fuzzy
+msgid "Top anti-tracking extensions"
+msgstr "Extensiones populares"
 
 #. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "Más información"
+msgid "Productivity boosters"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "YouTube customization"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "See staff picks"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "Recommended extensions"
@@ -4543,8 +4540,9 @@ msgid "Enhanced privacy extensions"
 msgstr "Ver todas las extensiones"
 
 #. editorial content for the homepage shelves.
-msgid "See more enhanced privacy extensions"
-msgstr ""
+#, fuzzy
+msgid "See more recommended privacy extensions"
+msgstr "Ver más extensiones recomendadas"
 
 # Plural in this context means many of the add-on type
 #. editorial content for the homepage shelves.
@@ -4578,7 +4576,7 @@ msgstr "Organizadores de pestañas y herramientas"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "See more translation tools"
+msgid "See more translation tool staff picks"
 msgstr "por versión del complemento"
 
 #. editorial content for the homepage shelves.
@@ -4588,7 +4586,7 @@ msgstr "Redes sociales"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "See more social streaming extensions"
+msgid "See more social streaming staff picks"
 msgstr "Ver más extensiones populares"
 
 #. editorial content for the homepage shelves.
@@ -4597,7 +4595,7 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "See more tab management extensions"
+msgid "See more tab management staff picks"
 msgstr "Ver más extensiones recomendadas"
 
 #. editorial content for the homepage shelves.
@@ -4644,9 +4642,6 @@ msgstr "El tamaño sin comprimir es demasiado grande"
 
 msgid "Invalid archive."
 msgstr "Archivo no válido."
-
-msgid "Could not find an add-on ID."
-msgstr "No se pudo encontrar una identificación para el complemento."
 
 #, fuzzy, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4940,9 +4935,6 @@ msgstr "Necesita revisión de tema estático por parte de un administrador"
 
 msgid "Sources provided"
 msgstr "Fuentes facilitadas"
-
-msgid "WebExtension"
-msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
 msgstr "Aprobación automática retrasada temporalmente"
@@ -5826,10 +5818,6 @@ msgstr "La versión no coincide con el archivo manifest."
 #, python-format
 msgid "Version already exists. Latest version is: %s."
 msgstr "Esta versión ya existe. La última versión es %s."
-
-#, fuzzy
-msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr "Solo WebExtensions puede omitir el GUID"
 
 #, fuzzy
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
