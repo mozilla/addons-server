@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-29 09:08+0000\n"
+"POT-Creation-Date: 2021-10-06 15:42+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4480,25 +4480,21 @@ msgid "See all extensions"
 msgstr "Layari semua ekstensi"
 
 #. editorial content for the secondary hero shelves.
-msgid "Tab organizers and tools"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Privacy beyond browser extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Media enhancers for Firefox"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
 #, fuzzy
-msgid "Explore extensions"
+msgid "Top anti-tracking extensions"
 msgstr "Ekstensi"
 
 #. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "Ketahui Selanjutnya"
+msgid "Productivity boosters"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "YouTube customization"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "See staff picks"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4525,8 +4521,9 @@ msgid "Enhanced privacy extensions"
 msgstr "Layari semua ekstensi"
 
 #. editorial content for the homepage shelves.
-msgid "See more enhanced privacy extensions"
-msgstr ""
+#, fuzzy
+msgid "See more recommended privacy extensions"
+msgstr "Layari semua ekstensi"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4561,7 +4558,7 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "See more translation tools"
+msgid "See more translation tool staff picks"
 msgstr "mengikut Versi Add-on"
 
 #. editorial content for the homepage shelves.
@@ -4571,7 +4568,7 @@ msgstr "Rangkaian Sosial"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "See more social streaming extensions"
+msgid "See more social streaming staff picks"
 msgstr "Layari semua ekstensi"
 
 #. editorial content for the homepage shelves.
@@ -4580,7 +4577,7 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "See more tab management extensions"
+msgid "See more tab management staff picks"
 msgstr "Layari semua ekstensi"
 
 #. editorial content for the homepage shelves.
@@ -4627,9 +4624,6 @@ msgstr ""
 
 msgid "Invalid archive."
 msgstr "Arkib tidak sah."
-
-msgid "Could not find an add-on ID."
-msgstr "Tidak dapat menemukan ID add-on."
 
 #, fuzzy, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4926,9 +4920,6 @@ msgstr "Perlu Semakan Pentadbir Tema Statik"
 
 msgid "Sources provided"
 msgstr "Sumber disediakan"
-
-msgid "WebExtension"
-msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
 msgstr ""
@@ -5832,10 +5823,6 @@ msgstr "Versi tidak sepadan dengan fail manifes."
 #, python-format
 msgid "Version already exists. Latest version is: %s."
 msgstr "Versi sudah wujud. Versi terkini adalah: %s."
-
-#, fuzzy
-msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr "Hanya WebExtensions dibenarkan untuk mengabaikan GUID"
 
 #, fuzzy
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."

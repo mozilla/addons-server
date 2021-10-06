@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-29 09:08+0000\n"
+"POT-Creation-Date: 2021-10-06 15:42+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -5210,27 +5210,23 @@ msgstr ""
 msgid "See all extensions"
 msgstr "Pogledajte sve dodatke"
 
-#. editorial content for the secondary hero shelves.
-msgid "Tab organizers and tools"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Privacy beyond browser extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Media enhancers for Firefox"
-msgstr ""
-
 # Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
 #, fuzzy
-msgid "Explore extensions"
+msgid "Top anti-tracking extensions"
 msgstr "Ekstenzije"
 
 #. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "Saznajte više"
+msgid "Productivity boosters"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "YouTube customization"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "See staff picks"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -5257,8 +5253,9 @@ msgid "Enhanced privacy extensions"
 msgstr "Pogledajte sve dodatke"
 
 #. editorial content for the homepage shelves.
-msgid "See more enhanced privacy extensions"
-msgstr ""
+#, fuzzy
+msgid "See more recommended privacy extensions"
+msgstr "Pogledajte sve dodatke"
 
 # Plural in this context means many of the add-on type
 #. editorial content for the homepage shelves.
@@ -5294,7 +5291,7 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "See more translation tools"
+msgid "See more translation tool staff picks"
 msgstr "po verziji dodatka"
 
 #. editorial content for the homepage shelves.
@@ -5303,7 +5300,7 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "See more social streaming extensions"
+msgid "See more social streaming staff picks"
 msgstr "Pogledajte sve dodatke"
 
 #. editorial content for the homepage shelves.
@@ -5312,7 +5309,7 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "See more tab management extensions"
+msgid "See more tab management staff picks"
 msgstr "Pogledajte sve dodatke"
 
 #. editorial content for the homepage shelves.
@@ -5360,9 +5357,6 @@ msgstr ""
 
 msgid "Invalid archive."
 msgstr "Nevažeća arhiva."
-
-msgid "Could not find an add-on ID."
-msgstr ""
 
 #, python-format
 msgid ""
@@ -5692,9 +5686,6 @@ msgstr "Recenzija administratora"
 
 msgid "Sources provided"
 msgstr "Pruženi izvori"
-
-msgid "WebExtension"
-msgstr ""
 
 msgid "Auto-approval delayed temporarily"
 msgstr ""
@@ -6685,9 +6676,6 @@ msgstr ""
 
 #, python-format
 msgid "Version already exists. Latest version is: %s."
-msgstr ""
-
-msgid "Only WebExtensions are allowed to omit the Add-on ID"
 msgstr ""
 
 msgid ""

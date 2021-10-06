@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-29 09:08+0000\n"
+"POT-Creation-Date: 2021-10-06 15:42+0000\n"
 "PO-Revision-Date: 2021-04-29 18:23+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4341,24 +4341,21 @@ msgid "See all extensions"
 msgstr "Vis alle utvidingar"
 
 #. editorial content for the secondary hero shelves.
-msgid "Tab organizers and tools"
+#, fuzzy
+msgid "Top anti-tracking extensions"
+msgstr "Populære udvidingar"
+
+#. editorial content for the secondary hero shelves.
+msgid "Productivity boosters"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy beyond browser extensions"
+msgid "YouTube customization"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Media enhancers for Firefox"
+msgid "See staff picks"
 msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Explore extensions"
-msgstr "Utforsk utvidingar"
-
-#. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "Les meir"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended extensions"
@@ -4381,8 +4378,9 @@ msgid "Enhanced privacy extensions"
 msgstr "Forbetra personvernutvidingar"
 
 #. editorial content for the homepage shelves.
-msgid "See more enhanced privacy extensions"
-msgstr ""
+#, fuzzy
+msgid "See more recommended privacy extensions"
+msgstr "Vis fleire tilrådde utvidingar"
 
 #. editorial content for the homepage shelves.
 msgid "Popular extensions"
@@ -4414,7 +4412,7 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "See more translation tools"
+msgid "See more translation tool staff picks"
 msgstr "etter utvidingsversjon"
 
 #. editorial content for the homepage shelves.
@@ -4424,7 +4422,7 @@ msgstr "Sosiale nettverk"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "See more social streaming extensions"
+msgid "See more social streaming staff picks"
 msgstr "Vis fleire populære utvidingar"
 
 #. editorial content for the homepage shelves.
@@ -4433,7 +4431,7 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "See more tab management extensions"
+msgid "See more tab management staff picks"
 msgstr "Vis fleire tilrådde utvidingar"
 
 #. editorial content for the homepage shelves.
@@ -4480,9 +4478,6 @@ msgstr ""
 
 msgid "Invalid archive."
 msgstr "Ugyldig arkiv."
-
-msgid "Could not find an add-on ID."
-msgstr "Klarte ikkje å finne nokon utvidings-ID."
 
 #, fuzzy, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4765,9 +4760,6 @@ msgstr "Treng administrativ vurdering av statisk tema"
 
 msgid "Sources provided"
 msgstr "Tilgjengelege kjelder"
-
-msgid "WebExtension"
-msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
 msgstr ""
@@ -5624,10 +5616,6 @@ msgstr "Versjonen passar ikkje med manifest-fila."
 #, python-format
 msgid "Version already exists. Latest version is: %s."
 msgstr "Versjonen finst allereie. Siste versjon er: %s."
-
-#, fuzzy
-msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr "Berre WebExtensions har løyve tiilå utelate GUID"
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr ""

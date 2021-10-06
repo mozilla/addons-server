@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-29 09:08+0000\n"
+"POT-Creation-Date: 2021-10-06 15:42+0000\n"
 "PO-Revision-Date: 2021-07-29 19:00+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
@@ -4370,26 +4370,23 @@ msgstr "הן מוסיפות תכונות ל־‏Firefox כדי להפוך את �
 msgid "See all extensions"
 msgstr "הצגת כל ההרחבות"
 
-#. editorial content for the secondary hero shelves.
-msgid "Tab organizers and tools"
-msgstr "כלים לארגון לשוניות"
-
-#. editorial content for the secondary hero shelves.
-msgid "Privacy beyond browser extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Media enhancers for Firefox"
-msgstr ""
-
 # Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
-msgid "Explore extensions"
-msgstr "עיון בהרחבות"
+#, fuzzy
+msgid "Top anti-tracking extensions"
+msgstr "הרחבות פופולריות"
 
 #. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "מידע נוסף"
+msgid "Productivity boosters"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "YouTube customization"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "See staff picks"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "Recommended extensions"
@@ -4412,8 +4409,9 @@ msgid "Enhanced privacy extensions"
 msgstr "הרחבות לשיפור הפרטיות"
 
 #. editorial content for the homepage shelves.
-msgid "See more enhanced privacy extensions"
-msgstr ""
+#, fuzzy
+msgid "See more recommended privacy extensions"
+msgstr "הצגת הרחבות מומלצות נוספות"
 
 # Plural in this context means many of the add-on type
 #. editorial content for the homepage shelves.
@@ -4447,7 +4445,7 @@ msgstr "כלים לארגון לשוניות"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "See more translation tools"
+msgid "See more translation tool staff picks"
 msgstr "תרגומים לשם התוספת"
 
 #. editorial content for the homepage shelves.
@@ -4457,7 +4455,7 @@ msgstr "רשתות חברתיות"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "See more social streaming extensions"
+msgid "See more social streaming staff picks"
 msgstr "הצגת הרחבות פופולריות נוספות"
 
 #. editorial content for the homepage shelves.
@@ -4466,7 +4464,7 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "See more tab management extensions"
+msgid "See more tab management staff picks"
 msgstr "הצגת הרחבות מומלצות נוספות"
 
 #. editorial content for the homepage shelves.
@@ -4512,9 +4510,6 @@ msgstr "הגודל הלא דחוס גדול מדי"
 
 msgid "Invalid archive."
 msgstr "ארכיון שגוי."
-
-msgid "Could not find an add-on ID."
-msgstr "לא ניתן למצוא מזהה תוספת."
 
 #, fuzzy, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4803,9 +4798,6 @@ msgstr "נדרשת סקירת ערכת נושא סטטית על־ידי מנהל
 
 msgid "Sources provided"
 msgstr "קוד המקור סופק"
-
-msgid "WebExtension"
-msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
 msgstr ""
@@ -5682,9 +5674,6 @@ msgstr ""
 #, python-format
 msgid "Version already exists. Latest version is: %s."
 msgstr "הגרסה כבר קיימת. הגרסה העדכנית ביותר היא: %s."
-
-msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr "רק WebExtensions מורשים להשמיט את מזהה התוספת"
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr ""

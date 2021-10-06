@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-29 09:08+0000\n"
+"POT-Creation-Date: 2021-10-06 15:42+0000\n"
 "PO-Revision-Date: 2021-08-11 14:11+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -4425,26 +4425,23 @@ msgstr "Estes adicionam funcionalidades ao Firefox para tornar a navegação mai
 msgid "See all extensions"
 msgstr "Ver todas as extensões"
 
-#. editorial content for the secondary hero shelves.
-msgid "Tab organizers and tools"
-msgstr "Organizadores de separadores e ferramentas"
-
-#. editorial content for the secondary hero shelves.
-msgid "Privacy beyond browser extensions"
-msgstr "Privacidade além das extensões de navegador"
-
-#. editorial content for the secondary hero shelves.
-msgid "Media enhancers for Firefox"
-msgstr "Otimizadores de media para o Firefox"
-
 # Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
-msgid "Explore extensions"
-msgstr "Explorar extensões"
+#, fuzzy
+msgid "Top anti-tracking extensions"
+msgstr "Extensões populares"
 
 #. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "Saber mais"
+msgid "Productivity boosters"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "YouTube customization"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "See staff picks"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "Recommended extensions"
@@ -4467,8 +4464,9 @@ msgid "Enhanced privacy extensions"
 msgstr "Extensões para reforço da privacidade"
 
 #. editorial content for the homepage shelves.
-msgid "See more enhanced privacy extensions"
-msgstr "Ver mais extensões de reforço da privacidade"
+#, fuzzy
+msgid "See more recommended privacy extensions"
+msgstr "Ver mais extensões recomendadas"
 
 # Plural in this context means many of the add-on type
 #. editorial content for the homepage shelves.
@@ -4500,7 +4498,8 @@ msgid "Translation tools"
 msgstr "Ferramentas de tradução"
 
 #. editorial content for the homepage shelves.
-msgid "See more translation tools"
+#, fuzzy
+msgid "See more translation tool staff picks"
 msgstr "Ver mais ferramentas de tradução"
 
 #. editorial content for the homepage shelves.
@@ -4508,7 +4507,8 @@ msgid "Social streaming"
 msgstr "Transmissões sociais"
 
 #. editorial content for the homepage shelves.
-msgid "See more social streaming extensions"
+#, fuzzy
+msgid "See more social streaming staff picks"
 msgstr "Ver mais extensões de transmissões sociais"
 
 #. editorial content for the homepage shelves.
@@ -4516,7 +4516,8 @@ msgid "Tab managers"
 msgstr "Gestores de marcadores"
 
 #. editorial content for the homepage shelves.
-msgid "See more tab management extensions"
+#, fuzzy
+msgid "See more tab management staff picks"
 msgstr "Ver mais extensões de gestão de separadores"
 
 #. editorial content for the homepage shelves.
@@ -4562,9 +4563,6 @@ msgstr "O tamanho não comprimido é muito grande"
 
 msgid "Invalid archive."
 msgstr "Arquivo inválido."
-
-msgid "Could not find an add-on ID."
-msgstr "Não foi possível encontrar um ID do extra."
 
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4856,9 +4854,6 @@ msgstr "Precisa de revisão de tema estático de administrador"
 
 msgid "Sources provided"
 msgstr "Fontes fornecidas"
-
-msgid "WebExtension"
-msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
 msgstr "A aprovação automática foi temporariamente atrasada"
@@ -5691,9 +5686,6 @@ msgstr "A versão não corresponde ao ficheiro manifest."
 #, python-format
 msgid "Version already exists. Latest version is: %s."
 msgstr "A versão já existe. A versão mais recente é: %s."
-
-msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr "Apenas as WebExtensions têm permissão para omitir a Identificação do Extra"
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr "Por favor, especifique a Identificação do seu Extra no manifesto se for maior do que 64 carateres."

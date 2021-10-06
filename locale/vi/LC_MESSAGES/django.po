@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-29 09:08+0000\n"
+"POT-Creation-Date: 2021-10-06 15:42+0000\n"
 "PO-Revision-Date: 2021-04-05 13:13+0000\n"
 "Last-Translator: thndf67346 <thndf67346@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -4388,26 +4388,23 @@ msgstr "Chúng thêm các tính năng vào Firefox để giúp duyệt web nhanh
 msgid "See all extensions"
 msgstr "Xem tất cả các tiện ích mở rộng"
 
-#. editorial content for the secondary hero shelves.
-msgid "Tab organizers and tools"
-msgstr "Công cụ và tổ chức thẻ"
-
-#. editorial content for the secondary hero shelves.
-msgid "Privacy beyond browser extensions"
-msgstr "Bảo mật ngoài tiện ích mở rộng trình duyệt"
-
-#. editorial content for the secondary hero shelves.
-msgid "Media enhancers for Firefox"
-msgstr "Các trình tăng cường phương tiện cho Firefox"
-
 # Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
-msgid "Explore extensions"
-msgstr "Khám phá tiện ích mở rộng"
+#, fuzzy
+msgid "Top anti-tracking extensions"
+msgstr "Các tiện ích mở rộng phổ biến"
 
 #. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "Tìm hiểu Thêm"
+msgid "Productivity boosters"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "YouTube customization"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "See staff picks"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "Recommended extensions"
@@ -4430,8 +4427,9 @@ msgid "Enhanced privacy extensions"
 msgstr "Tiện ích mở rộng bảo mật nâng cao"
 
 #. editorial content for the homepage shelves.
-msgid "See more enhanced privacy extensions"
-msgstr ""
+#, fuzzy
+msgid "See more recommended privacy extensions"
+msgstr "Xem thêm các tiện ích mở rộng được đề xuất"
 
 # Plural in this context means many of the add-on type
 #. editorial content for the homepage shelves.
@@ -4465,7 +4463,7 @@ msgstr "Công cụ và tổ chức thẻ"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "See more translation tools"
+msgid "See more translation tool staff picks"
 msgstr "Bản dịch tên tiện ích"
 
 #. editorial content for the homepage shelves.
@@ -4475,7 +4473,7 @@ msgstr "Mạng xã hội"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "See more social streaming extensions"
+msgid "See more social streaming staff picks"
 msgstr "Xem thêm các tiện ích phổ biến"
 
 #. editorial content for the homepage shelves.
@@ -4484,7 +4482,7 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "See more tab management extensions"
+msgid "See more tab management staff picks"
 msgstr "Xem thêm các tiện ích mở rộng được đề xuất"
 
 #. editorial content for the homepage shelves.
@@ -4530,9 +4528,6 @@ msgstr ""
 
 msgid "Invalid archive."
 msgstr "Gói nén bất hợp lệ."
-
-msgid "Could not find an add-on ID."
-msgstr ""
 
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4814,9 +4809,6 @@ msgid "Needs Admin Static Theme Review"
 msgstr "Cần xem lại chủ đề tĩnh của quản trị"
 
 msgid "Sources provided"
-msgstr ""
-
-msgid "WebExtension"
 msgstr ""
 
 msgid "Auto-approval delayed temporarily"
@@ -5690,9 +5682,6 @@ msgstr ""
 #, python-format
 msgid "Version already exists. Latest version is: %s."
 msgstr ""
-
-msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr "Chỉ WebExtensions mới được phép bỏ qua ID tiện ích"
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr ""

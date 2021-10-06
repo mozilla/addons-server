@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-29 09:08+0000\n"
+"POT-Creation-Date: 2021-10-06 15:42+0000\n"
 "PO-Revision-Date: 2021-07-27 16:19+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
@@ -4348,24 +4348,21 @@ msgid "See all extensions"
 msgstr "Pogledaj sva proširenja"
 
 #. editorial content for the secondary hero shelves.
-msgid "Tab organizers and tools"
-msgstr "Upravljanje karticama i alati"
+#, fuzzy
+msgid "Top anti-tracking extensions"
+msgstr "Popularna proširenja"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy beyond browser extensions"
-msgstr "Privatnost čak i bez proširenja preglednika"
+msgid "Productivity boosters"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Media enhancers for Firefox"
-msgstr "Firefox proširenja za medije"
+msgid "YouTube customization"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Explore extensions"
-msgstr "Istraži proširenja"
-
-#. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "Saznaj više"
+msgid "See staff picks"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "Recommended extensions"
@@ -4388,8 +4385,9 @@ msgid "Enhanced privacy extensions"
 msgstr "Poboljšana proširenja za privatnost"
 
 #. editorial content for the homepage shelves.
-msgid "See more enhanced privacy extensions"
-msgstr ""
+#, fuzzy
+msgid "See more recommended privacy extensions"
+msgstr "Pogledaj još preporučenih proširenja"
 
 #. editorial content for the homepage shelves.
 msgid "Popular extensions"
@@ -4420,7 +4418,8 @@ msgid "Translation tools"
 msgstr "Alati za prevođenje"
 
 #. editorial content for the homepage shelves.
-msgid "See more translation tools"
+#, fuzzy
+msgid "See more translation tool staff picks"
 msgstr "Pogledaj još alata za prevođenje"
 
 #. editorial content for the homepage shelves.
@@ -4430,7 +4429,7 @@ msgstr "Društvene mreže"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "See more social streaming extensions"
+msgid "See more social streaming staff picks"
 msgstr "Pogledaj još popularnih proširenja"
 
 #. editorial content for the homepage shelves.
@@ -4439,7 +4438,7 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "See more tab management extensions"
+msgid "See more tab management staff picks"
 msgstr "Pogledaj još preporučenih proširenja"
 
 #. editorial content for the homepage shelves.
@@ -4484,9 +4483,6 @@ msgid "Uncompressed size is too large"
 msgstr ""
 
 msgid "Invalid archive."
-msgstr ""
-
-msgid "Could not find an add-on ID."
 msgstr ""
 
 #, python-format
@@ -4771,9 +4767,6 @@ msgstr "Potreban je administratorski pregled statičke teme"
 
 msgid "Sources provided"
 msgstr "Izvori osigurani"
-
-msgid "WebExtension"
-msgstr "Web-proširenje"
 
 msgid "Auto-approval delayed temporarily"
 msgstr ""
@@ -5619,9 +5612,6 @@ msgstr "Verzija ne odgovara datoteci manifesta."
 #, python-format
 msgid "Version already exists. Latest version is: %s."
 msgstr "Verzija već postoji. Najnovija verzija je: %s."
-
-msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr "ID oznaku dodatka smiju ispustiti samo Web-proširenja"
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr "Navedi ID oznaku svog dodatka u manifestu, ako je duži od 64 znaka."

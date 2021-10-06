@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-29 09:08+0000\n"
+"POT-Creation-Date: 2021-10-06 15:42+0000\n"
 "PO-Revision-Date: 2021-09-02 09:29+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4396,24 +4396,21 @@ msgid "See all extensions"
 msgstr "ყველა გაფართოების ნახვა"
 
 #. editorial content for the secondary hero shelves.
-msgid "Tab organizers and tools"
-msgstr "ჩანართების მორგება და ხელსაწყოები"
+#, fuzzy
+msgid "Top anti-tracking extensions"
+msgstr "გავრცელებული გაფართოებები"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy beyond browser extensions"
-msgstr "გაფართოებები პირადი მონაცემების დაცვით"
+msgid "Productivity boosters"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Media enhancers for Firefox"
-msgstr "საშუალებები, რომლებითაც Firefox უკეთ იმუშავებს ფაილებთან"
+msgid "YouTube customization"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Explore extensions"
-msgstr "მოიძიეთ გაფართოებები"
-
-#. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "იხილეთ ვრცლად"
+msgid "See staff picks"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "Recommended extensions"
@@ -4436,8 +4433,9 @@ msgid "Enhanced privacy extensions"
 msgstr "გაფართოებები პირადულობის ასამაღლებლად"
 
 #. editorial content for the homepage shelves.
-msgid "See more enhanced privacy extensions"
-msgstr "სხვა გაფართოებები პირადულობის ასამაღლებლად"
+#, fuzzy
+msgid "See more recommended privacy extensions"
+msgstr "სხვა სასურველი გაფართოებები"
 
 #. editorial content for the homepage shelves.
 msgid "Popular extensions"
@@ -4468,7 +4466,8 @@ msgid "Translation tools"
 msgstr "თარგმნის ხელსაწყოები"
 
 #. editorial content for the homepage shelves.
-msgid "See more translation tools"
+#, fuzzy
+msgid "See more translation tool staff picks"
 msgstr "თარგმნის სხვა ხელსაწყოები"
 
 #. editorial content for the homepage shelves.
@@ -4476,7 +4475,8 @@ msgid "Social streaming"
 msgstr "სოციალური ნაკადი"
 
 #. editorial content for the homepage shelves.
-msgid "See more social streaming extensions"
+#, fuzzy
+msgid "See more social streaming staff picks"
 msgstr "სოციალური ნაკადის სხვა გავრცელებული გაფართოებები"
 
 #. editorial content for the homepage shelves.
@@ -4484,7 +4484,8 @@ msgid "Tab managers"
 msgstr "ჩანართის მმართველები"
 
 #. editorial content for the homepage shelves.
-msgid "See more tab management extensions"
+#, fuzzy
+msgid "See more tab management staff picks"
 msgstr "ჩანართის მმართველი სხვა გაფართოებები"
 
 #. editorial content for the homepage shelves.
@@ -4530,9 +4531,6 @@ msgstr "შეუკუმშავის ზომა ზედმეტად 
 
 msgid "Invalid archive."
 msgstr "უმართებულო არქივი."
-
-msgid "Could not find an add-on ID."
-msgstr "დამატების ID ვერ მოიძებნა."
 
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4822,9 +4820,6 @@ msgstr "უცვლელი თემა საჭიროებს მმა
 
 msgid "Sources provided"
 msgstr "წყაროები მოცემულია"
-
-msgid "WebExtension"
-msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
 msgstr "თვითდამოწმება გადადებულია დროებით"
@@ -5657,9 +5652,6 @@ msgstr "ვერსია არ ემთხვევა მანიფეს
 #, python-format
 msgid "Version already exists. Latest version is: %s."
 msgstr "ეს ვერსია უკვე არსებობს. უახლესი ვერსიაა: %s."
-
-msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr "დამატების ID-ის გამოტოვება, მხოლოდ WebExtensions-ის შემთხვევაშია შესაძლებელი"
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr "გთხოვთ, მიუთითოთ დამატების ID მანიფესტის ფაილში, თუ არ აღემატება 64 სიმბოლოს."

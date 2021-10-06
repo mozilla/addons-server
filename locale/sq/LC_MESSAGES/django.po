@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-29 09:08+0000\n"
+"POT-Creation-Date: 2021-10-06 15:42+0000\n"
 "PO-Revision-Date: 2021-07-31 08:16+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -4412,26 +4412,23 @@ msgstr "Ato i shtojnë Firefox-it veçori për ta bërë shfletimin më të shpe
 msgid "See all extensions"
 msgstr "Shihni tërë zgjerimet"
 
-#. editorial content for the secondary hero shelves.
-msgid "Tab organizers and tools"
-msgstr "Sistemues dhe mjete skedash"
-
-#. editorial content for the secondary hero shelves.
-msgid "Privacy beyond browser extensions"
-msgstr "Zgjerime privatësie tej shfletuesish"
-
-#. editorial content for the secondary hero shelves.
-msgid "Media enhancers for Firefox"
-msgstr "Thellues mediash për Firefox-in"
-
 # Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
-msgid "Explore extensions"
-msgstr "Eksploroni zgjerime"
+#, fuzzy
+msgid "Top anti-tracking extensions"
+msgstr "Zgjerime popullore"
 
 #. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "Mësoni Më Tepër"
+msgid "Productivity boosters"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "YouTube customization"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "See staff picks"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "Recommended extensions"
@@ -4454,8 +4451,9 @@ msgid "Enhanced privacy extensions"
 msgstr "Zgjerime privatësie të thelluar"
 
 #. editorial content for the homepage shelves.
-msgid "See more enhanced privacy extensions"
-msgstr "Shihni më tepër zgjerime thellimi privatësie"
+#, fuzzy
+msgid "See more recommended privacy extensions"
+msgstr "Shihni më tepër zgjerime të rekomanduara"
 
 # Plural in this context means many of the add-on type
 #. editorial content for the homepage shelves.
@@ -4487,7 +4485,8 @@ msgid "Translation tools"
 msgstr "Mjete përkthimi"
 
 #. editorial content for the homepage shelves.
-msgid "See more translation tools"
+#, fuzzy
+msgid "See more translation tool staff picks"
 msgstr "Shihni më tepër mjete përkthimi"
 
 #. editorial content for the homepage shelves.
@@ -4495,7 +4494,8 @@ msgid "Social streaming"
 msgstr "Transmetim shoqëror"
 
 #. editorial content for the homepage shelves.
-msgid "See more social streaming extensions"
+#, fuzzy
+msgid "See more social streaming staff picks"
 msgstr "Shihni më tepër zgjerime transmetimi në shoqërorë"
 
 #. editorial content for the homepage shelves.
@@ -4504,7 +4504,7 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "See more tab management extensions"
+msgid "See more tab management staff picks"
 msgstr "Shihni më tepër zgjerime të rekomanduara"
 
 #. editorial content for the homepage shelves.
@@ -4550,9 +4550,6 @@ msgstr "Madhësia e të çngjeshurës është shumë e madhe"
 
 msgid "Invalid archive."
 msgstr "Arkiv i pavlefshëm."
-
-msgid "Could not find an add-on ID."
-msgstr "S’u gjet dot një ID Shtese."
 
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4843,9 +4840,6 @@ msgstr "Lyp Shqyrtim Teme Statike Nga Një Përgjegjës"
 
 msgid "Sources provided"
 msgstr "Burimet janë dhënë"
-
-msgid "WebExtension"
-msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
 msgstr "Vetëmiratimi është shtyrë përkohësisht për më vonë"
@@ -5679,9 +5673,6 @@ msgstr "Versioni nuk përputhet me kartelën manifest."
 #, python-format
 msgid "Version already exists. Latest version is: %s."
 msgstr "Versioni ekziston. Versioni më i ri është: %s."
-
-msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr "Lënia jashtë e ID-së lejohet vetëm për WebExtensions"
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr "Ju lutemi, specifikoni në manifest ID Shtese, nëse është më i gjatë se 64 shenja."
