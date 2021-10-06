@@ -8,7 +8,6 @@ import json
 import operator
 import os
 import re
-import scandir
 import shutil
 import string
 import subprocess
@@ -1047,7 +1046,7 @@ def walkfiles(folder, suffix=''):
     """Iterator over files in folder, recursively."""
     return (
         os.path.join(basename, filename)
-        for basename, dirnames, filenames in scandir.walk(folder)
+        for basename, dirnames, filenames in os.walk(folder)
         for filename in filenames
         if filename.endswith(suffix)
     )
