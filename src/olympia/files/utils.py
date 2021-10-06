@@ -128,6 +128,12 @@ class InvalidManifest(forms.ValidationError):
     pass
 
 
+class InvalidZipFile(forms.ValidationError):
+    """This error is raised when we attempt to open an invalid file with SafeZip."""
+
+    pass
+
+
 class Extractor:
     """Extract add-on info from a manifest file."""
 
@@ -513,7 +519,7 @@ def archive_member_validator(archive, member):
 
 def _validate_archive_member_name_and_size(filename, filesize):
     if filename is None or filesize is None:
-        raise forms.ValidationError(gettext('Unsupported archive type.'))
+        raise InvalidZipFile(gettext('Unsupported archive type.'))
 
     try:
         force_str(filename)
@@ -525,7 +531,7 @@ def _validate_archive_member_name_and_size(filename, filesize):
             'Invalid file name in archive. Please make sure '
             'all filenames are utf-8 or latin1 encoded.'
         )
-        raise forms.ValidationError(msg)
+        raise InvalidZipFile(msg)
 
     if (
         '\\' in filename
@@ -536,13 +542,13 @@ def _validate_archive_member_name_and_size(filename, filesize):
         log.error('Extraction error, invalid file name: %s' % (filename))
         # L10n: {0} is the name of the invalid file.
         msg = gettext('Invalid file name in archive: {0}')
-        raise forms.ValidationError(msg.format(filename))
+        raise InvalidZipFile(msg.format(filename))
 
     if filesize > settings.FILE_UNZIP_SIZE_LIMIT:
         log.error(f'Extraction error, file too big for file ({filename}): {filesize}')
         # L10n: {0} is the name of the invalid file.
         msg = gettext('File exceeding size limit in archive: {0}')
-        raise forms.ValidationError(msg.format(filename))
+        raise InvalidZipFile(msg.format(filename))
 
 
 class SafeZip:
@@ -570,7 +576,7 @@ class SafeZip:
             archive_member_validator(self.source, info)
 
         if total_file_size >= settings.MAX_ZIP_UNCOMPRESSED_SIZE:
-            raise forms.ValidationError(gettext('Uncompressed size is too large'))
+            raise InvalidZipFile(gettext('Uncompressed size is too large'))
 
         self.info_list = info_list
         self.zip_file = zip_file
