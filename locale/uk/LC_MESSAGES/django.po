@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-06 15:42+0000\n"
-"PO-Revision-Date: 2021-10-06 18:35+0000\n"
+"PO-Revision-Date: 2021-10-06 18:43+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -4426,9 +4426,8 @@ msgid "Enhanced privacy extensions"
 msgstr "Розширення для поліпшення приватності"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more recommended privacy extensions"
-msgstr "Більше рекомендованих розширень"
+msgstr "Переглянути інші рекомендовані розширення для приватності"
 
 #. editorial content for the homepage shelves.
 msgid "Popular extensions"
