@@ -222,7 +222,16 @@ class Version(OnChangeMixin, ModelBase):
         return markupsafe.escape(self.version)
 
     @classmethod
-    def from_upload(cls, upload, addon, selected_apps, channel, parsed_data=None):
+    def from_upload(
+        cls,
+        upload,
+        addon,
+        channel,
+        *,
+        selected_apps=None,
+        compatiblity=None,
+        parsed_data=None,
+    ):
         """
         Create a Version instance and corresponding File(s) from a
         FileUpload, an Addon, a list of compatible app ids, a channel id and
@@ -237,6 +246,16 @@ class Version(OnChangeMixin, ModelBase):
         from olympia.git.utils import create_git_extraction_entry
 
         assert parsed_data is not None
+
+        if addon.type == amo.ADDON_STATICTHEME:
+            # We don't let developers select apps for static themes
+            compatiblity = {
+                app: (compatiblity or {}).get(
+                    app, ApplicationsVersions(application=app.id)
+                )
+                for app in amo.APP_USAGE
+            }
+        assert selected_apps or compatiblity
 
         if addon.status == amo.STATUS_DISABLED:
             raise VersionCreateError(
@@ -291,23 +310,26 @@ class Version(OnChangeMixin, ModelBase):
                 amo.LOG.ADD_VERSION, version, addon, user=upload.user or get_task_user()
             )
 
-        if addon.type == amo.ADDON_STATICTHEME:
-            # We don't let developers select apps for static themes
-            selected_apps = [app.id for app in amo.APP_USAGE]
+        if not compatiblity:
+            compatiblity = {
+                amo.APP_IDS[app_id]: ApplicationsVersions(application=app_id)
+                for app_id in selected_apps
+            }
 
         compatible_apps = {}
-        for app in parsed_data.get('apps', []):
-            if app.id not in selected_apps:
+        for parsed_app in parsed_data.get('apps', []):
+            if parsed_app.appdata not in compatiblity:
                 # If the user chose to explicitly deselect Firefox for Android
                 # we're not creating the respective `ApplicationsVersions`
                 # which will have this add-on then be listed only for
                 # Firefox specifically.
                 continue
-
-            compatible_apps[app.appdata] = ApplicationsVersions(
-                version=version, min=app.min, max=app.max, application=app.id
-            )
-            compatible_apps[app.appdata].save()
+            avs = compatiblity[parsed_app.appdata]
+            avs.version = version
+            avs.min = getattr(avs, 'min', parsed_app.min)
+            avs.max = getattr(avs, 'max', parsed_app.max)
+            avs.save()
+            compatible_apps[parsed_app.appdata] = avs
 
         # Pre-generate compatible_apps property to avoid accidentally
         # triggering queries with that instance later.

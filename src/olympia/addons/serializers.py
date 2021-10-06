@@ -255,24 +255,49 @@ class MinimalVersionSerializer(serializers.ModelSerializer):
 
 class VersionCompatabilityField(serializers.Field):
     def to_internal_value(self, data):
-        if isinstance(data, dict):
-            # if it's a dict, just translate the app name
-            return {amo.APPS[key]: value for key, value in data.items()}
-        elif isinstance(data, list):
-            # if it's a list of apps, normalize into a dict
-            return {amo.APPS[key]: None for key in data}
-        else:
-            # if it's neither it's not a valid input
-            raise exceptions.ValidationError()
+        """Note this returns incomplete objects that need to have version set at least,
+        and may have missing min or max AppVersion instances. (As intended - we want to
+        be able to partially specify min or max and have the manifest or defaults be
+        instead used).
+        """
+        try:
+            if isinstance(data, list):
+                # if it's a list of apps, normalize into a dict first
+                data = {key: {} for key in data}
+            if isinstance(data, dict):
+                qs = AppVersion.objects
+                return {
+                    (app := amo.APPS[app_name]): ApplicationsVersions(
+                        application=app.id,
+                        **{
+                            key: qs.filter(application=app.id).get(version=value)
+                            for key, value in (min_max or {}).items()
+                            if key in ('min', 'max')
+                        },
+                    )
+                    for app_name, min_max in data.items()
+                }
+            else:
+                # if it's neither it's not a valid input
+                raise exceptions.ValidationError('Invalid value')
+        except KeyError:
+            raise exceptions.ValidationError('Invalid app specified')
+        except AppVersion.DoesNotExist:
+            raise exceptions.ValidationError('Unknown app version specified')
 
     def to_representation(self, value):
         return {
-            app.short: {
-                'min': compat.min.version
+            app.short: (
+                {
+                    'min': compat.min.version,
+                    'max': compat.max.version,
+                }
                 if compat
-                else (amo.D2C_MIN_VERSIONS.get(app.id, '1.0')),
-                'max': compat.max.version if compat else amo.FAKE_MAX_VERSION,
-            }
+                else {
+                    'min': amo.D2C_MIN_VERSIONS.get(app.id, '1.0'),
+                    'max': amo.FAKE_MAX_VERSION,
+                }
+            )
             for app, compat in value.items()
         }
 
@@ -282,7 +307,11 @@ class SimpleVersionSerializer(MinimalVersionSerializer):
         # default to just Desktop Firefox; most of the times developers don't develop
         # their WebExtensions for Android.  See https://bit.ly/2QaMicU
         source='compatible_apps',
-        default={amo.APPS['firefox']: None},
+        default={
+            amo.APPS['firefox']: ApplicationsVersions(
+                application=amo.APPS['firefox'].id
+            )
+        },
     )
     edit_url = serializers.SerializerMethodField()
     is_strict_compatibility_enabled = serializers.BooleanField(
@@ -403,9 +432,8 @@ class VersionSerializer(SimpleVersionSerializer):
         version = Version.from_upload(
             upload=upload,
             addon=self.addon or validated_data.get('addon'),
-            # TODO: change Version.from_upload to take the compat values into account
-            selected_apps=[app.id for app in validated_data.get('compatible_apps')],
             channel=upload.channel,
+            compatiblity=validated_data.get('compatible_apps'),
             parsed_data=parsed_and_validated_data,
         )
         upload.update(addon=version.addon)
