@@ -12,7 +12,12 @@ from elasticsearch_dsl import Q, query, Search
 from rest_framework import exceptions, serializers
 from rest_framework.decorators import action
 from rest_framework.generics import ListAPIView
-from rest_framework.mixins import CreateModelMixin, ListModelMixin, RetrieveModelMixin
+from rest_framework.mixins import (
+    CreateModelMixin,
+    ListModelMixin,
+    RetrieveModelMixin,
+    UpdateModelMixin,
+)
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.settings import api_settings
@@ -179,7 +184,9 @@ def find_replacement_addon(request):
     return redirect(replace_url, permanent=False)
 
 
-class AddonViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
+class AddonViewSet(
+    CreateModelMixin, RetrieveModelMixin, UpdateModelMixin, GenericViewSet
+):
     permission_classes = [
         AnyOf(
             AllowReadOnlyIfPublic,
@@ -247,7 +254,7 @@ class AddonViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
         for restriction in self.get_georestrictions():
             if not restriction.has_permission(request, self):
                 raise UnavailableForLegalReasons()
-        if self.action == 'create':
+        if self.action in ('create', 'update', 'partial_update'):
             self.permission_classes = [
                 APIGatePermission('addon-submission-api'),
                 IsAuthenticated,
@@ -269,6 +276,11 @@ class AddonViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
             if not restriction.has_object_permission(request, self, obj):
                 raise UnavailableForLegalReasons()
 
+        if self.action in ('update', 'partial_update'):
+            self.permission_classes = [
+                APIGatePermission('addon-submission-api'),
+                AllowAddonAuthor,
+            ]
         try:
             super().check_object_permissions(request, obj)
         except exceptions.APIException as exc:

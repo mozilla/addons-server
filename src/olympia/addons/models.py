@@ -1585,6 +1585,21 @@ class Addon(OnChangeMixin, ModelBase):
     def all_categories(self):
         return [addoncat.category for addoncat in self.addoncategory_set.all()]
 
+    def set_categories(self, categories):
+        # Add new categories.
+        for category in set(categories) - set(self.all_categories):
+            AddonCategory.objects.create(addon=self, category=category)
+
+        # Remove old categories.
+        for category in set(self.all_categories) - set(categories):
+            AddonCategory.objects.filter(addon=self, category_id=category.id).delete()
+
+        # Remove old, outdated categories cache on the model.
+        del self.all_categories
+
+        # Make sure the add-on is properly re-indexed
+        update_search_index(Addon, self)
+
     @cached_property
     def current_previews(self):
         """Previews for the current version, or all of them if not a
