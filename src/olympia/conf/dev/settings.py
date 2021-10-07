@@ -29,7 +29,7 @@ STATIC_URL = '%s/static-server/' % EXTERNAL_SITE_URL
 MEDIA_URL = '%s/user-media/' % EXTERNAL_SITE_URL
 # user_media_url('addons') will use ADDONS_URL setting if present to build URLs
 # to xpi files. We want those on the dedicated CDN domain.
-ADDONS_URL = '%s/user-media/' % CDN_HOST
+ADDONS_URL = '%s/user-media/addons/' % CDN_HOST
 
 CSP_CONNECT_SRC += (SITE_URL,)
 CSP_FONT_SRC += (STATIC_URL,)
