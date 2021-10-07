@@ -1755,9 +1755,6 @@ REPUTATION_SERVICE_URL = env('REPUTATION_SERVICE_URL', default=None)
 REPUTATION_SERVICE_TOKEN = env('REPUTATION_SERVICE_TOKEN', default=None)
 REPUTATION_SERVICE_TIMEOUT = env.float('REPUTATION_SERVICE_TIMEOUT', default=1)
 
-# This is the queue used for addons-dev, so it'll consume events (i.e. process
-# then delete) before you can locally.  If you really need to test get ops to
-# stop the 'monitor_fxa_sqs` command.
 FXA_SQS_AWS_QUEUE_URL = (
     'https://sqs.us-east-1.amazonaws.com/927034868273/amo-account-change-dev'
 )
