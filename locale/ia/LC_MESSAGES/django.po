@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-06 15:42+0000\n"
-"PO-Revision-Date: 2021-10-07 16:51+0000\n"
+"PO-Revision-Date: 2021-10-07 17:34+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4372,9 +4372,8 @@ msgid "See all extensions"
 msgstr "Vider tote le extensiones"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Top anti-tracking extensions"
-msgstr "Extensiones popular"
+msgstr "Le melior extensiones anti-traciamento"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity boosters"
@@ -4409,9 +4408,8 @@ msgid "Enhanced privacy extensions"
 msgstr "Extensiones pro accrescer le confidentialitate"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more recommended privacy extensions"
-msgstr "Vide altere extensiones recommendate"
+msgstr "Vide altere extensiones de confidentialitate"
 
 #. editorial content for the homepage shelves.
 msgid "Popular extensions"
@@ -4442,27 +4440,24 @@ msgid "Translation tools"
 msgstr "Utensiles de traduction"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more translation tool staff picks"
-msgstr "Vide altere utensiles de traduction"
+msgstr "Vide altere utensile de traduction seligite per nostre equipa"
 
 #. editorial content for the homepage shelves.
 msgid "Social streaming"
 msgstr "Diffusion social"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more social streaming staff picks"
-msgstr "Vide altere extensiones de diffusion social"
+msgstr "Vide altere diffusion social seligite per nostre equipa"
 
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
 msgstr "Gestores de scheda"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more tab management staff picks"
-msgstr "Vide altere extensiones de gestion schedas"
+msgstr "Vide altere gestion de schedas seligite per nostre equipa"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
