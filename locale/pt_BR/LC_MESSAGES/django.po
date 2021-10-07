@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-06 15:42+0000\n"
-"PO-Revision-Date: 2021-10-07 17:18+0000\n"
+"PO-Revision-Date: 2021-10-07 17:19+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4536,9 +4536,8 @@ msgid "Tab managers"
 msgstr "Gerenciadores de abas"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more tab management staff picks"
-msgstr "Mais extensões de gerenciamento de abas"
+msgstr "Mais escolhas da equipe de gerenciamento de abas"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
