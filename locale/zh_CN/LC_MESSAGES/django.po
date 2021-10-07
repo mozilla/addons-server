@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-06 15:42+0000\n"
-"PO-Revision-Date: 2021-10-07 13:17+0000\n"
+"PO-Revision-Date: 2021-10-07 13:22+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -4314,15 +4314,15 @@ msgstr "热门反跟踪扩展"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity boosters"
-msgstr ""
+msgstr "生产力工具"
 
 #. editorial content for the secondary hero shelves.
 msgid "YouTube customization"
-msgstr ""
+msgstr "YouTube 定制"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
-msgstr ""
+msgstr "看看官方精选"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended extensions"
@@ -4378,27 +4378,24 @@ msgid "Translation tools"
 msgstr "翻译工具"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more translation tool staff picks"
-msgstr "看看更多翻译工具"
+msgstr "看看更多翻译工具（官方精选）"
 
 #. editorial content for the homepage shelves.
 msgid "Social streaming"
 msgstr "社交流媒体"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more social streaming staff picks"
-msgstr "看看更多社交流媒体扩展"
+msgstr "看看更多社交流媒体扩展（官方精选）"
 
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
 msgstr "标签页管理器"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more tab management staff picks"
-msgstr "看看更多标签页管理扩展"
+msgstr "看看更多标签页管理扩展（官方精选）"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
