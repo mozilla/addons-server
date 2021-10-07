@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-06 15:42+0000\n"
-"PO-Revision-Date: 2021-10-07 07:02+0000\n"
+"PO-Revision-Date: 2021-10-07 09:34+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -4412,9 +4412,8 @@ msgid "Tab managers"
 msgstr "分頁管理員"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more tab management staff picks"
-msgstr "看更多分頁管理擴充套件"
+msgstr "看更多員工精選的分頁管理套件"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
