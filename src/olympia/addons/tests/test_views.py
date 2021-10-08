@@ -3078,6 +3078,22 @@ class TestLanguageToolsView(TestCase):
             (results[1]['id'], results[1]['current_compatible_version']['id']),
         }
         assert expected_versions == returned_versions
+        assert results[0]['current_compatible_version']['file']
+
+        # repeat with v4 to check output is stable (it uses files rather than file)
+        response = self.client.get(
+            reverse_ns('addon-language-tools', api_version='v4'),
+            {
+                'app': 'firefox',
+                'appversion': '58.0',
+                'type': 'language',
+                'lang': 'en-US',
+            },
+        )
+        assert response.status_code == 200, response.content
+        results = response.data['results']
+        assert len(results) == 2
+        assert results[0]['current_compatible_version']['files']
 
     def test_memoize(self):
         cache.clear()
