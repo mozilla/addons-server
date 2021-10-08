@@ -1270,6 +1270,42 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert app.min.version == '42.0'
         assert app.max.version == '*'
 
+    def test_compatibility_just_app(self):
+        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.RELEASE_CHANNEL_LISTED,
+            compatibility={
+                amo.FIREFOX: ApplicationsVersions(application=amo.FIREFOX.id)
+            },
+            parsed_data=parsed_data,
+        )
+        assert [amo.FIREFOX] == list(version.compatible_apps)
+        app = version.compatible_apps[amo.FIREFOX]
+        assert app.min.version == '42.0'
+        assert app.max.version == '*'
+
+    def test_compatibility_min_max_too(self):
+        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.RELEASE_CHANNEL_LISTED,
+            compatibility={
+                amo.ANDROID: ApplicationsVersions(
+                    application=amo.ANDROID.id,
+                    min=AppVersion.objects.get_or_create(application=amo.ANDROID.id, version='45.0')[0],
+                    max=AppVersion.objects.get_or_create(application=amo.ANDROID.id, version='67')[0],
+                )
+            },
+            parsed_data=parsed_data,
+        )
+        assert [amo.ANDROID] == list(version.compatible_apps)
+        app = version.compatible_apps[amo.ANDROID]
+        assert app.min.version == '45.0'
+        assert app.max.version == '67'
+
     def test_compatible_apps_is_pre_generated(self):
         parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
         # We mock File.from_upload() to prevent it from accessing
