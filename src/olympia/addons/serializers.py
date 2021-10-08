@@ -1068,7 +1068,9 @@ class LanguageToolsSerializer(AddonSerializer):
     def get_current_compatible_version(self, obj):
         compatible_versions = getattr(obj, 'compatible_versions', None)
         if compatible_versions is not None:
-            data = MinimalVersionSerializer(compatible_versions, many=True).data
+            data = MinimalVersionSerializer(
+                compatible_versions, context=self.context, many=True
+            ).data
             try:
                 # 99% of the cases there will only be one result, since most
                 # language packs are automatically uploaded for a given app
