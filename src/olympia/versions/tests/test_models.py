@@ -1295,8 +1295,12 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             compatibility={
                 amo.ANDROID: ApplicationsVersions(
                     application=amo.ANDROID.id,
-                    min=AppVersion.objects.get_or_create(application=amo.ANDROID.id, version='45.0')[0],
-                    max=AppVersion.objects.get_or_create(application=amo.ANDROID.id, version='67')[0],
+                    min=AppVersion.objects.get_or_create(
+                        application=amo.ANDROID.id, version='45.0'
+                    )[0],
+                    max=AppVersion.objects.get_or_create(
+                        application=amo.ANDROID.id, version='67'
+                    )[0],
                 )
             },
             parsed_data=parsed_data,
