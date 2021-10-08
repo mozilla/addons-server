@@ -229,7 +229,7 @@ class Version(OnChangeMixin, ModelBase):
         channel,
         *,
         selected_apps=None,
-        compatiblity=None,
+        compatibility=None,
         parsed_data=None,
     ):
         """
@@ -249,13 +249,13 @@ class Version(OnChangeMixin, ModelBase):
 
         if addon.type == amo.ADDON_STATICTHEME:
             # We don't let developers select apps for static themes
-            compatiblity = {
-                app: (compatiblity or {}).get(
+            compatibility = {
+                app: (compatibility or {}).get(
                     app, ApplicationsVersions(application=app.id)
                 )
                 for app in amo.APP_USAGE
             }
-        assert selected_apps or compatiblity
+        assert selected_apps or compatibility
 
         if addon.status == amo.STATUS_DISABLED:
             raise VersionCreateError(
@@ -310,21 +310,21 @@ class Version(OnChangeMixin, ModelBase):
                 amo.LOG.ADD_VERSION, version, addon, user=upload.user or get_task_user()
             )
 
-        if not compatiblity:
-            compatiblity = {
+        if not compatibility:
+            compatibility = {
                 amo.APP_IDS[app_id]: ApplicationsVersions(application=app_id)
                 for app_id in selected_apps
             }
 
         compatible_apps = {}
         for parsed_app in parsed_data.get('apps', []):
-            if parsed_app.appdata not in compatiblity:
+            if parsed_app.appdata not in compatibility:
                 # If the user chose to explicitly deselect Firefox for Android
                 # we're not creating the respective `ApplicationsVersions`
                 # which will have this add-on then be listed only for
                 # Firefox specifically.
                 continue
-            avs = compatiblity[parsed_app.appdata]
+            avs = compatibility[parsed_app.appdata]
             avs.version = version
             avs.min = getattr(avs, 'min', parsed_app.min)
             avs.max = getattr(avs, 'max', parsed_app.max)

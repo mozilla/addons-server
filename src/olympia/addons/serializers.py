@@ -433,7 +433,7 @@ class VersionSerializer(SimpleVersionSerializer):
             upload=upload,
             addon=self.addon or validated_data.get('addon'),
             channel=upload.channel,
-            compatiblity=validated_data.get('compatible_apps'),
+            compatibility=validated_data.get('compatible_apps'),
             parsed_data=parsed_and_validated_data,
         )
         upload.update(addon=version.addon)
