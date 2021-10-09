@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-06 15:42+0000\n"
-"PO-Revision-Date: 2021-10-07 22:55+0000\n"
+"PO-Revision-Date: 2021-10-09 07:09+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -4369,9 +4369,8 @@ msgid "See all extensions"
 msgstr "See all extensions"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Top anti-tracking extensions"
-msgstr "Popular extensions"
+msgstr "Top anti-tracking extensions"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity boosters"
@@ -4406,9 +4405,8 @@ msgid "Enhanced privacy extensions"
 msgstr "Enhanced privacy extensions"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more recommended privacy extensions"
-msgstr "See more recommended extensions"
+msgstr "See more recommended privacy extensions"
 
 #. editorial content for the homepage shelves.
 msgid "Popular extensions"
@@ -4439,27 +4437,24 @@ msgid "Translation tools"
 msgstr "Translation tools"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more translation tool staff picks"
-msgstr "See more translation tools"
+msgstr "See more translation tool staff picks"
 
 #. editorial content for the homepage shelves.
 msgid "Social streaming"
 msgstr "Social streaming"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more social streaming staff picks"
-msgstr "See more social streaming extensions"
+msgstr "See more social streaming staff picks"
 
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
 msgstr "Tab managers"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more tab management staff picks"
-msgstr "See more tab management extensions"
+msgstr "See more tab management staff picks"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
