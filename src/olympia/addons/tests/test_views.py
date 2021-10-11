@@ -793,7 +793,7 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
 
         response = self.client.post(
             self.url,
-            # performance is an firefox category but for dicts and lang packs
+            # general is an firefox category but for dicts and lang packs
             data={**self.minimal_data, 'categories': {'firefox': ['general']}},
         )
         assert response.status_code == 400, response.content
@@ -980,7 +980,7 @@ class TestAddonViewSetUpdate(TestCase):
 
         response = self.client.patch(
             self.url,
-            # performance is a firefox category, but for langpacks and dicts only
+            # general is a firefox category, but for langpacks and dicts only
             data={'categories': {'firefox': ['general']}},
         )
         assert response.status_code == 400, response.content
