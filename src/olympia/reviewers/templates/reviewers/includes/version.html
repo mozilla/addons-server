@@ -27,10 +27,10 @@
   <td class="files">
     {% if addon.type != amo.ADDON_STATICTHEME %}
       {{ file_view(version) }}
-      {% if version.compatible_apps_ordered %}
+      {% if version.compatible_apps %}
         <div><strong>{{ _('Compatibility:') }}</strong></div>
         <ul>
-          {% for app, compat in version.compatible_apps_ordered %}
+          {% for app, compat in version.compatible_apps.items()|sort(attribute="0.short") %}
           <li>
             <div class="app-icon ed-sprite-{{ app.short }}" title="{{ app.pretty }}"></div>
             {{ compat }}

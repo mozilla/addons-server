@@ -1416,8 +1416,8 @@ def _submit_upload(request, addon, channel, next_view, wizard=False):
             version = Version.from_upload(
                 upload=data['upload'],
                 addon=addon,
-                selected_apps=data['compatible_apps'],
                 channel=channel,
+                selected_apps=data['compatible_apps'],
                 parsed_data=data['parsed_data'],
             )
             url_args = [addon.slug, version.id]

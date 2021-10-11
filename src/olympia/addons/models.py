@@ -920,8 +920,8 @@ class Addon(OnChangeMixin, ModelBase):
         Version.from_upload(
             upload=upload,
             addon=addon,
-            selected_apps=selected_apps,
             channel=channel,
+            selected_apps=selected_apps,
             parsed_data=parsed_data,
         )
 

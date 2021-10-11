@@ -252,7 +252,7 @@ class TestVersion(TestCase):
         assert amo.FIREFOX in version.compatible_apps, 'Missing Firefox >_<'
 
         # We should be re-using the same Version instance in
-        # ApplicationsVersions loaded from <Version>._compat_map().
+        # ApplicationsVersions loaded from <Version>._create_compatible_apps().
         assert id(version) == id(version.compatible_apps[amo.FIREFOX].version)
 
     def _get_version(self, status):
@@ -1102,8 +1102,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         version = Version.from_upload(
             self.upload,
             self.addon,
-            [self.selected_app],
             amo.RELEASE_CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
         assert version
@@ -1118,8 +1118,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             Version.from_upload(
                 self.upload,
                 self.addon,
-                [self.selected_app],
                 amo.RELEASE_CHANNEL_LISTED,
+                selected_apps=[self.selected_app],
                 parsed_data=self.dummy_parsed_data,
             )
 
@@ -1131,8 +1131,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             Version.from_upload(
                 self.upload,
                 self.addon,
-                [self.selected_app],
                 amo.RELEASE_CHANNEL_LISTED,
+                selected_apps=[self.selected_app],
                 parsed_data=self.dummy_parsed_data,
             )
 
@@ -1141,8 +1141,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         version = Version.from_upload(
             self.upload,
             self.addon,
-            [self.selected_app],
             amo.RELEASE_CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
         assert version
@@ -1155,8 +1155,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             Version.from_upload(
                 self.upload,
                 self.addon,
-                [self.selected_app],
                 amo.RELEASE_CHANNEL_LISTED,
+                selected_apps=[self.selected_app],
                 parsed_data=self.dummy_parsed_data,
             )
 
@@ -1166,8 +1166,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             Version.from_upload(
                 self.upload,
                 self.addon,
-                [self.selected_app],
                 amo.RELEASE_CHANNEL_LISTED,
+                selected_apps=[self.selected_app],
                 parsed_data=self.dummy_parsed_data,
             )
 
@@ -1177,8 +1177,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             Version.from_upload(
                 self.upload,
                 self.addon,
-                [self.selected_app],
                 amo.RELEASE_CHANNEL_LISTED,
+                selected_apps=[self.selected_app],
                 parsed_data=self.dummy_parsed_data,
             )
 
@@ -1194,8 +1194,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         version = Version.from_upload(
             self.upload,
             self.addon,
-            [self.selected_app],
             amo.RELEASE_CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
         assert log_mock.info.call_count == 2
@@ -1225,8 +1225,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         version = Version.from_upload(
             self.upload,
             self.addon,
-            [self.selected_app],
             amo.RELEASE_CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
         assert version.license_id == self.addon.current_version.license_id
@@ -1236,8 +1236,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         version = Version.from_upload(
             self.upload,
             self.addon,
-            [self.selected_app],
             amo.RELEASE_CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
         assert version.is_mozilla_signed
@@ -1250,8 +1250,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         version = Version.from_upload(
             self.upload,
             self.addon,
-            [self.selected_app],
             amo.RELEASE_CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
         assert version.license_id is None
@@ -1261,14 +1261,54 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         version = Version.from_upload(
             self.upload,
             self.addon,
-            [self.selected_app],
             amo.RELEASE_CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
             parsed_data=parsed_data,
         )
         assert amo.FIREFOX in version.compatible_apps
         app = version.compatible_apps[amo.FIREFOX]
         assert app.min.version == '42.0'
         assert app.max.version == '*'
+
+    def test_compatibility_just_app(self):
+        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.RELEASE_CHANNEL_LISTED,
+            compatibility={
+                amo.FIREFOX: ApplicationsVersions(application=amo.FIREFOX.id)
+            },
+            parsed_data=parsed_data,
+        )
+        assert [amo.FIREFOX] == list(version.compatible_apps)
+        app = version.compatible_apps[amo.FIREFOX]
+        assert app.min.version == '42.0'
+        assert app.max.version == '*'
+
+    def test_compatibility_min_max_too(self):
+        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.RELEASE_CHANNEL_LISTED,
+            compatibility={
+                amo.ANDROID: ApplicationsVersions(
+                    application=amo.ANDROID.id,
+                    min=AppVersion.objects.get_or_create(
+                        application=amo.ANDROID.id, version='45.0'
+                    )[0],
+                    max=AppVersion.objects.get_or_create(
+                        application=amo.ANDROID.id, version='67'
+                    )[0],
+                )
+            },
+            parsed_data=parsed_data,
+        )
+        assert [amo.ANDROID] == list(version.compatible_apps)
+        app = version.compatible_apps[amo.ANDROID]
+        assert app.min.version == '45.0'
+        assert app.max.version == '67'
 
     def test_compatible_apps_is_pre_generated(self):
         parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
@@ -1283,8 +1323,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             version = Version.from_upload(
                 self.upload,
                 self.addon,
-                [self.selected_app],
                 amo.RELEASE_CHANNEL_LISTED,
+                selected_apps=[self.selected_app],
                 parsed_data=parsed_data,
             )
         # Add an extra ApplicationsVersions. It should *not* appear in
@@ -1312,8 +1352,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         version = Version.from_upload(
             self.upload,
             self.addon,
-            [self.selected_app],
             amo.RELEASE_CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
             parsed_data=parsed_data,
         )
         assert version.version == '0.0.1'
@@ -1323,8 +1363,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         version = Version.from_upload(
             self.upload,
             self.addon,
-            [self.selected_app],
             amo.RELEASE_CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
             parsed_data=parsed_data,
         )
         assert version.file.filename == 'delicious_bookmarks-0.0.1-fx.xpi'
@@ -1339,8 +1379,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             Version.from_upload(
                 self.upload,
                 self.addon,
-                [self.selected_app],
                 amo.RELEASE_CHANNEL_LISTED,
+                selected_apps=[self.selected_app],
                 parsed_data=self.dummy_parsed_data,
             )
 
@@ -1367,8 +1407,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         upload_version = Version.from_upload(
             self.upload,
             self.addon,
-            [self.selected_app],
             amo.RELEASE_CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
         assert upload_version.nomination == pending_version.nomination
@@ -1381,8 +1421,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         Version.from_upload(
             self.upload,
             self.addon,
-            [amo.FIREFOX.id],
             amo.RELEASE_CHANNEL_UNLISTED,
+            selected_apps=[amo.FIREFOX.id],
             parsed_data=parsed_data,
         )
         # It's a new unlisted version, we should be syncing the add-on with
@@ -1400,8 +1440,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         Version.from_upload(
             self.upload,
             self.addon,
-            [amo.FIREFOX.id],
             amo.RELEASE_CHANNEL_LISTED,
+            selected_apps=[amo.FIREFOX.id],
             parsed_data=parsed_data,
         )
         # It's a new listed version, we should *not* be syncing the add-on with
@@ -1419,8 +1459,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         version = Version.from_upload(
             self.upload,
             self.addon,
-            [self.selected_app],
             amo.RELEASE_CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
         scanners_result.refresh_from_db()
@@ -1434,8 +1474,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         version = Version.from_upload(
             self.upload,
             self.addon,
-            [self.selected_app],
             amo.RELEASE_CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
         scanners_result.refresh_from_db()
@@ -1449,8 +1489,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         version = Version.from_upload(
             self.upload,
             self.addon,
-            [self.selected_app],
             amo.RELEASE_CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
 
@@ -1469,8 +1509,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         Version.from_upload(
             self.upload,
             self.addon,
-            [self.selected_app],
             amo.RELEASE_CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
 
@@ -1485,8 +1525,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         Version.from_upload(
             self.upload,
             self.addon,
-            [self.selected_app],
             amo.RELEASE_CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
         assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
@@ -1500,8 +1540,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         Version.from_upload(
             self.upload,
             self.addon,
-            [self.selected_app],
             amo.RELEASE_CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
         assert self.addon.auto_approval_disabled
@@ -1515,8 +1555,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         Version.from_upload(
             self.upload,
             self.addon,
-            [self.selected_app],
             amo.RELEASE_CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
         assert self.addon.auto_approval_disabled
@@ -1531,8 +1571,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         Version.from_upload(
             self.upload,
             self.addon,
-            [self.selected_app],
             amo.RELEASE_CHANNEL_UNLISTED,
+            selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
         assert not self.addon.auto_approval_disabled
@@ -1597,8 +1637,8 @@ class TestExtensionVersionFromUploadTransactional(
             version = Version.from_upload(
                 upload,
                 addon,
-                [amo.FIREFOX.id],
                 amo.RELEASE_CHANNEL_LISTED,
+                selected_apps=[amo.FIREFOX.id],
                 parsed_data=parsed_data,
             )
         assert version.pk
@@ -1617,8 +1657,8 @@ class TestExtensionVersionFromUploadTransactional(
             version = Version.from_upload(
                 upload,
                 addon,
-                [amo.FIREFOX.id],
                 amo.RELEASE_CHANNEL_LISTED,
+                selected_apps=[amo.FIREFOX.id],
                 parsed_data=parsed_data,
             )
         assert version.pk
@@ -1644,8 +1684,8 @@ class TestExtensionVersionFromUploadTransactional(
                 Version.from_upload(
                     upload,
                     addon,
-                    [amo.FIREFOX.id],
                     amo.RELEASE_CHANNEL_LISTED,
+                    selected_apps=[amo.FIREFOX.id],
                     parsed_data=parsed_data,
                 )
 
@@ -1664,8 +1704,8 @@ class TestStatusFromUpload(TestVersionFromUpload):
         Version.from_upload(
             self.upload,
             self.addon,
-            [self.selected_app],
             amo.RELEASE_CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
         assert File.objects.filter(version=self.current)[0].status == (
@@ -1686,8 +1726,8 @@ class TestPermissionsFromUpload(TestVersionFromUpload):
         version = Version.from_upload(
             self.upload,
             self.addon,
-            [amo.FIREFOX.id],
             amo.RELEASE_CHANNEL_UNLISTED,
+            selected_apps=[amo.FIREFOX.id],
             parsed_data=parsed_data,
         )
         file = version.file
@@ -1727,8 +1767,8 @@ class TestStaticThemeFromUpload(UploadMixin, TestCase):
         Version.from_upload(
             self.upload,
             self.addon,
-            [],
             amo.RELEASE_CHANNEL_LISTED,
+            selected_apps=[],
             parsed_data=parsed_data,
         )
         assert generate_static_theme_preview_mock.call_count == 1
@@ -1740,8 +1780,8 @@ class TestStaticThemeFromUpload(UploadMixin, TestCase):
         Version.from_upload(
             self.upload,
             self.addon,
-            [],
             amo.RELEASE_CHANNEL_LISTED,
+            selected_apps=[],
             parsed_data=parsed_data,
         )
         assert generate_static_theme_preview_mock.call_count == 1
@@ -1759,8 +1799,8 @@ class TestStaticThemeFromUpload(UploadMixin, TestCase):
         Version.from_upload(
             self.upload,
             self.addon,
-            [],
             amo.RELEASE_CHANNEL_LISTED,
+            selected_apps=[],
             parsed_data=parsed_data,
         )
         assert generate_static_theme_preview_mock.call_count == 1
