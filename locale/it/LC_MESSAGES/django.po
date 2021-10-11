@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-06 15:42+0000\n"
-"PO-Revision-Date: 2021-09-30 13:01+0000\n"
-"Last-Translator: Michele Rodaro <michele.rodaro@mozillaitalia.org>\n"
+"PO-Revision-Date: 2021-10-10 12:43+0000\n"
+"Last-Translator: Jenny <leanintocuriosity@gmx.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -4469,19 +4469,19 @@ msgstr "Visualizza tutte le estensioni"
 #. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
 msgid "Top anti-tracking extensions"
-msgstr ""
+msgstr "Le migliori estensioni antitracciamento"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity boosters"
-msgstr ""
+msgstr "Strumenti per aumentare la produttività"
 
 #. editorial content for the secondary hero shelves.
 msgid "YouTube customization"
-msgstr ""
+msgstr "Personalizzazione di YouTube"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
-msgstr ""
+msgstr "Visualizza le estensioni scelte dallo staff"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended extensions"
@@ -4505,7 +4505,7 @@ msgstr "Estensioni per migliorare la privacy"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended privacy extensions"
-msgstr ""
+msgstr "Visualizza altre estensioni consigliate per aumentare la privacy"
 
 #. editorial content for the homepage shelves.
 # Plural in this context means many of the add-on type
@@ -4538,7 +4538,7 @@ msgstr "Strumenti di traduzione"
 
 #. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
-msgstr ""
+msgstr "Visualizza altri strumenti per la traduzione scelti dallo staff"
 
 #. editorial content for the homepage shelves.
 msgid "Social streaming"
@@ -4546,7 +4546,7 @@ msgstr "Streaming di gruppo"
 
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
-msgstr ""
+msgstr "Visualizza altri strumenti per lo streaming di gruppo scelti dallo staff"
 
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
@@ -4554,7 +4554,7 @@ msgstr "Gestori di schede"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
-msgstr ""
+msgstr "Visualizza altri strumenti per la gestione delle schede scelti dallo staff"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
