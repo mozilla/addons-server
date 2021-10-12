@@ -130,8 +130,8 @@ def create_version_for_upload(addon, upload, channel):
         Version.from_upload(
             upload,
             addon,
-            [x[0] for x in amo.APPS_CHOICES],
             channel,
+            selected_apps=[x[0] for x in amo.APPS_CHOICES],
             parsed_data=parsed_data,
         )
         # The add-on's status will be STATUS_NULL when its first version is

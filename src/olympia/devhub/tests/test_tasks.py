@@ -691,8 +691,8 @@ class TestCreateVersionForUpload(UploadMixin, TestCase):
         self.mocks['Version.from_upload'].assert_called_with(
             newer_upload,
             self.addon,
-            [amo.FIREFOX.id, amo.ANDROID.id],
             amo.RELEASE_CHANNEL_LISTED,
+            selected_apps=[amo.FIREFOX.id, amo.ANDROID.id],
             parsed_data=self.mocks['parse_addon'].return_value,
         )
 
@@ -741,8 +741,8 @@ class TestCreateVersionForUpload(UploadMixin, TestCase):
         self.mocks['Version.from_upload'].assert_called_with(
             upload,
             self.addon,
-            [amo.FIREFOX.id, amo.ANDROID.id],
             amo.RELEASE_CHANNEL_LISTED,
+            selected_apps=[amo.FIREFOX.id, amo.ANDROID.id],
             parsed_data=self.mocks['parse_addon'].return_value,
         )
 
@@ -756,8 +756,8 @@ class TestCreateVersionForUpload(UploadMixin, TestCase):
         self.mocks['Version.from_upload'].assert_called_with(
             upload,
             self.addon,
-            [amo.FIREFOX.id, amo.ANDROID.id],
             amo.RELEASE_CHANNEL_LISTED,
+            selected_apps=[amo.FIREFOX.id, amo.ANDROID.id],
             parsed_data=self.mocks['parse_addon'].return_value,
         )
 
@@ -771,8 +771,8 @@ class TestCreateVersionForUpload(UploadMixin, TestCase):
         self.mocks['Version.from_upload'].assert_called_with(
             upload,
             self.addon,
-            [amo.FIREFOX.id, amo.ANDROID.id],
             amo.RELEASE_CHANNEL_LISTED,
+            selected_apps=[amo.FIREFOX.id, amo.ANDROID.id],
             parsed_data=self.mocks['parse_addon'].return_value,
         )
 

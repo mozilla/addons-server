@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-06 15:42+0000\n"
-"PO-Revision-Date: 2021-10-07 16:36+0000\n"
-"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
+"PO-Revision-Date: 2021-10-10 17:02+0000\n"
+"Last-Translator: tuhlerd <tuhlerd@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -2762,7 +2762,7 @@ msgid "Do You Need to Submit Source Code?"
 msgstr "Devez-vous communiquer votre code source ?"
 
 msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
-msgstr ""
+msgstr "Les réviseurs de modules complémentaires de Mozilla ont besoin de pouvoir lire et reproduire le code de votre extension. S’ils ne le peuvent pas, votre extension pourrait être rejetée."
 
 msgid "Do you use any of the following in your extension?"
 msgstr "Utilisez-vous l’un des éléments suivants dans votre extension ?"
@@ -2807,7 +2807,7 @@ msgstr ""
 
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Pour plus d'informations, veuillez lire la page <a %(a_attrs)s>Source Code Submission</a> sur le site « Extension Workshop » de Firefox."
 
 msgid "Upload source code:"
 msgstr "Ajouter du code source :"
@@ -4495,9 +4495,8 @@ msgid "Enhanced privacy extensions"
 msgstr "Extensions pour protéger mieux votre vie privée"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more recommended privacy extensions"
-msgstr "Voir plus d’extensions recommandées"
+msgstr "Voir plus d’extensions recommandées pour le respect de la vie privée"
 
 #. editorial content for the homepage shelves.
 # Plural in this context means many of the add-on type
@@ -4529,27 +4528,24 @@ msgid "Translation tools"
 msgstr "Outils de traduction"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more translation tool staff picks"
-msgstr "Voir plus d’outils de traduction"
+msgstr "Voir plus d’outils de traduction choisis par l’équipe"
 
 #. editorial content for the homepage shelves.
 msgid "Social streaming"
 msgstr "Diffusion sociale"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more social streaming staff picks"
-msgstr "Voir plus d’extensions de diffusion sociale"
+msgstr "Voir plus d’extensions de diffusion sociale choisies par l’équipe"
 
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
 msgstr "Gestionnaires d’onglets"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more tab management staff picks"
-msgstr "Voir plus d’extensions pour la gestion des onglets"
+msgstr "Voir plus d’extensions pour la gestion des onglets choisies par l’équipe"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"

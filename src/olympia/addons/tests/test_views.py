@@ -990,6 +990,22 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
 class TestVersionViewSetCreate(UploadMixin, TestCase):
     client_class = APITestClient
 
+    @classmethod
+    def setUpTestData(cls):
+        versions = {
+            amo.DEFAULT_WEBEXT_MIN_VERSION,
+            amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
+            amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
+            amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX,
+            amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID,
+            amo.DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX,
+            amo.DEFAULT_WEBEXT_MAX_VERSION,
+            amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX,
+        }
+        for version in versions:
+            AppVersion.objects.create(application=amo.FIREFOX.id, version=version)
+            AppVersion.objects.create(application=amo.ANDROID.id, version=version)
+
     def setUp(self):
         super().setUp()
         self.user = user_factory(read_dev_agreement=self.days_ago(0))
@@ -1092,14 +1108,40 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
         assert self.addon.reload().versions.count() == 1
 
     def test_set_extra_data(self):
-        data = {
-            **self.minimal_data,
-            'compatibility': ['firefox', 'android'],
-            'release_notes': {'en-US': 'dsdsdsd'},
-        }
         response = self.client.post(
             self.url,
-            data=data,
+            data={
+                **self.minimal_data,
+                'release_notes': {'en-US': 'dsdsdsd'},
+            },
+        )
+
+        assert response.status_code == 201, response.content
+        data = response.data
+        self.addon.reload()
+        assert self.addon.versions.count() == 2
+        version = self.addon.find_latest_version(channel=None)
+        assert data['release_notes'] == {'en-US': 'dsdsdsd'}
+        assert version.release_notes == 'dsdsdsd'
+
+    def test_compatibility_list(self):
+        response = self.client.post(
+            self.url,
+            data={
+                **self.minimal_data,
+                'compatibility': ['foo', 'android'],
+            },
+        )
+
+        assert response.status_code == 400, response.content
+        assert response.data == {'compatibility': ['Invalid app specified']}
+
+        response = self.client.post(
+            self.url,
+            data={
+                **self.minimal_data,
+                'compatibility': ['firefox', 'android'],
+            },
         )
 
         assert response.status_code == 201, response.content
@@ -1112,8 +1154,48 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
             'firefox': {'max': '*', 'min': '42.0'},
         }
         assert list(version.compatible_apps.keys()) == [amo.FIREFOX, amo.ANDROID]
-        assert data['release_notes'] == {'en-US': 'dsdsdsd'}
-        assert version.release_notes == 'dsdsdsd'
+
+    def test_compatibility_dict(self):
+        response = self.client.post(
+            self.url,
+            data={
+                **self.minimal_data,
+                'compatibility': {'firefox': {'min': '65.0'}, 'foo': {}},
+            },
+        )
+        assert response.data == {'compatibility': ['Invalid app specified']}
+
+        response = self.client.post(
+            self.url,
+            data={
+                **self.minimal_data,
+                # 99 doesn't exist as an appversion
+                'compatibility': {'firefox': {'min': '99.0'}},
+            },
+        )
+        assert response.data == {'compatibility': ['Unknown app version specified']}
+
+        response = self.client.post(
+            self.url,
+            data={
+                **self.minimal_data,
+                # DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID is 65.0 so it exists
+                'compatibility': {'firefox': {'min': '65.0'}, 'android': {}},
+            },
+        )
+
+        assert response.status_code == 201, response.content
+        data = response.data
+        self.addon.reload()
+        assert self.addon.versions.count() == 2
+        version = self.addon.find_latest_version(channel=None)
+        assert data['compatibility'] == {
+            # android was specified but with an empty dict, so gets the defaults
+            'android': {'max': '*', 'min': amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID},
+            # firefox max wasn't specified, so is the default max app version
+            'firefox': {'max': '*', 'min': '65.0'},
+        }
+        assert list(version.compatible_apps.keys()) == [amo.FIREFOX, amo.ANDROID]
 
     def test_check_blocklist(self):
         Block.objects.create(guid=self.addon.guid, updated_by=self.user)
@@ -3078,6 +3160,22 @@ class TestLanguageToolsView(TestCase):
             (results[1]['id'], results[1]['current_compatible_version']['id']),
         }
         assert expected_versions == returned_versions
+        assert results[0]['current_compatible_version']['file']
+
+        # repeat with v4 to check output is stable (it uses files rather than file)
+        response = self.client.get(
+            reverse_ns('addon-language-tools', api_version='v4'),
+            {
+                'app': 'firefox',
+                'appversion': '58.0',
+                'type': 'language',
+                'lang': 'en-US',
+            },
+        )
+        assert response.status_code == 200, response.content
+        results = response.data['results']
+        assert len(results) == 2
+        assert results[0]['current_compatible_version']['files']
 
     def test_memoize(self):
         cache.clear()
