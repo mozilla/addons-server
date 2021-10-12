@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-06 15:42+0000\n"
+"POT-Creation-Date: 2021-10-12 16:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2366,7 +2366,7 @@ msgstr ""
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:774 src/olympia/files/utils.py:707
+#: src/olympia/devhub/forms.py:774 src/olympia/files/utils.py:713
 msgid "Invalid or broken archive."
 msgstr ""
 
@@ -2400,7 +2400,7 @@ msgid ""
 "time."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1031 src/olympia/signing/views.py:240
+#: src/olympia/devhub/forms.py:1031 src/olympia/signing/views.py:195
 msgid ""
 "Version {version} matches {block_link} for this add-on. You can contact "
 "{amo_admins} for additional information."
@@ -2472,23 +2472,23 @@ msgstr ""
 msgid "Display Name"
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:210
+#: src/olympia/devhub/tasks.py:220
 msgid "Invalid or corrupt add-on file."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:400
+#: src/olympia/devhub/tasks.py:410
 msgid ""
 "Your developer API key was found in the submitted file. To protect your "
 "account, the key will be revoked."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:407
+#: src/olympia/devhub/tasks.py:417
 msgid ""
 "The developer API key of a coauthor was found in the submitted file. To "
 "protect your add-on, the key will be revoked."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:757
+#: src/olympia/devhub/tasks.py:767
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr ""
 
@@ -6471,105 +6471,105 @@ msgstr ""
 msgid "See more extensions tagged \"{tag}\""
 msgstr ""
 
-#: src/olympia/files/utils.py:209 src/olympia/files/utils.py:801
-#: src/olympia/files/utils.py:805
+#: src/olympia/files/utils.py:215 src/olympia/files/utils.py:807
+#: src/olympia/files/utils.py:811
 msgid "Could not parse the manifest file."
 msgstr ""
 
-#: src/olympia/files/utils.py:309
+#: src/olympia/files/utils.py:315
 msgid "Add-on ID is required for Firefox 47 and below."
 msgstr ""
 
-#: src/olympia/files/utils.py:319
+#: src/olympia/files/utils.py:325
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
 
-#: src/olympia/files/utils.py:347
+#: src/olympia/files/utils.py:353
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr ""
 
-#: src/olympia/files/utils.py:361
+#: src/olympia/files/utils.py:367
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr ""
 
-#: src/olympia/files/utils.py:516
+#: src/olympia/files/utils.py:522
 msgid "Unsupported archive type."
 msgstr ""
 
-#: src/olympia/files/utils.py:524
+#: src/olympia/files/utils.py:530
 msgid ""
 "Invalid file name in archive. Please make sure all filenames are utf-8 or "
 "latin1 encoded."
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
-#: src/olympia/files/utils.py:538
+#: src/olympia/files/utils.py:544
 msgid "Invalid file name in archive: {0}"
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
-#: src/olympia/files/utils.py:544
+#: src/olympia/files/utils.py:550
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
-#: src/olympia/files/utils.py:573
+#: src/olympia/files/utils.py:579
 msgid "Uncompressed size is too large"
 msgstr ""
 
-#: src/olympia/files/utils.py:619
+#: src/olympia/files/utils.py:625
 msgid "Invalid archive."
 msgstr ""
 
-#: src/olympia/files/utils.py:834
+#: src/olympia/files/utils.py:840
 #, python-format
 msgid ""
 "The add-on ID in your manifest.json (%s) does not match the ID of your add-on"
 " on AMO (%s)"
 msgstr ""
 
-#: src/olympia/files/utils.py:850
+#: src/olympia/files/utils.py:856
 msgid "Duplicate add-on ID found."
 msgstr ""
 
-#: src/olympia/files/utils.py:853
+#: src/olympia/files/utils.py:859
 msgid "Version numbers should have fewer than 32 characters."
 msgstr ""
 
-#: src/olympia/files/utils.py:857
+#: src/olympia/files/utils.py:863
 msgid ""
 "Version numbers should only contain letters, numbers, and these punctuation "
 "characters: +*.-_."
 msgstr ""
 
-#: src/olympia/files/utils.py:867
+#: src/olympia/files/utils.py:873
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr ""
 
-#: src/olympia/files/utils.py:880
+#: src/olympia/files/utils.py:886
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
-#: src/olympia/files/utils.py:884
+#: src/olympia/files/utils.py:890
 msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr ""
 
-#: src/olympia/files/utils.py:889
+#: src/olympia/files/utils.py:895
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
-#: src/olympia/files/utils.py:893
+#: src/olympia/files/utils.py:899
 msgid "You cannot submit a language pack"
 msgstr ""
 
-#: src/olympia/files/utils.py:925
+#: src/olympia/files/utils.py:931
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr ""
 
-#: src/olympia/files/utils.py:933
+#: src/olympia/files/utils.py:939
 msgid "Unexpected error."
 msgstr ""
 
-#: src/olympia/files/utils.py:937
+#: src/olympia/files/utils.py:943
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr ""
@@ -8055,53 +8055,53 @@ msgstr ""
 msgid "Maximum query length exceeded."
 msgstr ""
 
-#: src/olympia/signing/views.py:56
+#: src/olympia/signing/views.py:52
 msgid "Could not find Add-on with ID \"{}\"."
 msgstr ""
 
-#: src/olympia/signing/views.py:75
+#: src/olympia/signing/views.py:71
 msgid "You do not own this addon."
 msgstr ""
 
-#: src/olympia/signing/views.py:177
+#: src/olympia/signing/views.py:132
 msgid "Missing \"upload\" key in multipart file data."
 msgstr ""
 
-#: src/olympia/signing/views.py:185
+#: src/olympia/signing/views.py:140
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
 msgstr ""
 
-#: src/olympia/signing/views.py:195
+#: src/olympia/signing/views.py:150
 msgid "Version does not match the manifest file."
 msgstr ""
 
-#: src/olympia/signing/views.py:204
+#: src/olympia/signing/views.py:159
 #, python-format
 msgid "Version already exists. Latest version is: %s."
 msgstr ""
 
-#: src/olympia/signing/views.py:219
+#: src/olympia/signing/views.py:174
 msgid ""
 "Please specify your Add-on ID in the manifest if it's longer than 64 "
 "characters."
 msgstr ""
 
-#: src/olympia/signing/views.py:234
+#: src/olympia/signing/views.py:189
 msgid "Invalid Add-on ID in URL or package"
 msgstr ""
 
-#: src/olympia/signing/views.py:273
+#: src/olympia/signing/views.py:228
 msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
 msgstr ""
 
-#: src/olympia/signing/views.py:282
+#: src/olympia/signing/views.py:237
 msgid ""
 "You cannot add a listed version to this addon via the API due to missing "
 "metadata. Please submit via the website"
 msgstr ""
 
-#: src/olympia/signing/views.py:330
+#: src/olympia/signing/views.py:285
 msgid "No uploaded file for that addon and version."
 msgstr ""
 
@@ -8756,7 +8756,7 @@ msgctxt "user_list_others"
 msgid "others"
 msgstr ""
 
-#: src/olympia/versions/models.py:1052
+#: src/olympia/versions/models.py:1081
 msgid "{app} {min} and later"
 msgstr ""
 
