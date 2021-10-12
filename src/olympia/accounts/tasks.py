@@ -43,7 +43,7 @@ def primary_email_change_event(profile, changed_date, email):
         )
     else:
         log.warning(
-            'Account pk [%s] email updated ignored, %s > %s'
+            'Account pk [%s] email updated ignored, %s >= %s'
             % (profile.id, profile.email_changed, changed_date)
         )
 
@@ -78,6 +78,6 @@ def clear_sessions_event(user, event_date, event_type):
         )
     else:
         log.warning(
-            'Account pk [%s] sessions not reset.  %s event ignored, %s > %s'
+            'Account pk [%s] sessions not reset.  %s event ignored, %s >= %s'
             % (user.id, event_type, user.last_login, event_date)
         )

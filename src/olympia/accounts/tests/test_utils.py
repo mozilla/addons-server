@@ -440,5 +440,5 @@ class TestProcessFxAEventResetTestCase(TestCase):
         )
 
 
-class TestProcessFxAEventPasswordChangeTestCase(TestCase):
+class TestProcessFxAEventPasswordChangeTestCase(TestProcessFxAEventResetTestCase):
     event = 'passwordChange'
