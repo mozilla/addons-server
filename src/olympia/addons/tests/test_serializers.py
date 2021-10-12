@@ -1387,6 +1387,17 @@ class TestLanguageToolsSerializerOutput(TestCase):
             'reviewed',
             'version',
         }
+        version_file = result['current_compatible_version']['file']
+
+        with override_settings(DRF_API_GATES={None: ('version-files',)}):
+            result = self.serialize()
+            assert set(result['current_compatible_version'].keys()) == {
+                'id',
+                'files',
+                'reviewed',
+                'version',
+            }
+            assert result['current_compatible_version']['files'] == [version_file]
 
         self.addon.compatible_versions = None
         result = self.serialize()

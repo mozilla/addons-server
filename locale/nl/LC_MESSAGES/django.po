@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-06 15:42+0000\n"
-"PO-Revision-Date: 2021-09-29 09:51+0000\n"
+"PO-Revision-Date: 2021-10-07 05:46+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -4403,19 +4403,19 @@ msgstr "Alle extensies bekijken"
 #. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
 msgid "Top anti-tracking extensions"
-msgstr ""
+msgstr "Beste anti-trackingextensies"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity boosters"
-msgstr ""
+msgstr "Productiviteitsboosters"
 
 #. editorial content for the secondary hero shelves.
 msgid "YouTube customization"
-msgstr ""
+msgstr "YouTube-aanpassingen"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
-msgstr ""
+msgstr "Keuzes van de staf bekijken"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended extensions"
@@ -4439,7 +4439,7 @@ msgstr "Verbeterde privacyextensies"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended privacy extensions"
-msgstr ""
+msgstr "Meer aanbevolen privacyextensies bekijken"
 
 #. editorial content for the homepage shelves.
 # Plural in this context means many of the add-on type
@@ -4472,7 +4472,7 @@ msgstr "Vertaalhulpmiddelen"
 
 #. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
-msgstr ""
+msgstr "Meer stafkeuzes voor vertaalhulpmiddelen bekijken"
 
 #. editorial content for the homepage shelves.
 msgid "Social streaming"
@@ -4480,7 +4480,7 @@ msgstr "Sociale streaming"
 
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
-msgstr ""
+msgstr "Meer stafkeuzes voor sociale streaming bekijken"
 
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
@@ -4488,7 +4488,7 @@ msgstr "Tabbladbeheerders"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
-msgstr ""
+msgstr "Meer stafkeuzes voor tabbladbeheer bekijken"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
