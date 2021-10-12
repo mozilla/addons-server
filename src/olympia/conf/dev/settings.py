@@ -107,7 +107,7 @@ DEFAULT_FXA_CONFIG_NAME = 'default'
 ALLOWED_FXA_CONFIGS = ['default', 'local']
 
 FXA_SQS_AWS_QUEUE_URL = (
-    'https://sqs.us-east-1.amazonaws.com/927034868273/amo-account-change-dev'
+    'https://sqs.us-east-1.amazonaws.com/142069644989/amo-account-change-dev'
 )
 
 VAMO_URL = 'https://versioncheck-dev.allizom.org'

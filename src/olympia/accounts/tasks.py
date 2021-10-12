@@ -43,7 +43,7 @@ def primary_email_change_event(profile, changed_date, email):
         )
     else:
         log.warning(
-            'Account pk [%s] email updated ignored, %s > %s'
+            'Account pk [%s] email updated ignored, %s >= %s'
             % (profile.id, profile.email_changed, changed_date)
         )
 
@@ -60,4 +60,24 @@ def delete_user_event(user, deleted_date):
         log.info(
             f'Skipping deletion from FxA for account [{user.id}] because '
             'waffle inactive'
+        )
+
+
+@task
+@use_primary_db
+@user_profile_from_uid
+def clear_sessions_event(user, event_date, event_type):
+    """Process the passwordChange or reset events - both just clear sessions."""
+    if not user.last_login or user.last_login < event_date:
+        # Logging out invalidates *all* user sessions. A new auth_id will be
+        # generated during the next login.
+        user.update(auth_id=None)
+        log.info(
+            'Account pk [%s] sessions reset after a %s event from FxA on %s'
+            % (user.id, event_type, event_date)
+        )
+    else:
+        log.warning(
+            'Account pk [%s] sessions not reset.  %s event ignored, %s >= %s'
+            % (user.id, event_type, user.last_login, event_date)
         )

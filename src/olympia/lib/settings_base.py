@@ -1149,10 +1149,11 @@ CELERY_TASK_ROUTES = {
     'olympia.tags.tasks.update_all_tag_stats': {'queue': 'tags'},
     'olympia.tags.tasks.update_tag_stat': {'queue': 'tags'},
     # Users
+    'olympia.accounts.tasks.clear_sessions_event': {'queue': 'users'},
+    'olympia.accounts.tasks.delete_user_event': {'queue': 'users'},
     'olympia.accounts.tasks.primary_email_change_event': {'queue': 'users'},
     'olympia.users.tasks.delete_photo': {'queue': 'users'},
     'olympia.users.tasks.update_user_ratings_task': {'queue': 'users'},
-    'olympia.accounts.tasks.delete_user_event': {'queue': 'users'},
     # Zadmin
     'olympia.scanners.tasks.run_yara_query_rule': {'queue': 'zadmin'},
     'olympia.scanners.tasks.run_yara_query_rule_on_versions_chunk': {'queue': 'zadmin'},
@@ -1754,9 +1755,6 @@ REPUTATION_SERVICE_URL = env('REPUTATION_SERVICE_URL', default=None)
 REPUTATION_SERVICE_TOKEN = env('REPUTATION_SERVICE_TOKEN', default=None)
 REPUTATION_SERVICE_TIMEOUT = env.float('REPUTATION_SERVICE_TIMEOUT', default=1)
 
-# This is the queue used for addons-dev, so it'll consume events (i.e. process
-# then delete) before you can locally.  If you really need to test get ops to
-# stop the 'monitor_fxa_sqs` command.
 FXA_SQS_AWS_QUEUE_URL = (
     'https://sqs.us-east-1.amazonaws.com/927034868273/amo-account-change-dev'
 )

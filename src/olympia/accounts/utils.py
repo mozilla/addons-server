@@ -12,9 +12,10 @@ from django.utils.encoding import force_str
 
 import boto3
 
-from olympia.accounts.tasks import delete_user_event, primary_email_change_event
 from olympia.amo.utils import is_safe_url, use_fake_fxa
 from olympia.core.logger import getLogger
+
+from .tasks import clear_sessions_event, delete_user_event, primary_email_change_event
 
 
 def fxa_config(request):
@@ -146,6 +147,8 @@ def process_fxa_event(raw_body):
                 primary_email_change_event.delay(uid, timestamp, email)
         elif event_type == 'delete':
             delete_user_event.delay(uid, timestamp)
+        elif event_type in ['passwordChange', 'reset']:
+            clear_sessions_event.delay(uid, timestamp, event_type)
         else:
             log.info('Dropping unknown event type %r', event_type)
 

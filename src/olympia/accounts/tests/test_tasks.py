@@ -4,7 +4,11 @@ from unittest import mock
 from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.accounts.tasks import delete_user_event, primary_email_change_event
+from olympia.accounts.tasks import (
+    clear_sessions_event,
+    delete_user_event,
+    primary_email_change_event,
+)
 from olympia.accounts.tests.test_utils import totimestamp
 from olympia.amo.tests import addon_factory, collection_factory, TestCase, user_factory
 from olympia.bandwagon.models import Collection
@@ -98,3 +102,33 @@ class TestDeleteUserEvent(TestCase):
         delete_user_event(self.fxa_id, totimestamp(datetime(2017, 10, 11)))
         self.user.reload()
         assert not self.user.deleted
+
+
+class TestClearSessionsEvent(TestCase):
+    fxa_id = 'ABCDEF012345689'
+
+    def test_success(self):
+        user = user_factory(auth_id=123456, fxa_id=self.fxa_id)
+        assert user.auth_id is not None
+        clear_sessions_event(
+            self.fxa_id, totimestamp(datetime(2017, 10, 11)), 'passwordChanged'
+        )
+        assert user.reload().auth_id is None
+
+    def test_ignored_because_old_timestamp(self):
+        yesterday = datetime(2017, 10, 1)
+        today = datetime(2017, 10, 2)
+        tomorrow = datetime(2017, 10, 3)
+        user = user_factory(auth_id=123456, fxa_id=self.fxa_id, last_login=today)
+
+        clear_sessions_event(self.fxa_id, totimestamp(yesterday), 'passwordChanged')
+        assert user.reload().auth_id is not None
+
+        clear_sessions_event(self.fxa_id, totimestamp(tomorrow), 'passwordChanged')
+        assert user.reload().auth_id is None
+
+    def test_ignored_if_user_not_found(self):
+        """Check that this doesn't throw"""
+        clear_sessions_event(
+            self.fxa_id, totimestamp(datetime(2017, 10, 11)), 'passwordChanged'
+        )
