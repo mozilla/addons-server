@@ -647,6 +647,10 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
         fake_request.META['REMOTE_ADDR'] = remote_addr
         for throttle_class in view_class.throttle_classes:
             throttle = throttle_class()
+            # generate a different value each time, emulating hitting different CDNs
+            fake_request.META[
+                'HTTP_X_FORWARDED_FOR'
+            ] = f'{remote_addr}, {get_random_ip()}'
             # allow_request() fetches the history, triggers a success/failure
             # and if it's a success it will add the request to the history and
             # set that in the cache. If it failed, we force a success anyway
