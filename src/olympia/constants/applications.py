@@ -8,6 +8,8 @@ from .base import (
     ADDON_LPAPP,
     ADDON_PLUGIN,
     ADDON_STATICTHEME,
+    DEFAULT_WEBEXT_MIN_VERSION,
+    DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
 )
 
 from olympia.versions.compare import version_int as vint
@@ -174,6 +176,11 @@ FAKE_MAX_VERSION = '65535'
 D2C_MIN_VERSIONS = {
     FIREFOX.id: '4.0',
     ANDROID.id: '11.0',
+}
+
+DEFAULT_WEBEXT_MIN_VERSIONS = {
+    FIREFOX: DEFAULT_WEBEXT_MIN_VERSION,
+    ANDROID: DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
 }
 
 for _app in APPS_ALL.values():

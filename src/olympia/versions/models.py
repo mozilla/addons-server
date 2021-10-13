@@ -526,6 +526,22 @@ class Version(OnChangeMixin, ModelBase):
     def compatible_apps(self, value):
         self._compatible_apps = value
 
+    def set_compatible_apps(self, apps):
+        from olympia.addons.tasks import index_addons  # circular import
+
+        # clear any removed applications
+        self.apps.exclude(application__in=(app.id for app in apps)).delete()
+        # then save the instances
+        for applications_versions in apps.values():
+            if not applications_versions.id:
+                # set version if we have it, for new instances
+                applications_versions.version = self
+            applications_versions.save()
+        # Update cache on the model.
+        self.compatible_apps = apps
+        # Make sure the add-on is properly re-indexed
+        index_addons.delay([self.addon.id])
+
     @cached_property
     def is_compatible_by_default(self):
         """Returns whether or not the add-on is considered compatible by

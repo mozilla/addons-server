@@ -349,6 +349,7 @@ class AddonVersionViewSet(
     AddonChildMixin,
     CreateModelMixin,
     RetrieveModelMixin,
+    UpdateModelMixin,
     ListModelMixin,
     GenericViewSet,
 ):
@@ -407,7 +408,7 @@ class AddonVersionViewSet(
             # super + check_object_permission() ourselves, passing down the
             # addon object directly.
             return super().check_object_permissions(request, self.get_addon_object())
-        elif self.action == 'create':
+        elif self.action in ('create', 'update', 'partial_update'):
             self.permission_classes = [
                 APIGatePermission('addon-submission-api'),
                 IsAuthenticated,
@@ -439,6 +440,12 @@ class AddonVersionViewSet(
                     'addon', [AnyOf(AllowListedViewerOrReviewer, AllowAddonAuthor)]
                 )
             ]
+        if self.action in ('update', 'partial_update'):
+            self.permission_classes = [
+                APIGatePermission('addon-submission-api'),
+                AllowRelatedObjectPermissions('addon', [AllowAddonAuthor]),
+            ]
+
         super().check_object_permissions(request, obj)
 
     def get_queryset(self):

@@ -1594,8 +1594,8 @@ class Addon(OnChangeMixin, ModelBase):
         for category in set(self.all_categories) - set(categories):
             AddonCategory.objects.filter(addon=self, category_id=category.id).delete()
 
-        # Remove old, outdated categories cache on the model.
-        del self.all_categories
+        # Update categories cache on the model.
+        self.all_categories = categories
 
         # Make sure the add-on is properly re-indexed
         update_search_index(Addon, self)
