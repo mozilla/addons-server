@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-12 16:39+0000\n"
-"PO-Revision-Date: 2021-02-13 02:14+0000\n"
+"PO-Revision-Date: 2021-10-13 17:52+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
@@ -778,7 +778,7 @@ msgid "Status"
 msgstr "Стан"
 
 msgid "All tests passed successfully."
-msgstr "Всі тести пройшли успішно."
+msgstr "Усі тести пройшли успішно."
 
 msgid "These tests were not run."
 msgstr "Ці тести не запускались."
