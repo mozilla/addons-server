@@ -17,6 +17,7 @@ from olympia.amo.tests import (
     APITestClient,
     TestCase,
     addon_factory,
+    get_random_ip,
     reverse_ns,
     user_factory,
     version_factory,
@@ -1513,6 +1514,7 @@ class TestRatingViewSetEdit(TestCase):
                     self.url,
                     {'score': x, 'body': f'Blâh {x}'},
                     REMOTE_ADDR='127.0.0.42',
+                    HTTP_X_FORWARDED_FOR=f'127.0.0.42, {get_random_ip()}',
                 )
                 assert response.status_code == 200
                 self.rating.reload()
@@ -1524,6 +1526,7 @@ class TestRatingViewSetEdit(TestCase):
                 self.url,
                 {'score': 1, 'body': 'Ooops'},
                 REMOTE_ADDR='127.0.0.42',
+                HTTP_X_FORWARDED_FOR=f'127.0.0.42, {get_random_ip()}',
             )
             assert response.status_code == 429
             self.rating.reload()
@@ -1536,6 +1539,7 @@ class TestRatingViewSetEdit(TestCase):
                 self.url,
                 {'score': 1, 'body': 'Eheheh'},
                 REMOTE_ADDR='127.0.0.42',
+                HTTP_X_FORWARDED_FOR=f'127.0.0.42, {get_random_ip()}',
             )
             assert response.status_code == 200
             self.rating.reload()
@@ -1557,6 +1561,7 @@ class TestRatingViewSetEdit(TestCase):
                 new_url,
                 {'score': 2, 'body': 'Ooops'},
                 REMOTE_ADDR='127.0.0.42',
+                HTTP_X_FORWARDED_FOR=f'127.0.0.42, {get_random_ip()}',
             )
             assert response.status_code == 429
             new_rating.reload()
@@ -1569,6 +1574,7 @@ class TestRatingViewSetEdit(TestCase):
                 new_url,
                 {'score': 1, 'body': 'I did it'},
                 REMOTE_ADDR='127.0.0.42',
+                HTTP_X_FORWARDED_FOR=f'127.0.0.42, {get_random_ip()}',
             )
             assert response.status_code == 200
             new_rating.reload()
@@ -2126,7 +2132,10 @@ class TestRatingViewSetPost(TestCase):
                     'score': 2,
                     'version': self.addon.current_version.pk,
                 },
-                extra_kwargs={'REMOTE_ADDR': '4.8.15.16'},
+                extra_kwargs={
+                    'REMOTE_ADDR': '4.8.15.16',
+                    'HTTP_X_FORWARDED_FOR': f'4.8.15.16, {get_random_ip()}',
+                },
             )
             assert response.status_code == 201
 
@@ -2144,7 +2153,10 @@ class TestRatingViewSetPost(TestCase):
                     'score': 2,
                     'version': new_version.pk,
                 },
-                extra_kwargs={'REMOTE_ADDR': '4.8.15.16'},
+                extra_kwargs={
+                    'REMOTE_ADDR': '4.8.15.16',
+                    'HTTP_X_FORWARDED_FOR': f'4.8.15.16, {get_random_ip()}',
+                },
             )
             assert response.status_code == 429
 
@@ -2160,7 +2172,10 @@ class TestRatingViewSetPost(TestCase):
                     'score': 2,
                     'version': new_version.pk,
                 },
-                extra_kwargs={'REMOTE_ADDR': '4.8.15.16'},
+                extra_kwargs={
+                    'REMOTE_ADDR': '4.8.15.16',
+                    'HTTP_X_FORWARDED_FOR': f'4.8.15.16, {get_random_ip()}',
+                },
             )
             assert response.status_code == 201, response.content
 
@@ -2176,6 +2191,7 @@ class TestRatingViewSetPost(TestCase):
                 report_abuse_url,
                 data={'addon': str(self.addon.pk), 'message': 'lol!'},
                 REMOTE_ADDR='123.45.67.89',
+                HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
             )
             assert response.status_code == 201
 
@@ -2210,6 +2226,7 @@ class TestRatingViewSetPost(TestCase):
                 report_abuse_url,
                 data={'addon': str(self.addon.pk), 'message': 'again!'},
                 REMOTE_ADDR='123.45.67.89',
+                HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
             )
             assert response.status_code == 201
 
