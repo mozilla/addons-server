@@ -539,7 +539,10 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 url=url,
                 guid='@create-webextension',
                 version='1.0',
-                extra_kwargs={'REMOTE_ADDR': '63.245.208.194'},
+                extra_kwargs={
+                    'REMOTE_ADDR': '63.245.208.194',
+                    'HTTP_X_FORWARDED_FOR': f'63.245.208.194, {get_random_ip()}',
+                },
             )
             assert response.status_code == 429, response.content
 
@@ -551,7 +554,10 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 url=url,
                 guid='@create-webextension',
                 version='1.0',
-                extra_kwargs={'REMOTE_ADDR': '63.245.208.194'},
+                extra_kwargs={
+                    'REMOTE_ADDR': '63.245.208.194',
+                    'HTTP_X_FORWARDED_FOR': f'63.245.208.194, {get_random_ip()}',
+                },
             )
             assert response.status_code == expected_status
 
@@ -582,7 +588,10 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 url=url,
                 guid='@create-webextension',
                 version='1.0',
-                extra_kwargs={'REMOTE_ADDR': '63.245.208.194'},
+                extra_kwargs={
+                    'REMOTE_ADDR': '63.245.208.194',
+                    'HTTP_X_FORWARDED_FOR': f'63.245.208.194, {get_random_ip()}',
+                },
             )
             assert response.status_code == 429
 
@@ -594,7 +603,10 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 url=url,
                 guid='@create-webextension',
                 version='1.0',
-                extra_kwargs={'REMOTE_ADDR': '63.245.208.194'},
+                extra_kwargs={
+                    'REMOTE_ADDR': '63.245.208.194',
+                    'HTTP_X_FORWARDED_FOR': f'63.245.208.194, {get_random_ip()}',
+                },
             )
             assert response.status_code == 429
 
@@ -606,7 +618,10 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 url=url,
                 guid='@create-webextension',
                 version='1.0',
-                extra_kwargs={'REMOTE_ADDR': '63.245.208.194'},
+                extra_kwargs={
+                    'REMOTE_ADDR': '63.245.208.194',
+                    'HTTP_X_FORWARDED_FOR': f'63.245.208.194, {get_random_ip()}',
+                },
             )
             assert response.status_code == expected_status
 
@@ -629,7 +644,10 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 url=url,
                 guid='@create-webextension',
                 version='1.0',
-                extra_kwargs={'REMOTE_ADDR': get_random_ip()},
+                extra_kwargs={
+                    'REMOTE_ADDR': get_random_ip(),
+                    'HTTP_X_FORWARDED_FOR': f'{get_random_ip()}, {get_random_ip()}',
+                },
             )
             assert response.status_code == 429
 
@@ -641,7 +659,10 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 url=url,
                 guid='@create-webextension',
                 version='1.0',
-                extra_kwargs={'REMOTE_ADDR': get_random_ip()},
+                extra_kwargs={
+                    'REMOTE_ADDR': get_random_ip(),
+                    'HTTP_X_FORWARDED_FOR': f'{get_random_ip()}, {get_random_ip()}',
+                },
             )
             assert response.status_code == expected_status
 
@@ -665,7 +686,10 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 url=url,
                 guid='@create-webextension',
                 version='1.0',
-                extra_kwargs={'REMOTE_ADDR': get_random_ip()},
+                extra_kwargs={
+                    'REMOTE_ADDR': get_random_ip(),
+                    'HTTP_X_FORWARDED_FOR': f'{get_random_ip()}, {get_random_ip()}',
+                },
             )
             assert response.status_code == 429
 
@@ -677,7 +701,10 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 url=url,
                 guid='@create-webextension',
                 version='1.0',
-                extra_kwargs={'REMOTE_ADDR': get_random_ip()},
+                extra_kwargs={
+                    'REMOTE_ADDR': get_random_ip(),
+                    'HTTP_X_FORWARDED_FOR': f'{get_random_ip()}, {get_random_ip()}',
+                },
             )
             assert response.status_code == 429
 
@@ -688,7 +715,10 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 url=url,
                 guid='@create-webextension',
                 version='1.0',
-                extra_kwargs={'REMOTE_ADDR': get_random_ip()},
+                extra_kwargs={
+                    'REMOTE_ADDR': get_random_ip(),
+                    'HTTP_X_FORWARDED_FOR': f'{get_random_ip()}, {get_random_ip()}',
+                },
             )
             assert response.status_code == expected_status
 
@@ -711,7 +741,10 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 url=url,
                 guid='@create-webextension',
                 version='1.0',
-                extra_kwargs={'REMOTE_ADDR': get_random_ip()},
+                extra_kwargs={
+                    'REMOTE_ADDR': get_random_ip(),
+                    'HTTP_X_FORWARDED_FOR': f'{get_random_ip()}, {get_random_ip()}',
+                },
             )
             assert response.status_code == 429
 
@@ -723,7 +756,10 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 url=url,
                 guid='@create-webextension',
                 version='1.0',
-                extra_kwargs={'REMOTE_ADDR': get_random_ip()},
+                extra_kwargs={
+                    'REMOTE_ADDR': get_random_ip(),
+                    'HTTP_X_FORWARDED_FOR': f'{get_random_ip()}, {get_random_ip()}',
+                },
             )
             assert response.status_code == 429
 
@@ -734,7 +770,10 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 url=url,
                 guid='@create-webextension',
                 version='1.0',
-                extra_kwargs={'REMOTE_ADDR': get_random_ip()},
+                extra_kwargs={
+                    'REMOTE_ADDR': get_random_ip(),
+                    'HTTP_X_FORWARDED_FOR': f'{get_random_ip()}, {get_random_ip()}',
+                },
             )
             assert response.status_code == 429
 
@@ -745,7 +784,10 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 url=url,
                 guid='@create-webextension',
                 version='1.0',
-                extra_kwargs={'REMOTE_ADDR': get_random_ip()},
+                extra_kwargs={
+                    'REMOTE_ADDR': get_random_ip(),
+                    'HTTP_X_FORWARDED_FOR': f'{get_random_ip()}, {get_random_ip()}',
+                },
             )
             assert response.status_code == expected_status
 
@@ -810,7 +852,10 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 url=url,
                 guid='@create-webextension',
                 version='1.0',
-                extra_kwargs={'REMOTE_ADDR': '1.2.3.4'},
+                extra_kwargs={
+                    'REMOTE_ADDR': '1.2.3.4',
+                    'HTTP_X_FORWARDED_FOR': f'1.2.3.4, {get_random_ip()}',
+                },
             )
             assert response.status_code == 202
 
@@ -1183,7 +1228,10 @@ class TestTestUploadVersionWebextensionTransactions(
                 url=url,
                 guid='@create-webextension',
                 version='1.0',
-                extra_kwargs={'REMOTE_ADDR': '1.2.3.4'},
+                extra_kwargs={
+                    'REMOTE_ADDR': '1.2.3.4',
+                    'HTTP_X_FORWARDED_FOR': f'1.2.3.4, {get_random_ip()}',
+                },
             )
             assert response.status_code == 429, response.content
         # We should have recorded an ActivityLog.
@@ -1201,7 +1249,10 @@ class TestTestUploadVersionWebextensionTransactions(
             url=url,
             guid='@create-webextension',
             version='1.0',
-            extra_kwargs={'REMOTE_ADDR': '1.2.3.4'},
+            extra_kwargs={
+                'REMOTE_ADDR': '1.2.3.4',
+                'HTTP_X_FORWARDED_FOR': f'1.2.3.4, {get_random_ip()}',
+            },
         )
         assert response.status_code == 403, response.content
         assert UserRestrictionHistory.objects.filter(user=self.user).exists()
@@ -1355,7 +1406,13 @@ class TestCheckVersion(BaseUploadVersionTestMixin, TestCase):
                 )
 
             # ... But it works, because it's just a GET, not a POST/PUT upload.
-            response = self.get(url, client_kwargs={'REMOTE_ADDR': '1.2.3.4'})
+            response = self.get(
+                url,
+                client_kwargs={
+                    'REMOTE_ADDR': '1.2.3.4',
+                    'HTTP_X_FORWARDED_FOR': f'1.2.3.4, {get_random_ip()}',
+                },
+            )
             assert response.status_code == 200
 
 

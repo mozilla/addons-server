@@ -1626,13 +1626,14 @@ DRF_API_GATES = {
 API_THROTTLING = True
 
 REST_FRAMEWORK = {
-    # Set this because the default is to also include:
-    #   'rest_framework.renderers.BrowsableAPIRenderer'
-    # Which it will try to use if the client accepts text/html.
-    'DEFAULT_RENDERER_CLASSES': ('rest_framework.renderers.JSONRenderer',),
+    'ALLOWED_VERSIONS': DRF_API_VERSIONS,
+    # Use http://ecma-international.org/ecma-262/5.1/#sec-15.9.1.15
+    # We can't use the default because we don't use django timezone support.
+    'DATETIME_FORMAT': '%Y-%m-%dT%H:%M:%SZ',
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'olympia.api.authentication.WebTokenAuthentication',
     ),
+    'DEFAULT_PAGINATION_CLASS': ('olympia.api.pagination.CustomPageNumberPagination'),
     # Set parser classes to include the fix for
     # https://github.com/tomchristie/django-rest-framework/issues/3951
     'DEFAULT_PARSER_CLASSES': (
@@ -1640,24 +1641,25 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.FormParser',
         'olympia.api.parsers.MultiPartParser',
     ),
-    'ALLOWED_VERSIONS': DRF_API_VERSIONS,
+    # Use json by default when using APIClient.
+    # Set this because the default is to also include:
+    #   'rest_framework.renderers.BrowsableAPIRenderer'
+    # Which it will try to use if the client accepts text/html.
+    'DEFAULT_RENDERER_CLASSES': ('rest_framework.renderers.JSONRenderer',),
     'DEFAULT_VERSION': 'v5',
     'DEFAULT_VERSIONING_CLASS': ('rest_framework.versioning.NamespaceVersioning'),
     # Add our custom exception handler, that wraps all exceptions into
     # Responses and not just the ones that are api-related.
     'EXCEPTION_HANDLER': 'olympia.api.exceptions.custom_exception_handler',
+    # Explictly set the number of proxies
+    'NUM_PROXIES': 0,
+    # Set our default ordering parameter
+    'ORDERING_PARAM': 'sort',
     # Enable pagination
     'PAGE_SIZE': 25,
     # Use our pagination class by default, which allows clients to request a
     # different page size.
-    'DEFAULT_PAGINATION_CLASS': ('olympia.api.pagination.CustomPageNumberPagination'),
-    # Use json by default when using APIClient.
     'TEST_REQUEST_DEFAULT_FORMAT': 'json',
-    # Use http://ecma-international.org/ecma-262/5.1/#sec-15.9.1.15
-    # We can't use the default because we don't use django timezone support.
-    'DATETIME_FORMAT': '%Y-%m-%dT%H:%M:%SZ',
-    # Set our default ordering parameter
-    'ORDERING_PARAM': 'sort',
 }
 
 
