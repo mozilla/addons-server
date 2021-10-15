@@ -18,6 +18,7 @@ from waffle import switch_is_active
 from waffle.testutils import override_switch
 
 from olympia import amo
+from olympia.addons.models import AddonCategory
 from olympia.amo.tests import (
     APITestClient,
     ESTestCase,
@@ -51,7 +52,12 @@ from ..models import (
     AddonUser,
     ReplacementAddon,
 )
-from ..serializers import AddonSerializer, LicenseSerializer, VersionSerializer
+from ..serializers import (
+    AddonSerializer,
+    AddonSerializerWithUnlistedData,
+    LicenseSerializer,
+    VersionSerializer,
+)
 from ..utils import generate_addon_guid
 from ..views import (
     DEFAULT_FIND_REPLACEMENT_PATH,
@@ -744,7 +750,7 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
             self.url,
             data=self.minimal_data,
         )
-        assert response.status_code in [401, 403]  # JWT auth is a 401; web auth is 401
+        assert response.status_code in [401, 403]  # JWT auth is a 401; web auth is 403
         assert 'agreement' in response.data['detail'].lower()
         assert not Addon.objects.all()
 
@@ -777,13 +783,21 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
         assert not Addon.objects.all()
 
     def test_invalid_categories(self):
-        data = {**self.minimal_data, 'categories': {'firefox': ['performance']}}
         response = self.client.post(
             self.url,
-            data=data,
+            # performance is an android category
+            data={**self.minimal_data, 'categories': {'firefox': ['performance']}},
         )
         assert response.status_code == 400, response.content
-        assert response.data == {'categories': ['Invalid app or category name.']}
+        assert response.data == {'categories': ['Invalid category name.']}
+
+        response = self.client.post(
+            self.url,
+            # general is an firefox category but for dicts and lang packs
+            data={**self.minimal_data, 'categories': {'firefox': ['general']}},
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {'categories': ['Invalid category name.']}
         assert not Addon.objects.all()
 
     def test_set_extra_data(self):
@@ -826,6 +840,192 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
 
 
 class TestAddonViewSetCreateJWTAuth(TestAddonViewSetCreate):
+    client_class = JWTAPITestClient
+
+
+class TestAddonViewSetUpdate(TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        super().setUp()
+        self.user = user_factory(read_dev_agreement=self.days_ago(0))
+        self.addon = addon_factory(users=(self.user,))
+        self.url = reverse_ns(
+            'addon-detail', kwargs={'pk': self.addon.pk}, api_version='v5'
+        )
+        self.client.login_api(self.user)
+
+    def test_basic(self):
+        response = self.client.patch(
+            self.url,
+            data={'summary': {'en-US': 'summary update!'}},
+        )
+        self.addon.reload()
+        assert response.status_code == 200, response.content
+        data = response.data
+        assert data['name'] == {'en-US': self.addon.name}  # still the same
+        assert data['summary'] == {'en-US': 'summary update!'}
+
+        request = APIRequestFactory().get('/')
+        request.version = 'v5'
+        request.user = self.user
+        assert data == AddonSerializerWithUnlistedData(
+            context={'request': request}
+        ).to_representation(self.addon)
+        assert self.addon.summary == 'summary update!'
+
+    def test_not_authenticated(self):
+        self.client.logout_api()
+        response = self.client.patch(
+            self.url,
+            data={'summary': {'en-US': 'summary update!'}},
+        )
+        assert response.status_code == 401
+        assert response.data == {
+            'detail': 'Authentication credentials were not provided.'
+        }
+        assert self.addon.reload().summary != 'summary update!'
+
+    def test_not_read_agreement(self):
+        self.user.update(read_dev_agreement=None)
+        response = self.client.patch(
+            self.url,
+            data={'summary': {'en-US': 'summary update!'}},
+        )
+        assert response.status_code in [401, 403]  # JWT auth is a 401; web auth is 403
+        assert 'agreement' in response.data['detail'].lower()
+        assert self.addon.reload().summary != 'summary update!'
+
+    def test_not_your_addon(self):
+        self.addon.addonuser_set.get(user=self.user).update(
+            role=amo.AUTHOR_ROLE_DELETED
+        )
+        response = self.client.patch(
+            self.url,
+            data={'summary': {'en-US': 'summary update!'}},
+        )
+        assert response.status_code == 403
+        assert response.data['detail'] == (
+            'You do not have permission to perform this action.'
+        )
+        assert self.addon.reload().summary != 'summary update!'
+
+    def test_waffle_flag_disabled(self):
+        gates = {
+            'v5': (
+                gate
+                for gate in settings.DRF_API_GATES['v5']
+                if gate != 'addon-submission-api'
+            )
+        }
+        with override_settings(DRF_API_GATES=gates):
+            response = self.client.patch(
+                self.url,
+                data={'summary': {'en-US': 'summary update!'}},
+            )
+        assert response.status_code == 403
+        assert response.data == {
+            'detail': 'You do not have permission to perform this action.'
+        }
+        assert self.addon.reload().summary != 'summary update!'
+
+    def test_cant_update_version(self):
+        response = self.client.patch(
+            self.url,
+            data={'version': {'release_notes': {'en-US': 'new notes'}}},
+        )
+        assert response.status_code == 200, response.content
+        assert self.addon.current_version.reload().release_notes != 'new notes'
+
+    def test_update_categories(self):
+        bookmarks_cat = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['bookmarks']
+        tabs_cat = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['tabs']
+        other_cat = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['other']
+        AddonCategory.objects.filter(addon=self.addon).update(category_id=tabs_cat.id)
+        assert self.addon.app_categories == {'firefox': [tabs_cat]}
+
+        response = self.client.patch(
+            self.url,
+            data={'categories': {'firefox': ['bookmarks']}},
+        )
+        assert response.status_code == 200, response.content
+        assert response.data['categories'] == {'firefox': ['bookmarks']}
+        self.addon = Addon.objects.get()
+        assert self.addon.reload().app_categories == {'firefox': [bookmarks_cat]}
+
+        # repeat, but with the `other` category
+        response = self.client.patch(
+            self.url,
+            data={'categories': {'firefox': ['other']}},
+        )
+        assert response.status_code == 200, response.content
+        assert response.data['categories'] == {'firefox': ['other']}
+        self.addon = Addon.objects.get()
+        assert self.addon.reload().app_categories == {'firefox': [other_cat]}
+
+    def test_invalid_categories(self):
+        tabs_cat = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['tabs']
+        AddonCategory.objects.filter(addon=self.addon).update(category_id=tabs_cat.id)
+        assert self.addon.app_categories == {'firefox': [tabs_cat]}
+        del self.addon.all_categories
+
+        response = self.client.patch(
+            self.url,
+            # performance is an android category
+            data={'categories': {'firefox': ['performance']}},
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {'categories': ['Invalid category name.']}
+        assert self.addon.reload().app_categories == {'firefox': [tabs_cat]}
+
+        response = self.client.patch(
+            self.url,
+            # general is a firefox category, but for langpacks and dicts only
+            data={'categories': {'firefox': ['general']}},
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {'categories': ['Invalid category name.']}
+        assert self.addon.reload().app_categories == {'firefox': [tabs_cat]}
+
+    def test_set_extra_data(self):
+        self.addon.description = 'Existing description'
+        self.addon.save()
+        data = {
+            'name': {'en-US': 'new name'},
+            'developer_comments': {'en-US': 'comments'},
+            'homepage': {'en-US': 'https://my.home.page/'},
+            # 'description'  # don't update - should retain existing
+            'slug': 'addon-slug',
+            'summary': {'en-US': 'new summary'},
+            'support_email': {'en-US': 'email@me'},
+            'support_url': {'en-US': 'https://my.home.page/support/'},
+        }
+        response = self.client.patch(
+            self.url,
+            data=data,
+        )
+        addon = Addon.objects.get()
+
+        assert response.status_code == 200, response.content
+        data = response.data
+        assert data['name'] == {'en-US': 'new name'}
+        assert addon.name == 'new name'
+        assert data['developer_comments'] == {'en-US': 'comments'}
+        assert addon.developer_comments == 'comments'
+        assert data['homepage']['url'] == {'en-US': 'https://my.home.page/'}
+        assert addon.homepage == 'https://my.home.page/'
+        assert data['description'] == {'en-US': 'Existing description'}
+        assert addon.description == 'Existing description'
+        assert data['slug'] == 'addon-slug' == addon.slug
+        assert data['summary'] == {'en-US': 'new summary'}
+        assert addon.summary == 'new summary'
+        assert data['support_email'] == {'en-US': 'email@me'}
+        assert addon.support_email == 'email@me'
+        assert data['support_url']['url'] == {'en-US': 'https://my.home.page/support/'}
+        assert addon.support_url == 'https://my.home.page/support/'
+
+
+class TestAddonViewSetUpdateJWTAuth(TestAddonViewSetUpdate):
     client_class = JWTAPITestClient
 
 

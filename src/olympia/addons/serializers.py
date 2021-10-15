@@ -13,6 +13,7 @@ from olympia.accounts.serializers import (
     UserProfileBasketSyncSerializer,
 )
 from olympia.amo.templatetags.jinja_helpers import absolutify
+from olympia.amo.utils import sorted_groupby
 from olympia.api.fields import (
     ESTranslationSerializerField,
     GetTextTranslationSerializerField,
@@ -44,7 +45,7 @@ from olympia.versions.models import (
     VersionPreview,
 )
 
-from .models import Addon, AddonCategory, Preview, ReplacementAddon, attach_tags
+from .models import Addon, Preview, ReplacementAddon, attach_tags
 
 
 class FileSerializer(serializers.ModelSerializer):
@@ -549,13 +550,33 @@ class PromotedAddonSerializer(serializers.ModelSerializer):
 
 class CategoriesSerializerField(serializers.Field):
     def to_internal_value(self, data):
-        # Can't do any transformation/validation here because we don't know addon_type
-        return data
+        try:
+            categories = []
+            for app_name, category_names in data.items():
+                app_cats = CATEGORIES[APPS[app_name].id]
+                # We don't know the addon_type at this point, so try them all and we'll
+                # drop anything that's wrong later in AddonSerializer.validate
+                all_cat_slugs = set()
+                for type_cats in app_cats.values():
+                    categories.extend(
+                        type_cats[name] for name in category_names if name in type_cats
+                    )
+                    all_cat_slugs.update(type_cats.keys())
+                # Now double-check all the category names were found
+                if not all_cat_slugs.issuperset(category_names):
+                    raise exceptions.ValidationError('Invalid category name.')
+            return categories
+        except KeyError:
+            raise exceptions.ValidationError('Invalid app name.')
 
     def to_representation(self, value):
+        grouped = sorted_groupby(
+            sorted(value),
+            key=lambda x: getattr(amo.APP_IDS.get(x.application), 'short', ''),
+        )
         return {
-            app_short_name: [cat.slug for cat in categories]
-            for app_short_name, categories in value.items()
+            app_name: [cat.slug for cat in categories]
+            for app_name, categories in grouped
         }
 
 
@@ -584,7 +605,7 @@ class AddonSerializer(serializers.ModelSerializer):
     authors = AddonDeveloperSerializer(
         many=True, source='listed_authors', read_only=True
     )
-    categories = CategoriesSerializerField(source='app_categories')
+    categories = CategoriesSerializerField(source='all_categories')
     contributions_url = ContributionSerializerField(
         source='contributions', read_only=True
     )
@@ -677,6 +698,11 @@ class AddonSerializer(serializers.ModelSerializer):
         )
         read_only_fields = tuple(set(fields) - set(writeable_fields))
 
+    def __init__(self, instance=None, data=serializers.empty, **kwargs):
+        if instance and isinstance(data, dict):
+            data.pop('version', None)  # we only support version field for create
+        super().__init__(instance=instance, data=data, **kwargs)
+
     def to_representation(self, obj):
         data = super().to_representation(obj)
         request = self.context.get('request', None)
@@ -754,20 +780,18 @@ class AddonSerializer(serializers.ModelSerializer):
             addon_type = self.fields['version'].parsed_data['type']
         else:
             addon_type = self.instance.type
-        if 'app_categories' in data:
-            try:
-                category_ids = []
-                for app_name, category_names in data['app_categories'].items():
-                    app = APPS[app_name]
-                    category_ids.extend(
-                        CATEGORIES[app.id][addon_type][name] for name in category_names
-                    )
-                data['app_categories'] = category_ids
-            except KeyError:
+        if 'all_categories' in data:
+            # filter out categories for the wrong type.
+            # There might be dupes, e.g. "other" is a category for 2 types
+            slugs = {cat.slug for cat in data['all_categories']}
+            data['all_categories'] = [
+                cat for cat in data['all_categories'] if cat.type == addon_type
+            ]
+            # double check we didn't lose any
+            if slugs != {cat.slug for cat in data['all_categories']}:
                 raise exceptions.ValidationError(
-                    {'categories': 'Invalid app or category name.'}
+                    {'categories': 'Invalid category name.'}
                 )
-
         return data
 
     def create(self, validated_data):
@@ -780,8 +804,7 @@ class AddonSerializer(serializers.ModelSerializer):
             user=self.context['request'].user,
         )
         # Add categories
-        for category in validated_data.get('app_categories', ()):
-            AddonCategory.objects.create(addon=addon, category_id=category.id)
+        addon.set_categories(validated_data.get('all_categories', []))
 
         self.fields['version'].create(
             {**validated_data.get('version', {}), 'addon': addon}
@@ -800,6 +823,13 @@ class AddonSerializer(serializers.ModelSerializer):
             addon.update(status=amo.STATUS_NOMINATED)
 
         return addon
+
+    def update(self, instance, validated_data):
+        instance = super().update(instance, validated_data)
+        if 'all_categories' in validated_data:
+            del instance.all_categories  # super.update will have set it.
+            instance.set_categories(validated_data['all_categories'])
+        return instance
 
 
 class AddonSerializerWithUnlistedData(AddonSerializer):
