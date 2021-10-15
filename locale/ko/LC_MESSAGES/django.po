@@ -1645,7 +1645,7 @@ msgid "At least one author must be listed."
 msgstr "최소 1명 이상의 제작자를 입력해야 합니다."
 
 msgid "Slug incorrect."
-msgstr ""
+msgstr "Slug가 올바르지 않습니다."
 
 msgid "Details"
 msgstr "세부 내역"
