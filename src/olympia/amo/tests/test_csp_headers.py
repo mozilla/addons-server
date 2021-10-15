@@ -78,13 +78,19 @@ class TestCSPHeaders(TestCase):
         """Check frame-src directive has same settings as child-src"""
         assert base_settings.CSP_FRAME_SRC == base_settings.CSP_CHILD_SRC
 
-    def test_prod_cdn_in_common_settings(self):
+    def test_prod_static_url_in_common_settings(self):
         """Make sure prod cdn is specified by default for statics."""
-        prod_cdn_host = base_settings.PROD_CDN_HOST
-        assert prod_cdn_host in base_settings.CSP_FONT_SRC
-        assert prod_cdn_host in base_settings.CSP_IMG_SRC
-        assert prod_cdn_host in base_settings.CSP_SCRIPT_SRC
-        assert prod_cdn_host in base_settings.CSP_STYLE_SRC
+        prod_static_url = base_settings.PROD_STATIC_URL
+        assert prod_static_url in base_settings.CSP_FONT_SRC
+        assert prod_static_url in base_settings.CSP_IMG_SRC
+        assert prod_static_url in base_settings.CSP_SCRIPT_SRC
+        assert prod_static_url in base_settings.CSP_STYLE_SRC
+
+        prod_media_url = base_settings.PROD_MEDIA_URL
+        assert prod_media_url not in base_settings.CSP_FONT_SRC
+        assert prod_media_url in base_settings.CSP_IMG_SRC
+        assert prod_media_url not in base_settings.CSP_SCRIPT_SRC
+        assert prod_media_url not in base_settings.CSP_STYLE_SRC
 
     def test_self_in_common_settings(self):
         """Check 'self' is defined for common settings."""

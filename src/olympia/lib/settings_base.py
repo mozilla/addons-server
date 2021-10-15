@@ -220,6 +220,11 @@ SERVICES_URL = 'http://%s' % SERVICES_DOMAIN
 # https://github.com/mozilla/addons-code-manager
 CODE_MANAGER_URL = f'https://code.{DOMAIN}'
 
+# Static and media URL for prod are hardcoded here to allow them to be set in
+# the base CSP shared by all envs.
+PROD_STATIC_URL = 'https://addons.mozilla.org/static/'
+PROD_MEDIA_URL = 'https://addons.mozilla.org/user-media/'
+
 # Filter IP addresses of allowed clients that can post email through the API.
 ALLOWED_CLIENTS_EMAIL_API = env.list('ALLOWED_CLIENTS_EMAIL_API', default=[])
 # Auth token required to authorize inbound email.
@@ -1263,7 +1268,6 @@ LOGGING = {
 
 # CSP Settings
 
-PROD_CDN_HOST = 'https://addons.cdn.mozilla.net'
 ANALYTICS_HOST = 'https://www.google-analytics.com'
 
 CSP_REPORT_URI = '/__cspreport__'
@@ -1273,21 +1277,16 @@ CSP_EXCLUDE_URL_PREFIXES = ()
 # NOTE: CSP_DEFAULT_SRC MUST be set otherwise things not set
 # will default to being open to anything.
 CSP_DEFAULT_SRC = ("'self'",)
-CSP_BASE_URI = (
-    "'self'",
-    # Required for the legacy discovery pane.
-    'https://addons.mozilla.org',
-)
+CSP_BASE_URI = ("'self'",)
 CSP_CONNECT_SRC = (
     "'self'",
     'https://sentry.prod.mozaws.net',
     ANALYTICS_HOST,
-    PROD_CDN_HOST,
 )
 CSP_FORM_ACTION = ("'self'",)
 CSP_FONT_SRC = (
     "'self'",
-    PROD_CDN_HOST,
+    PROD_STATIC_URL,
 )
 CSP_CHILD_SRC = (
     "'self'",
@@ -1299,7 +1298,8 @@ CSP_IMG_SRC = (
     "'self'",
     'data:',  # Used in inlined mobile css.
     'blob:',  # Needed for image uploads.
-    PROD_CDN_HOST,
+    PROD_STATIC_URL,
+    PROD_MEDIA_URL,
     'https://static.addons.mozilla.net',  # CDN origin server.
     'https://sentry.prod.mozaws.net',
 )
@@ -1312,12 +1312,12 @@ CSP_SCRIPT_SRC = (
     'https://www.recaptcha.net/recaptcha/',
     'https://www.gstatic.com/recaptcha/',
     'https://www.gstatic.cn/recaptcha/',
-    PROD_CDN_HOST,
+    PROD_STATIC_URL,
 )
 CSP_STYLE_SRC = (
     "'self'",
     "'unsafe-inline'",
-    PROD_CDN_HOST,
+    PROD_STATIC_URL,
 )
 
 RESTRICTED_DOWNLOAD_CSP = {

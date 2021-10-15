@@ -78,6 +78,8 @@ DOMAIN = SERVICES_DOMAIN = urlparse(SITE_URL).netloc
 SERVICES_URL = SITE_URL
 INTERNAL_SITE_URL = 'http://nginx'
 EXTERNAL_SITE_URL = SITE_URL
+STATIC_URL = '%s/static/' % EXTERNAL_SITE_URL
+MEDIA_URL = '%s/user-media/' % EXTERNAL_SITE_URL
 
 CODE_MANAGER_URL = (
     os.environ.get('CODE_MANAGER_URL') or 'http://olympia.test:5000')
@@ -136,10 +138,15 @@ USE_FAKE_FXA_AUTH = True
 CSP_REPORT_URI = '/csp-report'
 RESTRICTED_DOWNLOAD_CSP['REPORT_URI'] = CSP_REPORT_URI
 
-# Allow GA over http + www subdomain in local development.
+# Set CSP like we do for dev/stage/prod, but also allow GA over http + www subdomain
+# for local development.
 HTTP_GA_SRC = 'http://www.google-analytics.com'
-CSP_IMG_SRC += (HTTP_GA_SRC,)
-CSP_SCRIPT_SRC += (HTTP_GA_SRC, "'self'")
+
+CSP_CONNECT_SRC += (SITE_URL,)
+CSP_FONT_SRC += (STATIC_URL,)
+CSP_IMG_SRC += (MEDIA_URL, STATIC_URL, HTTP_GA_SRC)
+CSP_SCRIPT_SRC += (STATIC_URL, HTTP_GA_SRC)
+CSP_STYLE_SRC += (STATIC_URL,)
 
 # Auth token required to authorize inbound email.
 INBOUND_EMAIL_SECRET_KEY = 'totally-unsecure-secret-string'
