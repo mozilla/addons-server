@@ -697,6 +697,7 @@ MINIFY_BUNDLES = {
     },
     'js': {
         # JS files common to the entire site, apart from dev-landing.
+        # js/node_lib/* files are copied in Makefile-docker - keep both lists in sync
         'common': (
             'js/node_lib/underscore.js',
             'js/zamboni/browser.js',
@@ -715,9 +716,8 @@ MINIFY_BUNDLES = {
             'js/node_lib/ui/disable-selection.js',
             'js/node_lib/ui/ie.js',
             'js/node_lib/ui/keycode.js',
-            'js/node_lib/ui/escape-selector.js',
             'js/node_lib/ui/labels.js',
-            'js/node_lib/ui/jquery-1-7.js',
+            'js/node_lib/ui/jquery-patch.js',
             'js/node_lib/ui/plugin.js',
             'js/node_lib/ui/safe-active-element.js',
             'js/node_lib/ui/safe-blur.js',
@@ -790,9 +790,8 @@ MINIFY_BUNDLES = {
             'js/node_lib/ui/disable-selection.js',
             'js/node_lib/ui/ie.js',
             'js/node_lib/ui/keycode.js',
-            'js/node_lib/ui/escape-selector.js',
             'js/node_lib/ui/labels.js',
-            'js/node_lib/ui/jquery-1-7.js',
+            'js/node_lib/ui/jquery-patch.js',
             'js/node_lib/ui/plugin.js',
             'js/node_lib/ui/safe-active-element.js',
             'js/node_lib/ui/safe-blur.js',
