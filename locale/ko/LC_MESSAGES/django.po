@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-12 16:38+0000\n"
-"PO-Revision-Date: 2021-10-18 04:19+0000\n"
+"PO-Revision-Date: 2021-10-18 04:24+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -1100,37 +1100,37 @@ msgid "Download Firefox extensions to browse privately and securely. This catego
 msgstr "사생활을 보호하면서 안전하게 탐색 하기 위한 Firefox 확장 프로그램을 다운로드 하십시오. 이 분류에는 성가신 광고 차단, 추적 방지, 리디렉션 관리 등을 위한 확장 프로그램이 포함되어 있습니다."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr "검색 및 조회를 위한 Firefox 확장 기능을 다운로드 하십시오. 이 분류에는 텍스트를 강조 표시하고 검색, IP 주소/도메인 조회 등과 같은 기능이 포함되어 있습니다."
+msgstr "검색 및 조회를 위한 Firefox 확장 기능을 다운로드하세요. 이 분류에는 텍스트를 강조 표시하고 검색, IP 주소/도메인 조회 등과 같은 기능이 포함되어 있습니다."
 
 msgid "Shopping"
 msgstr "쇼핑"
 
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr "쿠폰 찾기, 거래 찾기, 리뷰 분석기 등으로 온라인 쇼핑 경험을 향상시키기 위한 Firefox 확장 기능을 다운로드 하십시오."
+msgstr "쿠폰 찾기, 거래 찾기, 리뷰 분석기 등으로 온라인 쇼핑 경험을 향상시키기 위한 Firefox 확장 기능을 다운로드하세요."
 
 msgid "Social & Communication"
 msgstr "소셜 서비스"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
-msgstr "소셜 미디어와 인스턴트 메신저를 향상시키기 위한 Firefox 확장 기능을 다운로드 하십시오. 이 카테고리에는 향상된 탭 알림, 비디오 다운로더 등과 같은 기능이 포함되어 있습니다."
+msgstr "소셜 미디어와 인스턴트 메신저를 향상시키기 위한 Firefox 확장 기능을 다운로드하세요. 이 카테고리에는 향상된 탭 알림, 비디오 다운로더 등과 같은 기능이 포함되어 있습니다."
 
 msgid "Tabs"
 msgstr "탭"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
-msgstr "탭과 새 탭 페이지를 맞춤 설정할 수 있는 firefox 확장 기능을 다운로드 하십시오. 탭을 제어하고 탭과 상호 작용 방식을 바꿔주며 그 밖의 기능도 있는 확장 기능을 탐색해 보십시오."
+msgstr "탭과 새 탭 페이지를 맞춤 설정할 수 있는 firefox 확장 기능을 다운로드하세요. 탭을 제어하고 탭과 상호 작용 방식을 바꿔주며 그 밖의 기능도 있는 확장 기능을 탐색해 보십시오."
 
 msgid "Web Development"
 msgstr "웹 개발 도구"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
-msgstr "웹 개발 도구를 제공하는 Firefox 확장 기능을 다운로드 하십시오. 이 카테고리에는 GitHub 확장 기능, 사용자 에이전트 전환, 쿠키 관리 등과 같은 기능이 포함되어 있습니다."
+msgstr "웹 개발 도구를 제공하는 Firefox 확장 기능을 다운로드하세요. 이 카테고리에는 GitHub 확장 기능, 사용자 에이전트 전환, 쿠키 관리 등과 같은 기능이 포함되어 있습니다."
 
 msgid "Other"
 msgstr "기타"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr "처음보고 창의적이지만 다양한 곳에 유용한 Firefox 확장기능을 다운로드하십시오."
+msgstr "처음보고 창의적이지만 다양한 곳에 유용한 Firefox 확장기능을 다운로드하세요."
 
 msgid "Device Features & Location"
 msgstr "위치 기반"
@@ -1148,37 +1148,37 @@ msgid "Performance"
 msgstr "성능"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr ""
+msgstr "Firefox의 성능을 향상시키는 확장 기능을 다운로드하세요. 성가신 광고 등을 차단하여 생산성과 효율성을 높이는 데 도움이 되는 확장 기능을 찾아보세요."
 
 msgid "Photos & Media"
 msgstr "사진 및 미디어"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr ""
+msgstr "사진과 미디어를 향상시키는 Firefox 확장 프로그램을 다운로드하세요. 이 분류에는 역 이미지 검색, 전체 페이지 캡처와 같은 다양한 기능이 포함되어있습니다."
 
 msgid "Security & Privacy"
 msgstr "보안 및 개인 정보"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
-msgstr ""
+msgstr "Firefox 확장 프로그램을 다운로드하여 안전하고 사생활을 보호하면서 서핑하세요. 감춰진 광고 추적기를 추적하고 검색 기록을 쉽게 지울 수 있는 확장 프로그램을 찾아보세요."
 
 msgid "Social Networking"
 msgstr "소셜네트웍"
 
 msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr ""
+msgstr "YouTube, GitHub, Reddit 등과 같은 인기있는 소셜 네트워킹 웹 사이트 경험을 향상 시키기는 Firefox 확장 기능을 다운로드하세요."
 
 msgid "Sports & Games"
 msgstr "스포츠 및 게임"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr ""
+msgstr "Firefox 확장 기능을 다운로드하여 라이브 스트림 향상, 스포츠 업데이트 등으로 엔터테인먼트 경험을 향상 시키세요."
 
 msgid "User Interface"
 msgstr "시용자 인터페이스"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
+msgstr "사용자 인터페이스 Firefox 확장기능을 다운로드하여 더 쉽게 읽고, 검색하고, 찾아 볼 수 있도록 웹 페이지를 변경하세요."
 
 msgid "Animals"
 msgstr "동물"
@@ -1211,13 +1211,13 @@ msgid "Abstract"
 msgstr "추상"
 
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
-msgstr ""
+msgstr "Firefox의 예술적이고 개념적인 테마를 다운로드 하세요. 이 분류에는 다채로운 팔레트와 모양, 판타지 풍경, 장난기 있는 고양이, 환상적인 꽃이 포함되어 있습니다."
 
 msgid "Causes"
 msgstr "무늬"
 
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
-msgstr ""
+msgstr "틈새 관심사와 주제에 대한 Firefox 테마를 다운로드하세요. 이 분류에는 스포츠 테마, 휴일, 자선 활동, 국적 등이 포함되어 있습니다."
 
 msgid "Fashion"
 msgstr "패션"
