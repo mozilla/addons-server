@@ -105,8 +105,8 @@ _ADDON_THEME = 2
 ADDON_DICT = 3
 _ADDON_SEARCH = 4  # Deprecated (Opensearch).
 ADDON_LPAPP = 5
-ADDON_LPADDON = 6
-ADDON_PLUGIN = 7
+_ADDON_LPADDON = 6 # Deprecated
+_ADDON_PLUGIN = 7 # Deprecated
 ADDON_API = 8  # not actually a type but used to identify extensions + themes
 _ADDON_PERSONA = 9  # Deprecated.  Aka Lightweight Themes.
 ADDON_STATICTHEME = 10
@@ -124,8 +124,8 @@ ADDON_TYPE = {
     ADDON_DICT: _('Dictionary'),
     _ADDON_SEARCH: _('Search Engine'),
     ADDON_LPAPP: _('Language Pack (Application)'),
-    ADDON_LPADDON: _('Language Pack (Add-on)'),
-    ADDON_PLUGIN: _('Plugin'),
+    _ADDON_LPADDON: _('Deprecated Language Pack (Add-on)'),
+    _ADDON_PLUGIN: _('Deprecated Plugin'),
     _ADDON_PERSONA: _('Deprecated LWT'),
     ADDON_STATICTHEME: _('Theme (Static)'),
 }
@@ -137,8 +137,8 @@ ADDON_TYPES = {
     ADDON_DICT: _('Dictionaries'),
     _ADDON_SEARCH: _('Search Tools'),
     ADDON_LPAPP: _('Language Packs (Application)'),
-    ADDON_LPADDON: _('Language Packs (Add-on)'),
-    ADDON_PLUGIN: _('Plugins'),
+    _ADDON_LPADDON: _('Deprecated Language Packs (Add-on)'),
+    _ADDON_PLUGIN: _('Deprecated Plugins'),
     _ADDON_PERSONA: _('Deprecated LWTs'),
     ADDON_STATICTHEME: _('Themes (Static)'),
 }
@@ -171,9 +171,9 @@ ADDON_SLUGS_UPDATE = {
     ADDON_DICT: 'extension',
     _ADDON_SEARCH: 'search',
     ADDON_LPAPP: 'item',
-    ADDON_LPADDON: 'extension',
+    _ADDON_LPADDON: 'deprecated extension',
     _ADDON_PERSONA: 'background-theme',
-    ADDON_PLUGIN: 'plugin',
+    _ADDON_PLUGIN: 'deprecated plugin',
     ADDON_STATICTHEME: 'static-theme',
 }
 
