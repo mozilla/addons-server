@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-12 16:38+0000\n"
-"PO-Revision-Date: 2021-10-15 00:59+0000\n"
+"PO-Revision-Date: 2021-10-18 04:19+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -1097,40 +1097,40 @@ msgid "Privacy & Security"
 msgstr "개인 정보 보안"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
-msgstr ""
+msgstr "사생활을 보호하면서 안전하게 탐색 하기 위한 Firefox 확장 프로그램을 다운로드 하십시오. 이 분류에는 성가신 광고 차단, 추적 방지, 리디렉션 관리 등을 위한 확장 프로그램이 포함되어 있습니다."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr ""
+msgstr "검색 및 조회를 위한 Firefox 확장 기능을 다운로드 하십시오. 이 분류에는 텍스트를 강조 표시하고 검색, IP 주소/도메인 조회 등과 같은 기능이 포함되어 있습니다."
 
 msgid "Shopping"
 msgstr "쇼핑"
 
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr ""
+msgstr "쿠폰 찾기, 거래 찾기, 리뷰 분석기 등으로 온라인 쇼핑 경험을 향상시키기 위한 Firefox 확장 기능을 다운로드 하십시오."
 
 msgid "Social & Communication"
 msgstr "소셜 서비스"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
-msgstr ""
+msgstr "소셜 미디어와 인스턴트 메신저를 향상시키기 위한 Firefox 확장 기능을 다운로드 하십시오. 이 카테고리에는 향상된 탭 알림, 비디오 다운로더 등과 같은 기능이 포함되어 있습니다."
 
 msgid "Tabs"
 msgstr "탭"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
-msgstr ""
+msgstr "탭과 새 탭 페이지를 맞춤 설정할 수 있는 firefox 확장 기능을 다운로드 하십시오. 탭을 제어하고 탭과 상호 작용 방식을 바꿔주며 그 밖의 기능도 있는 확장 기능을 탐색해 보십시오."
 
 msgid "Web Development"
 msgstr "웹 개발 도구"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
-msgstr ""
+msgstr "웹 개발 도구를 제공하는 Firefox 확장 기능을 다운로드 하십시오. 이 카테고리에는 GitHub 확장 기능, 사용자 에이전트 전환, 쿠키 관리 등과 같은 기능이 포함되어 있습니다."
 
 msgid "Other"
 msgstr "기타"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr ""
+msgstr "처음보고 창의적이지만 다양한 곳에 유용한 Firefox 확장기능을 다운로드하십시오."
 
 msgid "Device Features & Location"
 msgstr "위치 기반"
