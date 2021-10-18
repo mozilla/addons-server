@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-12 16:38+0000\n"
-"PO-Revision-Date: 2021-10-18 04:24+0000\n"
+"PO-Revision-Date: 2021-10-18 04:29+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -1223,37 +1223,37 @@ msgid "Fashion"
 msgstr "패션"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr ""
+msgstr "패턴, 꽃, 질감, 모델과 같은 모든 형태의 스타일을 느낄 수 있는 Firefox 테마를 다운로드하세요."
 
 msgid "Film and TV"
 msgstr "영화 및 드라마"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr ""
+msgstr "영화와 TV로 Firefox 테마를 다운로드하세요. 이 분류에는 Uchiha Madara와 같은 애니메이션, The Matrix와 같은 영화, 프로그램 (Game of Thrones) 등이 포함되어 있습니다."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
-msgstr ""
+msgstr "Firefox 브라우저 테마로 Firefox 테마를 다운로드하세요. 이 분류에는 보다 일반적인 여우 테마를 포함하여 Firefox 로고의 다채롭고 다양한 묘사가 포함되어 있습니다."
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
-msgstr ""
+msgstr "일본어 Firefox로 Firefox 테마를 다운로드하세요. 이 분류에는 다양한 풍경에 대한 포즈로 귀여운 폭스케 마스코트를 묘사하는 테마가 포함되어 있습니다."
 
 msgid "Holiday"
 msgstr "기념일"
 
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr ""
+msgstr "휴일과 함께 Firefox 테마를 다운로드하세요. 이 분류에는 크리스마스, 할로윈, 추수 감사절, 성 패트릭의 날, 부활절, 7월 4일 등이 포함되어 있습니다."
 
 msgid "Music"
 msgstr "음악"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr ""
+msgstr "음악적 관심사와 아티스트를위한 Firefox 테마를 다운로드하세요. 이 분류에는 Nirvana 및 BTS와 같은 인기 밴드, 악기, 뮤직 비디오 등이 포함되어 있습니다."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "동물과 자연 경관이있는 Firefox 테마를 다운로드하세요. 이 분류에는 꽃, 일몰, 여우, 계절, 행성, 새끼 고양이, 새 등이 포함되어 있습니다."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
 msgstr "흥미롭고 창의적이며 독창적인 Firefox 테마를 다운로드하세요."
@@ -1262,28 +1262,28 @@ msgid "Scenery"
 msgstr "풍경"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr ""
+msgstr "환경과 자연 세계를 특징으로하는 Firefox 테마를 다운로드하세요. 이 분류에는 일몰, 해변, 삽화, 도시 스카이 라인 등이 포함되어 있습니다."
 
 msgid "Seasonal"
 msgstr "계절"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr ""
+msgstr "가을, 겨울, 봄, 여름의 모든 사계절을위한 Firefox 테마를 다운로드하세요. 이 분류에는 단풍, 눈 덮인 산봉우리, 화창한 여름날, 봄 꽃 등이 포함되어 있습니다."
 
 msgid "Solid"
 msgstr "원색"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr ""
+msgstr "단색 및 그라디언트 색상으로 Firefox 테마를 다운로드하여 브라우저를 개인화하세요. 이 분류에는 진빨간색, 파스텔, 연회색 등이 포함되어 있습니다."
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr ""
+msgstr "다양한 스포츠를 특징으로하는 Firefox 테마를 다운로드하세요. 이 분류에는 국기, 스포츠 팀, 축구, 하키 등이 포함되어 있습니다."
 
 msgid "Websites"
 msgstr "웹사이트"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr ""
+msgstr "매력적이고 독특하고 차이나는 웹의 본질을 포착하는 Firefox 테마를 다운로드하세요."
 
 msgid "General"
 msgstr "일반"
