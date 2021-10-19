@@ -415,10 +415,7 @@ class TestDeleteObsoleteAddons(TestCase):
         self.dictionary = addon_factory(type=amo.ADDON_DICT)
         # And some obsolete ones
         self.xul_theme = addon_factory(type=2)  # _ADDON_THEME
-        self.lpaddon = addon_factory()
-        self.lpaddon.update(type=amo.ADDON_LPADDON)
         self.plugin = addon_factory()
-        self.plugin.update(type=amo.ADDON_PLUGIN)
         self.lwt = addon_factory(type=9, guid=None)  # _ADDON_PERSONA
         self.webapp = addon_factory()
         self.webapp.update(type=11)  # webapp
@@ -440,7 +437,6 @@ class TestDeleteObsoleteAddons(TestCase):
         # check the guids have been added to DeniedGuid
         DeniedGuid.objects.all().count() == 4
         assert DeniedGuid.objects.get(guid=self.xul_theme.guid)
-        assert DeniedGuid.objects.get(guid=self.lpaddon.guid)
         assert DeniedGuid.objects.get(guid=self.plugin.guid)
         # no self.lwt as it didn't have a guid
         assert DeniedGuid.objects.get(guid=self.webapp.guid)
