@@ -1369,16 +1369,6 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
             self.url,
             data={
                 **self.minimal_data,
-                # 99 doesn't exist as an appversion
-                'compatibility': {'firefox': {'min': '99.0'}},
-            },
-        )
-        assert response.data == {'compatibility': ['Unknown app version specified']}
-
-        response = self.client.post(
-            self.url,
-            data={
-                **self.minimal_data,
                 # DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID is 65.0 so it exists
                 'compatibility': {'firefox': {'min': '65.0'}, 'android': {}},
             },
@@ -1397,6 +1387,27 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
         }
         assert list(version.compatible_apps.keys()) == [amo.FIREFOX, amo.ANDROID]
 
+    def test_compatibility_invalid_versions(self):
+        response = self.client.post(
+            self.url,
+            data={
+                **self.minimal_data,
+                # 99 doesn't exist as an appversion
+                'compatibility': {'firefox': {'min': '99.0'}},
+            },
+        )
+        assert response.data == {'compatibility': ['Unknown app version specified']}
+
+        response = self.client.post(
+            self.url,
+            data={
+                **self.minimal_data,
+                # `*` isn't a valid min
+                'compatibility': {'firefox': {'min': '*'}},
+            },
+        )
+        assert response.data == {'compatibility': ['Unknown app version specified']}
+
     def test_check_blocklist(self):
         Block.objects.create(guid=self.addon.guid, updated_by=self.user)
         response = self.client.post(
@@ -1409,6 +1420,214 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
 
 
 class TestVersionViewSetCreateJWTAuth(TestVersionViewSetCreate):
+    client_class = JWTAPITestClient
+
+
+class TestVersionViewSetUpdate(UploadMixin, TestCase):
+    client_class = APITestClient
+
+    @classmethod
+    def setUpTestData(cls):
+        versions = {
+            amo.DEFAULT_WEBEXT_MIN_VERSION,
+            amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
+            amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
+            amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX,
+            amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID,
+            amo.DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX,
+            amo.DEFAULT_WEBEXT_MAX_VERSION,
+            amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX,
+        }
+        for version in versions:
+            AppVersion.objects.create(application=amo.FIREFOX.id, version=version)
+            AppVersion.objects.create(application=amo.ANDROID.id, version=version)
+
+    def setUp(self):
+        super().setUp()
+        self.user = user_factory(read_dev_agreement=self.days_ago(0))
+        self.addon = addon_factory(users=(self.user,), guid='@webextension-guid')
+        self.version = self.addon.current_version
+        self.url = reverse_ns(
+            'addon-version-detail',
+            kwargs={'addon_pk': self.addon.slug, 'pk': self.version.id},
+            api_version='v5',
+        )
+        self.client.login_api(self.user)
+
+    def test_basic(self):
+        response = self.client.patch(
+            self.url,
+            data={'release_notes': {'en-US': 'Something new'}},
+        )
+        assert response.status_code == 200, response.content
+        data = response.data
+        assert data['release_notes'] == {'en-US': 'Something new'}
+        self.addon.reload()
+        self.version.reload()
+        assert self.version.release_notes == 'Something new'
+        assert self.addon.versions.count() == 1
+        version = self.addon.find_latest_version(channel=None)
+        request = APIRequestFactory().get('/')
+        request.version = 'v5'
+        request.user = self.user
+        assert data == VersionSerializer(
+            context={'request': request}
+        ).to_representation(version)
+
+    def test_not_authenticated(self):
+        self.client.logout_api()
+        response = self.client.patch(
+            self.url,
+            data={'release_notes': {'en-US': 'Something new'}},
+        )
+        assert response.status_code == 401
+        assert response.data == {
+            'detail': 'Authentication credentials were not provided.'
+        }
+        assert self.version.release_notes != 'Something new'
+
+    def test_not_your_addon(self):
+        self.addon.addonuser_set.get(user=self.user).update(
+            role=amo.AUTHOR_ROLE_DELETED
+        )
+        response = self.client.patch(
+            self.url,
+            data={'release_notes': {'en-US': 'Something new'}},
+        )
+        assert response.status_code == 403
+        assert response.data['detail'] == (
+            'You do not have permission to perform this action.'
+        )
+        assert self.version.release_notes != 'Something new'
+
+    def test_not_read_agreement(self):
+        self.user.update(read_dev_agreement=None)
+        response = self.client.patch(
+            self.url,
+            data={'release_notes': {'en-US': 'Something new'}},
+        )
+        assert response.status_code in [401, 403]  # JWT auth is a 401; web auth is 403
+        assert 'agreement' in response.data['detail'].lower()
+        assert self.version.release_notes != 'Something new'
+
+    def test_waffle_flag_disabled(self):
+        gates = {
+            'v5': (
+                gate
+                for gate in settings.DRF_API_GATES['v5']
+                if gate != 'addon-submission-api'
+            )
+        }
+        with override_settings(DRF_API_GATES=gates):
+            response = self.client.patch(
+                self.url,
+                data={'release_notes': {'en-US': 'Something new'}},
+            )
+        assert response.status_code == 403
+        assert response.data == {
+            'detail': 'You do not have permission to perform this action.'
+        }
+        assert self.version.release_notes != 'Something new'
+
+    def test_cant_update_upload(self):
+        self.version.update(version='123.b4')
+        upload = self.get_upload(
+            'webextension.xpi', user=self.user, source=amo.UPLOAD_SOURCE_ADDON_API
+        )
+        with mock.patch('olympia.addons.serializers.parse_addon') as parse_addon_mock:
+            response = self.client.patch(
+                self.url,
+                data={'upload': upload.uuid},
+            )
+            parse_addon_mock.assert_not_called()
+
+        assert response.status_code == 200, response.content
+        self.addon.reload()
+        self.version.reload()
+        assert self.version.version == '123.b4'
+
+    def test_compatibility_list(self):
+        response = self.client.patch(
+            self.url,
+            data={
+                'compatibility': ['foo', 'android'],
+            },
+        )
+
+        assert response.status_code == 400, response.content
+        assert response.data == {'compatibility': ['Invalid app specified']}
+
+        response = self.client.patch(
+            self.url,
+            data={
+                'compatibility': ['firefox', 'android'],
+            },
+        )
+
+        assert response.status_code == 200, response.content
+        data = response.data
+        self.addon.reload()
+        self.version.reload()
+        del self.version._compatible_apps
+        assert self.addon.versions.count() == 1
+        assert data['compatibility'] == {
+            'android': {'max': '*', 'min': '48.0'},
+            'firefox': {'max': '*', 'min': '42.0'},
+        }
+        assert list(self.version.compatible_apps.keys()) == [amo.FIREFOX, amo.ANDROID]
+
+    def test_compatibility_dict(self):
+        response = self.client.patch(
+            self.url,
+            data={
+                'compatibility': {'firefox': {'min': '65.0'}, 'foo': {}},
+            },
+        )
+        assert response.data == {'compatibility': ['Invalid app specified']}
+
+        response = self.client.patch(
+            self.url,
+            data={
+                # DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID is 65.0 so it exists
+                'compatibility': {'firefox': {'min': '65.0'}, 'android': {}},
+            },
+        )
+
+        assert response.status_code == 200, response.content
+        data = response.data
+        self.addon.reload()
+        self.version.reload()
+        del self.version._compatible_apps
+        assert self.addon.versions.count() == 1
+        assert data['compatibility'] == {
+            # android was specified but with an empty dict, so gets the defaults
+            'android': {'max': '*', 'min': amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID},
+            # firefox max wasn't specified, so is the default max app version
+            'firefox': {'max': '*', 'min': '65.0'},
+        }
+        assert list(self.version.compatible_apps.keys()) == [amo.FIREFOX, amo.ANDROID]
+
+    def test_compatibility_invalid_versions(self):
+        response = self.client.patch(
+            self.url,
+            data={
+                # 99 doesn't exist as an appversion
+                'compatibility': {'firefox': {'min': '99.0'}},
+            },
+        )
+        assert response.data == {'compatibility': ['Unknown app version specified']}
+
+        response = self.client.patch(
+            self.url,
+            data={
+                # `*` isn't a valid min
+                'compatibility': {'firefox': {'min': '*'}},
+            },
+        )
+        assert response.data == {'compatibility': ['Unknown app version specified']}
+
+
+class TestVersionViewSetUpdateJWTAuth(TestVersionViewSetUpdate):
     client_class = JWTAPITestClient
 
 

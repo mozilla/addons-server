@@ -1272,6 +1272,13 @@ class TestVersionSerializerOutput(TestCase):
             assert 'files' in result
             assert result['files'] == [default_file_result]
 
+    def test_readonly_fields(self):
+        serializer = VersionSerializer()
+        fields_read_only = {
+            name for name, field in serializer.get_fields().items() if field.read_only
+        }
+        assert fields_read_only == set(serializer.Meta.read_only_fields)
+
 
 class TestVersionListSerializerOutput(TestCase):
     def setUp(self):

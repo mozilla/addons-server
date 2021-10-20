@@ -256,28 +256,44 @@ class MinimalVersionSerializer(serializers.ModelSerializer):
 
 class VersionCompatabilityField(serializers.Field):
     def to_internal_value(self, data):
-        """Note this returns incomplete objects that need to have version set at least,
-        and may have missing min or max AppVersion instances. (As intended - we want to
-        be able to partially specify min or max and have the manifest or defaults be
-        instead used).
+        """Note: this returns unsaved and incomplete ApplicationsVersions objects that
+        need to have version set, and may have missing min or max AppVersion instances
+        for new Version instances. (As intended - we want to be able to partially
+        specify min or max and have the manifest or defaults be instead used).
         """
         try:
             if isinstance(data, list):
                 # if it's a list of apps, normalize into a dict first
                 data = {key: {} for key in data}
             if isinstance(data, dict):
+                version = self.parent.instance
+                existing = version.compatible_apps if version else {}
                 qs = AppVersion.objects
-                return {
-                    (app := amo.APPS[app_name]): ApplicationsVersions(
-                        application=app.id,
-                        **{
-                            key: qs.filter(application=app.id).get(version=value)
-                            for key, value in (min_max or {}).items()
-                            if key in ('min', 'max')
-                        },
+                internal = {}
+                for app_name, min_max in data.items():
+                    app = amo.APPS[app_name]
+                    apps_versions = existing.get(
+                        app, ApplicationsVersions(application=app.id)
                     )
-                    for app_name, min_max in data.items()
-                }
+
+                    app_qs = qs.filter(application=app.id)
+                    if 'max' in min_max:
+                        apps_versions.max = app_qs.get(version=min_max['max'])
+                    elif version:
+                        apps_versions.max = app_qs.get(
+                            version=amo.DEFAULT_WEBEXT_MAX_VERSION
+                        )
+
+                    app_qs = app_qs.exclude(version='*')
+                    if 'min' in min_max:
+                        apps_versions.min = app_qs.get(version=min_max['min'])
+                    elif version:
+                        apps_versions.min = app_qs.get(
+                            version=amo.DEFAULT_WEBEXT_MIN_VERSIONS[app]
+                        )
+
+                    internal[app] = apps_versions
+                return internal
             else:
                 # if it's neither it's not a valid input
                 raise exceptions.ValidationError('Invalid value')
@@ -308,11 +324,13 @@ class SimpleVersionSerializer(MinimalVersionSerializer):
         # default to just Desktop Firefox; most of the times developers don't develop
         # their WebExtensions for Android.  See https://bit.ly/2QaMicU
         source='compatible_apps',
-        default={
-            amo.APPS['firefox']: ApplicationsVersions(
-                application=amo.APPS['firefox'].id
-            )
-        },
+        default=serializers.CreateOnlyDefault(
+            {
+                amo.APPS['firefox']: ApplicationsVersions(
+                    application=amo.APPS['firefox'].id
+                )
+            }
+        ),
     )
     edit_url = serializers.SerializerMethodField()
     is_strict_compatibility_enabled = serializers.BooleanField(
@@ -383,9 +401,11 @@ class VersionSerializer(SimpleVersionSerializer):
         )
         read_only_fields = tuple(set(fields) - set(writeable_fields))
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, instance=None, data=serializers.empty, **kwargs):
         self.addon = kwargs.pop('addon', None)
-        super().__init__(*args, **kwargs)
+        if instance and isinstance(data, dict):
+            data.pop('upload', None)  # we only support upload field for create
+        super().__init__(instance=instance, data=data, **kwargs)
 
     def validate_upload(self, value):
         own_upload = (request := self.context.get('request')) and (
@@ -439,6 +459,12 @@ class VersionSerializer(SimpleVersionSerializer):
         )
         upload.update(addon=version.addon)
         return version
+
+    def update(self, instance, validated_data):
+        instance = super().update(instance, validated_data)
+        if 'compatible_apps' in validated_data:
+            instance.set_compatible_apps(validated_data['compatible_apps'])
+        return instance
 
 
 class VersionListSerializer(VersionSerializer):
