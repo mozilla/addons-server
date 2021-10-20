@@ -9,6 +9,7 @@ from datetime import datetime
 from urllib.parse import urlsplit
 
 from django.conf import settings
+from django.contrib.staticfiles.storage import staticfiles_storage
 from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
 from django.db import models, transaction
 from django.db.models import F, Max, Min, Q, signals as dbsignals
@@ -1390,7 +1391,7 @@ class Addon(OnChangeMixin, ModelBase):
             preview = self._all_previews[0]
             return preview.thumbnail_url
         except IndexError:
-            return settings.STATIC_URL + '/img/icons/no-preview.png'
+            return staticfiles_storage.url('img/icons/no-preview.png')
 
     def can_request_review(self):
         """Return whether an add-on can request a review or not."""
