@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-12 16:38+0000\n"
-"PO-Revision-Date: 2021-10-18 04:29+0000\n"
+"PO-Revision-Date: 2021-10-20 11:24+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -1559,10 +1559,10 @@ msgid "Delay auto-approval indefinitely and add restrictions to future approvals
 msgstr ""
 
 msgid "True positive"
-msgstr ""
+msgstr "참 양성"
 
 msgid "False positive"
-msgstr ""
+msgstr "거짓 양성"
 
 msgid "Inconclusive"
 msgstr "불확실"
