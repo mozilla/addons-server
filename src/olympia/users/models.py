@@ -1146,3 +1146,15 @@ def watch_changes(old_attr=None, new_attr=None, instance=None, sender=None, **kw
 
 
 user_logged_in.connect(UserProfile.user_logged_in)
+
+
+class FxaToken(ModelBase):
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    access_token = models.CharField(max_length=64)
+    access_token_expiry = models.DateTimeField()
+    refresh_token = models.CharField(max_length=64)
+    config_name = models.CharField(max_length=20)
+
+    @property
+    def is_expired(self):
+        return self.access_token_expiry < datetime.now()

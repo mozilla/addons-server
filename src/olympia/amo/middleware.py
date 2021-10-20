@@ -28,11 +28,13 @@ from rest_framework import permissions
 import MySQLdb as mysql
 
 from olympia import amo
-from olympia.amo.utils import render
+from olympia.accounts.utils import redirect_for_login
+from olympia.accounts.verify import fxa_access_token_is_valid
 
 from . import urlresolvers
 from .reverse import set_url_prefix
 from .templatetags.jinja_helpers import urlparams
+from .utils import render
 
 
 auth_path = re.compile('%saccounts/authenticate/?$' % settings.DRF_API_REGEX)
@@ -341,3 +343,25 @@ class CacheControlMiddleware:
         elif max_age_from_response is None:
             patch_cache_control(response, s_maxage=0)
         return response
+
+
+class TokenValidMiddleware:
+    """Middleware to check the FxA auth tokens haven't expired, and refresh if
+    necessary."""
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        if (
+            not settings.USE_FAKE_FXA_AUTH
+            and settings.VERIFY_FXA_ACCESS_TOKEN_WEB
+            and request.user.is_authenticated
+            and not fxa_access_token_is_valid(
+                request.user, request.session.get('user_token_pk')
+            )
+        ):
+            print('User access token refresh failed; so redirect to login to FxA again')
+            return redirect_for_login(request)
+
+        return self.get_response(request)

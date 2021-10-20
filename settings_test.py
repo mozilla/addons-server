@@ -93,3 +93,8 @@ CELERY_TASK_ROUTES.update({
     'olympia.amo.tests.test_celery.sleeping_task': {'queue': 'amo'},
     'olympia.lib.es.tests.test_commands.dummy_task': {'queue': 'amo'},
 })
+
+# We turn off verification in tests normally to avoid having to create a FxaToken
+# object for every request.
+VERIFY_FXA_ACCESS_TOKEN_WEB = False
+VERIFY_FXA_ACCESS_TOKEN_API = False

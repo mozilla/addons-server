@@ -27,7 +27,6 @@ from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
     APITestClient,
     InitializeSessionMixin,
-    PatchMixin,
     TestCase,
     WithDynamicEndpoints,
     addon_factory,
@@ -39,7 +38,7 @@ from olympia.amo.tests import (
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.api.authentication import WebTokenAuthentication
 from olympia.api.tests.utils import APIKeyAuthTestMixin
-from olympia.users.models import UserNotification, UserProfile
+from olympia.users.models import UserNotification, UserProfile, FxaToken
 from olympia.users.notifications import (
     NOTIFICATIONS_BY_ID,
     NOTIFICATIONS_COMBINED,
@@ -94,6 +93,7 @@ class TestLoginStartBaseView(WithDynamicEndpoints, TestCase):
         )
         assert redirect == 'https://accounts.firefox.com/v1/authorization'
         assert parse_qs(url.query) == {
+            'access_type': ['offline'],
             'action': ['signin'],
             'client_id': ['amodefault'],
             'scope': ['profile openid'],
@@ -305,16 +305,31 @@ class TestFindUser(TestCase):
 
 
 class TestWithUser(TestCase):
+    token_data = {
+        'id_token': 'someopenidtoken',
+        'access_token': 'someaccesstoken',
+        'refresh_token': 'somerefresh_token',
+        'expires_in': 12345,
+    }
+
     def setUp(self):
         self.fxa_identify = self.patch('olympia.accounts.views.verify.fxa_identify')
         self.find_user = self.patch('olympia.accounts.views.find_user')
+        self.get_user_token = self.patch(
+            'olympia.accounts.views.verify.get_user_token_from_token_data'
+        )
         self.request = mock.MagicMock()
         self.user = AnonymousUser()
         self.request.user = self.user
         self.request.session = {'fxa_state': 'some-blob'}
+        self.user_token_object = FxaToken()
+        self.get_user_token.return_value = self.user_token_object
 
     def get_fxa_config(self, request):
-        return settings.FXA_CONFIG[settings.DEFAULT_FXA_CONFIG_NAME]
+        return settings.FXA_CONFIG[self.get_config_name(request)]
+
+    def get_config_name(self, request):
+        return settings.DEFAULT_FXA_CONFIG_NAME
 
     @views.with_user
     def fn(*args, **kwargs):
@@ -322,7 +337,7 @@ class TestWithUser(TestCase):
 
     def test_profile_exists_with_user(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
-        self.fxa_identify.return_value = identity, 'someopenidtoken'
+        self.fxa_identify.return_value = identity, self.token_data
         self.find_user.return_value = self.user
         self.request.data = {'code': 'foo', 'state': 'some-blob'}
         args, kwargs = self.fn(self.request)
@@ -331,11 +346,12 @@ class TestWithUser(TestCase):
             'user': self.user,
             'identity': identity,
             'next_path': None,
+            'user_token_object': self.user_token_object,
         }
 
     def test_profile_exists_with_user_and_path(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
-        self.fxa_identify.return_value = identity, 'someopenidtoken'
+        self.fxa_identify.return_value = identity, self.token_data
         self.find_user.return_value = self.user
         # "/a/path/?" gets URL safe base64 encoded to L2EvcGF0aC8_.
         self.request.data = {
@@ -350,11 +366,12 @@ class TestWithUser(TestCase):
             'user': self.user,
             'identity': identity,
             'next_path': '/a/path/?',
+            'user_token_object': self.user_token_object,
         }
 
     def test_profile_exists_with_user_and_path_stripped_padding(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
-        self.fxa_identify.return_value = identity, 'someopenidtoken'
+        self.fxa_identify.return_value = identity, self.token_data
         self.find_user.return_value = self.user
         # "/foo" gets URL safe base64 encoded to L2Zvbw== so it will be L2Zvbw.
         self.request.data = {
@@ -367,11 +384,12 @@ class TestWithUser(TestCase):
             'user': self.user,
             'identity': identity,
             'next_path': '/foo',
+            'user_token_object': self.user_token_object,
         }
 
     def test_profile_exists_with_user_and_path_bad_encoding(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
-        self.fxa_identify.return_value = identity, 'someopenidtoken'
+        self.fxa_identify.return_value = identity, self.token_data
         self.find_user.return_value = self.user
         self.request.data = {
             'code': 'foo',
@@ -383,11 +401,12 @@ class TestWithUser(TestCase):
             'user': self.user,
             'identity': identity,
             'next_path': None,
+            'user_token_object': self.user_token_object,
         }
 
     def test_profile_exists_with_user_and_empty_path(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
-        self.fxa_identify.return_value = identity, 'someopenidtoken'
+        self.fxa_identify.return_value = identity, self.token_data
         self.find_user.return_value = self.user
         self.request.data = {
             'code': 'foo',
@@ -399,11 +418,12 @@ class TestWithUser(TestCase):
             'user': self.user,
             'identity': identity,
             'next_path': None,
+            'user_token_object': self.user_token_object,
         }
 
     def test_profile_exists_with_user_and_path_is_not_safe(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
-        self.fxa_identify.return_value = identity, 'someopenidtoken'
+        self.fxa_identify.return_value = identity, self.token_data
         self.find_user.return_value = self.user
         self.request.data = {
             'code': 'foo',
@@ -417,11 +437,12 @@ class TestWithUser(TestCase):
             'user': self.user,
             'identity': identity,
             'next_path': None,
+            'user_token_object': self.user_token_object,
         }
 
     def test_profile_exists_no_user(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
-        self.fxa_identify.return_value = identity, 'someopenidtoken'
+        self.fxa_identify.return_value = identity, self.token_data
         self.find_user.return_value = None
         self.request.data = {'code': 'foo', 'state': 'some-blob'}
         args, kwargs = self.fn(self.request)
@@ -430,6 +451,7 @@ class TestWithUser(TestCase):
             'user': None,
             'identity': identity,
             'next_path': None,
+            'user_token_object': self.user_token_object,
         }
 
     def test_profile_does_not_exist(self):
@@ -465,7 +487,7 @@ class TestWithUser(TestCase):
         assert generate_api_token_mock.call_count == 0
 
     @override_settings(SESSION_COOKIE_SECURE=True, SESSION_COOKIE_DOMAIN='example.com')
-    @mock.patch.object(views, 'generate_api_token', lambda u: 'fake-api-token')
+    # @mock.patch.object(views, 'generate_api_token', lambda u, p: 'fake-api-token')
     def test_already_logged_in_add_api_token_cookie_if_missing(self):
         self.request.data = {
             'code': 'foo',
@@ -477,12 +499,13 @@ class TestWithUser(TestCase):
         self.request.user = self.user
         assert self.user.is_authenticated
         self.request.COOKIES = {}
+        self.request.session['user_token_pk'] = 1234
         response = self.fn(self.request)
         self.assertRedirects(response, '/next', fetch_redirect_response=False)
         assert not self.find_user.called
         cookie = response.cookies.get(views.API_TOKEN_COOKIE)
         assert len(response.cookies) == 1
-        assert cookie.value == 'fake-api-token'
+        assert cookie.value == views.generate_api_token(self.user, 1234)
         assert cookie['domain'] == settings.SESSION_COOKIE_DOMAIN
         assert cookie['max-age'] == settings.SESSION_COOKIE_AGE
         assert cookie['secure'] == settings.SESSION_COOKIE_SECURE
@@ -491,7 +514,7 @@ class TestWithUser(TestCase):
 
     def test_state_does_not_match(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
-        self.fxa_identify.return_value = identity, 'someopenidtoken'
+        self.fxa_identify.return_value = identity, self.token_data
         self.find_user.return_value = self.user
         self.request.data = {
             'code': 'foo',
@@ -509,12 +532,15 @@ class TestWithUser(TestCase):
             def get_fxa_config(self, request):
                 return fxa_config
 
+            def get_config_name(self, request):
+                return 'some_config_name'
+
             @views.with_user
             def post(*args, **kwargs):
                 return args, kwargs
 
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
-        self.fxa_identify.return_value = identity, 'someopenidtoken'
+        self.fxa_identify.return_value = identity, self.token_data
         self.find_user.return_value = self.user
         self.request.data = {'code': 'foo', 'state': 'some-blob'}
         LoginView().post(self.request)
@@ -522,7 +548,7 @@ class TestWithUser(TestCase):
 
     def _test_should_redirect_for_two_factor_auth(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
-        self.fxa_identify.return_value = identity, 'someopenidtoken'
+        self.fxa_identify.return_value = identity, self.token_data
         self.find_user.return_value = self.user
         self.request.data = {
             'code': 'foo',
@@ -549,6 +575,7 @@ class TestWithUser(TestCase):
         query = parse_qs(url.query)
         next_path = base64.urlsafe_b64encode(b'/a/path/?').rstrip(b'=')
         assert query == {
+            'access_type': ['offline'],
             'acr_values': ['AAL2'],
             'action': ['signin'],
             'client_id': [fxa_config['client_id']],
@@ -562,7 +589,7 @@ class TestWithUser(TestCase):
         self, *, identity=None
     ):
         identity = identity or {'uid': '1234', 'email': 'hey@yo.it'}
-        self.fxa_identify.return_value = identity, 'someopenidtoken'
+        self.fxa_identify.return_value = identity, self.token_data
         self.find_user.return_value = self.user
         self.request.data = {
             'code': 'foo',
@@ -576,6 +603,7 @@ class TestWithUser(TestCase):
             'user': self.user,
             'identity': identity,
             'next_path': '/a/path/?',
+            'user_token_object': self.user_token_object,
         }
 
     def test_addon_developer_should_redirect_for_two_factor_auth(self):
@@ -715,10 +743,16 @@ def empty_view(*args, **kwargs):
         'skip': SKIP_REDIRECT_FXA_CONFIG,
     }
 )
-class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
+class TestAuthenticateView(TestCase, InitializeSessionMixin):
     view_name = 'accounts.authenticate'
     client_class = APIClient
     api_version = 'auth'
+    token_data = {
+        'id_token': 'someopenidtoken',
+        'access_token': 'someaccesstoken',
+        'refresh_token': 'somerefresh_token',
+        'expires_in': 12345,
+    }
 
     def setUp(self):
         super().setUp()
@@ -747,6 +781,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
         assert not self.login_user.called
         assert not self.register_user.called
         assert not self.reregister_user.called
+        assert not FxaToken.objects.exists()
 
     def test_wrong_state(self):
         response = self.client.get(self.url, {'code': 'foo', 'state': '9f865be0'})
@@ -759,6 +794,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
         assert not self.login_user.called
         assert not self.register_user.called
         assert not self.reregister_user.called
+        assert not FxaToken.objects.exists()
 
     def test_no_fxa_profile(self):
         self.fxa_identify.side_effect = verify.IdentificationError
@@ -775,13 +811,15 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
         assert not self.login_user.called
         assert not self.register_user.called
         assert not self.reregister_user.called
+        assert not FxaToken.objects.exists()
 
     def test_success_deleted_account_reregisters(self):
         user = UserProfile.objects.create(
             email='real@yeahoo.com', fxa_id='10', deleted=True
         )
+        assert not FxaToken.objects.exists()
         identity = {'email': 'real@yeahoo.com', 'uid': '10'}
-        self.fxa_identify.return_value = identity, 'someopenidtoken'
+        self.fxa_identify.return_value = identity, self.token_data
         self.reregister_user.side_effect = lambda user: user.update(deleted=False)
         response = self.client.get(
             self.url, {'code': 'codes!!', 'state': self.fxa_state}
@@ -798,6 +836,10 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
         token = response.cookies['frontend_auth_token'].value
         verify = WebTokenAuthentication().authenticate_token(token)
         assert verify[0] == UserProfile.objects.get(fxa_id='10')
+        assert FxaToken.objects.exists()
+        user_token = FxaToken.objects.get()
+        assert user_token.user == user
+        assert user_token.access_token == self.token_data['access_token']
 
     def test_success_deleted_account_reregisters_with_force_2fa_waffle(self):
         self.create_switch('2fa-for-developers', active=True)
@@ -805,9 +847,10 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
 
     def test_success_no_account_registers(self):
         user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
+        assert not FxaToken.objects.exists()
         assert not user_qs.exists()
         identity = {'email': 'me@yeahoo.com', 'uid': 'e0b6f'}
-        self.fxa_identify.return_value = identity, 'someopenidtoken'
+        self.fxa_identify.return_value = identity, self.token_data
         self.register_user.side_effect = lambda identity: UserProfile.objects.create(
             username='foo', email='me@yeahoo.com', fxa_id='e0b6f'
         )
@@ -826,6 +869,10 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
         token = response.cookies['frontend_auth_token'].value
         verify = WebTokenAuthentication().authenticate_token(token)
         assert verify[0] == UserProfile.objects.get(username='foo')
+        assert FxaToken.objects.exists()
+        user_token = FxaToken.objects.get()
+        assert user_token.user == UserProfile.objects.get(email='me@yeahoo.com')
+        assert user_token.access_token == self.token_data['access_token']
 
     def test_success_no_account_registers_with_force_2fa_waffle(self):
         self.create_switch('2fa-for-developers', active=True)
@@ -833,11 +880,11 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
 
     def test_register_redirects_edit(self):
         user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
+        assert not FxaToken.objects.exists()
         assert not user_qs.exists()
         identity = {'email': 'me@yeahoo.com', 'uid': 'e0b6f'}
-        self.fxa_identify.return_value = identity, 'someopenidtoken'
-        user = UserProfile(username='foo', email='me@yeahoo.com')
-        self.register_user.return_value = user
+        self.fxa_identify.return_value = identity, self.token_data
+        self.register_user.side_effect = lambda i: user_factory(email='me@yeahoo.com')
         with mock.patch('olympia.amo.views._frontend_view', empty_view):
             response = self.client.get(
                 self.url,
@@ -862,14 +909,18 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
         assert self.login_user.called
         self.register_user.assert_called_with(identity)
         assert not self.reregister_user.called
+        assert FxaToken.objects.exists()
+        user_token = FxaToken.objects.get()
+        assert user_token.user == UserProfile.objects.get(email='me@yeahoo.com')
+        assert user_token.access_token == self.token_data['access_token']
 
     def test_register_redirects_no_next_path(self):
         user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
+        assert not FxaToken.objects.exists()
         assert not user_qs.exists()
         identity = {'email': 'me@yeahoo.com', 'uid': 'e0b6f'}
-        self.fxa_identify.return_value = identity, 'someopenidtoken'
-        user = UserProfile(username='foo', email='me@yeahoo.com')
-        self.register_user.return_value = user
+        self.fxa_identify.return_value = identity, self.token_data
+        self.register_user.side_effect = lambda i: user_factory(email='me@yeahoo.com')
         with mock.patch('olympia.amo.views._frontend_view', empty_view):
             response = self.client.get(
                 self.url,
@@ -887,14 +938,18 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
         assert self.login_user.called
         self.register_user.assert_called_with(identity)
         assert not self.reregister_user.called
+        assert FxaToken.objects.exists()
+        user_token = FxaToken.objects.get()
+        assert user_token.user == UserProfile.objects.get(email='me@yeahoo.com')
+        assert user_token.access_token == self.token_data['access_token']
 
     def test_register_redirects_extract_locale_and_app_from_next_path(self):
         user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
+        assert not FxaToken.objects.exists()
         assert not user_qs.exists()
         identity = {'email': 'me@yeahoo.com', 'uid': 'e0b6f'}
-        self.fxa_identify.return_value = identity, 'someopenidtoken'
-        user = UserProfile(username='foo', email='me@yeahoo.com')
-        self.register_user.return_value = user
+        self.fxa_identify.return_value = identity, self.token_data
+        self.register_user.side_effect = lambda i: user_factory(email='me@yeahoo.com')
         with mock.patch('olympia.amo.views._frontend_view', empty_view):
             response = self.client.get(
                 self.url,
@@ -922,14 +977,15 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
         assert self.login_user.called
         self.register_user.assert_called_with(identity)
         assert not self.reregister_user.called
+        assert FxaToken.objects.exists()
 
     def test_register_redirects_edit_absolute_to(self):
         user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
+        assert not FxaToken.objects.exists()
         assert not user_qs.exists()
         identity = {'email': 'me@yeahoo.com', 'uid': 'e0b6f'}
-        self.fxa_identify.return_value = identity, 'someopenidtoken'
-        user = UserProfile(username='foo', email='me@yeahoo.com')
-        self.register_user.return_value = user
+        self.fxa_identify.return_value = identity, self.token_data
+        self.register_user.side_effect = lambda i: user_factory(email='me@yeahoo.com')
         with mock.patch('olympia.amo.views._frontend_view', empty_view):
             with override_settings(DOMAIN='supersafe.com'):
                 response = self.client.get(
@@ -961,14 +1017,18 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
         assert self.login_user.called
         self.register_user.assert_called_with(identity)
         assert not self.reregister_user.called
+        assert FxaToken.objects.exists()
+        user_token = FxaToken.objects.get()
+        assert user_token.user == UserProfile.objects.get(email='me@yeahoo.com')
+        assert user_token.access_token == self.token_data['access_token']
 
     def test_register_redirects_edit_ignores_to_when_unsafe(self):
         user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
+        assert not FxaToken.objects.exists()
         assert not user_qs.exists()
         identity = {'email': 'me@yeahoo.com', 'uid': 'e0b6f'}
-        self.fxa_identify.return_value = identity, 'someopenidtoken'
-        user = UserProfile(username='foo', email='me@yeahoo.com')
-        self.register_user.return_value = user
+        self.fxa_identify.return_value = identity, self.token_data
+        self.register_user.side_effect = lambda i: user_factory(email='me@yeahoo.com')
         with mock.patch('olympia.amo.views._frontend_view', empty_view):
             response = self.client.get(
                 self.url,
@@ -993,13 +1053,18 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
         assert self.login_user.called
         self.register_user.assert_called_with(identity)
         assert not self.reregister_user.called
+        assert FxaToken.objects.exists()
+        user_token = FxaToken.objects.get()
+        assert user_token.user == UserProfile.objects.get(email='me@yeahoo.com')
+        assert user_token.access_token == self.token_data['access_token']
 
     def test_success_with_account_logs_in(self):
+        assert not FxaToken.objects.exists()
         user = UserProfile.objects.create(
             username='foobar', email='real@yeahoo.com', fxa_id='10'
         )
         identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
-        self.fxa_identify.return_value = identity, 'someopenidtoken'
+        self.fxa_identify.return_value = identity, self.token_data
         with mock.patch('olympia.amo.views._frontend_view', empty_view):
             response = self.client.get(
                 self.url, {'code': 'code', 'state': self.fxa_state}
@@ -1017,6 +1082,10 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
         )
         assert not self.register_user.called
         assert not self.reregister_user.called
+        assert FxaToken.objects.exists()
+        user_token = FxaToken.objects.get()
+        assert user_token.user == user
+        assert user_token.access_token == self.token_data['access_token']
 
     def test_banned_user_cant_log_in(self):
         UserProfile.objects.create(
@@ -1027,14 +1096,16 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
             banned=datetime.datetime.now(),
         )
         identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
-        self.fxa_identify.return_value = identity, 'someopenidtoken'
+        self.fxa_identify.return_value = identity, self.token_data
         response = self.client.get(self.url, {'code': 'code', 'state': self.fxa_state})
         assert response.status_code == 403
+        assert not FxaToken.objects.exists()
 
     def test_log_in_redirects_to_next_path(self):
         user = UserProfile.objects.create(email='real@yeahoo.com', fxa_id='10')
+        assert not FxaToken.objects.exists()
         identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
-        self.fxa_identify.return_value = identity, 'someopenidtoken'
+        self.fxa_identify.return_value = identity, self.token_data
         response = self.client.get(
             self.url,
             {
@@ -1057,11 +1128,16 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
         )
         assert not self.register_user.called
         assert not self.reregister_user.called
+        assert FxaToken.objects.exists()
+        user_token = FxaToken.objects.get()
+        assert user_token.user == user
+        assert user_token.access_token == self.token_data['access_token']
 
     def test_log_in_sets_fxa_data_and_redirects(self):
         user = UserProfile.objects.create(email='real@yeahoo.com')
+        assert not FxaToken.objects.exists()
         identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
-        self.fxa_identify.return_value = identity, 'someopenidtoken'
+        self.fxa_identify.return_value = identity, self.token_data
         response = self.client.get(
             self.url,
             {
@@ -1088,13 +1164,18 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
         )
         assert not self.register_user.called
         assert not self.reregister_user.called
+        assert FxaToken.objects.exists()
+        user_token = FxaToken.objects.get()
+        assert user_token.user == user
+        assert user_token.access_token == self.token_data['access_token']
 
     def test_log_in_redirects_to_absolute_url(self):
+        assert not FxaToken.objects.exists()
         email = 'real@yeahoo.com'
         UserProfile.objects.create(email=email)
         self.fxa_identify.return_value = (
             {'email': email, 'uid': '9001'},
-            None,
+            self.token_data,
         )
         domain = 'example.org'
         next_path = f'https://{domain}/path'
@@ -1112,13 +1193,14 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
                 },
             )
         self.assertRedirects(response, next_path, fetch_redirect_response=False)
+        assert FxaToken.objects.exists()
 
     def test_log_in_redirects_to_code_manager(self):
         email = 'real@yeahoo.com'
         UserProfile.objects.create(email=email)
         self.fxa_identify.return_value = (
             {'email': email, 'uid': '9001'},
-            None,
+            self.token_data,
         )
         code_manager_url = 'https://example.org'
         next_path = f'{code_manager_url}/path'
@@ -1146,7 +1228,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
         UserProfile.objects.create(email=email)
         self.fxa_identify.return_value = (
             {'email': email, 'uid': '9001'},
-            None,
+            self.token_data,
         )
         domain = 'example.org'
         next_path = f'https://{domain}/path'
@@ -1177,7 +1259,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
         UserProfile.objects.create(email=email)
         self.fxa_identify.return_value = (
             {'email': email, 'uid': '9001'},
-            None,
+            self.token_data,
         )
         domain = 'example.org'
         next_path = f'http://{domain}/path'
@@ -1792,6 +1874,12 @@ class TestParseNextPath(TestCase):
 
 class TestSessionView(TestCase):
     api_version = 'auth'
+    token_data = {
+        'id_token': 'someopenidtoken',
+        'access_token': 'someaccesstoken',
+        'refresh_token': 'somerefresh_token',
+        'expires_in': 12345,
+    }
 
     def login_user(self, user):
         identity = {
@@ -1802,7 +1890,7 @@ class TestSessionView(TestCase):
         self.initialize_session({'fxa_state': 'myfxastate'})
         with mock.patch(
             'olympia.accounts.views.verify.fxa_identify',
-            lambda code, config: (identity, None),
+            lambda code, config: (identity, self.token_data),
         ):
             response = self.client.get(
                 '{url}?code={code}&state={state}'.format(

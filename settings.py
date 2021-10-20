@@ -127,7 +127,7 @@ FXA_CONFIG = {
 FXA_CONTENT_HOST = 'https://stable.dev.lcip.org'
 FXA_OAUTH_HOST = 'https://oauth-stable.dev.lcip.org/v1'
 FXA_PROFILE_HOST = 'https://stable.dev.lcip.org/profile/v1'
-ALLOWED_FXA_CONFIGS = ['default', 'amo', 'local']
+ALLOWED_FXA_CONFIGS = ['default', 'amo', 'local']  # name max_length=20 - see FxaToken
 
 # When USE_FAKE_FXA_AUTH and settings.DEBUG are both True, we serve a fake
 # authentication page, bypassing FxA. To disable this behavior, set

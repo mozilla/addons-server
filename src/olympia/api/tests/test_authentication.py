@@ -7,7 +7,7 @@ from unittest import mock
 
 from django.conf import settings
 from django.core import signing
-from django.test import RequestFactory
+from django.test import override_settings, RequestFactory
 from django.urls import reverse
 from django.utils.encoding import force_bytes
 
@@ -222,6 +222,10 @@ class TestWebTokenAuthentication(TestCase):
         self.auth = WebTokenAuthentication()
         self.factory = RequestFactory()
         self.user = user_factory(read_dev_agreement=datetime.now())
+        self.is_valid_mock = self.patch(
+            'olympia.api.authentication.fxa_access_token_is_valid'
+        )
+        self.is_valid_mock.return_value = True
 
     def _authenticate(self, token):
         url = absolutify('/api/v4/whatever/')
@@ -354,3 +358,30 @@ class TestWebTokenAuthentication(TestCase):
         data = json.loads(signing.b64_decode(force_bytes(token.split(':')[0])))
         assert data['user_id'] == self.user.pk
         assert data['auth_hash'] == self.user.get_session_auth_hash()
+
+    @override_settings(USE_FAKE_FXA_AUTH=False, VERIFY_FXA_ACCESS_TOKEN_API=True)
+    def test_fxa_access_token_validity_fake_fxa_auth(self):
+        with override_settings(USE_FAKE_FXA_AUTH=True):
+            token = self.client.generate_api_token(self.user)
+            assert self.user == self._authenticate(token)[0]
+            self.is_valid_mock.assert_not_called()
+
+        assert self.user == self._authenticate(token)[0]
+        self.is_valid_mock.assert_called()
+
+    @override_settings(USE_FAKE_FXA_AUTH=False, VERIFY_FXA_ACCESS_TOKEN_API=True)
+    def test_fxa_access_token_validity_verify_fxa_access_token_web(self):
+        with override_settings(VERIFY_FXA_ACCESS_TOKEN_API=False):
+            token = self.client.generate_api_token(self.user)
+            assert self.user == self._authenticate(token)[0]
+            self.is_valid_mock.assert_not_called()
+
+        assert self.user == self._authenticate(token)[0]
+        self.is_valid_mock.assert_called()
+
+    @override_settings(USE_FAKE_FXA_AUTH=False, VERIFY_FXA_ACCESS_TOKEN_API=True)
+    def test_fxa_access_token_validity_token_invalid(self):
+        self.is_valid_mock.return_value = False
+        token = self.client.generate_api_token(self.user)
+        with self.assertRaises(AuthenticationFailed):
+            assert self.user == self._authenticate(token)[0]

@@ -256,8 +256,11 @@ def with_user(f):
                     'have an API token cookie, adding one.',
                     request.user.pk,
                 )
-                response = add_api_token_to_response(response, request.user)
+                response = add_api_token_to_response(
+                    response, request.user, request.session.get('user_token_pk')
+                )
             return response
+
         try:
             if use_fake_fxa() and 'fake_fxa_email' in data:
                 # Bypassing real authentication, we take the email provided
@@ -268,9 +271,14 @@ def with_user(f):
                     % force_str(binascii.b2a_hex(os.urandom(16))),
                 }
                 id_token = identity['email']
+                user_token_object = None
             else:
-                identity, id_token = verify.fxa_identify(
+                identity, token_data = verify.fxa_identify(
                     data['code'], config=fxa_config
+                )
+                id_token = token_data.get('id_token')
+                user_token_object = verify.get_user_token_from_token_data(
+                    token_data, self.get_config_name(request)
                 )
         except verify.IdentificationError:
             log.info('Profile not found. Code: {}'.format(data['code']))
@@ -316,25 +324,34 @@ def with_user(f):
                         id_token=id_token,
                     )
                 )
-            return f(self, request, user=user, identity=identity, next_path=next_path)
+            return f(
+                self,
+                request,
+                user=user,
+                identity=identity,
+                next_path=next_path,
+                user_token_object=user_token_object,
+            )
 
     return inner
 
 
-def generate_api_token(user):
+def generate_api_token(user, user_token_object_pk):
     """Generate a new API token for a given user."""
     data = {
         'auth_hash': user.get_session_auth_hash(),
         'user_id': user.pk,
     }
+    if user_token_object_pk:
+        data['user_token_pk'] = user_token_object_pk
     return signing.dumps(data, salt=WebTokenAuthentication.salt)
 
 
-def add_api_token_to_response(response, user):
+def add_api_token_to_response(response, user, user_token_object_pk):
     """Generate API token and add it to the response (both as a `token` key in
     the response if it was json and by setting a cookie named API_TOKEN_COOKIE.
     """
-    token = generate_api_token(user)
+    token = generate_api_token(user, user_token_object_pk)
     if hasattr(response, 'data'):
         response.data['token'] = token
     # Also include the API token in a session cookie, so that it is
@@ -388,7 +405,7 @@ class AuthenticateView(FxAConfigMixin, APIView):
 
     @never_cache
     @with_user
-    def get(self, request, user, identity, next_path):
+    def get(self, request, user, identity, next_path, user_token_object):
         # At this point @with_user guarantees that we have a valid fxa
         # identity. We are proceeding with either registering the user or
         # logging them on.
@@ -419,10 +436,17 @@ class AuthenticateView(FxAConfigMixin, APIView):
                 next_path = edit_page
         else:
             action = 'login'
+        if user_token_object:
+            user_token_object.user = user
+            user_token_object.save()
 
         login_user(self.__class__, request, user, identity)
         response = safe_redirect(request, next_path, action)
-        add_api_token_to_response(response, user)
+        if user_token_object:
+            add_api_token_to_response(response, user, user_token_object.pk)
+            request.session['user_token_pk'] = user_token_object.pk
+        else:
+            add_api_token_to_response(response, user, None)
         return response
 
 

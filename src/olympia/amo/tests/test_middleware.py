@@ -1,20 +1,22 @@
 from django import test
 from django.core.exceptions import ImproperlyConfigured
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 from django.urls import reverse
 
 import pytest
 
-from unittest.mock import patch
+from unittest.mock import patch, Mock
 from pyquery import PyQuery as pq
 
+from olympia.accounts.utils import default_fxa_login_url
 from olympia.amo.middleware import (
     AuthenticationMiddlewareWithoutAPI,
     CacheControlMiddleware,
     RequestIdMiddleware,
     SetRemoteAddrFromForwardedFor,
+    TokenValidMiddleware,
 )
 from olympia.amo.tests import reverse_ns, TestCase
 from olympia.zadmin.models import Config
@@ -300,3 +302,60 @@ class TestCacheControlMiddleware(TestCase):
         )
         assert response.status_code == 200
         assert response['Cache-Control'] == 's-maxage=0'
+
+
+@override_settings(USE_FAKE_FXA_AUTH=False, VERIFY_FXA_ACCESS_TOKEN_WEB=True)
+class TestTokenValidMiddleware(TestCase):
+    def setUp(self):
+        self.get_response_mock = Mock()
+        self.response = object()
+        self.get_response_mock.return_value = self.response
+        self.middleware = TokenValidMiddleware(self.get_response_mock)
+        self.is_valid_mock = self.patch(
+            'olympia.amo.middleware.fxa_access_token_is_valid'
+        )
+        self.is_valid_mock.return_value = True
+
+    def get_request(self):
+        request = RequestFactory().get('/')
+        request.user = Mock()
+        request.user.is_authenticated = True
+        request.session = {}
+        return request
+
+    def test_pass_because_use_fake_fxa_auth(self):
+        with override_settings(USE_FAKE_FXA_AUTH=True):
+            request = self.get_request()
+            assert self.middleware(request) == self.response
+            self.is_valid_mock.assert_not_called()
+
+        request = self.get_request()
+        assert self.middleware(request) == self.response
+        self.is_valid_mock.assert_called()
+
+    def test_pass_because_verify_fxa_access_token_web(self):
+        with override_settings(VERIFY_FXA_ACCESS_TOKEN_WEB=False):
+            request = self.get_request()
+            assert self.middleware(request) == self.response
+            self.is_valid_mock.assert_not_called()
+
+        request = self.get_request()
+        assert self.middleware(request) == self.response
+        self.is_valid_mock.assert_called()
+
+    def test_pass_because_not_authenticated(self):
+        request = self.get_request()
+        request.user.is_authenticated = False
+        assert self.middleware(request) == self.response
+        self.is_valid_mock.assert_not_called()
+
+        request = self.get_request()
+        assert self.middleware(request) == self.response
+        self.is_valid_mock.assert_called()
+
+    def test_redirect_because_token_invalid(self):
+        self.is_valid_mock.return_value = False
+        request = self.get_request()
+        response = self.middleware(request)
+        assert isinstance(response, HttpResponseRedirect)
+        assert response['Location'] == default_fxa_login_url(request)

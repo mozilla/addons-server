@@ -441,6 +441,7 @@ MIDDLEWARE = (
     'olympia.amo.middleware.CommonMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'olympia.amo.middleware.AuthenticationMiddlewareWithoutAPI',
+    'olympia.amo.middleware.TokenValidMiddleware',
     # Our middleware that adds additional information for the user
     # and API about our read-only status.
     'olympia.amo.middleware.ReadOnlyMiddleware',
@@ -1721,8 +1722,10 @@ FXA_CONTENT_HOST = 'https://accounts.firefox.com'
 FXA_OAUTH_HOST = 'https://oauth.accounts.firefox.com/v1'
 FXA_PROFILE_HOST = 'https://profile.accounts.firefox.com/v1'
 DEFAULT_FXA_CONFIG_NAME = 'default'
-ALLOWED_FXA_CONFIGS = ['default']
+ALLOWED_FXA_CONFIGS = ['default']  # name max_length=20 - see FxaToken
 USE_FAKE_FXA_AUTH = False  # Should only be True for local development envs.
+VERIFY_FXA_ACCESS_TOKEN_WEB = True
+VERIFY_FXA_ACCESS_TOKEN_API = True
 
 # List all jobs that should be callable with cron here.
 # syntax is: job_and_method_name: full.package.path
