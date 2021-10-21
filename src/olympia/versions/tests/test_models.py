@@ -9,6 +9,7 @@ from django.test.testcases import TransactionTestCase
 
 from unittest import mock
 import pytest
+import waffle
 
 from waffle.testutils import override_switch
 
@@ -1577,6 +1578,74 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         )
         assert not self.addon.auto_approval_disabled
         assert self.addon.auto_approval_disabled_unlisted
+
+    def test_dont_record_install_origins_when_waffle_switch_is_off(self):
+        # Switch should be off by default.
+        assert waffle.switch_is_active('record-install-origins') is False
+        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        parsed_data['install_origins'] = ['https://foo.com', 'https://bar.com']
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.RELEASE_CHANNEL_UNLISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=parsed_data,
+        )
+        assert version.installorigin_set.count() == 0
+
+    @override_switch('record-install-origins', active=True)
+    def test_record_install_origins(self):
+        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        parsed_data['install_origins'] = ['https://foo.com', 'https://bar.com']
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.RELEASE_CHANNEL_UNLISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=parsed_data,
+        )
+        assert version.installorigin_set.count() == 2
+        assert sorted(version.installorigin_set.values_list('origin', flat=True)) == [
+            'https://bar.com',
+            'https://foo.com',
+        ]
+
+    @override_switch('record-install-origins', active=True)
+    def test_record_install_origins_base_domain(self):
+        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        parsed_data['install_origins'] = [
+            'https://foô.com',
+            'https://foo.bar.co.uk',
+            'https://foo.bar.栃木.jp',
+        ]
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.RELEASE_CHANNEL_UNLISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=parsed_data,
+        )
+        assert version.installorigin_set.count() == 3
+        assert sorted(
+            version.installorigin_set.values_list('origin', 'base_domain')
+        ) == [
+            ('https://foo.bar.co.uk', 'bar.co.uk'),
+            ('https://foo.bar.栃木.jp', 'bar.xn--4pvxs.jp'),
+            ('https://foô.com', 'xn--fo-9ja.com'),
+        ]
+
+    @override_switch('record-install-origins', active=True)
+    def test_record_install_origins_error(self):
+        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        parsed_data['install_origins'] = None  # Invalid
+        with self.assertRaises(VersionCreateError):
+            Version.from_upload(
+                self.upload,
+                self.addon,
+                amo.RELEASE_CHANNEL_UNLISTED,
+                selected_apps=[self.selected_app],
+                parsed_data=parsed_data,
+            )
 
 
 class TestExtensionVersionFromUploadTransactional(

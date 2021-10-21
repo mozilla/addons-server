@@ -260,6 +260,10 @@ class ManifestJSONExtractor:
     def strict_min_version(self):
         return get_simple_version(self.gecko.get('strict_min_version'))
 
+    @property
+    def install_origins(self):
+        return self.gecko.get('install_origins', [])
+
     def apps(self):
         """Get `AppVersion`s for the application."""
         type_ = self.type
@@ -412,6 +416,7 @@ class ManifestJSONExtractor:
                     # webextensions don't.
                     'strict_compatibility': data['type'] == amo.ADDON_LPAPP,
                     'is_experiment': self.is_experiment,
+                    'install_origins': self.install_origins,
                 }
             )
             if self.type == amo.ADDON_EXTENSION:
