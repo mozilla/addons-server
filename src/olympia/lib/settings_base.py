@@ -222,7 +222,7 @@ CODE_MANAGER_URL = f'https://code.{DOMAIN}'
 
 # Static and media URL for prod are hardcoded here to allow them to be set in
 # the base CSP shared by all envs.
-PROD_STATIC_URL = 'https://addons.mozilla.org/static/'
+PROD_STATIC_URL = 'https://addons.mozilla.org/static-server/'
 PROD_MEDIA_URL = 'https://addons.mozilla.org/user-media/'
 
 # Filter IP addresses of allowed clients that can post email through the API.
