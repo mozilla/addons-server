@@ -108,14 +108,14 @@ class FileUploadTestMixin:
             )
         assert response.status_code in [401, 403]  # JWT auth is a 401; web auth is 403
 
-    def test_create(self):
+    def _test_create(self, channel, channel_name):
         upload_count_before = FileUpload.objects.count()
         filepath = self._xpi_filepath('@upload-version', '3.0')
 
         with open(filepath, 'rb') as upload:
             data = {
                 'upload': upload,
-                'channel': 'listed',
+                'channel': channel_name,
             }
 
             response = self.client.post(
@@ -135,9 +135,17 @@ class FileUploadTestMixin:
         assert upload.user == self.user
         assert upload.version == '3.0'
         assert upload.ip_address == '127.0.3.1'
+        assert upload.channel == channel
 
         data = response.json()
         assert data['uuid'] == upload.uuid.hex
+        assert data['channel'] == channel_name
+
+    def test_create_listed(self):
+        self._test_create(amo.RELEASE_CHANNEL_LISTED, 'listed')
+
+    def test_create_unlisted(self):
+        self._test_create(amo.RELEASE_CHANNEL_UNLISTED, 'unlisted')
 
     def test_list(self):
         response = self.client.get(
