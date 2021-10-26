@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-12 16:38+0000\n"
+"POT-Creation-Date: 2021-10-26 16:14+0000\n"
 "PO-Revision-Date: 2021-10-07 05:46+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -4393,6 +4393,10 @@ msgstr "Ga heen, vervelende cookiewaarschuwingen!"
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Keer terug naar een eenvoudiger tijdperk – toen uw beste zoekresultaten boven de advertenties stonden (compatibel met de zoekmachines van Google en Bing)."
 
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Extensies zijn als apps voor Firefox."
@@ -4411,8 +4415,9 @@ msgid "Top anti-tracking extensions"
 msgstr "Beste anti-trackingextensies"
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
-msgstr "Productiviteitsboosters"
+#, fuzzy
+msgid "Image search extensions"
+msgstr "Alle extensies bekijken"
 
 #. editorial content for the secondary hero shelves.
 msgid "YouTube customization"
@@ -4464,12 +4469,14 @@ msgid "See more recommended themes"
 msgstr "Meer aanbevolen thema’s bekijken"
 
 #. editorial content for the homepage shelves.
-msgid "Recommended password managers"
+#, fuzzy
+msgid "Strong password managers"
 msgstr "Aanbevolen wachtwoordbeheerders"
 
 #. editorial content for the homepage shelves.
-msgid "See more recommended password managers"
-msgstr "Meer aanbevolen wachtwoordbeheerders bekijken"
+#, fuzzy
+msgid "See more password manager staff picks"
+msgstr "Meer stafkeuzes voor tabbladbeheer bekijken"
 
 #. editorial content for the homepage shelves.
 msgid "Translation tools"
@@ -4502,6 +4509,16 @@ msgstr "Met ‘{tag}’ gelabelde extensies"
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Meer met ‘{tag}’ gelabelde extensies bekijken"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Elite ad blockers"
+msgstr "Add-on-blokkering bijwerken"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more ad blocker staff picks"
+msgstr "Meer stafkeuzes voor tabbladbeheer bekijken"
 
 msgid "Could not parse the manifest file."
 msgstr "Kon het manifest-bestand niet verwerken."

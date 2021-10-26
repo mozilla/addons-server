@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-12 16:38+0000\n"
+"POT-Creation-Date: 2021-10-26 16:14+0000\n"
 "PO-Revision-Date: 2021-10-06 19:27+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -4363,6 +4363,10 @@ msgstr "Poberite se, obvestila o piškotkih!"
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Vrnite se v preprostejše čase – ko so najustreznejši zadetki iskanja ležali nad oglasi (združljivo z iskalnikoma Google in Bing)."
 
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Razširitve so kot aplikacije za Firefox."
@@ -4381,8 +4385,9 @@ msgid "Top anti-tracking extensions"
 msgstr "Priljubljene razširitve"
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
-msgstr ""
+#, fuzzy
+msgid "Image search extensions"
+msgstr "Prikaži vse razširitve"
 
 #. editorial content for the secondary hero shelves.
 msgid "YouTube customization"
@@ -4434,12 +4439,14 @@ msgid "See more recommended themes"
 msgstr "Več priporočenih tem"
 
 #. editorial content for the homepage shelves.
-msgid "Recommended password managers"
+#, fuzzy
+msgid "Strong password managers"
 msgstr "Priporočeni upravitelji gesel"
 
 #. editorial content for the homepage shelves.
-msgid "See more recommended password managers"
-msgstr "Več priporočenih upraviteljev gesel"
+#, fuzzy
+msgid "See more password manager staff picks"
+msgstr "Več razširitev za upravljanje zavihkov"
 
 #. editorial content for the homepage shelves.
 msgid "Translation tools"
@@ -4477,6 +4484,16 @@ msgstr ""
 #, fuzzy
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Več priljubljenih razširitev"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Elite ad blockers"
+msgstr "Posodobi blokado dodatka"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more ad blocker staff picks"
+msgstr "Več razširitev za upravljanje zavihkov"
 
 msgid "Could not parse the manifest file."
 msgstr "Datoteke manifesta ni bilo mogoče razčleniti."

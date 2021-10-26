@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-12 16:38+0000\n"
+"POT-Creation-Date: 2021-10-26 16:14+0000\n"
 "PO-Revision-Date: 2021-08-11 14:11+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -4413,6 +4413,10 @@ msgstr "Adeus, avisos de cookies irritantes!"
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Volte a um tempo mais simples - quando os seus principais resultados de pesquisa ficavam acima dos anúncios (compatível com os mecanismos de pesquisa Google e Bing)."
 
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "As extensões são como aplicações para o Firefox."
@@ -4432,8 +4436,9 @@ msgid "Top anti-tracking extensions"
 msgstr "Extensões populares"
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
-msgstr ""
+#, fuzzy
+msgid "Image search extensions"
+msgstr "Ver todas as extensões"
 
 #. editorial content for the secondary hero shelves.
 msgid "YouTube customization"
@@ -4486,12 +4491,14 @@ msgid "See more recommended themes"
 msgstr "Ver mais temas recomendados"
 
 #. editorial content for the homepage shelves.
-msgid "Recommended password managers"
+#, fuzzy
+msgid "Strong password managers"
 msgstr "Gestores de palavras-passe recomendados"
 
 #. editorial content for the homepage shelves.
-msgid "See more recommended password managers"
-msgstr "Ver mais gestores de palavra-passe recomendados"
+#, fuzzy
+msgid "See more password manager staff picks"
+msgstr "Ver mais extensões de gestão de separadores"
 
 #. editorial content for the homepage shelves.
 msgid "Translation tools"
@@ -4528,6 +4535,16 @@ msgstr ""
 #, fuzzy
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Ver mais extensões populares"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Elite ad blockers"
+msgstr "Atualizar bloqueio de extra"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more ad blocker staff picks"
+msgstr "Ver mais extensões de gestão de separadores"
 
 msgid "Could not parse the manifest file."
 msgstr "Não foi possível analisar o ficheiro manifest."

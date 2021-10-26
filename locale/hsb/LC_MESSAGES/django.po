@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-12 16:38+0000\n"
+"POT-Creation-Date: 2021-10-26 16:14+0000\n"
 "PO-Revision-Date: 2021-10-06 19:05+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4385,6 +4385,10 @@ msgstr "Preč z mjerzacymi plackowymi warnowanjemi!"
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Wróćo k jednorišemu časej – hdyž waše najwažniše pytanske wuslědki nad wabjenjom stejachu (kompatibelne z pytawomaj Google a Bing)."
 
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Rozšěrjenja su za Firefox kaž nałoženja."
@@ -4402,8 +4406,9 @@ msgid "Top anti-tracking extensions"
 msgstr "Woblubowane rozšěrjenja přećiwo slědowanju"
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
-msgstr "Zesylnjaki produktiwnosće"
+#, fuzzy
+msgid "Image search extensions"
+msgstr "Wšě rozšěrjenja pokazać"
 
 #. editorial content for the secondary hero shelves.
 msgid "YouTube customization"
@@ -4454,12 +4459,14 @@ msgid "See more recommended themes"
 msgstr "Dalše doporučene drasty pokazać"
 
 #. editorial content for the homepage shelves.
-msgid "Recommended password managers"
+#, fuzzy
+msgid "Strong password managers"
 msgstr "Doporučene zrjadowaki hesłow"
 
 #. editorial content for the homepage shelves.
-msgid "See more recommended password managers"
-msgstr "Dalše doporučene zrjadowaki hesłow pokazać"
+#, fuzzy
+msgid "See more password manager staff picks"
+msgstr "Dalše wot sobudźěłaćerjow wubrane rozšěrjenja wo rjadowanju rajtarkow pokazać"
 
 #. editorial content for the homepage shelves.
 msgid "Translation tools"
@@ -4492,6 +4499,16 @@ msgstr "Rozšěrjenja ze značku „{tag}“"
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Dalše rozšěrjenja ze značku „{tag}“"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Elite ad blockers"
+msgstr "Blokowanje přidatka aktualizować"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more ad blocker staff picks"
+msgstr "Dalše wot sobudźěłaćerjow wubrane rozšěrjenja wo rjadowanju rajtarkow pokazać"
 
 msgid "Could not parse the manifest file."
 msgstr "Manifestowa dataja njeda so analyzować."
