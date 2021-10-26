@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-12 16:38+0000\n"
+"POT-Creation-Date: 2021-10-26 16:19+0000\n"
 "PO-Revision-Date: 2021-08-15 13:26+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -4423,6 +4423,10 @@ msgstr "Сгиньте, надоедливые предупреждения о �
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Вернитесь к более простым временам — когда первые результаты поиска стояли выше рекламы (совместимо с поисковыми системами Google и Bing)."
 
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Расширения — это как приложения для Firefox."
@@ -4442,8 +4446,9 @@ msgid "Top anti-tracking extensions"
 msgstr "Популярные расширения"
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
-msgstr ""
+#, fuzzy
+msgid "Image search extensions"
+msgstr "Посмотреть все расширения"
 
 #. editorial content for the secondary hero shelves.
 msgid "YouTube customization"
@@ -4496,12 +4501,14 @@ msgid "See more recommended themes"
 msgstr "Больше рекомендуемых тем"
 
 #. editorial content for the homepage shelves.
-msgid "Recommended password managers"
+#, fuzzy
+msgid "Strong password managers"
 msgstr "Рекомендуемые менеджеры паролей"
 
 #. editorial content for the homepage shelves.
-msgid "See more recommended password managers"
-msgstr "Больше рекомендуемых менеджеров паролей"
+#, fuzzy
+msgid "See more password manager staff picks"
+msgstr "Больше расширений для управления вкладками"
 
 #. editorial content for the homepage shelves.
 msgid "Translation tools"
@@ -4538,6 +4545,16 @@ msgstr ""
 #, fuzzy
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Больше популярных расширений"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Elite ad blockers"
+msgstr "Обновить блокировку дополнений"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more ad blocker staff picks"
+msgstr "Больше расширений для управления вкладками"
 
 msgid "Could not parse the manifest file."
 msgstr "Не удалось распарсить файл манифеста."

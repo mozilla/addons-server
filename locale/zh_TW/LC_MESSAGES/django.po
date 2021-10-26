@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-12 16:38+0000\n"
+"POT-Creation-Date: 2021-10-26 16:19+0000\n"
 "PO-Revision-Date: 2021-10-07 09:34+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -4326,6 +4326,10 @@ msgstr "去去 Cookie 警告走！"
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "返樸歸真——讓您的搜尋結果不再充斥著廣告（相容 Google 及 Bing 搜尋引擎）。"
 
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "擴充套件就像是在 Firefox 中安裝應用程式。"
@@ -4344,8 +4348,9 @@ msgid "Top anti-tracking extensions"
 msgstr "熱門反追蹤擴充套件"
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
-msgstr "生產力大補包"
+#, fuzzy
+msgid "Image search extensions"
+msgstr "瀏覽所有擴充套件"
 
 #. editorial content for the secondary hero shelves.
 msgid "YouTube customization"
@@ -4397,12 +4402,14 @@ msgid "See more recommended themes"
 msgstr "看更多推薦佈景主題"
 
 #. editorial content for the homepage shelves.
-msgid "Recommended password managers"
+#, fuzzy
+msgid "Strong password managers"
 msgstr "推薦的密碼管理員"
 
 #. editorial content for the homepage shelves.
-msgid "See more recommended password managers"
-msgstr "看更多推薦密碼管理員"
+#, fuzzy
+msgid "See more password manager staff picks"
+msgstr "看更多員工精選的分頁管理套件"
 
 #. editorial content for the homepage shelves.
 msgid "Translation tools"
@@ -4435,6 +4442,16 @@ msgstr "含有「{tag}」標籤的擴充套件"
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
 msgstr "看看更多含有「{tag}」標籤的擴充套件"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Elite ad blockers"
+msgstr "更新附加元件封鎖資訊"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more ad blocker staff picks"
+msgstr "看更多員工精選的分頁管理套件"
 
 msgid "Could not parse the manifest file."
 msgstr "無法剖析安裝資訊檔。"

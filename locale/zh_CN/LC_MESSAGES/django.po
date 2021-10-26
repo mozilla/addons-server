@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-12 16:38+0000\n"
+"POT-Creation-Date: 2021-10-26 16:19+0000\n"
 "PO-Revision-Date: 2021-10-07 13:22+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -4306,6 +4306,10 @@ msgstr "滚蛋吧，烦人的 Cookie 警告！"
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "返璞归真 — 将重要搜索结果列于广告的上方（适用于 Google、Bing 搜索引擎）。"
 
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "给 Firefox 加点机能。"
@@ -4324,8 +4328,9 @@ msgid "Top anti-tracking extensions"
 msgstr "热门反跟踪扩展"
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
-msgstr "生产力工具"
+#, fuzzy
+msgid "Image search extensions"
+msgstr "浏览所有扩展"
 
 #. editorial content for the secondary hero shelves.
 msgid "YouTube customization"
@@ -4377,12 +4382,14 @@ msgid "See more recommended themes"
 msgstr "看看更多推荐主题"
 
 #. editorial content for the homepage shelves.
-msgid "Recommended password managers"
+#, fuzzy
+msgid "Strong password managers"
 msgstr "推荐的密码管理器"
 
 #. editorial content for the homepage shelves.
-msgid "See more recommended password managers"
-msgstr "看看更多推荐的密码管理器"
+#, fuzzy
+msgid "See more password manager staff picks"
+msgstr "看看更多标签页管理扩展（官方精选）"
 
 #. editorial content for the homepage shelves.
 msgid "Translation tools"
@@ -4415,6 +4422,16 @@ msgstr "含“{tag}”标签的扩展"
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
 msgstr "看看更多含“{tag}”标签的扩展"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Elite ad blockers"
+msgstr "更新附加组件屏蔽列表"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more ad blocker staff picks"
+msgstr "看看更多标签页管理扩展（官方精选）"
 
 msgid "Could not parse the manifest file."
 msgstr "未能解析清单文件。"

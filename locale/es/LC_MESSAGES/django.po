@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-12 16:38+0000\n"
+"POT-Creation-Date: 2021-10-26 16:19+0000\n"
 "PO-Revision-Date: 2021-07-03 19:18+0000\n"
 "Last-Translator: Paulina Rodriguez <pauli.rodriguez.c@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -4488,6 +4488,10 @@ msgstr ""
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Las extensiones son como aplicaciones para Firefox."
@@ -4507,8 +4511,9 @@ msgid "Top anti-tracking extensions"
 msgstr "Extensiones populares"
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
-msgstr ""
+#, fuzzy
+msgid "Image search extensions"
+msgstr "Ver todas las extensiones"
 
 #. editorial content for the secondary hero shelves.
 msgid "YouTube customization"
@@ -4562,12 +4567,14 @@ msgid "See more recommended themes"
 msgstr "Ver más temas recomendados"
 
 #. editorial content for the homepage shelves.
-msgid "Recommended password managers"
+#, fuzzy
+msgid "Strong password managers"
 msgstr "Gestores de contraseña recomendados"
 
 #. editorial content for the homepage shelves.
-msgid "See more recommended password managers"
-msgstr "Ver más gestores de contraseñas recomendados"
+#, fuzzy
+msgid "See more password manager staff picks"
+msgstr "Ver más extensiones recomendadas"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4606,6 +4613,16 @@ msgstr ""
 #, fuzzy
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Ver más extensiones populares"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Elite ad blockers"
+msgstr "Actualizar bloqueadores de complementos"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more ad blocker staff picks"
+msgstr "Ver más extensiones recomendadas"
 
 msgid "Could not parse the manifest file."
 msgstr "No se pudo analizar el archivo de manifiesto."
