@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-26 16:19+0000\n"
-"PO-Revision-Date: 2021-10-26 19:18+0000\n"
+"PO-Revision-Date: 2021-10-26 19:19+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -4487,7 +4487,7 @@ msgstr "Kraftfulla annonsblockerare"
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
-msgstr ""
+msgstr "Se fler utvalda annonsblockerare som valts av anställda"
 
 msgid "Could not parse the manifest file."
 msgstr "Kunde inte tolka manifest-filen."
