@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-12 16:38+0000\n"
+"POT-Creation-Date: 2021-10-26 16:11+0000\n"
 "PO-Revision-Date: 2021-10-10 12:43+0000\n"
 "Last-Translator: Jenny <leanintocuriosity@gmx.com>\n"
 "Language-Team: Mozilla Italia\n"
@@ -4459,6 +4459,10 @@ msgstr "Addio, fastidiosi avvisi sui cookie!"
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Ritorna al tempo in cui era tutto più semplice, quando i risultati di ricerca principali erano posizionati prima degli annunci pubblicitari (compatibile con Google e Bing)."
 
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Le estensioni sono come piccole applicazioni per Firefox."
@@ -4477,8 +4481,9 @@ msgid "Top anti-tracking extensions"
 msgstr "Le migliori estensioni antitracciamento"
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
-msgstr "Strumenti per aumentare la produttività"
+#, fuzzy
+msgid "Image search extensions"
+msgstr "Visualizza tutte le estensioni"
 
 #. editorial content for the secondary hero shelves.
 msgid "YouTube customization"
@@ -4530,12 +4535,14 @@ msgid "See more recommended themes"
 msgstr "Visualizza altri temi consigliati"
 
 #. editorial content for the homepage shelves.
-msgid "Recommended password managers"
+#, fuzzy
+msgid "Strong password managers"
 msgstr "Gestori di password consigliati"
 
 #. editorial content for the homepage shelves.
-msgid "See more recommended password managers"
-msgstr "Visualizza altri gestori di password consigliati"
+#, fuzzy
+msgid "See more password manager staff picks"
+msgstr "Visualizza altri strumenti per la gestione delle schede scelti dallo staff"
 
 #. editorial content for the homepage shelves.
 msgid "Translation tools"
@@ -4568,6 +4575,16 @@ msgstr "Estensioni con etichetta “{tag}”"
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Visualizza altre estensioni con etichetta “{tag}”"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Elite ad blockers"
+msgstr "Aggiorna blocco componente aggiuntivo"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more ad blocker staff picks"
+msgstr "Visualizza altri strumenti per la gestione delle schede scelti dallo staff"
 
 msgid "Could not parse the manifest file."
 msgstr "Impossibile analizzare il file manifesto."

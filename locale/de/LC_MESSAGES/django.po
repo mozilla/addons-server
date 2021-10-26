@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-12 16:38+0000\n"
+"POT-Creation-Date: 2021-10-26 16:11+0000\n"
 "PO-Revision-Date: 2021-10-06 19:00+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4413,6 +4413,10 @@ msgstr "Weg mit nervigen Cookie-Warnungen!"
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Zurück zu einfacheren Zeiten – als die wichtigsten Suchergebnisse noch über der Werbung standen (kompatibel mit den Google- und Bing-Suchmaschinen)."
 
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Erweiterungen sind wie Apps für Firefox."
@@ -4431,8 +4435,9 @@ msgid "Top anti-tracking extensions"
 msgstr "Höchstbewertete Erweiterungen gegen Tracking"
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
-msgstr "Verbesserung der Produktivität"
+#, fuzzy
+msgid "Image search extensions"
+msgstr "Alle Erweiterungen anzeigen"
 
 #. editorial content for the secondary hero shelves.
 msgid "YouTube customization"
@@ -4484,12 +4489,14 @@ msgid "See more recommended themes"
 msgstr "Mehr empfohlene Themes ansehen"
 
 #. editorial content for the homepage shelves.
-msgid "Recommended password managers"
+#, fuzzy
+msgid "Strong password managers"
 msgstr "Empfohlene Passwort-Manager"
 
 #. editorial content for the homepage shelves.
-msgid "See more recommended password managers"
-msgstr "Mehr empfohlene Passwort-Manager ansehen"
+#, fuzzy
+msgid "See more password manager staff picks"
+msgstr "Mehr von Mitarbeitern ausgewählte Erweiterungen zur Tab-Vewaltung ansehen"
 
 #. editorial content for the homepage shelves.
 msgid "Translation tools"
@@ -4522,6 +4529,16 @@ msgstr "Erweiterungen mit dem Schlagwort „{tag}“"
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Weitere Erweiterungen mit dem Schlagwort „{tag}“ anzeigen"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Elite ad blockers"
+msgstr "Add-on-Sperre aktualisieren"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more ad blocker staff picks"
+msgstr "Mehr von Mitarbeitern ausgewählte Erweiterungen zur Tab-Vewaltung ansehen"
 
 msgid "Could not parse the manifest file."
 msgstr "Manifest-Datei konnte nicht verarbeitet werden."

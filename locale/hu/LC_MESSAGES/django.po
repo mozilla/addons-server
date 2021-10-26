@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-12 16:38+0000\n"
+"POT-Creation-Date: 2021-10-26 16:11+0000\n"
 "PO-Revision-Date: 2021-10-07 11:04+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -4408,6 +4408,10 @@ msgstr "Bosszantó sütifigyelmeztetések, távozzatok!"
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Térjen vissza egy egyszerűbb időbe – amikor a keresési találatok a reklámok felett jelentek meg (a Google és a Bing keresővel kompatibilis)."
 
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "A kiegészítők olyanok, mintha alkalmazások lennének a Firefoxhoz."
@@ -4426,8 +4430,9 @@ msgid "Top anti-tracking extensions"
 msgstr "Legjobbra értékelt követés elleni kiegészítők"
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
-msgstr "Hatékonyságnövelők"
+#, fuzzy
+msgid "Image search extensions"
+msgstr "Összes kiegészítő megtekintése"
 
 #. editorial content for the secondary hero shelves.
 msgid "YouTube customization"
@@ -4479,12 +4484,14 @@ msgid "See more recommended themes"
 msgstr "További ajánlott témák megtekintése"
 
 #. editorial content for the homepage shelves.
-msgid "Recommended password managers"
+#, fuzzy
+msgid "Strong password managers"
 msgstr "Ajánlott jelszókezelők"
 
 #. editorial content for the homepage shelves.
-msgid "See more recommended password managers"
-msgstr "További ajánlott jelszókezelők megtekintése"
+#, fuzzy
+msgid "See more password manager staff picks"
+msgstr "További, stáb által javasolt lapkezelő kiegészítők megtekintése"
 
 #. editorial content for the homepage shelves.
 msgid "Translation tools"
@@ -4517,6 +4524,16 @@ msgstr "„{tag}” címkéjű kiegészítők"
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
 msgstr "További „{tag}” címkéjű kiegészítők megtekintése"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Elite ad blockers"
+msgstr "Kiegészítő blokkolásának frissítése"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more ad blocker staff picks"
+msgstr "További, stáb által javasolt lapkezelő kiegészítők megtekintése"
 
 msgid "Could not parse the manifest file."
 msgstr "Nem sikerült feldolgozni a jegyzékfájlt."
