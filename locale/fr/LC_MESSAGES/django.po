@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-26 16:19+0000\n"
-"PO-Revision-Date: 2021-10-19 16:24+0000\n"
-"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
+"PO-Revision-Date: 2021-10-26 18:00+0000\n"
+"Last-Translator: Yaya.Cout <yaya.cout@free.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -4449,7 +4449,7 @@ msgstr "Revenez à une époque plus simple — lorsque les meilleurs résultats 
 
 #. editorial content for the primary hero shelves.
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr ""
+msgstr "Arrêtez de donner votre adresse e-mail aux sites. Firefox Relay protège votre identité et empêche le courrier indésirable."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4527,7 +4527,7 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "See more password manager staff picks"
-msgstr ""
+msgstr "Voir plus d’extensions pour la gestion des mots de passe choisies par l’équipe"
 
 #. editorial content for the homepage shelves.
 msgid "Translation tools"
@@ -4567,7 +4567,7 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
-msgstr ""
+msgstr "Voir plus d’extensions pour le blocage des publicités choisies par l’équipe"
 
 msgid "Could not parse the manifest file."
 msgstr "Impossible d’analyser le fichier manifeste."
