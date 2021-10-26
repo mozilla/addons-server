@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-12 16:38+0000\n"
+"POT-Creation-Date: 2021-10-26 16:19+0000\n"
 "PO-Revision-Date: 2021-10-08 21:50+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -4375,6 +4375,10 @@ msgstr "Försvinn, irriterande varningar om kakor!"
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Återgå till en enklare tid — när dina bästa sökresultat stod ovanför annonserna (Google och Bing-sökmotorkompatibla)."
 
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Tillägg är som appar för Firefox."
@@ -4392,8 +4396,9 @@ msgid "Top anti-tracking extensions"
 msgstr "Högt rankade tillägg mot spårning "
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
-msgstr "Produktivitetsförstärkare"
+#, fuzzy
+msgid "Image search extensions"
+msgstr "Se alla tillägg"
 
 #. editorial content for the secondary hero shelves.
 msgid "YouTube customization"
@@ -4444,12 +4449,14 @@ msgid "See more recommended themes"
 msgstr "Se fler rekommenderade teman"
 
 #. editorial content for the homepage shelves.
-msgid "Recommended password managers"
+#, fuzzy
+msgid "Strong password managers"
 msgstr "Rekommenderade lösenordshanterare"
 
 #. editorial content for the homepage shelves.
-msgid "See more recommended password managers"
-msgstr "Se fler rekommenderade lösenordshanterare"
+#, fuzzy
+msgid "See more password manager staff picks"
+msgstr "Se fler utvalda flikhanteringstillägg som valts av anställda"
 
 #. editorial content for the homepage shelves.
 msgid "Translation tools"
@@ -4482,6 +4489,16 @@ msgstr "\"{tag}\" taggade tillägg"
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Se fler tillägg taggade \"{tag}\""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Elite ad blockers"
+msgstr "Uppdatera tilläggsblockering"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more ad blocker staff picks"
+msgstr "Se fler utvalda flikhanteringstillägg som valts av anställda"
 
 msgid "Could not parse the manifest file."
 msgstr "Kunde inte tolka manifest-filen."

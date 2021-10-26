@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-12 16:38+0000\n"
+"POT-Creation-Date: 2021-10-26 16:19+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -5195,6 +5195,12 @@ msgid ""
 "(Google and Bing search engine compatible)."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid ""
+"Stop giving sites your email address. Firefox Relay protects your identity & "
+"prevents junk mail."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr ""
@@ -5217,8 +5223,9 @@ msgid "Top anti-tracking extensions"
 msgstr "Ekstenzije"
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
-msgstr ""
+#, fuzzy
+msgid "Image search extensions"
+msgstr "Pogledajte sve dodatke"
 
 #. editorial content for the secondary hero shelves.
 msgid "YouTube customization"
@@ -5278,12 +5285,13 @@ msgid "See more recommended themes"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-msgid "Recommended password managers"
+msgid "Strong password managers"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-msgid "See more recommended password managers"
-msgstr ""
+#, fuzzy
+msgid "See more password manager staff picks"
+msgstr "Pogledajte sve dodatke"
 
 #. editorial content for the homepage shelves.
 msgid "Translation tools"
@@ -5319,6 +5327,15 @@ msgstr ""
 #. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more extensions tagged \"{tag}\""
+msgstr "Pogledajte sve dodatke"
+
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more ad blocker staff picks"
 msgstr "Pogledajte sve dodatke"
 
 msgid "Could not parse the manifest file."

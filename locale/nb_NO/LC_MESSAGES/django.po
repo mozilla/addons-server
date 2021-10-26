@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-12 16:38+0000\n"
+"POT-Creation-Date: 2021-10-26 16:19+0000\n"
 "PO-Revision-Date: 2021-05-20 11:49+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4310,6 +4310,10 @@ msgstr ""
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Utvidelser er som apper for Firefox."
@@ -4328,8 +4332,9 @@ msgid "Top anti-tracking extensions"
 msgstr "Populære utvidelser"
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
-msgstr ""
+#, fuzzy
+msgid "Image search extensions"
+msgstr "Se alle utvidelser"
 
 #. editorial content for the secondary hero shelves.
 msgid "YouTube customization"
@@ -4381,12 +4386,13 @@ msgid "See more recommended themes"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-msgid "Recommended password managers"
+msgid "Strong password managers"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-msgid "See more recommended password managers"
-msgstr ""
+#, fuzzy
+msgid "See more password manager staff picks"
+msgstr "Vis flere anbefalte utvidelser"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4425,6 +4431,15 @@ msgstr ""
 #, fuzzy
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Vis flere populære utvidelser"
+
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more ad blocker staff picks"
+msgstr "Vis flere anbefalte utvidelser"
 
 msgid "Could not parse the manifest file."
 msgstr "Kunne ikke analysere manifestfilen."
