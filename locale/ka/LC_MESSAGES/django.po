@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-12 16:38+0000\n"
-"PO-Revision-Date: 2021-10-26 15:35+0000\n"
+"PO-Revision-Date: 2021-10-26 15:43+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1732,12 +1732,14 @@ msgid "Ensure name and summary combined are at most {limit_value} characters (th
 msgstr "დარწმუნდით, რომ სახელი და შეჯამება ერთიანად არ აჭარბებს {limit_value} სიმბოლოს (ახლა არის {show_value})."
 
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
-msgstr ""
+msgstr "ამ საიტზე. <span class=\"helptext\">თქვენ მიერ გადმოგზავნილი საჯაროდ აღინუსხება საიტზე {site_domain}.</span>"
 
 msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
 "on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
+"საკუთარზე. <span class=\"helptext\">გადმოგზავნილი დამოწმდება Mozilla-ს მიერ, შემდეგ შეძლებთ ჩამოტვირთოთ .xpi ფაილი Developer Hub-იდან და გაავრცელოთ მომხმარებლებში. გთხოვთ დარწმუნდეთ, რომ დამატების "
+"დებულების (manifest) <a {a_attrs}>update_url</a> მითითებულია, ვინაიდან ეს ის URL-ბმულია, რომლითაც Firefox მოიძიებს განახლებებს დასაყენებლად, თქვენი მომხმარებლებისთვის.</span>"
 
 msgid "Display Name"
 msgstr "გამოსაჩენი სახელი"
@@ -2642,15 +2644,15 @@ msgid "How to Distribute this Version"
 msgstr "გავრცელების გზა"
 
 msgid "To get started, select how you would like to distribute this version."
-msgstr ""
+msgstr "დასაწყისისთვის, აირჩიეთ, როგორ გსურთ გაავრცელოთ ეს ვერსია."
 
 #, python-format
 msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "ვრცლად, იხილეთ <a %(a_attrs)s>დამატებების გავრცელებისა და დამოწმების</a> შესახებ, Firefox-ის გაფართოებების სახელოსნოში."
 
 #, python-format
 msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
-msgstr ""
+msgstr "ყველა დამატება უნდა აიწყოს <a %(a_attrs)s>Mozilla-ს დამატებების დებულებებით</a> და ექვემდებარება ადამიანის მიერ განხილვას, გადაგზავნის შემდგომ."
 
 msgid "Submission Complete"
 msgstr "წარდგენა დასრულებულია"
