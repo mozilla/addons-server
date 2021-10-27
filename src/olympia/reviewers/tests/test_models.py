@@ -29,6 +29,7 @@ from olympia.reviewers.models import (
     AutoApprovalNoValidationResultError,
     AutoApprovalSummary,
     CannedResponse,
+    ReviewActionReason,
     ReviewerScore,
     ReviewerSubscription,
     send_notifications,
@@ -2045,3 +2046,15 @@ class TestCannedResponse(TestCase):
         )
 
         assert response.category == amo.CANNED_RESPONSE_CATEGORY_OTHER
+
+
+class TestReviewActionReason(TestCase):
+    def test_basic(self):
+        name = 'Test reason'
+        reason = ReviewActionReason.objects.create(
+            is_active=False,
+            name=name,
+        )
+
+        assert reason.name == name
+        assert not reason.is_active
