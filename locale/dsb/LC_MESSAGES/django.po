@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-26 16:19+0000\n"
-"PO-Revision-Date: 2021-10-27 15:16+0000\n"
+"PO-Revision-Date: 2021-10-27 19:51+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -4381,7 +4381,7 @@ msgstr "Slědk k jadnorjejšemu casoju – gaž wašo nejwažnjejše pytańske w
 
 #. editorial content for the primary hero shelves.
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr "Njedajśo wěcej sedłam swóju e-mailowu adresu. Firefox relay wašu identitu šćita a spamowym mejlkam zajźujo."
+msgstr "Njedajśo wěcej sedłam swóju e-mailowu adresu. Firefox Relay wašu identitu šćita a spamowym mejlkam zajźujo."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
