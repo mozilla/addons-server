@@ -20,7 +20,7 @@ class TestFileUploadSerializer(TestCase):
         self.request.version = api_version
 
     def test_basic(self):
-        file_upload = FileUpload(version='123')
+        file_upload = FileUpload(version='123', automated_signing=True)
         data = FileUploadSerializer(
             instance=file_upload, context={'request': self.request}
         ).data
@@ -40,7 +40,7 @@ class TestFileUploadSerializer(TestCase):
         }
 
         file_upload.update(
-            automated_signing=True,
+            automated_signing=False,
             validation=json.dumps([{'something': 'happened'}]),
         )
         data = FileUploadSerializer(
