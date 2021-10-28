@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-26 16:19+0000\n"
-"PO-Revision-Date: 2021-10-28 16:20+0000\n"
+"PO-Revision-Date: 2021-10-28 19:17+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -459,7 +459,7 @@ msgid "Addon with GUID %(guid)s does not exist"
 msgstr "დამატება GUID-ით %(guid)s არ არსებობს"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr "განსაახლებელი შეზღუდვები განსხვავებულია, ვინაიდან Min ან Max-ვერსია შეიცვალა."
+msgstr "განსაახლებელი შეზღუდვები განსხვავებულია, ვინაიდან, Min ან Max-ვერსია შეიცვალა."
 
 #, python-format
 msgid "%(value)s contains *"
