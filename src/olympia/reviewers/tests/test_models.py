@@ -2057,4 +2057,5 @@ class TestReviewActionReason(TestCase):
         )
 
         assert reason.name == name
+        assert reason.__str__() == name
         assert not reason.is_active

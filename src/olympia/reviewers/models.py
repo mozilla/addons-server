@@ -1127,14 +1127,10 @@ class Whiteboard(ModelBase):
 
 
 class ReviewActionReason(ModelBase):
-    id = PositiveAutoField(primary_key=True)
     is_active = models.BooleanField(
-        default=True, help_text=_('Is available to be assigned to an action')
+        default=True, help_text=_('Is available to be used in reviews')
     )
     name = models.CharField(max_length=255)
-
-    class Meta:
-        db_table = 'reviewactionreason'
 
     def __str__(self):
         return str(self.name)
