@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-26 16:19+0000\n"
-"PO-Revision-Date: 2021-10-07 05:46+0000\n"
+"PO-Revision-Date: 2021-10-27 06:08+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -4390,7 +4390,7 @@ msgstr "Keer terug naar een eenvoudiger tijdperk – toen uw beste zoekresultate
 
 #. editorial content for the primary hero shelves.
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr ""
+msgstr "Stop met het geven van uw e-mailadres aan websites. Firefox Relay beschermt uw identiteit en voorkomt ongewenste berichten."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4411,7 +4411,7 @@ msgstr "Beste anti-trackingextensies"
 
 #. editorial content for the secondary hero shelves.
 msgid "Image search extensions"
-msgstr ""
+msgstr "Zoekextensies voor afbeeldingen"
 
 #. editorial content for the secondary hero shelves.
 msgid "YouTube customization"
@@ -4464,11 +4464,11 @@ msgstr "Meer aanbevolen thema’s bekijken"
 
 #. editorial content for the homepage shelves.
 msgid "Strong password managers"
-msgstr ""
+msgstr "Sterke wachtwoordbeheerders"
 
 #. editorial content for the homepage shelves.
 msgid "See more password manager staff picks"
-msgstr ""
+msgstr "Meer stafkeuzes voor wachtwoordbeheer bekijken"
 
 #. editorial content for the homepage shelves.
 msgid "Translation tools"
@@ -4504,11 +4504,11 @@ msgstr "Meer met ‘{tag}’ gelabelde extensies bekijken"
 
 #. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
-msgstr ""
+msgstr "De beste advertentieblokkeerders"
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
-msgstr ""
+msgstr "Meer stafkeuzes voor advertentieblokkering bekijken"
 
 msgid "Could not parse the manifest file."
 msgstr "Kon het manifest-bestand niet verwerken."
