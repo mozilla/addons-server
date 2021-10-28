@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-26 16:19+0000\n"
-"PO-Revision-Date: 2021-10-27 15:05+0000\n"
+"PO-Revision-Date: 2021-10-28 02:10+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -4326,7 +4326,7 @@ msgstr "YouTube 定制"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
-msgstr "看看官方精选"
+msgstr "编辑推荐"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended extensions"
@@ -4334,7 +4334,7 @@ msgstr "推荐扩展"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended extensions"
-msgstr "看看更多推荐扩展"
+msgstr "更多推荐扩展"
 
 #. editorial content for the homepage shelves.
 msgid "Popular themes"
@@ -4342,7 +4342,7 @@ msgstr "热门主题"
 
 #. editorial content for the homepage shelves.
 msgid "See more popular themes"
-msgstr "看看更多热门主题"
+msgstr "更多热门主题"
 
 #. editorial content for the homepage shelves.
 msgid "Enhanced privacy extensions"
@@ -4350,7 +4350,7 @@ msgstr "隐私增强扩展"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended privacy extensions"
-msgstr "看看更多推荐隐私扩展"
+msgstr "更多推荐隐私扩展"
 
 #. editorial content for the homepage shelves.
 # Plural in this context means many of the add-on type
@@ -4359,7 +4359,7 @@ msgstr "热门扩展"
 
 #. editorial content for the homepage shelves.
 msgid "See more popular extensions"
-msgstr "看看更多热门扩展"
+msgstr "更多热门扩展"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended themes"
@@ -4367,7 +4367,7 @@ msgstr "推荐主题"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
-msgstr "看看更多推荐主题"
+msgstr "更多推荐主题"
 
 #. editorial content for the homepage shelves.
 msgid "Strong password managers"
@@ -4375,7 +4375,7 @@ msgstr "高强度密码管理器"
 
 #. editorial content for the homepage shelves.
 msgid "See more password manager staff picks"
-msgstr "看看更多密码管理器（官方精选）"
+msgstr "更多密码管理器（官方精选）"
 
 #. editorial content for the homepage shelves.
 msgid "Translation tools"
@@ -4383,7 +4383,7 @@ msgstr "翻译工具"
 
 #. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
-msgstr "看看更多翻译工具（官方精选）"
+msgstr "更多翻译工具（官方精选）"
 
 #. editorial content for the homepage shelves.
 msgid "Social streaming"
@@ -4391,7 +4391,7 @@ msgstr "社交流媒体"
 
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
-msgstr "看看更多社交流媒体扩展（官方精选）"
+msgstr "更多社交流媒体扩展（官方精选）"
 
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
@@ -4399,7 +4399,7 @@ msgstr "标签页管理器"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
-msgstr "看看更多标签页管理扩展（官方精选）"
+msgstr "更多标签页管理扩展（官方精选）"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
@@ -4407,7 +4407,7 @@ msgstr "含“{tag}”标签的扩展"
 
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
-msgstr "看看更多含“{tag}”标签的扩展"
+msgstr "更多含“{tag}”标签的扩展"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
