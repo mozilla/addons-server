@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-26 16:19+0000\n"
-"PO-Revision-Date: 2021-10-28 06:43+0000\n"
+"PO-Revision-Date: 2021-10-28 06:53+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4380,9 +4380,8 @@ msgid "Top anti-tracking extensions"
 msgstr "Le melior extensiones anti-traciamento"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Image search extensions"
-msgstr "Vider tote le extensiones"
+msgstr "Extensiones de recerca imagine"
 
 #. editorial content for the secondary hero shelves.
 msgid "YouTube customization"
@@ -4433,14 +4432,12 @@ msgid "See more recommended themes"
 msgstr "Vide altere themas recommendate"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Strong password managers"
-msgstr "Gestores de contrasignos recommendate"
+msgstr "Gestores de contrasignos forte"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more password manager staff picks"
-msgstr "Vide altere gestion de schedas seligite per nostre equipa"
+msgstr "Vide altere gestores de contrasignos seligite per nostre equipa"
 
 #. editorial content for the homepage shelves.
 msgid "Translation tools"
@@ -4475,14 +4472,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Vide altere extensiones etiquettate \"{tag}\""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Elite ad blockers"
-msgstr "Actualisar blocada de additivo"
+msgstr "Blocatores de avisos elite"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more ad blocker staff picks"
-msgstr "Vide altere gestion de schedas seligite per nostre equipa"
+msgstr "Vide altere blocatores de avisos seligite per nostre equipa"
 
 msgid "Could not parse the manifest file."
 msgstr "Impossibile tractar le file manifesto."
