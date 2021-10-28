@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-26 16:19+0000\n"
-"PO-Revision-Date: 2021-10-28 02:23+0000\n"
+"PO-Revision-Date: 2021-10-28 02:46+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -4410,14 +4410,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "更多含“{tag}”标签的扩展"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Elite ad blockers"
-msgstr "更新附加组件屏蔽列表"
+msgstr "王者级广告拦截工具"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more ad blocker staff picks"
-msgstr "看看更多标签页管理扩展（官方精选）"
+msgstr "更多编辑推荐 > 广告拦截工具"
 
 msgid "Could not parse the manifest file."
 msgstr "未能解析清单文件。"
