@@ -579,6 +579,11 @@ class CategoriesSerializerField(serializers.Field):
         try:
             categories = []
             for app_name, category_names in data.items():
+                if len(category_names) > amo.MAX_CATEGORIES:
+                    raise exceptions.ValidationError(
+                        'Maximum number of categories per application '
+                        f'({amo.MAX_CATEGORIES}) exceeded'
+                    )
                 app_cats = CATEGORIES[APPS[app_name].id]
                 # We don't know the addon_type at this point, so try them all and we'll
                 # drop anything that's wrong later in AddonSerializer.validate

@@ -800,6 +800,32 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
         assert response.data == {'categories': ['Invalid category name.']}
         assert not Addon.objects.all()
 
+    def test_too_many_categories(self):
+        response = self.client.post(
+            self.url,
+            data={
+                **self.minimal_data,
+                'categories': {'android': ['performance', 'shopping', 'experimental']},
+            },
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'categories': ['Maximum number of categories per application (2) exceeded']
+        }
+
+        # check the limit is only applied per app - more than 2 in total is okay.
+        response = self.client.post(
+            self.url,
+            data={
+                **self.minimal_data,
+                'categories': {
+                    'android': ['performance', 'experimental'],
+                    'firefox': ['bookmarks'],
+                },
+            },
+        )
+        assert response.status_code == 201, response.content
+
     def test_set_extra_data(self):
         data = {
             **self.minimal_data,
