@@ -800,6 +800,32 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
         assert response.data == {'categories': ['Invalid category name.']}
         assert not Addon.objects.all()
 
+    def test_other_category_cannot_be_combined(self):
+        response = self.client.post(
+            self.url,
+            data={
+                **self.minimal_data,
+                'categories': {'firefox': ['bookmarks', 'other']},
+            },
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'categories': [
+                'The "other" category cannot be combined with another category'
+            ]
+        }
+        assert not Addon.objects.all()
+
+        # but it's only enforced per app though.
+        response = self.client.post(
+            self.url,
+            data={
+                **self.minimal_data,
+                'categories': {'firefox': ['bookmarks'], 'android': ['other']},
+            },
+        )
+        assert response.status_code == 201
+
     def test_too_many_categories(self):
         response = self.client.post(
             self.url,
