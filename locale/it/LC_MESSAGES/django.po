@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-26 16:19+0000\n"
-"PO-Revision-Date: 2021-10-10 12:43+0000\n"
-"Last-Translator: Jenny <leanintocuriosity@gmx.com>\n"
+"PO-Revision-Date: 2021-10-29 13:50+0000\n"
+"Last-Translator: Nicole <nicolecosen@gmail.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -4456,7 +4456,7 @@ msgstr "Ritorna al tempo in cui era tutto più semplice, quando i risultati di r
 
 #. editorial content for the primary hero shelves.
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr ""
+msgstr "Smetti di dare ai siti il tuo indirizzo email. Firefox Relay protegge la tua identità e previene la posta indesiderata."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4477,7 +4477,7 @@ msgstr "Le migliori estensioni antitracciamento"
 
 #. editorial content for the secondary hero shelves.
 msgid "Image search extensions"
-msgstr ""
+msgstr "Estensioni per la ricerca di immagini"
 
 #. editorial content for the secondary hero shelves.
 msgid "YouTube customization"
@@ -4534,7 +4534,7 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "See more password manager staff picks"
-msgstr ""
+msgstr "Visualizza altri strumenti per la gestione delle password scelti dallo staff"
 
 #. editorial content for the homepage shelves.
 msgid "Translation tools"
@@ -4574,7 +4574,7 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
-msgstr ""
+msgstr "Visualizza altri strumenti per il blocco delle pubblicità scelti dallo staff"
 
 msgid "Could not parse the manifest file."
 msgstr "Impossibile analizzare il file manifesto."
