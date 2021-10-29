@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-26 16:19+0000\n"
-"PO-Revision-Date: 2021-10-29 21:54+0000\n"
+"PO-Revision-Date: 2021-10-29 21:56+0000\n"
 "Last-Translator: pdehaan <pdehaan@mozilla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_CA\n"
@@ -4338,7 +4338,7 @@ msgstr "Return to a simpler time — when your top search results stood above th
 
 #. editorial content for the primary hero shelves.
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr ""
+msgstr "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
