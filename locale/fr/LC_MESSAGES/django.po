@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-26 16:19+0000\n"
-"PO-Revision-Date: 2021-10-26 16:58+0000\n"
+"PO-Revision-Date: 2021-10-27 16:41+0000\n"
 "Last-Translator: Yaya.Cout <yaya.cout@free.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -4563,7 +4563,7 @@ msgstr "Voir plus d’extensions marquées « {tag} »"
 
 #. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
-msgstr ""
+msgstr "Bloqueurs de publicité surpuissants"
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
