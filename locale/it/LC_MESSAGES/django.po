@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-26 16:19+0000\n"
-"PO-Revision-Date: 2021-10-29 13:50+0000\n"
-"Last-Translator: Nicole <nicolecosen@gmail.com>\n"
+"PO-Revision-Date: 2021-10-29 17:50+0000\n"
+"Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -4530,7 +4530,7 @@ msgstr "Visualizza altri temi consigliati"
 
 #. editorial content for the homepage shelves.
 msgid "Strong password managers"
-msgstr ""
+msgstr "Gestori di password complesse"
 
 #. editorial content for the homepage shelves.
 msgid "See more password manager staff picks"
@@ -4570,7 +4570,7 @@ msgstr "Visualizza altre estensioni con etichetta “{tag}”"
 
 #. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
-msgstr ""
+msgstr "Strumenti esclusivi per il blocco delle pubblicità"
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
