@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-26 16:19+0000\n"
-"PO-Revision-Date: 2021-10-28 05:58+0000\n"
+"PO-Revision-Date: 2021-10-30 01:56+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -4377,9 +4377,8 @@ msgid "Top anti-tracking extensions"
 msgstr "Top anti-tracking extensions"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Image search extensions"
-msgstr "See all extensions"
+msgstr "Image search extensions"
 
 #. editorial content for the secondary hero shelves.
 msgid "YouTube customization"
@@ -4430,14 +4429,12 @@ msgid "See more recommended themes"
 msgstr "See more recommended themes"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Strong password managers"
-msgstr "Recommended password managers"
+msgstr "Strong password managers"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more password manager staff picks"
-msgstr "See more tab management staff picks"
+msgstr "See more password manager staff picks"
 
 #. editorial content for the homepage shelves.
 msgid "Translation tools"
@@ -4472,14 +4469,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "See more extensions tagged \"{tag}\""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Elite ad blockers"
-msgstr "Update add-on block"
+msgstr "Elite ad blockers"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more ad blocker staff picks"
-msgstr "See more tab management staff picks"
+msgstr "See more ad blocker staff picks"
 
 msgid "Could not parse the manifest file."
 msgstr "Could not parse the manifest file."
