@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-26 16:19+0000\n"
-"PO-Revision-Date: 2021-10-30 21:37+0000\n"
+"PO-Revision-Date: 2021-10-31 10:23+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4448,9 +4448,8 @@ msgid "Top anti-tracking extensions"
 msgstr "Κορυφαίες επεκτάσεις προστασίας από καταγραφή"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Image search extensions"
-msgstr "Προβολή όλων των επεκτάσεων"
+msgstr "Επεκτάσεις αναζήτησης εικόνων"
 
 #. editorial content for the secondary hero shelves.
 msgid "YouTube customization"
@@ -4507,9 +4506,8 @@ msgid "Strong password managers"
 msgstr "Προτεινόμενα πρόσθετα διαχείρισης κωδικών πρόσβασης"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more password manager staff picks"
-msgstr "Περισσότερες επιλεγμένες επεκτάσεις διαχείρισης καρτελών"
+msgstr "Περισσότερες επιλεγμένες επεκτάσεις διαχείρισης κωδικών πρόσβασης"
 
 #. editorial content for the homepage shelves.
 msgid "Translation tools"
@@ -4549,9 +4547,8 @@ msgid "Elite ad blockers"
 msgstr "Ενημέρωση μπλοκ προσθέτου"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more ad blocker staff picks"
-msgstr "Περισσότερες επιλεγμένες επεκτάσεις διαχείρισης καρτελών"
+msgstr "Περισσότερες επιλεγμένες επεκτάσεις φραγής διαφημίσεων"
 
 msgid "Could not parse the manifest file."
 msgstr "Αδυναμία λήψης αρχείου manifest."
