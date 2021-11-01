@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-26 16:19+0000\n"
-"PO-Revision-Date: 2021-10-28 19:17+0000\n"
+"PO-Revision-Date: 2021-11-01 15:41+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -380,7 +380,7 @@ msgid "Unavailable for legal reasons."
 msgstr "მიუწვდომელია სამართლებრივი მიზეზების გამო."
 
 msgid "The field must have a length of at least {num} characters."
-msgstr "ველს უნდა გააჩნდეს, სულ მცირე {num} სიმბოლოს ზომა."
+msgstr "ველი, სულ მცირე, {num} სიმბოლოს ზომის უნდა იყოს."
 
 msgid "The language code {lang_code} is invalid."
 msgstr "ენის კოდი {lang_code} არასწორია."
@@ -1213,7 +1213,7 @@ msgstr "აბსტრაქტული"
 
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
 msgstr ""
-"ჩამოტვირთეთ თემები, რომლებიც წარმოადგენს ხელოვნების ნიმუშს ან გააჩნია შემეცნებით ხასიათი. ეს ყველაფერი მოიცავს ფერად ნაწილებსა და მოხაზულობას, წარმოსახვით ხედებს, თამაშის მოყვარულ კატებს, კაშკაშა "
+"ჩამოტვირთეთ თემები, რომლებიც წარმოადგენს ხელოვნების ნიმუშს ან შემეცნებითი ხასიათისაა. ეს ყველაფერი მოიცავს ფერად ნაწილებსა და მოხაზულობას, წარმოსახვით ხედებს, თამაშის მოყვარულ კატებს, კაშკაშა "
 "ყვავილებს."
 
 msgid "Causes"
@@ -1662,13 +1662,13 @@ msgid "License text is required when choosing Other."
 msgstr "საკუთარის არჩევის შემთხვევაში, საჭიროა ლიცენზიის ტექსტის მითითება."
 
 msgid "This add-on has an End-User License Agreement"
-msgstr "დამატებას გააჩნია სამომხმარებლო სალიცენზიო შეთანხმება"
+msgstr "დამატება, სამომხმარებლო სალიცენზიო შეთანხმებითაა"
 
 msgid "Please specify your add-on's End-User License Agreement:"
 msgstr "გთხოვთ მიუთითოთ თქვენი დამატების სამომხმარებლო შეთანხმება:"
 
 msgid "This add-on has a Privacy Policy"
-msgstr "დამატებას გააჩნია პირადი მონაცემების დაცვის დებულება"
+msgstr "დამატება, პირადი მონაცემების დაცვის დებულებითაა"
 
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "გთხოვთ მიუთითოთ თქვენი დამატების პირადი მონაცემების დაცვის დებულება:"
@@ -4133,7 +4133,7 @@ msgstr "გამარტივებული ჩანართები. გ
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete unwanted cookies. Offers white and blacklist support."
-msgstr "ავტომატურად წაშალეთ არასასურველი ფუნთუშები. გააჩნია შეზღუდვებისა და გამონაკლისების დამატების შესაძლებლობა."
+msgstr "თავისით წაიშლება არასასურველი ფუნთუშები. შეზღუდვებისა და გამონაკლისების დამატების შესაძლებლობაც აქვს."
 
 #. editorial content for the discovery pane.
 msgid "With a simple click of the mouse you can watch videos in full screen glory."
