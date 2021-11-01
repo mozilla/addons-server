@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-26 16:19+0000\n"
-"PO-Revision-Date: 2021-10-31 10:23+0000\n"
+"PO-Revision-Date: 2021-11-01 09:24+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4501,9 +4501,8 @@ msgid "See more recommended themes"
 msgstr "Περισσότερα προτεινόμενα θέματα"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Strong password managers"
-msgstr "Προτεινόμενα πρόσθετα διαχείρισης κωδικών πρόσβασης"
+msgstr "Ισχυρά πρόσθετα διαχείρισης κωδικών πρόσβασης"
 
 #. editorial content for the homepage shelves.
 msgid "See more password manager staff picks"
@@ -4542,9 +4541,8 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Περισσότερες επεκτάσεις με ετικέτα «{tag}»"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Elite ad blockers"
-msgstr "Ενημέρωση μπλοκ προσθέτου"
+msgstr "Επίλεκτα πρόσθετα φραγής διαφημίσεων"
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
