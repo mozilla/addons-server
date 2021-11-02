@@ -222,10 +222,10 @@ class TestWebTokenAuthentication(TestCase):
         self.auth = WebTokenAuthentication()
         self.factory = RequestFactory()
         self.user = user_factory(read_dev_agreement=datetime.now())
-        self.is_valid_mock = self.patch(
-            'olympia.api.authentication.fxa_access_token_is_valid'
+        self.update_token_mock = self.patch(
+            'olympia.api.authentication.update_fxa_access_token'
         )
-        self.is_valid_mock.return_value = True
+        self.update_token_mock.return_value = True
 
     def _authenticate(self, token):
         url = absolutify('/api/v4/whatever/')
@@ -364,24 +364,24 @@ class TestWebTokenAuthentication(TestCase):
         with override_settings(USE_FAKE_FXA_AUTH=True):
             token = self.client.generate_api_token(self.user)
             assert self.user == self._authenticate(token)[0]
-            self.is_valid_mock.assert_not_called()
+            self.update_token_mock.assert_not_called()
 
         assert self.user == self._authenticate(token)[0]
-        self.is_valid_mock.assert_called()
+        self.update_token_mock.assert_called()
 
     @override_settings(USE_FAKE_FXA_AUTH=False, VERIFY_FXA_ACCESS_TOKEN_API=True)
     def test_fxa_access_token_validity_verify_fxa_access_token_web(self):
         with override_settings(VERIFY_FXA_ACCESS_TOKEN_API=False):
             token = self.client.generate_api_token(self.user)
             assert self.user == self._authenticate(token)[0]
-            self.is_valid_mock.assert_not_called()
+            self.update_token_mock.assert_not_called()
 
         assert self.user == self._authenticate(token)[0]
-        self.is_valid_mock.assert_called()
+        self.update_token_mock.assert_called()
 
     @override_settings(USE_FAKE_FXA_AUTH=False, VERIFY_FXA_ACCESS_TOKEN_API=True)
     def test_fxa_access_token_validity_token_invalid(self):
-        self.is_valid_mock.return_value = False
+        self.update_token_mock.return_value = False
         token = self.client.generate_api_token(self.user)
         with self.assertRaises(AuthenticationFailed):
             assert self.user == self._authenticate(token)[0]

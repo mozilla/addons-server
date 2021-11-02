@@ -219,52 +219,54 @@ class TestIdentify(TestCase):
         self.get_profile.assert_called_with('cafe', self.CONFIG)
 
 
-@freeze_time('2020-01-01')
-def test_get_user_token_from_token_data():
-    token_data = {
-        'access_token': 'for_access',
-        'refresh_token': 'for-refreshing',
-        'expires_in': 12345,
-    }
-    expiry_time = datetime.now() + timedelta(seconds=12345)
-    obj = verify.get_user_token_from_token_data(token_data, 'the-config')
-    assert obj.access_token == 'for_access'
-    assert obj.access_token_expiry == expiry_time
-    assert obj.refresh_token == 'for-refreshing'
-    assert obj.config_name == 'the-config'
-    assert not obj.id
-
-
 class TestFxaAccessTokenIsValid(TestCase):
     @mock.patch('olympia.accounts.verify.get_fxa_token')
     def test_no_valid_token(self, get_fxa_token_mock):
+        expiry = datetime.now() + timedelta(days=1)
         user_token = FxaToken.objects.create(
             user=user_factory(),
-            access_token='a',
             refresh_token='b',
-            access_token_expiry=datetime.now() + timedelta(days=1),
+            access_token_expiry=expiry,
             config_name='foo',
         )
         # different user
-        assert not verify.fxa_access_token_is_valid(user_factory(), user_token.pk)
+        assert not verify.update_fxa_access_token(
+            {
+                'user_token_pk': user_token.pk,
+                'access_token_expiry': expiry,
+            },
+            user_factory(),
+        )
         get_fxa_token_mock.assert_not_called()
 
         # works otherwise
-        assert verify.fxa_access_token_is_valid(user_token.user, user_token.pk)
+        assert verify.update_fxa_access_token(
+            {
+                'user_token_pk': user_token.pk,
+                'access_token_expiry': expiry,
+            },
+            user_token.user,
+        )
         get_fxa_token_mock.assert_not_called()
 
         # but only with that pk
-        assert not verify.fxa_access_token_is_valid(user_token.user, user_token.pk + 1)
+        assert not verify.update_fxa_access_token(
+            {
+                'user_token_pk': user_token.pk + 1,
+                'access_token_expiry': expiry,
+            },
+            user_token.user,
+        )
         get_fxa_token_mock.assert_not_called()
 
     @freeze_time()
     @mock.patch('olympia.accounts.verify.get_fxa_token')
     def test_refreshing(self, get_fxa_token_mock):
+        expiry = datetime.now() - timedelta(days=1)
         user_token = FxaToken.objects.create(
             user=user_factory(),
-            access_token='a',
             refresh_token='b',
-            access_token_expiry=datetime.now() - timedelta(days=1),
+            access_token_expiry=expiry,
             config_name='foo',
         )
 
@@ -275,7 +277,11 @@ class TestFxaAccessTokenIsValid(TestCase):
             'refresh_token': 'somerefreshtoken',
             'expires_in': 123,
         }
-        assert verify.fxa_access_token_is_valid(user_token.user, user_token.pk)
+        session_dict = {
+            'user_token_pk': user_token.pk,
+            'access_token_expiry': expiry,
+        }
+        assert verify.update_fxa_access_token(session_dict, user_token.user)
         get_fxa_token_mock.assert_called_with(
             refresh_token='b', config=settings.FXA_CONFIG['default']
         )
@@ -283,15 +289,20 @@ class TestFxaAccessTokenIsValid(TestCase):
         assert user_token.access_token == 'someaccesstoken'
         assert user_token.access_token_expiry == datetime.now() + timedelta(seconds=123)
         assert user_token.refresh_token == 'somerefreshtoken'
+        assert session_dict['access_token_expiry'] == user_token.access_token_expiry
+
         # and now it's valid
         get_fxa_token_mock.reset_mock()
-        assert verify.fxa_access_token_is_valid(user_token.user, user_token.pk)
+        assert verify.update_fxa_access_token(session_dict, user_token.user)
         get_fxa_token_mock.assert_not_called()
 
         # failed refresh
         user_token.update(access_token_expiry=datetime.now() - timedelta(days=1))
+        session_dict['access_token_expiry'] = user_token.access_token_expiry
         get_fxa_token_mock.side_effect = verify.IdentificationError()
-        assert not verify.fxa_access_token_is_valid(user_token.user, user_token.pk)
+        assert not verify.update_fxa_access_token(session_dict, user_token.user)
         get_fxa_token_mock.assert_called_with(
             refresh_token='somerefreshtoken', config=settings.FXA_CONFIG['default']
         )
+        # i.e. it's still expired
+        assert session_dict['access_token_expiry'] == user_token.access_token_expiry

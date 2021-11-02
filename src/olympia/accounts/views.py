@@ -2,13 +2,12 @@ import base64
 import binascii
 import functools
 import os
-
+from datetime import datetime
 from urllib.parse import quote_plus
 
 from django.conf import settings
 from django.contrib.auth import login, logout
 from django.contrib.auth.signals import user_logged_in
-from django.core import signing
 from django.db.models import Q
 from django.http import Http404, HttpResponseRedirect
 from django.urls import reverse
@@ -60,7 +59,7 @@ from olympia.api.authentication import (
     WebTokenAuthentication,
 )
 from olympia.api.permissions import AnyOf, ByHttpMethod, GroupPermission
-from olympia.users.models import UserNotification, UserProfile
+from olympia.users.models import UserNotification, UserProfile, FxaToken
 from olympia.users.notifications import (
     NOTIFICATIONS_COMBINED,
     REMOTE_NOTIFICATIONS_BY_BASKET_ID,
@@ -73,7 +72,13 @@ from .serializers import (
     UserNotificationSerializer,
     UserProfileSerializer,
 )
-from .utils import fxa_login_url, generate_fxa_state
+from .utils import (
+    add_api_token_to_response,
+    fxa_login_url,
+    generate_api_token,
+    generate_fxa_state,
+    API_TOKEN_COOKIE,
+)
 
 
 log = olympia.core.logger.getLogger('accounts')
@@ -95,13 +100,6 @@ LOGIN_ERROR_MESSAGES = {
     ERROR_NO_PROFILE: _('Your Firefox Account could not be found. Please try again.'),
     ERROR_STATE_MISMATCH: _('You could not be logged in. Please try again.'),
 }
-
-# Name of the cookie that contains the auth token for the API. It used to be
-# "api_auth_token" but we had to change it because it wasn't set on the right
-# domain, and we couldn't clear both the old and new versions at the same time,
-# since sending multiple Set-Cookie headers with the same name is not allowed
-# by the spec, even if they have a distinct domain attribute.
-API_TOKEN_COOKIE = 'frontend_auth_token'
 
 
 def safe_redirect(request, url, action):
@@ -182,11 +180,23 @@ def update_user(user, identity):
         user.update(auth_id=UserProfile._meta.get_field('auth_id').default())
 
 
-def login_user(sender, request, user, identity):
+def login_user(sender, request, user, identity, token_data=None):
     update_user(user, identity)
     log.info(f'Logging in user {user} from FxA')
     user_logged_in.send(sender=sender, request=request, user=user)
     login(request, user)
+    if token_data:
+        user_token_object = FxaToken.objects.create(
+            user=user,
+            get_access_token_expiry=datetime.fromtimestamp(
+                token_data.get('access_token_expiry')
+            ),
+            refresh_token=token_data.get('refresh_token'),
+            config_name=token_data['config_name'],
+        )
+        request.session['user_token_pk'] = user_token_object.pk
+        request.session['access_token_expiry'] = token_data.get('access_token_expiry')
+        return user_token_object
 
 
 def fxa_error_message(message, login_help_url):
@@ -256,9 +266,16 @@ def with_user(f):
                     'have an API token cookie, adding one.',
                     request.user.pk,
                 )
-                response = add_api_token_to_response(
-                    response, request.user, request.session.get('user_token_pk')
+                token = generate_api_token(
+                    request.user,
+                    {
+                        'user_token_pk': request.session.get('user_token_pk'),
+                        'access_token_expiry': request.session.get(
+                            'access_token_expiry'
+                        ),
+                    },
                 )
+                response = add_api_token_to_response(response, token)
             return response
 
         try:
@@ -271,15 +288,13 @@ def with_user(f):
                     % force_str(binascii.b2a_hex(os.urandom(16))),
                 }
                 id_token = identity['email']
-                user_token_object = None
+                token_data = {}
             else:
                 identity, token_data = verify.fxa_identify(
                     data['code'], config=fxa_config
                 )
+                token_data['config_name'] = self.get_config_name(request)
                 id_token = token_data.get('id_token')
-                user_token_object = verify.get_user_token_from_token_data(
-                    token_data, self.get_config_name(request)
-                )
         except verify.IdentificationError:
             log.info('Profile not found. Code: {}'.format(data['code']))
             return safe_redirect(request, next_path, ERROR_NO_PROFILE)
@@ -330,43 +345,10 @@ def with_user(f):
                 user=user,
                 identity=identity,
                 next_path=next_path,
-                user_token_object=user_token_object,
+                token_data=token_data,
             )
 
     return inner
-
-
-def generate_api_token(user, user_token_object_pk):
-    """Generate a new API token for a given user."""
-    data = {
-        'auth_hash': user.get_session_auth_hash(),
-        'user_id': user.pk,
-    }
-    if user_token_object_pk:
-        data['user_token_pk'] = user_token_object_pk
-    return signing.dumps(data, salt=WebTokenAuthentication.salt)
-
-
-def add_api_token_to_response(response, user, user_token_object_pk):
-    """Generate API token and add it to the response (both as a `token` key in
-    the response if it was json and by setting a cookie named API_TOKEN_COOKIE.
-    """
-    token = generate_api_token(user, user_token_object_pk)
-    if hasattr(response, 'data'):
-        response.data['token'] = token
-    # Also include the API token in a session cookie, so that it is
-    # available for universal frontend apps.
-    response.set_cookie(
-        API_TOKEN_COOKIE,
-        token,
-        domain=settings.SESSION_COOKIE_DOMAIN,
-        max_age=settings.SESSION_COOKIE_AGE,
-        secure=settings.SESSION_COOKIE_SECURE,
-        httponly=settings.SESSION_COOKIE_HTTPONLY,
-        samesite=settings.SESSION_COOKIE_SAMESITE,
-    )
-
-    return response
 
 
 class FxAConfigMixin:
@@ -405,7 +387,7 @@ class AuthenticateView(FxAConfigMixin, APIView):
 
     @never_cache
     @with_user
-    def get(self, request, user, identity, next_path, user_token_object):
+    def get(self, request, user, identity, next_path, token_data):
         # At this point @with_user guarantees that we have a valid fxa
         # identity. We are proceeding with either registering the user or
         # logging them on.
@@ -436,17 +418,22 @@ class AuthenticateView(FxAConfigMixin, APIView):
                 next_path = edit_page
         else:
             action = 'login'
-        if user_token_object:
-            user_token_object.user = user
-            user_token_object.save()
 
-        login_user(self.__class__, request, user, identity)
+        user_token_object = login_user(
+            self.__class__, request, user, identity, token_data
+        )
         response = safe_redirect(request, next_path, action)
         if user_token_object:
-            add_api_token_to_response(response, user, user_token_object.pk)
-            request.session['user_token_pk'] = user_token_object.pk
+            token = generate_api_token(
+                user,
+                {
+                    'user_token_pk': user_token_object.pk,
+                    'access_token_expiry': request.session['access_token_expiry'],
+                },
+            )
         else:
-            add_api_token_to_response(response, user, None)
+            token = generate_api_token(user)
+        add_api_token_to_response(response, token)
         return response
 
 

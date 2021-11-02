@@ -6,6 +6,7 @@ from base64 import urlsafe_b64encode
 from urllib.parse import urlencode
 
 from django.conf import settings
+from django.core import signing
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils.encoding import force_str
@@ -13,9 +14,18 @@ from django.utils.encoding import force_str
 import boto3
 
 from olympia.amo.utils import is_safe_url, use_fake_fxa
+from olympia.api.authentication import WebTokenAuthentication
 from olympia.core.logger import getLogger
 
 from .tasks import clear_sessions_event, delete_user_event, primary_email_change_event
+
+
+# Name of the cookie that contains the auth token for the API. It used to be
+# "api_auth_token" but we had to change it because it wasn't set on the right
+# domain, and we couldn't clear both the old and new versions at the same time,
+# since sending multiple Set-Cookie headers with the same name is not allowed
+# by the spec, even if they have a distinct domain attribute.
+API_TOKEN_COOKIE = 'frontend_auth_token'
 
 
 def fxa_config(request):
@@ -192,3 +202,33 @@ def process_sqs_queue(queue_url):
     except Exception as exc:
         log.exception('Error while processing account events: %s' % exc)
         raise exc
+
+
+def generate_api_token(user, extra=None):
+    """Generate a new API token for a given user."""
+    data = {
+        'auth_hash': user.get_session_auth_hash(),
+        'user_id': user.pk,
+        **(extra or {}),
+    }
+    return signing.dumps(data, salt=WebTokenAuthentication.salt)
+
+
+def add_api_token_to_response(response, token):
+    """Generate API token and add it to the response (both as a `token` key in
+    the response if it was json and by setting a cookie named API_TOKEN_COOKIE.
+    """
+    if hasattr(response, 'data'):
+        response.data['token'] = token
+    # Also include the API token in a session cookie, so that it is
+    # available for universal frontend apps.
+    response.set_cookie(
+        API_TOKEN_COOKIE,
+        token,
+        domain=settings.SESSION_COOKIE_DOMAIN,
+        max_age=settings.SESSION_COOKIE_AGE,
+        secure=settings.SESSION_COOKIE_SECURE,
+        httponly=settings.SESSION_COOKIE_HTTPONLY,
+        samesite=settings.SESSION_COOKIE_SAMESITE,
+    )
+    return response

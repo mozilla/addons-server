@@ -28,8 +28,12 @@ from rest_framework import permissions
 import MySQLdb as mysql
 
 from olympia import amo
-from olympia.accounts.utils import redirect_for_login
-from olympia.accounts.verify import fxa_access_token_is_valid
+from olympia.accounts.utils import (
+    add_api_token_to_response,
+    generate_api_token,
+    redirect_for_login,
+)
+from olympia.accounts.verify import update_fxa_access_token
 
 from . import urlresolvers
 from .reverse import set_url_prefix
@@ -354,14 +358,25 @@ class TokenValidMiddleware:
 
     def __call__(self, request):
         if (
-            not settings.USE_FAKE_FXA_AUTH
+            not request.is_api  # we check the api token in WebTokenAuthentication
+            and not settings.USE_FAKE_FXA_AUTH
             and settings.VERIFY_FXA_ACCESS_TOKEN_WEB
-            and request.user.is_authenticated
-            and not fxa_access_token_is_valid(
-                request.user, request.session.get('user_token_pk')
-            )
+            and not update_fxa_access_token(request.session, request.user)
         ):
             print('User access token refresh failed; so redirect to login to FxA again')
             return redirect_for_login(request)
 
-        return self.get_response(request)
+        response = self.get_response(request)
+        # update frontend cookie if it's changed
+        if hasattr(request, '_cacheduser') and hasattr(request.user, '_fxatoken'):
+            user_token_object = request.user._fxatoken
+            token = generate_api_token(
+                request.user,
+                {
+                    'user_token_pk': user_token_object.pk,
+                    'access_token_expiry': user_token_object.timestamp(),
+                },
+            )
+            add_api_token_to_response(response, token)
+
+        return response

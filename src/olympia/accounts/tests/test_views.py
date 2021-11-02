@@ -1,6 +1,7 @@
 import base64
 import datetime
 import json
+import time
 from unittest import mock
 
 from os import path
@@ -315,15 +316,11 @@ class TestWithUser(TestCase):
     def setUp(self):
         self.fxa_identify = self.patch('olympia.accounts.views.verify.fxa_identify')
         self.find_user = self.patch('olympia.accounts.views.find_user')
-        self.get_user_token = self.patch(
-            'olympia.accounts.views.verify.get_user_token_from_token_data'
-        )
         self.request = mock.MagicMock()
         self.user = AnonymousUser()
         self.request.user = self.user
         self.request.session = {'fxa_state': 'some-blob'}
         self.user_token_object = FxaToken()
-        self.get_user_token.return_value = self.user_token_object
 
     def get_fxa_config(self, request):
         return settings.FXA_CONFIG[self.get_config_name(request)]
@@ -500,12 +497,20 @@ class TestWithUser(TestCase):
         assert self.user.is_authenticated
         self.request.COOKIES = {}
         self.request.session['user_token_pk'] = 1234
+        now = time.time()
+        self.request.session['access_token_expiry'] = now
         response = self.fn(self.request)
         self.assertRedirects(response, '/next', fetch_redirect_response=False)
         assert not self.find_user.called
         cookie = response.cookies.get(views.API_TOKEN_COOKIE)
         assert len(response.cookies) == 1
-        assert cookie.value == views.generate_api_token(self.user, 1234)
+        assert cookie.value == views.generate_api_token(
+            self.user,
+            {
+                'user_token_pk': 1234,
+                'access_token_expiry': now,
+            },
+        )
         assert cookie['domain'] == settings.SESSION_COOKIE_DOMAIN
         assert cookie['max-age'] == settings.SESSION_COOKIE_AGE
         assert cookie['secure'] == settings.SESSION_COOKIE_SECURE

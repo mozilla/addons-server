@@ -1,4 +1,5 @@
-from datetime import datetime, timedelta
+import time
+from datetime import datetime
 
 from django.conf import settings
 
@@ -35,7 +36,7 @@ def fxa_identify(code, config):
 
 
 def get_fxa_token(*, code=None, refresh_token=None, config=None):
-    """Given an FxA access code, return dict from FxA /token endpoint
+    """Given an FxA access code or refresh token, return dict from FxA /token endpoint
     (https://git.io/JJZww). Should at least contain `access_token` and
     `id_token` keys.
     """
@@ -43,7 +44,8 @@ def get_fxa_token(*, code=None, refresh_token=None, config=None):
     assert (
         code or refresh_token
     ), 'either code or refresh_token must be provided to get_fxa_token'
-    log.info(f'Getting token [{code or refresh_token}]')
+    log_identifier = f'code:{code}' if code else f'refresh:{refresh_token[:8]}'
+    log.info(f'Getting token [{log_identifier}]')
     with statsd.timer('accounts.fxa.identify.token'):
         if code:
             grant_data = {'grant_type': 'authorization_code', 'code': code}
@@ -60,24 +62,21 @@ def get_fxa_token(*, code=None, refresh_token=None, config=None):
     if response.status_code == 200:
         data = response.json()
         if data.get('access_token'):
-            log.info(f'Got token for [{code or refresh_token}]')
+            log.info(f'Got token for [{log_identifier}]')
+            data['access_token_expiry'] = time.time() + data.get('expires_in', 43200)
             return data
         else:
-            log.info(f'No token returned for [{code or refresh_token}]')
-            raise IdentificationError(
-                f'No access token returned for {code or refresh_token}'
-            )
+            log.info(f'No token returned for [{log_identifier}]')
+            raise IdentificationError(f'No access token returned for {log_identifier}')
     else:
         log.info(
             'Token returned non-200 status {status} {body} [{code_or_token}]'.format(
-                code_or_token=(code or refresh_token),
+                code_or_token=log_identifier,
                 status=response.status_code,
                 body=response.content,
             )
         )
-        raise IdentificationError(
-            f'Could not get access token for {code or refresh_token}'
-        )
+        raise IdentificationError(f'Could not get access token for {log_identifier}')
 
 
 def get_fxa_profile(token, config):
@@ -106,40 +105,41 @@ def get_fxa_profile(token, config):
         raise IdentificationError(f'Could not find profile for {token}')
 
 
-def get_user_token_from_token_data(token_data, config_name):
-    """Return a new (unsaved) FxaToken object from token data."""
-    return FxaToken(
-        access_token=token_data.get('access_token'),
-        access_token_expiry=(
-            datetime.now() + timedelta(seconds=token_data.get('expires_in', 43200))
-        ),
-        refresh_token=token_data.get('refresh_token'),
-        config_name=config_name,
-    )
+def update_fxa_access_token(session, user):
+    """Check if fxa access_token is expired and attempt to refresh with a refresh_token
+    if it isn't.  Returns True if either the token isn't expired, or the refresh was
+    successful; False if there was an error and a user re-auth with FxA is needed.
 
-
-def fxa_access_token_is_valid(user, token_pk):
+    `session` will be updated with the new `access_token_expiry` if it changed.
+    """
+    access_token_expiry = session.get('access_token_expiry')
+    token_pk = session.get('user_token_pk')
+    if access_token_expiry and access_token_expiry > datetime.now():
+        return True
     try:
         token_store = FxaToken.objects.get(user=user, id=token_pk)
-        if token_store.is_expired:
+        if token_store.access_token_expiry < datetime.now():
+            # This should be unnessecary check - we checked the expiry time from the
+            # cookie but if the access token was refreshed by the API auth they'll be a
+            # mismatch.
             config_name = (
                 token_store.config_name
                 if token_store.config_name in settings.ALLOWED_FXA_CONFIGS
                 else settings.DEFAULT_FXA_CONFIG_NAME
             )
-            # if the access token has expired get a new one
+            # get a new access_token
             token_data = get_fxa_token(
                 refresh_token=token_store.refresh_token,
                 config=settings.FXA_CONFIG[config_name],
             )
-            new_values = {
-                'access_token': token_data.get('access_token'),
-                'access_token_expiry': datetime.now()
-                + timedelta(seconds=token_data.get('expires_in', 43200)),
-            }
-            if 'refresh_token' in token_data:
-                new_values['refresh_token'] = token_data['refresh_token']
-            token_store.update(**new_values)
+            token_store.update(
+                access_token_expiry=datetime.fromtimestamp(
+                    token_data['access_token_expiry']
+                )
+            )
+        session['access_token_expiry'] = token_store.access_token_expiry.timestamp()
+        # set the reverse fk on user so we can save a cookie while returning response
+        user._fxatoken = token_store
 
     except FxaToken.DoesNotExist:
         log.info(f'User token record not found for {user.id} + {token_pk}')

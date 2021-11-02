@@ -13,7 +13,7 @@ from rest_framework.authentication import BaseAuthentication, get_authorization_
 import olympia.core.logger
 
 from olympia import core
-from olympia.accounts.verify import fxa_access_token_is_valid
+from olympia.accounts.verify import update_fxa_access_token
 from olympia.api import jwt_auth
 from olympia.api.models import APIKey
 from olympia.users.models import UserProfile
@@ -149,7 +149,7 @@ class WebTokenAuthentication(BaseAuthentication):
         if (
             not settings.USE_FAKE_FXA_AUTH
             and settings.VERIFY_FXA_ACCESS_TOKEN_API
-            and not fxa_access_token_is_valid(user, payload.get('user_token_pk'))
+            and not update_fxa_access_token(payload, user)
         ):
             log.info(
                 'User access token refresh failed; they need to login to FxA again'
