@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from olympia.translations.templatetags.jinja_helpers import truncate
 
-from .models import CannedResponse, ReviewerScore
+from .models import CannedResponse, ReviewActionReason, ReviewerScore
 
 
 class CannedResponseAdmin(admin.ModelAdmin):
@@ -29,5 +29,12 @@ class ReviewerScoreAdmin(admin.ModelAdmin):
     list_filter = ('note_key',)
 
 
+class ReviewActionReasonAdmin(admin.ModelAdmin):
+    list_display = ('name', 'is_active')
+    list_filter = ('is_active',)
+    view_on_site = False
+
+
 admin.site.register(CannedResponse, CannedResponseAdmin)
+admin.site.register(ReviewActionReason, ReviewActionReasonAdmin)
 admin.site.register(ReviewerScore, ReviewerScoreAdmin)

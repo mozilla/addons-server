@@ -1124,3 +1124,13 @@ class Whiteboard(ModelBase):
             self.private,
             self.public,
         )
+
+
+class ReviewActionReason(ModelBase):
+    is_active = models.BooleanField(
+        default=True, help_text=_('Is available to be used in reviews')
+    )
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return str(self.name)
