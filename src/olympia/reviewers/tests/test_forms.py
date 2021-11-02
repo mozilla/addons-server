@@ -8,7 +8,11 @@ from olympia.addons.models import Addon, AddonReviewerFlags
 from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.reviewers.forms import ReviewForm
-from olympia.reviewers.models import AutoApprovalSummary, CannedResponse, ReviewActionReason
+from olympia.reviewers.models import (
+    AutoApprovalSummary,
+    CannedResponse,
+    ReviewActionReason,
+)
 from olympia.reviewers.utils import ReviewHelper
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
@@ -182,7 +186,7 @@ class TestReviewForm(TestCase):
         assert form.is_valid()
         assert not form.errors
 
-    @override_settings(ENABLE_FEATURE_REVIEW_ACTIVITY_REASON=False)
+    @override_settings(ENABLE_FEATURE_REVIEW_ACTION_REASON=False)
     def test_comments_and_action_required_by_default(self):
         self.grant_permission(self.request.user, 'Addons:Review')
         form = self.get_form()
@@ -336,7 +340,7 @@ class TestReviewForm(TestCase):
                         name='reason 1',
                         is_active=True,
                     )
-                ]
+                ],
             }
         )
         form.helper.actions['reject_multiple_versions']['versions'] = True
@@ -344,7 +348,7 @@ class TestReviewForm(TestCase):
         assert not form.is_valid()
         assert form.errors == {'versions': ['This field is required.']}
 
-    @override_settings(ENABLE_FEATURE_REVIEW_ACTIVITY_REASON=False)
+    @override_settings(ENABLE_FEATURE_REVIEW_ACTION_REASON=False)
     def test_versions_required_with_setting_off(self):
         # auto-approve everything (including self.addon.current_version)
         for version in Version.unfiltered.all():
@@ -353,7 +357,7 @@ class TestReviewForm(TestCase):
             )
         self.grant_permission(self.request.user, 'Addons:Review')
         form = self.get_form(
-            data={'action': 'reject_multiple_versions','comments': 'lol'}
+            data={'action': 'reject_multiple_versions', 'comments': 'lol'}
         )
         form.helper.actions['reject_multiple_versions']['versions'] = True
         assert form.is_bound

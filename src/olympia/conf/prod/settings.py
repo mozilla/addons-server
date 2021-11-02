@@ -106,4 +106,4 @@ DRF_API_GATES['v5'] = tuple(
     gate for gate in DRF_API_GATES['v5'] if gate != 'addon-submission-api'
 )
 
-ENABLE_FEATURE_REVIEW_ACTIVITY_REASON = False
+ENABLE_FEATURE_REVIEW_ACTION_REASON = False
