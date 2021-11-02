@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-26 16:19+0000\n"
-"PO-Revision-Date: 2021-11-01 09:24+0000\n"
+"PO-Revision-Date: 2021-11-02 11:11+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1760,12 +1760,15 @@ msgid "Ensure name and summary combined are at most {limit_value} characters (th
 msgstr "Βεβαιωθείτε ότι το όνομα και το επώνυμο μαζί είναι το πολύ {limit_value} χαρακτήρες (έχουν {show_value})."
 
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
-msgstr ""
+msgstr "Σε αυτόν τον ιστότοπο. <span class=\"helptext\">Η υποβολή σας καταχωρείται δημόσια στο {site_domain}.</span>"
 
 msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
 "on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
+"Σε δικό σας ιστότοπο. <span class=\"helptext\">Αφού υπογραφτεί η υποβολή σας από τη Mozilla, μπορείτε να κάνετε λήψη του αρχείου .xpi από το Κέντρο προγραμματιστών και να το διανείμετε στο κοινό "
+"σας. Παρακαλούμε βεβαιωθείτε ότι παρέχεται το <a {a_attrs}>update_url</a> στο αρχείο manifest του προσθέτου σας, καθώς αυτό αποτελεί το URL απ' όπου θα βρίσκει το Firefox τις ενημερώσεις για την "
+"αυτόματη διανομή τους στους χρήστες σας.</span>"
 
 msgid "Display Name"
 msgstr "Προβαλλόμενο όνομα"
@@ -2686,7 +2689,7 @@ msgstr "Μπορείτε να μάθετε περισσότερα σχετικά
 
 #, python-format
 msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
-msgstr ""
+msgstr "Όλα τα πρόσθετα πρέπει να συμμορφώνονται με τις <a %(a_attrs)s>πολιτικές προσθέτων της Mozilla</a> και ενδέχεται να υποβληθούν σε μη αυτόματο έλεγχο ανά πάσα στιγμή μετά την υποβολή."
 
 msgid "Submission Complete"
 msgstr "Ολοκληρώθηκε η υποβολή"
@@ -2705,6 +2708,8 @@ msgid ""
 "You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
 "selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
+"Αυτό ήταν! ✨ Θα λάβετε ένα email επιβεβαίωσης όταν δημοσιευτεί αυτή η έκδοση στο %(site_domain)s. Σημειώστε ότι ίσως χρειαστούν έως και 24 ώρες πριν γίνει η δημοσίευση, ή περισσότερες εάν το "
+"πρόσθετό σας επιλεχθεί για μη αυτόματο έλεγχο. Αν δεν δείτε κάποιο email μετά από 24 ώρες, παρακαλούμε ελέγξτε τον φάκελο ανεπιθύμητων μηνυμάτων σας."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr "Το πρόσθετό σας θα κάνει μεγαλύτερη επιτυχία με μια λεπτομερή περιγραφή. Προετοιμάστε την καταχώρησή σας για δημοσίευση:"
@@ -2713,6 +2718,8 @@ msgstr "Το πρόσθετό σας θα κάνει μεγαλύτερη επι
 msgid ""
 "You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a %(a_attrs)s>creating an appealing listing</a> on Firefox Extension Workshop."
 msgstr ""
+"Μπορείτε να προσελκύσετε χρήστες στην επέκτασή σας προσθέτοντας μια λεπτομερή περιγραφή και στιγμιότυπα οθόνης στην καταχώρησή σας. Λάβετε βοήθεια με τη <a %(a_attrs)s>δημιουργία ελκυστικών "
+"καταχωρήσεων</a> στο εργαστήριο επεκτάσεων Firefox."
 
 msgid "Manage Listing"
 msgstr "Διαχείριση καταχώρησης"
