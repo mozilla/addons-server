@@ -26,7 +26,8 @@ from olympia.bandwagon.models import Collection
 from olympia.blocklist.models import Block
 from olympia.files.models import File
 from olympia.ratings.models import Rating
-from olympia.reviewers.models import CannedResponse
+from olympia.reviewers.models import CannedResponse, ReviewActionReason
+
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
 from olympia.users.templatetags.jinja_helpers import user_link
@@ -147,6 +148,19 @@ class VersionLog(ModelBase):
 
     class Meta:
         db_table = 'log_activity_version'
+        ordering = ('-created',)
+
+
+class ReviewActionReasonLog(ModelBase):
+    """
+    This table allows ReviewActionReasons to be assigned to VersionLog entries.
+    """
+
+    reason = models.ForeignKey(ReviewActionReason, on_delete=models.CASCADE)
+    version_log = models.ForeignKey('VersionLog', on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'log_activity_review_action_reason'
         ordering = ('-created',)
 
 
