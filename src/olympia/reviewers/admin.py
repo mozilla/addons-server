@@ -32,6 +32,7 @@ class ReviewerScoreAdmin(admin.ModelAdmin):
 class ReviewActionReasonAdmin(admin.ModelAdmin):
     list_display = ('name', 'is_active')
     list_filter = ('is_active',)
+    view_on_site = False
 
 
 admin.site.register(CannedResponse, CannedResponseAdmin)
