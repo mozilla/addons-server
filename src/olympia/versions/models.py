@@ -2,6 +2,7 @@ import datetime
 import os
 
 from base64 import b64encode
+from urllib.parse import urlparse
 
 import django.dispatch
 
@@ -19,6 +20,7 @@ from olympia.constants.applications import APP_IDS
 import waffle
 
 from django_statsd.clients import statsd
+from publicsuffix2 import get_sld
 
 import olympia.core.logger
 
@@ -280,6 +282,11 @@ class Version(OnChangeMixin, ModelBase):
                 'FileUpload user does not have some required fields'
             )
 
+        # This should be guaranteed by the linter, just raise an explicit
+        # exception if somehow it's wrong.
+        if not isinstance(parsed_data.get('install_origins', []), list):
+            raise VersionCreateError('install_origins was not validated properly')
+
         license_id = parsed_data.get('license_id')
         if not license_id and channel == amo.RELEASE_CHANNEL_LISTED:
             previous_version = addon.find_latest_version(channel=channel, exclude=())
@@ -341,6 +348,11 @@ class Version(OnChangeMixin, ModelBase):
         # Pre-generate compatible_apps property to avoid accidentally
         # triggering queries with that instance later.
         version.compatible_apps = compatible_apps
+
+        # Record declared install origins. base_domain is set automatically.
+        if waffle.switch_is_active('record-install-origins'):
+            for origin in set(parsed_data.get('install_origins', [])):
+                version.installorigin_set.create(origin=origin)
 
         # Create relevant file.
         File.from_upload(
@@ -1098,3 +1110,26 @@ class ApplicationsVersions(models.Model):
                 app=self.get_application_display(), min=self.min
             )
         return f'{self.get_application_display()} {self.min} - {self.max}'
+
+
+class InstallOrigin(models.Model):
+    version = models.ForeignKey(Version, on_delete=models.CASCADE)
+    origin = models.CharField(max_length=255)
+    base_domain = models.CharField(max_length=255)
+
+    def _extract_base_domain_from_origin(self, origin):
+        """Extract base domain from an origin according to publicsuffix list.
+        Handles IDNs in both unicode and punycode form, but always return the
+        base domain in punycode."""
+        hostname = urlparse(origin).hostname or ''
+        # If the domain is an Internationalized Domain Name (IDN), we want to
+        # return the punycode version. This follows publicsuffix2's default
+        # behavior - idna=True is the default and that means it expects input
+        # to be idna-encoded. That's the format we'd like to return anyway, to
+        # make it obvious to reviewers/admins when the base domain is an IDN.
+        hostname = hostname.encode('idna').decode('utf-8').lower()
+        return get_sld(hostname)
+
+    def save(self, *args, **kwargs):
+        self.base_domain = self._extract_base_domain_from_origin(self.origin)
+        super().save(*args, **kwargs)
