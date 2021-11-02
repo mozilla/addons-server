@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-26 16:19+0000\n"
+"POT-Creation-Date: 2021-11-02 18:07+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -4787,8 +4787,10 @@ msgid "Image search extensions"
 msgstr "Browse all add-ons"
 
 #. editorial content for the secondary hero shelves.
-msgid "YouTube customization"
-msgstr "YouTube customization"
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Strong password managers"
+msgstr "Recommended password managers"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4845,11 +4847,6 @@ msgstr "See more recommended themes"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "Strong password managers"
-msgstr "Recommended password managers"
-
-#. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more password manager staff picks"
 msgstr "Recommended Extensions program"
 
@@ -4900,6 +4897,25 @@ msgstr "Update add-on block"
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Recommended Extensions program"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube boosters"
+msgstr "YouTube boosters"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more YouTube extension staff picks"
+msgstr "by Add-on Version"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Trending themes"
+msgstr "Recommended ({0})"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more trending themes"
+msgstr "See more recommended themes"
 
 msgid "Could not parse the manifest file."
 msgstr "Could not parse the manifest file."
@@ -5272,6 +5288,9 @@ msgstr "Version string and guid match a blocklist Block"
 #, fuzzy
 msgid "Weight breakdown not available."
 msgstr "Risk breakdown not available."
+
+msgid "Is available to be used in reviews"
+msgstr "Is available to be used in reviews"
 
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "You can't submit a comment if `canned_response` is defined."

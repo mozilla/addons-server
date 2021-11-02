@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-26 16:19+0000\n"
+"POT-Creation-Date: 2021-11-02 18:07+0000\n"
 "PO-Revision-Date: 2021-08-11 14:11+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -4441,8 +4441,10 @@ msgid "Image search extensions"
 msgstr "Ver todas as extensões"
 
 #. editorial content for the secondary hero shelves.
-msgid "YouTube customization"
-msgstr ""
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Strong password managers"
+msgstr "Gestores de palavras-passe recomendados"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4489,11 +4491,6 @@ msgstr "Temas recomendados"
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
 msgstr "Ver mais temas recomendados"
-
-#. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Strong password managers"
-msgstr "Gestores de palavras-passe recomendados"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4545,6 +4542,25 @@ msgstr "Atualizar bloqueio de extra"
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Ver mais extensões de gestão de separadores"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube boosters"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more YouTube extension staff picks"
+msgstr "Ver mais ferramentas de tradução"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Trending themes"
+msgstr "Temas recomendados"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more trending themes"
+msgstr "Ver mais temas recomendados"
 
 msgid "Could not parse the manifest file."
 msgstr "Não foi possível analisar o ficheiro manifest."
@@ -4895,6 +4911,9 @@ msgstr "O string e guid da versão correspondem a um bloco da lista de bloqueio"
 
 msgid "Weight breakdown not available."
 msgstr "Análise do peso não disponível."
+
+msgid "Is available to be used in reviews"
+msgstr ""
 
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Não pode submeter um comentário se `canned_response` estiver definida."

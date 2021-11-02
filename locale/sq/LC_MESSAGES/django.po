@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-26 16:19+0000\n"
+"POT-Creation-Date: 2021-11-02 18:07+0000\n"
 "PO-Revision-Date: 2021-07-31 08:16+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -4428,8 +4428,10 @@ msgid "Image search extensions"
 msgstr "Shihni tërë zgjerimet"
 
 #. editorial content for the secondary hero shelves.
-msgid "YouTube customization"
-msgstr ""
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Strong password managers"
+msgstr "Përgjegjës të rekomanduar fjalëkalimesh"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4476,11 +4478,6 @@ msgstr "Tema të rekomanduara"
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
 msgstr "Shihni më tepër tema të rekomanduara"
-
-#. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Strong password managers"
-msgstr "Përgjegjës të rekomanduar fjalëkalimesh"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4532,6 +4529,25 @@ msgstr "Përditësoni bllok shtesash"
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Shihni më tepër zgjerime të rekomanduara"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube boosters"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more YouTube extension staff picks"
+msgstr "Shihni më tepër mjete përkthimi"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Trending themes"
+msgstr "Tema të rekomanduara"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more trending themes"
+msgstr "Shihni më tepër tema të rekomanduara"
 
 msgid "Could not parse the manifest file."
 msgstr "S’përtypi dot kartelën manifest."
@@ -4881,6 +4897,9 @@ msgstr "Vargu i versionit dhe guid-ja përputhen me një Bllok në listë blloki
 
 msgid "Weight breakdown not available."
 msgstr "Analiza e peshës s’është gati."
+
+msgid "Is available to be used in reviews"
+msgstr ""
 
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "S’mund të parashtroni koment, nëse është përkufizuar parametri `canned_response`."

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-26 16:19+0000\n"
+"POT-Creation-Date: 2021-11-02 18:07+0000\n"
 "PO-Revision-Date: 2020-11-12 22:41+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -4345,7 +4345,8 @@ msgid "Image search extensions"
 msgstr "Zobraziť všetky rozšírenia"
 
 #. editorial content for the secondary hero shelves.
-msgid "YouTube customization"
+#. editorial content for the homepage shelves.
+msgid "Strong password managers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4401,10 +4402,6 @@ msgid "See more recommended themes"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-msgid "Strong password managers"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more password manager staff picks"
 msgstr "Zobraziť všetky rozšírenia"
@@ -4454,6 +4451,24 @@ msgstr ""
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Zobraziť všetky rozšírenia"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube boosters"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more YouTube extension staff picks"
+msgstr "Ďalšie aplikácie&hellip;"
+
+#. editorial content for the homepage shelves.
+msgid "Trending themes"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more trending themes"
+msgstr "Ďalšie aplikácie&hellip;"
 
 msgid "Could not parse the manifest file."
 msgstr ""
@@ -4795,6 +4810,9 @@ msgid "Version string and guid match a blocklist Block"
 msgstr ""
 
 msgid "Weight breakdown not available."
+msgstr ""
+
+msgid "Is available to be used in reviews"
 msgstr ""
 
 msgid "You can't submit a comment if `canned_response` is defined."

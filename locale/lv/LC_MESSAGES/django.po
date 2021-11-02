@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-26 16:19+0000\n"
+"POT-Creation-Date: 2021-11-02 18:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4273,7 +4273,8 @@ msgid "Image search extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "YouTube customization"
+#. editorial content for the homepage shelves.
+msgid "Strong password managers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4321,10 +4322,6 @@ msgid "See more recommended themes"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-msgid "Strong password managers"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 msgid "See more password manager staff picks"
 msgstr ""
 
@@ -4366,6 +4363,22 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "YouTube boosters"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more YouTube extension staff picks"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "Trending themes"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more trending themes"
 msgstr ""
 
 msgid "Could not parse the manifest file."
@@ -4704,6 +4717,9 @@ msgid "Version string and guid match a blocklist Block"
 msgstr ""
 
 msgid "Weight breakdown not available."
+msgstr ""
+
+msgid "Is available to be used in reviews"
 msgstr ""
 
 msgid "You can't submit a comment if `canned_response` is defined."

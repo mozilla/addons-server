@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-26 16:19+0000\n"
+"POT-Creation-Date: 2021-11-02 18:07+0000\n"
 "PO-Revision-Date: 2021-04-12 00:29+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4404,7 +4404,8 @@ msgid "Image search extensions"
 msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
 
 #. editorial content for the secondary hero shelves.
-msgid "YouTube customization"
+#. editorial content for the homepage shelves.
+msgid "Strong password managers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4460,10 +4461,6 @@ msgid "See more recommended themes"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-msgid "Strong password managers"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more password manager staff picks"
 msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
@@ -4513,6 +4510,25 @@ msgstr ""
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube boosters"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more YouTube extension staff picks"
+msgstr "ਐਡ-ਆਨ ਨਾਂ ਉਲੱਥੇ"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Trending themes"
+msgstr "ਸਿਫਾਰਸ਼ੀ ({0})"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more trending themes"
+msgstr "ਆਪਣੇ ਥੀਮ ਲਈ ਰੰਗ ਚੁਣੋ"
 
 msgid "Could not parse the manifest file."
 msgstr "ਮੈਨੀਫੈਸਟ ਫਾਈਲ ਨੂੰ ਪਾਰਸ ਨਹੀਂ ਕਰ ਸਕਿਆ।"
@@ -4865,6 +4881,9 @@ msgstr ""
 #, fuzzy
 msgid "Weight breakdown not available."
 msgstr "ਖ਼ਤਰਾ ਟੁੱਟਣ ਤੇ ਉਪਲਬਧ ਨਹੀਂ।"
+
+msgid "Is available to be used in reviews"
+msgstr ""
 
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "ਤੁਸੀਂ ਟਿੱਪਣੀ ਦਰਜ ਨਹੀਂ ਕਰ ਸਕਦੇ ਜੇ `canned_response` ਪਰਿਭਾਸ਼ਤ ਕੀਤਾ ਗਿਆ ਹੈ।"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-26 16:19+0000\n"
+"POT-Creation-Date: 2021-11-02 18:07+0000\n"
 "PO-Revision-Date: 2021-07-27 16:19+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
@@ -4362,7 +4362,8 @@ msgid "Image search extensions"
 msgstr "Pogledaj sva proširenja"
 
 #. editorial content for the secondary hero shelves.
-msgid "YouTube customization"
+#. editorial content for the homepage shelves.
+msgid "Strong password managers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4408,10 +4409,6 @@ msgstr "Preporučene teme"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
-msgstr ""
-
-#. editorial content for the homepage shelves.
-msgid "Strong password managers"
 msgstr ""
 
 #. editorial content for the homepage shelves.
@@ -4465,6 +4462,25 @@ msgstr "Aktualiziraj blokadu dodataka"
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Pogledaj još preporučenih proširenja"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube boosters"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more YouTube extension staff picks"
+msgstr "Pogledaj još alata za prevođenje"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Trending themes"
+msgstr "Preporučene teme"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more trending themes"
+msgstr "Pogledaj još popularnih tema"
 
 msgid "Could not parse the manifest file."
 msgstr ""
@@ -4807,6 +4823,9 @@ msgstr ""
 
 msgid "Weight breakdown not available."
 msgstr "Podjela težine nije dostupna."
+
+msgid "Is available to be used in reviews"
+msgstr ""
 
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Možeš poslati komentar, ako je `canned_response` (pripremljeni odgovor) definiran."
