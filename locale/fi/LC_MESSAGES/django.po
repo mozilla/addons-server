@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-26 16:19+0000\n"
+"POT-Creation-Date: 2021-11-02 18:07+0000\n"
 "PO-Revision-Date: 2021-08-14 12:57+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -4437,8 +4437,10 @@ msgid "Image search extensions"
 msgstr "Selaa kaikkia laajennuksia"
 
 #. editorial content for the secondary hero shelves.
-msgid "YouTube customization"
-msgstr ""
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Strong password managers"
+msgstr "Suositellut salasanojen hallintaohjelmat"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4492,11 +4494,6 @@ msgstr "Katso lisää suositeltuja teemoja"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "Strong password managers"
-msgstr "Suositellut salasanojen hallintaohjelmat"
-
-#. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more password manager staff picks"
 msgstr "Katso lisää välilehtien hallinnan laajennuksia"
 
@@ -4544,6 +4541,27 @@ msgstr ""
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Katso lisää välilehtien hallinnan laajennuksia"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube boosters"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more YouTube extension staff picks"
+msgstr "Katso lisää kielityökaluja"
+
+# 87%
+# 100%
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Trending themes"
+msgstr "Suositellut teemat"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more trending themes"
+msgstr "Katso lisää suositeltuja teemoja"
 
 msgid "Could not parse the manifest file."
 msgstr ""
@@ -4890,6 +4908,9 @@ msgid "Version string and guid match a blocklist Block"
 msgstr ""
 
 msgid "Weight breakdown not available."
+msgstr ""
+
+msgid "Is available to be used in reviews"
 msgstr ""
 
 msgid "You can't submit a comment if `canned_response` is defined."

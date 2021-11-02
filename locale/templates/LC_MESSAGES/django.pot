@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-26 16:19+0000\n"
+"POT-Creation-Date: 2021-11-02 18:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -137,11 +137,11 @@ msgstr ""
 msgid "Notification [%s] does not exist"
 msgstr ""
 
-#: src/olympia/activity/models.py:579
+#: src/olympia/activity/models.py:593
 msgid "Review"
 msgstr ""
 
-#: src/olympia/activity/models.py:583
+#: src/olympia/activity/models.py:597
 #: src/olympia/devhub/templates/devhub/versions/list.html:41
 msgid "Version {0}"
 msgstr ""
@@ -2366,7 +2366,7 @@ msgstr ""
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:774 src/olympia/files/utils.py:713
+#: src/olympia/devhub/forms.py:774 src/olympia/files/utils.py:718
 msgid "Invalid or broken archive."
 msgstr ""
 
@@ -6367,8 +6367,10 @@ msgid "Image search extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:936
-msgid "YouTube customization"
+#: src/olympia/discovery/strings.jinja2:970
+msgid "Strong password managers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -6429,11 +6431,6 @@ msgid "See more recommended themes"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:970
-msgid "Strong password managers"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:972
 msgid "See more password manager staff picks"
 msgstr ""
@@ -6488,105 +6485,125 @@ msgstr ""
 msgid "See more ad blocker staff picks"
 msgstr ""
 
-#: src/olympia/files/utils.py:215 src/olympia/files/utils.py:807
-#: src/olympia/files/utils.py:811
+#. editorial content for the homepage shelves.
+#: src/olympia/discovery/strings.jinja2:1000
+msgid "YouTube boosters"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#: src/olympia/discovery/strings.jinja2:1002
+msgid "See more YouTube extension staff picks"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#: src/olympia/discovery/strings.jinja2:1005
+msgid "Trending themes"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#: src/olympia/discovery/strings.jinja2:1007
+msgid "See more trending themes"
+msgstr ""
+
+#: src/olympia/files/utils.py:215 src/olympia/files/utils.py:812
+#: src/olympia/files/utils.py:816
 msgid "Could not parse the manifest file."
 msgstr ""
 
-#: src/olympia/files/utils.py:315
+#: src/olympia/files/utils.py:319
 msgid "Add-on ID is required for Firefox 47 and below."
 msgstr ""
 
-#: src/olympia/files/utils.py:325
+#: src/olympia/files/utils.py:329
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
 
-#: src/olympia/files/utils.py:353
+#: src/olympia/files/utils.py:357
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr ""
 
-#: src/olympia/files/utils.py:367
+#: src/olympia/files/utils.py:371
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr ""
 
-#: src/olympia/files/utils.py:522
+#: src/olympia/files/utils.py:527
 msgid "Unsupported archive type."
 msgstr ""
 
-#: src/olympia/files/utils.py:530
+#: src/olympia/files/utils.py:535
 msgid ""
 "Invalid file name in archive. Please make sure all filenames are utf-8 or "
 "latin1 encoded."
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
-#: src/olympia/files/utils.py:544
+#: src/olympia/files/utils.py:549
 msgid "Invalid file name in archive: {0}"
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
-#: src/olympia/files/utils.py:550
+#: src/olympia/files/utils.py:555
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
-#: src/olympia/files/utils.py:579
+#: src/olympia/files/utils.py:584
 msgid "Uncompressed size is too large"
 msgstr ""
 
-#: src/olympia/files/utils.py:625
+#: src/olympia/files/utils.py:630
 msgid "Invalid archive."
 msgstr ""
 
-#: src/olympia/files/utils.py:840
+#: src/olympia/files/utils.py:845
 #, python-format
 msgid ""
 "The add-on ID in your manifest.json (%s) does not match the ID of your add-on"
 " on AMO (%s)"
 msgstr ""
 
-#: src/olympia/files/utils.py:856
+#: src/olympia/files/utils.py:861
 msgid "Duplicate add-on ID found."
 msgstr ""
 
-#: src/olympia/files/utils.py:859
+#: src/olympia/files/utils.py:864
 msgid "Version numbers should have fewer than 32 characters."
 msgstr ""
 
-#: src/olympia/files/utils.py:863
+#: src/olympia/files/utils.py:868
 msgid ""
 "Version numbers should only contain letters, numbers, and these punctuation "
 "characters: +*.-_."
 msgstr ""
 
-#: src/olympia/files/utils.py:873
+#: src/olympia/files/utils.py:878
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr ""
 
-#: src/olympia/files/utils.py:886
+#: src/olympia/files/utils.py:891
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
-#: src/olympia/files/utils.py:890
+#: src/olympia/files/utils.py:895
 msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr ""
 
-#: src/olympia/files/utils.py:895
+#: src/olympia/files/utils.py:900
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
-#: src/olympia/files/utils.py:899
+#: src/olympia/files/utils.py:904
 msgid "You cannot submit a language pack"
 msgstr ""
 
-#: src/olympia/files/utils.py:931
+#: src/olympia/files/utils.py:936
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr ""
 
-#: src/olympia/files/utils.py:939
+#: src/olympia/files/utils.py:944
 msgid "Unexpected error."
 msgstr ""
 
-#: src/olympia/files/utils.py:943
+#: src/olympia/files/utils.py:948
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr ""
@@ -6963,6 +6980,10 @@ msgstr ""
 
 #: src/olympia/reviewers/models.py:859
 msgid "Weight breakdown not available."
+msgstr ""
+
+#: src/olympia/reviewers/models.py:1131
+msgid "Is available to be used in reviews"
 msgstr ""
 
 #: src/olympia/reviewers/serializers.py:599
@@ -8773,7 +8794,7 @@ msgctxt "user_list_others"
 msgid "others"
 msgstr ""
 
-#: src/olympia/versions/models.py:1097
+#: src/olympia/versions/models.py:1109
 msgid "{app} {min} and later"
 msgstr ""
 

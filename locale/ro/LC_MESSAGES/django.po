@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-26 16:19+0000\n"
+"POT-Creation-Date: 2021-11-02 18:07+0000\n"
 "PO-Revision-Date: 2021-08-26 13:24+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -4462,8 +4462,10 @@ msgid "Image search extensions"
 msgstr "Vezi toate extensiile"
 
 #. editorial content for the secondary hero shelves.
-msgid "YouTube customization"
-msgstr ""
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Strong password managers"
+msgstr "Managere de parole recomandate"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4510,11 +4512,6 @@ msgstr "Teme recomandate"
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
 msgstr "Vezi mai multe teme recomandate"
-
-#. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Strong password managers"
-msgstr "Managere de parole recomandate"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4567,6 +4564,25 @@ msgstr "Actualizează blocarea suplimentului"
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Vezi mai multe extensii recomandate"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube boosters"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more YouTube extension staff picks"
+msgstr "Vezi mai multe instrumente de traducere"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Trending themes"
+msgstr "Teme recomandate"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more trending themes"
+msgstr "Vezi mai multe teme recomandate"
 
 msgid "Could not parse the manifest file."
 msgstr "Nu s-a reușit analizarea fișierului manifest."
@@ -4922,6 +4938,9 @@ msgstr "Șirul și GUID-ul versiunii corespund unui blocaj din lista de blocaje"
 #, fuzzy
 msgid "Weight breakdown not available."
 msgstr "Analiza riscurilor nu este disponibilă."
+
+msgid "Is available to be used in reviews"
+msgstr ""
 
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Nu poți trimite un comentariu dacă este definit`canned_response`."

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-26 16:19+0000\n"
+"POT-Creation-Date: 2021-11-02 18:07+0000\n"
 "PO-Revision-Date: 2021-10-14 14:13+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4379,8 +4379,10 @@ msgid "Image search extensions"
 msgstr "Wali meṛṛa isiɣzaf"
 
 #. editorial content for the secondary hero shelves.
-msgid "YouTube customization"
-msgstr ""
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Strong password managers"
+msgstr "Imsefraken n wawalen uffiren yelhan"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4428,11 +4430,6 @@ msgstr "Wali ugar n yisental yelhan"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "Strong password managers"
-msgstr "Imsefraken n wawalen uffiren yelhan"
-
-#. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more password manager staff picks"
 msgstr "Wali ugar n yisiɣzaf i usefrek n waccaren yettwafernen sɣur terbaεt"
 
@@ -4477,6 +4474,25 @@ msgstr "Leqqem asewḥel n izegrar"
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Wali ugar n yisiɣzaf i usefrek n waccaren yettwafernen sɣur terbaεt"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube boosters"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more YouTube extension staff picks"
+msgstr "Wali ugar n yifecka n usuqel yettwafernen sɣur terbaεt"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Trending themes"
+msgstr "Isental yelhan"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more trending themes"
+msgstr "Wali ugar n yisental yelhan"
 
 msgid "Could not parse the manifest file."
 msgstr "Ur izmir ara ad isleḍ afaylu ameskan."
@@ -4817,6 +4833,9 @@ msgstr "Azrr n lqem d GUID mṣadan ɣer yiḥder n tebdart n usewḥel"
 
 msgid "Weight breakdown not available."
 msgstr "Anegzum n taẓayt ulac-it."
+
+msgid "Is available to be used in reviews"
+msgstr ""
 
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Tzemreḍ ad tazneḍ awennit ma yella `canned_response` yettusbadu."

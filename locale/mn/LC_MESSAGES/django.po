@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-26 16:19+0000\n"
+"POT-Creation-Date: 2021-11-02 18:07+0000\n"
 "PO-Revision-Date: 2018-06-01 00:24+0000\n"
 "Last-Translator: pchew <pchew@change.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4448,7 +4448,8 @@ msgid "Image search extensions"
 msgstr "Өргөтгөлүүд"
 
 #. editorial content for the secondary hero shelves.
-msgid "YouTube customization"
+#. editorial content for the homepage shelves.
+msgid "Strong password managers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4507,10 +4508,6 @@ msgstr "Тайлбар:"
 msgid "See more recommended themes"
 msgstr ""
 
-#. editorial content for the homepage shelves.
-msgid "Strong password managers"
-msgstr ""
-
 # Plural in this context means many of the add-on type
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4565,6 +4562,27 @@ msgstr ""
 #. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more ad blocker staff picks"
+msgstr "Өргөтгөлүүд"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube boosters"
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more YouTube extension staff picks"
+msgstr "Өргөтгөлүүд"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Trending themes"
+msgstr "Тайлбар:"
+
+# Plural in this context means many of the add-on type
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more trending themes"
 msgstr "Өргөтгөлүүд"
 
 msgid "Could not parse the manifest file."
@@ -4914,6 +4932,9 @@ msgid "Version string and guid match a blocklist Block"
 msgstr ""
 
 msgid "Weight breakdown not available."
+msgstr ""
+
+msgid "Is available to be used in reviews"
 msgstr ""
 
 msgid "You can't submit a comment if `canned_response` is defined."
