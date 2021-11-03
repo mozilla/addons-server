@@ -210,12 +210,10 @@ class ReviewForm(forms.Form):
         if action:
             if not action.get('comments', True):
                 self.fields['comments'].required = False
-                # This is assuming that anywhere that comments are required,
-                # so are reasons, but that might not be true. Checking with
-                # Philipp.
-                self.fields['reasons'].required = False
             if action.get('versions', False):
                 self.fields['versions'].required = True
+            if not action.get('requires_reasons', False):
+                self.fields['reasons'].required = False
         result = super().is_valid()
         if result:
             self.helper.set_data(self.cleaned_data)

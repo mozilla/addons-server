@@ -164,30 +164,93 @@ class TestReviewForm(TestCase):
         assert list(choices.queryset)[0] == self.reason_1
         assert list(choices.queryset)[1] == self.reason_2
 
-    def test_comments_action_and_reasons_required_by_default(self):
+    def test_reasons_required(self):
         self.grant_permission(self.request.user, 'Addons:Review')
         form = self.get_form()
         assert not form.is_bound
-        form = self.get_form(data={})
+        form = self.get_form(
+            data={
+                'action': 'reply',
+                'comments': 'lol',
+            }
+        )
+        assert form.is_bound
+        assert not form.is_valid()
+        assert form.errors == {
+            'reasons': ['This field is required.'],
+        }
+
+        # Alter the action to make it not require reasons to be sent
+        # regardless of what the action actually is, what we want to test is
+        # the form behaviour.
+        form = self.get_form(
+            data={
+                'action': 'reply',
+                'comments': 'lol',
+            }
+        )
+        form.helper.actions['reply']['requires_reasons'] = False
+        assert form.is_bound
+        assert form.is_valid()
+        assert not form.errors
+
+    @override_settings(ENABLE_FEATURE_REVIEW_ACTION_REASON=False)
+    def test_reasons_not_required_with_setting_off(self):
+        self.grant_permission(self.request.user, 'Addons:Review')
+        form = self.get_form()
+        assert not form.is_bound
+        form = self.get_form(
+            data={
+                'action': 'reply',
+                'comments': 'lol',
+            }
+        )
+        assert form.is_bound
+        assert form.is_valid()
+        assert not form.errors
+
+    def test_comments_and_action_required_by_default(self):
+        self.grant_permission(self.request.user, 'Addons:Review')
+        form = self.get_form()
+        assert not form.is_bound
+        form = self.get_form(
+            data={
+                'reasons': [
+                    ReviewActionReason.objects.create(
+                        name='reason 1',
+                        is_active=True,
+                    )
+                ],
+            }
+        )
         assert form.is_bound
         assert not form.is_valid()
         assert form.errors == {
             'action': ['This field is required.'],
             'comments': ['This field is required.'],
-            'reasons': ['This field is required.'],
         }
 
         # Alter the action to make it not require comments to be sent
         # regardless of what the action actually is, what we want to test is
         # the form behaviour.
-        form = self.get_form(data={'action': 'reply'})
+        form = self.get_form(
+            data={
+                'action': 'reply',
+                'reasons': [
+                    ReviewActionReason.objects.create(
+                        name='reason 1',
+                        is_active=True,
+                    )
+                ],
+            }
+        )
         form.helper.actions['reply']['comments'] = False
         assert form.is_bound
         assert form.is_valid()
         assert not form.errors
 
     @override_settings(ENABLE_FEATURE_REVIEW_ACTION_REASON=False)
-    def test_comments_and_action_required_by_default(self):
+    def test_comments_and_action_required_by_default_reasons_off(self):
         self.grant_permission(self.request.user, 'Addons:Review')
         form = self.get_form()
         assert not form.is_bound
