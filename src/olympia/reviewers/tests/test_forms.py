@@ -250,7 +250,7 @@ class TestReviewForm(TestCase):
         assert not form.errors
 
     @override_settings(ENABLE_FEATURE_REVIEW_ACTION_REASON=False)
-    def test_comments_and_action_required_by_default_reasons_off(self):
+    def test_comments_and_action_required_by_default_reason_feature_off(self):
         self.grant_permission(self.request.user, 'Addons:Review')
         form = self.get_form()
         assert not form.is_bound
@@ -412,7 +412,7 @@ class TestReviewForm(TestCase):
         assert form.errors == {'versions': ['This field is required.']}
 
     @override_settings(ENABLE_FEATURE_REVIEW_ACTION_REASON=False)
-    def test_versions_required_with_setting_off(self):
+    def test_versions_required_reason_feature_off(self):
         # auto-approve everything (including self.addon.current_version)
         for version in Version.unfiltered.all():
             AutoApprovalSummary.objects.create(

@@ -65,6 +65,7 @@ from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.models import (
     AutoApprovalSummary,
     CannedResponse,
+    ReviewActionReason,
     ReviewerScore,
     ReviewerSubscription,
     Whiteboard,
@@ -2943,9 +2944,20 @@ class TestReview(ReviewBase):
         comment_version = amo.LOG.COMMENT_VERSION
         assert ActivityLog.objects.filter(action=comment_version.id).count() == 1
 
-    def test_reviewer_reply(self):
+    @override_settings(ENABLE_FEATURE_REVIEW_ACTION_REASON=False)
+    def test_reviewer_reply_reason_feature_off(self):
         response = self.client.post(
             self.url, {'action': 'reply', 'comments': 'hello sailor'}
+        )
+        assert response.status_code == 302
+        assert len(mail.outbox) == 1
+        self.assertTemplateUsed(response, 'activity/emails/from_reviewer.txt')
+
+    def test_reviewer_reply(self):
+        reason = ReviewActionReason.objects.create(name='reason 1', is_active=True)
+        response = self.client.post(
+            self.url,
+            {'action': 'reply', 'comments': 'hello sailor', 'reasons': [reason.id]},
         )
         assert response.status_code == 302
         assert len(mail.outbox) == 1
@@ -2957,10 +2969,26 @@ class TestReview(ReviewBase):
         )
         assert response.status_code == 302
 
-    def test_reviewer_reply_canned_response(self):
+    @override_settings(ENABLE_FEATURE_REVIEW_ACTION_REASON=False)
+    def test_reviewer_reply_canned_response_reason_feature_off(self):
         response = self.client.post(
             self.url,
             {'action': 'reply', 'comments': 'hello sailor', 'canned_response': 'foo'},
+        )
+        assert response.status_code == 302
+        assert len(mail.outbox) == 1
+        self.assertTemplateUsed(response, 'activity/emails/from_reviewer.txt')
+
+    def test_reviewer_reply_canned_response(self):
+        reason = ReviewActionReason.objects.create(name='reason 1', is_active=True)
+        response = self.client.post(
+            self.url,
+            {
+                'action': 'reply',
+                'comments': 'hello sailor',
+                'canned_response': 'foo',
+                'reasons': [reason.id],
+            },
         )
         assert response.status_code == 302
         assert len(mail.outbox) == 1
@@ -2989,6 +3017,56 @@ class TestReview(ReviewBase):
             ('Contents', None),
         ]
         check_links(expected, items.find('a'), verify=False)
+
+    def test_item_history_reason_feature_off(self, channel=amo.RELEASE_CHANNEL_LISTED):
+        self.addons['something'] = addon_factory(
+            status=amo.STATUS_APPROVED,
+            name='something',
+            version_kw={'version': '0.2', 'channel': channel},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        assert self.addon.versions.filter(channel=channel).count() == 1
+        self.review_version_reason_feature_off(self.version, self.url)
+
+        v2 = self.addons['something'].versions.all()[0]
+        v2.addon = self.addon
+        v2.created = v2.created + timedelta(days=1)
+        v2.save()
+        assert self.addon.versions.filter(channel=channel).count() == 2
+        action = self.review_version_reason_feature_off(v2, self.url)
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        # The 2 following lines replace pq(res.content), it's a workaround for
+        # https://github.com/gawel/pyquery/issues/31
+        UTF8_PARSER = HTMLParser(encoding='utf-8')
+        doc = pq(fromstring(response.content, parser=UTF8_PARSER))
+        table = doc('#versions-history .review-files')
+
+        # Check the history for both versions.
+        ths = table.children('tr > th')
+        assert ths.length == 2
+        assert '0.1' in ths.eq(0).text()
+        assert '0.2' in ths.eq(1).text()
+
+        rows = table('td.files')
+        assert rows.length == 2
+
+        comments = rows.siblings('td')
+        assert comments.length == 2
+
+        for idx in range(comments.length):
+            td = comments.eq(idx)
+            assert td.find('.history-comment').text() == 'something'
+            assert (
+                td.find('th')
+                .text()
+                .startswith({'public': 'Approved', 'reply': 'Reviewer Reply'}[action])
+            )
+            reviewer_name = td.find('td a').text()
+            assert (reviewer_name == self.reviewer.name) or (
+                reviewer_name == self.other_reviewer.name
+            )
 
     def test_item_history(self, channel=amo.RELEASE_CHANNEL_LISTED):
         self.addons['something'] = addon_factory(
@@ -3058,7 +3136,7 @@ class TestReview(ReviewBase):
             str(author.get_role_display()),
             self.addon,
         )
-        with self.assertNumQueries(70):
+        with self.assertNumQueries(71):
             # FIXME: obviously too high, but it's a starting point.
             # Potential further optimizations:
             # - Remove trivial... and not so trivial duplicates
@@ -3128,6 +3206,7 @@ class TestReview(ReviewBase):
             # 59. select users by role for this add-on (?)
             # 60. savepoint
             # + 10! queries for webext_permissions - FIXME - there should only be 1
+            # + 1 for reviewers_reviewactionreason
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -3980,6 +4059,49 @@ class TestReview(ReviewBase):
 
         assert validation.find('a').length == 3
 
+    def test_version_deletion_reason_feature_off(self):
+        """
+        Make sure that we still show review history for deleted versions.
+        """
+        # Add a new version to the add-on.
+        addon = addon_factory(
+            status=amo.STATUS_NOMINATED,
+            name='something',
+            version_kw={'version': '0.2'},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+
+        assert self.addon.versions.count() == 1
+
+        self.review_version_reason_feature_off(self.version, self.url)
+
+        v2 = addon.versions.all()[0]
+        v2.addon = self.addon
+        v2.created = v2.created + timedelta(days=1)
+        v2.save()
+        self.review_version(v2, self.url)
+        assert self.addon.versions.count() == 2
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+
+        # View the history verify two versions:
+        ths = doc('#versions-history .review-files > tr > th:first-child')
+        assert '0.1' in ths.eq(0).text()
+        assert '0.2' in ths.eq(1).text()
+
+        # Delete a version:
+        v2.delete()
+        # Verify two versions, one deleted:
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        ths = doc('#versions-history .review-files > tr > th:first-child')
+
+        assert ths.length == 2
+        assert '0.1' in ths.text()
+
     def test_version_deletion(self):
         """
         Make sure that we still show review history for deleted versions.
@@ -4076,8 +4198,9 @@ class TestReview(ReviewBase):
         assert response.status_code == 302
         self.assert3xx(response, reverse('reviewers.queue_extension'), status_code=302)
 
+    @override_settings(ENABLE_FEATURE_REVIEW_ACTION_REASON=False)
     @mock.patch('olympia.reviewers.utils.sign_file')
-    def review_version(self, version, url, mock_sign):
+    def review_version_reason_feature_off(self, version, url, mock_sign):
         if version.channel == amo.RELEASE_CHANNEL_LISTED:
             version.file.update(status=amo.STATUS_AWAITING_REVIEW)
             action = 'public'
@@ -4089,6 +4212,29 @@ class TestReview(ReviewBase):
             'operating_systems': 'win',
             'applications': 'something',
             'comments': 'something',
+        }
+
+        self.client.post(url, data)
+
+        if version.channel == amo.RELEASE_CHANNEL_LISTED:
+            assert mock_sign.called
+        return action
+
+    @mock.patch('olympia.reviewers.utils.sign_file')
+    def review_version(self, version, url, mock_sign):
+        reason = ReviewActionReason.objects.create(name='reason 1', is_active=True)
+        if version.channel == amo.RELEASE_CHANNEL_LISTED:
+            version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+            action = 'public'
+        else:
+            action = 'reply'
+
+        data = {
+            'action': action,
+            'operating_systems': 'win',
+            'applications': 'something',
+            'comments': 'something',
+            'reasons': [reason.id],
         }
 
         self.client.post(url, data)
@@ -4467,8 +4613,9 @@ class TestReview(ReviewBase):
         ]
         assert translations == expected
 
+    @override_settings(ENABLE_FEATURE_REVIEW_ACTION_REASON=False)
     @mock.patch('olympia.reviewers.utils.sign_file')
-    def test_approve_recommended_addon(self, mock_sign_file):
+    def test_approve_recommended_addon_reason_feature_off(self, mock_sign_file):
         self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         self.addon.update(status=amo.STATUS_NOMINATED)
         self.make_addon_promoted(self.addon, RECOMMENDED)
@@ -4488,7 +4635,32 @@ class TestReview(ReviewBase):
         assert mock_sign_file.called
 
     @mock.patch('olympia.reviewers.utils.sign_file')
-    def test_admin_flagged_addon_actions_as_admin(self, mock_sign_file):
+    def test_approve_recommended_addon(self, mock_sign_file):
+        reason = ReviewActionReason.objects.create(name='reason 1', is_active=True)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        self.make_addon_promoted(self.addon, RECOMMENDED)
+        self.grant_permission(self.reviewer, 'Addons:RecommendedReview')
+        response = self.client.post(
+            self.url,
+            {'action': 'public', 'comments': 'all good', 'reasons': [reason.id]},
+        )
+        assert response.status_code == 302
+        self.assert3xx(response, reverse('reviewers.queue_recommended'))
+        addon = self.get_addon()
+        assert addon.status == amo.STATUS_APPROVED
+        assert addon.current_version
+        assert addon.current_version.file.status == amo.STATUS_APPROVED
+        assert addon.current_version.promoted_approvals.filter(
+            group_id=RECOMMENDED.id
+        ).exists()
+        assert mock_sign_file.called
+
+    @override_settings(ENABLE_FEATURE_REVIEW_ACTION_REASON=False)
+    @mock.patch('olympia.reviewers.utils.sign_file')
+    def test_admin_flagged_addon_actions_as_admin_reason_feature_off(
+        self, mock_sign_file
+    ):
         self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         self.addon.update(status=amo.STATUS_NOMINATED)
         AddonReviewerFlags.objects.create(
@@ -4497,6 +4669,26 @@ class TestReview(ReviewBase):
         self.login_as_admin()
         response = self.client.post(
             self.url, self.get_dict(action='public'), follow=True
+        )
+        assert response.status_code == 200
+        addon = self.get_addon()
+        assert self.version == addon.current_version
+        assert addon.status == amo.STATUS_APPROVED
+        assert addon.current_version.file.status == (amo.STATUS_APPROVED)
+
+        assert mock_sign_file.called
+
+    @mock.patch('olympia.reviewers.utils.sign_file')
+    def test_admin_flagged_addon_actions_as_admin(self, mock_sign_file):
+        reason = ReviewActionReason.objects.create(name='reason 1', is_active=True)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, needs_admin_code_review=True
+        )
+        self.login_as_admin()
+        response = self.client.post(
+            self.url, self.get_dict(action='public', reasons=[reason.id]), follow=True
         )
         assert response.status_code == 200
         addon = self.get_addon()
@@ -4703,8 +4895,9 @@ class TestReview(ReviewBase):
                 == 0
             )
 
+    @override_settings(ENABLE_FEATURE_REVIEW_ACTION_REASON=False)
     @mock.patch('olympia.reviewers.utils.sign_file')
-    def test_admin_can_review_statictheme_if_admin_theme_review_flag_set(
+    def test_admin_can_review_statictheme_if_admin_theme_review_flag_set_reasons_off(
         self, mock_sign_file
     ):
         self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
@@ -4716,6 +4909,26 @@ class TestReview(ReviewBase):
         self.grant_permission(self.reviewer, 'Reviews:Admin')
         response = self.client.post(
             self.url, {'action': 'public', 'comments': 'it`s good'}
+        )
+        assert response.status_code == 302
+        assert self.get_addon().status == amo.STATUS_APPROVED
+        assert mock_sign_file.called
+
+    @mock.patch('olympia.reviewers.utils.sign_file')
+    def test_admin_can_review_statictheme_if_admin_theme_review_flag_set(
+        self, mock_sign_file
+    ):
+        reason = ReviewActionReason.objects.create(name='reason 1', is_active=True)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        self.addon.update(type=amo.ADDON_STATICTHEME, status=amo.STATUS_NOMINATED)
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, needs_admin_theme_review=True
+        )
+        self.grant_permission(self.reviewer, 'Addons:ThemeReview')
+        self.grant_permission(self.reviewer, 'Reviews:Admin')
+        response = self.client.post(
+            self.url,
+            {'action': 'public', 'comments': 'it`s good', 'reasons': [reason.id]},
         )
         assert response.status_code == 302
         assert self.get_addon().status == amo.STATUS_APPROVED
@@ -4781,7 +4994,8 @@ class TestReview(ReviewBase):
         assert a_log.details['comments'] == ''
         self.assert3xx(response, reverse('reviewers.queue_auto_approved'))
 
-    def test_reject_multiple_versions(self):
+    @override_settings(ENABLE_FEATURE_REVIEW_ACTION_REASON=False)
+    def test_reject_multiple_versions_reason_feature_off(self):
         old_version = self.version
         old_version.update(needs_human_review=True)
         self.version = version_factory(addon=self.addon, version='3.0')
@@ -4808,7 +5022,37 @@ class TestReview(ReviewBase):
             assert file_.status == amo.STATUS_DISABLED
             assert not version.pending_rejection
 
-    def test_reject_multiple_versions_with_no_delay(self):
+    def test_reject_multiple_versions(self):
+        reason = ReviewActionReason.objects.create(name='reason 1', is_active=True)
+        old_version = self.version
+        old_version.update(needs_human_review=True)
+        self.version = version_factory(addon=self.addon, version='3.0')
+        AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED
+        )
+        GroupUser.objects.filter(user=self.reviewer).all().delete()
+        self.grant_permission(self.reviewer, 'Addons:Review')
+
+        response = self.client.post(
+            self.url,
+            {
+                'action': 'reject_multiple_versions',
+                'comments': 'multireject!',
+                'reasons': [reason.id],
+                'versions': [old_version.pk, self.version.pk],
+            },
+        )
+
+        assert response.status_code == 302
+        for version in [old_version, self.version]:
+            version.reload()
+            assert not version.needs_human_review
+            file_ = version.file.reload()
+            assert file_.status == amo.STATUS_DISABLED
+            assert not version.pending_rejection
+
+    @override_settings(ENABLE_FEATURE_REVIEW_ACTION_REASON=False)
+    def test_reject_multiple_versions_with_no_delay_reason_feature_off(self):
         old_version = self.version
         old_version.update(needs_human_review=True)
         self.version = version_factory(addon=self.addon, version='3.0')
@@ -4839,7 +5083,41 @@ class TestReview(ReviewBase):
             assert file_.status == amo.STATUS_DISABLED
             assert not version.pending_rejection
 
-    def test_reject_multiple_versions_with_delay(self):
+    def test_reject_multiple_versions_with_no_delay(self):
+        reason = ReviewActionReason.objects.create(name='reason 1', is_active=True)
+        old_version = self.version
+        old_version.update(needs_human_review=True)
+        self.version = version_factory(addon=self.addon, version='3.0')
+        AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED
+        )
+        GroupUser.objects.filter(user=self.reviewer).all().delete()
+        self.grant_permission(self.reviewer, 'Addons:Review')
+
+        response = self.client.post(
+            self.url,
+            {
+                'action': 'reject_multiple_versions',
+                'comments': 'multireject!',
+                'reasons': [reason.id],
+                'versions': [old_version.pk, self.version.pk],
+                'delayed_rejection': 'False',
+                'delayed_rejection_days': (  # Should be ignored.
+                    REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT,
+                ),
+            },
+        )
+
+        assert response.status_code == 302
+        for version in [old_version, self.version]:
+            version.reload()
+            assert not version.needs_human_review
+            file_ = version.file.reload()
+            assert file_.status == amo.STATUS_DISABLED
+            assert not version.pending_rejection
+
+    @override_settings(ENABLE_FEATURE_REVIEW_ACTION_REASON=False)
+    def test_reject_multiple_versions_with_delay_reason_feature_off(self):
         old_version = self.version
         old_version.update(needs_human_review=True)
         self.version = version_factory(addon=self.addon, version='3.0')
@@ -4854,6 +5132,46 @@ class TestReview(ReviewBase):
             {
                 'action': 'reject_multiple_versions',
                 'comments': 'multireject with delay!',
+                'versions': [old_version.pk, self.version.pk],
+                'delayed_rejection': 'True',
+                'delayed_rejection_days': (
+                    REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
+                ),
+            },
+        )
+
+        in_the_future = datetime.now() + timedelta(
+            days=REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
+        )
+        assert response.status_code == 302
+        for version in [old_version, self.version]:
+            version.reload()
+            # The versions no longer need human review...
+            assert not version.needs_human_review
+            file_ = version.file
+            # ... But their status shouldn't have changed yet ...
+            assert file_.status == amo.STATUS_APPROVED
+            # ... Because they are now pending rejection.
+            assert version.pending_rejection
+            self.assertCloseToNow(version.pending_rejection, now=in_the_future)
+
+    def test_reject_multiple_versions_with_delay(self):
+        reason = ReviewActionReason.objects.create(name='reason 1', is_active=True)
+        old_version = self.version
+        old_version.update(needs_human_review=True)
+        self.version = version_factory(addon=self.addon, version='3.0')
+        AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED
+        )
+        GroupUser.objects.filter(user=self.reviewer).all().delete()
+        self.grant_permission(self.reviewer, 'Addons:Review')
+
+        response = self.client.post(
+            self.url,
+            {
+                'action': 'reject_multiple_versions',
+                'comments': 'multireject with delay!',
+                'reasons': [reason.id],
                 'versions': [old_version.pk, self.version.pk],
                 'delayed_rejection': 'True',
                 'delayed_rejection_days': (
@@ -5566,7 +5884,7 @@ class TestReview(ReviewBase):
         # Delete ActivityLog to make the query count easier to follow. We have
         # other tests for the ActivityLog related stuff.
         ActivityLog.objects.for_addons(self.addon).delete()
-        with self.assertNumQueries(66):
+        with self.assertNumQueries(67):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.
@@ -5625,7 +5943,7 @@ class TestReview(ReviewBase):
                     results={'matchedResults': [customs_rule.name]},
                 )
 
-        with self.assertNumQueries(68):
+        with self.assertNumQueries(69):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.
@@ -5732,7 +6050,8 @@ class TestReview(ReviewBase):
             pq(response.content)('#versions-history .history-comment').text()
         )
 
-    def test_redirect_after_review_unlisted(self):
+    @override_settings(ENABLE_FEATURE_REVIEW_ACTION_REASON=False)
+    def test_redirect_after_review_unlisted_reason_feature_off(self):
         self.url = reverse('reviewers.review', args=('unlisted', self.addon.pk))
         self.version = version_factory(addon=self.addon, version='3.0')
         self.make_addon_unlisted(self.addon)
@@ -5743,6 +6062,25 @@ class TestReview(ReviewBase):
             {
                 'action': 'reply',
                 'comments': 'Reply!',
+            },
+            follow=True,
+        )
+
+        self.assertRedirects(response, self.url)
+
+    def test_redirect_after_review_unlisted(self):
+        reason = ReviewActionReason.objects.create(name='reason 1', is_active=True)
+        self.url = reverse('reviewers.review', args=('unlisted', self.addon.pk))
+        self.version = version_factory(addon=self.addon, version='3.0')
+        self.make_addon_unlisted(self.addon)
+        self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
+
+        response = self.client.post(
+            self.url,
+            {
+                'action': 'reply',
+                'comments': 'Reply!',
+                'reasons': [reason.id],
             },
             follow=True,
         )
@@ -5848,14 +6186,27 @@ class TestReviewPending(ReviewBase):
         )
         self.addon.update(status=amo.STATUS_APPROVED)
 
-    def pending_dict(self):
-        return self.get_dict(action='public')
+    @override_settings(ENABLE_FEATURE_REVIEW_ACTION_REASON=False)
+    @mock.patch('olympia.reviewers.utils.sign_file')
+    def test_pending_to_public_reason_feature_off(self, mock_sign):
+        assert self.version.file.status == amo.STATUS_AWAITING_REVIEW
+
+        response = self.client.post(self.url, self.get_dict(action='public'))
+        assert self.get_addon().status == amo.STATUS_APPROVED
+        self.assert3xx(response, reverse('reviewers.queue_extension'))
+
+        assert self.version.file.reload().status == amo.STATUS_APPROVED
+
+        assert mock_sign.called
 
     @mock.patch('olympia.reviewers.utils.sign_file')
     def test_pending_to_public(self, mock_sign):
+        reason = ReviewActionReason.objects.create(name='reason 1', is_active=True)
         assert self.version.file.status == amo.STATUS_AWAITING_REVIEW
 
-        response = self.client.post(self.url, self.pending_dict())
+        response = self.client.post(
+            self.url, self.get_dict(action='public', reasons=[reason.id])
+        )
         assert self.get_addon().status == amo.STATUS_APPROVED
         self.assert3xx(response, reverse('reviewers.queue_extension'))
 
