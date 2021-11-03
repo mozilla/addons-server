@@ -13,7 +13,7 @@ import pytest
 import responses
 
 from olympia import amo
-from olympia.activity.models import ActivityLog, ActivityLogToken
+from olympia.activity.models import ActivityLog, ActivityLogToken, ReviewActionReasonLog
 from olympia.addons.models import Addon, AddonApprovalsCounter, AddonReviewerFlags
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
@@ -39,6 +39,7 @@ from olympia.lib.crypto.tests.test_signing import (
 from olympia.promoted.models import PromotedApproval
 from olympia.reviewers.models import (
     AutoApprovalSummary,
+    ReviewActionReason,
     ReviewerScore,
     ReviewerSubscription,
 )
@@ -771,6 +772,23 @@ class TestReviewHelper(TestReviewHelperBase):
         self.helper.set_data({'comments': 'something'})
         self.helper.handler.log_action(amo.LOG.APPROVE_VERSION)
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
+
+    def test_log_action_sets_reasons(self):
+        data = {
+            'reasons': [
+                ReviewActionReason.objects.create(
+                    name='reason 1',
+                    is_active=True,
+                ),
+                ReviewActionReason.objects.create(
+                    name='reason 2',
+                    is_active=True,
+                ),
+            ],
+        }
+        self.helper.set_data(data)
+        self.helper.handler.log_action(amo.LOG.APPROVE_VERSION)
+        assert ReviewActionReasonLog.objects.count() == 2
 
     def test_notify_email(self):
         self.helper.set_data(self.get_data())

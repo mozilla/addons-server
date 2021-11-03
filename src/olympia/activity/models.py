@@ -754,6 +754,12 @@ class ActivityLog(ModelBase):
                     guid=arg.guid,
                     created=kw.get('created', timezone.now()),
                 )
+            elif class_ == ReviewActionReason:
+                ReviewActionReasonLog.objects.create(
+                    reason_id=id_,
+                    activity_log=al,
+                    created=kw.get('created', timezone.now()),
+                )
 
         if getattr(action, 'store_ip', False):
             # Index specific actions by their IP address. Note that the caller
