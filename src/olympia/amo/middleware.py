@@ -33,7 +33,10 @@ from olympia.accounts.utils import (
     generate_api_token,
     redirect_for_login,
 )
-from olympia.accounts.verify import update_fxa_access_token
+from olympia.accounts.verify import (
+    check_fxa_access_token_validity,
+    update_fxa_access_token,
+)
 
 from . import urlresolvers
 from .reverse import set_url_prefix
@@ -358,24 +361,38 @@ class TokenValidMiddleware:
 
     def __call__(self, request):
         if (
-            not request.is_api  # we check the api token in WebTokenAuthentication
+            # We check the api token in WebTokenAuthentication
+            not getattr(request, 'is_api', False)
             and not settings.USE_FAKE_FXA_AUTH
             and settings.VERIFY_FXA_ACCESS_TOKEN_WEB
-            and not update_fxa_access_token(request.session, request.user)
+            and not check_fxa_access_token_validity(
+                request.session.get('access_token_expiry')
+            )
         ):
-            print('User access token refresh failed; so redirect to login to FxA again')
-            return redirect_for_login(request)
+            fxa_token_object = update_fxa_access_token(
+                request.session.get('user_token_pk'),
+                request.user,
+            )
+            if not fxa_token_object:
+                print(
+                    'User access token refresh failed; '
+                    'so redirect to login to FxA again'
+                )
+                return redirect_for_login(request)
+            request.session[
+                'access_token_expiry'
+            ] = fxa_token_object.access_token_expiry.timestamp()
+            request._fxatoken = fxa_token_object
 
         response = self.get_response(request)
-        # update frontend cookie if it's changed
-        if hasattr(request, '_cacheduser') and hasattr(request.user, '_fxatoken'):
-            user_token_object = request.user._fxatoken
+
+        # update frontend cookie if we have a refreshed token.
+        # `request._fxatoken` could be set above, or in WebTokenAuthentication
+        if fxa_token_object := getattr(request, '_fxatoken', None):
             token = generate_api_token(
                 request.user,
-                {
-                    'user_token_pk': user_token_object.pk,
-                    'access_token_expiry': user_token_object.timestamp(),
-                },
+                user_token_pk=fxa_token_object.pk,
+                access_token_expiry=fxa_token_object.access_token_expiry.timestamp(),
             )
             add_api_token_to_response(response, token)
 

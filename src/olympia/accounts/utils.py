@@ -204,12 +204,12 @@ def process_sqs_queue(queue_url):
         raise exc
 
 
-def generate_api_token(user, extra=None):
+def generate_api_token(user, **extra):
     """Generate a new API token for a given user."""
     data = {
         'auth_hash': user.get_session_auth_hash(),
         'user_id': user.pk,
-        **(extra or {}),
+        **extra,
     }
     return signing.dumps(data, salt=WebTokenAuthentication.salt)
 

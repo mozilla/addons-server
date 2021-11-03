@@ -17,7 +17,6 @@ from django import forms, test
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.messages.storage.fallback import FallbackStorage
-from django.core import signing
 from django.core.management import call_command
 from django.db.models.signals import post_save
 from django.http import HttpRequest, SimpleCookie
@@ -40,7 +39,7 @@ from olympia.access.acl import check_ownership
 from olympia.api.authentication import WebTokenAuthentication
 from olympia.amo import search as amo_search
 from olympia.access.models import Group, GroupUser
-from olympia.accounts.utils import fxa_login_url
+from olympia.accounts.utils import fxa_login_url, generate_api_token
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import (
     Addon,
@@ -327,18 +326,6 @@ class TestClient(Client):
 
 
 class APITestClient(APIClient):
-    def generate_api_token(self, user, **payload_overrides):
-        """
-        Creates a jwt token for this user.
-        """
-        data = {
-            'auth_hash': user.get_session_auth_hash(),
-            'user_id': user.pk,
-        }
-        data.update(payload_overrides)
-        token = signing.dumps(data, salt=WebTokenAuthentication.salt)
-        return token
-
     def login_api(self, user):
         """
         Creates a jwt token for this user as if they just logged in. This token
@@ -346,7 +333,7 @@ class APITestClient(APIClient):
         this client.
         """
         prefix = WebTokenAuthentication.auth_header_prefix
-        token = self.generate_api_token(user)
+        token = generate_api_token(user)
         self.defaults['HTTP_AUTHORIZATION'] = f'{prefix} {token}'
 
     def logout_api(self):

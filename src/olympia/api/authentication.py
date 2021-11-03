@@ -13,7 +13,10 @@ from rest_framework.authentication import BaseAuthentication, get_authorization_
 import olympia.core.logger
 
 from olympia import core
-from olympia.accounts.verify import update_fxa_access_token
+from olympia.accounts.verify import (
+    check_fxa_access_token_validity,
+    update_fxa_access_token,
+)
 from olympia.api import jwt_auth
 from olympia.api.models import APIKey
 from olympia.users.models import UserProfile
@@ -90,9 +93,9 @@ class WebTokenAuthentication(BaseAuthentication):
             # No token specified, skip this authentication method.
             return None
         # Proceed.
-        return self.authenticate_token(token)
+        return self.authenticate_token(request, token)
 
-    def authenticate_token(self, token):
+    def get_payload(self, token):
         try:
             payload = signing.loads(
                 force_str(token),
@@ -111,9 +114,29 @@ class WebTokenAuthentication(BaseAuthentication):
                 'code': 'ERROR_DECODING_SIGNATURE',
             }
             raise exceptions.AuthenticationFailed(msg)
+        return payload
 
+    def authenticate_token(self, request, token):
+        payload = self.get_payload(token)
         # We have a valid token, try to find the corresponding user.
         user = self.authenticate_credentials(payload)
+
+        # Check fxa access_token is still valid
+        if (
+            not settings.USE_FAKE_FXA_AUTH
+            and settings.VERIFY_FXA_ACCESS_TOKEN_API
+            and not check_fxa_access_token_validity(payload.get('access_token_expiry'))
+        ):
+            fxa_token_object = update_fxa_access_token(
+                payload.get('user_token_pk'),
+                user,
+            )
+            if not fxa_token_object:
+                log.info(
+                    'User access token refresh failed; they need to login to FxA again'
+                )
+                raise exceptions.AuthenticationFailed()
+            request._fxatoken = fxa_token_object
 
         return (user, token)
 
@@ -142,17 +165,6 @@ class WebTokenAuthentication(BaseAuthentication):
             log.info(
                 'User tried to authenticate with invalid auth hash in'
                 'payload {}'.format(payload)
-            )
-            raise exceptions.AuthenticationFailed()
-
-        # Check fxa access_token is still valid
-        if (
-            not settings.USE_FAKE_FXA_AUTH
-            and settings.VERIFY_FXA_ACCESS_TOKEN_API
-            and not update_fxa_access_token(payload, user)
-        ):
-            log.info(
-                'User access token refresh failed; they need to login to FxA again'
             )
             raise exceptions.AuthenticationFailed()
 

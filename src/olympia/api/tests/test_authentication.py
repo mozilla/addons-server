@@ -20,6 +20,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from olympia import core
+from olympia.accounts.utils import generate_api_token
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
     APITestClient,
@@ -222,24 +223,29 @@ class TestWebTokenAuthentication(TestCase):
         self.auth = WebTokenAuthentication()
         self.factory = RequestFactory()
         self.user = user_factory(read_dev_agreement=datetime.now())
+        self.check_token_validity_mock = self.patch(
+            'olympia.api.authentication.check_fxa_access_token_validity'
+        )
         self.update_token_mock = self.patch(
             'olympia.api.authentication.update_fxa_access_token'
         )
-        self.update_token_mock.return_value = True
+        self.check_token_validity_mock.return_value = False
+        self.fxa_token = mock.Mock()
+        self.update_token_mock.return_value = self.fxa_token
 
     def _authenticate(self, token):
         url = absolutify('/api/v4/whatever/')
         prefix = WebTokenAuthentication.auth_header_prefix
-        request = self.factory.post(
+        self.request = self.factory.post(
             url,
             HTTP_HOST='testserver',
             HTTP_AUTHORIZATION=f'{prefix} {token}',
         )
 
-        return self.auth.authenticate(request)
+        return self.auth.authenticate(self.request)
 
     def test_success(self):
-        token = self.client.generate_api_token(self.user)
+        token = generate_api_token(self.user)
         user, _ = self._authenticate(token)
         assert user == self.user
 
@@ -284,7 +290,7 @@ class TestWebTokenAuthentication(TestCase):
     def test_expired_token(self):
         old_date = datetime.now() - timedelta(seconds=settings.SESSION_COOKIE_AGE + 1)
         with freeze_time(old_date):
-            token = self.client.generate_api_token(self.user)
+            token = generate_api_token(self.user)
         with self.assertRaises(AuthenticationFailed) as exp:
             self._authenticate(token)
         assert exp.exception.detail['code'] == 'ERROR_SIGNATURE_EXPIRED'
@@ -295,7 +301,7 @@ class TestWebTokenAuthentication(TestCase):
             seconds=settings.SESSION_COOKIE_AGE - 30
         )
         with freeze_time(not_so_old_date):
-            token = self.client.generate_api_token(self.user)
+            token = generate_api_token(self.user)
         assert self._authenticate(token)[0] == self.user
 
     def test_bad_token(self):
@@ -306,7 +312,7 @@ class TestWebTokenAuthentication(TestCase):
         assert exp.exception.detail['detail'] == 'Error decoding signature.'
 
     def test_user_id_is_none(self):
-        token = self.client.generate_api_token(self.user, user_id=None)
+        token = generate_api_token(self.user, user_id=None)
         with self.assertRaises(AuthenticationFailed):
             self._authenticate(token)
 
@@ -328,29 +334,29 @@ class TestWebTokenAuthentication(TestCase):
 
     def test_user_deleted(self):
         self.user.delete()
-        token = self.client.generate_api_token(self.user)
+        token = generate_api_token(self.user)
         with self.assertRaises(AuthenticationFailed):
             self._authenticate(token)
 
     def test_invalid_user_not_found(self):
-        token = self.client.generate_api_token(self.user, user_id=-1)
+        token = generate_api_token(self.user, user_id=-1)
         with self.assertRaises(AuthenticationFailed):
             self._authenticate(token)
 
     def test_invalid_user_other_user(self):
         user2 = user_factory(read_dev_agreement=datetime.now())
-        token = self.client.generate_api_token(self.user, user_id=user2.pk)
+        token = generate_api_token(self.user, user_id=user2.pk)
         with self.assertRaises(AuthenticationFailed):
             self._authenticate(token)
 
     def test_wrong_auth_id(self):
-        token = self.client.generate_api_token(self.user)
+        token = generate_api_token(self.user)
         self.user.update(auth_id=self.user.auth_id + 42)
         with self.assertRaises(AuthenticationFailed):
             self._authenticate(token)
 
     def test_make_sure_token_is_decodable(self):
-        token = self.client.generate_api_token(self.user)
+        token = generate_api_token(self.user)
         # A token is really a string containing the json dict,
         # a timestamp and a signature, separated by ':'. The base64 encoding
         # lacks padding, which is why we need to use signing.b64_decode() which
@@ -361,27 +367,34 @@ class TestWebTokenAuthentication(TestCase):
 
     @override_settings(USE_FAKE_FXA_AUTH=False, VERIFY_FXA_ACCESS_TOKEN_API=True)
     def test_fxa_access_token_validity_fake_fxa_auth(self):
+        token = generate_api_token(self.user)
         with override_settings(USE_FAKE_FXA_AUTH=True):
-            token = self.client.generate_api_token(self.user)
             assert self.user == self._authenticate(token)[0]
+            self.check_token_validity_mock.assert_not_called()
             self.update_token_mock.assert_not_called()
 
         assert self.user == self._authenticate(token)[0]
         self.update_token_mock.assert_called()
+        self.check_token_validity_mock.assert_called()
+        assert self.request._fxatoken == self.fxa_token
 
     @override_settings(USE_FAKE_FXA_AUTH=False, VERIFY_FXA_ACCESS_TOKEN_API=True)
     def test_fxa_access_token_validity_verify_fxa_access_token_web(self):
         with override_settings(VERIFY_FXA_ACCESS_TOKEN_API=False):
-            token = self.client.generate_api_token(self.user)
+            token = generate_api_token(self.user)
             assert self.user == self._authenticate(token)[0]
+            self.check_token_validity_mock.assert_not_called()
             self.update_token_mock.assert_not_called()
 
         assert self.user == self._authenticate(token)[0]
         self.update_token_mock.assert_called()
+        self.check_token_validity_mock.assert_called()
+        assert self.request._fxatoken == self.fxa_token
 
     @override_settings(USE_FAKE_FXA_AUTH=False, VERIFY_FXA_ACCESS_TOKEN_API=True)
     def test_fxa_access_token_validity_token_invalid(self):
-        self.update_token_mock.return_value = False
-        token = self.client.generate_api_token(self.user)
+        self.update_token_mock.return_value = None
+        token = generate_api_token(self.user)
         with self.assertRaises(AuthenticationFailed):
             assert self.user == self._authenticate(token)[0]
+        assert not hasattr(self.request, '_fxatoken')

@@ -186,17 +186,17 @@ def login_user(sender, request, user, identity, token_data=None):
     user_logged_in.send(sender=sender, request=request, user=user)
     login(request, user)
     if token_data:
-        user_token_object = FxaToken.objects.create(
+        fxa_token_object = FxaToken.objects.create(
             user=user,
-            get_access_token_expiry=datetime.fromtimestamp(
+            access_token_expiry=datetime.fromtimestamp(
                 token_data.get('access_token_expiry')
             ),
             refresh_token=token_data.get('refresh_token'),
             config_name=token_data['config_name'],
         )
-        request.session['user_token_pk'] = user_token_object.pk
+        request.session['user_token_pk'] = fxa_token_object.pk
         request.session['access_token_expiry'] = token_data.get('access_token_expiry')
-        return user_token_object
+        return fxa_token_object
 
 
 def fxa_error_message(message, login_help_url):
@@ -268,12 +268,8 @@ def with_user(f):
                 )
                 token = generate_api_token(
                     request.user,
-                    {
-                        'user_token_pk': request.session.get('user_token_pk'),
-                        'access_token_expiry': request.session.get(
-                            'access_token_expiry'
-                        ),
-                    },
+                    user_token_pk=request.session.get('user_token_pk'),
+                    access_token_expiry=request.session.get('access_token_expiry'),
                 )
                 response = add_api_token_to_response(response, token)
             return response
@@ -419,17 +415,15 @@ class AuthenticateView(FxAConfigMixin, APIView):
         else:
             action = 'login'
 
-        user_token_object = login_user(
+        fxa_token_object = login_user(
             self.__class__, request, user, identity, token_data
         )
         response = safe_redirect(request, next_path, action)
-        if user_token_object:
+        if fxa_token_object:
             token = generate_api_token(
                 user,
-                {
-                    'user_token_pk': user_token_object.pk,
-                    'access_token_expiry': request.session['access_token_expiry'],
-                },
+                user_token_pk=fxa_token_object.pk,
+                access_token_expiry=fxa_token_object.access_token_expiry.timestamp(),
             )
         else:
             token = generate_api_token(user)

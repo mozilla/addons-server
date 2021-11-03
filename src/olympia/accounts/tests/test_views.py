@@ -1,7 +1,7 @@
 import base64
-import datetime
 import json
 import time
+from datetime import datetime
 from unittest import mock
 
 from os import path
@@ -288,7 +288,7 @@ class TestFindUser(TestCase):
             fxa_id='abc',
             email='me@amo.ca',
             deleted=True,
-            banned=datetime.datetime.now(),
+            banned=datetime.now(),
         )
         with self.assertRaises(PermissionDenied):
             views.find_user({'uid': 'abc', 'email': 'you@amo.ca'})
@@ -311,6 +311,7 @@ class TestWithUser(TestCase):
         'access_token': 'someaccesstoken',
         'refresh_token': 'somerefresh_token',
         'expires_in': 12345,
+        'access_token_expiry': time.time() + 12345,
     }
 
     def setUp(self):
@@ -320,7 +321,6 @@ class TestWithUser(TestCase):
         self.user = AnonymousUser()
         self.request.user = self.user
         self.request.session = {'fxa_state': 'some-blob'}
-        self.user_token_object = FxaToken()
 
     def get_fxa_config(self, request):
         return settings.FXA_CONFIG[self.get_config_name(request)]
@@ -343,7 +343,7 @@ class TestWithUser(TestCase):
             'user': self.user,
             'identity': identity,
             'next_path': None,
-            'user_token_object': self.user_token_object,
+            'token_data': self.token_data,
         }
 
     def test_profile_exists_with_user_and_path(self):
@@ -363,7 +363,7 @@ class TestWithUser(TestCase):
             'user': self.user,
             'identity': identity,
             'next_path': '/a/path/?',
-            'user_token_object': self.user_token_object,
+            'token_data': self.token_data,
         }
 
     def test_profile_exists_with_user_and_path_stripped_padding(self):
@@ -381,7 +381,7 @@ class TestWithUser(TestCase):
             'user': self.user,
             'identity': identity,
             'next_path': '/foo',
-            'user_token_object': self.user_token_object,
+            'token_data': self.token_data,
         }
 
     def test_profile_exists_with_user_and_path_bad_encoding(self):
@@ -398,7 +398,7 @@ class TestWithUser(TestCase):
             'user': self.user,
             'identity': identity,
             'next_path': None,
-            'user_token_object': self.user_token_object,
+            'token_data': self.token_data,
         }
 
     def test_profile_exists_with_user_and_empty_path(self):
@@ -415,7 +415,7 @@ class TestWithUser(TestCase):
             'user': self.user,
             'identity': identity,
             'next_path': None,
-            'user_token_object': self.user_token_object,
+            'token_data': self.token_data,
         }
 
     def test_profile_exists_with_user_and_path_is_not_safe(self):
@@ -434,7 +434,7 @@ class TestWithUser(TestCase):
             'user': self.user,
             'identity': identity,
             'next_path': None,
-            'user_token_object': self.user_token_object,
+            'token_data': self.token_data,
         }
 
     def test_profile_exists_no_user(self):
@@ -448,7 +448,7 @@ class TestWithUser(TestCase):
             'user': None,
             'identity': identity,
             'next_path': None,
-            'user_token_object': self.user_token_object,
+            'token_data': self.token_data,
         }
 
     def test_profile_does_not_exist(self):
@@ -505,11 +505,7 @@ class TestWithUser(TestCase):
         cookie = response.cookies.get(views.API_TOKEN_COOKIE)
         assert len(response.cookies) == 1
         assert cookie.value == views.generate_api_token(
-            self.user,
-            {
-                'user_token_pk': 1234,
-                'access_token_expiry': now,
-            },
+            self.user, user_token_pk=1234, access_token_expiry=now
         )
         assert cookie['domain'] == settings.SESSION_COOKIE_DOMAIN
         assert cookie['max-age'] == settings.SESSION_COOKIE_AGE
@@ -608,7 +604,7 @@ class TestWithUser(TestCase):
             'user': self.user,
             'identity': identity,
             'next_path': '/a/path/?',
-            'user_token_object': self.user_token_object,
+            'token_data': self.token_data,
         }
 
     def test_addon_developer_should_redirect_for_two_factor_auth(self):
@@ -757,6 +753,7 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
         'access_token': 'someaccesstoken',
         'refresh_token': 'somerefresh_token',
         'expires_in': 12345,
+        'access_token_expiry': time.time() + 12345,
     }
 
     def setUp(self):
@@ -766,6 +763,12 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
         self.fxa_state = '1cd2ae9d'
         self.initialize_session({'fxa_state': self.fxa_state})
         self.login_user = self.patch('olympia.accounts.views.login_user')
+        self.login_user.return_value = FxaToken(
+            id=999,
+            access_token_expiry=datetime.fromtimestamp(
+                self.token_data['access_token_expiry']
+            ),
+        )
         self.register_user = self.patch('olympia.accounts.views.register_user')
         self.reregister_user = self.patch('olympia.accounts.views.reregister_user')
         self.user_edit_url = reverse('users.edit')
@@ -786,7 +789,6 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
         assert not self.login_user.called
         assert not self.register_user.called
         assert not self.reregister_user.called
-        assert not FxaToken.objects.exists()
 
     def test_wrong_state(self):
         response = self.client.get(self.url, {'code': 'foo', 'state': '9f865be0'})
@@ -799,7 +801,6 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
         assert not self.login_user.called
         assert not self.register_user.called
         assert not self.reregister_user.called
-        assert not FxaToken.objects.exists()
 
     def test_no_fxa_profile(self):
         self.fxa_identify.side_effect = verify.IdentificationError
@@ -816,13 +817,11 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
         assert not self.login_user.called
         assert not self.register_user.called
         assert not self.reregister_user.called
-        assert not FxaToken.objects.exists()
 
     def test_success_deleted_account_reregisters(self):
         user = UserProfile.objects.create(
             email='real@yeahoo.com', fxa_id='10', deleted=True
         )
-        assert not FxaToken.objects.exists()
         identity = {'email': 'real@yeahoo.com', 'uid': '10'}
         self.fxa_identify.return_value = identity, self.token_data
         self.reregister_user.side_effect = lambda user: user.update(deleted=False)
@@ -839,12 +838,10 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
         assert not self.register_user.called
         self.reregister_user.assert_called_with(user)
         token = response.cookies['frontend_auth_token'].value
-        verify = WebTokenAuthentication().authenticate_token(token)
-        assert verify[0] == UserProfile.objects.get(fxa_id='10')
-        assert FxaToken.objects.exists()
-        user_token = FxaToken.objects.get()
-        assert user_token.user == user
-        assert user_token.access_token == self.token_data['access_token']
+        returned_user = WebTokenAuthentication().authenticate_credentials(
+            WebTokenAuthentication().get_payload(token)
+        )
+        assert returned_user == user
 
     def test_success_deleted_account_reregisters_with_force_2fa_waffle(self):
         self.create_switch('2fa-for-developers', active=True)
@@ -852,7 +849,6 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
 
     def test_success_no_account_registers(self):
         user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
-        assert not FxaToken.objects.exists()
         assert not user_qs.exists()
         identity = {'email': 'me@yeahoo.com', 'uid': 'e0b6f'}
         self.fxa_identify.return_value = identity, self.token_data
@@ -872,12 +868,10 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
         self.register_user.assert_called_with(identity)
         assert not self.reregister_user.called
         token = response.cookies['frontend_auth_token'].value
-        verify = WebTokenAuthentication().authenticate_token(token)
-        assert verify[0] == UserProfile.objects.get(username='foo')
-        assert FxaToken.objects.exists()
-        user_token = FxaToken.objects.get()
-        assert user_token.user == UserProfile.objects.get(email='me@yeahoo.com')
-        assert user_token.access_token == self.token_data['access_token']
+        returned_user = WebTokenAuthentication().authenticate_credentials(
+            WebTokenAuthentication().get_payload(token)
+        )
+        assert returned_user == UserProfile.objects.get(username='foo')
 
     def test_success_no_account_registers_with_force_2fa_waffle(self):
         self.create_switch('2fa-for-developers', active=True)
@@ -885,7 +879,6 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
 
     def test_register_redirects_edit(self):
         user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
-        assert not FxaToken.objects.exists()
         assert not user_qs.exists()
         identity = {'email': 'me@yeahoo.com', 'uid': 'e0b6f'}
         self.fxa_identify.return_value = identity, self.token_data
@@ -914,14 +907,9 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
         assert self.login_user.called
         self.register_user.assert_called_with(identity)
         assert not self.reregister_user.called
-        assert FxaToken.objects.exists()
-        user_token = FxaToken.objects.get()
-        assert user_token.user == UserProfile.objects.get(email='me@yeahoo.com')
-        assert user_token.access_token == self.token_data['access_token']
 
     def test_register_redirects_no_next_path(self):
         user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
-        assert not FxaToken.objects.exists()
         assert not user_qs.exists()
         identity = {'email': 'me@yeahoo.com', 'uid': 'e0b6f'}
         self.fxa_identify.return_value = identity, self.token_data
@@ -943,14 +931,9 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
         assert self.login_user.called
         self.register_user.assert_called_with(identity)
         assert not self.reregister_user.called
-        assert FxaToken.objects.exists()
-        user_token = FxaToken.objects.get()
-        assert user_token.user == UserProfile.objects.get(email='me@yeahoo.com')
-        assert user_token.access_token == self.token_data['access_token']
 
     def test_register_redirects_extract_locale_and_app_from_next_path(self):
         user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
-        assert not FxaToken.objects.exists()
         assert not user_qs.exists()
         identity = {'email': 'me@yeahoo.com', 'uid': 'e0b6f'}
         self.fxa_identify.return_value = identity, self.token_data
@@ -982,11 +965,9 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
         assert self.login_user.called
         self.register_user.assert_called_with(identity)
         assert not self.reregister_user.called
-        assert FxaToken.objects.exists()
 
     def test_register_redirects_edit_absolute_to(self):
         user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
-        assert not FxaToken.objects.exists()
         assert not user_qs.exists()
         identity = {'email': 'me@yeahoo.com', 'uid': 'e0b6f'}
         self.fxa_identify.return_value = identity, self.token_data
@@ -1022,14 +1003,9 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
         assert self.login_user.called
         self.register_user.assert_called_with(identity)
         assert not self.reregister_user.called
-        assert FxaToken.objects.exists()
-        user_token = FxaToken.objects.get()
-        assert user_token.user == UserProfile.objects.get(email='me@yeahoo.com')
-        assert user_token.access_token == self.token_data['access_token']
 
     def test_register_redirects_edit_ignores_to_when_unsafe(self):
         user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
-        assert not FxaToken.objects.exists()
         assert not user_qs.exists()
         identity = {'email': 'me@yeahoo.com', 'uid': 'e0b6f'}
         self.fxa_identify.return_value = identity, self.token_data
@@ -1058,13 +1034,8 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
         assert self.login_user.called
         self.register_user.assert_called_with(identity)
         assert not self.reregister_user.called
-        assert FxaToken.objects.exists()
-        user_token = FxaToken.objects.get()
-        assert user_token.user == UserProfile.objects.get(email='me@yeahoo.com')
-        assert user_token.access_token == self.token_data['access_token']
 
     def test_success_with_account_logs_in(self):
-        assert not FxaToken.objects.exists()
         user = UserProfile.objects.create(
             username='foobar', email='real@yeahoo.com', fxa_id='10'
         )
@@ -1080,17 +1051,15 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
                 == 'max-age=0, no-cache, no-store, must-revalidate, private'
             )
         token = response.cookies['frontend_auth_token'].value
-        verify = WebTokenAuthentication().authenticate_token(token)
-        assert verify[0] == user
+        returned_user = WebTokenAuthentication().authenticate_credentials(
+            WebTokenAuthentication().get_payload(token)
+        )
+        assert returned_user == user
         self.login_user.assert_called_with(
-            views.AuthenticateView, mock.ANY, user, identity
+            views.AuthenticateView, mock.ANY, user, identity, self.token_data
         )
         assert not self.register_user.called
         assert not self.reregister_user.called
-        assert FxaToken.objects.exists()
-        user_token = FxaToken.objects.get()
-        assert user_token.user == user
-        assert user_token.access_token == self.token_data['access_token']
 
     def test_banned_user_cant_log_in(self):
         UserProfile.objects.create(
@@ -1098,17 +1067,15 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
             email='real@yeahoo.com',
             fxa_id='10',
             deleted=True,
-            banned=datetime.datetime.now(),
+            banned=datetime.now(),
         )
         identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
         self.fxa_identify.return_value = identity, self.token_data
         response = self.client.get(self.url, {'code': 'code', 'state': self.fxa_state})
         assert response.status_code == 403
-        assert not FxaToken.objects.exists()
 
     def test_log_in_redirects_to_next_path(self):
         user = UserProfile.objects.create(email='real@yeahoo.com', fxa_id='10')
-        assert not FxaToken.objects.exists()
         identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
         self.fxa_identify.return_value = identity, self.token_data
         response = self.client.get(
@@ -1129,18 +1096,13 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
             == 'max-age=0, no-cache, no-store, must-revalidate, private'
         )
         self.login_user.assert_called_with(
-            views.AuthenticateView, mock.ANY, user, identity
+            views.AuthenticateView, mock.ANY, user, identity, self.token_data
         )
         assert not self.register_user.called
         assert not self.reregister_user.called
-        assert FxaToken.objects.exists()
-        user_token = FxaToken.objects.get()
-        assert user_token.user == user
-        assert user_token.access_token == self.token_data['access_token']
 
     def test_log_in_sets_fxa_data_and_redirects(self):
         user = UserProfile.objects.create(email='real@yeahoo.com')
-        assert not FxaToken.objects.exists()
         identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
         self.fxa_identify.return_value = identity, self.token_data
         response = self.client.get(
@@ -1165,17 +1127,12 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
             == 'max-age=0, no-cache, no-store, must-revalidate, private'
         )
         self.login_user.assert_called_with(
-            views.AuthenticateView, mock.ANY, user, identity
+            views.AuthenticateView, mock.ANY, user, identity, self.token_data
         )
         assert not self.register_user.called
         assert not self.reregister_user.called
-        assert FxaToken.objects.exists()
-        user_token = FxaToken.objects.get()
-        assert user_token.user == user
-        assert user_token.access_token == self.token_data['access_token']
 
     def test_log_in_redirects_to_absolute_url(self):
-        assert not FxaToken.objects.exists()
         email = 'real@yeahoo.com'
         UserProfile.objects.create(email=email)
         self.fxa_identify.return_value = (
@@ -1198,7 +1155,6 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
                 },
             )
         self.assertRedirects(response, next_path, fetch_redirect_response=False)
-        assert FxaToken.objects.exists()
 
     def test_log_in_redirects_to_code_manager(self):
         email = 'real@yeahoo.com'
@@ -1884,6 +1840,7 @@ class TestSessionView(TestCase):
         'access_token': 'someaccesstoken',
         'refresh_token': 'somerefresh_token',
         'expires_in': 12345,
+        'access_token_expiry': time.time() + 12345,
     }
 
     def login_user(self, user):
@@ -1908,8 +1865,10 @@ class TestSessionView(TestCase):
             )
             token = response.cookies[views.API_TOKEN_COOKIE].value
             assert token
-            verify = WebTokenAuthentication().authenticate_token(token)
-            assert verify[0] == user
+            returned_user = WebTokenAuthentication().authenticate_credentials(
+                WebTokenAuthentication().get_payload(token)
+            )
+            assert returned_user == user
             assert self.client.session['_auth_user_id'] == str(user.id)
             return token
 

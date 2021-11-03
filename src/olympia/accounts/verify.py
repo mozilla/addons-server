@@ -105,23 +105,24 @@ def get_fxa_profile(token, config):
         raise IdentificationError(f'Could not find profile for {token}')
 
 
-def update_fxa_access_token(session, user):
-    """Check if fxa access_token is expired and attempt to refresh with a refresh_token
-    if it isn't.  Returns True if either the token isn't expired, or the refresh was
-    successful; False if there was an error and a user re-auth with FxA is needed.
+def check_fxa_access_token_validity(access_token_expiry):
+    return access_token_expiry and access_token_expiry > time.time()
 
-    `session` will be updated with the new `access_token_expiry` if it changed.
+
+def update_fxa_access_token(token_pk, user):
+    """Attempts to refresh an expired fxa access_token with a refresh_token, given the
+    token.pk and a user.
+
+    Returns the FxaToken instance if the refresh was successful; None if there was an
+    error and a user re-auth with FxA is needed.  If the FxaToken isn't actually expired
+    the instance will be returned without calling fxa for a refreshed token.
     """
-    access_token_expiry = session.get('access_token_expiry')
-    token_pk = session.get('user_token_pk')
-    if access_token_expiry and access_token_expiry > datetime.now():
-        return True
     try:
-        token_store = FxaToken.objects.get(user=user, id=token_pk)
+        token_store = FxaToken.objects.get(user=user, pk=token_pk)
         if token_store.access_token_expiry < datetime.now():
             # This should be unnessecary check - we checked the expiry time from the
-            # cookie but if the access token was refreshed by the API auth they'll be a
-            # mismatch.
+            # cookie but if the access token was refreshed by the API auth there might
+            # be a mismatch.
             config_name = (
                 token_store.config_name
                 if token_store.config_name in settings.ALLOWED_FXA_CONFIGS
@@ -137,15 +138,9 @@ def update_fxa_access_token(session, user):
                     token_data['access_token_expiry']
                 )
             )
-        session['access_token_expiry'] = token_store.access_token_expiry.timestamp()
-        # set the reverse fk on user so we can save a cookie while returning response
-        user._fxatoken = token_store
+        return token_store
 
     except FxaToken.DoesNotExist:
         log.info(f'User token record not found for {user.id} + {token_pk}')
-        return False
     except IdentificationError:
         log.info(f'Failed refreshing access_token for {user.id} + {token_pk}')
-        return False
-    else:
-        return True
