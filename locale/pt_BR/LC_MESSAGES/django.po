@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-02 18:07+0000\n"
-"PO-Revision-Date: 2021-11-03 12:01+0000\n"
+"PO-Revision-Date: 2021-11-03 16:42+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4561,9 +4561,8 @@ msgid "YouTube boosters"
 msgstr "Melhoradores do YouTube"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more YouTube extension staff picks"
-msgstr "Mais escolhas da equipe de ferramentas de tradução"
+msgstr "Mais escolhas da equipe de extensões para o YouTube"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
