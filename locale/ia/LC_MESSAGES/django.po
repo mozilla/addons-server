@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-02 18:07+0000\n"
-"PO-Revision-Date: 2021-11-03 12:36+0000\n"
+"PO-Revision-Date: 2021-11-04 22:26+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4481,9 +4481,8 @@ msgid "YouTube boosters"
 msgstr "Promotores de YouTube"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more YouTube extension staff picks"
-msgstr "Vide altere utensile de traduction seligite per nostre equipa"
+msgstr "Vide altere extensiones YouTube seligite per nostre equipa"
 
 #. editorial content for the homepage shelves.
 msgid "Trending themes"
