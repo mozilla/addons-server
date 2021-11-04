@@ -153,11 +153,11 @@ class VersionLog(ModelBase):
 
 class ReviewActionReasonLog(ModelBase):
     """
-    This table allows ReviewActionReasons to be assigned to VersionLog entries.
+    This table allows ReviewActionReasons to be assigned to ActivityLog entries.
     """
 
+    activity_log = models.ForeignKey('ActivityLog', on_delete=models.CASCADE)
     reason = models.ForeignKey(ReviewActionReason, on_delete=models.CASCADE)
-    version_log = models.ForeignKey('VersionLog', on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'log_activity_review_action_reason'
