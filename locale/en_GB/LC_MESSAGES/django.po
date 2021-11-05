@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-02 18:07+0000\n"
-"PO-Revision-Date: 2021-11-05 00:19+0000\n"
+"PO-Revision-Date: 2021-11-05 00:24+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -4478,19 +4478,16 @@ msgid "YouTube boosters"
 msgstr "YouTube boosters"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more YouTube extension staff picks"
-msgstr "See more translation tool staff picks"
+msgstr "See more YouTube extension staff picks"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Trending themes"
-msgstr "Recommended themes"
+msgstr "Trending themes"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more trending themes"
-msgstr "See more recommended themes"
+msgstr "See more trending themes"
 
 msgid "Could not parse the manifest file."
 msgstr "Could not parse the manifest file."
