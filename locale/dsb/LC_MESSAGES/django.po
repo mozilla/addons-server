@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-02 18:07+0000\n"
-"PO-Revision-Date: 2021-11-06 22:39+0000\n"
+"PO-Revision-Date: 2021-11-06 22:46+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -4501,19 +4501,16 @@ msgid "YouTube boosters"
 msgstr "Pólěpšenja YouTube"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more YouTube extension staff picks"
-msgstr "Dalšne wót sobuźěłaśerjow wubrane pśełožowańske rědy pokazaś"
+msgstr "Dalšne wót sobuźěłaśerjow wubrane rozšyrjenja YouTube pokazaś"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Trending themes"
-msgstr "Dopórucone drastwy"
+msgstr "Woblubowane drastwy"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more trending themes"
-msgstr "Dalšne dopórucone drastwy pokazaś"
+msgstr "Dalšne tuchylu woblubowane drastwy se woglědaś"
 
 msgid "Could not parse the manifest file."
 msgstr "Manifestowa dataja njedajo se analyzěrowaś."
