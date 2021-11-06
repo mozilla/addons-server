@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-02 18:07+0000\n"
-"PO-Revision-Date: 2021-10-29 17:50+0000\n"
-"Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
+"PO-Revision-Date: 2021-11-03 08:46+0000\n"
+"Last-Translator: Michele Rodaro <michele.rodaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -4575,19 +4575,19 @@ msgstr "Visualizza altri strumenti per il blocco delle pubblicità scelti dallo 
 
 #. editorial content for the homepage shelves.
 msgid "YouTube boosters"
-msgstr ""
+msgstr "Integrazioni per YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
-msgstr ""
+msgstr "Visualizza altre estensioni per YouTube scelte dallo staff"
 
 #. editorial content for the homepage shelves.
 msgid "Trending themes"
-msgstr ""
+msgstr "Temi di tendenza"
 
 #. editorial content for the homepage shelves.
 msgid "See more trending themes"
-msgstr ""
+msgstr "Visualizza altri temi di tendenza"
 
 msgid "Could not parse the manifest file."
 msgstr "Impossibile analizzare il file manifesto."
@@ -4941,7 +4941,7 @@ msgid "Weight breakdown not available."
 msgstr "Analisi dettagliata delle dimensioni non disponibile."
 
 msgid "Is available to be used in reviews"
-msgstr ""
+msgstr "È disponibile per essere utilizzato nelle recensioni"
 
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Se è definita `canned_response` non puoi inviare un commento."
