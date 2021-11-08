@@ -315,13 +315,13 @@ class TestTokenValidMiddleware(TestCase):
         self.response.data = {}
         self.get_response_mock.return_value = self.response
         self.middleware = TokenValidMiddleware(self.get_response_mock)
-        self.check_token_validity_mock = self.patch(
+        self.expiry_timestamp_validity_mock = self.patch(
             'olympia.amo.middleware.expiry_timestamp_valid'
         )
         self.update_token_mock = self.patch(
             'olympia.amo.middleware.update_fxa_access_token'
         )
-        self.check_token_validity_mock.return_value = False
+        self.expiry_timestamp_validity_mock.return_value = False
         self.fxa_token = FxaToken(id=123456, access_token_expiry=datetime.now())
         self.update_token_mock.return_value = self.fxa_token
         self.user = user_factory()
@@ -336,31 +336,31 @@ class TestTokenValidMiddleware(TestCase):
         with override_settings(USE_FAKE_FXA_AUTH=True):
             request = self.get_request()
             assert self.middleware(request) == self.response
-            self.check_token_validity_mock.assert_not_called()
+            self.expiry_timestamp_validity_mock.assert_not_called()
             self.update_token_mock.assert_not_called()
 
         request = self.get_request()
         assert self.middleware(request) == self.response
-        self.check_token_validity_mock.assert_called()
+        self.expiry_timestamp_validity_mock.assert_called()
         self.update_token_mock.assert_called()
 
     def test_pass_because_verify_fxa_access_token_web(self):
         with override_settings(VERIFY_FXA_ACCESS_TOKEN_WEB=False):
             request = self.get_request()
             assert self.middleware(request) == self.response
-            self.check_token_validity_mock.assert_not_called()
+            self.expiry_timestamp_validity_mock.assert_not_called()
             self.update_token_mock.assert_not_called()
 
         request = self.get_request()
         assert self.middleware(request) == self.response
-        self.check_token_validity_mock.assert_called()
+        self.expiry_timestamp_validity_mock.assert_called()
         self.update_token_mock.assert_called()
 
     def test_pass_check_token_returns_true(self):
-        self.check_token_validity_mock.return_value = True
+        self.expiry_timestamp_validity_mock.return_value = True
         request = self.get_request(session={'access_token_expiry': 12345})
         assert self.middleware(request) == self.response
-        self.check_token_validity_mock.assert_called_with(access_token_expiry=12345)
+        self.expiry_timestamp_validity_mock.assert_called_with(expiry_timestamp=12345)
         self.update_token_mock.assert_not_called()
 
     def test_fxa_token_handled(self):

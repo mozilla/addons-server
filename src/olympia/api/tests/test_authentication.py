@@ -223,13 +223,13 @@ class TestWebTokenAuthentication(TestCase):
         self.auth = WebTokenAuthentication()
         self.factory = RequestFactory()
         self.user = user_factory(read_dev_agreement=datetime.now())
-        self.check_token_validity_mock = self.patch(
+        self.expiry_timestamp_validity_mock = self.patch(
             'olympia.api.authentication.expiry_timestamp_valid'
         )
         self.update_token_mock = self.patch(
             'olympia.api.authentication.update_fxa_access_token'
         )
-        self.check_token_validity_mock.return_value = False
+        self.expiry_timestamp_validity_mock.return_value = False
         self.fxa_token = mock.Mock()
         self.update_token_mock.return_value = self.fxa_token
 
@@ -370,12 +370,12 @@ class TestWebTokenAuthentication(TestCase):
         token = generate_api_token(self.user)
         with override_settings(USE_FAKE_FXA_AUTH=True):
             assert self.user == self._authenticate(token)[0]
-            self.check_token_validity_mock.assert_not_called()
+            self.expiry_timestamp_validity_mock.assert_not_called()
             self.update_token_mock.assert_not_called()
 
         assert self.user == self._authenticate(token)[0]
         self.update_token_mock.assert_called()
-        self.check_token_validity_mock.assert_called()
+        self.expiry_timestamp_validity_mock.assert_called()
         assert self.request._fxatoken == self.fxa_token
 
     @override_settings(USE_FAKE_FXA_AUTH=False, VERIFY_FXA_ACCESS_TOKEN_API=True)
@@ -383,12 +383,12 @@ class TestWebTokenAuthentication(TestCase):
         with override_settings(VERIFY_FXA_ACCESS_TOKEN_API=False):
             token = generate_api_token(self.user)
             assert self.user == self._authenticate(token)[0]
-            self.check_token_validity_mock.assert_not_called()
+            self.expiry_timestamp_validity_mock.assert_not_called()
             self.update_token_mock.assert_not_called()
 
         assert self.user == self._authenticate(token)[0]
         self.update_token_mock.assert_called()
-        self.check_token_validity_mock.assert_called()
+        self.expiry_timestamp_validity_mock.assert_called()
         assert self.request._fxatoken == self.fxa_token
 
     @override_settings(USE_FAKE_FXA_AUTH=False, VERIFY_FXA_ACCESS_TOKEN_API=True)
