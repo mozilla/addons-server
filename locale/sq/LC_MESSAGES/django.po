@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-02 18:07+0000\n"
-"PO-Revision-Date: 2021-11-08 16:33+0000\n"
+"PO-Revision-Date: 2021-11-08 16:39+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -2696,9 +2696,11 @@ msgstr "Në Pritje të Nënshkrimit të Versionit"
 
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
+"Mbaruat! ✨ Do të njoftoheni me email, kur kartela e nënshkruar të jetë gati për t’u shkarkuar që nga Qendra e Zhvilluesve. Nëse nuk shihni ndonjë email pas 24 orësh, ju lutemi, kontrolloni te dosja "
+"juaj e të padëshiruarve."
 
 msgid "As a reminder, your add-on is subject to manual review at any time."
-msgstr ""
+msgstr "Për t’jua kujtuar, shtesa juaj është subjekt shqyrtimi dorazi në çfarëdo kohe."
 
 msgid "Go to My Submissions"
 msgstr "Kalo te Parashtrimet e Mia"
@@ -2710,7 +2712,7 @@ msgid "Do You Need to Submit Source Code?"
 msgstr "Duhet të Parashtroni Kod Burim?"
 
 msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
-msgstr ""
+msgstr "Shqyrtuesit e shtesave Mozilla lypset të jenë në gjendje të lexojnë dhe të riprodhojnë kodin në zgjerimin tuaj. Nëse s’munden, zgjerimi juaj mund të refuzohet."
 
 msgid "Do you use any of the following in your extension?"
 msgstr "Përdorni në zgjerimin tuaj ndonjë nga sa vijon?"
@@ -2731,7 +2733,7 @@ msgid "You do not need to submit Source Code, and you’re ready for the next st
 msgstr "S’ju duhet të parashtroni Kod Burim, dhe jeni gati për hapin pasues."
 
 msgid "You must submit your extension's source code."
-msgstr ""
+msgstr "Duhet të parashtroni kodin burim të zgjerimit tuaj."
 
 msgid "Your source code must include:"
 msgstr "Kodi juaj burim duhet të përfshijë:"
@@ -2755,7 +2757,7 @@ msgstr "Kartelat burim (ndaras nga librari me burim të hapët, prej palësh të
 
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Për më tepër hollësi, ju lutemi, lexoni <a %(a_attrs)s>Parashtrim Kodi Burim</a>, te Firefox Extension Workshop."
 
 msgid "Upload source code:"
 msgstr "Ngarko kod burim:"
@@ -4392,7 +4394,7 @@ msgstr "Riktheni te një kohë më e thjeshtë — kur përfundimet kryesuese tu
 
 #. editorial content for the primary hero shelves.
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr ""
+msgstr "Reshtni së dhëni sajteve adresën tuaj email. Firefox Relay mbron identitetin tuaj & parandalon poshtë hedhurinë."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4422,7 +4424,7 @@ msgstr "Përgjegjës të fuqishëm fjalëkalimesh"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
-msgstr ""
+msgstr "Shihni zgjedhje nga stafi"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended extensions"
@@ -4487,7 +4489,7 @@ msgstr "Shihni më tepër zgjerime transmetimi në shoqërorë të zgjedhur nga 
 
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
-msgstr ""
+msgstr "Përgjegjës skedash"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
@@ -4495,7 +4497,7 @@ msgstr "Shihni më tepër zgjerime administrimi skedash të zgjedhura nga stafi"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
-msgstr ""
+msgstr "Zgjerime të etiketuara me “{tag}”"
 
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
@@ -4511,7 +4513,7 @@ msgstr "Shihni më tepër bllokues reklamash të zgjedhur nga stafi"
 
 #. editorial content for the homepage shelves.
 msgid "YouTube boosters"
-msgstr ""
+msgstr "Fuqizues YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -5103,7 +5105,7 @@ msgid "Original Add-on ID"
 msgstr "ID-ja Origjinale e Shtesës"
 
 msgid "Add-on(s) sharing same ID"
-msgstr ""
+msgstr "Shtesë(a) që janë të njëjtën ID"
 
 msgid "Internal AMO ID"
 msgstr "ID e brendshme në AMO"
