@@ -117,7 +117,8 @@
             {{ form.comments }}
             {{ form.comments.errors }}
           </div>
-          <div class="review-actions-reasons">
+          <div class="data-toggle review-actions-reasons"
+            data-value="{{ actions_reasons|join('|') }}|">
             <label for="id_reasons">{{ form.reasons.label }}</label>
             <div class="review-actions-reasons-select">
               {{ form.reasons }}
