@@ -24,8 +24,6 @@ class VersionAdmin(admin.ModelAdmin):
 
     view_on_site = False
     readonly_fields = ('id', 'created', 'version', 'channel')
-    list_display = ('id', 'addon_guid', 'version', 'deleted', 'channel')
-    list_select_related = ('addon',)
 
     raw_id_fields = ('addon', 'license')
 
@@ -50,16 +48,15 @@ class VersionAdmin(admin.ModelAdmin):
     )
     inlines = (VersionReviewerFlagsInline,)
 
-    def addon_guid(self, obj):
-        return obj.addon.guid
-
-    addon_guid.short_description = 'Add-on GUID'
-
 
 class InstallOriginAdmin(admin.ModelAdmin):
     view_on_site = False
     raw_id_fields = ('version',)
-    readonly_fields = ('id', 'version', 'origin', 'base_domain')
+    list_display = ('id', 'addon_guid', 'version_version', 'origin', 'base_domain')
+    list_select_related = (
+        'version',
+        'version__addon',
+    )
 
     def has_add_permission(self, request):
         return False
@@ -69,6 +66,16 @@ class InstallOriginAdmin(admin.ModelAdmin):
 
     def has_change_permission(self, request, obj=None):
         return False
+
+    def addon_guid(self, obj):
+        return obj.version.addon.guid
+
+    addon_guid.short_description = 'Add-on GUID'
+
+    def version_version(self, obj):
+        return obj.version.version
+
+    version_version.short_description = 'Version'
 
 
 admin.site.register(InstallOrigin, InstallOriginAdmin)

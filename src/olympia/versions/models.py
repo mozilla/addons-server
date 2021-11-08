@@ -1135,4 +1135,4 @@ class InstallOrigin(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f'{self.version} : {self.origin} ({self.base_domain})'
+        return f'{self.version.version} : {self.origin} ({self.base_domain})'
