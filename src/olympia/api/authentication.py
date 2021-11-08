@@ -14,7 +14,7 @@ import olympia.core.logger
 
 from olympia import core
 from olympia.accounts.verify import (
-    check_fxa_access_token_validity,
+    expiry_timestamp_valid,
     update_fxa_access_token,
 )
 from olympia.api import jwt_auth
@@ -125,7 +125,7 @@ class WebTokenAuthentication(BaseAuthentication):
         if (
             not settings.USE_FAKE_FXA_AUTH
             and settings.VERIFY_FXA_ACCESS_TOKEN_API
-            and not check_fxa_access_token_validity(payload.get('access_token_expiry'))
+            and not expiry_timestamp_valid(payload.get('access_token_expiry'))
         ):
             fxa_token_object = update_fxa_access_token(
                 payload.get('user_token_pk'),

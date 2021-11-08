@@ -221,10 +221,10 @@ class TestIdentify(TestCase):
 
 
 @freeze_time()
-def test_check_fxa_access_token_validity():
-    assert not verify.check_fxa_access_token_validity(None)
-    assert not verify.check_fxa_access_token_validity(time.time() - 1)
-    assert verify.check_fxa_access_token_validity(time.time() + 1)
+def test_expiry_timestamp_valid():
+    assert not verify.expiry_timestamp_valid(None)
+    assert not verify.expiry_timestamp_valid(time.time() - 1)
+    assert verify.expiry_timestamp_valid(time.time() + 1)
 
 
 class TestUpdateFxaAccessToken(TestCase):

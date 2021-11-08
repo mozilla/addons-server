@@ -316,7 +316,7 @@ class TestTokenValidMiddleware(TestCase):
         self.get_response_mock.return_value = self.response
         self.middleware = TokenValidMiddleware(self.get_response_mock)
         self.check_token_validity_mock = self.patch(
-            'olympia.amo.middleware.check_fxa_access_token_validity'
+            'olympia.amo.middleware.expiry_timestamp_valid'
         )
         self.update_token_mock = self.patch(
             'olympia.amo.middleware.update_fxa_access_token'

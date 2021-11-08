@@ -34,7 +34,7 @@ from olympia.accounts.utils import (
     redirect_for_login,
 )
 from olympia.accounts.verify import (
-    check_fxa_access_token_validity,
+    expiry_timestamp_valid,
     update_fxa_access_token,
 )
 
@@ -365,9 +365,7 @@ class TokenValidMiddleware:
             not getattr(request, 'is_api', False)
             and not settings.USE_FAKE_FXA_AUTH
             and settings.VERIFY_FXA_ACCESS_TOKEN_WEB
-            and not check_fxa_access_token_validity(
-                request.session.get('access_token_expiry')
-            )
+            and not expiry_timestamp_valid(request.session.get('access_token_expiry'))
         ):
             fxa_token_object = update_fxa_access_token(
                 request.session.get('user_token_pk'),

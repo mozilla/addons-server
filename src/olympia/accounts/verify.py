@@ -105,8 +105,9 @@ def get_fxa_profile(token, config):
         raise IdentificationError(f'Could not find profile for {token}')
 
 
-def check_fxa_access_token_validity(access_token_expiry):
-    return access_token_expiry and access_token_expiry > time.time()
+def expiry_timestamp_valid(expiry_timestamp):
+    """Check if a timestamp for expiry is valid because it's in the future."""
+    return expiry_timestamp and expiry_timestamp > time.time()
 
 
 def update_fxa_access_token(token_pk, user):

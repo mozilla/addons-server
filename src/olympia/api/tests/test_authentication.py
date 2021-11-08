@@ -224,7 +224,7 @@ class TestWebTokenAuthentication(TestCase):
         self.factory = RequestFactory()
         self.user = user_factory(read_dev_agreement=datetime.now())
         self.check_token_validity_mock = self.patch(
-            'olympia.api.authentication.check_fxa_access_token_validity'
+            'olympia.api.authentication.expiry_timestamp_valid'
         )
         self.update_token_mock = self.patch(
             'olympia.api.authentication.update_fxa_access_token'
