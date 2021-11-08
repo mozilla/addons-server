@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-02 18:07+0000\n"
-"PO-Revision-Date: 2021-11-08 08:20+0000\n"
+"PO-Revision-Date: 2021-11-08 08:31+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -1748,9 +1748,8 @@ msgstr "Njoftim Sigurie nga Mozilla: Kredencialet tuaja API AMO janë shfuqizuar
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Vleftësimi prodhoi shumë gabime/sinjalizime, ndaj %s e mesazheve u prenë. Pasi të trajtoni mesazhet që duken, do të jeni në gjendje të shihni të tjerët."
 
-#, fuzzy
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr "Aktualisht nuk mbulohet ngarkimi për manifest v3. Më tepër rreth rrjedhës kohore të mbulimit mund të lexoni [{start_href}këtu{end_href}]."
+msgstr "Aktualisht nuk mbulohet ngarkimi për manifest V3. {start_href}Lexoni më tepër rreth rrjedhës kohore të mbulimit{end_href}."
 
 msgid "Updated"
 msgstr "Përditësuar më"
@@ -2707,9 +2706,8 @@ msgstr "Duhet të Parashtroni Kod Burim?"
 msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
 msgstr ""
 
-#, fuzzy
 msgid "Do you use any of the following in your extension?"
-msgstr "Përdorni ndonjë nga sa vijon?"
+msgstr "Përdorni në zgjerimin tuaj ndonjë nga sa vijon?"
 
 msgid "Code generators or minifiers"
 msgstr "Prodhues ose minimizues kodi"
@@ -2720,9 +2718,8 @@ msgstr "Mjete që ndërthurin në një kartelë të vetme shumë kartela, fjala 
 msgid "Web template engines, both for HTML and CSS"
 msgstr "Mekanizma gjedhesh Web, për HTML dhe CSS njëkohësisht"
 
-#, fuzzy
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the extension"
-msgstr "Çfarëdo mjeti tjetër që merr kod apo kartela, zbaton procesin, dhe prodhon kod apo kartelë(a) për t’u përfshirë te shtesa"
+msgstr "Çfarëdo mjeti tjetër që merr kod apo kartela, zbaton procesin, dhe prodhon kod apo kartelë(a) për t’u përfshirë te zgjerimi"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
 msgstr "S’ju duhet të parashtroni Kod Burim, dhe jeni gati për hapin pasues."
@@ -2730,13 +2727,11 @@ msgstr "S’ju duhet të parashtroni Kod Burim, dhe jeni gati për hapin pasues.
 msgid "You must submit your extension's source code."
 msgstr ""
 
-#, fuzzy
 msgid "Your source code must include:"
-msgstr "U ngarkua kod burim"
+msgstr "Kodi juaj burim duhet të përfshijë:"
 
-#, fuzzy
 msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
-msgstr "Udhëzime montimi hap pas hapi për të krijuar një kopje të përpiktë të kodit të shtesës."
+msgstr "Udhëzime montimi hap pas hapi, për të krijuar një kopje të përpiktë të kodit të shtesës, te një kartelë README në kodin tuaj burim apo te shënimet e shqyrtuesit në faqen pasuese."
 
 msgid "A build script that executes all necessary technical steps."
 msgstr "Një programth montimi që përmbush krejt hapat teknikë të domosdoshëm."
@@ -2744,17 +2739,13 @@ msgstr "Një programth montimi që përmbush krejt hapat teknikë të domosdosh�
 msgid "Operating system and build environment requirements."
 msgstr "Domosdoshmëri për sistemin operativ dhe mjedisin e montimit."
 
-#, fuzzy
 msgid "The required version and installation instructions of any programs used in the build process (such as <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis\">npm</span>)."
 msgstr ""
-"Hollësi (përfshi version të domosdoshëm dhe udhëzime instalimi), të çfarëdo programesh të përdorur në procesin e montimit (për shembull: version për <span class=\"tech-emphasis\">node</span> dhe "
-"<span class=\"tech-emphasis\">npm</span> të përdorur)."
+"Versionin e domosdoshëm dhe udhëzime instalimi të çfarëdo programesh të përdorur në procesin e montimit (të tillë si <span class=\"tech-emphasis\">node</span> dhe <span class=\"tech-"
+"emphasis\">npm</span>)."
 
-#, fuzzy
 msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
-msgstr ""
-"<span class=\"instruction-emphasis\">Shënim:</span> Kartelat burim (ndaras nga librari me burim të hapët, prej palësh të treta) s’mund të ndërpërpilohen, vihen në varg, minimizohen apo të preken në "
-"rrugë të tjera nga makina."
+msgstr "Kartelat burim (ndaras nga librari me burim të hapët, prej palësh të treta) s’mund të ndërpërpilohen, vihen në varg, minimizohen apo të preken në rrugë të tjera nga makina."
 
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
@@ -4350,9 +4341,8 @@ msgid "Goodbye, annoying cookie warnings!"
 msgstr "Lamtumirë, sinjalizime të bezdisura cookie-sh!"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "All your emoji needs—always just a click away."
-msgstr "Ngrini një shkallë më lartë lojën tuaj me emoji-t. Dhjetëra emoji mahnitës, për çfarëdo rasti - vetëm një klik larg."
+msgstr "Krejt nevojat tuaja për emoji—përherë vetëm një klik larg."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4412,20 +4402,17 @@ msgstr "Shihni tërë zgjerimet"
 
 #. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Top anti-tracking extensions"
-msgstr "Zgjerime popullore"
+msgstr "Zgjerimet anti-gjurmim më të vlerësuara"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Image search extensions"
-msgstr "Shihni tërë zgjerimet"
+msgstr "Zgjerime kërkimi figurash"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Strong password managers"
-msgstr "Përgjegjës të rekomanduar fjalëkalimesh"
+msgstr "Përgjegjës të fuqishëm fjalëkalimesh"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4452,9 +4439,8 @@ msgid "Enhanced privacy extensions"
 msgstr "Zgjerime privatësie të thelluar"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more recommended privacy extensions"
-msgstr "Shihni më tepër zgjerime të rekomanduara"
+msgstr "Shihni më tepër zgjerime privatësie të rekomanduara"
 
 #. editorial content for the homepage shelves.
 # Plural in this context means many of the add-on type
@@ -4474,74 +4460,64 @@ msgid "See more recommended themes"
 msgstr "Shihni më tepër tema të rekomanduara"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more password manager staff picks"
-msgstr "Shihni më tepër zgjerime të rekomanduara"
+msgstr "Shihni më tepër zgjerime përgjegjës fjalëkalimesh të zgjedhura nga stafi"
 
 #. editorial content for the homepage shelves.
 msgid "Translation tools"
 msgstr "Mjete përkthimi"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more translation tool staff picks"
-msgstr "Shihni më tepër mjete përkthimi"
+msgstr "Shihni më tepër mjete përkthimi të zgjedhura nga stafi"
 
 #. editorial content for the homepage shelves.
 msgid "Social streaming"
 msgstr "Transmetim shoqëror"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more social streaming staff picks"
-msgstr "Shihni më tepër zgjerime transmetimi në shoqërorë"
+msgstr "Shihni më tepër zgjerime transmetimi në shoqërorë të zgjedhur nga stafi"
 
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more tab management staff picks"
-msgstr "Shihni më tepër zgjerime të rekomanduara"
+msgstr "Shihni më tepër zgjerime administrimi skedash të zgjedhura nga stafi"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more extensions tagged \"{tag}\""
-msgstr "Shihni më tepër zgjerime popullore"
+msgstr "Shihni më tepër zgjerime të etiketuara me \"{tag}\""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Elite ad blockers"
-msgstr "Përditësoni bllok shtesash"
+msgstr "Bllokues reklamash elitarë"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more ad blocker staff picks"
-msgstr "Shihni më tepër zgjerime të rekomanduara"
+msgstr "Shihni më tepër bllokues reklamash të zgjedhur nga stafi"
 
 #. editorial content for the homepage shelves.
 msgid "YouTube boosters"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more YouTube extension staff picks"
-msgstr "Shihni më tepër mjete përkthimi"
+msgstr "Shihni më tepër zgjerime YouTube të zgjedhura nga stafi"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Trending themes"
-msgstr "Tema të rekomanduara"
+msgstr "Tema në modë"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more trending themes"
-msgstr "Shihni më tepër tema të rekomanduara"
+msgstr "Shihni më tepër tema në modë"
 
 msgid "Could not parse the manifest file."
 msgstr "S’përtypi dot kartelën manifest."
@@ -4769,9 +4745,8 @@ msgstr "S’mund të lini një shqyrtim rreth shtesës tuaj."
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "S’mund të ngarkoni më tepër se një shqyrtim për të njëjtin version të një shtese."
 
-#, fuzzy
 msgid "Invalid flag [{}] - must be one of [{}]"
-msgstr "Parametër i pavlefshëm [%s] - duhet të jetë një nga [%s]"
+msgstr "Parametër i pavlefshëm [{}] - duhet të jetë një nga [{}]"
 
 msgid "This rating can't be flagged because it has no review text."
 msgstr "Këtij vlerësimi s’mund t’i vihesh shenjë, ngaqë nuk ka tekst shqyrtimi."
@@ -5118,9 +5093,8 @@ msgstr "Të dhëna Shtese për {0}"
 msgid "Add-on ID"
 msgstr "ID Shtese"
 
-#, fuzzy
 msgid "Original Add-on ID"
-msgstr "Nënshkruajeni Shtesën"
+msgstr "ID-ja Origjinale e Shtesës"
 
 msgid "Add-on(s) sharing same ID"
 msgstr ""
