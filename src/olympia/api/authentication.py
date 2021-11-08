@@ -134,7 +134,7 @@ class WebTokenAuthentication(BaseAuthentication):
             )
             if not fxa_token_object:
                 log.info(
-                    'User access token refresh failed; they need to login to FxA again'
+                    'User access token refresh failed; user needs to login to FxA again'
                 )
                 raise exceptions.AuthenticationFailed()
             request._fxatoken = fxa_token_object

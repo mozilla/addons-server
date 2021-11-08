@@ -27,6 +27,7 @@ from rest_framework import permissions
 
 import MySQLdb as mysql
 
+import olympia.core.logger
 from olympia import amo
 from olympia.accounts.utils import (
     add_api_token_to_response,
@@ -43,6 +44,8 @@ from .reverse import set_url_prefix
 from .templatetags.jinja_helpers import urlparams
 from .utils import render
 
+
+log = olympia.core.logger.getLogger('amo.middleware')
 
 auth_path = re.compile('%saccounts/authenticate/?$' % settings.DRF_API_REGEX)
 
@@ -375,9 +378,9 @@ class TokenValidMiddleware:
                 else None
             )
             if not fxa_token_object:
-                print(
+                log.info(
                     'User access token refresh failed; '
-                    'so redirect to login to FxA again'
+                    'redirecting to login to FxA again'
                 )
                 return redirect_for_login(request)
             request.session[
