@@ -334,24 +334,24 @@ class TestTokenValidMiddleware(TestCase):
 
     def test_pass_because_use_fake_fxa_auth(self):
         with override_settings(USE_FAKE_FXA_AUTH=True):
-            request = self.get_request()
+            request = self.get_request(session={'user_token_pk': None})
             assert self.middleware(request) == self.response
             self.expiry_timestamp_validity_mock.assert_not_called()
             self.update_token_mock.assert_not_called()
 
-        request = self.get_request()
+        request = self.get_request(session={'user_token_pk': None})
         assert self.middleware(request) == self.response
         self.expiry_timestamp_validity_mock.assert_called()
         self.update_token_mock.assert_called()
 
     def test_pass_because_verify_fxa_access_token_web(self):
         with override_settings(VERIFY_FXA_ACCESS_TOKEN_WEB=False):
-            request = self.get_request()
+            request = self.get_request(session={'user_token_pk': None})
             assert self.middleware(request) == self.response
             self.expiry_timestamp_validity_mock.assert_not_called()
             self.update_token_mock.assert_not_called()
 
-        request = self.get_request()
+        request = self.get_request(session={'user_token_pk': None})
         assert self.middleware(request) == self.response
         self.expiry_timestamp_validity_mock.assert_called()
         self.update_token_mock.assert_called()

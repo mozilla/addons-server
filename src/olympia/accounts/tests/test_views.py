@@ -260,6 +260,46 @@ class TestLoginUserAndRegisterUser(TestCase):
         assert user.last_login_ip == '8.8.8.8'
         incr_mock.assert_called_with('accounts.account_created_from_fxa')
 
+    def test_login_with_token_data(self):
+        token_data = {
+            'refresh_token': 'somerefresh_token',
+            'access_token_expiry': time.time() + 12345,
+            'config_name': 'someconfigname',
+        }
+        views.login_user(
+            self.__class__, self.request, self.user, self.identity, token_data
+        )
+        self.login_mock.assert_called_with(self.request, self.user)
+        assert (
+            self.request.session['access_token_expiry']
+            == token_data['access_token_expiry']
+        )
+        assert FxaToken.objects.exists()
+        fxa_token = FxaToken.objects.get()
+        assert fxa_token.user == self.user
+        assert fxa_token.access_token_expiry == datetime.fromtimestamp(
+            token_data['access_token_expiry']
+        )
+        assert fxa_token.refresh_token == token_data['refresh_token']
+        assert fxa_token.config_name == token_data['config_name']
+        assert self.request.session['user_token_pk'] == fxa_token.pk
+
+    def test_login_with_token_data_no_refresh_token(self):
+        token_data = {
+            'access_token_expiry': time.time() + 12345,
+            'config_name': 'someconfigname',
+        }
+        views.login_user(
+            self.__class__, self.request, self.user, self.identity, token_data
+        )
+        self.login_mock.assert_called_with(self.request, self.user)
+        assert (
+            self.request.session['access_token_expiry']
+            == token_data['access_token_expiry']
+        )
+        assert not FxaToken.objects.exists()
+        assert 'user_token_pk' not in self.request.session
+
 
 class TestFindUser(TestCase):
     def test_user_exists_with_uid(self):
@@ -484,7 +524,6 @@ class TestWithUser(TestCase):
         assert generate_api_token_mock.call_count == 0
 
     @override_settings(SESSION_COOKIE_SECURE=True, SESSION_COOKIE_DOMAIN='example.com')
-    # @mock.patch.object(views, 'generate_api_token', lambda u, p: 'fake-api-token')
     def test_already_logged_in_add_api_token_cookie_if_missing(self):
         self.request.data = {
             'code': 'foo',

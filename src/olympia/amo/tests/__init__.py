@@ -588,7 +588,7 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
         assert self.client.login(email=email)
 
     def enable_messages(self, request):
-        setattr(request, 'session', 'session')
+        setattr(request, 'session', {})
         messages = FallbackStorage(request)
         setattr(request, '_messages', messages)
         return request

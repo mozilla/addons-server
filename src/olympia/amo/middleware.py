@@ -367,9 +367,12 @@ class TokenValidMiddleware:
             and settings.VERIFY_FXA_ACCESS_TOKEN_WEB
             and not expiry_timestamp_valid(request.session.get('access_token_expiry'))
         ):
-            fxa_token_object = update_fxa_access_token(
-                request.session.get('user_token_pk'),
-                request.user,
+            fxa_token_object = (
+                update_fxa_access_token(
+                    request.session.get('user_token_pk'), request.user
+                )
+                if 'user_token_pk' in request.session
+                else None
             )
             if not fxa_token_object:
                 print(

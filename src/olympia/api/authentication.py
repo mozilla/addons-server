@@ -127,9 +127,10 @@ class WebTokenAuthentication(BaseAuthentication):
             and settings.VERIFY_FXA_ACCESS_TOKEN_API
             and not expiry_timestamp_valid(payload.get('access_token_expiry'))
         ):
-            fxa_token_object = update_fxa_access_token(
-                payload.get('user_token_pk'),
-                user,
+            fxa_token_object = (
+                update_fxa_access_token(payload['user_token_pk'], user)
+                if 'user_token_pk' in payload
+                else None
             )
             if not fxa_token_object:
                 log.info(

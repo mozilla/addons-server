@@ -367,7 +367,7 @@ class TestWebTokenAuthentication(TestCase):
 
     @override_settings(USE_FAKE_FXA_AUTH=False, VERIFY_FXA_ACCESS_TOKEN_API=True)
     def test_fxa_access_token_validity_fake_fxa_auth(self):
-        token = generate_api_token(self.user)
+        token = generate_api_token(self.user, user_token_pk=None)
         with override_settings(USE_FAKE_FXA_AUTH=True):
             assert self.user == self._authenticate(token)[0]
             self.expiry_timestamp_validity_mock.assert_not_called()
@@ -380,8 +380,8 @@ class TestWebTokenAuthentication(TestCase):
 
     @override_settings(USE_FAKE_FXA_AUTH=False, VERIFY_FXA_ACCESS_TOKEN_API=True)
     def test_fxa_access_token_validity_verify_fxa_access_token_web(self):
+        token = generate_api_token(self.user, user_token_pk=None)
         with override_settings(VERIFY_FXA_ACCESS_TOKEN_API=False):
-            token = generate_api_token(self.user)
             assert self.user == self._authenticate(token)[0]
             self.expiry_timestamp_validity_mock.assert_not_called()
             self.update_token_mock.assert_not_called()

@@ -186,17 +186,18 @@ def login_user(sender, request, user, identity, token_data=None):
     user_logged_in.send(sender=sender, request=request, user=user)
     login(request, user)
     if token_data:
-        fxa_token_object = FxaToken.objects.create(
-            user=user,
-            access_token_expiry=datetime.fromtimestamp(
-                token_data.get('access_token_expiry')
-            ),
-            refresh_token=token_data.get('refresh_token'),
-            config_name=token_data['config_name'],
-        )
-        request.session['user_token_pk'] = fxa_token_object.pk
-        request.session['access_token_expiry'] = token_data.get('access_token_expiry')
-        return fxa_token_object
+        request.session['access_token_expiry'] = token_data['access_token_expiry']
+        if 'refresh_token' in token_data:
+            fxa_token_object = FxaToken.objects.create(
+                user=user,
+                access_token_expiry=datetime.fromtimestamp(
+                    token_data['access_token_expiry']
+                ),
+                refresh_token=token_data['refresh_token'],
+                config_name=token_data['config_name'],
+            )
+            request.session['user_token_pk'] = fxa_token_object.pk
+            return fxa_token_object
 
 
 def fxa_error_message(message, login_help_url):
