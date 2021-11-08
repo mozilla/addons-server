@@ -1133,3 +1133,6 @@ class InstallOrigin(models.Model):
     def save(self, *args, **kwargs):
         self.base_domain = self._extract_base_domain_from_origin(self.origin)
         super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f'{self.version.version} : {self.origin} ({self.base_domain})'

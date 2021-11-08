@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import License, Version, VersionReviewerFlags
+from .models import InstallOrigin, License, Version, VersionReviewerFlags
 
 
 class VersionReviewerFlagsInline(admin.StackedInline):
@@ -49,5 +49,35 @@ class VersionAdmin(admin.ModelAdmin):
     inlines = (VersionReviewerFlagsInline,)
 
 
+class InstallOriginAdmin(admin.ModelAdmin):
+    view_on_site = False
+    raw_id_fields = ('version',)
+    list_display = ('id', 'addon_guid', 'version_version', 'origin', 'base_domain')
+    list_select_related = (
+        'version',
+        'version__addon',
+    )
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+    def addon_guid(self, obj):
+        return obj.version.addon.guid
+
+    addon_guid.short_description = 'Add-on GUID'
+
+    def version_version(self, obj):
+        return obj.version.version
+
+    version_version.short_description = 'Version'
+
+
+admin.site.register(InstallOrigin, InstallOriginAdmin)
 admin.site.register(License, LicenseAdmin)
 admin.site.register(Version, VersionAdmin)
