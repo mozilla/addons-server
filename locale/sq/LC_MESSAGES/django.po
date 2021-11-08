@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-02 18:07+0000\n"
-"PO-Revision-Date: 2021-11-08 08:31+0000\n"
+"PO-Revision-Date: 2021-11-08 09:04+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -1722,7 +1722,7 @@ msgid "Ensure name and summary combined are at most {limit_value} characters (th
 msgstr "Garantoni që emri dhe përmbledhja tok të jenë e shumta {limit_value} shenja (janë {show_value})."
 
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
-msgstr ""
+msgstr "Në këtë sajt. <span class=\"helptext\">Parashtrimi juaj shfaqet publikisht te {site_domain}.</span>"
 
 msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
