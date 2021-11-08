@@ -146,23 +146,24 @@ class TestReviewForm(TestCase):
         assert len(choices) == 1  # No addon response
 
     def test_reasons(self):
-        self.reason_1 = ReviewActionReason.objects.create(
-            name='reason 1',
-            is_active=True,
-        )
-        self.reason_2 = ReviewActionReason.objects.create(
-            name='reason 2',
+        self.reason_a = ReviewActionReason.objects.create(
+            name='a reason',
             is_active=True,
         )
         self.inactive_reason = ReviewActionReason.objects.create(
-            name='inactive reason',
+            name='b inactive reason',
             is_active=False,
+        )
+        self.reason_c = ReviewActionReason.objects.create(
+            name='c reason',
+            is_active=True,
         )
         form = self.get_form()
         choices = form.fields['reasons'].choices
         assert len(choices) == 2  # Only active reasons
-        assert list(choices.queryset)[0] == self.reason_1
-        assert list(choices.queryset)[1] == self.reason_2
+        # Reasons are displayed in alphabetical order.
+        assert list(choices.queryset)[0] == self.reason_a
+        assert list(choices.queryset)[1] == self.reason_c
 
     def test_reasons_required(self):
         self.grant_permission(self.request.user, 'Addons:Review')

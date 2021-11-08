@@ -112,3 +112,5 @@ EXTENSION_WORKSHOP_URL = env(
 REMOTE_SETTINGS_API_URL = 'https://settings-cdn.stage.mozaws.net/v1/'
 REMOTE_SETTINGS_WRITER_URL = 'https://settings-writer.stage.mozaws.net/v1/'
 REMOTE_SETTINGS_WRITER_BUCKET = 'staging'
+
+ENABLE_FEATURE_REVIEW_ACTION_REASON = False
