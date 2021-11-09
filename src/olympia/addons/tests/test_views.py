@@ -18,7 +18,7 @@ from waffle import switch_is_active
 from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.addons.models import AddonCategory
+from olympia.addons.models import AddonCategory, DeniedSlug
 from olympia.amo.tests import (
     APITestClient,
     ESTestCase,
@@ -852,6 +852,47 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
         )
         assert response.status_code == 201, response.content
 
+    def test_set_slug(self):
+        response = self.client.post(
+            self.url,
+            data={
+                **self.minimal_data,
+                'slug': '!@!#!@##@$$%$#%#%$^^%&%',
+            },
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'slug': [
+                'Enter a valid “slug” consisting of letters, numbers, underscores or '
+                'hyphens.'
+            ]
+        }
+
+        DeniedSlug.objects.create(name='denied-slug')
+        response = self.client.post(
+            self.url,
+            data={
+                **self.minimal_data,
+                'slug': 'denied-slug',
+            },
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'slug': ['This slug cannot be used. Please choose another.']
+        }
+
+        response = self.client.post(
+            self.url,
+            data={
+                **self.minimal_data,
+                'slug': '1234',
+            },
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'slug': ['This slug cannot be used. Please choose another.']
+        }
+
     def test_set_extra_data(self):
         data = {
             **self.minimal_data,
@@ -1038,6 +1079,47 @@ class TestAddonViewSetUpdate(TestCase):
         assert response.status_code == 400, response.content
         assert response.data == {'categories': ['Invalid category name.']}
         assert self.addon.reload().app_categories == {'firefox': [tabs_cat]}
+
+    def test_set_slug_invalid(self):
+        response = self.client.patch(
+            self.url,
+            data={'slug': '!@!#!@##@$$%$#%#%$^^%&%'},
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'slug': [
+                'Enter a valid “slug” consisting of letters, numbers, underscores or '
+                'hyphens.'
+            ]
+        }
+
+    def test_set_slug_denied(self):
+        DeniedSlug.objects.create(name='denied-slug')
+        response = self.client.patch(
+            self.url,
+            data={'slug': 'denied-slug'},
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'slug': ['This slug cannot be used. Please choose another.']
+        }
+
+        response = self.client.patch(
+            self.url,
+            data={'slug': '1234'},
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'slug': ['This slug cannot be used. Please choose another.']
+        }
+
+        # except if the slug was already in use (e.g. admin allowed)
+        self.addon.update(slug='denied-slug')
+        response = self.client.patch(
+            self.url,
+            data={'slug': 'denied-slug'},
+        )
+        assert response.status_code == 200, response.content
 
     def test_set_extra_data(self):
         self.addon.description = 'Existing description'

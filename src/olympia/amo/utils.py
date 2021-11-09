@@ -490,7 +490,7 @@ def normalize_string(value, strip_punctuation=False):
 def slug_validator(
     s,
     ok=SLUG_OK,
-    lower=True,
+    lower=False,
     spaces=False,
     delimiter='-',
     message=validate_slug.message,
