@@ -709,6 +709,8 @@ def review(request, addon, channel=None):
     actions_comments = []
     # The actions for which we should display the delayed rejection fields.
     actions_delayable = []
+    # The actions for which we should display the reason select field.
+    actions_reasons = []
 
     for key, action in actions:
         if not (is_static_theme or action.get('minimal')):
@@ -717,6 +719,8 @@ def review(request, addon, channel=None):
             actions_comments.append(key)
         if action.get('delayable', False):
             actions_delayable.append(key)
+        if action.get('requires_reasons', False):
+            actions_reasons.append(key)
 
     addons_sharing_same_guid = (
         Addon.unfiltered.all()
@@ -816,6 +820,7 @@ def review(request, addon, channel=None):
         actions_comments=actions_comments,
         actions_delayable=actions_delayable,
         actions_full=actions_full,
+        actions_reasons=actions_reasons,
         addon=addon,
         addons_sharing_same_guid=addons_sharing_same_guid,
         api_token=request.COOKIES.get(API_TOKEN_COOKIE, None),
