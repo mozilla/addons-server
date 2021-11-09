@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-02 18:07+0000\n"
-"PO-Revision-Date: 2021-05-26 04:58+0000\n"
-"Last-Translator: yotanutmaliwan <yotanutmaliwan@gmail.com>\n"
+"PO-Revision-Date: 2021-11-09 10:51+0000\n"
+"Last-Translator: aefgh39622@gmail.com <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
@@ -247,7 +247,9 @@ msgstr "คุณพยายามที่จะทำบางสิ่งซ
 msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
-msgstr "คุณเห็นข้อความนี้เนื่องจากไซต์ HTTPS นี้ต้องการให้ 'ส่วนหัว Referer' ถูกส่งโดยเว็บเบราว์เซอร์ของคุณ แต่ไม่มีการส่ง จำเป็นต้องมีส่วนหัวนี้เนื่องจากเหตุผลเกี่ยวกับความปลอดภัย เพื่อให้แน่ใจว่าเบราว์เซอร์ของคุณจะไม่ถูกเจาะโดยบุคคลที่สาม"
+msgstr ""
+"คุณเห็นข้อความนี้เนื่องจากไซต์ HTTPS นี้ต้องการให้ 'ส่วนหัว Referer' ถูกส่งโดยเว็บเบราว์เซอร์ของคุณ แต่ไม่มีการส่ง จำเป็นต้องมีส่วนหัวนี้เนื่องจากเหตุผลเกี่ยวกับความปลอดภัย "
+"เพื่อให้แน่ใจว่าเบราว์เซอร์ของคุณจะไม่ถูกเจาะโดยบุคคลที่สาม"
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
 msgstr "ถ้าคุณได้กำหนดค่าเบราว์เซอร์ของคุณให้ปิดใช้งานส่วนหัว 'Referer' แล้ว ให้เปิดใช้งานใหม่อีกครั้ง อย่างน้อยให้กับไซต์นี้ หรือให้กับการเชื่อมต่อ HTTPS หรือให้กับคำขอแบบ 'same-origin'"
@@ -263,24 +265,27 @@ msgstr "ไม่พบ"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
-"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
-"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
-"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
+"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
+"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
+"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>เราขออภัย แต่เราไม่พบสิ่งที่คุณกำลังค้นหาอยู่</h1> <p>ไม่พบหน้าหรือไฟล์ที่คุณร้องขอบนเว็บไซต์ของเรา มันเป็นไปได้ว่าคุณคลิกลิงก์ซึ่งหมดอายุแล้ว หรือพิมพ์ที่อยู่ไม่ถูกต้อง</p> <ul> <li>ถ้าคุณใช้การพิมพ์ที่อยู่ โปรดตรวจสอบการสะกดอีกครั้ง</li> "
-"<li>ถ้าคุณตามลิงก์นี้มาจากที่ไหนสักแห่ง โปรด%(open_bug_link)sรายงานปัญหา%(close_bug_link)s บอกเราว่าคุณมาจากไหนและคุณกำลังมองหาอะไร และเราจะทำการแก้ไขให้ดีที่สุด</li> </ul> "
-"<p>หรือคุณสามารถกระโดดข้ามไปยังหน้าที่ได้รับความนิยมบนเว็บไซต์ของเรา</p> <ul> <li>คุณสนใจ<a href=\"%(rec)s\">รายการส่วนเสริมที่แนะนำ</a>?</li> <li>คุณต้องการที่จะ<a href=\"%(search)s\">ค้นหาสำหรับส่วนเสริม</a>? "
-"คุณอาจจะไปที่<a href=\"%(search)s\">หน้าค้นหา</a> หรือใช้ช่องค้นหาด้านบน</li> <li>ถ้าคุณต้องการจะไปที่จุดเริ่มต้น เพียงแค่ไปที่<a href=\"%(home)s\">หน้าแรกของส่วนเสริม</a> </li> </ul>"
+"<h1>เราขออภัย แต่เราไม่พบสิ่งที่คุณกำลังค้นหาอยู่</h1> <p>ไม่พบหน้าหรือไฟล์ที่คุณร้องขอบนเว็บไซต์ของเรา มันเป็นไปได้ว่าคุณคลิกลิงก์ซึ่งหมดอายุแล้ว หรือพิมพ์ที่อยู่ไม่ถูกต้อง</p> <ul> "
+"<li>ถ้าคุณใช้การพิมพ์ที่อยู่ โปรดตรวจสอบการสะกดอีกครั้ง</li> <li>ถ้าคุณตามลิงก์นี้มาจากที่ไหนสักแห่ง โปรด%(open_bug_link)sรายงานปัญหา%(close_bug_link)s บอกเราว่าคุณมาจากไหนและคุณกำลังมองหาอะไร "
+"และเราจะทำการแก้ไขให้ดีที่สุด</li> </ul> <p>หรือคุณสามารถกระโดดข้ามไปยังหน้าที่ได้รับความนิยมบนเว็บไซต์ของเรา</p> <ul> <li>คุณสนใจ<a href=\"%(rec)s\">รายการส่วนเสริมที่แนะนำ</a>?</li> "
+"<li>คุณต้องการที่จะ<a href=\"%(search)s\">ค้นหาสำหรับส่วนเสริม</a>? คุณอาจจะไปที่<a href=\"%(search)s\">หน้าค้นหา</a> หรือใช้ช่องค้นหาด้านบน</li> <li>ถ้าคุณต้องการจะไปที่จุดเริ่มต้น เพียงแค่ไปที่<a "
+"href=\"%(home)s\">หน้าแรกของส่วนเสริม</a> </li> </ul>"
 
 msgid "Oops"
 msgstr "อุปส์"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
-msgstr "<h1>อุ๊ปส์!  เรามีข้อผิดพลาด</h1> <p>เราจะทำการซ่อมแซมในเร็ว ๆ นี้</p><p>คุณอาจลองรีเฟรชหน้า หรือย้อนกลับไปยัง<a href=\"%(home)s\">หน้าแรกของส่วนเสริม</a>ได้</p>"
+msgstr ""
+"<h1>อุ๊ปส์! เรามีข้อผิดพลาด</h1> <p>เราจะทำการแก้ไขในเร็ว ๆ นี้</p> <p>คุณอาจลองรีเฟรชหน้า หรือย้อนกลับไปยัง<a href=\"%(home)s\">หน้าแรกของส่วนเสริม</a>ได้</p> "
+"คุณยังสามารถช่วยเราแก้ไขปัญหานี้ได้โดย<a href=\"https://github.com/mozilla/addons/issues/new\">รายงานปัญหา</a>พร้อมระบุรายละเอียดว่าคุณเข้ามาที่หน้านี้อย่างไร </p>"
 
 msgid "Register or Log in"
 msgstr "ลงทะเบียนหรือเข้าสู่ระบบ"
@@ -417,8 +422,8 @@ msgstr "รุ่น"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
+"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr "หากแอปพลิเคชันที่รองรับของคุณไม่ต้องการไฟล์กำกับ คุณยังคงต้องรวมไว้หนึ่งตามคุณสมบัติที่ต้องการที่ระบุไว้%(amo_manifests_mdn_link_open)sที่นี่%(amo_manifests_mdn_link_close)s"
 
 msgid "This custom URL is already in use by another one of your collections."
@@ -475,9 +480,9 @@ msgstr "ร้องขอการพิจารณาแล้ว"
 msgid "Review Unlisted"
 msgstr "หมายเหตุบทวิจารณ์"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Multiple %(name)s"
-msgstr "อธิบายส่วนเสริมของคุณ"
+msgstr "ลบหลาย %(name)s"
 
 msgid "Home"
 msgstr "หน้าแรก"
@@ -502,13 +507,11 @@ msgstr "ลบ"
 msgid "Update"
 msgstr "อัปเดต"
 
-#, fuzzy
 msgid "Reject Submission"
-msgstr "ไปยังการส่งของฉัน"
+msgstr "ปฏิเสธการส่ง"
 
-#, fuzzy
 msgid "Approve Submission"
-msgstr "ไปยังการส่งของฉัน"
+msgstr "อนุมัติการส่ง"
 
 #, python-format
 msgid "Add %(name)s"
@@ -1335,9 +1338,8 @@ msgstr "Creative Commons แบบแสดงที่มา อนุญาต
 msgid "Not Promoted"
 msgstr "โปรโมต"
 
-#, fuzzy
 msgid "Recommended"
-msgstr "แสดงความคิดเห็นแล้ว"
+msgstr "แนะนำ"
 
 msgid "Sponsored"
 msgstr "ได้รับการสนับสนุน"
@@ -1623,7 +1625,6 @@ msgstr "ก่อนที่จะเปลี่ยนภาษาเริ่
 msgid "Users can not be added directly"
 msgstr ""
 
-#, fuzzy
 msgid "An author can only be present once."
 msgstr "สามารถระบุผู้สร้างหนึ่งคนได้ครั้งเดียวเท่านั้น"
 
@@ -1669,9 +1670,8 @@ msgstr "กรุณาระบุนโยบายความเป็นส
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "ไม่รองรับไฟล์ชนิดนี้ โปรดอัปโหลดไฟล์เก็บถาวร {extensions}"
 
-#, fuzzy
 msgid "Invalid or broken archive."
-msgstr "โทเค็น JWT ไม่ถูกต้อง"
+msgstr "ที่เก็บถาวรไม่ถูกต้องหรือเสียหาย"
 
 msgid "View current"
 msgstr "ดูปัจจุบัน"
@@ -1735,9 +1735,8 @@ msgstr ""
 msgid "Display Name"
 msgstr "ชื่อที่แสดงผล"
 
-#, fuzzy
 msgid "Invalid or corrupt add-on file."
-msgstr "โทเค็น JWT ไม่ถูกต้อง"
+msgstr "ไฟล์ส่วนเสริมไม่ถูกต้องหรือเสียหาย"
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr ""
@@ -1845,9 +1844,8 @@ msgstr "ภาพจะต้องกว้างอย่างน้อย {0
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "มิติของภาพจะต้องอยู่ในอัตราส่วน 4:3"
 
-#, fuzzy
 msgid "Icon must be at least {0} pixels wide and tall."
-msgstr "รูปภาพจะต้องกว้าง {0} พิกเซลและสูง {1} พิกเซลเท่านั้น"
+msgstr "ไอคอนจะต้องมีความกว้างและความสูงอย่างน้อย {0} พิกเซล"
 
 msgid "Icon must be square (same width and height)."
 msgstr "ไอคอนต้องเป็นสี่เหลี่ยมจัตุรัส (ความกว้างและความสูงเดียวกัน)"
@@ -2059,12 +2057,8 @@ msgid ""
 msgstr "ส่วนเสริมนี้ไม่สามารถเข้ากันได้กับ <b>%(app_name)s %(app_version)s</b> ซึ่งเป็นรุ่นล่าสุดของ %(app_name)s กรุณาพิจารณาการปรับปรุงความเข้ากันได้ของส่วนเสริมหรืออัปโหลดส่วนเสริมรุ่นใหม่"
 
 #, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
-msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">อัปเดตความเข้ากันได้</a> <a href=\"%(version_url)s\" class=\"button\">อัปโหลดรุ่นใหม่</a> หรือ <a href=\"#\" class=\"close"
-"\">ไม่สนใจ</a>"
+msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
+msgstr "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">อัปเดตความเข้ากันได้</a> <a href=\"%(version_url)s\" class=\"button\">อัปโหลดรุ่นใหม่</a> หรือ <a href=\"#\" class=\"close\">ไม่สนใจ</a>"
 
 msgid "View and update application compatibility ranges"
 msgstr ""
@@ -2276,8 +2270,8 @@ msgid "Email"
 msgstr "อีเมล"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
 msgstr ""
 
 msgid "Website"
@@ -2836,8 +2830,8 @@ msgstr "ข้อมูลลับ JWT"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
-"\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
 
 #, python-format
@@ -2910,8 +2904,7 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
-"your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
@@ -4568,8 +4561,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr ""
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
+" with these guidelines."
 msgstr ""
 
 msgid "Do:"
@@ -6079,8 +6072,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
+" which explains how we handle your information."
 msgstr ""
 
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
@@ -6138,8 +6131,7 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
-"website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"
