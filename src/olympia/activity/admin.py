@@ -67,7 +67,7 @@ class ReviewActionReasonLogAdmin(admin.ModelAdmin):
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == 'reason':
-            kwargs["queryset"] = ReviewActionReason.objects.filter(
+            kwargs['queryset'] = ReviewActionReason.objects.filter(
                 is_active__exact=True
             )
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
