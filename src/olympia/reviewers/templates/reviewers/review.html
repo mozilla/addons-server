@@ -111,9 +111,20 @@
 
       <div class="review-actions-section data-toggle review-comments"
            data-value="{{ actions_comments|join('|') }}|">
-        <label for="id_comments">{{ form.comments.label }}</label>
-        {{ form.comments }}
-        {{ form.comments.errors }}
+        <div class="review-actions-comments-reasons">
+          <div class="review-actions-comments">
+            <label for="id_comments">{{ form.comments.label }}</label>
+            {{ form.comments }}
+            {{ form.comments.errors }}
+          </div>
+          <div class="review-actions-reasons">
+            <label for="id_reasons">{{ form.reasons.label }}</label>
+            <div class="review-actions-reasons-select">
+              {{ form.reasons }}
+              {{ form.reasons.errors }}
+            </div>
+          </div>
+        </div>
         <div class="review-actions-canned">
           {{ _('Insert canned response...') }}
           {{ form.canned_response }}

@@ -1,3 +1,4 @@
+from django.test.utils import override_settings
 from django.utils.encoding import force_str
 
 from pyquery import PyQuery as pq
@@ -7,7 +8,11 @@ from olympia.addons.models import Addon, AddonReviewerFlags
 from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.reviewers.forms import ReviewForm
-from olympia.reviewers.models import AutoApprovalSummary, CannedResponse
+from olympia.reviewers.models import (
+    AutoApprovalSummary,
+    CannedResponse,
+    ReviewActionReason,
+)
 from olympia.reviewers.utils import ReviewHelper
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
@@ -140,7 +145,113 @@ class TestReviewForm(TestCase):
         assert self.cr_theme.response in choices[0]
         assert len(choices) == 1  # No addon response
 
+    def test_reasons(self):
+        self.reason_a = ReviewActionReason.objects.create(
+            name='a reason',
+            is_active=True,
+        )
+        self.inactive_reason = ReviewActionReason.objects.create(
+            name='b inactive reason',
+            is_active=False,
+        )
+        self.reason_c = ReviewActionReason.objects.create(
+            name='c reason',
+            is_active=True,
+        )
+        form = self.get_form()
+        choices = form.fields['reasons'].choices
+        assert len(choices) == 2  # Only active reasons
+        # Reasons are displayed in alphabetical order.
+        assert list(choices.queryset)[0] == self.reason_a
+        assert list(choices.queryset)[1] == self.reason_c
+
+    def test_reasons_required(self):
+        self.grant_permission(self.request.user, 'Addons:Review')
+        form = self.get_form()
+        assert not form.is_bound
+        form = self.get_form(
+            data={
+                'action': 'reply',
+                'comments': 'lol',
+            }
+        )
+        assert form.is_bound
+        assert not form.is_valid()
+        assert form.errors == {
+            'reasons': ['This field is required.'],
+        }
+
+        # Alter the action to make it not require reasons to be sent
+        # regardless of what the action actually is, what we want to test is
+        # the form behaviour.
+        form = self.get_form(
+            data={
+                'action': 'reply',
+                'comments': 'lol',
+            }
+        )
+        form.helper.actions['reply']['requires_reasons'] = False
+        assert form.is_bound
+        assert form.is_valid()
+        assert not form.errors
+
+    @override_settings(ENABLE_FEATURE_REVIEW_ACTION_REASON=False)
+    def test_reasons_not_required_with_setting_off(self):
+        self.grant_permission(self.request.user, 'Addons:Review')
+        form = self.get_form()
+        assert not form.is_bound
+        form = self.get_form(
+            data={
+                'action': 'reply',
+                'comments': 'lol',
+            }
+        )
+        assert form.is_bound
+        assert form.is_valid()
+        assert not form.errors
+
     def test_comments_and_action_required_by_default(self):
+        self.grant_permission(self.request.user, 'Addons:Review')
+        form = self.get_form()
+        assert not form.is_bound
+        form = self.get_form(
+            data={
+                'reasons': [
+                    ReviewActionReason.objects.create(
+                        name='reason 1',
+                        is_active=True,
+                    )
+                ],
+            }
+        )
+        assert form.is_bound
+        assert not form.is_valid()
+        assert form.errors == {
+            'action': ['This field is required.'],
+            'comments': ['This field is required.'],
+        }
+
+        # Alter the action to make it not require comments to be sent
+        # regardless of what the action actually is, what we want to test is
+        # the form behaviour.
+        form = self.get_form(
+            data={
+                'action': 'reply',
+                'reasons': [
+                    ReviewActionReason.objects.create(
+                        name='reason 1',
+                        is_active=True,
+                    )
+                ],
+            }
+        )
+        form.helper.actions['reply']['comments'] = False
+        assert form.is_bound
+        assert form.is_valid()
+        assert not form.errors
+
+    @override_settings(ENABLE_FEATURE_REVIEW_ACTION_REASON=False)
+    def test_comments_and_action_required_by_default_reason_feature_off(self):
         self.grant_permission(self.request.user, 'Addons:Review')
         form = self.get_form()
         assert not form.is_bound
@@ -278,6 +389,31 @@ class TestReviewForm(TestCase):
         assert option2.attrib.get('value') == str(pending_version.pk)
 
     def test_versions_required(self):
+        # auto-approve everything (including self.addon.current_version)
+        for version in Version.unfiltered.all():
+            AutoApprovalSummary.objects.create(
+                version=version, verdict=amo.AUTO_APPROVED
+            )
+        self.grant_permission(self.request.user, 'Addons:Review')
+        form = self.get_form(
+            data={
+                'action': 'reject_multiple_versions',
+                'comments': 'lol',
+                'reasons': [
+                    ReviewActionReason.objects.create(
+                        name='reason 1',
+                        is_active=True,
+                    )
+                ],
+            }
+        )
+        form.helper.actions['reject_multiple_versions']['versions'] = True
+        assert form.is_bound
+        assert not form.is_valid()
+        assert form.errors == {'versions': ['This field is required.']}
+
+    @override_settings(ENABLE_FEATURE_REVIEW_ACTION_REASON=False)
+    def test_versions_required_reason_feature_off(self):
         # auto-approve everything (including self.addon.current_version)
         for version in Version.unfiltered.all():
             AutoApprovalSummary.objects.create(
