@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-02 18:07+0000\n"
-"PO-Revision-Date: 2021-11-09 03:51+0000\n"
+"PO-Revision-Date: 2021-11-09 04:02+0000\n"
 "Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -779,10 +779,10 @@ msgid "Reply by developer on {addon} {version}."
 msgstr ""
 
 msgid "Developer Reply"
-msgstr "डेवलपर उत्तर दें "
+msgstr "डेवलपर का जवाब"
 
 msgid "Reply by reviewer on {addon} {version}."
-msgstr ""
+msgstr "{addon} {version} पर समीक्षक का जवाब।"
 
 msgid "Reviewer Reply"
 msgstr "समीक्षक का उत्तर"
@@ -2122,7 +2122,7 @@ msgid "%(ago)s by %(user)s"
 msgstr "%(user)s द्वारा %(ago)s"
 
 msgid "Older activity for My Add-ons"
-msgstr ""
+msgstr "मेरे ऐड-ऑन के लिए पुरानी गतिविधि"
 
 #. {0} is an integer.
 msgid "<b>{0}</b> theme"
@@ -2131,7 +2131,7 @@ msgstr[0] "<b>{0}</b> थीम"
 msgstr[1] "<b>{0}</b> थीम"
 
 msgid "Edit Product Page"
-msgstr ""
+msgstr "उत्पाद पृष्ठ संपादित करें"
 
 msgid "None"
 msgstr "कुछ नहीं"
@@ -2180,9 +2180,8 @@ msgstr "अतिरिक्त जानकारियां"
 msgid "Edit"
 msgstr "संपादन"
 
-#, fuzzy
 msgid "Additional Details for {0}"
-msgstr "{0} के लिए ऐड-ऑन विवरण"
+msgstr "{0} के लिए अतिरिक्त विवरण"
 
 msgid "Tags"
 msgstr "टैग"
@@ -2214,12 +2213,11 @@ msgid ""
 msgstr ""
 
 msgid "Describe Add-on"
-msgstr ""
+msgstr "ऐड-ऑन का वर्णन करें"
 
 #. {0} is the addon name
-#, fuzzy
 msgid "Describe {0}"
-msgstr "संस्करण {0}"
+msgstr "वर्णन {0}"
 
 msgid "Name and Summary"
 msgstr "नाम और सारांश"
@@ -2565,9 +2563,8 @@ msgstr ""
 msgid "Summary:"
 msgstr "सारांश:"
 
-#, fuzzy
 msgid "Description:"
-msgstr "वर्णन"
+msgstr "वर्णन:"
 
 msgid "This add-on is experimental"
 msgstr "यह ऐड-ऑन प्रयोगात्मक है"
@@ -4913,7 +4910,7 @@ msgid "This will confirm approval of the selected versions without notifying the
 msgstr ""
 
 msgid "Reviewer reply"
-msgstr ""
+msgstr "समीक्षक का जवाब"
 
 msgid "This will send a message to the developer. You will be notified when they reply."
 msgstr ""
