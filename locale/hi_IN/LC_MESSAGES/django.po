@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-02 18:07+0000\n"
-"PO-Revision-Date: 2019-08-29 23:18+0000\n"
-"Last-Translator: parthp1808 <parthp1808@gmail.com>\n"
+"PO-Revision-Date: 2021-11-09 07:10+0000\n"
+"Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
 "MIME-Version: 1.0\n"
@@ -2407,7 +2407,7 @@ msgid "Can others create derivative works from your Add-on?"
 msgstr ""
 
 msgid "Yes, as long as they share alike"
-msgstr ""
+msgstr "हाँ, जब तक वे एक जैसे साझा करते हैं"
 
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr ""
@@ -2680,7 +2680,7 @@ msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr ""
 
 msgid "Go to My Submissions"
-msgstr ""
+msgstr "मेरे सबमिशन पर जाएं"
 
 msgid "Source Code Upload"
 msgstr ""
@@ -2746,7 +2746,7 @@ msgid "Upload Add-on"
 msgstr "ऐड-ऑन अपलोड करें"
 
 msgid "Where to Host Version"
-msgstr ""
+msgstr "संस्करण होस्ट कहाँ करें"
 
 msgid "Change"
 msgstr "परिवर्तित करें"
@@ -3315,7 +3315,7 @@ msgid "Validation"
 msgstr "मान्यीकरण"
 
 msgid "Delete/Disable"
-msgstr ""
+msgstr "हटाएं/अक्षम करें"
 
 msgid "Next version of this add-on"
 msgstr "इस ऐड-ऑन का अगला संस्करण"
@@ -3340,10 +3340,10 @@ msgid ""
 msgstr ""
 
 msgid "Deleting this version will permanently delete:"
-msgstr ""
+msgstr "इस संस्करण को हटाना स्थाई रूप से हटा देगा:"
 
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr ""
+msgstr "<strong>महत्वपूर्ण:</strong> एक बार संस्करण हटा दिए जाने के बाद, आप एक ही संस्करण संख्या के साथ एक नया संस्करण अपलोड नहीं कर सकते हैं।"
 
 msgid "Are you sure you wish to delete this version?"
 msgstr "क्या आप वाकई इस संस्करण को हटाना चाहते हैं?"
@@ -3579,7 +3579,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Automatically reload tabs based on time intervals you set."
-msgstr ""
+msgstr "आपके द्वारा सेट किए गए समय अंतराल के आधार पर स्वचालित रूप से टैब पुनः लोड करें।"
 
 #. editorial content for the discovery pane.
 msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
@@ -3807,7 +3807,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Check your favorite RSS feeds all in a single page."
-msgstr ""
+msgstr "अपने पसंदीदा RSS फ़ीड को एक ही पृष्ठ में देखें।"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3824,7 +3824,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
-msgstr ""
+msgstr "अनावश्यक स्वरूपण को दूर करें और केवल सादे पाठ की कॉपी करें।"
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
@@ -3853,7 +3853,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Create general and website-specific notes to review later."
-msgstr ""
+msgstr "बाद में समीक्षा करने के लिए सामान्य और वेबसाइट-विशिष्ट नोट्स बनाएं।"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3895,7 +3895,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
-msgstr ""
+msgstr "विज्ञापनों को अपने खोज परिणामों में दिखने से रोकें।"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
@@ -3920,7 +3920,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Find what you're looking for within a specific domain."
-msgstr ""
+msgstr "एक विशिष्ट डोमेन के अंदर आप जो खोज रहे हैं उसे ढूंढें।"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text from any website and right-click to search YouTube for related media."
@@ -3981,7 +3981,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
-msgstr ""
+msgstr "एक साधारण विज्ञापन अवरोधक केवल इच्छित सामग्री को प्रदर्शित करने पर केंद्रित है।"
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make informed shopping decisions."
@@ -4059,7 +4059,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Adjust browser audio settings with extreme clarity."
-msgstr ""
+msgstr "अत्यधिक स्पष्टता के साथ ब्राउज़र ऑडियो सेटिंग्स समायोजित करें।"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4474,7 +4474,7 @@ msgid "Add-on ID is required for Firefox 47 and below."
 msgstr ""
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr ""
+msgstr "सबसे कम समर्थित \"strict_min_version\" 42.0 है।"
 
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr ""
