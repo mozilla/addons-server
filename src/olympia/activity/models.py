@@ -716,6 +716,10 @@ class ActivityLog(ModelBase):
             )
 
         for arg in args:
+            create_kwargs = {
+                'activity_log': al,
+                'created': kw.get('created', timezone.now()),
+            }
             if isinstance(arg, tuple):
                 class_ = arg[0]
                 id_ = arg[1]
@@ -724,42 +728,17 @@ class ActivityLog(ModelBase):
                 id_ = arg.id if isinstance(arg, ModelBase) else None
 
             if class_ == Addon:
-                AddonLog.objects.create(
-                    addon_id=id_,
-                    activity_log=al,
-                    created=kw.get('created', timezone.now()),
-                )
+                AddonLog.objects.create(addon_id=id_, **create_kwargs)
             elif class_ == Version:
-                VersionLog.objects.create(
-                    version_id=id_,
-                    activity_log=al,
-                    created=kw.get('created', timezone.now()),
-                )
+                VersionLog.objects.create(version_id=id_, **create_kwargs)
             elif class_ == UserProfile:
-                UserLog.objects.create(
-                    user_id=id_,
-                    activity_log=al,
-                    created=kw.get('created', timezone.now()),
-                )
+                UserLog.objects.create(user_id=id_, **create_kwargs)
             elif class_ == Group:
-                GroupLog.objects.create(
-                    group_id=id_,
-                    activity_log=al,
-                    created=kw.get('created', timezone.now()),
-                )
+                GroupLog.objects.create(group_id=id_, **create_kwargs)
             elif class_ == Block:
-                BlockLog.objects.create(
-                    block_id=id_,
-                    activity_log=al,
-                    guid=arg.guid,
-                    created=kw.get('created', timezone.now()),
-                )
+                BlockLog.objects.create(block_id=id_, guid=arg.guid, **create_kwargs)
             elif class_ == ReviewActionReason:
-                ReviewActionReasonLog.objects.create(
-                    reason_id=id_,
-                    activity_log=al,
-                    created=kw.get('created', timezone.now()),
-                )
+                ReviewActionReasonLog.objects.create(reason_id=id_, **create_kwargs)
 
         if getattr(action, 'store_ip', False):
             # Index specific actions by their IP address. Note that the caller

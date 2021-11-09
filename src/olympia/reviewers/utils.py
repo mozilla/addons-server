@@ -851,9 +851,7 @@ class ReviewBase:
         if timestamp is None:
             timestamp = datetime.now()
 
-        reasons = self.data.get('reasons', [])
-        for reason in reasons:
-            args = args + (reason,)
+        args = (*args, *self.data.get('reasons', []))
 
         kwargs = {'user': self.user, 'created': timestamp, 'details': details}
         self.log_entry = ActivityLog.create(action, *args, **kwargs)
@@ -923,7 +921,6 @@ class ReviewBase:
             ),
             'comments': self.data.get('comments'),
             'SITE_URL': settings.SITE_URL,
-            'reasons': self.data.get('reasons'),
         }
 
     def reviewer_reply(self):
