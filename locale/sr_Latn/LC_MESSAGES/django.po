@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-02 18:07+0000\n"
+"POT-Creation-Date: 2021-11-09 18:04+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -5688,6 +5688,9 @@ msgstr ""
 #, fuzzy
 msgid "days"
 msgstr "7 dana"
+
+msgid "Choose one or more reasons:"
+msgstr ""
 
 msgid "Choose a canned response..."
 msgstr "Izaberi gotov odgovor..."

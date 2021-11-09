@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-02 18:07+0000\n"
+"POT-Creation-Date: 2021-11-09 18:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -156,7 +156,7 @@ msgstr ""
 
 #: src/olympia/addons/admin.py:337
 #: src/olympia/devhub/templates/devhub/addons/owner.html:28
-#: src/olympia/reviewers/templates/reviewers/review.html:420
+#: src/olympia/reviewers/templates/reviewers/review.html:431
 msgid "Authors"
 msgstr ""
 
@@ -706,7 +706,7 @@ msgstr ""
 
 #: src/olympia/blocklist/templates/admin/blocklist/blocklistsubmission_add_form.html:98
 #: src/olympia/reviewers/templates/reviewers/motd.html:11
-#: src/olympia/reviewers/templates/reviewers/review.html:171
+#: src/olympia/reviewers/templates/reviewers/review.html:182
 msgid "Save"
 msgstr ""
 
@@ -2134,7 +2134,7 @@ msgstr ""
 msgid "Duplicate"
 msgstr ""
 
-#: src/olympia/constants/reviewers.py:178 src/olympia/reviewers/utils.py:609
+#: src/olympia/constants/reviewers.py:178 src/olympia/reviewers/utils.py:610
 msgid "Reject"
 msgstr ""
 
@@ -3150,7 +3150,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:9
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:61
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:82
-#: src/olympia/reviewers/templates/reviewers/review.html:405
+#: src/olympia/reviewers/templates/reviewers/review.html:416
 msgid "Edit"
 msgstr ""
 
@@ -3253,7 +3253,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:98
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:71
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:36
-#: src/olympia/reviewers/templates/reviewers/review.html:393
+#: src/olympia/reviewers/templates/reviewers/review.html:404
 msgid "View Product Page"
 msgstr ""
 
@@ -3312,7 +3312,7 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:187
-#: src/olympia/reviewers/templates/reviewers/review.html:427
+#: src/olympia/reviewers/templates/reviewers/review.html:438
 msgid "Categories"
 msgstr ""
 
@@ -3387,7 +3387,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:60
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:61
-#: src/olympia/reviewers/forms.py:310 src/olympia/reviewers/forms.py:317
+#: src/olympia/reviewers/forms.py:320 src/olympia/reviewers/forms.py:327
 msgid "Whiteboard"
 msgstr ""
 
@@ -3610,7 +3610,7 @@ msgid "Please tell us why you are deleting your add-on:"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:1
-#: src/olympia/reviewers/templates/reviewers/review.html:390
+#: src/olympia/reviewers/templates/reviewers/review.html:401
 msgid "Actions"
 msgstr ""
 
@@ -3643,7 +3643,7 @@ msgid "Daily statistics on downloads and users"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:54
-#: src/olympia/reviewers/templates/reviewers/review.html:409
+#: src/olympia/reviewers/templates/reviewers/review.html:420
 msgid "Statistics"
 msgstr ""
 
@@ -4376,12 +4376,12 @@ msgid "View All"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:40
-#: src/olympia/reviewers/templates/reviewers/review.html:397
+#: src/olympia/reviewers/templates/reviewers/review.html:408
 msgid "Listed Review Page"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:42
-#: src/olympia/reviewers/templates/reviewers/review.html:400
+#: src/olympia/reviewers/templates/reviewers/review.html:411
 msgid "Unlisted Review Page"
 msgstr ""
 
@@ -6852,85 +6852,89 @@ msgstr ""
 msgid "Rated %(rating)s out of 5 stars"
 msgstr ""
 
-#: src/olympia/reviewers/forms.py:28
+#: src/olympia/reviewers/forms.py:29
 msgid "Approved reviews"
 msgstr ""
 
-#: src/olympia/reviewers/forms.py:29
+#: src/olympia/reviewers/forms.py:30
 msgid "Deleted reviews"
 msgstr ""
 
-#: src/olympia/reviewers/forms.py:36 src/olympia/reviewers/forms.py:54
+#: src/olympia/reviewers/forms.py:37 src/olympia/reviewers/forms.py:55
 msgid "View entries between"
 msgstr ""
 
-#: src/olympia/reviewers/forms.py:37 src/olympia/reviewers/forms.py:55
+#: src/olympia/reviewers/forms.py:38 src/olympia/reviewers/forms.py:56
 msgid "and"
 msgstr ""
 
-#: src/olympia/reviewers/forms.py:39
+#: src/olympia/reviewers/forms.py:40
 msgid "Filter by type/action"
 msgstr ""
 
-#: src/olympia/reviewers/forms.py:56
+#: src/olympia/reviewers/forms.py:57
 msgid "containing"
 msgstr ""
 
-#: src/olympia/reviewers/forms.py:63
+#: src/olympia/reviewers/forms.py:64
 msgid "start"
 msgstr ""
 
 #. L10n: end, as in "end date"
-#: src/olympia/reviewers/forms.py:68
+#: src/olympia/reviewers/forms.py:69
 msgid "end"
 msgstr ""
 
 #. L10n: Description of what can be searched for
-#: src/olympia/reviewers/forms.py:71
+#: src/olympia/reviewers/forms.py:72
 msgid "add-on, reviewer or comment"
 msgstr ""
 
-#: src/olympia/reviewers/forms.py:147
+#: src/olympia/reviewers/forms.py:148
 msgid "Comments:"
 msgstr ""
 
-#: src/olympia/reviewers/forms.py:163
+#: src/olympia/reviewers/forms.py:164
 msgid "Operating systems:"
 msgstr ""
 
-#: src/olympia/reviewers/forms.py:164
+#: src/olympia/reviewers/forms.py:165
 msgid "Applications:"
 msgstr ""
 
-#: src/olympia/reviewers/forms.py:178
+#: src/olympia/reviewers/forms.py:179
 msgid "Delay rejection, requiring developer to correct in less than…"
 msgstr ""
 
-#: src/olympia/reviewers/forms.py:185
+#: src/olympia/reviewers/forms.py:186
 msgid "Reject immediately. Only use in case of serious security issues."
 msgstr ""
 
-#: src/olympia/reviewers/forms.py:197
+#: src/olympia/reviewers/forms.py:198
 msgid "days"
 msgstr ""
 
-#: src/olympia/reviewers/forms.py:259
+#: src/olympia/reviewers/forms.py:203
+msgid "Choose one or more reasons:"
+msgstr ""
+
+#: src/olympia/reviewers/forms.py:266
 msgid "Choose a canned response..."
 msgstr ""
 
-#: src/olympia/reviewers/forms.py:310
+#: src/olympia/reviewers/forms.py:320
 msgid "Private Whiteboard"
 msgstr ""
 
-#: src/olympia/reviewers/forms.py:323
+#: src/olympia/reviewers/forms.py:333
 msgid "Keep review; remove flags"
 msgstr ""
 
-#: src/olympia/reviewers/forms.py:324
+#: src/olympia/reviewers/forms.py:334
 msgid "Skip for now"
 msgstr ""
 
-#: src/olympia/reviewers/forms.py:325
+#: src/olympia/reviewers/forms.py:335
 msgid "Delete review"
 msgstr ""
 
@@ -7002,7 +7006,7 @@ msgstr ""
 msgid "ID"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:435
+#: src/olympia/reviewers/templates/reviewers/review.html:446
 #: src/olympia/reviewers/utils.py:93
 msgid "Flags"
 msgstr ""
@@ -7065,89 +7069,89 @@ msgid ""
 "to the developer."
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:610
+#: src/olympia/reviewers/utils.py:611
 msgid ""
 "This will reject this version and remove it from the queue. The comments will"
 " be sent to the developer."
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:628
+#: src/olympia/reviewers/utils.py:630
 msgid "Approve Content"
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:629
+#: src/olympia/reviewers/utils.py:631
 msgid ""
 "This records your approbation of the content of the latest public version, "
 "without notifying the developer."
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:644
+#: src/olympia/reviewers/utils.py:646
 msgid "Confirm Approval"
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:645
+#: src/olympia/reviewers/utils.py:647
 msgid ""
 "The latest public version of this add-on was automatically approved. This "
 "records your confirmation of the approval of that version, without notifying "
 "the developer."
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:662
+#: src/olympia/reviewers/utils.py:664
 msgid "Reject Multiple Versions"
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:666
+#: src/olympia/reviewers/utils.py:668
 msgid ""
 "This will reject the selected versions. The comments will be sent to the "
 "developer."
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:674
+#: src/olympia/reviewers/utils.py:677
 msgid "Block Multiple Versions"
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:678
+#: src/olympia/reviewers/utils.py:681
 msgid ""
 "This will disable the selected approved versions silently, and open up the "
 "block creation admin page."
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:691
+#: src/olympia/reviewers/utils.py:694
 msgid "Confirm Multiple Versions"
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:694
+#: src/olympia/reviewers/utils.py:697
 msgid ""
 "This will confirm approval of the selected versions without notifying the "
 "developer."
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:707
+#: src/olympia/reviewers/utils.py:710
 msgid "Reviewer reply"
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:708
+#: src/olympia/reviewers/utils.py:711
 msgid ""
 "This will send a message to the developer. You will be notified when they "
 "reply."
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:721
+#: src/olympia/reviewers/utils.py:725
 msgid "Request super-review"
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:722
+#: src/olympia/reviewers/utils.py:726
 msgid ""
 "If you have concerns about this add-on that an admin reviewer should look "
 "into, enter your comments in the area below. They will not be sent to the "
 "developer."
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:733
+#: src/olympia/reviewers/utils.py:737
 msgid "Comment"
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:734
+#: src/olympia/reviewers/utils.py:738
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
 
@@ -7571,7 +7575,7 @@ msgid "Add-on important changes history"
 msgstr ""
 
 #: src/olympia/reviewers/templates/reviewers/review.html:57
-#: src/olympia/reviewers/templates/reviewers/review.html:416
+#: src/olympia/reviewers/templates/reviewers/review.html:427
 msgid "Add-on History"
 msgstr ""
 
@@ -7589,154 +7593,154 @@ msgid ""
 "conflict."
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:118
+#: src/olympia/reviewers/templates/reviewers/review.html:129
 msgid "Insert canned response..."
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:125
+#: src/olympia/reviewers/templates/reviewers/review.html:136
 msgid "Files:"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:138
+#: src/olympia/reviewers/templates/reviewers/review.html:149
 msgid "Tested on:"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:167
+#: src/olympia/reviewers/templates/reviewers/review.html:178
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:184
+#: src/olympia/reviewers/templates/reviewers/review.html:195
 msgid ""
 "The whiteboard is the place to exchange information relevant to this addon "
 "(whatever the version), between the developer and the reviewer. This is "
 "visible and editable by both."
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:194
+#: src/olympia/reviewers/templates/reviewers/review.html:205
 msgid ""
 "The private whiteboard is used for exchanging information between reviewers "
 "that is independent of the version. Please keep the language objective. It is"
 " visible only to reviewers."
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:202
+#: src/olympia/reviewers/templates/reviewers/review.html:213
 msgid "Update whiteboards"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:209
+#: src/olympia/reviewers/templates/reviewers/review.html:220
 msgid "More Actions"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:219
+#: src/olympia/reviewers/templates/reviewers/review.html:230
 msgid "Notify me about new listed versions"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:228
+#: src/olympia/reviewers/templates/reviewers/review.html:239
 msgid "Notify me about new unlisted versions"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:240
+#: src/olympia/reviewers/templates/reviewers/review.html:251
 msgid "Allow resubmission"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:245
+#: src/olympia/reviewers/templates/reviewers/review.html:256
 msgid "Deny resubmission"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:251
+#: src/olympia/reviewers/templates/reviewers/review.html:262
 msgid "Force-disable add-on"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:256
+#: src/olympia/reviewers/templates/reviewers/review.html:267
 msgid "Force-enable add-on"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:265
+#: src/olympia/reviewers/templates/reviewers/review.html:276
 msgid "Disable Listed Auto-Approval"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:272
+#: src/olympia/reviewers/templates/reviewers/review.html:283
 msgid "Enable Listed Auto-Approval"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:279
+#: src/olympia/reviewers/templates/reviewers/review.html:290
 msgid "Disable Unlisted Auto-Approval"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:286
+#: src/olympia/reviewers/templates/reviewers/review.html:297
 msgid "Enable Unlisted Auto-Approval"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:294
+#: src/olympia/reviewers/templates/reviewers/review.html:305
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:301
+#: src/olympia/reviewers/templates/reviewers/review.html:312
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:309
+#: src/olympia/reviewers/templates/reviewers/review.html:320
 msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:316
+#: src/olympia/reviewers/templates/reviewers/review.html:327
 msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:325
+#: src/olympia/reviewers/templates/reviewers/review.html:336
 msgid "Auto-Approval currently disabled until {date}"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:326
+#: src/olympia/reviewers/templates/reviewers/review.html:337
 msgid "Clear Auto-Approval Extra Delay"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:334
+#: src/olympia/reviewers/templates/reviewers/review.html:345
 msgid "Clear pending rejections"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:343
+#: src/olympia/reviewers/templates/reviewers/review.html:354
 msgid "Clear Admin Code Review Flag"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:352
+#: src/olympia/reviewers/templates/reviewers/review.html:363
 msgid "Clear Admin Content Review Flag"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:361
+#: src/olympia/reviewers/templates/reviewers/review.html:372
 msgid "Clear Admin Static Theme Review Flag"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:369
+#: src/olympia/reviewers/templates/reviewers/review.html:380
 msgid "View Blocklist Submission"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:372
+#: src/olympia/reviewers/templates/reviewers/review.html:383
 msgid "Block add-on"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:375
+#: src/olympia/reviewers/templates/reviewers/review.html:386
 msgid "Update add-on block"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:405
-#: src/olympia/reviewers/templates/reviewers/review.html:408
+#: src/olympia/reviewers/templates/reviewers/review.html:416
+#: src/olympia/reviewers/templates/reviewers/review.html:419
 msgid "(admin)"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:408
+#: src/olympia/reviewers/templates/reviewers/review.html:419
 msgid "Admin Page"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:413
+#: src/olympia/reviewers/templates/reviewers/review.html:424
 msgid "Review This Add-on"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:415
+#: src/olympia/reviewers/templates/reviewers/review.html:426
 msgid "More Information"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:417
+#: src/olympia/reviewers/templates/reviewers/review.html:428
 msgid "Resolution"
 msgstr ""
 

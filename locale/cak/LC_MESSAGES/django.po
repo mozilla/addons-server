@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-02 18:07+0000\n"
+"POT-Creation-Date: 2021-11-09 18:04+0000\n"
 "PO-Revision-Date: 2021-05-04 00:37+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4874,6 +4874,9 @@ msgstr ""
 
 msgid "days"
 msgstr "taq q'ij"
+
+msgid "Choose one or more reasons:"
+msgstr ""
 
 msgid "Choose a canned response..."
 msgstr "Ticha' jun k'o wi chi tzolin tzij..."

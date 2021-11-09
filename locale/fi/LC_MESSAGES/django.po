@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-02 18:07+0000\n"
+"POT-Creation-Date: 2021-11-09 18:04+0000\n"
 "PO-Revision-Date: 2021-08-14 12:57+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -4854,6 +4854,9 @@ msgstr ""
 
 msgid "days"
 msgstr "päivää"
+
+msgid "Choose one or more reasons:"
+msgstr ""
 
 msgid "Choose a canned response..."
 msgstr ""

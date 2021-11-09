@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-02 18:07+0000\n"
+"POT-Creation-Date: 2021-11-09 18:04+0000\n"
 "PO-Revision-Date: 2020-07-17 11:46+0000\n"
 "Last-Translator: abtin <abtin@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4884,6 +4884,9 @@ msgid "Reject immediately. Only use in case of serious security issues."
 msgstr ""
 
 msgid "days"
+msgstr ""
+
+msgid "Choose one or more reasons:"
 msgstr ""
 
 msgid "Choose a canned response..."
