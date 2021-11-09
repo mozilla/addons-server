@@ -5602,6 +5602,12 @@ class TestReview(ReviewBase):
             doc('.data-toggle.review-comments')[0].attrib['data-value']
             == 'reject_multiple_versions|reply|super|comment|'
         )
+
+        assert (
+            doc('.data-toggle.review-actions-reasons')[0].attrib['data-value']
+            == 'reject_multiple_versions|reply|'
+        )
+
         # We don't have approve/reject actions so these have an empty
         # data-value.
         assert doc('.data-toggle.review-files')[0].attrib['data-value'] == '|'
@@ -5644,6 +5650,12 @@ class TestReview(ReviewBase):
             doc('.data-toggle.review-comments')[0].attrib['data-value']
             == 'reject_multiple_versions|reply|super|comment|'
         )
+
+        assert (
+            doc('.data-toggle.review-actions-reasons')[0].attrib['data-value']
+            == 'reject_multiple_versions|reply|'
+        )
+
         # We don't have approve/reject actions so these have an empty
         # data-value.
         assert doc('.data-toggle.review-files')[0].attrib['data-value'] == '|'
@@ -5671,6 +5683,7 @@ class TestReview(ReviewBase):
         assert not doc('.data-toggle.review-actions-desc')
         assert not doc('select#id_versions.data-toggle')[0]
         assert doc('.data-toggle.review-comments')[0].attrib['data-value'] == '|'
+        assert doc('.data-toggle.review-actions-reasons')[0].attrib['data-value'] == '|'
         assert doc('.data-toggle.review-files')[0].attrib['data-value'] == '|'
         assert doc('.data-toggle.review-tested')[0].attrib['data-value'] == '|'
         elm = doc('.data-toggle.review-delayed-rejection')[0]
@@ -5707,6 +5720,10 @@ class TestReview(ReviewBase):
             doc('.data-toggle.review-tested')[0].attrib['data-value']
             == 'public|reject|'
         )
+        assert (
+            doc('.data-toggle.review-actions-reasons')[0].attrib['data-value']
+            == 'public|reject|reject_multiple_versions|reply|'
+        )
 
     def test_data_value_attributes_static_theme(self):
         self.addon.update(type=amo.ADDON_STATICTHEME)
@@ -5733,6 +5750,10 @@ class TestReview(ReviewBase):
         assert (
             doc('.data-toggle.review-comments')[0].attrib['data-value']
             == 'public|reject|reject_multiple_versions|reply|super|comment|'
+        )
+        assert (
+            doc('.data-toggle.review-actions-reasons')[0].attrib['data-value']
+            == 'public|reject|reject_multiple_versions|reply|'
         )
         # we don't show files and tested with for any static theme actions
         assert doc('.data-toggle.review-files')[0].attrib['data-value'] == '|'
