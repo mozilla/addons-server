@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-02 18:07+0000\n"
-"PO-Revision-Date: 2021-11-09 07:10+0000\n"
+"PO-Revision-Date: 2021-11-09 07:16+0000\n"
 "Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -4507,7 +4507,7 @@ msgid "The add-on ID in your manifest.json (%s) does not match the ID of your ad
 msgstr ""
 
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "डुप्लिकेट ऐड-ऑन आईडी मिला।"
 
 msgid "Version numbers should have fewer than 32 characters."
 msgstr ""
@@ -4516,16 +4516,16 @@ msgid "Version numbers should only contain letters, numbers, and these punctuati
 msgstr ""
 
 msgid "Maximum size for WebExtension themes is {0}."
-msgstr ""
+msgstr "WebExtension थीम के लिए {0} अधिकतम आकार है।"
 
 msgid "You cannot submit this type of add-on"
-msgstr ""
+msgstr "आप इस प्रकार के ऐड-ऑन सबमिट नहीं कर सकते हैं"
 
 msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
+msgstr "आप एक Mozilla हस्ताक्षरित एक्सटेंशन जमा नहीं कर सकते हैं"
 
 msgid "You cannot submit a language pack"
 msgstr ""
@@ -4547,10 +4547,10 @@ msgid "Sections"
 msgstr "वर्गों"
 
 msgid "Some tips for writing a great review"
-msgstr ""
+msgstr "एक अच्छी समीक्षा लिखने के लिए कुछ सुझाव"
 
 msgid "Frequently Asked Questions about Reviews"
-msgstr ""
+msgstr "समीक्षा के बारे में अक्सर पूछे जाने वाले प्रश्ह्न"
 
 msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
@@ -4558,37 +4558,37 @@ msgid ""
 msgstr ""
 
 msgid "Do:"
-msgstr ""
+msgstr "करें:"
 
 msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr ""
+msgstr "ऐसे लिखें जैसे आप ऐड-ऑन के साथ अपने अनुभव के बारे में एक दोस्त को बता रहे हैं।"
 
 msgid "Keep reviews concise and easy to understand."
 msgstr ""
 
 msgid "Give specific and helpful details. For example:"
-msgstr ""
+msgstr "विशिष्ट और सहायक विवरण दें। उदाहरण के लिए:"
 
 msgid "Did the add-on work as you expected it to?"
 msgstr ""
 
 msgid "What features did you like or dislike?"
-msgstr ""
+msgstr "आपको कौन सी विशेषताएँ पसंद या नापसंद किए?"
 
 msgid "Was it useful?"
-msgstr ""
+msgstr "क्या यह उपयोगी था?"
 
 msgid "Was it easy to use?"
-msgstr ""
+msgstr "क्या इसका उपयोग करना आसान था?"
 
 msgid "Will you continue to use this add-on?"
-msgstr ""
+msgstr "क्या आप इस ऐड-ऑन का उपयोग करना जारी रखेंगे?"
 
 msgid "Take a moment to read your review before submitting it to minimize typos."
 msgstr ""
 
 msgid "Don’t:"
-msgstr ""
+msgstr "नहीं करें:"
 
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
 msgstr ""
@@ -4708,7 +4708,7 @@ msgid "Rated %(rating)s out of 5 stars"
 msgstr ""
 
 msgid "Approved reviews"
-msgstr ""
+msgstr "स्वीकृत समीक्षाएं"
 
 msgid "Deleted reviews"
 msgstr ""
@@ -5145,10 +5145,10 @@ msgid "Date"
 msgstr "दिनांक"
 
 msgid "Event"
-msgstr ""
+msgstr "इवेंट"
 
 msgid "More details."
-msgstr ""
+msgstr "विवरण देखें।"
 
 msgid "No events found for this period."
 msgstr "इस अवधि के लिए कोई घटना नहीं मिली।"
@@ -5179,7 +5179,7 @@ msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr ""
 
 msgid "Back to review"
-msgstr ""
+msgstr "समीक्षा पर वापस जाएं"
 
 msgid "Content Review – Add-ons for Firefox"
 msgstr ""
