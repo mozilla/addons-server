@@ -1,6 +1,7 @@
 from django.contrib import admin
 
 from .models import ActivityLog, ReviewActionReasonLog
+from olympia.reviewers.models import CannedResponse, ReviewActionReason
 
 
 class ActivityLogAdmin(admin.ModelAdmin):
@@ -63,6 +64,13 @@ class ReviewActionReasonLogAdmin(admin.ModelAdmin):
 
     def has_delete_permission(self, request, obj=None):
         return False
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == 'reason':
+            kwargs["queryset"] = ReviewActionReason.objects.filter(
+                is_active__exact=True
+            )
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
 
 admin.site.register(ActivityLog, ActivityLogAdmin)
