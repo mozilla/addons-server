@@ -34,6 +34,7 @@ from django.forms.fields import Field
 from django.http import HttpResponse
 from django.http.response import HttpResponseRedirectBase
 from django.template import engines, loader
+from django.template.response import TemplateResponse
 from django.urls import reverse
 from django.utils import translation
 from django.utils.encoding import force_bytes, force_str
@@ -71,8 +72,9 @@ log = getLogger('z.amo')
 
 
 def render(request, template, ctx=None, status=None, content_type=None):
-    rendered = loader.render_to_string(template, ctx, request=request)
-    return HttpResponse(rendered, status=status, content_type=content_type)
+    return TemplateResponse(
+        request, template, context=ctx, status=status, content_type=content_type
+    )
 
 
 def from_string(string):
