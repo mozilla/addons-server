@@ -12,6 +12,7 @@ from olympia.activity.models import (
     AddonLog,
     DraftComment,
     IPLog,
+    ReviewActionReasonLog,
 )
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.tests import (
@@ -22,7 +23,7 @@ from olympia.amo.tests import (
 )
 from olympia.bandwagon.models import Collection
 from olympia.ratings.models import Rating
-from olympia.reviewers.models import CannedResponse
+from olympia.reviewers.models import CannedResponse, ReviewActionReason
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
@@ -328,6 +329,43 @@ class TestActivityLog(TestCase):
         ip_log = IPLog.objects.get()
         assert ip_log.activity_log == activity
         assert ip_log.ip_address == '15.16.23.42'
+
+    def test_review_action_reason_log(self):
+        addon = Addon.objects.get()
+        assert ReviewActionReasonLog.objects.count() == 0
+        # Creating an activity log without any `reason` arguments doesn't
+        # create a ReviewActionReasonLog.
+        action = amo.LOG.REJECT_VERSION
+        ActivityLog.create(
+            action,
+            addon,
+            addon.current_version,
+            user=self.request.user,
+        )
+        assert ReviewActionReasonLog.objects.count() == 0
+        # Creating an activity log with one or more`reason` arguments does
+        # create ReviewActionReasonLogs.
+        reason_1 = ReviewActionReason.objects.create(
+            name='a reason',
+            is_active=True,
+        )
+        reason_2 = ReviewActionReason.objects.create(
+            name='reason 2',
+            is_active=True,
+        )
+        ActivityLog.create(
+            action,
+            addon,
+            addon.current_version,
+            reason_1,
+            reason_2,
+            user=self.request.user,
+        )
+        assert ReviewActionReasonLog.objects.count() == 2
+        reason_ids_from_logs = [
+            log.reason_id for log in ReviewActionReasonLog.objects.all()
+        ]
+        assert sorted(reason_ids_from_logs) == sorted([reason_1.id, reason_2.id])
 
     def test_version_log(self):
         version = Version.objects.all()[0]
