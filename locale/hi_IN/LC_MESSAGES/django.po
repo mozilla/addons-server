@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-02 18:07+0000\n"
-"PO-Revision-Date: 2021-11-09 04:02+0000\n"
-"Last-Translator: ravi <ravi.103151@gmail.com>\n"
+"PO-Revision-Date: 2019-08-29 23:18+0000\n"
+"Last-Translator: parthp1808 <parthp1808@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
 "MIME-Version: 1.0\n"
@@ -41,7 +41,7 @@ msgid "Reporter's country"
 msgstr "संवाददाता का देश"
 
 msgid "Message excerpt"
-msgstr ""
+msgstr "संदेश का अंश"
 
 #, python-format
 msgid "The %d selected reports have been marked as valid."
@@ -126,17 +126,14 @@ msgstr "लेखक"
 msgid "Ratings"
 msgstr "रेटिंग"
 
-#, fuzzy
 msgid "Reviewer Tools (listed)"
-msgstr "समीक्षक के उपकरण"
+msgstr ""
 
-#, fuzzy
 msgid "Reviewer Tools (unlisted)"
-msgstr "समीक्षक के उपकरण"
+msgstr ""
 
-#, fuzzy
 msgid "Reviewer links"
-msgstr "समीक्षक के उपकरण"
+msgstr ""
 
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
