@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-02 18:07+0000\n"
+"POT-Creation-Date: 2021-11-09 18:04+0000\n"
 "PO-Revision-Date: 2021-08-11 14:11+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -4860,6 +4860,9 @@ msgstr "Rejeitar imediatamente. Utilize apenas no caso de graves problemas de se
 
 msgid "days"
 msgstr "dias"
+
+msgid "Choose one or more reasons:"
+msgstr ""
 
 msgid "Choose a canned response..."
 msgstr "Escolha um modelo de resposta ..."
