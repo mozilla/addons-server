@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from .models import ActivityLog, ReviewActionReasonLog
-from olympia.reviewers.models import CannedResponse, ReviewActionReason
+from olympia.reviewers.models import ReviewActionReason
 
 
 class ActivityLogAdmin(admin.ModelAdmin):
@@ -71,6 +71,12 @@ class ReviewActionReasonLogAdmin(admin.ModelAdmin):
                 is_active__exact=True
             )
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
+
+    def get_form(self, request, obj=None, **kwargs):
+        form = super(ReviewActionReasonLogAdmin, self).get_form(request, obj, **kwargs)
+        form.base_fields['reason'].widget.can_add_related = False
+        form.base_fields['reason'].widget.can_change_related = False
+        return form
 
 
 admin.site.register(ActivityLog, ActivityLogAdmin)
