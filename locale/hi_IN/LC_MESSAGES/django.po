@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-02 18:07+0000\n"
-"PO-Revision-Date: 2021-11-09 03:43+0000\n"
+"PO-Revision-Date: 2021-11-09 03:51+0000\n"
 "Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -627,13 +627,13 @@ msgid "Review requested"
 msgstr "समीक्षा अनुरोधित"
 
 msgid "{addon} {version} more information requested."
-msgstr ""
+msgstr "{addon} {version} अधिक जानकारी का अनुरोध किया। "
 
 msgid "More information requested"
 msgstr "अधिक जानकारी अनुरोधित"
 
 msgid "{addon} {version} super review requested."
-msgstr ""
+msgstr "{addon} {version} सुपर समीक्षा का अनुरोध किया। "
 
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
@@ -651,47 +651,47 @@ msgid "{tag} removed from {addon}."
 msgstr "{addon} से {tag} हटाया गया।"
 
 msgid "{addon} added to {collection}."
-msgstr ""
+msgstr "{addon} को {collection} में जोड़ा गया। "
 
 msgid "{addon} removed from {collection}."
-msgstr ""
+msgstr "{addon} को {collection} से हटा दिया गया।"
 
 msgid "{rating} for {addon} written."
-msgstr ""
+msgstr "{addon} के लिए {rating} लिखा गया।"
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
-msgstr ""
+msgstr "{0} में {addon} प्रदर्शित किया गया।"
 
 #. L10n: {0} is a category name.
 msgid "{addon} no longer featured in {0}."
-msgstr ""
+msgstr "{addon} अब {0} में प्रदर्शित नहीं किया गया।"
 
 msgid "{addon} is now featured."
-msgstr ""
+msgstr "{addon} अब प्रदर्शित किया गया।"
 
 msgid "{addon} is no longer featured."
-msgstr ""
+msgstr "{addon} अब प्रदर्शित नहीं है।"
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
-msgstr ""
+msgstr "{0} {1} जोड़ा गया।"
 
 #. L10n: {0} is a user, {1} is their role
 msgid "{0.name} role changed to {1} for {addon}."
-msgstr ""
+msgstr "{addon} के लिए {0.name} भूमिका बदलकर {1} हो गई।"
 
 msgid "{addon} is now licensed under {0}."
-msgstr ""
+msgstr "{addon} अब {0} के तहत लाइसेंस प्राप्त है।"
 
 msgid "{addon} policy changed."
-msgstr ""
+msgstr "{addon} नीति बदल गई।"
 
 msgid "{addon} icon changed."
 msgstr "{addon} आइकन बदला गया है।"
 
 msgid "{rating} for {addon} approved."
-msgstr ""
+msgstr "{addon} के लिए {rating} स्वीकृत।"
 
 msgid "{user} approved {rating} for {addon}."
 msgstr ""
@@ -779,7 +779,7 @@ msgid "Reply by developer on {addon} {version}."
 msgstr ""
 
 msgid "Developer Reply"
-msgstr ""
+msgstr "डेवलपर उत्तर दें "
 
 msgid "Reply by reviewer on {addon} {version}."
 msgstr ""
