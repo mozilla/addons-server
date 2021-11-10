@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-09 18:04+0000\n"
-"PO-Revision-Date: 2021-11-10 12:32+0000\n"
+"PO-Revision-Date: 2021-11-10 12:36+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -4441,21 +4441,19 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "See more password manager staff picks"
-msgstr "Xem thêm trình quản lý mật khẩu được chọn bởi biên tập viên"
+msgstr "Xem thêm trình quản lý mật khẩu được lựa chọn bởi biên tập viên"
 
 #. editorial content for the homepage shelves.
 msgid "Translation tools"
 msgstr "Công cụ dịch thuật"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more translation tool staff picks"
-msgstr "Bản dịch tên tiện ích"
+msgstr "Xem thêm các công cụ dịch thuật được lựa chọn bởi biên tập viên"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Social streaming"
-msgstr "Mạng xã hội"
+msgstr "Phát trực tuyến xã hội"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4467,46 +4465,40 @@ msgid "Tab managers"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more tab management staff picks"
-msgstr "Xem thêm các tiện ích mở rộng được đề xuất"
+msgstr "Xem thêm các trình quản lý thẻ được lựa chọn bởi biên tập viên"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more extensions tagged \"{tag}\""
-msgstr "Xem thêm các tiện ích phổ biến"
+msgstr "Xem các tiện ích mở rộng khác được gắn thẻ \"{tag}\""
 
 #. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more ad blocker staff picks"
-msgstr "Xem thêm các tiện ích mở rộng được đề xuất"
+msgstr "Xem thêm các trình chặn quảng cáo được lựa chọn bởi biên tập viên"
 
 #. editorial content for the homepage shelves.
 msgid "YouTube boosters"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more YouTube extension staff picks"
-msgstr "Bản dịch tên tiện ích"
+msgstr "Xem thêm các tiện ích YouTube được lựa chọn bởi biên tập viên"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Trending themes"
-msgstr "Chủ đề được đề xuất"
+msgstr "Chủ đề thịnh hành"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more trending themes"
-msgstr "Xem các chủ đề phổ biến"
+msgstr "Xem các chủ đề thịnh hành khác"
 
 msgid "Could not parse the manifest file."
 msgstr ""
@@ -4936,9 +4928,8 @@ msgstr ""
 msgid "Reject Multiple Versions"
 msgstr "Từ chối nhiều phiên bản"
 
-#, fuzzy
 msgid "This will reject the selected versions. The comments will be sent to the developer."
-msgstr "Điều này sẽ từ chối các phiên bản công khai được chọn. Các ý kiến sẽ được gửi đến nhà phát triển."
+msgstr "Điều này sẽ từ chối các phiên bản được chọn. Các bình luận sẽ được gửi đến nhà phát triển."
 
 msgid "Block Multiple Versions"
 msgstr "Chặn nhiều phiên bản"
@@ -4985,13 +4976,11 @@ msgstr "Nhật ký đánh giá"
 msgid "Add-on Review Guide"
 msgstr "Hướng dẫn đánh giá tiện ích"
 
-#, fuzzy
 msgid "Security Scanners"
-msgstr "Kiểm tra Bảo mật"
+msgstr "Trình quét bảo mật"
 
-#, fuzzy
 msgid "Flagged By Scanners"
-msgstr "Kiểm tra Bảo mật"
+msgstr "Được gắn cờ bởi trình quét"
 
 #, fuzzy
 msgid "Flagged for Human Review"
@@ -5588,15 +5577,13 @@ msgstr "Đánh giá đang chờ xử lý khác ({0})"
 msgid "Updates"
 msgstr "Cập nhật"
 
-#, fuzzy
 msgid "Rating Reviews"
-msgstr "Đang chờ xét duyệt"
+msgstr "Đánh giá xếp hạng"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
-#, fuzzy
 msgid "Auto Approved"
-msgstr "Tự động phê duyệt ({0})"
+msgstr "Tự động phê duyệt"
 
 #, fuzzy
 msgid "Pending Rejection"
