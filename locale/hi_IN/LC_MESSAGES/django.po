@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-09 18:04+0000\n"
-"PO-Revision-Date: 2018-08-19 09:44+0000\n"
+"PO-Revision-Date: 2018-08-30 19:52+0000\n"
 "Last-Translator: Shivam Singhal <shivams2799@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -2570,7 +2570,7 @@ msgid "Check this option if your add-on is experimental or otherwise not ready f
 msgstr ""
 
 msgid "Select a category for this add-on:"
-msgstr ""
+msgstr "इस ऐड-ऑन के लिए एक श्रेणी का चयन करें:"
 
 msgid "Support email:"
 msgstr "समर्थन ईमेल:"
@@ -2740,7 +2740,7 @@ msgid "Upload source code:"
 msgstr "स्रोत कोड अपलोड करें:"
 
 msgid "Add-on Distribution Agreement"
-msgstr ""
+msgstr "ऐड-ऑन वितरण अनुबंध"
 
 msgid "Upload Add-on"
 msgstr "ऐड-ऑन अपलोड करें"
@@ -4570,7 +4570,7 @@ msgid "Give specific and helpful details. For example:"
 msgstr "विशिष्ट और सहायक विवरण दें। उदाहरण के लिए:"
 
 msgid "Did the add-on work as you expected it to?"
-msgstr ""
+msgstr "क्या आपने ऐड-ऑन काम किया था जैसा आपने अपेक्षा की थी?"
 
 msgid "What features did you like or dislike?"
 msgstr "आपको कौन सी विशेषताएँ पसंद या नापसंद किए?"
