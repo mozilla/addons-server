@@ -756,6 +756,22 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
 
     def test_listed_metadata_missing(self):
         self.upload.update(automated_signing=False)
+        response = self.client.post(
+            self.url,
+            data={
+                'version': {'upload': self.upload.uuid},
+            },
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'version': {
+                'license': ['This field is required for listed versions.']
+            },
+        }
+
+        # If the license is set we'll get further validation errors from addon
+        # Mocking parse_addon so we can test the fallback to POST data when there are
+        # missing manifest fields.
         with mock.patch('olympia.addons.serializers.parse_addon') as parse_addon_mock:
             parse_addon_mock.side_effect = lambda *arg, **kw: {
                 key: value
@@ -766,7 +782,7 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
                 self.url,
                 data={
                     'summary': {'en-US': 'replacement summary'},
-                    'version': {'upload': self.upload.uuid},
+                    'version': {'upload': self.upload.uuid, 'license': self.license.id},
                 },
             )
         assert response.status_code == 400, response.content
@@ -774,7 +790,6 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
             'categories': ['This field is required for addons with listed versions.'],
             'name': ['This field is required for addons with listed versions.'],
             # 'summary': summary was provided via POST, so we're good
-            'license': ['This field is required for addons with listed versions.'],
         }
 
     def test_not_authenticated(self):
@@ -1432,9 +1447,23 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
         )
         assert response.status_code == 400, response.content
         assert response.data == {
-            'license': ['This field is required for addons with listed versions.'],
-            'categories': ['This field is required for addons with listed versions.'],
+            'license': ['This field is required for listed versions.'],
         }
+
+        # If the license is set we'll get further validation errors from about the addon
+        # fields that aren't set.
+        response = self.client.post(
+            self.url,
+            data={'upload': self.upload.uuid, 'license': self.license.id},
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'non_field_errors': [
+                'Addon metadata is required to be set to create a listed version: '
+                "['categories']."
+            ],
+        }
+
         assert self.addon.reload().versions.count() == 1
 
     def test_set_extra_data(self):

@@ -441,24 +441,33 @@ class VersionSerializer(SimpleVersionSerializer):
             )
             guid = self.addon.guid if self.addon else self.parsed_data.get('guid')
             self._check_blocklist(guid, self.parsed_data.get('version'))
+            channel = data['upload'].channel
 
             # If this is a new version to an existing addon, check that all the required
             # metadata is set.
             # We test for new addons in AddonSerailizer.validate instead
-            if data['upload'].channel == amo.RELEASE_CHANNEL_LISTED and self.addon:
+            if channel == amo.RELEASE_CHANNEL_LISTED and not data.get('license'):
+                raise exceptions.ValidationError(
+                    {'license': 'This field is required for listed versions.'},
+                    code='required',
+                )
+
+            if channel == amo.RELEASE_CHANNEL_LISTED and self.addon:
                 # This is replicating what Addon.get_required_metadata does
-                required_msg = 'This field is required for addons with listed versions.'
-                missing_metadata = {
-                    field: required_msg for field, value in (
+                missing_addon_metadata = [
+                    field for field, value in (
                         ('categories', self.addon.all_categories),
                         ('name', self.addon.name),
                         ('summary', self.addon.summary),
-                        ('license', data.get('license')),
                     )
                     if not value
-                }
-                if missing_metadata:
-                    raise exceptions.ValidationError(missing_metadata, code='required')
+                ]
+                if missing_addon_metadata:
+                    raise exceptions.ValidationError(
+                        'Addon metadata is required to be set to create a listed '
+                        f'version: {missing_addon_metadata}.',
+                        code='required',
+                    )
         else:
             data.pop('upload', None)  # upload can only be set during create
         return data
@@ -847,7 +856,6 @@ class AddonSerializer(serializers.ModelSerializer):
                         ('categories', data.get('all_categories')),
                         ('name', data.get('name', parsed_data.get('name'))),
                         ('summary', data.get('summary', parsed_data.get('summary'))),
-                        ('license', data.get('version', {}).get('license')),
                     )
                     if not value
                 }
