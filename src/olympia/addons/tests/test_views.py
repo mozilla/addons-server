@@ -732,6 +732,10 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
         assert data == AddonSerializer(context={'request': request}).to_representation(
             addon
         )
+        assert (
+            addon.find_latest_version(channel=None).channel
+            == amo.RELEASE_CHANNEL_UNLISTED
+        )
 
     def test_basic_listed(self):
         self.upload.update(automated_signing=False)
@@ -753,6 +757,7 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
         assert data == AddonSerializer(context={'request': request}).to_representation(
             addon
         )
+        assert addon.current_version.channel == amo.RELEASE_CHANNEL_LISTED
 
     def test_listed_metadata_missing(self):
         self.upload.update(automated_signing=False)
@@ -764,9 +769,7 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
         )
         assert response.status_code == 400, response.content
         assert response.data == {
-            'version': {
-                'license': ['This field is required for listed versions.']
-            },
+            'version': {'license': ['This field is required for listed versions.']},
         }
 
         # If the license is set we'll get further validation errors from addon
@@ -1361,8 +1364,13 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
         assert data == VersionSerializer(
             context={'request': request}
         ).to_representation(version)
+        assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
 
     def test_basic_listed(self):
+        self.upload.update(automated_signing=False)
+        self.addon.current_version.file.update(status=amo.STATUS_DISABLED)
+        self.addon.update_status()
+        assert self.addon.status == amo.STATUS_NULL
         response = self.client.post(
             self.url,
             data={**self.minimal_data, 'license': self.license.id},
@@ -1382,6 +1390,8 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
         assert data == VersionSerializer(
             context={'request': request}
         ).to_representation(version)
+        assert version.channel == amo.RELEASE_CHANNEL_LISTED
+        assert self.addon.status == amo.STATUS_NOMINATED
 
     def test_not_authenticated(self):
         self.client.logout_api()

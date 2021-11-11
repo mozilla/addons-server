@@ -455,7 +455,8 @@ class VersionSerializer(SimpleVersionSerializer):
             if channel == amo.RELEASE_CHANNEL_LISTED and self.addon:
                 # This is replicating what Addon.get_required_metadata does
                 missing_addon_metadata = [
-                    field for field, value in (
+                    field
+                    for field, value in (
                         ('categories', self.addon.all_categories),
                         ('name', self.addon.name),
                         ('summary', self.addon.summary),
@@ -488,6 +489,13 @@ class VersionSerializer(SimpleVersionSerializer):
             parsed_data=parsed_and_validated_data,
         )
         upload.update(addon=version.addon)
+        if (
+            self.addon
+            and self.addon.status == amo.STATUS_NULL
+            and self.addon.has_complete_metadata()
+            and upload.channel == amo.RELEASE_CHANNEL_LISTED
+        ):
+            self.addon.update(status=amo.STATUS_NOMINATED)
         return version
 
     def update(self, instance, validated_data):
@@ -852,7 +860,8 @@ class AddonSerializer(serializers.ModelSerializer):
                 # This is replicating what Addon.get_required_metadata does
                 required_msg = 'This field is required for addons with listed versions.'
                 missing_metadata = {
-                    field: required_msg for field, value in (
+                    field: required_msg
+                    for field, value in (
                         ('categories', data.get('all_categories')),
                         ('name', data.get('name', parsed_data.get('name'))),
                         ('summary', data.get('summary', parsed_data.get('summary'))),
