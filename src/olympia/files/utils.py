@@ -218,6 +218,12 @@ class ManifestJSONExtractor:
         return self.data.get(key, default)
 
     @property
+    def homepage(self):
+        homepage_url = self.get('homepage_url')
+        # `developer.url` in the manifest overrides `homepage_url`.
+        return self.get('developer', {}).get('url', homepage_url)
+
+    @property
     def is_experiment(self):
         """Return whether or not the webextension uses
         experiments or theme experiments API.
@@ -395,7 +401,7 @@ class ManifestJSONExtractor:
             'version': str(self.get('version', '')),
             'name': self.get('name'),
             'summary': self.get('description'),
-            'homepage': self.get('homepage_url'),
+            'homepage': self.homepage,
             'default_locale': self.get('default_locale'),
             'manifest_version': self.get('manifest_version'),
         }

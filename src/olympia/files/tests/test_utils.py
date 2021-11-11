@@ -149,9 +149,34 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
 
     def test_homepage(self):
         """Use homepage_url for the homepage."""
+        expected_homepage = 'http://my-addon.org'
         assert (
-            self.parse({'homepage_url': 'http://my-addon.org'})['homepage']
-            == 'http://my-addon.org'
+            self.parse({'homepage_url': expected_homepage})['homepage']
+            == expected_homepage
+        )
+
+    def test_homepage_with_developer_url(self):
+        expected_homepage = 'http://my-addon.org'
+        assert (
+            self.parse(
+                {
+                    'homepage_url': 'http://should-be-overridden',
+                    'developer': {'url': expected_homepage},
+                }
+            )['homepage']
+            == expected_homepage
+        )
+
+    def test_homepage_with_developer_and_no_url(self):
+        expected_homepage = 'http://my-addon.org'
+        assert (
+            self.parse(
+                {
+                    'homepage_url': expected_homepage,
+                    'developer': {'name': 'some name'},
+                }
+            )['homepage']
+            == expected_homepage
         )
 
     def test_summary(self):
