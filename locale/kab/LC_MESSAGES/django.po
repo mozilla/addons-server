@@ -4466,9 +4466,8 @@ msgid "YouTube boosters"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more YouTube extension staff picks"
-msgstr "Wali ugar n yifecka n usuqel yettwafernen sɣur terbaεt"
+msgstr "Wali ugar n yisiɣzaf i YouTube n usuqel yettwafernen sɣur terbaεt"
 
 #. editorial content for the homepage shelves.
 msgid "Trending themes"
