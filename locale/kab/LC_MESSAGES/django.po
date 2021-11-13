@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-09 18:04+0000\n"
-"PO-Revision-Date: 2021-11-10 17:52+0000\n"
+"PO-Revision-Date: 2021-11-13 02:52+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -2694,9 +2694,8 @@ msgstr "Ifecka yessemlilin ifuyla yemgaraden deg yiwen ufaylu am <span class = \
 msgid "Web template engines, both for HTML and CSS"
 msgstr "Amsedday n tneɣrufin web i HTML akked CSS"
 
-#, fuzzy
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the extension"
-msgstr "Yal afecku-nniden i yessesfaren tangalt neɣ ifuyla daɣen wid yessiriwen tangalt neɣ ifuyla ara tsedduḍ deg uzegrir"
+msgstr "Yal afecku-nniden i yessesfaren tangalt neɣ ifuyla,  yesnas asesfer yessiriw tangalt neɣ (afaylu)ifuyla ara tsedduḍ deg uzegrir"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
 msgstr "Ur tesriḍ ara ad tazneḍ tangalt aɣbalu daɣen ad tizmireḍ ad tedduḍ ɣer umecwaṛ i d-iteddun."
@@ -2707,9 +2706,8 @@ msgstr ""
 msgid "Your source code must include:"
 msgstr "Tangalt-ik n uɣbalu ilaq ad teddu:"
 
-#, fuzzy
 msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
-msgstr "Iwellihen d bennu leqqyen ara yeǧǧen ad ternuḍ anɣel usdid n tengalt n uzegrir."
+msgstr "Iwellihen n lebni aḥric aḥric i tmerna n unɣel swaswa n tengalt n uzegriri, deg ufaylu Readme deg tengalt-ik·im n uɣbalu neɣ deg tezmilin n usenqad ɣef usebter uḍfir."
 
 msgid "A build script that executes all necessary technical steps."
 msgstr "Askript n usbeddi ara i uselkem n meṛṛa imecwaṛen itiknikanen n tazwara."
@@ -2717,11 +2715,8 @@ msgstr "Askript n usbeddi ara i uselkem n meṛṛa imecwaṛen itiknikanen n ta
 msgid "Operating system and build environment requirements."
 msgstr "Anagraw n wammud akked twennaḍt n usbeddi i ilaqen."
 
-#, fuzzy
 msgid "The required version and installation instructions of any programs used in the build process (such as <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis\">npm</span>)."
-msgstr ""
-"Talɣut (ayen i igebren lqem ilaqen akked iwellihen n usbeddi), ɣef wahilen meṛṛa yettwasqedcen deg ukala n usdukel (amedya: lqem n <span class=\"tech-emphasis\">node</span>akked <span class=\"tech-"
-"emphasis\">npm</span>)."
+msgstr "Lqem yettusran d yiwellihen n usebded n yal ahil yettuseqdacen deg usesfer n lebni (am <span class=\"tech-emphasis\">node</span> akked <span class=\"tech-emphasis\">npm</span>)."
 
 #, fuzzy
 msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
