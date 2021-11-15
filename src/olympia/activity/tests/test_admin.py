@@ -62,7 +62,7 @@ class TestReviewActionReasonLogAdmin(TestCase):
         reason_options = doc('#id_reason option')
         assert len(reason_options) == 2
         assert reason_options.eq(0).text() == self.reason_1.name
-        assert reason_options.eq(1).text() == self.reason_1.name
+        assert reason_options.eq(1).text() == self.reason_2.name
 
     def test_select_includes_inactive_reason_if_current_reason(self):
         user = user_factory(email='someone@mozilla.com')
