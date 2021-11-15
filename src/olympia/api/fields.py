@@ -48,7 +48,7 @@ class ReverseChoiceField(fields.ChoiceField):
         return super().to_internal_value(value)
 
 
-class TranslationSerializerField(fields.Field):
+class TranslationSerializerField(fields.CharField):
     """
     Django-rest-framework custom serializer field for our TranslatedFields.
 
@@ -80,14 +80,13 @@ class TranslationSerializerField(fields.Field):
     """
 
     default_error_messages = {
-        'min_length': _('The field must have a length of at least {num} characters.'),
+        **fields.CharField.default_error_messages,
         'unknown_locale': _('The language code {lang_code} is invalid.'),
         'no_dict': _('You must provide an object of {lang-code:value}.'),
     }
 
     def __init__(self, *args, **kwargs):
-        self.min_length = kwargs.pop('min_length', None)
-        super().__init__(*args, **kwargs)
+        super().__init__(*args, **{'allow_blank': True, 'allow_null': True, **kwargs})
 
     @property
     def flat(self):
@@ -150,46 +149,22 @@ class TranslationSerializerField(fields.Field):
     def to_representation(self, val):
         return val
 
-    def to_internal_value(self, data):
-        if isinstance(data, str):
-            self.validate(data)
-            return data.strip()
-        elif isinstance(data, dict):
-            self.validate(data)
-            for key, value in data.items():
-                data[key] = value and value.strip()
-            return data
-        return str(data)
-
-    def validate(self, value):
-        if not self.flat and not isinstance(value, dict):
+    def run_validation(self, data=fields.empty):
+        if data != fields.empty and not self.flat and not isinstance(data, dict):
             raise ValidationError(self.error_messages['no_dict'])
 
-        value_too_short = True
-
-        if isinstance(value, str):
-            if self.min_length and len(value.strip()) >= self.min_length:
-                value_too_short = False
-        else:
-            for locale, string in value.items():
+        if isinstance(data, dict):
+            for locale, value in data.items():
                 if locale.lower() not in settings.LANGUAGE_URL_MAP:
                     raise ValidationError(
                         self.error_messages['unknown_locale'].format(
                             lang_code=repr(locale)
                         )
                     )
-                if (
-                    self.min_length
-                    and string
-                    and (len(string.strip()) >= self.min_length)
-                ):
-                    value_too_short = False
-                    break
+                data[locale] = super().run_validation(value)
+            return data
 
-        if self.min_length and value_too_short:
-            raise ValidationError(
-                self.error_messages['min_length'].format(num=self.min_length)
-            )
+        return super().run_validation(data)
 
 
 class ESTranslationSerializerField(TranslationSerializerField):
@@ -387,11 +362,19 @@ class OutgoingSerializerMixin:
         return {'url': data, 'outgoing': outgoing}
 
 
+class URLTranslationField(serializers.URLField, TranslationSerializerField):
+    pass
+
+
+class EmailTranslationField(serializers.EmailField, TranslationSerializerField):
+    pass
+
+
 class OutgoingURLField(OutgoingSerializerMixin, serializers.URLField):
     pass
 
 
-class OutgoingTranslationField(OutgoingSerializerMixin, TranslationSerializerField):
+class OutgoingURLTranslationField(OutgoingSerializerMixin, URLTranslationField):
     pass
 
 

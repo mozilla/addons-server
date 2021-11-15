@@ -11,7 +11,7 @@ from olympia.zadmin.models import get_config
 from .fields import (
     ESTranslationSerializerField,
     OutgoingESTranslationField,
-    OutgoingTranslationField,
+    OutgoingURLTranslationField,
     TranslationSerializerField,
 )
 
@@ -44,7 +44,7 @@ class BaseESSerializer(serializers.ModelSerializer):
         """
         fields = super().get_fields()
         for key, field in fields.items():
-            if isinstance(field, OutgoingTranslationField):
+            if isinstance(field, OutgoingURLTranslationField):
                 fields[key] = OutgoingESTranslationField(source=field.source)
             elif isinstance(field, TranslationSerializerField):
                 fields[key] = ESTranslationSerializerField(source=field.source)
