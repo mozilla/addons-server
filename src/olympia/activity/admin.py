@@ -37,26 +37,26 @@ class ReviewActionReasonLogAdmin(admin.ModelAdmin):
     fields = (
         'created',
         'activity_log',
-        'user_email',
+        'activity_log__user__email',
         'reason',
     )
     list_display = (
         'created',
         'activity_log',
         'reason',
-        'user_email',
+        'activity_log__user__email',
     )
     list_filter = ('reason',)
+    list_select_related = ('activity_log__user',)
     readonly_fields = (
         'created',
         'activity_log',
-        'user_email',
+        'activity_log__user__email',
     )
     search_fields = ('activity_log__user__email',)
     view_on_site = False
 
-    @admin.display()
-    def user_email(self, obj):
+    def activity_log__user__email(self, obj):
         return obj.activity_log.user.email
 
     def has_add_permission(self, request):
@@ -76,6 +76,7 @@ class ReviewActionReasonLogAdmin(admin.ModelAdmin):
         form = super(ReviewActionReasonLogAdmin, self).get_form(request, obj, **kwargs)
         form.base_fields['reason'].widget.can_add_related = False
         form.base_fields['reason'].widget.can_change_related = False
+        form.base_fields['reason'].empty_label = None
         return form
 
 
