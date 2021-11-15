@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-09 18:04+0000\n"
-"PO-Revision-Date: 2021-11-15 22:41+0000\n"
+"PO-Revision-Date: 2021-11-15 22:53+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -1744,6 +1744,9 @@ msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
 "on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
+"Gerido por si. <span class=\"helptext\">Depois da sua submissão ser assinada pela Mozilla, pode descarregar o ficheiro .xpi da Central do Programador e distribuir o mesmo para o seu público. "
+"Certifique-se que é fornecida a <a {a_attrs}>update_url</a> no manifesto do extra, pois este é o endereço onde o Firefox procura por atualizações para distribuição automática do mesmo para os seus "
+"utilizadores.</span>"
 
 msgid "Display Name"
 msgstr "Nome a apresentar"
@@ -2659,15 +2662,15 @@ msgid "How to Distribute this Version"
 msgstr "Como distribuir esta versão"
 
 msgid "To get started, select how you would like to distribute this version."
-msgstr ""
+msgstr "Para começar, selecione como gostaria de distribuir esta versão."
 
 #, python-format
 msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Pode saber mais sobre estas opções consultando a <a %(a_attrs)s>distribuição e assinatura de extras</a> no Firefox Extension Workshop."
 
 #, python-format
 msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
-msgstr ""
+msgstr "Todos os extras devem obedecer às <a %(a_attrs)s>políticas de extras da Mozilla</a> e estão sujeitos a uma análise manual a qualquer momento, após a submissão."
 
 msgid "Submission Complete"
 msgstr "Submissão finalizada."
@@ -2686,6 +2689,8 @@ msgid ""
 "You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
 "selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
+"Está feito! ✨ Irá receber um e-mail de confirmação quando esta versão for publicada em %(site_domain)s. Note que esta publicação pode demorar até 24 horas, ou até mais na eventualidade do seu extra "
+"ser selecionado para um análise manual. Se não encontrar um e-mail após 24 horas, consulte a sua pasta de correio não-solicitado."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr "A sua entrada será mais bem sucedida adicionando uma descrição detalhada. Tenha a sua entrada pronta para publicação:"
@@ -2694,6 +2699,8 @@ msgstr "A sua entrada será mais bem sucedida adicionando uma descrição detalh
 msgid ""
 "You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a %(a_attrs)s>creating an appealing listing</a> on Firefox Extension Workshop."
 msgstr ""
+"Pode atrair utilizadores para a sua extensão adicionando uma descrição detalhada e capturas de ecrã à sua listagem. Obtenha ajuda sobre como <a %(a_attrs)s>criar uma listagem apelativa</a> no "
+"Firefox Extension Workshop."
 
 msgid "Manage Listing"
 msgstr "Gerir listagem"
@@ -2709,9 +2716,11 @@ msgstr "Assinatura de Versão Pendente"
 
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
+"Está feito! ✨ Irá ser notificado por e-mail quando o ficheiro assinado estiver pronto para ser descarregado da central de programadores. Se não encontrar um e-mail após 24 horas, consulte a sua "
+"pasta de correio não-solicitado."
 
 msgid "As a reminder, your add-on is subject to manual review at any time."
-msgstr ""
+msgstr "Para relembrar, o seu extra poderá ser sujeito a uma análise manual a qualquer momento."
 
 msgid "Go to My Submissions"
 msgstr "Ir para as minhas submissões"
