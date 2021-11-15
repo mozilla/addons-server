@@ -56,10 +56,9 @@ class TestSessionLength(UserViewBase):
         r = self.client.get('/developers/', follow=True)
         cookie = r.cookies[settings.SESSION_COOKIE_NAME]
 
-        # The user's session should be valid for at least four weeks (near a
-        # month).
-        four_weeks_from_now = datetime.now() + timedelta(days=28)
+        # The user's session should be valid for 5 days.
+        four_days_from_now = datetime.now() + timedelta(days=4)
         expiry = parse(cookie['expires']).replace(tzinfo=None)
 
         assert cookie.value != ''
-        assert expiry >= four_weeks_from_now
+        assert expiry >= four_days_from_now
