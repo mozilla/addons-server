@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-09 18:04+0000\n"
-"PO-Revision-Date: 2021-11-15 23:09+0000\n"
+"PO-Revision-Date: 2021-11-15 23:13+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -4462,9 +4462,8 @@ msgid "Enhanced privacy extensions"
 msgstr "Extensões para reforço da privacidade"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more recommended privacy extensions"
-msgstr "Ver mais extensões recomendadas"
+msgstr "Ver mais extensões de privacidade recomendadas"
 
 #. editorial content for the homepage shelves.
 # Plural in this context means many of the add-on type
@@ -4484,74 +4483,64 @@ msgid "See more recommended themes"
 msgstr "Ver mais temas recomendados"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more password manager staff picks"
-msgstr "Ver mais extensões de gestão de separadores"
+msgstr "Ver mais escolhas da equipa para gestores de palavras-passe"
 
 #. editorial content for the homepage shelves.
 msgid "Translation tools"
 msgstr "Ferramentas de tradução"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more translation tool staff picks"
-msgstr "Ver mais ferramentas de tradução"
+msgstr "Ver mais escolhas da equipa para ferramentas de tradução"
 
 #. editorial content for the homepage shelves.
 msgid "Social streaming"
 msgstr "Transmissões sociais"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more social streaming staff picks"
-msgstr "Ver mais extensões de transmissões sociais"
+msgstr "Ver mais escolhas da equipa para transmissão social"
 
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
 msgstr "Gestores de marcadores"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more tab management staff picks"
-msgstr "Ver mais extensões de gestão de separadores"
+msgstr "Ver mais escolhas da equipa para gestores de separadores"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
 msgstr "Extensões etiquetas com “{tag}”"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more extensions tagged \"{tag}\""
-msgstr "Ver mais extensões populares"
+msgstr "Ver mais extensões etiquetadas com \"{tag}\""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Elite ad blockers"
-msgstr "Atualizar bloqueio de extra"
+msgstr "Bloqueadores de anúncios de elite"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more ad blocker staff picks"
-msgstr "Ver mais extensões de gestão de separadores"
+msgstr "Ver mais escolhas da equipa para bloqueadores de anúncios"
 
 #. editorial content for the homepage shelves.
 msgid "YouTube boosters"
 msgstr "Melhorias do YouTube"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more YouTube extension staff picks"
-msgstr "Ver mais ferramentas de tradução"
+msgstr "Ver mais escolhas da equipa para extensões para o YouTube"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Trending themes"
-msgstr "Temas recomendados"
+msgstr "Temas com uma popularidade crescente"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more trending themes"
-msgstr "Ver mais temas recomendados"
+msgstr "Ver mais temas com uma popularidade crescente"
 
 msgid "Could not parse the manifest file."
 msgstr "Não foi possível analisar o ficheiro manifest."
@@ -5623,9 +5612,8 @@ msgstr "presença de regras correspondentes"
 msgid "result state"
 msgstr "estado do resultado"
 
-#, fuzzy
 msgid "Excluding results solely matching these rules"
-msgstr "todos, exceto resultados que correspondem apenas a esta regra"
+msgstr "A excluir resultados que correspondem apenas a estas regras"
 
 msgid "presence of a version"
 msgstr "presença de uma versão"
