@@ -479,54 +479,64 @@ This endpoint allows a submission of an upload to an existing add-on to create a
     :<json object|array compatibility:
         Either an object detailing which :ref:`applications <addon-detail-application>`
         and versions the version is compatible with; or an array of :ref:`applications <addon-detail-application>`,
-        where min/max versions from the manifest, or defaults, will be used.  Examples:
-
-            .. code-block:: json
-
-                {
-                  "compatibility": {
-                    "android": {
-                      "min": "58.0a1",
-                      "max": "73.0"
-                    },
-                    "firefox": {
-                      "min": "58.0a1",
-                      "max": "73.0"
-                    }
-                  }
-                }
-
-            .. code-block:: javascript
-
-                {
-                  "compatibility": {
-                    "android": {
-                      "min": "58.0a1"
-                      // "max" is undefined, so the manifest max or default
-                      // will be used.
-                    },
-                    "firefox": {
-                      // the object is empty - both "min" and "max" are
-                      // undefined so the manifest min/max or defaults will
-                      // be used.
-                    }
-                  }
-                }
-
-            .. code-block:: json
-
-                {
-                  "compatibility": [
-                    "android",
-                    "firefox"
-                  ]
-                }
-
+        where min/max versions from the manifest, or defaults, will be used.  See :ref:`examples <version-compatibility-examples>`.
     :<json string compatibility[app_name].max: Maximum version of the corresponding app the version is compatible with. Should only be enforced by clients if ``is_strict_compatibility_enabled`` is ``true``.
     :<json string compatibility[app_name].min: Minimum version of the corresponding app the version is compatible with.
     :<json int license: The license id.
     :<json object|null release_notes: The release notes for this version (See :ref:`translated fields <api-overview-translations>`).
     :<json string upload: The uuid for the xpi upload to create this version with.
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Version compatibility examples
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. _version-compatibility-examples:
+
+Full example:
+
+.. code-block:: json
+
+    {
+        "compatibility": {
+            "android": {
+                "min": "58.0a1",
+                "max": "73.0"
+            },
+            "firefox": {
+                "min": "58.0a1",
+                "max": "73.0"
+            }
+        }
+    }
+
+With some versions omitted:
+
+.. code-block:: javascript
+
+    {
+        "compatibility": {
+            "android": {
+                "min": "58.0a1"
+                // "max" is undefined, so the manifest max or default will be used.
+            },
+            "firefox": {
+                // the object is empty - both "min" and "max" are undefined so the manifest min/max
+                // or defaults will be used.
+            }
+        }
+    }
+
+Shorthand, for when you only want to define compatible apps, but use the min/max versions from the manifest, or use all defaults:
+
+.. code-block:: json
+
+    {
+        "compatibility": [
+            "android",
+            "firefox"
+        ]
+    }
 
 
 ------------
@@ -546,7 +556,7 @@ This endpoint allows the metadata for an existing version to be edited.
 
     .. _version-edit-request:
 
-    :<json object|array compatibility: Either an object detailing which :ref:`applications <addon-detail-application>` and versions the version is compatible with; or an array of :ref:`applications <addon-detail-application>`, where default min/max versions will be used if not already defined.  See :ref:`version create <version-create-request>` for examples
+    :<json object|array compatibility: Either an object detailing which :ref:`applications <addon-detail-application>` and versions the version is compatible with; or an array of :ref:`applications <addon-detail-application>`, where default min/max versions will be used if not already defined.  See :ref:`examples <version-compatibility-examples>`.
     :<json string compatibility[app_name].max: Maximum version of the corresponding app the version is compatible with. Should only be enforced by clients if ``is_strict_compatibility_enabled`` is ``true``.
     :<json string compatibility[app_name].min: Minimum version of the corresponding app the version is compatible with.
     :<json int license: The license id.
