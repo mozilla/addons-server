@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-09 18:04+0000\n"
+"POT-Creation-Date: 2021-11-16 17:49+0000\n"
 "PO-Revision-Date: 2021-08-22 17:10+0000\n"
 "Last-Translator: cfatls <cfatls@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -4455,11 +4455,6 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "¿Viste una imagen interesante en la web? Utiliza TinEye para buscar su procedencia."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
-msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "Para esos momentos en los que necesitas disparar rayos láser usando un gatito."
-
-#. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
 msgstr "Páginas web leídas en voz alta. Más de 40 idiomas compatibles."
 
@@ -4504,16 +4499,15 @@ msgstr "Agregan funciones a Firefox para que la navegación sea más rápida, se
 msgid "See all extensions"
 msgstr "Ver todas las extensiones"
 
+#. editorial content for the secondary hero shelves.
+msgid "Productivity boosters"
+msgstr ""
+
 # Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
 #, fuzzy
 msgid "Top anti-tracking extensions"
 msgstr "Extensiones populares"
-
-#. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Image search extensions"
-msgstr "Ver todas las extensiones"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.

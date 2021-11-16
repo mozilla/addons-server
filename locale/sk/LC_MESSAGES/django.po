@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-09 18:04+0000\n"
+"POT-Creation-Date: 2021-11-16 17:49+0000\n"
 "PO-Revision-Date: 2021-11-07 09:45+0000\n"
 "Last-Translator: Vlado Valaštiak <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -4285,10 +4285,6 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr ""
-
-#. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
 msgstr ""
 
@@ -4332,16 +4328,15 @@ msgstr "Pridávajú do Firefoxu funkcie, vďaka čomu je prehliadanie rýchlejš
 msgid "See all extensions"
 msgstr "Zobraziť všetky rozšírenia"
 
+#. editorial content for the secondary hero shelves.
+msgid "Productivity boosters"
+msgstr ""
+
 # Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
 #, fuzzy
 msgid "Top anti-tracking extensions"
 msgstr "Pozrite si ďalšie rozšírenia"
-
-#. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Image search extensions"
-msgstr "Zobraziť všetky rozšírenia"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.

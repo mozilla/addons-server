@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-09 18:04+0000\n"
+"POT-Creation-Date: 2021-11-16 17:49+0000\n"
 "PO-Revision-Date: 2021-05-04 00:37+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4386,11 +4386,6 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "¿La xatz'ët jun jeb'ël wachib'äl pan ajk'amaya'l? Tawokisaj TinEye richin nawetamaj akuchi' petenäq wi."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
-msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "Toq nawajo' nak'äq ruch'ab'ik laser rik'in jun sya'n. "
-
-#. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
 msgstr ""
 
@@ -4435,14 +4430,13 @@ msgid "See all extensions"
 msgstr "Ketz'et ronojel ri taq k'amal"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Top anti-tracking extensions"
-msgstr "Kekanöx taq k'amal"
+msgid "Productivity boosters"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #, fuzzy
-msgid "Image search extensions"
-msgstr "Ketz'et ronojel ri taq k'amal"
+msgid "Top anti-tracking extensions"
+msgstr "Kekanöx taq k'amal"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
