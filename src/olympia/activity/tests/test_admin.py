@@ -56,5 +56,5 @@ class TestReviewActionReasonLogAdmin(TestCase):
         doc = pq(response.content)
         reason_options = doc('#id_reason option')
         assert len(reason_options) == 2
-        assert reason_options.eq(0).text() == inactive_reason.name + ' (** inactive **)'
+        assert reason_options.eq(0).text() == '(** inactive **) ' + inactive_reason.name
         assert reason_options.eq(1).text() == reason_1.name
