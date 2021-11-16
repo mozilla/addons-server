@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-09 18:04+0000\n"
-"PO-Revision-Date: 2021-11-16 03:02+0000\n"
+"PO-Revision-Date: 2021-11-16 03:09+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4489,22 +4489,19 @@ msgstr "რეკლამის სხვა შემზღუდავებ�
 
 #. editorial content for the homepage shelves.
 msgid "YouTube boosters"
-msgstr ""
+msgstr "YouTube-გამაძლიერებლები"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more YouTube extension staff picks"
-msgstr "თარგმნის სხვა ხელსაწყოები, თანამშრომლების შერჩეული"
+msgstr "სხვა YouTube-ხელსაწყოები, თანამშრომლების შერჩეული"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Trending themes"
-msgstr "სასურველი თემები"
+msgstr "ფართოდ გავრცელებული თემები"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more trending themes"
-msgstr "სხვა სასურველი თემები"
+msgstr "სხვა ფართოდ გავრცელებული თემები"
 
 msgid "Could not parse the manifest file."
 msgstr "მანიფესტის ფაილის დამუშავება ვერ მოხერხდა."
