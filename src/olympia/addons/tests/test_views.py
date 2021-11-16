@@ -922,6 +922,8 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
             'description': {'en-US': 'new description'},
             'developer_comments': {'en-US': 'comments'},
             'homepage': {'en-US': 'https://my.home.page/'},
+            'is_experimental': True,
+            'requires_payment': True,
             # 'name'  # don't update - should retain name from the manifest
             'slug': 'addon-slug',
             'summary': {'en-US': 'new summary'},
@@ -947,6 +949,10 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
         assert addon.developer_comments == 'comments'
         assert data['homepage']['url'] == {'en-US': 'https://my.home.page/'}
         assert addon.homepage == 'https://my.home.page/'
+        assert data['is_experimental'] is True
+        assert addon.is_experimental is True
+        assert data['requires_payment'] is True
+        assert addon.requires_payment is True
         assert data['name'] == {'en-US': 'My WebExtension Addon'}
         assert addon.name == 'My WebExtension Addon'
         assert data['slug'] == 'addon-slug' == addon.slug
@@ -956,6 +962,22 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
         assert addon.support_email == 'email@me'
         assert data['support_url']['url'] == {'en-US': 'https://my.home.page/support/'}
         assert addon.support_url == 'https://my.home.page/support/'
+
+    def test_set_disabled(self):
+        data = {
+            **self.minimal_data,
+            'is_disabled': True,
+        }
+        response = self.client.post(
+            self.url,
+            data=data,
+        )
+        addon = Addon.objects.get()
+
+        assert response.status_code == 201, response.content
+        assert response.data['is_disabled'] is True
+        assert addon.is_disabled is True
+        assert addon.disabled_by_user is True  # sets the user property
 
 
 class TestAddonViewSetCreateJWTAuth(TestAddonViewSetCreate):
@@ -1114,6 +1136,8 @@ class TestAddonViewSetUpdate(TestCase):
             'developer_comments': {'en-US': 'comments'},
             'homepage': {'en-US': 'https://my.home.page/'},
             # 'description'  # don't update - should retain existing
+            'is_experimental': True,
+            'requires_payment': True,
             'slug': 'addon-slug',
             'summary': {'en-US': 'new summary'},
             'support_email': {'en-US': 'email@me'},
@@ -1135,6 +1159,10 @@ class TestAddonViewSetUpdate(TestCase):
         assert addon.homepage == 'https://my.home.page/'
         assert data['description'] == {'en-US': 'Existing description'}
         assert addon.description == 'Existing description'
+        assert data['is_experimental'] is True
+        assert addon.is_experimental is True
+        assert data['requires_payment'] is True
+        assert addon.requires_payment is True
         assert data['slug'] == 'addon-slug' == addon.slug
         assert data['summary'] == {'en-US': 'new summary'}
         assert addon.summary == 'new summary'
@@ -1142,6 +1170,32 @@ class TestAddonViewSetUpdate(TestCase):
         assert addon.support_email == 'email@me'
         assert data['support_url']['url'] == {'en-US': 'https://my.home.page/support/'}
         assert addon.support_url == 'https://my.home.page/support/'
+
+    def test_set_disabled(self):
+        response = self.client.patch(
+            self.url,
+            data={'is_disabled': True},
+        )
+        addon = Addon.objects.get()
+
+        assert response.status_code == 200, response.content
+        data = response.data
+        assert data['is_disabled'] is True
+        assert addon.is_disabled is True
+        assert addon.disabled_by_user is True  # sets the user property
+
+        # Confirm that a STATUS_DISABLED can't be overriden
+        addon.update(status=amo.STATUS_DISABLED)
+        response = self.client.patch(
+            self.url,
+            data={'is_disabled': False},
+        )
+        addon.reload()
+        assert response.status_code == 200, response.content
+        data = response.data
+        assert data['is_disabled'] is True  # still True
+        assert addon.is_disabled is True  # still True
+        assert addon.disabled_by_user is False  # user property is False,
 
 
 class TestAddonViewSetUpdateJWTAuth(TestAddonViewSetUpdate):

@@ -691,6 +691,10 @@ class AddonSerializer(serializers.ModelSerializer):
     homepage = OutgoingTranslationField(required=False)
     icon_url = serializers.SerializerMethodField()
     icons = serializers.SerializerMethodField()
+    is_disabled = SplitField(
+        serializers.BooleanField(source='disabled_by_user', required=False),
+        serializers.BooleanField(),
+    )
     is_source_public = serializers.SerializerMethodField()
     is_featured = serializers.SerializerMethodField()
     name = TranslationSerializerField(required=False)
@@ -762,7 +766,10 @@ class AddonSerializer(serializers.ModelSerializer):
             'description',
             'developer_comments',
             'homepage',
+            'is_disabled',
+            'is_experimental',
             'name',
+            'requires_payment',
             'slug',
             'summary',
             'support_email',
