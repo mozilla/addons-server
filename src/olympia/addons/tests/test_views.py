@@ -42,6 +42,7 @@ from olympia.constants.promoted import (
     SPONSORED,
     VERIFIED,
 )
+from olympia.files.utils import parse_addon
 from olympia.files.tests.test_models import UploadMixin
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion, License
@@ -705,20 +706,45 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
         super().setUp()
         self.user = user_factory(read_dev_agreement=self.days_ago(0))
         self.upload = self.get_upload(
-            'webextension.xpi', user=self.user, source=amo.UPLOAD_SOURCE_ADDON_API
+            'webextension.xpi',
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_ADDON_API,
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
         )
         self.url = reverse_ns('addon-list', api_version='v5')
         self.client.login_api(self.user)
         self.license = License.objects.create(builtin=1)
-        self.minimal_data = {
-            'version': {'upload': self.upload.uuid, 'license': self.license.id},
-            'categories': {'firefox': ['bookmarks']},
-        }
+        self.minimal_data = {'version': {'upload': self.upload.uuid}}
 
-    def test_basic(self):
+    def test_basic_unlisted(self):
         response = self.client.post(
             self.url,
             data=self.minimal_data,
+        )
+        assert response.status_code == 201, response.content
+        data = response.data
+        assert data['name'] == {'en-US': 'My WebExtension Addon'}
+        assert data['status'] == 'incomplete'
+        addon = Addon.objects.get()
+        request = APIRequestFactory().get('/')
+        request.version = 'v5'
+        request.user = self.user
+        assert data == AddonSerializer(context={'request': request}).to_representation(
+            addon
+        )
+        assert (
+            addon.find_latest_version(channel=None).channel
+            == amo.RELEASE_CHANNEL_UNLISTED
+        )
+
+    def test_basic_listed(self):
+        self.upload.update(automated_signing=False)
+        response = self.client.post(
+            self.url,
+            data={
+                'categories': {'firefox': ['bookmarks']},
+                'version': {'upload': self.upload.uuid, 'license': self.license.id},
+            },
         )
         assert response.status_code == 201, response.content
         data = response.data
@@ -731,6 +757,43 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
         assert data == AddonSerializer(context={'request': request}).to_representation(
             addon
         )
+        assert addon.current_version.channel == amo.RELEASE_CHANNEL_LISTED
+
+    def test_listed_metadata_missing(self):
+        self.upload.update(automated_signing=False)
+        response = self.client.post(
+            self.url,
+            data={
+                'version': {'upload': self.upload.uuid},
+            },
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'version': {'license': ['This field is required for listed versions.']},
+        }
+
+        # If the license is set we'll get further validation errors from addon
+        # Mocking parse_addon so we can test the fallback to POST data when there are
+        # missing manifest fields.
+        with mock.patch('olympia.addons.serializers.parse_addon') as parse_addon_mock:
+            parse_addon_mock.side_effect = lambda *arg, **kw: {
+                key: value
+                for key, value in parse_addon(*arg, **kw).items()
+                if key not in ('name', 'summary')
+            }
+            response = self.client.post(
+                self.url,
+                data={
+                    'summary': {'en-US': 'replacement summary'},
+                    'version': {'upload': self.upload.uuid, 'license': self.license.id},
+                },
+            )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'categories': ['This field is required for addons with listed versions.'],
+            'name': ['This field is required for addons with listed versions.'],
+            # 'summary': summary was provided via POST, so we're good
+        }
 
     def test_not_authenticated(self):
         self.client.logout_api()
@@ -853,8 +916,9 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
         assert response.status_code == 201, response.content
 
     def test_set_extra_data(self):
+        self.upload.update(automated_signing=False)
         data = {
-            **self.minimal_data,
+            'categories': {'firefox': ['bookmarks']},
             'description': {'en-US': 'new description'},
             'developer_comments': {'en-US': 'comments'},
             'homepage': {'en-US': 'https://my.home.page/'},
@@ -863,15 +927,20 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
             'summary': {'en-US': 'new summary'},
             'support_email': {'en-US': 'email@me'},
             'support_url': {'en-US': 'https://my.home.page/support/'},
+            'version': {'upload': self.upload.uuid, 'license': self.license.id},
         }
         response = self.client.post(
             self.url,
             data=data,
         )
-        addon = Addon.objects.get()
 
         assert response.status_code == 201, response.content
+        addon = Addon.objects.get()
         data = response.data
+        assert data['categories'] == {'firefox': ['bookmarks']}
+        assert addon.all_categories == [
+            CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['bookmarks']
+        ]
         assert data['description'] == {'en-US': 'new description'}
         assert addon.description == 'new description'
         assert data['developer_comments'] == {'en-US': 'comments'}
@@ -887,8 +956,6 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
         assert addon.support_email == 'email@me'
         assert data['support_url']['url'] == {'en-US': 'https://my.home.page/support/'}
         assert addon.support_url == 'https://my.home.page/support/'
-        assert data['status'] == 'nominated'
-        assert addon.status == amo.STATUS_NOMINATED
 
 
 class TestAddonViewSetCreateJWTAuth(TestAddonViewSetCreate):
@@ -1262,7 +1329,10 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
         super().setUp()
         self.user = user_factory(read_dev_agreement=self.days_ago(0))
         self.upload = self.get_upload(
-            'webextension.xpi', user=self.user, source=amo.UPLOAD_SOURCE_ADDON_API
+            'webextension.xpi',
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_ADDON_API,
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
         )
         self.addon = addon_factory(users=(self.user,), guid='@webextension-guid')
         self.url = reverse_ns(
@@ -1272,12 +1342,38 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
         )
         self.client.login_api(self.user)
         self.license = License.objects.create(builtin=1)
-        self.minimal_data = {'upload': self.upload.uuid, 'license': self.license.id}
+        self.minimal_data = {'upload': self.upload.uuid}
 
-    def test_basic(self):
+    def test_basic_unlisted(self):
         response = self.client.post(
             self.url,
             data=self.minimal_data,
+        )
+        assert response.status_code == 201, response.content
+        data = response.data
+        assert data['license'] is None
+        assert data['compatibility'] == {
+            'firefox': {'max': '*', 'min': '42.0'},
+        }
+        self.addon.reload()
+        assert self.addon.versions.count() == 2
+        version = self.addon.find_latest_version(channel=None)
+        request = APIRequestFactory().get('/')
+        request.version = 'v5'
+        request.user = self.user
+        assert data == VersionSerializer(
+            context={'request': request}
+        ).to_representation(version)
+        assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
+
+    def test_basic_listed(self):
+        self.upload.update(automated_signing=False)
+        self.addon.current_version.file.update(status=amo.STATUS_DISABLED)
+        self.addon.update_status()
+        assert self.addon.status == amo.STATUS_NULL
+        response = self.client.post(
+            self.url,
+            data={**self.minimal_data, 'license': self.license.id},
         )
         assert response.status_code == 201, response.content
         data = response.data
@@ -1294,6 +1390,8 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
         assert data == VersionSerializer(
             context={'request': request}
         ).to_representation(version)
+        assert version.channel == amo.RELEASE_CHANNEL_LISTED
+        assert self.addon.status == amo.STATUS_NOMINATED
 
     def test_not_authenticated(self):
         self.client.logout_api()
@@ -1350,13 +1448,32 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
         }
         assert self.addon.reload().versions.count() == 1
 
-    def test_missing_license(self):
+    def test_listed_metadata_missing(self):
+        self.addon.set_categories([])
+        self.upload.update(automated_signing=False)
         response = self.client.post(
             self.url,
             data={'upload': self.upload.uuid},
         )
         assert response.status_code == 400, response.content
-        assert response.data == {'license': ['This field is required.']}
+        assert response.data == {
+            'license': ['This field is required for listed versions.'],
+        }
+
+        # If the license is set we'll get further validation errors from about the addon
+        # fields that aren't set.
+        response = self.client.post(
+            self.url,
+            data={'upload': self.upload.uuid, 'license': self.license.id},
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'non_field_errors': [
+                'Addon metadata is required to be set to create a listed version: '
+                "['categories']."
+            ],
+        }
+
         assert self.addon.reload().versions.count() == 1
 
     def test_set_extra_data(self):

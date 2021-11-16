@@ -371,7 +371,9 @@ class VersionSerializer(SimpleVersionSerializer):
         choices=list(amo.CHANNEL_CHOICES_API.items()), read_only=True
     )
     license = SplitField(
-        serializers.PrimaryKeyRelatedField(queryset=License.objects.builtins()),
+        serializers.PrimaryKeyRelatedField(
+            queryset=License.objects.builtins(), required=False
+        ),
         LicenseSerializer(),
     )
     upload = serializers.SlugRelatedField(
@@ -439,6 +441,34 @@ class VersionSerializer(SimpleVersionSerializer):
             )
             guid = self.addon.guid if self.addon else self.parsed_data.get('guid')
             self._check_blocklist(guid, self.parsed_data.get('version'))
+            channel = data['upload'].channel
+
+            # If this is a new version to an existing addon, check that all the required
+            # metadata is set.
+            # We test for new addons in AddonSerailizer.validate instead
+            if channel == amo.RELEASE_CHANNEL_LISTED and not data.get('license'):
+                raise exceptions.ValidationError(
+                    {'license': 'This field is required for listed versions.'},
+                    code='required',
+                )
+
+            if channel == amo.RELEASE_CHANNEL_LISTED and self.addon:
+                # This is replicating what Addon.get_required_metadata does
+                missing_addon_metadata = [
+                    field
+                    for field, value in (
+                        ('categories', self.addon.all_categories),
+                        ('name', self.addon.name),
+                        ('summary', self.addon.summary),
+                    )
+                    if not value
+                ]
+                if missing_addon_metadata:
+                    raise exceptions.ValidationError(
+                        'Addon metadata is required to be set to create a listed '
+                        f'version: {missing_addon_metadata}.',
+                        code='required',
+                    )
         else:
             data.pop('upload', None)  # upload can only be set during create
         return data
@@ -448,8 +478,9 @@ class VersionSerializer(SimpleVersionSerializer):
         parsed_and_validated_data = {
             **self.parsed_data,
             **validated_data,
-            'license_id': validated_data['license'].id,
         }
+        if 'license' in validated_data:
+            parsed_and_validated_data['license_id'] = validated_data['license'].id
         version = Version.from_upload(
             upload=upload,
             addon=self.addon or validated_data.get('addon'),
@@ -458,6 +489,13 @@ class VersionSerializer(SimpleVersionSerializer):
             parsed_data=parsed_and_validated_data,
         )
         upload.update(addon=version.addon)
+        if (
+            self.addon
+            and self.addon.status == amo.STATUS_NULL
+            and self.addon.has_complete_metadata()
+            and upload.channel == amo.RELEASE_CHANNEL_LISTED
+        ):
+            self.addon.update(status=amo.STATUS_NOMINATED)
         return version
 
     def update(self, instance, validated_data):
@@ -640,7 +678,7 @@ class AddonSerializer(serializers.ModelSerializer):
     authors = AddonDeveloperSerializer(
         many=True, source='listed_authors', read_only=True
     )
-    categories = CategoriesSerializerField(source='all_categories')
+    categories = CategoriesSerializerField(source='all_categories', required=False)
     contributions_url = ContributionSerializerField(
         source='contributions', read_only=True
     )
@@ -812,7 +850,26 @@ class AddonSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         if not self.instance:
-            addon_type = self.fields['version'].parsed_data['type']
+            parsed_data = self.fields['version'].parsed_data
+            addon_type = parsed_data['type']
+            channel = getattr(data.get('version', {}).get('upload'), 'channel', None)
+
+            # If this is a new addon, check that all the required metadata is set.
+            # We test for new versions in VersionSerailizer.validate instead
+            if channel == amo.RELEASE_CHANNEL_LISTED:
+                # This is replicating what Addon.get_required_metadata does
+                required_msg = 'This field is required for addons with listed versions.'
+                missing_metadata = {
+                    field: required_msg
+                    for field, value in (
+                        ('categories', data.get('all_categories')),
+                        ('name', data.get('name', parsed_data.get('name'))),
+                        ('summary', data.get('summary', parsed_data.get('summary'))),
+                    )
+                    if not value
+                }
+                if missing_metadata:
+                    raise exceptions.ValidationError(missing_metadata, code='required')
         else:
             addon_type = self.instance.type
         if 'all_categories' in data:
