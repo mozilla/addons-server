@@ -1132,6 +1132,9 @@ class ReviewActionReason(ModelBase):
     )
     name = models.CharField(max_length=255)
 
+    def labelled_name(self):
+        return self.name + ' (** inactive **)' if not self.is_active else self.name
+
     class Meta:
         ordering = ('name',)
 

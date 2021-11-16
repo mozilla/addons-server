@@ -65,18 +65,15 @@ class ReviewActionReasonLogAdmin(admin.ModelAdmin):
     def has_delete_permission(self, request, obj=None):
         return False
 
-    def formfield_for_foreignkey(self, db_field, request, **kwargs):
-        if db_field.name == 'reason':
-            kwargs['queryset'] = ReviewActionReason.objects.filter(
-                is_active__exact=True
-            )
-        return super().formfield_for_foreignkey(db_field, request, **kwargs)
-
     def get_form(self, request, obj=None, **kwargs):
         form = super(ReviewActionReasonLogAdmin, self).get_form(request, obj, **kwargs)
         form.base_fields['reason'].widget.can_add_related = False
         form.base_fields['reason'].widget.can_change_related = False
         form.base_fields['reason'].empty_label = None
+        form.base_fields['reason'].choices = [
+            (reason.id, reason.labelled_name())
+            for reason in ReviewActionReason.objects.all()
+        ]
         return form
 
 
