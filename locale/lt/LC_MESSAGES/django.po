@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-09 18:04+0000\n"
+"POT-Creation-Date: 2021-11-16 17:49+0000\n"
 "PO-Revision-Date: 2017-08-10 14:20+0000\n"
 "Last-Translator: Paulius <paulius@mozilla.lt>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4340,10 +4340,6 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr ""
-
-#. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
 msgstr ""
 
@@ -4389,14 +4385,13 @@ msgid "See all extensions"
 msgstr "Populiarūs plėtiniai"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Top anti-tracking extensions"
-msgstr "Plėtiniai"
+msgid "Productivity boosters"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #, fuzzy
-msgid "Image search extensions"
-msgstr "Populiarūs plėtiniai"
+msgid "Top anti-tracking extensions"
+msgstr "Plėtiniai"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.

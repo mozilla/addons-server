@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-09 18:04+0000\n"
+"POT-Creation-Date: 2021-11-16 17:49+0000\n"
 "PO-Revision-Date: 2020-10-09 05:48+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -4407,10 +4407,6 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr ""
-
-#. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
 msgstr ""
 
@@ -4454,16 +4450,15 @@ msgstr "إنها تضيف ميزات إضافية لفيرفُكس لتجعل ا
 msgid "See all extensions"
 msgstr "تصفح كل الإضافات"
 
+#. editorial content for the secondary hero shelves.
+msgid "Productivity boosters"
+msgstr ""
+
 # Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
 #, fuzzy
 msgid "Top anti-tracking extensions"
 msgstr "استكشف الامتدادات"
-
-#. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Image search extensions"
-msgstr "تصفح كل الإضافات"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-09 18:04+0000\n"
+"POT-Creation-Date: 2021-11-16 17:49+0000\n"
 "PO-Revision-Date: 2021-10-21 13:01+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
@@ -4351,11 +4351,6 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "ウェブ上で面白い画像を見つけた？TinEye でその発信元を調べましょう。"
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
-msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "猫からレーザー光線を発射する必要がある瞬間に。"
-
-#. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
 msgstr ""
 
@@ -4399,16 +4394,15 @@ msgstr "Firefox に機能を追加して、ブラウジングを高速に、安�
 msgid "See all extensions"
 msgstr "すべての拡張機能を見る"
 
+#. editorial content for the secondary hero shelves.
+msgid "Productivity boosters"
+msgstr ""
+
 # Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
 #, fuzzy
 msgid "Top anti-tracking extensions"
 msgstr "人気の拡張機能"
-
-#. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Image search extensions"
-msgstr "すべての拡張機能を見る"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-09 18:04+0000\n"
+"POT-Creation-Date: 2021-11-16 17:49+0000\n"
 "PO-Revision-Date: 2021-04-12 00:29+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4343,11 +4343,6 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "ਵੈਬ ਤੇ ਇਕ ਦਿਲਚਸਪ ਤਸਵੀਰ ਲੱਭੋ? ਆਪਣੇ ਮੂਲ ਦੀ ਖੋਜ ਕਰਨ ਲਈ TinEye ਵਰਤੋ।"
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
-msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "ਉਨ੍ਹਾਂ ਪਲਾਂ ਲਈ ਜਦੋਂ ਤੁਹਾਨੂੰ ਇੱਕ ਕੈਟ ਵਿੱਚੋਂ ਲੈਜ਼ਰਾਂ ਨੂੰ ਅੱਗ ਲਾਉਣ ਦੀ ਲੋੜ ਹੈ।"
-
-#. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
 msgstr ""
 
@@ -4394,14 +4389,13 @@ msgid "See all extensions"
 msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Top anti-tracking extensions"
-msgstr "ਐਕਸਟੈਂਸ਼ਨਾਂ ਦੀ ਪੜਚੋਲ ਕਰੋ"
+msgid "Productivity boosters"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #, fuzzy
-msgid "Image search extensions"
-msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
+msgid "Top anti-tracking extensions"
+msgstr "ਐਕਸਟੈਂਸ਼ਨਾਂ ਦੀ ਪੜਚੋਲ ਕਰੋ"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
