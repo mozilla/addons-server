@@ -487,23 +487,15 @@ def normalize_string(value, strip_punctuation=False):
     return force_str(b' '.join(value.split()))
 
 
-def slug_validator(
-    s,
-    ok=SLUG_OK,
-    lower=False,
-    spaces=False,
-    delimiter='-',
-    message=validate_slug.message,
-    code=validate_slug.code,
-):
+def slug_validator(slug, message=validate_slug.message):
     """
     Raise an error if the string has any punctuation characters.
 
     Regexes don't work here because they won't check alnums in the right
     locale.
     """
-    if not (s and slugify(s, ok, lower, spaces, delimiter) == s):
-        raise ValidationError(message, code=code)
+    if not (slug and slugify(slug) == slug):
+        raise ValidationError(message, code=validate_slug.code)
 
 
 def raise_required():
