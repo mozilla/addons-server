@@ -268,7 +268,7 @@ class ManifestJSONExtractor:
 
     @property
     def install_origins(self):
-        return self.gecko.get('install_origins', [])
+        return self.get('install_origins', [])
 
     def apps(self):
         """Get `AppVersion`s for the application."""

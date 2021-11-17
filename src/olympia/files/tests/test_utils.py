@@ -492,18 +492,12 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
 
     def test_install_origins(self):
         self.parse({})['install_origins'] == []
-        self.parse(
-            {'applications': {'gecko': {'install_origins': ['https://fôo.com']}}}
-        )['install_origins'] == ['https://fôo.com']
-        self.parse(
-            {
-                'browser_specific_settings': {
-                    'gecko': {
-                        'install_origins': ['https://bâr.net', 'https://alice.org']
-                    }
-                }
-            }
-        )['install_origins'] == ['https://bâr.net', 'https://alice.org']
+        self.parse({'install_origins': ['https://fôo.com']})['install_origins'] == [
+            'https://fôo.com'
+        ]
+        self.parse({'install_origins': ['https://bâr.net', 'https://alice.org']})[
+            'install_origins'
+        ] == ['https://bâr.net', 'https://alice.org']
 
 
 class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
