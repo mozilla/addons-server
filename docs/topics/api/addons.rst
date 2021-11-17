@@ -482,7 +482,9 @@ This endpoint allows a submission of an upload to an existing add-on to create a
         where min/max versions from the manifest, or defaults, will be used.  See :ref:`examples <version-compatibility-examples>`.
     :<json string compatibility[app_name].max: Maximum version of the corresponding app the version is compatible with. Should only be enforced by clients if ``is_strict_compatibility_enabled`` is ``true``.
     :<json string compatibility[app_name].min: Minimum version of the corresponding app the version is compatible with.
-    :<json int license: The license id.
+    :<json int license: The id of a non-custom license. The license must match the add-on type. The license must match the add-on type. Either provide ``license`` or ``custom_license``, not both.
+    :<json object|null custom_license.name: The name of the license (See :ref:`translated fields <api-overview-translations>`). Custom licenses are not supported for themes.
+    :<json object|null custom_license.text: The text of the license (See :ref:`translated fields <api-overview-translations>`). Custom licenses are not supported for themes.
     :<json object|null release_notes: The release notes for this version (See :ref:`translated fields <api-overview-translations>`).
     :<json string upload: The uuid for the xpi upload to create this version with.
 
@@ -559,7 +561,9 @@ This endpoint allows the metadata for an existing version to be edited.
     :<json object|array compatibility: Either an object detailing which :ref:`applications <addon-detail-application>` and versions the version is compatible with; or an array of :ref:`applications <addon-detail-application>`, where default min/max versions will be used if not already defined.  See :ref:`examples <version-compatibility-examples>`.
     :<json string compatibility[app_name].max: Maximum version of the corresponding app the version is compatible with. Should only be enforced by clients if ``is_strict_compatibility_enabled`` is ``true``.
     :<json string compatibility[app_name].min: Minimum version of the corresponding app the version is compatible with.
-    :<json int license: The license id.
+    :<json int license: The id of a non-custom license. The license must match the add-on type. Either provide ``license`` or ``custom_license``, not both.
+    :<json object|null custom_license.name: The name of the license (See :ref:`translated fields <api-overview-translations>`). Custom licenses are not supported for themes.
+    :<json object|null custom_license.text: The text of the license (See :ref:`translated fields <api-overview-translations>`). Custom licenses are not supported for themes.
     :<json object|null release_notes: The release notes for this version (See :ref:`translated fields <api-overview-translations>`).
 
 
