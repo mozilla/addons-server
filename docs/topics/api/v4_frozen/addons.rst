@@ -150,7 +150,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json object current_version: Object holding the current :ref:`version <v4-version-detail-object>` of the add-on. For performance reasons the ``license`` field omits the ``text`` property from both the search and detail endpoints.
     :>json string default_locale: The add-on default locale for translations.
     :>json string|object|null description: The add-on description (See :ref:`translated fields <v4-api-overview-translations>`). This field might contain some HTML tags.
-    :>json string|object|null developer comments: Additional information about the add-on provided by the developer. (See :ref:`translated fields <v4-api-overview-translations>`).
+    :>json string|object|null developer_comments: Additional information about the add-on provided by the developer. (See :ref:`translated fields <v4-api-overview-translations>`).
     :>json string edit_url: The URL to the developer edit page for the add-on.
     :>json string guid: The add-on `extension identifier <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#id>`_.
     :>json boolean has_eula: The add-on has an End-User License Agreement that the user needs to agree with before installing (See :ref:`add-on EULA and privacy policy <v4-addon-eula-policy>`).
@@ -173,7 +173,6 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json object|null promoted: Object holding promotion information about the add-on. Null if the add-on is not currently promoted.
     :>json string promoted.category: The name of the :ref:`promoted category <v4-addon-detail-promoted-category>` for the add-on.
     :>json array promoted.apps[]: Array of the :ref:`applications <v4-addon-detail-application>` for which the add-on is promoted.
-    :>json boolean public_stats: Boolean indicating whether the add-on stats are public or not.
     :>json object ratings: Object holding ratings summary information about the add-on.
     :>json int ratings.count: The total number of user ratings for the add-on.
     :>json int ratings.text_count: The number of user ratings with review text for the add-on.
