@@ -13,7 +13,7 @@ from olympia.accounts.serializers import (
     UserProfileBasketSyncSerializer,
 )
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.utils import sorted_groupby
+from olympia.amo.utils import slug_validator, sorted_groupby
 from olympia.api.fields import (
     ESTranslationSerializerField,
     GetTextTranslationSerializerField,
@@ -45,7 +45,7 @@ from olympia.versions.models import (
     VersionPreview,
 )
 
-from .models import Addon, Preview, ReplacementAddon, attach_tags
+from .models import Addon, DeniedSlug, Preview, ReplacementAddon, attach_tags
 
 
 class FileSerializer(serializers.ModelSerializer):
@@ -854,6 +854,18 @@ class AddonSerializer(serializers.ModelSerializer):
 
     def get_is_source_public(self, obj):
         return False
+
+    def validate_slug(self, value):
+        slug_validator(value)
+
+        if not self.instance or value != self.instance.slug:
+            # DeniedSlug.blocked checks for all numeric slugs as well as being denied.
+            if DeniedSlug.blocked(value):
+                raise exceptions.ValidationError(
+                    'This slug cannot be used. Please choose another.'
+                )
+
+        return value
 
     def validate(self, data):
         if not self.instance:

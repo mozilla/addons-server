@@ -73,7 +73,7 @@ format_html_lazy = keep_lazy_text(format_html)
 
 
 def clean_addon_slug(slug, instance):
-    slug_validator(slug, lower=False)
+    slug_validator(slug)
 
     if slug != instance.slug:
         if Addon.objects.filter(slug=slug).exists():
