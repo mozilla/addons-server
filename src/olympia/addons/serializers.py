@@ -814,6 +814,7 @@ class AddonSerializer(serializers.ModelSerializer):
         slug_validator(value)
 
         if not self.instance or value != self.instance.slug:
+            # DeniedSlug.blocked checks for all numeric slugs as well as being denied.
             if DeniedSlug.blocked(value):
                 raise exceptions.ValidationError(
                     'This slug cannot be used. Please choose another.'
