@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-16 17:49+0000\n"
-"PO-Revision-Date: 2021-11-18 11:43+0000\n"
+"PO-Revision-Date: 2021-11-18 11:49+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -288,7 +288,7 @@ msgid ""
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
 msgstr ""
 "<h1>Oeps! Der is in flater bard.</h1> <p>Dat sille wy fluch reparearje</p> <p>Jo kinne probearje de side te fernijen, of weromgean nei de <a href=\"%(home)s\">startside fan Add-ons</a>. Jo kinne ús "
-"ek helpe dit op te lossen troch <a href=\"https://github.com/mozilla/addons/issues/new\">in probleem te melden</a> mei de details fan hoe't jo op dizze side terjochte kaam. </p>"
+"ek helpe dit op te lossen troch <a href=\"https://github.com/mozilla/addons/issues/new\">in probleem te melden</a> mei de details fan hoe’t jo op dizze side terjochte kaam. </p>"
 
 msgid "Register or Log in"
 msgstr "Registrearje of oanmelde"
@@ -2318,7 +2318,7 @@ msgid ""
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
 "Alle ynformaasje dêr’t brûkers mooglik yn ynteressearre binne dy’t net needsaaklikerwize fan tapassing is op de gearfetting of beskriuwing fan de add-on. Wurdt faaks brûkt foar in list mei bekende "
-"bugs, ynformaasje oer hoe't bugs meld wurde kinne, de ferwachte publikaasjedatum fan in nije ferzje, ensfh. Allinnich relevant foar fermelde add-ons."
+"bugs, ynformaasje oer hoe’t bugs meld wurde kinne, de ferwachte publikaasjedatum fan in nije ferzje, ensfh. Allinnich relevant foar fermelde add-ons."
 
 msgid "Universally unique identifier"
 msgstr "Universeel unike identifikaasje"
@@ -2604,7 +2604,7 @@ msgid "Please choose a license appropriate for the rights you grant."
 msgstr "Kies in lisinsje dy’t tapaslik is foar de rjochten dy’t jo jaan wolle."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr "As jo add-on gegevens ferstjoert fan de kompjûter fan de brûker ôf is in privacybelied dat útleit hokker gegevens ferstjoerd wurde en hoe't dizze brûkt wurde ferplicht."
+msgstr "As jo add-on gegevens ferstjoert fan de kompjûter fan de brûker ôf is in privacybelied dat útleit hokker gegevens ferstjoerd wurde en hoe’t dizze brûkt wurde ferplicht."
 
 msgid "Notes to Reviewer:"
 msgstr "Opmerkingen foar beoardielers:"
@@ -2645,7 +2645,7 @@ msgid "How to Distribute this Version"
 msgstr "Dizze ferzje distribuearje"
 
 msgid "To get started, select how you would like to distribute this version."
-msgstr "Selektearje om te begjinnen hoe't jo dizze ferzje distribuearje wolle."
+msgstr "Selektearje om te begjinnen hoe’t jo dizze ferzje distribuearje wolle."
 
 #, python-format
 msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
@@ -3092,14 +3092,14 @@ msgstr "Privacybelied"
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
-"As jo add-on gegevens ferstjoert fan de kompjûter fan de brûker ôf is in privacybelied dat útleit hokker gegevens ferstjoerd wurde en hoe't dizze brûkt wurde ferplicht. Allinnich relevant foar "
+"As jo add-on gegevens ferstjoert fan de kompjûter fan de brûker ôf is in privacybelied dat útleit hokker gegevens ferstjoerd wurde en hoe’t dizze brûkt wurde ferplicht. Allinnich relevant foar "
 "fermelde add-ons."
 
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
 msgstr "As jo add-on ferlytse, keppele of oars automatysk oanmakke koade bûten bekende biblioteken befettet, laad dan de boarnen foar beoardieling op."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
-msgstr "Nim ynstruksjes op oer hoe't it úteinlike add-onbestân reprodusearre wurde kinne, yn in README-bestân of yn de Opmerkingen foar de beoardieler foar dizze ferzje."
+msgstr "Nim ynstruksjes op oer hoe’t it úteinlike add-onbestân reprodusearre wurde kinne, yn in README-bestân of yn de Opmerkingen foar de beoardieler foar dizze ferzje."
 
 msgid "Read more about the source code review policy."
 msgstr "Lês mear oer it belied oangeande boarnekoadebeoardieling."
@@ -3144,7 +3144,7 @@ msgstr "E-mailadres"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr "Ik gean akkoard mei hoe't Mozilla omgiet mei myn gegevens, lykas útlein yn dizze %(link_open)sPrivacyferklearring%(link_close)s."
+msgstr "Ik gean akkoard mei hoe’t Mozilla omgiet mei myn gegevens, lykas útlein yn dizze %(link_open)sPrivacyferklearring%(link_close)s."
 
 msgid "Sign Up"
 msgstr "Registrearje"
@@ -3259,7 +3259,7 @@ msgid "Customize Firefox"
 msgstr "Firefox oanpasse"
 
 msgid "Learn how to make an extension"
-msgstr "Lear hoe't jo in útwreiding meitsje kinne"
+msgstr "Lear hoe’t jo in útwreiding meitsje kinne"
 
 msgid "Ready to submit or manage your extension?"
 msgstr "Klear om jo útwreiding yn te tsjinjen of te behearen?"
@@ -3486,7 +3486,7 @@ msgstr "Omkeard ôfbyldingen sykje mei in oantal sykmasinen."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr "Advertinskeblokkearring en privacybeskerming. Mei inkelde ienfâldige ynstellingen kontrolearje jo de advertinsjes dy’t oan jo toand wurde en hoe't jo op it ynternet folge wurde."
+msgstr "Advertinskeblokkearring en privacybeskerming. Mei inkelde ienfâldige ynstellingen kontrolearje jo de advertinsjes dy’t oan jo toand wurde en hoe’t jo op it ynternet folge wurde."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3675,7 +3675,7 @@ msgstr "Spylje YouTube-fideo’s standert ôf yn de heechste kwaliteit, set oant
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
-msgstr "Folgje de trackers. Krij in glimp fan wa't jo folget mei ien simpele klik."
+msgstr "Folgje de trackers. Krij in glimp fan wa’t jo folget mei ien simpele klik."
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server and surf the web through self-defined proxy settings."
@@ -3708,7 +3708,7 @@ msgstr "In superieur downloadhelpmiddel, allinnich foar Windows."
 
 #. editorial content for the discovery pane.
 msgid "Find out who's tracking you and where they may be sharing your information."
-msgstr "Sykje út wa't jo folget en wêr men mooglik jo gegevens dielt."
+msgstr "Sykje út wa’t jo folget en wêr men mooglik jo gegevens dielt."
 
 #. editorial content for the discovery pane.
 msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
@@ -4215,7 +4215,7 @@ msgstr "Fyn argivearre, deade of oars wat ferdwûne websiden."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
-msgstr "Wizigje hoe't jo browser der út sjocht. Untwerp ienfâldich jo eigen fisuele tema’s om Firefox der út sjen te litten sa as jo dat wolle."
+msgstr "Wizigje hoe’t jo browser der út sjocht. Untwerp ienfâldich jo eigen fisuele tema’s om Firefox der út sjen te litten sa as jo dat wolle."
 
 #. editorial content for the discovery pane.
 msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
@@ -4382,7 +4382,7 @@ msgstr "Gean fuort, ferfelende cookiewarskôgingen!"
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
-msgstr "Gean werom nei in ienfâldiger tiden – doe't jo bêste sykresultaten boppe de advertinsjes stiene (kompatibel mei de sykmasinen fan Google en Bing)."
+msgstr "Gean werom nei in ienfâldiger tiden – doe’t jo bêste sykresultaten boppe de advertinsjes stiene (kompatibel mei de sykmasinen fan Google en Bing)."
 
 #. editorial content for the primary hero shelves.
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
@@ -5916,7 +5916,7 @@ msgstr ""
 "Attribution Share-Alike License v3.0 </a> of lettere ferzje fan tapassing."
 
 msgid "get to know <b>add-ons</b>"
-msgstr "kom yn 'e kunde mei <b>add-ons</b>"
+msgstr "kom yn de kunde mei <b>add-ons</b>"
 
 msgid "About"
 msgstr "Oer"
@@ -6077,7 +6077,7 @@ msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
 msgstr ""
-"Lês en akseptearje eardat jo begjinne ús Firefox-add-on-distribúsje-oerienkomst en ús Beoardielingsrigels en belied. Dizze ferwiist ek nei ús Privacyferklearring, dy’t útleit hoe't wy mei jo "
+"Lês en akseptearje eardat jo begjinne ús Firefox-add-on-distribúsje-oerienkomst en ús Beoardielingsrigels en belied. Dizze ferwiist ek nei ús Privacyferklearring, dy’t útleit hoe’t wy mei jo "
 "gegevens omgean."
 
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
