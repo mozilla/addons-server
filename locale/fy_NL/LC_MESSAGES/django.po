@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-16 17:49+0000\n"
-"PO-Revision-Date: 2021-11-18 11:06+0000\n"
+"PO-Revision-Date: 2021-11-18 11:09+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -2672,7 +2672,7 @@ msgid ""
 "You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
 "selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
-"Jo binne klear! ✨ Jo ûntfange in befêstigings-e-mail wannear't dizze ferzje publisearre is op %(site_domain)s. Hâld der rekkening mei dat it oant 24 oer duorje kin eardat publikaasje plakfynt, of "
+"Jo binne klear! ✨ Jo ûntfange in befêstigings-e-mail wannear’t dizze ferzje publisearre is op %(site_domain)s. Hâld der rekkening mei dat it oant 24 oer duorje kin eardat publikaasje plakfynt, of "
 "langer as jo add-on selektearre is foar hânmjittige beoardieling. As jo nei 24 oeren gjin e-mail ûntfange, kontrolearje dan jo spammap."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
@@ -2699,7 +2699,7 @@ msgstr "Ferzjeûndetekening yn behanneling"
 
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
-"Jo binne klear! ✨ Jo ûntfange in e-mailberjocht wannear't it ûndertekene bestân klear is om download te wurden fan de Untwikkelershub út. As jo nei 24 oeren gjin e-mail ûntfange, kontrolearje dan jo"
+"Jo binne klear! ✨ Jo ûntfange in e-mailberjocht wannear’t it ûndertekene bestân klear is om download te wurden fan de Untwikkelershub út. As jo nei 24 oeren gjin e-mail ûntfange, kontrolearje dan jo"
 " spammap."
 
 msgid "As a reminder, your add-on is subject to manual review at any time."
@@ -3738,7 +3738,7 @@ msgstr "Bewarje ynformaasje fan it ynternet nei OneNote, sadat jo dizze bewurkje
 
 #. editorial content for the discovery pane.
 msgid "Stop ad trackers when you click Google and Yandex search returns."
-msgstr "Stopje advertinsjetrackers wannear't jo op sykresultaten fan Google en Yandex klikke."
+msgstr "Stopje advertinsjetrackers wannear’t jo op sykresultaten fan Google en Yandex klikke."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4675,7 +4675,7 @@ msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
 msgstr ""
-"In add-on bekritisearje foar op wat foar it bedoeld is. Bygelyks in negative beoardieling fan in add-on jaan foar it werjaan fan advertinsjes of ferplichte gegevenssamling, wannear't dat it doel fan"
+"In add-on bekritisearje foar op wat foar it bedoeld is. Bygelyks in negative beoardieling fan in add-on jaan foar it werjaan fan advertinsjes of ferplichte gegevenssamling, wannear’t dat it doel fan"
 " de add-on is, of as de add-on gegevens sammelje moat om te wurkjen."
 
 msgid "How can I report a problematic review?"
