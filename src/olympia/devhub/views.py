@@ -43,7 +43,14 @@ from olympia.amo import messages, utils as amo_utils
 from olympia.amo.decorators import json_view, login_required, post_required
 from olympia.amo.templatetags.jinja_helpers import absolutify, urlparams
 from olympia.amo.reverse import get_url_prefix
-from olympia.amo.utils import MenuItem, escape_all, is_safe_url, render, send_mail
+from olympia.amo.utils import (
+    MenuItem,
+    StopWatch,
+    escape_all,
+    is_safe_url,
+    render,
+    send_mail,
+)
 from olympia.api.models import APIKey, APIKeyConfirmation
 from olympia.devhub.decorators import dev_required, no_admin_disabled
 from olympia.devhub.models import BlogPost, RssKey
@@ -1544,6 +1551,13 @@ def submit_version_theme_wizard(request, addon_id, addon, channel):
 
 
 def _submit_source(request, addon, version, submit_page, next_view):
+    log.info(
+        'Starting _submit_source, addon.slug: %s, version.pk: %s',
+        addon.slug,
+        version.pk,
+    )
+    timer = StopWatch('devhub.views._submit_source.')
+    timer.start()
     redirect_args = (
         [addon.slug, version.pk]
         if version and submit_page == 'version'
@@ -1557,6 +1571,8 @@ def _submit_source(request, addon, version, submit_page, next_view):
         instance=version,
         request=request,
     )
+    timer.log_interval('1.form populated')
+
     if request.method == 'POST' and form.is_valid():
         if form.cleaned_data.get('source'):
             AddonReviewerFlags.objects.update_or_create(
@@ -1576,8 +1592,21 @@ def _submit_source(request, addon, version, submit_page, next_view):
             )
             VersionLog.objects.create(version_id=version.id, activity_log=activity_log)
             form.save()
+            log.info(
+                '_submit_source, form saved, addon.slug: %s, version.pk: %s',
+                addon.slug,
+                version.pk,
+            )
+            timer.log_interval('2.form saved')
 
-        return redirect(next_view, *redirect_args)
+        result = redirect(next_view, *redirect_args)
+        log.info(
+            '_submit_source, redirecting to next view, addon.slug: %s, version.pk: %s',
+            addon.slug,
+            version.pk,
+        )
+        timer.log_interval('3.redirecting to next view')
+        return result
     context = {
         'form': form,
         'addon': addon,
